@@ -63,16 +63,6 @@ const layoutComponents = [
     md3: false,
     noGuidelines: false,
   },
-  {
-    name: 'Hidden',
-    srcLight: '/static/material-ui/react-components/link-light.png',
-    srcDark: '/static/material-ui/react-components/link-dark.png',
-    link: '/material-ui/react-accordion/',
-    md1: false,
-    md2: false,
-    md3: false,
-    noGuidelines: true,
-  },
 ];
 
 export default function MaterialLayoutComponents() {

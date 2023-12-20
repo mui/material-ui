@@ -55,8 +55,8 @@ const dataDisplayComponents = [
   },
   {
     name: 'Material Icons',
-    srcLight: '/static/material-ui/react-components/switch-light.png',
-    srcDark: '/static/material-ui/react-components/button-dark.png',
+    srcLight: '/static/material-ui/react-components/material-icons-light.png',
+    srcDark: '/static/material-ui/react-components/material-icons-dark.png',
     link: '/material-ui/material-icons/',
     md1: false,
     md2: true,
