@@ -5,6 +5,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import Link from '@mui/material/Link';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
@@ -49,7 +50,10 @@ export default function FAQ() {
               aria-controls="panel1d-content"
               id="panel1d-header"
             >
-              <Typography variant="subtitle2">Collapsible Group Item #1</Typography>
+              <Typography variant="subtitle2">
+                {' '}
+                How do I contact customer support if I have a question or issue?
+              </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography
@@ -57,10 +61,9 @@ export default function FAQ() {
                 gutterBottom
                 sx={{ maxWidth: { sm: '100%', md: '60%' } }}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
-                dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-                lacus ex, sit amet blandit leo lobortis eget.
+                You can reach our customer support team by emailing
+                <Link> support@email.com </Link>
+                or calling our toll-free number. We're here to assist you promptly.
               </Typography>
             </AccordionDetails>
           </Accordion>
@@ -73,7 +76,9 @@ export default function FAQ() {
               aria-controls="panel2d-content"
               id="panel2d-header"
             >
-              <Typography variant="subtitle2">Collapsible Group Item #2</Typography>
+              <Typography variant="subtitle2">
+                Can I return the product if it doesn't meet my expectations?
+              </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography
@@ -81,10 +86,9 @@ export default function FAQ() {
                 gutterBottom
                 sx={{ maxWidth: { sm: '100%', md: '60%' } }}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
-                dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-                lacus ex, sit amet blandit leo lobortis eget.
+                Absolutely! We offer a hassle-free return policy. If you're not
+                completely satisfied, you can return the product within [number of
+                days] days for a full refund or exchange.
               </Typography>
             </AccordionDetails>
           </Accordion>
@@ -97,7 +101,9 @@ export default function FAQ() {
               aria-controls="panel3d-content"
               id="panel3d-header"
             >
-              <Typography variant="subtitle2">Collapsible Group Item #3</Typography>
+              <Typography variant="subtitle2">
+                What makes your product stand out from others in the market?
+              </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography
@@ -105,10 +111,9 @@ export default function FAQ() {
                 gutterBottom
                 sx={{ maxWidth: { sm: '100%', md: '60%' } }}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
-                dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-                lacus ex, sit amet blandit leo lobortis eget.
+                Our product distinguishes itself through its adaptability,
+                durability, and innovative features. We prioritize user satisfaction
+                and continually strive to exceed expectations in every aspect.
               </Typography>
             </AccordionDetails>
           </Accordion>
@@ -121,7 +126,9 @@ export default function FAQ() {
               aria-controls="panel3d-content"
               id="panel3d-header"
             >
-              <Typography variant="subtitle2">Collapsible Group Item #4</Typography>
+              <Typography variant="subtitle2">
+                Is there a warranty on the product, and what does it cover?
+              </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography
@@ -129,10 +136,10 @@ export default function FAQ() {
                 gutterBottom
                 sx={{ maxWidth: { sm: '100%', md: '60%' } }}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
-                dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-                lacus ex, sit amet blandit leo lobortis eget.
+                Yes, our product comes with a [length of warranty] warranty. It
+                covers defects in materials and workmanship. If you encounter any
+                issues covered by the warranty, please contact our customer support
+                for assistance.
               </Typography>
             </AccordionDetails>
           </Accordion>

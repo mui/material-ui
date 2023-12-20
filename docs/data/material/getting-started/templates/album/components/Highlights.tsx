@@ -4,51 +4,51 @@ import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import { grey } from '@mui/material/colors';
+import { greyColor } from '../getAlbumTheme';
 
-import AccessTimeRoundedIcon from '@mui/icons-material/AccessTimeRounded';
-import ArchitectureRoundedIcon from '@mui/icons-material/ArchitectureRounded';
-import CloudQueueRoundedIcon from '@mui/icons-material/CloudQueueRounded';
-import AutoFixHighRoundedIcon from '@mui/icons-material/AutoFixHighRounded';
+import SettingsSuggestRoundedIcon from '@mui/icons-material/SettingsSuggestRounded';
 import ConstructionRoundedIcon from '@mui/icons-material/ConstructionRounded';
-import HeadsetRoundedIcon from '@mui/icons-material/HeadsetRounded';
+import AutoFixHighRoundedIcon from '@mui/icons-material/AutoFixHighRounded';
+import QueryStatsRoundedIcon from '@mui/icons-material/QueryStatsRounded';
+import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
+import SupportAgentRoundedIcon from '@mui/icons-material/SupportAgentRounded';
 
 const items = [
   {
-    icon: <AccessTimeRoundedIcon />,
-    title: 'Item 1 Title',
+    icon: <SettingsSuggestRoundedIcon />,
+    title: 'Adaptable performance',
     description:
-      'Lorem ipsum dolor sit amet consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.',
-  },
-  {
-    icon: <ArchitectureRoundedIcon />,
-    title: 'Item 2 Title',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.',
-  },
-  {
-    icon: <CloudQueueRoundedIcon />,
-    title: 'Item 3 Title',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.',
-  },
-  {
-    icon: <AutoFixHighRoundedIcon />,
-    title: 'Item 4 Title',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.',
+      'Our product effortlessly adjusts to your needs, boosting efficiency and simplifying your tasks.',
   },
   {
     icon: <ConstructionRoundedIcon />,
-    title: 'Item 5 Title',
+    title: 'Built to last',
     description:
-      'Lorem ipsum dolor sit amet consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.',
+      'Experience unmatched durability that goes above and beyond, ensuring a lasting investment.',
   },
   {
-    icon: <HeadsetRoundedIcon />,
-    title: 'Item 6 Title',
+    icon: <ThumbUpAltRoundedIcon />,
+    title: 'Great user experience',
     description:
-      'Lorem ipsum dolor sit amet consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.',
+      'Seamlessly integrate our product into your routine with an intuitive and easy-to-use interface.',
+  },
+  {
+    icon: <AutoFixHighRoundedIcon />,
+    title: 'Innovative functionality',
+    description:
+      'Stay ahead with features that set new standards, addressing your evolving needs better than the rest.',
+  },
+  {
+    icon: <SupportAgentRoundedIcon />,
+    title: 'Reliable support',
+    description:
+      'Count on our responsive customer support, offering assistance that goes beyond the purchase.',
+  },
+  {
+    icon: <QueryStatsRoundedIcon />,
+    title: 'Precision in Every Detail',
+    description:
+      'Enjoy a meticulously crafted product where small touches make a significant impact on your overall experience.',
   },
 ];
 
@@ -87,9 +87,11 @@ export default function Highlights() {
                 spacing={1}
                 sx={{
                   border: '1px solid',
-                  borderColor: grey[900],
+                  borderColor: greyColor[800],
+                  backgroundColor: greyColor[900],
                   borderRadius: '8px',
                   p: 2,
+                  height: '100%',
                 }}
               >
                 <Box>

@@ -20,21 +20,23 @@ const items = [
     icon: <ViewQuiltRoundedIcon />,
     title: 'Dashboard',
     description:
-      'Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi.',
+      'This item could provide a snapshot of the most important metrics or data points related to the product.',
     image:
       'url("https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=3570&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
   },
   {
     icon: <EdgesensorHighRoundedIcon />,
     title: 'Mobile integration',
-    description: 'Aliquam in hendrerit urna.',
+    description:
+      'This item could provide information about the mobile app version of the product.',
     image:
       'url("https://images.unsplash.com/photo-1581287053822-fd7bf4f4bfec?q=80&w=3602&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
   },
   {
     icon: <DevicesRoundedIcon />,
     title: 'Available in all platforms',
-    description: 'Pellentesque sit amet sapien fringilla, mattis ligula consectetur',
+    description:
+      'This item could let users know that the product is available on all platforms, such as web, mobile, and desktop.',
     image:
       'url("https://images.unsplash.com/photo-1597740985671-2a8a3b80502e?q=80&w=3456&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
   },
@@ -62,8 +64,10 @@ export default function Features() {
                 Product features
               </Typography>
               <Typography variant="body1" color="text.secondary" component="p">
-                Lorem ipsum dolor sit amet consectetur adipiscing elit. Ut et massa
-                mi. Aliquam in hendrerit urna.
+                Here you can provide a brief overview of the key features of the
+                product. For example, you could list the number of features, the
+                types of features (e.g., core features, add-ons), or the benefits of
+                the features.
               </Typography>
             </Box>
             <Stack
@@ -121,7 +125,20 @@ export default function Features() {
                       width: '100%',
                     }}
                   >
-                    <Box sx={{ opacity: '50%' }}>{icon}</Box>
+                    <Box
+                      sx={{
+                        color: (theme) =>
+                          theme.palette.mode === 'light'
+                            ? selectedItemIndex === index
+                              ? brandColor[500]
+                              : greyColor[400]
+                            : selectedItemIndex === index
+                            ? brandColor[500]
+                            : greyColor[600],
+                      }}
+                    >
+                      {icon}
+                    </Box>
                     <span>
                       <Typography
                         component="span"

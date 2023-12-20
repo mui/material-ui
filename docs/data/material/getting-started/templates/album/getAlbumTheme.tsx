@@ -204,7 +204,7 @@ export default function getAlbumTheme(mode: 'light' | 'dark') {
           root: ({ ownerState }: { ownerState: { color?: string } }) =>
             ({
               ...(ownerState.color === 'primary' && {
-                color: brandColor[500],
+                color: mode === 'light' ? brandColor[500] : brandColor[400],
               }),
             } as const),
         },
