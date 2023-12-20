@@ -3,7 +3,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Divider from '@mui/material/Divider';
 
 import AppBar from './components/AppBar';
@@ -14,9 +14,8 @@ import Pricing from './components/Pricing';
 import Features from './components/Features';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
-import { createContext, useState } from 'react';
 
-import getAlbumTheme from './albumTheme';
+import getAlbumTheme from './getAlbumTheme';
 
 function Copyright() {
   return (
@@ -36,10 +35,12 @@ interface ColorMode {
   toggleColorMode: () => void;
 }
 
-export const ColorModeContext = createContext<ColorMode | undefined>(undefined);
+export const ColorModeContext = React.createContext<ColorMode | undefined>(
+  undefined,
+);
 
 export default function Album() {
-  const [colorMode, setColorMode] = useState<ColorMode>({
+  const [colorMode, setColorMode] = React.useState<ColorMode>({
     mode: 'light',
     toggleColorMode: () => {
       setColorMode((prevMode) => ({
@@ -49,7 +50,10 @@ export default function Album() {
     },
   });
 
-  const theme = React.useMemo(() => getAlbumTheme(colorMode.mode), [colorMode.mode]);
+  const theme = React.useMemo(
+    () => createTheme(getAlbumTheme(colorMode.mode)),
+    [colorMode.mode],
+  );
 
   return (
     <ColorModeContext.Provider value={colorMode}>
