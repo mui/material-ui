@@ -7,6 +7,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
+    "jsx": "preserve",
     "types": ["node", "mocha"],
     "target": "ES2020",
     "module": "CommonJS",
@@ -14,6 +15,8 @@
     "strict": true,
     "baseUrl": "./",
     "paths": {
+      "@mui/utils": ["../mui-utils/src"],
+      "@mui/utils/*": ["../mui-utils/src/*"],
       "react-docgen": ["../api-docs-builder/react-docgen.d.ts"]
     }
   },
