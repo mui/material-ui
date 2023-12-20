@@ -136,7 +136,7 @@ describe('<ButtonGroup />', () => {
     const button = getByRole('button');
     const buttonGroup = container.firstChild;
     expect(buttonGroup).not.to.have.class(classes.fullWidth);
-    expect(button).not.to.have.class('MuiButton-fullWidth');
+    expect(button).not.to.have.class(buttonClasses.fullWidth);
   });
 
   it('can pass fullWidth to Button', () => {
@@ -148,7 +148,7 @@ describe('<ButtonGroup />', () => {
     const buttonGroup = container.firstChild;
     const button = getByRole('button');
     expect(buttonGroup).to.have.class(classes.fullWidth);
-    expect(button).to.have.class('MuiButton-fullWidth');
+    expect(button).to.have.class(buttonClasses.fullWidth);
   });
 
   it('classes.grouped should be merged with Button className', () => {

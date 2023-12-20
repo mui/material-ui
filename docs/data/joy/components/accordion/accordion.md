@@ -97,7 +97,7 @@ Use `sx` prop on the AccordionGroup to style all the accordions at once.
 
 ### Depth panel
 
-This example shows how to customize the accordion to create lines and depth to make it looks more realistic.
+This example shows how to customize the accordion to create lines and depth to make it look more realistic.
 
 {{"demo": "AccordionDepthPanel.js"}}
 

@@ -57,4 +57,9 @@ export type ListSubheaderProps<
   },
 > = OverrideProps<ListSubheaderTypeMap<P, D>, D>;
 
-export interface ListSubheaderOwnerState extends ApplyColorInversion<ListSubheaderProps> {}
+export interface ListSubheaderOwnerState extends ApplyColorInversion<ListSubheaderProps> {
+  /**
+   * @internal
+   */
+  instanceColor?: OverridableStringUnion<ColorPaletteProp, ListSubheaderColorOverrides>;
+}

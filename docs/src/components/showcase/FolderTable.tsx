@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Theme } from '@mui/material/styles';
+import { Theme, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Table from '@mui/material/Table';
@@ -18,6 +18,8 @@ const data = [
   { name: 'Pictures & videos', size: 134000000 },
   { name: 'Source files', size: 200000000 },
   { name: 'Dependencies', size: 44000000 },
+  { name: 'Assets & illustrations', size: 21000000 },
+  { name: 'Components', size: 11000 },
 ];
 
 type Data = typeof data extends Array<infer T> ? T : never;
@@ -89,6 +91,7 @@ export default function BasicTable() {
       sx={[
         {
           maxWidth: 260,
+          boxShadow: (theme) => `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
           [`& .${tableCellClasses.root}`]: {
             borderColor: 'grey.200',
           },
@@ -100,6 +103,7 @@ export default function BasicTable() {
           theme.applyDarkStyles({
             bgcolor: 'primaryDark.900',
             borderColor: 'primaryDark.700',
+            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.4)',
             [`& .${tableCellClasses.root}`]: {
               borderColor: 'primaryDark.700',
             },

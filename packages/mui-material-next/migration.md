@@ -140,18 +140,41 @@ If you need to prevent default on a `key-up` and/or `key-down` event, then besid
 
 This is to ensure that default is prevented when the `ButtonBase` root is not a native button, for example, when the root element used is a `span`.
 
-## InputBase
+## FilledInput
 
-### Removed the `inputComponent` prop
+### Removed `inputProps`
 
-The `inputComponent` is deprecated in favor of `slots.input`:
+`inputProps` are removed in favor of `slotProps.input`:
 
 ```diff
- <InputBase
--    inputComponent="textarea"
-+    slots={{ input: 'textarea' }}
+ <FilledInput
+-    inputProps={{ className: 'my-input' }}
++    slotProps={{ input: { className: 'my-input' } }}
  />
 ```
+
+## FormControl
+
+### Renamed `FormControlState`
+
+The `FormControlState` interface was renamed to `FormControlContextValue`:
+
+```diff
+-import { FormControlState } from '@mui/material';
++import { FormControlContextValue } from '@mui/material-next';
+```
+
+### Removed the `standard` variant
+
+The standard variant is no longer supported in Material You, use the `filled` or `outlined` variants instead.
+
+## FormLabel
+
+### Removed the `standard` variant
+
+The standard variant is no longer supported in Material You, use the `filled` or `outlined` variants instead.
+
+## InputBase
 
 ### Removed `inputProps`
 
@@ -163,6 +186,12 @@ The `inputComponent` is deprecated in favor of `slots.input`:
 +    slotProps={{ input: { className: 'my-input' } }}
  />
 ```
+
+## InputLabel
+
+### Removed the `standard` variant
+
+The standard variant is no longer supported in Material You, use the `filled` or `outlined` variants instead.
 
 ## Chip
 
@@ -333,3 +362,157 @@ If you are using the `thumb` or `valueLabel` Slider slots, then make sure the co
 ```
 
 This is required in v6 as it's used to apply the overlap styles to these slots. For more info take a look into [Material You's Slider overlapping handles guidelines](https://m3.material.io/components/sliders/guidelines#ad5ceb95-a690-4ddd-8243-53a8e13bdab6).
+
+## Divider
+
+### Removed the "light" prop and class
+
+The `"light"` prop is no longer accepted for the Divider component.
+
+If you were using the `light` prop to create a lighter Divider (which is not supported in version 6), please remove the prop as shown below:
+
+```diff
+ <Divider
+-  light={true}
++  sx={{ borderColor: '#eee' }}
+ />
+```
+
+### Remove composed classes and `styleOverrides` keys
+
+The following classes were removed:
+
+- `MuiDivider-withChildrenVertical`
+
+The `MuiDivider-withChildrenVertical` class has been removed. To replace it, you can use the `MuiDivider-withChildren` class along with the `MuiDivider-vertical` class. Here's an updated example:
+
+```diff
+- .MuiDivider-withChildrenVertical
++ .MuiDivider-withChildren.MuiDivider-vertical
+```
+
+## LinearProgress
+
+### Removed combined styleOverrides keys
+
+The following `styleOverrides` `MuiLinearProgress` keys were removed:
+
+- `dashedColorPrimary`
+- `dashedColorSecondary`
+- `barColorPrimary`
+- `barColorSecondary`
+- `bar1Indeterminate`
+- `bar1Determinate`
+- `bar1Buffer`
+- `bar2Indeterminate`
+- `bar2Buffer`
+
+The following `styleOverrides` `MuiLinearProgress` keys were added:
+
+- `bar1`
+- `bar2`
+
+You can replace them by using the variants API and CSS Selectors.
+The following example replaces the usage of `dashedPrimary` with the variants API:
+
+```diff
+ const theme = extendTheme({
+   components: {
+     MuiLinearProgress: {
+       styleOverrides: {
+-        dashedColorPrimary: {
+-          background: "fuchsia"
+-        }
++        root: {
++          "&.MuiLinearProgress-colorPrimary > .MuiLinearProgress-dashed": {
++            background: "fuchsia"
++          }
++        }
+       }
+     }
+   }
+ });
+```
+
+### Removed combined classes
+
+The following classes were removed:
+
+- `MuiLinearProgress-dashedColorPrimary`
+- `MuiLinearProgress-dashedColorSecondary`
+- `MuiLinearProgress-barColorPrimary`
+- `MuiLinearProgress-barColorSecondary`
+- `MuiLinearProgress-bar1Indeterminate`
+- `MuiLinearProgress-bar1Determinate`
+- `MuiLinearProgress-bar1Buffer`
+- `MuiLinearProgress-bar2Indeterminate`
+- `MuiLinearProgress-bar2Buffer`
+
+The following classes were added:
+
+- `MuiLinearProgress-bar1`
+- `MuiLinearProgress-bar2`
+
+You can replace them by combining classes with a CSS selector.
+The following example replaces the `MuiLinearProgress-dashedColorPrimary` class using `MuiLinearProgress-dashed` and `MuiLinearProgress-colorPrimary`:
+
+```diff
+- .MuiLinearProgress-dashedColorPrimary
++ .MuiLinearProgress-colorPrimary .MuiLinearProgress-dashed
+```
+
+## CircularProgress
+
+### Removed combined styleOverrides keys
+
+The following `styleOverrides` `MuiCircularProgress` keys were removed:
+
+- `circleDeterminate`
+- `circleIndeterminate`
+- `circleDisableShrink`
+
+The following `styleOverrides` `MuiCircularProgress` keys were added:
+
+- `disableShrink`
+
+You can replace them by using the variants API and CSS Selectors.
+The following example replaces the usage of `circleDeterminate` with the variants API:
+
+```diff
+ const theme = extendTheme({
+   components: {
+     MuiCircularProgress: {
+       styleOverrides: {
+-        circleDeterminate: {
+-          background: "fuchsia"
+-        }
++        root: {
++          "&.MuiCircularProgress-determinate .MuiCircularProgress-circle": {
++            background: "fuchsia"
++          }
++        }
+       }
+     }
+   }
+ });
+```
+
+### Removed combined classes
+
+The following classes were removed:
+
+- `MuiCircularProgress-circleDeterminate`
+- `MuiCircularProgress-circleIndeterminate`
+- `MuiCircularProgress-circleDisableShrink`
+
+The following classes were added:
+
+- `MuiCircularProgress-disableShrink`
+
+You can replace them by combining classes with a CSS selector.
+The following example replaces the `MuiCircularProgress-circleDeterminate` class using `MuiCircularProgress-circle` and `MuiCircularProgress-determinate`:
+
+```diff
+- .MuiCircularProgress-circleDeterminate
++ .MuiCircularProgress-determinate .MuiCircularProgress-circle
+```

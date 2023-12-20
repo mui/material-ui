@@ -1,4 +1,4 @@
-<CustomButton href={'https://mui.com/'}>Standard link</CustomButton>
-<Link href={'https://mui.com/'}>
-  <CustomButton>Next link</CustomButton>
-</Link>
+<Button href="https://mui.com/">Standard link</Button>
+<Button href="https://mui.com/" slots={{ root: LinkSlot }}>
+  Next.js link
+</Button>

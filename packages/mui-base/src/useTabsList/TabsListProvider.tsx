@@ -1,8 +1,8 @@
 'use client';
 import * as React from 'react';
-import { ListContextValue, ListContext } from '../useList/ListContext';
-import { TabMetadata } from '../useTabs/useTabs';
-import { CompoundComponentContext, CompoundComponentContextValue } from '../utils/useCompound';
+import { ListContext, ListContextValue } from '../useList/ListContext';
+import { TabMetadata } from '../useTabs';
+import { CompoundComponentContext, CompoundComponentContextValue } from '../useCompound';
 
 export type TabsListProviderValue = CompoundComponentContextValue<string | number, TabMetadata> &
   ListContextValue<string | number>;
@@ -19,31 +19,15 @@ export interface TabsListProviderProps {
  */
 export function TabsListProvider(props: TabsListProviderProps) {
   const { value, children } = props;
-  const {
-    dispatch,
-    getItemIndex,
-    getItemState,
-    registerHighlightChangeHandler,
-    registerSelectionChangeHandler,
-    registerItem,
-    totalSubitemCount,
-  } = value;
+  const { dispatch, getItemIndex, getItemState, registerItem, totalSubitemCount } = value;
 
   const listContextValue: ListContextValue<string | number> = React.useMemo(
     () => ({
       dispatch,
       getItemState,
       getItemIndex,
-      registerHighlightChangeHandler,
-      registerSelectionChangeHandler,
     }),
-    [
-      dispatch,
-      getItemIndex,
-      getItemState,
-      registerHighlightChangeHandler,
-      registerSelectionChangeHandler,
-    ],
+    [dispatch, getItemIndex, getItemState],
   );
 
   const compoundComponentContextValue: CompoundComponentContextValue<string | number, TabMetadata> =

@@ -73,7 +73,7 @@ Moreover, notice in the following example that as we edit the day, the component
 :::info
 **Behavior change alert**
 
-During pre-releases, using <kbd>Arrow Up</kbd> and <kbd>Arrow Down</kbd> to update a date section would essentially update the entire field like you were navigating the calendar.
+During pre-releases, using <kbd class="key">Arrow Up</kbd> and <kbd class="key">Arrow Down</kbd> to update a date section would essentially update the entire field like you were navigating the calendar.
 In the previous example, updating the day value from 28 to 1 would also update the month to March.
 
 On the stable version, released after the original post, each date section is independent.
@@ -111,7 +111,7 @@ Now that you've seen what's fundamentally changed with the Pickers, let's briefl
   You don't need to provide the usual `TextField` on `renderInput` anymore unless you need it customized.
   In which case you can do it by:
 
-  1. Customizing through props via `field` and `input` slots ([codebox example](https://codesandbox.io/s/customizing-fields-with-props-o66r1c?file=/demo.tsx)).
+  1. Customizing through props via `field` and `input` slots ([codebox example](https://codesandbox.io/p/sandbox/customizing-fields-with-props-o66r1c?file=/demo.tsx)).
   2. Build a new field component using the Field's headless API (documentation coming soon).
   3. Use an entirely [custom text field](https://next.mui.com/x/react-date-pickers/date-picker/#custom-input-component) to suit your use case.
 

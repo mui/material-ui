@@ -7,7 +7,6 @@ import { OverridableComponent } from '@mui/types';
 import { useTabsList, TabsListProvider } from '@mui/base/useTabsList';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { useColorInversion } from '../styles/ColorInversion';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import SizeTabsContext from '../Tabs/SizeTabsContext';
@@ -114,7 +113,7 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     component = 'div',
     children,
     variant = 'plain',
-    color: colorProp = 'neutral',
+    color = 'neutral',
     size: sizeProp,
     disableUnderline = false,
     underlinePlacement = orientation === 'horizontal' ? 'bottom' : 'right',
@@ -124,8 +123,6 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const size = sizeProp ?? tabsSize;
 

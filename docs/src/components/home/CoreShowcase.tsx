@@ -71,6 +71,7 @@ export default function CoreShowcase() {
                   root: {
                     width: 60,
                     height: 60,
+                    borderRadius: 99,
                   },
                 },
               },

@@ -64,7 +64,7 @@ export default function HowToSupport() {
       <SectionHeadline
         overline="Support us"
         title={
-          <Typography variant="h2" sx={{ maxWidth: 600, mb: 4 }}>
+          <Typography variant="h2" sx={{ mb: 4 }}>
             Learn how to support
             <br /> <GradientText>MUI&apos;s growth</GradientText>
           </Typography>
@@ -176,7 +176,7 @@ export default function HowToSupport() {
               // @ts-expect-error
               variant="link"
               size="small"
-              href="https://opencollective.com/mui"
+              href="https://opencollective.com/mui-org"
               endIcon={<KeyboardArrowRightRounded />}
               sx={{ ml: -1, mt: 'auto', width: 'fit-content' }}
             >

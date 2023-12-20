@@ -17,26 +17,26 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "selected": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+    "footer": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>selected={true}</code>"
-    },
-    "hover": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>hover={true}</code>"
+      "conditions": "table variant=&quot;footer&quot;"
     },
     "head": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "table variant=&quot;head&quot;"
     },
-    "footer": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+    "hover": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "table variant=&quot;footer&quot;"
+      "conditions": "<code>hover={true}</code>"
+    },
+    "root": { "description": "Styles applied to the root element." },
+    "selected": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>selected={true}</code>"
     }
   }
 }

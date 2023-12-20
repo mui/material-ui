@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
-
 import Box from '@mui/joy/Box';
 import CssBaseline from '@mui/joy/CssBaseline';
 import IconButton from '@mui/joy/IconButton';
 
-// Icons import
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 

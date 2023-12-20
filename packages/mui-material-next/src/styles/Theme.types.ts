@@ -28,6 +28,7 @@ export interface MD3NeutralTones extends MD3Tones {
   92: string;
   96: string;
 }
+
 export interface MD3Palettes {
   primary: MD3Tones;
   secondary: MD3Tones;
@@ -97,6 +98,7 @@ export interface MD3ColorSchemeTokens {
   surfaceTint?: string;
 
   outline: string;
+  outlineVariant: string;
   shadow: string;
 
   // channels

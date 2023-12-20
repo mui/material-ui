@@ -107,5 +107,23 @@ describe('useSelect', () => {
         value: JSON.stringify([{ name: 'a' }, { name: 'b' }]),
       });
     });
+
+    describe('onChange handler', () => {
+      it('calls external onChange handler', () => {
+        const externalOnChangeSpy = sinon.spy();
+
+        const { result } = renderHook(() => useSelect({}));
+
+        const { getHiddenInputProps } = result.current;
+        const { onChange: hiddenInputOnChange } = getHiddenInputProps({
+          onChange: externalOnChangeSpy,
+        });
+
+        // @ts-ignore We only need the target value for this test
+        hiddenInputOnChange({ target: { value: 'foo' } });
+        expect(externalOnChangeSpy.calledOnce).to.equal(true);
+        expect(externalOnChangeSpy.calledWith({ target: { value: 'foo' } })).to.equal(true);
+      });
+    });
   });
 });

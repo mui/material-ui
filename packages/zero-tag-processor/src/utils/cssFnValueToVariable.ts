@@ -2,8 +2,6 @@ import type { ExpressionValue } from '@linaria/utils';
 import { transformSync, type Node } from '@babel/core';
 import { parseExpression } from '@babel/parser';
 import type { Expression } from '@linaria/tags';
-import type { Theme } from '@mui/material/styles';
-import { unstable_defaultSxConfig as defaultSxConfig } from '@mui/system/styleFunctionSx';
 import * as t from '@babel/types';
 import { isUnitLess } from './isUnitLess';
 import { cssFunctionTransformerPlugin } from './cssFunctionTransformerPlugin';
@@ -38,14 +36,10 @@ function transformThemeKeysInFn(
   filename?: string,
 ) {
   const { themeArgs: { theme } = {} } = options;
-  const userTheme = theme as Theme;
-  const config = userTheme?.unstable_sxConfig ?? defaultSxConfig;
-  const cssPropOptions = config[styleKey];
-  const { themeKey } = cssPropOptions;
 
   // return the function as-is if sxConfig does not contain
   // this css key
-  if (!theme || !config || !cssPropOptions || !themeKey) {
+  if (!theme) {
     return parseExpression(functionString);
   }
 

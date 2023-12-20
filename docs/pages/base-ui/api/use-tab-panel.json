@@ -12,8 +12,8 @@
   "returnValue": {
     "getRootProps": {
       "type": {
-        "name": "() =&gt; UseTabPanelRootSlotProps",
-        "description": "() =&gt; UseTabPanelRootSlotProps"
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseTabPanelRootSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseTabPanelRootSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },

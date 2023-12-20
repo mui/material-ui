@@ -41,21 +41,27 @@
   },
   "name": "Modal",
   "imports": ["import { Modal } from '@mui/base/Modal';", "import { Modal } from '@mui/base';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiModal-root"
+      "class": "MuiModal-root"
     },
     {
       "name": "backdrop",
       "description": "The component that renders the backdrop.",
-      "class": ".MuiModal-backdrop"
+      "class": "MuiModal-backdrop"
     }
   ],
-  "classes": { "classes": ["hidden"], "globalClasses": {} },
+  "classes": [
+    {
+      "key": "hidden",
+      "className": "MuiModal-hidden",
+      "description": "Class name applied to the root element if the `Modal` has exited.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "muiName": "MuiModal",
   "forwardsRefTo": "HTMLDivElement",

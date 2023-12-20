@@ -77,3 +77,16 @@ You can also render a vertical divider with `variant="middle"`.
 You can also render a vertical divider with content.
 
 {{"demo": "VerticalDividerText.js"}}
+
+## Experimental APIs
+
+### Material You version
+
+The default Material UI Divider component follows the Material Design 2 specs.
+To get the Material You ([Material Design 3](https://m3.material.io/)) version, use the new experimental `@mui/material-next` package:
+
+```js
+import Divider from '@mui/material-next/Divider';
+```
+
+{{"demo": "DividerMaterialYouPlayground.js", "hideToolbar": true, "bg": "playground"}}

@@ -5,7 +5,7 @@
     "checkedIcon": { "description": "The icon to display when the component is checked." },
     "classes": { "description": "Override or extend the styles applied to the component." },
     "color": {
-      "description": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#adding-new-colors\">palette customization guide</a>."
+      "description": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#custom-colors\">palette customization guide</a>."
     },
     "defaultChecked": {
       "description": "The default checked state. Use when the component is not controlled."
@@ -44,21 +44,10 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
     "checked": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>checked={true}</code>"
-    },
-    "disabled": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>disabled={true}</code>"
-    },
-    "indeterminate": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>indeterminate={true}</code>"
     },
     "colorPrimary": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
@@ -70,15 +59,26 @@
       "nodeName": "the root element",
       "conditions": "<code>color=\"secondary\"</code>"
     },
-    "sizeSmall": {
+    "disabled": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>size=\"small\"</code>"
+      "conditions": "<code>disabled={true}</code>"
     },
+    "indeterminate": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>indeterminate={true}</code>"
+    },
+    "root": { "description": "Class name applied to the root element." },
     "sizeMedium": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>size=\"medium\"</code>"
+    },
+    "sizeSmall": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"small\"</code>"
     }
   }
 }

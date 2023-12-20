@@ -25,7 +25,7 @@ Additionally, keep these in mind when using them together:
 
 ## Set up the providers
 
-Render Material UI's `CssVarsProvider` inside Joy UI's provider and use `THEME_ID` to separate the themes from each other.
+Render Joy UI's `CssVarsProvider` inside Material UI's provider and use `THEME_ID` to separate the themes from each other.
 
 ```js
 import {
@@ -34,13 +34,17 @@ import {
   THEME_ID as MATERIAL_THEME_ID,
 } from '@mui/material/styles';
 import { CssVarsProvider as JoyCssVarsProvider } from '@mui/joy/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 const materialTheme = materialExtendTheme();
 
 export default function App() {
   return (
     <MaterialCssVarsProvider theme={{ [MATERIAL_THEME_ID]: materialTheme }}>
-      <JoyCssVarsProvider>...Material UI and Joy UI components</JoyCssVarsProvider>
+      <JoyCssVarsProvider>
+        <CssBaseline enableColorScheme />
+        ...Material UI and Joy UI components
+      </JoyCssVarsProvider>
     </MaterialCssVarsProvider>
   );
 }
@@ -76,7 +80,7 @@ const ModeToggle = () => {
   return (
     <IconButton
       onClick={() => {
-        setMode(mode === 'dark' ? 'light' : 'dark');
+        setMaterialMode(mode === 'dark' ? 'light' : 'dark');
         setJoyMode(mode === 'dark' ? 'light' : 'dark');
       }}
     >
@@ -97,6 +101,7 @@ If you want to change the `defaultMode`, you have to specify the prop to both of
   theme={{ [MATERIAL_THEME_ID]: materialTheme }}
 >
   <JoyCssVarsProvider defaultMode="system">
+    <CssBaseline enableColorScheme />
     ...Material UI and Joy UI components
   </JoyCssVarsProvider>
 </MaterialCssVarsProvider>
@@ -108,7 +113,7 @@ Both libraries have the same class name prefix:
 
 ```js
 import MaterialTypography, {
-  typographyClasses as muiTypographyClasses,
+  typographyClasses as materialTypographyClasses,
 } from '@mui/material/Typography';
 import JoyTypography, {
   typographyClasses as joyTyographyClasses,
@@ -118,7 +123,7 @@ import Stack from '@mui/material/Stack';
 <Stack
   sx={{
     // similar to `& .${joyTyographyClasses.root}`
-    [`& .${muiTypographyClasses.root}`]: {
+    [`& .${materialTypographyClasses.root}`]: {
       color: 'red',
     },
   }}

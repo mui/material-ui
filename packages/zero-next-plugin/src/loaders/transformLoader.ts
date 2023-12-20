@@ -10,6 +10,7 @@
 import type { PluginOptions, Preprocessor, Result } from '@linaria/babel-preset';
 import { transform } from '@linaria/babel-preset';
 import path from 'path';
+import { preprocessor as baseProcessor } from '@mui/zero-tag-processor/preprocessor';
 import { transformAsync as babelTransformAsync } from '@babel/core';
 import type { RawLoaderDefinitionFunction } from 'webpack';
 
@@ -55,7 +56,7 @@ const transformLoader: LoaderType = function transformLoader(content, inputSourc
 
   const {
     sourceMap = undefined,
-    preprocessor = undefined,
+    preprocessor = baseProcessor,
     moduleStore,
     ...rest
   } = this.getOptions() || {};

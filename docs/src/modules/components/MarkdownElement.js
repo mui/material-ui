@@ -228,8 +228,8 @@ const Root = styled('div')(
       ...theme.typography.body2,
       borderBottom: `1px solid var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
       paddingRight: 20,
-      paddingTop: 12,
-      paddingBottom: 12,
+      paddingTop: 16,
+      paddingBottom: 16,
       color: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
     },
     '& td code': {
@@ -384,7 +384,7 @@ const Root = styled('div')(
         },
       },
     },
-    '& a, & a code, & strong': {
+    '& a, & a code': {
       // Style taken from the Link component
       color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
       textDecoration: 'underline',
@@ -417,18 +417,19 @@ const Root = styled('div')(
       backgroundColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
     },
     '& kbd.key': {
-      padding: '5px',
+      padding: 6,
       display: 'inline-block',
       whiteSpace: 'nowrap',
       margin: '0 1px',
-      font: '11px Consolas,Liberation Mono,Menlo,monospace',
-      lineHeight: '10px',
+      fontFamily: lightTheme.typography.fontFamilyCode,
+      fontSize: lightTheme.typography.pxToRem(11),
       color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
+      lineHeight: '10px',
       verticalAlign: 'middle',
-      backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
+      borderRadius: 6,
       border: `1px solid var(--muidocs-palette-grey-300, ${lightTheme.palette.grey[300]})`,
-      borderRadius: 5,
-      boxShadow: `inset 0 -1px 0 var(--muidocs-palette-grey-300, ${lightTheme.palette.grey[300]})`,
+      backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
+      boxShadow: `inset 0 -2px 0 var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
     },
     '& details': {
       marginBottom: theme.spacing(1.5),
@@ -455,7 +456,7 @@ const Root = styled('div')(
       cursor: 'pointer',
       position: 'absolute',
       top: theme.spacing(1),
-      right: theme.spacing(1),
+      right: 20,
       padding: theme.spacing(0.5),
       fontFamily: 'inherit',
       fontWeight: 500,
@@ -674,7 +675,7 @@ const Root = styled('div')(
           },
         },
       },
-      '& a, & a code, & strong': {
+      '& a, & a code': {
         color: `var(--muidocs-palette-primary-300, ${darkTheme.palette.primary[300]})`,
       },
       '& a code': {
@@ -682,9 +683,9 @@ const Root = styled('div')(
       },
       '& kbd.key': {
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
-        backgroundColor: `var(--muidocs-palette-primaryDark-900, ${darkTheme.palette.primaryDark[900]})`,
-        border: `1px solid var(--muidocs-palette-primaryDark-500, ${darkTheme.palette.primaryDark[500]})`,
-        boxShadow: `inset 0 -1px 0 var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
+        backgroundColor: `var(--muidocs-palette-primaryDark-800, ${darkTheme.palette.primaryDark[800]})`,
+        border: `1px solid var(--muidocs-palette-primaryDark-600, ${darkTheme.palette.primaryDark[600]})`,
+        boxShadow: `inset 0 -2px 0 var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
       },
     },
   }),

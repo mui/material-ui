@@ -9,7 +9,7 @@ import {
   act,
 } from '@mui-internal/test-utils';
 import { Menu, menuClasses } from '@mui/base/Menu';
-import { MenuItem } from '@mui/base/MenuItem';
+import { MenuItem, MenuItemRootSlotProps } from '@mui/base/MenuItem';
 import { DropdownContext, DropdownContextValue } from '@mui/base/useDropdown';
 
 const testContext: DropdownContextValue = {
@@ -408,5 +408,145 @@ describe('<Menu />', () => {
 
       expect(handleItemsChange.callCount).to.equal(2);
     });
+  });
+
+  describe('prop: anchor', () => {
+    it('should be placed near the specified element', async () => {
+      function TestComponent() {
+        const [anchor, setAnchor] = React.useState<HTMLElement | null>(null);
+
+        return (
+          <div>
+            <DropdownContext.Provider value={testContext}>
+              <Menu
+                anchor={anchor}
+                slotProps={{ root: { 'data-testid': 'popup', placement: 'bottom-start' } }}
+              >
+                <MenuItem>1</MenuItem>
+                <MenuItem>2</MenuItem>
+              </Menu>
+            </DropdownContext.Provider>
+            <div data-testid="anchor" style={{ marginTop: '100px' }} ref={setAnchor} />
+          </div>
+        );
+      }
+
+      const { getByTestId } = render(<TestComponent />);
+
+      const popup = getByTestId('popup');
+      const anchor = getByTestId('anchor');
+
+      const anchorPosition = anchor.getBoundingClientRect();
+
+      expect(popup.style.getPropertyValue('transform')).to.equal(
+        `translate(${anchorPosition.left}px, ${anchorPosition.bottom}px)`,
+      );
+    });
+
+    it('should be placed at the specified position', async () => {
+      const boundingRect = {
+        x: 200,
+        y: 100,
+        top: 100,
+        left: 200,
+        bottom: 100,
+        right: 200,
+        height: 0,
+        width: 0,
+        toJSON: () => {},
+      };
+
+      const virtualElement = { getBoundingClientRect: () => boundingRect };
+
+      const { getByTestId } = render(
+        <DropdownContext.Provider value={testContext}>
+          <Menu
+            anchor={virtualElement}
+            slotProps={{ root: { 'data-testid': 'popup', placement: 'bottom-start' } }}
+          >
+            <MenuItem>1</MenuItem>
+            <MenuItem>2</MenuItem>
+          </Menu>
+        </DropdownContext.Provider>,
+      );
+      const popup = getByTestId('popup');
+      expect(popup.style.getPropertyValue('transform')).to.equal(`translate(200px, 100px)`);
+    });
+  });
+
+  it('perf: does not rerender menu items unnecessarily', () => {
+    const renderItem1Spy = spy();
+    const renderItem2Spy = spy();
+    const renderItem3Spy = spy();
+    const renderItem4Spy = spy();
+
+    const LoggingRoot = React.forwardRef(function LoggingRoot(
+      props: MenuItemRootSlotProps & { renderSpy: () => void },
+      ref: React.ForwardedRef<HTMLLIElement>,
+    ) {
+      const { renderSpy, ownerState, ...other } = props;
+      renderSpy();
+      return <li {...other} ref={ref} />;
+    });
+
+    const { getAllByRole } = render(
+      <DropdownContext.Provider value={testContext}>
+        <Menu>
+          <MenuItem
+            slots={{ root: LoggingRoot }}
+            slotProps={{ root: { renderSpy: renderItem1Spy } as any }}
+            id="item-1"
+          >
+            1
+          </MenuItem>
+          <MenuItem
+            slots={{ root: LoggingRoot }}
+            slotProps={{ root: { renderSpy: renderItem2Spy } as any }}
+            id="item-2"
+          >
+            2
+          </MenuItem>
+          <MenuItem
+            slots={{ root: LoggingRoot }}
+            slotProps={{ root: { renderSpy: renderItem3Spy } as any }}
+            id="item-3"
+          >
+            3
+          </MenuItem>
+          <MenuItem
+            slots={{ root: LoggingRoot }}
+            slotProps={{ root: { renderSpy: renderItem4Spy } as any }}
+            id="item-4"
+          >
+            4
+          </MenuItem>
+        </Menu>
+      </DropdownContext.Provider>,
+    );
+
+    const menuItems = getAllByRole('menuitem');
+    act(() => {
+      menuItems[0].focus();
+    });
+
+    renderItem1Spy.resetHistory();
+    renderItem2Spy.resetHistory();
+    renderItem3Spy.resetHistory();
+    renderItem4Spy.resetHistory();
+
+    expect(renderItem1Spy.callCount).to.equal(0);
+
+    fireEvent.keyDown(menuItems[0], { key: 'ArrowDown' }); // highlights '2'
+
+    // React renders twice in strict mode, so we expect twice the number of spy calls
+    // Also, useButton's focusVisible polyfill causes an extra render when focus is gained/lost.
+
+    expect(renderItem1Spy.callCount).to.equal(4); // '1' rerenders as it loses highlight
+    expect(renderItem2Spy.callCount).to.equal(4); // '2' rerenders as it receives highlight
+
+    // neither the highlighted nor the selected state of these options changed,
+    // so they don't need to rerender:
+    expect(renderItem3Spy.callCount).to.equal(0);
+    expect(renderItem4Spy.callCount).to.equal(0);
   });
 });

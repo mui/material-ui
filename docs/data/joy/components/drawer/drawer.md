@@ -21,7 +21,7 @@ Drawers are commonly used as menus for desktop navigation, and as dialogs on mob
 import Drawer from '@mui/joy/Drawer';
 ```
 
-The Drawer will close after the user makes a selection, clicks anywhere outside of it, or presses the <kbd>Esc</kbd> key.
+The Drawer will close after the user makes a selection, clicks anywhere outside of it, or presses the <kbd class="key">Esc</kbd> key.
 
 Use the `open` prop to control the toggling of the Drawer's open and close states, as shown in the demo below:
 

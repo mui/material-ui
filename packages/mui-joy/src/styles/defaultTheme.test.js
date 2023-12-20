@@ -24,8 +24,6 @@ describe('defaultTheme', () => {
         'zIndex',
         'typography',
         'variants',
-        'colorInversion',
-        'colorInversionConfig',
         'vars',
         'cssVarPrefix',
         'getColorSchemeSelector',

@@ -1,7 +1,11 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import clsx from 'clsx';
+import {
+  unstable_capitalize as capitalize,
+  internal_resolveProps as resolveProps,
+} from '@mui/utils';
 import { useSlotProps } from '@mui/base/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useThemeProps, alpha, shouldForwardProp } from '@mui/system';
@@ -10,6 +14,8 @@ import { getButtonUtilityClass } from './buttonClasses';
 import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
 import { ButtonProps, ExtendButton, ButtonTypeMap, ButtonOwnerState } from './Button.types';
 import ButtonBase from '../ButtonBase';
+import ButtonGroupButtonContext from '../ButtonGroup/ButtonGroupButtonContext';
+import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 
 const useUtilityClasses = (ownerState: ButtonOwnerState) => {
   const { classes, color, disableElevation, fullWidth, size, variant } = ownerState;
@@ -306,7 +312,7 @@ export const ButtonRoot = styled(ButtonBase, {
       backgroundColor: hoveredContainerColor[ownerState.variant ?? 'text'],
       boxShadow: hoveredContainerElevation[ownerState.variant ?? 'text'],
     },
-    [`&.${buttonBaseClasses.active}`]: {
+    '&:active': {
       '--md-comp-button-icon-color': 'var(--md-comp-button-pressed-icon-color)',
       ...((ownerState.disableRipple || ownerState.disableTouchRipple) && {
         backgroundColor: pressedContainerColor[ownerState.variant ?? 'text'],
@@ -366,7 +372,13 @@ const ButtonEndIcon = styled('span', {
 const Button = React.forwardRef(function Button<
   BaseComponentType extends React.ElementType = ButtonTypeMap['defaultComponent'],
 >(inProps: ButtonProps<BaseComponentType>, ref: React.ForwardedRef<any>) {
-  const props = useThemeProps({ props: inProps, name: 'MuiButton' });
+  const contextProps = React.useContext(ButtonGroupContext);
+  const buttonGroupButtonContextPositionClassName = React.useContext(ButtonGroupButtonContext);
+  const resolvedProps = resolveProps(
+    (contextProps ?? {}) as ButtonProps<BaseComponentType>,
+    inProps,
+  );
+  const props = useThemeProps({ props: resolvedProps, name: 'MuiButton' });
   const {
     children,
     classes: classesProp,
@@ -392,6 +404,8 @@ const Button = React.forwardRef(function Button<
 
   const classes = useUtilityClasses(ownerState);
 
+  const positionClassName = buttonGroupButtonContextPositionClassName ?? '';
+
   const rootProps = useSlotProps({
     elementType: ButtonRoot,
     externalForwardedProps: other,
@@ -401,6 +415,7 @@ const Button = React.forwardRef(function Button<
       ref,
     },
     ownerState,
+    className: clsx(contextProps?.className, positionClassName),
   });
 
   const startIcon = startIconProp && (
@@ -440,7 +455,7 @@ Button.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

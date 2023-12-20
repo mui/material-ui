@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { FormControlProps } from './FormControl';
+import { FormControlProps } from './FormControl.types';
 
 type ContextFromPropsKey =
   | 'color'
@@ -8,26 +8,26 @@ type ContextFromPropsKey =
   | 'fullWidth'
   | 'hiddenLabel'
   | 'margin'
-  | 'onBlur'
-  | 'onFocus'
   | 'required'
   | 'size'
   | 'variant';
 
-export interface FormControlState extends Pick<FormControlProps, ContextFromPropsKey> {
+export interface FormControlContextValue extends Pick<FormControlProps, ContextFromPropsKey> {
   adornedStart: boolean;
   filled: boolean;
   focused: boolean;
+  onBlur: (event?: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onFocus: (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   onEmpty: () => void;
   onFilled: () => void;
-  registerEffect: () => void;
+  registerEffect: undefined | (() => () => void);
   setAdornedStart: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 /**
- * @ignore - internal component.
+ * @internal
  */
-const FormControlContext = React.createContext<FormControlState | undefined>(undefined);
+const FormControlContext = React.createContext<FormControlContextValue | undefined>(undefined);
 
 if (process.env.NODE_ENV !== 'production') {
   FormControlContext.displayName = 'FormControlContext';

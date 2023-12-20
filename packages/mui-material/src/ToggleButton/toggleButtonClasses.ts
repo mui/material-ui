@@ -20,6 +20,8 @@ export interface ToggleButtonClasses {
   sizeMedium: string;
   /** Styles applied to the root element if `size="large"`. */
   sizeLarge: string;
+  /** Styles applied to the root element if `fullWidth={true}`. */
+  fullWidth: string;
 }
 
 export type ToggleButtonClassKey = keyof ToggleButtonClasses;
@@ -38,6 +40,7 @@ const toggleButtonClasses: ToggleButtonClasses = generateUtilityClasses('MuiTogg
   'sizeSmall',
   'sizeMedium',
   'sizeLarge',
+  'fullWidth',
 ]);
 
 export default toggleButtonClasses;

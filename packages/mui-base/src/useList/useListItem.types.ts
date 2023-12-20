@@ -11,17 +11,11 @@ export interface UseListItemParameters<ItemValue> {
    * The list item.
    */
   item: ItemValue;
-  /**
-   * A ref to the list item's DOM element.
-   */
-  rootRef?: React.Ref<Element>;
 }
 
 interface UseListItemRootSlotOwnProps {
-  id?: string;
   onClick: React.MouseEventHandler;
   onPointerOver: React.PointerEventHandler | undefined;
-  ref: React.RefCallback<Element> | null;
   tabIndex?: number;
 }
 
@@ -45,8 +39,4 @@ export interface UseListItemReturnValue {
    * If `true`, the current item is selected.
    */
   selected: boolean;
-  /**
-   * The ref to the root element.
-   */
-  rootRef: React.RefCallback<Element> | null;
 }

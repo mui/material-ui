@@ -217,7 +217,7 @@ export default function MaterialDesignKits() {
                 }}
               >
                 <Typography variant="body2" fontWeight="semiBold">
-                  Available for all design softwares:
+                  Available for:
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 1, '& >img': { width: 26, height: 26 } }}>
                   <img src="/static/branding/design-kits/figma-logo.svg" alt="" loading="lazy" />

@@ -4,7 +4,7 @@
     "children": { "description": "The content of the component." },
     "classes": { "description": "Override or extend the styles applied to the component." },
     "color": {
-      "description": "The color of the button when it is in an active state. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#adding-new-colors\">palette customization guide</a>."
+      "description": "The color of the button when it is in an active state. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#custom-colors\">palette customization guide</a>."
     },
     "disabled": { "description": "If <code>true</code>, the component is disabled." },
     "disableFocusRipple": {
@@ -44,46 +44,51 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
     "disabled": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },
-    "selected": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+    "fullWidth": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>selected={true}</code>"
-    },
-    "standard": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"standard\"</code>"
+      "conditions": "<code>fullWidth={true}</code>"
     },
     "primary": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>color=\"primary\"</code>"
     },
+    "root": { "description": "Styles applied to the root element." },
     "secondary": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>color=\"secondary\"</code>"
     },
-    "sizeSmall": {
+    "selected": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>selected={true}</code>"
+    },
+    "sizeLarge": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>size=\"small\"</code>"
+      "conditions": "<code>size=\"large\"</code>"
     },
     "sizeMedium": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>size=\"medium\"</code>"
     },
-    "sizeLarge": {
+    "sizeSmall": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>size=\"large\"</code>"
+      "conditions": "<code>size=\"small\"</code>"
+    },
+    "standard": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"standard\"</code>"
     }
   }
 }

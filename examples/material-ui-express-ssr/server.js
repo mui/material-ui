@@ -14,6 +14,7 @@ function renderFullPage(html, css) {
     <!DOCTYPE html>
     <html lang="en">
       <head>
+        <meta charset="utf-8" />
         <title>My page</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -17,6 +17,7 @@ export function GlowingIconContainer({ icon }: GlowingIconContainerProps) {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        flexShrink: 0,
         borderRadius: 1,
         border: '1px solid',
         borderColor: 'primary.200',
@@ -37,21 +38,31 @@ export function GlowingIconContainer({ icon }: GlowingIconContainerProps) {
 }
 
 interface InfoCardProps {
-  icon?: React.ReactNode;
   title: string;
-  description: string;
+  classNameTitle?: string;
+  description?: string;
+  classNameDescription?: string;
   link?: string;
+  icon?: React.ReactNode;
+  svg?: React.ReactNode;
+  dense?: boolean;
 }
 
-export default function InfoCard({ icon, title, description, link }: InfoCardProps) {
+export default function InfoCard(props: InfoCardProps) {
+  const { icon, svg, title, classNameTitle, description, classNameDescription, link, dense } =
+    props;
   return (
     <Paper
+      variant="outlined"
       component={link ? Link : 'div'}
       href={link}
-      noLinkStyle={Boolean(link)}
-      variant="outlined"
+      {...(link
+        ? {
+            noLinkStyle: true,
+          }
+        : {})}
       sx={(theme) => ({
-        p: 3.5,
+        p: dense ? 2.5 : 3.5,
         height: '100%',
         background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
         ...theme.applyDarkStyles({
@@ -61,6 +72,7 @@ export default function InfoCard({ icon, title, description, link }: InfoCardPro
         }),
       })}
     >
+      {svg && svg}
       {icon && <GlowingIconContainer icon={icon} />}
       <Typography
         fontWeight="bold"
@@ -68,11 +80,12 @@ export default function InfoCard({ icon, title, description, link }: InfoCardPro
         color="text.primary"
         variant="body2"
         mt={icon ? 2 : 0}
-        mb={0.5}
+        mb={description ? 0.5 : 0}
+        className={classNameTitle}
       >
         {title}
       </Typography>
-      <Typography variant="body2" color="text.secondary">
+      <Typography variant="body2" color="text.secondary" className={classNameDescription}>
         {description}
       </Typography>
     </Paper>

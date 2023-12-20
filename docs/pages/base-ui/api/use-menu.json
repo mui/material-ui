@@ -1,5 +1,18 @@
 {
   "parameters": {
+    "autoFocus": { "type": { "name": "boolean", "description": "boolean" }, "default": "true" },
+    "componentName": {
+      "type": { "name": "string", "description": "string" },
+      "default": "'useMenu'"
+    },
+    "disabledItemsFocusable": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "true"
+    },
+    "disableListWrap": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false"
+    },
     "id": { "type": { "name": "string", "description": "string" } },
     "listboxRef": {
       "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }

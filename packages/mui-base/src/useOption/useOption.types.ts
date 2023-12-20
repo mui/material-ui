@@ -10,10 +10,10 @@ export interface SelectOption<Value> {
 
 export interface UseOptionParameters<Value> {
   disabled: boolean;
-  label: string | React.ReactNode;
-  value: Value;
-  rootRef?: React.Ref<Element>;
   id?: string;
+  label: string | React.ReactNode;
+  rootRef?: React.Ref<Element>;
+  value: Value;
 }
 
 export interface UseOptionReturnValue {

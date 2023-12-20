@@ -16,7 +16,14 @@
     "import TableHead from '@mui/material/TableHead';",
     "import { TableHead } from '@mui/material';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTableHead" },
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiTableHead-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiTableHead",

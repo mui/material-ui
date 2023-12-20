@@ -23,7 +23,7 @@ export default function SimplePopper() {
   return (
     <div className={`${isDarkMode ? 'dark' : ''}`}>
       <button
-        className="cursor-pointer text-sm font-sans box-border rounded-lg font-semibold px-4 py-2 leading-normal bg-transparent border border-solid border-slate-300 dark:border-slate-700 text-purple-600 dark:text-purple-300 hover:bg-slate-50 hover:dark:bg-slate-800 hover:border-purple-300 dark:hover:border-purple-300 focus-visible:border-purple-500 focus-visible:hover:border-purple-500 focus-visible:dark:hover:border-purple-500 focus-visible:outline-0 focus-visible:shadow-outline-purple"
+        className="cursor-pointer transition text-sm font-sans font-semibold leading-normal bg-violet-500 text-white rounded-lg px-4 py-2 border border-solid border-violet-500 shadow-[0_2px_1px_rgb(45_45_60_/_0.2),_inset_0_1.5px_1px_#a78bfa,_inset_0_-2px_1px_#7c3aed] dark:shadow-[0_2px_1px_rgb(0_0_0/_0.5),_inset_0_1.5px_1px_#a78bfa,_inset_0_-2px_1px_#7c3aed] hover:bg-violet-600 active:bg-violet-700 active:shadow-none focus-visible:shadow-[0_0_0_4px_#ddd6fe] dark:focus-visible:shadow-[0_0_0_4px_#a78bfa] focus-visible:outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
         aria-describedby={id}
         type="button"
         onClick={handleClick}
@@ -36,7 +36,7 @@ export default function SimplePopper() {
         anchorEl={anchorEl}
         className={`${isDarkMode ? 'dark' : ''}`}
       >
-        <div className=" z-50 rounded-lg font-medium font-sans text-sm m-1 p-3 border border-solid border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 shadow-md text-purple-900 dark:text-purple-100">
+        <div className=" z-50 rounded-lg font-medium font-sans text-sm m-1 p-3 border border-solid border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-md text-slate-900 dark:text-slate-100">
           The content of the Popper.
         </div>
       </Popper>

@@ -135,7 +135,11 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
     // clicking a checkbox to check it, hitting a button to submit a form,
     // and hitting left arrow to move the cursor in a text input etc.
     // Only special HTML elements have these default behaviors.
-    if (event.key !== 'Escape' || !isTopModal()) {
+    if (
+      event.key !== 'Escape' ||
+      event.which === 229 || // Wait until IME is settled.
+      !isTopModal()
+    ) {
       return;
     }
 

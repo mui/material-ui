@@ -12,11 +12,8 @@ import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import GroupListContext from '../List/GroupListContext';
 import { styled, useThemeProps } from '../styles';
+import { applySolidInversion, applySoftInversion } from '../colorInversion';
 import { VariantColorProvider } from '../styles/variantColorInheritance';
-import ColorInversion, {
-  ColorInversionProvider,
-  useColorInversion,
-} from '../styles/ColorInversion';
 import { MenuTypeMap, MenuOwnerState } from './MenuProps';
 import { getMenuUtilityClass } from './menuClasses';
 import { ListOwnerState } from '../List';
@@ -60,10 +57,16 @@ const MenuRoot = styled(StyledList, {
       ...(!variantStyle?.backgroundColor && {
         backgroundColor: theme.vars.palette.background.popup,
       }),
+      ...(ownerState.variant === 'solid' &&
+        ownerState.color &&
+        ownerState.invertedColors &&
+        applySolidInversion(ownerState.color)(theme)),
+      ...(ownerState.variant === 'soft' &&
+        ownerState.color &&
+        ownerState.invertedColors &&
+        applySoftInversion(ownerState.color)(theme)),
+      ...theme.variants[ownerState.variant!]?.[ownerState.color!],
     },
-    ownerState.color !== 'context' &&
-      ownerState.invertedColors &&
-      theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
   ];
 });
 
@@ -87,7 +90,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
   const {
     actions,
     children,
-    color: colorProp = 'neutral',
+    color = 'neutral',
     component,
     disablePortal = false,
     keepMounted = false,
@@ -101,8 +104,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = disablePortal ? getColor(inProps.color, colorProp) : colorProp;
 
   const { contextValue, getListboxProps, dispatch, open, triggerElement } = useMenu({
     onItemsChange,
@@ -163,22 +164,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     className: classes.root,
   });
 
-  let result = (
-    <MenuProvider value={contextValue}>
-      {/* If `invertedColors` is true, let the children use their default variant */}
-      <VariantColorProvider variant={invertedColors ? undefined : variant} color={colorProp}>
-        <GroupListContext.Provider value="menu">
-          <ListProvider nested>{children}</ListProvider>
-        </GroupListContext.Provider>
-      </VariantColorProvider>
-    </MenuProvider>
-  );
-
-  if (invertedColors) {
-    result = <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>;
-  }
-
-  result = (
+  return (
     <MenuRoot
       {...rootProps}
       {...(!props.slots?.root && {
@@ -188,15 +174,15 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
         },
       })}
     >
-      {result}
+      <MenuProvider value={contextValue}>
+        {/* If `invertedColors` is true, let the children use their default variant */}
+        <VariantColorProvider variant={invertedColors ? undefined : variant} color={color}>
+          <GroupListContext.Provider value="menu">
+            <ListProvider nested>{children}</ListProvider>
+          </GroupListContext.Provider>
+        </VariantColorProvider>
+      </MenuProvider>
     </MenuRoot>
-  );
-
-  return disablePortal ? (
-    result
-  ) : (
-    // For portal popup, the children should not inherit color inversion from the upper parent.
-    <ColorInversion.Provider value={undefined}>{result}</ColorInversion.Provider>
   );
 }) as OverridableComponent<MenuTypeMap>;
 

@@ -305,7 +305,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     if (disabled && sliderRef.current!.contains(document.activeElement)) {
       // This is necessary because Firefox and Safari will keep focus
       // on a disabled element:
-      // https://codesandbox.io/s/mui-pr-22247-forked-h151h?file=/src/App.js
+      // https://codesandbox.io/p/sandbox/mui-pr-22247-forked-h151h?file=/src/App.js
       // @ts-ignore
       document.activeElement?.blur();
     }

@@ -6,7 +6,6 @@ import { unstable_useId as useId, unstable_capitalize as capitalize } from '@mui
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSwitch } from '@mui/base/useSwitch';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 import { CheckboxOwnerState, CheckboxTypeMap } from './CheckboxProps';
@@ -121,7 +120,12 @@ const CheckboxCheckbox = styled('span', {
             ...variantStyle,
             backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
           },
-          { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+          {
+            '&:hover': {
+              '@media (hover: hover)':
+                theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+            },
+          },
           { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
           {
             [`&.${checkboxClasses.disabled}`]:
@@ -270,11 +274,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   const activeVariant = variantProp || 'solid';
   const inactiveVariant = variantProp || 'outlined';
   const variant = isCheckboxActive ? activeVariant : inactiveVariant;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(
-    inProps.color,
-    formControl?.error ? 'danger' : formControl?.color ?? colorProp,
-  );
+  const color = inProps.color || (formControl?.error ? 'danger' : formControl?.color ?? colorProp);
 
   const activeColor = color || 'primary';
   const inactiveColor = color || 'neutral';

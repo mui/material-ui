@@ -124,4 +124,8 @@ export interface InputOwnerState extends ApplyColorInversion<InputProps> {
    * If `true`, the input is focused.
    */
   focused: boolean;
+  /**
+   * @internal
+   */
+  instanceColor?: OverridableStringUnion<ColorPaletteProp, InputPropsColorOverrides>;
 }

@@ -15,6 +15,7 @@ const createLightColorScheme = (
   shadow: getCssVar('ref-palette-common-black', palette.common.black),
   error: getCssVar('ref-palette-error-40', palette.error[40]),
   outline: getCssVar('ref-palette-neutralVariant-50', palette.neutralVariant[50]),
+  outlineVariant: getCssVar('ref-palette-neutralVariant-80', palette.neutralVariant[80]),
   onBackground: getCssVar('ref-palette-neutral-10', palette.neutral[10]),
   background: getCssVar('ref-palette-neutral-99', palette.neutral[99]),
   inverseOnSurface: getCssVar('ref-palette-neutral-95', palette.neutral[95]),

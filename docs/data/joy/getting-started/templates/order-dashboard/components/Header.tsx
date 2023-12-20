@@ -4,7 +4,6 @@ import Sheet from '@mui/joy/Sheet';
 import IconButton from '@mui/joy/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
-import ColorSchemeToggle from './ColorSchemeToggle';
 import { toggleSidebar } from '../utils';
 
 export default function Header() {
@@ -44,7 +43,6 @@ export default function Header() {
       >
         <MenuIcon />
       </IconButton>
-      <ColorSchemeToggle id={undefined} />
     </Sheet>
   );
 }

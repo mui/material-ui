@@ -114,7 +114,7 @@ function ProductIdentifier(props) {
     <Box sx={{ flexGrow: 1 }}>
       <Typography
         sx={(theme) => ({
-          ml: 1,
+          ml: 1.5,
           color: (theme.vars || theme).palette.grey[600],
           fontSize: theme.typography.pxToRem(11),
           fontWeight: 700,
@@ -211,13 +211,7 @@ function renderNavItems(options) {
   const { pages, ...params } = options;
 
   return (
-    <List>
-      {pages.reduce(
-        // eslint-disable-next-line @typescript-eslint/no-use-before-define
-        (items, page) => reduceChildRoutes({ items, page, ...params }),
-        [],
-      )}
-    </List>
+    <List>{pages.reduce((items, page) => reduceChildRoutes({ items, page, ...params }), [])}</List>
   );
 }
 
