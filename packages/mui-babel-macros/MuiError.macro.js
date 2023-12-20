@@ -1,5 +1,4 @@
 const fs = require('fs');
-const path = require('path');
 const { createMacro, MacroError } = require('babel-plugin-macros');
 const helperModuleImports = require('@babel/helper-module-imports');
 
@@ -13,7 +12,7 @@ function invertObject(object) {
 
 /**
  * Supported imports:
- * 1. bare specifier e.g. `'@mui/utils/macros/MuiError.macro'`
+ * 1. bare specifier e.g. `'@mui-internal/babel-macros/MuiError.macro'`
  * 2. relative import from `packages/mui-utils/src` e.g. `'../macros/MuiError.macro'`
  * @param {import('babel-plugin-macros').MacroParams} param0
  */
@@ -129,32 +128,18 @@ function muiError({ references, babel, config, source }) {
     errorCode = parseInt(errorCode, 10);
 
     if (formatMuiErrorMessageIdentifier === null) {
-      const isBareImportSourceIdentifier = source.startsWith('@mui/utils');
+      const isBareImportSourceIdentifier = source.startsWith('@mui-internal/babel-macros');
       if (isBareImportSourceIdentifier) {
-        // Input: import MuiError from '@mui/utils/macros/MuiError.macro'
+        // Input: import MuiError from '@mui-internal/babel-macros/MuiError.macro'
         // Outputs:
         // import { formatMuiErrorMessage } from '@mui/utils';
-        formatMuiErrorMessageIdentifier = helperModuleImports.addNamed(
-          babelPath,
-          'formatMuiErrorMessage',
-          '@mui/utils',
-        );
-      } else {
-        const normalizedRelativeImport = path
-          .normalize(source.replace('../macros/MuiError.macro', './formatMuiErrorMessage'))
-          .replace(/\\/g, '/');
-        // 'formatMuiErrorMessage' implies './formatMuiErrorMessage' for fs paths but not for import specifiers.
-        const formatMuiErrorMessageImportSource = normalizedRelativeImport.startsWith('.')
-          ? normalizedRelativeImport
-          : `./${normalizedRelativeImport}`;
-        // Input: import MuiError from '../macros/MuiError.macro'
-        // Outputs:
-        // import formatMuiErrorMessage from './formatMuiErrorMessage';
         formatMuiErrorMessageIdentifier = helperModuleImports.addDefault(
           babelPath,
-          formatMuiErrorMessageImportSource,
-          { nameHint: 'formatMuiErrorMessage' },
+          '@mui/utils/formatMuiErrorMessage',
+          { nameHint: '_formatMuiErrorMessage' },
         );
+      } else {
+        throw new Error('Only package imports from @mui-internal/babel-macros are supported');
       }
     }
 
