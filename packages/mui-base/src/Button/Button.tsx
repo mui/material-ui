@@ -1,7 +1,6 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { HTMLElementType } from '@mui/utils';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getButtonUtilityClass } from './buttonClasses';
@@ -129,7 +128,7 @@ Button.propTypes /* remove-proptypes */ = {
    * The HTML element, e.g. 'a'
    * @default ''
    */
-  hostElementName: HTMLElementType,
+  hostElementName: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
    * @ignore
    */

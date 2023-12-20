@@ -12,7 +12,7 @@ import { Button, buttonClasses } from '@mui/base/Button';
 
 describe('<Button />', () => {
   const mount = createMount();
-  const { render } = createRenderer();
+  const { render, renderToString } = createRenderer();
 
   describeConformanceUnstyled(<Button />, () => ({
     inheritComponent: 'button',
@@ -180,6 +180,49 @@ describe('<Button />', () => {
     it('renders as the element provided in the "components.Root" prop, even with a "to" prop', () => {
       const { getByRole } = render(<Button slots={{ root: 'h1' }} to="#" />);
       expect(getByRole('heading')).not.to.equal(null);
+    });
+  });
+
+  describe('SSR', () => {
+    before(function beforeHook() {
+      // Only run the test on node.
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+    });
+
+    it('default tag', () => {
+      const { container } = renderToString(
+        <Button disabled hostElementName="button">
+          Hello World
+        </Button>,
+      );
+      const button = container.firstChild;
+      expect(button.tagName).to.equal('BUTTON');
+      expect(button).to.have.attribute('disabled');
+      expect(button).to.not.have.attribute('aria-disabled');
+    });
+
+    it('alternate tag', () => {
+      const { container } = renderToString(
+        <Button disabled hostElementName="span" slots={{ root: 'span' }}>
+          Hello World
+        </Button>,
+      );
+      const button = container.firstChild;
+      expect(button.tagName).to.equal('SPAN');
+      expect(button).to.not.have.attribute('disabled');
+      expect(button).to.have.attribute('aria-disabled');
+    });
+
+    it('tag does not match with hostElementName', () => {
+      expect(() => {
+        renderToString(
+          <Button disabled hostElementName="span">
+            Hello World
+          </Button>,
+        );
+      }).toWarnDev('expected: span, actual BUTTON');
     });
   });
 });

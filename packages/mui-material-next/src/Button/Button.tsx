@@ -3,7 +3,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
-  HTMLElementType,
   unstable_capitalize as capitalize,
   internal_resolveProps as resolveProps,
 } from '@mui/utils';
@@ -491,7 +490,7 @@ Button.propTypes /* remove-proptypes */ = {
    * The underlying HTML element. To make SSR stable.
    * @default 'button'
    */
-  hostElementName: HTMLElementType,
+  hostElementName: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
    * @ignore
    */
