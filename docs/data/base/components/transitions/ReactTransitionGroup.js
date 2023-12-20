@@ -6,6 +6,12 @@ import { Button as BaseButton } from '@mui/base/Button';
 import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
 import { styled } from '@mui/system';
 
+const grey = {
+  200: '#DAE2ED',
+  700: '#434D5B',
+  900: '#1C2025',
+};
+
 const blue = {
   200: '#99CCFF',
   300: '#66B2FF',
@@ -53,15 +59,24 @@ const StyledPopup = styled(BasePopup)`
   width: max-content;
 `;
 
-const PopupBody = styled('div')`
-  padding: 16px;
-  background-color: white;
-  box-shadow: 0 0 10px 0 rgb(0 0 0 / 0.05), 0 3px 2px -2px rgb(0 0 0 / 0.1);
-  border-radius: 4px;
-  font-family: var(--joy-fontFamily-body);
-  font-size: var(--joy-fontSize-sm);
+const PopupBody = styled('div')(
+  ({ theme }) => `
+  width: max-content;
+  padding: 12px 16px;
+  margin: 8px;
+  border-radius: 8px;
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+  background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+  box-shadow: ${
+    theme.palette.mode === 'dark'
+      ? `0px 4px 8px rgb(0 0 0 / 0.7)`
+      : `0px 4px 8px rgb(0 0 0 / 0.1)`
+  };
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.875rem;
   z-index: 1;
-`;
+`,
+);
 
 const Section = styled('div')`
   padding: 8px;
