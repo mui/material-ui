@@ -2,13 +2,13 @@
 title: The road to Material UI v6 and beyond
 description: We're tightening up the Material UI release schedule and shipping two major versions in 2024. Here's what to expect.
 date: 2023-12-19T00:00:00.000Z
-authors: ['mnajdova']
+authors: ['mnajdova', 'danilo-leal']
 card: true
 tags: ['MUI Core', 'News']
 ---
 
-As we approach the end of 2023, we've got our heads down working on some very exciting projects for the future of Material UI in the next year.
-We've reevaluated our major versioning strategy and concluded that we need to ship smaller, and more frequently.
+As we approach the end of 2023, we've had our heads down working on some very exciting projects for the future of Material UI in the next year.
+We reevaluated our major versioning strategy and concluded that we need to ship smaller releases more frequently.
 Read on to learn why, and find out more about our plans for v6 _and_ v7 of Material UI in 2024.
 
 <img alt="A summary about the major changes coming in Material UI v6 and v7" src="/static/blog/2023-material-ui-v6-and-beyond/post-header.jpg" width="1200" height="600" loading="lazy" />
@@ -38,8 +38,8 @@ image here
 ## A sharper focus
 
 To pull these releases off, the Core team's attention will be fully focused on Material UI for most of 2024.
-In the meantime, we're putting Joy UI development on hold, so don't expect any new features or components for that library.
-But we do have some big ideas for Joy UI nonetheless!
+In the meantime we're putting Joy UI development on hold, so don't expect any new features or components.
+Nevertheless, we do have some big ideas for Joy UI!
 Expect to hear more about that towards the end of Q2 '24.
 
 ## Follow along and contribute
