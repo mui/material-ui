@@ -33,8 +33,6 @@ export * from './InputBase';
 export { default as InputLabel } from './InputLabel';
 export * from './InputLabel';
 
-export { default as Input } from './Input';
-
 export { default as LinearProgress } from './LinearProgress';
 export * from './LinearProgress';
 
