@@ -50,12 +50,14 @@ See which components already support the Material 3 specs, through the experimen
 
 ## From design to development
 
-In addition to what you'll get from the React library, we've also been working on a Figma plug-in to help bridge the gap between designers and developers.
-We're getting super close to a first release, and it is, for now, custom-tailored to work nicely along the [Material UI Design Kits](/material-ui/getting-started/design-resources/).
+In addition to the updates to the Reactly library, we've also been working on a long-requested Figma plug-in to help bridge the gap between designers and developers using Material UI.
+We're getting super close to a first release. and it is, for now, custom-tailored to work nicely along the [Material UI Design Kits](/material-ui/getting-started/design-resources/).
 
 <img alt="A screenshot of Figma together with the MUI Connect plug-in running on the side, doing customziations to the Material UI Switch component." src="/static/blog/2023-material-ui-v6-and-beyond/connect.jpg" width="1200" height="600" loading="lazy" />
 
-We're calling it MUI Connect, which will enable you to customize Material UI components on Figma and export them to code directly, making collaboration with developers using the React library a much smoother process.
+We're calling it MUI Connect, and it generates a theme file with all the customizations done on Figma.
+You'll be able to export it and paste it into your codebase and visualize it in a Storybook instance, too.
+Stay tuned for a beta version release early next year!
 
 ## A sharper focus
 
