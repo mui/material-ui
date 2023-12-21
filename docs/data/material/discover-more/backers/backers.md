@@ -2,7 +2,7 @@
 
 <p class="description">Support the development of the open-source projects of the MUI organization through crowdfunding.</p>
 
-Material UI, Joy UI, and Base UI, are crowd-funded open-source projects, licensed under the permissive MIT license.
+Material UI, Joy UI, and Base UI are crowd-funded open-source projects, licensed under the permissive MIT license.
 Sponsorship increases the rate of bug fixes, documentation improvements, and feature development.
 
 ## Diamond sponsors
@@ -28,6 +28,7 @@ via [Open Collective](https://opencollective.com/mui-org) or via [the for-profi
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="dialmycalls.com" href="https://www.dialmycalls.com/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/96.png" srcset="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/192.png 2x" alt="dialmycalls.com" title="Send text messages, calls & emails to thousands with ease." loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="goread.io" href="https://goread.io/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px; display:flex;"><img height="110" width="96" src="https://images.opencollective.com/goread_io/eb6337d/logo/96.png" srcset="https://images.opencollective.com/goread_io/eb6337d/logo/192.png 2x" alt="goread.io" title="Instagram followers, likes, power likes, views, comments, saves in minutes." loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="icons8.com" href="https://icons8.com?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/icons8/7fa1641/logo/96.png" srcset="https://images.opencollective.com/icons8/7fa1641/logo/192.png 2x" alt="Icons8" title="We provide the neat icons, photos, illustrations, and music. Developers, use our API to insert all the content we have into your apps." loading="lazy"></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="tidelift.com" href="https://rxdb.info/?utm_source=sponsor&utm_medium=opencollective&utm_campaign=opencollective-mui" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://rxdb.info/files/logo/logo.svg?s=96" srcset="https://rxdb.info/files/logo/logo.svg?s=192 2x" alt="tidelift.com" title="Local-first JavaScript database." loading="lazy" /></a>
 </p>
 
 Gold sponsors are those who've pledged \$500/month or more to MUI. [Tier benefits](#gold).
