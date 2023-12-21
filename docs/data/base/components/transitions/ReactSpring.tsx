@@ -103,7 +103,7 @@ function PopupWithTrigger(props: PopupProps) {
 
   return (
     <Section>
-      <Button ref={setAnchor} onClick={() => setOpen((o) => !o)} fullWidth>
+      <Button ref={setAnchor} onClick={() => setOpen((o) => !o)}>
         {open ? 'Hide popup' : 'Show popup'}
       </Button>
       <StyledPopup anchor={anchor} open={open} {...other}>
