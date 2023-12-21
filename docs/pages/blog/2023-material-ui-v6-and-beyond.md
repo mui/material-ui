@@ -41,11 +41,7 @@ That's when you can expect to see native support for [Material 3](https://m3.mat
 <img alt="Side-to-side comparison of a Card component using Material Design 2 and 3, respectively." src="/static/blog/2023-material-ui-v6-and-beyond/m2-m3.jpg" width="1200" height="600" loading="lazy" />
 
 In fact, the work for this version has already started!
-See which components are already available using the experimental `@mui/material-next` package, that supports the Material 3 specs, by visiting the newly released All Components page.
-
-:::
-**WIP note, to be deleted**: The above-mentioned page is going to be added on a separate PR. I'll remove this comment before publish this post.
-:::
+See which components are already available using the experimental `@mui/material-next` package, that supports the Material 3 specs, by visiting the newly released [All Components page](/material-ui/all-components/).
 
 ```diff
 - import Button from '@mui/material/Button';
