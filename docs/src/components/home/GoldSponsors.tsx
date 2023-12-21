@@ -18,18 +18,25 @@ const GOLDs = [
     href: 'https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
   },
   {
-    src: 'https://avatars.githubusercontent.com/u/1262264?size=40',
-    srcSet: 'https://avatars.githubusercontent.com/u/1262264?s=80 2x',
-    name: 'Text-em-all',
-    description: 'Mass text messaging and automated calling.',
-    href: 'https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
-  },
-  {
     src: 'https://images.opencollective.com/spotify/f37ea28/logo/40.png',
     srcSet: 'https://images.opencollective.com/spotify/f37ea28/logo/80.png 2x',
     name: 'Spotify',
-    description: 'Music service to access millions of songs.',
+    description: 'Music service for access to millions of songs.',
     href: 'https://open.spotify.com?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    src: 'https://images.opencollective.com/icons8/7fa1641/logo/40.png',
+    srcSet: 'https://images.opencollective.com/icons8/7fa1641/logo/80.png 2x',
+    name: 'Icons8',
+    description: 'API for icons, photos, illustrations, and music.',
+    href: 'https://icons8.com?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    src: 'https://images.opencollective.com/rxdbjs/2aec389/logo/40.png',
+    srcSet: 'https://images.opencollective.com/rxdbjs/2aec389/logo/80.png 2x',
+    name: 'RxDB',
+    description: 'Local-first JavaScript database.',
+    href: 'https://rxdb.info/?utm_source=sponsor&utm_medium=opencollective&utm_campaign=opencollective-mui',
   },
   {
     src: '/static/sponsors//megafamous.png',
@@ -50,20 +57,6 @@ const GOLDs = [
     name: 'Goread.io',
     description: 'Instagram followers, likes, views, and comments.',
     href: 'https://goread.io/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
-  },
-  {
-    src: 'https://images.opencollective.com/icons8/7fa1641/logo/40.png',
-    srcSet: 'https://images.opencollective.com/icons8/7fa1641/logo/80.png 2x',
-    name: 'Icons8',
-    description: 'API for icons, photos, illustrations, and music.',
-    href: 'https://icons8.com?utm_source=MUI&utm_medium=referral&utm_content=homepage',
-  },
-  {
-    src: 'https://images.opencollective.com/rxdbjs/2aec389/logo/40.png',
-    srcSet: 'https://images.opencollective.com/rxdbjs/2aec389/logo/80.png 2x',
-    name: 'RxDB',
-    description: 'Local-first JavaScript database.',
-    href: 'https://rxdb.info/?utm_source=sponsor&utm_medium=opencollective&utm_campaign=opencollective-mui',
   },
 ];
 
