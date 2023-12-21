@@ -278,7 +278,7 @@ Every documentation PR will be reviewed by an editor following [MUI's Writing St
 
 ### How to find docs issues to work on
 
-If you're interesting in contributing to the docs but aren't sure where to start, you can use this search prompt in the GitHub repo to find issues tagged `docs` and `ready to take`:
+If you're interested in contributing to the docs but aren't sure where to start, you can use this search prompt in the GitHub repo to find issues tagged `docs` and `ready to take`:
 
 `is:issue is:open label:docs label:"ready to take"`
 
