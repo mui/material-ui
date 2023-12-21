@@ -26,7 +26,7 @@ const logoStyle = {
   width: '100px',
   height: '80px',
   margin: '0 20px',
-  opacity: 0.8,
+  opacity: 0.5,
 };
 
 export default function LogoCollection() {

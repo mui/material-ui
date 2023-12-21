@@ -137,6 +137,12 @@ const typographyBase = {
   fontWeightMedium: 500,
 };
 
+const fontHeader = {
+  fontFamily: "'Inter', sans-serif",
+  fontWeight: typographyBase.fontWeightMedium,
+  letterSpacing: '-0.025em',
+};
+
 export default function getAlbumTheme(mode: 'light' | 'dark') {
   const modeDesignTokens = getDesignTokens(mode);
 
@@ -180,7 +186,7 @@ export default function getAlbumTheme(mode: 'light' | 'dark') {
                 )}, 0px 2px 4px rgba(0, 0, 0, 0.1)`,
                 '&:hover': {
                   backgroundColor: brandColor[600],
-                  boxShadow: '0px 0px 0px 1px rgba(38, 38, 38, 1)',
+                  boxShadow: 'none',
                 },
               }),
               ...(ownerState.variant === 'outlined' && {
@@ -188,9 +194,15 @@ export default function getAlbumTheme(mode: 'light' | 'dark') {
                   mode === 'light'
                     ? alpha(brandColor[300], 0.1)
                     : alpha(brandColor[600], 0.1),
-                border: '1px solid',
                 borderColor: mode === 'light' ? brandColor[300] : brandColor[700],
                 color: mode === 'light' ? brandColor[500] : brandColor[300],
+                '&:hover': {
+                  backgroundColor:
+                    mode === 'light'
+                      ? alpha(brandColor[300], 0.3)
+                      : alpha(brandColor[600], 0.3),
+                  borderColor: mode === 'light' ? brandColor[200] : brandColor[700],
+                },
               }),
               textTransform: 'none',
             } as const),
@@ -272,23 +284,26 @@ export default function getAlbumTheme(mode: 'light' | 'dark') {
     },
     typography: {
       ...typographyBase,
-      fontHeader,
+      ...fontHeader,
       h1: {
         ...fontHeader,
-        letterSpacing: 0,
         fontSize: 60,
+        lineHeight: 1.2,
       },
       h2: {
         ...fontHeader,
         fontSize: 48,
+        lineHeight: 1.2,
       },
       h3: {
         ...fontHeader,
         fontSize: 42,
+        lineHeight: 1.2,
       },
       h4: {
         ...fontHeader,
         fontSize: 36,
+        lineHeight: 1.5,
       },
       h5: {
         fontSize: 20,
@@ -310,7 +325,6 @@ export default function getAlbumTheme(mode: 'light' | 'dark') {
       },
       body2: {
         fontSize: 14,
-        color: mode === 'light' ? greyColor[700] : greyColor[300],
       },
     },
   } as const;
