@@ -1,5 +1,5 @@
 import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
-import generateUtilityClass from '../generateUtilityClass';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
 
 export interface ListSubheaderClasses {
   /** Styles applied to the root element. */

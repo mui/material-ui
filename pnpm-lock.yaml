@@ -1096,6 +1096,9 @@ importers:
       '@babel/runtime':
         specifier: ^7.23.5
         version: 7.23.6
+      '@mui/utils':
+        specifier: workspace:^
+        version: link:../mui-utils/build
       babel-plugin-macros:
         specifier: ^3.1.0
         version: 3.1.0

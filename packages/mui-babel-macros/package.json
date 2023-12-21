@@ -6,7 +6,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/mui/material-ui.git",
-    "directory": "packages/mui-utils"
+    "directory": "packages/mui-babel-macros"
   },
   "license": "MIT",
   "bugs": {
@@ -33,6 +33,9 @@
     "@types/node": "^18.19.3",
     "babel-plugin-tester": "^11.0.4",
     "chai": "^4.3.10"
+  },
+  "peerDependencies": {
+    "@mui/utils": "workspace:^"
   },
   "sideEffects": false,
   "engines": {
