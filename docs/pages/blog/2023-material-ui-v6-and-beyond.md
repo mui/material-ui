@@ -2,7 +2,7 @@
 title: The road to Material UI v6 and beyond
 description: We're tightening up the Material UI release schedule and shipping two major versions in 2024. Here's what to expect.
 date: 2023-12-23T00:00:00.000Z
-authors: ['mnajdova', 'danilo-leal']
+authors: ['mnajdova']
 card: true
 tags: ['MUI Core', 'News']
 ---
@@ -26,7 +26,7 @@ Here's what we're planning for each:
 With the stable version planned for Q2 of 2024, the primary focus of Material UI v6 is releasing a new [zero-runtime CSS-in-JS styling engine](https://github.com/mui/material-ui/issues/38137), which will pave the way for compatibility with React Server Components and add significant performance improvements.
 We're building it so that the upgrade will be opt-in, which means you won't need to commit to it immediately.
 
-As a taste of the performance upgrade, here are some early Lighthouse metrics with a couple of primary components running on an M1 MacBook Pro with 16 GB of RAM:
+As a taste of the performance upgrade, here are some early Lighthouse metrics with a couple of primary components running on an M1 Max MacBook Pro with 32 GB of RAM:
 
 | Total Blocking Time (TBT) in milliseconds (ms) | Emotion | Zero-runtime | Improvement |
 | :--------------------------------------------- | ------: | -----------: | ----------: |
@@ -35,12 +35,12 @@ As a taste of the performance upgrade, here are some early Lighthouse metrics wi
 
 ### Material UI v7
 
-Material UI v7 is tentatively planned for Q4 of 2024.
-That's when you can expect to see native support for [Material 3](https://m3.material.io/), Google's latest Material Design update, as well as many other design improvements across the component suite.
+Material UI v7 is where you can expect to see the native support for [Material 3](https://m3.material.io/), Google's latest Material Design update, as well as many other design improvements across the component suite.
+It's tentatively planned for Q4 of 2024.
 
 <img alt="Side-to-side comparison of a Card component using Material Design 2 and 3, respectively." src="/static/blog/2023-material-ui-v6-and-beyond/m2-m3.jpg" width="1200" height="600" loading="lazy" />
 
-In fact, the work for this version has already started!
+The development for this version is already in course, though!
 See which components already support the Material 3 specs, through the experimental `@mui/material-next` package, by visiting the newly released [All Components page](/material-ui/all-components/).
 
 ```diff
@@ -51,7 +51,7 @@ See which components already support the Material 3 specs, through the experimen
 ## From design to development
 
 In addition to the updates to the Reactly library, we've also been working on a long-requested Figma plug-in to help bridge the gap between designers and developers using Material UI.
-We're getting super close to a first release. and it is, for now, custom-tailored to work nicely along the [Material UI Design Kits](/material-ui/getting-started/design-resources/).
+We're getting super close to a first release, and it is, for now, custom-tailored to work nicely along the [Material UI Design Kits](/material-ui/getting-started/design-resources/).
 
 <img alt="A screenshot of Figma together with the MUI Connect plug-in running on the side, doing customziations to the Material UI Switch component." src="/static/blog/2023-material-ui-v6-and-beyond/connect.jpg" width="1200" height="600" loading="lazy" />
 
