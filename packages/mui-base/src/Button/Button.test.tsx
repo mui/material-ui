@@ -183,46 +183,48 @@ describe('<Button />', () => {
     });
   });
 
-  describe('SSR', () => {
-    before(function beforeHook() {
-      // Only run the test on node.
-      if (!/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-    });
-
-    it('default tag', () => {
-      const { container } = renderToString(
-        <Button disabled hostElementName="button">
-          Hello World
-        </Button>,
-      );
-
-      expect((container.firstChild as HTMLElement).tagName).to.equal('BUTTON');
-      expect(container.firstChild).to.have.attribute('disabled');
-      expect(container.firstChild).to.not.have.attribute('aria-disabled');
-    });
-
-    it('alternate tag', () => {
-      const { container } = renderToString(
-        <Button disabled hostElementName="span" slots={{ root: 'span' }}>
-          Hello World
-        </Button>,
-      );
-
-      expect((container.firstChild as HTMLElement).tagName).to.equal('SPAN');
-      expect(container.firstChild).to.not.have.attribute('disabled');
-      expect(container.firstChild).to.have.attribute('aria-disabled');
-    });
-
-    it('tag does not match with hostElementName', () => {
+  describe('prop: hostElementName', () => {
+    it('should warn when the rendered tag does not match the provided hostElementName', () => {
       expect(() => {
-        renderToString(
+        render(
           <Button disabled hostElementName="span">
             Hello World
           </Button>,
         );
       }).toErrorDev('expected: span, actual BUTTON');
+    });
+
+    describe('server-side rendering', () => {
+      before(function beforeHook() {
+        // Only run the test on node.
+        if (!/jsdom/.test(window.navigator.userAgent)) {
+          this.skip();
+        }
+      });
+
+      it('default tag', () => {
+        const { container } = renderToString(
+          <Button disabled hostElementName="button">
+            Hello World
+          </Button>,
+        );
+
+        expect((container.firstChild as HTMLElement).tagName).to.equal('BUTTON');
+        expect(container.firstChild).to.have.attribute('disabled');
+        expect(container.firstChild).to.not.have.attribute('aria-disabled');
+      });
+
+      it('alternate tag', () => {
+        const { container } = renderToString(
+          <Button disabled hostElementName="span" slots={{ root: 'span' }}>
+            Hello World
+          </Button>,
+        );
+
+        expect((container.firstChild as HTMLElement).tagName).to.equal('SPAN');
+        expect(container.firstChild).to.not.have.attribute('disabled');
+        expect(container.firstChild).to.have.attribute('aria-disabled');
+      });
     });
   });
 });
