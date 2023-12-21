@@ -65,7 +65,7 @@ export default function Album() {
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            gap: 16,
+            gap: { xs: 8, sm: 16 },
             bgcolor: 'background.default',
           }}
         >

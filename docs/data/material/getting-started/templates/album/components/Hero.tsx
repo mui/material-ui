@@ -7,7 +7,7 @@ import Chip from '@mui/material/Chip';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
-import { grey, lightBlue } from '@mui/material/colors';
+import { grey } from '@mui/material/colors';
 import CelebrationRoundedIcon from '@mui/icons-material/CelebrationRounded';
 
 export default function ProductHero() {
@@ -18,7 +18,6 @@ export default function ProductHero() {
         backgroundImage: `url("https://images.unsplash.com/photo-1638272181967-7d3772a91265?q=80&w=3570&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")`,
         backgroundSize: 'cover',
         color: 'white',
-        height: '60vh',
       }}
     >
       <Box
@@ -28,7 +27,7 @@ export default function ProductHero() {
           justifyContent: 'center',
           gap: 10,
           width: '100%',
-          height: '60vh',
+          minHeight: { xs: '85dvh', sm: '60vh' },
           backgroundColor: 'rgba(0, 0, 0, 0.6)',
           backdropFilter: 'blur(32px)',
           alignItems: 'center',
