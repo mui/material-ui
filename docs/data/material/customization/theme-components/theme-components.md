@@ -192,7 +192,7 @@ This is useful if you want to apply styles when using negation in the condition.
 In other words, applying a different style if a particular property doesn't have a specific value.
 
 :::info
-This feature is available from version 5.15.0.
+This feature is available from version 5.15.2.
 :::
 
 ```js
