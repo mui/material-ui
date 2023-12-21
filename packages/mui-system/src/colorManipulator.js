@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
+import { clamp } from '@mui/utils';
 import MuiError from '@mui-internal/babel-macros/MuiError.macro';
 
 /**
@@ -8,14 +9,14 @@ import MuiError from '@mui-internal/babel-macros/MuiError.macro';
  * @param {number} max The upper boundary of the output range
  * @returns {number} A number in the range [min, max]
  */
-function clamp(value, min = 0, max = 1) {
+function clampWrapper(value, min = 0, max = 1) {
   if (process.env.NODE_ENV !== 'production') {
     if (value < min || value > max) {
       console.error(`MUI: The value provided ${value} is out of range [${min}, ${max}].`);
     }
   }
 
-  return Math.min(Math.max(min, value), max);
+  return clamp(value, min, max);
 }
 
 /**
@@ -238,7 +239,7 @@ export function getContrastRatio(foreground, background) {
  */
 export function alpha(color, value) {
   color = decomposeColor(color);
-  value = clamp(value);
+  value = clampWrapper(value);
 
   if (color.type === 'rgb' || color.type === 'hsl') {
     color.type += 'a';
@@ -270,7 +271,7 @@ export function private_safeAlpha(color, value, warning) {
  */
 export function darken(color, coefficient) {
   color = decomposeColor(color);
-  coefficient = clamp(coefficient);
+  coefficient = clampWrapper(coefficient);
 
   if (color.type.indexOf('hsl') !== -1) {
     color.values[2] *= 1 - coefficient;
@@ -300,7 +301,7 @@ export function private_safeDarken(color, coefficient, warning) {
  */
 export function lighten(color, coefficient) {
   color = decomposeColor(color);
-  coefficient = clamp(coefficient);
+  coefficient = clampWrapper(coefficient);
 
   if (color.type.indexOf('hsl') !== -1) {
     color.values[2] += (100 - color.values[2]) * coefficient;

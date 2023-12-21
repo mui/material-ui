@@ -4,6 +4,7 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { clamp } from '@mui/utils';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useTheme from '../styles/useTheme';
@@ -35,16 +36,6 @@ function getOrientation(direction) {
     return 'horizontal';
   }
   return undefined;
-}
-
-function clamp(value, min, max) {
-  if (value < min) {
-    return min;
-  }
-  if (value > max) {
-    return max;
-  }
-  return value;
 }
 
 const dialRadius = 32;
