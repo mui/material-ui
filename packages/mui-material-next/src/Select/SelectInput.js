@@ -404,7 +404,9 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       }),
     externalForwardedProps: {},
     externalSlotProps: {},
-    additionalProps: {},
+    additionalProps: {
+      disableRipple: false,
+    },
     ownerState,
   });
 
