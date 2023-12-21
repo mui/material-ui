@@ -2,11 +2,22 @@ import * as React from 'react';
 import { Button as BaseButton, buttonClasses } from '@mui/base/Button';
 import { prepareForSlot } from '@mui/base/utils';
 import { styled } from '@mui/system';
-import Stack from '@mui/material/Stack';
+import { Stack, Button as Md2Button } from '@mui/material';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
+import { Button as Md3Button } from '@mui/material-next';
 import Link from 'next/link';
 
-const LinkSlot = prepareForSlot(Link);
+const md2Theme = createTheme();
+const md3Theme = extendTheme();
 
+const LinkSlot = prepareForSlot(Link);
+const StyledSpan = styled('span')`
+  border: 2px solid black !important;
+`;
+const StyledButton = styled('button')`
+  border: 2px dotted black !important;
+`;
 const blue = {
   200: '#99CCFF',
   300: '#66B2FF',
@@ -73,7 +84,7 @@ const InputButton = styled('input')(
   `,
 );
 
-const StyledButton = styled('button')(
+const FancyStyledButton = styled('button')(
   ({ theme }) => `
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
@@ -117,7 +128,7 @@ const StyledButton = styled('button')(
   `,
 );
 
-const Button = styled(BaseButton)(
+const FancyButton = styled(BaseButton)(
   ({ theme }) => `
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
@@ -164,53 +175,109 @@ const Button = styled(BaseButton)(
 export default function Buttons() {
   return (
     <Stack spacing={8} direction="column">
-      {/* normal cases */}
-      <Stack spacing={2} direction="row">
-        <Button disabled hostElementName="button">
-          Button
-        </Button>
+      <Stack spacing={3} mb={24}>
+        {/* normal cases */}
+        <Stack spacing={2} direction="row">
+          <pre>Normal cases</pre>
+          <FancyButton disabled hostElementName="button">
+            Button
+          </FancyButton>
 
-        <BaseButton disabled hostElementName="button" slots={{ root: StyledButton }}>
-          Button with slots.root
-        </BaseButton>
+          <BaseButton disabled hostElementName="button" slots={{ root: FancyStyledButton }}>
+            Button with slots.root
+          </BaseButton>
 
-        <Button
-          disabled
-          hostElementName="input"
-          slots={{ root: InputButton }}
-          value="input button"
-          type="button"
-        />
+          <FancyButton
+            disabled
+            hostElementName="input"
+            slots={{ root: InputButton }}
+            value="input button"
+            type="button"
+          />
+        </Stack>
+
+        {/* hostELementName mismatches */}
+        <Stack spacing={2} direction="row">
+          <pre>hostElementName prop does not match the actual rendered element</pre>
+          <FancyButton disabled hostElementName="span">
+            Button
+          </FancyButton>
+
+          <BaseButton disabled hostElementName="span" slots={{ root: FancyStyledButton }}>
+            Button with slots.root
+          </BaseButton>
+
+          <FancyButton
+            disabled
+            hostElementName="span"
+            slots={{ root: InputButton }}
+            value="input button"
+            type="button"
+          />
+        </Stack>
+
+        {/* links */}
+        <Stack spacing={2} direction="row">
+          <pre>links</pre>
+          <FancyButton disabled href="https://mui.com/">
+            Standard link
+          </FancyButton>
+          <FancyButton disabled href="https://mui.com/" slots={{ root: LinkSlot }}>
+            Next.js link
+          </FancyButton>
+        </Stack>
       </Stack>
 
-      {/* hostELementName mismatches */}
-      <Stack spacing={2} direction="row">
-        <Button disabled hostElementName="span">
-          Button
-        </Button>
+      <hr />
 
-        <BaseButton disabled hostElementName="span" slots={{ root: StyledButton }}>
-          Button with slots.root
-        </BaseButton>
+      <ThemeProvider theme={md2Theme}>
+        <Stack spacing={3} mb={24}>
+          <pre>v5 Buttons</pre>
+          <Md2Button disabled>Submit</Md2Button>
 
-        <Button
-          disabled
-          hostElementName="span"
-          slots={{ root: InputButton }}
-          value="input button"
-          type="button"
-        />
-      </Stack>
+          <Md2Button disabled component="span">
+            Submit (component=span)
+          </Md2Button>
 
-      {/* links */}
-      <Stack spacing={2} direction="row">
-        <Button disabled href="https://mui.com/">
-          Standard link
-        </Button>
-        <Button disabled href="https://mui.com/" slots={{ root: LinkSlot }}>
-          Next.js link
-        </Button>
-      </Stack>
+          <Md2Button disabled component={StyledSpan}>
+            Submit (component=StyledSpan)
+          </Md2Button>
+
+          <Md2Button disabled component={StyledButton}>
+            Submit (component=StyledButton)
+          </Md2Button>
+
+          <Md2Button href="https://mui.com/" disabled>
+            Link button
+          </Md2Button>
+        </Stack>
+      </ThemeProvider>
+
+      <hr />
+
+      <CssVarsProvider theme={md3Theme}>
+        <Stack spacing={3}>
+          <pre>material-next Buttons</pre>
+          <Md3Button disabled hostElementName="button">
+            Submit
+          </Md3Button>
+
+          {/* @ts-ignore */}
+          <Md3Button disabled component="span" hostElementName="span">
+            Submit (component=span)
+          </Md3Button>
+
+          {/* @ts-ignore */}
+          <Md3Button disabled component={StyledSpan} hostElementName="span">
+            Submit (component=StyledSpan)
+          </Md3Button>
+
+          {/* @ts-ignore */}
+          <Md3Button href="https://mui.com/" disabled hostElementName="a">
+            Submit (href)
+          </Md3Button>
+        </Stack>
+      </CssVarsProvider>
     </Stack>
   );
 }
