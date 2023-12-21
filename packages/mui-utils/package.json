@@ -45,10 +45,9 @@
     "react-is": "^18.2.0"
   },
   "devDependencies": {
-    "@babel/helper-module-imports": "^7.22.15",
+    "@mui-internal/babel-macros": "^1.0.0",
     "@mui-internal/test-utils": "^1.0.0",
     "@mui/types": "^7.2.11",
-    "@types/babel-plugin-macros": "^3.1.3",
     "@types/chai": "^4.3.11",
     "@types/mocha": "^10.0.6",
     "@types/node": "^18.19.3",
@@ -56,8 +55,6 @@
     "@types/react-dom": "^18.2.17",
     "@types/react-is": "^18.2.4",
     "@types/sinon": "^10.0.20",
-    "babel-plugin-macros": "^3.1.0",
-    "babel-plugin-tester": "^11.0.4",
     "chai": "^4.3.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

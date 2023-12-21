@@ -52,6 +52,7 @@
   "devDependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@mui-internal/babel-macros": "^1.0.0",
     "@mui-internal/test-utils": "^1.0.0",
     "@mui/joy": "5.0.0-beta.19",
     "@mui/material": "^5.15.1",
