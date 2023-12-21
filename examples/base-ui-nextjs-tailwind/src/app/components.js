@@ -1,9 +1,7 @@
 'use client';
 import * as React from 'react';
 import clsx from 'clsx';
-import {
-  Select as BaseSelect
-} from '@mui/base/Select';
+import { Select as BaseSelect } from '@mui/base/Select';
 import { Option } from '@mui/base/Option';
 import { Slider as BaseSlider } from '@mui/base/Slider';
 
@@ -56,10 +54,7 @@ export function SelectOption(props) {
   );
 }
 
-export const Select = React.forwardRef(function Select(
-  props,
-  ref,
-) {
+export const Select = React.forwardRef(function Select(props, ref) {
   const {
     slotProps = {
       root: {},
@@ -99,10 +94,7 @@ export const Select = React.forwardRef(function Select(
   );
 });
 
-export const Slider = React.forwardRef(function Slider(
-  props,
-  ref,
-) {
+export const Slider = React.forwardRef(function Slider(props, ref) {
   const {
     slotProps = {
       root: {},
