@@ -73,6 +73,10 @@ export default function SandboxDependencies(
         newDeps['@mui/material'] = versions['@mui/material'];
       }
 
+      if (newDeps['@mui/x-data-grid']) {
+        newDeps['@mui/material'] = versions['@mui/material'];
+      }
+
       // TODO: consider if this configuration could be injected in a "cleaner" way.
       if (muiDocConfig) {
         newDeps = muiDocConfig.csbIncludePeerDependencies(newDeps, {
