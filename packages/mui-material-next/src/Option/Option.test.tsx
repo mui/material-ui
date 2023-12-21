@@ -36,24 +36,25 @@ const testContext = {
 describe('<Option />', () => {
   const { render } = createRenderer({ clock: 'fake' });
 
-  // afterEach(() => {
-  //   document.getElementsByTagName('html')[0].innerHTML = '';
-  // });
-
-  describeConformance(<Option data-testid="option">1</Option>, () => ({
-    render: (node) => {
-      return render(<SelectProvider value={testContext}>{node}</SelectProvider>);
-    },
-    wrapMount: (mount) => (node) =>
-      mount(<SelectProvider value={testContext}>{node}</SelectProvider>),
-    classes,
-    inheritComponent: ButtonBase,
-    refInstanceof: window.HTMLLIElement,
-    testComponentPropWith: 'a',
-    muiName: 'MuiOption',
-    testVariantProps: { dense: true },
-    skip: ['componentsProp', 'reactTestRenderer'],
-  }));
+  describeConformance(
+    <Option value={1} data-testid="option">
+      1
+    </Option>,
+    () => ({
+      render: (node) => {
+        return render(<SelectProvider value={testContext}>{node}</SelectProvider>);
+      },
+      wrapMount: (mount) => (node) =>
+        mount(<SelectProvider value={testContext}>{node}</SelectProvider>),
+      classes,
+      inheritComponent: ButtonBase,
+      refInstanceof: window.HTMLLIElement,
+      testComponentPropWith: 'a',
+      muiName: 'MuiOption',
+      testVariantProps: { dense: true },
+      skip: ['componentsProp', 'reactTestRenderer'],
+    }),
+  );
 
   const renderWithSelect = (node: React.ReactNode) => {
     function Test() {
@@ -72,7 +73,7 @@ describe('<Option />', () => {
 
   it('has a ripple when clicked', () => {
     renderWithSelect(
-      <Option TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }} />,
+      <Option value={1} TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }} />,
     );
     const option = screen.getByRole('option');
 
@@ -111,6 +112,7 @@ describe('<Option />', () => {
       const handleBlur = spy();
       renderWithSelect(
         <Option
+          value={1}
           onFocus={handleFocus}
           onKeyDown={handleKeyDown}
           onKeyUp={handleKeyUp}
@@ -143,7 +145,7 @@ describe('<Option />', () => {
       }
 
       const handleTouchStart = spy();
-      renderWithSelect(<Option onTouchStart={handleTouchStart} />);
+      renderWithSelect(<Option value={1} onTouchStart={handleTouchStart} />);
       const option = screen.getByRole('option');
 
       const touch = new Touch({ identifier: 0, target: option, clientX: 0, clientY: 0 });
@@ -154,7 +156,7 @@ describe('<Option />', () => {
   });
 
   it('can be disabled', () => {
-    renderWithSelect(<Option disabled />);
+    renderWithSelect(<Option value={1} disabled />);
     const option = screen.getByRole('option');
 
     expect(option).to.have.attribute('aria-disabled', 'true');
@@ -162,7 +164,7 @@ describe('<Option />', () => {
 
   it('can be selected', () => {
     render(
-      <Select value={1}>
+      <Select open value={1}>
         <Option value={1} />
       </Select>,
     );
@@ -175,7 +177,7 @@ describe('<Option />', () => {
   it('prop: disableGutters', () => {
     const { rerender } = render(
       <Select open>
-        <Option />
+        <Option value={1} />
       </Select>,
     );
     const option = screen.getByRole('option');
@@ -184,7 +186,7 @@ describe('<Option />', () => {
 
     rerender(
       <Select open>
-        <Option disableGutters />
+        <Option value={1} disableGutters />
       </Select>,
     );
 

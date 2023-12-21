@@ -312,13 +312,9 @@ Option.propTypes /* remove-proptypes */ = {
    */
   tabIndex: PropTypes.number,
   /**
-   * @ignore
+   * The value of the option.
    */
-  value: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.string),
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  value: PropTypes.any.isRequired,
 } as any;
 
 export default Option;

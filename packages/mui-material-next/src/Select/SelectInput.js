@@ -412,7 +412,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const hiddenInputProps = useSlotProps({
     elementType: SelectNativeInput,
-    getSlotProps: getHiddenInputProps,
+    getSlotProps: () =>
+      getHiddenInputProps({
+        style: undefined,
+      }),
     externalForwardedProps: other,
     externalSlotProps: {},
     additionalProps: {},

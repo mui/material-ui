@@ -612,10 +612,10 @@ describe('<Select />', () => {
         );
 
         const trigger = getByRole('combobox');
-        const options = getAllByRole('option');
 
         await userEvent.click(trigger);
 
+        const options = getAllByRole('option');
         expect(options[0]).to.have.attribute('tabindex', '0');
 
         await userEvent.keyboard('{ArrowDown}');
@@ -640,10 +640,10 @@ describe('<Select />', () => {
           );
 
           const trigger = getByRole('combobox');
-          const options = getAllByRole('option');
 
           await userEvent.click(trigger);
 
+          const options = getAllByRole('option');
           expect(options[0]).to.have.attribute('tabindex', '0');
 
           await userEvent.keyboard('{ArrowDown}');
@@ -669,10 +669,10 @@ describe('<Select />', () => {
           );
 
           const trigger = getByRole('combobox');
-          const options = getAllByRole('option');
 
           await userEvent.click(trigger);
 
+          const options = getAllByRole('option');
           expect(options[0]).to.have.attribute('tabindex', '0');
 
           await userEvent.keyboard('{ArrowDown}');
@@ -699,10 +699,10 @@ describe('<Select />', () => {
             );
 
             const trigger = getByRole('combobox');
-            const options = getAllByRole('option');
 
             await userEvent.click(trigger);
 
+            const options = getAllByRole('option');
             expect(options[0]).to.have.attribute('tabindex', '0');
 
             await userEvent.keyboard('{ArrowDown}');
@@ -783,10 +783,10 @@ describe('<Select />', () => {
         );
 
         const trigger = getByRole('combobox');
-        const options = getAllByRole('option');
 
         await userEvent.click(trigger);
 
+        const options = getAllByRole('option');
         expect(options[1]).to.have.attribute('tabindex', '0');
 
         await userEvent.keyboard('{ArrowDown}');
@@ -894,10 +894,16 @@ describe('<Select />', () => {
       });
 
       fireEvent.keyDown(trigger, { key: 'ArrowDown' });
-      expect(screen.getByRole('listbox')).to.have.attribute('aria-hidden', 'true');
+      expect(screen.getByRole('listbox', { hidden: true })).to.have.attribute(
+        'aria-hidden',
+        'true',
+      );
 
       fireEvent.keyUp(trigger, { key: 'ArrowDown' });
-      expect(screen.getByRole('listbox')).to.have.attribute('aria-hidden', 'true');
+      expect(screen.getByRole('listbox', { hidden: true })).to.have.attribute(
+        'aria-hidden',
+        'true',
+      );
     });
 
     it('should not open on combobox click when readOnly', () => {
@@ -912,7 +918,7 @@ describe('<Select />', () => {
         fireEvent.click(getByRole('combobox'));
       });
 
-      expect(screen.getByRole('listbox')).to.have.attribute('aria-hidden', 'true');
+      expect(getByRole('listbox', { hidden: true })).to.have.attribute('aria-hidden', 'true');
     });
   });
 
@@ -1135,10 +1141,10 @@ describe('<Select />', () => {
 
       // If clicked by the right/middle mouse button, no options list should be opened
       fireEvent.click(trigger, { button: 1 });
-      expect(queryByRole('listbox')).to.have.attribute('aria-hidden', 'true');
+      expect(queryByRole('listbox', { hidden: true })).to.have.attribute('aria-hidden', 'true');
 
       fireEvent.click(trigger, { button: 2 });
-      expect(queryByRole('listbox')).to.have.attribute('aria-hidden', 'true');
+      expect(queryByRole('listbox', { hidden: true })).to.have.attribute('aria-hidden', 'true');
 
       fireEvent.click(trigger, { button: 0 });
       expect(queryByRole('listbox')).to.have.attribute('aria-hidden', 'false');
