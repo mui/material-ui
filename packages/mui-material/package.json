@@ -56,6 +56,7 @@
     "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
+    "@mui-internal/babel-macros": "^1.0.0",
     "@mui-internal/test-utils": "^1.0.0",
     "@mui/icons-material": "^5.15.1",
     "@mui/lab": "5.0.0-alpha.157",
