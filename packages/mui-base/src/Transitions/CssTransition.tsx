@@ -59,16 +59,31 @@ function CssTransition(props: CssTransitionProps) {
   const { requestedEnter, onEntering, onEntered, onExiting, onExited } =
     useTransitionStateManager();
 
-  const hasExited = React.useRef(true);
+  const [isEntering, setIsEntering] = React.useState(!requestedEnter);
+
+  // The `isEntering` state (which is used to determine the right CSS class to apply)
+  // is updated slightly (one animation frame) after the `requestedEnter` state is updated.
+  // Thanks to this, elements that are mounted will have their enter transition applied
+  // (if the `enterClassName` was applied when the element was mounted, the transition would not be fired).
+  React.useEffect(() => {
+    if (requestedEnter) {
+      requestAnimationFrame(() => {
+        setIsEntering(true);
+      });
+    } else {
+      requestAnimationFrame(() => {
+        setIsEntering(false);
+      });
+    }
+  });
 
   React.useEffect(() => {
-    if (requestedEnter && hasExited.current) {
+    if (requestedEnter) {
       onEntering();
-      hasExited.current = false;
-    } else if (!requestedEnter && !hasExited.current) {
+    } else {
       onExiting();
     }
-  }, [onEntering, onExiting, requestedEnter]);
+  }, [requestedEnter, onEntering, onExiting]);
 
   const handleTransitionEnd = React.useCallback(
     (event: React.TransitionEvent) => {
@@ -78,14 +93,12 @@ function CssTransition(props: CssTransitionProps) {
           event.propertyName === lastTransitionedPropertyOnEnter
         ) {
           onEntered();
-          hasExited.current = false;
         }
       } else if (
         lastTransitionedPropertyOnExit == null ||
         event.propertyName === lastTransitionedPropertyOnExit
       ) {
         onExited();
-        hasExited.current = true;
       }
     },
     [
@@ -100,7 +113,7 @@ function CssTransition(props: CssTransitionProps) {
   return (
     <div
       onTransitionEnd={handleTransitionEnd}
-      className={clsx(className, requestedEnter ? enterClassName : exitClassName)}
+      className={clsx(className, isEntering ? enterClassName : exitClassName)}
       {...other}
     >
       {children}

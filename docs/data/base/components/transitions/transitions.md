@@ -34,6 +34,10 @@ The `lastTransitionedPropertyOnExit` serves exactly this purpose.
 
 {{"demo": "CssTransitionComponent.js"}}
 
+Normally, if an element appears in the DOM and already has a CSS class with a transition, this transition is not fired (because there's no state to transition from).
+The CSS Transition component works around this issue by mounting the component with the `exitClassName` and, after a brief moment, changing the class name to `enterClassName`.
+This ensures the enter transition is applied even if the transitioned element is removed from the DOM when exited.
+
 ### CSS Animation
 
 CSS animations offer more flexibility than transitions.
@@ -42,18 +46,6 @@ You can define multiple keyframes for better control over animation playback.
 The CSS Animation component triggers an animation by applying a CSS class (either from the `enterClassName` or `exitClassName` prop).
 
 {{"demo": "CssAnimationComponent.js"}}
-
-:::warning
-
-There is one important difference between CSS animations and transitions: how they are played initially.
-Animations play when there's a CSS `animation` rule applied on an element.
-It doesn't matter whether the element has been newly added to the document, or if it already existed and just had a new class name applied to it.
-
-Transitions, on the other hand, change CSS property values from an old state to a new one.
-This means that if you create a new element with a CSS class that has a transition applied, the transition won't be played initially.
-Transitions are only executed when a CSS property changes on **an existing element**.
-
-:::
 
 ## Hooks
 

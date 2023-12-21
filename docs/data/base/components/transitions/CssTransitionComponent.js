@@ -103,8 +103,7 @@ export default function CssTransitionComponent() {
   return (
     <div>
       <style>{styles}</style>
-      {/* `keepMounted` is needed to trigger the enter animation (otherwise the popup just appears without transition) */}
-      <PopupWithTrigger keepMounted>
+      <PopupWithTrigger>
         <CssTransition
           enterClassName="open"
           exitClassName="close"

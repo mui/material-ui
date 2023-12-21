@@ -35,7 +35,7 @@ describe('CssTransition', () => {
     onEnteredSpy.resetHistory();
   });
 
-  const { render } = createRenderer();
+  const { render, clock } = createRenderer();
 
   describe('prop: className', () => {
     it('applies it unconditionally', () => {
@@ -49,47 +49,47 @@ describe('CssTransition', () => {
     });
   });
 
-  describe('prop: enterClassName', () => {
-    it('applies it when requested to enter', () => {
-      const { getByTestId } = render(
-        <TestTransitionContextProvider requestEnter>
-          <CssTransition enterClassName="foo" data-testid="root" />
-        </TestTransitionContextProvider>,
-      );
-      const root = getByTestId('root');
-      expect(root).to.have.class('foo');
-    });
+  describe('prop: enterClassName, exitClassName', () => {
+    clock.withFakeTimers();
 
-    it('does not apply it when not requested to enter', () => {
+    it('applies enterClassName, then immediately exitClassName when requested to exit', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
       const { getByTestId } = render(
         <TestTransitionContextProvider requestEnter={false}>
-          <CssTransition enterClassName="foo" data-testid="root" />
+          <CssTransition enterClassName="enter" exitClassName="exit" data-testid="root" />
         </TestTransitionContextProvider>,
       );
-      const root = getByTestId('root');
-      expect(root).not.to.have.class('foo');
-    });
-  });
 
-  describe('prop: exitClassName', () => {
-    it('applies it when requested to exit', () => {
-      const { getByTestId } = render(
-        <TestTransitionContextProvider requestEnter={false}>
-          <CssTransition exitClassName="foo" data-testid="root" />
-        </TestTransitionContextProvider>,
-      );
       const root = getByTestId('root');
-      expect(root).to.have.class('foo');
+
+      // briefly after mounting
+      expect(root).to.have.class('enter');
+      expect(root).not.to.have.class('exit');
+
+      clock.runToLast();
+      expect(root).to.have.class('exit');
+      expect(root).not.to.have.class('enter');
     });
 
-    it('does not apply it when not requested to exit', () => {
+    it('applies exitClassName, then immediately enterClassName when requested to enter', () => {
       const { getByTestId } = render(
         <TestTransitionContextProvider requestEnter>
-          <CssTransition exitClassName="foo" data-testid="root" />
+          <CssTransition enterClassName="enter" exitClassName="exit" data-testid="root" />
         </TestTransitionContextProvider>,
       );
+
       const root = getByTestId('root');
-      expect(root).not.to.have.class('foo');
+
+      // briefly after mounting
+      expect(root).to.have.class('exit');
+      expect(root).not.to.have.class('enter');
+
+      clock.runToLast();
+      expect(root).to.have.class('enter');
+      expect(root).not.to.have.class('exit');
     });
   });
 });
