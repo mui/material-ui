@@ -24,27 +24,17 @@ The Snackbar component is built to appear on-screen to inform users about an act
 
 ## Component
 
-### Usage
-
-After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
-
 ```jsx
 import { Snackbar } from '@mui/base/Snackbar';
-
-export default function MyApp() {
-  return <Snackbar>{/* snackbar text */}</Snackbar>;
-}
 ```
-
-### Basics
 
 Snackbar doesn't impose any restrictions on its implementation—it's up to you to design it so that it doesn't interrupt the user experience, and disappears after a set amount of time without requiring the user to take action.
 
 Use the `autoHideDuration` prop to set the time (in milliseconds) that the snackbar remains on the screen.
 
 :::info
-You may want to implement Snackbar with [Click-Away Listener](/base-ui/react-click-away-listener/), so that the user can choose to dismiss the snackbar before its time is up by clicking anywhere outside of it.
-But this behavior is optional for a snackbar.
+You may want to implement Snackbar with [Click-Away Listener](/base-ui/react-click-away-listener/), so that the user can choose to dismiss the Snackbar before its time is up by clicking anywhere outside of it.
+But this behavior is optional.
 :::
 
 The following demo illustrates the basic usage of Snackbar.
@@ -62,6 +52,8 @@ The Snackbar component is composed of a single root `<div>` slot with no interio
 
 ### Custom structure
 
+Use the `slots.root` prop to override the root slot with a custom element:
+
 ```jsx
 <Snackbar slots={{ root: 'span' }} />
 ```
@@ -71,9 +63,10 @@ The `slots` prop is available on all non-utility Base components.
 See [Overriding component structure](/base-ui/guides/overriding-component-structure/) for full details.
 :::
 
-#### Usage with TypeScript
+### Usage with TypeScript
 
-In TypeScript, you can specify the custom component type used in the `slots.root` as a generic to the unstyled component. This way, you can safely provide the custom component's props directly on the component:
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic to the unstyled component.
+This way, you can safely provide the custom component's props directly on the component:
 
 ```tsx
 <Snackbar<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
@@ -91,15 +84,15 @@ The same applies for props specific to custom primitive elements:
 import { useSnackbar } from '@mui/base/useSnackbar';
 ```
 
-The `useSnackbar` hook lets you apply the functionality of a snackbar to a fully custom component.
+The `useSnackbar` hook lets you apply the functionality of a Snackbar to a fully custom component.
 
 It returns props to be placed on the custom component, along with fields representing the component's internal state.
 
-Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
+Hooks _do not_ support [slot props](#custom-structure), but they do support [customization props](#customization).
 
-If you use a [Click-Away Listener](/base-ui/react-click-away-listener/) to let the user close the snackbar by clicking outside of it, make sure to pass the `onClickAway` handler returned by this hook to the Click-Away Listener.
+If you use a [Click-Away Listener](/base-ui/react-click-away-listener/) to let the user close the Snackbar by clicking outside of it, make sure to pass the `onClickAway` handler returned by this hook to the Click-Away Listener.
 
-Pass the `open` state to the hook and use it to show and hide the snackbar.
+Pass the `open` state to the hook and use it to show and hide the Snackbar.
 
 The demo below shows how to build a fully custom component with the `useSnackbar` hook that also incorporates the Click-Away Listener component:
 
@@ -121,7 +114,7 @@ For the sake of simplicity, demos and code snippets primarily feature components
 
 ### Transitions
 
-You can animate the open and close states of the snackbar with a render prop child and a transition component, as long as the component meets these conditions:
+You can animate the open and close states of the Snackbar with a render prop child and a transition component, as long as the component meets these conditions:
 
 - Is a direct child descendant of the snackbar
 - Has an `in` prop—this corresponds to the open state
@@ -129,9 +122,9 @@ You can animate the open and close states of the snackbar with a render prop chi
 - Calls the `onEnter` callback prop when the enter transition starts—sets `exited` to false
 - Calls the `onExited` callback prop when the exit transition is completed—sets `exited` to true
 
-These two callbacks allow the snackbar to unmount the child content when closed and keep it fully transitioned.
+These two callbacks allow the Snackbar to unmount the child content when closed and keep it fully transitioned.
 This is only applicable if you are using transition components using [react-transition-group](https://github.com/reactjs/react-transition-group) library internally.
 
-The demo below shows how to create a snackbar with custom transitions:
+The demo below shows how to create a Snackbar with custom transitions:
 
 {{"demo": "TransitionComponentSnackbar.js", "defaultCodeOpen": false}}

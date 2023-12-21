@@ -74,7 +74,10 @@ function ProductItem({
             event.stopPropagation();
           }}
         >
-          <span>Learn more</span> <Box sx={visuallyHidden}>{label}</Box>
+          <span>Learn more</span>{' '}
+          <Box component="span" sx={visuallyHidden}>
+            {label}
+          </Box>
           <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px', ml: '2px' }} />
         </Link>
       </span>

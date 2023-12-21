@@ -25,8 +25,8 @@ export default function CountrySelect() {
             <img
               loading="lazy"
               width="20"
-              src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
               srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
+              src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
               alt=""
             />
           </ListItemDecorator>
@@ -417,7 +417,7 @@ const countries = [
   { code: 'TV', label: 'Tuvalu', phone: '688' },
   {
     code: 'TW',
-    label: 'Taiwan, Province of China',
+    label: 'Taiwan',
     phone: '886',
   },
   {

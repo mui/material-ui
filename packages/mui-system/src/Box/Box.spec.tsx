@@ -109,10 +109,14 @@ const StyledBox = styled(Box)`
   color: white;
 `;
 
-export default function StyledBoxWithSx() {
+function StyledBoxWithSx() {
   return (
     <StyledBox component="span" sx={{ width: 300 }}>
       Box
     </StyledBox>
   );
+}
+
+function LogicalPropertiesTest() {
+  <Box marginInline={1} paddingBlockEnd="10px" />;
 }

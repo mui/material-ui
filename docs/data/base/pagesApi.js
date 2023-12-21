@@ -73,12 +73,20 @@ module.exports = [
     title: 'useMenuButton',
   },
   { pathname: '/base-ui/react-menu/hooks-api/#use-menu-item', title: 'useMenuItem' },
+  {
+    pathname: '/base-ui/react-menu/hooks-api/#use-menu-item-context-stabilizer',
+    title: 'useMenuItemContextStabilizer',
+  },
   { pathname: '/base-ui/react-modal/hooks-api/#use-modal', title: 'useModal' },
   {
     pathname: '/base-ui/react-number-input/hooks-api/#use-number-input',
     title: 'useNumberInput',
   },
   { pathname: '/base-ui/react-select/hooks-api/#use-option', title: 'useOption' },
+  {
+    pathname: '/base-ui/react-select/hooks-api/#use-option-context-stabilizer',
+    title: 'useOptionContextStabilizer',
+  },
   { pathname: '/base-ui/react-select/hooks-api/#use-select', title: 'useSelect' },
   { pathname: '/base-ui/react-slider/hooks-api/#use-slider', title: 'useSlider' },
   {

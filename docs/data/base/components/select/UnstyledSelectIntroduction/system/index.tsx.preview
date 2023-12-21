@@ -1,5 +1,5 @@
-<CustomSelect defaultValue={10}>
-  <StyledOption value={10}>Documentation</StyledOption>
-  <StyledOption value={20}>Components</StyledOption>
-  <StyledOption value={30}>Features</StyledOption>
-</CustomSelect>
+<Select defaultValue={10}>
+  <Option value={10}>Documentation</Option>
+  <Option value={20}>Components</Option>
+  <Option value={30}>Features</Option>
+</Select>

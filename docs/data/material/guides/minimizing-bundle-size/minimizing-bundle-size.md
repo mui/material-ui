@@ -185,10 +185,10 @@ Modify your `package.json` commands:
 ```diff
    "scripts": {
 -    "start": "react-scripts start",
-+    "start": "react-app-rewired start",
 -    "build": "react-scripts build",
-+    "build": "react-app-rewired build",
 -    "test": "react-scripts test",
++    "start": "react-app-rewired start",
++    "build": "react-app-rewired build",
 +    "test": "react-app-rewired test",
      "eject": "react-scripts eject"
   }
@@ -209,22 +209,49 @@ It will perform the following diffs:
 
 ## Available bundles
 
-The package published on npm is **transpiled**, with [Babel](https://github.com/babel/babel), to take into account the [supported platforms](/material-ui/getting-started/supported-platforms/).
+### Default bundle
 
-⚠️ Developers are **strongly discouraged** to import from any of the other bundles directly.
-Otherwise it's not guaranteed that dependencies used also use legacy or modern bundles.
-Instead, use these bundles at the bundler level with e.g. [Webpack's `resolve.alias`](https://webpack.js.org/configuration/resolve/#resolvealias):
+The packages published on npm are **transpiled** with [Babel](https://github.com/babel/babel), optimized for performance with the [supported platforms](/material-ui/getting-started/supported-platforms/).
+
+Custom bundles are also available:
+
+- [Modern bundle](#modern-bundle)
+- [Legacy bundle](#legacy-bundle)
+
+### How to use custom bundles?
+
+:::error
+You are strongly discouraged to:
+
+- Import from any of the custom bundles directly. Do not do this:
+
+  ```js
+  import { Button } from '@mui/material/legacy';
+  ```
+
+  You have no guarantee that the dependencies also use legacy or modern bundles, leading to module duplication in your JavaScript files.
+
+- Import from any of the undocumented files or folders. Do not do this:
+
+  ```js
+  import { Button } from '@mui/material/esm';
+  ```
+
+  You have no guarantee that these imports will continue to work from one version to the next.
+  :::
+
+A great way to use these bundles is to configure bundler aliases, for example with [Webpack's `resolve.alias`](https://webpack.js.org/configuration/resolve/#resolvealias):
 
 ```js
 {
   resolve: {
     alias: {
-      '@mui/base': '@mui/base/legacy',
-      '@mui/lab': '@mui/lab/legacy',
       '@mui/material': '@mui/material/legacy',
       '@mui/styled-engine': '@mui/styled-engine/legacy',
       '@mui/system': '@mui/system/legacy',
+      '@mui/base': '@mui/base/legacy',
       '@mui/utils': '@mui/utils/legacy',
+      '@mui/lab': '@mui/lab/legacy',
     }
   }
 }

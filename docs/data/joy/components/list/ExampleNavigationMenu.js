@@ -302,6 +302,7 @@ export default function ExampleNavigationMenu() {
           '--List-radius': '8px',
           '--List-padding': '4px',
           '--List-gap': '8px',
+          '--ListItem-gap': '0px',
         }}
       >
         <ListItem role="none">

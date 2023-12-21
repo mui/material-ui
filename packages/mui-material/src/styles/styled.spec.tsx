@@ -155,3 +155,33 @@ function Button({
     Hello
   </Button>
 </ThemeProvider>;
+
+function variantsAPI() {
+  const ObjectSyntax = styled('div')<{ foo?: string; bar?: number }>({
+    variants: [
+      {
+        props: { foo: 'a' },
+        style: { color: 'blue' },
+      },
+    ],
+  });
+
+  const FunctionSyntax = styled('div')<{ foo?: string; bar?: number }>(() => ({
+    variants: [
+      {
+        props: { foo: 'a' },
+        style: { color: 'blue' },
+      },
+    ],
+  }));
+
+  // @ts-expect-error the API is not valid for CSS properties
+  const WrongUsage = styled('div')<{ foo?: string; bar?: number }>({
+    color: [
+      {
+        props: { foo: 'a' },
+        style: { color: 'blue' },
+      },
+    ],
+  });
+}

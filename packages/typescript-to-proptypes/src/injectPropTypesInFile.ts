@@ -388,13 +388,22 @@ function createBabelPlugin({
         ) {
           getFromProp(nodeInit.params[0]);
         } else if (babelTypes.isCallExpression(nodeInit)) {
-          // x = react.memo(props => <div/>)
-          const arg = nodeInit.arguments[0];
-          if (babelTypes.isArrowFunctionExpression(arg) || babelTypes.isFunctionExpression(arg)) {
-            getFromProp(arg.params[0]);
-          } else if ((nodeInit.callee as babel.types.Identifier)?.name?.match(/create[A-Z].*/)) {
+          if ((nodeInit.callee as babel.types.Identifier)?.name?.match(/create[A-Z].*/)) {
             // Any components that are created by a factory function, e.g. System Box | Container | Grid.
             getFromProp(node);
+          } else {
+            // x = react.memo(props => <div/>) / react.forwardRef(props => <div />)
+            let resolvedNode: babel.Node = nodeInit;
+            while (babelTypes.isCallExpression(resolvedNode)) {
+              resolvedNode = resolvedNode.arguments[0];
+            }
+
+            if (
+              babelTypes.isArrowFunctionExpression(resolvedNode) ||
+              babelTypes.isFunctionExpression(resolvedNode)
+            ) {
+              getFromProp(resolvedNode.params[0]);
+            }
           }
         }
       },

@@ -93,11 +93,7 @@ export default function generatePropDescription(
     }
   }
 
-  // Two new lines result in a newline in the table.
-  // All other new lines must be eliminated to prevent markdown mayhem.
-  const jsDocText = escapeCell(annotation.description)
-    .replace(/(\r?\n){2}/g, '<br>')
-    .replace(/\r?\n/g, ' ');
+  const jsDocText = escapeCell(annotation.description);
 
   // Split up the parsed tags into 'arguments' and 'returns' parsed objects. If there's no
   // 'returns' parsed object (i.e., one with title being 'returns'), make one of type 'void'.

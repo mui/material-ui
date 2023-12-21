@@ -11,7 +11,6 @@ import { unstable_composeClasses as composeClasses } from '@mui/base/composeClas
 import { TypographyTypeMap, TypographyProps, TypographyOwnerState } from './TypographyProps';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import { getTypographyUtilityClass } from './typographyClasses';
 import { TypographySystem } from '../styles/types';
@@ -115,10 +114,11 @@ const TypographyRoot = styled('span', {
     ...(ownerState.gutterBottom && {
       marginBottom: '0.35em',
     }),
-    ...(ownerState.color &&
-      ownerState.color !== 'context' && {
-        color: `rgba(${theme.vars.palette[ownerState.color]?.mainChannel} / 1)`,
-      }),
+    ...(ownerState.color && {
+      color: `var(--variant-plainColor, rgba(${
+        theme.vars.palette[ownerState.color]?.mainChannel
+      } / 1))`,
+    }),
     ...(ownerState.variant && {
       borderRadius: theme.vars.radius.xs,
       paddingBlock: 'min(0.1em, 4px)',
@@ -186,8 +186,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     ...other
   } = props;
 
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, variant ? colorProp ?? 'neutral' : colorProp);
+  const color = inProps.color ?? (variant ? colorProp ?? 'neutral' : colorProp);
 
   const level = nesting || inheriting ? inProps.level || 'inherit' : levelProp;
 

@@ -32,12 +32,11 @@ export { TextareaAutosize } from './TextareaAutosize';
 export * from './useAutocomplete';
 export * from './useBadge';
 export * from './useButton';
-export { useDropdown } from './useDropdown';
+export * from './useDropdown';
 export * from './useInput';
 export * from './useMenu';
 export * from './useMenuButton';
 export * from './useMenuItem';
-
 export * from './unstable_useNumberInput';
 export * from './useOption';
 export * from './useSelect';

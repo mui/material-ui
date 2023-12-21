@@ -32,8 +32,8 @@ export default function ColorInversionMarketing() {
     >
       <Box sx={{ zIndex: 1, position: 'relative' }}>
         <Typography level="h2">Get started</Typography>
-        <Typography sx={{ mt: 1, mb: 3 }}>
-          Instant access to the power of the React UI library
+        <Typography sx={{ mt: 0.5, mb: 2 }}>
+          Instant access to the power of the Joy UI library.
         </Typography>
         <Box
           sx={{
@@ -73,8 +73,8 @@ export default function ColorInversionMarketing() {
         onClick={() => {
           const colors = ['primary', 'neutral', 'danger', 'success', 'warning'];
 
-          const nextColor = colors.indexOf(color);
-          setColor(colors[nextColor + 1] ?? colors[0]);
+          const nextColorIndex = colors.indexOf(color) + 1;
+          setColor(colors[nextColorIndex] ?? colors[0]);
         }}
       >
         <ColorLensRoundedIcon fontSize="small" />

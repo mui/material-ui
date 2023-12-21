@@ -66,18 +66,7 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
     ...other
   } = props;
 
-  const useSwitchProps = {
-    checked: checkedProp,
-    defaultChecked,
-    disabled: disabledProp,
-    onBlur,
-    onChange,
-    onFocus,
-    onFocusVisible,
-    readOnly: readOnlyProp,
-  };
-
-  const { getInputProps, checked, disabled, focusVisible, readOnly } = useSwitch(useSwitchProps);
+  const { getInputProps, checked, disabled, focusVisible, readOnly } = useSwitch(props);
 
   const ownerState: SwitchOwnerState = {
     ...props,

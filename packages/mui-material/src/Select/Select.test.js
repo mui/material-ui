@@ -8,7 +8,7 @@ import {
   createRenderer,
   fireEvent,
   screen,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
 import ListSubheader from '@mui/material/ListSubheader';
@@ -68,7 +68,7 @@ describe('<Select />', () => {
       </Select>,
     );
 
-    expect(getByRole('button')).to.have.property('tabIndex', 0);
+    expect(getByRole('combobox')).to.have.property('tabIndex', 0);
   });
 
   it('should accept null child', () => {
@@ -120,7 +120,7 @@ describe('<Select />', () => {
         <MenuItem value={10}>Ten</MenuItem>
       </Select>,
     );
-    const trigger = getByRole('button');
+    const trigger = getByRole('combobox');
 
     fireEvent.mouseDown(trigger);
 
@@ -157,7 +157,7 @@ describe('<Select />', () => {
           <MenuItem value="">none</MenuItem>
         </Select>,
       );
-      const trigger = screen.getByRole('button');
+      const trigger = screen.getByRole('combobox');
       act(() => {
         trigger.focus();
       });
@@ -177,7 +177,7 @@ describe('<Select />', () => {
         <MenuItem value="">none</MenuItem>
       </Select>,
     );
-    const button = getByRole('button');
+    const button = getByRole('combobox');
     act(() => {
       button.focus();
     });
@@ -236,13 +236,13 @@ describe('<Select />', () => {
 
     fireEvent.click(getByTestId('label'));
 
-    expect(getByRole('button')).toHaveFocus();
+    expect(getByRole('combobox')).toHaveFocus();
   });
 
   it('should focus list if no selection', () => {
     const { getByRole } = render(<Select value="" autoFocus />);
 
-    fireEvent.mouseDown(getByRole('button'));
+    fireEvent.mouseDown(getByRole('combobox'));
 
     // TODO not matching WAI-ARIA authoring practices. It should focus the first (or selected) item.
     expect(getByRole('listbox')).toHaveFocus();
@@ -258,7 +258,7 @@ describe('<Select />', () => {
           <MenuItem value="2" />
         </Select>,
       );
-      fireEvent.mouseDown(getByRole('button'));
+      fireEvent.mouseDown(getByRole('combobox'));
       act(() => {
         getAllByRole('option')[1].click();
       });
@@ -279,7 +279,7 @@ describe('<Select />', () => {
         </Select>,
       );
 
-      fireEvent.mouseDown(getByRole('button'));
+      fireEvent.mouseDown(getByRole('combobox'));
       act(() => {
         getAllByRole('option')[1].click();
       });
@@ -296,7 +296,7 @@ describe('<Select />', () => {
           <MenuItem value="2" />
         </Select>,
       );
-      fireEvent.mouseDown(getByRole('button'));
+      fireEvent.mouseDown(getByRole('combobox'));
       act(() => {
         getAllByRole('option')[1].click();
       });
@@ -308,7 +308,7 @@ describe('<Select />', () => {
   describe('prop: defaultOpen', () => {
     it('should be open on mount', () => {
       const { getByRole } = render(<Select defaultOpen value="" />);
-      expect(getByRole('button', { hidden: true })).to.have.attribute('aria-expanded', 'true');
+      expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'true');
     });
   });
 
@@ -371,7 +371,7 @@ describe('<Select />', () => {
         </Select>,
       );
 
-      expect(getByRole('button')).to.have.text('Twenty');
+      expect(getByRole('combobox')).to.have.text('Twenty');
     });
 
     describe('warnings', () => {
@@ -439,19 +439,19 @@ describe('<Select />', () => {
       // technically matter. This is only here in case we keep the rest accessible
       const { getByRole } = render(<Select open value="" />);
 
-      expect(getByRole('button', { hidden: true })).to.have.attribute('aria-expanded', 'true');
+      expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'true');
     });
 
     specify('ARIA 1.2: aria-expanded="false" if the listbox isn\'t displayed', () => {
       const { getByRole } = render(<Select value="" />);
 
-      expect(getByRole('button')).to.have.attribute('aria-expanded', 'false');
+      expect(getByRole('combobox')).to.have.attribute('aria-expanded', 'false');
     });
 
     it('sets aria-disabled="true" when component is disabled', () => {
       const { getByRole } = render(<Select disabled value="" />);
 
-      expect(getByRole('button')).to.have.attribute('aria-disabled', 'true');
+      expect(getByRole('combobox')).to.have.attribute('aria-disabled', 'true');
     });
 
     it('sets disabled attribute in input when component is disabled', () => {
@@ -463,19 +463,26 @@ describe('<Select />', () => {
     specify('aria-disabled is not present if component is not disabled', () => {
       const { getByRole } = render(<Select disabled={false} value="" />);
 
-      expect(getByRole('button')).not.to.have.attribute('aria-disabled');
+      expect(getByRole('combobox')).not.to.have.attribute('aria-disabled');
     });
 
     it('indicates that activating the button displays a listbox', () => {
       const { getByRole } = render(<Select value="" />);
 
-      expect(getByRole('button')).to.have.attribute('aria-haspopup', 'listbox');
+      expect(getByRole('combobox')).to.have.attribute('aria-haspopup', 'listbox');
     });
 
     it('renders an element with listbox behavior', () => {
       const { getByRole } = render(<Select open value="" />);
 
       expect(getByRole('listbox')).toBeVisible();
+    });
+
+    it('indicates that input element has combobox role and aria-controls set to id of listbox', () => {
+      const { getByRole } = render(<Select open value="" />);
+      const listboxId = getByRole('listbox').id;
+
+      expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-controls', listboxId);
     });
 
     specify('the listbox is focusable', () => {
@@ -703,15 +710,15 @@ describe('<Select />', () => {
       const { getByRole } = render(<Select value="" />);
 
       // TODO what is the accessible name actually?
-      expect(getByRole('button')).not.to.have.attribute('aria-labelledby');
+      expect(getByRole('combobox')).not.to.have.attribute('aria-labelledby');
     });
 
     it('is labelled by itself when it has a name', () => {
       const { getByRole } = render(<Select name="select" value="" />);
 
-      expect(getByRole('button')).to.have.attribute(
+      expect(getByRole('combobox')).to.have.attribute(
         'aria-labelledby',
-        getByRole('button').getAttribute('id'),
+        getByRole('combobox').getAttribute('id'),
       );
     });
 
@@ -725,7 +732,7 @@ describe('<Select />', () => {
         </React.Fragment>,
       );
 
-      const triggers = getAllByRole('button');
+      const triggers = getAllByRole('combobox');
 
       expect(triggers[0]).to.have.attribute(
         'aria-labelledby',
@@ -745,9 +752,9 @@ describe('<Select />', () => {
         </React.Fragment>,
       );
 
-      expect(getByRole('button')).to.have.attribute(
+      expect(getByRole('combobox')).to.have.attribute(
         'aria-labelledby',
-        `select-label ${getByRole('button').getAttribute('id')}`,
+        `select-label ${getByRole('combobox').getAttribute('id')}`,
       );
     });
 
@@ -776,7 +783,7 @@ describe('<Select />', () => {
         </React.Fragment>,
       );
 
-      const target = getByRole('button');
+      const target = getByRole('combobox');
       expect(target).to.have.attribute('aria-describedby', 'select-helper-text');
       expect(target).toHaveAccessibleDescription('Helper text content');
     });
@@ -790,7 +797,7 @@ describe('<Select />', () => {
           <MenuItem value={20}>Twenty</MenuItem>
         </Select>,
       );
-      const trigger = screen.getByRole('button');
+      const trigger = screen.getByRole('combobox');
       act(() => {
         trigger.focus();
       });
@@ -812,7 +819,7 @@ describe('<Select />', () => {
         </Select>,
       );
 
-      fireEvent.mouseDown(getByRole('button'));
+      fireEvent.mouseDown(getByRole('combobox'));
       clock.tick(99);
 
       expect(onEntered.callCount).to.equal(0);
@@ -849,9 +856,34 @@ describe('<Select />', () => {
       );
 
       const paper = getByTestId('paper');
-      const selectButton = getByRole('button', { hidden: true });
+      const selectButton = getByRole('combobox', { hidden: true });
 
       expect(paper.style).to.have.property('minWidth', `${selectButton.clientWidth}px`);
+    });
+
+    // https://github.com/mui/material-ui/issues/38949
+    it('should forward `slotProps` to menu', function test() {
+      const { getByTestId } = render(
+        <Select
+          MenuProps={{
+            slotProps: {
+              root: {
+                slotProps: {
+                  backdrop: { 'data-testid': 'backdrop', style: { backgroundColor: 'red' } },
+                },
+              },
+            },
+          }}
+          open
+          value="10"
+        >
+          <MenuItem value="10">Ten</MenuItem>
+        </Select>,
+      );
+
+      const backdrop = getByTestId('backdrop');
+
+      expect(backdrop.style).to.have.property('backgroundColor', 'red');
     });
   });
 
@@ -863,7 +895,7 @@ describe('<Select />', () => {
         </Select>,
       );
 
-      expect(getByRole('button')).to.have.attribute('data-test', 'SelectDisplay');
+      expect(getByRole('combobox')).to.have.attribute('data-test', 'SelectDisplay');
     });
   });
 
@@ -877,7 +909,7 @@ describe('<Select />', () => {
         </Select>,
       );
 
-      expect(getByRole('button')).to.have.text('Ten');
+      expect(getByRole('combobox')).to.have.text('Ten');
     });
   });
 
@@ -891,7 +923,7 @@ describe('<Select />', () => {
         </Select>,
       );
 
-      expect(getByRole('button')).to.have.text('0b100');
+      expect(getByRole('combobox')).to.have.text('0b100');
     });
   });
 
@@ -949,7 +981,7 @@ describe('<Select />', () => {
       }
       const { getByRole, queryByRole } = render(<ControlledWrapper />);
 
-      fireEvent.mouseDown(getByRole('button'));
+      fireEvent.mouseDown(getByRole('combobox'));
       expect(getByRole('listbox')).not.to.equal(null);
 
       act(() => {
@@ -989,7 +1021,7 @@ describe('<Select />', () => {
         </Select>,
       );
 
-      const trigger = getByRole('button');
+      const trigger = getByRole('combobox');
 
       // If clicked by the right/middle mouse button, no options list should be opened
       fireEvent.mouseDown(trigger, { button: 1 });
@@ -1008,7 +1040,7 @@ describe('<Select />', () => {
         </Select>,
       );
       const parentEl = container.querySelector('.MuiInputBase-root');
-      const button = getByRole('button');
+      const button = getByRole('combobox');
       stub(parentEl, 'clientWidth').get(() => 14);
 
       fireEvent.mouseDown(button);
@@ -1022,7 +1054,7 @@ describe('<Select />', () => {
         </Select>,
       );
       const parentEl = container.querySelector('.MuiInputBase-root');
-      const button = getByRole('button');
+      const button = getByRole('combobox');
       stub(parentEl, 'clientWidth').get(() => 14);
 
       fireEvent.mouseDown(button);
@@ -1047,6 +1079,20 @@ describe('<Select />', () => {
       expect(options[2]).to.have.attribute('aria-selected', 'true');
     });
 
+    it('should have aria-multiselectable=true when multiple is true', () => {
+      const { getByRole } = render(
+        <Select multiple value={[10, 30]}>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+      );
+
+      fireEvent.mouseDown(getByRole('combobox'));
+
+      expect(getByRole('listbox')).to.have.attribute('aria-multiselectable', 'true');
+    });
+
     it('should serialize multiple select display value', () => {
       const { getByRole } = render(
         <Select multiple value={[10, 20, 30]}>
@@ -1058,7 +1104,7 @@ describe('<Select />', () => {
         </Select>,
       );
 
-      expect(getByRole('button')).to.have.text('Ten, Twenty, Thirty');
+      expect(getByRole('combobox')).to.have.text('Ten, Twenty, Thirty');
     });
 
     it('should not throw an error if `value` is an empty array', () => {
@@ -1174,7 +1220,7 @@ describe('<Select />', () => {
         });
         const { getByRole, getAllByRole } = render(<ControlledSelectInput onChange={onChange} />);
 
-        fireEvent.mouseDown(getByRole('button'));
+        fireEvent.mouseDown(getByRole('combobox'));
         const options = getAllByRole('option');
         fireEvent.click(options[2]);
 
@@ -1248,7 +1294,7 @@ describe('<Select />', () => {
     it('should focus select after Select did mount', () => {
       const { getByRole } = render(<Select value="" autoFocus />);
 
-      expect(getByRole('button')).toHaveFocus();
+      expect(getByRole('combobox')).toHaveFocus();
     });
   });
 
@@ -1282,7 +1328,7 @@ describe('<Select />', () => {
         ref.current.focus();
       });
 
-      expect(getByRole('button')).toHaveFocus();
+      expect(getByRole('combobox')).toHaveFocus();
     });
   });
 
@@ -1290,13 +1336,13 @@ describe('<Select />', () => {
     it('should have no id when name is not provided', () => {
       const { getByRole } = render(<Select value="" />);
 
-      expect(getByRole('button')).not.to.have.attribute('id');
+      expect(getByRole('combobox')).not.to.have.attribute('id');
     });
 
     it('should have select-`name` id when name is provided', () => {
       const { getByRole } = render(<Select name="foo" value="" />);
 
-      expect(getByRole('button')).to.have.attribute('id', 'mui-component-select-foo');
+      expect(getByRole('combobox')).to.have.attribute('id', 'mui-component-select-foo');
     });
   });
 
@@ -1369,7 +1415,7 @@ describe('<Select />', () => {
     });
 
     expect(onChangeHandler.calledOnce).to.equal(true);
-    expect(getByRole('button')).to.have.text('France');
+    expect(getByRole('combobox')).to.have.text('France');
   });
 
   it('should support native form validation', function test() {
@@ -1419,7 +1465,7 @@ describe('<Select />', () => {
         <MenuItem value={2}>2</MenuItem>
       </Select>,
     );
-    expect(document.activeElement).to.equal(getByRole('button'));
+    expect(document.activeElement).to.equal(getByRole('combobox'));
   });
 
   it('should not override the event.target on mouse events', () => {
@@ -1658,6 +1704,6 @@ describe('<Select />', () => {
 
     fireEvent.click(getByTestId('test-element'));
 
-    expect(getByRole('button')).not.toHaveFocus();
+    expect(getByRole('combobox')).not.toHaveFocus();
   });
 });

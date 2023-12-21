@@ -142,17 +142,15 @@ export default function MaterialComponents() {
     <Section bg="gradient">
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box sx={{ maxWidth: 500 }}>
-            <SectionHeadline
-              overline="Component library"
-              title={
-                <Typography variant="h2">
-                  <GradientText>40+</GradientText> building block components
-                </Typography>
-              }
-              description="A meticulous implementation of Material Design; every Material UI component meets the highest standards of form and function."
-            />
-          </Box>
+          <SectionHeadline
+            overline="Component library"
+            title={
+              <Typography variant="h2">
+                <GradientText>40+</GradientText> building block components
+              </Typography>
+            }
+            description="A meticulous implementation of Material Design; every Material UI component meets the highest standards of form and function."
+          />
           <Group desktopColumns={2} sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
             {DEMOS.map((name) => (
               <Highlighter key={name} selected={name === demo} onClick={() => setDemo(name)}>

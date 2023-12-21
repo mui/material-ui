@@ -5,7 +5,6 @@ import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import { prefixer } from 'stylis';
 import rtlPlugin from 'stylis-plugin-rtl';
-import rtlPluginSc from 'stylis-plugin-rtl-sc';
 import { useTheme } from '@mui/material/styles';
 
 // Cache for the rtl version of the styles
@@ -23,7 +22,7 @@ export default function StyledEngineProvider(props) {
   const emotionCache = theme.direction === 'rtl' ? cacheRtl : cacheLtr;
 
   return (
-    <StyleSheetManager stylisPlugins={rtl ? [rtlPluginSc] : []}>
+    <StyleSheetManager stylisPlugins={rtl ? [rtlPlugin] : []}>
       <CacheProvider value={emotionCache}>{children}</CacheProvider>
     </StyleSheetManager>
   );

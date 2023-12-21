@@ -36,8 +36,8 @@ export default function ListStackRatio() {
               <ListItemButton sx={{ gap: 2 }}>
                 <AspectRatio sx={{ flexBasis: 120 }}>
                   <img
-                    src={`${item.src}?w=120&fit=crop&auto=format`}
                     srcSet={`${item.src}?w=120&fit=crop&auto=format&dpr=2 2x`}
+                    src={`${item.src}?w=120&fit=crop&auto=format`}
                     alt={item.title}
                   />
                 </AspectRatio>

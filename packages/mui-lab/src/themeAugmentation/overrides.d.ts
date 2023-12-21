@@ -9,8 +9,6 @@ import { TimelineDotClassKey } from '../TimelineDot';
 import { TimelineItemClassKey } from '../TimelineItem';
 import { TimelineOppositeContentClassKey } from '../TimelineOppositeContent';
 import { TimelineSeparatorClassKey } from '../TimelineSeparator';
-import { TreeItemClassKey } from '../TreeItem';
-import { TreeViewClassKey } from '../TreeView';
 
 // prettier-ignore
 export interface LabComponentNameToClassKey {
@@ -25,8 +23,6 @@ export interface LabComponentNameToClassKey {
   MuiTimelineItem: TimelineItemClassKey;
   MuiTimelineOppositeContent: TimelineOppositeContentClassKey;
   MuiTimelineSeparator: TimelineSeparatorClassKey;
-  MuiTreeItem: TreeItemClassKey;
-  MuiTreeView: TreeViewClassKey;
 }
 
 declare module '@mui/material/styles' {

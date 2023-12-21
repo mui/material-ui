@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from 'test/utils';
+import { createRenderer } from '@mui-internal/test-utils';
 import { extendTheme, useTheme, CssVarsProvider } from '@mui/joy/styles';
 
 describe('extendTheme', () => {
@@ -22,13 +22,11 @@ describe('extendTheme', () => {
         'shadow',
         'zIndex',
         'typography',
-        'colorInversionConfig',
         'variants',
         'cssVarPrefix',
         'palette',
         'vars',
         'getColorSchemeSelector',
-        'colorInversion',
         'unstable_sxConfig',
         'unstable_sx',
         'shouldSkipGeneratingVar',

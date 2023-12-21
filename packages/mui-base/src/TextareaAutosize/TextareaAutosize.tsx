@@ -163,71 +163,66 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
       return;
     }
 
-    setState((prevState) => {
-      return updateState(prevState, newState);
-    });
+    setState((prevState) => updateState(prevState, newState));
   }, [getUpdatedState]);
 
-  const syncHeightWithFlushSync = () => {
-    const newState = getUpdatedState();
+  useEnhancedEffect(() => {
+    const syncHeightWithFlushSync = () => {
+      const newState = getUpdatedState();
 
-    if (isEmpty(newState)) {
-      return;
-    }
+      if (isEmpty(newState)) {
+        return;
+      }
 
-    // In React 18, state updates in a ResizeObserver's callback are happening after the paint which causes flickering
-    // when doing some visual updates in it. Using flushSync ensures that the dom will be painted after the states updates happen
-    // Related issue - https://github.com/facebook/react/issues/24331
-    ReactDOM.flushSync(() => {
-      setState((prevState) => {
-        return updateState(prevState, newState);
+      // In React 18, state updates in a ResizeObserver's callback are happening after
+      // the paint, this leads to an infinite rendering.
+      //
+      // Using flushSync ensures that the states is updated before the next pain.
+      // Related issue - https://github.com/facebook/react/issues/24331
+      ReactDOM.flushSync(() => {
+        setState((prevState) => updateState(prevState, newState));
       });
-    });
-  };
+    };
 
-  React.useEffect(() => {
     const handleResize = () => {
       renders.current = 0;
-
-      // If the TextareaAutosize component is replaced by Suspense with a fallback, the last
-      // ResizeObserver's handler that runs because of the change in the layout is trying to
-      // access a dom node that is no longer there (as the fallback component is being shown instead).
-      // See https://github.com/mui/material-ui/issues/32640
-      if (inputRef.current) {
-        syncHeightWithFlushSync();
-      }
+      syncHeightWithFlushSync();
     };
-    const handleResizeWindow = debounce(() => {
-      renders.current = 0;
-
-      // If the TextareaAutosize component is replaced by Suspense with a fallback, the last
-      // ResizeObserver's handler that runs because of the change in the layout is trying to
-      // access a dom node that is no longer there (as the fallback component is being shown instead).
-      // See https://github.com/mui/material-ui/issues/32640
-      if (inputRef.current) {
-        syncHeightWithFlushSync();
-      }
-    });
-    let resizeObserver: ResizeObserver;
-
+    // Workaround a "ResizeObserver loop completed with undelivered notifications" error
+    // in test.
+    // Note that we might need to use this logic in production per https://github.com/WICG/resize-observer/issues/38
+    // Also see https://github.com/mui/mui-x/issues/8733
+    let rAF: any;
+    const rAFHandleResize = () => {
+      cancelAnimationFrame(rAF);
+      rAF = requestAnimationFrame(() => {
+        handleResize();
+      });
+    };
+    const debounceHandleResize = debounce(handleResize);
     const input = inputRef.current!;
     const containerWindow = ownerWindow(input);
 
-    containerWindow.addEventListener('resize', handleResizeWindow);
+    containerWindow.addEventListener('resize', debounceHandleResize);
+
+    let resizeObserver: ResizeObserver;
 
     if (typeof ResizeObserver !== 'undefined') {
-      resizeObserver = new ResizeObserver(handleResize);
+      resizeObserver = new ResizeObserver(
+        process.env.NODE_ENV === 'test' ? rAFHandleResize : handleResize,
+      );
       resizeObserver.observe(input);
     }
 
     return () => {
-      handleResizeWindow.clear();
-      containerWindow.removeEventListener('resize', handleResizeWindow);
+      debounceHandleResize.clear();
+      cancelAnimationFrame(rAF);
+      containerWindow.removeEventListener('resize', debounceHandleResize);
       if (resizeObserver) {
         resizeObserver.disconnect();
       }
     };
-  });
+  }, [getUpdatedState]);
 
   useEnhancedEffect(() => {
     syncHeight();

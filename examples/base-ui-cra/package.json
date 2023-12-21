@@ -1,5 +1,5 @@
 {
-  "name": "base-cra",
+  "name": "base-ui-cra",
   "version": "5.0.0",
   "private": true,
   "dependencies": {

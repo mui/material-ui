@@ -27,6 +27,7 @@ const useUtilityClasses = () => {
  * Demos:
  *
  * - [Snackbar](https://mui.com/base-ui/react-snackbar/)
+ * - [Snackbar](https://mui.com/joy-ui/react-snackbar/)
  * - [Snackbar](https://mui.com/material-ui/react-snackbar/)
  *
  * API:

@@ -26,8 +26,6 @@ Sliders are ideal for interface controls that benefit from a visual representati
 
 ## Component
 
-### Usage
-
 ```jsx
 import { Slider } from '@mui/base/Slider';
 ```
@@ -105,9 +103,10 @@ The following code snippet applies a CSS class called `my-rail` to the rail slot
 <Slider slotProps={{ rail: { className: 'my-rail' } }} />
 ```
 
-#### Usage with TypeScript
+### Usage with TypeScript
 
-In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component. This way, you can safely provide the custom root's props directly on the component:
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component.
+This way, you can safely provide the custom root's props directly on the component:
 
 ```tsx
 <Slider<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
@@ -125,10 +124,10 @@ The same applies for props specific to custom primitive elements:
 import { useSlider } from '@mui/base/useSlider';
 ```
 
-The `useSlider` hook lets you apply the functionality of a slider to a fully custom component.
+The `useSlider` hook lets you apply the functionality of a Slider to a fully custom component.
 It returns props to be placed on the custom component, along with fields representing the component's internal state.
 
-Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
+Hooks _do not_ support [slot props](#custom-structure), but they do support [customization props](#customization).
 
 :::info
 Hooks give you the most room for customization, but require more work to implement.
@@ -143,16 +142,16 @@ You may not need to use hooks unless you find that you're limited by the customi
 
 Slider components can be arranged vertically as well as horizontally.
 
-When vertical, you must set `orientation="vertical"` on the `<Slider />` component so the user can navigate with the up and down arrow keys (rather than the default left-to-right behavior for horizontal sliders).
+When vertical, you must set `orientation="vertical"` on the Slider so the user can navigate with the up and down arrow keys (rather than the default left-to-right behavior for horizontal sliders).
 
 {{"demo": "VerticalSlider.js"}}
 
 ### Discrete sliders
 
-The most basic slider is _continuous_, which means it does not have pre-defined (_discrete_) values for the user to select from.
+The most basic Slider is _continuous_, which means it does not have pre-defined (_discrete_) values for the user to select from.
 This is suitable for situations in which an approximate value is good enough for the user, such as brightness or volume.
 
-But if your users need more precise options, you can create a discrete slider that snaps the thumb to pre-defined stops along the bar.
+But if your users need more precise options, you can create a discrete Slider that snaps the thumb to pre-defined stops along the bar.
 
 To generate a mark for each stop, use `marks={true}`:
 
@@ -172,13 +171,14 @@ If the user should only be able to select from the values provided with the `mar
 
 ### Range slider
 
-To let users set the start and end of a range on a slider, provide an array of values to the `value` or `defaultValue` prop:
+To let users set the start and end of a range on a Slider, provide an array of values to the `value` or `defaultValue` prop:
 
 {{"demo": "RangeSlider.js"}}
 
 ### Value label
 
-A label for the value can be rendered around the thumb by using the optional `slots` prop with the `valueLabel` slot. These are the typical use cases for showing the value label:
+A label for the value can be rendered around the thumb by using the optional `slots` prop with the `valueLabel` slot.
+These are typical use cases for showing the value label:
 
 - always
 - only when hovering over the thumb (using CSS)

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { SinonSpy, spy } from 'sinon';
-import { createRenderer, createEvent, fireEvent } from 'test/utils';
+import { createRenderer, createEvent, fireEvent } from '@mui-internal/test-utils';
 import { useList } from './useList';
 
 describe('useList', () => {
@@ -84,5 +84,32 @@ describe('useList', () => {
         expect((event.preventDefault as SinonSpy).notCalled).to.equal(true);
       }),
     );
+  });
+
+  describe('external props', () => {
+    it('should pass arbitrary props to the root slot', () => {
+      const handleClick = spy();
+
+      function Listbox() {
+        const { getRootProps } = useList({
+          items: [],
+          getItemId: () => undefined,
+        });
+        return (
+          <div
+            role="listbox"
+            {...getRootProps({ 'data-testid': 'test-listbox', onClick: handleClick })}
+          />
+        );
+      }
+
+      const { getByRole } = render(<Listbox />);
+
+      const listbox = getByRole('listbox');
+      expect(listbox).to.have.attribute('data-testid', 'test-listbox');
+
+      fireEvent.click(listbox);
+      expect(handleClick.callCount).to.equal(1);
+    });
   });
 });

@@ -14,6 +14,10 @@ export interface NumberInputStepperButtonSlotPropsOverrides {}
 
 export type NumberInputOwnProps = Omit<UseNumberInputParameters, 'error'> & {
   /**
+   * Trailing adornment for this input.
+   */
+  endAdornment?: React.ReactNode;
+  /**
    * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input and the `Mui-error` class on the root element.
    */
   error?: boolean;
@@ -45,6 +49,10 @@ export type NumberInputOwnProps = Omit<UseNumberInputParameters, 'error'> & {
    * @default {}
    */
   slots?: NumberInputSlots;
+  /**
+   * Leading adornment for this input.
+   */
+  startAdornment?: React.ReactNode;
 };
 
 export interface NumberInputSlots {

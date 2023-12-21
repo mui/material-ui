@@ -6,18 +6,18 @@ type AvatarWithStatusProps = AvatarProps & {
   online?: boolean;
 };
 
-export default function AvatarWithStatus({
-  online = false,
-  ...rest
-}: AvatarWithStatusProps) {
+export default function AvatarWithStatus(props: AvatarWithStatusProps) {
+  const { online = false, ...other } = props;
   return (
     <div>
       <Badge
         color={online ? 'success' : 'neutral'}
+        variant={online ? 'solid' : 'soft'}
+        size="sm"
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        badgeInset="6px 6px"
+        badgeInset="4px 4px"
       >
-        <Avatar {...rest} />
+        <Avatar size="sm" {...other} />
       </Badge>
     </div>
   );

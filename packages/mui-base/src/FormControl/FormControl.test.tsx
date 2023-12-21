@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount, createRenderer, describeConformanceUnstyled, fireEvent } from 'test/utils';
+import {
+  createMount,
+  createRenderer,
+  describeConformanceUnstyled,
+  fireEvent,
+} from '@mui-internal/test-utils';
 import { FormControl, formControlClasses, useFormControlContext } from '@mui/base/FormControl';
 
 describe('<FormControl />', () => {

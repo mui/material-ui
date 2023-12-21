@@ -101,6 +101,10 @@ const nestedFolder = {
       return resolveNestedImport('mui-base', importee);
     }
 
+    if (importee.indexOf('@mui/utils/') === 0) {
+      return resolveNestedImport('mui-utils', importee);
+    }
+
     if (importee.indexOf('@mui/private-theming/') === 0) {
       return resolveNestedImport('mui-private-theming', importee);
     }

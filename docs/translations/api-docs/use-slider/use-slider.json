@@ -15,13 +15,13 @@
       "description": "If <code>true</code> the Slider will be rendered right-to-left (with the lowest value on the right-hand side)."
     },
     "marks": {
-      "description": "Marks indicate predetermined values to which the user can move the slider.\nIf <code>true</code> the marks are spaced according the value of the <code>step</code> prop.\nIf an array, it should contain objects with <code>value</code> and an optional <code>label</code> keys."
+      "description": "Marks indicate predetermined values to which the user can move the slider. If <code>true</code> the marks are spaced according the value of the <code>step</code> prop. If an array, it should contain objects with <code>value</code> and an optional <code>label</code> keys."
     },
     "max": {
-      "description": "The maximum allowed value of the slider.\nShould not be equal to min."
+      "description": "The maximum allowed value of the slider. Should not be equal to min."
     },
     "min": {
-      "description": "The minimum allowed value of the slider.\nShould not be equal to max."
+      "description": "The minimum allowed value of the slider. Should not be equal to max."
     },
     "name": { "description": "Name attribute of the hidden <code>input</code> element." },
     "onChange": {
@@ -34,11 +34,11 @@
     "rootRef": { "description": "The ref attached to the root of the Slider." },
     "scale": { "description": "A transformation function, to change the scale of the slider." },
     "step": {
-      "description": "The granularity with which the slider can step through values. (A &quot;discrete&quot; slider.)\nThe <code>min</code> prop serves as the origin for the valid values.\nWe recommend (max - min) to be evenly divisible by the step.\n\nWhen step is <code>null</code>, the thumb can only be slid onto marks provided with the <code>marks</code> prop."
+      "description": "The granularity with which the slider can step through values. (A &quot;discrete&quot; slider.) The <code>min</code> prop serves as the origin for the valid values. We recommend (max - min) to be evenly divisible by the step.<br>When step is <code>null</code>, the thumb can only be slid onto marks provided with the <code>marks</code> prop."
     },
     "tabIndex": { "description": "Tab index attribute of the hidden <code>input</code> element." },
     "value": {
-      "description": "The value of the slider.\nFor ranged sliders, provide an array with two values."
+      "description": "The value of the slider. For ranged sliders, provide an array with two values."
     }
   },
   "returnValueDescriptions": {

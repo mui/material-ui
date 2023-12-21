@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import kebabCase from 'lodash/kebabCase';
 import { exactProp } from '@mui/utils';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
-import Divider from 'docs/src/modules/components/ApiDivider';
-import PropertiesTable from 'docs/src/modules/components/PropertiesTable';
+import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 
@@ -49,9 +48,8 @@ export default function HooksApiContent(props) {
   const t = useTranslate();
 
   const hooks = Object.keys(pagesContents);
-  const numberOfHooks = hooks.length;
 
-  return hooks.map((key, idx) => {
+  return hooks.map((key) => {
     const { name: hookName, parameters, returnValue, imports } = pagesContents[key];
 
     const { parametersDescriptions, returnValueDescriptions } = descriptions[key][userLanguage];
@@ -69,20 +67,28 @@ export default function HooksApiContent(props) {
           <Heading text="import" hash={`${hookNameKebabCase}-import`} level="h3" />
           <HighlightedCode code={importInstructions} language="jsx" />
           <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
-          <Heading text="parameters" hash={`${hookNameKebabCase}-parameters`} level="h3" />
           {Object.keys(parameters).length > 0 ? (
-            <PropertiesTable
+            <PropertiesSection
               properties={parameters}
+              targetName={hookNameKebabCase}
+              hooksParameters
               propertiesDescriptions={parametersDescriptions}
+              level="h3"
+              title="api-docs.parameters"
+              titleHash={`${hookNameKebabCase}-parameters`}
             />
           ) : (
             <span>{t('api-docs.hooksNoParameters')}</span>
           )}
-          <Heading text="return-value" hash={`${hookNameKebabCase}-return-value`} level="h3" />
-          <PropertiesTable
+          <PropertiesSection
             showOptionalAbbr
             properties={returnValue}
+            targetName={hookNameKebabCase}
+            hooksReturnValue
             propertiesDescriptions={returnValueDescriptions}
+            level="h3"
+            title="api-docs.returnValue"
+            titleHash={`${hookNameKebabCase}-return-value`}
           />
           <br />
         </MarkdownElement>
@@ -91,7 +97,6 @@ export default function HooksApiContent(props) {
             <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" />
           </symbol>
         </svg>
-        {idx < numberOfHooks - 1 && <Divider />}
       </React.Fragment>
     );
   });

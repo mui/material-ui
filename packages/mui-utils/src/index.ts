@@ -32,6 +32,7 @@ export {
   getNormalizedScrollLeft as unstable_getNormalizedScrollLeft,
 } from './scrollLeft';
 export { default as usePreviousProps } from './usePreviousProps';
+export { default as getValidReactChildren } from './getValidReactChildren';
 export { default as visuallyHidden } from './visuallyHidden';
 export { default as integerPropType } from './integerPropType';
 export { default as internal_resolveProps } from './resolveProps';

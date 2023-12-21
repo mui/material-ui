@@ -8,7 +8,7 @@ import { useTabs, TabsProvider } from '@mui/base/useTabs';
 import { getPath } from '@mui/system';
 import { styled, useThemeProps } from '../styles';
 import { resolveSxValue } from '../styles/styleUtils';
-import { useColorInversion } from '../styles/ColorInversion';
+
 import SizeTabsContext from './SizeTabsContext';
 import { getTabsUtilityClass } from './tabsClasses';
 import { TabsOwnerState, TabsTypeMap } from './TabsProps';
@@ -104,14 +104,12 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     onChange,
     selectionFollowsFocus,
     variant = 'plain',
-    color: colorProp = 'neutral',
+    color = 'neutral',
     size = 'md',
     slots = {},
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
   const defaultValue = defaultValueProp || (valueProp === undefined ? 0 : undefined);
   const { contextValue } = useTabs({ ...props, orientation, defaultValue });
 

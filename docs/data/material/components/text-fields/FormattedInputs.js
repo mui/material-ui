@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { IMaskInput } from 'react-imask';
 import { NumericFormat } from 'react-number-format';
-import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import TextField from '@mui/material/TextField';
@@ -73,13 +73,7 @@ export default function FormattedInputs() {
   };
 
   return (
-    <Box
-      sx={{
-        '& > :not(style)': {
-          m: 1,
-        },
-      }}
-    >
+    <Stack direction="row" spacing={2}>
       <FormControl variant="standard">
         <InputLabel htmlFor="formatted-text-mask-input">react-imask</InputLabel>
         <Input
@@ -101,6 +95,6 @@ export default function FormattedInputs() {
         }}
         variant="standard"
       />
-    </Box>
+    </Stack>
   );
 }

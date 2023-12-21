@@ -55,6 +55,18 @@ function escape(html, encode) {
 function checkUrlHealth(href, linkText, context) {
   const url = new URL(href, 'https://mui.com/');
 
+  if (/\/{2,}$/.test(url.pathname)) {
+    throw new Error(
+      [
+        'docs-infra: Duplicated trailing slashes. The following link:',
+        `[${linkText}](${href}) in ${context.location} has duplicated trailing slashes, please only add one.`,
+        '',
+        'See https://ahrefs.com/blog/trailing-slash/ for more details.',
+        '',
+      ].join('\n'),
+    );
+  }
+
   // External links to MUI, ignore
   if (url.host !== 'mui.com') {
     return;
@@ -222,8 +234,17 @@ function getCodeblock(content) {
 /**
  * @param {string} markdown
  */
-function renderInline(markdown) {
-  return marked.parseInline(markdown, markedOptions);
+function renderMarkdown(markdown) {
+  // Check if the markdown contains an inline list. Unordered lists are block elements and cannot be parsed inline.
+  if (/[-*+] `([A-Za-z]+)`/g.test(markdown)) {
+    return marked.parse(markdown, markedOptions);
+  }
+  // Two new lines result in a newline in the table.
+  // All other new lines must be eliminated to prevent markdown mayhem.
+  return marked
+    .parseInline(markdown, markedOptions)
+    .replace(/(\r?\n){2}/g, '<br>')
+    .replace(/\r?\n/g, ' ');
 }
 
 // Help rank mui.com on component searches first.
@@ -281,9 +302,9 @@ function createRender(context) {
       }
 
       // Remove links to avoid nested links in the TOCs
-      let headingText = headingHtml.replace(/<a\b[^>]*>/i, '').replace(/<\/a>/i, '');
+      let headingText = headingHtml.replace(/<a\b[^>]*>/gi, '').replace(/<\/a>/gi, '');
       // Remove `code` tags
-      headingText = headingText.replace(/<code\b[^>]*>/i, '').replace(/<\/code>/i, '');
+      headingText = headingText.replace(/<code\b[^>]*>/gi, '').replace(/<\/code>/gi, '');
 
       // Standardizes the hash from the default location (en) to different locations
       // Need english.md file parsed first
@@ -454,5 +475,5 @@ module.exports = {
   getCodeblock,
   getHeaders,
   getTitle,
-  renderInline,
+  renderMarkdown,
 };

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from '@mui-internal/test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Skeleton, { skeletonClasses as classes } from '@mui/joy/Skeleton';
 

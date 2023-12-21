@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { alpha } from '@mui/system';
+import { getValidReactChildren } from '@mui/utils';
 import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -256,9 +257,12 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
     ],
   );
 
-  const getButtonPositionClassName = (index, childrenParam) => {
+  const validChildren = getValidReactChildren(children);
+  const childrenCount = validChildren.length;
+
+  const getButtonPositionClassName = (index) => {
     const isFirstButton = index === 0;
-    const isLastButton = index === React.Children.count(childrenParam) - 1;
+    const isLastButton = index === childrenCount - 1;
 
     if (isFirstButton && isLastButton) {
       return '';
@@ -282,13 +286,12 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
       {...other}
     >
       <ButtonGroupContext.Provider value={context}>
-        {React.Children.map(children, (child, index) => {
-          if (!React.isValidElement(child)) {
-            return child;
-          }
-
+        {validChildren.map((child, index) => {
           return (
-            <ButtonGroupButtonContext.Provider value={getButtonPositionClassName(index, children)}>
+            <ButtonGroupButtonContext.Provider
+              key={index}
+              value={getButtonPositionClassName(index)}
+            >
               {child}
             </ButtonGroupButtonContext.Provider>
           );
@@ -318,7 +321,7 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

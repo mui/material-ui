@@ -21,30 +21,30 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/core": "^7.22.15",
+    "@babel/core": "^7.23.5",
     "@babel/plugin-syntax-class-properties": "^7.12.13",
-    "@babel/plugin-syntax-jsx": "^7.22.5",
-    "@babel/plugin-syntax-typescript": "^7.22.5",
-    "@babel/types": "^7.22.15",
+    "@babel/plugin-syntax-jsx": "^7.23.3",
+    "@babel/plugin-syntax-typescript": "^7.23.3",
+    "@babel/types": "^7.23.5",
     "@mui-internal/api-docs-builder": "^1.0.0",
     "doctrine": "^3.0.0",
     "lodash": "^4.17.21",
-    "typescript": "^5.1.6",
-    "uuid": "^9.0.0"
+    "typescript": "^5.3.3",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@babel/register": "^7.22.15",
-    "@types/babel__core": "^7.20.1",
-    "@types/chai": "^4.3.5",
-    "@types/doctrine": "^0.0.6",
-    "@types/lodash": "^4.14.197",
-    "@types/node": "^18.17.14",
+    "@types/babel__core": "^7.20.5",
+    "@types/chai": "^4.3.11",
+    "@types/doctrine": "^0.0.9",
+    "@types/lodash": "^4.14.202",
+    "@types/node": "^18.19.3",
     "@types/prettier": "^2.7.3",
-    "@types/react": "^18.2.21",
-    "@types/uuid": "^9.0.3",
-    "chai": "^4.3.7",
-    "fast-glob": "^3.3.1",
+    "@types/react": "^18.2.42",
+    "@types/uuid": "^9.0.7",
+    "chai": "^4.3.10",
+    "fast-glob": "^3.3.2",
     "prettier": "^2.8.8",
-    "rimraf": "^5.0.1"
+    "rimraf": "^5.0.5"
   }
 }

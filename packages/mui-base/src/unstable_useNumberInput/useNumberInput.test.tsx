@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import userEvent from '@testing-library/user-event';
-import { createRenderer, screen } from 'test/utils';
+import { createRenderer, screen } from '@mui-internal/test-utils';
 import {
   unstable_useNumberInput as useNumberInput,
   UseNumberInputParameters,
@@ -268,6 +268,44 @@ describe('useNumberInput', () => {
 
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.equal(undefined);
+    });
+  });
+
+  describe('warnings', () => {
+    it('should warn when switching from uncontrolled to controlled', () => {
+      const handleChange = spy();
+      function NumberInput({ value }: { value?: number }) {
+        const { getInputProps } = useNumberInput({
+          onChange: handleChange,
+          value,
+        });
+
+        return <input {...getInputProps()} />;
+      }
+      const { setProps } = render(<NumberInput />);
+      expect(() => {
+        setProps({ value: 5 });
+      }).to.toErrorDev(
+        'MUI: A component is changing the uncontrolled value state of NumberInput to be controlled',
+      );
+    });
+
+    it('should warn when switching from controlled to uncontrolled', () => {
+      const handleChange = spy();
+      function NumberInput({ value }: { value?: number }) {
+        const { getInputProps } = useNumberInput({
+          onChange: handleChange,
+          value,
+        });
+
+        return <input {...getInputProps()} />;
+      }
+      const { setProps } = render(<NumberInput value={5} />);
+      expect(() => {
+        setProps({ value: undefined });
+      }).to.toErrorDev(
+        'MUI: A component is changing the controlled value state of NumberInput to be uncontrolled',
+      );
     });
   });
 });

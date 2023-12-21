@@ -15,7 +15,7 @@ By the end, you should understand how to:
 
 ## Interactive demo
 
-Here's what the final product looks like—click on the **<>** icon underneath the demo to see the full source code:
+Here's what the final product looks like—click on the "Show code" button underneath the demo to see the full source code:
 
 {{"demo": "LoginFinal.js"}}
 
@@ -113,7 +113,7 @@ Replace `Welcome!` inside your Sheet component with this `<div>`:
 
 :::success
 Try changing the values for the `level` and `component` props to see how they affect the typographic values and the elements rendered.
-(Note that while `level` only accepts the 13 values listed above, you can pass any HTML tag to `component`, as well as custom React components.)
+(Note that while `level` only accepts the 11 values listed above, you can pass any HTML tag to `component`, as well as custom React components.)
 :::
 
 ## Add text field for user inputs

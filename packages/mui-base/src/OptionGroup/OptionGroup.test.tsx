@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
+import { createMount, createRenderer, describeConformanceUnstyled } from '@mui-internal/test-utils';
 import { OptionGroup, optionGroupClasses } from '@mui/base/OptionGroup';
 
 describe('<OptionGroup />', () => {

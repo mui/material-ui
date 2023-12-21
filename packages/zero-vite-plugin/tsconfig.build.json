@@ -1,7 +1,7 @@
 {
   // This config is for emitting declarations (.d.ts) only
   // Actual .ts source files are transpiled via babel
-  "extends": "./tsconfig",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "target": "ES2015",
     "composite": true,
@@ -14,6 +14,7 @@
   "include": ["./src/**/*.ts*"],
   "exclude": ["src/**/*.spec.ts*", "src/**/*.test.ts*"],
   "references": [
+    { "path": "../mui-base/tsconfig.build.json" },
     { "path": "../mui-system/tsconfig.build.json" },
     { "path": "../mui-material/tsconfig.build.json" },
     { "path": "../zero-tag-processor/tsconfig.build.json" }

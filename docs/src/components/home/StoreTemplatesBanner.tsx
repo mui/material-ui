@@ -28,6 +28,7 @@ const Image = styled('img')(({ theme }) => ({
   borderColor: (theme.vars || theme).palette.grey[400],
   borderRadius: (theme.vars || theme).shape.borderRadius,
   objectFit: 'cover',
+  objectPosition: 'top',
   boxShadow: '0px 4px 20px rgba(61, 71, 82, 0.25)',
   ...theme.applyDarkStyles({
     borderColor: (theme.vars || theme).palette.grey[800],
@@ -108,6 +109,7 @@ const StoreTemplateImage = React.forwardRef<
         Object.keys(linkMapping).indexOf(brand) + 1
       }light.jpg`}
       alt=""
+      loading="lazy"
       sx={(theme) =>
         theme.applyDarkStyles({
           content: `url(/static/branding/store-templates/template-${

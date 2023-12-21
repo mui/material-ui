@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, act, createRenderer, fireEvent } from 'test/utils';
+import { describeConformance, act, createRenderer, fireEvent } from '@mui-internal/test-utils';
 import Snackbar, { snackbarClasses as classes } from '@mui/material/Snackbar';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 

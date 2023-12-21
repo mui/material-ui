@@ -3,7 +3,7 @@ import { Simplify } from '@mui/types';
 import { PolymorphicProps, SlotComponentProps } from '../utils';
 import { UseMenuListboxSlotProps } from '../useMenu';
 import { ListAction } from '../useList';
-import { Popper } from '../Popper';
+import { Popper, PopperProps } from '../Popper';
 
 export interface MenuRootSlotPropsOverrides {}
 export interface MenuListboxSlotPropsOverrides {}
@@ -24,6 +24,10 @@ export interface MenuOwnProps {
    * A ref with imperative actions that can be performed on the menu.
    */
   actions?: React.Ref<MenuActions>;
+  /**
+   * The element based on which the menu is positioned.
+   */
+  anchor?: PopperProps['anchorEl'];
   children?: React.ReactNode;
   className?: string;
   /**

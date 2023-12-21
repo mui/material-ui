@@ -23,7 +23,7 @@ import {
   DefaultFontWeight,
   DefaultLineHeight,
 } from './typography';
-import { Variants, ColorInversion, ColorInversionConfig } from './variants';
+import { Variants } from './variants';
 import { DefaultZIndex, ZIndex } from './zIndex';
 import { MergeDefault } from './utils';
 
@@ -98,8 +98,6 @@ export interface Theme extends ThemeScales, RuntimeColorSystem {
   focus: Focus;
   typography: TypographySystem;
   variants: Variants;
-  colorInversion: ColorInversion;
-  colorInversionConfig: ColorInversionConfig;
   spacing: Spacing;
   breakpoints: Breakpoints;
   cssVarPrefix: string;

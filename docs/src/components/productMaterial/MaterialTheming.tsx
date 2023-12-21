@@ -19,8 +19,10 @@ const code = `
 <Card
   variant="outlined"
   sx={{
-    p: 1,
+    p: 2,
+    width: { xs: '100%', sm: 'auto' },
     display: 'flex',
+    flexDirection: { xs: 'column', sm: 'row' },
     alignItems: 'center',
     gap: 2,
   }}
@@ -29,18 +31,17 @@ const code = `
     component="img"
     width="100"
     height="100"
-    alt="Birds of Tokyo album cover"
-    src="/static/images/cards/birds-of-tokyo.jpg"
+    alt="Contemplative Reptile album cover"
+    src="/static/images/cards/contemplative-reptile.jpg"
     sx={{
+      width: { xs: '100%', sm: 100 },
       borderRadius: 0.6,
-      height: 100,
-      width: 100,
     }}
   />
   <Stack direction="column" spacing={2} alignItems="center">
     <Stack direction="column" spacing={0.2} alignItems="center">
       <Typography color="text.primary" fontWeight="medium" fontSize={15}>
-        If This Ship Sinks (I Give In)
+        Contemplative Reptile
       </Typography>
       <Typography
         component="div"
@@ -48,11 +49,15 @@ const code = `
         color="text.secondary"
         fontWeight="regular"
       >
-        Birds Of Tokyo
+        Sounds of Nature
       </Typography>
     </Stack>
     <Stack direction="row" alignItems="center" spacing={1.5}>
-      <IconButton aria-label="shuffle" disabled size="small" sx={{ flexGrow: 0 }}>
+      <IconButton 
+        disabled 
+        aria-label="shuffle" 
+        size="small" 
+        sx={{ flexGrow: 0 }}>
         <ShuffleRoundedIcon fontSize="small" />
       </IconButton>
       <IconButton aria-label="fast rewind" disabled size="small">
@@ -122,10 +127,10 @@ export default function MaterialTheming() {
               }}
             >
               {customized ? (
-                <PlayerCard horizontal extraStyles />
+                <PlayerCard extraStyles />
               ) : (
                 <CssVarsProvider>
-                  <PlayerCard horizontal disableTheming />
+                  <PlayerCard disableTheming />
                 </CssVarsProvider>
               )}
             </Frame.Demo>

@@ -10,8 +10,8 @@ const Popup = styled(Popper)({
   zIndex: 1000,
 });
 
-export default function MenuListComposition(): JSX.Element {
-  const buttonRef = React.useRef<HTMLButtonElement | null>(null);
+export default function MenuListComposition() {
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
   const [open, setOpen] = React.useState(false);
 
   const handleClose = () => {
@@ -22,9 +22,7 @@ export default function MenuListComposition(): JSX.Element {
     if (event.key === 'Tab') {
       setOpen(false);
     } else if (event.key === 'Escape') {
-      if (buttonRef.current) {
-        buttonRef.current?.focus();
-      }
+      buttonRef.current!.focus();
       setOpen(false);
     }
   };
@@ -60,7 +58,13 @@ export default function MenuListComposition(): JSX.Element {
           },
         ]}
       >
-        <ClickAwayListener onClickAway={handleClose}>
+        <ClickAwayListener
+          onClickAway={(event) => {
+            if (event.target !== buttonRef.current) {
+              handleClose();
+            }
+          }}
+        >
           <MenuList
             variant="outlined"
             onKeyDown={handleListKeyDown}

@@ -71,6 +71,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     component = 'div',
     componentsProps = {},
     max = 5,
+    renderSurplus,
     slotProps = {},
     spacing = 'medium',
     total,
@@ -114,6 +115,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
 
   const maxAvatars = Math.min(children.length, clampedMax - 1);
   const extraAvatars = Math.max(totalAvatars - clampedMax, totalAvatars - maxAvatars, 0);
+  const extraAvatarsElement = renderSurplus ? renderSurplus(extraAvatars) : `+${extraAvatars}`;
 
   const marginLeft = spacing && SPACINGS[spacing] !== undefined ? SPACINGS[spacing] : -spacing;
 
@@ -135,7 +137,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
           className={clsx(classes.avatar, additionalAvatarSlotProps?.className)}
           style={{ marginLeft, ...additionalAvatarSlotProps?.style }}
         >
-          +{extraAvatars}
+          {extraAvatarsElement}
         </AvatarGroupAvatar>
       ) : null}
       {children
@@ -207,6 +209,12 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
 
     return null;
   }),
+  /**
+   * custom renderer of extraAvatars
+   * @param {number} surplus number of extra avatars
+   * @returns {React.ReactNode} custom element to display
+   */
+  renderSurplus: PropTypes.func,
   /**
    * The extra props for the slot components.
    * You can override the existing props or add new ones.

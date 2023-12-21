@@ -1,237 +1,11 @@
 import * as React from 'react';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
-import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
-import MD2Button, { ButtonProps as MD2ButtonProps } from '@mui/material/Button';
-import { unstable_capitalize as capitalize } from '@mui/utils';
-import DeleteIcon from '@mui/icons-material/Delete';
-import SendIcon from '@mui/icons-material/Send';
-import Button, { ButtonProps } from '@mui/material-next/Button';
-import { CssVarsProvider, useColorScheme, extendTheme } from '@mui/material-next/styles';
 import DarkIcon from '@mui/icons-material/DarkModeOutlined';
 import LightIcon from '@mui/icons-material/LightModeOutlined';
-import CssBaseline from '@mui/material/CssBaseline';
+import { useColorScheme } from '@mui/material-next/styles';
 
-function ModeSwitcher() {
-  const { mode, setMode } = useColorScheme();
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
-
-  return (
-    <Tooltip title={`Change to ${mode === 'light' ? 'dark' : 'light'} mode`}>
-      <IconButton
-        onClick={() => {
-          if (mode === 'light') {
-            setMode('dark');
-          } else {
-            setMode('light');
-          }
-        }}
-      >
-        {mode === 'light' ? <DarkIcon /> : <LightIcon />}
-      </IconButton>
-    </Tooltip>
-  );
-}
-
-const variants: ButtonProps['variant'][] = [
-  'elevated',
-  'filled',
-  'filledTonal',
-  'outlined',
-  'text',
-];
-const colors: ButtonProps['color'][] = ['primary', 'secondary', 'tertiary'];
-const sizes: ButtonProps['size'][] = ['small', 'medium', 'large'];
-
-const md2Variants: MD2ButtonProps['variant'][] = ['contained', 'outlined', 'text'];
-const md2Colors: MD2ButtonProps['color'][] = [
-  'primary',
-  'secondary',
-  'success',
-  'error',
-  'info',
-  'warning',
-];
-
-function DemoComponents() {
-  const [radius, setRadius] = React.useState<string>('10');
-  const [gap, setGap] = React.useState<string>('0.5');
-
-  return (
-    <Stack direction="column" gap={1}>
-      <h4>Enabled</h4>
-      <Stack direction="row" gap={1}>
-        {variants.map((variant) => (
-          <Button key={variant} variant={variant}>
-            {capitalize(variant as string)}
-          </Button>
-        ))}
-      </Stack>
-      <h4>Enabled without a ripple effect</h4>
-      <Stack direction="row" gap={1}>
-        {variants.map((variant) => (
-          <Button key={variant} variant={variant} disableRipple>
-            {capitalize(variant as string)}
-          </Button>
-        ))}
-      </Stack>
-      <h4>Disabled</h4>
-      <Stack direction="row" gap={1}>
-        {variants.map((variant) => (
-          <Button key={variant} variant={variant} disabled>
-            {capitalize(variant as string)}
-          </Button>
-        ))}
-      </Stack>
-      <h4>Colors</h4>
-      <Stack direction="row" gap={1}>
-        {colors.map((color) => (
-          <Button key={color} variant="filled" color={color}>
-            {capitalize(color as string)}
-          </Button>
-        ))}
-      </Stack>
-      <Stack direction="row" gap={1}>
-        {colors.map((color) => (
-          <Button key={color} variant="outlined" color={color}>
-            {capitalize(color as string)}
-          </Button>
-        ))}
-      </Stack>
-      <Stack direction="row" gap={1}>
-        {colors.map((color) => (
-          <Button key={color} variant="text" color={color}>
-            {capitalize(color as string)}
-          </Button>
-        ))}
-      </Stack>
-      <h4>Extended buttons</h4>
-      <Stack direction="row" gap={1}>
-        {colors.map((color) => (
-          <Button key={color} variant="filled" color={color} endIcon={<SendIcon />}>
-            Send
-          </Button>
-        ))}
-        <Button variant="filled" disabled endIcon={<SendIcon />}>
-          Send
-        </Button>
-      </Stack>
-      <Stack direction="row" gap={1}>
-        {colors.map((color) => (
-          <Button key={color} variant="outlined" color={color} startIcon={<DeleteIcon />}>
-            Delete
-          </Button>
-        ))}
-        <Button variant="outlined" disabled startIcon={<DeleteIcon />}>
-          Delete
-        </Button>
-      </Stack>
-      <h4>Sizes</h4>
-      <Stack direction="row" gap={1} alignItems="end">
-        {sizes.map((size) => (
-          <Button key={size} variant="filled" size={size} endIcon={<SendIcon />}>
-            {capitalize(size as string)}
-          </Button>
-        ))}
-      </Stack>
-      <Stack direction="row" gap={1} alignItems="end">
-        {sizes.map((size) => (
-          <Button key={size} variant="outlined" size={size} startIcon={<DeleteIcon />}>
-            {capitalize(size as string)}
-          </Button>
-        ))}
-      </Stack>
-      <h4>sx prop showcase</h4>
-      <Stack>
-        <Stack direction="row" gap={1} sx={{ py: 1 }}>
-          <Button
-            sx={{
-              color: 'onError',
-              bgcolor: 'error',
-              border: 1,
-              borderColor: 'tertiary',
-              borderRadius: 'medium',
-            }}
-          >
-            Button
-          </Button>
-          <Button
-            sx={{
-              color: 'error.100',
-              bgcolor: 'error.40',
-              border: 1,
-              borderColor: 'tertiary.40',
-              borderRadius: 2,
-            }}
-          >
-            Button
-          </Button>
-          <MD2Button sx={{ borderRadius: 2, color: 'error.main' }}>MD2 Button</MD2Button>
-        </Stack>
-      </Stack>
-      <h4>CSS vars playground</h4>
-      <Stack>
-        <Stack direction="row" gap={1} sx={{ py: 1 }}>
-          <TextField
-            label="--Button-radius"
-            value={radius}
-            type="number"
-            onChange={(e) => {
-              setRadius(e.target.value);
-            }}
-          />
-          <TextField
-            label="--Button-gap"
-            value={gap}
-            type="number"
-            onChange={(e) => {
-              setGap(e.target.value);
-            }}
-          />
-        </Stack>
-        <Stack direction="row" gap={1} alignItems="end">
-          {sizes.map((size) => (
-            <Button
-              sx={{ '--Button-radius': `${radius}px`, '--Button-gap': `${gap}rem` }}
-              key={size}
-              variant="outlined"
-              size={size}
-              startIcon={<DeleteIcon />}
-            >
-              {capitalize(size as string)}
-            </Button>
-          ))}
-        </Stack>
-      </Stack>
-      <h4>Material Design 2 Buttons</h4>
-      <Stack direction="row" gap={1} alignItems="end">
-        {md2Variants.map((variant) => (
-          <MD2Button key={variant} variant={variant}>
-            {capitalize(variant as string)}
-          </MD2Button>
-        ))}
-      </Stack>
-      <Stack direction="row" gap={1} alignItems="end">
-        {md2Colors.map((color) => (
-          <MD2Button key={color} variant="contained" color={color}>
-            {capitalize(color as string)}
-          </MD2Button>
-        ))}
-      </Stack>
-    </Stack>
-  );
-}
-
-const customPalette = {
+export const customPalette = {
   primary: {
     '0': '#000000',
     '10': '#3e001f',
@@ -292,6 +66,7 @@ const customPalette = {
     '90': '#ebe0e1',
     '92': '#f1e5e6',
     '95': '#faeef0',
+    '96': '#f7f2fa',
     '99': '#fffbff',
     '100': '#ffffff',
   },
@@ -327,30 +102,35 @@ const customPalette = {
   },
 };
 
-// custom MD3 theme
-const cssVarsTheme = extendTheme({
-  colorSchemes: {
-    light: {
-      ref: {
-        palette: customPalette,
-      },
-    },
-    dark: {
-      ref: {
-        palette: customPalette,
-      },
-    },
-  },
-});
+export function ModeSwitcher() {
+  const { mode, setMode } = useColorScheme();
+  const [mounted, setMounted] = React.useState(false);
 
-export default function App() {
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
   return (
-    <CssVarsProvider theme={cssVarsTheme}>
-      <CssBaseline />
-      <Stack sx={{ p: 1 }} alignItems="flex-start">
-        <ModeSwitcher />
-        <DemoComponents />
-      </Stack>
-    </CssVarsProvider>
+    <Tooltip title={`Change to ${mode === 'light' ? 'dark' : 'light'} mode`}>
+      <IconButton
+        onClick={() => {
+          if (mode === 'light') {
+            setMode('dark');
+          } else {
+            setMode('light');
+          }
+        }}
+      >
+        {mode === 'light' ? <DarkIcon /> : <LightIcon />}
+      </IconButton>
+    </Tooltip>
   );
+}
+
+export default function Page() {
+  return <div>Empty</div>;
 }

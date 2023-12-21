@@ -7,10 +7,11 @@ import FormLabel from '@mui/joy/FormLabel';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Typography from '@mui/joy/Typography';
 
-export default function ContrySelector({ sx, ...props }: FormControlProps) {
+export default function ContrySelector(props: FormControlProps) {
+  const { sx, ...other } = props;
   return (
     <FormControl
-      {...props}
+      {...other}
       sx={[{ display: { sm: 'contents' } }, ...(Array.isArray(sx) ? sx : [sx])]}
     >
       <FormLabel>Country</FormLabel>
@@ -27,8 +28,8 @@ export default function ContrySelector({ sx, ...props }: FormControlProps) {
                 <img
                   loading="lazy"
                   width="20"
-                  src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
                   srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
+                  src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
                   alt=""
                 />
               </AspectRatio>
@@ -431,7 +432,7 @@ const countries: readonly CountryType[] = [
   { code: 'TV', label: 'Tuvalu', phone: '688' },
   {
     code: 'TW',
-    label: 'Taiwan, Republic of China',
+    label: 'Taiwan',
     phone: '886',
   },
   {

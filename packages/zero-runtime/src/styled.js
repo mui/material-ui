@@ -14,10 +14,25 @@ function getVariantClasses(componentProps, variants) {
 }
 
 /**
+ * @param {string} propKey
+ * @returns {boolean}
+ */
+function defaultShouldForwardProp(propKey) {
+  return propKey !== 'sx' && propKey !== 'as' && propKey !== 'ownerState';
+}
+
+/**
+ * @typedef {typeof defaultShouldForwardProp} ShouldForwardProp
+ */
+
+/**
  * @TODO - Filter props and only pass necessary props to children
  *
  * This is the runtime `styled` function that finally renders the component
- * after transpilation through linaria. It makes sure to add the base classes, variant classes if they satisfy the prop value and also adds dynamic css variables at runtime, if any.
+ * after transpilation through linaria. It makes sure to add the base classes,
+ * variant classes if they satisfy the prop value and also adds dynamic css
+ * variables at runtime, if any.
+ * @param {string | Function} tag
  * @param {Object} options
  * @param {string} options.displayName Set by linaria. Mostly is same as the variable name. For this code, ```const Comp = styled(...)(...)```, `displayName` will be `Comp`.
  * @param {string[]} options.classes List of class names that reference the inline css object styles.
@@ -27,6 +42,7 @@ function getVariantClasses(componentProps, variants) {
  * @param {string} options.variants.className Classname generated for this specific variant through styled processor.
  * @param {string} options.name
  * @param {string} options.slot
+ * @param {ShouldForwardProp} options.shouldForwardProp
  * @param {Object} options.defaultProps Default props object copied over and inlined from theme object
  */
 export default function styled(tag, options = {}) {
@@ -38,6 +54,7 @@ export default function styled(tag, options = {}) {
     name,
     slot,
     defaultProps = {},
+    shouldForwardProp = defaultShouldForwardProp,
   } = options;
   let componentName = 'Component';
 
@@ -62,6 +79,9 @@ export default function styled(tag, options = {}) {
     const varStyles = Object.entries(cssVars).reduce(
       (acc, [cssVariable, [variableFunction, isUnitLess]]) => {
         const value = variableFunction(props);
+        if (typeof value === 'undefined') {
+          return acc;
+        }
         if (typeof value === 'string' || isUnitLess) {
           acc[`--${cssVariable}`] = value;
         } else {
@@ -87,12 +107,24 @@ export default function styled(tag, options = {}) {
     }
 
     const finalClassName = clsx(classes, sxClass, className, getVariantClasses(props, variants));
+    const toPassProps = Object.keys(restProps)
+      .filter((item) => {
+        const res = shouldForwardProp(item);
+        if (res) {
+          return defaultShouldForwardProp(item);
+        }
+        return false;
+      })
+      .reduce((acc, key) => {
+        acc[key] = restProps[key];
+        return acc;
+      }, {});
 
     // eslint-disable-next-line no-underscore-dangle
-    if (!Component.__isStyled) {
+    if (!Component.__isStyled || typeof Component === 'string') {
       return (
         <Component
-          {...restProps}
+          {...toPassProps}
           ref={ref}
           className={finalClassName}
           style={{
@@ -105,7 +137,7 @@ export default function styled(tag, options = {}) {
 
     return (
       <Component
-        {...restProps}
+        {...toPassProps}
         ownerState={ownerState}
         ref={ref}
         className={finalClassName}

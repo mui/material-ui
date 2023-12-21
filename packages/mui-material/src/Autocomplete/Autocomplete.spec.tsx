@@ -45,7 +45,7 @@ function MyAutocomplete<
 <MyAutocomplete
   options={['1', '2', '3']}
   onChange={(event, value) => {
-    expectType<readonly string[], typeof value>(value);
+    expectType<string[], typeof value>(value);
   }}
   renderInput={() => null}
   multiple
@@ -157,3 +157,17 @@ function CustomListboxRef() {
     />
   );
 }
+
+// Tests presence of defaultMuiPrevented in event
+<Autocomplete
+  renderInput={(params) => <TextField {...params} />}
+  options={['one', 'two', 'three']}
+  onKeyDown={(e) => {
+    expectType<
+      React.KeyboardEvent<HTMLDivElement> & {
+        defaultMuiPrevented?: boolean;
+      },
+      typeof e
+    >(e);
+  }}
+/>;

@@ -134,6 +134,7 @@ const mdRefPalette = {
     90: '#e6e1e5',
     92: '#ece6f0',
     95: '#f4eff4',
+    96: '#f7f2fa',
     99: '#fffbfe',
     100: '#ffffff',
   },

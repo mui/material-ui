@@ -164,6 +164,7 @@ function renderFullPage(html, css) {
     <!DOCTYPE html>
     <html>
       <head>
+        <meta charset="utf-8" />
         <title>My page</title>
         ${css}
         <meta name="viewport" content="initial-scale=1, width=device-width" />

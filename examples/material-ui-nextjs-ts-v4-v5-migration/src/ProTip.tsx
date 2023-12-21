@@ -25,9 +25,9 @@ export default function ProTip() {
   return (
     <Typography className={classes.typography} color="text.secondary">
       <LightBulbIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
-      Pro tip: See more{' '}
+      {'Pro tip: See more '}
       <Link href="https://mui.com/material-ui/getting-started/templates/">templates</Link> in the
-      MUI documentation.
+      {' in the Material UI documentation.'}
     </Typography>
   );
 }

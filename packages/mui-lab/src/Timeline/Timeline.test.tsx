@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, screen } from 'test/utils';
+import { createRenderer, describeConformance, screen } from '@mui-internal/test-utils';
 import Timeline, { timelineClasses as classes } from '@mui/lab/Timeline';
 
 describe('<Timeline />', () => {

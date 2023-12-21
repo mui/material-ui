@@ -2,7 +2,12 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { describeConformanceUnstyled, fireEvent, createRenderer, createMount } from 'test/utils';
+import {
+  describeConformanceUnstyled,
+  fireEvent,
+  createRenderer,
+  createMount,
+} from '@mui-internal/test-utils';
 import TableFooter from '@mui/material/TableFooter';
 import TableRow from '@mui/material/TableRow';
 import {

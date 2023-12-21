@@ -20,7 +20,7 @@ const code = `
   variant="outlined"
   sx={{
     p: 1,
-    boxShadow: '0 2px 4px rgba(0, 127, 255, 0.2)',
+    boxShadow: '0 1px 3px rgba(0, 127, 255, 0.1)',
     display: 'flex',
     flexDirection: {
       xs: 'column', // mobile
@@ -42,17 +42,18 @@ const code = `
     }}
   />
   <Box sx={{ alignSelf: 'center', ml: 2 }}>
-    <Typography variant="body2" color="text.secondary" noWrap>
+    <Typography variant="body2" color="text.secondary" fontWeight="medium">
       123 Main St, Phoenix, AZ
     </Typography>
-    <Typography component="div" fontWeight="bold" noWrap>
+    <Typography fontWeight="bold" noWrap>
       $280k - $310k
     </Typography>
     <Box
       sx={(theme) => ({
         mt: 1,
-        px: 1,
-        py: 0.5,
+        py: 0.4,
+        pl: 0.5,
+        pr: 1,
         typography: 'caption',
         borderRadius: 10,
         display: 'flex',
@@ -68,13 +69,13 @@ const code = `
       })}
     >
       <InfoRounded sx={{ fontSize: 16, mr: 0.5, mt: '1px' }} />
-      Confidence score of 85%
+      Confidence score: 85%
     </Box>
   </Box>
 </Card>`;
 
-const startLine = [32, 25, 5];
-const endLine = [44, 30, 8];
+const startLine = [34, 25, 6];
+const endLine = [48, 30, 8];
 const scrollTo = [540, 320, 0];
 
 export const useResizeHandle = (
@@ -220,8 +221,8 @@ export default function MaterialStyling() {
                   justifyContent: 'center',
                   alignItems: 'center',
                   position: 'relative',
-                  p: 5,
-                  pr: 3,
+                  p: { xs: 2, sm: 5 },
+                  pr: { xs: 2, sm: 3 },
                   minHeight: index === 2 ? 280 : 'initial',
                   backgroundColor: 'transparent',
                 }}
@@ -261,7 +262,7 @@ export default function MaterialStyling() {
                         width: '1px',
                         bgcolor: 'grey.200',
                         position: 'absolute',
-                        left: 360,
+                        left: 375,
                         height: '100%',
                         ...theme.applyDarkStyles({
                           bgcolor: 'primaryDark.600',

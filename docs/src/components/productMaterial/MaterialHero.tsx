@@ -237,7 +237,7 @@ export default function MaterialHero() {
               }),
             })}
           >
-            <IconImage width={28} height={28} name="product-core" />{' '}
+            <IconImage loading="eager" width={28} height={28} name="product-core" />{' '}
             <Link href={ROUTES.productCore}>MUI Core</Link>{' '}
             <Typography component="span" variant="inherit" sx={{ color: 'divider' }}>
               /
@@ -253,8 +253,8 @@ export default function MaterialHero() {
             components
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
-            Material UI is beautiful by design and features a suite of customization options that
-            make it easy to implement your own custom design system.
+            Material UI is an open-source React component library that implements Google&apos;s
+            Material Design. It&apos;s comprehensive and can be used in production out of the box.
           </Typography>
           <GetStartedButtons
             primaryUrl={ROUTES.materialDocs}
@@ -396,7 +396,7 @@ export default function MaterialHero() {
               </Paper>
             </Stack>
             <Stack spacing={4} sx={{ ml: 4, '& > .MuiPaper-root': { maxWidth: 'none' } }}>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2 }}>
+              <Box sx={{ display: 'flex', gap: 2, '& button': { textWrap: 'nowrap' } }}>
                 <Button variant="contained" startIcon={<DownloadIcon fontSize="small" />} fullWidth>
                   Install library
                 </Button>

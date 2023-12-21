@@ -20,10 +20,8 @@ import {
   createTypeScriptProjectBuilder,
   TypeScriptProject,
 } from '@mui-internal/api-docs-builder/utils/createTypeScriptProject';
-import {
-  CORE_TYPESCRIPT_PROJECTS,
-  CoreTypeScriptProjects,
-} from '@mui-internal/api-docs-builder/utils/coreTypeScriptProjects';
+
+import CORE_TYPESCRIPT_PROJECTS from './coreTypeScriptProjects';
 
 const useExternalPropsFromInputBase = [
   'autoComplete',
@@ -180,6 +178,7 @@ async function generateProptypes(
       if (
         name.toLowerCase().endsWith('classes') ||
         name === 'theme' ||
+        name === 'ownerState' ||
         (name.endsWith('Props') && name !== 'componentsProps' && name !== 'slotProps')
       ) {
         return false;
@@ -209,7 +208,8 @@ async function generateProptypes(
     component.types.forEach((prop) => {
       if (
         !prop.jsDoc ||
-        (ignoreExternalDocumentation[component.name] &&
+        (project.name !== 'base' &&
+          ignoreExternalDocumentation[component.name] &&
           ignoreExternalDocumentation[component.name].includes(prop.name))
       ) {
         prop.jsDoc = '@ignore';

@@ -3,11 +3,12 @@ import * as React from 'react';
 import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { useTabsContext } from '../Tabs';
 import { UseTabParameters, UseTabReturnValue, UseTabRootSlotProps } from './useTab.types';
-import { EventHandlers } from '../utils';
-import { useCompoundItem } from '../utils/useCompoundItem';
+import { extractEventHandlers } from '../utils/extractEventHandlers';
+import { useCompoundItem } from '../useCompound';
 import { useListItem } from '../useList';
 import { useButton } from '../useButton';
 import { TabMetadata } from '../useTabs';
+import { combineHooksSlotProps } from '../utils/combineHooksSlotProps';
 
 function tabValueGenerator(otherTabValues: Set<string | number>) {
   return otherTabValues.size;
@@ -41,7 +42,6 @@ function useTab(parameters: UseTabParameters): UseTabReturnValue {
 
   const {
     getRootProps: getTabProps,
-    rootRef: listItemRefHandler,
     highlighted,
     selected,
   } = useListItem({
@@ -60,25 +60,19 @@ function useTab(parameters: UseTabParameters): UseTabReturnValue {
     type: 'button',
   });
 
-  const handleRef = useForkRef(tabRef, externalRef, listItemRefHandler, buttonRefHandler);
+  const handleRef = useForkRef(tabRef, externalRef, buttonRefHandler);
 
   const tabPanelId = value !== undefined ? getTabPanelId(value) : undefined;
 
-  const getRootProps = <TOther extends EventHandlers>(
-    otherHandlers: TOther = {} as TOther,
-  ): UseTabRootSlotProps<TOther> => {
-    const resolvedTabProps = {
-      ...otherHandlers,
-      ...getTabProps(otherHandlers),
-    };
-
-    const resolvedButtonProps = {
-      ...resolvedTabProps,
-      ...getButtonProps(resolvedTabProps),
-    };
+  const getRootProps = <ExternalProps extends Record<string, unknown>>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseTabRootSlotProps<ExternalProps> => {
+    const externalEventHandlers = extractEventHandlers(externalProps);
+    const getCombinedRootProps = combineHooksSlotProps(getTabProps, getButtonProps);
 
     return {
-      ...resolvedButtonProps,
+      ...externalProps,
+      ...getCombinedRootProps(externalEventHandlers),
       role: 'tab',
       'aria-controls': tabPanelId,
       'aria-selected': selected,

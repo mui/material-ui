@@ -12,39 +12,39 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "expanded": {
-      "description": "State class applied to {{nodeName}}, {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "children wrapper element and <code>IconButton</code> component if <code>expanded={true}</code>"
-    },
-    "focusVisible": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the ButtonBase root element",
-      "conditions": "the button is keyboard focused"
-    },
-    "disabled": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>disabled={true}</code>"
-    },
-    "gutters": {
-      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>disableGutters={true}</code>"
+    "content": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the children wrapper element"
     },
     "contentGutters": {
       "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
       "nodeName": "the children wrapper element",
       "conditions": "<code>disableGutters={true}</code>"
     },
-    "content": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the children wrapper element"
+    "disabled": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "expanded": {
+      "description": "State class applied to {{nodeName}}, {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "children wrapper element and <code>IconButton</code> component if <code>expanded={true}</code>"
     },
     "expandIconWrapper": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the <code>expandIcon</code>&#39;s wrapper element"
-    }
+    },
+    "focusVisible": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the ButtonBase root element",
+      "conditions": "the button is keyboard focused"
+    },
+    "gutters": {
+      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>disableGutters={true}</code>"
+    },
+    "root": { "description": "Styles applied to the root element." }
   }
 }

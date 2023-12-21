@@ -7,7 +7,7 @@ import {
   createRenderer,
   describeConformanceUnstyled,
   fireEvent,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import { MenuButton, menuButtonClasses } from '@mui/base/MenuButton';
 import { DropdownContext, DropdownContextValue, DropdownActionTypes } from '@mui/base/useDropdown';
 

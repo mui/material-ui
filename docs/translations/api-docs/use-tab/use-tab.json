@@ -3,13 +3,13 @@
   "parametersDescriptions": {
     "disabled": { "description": "If <code>true</code>, the tab will be disabled." },
     "id": {
-      "description": "The id of the tab.\nIf not provided, it will be automatically generated."
+      "description": "The id of the tab. If not provided, it will be automatically generated."
     },
     "onChange": { "description": "If <code>true</code>, the tab will be disabled." },
     "onClick": { "description": "Callback fired when the tab is clicked." },
     "rootRef": { "description": "Ref to the root slot&#39;s DOM element." },
     "value": {
-      "description": "The value of the tab.\nIt&#39;s used to associate the tab with a tab panel(s) with the same value.\nIf the value is not provided, it falls back to the position index."
+      "description": "The value of the tab. It&#39;s used to associate the tab with a tab panel(s) with the same value. If the value is not provided, it falls back to the position index."
     }
   },
   "returnValueDescriptions": {
@@ -17,7 +17,7 @@
       "description": "If <code>true</code>, the tab is active (as in <code>:active</code> pseudo-class; in other words, pressed)."
     },
     "focusVisible": {
-      "description": "If <code>true</code>, the tab has visible focus.\nThis is a workaround for browsers that do not support this feature natively."
+      "description": "If <code>true</code>, the tab has visible focus. This is a workaround for browsers that do not support this feature natively."
     },
     "getRootProps": { "description": "Resolver for the root slot&#39;s props." },
     "highlighted": { "description": "If <code>true</code>, the tab is highlighted." },
@@ -25,10 +25,10 @@
     "rootRef": { "description": "Ref to the root slot&#39;s DOM element." },
     "selected": { "description": "If <code>true</code>, the tab is selected." },
     "setFocusVisible": {
-      "description": "Sets the focus-visible state of the tab.\nThis is a workaround for browsers that do not support this feature natively."
+      "description": "Sets the focus-visible state of the tab. This is a workaround for browsers that do not support this feature natively."
     },
     "totalTabsCount": {
-      "description": "Total number of tabs in the nearest parent TabsList.\nThis can be used to determine if the tab is the last one to style it accordingly."
+      "description": "Total number of tabs in the nearest parent TabsList. This can be used to determine if the tab is the last one to style it accordingly."
     }
   }
 }

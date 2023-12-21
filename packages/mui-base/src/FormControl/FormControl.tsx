@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useControlled as useControlled } from '@mui/utils';
+import useControlled from '@mui/utils/useControlled';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import { FormControlContext } from './FormControlContext';
 import { getFormControlUtilityClass } from './formControlClasses';

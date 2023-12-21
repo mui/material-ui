@@ -1,12 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import {
-  describeConformance,
-  act,
-  createRenderer,
-  fireEvent,
-  describeJoyColorInversion,
-} from 'test/utils';
+import { describeConformance, act, createRenderer, fireEvent } from '@mui-internal/test-utils';
 import Checkbox, { checkboxClasses as classes } from '@mui/joy/Checkbox';
 import { ThemeProvider } from '@mui/joy/styles';
 import CloseIcon from '../internal/svg-icons/Close';
@@ -32,8 +26,6 @@ describe('<Checkbox />', () => {
     },
     skip: ['componentProp', 'componentsProp', 'classesRoot', 'propsSpread', 'themeVariants'],
   }));
-
-  describeJoyColorInversion(<Checkbox />, { muiName: 'JoyCheckbox', classes });
 
   it('should have the classes required for Checkbox', () => {
     expect(classes).to.include.all.keys(['root', 'checked', 'disabled']);

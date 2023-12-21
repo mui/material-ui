@@ -1,26 +1,7 @@
-import path from 'path';
-import fs from 'fs';
-import { expect } from 'chai';
 import sinon from 'sinon';
-import {
-  extractApiPage,
-  extractPackageFile,
-  getMaterialComponentInfo,
-  getBaseComponentInfo,
-  getBaseHookInfo,
-} from './buildApiUtils';
+import { extractPackageFile } from './buildApiUtils';
 
 describe('buildApiUtils', () => {
-  describe('extractApiPage', () => {
-    it('return info for api page', () => {
-      expect(
-        extractApiPage('/material-ui/docs/pages/material-ui/api/accordion-actions.js'),
-      ).to.deep.equal({
-        apiPathname: '/material-ui/api/accordion-actions',
-      });
-    });
-  });
-
   describe('extractPackageFilePath', () => {
     it('return info if path is a package (material)', () => {
       const result = extractPackageFile('/material-ui/packages/mui-material/src/Button/Button.js');
@@ -79,108 +60,6 @@ describe('buildApiUtils', () => {
         packagePath: null,
         name: null,
       });
-    });
-  });
-
-  describe('getMaterialComponentInfo', () => {
-    it('return correct info for material component file', () => {
-      const info = getMaterialComponentInfo(
-        path.join(process.cwd(), `/packages/mui-material/src/Button/Button.js`),
-      );
-      sinon.assert.match(info, {
-        name: 'Button',
-        apiPathname: '/material-ui/api/button/',
-        muiName: 'MuiButton',
-        apiPagesDirectory: sinon.match((value) =>
-          value.endsWith(path.join('docs', 'pages', 'material-ui', 'api')),
-        ),
-      });
-
-      expect(info.getInheritance('ButtonBase')).to.deep.equal({
-        name: 'ButtonBase',
-        apiPathname: '/material-ui/api/button-base/',
-      });
-
-      let existed = false;
-      try {
-        fs.readdirSync(path.join(process.cwd(), 'docs/data'));
-        existed = true;
-        // eslint-disable-next-line no-empty
-      } catch (error) {}
-      if (existed) {
-        expect(info.getDemos()).to.deep.equal([
-          {
-            demoPageTitle: 'Button Group',
-            demoPathname: '/material-ui/react-button-group/',
-          },
-          {
-            demoPageTitle: 'Button',
-            demoPathname: '/material-ui/react-button/',
-          },
-        ]);
-      }
-    });
-  });
-
-  describe('getBaseComponentInfo', () => {
-    it('return correct info for base component file', () => {
-      const info = getBaseComponentInfo(
-        path.join(process.cwd(), `/packages/mui-base/src/Button/Button.tsx`),
-      );
-      sinon.assert.match(info, {
-        name: 'Button',
-        apiPathname: '/base-ui/react-button/components-api/#button',
-        muiName: 'MuiButton',
-        apiPagesDirectory: sinon.match((value) =>
-          value.endsWith(path.join('docs', 'pages', 'base-ui', 'api')),
-        ),
-      });
-
-      info.readFile();
-
-      expect(info.getInheritance()).to.deep.equal(null);
-
-      let existed = false;
-      try {
-        fs.readdirSync(path.join(process.cwd(), 'docs/data'));
-        existed = true;
-        // eslint-disable-next-line no-empty
-      } catch (error) {}
-      if (existed) {
-        expect(info.getDemos()).to.deep.equal([
-          {
-            demoPageTitle: 'Button',
-            demoPathname: '/base-ui/react-button/',
-          },
-        ]);
-      }
-    });
-
-    it('return correct info for base hook file', () => {
-      const info = getBaseHookInfo(
-        path.join(process.cwd(), `/packages/mui-base/src/useButton/useButton.ts`),
-      );
-      sinon.assert.match(info, {
-        name: 'useButton',
-        apiPathname: '/base-ui/react-button/hooks-api/#use-button',
-      });
-
-      info.readFile();
-
-      let existed = false;
-      try {
-        fs.readdirSync(path.join(process.cwd(), 'docs/data'));
-        existed = true;
-        // eslint-disable-next-line no-empty
-      } catch (error) {}
-      if (existed) {
-        expect(info.getDemos()).to.deep.equal([
-          {
-            demoPageTitle: 'Button',
-            demoPathname: '/base-ui/react-button/#hook',
-          },
-        ]);
-      }
     });
   });
 });

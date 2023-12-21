@@ -9,8 +9,7 @@ import {
   act,
   fireEvent,
   strictModeDoubleLoggingSuppressed,
-  describeJoyColorInversion,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import Autocomplete, {
   autocompleteClasses as classes,
   createFilterOptions,
@@ -77,12 +76,6 @@ describe('Joy <Autocomplete />', () => {
       },
     },
   }));
-
-  describeJoyColorInversion(<Autocomplete options={[]} open />, {
-    muiName: 'JoyAutocomplete',
-    classes,
-    portalSlot: 'listbox',
-  });
 
   it('should be customizable in the theme', () => {
     render(

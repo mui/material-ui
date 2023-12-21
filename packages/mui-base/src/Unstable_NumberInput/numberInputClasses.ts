@@ -7,9 +7,9 @@ export interface NumberInputClasses {
   /** Class name applied to the root element if the component is a descendant of `FormControl`. */
   formControl: string;
   /** Class name applied to the root element if `startAdornment` is provided. */
-  // TODO:  adornedStart: string;
+  adornedStart: string;
   /** Class name applied to the root element if `endAdornment` is provided. */
-  // TODO: adornedEnd: string;
+  adornedEnd: string;
   /** Class name applied to the root element if the component is focused. */
   focused: string;
   /** Class name applied to the root element if `disabled={true}`. */
@@ -42,6 +42,6 @@ export const numberInputClasses: NumberInputClasses = generateUtilityClasses('Mu
   'input',
   'incrementButton',
   'decrementButton',
-  // 'adornedStart',
-  // 'adornedEnd',
+  'adornedStart',
+  'adornedEnd',
 ]);

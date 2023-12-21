@@ -13,7 +13,7 @@ See [Start a New React Project](https://react.dev/learn/start-a-new-react-projec
 
 <!-- #default-branch-switch -->
 
-{{"component": "modules/components/ExampleCollection.js"}}
+{{"component": "modules/components/MaterialUIExampleCollection"}}
 
 <br />
 
@@ -76,7 +76,7 @@ They're great resources for learning more about real-world usage of Material UI 
 
 ### Paid
 
-- [ScaffoldHub](https://scaffoldhub.io/?partner=1):
+- [ScaffoldHub](https://www.scaffoldhub.io/?partner=1):
 
   - Tool for building web applications.
   - Choose your framework and library (React with Material UI).

@@ -13,10 +13,11 @@ import Pagination from '@mui/material/Pagination';
 import Button from '@mui/material/Button';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import Chip from '@mui/material/Chip';
-import TwitterIcon from '@mui/icons-material/Twitter';
+import XIcon from '@mui/icons-material/X';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import DiscordIcon from 'docs/src/icons/DiscordIcon';
 import Head from 'docs/src/modules/components/Head';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
@@ -126,8 +127,8 @@ function PostPreview(props: BlogPost) {
             <Avatar
               key={author}
               alt=""
-              src={`${AUTHORS[author].avatar}?s=${28}`}
               srcSet={`${AUTHORS[author].avatar}?s=${28 * 2} 2x`}
+              src={`${AUTHORS[author].avatar}?s=${28}`}
             />
           ))}
         </AvatarGroup>
@@ -258,20 +259,21 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
       <Head
         title="Blog - MUI"
         description="Follow the MUI blog to learn about new product features, latest advancements in UI development, and business initiatives."
+        card="/static/social-previews/blog-preview.jpg"
         disableAlternateLocale
       />
       <AppHeader />
       <main id="main-content">
         <Box
           sx={(theme) => ({
-            background: `linear-gradient(180deg, #FFF 50%, 
+            background: `linear-gradient(180deg, #FFF 50%,
           ${(theme.vars || theme).palette.primary[50]} 100%)
         `,
             ...theme.applyDarkStyles({
               background: `linear-gradient(180deg, ${
-                (theme.vars || theme).palette.primaryDark[800]
-              } 50%, 
-          ${alpha(theme.palette.primary[900], 0.2)} 100%)
+                (theme.vars || theme).palette.primaryDark[900]
+              } 50%,
+          ${alpha(theme.palette.primary[800], 0.2)} 100%)
           `,
             }),
           })}
@@ -458,8 +460,11 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                   GitHub
                 </Link>
                 <Link href="https://twitter.com/MUI_hq" target="_blank" fontSize={14}>
-                  <TwitterIcon fontSize="small" />
-                  Twitter
+                  <XIcon fontSize="small" />X
+                </Link>
+                <Link href="https://mui.com/r/discord/" target="_blank" fontSize={14}>
+                  <DiscordIcon fontSize="small" />
+                  Discord
                 </Link>
                 <Link href="https://www.linkedin.com/company/mui/" target="_blank" fontSize={14}>
                   <LinkedInIcon fontSize="small" />

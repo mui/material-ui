@@ -108,6 +108,15 @@ Touching "Cancel" in a confirmation dialog, or pressing Back, cancels the action
 
 {{"demo": "ConfirmationDialog.js"}}
 
+## Non-modal dialog
+
+Dialogs can also be non-modal, meaning they don't interrupt user interaction behind it.
+Visit [the Nielsen Norman Group article](https://www.nngroup.com/articles/modal-nonmodal-dialog/) for more in-depth guidance about modal vs. non-modal dialog usage.
+
+The demo below shows a persistent cookie banner, a common non-modal dialog use case.
+
+{{"demo": "CookiesBanner.js", "iframe": true}}
+
 ## Draggable dialog
 
 You can create a draggable dialog by using [react-draggable](https://github.com/react-grid-layout/react-draggable).

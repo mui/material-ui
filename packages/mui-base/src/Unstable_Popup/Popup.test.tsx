@@ -7,7 +7,7 @@ import {
   describeConformanceUnstyled,
   screen,
   fireEvent,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import {
   Unstable_Popup as Popup,
   popupClasses,

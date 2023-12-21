@@ -79,7 +79,7 @@ Nested components inside a component have:
 
 - their own flattened props when these are key to the top level component abstraction,
   for instance an `id` prop for the `Input` component.
-- their own `xxxProps` prop when users might need to tweak the internal render method's sub-components,
+- their own `xxxProps` prop when users might need to tweak the internal render method's subcomponents,
   for instance, exposing the `inputProps` and `InputProps` props on components that use `Input` internally.
 - their own `xxxComponent` prop for performing component injection.
 - their own `xxxRef` prop when you might need to perform imperative actions,

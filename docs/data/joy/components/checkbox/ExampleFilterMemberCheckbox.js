@@ -39,12 +39,12 @@ export default function ExampleFilterMemberCheckbox() {
       <div role="group" aria-labelledby="member">
         <List
           sx={{
+            '--ListItem-gap': '0.75rem',
             [`& .${checkboxClasses.root}`]: {
               mr: 'auto',
               flexGrow: 1,
               alignItems: 'center',
               flexDirection: 'row-reverse',
-              gap: 1.5,
             },
           }}
         >

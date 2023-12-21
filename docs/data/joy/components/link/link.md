@@ -10,11 +10,11 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/link/
 
 <p class="description">The Link component lets you customize anchor tags with theme colors and typography styles.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Introduction
 
-The Joy UI Link component replaces the native HTML `<a>` element, and accepts the same props as the [Typography](/joy-ui/react-typography/) component, as well as MUI System props.
+The Joy UI Link component replaces the native HTML `<a>` element and accepts the same props as the [Typography](/joy-ui/react-typography/) component, as well as MUI System props.
 
 {{"demo": "LinkUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
@@ -112,9 +112,9 @@ In this situation, the Link will inherit the typographic level scale from its Ty
 
 The sections below explain how to integrate the Link component with third-party tools that have their own comparable component.
 
-### Next.js
+### Next.js Pages Router
 
-Here is an example with the [Link component](https://nextjs.org/docs/api-reference/next/link) of Next.js:
+Here is an example with the [Link component](https://nextjs.org/docs/pages/api-reference/components/link) of Next.js:
 
 ```js
 import NextLink from 'next/link';

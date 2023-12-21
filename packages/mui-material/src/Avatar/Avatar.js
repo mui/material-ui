@@ -164,8 +164,8 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     children = (
       <AvatarImg
         alt={alt}
-        src={src}
         srcSet={srcSet}
+        src={src}
         sizes={sizes}
         ownerState={ownerState}
         className={classes.img}

@@ -20,8 +20,8 @@
   "returnValue": {
     "getRootProps": {
       "type": {
-        "name": "&lt;TOther extends Record&lt;string, ((event: any) =&gt; void) | undefined&gt; = {}&gt;(externalProps?: TOther) =&gt; UseSnackbarRootSlotProps&lt;TOther&gt;",
-        "description": "&lt;TOther extends Record&lt;string, ((event: any) =&gt; void) | undefined&gt; = {}&gt;(externalProps?: TOther) =&gt; UseSnackbarRootSlotProps&lt;TOther&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSnackbarRootSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSnackbarRootSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },

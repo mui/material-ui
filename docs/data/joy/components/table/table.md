@@ -10,7 +10,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/table/
 
 <p class="description">Tables display sets of data organized in rows and columns.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Introduction
 
@@ -113,7 +113,7 @@ For example, you can use `3n` as a value to create stripes on row numbers three,
 
 ### Hover
 
-To highlight a row of the table body when hovering over it, set the `hoverAxis` prop to true.
+To highlight a row of the table body when hovering over it, set the `hoverRow` prop to true.
 
 {{"demo": "TableHover.js"}}
 

@@ -104,7 +104,7 @@ function AppSettingsDrawer(props) {
         <Typography variant="body1" fontWeight="500">
           {t('settings.settings')}
         </Typography>
-        <IconButton color="inherit" onClick={onClose} edge="end">
+        <IconButton color="inherit" onClick={onClose} edge="end" aria-label={t('close')}>
           <CloseIcon color="primary" fontSize="small" />
         </IconButton>
       </Box>
@@ -162,7 +162,7 @@ function AppSettingsDrawer(props) {
         >
           <IconToggleButton
             value="ltr"
-            aria-label={t('settings.light')}
+            aria-label={t('settings.ltr')}
             data-ga-event-category="settings"
             data-ga-event-action="ltr"
           >
@@ -171,7 +171,7 @@ function AppSettingsDrawer(props) {
           </IconToggleButton>
           <IconToggleButton
             value="rtl"
-            aria-label={t('settings.system')}
+            aria-label={t('settings.rtl')}
             data-ga-event-category="settings"
             data-ga-event-action="rtl"
           >

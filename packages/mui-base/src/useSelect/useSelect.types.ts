@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { ListAction, ListState, UseListRootSlotProps } from '../useList';
 import { SelectOption } from '../useOption/useOption.types';
-import { EventHandlers } from '../utils/types';
 import { SelectProviderValue } from './SelectProvider';
 import { MuiCancellableEventHandler } from '../utils/MuiCancellableEvent';
 
@@ -124,6 +123,12 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
    * Set to `null` to deselect all options.
    */
   value?: SelectValue<OptionValue, Multiple>;
+  /**
+   * The name of the component using useSelect.
+   * For debugging purposes.
+   * @default 'useSelect'
+   */
+  componentName?: string;
 }
 
 interface UseSelectButtonSlotEventHandlers {
@@ -140,8 +145,13 @@ export type UseSelectButtonSlotProps<TOther = {}> = UseListRootSlotProps<
     ref: React.RefCallback<Element> | null;
   };
 
-export type UseSelectHiddenInputSlotProps<TOther = {}> =
-  React.InputHTMLAttributes<HTMLInputElement> & TOther;
+interface UseSelectHiddenInputSlotEventHandlers {
+  onChange: MuiCancellableEventHandler<React.ChangeEvent<HTMLInputElement>>;
+}
+
+export type UseSelectHiddenInputSlotProps<TOther = {}> = UseSelectHiddenInputSlotEventHandlers &
+  React.InputHTMLAttributes<HTMLInputElement> &
+  TOther;
 
 interface UseSelectListboxSlotEventHandlers {
   onMouseDown: React.MouseEventHandler;
@@ -179,30 +189,31 @@ export interface UseSelectReturnValue<Value, Multiple> {
    * Action dispatcher for the select component.
    * Allows to programmatically control the select.
    */
-  dispatch: (action: ListAction<Value> | SelectAction) => void;
+  dispatch: (action: ListAction<Value> | SelectAction<Value>) => void;
   /**
    * Resolver for the button slot's props.
-   * @param otherHandlers event handlers for the button slot
+   * @param externalProps event handlers for the button slot
    * @returns props that should be spread on the button slot
    */
-  getButtonProps: <OtherHandlers extends EventHandlers = {}>(
-    otherHandlers?: OtherHandlers,
-  ) => UseSelectButtonSlotProps<OtherHandlers>;
+  getButtonProps: <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps?: ExternalProps,
+  ) => UseSelectButtonSlotProps<ExternalProps>;
   /**
    * Resolver for the hidden input slot's props.
+   * @param externalProps event handlers for the hidden input slot
    * @returns HTML input attributes that should be spread on the hidden input slot
    */
-  getHiddenInputProps: <OtherHandlers extends EventHandlers = {}>(
-    otherHandlers?: OtherHandlers,
-  ) => UseSelectHiddenInputSlotProps<OtherHandlers>;
+  getHiddenInputProps: <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps?: ExternalProps,
+  ) => UseSelectHiddenInputSlotProps<ExternalProps>;
   /**
    * Resolver for the listbox slot's props.
-   * @param otherHandlers event handlers for the listbox slot
+   * @param externalProps event handlers for the listbox slot
    * @returns props that should be spread on the listbox slot
    */
-  getListboxProps: <OtherHandlers extends EventHandlers = {}>(
-    otherHandlers?: OtherHandlers,
-  ) => UseSelectListboxSlotProps<OtherHandlers>;
+  getListboxProps: <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps?: ExternalProps,
+  ) => UseSelectListboxSlotProps<ExternalProps>;
   /**
    * A function that returns the metadata of an option with a given value.
    *
@@ -238,6 +249,7 @@ export interface UseSelectReturnValue<Value, Multiple> {
 
 export const SelectActionTypes = {
   buttonClick: 'buttonClick',
+  browserAutoFill: 'browserAutoFill',
 } as const;
 
 export interface ButtonClickAction {
@@ -245,7 +257,13 @@ export interface ButtonClickAction {
   event: React.MouseEvent;
 }
 
-export type SelectAction = ButtonClickAction;
+export interface BrowserAutofillAction<OptionValue> {
+  type: typeof SelectActionTypes.browserAutoFill;
+  item: OptionValue;
+  event: React.ChangeEvent;
+}
+
+export type SelectAction<OptionValue> = ButtonClickAction | BrowserAutofillAction<OptionValue>;
 
 export interface SelectInternalState<OptionValue> extends ListState<OptionValue> {
   open: boolean;

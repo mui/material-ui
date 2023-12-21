@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { fireEvent, createRenderer, describeConformance, screen } from 'test/utils';
+import { fireEvent, createRenderer, describeConformance, screen } from '@mui-internal/test-utils';
 import PropTypes, { checkPropTypes } from 'prop-types';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Drawer, { drawerClasses } from '@mui/material/Drawer';
@@ -772,7 +772,7 @@ describe('<SwipeableDrawer />', () => {
         </div>,
       );
 
-      // Event order recorded with https://codesandbox.io/s/single-swipearea-lock-ksyss
+      // Event order recorded with https://codesandbox.io/p/sandbox/single-swipearea-lock-ksyss
       const topMostSwipeArea = screen.getAllByTestId('swipearea').slice(-1)[0];
       fireEvent.touchStart(topMostSwipeArea, {
         touches: [new Touch({ identifier: 0, target: topMostSwipeArea, pageX: 0, clientY: 0 })],
