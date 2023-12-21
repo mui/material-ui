@@ -4,6 +4,7 @@
 /coverage
 /docs/export
 /docs/pages/playground/
+/examples/base-ui-nextjs-tailwind/src
 /examples/material-ui-cra*/src/serviceWorker.js
 /examples/material-ui-gatsby/public/
 /examples/material-ui-preact/config
