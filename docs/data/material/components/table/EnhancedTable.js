@@ -22,8 +22,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 
-function createData(name, calories, fat, carbs, protein) {
+function createData(id, name, calories, fat, carbs, protein) {
   return {
+    id,
     name,
     calories,
     fat,
@@ -33,19 +34,19 @@ function createData(name, calories, fat, carbs, protein) {
 }
 
 const rows = [
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Donut', 452, 25.0, 51, 4.9),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Honeycomb', 408, 3.2, 87, 6.5),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Jelly Bean', 375, 0.0, 94, 0.0),
-  createData('KitKat', 518, 26.0, 65, 7.0),
-  createData('Lollipop', 392, 0.2, 98, 0.0),
-  createData('Marshmallow', 318, 0, 81, 2.0),
-  createData('Nougat', 360, 19.0, 9, 37.0),
-  createData('Oreo', 437, 18.0, 63, 4.0),
+  createData(1, 'Cupcake', 305, 3.7, 67, 4.3),
+  createData(2, 'Donut', 452, 25.0, 51, 4.9),
+  createData(3, 'Eclair', 262, 16.0, 24, 6.0),
+  createData(4, 'Frozen yoghurt', 159, 6.0, 24, 4.0),
+  createData(5, 'Gingerbread', 356, 16.0, 49, 3.9),
+  createData(6, 'Honeycomb', 408, 3.2, 87, 6.5),
+  createData(7, 'Ice cream sandwich', 237, 9.0, 37, 4.3),
+  createData(8, 'Jelly Bean', 375, 0.0, 94, 0.0),
+  createData(9, 'KitKat', 518, 26.0, 65, 7.0),
+  createData(10, 'Lollipop', 392, 0.2, 98, 0.0),
+  createData(11, 'Marshmallow', 318, 0, 81, 2.0),
+  createData(12, 'Nougat', 360, 19.0, 9, 37.0),
+  createData(13, 'Oreo', 437, 18.0, 63, 4.0),
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -240,19 +241,19 @@ export default function EnhancedTable() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelected = rows.map((n) => n.name);
+      const newSelected = rows.map((n) => n.id);
       setSelected(newSelected);
       return;
     }
     setSelected([]);
   };
 
-  const handleClick = (event, name) => {
-    const selectedIndex = selected.indexOf(name);
+  const handleClick = (event, id) => {
+    const selectedIndex = selected.indexOf(id);
     let newSelected = [];
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
+      newSelected = newSelected.concat(selected, id);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -263,7 +264,6 @@ export default function EnhancedTable() {
         selected.slice(selectedIndex + 1),
       );
     }
-
     setSelected(newSelected);
   };
 
@@ -280,7 +280,7 @@ export default function EnhancedTable() {
     setDense(event.target.checked);
   };
 
-  const isSelected = (name) => selected.indexOf(name) !== -1;
+  const isSelected = (id) => selected.indexOf(id) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -315,17 +315,17 @@ export default function EnhancedTable() {
             />
             <TableBody>
               {visibleRows.map((row, index) => {
-                const isItemSelected = isSelected(row.name);
+                const isItemSelected = isSelected(row.id);
                 const labelId = `enhanced-table-checkbox-${index}`;
 
                 return (
                   <TableRow
                     hover
-                    onClick={(event) => handleClick(event, row.name)}
+                    onClick={(event) => handleClick(event, row.id)}
                     role="checkbox"
                     aria-checked={isItemSelected}
                     tabIndex={-1}
-                    key={row.name}
+                    key={row.id}
                     selected={isItemSelected}
                     sx={{ cursor: 'pointer' }}
                   >

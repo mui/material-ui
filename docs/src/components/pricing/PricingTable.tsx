@@ -174,19 +174,24 @@ export function PlanPrice(props: PlanPriceProps) {
       <LicensingModelSwitch />
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
         <Typography
-          variant="body2"
+          variant="caption"
           fontWeight="medium"
           sx={(theme) => ({
             borderRadius: 0.5,
             alignSelf: 'flex-end',
             textDecoration: 'line-through',
-            p: '2px 4px',
-            mb: '3px',
+            py: 0.5,
+            px: 1,
+            mb: 0.5,
+            fontWeight: 'medium',
             bgcolor: 'error.50',
             color: 'error.500',
+            border: '1px solid',
+            borderColor: 'error.100',
             ...theme.applyDarkStyles({
-              color: 'error.400',
+              color: 'error.300',
               bgcolor: 'error.900',
+              borderColor: 'error.800',
             }),
           })}
         >
@@ -334,7 +339,7 @@ function ColumnHeadHighlight(props: BoxProps) {
         (theme) =>
           theme.applyDarkStyles({
             borderColor: 'primaryDark.700',
-            background: alpha(theme.palette.primaryDark[900], 0.5),
+            background: alpha(theme.palette.primaryDark[700], 0.3),
           }),
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
       ]}
@@ -368,7 +373,7 @@ function Cell({ highlighted = false, ...props }: BoxProps & { highlighted?: bool
           theme.applyDarkStyles({
             ...(highlighted && {
               borderColor: 'primaryDark.700',
-              bgcolor: alpha(theme.palette.primaryDark[900], 0.5),
+              bgcolor: alpha(theme.palette.primaryDark[700], 0.3),
             }),
           }),
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
@@ -397,7 +402,7 @@ function RowHead({ children, startIcon, ...props }: BoxProps & { startIcon?: Rea
         },
         (theme) =>
           theme.applyDarkStyles({
-            bgcolor: 'primaryDark.900',
+            bgcolor: 'primaryDark.800',
           }),
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
       ]}
@@ -444,6 +449,9 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'data-grid/column-resizing': (
     <ColumnHead label="Column resizing" href="/x/react-data-grid/column-dimensions/#resizing" />
   ),
+  'data-grid/column-autosizing': (
+    <ColumnHead label="Column autosizing" href="/x/react-data-grid/column-dimensions/#autosizing" />
+  ),
   'data-grid/column-reorder': (
     <ColumnHead label="Column reorder" href="/x/react-data-grid/column-ordering/" />
   ),
@@ -482,7 +490,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
     <ColumnHead label="Column filters" href="/x/react-data-grid/filtering/" />
   ),
   'data-grid/filter-quick': (
-    <ColumnHead label="Quick filter" href="/x/react-data-grid/filtering/quick-filter/" />
+    <ColumnHead label="Quick filter (Search)" href="/x/react-data-grid/filtering/quick-filter/" />
   ),
   'data-grid/header-filters': (
     <ColumnHead label="Header filters" href="/x/react-data-grid/filtering/header-filters/" />
@@ -581,7 +589,9 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'charts/mouse-zoom': <ColumnHead label="Zoom on mouse" />,
   'charts/export': <ColumnHead label="Export" />,
   // -- charts - datagrid --
-  'charts/cell-with-charts': <ColumnHead label="Cell with chart" />,
+  'charts/cell-with-charts': (
+    <ColumnHead label="Cell with chart" href="/x/react-data-grid/custom-columns/#sparkline" />
+  ),
   'charts/filter-interaction': <ColumnHead label="Row filtering" />,
   'charts/selection-interaction': <ColumnHead label="Range selection" />,
 
@@ -692,6 +702,7 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/column-groups': yes,
   'data-grid/column-spanning': yes,
   'data-grid/column-resizing': no,
+  'data-grid/column-autosizing': no,
   'data-grid/column-reorder': no,
   'data-grid/column-pinning': no,
   // -- data grid - rows --
@@ -758,7 +769,7 @@ const communityData: Record<string, React.ReactNode> = {
   'charts/mouse-zoom': no,
   'charts/export': no,
   // -- charts - datagrid --
-  'charts/cell-with-charts': pending,
+  'charts/cell-with-charts': yes,
   'charts/filter-interaction': no,
   'charts/selection-interaction': no,
 
@@ -789,6 +800,7 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/column-groups': yes,
   'data-grid/column-spanning': yes,
   'data-grid/column-resizing': yes,
+  'data-grid/column-autosizing': yes,
   'data-grid/column-reorder': yes,
   'data-grid/column-pinning': yes,
   // -- data grid - rows --
@@ -853,7 +865,7 @@ const proData: Record<string, React.ReactNode> = {
   'charts/mouse-zoom': pending,
   'charts/export': pending,
   // -- charts - datagrid --
-  'charts/cell-with-charts': pending,
+  'charts/cell-with-charts': yes,
   'charts/filter-interaction': pending,
   'charts/selection-interaction': no,
 
@@ -889,6 +901,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/column-groups': yes,
   'data-grid/column-spanning': yes,
   'data-grid/column-resizing': yes,
+  'data-grid/column-autosizing': yes,
   'data-grid/column-reorder': yes,
   'data-grid/column-pinning': yes,
   // -- data grid - rows --
@@ -953,7 +966,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'charts/mouse-zoom': pending,
   'charts/export': pending,
   // -- charts - datagrid --
-  'charts/cell-with-charts': pending,
+  'charts/cell-with-charts': yes,
   'charts/filter-interaction': pending,
   'charts/selection-interaction': pending,
 
@@ -1105,7 +1118,7 @@ function renderMasterRow(key: string, gridSx: object, plans: Array<any>) {
           },
           ...theme.applyDarkStyles({
             '&:hover > div': {
-              bgcolor: alpha(theme.palette.primaryDark[900], 0.5),
+              bgcolor: theme.palette.primaryDark[800],
             },
           }),
         }),
@@ -1245,7 +1258,7 @@ export default function PricingTable({
   const renderNestedRow = (key: string) => renderMasterRow(key, nestedGridSx, plans);
 
   return (
-    <Box ref={tableRef} {...props} sx={{ pt: 8, pb: 8, ...props.sx }}>
+    <Box ref={tableRef} {...props} sx={{ pt: 8, ...props.sx }}>
       <StickyHead container={tableRef} disableCalculation={columnHeaderHidden} />
       {!columnHeaderHidden && (
         <Box sx={gridSx}>
@@ -1360,6 +1373,8 @@ export default function PricingTable({
         {renderNestedRow('data-grid/column-spanning')}
         {divider}
         {renderNestedRow('data-grid/column-resizing')}
+        {divider}
+        {renderNestedRow('data-grid/column-autosizing')}
         {divider}
         {renderNestedRow('data-grid/column-reorder')}
         {divider}

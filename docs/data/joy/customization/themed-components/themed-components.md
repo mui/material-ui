@@ -101,9 +101,6 @@ extendTheme({
               '&:hover': {
                 color: '#fff',
               },
-              '&.Mui-disabled': {
-                opacity: 0.6,
-              },
             }),
         }),
       },
@@ -111,6 +108,32 @@ extendTheme({
   },
 });
 ```
+
+### Change styles based on state
+
+Joy UI components increase the CSS specificity of the styles when they are in a given state such as `selected`, `disabled`, `focusVisible`, etc.
+
+To override styles of a specific state, import the component's class selector using its name in camel-case followed by `Classes`.
+
+```js
+import { listItemButtonClasses } from '@mui/joy/ListItemButton';
+
+extendTheme({
+  components: {
+    JoyListItemButton: {
+      styleOverrides: {
+        root: {
+          [`&.${listItemButtonClasses.selected}`]: {
+            color: 'rgba(255 255 255 / 0.7)',
+          },
+        },
+      },
+    },
+  },
+});
+```
+
+The available states are: `active`, `checked`, `completed`, `disabled`, `error`, `expanded`, `focused`, `focusVisible`, `readOnly`, `required`, `selected`.
 
 ### Extend colors
 

@@ -151,7 +151,7 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
   const createHandleKeyUp =
     (otherHandlers: EventHandlers) => (event: React.KeyboardEvent & MuiCancellableEvent) => {
       // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
-      // https://codesandbox.io/s/button-keyup-preventdefault-dn7f0
+      // https://codesandbox.io/p/sandbox/button-keyup-preventdefault-dn7f0
 
       if (event.target === event.currentTarget) {
         setActive(false);

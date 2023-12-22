@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useTheme } from '@mui/system';
-import { Slider, SliderProps } from '@mui/base/Slider';
+import { Slider as BaseSlider, SliderProps } from '@mui/base/Slider';
 import clsx from 'clsx';
 
 function useIsDarkMode() {
@@ -14,8 +14,8 @@ export default function UnstyledSliderIntroduction() {
 
   return (
     <div className={isDarkMode ? 'dark' : ''} style={{ width: 320 }}>
-      <CustomSlider defaultValue={50} />
-      <CustomSlider defaultValue={10} disabled />
+      <Slider defaultValue={50} />
+      <Slider defaultValue={10} disabled />
     </div>
   );
 }
@@ -23,9 +23,9 @@ export default function UnstyledSliderIntroduction() {
 const resolveSlotProps = (fn: any, args: any) =>
   typeof fn === 'function' ? fn(args) : fn;
 
-const CustomSlider = React.forwardRef<HTMLSpanElement, SliderProps>((props, ref) => {
+const Slider = React.forwardRef<HTMLSpanElement, SliderProps>((props, ref) => {
   return (
-    <Slider
+    <BaseSlider
       ref={ref}
       {...props}
       slotProps={{
@@ -82,8 +82,10 @@ const CustomSlider = React.forwardRef<HTMLSpanElement, SliderProps>((props, ref)
           return {
             ...resolvedSlotProps,
             className: clsx(
-              `absolute w-4 h-4 -ml-1.5 -mt-1.5 box-border rounded-full outline-0 border-3 border-solid border-current bg-white hover:shadow-outline-purple ${
-                focused || active ? 'shadow-outline-purple' : ''
+              `absolute w-4 h-4 -ml-1.5 -mt-1.5 box-border rounded-full outline-0 border-[3px] border-solid border-current bg-white hover:shadow-outline-purple ${
+                focused || active
+                  ? 'shadow-[0_0_0_4px_#e9d5ff] dark:shadow-[0_0_0_4px_#7e22ce] active:shadow-[0_0_0_4px_#d8b4fe] dark:active:shadow-[0_0_0_4px_#9333ea] outline-none'
+                  : ''
               }`,
               resolvedSlotProps?.className,
             ),

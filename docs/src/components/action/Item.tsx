@@ -101,7 +101,7 @@ export default function Item({
           color="text.primary"
           variant="body2"
           fontWeight="bold"
-          sx={{ display: 'block', mr: 2 }}
+          sx={{ display: 'block' }}
         >
           {title}
         </Typography>

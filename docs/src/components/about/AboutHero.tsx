@@ -153,7 +153,7 @@ export default function AboutHero() {
         alwaysCenter
         overline="About us"
         title={
-          <Typography variant="h2" component="h1" sx={{ maxWidth: 600, mx: 'auto' }}>
+          <Typography variant="h2" component="h1">
             We&apos;re on a mission to make <br />{' '}
             <GradientText>building better UIs effortless</GradientText>
           </Typography>

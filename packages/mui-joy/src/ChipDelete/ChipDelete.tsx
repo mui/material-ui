@@ -8,7 +8,6 @@ import { useButton } from '@mui/base/useButton';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { useVariantColor } from '../styles/variantColorInheritance';
-import { useColorInversion } from '../styles/ColorInversion';
 import Cancel from '../internal/svg-icons/Cancel';
 import { getChipDeleteUtilityClass } from './chipDeleteClasses';
 import { ChipDeleteProps, ChipDeleteOwnerState, ChipDeleteTypeMap } from './ChipDeleteProps';
@@ -83,8 +82,7 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
     inProps.color,
     true,
   );
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, inheritedColor);
+  const color = inProps.color || inheritedColor;
   const disabled = disabledProp ?? chipContext.disabled;
 
   const buttonRef = React.useRef<HTMLElement>(null);

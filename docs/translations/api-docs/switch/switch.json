@@ -5,7 +5,7 @@
     "checkedIcon": { "description": "The icon to display when the component is checked." },
     "classes": { "description": "Override or extend the styles applied to the component." },
     "color": {
-      "description": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#adding-new-colors\">palette customization guide</a>."
+      "description": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#custom-colors\">palette customization guide</a>."
     },
     "defaultChecked": {
       "description": "The default checked state. Use when the component is not controlled."
@@ -41,20 +41,9 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "edgeStart": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>edge=\"start\"</code>"
-    },
-    "edgeEnd": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>edge=\"end\"</code>"
-    },
-    "switchBase": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the internal <code>SwitchBase</code> component&#39;s <code>root</code> class"
+    "checked": {
+      "description": "State class applied to {{nodeName}}.",
+      "nodeName": "the internal <code>SwitchBase</code> component&#39;s <code>checked</code> class"
     },
     "colorPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -66,27 +55,38 @@
       "nodeName": "the internal SwitchBase component&#39;s root element",
       "conditions": "<code>color=\"secondary\"</code>"
     },
-    "sizeSmall": {
+    "disabled": {
+      "description": "State class applied to {{nodeName}}.",
+      "nodeName": "the internal SwitchBase component&#39;s disabled class"
+    },
+    "edgeEnd": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>size=\"small\"</code>"
+      "conditions": "<code>edge=\"end\"</code>"
     },
+    "edgeStart": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>edge=\"start\"</code>"
+    },
+    "input": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the internal SwitchBase component&#39;s input element"
+    },
+    "root": { "description": "Styles applied to the root element." },
     "sizeMedium": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>size=\"medium\"</code>"
     },
-    "checked": {
-      "description": "State class applied to {{nodeName}}.",
-      "nodeName": "the internal <code>SwitchBase</code> component&#39;s <code>checked</code> class"
+    "sizeSmall": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"small\"</code>"
     },
-    "disabled": {
-      "description": "State class applied to {{nodeName}}.",
-      "nodeName": "the internal SwitchBase component&#39;s disabled class"
-    },
-    "input": {
+    "switchBase": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the internal SwitchBase component&#39;s input element"
+      "nodeName": "the internal <code>SwitchBase</code> component&#39;s <code>root</code> class"
     },
     "thumb": {
       "description": "Styles used to create the thumb passed to the internal <code>SwitchBase</code> component <code>icon</code> prop."

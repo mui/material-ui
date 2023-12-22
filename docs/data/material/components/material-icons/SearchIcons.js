@@ -164,7 +164,7 @@ const Icons = React.memo(function Icons(props) {
               {/*  eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
               <div onClick={handleLabelClick}>{icon.importName}</div>
             </div>
-            {/* eslint-enable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */}
+            {/* eslint-enable jsx-a11y/click-events-have-key-events */}
           </StyledIcon>
         );
       })}

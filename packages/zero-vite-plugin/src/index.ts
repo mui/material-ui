@@ -2,11 +2,10 @@ import type { Plugin, PluginOption } from 'vite';
 import { generateCss } from '@mui/zero-tag-processor/generateCss';
 import { preprocessor } from '@mui/zero-tag-processor/preprocessor';
 import { transformAsync } from '@babel/core';
-import baseLinaria from '@linaria/vite';
+import type { PluginCustomOptions } from '@mui/zero-tag-processor/utils';
+import baseZeroVitePlugin, { type VitePluginOptions } from './zero-vite-plugin';
 
-type LinariaOptions = Exclude<Parameters<typeof baseLinaria>[0], undefined>;
-
-export interface ZeroVitePluginOptions extends LinariaOptions {
+export interface ZeroVitePluginOptions extends VitePluginOptions {
   /**
    * The theme object that you want to be passed to the `styled` function
    */
@@ -22,19 +21,23 @@ export interface ZeroVitePluginOptions extends LinariaOptions {
   injectDefaultThemeInRoot?: boolean;
 }
 
-type LinariaWrapperOptions = Exclude<ZeroVitePluginOptions, 'theme'> & {
-  themeArgs: Record<string, unknown>;
-};
+type WrapperOptions = VitePluginOptions & PluginCustomOptions;
 
-const linaria = (options: LinariaWrapperOptions): Plugin => {
-  return baseLinaria({
+const wrapperPlugin = (options: WrapperOptions): Plugin => {
+  return baseZeroVitePlugin({
     preprocessor,
     ...options,
   });
 };
 
 export function zeroVitePlugin(options: ZeroVitePluginOptions): PluginOption {
-  const { cssVariablesPrefix = 'mui', injectDefaultThemeInRoot = true, theme } = options ?? {};
+  const {
+    cssVariablesPrefix = 'mui',
+    injectDefaultThemeInRoot = true,
+    theme,
+    babelOptions = {},
+    ...rest
+  } = options ?? {};
 
   function injectMUITokensPlugin(): PluginOption {
     return {
@@ -85,17 +88,17 @@ export function zeroVitePlugin(options: ZeroVitePluginOptions): PluginOption {
     };
   }
 
-  const linariaPlugin = linaria({
+  const zeroPlugin = wrapperPlugin({
     cssVariablesPrefix,
     themeArgs: {
       theme,
     },
-    ...options,
     babelOptions: {
-      ...options?.babelOptions,
+      ...babelOptions,
       plugins: ['@babel/plugin-syntax-jsx'],
     },
+    ...rest,
   });
 
-  return [injectMUITokensPlugin(), intermediateBabelPlugin(), linariaPlugin];
+  return [injectMUITokensPlugin(), intermediateBabelPlugin(), zeroPlugin];
 }

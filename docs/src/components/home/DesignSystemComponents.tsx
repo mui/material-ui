@@ -37,7 +37,7 @@ function DesignSystemComponents() {
       <SectionHeadline
         overline="Production-ready components"
         title={
-          <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 }, maxWidth: 500 }}>
+          <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 } }}>
             Beautiful and powerful,
             <br /> <GradientText>right out of the box</GradientText>
           </Typography>

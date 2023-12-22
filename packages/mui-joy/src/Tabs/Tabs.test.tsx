@@ -1,11 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import {
-  describeConformance,
-  createRenderer,
-  screen,
-  describeJoyColorInversion,
-} from '@mui-internal/test-utils';
+import { describeConformance, createRenderer, screen } from '@mui-internal/test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Tabs, { tabsClasses as classes } from '@mui/joy/Tabs';
 import SizeTabsContext from './SizeTabsContext';
@@ -29,8 +24,6 @@ describe('Joy <Tabs />', () => {
       },
     },
   }));
-
-  describeJoyColorInversion(<Tabs />, { muiName: 'JoyTabs', classes });
 
   it('prop: variant', () => {
     render(<Tabs variant="outlined" aria-label="Tabs" />);

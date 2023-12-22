@@ -33,8 +33,8 @@ The default implementation of the negative margin in Grid v2 is spread equally o
 ### Import
 
 ```diff
-- import Grid from '@mui/material/Grid';
-+ import Grid from '@mui/material/Unstable_Grid2';
+-import Grid from '@mui/material/Grid';
++import Grid from '@mui/material/Unstable_Grid2';
 ```
 
 ### Remove props
@@ -42,8 +42,8 @@ The default implementation of the negative margin in Grid v2 is spread equally o
 The `item` and `zeroMinWidth` props have been removed in Grid v2:
 
 ```diff
-- <Grid item zeroMinWidth xs={6}>
-+ <Grid xs={6}>
+-<Grid item zeroMinWidth xs={6}>
++<Grid xs={6}>
 ```
 
 ### Negative margins

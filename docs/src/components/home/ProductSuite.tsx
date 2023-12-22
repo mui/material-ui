@@ -50,17 +50,15 @@ function ProductSuite() {
     <Section bg="gradient" ref={ref}>
       <Grid container spacing={2}>
         <Grid item md={6}>
-          <Box sx={{ maxWidth: 500 }}>
-            <SectionHeadline
-              overline="Products"
-              title={
-                <Typography variant="h2" sx={{ my: 1 }}>
-                  Every component you need is <GradientText>ready for production</GradientText>
-                </Typography>
-              }
-              description="Build at an accelerated pace without sacrificing flexibility or control."
-            />
-          </Box>
+          <SectionHeadline
+            overline="Products"
+            title={
+              <Typography variant="h2" sx={{ my: 1 }}>
+                Every component you need is <GradientText>ready for production</GradientText>
+              </Typography>
+            }
+            description="Build at an accelerated pace without sacrificing flexibility or control."
+          />
           <Box sx={{ mt: 4 }} />
           <ProductsSwitcher
             inView={inView}

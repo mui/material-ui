@@ -3,7 +3,6 @@ import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import {
   describeConformance,
-  describeJoyColorInversion,
   act,
   createRenderer,
   fireEvent,
@@ -64,12 +63,6 @@ describe('Joy <Select />', () => {
       'reactTestRenderer',
     ],
   }));
-
-  describeJoyColorInversion(<Select listboxOpen />, {
-    muiName: 'JoySelect',
-    classes,
-    portalSlot: 'listbox',
-  });
 
   it('should be able to mount the component', () => {
     render(
@@ -169,7 +162,7 @@ describe('Joy <Select />', () => {
           <Option value="2" />
         </Select>,
       );
-      fireEvent.mouseDown(getByRole('combobox'));
+      fireEvent.click(getByRole('combobox'));
       act(() => {
         getAllByRole('option')[1].click();
       });
@@ -187,7 +180,7 @@ describe('Joy <Select />', () => {
           <Option value="2" />
         </Select>,
       );
-      fireEvent.mouseDown(getByRole('combobox'));
+      fireEvent.click(getByRole('combobox'));
       act(() => {
         getAllByRole('option')[1].click();
       });
@@ -309,7 +302,7 @@ describe('Joy <Select />', () => {
           <Select id="foo-bar" />
         </div>,
       );
-      fireEvent.mouseDown(screen.getByLabelText('label'));
+      fireEvent.click(screen.getByLabelText('label'));
       expect(screen.getByRole('listbox')).toBeVisible();
     });
 
@@ -373,12 +366,7 @@ describe('Joy <Select />', () => {
     describe('Grouped options', () => {
       it('first selectable option is focused to use the arrow', () => {
         const { getByRole, getAllByRole } = render(
-          <Select
-            autoFocus
-            defaultValue=""
-            defaultListboxOpen
-            slotProps={{ listbox: { component: 'div' } }}
-          >
+          <Select autoFocus defaultValue="" slotProps={{ listbox: { component: 'div' } }}>
             <List role="group">
               <ListItem role="presentation">Category 1</ListItem>
               <Option value={1}>Option 1</Option>
@@ -393,11 +381,11 @@ describe('Joy <Select />', () => {
         );
 
         const combobox = getByRole('combobox');
-        const options = getAllByRole('option');
+        fireEvent.keyDown(combobox, { key: 'ArrowDown' }); // open listbox
 
-        fireEvent.keyDown(combobox, { key: 'ArrowDown' });
-        fireEvent.keyDown(combobox, { key: 'ArrowDown' });
-        fireEvent.keyDown(combobox, { key: 'Enter' });
+        const options = getAllByRole('option');
+        fireEvent.keyDown(options[0], { key: 'ArrowDown' }); // move focus to Option 2
+        fireEvent.keyDown(options[1], { key: 'Enter' }); // select Option 2
 
         expect(options[1]).to.have.attribute('aria-selected', 'true');
       });
@@ -642,15 +630,66 @@ describe('Joy <Select />', () => {
     );
     // Fire Click of the avatar
     act(() => {
-      fireEvent.mouseDown(getByTestId('test-element'));
+      fireEvent.click(getByTestId('test-element'));
     });
 
     expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'true');
 
     // click again should close
     act(() => {
-      fireEvent.mouseDown(getByTestId('test-element'));
+      fireEvent.click(getByTestId('test-element'));
     });
     expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'false');
+  });
+
+  describe('prop: multiple', () => {
+    it('renders the selected values (multiple) using the renderValue prop', () => {
+      const { getByRole } = render(
+        <Select
+          multiple
+          defaultValue={[1, 2]}
+          renderValue={(values) => values.map((v) => `${v.label} (${v.value})`).join(', ')}
+        >
+          <Option value={1}>One</Option>
+          <Option value={2}>Two</Option>
+        </Select>,
+      );
+
+      expect(getByRole('combobox')).to.have.text('One (1), Two (2)');
+    });
+
+    it('renders the selected values (multiple) as comma-separated list of labels if renderValue is not provided', () => {
+      const { getByRole } = render(
+        <Select multiple defaultValue={[1, 2]}>
+          <Option value={1}>One</Option>
+          <Option value={2}>Two</Option>
+        </Select>,
+      );
+
+      expect(getByRole('combobox')).to.have.text('One, Two');
+    });
+
+    it('should render placeholder when options are not selected', () => {
+      const { getByRole } = render(
+        <Select multiple defaultValue={[]} placeholder="hello">
+          <Option value={1}>One</Option>
+          <Option value={2}>Two</Option>
+        </Select>,
+      );
+
+      expect(getByRole('combobox')).to.have.text('hello');
+    });
+
+    it('renders the selected values inplace of placeholder', () => {
+      const { getByRole } = render(
+        <Select multiple defaultValue={[1, 2]} placeholder="hello">
+          <Option value={1}>One</Option>
+          <Option value={2}>Two</Option>
+        </Select>,
+      );
+
+      expect(getByRole('combobox')).to.have.text('One, Two');
+      expect(getByRole('combobox')).not.to.have.text('hello');
+    });
   });
 });

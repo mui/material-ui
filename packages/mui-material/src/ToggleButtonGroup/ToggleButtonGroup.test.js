@@ -5,7 +5,7 @@ import { describeConformance, createRenderer, screen } from '@mui-internal/test-
 import ToggleButtonGroup, {
   toggleButtonGroupClasses as classes,
 } from '@mui/material/ToggleButtonGroup';
-import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButton, { toggleButtonClasses } from '@mui/material/ToggleButton';
 
 describe('<ToggleButtonGroup />', () => {
   const { render } = createRenderer();
@@ -196,5 +196,31 @@ describe('<ToggleButtonGroup />', () => {
         expect(handleChange.args[0][1]).to.have.members(['one', 'two']);
       });
     });
+  });
+
+  it('should not be fullWidth by default', () => {
+    const { container, getAllByRole } = render(
+      <ToggleButtonGroup>
+        <ToggleButton value="one">1</ToggleButton>
+        <ToggleButton value="two">2</ToggleButton>
+      </ToggleButtonGroup>,
+    );
+    const button = getAllByRole('button')[1];
+    const buttonGroup = container.firstChild;
+    expect(buttonGroup).not.to.have.class(classes.fullWidth);
+    expect(button).not.to.have.class(toggleButtonClasses.fullWidth);
+  });
+
+  it('can pass fullWidth to Button', () => {
+    const { container, getAllByRole } = render(
+      <ToggleButtonGroup fullWidth>
+        <ToggleButton value="one">1</ToggleButton>
+        <ToggleButton value="two">2</ToggleButton>
+      </ToggleButtonGroup>,
+    );
+    const buttonGroup = container.firstChild;
+    const button = getAllByRole('button')[1];
+    expect(buttonGroup).to.have.class(classes.fullWidth);
+    expect(button).to.have.class(toggleButtonClasses.fullWidth);
   });
 });

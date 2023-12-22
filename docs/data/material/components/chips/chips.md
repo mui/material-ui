@@ -101,14 +101,14 @@ gain depth while clicked or touched.
 
 ### Material You version
 
-The default Chip component follows the Material Design 2 specs.
-For the Material Design 3 ([Material You](https://m3.material.io/)) version, you can use the new experimental `@mui/material-next` package:
+The default Material UI Chip component follows the Material Design 2 specs.
+To get the Material You ([Material Design 3](https://m3.material.io/)) version, use the new experimental `@mui/material-next` package:
 
 ```js
 import Chip from '@mui/material-next/Chip';
 ```
 
-{{"demo": "ChipMaterialYouPlayground.js", "hideToolbar": true}}
+{{"demo": "ChipMaterialYouPlayground.js", "hideToolbar": true, "bg": "playground"}}
 
 ## Accessibility
 

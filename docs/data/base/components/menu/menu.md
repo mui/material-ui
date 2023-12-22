@@ -2,7 +2,7 @@
 productId: base-ui
 title: React Menu components and hooks
 components: Menu, MenuItem, MenuButton, Dropdown
-hooks: useMenu, useMenuItem, useMenuButton, useDropdown
+hooks: useMenu, useMenuItem, useMenuButton, useDropdown, useMenuItemContextStabilizer
 githubLabel: 'component: menu'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 ---
@@ -128,6 +128,32 @@ The following demo shows how to build a Dropdown Menu using hooks:
 {{"demo": "UseMenu.js"}}
 
 Components and their corresponding hooks work interchangeably with one another—for example, you can create a Menu component that contains custom menu items built with the `useMenuItem` hook.
+
+### Performance
+
+The `useMenuItem` hook listens to changes in a context that is set up by the parent Menu component.
+This context changes every time an item is highlighted.
+Usually, it shouldn't be a problem, however, when your menu has hundreds of items, you may notice it's not very responsive, as every item is rerendered whenever highlight changes.
+
+To improve performance by preventing menu items from rendering unnecessarily, you can create a component that wraps the menu item.
+Inside this component, call `useMenuItemContextStabilizer` and create a ListContext with the value from the hook's result:
+
+```tsx
+const StableMenuItem = React.forwardRef(function StableMenuItem(
+  props: MenuItemProps,
+  ref: React.ForwardedRef<Element>,
+) {
+  const { contextValue, id } = useMenuItemContextStabilizer(props.id);
+
+  return (
+    <ListContext.Provider value={contextValue}>
+      <MenuItem {...props} id={id} ref={ref} />
+    </ListContext.Provider>
+  );
+});
+```
+
+The `useMenuItemContextStabilizer` hook ensures that the context value changes only when the state of the menu item is updated.
 
 ## Customization
 

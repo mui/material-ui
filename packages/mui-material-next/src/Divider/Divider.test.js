@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { describeConformance, createRenderer } from '@mui-internal/test-utils';
-import Divider, { dividerClasses as classes } from '@mui/material/Divider';
+import Divider, { dividerClasses as classes } from '@mui/material-next/Divider';
+import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 
 describe('<Divider />', () => {
   const { render } = createRenderer();
@@ -14,17 +15,14 @@ describe('<Divider />', () => {
     refInstanceof: window.HTMLHRElement,
     testComponentPropWith: 'div',
     testVariantProps: { orientation: 'vertical', flexItem: true, textAlign: 'left' },
+    ThemeProvider: CssVarsProvider,
+    createTheme: extendTheme,
     skip: ['componentsProp'],
   }));
 
   it('should set the absolute class', () => {
     const { container } = render(<Divider absolute />);
     expect(container.firstChild).to.have.class(classes.absolute);
-  });
-
-  it('should set the light class', () => {
-    const { container } = render(<Divider light />);
-    expect(container.firstChild).to.have.class(classes.light);
   });
 
   it('should set the flexItem class', () => {
@@ -48,7 +46,6 @@ describe('<Divider />', () => {
     describe('prop: orientation', () => {
       it('should set the textVertical class', () => {
         const { container } = render(<Divider orientation="vertical">content</Divider>);
-        expect(container.querySelectorAll(`.${classes.withChildrenVertical}`).length).to.equal(1);
         expect(container.querySelectorAll(`.${classes.wrapperVertical}`).length).to.equal(1);
       });
     });
@@ -120,8 +117,8 @@ describe('<Divider />', () => {
       it('should set the middle class with marginTop & marginBottom styles', () => {
         const { container } = render(<Divider variant="middle" orientation="vertical" />);
         expect(container.firstChild).toHaveComputedStyle({
-          marginTop: '8px',
-          marginBottom: '8px',
+          marginTop: '16px',
+          marginBottom: '16px',
         });
       });
     });

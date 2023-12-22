@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import {
   describeConformance,
-  describeJoyColorInversion,
   act,
   createRenderer,
   fireEvent,
@@ -39,8 +38,6 @@ describe('<Switch />', () => {
     },
     skip: ['componentProp', 'componentsProp', 'classesRoot'],
   }));
-
-  describeJoyColorInversion(<Switch />, { muiName: 'JoySwitch', classes });
 
   it('should pass `slotProps` down to slots', () => {
     const { container } = render(

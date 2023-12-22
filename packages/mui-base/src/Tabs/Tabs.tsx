@@ -46,13 +46,13 @@ const Tabs = React.forwardRef(function Tabs<RootComponentType extends React.Elem
     ...other
   } = props;
 
-  const { contextValue } = useTabs(props);
-
   const ownerState: TabsOwnerState = {
     ...props,
     orientation,
     direction,
   };
+
+  const { contextValue } = useTabs(ownerState);
 
   const classes = useUtilityClasses(ownerState);
 

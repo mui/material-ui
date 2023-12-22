@@ -48,16 +48,16 @@ const blue = {
 };
 
 const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
 const snackbarInRight = keyframes`
@@ -72,26 +72,32 @@ const snackbarInRight = keyframes`
 
 const TriggerButton = styled('button')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
-  font-size: 0.875rem;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
-  box-sizing: border-box;
-  border-radius: 8px;
-  padding: 8px 16px;
+  font-size: 0.875rem;
   line-height: 1.5;
-  background: transparent;
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: white;
+  transition: all 150ms ease;
   cursor: pointer;
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
-  color: ${theme.palette.mode === 'dark' ? blue[300] : blue[500]};
+  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+  color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 
   &:hover {
-    background: ${theme.palette.mode === 'dark' ? grey[900] : grey[100]};
-    border-color: ${theme.palette.mode === 'dark' ? blue[200] : blue[400]};
+    background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
+    border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
+  }
+
+  &:active {
+    background: ${theme.palette.mode === 'dark' ? grey[700] : grey[100]};
   }
 
   &:focus-visible {
-    border-color: ${blue[400]};
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+    box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[300] : blue[200]};
+    outline: none;
   }
   `,
 );
@@ -107,7 +113,7 @@ const CustomSnackbar = styled('div')(
     justify-content: start;
     max-width: 560px;
     min-width: 300px;
-    background-color: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+    background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
     border-radius: 8px;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
     box-shadow: ${theme.palette.mode === 'dark'

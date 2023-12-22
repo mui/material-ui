@@ -28,7 +28,7 @@ export interface SliderClasses {
   trackInverted: string;
   /** Styles applied to the thumb element. */
   thumb: string;
-  /** Styles applied to the tumb element if it overlaps another thumb */
+  /** Styles applied to the thumb element if it overlaps another thumb */
   thumbOverlap: string;
   /** State class applied to the thumb element if it's active. */
   active: string;

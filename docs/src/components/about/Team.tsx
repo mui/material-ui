@@ -10,14 +10,23 @@ import Paper, { PaperProps } from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
-import TwitterIcon from '@mui/icons-material/Twitter';
+import XIcon from '@mui/icons-material/X';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import teamMembers from 'docs/data/about/teamMembers.json';
+/**
+ * The teamMembers data can be imported from: https://tools-public.mui.com/prod/pages/nSwYn51
+
+curl 'https://tools-public.mui.com/prod/api/data/muicomabout/queryAbout' \
+  -H 'content-type: application/json' \
+  --data-raw '{}' \
+  --compressed
+*/
 
 interface Profile {
   name: string;
@@ -43,6 +52,7 @@ interface Profile {
   about?: string;
   github?: string;
   twitter?: string;
+  linkedin?: string;
 }
 
 function Person(props: Profile & { sx?: PaperProps['sx'] }) {
@@ -134,7 +144,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
         <Box sx={{ mt: -0.5, mr: -0.5, ml: 'auto' }}>
           {props.github && (
             <IconButton
-              aria-label={`${props.name} github`}
+              aria-label={`${props.name} GitHub profile`}
               component="a"
               href={`https://github.com/${props.github}`}
               target="_blank"
@@ -145,13 +155,24 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
           )}
           {props.twitter && (
             <IconButton
-              aria-label={`${props.name} twitter`}
+              aria-label={`${props.name} X profile`}
               component="a"
               href={`https://twitter.com/${props.twitter}`}
               target="_blank"
               rel="noreferrer noopener"
             >
-              <TwitterIcon fontSize="small" sx={{ color: 'grey.500' }} />
+              <XIcon fontSize="small" sx={{ color: 'grey.500' }} />
+            </IconButton>
+          )}
+          {props.linkedin && (
+            <IconButton
+              aria-label={`${props.name} LinkedIn profile`}
+              component="a"
+              href={`https://www.linkedin.com/${props.linkedin}`}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <LinkedInIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
           )}
         </Box>
@@ -357,7 +378,7 @@ export default function Team() {
       </Section>
       <Divider />
       {/* Community contributors */}
-      <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'primaryDark.900' }}>
+      <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'common.black' }}>
         <Container sx={{ py: { xs: 4, sm: 8 } }}>
           <Typography component="h3" variant="h4" color="primary.200" fontWeight="semiBold">
             Community contributors

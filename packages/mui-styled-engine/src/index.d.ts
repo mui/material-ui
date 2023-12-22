@@ -11,6 +11,12 @@ export { default as StyledEngineProvider } from './StyledEngineProvider';
 export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
 
+export type MUIStyledComponent<
+  ComponentProps extends {},
+  SpecificComponentProps extends {} = {},
+  JSXProps extends {} = {},
+> = StyledComponent<ComponentProps, SpecificComponentProps, JSXProps>;
+
 /**
  * For internal usage in `@mui/system` package
  */
@@ -56,7 +62,7 @@ export interface CSSObject
     Omit<CSSOthersObject, 'variants'> {}
 
 interface CSSObjectWithVariants<Props> extends Omit<CSSObject, 'variants'> {
-  variants: Array<{ props: Props; variants: CSSObject }>;
+  variants: Array<{ props: Props; style: CSSObject }>;
 }
 
 export interface ComponentSelector {

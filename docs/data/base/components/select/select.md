@@ -2,7 +2,7 @@
 productId: base-ui
 title: React Select components and hook
 components: Select, Option, OptionGroup
-hooks: useSelect, useOption
+hooks: useSelect, useOption, useOptionContextStabilizer
 githubLabel: 'component: select'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
 ---
@@ -38,11 +38,9 @@ The following demo shows how to create and style a Select component with several
 ### Form submission
 
 The value(s) chosen in the Select can be posted to a server using a standard HTML form.
-When the `name` prop is set, the Select will render a hidden input with the selected value.
 
 {{"demo": "UnstyledSelectForm.js"}}
 
-Note how the second Select in the demo above renders a hidden input with the name provided as a prop.
 You can customize the value of this hidden input—see the [Object values](#object-values) section for details.
 
 ### TypeScript caveat
@@ -207,6 +205,32 @@ The resulting HTML is much smaller compared with its prebuilt component counterp
 
 {{"demo": "UseSelect.js", "defaultCodeOpen": false}}
 
+### Performance
+
+The `useOption` hook listens to changes in a context that is set up by the parent Select component.
+This context changes every time an item is highlighted.
+Usually, it shouldn't be a problem, however, when your select has hundreds of options, you may notice it's not very responsive, as every option is rerendered whenever highlight changes.
+
+To improve performance by preventing options from rendering unnecessarily, you can create a component that wraps the option.
+Inside this component, call `useOptionContextStabilizer` and create a ListContext with the value from the hook's result:
+
+```tsx
+const StableOption = React.forwardRef(function StableOption<OptionValue>(
+  props: OptionProps<OptionValue>,
+  ref: React.ForwardedRef<Element>,
+) {
+  const { contextValue } = useOptionContextStabilizer(props.value);
+
+  return (
+    <ListContext.Provider value={contextValue}>
+      <Option {...props} ref={ref} />
+    </ListContext.Provider>
+  );
+});
+```
+
+The `useOptionContextStabilizer` hook ensures that the context value changes only when the state of the option is updated.
+
 ## Customization
 
 :::info
@@ -219,11 +243,11 @@ For the sake of simplicity, demos and code snippets primarily feature components
 You can customize the appearance of the selected value display by providing a function to the `renderValue` prop.
 The element returned by this function will be rendered inside the Select's button.
 
-{{"demo": "UnstyledSelectCustomRenderValue.js", "defaultCodeOpen": false}}
+{{"demo": "UnstyledSelectCustomRenderValue.js"}}
 
 ### Option appearance
 
 Options don't have to be plain strings.
 You can include custom elements to be rendered inside the listbox.
 
-{{"demo": "UnstyledSelectRichOptions.js", "defaultCodeOpen": false}}
+{{"demo": "UnstyledSelectRichOptions.js"}}

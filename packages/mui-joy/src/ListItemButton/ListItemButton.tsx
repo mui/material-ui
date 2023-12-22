@@ -6,7 +6,7 @@ import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } 
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useButton } from '@mui/base/useButton';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
+
 import {
   ListItemButtonOwnerState,
   ExtendListItemButton,
@@ -146,15 +146,12 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     orientation = 'horizontal',
     role,
     selected = false,
-    color: colorProp = 'neutral',
+    color = 'neutral',
     variant = 'plain',
     slots = {},
     slotProps = {},
     ...other
   } = props;
-
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const buttonRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(buttonRef, ref);

@@ -59,6 +59,18 @@ describe('<AvatarGroup />', () => {
     expect(container.textContent).to.equal('+2');
   });
 
+  it('should display custom surplus element if renderSurplus prop is passed', () => {
+    const { container } = render(
+      <AvatarGroup renderSurplus={(num) => <span>%{num}</span>} max={3}>
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+      </AvatarGroup>,
+    );
+    expect(container.textContent).to.equal('%2');
+  });
+
   it('should pass props from componentsProps.additionalAvatar to the slot component', () => {
     const componentsProps = { additionalAvatar: { className: 'additional-avatar-test' } };
 

@@ -28,21 +28,21 @@
     "import FormLabel from '@mui/joy/FormLabel';",
     "import { FormLabel } from '@mui/joy';"
   ],
-  "styles": { "classes": ["root", "asterisk"], "globalClasses": {}, "name": "MuiFormLabel" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'label'",
-      "class": ".MuiFormLabel-root"
+      "class": "MuiFormLabel-root"
     },
     {
       "name": "asterisk",
       "description": "The component that renders the asterisk.",
       "default": "'span'",
-      "class": ".MuiFormLabel-asterisk"
+      "class": "MuiFormLabel-asterisk"
     }
   ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyFormLabel",

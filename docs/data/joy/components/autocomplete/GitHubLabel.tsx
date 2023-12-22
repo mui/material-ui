@@ -13,6 +13,7 @@ import Sheet from '@mui/joy/Sheet';
 import SettingsIcon from '@mui/icons-material/Settings';
 import CloseIcon from '@mui/icons-material/Close';
 import DoneIcon from '@mui/icons-material/Done';
+import colors from '@mui/joy/colors';
 
 const Listbox = React.forwardRef<HTMLUListElement, any>((props, ref) => (
   <AutocompleteListbox
@@ -106,18 +107,26 @@ export default function GitHubLabel() {
         <ClickAwayListener onClickAway={handleClose}>
           <Sheet
             variant="outlined"
-            sx={{
+            sx={(theme) => ({
               width: 300,
               boxShadow: 'md',
               borderRadius: '6px',
               overflow: 'hidden',
-            }}
+              '--joy-palette-neutral-plainBg': '#fff',
+              '--joy-palette-background-surface': '#fff',
+              [theme.getColorSchemeSelector('dark')]: {
+                '--joy-palette-neutral-plainBg': '#000',
+                '--joy-palette-background-surface': '#000',
+              },
+            })}
           >
             <Typography
               fontSize="sm"
               fontWeight={600}
               sx={{
                 padding: '8px 10px',
+                borderBottom: '1px solid',
+                borderColor: 'divider',
               }}
             >
               Apply labels to this pull request
@@ -154,14 +163,25 @@ export default function GitHubLabel() {
                 <AutocompleteOption
                   {...props}
                   color="neutral"
-                  sx={{
+                  sx={(theme) => ({
                     alignItems: 'flex-start',
+                    border: 'none',
                     borderBottom: '1px solid',
                     borderColor: 'divider',
+                    '--joy-palette-neutral-plainHoverBg': 'rgba(0, 0, 0, 0.03)',
+                    '--joy-palette-neutral-plainActiveBg': 'rgba(0, 0, 0, 0.03)',
+                    [theme.getColorSchemeSelector('dark')]: {
+                      '--joy-palette-neutral-plainHoverBg': colors.grey[800],
+                      '--joy-palette-neutral-plainActiveBg': colors.grey[800],
+                    },
                     '&[aria-selected="true"]': {
                       fontWeight: 'normal',
                     },
-                  }}
+                    '&:first-of-type': {
+                      borderTop: '1px solid',
+                      borderColor: 'divider',
+                    },
+                  })}
                 >
                   <DoneIcon sx={{ visibility: selected ? 'visible' : 'hidden' }} />
                   <Box
@@ -194,11 +214,12 @@ export default function GitHubLabel() {
               })}
               getOptionLabel={(option) => option.name}
               sx={{
-                p: '10px',
+                p: '4px 2px',
                 borderTop: '1px solid',
                 borderBottom: '1px solid',
                 borderColor: 'divider',
                 '--Input-radius': '4px',
+                m: '0.75rem 0.5rem',
               }}
             />
           </Sheet>

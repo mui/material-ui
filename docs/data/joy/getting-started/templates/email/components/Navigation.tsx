@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
-import IconButton from '@mui/joy/IconButton';
 import List from '@mui/joy/List';
 import ListSubheader from '@mui/joy/ListSubheader';
 import ListItem from '@mui/joy/ListItem';
@@ -8,30 +7,20 @@ import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemContent from '@mui/joy/ListItemContent';
 
-// Icons import
 import InboxRoundedIcon from '@mui/icons-material/InboxRounded';
 import OutboxRoundedIcon from '@mui/icons-material/OutboxRounded';
 import DraftsRoundedIcon from '@mui/icons-material/DraftsRounded';
 import AssistantPhotoRoundedIcon from '@mui/icons-material/AssistantPhotoRounded';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
-import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 
-export default function EmailNav() {
+export default function Navigation() {
   return (
-    <List size="sm" sx={{ '--ListItem-radius': '8px' }}>
+    <List size="sm" sx={{ '--ListItem-radius': '8px', '--List-gap': '4px' }}>
       <ListItem nested>
-        <ListSubheader>
+        <ListSubheader sx={{ letterSpacing: '2px', fontWeight: '800' }}>
           Browse
-          <IconButton size="sm" variant="plain" color="primary" sx={{ ml: 'auto' }}>
-            <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
-          </IconButton>
         </ListSubheader>
-        <List
-          aria-labelledby="nav-list-browse"
-          sx={{
-            '& .JoyListItemButton-root': { p: '8px' },
-          }}
-        >
+        <List aria-labelledby="nav-list-browse">
           <ListItem>
             <ListItemButton selected>
               <ListItemDecorator>
@@ -75,18 +64,14 @@ export default function EmailNav() {
         </List>
       </ListItem>
       <ListItem nested sx={{ mt: 2 }}>
-        <ListSubheader>
+        <ListSubheader sx={{ letterSpacing: '2px', fontWeight: '800' }}>
           Tags
-          <IconButton size="sm" variant="plain" color="primary" sx={{ ml: 'auto' }}>
-            <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
-          </IconButton>
         </ListSubheader>
         <List
           aria-labelledby="nav-list-tags"
           size="sm"
           sx={{
             '--ListItemDecorator-size': '32px',
-            '& .JoyListItemButton-root': { p: '8px' },
           }}
         >
           <ListItem>
@@ -97,7 +82,7 @@ export default function EmailNav() {
                     width: '10px',
                     height: '10px',
                     borderRadius: '99px',
-                    bgcolor: 'primary.300',
+                    bgcolor: 'primary.500',
                   }}
                 />
               </ListItemDecorator>
@@ -112,7 +97,7 @@ export default function EmailNav() {
                     width: '10px',
                     height: '10px',
                     borderRadius: '99px',
-                    bgcolor: 'danger.300',
+                    bgcolor: 'danger.500',
                   }}
                 />
               </ListItemDecorator>
@@ -127,7 +112,7 @@ export default function EmailNav() {
                     width: '10px',
                     height: '10px',
                     borderRadius: '99px',
-                    bgcolor: 'warning.300',
+                    bgcolor: 'warning.400',
                   }}
                 />
               </ListItemDecorator>
@@ -142,7 +127,7 @@ export default function EmailNav() {
                     width: '10px',
                     height: '10px',
                     borderRadius: '99px',
-                    bgcolor: 'success.300',
+                    bgcolor: 'success.400',
                   }}
                 />
               </ListItemDecorator>

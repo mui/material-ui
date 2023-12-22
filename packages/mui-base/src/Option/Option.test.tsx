@@ -4,7 +4,6 @@ import { Option, optionClasses } from '@mui/base/Option';
 import { SelectProvider } from '../useSelect/SelectProvider';
 
 const dummyGetItemState = () => ({
-  disabled: false,
   highlighted: false,
   selected: false,
   index: 0,
@@ -24,9 +23,7 @@ describe('<Option />', () => {
             dispatch: () => {},
             getItemIndex: () => 0,
             getItemState: dummyGetItemState,
-            registerHighlightChangeHandler: () => () => {},
             registerItem: () => ({ id: 0, deregister: () => {} }),
-            registerSelectionChangeHandler: () => () => {},
             totalSubitemCount: 0,
           }}
         >
@@ -41,9 +38,7 @@ describe('<Option />', () => {
             dispatch: () => {},
             getItemIndex: () => 0,
             getItemState: dummyGetItemState,
-            registerHighlightChangeHandler: () => () => {},
             registerItem: () => ({ id: 0, deregister: () => {} }),
-            registerSelectionChangeHandler: () => () => {},
             totalSubitemCount: 0,
           }}
         >

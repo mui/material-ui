@@ -11,7 +11,14 @@
   },
   "name": "Box",
   "imports": ["import Box from '@mui/material/Box';", "import { Box } from '@mui/material';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiBox-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": false,
   "muiName": "MuiBox",
