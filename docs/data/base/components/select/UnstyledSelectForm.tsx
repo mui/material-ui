@@ -7,31 +7,30 @@ import {
 } from '@mui/base/Select';
 import { Option as BaseOption, optionClasses } from '@mui/base/Option';
 import { Popper as BasePopper } from '@mui/base/Popper';
-import { styled, Box } from '@mui/system';
+import { styled } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
 export default function UnstyledSelectForm() {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    alert(new URLSearchParams(formData as any).toString());
+  };
+
   return (
-    <div>
-      <Box sx={{ mb: 2 }}>
-        <Label htmlFor="unnamed-select">Default</Label>
-        <Select defaultValue={10} id="unnamed-select">
-          <Option value={10}>Ten</Option>
-          <Option value={20}>Twenty</Option>
-          <Option value={30}>Thirty</Option>
-        </Select>
-      </Box>
-      <div>
-        <Label htmlFor="named-select">
-          With the <code>name</code> prop
-        </Label>
-        <Select defaultValue={10} id="named-select" name="demo-select">
-          <Option value={10}>Ten</Option>
-          <Option value={20}>Twenty</Option>
-          <Option value={30}>Thirty</Option>
-        </Select>
-      </div>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <Label htmlFor="named-select">
+        With the <code>name</code> prop set to <code>&quot;demo-select&quot;</code>
+      </Label>
+      <Select defaultValue={10} id="named-select" name="demo-select">
+        <Option value={10}>Ten</Option>
+        <Option value={20}>Twenty</Option>
+        <Option value={30}>Thirty</Option>
+      </Select>
+      <SubmitButton sx={{ ml: 1 }} type="submit">
+        Submit
+      </SubmitButton>
+    </form>
   );
 }
 
@@ -54,9 +53,11 @@ const Select = React.forwardRef(function CustomSelect<
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
+  300: '#66B2FF',
   400: '#3399FF',
   500: '#007FFF',
   600: '#0072E5',
+  700: '#0066CC',
   900: '#003A75',
 };
 
@@ -206,4 +207,37 @@ const Label = styled('label')(
   font-weight: 400;
   color: ${theme.palette.mode === 'dark' ? grey[400] : grey[700]};
   `,
+);
+
+const SubmitButton = styled('button')(
+  ({ theme }) => `
+  font-family: IBM Plex Sans, sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  background-color: ${blue[500]};
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: white;
+  transition: all 150ms ease;
+  cursor: pointer;
+  border: 1px solid ${blue[500]};
+  box-shadow: 0 2px 1px ${
+    theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(45, 45, 60, 0.2)'
+  }, inset 0 1.5px 1px ${blue[400]}, inset 0 -2px 1px ${blue[600]};
+
+  &:hover {
+    background-color: ${blue[600]};
+  }
+
+  &:active {
+    background-color: ${blue[700]};
+    box-shadow: none;
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[300] : blue[200]};
+    outline: none;
+  }
+`,
 );
