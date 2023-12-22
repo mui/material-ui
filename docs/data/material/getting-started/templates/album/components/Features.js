@@ -7,6 +7,7 @@ import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
+import { alpha } from '@mui/system';
 
 import { greyColor, brandColor } from '../getAlbumTheme';
 
@@ -87,18 +88,18 @@ export default function Features() {
                     backgroundColor: (theme) =>
                       theme.palette.mode === 'light'
                         ? selectedItemIndex === index
-                          ? greyColor[100]
+                          ? alpha(brandColor[300], 0.2)
                           : 'transparent'
                         : selectedItemIndex === index
-                        ? greyColor[800]
+                        ? alpha(brandColor[800], 0.2)
                         : 'transparent',
                     borderColor: (theme) =>
                       theme.palette.mode === 'light'
                         ? selectedItemIndex === index
-                          ? greyColor[300]
+                          ? alpha(brandColor[400], 0.2)
                           : greyColor[200]
                         : selectedItemIndex === index
-                        ? greyColor[700]
+                        ? alpha(brandColor[800], 0.7)
                         : greyColor[800],
                     '&:hover': {
                       borderColor: (theme) =>
