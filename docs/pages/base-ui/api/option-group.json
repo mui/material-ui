@@ -28,25 +28,25 @@
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'li'",
-      "class": "baseui-OptionGroup"
+      "class": "base-OptionGroup-root"
     },
     {
       "name": "label",
       "description": "The component that renders the label.",
       "default": "'span'",
-      "class": "baseui-OptionGroup-label"
+      "class": "base-OptionGroup-label"
     },
     {
       "name": "list",
       "description": "The component that renders the list.",
       "default": "'ul'",
-      "class": "baseui-OptionGroup-list"
+      "class": "base-OptionGroup-list"
     }
   ],
   "classes": [
     {
       "key": "disabled",
-      "className": "baseui--disabled",
+      "className": "base--disabled",
       "description": "State class applied to the root `li` element if `disabled={true}`.",
       "isGlobal": true
     }

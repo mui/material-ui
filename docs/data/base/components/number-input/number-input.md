@@ -49,10 +49,10 @@ The Base UI Number Input component consists of four slots:
 - `decrementButton`: a `<button>` for decreasing the value
 
 ```html
-<div class="baseui-NumberInput">
-  <button class="baseui-NumberInput-decrementButton" />
-  <button class="baseui-NumberInput-incrementButton" />
-  <input class="baseui-NumberInput-input" />
+<div class="base-NumberInput-root">
+  <button class="base-NumberInput-decrementButton" />
+  <button class="base-NumberInput-incrementButton" />
+  <input class="base-NumberInput-input" />
 </div>
 ```
 

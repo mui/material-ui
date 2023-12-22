@@ -1,13 +1,13 @@
 import { globalStateClasses, GlobalStateSlot } from '@mui/utils/generateUtilityClass';
 
-const GLOBAL_CLASS_PREFIX = 'baseui';
+const GLOBAL_CLASS_PREFIX = 'base';
 
 function buildStateClass(state: string) {
   return `${GLOBAL_CLASS_PREFIX}--${state}`;
 }
 
 function buildSlotClass(componentName: string, slot: string) {
-  return `${GLOBAL_CLASS_PREFIX}-${componentName}${slot !== 'root' ? `-${slot}` : ''}`;
+  return `${GLOBAL_CLASS_PREFIX}-${componentName}-${slot}`;
 }
 
 export function generateUtilityClass(

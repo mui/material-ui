@@ -92,37 +92,37 @@
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'span'",
-      "class": "baseui-Slider"
+      "class": "base-Slider-root"
     },
     {
       "name": "track",
       "description": "The component that renders the track.",
       "default": "'span'",
-      "class": "baseui-Slider-track"
+      "class": "base-Slider-track"
     },
     {
       "name": "rail",
       "description": "The component that renders the rail.",
       "default": "'span'",
-      "class": "baseui-Slider-rail"
+      "class": "base-Slider-rail"
     },
     {
       "name": "thumb",
       "description": "The component that renders the thumb.",
       "default": "'span'",
-      "class": "baseui-Slider-thumb"
+      "class": "base-Slider-thumb"
     },
     {
       "name": "mark",
       "description": "The component that renders the mark.",
       "default": "'span'",
-      "class": "baseui-Slider-mark"
+      "class": "base-Slider-mark"
     },
     {
       "name": "markLabel",
       "description": "The component that renders the mark label.",
       "default": "'span'",
-      "class": "baseui-Slider-markLabel"
+      "class": "base-Slider-markLabel"
     },
     {
       "name": "valueLabel",
@@ -139,61 +139,61 @@
   "classes": [
     {
       "key": "active",
-      "className": "baseui--active",
+      "className": "base--active",
       "description": "State class applied to the thumb element if it's active.",
       "isGlobal": true
     },
     {
       "key": "disabled",
-      "className": "baseui--disabled",
+      "className": "base--disabled",
       "description": "State class applied to the root and thumb element if `disabled={true}`.",
       "isGlobal": true
     },
     {
       "key": "dragging",
-      "className": "baseui-Slider-dragging",
+      "className": "base-Slider-dragging",
       "description": "State class applied to the root if a thumb is being dragged.",
       "isGlobal": false
     },
     {
       "key": "focusVisible",
-      "className": "baseui--focusVisible",
+      "className": "base--focusVisible",
       "description": "State class applied to the thumb element if keyboard focused.",
       "isGlobal": true
     },
     {
       "key": "markActive",
-      "className": "baseui-Slider-markActive",
+      "className": "base-Slider-markActive",
       "description": "Class name applied to the mark element if active (depending on the value).",
       "isGlobal": false
     },
     {
       "key": "marked",
-      "className": "baseui-Slider-marked",
+      "className": "base-Slider-marked",
       "description": "Class name applied to the root element if `marks` is provided with at least one label.",
       "isGlobal": false
     },
     {
       "key": "markLabelActive",
-      "className": "baseui-Slider-markLabelActive",
+      "className": "base-Slider-markLabelActive",
       "description": "Class name applied to the mark label element if active (depending on the value).",
       "isGlobal": false
     },
     {
       "key": "trackFalse",
-      "className": "baseui-Slider-trackFalse",
+      "className": "base-Slider-trackFalse",
       "description": "Class name applied to the root element if `track={false}`.",
       "isGlobal": false
     },
     {
       "key": "trackInverted",
-      "className": "baseui-Slider-trackInverted",
+      "className": "base-Slider-trackInverted",
       "description": "Class name applied to the root element if `track=\"inverted\"`.",
       "isGlobal": false
     },
     {
       "key": "vertical",
-      "className": "baseui-Slider-vertical",
+      "className": "base-Slider-vertical",
       "description": "Class name applied to the root element if `orientation=\"vertical\"`.",
       "isGlobal": false
     }

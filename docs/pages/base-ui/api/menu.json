@@ -28,19 +28,19 @@
       "name": "root",
       "description": "The component that renders the popup element.",
       "default": "'div'",
-      "class": "baseui-Menu"
+      "class": "base-Menu-root"
     },
     {
       "name": "listbox",
       "description": "The component that renders the listbox.",
       "default": "'ul'",
-      "class": "baseui-Menu-listbox"
+      "class": "base-Menu-listbox"
     }
   ],
   "classes": [
     {
       "key": "expanded",
-      "className": "baseui--expanded",
+      "className": "base--expanded",
       "description": "State class applied to the root element if `open={true}`.",
       "isGlobal": true
     }

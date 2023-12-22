@@ -30,19 +30,19 @@
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": "baseui-Tabs"
+      "class": "base-Tabs-root"
     }
   ],
   "classes": [
     {
       "key": "horizontal",
-      "className": "baseui-Tabs-horizontal",
+      "className": "base-Tabs-horizontal",
       "description": "Class name applied to the root element if `orientation='horizontal'`.",
       "isGlobal": false
     },
     {
       "key": "vertical",
-      "className": "baseui-Tabs-vertical",
+      "className": "base-Tabs-vertical",
       "description": "Class name applied to the root element if `orientation='vertical'`.",
       "isGlobal": false
     }

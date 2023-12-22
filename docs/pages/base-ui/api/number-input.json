@@ -53,67 +53,67 @@
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": "baseui-NumberInput"
+      "class": "base-NumberInput-root"
     },
     {
       "name": "input",
       "description": "The component that renders the input.",
       "default": "'input'",
-      "class": "baseui-NumberInput-input"
+      "class": "base-NumberInput-input"
     },
     {
       "name": "incrementButton",
       "description": "The component that renders the increment button.",
       "default": "'button'",
-      "class": "baseui-NumberInput-incrementButton"
+      "class": "base-NumberInput-incrementButton"
     },
     {
       "name": "decrementButton",
       "description": "The component that renders the decrement button.",
       "default": "'button'",
-      "class": "baseui-NumberInput-decrementButton"
+      "class": "base-NumberInput-decrementButton"
     }
   ],
   "classes": [
     {
       "key": "adornedEnd",
-      "className": "baseui-NumberInput-adornedEnd",
+      "className": "base-NumberInput-adornedEnd",
       "description": "Class name applied to the root element if `endAdornment` is provided.",
       "isGlobal": false
     },
     {
       "key": "adornedStart",
-      "className": "baseui-NumberInput-adornedStart",
+      "className": "base-NumberInput-adornedStart",
       "description": "Class name applied to the root element if `startAdornment` is provided.",
       "isGlobal": false
     },
     {
       "key": "disabled",
-      "className": "baseui--disabled",
+      "className": "base--disabled",
       "description": "Class name applied to the root element if `disabled={true}`.",
       "isGlobal": true
     },
     {
       "key": "error",
-      "className": "baseui--error",
+      "className": "base--error",
       "description": "State class applied to the root element if `error={true}`.",
       "isGlobal": true
     },
     {
       "key": "focused",
-      "className": "baseui--focused",
+      "className": "base--focused",
       "description": "Class name applied to the root element if the component is focused.",
       "isGlobal": true
     },
     {
       "key": "formControl",
-      "className": "baseui-NumberInput-formControl",
+      "className": "base-NumberInput-formControl",
       "description": "Class name applied to the root element if the component is a descendant of `FormControl`.",
       "isGlobal": false
     },
     {
       "key": "readOnly",
-      "className": "baseui--readOnly",
+      "className": "base--readOnly",
       "description": "State class applied to the root element if `readOnly={true}`.",
       "isGlobal": true
     }

@@ -26,19 +26,19 @@
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'button'",
-      "class": "baseui-Tab"
+      "class": "base-Tab-root"
     }
   ],
   "classes": [
     {
       "key": "disabled",
-      "className": "baseui--disabled",
+      "className": "base--disabled",
       "description": "State class applied to the root `button` element if `disabled={true}`.",
       "isGlobal": true
     },
     {
       "key": "selected",
-      "className": "baseui--selected",
+      "className": "base--selected",
       "description": "State class applied to the root `button` element if `selected={true}`.",
       "isGlobal": true
     }

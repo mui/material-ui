@@ -53,15 +53,15 @@ The Table Pagination component is composed of a root `<td>` that houses up to te
 - actions
 
 ```html
-<td class="baseui-TablePagination">
-  <div class="baseui-TablePagination-toolbar">
-    <div class="baseui-TablePagination-spacer"></div>
-    <p class="baseui-TablePagination-selectLabel" id="mui-48">Rows per page:</p>
-    <select class="baseui-TablePagination-select">
-      <option class="baseui-TablePagination-menuItem">All</option>
+<td class="base-TablePagination-root">
+  <div class="base-TablePagination-toolbar">
+    <div class="base-TablePagination-spacer"></div>
+    <p class="base-TablePagination-selectLabel" id="mui-48">Rows per page:</p>
+    <select class="base-TablePagination-select">
+      <option class="base-TablePagination-menuItem">All</option>
     </select>
-    <p class="baseui-TablePagination-displayedRows">1–5 of 13</p>
-    <div class="baseui-TablePagination-actions">
+    <p class="base-TablePagination-displayedRows">1–5 of 13</p>
+    <div class="base-TablePagination-actions">
       <button disabled="" aria-label="Go to first page" title="Go to first page">
         <span>|⇽</span>
       </button>

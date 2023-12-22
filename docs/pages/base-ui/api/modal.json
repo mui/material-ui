@@ -46,18 +46,18 @@
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": "baseui-Modal"
+      "class": "base-Modal-root"
     },
     {
       "name": "backdrop",
       "description": "The component that renders the backdrop.",
-      "class": "baseui-Modal-backdrop"
+      "class": "base-Modal-backdrop"
     }
   ],
   "classes": [
     {
       "key": "hidden",
-      "className": "baseui-Modal-hidden",
+      "className": "base-Modal-hidden",
       "description": "Class name applied to the root element if the `Modal` has exited.",
       "isGlobal": false
     }

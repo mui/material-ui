@@ -63,67 +63,67 @@
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'td'",
-      "class": "baseui-TablePagination"
+      "class": "base-TablePagination-root"
     },
     {
       "name": "actions",
       "description": "The component that renders the actions.",
       "default": "TablePaginationActions",
-      "class": "baseui-TablePagination-actions"
+      "class": "base-TablePagination-actions"
     },
     {
       "name": "select",
       "description": "The component that renders the select.",
       "default": "'select'",
-      "class": "baseui-TablePagination-select"
+      "class": "base-TablePagination-select"
     },
     {
       "name": "selectLabel",
       "description": "The component that renders the select label.",
       "default": "'p'",
-      "class": "baseui-TablePagination-selectLabel"
+      "class": "base-TablePagination-selectLabel"
     },
     {
       "name": "menuItem",
       "description": "The component that renders the menu item.",
       "default": "'option'",
-      "class": "baseui-TablePagination-menuItem"
+      "class": "base-TablePagination-menuItem"
     },
     {
       "name": "displayedRows",
       "description": "The component that renders the displayed rows.",
       "default": "'p'",
-      "class": "baseui-TablePagination-displayedRows"
+      "class": "base-TablePagination-displayedRows"
     },
     {
       "name": "toolbar",
       "description": "The component that renders the toolbar.",
       "default": "'div'",
-      "class": "baseui-TablePagination-toolbar"
+      "class": "base-TablePagination-toolbar"
     },
     {
       "name": "spacer",
       "description": "The component that renders the spacer.",
       "default": "'div'",
-      "class": "baseui-TablePagination-spacer"
+      "class": "base-TablePagination-spacer"
     }
   ],
   "classes": [
     {
       "key": "input",
-      "className": "baseui-TablePagination-input",
+      "className": "base-TablePagination-input",
       "description": "Class name applied to the Select component `root` element.",
       "isGlobal": false
     },
     {
       "key": "selectIcon",
-      "className": "baseui-TablePagination-selectIcon",
+      "className": "base-TablePagination-selectIcon",
       "description": "Class name applied to the Select component `icon` class.",
       "isGlobal": false
     },
     {
       "key": "selectRoot",
-      "className": "baseui-TablePagination-selectRoot",
+      "className": "base-TablePagination-selectRoot",
       "description": "Class name applied to the Select component `root` element.",
       "isGlobal": false
     }

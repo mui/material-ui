@@ -25,19 +25,19 @@
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'span'",
-      "class": "baseui-Badge"
+      "class": "base-Badge-root"
     },
     {
       "name": "badge",
       "description": "The component that renders the badge.",
       "default": "'span'",
-      "class": "baseui-Badge-badge"
+      "class": "base-Badge-badge"
     }
   ],
   "classes": [
     {
       "key": "invisible",
-      "className": "baseui-Badge-invisible",
+      "className": "base-Badge-invisible",
       "description": "State class applied to the badge `span` element if `invisible={true}`.",
       "isGlobal": false
     }

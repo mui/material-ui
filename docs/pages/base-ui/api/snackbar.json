@@ -35,7 +35,7 @@
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": "baseui-Snackbar"
+      "class": "base-Snackbar-root"
     }
   ],
   "classes": [],

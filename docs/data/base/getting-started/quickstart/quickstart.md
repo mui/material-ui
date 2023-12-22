@@ -111,7 +111,7 @@ Base UI components like the Button come with a classes object (e.g. `buttonClass
 ```css
 /* To style the disabled state: */
 
-.${buttonClasses.disabled} { /* ".baseui-Button-disabled" */
+.${buttonClasses.disabled} { /* ".base-Button-disabled" */
   cursor: not-allowed;
 }
 ```

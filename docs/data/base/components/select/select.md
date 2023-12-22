@@ -130,11 +130,11 @@ The Select component is composed of a root `<button>` along with a `<div>` that 
 Option renders as an `<li>`, and Option Group renders a `<ul>` with an `<li>` that represents its label.
 
 ```html
-<button class="baseui-Select" type="button">Open</button>
-<div class="baseui-Select-popper">
-  <ul class="baseui-Select-listbox">
-    <li class="baseui-Option">Option one</li>
-    <li class="baseui-Option">Option two</li>
+<button class="base-Select-root" type="button">Open</button>
+<div class="base-Select-popper">
+  <ul class="base-Select-listbox">
+    <li class="base-Option-root">Option one</li>
+    <li class="base-Option-root">Option two</li>
   </ul>
 </div>
 ```

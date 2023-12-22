@@ -21,19 +21,19 @@
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": "baseui-TabsList"
+      "class": "base-TabsList-root"
     }
   ],
   "classes": [
     {
       "key": "horizontal",
-      "className": "baseui-TabsList-horizontal",
+      "className": "base-TabsList-horizontal",
       "description": "Class name applied to the root element if `orientation='horizontal'`.",
       "isGlobal": false
     },
     {
       "key": "vertical",
-      "className": "baseui-TabsList-vertical",
+      "className": "base-TabsList-vertical",
       "description": "Class name applied to the root element if `orientation='vertical'`.",
       "isGlobal": false
     }

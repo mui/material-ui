@@ -1,4 +1,4 @@
-{/* The built-in classes (baseui-Switch, baseui--checked, etc.) are enabled by default,
+{/* The built-in classes (base-Switch-root, baseui--checked, etc.) are enabled by default,
     even though they are not used */}
 <Switch
   slots={slots}

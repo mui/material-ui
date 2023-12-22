@@ -55,13 +55,13 @@
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": "baseui-Popup"
+      "class": "base-Popup-root"
     }
   ],
   "classes": [
     {
       "key": "open",
-      "className": "baseui--open",
+      "className": "base--open",
       "description": "Class name applied to the root element when the popup is open.",
       "isGlobal": true
     }

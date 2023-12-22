@@ -42,38 +42,38 @@ The Slider component is composed of a root `<span>` that houses several interior
 - valueLabel: optional label to display the values on a range slider
 
 ```html
-<span class="baseui-Slider">
-  <span class="baseui-Slider-rail"></span>
-  <span class="baseui-Slider-track"></span>
+<span class="base-Slider-root">
+  <span class="base-Slider-rail"></span>
+  <span class="base-Slider-track"></span>
   <span
     data-index="0"
-    class="baseui-Slider-mark baseui-Slider-markActive"
+    class="base-Slider-mark base-Slider-markActive"
     style="left: 0%;"
   ></span>
   <span
     aria-hidden="true"
     data-index="0"
-    class="baseui-Slider-markLabel baseui-Slider-markLabelActive"
+    class="base-Slider-markLabel base-Slider-markLabelActive"
     style="left: 0%;"
     >0</span
   >
-  <span data-index="1" class="baseui-Slider-mark" style="left: 50%;"></span>
+  <span data-index="1" class="base-Slider-mark" style="left: 50%;"></span>
   <span
     aria-hidden="true"
     data-index="1"
-    class="baseui-Slider-markLabel"
+    class="base-Slider-markLabel"
     style="left: 50%;"
     >50</span
   >
-  <span data-index="2" class="baseui-Slider-mark" style="left: 100%;"></span>
+  <span data-index="2" class="base-Slider-mark" style="left: 100%;"></span>
   <span
     aria-hidden="true"
     data-index="2"
-    class="baseui-Slider-markLabel"
+    class="base-Slider-markLabel"
     style="left: 100%;"
     >100</span
   >
-  <span class="baseui-Slider-thumb">
+  <span class="base-Slider-thumb">
     <input />
   </span>
 </span>

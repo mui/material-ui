@@ -59,10 +59,10 @@ Clicking on a Menu Item closes its associated Menu.
 - The `<MenuItem />` renders a `<li>`.
 
 ```html
-<button class="baseui-MenuButton">Click me</button>
-<div class="baseui-Menu">
-  <ul class="baseui-Menu-listbox">
-    <li class="baseui-MenuItem">List item</li>
+<button class="base-MenuButton-root">Click me</button>
+<div class="base-Menu-root">
+  <ul class="base-Menu-listbox">
+    <li class="base-MenuItem-root">List item</li>
   </ul>
 </div>
 ```

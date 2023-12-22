@@ -20,25 +20,25 @@
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'li'",
-      "class": "baseui-Option"
+      "class": "base-Option-root"
     }
   ],
   "classes": [
     {
       "key": "disabled",
-      "className": "baseui--disabled",
+      "className": "base--disabled",
       "description": "State class applied to the root `li` element if `disabled={true}`.",
       "isGlobal": true
     },
     {
       "key": "highlighted",
-      "className": "baseui-Option-highlighted",
+      "className": "base-Option-highlighted",
       "description": "State class applied to the root `li` element if `highlighted={true}`.",
       "isGlobal": false
     },
     {
       "key": "selected",
-      "className": "baseui--selected",
+      "className": "base--selected",
       "description": "State class applied to the root `li` element if `selected={true}`.",
       "isGlobal": true
     }
