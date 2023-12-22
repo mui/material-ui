@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 import MuiLink, { LinkOwnProps as MuiLinkProps } from '@mui/material/Link';
+import linkClasses from './linkClasses';
 
 export interface LinkProps
   extends Omit<NextLinkProps, 'passHref' | 'legacyBehavior'>,
@@ -28,7 +29,7 @@ const Link = React.forwardRef(function Link({
   locale,
   as,
   className: classNameProp,
-  activeClassName = 'Mui-active',
+  activeClassName = linkClasses.active,
   ...muiLinkProps
 }: LinkProps) {
   const router = useRouter();

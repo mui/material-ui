@@ -31,6 +31,7 @@ module.exports = function getBabelConfig(api) {
     '@mui/base': resolveAliasPath('./packages/mui-base/src'),
     '@mui/utils': resolveAliasPath('./packages/mui-utils/src'),
     '@mui/material-next': resolveAliasPath('./packages/mui-material-next/src'),
+    '@mui/material-nextjs': resolveAliasPath('./packages/mui-material-nextjs/src'),
     '@mui/joy': resolveAliasPath('./packages/mui-joy/src'),
   };
 
