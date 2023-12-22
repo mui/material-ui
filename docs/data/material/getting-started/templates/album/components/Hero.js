@@ -7,7 +7,7 @@ import Chip from '@mui/material/Chip';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
-import { grey } from '@mui/material/colors';
+import { greyColor, secondaryColor } from '../getAlbumTheme';
 import CelebrationRoundedIcon from '@mui/icons-material/CelebrationRounded';
 
 export default function ProductHero() {
@@ -43,11 +43,20 @@ export default function ProductHero() {
             >
               <Chip
                 size="small"
-                variant="outlined"
+                variant="filled"
                 label="New arrivals"
-                color="secondary"
                 icon={<CelebrationRoundedIcon />}
-                sx={{ alignSelf: 'center', fontWeight: '600' }}
+                sx={{
+                  alignSelf: 'center',
+                  fontWeight: '600',
+                  backgroundColor: secondaryColor[800],
+                  '& .MuiChip-label': {
+                    color: secondaryColor[300],
+                  },
+                  '& .MuiChip-icon': {
+                    color: secondaryColor[300],
+                  },
+                }}
               />
               <Typography
                 component="h1"
@@ -83,7 +92,7 @@ export default function ProductHero() {
               <Typography
                 variant="caption"
                 align="center"
-                color={grey[500]}
+                color={greyColor[500]}
                 paragraph
               >
                 By clicking "Start using" you agree to our{' '}
