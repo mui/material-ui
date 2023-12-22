@@ -101,6 +101,7 @@
   --border-hard: 1px solid hsla(var(--grey-500));
   --border-interactive: 1px solid hsla(var(--primary-500));
   --border-transparent: 1px solid hsla(0, 0, 0, 0);
+  --border-active-switch: 1px solid hsla(var(--primary-100));
 
   --shadow-elevation-1: 0px 1px 2px 0px hsla(0, 0, 0, 0.15);
   --shadow-elevation-2: 0px 2px 4px 0px hsla(var(--grey-700), 0.2);
@@ -112,7 +113,7 @@
     0 1.5px 0 0 hsla(var(--primary-400), 0.8) inset, 0 1px 0.5px 0 hsla(var(--primary-900), 0.3);
   --shadow-outlined-button: 0 -2px 0 0 hsla(var(--grey-200), 0.5) inset,
     0 1px 0.5px 0 hsla(var(--grey-500), 0.2);
-  --shadow-input: 0px 1.5px 0.5px 0px hsla(var(--primary-300), 0.2);
+  --shadow-input: 0px 1px 2px hsla(var(--primary-300), 0.2);
   --shadow-interactive-switch-track: 0px 1px 1px 0px hsla(0, 0, 0, 0.05) inset;
   --shadow-interactive-switch-thumb: 0px 1px 2px 0px hsla(0, 0, 0, 0.3);
   --shadow-interactive-focus-visible: 0 0 0 3px hsla(var(--primary-300));
@@ -132,7 +133,7 @@
   .GallerySelect-listbox {
     --canvas: #0f0f0f;
 
-    --font-color-soft: hsla(var(--grey-300));
+    --font-color-soft: hsla(var(--grey-300), 0.4);
     --font-color-hard: hsla(var(--grey-50));
     --font-color-onDark: #fff;
     --font-color-interactive: hsla(var(--primary-300));
@@ -144,8 +145,8 @@
     --bg-overlay: hsla(0, 0, 0, 0.6);
 
     --bg-button-base: hsla(var(--primary-500));
-    --bg-button-hover: hsla(var(--primary-700));
-    --bg-button-active: hsla(var(--primary-800));
+    --bg-button-hover: hsla(var(--primary-400));
+    --bg-button-active: hsla(var(--primary-600));
     --bg-button-disabled: hsla(var(--grey-900));
 
     --bg-input-base: hsla(var(--grey-900, 0.5));
@@ -159,7 +160,8 @@
     --border-soft: 1px solid hsla(var(--grey-800, 0.2));
     --border-hard: 1px solid hsla(var(--grey-700));
     --border-interactive: 1px solid hsla(var(--primary-500));
-    --border-transparent: 1px solid hsla(0, 0, 0, 0);
+    --border-transparent: 1px solid transparent;
+    --border-active-switch: 1px solid hsla(var(--primary-300, 0.3));
 
     --shadow-elevation-1: 0px 2px 4px -0.5px hsla(0, 0, 0, 0.4);
     --shadow-elevation-2: 0px 2px 8px 0px hsla(0, 0, 0, 0.3), 0px 2px 4px -0.5px hsla(0, 0, 0, 0.4);
@@ -311,7 +313,7 @@
 .GalleryButtonPlain {
   font: var(--button-text);
   color: var(--font-color-hard);
-  background-color: white;
+  background-color: transparent;
   padding: 6px 12px;
   border-radius: var(--border-radius-md);
   border: var(--border-transparent);
@@ -814,12 +816,12 @@
 .GallerySwitch.Mui-checked .GallerySwitch-thumb {
   left: 18px;
   background-color: var(--bg-default);
-  border: 1px solid hsla(var(--primary-100));
+  border: var(--border-active-switch);
 }
 
 .GallerySwitch.Mui-checked .GallerySwitch-track {
   background: var(--bg-highlight);
-  border: 1px solid hsla(var(--primary-100));
+  border: var(--border-active-switch);
 }
 
 .GallerySwitch-input {
