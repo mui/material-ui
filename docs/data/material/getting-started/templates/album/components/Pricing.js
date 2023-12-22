@@ -13,7 +13,7 @@ import { alpha } from '@mui/system';
 import { brandColor } from '../getAlbumTheme';
 
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
-import CheckCircleTwoToneIcon from '@mui/icons-material/CheckCircleTwoTone';
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import Chip from '@mui/material/Chip';
 
 const tiers = [
@@ -94,6 +94,10 @@ export default function Pricing() {
             >
               <Card
                 sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '8px',
+                  p: 1,
                   border: (theme) =>
                     tier.title === 'Professional'
                       ? theme.palette.mode === 'light'
@@ -116,7 +120,7 @@ export default function Pricing() {
               >
                 <CardContent>
                   <Box
-                    sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}
+                    sx={{ display: 'flex', justifyContent: 'space-between', gap: 2 }}
                   >
                     <Typography variant="h6" gutterBottom>
                       {tier.title}
@@ -169,8 +173,9 @@ export default function Pricing() {
                       key={line}
                       sx={{ display: 'flex', gap: 1, p: 1, alignItems: 'center' }}
                     >
-                      <CheckCircleTwoToneIcon
+                      <CheckCircleRoundedIcon
                         sx={{
+                          width: '20px',
                           color: 'success.main',
                         }}
                       />

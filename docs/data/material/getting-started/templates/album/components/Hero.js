@@ -43,7 +43,7 @@ export default function ProductHero() {
             >
               <Chip
                 size="small"
-                variant="filled"
+                variant="outlined"
                 label="New arrivals"
                 color="secondary"
                 icon={<CelebrationRoundedIcon />}
@@ -76,7 +76,9 @@ export default function ProductHero() {
                   placeholder="Your email address"
                   sx={{ minWidth: '45%' }}
                 />
-                <Button variant="contained">Start using</Button>
+                <Button variant="contained" color="secondary">
+                  Start using
+                </Button>
               </Stack>
               <Typography
                 variant="caption"
