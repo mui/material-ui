@@ -32,8 +32,8 @@ const GOLDs = [
     href: 'https://icons8.com?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
-    src: 'https://images.opencollective.com/rxdbjs/2aec389/logo/40.png',
-    srcSet: 'https://images.opencollective.com/rxdbjs/2aec389/logo/80.png 2x',
+    src: 'https://rxdb.info/files/logo/logo_text.svg',
+    srcSet: 'https://rxdb.info/files/logo/logo_text.svg 2x',
     name: 'RxDB',
     description: 'Local-first JavaScript database.',
     href: 'https://rxdb.info/?utm_source=sponsor&utm_medium=opencollective&utm_campaign=opencollective-mui',
