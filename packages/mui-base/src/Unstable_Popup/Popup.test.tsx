@@ -199,6 +199,63 @@ describe('<Popup />', () => {
 
       expect(screen.getByRole('tooltip')).to.have.text('bottom');
     });
+
+    it('should not leave viewport', async function test() {
+      // JSDOM has no layout engine so PopperJS doesn't know that it should shift the placement.
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      function ShiftTest() {
+        const [anchor, setAnchor] = React.useState<HTMLButtonElement | null>(null);
+        const containerRef = React.useRef<HTMLDivElement>(null);
+
+        const handleClick = () => {
+          containerRef.current!.scrollLeft += 25;
+        };
+
+        return (
+          <div
+            style={{ overflowX: 'scroll', position: 'relative', width: '120px' }}
+            ref={containerRef}
+          >
+            <div style={{ width: '120px', padding: '30px' }}>
+              <button style={{ width: '50px' }} type="button" ref={setAnchor} onClick={handleClick}>
+                Scroll
+              </button>
+              <Popup anchor={anchor} open disablePortal>
+                <div style={{ width: '80px' }}>Text</div>
+              </Popup>
+            </div>
+          </div>
+        );
+      }
+
+      render(<ShiftTest />);
+
+      const anchor = screen.getByRole('button')!;
+      const popup = screen.getByRole('tooltip')!;
+
+      expect(popup.getBoundingClientRect().left).to.equal(
+        document.body.getBoundingClientRect().left,
+      );
+      expect(anchor.getBoundingClientRect().left).to.be.above(
+        document.body.getBoundingClientRect().left,
+      );
+
+      act(() => screen.getByRole('button').click());
+
+      await new Promise((resolve) => {
+        requestAnimationFrame(resolve);
+      });
+
+      expect(popup.getBoundingClientRect().left).to.equal(
+        document.body.getBoundingClientRect().left,
+      );
+      expect(anchor.getBoundingClientRect().left).to.be.above(
+        document.body.getBoundingClientRect().left,
+      );
+    });
   });
 
   describe('prop: open', () => {

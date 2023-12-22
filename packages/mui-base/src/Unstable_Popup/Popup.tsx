@@ -1,7 +1,14 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { autoUpdate, flip, offset, useFloating, VirtualElement } from '@floating-ui/react-dom';
+import {
+  autoUpdate,
+  flip,
+  offset,
+  shift,
+  useFloating,
+  VirtualElement,
+} from '@floating-ui/react-dom';
 import {
   HTMLElementType,
   unstable_useEnhancedEffect as useEnhancedEffect,
@@ -77,7 +84,7 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
       reference: resolveAnchor(anchorProp),
     },
     open,
-    middleware: middleware ?? [offset(offsetProp ?? 0), flip()],
+    middleware: middleware ?? [offset(offsetProp ?? 0), flip(), shift()],
     placement,
     strategy,
     whileElementsMounted: !keepMounted ? autoUpdate : undefined,
