@@ -1,7 +1,8 @@
 'use client';
 import { Popper as BasePopper, PopperProps as BasePopperProps } from '@mui/base/Popper';
 import { Direction, SxProps, useThemeWithoutDefault as useTheme } from '@mui/system';
-import { HTMLElementType, refType } from '@mui/utils';
+import HTMLElementType from '@mui/utils/HTMLElementType';
+import refType from '@mui/utils/refType';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import { styled, Theme, useThemeProps } from '../styles';

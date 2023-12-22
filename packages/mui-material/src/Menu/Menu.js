@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
-import { HTMLElementType } from '@mui/utils';
+import HTMLElementType from '@mui/utils/HTMLElementType';
 import MenuList from '../MenuList';
 import Popover, { PopoverPaper } from '../Popover';
 import styled, { rootShouldForwardProp } from '../styles/styled';

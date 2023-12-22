@@ -1,4 +1,4 @@
-import { deepmerge } from '@mui/utils';
+import deepmerge from '@mui/utils/deepmerge';
 import MuiError from '@mui-internal/babel-macros/MuiError.macro';
 import { darken, getContrastRatio, lighten } from '@mui/system';
 import common from '../colors/common';
