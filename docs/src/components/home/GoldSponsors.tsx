@@ -21,7 +21,7 @@ const GOLDs = [
     src: 'https://images.opencollective.com/spotify/f37ea28/logo/40.png',
     srcSet: 'https://images.opencollective.com/spotify/f37ea28/logo/80.png 2x',
     name: 'Spotify',
-    description: 'Music service for access to millions of songs.',
+    description: 'Music service for accessing millions of songs.',
     href: 'https://open.spotify.com?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
