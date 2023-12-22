@@ -41,10 +41,10 @@ export function SelectOption(props) {
         root: (ownerState) => ({
           ...slotProps.root,
           className: clsx(
-            'list-none p-2 rounded-[1px] cursor-pointer last-of-type:border-b-0',
-            ownerState.selected && 'bg-blue-100 text-blue-900',
-            ownerState.highlighted && 'bg-gray-100 text-gray-900',
-            ownerState.highlighted && ownerState.selected && 'bg-gray-700 text-gray-50',
+            'list-none p-2 rounded-[1px] cursor-pointer last-of-type:border-b-0 hover:bg-gray-800/50',
+            ownerState.selected && 'bg-blue-500 text-white',
+            ownerState.highlighted && 'bg-gray-800/50',
+            ownerState.highlighted && ownerState.selected && 'bg-blue-500 text-white font-medium',
             ownerState.disabled ? 'text-gray-400' : 'hover:bg-gray-100, hover:text-gray-300',
           ),
         }),
@@ -75,7 +75,7 @@ export const Select = React.forwardRef(function Select(props, ref) {
         root: (ownerState) => ({
           ...slotProps.root,
           className: clsx(
-            'text-gray-300 text-sm box-border min-width-[72px] py-2 px-3 rounded-sm text-left leading-normal bg-gray-900 border-[0] font-medium relative hover:bg-gray-400 hover:text-gray-900',
+            'text-gray-300 text-sm box-border min-width-[72px] py-1 px-2 rounded-lg border border-gray-800/80 bg-gray-900/70 text-center leading-normal font-medium relative hover:bg-gray-700/50 hover:border-gray-700 transition focus:ring-4 focus:outline-0 focus:border-blue-400',
             ownerState.focusVisible &&
               'border-blue-400 outline-[3px] outline-solid outline-blue-200',
           ),
@@ -83,7 +83,7 @@ export const Select = React.forwardRef(function Select(props, ref) {
         listbox: {
           ...slotProps.listbox,
           className:
-            'text-sm box-border p-0 mb-3 rounded-sm overflow-auto outline-0 bg-[rgb(14,20,27)] border border-solid border-gray-700 text-gray-300 shadow-[0_1px_2px_#a0aab4] max-h-[240px]',
+            'text-sm box-border p-0 mt-2 min-w-16 rounded-lg overflow-auto outline-0 bg-gray-950 border border-gray-800/80 text-gray-300 shadow-[0_2px_4px_rgba(0,0,0,0.8)] max-h-[240px]',
         },
         popper: {
           ...slotProps.popper,
@@ -129,7 +129,7 @@ export const Slider = React.forwardRef(function Slider(props, ref) {
         thumb: {
           ...slotProps.thumb,
           className:
-            'absolute w-5 h-5 ml-[-8px] mt-[-7.5px] box-border rounded-[50%] outline-0 bg-white',
+            'absolute w-4 h-4 ml-[-8px] mt-[-5px] box-border rounded-[50%] outline-0 bg-white hover:ring-4 focus:ring-4',
           // TODO: add hover/focusVisible/active box-shadow
         },
         // TODO: where does markActive go?
@@ -140,7 +140,7 @@ export const Slider = React.forwardRef(function Slider(props, ref) {
         markLabel: {
           ...slotProps.markLabel,
           className:
-            'text-[10px] font-extrabold uppercase text-gray-300 absolute top-5 mt-2 data-[index="1"]:translate-x-[-100%]',
+            'text-[10px] font-medium tracking-wider	 uppercase text-gray-400 absolute top-5 mt-2 data-[index="1"]:translate-x-[-100%]',
         },
       }}
       ref={ref}

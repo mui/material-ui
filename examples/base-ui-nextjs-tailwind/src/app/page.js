@@ -7,7 +7,7 @@ function Heading(props) {
 }
 
 function Section(props) {
-  return <div className="flex justify-between items-center py-2">{props.children}</div>;
+  return <div className="flex justify-between items-center pt-3">{props.children}</div>;
 }
 
 function Label(props) {
@@ -44,7 +44,7 @@ const HOURS = [
 export default function Home() {
   return (
     <main className="flex justify-center items-center w-full h-screen bg-white dark:bg-gray-950">
-      <div className="bg-black shadow-[0_4px_12px_rgba(0,0,0,0.5)] border border-gray-700/50 rounded-xl p-8 w-[500px] divide-y divide-gray-800/80">
+      <div className="bg-black shadow-[0_4px_12px_rgba(0,0,0,0.5)] border border-gray-700/50 rounded-xl p-8 w-[500px] divide-y divide-gray-800/80 flex flex-col gap-3">
         <Heading>Night Mode</Heading>
         <Section>
           <Label>Schedule Night Mode</Label>
@@ -52,7 +52,7 @@ export default function Home() {
             slotProps={{
               root: {
                 className:
-                  'switch col-span-1 relative inline-block w-[40px] h-[24px] cursor-pointer justify-self-end',
+                  'switch group relative inline-block w-[38px] h-[24px] cursor-pointer justify-self-end transition',
               },
               input: {
                 'aria-label': 'Schedule Night Mode',
@@ -60,11 +60,11 @@ export default function Home() {
               },
               track: {
                 className:
-                  'bg-gray-400 rounded-2xl block w-full h-full absolute border-[3px] border-solid border-[rgb(14,20,27)]',
+                  'bg-gray-400 rounded-2xl block w-full h-full absolute group-[.Mui-focusVisible]:ring-4',
               },
               thumb: {
                 className:
-                  'block w-[20px] h-[20px] top-[2.5px] left-[-2px] rounded-2xl bg-white relative',
+                  'block w-5 h-5 top-[2px] left-[2px] rounded-2xl bg-white relative outline-none shadow-none',
               },
             }}
             defaultChecked
@@ -72,7 +72,7 @@ export default function Home() {
         </Section>
         <Section>
           <Label>Auto-Enable Between</Label>
-          <div className="col-span-1 grid grid-cols-[1fr_auto_1fr] items-center">
+          <div className="flex items-center gap-2">
             <Select defaultValue="9PM">
               {HOURS.map((hour) => (
                 <SelectOption key={`from-${hour}`} value={hour}>
@@ -80,7 +80,7 @@ export default function Home() {
                 </SelectOption>
               ))}
             </Select>
-            <span className="text-gray-300 text-sm text-medium mx-2">and</span>
+            <span className="text-gray-300 text-sm text-medium">and</span>
             <Select defaultValue="6AM">
               {HOURS.map((hour) => (
                 <SelectOption key={`to-${hour}`} value={hour}>
