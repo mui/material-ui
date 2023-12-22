@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Link from '@mui/material-nextjs/v13-Link';
+import { Link } from '@mui/material-nextjs/v13-pagesRouter';
 
 // @ts-expect-error href is required by Next.js
 <Link />;
