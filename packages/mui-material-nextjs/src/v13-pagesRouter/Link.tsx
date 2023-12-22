@@ -20,18 +20,21 @@ export interface LinkProps
   activeClassName?: string;
 }
 
-const Link = React.forwardRef(function Link({
-  href,
-  replace,
-  scroll,
-  shallow,
-  prefetch,
-  locale,
-  as,
-  className: classNameProp,
-  activeClassName = linkClasses.active,
-  ...muiLinkProps
-}: LinkProps) {
+const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(
+  {
+    href,
+    replace,
+    scroll,
+    shallow,
+    prefetch,
+    locale,
+    as,
+    className: classNameProp,
+    activeClassName = linkClasses.active,
+    ...muiLinkProps
+  },
+  ref,
+) {
   const router = useRouter();
   const pathname = typeof href === 'string' ? href : href.pathname;
   const className = clsx(classNameProp, {
@@ -52,7 +55,7 @@ const Link = React.forwardRef(function Link({
       passHref
       legacyBehavior
     >
-      <MuiLink className={className} {...muiLinkProps} />
+      <MuiLink ref={ref} className={className} {...muiLinkProps} />
     </NextLink>
   );
 });
