@@ -19,7 +19,9 @@ import { Portal } from '../Portal';
 import { useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { getPopupUtilityClass } from './popupClasses';
-import { PopupChildrenProps, PopupOwnerState, PopupProps } from './Popup.types';
+import { PopupOwnerState, PopupProps } from './Popup.types';
+import { useTransitionTrigger, TransitionContext } from '../useTransition';
+import { PopupContext, PopupContextValue } from './PopupContext';
 
 function useUtilityClasses(ownerState: PopupOwnerState) {
   const { open } = ownerState;
@@ -42,6 +44,7 @@ function resolveAnchor(
 ): HTMLElement | VirtualElement | null | undefined {
   return typeof anchor === 'function' ? anchor() : anchor;
 }
+
 /**
  *
  * Demos:
@@ -91,15 +94,6 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
   });
 
   const handleRef = useForkRef(refs.setFloating, forwardedRef);
-  const [exited, setExited] = React.useState(true);
-
-  const handleEntering = () => {
-    setExited(false);
-  };
-
-  const handleExited = () => {
-    setExited(true);
-  };
 
   useEnhancedEffect(() => {
     if (keepMounted && open && elements.reference && elements.floating) {
@@ -122,8 +116,9 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
     withTransition,
   };
 
-  const display = !open && keepMounted && (!withTransition || exited) ? 'none' : undefined;
+  const { contextValue, hasExited: hasTransitionExited } = useTransitionTrigger(open);
 
+  const visibility = keepMounted && hasTransitionExited ? 'hidden' : undefined;
   const classes = useUtilityClasses(ownerState);
 
   const Root = slots?.root ?? 'div';
@@ -136,26 +131,29 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
     additionalProps: {
       ref: handleRef,
       role: 'tooltip',
-      style: { ...floatingStyles, display },
+      style: { ...floatingStyles, visibility },
     },
   });
 
-  const shouldRender = open || keepMounted || (withTransition && !exited);
+  const popupContextValue: PopupContextValue = React.useMemo(
+    () => ({
+      placement: finalPlacement,
+    }),
+    [finalPlacement],
+  );
 
+  const shouldRender = keepMounted || !hasTransitionExited;
   if (!shouldRender) {
     return null;
   }
 
-  const childProps: PopupChildrenProps = {
-    placement: finalPlacement,
-    requestOpen: open,
-    onExited: handleExited,
-    onEnter: handleEntering,
-  };
-
   return (
     <Portal disablePortal={disablePortal} container={container}>
-      <Root {...rootProps}>{typeof children === 'function' ? children(childProps) : children}</Root>
+      <PopupContext.Provider value={popupContextValue}>
+        <TransitionContext.Provider value={contextValue}>
+          <Root {...rootProps}>{children}</Root>
+        </TransitionContext.Provider>
+      </PopupContext.Provider>
     </Portal>
   );
 });

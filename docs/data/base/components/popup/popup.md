@@ -61,19 +61,7 @@ Try changing this value to `top` in the interactive demo below to see how it wor
 ### Transitions
 
 You can animate the opening and closing of the Popup using CSS transitions, CSS animations, or third-party animation libraries.
-
-To enable transitions, first set the `withTransition` prop.
-This will make the Popup wait for the exit animation to finish before unmounting.
-
-Then, instead of placing the Popup contents directly as its children, wrap them in a function that receives an object with `requestOpen: boolean`, `onEnter: () => void`, and `onExited: () => void` fields.
-
-Run the open transition when `requestOpen` becomes `true` and the close transition when it changes to `false`.
-Call the `onEnter` once the entering transition is about to start.
-When the exit transition finishes, call the provided `onExited` function to let the Popup know it can be unmounted.
-
-If using CSS transitions or animations, you can use the `onTransitionEnd` or `onAnimationEnd` events, respectively, to detect when the transition is over.
-
-{{"demo": "AnimatedPopup.js"}}
+It supports the API described on the [Base UI Transitions](/base-ui/react-transitions/) page.
 
 ### Disable portal
 

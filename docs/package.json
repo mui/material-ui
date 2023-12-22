@@ -101,6 +101,7 @@
     "react-router-dom": "^6.20.1",
     "react-runner": "^1.0.3",
     "react-simple-code-editor": "^0.13.1",
+    "react-spring": "^9.7.3",
     "react-swipeable-views": "^0.14.0",
     "react-swipeable-views-utils": "^0.14.0",
     "react-transition-group": "^4.4.5",
