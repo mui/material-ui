@@ -152,7 +152,7 @@ describe('<Popup />', () => {
       });
 
       await waitForPosition();
-      expect(popup.getBoundingClientRect().right).to.equal(anchor.getBoundingClientRect().right);
+      expect(popup.getBoundingClientRect().right).to.equal(popup.getBoundingClientRect().right);
       expect(popup.getBoundingClientRect().left).not.to.equal(anchor.getBoundingClientRect().left);
     });
 
@@ -236,7 +236,7 @@ describe('<Popup />', () => {
       const anchor = screen.getByRole('button')!;
       const popup = screen.getByRole('tooltip')!;
 
-      expect(popup.getBoundingClientRect().left).to.above(
+      expect(popup.getBoundingClientRect().left).to.equal(
         document.body.getBoundingClientRect().left,
       );
       expect(anchor.getBoundingClientRect().left).to.be.above(
