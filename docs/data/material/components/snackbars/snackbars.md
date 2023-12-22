@@ -54,6 +54,14 @@ You can use the `TransitionComponent` prop to change the transition of the Snack
 
 {{"demo": "TransitionsSnackbar.js"}}
 
+### Automatic dismiss
+
+Use the `autoHideDuration` prop to specify an amount of time (in milliseconds) for the close function to be called, and thus, for the Snackbar to be automatically dismissed.
+
+Make sure to [provide sufficient time](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html) for the user to process the information displayed on it.
+
+{{"demo": "AutohideSnackbar.js"}}
+
 ## Customization
 
 ### Use with Alerts
@@ -90,12 +98,7 @@ Even though this is discouraged in the Material Design guidelines, it is still a
 
 ## Accessibility
 
-Here are a few tips to make sure you have an accessible Snackbar component:
-
-- According to the [WAI-ARIA guidelines](https://www.w3.org/TR/wai-aria-1.1/#alert), Snackbars shouldn't auto-hide by default.
-  If you use the `autoHideDuration` prop, make sure to [provide sufficient time](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html) for the user to process the information displayed on it.
-
-- The user should be able to dismiss Snackbars by pressing <kbd class="key">Escape</kbd>. If there are multiple instances appearing at the same time and you want <kbd class="key">Escape</kbd> to dismiss only the oldest one that's currently open, call `event.preventDefault` in the `onClose` prop.
+The user should be able to dismiss Snackbars by pressing <kbd class="key">Escape</kbd>. If there are multiple instances appearing at the same time and you want <kbd class="key">Escape</kbd> to dismiss only the oldest one that's currently open, call `event.preventDefault` in the `onClose` prop.
 
 ```jsx
 export default function MyComponent() {
