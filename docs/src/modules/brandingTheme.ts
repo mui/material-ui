@@ -907,6 +907,17 @@ export function getThemedComponents(): ThemeOptions {
                 }),
               }),
             ...(variant === 'outlined' &&
+              color === 'info' && {
+                backgroundColor: alpha(theme.palette.grey[50], 0.5),
+                color: (theme.vars || theme).palette.grey[900],
+                borderColor: (theme.vars || theme).palette.grey[200],
+                ...theme.applyDarkStyles({
+                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+                  color: (theme.vars || theme).palette.grey[300],
+                  borderColor: alpha(theme.palette.primaryDark[500], 0.5),
+                }),
+              }),
+            ...(variant === 'outlined' &&
               color === 'primary' && {
                 borderColor: (theme.vars || theme).palette.primary[100],
                 backgroundColor: (theme.vars || theme).palette.primary[50],

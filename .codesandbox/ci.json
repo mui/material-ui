@@ -16,6 +16,7 @@
     "packages/mui-styled-engine",
     "packages/mui-styled-engine-sc",
     "packages/mui-material-next",
+    "packages/mui-material-nextjs",
     "packages/mui-joy"
   ],
   "publishDirectory": {
@@ -32,6 +33,7 @@
     "@mui/utils": "packages/mui-utils/build",
     "@mui/base": "packages/mui-base/build",
     "@mui/material-next": "packages/mui-material-next/build",
+    "@mui/material-nextjs": "packages/mui-material-nextjs/build",
     "@mui/joy": "packages/mui-joy/build"
   },
   "sandboxes": [

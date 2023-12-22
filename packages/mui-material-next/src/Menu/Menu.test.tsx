@@ -218,7 +218,7 @@ describe('<Menu />', () => {
 
   it('should not focus list if autoFocus=false', () => {
     const { setProps } = render(
-      <Menu anchorEl={document.createElement('div')} autoFocus={false}>
+      <Menu anchorEl={document.createElement('div')} autoFocus={false} open={false}>
         <div tabIndex={-1} />
       </Menu>,
     );

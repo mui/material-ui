@@ -22,6 +22,7 @@ function samePageLinkNavigation(
 interface LinkTabProps {
   label?: string;
   href?: string;
+  selected?: boolean;
 }
 
 function LinkTab(props: LinkTabProps) {
@@ -34,6 +35,7 @@ function LinkTab(props: LinkTabProps) {
           event.preventDefault();
         }
       }}
+      aria-current={props.selected && 'page'}
       {...props}
     />
   );
@@ -57,7 +59,12 @@ export default function NavTabs() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Tabs value={value} onChange={handleChange} aria-label="nav tabs example">
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        aria-label="nav tabs example"
+        role="navigation"
+      >
         <LinkTab label="Page One" href="/drafts" />
         <LinkTab label="Page Two" href="/trash" />
         <LinkTab label="Page Three" href="/spam" />

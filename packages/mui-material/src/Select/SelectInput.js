@@ -3,7 +3,7 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import MuiError from '@mui/utils/macros/MuiError.macro';
+import MuiError from '@mui-internal/babel-macros/MuiError.macro';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { refType, unstable_useId as useId } from '@mui/utils';
 import ownerDocument from '../utils/ownerDocument';
@@ -489,8 +489,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const listboxId = useId();
 
-  const hiddenInputId = useId();
-
   return (
     <React.Fragment>
       <SelectSelect
@@ -525,7 +523,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       <SelectNativeInput
         aria-invalid={error}
         value={Array.isArray(value) ? value.join(',') : value}
-        name={name ?? hiddenInputId}
+        name={name}
         ref={inputRef}
         aria-hidden
         onChange={handleChange}

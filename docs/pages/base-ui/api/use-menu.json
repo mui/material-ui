@@ -1,6 +1,10 @@
 {
   "parameters": {
     "autoFocus": { "type": { "name": "boolean", "description": "boolean" }, "default": "true" },
+    "componentName": {
+      "type": { "name": "string", "description": "string" },
+      "default": "'useMenu'"
+    },
     "disabledItemsFocusable": {
       "type": { "name": "boolean", "description": "boolean" },
       "default": "true"
