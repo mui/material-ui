@@ -39,34 +39,52 @@
     "import Breadcrumbs from '@mui/joy/Breadcrumbs';",
     "import { Breadcrumbs } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiBreadcrumbs" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'nav'",
-      "class": ".MuiBreadcrumbs-root"
+      "class": "MuiBreadcrumbs-root"
     },
     {
       "name": "ol",
       "description": "The component that renders the ol.",
       "default": "'ol'",
-      "class": ".MuiBreadcrumbs-ol"
+      "class": "MuiBreadcrumbs-ol"
     },
     {
       "name": "li",
       "description": "The component that renders the li.",
       "default": "'li'",
-      "class": ".MuiBreadcrumbs-li"
+      "class": "MuiBreadcrumbs-li"
     },
     {
       "name": "separator",
       "description": "The component that renders the separator.",
       "default": "'li'",
-      "class": ".MuiBreadcrumbs-separator"
+      "class": "MuiBreadcrumbs-separator"
     }
   ],
-  "classes": { "classes": ["sizeLg", "sizeMd", "sizeSm"], "globalClasses": {} },
+  "classes": [
+    {
+      "key": "sizeLg",
+      "className": "MuiBreadcrumbs-sizeLg",
+      "description": "Class name applied to the root element if `size=\"lg\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeMd",
+      "className": "MuiBreadcrumbs-sizeMd",
+      "description": "Class name applied to the root element if `size=\"md\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSm",
+      "className": "MuiBreadcrumbs-sizeSm",
+      "description": "Class name applied to the root element if `size=\"sm\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyBreadcrumbs",

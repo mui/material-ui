@@ -88,7 +88,7 @@ function Styles() {
     <style>
       {`
       .CustomSelectIntroduction {
-        font-family: IBM Plex Sans, sans-serif;
+        font-family: 'IBM Plex Sans', sans-serif;
         font-size: 0.875rem;
         box-sizing: border-box;
         min-width: 320px;
@@ -127,7 +127,7 @@ function Styles() {
         }
       }
       .CustomSelectIntroduction-listbox {
-        font-family: IBM Plex Sans, sans-serif;
+        font-family: 'IBM Plex Sans', sans-serif;
         font-size: 0.875rem;
         box-sizing: border-box;
         padding: 6px;
@@ -169,6 +169,10 @@ function Styles() {
         &.${optionClasses.highlighted}.${optionClasses.selected} {
           background-color: ${isDarkMode ? cyan[700] : cyan[100]};
           color: ${isDarkMode ? cyan[50] : cyan[900]};
+        }
+
+        &:focus-visible {
+          outline: 3px solid ${isDarkMode ? cyan[400] : cyan[300]};
         }
 
         &.${optionClasses.disabled} {

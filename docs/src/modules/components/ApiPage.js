@@ -17,8 +17,9 @@ import BrandingProvider from 'docs/src/BrandingProvider';
 import PropertiesSection, {
   getPropsToC,
 } from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
-import CSSSection, { getCssToC } from 'docs/src/modules/components/ApiPage/sections/CssSection';
-import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
+import ClassesSection, {
+  getClassesToC,
+} from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
 
 export function getTranslatedHeader(t, header) {
@@ -79,10 +80,13 @@ export default function ApiPage(props) {
     inheritance,
     props: componentProps,
     spread,
-    styles: componentStyles,
     slots: componentSlots,
-    classes: componentClasses,
+    classes,
   } = pageContent;
+
+  const componentClasses = Array.isArray(classes)
+    ? [...classes].sort((c1, c2) => c1.className.localeCompare(c2.className))
+    : [];
 
   const isJoyComponent = filename.includes('mui-joy');
   const isBaseComponent = filename.includes('mui-base');
@@ -111,10 +115,6 @@ export default function ApiPage(props) {
   // Prefer linking the .tsx or .d.ts for the "Edit this page" link.
   const apiSourceLocation = filename.replace('.js', '.d.ts');
 
-  const hasClasses =
-    componentClasses?.classes?.length ||
-    Object.keys(componentClasses?.classes?.globalClasses || {}).length;
-
   function createTocEntry(sectionName) {
     return {
       text: getTranslatedHeader(t, sectionName),
@@ -141,13 +141,12 @@ export default function ApiPage(props) {
       inheritance,
       themeDefaultProps: pageContent.themeDefaultProps,
     }),
-    ...getCssToC({
+    componentSlots?.length > 0 && createTocEntry('slots'),
+    ...getClassesToC({
       t,
       componentName: pageContent.name,
-      componentStyles,
+      componentClasses,
     }),
-    componentSlots?.length > 0 && createTocEntry('slots'),
-    hasClasses && createTocEntry('classes'),
   ].filter(Boolean);
 
   // The `ref` is forwarded to the root element.
@@ -313,14 +312,6 @@ export default function ApiPage(props) {
           </React.Fragment>
         )}
 
-        <CSSSection
-          componentStyles={componentStyles}
-          classDescriptions={classDescriptions}
-          componentName={pageContent.name}
-          spreadHint={t('api-docs.cssDescription')}
-          styleOverridesLink={styleOverridesLink}
-        />
-
         <SlotsSection
           componentSlots={componentSlots}
           slotDescriptions={slotDescriptions}
@@ -336,6 +327,8 @@ export default function ApiPage(props) {
           componentName={pageContent.name}
           classDescriptions={classDescriptions}
           spreadHint={t('api-docs.classesDescription')}
+          styleOverridesLink={styleOverridesLink}
+          displayClassKeys
         />
       </MarkdownElement>
       <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">

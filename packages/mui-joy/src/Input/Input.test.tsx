@@ -9,7 +9,8 @@ import {
   fireEvent,
 } from '@mui-internal/test-utils';
 import Input, { inputClasses as classes } from '@mui/joy/Input';
-import { ThemeProvider } from '@mui/joy/styles';
+import { ThemeProvider, extendTheme } from '@mui/joy/styles';
+import FormControl from '@mui/joy/FormControl';
 
 describe('Joy <Input />', () => {
   const { render } = createRenderer();
@@ -85,6 +86,28 @@ describe('Joy <Input />', () => {
       expect(handleBlur.callCount).to.equal(1);
       // check if focus not initiated again
       expect(handleFocus.callCount).to.equal(1);
+    });
+
+    it('disabled prop from FormControl should take precedence over disabled prop from theme', () => {
+      const { getByRole } = render(
+        <ThemeProvider
+          theme={extendTheme({
+            components: {
+              JoyInput: {
+                defaultProps: {
+                  disabled: false,
+                },
+              },
+            },
+          })}
+        >
+          <FormControl disabled>
+            <Input />
+          </FormControl>
+        </ThemeProvider>,
+      );
+
+      expect(getByRole('textbox')).to.have.attribute('disabled');
     });
   });
 

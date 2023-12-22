@@ -61,35 +61,106 @@
     "import ButtonGroup from '@mui/joy/ButtonGroup';",
     "import { ButtonGroup } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiButtonGroup" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiButtonGroup-root"
+      "class": "MuiButtonGroup-root"
     }
   ],
-  "classes": {
-    "classes": [
-      "colorContext",
-      "colorDanger",
-      "colorNeutral",
-      "colorPrimary",
-      "colorSuccess",
-      "colorWarning",
-      "horizontal",
-      "sizeLg",
-      "sizeMd",
-      "sizeSm",
-      "variantOutlined",
-      "variantPlain",
-      "variantSoft",
-      "variantSolid",
-      "vertical"
-    ],
-    "globalClasses": {}
-  },
+  "classes": [
+    {
+      "key": "colorContext",
+      "className": "MuiButtonGroup-colorContext",
+      "description": "Class name applied to the root element when color inversion is triggered.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorDanger",
+      "className": "MuiButtonGroup-colorDanger",
+      "description": "Class name applied to the root element if `color=\"danger\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorNeutral",
+      "className": "MuiButtonGroup-colorNeutral",
+      "description": "Class name applied to the root element if `color=\"neutral\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiButtonGroup-colorPrimary",
+      "description": "Class name applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSuccess",
+      "className": "MuiButtonGroup-colorSuccess",
+      "description": "Class name applied to the root element if `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorWarning",
+      "className": "MuiButtonGroup-colorWarning",
+      "description": "Class name applied to the root element if `color=\"warning\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "horizontal",
+      "className": "MuiButtonGroup-horizontal",
+      "description": "Class name applied to the root element if `orientation=\"horizontal\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeLg",
+      "className": "MuiButtonGroup-sizeLg",
+      "description": "Class name applied to the root element if `size=\"lg\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeMd",
+      "className": "MuiButtonGroup-sizeMd",
+      "description": "Class name applied to the root element if `size=\"md\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSm",
+      "className": "MuiButtonGroup-sizeSm",
+      "description": "Class name applied to the root element if `size=\"sm\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantOutlined",
+      "className": "MuiButtonGroup-variantOutlined",
+      "description": "Class name applied to the root element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantPlain",
+      "className": "MuiButtonGroup-variantPlain",
+      "description": "Class name applied to the root element if `variant=\"plain\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSoft",
+      "className": "MuiButtonGroup-variantSoft",
+      "description": "Class name applied to the root element if `variant=\"soft\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSolid",
+      "className": "MuiButtonGroup-variantSolid",
+      "description": "Class name applied to the root element if `variant=\"solid\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "vertical",
+      "className": "MuiButtonGroup-vertical",
+      "description": "Class name applied to the root element if `orientation=\"vertical\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyButtonGroup",

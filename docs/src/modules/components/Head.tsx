@@ -38,7 +38,7 @@ export default function Head(props: HeadProps) {
     <NextHead>
       <title>{title}</title>
       <meta name="description" content={description} />
-      {/* Twitter */}
+      {/* X */}
       <meta name="twitter:card" content={largeCard ? 'summary_large_image' : 'summary'} />
       {/* https://twitter.com/MUI_hq */}
       <meta name="twitter:site" content="@MUI_hq" />

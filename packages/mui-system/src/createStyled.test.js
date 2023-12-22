@@ -439,7 +439,7 @@ describe('createStyled', () => {
             Filled
           </Test>
           <Test data-testid="text" color="blue" variant="text">
-            Filled
+            Text
           </Test>
         </React.Fragment>,
       );
@@ -473,12 +473,44 @@ describe('createStyled', () => {
             Filled
           </Test>
           <Test data-testid="text" color="blue" variant="text">
-            Filled
+            Text
           </Test>
         </React.Fragment>,
       );
       expect(getByTestId('filled')).toHaveComputedStyle({ backgroundColor: 'rgb(0, 0, 255)' });
       expect(getByTestId('text')).toHaveComputedStyle({ color: 'rgb(0, 0, 255)' });
+    });
+
+    it('should accept variants in function style arg with props usage', () => {
+      const styled = createStyled({
+        defaultTheme: {
+          colors: { blue: 'rgb(0, 0, 255)', red: 'rgb(255, 0, 0)', green: 'rgb(0, 255, 0)' },
+        },
+      });
+
+      const Test = styled('div')(({ theme, color }) => ({
+        variants: [
+          {
+            props: (props) => props.color !== 'blue',
+            style: {
+              backgroundColor: theme.colors[color],
+            },
+          },
+        ],
+      }));
+
+      const { getByTestId } = render(
+        <React.Fragment>
+          <Test data-testid="red" color="red">
+            Filled
+          </Test>
+          <Test data-testid="green" color="green">
+            Text
+          </Test>
+        </React.Fragment>,
+      );
+      expect(getByTestId('green')).toHaveComputedStyle({ backgroundColor: 'rgb(0, 255, 0)' });
+      expect(getByTestId('red')).toHaveComputedStyle({ backgroundColor: 'rgb(255, 0, 0)' });
     });
 
     it('should accept variants in arrays', () => {
@@ -526,7 +558,7 @@ describe('createStyled', () => {
             Filled
           </Test>
           <Test data-testid="text" color="blue" variant="text">
-            Filled
+            Text
           </Test>
           <Test data-testid="outlined" color="blue" variant="outlined">
             Outlined
@@ -580,12 +612,90 @@ describe('createStyled', () => {
             Filled
           </Test>
           <Test data-testid="text" color="blue" variant="text">
-            Filled
+            Text
           </Test>
         </ThemeProvider>,
       );
       expect(getByTestId('filled')).toHaveComputedStyle({ backgroundColor: 'rgb(0, 0, 255)' });
       expect(getByTestId('text')).toHaveComputedStyle({ color: 'rgb(0, 0, 220)' });
+    });
+
+    it('should accept variants in function props arg', () => {
+      const styled = createStyled({ defaultTheme: { colors: { blue: 'rgb(0, 0, 255)' } } });
+
+      const Test = styled('div')(({ theme }) => ({
+        variants: [
+          {
+            props: (props) => props.color === 'blue' && props.variant === 'filled',
+            style: {
+              backgroundColor: theme.colors.blue,
+            },
+          },
+          {
+            props: (props) => props.color === 'blue' && props.variant === 'text',
+            style: {
+              color: theme.colors.blue,
+            },
+          },
+        ],
+      }));
+
+      const { getByTestId } = render(
+        <React.Fragment>
+          <Test data-testid="filled" color="blue" variant="filled">
+            Filled
+          </Test>
+          <Test data-testid="text" color="blue" variant="text">
+            Text
+          </Test>
+        </React.Fragment>,
+      );
+      expect(getByTestId('filled')).toHaveComputedStyle({ backgroundColor: 'rgb(0, 0, 255)' });
+      expect(getByTestId('text')).toHaveComputedStyle({ color: 'rgb(0, 0, 255)' });
+    });
+
+    it('should accept variants with both object and function props arg', () => {
+      const styled = createStyled({ defaultTheme: { colors: { blue: 'rgb(0, 0, 255)' } } });
+
+      const Test = styled('div')(({ theme }) => ({
+        variants: [
+          {
+            props: (props) => props.color === 'blue' && props.variant === 'filled',
+            style: {
+              backgroundColor: theme.colors.blue,
+            },
+          },
+          {
+            props: { color: 'blue', variant: 'outlined' },
+            style: {
+              borderColor: theme.colors.blue,
+            },
+          },
+          {
+            props: (props) => props.color === 'blue' && props.variant === 'text',
+            style: {
+              color: theme.colors.blue,
+            },
+          },
+        ],
+      }));
+
+      const { getByTestId } = render(
+        <React.Fragment>
+          <Test data-testid="filled" color="blue" variant="filled">
+            Filled
+          </Test>
+          <Test data-testid="outlined" color="blue" variant="outlined">
+            Outlined
+          </Test>
+          <Test data-testid="text" color="blue" variant="text">
+            Text
+          </Test>
+        </React.Fragment>,
+      );
+      expect(getByTestId('filled')).toHaveComputedStyle({ backgroundColor: 'rgb(0, 0, 255)' });
+      expect(getByTestId('outlined')).toHaveComputedStyle({ borderTopColor: 'rgb(0, 0, 255)' });
+      expect(getByTestId('text')).toHaveComputedStyle({ color: 'rgb(0, 0, 255)' });
     });
   });
 });
