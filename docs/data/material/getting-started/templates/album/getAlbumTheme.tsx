@@ -173,22 +173,45 @@ export default function getAlbumTheme(mode: 'light' | 'dark') {
       },
       MuiButton: {
         styleOverrides: {
-          root: ({ ownerState }: { ownerState: { variant?: string } }) =>
+          root: ({
+            ownerState,
+          }: {
+            ownerState: {
+              color: string;
+              variant?: string;
+            };
+          }) =>
             ({
               boxShadow: 'none',
               borderRadius: '8px',
-              ...(ownerState.variant === 'contained' && {
-                boxShadow: `inset 0px 1px 1px ${
-                  brandColor[400]
-                }, inset 0px -2px 1px ${brandColor[600]}, 0px 0px 0px 1px ${alpha(
-                  brandColor[500],
-                  0.5,
-                )}, 0px 2px 4px rgba(0, 0, 0, 0.1)`,
-                '&:hover': {
-                  backgroundColor: brandColor[600],
-                  boxShadow: 'none',
-                },
-              }),
+              ...(ownerState.variant === 'contained' &&
+                ownerState.color === 'primary' && {
+                  boxShadow: `inset 0px 1px 1px ${
+                    brandColor[400]
+                  }, inset 0px -2px 1px ${brandColor[600]}, 0px 0px 0px 1px ${alpha(
+                    brandColor[500],
+                    0.5,
+                  )}, 0px 2px 4px rgba(0, 0, 0, 0.1)`,
+                  '&:hover': {
+                    backgroundColor: brandColor[600],
+                    boxShadow: 'none',
+                  },
+                }),
+              ...(ownerState.variant === 'contained' &&
+                ownerState.color === 'secondary' && {
+                  boxShadow: `inset 0px 1px 1px ${
+                    secondaryColor[400]
+                  }, inset 0px -2px 1px ${
+                    secondaryColor[600]
+                  }, 0px 0px 0px 1px ${alpha(
+                    secondaryColor[500],
+                    0.5,
+                  )}, 0px 2px 4px rgba(0, 0, 0, 0.1)`,
+                  '&:hover': {
+                    backgroundColor: secondaryColor[600],
+                    boxShadow: 'none',
+                  },
+                }),
               ...(ownerState.variant === 'outlined' && {
                 backgroundColor:
                   mode === 'light'

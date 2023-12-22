@@ -46,7 +46,7 @@ const items = [
   },
   {
     icon: <QueryStatsRoundedIcon />,
-    title: 'Precision in Every Detail',
+    title: 'Precision in every detail',
     description:
       'Enjoy a meticulously crafted product where small touches make a significant impact on your overall experience.',
   },
@@ -60,10 +60,17 @@ export default function Highlights() {
           position: 'relative',
           display: 'flex',
           flexDirection: 'column',
+          alignItems: 'center',
           py: 12,
         }}
       >
-        <Box sx={{ width: { sm: '100%', md: '60%' }, mb: 4 }}>
+        <Box
+          sx={{
+            width: { sm: '100%', md: '60%' },
+            mb: 4,
+            textAlign: { sm: 'left', md: 'center' },
+          }}
+        >
           <Typography component="h2" variant="h4" color="inherit" gutterBottom>
             Highlights
           </Typography>
