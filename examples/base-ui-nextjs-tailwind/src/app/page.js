@@ -3,21 +3,15 @@ import { Switch } from '@mui/base/Switch';
 import { Select, SelectOption, Slider } from './components';
 
 function Heading(props) {
-  return (
-    <h2 className="font-bold text-gray-400 uppercase text-base mt-3 mb-2">{props.children}</h2>
-  );
+  return <h2 className="font-bold text-gray-400 uppercase text-xs mb-2">{props.children}</h2>;
 }
 
 function Section(props) {
-  return (
-    <div className="grid grid-cols-3 grid-rows-[40px] gap-x-16 items-center min-h-[40px] py-1.5 border-t-[1px] border-solid border-gray-700">
-      {props.children}
-    </div>
-  );
+  return <div className="flex justify-between items-center py-2">{props.children}</div>;
 }
 
 function Label(props) {
-  return <h3 className="font-medium leading-none text-gray-300 col-span-2">{props.children}</h3>;
+  return <h3 className="leading-none text-sm text-gray-300">{props.children}</h3>;
 }
 
 const HOURS = [
@@ -49,8 +43,8 @@ const HOURS = [
 
 export default function Home() {
   return (
-    <main className="flex justify-center items-center w-full h-screen">
-      <div className="bg-[rgb(14,20,27)] rounded-lg p-6">
+    <main className="flex justify-center items-center w-full h-screen bg-white dark:bg-gray-950">
+      <div className="bg-black shadow-[0_4px_12px_rgba(0,0,0,0.5)] border border-gray-700/50 rounded-xl p-8 w-[500px] divide-y divide-gray-800/80">
         <Heading>Night Mode</Heading>
         <Section>
           <Label>Schedule Night Mode</Label>
@@ -98,22 +92,21 @@ export default function Home() {
         </Section>
         <Section>
           <Label>Night Mode Tint</Label>
-          <div className="col-span-1 self-stretch">
-            <Slider
-              aria-label="Night mode tint"
-              defaultValue={37}
-              marks={[
-                {
-                  value: 0,
-                  label: 'Cool',
-                },
-                {
-                  value: 100,
-                  label: 'Warm',
-                },
-              ]}
-            />
-          </div>
+          <Slider
+            className="max-w-[200px]"
+            aria-label="Night mode tint"
+            defaultValue={37}
+            marks={[
+              {
+                value: 0,
+                label: 'Cool',
+              },
+              {
+                value: 100,
+                label: 'Warm',
+              },
+            ]}
+          />
         </Section>
       </div>
     </main>
