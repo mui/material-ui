@@ -236,9 +236,9 @@ export default function ComponentsGallery() {
   };
 
   return (
-    <Stack className="GalleryContainer" gap={2} sx={{ padding: 2 }}>
+    <Stack className="GalleryContainer" gap={2} sx={{ p: 2 }}>
       {/* Copy theme button */}
-      <Stack direction="row" spacing={1} sx={{ position: 'absolute', right: '10px' }}>
+      <Stack direction="row" spacing={1.5} sx={{ position: 'absolute', right: 24 }}>
         <SettingsButton
           aria-describedby={settingsId}
           className="GalleryButtonOutlined"

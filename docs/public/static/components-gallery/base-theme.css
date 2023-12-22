@@ -21,6 +21,8 @@
   --grey-800: 213, 12%, 22%;
   --grey-900: 213, 11%, 11%;
 
+  --canvas: #fff;
+
   --font-color-soft: hsla(var(--grey-700));
   --font-color-hard: hsla(var(--grey-900));
   --font-color-onDark: #fff;
@@ -128,32 +130,35 @@
   .GalleryPopper,
   .GalleryPopup,
   .GallerySelect-listbox {
-    --font-color-soft: var(--grey-300);
-    --font-color-hard: var(--grey-50);
+    --canvas: #0f0f0f;
+
+    --font-color-soft: hsla(var(--grey-300));
+    --font-color-hard: hsla(var(--grey-50));
     --font-color-onDark: #fff;
-    --font-color-interactive: var(--primary-300);
+    --font-color-interactive: hsla(var(--primary-300));
 
-    --background-outlined-default: hsla(var(--grey-900));
-    --background-outlined-soft: var(--grey-800);
-    --background-outlined-hard: var(--grey-700);
-    --background-outlined-highlight: var(--primary-500);
-    --background-outlined-overlay: hsla(0, 0, 0, 0.6);
+    --bg-default: hsla(var(--grey-900));
+    --bg-soft: hsla(var(--grey-800), 0.8);
+    --bg-hard: hsla(var(--grey-800));
+    --bg-highlight: hsla(var(--primary-400));
+    --bg-overlay: hsla(0, 0, 0, 0.6);
 
-    --background-interactive-button-base: hsla(var(--primary-500));
-    --background-interactive-button-hover: hsla(var(--primary-700));
-    --background-interactive-button-active: hsla(var(--primary-800));
-    --background-interactive-button-disabled: var(--grey-800);
+    --bg-button-base: hsla(var(--primary-500));
+    --bg-button-hover: hsla(var(--primary-700));
+    --bg-button-active: hsla(var(--primary-800));
+    --bg-button-disabled: hsla(var(--grey-900));
 
-    --background-interactive-input-base: var(--grey-900);
-    --background-interactive-input-hover: var(--grey-800);
-    --background-interactive-input-active: var(--grey-700);
-    --background-interactive-input-disabled: var(--grey-800);
+    --bg-input-base: hsla(var(--grey-900, 0.5));
+    --bg-input-hover: hsla(var(--grey-900));
+    --bg-input-active: hsla(var(--grey-700));
+    --bg-input-disabled: hsla(var(--grey-800));
+
     --background-interactive-thumb: var(--grey-50);
 
-    --border-default: 1px solid var(--grey-700);
-    --border-soft: 1px solid var(--grey-700);
-    --border-hard: 1px solid var(--grey-600);
-    --border-interactive: 1px solid hsla(var(--primary-600), 0.5);
+    --border-default: 1px solid hsla(var(--grey-800));
+    --border-soft: 1px solid hsla(var(--grey-800, 0.2));
+    --border-hard: 1px solid hsla(var(--grey-700));
+    --border-interactive: 1px solid hsla(var(--primary-500));
     --border-transparent: 1px solid hsla(0, 0, 0, 0);
 
     --shadow-elevation-1: 0px 2px 4px -0.5px hsla(0, 0, 0, 0.4);
@@ -162,17 +167,20 @@
     --shadow-elevation-4: 0px 2px 24px 0px hsla(0, 0, 0, 0.32),
       0px 16px 32px 0px hsla(0, 0, 0, 0.32);
 
-    --shadow-interactive-button: 0 -3px 0 0 hsla(var(--primary-800), 0.6) inset,
-      0 1.5px 0 0 hsla(var(--primary-400), 0.4) inset, 0px 2px 4px 0px hsla(0, 0, 0, 0.2);
-    --shadow-interactive-input: 0px 2px 2px 0px hsla(0, 0, 0, 0.35);
+    --shadow-interactive-button: 0 -2px 0 0 hsla(var(--primary-800), 0.4) inset,
+      0 1.5px 0 0 hsla(var(--primary-400), 0.8) inset, 0 1px 0.5px 0 hsla(var(--primary-900), 0.3);
+    --shadow-outlined-button: 0 -2px 0 0 hsla(var(--grey-800), 0.4) inset,
+      0 1px 0.5px 0 hsla(0, 0%, 0%, 0.9);
+    --shadow-input: 0px 1.5px 0.5px 0px hsla(0, 0%, 0%, 0.9);
     --shadow-interactive-switch-track: 0px 1px 1px 0px hsla(0, 0, 0, 0.35) inset;
     --shadow-interactive-switch-thumb: 0px 1px 2px 0px hsla(0, 0, 0, 0.3);
-    --shadow-interactive-focus-visible: 0 0 0 3px hsla(var(--primary-300), 0.6);
+    --shadow-interactive-focus-visible: 0 0 0 3px hsla(var(--primary-300), 0.5);
   }
 }
 
 .GalleryContainer {
-  background-color: var(--background-outlined-default);
+  background-color: var(--canvas);
+  height: 100vh;
 }
 
 .GalleryBadge-root {
@@ -765,7 +773,7 @@
 }
 
 .GallerySwitch-track {
-  background: var(--bg-hard);
+  background: var(--bg-default);
   border: var(--border-soft);
   border-radius: var(--border-radius-full);
   display: block;
