@@ -193,6 +193,7 @@ const Root = styled('div')(
         },
       },
       '& th': {
+        width: '100%',
         textAlign: 'left',
         borderBottom: `3px solid rgba(62, 80, 96, 0.2) !important`,
       },
