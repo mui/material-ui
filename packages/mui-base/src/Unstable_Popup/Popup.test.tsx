@@ -249,8 +249,6 @@ describe('<Popup />', () => {
         requestAnimationFrame(resolve);
       });
 
-      await waitForPosition();
-
       expect(popup.getBoundingClientRect().left).to.equal(
         document.body.getBoundingClientRect().left,
       );
