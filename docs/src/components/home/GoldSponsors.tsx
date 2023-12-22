@@ -39,6 +39,13 @@ const GOLDs = [
     href: 'https://rxdb.info/?utm_source=sponsor&utm_medium=opencollective&utm_campaign=opencollective-mui',
   },
   {
+    src: 'https://avatars.githubusercontent.com/u/1262264?size=40',
+    srcSet: 'https://avatars.githubusercontent.com/u/1262264?s=80 2x',
+    name: 'Text-em-all',
+    description: 'Mass text messaging and automated calling.',
+    href: 'https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+  },
+  {
     src: '/static/sponsors//megafamous.png',
     name: 'MegaFamous',
     description: 'Buy Instagram followers and likes.',
