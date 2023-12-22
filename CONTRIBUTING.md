@@ -274,7 +274,7 @@ When you submit a PR, these checks are run again by our continuous integration t
 ## Contributing to the documentation
 
 Contributing to open-source docs involves a lot more than just fixing typos—developers frequently request more in-depth explanations of component features, and this requires both coding and technical writing to accomplish.
-Every documentation PR will be reviewed by an editor following [MUI's writing style guide](https://mui-org.notion.site/Writing-style-guide-2a957a4168a54d47b14bae026d06a24b?pvs=74), and if you plan to contribute regularly, you should familiarize yourself with this guide to speed up the editing process.
+Every documentation PR will be reviewed by an editor following [MUI's writing style guide](https://mui-org.notion.site/Writing-style-guide-2a957a4168a54d47b14bae026d06a24b), and if you plan to contribute regularly, you should familiarize yourself with this guide to speed up the editing process.
 
 ### How to find docs issues to work on
 
