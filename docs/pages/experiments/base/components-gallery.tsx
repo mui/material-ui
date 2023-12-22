@@ -18,6 +18,10 @@ import { Option } from '@mui/base/Option';
 import { Slider } from '@mui/base/Slider';
 import { Snackbar } from '@mui/base/Snackbar';
 import FormatColorFillRoundedIcon from '@mui/icons-material/FormatColorFillRounded';
+import FirstPageRoundedIcon from '@mui/icons-material/FirstPageRounded';
+import LastPageRoundedIcon from '@mui/icons-material/LastPageRounded';
+import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
+import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 // TODO: re-export from the @mui/base/Snackbar, if developer only uses the component
 // it is not intuitive to import types from a different module
 import { SnackbarCloseReason } from '@mui/base/useSnackbar';
@@ -322,6 +326,11 @@ export default function ComponentsGallery() {
         </Button>
       </Stack>
       <Input placeholder="Write something here" className="GalleryInput" />
+      <TextareaAutosize
+        className="GalleryTextarea"
+        aria-label="empty textarea"
+        placeholder="Write something here"
+      />
       <NumberInput
         slotProps={{
           root: { className: 'GalleryNumberInput' },
@@ -395,6 +404,59 @@ export default function ComponentsGallery() {
             <div className="GalleryPopup">The content of the Popup.</div>
           </Popup>
         </div>
+        <div>
+          <button
+            className="GalleryButtonOutlined"
+            type="button"
+            onClick={handleSnackbarButtonClick}
+          >
+            Open snackbar
+          </button>
+          <Snackbar
+            autoHideDuration={5000}
+            open={snackbarOpen}
+            onClose={handleClose}
+            exited={exited}
+            className="GallerySnackbar"
+          >
+            <Transition
+              timeout={{ enter: 400, exit: 400 }}
+              in={snackbarOpen}
+              appear
+              unmountOnExit
+              onEnter={handleOnEnter}
+              onExited={handleOnExited}
+              nodeRef={nodeRef}
+            >
+              {(status) => (
+                <div
+                  className="GallerySnackbar-content"
+                  style={{
+                    transform: positioningStyles[status],
+                    transition: 'transform 300ms ease',
+                  }}
+                  ref={nodeRef}
+                >
+                  <CheckRoundedIcon
+                    sx={{
+                      color: 'success.main',
+                      flexShrink: 0,
+                      width: '1.25rem',
+                      height: '1.5rem',
+                    }}
+                  />
+                  <div className="snackbar-message">
+                    <p className="snackbar-title">Notifications sent</p>
+                    <p className="snackbar-description">
+                      Everything was sent to the desired address.
+                    </p>
+                  </div>
+                  <CloseIcon onClick={handleClose} className="snackbar-close-icon" />
+                </div>
+              )}
+            </Transition>
+          </Snackbar>
+        </div>
       </Stack>
       <div style={{ width: 320 }}>
         <Slider
@@ -417,56 +479,7 @@ export default function ComponentsGallery() {
           disabled
         />
       </div>
-      <div>
-        <button className="GalleryButtonOutlined" type="button" onClick={handleSnackbarButtonClick}>
-          Open snackbar
-        </button>
-        <Snackbar
-          autoHideDuration={5000}
-          open={snackbarOpen}
-          onClose={handleClose}
-          exited={exited}
-          className="GallerySnackbar"
-        >
-          <Transition
-            timeout={{ enter: 400, exit: 400 }}
-            in={snackbarOpen}
-            appear
-            unmountOnExit
-            onEnter={handleOnEnter}
-            onExited={handleOnExited}
-            nodeRef={nodeRef}
-          >
-            {(status) => (
-              <div
-                className="GallerySnackbar-content"
-                style={{
-                  transform: positioningStyles[status],
-                  transition: 'transform 300ms ease',
-                }}
-                ref={nodeRef}
-              >
-                <CheckRoundedIcon
-                  sx={{
-                    color: 'success.main',
-                    flexShrink: 0,
-                    width: '1.25rem',
-                    height: '1.5rem',
-                  }}
-                />
-                <div className="snackbar-message">
-                  <p className="snackbar-title">Notifications sent</p>
-                  <p className="snackbar-description">
-                    Everything was sent to the desired address.
-                  </p>
-                </div>
-                <CloseIcon onClick={handleClose} className="snackbar-close-icon" />
-              </div>
-            )}
-          </Transition>
-        </Snackbar>
-      </div>
-      <div>
+      <Stack direction="row" spacing={2}>
         <Switch
           slotProps={{
             root: { className: 'GallerySwitch' },
@@ -503,8 +516,8 @@ export default function ComponentsGallery() {
           }}
           disabled
         />
-      </div>
-      <div className="TablePaginationDemo">
+      </Stack>
+      <div>
         <table aria-label="custom pagination table">
           <tfoot>
             <tr>
@@ -515,6 +528,8 @@ export default function ComponentsGallery() {
                 count={13}
                 rowsPerPage={rowsPerPage}
                 page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
                 slotProps={{
                   select: {
                     'aria-label': 'rows per page',
@@ -522,10 +537,14 @@ export default function ComponentsGallery() {
                   actions: {
                     showFirstButton: true,
                     showLastButton: true,
+                    slots: {
+                      firstPageIcon: FirstPageRoundedIcon,
+                      lastPageIcon: LastPageRoundedIcon,
+                      nextPageIcon: ChevronRightRoundedIcon,
+                      backPageIcon: ChevronLeftRoundedIcon,
+                    },
                   },
                 }}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
               />
             </tr>
           </tfoot>
@@ -535,13 +554,16 @@ export default function ComponentsGallery() {
         <Tabs defaultValue={0}>
           <TabsList className="GalleryTabsList">
             <Tab className="GalleryTab" value={0}>
-              My account
+              Account
             </Tab>
             <Tab className="GalleryTab" value={1}>
-              Profile
+              Notifications
             </Tab>
             <Tab className="GalleryTab" value={2}>
               Language
+            </Tab>
+            <Tab className="GalleryTab" value={3} disabled>
+              Calendar
             </Tab>
           </TabsList>
           <TabPanel className="GalleryTabPanel" value={0}>
@@ -553,14 +575,10 @@ export default function ComponentsGallery() {
           <TabPanel className="GalleryTabPanel" value={2}>
             Language page
           </TabPanel>
+          <TabPanel className="GalleryTabPanel" value={3}>
+            Calendar page
+          </TabPanel>
         </Tabs>
-      </div>
-      <div>
-        <TextareaAutosize
-          className="GalleryTextarea"
-          aria-label="empty textarea"
-          placeholder="Empty"
-        />
       </div>
     </Stack>
   );

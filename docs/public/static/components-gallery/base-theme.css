@@ -250,6 +250,9 @@
     &:hover {
       background-color: var(--bg-button-disabled);
     }
+    &:active {
+      scale: 1;
+    }
   }
 }
 
@@ -290,6 +293,9 @@
     &:hover {
       background-color: var(--bg-button-disabled);
     }
+    &:active {
+      scale: 1;
+    }
   }
 }
 
@@ -326,6 +332,9 @@
 
     &:hover {
       background-color: var(--bg-button-disabled);
+    }
+    &:active {
+      scale: 1;
     }
   }
 }
@@ -606,7 +615,7 @@
 }
 
 .GallerySlider {
-  color: var(--background-surface-highlight);
+  color: var(--bg-highlight);
   height: 6px;
   width: 100%;
   padding: 16px 0;
@@ -624,7 +633,7 @@
 .GallerySlider.Mui-disabled {
   pointer-events: none;
   cursor: default;
-  color: var(--background-interactive-input-disabled);
+  color: var(--bg-input-disabled);
   outline: none;
 }
 
@@ -634,7 +643,7 @@
   width: 100%;
   height: 4px;
   border-radius: var(--border-radius-sm);
-  background-color: var(--background-surface-soft);
+  background-color: var(--bg-soft);
 }
 
 .GallerySlider-track {
@@ -655,7 +664,7 @@
   border-radius: var(--border-radius-full);
   outline: 0;
   border: 3px solid;
-  background-color: var(--background-interactive-thumb);
+  background-color: var(--bg-default);
   box-shadow: var(--shadow-interactive-switch-thumb);
 }
 
@@ -746,7 +755,6 @@
   display: inline-block;
   width: 38px;
   height: 24px;
-  margin: 10px;
   cursor: pointer;
 }
 
@@ -756,7 +764,7 @@
 }
 
 .GallerySwitch-track {
-  background: var(--background-surface-soft);
+  background: var(--bg-hard);
   border: var(--border-soft);
   border-radius: var(--border-radius-full);
   display: block;
@@ -764,10 +772,10 @@
   width: 100%;
   position: absolute;
   box-shadow: var(--shadow-interactive-switch-track);
+  transition: all 120ms ease;
 }
 
 .GallerySwitch:hover .GallerySwitch-track {
-  background: var(--background-interactive-input-hover);
   border: var(--border-hard);
 }
 
@@ -779,7 +787,7 @@
   left: 4px;
   border-radius: var(--border-radius-full);
   border: var(--border-soft);
-  background-color: var(--background-interactive-thumb);
+  background-color: var(--bg-default);
   position: relative;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -790,14 +798,19 @@
   box-shadow: var(--shadow-interactive-focus-visible);
 }
 
+.GallerySwitch:active .GallerySwitch-thumb {
+  width: 20px;
+}
+
 .GallerySwitch.Mui-checked .GallerySwitch-thumb {
   left: 18px;
-  background-color: var(--background-interactive-thumb);
-  box-shadow: var(--shadow-interactive-switch-thumb);
+  background-color: var(--bg-default);
+  border: 1px solid hsla(var(--primary-100));
 }
 
 .GallerySwitch.Mui-checked .GallerySwitch-track {
-  background: var(--background-surface-highlight);
+  background: var(--bg-highlight);
+  border: 1px solid hsla(var(--primary-100));
 }
 
 .GallerySwitch-input {
@@ -814,11 +827,6 @@
 
 /* Demo's table styles start */
 
-.GalleryTablePaginationDemo {
-  width: 500px;
-  max-width: 100%;
-}
-
 .GalleryTablePaginationDemo th {
   background-color: var(--background-surface-default);
 }
@@ -826,7 +834,7 @@
 .GalleryTablePaginationDemo table {
   font: var(--text-body);
   width: 100%;
-  background-color: var(--background-surface-default);
+  background-color: var(--bg-default);
   box-shadow: var(--shadow-elevation-3);
   border-radius: var(--border-radius-md);
   overflow: hidden;
@@ -839,7 +847,7 @@
 }
 
 .GalleryTablePaginationDemo th {
-  background-color: var(--background-surface-default);
+  background-color: var(--bg-default);
 }
 
 /* Demo's table styles end */
@@ -869,14 +877,16 @@
 .GalleryTablePagination .MuiTablePagination-select {
   font: var(--text-body);
   color: var(--font-color-soft);
-  padding: 4px 6px;
+  padding: 4px;
   border: var(--border-default);
   border-radius: var(--border-radius-full);
-  background-color: var(--background-surface-soft);
+  background-color: var(--bg-default);
+  transition: all 120ms ease;
 }
 
 .GalleryTablePagination .MuiTablePagination-select:hover {
-  background-color: var(--background-surface-hard);
+  background-color: var(--bg-soft);
+  border: var(--border-soft);
 }
 
 .GalleryTablePagination .MuiTablePagination-select:focus {
@@ -886,31 +896,33 @@
 
 .GalleryTablePagination .MuiTablePagination-displayedRows {
   margin: 0;
-
-  @media (min-width: 768px) {
-    margin-left: auto;
-  }
+  min-width: 75px;
+  text-align: right;
 }
 
 .GalleryTablePagination .MuiTablePagination-actions {
-  padding: 4px 6px;
-  border: var(--border-default);
-  border-radius: var(--border-radius-full);
-  background-color: var(--background-surface-soft);
+  display: flex;
+  gap: 6px;
+  border: transparent;
   text-align: center;
 }
 
 .GalleryTablePagination .MuiTablePagination-actions > button {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  /* min-width: 32px; */
   font: var(--text-body);
   color: var(--font-color-soft);
-  margin: 0 8px;
-  border: transparent;
-  border-radius: var(--border-radius-sm);
   background-color: transparent;
+  border: var(--border-default);
+  border-radius: var(--border-radius-full);
+  transition: all 120ms ease;
 }
 
 .GalleryTablePagination .MuiTablePagination-actions > button:hover {
-  background-color: var(--background-surface-hard);
+  background-color: var(--bg-soft);
+  border: var(--border-hard);
 }
 
 .GalleryTablePagination .MuiTablePagination-actions > button:focus {
@@ -923,9 +935,9 @@
 }
 
 .GalleryTabsList {
-  min-width: 400px;
+  min-width: 300px;
   background-color: var(--background-surface-soft);
-  border: var(--border-soft);
+  border: var(--border-default);
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-interactive-switch-track);
   margin-bottom: 8px;
@@ -950,7 +962,7 @@
 }
 
 .GalleryTab:hover {
-  background-color: var(--background-surface-hard);
+  background-color: var(--bg-hard);
 }
 
 .GalleryTab:focus {
@@ -959,13 +971,14 @@
 }
 
 .GalleryTab.Mui-selected {
-  background-color: var(--background-surface-highlight);
+  background-color: var(--bg-highlight);
   color: var(--font-color-onDark);
 }
 
 .GalleryTab.Mui-disabled {
   opacity: 0.5;
   cursor: not-allowed;
+  background-color: transparent;
 }
 
 .GalleryTabPanel {
@@ -974,28 +987,31 @@
   padding: 24px;
   background: var(--background-surface-soft);
   border-radius: var(--border-radius-md);
+  border: var(--border-default);
 }
 
 .GalleryTextarea {
-  width: 288px;
-  font: var(--text-body);
-  color: var(--font-color-soft);
+  width: 300px;
   min-height: 100px;
-  padding: 6px 10px;
-  border-radius: var(--border-radius-md) var(--border-radius-md) 0 var(--border-radius-md);
-  background: var(--background-interactive-input-base);
-  border: var(--border-default);
-  box-shadow: var(--shadow-interactive-input);
+  font: var(--text-body);
+  color: var(--GalleryInput-input-color, var(--font-color-soft));
+  padding: 6px 12px;
+  border-radius: var(--border-radius-md);
+  background: var(--bg-input-base);
+  border: var(--border-soft);
+  box-shadow: var(--shadow-input);
+  transition: all 120ms ease;
 }
 
 .GalleryTextarea:hover {
   border: var(--border-hard);
+  background: var(--bg-input-hover);
 }
 
 .GalleryTextarea:focus {
-  border-color: var(--primary-400);
   box-shadow: var(--shadow-interactive-focus-visible);
-  outline: none;
+  border: var(--border-interactive);
+  outline: 0;
 }
 
 /* firefox */
