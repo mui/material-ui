@@ -54,7 +54,7 @@
   --h5-font-weight: 600;
   --h5-font-size: 0.875rem;
   --h5-line-height: 1.5;
-  --text-h5: var(--h5-font-size) / var(--h5-line-height) var(--h5-font-family);
+  --text-h5: var(--h5-font-weight) var(--h5-font-size) / var(--h5-line-height) var(--h5-font-family);
 
   --button-font-family: 'Inter', sans-serif;
   --button-font-weight: 500;
@@ -77,8 +77,8 @@
     var(--caption-font-family);
 
   --bg-default: #fff;
-  --bg-soft: hsla(var(--grey-50));
-  --bg-hard: hsla(var(--grey-100));
+  --bg-soft: hsla(var(--grey-50), 0.8);
+  --bg-hard: hsla(var(--grey-100), 0.8);
   --bg-highlight: hsla(var(--primary-500));
   --bg-overlay: hsla(0, 0, 0, 0.3);
 
@@ -94,22 +94,23 @@
 
   --background-interactive-thumb: var(--background-surface-default);
 
-  --border-default: 1px solid hsla(var(--grey-200));
-  --border-soft: 1px solid hsla(var(--grey-300));
+  --border-default: 1px solid hsla(var(--grey-200), 0.8);
+  --border-soft: 1px solid hsla(var(--grey-300), 0.8);
   --border-hard: 1px solid hsla(var(--grey-500));
   --border-interactive: 1px solid hsla(var(--primary-500));
   --border-transparent: 1px solid hsla(0, 0, 0, 0);
 
   --shadow-elevation-1: 0px 1px 2px 0px hsla(0, 0, 0, 0.15);
   --shadow-elevation-2: 0px 2px 4px 0px hsla(var(--grey-700), 0.2);
-  --shadow-elevation-3: 0px 4px 16px -4px hsla(0, 0, 0, 0.25), 0px 1px 2px -1px hsla(0, 0, 0, 0.15);
+  --shadow-elevation-3: 0px 4px 16px -4px hsla(var(--grey-700), 0.2),
+    0px 1px 2px -1px hsla(var(--grey-700), 0.1);
   --shadow-elevation-4: 0px 8px 32px -4px hsla(0, 0, 0, 0.25), 0px 1px 2px -1px hsla(0, 0, 0, 0.15);
 
   --shadow-interactive-button: 0 -2px 0 0 hsla(var(--primary-800), 0.8) inset,
     0 1.5px 0 0 hsla(var(--primary-400), 0.8) inset, 0 1px 0.5px 0 hsla(var(--primary-900), 0.3);
   --shadow-outlined-button: 0 -2px 0 0 hsla(var(--grey-200), 0.5) inset,
-    0 1.5px 0 0 hsla(var(--grey-100), 0.4) inset, 0 1px 0.5px 0 hsla(var(--grey-500), 0.3);
-  --shadow-input: 0px 1px 0.5px 0px hsla(var(--primary-500), 0.2);
+    0 1px 0.5px 0 hsla(var(--grey-500), 0.2);
+  --shadow-input: 0px 1.5px 0.5px 0px hsla(var(--primary-300), 0.2);
   --shadow-interactive-switch-track: 0px 1px 1px 0px hsla(0, 0, 0, 0.05) inset;
   --shadow-interactive-switch-thumb: 0px 1px 2px 0px hsla(0, 0, 0, 0.3);
   --shadow-interactive-focus-visible: 0 0 0 3px hsla(var(--primary-300));
@@ -372,7 +373,7 @@
   border-radius: var(--border-radius-lg);
   overflow: auto;
   outline: 0px;
-  background: var(--background-surface-default);
+  background: var(--bg-default);
   border: var(--border-soft);
   box-shadow: var(--shadow-elevation-2);
 }
@@ -401,7 +402,7 @@
 }
 
 .GalleryMenu-item:hover:not(.Mui-disabled) {
-  background-color: var(--background-surface-soft);
+  background-color: var(--bg-soft);
   color: var(--font-color-soft);
 }
 
@@ -518,17 +519,17 @@
 }
 
 .GalleryPopper {
-  background-color: var(--background-surface-soft);
-  border: var(--border-default);
-  box-shadow: var(--shadow-elevation-3);
   color: var(--font-color-soft);
+  background: var(--bg-default);
+  border: var(--border-soft);
+  box-shadow: var(--shadow-elevation-2);
 }
 
 .GalleryPopup {
-  background-color: var(--background-surface-soft);
-  border: var(--border-default);
-  box-shadow: var(--shadow-elevation-3);
   color: var(--font-color-soft);
+  background: var(--bg-default);
+  border: var(--border-soft);
+  box-shadow: var(--shadow-elevation-2);
 }
 
 .GallerySelect {
@@ -578,7 +579,7 @@
   overflow: auto;
   outline: 0px;
   background: var(--bg-default);
-  border: var(--border-default);
+  border: var(--border-soft);
   box-shadow: var(--shadow-elevation-2);
 }
 
@@ -707,15 +708,15 @@
 .GallerySnackbar-content {
   font-family: var(--body-font-family);
   text-align: start;
+  padding: 12px;
+  position: relative;
   display: flex;
   gap: 8px;
   overflow: hidden;
-  background-color: var(--background-surface-soft);
   border-radius: var(--border-radius-md);
-  border: var(--border-default);
+  background: var(--bg-default);
+  border: var(--border-soft);
   box-shadow: var(--shadow-elevation-3);
-  padding: 0.75rem;
-  position: relative;
 
   & .snackbar-message {
     flex: 1 1 0%;
@@ -741,10 +742,10 @@
     cursor: pointer;
     flex-shrink: 0;
     padding: 6px;
-    border-radius: var(--border-radius-sm);
+    border-radius: var(--border-radius-md);
 
     &:hover {
-      background: var(--background-surface-hard);
+      background: var(--bg-hard);
     }
   }
 }
