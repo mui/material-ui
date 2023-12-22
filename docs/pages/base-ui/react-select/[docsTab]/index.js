@@ -7,6 +7,7 @@ import OptionApiJsonPageContent from '../../api/option.json';
 import OptionGroupApiJsonPageContent from '../../api/option-group.json';
 import SelectApiJsonPageContent from '../../api/select.json';
 import useOptionApiJsonPageContent from '../../api/use-option.json';
+import useOptionContextStabilizerApiJsonPageContent from '../../api/use-option-context-stabilizer.json';
 import useSelectApiJsonPageContent from '../../api/use-select.json';
 
 export default function Page(props) {
@@ -54,6 +55,15 @@ export const getStaticProps = () => {
   );
   const useOptionApiDescriptions = mapApiPageTranslations(useOptionApiReq);
 
+  const useOptionContextStabilizerApiReq = require.context(
+    'docs/translations/api-docs/use-option-context-stabilizer',
+    false,
+    /use-option-context-stabilizer.*.json$/,
+  );
+  const useOptionContextStabilizerApiDescriptions = mapApiPageTranslations(
+    useOptionContextStabilizerApiReq,
+  );
+
   const useSelectApiReq = require.context(
     'docs/translations/api-docs/use-select',
     false,
@@ -75,10 +85,12 @@ export const getStaticProps = () => {
       },
       hooksApiDescriptions: {
         useOption: useOptionApiDescriptions,
+        useOptionContextStabilizer: useOptionContextStabilizerApiDescriptions,
         useSelect: useSelectApiDescriptions,
       },
       hooksApiPageContents: {
         useOption: useOptionApiJsonPageContent,
+        useOptionContextStabilizer: useOptionContextStabilizerApiJsonPageContent,
         useSelect: useSelectApiJsonPageContent,
       },
     },

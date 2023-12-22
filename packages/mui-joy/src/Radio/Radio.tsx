@@ -139,7 +139,12 @@ const RadioRadio = styled('span', {
             ...variantStyle,
             backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
           },
-          { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+          {
+            '&:hover': {
+              '@media (hover: hover)':
+                theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+            },
+          },
           { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
           {
             [`&.${radioClasses.disabled}`]:
@@ -172,7 +177,12 @@ const RadioAction = styled('span', {
   ...(ownerState.disableIcon
     ? [
         theme.variants[ownerState.variant!]?.[ownerState.color!],
-        { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+        {
+          '&:hover': {
+            '@media (hover: hover)':
+              theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+          },
+        },
         { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
         {
           [`&.${radioClasses.disabled}`]:
@@ -300,7 +310,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   const useRadioProps = {
     checked: radioChecked,
     defaultChecked,
-    disabled: disabledProp ?? formControl?.disabled,
+    disabled: inProps.disabled || formControl?.disabled || disabledProp,
     onBlur,
     onChange,
     onFocus,

@@ -39,9 +39,9 @@ const disableAd =
 const inHouseAds = [
   {
     name: 'scaffoldhub',
-    link: 'https://www.scaffoldhub.io/?partner=1',
+    link: 'https://v2.scaffoldhub.io/scaffolds/react-material-ui?partner=1',
     img: '/static/ads-in-house/scaffoldhub.png',
-    description: '<b>ScaffoldHub</b>. Automate building your full-stack MUI web-app.',
+    description: '<b>ScaffoldHub</b>. Automate building your full-stack Material UI web-app.',
   },
   {
     name: 'templates',
@@ -68,7 +68,8 @@ const inHouseAds = [
     name: 'figma',
     link: 'https://mui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-figma',
     img: '/static/ads-in-house/figma.png',
-    description: '<b>For Figma</b>. A large UI kit with over 600 handcrafted MUI components 🎨.',
+    description:
+      '<b>For Figma</b>. A large UI kit with over 600 handcrafted Material UI, MUI X, Joy UI components 🎨.',
   },
 ];
 
@@ -110,6 +111,11 @@ export const AD_MARGIN_TOP = 3;
 export const AD_MARGIN_BOTTOM = 3;
 export const AD_HEIGHT = 126;
 
+// https://stackoverflow.com/a/20084661
+function isBot() {
+  return /bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent);
+}
+
 export default function Ad() {
   const [adblock, setAdblock] = React.useState(null);
   const [carbonOut, setCarbonOut] = React.useState(null);
@@ -120,7 +126,7 @@ export default function Ad() {
   let children;
   let label;
   // Hide the content to google bot to avoid its indexation.
-  if ((typeof window !== 'undefined' && /Googlebot/.test(navigator.userAgent)) || disableAd) {
+  if ((typeof window !== 'undefined' && isBot()) || disableAd) {
     children = <span />;
   } else if (adblock) {
     if (randomAdblock < 0.2) {

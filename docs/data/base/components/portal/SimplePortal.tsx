@@ -18,7 +18,7 @@ export default function SimplePortal() {
       <Box sx={{ p: 1, my: 1, border: '1px solid' }}>
         It looks like I will render here.
         {show ? (
-          <Portal container={container.current}>
+          <Portal container={() => container.current!}>
             <span>But I actually render here!</span>
           </Portal>
         ) : null}

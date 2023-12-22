@@ -92,7 +92,7 @@ const Button = React.forwardRef(function Button<
 const StyledButton = styled('button', { shouldForwardProp: () => true })(
   ({ theme }) => `
   position: relative;
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   min-width: 320px;
@@ -134,7 +134,7 @@ const StyledButton = styled('button', { shouldForwardProp: () => true })(
 
 const Listbox = styled('ul')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   padding: 6px;
@@ -178,6 +178,10 @@ const Option = styled(BaseOption)(
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
 
+  &:focus-visible {
+    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
+  }
+
   &.${optionClasses.disabled} {
     color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
   }
@@ -195,7 +199,7 @@ const Popper = styled(BasePopper)`
 
 const Label = styled('label')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.85rem;
   display: block;
   margin-bottom: 4px;

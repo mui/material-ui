@@ -34,6 +34,7 @@ describe('StackBlitz', () => {
         'index.html': `<!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="utf-8" />
     <title>BasicButtons Material Demo</title>
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <!-- Fonts to support Material Design -->
@@ -110,6 +111,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
         'index.html': `<!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="utf-8" />
     <title>BasicButtons Material Demo</title>
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <!-- Fonts to support Material Design -->

@@ -52,5 +52,5 @@ For development `yarn test:regressions:dev` and `yarn test:regressions:run --wat
 | `yarn test:regressions`        | Full run                                                                                                              |
 | `yarn test:regressions:dev`    | Prepares the fixtures to be able to test in watchmode                                                                 |
 | `yarn test:regressions:run`    | Runs the tests (requires `yarn test:regressions:dev` or `yarn test:regressions:build`+`yarn test:regressions:server`) |
-| `yarn test:regressions:build`  | Builds the webpack bundle for viewing the fixtures                                                                    |
+| `yarn test:regressions:build`  | Builds the Webpack bundle for viewing the fixtures                                                                    |
 | `yarn test:regressions:server` | Serves the fixture bundle.                                                                                            |

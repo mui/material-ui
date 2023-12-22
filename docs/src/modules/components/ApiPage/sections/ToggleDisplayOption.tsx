@@ -6,10 +6,12 @@ import ToggleButton, { ToggleButtonProps } from '@mui/material/ToggleButton';
 import CalendarViewDayRoundedIcon from '@mui/icons-material/CalendarViewDayRounded';
 import TableChartRoundedIcon from '@mui/icons-material/TableChartRounded';
 import ReorderRoundedIcon from '@mui/icons-material/ReorderRounded';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 
-export type ApiDisplayOptions = 'collapsed' | 'expended' | 'table';
+type ApiDisplayOptions = 'collapsed' | 'expanded' | 'table';
 
-const options: ApiDisplayOptions[] = ['collapsed', 'expended', 'table'];
+const options: ApiDisplayOptions[] = ['collapsed', 'expanded', 'table'];
+const DEFAULT_LAYOUT: ApiDisplayOptions = 'expanded';
 
 export const API_LAYOUT_STORAGE_KEYS = {
   default: 'apiPage_default',
@@ -19,7 +21,16 @@ export const API_LAYOUT_STORAGE_KEYS = {
   classes: 'apiPage_classes',
 } as const;
 
-const getRandomOption = () => {
+// https://stackoverflow.com/a/20084661
+function isBot() {
+  return /bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent);
+}
+
+function getRandomOption() {
+  if (isBot()) {
+    // When crawlers visit the page, they should not have to expand items
+    return DEFAULT_LAYOUT;
+  }
   // A default layout is saved in localstorage at first render to make sure all section start with the same layout.
   const savedDefaultOption = localStorage.getItem(
     API_LAYOUT_STORAGE_KEYS.default,
@@ -36,12 +47,48 @@ const getRandomOption = () => {
     // Do nothing
   }
   return randomOption;
-};
+}
+
+let neverHydrated = true;
+
+function getOption(storageKey: string) {
+  if (neverHydrated) {
+    return DEFAULT_LAYOUT;
+  }
+  try {
+    const savedOption = localStorage.getItem(storageKey);
+
+    if (savedOption !== null && options.includes(savedOption as ApiDisplayOptions)) {
+      return savedOption as ApiDisplayOptions;
+    }
+
+    const randomOption = getRandomOption();
+
+    return randomOption;
+  } catch (error) {
+    return DEFAULT_LAYOUT;
+  }
+}
 
 export function useApiPageOption(
   storageKey: string,
 ): [ApiDisplayOptions, (newOption: ApiDisplayOptions) => void] {
-  const [option, setOption] = React.useState(options[0]);
+  const [option, setOption] = React.useState(getOption(storageKey));
+
+  useEnhancedEffect(() => {
+    neverHydrated = false;
+    const newOption = getOption(storageKey);
+    setOption(newOption);
+  }, [storageKey]);
+
+  React.useEffect(() => {
+    if (option !== DEFAULT_LAYOUT) {
+      const id = document.location.hash.slice(1);
+      const element = document.getElementById(id);
+      element?.scrollIntoView();
+    }
+    return undefined;
+  }, [option]);
 
   const updateOption = React.useCallback(
     (newOption: ApiDisplayOptions) => {
@@ -54,21 +101,6 @@ export function useApiPageOption(
     },
     [storageKey],
   );
-
-  React.useEffect(() => {
-    try {
-      const savedOption = localStorage.getItem(storageKey);
-      if (savedOption !== null) {
-        setOption(savedOption as ApiDisplayOptions);
-        return;
-      }
-
-      const randomOption = getRandomOption();
-      updateOption(randomOption);
-    } catch (error) {
-      // do nothing
-    }
-  }, [storageKey, updateOption]);
 
   return [option, updateOption];
 }
@@ -97,7 +129,7 @@ type TooltipToggleButtonProps = ToggleButtonProps & {
 };
 
 // Catch props and forward to ToggleButton
-const TooltipToggleButton: React.FC<TooltipToggleButtonProps> = React.forwardRef(
+const TooltipToggleButton = React.forwardRef<HTMLButtonElement, TooltipToggleButtonProps>(
   ({ title, TooltipProps: tooltipProps, ...props }, ref) => {
     return (
       <Tooltip {...tooltipProps} title={title}>
@@ -163,7 +195,7 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
       <TooltipToggleButton value="collapsed" aria-label="colapsed list" title="Collapse list view">
         <ReorderRoundedIcon size="small" />
       </TooltipToggleButton>
-      <TooltipToggleButton value="expended" aria-label="expended list" title="Expand list view">
+      <TooltipToggleButton value="expanded" aria-label="expanded list" title="Expand list view">
         <CalendarViewDayRoundedIcon />
       </TooltipToggleButton>
       <TooltipToggleButton value="table" aria-label="table" title="Table view">

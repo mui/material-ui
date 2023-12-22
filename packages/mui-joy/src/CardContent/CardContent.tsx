@@ -40,7 +40,6 @@ const CardContentRoot = styled(StyledCardContentRoot, {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: CardContentProps }>({});
 /**
- * ⚠️ CardContent must be used as a direct child of the [Card](https://mui.com/joy-ui/react-card/) component.
  *
  * Demos:
  *

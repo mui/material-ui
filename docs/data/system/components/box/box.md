@@ -19,7 +19,7 @@ It's a fundamental building block when building with MUI component libraries—y
 ## Basics
 
 ```jsx
-import { Box } from '@mui/system';
+import Box from '@mui/system/Box';
 ```
 
 The Box component renders as a `<div>` by default, but you can swap in any other valid HTML tag or React component using the `component` prop.

@@ -17,6 +17,7 @@ import {
   refType,
   unstable_capitalize as capitalize,
   unstable_useEnhancedEffect as useEnhancedEffect,
+  unstable_useForkRef as useForkRef,
 } from '@mui/utils';
 import FormControlContext from '@mui/material-next/FormControl/FormControlContext';
 import useFormControl from '@mui/material-next/FormControl/useFormControl';
@@ -321,6 +322,8 @@ const InputBase = React.forwardRef(function InputBase<
 
   const { current: isControlled } = React.useRef(value != null);
 
+  const inputRef = React.useRef<HTMLInputElement>();
+
   const muiFormControl = useFormControl();
 
   if (process.env.NODE_ENV !== 'production') {
@@ -407,13 +410,14 @@ const InputBase = React.forwardRef(function InputBase<
 
   const required = requiredProp ?? muiFormControl?.required;
 
+  const handleInputRef = useForkRef(inputRefProp, inputRef);
+
   const {
     getRootProps,
     getInputProps,
     focused: focusedState,
     error: errorState,
     disabled: disabledState,
-    inputRef,
     // ignore Base UI's formControlContext
   } = useInput({
     disabled: disabledProp ?? muiFormControl?.disabled,
@@ -425,7 +429,7 @@ const InputBase = React.forwardRef(function InputBase<
     onFocus: handleFocus,
     required,
     value,
-    inputRef: inputRefProp,
+    inputRef: handleInputRef,
   });
 
   const ownerState = {
@@ -521,13 +525,13 @@ const InputBase = React.forwardRef(function InputBase<
 
   const handleAutoFill = (event: React.AnimationEvent) => {
     // Provide a fake value as Chrome might not let you access it for security reasons.
-    checkDirty(event.animationName === 'mui-auto-fill-cancel' ? inputRef : { value: 'x' });
+    checkDirty(event.animationName === 'mui-auto-fill-cancel' ? inputRef?.current : { value: 'x' });
   };
 
   // Check the input state on mount, in case it was filled by the user
   // or auto filled by the browser before the hydration (for SSR).
   React.useEffect(() => {
-    checkDirty(inputRef);
+    checkDirty(inputRef?.current);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

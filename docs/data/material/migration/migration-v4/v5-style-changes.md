@@ -641,7 +641,7 @@ If you are using this utility together with `@mui/material`, it's recommended yo
 +import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 +const theme = createTheme();
-  const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
+  const MyComponent = withTheme(({ theme }) => <div>{theme.direction}</div>);
 
   function App(props) {
 -  return <MyComponent />;

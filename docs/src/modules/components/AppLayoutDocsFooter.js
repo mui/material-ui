@@ -21,8 +21,7 @@ import ThumbDownAltRoundedIcon from '@mui/icons-material/ThumbDownAltRounded';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import PanToolRoundedIcon from '@mui/icons-material/PanToolRounded';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import XIcon from '@mui/icons-material/X';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import RssFeedIcon from '@mui/icons-material/RssFeed';
 import ArrowOutwardRoundedIcon from '@mui/icons-material/ArrowOutwardRounded';
@@ -32,6 +31,7 @@ import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
 import EditPage from 'docs/src/modules/components/EditPage';
+import SvgMuiLogotype from 'docs/src/icons/SvgMuiLogotype';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 
@@ -249,6 +249,9 @@ function usePageNeighbours() {
 }
 
 const EMPTY_SECTION = { hash: '', text: '' };
+
+// The design feedback alert was removed in https://github.com/mui/material-ui/pull/39691
+// This dead code is here to simplify the creation of special feedback channel
 const SPEACIAL_FEEDBACK_HASH = [{ hash: 'new-docs-api-feedback', text: 'New API content design' }];
 
 export default function AppLayoutDocsFooter(props) {
@@ -421,81 +424,84 @@ export default function AppLayoutDocsFooter(props) {
             </Tooltip>
           </Stack>
         </Stack>
-        <Collapse
-          in={commentOpen}
-          unmountOnExit
-          onEntered={handleEntered}
-          timeout={{ enter: 0, exit: theme.transitions.duration.standard }}
-        >
-          {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
-          <form
-            aria-labelledby="feedback-message"
-            onReset={handleCancelComment}
-            onSubmit={handleSubmitComment}
-            onKeyDown={handleKeyDownForm}
+        {/* Wrapper div to fix Collapse close animation */}
+        <div>
+          <Collapse
+            in={commentOpen}
+            unmountOnExit
+            onEntered={handleEntered}
+            timeout={{ enter: 0, exit: theme.transitions.duration.standard }}
           >
-            <div>
-              {commentedSection.text ? (
-                <Typography
-                  variant="body2"
-                  id="feedback-description"
-                  color="text.secondary"
-                  dangerouslySetInnerHTML={{
-                    __html: t('feedbackSectionSpecific').replace(
-                      '{{sectionName}}',
-                      `"${commentedSection.text}"`,
-                    ),
+            {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
+            <form
+              aria-labelledby="feedback-message"
+              onReset={handleCancelComment}
+              onSubmit={handleSubmitComment}
+              onKeyDown={handleKeyDownForm}
+            >
+              <div>
+                {commentedSection.text ? (
+                  <Typography
+                    variant="body2"
+                    id="feedback-description"
+                    color="text.secondary"
+                    dangerouslySetInnerHTML={{
+                      __html: t('feedbackSectionSpecific').replace(
+                        '{{sectionName}}',
+                        `"${commentedSection.text}"`,
+                      ),
+                    }}
+                  />
+                ) : (
+                  <Typography variant="body2" id="feedback-description" color="text.secondary">
+                    {rating === 1 ? t('feedbackMessageUp') : t('feedbackMessageDown')}
+                  </Typography>
+                )}
+                <TextField
+                  multiline
+                  margin="dense"
+                  name="comment"
+                  fullWidth
+                  rows={4}
+                  value={comment}
+                  onChange={handleChangeTextfield}
+                  inputProps={{
+                    'aria-label': t('feedbackCommentLabel'),
+                    'aria-describedby': 'feedback-description',
+                    ref: inputRef,
                   }}
                 />
-              ) : (
-                <Typography variant="body2" id="feedback-description" color="text.secondary">
-                  {rating === 1 ? t('feedbackMessageUp') : t('feedbackMessageDown')}
-                </Typography>
-              )}
-              <TextField
-                multiline
-                margin="dense"
-                name="comment"
-                fullWidth
-                rows={4}
-                value={comment}
-                onChange={handleChangeTextfield}
-                inputProps={{
-                  'aria-label': t('feedbackCommentLabel'),
-                  'aria-describedby': 'feedback-description',
-                  ref: inputRef,
-                }}
-              />
-              {rating !== 1 && (
-                <Alert
-                  severity="warning"
-                  color="warning"
-                  icon={<PanToolRoundedIcon fontSize="small" />}
-                  sx={{ my: 1.5 }}
-                >
-                  <Typography id="feedback-description" color="text.secondary">
-                    {t('feedbackMessageToGitHub.usecases')}{' '}
-                    <Link
-                      href={`${process.env.SOURCE_CODE_REPO}/issues/new?template=${process.env.GITHUB_TEMPLATE_DOCS_FEEDBACK}&page-url=${window.location.href}`}
-                      target="_blank"
-                    >
-                      {t('feedbackMessageToGitHub.callToAction.link')}
-                    </Link>{' '}
-                    {t('feedbackMessageToGitHub.reasonWhy')}
-                  </Typography>
-                </Alert>
-              )}
-              <DialogActions>
-                <Button type="reset" size="small">
-                  {t('cancel')}
-                </Button>
-                <Button type="submit" variant="contained" size="small">
-                  {t('submit')}
-                </Button>
-              </DialogActions>
-            </div>
-          </form>
-        </Collapse>
+                {rating !== 1 && typeof window !== 'undefined' && (
+                  <Alert
+                    severity="warning"
+                    color="warning"
+                    icon={<PanToolRoundedIcon fontSize="small" />}
+                    sx={{ my: 1.5 }}
+                  >
+                    <Typography id="feedback-description" color="text.secondary">
+                      {t('feedbackMessageToGitHub.usecases')}{' '}
+                      <Link
+                        href={`${process.env.SOURCE_CODE_REPO}/issues/new?template=${process.env.GITHUB_TEMPLATE_DOCS_FEEDBACK}&page-url=${window.location.href}`}
+                        target="_blank"
+                      >
+                        {t('feedbackMessageToGitHub.callToAction.link')}
+                      </Link>{' '}
+                      {t('feedbackMessageToGitHub.reasonWhy')}
+                    </Typography>
+                  </Alert>
+                )}
+                <DialogActions>
+                  <Button type="reset" size="small">
+                    {t('cancel')}
+                  </Button>
+                  <Button type="submit" variant="contained" size="small">
+                    {t('submit')}
+                  </Button>
+                </DialogActions>
+              </div>
+            </form>
+          </Collapse>
+        </div>
         <Divider />
         {hidePagePagination ? null : (
           <Stack direction="row" justifyContent="space-between" sx={{ my: 2 }}>
@@ -535,26 +541,24 @@ export default function AppLayoutDocsFooter(props) {
           alignItems="center"
           spacing={{ xs: 3, sm: 1 }}
         >
-          <Stack direction="row" alignItems="center" spacing={1} sx={{ flexGrow: 1 }}>
-            <Link href={ROUTES.blog}>
+          <Stack direction="row" alignItems="center" spacing={1.2} sx={{ flexGrow: 1 }}>
+            <Link href="/" aria-label="Go to homepage" sx={{ mb: 2 }}>
+              <SvgMuiLogotype height={24} width={72} />
+            </Link>
+            <Typography color="grey.500" fontSize={13} sx={{ opacity: '70%' }}>
+              &bull;
+            </Typography>
+            <Link href={ROUTES.blog} target="_blank" rel="noopener noreferrer">
               <FooterLink>
                 Blog <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
               </FooterLink>
             </Link>
-            <Typography color="grey.500" fontSize={13}>
+            <Typography color="grey.500" fontSize={13} sx={{ opacity: '70%' }}>
               &bull;
             </Typography>
-            <Link href={ROUTES.store}>
+            <Link href={ROUTES.store} target="_blank" rel="noopener noreferrer">
               <FooterLink>
                 Store <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
-              </FooterLink>
-            </Link>
-            <Typography color="grey.500" fontSize={13}>
-              &bull;
-            </Typography>
-            <Link href={ROUTES.careers}>
-              <FooterLink>
-                Careers <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
               </FooterLink>
             </Link>
           </Stack>
@@ -574,20 +578,10 @@ export default function AppLayoutDocsFooter(props) {
               rel="noopener noreferrer"
               href="https://twitter.com/MUI_hq"
               aria-label="twitter"
-              title="Twitter"
+              title="X"
               size="small"
             >
-              <TwitterIcon fontSize="small" sx={{ color: 'grey.500' }} />
-            </IconButton>
-            <IconButton
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://www.linkedin.com/company/mui/"
-              aria-label="linkedin"
-              title="LinkedIn"
-              size="small"
-            >
-              <LinkedInIcon fontSize="small" sx={{ color: 'grey.500' }} />
+              <XIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
             <IconButton
               target="_blank"

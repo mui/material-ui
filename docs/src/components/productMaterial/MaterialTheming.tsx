@@ -31,8 +31,8 @@ const code = `
     component="img"
     width="100"
     height="100"
-    alt="Birds of Tokyo album cover"
-    src="/static/images/cards/birds-of-tokyo.jpg"
+    alt="Contemplative Reptile album cover"
+    src="/static/images/cards/contemplative-reptile.jpg"
     sx={{
       width: { xs: '100%', sm: 100 },
       borderRadius: 0.6,
@@ -41,7 +41,7 @@ const code = `
   <Stack direction="column" spacing={2} alignItems="center">
     <Stack direction="column" spacing={0.2} alignItems="center">
       <Typography color="text.primary" fontWeight="medium" fontSize={15}>
-        If This Ship Sinks (I Give In)
+        Contemplative Reptile
       </Typography>
       <Typography
         component="div"
@@ -49,7 +49,7 @@ const code = `
         color="text.secondary"
         fontWeight="regular"
       >
-        Birds Of Tokyo
+        Sounds of Nature
       </Typography>
     </Stack>
     <Stack direction="row" alignItems="center" spacing={1.5}>

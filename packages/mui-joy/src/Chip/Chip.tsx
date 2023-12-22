@@ -168,7 +168,11 @@ const ChipAction = styled('button', {
     backgroundColor: theme.vars.palette.background.surface,
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
   },
-  { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+  {
+    '&:hover': {
+      '@media (hover: hover)': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+    },
+  },
   { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
   {
     [`&.${chipClasses.disabled}`]:

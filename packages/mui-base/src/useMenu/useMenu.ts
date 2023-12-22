@@ -12,7 +12,7 @@ import { useList } from '../useList';
 import { MenuItemMetadata } from '../useMenuItem';
 import { DropdownActionTypes } from '../useDropdown';
 import { EventHandlers } from '../utils/types';
-import { useCompoundParent } from '../utils/useCompound';
+import { useCompoundParent } from '../useCompound';
 import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 import { combineHooksSlotProps } from '../utils/combineHooksSlotProps';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
@@ -43,7 +43,8 @@ export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue 
     id: idParam,
     disabledItemsFocusable = true,
     disableListWrap = false,
-    // autoFocus = true,
+    autoFocus = true,
+    componentName = 'useMenu',
   } = parameters;
 
   const rootRef = React.useRef<HTMLElement>(null);
@@ -80,6 +81,18 @@ export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue 
     [subitems],
   );
 
+  const isItemDisabled = React.useCallback(
+    (id: string) => subitems?.get(id)?.disabled || false,
+    [subitems],
+  );
+
+  const getItemAsString = React.useCallback(
+    (id: string) => subitems.get(id)?.label || subitems.get(id)?.ref.current?.innerText,
+    [subitems],
+  );
+
+  const reducerActionContext = React.useMemo(() => ({ listboxRef: rootRef }), [rootRef]);
+
   const {
     dispatch: listDispatch,
     getRootProps: getListRootProps,
@@ -95,15 +108,15 @@ export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue 
       selectedValues: [],
       highlightedValue: null,
     }),
-    isItemDisabled: (id) => subitems?.get(id)?.disabled || false,
+    isItemDisabled,
     items: subitemKeys,
-    getItemAsString: (id: string) =>
-      subitems.get(id)?.label || subitems.get(id)?.ref.current?.innerText,
+    getItemAsString,
     rootRef: handleRef,
     onItemsChange,
-    reducerActionContext: { listboxRef: rootRef },
+    reducerActionContext,
     selectionMode: 'none',
     stateReducer: menuReducer,
+    componentName,
   });
 
   useEnhancedEffect(() => {
@@ -111,11 +124,10 @@ export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue 
   }, [listboxId, registerPopup]);
 
   React.useEffect(() => {
-    if (open && highlightedValue === subitemKeys[0] && !isInitiallyOpen.current) {
-      // TODO v6: focus only if autoFocus is true
-      subitems.get(subitemKeys[0])?.ref?.current?.focus();
+    if (open && autoFocus && highlightedValue && !isInitiallyOpen.current) {
+      subitems.get(highlightedValue)?.ref?.current?.focus();
     }
-  }, [open, highlightedValue, subitems, subitemKeys]);
+  }, [open, autoFocus, highlightedValue, subitems, subitemKeys]);
 
   React.useEffect(() => {
     // set focus to the highlighted item (but prevent stealing focus from other elements on the page)

@@ -129,7 +129,7 @@ const grey = {
 const Root = styled('div')(
   ({ theme }) => `
   table {
-    font-family: IBM Plex Sans, sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 0.875rem;
     border-collapse: collapse;
     width: 100%;

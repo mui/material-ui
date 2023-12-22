@@ -635,7 +635,6 @@ chai.use((chaiAPI, utils) => {
     }
 
     chai.Assertion.addMethod(matcherName, matcher);
-    /* eslint-enable no-console */
   }
 
   /**

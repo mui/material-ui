@@ -9,6 +9,10 @@
     "buttonRef": {
       "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
     },
+    "componentName": {
+      "type": { "name": "string", "description": "string" },
+      "default": "'useSelect'"
+    },
     "defaultOpen": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
     "defaultValue": {
       "type": {
@@ -89,8 +93,8 @@
     "disabled": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "dispatch": {
       "type": {
-        "name": "(action: ListAction&lt;Value&gt; | SelectAction) =&gt; void",
-        "description": "(action: ListAction&lt;Value&gt; | SelectAction) =&gt; void"
+        "name": "(action: ListAction&lt;Value&gt; | SelectAction&lt;Value&gt;) =&gt; void",
+        "description": "(action: ListAction&lt;Value&gt; | SelectAction&lt;Value&gt;) =&gt; void"
       },
       "required": true
     },

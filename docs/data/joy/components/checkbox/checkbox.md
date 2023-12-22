@@ -10,14 +10,14 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
 
 <p class="description">Checkboxes give users binary choices when presented with multiple options in a series.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Introduction
 
 Checkboxes provide users with a graphical representation of a binary choice (yes or no, on or off).
 They are most commonly presented in a series, giving the user multiple choices to make.
 
-The Joy UI Checkbox component replaces the native HTML `<input type="checkbox">` element, and offers expanded options for styling and accessibility.
+The Joy UI Checkbox component replaces the native HTML `<input type="checkbox">` element and offers expanded options for styling and accessibility.
 
 {{"demo": "CheckboxUsage.js", "hideToolbar": true, "bg": "gradient"}}
 

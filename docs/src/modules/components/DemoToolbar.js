@@ -728,7 +728,6 @@ export default function DemoToolbar(props) {
         message={snackbarMessage}
       />
     </React.Fragment>
-    /* eslint-enable material-ui/no-hardcoded-labels */
   );
 }
 

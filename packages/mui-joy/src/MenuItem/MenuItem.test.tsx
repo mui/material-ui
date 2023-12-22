@@ -19,14 +19,10 @@ const testContext: MenuProviderValue = {
   totalSubitemCount: 1,
   dispatch: () => {},
   getItemState: () => ({
-    disabled: false,
     highlighted: false,
     selected: false,
     focusable: false,
-    index: 0,
   }),
-  registerHighlightChangeHandler: () => () => {},
-  registerSelectionChangeHandler: () => () => {},
 };
 
 function Wrapper({ children }: { children: React.ReactNode }) {

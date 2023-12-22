@@ -9,12 +9,6 @@ For example, try changing the `variant` on the [Button](/joy-ui/react-button/) t
 
 {{"demo": "ButtonUsage.js", "defaultCodeOpen": true}}
 
-### CssVarsProvider
-
-In the Quickstart example above, you can see that the Button component is nested within `<CssVarsProvider />`.
-This provider unlocks a whole host of customization options powered by CSS variables.
-See [Using CSS variables](/joy-ui/customization/using-css-variables/) for more details.
-
 ## Globals
 
 Since Joy UI components are built to function in isolation, they don't require any kind of globally scoped styles.
@@ -34,6 +28,11 @@ To ensure proper rendering and touch zooming for all devices, add the responsive
 
 Joy UI provides an optional [CssBaseline](/joy-ui/react-css-baseline/) component.
 It fixes some inconsistencies across browsers and devices while providing resets that are better tailored to fit Joy UI than alternative global style sheets like [normalize.css](https://github.com/necolas/normalize.css/).
+
+### CssVarsProvider
+
+Joy UI provides an optional `<CssVarsProvider />` component that unlocks a whole host of customization options powered by CSS variables.
+Visit the [Using CSS variables](/joy-ui/customization/using-css-variables/) guide to learn more.
 
 ### Default font
 

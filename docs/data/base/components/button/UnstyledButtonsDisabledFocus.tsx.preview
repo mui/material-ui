@@ -1,4 +1,4 @@
-<Button disabled>focusableWhenDisabled = false</Button>
+<Button disabled>{'focusableWhenDisabled = false'}</Button>
 <Button disabled focusableWhenDisabled>
-  focusableWhenDisabled = true
+  {'focusableWhenDisabled = true'}
 </Button>

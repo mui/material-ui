@@ -15,20 +15,9 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
     "img": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "an <code>img</code> element to ensure it covers the item"
-    },
-    "standard": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"standard\"</code>"
-    },
-    "woven": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"woven\"</code>"
     },
     "masonry": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -39,6 +28,17 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"quilted\"</code>"
+    },
+    "root": { "description": "Styles applied to the root element." },
+    "standard": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"standard\"</code>"
+    },
+    "woven": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"woven\"</code>"
     }
   }
 }
