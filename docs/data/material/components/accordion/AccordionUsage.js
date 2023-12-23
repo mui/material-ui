@@ -30,7 +30,7 @@ export default function AccordionUsage() {
         </AccordionDetails>
         <AccordionActions>
           <Button>Cancel</Button>
-          <Button>Save</Button>
+          <Button>Agree</Button>
         </AccordionActions>
       </Accordion>
     </div>
