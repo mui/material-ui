@@ -10,16 +10,16 @@ export default function TooltipMargin() {
         popper: {
           sx: {
             [`&[data-popper-placement*="bottom"] .${tooltipClasses.tooltip}`]: {
-              marginTop: '10px',
+              marginTop: 20,
             },
             [`&[data-popper-placement*="top"] .${tooltipClasses.tooltip}`]: {
               marginBottom: '10px',
             },
             [`&[data-popper-placement*="right"] .${tooltipClasses.tooltip}`]: {
-              marginRight: '10px',
+              marginLeft: 20,
             },
             [`&[data-popper-placement*="left"] .${tooltipClasses.tooltip}`]: {
-              marginLeft: '10px',
+              marginRight: 20,
             },
           },
         },

@@ -12,7 +12,7 @@ export default function TooltipOffset() {
             {
               name: 'offset',
               options: {
-                offset: [0, -5],
+                offset: [0, 20],
               },
             },
           ],
