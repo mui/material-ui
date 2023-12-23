@@ -90,7 +90,7 @@
     "@babel/register": "^7.22.15",
     "@googleapis/sheets": "^5.0.5",
     "@mnajdova/enzyme-adapter-react-18": "^0.2.0",
-    "@next/eslint-plugin-next": "^13.5.6",
+    "@next/eslint-plugin-next": "^14.0.4",
     "@octokit/rest": "^20.0.2",
     "@playwright/test": "1.40.1",
     "@slack/bolt": "^3.16.0",
