@@ -19,6 +19,17 @@ An accordion is a lightweight container that may either be used standalone, or b
 This component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.
 :::
 
+## Introduction
+
+Material UI provides four accordion-related components:
+
+- [`Accordion`](#basic-usage): Contains the accordion header and content.
+- [`AccordionSummary`](#basic-usage): The accordion header. Expands the accordion content when clicked.
+- [`AccordionDetails`](#basic-usage): The accordion content.
+- [`AccordionActions`](#basic-usage): Can be used to add supplemental actions to an accordion.
+
+{{"demo": "AccordionUsage.js", "bg": true}}
+
 ## Basic accordion
 
 {{"demo": "BasicAccordion.js", "bg": true}}
