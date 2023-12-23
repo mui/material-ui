@@ -23,7 +23,7 @@ export default function AccordionUsage() {
         </AccordionDetails>
       </Accordion>
       <Accordion expanded>
-        <AccordionSummary>Accordion 3</AccordionSummary>
+        <AccordionSummary>Accordion Actions</AccordionSummary>
         <AccordionDetails>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
           malesuada lacus ex, sit amet blandit leo lobortis eget.
