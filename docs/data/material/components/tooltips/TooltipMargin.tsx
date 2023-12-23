@@ -16,7 +16,7 @@ export default function TooltipMargin() {
               marginBottom: '10px',
             },
             [`&[data-popper-placement*="right"] .${tooltipClasses.tooltip}`]: {
-              marginRight: '10px',
+              marginLeft: 20,
             },
             [`&[data-popper-placement*="left"] .${tooltipClasses.tooltip}`]: {
               marginLeft: '10px',
