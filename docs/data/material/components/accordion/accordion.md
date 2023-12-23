@@ -24,7 +24,7 @@ This component is no longer documented in the [Material Design guidelines](https
 Material UI provides four accordion-related components:
 
 - [`Accordion`](#basic-usage): Contains the accordion header and content.
-- [`AccordionSummary`](#basic-usage): The accordion header. Expands the accordion content when clicked.
+- [`AccordionSummary`](#basic-usage): The accordion header. Expands or collapses the accordion content when clicked.
 - [`AccordionDetails`](#basic-usage): The accordion content.
 - [`AccordionActions`](#basic-usage): Can be used to add supplemental actions to an accordion.
 
