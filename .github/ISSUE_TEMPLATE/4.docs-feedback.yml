@@ -9,20 +9,21 @@ body:
         Please provide a searchable summary of the issue in the title above ⬆️.
 
         Thanks for contributing by creating an issue! ❤️
-  - type: checkboxes
+
+  - type: input
     attributes:
-      label: Duplicates
-      description: Please [search the history](https://github.com/mui/material-ui/issues) to see if an issue already exists for the same problem.
-      options:
-        - label: I have searched the existing issues
-          required: true
+      label: Search keywords
+      description: Your issue may have already been reported! List the keywords you've used to search the [existing issues](https://github.com/mui/material-ui/issues). This will also make your issue searchable for others.
+      placeholder: e.g. datagrid column resizing
+    validations:
+      required: true
 
   - type: input
     id: page-url
     attributes:
       label: Related page
       description: Which page of the documentation is this about?
-      placeholder: https://mui.com/material-ui/react-badge/
+      placeholder: https://mui.com/material-ui/
     validations:
       required: true
 
@@ -33,7 +34,7 @@ body:
       options:
         - Unclear explanations
         - Missing information
-        - Broken demonstration
+        - Broken demo
         - Other
     validations:
       required: true
