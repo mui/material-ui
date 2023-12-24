@@ -3,7 +3,7 @@
   "version": "5.0.0-beta.28",
   "private": false,
   "author": "MUI Team",
-  "description": "A library of headless ('unstyled') React UI components and low-level hooks.",
+  "description": "Base UI is a library of headless ('unstyled') React components and low-level hooks. You gain complete control over your app's CSS and accessibility features.",
   "main": "./src/index.js",
   "keywords": [
     "react",

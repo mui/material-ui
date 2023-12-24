@@ -3,7 +3,7 @@
   "version": "5.0.0-beta.19",
   "private": false,
   "author": "MUI Team",
-  "description": "A library of beautifully designed React UI components.",
+  "description": "Joy UI is an open-source React component library that implements MUI's own in-house design principles. It's comprehensive and can be used in production out of the box.",
   "main": "./src/index.ts",
   "keywords": [
     "react",
