@@ -2,8 +2,24 @@ import * as React from 'react';
 import { Switch } from '@mui/base/Switch';
 import { Select, SelectOption, Slider } from './components';
 
+function ExampleName() {
+  return (
+    <div className="flex items-center w-[500px] gap-4">
+      <hr className="w-full h-[1px] border-none bg-neutral-500/30" />
+      <p className="text-neutral-600 text-sm font-medium shrink-0">
+        Base UI + Next.js + Tailwind CSS example project
+      </p>
+      <hr className="w-full h-[1px] border-none bg-neutral-500/30" />
+    </div>
+  );
+}
+
 function Heading(props) {
-  return <h2 className="font-bold text-gray-400 uppercase text-xs mb-2">{props.children}</h2>;
+  return (
+    <h2 className="font-medium text-neutral-500 tracking-wider uppercase text-xs mb-2">
+      {props.children}
+    </h2>
+  );
 }
 
 function Section(props) {
@@ -11,7 +27,7 @@ function Section(props) {
 }
 
 function Label(props) {
-  return <h3 className="leading-none text-sm text-gray-300">{props.children}</h3>;
+  return <h3 className="leading-none text-sm text-neutral-300">{props.children}</h3>;
 }
 
 const HOURS = [
@@ -43,16 +59,17 @@ const HOURS = [
 
 export default function Home() {
   return (
-    <main className="flex justify-center items-center w-full h-screen bg-white dark:bg-gray-950">
-      <div className="bg-black shadow-[0_4px_12px_rgba(0,0,0,0.5)] border border-gray-700/50 rounded-xl p-8 w-[500px] divide-y divide-gray-800/80 flex flex-col gap-3">
-        <Heading>Night Mode</Heading>
+    <main className="flex flex-col gap-6 justify-center items-center w-full h-screen bg-white dark:bg-[#0a0a0a]">
+      <ExampleName />
+      <div className="bg-black shadow-[0_4px_16px_rgba(0,0,0,0.8)] border border-neutral-800/60 rounded-2xl p-8 w-[500px] divide-y divide-neutral-800/80 flex flex-col gap-3">
+        <Heading>Night Mode Options</Heading>
         <Section>
           <Label>Schedule Night Mode</Label>
           <Switch
             slotProps={{
               root: {
                 className:
-                  'switch group relative inline-block w-[38px] h-[24px] cursor-pointer justify-self-end transition',
+                  'switch group relative inline-block w-[36px] h-[22px] cursor-pointer justify-self-end',
               },
               input: {
                 'aria-label': 'Schedule Night Mode',
@@ -60,11 +77,11 @@ export default function Home() {
               },
               track: {
                 className:
-                  'bg-gray-400 rounded-2xl block w-full h-full absolute group-[.Mui-focusVisible]:ring-4',
+                  'bg-neutral-500 rounded-2xl block w-full h-full absolute group-[.Mui-focusVisible]:ring-4 border border-neutral-900/20 group-hover:bg-neutral-600 group-[.Mui-checked]:bg-blue-600 group-[.Mui-checked]-hover:bg-blue-700 transition',
               },
               thumb: {
                 className:
-                  'block w-5 h-5 top-[2px] left-[2px] rounded-2xl bg-white relative outline-none shadow-none',
+                  'block w-[17px] h-[17px] top-[2.5px] left-[2.5px] rounded-2xl bg-white relative outline-none shadow-none border group-transition group-[.Mui-checked]:left-[16.5px]',
               },
             }}
             defaultChecked
@@ -80,7 +97,7 @@ export default function Home() {
                 </SelectOption>
               ))}
             </Select>
-            <span className="text-gray-300 text-sm text-medium">and</span>
+            <span className="text-neutral-300 text-sm text-medium">and</span>
             <Select defaultValue="6AM">
               {HOURS.map((hour) => (
                 <SelectOption key={`to-${hour}`} value={hour}>
