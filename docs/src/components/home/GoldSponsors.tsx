@@ -12,7 +12,6 @@ import ROUTES from 'docs/src/route';
 const GOLDs = [
   {
     src: '/static/sponsors/tidelift.svg',
-    srcSet: '/static/sponsors/tidelift.svg',
     name: 'Tidelift',
     description: 'Enterprise-ready open-source software.',
     href: 'https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
@@ -33,7 +32,6 @@ const GOLDs = [
   },
   {
     src: 'https://rxdb.info/files/logo/logo_text.svg',
-    srcSet: 'https://rxdb.info/files/logo/logo_text.svg 2x',
     name: 'RxDB',
     description: 'Local-first JavaScript database.',
     href: 'https://rxdb.info/?utm_source=sponsor&utm_medium=opencollective&utm_campaign=opencollective-mui',
@@ -46,7 +44,7 @@ const GOLDs = [
     href: 'https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
-    src: '/static/sponsors//megafamous.png',
+    src: '/static/sponsors/megafamous.png',
     name: 'MegaFamous',
     description: 'Buy Instagram followers and likes.',
     href: 'https://megafamous.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
