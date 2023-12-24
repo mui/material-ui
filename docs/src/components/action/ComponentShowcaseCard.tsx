@@ -49,6 +49,7 @@ export default function ComponentShowcaseCard({
       <CardMedia
         component="img"
         alt=""
+        loading="lazy"
         image={srcLight}
         sx={(theme) => ({
           aspectRatio: '16 / 9',

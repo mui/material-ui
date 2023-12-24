@@ -55,7 +55,7 @@ const utilComponents = [
   },
   {
     title: 'Transitions',
-    link: '/material-ui/react-transitions/',
+    link: '/material-ui/transitions/',
     icon: <ZoomOutMapRoundedIcon color="primary" />,
   },
   {
