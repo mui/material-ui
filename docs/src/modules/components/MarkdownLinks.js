@@ -68,11 +68,6 @@ function handleMouseOver(event) {
   const as = activeElement.getAttribute('href');
   const canonicalPathname = pathnameToLanguage(as).canonicalPathname;
 
-  // In dev, do not prefetch to avoid wasting resources as the prefetch will trigger compiling the page.
-  if (process.env.NODE_ENV !== 'production') {
-    return;
-  }
-
   const prefetchPromise = Router.prefetch(canonicalPathname, as, { priority: true });
   // Prefetch the JSON page if asked (only in the client)
   // We need to handle a prefetch error here since we may be
