@@ -53,7 +53,7 @@ const adBodyInlineStyles = (theme) => {
     description: {
       ...baseline.description,
       marginLeft: 0,
-      '&:before': {
+      '&::before': {
         border: '1px solid #3e8e41',
         color: '#3e8e41',
         marginRight: 6,
@@ -62,7 +62,7 @@ const adBodyInlineStyles = (theme) => {
         content: '"Ad"',
         fontSize: theme.typography.pxToRem(14),
       },
-      '&:after': {
+      '&::after': {
         // Link
         marginLeft: 4,
         content: '"Get started"',

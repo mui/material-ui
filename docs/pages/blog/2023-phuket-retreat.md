@@ -44,7 +44,7 @@ The Nai Harn is a five-star beachfront property boasting incredible luxury balan
 
 <img alt="Entrance to the Nai Harn property at night. A lit sign on a leafy backdrop reads: The Nai Harn - Phuket." src="/static/blog/2023-phuket-retreat/hotel-entrance.jpg" width="1200" height="840" loading="lazy"  />
 
-A blend of Thai and international cuisines, plus free rental of kayaks, bicycles, stand-up paddle boards, and an on-site spa were just the ticket to ensure our team could be nourished and relaxed outside of scheduled working sessions and activity.
+A blend of Thai and international cuisines, plus free rental of kayaks, bicycles, stand-up paddle boards, and an on-site spa were just the ticket to ensure our team could be nourished and relaxed outside of scheduled working sessions and activities.
 
 Special callout: the on-site rental equipment was no small perk.
 Within our agenda for the week, we baked in "Choose your own adventure" hours and invited folks to self-coordinate activities around common interests.
@@ -54,7 +54,7 @@ More on our approach to crafting a winning retreat agenda coming up next. 👀
 ## Agenda
 
 We follow a 30/30/30 principle when building our retreat agendas.
-This means 30% of time is allocated to conscious team-building events; 30% is allocated to working sessions; and 30% is allocated for down-time or total team freedom.
+This means 30% of time is allocated to conscious team-building events; 30% is allocated to working sessions; and 30% is allocated for downtime or total team freedom.
 (You: "Wait, what happened to the other 10%, Mikaila?"
 It's better to underestimate and be able to embrace more if there's time than it is to feel rushed through anything.
 We expect disruptions that make us start late or run over in different agenda items, so we intentionally bake this bit of a grace window into it.)
@@ -94,16 +94,16 @@ In experience surveys, all respondents rated this Together Week five stars out o
 
 It's worth highlighting some of the glowing feedback received, to illustrate why we invest in these types of gatherings:
 
-"I want to share how impactful the retreat was for my sense of belonging.
+> I want to share how impactful the retreat was for my sense of belonging.
 This marks a before and after in my time at MUI.
-I really appreciate everyone who worked on making it possible, so thank you so much."
+I really appreciate everyone who worked on making it possible, so thank you so much.
 
-"Everyone I talked to told me this was the best retreat they'd been on - that it was super well-organised, that the accommodation was incredible and it made a huge difference how luxe it was, that the excursions (particularly the boat) were the best yet.
+> Everyone I talked to told me this was the best retreat they'd been on - that it was super well-organized, that the accommodation was incredible and it made a huge difference how luxe it was, that the excursions (particularly the boat) were the best yet.
 I think it's a real testament to the work and thoughtfulness that went in to planning every detail, from airport transfers to snacks, swag, sessions, EVERYTHING.
-So just a huge thank you for not only pulling this off, but executing it to such a high standard."
+So just a huge thank you for not only pulling this off but executing it to such a high standard.
 
-"Honestly, the bonding through cards and games was so important and made me feel much more a part of the team.
-I feel like on this trip the people I work with became true friends and I expect this is going to have a big effect on how we work together."
+> Honestly, the bonding through cards and games was so important and made me feel much more a part of the team.
+I feel like on this trip the people I work with became true friends and I expect this is going to have a big effect on how we work together.
 
 (You're dang right it is—there's plenty of research to back up [the power of work friends](https://hbr.org/2022/10/the-power-of-work-friends)).
 
