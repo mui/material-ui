@@ -40,12 +40,10 @@ The following steps must be proposed as a pull request.
 
 ### Release
 
-1. Checkout merge commit of the merged PR
-2. `yarn`
-3. `yarn release:build`
-4. `yarn release:publish`
-   You need your 2FA device.
-5. `yarn release:tag`
+1. Checkout the last version of the working branch
+2. `yarn && yarn release:build` (make sure you have the latest dependencies installed, and build the packages)
+3. `yarn release:publish` (release the versions on npm, you need your 2FA device)
+4. `yarn release:tag` (push the newly created tag)
 
 ### Documentation
 

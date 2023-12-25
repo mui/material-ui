@@ -9,7 +9,6 @@ body:
         Please provide a searchable summary of the issue in the title above ⬆️.
 
         Thanks for contributing by creating an issue! ❤️
-
   - type: input
     attributes:
       label: Search keywords
@@ -17,7 +16,6 @@ body:
       placeholder: e.g. datagrid column resizing
     validations:
       required: true
-
   - type: input
     id: page-url
     attributes:
@@ -26,7 +24,6 @@ body:
       placeholder: https://mui.com/material-ui/
     validations:
       required: true
-
   - type: dropdown
     attributes:
       label: Kind of issue
@@ -38,7 +35,6 @@ body:
         - Other
     validations:
       required: true
-
   - type: textarea
     attributes:
       label: Issue description
@@ -46,7 +42,6 @@ body:
         Let us know what went wrong when you were using this documentation and what we could do to improve it.
       value: |
         I was looking for ... and it appears that ...
-
   - type: textarea
     attributes:
       label: Context 🔦
