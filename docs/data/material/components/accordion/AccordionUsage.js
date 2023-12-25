@@ -10,7 +10,11 @@ export default function AccordionUsage() {
   return (
     <div>
       <Accordion>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1-content"
+          id="panel1-header"
+        >
           Accordion 1
         </AccordionSummary>
         <AccordionDetails>
@@ -19,7 +23,11 @@ export default function AccordionUsage() {
         </AccordionDetails>
       </Accordion>
       <Accordion>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2-content"
+          id="panel2-header"
+        >
           Accordion 2
         </AccordionSummary>
         <AccordionDetails>
@@ -28,7 +36,11 @@ export default function AccordionUsage() {
         </AccordionDetails>
       </Accordion>
       <Accordion expanded>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel3-content"
+          id="panel3-header"
+        >
           Accordion Actions
         </AccordionSummary>
         <AccordionDetails>

@@ -11,32 +11,36 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
 
 <p class="description">The accordion component allows the user to show and hide sections of related content on a page.</p>
 
-An accordion is a lightweight container that may either be used standalone, or be connected to a larger surface, such as a card.
-
 {{"component": "modules/components/ComponentLinkHeader.js"}}
+
+## Introduction
+
+The Material UI Accordion component includes several complementary utility components to handle various use cases:
+
+- [Accordion](#basic-usage): the wrapper for grouping related components.
+- [Accordion Summary](#basic-usage): the wrapper for the Accordion's header, which expands or collapses the content when clicked.
+- [Accordion Details](#basic-usage): the wrapper for Accordion's content.
+- [Accordion Actions](#basic-usage): an optional wrapper that groups a set of buttons.
+
+{{"demo": "AccordionUsage.js", "bg": true}}
 
 :::info
 This component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.
 :::
 
-## Introduction
+## Basics
 
-Material UI provides four accordion-related components:
+```jsx
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+```
 
-- [`Accordion`](#basic-usage): Contains the accordion header and content.
-- [`AccordionSummary`](#basic-usage): The accordion header. Expands or collapses the accordion content when clicked.
-- [`AccordionDetails`](#basic-usage): The accordion content.
-- [`AccordionActions`](#basic-usage): Can be used to add supplemental actions to an accordion.
-
-{{"demo": "AccordionUsage.js", "bg": true}}
-
-## Basic accordion
-
-{{"demo": "BasicAccordion.js", "bg": true}}
-
-## Controlled accordion
+### Controlled accordion
 
 The Accordion component can be controlled or uncontrolled.
+
+{{"demo": "ControlledAccordions.js", "bg": true}}
 
 :::info
 
@@ -46,34 +50,61 @@ The Accordion component can be controlled or uncontrolled.
 Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
 :::
 
-{{"demo": "ControlledAccordions.js", "bg": true}}
+### Disabled item
+
+Use the disabled prop on the `Accordion` component to disable interaction and focus.
+
+{{"demo": "DisabledAccordion.js", "bg": true}}
 
 ## Customization
 
-Here is an example of customizing the component.
-You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
+### One opened item per time
+
+Use the `expanded` prop, together with React's `useState` to set only one opened item per time.
+The demo below also shows a bit of visual customziation.
 
 {{"demo": "CustomizedAccordions.js"}}
 
 ## Performance
 
-The content of Accordions is mounted by default even if the accordion is not expanded.
+The Accordion's content is mounted by default even if it's not expanded.
 This default behavior has server-side rendering and SEO in mind.
-If you render expensive component trees inside your accordion details or simply render many
-accordions it might be a good idea to change this default behavior by enabling the
-`unmountOnExit` in `TransitionProps`:
+
+However, if you render the Accordion Details with a big component tree inside it, or if you have many Accordions, we recommend changing this behavior by turning `unmountOnExit` on inside the `TransitionProps` prop:
 
 ```jsx
 <Accordion TransitionProps={{ unmountOnExit: true }} />
 ```
 
-As with any performance optimization this is not a silver bullet.
-Be sure to identify bottlenecks first and then try out these optimization strategies.
-
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/)
+For an optimal accessibility, based on the [WAI-ARIA guidelines](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/), set an `id` and `aria-controls` on the Accordion Summary component.
+The Accordion component will then derive the necessary `aria-labelledby` and `id` from its content.
 
-For optimal accessibility we recommend setting `id` and `aria-controls` on the
-`AccordionSummary`. The `Accordion` will derive the necessary `aria-labelledby`
-and `id` for the content region of the accordion.
+```jsx
+<Accordion>
+  <AccordionSummary id="panel-header" aria-controls="panel-content">
+    Header
+  </AccordionSummary>
+  <AccordionDetails>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  </AccordionDetails>
+</Accordion>
+```
+
+## Anatomy
+
+The Accordion component is composed of a root <div> that houses interior elements like the Accordion Summary and other optional components (such as buttons or decorators).
+
+```jsx
+<div class="MuiAccordion-root">
+  <div class="MuiButtonBase-root MuiAccordionSummary-root" role="button" aria-expanded="">
+      <!-- Accordion header button goes here -->
+  </div>
+  <div class="MuiAccordion-region" role="region">
+    <div class="MuiAccordionDetails-root">
+      <!-- Accordion content goes here -->
+    </div>
+  </div>
+</div>
+```

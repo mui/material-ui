@@ -5,14 +5,14 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-export default function BasicAccordion() {
+export default function DisabledAccordion() {
   return (
     <div>
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
+          aria-controls="panel1-content"
+          id="panel1-header"
         >
           <Typography>Accordion 1</Typography>
         </AccordionSummary>
@@ -26,8 +26,8 @@ export default function BasicAccordion() {
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
+          aria-controls="panel2-content"
+          id="panel2-header"
         >
           <Typography>Accordion 2</Typography>
         </AccordionSummary>
@@ -41,8 +41,8 @@ export default function BasicAccordion() {
       <Accordion disabled>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3a-content"
-          id="panel3a-header"
+          aria-controls="panel3-content"
+          id="panel3-header"
         >
           <Typography>Disabled Accordion</Typography>
         </AccordionSummary>
