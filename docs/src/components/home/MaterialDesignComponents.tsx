@@ -142,7 +142,7 @@ function Demo({
               minHeight: 'initial',
               '& .MuiTabs-indicator': {
                 bgcolor: 'transparent',
-                '&:before': {
+                '&::before': {
                   height: '100%',
                   content: '""',
                   display: 'block',
@@ -376,7 +376,7 @@ export function buildTheme(): ThemeOptions {
               },
               '& .MuiInputBase-root': {
                 fontWeight: 700,
-                '&:before': {
+                '&::before': {
                   borderColor: (theme.vars || theme).palette.grey[300],
                 },
               },
@@ -384,7 +384,7 @@ export function buildTheme(): ThemeOptions {
                 backgroundColor: '#fff',
                 border: '1px solid',
                 borderColor: (theme.vars || theme).palette.grey[100],
-                '&:before': {
+                '&::before': {
                   borderColor: (theme.vars || theme).palette.grey[300],
                 },
                 '&:after': {
@@ -408,7 +408,7 @@ export function buildTheme(): ThemeOptions {
             },
             theme.applyDarkStyles({
               '& .MuiInputBase-root': {
-                '&:before': {
+                '&::before': {
                   borderColor: (theme.vars || theme).palette.primaryDark[500],
                 },
               },

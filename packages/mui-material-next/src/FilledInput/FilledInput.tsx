@@ -109,11 +109,11 @@ const FilledInputRoot = styled(InputBaseRoot, {
         transform: 'scaleX(1) translateX(0)',
       },
       [`&.${filledInputClasses.error}`]: {
-        '&:before, &:after': {
+        '&::before, &:after': {
           borderBottomColor: 'var(--md-comp-filled-input-error-active-indicator-color)',
         },
       },
-      '&:before': {
+      '&::before': {
         borderBottom: '1px solid var(--md-comp-filled-input-active-indicator-color)',
         left: 0,
         bottom: 0,

@@ -53,7 +53,7 @@ const adBodyInlineStyles = (theme) => {
     description: {
       ...baseline.description,
       marginLeft: 0,
-      '&:before': {
+      '&::before': {
         border: '1px solid #3e8e41',
         color: '#3e8e41',
         marginRight: 6,

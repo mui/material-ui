@@ -141,7 +141,7 @@ const Option = styled('li')(
     outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
   }
 
-  &:before {
+  &::before {
     content: '';
     width: 1ex;
     height: 1ex;

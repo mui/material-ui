@@ -32,7 +32,7 @@ const BpIcon = styled('span')(({ theme }) => ({
 const BpCheckedIcon = styled(BpIcon)({
   backgroundColor: '#137cbd',
   backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
-  '&:before': {
+  '&::before': {
     display: 'block',
     width: 16,
     height: 16,

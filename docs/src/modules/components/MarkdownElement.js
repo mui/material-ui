@@ -259,7 +259,7 @@ const Root = styled('div')(
         fontWeight: lightTheme.typography.fontWeightMedium,
         textIndent: 20,
       },
-      ':before': {
+      '&::before': {
         position: 'absolute',
         content: 'open-quote',
         color: `var(--muidocs-palette-grey-300, ${lightTheme.palette.grey[300]})`,
@@ -611,7 +611,7 @@ const Root = styled('div')(
       },
       '& blockquote': {
         borderColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
-        ':before': {
+        '&::before': {
           color: `var(--muidocs-palette-primaryDark-500, ${darkTheme.palette.primaryDark[500]})`,
         },
       },
