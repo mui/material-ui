@@ -94,7 +94,7 @@ The Accordion component will then derive the necessary `aria-labelledby` and `id
 
 ## Anatomy
 
-The Accordion component is composed of a root <div> that houses interior elements like the Accordion Summary and other optional components (such as buttons or decorators).
+The Accordion component is composed of a root `<div>` that houses interior elements like the Accordion Summary and other optional components (such as buttons or decorators).
 
 ```jsx
 <div class="MuiAccordion-root">
