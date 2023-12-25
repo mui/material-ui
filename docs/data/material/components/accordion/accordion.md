@@ -19,7 +19,7 @@ The Material UI Accordion component includes several complementary utility compo
 
 - Accordion: the wrapper for grouping related components.
 - Accordion Summary: the wrapper for the Accordion header, which expands or collapses the content when clicked.
-- Accordion Details: the wrapper for Accordion content.
+- Accordion Details: the wrapper for the Accordion content.
 - Accordion Actions: an optional wrapper that groups a set of buttons.
 
 {{"demo": "AccordionUsage.js", "bg": true}}
