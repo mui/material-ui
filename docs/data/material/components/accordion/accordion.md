@@ -36,7 +36,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 ```
 
-### Controlled accordion
+### Controlled Accordion
 
 The Accordion component can be controlled or uncontrolled.
 
