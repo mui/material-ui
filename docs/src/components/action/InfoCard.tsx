@@ -37,27 +37,28 @@ export function GlowingIconContainer({ icon }: GlowingIconContainerProps) {
   );
 }
 
-interface InfoCardProps extends LinkProps {
-  title: string;
-  classNameTitle?: string;
-  description?: string;
+interface InfoCardProps {
   classNameDescription?: string;
-  link?: string;
-  icon?: React.ReactNode;
-  svg?: React.ReactNode;
+  classNameTitle?: string;
   dense?: boolean;
+  description?: string;
+  icon?: React.ReactNode;
+  link?: string;
+  prefetch?: LinkProps['prefetch'];
+  svg?: React.ReactNode;
+  title: string;
 }
 
 export default function InfoCard(props: InfoCardProps) {
   const {
+    classNameDescription,
+    classNameTitle,
+    dense,
+    description,
     icon,
+    link,
     svg,
     title,
-    classNameTitle,
-    description,
-    classNameDescription,
-    link,
-    dense,
     ...other
   } = props;
   return (
