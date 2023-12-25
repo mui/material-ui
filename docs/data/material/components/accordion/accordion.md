@@ -70,7 +70,7 @@ The demo below also shows a bit of visual customziation.
 The Accordion's content is mounted by default even if it's not expanded.
 This default behavior has server-side rendering and SEO in mind.
 
-However, if you render the Accordion Details with a big component tree inside it, or if you have many Accordions, we recommend changing this behavior by turning `unmountOnExit` on inside the `TransitionProps` prop:
+If you render the Accordion Details with a big component tree nested inside, or if you have many Accordions, you may want to change this behavior by setting `unmountOnExit` to `true` inside the `TransitionProps` prop to improve performance:
 
 ```jsx
 <Accordion TransitionProps={{ unmountOnExit: true }} />
