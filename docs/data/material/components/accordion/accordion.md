@@ -78,7 +78,7 @@ If you render the Accordion Details with a big component tree nested inside, or 
 
 ## Accessibility
 
-For an optimal accessibility, based on the [WAI-ARIA guidelines](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/), set an `id` and `aria-controls` on the Accordion Summary component.
+The [WAI-ARIA guidelines for accordions](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/) recommend setting an `id` and `aria-controls`, which in this case would apply to the Accordion Summary component.
 The Accordion component will then derive the necessary `aria-labelledby` and `id` from its content.
 
 ```jsx
