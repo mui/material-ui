@@ -9,18 +9,22 @@ export default function TooltipMargin() {
       slotProps={{
         popper: {
           sx: {
-            [`&[data-popper-placement*="bottom"] .${tooltipClasses.tooltip}`]: {
-              marginTop: '20px',
-            },
-            [`&[data-popper-placement*="top"] .${tooltipClasses.tooltip}`]: {
-              marginBottom: '20px',
-            },
-            [`&[data-popper-placement*="right"] .${tooltipClasses.tooltip}`]: {
-              marginLeft: '20px',
-            },
-            [`&[data-popper-placement*="left"] .${tooltipClasses.tooltip}`]: {
-              marginRight: '20px',
-            },
+            [`&.${tooltipClasses.popper}[data-popper-placement*="bottom"] .${tooltipClasses.tooltip}`]:
+              {
+                marginTop: '0px',
+              },
+            [`&.${tooltipClasses.popper}[data-popper-placement*="top"] .${tooltipClasses.tooltip}`]:
+              {
+                marginBottom: '0px',
+              },
+            [`&.${tooltipClasses.popper}[data-popper-placement*="right"] .${tooltipClasses.tooltip}`]:
+              {
+                marginLeft: '0px',
+              },
+            [`&.${tooltipClasses.popper}[data-popper-placement*="left"] .${tooltipClasses.tooltip}`]:
+              {
+                marginRight: '0px',
+              },
           },
         },
       }}
