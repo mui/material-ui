@@ -60,7 +60,7 @@ Use the disabled prop on the Accordion component to disable interaction and focu
 
 ### One opened item per time
 
-Use the `expanded` prop, together with React's `useState` to set only one opened item per time.
+Use the `expanded` prop with React's `useState` hook to allow only one Accordion item to be expanded at a time.
 The demo below also shows a bit of visual customziation.
 
 {{"demo": "CustomizedAccordions.js"}}
