@@ -550,10 +550,11 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
   React.useEffect(() => {
     const { current: slider } = sliderRef;
-    slider!.addEventListener('touchstart', handleTouchStart);
+    slider!.addEventListener('touchstart', handleTouchStart, {
+      passive: doesSupportTouchActionNone(),
+    });
 
     return () => {
-      // @ts-ignore
       slider!.removeEventListener('touchstart', handleTouchStart);
 
       stopListening();
