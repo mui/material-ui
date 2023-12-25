@@ -28,10 +28,12 @@ export default function ComponentShowcaseCard({
   md3,
   noGuidelines,
 }: Props) {
+  // Fix overloading with prefetch={false}, only prefetch on hover.
   return (
     <Card
       component={Link}
       noLinkStyle
+      prefetch={false}
       variant="outlined"
       href={link}
       sx={(theme) => ({
