@@ -44,8 +44,8 @@ The development for this version is already in progress, though!
 See which components already support the Material 3 specs, through the experimental `@mui/material-next` package, by visiting the newly released [All Components page](/material-ui/all-components/).
 
 ```diff
-- import Button from '@mui/material/Button';
-+ import Button from '@mui/material-next/Button';
+-import Button from '@mui/material/Button';
++import Button from '@mui/material-next/Button';
 ```
 
 ## From design to development
