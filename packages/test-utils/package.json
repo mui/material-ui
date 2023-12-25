@@ -22,7 +22,7 @@
     "@babel/preset-typescript": "^7.23.3",
     "@babel/register": "^7.22.15",
     "@emotion/cache": "^11.11.0",
-    "@emotion/react": "^11.11.1",
+    "@emotion/react": "^11.11.3",
     "@mnajdova/enzyme-adapter-react-18": "^0.2.0",
     "@testing-library/dom": "^9.3.3",
     "@testing-library/react": "^14.1.2",
