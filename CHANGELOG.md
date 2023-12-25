@@ -1,5 +1,67 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.15.2
+
+<!-- generated comparing v5.15.1..master -->
+
+_Dec 25, 2023_
+
+A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 Added support for callbacks in the [variant's props definition](https://mui.com/material-ui/customization/theme-components/#creating-new-component-variants) (#40094) @mnajdova
+- 💫 Published a [blogpost](https://mui.com/blog/2023-material-ui-v6-and-beyond/) for the 2024's plan about Material UI
+
+### `@mui/material@5.15.1`
+
+- &#8203;<!-- 31 -->[Badge] Use the variants API in the styled call (#40213) @mnajdova
+- &#8203;<!-- 04 -->[Paper] Add missing Paper classes descriptions (#40300) @sai6855
+
+### `@mui/system@5.15.1`
+
+- &#8203;<!-- 03 -->Support props callback in the variant's definition (#40094) @mnajdova
+
+### `@mui/base@5.0.0-beta.29`
+
+- &#8203;<!-- 29 -->[Popup] Use context-based transition API (#39326) @michaldudak
+- &#8203;<!-- 28 -->[Popup] Popup no longer opens outside viewport (#39827) @adamhylander
+- &#8203;<!-- 27 -->[useSelect] Refactor to use DOM focus management instead of active descendant (#39675) @DiegoAndai
+
+### `@mui/material-next@6.0.0-alpha.115`
+
+- &#8203;<!-- 15 -->[material-next][Divider]Divider ts support (#40307) @sai6855
+
+### Docs
+
+- &#8203;<!-- 30 -->[base-ui] Fix form submission Select demo (#40014) @ZeeshanTamboli
+- &#8203;<!-- 24 -->[blog] Add Material UI v6 and beyond blog post (#40242) @mnajdova
+- &#8203;<!-- 10 -->[material-ui] Fix broken links in the All components page (#40303) @muazaqdas
+- &#8203;<!-- 09 -->[material-ui] Fix broken links on the All components page (#40279) @danilo-leal
+- &#8203;<!-- 08 -->[material-ui] Add aria-current for nav tabs demo (#39594) @Kimzify
+- &#8203;<!-- 07 -->[material-ui] Add an "All components" page (#40256) @danilo-leal
+- &#8203;<!-- 06 -->[material-ui][Tooltip] Add demo to show how to change distance between tooltip and its anchor (#40087) @anle9650
+
+### Core
+
+- &#8203;<!-- 26 -->[blog] Fix 301 redirection @oliviertassinari
+- &#8203;<!-- 25 -->[blog] Reduce max image size @oliviertassinari
+- &#8203;<!-- 23 -->[code-infra] Extract Babel macro from mui-utils (#40262) @michaldudak
+- &#8203;<!-- 22 -->[core] Simplify a bit the release instructions @oliviertassinari
+- &#8203;<!-- 21 -->[core] Push force to deploy is not unexpected @oliviertassinari
+- &#8203;<!-- 20 -->[core] Fix CSS2 vs. CSS3 ::after syntax @oliviertassinari
+- &#8203;<!-- 19 -->[core] Fix CSS2 vs. CSS3 ::before syntax @oliviertassinari
+- &#8203;<!-- 05 -->[core] Use direct import from utils package (#40254) @siriwatknp
+- &#8203;<!-- 18 -->[core] Yaml format match most common convention @oliviertassinari
+- &#8203;<!-- 17 -->[core] Polish docs-feedback issue template @oliviertassinari
+- &#8203;<!-- 16 -->[core] Pin Node version on GitHub Actions to 18.18 (#40187) @michaldudak
+- &#8203;<!-- 14 -->[docs] Fix SEO regression (#40306) @oliviertassinari
+- &#8203;<!-- 13 -->[docs] Fix docs redirections @oliviertassinari
+- &#8203;<!-- 12 -->[docs] Update the Contributing guide to give more guidance on documentation (#40274) @samuelsycamore
+- &#8203;<!-- 11 -->[docs-infra] Add polish to the inline code block (#40260) @danilo-leal
+- &#8203;<!-- 02 -->[website] Update Gold sponsors: add RxDB, standardize formatting (#40273) @samuelsycamore
+- &#8203;<!-- 01 -->[website] Revert change to homepage SEO attributes @oliviertassinari
+
+All contributors of this release in alphabetical order: @adamhylander, @anle9650, @danilo-leal, @DiegoAndai, @Kimzify, @michaldudak, @mnajdova, @muazaqdas, @oliviertassinari, @sai6855, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
+
 ## 5.15.1
 
 <!-- generated comparing v5.15.0..master -->
