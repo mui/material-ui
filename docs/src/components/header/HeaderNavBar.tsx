@@ -60,8 +60,8 @@ const Navigation = styled('nav')(({ theme }) => [
       '& > a, & > button': {
         '&:hover': {
           color: (theme.vars || theme).palette.primary[50],
-          backgroundColor: (theme.vars || theme).palette.primaryDark[700],
-          borderColor: alpha(theme.palette.primaryDark[600], 0.5),
+          backgroundColor: alpha(theme.palette.primaryDark[700], 0.8),
+          borderColor: (theme.vars || theme).palette.divider,
         },
         '&:focus-visible': {
           color: (theme.vars || theme).palette.primary[50],

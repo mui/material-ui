@@ -47,7 +47,7 @@ const Item = styled(
       fontSize: theme.typography.pxToRem(14),
       textDecoration: 'none',
       paddingLeft: 10 + (depth + 1) * 13 - (expandable ? 21 : 0),
-      '&:before': {
+      '&::before': {
         content: '""',
         display: 'block',
         position: 'absolute',
@@ -65,7 +65,7 @@ const Item = styled(
         letterSpacing: '.08rem',
         fontWeight: theme.typography.fontWeightBold,
         fontSize: theme.typography.pxToRem(11),
-        '&:before': {
+        '&::before': {
           content: '""',
           display: 'block',
           position: 'absolute',
@@ -77,7 +77,7 @@ const Item = styled(
           opacity: depth === 0 ? 0 : 1,
           background: (theme.vars || theme).palette.grey[100],
         },
-        '&:after': {
+        '&::after': {
           content: '""',
           display: 'block',
           position: 'absolute',
@@ -121,7 +121,7 @@ const Item = styled(
                 theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
               ),
         },
-        '&:before': {
+        '&::before': {
           background: (theme.vars || theme).palette.primary[400],
         },
       },
@@ -158,21 +158,21 @@ const Item = styled(
     },
     theme.applyDarkStyles({
       ...color,
-      '&:before': {
+      '&::before': {
         background: alpha(theme.palette.primaryDark[700], 0.6),
       },
       '&.app-drawer-active': {
         color: (theme.vars || theme).palette.primary[300],
         backgroundColor: (theme.vars || theme).palette.primaryDark[700],
-        '&:before': {
+        '&::before': {
           background: (theme.vars || theme).palette.primary[400],
         },
       },
       ...(subheader && {
-        '&:before': {
+        '&::before': {
           background: alpha(theme.palette.primaryDark[700], 0.6),
         },
-        '&:after': {
+        '&::after': {
           background: alpha(theme.palette.primaryDark[700], 0.8),
           borderColor: alpha(theme.palette.primaryDark[600], 0.6),
         },

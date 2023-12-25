@@ -102,7 +102,7 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         ...theme.typography[`body-${ownerState.size!}`],
         ...variantStyle,
         backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
-        '&:before': {
+        '&::before': {
           boxSizing: 'border-box',
           content: '""',
           display: 'block',
@@ -266,7 +266,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     slots = {},
     slotProps = {},
     ...other
-  } = useForwardedInput<InputProps>(props, inputClasses);
+  } = useForwardedInput<InputProps>({ ...props, disabledInProp: inProps.disabled }, inputClasses);
 
   if (process.env.NODE_ENV !== 'production') {
     const registerEffect = formControl?.registerEffect;

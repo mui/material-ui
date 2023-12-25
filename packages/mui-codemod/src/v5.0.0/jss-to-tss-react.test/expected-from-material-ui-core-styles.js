@@ -3,8 +3,8 @@ import { makeStyles } from 'tss-react/mui';
 
 /*
 Sandboxes for verifying correct behavior:
-JSS - https://codesandbox.io/s/case1-jss-dedp2f?file=/src/App.js
-TSS - https://codesandbox.io/s/case1-tss-s0z7tx?file=/src/App.js
+JSS - https://codesandbox.io/p/sandbox/case1-jss-dedp2f?file=/src/App.js
+TSS - https://codesandbox.io/p/sandbox/case1-tss-s0z7tx?file=/src/App.js
  */
 
 const useStyles = makeStyles({ name: "TestName" })({
