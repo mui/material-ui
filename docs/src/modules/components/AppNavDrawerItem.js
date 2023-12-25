@@ -77,7 +77,7 @@ const Item = styled(
           opacity: depth === 0 ? 0 : 1,
           background: (theme.vars || theme).palette.grey[100],
         },
-        '&:after': {
+        '&::after': {
           content: '""',
           display: 'block',
           position: 'absolute',
@@ -172,7 +172,7 @@ const Item = styled(
         '&::before': {
           background: alpha(theme.palette.primaryDark[700], 0.6),
         },
-        '&:after': {
+        '&::after': {
           background: alpha(theme.palette.primaryDark[700], 0.8),
           borderColor: alpha(theme.palette.primaryDark[600], 0.6),
         },

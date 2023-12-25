@@ -40,7 +40,7 @@ const customTheme = (outerTheme) =>
       MuiFilledInput: {
         styleOverrides: {
           root: {
-            '&::before, &:after': {
+            '&::before, &::after': {
               borderBottom: '2px solid var(--TextField-brandBorderColor)',
             },
             '&:hover:not(.Mui-disabled, .Mui-error):before': {

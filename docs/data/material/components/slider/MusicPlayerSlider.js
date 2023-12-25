@@ -31,7 +31,7 @@ const WallPaper = styled('div')({
     background:
       'radial-gradient(at center center, rgb(62, 79, 249) 0%, rgba(62, 79, 249, 0) 64%)',
   },
-  '&:after': {
+  '&::after': {
     content: '""',
     width: '140%',
     height: '140%',

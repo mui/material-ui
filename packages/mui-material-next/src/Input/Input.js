@@ -114,7 +114,7 @@ const InputRoot = styled('div', {
       },
     }),
     ...(!ownerState.disableUnderline && {
-      '&:after': {
+      '&::after': {
         borderBottom: `2px solid ${theme.palette[ownerState.color].main}`,
         left: 0,
         bottom: 0,

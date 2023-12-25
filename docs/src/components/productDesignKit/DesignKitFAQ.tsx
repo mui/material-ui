@@ -85,7 +85,7 @@ const Accordion = styled(MuiAccordion)(({ theme }) => ({
   '&::before': {
     display: 'none',
   },
-  '&:after': {
+  '&::after': {
     display: 'none',
   },
 }));

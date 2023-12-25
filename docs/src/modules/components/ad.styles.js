@@ -62,7 +62,7 @@ const adBodyInlineStyles = (theme) => {
         content: '"Ad"',
         fontSize: theme.typography.pxToRem(14),
       },
-      '&:after': {
+      '&::after': {
         // Link
         marginLeft: 4,
         content: '"Get started"',

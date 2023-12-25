@@ -387,7 +387,7 @@ export function buildTheme(): ThemeOptions {
                 '&::before': {
                   borderColor: (theme.vars || theme).palette.grey[300],
                 },
-                '&:after': {
+                '&::after': {
                   borderColor: (theme.vars || theme).palette.primary[400],
                 },
                 '&:hover': {
@@ -398,7 +398,7 @@ export function buildTheme(): ThemeOptions {
                 color: (theme.vars || theme).palette.grey[800],
               },
               '& .MuiInput-root.Mui-focused': {
-                '&:after': {
+                '&::after': {
                   borderColor: (theme.vars || theme).palette.primary[400],
                 },
               },
@@ -424,7 +424,7 @@ export function buildTheme(): ThemeOptions {
               '& .MuiFilledInput-root': {
                 borderColor: (theme.vars || theme).palette.primaryDark[700],
                 backgroundColor: alpha(theme.palette.primaryDark[900], 0.5),
-                '&:after': {
+                '&::after': {
                   borderColor: (theme.vars || theme).palette.primary[300],
                 },
                 '&:hover': {
@@ -436,7 +436,7 @@ export function buildTheme(): ThemeOptions {
                 color: (theme.vars || theme).palette.grey[500],
               },
               '& .MuiInput-root.Mui-focused': {
-                '&:after': {
+                '&::after': {
                   borderColor: (theme.vars || theme).palette.primaryDark[400],
                 },
               },
