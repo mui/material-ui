@@ -57,7 +57,7 @@ const inputComponents = [
     name: 'Radio Group',
     srcLight: '/static/material-ui/react-components/radio-group-light.png',
     srcDark: '/static/material-ui/react-components/radio-group-dark.png',
-    link: '/material-ui/react-radio-group/',
+    link: '/material-ui/react-radio-button/',
     md1: false,
     md2: true,
     md3: false,

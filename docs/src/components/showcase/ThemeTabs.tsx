@@ -25,7 +25,7 @@ export default function ThemeTabs() {
             boxShadow: '0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04)',
             [`& .${tabsClasses.indicator}`]: {
               backgroundColor: 'transparent',
-              '&:before': {
+              '&::before': {
                 content: '""',
                 display: 'block',
                 position: 'absolute',
