@@ -17,10 +17,10 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
 
 The Material UI Accordion component includes several complementary utility components to handle various use cases:
 
-- [Accordion](#basic-usage): the wrapper for grouping related components.
-- [Accordion Summary](#basic-usage): the wrapper for the Accordion's header, which expands or collapses the content when clicked.
-- [Accordion Details](#basic-usage): the wrapper for Accordion's content.
-- [Accordion Actions](#basic-usage): an optional wrapper that groups a set of buttons.
+- Accordion: the wrapper for grouping related components.
+- Accordion Summary: the wrapper for the Accordion's header, which expands or collapses the content when clicked.
+- Accordion Details: the wrapper for Accordion's content.
+- Accordion Actions: an optional wrapper that groups a set of buttons.
 
 {{"demo": "AccordionUsage.js", "bg": true}}
 
