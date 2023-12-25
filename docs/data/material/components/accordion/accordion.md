@@ -52,7 +52,7 @@ Learn more about controlled and uncontrolled components in the [React documentat
 
 ### Disabled item
 
-Use the disabled prop on the `Accordion` component to disable interaction and focus.
+Use the disabled prop on the Accordion component to disable interaction and focus.
 
 {{"demo": "DisabledAccordion.js", "bg": true}}
 
