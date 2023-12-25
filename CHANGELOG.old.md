@@ -7552,7 +7552,7 @@ The text underline color customization change:
 
 ```diff
    underline: {
-     '&:after': {
+     '&::after': {
 -      backgroundColor: purple[500],
 +      borderBottomColor: purple[500],
      },

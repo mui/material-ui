@@ -7,7 +7,7 @@ const navigationComponents = [
     name: 'Bottom Navigation',
     srcLight: '/static/material-ui/react-components/bottomnav-light.png',
     srcDark: '/static/material-ui/react-components/bottomnav-dark.png',
-    link: '/material-ui/react-navigation/',
+    link: '/material-ui/react-bottom-navigation/',
     md1: false,
     md2: true,
     md3: false,
