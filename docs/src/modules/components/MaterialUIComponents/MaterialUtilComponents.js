@@ -25,7 +25,7 @@ const utilComponents = [
   },
   {
     title: 'Modal',
-    link: '/material-ui/react-Modal/',
+    link: '/material-ui/react-modal/',
     icon: <PictureInPictureRoundedIcon color="primary" />,
   },
   {
