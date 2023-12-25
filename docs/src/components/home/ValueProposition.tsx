@@ -37,7 +37,7 @@ const content = [
   },
 ];
 
-function ValueProposition() {
+export default function ValueProposition() {
   return (
     <Section>
       <SectionHeadline
@@ -59,5 +59,3 @@ function ValueProposition() {
     </Section>
   );
 }
-
-export default ValueProposition;

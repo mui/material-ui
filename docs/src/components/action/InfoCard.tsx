@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import Link from 'docs/src/modules/components/Link';
+import Link, { LinkProps } from 'docs/src/modules/components/Link';
 
 interface GlowingIconContainerProps {
   icon: React.ReactNode;
@@ -37,7 +37,7 @@ export function GlowingIconContainer({ icon }: GlowingIconContainerProps) {
   );
 }
 
-interface InfoCardProps {
+interface InfoCardProps extends LinkProps {
   title: string;
   classNameTitle?: string;
   description?: string;
@@ -49,8 +49,17 @@ interface InfoCardProps {
 }
 
 export default function InfoCard(props: InfoCardProps) {
-  const { icon, svg, title, classNameTitle, description, classNameDescription, link, dense } =
-    props;
+  const {
+    icon,
+    svg,
+    title,
+    classNameTitle,
+    description,
+    classNameDescription,
+    link,
+    dense,
+    ...other
+  } = props;
   return (
     <Paper
       variant="outlined"
@@ -71,6 +80,7 @@ export default function InfoCard(props: InfoCardProps) {
           borderColor: 'primaryDark.700',
         }),
       })}
+      {...other}
     >
       {svg && svg}
       {icon && <GlowingIconContainer icon={icon} />}
