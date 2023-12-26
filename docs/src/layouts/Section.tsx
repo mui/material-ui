@@ -14,7 +14,7 @@ interface SelectionProps extends BoxProps {
 const map = {
   white: {
     light: 'common.white',
-    dark: 'primaryDark.800',
+    dark: 'primaryDark.900',
   },
   comfort: {
     light: 'grey.50',
@@ -46,8 +46,8 @@ const Section = React.forwardRef<HTMLDivElement, SelectionProps>(function Sectio
                 } 100%)`,
                 ...theme.applyDarkStyles({
                   background: `linear-gradient(180deg, ${
-                    (theme.vars || theme).palette.primaryDark[800]
-                  } 0%, ${alpha(theme.palette.primary[900], 0.2)} 100%)`,
+                    (theme.vars || theme).palette.primaryDark[900]
+                  } 0%, ${alpha(theme.palette.primary[900], 0.16)} 100%)`,
                 }),
               }
             : {

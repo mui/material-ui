@@ -65,7 +65,7 @@ const BadgeBadge = styled('span', {
       ownerState.invisible && styles.invisible,
     ];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap',
@@ -87,110 +87,159 @@ const BadgeBadge = styled('span', {
     easing: theme.transitions.easing.easeInOut,
     duration: theme.transitions.duration.enteringScreen,
   }),
-  ...(ownerState.color !== 'default' && {
-    backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
-    color: (theme.vars || theme).palette[ownerState.color].contrastText,
-  }),
-  ...(ownerState.variant === 'dot' && {
-    borderRadius: RADIUS_DOT,
-    height: RADIUS_DOT * 2,
-    minWidth: RADIUS_DOT * 2,
-    padding: 0,
-  }),
-  ...(ownerState.anchorOrigin.vertical === 'top' &&
-    ownerState.anchorOrigin.horizontal === 'right' &&
-    ownerState.overlap === 'rectangular' && {
-      top: 0,
-      right: 0,
-      transform: 'scale(1) translate(50%, -50%)',
-      transformOrigin: '100% 0%',
-      [`&.${badgeClasses.invisible}`]: {
-        transform: 'scale(0) translate(50%, -50%)',
+  variants: [
+    ...Object.keys((theme.vars ?? theme).palette)
+      .filter(
+        (key) =>
+          (theme.vars ?? theme).palette[key].main &&
+          (theme.vars ?? theme).palette[key].contrastText,
+      )
+      .map((color) => ({
+        props: { color },
+        style: {
+          backgroundColor: (theme.vars || theme).palette[color].main,
+          color: (theme.vars || theme).palette[color].contrastText,
+        },
+      })),
+    {
+      props: { variant: 'dot' },
+      style: {
+        borderRadius: RADIUS_DOT,
+        height: RADIUS_DOT * 2,
+        minWidth: RADIUS_DOT * 2,
+        padding: 0,
       },
-    }),
-  ...(ownerState.anchorOrigin.vertical === 'bottom' &&
-    ownerState.anchorOrigin.horizontal === 'right' &&
-    ownerState.overlap === 'rectangular' && {
-      bottom: 0,
-      right: 0,
-      transform: 'scale(1) translate(50%, 50%)',
-      transformOrigin: '100% 100%',
-      [`&.${badgeClasses.invisible}`]: {
-        transform: 'scale(0) translate(50%, 50%)',
+    },
+    {
+      props: ({ ownerState }) =>
+        ownerState.anchorOrigin.vertical === 'top' &&
+        ownerState.anchorOrigin.horizontal === 'right' &&
+        ownerState.overlap === 'rectangular',
+      style: {
+        top: 0,
+        right: 0,
+        transform: 'scale(1) translate(50%, -50%)',
+        transformOrigin: '100% 0%',
+        [`&.${badgeClasses.invisible}`]: {
+          transform: 'scale(0) translate(50%, -50%)',
+        },
       },
-    }),
-  ...(ownerState.anchorOrigin.vertical === 'top' &&
-    ownerState.anchorOrigin.horizontal === 'left' &&
-    ownerState.overlap === 'rectangular' && {
-      top: 0,
-      left: 0,
-      transform: 'scale(1) translate(-50%, -50%)',
-      transformOrigin: '0% 0%',
-      [`&.${badgeClasses.invisible}`]: {
-        transform: 'scale(0) translate(-50%, -50%)',
+    },
+    {
+      props: ({ ownerState }) =>
+        ownerState.anchorOrigin.vertical === 'bottom' &&
+        ownerState.anchorOrigin.horizontal === 'right' &&
+        ownerState.overlap === 'rectangular',
+      style: {
+        bottom: 0,
+        right: 0,
+        transform: 'scale(1) translate(50%, 50%)',
+        transformOrigin: '100% 100%',
+        [`&.${badgeClasses.invisible}`]: {
+          transform: 'scale(0) translate(50%, 50%)',
+        },
       },
-    }),
-  ...(ownerState.anchorOrigin.vertical === 'bottom' &&
-    ownerState.anchorOrigin.horizontal === 'left' &&
-    ownerState.overlap === 'rectangular' && {
-      bottom: 0,
-      left: 0,
-      transform: 'scale(1) translate(-50%, 50%)',
-      transformOrigin: '0% 100%',
-      [`&.${badgeClasses.invisible}`]: {
-        transform: 'scale(0) translate(-50%, 50%)',
+    },
+    {
+      props: ({ ownerState }) =>
+        ownerState.anchorOrigin.vertical === 'top' &&
+        ownerState.anchorOrigin.horizontal === 'left' &&
+        ownerState.overlap === 'rectangular',
+      style: {
+        top: 0,
+        left: 0,
+        transform: 'scale(1) translate(-50%, -50%)',
+        transformOrigin: '0% 0%',
+        [`&.${badgeClasses.invisible}`]: {
+          transform: 'scale(0) translate(-50%, -50%)',
+        },
       },
-    }),
-  ...(ownerState.anchorOrigin.vertical === 'top' &&
-    ownerState.anchorOrigin.horizontal === 'right' &&
-    ownerState.overlap === 'circular' && {
-      top: '14%',
-      right: '14%',
-      transform: 'scale(1) translate(50%, -50%)',
-      transformOrigin: '100% 0%',
-      [`&.${badgeClasses.invisible}`]: {
-        transform: 'scale(0) translate(50%, -50%)',
+    },
+    {
+      props: ({ ownerState }) =>
+        ownerState.anchorOrigin.vertical === 'bottom' &&
+        ownerState.anchorOrigin.horizontal === 'left' &&
+        ownerState.overlap === 'rectangular',
+      style: {
+        bottom: 0,
+        left: 0,
+        transform: 'scale(1) translate(-50%, 50%)',
+        transformOrigin: '0% 100%',
+        [`&.${badgeClasses.invisible}`]: {
+          transform: 'scale(0) translate(-50%, 50%)',
+        },
       },
-    }),
-  ...(ownerState.anchorOrigin.vertical === 'bottom' &&
-    ownerState.anchorOrigin.horizontal === 'right' &&
-    ownerState.overlap === 'circular' && {
-      bottom: '14%',
-      right: '14%',
-      transform: 'scale(1) translate(50%, 50%)',
-      transformOrigin: '100% 100%',
-      [`&.${badgeClasses.invisible}`]: {
-        transform: 'scale(0) translate(50%, 50%)',
+    },
+    {
+      props: ({ ownerState }) =>
+        ownerState.anchorOrigin.vertical === 'top' &&
+        ownerState.anchorOrigin.horizontal === 'right' &&
+        ownerState.overlap === 'circular',
+      style: {
+        top: '14%',
+        right: '14%',
+        transform: 'scale(1) translate(50%, -50%)',
+        transformOrigin: '100% 0%',
+        [`&.${badgeClasses.invisible}`]: {
+          transform: 'scale(0) translate(50%, -50%)',
+        },
       },
-    }),
-  ...(ownerState.anchorOrigin.vertical === 'top' &&
-    ownerState.anchorOrigin.horizontal === 'left' &&
-    ownerState.overlap === 'circular' && {
-      top: '14%',
-      left: '14%',
-      transform: 'scale(1) translate(-50%, -50%)',
-      transformOrigin: '0% 0%',
-      [`&.${badgeClasses.invisible}`]: {
-        transform: 'scale(0) translate(-50%, -50%)',
+    },
+    {
+      props: ({ ownerState }) =>
+        ownerState.anchorOrigin.vertical === 'bottom' &&
+        ownerState.anchorOrigin.horizontal === 'right' &&
+        ownerState.overlap === 'circular',
+      style: {
+        bottom: '14%',
+        right: '14%',
+        transform: 'scale(1) translate(50%, 50%)',
+        transformOrigin: '100% 100%',
+        [`&.${badgeClasses.invisible}`]: {
+          transform: 'scale(0) translate(50%, 50%)',
+        },
       },
-    }),
-  ...(ownerState.anchorOrigin.vertical === 'bottom' &&
-    ownerState.anchorOrigin.horizontal === 'left' &&
-    ownerState.overlap === 'circular' && {
-      bottom: '14%',
-      left: '14%',
-      transform: 'scale(1) translate(-50%, 50%)',
-      transformOrigin: '0% 100%',
-      [`&.${badgeClasses.invisible}`]: {
-        transform: 'scale(0) translate(-50%, 50%)',
+    },
+    {
+      props: ({ ownerState }) =>
+        ownerState.anchorOrigin.vertical === 'top' &&
+        ownerState.anchorOrigin.horizontal === 'left' &&
+        ownerState.overlap === 'circular',
+      style: {
+        top: '14%',
+        left: '14%',
+        transform: 'scale(1) translate(-50%, -50%)',
+        transformOrigin: '0% 0%',
+        [`&.${badgeClasses.invisible}`]: {
+          transform: 'scale(0) translate(-50%, -50%)',
+        },
       },
-    }),
-  ...(ownerState.invisible && {
-    transition: theme.transitions.create('transform', {
-      easing: theme.transitions.easing.easeInOut,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  }),
+    },
+    {
+      props: ({ ownerState }) =>
+        ownerState.anchorOrigin.vertical === 'bottom' &&
+        ownerState.anchorOrigin.horizontal === 'left' &&
+        ownerState.overlap === 'circular',
+      style: {
+        bottom: '14%',
+        left: '14%',
+        transform: 'scale(1) translate(-50%, 50%)',
+        transformOrigin: '0% 100%',
+        [`&.${badgeClasses.invisible}`]: {
+          transform: 'scale(0) translate(-50%, 50%)',
+        },
+      },
+    },
+    {
+      props: { invisible: true },
+      style: {
+        transition: theme.transitions.create('transform', {
+          easing: theme.transitions.easing.easeInOut,
+          duration: theme.transitions.duration.leavingScreen,
+        }),
+      },
+    },
+  ],
 }));
 
 const Badge = React.forwardRef(function Badge(inProps, ref) {

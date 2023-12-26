@@ -6,3 +6,4 @@ export * from './shadow';
 export * from './variants';
 export * from './typography';
 export * from './theme';
+export * from './zIndex';

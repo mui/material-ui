@@ -239,7 +239,7 @@ export const SliderThumb = styled('span', {
     },
     [`&.${sliderClasses.disabled}`]: {
       boxShadow: 'none',
-      '&:before': {
+      '&::before': {
         boxShadow: tokens.sys.elevation[0],
       },
     },

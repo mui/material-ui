@@ -1,6 +1,6 @@
 name: Feature request 💄
 description: Suggest a new idea for MUI Core.
-labels: ['status: needs triage']
+labels: ['status: waiting for maintainer']
 body:
   - type: markdown
     attributes:

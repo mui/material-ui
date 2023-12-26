@@ -14,15 +14,13 @@ The following code snippet shows how to apply styles inside of the shadow DOM:
 ```tsx
 const container = document.querySelector('#root');
 const shadowContainer = container.attachShadow({ mode: 'open' });
-const emotionRoot = document.createElement('style');
 const shadowRootElement = document.createElement('div');
-shadowContainer.appendChild(emotionRoot);
 shadowContainer.appendChild(shadowRootElement);
 
 const cache = createCache({
   key: 'css',
   prepend: true,
-  container: emotionRoot,
+  container: shadowContainer,
 });
 
 ReactDOM.createRoot(shadowRootElement).render(
