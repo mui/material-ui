@@ -14,7 +14,7 @@ Your participation is invaluable—keep an eye on MUI's social media to catch th
 
 ### Public GitHub project
 
-The Material UI public GitHub project is where you can see the high-level next big priorities for the library.
+The Material UI public GitHub project is where you can see the ongoing priorities for the library.
 We typically add umbrella issues to the project board after discussing them internally.
 
 **[Visit the public Material UI project board 👉](https://github.com/mui/material-ui/projects/26)**
