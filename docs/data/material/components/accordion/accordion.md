@@ -9,7 +9,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
 
 # Accordion
 
-<p class="description">The accordion component allows the user to show and hide sections of related content on a page.</p>
+<p class="description">The Accordion component lets users show and hide sections of related content on a page.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -52,7 +52,7 @@ Learn more about controlled and uncontrolled components in the [React documentat
 
 ### Disabled item
 
-Use the disabled prop on the Accordion component to disable interaction and focus.
+Use the `disabled` prop on the Accordion component to disable interaction and focus.
 
 {{"demo": "DisabledAccordion.js", "bg": true}}
 
