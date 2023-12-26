@@ -51,13 +51,13 @@ const AvatarRoot = styled('div', {
       props: { variant: 'rounded' },
       style: {
         borderRadius: (theme.vars || theme).shape.borderRadius,
-      }
+      },
     },
     {
       props: { variant: 'square' },
       style: {
         borderRadius: 0,
-      }
+      },
     },
     {
       props: { colorDefault: true },
@@ -71,8 +71,8 @@ const AvatarRoot = styled('div', {
               backgroundColor:
                 theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
             }),
-      }
-    }
+      },
+    },
   ],
 }));
 
