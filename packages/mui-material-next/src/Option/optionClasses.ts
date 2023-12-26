@@ -26,7 +26,7 @@ export function getOptionUtilityClass(slot: string): string {
   return generateUtilityClass('MuiOption', slot);
 }
 
-const menuItemClasses: OptionClasses = generateUtilityClasses('MuiOption', [
+const optionClasses: OptionClasses = generateUtilityClasses('MuiOption', [
   'root',
   'focusVisible',
   'dense',
@@ -36,4 +36,4 @@ const menuItemClasses: OptionClasses = generateUtilityClasses('MuiOption', [
   'selected',
 ]);
 
-export default menuItemClasses;
+export default optionClasses;
