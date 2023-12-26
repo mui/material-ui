@@ -28,7 +28,7 @@ export default function UnstyledSliderBasic() {
           track: { className: 'block absolute h-1 rounded-sm bg-current' },
           thumb: (_, { active, focused }) => ({
             className: `absolute w-4 h-4 -ml-1.5 -mt-1.5 box-border rounded-full outline-0 border-3 border-solid border-current bg-white hover:shadow-outline-purple ${
-              focused || active ? 'shadow-outline-purple' : ''
+              focused || active ? 'shadow-black' : ''
             }`,
           }),
         }}

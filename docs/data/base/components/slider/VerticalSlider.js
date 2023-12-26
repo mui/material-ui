@@ -66,6 +66,9 @@ const Slider = styled(BaseSlider)(
     -moz-transform: translate(-50%, 50%);
     -ms-transform: translate(-50%, 50%);
     transform: translate(-50%, 50%);
+    transition-property: box-shadow, width, height;
+    transition-timing-function: cubic-bezier(0.2, 0, 0.2, 1);
+    transition-duration: 120ms;
 
     &:hover{
       box-shadow: 0 0 0 4px ${alpha(
@@ -80,11 +83,13 @@ const Slider = styled(BaseSlider)(
     }
 
     &.${sliderClasses.active} {
-      box-shadow: 0 0 0 5px ${alpha(
-        theme.palette.mode === 'light' ? blue[200] : blue[300],
+      box-shadow: 0 0 0 6px ${alpha(
+        theme.palette.mode === 'light' ? blue[200] : blue[400],
         0.5,
       )};
       outline: none;
+      width: 18px;
+      height: 18px;
     }
   }
 `,
