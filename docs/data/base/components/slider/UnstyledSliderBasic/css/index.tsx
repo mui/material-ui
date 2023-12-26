@@ -117,6 +117,9 @@ function Styles() {
       outline: 0;
       border: 3px solid currentColor;
       background-color: #fff;
+      transition-property: box-shadow, transform;
+      transition-timing-function: cubic-bezier(0.2, 0, 0.2, 1);
+      transition-duration: 120ms;
     }
 
     .CustomSlider-thumb:hover,&.${sliderClasses.focusVisible} {
@@ -124,7 +127,9 @@ function Styles() {
     }
 
     .CustomSlider-thumb.${sliderClasses.active} {
-      box-shadow: 0 0 0 0.25rem ${alpha(isDarkMode ? cyan[300] : cyan[200], 0.3)};
+      box-shadow: 0 0 0 6px ${alpha(isDarkMode ? cyan[200] : cyan[400], 0.5)};
+      outline: none;
+      transform: scale(1.2);
     }
     `}</style>
   );

@@ -90,6 +90,10 @@ const Slider = styled(BaseSlider)(
     outline: 0;
     border: 3px solid currentColor;
     background-color: #fff;
+    transition-property: box-shadow, transform;
+    transition-timing-function: cubic-bezier(0.2, 0, 0.2, 1);
+    transition-duration: 120ms;
+
     &:hover{
       box-shadow: 0 0 0 4px ${alpha(
         theme.palette.mode === 'light' ? blue[200] : blue[300],
@@ -103,12 +107,14 @@ const Slider = styled(BaseSlider)(
     }
 
     &.${sliderClasses.active} {
-      box-shadow: 0 0 0 5px ${alpha(
-        theme.palette.mode === 'light' ? blue[200] : blue[300],
+      box-shadow: 0 0 0 6px ${alpha(
+        theme.palette.mode === 'light' ? blue[200] : blue[400],
         0.5,
       )};
       outline: none;
+      transform: scale(1.2);
     }
+
     & .label {
         font-family: IBM Plex Sans;
         font-weight: 600;
@@ -128,17 +134,15 @@ const Slider = styled(BaseSlider)(
         align-items: center;
         justify-content: center;
     }
+
     :hover .label {
         visibility: visible;
         transform: translate(-35%, -140%) rotate(-45deg) scale(1);
     }
+
     :hover .value {
         transform: rotate(45deg);
         text-align: center;
-    }
-    &.${sliderClasses.active} {
-      box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[600] : blue[300]};
-      outline: none;
     }
   }
 `,
