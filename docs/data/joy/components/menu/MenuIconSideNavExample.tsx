@@ -22,7 +22,7 @@ interface MenuButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
       | React.MouseEvent<HTMLButtonElement>
       | React.KeyboardEvent<HTMLButtonElement>,
   ) => void;
-  onLeaveMenu: (callback: () => boolean) => void;
+  onClose: () => void;
   label: string;
 }
 
@@ -45,50 +45,34 @@ function NavMenuButton({
   menu,
   open,
   onOpen,
-  onLeaveMenu,
+  onClose,
   label,
   ...props
 }: Omit<MenuButtonProps, 'color'>) {
-  const isOnButton = React.useRef(false);
-  const internalOpen = React.useRef(open);
+  const handleDocumentClick = React.useCallback(
+    () => {
+      if (open) {
+        onClose(); 
+      }
+    },
+    [onClose, open]
+  );
 
-  const handleButtonKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
-    internalOpen.current = open;
-    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-      event.preventDefault();
-      onOpen(event);
-    }
-  };
+  React.useEffect(() => {
+    document.addEventListener('mousedown', handleDocumentClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleDocumentClick);
+    };
+  }, [handleDocumentClick]);
 
   return (
-    <Dropdown
-      open={open}
-      onOpenChange={(_, isOpen) => {
-        if (isOpen) {
-          onOpen?.();
-        }
-      }}
-    >
+    <Dropdown open={open}>
       <MenuButton
         {...props}
         slots={{ root: IconButton }}
         slotProps={{ root: { variant: 'plain', color: 'neutral' } }}
-        onMouseDown={() => {
-          internalOpen.current = open;
-        }}
-        onClick={() => {
-          if (!internalOpen.current) {
-            onOpen();
-          }
-        }}
-        onMouseEnter={() => {
-          onOpen();
-          isOnButton.current = true;
-        }}
-        onMouseLeave={() => {
-          isOnButton.current = false;
-        }}
-        onKeyDown={handleButtonKeyDown}
+        onClick={onOpen}
         sx={{
           bgcolor: open ? 'neutral.plainHoverBg' : undefined,
           '&:focus-visible': {
@@ -99,9 +83,6 @@ function NavMenuButton({
         {children}
       </MenuButton>
       {React.cloneElement(menu, {
-        onMouseLeave: () => {
-          onLeaveMenu(() => isOnButton.current);
-        },
         modifiers,
         slotProps: {
           listbox: {
@@ -126,20 +107,7 @@ export default function MenuIconSideNavExample() {
   const itemProps = {
     onClick: () => setMenuIndex(null),
   };
-  const createHandleLeaveMenu =
-    (index: number) => (getIsOnButton: () => boolean) => {
-      setTimeout(() => {
-        const isOnButton = getIsOnButton();
-        if (!isOnButton) {
-          setMenuIndex((latestIndex: null | number) => {
-            if (index === latestIndex) {
-              return null;
-            }
-            return latestIndex;
-          });
-        }
-      }, 200);
-    };
+ 
   return (
     <Sheet sx={{ borderRadius: 'sm', py: 1, mr: 20 }}>
       <List>
@@ -148,7 +116,7 @@ export default function MenuIconSideNavExample() {
             label="Apps"
             open={menuIndex === 0}
             onOpen={() => setMenuIndex(0)}
-            onLeaveMenu={createHandleLeaveMenu(0)}
+            onClose={() => setMenuIndex(null)}
             menu={
               <Menu onClose={() => setMenuIndex(null)}>
                 <MenuItem {...itemProps}>Application 1</MenuItem>
@@ -165,7 +133,7 @@ export default function MenuIconSideNavExample() {
             label="Settings"
             open={menuIndex === 1}
             onOpen={() => setMenuIndex(1)}
-            onLeaveMenu={createHandleLeaveMenu(1)}
+            onClose={() => setMenuIndex(null)}
             menu={
               <Menu onClose={() => setMenuIndex(null)}>
                 <MenuItem {...itemProps}>Setting 1</MenuItem>
@@ -182,7 +150,7 @@ export default function MenuIconSideNavExample() {
             label="Personal"
             open={menuIndex === 2}
             onOpen={() => setMenuIndex(2)}
-            onLeaveMenu={createHandleLeaveMenu(2)}
+            onClose={() => setMenuIndex(null)}
             menu={
               <Menu onClose={() => setMenuIndex(null)}>
                 <MenuItem {...itemProps}>Personal 1</MenuItem>
