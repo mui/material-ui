@@ -71,7 +71,7 @@ or
 We have prepared a codemod to help you migrate your codebase from `@mui/lab` to `@mui/x-tree-view`:
 
 ```bash
-npx @mui/codemod v5.0.0/tree-view-moved-to-x <path>
+npx @mui/codemod@latest v5.0.0/tree-view-moved-to-x <path>
 ```
 
 ## Where is the Tree View documentation?
