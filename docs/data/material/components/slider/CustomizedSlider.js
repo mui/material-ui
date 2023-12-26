@@ -21,7 +21,8 @@ ValueLabelComponent.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-const iOSBoxShadow = '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)';
+const iOSBoxShadow =
+  '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)';
 
 const IOSSlider = styled(Slider)(({ theme }) => ({
   color: theme.palette.mode === 'dark' ? '#0a84ff' : '#007bff',
@@ -40,7 +41,8 @@ const IOSSlider = styled(Slider)(({ theme }) => ({
       },
     },
     '&:before': {
-      boxShadow: '0px 0px 1px 0px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.14), 0px 0px 1px 0px rgba(0,0,0,0.12)',
+      boxShadow:
+        '0px 0px 1px 0px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.14), 0px 0px 1px 0px rgba(0,0,0,0.12)',
     },
   },
   '& .MuiSlider-valueLabel': {
@@ -59,7 +61,7 @@ const IOSSlider = styled(Slider)(({ theme }) => ({
   },
   '& .MuiSlider-track': {
     border: 'none',
-    height: 5
+    height: 5,
   },
   '& .MuiSlider-rail': {
     opacity: 0.5,
@@ -157,11 +159,7 @@ export default function CustomizedSlider() {
   return (
     <Box sx={{ width: 320 }}>
       <Typography gutterBottom>iOS</Typography>
-      <IOSSlider
-        aria-label="ios slider"
-        defaultValue={60}
-        valueLabelDisplay="on"
-      />
+      <IOSSlider aria-label="ios slider" defaultValue={60} valueLabelDisplay="on" />
       <Box sx={{ m: 3 }} />
       <Typography gutterBottom>pretto.fr</Typography>
       <PrettoSlider
