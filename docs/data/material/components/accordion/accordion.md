@@ -36,6 +36,31 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 ```
 
+### Exapnd icon
+
+Use the `expandIcon` prop on the Accordion Summary component to change the expand indicator icon.
+The component handles the turning upside-down transition automatically.
+
+{{"demo": "AccordionExpandIcon.js", "bg": true}}
+
+### Exapnded by default
+
+Use the `defaultExpanded` prop on the Accordion component to have it opened by default.
+
+{{"demo": "AccordionExpandDefault.js", "bg": true}}
+
+### Transition
+
+Use the `TransitionComponent` and `TransitionProps` props to change the Accordion's default transition.
+
+{{"demo": "AccordionTransition.js", "bg": true}}
+
+### Disabled item
+
+Use the `disabled` prop on the Accordion component to disable interaction and focus.
+
+{{"demo": "DisabledAccordion.js", "bg": true}}
+
 ### Controlled Accordion
 
 The Accordion component can be controlled or uncontrolled.
@@ -50,12 +75,6 @@ The Accordion component can be controlled or uncontrolled.
 Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
 :::
 
-### Disabled item
-
-Use the `disabled` prop on the Accordion component to disable interaction and focus.
-
-{{"demo": "DisabledAccordion.js", "bg": true}}
-
 ## Customization
 
 ### Only one expanded at a time
@@ -63,7 +82,7 @@ Use the `disabled` prop on the Accordion component to disable interaction and fo
 Use the `expanded` prop with React's `useState` hook to allow only one Accordion item to be expanded at a time.
 The demo below also shows a bit of visual customziation.
 
-{{"demo": "CustomizedAccordions.js"}}
+{{"demo": "CustomizedAccordions.js", "bg": true}}
 
 ## Performance
 
