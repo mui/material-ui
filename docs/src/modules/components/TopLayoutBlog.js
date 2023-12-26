@@ -261,6 +261,17 @@ export default function TopLayoutBlog(props) {
       ? `https://mui.com/static/blog/${slug}/card.png`
       : 'https://mui.com/static/logo.png';
 
+  if (process.env.NODE_ENV !== 'production') {
+    if (headers.card === undefined) {
+      throw new Error(
+        [
+          `MUI: the "card" markdown header for the blog post "${slug}" is missing.`,
+          `Set card: true or card: false header in docs/pages/blog/${slug}.md.`,
+        ].join('\n'),
+      );
+    }
+  }
+
   return (
     <BrandingCssVarsProvider>
       <AppHeader />
