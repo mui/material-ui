@@ -423,12 +423,7 @@ export default function AppNavDrawer(props) {
             pb: 5,
             overflowY: 'auto',
             flexGrow: 1,
-            ...(swipeableDrawer
-              ? {}
-              : {
-                  borderRight: '1px solid',
-                  borderColor: 'divider',
-                }),
+            ...swipeableDrawer,
           }}
         >
           <PersistScroll slot="side" enabled>
