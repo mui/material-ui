@@ -8,7 +8,7 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
   visuallyHidden,
-  clamp
+  clamp,
 } from '@mui/utils';
 import {
   Mark,

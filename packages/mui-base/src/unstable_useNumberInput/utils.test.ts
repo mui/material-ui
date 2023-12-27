@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import {  clampStepwise, isNumber } from './utils';
+import { clampStepwise, isNumber } from './utils';
 
 describe('utils', () => {
   it('clampStepwise: clamps a value based on min and max', () => {

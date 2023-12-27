@@ -1,6 +1,6 @@
-import {clamp} from "@mui/utils";
+import { clamp } from '@mui/utils';
 
-export function clampStepwise (
+export function clampStepwise(
   val: number,
   min: number = Number.MIN_SAFE_INTEGER,
   max: number = Number.MAX_SAFE_INTEGER,
