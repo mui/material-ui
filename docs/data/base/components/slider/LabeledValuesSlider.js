@@ -70,46 +70,48 @@ const Slider = styled(BaseSlider)(
     display: block;
     position: absolute;
     width: 100%;
-    height: 4px;
-    border-radius: 2px;
-    background-color: ${theme.palette.mode === 'light' ? blue[200] : blue[900]};
+    height: 6px;
+    border-radius: 6px;
+    background-color: currentColor;
+    opacity: 0.4;
   }
 
   & .${sliderClasses.track} {
     display: block;
     position: absolute;
-    height: 4px;
-    border-radius: 2px;
+    height: 6px;
+    border-radius: 6px;
     background-color: currentColor;
   }
 
   & .${sliderClasses.thumb} {
+    top: 28%;
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
-    width: 16px;
-    height: 16px;
     margin-left: -6px;
-    margin-top: -6px;
+    width: 20px;
+    height: 20px;
     box-sizing: border-box;
     border-radius: 50%;
     outline: 0;
-    border: 3px solid currentColor;
+    border: 4px solid currentColor;
     background-color: #fff;
     transition-property: box-shadow, transform;
-    transition-timing-function: cubic-bezier(0.2, 0, 0.2, 1);
+    transition-timing-function: ease;
     transition-duration: 120ms;
+    transform-origin: center;
 
-    &:hover{
-      box-shadow: 0 0 0 4px ${alpha(
+    &:hover {
+      box-shadow: 0 0 0 6px ${alpha(
         theme.palette.mode === 'light' ? blue[200] : blue[300],
         0.3,
       )};
     }
-    
+
     &.${sliderClasses.focusVisible} {
-      box-shadow: 0 0 0 6px ${alpha(
+      box-shadow: 0 0 0 8px ${alpha(
         theme.palette.mode === 'light' ? blue[200] : blue[400],
         0.5,
       )};
@@ -117,42 +119,43 @@ const Slider = styled(BaseSlider)(
     }
 
     &.${sliderClasses.active} {
-      box-shadow: 0 0 0 6px ${alpha(
+      box-shadow: 0 0 0 8px ${alpha(
         theme.palette.mode === 'light' ? blue[200] : blue[400],
         0.5,
       )};
       outline: none;
       transform: scale(1.2);
     }
+  }
 
     & .label {
-        font-family: IBM Plex Sans;
-        font-weight: 600;
-        font-size: 14px;
-        background: unset;
-        background-color: ${theme.palette.mode === 'light' ? blue[600] : blue[900]};
-        width: 32px;
-        height: 32px;
-        padding: 0px;
-        visibility: hidden;
-        color: #fff;
-        border-radius: 50% 50% 50% 0;
-        position: absolute;
-        transform: translate(-35%, -140%) rotate(-45deg) scale(0);
-        transition: transform 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      font-family: IBM Plex Sans;
+      font-weight: 600;
+      font-size: 14px;
+      background: unset;
+      background-color: ${theme.palette.mode === 'light' ? blue[600] : blue[900]};
+      width: 32px;
+      height: 32px;
+      padding: 0px;
+      visibility: hidden;
+      color: #fff;
+      border-radius: 50% 50% 50% 0;
+      position: absolute;
+      transform: translate(0%, -140%) rotate(-45deg) scale(0);
+      transition: transform 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     :hover .label {
-        visibility: visible;
-        transform: translate(-35%, -140%) rotate(-45deg) scale(1);
+      visibility: visible;
+      transform: translate(0%, -140%) rotate(-45deg) scale(1);
     }
 
     :hover .value {
-        transform: rotate(45deg);
-        text-align: center;
+      transform: rotate(45deg);
+      text-align: center;
     }
   }
 `,

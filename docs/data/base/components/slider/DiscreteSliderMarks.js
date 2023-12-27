@@ -74,7 +74,7 @@ const Slider = styled(BaseSlider)(
   touch-action: none;
   -webkit-tap-highlight-color: transparent;
 
-  &.${sliderClasses.disabled} { 
+  &.${sliderClasses.disabled} {
     pointer-events: none;
     cursor: default;
     color: ${theme.palette.mode === 'light' ? grey[300] : grey[600]};
@@ -85,55 +85,57 @@ const Slider = styled(BaseSlider)(
     display: block;
     position: absolute;
     width: 100%;
-    height: 4px;
-    border-radius: 2px;
-    background-color: ${theme.palette.mode === 'light' ? blue[200] : blue[900]};
+    height: 6px;
+    border-radius: 6px;
+    background-color: currentColor;
+    opacity: 0.4;
   }
 
   & .${sliderClasses.track} {
     display: block;
     position: absolute;
-    height: 4px;
-    border-radius: 2px;
+    height: 6px;
+    border-radius: 6px;
     background-color: currentColor;
   }
 
   & .${sliderClasses.thumb} {
+    top: 28%;
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
-    width: 16px;
-    height: 16px;
     margin-left: -6px;
-    margin-top: -6px;
+    width: 20px;
+    height: 20px;
     box-sizing: border-box;
     border-radius: 50%;
     outline: 0;
-    border: 3px solid currentColor;
+    border: 4px solid currentColor;
     background-color: #fff;
     transition-property: box-shadow, transform;
-    transition-timing-function: cubic-bezier(0.2, 0, 0.2, 1);
+    transition-timing-function: ease;
     transition-duration: 120ms;
+    transform-origin: center;
 
-    &:hover{
-      box-shadow: 0 0 0 4px ${alpha(
+    &:hover {
+      box-shadow: 0 0 0 6px ${alpha(
         theme.palette.mode === 'light' ? blue[200] : blue[300],
         0.3,
       )};
     }
-    
+
     &.${sliderClasses.focusVisible} {
-            box-shadow: 0 0 0 6px ${alpha(
-              theme.palette.mode === 'light' ? blue[200] : blue[400],
-              0.5,
-            )};
+      box-shadow: 0 0 0 8px ${alpha(
+        theme.palette.mode === 'light' ? blue[200] : blue[400],
+        0.5,
+      )};
       outline: none;
     }
 
     &.${sliderClasses.active} {
-      box-shadow: 0 0 0 5px ${alpha(
-        theme.palette.mode === 'light' ? blue[200] : blue[300],
+      box-shadow: 0 0 0 8px ${alpha(
+        theme.palette.mode === 'light' ? blue[200] : blue[400],
         0.5,
       )};
       outline: none;
@@ -143,11 +145,11 @@ const Slider = styled(BaseSlider)(
 
   & .${sliderClasses.mark} {
     position: absolute;
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 99%;
     background-color: ${theme.palette.mode === 'light' ? blue[200] : blue[900]};
-    top: 43%;
+    top: 44%;
     transform: translateX(-50%);
   }
 
@@ -160,7 +162,7 @@ const Slider = styled(BaseSlider)(
     font-weight: 600;
     font-size: 12px;
     position: absolute;
-    top: 20px;
+    top: 24px;
     transform: translateX(-50%);
     margin-top: 8px;
   }

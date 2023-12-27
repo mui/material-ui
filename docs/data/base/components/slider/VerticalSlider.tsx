@@ -25,7 +25,7 @@ const Slider = styled(BaseSlider)(
   ({ theme }) => `
   color: ${theme.palette.mode === 'light' ? blue[500] : blue[400]};
   height: 95%;
-  width: 4px;
+  width: 6px;
   display: inline-block;
   position: relative;
   margin-top: 0.75rem;
@@ -39,7 +39,7 @@ const Slider = styled(BaseSlider)(
     position: absolute;
     height: 100%;
     width: inherit;
-    border-radius: 2px;
+    border-radius: 6px;
     background-color: currentColor;
     opacity: 0.4;
   }
@@ -48,7 +48,7 @@ const Slider = styled(BaseSlider)(
     display: block;
     position: absolute;
     width: inherit;
-    border-radius: 2px;
+    border-radius: 6px;
     background-color: currentColor;
   }
 
@@ -57,12 +57,12 @@ const Slider = styled(BaseSlider)(
     align-items: center;
     justify-content: center;
     position: absolute;
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
     box-sizing: border-box;
     border-radius: 50%;
     outline: 0;
-    border: 3px solid currentColor;
+    border: 4px solid currentColor;
     background-color: #fff;
     left: 50%;
     -webkit-transform: translate(-50%, 50%);
@@ -70,18 +70,18 @@ const Slider = styled(BaseSlider)(
     -ms-transform: translate(-50%, 50%);
     transform: translate(-50%, 50%);
     transition-property: box-shadow, width, height;
-    transition-timing-function: cubic-bezier(0.2, 0, 0.2, 1);
+    transition-timing-function: ease;
     transition-duration: 120ms;
 
-    &:hover{
-      box-shadow: 0 0 0 4px ${alpha(
+    &:hover {
+      box-shadow: 0 0 0 6px ${alpha(
         theme.palette.mode === 'light' ? blue[200] : blue[300],
         0.3,
       )};
     }
-    
+
     &.${sliderClasses.focusVisible} {
-            box-shadow: 0 0 0 6px ${alpha(
+            box-shadow: 0 0 0 8px ${alpha(
               theme.palette.mode === 'light' ? blue[200] : blue[400],
               0.5,
             )};
@@ -89,13 +89,13 @@ const Slider = styled(BaseSlider)(
     }
 
     &.${sliderClasses.active} {
-      box-shadow: 0 0 0 6px ${alpha(
+      box-shadow: 0 0 0 8px ${alpha(
         theme.palette.mode === 'light' ? blue[200] : blue[400],
         0.5,
       )};
       outline: none;
-      width: 18px;
-      height: 18px;
+      width: 22px;
+      height: 22px;
     }
   }
 `,
