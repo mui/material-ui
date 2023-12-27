@@ -7,6 +7,7 @@ type Falsy = false | 0 | '' | null | undefined;
 
 type BaseDefaultProps = object;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type NoInfer<T> = [T][T extends any ? 0 : never];
 type FastOmit<T extends object, U extends string | number | symbol> = {
   [K in keyof T as K extends U ? never : K]: T[K];
@@ -14,7 +15,7 @@ type FastOmit<T extends object, U extends string | number | symbol> = {
 export type Substitute<A extends object, B extends object> = FastOmit<A, keyof B> & B;
 
 export interface StyledVariants<Props extends BaseDefaultProps> {
-  props: Partial<Props>;
+  props: Partial<Props> | ((props: Props) => boolean);
   style: CSSObject<Props>;
 }
 
@@ -54,7 +55,10 @@ export interface StyledComponent<Props extends BaseDefaultProps = BaseDefaultPro
   toString: () => string;
 }
 
-export interface CreateStyledComponent<Component extends React.ElementType, OuterProps extends {}> {
+export interface CreateStyledComponent<
+  Component extends React.ElementType,
+  OuterProps extends object,
+> {
   /**
    * @typeparam Props: Additional props to add to the styled component
    */
@@ -70,7 +74,8 @@ export interface StyledOptions<Props extends BaseDefaultProps = BaseDefaultProps
   skipSx?: boolean;
   skipVariantsResolver?: boolean;
   overridesResolver?: (
-    props: Props,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    props: any | Props,
     styles: Record<string, string>,
   ) => (string | Falsy) | Array<string | Falsy>;
 }

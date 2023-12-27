@@ -1,26 +1,37 @@
-# Next App
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-A sample vite application to test the working of zero runtime library.
-This project is not part of the workspace yet.
+## Getting Started
 
-## How to run
-
-You can either `yarn build` command to build all the packages, or you need to build, the the minimum -
-
-1. `@mui/zero-runtime`
-2. `@mui/zero-tag-processor`
-3. `@mui/zero-next-plugin`
-
-Make sure you have also run `yarn build` at least once because we also use `@mui/material` and `@mui/system` packages. On subsequent runs, you can only build the above packages using -
+First, build all the packages in the workspace atleast once. Run
 
 ```bash
-yarn build
+pnpm build
 ```
 
-After building, you can run the project by changing into the directory and then
+Then start the Next.js development server:
 
-1. Install dependencies using `yarn install`
-2. Start the dev server using `yarn dev`
-3. Build the code using `yarn build`
+```bash
+pnpm run --filter=@app/next-app dev
+```
 
-Optionally, before running the dev server, you can run `yarn vite optimize --force` if it logged some error during `yarn vite`.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+### Note
+
+If you are testing changes in zero-runtime packages itself while also running this demo app, start the watch command in a separate terminal to watch and build zero-runtime package files as they change -
+
+```bash
+pnpm watch:zero
+```
+
+You might have to restart the next.js server.
+
+## Build
+
+To build the project, run the `build` command in this package:
+
+```bash
+pnpm run --filter=@app/next-app build
+```

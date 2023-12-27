@@ -1,25 +1,33 @@
-const { createTheme } = require('@mui/material/styles');
-const withZero = require('@mui/zero-next-plugin').default;
+/* eslint-disable */
+/* eslint-env node */
+const { withZeroPlugin } = require('@mui/zero-next-plugin');
+const { experimental_extendTheme: extendTheme } = require('@mui/material/styles');
 
-const theme = createTheme({
-  typography: {
-    fontFamilyCode: 'Menlo,Consolas,"Droid Sans Mono",monospace',
-  },
-});
-// @TODO - Make this part of the main package
-theme.applyDarkStyles = function applyDarkStyles(obj) {
-  return {
-    ':where([data-mui-color-scheme="dark"]) &': obj,
-  };
-};
+const theme = extendTheme();
 
-/** @type {import('@mui/zero-webpack-plugin').ZeroPluginOptions} */
-const zeroPluginConfig = {
+/**
+ * @typedef {import('@mui/zero-next-plugin').ZeroPluginConfig} ZeroPluginConfig
+ */
+
+/**
+ * @type {ZeroPluginConfig}
+ */
+const zeroPluginOptions = {
   theme,
   cssVariablesPrefix: 'app',
+  transformLibraries: ['local-ui-lib'],
+  sourceMap: true,
+  displayName: true,
 };
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+};
 
-module.exports = withZero(nextConfig, zeroPluginConfig);
+module.exports = withZeroPlugin(nextConfig, zeroPluginOptions);

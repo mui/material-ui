@@ -1,7 +1,13 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["src/**/*"],
   "compilerOptions": {
-    "types": ["mocha", "node", "chai", "react"]
-  }
+    "target": "ES2015",
+    "allowJs": true,
+    "lib": ["ES2017", "ES2021.String", "DOM"],
+    "composite": true,
+    "noEmit": true,
+    "resolveJsonModule": true
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["./tsup.config.ts"]
 }

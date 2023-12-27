@@ -1,9 +1,14 @@
 {
-  "extends": "../../tsconfig",
-  "include": ["src/**/*"],
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "lib": ["ES2022", "DOM"],
-    "target": "ES2015",
-    "types": ["mocha", "node", "chai"]
-  }
+    "resolveJsonModule": true,
+    "target": "ES2015"
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["./tsup.config.ts"],
+  "references": [
+    {
+      "path": "../zero-unplugin"
+    }
+  ]
 }
