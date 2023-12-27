@@ -112,6 +112,9 @@ const Slider = styled(BaseSlider)(
     outline: 0;
     border: 3px solid currentColor;
     background-color: #fff;
+    transition-property: box-shadow, transform;
+    transition-timing-function: cubic-bezier(0.2, 0, 0.2, 1);
+    transition-duration: 120ms;
 
     &:hover{
       box-shadow: 0 0 0 4px ${alpha(
@@ -134,6 +137,7 @@ const Slider = styled(BaseSlider)(
         0.5,
       )};
       outline: none;
+      transform: scale(1.2);
     }
   }
 
