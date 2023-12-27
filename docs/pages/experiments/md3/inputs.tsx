@@ -41,6 +41,10 @@ export default function MaterialYouInputs() {
           <Stack display="inline-flex" direction="row" gap={4} mb={4}>
             <FormControl color="primary" variant="filled">
               <InputLabel htmlFor="md3-primary-adornment">WIP Primary adornments</InputLabel>
+              <FilledInput id="md3-primary-adornment" defaultValue="" />
+            </FormControl>
+            <FormControl color="primary" variant="filled">
+              <InputLabel htmlFor="md3-primary-adornment">WIP Primary adornments</InputLabel>
               <FilledInput
                 id="md3-primary-adornment"
                 defaultValue=""
@@ -82,6 +86,10 @@ export default function MaterialYouInputs() {
           </Stack>
 
           <Stack display="inline-flex" direction="row" gap={4} mb={4}>
+            <FormControl size="small" color="primary" variant="filled">
+              <InputLabel htmlFor="md3-primary-adornment">WIP Primary adornments</InputLabel>
+              <FilledInput id="md3-primary-adornment" defaultValue="" />
+            </FormControl>
             <FormControl size="small" color="primary" variant="filled">
               <InputLabel htmlFor="md3-primary-adornment">WIP Primary adornments</InputLabel>
               <FilledInput
@@ -126,10 +134,21 @@ export default function MaterialYouInputs() {
 
           <Stack display="inline-flex" direction="row" gap={4} mb={4}>
             <FormControl color="primary" variant="filled">
-              <InputLabel htmlFor="md3-primary-adornment">WIP Primary adornments</InputLabel>
+              <InputLabel htmlFor="md3-primary-adornment">
+                WIP Primary adornments abc def ghi jkl mno
+              </InputLabel>
               <FilledInput
                 id="md3-primary-adornment"
-                defaultValue=""
+                defaultValue="hello 123 abc 456 xyz 789 def"
+              />
+            </FormControl>
+            <FormControl color="primary" variant="filled">
+              <InputLabel htmlFor="md3-primary-adornment">
+                WIP Primary adornments abc def ghi jkl mno
+              </InputLabel>
+              <FilledInput
+                id="md3-primary-adornment"
+                defaultValue="hello 123 abc 456 xyz 789 def"
                 startAdornment={
                   <InputAdornment position="start">
                     <SearchIcon />
@@ -138,10 +157,12 @@ export default function MaterialYouInputs() {
               />
             </FormControl>
             <FormControl color="primary" variant="filled">
-              <InputLabel htmlFor="md3-primary-adornment">WIP Primary adornments</InputLabel>
+              <InputLabel htmlFor="md3-primary-adornment">
+                WIP Primary adornments abc def ghi jkl mno
+              </InputLabel>
               <FilledInput
                 id="md3-primary-adornment"
-                defaultValue=""
+                defaultValue="hello 123 abc 456 xyz 789 def"
                 endAdornment={
                   <InputAdornment position="end">
                     <SearchIcon />
@@ -150,10 +171,12 @@ export default function MaterialYouInputs() {
               />
             </FormControl>
             <FormControl color="secondary" variant="filled">
-              <InputLabel htmlFor="md3-secondary-adornment">WIP Secondary adornments</InputLabel>
+              <InputLabel htmlFor="md3-secondary-adornment">
+                WIP Secondary adornments abc def ghi jkl mno
+              </InputLabel>
               <FilledInput
                 id="md3-secondary-adornment"
-                defaultValue=""
+                defaultValue="hello 123 abc 456 xyz 789 def"
                 startAdornment={
                   <InputAdornment position="start">
                     <SearchIcon />
@@ -170,10 +193,21 @@ export default function MaterialYouInputs() {
 
           <Stack display="inline-flex" direction="row" gap={4} mb={4}>
             <FormControl size="small" color="primary" variant="filled">
-              <InputLabel htmlFor="md3-primary-adornment">WIP Primary adornments</InputLabel>
+              <InputLabel htmlFor="md3-primary-adornment">
+                WIP Primary adornments abc def ghi jkl mno
+              </InputLabel>
               <FilledInput
                 id="md3-primary-adornment"
-                defaultValue="WIP primary adornment"
+                defaultValue="hello 123 abc 456 xyz 789 def"
+              />
+            </FormControl>
+            <FormControl size="small" color="primary" variant="filled">
+              <InputLabel htmlFor="md3-primary-adornment">
+                WIP Primary adornments abc def ghi jkl mno
+              </InputLabel>
+              <FilledInput
+                id="md3-primary-adornment"
+                defaultValue="hello 123 abc 456 xyz 789 def"
                 startAdornment={
                   <InputAdornment position="start">
                     <SearchIcon />
@@ -182,10 +216,12 @@ export default function MaterialYouInputs() {
               />
             </FormControl>
             <FormControl size="small" color="primary" variant="filled">
-              <InputLabel htmlFor="md3-primary-adornment">WIP Primary adornments</InputLabel>
+              <InputLabel htmlFor="md3-primary-adornment">
+                WIP Primary adornments abc def ghi jkl mno
+              </InputLabel>
               <FilledInput
                 id="md3-primary-adornment"
-                defaultValue="WIP primary adornment"
+                defaultValue="hello 123 abc 456 xyz 789 def"
                 endAdornment={
                   <InputAdornment position="end">
                     <SearchIcon />
@@ -194,10 +230,12 @@ export default function MaterialYouInputs() {
               />
             </FormControl>
             <FormControl size="small" color="secondary" variant="filled">
-              <InputLabel htmlFor="md3-secondary-adornment">WIP Secondary adornments</InputLabel>
+              <InputLabel htmlFor="md3-secondary-adornment">
+                WIP Secondary adornments abc def ghi jkl mno
+              </InputLabel>
               <FilledInput
                 id="md3-secondary-adornment"
-                defaultValue="WIP secondary adornment"
+                defaultValue="hello 123 abc 456 xyz 789 def"
                 startAdornment={
                   <InputAdornment position="start">
                     <SearchIcon />
@@ -331,7 +369,31 @@ export default function MaterialYouInputs() {
           </Stack>
           <Stack display="inline-flex" direction="row" gap={4}>
             <Md2FormControl color="primary" variant="filled">
-              <Md2InputLabel htmlFor="md2-primary">Primary</Md2InputLabel>
+              <Md2InputLabel htmlFor="md2-primary">Primary adornments</Md2InputLabel>
+              <Md2FilledInput
+                id="md2-primary"
+                defaultValue="primary primary primary primary"
+                endAdornment={
+                  <Md2InputAdornment position="end">
+                    <SearchIcon />
+                  </Md2InputAdornment>
+                }
+              />
+            </Md2FormControl>
+            <Md2FormControl color="secondary" variant="filled">
+              <Md2InputLabel htmlFor="md2-secondary">
+                Secondary etc abc etc abc etc abc 123 321
+              </Md2InputLabel>
+              <Md2FilledInput
+                id="md2-secondary"
+                defaultValue="secondary secondary secondary secondary"
+                endAdornment={<Md2InputAdornment position="end">$</Md2InputAdornment>}
+              />
+            </Md2FormControl>
+          </Stack>
+          <Stack display="inline-flex" direction="row" gap={4}>
+            <Md2FormControl color="primary" variant="filled">
+              <Md2InputLabel htmlFor="md2-primary">Primary abc 123 def 456 ghi 789</Md2InputLabel>
               <Md2FilledInput
                 id="md2-primary"
                 defaultValue="primary"

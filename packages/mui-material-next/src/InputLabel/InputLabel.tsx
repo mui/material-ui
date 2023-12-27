@@ -88,48 +88,57 @@ const InputLabelRoot = styled(FormLabel, {
     pointerEvents: 'none',
     transform: 'translate(16px, 16px) scale(1)',
     maxWidth: 'calc(100% - 24px)',
-    ...(ownerState.formControl?.adornedStart && {
-      maxWidth: 'calc(100% - 24px - 40px)', // offset the additional translateX of 40px of the startAdornment
-      ...(ownerState.formControl?.adornedEnd && {
-        maxWidth: 'calc(100% - 24px - 40px - 32px - 8px)', // offset the additional size of the endAdornment
+    // adornedStart only
+    ...(ownerState.formControl?.adornedStart &&
+      !ownerState.formControl?.adornedEnd && {
+        transform: 'translate(52px, 16px) scale(1)',
+        maxWidth: 'calc(100% - 24px - 40px)',
       }),
-      transform: 'translate(52px, 16px) scale(1)',
-      ...(ownerState.shrink && {
-        transform: 'translate(12px, 4px) scale(0.75)',
-      }),
-    }),
-
+    // adornedEnd only
     ...(ownerState.formControl?.adornedEnd &&
       !ownerState.formControl?.adornedStart && {
         maxWidth: 'calc(100% - 24px - 40px)',
       }),
-
+    // adornedStart and adornedEnd
+    ...(ownerState.formControl?.adornedStart &&
+      ownerState.formControl?.adornedEnd && {
+        transform: 'translate(52px, 16px) scale(1)',
+        maxWidth: 'calc(100% - 24px - 40px - 32px - 8px)',
+      }),
     ...(ownerState.size === 'small' && {
       transform: 'translate(12px, 13px) scale(1)',
       ...(ownerState.formControl?.adornedStart && {
         transform: 'translate(52px, 13px) scale(1)',
       }),
     }),
-
     ...(ownerState.shrink && {
       userSelect: 'none',
       pointerEvents: 'auto',
       transform: 'translate(16px, 7px) scale(0.75)',
-      maxWidth: 'calc(133% - 24px)',
+      maxWidth: 'calc(133% - 24px - 8px)',
       ...(ownerState.size === 'small' && {
         transform: 'translate(16px, 4px) scale(0.75)',
       }),
-      ...(ownerState.formControl?.adornedStart && {
-        transform: 'translate(52px, 7px) scale(0.75)',
-        ...(ownerState.size === 'small' && {
-          transform: 'translate(52px, 4px) scale(0.75)',
+      // adornedStart only
+      ...(ownerState.formControl?.adornedStart &&
+        !ownerState.formControl?.adornedEnd && {
+          transform: 'translate(52px, 7px) scale(0.75)',
+          maxWidth: 'calc(133% - 24px - 40px - 24px)',
+          ...(ownerState.size === 'small' && {
+            transform: 'translate(52px, 4px) scale(0.75)',
+          }),
         }),
-        // when there are both start and end adornments, this can prevent the
-        // label from overlapping with the endAdornment when it's in the middle of the shrink transition
-        // ...(ownerState.formControl?.adornedEnd && {
-        //   maxWidth: 'calc(133% - 140px)',
-        // }),
-      }),
+      // adornedEnd only
+      ...(ownerState.formControl?.adornedEnd &&
+        !ownerState.formControl?.adornedStart && {
+          maxWidth: 'calc(133% - 24px - 40px - 24px)',
+        }),
+      // adornedStart and adornedEnd
+      ...(ownerState.formControl?.adornedStart &&
+        ownerState.formControl?.adornedEnd && {
+          transform: 'translate(52px, 4px) scale(0.75)',
+          maxWidth: 'calc(133% - 24px - 40px - 32px - 40px)',
+        }),
     }),
   }),
   ...(ownerState.variant === 'outlined' && {
