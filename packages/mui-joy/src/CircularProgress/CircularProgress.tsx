@@ -116,7 +116,7 @@ const CircularProgressRoot = styled('span', {
     }),
     ...rest,
     ...(ownerState.variant === 'outlined' && {
-      '&:before': {
+      '&::before': {
         content: '""',
         display: 'block',
         position: 'absolute',

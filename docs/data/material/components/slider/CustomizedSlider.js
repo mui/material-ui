@@ -63,7 +63,7 @@ const IOSSlider = styled(Slider)(({ theme }) => ({
     top: -6,
     backgroundColor: 'unset',
     color: theme.palette.text.primary,
-    '&:before': {
+    '&::before': {
       display: 'none',
     },
     '& *': {
@@ -103,7 +103,7 @@ const PrettoSlider = styled(Slider)({
     '&:focus, &:hover, &.Mui-active, &.Mui-focusVisible': {
       boxShadow: 'inherit',
     },
-    '&:before': {
+    '&::before': {
       display: 'none',
     },
   },
@@ -118,7 +118,7 @@ const PrettoSlider = styled(Slider)({
     backgroundColor: '#52af77',
     transformOrigin: 'bottom left',
     transform: 'translate(50%, -100%) rotate(-45deg) scale(0)',
-    '&:before': { display: 'none' },
+    '&::before': { display: 'none' },
     '&.MuiSlider-valueLabelOpen': {
       transform: 'translate(50%, -100%) rotate(-45deg) scale(1)',
     },

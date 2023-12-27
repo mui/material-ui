@@ -17,7 +17,7 @@ const Root = styled('div')(
     },
     wordBreak: 'break-word',
     '& pre': {
-      lineHeight: 1.5, // Developers likes when the code is dense.
+      lineHeight: 1.5, // Developers like when the code is dense.
       margin: theme.spacing(2, 'auto'),
       padding: theme.spacing(2),
       backgroundColor: '#0F1924', // a special, one-off, color tailored for the code blocks using MUI's branding theme blue palette as the starting point. It has a less saturaded color but still maintaining a bit of the blue tint.
@@ -50,15 +50,15 @@ const Root = styled('div')(
     },
     // inline code block
     '& :not(pre) > code': {
-      display: 'inline-block',
-      padding: '0 4px',
+      padding: '2px 4px',
       color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
       backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
       border: '1px solid',
       borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
-      borderRadius: 5,
+      borderRadius: 6,
       fontSize: lightTheme.typography.pxToRem(13),
       direction: 'ltr /*! @noflip */',
+      boxDecorationBreak: 'clone',
     },
     '& h1': {
       ...lightTheme.typography.h3,
@@ -259,7 +259,7 @@ const Root = styled('div')(
         fontWeight: lightTheme.typography.fontWeightMedium,
         textIndent: 20,
       },
-      ':before': {
+      '&::before': {
         position: 'absolute',
         content: 'open-quote',
         color: `var(--muidocs-palette-grey-300, ${lightTheme.palette.grey[300]})`,
@@ -387,6 +387,7 @@ const Root = styled('div')(
     '& a, & a code': {
       // Style taken from the Link component
       color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
+      fontWeight: theme.typography.fontWeightMedium,
       textDecoration: 'underline',
       textDecorationColor: alpha(lightTheme.palette.primary.main, 0.4),
       '&:hover': {
@@ -610,7 +611,7 @@ const Root = styled('div')(
       },
       '& blockquote': {
         borderColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
-        ':before': {
+        '&::before': {
           color: `var(--muidocs-palette-primaryDark-500, ${darkTheme.palette.primaryDark[500]})`,
         },
       },

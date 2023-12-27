@@ -193,6 +193,7 @@ const Root = styled('div')(
         },
       },
       '& th': {
+        width: '100%',
         textAlign: 'left',
         borderBottom: `3px solid rgba(62, 80, 96, 0.2) !important`,
       },
@@ -259,6 +260,17 @@ export default function TopLayoutBlog(props) {
     headers.card === 'true'
       ? `https://mui.com/static/blog/${slug}/card.png`
       : 'https://mui.com/static/logo.png';
+
+  if (process.env.NODE_ENV !== 'production') {
+    if (headers.card === undefined) {
+      throw new Error(
+        [
+          `MUI: the "card" markdown header for the blog post "${slug}" is missing.`,
+          `Set card: true or card: false header in docs/pages/blog/${slug}.md.`,
+        ].join('\n'),
+      );
+    }
+  }
 
   return (
     <BrandingCssVarsProvider>

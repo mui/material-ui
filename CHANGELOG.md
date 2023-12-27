@@ -1,5 +1,109 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.15.2
+
+<!-- generated comparing v5.15.1..master -->
+
+_Dec 25, 2023_
+
+A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 Added support for callbacks in the [variant's props definition](https://mui.com/material-ui/customization/theme-components/#creating-new-component-variants) (#40094) @mnajdova
+- 💫 Published a [blogpost](https://mui.com/blog/2023-material-ui-v6-and-beyond/) for the 2024's plan about Material UI
+
+### `@mui/material@5.15.1`
+
+- &#8203;<!-- 31 -->[Badge] Use the variants API in the styled call (#40213) @mnajdova
+- &#8203;<!-- 04 -->[Paper] Add missing Paper classes descriptions (#40300) @sai6855
+
+### `@mui/system@5.15.1`
+
+- &#8203;<!-- 03 -->Support props callback in the variant's definition (#40094) @mnajdova
+
+### `@mui/base@5.0.0-beta.29`
+
+- &#8203;<!-- 29 -->[Popup] Use context-based transition API (#39326) @michaldudak
+- &#8203;<!-- 28 -->[Popup] Popup no longer opens outside viewport (#39827) @adamhylander
+- &#8203;<!-- 27 -->[useSelect] Refactor to use DOM focus management instead of active descendant (#39675) @DiegoAndai
+
+### `@mui/material-next@6.0.0-alpha.115`
+
+- &#8203;<!-- 15 -->[material-next][Divider]Divider ts support (#40307) @sai6855
+
+### Docs
+
+- &#8203;<!-- 30 -->[base-ui] Fix form submission Select demo (#40014) @ZeeshanTamboli
+- &#8203;<!-- 24 -->[blog] Add Material UI v6 and beyond blog post (#40242) @mnajdova
+- &#8203;<!-- 10 -->[material-ui] Fix broken links in the All components page (#40303) @muazaqdas
+- &#8203;<!-- 09 -->[material-ui] Fix broken links on the All components page (#40279) @danilo-leal
+- &#8203;<!-- 08 -->[material-ui] Add aria-current for nav tabs demo (#39594) @Kimzify
+- &#8203;<!-- 07 -->[material-ui] Add an "All components" page (#40256) @danilo-leal
+- &#8203;<!-- 06 -->[material-ui][Tooltip] Add demo to show how to change distance between tooltip and its anchor (#40087) @anle9650
+
+### Core
+
+- &#8203;<!-- 26 -->[blog] Fix 301 redirection @oliviertassinari
+- &#8203;<!-- 25 -->[blog] Reduce max image size @oliviertassinari
+- &#8203;<!-- 23 -->[code-infra] Extract Babel macro from mui-utils (#40262) @michaldudak
+- &#8203;<!-- 22 -->[core] Simplify a bit the release instructions @oliviertassinari
+- &#8203;<!-- 21 -->[core] Push force to deploy is not unexpected @oliviertassinari
+- &#8203;<!-- 20 -->[core] Fix CSS2 vs. CSS3 ::after syntax @oliviertassinari
+- &#8203;<!-- 19 -->[core] Fix CSS2 vs. CSS3 ::before syntax @oliviertassinari
+- &#8203;<!-- 05 -->[core] Use direct import from utils package (#40254) @siriwatknp
+- &#8203;<!-- 18 -->[core] Yaml format match most common convention @oliviertassinari
+- &#8203;<!-- 17 -->[core] Polish docs-feedback issue template @oliviertassinari
+- &#8203;<!-- 16 -->[core] Pin Node version on GitHub Actions to 18.18 (#40187) @michaldudak
+- &#8203;<!-- 14 -->[docs] Fix SEO regression (#40306) @oliviertassinari
+- &#8203;<!-- 13 -->[docs] Fix docs redirections @oliviertassinari
+- &#8203;<!-- 12 -->[docs] Update the Contributing guide to give more guidance on documentation (#40274) @samuelsycamore
+- &#8203;<!-- 11 -->[docs-infra] Add polish to the inline code block (#40260) @danilo-leal
+- &#8203;<!-- 02 -->[website] Update Gold sponsors: add RxDB, standardize formatting (#40273) @samuelsycamore
+- &#8203;<!-- 01 -->[website] Revert change to homepage SEO attributes @oliviertassinari
+
+All contributors of this release in alphabetical order: @adamhylander, @anle9650, @danilo-leal, @DiegoAndai, @Kimzify, @michaldudak, @mnajdova, @muazaqdas, @oliviertassinari, @sai6855, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
+
+## 5.15.1
+
+<!-- generated comparing v5.15.0..master -->
+
+_Dec 19, 2023_
+
+A big thanks to the 15 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.15.1`
+
+- &#8203;<!-- 13 -->[CardActions][DialogActions] Apply margin for all children except for 1st child (#40168) @sai6855
+- &#8203;<!-- 03 -->[TablePagination] Add ability to change icons in TablePaginationActions using `slots` and `slotProps` (#33797) @pratikkarad
+- &#8203;<!-- 13 -->[CssVarsProvider] Fix HSL breaking button styles (#39869) @gitstart
+
+### `@mui/joy@5.0.0-beta.19`
+
+- &#8203;<!-- 05 -->[FormControl] Fix issue with the conditional setting of `htmlFor` and `id` attributes not functioning properly for form labels (#40180) @ReaZzy
+- &#8203;<!-- 04 -->[typescript] Address TypeScript issue with custom zIndex not functioning (#40133) @qiweiii
+
+### `@mui/styled-engine-sc@6.0.0-alpha.9`
+
+- &#8203;<!-- 02 -->[typescript] Fix `theme` being of type any (#40200) @mnajdova
+
+### Docs
+
+- &#8203;<!-- 09 -->[joy-ui] Fix typo in the CSS baseline page (#40222) @possibilities
+- &#8203;<!-- 08 -->[joy-ui] Document missing Autocomplete props (#39979) @ZeeshanTamboli
+- &#8203;<!-- 10 -->[joy-ui] Fix typo about Typography levels (#40230) @zanivan
+- &#8203;<!-- 07 -->[material-ui] Update the related projects page to list `mui-tiptap` for rich text (#40216) @sjdemartini
+- &#8203;<!-- 06 -->[material-ui] Fix typo in the Next.js integration page (#40209) @s8990
+
+### Core
+
+- &#8203;<!-- 14 -->[blog] Fix access to Notion without an account @oliviertassinari
+- &#8203;<!-- 12 -->[core] Update workflows and issue templates to reflect the updated label (#40197) @MBilalShafi
+- &#8203;<!-- 11 -->[docs] Replace Twitter with X (#40193) @mbrookes
+- &#8203;<!-- 10 -->[docs-infra] Uplift the Algolia search modal design (#40186) @danilo-leal
+- &#8203;<!-- 01 -->[website] Update product descriptions and social preview images (#32181) @danilo-leal
+
+All contributors of this release in alphabetical order: @danilo-leal, @gitstart, @MBilalShafi, @mbrookes, @mnajdova, @oliviertassinari, @possibilities, @pratikkarad, @qiweiii, @ReaZzy, @s8990, @sai6855, @sjdemartini, @zanivan, @ZeeshanTamboli
+
 ## 5.15.0
 
 <!-- generated comparing v5.14.20..master -->
@@ -1265,7 +1369,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
   A codemod is provided to help with the migration:
 
   ```bash
-  npx @mui/codemod v5.0.0/base-use-named-exports <path>
+  npx @mui/codemod@latest v5.0.0/base-use-named-exports <path>
   ```
 
 #### Changes
@@ -2147,7 +2251,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
   There is codemod that you can run in your project to do the transformation:
 
   ```bash
-  npx @mui/codemod v5.0.0/base-remove-component-prop <path>
+  npx @mui/codemod@latest v5.0.0/base-remove-component-prop <path>
   ```
 
   The full documentation about the codemod can be found [here](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#base-remove-component-prop).
@@ -2246,7 +2350,7 @@ A big thanks to the 12 contributors who made this release possible. Here are som
   You can use this [codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/src/v5.0.0/base-remove-unstyled-suffix.js) to help with the migration:
 
   ```bash
-  npx @mui/codemod v5.0.0/base-remove-unstyled-suffix <path>
+  npx @mui/codemod@latest v5.0.0/base-remove-unstyled-suffix <path>
   ```
 
 #### Changes
