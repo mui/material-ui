@@ -75,7 +75,7 @@ export default function ThemeSlider() {
               [`& .${sliderClasses.thumb}`]: {
                 width: 12,
                 height: 12,
-                '&:before': {
+                '&::before': {
                   boxShadow: 'none',
                 },
               },

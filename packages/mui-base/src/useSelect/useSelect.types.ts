@@ -3,6 +3,7 @@ import { ListAction, ListState, UseListRootSlotProps } from '../useList';
 import { SelectOption } from '../useOption/useOption.types';
 import { SelectProviderValue } from './SelectProvider';
 import { MuiCancellableEventHandler } from '../utils/MuiCancellableEvent';
+import { UseButtonRootSlotProps } from '../useButton';
 
 export type SelectChangeEventType =
   | React.MouseEvent<Element, MouseEvent>
@@ -135,7 +136,7 @@ interface UseSelectButtonSlotEventHandlers {
   onMouseDown: MuiCancellableEventHandler<React.MouseEvent>;
 }
 
-export type UseSelectButtonSlotProps<TOther = {}> = UseListRootSlotProps<
+export type UseSelectButtonSlotProps<TOther = {}> = UseButtonRootSlotProps<
   Omit<TOther, keyof UseSelectButtonSlotEventHandlers>
 > &
   UseSelectButtonSlotEventHandlers & {
@@ -154,17 +155,15 @@ export type UseSelectHiddenInputSlotProps<TOther = {}> = UseSelectHiddenInputSlo
   TOther;
 
 interface UseSelectListboxSlotEventHandlers {
-  onMouseDown: React.MouseEventHandler;
+  onBlur: MuiCancellableEventHandler<React.FocusEvent<HTMLElement>>;
 }
 
-export type UseSelectListboxSlotProps<TOther = {}> = Omit<
-  TOther,
-  keyof UseSelectListboxSlotEventHandlers
+export type UseSelectListboxSlotProps<TOther = {}> = UseListRootSlotProps<
+  Omit<TOther, keyof UseSelectListboxSlotEventHandlers>
 > &
   UseSelectListboxSlotEventHandlers & {
     'aria-multiselectable': React.AriaAttributes['aria-multiselectable'];
     id: string | undefined;
-    ref: React.RefCallback<Element> | null;
     role: React.HTMLAttributes<Element>['role'];
   };
 
@@ -264,7 +263,6 @@ export interface BrowserAutofillAction<OptionValue> {
 }
 
 export type SelectAction<OptionValue> = ButtonClickAction | BrowserAutofillAction<OptionValue>;
-
 export interface SelectInternalState<OptionValue> extends ListState<OptionValue> {
   open: boolean;
 }

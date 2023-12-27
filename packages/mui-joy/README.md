@@ -5,7 +5,7 @@
 
 <h1 align="center">Joy UI</h1>
 
-Joy UI is a library of beautifully designed React UI components built to spark joy.
+Joy UI is an open-source React component library that implements MUI's own in-house design principles. It's comprehensive and can be used in production out of the box.
 
 ## Installation
 

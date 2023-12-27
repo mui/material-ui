@@ -65,13 +65,7 @@ module.exports = {
     'no-restricted-imports': [
       'error',
       {
-        patterns: [
-          '@mui/*/*/*',
-          // Macros are fine since their import path is transpiled away
-          '!@mui/utils/macros',
-          '@mui/utils/macros/*',
-          '!@mui/utils/macros/*.macro',
-        ],
+        patterns: ['@mui/*/*/*'],
       },
     ],
     'no-continue': 'off',
@@ -345,8 +339,6 @@ module.exports = {
             patterns: [
               // Allow deeper imports for TypeScript types. TODO remove
               '@mui/*/*/*/*',
-              // Macros are fine since they're transpiled into something else
-              '!@mui/utils/macros/*.macro',
             ],
           },
         ],
@@ -379,8 +371,6 @@ module.exports = {
             patterns: [
               // Allow deeper imports for TypeScript types. TODO?
               '@mui/*/*/*/*',
-              // Macros are fine since they're transpiled into something else
-              '!@mui/utils/macros/*.macro',
             ],
           },
         ],

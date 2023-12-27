@@ -28,6 +28,7 @@ export * from './TabsList';
 export * from './Tabs';
 export * from './Tab';
 export * from './TextareaAutosize';
+export * from './Transitions';
 export * from './useAutocomplete';
 export * from './useBadge';
 export * from './useButton';

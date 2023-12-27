@@ -187,6 +187,33 @@ declare module '@mui/material/Button' {
 
 {{"demo": "GlobalThemeVariants.js"}}
 
+The variant `props` can also be defined as a callback.
+This is useful if you want to apply styles when using negation in the condition.
+In other words, applying a different style if a particular property doesn't have a specific value.
+
+:::info
+This feature is available from version 5.15.2.
+:::
+
+```js
+const theme = createTheme({
+  components: {
+    MuiButton: {
+      variants: [
+        {
+          props: (props) =>
+            props.variant === 'dashed' && props.color !== 'secondary',
+          style: {
+            textTransform: 'none',
+            border: `2px dashed ${blue[500]}`,
+          },
+        },
+      ],
+    },
+  },
+});
+```
+
 ## Theme variables
 
 Another way to override the look of all component instances is to adjust the [theme configuration variables](/material-ui/customization/theming/#theme-configuration-variables).

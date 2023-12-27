@@ -17,7 +17,7 @@ export const componentCode = `<Card>
   <Box sx={{ p: 2, display: 'flex' }}>
     <Avatar variant="rounded" src="avatar.jpg" />
     <Stack spacing={0.5}>
-      <Typography fontWeight="bold">Lucas Smith</Typography>  
+      <Typography fontWeight="bold">Lucas Smith</Typography>
       <Typography variant="body2" color="text.secondary">
       <LocationOn sx={{color: grey[500]}} /> Scranton, PA, United States
       </Typography>

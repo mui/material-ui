@@ -53,7 +53,7 @@ export default function XRoadmap() {
           position: 'relative',
           fontWeight: 'semiBold',
           ...(nested && {
-            '&:before': {
+            '&::before': {
               content: '""',
               display: 'block',
               position: 'absolute',
@@ -77,7 +77,7 @@ export default function XRoadmap() {
         mr: -2,
         display: 'flex',
         alignItems: 'center',
-        '&:before': {
+        '&::before': {
           content: '""',
           display: 'block',
           height: 1.5,
