@@ -299,7 +299,7 @@ Make sure that your application still runs without errors after running each cod
 This codemod contains most of the transformers that are necessary for migration. It should be only applied **once per folder.**
 
 ```bash
-npx @mui/codemod v5.0.0/preset-safe <path>
+npx @mui/codemod@latest v5.0.0/preset-safe <path>
 ```
 
 :::info
@@ -331,7 +331,7 @@ createMuiTheme({
 If you want to keep `variant="standard"` in your components, run this codemod or else configure the corresponding default theme props.
 
 ```bash
-npx @mui/codemod v5.0.0/variant-prop <path>
+npx @mui/codemod@latest v5.0.0/variant-prop <path>
 ```
 
 For more details, check out the [variant-prop codemod README](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#variant-prop).
@@ -361,7 +361,7 @@ createMuiTheme({
 If you want to keep `underline="hover"`, run this codemod or else configure the corresponding default theme props.
 
 ```bash
-npx @mui/codemod v5.0.0/link-underline-hover <path>
+npx @mui/codemod@latest v5.0.0/link-underline-hover <path>
 ```
 
 For more details, check out the [link-underline-hover codemod README](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#link-underline-hover).

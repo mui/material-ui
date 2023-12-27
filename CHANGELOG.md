@@ -1369,7 +1369,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
   A codemod is provided to help with the migration:
 
   ```bash
-  npx @mui/codemod v5.0.0/base-use-named-exports <path>
+  npx @mui/codemod@latest v5.0.0/base-use-named-exports <path>
   ```
 
 #### Changes
@@ -2251,7 +2251,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
   There is codemod that you can run in your project to do the transformation:
 
   ```bash
-  npx @mui/codemod v5.0.0/base-remove-component-prop <path>
+  npx @mui/codemod@latest v5.0.0/base-remove-component-prop <path>
   ```
 
   The full documentation about the codemod can be found [here](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#base-remove-component-prop).
@@ -2350,7 +2350,7 @@ A big thanks to the 12 contributors who made this release possible. Here are som
   You can use this [codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/src/v5.0.0/base-remove-unstyled-suffix.js) to help with the migration:
 
   ```bash
-  npx @mui/codemod v5.0.0/base-remove-unstyled-suffix <path>
+  npx @mui/codemod@latest v5.0.0/base-remove-unstyled-suffix <path>
   ```
 
 #### Changes
