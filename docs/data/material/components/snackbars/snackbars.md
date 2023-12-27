@@ -56,7 +56,7 @@ You can use the `TransitionComponent` prop to change the transition of the Snack
 
 ### Automatic dismiss
 
-Use the `autoHideDuration` prop to specify an amount of time (in milliseconds) for the close function to be called, and thus, for the Snackbar to be automatically dismissed.
+Use the `autoHideDuration` prop to automatically trigger the Snackbar's `onClose` function after a set period of time (in milliseconds).
 
 Make sure to [provide sufficient time](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html) for the user to process the information displayed on it.
 
