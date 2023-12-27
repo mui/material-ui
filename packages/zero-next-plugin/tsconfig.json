@@ -5,10 +5,5 @@
     "target": "ES2015"
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["./tsup.config.ts"],
-  "references": [
-    {
-      "path": "../zero-unplugin"
-    }
-  ]
+  "exclude": ["./tsup.config.ts"]
 }

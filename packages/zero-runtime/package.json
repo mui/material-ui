@@ -23,7 +23,7 @@
     "@emotion/styled": "^11.11.0",
     "@linaria/tags": "^5.0.2",
     "@linaria/utils": "^5.0.2",
-    "@mui/system": "^5.14.18",
+    "@mui/system": "workspace:^",
     "lodash.set": "^4.3.2",
     "lodash.get": "^4.4.2",
     "stylis": "^4.2.0"

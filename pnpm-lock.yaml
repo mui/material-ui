@@ -2250,7 +2250,7 @@ importers:
         specifier: ^5.0.2
         version: 5.0.2
       '@mui/system':
-        specifier: ^5.14.18
+        specifier: workspace:^
         version: link:../mui-system/build
       clsx:
         specifier: ^2.0.0
