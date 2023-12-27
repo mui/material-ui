@@ -35,7 +35,7 @@ export default function UnstyledPaginationIntroduction() {
               page={page}
               slotProps={{
                 select: {
-                  'aria-label': 'rows per page',
+                  'aria-label': 'Rows per page',
                 },
                 actions: {
                   showFirstButton: true,
@@ -126,11 +126,13 @@ const CustomTablePagination = styled(TablePagination)(
   }
 
   & .${classes.select}{
-    padding: 2px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    padding: 2px 0 2px 4px;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
-    border-radius: 50%; 
+    border-radius: 6px; 
     background-color: transparent;
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+    transition: all 100ms ease;
 
     &:hover {
       background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
@@ -138,7 +140,7 @@ const CustomTablePagination = styled(TablePagination)(
     }
 
     &:focus {
-      outline: 2px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
+      outline: 3px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
       border-color: ${blue[400]};
     }
   }
@@ -167,7 +169,7 @@ const CustomTablePagination = styled(TablePagination)(
     background-color: transparent;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-    transition: all 120ms ease;
+    transition: all 100ms ease;
 
     > svg {
       font-size: 22px;
@@ -179,7 +181,7 @@ const CustomTablePagination = styled(TablePagination)(
     }
 
     &:focus {
-      outline: 2px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
+      outline: 3px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
       border-color: ${blue[400]};
     }
 

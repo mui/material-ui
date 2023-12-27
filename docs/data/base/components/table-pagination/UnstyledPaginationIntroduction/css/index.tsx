@@ -42,7 +42,7 @@ export default function UnstyledPaginationIntroduction() {
                 page={page}
                 slotProps={{
                   select: {
-                    'aria-label': 'rows per page',
+                    'aria-label': 'Rows per page',
                   },
                   actions: {
                     showFirstButton: true,
@@ -155,10 +155,13 @@ function Styles() {
       }
 
       .CustomTablePagination .${classes.select} {
-        padding: 2px;
+        font-family: 'IBM Plex Sans', sans-serif;
+        padding: 2px 0 2px 4px;
         border: 1px solid ${isDarkMode ? grey[800] : grey[200]};
-        border-radius: 50%;
+        border-radius: 6px;
         background-color: transparent;
+        color: ${isDarkMode ? grey[300] : grey[900]};
+        transition: all 100ms ease;
       }
 
       .CustomTablePagination .${classes.select}:hover {
@@ -167,7 +170,7 @@ function Styles() {
       }
 
       .CustomTablePagination .${classes.select}:focus {
-        outline: 2px solid ${isDarkMode ? cyan[400] : cyan[200]};
+        outline: 3px solid ${isDarkMode ? cyan[400] : cyan[200]};
         border-color: ${cyan[500]};
       }
 
@@ -208,7 +211,7 @@ function Styles() {
       }
 
       .CustomTablePagination .${classes.actions} > button:focus {
-        outline: 2px solid ${isDarkMode ? cyan[400] : cyan[200]};
+        outline: 3px solid ${isDarkMode ? cyan[400] : cyan[200]};
         border-color: ${cyan[500]};
       }
 

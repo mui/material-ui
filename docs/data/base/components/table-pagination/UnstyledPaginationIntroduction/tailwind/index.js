@@ -89,7 +89,7 @@ const CustomTablePagination = React.forwardRef((props, ref) => {
           return {
             ...resolvedSlotProps,
             className: clsx(
-              'p-[2px] border border-solid border-zinc-200 dark:border-[#303740] rounded-3xl bg-transparent hover:bg-zinc-20 hover:dark:bg-zinc-800 focus:outline-0 [&>button:focus]:ring-[2px] focus:border-purple-400 focus:dark:border-purple-400 focus:hover:border-purple-400 focus:hover:dark:border-purple-400',
+              'font-sans py-[2px] pl-[4px] pr-[2px] border border-solid border-zinc-200 dark:border-[#303740] rounded-[6px] bg-transparent hover:bg-zinc-20 hover:dark:bg-zinc-800 focus:outline-0 [&>button:focus]:ring-[3px] focus:border-purple-400 focus:dark:border-purple-400 focus:hover:border-purple-400 focus:hover:dark:border-purple-400 transition',
               resolvedSlotProps?.className,
             ),
           };
@@ -126,7 +126,7 @@ const CustomTablePagination = React.forwardRef((props, ref) => {
           return {
             ...resolvedSlotProps,
             className: clsx(
-              'flex flex-col items-start gap-2.5 md:flex-row md:items-center',
+              'flex flex-col items-start gap-[8px] md:flex-row md:items-center',
               resolvedSlotProps?.className,
             ),
           };
