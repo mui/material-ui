@@ -157,7 +157,7 @@ function Styles() {
       .CustomTablePagination .${classes.select} {
         padding: 2px;
         border: 1px solid ${isDarkMode ? grey[800] : grey[200]};
-        border-radius: 99px;
+        border-radius: 50%;
         background-color: transparent;
       }
 
@@ -191,7 +191,7 @@ function Styles() {
         align-items: center;
         padding: 0;
         border: transparent;
-        border-radius: 99px;
+        border-radius: 50%;
         background-color: transparent;
         border: 1px solid ${isDarkMode ? grey[800] : grey[200]};
         color: ${isDarkMode ? grey[300] : grey[900]};

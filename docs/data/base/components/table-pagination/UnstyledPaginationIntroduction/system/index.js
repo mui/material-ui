@@ -128,7 +128,7 @@ const CustomTablePagination = styled(TablePagination)(
   & .${classes.select}{
     padding: 2px;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
-    border-radius: 99px;
+    border-radius: 50%; 
     background-color: transparent;
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
 
@@ -163,7 +163,7 @@ const CustomTablePagination = styled(TablePagination)(
     align-items: center;
     padding: 0;
     border: transparent;
-    border-radius: 99px;
+    border-radius: 50%; 
     background-color: transparent;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
