@@ -109,8 +109,8 @@ function ResponsiveDrawer(props) {
           container={container}
           variant="temporary"
           open={mobileOpen}
-          onClose={handleDrawerClose}
           onTransitionEnd={onDrawerTransitionEnd}
+          onClose={handleDrawerClose}
           ModalProps={{
             keepMounted: true, // Better open performance on mobile.
           }}
