@@ -62,7 +62,7 @@ const PRODUCTS = [
   },
   {
     name: 'MUI X',
-    description: 'Advanced and powerful components for complex use-cases.',
+    description: 'Advanced and powerful components for complex use cases.',
     href: ROUTES.productAdvanced,
   },
   {
@@ -86,12 +86,12 @@ const PRODUCTS = [
 const DOCS = [
   {
     name: 'Material UI',
-    description: "React components that implement Google's Material Design.",
+    description: "Component library that implements Google's Material Design.",
     href: ROUTES.materialDocs,
   },
   {
     name: 'Joy UI',
-    description: 'React components for building your design system.',
+    description: "Component library that implements MUI's own in-house design principles.",
     href: ROUTES.joyDocs,
   },
   {
@@ -106,8 +106,8 @@ const DOCS = [
   },
   {
     name: 'MUI X',
-    description: 'Advanced and powerful components for complex use cases.',
-    href: ROUTES.advancedComponents,
+    description: 'Advanced components for complex use cases.',
+    href: ROUTES.xIntro,
   },
   {
     name: 'MUI Toolpad',
@@ -164,7 +164,7 @@ export default function HeaderNavDropdown() {
             right: 0,
             boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
             ...theme.applyDarkStyles({
-              boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.5)',
+              boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.8)',
             }),
           })}
         >

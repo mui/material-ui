@@ -35,11 +35,20 @@ export * from './InputLabel';
 
 export { default as Input } from './Input';
 
+export { default as LinearProgress } from './LinearProgress';
+export * from './LinearProgress';
+
 export { default as Menu } from './Menu';
 export * from './Menu';
 
 export { default as MenuItem } from './MenuItem';
 export * from './MenuItem';
+
+export { default as Option } from './Option';
+export * from './Option';
+
+export { default as OutlinedInput } from './OutlinedInput';
+export * from './OutlinedInput';
 
 export { default as Select } from './Select';
 export * from './Select';

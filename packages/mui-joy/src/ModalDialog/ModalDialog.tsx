@@ -201,14 +201,6 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
               extraProps.orientation =
                 'orientation' in child.props ? child.props.orientation : dividerOrientation;
             }
-            if (isMuiElement(child, ['CardOverflow'])) {
-              if (orientation === 'horizontal') {
-                extraProps['data-parent'] = 'Card-horizontal';
-              }
-              if (orientation === 'vertical') {
-                extraProps['data-parent'] = 'Card-vertical';
-              }
-            }
             if (index === 0) {
               extraProps['data-first-child'] = '';
             }

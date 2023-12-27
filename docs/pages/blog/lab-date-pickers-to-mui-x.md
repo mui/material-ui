@@ -4,7 +4,7 @@ description: Migrate to the new package to start building with our powerful Date
 date: 2022-04-03T00:00:00.000Z
 authors: ['flaviendelangle']
 tags: ['MUI X', 'News']
-card: false
+card: true
 ---
 
 After more than 18 months in the lab, the Date and Time Picker components have found a new home as part of MUI X.
@@ -84,7 +84,7 @@ Follow the [migration steps](/x/migration/migration-pickers-lab/) by updating th
 We have prepared a codemod to help you migrate your codebase from `@mui/lab` to `@mui/x-date-pickers` or `@mui/x-date-pickers-pro`:
 
 ```bash
-npx @mui/codemod v5.0.0/date-pickers-moved-to-x <path>
+npx @mui/codemod@latest v5.0.0/date-pickers-moved-to-x <path>
 ```
 
 ## Where is the Date and Time Picker documentation?

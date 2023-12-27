@@ -5,7 +5,7 @@
 
 <h1 align="center">Material UI</h1>
 
-Material UI is a comprehensive library of components that features our implementation of Google's [Material Design](https://m2.material.io/design/introduction/) system.
+Material UI is an open-source React component library that implements Google's [Material Design](https://m2.material.io/design/introduction/). It's comprehensive and can be used in production out of the box.
 
 ## Installation
 

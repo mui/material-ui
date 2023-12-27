@@ -1,6 +1,6 @@
 name: Bug report 🐛
 description: Create a bug report for MUI Core.
-labels: ['status: needs triage']
+labels: ['status: waiting for maintainer']
 body:
   - type: markdown
     attributes:

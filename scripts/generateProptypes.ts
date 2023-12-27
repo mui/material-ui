@@ -20,10 +20,8 @@ import {
   createTypeScriptProjectBuilder,
   TypeScriptProject,
 } from '@mui-internal/api-docs-builder/utils/createTypeScriptProject';
-import {
-  CORE_TYPESCRIPT_PROJECTS,
-  CoreTypeScriptProjects,
-} from '@mui-internal/api-docs-builder/utils/coreTypeScriptProjects';
+
+import CORE_TYPESCRIPT_PROJECTS from './coreTypeScriptProjects';
 
 const useExternalPropsFromInputBase = [
   'autoComplete',

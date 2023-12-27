@@ -98,6 +98,7 @@ const Root = styled('span')(
   }
 
   & .${switchClasses.thumb} {
+    border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
     display: block;
     width: 16px;
     height: 16px;

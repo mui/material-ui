@@ -71,28 +71,80 @@
     "import ListItem from '@mui/material/ListItem';",
     "import { ListItem } from '@mui/material';"
   ],
-  "styles": {
-    "classes": [
-      "root",
-      "container",
-      "focusVisible",
-      "dense",
-      "alignItemsFlexStart",
-      "disabled",
-      "divider",
-      "gutters",
-      "padding",
-      "button",
-      "secondaryAction",
-      "selected"
-    ],
-    "globalClasses": {
-      "focusVisible": "Mui-focusVisible",
-      "disabled": "Mui-disabled",
-      "selected": "Mui-selected"
+  "classes": [
+    {
+      "key": "alignItemsFlexStart",
+      "className": "MuiListItem-alignItemsFlexStart",
+      "description": "Styles applied to the component element if `alignItems=\"flex-start\"`.",
+      "isGlobal": false
     },
-    "name": "MuiListItem"
-  },
+    {
+      "key": "button",
+      "className": "MuiListItem-button",
+      "description": "Styles applied to the inner `component` element if `button={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "container",
+      "className": "MuiListItem-container",
+      "description": "Styles applied to the container element if `children` includes `ListItemSecondaryAction`.",
+      "isGlobal": false
+    },
+    {
+      "key": "dense",
+      "className": "MuiListItem-dense",
+      "description": "Styles applied to the component element if dense.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the inner `component` element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "divider",
+      "className": "MuiListItem-divider",
+      "description": "Styles applied to the inner `component` element if `divider={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "focusVisible",
+      "className": "Mui-focusVisible",
+      "description": "State class applied to the `component`'s `focusVisibleClassName` prop if `button={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "gutters",
+      "className": "MuiListItem-gutters",
+      "description": "Styles applied to the inner `component` element unless `disableGutters={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "padding",
+      "className": "MuiListItem-padding",
+      "description": "Styles applied to the root element unless `disablePadding={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiListItem-root",
+      "description": "Styles applied to the (normally root) `component` element. May be wrapped by a `container`.",
+      "isGlobal": false
+    },
+    {
+      "key": "secondaryAction",
+      "className": "MuiListItem-secondaryAction",
+      "description": "Styles applied to the component element if `children` includes `ListItemSecondaryAction`.",
+      "isGlobal": false
+    },
+    {
+      "key": "selected",
+      "className": "Mui-selected",
+      "description": "State class applied to the root element if `selected={true}`.",
+      "isGlobal": true
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiListItem",

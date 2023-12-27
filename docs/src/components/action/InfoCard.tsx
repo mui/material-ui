@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import Link from 'docs/src/modules/components/Link';
+import Link, { LinkProps } from 'docs/src/modules/components/Link';
 
 interface GlowingIconContainerProps {
   icon: React.ReactNode;
@@ -38,16 +38,32 @@ export function GlowingIconContainer({ icon }: GlowingIconContainerProps) {
 }
 
 interface InfoCardProps {
-  title: string;
+  classNameDescription?: string;
+  classNameTitle?: string;
+  dense?: boolean;
   description?: string;
-  link?: string;
   icon?: React.ReactNode;
+  link?: string;
+  prefetch?: LinkProps['prefetch'];
   svg?: React.ReactNode;
+  title: string;
 }
 
-export default function InfoCard({ icon, svg, title, description, link }: InfoCardProps) {
+export default function InfoCard(props: InfoCardProps) {
+  const {
+    classNameDescription,
+    classNameTitle,
+    dense,
+    description,
+    icon,
+    link,
+    svg,
+    title,
+    ...other
+  } = props;
   return (
     <Paper
+      variant="outlined"
       component={link ? Link : 'div'}
       href={link}
       {...(link
@@ -55,9 +71,8 @@ export default function InfoCard({ icon, svg, title, description, link }: InfoCa
             noLinkStyle: true,
           }
         : {})}
-      variant="outlined"
       sx={(theme) => ({
-        p: 3.5,
+        p: dense ? 2.5 : 3.5,
         height: '100%',
         background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
         ...theme.applyDarkStyles({
@@ -66,6 +81,7 @@ export default function InfoCard({ icon, svg, title, description, link }: InfoCa
           borderColor: 'primaryDark.700',
         }),
       })}
+      {...other}
     >
       {svg && svg}
       {icon && <GlowingIconContainer icon={icon} />}
@@ -76,10 +92,11 @@ export default function InfoCard({ icon, svg, title, description, link }: InfoCa
         variant="body2"
         mt={icon ? 2 : 0}
         mb={description ? 0.5 : 0}
+        className={classNameTitle}
       >
         {title}
       </Typography>
-      <Typography variant="body2" color="text.secondary">
+      <Typography variant="body2" color="text.secondary" className={classNameDescription}>
         {description}
       </Typography>
     </Paper>

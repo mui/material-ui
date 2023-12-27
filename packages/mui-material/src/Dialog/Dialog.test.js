@@ -107,6 +107,24 @@ describe('<Dialog />', () => {
     expect(queryByRole('dialog')).to.equal(null);
   });
 
+  it('should not close until the IME is cancelled', () => {
+    const onClose = spy();
+    const { getByRole } = render(
+      <Dialog open transitionDuration={0} onClose={onClose}>
+        <input type="text" autoFocus />
+      </Dialog>,
+    );
+    const textbox = getByRole('textbox');
+
+    // Actual Behavior when "あ" (Japanese) is entered and press the Esc for IME cancellation.
+    fireEvent.change(textbox, { target: { value: 'あ' } });
+    fireEvent.keyDown(textbox, { key: 'Esc', keyCode: 229 });
+    expect(onClose.callCount).to.equal(0);
+
+    fireEvent.keyDown(textbox, { key: 'Esc' });
+    expect(onClose.callCount).to.equal(1);
+  });
+
   it('can ignore backdrop click and Esc keydown', () => {
     function DialogWithBackdropClickDisabled(props) {
       const { onClose, ...other } = props;

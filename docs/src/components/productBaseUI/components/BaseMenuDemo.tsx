@@ -11,7 +11,7 @@ const buttonStyles = `
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   min-height: calc(1.5em + 22px);
@@ -265,16 +265,16 @@ function Demo() {
   return (
     <Dropdown>
       <MenuButtonUnstyled
-        className="min-h-[calc(1.5em + 22px)] inline-flex 
-          items-center gap-[0.5rem] rounded-[8px] border 
-          border-solid border-[--muidocs-palette-grey-200] 
-          bg-[--muidocs-palette-background-paper] 
-          p-[8px_12px_8px_6px] text-[0.875rem] 
-          leading-[1.5] transition-all [font-family:IBM_Plex_sans] 
+        className="min-h-[calc(1.5em + 22px)] inline-flex
+          items-center gap-[0.5rem] rounded-[8px] border
+          border-solid border-[--muidocs-palette-grey-200]
+          bg-[--muidocs-palette-background-paper]
+          p-[8px_12px_8px_6px] text-[0.875rem]
+          leading-[1.5] transition-all [font-family:IBM_Plex_sans]
           [box-shadow:var(--shadow)]
-          hover:bg-[--muidocs-palette-grey-50] 
+          hover:bg-[--muidocs-palette-grey-50]
           ui-focus-visible:[outline:3px_solid_var(--focus-ring)]
-          dark:border-[--muidocs-palette-primaryDark-700] 
+          dark:border-[--muidocs-palette-primaryDark-700]
           dark:hover:bg-[--muidocs-palette-primaryDark-800]"
       >
         <Person className="text-[--palette-primary]" />
@@ -285,53 +285,53 @@ function Demo() {
           root: { placement: 'top', className: 'z-[1000]' },
           listbox: {
             id: 'simple-menu',
-            className: \`mx-0 my-[8px] p-[4px] flex flex-col rounded-[8px] 
-              border border-solid border-[--muidocs-palette-grey-200] 
-              bg-[--muidocs-palette-background-paper] 
-              shadow-[0px_4px_40px_rgba(62,80,96,0.1)] 
-              dark:border-[--muidocs-palette-primaryDark-700] 
+            className: \`mx-0 my-[8px] p-[4px] flex flex-col rounded-[8px]
+              border border-solid border-[--muidocs-palette-grey-200]
+              bg-[--muidocs-palette-background-paper]
+              shadow-[0px_4px_40px_rgba(62,80,96,0.1)]
+              dark:border-[--muidocs-palette-primaryDark-700]
               dark:shadow-[0px_4px_40px_rgba(11,13,14,0.5)]\`,
           },
         }}
       >
         <MenuItemUnstyled
-          className="hover:color-[--muidocs-palette-text-primary] 
-            flex min-h-[24px] items-center gap-[4px] rounded-[4px] 
-            border border-solid border-transparent px-[12px] 
-            py-[6px] hover:cursor-default 
-            hover:border-[--muidocs-palette-grey-100] 
-            hover:bg-[--muidocs-palette-grey-50] 
-            ui-focus-visible:cursor-default 
-            ui-focus-visible:border-[--muidocs-palette-grey-100] 
-            ui-focus-visible:bg-[--muidocs-palette-grey-50] 
+          className="hover:color-[--muidocs-palette-text-primary]
+            flex min-h-[24px] items-center gap-[4px] rounded-[4px]
+            border border-solid border-transparent px-[12px]
+            py-[6px] hover:cursor-default
+            hover:border-[--muidocs-palette-grey-100]
+            hover:bg-[--muidocs-palette-grey-50]
+            ui-focus-visible:cursor-default
+            ui-focus-visible:border-[--muidocs-palette-grey-100]
+            ui-focus-visible:bg-[--muidocs-palette-grey-50]
             ui-focus-visible:outline-none"
         >
           Profile
         </MenuItemUnstyled>
         <MenuItemUnstyled
-          className="hover:color-[--muidocs-palette-text-primary] 
-            flex min-h-[24px] items-center gap-[4px] rounded-[4px] 
-            border border-solid border-transparent px-[12px] 
-            py-[6px] hover:cursor-default 
-            hover:border-[--muidocs-palette-grey-100] 
-            hover:bg-[--muidocs-palette-grey-50] 
-            ui-focus-visible:cursor-default 
-            ui-focus-visible:border-[--muidocs-palette-grey-100] 
-            ui-focus-visible:bg-[--muidocs-palette-grey-50] 
+          className="hover:color-[--muidocs-palette-text-primary]
+            flex min-h-[24px] items-center gap-[4px] rounded-[4px]
+            border border-solid border-transparent px-[12px]
+            py-[6px] hover:cursor-default
+            hover:border-[--muidocs-palette-grey-100]
+            hover:bg-[--muidocs-palette-grey-50]
+            ui-focus-visible:cursor-default
+            ui-focus-visible:border-[--muidocs-palette-grey-100]
+            ui-focus-visible:bg-[--muidocs-palette-grey-50]
             ui-focus-visible:outline-none"
         >
           Language settings
         </MenuItemUnstyled>
         <MenuItemUnstyled
-          className="hover:color-[--muidocs-palette-text-primary] 
-            flex min-h-[24px] items-center gap-[4px] rounded-[4px] 
-            border border-solid border-transparent px-[12px] 
-            py-[6px] hover:cursor-default 
-            hover:border-[--muidocs-palette-grey-100] 
-            hover:bg-[--muidocs-palette-grey-50] 
-            ui-focus-visible:cursor-default 
-            ui-focus-visible:border-[--muidocs-palette-grey-100] 
-            ui-focus-visible:bg-[--muidocs-palette-grey-50] 
+          className="hover:color-[--muidocs-palette-text-primary]
+            flex min-h-[24px] items-center gap-[4px] rounded-[4px]
+            border border-solid border-transparent px-[12px]
+            py-[6px] hover:cursor-default
+            hover:border-[--muidocs-palette-grey-100]
+            hover:bg-[--muidocs-palette-grey-50]
+            ui-focus-visible:cursor-default
+            ui-focus-visible:border-[--muidocs-palette-grey-100]
+            ui-focus-visible:bg-[--muidocs-palette-grey-50]
             ui-focus-visible:outline-none"
         >
           Log out

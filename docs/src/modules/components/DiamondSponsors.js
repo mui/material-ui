@@ -122,8 +122,7 @@ export default function DiamondSponsors() {
         </StyledAnchor>
         <Link
           aria-label={`${t('becomeADiamondSponsor')}${t('diamondSponsorVacancies')}`}
-          rel="noopener noreferrer"
-          href="/material-ui/discover-more/backers/#diamond"
+          href="/material-ui/discover-more/backers/#diamond-sponsors"
           sx={(theme) => ({
             width: '100%',
             p: 1,

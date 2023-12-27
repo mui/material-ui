@@ -177,8 +177,8 @@ export default function ColorInversionNavigation() {
           onClick={() => {
             const colors = ['primary', 'neutral', 'danger', 'success', 'warning'];
 
-            const nextColor = colors.indexOf(color);
-            setColor(colors[nextColor + 1] ?? colors[0]);
+            const nextColorIndex = colors.indexOf(color) + 1;
+            setColor(colors[nextColorIndex] ?? colors[0]);
           }}
           sx={{ mt: 'auto', height: '40px' }}
         >

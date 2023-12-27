@@ -22,6 +22,7 @@ export default function Home() {
       <Head
         title="MUI: The React component library you always wanted"
         description="MUI provides a simple, customizable, and accessible library of React components. Follow your own design system, or start with Material Design."
+        card="/static/social-previews/home-preview.jpg"
       >
         <script
           type="application/ld+json"
@@ -36,7 +37,7 @@ export default function Home() {
               sameAs: [
                 'https://twitter.com/MUI_hq',
                 'https://github.com/mui/',
-                'https://opencollective.com/mui',
+                'https://opencollective.com/mui-org',
               ],
             }),
           }}

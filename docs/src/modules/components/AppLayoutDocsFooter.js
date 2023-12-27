@@ -21,7 +21,7 @@ import ThumbDownAltRoundedIcon from '@mui/icons-material/ThumbDownAltRounded';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import PanToolRoundedIcon from '@mui/icons-material/PanToolRounded';
-import TwitterIcon from '@mui/icons-material/Twitter';
+import XIcon from '@mui/icons-material/X';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import RssFeedIcon from '@mui/icons-material/RssFeed';
 import ArrowOutwardRoundedIcon from '@mui/icons-material/ArrowOutwardRounded';
@@ -31,6 +31,7 @@ import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
 import EditPage from 'docs/src/modules/components/EditPage';
+import SvgMuiLogotype from 'docs/src/icons/SvgMuiLogotype';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 
@@ -540,13 +541,19 @@ export default function AppLayoutDocsFooter(props) {
           alignItems="center"
           spacing={{ xs: 3, sm: 1 }}
         >
-          <Stack direction="row" alignItems="center" spacing={1} sx={{ flexGrow: 1 }}>
+          <Stack direction="row" alignItems="center" spacing={1.2} sx={{ flexGrow: 1 }}>
+            <Link href="/" aria-label="Go to homepage" sx={{ mb: 2 }}>
+              <SvgMuiLogotype height={24} width={72} />
+            </Link>
+            <Typography color="grey.500" fontSize={13} sx={{ opacity: '70%' }}>
+              &bull;
+            </Typography>
             <Link href={ROUTES.blog} target="_blank" rel="noopener noreferrer">
               <FooterLink>
                 Blog <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
               </FooterLink>
             </Link>
-            <Typography color="grey.500" fontSize={13}>
+            <Typography color="grey.500" fontSize={13} sx={{ opacity: '70%' }}>
               &bull;
             </Typography>
             <Link href={ROUTES.store} target="_blank" rel="noopener noreferrer">
@@ -571,10 +578,10 @@ export default function AppLayoutDocsFooter(props) {
               rel="noopener noreferrer"
               href="https://twitter.com/MUI_hq"
               aria-label="twitter"
-              title="Twitter"
+              title="X"
               size="small"
             >
-              <TwitterIcon fontSize="small" sx={{ color: 'grey.500' }} />
+              <XIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
             <IconButton
               target="_blank"

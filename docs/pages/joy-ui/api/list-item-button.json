@@ -54,39 +54,106 @@
     "import ListItemButton from '@mui/joy/ListItemButton';",
     "import { ListItemButton } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiListItemButton" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiListItemButton-root"
+      "class": "MuiListItemButton-root"
     }
   ],
-  "classes": {
-    "classes": [
-      "colorContext",
-      "colorDanger",
-      "colorNeutral",
-      "colorPrimary",
-      "colorSuccess",
-      "colorWarning",
-      "disabled",
-      "focusVisible",
-      "horizontal",
-      "selected",
-      "variantOutlined",
-      "variantPlain",
-      "variantSoft",
-      "variantSolid",
-      "vertical"
-    ],
-    "globalClasses": {
-      "focusVisible": "Mui-focusVisible",
-      "disabled": "Mui-disabled",
-      "selected": "Mui-selected"
+  "classes": [
+    {
+      "key": "colorContext",
+      "className": "MuiListItemButton-colorContext",
+      "description": "Class name applied to the root element if `color=\"context\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorDanger",
+      "className": "MuiListItemButton-colorDanger",
+      "description": "Class name applied to the root element if `color=\"danger\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorNeutral",
+      "className": "MuiListItemButton-colorNeutral",
+      "description": "Class name applied to the root element if `color=\"neutral\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiListItemButton-colorPrimary",
+      "description": "Class name applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSuccess",
+      "className": "MuiListItemButton-colorSuccess",
+      "description": "Class name applied to the root element if `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorWarning",
+      "className": "MuiListItemButton-colorWarning",
+      "description": "Class name applied to the root element if `color=\"warning\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the inner `component` element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "focusVisible",
+      "className": "Mui-focusVisible",
+      "description": "State class applied to the `component`'s `focusVisibleClassName` prop.",
+      "isGlobal": true
+    },
+    {
+      "key": "horizontal",
+      "className": "MuiListItemButton-horizontal",
+      "description": "Class name applied to the root element, if `orientation=\"horizontal\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "selected",
+      "className": "Mui-selected",
+      "description": "State class applied to the root element if `selected={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "variantOutlined",
+      "className": "MuiListItemButton-variantOutlined",
+      "description": "State class applied to the root element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantPlain",
+      "className": "MuiListItemButton-variantPlain",
+      "description": "State class applied to the root element if `variant=\"plain\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSoft",
+      "className": "MuiListItemButton-variantSoft",
+      "description": "State class applied to the root element if `variant=\"soft\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSolid",
+      "className": "MuiListItemButton-variantSolid",
+      "description": "State class applied to the root element if `variant=\"solid\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "vertical",
+      "className": "MuiListItemButton-vertical",
+      "description": "Class name applied to the root element, if `orientation=\"vertical\"`.",
+      "isGlobal": false
     }
-  },
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyListItemButton",

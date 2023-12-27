@@ -161,9 +161,12 @@ const Root = styled('div')(
         lineHeight: 1.7,
       },
       '& img, & video': {
-        borderRadius: 4,
+        border: '1px solid',
+        borderColor: (theme.vars || theme).palette.grey[200],
+        borderRadius: 12,
         display: 'block',
         margin: 'auto',
+        marginBottom: 16,
       },
       '& strong': {
         color: (theme.vars || theme).palette.grey[900],
@@ -190,6 +193,7 @@ const Root = styled('div')(
         },
       },
       '& th': {
+        width: '100%',
         textAlign: 'left',
         borderBottom: `3px solid rgba(62, 80, 96, 0.2) !important`,
       },
@@ -216,9 +220,9 @@ const Root = styled('div')(
   ({ theme }) =>
     theme.applyDarkStyles({
       background: `linear-gradient(180deg, ${alpha(theme.palette.primary[900], 0.2)} 0%, ${
-        (theme.vars || theme).palette.primaryDark[800]
+        (theme.vars || theme).palette.primaryDark[900]
       } 100%)`,
-      backgroundSize: '100% 500px',
+      backgroundSize: '100% 1000px',
       backgroundRepeat: 'no-repeat',
       [`& .${classes.container}`]: {
         '& strong': {
@@ -226,6 +230,9 @@ const Root = styled('div')(
         },
         '& summary': {
           color: (theme.vars || theme).palette.grey[300],
+        },
+        '& img, & video': {
+          borderColor: alpha(theme.palette.primaryDark[600], 0.5),
         },
         '& details': {
           background: alpha(theme.palette.primary[900], 0.3),
@@ -253,6 +260,17 @@ export default function TopLayoutBlog(props) {
     headers.card === 'true'
       ? `https://mui.com/static/blog/${slug}/card.png`
       : 'https://mui.com/static/logo.png';
+
+  if (process.env.NODE_ENV !== 'production') {
+    if (headers.card === undefined) {
+      throw new Error(
+        [
+          `MUI: the "card" markdown header for the blog post "${slug}" is missing.`,
+          `Set card: true or card: false header in docs/pages/blog/${slug}.md.`,
+        ].join('\n'),
+      );
+    }
+  }
 
   return (
     <BrandingCssVarsProvider>
