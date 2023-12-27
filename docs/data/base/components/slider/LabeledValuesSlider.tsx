@@ -64,6 +64,7 @@ const Slider = styled(BaseSlider)(
     color: ${theme.palette.mode === 'light' ? grey[300] : grey[600]};
     opacity: 0.5;
   }
+
   & .${sliderClasses.rail} {
     display: block;
     position: absolute;
@@ -72,6 +73,7 @@ const Slider = styled(BaseSlider)(
     border-radius: 2px;
     background-color: ${theme.palette.mode === 'light' ? blue[200] : blue[900]};
   }
+
   & .${sliderClasses.track} {
     display: block;
     position: absolute;
@@ -79,7 +81,11 @@ const Slider = styled(BaseSlider)(
     border-radius: 2px;
     background-color: currentColor;
   }
+
   & .${sliderClasses.thumb} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
     width: 16px;
     height: 16px;
