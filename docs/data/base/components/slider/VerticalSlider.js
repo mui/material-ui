@@ -78,7 +78,10 @@ const Slider = styled(BaseSlider)(
     }
     
     &.${sliderClasses.focusVisible} {
-      box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
+            box-shadow: 0 0 0 6px ${alpha(
+              theme.palette.mode === 'light' ? blue[200] : blue[400],
+              0.5,
+            )};
       outline: none;
     }
 

@@ -123,7 +123,7 @@ function Styles() {
     }
 
     .CustomSlider-thumb:hover,&.${sliderClasses.focusVisible} {
-      box-shadow: 0 0 0 0.25rem ${alpha(isDarkMode ? cyan[300] : cyan[400], 0.15)};
+      box-shadow: 0 0 0 4px ${alpha(isDarkMode ? cyan[200] : cyan[300], 0.3)};
     }
 
     .CustomSlider-thumb.${sliderClasses.active} {
