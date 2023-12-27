@@ -7,7 +7,7 @@ card: true
 tags: ['Product']
 ---
 
-<img src="/static/blog/mui-product-comparison/ecosystem.png" style="width: 692px; margin-bottom: 24px; aspect-ratio: 173/80;" alt="Logos for all the high-level MUI products." />
+<img alt="Logos for all the high-level MUI products." src="/static/blog/mui-product-comparison/ecosystem.jpg" width="1200" height="600" loading="lazy" />
 
 MUI is so much more than Material UI!
 
@@ -27,7 +27,7 @@ Read on for more details on each of our products.
 
 ## MUI Core
 
-<img src="/static/blog/mui-product-comparison/mui-core.png" style="width: 692px; margin-bottom: 24px; aspect-ratio: 173/75;" loading="lazy" alt="Diagram with all the MUI Core sub-products." />
+<img alt="Diagram with all the MUI Core sub-products." src="/static/blog/mui-product-comparison/mui-core.jpg" width="1200" height="600" loading="lazy" />
 
 The Core is MUI's foundational product line.
 It grew out of Material UI, and that library's legacy lives on in the name of the repo on GitHub: [`mui/material-ui`](https://github.com/mui/material-ui).
@@ -128,7 +128,7 @@ Get started in the [MUI System docs](/system/getting-started/).
 
 ## MUI X
 
-<img src="/static/blog/mui-product-comparison/mui-x.png" style="width: 692px; margin-bottom: 24px; aspect-ratio: 173/75;" loading="lazy" alt="Diagram with all the MUI X components." />
+<img alt="Diagram with all the MUI X components." src="/static/blog/mui-product-comparison/mui-x.jpg" width="1200" height="600" loading="lazy" />
 
 MUI X is a collection of advanced UI components, including the Data Grid and the Date and Time Pickers.
 
@@ -174,9 +174,21 @@ Components include the Date Picker, Time Picker, Date Range Picker, and Date Tim
 - Enterprise apps using advanced date and time validation with constraints.
 - Apps built with MUI Core libraries that need date and time functionality.
 
+### Charts
+
+#### Key features
+
+#### Ideal use cases
+
+### Tree View
+
+#### Key features
+
+#### Ideal use cases
+
 ## MUI Toolpad
 
-<img src="/static/blog/mui-product-comparison/mui-toolpad.png" style="width: 692px; margin-bottom: 24px; aspect-ratio: 173/75;" loading="lazy" alt="Small screenshot of MUI Toolpad's interface." />
+<img alt="Small screenshot of MUI Toolpad's interface." src="/static/blog/mui-product-comparison/mui-toolpad.jpg" width="1200" height="600" loading="lazy" />
 
 Toolpad is a self-hosted low-code admin builder designed to extend MUI's suite of React components.
 It's designed for developers of all trades who want to save time building internal applications.
