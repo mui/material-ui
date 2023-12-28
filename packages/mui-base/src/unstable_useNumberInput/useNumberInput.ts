@@ -111,10 +111,11 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
       newValue = '';
     } else if (isNumber(value)) {
       newValue = clamp(value, min, max, step);
+      newValue = String(newValue);
     } else {
       newValue = value;
     }
-    setDirtyValue(String(newValue));
+    setDirtyValue(newValue ? String(newValue) : undefined);
   }, [value, min, max, step]);
 
   const createHandleFocus =
