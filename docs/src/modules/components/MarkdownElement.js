@@ -165,6 +165,7 @@ const Root = styled('div')(
           width: '14px',
           fill: 'currentColor',
           pointerEvents: 'none',
+          verticalAlign: 'middle',
         },
       },
       '&:hover .anchor-link': {
