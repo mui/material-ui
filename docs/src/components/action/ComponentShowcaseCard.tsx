@@ -7,31 +7,26 @@ import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
 import Link from 'docs/src/modules/components/Link';
 
-interface Props {
-  name: string;
+interface ComponentShowcaseCardProps {
+  imgLoading?: 'eager';
   link: string;
-  srcLight: string;
-  srcDark: string;
   md1?: React.ReactNode;
   md2?: React.ReactNode;
   md3?: React.ReactNode;
+  name: string;
   noGuidelines?: React.ReactNode;
+  srcDark: string;
+  srcLight: string;
 }
 
-export default function ComponentShowcaseCard({
-  link,
-  srcLight,
-  srcDark,
-  name,
-  md1,
-  md2,
-  md3,
-  noGuidelines,
-}: Props) {
+export default function ComponentShowcaseCard(props: ComponentShowcaseCardProps) {
+  const { link, srcLight, srcDark, name, md1, md2, md3, noGuidelines, imgLoading = 'lazy' } = props;
+  // Fix overloading with prefetch={false}, only prefetch on hover.
   return (
     <Card
       component={Link}
       noLinkStyle
+      prefetch={false}
       variant="outlined"
       href={link}
       sx={(theme) => ({
@@ -49,7 +44,7 @@ export default function ComponentShowcaseCard({
       <CardMedia
         component="img"
         alt=""
-        loading="lazy"
+        loading={imgLoading}
         image={srcLight}
         sx={(theme) => ({
           aspectRatio: '16 / 9',

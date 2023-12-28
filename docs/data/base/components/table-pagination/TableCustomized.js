@@ -4,6 +4,10 @@ import {
   TablePagination,
   tablePaginationClasses as classes,
 } from '@mui/base/TablePagination';
+import FirstPageRoundedIcon from '@mui/icons-material/FirstPageRounded';
+import LastPageRoundedIcon from '@mui/icons-material/LastPageRounded';
+import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
+import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 
 export default function TableCustomized() {
   const [page, setPage] = React.useState(0);
@@ -13,16 +17,11 @@ export default function TableCustomized() {
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
-  const handleChangePage = (
-    event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number,
-  ) => {
+  const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
+  const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
@@ -74,6 +73,12 @@ export default function TableCustomized() {
                 actions: {
                   showFirstButton: true,
                   showLastButton: true,
+                  slots: {
+                    firstPageIcon: FirstPageRoundedIcon,
+                    lastPageIcon: LastPageRoundedIcon,
+                    nextPageIcon: ChevronRightRoundedIcon,
+                    backPageIcon: ChevronLeftRoundedIcon,
+                  },
                 },
               }}
               onPageChange={handleChangePage}
@@ -86,7 +91,7 @@ export default function TableCustomized() {
   );
 }
 
-function createData(name: string, calories: number, fat: number) {
+function createData(name, calories, fat) {
   return { name, calories, fat };
 }
 
@@ -128,23 +133,26 @@ const grey = {
 
 const Root = styled('div')(
   ({ theme }) => `
+  border-radius: 12px;
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
+  overflow: clip;
+
   table {
     font-family: 'IBM Plex Sans', sans-serif;
     font-size: 0.875rem;
     border-collapse: collapse;
-    width: 100%;
+    border: none;
+    width: 500px;
+    margin: -1px;
   }
 
   td,
   th {
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
     text-align: left;
-    padding: 6px;
+    padding: 8px;
   }
 
-  th {
-    background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[50]};
-  }
   `,
 );
 
@@ -158,7 +166,8 @@ const CustomTablePagination = styled(TablePagination)(
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    gap: 8px;
+    padding: 4px 0;
 
     @media (min-width: 768px) {
       flex-direction: row;
@@ -171,17 +180,22 @@ const CustomTablePagination = styled(TablePagination)(
   }
 
   & .${classes.select}{
-    padding: 2px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    padding: 2px 0 2px 4px;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
-    border-radius: 50px;
+    border-radius: 6px; 
     background-color: transparent;
+    color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+    transition: all 100ms ease;
 
     &:hover {
       background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
+      border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
     }
 
     &:focus {
-      outline: 1px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
+      outline: 3px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
+      border-color: ${blue[400]};
     }
   }
 
@@ -194,24 +208,43 @@ const CustomTablePagination = styled(TablePagination)(
   }
 
   & .${classes.actions} {
-    padding: 2px;
-    border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
-    border-radius: 50px;
+    display: flex;
+    gap: 6px;
+    border: transparent;
     text-align: center;
   }
 
   & .${classes.actions} > button {
-    margin: 0 8px;
+    display: flex;
+    align-items: center;
+    padding: 0;
     border: transparent;
-    border-radius: 2px;
+    border-radius: 50%;
     background-color: transparent;
+    border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
+    color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+    transition: all 120ms ease;
+
+    > svg {
+      font-size: 22px;
+    }
 
     &:hover {
       background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
+      border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
     }
 
     &:focus {
-      outline: 1px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
+      outline: 3px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
+      border-color: ${blue[400]};
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      &:hover {
+        border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
+        background-color: transparent;
+      }
     }
   }
   `,

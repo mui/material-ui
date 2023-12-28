@@ -149,6 +149,7 @@ export default function MaterialInputComponents() {
             md2={md2}
             md3={md3}
             noGuidelines={noGuidelines}
+            imgLoading="eager"
           />
         </Grid>
       ))}

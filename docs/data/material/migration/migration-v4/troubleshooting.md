@@ -204,7 +204,7 @@ For more details, see [this GitHub issue](https://github.com/mui/material-ui/iss
 We recommend using this codemod to fix all imports in your project:
 
 ```bash
-npx @mui/codemod v5.0.0/optimal-imports <path>
+npx @mui/codemod@latest v5.0.0/optimal-imports <path>
 ```
 
 You can fix it manually like this:
