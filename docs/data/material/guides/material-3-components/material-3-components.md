@@ -41,7 +41,7 @@ pnpm add @mui/material-next @emotion/react @emotion/styled
 </codeblock>
 
 After this, the steps are the same as for the `@mui/material` package.
-You should follow the [Material UI installation](/material-ui/getting-started/installation/#peer-dependencies) guide from this point forward.
+You should follow the Material UI installation guide from the [Peer dependencies section](/material-ui/getting-started/installation/#peer-dependencies) forward.
 
 ### Usage
 
