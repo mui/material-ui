@@ -45,7 +45,10 @@ export interface CssTransitionProps {
  *
  * - [CssTransition API](https://mui.com/base-ui/react-transitions/components-api/#css-transition)
  */
-function CssTransition(props: CssTransitionProps) {
+const CssTransition = React.forwardRef(function CssTransition(
+  props: CssTransitionProps,
+  forwardedRef: React.ForwardedRef<HTMLDivElement>,
+) {
   const {
     children,
     className,
@@ -115,11 +118,12 @@ function CssTransition(props: CssTransitionProps) {
       onTransitionEnd={handleTransitionEnd}
       className={clsx(className, isEntering ? enterClassName : exitClassName)}
       {...other}
+      ref={forwardedRef}
     >
       {children}
     </div>
   );
-}
+});
 
 CssTransition.propTypes = {
   children: PropTypes.node,
