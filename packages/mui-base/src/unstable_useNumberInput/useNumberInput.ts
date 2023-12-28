@@ -106,12 +106,13 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
   }, [formControlContext, disabledProp, focused, onBlur]);
 
   React.useEffect(() => {
-    if (value === '' || value === '-') {
-      setDirtyValue(value);
-    }
-
-    if (typeof value === 'string' && value.match(/^-?\d+?$/)) {
-      setDirtyValue(value);
+    if (
+      value === '' ||
+      value === '-' ||
+      (typeof value === 'string' && value.match(/^-?\d+?$/)) ||
+      isNumber(value)
+    ) {
+      setDirtyValue(String(value));
     }
   }, [value]);
 
@@ -178,12 +179,10 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
       const val = getInputValueAsString(event.currentTarget.value);
 
       if (val === '' || val === '-') {
-        setDirtyValue(val);
         setValue(undefined);
       }
 
       if (val.match(/^-?\d+?$/)) {
-        setDirtyValue(val);
         setValue(parseInt(val, 10));
       }
     };
