@@ -16,11 +16,27 @@ They should be easy to scan for relevant and actionable information. Elements, l
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic card
+## Introduction
 
-Although cards can support multiple actions, UI controls, and an overflow menu, use restraint and remember that cards are entry points to more complex and detailed information.
+The Material UI Card component includes several complementary utility components to handle various use cases:
+
+- Card: a surface-level container for grouping related components.
+- Card Content: the wrapper for the Card content.
+- Card Header: an optional wrapper for the Card header.
+- Card Media: an optional container for displaying background images and gradient layers behind the Card Content.
+- Card Actions: an optional wrapper that groups a set of buttons.
+- Card Action Area: an optional wrapper that allows users to interact with the specified area of the Card.
 
 {{"demo": "BasicCard.js", "bg": true}}
+
+## Basics
+
+```jsx
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+```
+
+Although cards can support multiple actions, UI controls, and an overflow menu, use restraint and remember that cards are entry points to more complex and detailed information.
 
 ### Outlined Card
 
