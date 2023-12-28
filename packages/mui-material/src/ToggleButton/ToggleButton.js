@@ -12,6 +12,7 @@ import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import toggleButtonClasses, { getToggleButtonUtilityClass } from './toggleButtonClasses';
 import ToggleButtonGroupContext from '../ToggleButtonGroup/ToggleButtonGroupContext';
+import ToggleButtonGroupButtonContext from '../ToggleButtonGroup/ToggleButtonGroupButtonContext';
 import isValueSelected from '../ToggleButtonGroup/isValueSelected';
 
 const useUtilityClasses = (ownerState) => {
@@ -113,6 +114,9 @@ const ToggleButtonRoot = styled(ButtonBase, {
 const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
   // props priority: `inProps` > `contextProps` > `themeDefaultProps`
   const { value: contextValue, ...contextProps } = React.useContext(ToggleButtonGroupContext);
+  const toggleButtonGroupButtonContextPositionClassName = React.useContext(
+    ToggleButtonGroupButtonContext,
+  );
   const resolvedProps = resolveProps(
     { ...contextProps, selected: isValueSelected(inProps.value, contextValue) },
     inProps,
@@ -157,9 +161,11 @@ const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
     }
   };
 
+  const positionClassName = toggleButtonGroupButtonContextPositionClassName || '';
+
   return (
     <ToggleButtonRoot
-      className={clsx(contextProps.className, classes.root, className)}
+      className={clsx(contextProps.className, classes.root, className, positionClassName)}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
       ref={ref}
