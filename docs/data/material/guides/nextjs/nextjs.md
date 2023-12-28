@@ -1,4 +1,4 @@
-# Next.js Integration
+# Next.js integration
 
 <p class="description">Learn how to use Material UI with Next.js</p>
 
@@ -32,8 +32,8 @@ pnpm add @mui/material-nextjs @emotion/cache
 Inside `app/layout.tsx`, import the `AppRouterCacheProvider` and wrap all elements under the `<body>` with it:
 
 ```diff
- // app/layout.tsx
-+ import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'; // or `v14-appRouter` if you are using Next.js v14
++import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
+ // or `v1X-appRouter` if you are using Next.js v1X
 
  export default function RootLayout(props) {
    const { children } = props;
@@ -92,7 +92,11 @@ Inside the `pages/_document.tsx` file:
 - Import `DocumentHeadTags` and render it inside the `<Head>`.
 
 ```diff
-+ import { DocumentHeadTags, documentGetInitialProps } from '@mui/material-nextjs/v13-pagesRouter'; // or `v14-pagesRouter` if you are using Next.js v14
++import {
++  DocumentHeadTags,
++  documentGetInitialProps,
++} from '@mui/material-nextjs/v13-pagesRouter';
+ // or `v1X-pagesRouter` if you are using Next.js v1X
 
  export default function MyDocument(props) {
    return (
@@ -109,13 +113,17 @@ Inside the `pages/_document.tsx` file:
    );
  }
 
-+ MyDocument.getInitialProps = documentGetInitialProps;
++MyDocument.getInitialProps = async (ctx) => {
++  const finalProps = await documentGetInitialProps(ctx);
++  return finalProps;
++};
 ```
 
 Then, inside `pages/_app.tsx`, import the `AppCacheProvider` component and render it as the root element:
 
 ```diff
-+ import { AppCacheProvider } from '@mui/material-nextjs/v13-pagesRouter'; // or `v14-pages` if you are using Next.js v14
++import { AppCacheProvider } from '@mui/material-nextjs/v13-pagesRouter';
+ // Or `v1X-pages` if you are using Next.js v1X
 
  export default function MyApp(props) {
    return (
@@ -134,7 +142,8 @@ Then, inside `pages/_app.tsx`, import the `AppCacheProvider` component and rende
 If you are using TypeScript, add `DocumentHeadTagsProps` to the Document's props interface:
 
 ```diff
-+ import type { DocumentHeadTagsProps } from '@mui/material-nextjs/v13-pagesRouter'; // or `v14-pagesRouter` if you are using Next.js v14
++ import type { DocumentHeadTagsProps } from '@mui/material-nextjs/v13-pagesRouter';
+  // or `v1X-pagesRouter` if you are using Next.js v1X
 
 + export default function MyDocument(props: DocumentProps & DocumentHeadTagsProps) {
    ...
