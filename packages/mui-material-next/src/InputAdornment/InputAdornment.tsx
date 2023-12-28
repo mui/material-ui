@@ -53,14 +53,6 @@ const InputAdornmentRoot = styled('div', {
     alignItems: 'center',
     whiteSpace: 'nowrap',
     color: 'var(--md-comp-input-adornment-color)',
-    // TODO: this may not be needed, resolve when integrating TextField+Label
-    // https://github.com/mui/material-ui/issues/39628#issuecomment-1786842659
-    // ...(ownerState.variant === 'filled' && {
-    //   // Styles applied to the root element if `variant="filled"`.
-    //   [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]: {
-    //     marginTop: 16,
-    //   },
-    // }),
     ...(ownerState.position === 'start' && {
       // Styles applied to the root element if `position="start"`.
       marginRight: 16,
@@ -73,7 +65,6 @@ const InputAdornmentRoot = styled('div', {
       // Styles applied to the root element if `disablePointerEvents={true}`.
       pointerEvents: 'none',
     }),
-    backgroundColor: 'rgba(0,0,255,0.5)',
   };
 });
 

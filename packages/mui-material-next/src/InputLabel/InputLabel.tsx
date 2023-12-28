@@ -88,6 +88,7 @@ const InputLabelRoot = styled(FormLabel, {
     pointerEvents: 'none',
     transform: 'translate(16px, 16px) scale(1)',
     maxWidth: 'calc(100% - 24px)',
+    // adjust maxWidth by 40px per adornment: adornment width 24px + inner padding 16px = 40px
     // adornedStart only
     ...(ownerState.formControl?.adornedStart &&
       !ownerState.formControl?.adornedEnd && {
@@ -103,7 +104,7 @@ const InputLabelRoot = styled(FormLabel, {
     ...(ownerState.formControl?.adornedStart &&
       ownerState.formControl?.adornedEnd && {
         transform: 'translate(52px, 16px) scale(1)',
-        maxWidth: 'calc(100% - 24px - 40px - 32px - 8px)',
+        maxWidth: 'calc(100% - 24px - 40px - 40px)',
       }),
     ...(ownerState.size === 'small' && {
       transform: 'translate(12px, 13px) scale(1)',
@@ -115,7 +116,7 @@ const InputLabelRoot = styled(FormLabel, {
       userSelect: 'none',
       pointerEvents: 'auto',
       transform: 'translate(16px, 7px) scale(0.75)',
-      maxWidth: 'calc(133% - 24px - 8px)',
+      maxWidth: 'calc(133% - 32px)',
       ...(ownerState.size === 'small' && {
         transform: 'translate(16px, 4px) scale(0.75)',
       }),
@@ -123,7 +124,7 @@ const InputLabelRoot = styled(FormLabel, {
       ...(ownerState.formControl?.adornedStart &&
         !ownerState.formControl?.adornedEnd && {
           transform: 'translate(52px, 7px) scale(0.75)',
-          maxWidth: 'calc(133% - 24px - 40px - 24px)',
+          maxWidth: 'calc(133% - 32px - 48px - 8px)',
           ...(ownerState.size === 'small' && {
             transform: 'translate(52px, 4px) scale(0.75)',
           }),
@@ -131,13 +132,16 @@ const InputLabelRoot = styled(FormLabel, {
       // adornedEnd only
       ...(ownerState.formControl?.adornedEnd &&
         !ownerState.formControl?.adornedStart && {
-          maxWidth: 'calc(133% - 24px - 40px - 24px)',
+          maxWidth: 'calc(133% - 32px - 48px - 8px)',
         }),
       // adornedStart and adornedEnd
       ...(ownerState.formControl?.adornedStart &&
         ownerState.formControl?.adornedEnd && {
-          transform: 'translate(52px, 4px) scale(0.75)',
-          maxWidth: 'calc(133% - 24px - 40px - 32px - 40px)',
+          transform: 'translate(52px, 7px) scale(0.75)',
+          maxWidth: 'calc(133% - 32px - 48px - 48px - 8px)',
+          ...(ownerState.size === 'small' && {
+            transform: 'translate(52px, 4px) scale(0.75)',
+          }),
         }),
     }),
   }),
