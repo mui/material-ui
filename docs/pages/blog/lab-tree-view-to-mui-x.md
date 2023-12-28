@@ -4,7 +4,7 @@ description: Migrate to the new package to start building with our powerful Tree
 date: 2023-08-21T00:00:00.000Z
 authors: ['flaviendelangle']
 tags: ['MUI X', 'News']
-card: false
+card: true
 ---
 
 After more than 4 years in the lab, the [Tree View](https://mui.com/x/react-tree-view/) components have found a new home as part of MUI X.
@@ -71,7 +71,7 @@ or
 We have prepared a codemod to help you migrate your codebase from `@mui/lab` to `@mui/x-tree-view`:
 
 ```bash
-npx @mui/codemod v5.0.0/tree-view-moved-to-x <path>
+npx @mui/codemod@latest v5.0.0/tree-view-moved-to-x <path>
 ```
 
 ## Where is the Tree View documentation?

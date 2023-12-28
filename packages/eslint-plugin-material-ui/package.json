@@ -8,9 +8,9 @@
     "emoji-regex": "^10.3.0"
   },
   "devDependencies": {
-    "@types/eslint": "^8.44.8",
+    "@types/eslint": "^8.56.0",
     "@typescript-eslint/parser": "^6.13.2",
-    "eslint": "^8.55.0"
+    "eslint": "^8.56.0"
   },
   "peerDependencies": {
     "eslint": "^8.47.0"
