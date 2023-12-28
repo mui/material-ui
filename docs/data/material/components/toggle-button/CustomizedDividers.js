@@ -21,12 +21,15 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
     '&.Mui-disabled': {
       border: 0,
     },
-    '&:not(:first-of-type)': {
-      borderRadius: theme.shape.borderRadius,
-    },
-    '&:first-of-type': {
-      borderRadius: theme.shape.borderRadius,
-    },
+  },
+  '& .MuiToggleButtonGroup-firstButton': {
+    borderRadius: theme.shape.borderRadius,
+  },
+  '& .MuiToggleButtonGroup-middleButton': {
+    borderRadius: theme.shape.borderRadius,
+  },
+  '& .MuiToggleButtonGroup-lastButton': {
+    borderRadius: theme.shape.borderRadius,
   },
 }));
 
