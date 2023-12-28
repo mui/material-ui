@@ -21,7 +21,7 @@ To learn more why it has been removed, visit the [RFC](https://github.com/mui/ma
 Run this [codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#joy-text-field-to-input) in your project's terminal:
 
 ```bash
-npx @mui/codemod v5.0.0/joy-text-field-to-input <path>
+npx @mui/codemod@latest v5.0.0/joy-text-field-to-input <path>
 ```
 
 It will go through all files under `<path>` and replace `<TextField />` with the `<Input />` composition.

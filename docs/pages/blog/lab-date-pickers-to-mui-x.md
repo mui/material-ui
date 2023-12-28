@@ -84,7 +84,7 @@ Follow the [migration steps](/x/migration/migration-pickers-lab/) by updating th
 We have prepared a codemod to help you migrate your codebase from `@mui/lab` to `@mui/x-date-pickers` or `@mui/x-date-pickers-pro`:
 
 ```bash
-npx @mui/codemod v5.0.0/date-pickers-moved-to-x <path>
+npx @mui/codemod@latest v5.0.0/date-pickers-moved-to-x <path>
 ```
 
 ## Where is the Date and Time Picker documentation?
