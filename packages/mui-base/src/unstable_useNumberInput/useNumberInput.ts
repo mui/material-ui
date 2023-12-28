@@ -106,10 +106,16 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
   }, [formControlContext, disabledProp, focused, onBlur]);
 
   React.useEffect(() => {
-    if (value) {
-      setDirtyValue(String(value));
+    let newValue;
+    if (value === undefined) {
+      newValue = '';
+    } else if (isNumber(value)) {
+      newValue = clamp(value, min, max, step);
+    } else {
+      newValue = value;
     }
-  }, [value]);
+    setDirtyValue(String(newValue));
+  }, [value, min, max, step]);
 
   const createHandleFocus =
     (otherHandlers: Partial<EventHandlers>) =>
