@@ -10,12 +10,15 @@
   },
   "dependencies": {
     "@mui/zero-runtime": "workspace:^",
+    "@mui/utils": "workspace:^",
+    "@mui/base": "workspace:^",
+    "@mui/material": "workspace:^",
+    "@mui/system": "workspace:^",
     "react": "^18",
     "react-dom": "^18",
     "next": "14.0.1"
   },
   "devDependencies": {
-    "@mui/material": "^5.15.2",
     "@mui/zero-next-plugin": "workspace:^",
     "@types/node": "^20.5.7",
     "@types/react": "^18.2.45",

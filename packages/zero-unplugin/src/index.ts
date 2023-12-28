@@ -79,6 +79,14 @@ const globalCssLookup = new Map<string, string>();
 
 const pluginName = 'ZeroWebpackPlugin';
 
+function innerNoop() {
+  return null;
+}
+
+function outerNoop() {
+  return innerNoop;
+}
+
 export const plugin = createUnplugin<PluginOptions, true>((options) => {
   const {
     theme,
@@ -91,6 +99,7 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
     debug = false,
     sourceMap = false,
     transformSx = true,
+    overrideContext,
     ...rest
   } = options;
   const themeArgs = { theme };
@@ -104,6 +113,15 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
       theme,
     },
     cssVariablesPrefix: varPrefix,
+    overrideContext(context: Record<string, unknown>, filename: string) {
+      if (overrideContext) {
+        return overrideContext(context, filename);
+      }
+      if (!context.$RefreshSig$) {
+        context.$RefreshSig$ = outerNoop;
+      }
+      return context;
+    },
     ...rest,
   };
   const cache = new TransformCacheCollection();
@@ -157,7 +175,7 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
         if (typeof result === 'string') {
           return result;
         }
-        return await asyncResolveFallback(what, importer, stack);
+        return asyncResolveFallback(what, importer, stack);
       };
       const transformServices = {
         options: {
@@ -170,49 +188,55 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
         eventEmitter: emitter,
       };
 
-      const result = await transform(transformServices, code, asyncResolve);
+      try {
+        const result = await transform(transformServices, code, asyncResolve);
 
-      if (!result.cssText) {
-        return null;
-      }
+        if (!result.cssText) {
+          return null;
+        }
 
-      let { cssText } = result;
-      if (isNext && !outputCss) {
+        let { cssText } = result;
+        if (isNext && !outputCss) {
+          return {
+            code: result.code,
+            map: result.sourceMap,
+          };
+        }
+        const slug = slugify(cssText);
+        const cssFilename = `${slug}.zero.css`;
+
+        if (sourceMap && result.cssSourceMapText) {
+          const map = Buffer.from(result.cssSourceMapText).toString('base64');
+          cssText += `/*# sourceMappingURL=data:application/json;base64,${map}*/`;
+        }
+
+        // Virtual modules do not work consistently in Next.js (the build is done at least
+        // thrice) resulting in error in subsequent builds. So we use a placeholder CSS
+        // file with the actual CSS content as part of the query params.
+        if (isNext) {
+          const data = `${meta.placeholderCssFile}?${encodeURIComponent(
+            JSON.stringify({
+              filename: cssFilename,
+              source: cssText,
+            }),
+          )}`;
+          return {
+            code: `import ${JSON.stringify(data)};\n${result.code}`,
+            map: result.sourceMap,
+          };
+        }
+        const cssId = `./${cssFilename}`;
+        cssFileLookup.set(cssId, cssFilename);
+        cssLookup.set(cssFilename, cssText);
         return {
-          code: result.code,
+          code: `import ${JSON.stringify(`./${cssFilename}`)};\n${result.code}`,
           map: result.sourceMap,
         };
+      } catch (e) {
+        const error = new Error((e as Error).message);
+        error.stack = (e as Error).stack;
+        throw error;
       }
-      const slug = slugify(cssText);
-      const cssFilename = `${slug}.zero.css`;
-
-      if (sourceMap && result.cssSourceMapText) {
-        const map = Buffer.from(result.cssSourceMapText).toString('base64');
-        cssText += `/*# sourceMappingURL=data:application/json;base64,${map}*/`;
-      }
-
-      // Virtual modules do not work consistently in Next.js (the build is done at least
-      // thrice) resulting in error in subsequent builds. So we use a placeholder CSS
-      // file with the actual CSS content as part of the query params.
-      if (isNext) {
-        const data = `${meta.placeholderCssFile}?${encodeURIComponent(
-          JSON.stringify({
-            filename: cssFilename,
-            source: cssText,
-          }),
-        )}`;
-        return {
-          code: `import ${JSON.stringify(data)};\n${result.code}`,
-          map: result.sourceMap,
-        };
-      }
-      const cssId = `./${cssFilename}`;
-      cssFileLookup.set(cssId, cssFilename);
-      cssLookup.set(cssFilename, cssText);
-      return {
-        code: `import ${JSON.stringify(`./${cssFilename}`)};\n${result.code}`,
-        map: result.sourceMap,
-      };
     },
   };
 
@@ -239,9 +263,9 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
               return (
                 // this file should exist in the package
                 id.endsWith('@mui/zero-runtime/styles.css') ||
-                id.endsWith('/runtime/styles.css') ||
+                id.endsWith('/zero-runtime/styles.css') ||
                 id.endsWith('@mui/zero-runtime/theme') ||
-                id.endsWith('/runtime/theme.js')
+                id.endsWith('/zero-runtime/theme.js')
               );
             },
             transform(_code, id) {
@@ -252,6 +276,7 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
                 const tokens = generateThemeTokens(theme, varPrefix);
                 return `export default ${JSON.stringify(tokens)};`;
               }
+              return null;
             },
           }
         : {
@@ -275,6 +300,7 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
                 const tokens = generateThemeTokens(theme, varPrefix);
                 return `export default ${JSON.stringify(tokens)};`;
               }
+              return null;
             },
           }),
     },

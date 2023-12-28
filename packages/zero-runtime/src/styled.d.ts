@@ -73,6 +73,7 @@ export interface StyledOptions<Props extends BaseDefaultProps = BaseDefaultProps
   slot?: string;
   skipSx?: boolean;
   skipVariantsResolver?: boolean;
+  shouldForwardProp?: (propName: string) => boolean;
   overridesResolver?: (
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     props: any | Props,

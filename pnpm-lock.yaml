@@ -353,6 +353,18 @@ importers:
 
   apps/zero-runtime-next-app:
     dependencies:
+      '@mui/base':
+        specifier: workspace:^
+        version: link:../../packages/mui-base/build
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../packages/mui-material/build
+      '@mui/system':
+        specifier: workspace:^
+        version: link:../../packages/mui-system/build
+      '@mui/utils':
+        specifier: workspace:^
+        version: link:../../packages/mui-utils/build
       '@mui/zero-runtime':
         specifier: workspace:^
         version: link:../../packages/zero-runtime
@@ -366,9 +378,6 @@ importers:
         specifier: ^18
         version: 18.2.0(react@18.2.0)
     devDependencies:
-      '@mui/material':
-        specifier: ^5.15.2
-        version: link:../../packages/mui-material/build
       '@mui/zero-next-plugin':
         specifier: workspace:^
         version: link:../../packages/zero-next-plugin

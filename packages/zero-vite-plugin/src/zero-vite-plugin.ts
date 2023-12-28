@@ -27,6 +27,14 @@ export type VitePluginOptions = {
 } & Partial<PluginOptions> &
   PluginCustomOptions;
 
+function innerNoop() {
+  return null;
+}
+
+function outerNoop() {
+  return innerNoop;
+}
+
 export default function zeroVitePlugin({
   debug,
   include,
@@ -34,6 +42,7 @@ export default function zeroVitePlugin({
   sourceMap,
   preprocessor,
   transformLibraries = [],
+  overrideContext,
   ...rest
 }: VitePluginOptions = {}): Plugin {
   const filter = createFilter(include, exclude);
@@ -172,6 +181,15 @@ export default function zeroVitePlugin({
                 babelOptions: {
                   ...rest.babelOptions,
                   // presets: Array.from(presets),
+                },
+                overrideContext(context: Record<string, unknown>, filename: string) {
+                  if (overrideContext) {
+                    return overrideContext(context, filename);
+                  }
+                  if (!context.$RefreshSig$) {
+                    context.$RefreshSig$ = outerNoop;
+                  }
+                  return context;
                 },
               },
             },
