@@ -220,7 +220,7 @@ const DemoRootMaterial = styled('div', {
     borderLeftWidth: 0,
     borderRightWidth: 0,
     ...theme.applyDarkStyles({
-      backgroundColor: alpha(theme.palette.primaryDark[700], 0.2),
+      backgroundColor: alpha(theme.palette.primaryDark[700], 0.1),
     }),
   }),
   /* Similar to the outlined one but without padding. Ideal for playground demos. */
@@ -235,7 +235,7 @@ const DemoRootMaterial = styled('div', {
     backgroundColor: alpha(theme.palette.grey[50], 0.6),
     border: `1px solid ${(theme.vars || theme).palette.divider}`,
     ...theme.applyDarkStyles({
-      backgroundColor: alpha(theme.palette.primaryDark[700], 0.2),
+      backgroundColor: alpha(theme.palette.primaryDark[700], 0.15),
     }),
   }),
   /* Mostly meant for introduction demos. */
