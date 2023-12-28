@@ -54,22 +54,8 @@ export function selectReducer<OptionValue>(
             open: false,
           };
         }
-
-        if (
-          selectionMode === 'single' &&
-          (action.event.key === 'Enter' || action.event.key === ' ')
-        ) {
-          return {
-            ...newState,
-            open: false,
-          };
-        }
       } else {
-        if (
-          action.event.key === 'Enter' ||
-          action.event.key === ' ' ||
-          action.event.key === 'ArrowDown'
-        ) {
+        if (action.event.key === 'ArrowDown') {
           return {
             ...state,
             open: true,

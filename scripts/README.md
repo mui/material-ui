@@ -37,12 +37,10 @@ The following steps must be proposed as a pull request.
 
 ### Release
 
-1. Checkout merge commit of the merged PR
-2. `pnpm install`
-3. `pnpm release:build`
-4. `pnpm release:publish`
-   You need your 2FA device.
-5. `pnpm release:tag`
+1. Checkout the last version of the working branch
+2. `pnpm install && pnpm release:build` (make sure you have the latest dependencies installed, and build the packages)
+3. `pnpm release:publish` (release the versions on npm, you need your 2FA device)
+4. `pnpm release:tag` (push the newly created tag)
 
 ### Documentation
 

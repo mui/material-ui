@@ -77,7 +77,7 @@ const DialogContainer = styled('div', {
     overflowY: 'auto',
     overflowX: 'hidden',
     textAlign: 'center',
-    '&:after': {
+    '&::after': {
       content: '""',
       display: 'inline-block',
       verticalAlign: 'middle',

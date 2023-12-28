@@ -52,7 +52,7 @@ const TimelineItemRoot = styled('li', {
     },
   }),
   ...(!ownerState.hasOppositeContent && {
-    '&:before': {
+    '&::before': {
       content: '""',
       flex: 1,
       padding: '6px 16px',

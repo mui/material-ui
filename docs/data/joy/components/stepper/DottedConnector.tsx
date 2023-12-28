@@ -13,7 +13,7 @@ export default function DottedConnector() {
         width: '100%',
         [`& .${stepClasses.root}`]: {
           flexDirection: 'column-reverse',
-          '&:after': {
+          '&::after': {
             top: 'unset',
             bottom:
               'calc(var(--StepIndicator-size) / 2 - var(--Step-connectorThickness) / 2)',

@@ -325,7 +325,7 @@ const SliderThumb = styled('span', {
   transition: theme.transitions.create(['box-shadow', 'left', 'bottom'], {
     duration: theme.transitions.duration.shortest,
   }),
-  '&:before': {
+  '&::before': {
     position: 'absolute',
     content: '""',
     borderRadius: 'inherit',
@@ -386,7 +386,7 @@ const SliderThumb = styled('span', {
       style: {
         width: 12,
         height: 12,
-        '&:before': {
+        '&::before': {
           boxShadow: 'none',
         },
       },
@@ -452,7 +452,7 @@ const StyledSliderValueLabel = styled(SliderValueLabel, {
         top: '-10px',
         transformOrigin: 'bottom center',
         transform: 'translateY(-100%) scale(0)',
-        '&:before': {
+        '&::before': {
           position: 'absolute',
           content: '""',
           width: 8,
@@ -476,7 +476,7 @@ const StyledSliderValueLabel = styled(SliderValueLabel, {
         right: '30px',
         transform: 'translateY(-50%) scale(0)',
         transformOrigin: 'right center',
-        '&:before': {
+        '&::before': {
           position: 'absolute',
           content: '""',
           width: 8,

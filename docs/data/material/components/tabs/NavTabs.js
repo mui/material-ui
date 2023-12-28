@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -27,10 +28,15 @@ function LinkTab(props) {
           event.preventDefault();
         }
       }}
+      aria-current={props.selected && 'page'}
       {...props}
     />
   );
 }
+
+LinkTab.propTypes = {
+  selected: PropTypes.bool,
+};
 
 export default function NavTabs() {
   const [value, setValue] = React.useState(0);
@@ -47,7 +53,12 @@ export default function NavTabs() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Tabs value={value} onChange={handleChange} aria-label="nav tabs example">
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        aria-label="nav tabs example"
+        role="navigation"
+      >
         <LinkTab label="Page One" href="/drafts" />
         <LinkTab label="Page Two" href="/trash" />
         <LinkTab label="Page Three" href="/spam" />

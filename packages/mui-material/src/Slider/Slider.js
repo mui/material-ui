@@ -199,7 +199,7 @@ export const SliderThumb = styled('span', {
     left: '50%',
     transform: 'translate(-50%, 50%)',
   }),
-  '&:before': {
+  '&::before': {
     position: 'absolute',
     content: '""',
     borderRadius: 'inherit',
@@ -276,7 +276,7 @@ export const SliderValueLabel = styled(BaseSliderValueLabel, {
   ...(ownerState.orientation === 'horizontal' && {
     top: '-10px',
     transformOrigin: 'bottom center',
-    '&:before': {
+    '&::before': {
       position: 'absolute',
       content: '""',
       width: 8,
@@ -291,7 +291,7 @@ export const SliderValueLabel = styled(BaseSliderValueLabel, {
     right: ownerState.size === 'small' ? '20px' : '30px',
     top: '50%',
     transformOrigin: 'right center',
-    '&:before': {
+    '&::before': {
       position: 'absolute',
       content: '""',
       width: 8,

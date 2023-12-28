@@ -206,10 +206,10 @@ const Accordion = styled(MuiAccordion)(({ theme }) => ({
   '&:not(:last-of-type)': {
     marginBottom: theme.spacing(2),
   },
-  '&:before': {
+  '&::before': {
     display: 'none',
   },
-  '&:after': {
+  '&::after': {
     display: 'none',
   },
   ...theme.applyDarkStyles({
