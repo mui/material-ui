@@ -6,6 +6,10 @@ import { prefixer } from 'stylis';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
+// Consuming the outer theme is only required with coexisting themes, like in this documentation.
+// If your app/website doesn't deal with this, you can have just:
+// const theme = createTheme({ direction: 'rtl' })
+
 const theme = (outerTheme: Theme) =>
   createTheme({
     direction: 'rtl',
