@@ -6,9 +6,13 @@ import { prefixer } from 'stylis';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
-const theme = createTheme({
-  direction: 'rtl',
-});
+const theme = (outerTheme) =>
+  createTheme({
+    direction: 'rtl',
+    palette: {
+      mode: outerTheme.palette.mode,
+    },
+  });
 
 const cacheRtl = createCache({
   key: 'muirtl',
