@@ -253,15 +253,16 @@ const Root = styled('div')(
       borderLeft: '1.5px solid',
       borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
       '& p': {
-        fontStyle: 'italic',
-        fontSize: theme.typography.pxToRem(13),
+        fontSize: theme.typography.pxToRem(12.5),
         fontFamily: lightTheme.typography.fontFamilyCode,
         fontWeight: lightTheme.typography.fontWeightMedium,
+        lineHeight: theme.typography.pxToRem(24),
         textIndent: 20,
       },
       '&::before': {
         position: 'absolute',
-        content: 'open-quote',
+        // eslint-disable-next-line material-ui/straight-quotes
+        content: '"“"',
         color: `var(--muidocs-palette-grey-300, ${lightTheme.palette.grey[300]})`,
         fontSize: '2.5rem',
         top: 8,
