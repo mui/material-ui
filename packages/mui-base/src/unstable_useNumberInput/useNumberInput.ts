@@ -105,6 +105,12 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
     }
   }, [formControlContext, disabledProp, focused, onBlur]);
 
+  React.useEffect(() => {
+    if (value) {
+      setDirtyValue(String(value));
+    }
+  }, [value]);
+
   const createHandleFocus =
     (otherHandlers: Partial<EventHandlers>) =>
     (event: React.FocusEvent<HTMLInputElement> & MuiCancellableEvent) => {
