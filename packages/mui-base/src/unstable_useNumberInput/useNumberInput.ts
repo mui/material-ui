@@ -179,10 +179,12 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
       const val = getInputValueAsString(event.currentTarget.value);
 
       if (val === '' || val === '-') {
+        setDirtyValue(val);
         setValue(undefined);
       }
 
       if (val.match(/^-?\d+?$/)) {
+        setDirtyValue(val);
         setValue(parseInt(val, 10));
       }
     };
