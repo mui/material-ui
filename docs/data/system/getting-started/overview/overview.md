@@ -4,7 +4,7 @@ title: Overview
 
 # MUI System - Overview
 
-<p class="description">MUI System is a collection of CSS utilities for rapidly laying out custom designs with MUI component libraries.</p>
+<p class="description">MUI System is a set of CSS utilities to help you build custom designs more efficiently. It makes it possible to rapidly lay out custom designs.</p>
 
 ## Introduction
 

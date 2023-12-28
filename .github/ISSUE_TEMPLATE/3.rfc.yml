@@ -13,18 +13,15 @@ body:
     attributes:
       label: What's the problem? 🤔
       description: Write a short paragraph or bulleted list to briefly explain what you're trying to do, what outcomes you're aiming for, and any other relevant details to help us understand the motivation behind this RFC.
-
   - type: textarea
     attributes:
       label: What are the requirements? ❓
       description: Provide a list of requirements that should be met by the accepted proposal.
-
   - type: textarea
     attributes:
       label: What are our options? 💡
       description: |
         Have you considered alternative options for achieving your desired outcome? It's not necessary to go into too much detail here, but it can help strengthen your main proposal.
-
   - type: textarea
     attributes:
       label: Proposed solution 🟢
@@ -35,7 +32,6 @@ body:
         - using diagrams to help illustrate your ideas
         - including code examples if you're proposing an interface or system contract
         - linking to relevant project briefs or wireframes
-
   - type: textarea
     attributes:
       label: Resources and benchmarks 🔗
