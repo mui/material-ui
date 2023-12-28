@@ -563,7 +563,7 @@ describe('<NumberInput />', () => {
       const [value, setValue] = React.useState(10);
 
       return (
-        <div className="App">
+        <div>
           <button data-testid="button" onClick={() => setValue(20)}>
             Enable
           </button>
