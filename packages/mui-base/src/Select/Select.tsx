@@ -44,7 +44,7 @@ function useUtilityClasses<OptionValue extends {}, Multiple extends boolean>(
       open && 'expanded',
     ],
     listbox: ['listbox', disabled && 'disabled'],
-    popper: ['popper'],
+    popup: ['popup'],
   };
 
   return composeClasses(slots, useClassNamesOverride(getSelectUtilityClass));
@@ -195,7 +195,7 @@ const Select = React.forwardRef(function Select<
         role: undefined,
       },
       ownerState,
-      className: classes.popper,
+      className: classes.popup,
     });
 
   let selectedOptionsMetadata: SelectValue<SelectOption<OptionValue>, Multiple>;
@@ -340,7 +340,7 @@ Select.propTypes /* remove-proptypes */ = {
    */
   slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    popup: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -350,7 +350,7 @@ Select.propTypes /* remove-proptypes */ = {
    */
   slots: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     listbox: PropTypes.elementType,
-    popper: PropTypes.elementType,
+    popup: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
   /**
