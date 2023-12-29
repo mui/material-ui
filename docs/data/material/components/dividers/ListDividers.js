@@ -5,9 +5,13 @@ import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 
 const style = {
+  p: 0,
   width: '100%',
   maxWidth: 360,
-  bgcolor: 'background.paper',
+  borderRadius: 2,
+  border: '1px solid',
+  borderColor: 'divider',
+  backgroundColor: 'backgroun.paoer',
 };
 
 export default function ListDividers() {

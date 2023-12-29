@@ -1,43 +1,37 @@
 import * as React from 'react';
-import Card from '@mui/material/Card';
+import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
-import ImageIcon from '@mui/icons-material/Image';
-import WorkIcon from '@mui/icons-material/Work';
-import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import Divider from '@mui/material/Divider';
+
+const style = {
+  pt: 0,
+  width: '100%',
+  maxWidth: 360,
+  borderRadius: 2,
+  border: '1px solid',
+  borderColor: 'divider',
+  backgroundColor: 'backgroun.paoer',
+};
 
 export default function DividerVariants() {
   return (
-    <Card variant="outlined" component="ul" sx={{ width: '100%', maxWidth: 360 }}>
+    <List sx={style}>
       <ListItem>
-        <ListItemAvatar>
-          <Avatar size="small">
-            <ImageIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="Photos" secondary="Jan 9, 2014" />
+        <ListItemText primary="Full width variant below" />
+      </ListItem>
+      <Divider component="li" />
+      <ListItem>
+        <ListItemText primary="Inset variant below" />
       </ListItem>
       <Divider variant="inset" component="li" />
       <ListItem>
-        <ListItemAvatar>
-          <Avatar>
-            <WorkIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="Work" secondary="Jan 7, 2014" />
+        <ListItemText primary="Middle variant below" />
       </ListItem>
-      <Divider variant="inset" component="li" />
+      <Divider variant="middle" component="li" />
       <ListItem>
-        <ListItemAvatar>
-          <Avatar>
-            <BeachAccessIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="Vacation" secondary="July 20, 2014" />
+        <ListItemText primary="List item" />
       </ListItem>
-    </Card>
+    </List>
   );
 }
