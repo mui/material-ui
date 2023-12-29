@@ -12,6 +12,16 @@ import {
 import ImageIcon from '@mui/icons-material/Image';
 import WorkIcon from '@mui/icons-material/Work';
 
+const listStyle = {
+  p: 0,
+  width: '100%',
+  maxWidth: 360,
+  borderRadius: 2,
+  border: '1px solid',
+  borderColor: 'divider',
+  backgroundColor: 'backgroun.paoer',
+};
+
 export default function DividerMaterialYouPlayground() {
   return (
     <MaterialYouUsageDemo
@@ -32,14 +42,14 @@ export default function DividerMaterialYouPlayground() {
       ]}
       renderDemo={(props) => {
         const content = (
-          <div>
+          <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus id
             dignissim justo. Nulla ut facilisis ligula.
-          </div>
+          </p>
         );
 
         return props.orientation === 'horizontal' ? (
-          <List sx={{ width: 300 }}>
+          <List sx={listStyle}>
             <ListItem>
               <ListItemAvatar>
                 <Avatar>

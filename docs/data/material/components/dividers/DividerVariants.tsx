@@ -5,7 +5,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 
 const style = {
-  pt: 0,
+  py: 0,
   width: '100%',
   maxWidth: 360,
   borderRadius: 2,

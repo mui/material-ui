@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 
 export default function IntroDivider() {
   return (
-    <Card variant="outlined" sx={{ width: '100%', maxWidth: 360 }}>
+    <Card variant="outlined" sx={{ maxWidth: 360 }}>
       <Box sx={{ p: 2 }}>
         <Stack direction="row" justifyContent="space-between" alignItems="center">
           <Typography gutterBottom variant="h5" component="div">
@@ -25,11 +25,10 @@ export default function IntroDivider() {
       </Box>
       <Divider />
       <Box sx={{ p: 2 }}>
-        <Typography gutterBottom variant="body1">
+        <Typography gutterBottom variant="body2">
           Select type
         </Typography>
         <Stack direction="row" spacing={1}>
-          <Chip label="Extra Soft" size="small" />
           <Chip color="primary" label="Soft" size="small" />
           <Chip label="Medium" size="small" />
           <Chip label="Hard" size="small" />

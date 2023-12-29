@@ -14,7 +14,7 @@ const Root = styled('div')(({ theme }) => ({
 
 export default function DividerText() {
   const content = (
-    <div>{`Lorem ipsum dolor sit amet, consectetur adipiscing elit.`}</div>
+    <p>{`Lorem ipsum dolor sit amet, consectetur adipiscing elit.`}</p>
   );
 
   return (

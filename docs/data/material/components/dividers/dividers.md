@@ -89,17 +89,17 @@ That will also ensure it's not announced by screen readers as well as preserve t
 The Divider component is composed of a root `<hr>`.
 
 ```html
-<hr class="MuiDivider-root ">
+<hr class="MuiDivider-root">
   <!-- Divider children goes here -->
 </hr>
 ```
 
 ## Experimental APIs
 
-### Material You version
+### Material 3 version
 
-The default Material UI Divider component follows the Material Design 2 specs.
-To get the Material You ([Material Design 3](https://m3.material.io/)) version, use the new experimental `@mui/material-next` package:
+The default Material UI Divider component follows the [Material Design 2](https://m2.material.io/) specs.
+To get the Material Design 3 ([Material You](https://m3.material.io/)) version, use the new experimental `@mui/material-next` package:
 
 ```js
 import Divider from '@mui/material-next/Divider';
