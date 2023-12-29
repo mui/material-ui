@@ -1,36 +1,43 @@
 import * as React from 'react';
-import List from '@mui/material/List';
+import Card from '@mui/material/Card';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Avatar from '@mui/material/Avatar';
+import ImageIcon from '@mui/icons-material/Image';
+import WorkIcon from '@mui/icons-material/Work';
+import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import Divider from '@mui/material/Divider';
 
 export default function DividerVariants() {
   return (
-    <List
-      sx={{
-        border: '1px solid',
-        borderColor: 'divider',
-        borderRadius: 2,
-        width: '100%',
-        maxWidth: 360,
-        bgcolor: 'background.paper',
-      }}
-    >
+    <Card variant="outlined" component="ul" sx={{ width: '100%', maxWidth: 360 }}>
       <ListItem>
-        <ListItemText primary="Photos" secondary="Full width variant below" />
-      </ListItem>
-      <Divider variant="fullWidth" component="li" />
-      <ListItem>
-        <ListItemText primary="Work" secondary="Middle variant below" />
-      </ListItem>
-      <Divider variant="middle" component="li" />
-      <ListItem>
-        <ListItemText primary="Vacation" secondary="Inset variant below" />
+        <ListItemAvatar>
+          <Avatar size="small">
+            <ImageIcon />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText primary="Photos" secondary="Jan 9, 2014" />
       </ListItem>
       <Divider variant="inset" component="li" />
       <ListItem>
-        <ListItemText primary="Websites" />
+        <ListItemAvatar>
+          <Avatar>
+            <WorkIcon />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText primary="Work" secondary="Jan 7, 2014" />
       </ListItem>
-    </List>
+      <Divider variant="inset" component="li" />
+      <ListItem>
+        <ListItemAvatar>
+          <Avatar>
+            <BeachAccessIcon />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText primary="Vacation" secondary="July 20, 2014" />
+      </ListItem>
+    </Card>
   );
 }
