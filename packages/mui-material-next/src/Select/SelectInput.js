@@ -1,7 +1,6 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import MuiError from '@mui-internal/babel-macros/MuiError.macro';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import {
@@ -27,7 +26,7 @@ import { isFilled } from '../InputBase/utils';
 import styled from '../styles/styled';
 import selectClasses, { getSelectUtilityClasses } from './selectClasses';
 
-const SelectSelect = styled(ButtonBase, {
+const SelectTrigger = styled(ButtonBase, {
   name: 'MuiSelect',
   slot: 'Select',
   overridesResolver: (props, styles) => {
@@ -394,20 +393,29 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     ...PopoverProps.slotProps?.paper,
   };
 
-  const buttonProps = useSlotProps({
-    elementType: SelectSelect,
+  const triggerProps = useSlotProps({
+    elementType: SelectTrigger,
     getSlotProps: () =>
       getButtonProps({
         onKeyDown: handleKeyDown,
         onClick: handleClick,
         onBlur: handleBlur,
+        onFocus,
       }),
-    externalForwardedProps: {},
-    externalSlotProps: {},
+    externalForwardedProps: {
+      tabIndex,
+      'aria-label': ariaLabel,
+      'aria-describedby': ariaDescribedby,
+      ...SelectDisplayProps,
+      id: buttonId,
+    },
     additionalProps: {
-      disableRipple: false,
+      disableRipple: true,
+      'aria-haspopup': 'listbox',
+      'aria-labelledby': [labelId, buttonId].filter(Boolean).join(' ') || undefined,
     },
     ownerState,
+    className: [SelectDisplayProps.className, classes.select, className],
   });
 
   const hiddenInputProps = useSlotProps({
@@ -417,26 +425,29 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         style: undefined,
       }),
     externalForwardedProps: other,
-    externalSlotProps: {},
-    additionalProps: {},
+    additionalProps: {
+      'aria-invalid': error,
+      ref: inputRef,
+      disabled,
+      autoFocus,
+    },
+    ownerState,
+    className: classes.nativeInput,
+  });
+
+  const listboxProps = useSlotProps({
+    elementType: List,
+    getSlotProps: getListboxProps,
+    additionalProps: {
+      'aria-hidden': !open,
+      'aria-labelledby': labelId,
+    },
     ownerState,
   });
 
   return (
     <React.Fragment>
-      <SelectSelect
-        {...buttonProps}
-        tabIndex={tabIndex}
-        aria-haspopup="listbox"
-        aria-label={ariaLabel}
-        aria-labelledby={[labelId, buttonId].filter(Boolean).join(' ') || undefined}
-        aria-describedby={ariaDescribedby}
-        onFocus={onFocus}
-        {...SelectDisplayProps}
-        className={clsx(SelectDisplayProps.className, classes.select, className)}
-        // The id is required for proper a11y
-        id={buttonId}
-      >
+      <SelectTrigger {...triggerProps}>
         {/* So the vertical align positioning algorithm kicks in. */}
         {isEmpty(display) ? (
           // notranslate needed while Google Translate will not fix zero-width space issue
@@ -444,15 +455,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         ) : (
           display
         )}
-      </SelectSelect>
-      <SelectNativeInput
-        {...hiddenInputProps}
-        aria-invalid={error}
-        ref={inputRef}
-        disabled={disabled}
-        className={classes.nativeInput}
-        autoFocus={autoFocus}
-      />
+      </SelectTrigger>
+      <SelectNativeInput {...hiddenInputProps} />
       <SelectIcon as={IconComponent} className={classes.icon} ownerState={ownerState} />
       {anchorElement && (
         <Popover
@@ -480,7 +484,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
             },
           }}
         >
-          <List {...getListboxProps()} aria-hidden={!open} aria-labelledby={labelId}>
+          <List {...listboxProps}>
             <SelectProvider value={contextValue}>{children}</SelectProvider>
           </List>
         </Popover>

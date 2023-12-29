@@ -49,6 +49,18 @@ describe('<Select />', () => {
       );
       expect(document.querySelector(`.${classes.select}`)).to.have.class('select');
     });
+
+    it('should be able to provide a custom tabIndex', () => {
+      const { getByRole } = render(
+        <Select
+          inputProps={{
+            tabIndex: 1,
+          }}
+          value=""
+        />,
+      );
+      expect(getByRole('combobox')).to.have.attribute('tabindex', '1');
+    });
   });
 
   it('should be able to mount the component', () => {
@@ -541,6 +553,12 @@ describe('<Select />', () => {
       const { getByRole } = render(<Select disabled={false} value="" />);
 
       expect(getByRole('combobox')).not.to.have.attribute('aria-disabled');
+    });
+
+    it('sets aria-invalid attribute on input when component has error', () => {
+      const { container } = render(<Select error value="" />);
+
+      expect(container.querySelector('input')).to.have.attribute('aria-invalid', 'true');
     });
 
     it('indicates that activating the button displays a listbox', () => {
@@ -1814,5 +1832,16 @@ describe('<Select />', () => {
     fireEvent.click(getByTestId('test-element'));
 
     expect(getByRole('combobox')).not.toHaveFocus();
+  });
+
+  describe('event callbacks', () => {
+    it('calls onFocus when the combobox is focused', () => {
+      const onFocus = spy();
+      const { getByRole } = render(<Select onFocus={onFocus} />);
+
+      fireEvent.focus(getByRole('combobox'));
+
+      expect(onFocus.callCount).to.equal(1);
+    });
   });
 });
