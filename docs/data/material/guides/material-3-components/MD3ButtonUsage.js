@@ -5,7 +5,7 @@ import { CssVarsProvider } from '@mui/material-next/styles';
 export default function MD3ButtonUsage() {
   return (
     <CssVarsProvider>
-      <Button variant="filled">Hello world</Button>
+      <Button variant="filled">Button</Button>
     </CssVarsProvider>
   );
 }
