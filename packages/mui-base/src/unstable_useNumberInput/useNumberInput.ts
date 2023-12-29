@@ -121,7 +121,7 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
     };
   }, [min, max, step, shiftMultiplier]);
 
-  const initialValue = defaultValueProp ?? null;
+  const initialValue = valueProp ?? defaultValueProp ?? null;
 
   const initialState = {
     value: initialValue,
