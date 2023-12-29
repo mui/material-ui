@@ -37,8 +37,8 @@ function stepValue(
   }
 
   return {
-    up: min ?? 0,
-    down: max ?? 0,
+    up: min ?? 1,
+    down: max ?? -1,
   }[direction];
 }
 
