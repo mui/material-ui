@@ -12,19 +12,20 @@ const style = {
 
 export default function ListDividers() {
   return (
-    <List sx={style} component="nav" aria-label="mailbox folders">
-      <ListItem button>
+    <List sx={style} aria-label="mailbox folders">
+      <ListItem>
         <ListItemText primary="Inbox" />
       </ListItem>
-      <Divider />
-      <ListItem button divider>
+      <Divider component="li" light />
+      <ListItem>
         <ListItemText primary="Drafts" />
       </ListItem>
-      <ListItem button>
+      <Divider component="li" light />
+      <ListItem>
         <ListItemText primary="Trash" />
       </ListItem>
-      <Divider light />
-      <ListItem button>
+      <Divider component="li" light />
+      <ListItem>
         <ListItemText primary="Spam" />
       </ListItem>
     </List>
