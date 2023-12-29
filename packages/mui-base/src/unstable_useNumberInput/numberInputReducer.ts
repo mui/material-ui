@@ -144,6 +144,11 @@ export function numberInputReducer(
       return handleToMinOrMax(state, context, 'max');
     case NumberInputActionTypes.decrementToMin:
       return handleToMinOrMax(state, context, 'min');
+    case NumberInputActionTypes.resetInputValue:
+      return {
+        ...state,
+        inputValue: String(state.value),
+      };
     default:
       return state;
   }

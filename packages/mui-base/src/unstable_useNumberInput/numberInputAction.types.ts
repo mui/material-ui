@@ -5,6 +5,7 @@ export const NumberInputActionTypes = {
   decrement: 'numberInput:decrement',
   decrementToMin: 'numberInput:decrementToMin',
   incrementToMax: 'numberInput:incrementToMax',
+  resetInputValue: 'numberInput:resetInputValue',
 } as const;
 
 interface NumberInputClampAction {
@@ -41,10 +42,16 @@ interface NumberInputDecrementToMinAction {
   event: React.KeyboardEvent;
 }
 
+interface NumberInputResetInputValueAction {
+  type: typeof NumberInputActionTypes.resetInputValue;
+  event: React.SyntheticEvent<HTMLInputElement>;
+}
+
 export type NumberInputAction =
   | NumberInputClampAction
   | NumberInputInputChangeAction
   | NumberInputIncrementAction
   | NumberInputDecrementAction
   | NumberInputIncrementToMaxAction
-  | NumberInputDecrementToMinAction;
+  | NumberInputDecrementToMinAction
+  | NumberInputResetInputValueAction;
