@@ -44,7 +44,6 @@ interface NumberInputDecrementToMinAction {
 
 interface NumberInputResetInputValueAction {
   type: typeof NumberInputActionTypes.resetInputValue;
-  event: React.SyntheticEvent<HTMLInputElement>;
 }
 
 export type NumberInputAction =

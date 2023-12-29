@@ -158,16 +158,17 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
     }
   }, [formControlContext, disabledProp, focused, onBlur]);
 
+  React.useEffect(() => {
+    if (isControlled && isNumber(value)) {
+      dispatch({
+        type: NumberInputActionTypes.resetInputValue,
+      });
+    }
+  }, [value, dispatch, isControlled]);
+
   const createHandleFocus =
     (otherHandlers: Partial<EventHandlers>) =>
     (event: React.FocusEvent<HTMLInputElement> & MuiCancellableEvent) => {
-      if (isControlled) {
-        dispatch({
-          type: NumberInputActionTypes.resetInputValue,
-          event,
-        });
-      }
-
       otherHandlers.onFocus?.(event);
 
       if (event.defaultMuiPrevented || event.defaultPrevented) {
