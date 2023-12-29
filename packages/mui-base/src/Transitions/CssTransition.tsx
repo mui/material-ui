@@ -62,7 +62,7 @@ const CssTransition = React.forwardRef(function CssTransition(
   const { requestedEnter, onEntering, onEntered, onExiting, onExited } =
     useTransitionStateManager();
 
-  const [isEntering, setIsEntering] = React.useState(!requestedEnter);
+  const [isEntering, setIsEntering] = React.useState(false);
 
   // The `isEntering` state (which is used to determine the right CSS class to apply)
   // is updated slightly (one animation frame) after the `requestedEnter` state is updated.
@@ -74,11 +74,9 @@ const CssTransition = React.forwardRef(function CssTransition(
         setIsEntering(true);
       });
     } else {
-      requestAnimationFrame(() => {
-        setIsEntering(false);
-      });
+      setIsEntering(false);
     }
-  });
+  }, [requestedEnter]);
 
   React.useEffect(() => {
     if (requestedEnter) {
