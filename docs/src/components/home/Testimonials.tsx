@@ -9,7 +9,7 @@ import MuiStatistics from 'docs/src/components/home/MuiStatistics';
 
 const UserFeedbacks = dynamic(() => import('./UserFeedbacks'));
 
-function Testimonials() {
+export default function Testimonials() {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0,
@@ -38,5 +38,3 @@ function Testimonials() {
     </Box>
   );
 }
-
-export default Testimonials;

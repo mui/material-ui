@@ -16,7 +16,9 @@ Here are a few guidelines that will help you along the way.
   - [CI checks and how to fix them](#ci-checks-and-how-to-fix-them)
   - [Updating the component API documentation](#updating-the-component-api-documentation)
   - [Coding style](#coding-style)
-- [How to add a new demo in the documentation](#how-to-add-a-new-demo-in-the-documentation)
+- [Contributing to the documentation](#contributing-to-the-documentation)
+  - [How to find docs issues to work on](#how-to-find-docs-issues-to-work-on)
+  - [How to add a new demo to the docs](#how-to-add-a-new-demo-to-the-docs)
 - [How can I use a change that hasn't been released yet?](#how-can-i-use-a-change-that-hasnt-been-released-yet)
 - [Roadmap](#roadmap)
 - [License](#license)
@@ -28,7 +30,7 @@ Please read [the full text](https://github.com/mui/.github/blob/master/CODE_OF_C
 
 ## A large spectrum of contributions
 
-There are [many ways](https://mui.com/material-ui/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project) to contribute to MUI, and writing code is only one part of the story—documentation improvements can be just as important as code changes.
+There are [many ways](https://mui.com/material-ui/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project) to contribute to MUI, and writing code is only one part of the story—[documentation improvements](#contributing-to-the-documentation) can be just as important as code changes.
 If you have an idea for an improvement to the code or the docs, we encourage you to open an issue as a first step, to discuss your proposed changes with the maintainers before proceeding.
 
 ## Your first pull request
@@ -269,11 +271,24 @@ MUI Core projects use prettier and eslint, so if possible, enable linting in you
 
 When you submit a PR, these checks are run again by our continuous integration tools, but hopefully your code is already clean!
 
-## How to add a new demo to the documentation
+## Contributing to the documentation
+
+Contributing to open-source docs involves a lot more than just fixing typos—developers frequently request more in-depth explanations of component features, and this requires both coding and technical writing to accomplish.
+Every documentation PR will be reviewed by an editor following [MUI's writing style guide](https://mui-org.notion.site/Writing-style-guide-2a957a4168a54d47b14bae026d06a24b), and if you plan to contribute regularly, you should familiarize yourself with this guide to speed up the editing process.
+
+### How to find docs issues to work on
+
+If you're interested in contributing to the docs but aren't sure where to start, you can use this search prompt in the GitHub repo to find open issues tagged with both `docs` and `ready to take`:
+
+`is:issue is:open label:docs label:"ready to take"`
+
+Or [follow this link directly to the results of that search](https://github.com/mui/material-ui/issues?q=is%3Aissue+is%3Aopen+label%3Adocs+label%3A%22ready+to+take%22).
+
+### How to add a new demo to the docs
 
 The following steps explain how to add a new demo to the docs using the Button component as an example:
 
-### 1. Add a new component file to the directory
+#### 1. Add a new component file to the directory
 
 Add the new file to the component's corresponding directory...
 
@@ -283,7 +298,7 @@ docs/src/pages/components/buttons/
 
 ...and give it a name: how about `SuperButtons.tsx`?
 
-### 2. Write the demo code
+#### 2. Write the demo code
 
 We uses TypeScript to document our components.
 We prefer demos written in TS (using the `.tsx` file format).
@@ -292,7 +307,7 @@ After creating a TypeScript demo, run `yarn docs:typescript:formatted` to automa
 
 If you're not familiar with TypeScript, you can write the demo in JavaScript, and a core contributor may help you migrate it to TS.
 
-### 3. Edit the page's Markdown file
+#### 3. Edit the page's Markdown file
 
 The Markdown file in the component's respective folder—in this case, `/buttons/buttons.md`—is the source of content for the document.
 Any changes you make there will be reflected on the website.
@@ -307,7 +322,7 @@ Add a header and a brief description of the demo and its use case, along with th
 +{{"demo": "pages/components/buttons/SuperButtons.js"}}
 ```
 
-### 4. Submit your PR
+#### 4. Submit your PR
 
 Now you're ready to [open a PR](#sending-a-pull-request) to add your new demo to the docs.
 

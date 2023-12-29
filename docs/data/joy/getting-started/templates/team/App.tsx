@@ -422,7 +422,7 @@ export default function TeamExample() {
                     <ListItem key={companyIndex} sx={{ alignItems: 'flex-start' }}>
                       <ListItemDecorator
                         sx={{
-                          '&:before': {
+                          '&::before': {
                             content: '""',
                             position: 'absolute',
                             height: '100%',

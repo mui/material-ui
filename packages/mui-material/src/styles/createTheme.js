@@ -4,7 +4,7 @@ import {
   unstable_defaultSxConfig as defaultSxConfig,
   unstable_styleFunctionSx as styleFunctionSx,
 } from '@mui/system';
-import MuiError from '@mui/utils/macros/MuiError.macro';
+import MuiError from '@mui-internal/babel-macros/MuiError.macro';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import createMixins from './createMixins';
 import createPalette from './createPalette';

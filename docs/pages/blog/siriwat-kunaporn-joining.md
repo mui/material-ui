@@ -3,8 +3,8 @@ title: Siriwat Kunaporn joins MUI
 description: We are excited to share that Siriwat Kunaporn has joined MUI.
 date: 2021-05-17T00:00:00.000Z
 authors: ['oliviertassinari']
-card: true
 tags: ['Company']
+card: true
 ---
 
 We are excited to share that [Siriwat Kunaporn](https://twitter.com/siriwatknp) (Jun) has joined MUI.
