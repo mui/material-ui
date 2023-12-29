@@ -48,7 +48,7 @@
     "@mui/styles": "^5.15.2",
     "@mui/types": "^7.2.11",
     "@types/chai": "^4.3.11",
-    "@types/react": "^18.2.42",
+    "@types/react": "^18.2.45",
     "chai": "^4.3.10",
     "react": "^18.2.0"
   },
