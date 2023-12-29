@@ -589,4 +589,30 @@ describe('<NumberInput />', () => {
       expect(getByTestId('adornment')).not.to.equal(null);
     });
   });
+
+  it('Should update NumberInput value when value prop is set through side effects', async () => {
+    function App() {
+      const [value, setValue] = React.useState(10);
+
+      return (
+        <div>
+          <button data-testid="button" onClick={() => setValue(20)}>
+            Enable
+          </button>
+          <NumberInput value={value} />
+        </div>
+      );
+    }
+    const { getByRole, getByTestId } = render(<App />);
+
+    const input = getByRole('textbox') as HTMLInputElement;
+    const button = getByTestId('button') as HTMLButtonElement;
+
+    act(() => {
+      fireEvent.click(button);
+    });
+
+    await userEvent.click(input);
+    expect(input.value).to.equal('20');
+  });
 });
