@@ -4,6 +4,7 @@
   "main": "build/index.js",
   "module": "build/index.mjs",
   "types": "build/index.d.ts",
+  "private": true,
   "scripts": {
     "clean": "rimraf build types",
     "watch": "tsup --watch --tsconfig tsconfig.build.json",
