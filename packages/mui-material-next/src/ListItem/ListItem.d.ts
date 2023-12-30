@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
+import { OverridableComponent, OverrideProps } from '@mui/types';
 import { Theme } from '../styles';
-import { ExtendButtonBase } from '../ButtonBase';
-import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { ExtendButtonBase } from '../ButtonBase/ButtonBase.types';
 import { ListItemClasses } from './listItemClasses';
 
 export interface ListItemComponentsPropsOverrides {}

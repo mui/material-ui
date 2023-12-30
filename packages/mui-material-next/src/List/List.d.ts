@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
+import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/types';
 import { Theme } from '..';
-import { OverridableComponent, OverridableTypeMap, OverrideProps } from '../OverridableComponent';
 import { ListClasses } from './listClasses';
 
 export interface ListOwnProps {

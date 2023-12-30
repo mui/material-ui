@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { InternalStandardProps as StandardProps, Theme } from '@mui/material';
 import { ListItemIconClasses } from './listItemIconClasses';
 
 export interface ListItemIconProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
