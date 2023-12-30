@@ -1,6 +1,6 @@
 # Contributing
 
-The Material You components are targeted for v6, so they will be developed on the `material-next` package.
+The Material You components are targeted for v7, so they will be developed on the `material-next` package.
 
 The progress for each component will be tracked in a separate GitHub issue. If you wish to contribute to the migration go to a component's linked issue to see what tasks are missing (see progress tracker [here](https://github.com/mui/material-ui/issues/29345)).
 
@@ -8,7 +8,7 @@ If the issue doesn't exist, create it, name it `[<ComponentName>][material-next]
 
 ## Steps
 
-1. Copy component files from `material` (v5) to `material-next`, including tests, types, and utils. Keep in mind to:
+1. Copy component files from `material` to `material-next`, including tests, types, and utils. Keep in mind to:
    - Add component export to `packages/mui-material-next/src/index.ts`
    - Change imports from `@mui/material` to `@mui/material-next`
    - If there are utils that don't exist in `material-next`, add them by copying from `material`
@@ -18,8 +18,8 @@ If the issue doesn't exist, create it, name it `[<ComponentName>][material-next]
 4. Drop support for `ThemeProvider` in favor of `CssVarsProvider`. In practice, this means:
    - Consuming tokens from `theme.vars` instead of `theme`
    - In tests, using `CssVarsProvider` and `extendTheme` (both imported from `@mui/material-next/styles`) instead of `ThemeProvider` and `createTheme`, as well as providing the same `CssVarsProvier` and `extendTheme` to `describeConformance`'s `ThemeProvider` and `createTheme` options.
-5. Implement Material You design specs. Add missing tokens if necessary. Use [material-web tokens](https://github.com/material-components/material-web/tree/main/tokens/v0_172) as a reference for token values
-6. Add component playground to v5 docs, take the [Slider playground](https://mui.com/material-ui/react-slider/#material-you-version) as an example
+5. Implement Material You design specs. Add missing tokens if necessary. Use [material-web tokens](https://github.com/material-components/material-web/tree/main/tokens) as a reference for token values
+6. Add component playground to the docs, take the [Slider playground](https://mui.com/material-ui/react-slider/#material-you-version) as an example
 7. Refactor styles to use component CSS Variables, following [material-web tokens](https://github.com/material-components/material-web/tree/main/tokens) and Joy UI's equivalent component (if it exists) as guides.
 
 ## Other things to keep in mind
