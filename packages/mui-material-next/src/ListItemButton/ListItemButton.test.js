@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { describeConformance, act, createRenderer, fireEvent } from '@mui-internal/test-utils';
-import ListItemButton, { listItemButtonClasses as classes } from '@mui/material/ListItemButton';
-import ButtonBase from '@mui/material/ButtonBase';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import ListItemButton, { listItemButtonClasses as classes } from '@mui/material-next/ListItemButton';
+import ButtonBase from '@mui/material-next/ButtonBase';
+import { ThemeProvider, createTheme } from '@mui/material-next/styles';
 import ListContext from '../List/ListContext';
 
 describe('<ListItemButton />', () => {

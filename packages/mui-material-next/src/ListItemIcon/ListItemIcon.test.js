@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createRenderer, describeConformance } from '@mui-internal/test-utils';
-import ListItemIcon, { listItemIconClasses as classes } from '@mui/material/ListItemIcon';
+import ListItemIcon, { listItemIconClasses as classes } from '@mui/material-next/ListItemIcon';
 
 describe('<ListItemIcon />', () => {
   const { render } = createRenderer();

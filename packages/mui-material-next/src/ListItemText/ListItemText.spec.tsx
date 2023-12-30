@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ListItemText } from '@mui/material';
+import { ListItemText } from '@mui/material-next';
 
 const CustomComponent: React.FC<{ prop1: string; prop2: number }> = function CustomComponent() {
   return <div />;

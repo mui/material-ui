@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { describeConformance, createRenderer } from '@mui-internal/test-utils';
-import ListSubheader, { listSubheaderClasses as classes } from '@mui/material/ListSubheader';
+import ListSubheader, { listSubheaderClasses as classes } from '@mui/material-next/ListSubheader';
 
 describe('<ListSubheader />', () => {
   const { render } = createRenderer();

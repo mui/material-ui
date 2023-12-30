@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ListItem from '@mui/material/ListItem';
+import ListItem from '@mui/material-next/ListItem';
 import { styled } from '@mui/material/styles';
 
 // button: boolean
