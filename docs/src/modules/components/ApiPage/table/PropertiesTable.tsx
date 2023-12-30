@@ -108,7 +108,7 @@ const StyledTable = styled('table')(
       '& .MuiApi-table-item-type': {
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
         borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
-        backgroundColor: alpha(darkTheme.palette.primary[900], 0.5),
+        backgroundColor: alpha(darkTheme.palette.primary[900], 0.3),
       },
       '& .MuiApi-table-item-default': {
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,

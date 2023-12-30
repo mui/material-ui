@@ -207,7 +207,7 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/guides/shadow-dom', title: 'Shadow DOM' },
       {
         pathname: '/material-ui/guides/nextjs',
-        title: 'Next.js Integration',
+        title: 'Next.js integration',
         newFeature: true,
       },
     ],
