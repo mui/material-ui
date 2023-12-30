@@ -8,7 +8,7 @@ import {
   fireEvent,
   queries,
 } from '@mui-internal/test-utils';
-import { ThemeProvider, createTheme } from '@mui/material-next/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ListItemText from '@mui/material-next/ListItemText';
 import ListItemSecondaryAction from '@mui/material-next/ListItemSecondaryAction';
 import ListItem, { listItemClasses as classes } from '@mui/material-next/ListItem';
