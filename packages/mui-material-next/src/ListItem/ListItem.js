@@ -68,96 +68,99 @@ export const ListItemRoot = styled('div', {
   name: 'MuiListItem',
   slot: 'Root',
   overridesResolver,
-})(({ theme, ownerState }) => ({
-  display: 'flex',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-  position: 'relative',
-  textDecoration: 'none',
-  width: '100%',
-  boxSizing: 'border-box',
-  textAlign: 'left',
-  ...(!ownerState.disablePadding && {
-    paddingTop: 8,
-    paddingBottom: 8,
-    ...(ownerState.dense && {
-      paddingTop: 4,
-      paddingBottom: 4,
-    }),
-    ...(!ownerState.disableGutters && {
-      paddingLeft: 16,
-      paddingRight: 16,
+})(({ theme, ownerState }) => {
+  const { vars: tokens } = theme;
+  return {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    position: 'relative',
+    textDecoration: 'none',
+    width: '100%',
+    boxSizing: 'border-box',
+    textAlign: 'left',
+    ...(!ownerState.disablePadding && {
+      paddingTop: 8,
+      paddingBottom: 8,
+      ...(ownerState.dense && {
+        paddingTop: 4,
+        paddingBottom: 4,
+      }),
+      ...(!ownerState.disableGutters && {
+        paddingLeft: 16,
+        paddingRight: 16,
+      }),
+      ...(!!ownerState.secondaryAction && {
+        // Add some space to avoid collision as `ListItemSecondaryAction`
+        // is absolutely positioned.
+        paddingRight: 48,
+      }),
     }),
     ...(!!ownerState.secondaryAction && {
+      [`& > .${listItemButtonClasses.root}`]: {
+        paddingRight: 48,
+      },
+    }),
+    [`&.${listItemClasses.focusVisible}`]: {
+      backgroundColor: (theme.vars || theme).palette.action.focus,
+    },
+    [`&.${listItemClasses.selected}`]: {
+      backgroundColor: theme.vars
+        ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+        : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      [`&.${listItemClasses.focusVisible}`]: {
+        backgroundColor: theme.vars
+          ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
+          : alpha(
+              theme.palette.primary.main,
+              theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+            ),
+      },
+    },
+    [`&.${listItemClasses.disabled}`]: {
+      opacity: (theme.vars || theme).palette.action.disabledOpacity,
+    },
+    ...(ownerState.alignItems === 'flex-start' && {
+      alignItems: 'flex-start',
+    }),
+    ...(ownerState.divider && {
+      borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
+      backgroundClip: 'padding-box',
+    }),
+    ...(ownerState.button && {
+      transition: theme.transitions.create('background-color', {
+        duration: theme.transitions.duration.shortest,
+      }),
+      '&:hover': {
+        textDecoration: 'none',
+        backgroundColor: (theme.vars || theme).palette.action.hover,
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
+      },
+      [`&.${listItemClasses.selected}:hover`]: {
+        backgroundColor: theme.vars
+          ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+          : alpha(
+              theme.palette.primary.main,
+              theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+            ),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: theme.vars
+            ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+            : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+        },
+      },
+    }),
+    ...(ownerState.hasSecondaryAction && {
       // Add some space to avoid collision as `ListItemSecondaryAction`
       // is absolutely positioned.
       paddingRight: 48,
     }),
-  }),
-  ...(!!ownerState.secondaryAction && {
-    [`& > .${listItemButtonClasses.root}`]: {
-      paddingRight: 48,
-    },
-  }),
-  [`&.${listItemClasses.focusVisible}`]: {
-    backgroundColor: (theme.vars || theme).palette.action.focus,
-  },
-  [`&.${listItemClasses.selected}`]: {
-    backgroundColor: theme.vars
-      ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-      : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-    [`&.${listItemClasses.focusVisible}`]: {
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-        : alpha(
-            theme.palette.primary.main,
-            theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-          ),
-    },
-  },
-  [`&.${listItemClasses.disabled}`]: {
-    opacity: (theme.vars || theme).palette.action.disabledOpacity,
-  },
-  ...(ownerState.alignItems === 'flex-start' && {
-    alignItems: 'flex-start',
-  }),
-  ...(ownerState.divider && {
-    borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
-    backgroundClip: 'padding-box',
-  }),
-  ...(ownerState.button && {
-    transition: theme.transitions.create('background-color', {
-      duration: theme.transitions.duration.shortest,
-    }),
-    '&:hover': {
-      textDecoration: 'none',
-      backgroundColor: (theme.vars || theme).palette.action.hover,
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
-      },
-    },
-    [`&.${listItemClasses.selected}:hover`]: {
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-        : alpha(
-            theme.palette.primary.main,
-            theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-          ),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-          : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-      },
-    },
-  }),
-  ...(ownerState.hasSecondaryAction && {
-    // Add some space to avoid collision as `ListItemSecondaryAction`
-    // is absolutely positioned.
-    paddingRight: 48,
-  }),
-}));
+  };
+});
 
 const ListItemContainer = styled('li', {
   name: 'MuiListItem',
