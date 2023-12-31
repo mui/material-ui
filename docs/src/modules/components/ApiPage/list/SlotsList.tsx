@@ -53,8 +53,9 @@ export type SlotsFormatedParams = {
 
 type HashParams = { componentName?: string; className: string };
 
-export const getHash = ({ componentName, className }: HashParams) =>
-  `${componentName ? `${componentName}-` : ''}css-${className}`;
+export function getHash({ componentName, className }: HashParams) {
+  return `${componentName ? `${componentName}-` : ''}css-${className}`;
+}
 
 interface SlotsListProps {
   slots: SlotsFormatedParams[];

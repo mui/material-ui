@@ -42,8 +42,9 @@ type ClassesListProps = {
 };
 type HashParams = { componentName?: string; className: string };
 
-export const getHash = ({ componentName, className }: HashParams) =>
-  `${componentName ? `${componentName}-` : ''}classes-${className}`;
+export function getHash({ componentName, className }: HashParams) {
+  return `${componentName ? `${componentName}-` : ''}classes-${className}`;
+}
 
 export default function ClassesList(props: ClassesListProps) {
   const { classes, displayOption, componentName, displayClassKeys } = props;

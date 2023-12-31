@@ -252,14 +252,12 @@ export default function ApiPage(props) {
             />
           </React.Fragment>
         ) : null}
-
         <PropertiesSection
           properties={componentProps}
           propertiesDescriptions={propDescriptions}
           targetName={pageContent.name}
           spreadHint={spreadHint}
         />
-
         {cssComponent && (
           <React.Fragment>
             <span
@@ -271,7 +269,6 @@ export default function ApiPage(props) {
             <br />
           </React.Fragment>
         )}
-
         <div
           className="MuiCallout-root MuiCallout-info"
           dangerouslySetInnerHTML={{ __html: refHint }}
@@ -281,7 +278,6 @@ export default function ApiPage(props) {
             marginTop: 0,
           }}
         />
-
         {inheritance && (
           <React.Fragment>
             <Heading hash="inheritance" level="h3" />
@@ -297,7 +293,6 @@ export default function ApiPage(props) {
             <Divider />
           </React.Fragment>
         )}
-
         {pageContent.themeDefaultProps && (
           <React.Fragment>
             <Heading hash="theme-default-props" level="h3" />
@@ -311,7 +306,6 @@ export default function ApiPage(props) {
             <Divider sx={{ 'hr&&': { mb: 0 } }} />
           </React.Fragment>
         )}
-
         <SlotsSection
           componentSlots={componentSlots}
           slotDescriptions={slotDescriptions}
@@ -321,7 +315,6 @@ export default function ApiPage(props) {
             t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink)
           }
         />
-
         <ClassesSection
           componentClasses={componentClasses}
           componentName={pageContent.name}

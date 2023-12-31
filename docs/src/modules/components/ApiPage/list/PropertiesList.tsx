@@ -1,6 +1,5 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
@@ -22,7 +21,7 @@ const StyledApiItem = styled(ExpandableApiItem)(
       display: 'flex',
       flexDirection: 'column',
       gap: 8,
-      '&>p': {
+      '& > p': {
         margin: 0,
       },
       '& .prop-list-title': {
@@ -38,7 +37,7 @@ const StyledApiItem = styled(ExpandableApiItem)(
       },
     },
     '& .prop-list-deprecated': {
-      '& code ': { all: 'unset' },
+      '& code': { all: 'unset' },
     },
     '& .prop-list-default-props': {
       ...theme.typography.body2,
@@ -55,7 +54,7 @@ const StyledApiItem = styled(ExpandableApiItem)(
         marginTop: 2,
         marginBottom: 0,
       },
-      '&>code': {
+      '& > code': {
         borderRadius: 8,
         padding: 12,
         width: '100%',
@@ -76,7 +75,6 @@ const StyledApiItem = styled(ExpandableApiItem)(
           },
         },
       },
-
       '& .prop-list-default-props': {
         color: `var(--muidocs-palette-grey-300, ${darkTheme.palette.grey[300]})`,
       },
@@ -84,7 +82,8 @@ const StyledApiItem = styled(ExpandableApiItem)(
   }),
 );
 
-function PropDescription({ description }: { description: string }) {
+function PropDescription(props: { description: string }) {
+  const { description } = props;
   const isUlPresent = description.includes('<ul>');
 
   const ComponentToRender = isUlPresent ? 'div' : 'p';
@@ -99,11 +98,7 @@ function PropDescription({ description }: { description: string }) {
   );
 }
 
-PropDescription.propTypes = {
-  description: PropTypes.string.isRequired,
-};
-
-export const getHash = ({
+export function getHash({
   targetName,
   propName,
   hooksParameters,
@@ -113,7 +108,7 @@ export const getHash = ({
   propName: string;
   hooksParameters?: boolean;
   hooksReturnValue?: boolean;
-}) => {
+}) {
   let sectionName = 'prop';
   if (hooksParameters) {
     sectionName = 'parameters';
@@ -121,7 +116,7 @@ export const getHash = ({
     sectionName = 'return-value';
   }
   return `${targetName ? `${targetName}-` : ''}${sectionName}-${propName}`;
-};
+}
 
 export interface PropDescriptionParams {
   targetName: string;
@@ -181,7 +176,6 @@ export default function PropertiesList(props: PropertiesListProps) {
             displayOption={displayOption}
           >
             {description && <PropDescription description={description} />}
-
             {requiresRef && (
               <Alert
                 severity="warning"
@@ -200,7 +194,6 @@ export default function PropertiesList(props: PropertiesListProps) {
                 />
               </Alert>
             )}
-
             {additionalInfo.map((key) => (
               <p
                 className="prop-list-additional-description  MuiApi-collapsible"
@@ -256,14 +249,12 @@ export default function PropertiesList(props: PropertiesListProps) {
               {signature && (
                 <div className="prop-list-signature MuiApi-collapsible">
                   <span className="prop-list-title">{t('api-docs.signature')}:</span>
-
                   <div className="prop-list-content">
                     <code
                       dangerouslySetInnerHTML={{
                         __html: signature,
                       }}
                     />
-
                     {signatureArgs && (
                       <div>
                         <ul>
