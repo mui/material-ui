@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses, isHostComponent } from '@mui/base';
 import { chainPropTypes, elementTypeAcceptingRef } from '@mui/utils';
-import { alpha } from '@mui/system';
 import isMuiElement from '@mui/utils/isMuiElement';
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import useForkRef from '@mui/utils/useForkRef';
@@ -69,7 +68,6 @@ export const ListItemRoot = styled('div', {
   slot: 'Root',
   overridesResolver,
 })(({ theme, ownerState }) => {
-  const { vars: tokens } = theme;
   return {
     display: 'flex',
     justifyContent: 'flex-start',
@@ -102,29 +100,23 @@ export const ListItemRoot = styled('div', {
       },
     }),
     [`&.${listItemClasses.focusVisible}`]: {
-      backgroundColor: (theme.vars || theme).palette.action.focus,
+      backgroundColor: theme.vars.palette.action.focus,
     },
     [`&.${listItemClasses.selected}`]: {
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-        : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      backgroundColor: `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`,
+
       [`&.${listItemClasses.focusVisible}`]: {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-          : alpha(
-              theme.palette.primary.main,
-              theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-            ),
+        backgroundColor: `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`,
       },
     },
     [`&.${listItemClasses.disabled}`]: {
-      opacity: (theme.vars || theme).palette.action.disabledOpacity,
+      opacity: theme.vars.palette.action.disabledOpacity,
     },
     ...(ownerState.alignItems === 'flex-start' && {
       alignItems: 'flex-start',
     }),
     ...(ownerState.divider && {
-      borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
+      borderBottom: `1px solid ${theme.vars.palette.divider}`,
       backgroundClip: 'padding-box',
     }),
     ...(ownerState.button && {
@@ -133,24 +125,18 @@ export const ListItemRoot = styled('div', {
       }),
       '&:hover': {
         textDecoration: 'none',
-        backgroundColor: (theme.vars || theme).palette.action.hover,
+        backgroundColor: theme.vars.palette.action.hover,
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           backgroundColor: 'transparent',
         },
       },
       [`&.${listItemClasses.selected}:hover`]: {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-          : alpha(
-              theme.palette.primary.main,
-              theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-            ),
+        backgroundColor: `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`,
+
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
-          backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-            : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+          backgroundColor: `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`,
         },
       },
     }),

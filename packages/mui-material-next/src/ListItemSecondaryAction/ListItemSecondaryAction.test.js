@@ -5,6 +5,7 @@ import ListItem from '@mui/material-next/ListItem';
 import ListItemSecondaryAction, {
   listItemSecondaryActionClasses as classes,
 } from '@mui/material-next/ListItemSecondaryAction';
+import { CssVarsProvider } from '@mui/material-next/styles';
 
 describe('<ListItemSecondaryAction />', () => {
   const { render } = createRenderer();
@@ -16,6 +17,7 @@ describe('<ListItemSecondaryAction />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiListItemSecondaryAction',
     skip: ['componentProp', 'componentsProp', 'themeVariants'],
+    ThemeProvider: CssVarsProvider,
   }));
 
   it('should render without classes that disable gutters', () => {

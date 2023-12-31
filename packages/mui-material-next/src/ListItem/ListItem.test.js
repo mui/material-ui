@@ -8,7 +8,7 @@ import {
   fireEvent,
   queries,
 } from '@mui-internal/test-utils';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 import ListItemText from '@mui/material-next/ListItemText';
 import ListItemSecondaryAction from '@mui/material-next/ListItemSecondaryAction';
 import ListItem, { listItemClasses as classes } from '@mui/material-next/ListItem';
@@ -230,7 +230,7 @@ describe('<ListItem />', () => {
       marginTop: '13px',
     };
 
-    const theme = createTheme({
+    const theme = extendTheme({
       components: {
         MuiListItem: {
           styleOverrides: {
@@ -241,11 +241,11 @@ describe('<ListItem />', () => {
     });
 
     const { container } = render(
-      <ThemeProvider theme={theme}>
+      <CssVarsProvider theme={theme}>
         <ListItem>
           Test<ListItemSecondaryAction>SecondaryAction</ListItemSecondaryAction>
         </ListItem>
-      </ThemeProvider>,
+      </CssVarsProvider>,
     );
 
     const listItemContainer = container.getElementsByClassName(classes.container)[0];

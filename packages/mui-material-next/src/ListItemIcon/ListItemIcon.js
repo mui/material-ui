@@ -28,7 +28,7 @@ const ListItemIconRoot = styled('div', {
   },
 })(({ theme, ownerState }) => ({
   minWidth: 56,
-  color: (theme.vars || theme).palette.action.active,
+  color: theme.vars.palette.action.active,
   flexShrink: 0,
   display: 'inline-flex',
   ...(ownerState.alignItems === 'flex-start' && {

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { describeConformance, createRenderer } from '@mui-internal/test-utils';
 import ListSubheader, { listSubheaderClasses as classes } from '@mui/material-next/ListSubheader';
+import { CssVarsProvider } from '@mui/material-next/styles';
 
 describe('<ListSubheader />', () => {
   const { render } = createRenderer();
@@ -14,6 +15,7 @@ describe('<ListSubheader />', () => {
     refInstanceof: window.HTMLLIElement,
     testVariantProps: { disableGutters: true },
     skip: ['componentsProp'],
+    ThemeProvider: CssVarsProvider,
   }));
 
   it('should display primary color', () => {

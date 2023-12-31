@@ -5,7 +5,7 @@ import ListItemButton, {
   listItemButtonClasses as classes,
 } from '@mui/material-next/ListItemButton';
 import ButtonBase from '@mui/material-next/ButtonBase';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 import ListContext from '../List/ListContext';
 
 describe('<ListItemButton />', () => {
@@ -175,7 +175,7 @@ describe('<ListItemButton />', () => {
     });
 
     it('should rendered as LinkComponent (from theme) when href is provided', () => {
-      const theme = createTheme({
+      const theme = extendTheme({
         components: {
           MuiListItemButton: {
             defaultProps: {
@@ -185,9 +185,9 @@ describe('<ListItemButton />', () => {
         },
       });
       const { container, getByTestId } = render(
-        <ThemeProvider theme={theme}>
+        <CssVarsProvider theme={theme}>
           <ListItemButton href={href} />,
-        </ThemeProvider>,
+        </CssVarsProvider>,
       );
       const button = container.firstChild;
 
@@ -197,7 +197,7 @@ describe('<ListItemButton />', () => {
     });
 
     it('should rendered as LinkComponent (from theme MuiButtonBase) when href is provided', () => {
-      const theme = createTheme({
+      const theme = extendTheme({
         components: {
           MuiButtonBase: {
             defaultProps: {
@@ -207,9 +207,9 @@ describe('<ListItemButton />', () => {
         },
       });
       const { container, getByTestId } = render(
-        <ThemeProvider theme={theme}>
+        <CssVarsProvider theme={theme}>
           <ListItemButton href={href} />,
-        </ThemeProvider>,
+        </CssVarsProvider>,
       );
       const button = container.firstChild;
 
@@ -224,7 +224,7 @@ describe('<ListItemButton />', () => {
         return <a data-testid="wrong-link" ref={ref} {...props} />;
       });
 
-      const theme = createTheme({
+      const theme = extendTheme({
         components: {
           MuiListItemButton: {
             defaultProps: {
@@ -239,9 +239,9 @@ describe('<ListItemButton />', () => {
         },
       });
       const { container, getByTestId } = render(
-        <ThemeProvider theme={theme}>
+        <CssVarsProvider theme={theme}>
           <ListItemButton href={href} />,
-        </ThemeProvider>,
+        </CssVarsProvider>,
       );
       const button = container.firstChild;
 
