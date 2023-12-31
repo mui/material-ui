@@ -1,21 +1,21 @@
 'use client';
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { chainPropTypes, visuallyHidden } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import useTheme from '../styles/useTheme';
-import {
-  capitalize,
-  useForkRef,
-  useIsFocusVisible,
-  useControlled,
-  unstable_useId as useId,
-} from '../utils';
+import { chainPropTypes, visuallyHidden } from '@mui/utils';
+import clsx from 'clsx';
+import PropTypes from 'prop-types';
+import * as React from 'react';
 import Star from '../internal/svg-icons/Star';
 import StarBorder from '../internal/svg-icons/StarBorder';
-import useThemeProps from '../styles/useThemeProps';
 import styled, { slotShouldForwardProp } from '../styles/styled';
+import useTheme from '../styles/useTheme';
+import useThemeProps from '../styles/useThemeProps';
+import {
+  capitalize,
+  useControlled,
+  useForkRef,
+  unstable_useId as useId,
+  useIsFocusVisible,
+} from '../utils';
 import ratingClasses, { getRatingUtilityClass } from './ratingClasses';
 
 function clamp(value, min, max) {
@@ -89,6 +89,7 @@ const RatingRoot = styled('span', {
   color: '#faaf00',
   cursor: 'pointer',
   textAlign: 'left',
+  width: '120px',
   WebkitTapHighlightColor: 'transparent',
   [`&.${ratingClasses.disabled}`]: {
     opacity: (theme.vars || theme).palette.action.disabledOpacity,
@@ -100,9 +101,11 @@ const RatingRoot = styled('span', {
   [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
   ...(ownerState.size === 'small' && {
     fontSize: theme.typography.pxToRem(18),
+    width: '90px',
   }),
   ...(ownerState.size === 'large' && {
     fontSize: theme.typography.pxToRem(30),
+    width: '150px',
   }),
   // TODO v6: use the .Mui-readOnly global state class
   ...(ownerState.readOnly && {
