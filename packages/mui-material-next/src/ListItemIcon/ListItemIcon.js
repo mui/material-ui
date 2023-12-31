@@ -26,15 +26,18 @@ const ListItemIconRoot = styled('div', {
 
     return [styles.root, ownerState.alignItems === 'flex-start' && styles.alignItemsFlexStart];
   },
-})(({ theme, ownerState }) => ({
-  minWidth: 56,
-  color: theme.vars.palette.action.active,
-  flexShrink: 0,
-  display: 'inline-flex',
-  ...(ownerState.alignItems === 'flex-start' && {
-    marginTop: 8,
-  }),
-}));
+})(({ theme, ownerState }) => {
+  const { vars: tokens } = theme;
+  return {
+    minWidth: 56,
+    color: tokens.sys.color.onSurfaceVariant,
+    flexShrink: 0,
+    display: 'inline-flex',
+    ...(ownerState.alignItems === 'flex-start' && {
+      marginTop: 8,
+    }),
+  };
+});
 
 /**
  * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
