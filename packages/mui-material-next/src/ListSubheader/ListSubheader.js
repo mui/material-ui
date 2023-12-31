@@ -38,34 +38,38 @@ const ListSubheaderRoot = styled('li', {
       !ownerState.disableSticky && styles.sticky,
     ];
   },
-})(({ theme, ownerState }) => ({
-  boxSizing: 'border-box',
-  lineHeight: '48px',
-  listStyle: 'none',
-  color: theme.vars.palette.text.secondary,
-  fontFamily: theme.typography.fontFamily,
-  fontWeight: theme.typography.fontWeightMedium,
-  fontSize: theme.typography.pxToRem(14),
-  ...(ownerState.color === 'primary' && {
-    color: theme.vars.palette.primary.main,
-  }),
-  ...(ownerState.color === 'inherit' && {
-    color: 'inherit',
-  }),
-  ...(!ownerState.disableGutters && {
-    paddingLeft: 16,
-    paddingRight: 16,
-  }),
-  ...(ownerState.inset && {
-    paddingLeft: 72,
-  }),
-  ...(!ownerState.disableSticky && {
-    position: 'sticky',
-    top: 0,
-    zIndex: 1,
-    backgroundColor: theme.vars.palette.background.paper,
-  }),
-}));
+})(({ theme, ownerState }) => {
+  const { vars: tokens } = theme;
+
+  return {
+    boxSizing: 'border-box',
+    lineHeight: '48px',
+    listStyle: 'none',
+    color: tokens.sys.color.onSurfaceVariant,
+    fontFamily: tokens.sys.typescale.label.large.family,
+    fontWeight: tokens.sys.typescale.label.large.weight,
+    fontSize: theme.typography.pxToRem(14),
+    ...(ownerState.color === 'primary' && {
+      color: theme.vars.palette.primary.main,
+    }),
+    ...(ownerState.color === 'inherit' && {
+      color: 'inherit',
+    }),
+    ...(!ownerState.disableGutters && {
+      paddingLeft: 16,
+      paddingRight: 16,
+    }),
+    ...(ownerState.inset && {
+      paddingLeft: 72,
+    }),
+    ...(!ownerState.disableSticky && {
+      position: 'sticky',
+      top: 0,
+      zIndex: 1,
+      backgroundColor: tokens.sys.color[`on${capitalize(ownerState.color || 'primary')}`],
+    }),
+  };
+});
 
 const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiListSubheader' });
