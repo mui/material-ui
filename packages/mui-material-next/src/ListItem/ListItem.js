@@ -179,8 +179,6 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     children: childrenProp,
     className,
     component: componentProp,
-    components = {},
-    componentsProps = {},
     ContainerComponent = 'li',
     ContainerProps: { className: ContainerClassName, ...ContainerProps } = {},
     dense = false,
@@ -243,8 +241,8 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
 
   const handleRef = useForkRef(listItemRef, ref);
 
-  const Root = slots.root || components.Root || ListItemRoot;
-  const rootProps = slotProps.root || componentsProps.root || {};
+  const Root = slots.root || ListItemRoot;
+  const rootProps = slotProps.root || {};
 
   const componentProps = {
     className: clsx(classes.root, rootProps.className, className),
@@ -387,29 +385,6 @@ ListItem.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The components used for each slot inside.
-   *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
-   *
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
-   *
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    root: PropTypes.object,
-  }),
-  /**
    * The container component used when a `ListItemSecondaryAction` is the last child.
    * @default 'li'
    * @deprecated
@@ -466,8 +441,6 @@ ListItem.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
    * @default {}
    */
   slotProps: PropTypes.shape({
@@ -475,8 +448,7 @@ ListItem.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The components used for each slot inside.
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   * Either a string to use a HTML element or a component.
    *
    * @default {}
    */
