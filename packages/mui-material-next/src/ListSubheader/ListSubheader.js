@@ -40,7 +40,6 @@ const ListSubheaderRoot = styled('li', {
   },
 })(({ theme, ownerState }) => {
   const { vars: tokens } = theme;
-
   return {
     boxSizing: 'border-box',
     lineHeight: '48px',
@@ -50,7 +49,7 @@ const ListSubheaderRoot = styled('li', {
     fontWeight: tokens.sys.typescale.label.large.weight,
     fontSize: theme.typography.pxToRem(14),
     ...(ownerState.color === 'primary' && {
-      color: theme.vars.palette.primary.main,
+      color: tokens.sys.color.primary,
     }),
     ...(ownerState.color === 'inherit' && {
       color: 'inherit',
