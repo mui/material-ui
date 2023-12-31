@@ -68,6 +68,7 @@ export const ListItemRoot = styled('div', {
   slot: 'Root',
   overridesResolver,
 })(({ theme, ownerState }) => {
+  const { vars: tokens } = theme;
   return {
     display: 'flex',
     justifyContent: 'flex-start',
@@ -100,7 +101,7 @@ export const ListItemRoot = styled('div', {
       },
     }),
     [`&.${listItemClasses.focusVisible}`]: {
-      backgroundColor: theme.vars.palette.action.focus,
+      backgroundColor: `rgba(${tokens.sys.color.onSurfaceChannel} / ${tokens.sys.state.focus.stateLayerOpacity})`,
     },
     [`&.${listItemClasses.selected}`]: {
       backgroundColor: `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`,
@@ -110,13 +111,13 @@ export const ListItemRoot = styled('div', {
       },
     },
     [`&.${listItemClasses.disabled}`]: {
-      opacity: theme.vars.palette.action.disabledOpacity,
+      color: `rgba(${tokens.sys.color.onSurfaceChannel} / 0.38)`,
     },
     ...(ownerState.alignItems === 'flex-start' && {
       alignItems: 'flex-start',
     }),
     ...(ownerState.divider && {
-      borderBottom: `1px solid ${theme.vars.palette.divider}`,
+      borderBottom: `1px solid ${tokens.sys.color.outlineVariant}`,
       backgroundClip: 'padding-box',
     }),
     ...(ownerState.button && {

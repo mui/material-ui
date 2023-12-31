@@ -51,66 +51,71 @@ const ListItemButtonRoot = styled(ButtonBase, {
   name: 'MuiListItemButton',
   slot: 'Root',
   overridesResolver,
-})(({ theme, ownerState }) => ({
-  display: 'flex',
-  flexGrow: 1,
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-  position: 'relative',
-  textDecoration: 'none',
-  minWidth: 0,
-  boxSizing: 'border-box',
-  textAlign: 'left',
-  paddingTop: 8,
-  paddingBottom: 8,
-  transition: theme.transitions.create('background-color', {
-    duration: theme.transitions.duration.shortest,
-  }),
-  '&:hover': {
+})(({ theme, ownerState }) => {
+  const { vars: tokens } = theme;
+
+  return {
+    display: 'flex',
+    flexGrow: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    position: 'relative',
     textDecoration: 'none',
-    backgroundColor: theme.vars.palette.action.hover,
-    // Reset on touch devices, it doesn't add specificity
-    '@media (hover: none)': {
-      backgroundColor: 'transparent',
+    minWidth: 0,
+    boxSizing: 'border-box',
+    textAlign: 'left',
+    paddingTop: 8,
+    paddingBottom: 8,
+    transition: theme.transitions.create('background-color', {
+      duration: theme.transitions.duration.shortest,
+    }),
+    '&:hover': {
+      textDecoration: 'none',
+      backgroundColor: `rgba(${tokens.sys.color.onSurfaceChannel} / ${tokens.sys.state.hover.stateLayerOpacity})`,
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
     },
-  },
-  [`&.${listItemButtonClasses.selected}`]: {
-    backgroundColor: `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`,
+    [`&.${listItemButtonClasses.selected}`]: {
+      backgroundColor: `rgba(${tokens.sys.color.onPrimaryContainer} / ${theme.vars.palette.action.selectedOpacity})`,
 
+      [`&.${listItemButtonClasses.focusVisible}`]: {
+        backgroundColor: `rgba(${tokens.sys.color.onPrimaryContainer} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`,
+      },
+    },
+    [`&.${listItemButtonClasses.selected}:hover`]: {
+      backgroundColor: `rgba(${tokens.sys.color.onPrimaryContainer} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`,
+
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: `rgba(${tokens.sys.color.onPrimaryContainer} / ${theme.vars.palette.action.selectedOpacity})`,
+      },
+    },
     [`&.${listItemButtonClasses.focusVisible}`]: {
-      backgroundColor: `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`,
+      backgroundColor: `rgba(${tokens.sys.color.onSurfaceChannel} / ${tokens.sys.state.focus.stateLayerOpacity})`,
     },
-  },
-  [`&.${listItemButtonClasses.selected}:hover`]: {
-    backgroundColor: `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`,
-
-    // Reset on touch devices, it doesn't add specificity
-    '@media (hover: none)': {
-      backgroundColor: `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`,
+    [`&.${listItemButtonClasses.disabled}`]: {
+      color: `rgba(${tokens.sys.color.onSurfaceChannel} / 0.38)`,
+      pointerEvents: 'none',
     },
-  },
-  [`&.${listItemButtonClasses.focusVisible}`]: {
-    backgroundColor: theme.vars.palette.action.focus,
-  },
-  [`&.${listItemButtonClasses.disabled}`]: {
-    opacity: theme.vars.palette.action.disabledOpacity,
-  },
-  ...(ownerState.divider && {
-    borderBottom: `1px solid ${theme.vars.palette.divider}`,
-    backgroundClip: 'padding-box',
-  }),
-  ...(ownerState.alignItems === 'flex-start' && {
-    alignItems: 'flex-start',
-  }),
-  ...(!ownerState.disableGutters && {
-    paddingLeft: 16,
-    paddingRight: 16,
-  }),
-  ...(ownerState.dense && {
-    paddingTop: 4,
-    paddingBottom: 4,
-  }),
-}));
+    ...(ownerState.divider && {
+      borderBottom: `1px solid ${tokens.sys.color.outlineVariant}`,
+      backgroundClip: 'padding-box',
+    }),
+    ...(ownerState.alignItems === 'flex-start' && {
+      alignItems: 'flex-start',
+    }),
+    ...(!ownerState.disableGutters && {
+      paddingLeft: 16,
+      paddingRight: 16,
+    }),
+    ...(ownerState.dense && {
+      paddingTop: 4,
+      paddingBottom: 4,
+    }),
+  };
+});
 
 const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiListItemButton' });
