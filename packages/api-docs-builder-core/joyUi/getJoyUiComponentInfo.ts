@@ -33,6 +33,18 @@ export function getJoyUiComponentInfo(filename: string): ComponentInfo {
       if (!inheritedComponent) {
         return null;
       }
+
+      const urlComponentName = kebabCase(inheritedComponent.replace(/unstyled/i, ''));
+
+      // TODO: build a map for Base UI component name -> API URL path
+      // or even better, migrate away from the /components-api/ and /hooks-api/ URLs, flatten.
+      if (inheritedComponent === 'PopperUnstyled') {
+        return {
+          name: 'Popper',
+          apiPathname: `/base-ui/react-popper/components-api/#${urlComponentName}`,
+        };
+      }
+
       // `inheritedComponent` node is coming from test files.
       // `inheritedComponent` must include `Unstyled` suffix for parser to recognise that the component inherits Base UI component
       // e.g., Joy Menu inherits Base UI Popper, and its test file uses the name `PopperUnstyled` so that we can recognise here that
@@ -42,7 +54,7 @@ export function getJoyUiComponentInfo(filename: string): ComponentInfo {
         name: inheritedComponent.replace(/unstyled/i, ''),
         apiPathname: `/${
           inheritedComponent.match(/unstyled/i) ? 'base-ui' : 'joy-ui'
-        }/api/${kebabCase(inheritedComponent.replace(/unstyled/i, ''))}/`,
+        }/api/${urlComponentName}/`,
       };
     },
     getDemos: () => {
