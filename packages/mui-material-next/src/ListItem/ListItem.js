@@ -126,7 +126,7 @@ export const ListItemRoot = styled('div', {
       }),
       '&:hover': {
         textDecoration: 'none',
-        backgroundColor: theme.vars.palette.action.hover,
+        backgroundColor: `rgba(${tokens.sys.color.onSurfaceChannel} / ${tokens.sys.state.hover.stateLayerOpacity})`,
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           backgroundColor: 'transparent',
