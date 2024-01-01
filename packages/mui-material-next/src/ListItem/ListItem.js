@@ -104,10 +104,10 @@ export const ListItemRoot = styled('div', {
       backgroundColor: `rgba(${tokens.sys.color.onSurfaceChannel} / ${tokens.sys.state.focus.stateLayerOpacity})`,
     },
     [`&.${listItemClasses.selected}`]: {
-      backgroundColor: `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`,
+      backgroundColor: `rgba(${tokens.sys.color.primaryChannel} / ${tokens.sys.state.pressed.stateLayerOpacity})`,
 
       [`&.${listItemClasses.focusVisible}`]: {
-        backgroundColor: `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`,
+        backgroundColor: `rgba(${tokens.sys.color.primaryChannel} / calc(${tokens.sys.state.pressed.stateLayerOpacity} + ${tokens.sys.state.hover.stateLayerOpacity}))`,
       },
     },
     [`&.${listItemClasses.disabled}`]: {
@@ -133,11 +133,11 @@ export const ListItemRoot = styled('div', {
         },
       },
       [`&.${listItemClasses.selected}:hover`]: {
-        backgroundColor: `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`,
+        backgroundColor: `rgba(${tokens.sys.color.primaryChannel} / calc(${tokens.sys.state.pressed.stateLayerOpacity} + ${tokens.sys.state.hover.stateLayerOpacity}))`,
 
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
-          backgroundColor: `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`,
+          backgroundColor: `rgba(${tokens.sys.color.primaryChannel} / ${tokens.sys.state.pressed.stateLayerOpacity})`,
         },
       },
     }),

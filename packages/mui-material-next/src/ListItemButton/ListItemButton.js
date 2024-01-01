@@ -78,18 +78,18 @@ const ListItemButtonRoot = styled(ButtonBase, {
       },
     },
     [`&.${listItemButtonClasses.selected}`]: {
-      backgroundColor: `rgba(${tokens.sys.color.onPrimaryContainer} / ${theme.vars.palette.action.selectedOpacity})`,
+      backgroundColor: `rgba(${tokens.sys.color.primaryChannel} / ${tokens.sys.state.pressed.stateLayerOpacity})`,
 
       [`&.${listItemButtonClasses.focusVisible}`]: {
-        backgroundColor: `rgba(${tokens.sys.color.onPrimaryContainer} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`,
+        backgroundColor: `rgba(${tokens.sys.color.primaryChannel} / calc(${tokens.sys.state.pressed.stateLayerOpacity} + ${tokens.sys.state.hover.stateLayerOpacity}))`,
       },
     },
     [`&.${listItemButtonClasses.selected}:hover`]: {
-      backgroundColor: `rgba(${tokens.sys.color.onPrimaryContainer} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`,
+      backgroundColor: `rgba(${tokens.sys.color.primaryChannel} / calc(${tokens.sys.state.pressed.stateLayerOpacity} + ${tokens.sys.state.hover.stateLayerOpacity}))`,
 
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
-        backgroundColor: `rgba(${tokens.sys.color.onPrimaryContainer} / ${theme.vars.palette.action.selectedOpacity})`,
+        backgroundColor: `rgba(${tokens.sys.color.primaryChannel} / ${tokens.sys.state.pressed.stateLayerOpacity})`,
       },
     },
     [`&.${listItemButtonClasses.focusVisible}`]: {
