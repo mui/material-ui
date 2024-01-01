@@ -128,7 +128,11 @@ export default function PropertiesSection(props) {
       {displayOption === 'table' ? (
         <PropertiesTable properties={formatedProperties} />
       ) : (
-        <PropertiesList properties={formatedProperties} displayOption={displayOption} />
+        <PropertiesList
+          key={displayOption} // Remount so toggle doesn't need to wait a raf
+          properties={formatedProperties}
+          displayOption={displayOption}
+        />
       )}
     </React.Fragment>
   );

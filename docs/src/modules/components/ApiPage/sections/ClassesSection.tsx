@@ -110,6 +110,7 @@ export default function ClassesSection(props: ClassesSectionProps) {
         />
       ) : (
         <ClassesList
+          key={displayOption} // Remount so toggle doesn't need to wait a raf
           classes={classesWithTranslatedDescriptions}
           componentName={componentName}
           displayOption={displayOption}

@@ -70,10 +70,13 @@ function getOption(storageKey: string) {
   }
 }
 
+let scrollTimeout: any;
+
 export function useApiPageOption(
   storageKey: string,
 ): [ApiDisplayOptions, (newOption: ApiDisplayOptions) => void] {
   const [option, setOption] = React.useState(getOption(storageKey));
+  const [firstRender, setFirstRender] = React.useState(true);
 
   useEnhancedEffect(() => {
     neverHydrated = false;
@@ -82,13 +85,19 @@ export function useApiPageOption(
   }, [storageKey]);
 
   React.useEffect(() => {
-    if (option !== DEFAULT_LAYOUT) {
-      const id = document.location.hash.slice(1);
-      const element = document.getElementById(id);
-      element?.scrollIntoView();
+    setFirstRender(false); // Prevent overriding scroll after first render.
+
+    if (option !== DEFAULT_LAYOUT && firstRender === true) {
+      // Deduplicate calls to scrollIntoView.
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        const id = document.location.hash.slice(1);
+        const element = document.getElementById(id);
+        element?.scrollIntoView();
+      });
     }
     return undefined;
-  }, [option]);
+  }, [option, firstRender]);
 
   const updateOption = React.useCallback(
     (newOption: ApiDisplayOptions) => {
