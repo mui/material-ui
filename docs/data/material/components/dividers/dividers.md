@@ -14,9 +14,13 @@ materialDesign: https://m2.material.io/components/dividers
 
 ## Introduction
 
-The Material UI Divider component, by default, renders as a `<hr>`, and it comes with several handy props for quick styling.
+The Material UI Divider component renders as a dark gray `<hr>` by default, and features several useful props for quick style adjustments.
 
 {{"demo": "IntroDivider.js", "bg": true}}
+
+:::success
+Use the handy `light` prop to make the Divider slightly lighter.
+:::
 
 ## Basics
 
@@ -55,10 +59,6 @@ Use the `textAlign` prop to align elements that are wrapped by the Divider.
 When using the Divider to separate items in a List, use the `component` prop to render it as an `<li>`—otherwise it won't be a valid HTML element.
 
 {{"demo": "ListDividers.js", "bg": true}}
-
-:::success
-Use the handy `light` prop to make the Divider slightly lighter.
-:::
 
 ### Icon grouping
 
