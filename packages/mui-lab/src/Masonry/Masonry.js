@@ -1,3 +1,4 @@
+'use client';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import * as ReactDOM from 'react-dom';
 import { styled, useThemeProps } from '@mui/material/styles';

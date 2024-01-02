@@ -267,7 +267,7 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0(webpack@5.89.0)
       lerna:
-        specifier: 8.0.1
+        specifier: ^8.0.1
         version: 8.0.1
       lodash:
         specifier: ^4.17.21
@@ -1534,9 +1534,6 @@ importers:
       '@mui-internal/test-utils':
         specifier: workspace:^
         version: link:../test-utils
-      '@mui/icons-material':
-        specifier: workspace:^
-        version: link:../mui-icons-material/build
       '@mui/lab':
         specifier: workspace:*
         version: link:../mui-lab/build
