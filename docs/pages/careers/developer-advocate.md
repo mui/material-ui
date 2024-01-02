@@ -92,7 +92,7 @@ For the right candidate:
 - Hands-on developer and skilled React engineer
 - Experience as a teacher, tutor, or mentor
 - Experience as a technical writer or content creator
-- Sensibility to great design and product design
+- Good product design sensibilities
 - Some design skills
 
 ### Nice to have (but not required)
