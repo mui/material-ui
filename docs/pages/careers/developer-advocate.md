@@ -97,7 +97,7 @@ For the right candidate:
 
 ### Nice to have (but not required)
 
-- Strong sensibility to great design and product design
+- Great product design sensibilities
 - Good design skills
 - Experience in open-source
 - Experience with design systems
