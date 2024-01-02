@@ -7,6 +7,7 @@ import {
   InputAdornment as Md2InputAdornment,
   FormHelperText as Md2FormHelperText,
   Divider,
+  Box,
 } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import {
@@ -27,6 +28,127 @@ const md2Theme = createTheme();
 const md3Theme = extendTheme();
 
 const COLORS = ['primary', 'secondary', 'tertiary', 'error', 'info', 'success', 'warning'];
+
+const LABEL = 'Your e-mail address or username';
+const DEFAULT_VALUE = 'mister.willy.wonka@gmail.com';
+
+const renderAdornmentCombinations = (
+  color: FormControlProps['color'],
+  size?: 'medium' | 'small',
+) => {
+  return (
+    <Box
+      sx={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(4, 180px)',
+        gridTemplateRows: '1fr 1fr',
+        gap: '1.5rem',
+      }}
+    >
+      <FormControl size={size} color={color} variant="filled">
+        <InputLabel htmlFor={`md3-filled-input-${size}-noAdornments`}>{LABEL}</InputLabel>
+        <FilledInput id={`md3-filled-input-${size}-noAdornments`} defaultValue="" />
+      </FormControl>
+      <FormControl size={size} color={color} variant="filled">
+        <InputLabel htmlFor={`md3-filled-input-${size}-startAdornment`}>{LABEL}</InputLabel>
+        <FilledInput
+          id={`md3-filled-input-${size}-startAdornment`}
+          defaultValue=""
+          startAdornment={
+            <InputAdornment position="start">
+              <SearchIcon />
+            </InputAdornment>
+          }
+        />
+      </FormControl>
+      <FormControl size={size} color={color} variant="filled">
+        <InputLabel htmlFor={`md3-filled-input-${size}-endAdornment`}>{LABEL}</InputLabel>
+        <FilledInput
+          id={`md3-filled-input-${size}-endAdornment`}
+          defaultValue=""
+          endAdornment={
+            <InputAdornment position="end">
+              <HighlightOffIcon />
+            </InputAdornment>
+          }
+        />
+      </FormControl>
+      <FormControl size={size} color={color} variant="filled">
+        <InputLabel htmlFor={`md3-filled-input-${size}-startAndEndAdornments`}>{LABEL}</InputLabel>
+        <FilledInput
+          id={`md3-filled-input-${size}-startAndEndAdornments`}
+          startAdornment={
+            <InputAdornment position="start">
+              <SearchIcon />
+            </InputAdornment>
+          }
+          endAdornment={
+            <InputAdornment position="end">
+              <HighlightOffIcon />
+            </InputAdornment>
+          }
+        />
+      </FormControl>
+
+      <FormControl size={size} color={color} variant="filled">
+        <InputLabel htmlFor={`md3-filled-input-${size}-noAdornments-initialFilled`}>
+          {LABEL}
+        </InputLabel>
+        <FilledInput
+          id={`md3-filled-input-${size}-noAdornments-initialFilled`}
+          defaultValue={DEFAULT_VALUE}
+        />
+      </FormControl>
+      <FormControl size={size} color={color} variant="filled">
+        <InputLabel htmlFor={`md3-filled-input-${size}-startAdornment-initialFilled`}>
+          {LABEL}
+        </InputLabel>
+        <FilledInput
+          id={`md3-filled-input-${size}-startAdornment-initialFilled`}
+          defaultValue={DEFAULT_VALUE}
+          startAdornment={
+            <InputAdornment position="start">
+              <SearchIcon />
+            </InputAdornment>
+          }
+        />
+      </FormControl>
+      <FormControl size={size} color={color} variant="filled">
+        <InputLabel htmlFor={`md3-filled-input-${size}-endAdornment-initialFilled`}>
+          {LABEL}
+        </InputLabel>
+        <FilledInput
+          id={`md3-filled-input-${size}-endAdornment-initialFilled`}
+          defaultValue={DEFAULT_VALUE}
+          endAdornment={
+            <InputAdornment position="end">
+              <HighlightOffIcon />
+            </InputAdornment>
+          }
+        />
+      </FormControl>
+      <FormControl size={size} color={color} variant="filled">
+        <InputLabel htmlFor={`md3-filled-input-${size}-startAndEndAdornments-initialFilled`}>
+          {LABEL}
+        </InputLabel>
+        <FilledInput
+          id={`md3-filled-input-${size}-startAndEndAdornments-initialFilled`}
+          defaultValue={DEFAULT_VALUE}
+          startAdornment={
+            <InputAdornment position="start">
+              <SearchIcon />
+            </InputAdornment>
+          }
+          endAdornment={
+            <InputAdornment position="end">
+              <HighlightOffIcon />
+            </InputAdornment>
+          }
+        />
+      </FormControl>
+    </Box>
+  );
+};
 
 export default function MaterialYouFilledInput() {
   const [color, setColor] = React.useState<FormControlProps['color']>('primary');
@@ -62,224 +184,12 @@ export default function MaterialYouFilledInput() {
           </pre>
 
           <pre>size=&quot;medium&quot; (default)</pre>
-          <Stack gap={4} mb={4}>
-            <Stack display="inline-flex" direction="row" gap={4}>
-              <FormControl color={color} variant="filled">
-                <InputLabel htmlFor="md3-primary-adornment">WIP Primary adornments</InputLabel>
-                <FilledInput id="md3-primary-adornment" defaultValue="" />
-              </FormControl>
-              <FormControl color={color} variant="filled">
-                <InputLabel htmlFor="md3-primary-adornment">WIP Primary adornments</InputLabel>
-                <FilledInput
-                  id="md3-primary-adornment"
-                  defaultValue=""
-                  startAdornment={
-                    <InputAdornment position="start">
-                      <SearchIcon />
-                    </InputAdornment>
-                  }
-                />
-              </FormControl>
-              <FormControl color={color} variant="filled">
-                <InputLabel htmlFor="md3-primary-adornment">WIP Primary adornments</InputLabel>
-                <FilledInput
-                  id="md3-primary-adornment"
-                  defaultValue=""
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <HighlightOffIcon />
-                    </InputAdornment>
-                  }
-                />
-              </FormControl>
-              <FormControl color={color} variant="filled">
-                <InputLabel htmlFor="md3-secondary-adornment">WIP Secondary adornments</InputLabel>
-                <FilledInput
-                  id="md3-secondary-adornment"
-                  startAdornment={
-                    <InputAdornment position="start">
-                      <SearchIcon />
-                    </InputAdornment>
-                  }
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <HighlightOffIcon />
-                    </InputAdornment>
-                  }
-                />
-              </FormControl>
-            </Stack>
-
-            <Stack display="inline-flex" direction="row" gap={4} mb={4}>
-              <FormControl color={color} variant="filled">
-                <InputLabel htmlFor="md3-primary-adornment">
-                  WIP Primary adornments abc def ghi jkl mno
-                </InputLabel>
-                <FilledInput
-                  id="md3-primary-adornment"
-                  defaultValue="hello 123 abc 456 xyz 789 def"
-                />
-              </FormControl>
-              <FormControl color={color} variant="filled">
-                <InputLabel htmlFor="md3-primary-adornment">
-                  WIP Primary adornments abc def ghi jkl mno
-                </InputLabel>
-                <FilledInput
-                  id="md3-primary-adornment"
-                  defaultValue="hello 123 abc 456 xyz 789 def"
-                  startAdornment={
-                    <InputAdornment position="start">
-                      <SearchIcon />
-                    </InputAdornment>
-                  }
-                />
-              </FormControl>
-              <FormControl color={color} variant="filled">
-                <InputLabel htmlFor="md3-primary-adornment">
-                  WIP Primary adornments abc def ghi jkl mno
-                </InputLabel>
-                <FilledInput
-                  id="md3-primary-adornment"
-                  defaultValue="hello 123 abc 456 xyz 789 def"
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <HighlightOffIcon />
-                    </InputAdornment>
-                  }
-                />
-              </FormControl>
-              <FormControl color={color} variant="filled">
-                <InputLabel htmlFor="md3-secondary-adornment">
-                  WIP Secondary adornments abc def ghi jkl mno
-                </InputLabel>
-                <FilledInput
-                  id="md3-secondary-adornment"
-                  defaultValue="hello 123 abc 456 xyz 789 def"
-                  startAdornment={
-                    <InputAdornment position="start">
-                      <SearchIcon />
-                    </InputAdornment>
-                  }
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <HighlightOffIcon />
-                    </InputAdornment>
-                  }
-                />
-              </FormControl>
-            </Stack>
-          </Stack>
+          {renderAdornmentCombinations(color, 'medium')}
 
           <pre>size=&quot;small&quot;</pre>
-          <Stack gap={4} mb={4}>
-            <Stack display="inline-flex" direction="row" gap={4}>
-              <FormControl size="small" color={color} variant="filled">
-                <InputLabel htmlFor="md3-primary-adornment">WIP Primary adornments</InputLabel>
-                <FilledInput id="md3-primary-adornment" defaultValue="" />
-              </FormControl>
-              <FormControl size="small" color={color} variant="filled">
-                <InputLabel htmlFor="md3-primary-adornment">WIP Primary adornments</InputLabel>
-                <FilledInput
-                  id="md3-primary-adornment"
-                  defaultValue=""
-                  startAdornment={
-                    <InputAdornment position="start">
-                      <SearchIcon />
-                    </InputAdornment>
-                  }
-                />
-              </FormControl>
-              <FormControl size="small" color={color} variant="filled">
-                <InputLabel htmlFor="md3-primary-adornment">WIP Primary adornments</InputLabel>
-                <FilledInput
-                  id="md3-primary-adornment"
-                  defaultValue=""
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <HighlightOffIcon />
-                    </InputAdornment>
-                  }
-                />
-              </FormControl>
-              <FormControl size="small" color={color} variant="filled">
-                <InputLabel htmlFor="md3-secondary-adornment">WIP Secondary adornments</InputLabel>
-                <FilledInput
-                  id="md3-secondary-adornment"
-                  startAdornment={
-                    <InputAdornment position="start">
-                      <SearchIcon />
-                    </InputAdornment>
-                  }
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <HighlightOffIcon />
-                    </InputAdornment>
-                  }
-                />
-              </FormControl>
-            </Stack>
+          {renderAdornmentCombinations(color, 'small')}
 
-            <Stack display="inline-flex" direction="row" gap={4} mb={4}>
-              <FormControl size="small" color={color} variant="filled">
-                <InputLabel htmlFor="md3-primary-adornment">
-                  WIP Primary adornments abc def ghi jkl mno
-                </InputLabel>
-                <FilledInput
-                  id="md3-primary-adornment"
-                  defaultValue="hello 123 abc 456 xyz 789 def"
-                />
-              </FormControl>
-              <FormControl size="small" color={color} variant="filled">
-                <InputLabel htmlFor="md3-primary-adornment">
-                  WIP Primary adornments abc def ghi jkl mno
-                </InputLabel>
-                <FilledInput
-                  id="md3-primary-adornment"
-                  defaultValue="hello 123 abc 456 xyz 789 def"
-                  startAdornment={
-                    <InputAdornment position="start">
-                      <SearchIcon />
-                    </InputAdornment>
-                  }
-                />
-              </FormControl>
-              <FormControl size="small" color={color} variant="filled">
-                <InputLabel htmlFor="md3-primary-adornment">
-                  WIP Primary adornments abc def ghi jkl mno
-                </InputLabel>
-                <FilledInput
-                  id="md3-primary-adornment"
-                  defaultValue="hello 123 abc 456 xyz 789 def"
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <HighlightOffIcon />
-                    </InputAdornment>
-                  }
-                />
-              </FormControl>
-              <FormControl size="small" color={color} variant="filled">
-                <InputLabel htmlFor="md3-secondary-adornment">
-                  WIP Secondary adornments abc def ghi jkl mno
-                </InputLabel>
-                <FilledInput
-                  id="md3-secondary-adornment"
-                  defaultValue="hello 123 abc 456 xyz 789 def"
-                  startAdornment={
-                    <InputAdornment position="start">
-                      <SearchIcon />
-                    </InputAdornment>
-                  }
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <HighlightOffIcon />
-                    </InputAdornment>
-                  }
-                />
-              </FormControl>
-            </Stack>
-          </Stack>
-
-          <Divider sx={{ mb: 12 }} />
+          <Divider sx={{ mt: 4, mb: 12 }} />
 
           <pre>FormHelperText</pre>
 
