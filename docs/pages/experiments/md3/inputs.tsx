@@ -31,10 +31,12 @@ const COLORS = ['primary', 'secondary', 'tertiary', 'error', 'info', 'success', 
 
 const LABEL = 'Your e-mail address or username';
 const DEFAULT_VALUE = 'mister.willy.wonka@gmail.com';
+const HELPER_TEXT = 'Lorem ipsum dolor sit amet consectetur';
 
 const renderAdornmentCombinations = (
   color: FormControlProps['color'],
   size?: 'medium' | 'small',
+  showHelperText: boolean = false,
 ) => {
   return (
     <Box
@@ -47,12 +49,26 @@ const renderAdornmentCombinations = (
     >
       <FormControl size={size} color={color} variant="filled">
         <InputLabel htmlFor={`md3-filled-input-${size}-noAdornments`}>{LABEL}</InputLabel>
-        <FilledInput id={`md3-filled-input-${size}-noAdornments`} defaultValue="" />
+        <FilledInput
+          id={`md3-filled-input-${size}-noAdornments`}
+          aria-describedby={
+            showHelperText ? `md3-filled-input-helper-text-${size}-noAdornments` : undefined
+          }
+          defaultValue=""
+        />
+        {showHelperText && (
+          <FormHelperText id={`md3-filled-input-helper-text-${size}-noAdornments`}>
+            {HELPER_TEXT}
+          </FormHelperText>
+        )}
       </FormControl>
       <FormControl size={size} color={color} variant="filled">
         <InputLabel htmlFor={`md3-filled-input-${size}-startAdornment`}>{LABEL}</InputLabel>
         <FilledInput
           id={`md3-filled-input-${size}-startAdornment`}
+          aria-describedby={
+            showHelperText ? `md3-filled-input-helper-text-${size}-startAdornment` : undefined
+          }
           defaultValue=""
           startAdornment={
             <InputAdornment position="start">
@@ -60,11 +76,19 @@ const renderAdornmentCombinations = (
             </InputAdornment>
           }
         />
+        {showHelperText && (
+          <FormHelperText id={`md3-filled-input-helper-text-${size}-startAdornment`}>
+            {HELPER_TEXT}
+          </FormHelperText>
+        )}
       </FormControl>
       <FormControl size={size} color={color} variant="filled">
         <InputLabel htmlFor={`md3-filled-input-${size}-endAdornment`}>{LABEL}</InputLabel>
         <FilledInput
           id={`md3-filled-input-${size}-endAdornment`}
+          aria-describedby={
+            showHelperText ? `md3-filled-input-helper-text-${size}-endAdornment` : undefined
+          }
           defaultValue=""
           endAdornment={
             <InputAdornment position="end">
@@ -72,11 +96,22 @@ const renderAdornmentCombinations = (
             </InputAdornment>
           }
         />
+        {showHelperText && (
+          <FormHelperText id={`md3-filled-input-helper-text-${size}-endAdornment`}>
+            {HELPER_TEXT}
+          </FormHelperText>
+        )}
       </FormControl>
       <FormControl size={size} color={color} variant="filled">
         <InputLabel htmlFor={`md3-filled-input-${size}-startAndEndAdornments`}>{LABEL}</InputLabel>
         <FilledInput
           id={`md3-filled-input-${size}-startAndEndAdornments`}
+          aria-describedby={
+            showHelperText
+              ? `md3-filled-input-helper-text-${size}-startAndEndAdornments`
+              : undefined
+          }
+          defaultValue=""
           startAdornment={
             <InputAdornment position="start">
               <SearchIcon />
@@ -88,6 +123,11 @@ const renderAdornmentCombinations = (
             </InputAdornment>
           }
         />
+        {showHelperText && (
+          <FormHelperText id={`md3-filled-input-helper-text-${size}-startAndEndAdornments`}>
+            {HELPER_TEXT}
+          </FormHelperText>
+        )}
       </FormControl>
 
       <FormControl size={size} color={color} variant="filled">
@@ -96,8 +136,18 @@ const renderAdornmentCombinations = (
         </InputLabel>
         <FilledInput
           id={`md3-filled-input-${size}-noAdornments-initialFilled`}
+          aria-describedby={
+            showHelperText
+              ? `md3-filled-input-helper-text-${size}-noAdornments-initialFilled`
+              : undefined
+          }
           defaultValue={DEFAULT_VALUE}
         />
+        {showHelperText && (
+          <FormHelperText id={`md3-filled-input-helper-text-${size}-noAdornments-initialFilled`}>
+            {HELPER_TEXT}
+          </FormHelperText>
+        )}
       </FormControl>
       <FormControl size={size} color={color} variant="filled">
         <InputLabel htmlFor={`md3-filled-input-${size}-startAdornment-initialFilled`}>
@@ -105,6 +155,11 @@ const renderAdornmentCombinations = (
         </InputLabel>
         <FilledInput
           id={`md3-filled-input-${size}-startAdornment-initialFilled`}
+          aria-describedby={
+            showHelperText
+              ? `md3-filled-input-helper-text-${size}-startAdornment-initialFilled`
+              : undefined
+          }
           defaultValue={DEFAULT_VALUE}
           startAdornment={
             <InputAdornment position="start">
@@ -112,6 +167,11 @@ const renderAdornmentCombinations = (
             </InputAdornment>
           }
         />
+        {showHelperText && (
+          <FormHelperText id={`md3-filled-input-helper-text-${size}-startAdornment-initialFilled`}>
+            {HELPER_TEXT}
+          </FormHelperText>
+        )}
       </FormControl>
       <FormControl size={size} color={color} variant="filled">
         <InputLabel htmlFor={`md3-filled-input-${size}-endAdornment-initialFilled`}>
@@ -119,6 +179,11 @@ const renderAdornmentCombinations = (
         </InputLabel>
         <FilledInput
           id={`md3-filled-input-${size}-endAdornment-initialFilled`}
+          aria-describedby={
+            showHelperText
+              ? `md3-filled-input-helper-text-${size}-endAdornment-initialFilled`
+              : undefined
+          }
           defaultValue={DEFAULT_VALUE}
           endAdornment={
             <InputAdornment position="end">
@@ -126,6 +191,11 @@ const renderAdornmentCombinations = (
             </InputAdornment>
           }
         />
+        {showHelperText && (
+          <FormHelperText id={`md3-filled-input-helper-text-${size}-endAdornment-initialFilled`}>
+            {HELPER_TEXT}
+          </FormHelperText>
+        )}
       </FormControl>
       <FormControl size={size} color={color} variant="filled">
         <InputLabel htmlFor={`md3-filled-input-${size}-startAndEndAdornments-initialFilled`}>
@@ -133,6 +203,11 @@ const renderAdornmentCombinations = (
         </InputLabel>
         <FilledInput
           id={`md3-filled-input-${size}-startAndEndAdornments-initialFilled`}
+          aria-describedby={
+            showHelperText
+              ? `md3-filled-input-helper-text-${size}-startAndEndAdornments-initialFilled`
+              : undefined
+          }
           defaultValue={DEFAULT_VALUE}
           startAdornment={
             <InputAdornment position="start">
@@ -145,6 +220,13 @@ const renderAdornmentCombinations = (
             </InputAdornment>
           }
         />
+        {showHelperText && (
+          <FormHelperText
+            id={`md3-filled-input-helper-text-${size}-startAndEndAdornments-initialFilled`}
+          >
+            {HELPER_TEXT}
+          </FormHelperText>
+        )}
       </FormControl>
     </Box>
   );
@@ -152,6 +234,7 @@ const renderAdornmentCombinations = (
 
 export default function MaterialYouFilledInput() {
   const [color, setColor] = React.useState<FormControlProps['color']>('primary');
+  const [showHelperText, setShowHelperText] = React.useState<boolean>(false);
 
   return (
     <Stack spacing={4}>
@@ -161,21 +244,41 @@ export default function MaterialYouFilledInput() {
           gap={4}
           sx={{ backgroundColor: 'background', p: 4, color: 'onBackground' }}
         >
-          <Stack direction="row" gap={1} alignItems="center">
+          <Stack direction="row" gap={1}>
             <pre>MD3</pre>
             <ModeSwitcher />
-            <select
-              onChange={(ev) => {
-                // @ts-ignore
-                setColor(ev.currentTarget.value);
-              }}
+            <Stack
+              direction="row"
+              component="label"
+              htmlFor="selectColor"
+              alignItems="center"
+              ml={8}
             >
-              {COLORS.map((c) => (
-                <option key={c} value={c}>
-                  {c}
-                </option>
-              ))}
-            </select>
+              <pre>Color:</pre>
+              <select
+                id="selectColor"
+                onChange={(ev) => {
+                  // @ts-ignore
+                  setColor(ev.currentTarget.value);
+                }}
+              >
+                {COLORS.map((c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
+              </select>
+            </Stack>
+            <Stack direction="row" component="label" htmlFor="showHelperText" ml={2}>
+              <input
+                id="showHelperText"
+                type="checkbox"
+                onChange={(ev) => {
+                  setShowHelperText(ev.currentTarget.checked);
+                }}
+              />
+              <pre>Show FormHelperText</pre>
+            </Stack>
           </Stack>
 
           <pre style={{ fontSize: 14, marginBottom: -8 }}>
@@ -184,104 +287,12 @@ export default function MaterialYouFilledInput() {
           </pre>
 
           <pre>size=&quot;medium&quot; (default)</pre>
-          {renderAdornmentCombinations(color, 'medium')}
+          {renderAdornmentCombinations(color, 'medium', showHelperText)}
 
           <pre>size=&quot;small&quot;</pre>
-          {renderAdornmentCombinations(color, 'small')}
+          {renderAdornmentCombinations(color, 'small', showHelperText)}
 
-          <Divider sx={{ mt: 4, mb: 12 }} />
-
-          <pre>FormHelperText</pre>
-
-          <Stack display="inline-flex" direction="row" gap={4}>
-            <FormControl color="primary" variant="filled">
-              <InputLabel htmlFor="md3-primary">Primary</InputLabel>
-              <FilledInput
-                id="md3-primary"
-                defaultValue="primary"
-                aria-describedby="md3-primary-helper-text"
-              />
-              <FormHelperText id="md3-primary-helper-text">Primary helper text</FormHelperText>
-            </FormControl>
-            <FormControl color="secondary" variant="filled">
-              <InputLabel htmlFor="md3-secondary">Secondary</InputLabel>
-              <FilledInput
-                id="md3-secondary"
-                defaultValue="secondary"
-                aria-describedby="md3-secondary-helper-text"
-              />
-              <FormHelperText id="md3-secondary-helper-text">Secondary helper text</FormHelperText>
-            </FormControl>
-            <FormControl color="tertiary" variant="filled">
-              <InputLabel htmlFor="md3-tertiary">Tertiary</InputLabel>
-              <FilledInput
-                id="md3-tertiary"
-                defaultValue="tertiary"
-                aria-describedby="md3-tertiary-helper-text"
-              />
-              <FormHelperText id="md3-tertiary-helper-text">Tertiary helper text</FormHelperText>
-            </FormControl>
-          </Stack>
-
-          <Stack display="inline-flex" direction="row" gap={4}>
-            <FormControl color="primary" variant="filled" disabled>
-              <InputLabel htmlFor="md3-primary">Primary disabled</InputLabel>
-              <FilledInput
-                id="md3-primary"
-                defaultValue="primary disabled"
-                aria-describedby="md3-primary-helper-text"
-              />
-              <FormHelperText id="md3-primary-helper-text">Primary helper text</FormHelperText>
-            </FormControl>
-            <FormControl color="secondary" variant="filled" disabled>
-              <InputLabel htmlFor="md3-secondary">Secondary disabled</InputLabel>
-              <FilledInput
-                id="md3-secondary"
-                defaultValue="secondary disabled"
-                aria-describedby="md3-secondary-helper-text"
-              />
-              <FormHelperText id="md3-secondary-helper-text">Secondary helper text</FormHelperText>
-            </FormControl>
-            <FormControl color="tertiary" variant="filled" disabled>
-              <InputLabel htmlFor="md3-tertiary">Tertiary disabled</InputLabel>
-              <FilledInput
-                id="md3-tertiary"
-                defaultValue="tertiary disabled"
-                aria-describedby="md3-tertiary-helper-text"
-              />
-              <FormHelperText id="md3-tertiary-helper-text">Tertiary helper text</FormHelperText>
-            </FormControl>
-          </Stack>
-
-          <Stack display="inline-flex" direction="row" gap={4}>
-            <FormControl color="primary" variant="filled" error>
-              <InputLabel htmlFor="md3-primary">Primary error</InputLabel>
-              <FilledInput
-                id="md3-primary"
-                defaultValue="primary error"
-                aria-describedby="md3-primary-helper-text"
-              />
-              <FormHelperText id="md3-primary-helper-text">Primary helper text</FormHelperText>
-            </FormControl>
-            <FormControl color="secondary" variant="filled" error>
-              <InputLabel htmlFor="md3-secondary">Secondary error</InputLabel>
-              <FilledInput
-                id="md3-secondary"
-                defaultValue="secondary error"
-                aria-describedby="md3-secondary-helper-text"
-              />
-              <FormHelperText id="md3-secondary-helper-text">Secondary helper text</FormHelperText>
-            </FormControl>
-            <FormControl color="tertiary" variant="filled" error>
-              <InputLabel htmlFor="md3-tertiary">Tertiary error</InputLabel>
-              <FilledInput
-                id="md3-tertiary"
-                defaultValue="tertiary error"
-                aria-describedby="md3-tertiary-helper-text"
-              />
-              <FormHelperText id="md3-tertiary-helper-text">Tertiary helper text</FormHelperText>
-            </FormControl>
-          </Stack>
+          <Divider sx={{ my: 4 }} />
         </Stack>
       </CssVarsProvider>
 
