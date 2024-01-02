@@ -58,7 +58,6 @@
   },
   "devDependencies": {
     "@mui-internal/test-utils": "^1.0.0",
-    "@mui/joy": "5.0.0-beta.20",
     "@mui/material": "^5.15.2",
     "@types/chai": "^4.3.11",
     "@types/react": "^18.2.45",
