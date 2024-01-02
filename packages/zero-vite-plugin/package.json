@@ -17,7 +17,8 @@
     "@linaria/babel-preset": "^5.0.4",
     "@linaria/logger": "^5.0.0",
     "@linaria/utils": "^5.0.2",
-    "@mui/zero-runtime": "workspace:^"
+    "@mui/zero-runtime": "workspace:^",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24"
   },
   "devDependencies": {
     "@types/babel__core": "^7.20.3",

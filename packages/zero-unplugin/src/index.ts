@@ -108,22 +108,6 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
     isExtendTheme && 'cssVarPrefix' in theme
       ? (theme.cssVarPrefix as string) ?? cssVariablesPrefix
       : cssVariablesPrefix;
-  const linariaOptions = {
-    themeArgs: {
-      theme,
-    },
-    cssVariablesPrefix: varPrefix,
-    overrideContext(context: Record<string, unknown>, filename: string) {
-      if (overrideContext) {
-        return overrideContext(context, filename);
-      }
-      if (!context.$RefreshSig$) {
-        context.$RefreshSig$ = outerNoop;
-      }
-      return context;
-    },
-    ...rest,
-  };
   const cache = new TransformCacheCollection();
   const { emitter, onDone } = createPerfMeter(debug);
   const cssLookup = meta?.type === 'next' ? globalCssLookup : new Map<string, string>();
@@ -182,7 +166,29 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
           filename: id,
           root: process.cwd(),
           preprocessor,
-          pluginOptions: linariaOptions,
+          pluginOptions: {
+            themeArgs: {
+              theme,
+            },
+            cssVariablesPrefix: varPrefix,
+            overrideContext(context: Record<string, unknown>, filename: string) {
+              if (overrideContext) {
+                return overrideContext(context, filename);
+              }
+              if (!context.$RefreshSig$) {
+                context.$RefreshSig$ = outerNoop;
+              }
+              return context;
+            },
+            ...rest,
+            babelOptions: {
+              ...rest.babelOptions,
+              plugins: [
+                ['babel-plugin-transform-react-remove-prop-types', { mode: 'remove' }],
+                ...(rest.babelOptions?.plugins ?? []),
+              ],
+            },
+          },
         },
         cache,
         eventEmitter: emitter,

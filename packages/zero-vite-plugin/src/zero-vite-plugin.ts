@@ -180,7 +180,11 @@ export default function zeroVitePlugin({
                 ...rest,
                 babelOptions: {
                   ...rest.babelOptions,
-                  // presets: Array.from(presets),
+                  plugins: [
+                    ['babel-plugin-transform-react-remove-prop-types', { mode: 'remove' }],
+                    ...(rest.babelOptions?.plugins ?? []),
+                  ],
+                  presets: Array.from(presets),
                 },
                 overrideContext(context: Record<string, unknown>, filename: string) {
                   if (overrideContext) {

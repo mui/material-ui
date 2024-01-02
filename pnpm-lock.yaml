@@ -2325,6 +2325,9 @@ importers:
       '@linaria/utils':
         specifier: ^5.0.2
         version: 5.0.2
+      babel-plugin-transform-react-remove-prop-types:
+        specifier: ^0.4.24
+        version: 0.4.24
       unplugin:
         specifier: ^1.5.1
         version: 1.6.0
@@ -2356,6 +2359,9 @@ importers:
       '@mui/zero-runtime':
         specifier: workspace:^
         version: link:../zero-runtime
+      babel-plugin-transform-react-remove-prop-types:
+        specifier: ^0.4.24
+        version: 0.4.24
     devDependencies:
       '@types/babel__core':
         specifier: ^7.20.3
