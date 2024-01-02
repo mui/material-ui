@@ -6,10 +6,10 @@ import { getBaseUiComponentInfo } from './getBaseUiComponentInfo';
 
 describe('getBaseUiComponentInfo', () => {
   it('return correct info for base component file', () => {
-    const info = getBaseUiComponentInfo(
+    const componentInfo = getBaseUiComponentInfo(
       path.join(process.cwd(), `/packages/mui-base/src/Button/Button.tsx`),
     );
-    sinon.assert.match(info, {
+    sinon.assert.match(componentInfo, {
       name: 'Button',
       apiPathname: '/base-ui/react-button/components-api/#button',
       muiName: 'MuiButton',
@@ -18,9 +18,9 @@ describe('getBaseUiComponentInfo', () => {
       ),
     });
 
-    info.readFile();
+    componentInfo.readFile();
 
-    expect(info.getInheritance()).to.deep.equal(null);
+    expect(componentInfo.getInheritance()).to.deep.equal(null);
 
     let existed = false;
     try {
@@ -29,7 +29,7 @@ describe('getBaseUiComponentInfo', () => {
       // eslint-disable-next-line no-empty
     } catch (error) {}
     if (existed) {
-      expect(info.getDemos()).to.deep.equal([
+      expect(componentInfo.getDemos()).to.deep.equal([
         {
           demoPageTitle: 'Button',
           demoPathname: '/base-ui/react-button/',

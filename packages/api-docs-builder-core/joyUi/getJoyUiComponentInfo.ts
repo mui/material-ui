@@ -6,11 +6,13 @@ import {
   ComponentInfo,
   extractPackageFile,
   fixPathname,
+  getApiPath,
   getMuiName,
   getSystemComponents,
   parseFile,
 } from '@mui-internal/api-docs-builder/buildApiUtils';
 import findPagesMarkdown from '@mui-internal/api-docs-builder/utils/findPagesMarkdown';
+import { getBaseUiDemos } from '@mui-internal/api-docs-builder-core/baseUi/getBaseUiComponentInfo';
 
 export function getJoyUiComponentInfo(filename: string): ComponentInfo {
   const { name } = extractPackageFile(filename);
@@ -34,27 +36,33 @@ export function getJoyUiComponentInfo(filename: string): ComponentInfo {
         return null;
       }
 
-      const urlComponentName = kebabCase(inheritedComponent.replace(/unstyled/i, ''));
+      const isBaseUi = inheritedComponent.match(/unstyled/i);
 
-      // TODO: build a map for Base UI component name -> API URL path
-      // or even better, migrate away from the /components-api/ and /hooks-api/ URLs, flatten.
-      if (inheritedComponent === 'PopperUnstyled') {
+      if (isBaseUi) {
+        const inheritedComponentName = inheritedComponent.replace(/unstyled/i, '');
+        const demos = getBaseUiDemos(inheritedComponentName);
+        const apiPath = getApiPath(demos, inheritedComponentName);
+
+        if (!apiPath) {
+          throw new Error(`Could not find API path for component: ${name}`);
+        }
+
         return {
-          name: 'Popper',
-          apiPathname: `/base-ui/react-popper/components-api/#${urlComponentName}`,
+          name: inheritedComponentName,
+          apiPathname: apiPath,
         };
       }
 
+      const urlComponentName = kebabCase(inheritedComponent.replace(/unstyled/i, ''));
+
       // `inheritedComponent` node is coming from test files.
       // `inheritedComponent` must include `Unstyled` suffix for parser to recognise that the component inherits Base UI component
-      // e.g., Joy Menu inherits Base UI Popper, and its test file uses the name `PopperUnstyled` so that we can recognise here that
-      // Joy Menu is inheriting a base component. In terms of documentation, we should no longer use the name `PopperUnstyled`, and hence
+      // e.g., Joy UI Menu inherits Base UI Popper, and its test file uses the name `PopperUnstyled` so that we can recognise here that
+      // Joy UI Menu is inheriting a base component. In terms of documentation, we should no longer use the name `PopperUnstyled`, and hence
       // we remove the suffix here.
       return {
-        name: inheritedComponent.replace(/unstyled/i, ''),
-        apiPathname: `/${
-          inheritedComponent.match(/unstyled/i) ? 'base-ui' : 'joy-ui'
-        }/api/${urlComponentName}/`,
+        name: inheritedComponent,
+        apiPathname: `/joy-ui/api/${urlComponentName}/`,
       };
     },
     getDemos: () => {
