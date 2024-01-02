@@ -10,32 +10,34 @@ import ToggleDisplayOption, {
 import PropertiesList, { getHash } from 'docs/src/modules/components/ApiPage/list/PropertiesList';
 import PropertiesTable from 'docs/src/modules/components/ApiPage/table/PropertiesTable';
 
-export const getPropsToC = ({
+export function getPropsToC({
   componentName,
   componentProps,
   inheritance,
   themeDefaultProps,
   t,
   hash,
-}) => ({
-  text: t('api-docs.props'),
-  hash: hash ?? 'props',
-  children: [
-    ...Object.entries(componentProps)
-      .filter(([, propData]) => propData.description !== '@ignore')
-      .map(([propName]) => ({
-        text: propName,
-        hash: getHash({ propName, targetName: componentName }),
-        children: [],
-      })),
-    ...(inheritance
-      ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
-      : []),
-    ...(themeDefaultProps
-      ? [{ text: t('api-docs.themeDefaultProps'), hash: 'theme-default-props', children: [] }]
-      : []),
-  ],
-});
+}) {
+  return {
+    text: t('api-docs.props'),
+    hash: hash ?? 'props',
+    children: [
+      ...Object.entries(componentProps)
+        .filter(([, propData]) => propData.description !== '@ignore')
+        .map(([propName]) => ({
+          text: propName,
+          hash: getHash({ propName, targetName: componentName }),
+          children: [],
+        })),
+      ...(inheritance
+        ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
+        : []),
+      ...(themeDefaultProps
+        ? [{ text: t('api-docs.themeDefaultProps'), hash: 'theme-default-props', children: [] }]
+        : []),
+    ],
+  };
+}
 
 export default function PropertiesSection(props) {
   const {
@@ -122,9 +124,7 @@ export default function PropertiesSection(props) {
         </Level>
         <ToggleDisplayOption displayOption={displayOption} setDisplayOption={setDisplayOption} />
       </Box>
-
       {spreadHint && <p dangerouslySetInnerHTML={{ __html: spreadHint }} />}
-
       {displayOption === 'table' ? (
         <PropertiesTable properties={formatedProperties} />
       ) : (
