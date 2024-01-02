@@ -1,4 +1,4 @@
-# Material 3 components
+# Material 3 Components
 
 <p class="description">Try out Material UI's implementation of MD3 and learn how to contribute to the project.</p>
 
@@ -17,7 +17,7 @@ The MD3 components are currently in alpha and subject to change.
 
 Visit the [All Components page](/material-ui/all-components/) to see which components support MD3—look for the green MD3 indicator.
 All components that have MD3 versions have a corresponding playground on their page.
-For example, here's the [MD3 Button playground](/material-ui/react-button/#material-you-version).
+For example, here's the [MD3 Button playground](/material-ui/react-button/#material-3-version).
 
 ## Getting started with MD3 components
 

@@ -80,10 +80,11 @@ You can also render a vertical divider with content.
 
 ## Experimental APIs
 
-### Material You version
+### Material 3 version
 
 The default Material UI Divider component follows the Material Design 2 specs.
-To get the Material You ([Material Design 3](https://m3.material.io/)) version, use the new experimental `@mui/material-next` package:
+To get the [Material 3](https://m3.material.io/) version, use the new experimental `@mui/material-next` package.
+Visit the [Material 3 Components](/material-ui/guides/material-3-components/) guide for instructions on how to do so.
 
 ```js
 import Divider from '@mui/material-next/Divider';
