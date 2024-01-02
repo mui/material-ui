@@ -105,12 +105,6 @@
     {
       "groupName": "@definitelytyped tools",
       "matchPackagePatterns": ["@definitelytyped/*"]
-    },
-    {
-      "groupName": "Lerna",
-      "matchPackageNames": ["lerna"],
-      "description": "Limited at 7.2.0 until https://github.com/mui/material-ui/issues/40025 is fixed",
-      "allowedVersions": "<=7.2.0"
     }
   ],
   "postUpdateOptions": ["yarnDedupeHighest"],
