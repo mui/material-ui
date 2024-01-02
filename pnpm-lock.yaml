@@ -2521,6 +2521,9 @@ importers:
       '@types/react-is':
         specifier: ^18.2.1
         version: 18.2.4
+      '@types/sinon':
+        specifier: ^10.0.20
+        version: 10.0.20
       chai:
         specifier: ^4.3.10
         version: 4.3.10
