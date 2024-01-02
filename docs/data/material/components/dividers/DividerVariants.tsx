@@ -5,7 +5,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 
 const style = {
-  p: 0,
+  py: 0,
   width: '100%',
   maxWidth: 360,
   borderRadius: 2,
@@ -14,23 +14,23 @@ const style = {
   backgroundColor: 'background.paper',
 };
 
-export default function ListDividers() {
+export default function DividerVariants() {
   return (
-    <List sx={style} aria-label="mailbox folders">
+    <List sx={style}>
       <ListItem>
-        <ListItemText primary="Inbox" />
+        <ListItemText primary="Full width variant below" />
       </ListItem>
-      <Divider component="li" light />
+      <Divider component="li" />
       <ListItem>
-        <ListItemText primary="Drafts" />
+        <ListItemText primary="Inset variant below" />
       </ListItem>
-      <Divider component="li" light />
+      <Divider variant="inset" component="li" />
       <ListItem>
-        <ListItemText primary="Trash" />
+        <ListItemText primary="Middle variant below" />
       </ListItem>
-      <Divider component="li" light />
+      <Divider variant="middle" component="li" />
       <ListItem>
-        <ListItemText primary="Spam" />
+        <ListItemText primary="List item" />
       </ListItem>
     </List>
   );
