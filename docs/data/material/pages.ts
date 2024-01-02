@@ -134,7 +134,9 @@ const pages: MuiPage[] = [
         subheader: 'MUI X',
         children: [
           { pathname: '/x/react-data-grid', title: 'Data Grid' },
-          { pathname: '/x/react-date-pickers/getting-started', title: 'Date & Time Pickers' },
+          { pathname: '/x/react-date-pickers', title: 'Date & Time Pickers' },
+          { pathname: '/x/react-charts' },
+          { pathname: '/x/react-tree-view', title: 'Tree View' },
         ],
       },
       {
