@@ -93,7 +93,7 @@ For the right candidate:
 - Experience as a teacher, tutor, or mentor
 - Experience as a technical writer or content creator
 - Good product design sensibilities
-- Some design skills
+- Basic design skills
 
 ### Nice to have (but not required)
 
