@@ -29,14 +29,15 @@ async function removeOutdatedApiDocsTranslations(
 
   await Promise.all(
     projectFiles.map(async ({ directory, files }) => {
-      for (let i = 0; i < files.length; i += 1) {
-        const filename = files[i];
-        const filepath = path.join(directory, filename);
-        const stats = await fse.stat(filepath);
-        if (stats.isDirectory()) {
-          componentDirectories.add(filepath);
-        }
-      }
+      await Promise.all(
+        files.map(async (filename) => {
+          const filepath = path.join(directory, filename);
+          const stats = await fse.stat(filepath);
+          if (stats.isDirectory()) {
+            componentDirectories.add(filepath);
+          }
+        }),
+      );
     }),
   );
 

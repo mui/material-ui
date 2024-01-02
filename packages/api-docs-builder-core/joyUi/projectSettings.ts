@@ -26,5 +26,5 @@ export const projectSettings: ProjectSettings = {
       null
     );
   },
-  translationPagesDirectory: 'docs/translations/api-docs-joy'
+  translationPagesDirectory: 'docs/translations/api-docs-joy',
 };

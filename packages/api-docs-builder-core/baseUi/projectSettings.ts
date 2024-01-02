@@ -34,7 +34,7 @@ export const projectSettings: ProjectSettings = {
 
     return source;
   },
-  skipAnnotateComponentDefinition: true,
-  generateOnlyJsonFile: true,
+  skipAnnotatingComponentDefinition: true,
+  generateJsonFileOnly: true,
   translationPagesDirectory: 'docs/translations/api-docs-base',
 };

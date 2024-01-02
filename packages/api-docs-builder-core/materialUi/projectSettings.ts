@@ -26,5 +26,5 @@ export const projectSettings: ProjectSettings = {
   skipComponent(filename: string) {
     return filename.match(/(ThemeProvider|CssVarsProvider|Grid2)/) !== null;
   },
-  translationPagesDirectory: 'docs/translations/api-docs'
+  translationPagesDirectory: 'docs/translations/api-docs',
 };

@@ -10,11 +10,11 @@ export interface DescribeablePropDescriptor {
 
 export type CreateDescribeablePropSettings = {
   /**
-   * name of props which do not require default annotation.
+   * Names of props that do not require default annotation.
    */
   propsWithoutMandatoryDefaultAnnotation?: string[];
   /**
-   * name of props which do not check the annotation equal runtime default.
+   * Names of props that do not check if the annotations equal runtime default.
    */
   propsWithoutDefaultVerification?: string[];
 };

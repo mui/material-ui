@@ -1,4 +1,4 @@
-import { mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import * as astTypes from 'ast-types';
 import * as babel from '@babel/core';
@@ -763,10 +763,10 @@ export default async function generateComponentApi(
 
   if (!skipApiGeneration) {
     const {
-      skipAnnotateComponentDefinition,
+      skipAnnotatingComponentDefinition,
       translationPagesDirectory,
       importTranslationPagesDirectory,
-      generateOnlyJsonFile,
+      generateJsonFileOnly,
     } = projectSettings;
 
     generateApiTranslations(
@@ -779,13 +779,13 @@ export default async function generateComponentApi(
       apiPagesDirectory,
       importTranslationPagesDirectory ?? translationPagesDirectory,
       reactApi,
-      generateOnlyJsonFile,
+      generateJsonFileOnly,
     );
 
     if (
-      typeof skipAnnotateComponentDefinition === 'function'
-        ? !skipAnnotateComponentDefinition(reactApi.filename)
-        : !skipAnnotateComponentDefinition
+      typeof skipAnnotatingComponentDefinition === 'function'
+        ? !skipAnnotatingComponentDefinition(reactApi.filename)
+        : !skipAnnotatingComponentDefinition
     ) {
       // Add comment about demo & api links (including inherited component) to the component file
       await annotateComponentDefinition(reactApi);

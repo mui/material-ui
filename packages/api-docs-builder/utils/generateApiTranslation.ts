@@ -14,14 +14,14 @@ export default function generateApiTranslations<ReactApi extends MinimalReactAPI
   reactApi: ReactApi,
   languages: string[],
 ) {
-  const hookName = reactApi.name;
-  const apiDocsTranslationPath = path.resolve(outputDirectory, kebabCase(hookName));
+  const definitionName = reactApi.name;
+  const apiDocsTranslationPath = path.resolve(outputDirectory, kebabCase(definitionName));
   function resolveApiDocsTranslationsComponentLanguagePath(
     language: (typeof languages)[0],
   ): string {
     const languageSuffix = language === 'en' ? '' : `-${language}`;
 
-    return path.join(apiDocsTranslationPath, `${kebabCase(hookName)}${languageSuffix}.json`);
+    return path.join(apiDocsTranslationPath, `${kebabCase(definitionName)}${languageSuffix}.json`);
   }
 
   mkdirSync(apiDocsTranslationPath, {

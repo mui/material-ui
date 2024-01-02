@@ -40,7 +40,7 @@ export interface ProjectSettings {
   /**
    * Determine is the component definition should be updated.
    */
-  skipAnnotateComponentDefinition?: boolean | ((filename: string) => boolean);
+  skipAnnotatingComponentDefinition?: boolean | ((filename: string) => boolean);
   /**
    * The path to the translation directory.
    */
@@ -59,9 +59,9 @@ export interface ProjectSettings {
    */
   propsSettings?: CreateDescribeablePropSettings;
   /**
-   * If `true`, the script do not generat js page file
-   * Once we have the tabs API in all projects, we can make this default true
+   * If `true`, the script does not generate JS page file.
+   * Once we have the API tabs in all projects, we can make this `true` by default.
    * @default false
    */
-  generateOnlyJsonFile?: boolean;
+  generateJsonFileOnly?: boolean;
 }
