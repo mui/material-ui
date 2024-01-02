@@ -51,4 +51,5 @@ export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';
 
 // Private methods for creating parts of the theme
 export { default as private_createTypography } from './createTypography';
+export { default as private_createMixins } from './createMixins';
 export { default as private_excludeVariablesFromRoot } from './excludeVariablesFromRoot';

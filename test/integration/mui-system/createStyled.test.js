@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
+import createStyled from '@mui/system/createStyled';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { createRenderer } from '@mui-internal/test-utils';
-import createStyled from './createStyled';
 
 describe('createStyled', () => {
   const { render } = createRenderer();
