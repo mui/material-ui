@@ -4,7 +4,7 @@ title: Overview
 
 # Joy UI - Overview
 
-<p class="description">Joy UI is an open-source React component library that implements MUI's own in-house design principles. It's comprehensive and can be used in production out of the box.</p>
+<p class="description">Joy UI is an open-source React component library that implements MUI's own design principles. It's comprehensive and can be used in production out of the box.</p>
 
 ## Introduction
 
