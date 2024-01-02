@@ -5,7 +5,6 @@ import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
 import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
 import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
 import FormatBoldIcon from '@mui/icons-material/FormatBold';
-import FormatItalicIcon from '@mui/icons-material/FormatItalic';
 
 export default function VerticalDividerMiddle() {
   return (
@@ -15,7 +14,7 @@ export default function VerticalDividerMiddle() {
         display: 'flex',
         color: 'text.secondary',
         '& svg': {
-          m: 1.5,
+          m: 1,
         },
         '& hr': {
           mx: 0.5,
@@ -27,7 +26,6 @@ export default function VerticalDividerMiddle() {
       <FormatAlignRightIcon />
       <Divider orientation="vertical" variant="middle" flexItem />
       <FormatBoldIcon />
-      <FormatItalicIcon />
     </Card>
   );
 }

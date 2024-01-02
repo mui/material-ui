@@ -11,7 +11,7 @@ const style = {
   borderRadius: 2,
   border: '1px solid',
   borderColor: 'divider',
-  backgroundColor: 'backgroun.paoer',
+  backgroundColor: 'background.paper',
 };
 
 export default function DividerVariants() {

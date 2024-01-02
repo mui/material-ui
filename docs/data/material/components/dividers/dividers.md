@@ -8,13 +8,13 @@ materialDesign: https://m2.material.io/components/dividers
 
 # Divider
 
-<p class="description">A divider is a thin line that separates content in containers such as lists, cards, and others.</p>
+<p class="description">The Divider component provides a thin, unobtrusive line for grouping elements to reinforce visual hierarchy.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Introduction
 
-The Divider component, by default, renders as a `<hr>`.
+The Material UI Divider component, by default, renders as a `<hr>`, and it comes with several handy props for quick styling.
 
 {{"demo": "IntroDivider.js", "bg": true}}
 
@@ -32,26 +32,27 @@ The Divider component supports three variants: `fullWidth` (default), `inset`, a
 
 ### Orientation
 
-Use the `orientation` prop to change the Divider from displaying horizontally to vertically.
+Use the `orientation` prop to change the Divider from horizontal to vertical.
 
 {{"demo": "VerticalDividers.js", "bg": true}}
 
-:::success
-Use the handy `flexItem` prop in case the Divider is being used inside of a flex container.
-:::
+### Flex item
+
+Use the `flexItem` prop to display the Divider when it's being used in a flex container.
+
+{{"demo": "FlexDivider.js", "bg": true}}
 
 ### With children
 
 Use the `textAlign` prop to align elements that are wrapped by the Divider.
 
-{{"demo": "DividerText.js"}}
+{{"demo": "DividerText.js", "bg": true}}
 
-## Common examples
+## Customization
 
 ### Use with a List
 
-When using the Divider to separate List Item, use the `component` prop to render it as `<li>`.
-That ensures that the list element is a valid HTML element
+When using the Divider to separate items in a List, use the `component` prop to render it as an `<li>`—otherwise it won't be a valid HTML element.
 
 {{"demo": "ListDividers.js", "bg": true}}
 
@@ -75,8 +76,8 @@ If you're using it as a purely stylistic element, we recommend setting `aria-hid
 <Divider aria-hidden="true" />
 ```
 
-And, in case you're using the Divider to wrap other elements, such as text or chips, we recommend changing its rendered element to a plain `<div>` and setting `role="presentation"`.
-That will also ensure it's not announced by screen readers as well as preserve the semantics of the elements inside it.
+If you're using the Divider to wrap other elements, such as text or chips, we recommend changing its rendered element to a plain `<div>` using the `component` prop, and setting `role="presentation"`.
+This ensures that it's not announced by screen readers while still preserving the semantics of the elements inside it.
 
 ```js
 <Divider component="div" role="presentation">
