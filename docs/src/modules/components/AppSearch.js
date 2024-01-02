@@ -207,7 +207,7 @@ function NewStartScreen() {
       items: [
         {
           name: 'Overview',
-          href: '/toolpad/getting-started/overview/',
+          href: '/toolpad/getting-started/',
           icon: <StickyNote2RoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
         {

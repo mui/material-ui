@@ -60,7 +60,6 @@
     "@mui-internal/test-utils": "workspace:^",
     "@mui/icons-material": "workspace:^",
     "@mui/lab": "workspace:*",
-    "@mui/styles": "workspace:^",
     "@popperjs/core": "^2.11.8",
     "@rollup/plugin-replace": "^5.0.5",
     "@testing-library/dom": "^9.3.3",

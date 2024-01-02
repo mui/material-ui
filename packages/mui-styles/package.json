@@ -58,7 +58,6 @@
   },
   "devDependencies": {
     "@mui-internal/test-utils": "workspace:^",
-    "@mui/joy": "workspace:*",
     "@mui/material": "workspace:^",
     "@types/chai": "^4.3.11",
     "@types/react": "^18.2.45",
