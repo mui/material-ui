@@ -15,6 +15,8 @@
     "strict": true,
     "baseUrl": "./",
     "paths": {
+      "@mui/base": ["../mui-base/src"],
+      "@mui/base/*": ["../mui-base/src/*"],
       "@mui/utils": ["../mui-utils/src"],
       "@mui/utils/*": ["../mui-utils/src/*"]
     }
