@@ -100,7 +100,7 @@ export interface ListItemOwnProps extends ListItemBaseProps {
   /**
    * The components used for each slot inside.
    * Either a string to use a HTML element or a component.
-   * 
+   *
    * @default {}
    */
   slots?: {
