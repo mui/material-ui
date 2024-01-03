@@ -212,7 +212,6 @@
   white-space: nowrap;
   text-align: center;
   border-radius: var(--border-radius-full);
-  /* background-color: #000; */
   background-color: var(--bg-highlight);
   box-shadow: var(--shadow-elevation-2);
   transform: translate(50%, -50%);
@@ -239,36 +238,37 @@
   cursor: pointer;
   border: var(--border-solid-button);
   box-shadow: var(--shadow-interactive-button);
+}
 
-  &:hover {
-    background-color: var(--bg-button-hover);
-  }
+.GalleryButton:hover {
+  background-color: var(--bg-button-hover);
+}
 
-  &:active {
-    background-color: var(--bg-button-active);
-    box-shadow: none;
-    scale: 0.98;
-  }
+.GalleryButton:active {
+  background-color: var(--bg-button-active);
+  box-shadow: none;
+  scale: 0.96;
+}
 
-  &:focus-visible {
-    box-shadow: var(--shadow-interactive-button), var(--shadow-interactive-focus-visible);
-    outline: none;
-  }
+.GalleryButton:focus-visible {
+  box-shadow: var(--shadow-interactive-button), var(--shadow-interactive-focus-visible);
+  outline: none;
+}
 
-  &:disabled {
-    background-color: var(--bg-button-disabled);
-    color: var(--font-color-soft);
-    border: var(--border-transparent);
-    cursor: not-allowed;
-    box-shadow: none;
+.GalleryButton:disabled {
+  background-color: var(--bg-button-disabled);
+  color: var(--font-color-soft);
+  border: var(--border-transparent);
+  cursor: not-allowed;
+  box-shadow: none;
+}
 
-    &:hover {
-      background-color: var(--bg-button-disabled);
-    }
-    &:active {
-      scale: 1;
-    }
-  }
+.GalleryButton:disabled:hover {
+  background-color: var(--bg-button-disabled);
+}
+
+.GalleryButton:disabled:active {
+  scale: 1;
 }
 
 .GalleryButtonOutlined {
@@ -281,37 +281,38 @@
   cursor: pointer;
   border: var(--border-default);
   box-shadow: var(--shadow-outlined-button);
+}
 
-  &:hover {
-    background-color: var(--bg-soft);
-    border: var(--border-soft);
-  }
+.GalleryButtonOutlined:hover {
+  background-color: var(--bg-soft);
+  border: var(--border-soft);
+}
 
-  &:active {
-    background-color: var(--bg-hard);
-    box-shadow: none;
-    scale: 0.96;
-  }
+.GalleryButtonOutlined:active {
+  background-color: var(--bg-hard);
+  box-shadow: none;
+  scale: 0.96;
+}
 
-  &:focus-visible {
-    box-shadow: var(--shadow-interactive-focus-visible);
-    outline: none;
-  }
+.GalleryButtonOutlined:focus-visible {
+  box-shadow: var(--shadow-interactive-focus-visible);
+  outline: none;
+}
 
-  &:disabled {
-    background-color: var(--bg-button-disabled);
-    color: var(--font-color-soft);
-    border: var(--border-transparent);
-    cursor: not-allowed;
-    box-shadow: none;
+.GalleryButtonOutlined:disabled {
+  background-color: var(--bg-button-disabled);
+  color: var(--font-color-soft);
+  border: var(--border-transparent);
+  cursor: not-allowed;
+  box-shadow: none;
+}
 
-    &:hover {
-      background-color: var(--bg-button-disabled);
-    }
-    &:active {
-      scale: 1;
-    }
-  }
+.GalleryButtonOutlined:disabled:hover {
+  background-color: var(--bg-button-disabled);
+}
+
+.GalleryButtonOutlined:disabled:active {
+  scale: 1;
 }
 
 .GalleryButtonPlain {
@@ -323,35 +324,36 @@
   border: var(--border-transparent);
   transition: all 120ms ease;
   cursor: pointer;
+}
 
-  &:hover {
-    background-color: var(--bg-soft);
-  }
+.GalleryButtonPlain:hover {
+  background-color: var(--bg-soft);
+}
 
-  &:active {
-    background-color: var(--bg-hard);
-    scale: 0.98;
-  }
+.GalleryButtonPlain:active {
+  background-color: var(--bg-hard);
+  scale: 0.96;
+}
 
-  &:focus-visible {
-    box-shadow: var(--shadow-interactive-focus-visible);
-    outline: none;
-  }
+.GalleryButtonPlain:focus-visible {
+  box-shadow: var(--shadow-interactive-focus-visible);
+  outline: none;
+}
 
-  &:disabled {
-    background-color: var(--bg-button-disabled);
-    color: var(--font-color-soft);
-    border: var(--border-transparent);
-    cursor: not-allowed;
-    box-shadow: none;
+.GalleryButtonPlain:disabled {
+  background-color: var(--bg-button-disabled);
+  color: var(--font-color-soft);
+  border: var(--border-transparent);
+  cursor: not-allowed;
+  box-shadow: none;
+}
 
-    &:hover {
-      background-color: var(--bg-button-disabled);
-    }
-    &:active {
-      scale: 1;
-    }
-  }
+.GalleryButtonPlain:disabled:hover {
+  background-color: var(--bg-button-disabled);
+}
+
+.GalleryButtonPlain:disabled:active {
+  scale: 1;
 }
 
 .GalleryInput .MuiInput-input {
@@ -365,17 +367,17 @@
   border: var(--border-soft);
   box-shadow: var(--shadow-input);
   transition: all 120ms ease;
+}
 
-  &:hover {
-    border: var(--border-hard);
-    background: var(--bg-input-hover);
-  }
+.GalleryInput .MuiInput-input:hover {
+  border: var(--border-hard);
+  background: var(--bg-input-hover);
+}
 
-  &:focus {
-    box-shadow: var(--shadow-interactive-focus-visible);
-    border: var(--border-interactive);
-    outline: 0;
-  }
+.GalleryInput .MuiInput-input:focus {
+  box-shadow: var(--shadow-interactive-focus-visible);
+  border: var(--border-interactive);
+  outline: 0;
 }
 
 .GalleryInput .MuiInput-input::placeholder {
@@ -442,17 +444,17 @@
   grid-template-rows: 1fr;
   overflow: hidden;
   transition: all 120ms ease;
+}
 
-  &:hover {
-    border: var(--border-hard);
-    background: var(--bg-input-hover);
-  }
+.GalleryNumberInput:hover {
+  border: var(--border-hard);
+  background: var(--bg-input-hover);
+}
 
-  &.Mui-focused {
-    box-shadow: var(--shadow-interactive-focus-visible);
-    border: var(--border-interactive);
-    outline: 0;
-  }
+.GalleryNumberInput.Mui-focused {
+  box-shadow: var(--shadow-interactive-focus-visible);
+  border: var(--border-interactive);
+  outline: 0;
 }
 
 .GalleryNumberInput .input {
@@ -495,18 +497,18 @@
   background: var(--bg-default);
   color: var(--font-color-soft);
   border: var(--border-soft);
+}
 
-  &:hover {
-    cursor: pointer;
-    color: var(--font-color-onDark);
-    background: var(--bg-button);
-    border: var(--border-interactive);
-  }
+.GalleryNumberInput .btn.increment:hover {
+  cursor: pointer;
+  color: var(--font-color-onDark);
+  background: var(--bg-button);
+  border: var(--border-interactive);
+}
 
-  &:active {
-    cursor: pointer;
-    background: var(--bg-button-active);
-  }
+.GalleryNumberInput .btn.increment:active {
+  cursor: pointer;
+  background: var(--bg-button-active);
 }
 
 .GalleryNumberInput .btn.decrement {
@@ -518,19 +520,19 @@
   color: var(--font-color-soft);
   border: var(--border-soft);
   border-top: 0;
+}
 
-  &:hover {
-    cursor: pointer;
-    color: var(--font-color-onDark);
-    background: var(--bg-button);
-    border: var(--border-interactive);
-    border-top: 0;
-  }
+.GalleryNumberInput .btn.decrement:hover {
+  cursor: pointer;
+  color: var(--font-color-onDark);
+  background: var(--bg-button);
+  border: var(--border-interactive);
+  border-top: 0;
+}
 
-  &:active {
-    cursor: pointer;
-    background: var(--bg-button-active);
-  }
+.GalleryNumberInput .btn.decrement:active {
+  cursor: pointer;
+  background: var(--bg-button-active);
 }
 
 .GalleryPopper,
@@ -570,31 +572,31 @@
   box-shadow: var(--shadow-input);
   transition: all 120ms ease;
   cursor: pointer;
+}
 
-  &:hover {
-    border: var(--border-hard);
-    background: var(--bg-input-hover);
-  }
+.GallerySelect:hover {
+  border: var(--border-hard);
+  background: var(--bg-input-hover);
+}
 
-  &.Mui-focusVisible {
-    box-shadow: var(--shadow-interactive-focus-visible);
-    border: var(--border-interactive);
-    outline: 0;
-  }
+.GallerySelect.Mui-focusVisible {
+  box-shadow: var(--shadow-interactive-focus-visible);
+  border: var(--border-interactive);
+  outline: 0;
+}
 
-  &:focus-visible {
-    box-shadow: var(--shadow-interactive-focus-visible);
-    border: var(--border-interactive);
-    outline: 0;
-  }
+.GallerySelect:focus-visible {
+  box-shadow: var(--shadow-interactive-focus-visible);
+  border: var(--border-interactive);
+  outline: 0;
+}
 
-  & > svg {
-    font-size: 1.2rem;
-    position: absolute;
-    height: 100%;
-    top: 0;
-    right: 8px;
-  }
+.GallerySelect > svg {
+  font-size: 1.2rem;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: 8px;
 }
 
 .GallerySelect-listbox {
@@ -625,41 +627,41 @@
   border-radius: var(--border-radius-md);
   transition: all 100ms ease;
   margin-bottom: 4px;
+}
 
-  &:last-of-type {
-    margin-bottom: 0;
-  }
+.GallerySelect-option:last-of-type {
+  margin-bottom: 0;
+}
 
-  &.Mui-selected {
-    background-color: var(--bg-select-option);
-    color: var(--font-color-hard);
-  }
+.GallerySelect-option.Mui-selected {
+  background-color: var(--bg-select-option);
+  color: var(--font-color-hard);
+}
 
-  &.MuiOption-highlighted {
-    box-shadow: var(--shadow-interactive-focus-visible);
-    background-color: var(--bg-soft);
-  }
+.GallerySelect-option.MuiOption-highlighted {
+  box-shadow: var(--shadow-interactive-focus-visible);
+  background-color: var(--bg-soft);
+}
 
-  &.MuiOption-highlighted.Mui-selected {
-    background-color: var(--bg-select-option);
-    color: var(--font-color-hard);
-  }
+.GallerySelect-option.MuiOption-highlighted.Mui-selected {
+  background-color: var(--bg-select-option);
+  color: var(--font-color-hard);
+}
 
-  &.MuiOption-highlighted.Mui-selected:hover {
-    background-color: var(--bg-select-option);
-  }
+.GallerySelect-option.MuiOption-highlighted.Mui-selected:hover {
+  background-color: var(--bg-select-option);
+}
 
-  &:focus-visible {
-    box-shadow: var(--shadow-interactive-focus-visible);
-  }
+.GallerySelect-option:focus-visible {
+  box-shadow: var(--shadow-interactive-focus-visible);
+}
 
-  &.Mui-disabled {
-    color: var(--font-color-soft);
-  }
+.GallerySelect-option.Mui-disabled {
+  color: var(--font-color-soft);
+}
 
-  &:hover:not(.Mui-disabled) {
-    background-color: var(--bg-soft);
-  }
+.GallerySelect-option:hover:not(.Mui-disabled) {
+  background-color: var(--bg-soft);
 }
 
 .GallerySlider {
@@ -769,37 +771,37 @@
   background: var(--bg-default);
   border: var(--border-soft);
   box-shadow: var(--shadow-elevation-3);
+}
 
-  & .snackbar-message {
-    flex: 1 1 0%;
-    max-width: 100%;
-  }
+.GallerySnackbar-content .snackbar-message {
+  flex: 1 1 0%;
+  max-width: 100%;
+}
 
-  & .snackbar-title {
-    margin: 0;
-    font: var(--text-h5);
-    color: var(--font-color-hard);
-    margin-right: 0.5rem;
-  }
+.GallerySnackbar-content .snackbar-title {
+  margin: 0;
+  font: var(--text-h5);
+  color: var(--font-color-hard);
+  margin-right: 0.5rem;
+}
 
-  & .snackbar-description {
-    margin: 0;
-    font: var(--text-body);
-    color: var(--font-color-soft);
-  }
+.GallerySnackbar-content .snackbar-description {
+  margin: 0;
+  font: var(--text-body);
+  color: var(--font-color-soft);
+}
 
-  & .snackbar-close-icon {
-    font: var(--button-text);
-    color: var(--font-color-hard);
-    cursor: pointer;
-    flex-shrink: 0;
-    padding: 6px;
-    border-radius: var(--border-radius-md);
+.GallerySnackbar-content .snackbar-close-icon {
+  font: var(--button-text);
+  color: var(--font-color-hard);
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 6px;
+  border-radius: var(--border-radius-md);
+}
 
-    &:hover {
-      background: var(--bg-hard);
-    }
-  }
+.GallerySnackbar-content .snackbar-close-icon:hover {
+  background: var(--bg-hard);
 }
 
 .GallerySwitch {
