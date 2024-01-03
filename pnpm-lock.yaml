@@ -2392,8 +2392,8 @@ importers:
         specifier: ^11.11.2
         version: 11.11.2
       '@linaria/tags':
-        specifier: ^4.5.4
-        version: 4.5.4
+        specifier: ^5.0.2
+        version: 5.0.2
       '@linaria/utils':
         specifier: ^4.5.3
         version: 4.5.3
@@ -5386,6 +5386,16 @@ packages:
       - supports-color
     dev: false
 
+  /@linaria/logger@5.0.0:
+    resolution: {integrity: sha512-PZd5H0I4F84U0kXSE+vD75ltIGDxEA6gMDNWS2aDZFitmdlQM5rIXqvKFrp5NsHa7a3AH+I2Hxm0dg60WZF7vg==}
+    engines: {node: '>=16.0.0'}
+    dependencies:
+      debug: 4.3.4(supports-color@8.1.1)
+      picocolors: 1.0.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /@linaria/shaker@4.5.3:
     resolution: {integrity: sha512-UeNw8HtY43pm+D0B+kq8BrW9GsRxm11zT7Lq3Qry8sX2mapvFqXaQ7VpTFHWEdkcbv7JOxBAMial2fu+ce/zqA==}
     engines: {node: ^12.16.0 || >=13.7.0}
@@ -5415,6 +5425,17 @@ packages:
       - supports-color
     dev: false
 
+  /@linaria/tags@5.0.2:
+    resolution: {integrity: sha512-opcORl2sA6WkBjTNLHTgpet97dNKnwPRX/QGGZMykBsvGH3AsnEg/bT31cKBMBhL+YBGQsCdBmolxvCkWPOXQw==}
+    engines: {node: '>=16.0.0'}
+    dependencies:
+      '@babel/generator': 7.23.6
+      '@linaria/logger': 5.0.0
+      '@linaria/utils': 5.0.2
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /@linaria/utils@4.5.3:
     resolution: {integrity: sha512-tSpxA3Zn0DKJ2n/YBnYAgiDY+MNvkmzAHrD8R9PKrpGaZ+wz1jQEmE1vGn1cqh8dJyWK0NzPAA8sf1cqa+RmAg==}
     engines: {node: ^12.16.0 || >=13.7.0}
@@ -5428,6 +5449,24 @@ packages:
       '@babel/traverse': 7.23.6
       '@babel/types': 7.23.0
       '@linaria/logger': 4.5.0
+      babel-merge: 3.0.0(@babel/core@7.23.6)
+      find-up: 5.0.0
+      minimatch: 9.0.3
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
+  /@linaria/utils@5.0.2:
+    resolution: {integrity: sha512-ZL8Yz4IIr9A8a5+o5LRnEpgdzIkyj4yKJrhw5Zv8wwvL+d/MHUK0q+l/KvxBmuYdcF+YYVHZ9eeBHTQBSL7r/w==}
+    engines: {node: '>=16.0.0'}
+    dependencies:
+      '@babel/core': 7.23.6
+      '@babel/generator': 7.23.6
+      '@babel/plugin-transform-modules-commonjs': 7.23.3(@babel/core@7.23.6)
+      '@babel/template': 7.22.15
+      '@babel/traverse': 7.23.6
+      '@babel/types': 7.23.0
+      '@linaria/logger': 5.0.0
       babel-merge: 3.0.0(@babel/core@7.23.6)
       find-up: 5.0.0
       minimatch: 9.0.3
