@@ -1,6 +1,5 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { styled, alpha } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
@@ -155,10 +154,6 @@ function PropDescription({ description }: { description: string }) {
   );
 }
 
-PropDescription.propTypes = {
-  description: PropTypes.string.isRequired,
-};
-
 interface PropertiesTableProps {
   properties: PropDescriptionParams[];
 }
@@ -277,13 +272,11 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                   {signature && (
                     <div className="prop-table-signature">
                       <span className="prop-table-title">{t('api-docs.signature')}:</span>
-
                       <code
                         dangerouslySetInnerHTML={{
                           __html: signature,
                         }}
                       />
-
                       {signatureArgs && (
                         <div>
                           <ul>
