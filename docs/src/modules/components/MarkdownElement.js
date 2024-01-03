@@ -151,10 +151,10 @@ const Root = styled('div')(
         height: 26,
         width: 26,
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
+        color: `var(--muidocs-palette-grey-600, ${lightTheme.palette.grey[600]})`,
         border: '1px solid',
         borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
         borderRadius: 8,
-        color: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
         '&:hover': {
           backgroundColor: alpha(lightTheme.palette.primary[100], 0.4),
           borderColor: `var(--muidocs-palette-primary-100, ${lightTheme.palette.primary[100]})`,
@@ -458,8 +458,8 @@ const Root = styled('div')(
       height: 26,
       cursor: 'pointer',
       position: 'absolute',
-      top: theme.spacing(1.5),
-      right: 12,
+      top: 12,
+      right: 16,
       padding: theme.spacing(0.5),
       fontFamily: 'inherit',
       fontWeight: 500,
@@ -479,16 +479,16 @@ const Root = styled('div')(
         flexShrink: 0,
         fontSize: '18px',
         margin: 'auto',
-        opacity: 0.6,
+        opacity: 0.4,
       },
       '& .MuiCode-copied-icon': {
         display: 'none',
       },
       '&:hover, &:focus': {
+        backgroundColor: lightTheme.palette.primaryDark[600],
         '& svg': {
           opacity: 1,
         },
-        backgroundColor: lightTheme.palette.primaryDark[500],
         '& .MuiCode-copyKeypress': {
           display: 'block',
           // Approximate no hover capabilities with no keyboard
@@ -576,9 +576,9 @@ const Root = styled('div')(
       },
       '& h1, & h2, & h3, & h4': {
         '&:hover .anchor-link, & .comment-link': {
-          color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
+          color: `var(--muidocs-palette-primary-300, ${darkTheme.palette.primaryDark[300]})`,
           borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
-          backgroundColor: alpha(darkTheme.palette.primary[900], 0.5),
+          backgroundColor: alpha(darkTheme.palette.primary[900], 0.3),
           '&:hover': {
             borderColor: `var(--muidocs-palette-primary-900, ${darkTheme.palette.primary[900]})`,
             backgroundColor: alpha(darkTheme.palette.primary[900], 0.6),
