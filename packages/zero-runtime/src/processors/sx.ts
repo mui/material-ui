@@ -1,5 +1,5 @@
 import type { Expression, Params, TailProcessorParams, ValueCache } from '@linaria/tags';
-import { buildSlug, toValidCSSIdentifier, validateParams } from '@linaria/tags';
+import { validateParams } from '@linaria/tags';
 import { ValueType } from '@linaria/utils';
 import type { ExpressionValue, Replacements, Rules } from '@linaria/utils';
 import type { IOptions } from './styled';
@@ -13,6 +13,8 @@ export class SxProcessor extends BaseProcessor {
   variableIdx: number = 0;
 
   collectedVariables: [string, Expression, boolean][] = [];
+
+  elementClassName = '';
 
   constructor(params: Params, ...args: TailProcessorParams) {
     super(params, ...args);
@@ -28,12 +30,15 @@ export class SxProcessor extends BaseProcessor {
 
   build(values: ValueCache) {
     const [sxStyle, elementClassExpression] = this.sxArguments;
-    let elementClassName = '';
     if (elementClassExpression.kind === ValueType.LAZY) {
       const elementClassValue = values.get(elementClassExpression.ex.name);
       if (typeof elementClassValue === 'string') {
-        elementClassName = elementClassValue;
+        this.elementClassName = elementClassValue;
       }
+    }
+
+    if (!this.elementClassName) {
+      return;
     }
 
     let cssText: string = '';
@@ -45,7 +50,9 @@ export class SxProcessor extends BaseProcessor {
       const styleObjOrFn = values.get(sxStyle.ex.name);
       cssText = this.processCss(styleObjOrFn, sxStyle);
     }
-    const selector = elementClassName ? `.${elementClassName}${this.asSelector}` : this.asSelector;
+    const selector = this.elementClassName
+      ? `.${this.elementClassName}${this.asSelector}`
+      : this.asSelector;
 
     if (!cssText) {
       return;
@@ -83,6 +90,10 @@ export class SxProcessor extends BaseProcessor {
 
   doRuntimeReplacement() {
     const t = this.astService;
+    // do not replace if sx prop is not on zero-runtime styled component
+    if (!this.elementClassName) {
+      return;
+    }
     if (this.collectedVariables.length) {
       const varProperties: ReturnType<typeof t.objectProperty>[] = this.collectedVariables.map(
         ([variableId, expression, isUnitLess]) => {
@@ -128,19 +139,6 @@ export class SxProcessor extends BaseProcessor {
 
   get value(): Expression {
     return this.astService.stringLiteral(this.className);
-  }
-
-  // Implementation taken from Linaria - https://github.com/callstack/linaria/blob/master/packages/react/src/processors/styled.ts#L284
-  protected getCustomVariableId(cssKey: string, source: string, hasUnit: boolean) {
-    const context = this.getVariableContext(cssKey, source, hasUnit);
-    const customSlugFn = this.options.variableNameSlug;
-    if (!customSlugFn) {
-      return toValidCSSIdentifier(`${this.slug}-${context.index}`);
-    }
-
-    return typeof customSlugFn === 'function'
-      ? customSlugFn(context)
-      : buildSlug(customSlugFn, { ...context });
   }
 
   private processCss(styleObjOrFn: unknown, expressionValue: ExpressionValue) {

@@ -1,6 +1,8 @@
+/* eslint-disable material-ui/no-empty-box */
+
 import { styled } from '@mui/zero-runtime';
+import * as React from 'react';
 import { Box as MuiBox } from '../../components/Box';
-import { Fragment } from 'react';
 
 const Box = styled(MuiBox)(({ theme }) => ({
   border: `1px dashed ${(theme.vars ?? theme).palette.primary.main}`,
@@ -15,8 +17,8 @@ export default function DemoBox() {
   return (
     <div style={{ width: '400px', marginLeft: 10, marginTop: 10 }}>
       {[...Array(500)].map((_, i) => (
-        <Fragment key={i}>
-          <Paragraph>Flex with column for "sm" breakpoint</Paragraph>
+        <React.Fragment key={i}>
+          <Paragraph>Flex with column for &quot;sm&quot; breakpoint</Paragraph>
           <MuiBox
             display="flex"
             direction={{
@@ -25,7 +27,9 @@ export default function DemoBox() {
             }}
             spacing={1}
           >
-            <Box>1</Box>
+            <Box as="div" sx={{ borderColor: 'red' }}>
+              1
+            </Box>
             <Box>2</Box>
             <Box>3</Box>
           </MuiBox>
@@ -47,7 +51,7 @@ export default function DemoBox() {
             <Box>2</Box>
             <Box>3</Box>
           </MuiBox>
-        </Fragment>
+        </React.Fragment>
       ))}
     </div>
   );
