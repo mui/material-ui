@@ -41,7 +41,7 @@
   "dependencies": {
     "@babel/core": "^7.23.6",
     "@linaria/babel-preset": "^4.5.4",
-    "@linaria/logger": "^4.5.0",
+    "@linaria/logger": "^5.0.0",
     "@linaria/utils": "^4.5.3",
     "@mui/zero-tag-processor": "workspace:^"
   },

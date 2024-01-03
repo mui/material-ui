@@ -2445,8 +2445,8 @@ importers:
         specifier: ^4.5.4
         version: 4.5.4
       '@linaria/logger':
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.0.0
+        version: 5.0.0
       '@linaria/utils':
         specifier: ^4.5.3
         version: 4.5.3
@@ -5379,6 +5379,16 @@ packages:
   /@linaria/logger@4.5.0:
     resolution: {integrity: sha512-XdQLk242Cpcsc9a3Cz1ktOE5ysTo2TpxdeFQEPwMm8Z/+F/S6ZxBDdHYJL09srXWz3hkJr3oS2FPuMZNH1HIxw==}
     engines: {node: ^12.16.0 || >=13.7.0}
+    dependencies:
+      debug: 4.3.4(supports-color@8.1.1)
+      picocolors: 1.0.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
+  /@linaria/logger@5.0.0:
+    resolution: {integrity: sha512-PZd5H0I4F84U0kXSE+vD75ltIGDxEA6gMDNWS2aDZFitmdlQM5rIXqvKFrp5NsHa7a3AH+I2Hxm0dg60WZF7vg==}
+    engines: {node: '>=16.0.0'}
     dependencies:
       debug: 4.3.4(supports-color@8.1.1)
       picocolors: 1.0.0
