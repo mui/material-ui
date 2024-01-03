@@ -87,7 +87,7 @@ const ButtonGroupRoot = styled('div', {
       },
       boxShadow: 'none',
     },
-    [`.${buttonGroupClasses.firstButton}, .${buttonGroupClasses.middleButton}`]: {
+    [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
       ...(orientation === 'horizontal' && {
         borderTopRightRadius: 0,
         borderBottomRightRadius: 0,
@@ -129,7 +129,7 @@ const ButtonGroupRoot = styled('div', {
           }),
       },
     },
-    [`.${buttonGroupClasses.lastButton}, .${buttonGroupClasses.middleButton}`]: {
+    [`& .${buttonGroupClasses.lastButton},& .${buttonGroupClasses.middleButton}`]: {
       ...(orientation === 'horizontal' && {
         borderTopLeftRadius: 0,
         borderBottomLeftRadius: 0,
