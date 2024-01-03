@@ -989,6 +989,8 @@
 
 .GalleryTabsList {
   min-width: 300px;
+  max-width: 500px;
+  width: 100%;
   background-color: var(--background-surface-soft);
   border: var(--border-default);
   border-radius: var(--border-radius-lg);
@@ -1039,6 +1041,8 @@
 }
 
 .GalleryTabPanel {
+  box-sizing: border-box;
+  max-width: 500px;
   font: var(--text-body);
   color: var(--font-color-hard);
   padding: 24px;

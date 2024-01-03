@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Box from '@mui/system/Box';
 import Stack from '@mui/system/Stack';
 import styled from '@mui/system/styled';
 import { Transition } from 'react-transition-group';
@@ -13,20 +14,12 @@ import { Popper } from '@mui/base/Popper';
 import { Unstable_Popup as Popup } from '@mui/base/Unstable_Popup';
 import { Unstable_NumberInput as NumberInput } from '@mui/base/Unstable_NumberInput';
 import { Select, SelectRootSlotProps } from '@mui/base/Select';
-import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 import { Option } from '@mui/base/Option';
 import { Slider } from '@mui/base/Slider';
 import { Snackbar } from '@mui/base/Snackbar';
-import FormatColorFillRoundedIcon from '@mui/icons-material/FormatColorFillRounded';
-import FirstPageRoundedIcon from '@mui/icons-material/FirstPageRounded';
-import LastPageRoundedIcon from '@mui/icons-material/LastPageRounded';
-import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
-import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 // TODO: re-export from the @mui/base/Snackbar, if developer only uses the component
 // it is not intuitive to import types from a different module
 import { SnackbarCloseReason } from '@mui/base/useSnackbar';
-import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
-import CloseIcon from '@mui/icons-material/Close';
 import { Switch } from '@mui/base/Switch';
 import { TablePagination } from '@mui/base/TablePagination';
 import { Tabs } from '@mui/base/Tabs';
@@ -34,6 +27,15 @@ import { TabsList } from '@mui/base/TabsList';
 import { TabPanel } from '@mui/base/TabPanel';
 import { Tab } from '@mui/base/Tab';
 import { TextareaAutosize } from '@mui/base/TextareaAutosize';
+// Icons import
+import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
+import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
+import FormatColorFillRoundedIcon from '@mui/icons-material/FormatColorFillRounded';
+import FirstPageRoundedIcon from '@mui/icons-material/FirstPageRounded';
+import LastPageRoundedIcon from '@mui/icons-material/LastPageRounded';
+import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
+import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
+import CloseIcon from '@mui/icons-material/Close';
 
 // Snackbar demo
 const positioningStyles = {
@@ -61,22 +63,41 @@ const hslPickerLinearGradient = [...new Array(36)]
   .map((_, i) => `hsl(${i * 10}, 68%, 38%)`)
   .join(',');
 
-const ColorPickerSlider = styled(Slider)({
-  width: '100%',
-  background: `-webkit-linear-gradient(left, ${hslPickerLinearGradient})`,
-  margin: '16px 0',
-  height: '6px',
-  '& .MuiSlider-thumb': {
-    position: 'absolute',
-    width: '16px',
-    height: '16px',
-    marginLeft: '-6px',
-    marginTop: '-6px',
-    borderRadius: '50%',
-    border: '1px solid black',
-    backgroundColor: 'white',
-  },
-});
+const ColorPickerSlider = styled(Slider)(
+  ({ theme }) => `
+    width: 100%;
+    background: -webkit-linear-gradient(left, ${hslPickerLinearGradient});
+    margin: 16px 0;
+    height: 8px;
+    border-radius: 8px;
+  
+    & .MuiSlider-thumb {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      margin-left: -6px;
+      margin-top: -6.5px;
+      border-radius: 50%;
+      background-color: white;
+      border: 1px solid;
+      border-color: ${theme.palette.mode === 'dark' ? 'white' : '#CBCBCB'};
+      transition: all 120ms ease;
+  
+      &:hover {
+        box-shadow: 0 0 0 4px ${
+          theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)'
+        };
+      }
+  
+      &:active {
+        box-shadow: 0 0 0 6px ${
+          theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)'
+        };
+        transform: scale(1.2);
+      },
+    },
+    `,
+);
 
 const CopyButton = styled(Button)({
   float: 'right',
@@ -93,7 +114,7 @@ const SettingsButton = styled(Button)({
 const SettingsPopup = styled('div')({
   display: 'flex',
   flexDirection: 'column',
-  width: '300px',
+  width: '250px',
 });
 
 export default function ComponentsGallery() {
@@ -215,16 +236,16 @@ export default function ComponentsGallery() {
   const colorPickerSliderChangeHandler = (e: Event, value: number | number[]) => {
     setRootStyles(`
 :root {
-  --primary-50: hsl(${value}, 81%, 98%);
-  --primary-100: hsl(${value}, 75%, 91%);
-  --primary-200: hsl(${value}, 64%, 80%);
-  --primary-300: hsl(${value}, 54%, 65%);
-  --primary-400: hsl(${value}, 73%, 43%);
-  --primary-500: hsl(${value}, 81%, 26%);
-  --primary-600: hsl(${value}, 85%, 23%);
-  --primary-700: hsl(${value}, 89%, 20%);
-  --primary-800: hsl(${value}, 91%, 17%);
-  --primary-900: hsl(${value}, 95%, 13%);
+  --primary-50: ${value}, 90%, 97%;
+  --primary-100: ${value}, 90%, 88%;
+  --primary-200: ${value}, 90%, 78%;
+  --primary-300: ${value}, 90%, 65%;
+  --primary-400: ${value}, 90%, 41%;
+  --primary-500: ${value}, 90%, 26%;
+  --primary-600: ${value}, 90%, 22%;
+  --primary-700: ${value}, 90%, 17%;
+  --primary-800: ${value}, 90%, 14%;
+  --primary-900: ${value}, 90%, 12%;
 }
     `);
 
@@ -248,9 +269,11 @@ export default function ComponentsGallery() {
         </SettingsButton>
         <Popper id={settingsId} open={settingsOpen} anchorEl={settingsAnchor}>
           <SettingsPopup className="GalleryPopup">
-            <h3>Primary color</h3>
+            <Box component="h3" sx={{ fontWeight: 500, fontSize: '0.875rem', m: 0 }}>
+              Change the primary color:
+            </Box>
             <ColorPickerSlider
-              defaultValue={189}
+              defaultValue={210}
               min={0}
               max={360}
               onChange={colorPickerSliderChangeHandler}
@@ -261,7 +284,7 @@ export default function ComponentsGallery() {
           Export theme
         </CopyButton>
         <Snackbar
-          autoHideDuration={2000}
+          autoHideDuration={5000}
           open={copySnackbarOpen}
           onClose={handleCopyClose}
           exited={copySnackbarExited}
@@ -294,9 +317,9 @@ export default function ComponentsGallery() {
                   }}
                 />
                 <div className="snackbar-message">
-                  <p className="snackbar-title">Done!</p>
+                  <p className="snackbar-title">Theme exported!</p>
                   <p className="snackbar-description">
-                    The theme stylesheet has been copied to clipboard!
+                    The theme stylesheet has been copied to your clipboard.
                   </p>
                 </div>
                 <CloseIcon onClick={handleCopyClose} className="snackbar-close-icon" />
@@ -304,7 +327,6 @@ export default function ComponentsGallery() {
             )}
           </Transition>
         </Snackbar>
-        <br />
       </Stack>
       <div>
         <Badge
@@ -458,7 +480,7 @@ export default function ComponentsGallery() {
           </Snackbar>
         </div>
       </Stack>
-      <div style={{ width: 320 }}>
+      <div style={{ width: 300 }}>
         <Slider
           slotProps={{
             root: { className: 'GallerySlider' },
@@ -550,36 +572,34 @@ export default function ComponentsGallery() {
           </tfoot>
         </table>
       </div>
-      <div style={{ maxWidth: '550px' }}>
-        <Tabs defaultValue={0}>
-          <TabsList className="GalleryTabsList">
-            <Tab className="GalleryTab" value={0}>
-              Account
-            </Tab>
-            <Tab className="GalleryTab" value={1}>
-              Notifications
-            </Tab>
-            <Tab className="GalleryTab" value={2}>
-              Language
-            </Tab>
-            <Tab className="GalleryTab" value={3} disabled>
-              Calendar
-            </Tab>
-          </TabsList>
-          <TabPanel className="GalleryTabPanel" value={0}>
-            My account page
-          </TabPanel>
-          <TabPanel className="GalleryTabPanel" value={1}>
-            Profile page
-          </TabPanel>
-          <TabPanel className="GalleryTabPanel" value={2}>
-            Language page
-          </TabPanel>
-          <TabPanel className="GalleryTabPanel" value={3}>
-            Calendar page
-          </TabPanel>
-        </Tabs>
-      </div>
+      <Tabs defaultValue={0}>
+        <TabsList className="GalleryTabsList">
+          <Tab className="GalleryTab" value={0}>
+            Account
+          </Tab>
+          <Tab className="GalleryTab" value={1}>
+            Notifications
+          </Tab>
+          <Tab className="GalleryTab" value={2}>
+            Language
+          </Tab>
+          <Tab className="GalleryTab" value={3} disabled>
+            Calendar
+          </Tab>
+        </TabsList>
+        <TabPanel className="GalleryTabPanel" value={0}>
+          My account page
+        </TabPanel>
+        <TabPanel className="GalleryTabPanel" value={1}>
+          Profile page
+        </TabPanel>
+        <TabPanel className="GalleryTabPanel" value={2}>
+          Language page
+        </TabPanel>
+        <TabPanel className="GalleryTabPanel" value={3}>
+          Calendar page
+        </TabPanel>
+      </Tabs>
     </Stack>
   );
 }
