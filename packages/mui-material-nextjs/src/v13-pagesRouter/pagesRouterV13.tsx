@@ -113,6 +113,8 @@ export async function documentGetInitialProps(
   // You can consider sharing the same Emotion cache between all the SSR requests to speed up performance.
   // However, be aware that it can have global side effects.
   const cache = options?.emotionCache ?? createEmotionCache();
+  // The createEmotionServer has to be called directly after the cache creation due to the side effect of cache.compat = true,
+  // otherwise the <style> tag will not come with the HTML string from the server.
   const { extractCriticalToChunks } = createEmotionServer(cache);
 
   return createGetInitialProps([
