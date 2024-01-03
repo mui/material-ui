@@ -17,8 +17,8 @@ import { Select, SelectRootSlotProps } from '@mui/base/Select';
 import { Option } from '@mui/base/Option';
 import { Slider } from '@mui/base/Slider';
 import { Snackbar } from '@mui/base/Snackbar';
-// TODO: re-export from the @mui/base/Snackbar, if developer only uses the component
-// it is not intuitive to import types from a different module
+// TODO: re-export from the @mui/base/Snackbar, if only using the component
+// it's not intuitive to import types from a different module
 import { SnackbarCloseReason } from '@mui/base/useSnackbar';
 import { Switch } from '@mui/base/Switch';
 import { TablePagination } from '@mui/base/TablePagination';
@@ -104,7 +104,6 @@ const CopyButton = styled(Button)({
 });
 
 const SettingsButton = styled(Button)({
-  marginTop: '10px',
   display: 'flex',
   alignItems: 'center',
   float: 'right',
@@ -115,6 +114,7 @@ const SettingsPopup = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   width: '250px',
+  marginTop: '12px !important',
 });
 
 export default function ComponentsGallery() {
@@ -410,7 +410,7 @@ export default function ComponentsGallery() {
             Open Popper
           </button>
           <Popper id={id} open={open} anchorEl={anchorEl}>
-            <div className="GalleryPopper">The content of the Popper.</div>
+            <div className="GalleryPopper">Popper content</div>
           </Popper>
         </div>
         <div>
@@ -423,7 +423,7 @@ export default function ComponentsGallery() {
             Open Popup
           </button>
           <Popup id={popupId} open={popupOpen} anchor={popupAnchor}>
-            <div className="GalleryPopup">The content of the Popup.</div>
+            <div className="GalleryPopup">Popup content</div>
           </Popup>
         </div>
         <div>

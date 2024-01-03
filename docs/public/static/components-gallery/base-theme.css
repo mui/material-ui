@@ -189,6 +189,8 @@
   height: 100vh;
 }
 
+/* Badge styles */
+
 .GalleryBadge-root {
   font: var(--text-caption);
   margin: 0;
@@ -227,6 +229,8 @@
   display: inline-block;
   vertical-align: middle;
 }
+
+/* Solid button styles */
 
 .GalleryButton {
   font: var(--button-text);
@@ -270,6 +274,8 @@
 .GalleryButton:disabled:active {
   scale: 1;
 }
+
+/* Outlined button styles */
 
 .GalleryButtonOutlined {
   font: var(--button-text);
@@ -315,6 +321,8 @@
   scale: 1;
 }
 
+/* Plain button styles */
+
 .GalleryButtonPlain {
   font: var(--button-text);
   color: var(--font-color-hard);
@@ -356,6 +364,8 @@
   scale: 1;
 }
 
+/* Input styles */
+
 .GalleryInput .MuiInput-input {
   box-sizing: border-box;
   width: 300px;
@@ -384,12 +394,14 @@
   color: var(--font-color-placeholder);
 }
 
+/* Menu & menu listbox styles */
+
 .GalleryMenu-listbox {
   font: var(--text-body);
   color: var(--GalleryMenu-listbox-color, var(--font-color-soft));
   box-sizing: border-box;
   padding: 6px;
-  margin: 12px 0;
+  margin: 12px;
   min-width: 200px;
   border-radius: var(--border-radius-lg);
   overflow: auto;
@@ -430,6 +442,8 @@
 .GalleryMenu {
   z-index: 1;
 }
+
+/* Number input styles */
 
 .GalleryNumberInput {
   box-sizing: border-box;
@@ -492,18 +506,20 @@
 }
 
 .GalleryNumberInput .btn.increment {
+  height: 21px;
   border-top-left-radius: var(--border-radius-sm);
   border-top-right-radius: var(--border-radius-sm);
   background: var(--bg-default);
   color: var(--font-color-soft);
   border: var(--border-soft);
+  border-bottom: none;
 }
 
 .GalleryNumberInput .btn.increment:hover {
   cursor: pointer;
   color: var(--font-color-onDark);
   background: var(--bg-button);
-  border: var(--border-interactive);
+  /* border: var(--border-interactive); */
 }
 
 .GalleryNumberInput .btn.increment:active {
@@ -512,6 +528,7 @@
 }
 
 .GalleryNumberInput .btn.decrement {
+  height: 21px;
   grid-column: 2/2;
   grid-row: 2/2;
   border-bottom-left-radius: var(--border-radius-sm);
@@ -519,14 +536,13 @@
   background: var(--bg-default);
   color: var(--font-color-soft);
   border: var(--border-soft);
-  border-top: 0;
+  border-top: none;
 }
 
 .GalleryNumberInput .btn.decrement:hover {
   cursor: pointer;
   color: var(--font-color-onDark);
   background: var(--bg-button);
-  border: var(--border-interactive);
   border-top: 0;
 }
 
@@ -534,6 +550,8 @@
   cursor: pointer;
   background: var(--bg-button-active);
 }
+
+/* Popper & Popup styles */
 
 .GalleryPopper,
 .GalleryPopup {
@@ -557,6 +575,8 @@
   border: var(--border-soft);
   box-shadow: var(--shadow-elevation-2);
 }
+
+/* Select & Select listbox styles */
 
 .GallerySelect {
   width: 300px;
@@ -664,6 +684,8 @@
   background-color: var(--bg-soft);
 }
 
+/* Slider styles */
+
 .GallerySlider {
   color: var(--bg-highlight);
   height: 6px;
@@ -749,6 +771,8 @@
   }
 }
 
+/* Snackbar styles */
+
 .GallerySnackbar {
   position: fixed;
   z-index: 5500;
@@ -803,6 +827,8 @@
 .GallerySnackbar-content .snackbar-close-icon:hover {
   background: var(--bg-hard);
 }
+
+/* Switch styles */
 
 .GallerySwitch {
   font-size: 0;
@@ -879,7 +905,7 @@
   margin: 0;
 }
 
-/* Demo's table styles start */
+/* Table pagination styles */
 
 .GalleryTablePaginationDemo th {
   background-color: var(--background-surface-default);
@@ -903,8 +929,6 @@
 .GalleryTablePaginationDemo th {
   background-color: var(--bg-default);
 }
-
-/* Demo's table styles end */
 
 .GalleryTablePagination .MuiTablePagination-spacer {
   display: none;
@@ -989,6 +1013,8 @@
   opacity: 0.3;
 }
 
+/* Tabs styles */
+
 .GalleryTabsList {
   min-width: 300px;
   max-width: 500px;
@@ -1053,6 +1079,8 @@
   border: var(--border-default);
   border-style: dashed;
 }
+
+/* Textarea styles */
 
 .GalleryTextarea {
   box-sizing: border-box;
