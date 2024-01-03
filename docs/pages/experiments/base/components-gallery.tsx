@@ -317,7 +317,7 @@ export default function ComponentsGallery() {
           <span className="GalleryBadge-content" />
         </Badge>
       </div>
-      <Stack direction="row" spacing={1}>
+      <Stack direction="row" spacing={1} useFlexGap>
         <Button className="GalleryButton">Solid button</Button>
         <Button className="GalleryButtonOutlined">Outlined button</Button>
         <Button className="GalleryButtonPlain">Plain button</Button>
@@ -362,7 +362,7 @@ export default function ComponentsGallery() {
           Features
         </Option>
       </Select>
-      <Stack direction="row" spacing={1}>
+      <Stack direction="row" spacing={1} useFlexGap>
         <div>
           <Dropdown>
             <MenuButton className="GalleryButtonOutlined">Open menu</MenuButton>
@@ -479,7 +479,7 @@ export default function ComponentsGallery() {
           disabled
         />
       </div>
-      <Stack direction="row" spacing={2}>
+      <Stack direction="row" spacing={2} useFlexGap>
         <Switch
           slotProps={{
             root: { className: 'GallerySwitch' },
