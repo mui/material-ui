@@ -47,7 +47,7 @@
     "@types/chai": "^4.3.11",
     "@types/mocha": "^10.0.6",
     "@types/node": "^18.19.3",
-    "@types/react": "^18.2.45",
+    "@types/react": "^18.2.46",
     "chai": "^4.3.10",
     "react": "^18.2.0"
   },
