@@ -66,13 +66,13 @@ commands:
 
     steps:
       - run:
-          name: Resolve react version
+          name: Resolve React version
           command: |
             node scripts/useReactVersion.mjs
             # log a patch for maintainers who want to check out this change
             git --no-pager diff HEAD
       - restore_cache:
-          name: Restore pnpm Package Cache
+          name: Restore pnpm package cache
           keys:
             - pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
       - when:
@@ -110,7 +110,7 @@ commands:
                 environment:
                   PLAYWRIGHT_BROWSERS_PATH: /tmp/pw-browsers
       - save_cache:
-          name: Save pnpm Package Cache
+          name: Save pnpm package cache
           key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
           paths:
             - node_modules
@@ -286,7 +286,7 @@ jobs:
             git add -f packages/mui-material/build || echo '/material declarations do not exist'
             git add -f packages/mui-lab/build || echo '/lab declarations do not exist'
             git add -f packages/mui-utils/build || echo '/utils declarations do not exist'
-            pnpm lerna run build:types
+            pnpm -r build:types
             git --no-pager diff
       - run:
           name: Any defect declaration files?
@@ -336,7 +336,7 @@ jobs:
             git add -f packages/mui-material/build || echo '/core declarations do not exist'
             git add -f packages/mui-lab/build || echo '/lab declarations do not exist'
             git add -f packages/mui-utils/build || echo '/utils declarations do not exist'
-            pnpm lerna run build:types
+            pnpm -r build:types
             git --no-pager diff
 
       - run:
