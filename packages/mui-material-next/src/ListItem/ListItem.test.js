@@ -21,6 +21,19 @@ const NoContent = React.forwardRef(() => {
 describe('<ListItem />', () => {
   const { render } = createRenderer();
 
+  let originalMatchmedia;
+
+  beforeEach(() => {
+    originalMatchmedia = window.matchMedia;
+    window.matchMedia = () => ({
+      addListener: () => {},
+      removeListener: () => {},
+    });
+  });
+  afterEach(() => {
+    window.matchMedia = originalMatchmedia;
+  });
+
   describeConformance(<ListItem />, () => ({
     classes,
     inheritComponent: 'li',

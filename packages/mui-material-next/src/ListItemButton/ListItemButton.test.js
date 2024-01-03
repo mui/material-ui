@@ -11,6 +11,19 @@ import ListContext from '../List/ListContext';
 describe('<ListItemButton />', () => {
   const { render } = createRenderer();
 
+  let originalMatchmedia;
+
+  beforeEach(() => {
+    originalMatchmedia = window.matchMedia;
+    window.matchMedia = () => ({
+      addListener: () => {},
+      removeListener: () => {},
+    });
+  });
+  afterEach(() => {
+    window.matchMedia = originalMatchmedia;
+  });
+
   describeConformance(<ListItemButton />, () => ({
     classes,
     inheritComponent: ButtonBase,
