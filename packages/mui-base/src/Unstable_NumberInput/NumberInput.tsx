@@ -256,7 +256,7 @@ NumberInput.propTypes /* remove-proptypes */ = {
    */
   onInputChange: PropTypes.func,
   /**
-   * @ignore
+   * The short hint displayed in the `input` before the user enters a value.
    */
   placeholder: PropTypes.string,
   /**

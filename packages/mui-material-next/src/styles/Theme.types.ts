@@ -239,6 +239,7 @@ export interface Motion {
 export interface MD3CssVarsThemeOptions extends Omit<MD2CssVarsThemeOptions, 'colorSchemes'> {
   ref?: {
     typeface?: Partial<MD3Typeface>;
+    palette?: Partial<MD3Palettes>;
   };
   sys?: {
     typescale?: Partial<MD3Typescale>;
@@ -250,9 +251,6 @@ export interface MD3CssVarsThemeOptions extends Omit<MD2CssVarsThemeOptions, 'co
 }
 
 export interface ColorSystemOptions extends MD2ColorSystemOptions {
-  ref?: {
-    palette?: Partial<MD3Palettes>;
-  };
   sys?: {
     color?: Partial<MD3ColorSchemeTokens>;
     elevation?: string[];

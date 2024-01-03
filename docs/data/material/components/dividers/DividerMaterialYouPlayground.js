@@ -3,14 +3,23 @@ import Divider from '@mui/material-next/Divider';
 import MaterialYouUsageDemo from 'docs/src/modules/components/MaterialYouUsageDemo';
 import {
   Avatar,
+  Box,
   List,
   ListItem,
   ListItemAvatar,
   ListItemText,
-  Grid,
 } from '@mui/material';
 import ImageIcon from '@mui/icons-material/Image';
 import WorkIcon from '@mui/icons-material/Work';
+
+const listStyle = {
+  p: 0,
+  width: 300,
+  borderRadius: 2,
+  border: '1px solid',
+  borderColor: 'divider',
+  backgroundColor: 'background.paper',
+};
 
 export default function DividerMaterialYouPlayground() {
   return (
@@ -32,14 +41,14 @@ export default function DividerMaterialYouPlayground() {
       ]}
       renderDemo={(props) => {
         const content = (
-          <div>
+          <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus id
             dignissim justo. Nulla ut facilisis ligula.
-          </div>
+          </p>
         );
 
         return props.orientation === 'horizontal' ? (
-          <List sx={{ width: 300 }}>
+          <List sx={listStyle}>
             <ListItem>
               <ListItemAvatar>
                 <Avatar>
@@ -59,15 +68,11 @@ export default function DividerMaterialYouPlayground() {
             </ListItem>
           </List>
         ) : (
-          <Grid container>
-            <Grid item xs>
-              {content}
-            </Grid>
-            <Divider {...props} sx={{ mx: 4 }} flexItem />
-            <Grid item xs>
-              {content}
-            </Grid>
-          </Grid>
+          <Box sx={{ display: 'flex', gap: 4 }}>
+            {content}
+            <Divider flexItem {...props} />
+            {content}
+          </Box>
         );
       }}
     />

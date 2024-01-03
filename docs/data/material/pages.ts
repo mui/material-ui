@@ -134,7 +134,9 @@ const pages: MuiPage[] = [
         subheader: 'MUI X',
         children: [
           { pathname: '/x/react-data-grid', title: 'Data Grid' },
-          { pathname: '/x/react-date-pickers/getting-started', title: 'Date & Time Pickers' },
+          { pathname: '/x/react-date-pickers', title: 'Date & Time Pickers' },
+          { pathname: '/x/react-charts' },
+          { pathname: '/x/react-tree-view', title: 'Tree View' },
         ],
       },
       {
@@ -207,7 +209,7 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/guides/shadow-dom', title: 'Shadow DOM' },
       {
         pathname: '/material-ui/guides/nextjs',
-        title: 'Next.js Integration',
+        title: 'Next.js integration',
         newFeature: true,
       },
     ],

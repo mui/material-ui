@@ -6,9 +6,8 @@
   "description": "Collection of utilities for integration between Material UI and Next.js.",
   "keywords": [
     "react",
-    "react-component",
-    "mui",
-    "utils"
+    "next",
+    "material-ui"
   ],
   "repository": {
     "type": "git",
@@ -19,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "private package",
+  "homepage": "https://mui.com/material-ui/guides/nextjs/",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mui-org"
