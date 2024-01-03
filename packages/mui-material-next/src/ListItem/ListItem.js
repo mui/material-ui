@@ -105,7 +105,6 @@ export const ListItemRoot = styled('div', {
     },
     [`&.${listItemClasses.selected}`]: {
       backgroundColor: `rgba(${tokens.sys.color.primaryChannel} / ${tokens.sys.state.pressed.stateLayerOpacity})`,
-
       [`&.${listItemClasses.focusVisible}`]: {
         backgroundColor: `rgba(${tokens.sys.color.primaryChannel} / calc(${tokens.sys.state.pressed.stateLayerOpacity} + ${tokens.sys.state.hover.stateLayerOpacity}))`,
       },
@@ -134,7 +133,6 @@ export const ListItemRoot = styled('div', {
       },
       [`&.${listItemClasses.selected}:hover`]: {
         backgroundColor: `rgba(${tokens.sys.color.primaryChannel} / calc(${tokens.sys.state.pressed.stateLayerOpacity} + ${tokens.sys.state.hover.stateLayerOpacity}))`,
-
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           backgroundColor: `rgba(${tokens.sys.color.primaryChannel} / ${tokens.sys.state.pressed.stateLayerOpacity})`,
