@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -52,7 +53,7 @@ const TimelineItemRoot = styled('li', {
     },
   }),
   ...(!ownerState.hasOppositeContent && {
-    '&:before': {
+    '&::before': {
       content: '""',
       flex: 1,
       padding: '6px 16px',

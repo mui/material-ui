@@ -1,6 +1,5 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { styled, alpha } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
@@ -108,7 +107,7 @@ const StyledTable = styled('table')(
       '& .MuiApi-table-item-type': {
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
         borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
-        backgroundColor: alpha(darkTheme.palette.primary[900], 0.5),
+        backgroundColor: alpha(darkTheme.palette.primary[900], 0.3),
       },
       '& .MuiApi-table-item-default': {
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
@@ -154,10 +153,6 @@ function PropDescription({ description }: { description: string }) {
     />
   );
 }
-
-PropDescription.propTypes = {
-  description: PropTypes.string.isRequired,
-};
 
 interface PropertiesTableProps {
   properties: PropDescriptionParams[];
@@ -277,13 +272,11 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                   {signature && (
                     <div className="prop-table-signature">
                       <span className="prop-table-title">{t('api-docs.signature')}:</span>
-
                       <code
                         dangerouslySetInnerHTML={{
                           __html: signature,
                         }}
                       />
-
                       {signatureArgs && (
                         <div>
                           <ul>

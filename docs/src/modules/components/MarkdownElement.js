@@ -165,6 +165,7 @@ const Root = styled('div')(
           width: '14px',
           fill: 'currentColor',
           pointerEvents: 'none',
+          verticalAlign: 'middle',
         },
       },
       '&:hover .anchor-link': {
@@ -253,15 +254,16 @@ const Root = styled('div')(
       borderLeft: '1.5px solid',
       borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
       '& p': {
-        fontStyle: 'italic',
-        fontSize: theme.typography.pxToRem(13),
+        fontSize: theme.typography.pxToRem(12.5),
         fontFamily: lightTheme.typography.fontFamilyCode,
         fontWeight: lightTheme.typography.fontWeightMedium,
+        lineHeight: theme.typography.pxToRem(24),
         textIndent: 20,
       },
-      ':before': {
+      '&::before': {
         position: 'absolute',
-        content: 'open-quote',
+        // eslint-disable-next-line material-ui/straight-quotes
+        content: '"“"',
         color: `var(--muidocs-palette-grey-300, ${lightTheme.palette.grey[300]})`,
         fontSize: '2.5rem',
         top: 8,
@@ -387,6 +389,7 @@ const Root = styled('div')(
     '& a, & a code': {
       // Style taken from the Link component
       color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
+      fontWeight: theme.typography.fontWeightMedium,
       textDecoration: 'underline',
       textDecorationColor: alpha(lightTheme.palette.primary.main, 0.4),
       '&:hover': {
@@ -455,8 +458,8 @@ const Root = styled('div')(
       height: 26,
       cursor: 'pointer',
       position: 'absolute',
-      top: theme.spacing(1),
-      right: 20,
+      top: theme.spacing(1.5),
+      right: 12,
       padding: theme.spacing(0.5),
       fontFamily: 'inherit',
       fontWeight: 500,
@@ -610,7 +613,7 @@ const Root = styled('div')(
       },
       '& blockquote': {
         borderColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
-        ':before': {
+        '&::before': {
           color: `var(--muidocs-palette-primaryDark-500, ${darkTheme.palette.primaryDark[500]})`,
         },
       },

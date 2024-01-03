@@ -71,7 +71,6 @@ export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean
   multiple?: Multiple;
   /**
    * Name of the element. For example used by the server to identify the fields in form submits.
-   * If the name is provided, the component will render a hidden input element that can be submitted to a server.
    */
   name?: string;
   /**

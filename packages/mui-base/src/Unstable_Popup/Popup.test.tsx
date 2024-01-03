@@ -8,26 +8,20 @@ import {
   screen,
   fireEvent,
 } from '@mui-internal/test-utils';
-import {
-  Unstable_Popup as Popup,
-  popupClasses,
-  PopupProps,
-  PopupChildrenProps,
-} from '@mui/base/Unstable_Popup';
-
-type FakeTransitionProps = Omit<PopupChildrenProps, 'placement'> & {
-  children: React.ReactNode;
-};
+import { Unstable_Popup as Popup, popupClasses, PopupProps } from '@mui/base/Unstable_Popup';
+import { PopupContext } from './PopupContext';
+import { useTransitionStateManager } from '../useTransition';
 
 const TRANSITION_DURATION = 100;
 
-function FakeTransition(props: FakeTransitionProps) {
-  const { children: transitionChildren, requestOpen, onExited, onEnter } = props;
+function FakeTransition(props: React.PropsWithChildren<{}>) {
+  const { children: transitionChildren } = props;
+  const { requestedEnter, onExited, onEntering } = useTransitionStateManager();
 
   React.useEffect(() => {
     let timeoutId: NodeJS.Timeout | null = null;
-    if (requestOpen) {
-      onEnter();
+    if (requestedEnter) {
+      onEntering();
     } else {
       timeoutId = setTimeout(() => {
         act(() => onExited());
@@ -41,7 +35,7 @@ function FakeTransition(props: FakeTransitionProps) {
         timeoutId = null;
       }
     };
-  }, [requestOpen, onExited, onEnter]);
+  }, [requestedEnter, onExited, onEntering]);
 
   return <div>{transitionChildren}</div>;
 }
@@ -87,18 +81,26 @@ describe('<Popup />', () => {
   }));
 
   describe('prop: placement', () => {
+    function PlacementTester() {
+      const context = React.useContext(PopupContext);
+      if (!context) {
+        throw new Error('Missing context');
+      }
+
+      const { placement } = context;
+      return <span data-testid="placement-tester">{placement}</span>;
+    }
+
     it('should have top placement', async () => {
       render(
         <Popup {...defaultProps} placement="top">
-          {({ placement }: PopupChildrenProps) => {
-            return <span data-testid="renderSpy" data-placement={placement} />;
-          }}
+          <PlacementTester />
         </Popup>,
       );
 
       await waitForPosition();
 
-      expect(screen.getByTestId('renderSpy')).to.have.attribute('data-placement', 'top');
+      expect(screen.getByTestId('placement-tester')).to.have.text('top');
     });
 
     it('should respect the RTL setting', async function test() {
@@ -180,7 +182,7 @@ describe('<Popup />', () => {
                 Scroll
               </button>
               <Popup anchor={anchor} open placement="top" disablePortal>
-                {({ placement }: PopupChildrenProps) => <span>{placement}</span>}
+                <PlacementTester />
               </Popup>
             </div>
           </div>
@@ -198,6 +200,63 @@ describe('<Popup />', () => {
       });
 
       expect(screen.getByRole('tooltip')).to.have.text('bottom');
+    });
+
+    it('should not leave viewport', async function test() {
+      // JSDOM has no layout engine so PopperJS doesn't know that it should shift the placement.
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      function ShiftTest() {
+        const [anchor, setAnchor] = React.useState<HTMLButtonElement | null>(null);
+        const containerRef = React.useRef<HTMLDivElement>(null);
+
+        const handleClick = () => {
+          containerRef.current!.scrollLeft += 25;
+        };
+
+        return (
+          <div
+            style={{ overflowX: 'scroll', position: 'relative', width: '120px' }}
+            ref={containerRef}
+          >
+            <div style={{ width: '120px', padding: '30px' }}>
+              <button style={{ width: '50px' }} type="button" ref={setAnchor} onClick={handleClick}>
+                Scroll
+              </button>
+              <Popup anchor={anchor} open disablePortal>
+                <div style={{ width: '80px' }}>Text</div>
+              </Popup>
+            </div>
+          </div>
+        );
+      }
+
+      render(<ShiftTest />);
+
+      const anchor = screen.getByRole('button')!;
+      const popup = screen.getByRole('tooltip')!;
+
+      expect(popup.getBoundingClientRect().left).to.equal(
+        document.body.getBoundingClientRect().left,
+      );
+      expect(anchor.getBoundingClientRect().left).to.be.above(
+        document.body.getBoundingClientRect().left,
+      );
+
+      act(() => screen.getByRole('button').click());
+
+      await new Promise((resolve) => {
+        requestAnimationFrame(resolve);
+      });
+
+      expect(popup.getBoundingClientRect().left).to.equal(
+        document.body.getBoundingClientRect().left,
+      );
+      expect(anchor.getBoundingClientRect().left).to.be.above(
+        document.body.getBoundingClientRect().left,
+      );
     });
   });
 
@@ -232,7 +291,7 @@ describe('<Popup />', () => {
 
       const tooltip = document.querySelector('[role="tooltip"]') as HTMLElement;
       expect(tooltip).to.have.text('Hello World');
-      expect(tooltip.style.display).to.equal('none');
+      expect(tooltip.style.visibility).to.equal('hidden');
     });
   });
 
@@ -242,11 +301,9 @@ describe('<Popup />', () => {
     it('should work', async () => {
       const { queryByRole, getByRole, setProps } = render(
         <Popup {...defaultProps} withTransition>
-          {({ requestOpen, onExited, onEnter }: PopupChildrenProps) => (
-            <FakeTransition requestOpen={requestOpen} onExited={onExited} onEnter={onEnter}>
-              <span>Hello World</span>
-            </FakeTransition>
-          )}
+          <FakeTransition>
+            <span>Hello World</span>
+          </FakeTransition>
         </Popup>,
       );
 
@@ -280,11 +337,9 @@ describe('<Popup />', () => {
                 Toggle Tooltip
               </button>
               <Popup {...defaultProps} open={this.state.open} withTransition>
-                {({ requestOpen, onExited, onEnter }: PopupChildrenProps) => (
-                  <FakeTransition requestOpen={requestOpen} onExited={onExited} onEnter={onEnter}>
-                    <p>Hello World</p>
-                  </FakeTransition>
-                )}
+                <FakeTransition>
+                  <p>Hello World</p>
+                </FakeTransition>
               </Popup>
             </div>
           );
@@ -338,16 +393,14 @@ describe('<Popup />', () => {
     it('should keep display:none when not toggled and transition/keepMounted/disablePortal props are set', async () => {
       const { getByRole, setProps } = render(
         <Popup {...defaultProps} open={false} keepMounted withTransition disablePortal>
-          {({ requestOpen, onExited, onEnter }: PopupChildrenProps) => (
-            <FakeTransition requestOpen={requestOpen} onExited={onExited} onEnter={onEnter}>
-              <span>Hello World</span>
-            </FakeTransition>
-          )}
+          <FakeTransition>
+            <span>Hello World</span>
+          </FakeTransition>
         </Popup>,
       );
 
       await waitForPosition();
-      expect(getByRole('tooltip', { hidden: true }).style.display).to.equal('none');
+      expect(getByRole('tooltip', { hidden: true }).style.visibility).to.equal('hidden');
 
       setProps({ open: true });
       await waitForPosition();
@@ -356,7 +409,7 @@ describe('<Popup />', () => {
       setProps({ open: false });
       await waitForPosition();
       clock.tick(TRANSITION_DURATION);
-      expect(getByRole('tooltip', { hidden: true }).style.display).to.equal('none');
+      expect(getByRole('tooltip', { hidden: true }).style.visibility).to.equal('hidden');
     });
   });
 });

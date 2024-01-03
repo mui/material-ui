@@ -160,10 +160,10 @@ export type HookInfo = {
   skipApiGeneration?: boolean;
 };
 
-export const getApiPath = (
+export function getApiPath(
   demos: Array<{ demoPageTitle: string; demoPathname: string }>,
   name: string,
-) => {
+) {
   let apiPath = null;
 
   if (demos && demos.length > 0) {
@@ -175,7 +175,7 @@ export const getApiPath = (
   }
 
   return apiPath;
-};
+}
 
 export function formatType(rawType: string) {
   if (!rawType) {

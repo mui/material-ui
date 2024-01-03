@@ -8,12 +8,12 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/core": "^7.23.5",
+    "@babel/core": "^7.23.6",
     "@babel/preset-typescript": "^7.23.3",
-    "@babel/traverse": "^7.23.5",
+    "@babel/traverse": "^7.23.6",
     "@mui-internal/docs-utilities": "^1.0.0",
     "@mui/markdown": "^5.0.0",
-    "@mui/utils": "^5.15.1",
+    "@mui/utils": "^5.15.2",
     "ast-types": "^0.14.2",
     "doctrine": "^3.0.0",
     "fast-glob": "^3.3.2",
