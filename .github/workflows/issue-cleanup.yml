@@ -1,0 +1,52 @@
+name: Cleanup issue comment
+
+on:
+  issues:
+    types:
+      - opened
+
+permissions: {}
+
+jobs:
+  issue_cleanup:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # v6
+        with:
+          script: |
+            const issue = await github.rest.issues.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            })
+
+            const lines = issue.data.body.split('\n')
+
+            const _ = extractInputSection(lines, 'Latest version')
+            const searchKeywords = extractInputSection(lines, 'Search keywords')
+            const orderID = extractInputSection(lines, 'Order ID or Support key')
+
+            lines.push('')
+            lines.push('**Search keywords**: ' + searchKeywords)
+            if (orderID !== '' && orderID !== '_No response_') {
+              lines.push('**Order ID**: ' + orderID)
+            }
+
+            const body = lines.join('\n')
+
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            })
+
+            function extractInputSection(lines, title) {
+              const index = lines.findIndex(line => line.startsWith('###') && line.includes(title))
+              if (index === -1) {
+                return ''
+              }
+              return lines.splice(index, 4)[2].trim()
+            }
