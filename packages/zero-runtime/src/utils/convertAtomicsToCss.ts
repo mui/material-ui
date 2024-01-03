@@ -77,7 +77,7 @@ export function convertAtomicsToCss(
         const conditionClassMap = classMap[propertyValue] ?? {};
         conditionClassMap[conditionName] = className;
         if (conditionName === defaultCondition) {
-          conditionClassMap['$$default'] = className;
+          conditionClassMap.$$default = className;
         }
         classMap[propertyValue] = conditionClassMap;
         runtimeConfig.styles[cssPropertyName] = classMap;

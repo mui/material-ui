@@ -2,7 +2,6 @@ import type { CSSProperties } from './base';
 import type { ThemeArgs } from './theme';
 
 // @TODO Implement proper types
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type GenerateAtomicsResult = (props: any) => { className: string };
 
 type AtomicProperty = {

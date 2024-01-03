@@ -24,7 +24,9 @@ export default abstract class BaseProcessor extends LinariaBaseProcessor {
   // Implementation taken from Linaria - https://github.com/callstack/linaria/blob/master/packages/react/src/processors/styled.ts#L362
   protected getVariableContext(cssKey: string, source: string, hasUnit: boolean): IVariableContext {
     const getIndex = () => {
-      return this.variableIdx++;
+      const id = this.variableIdx;
+      this.variableIdx += 1;
+      return id;
     };
 
     return {

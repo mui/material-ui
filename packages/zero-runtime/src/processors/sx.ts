@@ -1,10 +1,11 @@
 import type { Expression, Params, TailProcessorParams, ValueCache } from '@linaria/tags';
-import { BaseProcessor, buildSlug, toValidCSSIdentifier, validateParams } from '@linaria/tags';
-import { ValueType, slugify } from '@linaria/utils';
-import type { IVariableContext, ExpressionValue, Replacements, Rules } from '@linaria/utils';
+import { buildSlug, toValidCSSIdentifier, validateParams } from '@linaria/tags';
+import { ValueType } from '@linaria/utils';
+import type { ExpressionValue, Replacements, Rules } from '@linaria/utils';
 import type { IOptions } from './styled';
 import { processCssObject } from '../utils/processCssObject';
 import { cssFnValueToVariable } from '../utils/cssFnValueToVariable';
+import BaseProcessor from './base-processor';
 
 export class SxProcessor extends BaseProcessor {
   sxArguments: ExpressionValue[] = [];
@@ -140,26 +141,6 @@ export class SxProcessor extends BaseProcessor {
     return typeof customSlugFn === 'function'
       ? customSlugFn(context)
       : buildSlug(customSlugFn, { ...context });
-  }
-
-  // Implementation taken from Linaria - https://github.com/callstack/linaria/blob/master/packages/react/src/processors/styled.ts#L362
-  protected getVariableContext(cssKey: string, source: string, hasUnit: boolean): IVariableContext {
-    const getIndex = () => {
-      return this.variableIdx++;
-    };
-
-    return {
-      componentName: this.displayName,
-      componentSlug: this.slug,
-      get index() {
-        return getIndex();
-      },
-      precedingCss: cssKey,
-      processor: this.constructor.name,
-      source: '',
-      unit: '',
-      valueSlug: slugify(`${source}${hasUnit}`),
-    };
   }
 
   private processCss(styleObjOrFn: unknown, expressionValue: ExpressionValue) {

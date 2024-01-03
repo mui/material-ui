@@ -1,4 +1,4 @@
-import { generateAtomics, styled } from '@mui/zero-runtime';
+import { generateAtomics } from '@mui/zero-runtime';
 
 const atomics = generateAtomics(({ theme }) => ({
   conditions: Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
@@ -50,6 +50,7 @@ const atomics = generateAtomics(({ theme }) => ({
   },
 }));
 
+// eslint-disable-next-line react/prop-types
 export function Box({ children, as = 'div', className = '', style = undefined, ...rest }) {
   const Component = as;
   const atomicsResult = atomics(rest);
@@ -59,6 +60,7 @@ export function Box({ children, as = 'div', className = '', style = undefined, .
     ...style,
   };
   return (
+    // eslint-disable-next-line react/react-in-jsx-scope, react/jsx-filename-extension
     <Component className={componentClass} style={finalStyles}>
       {children}
     </Component>

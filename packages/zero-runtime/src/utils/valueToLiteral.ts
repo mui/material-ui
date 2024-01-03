@@ -8,9 +8,13 @@ export function isSerializable(o: unknown): o is Serializable {
     return o.every(isSerializable);
   }
 
-  if (o === null) return true;
+  if (o === null) {
+    return true;
+  }
 
-  if (isBoxedPrimitive(o)) return true;
+  if (isBoxedPrimitive(o)) {
+    return true;
+  }
 
   if (typeof o === 'object') {
     return Object.values(o).every(isSerializable);
@@ -37,7 +41,7 @@ export function parseAndGenerateFunction(fnString: string, expression?: Expressi
       }
       const propMethod = exp.properties[0] as t.ObjectMethod;
       return t.arrowFunctionExpression(propMethod.params, propMethod.body);
-    } catch (ex) {
+    } catch (ex2) {
       throw (
         expression?.buildCodeFrameError(`MUI: Could not parse the expression '${fnString}'.`) ??
         new Error(`MUI: Could not parse the given expression ${fnString}`)

@@ -41,7 +41,7 @@ export function atomics({ styles, shorthands, conditions }) {
 
   function generateClass(props) {
     const classes = [];
-    const runtimeStyles = Object.assign({}, props);
+    const runtimeStyles = { ...props };
     Object.keys(runtimeStyles).forEach((cssProperty) => {
       const values = runtimeStyles[cssProperty];
       if (cssProperty in shorthands) {

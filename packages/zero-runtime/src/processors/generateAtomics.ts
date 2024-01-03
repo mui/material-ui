@@ -8,6 +8,7 @@ import {
 import { ValueType } from '@linaria/utils';
 import type { ExpressionValue, Replacements, Rules } from '@linaria/utils';
 
+import { CSSInterpolation } from '@emotion/css';
 import BaseProcessor from './base-processor';
 import type { IOptions } from './styled';
 import {
@@ -17,10 +18,10 @@ import {
 } from '../utils/convertAtomicsToCss';
 import { css, cache } from '../utils/emotion';
 import { valueToLiteral } from '../utils/valueToLiteral';
-import { CSSInterpolation } from '@emotion/css';
 
 export class GenerateAtomicsProcessor extends BaseProcessor {
   callParam: ExpressionValue;
+
   runtimeConfig?: RuntimeConfig;
 
   constructor(params: Params, ...args: TailProcessorParams) {
@@ -33,10 +34,12 @@ export class GenerateAtomicsProcessor extends BaseProcessor {
     this.callParam = callParamArgument;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   get asSelector(): string {
     throw new Error('Method not implemented.');
   }
 
+  // eslint-disable-next-line class-methods-use-this
   get value(): Expression {
     throw new Error('Method not implemented.');
   }

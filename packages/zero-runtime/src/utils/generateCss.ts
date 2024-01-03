@@ -76,6 +76,7 @@ function generateCssForTheme(theme: Theme, prefix = ['']) {
     iterateObject(tokenValue as Walkable, nestedPrefix, (value, path: string[]) => {
       const cssVariableName = `--${path.filter(Boolean).join('-')}`;
       cssVarsObject[cssVariableName] =
+        // eslint-disable-next-line no-nested-ternary
         typeof value === 'string' ? value : value ? value.toString() : null;
     });
   });
@@ -143,16 +144,15 @@ export function generateThemeTokens(theme: unknown, prefix = '') {
     return {
       vars: theme.vars,
     };
-  } else {
-    const tokens = {};
-    iterateObject(theme as Walkable, [], (value, path) => {
-      if (!TOP_LEVEL_TOKEN_KEYS.includes(path[0] as RelevantTokenKey)) {
-        return;
-      }
-      const filteredPath = path.filter(Boolean);
-      const cssVariableName = `--${[prefix, ...filteredPath].filter(Boolean).join('-')}`;
-      set(tokens, filteredPath, `var(${cssVariableName}, ${value})`);
-    });
-    return tokens;
   }
+  const tokens = {};
+  iterateObject(theme as Walkable, [], (value, path) => {
+    if (!TOP_LEVEL_TOKEN_KEYS.includes(path[0] as RelevantTokenKey)) {
+      return;
+    }
+    const filteredPath = path.filter(Boolean);
+    const cssVariableName = `--${[prefix, ...filteredPath].filter(Boolean).join('-')}`;
+    set(tokens, filteredPath, `var(${cssVariableName}, ${value})`);
+  });
+  return tokens;
 }

@@ -7,7 +7,6 @@ type Falsy = false | 0 | '' | null | undefined;
 
 type BaseDefaultProps = object;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type NoInfer<T> = [T][T extends any ? 0 : never];
 type FastOmit<T extends object, U extends string | number | symbol> = {
   [K in keyof T as K extends U ? never : K]: T[K];
@@ -75,7 +74,6 @@ export interface StyledOptions<Props extends BaseDefaultProps = BaseDefaultProps
   skipVariantsResolver?: boolean;
   shouldForwardProp?: (propName: string) => boolean;
   overridesResolver?: (
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     props: any | Props,
     styles: Record<string, string>,
   ) => (string | Falsy) | Array<string | Falsy>;
