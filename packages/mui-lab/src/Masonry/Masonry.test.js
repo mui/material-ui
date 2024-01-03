@@ -377,13 +377,12 @@ describe('<Masonry />', () => {
         this.skip();
       }
 
-      const spacingProp = 1;
       const firstChildHeight = 20;
       const secondChildHeight = 10;
       const thirdChildHeight = 10;
 
       const { getByTestId } = render(
-        <Masonry columns={2} spacing={spacingProp} sequential data-testid="container">
+        <Masonry columns={2} spacing={0} sequential data-testid="container">
           <div style={{ height: `${firstChildHeight}px` }} />
           <div style={{ height: `${secondChildHeight}px` }} />
           <div style={{ height: `${thirdChildHeight}px` }} />
@@ -391,10 +390,9 @@ describe('<Masonry />', () => {
       );
 
       const masonry = getByTestId('container');
-      const topAndBottomMargin = parseToNumber(defaultTheme.spacing(spacingProp)) * 2;
 
       expect(window.getComputedStyle(masonry).height).to.equal(
-        `${firstChildHeight + thirdChildHeight + topAndBottomMargin}px`,
+        `${firstChildHeight + thirdChildHeight}px`,
       );
     });
   });
