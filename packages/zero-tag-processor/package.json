@@ -46,7 +46,7 @@
     "@babel/types": "^7.23.6",
     "@emotion/css": "^11.11.2",
     "@linaria/tags": "^4.5.4",
-    "@linaria/utils": "^4.5.3",
+    "@linaria/utils": "^5.0.2",
     "@mui/system": "workspace:^",
     "lodash.get": "^4.4.2",
     "stylis": "^4.2.0"

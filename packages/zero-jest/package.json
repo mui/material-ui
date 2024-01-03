@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@linaria/babel-preset": "^4.5.4",
-    "@linaria/utils": "^4.5.3",
+    "@linaria/utils": "^5.0.2",
     "@mui/zero-tag-processor": "workspace:^",
     "babel-jest": "^29.7.0",
     "style-inject": "^0.3.0"
