@@ -109,7 +109,7 @@ describe('e2e', () => {
     const isServerRunning = await attemptGoto(page, `${baseUrl}#no-dev`);
     if (!isServerRunning) {
       throw new Error(
-        `Unable to navigate to ${baseUrl} after multiple attempts. Did you forget to run \`yarn test:e2e:server\` and \`yarn test:e2e:build\`?`,
+        `Unable to navigate to ${baseUrl} after multiple attempts. Did you forget to run \`pnpm test:e2e:server\` and \`pnpm test:e2e:build\`?`,
       );
     }
   });

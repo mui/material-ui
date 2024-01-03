@@ -42,7 +42,7 @@ pluginTester({
       // babel prefixes with filename.
       // We're only interested in the message.
       error:
-        /: Missing error code for message 'missing'. Did you forget to run `yarn extract-errors` first?/,
+        /: Missing error code for message 'missing'. Did you forget to run `pnpm extract-error-codes` first?/,
       fixture: path.join(fixturePath, 'no-error-code-throw', 'input.js'),
       pluginOptions: {
         muiError: {

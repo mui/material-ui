@@ -18,7 +18,7 @@ envinfo
         // auxiliary libraries
         'typescript',
       ]}}`,
-      Binaries: ['Node', 'Yarn', 'npm'],
+      Binaries: ['Node', 'npm', 'pnpm'],
       System: ['OS'],
       Browsers: ['Chrome', 'Firefox', 'Safari', 'Edge'],
     },

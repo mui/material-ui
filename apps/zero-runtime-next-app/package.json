@@ -9,23 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@mui/base": "file:../../packages/mui-base/build",
-    "@mui/material": "file:../../packages/mui-material/build",
-    "@mui/utils": "file:../../packages/mui-utils/build",
-    "@mui/zero-runtime": "file:../../packages/zero-runtime/build",
+    "@mui/base": "workspace:*",
+    "@mui/material": "workspace:*",
+    "@mui/utils": "workspace:*",
+    "@mui/zero-runtime": "workspace:*",
     "next": "13.5.6",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@mui/zero-tag-processor": "file:../../packages/zero-tag-processor/build",
-    "@mui/zero-next-plugin": "file:../../packages/zero-next-plugin/build",
+    "@mui/zero-tag-processor": "workspace:*",
+    "@mui/zero-next-plugin": "workspace:*",
     "@types/node": "20.5.7",
     "@types/react": "18.2.45",
     "@types/react-dom": "18.2.18",
     "typescript": "5.3.3"
-  },
-  "resolutions": {
-    "@mui/zero-tag-processor": "file:../../packages/zero-tag-processor/build"
   }
 }
