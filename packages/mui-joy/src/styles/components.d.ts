@@ -214,7 +214,6 @@ import {
   ToggleButtonGroupProps,
   ToggleButtonGroupOwnerState,
   ToggleButtonGroupSlot,
-  SupportedValue,
 } from '../ToggleButtonGroup/ToggleButtonGroupProps';
 import { TabProps, TabOwnerState, TabSlot } from '../Tab/TabProps';
 import { TabListProps, TabListOwnerState, TabListSlot } from '../TabList/TabListProps';
