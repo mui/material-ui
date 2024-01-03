@@ -18,6 +18,10 @@
         "expanded": "The <code>expanded</code> state of the accordion."
       }
     },
+    "slotProps": {
+      "description": "The extra props for the slot components. You can override the existing props or add new ones."
+    },
+    "slots": { "description": "The components used for each slot inside." },
     "square": { "description": "If <code>true</code>, rounded corners are disabled." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."

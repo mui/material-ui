@@ -13,6 +13,14 @@
         "describedArgs": ["event", "expanded"]
       }
     },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ transition?: object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ transition?: elementType }" },
+      "default": "{}"
+    },
     "square": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
@@ -21,8 +29,16 @@
       },
       "additionalInfo": { "sx": true }
     },
-    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Collapse" },
-    "TransitionProps": { "type": { "name": "object" } }
+    "TransitionComponent": {
+      "type": { "name": "elementType" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slots.transition</code> instead. This prop will be removed in v7."
+    },
+    "TransitionProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.transition</code> instead. This prop will be removed in v7."
+    }
   },
   "name": "Accordion",
   "imports": [

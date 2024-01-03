@@ -126,8 +126,10 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     expanded: expandedProp,
     onChange,
     square = false,
-    TransitionComponent = Collapse,
-    TransitionProps,
+    slots = {},
+    slotProps = {},
+    TransitionComponent: TransitionComponentProp,
+    TransitionProps: TransitionPropsProp,
     ...other
   } = props;
 
@@ -165,6 +167,9 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const TransitionSlot = slots.transition ?? TransitionComponentProp ?? Collapse;
+  const transitionProps = slotProps.transition ?? TransitionPropsProp;
+
   return (
     <AccordionRoot
       className={clsx(classes.root, className)}
@@ -174,7 +179,7 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
       {...other}
     >
       <AccordionContext.Provider value={contextValue}>{summary}</AccordionContext.Provider>
-      <TransitionComponent in={expanded} timeout="auto" {...TransitionProps}>
+      <TransitionSlot in={expanded} timeout="auto" {...transitionProps}>
         <div
           aria-labelledby={summary.props.id}
           id={summary.props['aria-controls']}
@@ -183,7 +188,7 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
         >
           {children}
         </div>
-      </TransitionComponent>
+      </TransitionSlot>
     </AccordionRoot>
   );
 });
@@ -247,6 +252,23 @@ Accordion.propTypes /* remove-proptypes */ = {
    */
   onChange: PropTypes.func,
   /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    transition: PropTypes.object,
+  }),
+  /**
+   * The components used for each slot inside.
+   *
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    transition: PropTypes.elementType,
+  }),
+  /**
    * If `true`, rounded corners are disabled.
    * @default false
    */
@@ -262,12 +284,13 @@ Accordion.propTypes /* remove-proptypes */ = {
   /**
    * The component used for the transition.
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-   * @default Collapse
+   * @deprecated Use `slots.transition` instead. This prop will be removed in v7.
    */
   TransitionComponent: PropTypes.elementType,
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7.
    */
   TransitionProps: PropTypes.object,
 };

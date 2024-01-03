@@ -6,6 +6,8 @@ import { AccordionClasses } from './accordionClasses';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ExtendPaperTypeMap } from '../Paper/Paper';
 
+export interface AccordionTransitionSlotPropsOverrides {}
+
 export type AccordionTypeMap<
   AdditionalProps = {},
   RootComponent extends React.ElementType = 'div',
@@ -48,13 +50,32 @@ export type AccordionTypeMap<
        */
       onChange?: (event: React.SyntheticEvent, expanded: boolean) => void;
       /**
+       * The components used for each slot inside.
+       *
+       * @default {}
+       */
+      slots?: {
+        transition?: React.JSXElementConstructor<
+          TransitionProps & { children?: React.ReactElement<any, any> }
+        >;
+      };
+      /**
+       * The extra props for the slot components.
+       * You can override the existing props or add new ones.
+       *
+       * @default {}
+       */
+      slotProps?: {
+        transition?: TransitionProps & AccordionTransitionSlotPropsOverrides;
+      };
+      /**
        * The system prop that allows defining system overrides as well as additional CSS styles.
        */
       sx?: SxProps<Theme>;
       /**
        * The component used for the transition.
        * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-       * @default Collapse
+       * @deprecated Use `slots.transition` instead. This prop will be removed in v7.
        */
       TransitionComponent?: React.JSXElementConstructor<
         TransitionProps & { children?: React.ReactElement<any, any> }
@@ -62,6 +83,7 @@ export type AccordionTypeMap<
       /**
        * Props applied to the transition element.
        * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+       * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7.
        */
       TransitionProps?: TransitionProps;
     };

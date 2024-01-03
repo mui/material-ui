@@ -28,7 +28,12 @@ describe('<Accordion />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiAccordion',
     testVariantProps: { variant: 'rounded' },
-    skip: ['componentProp', 'componentsProp'],
+    slots: {
+      transition: {
+        expectedClassName: '',
+      },
+    },
+    skip: ['componentProp', 'componentsProp', 'slotPropsCallback'],
   }));
 
   it('should render and not be controlled', () => {
@@ -209,5 +214,17 @@ describe('<Accordion />', () => {
     expect(() => setProps({ expanded: true })).toErrorDev(
       'MUI: A component is changing the uncontrolled expanded state of Accordion to be controlled.',
     );
+  });
+
+  describe('prop: TransitionProps', () => {
+    it('should apply properties to the Transition component', () => {
+      const { getByTestId } = render(
+        <Accordion TransitionProps={{ 'data-testid': 'transition-testid' }}>
+          {minimalChildren}
+        </Accordion>,
+      );
+
+      expect(getByTestId('transition-testid')).not.to.equal(null);
+    });
   });
 });
