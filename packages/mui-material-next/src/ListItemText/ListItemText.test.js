@@ -4,7 +4,7 @@ import { createRenderer, describeConformance } from '@mui-internal/test-utils';
 /* TODO: change @mui/material/Typography to @mui/material-next/Typography once Typograpghy is available in @mui/material-next */
 import Typography, { typographyClasses } from '@mui/material/Typography';
 import ListItemText, { listItemTextClasses as classes } from '@mui/material-next/ListItemText';
-import { CssVarsProvider } from '@mui/material-next/styles';
+import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 
 describe('<ListItemText />', () => {
   const { render } = createRenderer();
@@ -18,6 +18,7 @@ describe('<ListItemText />', () => {
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp', 'componentsProp'],
     ThemeProvider: CssVarsProvider,
+    createTheme: extendTheme,
   }));
 
   it('should render with inset class', () => {

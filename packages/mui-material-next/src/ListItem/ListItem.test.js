@@ -36,6 +36,7 @@ describe('<ListItem />', () => {
       'componentsProp',
       'slotPropsCallback', // not supported yet
     ],
+    createTheme: extendTheme,
   }));
 
   it('should render with gutters classes', () => {

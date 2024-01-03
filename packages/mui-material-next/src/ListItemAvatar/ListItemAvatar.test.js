@@ -3,7 +3,7 @@ import { createRenderer, describeConformance } from '@mui-internal/test-utils';
 import ListItemAvatar, {
   listItemAvatarClasses as classes,
 } from '@mui/material-next/ListItemAvatar';
-import { CssVarsProvider } from '@mui/material-next/styles';
+import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 
 describe('<ListItemAvatar />', () => {
   const { render } = createRenderer();
@@ -20,6 +20,7 @@ describe('<ListItemAvatar />', () => {
       refInstanceof: window.HTMLDivElement,
       skip: ['componentProp', 'componentsProp', 'themeVariants'],
       ThemeProvider: CssVarsProvider,
+      createTheme: extendTheme,
     }),
   );
 });

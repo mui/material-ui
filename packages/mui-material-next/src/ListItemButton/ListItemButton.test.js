@@ -20,6 +20,7 @@ describe('<ListItemButton />', () => {
     muiName: 'MuiListItemButton',
     testVariantProps: { dense: true },
     skip: ['componentsProp'],
+    createTheme: extendTheme,
   }));
 
   it('should render with gutters classes', () => {

@@ -4,7 +4,7 @@ import { describeConformance, createRenderer } from '@mui-internal/test-utils';
 import ListSubheader, { listSubheaderClasses } from '@mui/material-next/ListSubheader';
 import ListItem, { listItemClasses } from '@mui/material-next/ListItem';
 import List, { listClasses as classes } from '@mui/material-next/List';
-import { CssVarsProvider } from '@mui/material-next/styles';
+import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 
 describe('<List />', () => {
   const { render } = createRenderer();
@@ -18,6 +18,7 @@ describe('<List />', () => {
     testVariantProps: { disablePadding: true },
     skip: ['componentsProp'],
     ThemeProvider: CssVarsProvider,
+    createTheme: extendTheme,
   }));
 
   it('should render with padding classes', () => {
