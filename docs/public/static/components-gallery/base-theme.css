@@ -119,7 +119,7 @@
   }
 }
 
-.GalleryInput .MuiInput-input {
+.GalleryInput .base-Input-input {
   width: 320px;
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
@@ -132,10 +132,10 @@
   border: 1px solid var(--GalleryInput-input-border-color, var(--grey-200));
   box-shadow: 0px 2px 2px var(--GalleryInput-input-boxShadow-color, var(--grey-50));
 }
-.GalleryInput .MuiInput-input:hover {
+.GalleryInput .base-Input-input:hover {
   border-color: var(--primary-400);
 }
-.GalleryInput .MuiInput-input:focus {
+.GalleryInput .base-Input-input:focus {
   outline: 0;
   border-color: var(--primary-400);
   box-shadow: 0 0 0 3px var(--GalleryInput-input-focus-boxShadow-color, var(--primary-200));
@@ -179,17 +179,17 @@
   border-bottom: none;
 }
 
-.GalleryMenu-item.Mui-focusVisible {
+.GalleryMenu-item.base--focusVisible {
   outline: 3px solid var(--GalleryMenu-item-outline-color, var(--primary-200));
   background-color: var(--GalleryMenu-item-background-color, var(--grey-100));
   color: var(--GalleryMenu-item-color, var(--grey-900));
 }
 
-.GalleryMenu-item.Mui-disabled {
+.GalleryMenu-item.base--disabled {
   color: var(--GalleryMenu-item-disabled-color, var(--grey-400));
 }
 
-.GalleryMenu-item:hover:not(.Mui-disabled) {
+.GalleryMenu-item:hover:not(.base--disabled) {
   background-color: var(--GalleryMenu-item-hover-background-color, var(--primary-50));
   color: var(--GalleryMenu-item-hover-color, var(--grey-900));
 }
@@ -233,7 +233,7 @@
   border-color: var(--primary-400);
 }
 
-.GalleryNumberInput.Mui-focused {
+.GalleryNumberInput.base--focused {
   border-color: var(--primary-400);
   box-shadow: 0 0 0 3px var(--GalleryNumberInput-focused-boxShadow-color, var(--primary-200));
 }
@@ -413,7 +413,7 @@
     border-color: var(--GallerySelect-hover-border-color, var(--grey-300));
   }
 
-  &.Mui-focusVisible {
+  &.base--focusVisible {
     outline: 0;
     border-color: var(--primary-400);
     box-shadow: 0 0 0 3px var(--GallerySelect-focusVisible-boxShadow-color, var(--primary-200));
@@ -455,17 +455,17 @@
     border-bottom: none;
   }
 
-  &.Mui-selected {
+  &.base--selected {
     background-color: var(--GallerySelect-option-selected-background-color, var(--primary-100));
     color: var(--GallerySelect-option-selected-color, var(--primary-900));
   }
 
-  &.MuiOption-highlighted {
+  &.base-Option-highlighted {
     background-color: var(--SelectGallery-option-highlighted-background-color, var(--grey-100));
     color: var(--SelectGallery-option-highlighted-color, var(--grey-900));
   }
 
-  &.MuiOption-highlighted.Mui-selected {
+  &.base-Option-highlighted.base--selected {
     background-color: var(
       --GallerySelect-option-highlighted-selected-background-color,
       var(--primary-100)
@@ -473,11 +473,11 @@
     color: var(--GallerySelect-option-highlighted-selected-color, var(--primary-900));
   }
 
-  &.Mui-disabled {
+  &.base--disabled {
     color: var(--GallerySelect-option-disabled-color var(--grey-700), var(--grey-400));
   }
 
-  &:hover:not(.Mui-disabled) {
+  &:hover:not(.base--disabled) {
     background-color: var(--GallerySelect-option-disabled-background-color, var(--grey-100));
     color: var(--GallerySelect-option-disabled-color, var(--grey-900));
   }
@@ -524,7 +524,7 @@
   opacity: 1;
 }
 
-.GallerySlider.Mui-disabled {
+.GallerySlider.base--disabled {
   pointer-events: none;
   cursor: default;
   color: var(--GallerySlider-disabled-color, var(--grey-300));
@@ -572,7 +572,7 @@
   box-shadow: 0 0 0 4px var(--GallerySlider-focusVisible-boxShadow-color, var(--primary-200));
 }
 
-.GallerySlider-thumb.Mui-active {
+.GallerySlider-thumb.base--active {
   box-shadow: 0 0 0 4px var(--GallerySlider-active-boxShadow-color, var(--primary-300));
 }
 
@@ -671,7 +671,7 @@
   cursor: pointer;
 }
 
-.GallerySwitch.Mui-disabled {
+.GallerySwitch.base--disabled {
   opacity: 0.4;
   cursor: not-allowed;
 }
@@ -707,17 +707,17 @@
   transition-duration: 120ms;
 }
 
-.GallerySwitch.Mui-focusVisible .GallerySwitch-track {
+.GallerySwitch.base--focusVisible .GallerySwitch-track {
   box-shadow: 0 0 0 3px var(--GallerySwitch-focusVisible-track, var(--primary-200));
 }
 
-.GallerySwitch.Mui-checked .GallerySwitch-thumb {
+.GallerySwitch.base--checked .GallerySwitch-thumb {
   left: 18px;
   background-color: #fff;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-.GallerySwitch.Mui-checked .GallerySwitch-track {
+.GallerySwitch.base--checked .GallerySwitch-track {
   background: var(--primary-500);
 }
 
@@ -787,11 +787,11 @@
 
 /* Demo's table styles end */
 
-.GalleryTablePagination .MuiTablePagination-spacer {
+.GalleryTablePagination .base-TablePagination-spacer {
   display: none;
 }
 
-.GalleryTablePagination .MuiTablePagination-toolbar {
+.GalleryTablePagination .base-TablePagination-toolbar {
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   display: flex;
@@ -805,26 +805,26 @@
   }
 }
 
-.GalleryTablePagination .MuiTablePagination-selectLabel {
+.GalleryTablePagination .base-TablePagination-selectLabel {
   margin: 0;
 }
 
-.GalleryTablePagination .MuiTablePagination-select {
+.GalleryTablePagination .base-TablePagination-select {
   padding: 2px 6px;
   border: 1px solid var(--GalleryTablePagination-select-border-color, var(--grey-200));
   border-radius: 50px;
   background-color: transparent;
 }
 
-.GalleryTablePagination .MuiTablePagination-select:hover {
+.GalleryTablePagination .base-TablePagination-select:hover {
   background-color: var(--GalleryTablePagination-select-hover-background-color, var(--grey-50));
 }
 
-.GalleryTablePagination .MuiTablePagination-select:focus {
+.GalleryTablePagination .base-TablePagination-select:focus {
   outline: 1px solid var(--GalleryTablePagination-select-focus-outline-color, var(--primary-200));
 }
 
-.GalleryTablePagination .MuiTablePagination-displayedRows {
+.GalleryTablePagination .base-TablePagination-displayedRows {
   margin: 0;
 
   @media (min-width: 768px) {
@@ -832,33 +832,33 @@
   }
 }
 
-.GalleryTablePagination .MuiTablePagination-actions {
+.GalleryTablePagination .base-TablePagination-actions {
   padding: 2px 6px;
   border: 1px solid var(--GalleryTablePagination-actions-border-color, var(--grey-200));
   border-radius: 50px;
   text-align: center;
 }
 
-.GalleryTablePagination .MuiTablePagination-actions > button {
+.GalleryTablePagination .base-TablePagination-actions > button {
   margin: 0 8px;
   border: transparent;
   border-radius: 2px;
   background-color: transparent;
 }
 
-.GalleryTablePagination .MuiTablePagination-actions > button:hover {
+.GalleryTablePagination .base-TablePagination-actions > button:hover {
   background-color: var(
     --GalleryTablePagination-actions-button-hover-background-color,
     var(--grey-50)
   );
 }
 
-.GalleryTablePagination .MuiTablePagination-actions > button:focus {
+.GalleryTablePagination .base-TablePagination-actions > button:focus {
   outline: 1px solid
     var(--GalleryTablePagination-actions-button-focus-outline-color, var(--primary-200));
 }
 
-.GalleryTablePagination .MuiTablePagination-actions > button:disabled {
+.GalleryTablePagination .base-TablePagination-actions > button:disabled {
   opacity: 0.7;
 }
 
@@ -910,12 +910,12 @@
   outline: 3px solid var(--primary-200);
 }
 
-.GalleryTab.Mui-selected {
+.GalleryTab.base--selected {
   background-color: #fff;
   color: var(--primary-600);
 }
 
-.GalleryTab.Mui-disabled {
+.GalleryTab.base--disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
