@@ -69,8 +69,8 @@
     "test:umd": "node packages/mui-material/test/umd/run.js",
     "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
     "test:argos": "node ./scripts/pushArgos.mjs",
-    "typescript": "lerna run --no-bail --parallel typescript",
-    "typescript:ci": "lerna run --concurrency 5 --no-bail --no-sort typescript",
+    "typescript": "lerna run --no-bail typescript",
+    "typescript:ci": "lerna run --concurrency 5 --no-bail typescript",
     "validate-declarations": "tsx scripts/validateTypescriptDeclarations.mts",
     "generate-codeowners": "node scripts/generateCodeowners.mjs"
   },

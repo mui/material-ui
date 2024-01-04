@@ -1,12 +1,4 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "esModuleInterop": true,
-    "lib": ["ES2018"],
-    "strict": true,
-    "moduleResolution": "node",
-    "types": ["node"],
-    "noEmit": true
-  },
-  "include": ["src"]
+  "extends": "../../tsconfig.tools.json",
+  "include": ["./src/**/*.ts", "./src/**/*.js"]
 }
