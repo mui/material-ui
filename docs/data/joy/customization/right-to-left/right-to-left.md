@@ -1,4 +1,4 @@
-# Right-to-left language support
+# Right-to-left support
 
 <p class="description">Learn how to implement right-to-left (RTL) text with Joy UI to support languages such as Arabic, Persian, and Hebrew.</p>
 
