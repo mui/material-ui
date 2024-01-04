@@ -25,7 +25,7 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:types && yarn build:copy-files",
+    "build": "pnpm build:legacy && pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
     "build:legacy": "node ../../scripts/build.mjs legacy",
     "build:modern": "node ../../scripts/build.mjs modern",
     "build:node": "node ../../scripts/build.mjs node",
@@ -33,16 +33,17 @@
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "build:types": "node ../../scripts/buildTypes.mjs",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
-    "release": "yarn build && npm publish build",
+    "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/zero-babel-plugin/**/*.test.{js,ts,tsx}'",
     "typescript": "tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
     "@babel/core": "^7.23.6",
+    "@linaria/babel-preset": "^4.5.4",
     "@linaria/logger": "^4.5.0",
     "@linaria/utils": "^4.5.3",
-    "@mui/zero-tag-processor": "0.0.1-alpha.0"
+    "@mui/zero-tag-processor": "workspace:^"
   },
   "devDependencies": {
     "@types/babel__core": "^7.20.5",
@@ -55,7 +56,8 @@
   },
   "sideEffects": false,
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "build"
   },
   "engines": {
     "node": ">=12.0.0"
