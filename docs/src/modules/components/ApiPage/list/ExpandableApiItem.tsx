@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { alpha, styled } from '@mui/material/styles';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
@@ -162,38 +161,38 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
         },
       },
       '& code.Api-code': {
-        borderColor: alpha(darkTheme.palette.primary[400], 0.1),
-        backgroundColor: alpha(darkTheme.palette.primary[900], 0.4),
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
+        borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
+        backgroundColor: alpha(darkTheme.palette.primary[900], 0.3),
       },
     },
   }),
 );
 
-export type ApiItemProps = {
-  id: string;
-  title: string;
-  description?: string;
-  note?: string;
-  type?: DescriptionType;
-  isExtendable?: boolean;
-  className?: string;
+type ExpandableApiItemProps = {
   children?: React.ReactNode;
-  sx?: SxProps;
+  className?: string;
+  description?: string;
   displayOption?: 'collapsed' | 'expanded';
+  id: string;
+  isExtendable?: boolean;
+  note?: string;
+  sx?: SxProps;
+  title: string;
+  type?: DescriptionType;
 };
 
-function ApiItem(props: ApiItemProps) {
+export default function ExpandableApiItem(props: ExpandableApiItemProps) {
   const {
-    title,
-    description,
-    note,
     children,
-    type,
+    className,
+    description,
+    displayOption,
     id,
     isExtendable = true,
-    className,
-    displayOption,
+    note,
+    title,
+    type,
     ...other
   } = props;
 
@@ -228,6 +227,7 @@ function ApiItem(props: ApiItemProps) {
           <IconButton
             onClick={() => setIsExtended((prev) => !prev)}
             className="MuiApi-expend-button"
+            aria-label={isExtended ? 'Collapse' : 'Expand'}
             size="small"
             sx={{ p: 0, ml: 'auto', borderRadius: '6px' }}
           >
@@ -245,16 +245,8 @@ function ApiItem(props: ApiItemProps) {
   );
 }
 
-ApiItem.propTypes = {
-  description: PropTypes.string,
-  note: PropTypes.string,
-  title: PropTypes.string.isRequired,
-};
-
 export const ApiItemContaier = styled('div')({
   width: '100%',
   display: 'flex',
   flexDirection: 'column',
 });
-
-export default ApiItem;

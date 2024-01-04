@@ -4,8 +4,20 @@
     "aria-describedby": { "type": { "name": "string" } },
     "aria-label": { "type": { "name": "string" } },
     "aria-labelledby": { "type": { "name": "string" } },
+    "autoComplete": { "type": { "name": "bool" }, "default": "false" },
     "autoFocus": { "type": { "name": "bool" } },
+    "autoHighlight": { "type": { "name": "bool" }, "default": "false" },
+    "autoSelect": { "type": { "name": "bool" }, "default": "false" },
+    "blurOnSelect": {
+      "type": {
+        "name": "union",
+        "description": "'mouse'<br>&#124;&nbsp;'touch'<br>&#124;&nbsp;bool"
+      },
+      "default": "false"
+    },
     "clearIcon": { "type": { "name": "node" }, "default": "<ClearIcon fontSize=\"md\" />" },
+    "clearOnBlur": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
+    "clearOnEscape": { "type": { "name": "bool" }, "default": "false" },
     "clearText": { "type": { "name": "string" }, "default": "'Clear'" },
     "closeText": { "type": { "name": "string" }, "default": "'Close'" },
     "color": {
@@ -21,7 +33,10 @@
       "default": "props.multiple ? [] : null"
     },
     "disableClearable": { "type": { "name": "bool" }, "default": "false" },
+    "disableCloseOnSelect": { "type": { "name": "bool" }, "default": "false" },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disabledItemsFocusable": { "type": { "name": "bool" }, "default": "false" },
+    "disableListWrap": { "type": { "name": "bool" }, "default": "false" },
     "endDecorator": { "type": { "name": "node" } },
     "error": { "type": { "name": "bool" }, "default": "false" },
     "filterOptions": {
@@ -32,6 +47,7 @@
         "describedArgs": ["options", "state"]
       }
     },
+    "filterSelectedOptions": { "type": { "name": "bool" }, "default": "false" },
     "forcePopupIcon": {
       "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;bool" },
       "default": "'auto'"
@@ -49,6 +65,13 @@
       "type": { "name": "func" },
       "signature": { "type": "function(option: Value) => boolean", "describedArgs": ["option"] }
     },
+    "getOptionKey": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(option: Value) => string | number",
+        "describedArgs": ["option"]
+      }
+    },
     "getOptionLabel": {
       "type": { "name": "func" },
       "default": "(option) => option.label ?? option",
@@ -58,7 +81,9 @@
       "type": { "name": "func" },
       "signature": { "type": "function(options: Value) => string", "describedArgs": ["options"] }
     },
+    "handleHomeEndKeys": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
     "id": { "type": { "name": "string" } },
+    "includeInputInList": { "type": { "name": "bool" }, "default": "false" },
     "inputValue": { "type": { "name": "string" } },
     "isOptionEqualToValue": {
       "type": { "name": "func" },
@@ -109,6 +134,7 @@
       }
     },
     "open": { "type": { "name": "bool" } },
+    "openOnFocus": { "type": { "name": "bool" }, "default": "false" },
     "openText": { "type": { "name": "string" }, "default": "'Open'" },
     "placeholder": { "type": { "name": "string" } },
     "popupIcon": { "type": { "name": "node" }, "default": "<ArrowDropDownIcon />" },
@@ -135,6 +161,7 @@
       }
     },
     "required": { "type": { "name": "bool" } },
+    "selectOnFocus": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
     "size": {
       "type": {
         "name": "union",
