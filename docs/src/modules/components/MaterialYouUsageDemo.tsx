@@ -352,10 +352,18 @@ export default function MaterialYouUsageDemo<T extends { [k: string]: any } = {}
                     placeholder="Select a variant..."
                     value={(resolvedValue || 'none') as string}
                     onChange={(event) => {
-                      setProps((latestProps) => ({
-                        ...latestProps,
-                        [propName]: event.target.value,
-                      }));
+                      setProps((latestProps) => {
+                        const variantShouldSpecialUpdate =
+                          componentName === 'LinearProgress' &&
+                          propName === 'type' &&
+                          event.target.value === 'CircularProgress' &&
+                          !['indeterminate', 'determinate'].includes(latestProps.variant);
+                        return {
+                          ...latestProps,
+                          variant: variantShouldSpecialUpdate ? 'indeterminate' : latestProps.variant,
+                          [propName]: event.target.value,
+                        }
+                      });
                       onChange?.(event as React.SyntheticEvent);
                     }}
                   >
