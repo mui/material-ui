@@ -23,10 +23,10 @@ body:
           required: true
   - type: textarea
     attributes:
-      label: The problem in depth 🔍
+      label: The problem in depth
   - type: textarea
     attributes:
-      label: Your environment 🌎
+      label: Your environment
       description: Run `npx @mui/envinfo` and post the results. If you encounter issues with TypeScript please include the used tsconfig.
       value: |
         <details>

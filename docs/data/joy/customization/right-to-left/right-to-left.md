@@ -1,10 +1,10 @@
 # Right-to-left support
 
-<p class="description">Learn how to implement right-to-left (RTL) text with Material UI to support languages such as Arabic, Persian, and Hebrew.</p>
+<p class="description">Learn how to implement right-to-left (RTL) text with Joy UI to support languages such as Arabic, Persian, and Hebrew.</p>
 
 ## Setup
 
-This guide outlines the three steps necessary to change the direction of text-based components in Material UI to support RTL languages, as shown in the demo below:
+This guide outlines the three steps necessary to change the direction of text-based components in Joy UI to support RTL languages, as shown in the demo below:
 
 {{"demo": "RtlDemo.js"}}
 
@@ -14,7 +14,7 @@ You can set the text direction either globally (across the entire app) or locall
 
 #### Globally
 
-Add `dir="rtl"` to the app's root `<html>` to set the global text direction:
+Add `dir="rtl"` to the app's root `<html>` tag to set the global text direction:
 
 ```html
 <html dir="rtl"></html>
@@ -31,16 +31,16 @@ document.dir = 'rtl';
 Add the `dir="rtl"` attribute to any other HTML element or React component if you need limit the scope of the text direction to that element and its children.
 
 :::warning
-Components that use React portals (like the [Dialog](/material-ui/react-dialog/)) do _not_ inherit the `dir` attribute from parents, because they actually render outside of their parental DOM trees.
+Components that use React portals (like the [Modal](/joy-ui/react-modal/)) do _not_ inherit the `dir` attribute from parents, because they actually render outside of their parental DOM trees.
 
 You must apply the `dir` attribute directly to these components if it's not globally defined as right-to-left:
 
 ```jsx
 <Box dir="rtl">
-  <Dialog /> // ❌ this Dialog will still be left-to-right (the default)
+  <Modal /> // ❌ this Modal will still be left-to-right (the default)
 </Box>
 <Box dir="rtl">
-  <Dialog dir="rtl" /> // ✅ this Dialog will be right-to-left as intended
+  <Modal dir="rtl" /> // ✅ this Modal will be right-to-left as intended
 </Box>
 ```
 
@@ -48,12 +48,12 @@ You must apply the `dir` attribute directly to these components if it's not glob
 
 ### 2. Set the theme direction
 
-Use the `createTheme` API to set the theme direction to `'rtl'`:
+Use the `extendTheme` API to set the theme direction to `'rtl'`:
 
 ```js
-import { createTheme } from '@mui/material/styles';
+import { extendTheme } from '@mui/joy/styles';
 
-const theme = createTheme({
+const theme = extendTheme({
   direction: 'rtl',
 });
 ```
