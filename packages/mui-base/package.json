@@ -46,7 +46,7 @@
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:^",
     "@popperjs/core": "^2.11.8",
-    "clsx": "^2.0.0",
+    "clsx": "^2.1.0",
     "prop-types": "^15.8.1"
   },
   "devDependencies": {

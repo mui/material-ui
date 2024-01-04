@@ -47,7 +47,7 @@
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:^",
     "@types/react-transition-group": "^4.4.10",
-    "clsx": "^2.0.0",
+    "clsx": "^2.1.0",
     "prop-types": "^15.8.1",
     "react-is": "^18.2.0",
     "react-transition-group": "^4.4.5"
