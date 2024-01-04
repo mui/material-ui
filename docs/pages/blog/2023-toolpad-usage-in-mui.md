@@ -9,7 +9,7 @@ tags: ['Product', 'News']
 
 Toolpad helps full-stack engineers build internal tools quickly. These are internal-facing data-intensive CRUD interfaces, analytics dashboards, and custom apps that make teams productive. Many MUI users build these from scratch using our core or advanced components. Through Toolpad, we interated on this approach through a low-code, GUI-based, code-friendly app builder that you can use locally and be more productive.
 
-We have been dogfooding Toolpad at MUI to build our KPI dashboards and operations apps. It has proven beneficial as we now have well-organized, centrally located apps. In this blog post, we’ll discuss four such apps.
+We have been dogfooding Toolpad at MUI to build our KPI dashboards and operations apps. It has proven beneficial as we now have well-organized, centrally located apps. In this blog post, we'll discuss four such apps.
 
 <a href="https://tools-public.mui.com/prod/pages/OverviewPage">
 <img alt="MUI public app for tracking KPIs" src="/static/blog/2023-toolpad-usage-in-mui/tools-public.png"  loading="lazy" width="2400" height="1394" />
@@ -25,7 +25,7 @@ Note: Majority of pages are used to track our KPIs. These are embedded as iframe
 2. These instructions required an end user to log into multiple services to update/manage their day-to-day chores. Now, one interface does it all.
 3. We leveraged Pipedream, Metabase, Google Sheets and other tools to manage day-to-day work. It meant we had distributed code at multiple places, and only a few had access. Now, we have everything on GitHub, and collaboration is easier.
 
-Let’s analyze four use cases below:
+Let's analyze four use cases below:
 
 ## 1. Support key validator
 
