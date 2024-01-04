@@ -360,9 +360,11 @@ export default function MaterialYouUsageDemo<T extends { [k: string]: any } = {}
                           !['indeterminate', 'determinate'].includes(latestProps.variant);
                         return {
                           ...latestProps,
-                          variant: variantShouldSpecialUpdate ? 'indeterminate' : latestProps.variant,
+                          variant: variantShouldSpecialUpdate
+                            ? 'indeterminate'
+                            : latestProps.variant,
                           [propName]: event.target.value,
-                        }
+                        };
                       });
                       onChange?.(event as React.SyntheticEvent);
                     }}
