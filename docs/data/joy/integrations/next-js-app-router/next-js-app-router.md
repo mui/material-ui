@@ -39,7 +39,7 @@ export default function RootLayout(props) {
     <html lang="en">
       <body>
         <AppRouterCacheProvider options={{ key: 'joy' }}>
-          <CssVarsProvider theme={theme}>
+          <CssVarsProvider theme={theme} />
           {/* the custom theme is optional */}
           <CssBaseline />
           {children}
