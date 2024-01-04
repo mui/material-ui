@@ -24,9 +24,9 @@ export default function RTLDemoJoy() {
       <CssVarsProvider theme={theme}>
         <div dir="rtl">
           <FormControl>
-            <FormLabel>Label</FormLabel>
-            <Input placeholder="Placeholder" />
-            <FormHelperText>This is a helper text</FormHelperText>
+            <FormLabel>ملصق</FormLabel>
+            <Input placeholder="العنصر النائب" />
+            <FormHelperText>هذا نص مساعد</FormHelperText>
           </FormControl>
         </div>
       </CssVarsProvider>

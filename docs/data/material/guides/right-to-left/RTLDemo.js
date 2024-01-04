@@ -9,7 +9,6 @@ import createCache from '@emotion/cache';
 // Consuming the outer theme is only required with coexisting themes, like in this documentation.
 // If your app/website doesn't deal with this, you can have just:
 // const theme = createTheme({ direction: 'rtl' })
-
 const theme = (outerTheme) =>
   createTheme({
     direction: 'rtl',
@@ -28,7 +27,12 @@ export default function RTLDemo() {
     <CacheProvider value={cacheRtl}>
       <ThemeProvider theme={theme}>
         <div dir="rtl">
-          <TextField label="بطاطا" variant="outlined" />
+          <TextField
+            label="ملصق"
+            placeholder="العنصر النائب"
+            helperText="هذا نص مساعد"
+            variant="outlined"
+          />
         </div>
       </ThemeProvider>
     </CacheProvider>

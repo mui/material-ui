@@ -26,7 +26,6 @@ If your React app doesn't control the root `<html>`, you can use a workaround. U
 document.dir = 'rtl';
 ```
 
-
 #### Locally
 
 Add the `dir="rtl"` attribute to any other HTML element or React component if you need limit the scope of the text direction to that element and its children.
