@@ -44,26 +44,10 @@
     "value": { "description": "The rating value." }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "sizeSmall": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"small\"</code>"
-    },
-    "sizeMedium": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"medium\"</code>"
-    },
-    "sizeLarge": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"large\"</code>"
-    },
-    "readOnly": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>readOnly={true}</code>"
+    "decimal": {
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the icon wrapping elements",
+      "conditions": "decimals are necessary"
     },
     "disabled": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
@@ -75,16 +59,14 @@
       "nodeName": "the root element",
       "conditions": "keyboard focused"
     },
-    "visuallyHidden": { "description": "Visually hide an element." },
-    "label": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the label elements" },
-    "labelEmptyValueActive": {
-      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
-      "nodeName": "the label of the &quot;no value&quot; input",
-      "conditions": "it is active"
-    },
     "icon": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the icon wrapping elements"
+    },
+    "iconActive": {
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the icon wrapping elements",
+      "conditions": "active"
     },
     "iconEmpty": {
       "description": "Styles applied to {{nodeName}} when {{conditions}}.",
@@ -96,25 +78,43 @@
       "nodeName": "the icon wrapping elements",
       "conditions": "filled"
     },
-    "iconHover": {
-      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
-      "nodeName": "the icon wrapping elements",
-      "conditions": "hover"
-    },
     "iconFocus": {
       "description": "Styles applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the icon wrapping elements",
       "conditions": "focus"
     },
-    "iconActive": {
+    "iconHover": {
       "description": "Styles applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the icon wrapping elements",
-      "conditions": "active"
+      "conditions": "hover"
     },
-    "decimal": {
+    "label": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the label elements" },
+    "labelEmptyValueActive": {
       "description": "Styles applied to {{nodeName}} when {{conditions}}.",
-      "nodeName": "the icon wrapping elements",
-      "conditions": "decimals are necessary"
-    }
+      "nodeName": "the label of the &quot;no value&quot; input",
+      "conditions": "it is active"
+    },
+    "readOnly": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>readOnly={true}</code>"
+    },
+    "root": { "description": "Styles applied to the root element." },
+    "sizeLarge": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"large\"</code>"
+    },
+    "sizeMedium": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"medium\"</code>"
+    },
+    "sizeSmall": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"small\"</code>"
+    },
+    "visuallyHidden": { "description": "Visually hide an element." }
   }
 }

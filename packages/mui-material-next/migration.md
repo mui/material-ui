@@ -116,7 +116,7 @@ So the examples below are interchangeable for these components.
 
 ### Removed focusRipple
 
-The `focusRipple` prop was removed as ripples are absent in Material You's focused states.
+The `focusRipple` prop was removed as ripples are absent in Material 3's focused states.
 
 ### Prevent default on `key-up` and `key-down` events
 
@@ -166,13 +166,13 @@ The `FormControlState` interface was renamed to `FormControlContextValue`:
 
 ### Removed the `standard` variant
 
-The standard variant is no longer supported in Material You, use the `filled` or `outlined` variants instead.
+The standard variant is no longer supported in Material 3, use the `filled` or `outlined` variants instead.
 
 ## FormLabel
 
 ### Removed the `standard` variant
 
-The standard variant is no longer supported in Material You, use the `filled` or `outlined` variants instead.
+The standard variant is no longer supported in Material 3, use the `filled` or `outlined` variants instead.
 
 ## InputBase
 
@@ -191,7 +191,7 @@ The standard variant is no longer supported in Material You, use the `filled` or
 
 ### Removed the `standard` variant
 
-The standard variant is no longer supported in Material You, use the `filled` or `outlined` variants instead.
+The standard variant is no longer supported in Material 3, use the `filled` or `outlined` variants instead.
 
 ## Chip
 
@@ -361,7 +361,7 @@ If you are using the `thumb` or `valueLabel` Slider slots, then make sure the co
  <Slider slots={{ thumb: Thumb, valueLabel: ValueLabel }}/>
 ```
 
-This is required in v6 as it's used to apply the overlap styles to these slots. For more info take a look into [Material You's Slider overlapping handles guidelines](https://m3.material.io/components/sliders/guidelines#ad5ceb95-a690-4ddd-8243-53a8e13bdab6).
+This is required in v6 as it's used to apply the overlap styles to these slots. For more info take a look into [Material 3's Slider overlapping handles guidelines](https://m3.material.io/components/sliders/guidelines#ad5ceb95-a690-4ddd-8243-53a8e13bdab6).
 
 ## Divider
 
@@ -389,4 +389,130 @@ The `MuiDivider-withChildrenVertical` class has been removed. To replace it, you
 ```diff
 - .MuiDivider-withChildrenVertical
 + .MuiDivider-withChildren.MuiDivider-vertical
+```
+
+## LinearProgress
+
+### Removed combined styleOverrides keys
+
+The following `styleOverrides` `MuiLinearProgress` keys were removed:
+
+- `dashedColorPrimary`
+- `dashedColorSecondary`
+- `barColorPrimary`
+- `barColorSecondary`
+- `bar1Indeterminate`
+- `bar1Determinate`
+- `bar1Buffer`
+- `bar2Indeterminate`
+- `bar2Buffer`
+
+The following `styleOverrides` `MuiLinearProgress` keys were added:
+
+- `bar1`
+- `bar2`
+
+You can replace them by using the variants API and CSS Selectors.
+The following example replaces the usage of `dashedPrimary` with the variants API:
+
+```diff
+ const theme = extendTheme({
+   components: {
+     MuiLinearProgress: {
+       styleOverrides: {
+-        dashedColorPrimary: {
+-          background: "fuchsia"
+-        }
++        root: {
++          "&.MuiLinearProgress-colorPrimary > .MuiLinearProgress-dashed": {
++            background: "fuchsia"
++          }
++        }
+       }
+     }
+   }
+ });
+```
+
+### Removed combined classes
+
+The following classes were removed:
+
+- `MuiLinearProgress-dashedColorPrimary`
+- `MuiLinearProgress-dashedColorSecondary`
+- `MuiLinearProgress-barColorPrimary`
+- `MuiLinearProgress-barColorSecondary`
+- `MuiLinearProgress-bar1Indeterminate`
+- `MuiLinearProgress-bar1Determinate`
+- `MuiLinearProgress-bar1Buffer`
+- `MuiLinearProgress-bar2Indeterminate`
+- `MuiLinearProgress-bar2Buffer`
+
+The following classes were added:
+
+- `MuiLinearProgress-bar1`
+- `MuiLinearProgress-bar2`
+
+You can replace them by combining classes with a CSS selector.
+The following example replaces the `MuiLinearProgress-dashedColorPrimary` class using `MuiLinearProgress-dashed` and `MuiLinearProgress-colorPrimary`:
+
+```diff
+- .MuiLinearProgress-dashedColorPrimary
++ .MuiLinearProgress-colorPrimary .MuiLinearProgress-dashed
+```
+
+## CircularProgress
+
+### Removed combined styleOverrides keys
+
+The following `styleOverrides` `MuiCircularProgress` keys were removed:
+
+- `circleDeterminate`
+- `circleIndeterminate`
+- `circleDisableShrink`
+
+The following `styleOverrides` `MuiCircularProgress` keys were added:
+
+- `disableShrink`
+
+You can replace them by using the variants API and CSS Selectors.
+The following example replaces the usage of `circleDeterminate` with the variants API:
+
+```diff
+ const theme = extendTheme({
+   components: {
+     MuiCircularProgress: {
+       styleOverrides: {
+-        circleDeterminate: {
+-          background: "fuchsia"
+-        }
++        root: {
++          "&.MuiCircularProgress-determinate .MuiCircularProgress-circle": {
++            background: "fuchsia"
++          }
++        }
+       }
+     }
+   }
+ });
+```
+
+### Removed combined classes
+
+The following classes were removed:
+
+- `MuiCircularProgress-circleDeterminate`
+- `MuiCircularProgress-circleIndeterminate`
+- `MuiCircularProgress-circleDisableShrink`
+
+The following classes were added:
+
+- `MuiCircularProgress-disableShrink`
+
+You can replace them by combining classes with a CSS selector.
+The following example replaces the `MuiCircularProgress-circleDeterminate` class using `MuiCircularProgress-circle` and `MuiCircularProgress-determinate`:
+
+```diff
+- .MuiCircularProgress-circleDeterminate
++ .MuiCircularProgress-determinate .MuiCircularProgress-circle
 ```

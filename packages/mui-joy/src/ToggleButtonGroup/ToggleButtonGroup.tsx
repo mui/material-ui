@@ -201,10 +201,10 @@ interface ToggleButtonGroupComponent {
 }
 
 ToggleButtonGroup.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The flex value of the button.
    * @example buttonFlex={1} will set flex: '1 1 auto' on each button (stretch the button to equally fill the available space).

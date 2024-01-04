@@ -1,6 +1,6 @@
 {
   "name": "@mui/envinfo",
-  "version": "2.0.13",
+  "version": "2.0.15",
   "private": false,
   "author": "MUI Team",
   "description": "Logs infos about the environment relevant to @mui/*",
@@ -25,7 +25,7 @@
   "devDependencies": {
     "@types/chai": "^4.3.11",
     "chai": "^4.3.10",
-    "fs-extra": "^11.1.1"
+    "fs-extra": "^11.2.0"
   },
   "publishConfig": {
     "access": "public"

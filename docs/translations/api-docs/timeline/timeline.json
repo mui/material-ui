@@ -12,7 +12,16 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "positionAlternate": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>position=\"alternate\"</code>"
+    },
+    "positionAlternateReverse": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>position=\"alternate-reverse\"</code>"
+    },
     "positionLeft": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -23,15 +32,6 @@
       "nodeName": "the root element",
       "conditions": "<code>position=\"right\"</code>"
     },
-    "positionAlternate": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>position=\"alternate\"</code>"
-    },
-    "positionAlternateReverse": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>position=\"alternate-reverse\"</code>"
-    }
+    "root": { "description": "Styles applied to the root element." }
   }
 }

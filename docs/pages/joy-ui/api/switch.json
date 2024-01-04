@@ -64,76 +64,142 @@
   },
   "name": "Switch",
   "imports": ["import Switch from '@mui/joy/Switch';", "import { Switch } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiSwitch" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiSwitch-root"
+      "class": "MuiSwitch-root"
     },
     {
       "name": "thumb",
       "description": "The component that renders the thumb.",
       "default": "'span'",
-      "class": ".MuiSwitch-thumb"
+      "class": "MuiSwitch-thumb"
     },
     {
       "name": "action",
       "description": "The component that renders the action.",
       "default": "'div'",
-      "class": ".MuiSwitch-action"
+      "class": "MuiSwitch-action"
     },
     {
       "name": "input",
       "description": "The component that renders the input.",
       "default": "'input'",
-      "class": ".MuiSwitch-input"
+      "class": "MuiSwitch-input"
     },
     {
       "name": "track",
       "description": "The component that renders the track.",
       "default": "'span'",
-      "class": ".MuiSwitch-track"
+      "class": "MuiSwitch-track"
     },
     {
       "name": "startDecorator",
       "description": "The component that renders the start decorator.",
       "default": "'span'",
-      "class": ".MuiSwitch-startDecorator"
+      "class": "MuiSwitch-startDecorator"
     },
     {
       "name": "endDecorator",
       "description": "The component that renders the end decorator.",
       "default": "'span'",
-      "class": ".MuiSwitch-endDecorator"
+      "class": "MuiSwitch-endDecorator"
     }
   ],
-  "classes": {
-    "classes": [
-      "checked",
-      "colorContext",
-      "colorDanger",
-      "colorPrimary",
-      "colorSuccess",
-      "colorWarning",
-      "disabled",
-      "focusVisible",
-      "readOnly",
-      "sizeLg",
-      "sizeMd",
-      "sizeSm",
-      "variantOutlined",
-      "variantSoft",
-      "variantSolid"
-    ],
-    "globalClasses": {
-      "checked": "Mui-checked",
-      "disabled": "Mui-disabled",
-      "focusVisible": "Mui-focusVisible",
-      "readOnly": "Mui-readOnly"
+  "classes": [
+    {
+      "key": "checked",
+      "className": "Mui-checked",
+      "description": "State class applied to the root `checked` class.",
+      "isGlobal": true
+    },
+    {
+      "key": "colorContext",
+      "className": "MuiSwitch-colorContext",
+      "description": "Class name applied to the root element when color inversion is triggered.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorDanger",
+      "className": "MuiSwitch-colorDanger",
+      "description": "Class name applied to the root element if `color=\"danger\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiSwitch-colorPrimary",
+      "description": "Class name applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSuccess",
+      "className": "MuiSwitch-colorSuccess",
+      "description": "Class name applied to the root element if `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorWarning",
+      "className": "MuiSwitch-colorWarning",
+      "description": "Class name applied to the root element if `color=\"warning\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root disabled class.",
+      "isGlobal": true
+    },
+    {
+      "key": "focusVisible",
+      "className": "Mui-focusVisible",
+      "description": "State class applied to the root element if the switch has visible focus",
+      "isGlobal": true
+    },
+    {
+      "key": "readOnly",
+      "className": "Mui-readOnly",
+      "description": "Class name applied to the root element if the switch is read-only",
+      "isGlobal": true
+    },
+    {
+      "key": "sizeLg",
+      "className": "MuiSwitch-sizeLg",
+      "description": "Class name applied to the root element if `size=\"lg\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeMd",
+      "className": "MuiSwitch-sizeMd",
+      "description": "Class name applied to the root element if `size=\"md\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSm",
+      "className": "MuiSwitch-sizeSm",
+      "description": "Class name applied to the root element if `size=\"sm\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantOutlined",
+      "className": "MuiSwitch-variantOutlined",
+      "description": "Class name applied to the root element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSoft",
+      "className": "MuiSwitch-variantSoft",
+      "description": "Class name applied to the root element if `variant=\"soft\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSolid",
+      "className": "MuiSwitch-variantSolid",
+      "description": "Class name applied to the root element if `variant=\"solid\"`.",
+      "isGlobal": false
     }
-  },
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoySwitch",

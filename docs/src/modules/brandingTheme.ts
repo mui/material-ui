@@ -193,13 +193,13 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
           contrastText: blueDark[600],
         }),
       },
-      divider: mode === 'dark' ? alpha(blueDark[100], 0.08) : grey[100],
+      divider: mode === 'dark' ? alpha(blueDark[500], 0.2) : grey[100],
       primaryDark: blueDark,
       mode,
       ...(mode === 'dark' && {
         background: {
-          default: blueDark[800],
-          paper: blueDark[900],
+          default: blueDark[900],
+          paper: alpha(blueDark[800], 0.8),
         },
       }),
       common: {
@@ -840,7 +840,7 @@ export function getThemedComponents(): ThemeOptions {
           root: ({ theme }) => ({
             borderColor: (theme.vars || theme).palette.grey[100],
             ...theme.applyDarkStyles({
-              borderColor: alpha(theme.palette.primary[100], 0.08),
+              borderColor: alpha(theme.palette.primaryDark[700], 0.8),
             }),
           }),
         },
@@ -886,6 +886,7 @@ export function getThemedComponents(): ThemeOptions {
         styleOverrides: {
           root: ({ ownerState: { color, variant }, theme }) => ({
             fontWeight: theme.typography.fontWeightSemiBold,
+            paddingBottom: 0.2,
             ...(variant === 'outlined' &&
               color === 'default' && {
                 backgroundColor: alpha(theme.palette.grey[50], 0.5),
@@ -906,10 +907,34 @@ export function getThemedComponents(): ThemeOptions {
                 }),
               }),
             ...(variant === 'outlined' &&
-              color === 'primary' && {
-                borderColor: (theme.vars || theme).palette.primary[200],
+              color === 'info' && {
+                backgroundColor: alpha(theme.palette.grey[50], 0.5),
+                color: (theme.vars || theme).palette.grey[900],
+                borderColor: (theme.vars || theme).palette.grey[200],
                 ...theme.applyDarkStyles({
-                  borderColor: alpha(theme.palette.primary[500], 0.3),
+                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+                  color: (theme.vars || theme).palette.grey[300],
+                  borderColor: alpha(theme.palette.primaryDark[500], 0.5),
+                }),
+              }),
+            ...(variant === 'outlined' &&
+              color === 'primary' && {
+                borderColor: (theme.vars || theme).palette.primary[100],
+                backgroundColor: (theme.vars || theme).palette.primary[50],
+                ...theme.applyDarkStyles({
+                  color: (theme.vars || theme).palette.primary[300],
+                  borderColor: alpha(theme.palette.primary[500], 0.2),
+                  backgroundColor: alpha(theme.palette.primary[700], 0.2),
+                }),
+              }),
+            ...(variant === 'outlined' &&
+              color === 'success' && {
+                borderColor: (theme.vars || theme).palette.success[100],
+                backgroundColor: (theme.vars || theme).palette.success[50],
+                ...theme.applyDarkStyles({
+                  color: (theme.vars || theme).palette.success[300],
+                  borderColor: alpha(theme.palette.success[300], 0.3),
+                  background: alpha(theme.palette.success[800], 0.3),
                 }),
               }),
             ...(variant === 'filled' && {
@@ -1056,7 +1081,7 @@ export function getThemedComponents(): ThemeOptions {
                   textDecorationLine: 'none',
                   boxShadow: `inset 0 1px 2px ${
                     (theme.vars || theme).palette.grey[50]
-                  }, 0 1px 0.5px ${alpha(theme.palette.grey[100], 0.6)}`,
+                  }, 0 1px 2px ${alpha(theme.palette.grey[100], 0.6)}`,
                   '&:hover': {
                     borderColor: (theme.vars || theme).palette.primary[200],
                     boxShadow: `0px 4px 16px ${(theme.vars || theme).palette.grey[200]}`,
@@ -1073,15 +1098,15 @@ export function getThemedComponents(): ThemeOptions {
             theme.applyDarkStyles({
               backgroundColor: (theme.vars || theme).palette.primaryDark[900],
               ...(ownerState.variant === 'outlined' && {
-                borderColor: (theme.vars || theme).palette.primaryDark[600],
-                backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
+                borderColor: (theme.vars || theme).palette.primaryDark[700],
+                backgroundColor: alpha(theme.palette.primaryDark[800], 0.8),
                 '&[href]': {
                   textDecorationLine: 'none',
                   boxShadow: `inset 0 1px 1px ${
                     (theme.vars || theme).palette.primaryDark[900]
-                  }, 0 1px 0.5px ${(theme.vars || theme).palette.common.black}`,
+                  }, 0 1px 2px ${(theme.vars || theme).palette.common.black}`,
                   '&:hover': {
-                    borderColor: (theme.vars || theme).palette.primary[700],
+                    borderColor: alpha(theme.palette.primary[600], 0.5),
                     boxShadow: `0px 4px 24px ${(theme.vars || theme).palette.common.black}`,
                   },
                 },
@@ -1142,7 +1167,7 @@ export function getThemedComponents(): ThemeOptions {
             } as const,
             theme.applyDarkStyles({
               color: theme.palette.grey[300],
-              borderColor: theme.palette.primaryDark[500],
+              borderColor: theme.palette.primaryDark[700],
               '&.Mui-selected': {
                 color: (theme.vars || theme).palette.primary[200],
                 borderColor: `${(theme.vars || theme).palette.primary[700]} !important`,

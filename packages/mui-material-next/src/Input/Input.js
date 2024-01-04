@@ -114,7 +114,7 @@ const InputRoot = styled('div', {
       },
     }),
     ...(!ownerState.disableUnderline && {
-      '&:after': {
+      '&::after': {
         borderBottom: `2px solid ${theme.palette[ownerState.color].main}`,
         left: 0,
         bottom: 0,
@@ -136,7 +136,7 @@ const InputRoot = styled('div', {
         borderBottomColor: theme.palette.error.main,
         transform: 'scaleX(1)', // error is always underlined in red
       },
-      '&:before': {
+      '&::before': {
         borderBottom: `1px solid ${bottomLineColor}`,
         left: 0,
         bottom: 0,
@@ -339,10 +339,10 @@ const Input = React.forwardRef(function Input(inProps, ref) {
 });
 
 Input.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */

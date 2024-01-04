@@ -23,22 +23,28 @@
   },
   "name": "Menu",
   "imports": ["import { Menu } from '@mui/base/Menu';", "import { Menu } from '@mui/base';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the popup element.",
       "default": "'div'",
-      "class": ".MuiMenu-root"
+      "class": "MuiMenu-root"
     },
     {
       "name": "listbox",
       "description": "The component that renders the listbox.",
       "default": "'ul'",
-      "class": ".MuiMenu-listbox"
+      "class": "MuiMenu-listbox"
     }
   ],
-  "classes": { "classes": ["expanded"], "globalClasses": { "expanded": "Mui-expanded" } },
+  "classes": [
+    {
+      "key": "expanded",
+      "className": "Mui-expanded",
+      "description": "State class applied to the root element if `open={true}`.",
+      "isGlobal": true
+    }
+  ],
   "spread": true,
   "muiName": "MuiMenu",
   "forwardsRefTo": "HTMLDivElement",

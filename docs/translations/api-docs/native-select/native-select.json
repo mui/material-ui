@@ -25,45 +25,29 @@
     "variant": { "description": "The variant to use." }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "select": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the select component <code>select</code> class"
+    "disabled": {
+      "description": "State class applied to {{nodeName}}.",
+      "nodeName": "the select component <code>disabled</code> class"
     },
-    "multiple": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the select component",
-      "conditions": "<code>multiple={true}</code>"
+    "error": {
+      "description": "State class applied to {{nodeName}}.",
+      "nodeName": "the select component <code>error</code> class"
     },
     "filled": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the select component",
       "conditions": "<code>variant=\"filled\"</code>"
     },
-    "outlined": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the select component",
-      "conditions": "<code>variant=\"outlined\"</code>"
-    },
-    "standard": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the select component",
-      "conditions": "<code>variant=\"standard\"</code>"
-    },
-    "disabled": {
-      "description": "State class applied to {{nodeName}}.",
-      "nodeName": "the select component <code>disabled</code> class"
-    },
     "icon": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the icon component" },
-    "iconOpen": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the icon component",
-      "conditions": "the popup is open"
-    },
     "iconFilled": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the icon component",
       "conditions": "<code>variant=\"filled\"</code>"
+    },
+    "iconOpen": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the icon component",
+      "conditions": "the popup is open"
     },
     "iconOutlined": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -75,13 +59,29 @@
       "nodeName": "the icon component",
       "conditions": "<code>variant=\"standard\"</code>"
     },
+    "multiple": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the select component",
+      "conditions": "<code>multiple={true}</code>"
+    },
     "nativeInput": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the underlying native input component"
     },
-    "error": {
-      "description": "State class applied to {{nodeName}}.",
-      "nodeName": "the select component <code>error</code> class"
+    "outlined": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the select component",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "root": { "description": "Styles applied to the root element." },
+    "select": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the select component <code>select</code> class"
+    },
+    "standard": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the select component",
+      "conditions": "<code>variant=\"standard\"</code>"
     }
   }
 }

@@ -34,12 +34,9 @@ The majority of our work is asynchronous, and we rely on written communication t
 We're radically transparent: nearly all of our work happens in public.
 Each contributor has the freedom to decide how and when they work, and that work is primarily self-directed: it's your responsibility to define and complete your own tasks in a timely manner.
 
-For additional details about the culture you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
+For additional details about the culture, you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
 
 ## Why we're hiring
-
-Both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
 
 The data grid team (part of MUI X) needs help.
 We have started with the [data grid](https://mui.com/x/react-data-grid/#commercial-version) component.
@@ -47,6 +44,9 @@ We need to build new features on it and introduce new components.
 The enterprise version is built on the open-source version of the components.
 
 We also need help to continue to improve the health of the open-source product: make the advanced components easier to use, make it support more use cases, improve performance, make it more accessible, increase the contributions by engaging and collaborating with the community, guide developers to answers, and just generally be a positive presence in the open-source community.
+
+Overall, both our open-source community and our premium products are growing fast (x2 YoY).
+We need talented people to keep that going!
 
 ## The role
 
