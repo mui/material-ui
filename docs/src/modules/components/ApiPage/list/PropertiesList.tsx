@@ -121,6 +121,7 @@ export function getHash({
 export interface PropDescriptionParams {
   targetName: string;
   propName: string;
+  seeMoreDescription?: string;
   description?: string;
   requiresRef?: string;
   isOptional?: boolean;
@@ -151,6 +152,7 @@ export default function PropertiesList(props: PropertiesListProps) {
         const {
           targetName,
           propName,
+          seeMoreDescription,
           description,
           requiresRef,
           isOptional,
@@ -176,6 +178,7 @@ export default function PropertiesList(props: PropertiesListProps) {
             displayOption={displayOption}
           >
             {description && <PropDescription description={description} />}
+            {seeMoreDescription && <p dangerouslySetInnerHTML={{ __html: seeMoreDescription }} />}
             {requiresRef && (
               <Alert
                 severity="warning"
