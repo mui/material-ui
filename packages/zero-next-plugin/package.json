@@ -42,7 +42,7 @@
     "@babel/core": "^7.23.7",
     "@babel/plugin-syntax-jsx": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
-    "@linaria/babel-preset": "^4.5.4",
+    "@linaria/babel-preset": "^5.0.4",
     "@mui/zero-tag-processor": "workspace:^",
     "file-system-cache": "2.4.4"
   },
