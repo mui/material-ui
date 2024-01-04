@@ -10,14 +10,11 @@ materialDesign: https://m2.material.io/components/cards
 
 <p class="description">Cards contain content and actions about a single subject.</p>
 
-Cards are surfaces that display content and actions on a single topic.
-
-They should be easy to scan for relevant and actionable information. Elements, like text and images, should be placed on them in a way that clearly indicates hierarchy.
-
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Introduction
 
+Cards are surfaces that display content and actions on a single topic.
 The Material UI Card component includes several complementary utility components to handle various use cases:
 
 - Card: a surface-level container for grouping related components.
