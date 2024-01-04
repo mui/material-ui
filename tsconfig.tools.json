@@ -1,3 +1,4 @@
+/* TS configuration for internal tools */
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
