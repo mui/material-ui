@@ -253,7 +253,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
   const range = Array.isArray(valueDerived);
   let values = range ? valueDerived.slice().sort(asc) : [valueDerived];
-  values = values.map((value) => typeof value === "number" ?  clamp(value, min, max) : min);
+  values = values.map((value) => (typeof value === 'number' ? clamp(value, min, max) : min));
 
   const marks =
     marksProp === true && step !== null
@@ -335,14 +335,15 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
         }
       }
 
-      newValue = typeof newValue === "number" ? clamp(newValue, min, max) : min;
+      newValue = typeof newValue === 'number' ? clamp(newValue, min, max) : min;
 
       if (range) {
         // Bound the new value to the thumb's neighbours.
         if (disableSwap) {
           const prevValue = values[index - 1] || -Infinity;
           const nextValue = values[index + 1] || Infinity;
-          newValue = typeof newValue === "number" ? clamp(newValue, prevValue, nextValue) : prevValue;
+          newValue =
+            typeof newValue === 'number' ? clamp(newValue, prevValue, nextValue) : prevValue;
         }
 
         const previousValue = newValue;
@@ -424,7 +425,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
       if (disableSwap) {
         const prevValue = values[activeIndex - 1] || -Infinity;
         const nextValue = values[activeIndex + 1] || Infinity;
-        newValue = typeof newValue === "number" ? clamp(newValue, prevValue, nextValue) : prevValue;
+        newValue = typeof newValue === 'number' ? clamp(newValue, prevValue, nextValue) : prevValue;
       }
 
       const previousValue = newValue;
