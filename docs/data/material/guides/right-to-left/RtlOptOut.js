@@ -4,19 +4,15 @@ import rtlPlugin from 'stylis-plugin-rtl';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 
-const Root = styled('div')((props) => ({
-  width: '100%',
-  marginTop: props.theme?.spacing(6),
-}));
-
-const AffectedText = styled('div')`
+const Normal = styled('div')`
   text-align: left;
 `;
 
-const UnaffectedText = styled('div')`
+const Noflip = styled('div')`
   /* @noflip */
   text-align: left;
 `;
@@ -30,7 +26,7 @@ const ltrCache = createCache({
   key: 'mui',
 });
 
-export default function RtlOptOutStylis() {
+export default function RtlOptOut() {
   const [rtl, setRtl] = React.useState(false);
 
   const handleChange = () => {
@@ -38,19 +34,17 @@ export default function RtlOptOutStylis() {
   };
 
   return (
-    <React.Fragment>
-      <div>
-        <FormControlLabel
-          control={<Switch checked={rtl} onChange={handleChange} />}
-          label="RTL"
-        />
-      </div>
+    <Box sx={{ width: '100%', display: 'flex' }}>
+      <FormControlLabel
+        control={<Switch onChange={handleChange} />}
+        label="Toggle RTL"
+      />
       <CacheProvider value={rtl ? rtlCache : ltrCache}>
-        <Root {...(rtl ? { dir: 'rtl' } : {})}>
-          <AffectedText>Affected</AffectedText>
-          <UnaffectedText>Unaffected</UnaffectedText>
-        </Root>
+        <Box sx={{ flexGrow: 1, mx: 2 }} dir={rtl ? 'rtl' : ''}>
+          <Normal>RTL normal behavior</Normal>
+          <Noflip>RTL noflip</Noflip>
+        </Box>
       </CacheProvider>
-    </React.Fragment>
+    </Box>
   );
 }
