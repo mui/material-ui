@@ -43,7 +43,7 @@
     "@mui/private-theming": "workspace:^",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:^",
-    "clsx": "^2.0.0",
+    "clsx": "^2.1.0",
     "csstype": "^3.1.2",
     "hoist-non-react-statics": "^3.3.2",
     "jss": "^10.10.0",

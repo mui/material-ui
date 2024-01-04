@@ -677,8 +677,8 @@ importers:
         specifier: ^4.0.1
         version: 4.0.1
       clsx:
-        specifier: ^2.0.0
-        version: 2.0.0
+        specifier: ^2.1.0
+        version: 2.1.0
       core-js:
         specifier: ^2.6.11
         version: 2.6.12
@@ -1143,8 +1143,8 @@ importers:
         specifier: ^2.11.8
         version: 2.11.8
       clsx:
-        specifier: ^2.0.0
-        version: 2.0.0
+        specifier: ^2.1.0
+        version: 2.1.0
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
@@ -1365,8 +1365,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-utils/build
       clsx:
-        specifier: ^2.0.0
-        version: 2.0.0
+        specifier: ^2.1.0
+        version: 2.1.0
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
@@ -1442,8 +1442,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-utils/build
       clsx:
-        specifier: ^2.0.0
-        version: 2.0.0
+        specifier: ^2.1.0
+        version: 2.1.0
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
@@ -1510,8 +1510,8 @@ importers:
         specifier: ^4.4.10
         version: 4.4.10
       clsx:
-        specifier: ^2.0.0
-        version: 2.0.0
+        specifier: ^2.1.0
+        version: 2.1.0
       csstype:
         specifier: ^3.1.2
         version: 3.1.2
@@ -1641,8 +1641,8 @@ importers:
         specifier: ^4.4.10
         version: 4.4.10
       clsx:
-        specifier: ^2.0.0
-        version: 2.0.0
+        specifier: ^2.1.0
+        version: 2.1.0
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
@@ -1860,8 +1860,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-utils/build
       clsx:
-        specifier: ^2.0.0
-        version: 2.0.0
+        specifier: ^2.1.0
+        version: 2.1.0
       csstype:
         specifier: ^3.1.2
         version: 3.1.2
@@ -1946,8 +1946,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-utils/build
       clsx:
-        specifier: ^2.0.0
-        version: 2.0.0
+        specifier: ^2.1.0
+        version: 2.1.0
       csstype:
         specifier: ^3.1.2
         version: 3.1.2
@@ -2339,8 +2339,8 @@ importers:
   packages/zero-runtime:
     dependencies:
       clsx:
-        specifier: ^2.0.0
-        version: 2.0.0
+        specifier: ^2.1.0
+        version: 2.1.0
       csstype:
         specifier: ^3.1.2
         version: 3.1.2
@@ -5677,7 +5677,7 @@ packages:
       '@mui/utils': 5.14.16(@types/react@18.2.46)(react@18.2.0)
       '@popperjs/core': 2.11.8
       '@types/react': 18.2.46
-      clsx: 2.0.0
+      clsx: 2.1.0
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -5714,7 +5714,7 @@ packages:
       '@mui/utils': 5.14.16(@types/react@18.2.46)(react@18.2.0)
       '@types/react': 18.2.46
       '@types/react-transition-group': 4.4.10
-      clsx: 2.0.0
+      clsx: 2.1.0
       csstype: 3.1.2
       prop-types: 15.8.1
       react: 18.2.0
@@ -5786,7 +5786,7 @@ packages:
       '@mui/types': 7.2.8(@types/react@18.2.46)
       '@mui/utils': 5.14.16(@types/react@18.2.46)(react@18.2.0)
       '@types/react': 18.2.46
-      clsx: 2.0.0
+      clsx: 2.1.0
       csstype: 3.1.2
       prop-types: 15.8.1
       react: 18.2.0
@@ -5845,7 +5845,7 @@ packages:
       '@mui/system': link:packages/mui-system/build
       '@react-spring/rafz': 9.7.3
       '@react-spring/web': 9.7.3(react-dom@18.2.0)(react@18.2.0)
-      clsx: 2.0.0
+      clsx: 2.1.0
       d3-color: 3.1.0
       d3-scale: 4.0.2
       d3-shape: 3.2.0
@@ -5870,7 +5870,7 @@ packages:
       '@mui/material': link:packages/mui-material/build
       '@mui/x-data-grid-premium': 6.18.6(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)
       chance: 1.1.11
-      clsx: 2.0.0
+      clsx: 2.1.0
       lru-cache: 7.18.3
       react: 18.2.0
     transitivePeerDependencies:
@@ -5896,7 +5896,7 @@ packages:
       '@mui/x-data-grid-pro': 6.18.6(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-license-pro': 6.10.2(@types/react@18.2.46)(react@18.2.0)
       '@types/format-util': 1.0.4
-      clsx: 2.0.0
+      clsx: 2.1.0
       exceljs: 4.3.0
       prop-types: 15.8.1
       react: 18.2.0
@@ -5922,7 +5922,7 @@ packages:
       '@mui/x-data-grid': 6.18.6(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-license-pro': 6.10.2(@types/react@18.2.46)(react@18.2.0)
       '@types/format-util': 1.0.4
-      clsx: 2.0.0
+      clsx: 2.1.0
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -5944,7 +5944,7 @@ packages:
       '@mui/material': link:packages/mui-material/build
       '@mui/system': link:packages/mui-system/build
       '@mui/utils': 5.14.16(@types/react@18.2.46)(react@18.2.0)
-      clsx: 2.0.0
+      clsx: 2.1.0
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -5999,7 +5999,7 @@ packages:
       '@mui/utils': 5.14.16(@types/react@18.2.46)(react@18.2.0)
       '@mui/x-date-pickers': 6.18.6(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.46)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-license-pro': 6.10.2(@types/react@18.2.46)(react@18.2.0)
-      clsx: 2.0.0
+      clsx: 2.1.0
       date-fns: 2.30.0
       date-fns-jalali: 2.21.3-1
       prop-types: 15.8.1
@@ -6055,7 +6055,7 @@ packages:
       '@mui/system': link:packages/mui-system/build
       '@mui/utils': 5.14.16(@types/react@18.2.46)(react@18.2.0)
       '@types/react-transition-group': 4.4.10
-      clsx: 2.0.0
+      clsx: 2.1.0
       date-fns: 2.30.0
       date-fns-jalali: 2.21.3-1
       prop-types: 15.8.1
@@ -6098,7 +6098,7 @@ packages:
       '@mui/system': link:packages/mui-system/build
       '@mui/utils': 5.14.16(@types/react@18.2.46)(react@18.2.0)
       '@types/react-transition-group': 4.4.10
-      clsx: 2.0.0
+      clsx: 2.1.0
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -10498,8 +10498,8 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
-  /clsx@2.0.0:
-    resolution: {integrity: sha512-rQ1+kcj+ttHG0MKVGBUXwayCCF1oh39BF5COIpRzuCEv8Mwjv0XucrI2ExNTOn9IlLifGClWQcU9BrZORvtw6Q==}
+  /clsx@2.1.0:
+    resolution: {integrity: sha512-m3iNNWpd9rl3jvvcBnu70ylMdrXt8Vlq4HYadnU5fwcOtvkSQWPmj7amUcDT2qYI7risszBjI5AUIUox9D16pg==}
     engines: {node: '>=6'}
     dev: false
 
@@ -19815,7 +19815,7 @@ packages:
       react: ^16.0.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
     dependencies:
-      clsx: 2.0.0
+      clsx: 2.1.0
       eventemitter3: 4.0.7
       lodash: 4.17.21
       prop-types: 15.8.1
