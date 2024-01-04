@@ -29,7 +29,7 @@ const ListItemIconRoot = styled('div', {
 })(({ theme, ownerState }) => {
   const { vars: tokens } = theme;
   return {
-    minWidth: 56,
+    minWidth: 40,
     color: tokens.sys.color.onSurfaceVariant,
     flexShrink: 0,
     display: 'inline-flex',
