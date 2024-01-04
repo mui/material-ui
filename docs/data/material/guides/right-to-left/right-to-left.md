@@ -93,7 +93,7 @@ const cacheRtl = createCache({
   stylisPlugins: [prefixer, rtlPlugin],
 });
 
-function RTL(props) {
+function Rtl(props) {
   return <CacheProvider value={cacheRtl}>{props.children}</CacheProvider>;
 }
 ```
@@ -106,7 +106,7 @@ If you're using styled-components, use the [StyleSheetManager](https://styled-co
 import { StyleSheetManager } from 'styled-components';
 import rtlPlugin from 'stylis-plugin-rtl';
 
-function RTL(props) {
+function Rtl(props) {
   return (
     <StyleSheetManager stylisPlugins={[rtlPlugin]}>
       {props.children}
