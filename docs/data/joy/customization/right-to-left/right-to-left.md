@@ -81,10 +81,10 @@ pnpm add stylis stylis-plugin-rtl
 If you're using Emotion, use the [CacheProvider](https://emotion.sh/docs/cache-provider) to create a new cache instance that uses `rtlPlugin` from `stylis-plugin-rtl` and add that to the top of your application tree:
 
 ```jsx
-import rtlPlugin from 'stylis-plugin-rtl';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import { prefixer } from 'stylis';
+import rtlPlugin from 'stylis-plugin-rtl';
 
 // Create rtl cache
 const cacheRtl = createCache({
