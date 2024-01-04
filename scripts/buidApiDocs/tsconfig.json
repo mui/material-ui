@@ -20,13 +20,10 @@
     "paths": {
       "@mui/base": ["../../packages/mui-base/src"],
       "@mui/base/*": ["../../packages/mui-base/src/*"],
+      "@mui/types": ["../../packages/mui-types/src"],
       "@mui/utils": ["../../packages/mui-utils/src"],
-      "@mui/utils/*": ["../../packages/mui-utils/src/*"],
-      "@mui/types": ["../../packages/mui-types/src"]
+      "@mui/utils/*": ["../../packages/mui-utils/src/*"]
     }
   },
-  "include": ["./**/*.ts"],
-  "ts-node": {
-    "require": ["tsconfig-paths/register"]
-  }
+  "include": ["./**/*.ts"]
 }
