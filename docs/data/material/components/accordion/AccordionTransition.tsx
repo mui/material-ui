@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Accordion from '@mui/material/Accordion';
+import Accordion, { AccordionProps } from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
@@ -7,9 +7,24 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Fade from '@mui/material/Fade';
 
 export default function AccordionTransition() {
+  const [expanded, setExpanded] = React.useState(false);
+
+  const handleExpansion = () => {
+    setExpanded((prevExpanded) => !prevExpanded);
+  };
+
   return (
     <div>
-      <Accordion TransitionComponent={Fade} TransitionProps={{ timeout: 200 }}>
+      <Accordion
+        expanded={expanded}
+        onChange={handleExpansion}
+        TransitionComponent={Fade as AccordionProps['TransitionComponent']}
+        TransitionProps={{ timeout: 200 }}
+        sx={{
+          '& .MuiAccordion-region': { height: expanded ? 'auto' : 0 },
+          '& .MuiAccordionDetails-root': { display: expanded ? 'block' : 'none' },
+        }}
+      >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1-content"
