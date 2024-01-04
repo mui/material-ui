@@ -21,7 +21,7 @@
     "@mui/zero-tag-processor": "workspace:*",
     "@mui/zero-next-plugin": "workspace:*",
     "@types/node": "20.5.7",
-    "@types/react": "18.2.45",
+    "@types/react": "18.2.46",
     "@types/react-dom": "18.2.18",
     "typescript": "5.3.3"
   }
