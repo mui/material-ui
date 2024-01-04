@@ -1162,8 +1162,8 @@ importers:
         specifier: ^14.1.2
         version: 14.1.2(react-dom@18.2.0)(react@18.2.0)
       '@testing-library/user-event':
-        specifier: ^14.5.1
-        version: 14.5.1(@testing-library/dom@9.3.3)
+        specifier: ^14.5.2
+        version: 14.5.2(@testing-library/dom@9.3.3)
       '@types/chai':
         specifier: ^4.3.11
         version: 4.3.11
@@ -1544,8 +1544,8 @@ importers:
         specifier: ^9.3.3
         version: 9.3.3
       '@testing-library/user-event':
-        specifier: ^14.5.1
-        version: 14.5.1(@testing-library/dom@9.3.3)
+        specifier: ^14.5.2
+        version: 14.5.2(@testing-library/dom@9.3.3)
       '@types/chai':
         specifier: ^4.3.11
         version: 4.3.11
@@ -1663,8 +1663,8 @@ importers:
         specifier: workspace:^
         version: link:../test-utils
       '@testing-library/user-event':
-        specifier: ^14.5.1
-        version: 14.5.1(@testing-library/dom@9.3.3)
+        specifier: ^14.5.2
+        version: 14.5.2(@testing-library/dom@9.3.3)
       '@types/chai':
         specifier: ^4.3.11
         version: 4.3.11
@@ -7754,8 +7754,8 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  /@testing-library/user-event@14.5.1(@testing-library/dom@9.3.3):
-    resolution: {integrity: sha512-UCcUKrUYGj7ClomOo2SpNVvx4/fkd/2BbIHDCle8A0ax+P3bU7yJwDBDrS6ZwdTMARWTGODX1hEsCcO+7beJjg==}
+  /@testing-library/user-event@14.5.2(@testing-library/dom@9.3.3):
+    resolution: {integrity: sha512-YAh82Wh4TIrxYLmfGcixwD18oIjyC1pFQC2Y01F2lzV2HTMiYrI0nze0FD0ocB//CKS/7jIUgae+adPqxK5yCQ==}
     engines: {node: '>=12', npm: '>=6'}
     peerDependencies:
       '@testing-library/dom': '>=7.21.4'
