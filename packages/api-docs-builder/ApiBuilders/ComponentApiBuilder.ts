@@ -34,6 +34,8 @@ export type AdditionalPropsInfo = {
   'joy-variant'?: boolean;
 };
 
+export type SeeMore = { description: string; link: { text: string; url: string } };
+
 export interface ReactApi extends ReactDocgenApi {
   demos: ReturnType<ComponentInfo['getDemos']>;
   EOL: string;
@@ -69,6 +71,7 @@ export interface ReactApi extends ReactDocgenApi {
     deprecationInfo: string | undefined;
     signature: undefined | { type: string; describedArgs?: string[]; returned?: string };
     additionalInfo?: AdditionalPropsInfo;
+    seeMoreLink?: SeeMore['link'];
   }>;
   /**
    * Different ways to import components
@@ -82,6 +85,7 @@ export interface ReactApi extends ReactDocgenApi {
         requiresRef?: boolean;
         deprecated?: string;
         typeDescriptions?: { [t: string]: string };
+        seeMoreText?: string;
       };
     };
     classDescriptions: { [key: string]: { description: string; conditions?: string } };
@@ -443,7 +447,7 @@ const attachTranslations = (reactApi: ReactApi, settings?: CreateDescribeablePro
       prop = null;
     }
     if (prop) {
-      const { deprecated, jsDocText, signatureArgs, signatureReturn, requiresRef } =
+      const { deprecated, seeMore, jsDocText, signatureArgs, signatureReturn, requiresRef } =
         generatePropDescription(prop, propName);
       // description = renderMarkdownInline(`${description}`);
 
@@ -457,6 +461,7 @@ const attachTranslations = (reactApi: ReactApi, settings?: CreateDescribeablePro
         requiresRef: requiresRef || undefined,
         deprecated: renderMarkdown(deprecated) || undefined,
         typeDescriptions: Object.keys(typeDescriptions).length > 0 ? typeDescriptions : undefined,
+        seeMoreText: seeMore?.description,
       };
     }
   });
@@ -507,6 +512,7 @@ const attachPropsTable = (reactApi: ReactApi, settings?: CreateDescribeablePropS
         signature: signatureType,
         signatureArgs,
         signatureReturn,
+        seeMore,
       } = generatePropDescription(prop, propName);
       const propTypeDescription = generatePropTypeDescription(propDescriptor.type);
       const chainedPropType = getChained(prop.type);
@@ -567,6 +573,7 @@ const attachPropsTable = (reactApi: ReactApi, settings?: CreateDescribeablePropS
           signature,
           additionalInfo:
             Object.keys(additionalPropsInfo).length === 0 ? undefined : additionalPropsInfo,
+          seeMoreLink: seeMore?.link,
         },
       ];
     }),
