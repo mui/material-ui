@@ -1,10 +1,10 @@
+import * as React from 'react';
+import { expect } from 'chai';
 import { act, createRenderer, describeConformance, fireEvent } from '@mui-internal/test-utils';
-import FormControl from '@mui/joy/FormControl';
 import Radio, { radioClasses as classes } from '@mui/joy/Radio';
 import { ThemeProvider, extendTheme } from '@mui/joy/styles';
-import { expect } from 'chai';
-import * as React from 'react';
-import RadioGroup from '../RadioGroup';
+import FormControl from '@mui/joy/FormControl';
+import RadioGroup from '@mui/joy/RadioGroup';
 
 describe('<Radio />', () => {
   const { render } = createRenderer();
