@@ -15,7 +15,14 @@
     "import TimelineConnector from '@mui/lab/TimelineConnector';",
     "import { TimelineConnector } from '@mui/lab';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTimelineConnector" },
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiTimelineConnector-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiTimelineConnector",

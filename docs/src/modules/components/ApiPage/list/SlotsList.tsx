@@ -6,11 +6,11 @@ import {
   brandingDarkTheme as darkTheme,
 } from 'docs/src/modules/brandingTheme';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import ExpendableApiItem, {
+import ExpandableApiItem, {
   ApiItemContaier,
-} from 'docs/src/modules/components/ApiPage/list/ExpendableApiItem';
+} from 'docs/src/modules/components/ApiPage/list/ExpandableApiItem';
 
-const StyledApiItem = styled(ExpendableApiItem)(
+const StyledApiItem = styled(ExpandableApiItem)(
   ({ theme }) => ({
     '.slot-classname, .slot-default-element': {
       marginBottom: 8,
@@ -53,12 +53,13 @@ export type SlotsFormatedParams = {
 
 type HashParams = { componentName?: string; className: string };
 
-export const getHash = ({ componentName, className }: HashParams) =>
-  `${componentName ? `${componentName}-` : ''}css-${className}`;
+export function getHash({ componentName, className }: HashParams) {
+  return `${componentName ? `${componentName}-` : ''}css-${className}`;
+}
 
 interface SlotsListProps {
   slots: SlotsFormatedParams[];
-  displayOption: 'collapsed' | 'expended';
+  displayOption: 'collapsed' | 'expanded';
 }
 
 export default function SlotsList(props: SlotsListProps) {
@@ -91,16 +92,16 @@ export default function SlotsList(props: SlotsListProps) {
             )}
             {className && (
               <p className="slot-classname">
-                <span className="prop-list-title">{t('api-docs.globalClass')}:</span>{' '}
+                <span className="prop-list-title">{t('api-docs.className')}:</span>{' '}
                 <code
-                  dangerouslySetInnerHTML={{ __html: className }}
+                  dangerouslySetInnerHTML={{ __html: `.${className}` }}
                   className="global-class-value"
                 />
               </p>
             )}
             {defaultValue && (
               <p className="slot-default-element">
-                <span className="prop-list-title">{t('api-docs.default')}:</span>{' '}
+                <span className="prop-list-title">{t('api-docs.defaultComponent')}:</span>{' '}
                 <code className="default-slot-value">{defaultValue}</code>
               </p>
             )}

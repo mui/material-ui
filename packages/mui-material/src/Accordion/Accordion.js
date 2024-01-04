@@ -53,7 +53,7 @@ const AccordionRoot = styled(Paper, {
       position: 'relative',
       transition: theme.transitions.create(['margin'], transition),
       overflowAnchor: 'none', // Keep the same scrolling position
-      '&:before': {
+      '&::before': {
         position: 'absolute',
         left: 0,
         top: -1,
@@ -65,12 +65,12 @@ const AccordionRoot = styled(Paper, {
         transition: theme.transitions.create(['opacity', 'background-color'], transition),
       },
       '&:first-of-type': {
-        '&:before': {
+        '&::before': {
           display: 'none',
         },
       },
       [`&.${accordionClasses.expanded}`]: {
-        '&:before': {
+        '&::before': {
           opacity: 0,
         },
         '&:first-of-type': {
@@ -80,7 +80,7 @@ const AccordionRoot = styled(Paper, {
           marginBottom: 0,
         },
         '& + &': {
-          '&:before': {
+          '&::before': {
             display: 'none',
           },
         },
@@ -189,10 +189,10 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
 });
 
 Accordion.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

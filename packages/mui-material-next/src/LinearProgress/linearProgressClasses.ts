@@ -10,6 +10,8 @@ export interface LinearProgressClasses {
   colorPrimary: string;
   /** Styles applied to the root and bar2 elements if `color="secondary"`; bar2 if `variant="buffer"`. */
   colorSecondary: string;
+  /** Styles applied to the root and bar2 elements if `color="tertiary"`; bar2 if `variant="buffer"`. */
+  colorTertiary: string;
   /** Styles applied to the root element if `variant="determinate"`. */
   determinate: string;
   /** Styles applied to the root element if `variant="indeterminate"`. */
@@ -18,28 +20,16 @@ export interface LinearProgressClasses {
   buffer: string;
   /** Styles applied to the root element if `variant="query"`. */
   query: string;
+  /** Styles applied to the root element if `fourColor={true}`. */
+  fourColor: string;
   /** Styles applied to the additional bar element if `variant="buffer"`. */
   dashed: string;
-  /** Styles applied to the additional bar element if `variant="buffer"` and `color="primary"`. */
-  dashedColorPrimary: string;
-  /** Styles applied to the additional bar element if `variant="buffer"` and `color="secondary"`. */
-  dashedColorSecondary: string;
   /** Styles applied to the layered bar1 and bar2 elements. */
   bar: string;
-  /** Styles applied to the bar elements if `color="primary"`; bar2 if `variant` not "buffer". */
-  barColorPrimary: string;
-  /** Styles applied to the bar elements if `color="secondary"`; bar2 if `variant` not "buffer". */
-  barColorSecondary: string;
-  /** Styles applied to the bar1 element if `variant="indeterminate or query"`. */
-  bar1Indeterminate: string;
-  /** Styles applied to the bar1 element if `variant="determinate"`. */
-  bar1Determinate: string;
-  /** Styles applied to the bar1 element if `variant="buffer"`. */
-  bar1Buffer: string;
-  /** Styles applied to the bar2 element if `variant="indeterminate or query"`. */
-  bar2Indeterminate: string;
-  /** Styles applied to the bar2 element if `variant="buffer"`. */
-  bar2Buffer: string;
+  /** Styles applied to the bar1 element. */
+  bar1: string;
+  /** Styles applied to the bar2 element. */
+  bar2: string;
 }
 
 export type LinearProgressClassKey = keyof LinearProgressClasses;
@@ -52,21 +42,16 @@ const linearProgressClasses: LinearProgressClasses = generateUtilityClasses('Mui
   'root',
   'colorPrimary',
   'colorSecondary',
+  'colorTertiary',
   'determinate',
   'indeterminate',
   'buffer',
   'query',
+  'fourColor',
   'dashed',
-  'dashedColorPrimary',
-  'dashedColorSecondary',
   'bar',
-  'barColorPrimary',
-  'barColorSecondary',
-  'bar1Indeterminate',
-  'bar1Determinate',
-  'bar1Buffer',
-  'bar2Indeterminate',
-  'bar2Buffer',
+  'bar1',
+  'bar2',
 ]);
 
 export default linearProgressClasses;

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ToggleButton, { ToggleButtonProps } from '@mui/material/ToggleButton';
@@ -8,10 +7,10 @@ import TableChartRoundedIcon from '@mui/icons-material/TableChartRounded';
 import ReorderRoundedIcon from '@mui/icons-material/ReorderRounded';
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 
-type ApiDisplayOptions = 'collapsed' | 'expended' | 'table';
+type ApiDisplayOptions = 'collapsed' | 'expanded' | 'table';
 
-const options: ApiDisplayOptions[] = ['collapsed', 'expended', 'table'];
-const DEFAULT_LAYOUT: ApiDisplayOptions = 'expended';
+const options: ApiDisplayOptions[] = ['collapsed', 'expanded', 'table'];
+const DEFAULT_LAYOUT: ApiDisplayOptions = 'expanded';
 
 export const API_LAYOUT_STORAGE_KEYS = {
   default: 'apiPage_default',
@@ -58,7 +57,7 @@ function getOption(storageKey: string) {
   try {
     const savedOption = localStorage.getItem(storageKey);
 
-    if (savedOption !== null) {
+    if (savedOption !== null && options.includes(savedOption as ApiDisplayOptions)) {
       return savedOption as ApiDisplayOptions;
     }
 
@@ -139,15 +138,6 @@ const TooltipToggleButton = React.forwardRef<HTMLButtonElement, TooltipToggleBut
   },
 );
 
-TooltipToggleButton.propTypes = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
-  title: PropTypes.string.isRequired,
-  TooltipProps: PropTypes.object,
-};
-
 interface ToggleDisplayOptionProps {
   displayOption: ApiDisplayOptions;
   setDisplayOption: (newValue: ApiDisplayOptions) => void;
@@ -195,7 +185,7 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
       <TooltipToggleButton value="collapsed" aria-label="colapsed list" title="Collapse list view">
         <ReorderRoundedIcon size="small" />
       </TooltipToggleButton>
-      <TooltipToggleButton value="expended" aria-label="expended list" title="Expand list view">
+      <TooltipToggleButton value="expanded" aria-label="expanded list" title="Expand list view">
         <CalendarViewDayRoundedIcon />
       </TooltipToggleButton>
       <TooltipToggleButton value="table" aria-label="table" title="Table view">

@@ -5,7 +5,7 @@ import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
-import TwitterIcon from '@mui/icons-material/Twitter';
+import XIcon from '@mui/icons-material/X';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import YouTubeIcon from '@mui/icons-material/YouTube';
@@ -59,7 +59,7 @@ export default function AppFooter(props: AppFooterProps) {
           <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
             Join our newsletter for regular updates. No spam ever.
           </Typography>
-          <EmailSubscribe sx={{ mb: 4 }} />
+          <EmailSubscribe />
         </div>
         <Box
           sx={{
@@ -180,10 +180,10 @@ export default function AppFooter(props: AppFooterProps) {
             rel="noopener noreferrer"
             href="https://twitter.com/MUI_hq"
             aria-label="twitter"
-            title="Twitter"
+            title="X"
             size="small"
           >
-            <TwitterIcon fontSize="small" />
+            <XIcon fontSize="small" />
           </IconButton>
           <IconButton
             target="_blank"

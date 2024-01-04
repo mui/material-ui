@@ -168,7 +168,6 @@ const MenuItem = React.forwardRef(function MenuItem<RootComponentType extends Re
     disableGutters = false,
     focusVisibleClassName,
     role = 'menuitem',
-    tabIndex: tabIndexProp,
     className,
     disabled: disabledProp,
     label: labelProp,
@@ -217,11 +216,6 @@ const MenuItem = React.forwardRef(function MenuItem<RootComponentType extends Re
 
   const classes = useUtilityClasses(props);
 
-  let tabIndex;
-  if (!props.disabled) {
-    tabIndex = tabIndexProp !== undefined ? tabIndexProp : -1;
-  }
-
   const Root = /* slots.root ?? */ MenuItemRoot;
   const rootProps = useSlotProps({
     elementType: Root,
@@ -231,7 +225,6 @@ const MenuItem = React.forwardRef(function MenuItem<RootComponentType extends Re
     externalForwardedProps: other,
     additionalProps: {
       role,
-      tabIndex,
       component,
       focusVisibleClassName: clsx(classes.focusVisible, focusVisibleClassName),
       classes,
@@ -247,10 +240,10 @@ const MenuItem = React.forwardRef(function MenuItem<RootComponentType extends Re
 }) as OverridableComponent<MenuItemTypeMap>;
 
 MenuItem.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, the list item is focused during the first mount.
    * Focus will also be triggered if the value changes from false to true.
@@ -325,10 +318,6 @@ MenuItem.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-  /**
-   * @default 0
-   */
-  tabIndex: PropTypes.number,
 } as any;
 
 export default MenuItem;

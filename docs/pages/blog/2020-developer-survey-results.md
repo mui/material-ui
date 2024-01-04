@@ -4,6 +4,7 @@ description: Your feedback helps us to build better products. Here's what we lea
 date: 2020-06-27T00:00:00.000Z
 authors: ['mnajdova', 'oliviertassinari', 'mbrookes']
 tags: ['Developer survey']
+card: true
 ---
 
 Continuing the tradition from last year, we launched a developer survey a few months ago, to which we received 1488 responses. This is twice as many as last year (734), so we thank you all for the participation!
@@ -274,7 +275,7 @@ section.
 
 ### 18. Which JS framework are you using, if any?
 
-<img src="/static/blog/2020-survey/18.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Pie chart: 57.34% Create React App, 16.40% Custom webpack, 12.35% Next.js, 5.40% Gatsby, 8.51% Other." />
+<img src="/static/blog/2020-survey/18.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Pie chart: 57.34% Create React App, 16.40% Custom Webpack, 12.35% Next.js, 5.40% Gatsby, 8.51% Other." />
 
 ### 19. What styling system are you using?
 

@@ -12,20 +12,20 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
     "horizontal": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>orientation=\"horizontal\"</code>"
     },
+    "root": { "description": "Styles applied to the root element." },
+    "touchRipple": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the <code>ButtonBase</code> touch-ripple"
+    },
     "vertical": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>orientation=\"vertical\"</code>"
-    },
-    "touchRipple": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the <code>ButtonBase</code> touch-ripple"
     }
   }
 }

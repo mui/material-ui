@@ -30,6 +30,7 @@
 build
 node_modules
 .nyc_output
+pnpm-lock.yaml
 
 # These come from crowdin.
 # If we would commit changes crowdin would immediately try to revert.

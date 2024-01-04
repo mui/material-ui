@@ -23,7 +23,7 @@ The Select and Menu also let users navigate to options that begin with a provide
 
 While Base UI components handle keyboard navigation, it's the developer's responsibility to indicate when a component is focused and can receive keyboard input.
 This is usually done by styling the [`:focus`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus) or [`:focus-visible`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible) pseudoclasses.
-Read the [WCAG guidelines on focus appearance](https://www.w3.org/WAI/WCAG22/Understanding/focus-appearance-minimum) to learn more about requirements for focus indicators.
+Read the [WCAG guidelines on focus appearance](https://www.w3.org/WAI/WCAG22/Understanding/focus-appearance) to learn more about requirements for focus indicators.
 
 {{"demo": "FocusRing.js", "defaultCodeOpen": false}}
 

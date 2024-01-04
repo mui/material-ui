@@ -622,7 +622,7 @@ const StyledBadge = styled(Badge)(
   ({ theme }) => `
   box-sizing: border-box;
   list-style: none;
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   position: relative;
   display: inline-block;
 
@@ -692,7 +692,7 @@ const StyledMenuItem = styled(MenuItem)(
 );
 
 const StyledMenuListbox = styled('ul')(`
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   padding: 6px;

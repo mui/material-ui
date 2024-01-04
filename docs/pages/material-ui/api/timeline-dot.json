@@ -29,21 +29,62 @@
     "import TimelineDot from '@mui/lab/TimelineDot';",
     "import { TimelineDot } from '@mui/lab';"
   ],
-  "styles": {
-    "classes": [
-      "root",
-      "filled",
-      "outlined",
-      "filledGrey",
-      "outlinedGrey",
-      "filledPrimary",
-      "outlinedPrimary",
-      "filledSecondary",
-      "outlinedSecondary"
-    ],
-    "globalClasses": {},
-    "name": "MuiTimelineDot"
-  },
+  "classes": [
+    {
+      "key": "filled",
+      "className": "MuiTimelineDot-filled",
+      "description": "Styles applied to the root element if `variant=\"filled\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "filledGrey",
+      "className": "MuiTimelineDot-filledGrey",
+      "description": "Styles applied to the root element if `color=\"grey\"` and `variant=\"filled\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "filledPrimary",
+      "className": "MuiTimelineDot-filledPrimary",
+      "description": "Styles applied to the root element if `color=\"primary\"` and `variant=\"filled\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "filledSecondary",
+      "className": "MuiTimelineDot-filledSecondary",
+      "description": "Styles applied to the root element if `color=\"secondary\"` and `variant=\"filled\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "outlined",
+      "className": "MuiTimelineDot-outlined",
+      "description": "Styles applied to the root element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "outlinedGrey",
+      "className": "MuiTimelineDot-outlinedGrey",
+      "description": "Styles applied to the root element if `color=\"grey\"` and `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "outlinedPrimary",
+      "className": "MuiTimelineDot-outlinedPrimary",
+      "description": "Styles applied to the root element if `color=\"primary\"` and `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "outlinedSecondary",
+      "className": "MuiTimelineDot-outlinedSecondary",
+      "description": "Styles applied to the root element if `color=\"secondary\"` and `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiTimelineDot-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiTimelineDot",

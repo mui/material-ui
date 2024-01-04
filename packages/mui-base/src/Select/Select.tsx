@@ -144,6 +144,7 @@ const Select = React.forwardRef(function Select<
     onOpenChange: onListboxOpenChange,
     getOptionAsString,
     value: valueProp,
+    componentName: 'Select',
   });
 
   const ownerState: SelectOwnerState<OptionValue, Multiple> = {
@@ -232,10 +233,10 @@ const Select = React.forwardRef(function Select<
 }) as SelectType;
 
 Select.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A function used to determine if two options' values are equal.
    * By default, reference equality is used.
@@ -309,7 +310,6 @@ Select.propTypes /* remove-proptypes */ = {
   multiple: PropTypes.bool,
   /**
    * Name of the element. For example used by the server to identify the fields in form submits.
-   * If the name is provided, the component will render a hidden input element that can be submitted to a server.
    */
   name: PropTypes.string,
   /**
