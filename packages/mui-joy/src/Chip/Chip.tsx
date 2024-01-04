@@ -96,6 +96,7 @@ const ChipRoot = styled('div', {
       textDecoration: 'none',
       verticalAlign: 'middle',
       boxSizing: 'border-box',
+      minWidth: 0,
       ...theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`],
       fontWeight: theme.vars.fontWeight.md,
       [`&.${chipClasses.disabled}`]: {
@@ -132,7 +133,6 @@ const ChipLabel = styled('span', {
   order: 1,
   minInlineSize: 0,
   flexGrow: 1,
-  whiteSpace: 'normal',
   ...(ownerState.clickable && {
     zIndex: 1,
     pointerEvents: 'none',
