@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, usePreviousProps } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { CSSObject } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useSlot from '../utils/useSlot';
@@ -102,9 +101,8 @@ const BadgeBadge = styled('span', {
     ownerState.anchorOrigin?.horizontal === 'left' ? 'translateX(-50%)' : 'translateX(50%)';
   const transformOriginY = ownerState.anchorOrigin?.vertical === 'top' ? '0%' : '100%';
   const transformOriginX = ownerState.anchorOrigin?.horizontal === 'left' ? '0%' : '100%';
-  const typography = theme.typography[
-    `body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`
-  ] as CSSObject | undefined;
+  const typography =
+    theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`];
   return {
     '--Icon-color': 'currentColor',
     '--Icon-fontSize': `calc(1em * ${typography?.lineHeight ?? '1'})`,
