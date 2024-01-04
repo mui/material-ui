@@ -26,25 +26,25 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:copy-files",
+    "build": "pnpm build:legacy && pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:copy-files",
     "build:legacy": "node ../../scripts/build.mjs legacy",
     "build:modern": "node ../../scripts/build.mjs modern",
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "prebuild": "rimraf build",
-    "release": "yarn build && npm publish build",
+    "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-private-theming/**/*.test.{js,ts,tsx}'",
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
     "@babel/runtime": "^7.23.6",
-    "@mui/utils": "^5.15.3",
+    "@mui/utils": "workspace:^",
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@mui-internal/test-utils": "^1.0.0",
-    "@mui/types": "^7.2.12",
+    "@mui-internal/test-utils": "workspace:^",
+    "@mui/types": "workspace:^",
     "@types/chai": "^4.3.11",
     "@types/react": "^18.2.45",
     "chai": "^4.3.10",
@@ -61,7 +61,8 @@
   },
   "sideEffects": false,
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "build"
   },
   "engines": {
     "node": ">=12.0.0"
