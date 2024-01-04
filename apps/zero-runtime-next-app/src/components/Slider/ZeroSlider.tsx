@@ -1,4 +1,3 @@
-/* eslint-disable */
 import * as React from 'react';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/utils';

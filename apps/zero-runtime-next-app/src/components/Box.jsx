@@ -60,7 +60,7 @@ export function Box({ children, as = 'div', className = '', style = undefined, .
     ...style,
   };
   return (
-    // eslint-disable-next-line react/react-in-jsx-scope, react/jsx-filename-extension
+    // eslint-disable-next-line react/jsx-filename-extension
     <Component className={componentClass} style={finalStyles}>
       {children}
     </Component>

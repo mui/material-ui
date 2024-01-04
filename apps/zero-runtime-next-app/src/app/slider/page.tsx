@@ -1,6 +1,7 @@
 'use client';
 import * as React from 'react';
 import { styled } from '@mui/zero-runtime';
+import { Button } from 'local-ui-lib';
 import Slider from '@/components/Slider/ZeroSlider';
 
 const HalfWidth = styled.div(({ theme }) => ({
@@ -74,6 +75,7 @@ export default function SliderPage() {
             </select>
           </label>
         </div>
+        <Button>Hello</Button>
       </div>
       <HalfWidth>
         <Slider

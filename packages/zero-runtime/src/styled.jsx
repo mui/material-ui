@@ -81,9 +81,11 @@ export default function styled(tag, componentMeta = {}) {
     }
 
     const StyledComponent = React.forwardRef(function StyledComponent(
+      // eslint-disable-next-line react/prop-types
       { as, className, sx, style, ...props },
       ref,
     ) {
+      // eslint-disable-next-line react/prop-types
       const { ownerState, ...restProps } = props;
       const Component = as ?? tag;
       const varStyles = Object.entries(cssVars).reduce(
@@ -101,7 +103,9 @@ export default function styled(tag, componentMeta = {}) {
         },
         {},
       );
+      // eslint-disable-next-line react/prop-types
       const sxClass = typeof sx === 'string' ? sx : sx?.className;
+      // eslint-disable-next-line react/prop-types
       const sxVars = sx && typeof sx !== 'string' ? sx.vars : undefined;
 
       if (sxVars) {
@@ -131,6 +135,7 @@ export default function styled(tag, componentMeta = {}) {
       // eslint-disable-next-line no-underscore-dangle
       if (!Component.__isStyled || typeof Component === 'string') {
         return (
+          // eslint-disable-next-line react/jsx-filename-extension
           <Component
             {...toPassProps}
             ref={ref}

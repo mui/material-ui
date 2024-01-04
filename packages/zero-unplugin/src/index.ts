@@ -2,7 +2,6 @@ import {
   UnpluginFactoryOutput,
   WebpackPluginInstance,
   createUnplugin,
-  VitePlugin,
   UnpluginOptions,
 } from 'unplugin';
 import { transformAsync } from '@babel/core';
@@ -340,4 +339,3 @@ export const webpack = plugin.webpack as unknown as UnpluginFactoryOutput<
   PluginOptions,
   WebpackPluginInstance
 >;
-export const vite = plugin.vite as unknown as UnpluginFactoryOutput<PluginOptions, VitePlugin>;

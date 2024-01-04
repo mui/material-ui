@@ -1,5 +1,5 @@
-/* eslint-disable */
 /* eslint-env node */
+// eslint-ignore-next-line import/no-unresolved
 const { withZeroPlugin } = require('@mui/zero-next-plugin');
 const { experimental_extendTheme: extendTheme } = require('@mui/material/styles');
 

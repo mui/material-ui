@@ -368,6 +368,9 @@ importers:
       '@mui/zero-runtime':
         specifier: workspace:^
         version: link:../../packages/zero-runtime
+      local-ui-lib:
+        specifier: workspace:^
+        version: link:../local-ui-lib
       next:
         specifier: 14.0.1
         version: 14.0.1(@babel/core@7.23.7)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
