@@ -59,7 +59,7 @@
     "@types/chai": "^4.3.11",
     "@types/lodash.get": "^4.4.9",
     "@types/mocha": "^10.0.6",
-    "@types/node": "^18.19.3",
+    "@types/node": "^18.19.4",
     "@types/stylis": "^4.2.0"
   },
   "sideEffects": false,
