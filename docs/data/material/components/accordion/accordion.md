@@ -36,14 +36,14 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 ```
 
-### Exapnd icon
+### Expand icon
 
 Use the `expandIcon` prop on the Accordion Summary component to change the expand indicator icon.
 The component handles the turning upside-down transition automatically.
 
 {{"demo": "AccordionExpandIcon.js", "bg": true}}
 
-### Exapnded by default
+### Expanded by default
 
 Use the `defaultExpanded` prop on the Accordion component to have it opened by default.
 
