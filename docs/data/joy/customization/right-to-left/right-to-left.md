@@ -126,3 +126,5 @@ const LeftToRightTextInRtlApp = styled('div')`
   text-align: left;
 `;
 ```
+
+{{"demo": "RtlOptOut.js"}}
