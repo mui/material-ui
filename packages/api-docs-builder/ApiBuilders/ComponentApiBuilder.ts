@@ -415,7 +415,7 @@ const generateApiPage = (
     const req = require.context(
       '${importTranslationPagesDirectory}/${kebabCase(reactApi.name)}',
       false,
-      /${kebabCase(reactApi.name)}.*.json$/,
+      /\\.\\/${kebabCase(reactApi.name)}.*.json$/,
     );
     const descriptions = mapApiPageTranslations(req);
 
