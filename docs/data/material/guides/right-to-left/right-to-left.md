@@ -6,7 +6,7 @@
 
 This guide outlines the three steps necessary to change the direction of text-based components in Material UI to support RTL languages, as shown in the demo below:
 
-{{"demo": "RTLDemo.js"}}
+{{"demo": "RtlDemo.js"}}
 
 ### 1. Set the HTML direction
 

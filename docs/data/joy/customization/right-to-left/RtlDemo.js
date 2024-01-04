@@ -18,7 +18,7 @@ const cacheRtl = createCache({
   stylisPlugins: [prefixer, rtlPlugin],
 });
 
-export default function RTLDemoJoy() {
+export default function RtlDemoJoy() {
   return (
     <CacheProvider value={cacheRtl}>
       <CssVarsProvider theme={theme}>
