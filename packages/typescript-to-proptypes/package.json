@@ -21,7 +21,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/core": "^7.23.6",
+    "@babel/core": "^7.23.7",
     "@babel/plugin-syntax-class-properties": "^7.12.13",
     "@babel/plugin-syntax-jsx": "^7.23.3",
     "@babel/plugin-syntax-typescript": "^7.23.3",
@@ -33,7 +33,7 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "@babel/register": "^7.22.15",
+    "@babel/register": "^7.23.7",
     "@types/babel__core": "^7.20.5",
     "@types/chai": "^4.3.11",
     "@types/doctrine": "^0.0.9",
