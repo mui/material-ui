@@ -212,6 +212,11 @@ const pages: MuiPage[] = [
         title: 'Next.js integration',
         newFeature: true,
       },
+      {
+        pathname: '/material-ui/guides/material-3-components',
+        title: 'Material 3 components',
+        newFeature: true,
+      },
     ],
   },
   {

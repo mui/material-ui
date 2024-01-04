@@ -455,6 +455,7 @@
     "/material-ui/guides/right-to-left": "Right-to-left support",
     "/material-ui/guides/shadow-dom": "Shadow DOM",
     "/material-ui/guides/nextjs": "Next.js integration",
+    "/material-ui/guides/material-3-components": "Material 3 components",
     "/material-ui/experimental-api": "Experimental APIs",
     "/material-ui/experimental-api/classname-generator": "ClassName generator",
     "CSS theme variables": "CSS theme variables",
