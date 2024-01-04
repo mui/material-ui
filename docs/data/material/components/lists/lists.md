@@ -113,3 +113,17 @@ You can learn more about this in the
 {{"demo": "CustomizedList.js"}}
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/list-item/).
+
+
+## Experimental APIs
+
+### Material You version
+
+The default Material UI List component follows the Material Design 2 specs.
+To get the Material You ([Material Design 3](https://m3.material.io/)) version, use the new experimental `@mui/material-next` package:
+
+```js
+import List from '@mui/material-next/List';
+```
+
+{{"demo": "DividerMaterialYouPlayground.js", "hideToolbar": true, "bg": "playground"}}
