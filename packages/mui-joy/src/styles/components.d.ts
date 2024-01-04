@@ -505,10 +505,6 @@ export interface Components<Theme = unknown> {
     defaultProps?: Partial<SnackbarProps>;
     styleOverrides?: StyleOverrides<SnackbarSlot, SnackbarOwnerState, Theme>;
   };
-  JoyToggleButtonGroup?: {
-    defaultProps?: Partial<ToggleButtonGroupProps<any>>;
-    styleOverrides?: StyleOverrides<ToggleButtonGroupSlot, ToggleButtonGroupOwnerState<any>, Theme>;
-  };
   JoyTabs?: {
     defaultProps?: Partial<TabsProps>;
     styleOverrides?: StyleOverrides<TabsSlot, TabsOwnerState, Theme>;
@@ -532,6 +528,10 @@ export interface Components<Theme = unknown> {
   JoyTextarea?: {
     defaultProps?: Partial<TextareaProps>;
     styleOverrides?: StyleOverrides<TextareaSlot, TextareaOwnerState, Theme>;
+  };
+  JoyToggleButtonGroup?: {
+    defaultProps?: Partial<ToggleButtonGroupProps>;
+    styleOverrides?: StyleOverrides<ToggleButtonGroupSlot, ToggleButtonGroupOwnerState, Theme>;
   };
   JoyTooltip?: {
     defaultProps?: Partial<TooltipProps>;
