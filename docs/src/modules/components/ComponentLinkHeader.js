@@ -65,7 +65,7 @@ export default function ComponentLinkHeader(props) {
         </li>
       ) : null}
       <li>
-        <Tooltip title={t('bundleSizeTooltip')}>
+        <Tooltip title={t('bundleSizeTooltip')} describeChild>
           <Chip
             clickable
             role={undefined}

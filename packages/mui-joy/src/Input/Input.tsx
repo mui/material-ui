@@ -102,7 +102,7 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         ...theme.typography[`body-${ownerState.size!}`],
         ...variantStyle,
         backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
-        '&:before': {
+        '&::before': {
           boxSizing: 'border-box',
           content: '""',
           display: 'block',
@@ -350,10 +350,10 @@ const Input = React.forwardRef(function Input(inProps, ref) {
 }) as OverridableComponent<InputTypeMap>;
 
 Input.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */

@@ -39,7 +39,7 @@ If you want to refine them later, you can refer to the examples shown in the sec
 :::
 
 ```bash
-npx @mui/codemod v5.0.0/jss-to-styled <path>
+npx @mui/codemod@latest v5.0.0/jss-to-styled <path>
 ```
 
 Example transformation:
@@ -216,7 +216,7 @@ yarn add tss-react
 We provide [a codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#jss-to-tss-react) to help migrate JSS styles to the `tss-react` API.
 
 ```bash
-npx @mui/codemod v5.0.0/jss-to-tss-react <path>
+npx @mui/codemod@latest v5.0.0/jss-to-tss-react <path>
 ```
 
 Example transformation:

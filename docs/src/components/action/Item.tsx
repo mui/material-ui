@@ -43,7 +43,7 @@ export function Group({
           },
           '& > *:last-child': {
             position: 'relative',
-            '&:after': {
+            '&::after': {
               // to create scroll spacing on the right edge
               content: '""',
               position: 'absolute',

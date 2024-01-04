@@ -143,7 +143,6 @@ export default function ComponentsApiContent(props) {
           <Heading text="import" hash={`${componentNameKebabCase}-import`} level="h3" />
           <HighlightedCode code={importInstructions} language="jsx" />
           <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
-
           <PropertiesSection
             properties={componentProps}
             propertiesDescriptions={propDescriptions}
@@ -152,9 +151,7 @@ export default function ComponentsApiContent(props) {
             level="h3"
             titleHash={`${componentNameKebabCase}-props`}
           />
-
           <br />
-
           {cssComponent && (
             <React.Fragment>
               <span
@@ -166,7 +163,6 @@ export default function ComponentsApiContent(props) {
               <br />
             </React.Fragment>
           )}
-
           <div
             className="MuiCallout-root MuiCallout-info"
             dangerouslySetInnerHTML={{ __html: refHint }}
@@ -176,7 +172,6 @@ export default function ComponentsApiContent(props) {
               marginTop: 0,
             }}
           />
-
           {inheritance && (
             <React.Fragment>
               <Heading
@@ -195,7 +190,6 @@ export default function ComponentsApiContent(props) {
               />
             </React.Fragment>
           )}
-
           {pageContent.themeDefaultProps && (
             <React.Fragment>
               <Heading
@@ -212,7 +206,6 @@ export default function ComponentsApiContent(props) {
               />
             </React.Fragment>
           )}
-
           <SlotsSection
             componentSlots={componentSlots}
             slotDescriptions={slotDescriptions}
@@ -224,7 +217,6 @@ export default function ComponentsApiContent(props) {
               t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink)
             }
           />
-
           <ClassesSection
             componentClasses={componentClasses}
             componentName={pageContent.name}

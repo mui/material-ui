@@ -127,8 +127,10 @@ function PostPreview(props: BlogPost) {
             <Avatar
               key={author}
               alt=""
-              srcSet={`${AUTHORS[author].avatar}?s=${28 * 2} 2x`}
               src={`${AUTHORS[author].avatar}?s=${28}`}
+              srcSet={`${AUTHORS[author].avatar}?s=${28 * 2} 2x, ${AUTHORS[author].avatar}?s=${
+                28 * 3
+              } 3x`}
             />
           ))}
         </AvatarGroup>

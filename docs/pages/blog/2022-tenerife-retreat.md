@@ -3,8 +3,8 @@ title: MUI's company retreat in Tenerife: a recap
 description: Our internationally distributed startup gathered on a remote island to get to know each other better. Here's what happened!
 date: 2022-07-28T00:00:00.000Z
 authors: ['samuelsycamore']
-card: true
 tags: ['Company']
+card: true
 ---
 
 One of the toughest challenges to overcome as a fully remote team is fostering a supportive and inclusive company culture.
