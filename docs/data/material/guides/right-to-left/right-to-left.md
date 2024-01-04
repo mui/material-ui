@@ -1,8 +1,8 @@
 # Right-to-left language support
 
-<p class="description">Learn how to implement right-to-left (RTL) text with Material UI to support languages such as Arabic, Persian, and Hebrew.</p>
+<p class="description">Learn how to implement right-to-left (RTL) text with Material UI to support languages such as Arabic, Persian, and Hebrew.</p>
 
-This guide outlines the three steps necessary to change the direction of text-based components in Material UI to support RTL languages, as shown in the demo below:
+This guide outlines the three steps necessary to change the direction of text-based components in Material UI to support RTL languages, as shown in the demo below:
 
 {{"demo": "RTLDemo.js"}}
 
