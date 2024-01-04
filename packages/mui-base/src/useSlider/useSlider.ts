@@ -253,7 +253,8 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
   const range = Array.isArray(valueDerived);
   let values = range ? valueDerived.slice().sort(asc) : [valueDerived];
-  values = values.map((value) => clamp(value, min, max));
+  values = values.map((value) => typeof value === "number" ?  clamp(value, min, max) : min);
+
   const marks =
     marksProp === true && step !== null
       ? [...Array(Math.floor((max - min) / step) + 1)].map((_, index) => ({
@@ -334,12 +335,14 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
         }
       }
 
-      newValue = clamp(newValue, min, max);
+      newValue = typeof newValue === "number" ? clamp(newValue, min, max) : min;
 
       if (range) {
         // Bound the new value to the thumb's neighbours.
         if (disableSwap) {
-          newValue = clamp(newValue, values[index - 1] || -Infinity, values[index + 1] || Infinity);
+          const prevValue = values[index - 1] || -Infinity;
+          const nextValue = values[index + 1] || Infinity;
+          newValue = typeof newValue === "number" ? clamp(newValue, prevValue, nextValue) : prevValue;
         }
 
         const previousValue = newValue;
@@ -407,7 +410,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
       newValue = marksValues[closestIndex!];
     }
 
-    newValue = clamp(newValue, min, max);
+    newValue = typeof newValue === 'number' ? clamp(newValue, min, max) : min;
     let activeIndex = 0;
 
     if (range) {
@@ -419,11 +422,9 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
       // Bound the new value to the thumb's neighbours.
       if (disableSwap) {
-        newValue = clamp(
-          newValue,
-          values[activeIndex - 1] || -Infinity,
-          values[activeIndex + 1] || Infinity,
-        );
+        const prevValue = values[activeIndex - 1] || -Infinity;
+        const nextValue = values[activeIndex + 1] || Infinity;
+        newValue = typeof newValue === "number" ? clamp(newValue, prevValue, nextValue) : prevValue;
       }
 
       const previousValue = newValue;
