@@ -36,7 +36,9 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 ```
 
-Although cards can support multiple actions, UI controls, and an overflow menu, use restraint and remember that cards are entry points to more complex and detailed information.
+:::success
+Although cards can support multiple actions, UI controls, and an overflow menu, use restraint and remember that cards are meant to be entry points to more complex and detailed information.
+:::
 
 ### Outlined Card
 
