@@ -1,7 +1,0 @@
-{
-  "compilerOptions": {
-    "skipLibCheck": true
-  },
-  "extends": "../../../../../tsconfig",
-  "files": ["children.spec.tsx"]
-}
