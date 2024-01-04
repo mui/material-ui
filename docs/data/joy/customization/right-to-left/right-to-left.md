@@ -76,12 +76,6 @@ pnpm add stylis stylis-plugin-rtl
 
 </codeblock>
 
-:::warning
-Only Emotion is compatible with version 2 of the plugin.
-styled-components requires version 1.
-If you're using [styled-components instead of Emotion](/material-ui/guides/styled-components/), make sure to install the correct version.
-:::
-
 ### With Emotion
 
 If you're using Emotion, use the [CacheProvider](https://emotion.sh/docs/cache-provider) to create a new cache instance that uses `rtlPlugin` from `stylis-plugin-rtl` and add that to the top of your application tree:
