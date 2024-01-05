@@ -82,12 +82,6 @@ Material UI Buttons accept an `onClick` handler that's applied to the root DOM e
 
 ## Customization
 
-### File upload button
-
-To create a file upload button, turn the Button into a label using `component="label"` and then create a visually-hidden input with type `file`.
-
-{{"demo": "InputFileUpload.js"}}
-
 ### Button Base
 
 ```jsx
@@ -139,6 +133,14 @@ However:
 
 This has the advantage of supporting any element, for instance, a link `<a>` element.
 
+## Common examples
+
+### File upload button
+
+To create a file upload button, turn the Button into a label using `component="label"` and then create a visually-hidden input with type `file`.
+
+{{"demo": "InputFileUpload.js"}}
+
 ## Experimental APIs
 
 ### Loading button
@@ -180,3 +182,13 @@ import Button from '@mui/material-next/Button';
 {{"demo": "ButtonMaterialYouPlayground.js", "hideToolbar": true, "bg": "playground"}}
 
 For more instructions on how to use it, visit the [detailed guide](/material-ui/guides/material-3-components/).
+
+## Anatomy
+
+The Material UI Button is composed of a single root `<button>` element:
+
+```html
+<button class="MuiButton-root">
+  <!-- Button content here -->
+</button>
+```
