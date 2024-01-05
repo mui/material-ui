@@ -2,6 +2,8 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import kebabCase from 'lodash/kebabCase';
+import Alert from '@mui/material/Alert';
+import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 import { ComponentClassDefinition } from '@mui-internal/docs-utilities';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ExpandableApiItem, {
@@ -24,6 +26,9 @@ const StyledApiItem = styled(ExpandableApiItem)(
     },
     '& .prop-list-class': {
       margin: 0,
+    },
+    '& .classes-list-deprecated': {
+      '& code': { all: 'unset' },
     },
   }),
   ({ theme }) => ({
@@ -55,7 +60,8 @@ export default function ClassesList(props: ClassesListProps) {
   return (
     <ApiItemContaier>
       {classes.map((classDefinition) => {
-        const { className, key, description, isGlobal } = classDefinition;
+        const { className, key, description, isGlobal, isDeprecated, deprecationInfo } =
+          classDefinition;
 
         return (
           <StyledApiItem
@@ -73,6 +79,31 @@ export default function ClassesList(props: ClassesListProps) {
                 <span className="prop-list-title">{'Rule name'}:</span>
                 <code className="Api-code">{key}</code>
               </p>
+            )}
+            {isDeprecated && (
+              <Alert
+                className="MuiApi-collapsible classes-list-deprecated"
+                severity="warning"
+                icon={<WarningRoundedIcon fontSize="small" />}
+                sx={{
+                  '& .MuiAlert-icon': {
+                    height: 'fit-content',
+                    py: '8px',
+                  },
+                }}
+              >
+                {t('api-docs.deprecated')}
+                {deprecationInfo && (
+                  <React.Fragment>
+                    {' - '}
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: deprecationInfo,
+                      }}
+                    />
+                  </React.Fragment>
+                )}
+              </Alert>
             )}
           </StyledApiItem>
         );
