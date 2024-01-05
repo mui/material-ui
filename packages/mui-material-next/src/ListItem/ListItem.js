@@ -78,6 +78,7 @@ export const ListItemRoot = styled('div', {
     width: '100%',
     boxSizing: 'border-box',
     textAlign: 'left',
+    color: tokens.sys.color.onSurfaceVariant,
     ...(!ownerState.disablePadding && {
       paddingTop: 8,
       paddingBottom: 8,

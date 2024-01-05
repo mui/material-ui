@@ -26,11 +26,9 @@ const ListItemIconRoot = styled('div', {
 
     return [styles.root, ownerState.alignItems === 'flex-start' && styles.alignItemsFlexStart];
   },
-})(({ theme, ownerState }) => {
-  const { vars: tokens } = theme;
+})(({ ownerState }) => {
   return {
     minWidth: 40,
-    color: tokens.sys.color.onSurfaceVariant,
     flexShrink: 0,
     display: 'inline-flex',
     ...(ownerState.alignItems === 'flex-start' && {

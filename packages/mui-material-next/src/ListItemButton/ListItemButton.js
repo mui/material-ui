@@ -66,6 +66,7 @@ const ListItemButtonRoot = styled(ButtonBase, {
     textAlign: 'left',
     paddingTop: 8,
     paddingBottom: 8,
+    color: tokens.sys.color.onSurfaceVariant,
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,
     }),
