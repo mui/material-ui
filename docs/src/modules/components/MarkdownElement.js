@@ -452,6 +452,12 @@ const Root = styled('div')(
       // Font size reset to fix a bug with Safari 16.0 when letterSpacing is set
       fontSize: 10,
     },
+    '& .MuiCode-copy-container': {
+      // This container is only used in demo and highlight code
+      position: 'sticky',
+      zIndex: 1,
+      top: 0,
+    },
     '& .MuiCode-copy': {
       display: 'inline-flex',
       flexDirection: 'row-reverse',
