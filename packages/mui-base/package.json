@@ -41,12 +41,12 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.6",
+    "@babel/runtime": "^7.23.7",
     "@floating-ui/react-dom": "^2.0.4",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:^",
     "@popperjs/core": "^2.11.8",
-    "clsx": "^2.0.0",
+    "clsx": "^2.1.0",
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
@@ -54,10 +54,10 @@
     "@mui-internal/test-utils": "workspace:^",
     "@mui/base": "workspace:*",
     "@testing-library/react": "^14.1.2",
-    "@testing-library/user-event": "^14.5.1",
+    "@testing-library/user-event": "^14.5.2",
     "@types/chai": "^4.3.11",
     "@types/prop-types": "^15.7.11",
-    "@types/react": "18.2.45",
+    "@types/react": "18.2.46",
     "@types/react-dom": "18.2.18",
     "@types/sinon": "^10.0.20",
     "chai": "^4.3.10",

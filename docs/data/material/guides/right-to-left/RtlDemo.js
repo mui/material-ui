@@ -6,22 +6,33 @@ import { prefixer } from 'stylis';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
-const theme = createTheme({
-  direction: 'rtl', // Both here and <body dir="rtl">
-});
-// Create rtl cache
+// Consuming the outer theme is only required with coexisting themes, like in this documentation.
+// If your app/website doesn't deal with this, you can have just:
+// const theme = createTheme({ direction: 'rtl' })
+const theme = (outerTheme) =>
+  createTheme({
+    direction: 'rtl',
+    palette: {
+      mode: outerTheme.palette.mode,
+    },
+  });
+
 const cacheRtl = createCache({
   key: 'muirtl',
   stylisPlugins: [prefixer, rtlPlugin],
 });
 
-export default function Direction() {
+export default function RtlDemo() {
   return (
     <CacheProvider value={cacheRtl}>
       <ThemeProvider theme={theme}>
         <div dir="rtl">
-          <TextField label="Name" variant="standard" />
-          <input type="text" placeholder="Name" />
+          <TextField
+            label="ملصق"
+            placeholder="العنصر النائب"
+            helperText="هذا نص مساعد"
+            variant="outlined"
+          />
         </div>
       </ThemeProvider>
     </CacheProvider>
