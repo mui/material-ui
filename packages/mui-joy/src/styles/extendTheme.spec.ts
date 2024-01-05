@@ -1310,9 +1310,9 @@ extendTheme({
     },
     JoyToggleButtonGroup: {
       defaultProps: {
-        size: 'md',
-        variant: 'outlined',
-        color: 'neutral',
+        size: 'sm',
+        variant: 'solid',
+        color: 'primary',
       },
       styleOverrides: {
         root: ({ ownerState }) => {
