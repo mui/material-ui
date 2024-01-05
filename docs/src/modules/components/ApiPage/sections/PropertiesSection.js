@@ -78,7 +78,7 @@ export default function PropertiesSection(props) {
       ].filter((key) => propData.additionalInfo?.[key]);
 
       const seeMoreDescription =
-        propDescription.seeMoreText &&
+        propDescription?.seeMoreText &&
         propData.seeMoreLink &&
         propDescription.seeMoreText.replace(
           '{{link}}',
