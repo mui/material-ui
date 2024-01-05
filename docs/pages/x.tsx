@@ -17,7 +17,7 @@ export default function X() {
   return (
     <BrandingCssVarsProvider>
       <Head
-        title="MUI X: Advanced and powerful components for complex use cases."
+        title="MUI X: Advanced React components for complex use cases"
         description="Build complex and data-rich applications using a growing list of advanced React
         components, like the Data Grid, Date and Time Pickers, Charts, and more!"
         card="/static/social-previews/muix-preview.jpg"

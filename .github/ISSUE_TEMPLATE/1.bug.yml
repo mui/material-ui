@@ -8,13 +8,13 @@ body:
         Please provide a searchable summary of the issue in the title above ⬆️.
 
         Thanks for contributing by creating an issue! ❤️
-  - type: checkboxes
+  - type: input
     attributes:
-      label: Duplicates
-      description: Please [search the history](https://github.com/mui/material-ui/issues) to see if an issue already exists for the same problem.
-      options:
-        - label: I have searched the existing issues
-          required: true
+      label: Search keywords
+      description: Your issue may have already been reported! List the keywords you've used to search the [existing issues](https://github.com/mui/material-ui/issues). This will also make your issue searchable for others.
+      placeholder: e.g. tooltip color
+    validations:
+      required: true
   - type: checkboxes
     attributes:
       label: Latest version
@@ -24,34 +24,33 @@ body:
           required: true
   - type: textarea
     attributes:
-      label: Steps to reproduce 🕹
+      label: Steps to reproduce
       description: |
-        **⚠️ Issues that we can't reproduce will be closed.**
+        **⚠️ Issues that we can't reproduce can't be fixed.**
 
         Please provide a link to a live example and an unambiguous set of steps to reproduce this bug. As a starting point, we recommend you browse our [documentation](https://mui.com/material-ui/getting-started/installation/), and [select](https://mui.com/static/docs/forking-an-example.png) the closest example to your use case. Or you can use the [official template](https://mui.com/r/issue-template) to build a reproduction case.
       value: |
-        Link to live example:
+        Link to live example: (required)
 
         Steps:
-
         1.
         2.
         3.
   - type: textarea
     attributes:
-      label: Current behavior 😯
+      label: Current behavior
       description: Describe what happens instead of the expected behavior.
   - type: textarea
     attributes:
-      label: Expected behavior 🤔
+      label: Expected behavior
       description: Describe what should happen.
   - type: textarea
     attributes:
-      label: Context 🔦
+      label: Context
       description: What are you trying to accomplish? How has this issue affected you? Providing context helps us come up with a solution that is more useful in the real world.
   - type: textarea
     attributes:
-      label: Your environment 🌎
+      label: Your environment
       description: Run `npx @mui/envinfo` and post the results. If you encounter issues with TypeScript please include the used tsconfig.
       value: |
         <details>

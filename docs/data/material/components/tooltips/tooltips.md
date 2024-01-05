@@ -39,6 +39,16 @@ You can use the `arrow` prop to give your tooltip an arrow indicating which elem
 
 {{"demo": "ArrowTooltips.js"}}
 
+## Distance from anchor
+
+To adjust the distance between the tooltip and its anchor, you can use the `slotProps` prop to modify the [offset](https://popper.js.org/docs/v2/modifiers/offset/) of the popper.
+
+{{"demo": "TooltipOffset.js"}}
+
+Alternatively, you can use the `slotProps` prop to customize the margin of the popper.
+
+{{"demo": "TooltipMargin.js"}}
+
 ## Custom child element
 
 The tooltip needs to apply DOM event listeners to its child element.
@@ -164,7 +174,7 @@ You need to create an object shaped like the [`VirtualElement`](https://popper.j
 
 ## Showing and hiding
 
-The tooltip is normally shown immediately when the user's mouse hovers over the element, and hides immediately when the user's mouse leaves. A delay in showing or hiding the tooltip can be added through the `enterDelay` and `leaveDelay` props, as shown in the Controlled Tooltips demo above.
+The tooltip is normally shown immediately when the user's mouse hovers over the element, and hides immediately when the user's mouse leaves. A delay in showing or hiding the tooltip can be added through the `enterDelay` and `leaveDelay` props.
 
 On mobile, the tooltip is displayed when the user longpresses the element and hides after a delay of 1500ms. You can disable this feature with the `disableTouchListener` prop.
 
