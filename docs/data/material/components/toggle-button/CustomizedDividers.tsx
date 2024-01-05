@@ -27,7 +27,6 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
     marginLeft: -1,
     borderLeft: '1px solid transparent',
   },
-  },
 }));
 
 export default function CustomizedDividers() {

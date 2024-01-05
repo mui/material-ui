@@ -224,6 +224,17 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, r
     >
       <ToggleButtonGroupContext.Provider value={context}>
         {validChildren.map((child, index) => {
+          if (process.env.NODE_ENV !== 'production') {
+            if (isFragment(child)) {
+              console.error(
+                [
+                  "MUI: The ToggleButtonGroup component doesn't accept a Fragment as a child.",
+                  'Consider providing an array instead.',
+                ].join('\n'),
+              );
+            }
+          }
+
           return (
             <ToggleButtonGroupButtonContext.Provider
               key={index}

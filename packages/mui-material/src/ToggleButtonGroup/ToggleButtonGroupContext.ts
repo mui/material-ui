@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type { ToggleButtonGroupProps } from './ToggleButtonGroup';
 
-interface IToggleButtonGroupContext {
+interface ToggleButtonGroupContextType {
   className?: string;
   onChange?: ToggleButtonGroupProps['onChange'];
   value?: ToggleButtonGroupProps['value'];
@@ -14,7 +14,7 @@ interface IToggleButtonGroupContext {
 /**
  * @ignore - internal component.
  */
-const ToggleButtonGroupContext = React.createContext<IToggleButtonGroupContext>({});
+const ToggleButtonGroupContext = React.createContext<ToggleButtonGroupContextType>({});
 
 if (process.env.NODE_ENV !== 'production') {
   ToggleButtonGroupContext.displayName = 'ToggleButtonGroupContext';
