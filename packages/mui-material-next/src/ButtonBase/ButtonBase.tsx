@@ -112,10 +112,12 @@ const ButtonBase = React.forwardRef(function ButtonBase<
     ...other
   } = props;
 
+  let ComponentProp = component;
   let hostElementName = hostElementNameProp;
 
-  if (other.href || other.to) {
-    hostElementName = 'a';
+  if (ComponentProp === 'button' && (other.href || other.to)) {
+    ComponentProp = LinkComponent;
+    hostElementName = hostElementNameProp ?? 'a';
   }
 
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>(null);
@@ -129,11 +131,6 @@ const ButtonBase = React.forwardRef(function ButtonBase<
     rootRef: handleRef,
     hostElementName,
   });
-
-  let ComponentProp = component;
-  if (ComponentProp === 'button' && (other.href || other.to)) {
-    ComponentProp = LinkComponent;
-  }
 
   const rippleRef = React.useRef<TouchRippleActions>(null);
   const handleRippleRef = useForkRef(rippleRef, touchRippleRef);
