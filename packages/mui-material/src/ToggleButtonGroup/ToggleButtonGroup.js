@@ -12,6 +12,7 @@ import toggleButtonGroupClasses, {
 } from './toggleButtonGroupClasses';
 import ToggleButtonGroupContext from './ToggleButtonGroupContext';
 import ToggleButtonGroupButtonContext from './ToggleButtonGroupButtonContext';
+import toggleButtonClasses from '../ToggleButton/toggleButtonClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, orientation, fullWidth, disabled } = ownerState;
@@ -105,6 +106,19 @@ const ToggleButtonGroupRoot = styled('div', {
           borderTopLeftRadius: 0,
           borderTopRightRadius: 0,
         },
+      }),
+  ...(ownerState.orientation === 'horizontal'
+    ? {
+        [`& .${toggleButtonGroupClasses.lastButton}.${toggleButtonClasses.disabled},& .${toggleButtonGroupClasses.middleButton}.${toggleButtonClasses.disabled}`]:
+          {
+            borderLeft: '1px solid transparent',
+          },
+      }
+    : {
+        [`& .${toggleButtonGroupClasses.lastButton}.${toggleButtonClasses.disabled},& .${toggleButtonGroupClasses.middleButton}.${toggleButtonClasses.disabled}`]:
+          {
+            borderTop: '1px solid transparent',
+          },
       }),
 }));
 
