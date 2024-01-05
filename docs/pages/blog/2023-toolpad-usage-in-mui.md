@@ -7,7 +7,7 @@ card: true
 tags: ['Product', 'News']
 ---
 
-Toolpad helps full-stack engineers build internal tools quickly. Internal tools are data-intensive CRUD interfaces, analytics dashboards, or custom apps that make teams productive. Toolpad is a low-code, GUI-based, code-friendly way of building apps and comes as a node package that can be imported in an existing codebase.
+Toolpad helps full-stack engineers build internal tools quickly. Internal tools encompass data-intensive CRUD interfaces, analytics dashboards, or custom apps that make teams productive. Toolpad is a low-code, GUI-based, code-friendly way of building apps and comes as a node package that can be imported in an existing codebase.
 
 We have been dogfooding Toolpad at MUI to build our internal tools. It has proven beneficial as we now have well-organized, centrally located KPI dashboards and operations apps. In this blog post, we'll discuss four such apps.
 
@@ -19,9 +19,9 @@ We have been dogfooding Toolpad at MUI to build our internal tools. It has prove
 
 1. Our internal tooling is easy to use and less error prone now; earlier, some apps were a set of instructions written on a Google doc/Notion.
 2. A user had to log into multiple services to update/manage their day-to-day chores. Now, one interface does it all.
-3. We leveraged Pipedream, Metabase, Google Sheets and other tools to manage day-to-day work. It meant we had distributed code at multiple places, and only a few had access. Now, we have everything on GitHub, and collaboration is easier.
+3. We utilized Pipedream, Metabase, Google Sheets, and other tools to streamline our day-to-day operations. It meant we had distributed code at multiple places accessible to only a few. Now, we have everything on GitHub, and collaboration is easier.
 
-Let's deep dive into four scenarios that we have solved through Toolpad:
+Let's delve into four scenarios that Toolpad has successfully addressed:
 
 ## 1. Support key validator
 
@@ -37,13 +37,20 @@ The [updateMuiPaidSupport.ts](https://github.com/mui/mui-public/blob/master/tool
 
 ## 2. Customer support KPI tracker
 
-This read-only page uses [HTTP requests](https://mui.com/toolpad/concepts/http-requests/) data source feature of Toolpad. Through the query builder UI we fetch our latest 100 support requests from Zendesk, then we calculate the average time we took to revert to the customers. It uses a [custom component](https://mui.com/toolpad/concepts/custom-components/) which we named as 'health badge' for this scenario. Based on the metric value, the component shows three states: color-coded Problem (red), Warning (yellow), and OK (green). Other KPI pages also use this health badge and pre-built charts component to compare stats, see trends, and spot anomalies.
+The read-only page below uses [HTTP requests](https://mui.com/toolpad/concepts/http-requests/) data source feature of Toolpad. Through the query builder UI we fetch our latest 100 support requests from Zendesk, then we calculate the average time we took to revert to the customers. It uses a [custom component](https://mui.com/toolpad/concepts/custom-components/) which we named as 'health badge'. Based on the metric value, the component shows three color-coded states: Problem (red), Warning (yellow), and OK (green). Other KPI pages also use this health badge and pre-built charts component to compare stats, see trends, and spot anomalies.
 
    <a href="https://tools-public.mui.com/prod/pages/zendeskFirstReply">
    <img alt="Zendesk first reply" src="/static/blog/2023-toolpad-usage-in-mui/zendesk.png"  loading="lazy" width="2400" height="1394" />
    </a>
 
-We used Toolpad as Metabase doesn't allow importing data from REST APIs. It's possible in Google Sheets but it requires writing a lot of JS code and since we wanted to embed it in a [Notion page](https://www.notion.so/mui-org/KPIs-1ce9658b85ce4628a2a2ed2ae74ff69c), Toolpad was the ideal choice. Toolpad handles state management, routing and simplifies query building, data binding, and removes the need to write glue code.
+The above app in dev mode below:
+
+  <video controls width="100%" height="auto" style="contain" alt="zendesk first reply in devmode">
+  <source src="/static/blog/2023-toolpad-usage-in-mui/zendesk-first-reply-dev.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+  </video>
+
+We opted for Toolpad since Metabase doesn't support importing data from REST APIs. It's possible in Google Sheets but it requires writing a lot of JS code and since we wanted to embed it in a [Notion page](https://www.notion.so/mui-org/KPIs-1ce9658b85ce4628a2a2ed2ae74ff69c), Toolpad was the ideal choice. Toolpad handles state management, routing and simplifies query building, data binding, and removes the need to write glue code.
 
 ## 3. Manage overdue invoices
 
@@ -55,7 +62,7 @@ Earlier, we used a combination of Metabase and Google Sheets to fetch and edit d
 
 ## 4. Contributor payout
 
-We have a script to fetch monthly payout data for the contributors of MUI Store. Our operations team is responsible for the job but they can't run it and had to ask engineers to run it for them. The solution was to quickly import the script into Toolpad and create a UI for it. The below video shows the app, the output is a Slack copy that our team shares with our contributors:
+We have a script to fetch monthly payout data for the contributors of MUI Store. Our operations team is responsible for the task but they can't run the script and had to ask engineers to run it for them. The solution was to import the script into Toolpad and create a UI for it. The below video shows the app, on choosing the dates, the script runs and the output is a Slack copy that our team shares with our contributors:
 
   <video controls width="100%" height="auto" style="contain" alt="contributor payout page">
   <source src="/static/blog/2023-toolpad-usage-in-mui/contributor-payout.mp4" type="video/mp4">
