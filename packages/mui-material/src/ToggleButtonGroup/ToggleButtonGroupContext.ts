@@ -4,7 +4,7 @@ import type { ToggleButtonGroupProps } from './ToggleButtonGroup';
 interface IToggleButtonGroupContext {
   className?: string;
   onChange?: ToggleButtonGroupProps['onChange'];
-  value?: any;
+  value?: ToggleButtonGroupProps['value'];
   size?: ToggleButtonGroupProps['size'];
   fullWidth?: boolean;
   color?: ToggleButtonGroupProps['color'];
