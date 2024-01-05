@@ -126,4 +126,4 @@ To get the Material You ([Material Design 3](https://m3.material.io/)) version, 
 import List from '@mui/material-next/List';
 ```
 
-{{"demo": "DividerMaterialYouPlayground.js", "hideToolbar": true, "bg": "playground"}}
+{{"demo": "ListMaterialYouPlayground.js", "hideToolbar": true, "bg": "playground"}}
