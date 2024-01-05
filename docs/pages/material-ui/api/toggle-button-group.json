@@ -54,7 +54,7 @@
     {
       "key": "firstButton",
       "className": "MuiToggleButtonGroup-firstButton",
-      "description": "Styles applied to the first button in the button group.",
+      "description": "Styles applied to the first button in the toggle button group.",
       "isGlobal": false
     },
     {
@@ -84,13 +84,13 @@
     {
       "key": "lastButton",
       "className": "MuiToggleButtonGroup-lastButton",
-      "description": "Styles applied to the last button in the button group.",
+      "description": "Styles applied to the last button in the toggle button group.",
       "isGlobal": false
     },
     {
       "key": "middleButton",
       "className": "MuiToggleButtonGroup-middleButton",
-      "description": "Styles applied to buttons in the middle of the button group.",
+      "description": "Styles applied to buttons in the middle of the toggle button group.",
       "isGlobal": false
     },
     {
