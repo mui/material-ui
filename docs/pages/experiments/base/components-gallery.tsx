@@ -27,6 +27,7 @@ import { TabsList } from '@mui/base/TabsList';
 import { TabPanel } from '@mui/base/TabPanel';
 import { Tab } from '@mui/base/Tab';
 import { TextareaAutosize } from '@mui/base/TextareaAutosize';
+import { CssTransition } from '@mui/base/Transitions';
 // Icons import
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
@@ -257,7 +258,7 @@ export default function ComponentsGallery() {
   };
 
   return (
-    <Stack className="GalleryContainer" gap={2} sx={{ p: 2 }}>
+    <Stack className="GalleryContainer" gap={2}>
       {/* Copy theme button */}
       <Stack direction="row" spacing={1.5} sx={{ position: 'absolute', right: 24 }}>
         <SettingsButton
@@ -339,7 +340,7 @@ export default function ComponentsGallery() {
           <span className="GalleryBadge-content" />
         </Badge>
       </div>
-      <Stack direction="row" spacing={1} useFlexGap>
+      <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap">
         <Button className="GalleryButton">Solid button</Button>
         <Button className="GalleryButtonOutlined">Outlined button</Button>
         <Button className="GalleryButtonPlain">Plain button</Button>
@@ -384,7 +385,7 @@ export default function ComponentsGallery() {
           Features
         </Option>
       </Select>
-      <Stack direction="row" spacing={1} useFlexGap>
+      <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap">
         <div>
           <Dropdown>
             <MenuButton className="GalleryButtonOutlined">Open menu</MenuButton>
@@ -422,9 +423,15 @@ export default function ComponentsGallery() {
           >
             Open Popup
           </button>
-          <Popup id={popupId} open={popupOpen} anchor={popupAnchor}>
-            <div className="GalleryPopup">Popup content</div>
-          </Popup>
+          <CssTransition
+            enterClassName="open"
+            exitClassName="close"
+            lastTransitionedPropertyOnExit="transform"
+          >
+            <Popup id={popupId} open={popupOpen} anchor={popupAnchor}>
+              <div className="GalleryPopup">Popup content</div>
+            </Popup>
+          </CssTransition>
         </div>
         <div>
           <button
@@ -539,39 +546,37 @@ export default function ComponentsGallery() {
           disabled
         />
       </Stack>
-      <div>
-        <table aria-label="custom pagination table">
-          <tfoot>
-            <tr>
-              <TablePagination
-                className="GalleryTablePagination"
-                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-                colSpan={3}
-                count={13}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-                slotProps={{
-                  select: {
-                    'aria-label': 'rows per page',
+      <table aria-label="custom pagination table">
+        <tfoot>
+          <tr>
+            <TablePagination
+              className="GalleryTablePagination"
+              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+              colSpan={3}
+              count={13}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+              slotProps={{
+                select: {
+                  'aria-label': 'rows per page',
+                },
+                actions: {
+                  showFirstButton: true,
+                  showLastButton: true,
+                  slots: {
+                    firstPageIcon: FirstPageRoundedIcon,
+                    lastPageIcon: LastPageRoundedIcon,
+                    nextPageIcon: ChevronRightRoundedIcon,
+                    backPageIcon: ChevronLeftRoundedIcon,
                   },
-                  actions: {
-                    showFirstButton: true,
-                    showLastButton: true,
-                    slots: {
-                      firstPageIcon: FirstPageRoundedIcon,
-                      lastPageIcon: LastPageRoundedIcon,
-                      nextPageIcon: ChevronRightRoundedIcon,
-                      backPageIcon: ChevronLeftRoundedIcon,
-                    },
-                  },
-                }}
-              />
-            </tr>
-          </tfoot>
-        </table>
-      </div>
+                },
+              }}
+            />
+          </tr>
+        </tfoot>
+      </table>
       <Tabs defaultValue={0}>
         <TabsList className="GalleryTabsList">
           <Tab className="GalleryTab" value={0}>
