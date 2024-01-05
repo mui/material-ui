@@ -81,7 +81,7 @@
   "dependencies": {
     "@googleapis/sheets": "^5.0.5",
     "@slack/bolt": "^3.17.0",
-    "google-auth-library": "^9.0.0"
+    "google-auth-library": "^9.4.1"
   },
   "devDependencies": {
     "@argos-ci/core": "^1.4.0",
@@ -98,7 +98,6 @@
     "@babel/preset-env": "^7.23.7",
     "@babel/preset-react": "^7.23.3",
     "@babel/register": "^7.23.7",
-    "@googleapis/sheets": "^5.0.5",
     "@mnajdova/enzyme-adapter-react-18": "^0.2.0",
     "@mui-internal/api-docs-builder": "workspace:^",
     "@mui-internal/api-docs-builder-core": "workspace:^",
@@ -110,7 +109,6 @@
     "@next/eslint-plugin-next": "^14.0.4",
     "@octokit/rest": "^20.0.2",
     "@playwright/test": "1.40.1",
-    "@slack/bolt": "^3.17.0",
     "@slack/web-api": "^6.11.1",
     "@types/enzyme": "^3.10.18",
     "@types/fs-extra": "^11.0.4",
@@ -153,7 +151,6 @@
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
     "globby": "^13.2.2",
-    "google-auth-library": "^9.4.1",
     "karma": "^6.4.2",
     "karma-browserstack-launcher": "~1.6.0",
     "karma-chrome-launcher": "^3.2.0",
