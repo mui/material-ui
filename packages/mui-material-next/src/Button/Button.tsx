@@ -389,6 +389,7 @@ const Button = React.forwardRef(function Button<
     size = 'medium',
     startIcon: startIconProp,
     variant = 'text',
+    hostElementName: hostElementNameProp = 'button',
     ...other
   } = props;
 
@@ -402,6 +403,8 @@ const Button = React.forwardRef(function Button<
     variant,
   };
 
+  const hostElementName = other.href || other.to ? 'a' : hostElementNameProp;
+
   const classes = useUtilityClasses(ownerState);
 
   const positionClassName = buttonGroupButtonContextPositionClassName ?? '';
@@ -413,6 +416,7 @@ const Button = React.forwardRef(function Button<
     additionalProps: {
       classes,
       ref,
+      hostElementName,
     },
     ownerState,
     className: clsx(contextProps?.className, positionClassName),
