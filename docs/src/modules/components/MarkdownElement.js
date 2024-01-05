@@ -133,6 +133,7 @@ const Root = styled('div')(
       '& .anchor-link': {
         // To prevent the link to get the focus.
         display: 'inline-flex',
+        alignItems: 'center',
         visibility: 'hidden',
       },
       '& a:not(.anchor-link):hover': {
@@ -142,6 +143,7 @@ const Root = styled('div')(
         textDecoration: 'none',
       },
       '& .anchor-link, & .comment-link': {
+        padding: 0,
         cursor: 'pointer',
         alignItems: 'center',
         justifyContent: 'center',
@@ -161,8 +163,8 @@ const Root = styled('div')(
           color: `var(--muidocs-palette-primary-main, ${lightTheme.palette.primary.main})`,
         },
         '& svg': {
-          height: '14px',
-          width: '14px',
+          height: 14,
+          width: 14,
           fill: 'currentColor',
           pointerEvents: 'none',
           verticalAlign: 'middle',
@@ -178,8 +180,8 @@ const Root = styled('div')(
           duration: theme.transitions.duration.shortest,
         }),
         '& svg': {
-          verticalAlign: 'middle',
           fill: 'currentColor',
+          marginRight: 1.5,
         },
       },
     },
