@@ -1,25 +1,7 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "allowJs": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "noUnusedLocals": false,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "jsx": "preserve",
-    "types": ["node", "mocha"],
-    "target": "ES2020",
-    "module": "CommonJS",
-    "moduleResolution": "node",
-    "strict": true,
-    "baseUrl": "./",
-    "paths": {
-      "@mui/base": ["../mui-base/src"],
-      "@mui/base/*": ["../mui-base/src/*"],
-      "@mui/utils": ["../mui-utils/src"],
-      "@mui/utils/*": ["../mui-utils/src/*"]
-    }
+    "types": ["node", "mocha"]
   },
   "include": ["./**/*.ts", "./**/*.js"],
   "exclude": ["node_modules"]
