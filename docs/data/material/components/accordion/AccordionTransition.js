@@ -4,17 +4,33 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Fade from '@mui/material/Fade';
 
-export default function BasicAccordion() {
+export default function AccordionTransition() {
+  const [expanded, setExpanded] = React.useState(false);
+
+  const handleExpansion = () => {
+    setExpanded((prevExpanded) => !prevExpanded);
+  };
+
   return (
     <div>
-      <Accordion>
+      <Accordion
+        expanded={expanded}
+        onChange={handleExpansion}
+        TransitionComponent={Fade}
+        TransitionProps={{ timeout: 200 }}
+        sx={{
+          '& .MuiAccordion-region': { height: expanded ? 'auto' : 0 },
+          '& .MuiAccordionDetails-root': { display: expanded ? 'block' : 'none' },
+        }}
+      >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
+          aria-controls="panel1-content"
+          id="panel1-header"
         >
-          <Typography>Accordion 1</Typography>
+          <Typography>Custom transition using Fade</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -26,10 +42,10 @@ export default function BasicAccordion() {
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
+          aria-controls="panel2-content"
+          id="panel2-header"
         >
-          <Typography>Accordion 2</Typography>
+          <Typography>Default transition using Collapse</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -37,15 +53,6 @@ export default function BasicAccordion() {
             malesuada lacus ex, sit amet blandit leo lobortis eget.
           </Typography>
         </AccordionDetails>
-      </Accordion>
-      <Accordion disabled>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3a-content"
-          id="panel3a-header"
-        >
-          <Typography>Disabled Accordion</Typography>
-        </AccordionSummary>
       </Accordion>
     </div>
   );
