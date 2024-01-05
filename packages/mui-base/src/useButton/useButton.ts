@@ -10,6 +10,7 @@ import {
   UseButtonRootSlotProps,
 } from './useButton.types';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
+import { useHostElementName } from '../utils/useHostElementName';
 import { EventHandlers } from '../utils/types';
 import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 /**
@@ -31,7 +32,7 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
     tabIndex,
     to,
     type,
-    hostElementName: hostElementNameProp = '',
+    hostElementName: hostElementNameProp,
   } = parameters;
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
 
@@ -53,18 +54,9 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
     isFocusVisibleRef.current = focusVisible;
   }, [focusVisible, isFocusVisibleRef]);
 
-  const [hostElementName, setHostElementName] = React.useState<string>(
-    hostElementNameProp.toUpperCase(),
-  );
-
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
-      if (hostElementNameProp && hostElementName !== hostElementNameProp.toUpperCase()) {
-        console.error(`expected: ${hostElementNameProp}, actual ${hostElementName}`);
-      }
-    }, [hostElementNameProp, hostElementName]);
-  }
+  const { hostElementName, updateHostElementName } = useHostElementName({
+    hostElementName: hostElementNameProp,
+  });
 
   const createHandleMouseLeave = (otherHandlers: EventHandlers) => (event: React.MouseEvent) => {
     if (focusVisible) {
@@ -182,10 +174,6 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
         otherHandlers.onClick?.(event);
       }
     };
-
-  const updateHostElementName = React.useCallback((instance: HTMLElement | null) => {
-    setHostElementName(instance?.tagName ?? '');
-  }, []);
 
   const handleRef = useForkRef(updateHostElementName, externalRef, focusVisibleRef, buttonRef);
 
