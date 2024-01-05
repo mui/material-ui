@@ -11,10 +11,11 @@ githubLabel: 'package: icons'
 <p class="description">2,100+ ready-to-use React Material Icons from the official website.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
-<br/>
+
+## Introduction
 
 [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material)
-includes the 2,100+ official [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) converted to [`SvgIcon`](/material-ui/api/svg-icon/) components.
+includes the 2,100+ official [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) converted to [`SvgIcon`](/material-ui/icons/#svgicon/) components.
 It depends on `@mui/material`, which requires Emotion packages.
 Use one of the following commands to install it:
 
@@ -36,7 +37,31 @@ pnpm add @mui/icons-material @mui/material @emotion/styled @emotion/react
 
 See the [Installation](/material-ui/getting-started/installation/) page for additional docs about how to make sure everything is set up correctly.
 
-<hr/>
+## Basics
+
+Material Icons use the Material UI [`SvgIcon`](/material-ui/icons/#svgicon/) component under the hood, meaning they render without any form of customization, and it features several handy props for you to quickly customize its styles.
+
+{{"demo": "BasicMaterialIcon.js"}}
+
+:::info
+Visit [the SvgIcon component section in the Icon page](/material-ui/icons/#svgicon/) for further information about its other props, and even how to use it with different icon libraries.
+:::
+
+### Size
+
+Use the `fontSize` prop to toggle between small, medium (default, 24x24px), or large sizes.
+You can also use the `sx` prop to pick values that are outside of this built-in scale.
+
+{{"demo": "SizeMaterialIcon.js"}}
+
+### Color
+
+Use the `color` prop to pick from a different palette key from the theme.
+It defaults to the `main` value of whatever palette.
+
+{{"demo": "ColorMaterialIcon.js"}}
+
+## Browse the library
 
 Browse through the icons below to find the one you need.
 The search field supports synonyms—for example, try searching for "hamburger" or "logout."

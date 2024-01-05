@@ -3,5 +3,5 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import * as pageProps from 'docs/data/material/components/material-icons/material-icons.md?@mui/markdown';
 
 export default function Page() {
-  return <MarkdownDocs {...pageProps} disableToc />;
+  return <MarkdownDocs {...pageProps} />;
 }

@@ -1,0 +1,3 @@
+<AddAPhotoIcon sx={{ fontSize: 10 }} />
+<AcUnitIcon fontSize="small" />
+<AccountBalanceIcon fontSize="large" />

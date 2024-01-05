@@ -211,7 +211,6 @@ const Title = styled(Typography)(({ theme }) => ({
 
 const CanvasComponent = styled(Box)(({ theme }) => ({
   fontSize: 210,
-  marginTop: theme.spacing(2),
   color: theme.palette.text.primary,
   backgroundSize: '30px 30px',
   backgroundColor: 'transparent',
@@ -271,7 +270,20 @@ const DialogDetails = React.memo(function DialogDetails(props) {
   };
 
   return (
-    <Dialog fullWidth maxWidth="sm" open={open} onClose={handleClose}>
+    <Dialog
+      fullWidth
+      maxWidth="sm"
+      open={open}
+      onClose={handleClose}
+      sx={{
+        '& .MuiDialog-paper': {
+          borderRadius: 2.5,
+          backgroundImage: 'none',
+          border: '1px solid',
+          borderColor: 'divider',
+        },
+      }}
+    >
       {selectedIcon ? (
         <React.Fragment>
           <DialogTitle>
@@ -370,7 +382,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
               </Grid>
             </Grid>
           </DialogContent>
-          <DialogActions>
+          <DialogActions sx={{ borderTop: '1px solid', borderColor: 'divider' }}>
             <Button onClick={handleClose}>{t('close')}</Button>
           </DialogActions>
         </React.Fragment>
@@ -524,7 +536,7 @@ export default function SearchIcons() {
   );
 
   return (
-    <Grid container sx={{ minHeight: 500, my: 2 }}>
+    <Grid container sx={{ minHeight: 500 }}>
       <Grid item xs={12} sm={3}>
         <Form>
           <Typography fontWeight={500} sx={{ mb: 1 }}>
