@@ -271,6 +271,10 @@ ButtonBase.propTypes /* remove-proptypes */ = {
    */
   focusVisibleClassName: PropTypes.string,
   /**
+   * The HTML element, e.g. 'button'
+   */
+  hostElementName: PropTypes /* @typescript-to-proptypes-ignore */.string,
+  /**
    * The URL to link to when the button is clicked.
    * If defined, an `a` element will be used as the root node.
    */

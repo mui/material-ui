@@ -1,6 +1,11 @@
 'use client';
 import * as React from 'react';
-
+/**
+ *
+ * API:
+ *
+ * - [useHostElementName API](https://mui.com/base-ui/api/use-host-element-name/)
+ */
 export function useHostElementName(parameters: { hostElementName?: keyof HTMLElementTagNameMap }) {
   const { hostElementName: hostElementNameProp = '' } = parameters;
 
