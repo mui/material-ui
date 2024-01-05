@@ -140,7 +140,7 @@
     "marked": "^5.1.2",
     "playwright": "^1.40.1",
     "prettier": "^2.8.8",
-    "tailwindcss": "^3.3.6",
+    "tailwindcss": "^3.4.0",
     "typescript-to-proptypes": "workspace:^",
     "yargs": "^17.7.2"
   }
