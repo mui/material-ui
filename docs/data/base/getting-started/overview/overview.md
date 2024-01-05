@@ -39,4 +39,4 @@ Base UI features many of the same components as [Material UI](/material-ui/getti
 Base UI is not packaged with any default theme or built-in style engine.
 This makes it a great choice if you need complete control over how your app's CSS is implemented.
 
-You could think of Base UI as the "skeletal" or "headless" version of Material UI—in fact, future versions of Material UI (starting with v6) will use these components and hooks for their foundational structure.
+You could think of Base UI as the "skeletal" or "headless" version of Material UI—in fact, future versions of Material UI will gradually adopt these components and hooks for their foundational structure.
