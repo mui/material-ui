@@ -38,18 +38,6 @@ const StyledTable = styled('table')(
       borderColor: alpha(darkTheme.palette.primary[100], 0.8),
       backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
     },
-  }),
-  ({ theme }) => ({
-    [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
-      '& .class-name': {
-        color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
-      },
-      '& .class-key': {
-        color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
-        borderColor: alpha(darkTheme.palette.primary[400], 0.1),
-        backgroundColor: alpha(darkTheme.palette.primary[900], 0.4),
-      },
-    },
     '& .classes-table-deprecated': {
       '& code ': { all: 'unset' },
     },
@@ -73,6 +61,32 @@ const StyledTable = styled('table')(
         textDecorationColor: alpha(lightTheme.palette.warning.main, 0.4),
         '&:hover': {
           textDecorationColor: 'inherit',
+        },
+      },
+    },
+  }),
+  ({ theme }) => ({
+    [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
+      '& .class-name': {
+        color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
+      },
+      '& .class-key': {
+        color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
+        borderColor: alpha(darkTheme.palette.primary[400], 0.1),
+        backgroundColor: alpha(darkTheme.palette.primary[900], 0.4),
+      },
+      '& .classes-table-alert': {
+        color: `var(--muidocs-palette-warning-50, ${darkTheme.palette.warning[50]})`,
+        backgroundColor: alpha(darkTheme.palette.warning[700], 0.15),
+        borderColor: alpha(darkTheme.palette.warning[600], 0.3),
+        '& strong': {
+          color: `var(--muidocs-palette-warning-200, ${darkTheme.palette.warning[200]})`,
+        },
+        '&>svg': {
+          fill: `var(--muidocs-palette-warning-400, ${darkTheme.palette.warning[400]})`,
+        },
+        '& a': {
+          color: `var(--muidocs-palette-warning-100, ${darkTheme.palette.warning[100]})`,
         },
       },
     },
