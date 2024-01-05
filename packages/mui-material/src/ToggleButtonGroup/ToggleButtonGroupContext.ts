@@ -6,7 +6,7 @@ interface IToggleButtonGroupContext {
   onChange?: ToggleButtonGroupProps['onChange'];
   value?: ToggleButtonGroupProps['value'];
   size?: ToggleButtonGroupProps['size'];
-  fullWidth?: boolean;
+  fullWidth?: ToggleButtonGroupProps['fullWidth'];
   color?: ToggleButtonGroupProps['color'];
   disabled?: boolean;
 }
