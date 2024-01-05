@@ -84,7 +84,7 @@ As with the [`action`](#actions) prop, your `icon` can be an HTML element, an SV
 Set this prop to `false` to remove the icon altogether.
 
 If you need to override all instances of an icon for a given [`severity`](#basics), you can use the `iconMapping` prop instead.
-You can define this prop globally by customizing your app's theme. See [Theme components—Default props](/material-ui/customization/theme-components/#default-props) for details.
+You can define this prop globally by customizing your app's theme. See [Theme components—Default props](/material-ui/customization/theme-components/#theme-default-props) for details.
 
 {{"demo": "IconAlerts.js"}}
 
