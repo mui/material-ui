@@ -1,14 +1,17 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useButton } from '@mui/base/ButtonUnstyled';
-import composeClasses from '@mui/base/composeClasses';
-import { useSlotProps } from '@mui/base/utils';
+import { useButton } from '@mui/base/useButton';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { Interpolation } from '@mui/system';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
-import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
+import { styled, Theme, useThemeProps } from '../styles';
+import useSlot from '../utils/useSlot';
 import CircularProgress from '../CircularProgress';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import { ButtonOwnerState, ButtonTypeMap, ExtendButton } from './ButtonProps';
+import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
+import ToggleButtonGroupContext from '../ToggleButtonGroup/ToggleButtonGroupContext';
 
 const useUtilityClasses = (ownerState: ButtonOwnerState) => {
   const {
@@ -84,42 +87,55 @@ const ButtonLoadingCenter = styled('span', {
   }),
 }));
 
-export const ButtonRoot = styled('button', {
-  name: 'JoyButton',
-  slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ButtonOwnerState }>(({ theme, ownerState }) => {
+export const getButtonStyles = ({
+  theme,
+  ownerState,
+}: {
+  theme: Theme;
+  ownerState: Partial<Omit<ButtonOwnerState, 'slots' | 'slotProps'>>;
+}): Interpolation<any> => {
   return [
     {
       '--Icon-margin': 'initial', // reset the icon's margin.
-      '--CircularProgress-size': 'var(--Icon-fontSize)',
+      '--Icon-color':
+        ownerState.color !== 'neutral' || ownerState.variant === 'solid'
+          ? 'currentColor'
+          : theme.vars.palette.text.icon,
       ...(ownerState.size === 'sm' && {
-        '--Icon-fontSize': '1.25rem',
+        '--Icon-fontSize': theme.vars.fontSize.lg,
+        '--CircularProgress-size': '20px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
+        '--CircularProgress-thickness': '2px',
         '--Button-gap': '0.375rem',
         minHeight: 'var(--Button-minHeight, 2rem)',
         fontSize: theme.vars.fontSize.sm,
-        paddingBlock: '2px',
+        paddingBlock: 'var(--Button-paddingBlock, 0.25rem)',
         paddingInline: '0.75rem',
       }),
       ...(ownerState.size === 'md' && {
-        '--Icon-fontSize': '1.5rem', // control the SvgIcon font-size
+        '--Icon-fontSize': theme.vars.fontSize.xl,
+        '--CircularProgress-size': '20px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
+        '--CircularProgress-thickness': '2px',
         '--Button-gap': '0.5rem',
-        minHeight: 'var(--Button-minHeight, 2.5rem)', // use min-height instead of height to make the button resilient to its content
+        minHeight: 'var(--Button-minHeight, 2.25rem)', // use min-height instead of height to make the button resilient to its content
         fontSize: theme.vars.fontSize.sm,
-        paddingBlock: '0.25rem', // the padding-block act as a minimum spacing between content and root element
+        // internal --Button-paddingBlock is used to control the padding-block of the button from the outside, e.g. as a decorator of an Input
+        paddingBlock: 'var(--Button-paddingBlock, 0.375rem)', // the padding-block act as a minimum spacing between content and root element
         paddingInline: '1rem',
       }),
       ...(ownerState.size === 'lg' && {
-        '--Icon-fontSize': '1.75rem',
+        '--Icon-fontSize': theme.vars.fontSize.xl2,
+        '--CircularProgress-size': '28px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
+        '--CircularProgress-thickness': '4px',
         '--Button-gap': '0.75rem',
-        minHeight: 'var(--Button-minHeight, 3rem)',
+        minHeight: 'var(--Button-minHeight, 2.75rem)',
         fontSize: theme.vars.fontSize.md,
-        paddingBlock: '0.375rem',
+        paddingBlock: 'var(--Button-paddingBlock, 0.5rem)',
         paddingInline: '1.5rem',
       }),
       WebkitTapHighlightColor: 'transparent',
-      borderRadius: `var(--Button-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, eg. Input
-      margin: `var(--Button-margin)`, // to be controlled by other components, eg. Input
+      boxSizing: 'border-box',
+      borderRadius: `var(--Button-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, e.g. Input
+      margin: `var(--Button-margin)`, // to be controlled by other components, e.g. Input
       border: 'none',
       backgroundColor: 'transparent',
       cursor: 'pointer',
@@ -128,34 +144,50 @@ export const ButtonRoot = styled('button', {
       justifyContent: 'center',
       position: 'relative',
       textDecoration: 'none', // prevent user agent underline when used as anchor
-      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-      transition:
-        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       fontFamily: theme.vars.fontFamily.body,
-      fontWeight: theme.vars.fontWeight.md,
-      lineHeight: 1,
+      fontWeight: theme.vars.fontWeight.lg,
+      lineHeight: theme.vars.lineHeight.md,
       ...(ownerState.fullWidth && {
         width: '100%',
       }),
       [theme.focus.selector]: theme.focus.default,
-    },
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
-    { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
-    { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
+    } as const,
     {
+      ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+      '&:hover': {
+        '@media (hover: hover)': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+      },
+      '&:active, &[aria-pressed="true"]':
+        theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
       [`&.${buttonClasses.disabled}`]:
         theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
       ...(ownerState.loadingPosition === 'center' && {
+        // this has to come after the variant styles to take effect.
         [`&.${buttonClasses.loading}`]: {
-          transition:
-            'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
           color: 'transparent',
         },
       }),
     },
   ];
-});
+};
 
+const ButtonRoot = styled('button', {
+  name: 'JoyButton',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})<{ ownerState: ButtonOwnerState }>(getButtonStyles);
+/**
+ *
+ * Demos:
+ *
+ * - [Button](https://mui.com/joy-ui/react-button/)
+ * - [Button Group](https://mui.com/joy-ui/react-button-group/)
+ * - [Toggle Button Group](https://mui.com/joy-ui/react-toggle-button-group/)
+ *
+ * API:
+ *
+ * - [Button API](https://mui.com/joy-ui/api/button/)
+ */
 const Button = React.forwardRef(function Button(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -165,30 +197,37 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const {
     children,
     action,
-    component = 'button',
-    componentsProps = {},
     color: colorProp = 'primary',
-    variant = 'solid',
-    size = 'md',
+    variant: variantProp = 'solid',
+    size: sizeProp = 'md',
     fullWidth = false,
     startDecorator,
     endDecorator,
     loading = false,
     loadingPosition = 'center',
     loadingIndicator: loadingIndicatorProp,
-    disabled,
+    disabled: disabledProp,
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
+  const buttonGroup = React.useContext(ButtonGroupContext);
+  const toggleButtonGroup = React.useContext(ToggleButtonGroupContext);
 
-  const buttonRef = React.useRef<HTMLElement | null>(null);
+  const variant = inProps.variant || buttonGroup.variant || variantProp;
+  const size = inProps.size || buttonGroup.size || sizeProp;
+  const color = inProps.color || buttonGroup.color || colorProp;
+  const disabled =
+    (inProps.disabled || inProps.loading) ?? (buttonGroup.disabled || disabledProp || loading);
+
+  const buttonRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(buttonRef, ref);
 
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
-    disabled: disabled || loading,
-    ref: handleRef,
+    disabled,
+    rootRef: handleRef,
   });
 
   const loadingIndicator = loadingIndicatorProp ?? (
@@ -208,7 +247,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const ownerState = {
     ...props,
-    component,
     color,
     fullWidth,
     variant,
@@ -216,73 +254,110 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     focusVisible,
     loading,
     loadingPosition,
-    disabled: disabled || loading,
+    disabled,
   };
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootProps = useSlotProps({
-    elementType: ButtonRoot,
-    externalSlotProps: componentsProps.root,
-    ownerState,
-    getSlotProps: getRootProps,
-    externalForwardedProps: other,
-    additionalProps: {
-      as: component,
-    },
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    let onClick = props.onClick;
+    if (typeof slotProps.root === 'function') {
+      onClick = slotProps.root(ownerState).onClick;
+    } else if (slotProps.root) {
+      onClick = slotProps.root.onClick;
+    }
+
+    onClick?.(event);
+
+    if (toggleButtonGroup) {
+      toggleButtonGroup.onClick?.(event, props.value);
+    }
+  };
+
+  let ariaPressed = props['aria-pressed'];
+
+  if (typeof slotProps.root === 'function') {
+    ariaPressed = slotProps.root(ownerState)['aria-pressed'];
+  } else if (slotProps.root) {
+    ariaPressed = slotProps.root['aria-pressed'];
+  }
+
+  if (toggleButtonGroup?.value) {
+    if (Array.isArray(toggleButtonGroup.value)) {
+      ariaPressed = toggleButtonGroup.value.indexOf(props.value as string) !== -1;
+    } else {
+      ariaPressed = toggleButtonGroup.value === props.value;
+    }
+  }
+
+  const externalForwardedProps = { ...other, component, slots, slotProps };
+
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     className: classes.root,
+    elementType: ButtonRoot,
+    externalForwardedProps,
+    getSlotProps: getRootProps,
+    ownerState,
+    additionalProps: {
+      onClick: handleClick,
+      'aria-pressed': ariaPressed,
+    },
   });
 
-  const startDecoratorProps = useSlotProps({
-    elementType: ButtonStartDecorator,
-    externalSlotProps: componentsProps.startDecorator,
-    ownerState,
+  const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
+    elementType: ButtonStartDecorator,
+    externalForwardedProps,
+    ownerState,
   });
 
-  const endDecoratorProps = useSlotProps({
-    elementType: ButtonEndDecorator,
-    externalSlotProps: componentsProps.endDecorator,
-    ownerState,
+  const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
+    elementType: ButtonEndDecorator,
+    externalForwardedProps,
+    ownerState,
   });
 
-  const loadingIndicatorCenterProps = useSlotProps({
-    elementType: ButtonLoadingCenter,
-    externalSlotProps: componentsProps.loadingIndicatorCenter,
-    ownerState,
-    className: classes.loadingIndicatorCenter,
-  });
+  const [SlotLoadingIndicatorCenter, loadingIndicatorCenterProps] = useSlot(
+    'loadingIndicatorCenter',
+    {
+      className: classes.loadingIndicatorCenter,
+      elementType: ButtonLoadingCenter,
+      externalForwardedProps,
+      ownerState,
+    },
+  );
 
   return (
-    <ButtonRoot {...rootProps}>
+    <SlotRoot {...rootProps}>
       {(startDecorator || (loading && loadingPosition === 'start')) && (
-        <ButtonStartDecorator {...startDecoratorProps}>
+        <SlotStartDecorator {...startDecoratorProps}>
           {loading && loadingPosition === 'start' ? loadingIndicator : startDecorator}
-        </ButtonStartDecorator>
+        </SlotStartDecorator>
       )}
 
       {children}
       {loading && loadingPosition === 'center' && (
-        <ButtonLoadingCenter {...loadingIndicatorCenterProps}>
+        <SlotLoadingIndicatorCenter {...loadingIndicatorCenterProps}>
           {loadingIndicator}
-        </ButtonLoadingCenter>
+        </SlotLoadingIndicatorCenter>
       )}
 
       {(endDecorator || (loading && loadingPosition === 'end')) && (
-        <ButtonEndDecorator {...endDecoratorProps}>
+        <SlotEndDecorator {...endDecoratorProps}>
           {loading && loadingPosition === 'end' ? loadingIndicator : endDecorator}
-        </ButtonEndDecorator>
+        </SlotEndDecorator>
       )}
-    </ButtonRoot>
+    </SlotRoot>
   );
 }) as ExtendButton<ButtonTypeMap>;
 
 Button.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A ref for imperative actions. It currently only supports `focusVisible()` action.
    */
@@ -303,7 +378,7 @@ Button.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -311,16 +386,6 @@ Button.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    loadingIndicatorCenter: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -340,7 +405,7 @@ Button.propTypes /* remove-proptypes */ = {
    */
   fullWidth: PropTypes.bool,
   /**
-   * If `true`, the loading indicator is shown.
+   * If `true`, the loading indicator is shown and the button becomes disabled.
    * @default false
    */
   loading: PropTypes.bool,
@@ -356,12 +421,37 @@ Button.propTypes /* remove-proptypes */ = {
    */
   loadingPosition: PropTypes.oneOf(['center', 'end', 'start']),
   /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
+  /**
    * The size of the component.
+   * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    loadingIndicatorCenter: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    endDecorator: PropTypes.elementType,
+    loadingIndicatorCenter: PropTypes.elementType,
+    root: PropTypes.elementType,
+    startDecorator: PropTypes.elementType,
+  }),
   /**
    * Element placed before the children.
    */
@@ -379,7 +469,15 @@ Button.propTypes /* remove-proptypes */ = {
    */
   tabIndex: PropTypes.number,
   /**
-   * The variant to use.
+   * @ignore
+   */
+  value: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.number,
+    PropTypes.string,
+  ]),
+  /**
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -387,5 +485,8 @@ Button.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
 } as any;
+
+// @ts-ignore internal logic for ToggleButtonGroup
+Button.muiName = 'Button';
 
 export default Button;

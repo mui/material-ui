@@ -324,7 +324,7 @@ function processPackages() {
 
 function run() {
   write('# This file is auto-generated, do not modify it manually.');
-  write('# run `yarn generate-codeowners` to update it.\n\n');
+  write('# run `pnpm generate-codeowners` to update it.\n\n');
 
   write(getCodeowners(additionalRules));
 
@@ -335,7 +335,7 @@ function run() {
   write(processComponents('material'));
   write(processDocs('material'));
 
-  write('\n# Components - MUI Base\n');
+  write('\n# Components - Base UI\n');
   write(processComponents('base'));
   write(processDocs('base'));
 

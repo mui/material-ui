@@ -9,7 +9,6 @@ export default function CustomTags() {
       id="tags-default"
       multiple
       placeholder="Favorites"
-      variant="soft"
       options={top100Films}
       getOptionLabel={(option) => option.title}
       defaultValue={[top100Films[13]]}

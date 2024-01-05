@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: Circular, Linear progress React components
 components: CircularProgress, LinearProgress
 githubLabel: 'component: progress'
@@ -69,7 +69,7 @@ The progress components accept a value in the range 0 - 100. This simplifies thi
 
 ```jsx
 // MIN = Minimum expected value
-// MAX = Maximium expected value
+// MAX = Maximum expected value
 // Function to normalise the values (MIN / MAX could be integrated)
 const normalise = (value) => ((value - MIN) * 100) / (MAX - MIN);
 
@@ -150,3 +150,19 @@ You can solve the latter with:
   }
 }
 ```
+
+## Experimental APIs
+
+### Material 3 version
+
+The default Material UI Progress components follow the Material Design 2 specs.
+To get the [Material 3](https://m3.material.io/) version, use the new experimental `@mui/material-next` package.
+
+```js
+import CircularProgress from '@mui/material-next/CircularProgress';
+import LinearProgress from '@mui/material-next/LinearProgress';
+```
+
+{{"demo": "ProgressMaterialYouPlayground.js", "hideToolbar": true, "bg": "playground"}}
+
+For more instructions on how to use it, visit the [detailed guide](/material-ui/guides/material-3-components/).

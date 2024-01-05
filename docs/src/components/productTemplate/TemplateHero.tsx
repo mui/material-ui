@@ -15,6 +15,7 @@ import {
 export default function TemplateHero() {
   return (
     <HeroContainer
+      linearGradient
       left={
         <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
           <Typography
@@ -24,19 +25,17 @@ export default function TemplateHero() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: { xs: 'center', md: 'start' },
-              '& > *': { mr: 1, width: 28, height: 28 },
+              '& > *': { mr: 1 },
               color: 'primary.600',
               ...theme.applyDarkStyles({
                 color: 'primary.400',
               }),
             })}
           >
-            <IconImage name="product-templates" /> Templates
+            <IconImage width={28} height={28} loading="eager" name="product-templates" /> Templates
           </Typography>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
-            <GradientText>Fully built</GradientText>
-            <br />
-            templates for your app
+            <GradientText>Fully built</GradientText> Material&nbsp;UI templates
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
             A collection of 4.5 average rating templates, selected and curated by MUI&apos;s team of

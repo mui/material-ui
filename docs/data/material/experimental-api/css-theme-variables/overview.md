@@ -11,7 +11,8 @@ If this is your first time encountering CSS variables, you should check out [the
 
 ## Introduction
 
-CSS theme variable support is a new feature in Material UI added in [`v5.6.0`](https://github.com/mui/material-ui/releases/tag/v5.6.0) (but not enabled by default). It tells Material UI components to use the generated CSS theme variables instead of raw values.
+CSS theme variable support is a new feature in Material UI added in [`v5.6.0`](https://github.com/mui/material-ui/releases/tag/v5.6.0) (but not enabled by default). It tells Material UI components to use the generated CSS theme variables instead of raw values. This provides significant improvements in developer experience related to theming and customization.
+With these variables, you can inject a theme into your app's stylesheet _at build time_ to apply the user's selected settings before the whole app is rendered.
 
 ## Advantages
 
@@ -26,11 +27,11 @@ CSS theme variable support is a new feature in Material UI added in [`v5.6.0`](h
 
 For server-side applications, there are some trade-offs to consider:
 
-|                                                      | Compare to the default method | Reason                                                                                                       |
-| ---------------------------------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| HTML size                                            | bigger                        | CSS variables are generated for both light and dark mode at build time.                                      |
-| [First Contentful Paint (FCP)](https://web.dev/fcp/) | larger                        | Since the HTML size is generally bigger, the time to download the HTML before showing the content is longer. |
-| [Time to Interactive (TTI)](https://web.dev/tti/)    | Smaller (for dark mode)       | Stylesheets are not regenerated between light and dark mode, so it takes less time for JavaScript to run.    |
+|                                                              | Compare to the default method | Reason                                                                                                         |
+| :----------------------------------------------------------- | :---------------------------- | :------------------------------------------------------------------------------------------------------------- |
+| HTML size                                                    | Bigger                        | CSS variables are generated for both light and dark mode at build time.                                        |
+| [First Contentful Paint (FCP)](https://web.dev/articles/fcp) | Longer                        | Since the HTML size is bigger, the time to download the HTML before showing the content is a bit longer.       |
+| [Time to Interactive (TTI)](https://web.dev/articles/tti)    | Shorter (for dark mode)       | Stylesheets are not regenerated between light and dark mode, a lot less time is spent running JavaScript code. |
 
 :::warning
 The comparison described in the table above may not be applicable to large and complex applications since there are so many factors that can impact performance metrics.
@@ -45,6 +46,8 @@ Adopting CSS variables requires some shifts in your mental model of theming and 
 **[Default approach](/material-ui/customization/dark-mode/)**: Light and dark colors are created separately.
 
 ```js
+import { createTheme } from '@mui/material/styles';
+
 const lightTheme = createTheme();
 
 const darkTheme = createTheme({
@@ -57,6 +60,8 @@ const darkTheme = createTheme({
 **CSS theme variables**: Light and dark colors are consolidated into a theme.
 
 ```js
+import { experimental_extendTheme as extendTheme } from '@mui/material/styles';
+
 // `extendTheme` is a new API
 const theme = extendTheme({
   colorSchemes: {
@@ -80,7 +85,7 @@ createTheme({
     MuiButton: {
       styleOverrides: {
         root: ({ theme }) => ({
-          // use javascript conditional expression
+          // use JavaScript conditional expression
           color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary.main,
         }),
       },

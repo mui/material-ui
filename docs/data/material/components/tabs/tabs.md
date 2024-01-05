@@ -1,11 +1,11 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Tabs component
-components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel, TabsUnstyled, TabUnstyled, TabPanelUnstyled, TabsListUnstyled
+components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 githubLabel: 'component: tabs'
 materialDesign: https://m2.material.io/components/tabs
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/
-unstyled: /base/react-tabs/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/
+unstyled: /base-ui/react-tabs/
 ---
 
 # Tabs
@@ -25,7 +25,7 @@ A basic example with tab panels.
 ## Experimental API
 
 `@mui/lab` offers utility components that inject props to implement accessible tabs
-following [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/).
+following [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/).
 
 {{"demo": "LabTabs.js"}}
 
@@ -67,13 +67,13 @@ The `centered` prop should be used for larger views.
 
 ### Automatic scroll buttons
 
-By default, left and right scroll buttons are automatically presented on desktop and hidden on mobile. (based on viewport width)
+Use the `variant="scrollable"` and `scrollButtons="auto"` props to display left and right scroll buttons on desktop that are hidden on mobile:
 
 {{"demo": "ScrollableTabsButtonAuto.js", "bg": true}}
 
 ### Forced scroll buttons
 
-Left and right scroll buttons be presented (reserve space) regardless of the viewport width with `scrollButtons={true}` `allowScrollButtonsMobile`:
+Apply `scrollButtons={true}` and the `allowScrollButtonsMobile` prop to display the left and right scroll buttons on all viewports:
 
 {{"demo": "ScrollableTabsButtonForce.js", "bg": true}}
 
@@ -117,6 +117,12 @@ By default, tabs use a `button` element, but you can provide your custom tag or 
 
 {{"demo": "NavTabs.js"}}
 
+### Third-party routing library
+
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server.
+The `Tab` component provides the `component` prop to handle this use case.
+Here is a [more detailed guide](/material-ui/guides/routing/#tabs).
+
 ## Icon tabs
 
 Tab labels may be either all icons or all text.
@@ -131,15 +137,9 @@ By default, the icon is positioned at the `top` of a tab. Other supported positi
 
 {{"demo": "IconPositionTabs.js"}}
 
-## Third-party routing library
-
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server.
-The `Tab` component provides the `component` prop to handle this use case.
-Here is a [more detailed guide](/material-ui/guides/routing/#tabs).
-
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/)
 
 The following steps are needed in order to provide necessary information for assistive technologies:
 
@@ -152,8 +152,9 @@ extra work.
 
 ### Keyboard navigation
 
-The components implement keyboard navigation using the "manual activation" behavior. If you want to switch to the
-"selection automatically follows focus" behavior you have pass `selectionFollowsFocus` to the `Tabs` component. The WAI-ARIA authoring practices have a detailed guide on [how to decide when to make selection automatically follow focus](https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#x6-4-deciding-when-to-make-selection-automatically-follow-focus).
+The components implement keyboard navigation using the "manual activation" behavior.
+If you want to switch to the "selection automatically follows focus" behavior you have to pass `selectionFollowsFocus` to the `Tabs` component.
+The WAI-ARIA authoring practices have a detailed guide on [how to decide when to make selection automatically follow focus](https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#x6-4-deciding-when-to-make-selection-automatically-follow-focus).
 
 #### Demo
 

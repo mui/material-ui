@@ -1,26 +1,23 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Select component
+components: Select, Option
 githubLabel: 'component: select'
-waiAria: https://www.w3.org/WAI/ARIA/apg/example-index/combobox/combobox-select-only.html
-unstyled: /base/react-select/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
+unstyled: /base-ui/react-select/
 ---
 
 # Select
 
-<p class="description">Select components are used for collecting user provided information from a list of options.</p>
+<p class="description">Select components are used for collecting user-provided information from a list of options.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Introduction
 
 The `Select` component is used to trigger a popup that displays a list of `Option` components.
 
-{{"demo": "SelectUsage.js", "hideToolbar": true}}
-
-:::success
-To learn how to add more variants or sizes to the component, check out the [Themed components](/joy-ui/customization/themed-components/) page.
-:::
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"demo": "SelectUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Component
 
@@ -45,6 +42,37 @@ export default function SelectBasic() {
 The `Select` component is similar to the native HTML's `<select>` and `<option>` tags.
 
 {{"demo": "SelectBasic.js"}}
+
+### Form submission
+
+The `Select` component supports `name` and `required` props that will be used when submitting the form.
+
+{{"demo": "SelectFormSubmission.js"}}
+
+### Variants
+
+The Select component supports the four global variants: `outlined` (default), `plain`, `soft`, and `solid`.
+
+The variant and color values are propagated to the Select's `button` and `listbox` slots.
+
+{{"demo": "SelectVariants.js"}}
+
+:::info
+To learn how to add more variants to the component, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+:::
+
+To customize the variant and color for a specific slot, use `slotProps`:
+
+```js
+<Select
+  variant="plain"
+  slotProps={{
+    listbox: {
+      variant: 'outlined',
+    },
+  }}
+/>
+```
 
 ### Decorators
 
@@ -95,9 +123,82 @@ const App = () => (
 );
 ```
 
+### Multiple selections
+
+Set the `multiple` prop to let your users select multiple options from the list.
+In contrast with single-selection mode, the options popup doesn't close after an item is selected, which enables users to continue choosing more options.
+
+Note that in multiple selection mode, the `value` prop (and `defaultValue`) is an array.
+
+{{"demo": "SelectMultiple.js"}}
+
+#### Selected value appearance
+
+Use the `renderValue` prop to customize the display of the selected options.
+
+{{"demo": "SelectMultipleAppearance.js"}}
+
+#### Form submission
+
+The `Select` component supports `name` and `required` props that will be used when submitting the form.
+
+{{"demo": "SelectMultipleFormSubmission.js"}}
+
+### Listbox
+
+#### Maximum height
+
+To change the listbox's maximum height, use `slotProps` prop to target listbox slot:
+
+```jsx
+<Select
+  slotProps={{
+    listbox: {
+      sx: {
+        maxHeight: '300px',
+      },
+    },
+  }}
+>
+  ...
+</Select>
+```
+
+#### Minimum width
+
+By default, the listbox's width is equal to Select's button or the maximum content of its children. You can control the minimum width by using `slotProps` prop to target listbox slot.
+
+{{"demo": "SelectMinWidth.js"}}
+
+:::success
+To control the placement of the listbox, use `placement`:
+
+```js
+<Select
+  slotProps={{
+    // the left-edge of the listbox will align with button.
+    listbox: { placement: 'bottom-start' },
+  }}
+>
+```
+
+:::
+
+#### Placement
+
+To align `listbox` position to `Select` while displaying long options, use `slotProps` prop to position listbox slot:
+
+{{"demo": "SelectPosition.js"}}
+
+#### Controlling the open state
+
+You can control the open state of the select with the `listboxOpen` prop. Alternatively, it is also possible to set the initial (uncontrolled) open state of the component with the `defaultListboxOpen` prop.
+
+{{"demo": "ControlledOpenSelect.js"}}
+
 ### `Option` component
 
-The `Option` component is used for the chooseable options within the select.
+The `Option` component is used for the choosable options within the select.
 
 The selected option inherits the `color` from the Select parent, and it uses the `primary` palette by default.
 However, it does not inherit the Select's used `variant`.
@@ -110,24 +211,24 @@ We're also using the `ListDivider` as a visual separator.
 
 {{"demo": "SelectCustomOption.js"}}
 
-:::info
-💡 **Keep in mind:** By default, the option children is used for displaying the selected value.
+:::warning
+By default, the option children are used for displaying the selected value.
 Take a look at [selected value appearance](#selected-value-appearance) to see how to customize its appearance.
 :::
 
 ### Grouped options
 
-To create a [listbox with grouped options](https://www.w3.org/WAI/ARIA/apg/example-index/listbox/listbox-grouped.html), wrap the `Option` with `List` component and provide an associated label using `ListItem`.
+To create a [listbox with grouped options](https://www.w3.org/WAI/ARIA/apg/patterns/listbox/examples/listbox-grouped/), wrap the `Option` with `List` component and provide an associated label using `ListItem`.
 That way, you'll have a consistent height and will be able to leverage nested CSS variables.
 
 {{"demo": "SelectGroupedOptions.js"}}
 
-:::info
-💡 **Keep in mind:** If you'd like to set a `max-height` for a long list of options, make sure to specify it to the `listbox` slot so that keyboard-based navigation works as expected.
+:::warning
+If you'd like to set a `max-height` for a long list of options, make sure to specify it to the `listbox` slot so that keyboard-based navigation works as expected.
 
 ```jsx
 <Select
-  componentsProps={{
+  slotProps={{
     listbox: {
       sx: {
         maxHeight: 300,
@@ -153,7 +254,7 @@ Alternatively, you can do it manually by targeting the button slot:
 ```jsx
 <label htmlFor="select-button" id="select-label">Label</label>
 <Select
-  componentsProps={{
+  slotProps={{
     button: {
       id: 'select-button',
       'aria-labelledby': 'select-label select-button',

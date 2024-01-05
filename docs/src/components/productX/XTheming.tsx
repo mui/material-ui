@@ -6,9 +6,8 @@ import {
   GridRenderEditCellParams,
 } from '@mui/x-data-grid-pro';
 import { useDemoData } from '@mui/x-data-grid-generator';
-import { createTheme, ThemeProvider, Theme } from '@mui/material/styles';
+import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
@@ -24,9 +23,6 @@ import ProgressBar from 'docs/src/components/x-grid/ProgressBar';
 import EditProgress from 'docs/src/components/x-grid/EditProgress';
 import Status from 'docs/src/components/x-grid/Status';
 import EditStatus from 'docs/src/components/x-grid/EditStatus';
-
-const lightTheme = createTheme();
-const darkTheme = createTheme({ palette: { mode: 'dark' } });
 
 const dataGridStyleOverrides = <XGridGlobalStyles selector="#data-grid-theming" pro />;
 
@@ -97,25 +93,23 @@ export default function XTheming() {
     return columns;
   }
   return (
-    <Section bg="comfort">
+    <Section bg="gradient">
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box maxWidth={500}>
-            <SectionHeadline
-              overline="Theming"
-              title={
-                <Typography variant="h2">
-                  Advanced and <GradientText>beautiful</GradientText>
-                </Typography>
-              }
-              description="Use the sophisticated theming features to make the MUI X components look exactly as you want. "
-            />
-          </Box>
-          <Group sx={{ mt: 4 }}>
+          <SectionHeadline
+            overline="Theming"
+            title={
+              <Typography variant="h2">
+                Advanced and <GradientText>beautiful</GradientText>
+              </Typography>
+            }
+            description="Use sophisticated theming features to make the MUI X components look exactly how you want. Take this Data Grid as an example."
+          />
+          <Group sx={{ m: -2, p: 2 }}>
             <Highlighter disableBorder selected={customized} onClick={() => setCustomized(true)}>
               <Item
                 icon={<SvgTwinkle />}
-                title="Custom Theme"
+                title="Custom theme"
                 description="Theming allows you to use your brand's design tokens, easily making the components reflect its look and feel."
               />
             </Highlighter>
@@ -123,7 +117,7 @@ export default function XTheming() {
               <Item
                 icon={<SvgMaterialDesign />}
                 title="Material Design"
-                description="Every component comes with Google's tried and tested design system ready for use."
+                description="Every component comes with Google's tried-and-tested design system, built-in and ready for use."
               />
             </Highlighter>
           </Group>
@@ -133,56 +127,59 @@ export default function XTheming() {
             <Paper
               id="data-grid-theming"
               variant="outlined"
-              sx={{
+              sx={(theme) => ({
                 height: 418,
-                borderColor: (theme) =>
-                  theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.200',
-              }}
+                borderColor: 'grey.200',
+                ...theme.applyDarkStyles({
+                  borderColor: 'primaryDark.600',
+                }),
+              })}
             >
               {dataGridStyleOverrides}
               <DataGridPro
                 {...data}
                 columns={getColumns()}
-                disableSelectionOnClick
+                disableRowSelectionOnClick
                 checkboxSelection
                 loading={loading}
                 pagination
                 density="compact"
-                experimentalFeatures={{ newEditingApi: true }}
               />
             </Paper>
           ) : (
-            <ThemeProvider
-              theme={(globalTheme: Theme) => {
-                if (globalTheme.palette.mode === 'dark') {
-                  return darkTheme;
-                }
-                return lightTheme;
-              }}
-            >
+            <CssVarsProvider>
               <Paper
                 elevation={0}
-                sx={{
-                  height: 418,
-                  '& .MuiDataGrid-cell[data-field="status"][data-value="Rejected"]': {
-                    '& .MuiChip-root': {
-                      color: (theme) => (theme.palette.mode === 'dark' ? red[300] : red[500]),
+                sx={[
+                  {
+                    height: 418,
+                    '& .MuiDataGrid-cell[data-field="status"][data-value="Rejected"]': {
+                      '& .MuiChip-root': {
+                        color: red[500],
+                      },
                     },
                   },
-                }}
+                  (theme) =>
+                    theme.applyDarkStyles({
+                      '& .MuiDataGrid-cell[data-field="status"][data-value="Rejected"]': {
+                        '& .MuiChip-root': {
+                          color: red[300],
+                        },
+                      },
+                    }),
+                ]}
               >
                 <DataGridPro
                   {...data}
                   columns={getColumns()}
-                  disableSelectionOnClick
+                  disableRowSelectionOnClick
                   checkboxSelection
                   loading={loading}
                   pagination
                   density="compact"
-                  experimentalFeatures={{ newEditingApi: true }}
                 />
               </Paper>
-            </ThemeProvider>
+            </CssVarsProvider>
           )}
         </Grid>
       </Grid>

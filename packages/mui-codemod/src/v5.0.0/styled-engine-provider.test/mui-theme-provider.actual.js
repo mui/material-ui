@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import { OtherProvider } from './contexts';
 import Page from './pages';

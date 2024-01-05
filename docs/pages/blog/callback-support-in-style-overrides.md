@@ -4,7 +4,7 @@ description: We're excited to introduce callback support for global theme overri
 date: 2022-01-31T00:00:00.000Z
 authors: ['siriwatknp']
 tags: ['MUI Core', 'News']
-card: false
+card: true
 ---
 
 <span class="x x-first x-last">[</span>MUI Core v5.3.0](https://github.com/mui/material-ui/releases/tag/v5.3.0) introduces the ability to write a callback in style overrides (global theming), giving you full control of component customization at the theme level.
@@ -68,7 +68,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 The callback is type-safe.
 
-- `ownerState`: `ComponentProps` interface, eg. `ButtonProps`, `ChipProps`, etc.
+- `ownerState`: `ComponentProps` interface, e.g. `ButtonProps`, `ChipProps`, etc.
 - `theme`: `Theme` interface from `@mui/material/styles`.
 
 ```tsx
@@ -117,26 +117,23 @@ const Label = styled('span')({
 
 `sx` helps developers write less code and be more productive once they are familiar with the API. With the callback support in `styleOverrides`, it is now possible to use an `sx`-like syntax in global theme overrides.
 
-All you need is to use the [`experimental_sx`](/system/styled/#how-can-i-use-the-sx-syntax-with-the-styled-utility) function. In the following example, I use `sx` to theme the `Chip` component:
+All you need is to use the [`unstable_sx`](/system/styled/#how-can-i-use-the-sx-syntax-with-the-styled-utility) function from the `theme`. In the following example, the `sx` is used to style the `Chip` component:
 
 ```jsx
-import {
-  ThemeProvider,
-  createTheme,
-  experimental_sx as sx,
-} from '@mui/material/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 <ThemeProvider
   theme={createTheme({
     components: {
       MuiChip: {
         styleOverrides: {
-          root: sx({
-            px: '12px', // shorthand for padding-left & right
-            py: '6px', // shorthand for padding-top & bottom
-            fontWeight: 500,
-            borderRadius: '8px',
-          }),
+          root: ({ theme }) =>
+            theme.unstable_sx({
+              px: '12px', // shorthand for padding-left & right
+              py: '6px', // shorthand for padding-top & bottom
+              fontWeight: 500,
+              borderRadius: '8px',
+            }),
           label: {
             padding: 0,
           },
@@ -159,19 +156,19 @@ An array can be used as a return type to make the code easier to add/remove cond
 ```js
 // The <ThemeProvider> is omitted for readability.
 {
-  root: ({ ownerState }) => [
-    sx({
+  root: ({ ownerState, theme }) => [
+    theme.unstable_sx({
       px: '12px',
       py: '6px',
       fontWeight: 500,
       borderRadius: '8px',
     }),
     ownerState.variant === 'outlined' && ownerState.color === 'default' &&
-      sx({
+      theme.unstable_sx({
         borderColor: 'text.secondary',
       }),
     ownerState.size === 'small' &&
-      sx({
+      theme.unstable_sx({
         fontSize: { xs: '0.875rem', sm: '0.75rem' },
       })
   ],

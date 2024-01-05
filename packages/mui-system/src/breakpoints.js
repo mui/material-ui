@@ -51,6 +51,8 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
 }
 
 function breakpoints(styleFunction) {
+  // false positive
+  // eslint-disable-next-line react/function-component-definition
   const newStyleFunction = (props) => {
     const theme = props.theme || {};
     const base = styleFunction(props);

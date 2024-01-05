@@ -3,11 +3,12 @@ import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import ListDivider from '@mui/joy/ListDivider';
 import Input from '@mui/joy/Input';
-import TextField from '@mui/joy/TextField';
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
 
-export default function InputIntegration() {
+export default function InputVariables() {
   const [radius, setRadius] = React.useState(16);
-  const [childHeight, setChildHeight] = React.useState(32);
+  const [childHeight, setChildHeight] = React.useState(28);
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
       <Input
@@ -20,25 +21,29 @@ export default function InputIntegration() {
         }
         sx={{
           '--Input-radius': `${radius}px`,
-          '--Input-decorator-childHeight': `${childHeight}px`,
+          '--Input-decoratorChildHeight': `${childHeight}px`,
         }}
       />
       <ListDivider component="hr" />
       <Box sx={{ mx: 'auto', display: 'flex', gap: 2 }}>
-        <TextField
-          label="--Input-radius"
-          size="sm"
-          type="number"
-          value={radius}
-          onChange={(event) => setRadius(event.target.valueAsNumber)}
-        />
-        <TextField
-          label="--Input-childHeight"
-          size="sm"
-          type="number"
-          value={childHeight}
-          onChange={(event) => setChildHeight(event.target.valueAsNumber)}
-        />
+        <FormControl>
+          <FormLabel>--Input-radius</FormLabel>
+          <Input
+            size="sm"
+            type="number"
+            value={radius}
+            onChange={(event) => setRadius(event.target.valueAsNumber)}
+          />
+        </FormControl>
+        <FormControl>
+          <FormLabel>--Input-decoratorChildHeight</FormLabel>
+          <Input
+            size="sm"
+            type="number"
+            value={childHeight}
+            onChange={(event) => setChildHeight(event.target.valueAsNumber)}
+          />
+        </FormControl>
       </Box>
     </Box>
   );

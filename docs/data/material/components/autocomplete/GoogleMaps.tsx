@@ -6,7 +6,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import parse from 'autosuggest-highlight/parse';
-import throttle from 'lodash/throttle';
+import { debounce } from '@mui/material/utils';
 
 // This key was created specifically for the demo in mui.com.
 // You need to create a new one for your application.
@@ -33,7 +33,7 @@ interface MainTextMatchedSubstrings {
 interface StructuredFormatting {
   main_text: string;
   secondary_text: string;
-  main_text_matched_substrings: readonly MainTextMatchedSubstrings[];
+  main_text_matched_substrings?: readonly MainTextMatchedSubstrings[];
 }
 interface PlaceType {
   description: string;
@@ -60,7 +60,7 @@ export default function GoogleMaps() {
 
   const fetch = React.useMemo(
     () =>
-      throttle(
+      debounce(
         (
           request: { input: string },
           callback: (results?: readonly PlaceType[]) => void,
@@ -70,7 +70,7 @@ export default function GoogleMaps() {
             callback,
           );
         },
-        200,
+        400,
       ),
     [],
   );
@@ -126,6 +126,7 @@ export default function GoogleMaps() {
       includeInputInList
       filterSelectedOptions
       value={value}
+      noOptionsText="No locations"
       onChange={(event: any, newValue: PlaceType | null) => {
         setOptions(newValue ? [newValue, ...options] : options);
         setValue(newValue);
@@ -137,7 +138,9 @@ export default function GoogleMaps() {
         <TextField {...params} label="Add a location" fullWidth />
       )}
       renderOption={(props, option) => {
-        const matches = option.structured_formatting.main_text_matched_substrings;
+        const matches =
+          option.structured_formatting.main_text_matched_substrings || [];
+
         const parts = parse(
           option.structured_formatting.main_text,
           matches.map((match: any) => [match.offset, match.offset + match.length]),
@@ -146,22 +149,18 @@ export default function GoogleMaps() {
         return (
           <li {...props}>
             <Grid container alignItems="center">
-              <Grid item>
-                <Box
-                  component={LocationOnIcon}
-                  sx={{ color: 'text.secondary', mr: 2 }}
-                />
+              <Grid item sx={{ display: 'flex', width: 44 }}>
+                <LocationOnIcon sx={{ color: 'text.secondary' }} />
               </Grid>
-              <Grid item xs>
+              <Grid item sx={{ width: 'calc(100% - 44px)', wordWrap: 'break-word' }}>
                 {parts.map((part, index) => (
-                  <span
+                  <Box
                     key={index}
-                    style={{
-                      fontWeight: part.highlight ? 700 : 400,
-                    }}
+                    component="span"
+                    sx={{ fontWeight: part.highlight ? 'bold' : 'regular' }}
                   >
                     {part.text}
-                  </span>
+                  </Box>
                 ))}
                 <Typography variant="body2" color="text.secondary">
                   {option.structured_formatting.secondary_text}

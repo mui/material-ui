@@ -1,16 +1,16 @@
 import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface CardCoverClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
 }
 
 export type CardCoverClassKey = keyof CardCoverClasses;
 
 export function getCardCoverUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyCardCover', slot);
+  return generateUtilityClass('MuiCardCover', slot);
 }
 
-const cardCoverClasses: CardCoverClasses = generateUtilityClasses('JoyCardCover', ['root']);
+const cardCoverClasses: CardCoverClasses = generateUtilityClasses('MuiCardCover', ['root']);
 
 export default cardCoverClasses;

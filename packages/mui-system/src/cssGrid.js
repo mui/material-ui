@@ -4,6 +4,8 @@ import { createUnaryUnit, getValue } from './spacing';
 import { handleBreakpoints } from './breakpoints';
 import responsivePropType from './responsivePropType';
 
+// false positive
+// eslint-disable-next-line react/function-component-definition
 export const gap = (props) => {
   if (props.gap !== undefined && props.gap !== null) {
     const transformer = createUnaryUnit(props.theme, 'spacing', 8, 'gap');
@@ -20,6 +22,8 @@ gap.propTypes = process.env.NODE_ENV !== 'production' ? { gap: responsivePropTyp
 
 gap.filterProps = ['gap'];
 
+// false positive
+// eslint-disable-next-line react/function-component-definition
 export const columnGap = (props) => {
   if (props.columnGap !== undefined && props.columnGap !== null) {
     const transformer = createUnaryUnit(props.theme, 'spacing', 8, 'columnGap');
@@ -37,6 +41,8 @@ columnGap.propTypes =
 
 columnGap.filterProps = ['columnGap'];
 
+// false positive
+// eslint-disable-next-line react/function-component-definition
 export const rowGap = (props) => {
   if (props.rowGap !== undefined && props.rowGap !== null) {
     const transformer = createUnaryUnit(props.theme, 'spacing', 8, 'rowGap');

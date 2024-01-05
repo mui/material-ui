@@ -7,7 +7,7 @@ tags: ['News', 'MUI Core']
 card: true
 ---
 
-<a href="/joy-ui/getting-started/overview/"><img src="/static/blog/first-look-at-joy/card.png" style="width: 692px; aspect-ratio: 2/1; margin-bottom: 24px;" alt="First look at Joy UI: a new starting point for your design system." /></a>
+<a href="/joy-ui/getting-started/"><img src="/static/blog/first-look-at-joy/card.png" style="width: 692px; aspect-ratio: 2/1; margin-bottom: 24px;" alt="First look at Joy UI: a new starting point for your design system." /></a>
 
 If you're a close follower of everything MUI, you might be aware that we've been working on a new design system.
 If not, then this post will give you a first look at **Joy UI**－MUI's new starting point for your design system!
@@ -22,7 +22,7 @@ Material UI is MUI's React implementation of Google's Material Design.
 
 Over time Material UI has established itself as the go-to library for quickly breathing life into products, mostly thanks to its design, customizability, and documentation.
 However, the components do come by default with the 2018 Google look and feel that is no longer as popular as it once was.
-And as we've confirmed with [our latest developer survey](/blog/2021-developer-survey-results/#what-are-your-most-important-criteria-for-choosing-a-ui-library/), design quality is one of the most important elements that developers consider when choosing a UI library.
+And as we've confirmed with [our latest developer survey](/blog/2021-developer-survey-results/#what-are-your-most-important-criteria-for-choosing-a-ui-library), design quality is one of the most important elements that developers consider when choosing a UI library.
 
 ## Why not just build a new Material UI theme?
 
@@ -36,7 +36,7 @@ Material UI and Joy UI still share many of the same conventions and features.
 We've done this not only to decrease the learning curve for adopting Joy UI, but also because we believe that the conventions we've established represent the ideal developer experience for working with design systems.
 
 :::info
-💡 Any new DX feature introduced in Joy UI will eventually be reproduced in Material UI, and vice versa.
+Any new DX feature introduced in Joy UI will eventually be reproduced in Material UI, and vice versa.
 :::
 
 ## What new features does Joy UI offer?
@@ -67,7 +67,7 @@ We meticulously constructed the CSS variables for each component so you can seam
 One good example is the input component, where the border radius of the input's children automatically adapts to that of the input.
 These small details mean the components adapt to different scenarios, which saves considerable time when customizing the components by avoiding manual adjustments.
 
-<img src="/static/blog/first-look-at-joy/component-integration.png" style="width: 692px; margin-top: 16px; margin-bottom: 8px;" alt="Screenshot of two text inputs, one being native from Joy UI and another with border-radius customized" />
+<img src="/static/blog/first-look-at-joy/component-integration.png" style="width: 692px; margin-top: 16px;" alt="Screenshot of two text inputs, one being native from Joy UI and another with border-radius customized" />
 
 <p class="blog-description">When customizing the input's border radius, the icon button inside of it adapts automatically.</p>
 
@@ -93,7 +93,7 @@ You're still able to override the style completely via the usual CSS overrides, 
 Joy UI provides an effective way to prevent UI flicker when users refresh or re-enter a page with dark mode enabled.
 The out-of-the-box CSS variables support allows every color scheme to be rendered at build time, inserting the selected color scheme and mode before the browser renders the DOM.
 
-What's more, it provides a function called `getInitColorSchemeScript()` that enables you to have perfect functioning dark mode in various React framworks, such as Next.js, Gatsby, and Remix.
+What's more, it provides a function called `getInitColorSchemeScript()` that enables you to have perfect functioning dark mode in various React frameworks, such as Next.js, Gatsby, and Remix.
 
 ```js
 // A Next.js example
@@ -103,7 +103,7 @@ import { getInitColorSchemeScript } from '@mui/joy/styles';
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html data-color-scheme="light">
         <Head>...</Head>
         <body>
           {getInitColorSchemeScript()}
@@ -130,8 +130,8 @@ It should be ready for more mature experimentation and testing in the second hal
 Meanwhile, we've developed a couple of templates that showcase what Joy UI looks like out of the box, so you can explore it further.
 Follow the templates' CodeSandbox or live demo links to experiment with Joy UI for yourself.
 
-:::info
-👉 They are also available in the docs [Templates page](/joy-ui/getting-started/templates/).
+:::success
+They are also available in the docs [Templates page](/joy-ui/getting-started/templates/).
 :::
 
 ### Email
@@ -139,21 +139,21 @@ Follow the templates' CodeSandbox or live demo links to experiment with Joy UI f
 <a href="/joy-ui/getting-started/templates/email/"><img src="/static/blog/first-look-at-joy/email.png" style="width: 692px; margin-top: 8px; margin-bottom: 16px;" loading="lazy" alt="Screenshot of an email application mockup built with Joy UI" /></a>
 
 - [Live demo](/joy-ui/getting-started/templates/email/)
-- [CodeSandbox](https://codesandbox.io/s/8gtttr?file=/App.tsx)
+- [CodeSandbox](https://codesandbox.io/p/sandbox/8gtttr?file=/App.tsx)
 
 ### File management
 
 <a href="/joy-ui/getting-started/templates/files/"><img src="/static/blog/first-look-at-joy/files.png" style="width: 692px; margin-top: 8px; margin-bottom: 16px;" loading="lazy" alt="Screenshot of file management application mockup built with Joy UI" /></a>
 
 - [Live demo](/joy-ui/getting-started/templates/files/)
-- [CodeSandbox](https://codesandbox.io/s/ro2b1t?file=/App.tsx)
+- [CodeSandbox](https://codesandbox.io/p/sandbox/ro2b1t?file=/App.tsx)
 
 ### Team management
 
 <a href="/joy-ui/getting-started/templates/team/"><img src="/static/blog/first-look-at-joy/people.png" style="width: 692px; margin-top: 8px; margin-bottom: 16px;" loading="lazy" alt="Screenshot of a team management application mockup built with Joy UI" /></a>
 
 - [Live demo](/joy-ui/getting-started/templates/team/)
-- [CodeSandbox](https://codesandbox.io/s/dclgbp?file=/App.tsx)
+- [CodeSandbox](https://codesandbox.io/p/sandbox/dclgbp?file=/App.tsx)
 
 Joy UI is just getting started and we hope you're as excited as we are－stay tuned for more news in the near future!
 

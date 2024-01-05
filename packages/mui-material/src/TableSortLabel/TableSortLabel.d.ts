@@ -5,45 +5,49 @@ import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { TableSortLabelClasses } from './tableSortLabelClasses';
 
+export interface TableSortLabelOwnProps {
+  /**
+   * If `true`, the label will have the active styling (should be true for the sorted column).
+   * @default false
+   */
+  active?: boolean;
+  /**
+   * Label contents, the arrow will be appended automatically.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<TableSortLabelClasses>;
+  /**
+   * The current sort direction.
+   * @default 'asc'
+   */
+  direction?: 'asc' | 'desc';
+  /**
+   * Hide sort icon when active is false.
+   * @default false
+   */
+  hideSortIcon?: boolean;
+  /**
+   * Sort icon to use.
+   * @default ArrowDownwardIcon
+   */
+  IconComponent?: React.JSXElementConstructor<{
+    className: string;
+  }>;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+}
+
 export type TableSortLabelTypeMap<
-  P = {},
-  D extends React.ElementType = 'span',
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'span',
 > = ExtendButtonBaseTypeMap<{
-  props: P & {
-    /**
-     * If `true`, the label will have the active styling (should be true for the sorted column).
-     * @default false
-     */
-    active?: boolean;
-    /**
-     * Label contents, the arrow will be appended automatically.
-     */
-    children?: React.ReactNode;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<TableSortLabelClasses>;
-    /**
-     * The current sort direction.
-     * @default 'asc'
-     */
-    direction?: 'asc' | 'desc';
-    /**
-     * Hide sort icon when active is false.
-     * @default false
-     */
-    hideSortIcon?: boolean;
-    /**
-     * Sort icon to use.
-     * @default ArrowDownwardIcon
-     */
-    IconComponent?: React.JSXElementConstructor<{ className: string }>;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
-  };
-  defaultComponent: D;
+  props: AdditionalProps & TableSortLabelOwnProps;
+  defaultComponent: RootComponent;
 }>;
 
 /**
@@ -61,8 +65,10 @@ export type TableSortLabelTypeMap<
 declare const TableSortLabel: ExtendButtonBase<TableSortLabelTypeMap>;
 
 export type TableSortLabelProps<
-  D extends React.ElementType = TableSortLabelTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<TableSortLabelTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = TableSortLabelTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<TableSortLabelTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default TableSortLabel;

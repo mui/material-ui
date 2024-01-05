@@ -1,16 +1,8 @@
-<Breadcrumbs separator="›" aria-label="breadcrumbs">
-  {['Fry', 'Leela', 'Bender', 'Linda'].map((item: string) => (
-    <Link
-      // The `preventDefault` is for demonstration purposes, generally, you don't need it in your application
-      onClick={(event) => event.preventDefault()}
-      key={item}
-      underline="hover"
-      color="neutral"
-      fontSize="inherit"
-      href="/"
-    >
+<Breadcrumbs aria-label="breadcrumbs">
+  {['Home', 'TV Shows', 'Futurama', 'Characters'].map((item: string) => (
+    <Link key={item} color="neutral" href="#basics">
       {item}
     </Link>
   ))}
-  <Typography fontSize="inherit">Amy</Typography>
+  <Typography>Dr. Zoidberg</Typography>
 </Breadcrumbs>

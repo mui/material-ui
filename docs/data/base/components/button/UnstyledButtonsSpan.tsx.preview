@@ -1,4 +1,4 @@
-<CustomButton component="span">Button</CustomButton>
-<CustomButton component="span" disabled>
+<Button slots={{ root: 'span' }}>Button</Button>
+<Button slots={{ root: 'span' }} disabled>
   Disabled
-</CustomButton>
+</Button>

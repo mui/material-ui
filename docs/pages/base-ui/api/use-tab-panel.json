@@ -1,0 +1,36 @@
+{
+  "parameters": {
+    "id": { "type": { "name": "string", "description": "string" } },
+    "rootRef": {
+      "type": {
+        "name": "React.Ref&lt;HTMLElement&gt;",
+        "description": "React.Ref&lt;HTMLElement&gt;"
+      }
+    },
+    "value": { "type": { "name": "number | string", "description": "number | string" } }
+  },
+  "returnValue": {
+    "getRootProps": {
+      "type": {
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseTabPanelRootSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseTabPanelRootSlotProps&lt;ExternalProps&gt;"
+      },
+      "required": true
+    },
+    "hidden": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "rootRef": {
+      "type": {
+        "name": "React.Ref&lt;HTMLElement&gt;",
+        "description": "React.Ref&lt;HTMLElement&gt;"
+      },
+      "required": true
+    }
+  },
+  "name": "useTabPanel",
+  "filename": "/packages/mui-base/src/useTabPanel/useTabPanel.ts",
+  "imports": [
+    "import { useTabPanel } from '@mui/base/useTabPanel';",
+    "import { useTabPanel } from '@mui/base';"
+  ],
+  "demos": "<ul><li><a href=\"/base-ui/react-tabs/#hooks\">Tabs</a></li></ul>"
+}

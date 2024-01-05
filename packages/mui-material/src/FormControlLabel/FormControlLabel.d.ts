@@ -60,6 +60,10 @@ export interface FormControlLabelProps
    */
   onChange?: (event: React.SyntheticEvent, checked: boolean) => void;
   /**
+   * If `true`, the label will indicate that the `input` is required.
+   */
+  required?: boolean;
+  /**
    * The props used for each slot inside.
    * @default {}
    */

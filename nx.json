@@ -1,0 +1,9 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "extends": "nx/presets/npm.json",
+  "targetDefaults": {
+    "build": {
+      "cache": true
+    }
+  }
+}

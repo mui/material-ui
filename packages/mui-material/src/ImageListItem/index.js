@@ -1,3 +1,4 @@
+'use client';
 export { default } from './ImageListItem';
 
 export * from './imageListItemClasses';

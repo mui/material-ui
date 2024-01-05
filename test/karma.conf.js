@@ -1,5 +1,5 @@
-const playwright = require('playwright');
 const path = require('path');
+const playwright = require('playwright');
 const webpack = require('webpack');
 
 const CI = Boolean(process.env.CI);
@@ -19,7 +19,7 @@ if (process.env.CIRCLECI) {
 
 const browserStack = {
   // |commits in PRs| >> |Merged commits|.
-  // Since we have limited ressources on BrowserStack we often time out on PRs.
+  // Since we have limited resources on BrowserStack we often time out on PRs.
   // However, BrowserStack rarely fails with a true-positive so we use it as a stop gap for release not merge.
   // But always enable it locally since people usually have to explicitly have to expose their BrowserStack access key anyway.
   enabled: !CI || !isPR || process.env.BROWSERSTACK_FORCE === 'true',
@@ -27,7 +27,7 @@ const browserStack = {
   accessKey: process.env.BROWSERSTACK_ACCESS_KEY,
   build,
   // https://github.com/browserstack/api#timeout300
-  timeout: 10 * 60, // Maximum time before a worker is terminated. Default 5 minutes.
+  timeout: 5 * 60, // Maximum time before a worker is terminated. Default 5 minutes.
 };
 
 process.env.CHROME_BIN = playwright.chromium.executablePath();
@@ -37,7 +37,7 @@ process.env.FIREFOX_BIN = playwright.firefox.executablePath();
 // Per second, https://www.browserstack.com/docs/automate/api-reference/selenium/introduction#rest-api-projects
 const MAX_REQUEST_PER_SECOND_BROWSERSTACK = 1600 / (60 * 5);
 // Estimate the max number of concurrent karma builds
-// For each PR, 6 concurrent builds are used, only one is usng BrowserStack.
+// For each PR, 6 concurrent builds are used, only one is using BrowserStack.
 const AVERAGE_KARMA_BUILD = 1 / 6;
 // CircleCI accepts up to 83 concurrent builds.
 const MAX_CIRCLE_CI_CONCURRENCY = 83;
@@ -126,7 +126,7 @@ module.exports = function setKarmaConfig(config) {
       module: {
         rules: [
           {
-            test: /\.(js|ts|tsx)$/,
+            test: /\.(js|mjs|ts|tsx)$/,
             loader: 'babel-loader',
             exclude: /node_modules/,
             options: {
@@ -137,12 +137,12 @@ module.exports = function setKarmaConfig(config) {
           {
             test: /\.(js|mjs|jsx)$/,
             include:
-              /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator|@mui(\/|\\)x-date-pickers-pro|@mui(\/|\\)x-date-pickers)/,
+              /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator|@mui(\/|\\)x-date-pickers-pro|@mui(\/|\\)x-date-pickers|@mui(\/|\\)x-tree-view)/,
             use: {
               loader: 'babel-loader',
               options: {
                 // We have to apply `babel-plugin-module-resolve` to the files in `@mui/x-date-pickers`.
-                // Otherwise we can't import `@mui/material` from `@mui/x-date-pickers` in `yarn test:karma`.
+                // Otherwise we can't import `@mui/material` from `@mui/x-date-pickers` in `pnpm test:karma`.
                 sourceType: 'unambiguous',
                 plugins: [
                   [
@@ -161,6 +161,7 @@ module.exports = function setKarmaConfig(config) {
                         '@mui/utils': './packages/mui-utils/src',
                         '@mui/base': './packages/mui-base/src',
                         '@mui/material-next': './packages/mui-material-next/src',
+                        '@mui/material-nextjs': './packages/mui-material-nextjs/src',
                         '@mui/joy': './packages/mui-joy/src',
                       },
                       transformFunctions: ['require'],
@@ -171,7 +172,7 @@ module.exports = function setKarmaConfig(config) {
             },
           },
           {
-            test: /\.(js|ts|tsx)$/,
+            test: /\.(js|mjs|ts|tsx)$/,
             use: {
               loader: 'babel-loader',
               options: {
@@ -184,7 +185,7 @@ module.exports = function setKarmaConfig(config) {
         ],
       },
       resolve: {
-        extensions: ['.js', '.ts', '.tsx'],
+        extensions: ['.js', '.mjs', '.ts', '.tsx'],
         fallback: {
           // needed by sourcemap
           fs: false,

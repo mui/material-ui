@@ -9,17 +9,17 @@ export default function ExampleStrapiSwitch() {
       checked={checked}
       onChange={(event) => setChecked(event.target.checked)}
       sx={{
-        '--Switch-thumb-size': '16px',
-        '--Switch-track-width': '40px',
-        '--Switch-track-height': '24px',
-        '--Switch-track-background': '#EE5E52',
+        '--Switch-thumbSize': '16px',
+        '--Switch-trackWidth': '40px',
+        '--Switch-trackHeight': '24px',
+        '--Switch-trackBackground': '#EE5E52',
         '&:hover': {
-          '--Switch-track-background': '#EE5E52',
+          '--Switch-trackBackground': '#EE5E52',
         },
         [`&.${switchClasses.checked}`]: {
-          '--Switch-track-background': '#5CB176',
+          '--Switch-trackBackground': '#5CB176',
           '&:hover': {
-            '--Switch-track-background': '#5CB176',
+            '--Switch-trackBackground': '#5CB176',
           },
         },
       }}

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, screen } from 'test/utils';
+import { createRenderer, describeConformance, screen } from '@mui-internal/test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Alert, { alertClasses as classes } from '@mui/material/Alert';
 import Paper, { paperClasses } from '@mui/material/Paper';
@@ -18,11 +18,15 @@ describe('<Alert />', () => {
     muiName: 'MuiAlert',
     testVariantProps: { variant: 'standard', color: 'success' },
     testDeepOverrides: { slotName: 'message', slotClassName: classes.message },
+    testLegacyComponentsProp: true,
     slots: {
       closeButton: {},
       closeIcon: {},
     },
-    skip: ['componentsProp'],
+    skip: [
+      'componentsProp',
+      'slotPropsCallback', // not supported yet
+    ],
   }));
 
   describe('prop: square', () => {

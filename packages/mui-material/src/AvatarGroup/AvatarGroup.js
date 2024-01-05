@@ -1,9 +1,10 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { isFragment } from 'react-is';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Avatar, { avatarClasses } from '../Avatar';
@@ -70,6 +71,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     component = 'div',
     componentsProps = {},
     max = 5,
+    renderSurplus,
     slotProps = {},
     spacing = 'medium',
     total,
@@ -113,6 +115,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
 
   const maxAvatars = Math.min(children.length, clampedMax - 1);
   const extraAvatars = Math.max(totalAvatars - clampedMax, totalAvatars - maxAvatars, 0);
+  const extraAvatarsElement = renderSurplus ? renderSurplus(extraAvatars) : `+${extraAvatars}`;
 
   const marginLeft = spacing && SPACINGS[spacing] !== undefined ? SPACINGS[spacing] : -spacing;
 
@@ -134,7 +137,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
           className={clsx(classes.avatar, additionalAvatarSlotProps?.className)}
           style={{ marginLeft, ...additionalAvatarSlotProps?.style }}
         >
-          +{extraAvatars}
+          {extraAvatarsElement}
         </AvatarGroupAvatar>
       ) : null}
       {children
@@ -157,10 +160,10 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
 });
 
 AvatarGroup.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The avatars to stack.
    */
@@ -206,6 +209,12 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
 
     return null;
   }),
+  /**
+   * custom renderer of extraAvatars
+   * @param {number} surplus number of extra avatars
+   * @returns {React.ReactNode} custom element to display
+   */
+  renderSurplus: PropTypes.func,
   /**
    * The extra props for the slot components.
    * You can override the existing props or add new ones.

@@ -1,6 +1,7 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { refType, deepmerge } from '@mui/utils';
 import InputBase from '../InputBase';
 import styled, { rootShouldForwardProp } from '../styles/styled';
@@ -55,7 +56,7 @@ const InputRoot = styled(InputBaseRoot, {
       },
     }),
     ...(!ownerState.disableUnderline && {
-      '&:after': {
+      '&::after': {
         borderBottom: `2px solid ${(theme.vars || theme).palette[ownerState.color].main}`,
         left: 0,
         bottom: 0,
@@ -75,11 +76,12 @@ const InputRoot = styled(InputBaseRoot, {
         // See https://github.com/mui/material-ui/issues/31766
         transform: 'scaleX(1) translateX(0)',
       },
-      [`&.${inputClasses.error}:after`]: {
-        borderBottomColor: (theme.vars || theme).palette.error.main,
-        transform: 'scaleX(1)', // error is always underlined in red
+      [`&.${inputClasses.error}`]: {
+        '&::before, &::after': {
+          borderBottomColor: (theme.vars || theme).palette.error.main,
+        },
       },
-      '&:before': {
+      '&::before': {
         borderBottom: `1px solid ${bottomLineColor}`,
         left: 0,
         bottom: 0,
@@ -92,7 +94,7 @@ const InputRoot = styled(InputBaseRoot, {
         }),
         pointerEvents: 'none', // Transparent to the hover style.
       },
-      [`&:hover:not(.${inputClasses.disabled}):before`]: {
+      [`&:hover:not(.${inputClasses.disabled}, .${inputClasses.error}):before`]: {
         borderBottom: `2px solid ${(theme.vars || theme).palette.text.primary}`,
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
@@ -156,10 +158,10 @@ const Input = React.forwardRef(function Input(inProps, ref) {
 });
 
 Input.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
@@ -177,7 +179,7 @@ Input.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { stub } from 'sinon';
 import { SheetsRegistry } from 'jss';
 import Input from '@mui/material/Input';
-import { createRenderer, screen } from 'test/utils';
+import { createRenderer, screen } from '@mui-internal/test-utils';
 import { isMuiElement } from '@mui/material/utils';
 import { createTheme } from '@mui/material/styles';
 import StylesProvider from '../StylesProvider';
@@ -168,7 +168,10 @@ describe('withStyles', () => {
     });
 
     it('should use theme.props instead of defaultProps', () => {
-      const MuiFoo = ({ foo }) => foo;
+      function MuiFoo({ foo }) {
+        return foo;
+      }
+
       MuiFoo.defaultProps = {
         foo: 'foo',
       };

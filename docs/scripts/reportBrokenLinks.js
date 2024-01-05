@@ -3,9 +3,10 @@ const path = require('path');
 const fse = require('fs-extra');
 const { createRender } = require('@mui/markdown');
 const { marked } = require('marked');
+const { LANGUAGES_IGNORE_PAGES } = require('../config');
 
 // Use renderer to extract all links into a markdown document
-const getPageLinks = (markdown) => {
+function getPageLinks(markdown) {
   const hrefs = [];
 
   const renderer = new marked.Renderer();
@@ -14,12 +15,12 @@ const getPageLinks = (markdown) => {
       hrefs.push(href);
     }
   };
-  marked(markdown, { renderer });
+  marked(markdown, { mangle: false, headerIds: false, renderer });
   return hrefs;
-};
+}
 
 // List all .js files in a folder
-const getJsFilesInFolder = (folderPath) => {
+function getJsFilesInFolder(folderPath) {
   const files = fse.readdirSync(folderPath, { withFileTypes: true });
   return files.reduce((acc, file) => {
     if (file.isDirectory()) {
@@ -27,11 +28,11 @@ const getJsFilesInFolder = (folderPath) => {
       return [...acc, ...filesInFolder];
     }
     if (file.name.endsWith('.js') || file.name.endsWith('.tsx')) {
-      return [...acc, path.join(folderPath, file.name)];
+      return [...acc, path.join(folderPath, file.name).replace(/\\/g, '/')];
     }
     return acc;
   }, []);
-};
+}
 
 // Returns url assuming it's "./docs/pages/x/..." becomes  "mui.com/x/..."
 const jsFilePathToUrl = (jsFilePath) => {
@@ -40,10 +41,10 @@ const jsFilePathToUrl = (jsFilePath) => {
 
   const root = folder.slice(jsFilePath.indexOf('/pages') + '/pages'.length);
   const suffix = path.extname(file);
-  let page = `/${file.slice(0, file.length - suffix.length)}`;
+  let page = `/${file.slice(0, file.length - suffix.length)}/`;
 
-  if (page === '/index') {
-    page = '';
+  if (page === '/index/') {
+    page = '/';
   }
 
   return `${root}${page}`;
@@ -66,7 +67,17 @@ function getLinksAndAnchors(fileName) {
   const toc = [];
   const headingHashes = {};
   const userLanguage = 'en';
-  const render = createRender({ headingHashes, toc, userLanguage });
+  const render = createRender({
+    headingHashes,
+    toc,
+    userLanguage,
+    options: {
+      ignoreLanguagePages: LANGUAGES_IGNORE_PAGES,
+      env: {
+        SOURCE_CODE_REPO: '',
+      },
+    },
+  });
 
   const data = fse.readFileSync(fileName, { encoding: 'utf8' });
   render(data);
@@ -135,18 +146,16 @@ const parseDocFolder = (folderPath, availableLinks = {}, usedLinks = {}) => {
   mdFiles.forEach(({ fileName, url }) => {
     const { hashes, links } = getLinksAndAnchors(fileName);
 
-    links
-      .map((link) => (link[link.length - 1] === '/' ? link.slice(0, link.length - 1) : link))
-      .forEach((link) => {
-        if (usedLinks[link] === undefined) {
-          usedLinks[link] = [fileName];
-        } else {
-          usedLinks[link].push(fileName);
-        }
-      });
+    links.forEach((link) => {
+      if (usedLinks[link] === undefined) {
+        usedLinks[link] = [fileName];
+      } else {
+        usedLinks[link].push(fileName);
+      }
+    });
 
     hashes.forEach((hash) => {
-      availableLinks[`${url}/#${hash}`] = true;
+      availableLinks[`${url}#${hash}`] = true;
     });
   });
 };
@@ -157,7 +166,7 @@ const getAnchor = (link) => {
   return potentialAnchor.includes('#') ? potentialAnchor : '';
 };
 
-// Export usefull method for doing similar checks in other repositories
+// Export useful method for doing similar checks in other repositories
 module.exports = { parseDocFolder, getAnchor };
 
 /**
@@ -191,12 +200,14 @@ if (require.main === module) {
 
   parseDocFolder(path.join(docsSpaceRoot, './pages/'), availableLinks, usedLinks);
 
-  write('Broken links found by `yarn docs:link-check` that exist:\n');
+  write('Broken links found by `pnpm docs:link-check` that exist:\n');
   Object.keys(usedLinks)
     .filter((link) => link.startsWith('/'))
     .filter((link) => !availableLinks[link])
-    // unstyled sections are added by scripts (can not be found in markdown)
-    .filter((link) => !link.includes('#unstyled'))
+    // these url segments are specific to Base UI and added by scripts (can not be found in markdown)
+    .filter((link) =>
+      ['components-api', 'hooks-api', '#unstyled'].every((str) => !link.includes(str)),
+    )
     .filter((link) => UNSUPPORTED_PATHS.every((unsupportedPath) => !link.includes(unsupportedPath)))
     .sort()
     .forEach((linkKey) => {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from 'test/utils';
+import { createRenderer, screen } from '@mui-internal/test-utils';
 import { styled, createTheme, ThemeProvider } from '@mui/system';
 
 describe('styled', () => {
@@ -432,6 +432,50 @@ describe('styled', () => {
       });
     });
 
+    it('should support variants with props callbacks', () => {
+      const customTheme = createTheme({
+        components: {
+          MuiTest: {
+            variants: [
+              {
+                props: ({ size }) => size === 'large',
+                style: {
+                  width: '400px',
+                  height: '400px',
+                },
+              },
+              {
+                props: ({ size }) => size === 'small',
+                style: {
+                  width: '200px',
+                  height: '200px',
+                },
+              },
+            ],
+          },
+        },
+      });
+      const { getByTestId } = render(
+        <ThemeProvider theme={customTheme}>
+          <TestObj data-testid="large" size="large">
+            Test
+          </TestObj>
+          <TestObj data-testid="small" size="small">
+            Test
+          </TestObj>
+        </ThemeProvider>,
+      );
+
+      expect(getByTestId('large')).toHaveComputedStyle({
+        width: '400px',
+        height: '400px',
+      });
+      expect(getByTestId('small')).toHaveComputedStyle({
+        width: '200px',
+        height: '200px',
+      });
+    });
+
     it('should resolve the sx prop of object type', () => {
       const { container } = render(
         <ThemeProvider theme={theme}>
@@ -479,6 +523,47 @@ describe('styled', () => {
       expect(container.firstChild).toHaveComputedStyle({
         fontFamily: 'Roboto',
         fontWeight: '300',
+      });
+    });
+
+    it('should resolve the theme.unstable_sx when used in an array styles', () => {
+      const TestComponent = styled('div')(
+        ({ theme: userTheme }) =>
+          userTheme.unstable_sx({
+            mt: 2,
+          }),
+        ({ theme: userTheme }) =>
+          userTheme.unstable_sx({
+            mb: 2,
+          }),
+      );
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <TestComponent>Test</TestComponent>
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        marginTop: '16px',
+        marginBottom: '16px',
+      });
+    });
+
+    it('should resolve the theme.unstable_sx when used in an pseudo object', () => {
+      const TestComponent = styled('div')(({ theme: userTheme }) => ({
+        '&.test-classname': userTheme.unstable_sx({
+          mt: 2,
+        }),
+      }));
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <TestComponent className="test-classname">Test</TestComponent>
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        marginTop: '16px',
       });
     });
 

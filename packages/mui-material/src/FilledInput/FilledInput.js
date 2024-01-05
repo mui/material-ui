@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import { refType, deepmerge } from '@mui/utils';
 import PropTypes from 'prop-types';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import InputBase from '../InputBase';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -69,7 +70,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
       backgroundColor: theme.vars ? theme.vars.palette.FilledInput.disabledBg : disabledBackground,
     },
     ...(!ownerState.disableUnderline && {
-      '&:after': {
+      '&::after': {
         borderBottom: `2px solid ${
           (theme.vars || theme).palette[ownerState.color || 'primary']?.main
         }`,
@@ -91,11 +92,12 @@ const FilledInputRoot = styled(InputBaseRoot, {
         // See https://github.com/mui/material-ui/issues/31766
         transform: 'scaleX(1) translateX(0)',
       },
-      [`&.${filledInputClasses.error}:after`]: {
-        borderBottomColor: (theme.vars || theme).palette.error.main,
-        transform: 'scaleX(1)', // error is always underlined in red
+      [`&.${filledInputClasses.error}`]: {
+        '&::before, &::after': {
+          borderBottomColor: (theme.vars || theme).palette.error.main,
+        },
       },
-      '&:before': {
+      '&::before': {
         borderBottom: `1px solid ${
           theme.vars
             ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / ${theme.vars.opacity.inputUnderline})`
@@ -112,7 +114,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
         }),
         pointerEvents: 'none', // Transparent to the hover style.
       },
-      [`&:hover:not(.${filledInputClasses.disabled}):before`]: {
+      [`&:hover:not(.${filledInputClasses.disabled}, .${filledInputClasses.error}):before`]: {
         borderBottom: `1px solid ${(theme.vars || theme).palette.text.primary}`,
       },
       [`&.${filledInputClasses.disabled}:before`]: {
@@ -135,6 +137,11 @@ const FilledInputRoot = styled(InputBaseRoot, {
         paddingTop: 16,
         paddingBottom: 17,
       }),
+      ...(ownerState.hiddenLabel &&
+        ownerState.size === 'small' && {
+          paddingTop: 8,
+          paddingBottom: 9,
+        }),
     }),
   };
 });
@@ -178,12 +185,6 @@ const FilledInputInput = styled(InputBaseInput, {
     paddingTop: 16,
     paddingBottom: 17,
   }),
-  ...(ownerState.multiline && {
-    paddingTop: 0,
-    paddingBottom: 0,
-    paddingLeft: 0,
-    paddingRight: 0,
-  }),
   ...(ownerState.startAdornment && {
     paddingLeft: 0,
   }),
@@ -195,6 +196,12 @@ const FilledInputInput = styled(InputBaseInput, {
       paddingTop: 8,
       paddingBottom: 9,
     }),
+  ...(ownerState.multiline && {
+    paddingTop: 0,
+    paddingBottom: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
+  }),
 }));
 
 const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
@@ -227,7 +234,7 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
 
   const componentsProps =
     slotProps ?? componentsPropsProp
-      ? deepmerge(slotProps ?? componentsPropsProp, filledInputComponentsProps)
+      ? deepmerge(filledInputComponentsProps, slotProps ?? componentsPropsProp)
       : filledInputComponentsProps;
 
   const RootSlot = slots.root ?? components.Root ?? FilledInputRoot;
@@ -249,10 +256,10 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
 });
 
 FilledInput.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
@@ -270,7 +277,7 @@ FilledInput.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

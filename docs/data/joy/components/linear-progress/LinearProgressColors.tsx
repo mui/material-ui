@@ -24,7 +24,6 @@ export default function LinearProgressColors() {
         <LinearProgress color="primary" variant={variant} />
         <LinearProgress color="neutral" variant={variant} />
         <LinearProgress color="danger" variant={variant} />
-        <LinearProgress color="info" variant={variant} />
         <LinearProgress color="success" variant={variant} />
         <LinearProgress color="warning" variant={variant} />
       </Stack>
@@ -37,7 +36,7 @@ export default function LinearProgressColors() {
         }}
       >
         <Typography
-          level="body2"
+          level="body-sm"
           fontWeight="xl"
           id="variant-label"
           textColor="text.primary"

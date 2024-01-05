@@ -3,7 +3,12 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const pkg = require('../package.json');
 const withDocsInfra = require('./nextConfigDocsInfra');
 const { findPages } = require('./src/modules/utils/find');
-const { LANGUAGES, LANGUAGES_SSR, LANGUAGES_IGNORE_PAGES } = require('./src/modules/constants');
+const {
+  LANGUAGES,
+  LANGUAGES_SSR,
+  LANGUAGES_IGNORE_PAGES,
+  LANGUAGES_IN_PROGRESS,
+} = require('./config');
 
 const workspaceRoot = path.join(__dirname, '../');
 
@@ -52,6 +57,8 @@ module.exports = withDocsInfra({
             '@mui/x-date-pickers',
             '@mui/x-date-pickers-pro',
             '@mui/x-data-grid-generator',
+            '@mui/x-charts',
+            '@mui/x-tree-view',
             '@mui/x-license-pro',
           ].some((dep) => request.startsWith(dep));
 
@@ -87,7 +94,20 @@ module.exports = withDocsInfra({
             oneOf: [
               {
                 resourceQuery: /@mui\/markdown/,
-                use: [options.defaultLoaders.babel, require.resolve('@mui/markdown/loader')],
+                use: [
+                  options.defaultLoaders.babel,
+                  {
+                    loader: require.resolve('@mui/markdown/loader'),
+                    options: {
+                      ignoreLanguagePages: LANGUAGES_IGNORE_PAGES,
+                      languagesInProgress: LANGUAGES_IN_PROGRESS,
+                      env: {
+                        SOURCE_CODE_REPO: options.config.env.SOURCE_CODE_REPO,
+                        LIB_VERSION: options.config.env.LIB_VERSION,
+                      },
+                    },
+                  },
+                ],
               },
               {
                 // used in some /getting-started/templates
@@ -100,7 +120,7 @@ module.exports = withDocsInfra({
             test: /\.(js|mjs|jsx)$/,
             resourceQuery: { not: [/raw/] },
             include:
-              /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator|@mui(\/|\\)x-date-pickers-pro|@mui(\/|\\)x-date-pickers)/,
+              /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator|@mui(\/|\\)x-date-pickers-pro|@mui(\/|\\)x-date-pickers|@mui(\/|\\)x-charts|@mui(\/|\\)x-tree-view)/,
             use: {
               loader: 'babel-loader',
               options: {
@@ -124,6 +144,7 @@ module.exports = withDocsInfra({
                         '@mui/utils': '../packages/mui-utils/src',
                         '@mui/base': '../packages/mui-base/src',
                         '@mui/material-next': '../packages/mui-material-next/src',
+                        '@mui/material-nextjs': '../packages/mui-material-nextjs/src',
                         '@mui/joy': '../packages/mui-joy/src',
                       },
                       // transformFunctions: ['require'],
@@ -155,10 +176,10 @@ module.exports = withDocsInfra({
       : null,
     LIB_VERSION: pkg.version,
     FEEDBACK_URL: process.env.FEEDBACK_URL,
-    SLACK_FEEDBACKS_TOKEN: process.env.SLACK_FEEDBACKS_TOKEN,
-    SOURCE_CODE_ROOT_URL: 'https://github.com/mui/material-ui/blob/master', // #default-branch-switch
+    SOURCE_GITHUB_BRANCH: 'master', // #default-branch-switch
     SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
-    BUILD_ONLY_ENGLISH_LOCALE: buildOnlyEnglishLocale,
+    GITHUB_TEMPLATE_DOCS_FEEDBACK: '4.docs-feedback.yml',
+    BUILD_ONLY_ENGLISH_LOCALE: String(buildOnlyEnglishLocale),
   },
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
   // However, we don't in order to prevent any regression in the `findPages()` method.
@@ -170,7 +191,11 @@ module.exports = withDocsInfra({
       const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
 
       pages2.forEach((page) => {
-        if (page.pathname.startsWith('/experiments') && process.env.DEPLOY_ENV !== 'production') {
+        // The experiments pages are only meant for experiments, they shouldn't leak to production.
+        if (
+          (page.pathname.startsWith('/experiments/') || page.pathname === '/experiments') &&
+          process.env.DEPLOY_ENV === 'production'
+        ) {
           return;
         }
         // The blog is not translated

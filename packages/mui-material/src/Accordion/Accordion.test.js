@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, createRenderer, fireEvent } from 'test/utils';
+import { describeConformance, createRenderer, fireEvent } from '@mui-internal/test-utils';
 import Accordion, { accordionClasses as classes } from '@mui/material/Accordion';
 import Paper from '@mui/material/Paper';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -169,6 +169,7 @@ describe('<Accordion />', () => {
             Accordion.propTypes,
             {
               classes: {},
+              // eslint-disable-next-line react/jsx-no-useless-fragment
               children: <React.Fragment />,
             },
             'prop',

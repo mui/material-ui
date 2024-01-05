@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from '@mui-internal/test-utils';
 import PaginationItem, { paginationItemClasses as classes } from '@mui/material/PaginationItem';
 
 describe('<PaginationItem />', () => {
@@ -14,6 +14,7 @@ describe('<PaginationItem />', () => {
     refInstanceof: window.HTMLButtonElement,
     testVariantProps: { variant: 'foo' },
     testStateOverrides: { prop: 'variant', value: 'outlined', styleKey: 'outlined' },
+    testLegacyComponentsProp: true,
     slots: {
       first: {},
       last: {},
@@ -26,6 +27,7 @@ describe('<PaginationItem />', () => {
       // uses non-standard camel-case fields in `components`
       'slotsProp',
       'slotPropsProp',
+      'slotPropsCallback', // not supported yet
     ],
   }));
 

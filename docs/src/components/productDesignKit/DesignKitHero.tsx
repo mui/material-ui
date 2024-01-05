@@ -17,6 +17,7 @@ import {
 export default function TemplateHero() {
   return (
     <HeroContainer
+      linearGradient
       left={
         <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
           <Typography
@@ -27,21 +28,23 @@ export default function TemplateHero() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: { xs: 'center', md: 'start' },
-              '& > *': { mr: 1, width: 28, height: 28 },
+              '& > *': { mr: 1 },
               ...theme.applyDarkStyles({
                 color: 'primary.400',
               }),
             })}
           >
-            <IconImage name="product-designkits" /> Design kits
+            <IconImage width={28} height={28} loading="eager" name="product-designkits" /> Design
+            kits
           </Typography>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
-            MUI in your favorite
+            Material UI
+            <br /> in your favorite
             <br /> <GradientText>design tool</GradientText>
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 450 }}>
-            Pick your favorite design tool to enjoy and use MUI components. Boost consistency and
-            facilitate communication when working with developers.
+            Pick your favorite design tool to enjoy and use Material UI components. Boost
+            consistency and facilitate communication when working with developers.
           </Typography>
           <Button
             component={Link}

@@ -1,8 +1,9 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes, visuallyHidden } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import useTheme from '../styles/useTheme';
 import {
   capitalize,
@@ -50,7 +51,7 @@ const useUtilityClasses = (ownerState) => {
       `size${capitalize(size)}`,
       disabled && 'disabled',
       focusVisible && 'focusVisible',
-      readOnly && 'readyOnly',
+      readOnly && 'readOnly',
     ],
     label: ['label', 'pristine'],
     labelEmptyValue: [emptyValueFocused && 'labelEmptyValueActive'],
@@ -103,6 +104,7 @@ const RatingRoot = styled('span', {
   ...(ownerState.size === 'large' && {
     fontSize: theme.typography.pxToRem(30),
   }),
+  // TODO v6: use the .Mui-readOnly global state class
   ...(ownerState.readOnly && {
     pointerEvents: 'none',
   }),
@@ -111,7 +113,10 @@ const RatingRoot = styled('span', {
 const RatingLabel = styled('label', {
   name: 'MuiRating',
   slot: 'Label',
-  overridesResolver: (props, styles) => styles.label,
+  overridesResolver: ({ ownerState }, styles) => [
+    styles.label,
+    ownerState.emptyValueFocused && styles.labelEmptyValueActive,
+  ],
 })(({ ownerState }) => ({
   cursor: 'inherit',
   ...(ownerState.emptyValueFocused && {
@@ -362,14 +367,14 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     }
 
     const rootNode = rootRef.current;
-    const { right, left } = rootNode.getBoundingClientRect();
-    const { width } = rootNode.firstChild.getBoundingClientRect();
+    const { right, left, width: containerWidth } = rootNode.getBoundingClientRect();
+
     let percent;
 
     if (theme.direction === 'rtl') {
-      percent = (right - event.clientX) / (width * max);
+      percent = (right - event.clientX) / containerWidth;
     } else {
-      percent = (event.clientX - left) / (width * max);
+      percent = (event.clientX - left) / containerWidth;
     }
 
     let newHover = roundValueToPrecision(max * percent + precision / 2, precision);
@@ -498,7 +503,14 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
       ref={handleRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={clsx(classes.root, className)}
+      className={clsx(
+        classes.root,
+        {
+          // TODO v6: remove this class as it duplicates with the global state class Mui-readOnly
+          'MuiRating-readOnly': readOnly,
+        },
+        className,
+      )}
       ownerState={ownerState}
       role={readOnly ? 'img' : null}
       aria-label={readOnly ? getLabelText(value) : null}
@@ -604,10 +616,10 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 });
 
 Rating.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Override or extend the styles applied to the component.
    */

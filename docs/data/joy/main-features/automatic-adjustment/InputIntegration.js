@@ -14,7 +14,7 @@ export default function InputIntegration() {
         placeholder="Password"
         type="password"
         endDecorator={
-          <IconButton color="neutral" size="sm">
+          <IconButton color="neutral">
             <VisibilityRoundedIcon />
           </IconButton>
         }
@@ -24,7 +24,7 @@ export default function InputIntegration() {
         placeholder="Password"
         type="password"
         endDecorator={
-          <IconButton color="neutral" size="sm">
+          <IconButton color="neutral">
             <VisibilityRoundedIcon />
           </IconButton>
         }

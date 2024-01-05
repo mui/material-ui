@@ -1,11 +1,13 @@
+'use client';
 import * as React from 'react';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { useSlotProps } from '@mui/base/utils';
-import composeClasses from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { StyledList } from '../List/List';
 import { styled, useThemeProps } from '../styles';
+import { VariantColorProvider } from '../styles/variantColorInheritance';
 import { getAutocompleteListboxUtilityClass } from './autocompleteListboxClasses';
 import {
   AutocompleteListboxOwnerState,
@@ -14,6 +16,7 @@ import {
 import listItemClasses from '../ListItem/listItemClasses';
 import listClasses from '../List/listClasses';
 import { scopedVariables } from '../List/ListProvider';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: AutocompleteListboxOwnerState) => {
   const { variant, color, size } = ownerState;
@@ -33,6 +36,7 @@ const excludePopperProps = <T extends Record<string, any>>({
   anchorEl,
   direction,
   disablePortal,
+  keepMounted,
   modifiers,
   open,
   placement,
@@ -48,18 +52,18 @@ export const StyledAutocompleteListbox = styled(StyledList)<{
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
     '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
-    '--List-radius': theme.vars.radius.sm,
-    '--List-item-stickyBackground':
+    '--ListItem-stickyBackground':
       variantStyle?.backgroundColor ||
       variantStyle?.background ||
-      theme.vars.palette.background.surface,
-    '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)',
+      theme.vars.palette.background.popup,
+    '--ListItem-stickyTop': 'calc(var(--List-padding, var(--ListDivider-gap)) * -1)',
     ...scopedVariables,
-    boxShadow: theme.vars.shadow.md,
+    boxShadow: theme.shadow.md,
+    borderRadius: `var(--List-radius, ${theme.vars.radius.sm})`,
     ...(!variantStyle?.backgroundColor && {
-      backgroundColor: theme.vars.palette.background.surface,
+      backgroundColor: theme.vars.palette.background.popup,
     }),
-    zIndex: 1200,
+    zIndex: theme.vars.zIndex.popup,
     overflow: 'auto',
     maxHeight: '40vh',
     position: 'relative', // to make sure that the listbox is positioned for grouped options to work.
@@ -82,7 +86,16 @@ const AutocompleteListboxRoot = styled(StyledAutocompleteListbox, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })({});
-
+/**
+ *
+ * Demos:
+ *
+ * - [Autocomplete](https://mui.com/joy-ui/react-autocomplete/)
+ *
+ * API:
+ *
+ * - [AutocompleteListbox API](https://mui.com/joy-ui/api/autocomplete-listbox/)
+ */
 const AutocompleteListbox = React.forwardRef(function AutocompleteListbox(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -91,17 +104,19 @@ const AutocompleteListbox = React.forwardRef(function AutocompleteListbox(inProp
 
   const {
     children,
+    className,
     component,
     color = 'neutral',
     variant = 'outlined',
     size = 'md',
+    slots = {},
+    slotProps = {},
     ...otherProps
   } = props;
 
   const ownerState = {
     ...props,
     size,
-    component,
     color,
     variant,
     nesting: false,
@@ -112,38 +127,45 @@ const AutocompleteListbox = React.forwardRef(function AutocompleteListbox(inProp
   const other = excludePopperProps(otherProps);
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
-  const rootProps = useSlotProps({
-    elementType: AutocompleteListbox,
-    externalSlotProps: {},
-    externalForwardedProps: other,
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: AutocompleteListboxRoot,
+    externalForwardedProps,
     ownerState,
     additionalProps: {
-      ref,
-      as: component,
       role: 'listbox',
     },
-    className: classes.root,
   });
 
-  return <AutocompleteListboxRoot {...rootProps}>{children}</AutocompleteListboxRoot>;
+  return (
+    <VariantColorProvider variant={variant} color={color}>
+      <SlotRoot {...rootProps}>{children}</SlotRoot>
+    </VariantColorProvider>
+  );
 }) as OverridableComponent<AutocompleteListboxTypeMap>;
 
 AutocompleteListbox.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */
   children: PropTypes.node,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -157,6 +179,20 @@ AutocompleteListbox.propTypes /* remove-proptypes */ = {
    */
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -165,7 +201,7 @@ AutocompleteListbox.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

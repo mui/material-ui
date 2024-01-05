@@ -1,5 +1,5 @@
-import SvgIcon from '@mui/joy/SvgIcon';
 import * as React from 'react';
+import SvgIcon from '@mui/joy/SvgIcon';
 
 function HomeIcon() {
   return <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />;
@@ -22,9 +22,6 @@ function HomeIcon() {
   <HomeIcon />
 </SvgIcon>;
 <SvgIcon color="danger">
-  <HomeIcon />
-</SvgIcon>;
-<SvgIcon color="info">
   <HomeIcon />
 </SvgIcon>;
 <SvgIcon color="success">
@@ -60,12 +57,6 @@ function HomeIcon() {
   <HomeIcon />
 </SvgIcon>;
 <SvgIcon fontSize="xl4">
-  <HomeIcon />
-</SvgIcon>;
-<SvgIcon fontSize="xl5">
-  <HomeIcon />
-</SvgIcon>;
-<SvgIcon fontSize="xl6">
   <HomeIcon />
 </SvgIcon>;
 

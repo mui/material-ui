@@ -1,13 +1,16 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { ThemeProvider, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import TreeView from '@mui/lab/TreeView';
-import MuiTreeItem, { useTreeItem, TreeItemProps, TreeItemContentProps } from '@mui/lab/TreeItem';
+import { TreeView } from '@mui/x-tree-view/TreeView';
+import {
+  TreeItem as MuiTreeItem,
+  useTreeItem,
+  TreeItemProps,
+  TreeItemContentProps,
+} from '@mui/x-tree-view/TreeItem';
 import Typography from '@mui/material/Typography';
-import AddBoxOutlined from '@mui/icons-material/AddBoxOutlined';
-import IndeterminateCheckBoxOutlined from '@mui/icons-material/IndeterminateCheckBoxOutlined';
 import FolderRounded from '@mui/icons-material/FolderRounded';
 import FolderOpenRounded from '@mui/icons-material/FolderOpenRounded';
 import PhotoOutlined from '@mui/icons-material/PhotoOutlined';
@@ -15,9 +18,8 @@ import PictureAsPdfOutlined from '@mui/icons-material/PictureAsPdfOutlined';
 import VideocamOutlined from '@mui/icons-material/VideocamOutlined';
 import FourKOutlined from '@mui/icons-material/FourKOutlined';
 import Frame from 'docs/src/components/action/Frame';
-import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
-import Chip from '@mui/material/Chip';
-import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 
 const CustomContent = React.forwardRef(function CustomContent(
   props: TreeItemContentProps & { lastNestedChild?: boolean },
@@ -46,16 +48,16 @@ const CustomContent = React.forwardRef(function CustomContent(
 
   const icon = iconProp || expansionIcon || displayIcon;
 
-  const handleMouseDown = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
     preventSelection(event);
   };
 
-  const handleExpansionClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleExpansionClick = (event: React.MouseEvent<HTMLDivElement>) => {
     handleExpansion(event);
     handleSelection(event);
   };
 
-  const handleSelectionClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleSelectionClick = (event: React.MouseEvent<HTMLDivElement>) => {
     handleSelection(event);
   };
 
@@ -145,78 +147,134 @@ const CustomContent = React.forwardRef(function CustomContent(
   );
 });
 
-const StyledTreeItem = styled(MuiTreeItem)(({ theme }) => ({
-  paddingTop: 5,
-  '& .MuiTreeItem-content .MuiTreeItem-label': {
-    paddingLeft: theme.spacing(0.75),
-  },
-  '& .MuiTreeItem-root': {
-    position: 'relative',
-    '&:last-of-type': {
-      '&:before': {
-        height: 30 / 2,
-      },
+const StyledTreeItem = styled(MuiTreeItem)(({ theme }) => [
+  {
+    paddingTop: 5,
+    '& .MuiTreeItem-content .MuiTreeItem-label': {
+      paddingLeft: theme.spacing(0.75),
     },
-    '&:before': {
-      content: '""',
-      display: 'block',
-      position: 'absolute',
-      left: -18,
-      height: '100%',
-      width: 2,
-      backgroundColor:
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.grey[200],
-    },
-  },
-  '& .MuiTreeItem-content': {
-    padding: theme.spacing('2px', 0.5),
-  },
-  '& .MuiTreeItem-group': {
-    marginLeft: 0,
-    paddingLeft: theme.spacing(3),
-    '& .MuiTreeItem-content': {
-      '&:before': {
+    '& .MuiTreeItem-root': {
+      position: 'relative',
+      '&::before': {
         content: '""',
-        position: 'absolute',
         display: 'block',
-        width: 24,
-        height: 2,
-        backgroundColor:
-          theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.grey[200],
-        top: '50%',
-        left: 6,
-        transform: 'translate(-100%, -50%)',
+        position: 'absolute',
+        left: -14,
+        height: '100%',
+        width: 1.5,
+        backgroundColor: (theme.vars || theme).palette.grey[100],
       },
     },
+    '& .MuiTreeItem-content': {
+      padding: theme.spacing('2px', 0.5),
+    },
+    '& .MuiTreeItem-group': {
+      marginLeft: 0,
+      paddingLeft: theme.spacing(3),
+    },
   },
-}));
+  theme.applyDarkStyles({
+    '& .MuiTreeItem-root': {
+      '&::before': {
+        backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+      },
+    },
+    '& .MuiTreeItem-group': {
+      '& .MuiTreeItem-content': {
+        '&::before': {
+          backgroundColor: (theme.vars || theme).palette.primaryDark[500],
+        },
+      },
+    },
+  }),
+]);
 
-function TreeItem(
+const TreeItem = React.forwardRef(function TreeItem(
   props: TreeItemProps & {
     ContentProps?: { lastNestedChild?: boolean };
   },
+  ref: React.Ref<HTMLLIElement>,
 ) {
-  return <StyledTreeItem ContentComponent={CustomContent} {...props} />;
-}
+  return <StyledTreeItem ContentComponent={CustomContent} {...props} ref={ref} />;
+});
+
+const code = `
+<TreeView
+  aria-label="file system navigator"
+  defaultExpanded={['1', '1.1', '1.2', '2', '2.3']}
+  sx={{ height: { xs: 260, sm: 460 }, overflowY: 'auto', p: 1 }}
+>
+  <TreeItem nodeId="1" label="Drive">
+    <TreeItem nodeId="1.1" label="Backup">
+      <TreeItem
+        nodeId="1.1.1"
+        label="Jan 2021.pdf"
+        ContentProps={{ lastNestedChild: true }}
+      />
+      <TreeItem
+        nodeId="1.1.2"
+        label="Feb 2021.pdf"
+        ContentProps={{ lastNestedChild: true }}
+      />
+      <TreeItem
+        nodeId="1.1.3"
+        label="Mar 2021.pdf"
+        ContentProps={{ lastNestedChild: true }}
+      />
+    </TreeItem>
+    <TreeItem nodeId="1.2" label="Photos">
+      <TreeItem
+        nodeId="1.2.1"
+        label="family.jpeg"
+        ContentProps={{ lastNestedChild: true }}
+      />
+      <TreeItem
+        nodeId="1.2.2"
+        label="my_dogpng"
+        ContentProps={{ lastNestedChild: true }}
+      />
+    </TreeItem>
+  </TreeItem>
+  <TreeItem nodeId="2" label="Favorite">
+    <TreeItem
+      nodeId="2.1"
+      label="MUI_retreat_photo.jpg"
+      ContentProps={{ lastNestedChild: true }}
+    />
+    <TreeItem
+      nodeId="2.2"
+      label="v6_secrets.mkv"
+      ContentProps={{ lastNestedChild: true }}
+    />
+    <TreeItem nodeId="2.3" label="Other pictures">
+      <TreeItem
+        nodeId="2.3.1"
+        label="my_avatar.jpg"
+        ContentProps={{ lastNestedChild: true }}
+      />
+    </TreeItem>
+  </TreeItem>
+</TreeView>`;
 
 export default function XDateRangeDemo() {
   return (
     <Frame>
-      <Frame.Demo sx={{ p: 2, flexGrow: 1 }}>
+      <Frame.Demo sx={{ p: 2 }}>
         <Paper
           variant="outlined"
-          sx={{
+          sx={(theme) => ({
             maxWidth: '100%',
-            mx: 'auto',
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : '#fff'),
-          }}
+            bgcolor: '#FFF',
+            borderRadius: '8px',
+            ...theme.applyDarkStyles({
+              bgcolor: 'primaryDark.900',
+            }),
+          })}
         >
           <TreeView
             aria-label="file system navigator"
-            defaultExpanded={['2', '2.3', '3']}
-            defaultCollapseIcon={<IndeterminateCheckBoxOutlined fontSize="small" />}
-            defaultExpandIcon={<AddBoxOutlined fontSize="small" />}
-            sx={{ height: { xs: 260, sm: 300 }, overflowY: 'auto', p: 1 }}
+            defaultExpanded={['1', '1.1', '1.2']}
+            sx={{ height: { xs: 260, sm: '100%' }, overflowY: 'auto', p: 1 }}
           >
             <TreeItem nodeId="1" label="Drive">
               <TreeItem nodeId="1.1" label="Backup">
@@ -239,28 +297,28 @@ export default function XDateRangeDemo() {
               <TreeItem nodeId="1.2" label="Photos">
                 <TreeItem
                   nodeId="1.2.1"
-                  label="Family.jpeg"
+                  label="family.jpeg"
                   ContentProps={{ lastNestedChild: true }}
                 />
                 <TreeItem
                   nodeId="1.2.2"
-                  label="My Dog.png"
+                  label="my_dogpng"
                   ContentProps={{ lastNestedChild: true }}
                 />
               </TreeItem>
             </TreeItem>
-            <TreeItem nodeId="2" label="Favorite">
+            <TreeItem nodeId="2" label="Favorites">
               <TreeItem
                 nodeId="2.1"
-                label="MUI Retreat Picture.jpg"
+                label="MUI_retreat_photo.jpg"
                 ContentProps={{ lastNestedChild: true }}
               />
               <TreeItem
                 nodeId="2.2"
-                label="v5 launch video.mkv"
+                label="v6_secrets.mkv"
                 ContentProps={{ lastNestedChild: true }}
               />
-              <TreeItem nodeId="2.3" label="images">
+              <TreeItem nodeId="2.3" label="Other pictures">
                 <TreeItem
                   nodeId="2.3.1"
                   label="my_avatar.jpg"
@@ -271,33 +329,9 @@ export default function XDateRangeDemo() {
           </TreeView>
         </Paper>
       </Frame.Demo>
-      <ThemeProvider theme={brandingDarkTheme}>
-        <Frame.Info>
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              mb: 0.5,
-            }}
-          >
-            <Typography variant="body2" fontWeight="bold" sx={{ mr: 1, mt: 0.2 }}>
-              Coming soon!
-            </Typography>
-            <Chip
-              label="Available in the lab"
-              size="small"
-              href="/material-ui/react-tree-view"
-              component="a"
-              sx={{ fontWeight: 500, cursor: 'pointer' }}
-            />
-          </Box>
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-            Subscribe to our newsletter to get first-hand info about the development and release of
-            new components.
-          </Typography>
-          <EmailSubscribe />
-        </Frame.Info>
-      </ThemeProvider>
+      <Frame.Info data-mui-color-scheme="dark" sx={{ maxHeight: 300, overflow: 'auto' }}>
+        <HighlightedCode copyButtonHidden component={MarkdownElement} code={code} language="jsx" />
+      </Frame.Info>
     </Frame>
   );
 }

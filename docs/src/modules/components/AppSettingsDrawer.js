@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { styled, useTheme, alpha } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
@@ -17,16 +17,7 @@ import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
 import FormatTextdirectionLToRIcon from '@mui/icons-material/FormatTextdirectionLToR';
 import FormatTextdirectionRToLIcon from '@mui/icons-material/FormatTextdirectionRToL';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import NoSsr from '@mui/material/NoSsr';
-import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
-import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
-import { useRouter } from 'next/router';
-import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-
-const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
-const CROWDIN_ROOT_URL = 'https://translate.mui.com/project/material-ui-docs/';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const Heading = styled(Typography)(({ theme }) => ({
   margin: '20px 0 10px',
@@ -49,15 +40,11 @@ const IconToggleButton = styled(ToggleButton)({
 function AppSettingsDrawer(props) {
   const { onClose, open = false, ...other } = props;
   const t = useTranslate();
-  const theme = useTheme();
+  const upperTheme = useTheme();
   const changeTheme = useChangeTheme();
   const [mode, setMode] = React.useState(null);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const preferredMode = prefersDarkMode ? 'dark' : 'light';
-  const userLanguage = useUserLanguage();
-  const crowdInLocale = LOCALES[userLanguage] || userLanguage;
-  const router = useRouter();
-  const { canonicalAs } = pathnameToLanguage(router.asPath);
 
   React.useEffect(() => {
     // syncing with homepage, can be removed once all pages are migrated to CSS variables
@@ -78,25 +65,28 @@ function AppSettingsDrawer(props) {
     setMode(paletteMode);
 
     if (paletteMode === 'system') {
-      localStorage.setItem('mui-mode', 'system'); // syncing with homepage, can be removed once all pages are migrated to CSS variables
+      try {
+        localStorage.setItem('mui-mode', 'system'); // syncing with homepage, can be removed once all pages are migrated to CSS variables
+      } catch (error) {
+        // thrown when cookies are disabled.
+      }
       changeTheme({ paletteMode: preferredMode });
     } else {
-      localStorage.setItem('mui-mode', paletteMode); // syncing with homepage, can be removed once all pages are migrated to CSS variables
+      try {
+        localStorage.setItem('mui-mode', paletteMode); // syncing with homepage, can be removed once all pages are migrated to CSS variables
+      } catch (error) {
+        // thrown when cookies are disabled.
+      }
       changeTheme({ paletteMode });
     }
   };
 
   const handleChangeDirection = (event, direction) => {
     if (direction === null) {
-      direction = theme.direction;
+      direction = upperTheme.direction;
     }
 
     changeTheme({ direction });
-  };
-
-  const handleLanguageClick = (language) => () => {
-    document.cookie = `userLanguage=${language.code};path=/;max-age=31536000`;
-    onClose();
   };
 
   return (
@@ -114,7 +104,7 @@ function AppSettingsDrawer(props) {
         <Typography variant="body1" fontWeight="500">
           {t('settings.settings')}
         </Typography>
-        <IconButton color="inherit" onClick={onClose} edge="end">
+        <IconButton color="inherit" onClick={onClose} edge="end" aria-label={t('close')}>
           <CloseIcon color="primary" fontSize="small" />
         </IconButton>
       </Box>
@@ -164,7 +154,7 @@ function AppSettingsDrawer(props) {
         </Heading>
         <ToggleButtonGroup
           exclusive
-          value={theme.direction}
+          value={upperTheme.direction}
           onChange={handleChangeDirection}
           aria-labelledby="settings-direction"
           color="primary"
@@ -172,7 +162,7 @@ function AppSettingsDrawer(props) {
         >
           <IconToggleButton
             value="ltr"
-            aria-label={t('settings.light')}
+            aria-label={t('settings.ltr')}
             data-ga-event-category="settings"
             data-ga-event-action="ltr"
           >
@@ -181,7 +171,7 @@ function AppSettingsDrawer(props) {
           </IconToggleButton>
           <IconToggleButton
             value="rtl"
-            aria-label={t('settings.system')}
+            aria-label={t('settings.rtl')}
             data-ga-event-category="settings"
             data-ga-event-action="rtl"
           >
@@ -189,74 +179,15 @@ function AppSettingsDrawer(props) {
             {t('settings.rtl')}
           </IconToggleButton>
         </ToggleButtonGroup>
-        <Heading gutterBottom>{t('settings.language')}</Heading>
-        <NoSsr defer>
-          <List>
-            {LANGUAGES_LABEL.map((language) => (
-              <ListItemButton
-                component="a"
-                divider
-                data-no-markdown-link="true"
-                href={language.code === 'en' ? canonicalAs : `/${language.code}${canonicalAs}`}
-                key={language.code}
-                onClick={handleLanguageClick(language)}
-                selected={userLanguage === language.code}
-                lang={language.code}
-                hrefLang={language.code}
-              >
-                {language.text}
-              </ListItemButton>
-            ))}
-            <ListItemButton
-              component="a"
-              href={
-                userLanguage === 'en'
-                  ? `${CROWDIN_ROOT_URL}`
-                  : `${CROWDIN_ROOT_URL}${crowdInLocale}#/staging`
-              }
-              rel="noopener nofollow"
-              target="_blank"
-              key={userLanguage}
-              lang={userLanguage}
-              hrefLang="en"
-            >
-              {t('appFrame.helpToTranslate')}
-            </ListItemButton>
-          </List>
-        </NoSsr>
         <Heading gutterBottom>{t('settings.color')}</Heading>
         <Button
           component="a"
           href="/material-ui/customization/color/#playground"
           data-ga-event-category="settings"
           data-ga-event-action="colors"
-          size="small"
+          size="medium"
           variant="outlined"
-          sx={{
-            width: '100%',
-            mx: 0,
-            py: 1,
-            fontWeight: 500,
-            border: `1px solid  ${
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[700]
-                : theme.palette.grey[200]
-            }`,
-            color:
-              theme.palette.mode === 'dark'
-                ? theme.palette.primary[300]
-                : theme.palette.primary[500],
-            '&:hover': {
-              borderColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[600]
-                  : theme.palette.grey[300],
-              background:
-                theme.palette.mode === 'dark'
-                  ? alpha(theme.palette.primaryDark[700], 0.4)
-                  : theme.palette.grey[50],
-            },
-          }}
+          fullWidth
         >
           {t('settings.editWebsiteColors')}
         </Button>

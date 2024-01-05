@@ -357,76 +357,24 @@ describe('cssVarsParser', () => {
         shadows: ['var(--shadows-0)', 'var(--shadows-1)', 'var(--shadows-2)'],
       });
     });
-  });
 
-  describe('parsedObject', () => {
-    it('creates a new object on every call', () => {
-      const theme = {
-        primary: {
-          500: '#ffffff',
-          main: 'var(--palette-500)',
-        },
-      };
-      const { parsedTheme } = cssVarsParser(theme, { prefix: 'foo' });
-      const { parsedTheme: parsedTheme2 } = cssVarsParser(theme, { prefix: 'bar' });
-      expect(theme).not.to.equal(parsedTheme);
-      expect(parsedTheme).to.deep.equal({
-        primary: {
-          500: '#ffffff',
-          main: 'var(--palette-500)',
-        },
-      });
-      expect(parsedTheme2).to.deep.equal({
-        primary: {
-          500: '#ffffff',
-          main: 'var(--palette-500)',
-        },
-      });
-      expect(parsedTheme).not.to.equal(parsedTheme2);
-    });
-
-    it('preserve array even if the key is listed in `shouldSkipGeneratingVar`', () => {
-      const theme = {
-        breakpoints: {
-          keys: ['xs', 'sm', 'md', 'lg', 'xl'],
-        },
-      };
-      const { parsedTheme } = cssVarsParser(theme, {
-        shouldSkipGeneratingVar: (keys) => keys[0] === 'breakpoints',
-      });
-      expect(parsedTheme.breakpoints.keys).to.deep.equal(['xs', 'sm', 'md', 'lg', 'xl']);
-    });
-
-    it('preserve function value', () => {
-      const theme = {
+    it('should add a fallback value', () => {
+      const { varsWithDefaults } = cssVarsParser({
         palette: {
-          getContrastText: () => 'foo',
-        },
-        pxToRem: (px: number) => `${px / 16}rem`,
-      };
-      const { parsedTheme } = cssVarsParser(theme);
-      expect(parsedTheme.palette.getContrastText()).to.equal('foo');
-      expect(parsedTheme.pxToRem(16)).to.equal('1rem');
-    });
-
-    it('all key,values remains in parsedTheme even shouldSkipGeneratingVar is provided', () => {
-      const { parsedTheme } = cssVarsParser(
-        {
-          pxToRem: (px: number) => `${px / 16}rem`,
-          typography: {
-            body: {
-              fontSize: 'var(--fontSize-md)',
-              fontFamily: 'Roboto, var(--fontFamily-fallback)',
-            },
+          primary: {
+            main: '#000',
+            alias: 'var(--palette-primary-main)',
+            alias2: 'var(--palette-primary-alias)',
           },
         },
-        { prefix: 'foo', shouldSkipGeneratingVar: (keys) => keys[0] === 'typgoraphy' },
-      );
-      expect(parsedTheme.pxToRem(14)).to.equal('0.875rem');
-      expect(parsedTheme.typography).to.deep.equal({
-        body: {
-          fontSize: 'var(--fontSize-md)',
-          fontFamily: 'Roboto, var(--fontFamily-fallback)',
+      });
+      expect(varsWithDefaults).to.deep.equal({
+        palette: {
+          primary: {
+            main: 'var(--palette-primary-main, #000)',
+            alias: 'var(--palette-primary-alias, var(--palette-primary-main))',
+            alias2: 'var(--palette-primary-alias2, var(--palette-primary-alias))',
+          },
         },
       });
     });

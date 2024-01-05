@@ -10,20 +10,20 @@ import MuiTypography from '@mui/material/Typography';
 import MuiStack from '@mui/material/Stack';
 import MuiEdit from '@mui/icons-material/Edit';
 import MuiLocationOn from '@mui/icons-material/LocationOn';
-import { withPointer } from 'docs/src/components/home/ElementPointer';
 import { grey } from '@mui/material/colors';
+import { withPointer } from 'docs/src/components/home/ElementPointer';
 
 export const componentCode = `<Card>
   <Box sx={{ p: 2, display: 'flex' }}>
-    <Avatar variant="rounded" src="avatar1.jpg" />
+    <Avatar variant="rounded" src="avatar.jpg" />
     <Stack spacing={0.5}>
-      <Typography fontWeight={700}>Michael Scott</Typography>
+      <Typography fontWeight="bold">Lucas Smith</Typography>
       <Typography variant="body2" color="text.secondary">
-      <LocationOn sx={{color: grey[500]}} /> Scranton, PA
+      <LocationOn sx={{color: grey[500]}} /> Scranton, PA, United States
       </Typography>
     </Stack>
-    <IconButton>
-      <Edit sx={{ fontSize: 14 }} />
+    <IconButton size="small">
+      <Edit fontSize="small" />
     </IconButton>
   </Box>
   <Divider />
@@ -33,7 +33,11 @@ export const componentCode = `<Card>
     justifyContent="space-between"
     sx={{ px: 2, py: 1, bgcolor: 'background.default' }}
   >
-    <Chip>Active account</Chip>
+    <Chip
+      label={active ? 'Active account' : 'Inactive account'}
+      color={active ? 'success' : 'default'}
+      size="small"
+    />
     <Switch />
   </Stack>
 </Card>
@@ -58,24 +62,28 @@ export default function MaterialDesignDemo(props: CardProps) {
   return (
     <Card {...props}>
       <Box sx={{ p: 2, display: 'flex' }}>
-        <Avatar variant="rounded" src="/static/images/avatar/1.jpg" alt="" />
+        <Avatar
+          variant="rounded"
+          src="/static/images/avatar/2.jpg"
+          imgProps={{ 'aria-labelledby': 'demo-task-card-assignee-name' }}
+        />
         <Stack
           spacing={0.5}
           alignItems="flex-start"
           sx={{
             mx: 2,
             flexGrow: 1,
-            '& svg': { fontSize: 20, verticalAlign: 'bottom', mr: 0.5 },
+            '& svg': { fontSize: 18, verticalAlign: 'bottom', mr: 0.5, mb: 0.1 },
           }}
         >
-          <Typography fontWeight={700}>Michael Scott</Typography>
+          <Typography fontWeight="bold">Lucas Smith</Typography>
           <Typography2 variant="body2" color="text.secondary">
             <LocationOn sx={{ color: grey[500] }} />
-            Scranton, PA
+            Scranton, PA, United States
           </Typography2>
         </Stack>
-        <IconButton aria-label="Edit" sx={{ alignSelf: 'flex-start' }}>
-          <Edit sx={{ fontSize: 14 }} />
+        <IconButton aria-label="Edit" size="small" sx={{ alignSelf: 'flex-start' }}>
+          <Edit fontSize="small" />
         </IconButton>
       </Box>
       <Divider sx={{ my: -1, py: 1, position: 'relative', zIndex: 1 }}>

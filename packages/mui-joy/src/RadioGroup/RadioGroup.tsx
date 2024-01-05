@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -13,13 +14,14 @@ import { getRadioGroupUtilityClass } from './radioGroupClasses';
 import { RadioGroupOwnerState, RadioGroupTypeMap } from './RadioGroupProps';
 import RadioGroupContext from './RadioGroupContext';
 import FormControlContext from '../FormControl/FormControlContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: RadioGroupOwnerState) => {
-  const { row, size, variant, color } = ownerState;
+  const { orientation, size, variant, color } = ownerState;
   const slots = {
     root: [
       'root',
-      row && 'row',
+      orientation,
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
@@ -44,11 +46,21 @@ const RadioGroupRoot = styled('div', {
     '--RadioGroup-gap': '1.25rem',
   }),
   display: 'flex',
-  flexDirection: ownerState.row ? 'row' : 'column',
+  margin: 'var(--unstable_RadioGroup-margin)',
+  flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
   borderRadius: theme.vars.radius.sm,
   ...theme.variants[ownerState.variant!]?.[ownerState.color!],
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Radio](https://mui.com/joy-ui/react-radio-button/)
+ *
+ * API:
+ *
+ * - [RadioGroup API](https://mui.com/joy-ui/api/radio-group/)
+ */
 const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -67,9 +79,11 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
     onChange,
     color = 'neutral',
     variant = 'plain',
-    size = 'md',
-    row = false,
+    size: sizeProp = 'md',
+    orientation = 'vertical',
     role = 'radiogroup',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -78,9 +92,11 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
     default: defaultValue,
     name: 'RadioGroup',
   });
+  const formControl = React.useContext(FormControlContext);
+  const size = inProps.size || formControl?.size || sizeProp;
 
   const ownerState = {
-    row,
+    orientation,
     size,
     variant,
     color,
@@ -91,8 +107,6 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const name = useId(nameProp);
-
-  const formControl = React.useContext(FormControlContext);
 
   if (process.env.NODE_ENV !== 'production') {
     const registerEffect = formControl?.registerEffect;
@@ -110,7 +124,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
     () => ({
       disableIcon,
       overlay,
-      row,
+      orientation,
       size,
       name,
       value,
@@ -122,25 +136,31 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
         }
       },
     }),
-    [disableIcon, name, onChange, overlay, row, setValueState, size, value],
+    [disableIcon, name, onChange, overlay, orientation, setValueState, size, value],
   );
+
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: RadioGroupRoot,
+    externalForwardedProps: { ...other, component, slots, slotProps },
+    ownerState,
+    additionalProps: {
+      as: component,
+      role,
+      // The `id` is just for the completeness, it does not have any effect because RadioGroup (div) is non-labelable element
+      // MDN: "If it is not a labelable element, then the for attribute has no effect"
+      // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#attr-for
+      id: formControl?.htmlFor,
+      'aria-labelledby': formControl?.labelId,
+      'aria-describedby': formControl?.['aria-describedby'],
+    },
+  });
 
   return (
     <RadioGroupContext.Provider value={contextValue}>
-      <RadioGroupRoot
-        ref={ref}
-        role={role}
-        as={component}
-        ownerState={ownerState}
-        className={clsx(classes.root, className)}
-        // The `id` is just for the completeness, it does not have any effect because RadioGroup (div) is non-labellable element
-        // MDN: "If it is not a labelable element, then the for attribute has no effect"
-        // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#attr-for
-        id={formControl?.htmlFor}
-        aria-labelledby={formControl?.labelId}
-        aria-describedby={formControl?.['aria-describedby']}
-        {...other}
-      >
+      <SlotRoot {...rootProps}>
+        {/* Prevent radios from getting the FormControl's context because a single FormControl can only have one Radio */}
         <FormControlContext.Provider value={undefined}>
           {React.Children.map(children, (child, index) =>
             React.isValidElement(child)
@@ -153,16 +173,16 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
               : child,
           )}
         </FormControlContext.Provider>
-      </RadioGroupRoot>
+      </SlotRoot>
     </RadioGroupContext.Provider>
   );
 }) as OverridableComponent<RadioGroupTypeMap>;
 
 RadioGroup.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */
@@ -173,9 +193,10 @@ RadioGroup.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -189,6 +210,7 @@ RadioGroup.propTypes /* remove-proptypes */ = {
   defaultValue: PropTypes.any,
   /**
    * The radio's `disabledIcon` prop. If specified, the value is passed down to every radios under this element.
+   * @default false
    */
   disableIcon: PropTypes.bool,
   /**
@@ -204,18 +226,19 @@ RadioGroup.propTypes /* remove-proptypes */ = {
    */
   onChange: PropTypes.func,
   /**
+   * The component orientation.
+   * @default 'vertical'
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
    * The radio's `overlay` prop. If specified, the value is passed down to every radios under this element.
+   * @default false
    */
   overlay: PropTypes.bool,
   /**
    * @ignore
    */
   role: PropTypes /* @typescript-to-proptypes-ignore */.string,
-  /**
-   * If `true`, flex direction is set to 'row'.
-   * @default false
-   */
-  row: PropTypes.bool,
   /**
    * The size of the component.
    * @default 'md'
@@ -224,6 +247,20 @@ RadioGroup.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -237,7 +274,8 @@ RadioGroup.propTypes /* remove-proptypes */ = {
    */
   value: PropTypes.any,
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+   * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

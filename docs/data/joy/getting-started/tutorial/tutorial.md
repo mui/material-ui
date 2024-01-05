@@ -15,7 +15,7 @@ By the end, you should understand how to:
 
 ## Interactive demo
 
-Here's what the final product looks like—click on the **<>** icon underneath the demo to see the full source code:
+Here's what the final product looks like—click on the "Show code" button underneath the demo to see the full source code:
 
 {{"demo": "LoginFinal.js"}}
 
@@ -32,7 +32,6 @@ The [Sheet](/joy-ui/react-sheet/) component is a `<div>` container that supports
 
 Import Sheet and add it to your app as shown below.
 (If you're using Create React App, for example, all of this code should go in `App.js`.)
-Notice that Joy UI components must be nested within `<CssVarsProvider />`:
 
 ```jsx
 import * as React from 'react';
@@ -65,7 +64,7 @@ Replace your basic Sheet from the previous step with the following `sx`-styled S
   sx={{
     width: 300,
     mx: 'auto', // margin left & right
-    my: 4, // margin top & botom
+    my: 4, // margin top & bottom
     py: 3, // padding top & bottom
     px: 2, // padding left & right
     display: 'flex',
@@ -88,13 +87,12 @@ To go deeper, read about the `sx` prop in the [MUI System documentation](/system
 
 The [Typography](/joy-ui/react-typography/) component replaces HTML header, paragraph, and span tags to help maintain a consistent hierarchy of text on the page.
 
-:::info
 The `level` prop gives you access to a pre-defined scale of typographic values.
-Joy UI provides 13 typographic levels out of the box:
+Joy UI provides 11 typographic levels out of the box.
 
-`display1 | display2 | h1 | h2 | h3 | h4 | h5 | h6 | body1 | body2 | body3 | body4 | body5`
-
-:::
+- Four heading levels: `'h1' | 'h2' | 'h3' | 'h4'`
+- Three title levels: `'title-lg' | 'title-md' | 'title-sm'`
+- Four body levels: `'body-lg' | 'body-md' | 'body-sm' | 'body-xs'`
 
 Add an import for Typography with the rest of your imports:
 
@@ -109,42 +107,47 @@ Replace `Welcome!` inside your Sheet component with this `<div>`:
   <Typography level="h4" component="h1">
     Welcome!
   </Typography>
-  <Typography level="body2">Sign in to continue.</Typography>
+  <Typography level="body-sm">Sign in to continue.</Typography>
 </div>
 ```
 
 :::success
 Try changing the values for the `level` and `component` props to see how they affect the typographic values and the elements rendered.
-(Note that while `level` only accepts the 13 values listed above, you can pass any HTML tag to `component`, as well as custom React components.)
+(Note that while `level` only accepts the 11 values listed above, you can pass any HTML tag to `component`, as well as custom React components.)
 :::
 
-## Add Text Field for user inputs
+## Add text field for user inputs
 
-The [Text Field](/joy-ui/react-text-field/) component bundles together the Form Control, Form Label, Input, and Form Helper Text components to provide you with a sophisticated field for user input.
+The Form Control, Form Label, and Input components can be used together to provide you with a sophisticated field for user input.
 
-Add an import for Text Field with the rest of your imports:
+Add imports for Form Control, Form Label, and Input with the rest of your imports:
 
 ```jsx
-import TextField from '@mui/joy/TextField';
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
+import Input from '@mui/joy/Input';
 ```
 
-Insert these two Text Fields below the `<div>` from the previous step, inside the Sheet:
+Insert these two text fields below the `<div>` from the previous step, inside the Sheet:
 
 ```jsx
-<TextField
-  // html input attribute
-  name="email"
-  type="email"
-  placeholder="johndoe@email.com"
-  // pass down to FormLabel as children
-  label="Email"
-/>
-<TextField
-  name="password"
-  type="password"
-  placeholder="password"
-  label="Password"
-/>
+<FormControl>
+  <FormLabel>Email</FormLabel>
+  <Input
+    // html input attribute
+    name="email"
+    type="email"
+    placeholder="johndoe@email.com"
+  />
+</FormControl>
+<FormControl>
+  <FormLabel>Password</FormLabel>
+  <Input
+    name="password"
+    type="password"
+    placeholder="password"
+  />
+</FormControl>
 ```
 
 ## Import Button and Link for user actions
@@ -158,7 +161,7 @@ import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
 ```
 
-Add the following Button, Typography, and Link components after the Text Fields from the previous step, still nested inside the Sheet.
+Add the following Button, Typography, and Link components after the text fields from the previous step, still nested inside the Sheet.
 Notice that the Link is appended to the Typography inside of [the `endDecorator` prop](/joy-ui/react-typography/#decorators):
 
 ```jsx
@@ -238,7 +241,6 @@ Here's a recap of the components used:
 - [Typography](/joy-ui/react-typography/)
 - [Button](/joy-ui/react-button/)
 - [Link](/joy-ui/react-link/)
-- [Text Field](/joy-ui/react-text-field/)
 
 Here are some of the major features introduced:
 
@@ -254,4 +256,4 @@ Learn more about [different customization approaches](/joy-ui/customization/appr
 To see some more sophisticated examples of Joy UI in action, check out our [collection of templates](/joy-ui/getting-started/templates/).
 
 Are you migrating from Material UI?
-Learn how to work with [Joy UI and Material UI together in one app](/joy-ui/guides/using-joy-ui-and-material-ui-together/).
+Learn how to work with [Joy UI and Material UI together in one app](/joy-ui/integrations/material-ui/).

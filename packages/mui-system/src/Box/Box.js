@@ -1,13 +1,19 @@
+'use client';
 import PropTypes from 'prop-types';
+import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/utils';
 import createBox from '../createBox';
+import boxClasses from './boxClasses';
 
-const Box = createBox();
+const Box = createBox({
+  defaultClassName: boxClasses.root,
+  generateClassName: ClassNameGenerator.generate,
+});
 
 Box.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */

@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs';
-import * as process from 'process';
 import { URL } from 'url';
+import * as process from 'process';
 
 /**
  * @typedef {object} FixtureContext
@@ -186,6 +186,7 @@ async function run(context) {
         fixtureTemplateValues,
       });
       break;
+    // TODO remove, no longer relevant since https://github.com/mui/material-ui/pull/38567
     case 'gatsby':
       await writeGatsbyFixture({
         fixtureUrl: resolveFixtureUrl('gatsby'),

@@ -28,7 +28,7 @@ Need to refer back to an older version of the docs? Check out [the v4 documentat
 :::
 
 :::info
-If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/nextjs-with-typescript-v4-migration).
+If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-ts-v4-v5-migration).
 :::
 
 ## Why you should migrate
@@ -41,8 +41,8 @@ Additionally, v5 is the only version that fully supports React 18, so you will n
 
 To learn more, check out [the blog post about the release of Material UI v5](https://mui.com/blog/mui-core-v5/).
 
-:::info
-💡 Create small commits as you go to ensure a smooth migration.
+:::success
+Create small commits as you go to ensure a smooth migration.
 
 If you encounter any issues along the way, check the [Troubleshooting](/material-ui/migration/troubleshooting/) doc.
 
@@ -64,33 +64,50 @@ The default bundle supports the following minimum versions:
 - Edge 91 (up from 14)
 - Firefox 78 (up from 52)
 - Safari 14 (macOS) and 12.5 (iOS) (up from 10)
-- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui/material-ui/blob/HEAD/.browserslistrc#L11))
+- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui/material-ui/blob/v5.0.0/.browserslistrc#L11))
 
 Material UI no longer supports IE 11.
 If you need to support IE 11, check out our [legacy bundle](/material-ui/guides/minimizing-bundle-size/#legacy-bundle).
 
 ## Update React & TypeScript version
 
+### Update React
+
 The minimum supported version of React has been increased from v16.8.0 to v17.0.0.
+
+If you are using a React version below 17.0.0, update your packages to at least v4.11.2 for Material UI and v17.0.0 for React.
+
+<codeblock storageKey="package-manager">
+
+```bash npm
+npm install @material-ui/core@^4.11.2 react@^17.0.0
+```
+
+```bash yarn
+yarn upgrade @material-ui/core@^4.11.2 react@^17.0.0
+```
+
+</codeblock>
+
+### Update TypeScript
 
 The minimum supported version of TypeScript has been increased from v3.2 to v3.5.
 
-:::warning
+:::info
 We try to align with types released by [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (i.e. packages published on npm under the `@types` namespace).
 
-We will not change the minimum supported version in a major version of Material UI.
-
+We will not change the minimum supported version in a minor version of Material UI.
 However, we generally recommend not to use a TypeScript version older than the lowest supported version of DefinitelyTyped.
 :::
 
-If your project includes these packages, you'll need to update them to the `latest` version:
+If your project includes these packages, you'll need to update them:
 
 - `react-scripts`
 - `@types/react`
 - `@types/react-dom`
 
 :::warning
-📝 Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
+Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
 :::
 
 ## Set up `ThemeProvider`
@@ -121,7 +138,7 @@ function App() {
 ```
 
 :::warning
-📝 Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
+Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
 :::
 
 ## Update MUI packages
@@ -130,69 +147,66 @@ function App() {
 
 Install the Material UI v5 packages.
 
-With npm:
-
-```sh
+<codeblock storageKey="package-manager">
+```bash npm
 npm install @mui/material @mui/styles
 ```
 
-With yarn:
-
-```sh
+```bash yarn
 yarn add @mui/material @mui/styles
 ```
+
+</codeblock>
 
 If you're using `@material-ui/lab` or `@material-ui/icons`, you will need to install the new packages.
 
 ### `@material-ui/lab`
 
-With npm:
-
-```sh
+<codeblock storageKey="package-manager">
+```bash npm
 npm install @mui/lab
 ```
 
-With yarn:
-
-```sh
+```bash yarn
 yarn add @mui/lab
 ```
 
+</codeblock>
+
 ### `@material-ui/icons`
 
-With npm:
-
-```sh
+<codeblock storageKey="package-manager">
+```bash npm
 npm install @mui/icons-material
 ```
 
-With yarn:
-
-```sh
+```bash yarn
 yarn add @mui/icons-material
 ```
+
+</codeblock>
 
 ### Date and time pickers
 
 The date and time picker components have been moved to MUI X.
 If you are using `@material-ui/date-pickers` or the pickers in the `@mui/lab` package, you will need to migrate to `@mui/x-date-pickers`.
-See [Migration from the lab](https://mui.com/x/react-date-pickers/migration-lab/) for details.
+See [Migration from the lab](https://mui.com/x/migration/migration-pickers-lab/) for details.
 
 ### Peer dependencies
 
 Next, add the Emotion packages.
 
-With npm:
+<codeblock storageKey="package-manager">
 
-```sh
+```bash npm
 npm install @emotion/react @emotion/styled
 ```
 
-With yarn:
-
-```sh
+```bash yarn
 yarn add @emotion/react @emotion/styled
 ```
+
+</codeblock>
 
 #### styled-components (optional)
 
@@ -203,7 +217,7 @@ Note that if your app uses server-side rendering (SSR), there is a [known bug](h
 We strongly recommend using the default setup with Emotion instead.
 
 :::warning
-📝 Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
+Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
 :::
 
 ### Replace all imports
@@ -284,8 +298,8 @@ Make sure that your application still runs without errors after running each cod
 
 This codemod contains most of the transformers that are necessary for migration. It should be only applied **once per folder.**
 
-```sh
-npx @mui/codemod v5.0.0/preset-safe <path>
+```bash
+npx @mui/codemod@latest v5.0.0/preset-safe <path>
 ```
 
 :::info
@@ -297,7 +311,7 @@ If you want to run the transformers one by one, check out the [preset-safe codem
 This codemod transforms the `<TextField/>`, `<FormControl/>`, and `<Select/>` components by applying `variant="standard"` if no variant is defined—the default variant has changed from `"standard"` in v4 to `"outlined"` in v5.
 
 :::error
-❗️ You should _not_ use this codemod if you have already defined `variant: "outlined"` as the default in the theme.
+You should _not_ use this codemod if you have already defined `variant: "outlined"` as the default in the theme.
 :::
 
 ```js
@@ -316,8 +330,8 @@ createMuiTheme({
 
 If you want to keep `variant="standard"` in your components, run this codemod or else configure the corresponding default theme props.
 
-```sh
-npx @mui/codemod v5.0.0/variant-prop <path>
+```bash
+npx @mui/codemod@latest v5.0.0/variant-prop <path>
 ```
 
 For more details, check out the [variant-prop codemod README](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#variant-prop).
@@ -327,7 +341,7 @@ For more details, check out the [variant-prop codemod README](https://github.com
 This codemod transforms the `<Link />` component by applying `underline="hover"` if there is no `underline` prop defined—the default `underline` has changed from `"hover"` in v4 to `"always"` in v5.
 
 :::error
-❗️ You should _not_ use this codemod if you have already defined `underline: "always"` as the default in the theme.
+You should _not_ use this codemod if you have already defined `underline: "always"` as the default in the theme.
 :::
 
 ```js
@@ -346,8 +360,8 @@ createMuiTheme({
 
 If you want to keep `underline="hover"`, run this codemod or else configure the corresponding default theme props.
 
-```sh
-npx @mui/codemod v5.0.0/link-underline-hover <path>
+```bash
+npx @mui/codemod@latest v5.0.0/link-underline-hover <path>
 ```
 
 For more details, check out the [link-underline-hover codemod README](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#link-underline-hover).

@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Person from '../internal/svg-icons/Person';
@@ -163,8 +164,8 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     children = (
       <AvatarImg
         alt={alt}
-        src={src}
         srcSet={srcSet}
+        src={src}
         sizes={sizes}
         ownerState={ownerState}
         className={classes.img}
@@ -176,7 +177,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   } else if (hasImg && alt) {
     children = alt[0];
   } else {
-    children = <AvatarFallback className={classes.fallback} />;
+    children = <AvatarFallback ownerState={ownerState} className={classes.fallback} />;
   }
 
   return (
@@ -193,10 +194,10 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
 });
 
 Avatar.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Used in combination with `src` or `srcSet` to
    * provide an alt attribute for the rendered `img` element.

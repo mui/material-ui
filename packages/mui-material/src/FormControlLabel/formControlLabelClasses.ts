@@ -1,5 +1,5 @@
-import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
-import generateUtilityClass from '../generateUtilityClass';
+import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
 
 export interface FormControlLabelClasses {
   /** Styles applied to the root element. */
@@ -16,6 +16,10 @@ export interface FormControlLabelClasses {
   label: string;
   /** State class applied to the root element if `error={true}`. */
   error: string;
+  /** State class applied to the root element if `required={true}`. */
+  required: string;
+  /** Styles applied to the asterisk element. */
+  asterisk: string;
 }
 
 export type FormControlLabelClassKey = keyof FormControlLabelClasses;
@@ -34,6 +38,8 @@ const formControlLabelClasses: FormControlLabelClasses = generateUtilityClasses(
     'disabled',
     'label',
     'error',
+    'required',
+    'asterisk',
   ],
 );
 

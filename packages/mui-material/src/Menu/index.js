@@ -1,3 +1,4 @@
+'use client';
 export { default } from './Menu';
 
 export { default as menuClasses } from './menuClasses';

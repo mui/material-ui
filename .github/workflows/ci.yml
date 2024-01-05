@@ -8,6 +8,7 @@ on:
       - 'renovate/**'
   pull_request:
     paths-ignore:
+      # should sync with ci-check.yml as a workaround to bypass github checks
       - 'docs/**'
       - 'examples/**'
 
@@ -24,27 +25,24 @@ jobs:
         os: [macos-latest, windows-latest, ubuntu-latest]
     steps:
       - run: echo "${{ github.actor }}"
-      - uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # tag=v3
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
-          # fetch all tags which are required for `yarn release:changelog`
+          # fetch all tags which are required for `pnpm release:changelog`
           fetch-depth: 0
-      - name: Use Node.js 14.x
-        uses: actions/setup-node@8c91899e586c5b171469028077307d293428b516 # tag=v3
+      - name: Set up pnpm
+        uses: pnpm/action-setup@d882d12c64e032187b2edb46d3a0d003b7a43598 # v2.4.0
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@b39b52d1213e96004bfcb1c61a8a6fa8ab84f3e8 # v4.0.1
         with:
-          node-version: 14
-          cache: 'yarn' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
-      - run: yarn install
-        env:
-          # Don't need playwright in this job
-          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
-      - run: yarn release:build
-      # double run to check if cleanup works
-      - run: yarn release:build
-      - run: yarn release:changelog
+          node-version: 18
+          cache: 'pnpm' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
+      - run: pnpm install
+      - run: pnpm release:build
+      - run: pnpm release:changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: yarn validate-declarations
-      - name: yarn release:tag
+      - run: pnpm validate-declarations
+      - name: pnpm release:tag
         run: |
           git remote -v
-          yarn release:tag --dryRun
+          pnpm release:tag --dryRun

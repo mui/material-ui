@@ -3,14 +3,15 @@ import Tabs from '@mui/joy/Tabs';
 import TabList from '@mui/joy/TabList';
 import Tab from '@mui/joy/Tab';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
+import Stack from '@mui/joy/Stack';
 import PhoneIcon from '@mui/icons-material/Phone';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import PersonPinIcon from '@mui/icons-material/PersonPin';
 
 export default function TabsIconWithText() {
   return (
-    <div>
-      <Tabs aria-label="Icon tabs" defaultValue={0} sx={{ mb: 2 }}>
+    <Stack spacing={2}>
+      <Tabs aria-label="Icon tabs" defaultValue={0}>
         <TabList>
           <Tab>
             <ListItemDecorator>
@@ -33,7 +34,7 @@ export default function TabsIconWithText() {
         </TabList>
       </Tabs>
       <Tabs aria-label="Icon tabs" defaultValue={0}>
-        <TabList>
+        <TabList tabFlex="auto">
           <Tab orientation="vertical">
             <ListItemDecorator>
               <PhoneIcon />
@@ -54,6 +55,6 @@ export default function TabsIconWithText() {
           </Tab>
         </TabList>
       </Tabs>
-    </div>
+    </Stack>
   );
 }

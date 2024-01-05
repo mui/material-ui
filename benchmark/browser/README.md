@@ -2,8 +2,8 @@
 
 This project is used when running the following command:
 
-```sh
-yarn benchmark:browser
+```bash
+pnpm benchmark:browser
 ```
 
 It is suppose to give developers comparable values between running different scenarios inside the browser, that can be find the `./scenarios` folder.
@@ -12,9 +12,9 @@ You should use these numbers exclusively for comparing performance between diffe
 
 ## Output
 
-For compareable results ask a maintainer to approve the CircleCI job `benchmark`.
+For comparable results ask a maintainer to approve the CircleCI job `benchmark`.
 
-```sh
+```bash
 noop (baseline):
   02.53 ±00.11ms
 Grid (html):

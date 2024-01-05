@@ -1,19 +1,19 @@
 import * as React from 'react';
-import Head from 'docs/src/modules/components/Head';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
+import Head from 'docs/src/modules/components/Head';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import HeroPricing from 'docs/src/components/pricing/HeroPricing';
 import PricingTable from 'docs/src/components/pricing/PricingTable';
 import PricingList from 'docs/src/components/pricing/PricingList';
-import EarlyBird from 'docs/src/components/pricing/EarlyBird';
 import Testimonials from 'docs/src/components/home/Testimonials';
-import WhatToExpect from 'docs/src/components/pricing/WhatToExpect';
-import FAQ from 'docs/src/components/pricing/FAQ';
+import PricingWhatToExpect from 'docs/src/components/pricing/PricingWhatToExpect';
+import PricingFAQ from 'docs/src/components/pricing/PricingFAQ';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
+import { LicensingModelProvider } from 'docs/src/components/pricing/LicensingModelContext';
 
 export default function Pricing() {
   return (
@@ -21,20 +21,29 @@ export default function Pricing() {
       <Head
         title="Pricing - MUI"
         description="The community edition lets you get going right away. Switch to a commercial plan for more components & technical support."
+        card="/static/social-previews/pricing-preview.jpg"
       />
       <AppHeaderBanner />
       <AppHeader />
       <main id="main-content">
         <HeroPricing />
-        <PricingList /> {/* Mobile, Tablet */}
-        <Container sx={{ display: { xs: 'none', md: 'block' } }}>
-          <PricingTable /> {/* Desktop */}
-        </Container>
-        <EarlyBird />
+        <Divider />
+        <LicensingModelProvider>
+          {/* Mobile, Tablet */}
+          <Container sx={{ display: { xs: 'block', md: 'none' }, pb: 3, mt: '-1px' }}>
+            <PricingList />
+          </Container>
+          {/* Desktop */}
+          <Container sx={{ display: { xs: 'none', md: 'block' } }}>
+            <PricingTable />
+          </Container>
+        </LicensingModelProvider>
+        <PricingWhatToExpect />
+        <Divider />
+        <PricingFAQ />
+        <Divider />
         <Testimonials />
-        <WhatToExpect />
-        <Divider sx={{ mx: 'auto', maxWidth: 1200 }} />
-        <FAQ />
+        <Divider />
         <HeroEnd />
         <Divider />
       </main>

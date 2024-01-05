@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Drawer component
 components: Drawer, SwipeableDrawer
 githubLabel: 'component: drawer'
@@ -8,9 +8,9 @@ materialDesign: https://m2.material.io/components/navigation-drawer
 
 # Drawer
 
-<p class="description">Navigation drawers provide access to destinations in your app. Side sheets are surfaces containing supplementary content that are anchored to the left or right edge of the screen.</p>
+<p class="description">The navigation drawers (or "sidebars") provide ergonomic access to destinations in a site or app functionality such as switching accounts.</p>
 
-Navigation drawers (or "sidebars") provide access to destinations and app functionality, such as switching accounts. They can either be permanently on-screen or controlled by a navigation menu icon.
+A navigation drawer can either be permanently on-screen or controlled by a navigation menu icon.
 
 [Side sheets](https://m2.material.io/components/sheets-side) are supplementary surfaces primarily used on tablet and desktop.
 
@@ -61,18 +61,19 @@ If you are on mobile, you can open the demo in CodeSandbox ("edit" icon) and swi
 
 ### Keep mounted
 
-To ensure a temporary drawer is not unmounted, specify the `ModalProps` prop like:
+The Modal used internally by the Swipeable Drawer has the `keepMounted` prop set by default.
+This means that the contents of the drawer are always present in the DOM.
+
+You can change this default behavior with the `ModalProps` prop, but you may encounter issues with `keepMounted: false` in React 18.
 
 ```jsx
 <Drawer
   variant="temporary"
   ModalProps={{
-    keepMounted: true,
+    keepMounted: false,
   }}
 />
 ```
-
-More details in the [Modal performance section](/material-ui/react-modal/#performance).
 
 ## Responsive drawer
 

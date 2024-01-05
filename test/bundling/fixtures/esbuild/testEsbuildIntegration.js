@@ -4,12 +4,13 @@ const playwright = require('playwright');
  * @param {number} timeoutMS
  * @returns {Promise<void>}
  */
-function sleep(timeoutMS) {
+function sleep(duration) {
   return new Promise((resolve) => {
-    setTimeout(() => resolve(), timeoutMS);
+    setTimeout(() => {
+      resolve();
+    }, duration);
   });
 }
-
 /**
  * Attempts page.goto with retries
  *
@@ -46,7 +47,7 @@ async function main() {
       `Expected no console messages but got ${consoleMessage.type()}: '${consoleMessage.text()}' `,
     );
   });
-  await attemptGoto(page, 'http://localhost:3000/');
+  await attemptGoto(page, 'http://localhost:5001/');
 
   await browser.close();
 }

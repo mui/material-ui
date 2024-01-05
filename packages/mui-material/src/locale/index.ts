@@ -163,7 +163,7 @@ export const arEG: Localization = {
             return 'انتقل إلى الصفحة التالية';
           }
           // if (type === 'previous') {
-          return 'انتقل  إلى الصفحة السابقة';
+          return 'انتقل إلى الصفحة السابقة';
         },
       },
     },
@@ -457,6 +457,91 @@ export const bnBD: Localization = {
           }
           // if (type === 'previous') {
           return 'আগের পৃষ্ঠায় যান';
+        },
+      },
+    },
+  },
+};
+
+export const beBY: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'Паказаць шлях',
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'Перайсці на першую старонку';
+          }
+          if (type === 'last') {
+            return 'Перайсці на апошнюю старонку';
+          }
+          if (type === 'next') {
+            return 'Перайсці на наступную старонку';
+          }
+          // if (type === 'previous') {
+          return 'Перайсці на папярэднюю старонку';
+        },
+        labelRowsPerPage: 'Радкоў на старонцы:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} з ${count !== -1 ? count : `больш чым ${to}`}`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => {
+          let pluralForm = 'Зорак';
+          const lastDigit = value % 10;
+
+          if (lastDigit > 1 && lastDigit < 5 && (value < 10 || value > 20)) {
+            pluralForm = 'Зоркі';
+          } else if (lastDigit === 1 && value % 100 !== 11) {
+            pluralForm = 'Зорка';
+          }
+
+          return `${value} ${pluralForm}`;
+        },
+        emptyLabelText: 'Рэйтынг адсутнічае',
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: 'Ачысціць',
+        closeText: 'Закрыць',
+        loadingText: 'Загрузка…',
+        noOptionsText: 'Няма варыянтаў',
+        openText: 'Адкрыць',
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: 'Закрыць',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'Навігацыя па старонкам',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            if (selected) {
+              return `${page} старонка`;
+            }
+            return `Перайсці на ${page} старонку`;
+          }
+          if (type === 'first') {
+            return 'Перайсці на першую старонку';
+          }
+          if (type === 'last') {
+            return 'Перайсці на апошнюю старонку';
+          }
+          if (type === 'next') {
+            return 'Перайсці на наступную старонку';
+          }
+          // if (type === 'previous') {
+          return 'Перайсці на папярэднюю старонку';
         },
       },
     },
@@ -1131,8 +1216,8 @@ export const faIR: Localization = {
           return 'رفتن به صفحه‌ی قبلی';
         },
         labelRowsPerPage: 'تعداد سطرهای هر صفحه:',
-        // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}–${to} از ${count !== -1 ? count : `more than ${to}`}`,
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} از ${count !== -1 ? count : `بیشتر از ${to}`}`,
       },
     },
     MuiRating: {
@@ -1757,34 +1842,34 @@ export const idID: Localization = {
 
 export const isIS: Localization = {
   components: {
-    // MuiBreadcrumbs: {
-    //   defaultProps: {
-    //    expandText: 'Show path',
-    //   },
-    // },
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'Sýna slóð',
+      },
+    },
     MuiTablePagination: {
       defaultProps: {
-        // getItemAriaLabel: (type) => {
-        //   if (type === 'first') {
-        //     return 'Go to first page';
-        //   }
-        //   if (type === 'last') {
-        //     return 'Go to last page';
-        //   }
-        //   if (type === 'next') {
-        //     return 'Go to next page';
-        //   }
-        //   // if (type === 'previous') {
-        //   return 'Go to previous page';
-        // },
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'Fara á fyrstu síðu';
+          }
+          if (type === 'last') {
+            return 'Fara á síðustu síðu';
+          }
+          if (type === 'next') {
+            return 'Fara á næstu síðu';
+          }
+          // if (type === 'previous') {
+          return 'Fara á fyrri síðu';
+        },
         labelRowsPerPage: 'Raðir á síðu:',
-        // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}–${to} af ${count !== -1 ? count : `more than ${to}`}`,
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} af ${count !== -1 ? count : `fleiri enn ${to}`}`,
       },
     },
     MuiRating: {
       defaultProps: {
-        getLabelText: (value) => `${value} ${value === 1 ? 'Stjarna' : 'Stjörnur'}`,
+        getLabelText: (value) => `${value} ${value === 1 ? 'stjarna' : 'stjörnur'}`,
         emptyLabelText: 'Tómt',
       },
     },
@@ -1802,27 +1887,27 @@ export const isIS: Localization = {
         closeText: 'Loka',
       },
     },
-    // MuiPagination: {
-    //   defaultProps: {
-    //     'aria-label': 'Pagination navigation',
-    //     getItemAriaLabel: (type, page, selected) => {
-    //       if (type === 'page') {
-    //         return `${selected ? '' : 'Go to '}page ${page}`;
-    //       }
-    //       if (type === 'first') {
-    //         return 'Go to first page';
-    //       }
-    //       if (type === 'last') {
-    //         return 'Go to last page';
-    //       }
-    //       if (type === 'next') {
-    //         return 'Go to next page';
-    //       }
-    //       // if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     },
-    //   },
-    // },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'Síðuflakk',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? 'Síða' : 'Fara á síðu'} ${page}`;
+          }
+          if (type === 'first') {
+            return 'Fara á fyrstu síðu';
+          }
+          if (type === 'last') {
+            return 'Fara á síðustu síðu';
+          }
+          if (type === 'next') {
+            return 'Fara á næstu síðu';
+          }
+          // if (type === 'previous') {
+          return 'Fara á fyrri síðu';
+        },
+      },
+    },
   },
 };
 
@@ -2110,7 +2195,149 @@ export const koKR: Localization = {
   },
 };
 
-export const kzKZ: Localization = {
+export const kuCKB: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'ڕێچکە پیشان بدە',
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'چوونە یەکەم پەڕە';
+          }
+          if (type === 'last') {
+            return 'چوونە کۆتا پەڕە';
+          }
+          if (type === 'next') {
+            return 'چوونە پەڕەی دواتر';
+          }
+          // if (type === 'previous') {
+          return 'گەڕانەوە بۆ پەڕەی پێشوو';
+        },
+        labelRowsPerPage: 'ژمارەی ڕیزەکان لە هەر پەڕەیەک:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} لە ${count !== -1 ? count : ` زیاترە لە${to}`}`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => `${value} ${value !== 1 ? 'ئەستێرەکان' : 'ئەستێرە'}`,
+        emptyLabelText: 'خاڵیە',
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: 'سڕینەوە',
+        closeText: 'داخستن',
+        loadingText: 'لە بارکردندایە...',
+        noOptionsText: 'هیچ بژاردەیەک نیە',
+        openText: 'کردنەوە',
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: 'داخستن',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'گەڕان لە پەڕەکان',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : 'چوون بۆ '} پەڕەی ${page}`;
+          }
+          if (type === 'first') {
+            return 'چوونە یەکەم پەڕە';
+          }
+          if (type === 'last') {
+            return 'چوونە کۆتا پەڕە';
+          }
+          if (type === 'next') {
+            return 'چوونە پەڕەی دواتر';
+          }
+          // if (type === 'previous') {
+          return 'گەڕانەوە بۆ پەڕەی پێشوو';
+        },
+      },
+    },
+  },
+};
+
+export const kuLatn: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'Rê nîşan bide',
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'Biçe rûpela yekem';
+          }
+          if (type === 'last') {
+            return 'Biçe rûpela dawî';
+          }
+          if (type === 'next') {
+            return 'Biçe rûpela din';
+          }
+          // if (type === 'previous') {
+          return 'Biçe rûpela berê';
+        },
+        labelRowsPerPage: 'Rêz li ser rûpelê:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} of ${count !== -1 ? count : `zêdetir ji ${to}`}`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => `${value} Stêrk`,
+        emptyLabelText: 'Vala',
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: 'Paqij bike',
+        closeText: 'Bigre',
+        loadingText: 'Tê barkirin…',
+        noOptionsText: 'Vebijêrk tune',
+        openText: 'Veke',
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: 'Bigre',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'Navîgasyona rûpelan',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : 'Biçe '}rûpel ${page}`;
+          }
+          if (type === 'first') {
+            return 'Biçe rûpela yekem';
+          }
+          if (type === 'last') {
+            return 'Biçe rûpela dawî';
+          }
+          if (type === 'next') {
+            return 'Biçe rûpela din';
+          }
+          // if (type === 'previous') {
+          return 'Biçe rûpela berê';
+        },
+      },
+    },
+  },
+};
+
+export const kkKZ: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -2259,6 +2486,231 @@ export const mkMK: Localization = {
   },
 };
 
+// Myanmar - မြန်မာ
+export const myMY: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'လမ်းကြောင်းပြပါ။',
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'ပထမစာမျက်နှာသို့သွားပါ။';
+          }
+          if (type === 'last') {
+            return 'နောက်ဆုံးစာမျက်နှာသို့သွားပါ။';
+          }
+          if (type === 'next') {
+            return 'နောက်စာမျက်နှာသို့သွားပါ။';
+          }
+          // if (type === 'previous') {
+          return 'ယခင်စာမျက်နှာသို့သွားပါ။';
+        },
+        labelRowsPerPage: 'စာမျက်နှာအလိုက် အတန်းများ:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} ၏ ${count !== -1 ? count : `ထက်ပိုပြီး ${to}`}`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => {
+          const lastDigit = value % 10;
+          return `${value} ကြယ်ပွင့်${lastDigit === 1 ? '၎' : ''}`;
+        },
+        emptyLabelText: 'ဗလာ',
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: 'ရှင်းလင်းသော',
+        closeText: 'ပိတ်လိုက်',
+        loadingText: 'ဖွင့်နေသည်…',
+        noOptionsText: 'ရွေးချယ်ခွင့်မရှိပါ။',
+        openText: 'ဖွင့်သည်။',
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: 'ပိတ်လိုက်',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'Pagination အညွှန်း',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : 'သွားပါ။ '}စာမျက်နှာ ${page}`;
+          }
+          if (type === 'first') {
+            return 'ပထမစာမျက်နှာသို့သွားပါ။';
+          }
+          if (type === 'last') {
+            return 'နောက်ဆုံးစာမျက်နှာသို့သွားပါ။';
+          }
+          if (type === 'next') {
+            return 'နောက်စာမျက်နှာသို့သွားပါ။';
+          }
+          // if (type === 'previous') {
+          return 'ယခင်စာမျက်နှာသို့သွားပါ။';
+        },
+      },
+    },
+  },
+};
+
+// Malay-Melayu
+export const msMS: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'Tunjukkan laluan',
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'Pergi ke halaman pertama';
+          }
+          if (type === 'last') {
+            return 'Pergi ke halaman terakhir';
+          }
+          if (type === 'next') {
+            return 'Pergi ke halaman seterusnya';
+          }
+          // if (type === 'previous') {
+          return 'Pergi ke halaman sebelumnya';
+        },
+        labelRowsPerPage: 'Baris setiap halaman:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} daripada ${count !== -1 ? count : `lebih daripada ${to}`}`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => {
+          const lastDigit = value % 10;
+          return `${value} Bintang${lastDigit === 1 ? 's' : ''}`;
+        },
+        emptyLabelText: 'kosong',
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: 'Jelas',
+        closeText: 'tutup',
+        loadingText: 'Memuatkan…',
+        noOptionsText: 'Tiada pilihan',
+        openText: 'Buka',
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: 'tutup',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'Navigasi penomboran',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : 'Pergi ke '}muka surat ${page}`;
+          }
+          if (type === 'first') {
+            return 'Pergi ke halaman pertama';
+          }
+          if (type === 'last') {
+            return 'Pergi ke halaman terakhir';
+          }
+          if (type === 'next') {
+            return 'Pergi ke halaman seterusnya';
+          }
+          // if (type === 'previous') {
+          return 'Pergi ke halaman sebelumnya';
+        },
+      },
+    },
+  },
+};
+
+// Nepali-नेपाली
+export const neNP: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'बाटो देखाउनुहोस्',
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'पहिलो पृष्ठमा जानुहोस्';
+          }
+          if (type === 'last') {
+            return 'अन्तिम पृष्ठमा जानुहोस्';
+          }
+          if (type === 'next') {
+            return 'अर्को पृष्ठमा जानुहोस्';
+          }
+          // if (type === 'previous') {
+          return 'अघिल्लो पृष्ठमा जानुहोस्';
+        },
+        labelRowsPerPage: 'प्रति पृष्ठ पङ्क्तिहरू:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} को ${count !== -1 ? count : `धेरै ${to}`}`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => {
+          const lastDigit = value % 10;
+          return `${value} तारा${lastDigit === 1 ? 'स' : ''}`;
+        },
+        emptyLabelText: 'खाली',
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: 'खाली गर्नुहोस्',
+        closeText: 'बन्द गर्नुहोस्',
+        loadingText: 'लोड हुँदै...',
+        noOptionsText: 'कुनै विकल्प छैन',
+        openText: 'खोल्नुहोस्',
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: 'बन्द गर्नुहोस्',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'पृष्ठांकन नेभिगेसन',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : 'जाऊ त्यहाँ '}पृष्ठ ${page}`;
+          }
+          if (type === 'first') {
+            return 'पहिलो पृष्ठमा जानुहोस्';
+          }
+          if (type === 'last') {
+            return 'अन्तिम पृष्ठमा जानुहोस्';
+          }
+          if (type === 'next') {
+            return 'अर्को पृष्ठमा जानुहोस्';
+          }
+          // if (type === 'previous') {
+          return 'अघिल्लो पृष्ठमा जानुहोस्';
+        },
+      },
+    },
+  },
+};
+
 export const nbNO: Localization = {
   components: {
     MuiBreadcrumbs: {
@@ -2324,6 +2776,77 @@ export const nbNO: Localization = {
           }
           // if (type === 'previous') {
           return 'Gå til forrige side';
+        },
+      },
+    },
+  },
+};
+
+export const nnNO: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'Vis sti',
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'Gå til første side';
+          }
+          if (type === 'last') {
+            return 'Gå til siste side';
+          }
+          if (type === 'next') {
+            return 'Gå til neste side';
+          }
+          // if (type === 'previous') {
+          return 'Gå til førre side';
+        },
+        labelRowsPerPage: 'Rader per side:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} av ${count !== -1 ? count : `fleire enn ${to}`}`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => `${value} stjerne${value !== 1 ? 'r' : ''}`,
+        emptyLabelText: 'Tom',
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: 'Tøm',
+        closeText: 'Lukk',
+        loadingText: 'Lastar inn…',
+        noOptionsText: 'Ingen alternativ',
+        openText: 'Opna',
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: 'Lukk',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'Navigasjon for paginering',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : 'Gå til '}side ${page}`;
+          }
+          if (type === 'first') {
+            return 'Gå til første side';
+          }
+          if (type === 'last') {
+            return 'Gå til siste side';
+          }
+          if (type === 'next') {
+            return 'Gå til neste side';
+          }
+          // if (type === 'previous') {
+          return 'Gå til førre side';
         },
       },
     },
@@ -3175,8 +3698,8 @@ export const trTR: Localization = {
           return 'Önceki sayfaya git';
         },
         labelRowsPerPage: 'Sayfa başına satır:',
-        // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}–${to} tanesinden ${count !== -1 ? count : `more than ${to}`}`,
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}-${to} / ${count !== -1 ? count : `${to}'den fazla`}`,
       },
     },
     MuiRating: {
@@ -3217,6 +3740,78 @@ export const trTR: Localization = {
           }
           // if (type === 'previous') {
           return 'Önceki sayfaya git';
+        },
+      },
+    },
+  },
+};
+
+// Tagalog-Tagalog
+export const tlTL: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'Ipakita ang landas',
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'Pumunta sa unang pahina';
+          }
+          if (type === 'last') {
+            return 'Pumunta sa huling pahina';
+          }
+          if (type === 'next') {
+            return 'Pumunta sa susunod na pahina';
+          }
+          // if (type === 'previous') {
+          return 'Pumunta sa nakaraang pahina';
+        },
+        labelRowsPerPage: 'Mga hilera bawat pahina:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} ng ${count !== -1 ? count : `higit sa ${to}`}`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => `${value} Bituin${value !== 1 ? 's' : ''}`,
+        emptyLabelText: 'Walang laman',
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: 'Maaliwalas',
+        closeText: 'Isara',
+        loadingText: 'Naglo-load…',
+        noOptionsText: 'Walang mga pagpipilian',
+        openText: 'Bukas',
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: 'Isara',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'Sayfa navigasyonu',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : 'Pumunta sa'}pahina ${page}`;
+          }
+          if (type === 'first') {
+            return 'Pumunta sa unang pahina';
+          }
+          if (type === 'last') {
+            return 'Pumunta sa huling pahina';
+          }
+          if (type === 'next') {
+            return 'Pumunta sa susunod na pahina';
+          }
+          // if (type === 'previous') {
+          return 'Pumunta sa nakaraang pahina';
         },
       },
     },
@@ -3299,6 +3894,77 @@ export const ukUA: Localization = {
           }
           // if (type === 'previous') {
           return 'Перейти на попередню сторінку';
+        },
+      },
+    },
+  },
+};
+
+export const urPK: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'راستہ دکھائیں',
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'پہلے صفحے پر جائیں';
+          }
+          if (type === 'last') {
+            return 'آخری صفحے پر جائیں';
+          }
+          if (type === 'next') {
+            return 'اگلے صفحے پر جائیں';
+          }
+          // if (type === 'previous') {
+          return 'پچھلے صفحے پر جائیں';
+        },
+        labelRowsPerPage: 'ایک صفحے پر قطاریں:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${count !== -1 ? `${count} میں سے` : `${to} سے ذیادہ میں سے`} ${from} سے ${to} قطاریں`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => `${value} ستار${value !== 1 ? 'ے' : 'ہ'}`,
+        emptyLabelText: 'خالی',
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: 'کلئیر',
+        closeText: 'بند کریں',
+        loadingText: 'لوڈ ہو رہا ہے۔۔۔',
+        noOptionsText: 'کوئی آپشن نہیں',
+        openText: 'کھولیں',
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: 'بند کریں',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'صفحات کی ترتیب',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `صفحہ نمبر ${page}${selected ? '' : ' پر جائیں'}`;
+          }
+          if (type === 'first') {
+            return 'پہلے صفحے پر جائیں';
+          }
+          if (type === 'last') {
+            return 'آخری صفحے پر جائیں';
+          }
+          if (type === 'next') {
+            return 'اگلے صفحے پر جائیں';
+          }
+          // if (type === 'previous') {
+          return 'پچھلے صفحے پر جائیں';
         },
       },
     },
@@ -3495,23 +4161,23 @@ export const zhTW: Localization = {
           }
           return '上一頁';
         },
-        labelRowsPerPage: '每頁行數:',
+        labelRowsPerPage: '每頁數量:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `第 ${from} 條到第 ${to} 條，${count !== -1 ? `共 ${count} 條` : `至少 ${to} 條`}`,
+          `${from} ~ ${to} / ${count !== -1 ? count : `${to} 以上`}`,
       },
     },
     MuiRating: {
       defaultProps: {
         getLabelText: (value) => `${value} 顆星`,
-        emptyLabelText: '無標簽',
+        emptyLabelText: '無標籤',
       },
     },
     MuiAutocomplete: {
       defaultProps: {
         clearText: '清空',
         closeText: '關閉',
-        loadingText: '載入中……',
-        noOptionsText: '没有可用選項',
+        loadingText: '載入中…',
+        noOptionsText: '沒有可用選項',
         openText: '打開',
       },
     },

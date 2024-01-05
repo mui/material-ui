@@ -47,7 +47,7 @@ We introduced it at the end of 2020 and have been iterating not only on the comp
 
 We still have a lot more ground to cover — only ~0.1% of our developer community has been convinced to upgrade to the paid Pro plan so far.
 Whether or not you've taken the plunge, we'd love to hear your thoughts about this.
-And if you want to understand more about our view of the MIT/open-source balance, check our [Stewardship page](https://mui-org.notion.site/Stewardship-542a2226043d4f4a96dfb429d16cf5bd).
+And if you want to understand more about our view of the open-source/commercial balance, check our [Stewardship page](https://mui-org.notion.site/Stewardship-542a2226043d4f4a96dfb429d16cf5bd).
 
 **The breaking changes made in v5**
 
@@ -507,7 +507,7 @@ The majority of respondents don't use any paid libraries, but those who do are m
   MUI mainly develops open-source software, and we deeply value the OSS ethos of freely sharing what we build so that others can use it and improve upon it.
   - The price of our Pro plan positions it as a product intended for use by teams at professional organizations.
     That said, many who left feedback on the price are individuals, so there might be an opportunity to expand our offerings for those not backed by their company.
-- **More features & feature fixes:** Collapsable rows, column resizing, and features for ERP apps were some of the features requested.
+- **More features & feature fixes:** Collapsible rows, column resizing, and features for ERP apps were some of the features requested.
   And regarding features to fix, the most common requests were pagination with REST APIs, backend filtering, and cell editor.
 - **Improvements to the documentation:** The data grid docs could certainly use a major overhaul—we're working on it.
 - **Improvements to the look and feel:** Data grid builders want more default design options beyond Material.
@@ -644,7 +644,7 @@ These results are very different from last year—TypeScript took off, and it's 
 
 ### Which framework are you using, if any?
 
-<img src="/static/blog/2021-developer-survey-results/21.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Create React App: 62.4%; Next.js: 21.9%; Custom webpack: 10.7%; None: 2.6%; Gatsby: 0.9%; Other: 1.5%" />
+<img src="/static/blog/2021-developer-survey-results/21.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Create React App: 62.4%; Next.js: 21.9%; Custom Webpack: 10.7%; None: 2.6%; Gatsby: 0.9%; Other: 1.5%" />
 
 <p class="blog-description">1497 out of 1589 answered.</p>
 

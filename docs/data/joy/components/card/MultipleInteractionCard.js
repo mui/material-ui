@@ -1,6 +1,7 @@
 import * as React from 'react';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Card from '@mui/joy/Card';
+import CardContent from '@mui/joy/CardContent';
 import CardOverflow from '@mui/joy/CardOverflow';
 import Divider from '@mui/joy/Divider';
 import Typography from '@mui/joy/Typography';
@@ -37,32 +38,23 @@ export default function MultipleInteractionCard() {
           <Favorite />
         </IconButton>
       </CardOverflow>
-      <Typography level="h2" sx={{ fontSize: 'md', mt: 2 }}>
-        <Link href="#multiple-actions" overlay underline="none">
-          Yosemite National Park
-        </Link>
-      </Typography>
-      <Typography level="body2" sx={{ mt: 0.5, mb: 2 }}>
-        <Link href="#multiple-actions">California</Link>
-      </Typography>
-      <Divider inset="context" />
-      <CardOverflow
-        variant="soft"
-        sx={{
-          display: 'flex',
-          gap: 1.5,
-          py: 1.5,
-          px: 'var(--Card-padding)',
-          bgcolor: 'background.level1',
-        }}
-      >
-        <Typography level="body3" sx={{ fontWeight: 'md', color: 'text.secondary' }}>
-          6.3k views
+      <CardContent>
+        <Typography level="title-md">
+          <Link href="#multiple-actions" overlay underline="none">
+            Yosemite National Park
+          </Link>
         </Typography>
-        <Divider orientation="vertical" />
-        <Typography level="body3" sx={{ fontWeight: 'md', color: 'text.secondary' }}>
-          1 hour ago
+        <Typography level="body-sm">
+          <Link href="#multiple-actions">California</Link>
         </Typography>
+      </CardContent>
+      <CardOverflow variant="soft">
+        <Divider inset="context" />
+        <CardContent orientation="horizontal">
+          <Typography level="body-xs">6.3k views</Typography>
+          <Divider orientation="vertical" />
+          <Typography level="body-xs">1 hour ago</Typography>
+        </CardContent>
       </CardOverflow>
     </Card>
   );

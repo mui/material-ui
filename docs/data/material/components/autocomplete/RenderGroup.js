@@ -36,7 +36,7 @@ export default function RenderGroup() {
       sx={{ width: 300 }}
       renderInput={(params) => <TextField {...params} label="With categories" />}
       renderGroup={(params) => (
-        <li>
+        <li key={params.key}>
           <GroupHeader>{params.group}</GroupHeader>
           <GroupItems>{params.children}</GroupItems>
         </li>

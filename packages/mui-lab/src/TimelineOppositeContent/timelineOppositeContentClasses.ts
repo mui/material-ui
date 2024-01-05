@@ -1,5 +1,5 @@
-import generateUtilityClass from '@mui/material/generateUtilityClass';
-import generateUtilityClasses from '@mui/material/generateUtilityClasses';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
+import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
 
 export interface TimelineOppositeContentClasses {
   /** Styles applied to the root element. */
@@ -10,6 +10,8 @@ export interface TimelineOppositeContentClasses {
   positionLeft: string;
   /** Styles applied to the root element if `position="alternate"`. */
   positionAlternate: string;
+  /** Styles applied to the root element if `position="alternate-reverse"`. */
+  positionAlternateReverse: string;
 }
 
 export type TimelineOppositeContentClassKey = keyof TimelineOppositeContentClasses;
@@ -20,7 +22,7 @@ export function getTimelineOppositeContentUtilityClass(slot: string): string {
 
 const timelineOppositeContentClasses: TimelineOppositeContentClasses = generateUtilityClasses(
   'MuiTimelineOppositeContent',
-  ['root', 'positionLeft', 'positionRight', 'positionAlternate'],
+  ['root', 'positionLeft', 'positionRight', 'positionAlternate', 'positionAlternateReverse'],
 );
 
 export default timelineOppositeContentClasses;

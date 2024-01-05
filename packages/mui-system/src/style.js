@@ -24,7 +24,7 @@ export function getPath(obj, path, checkVars = true) {
   }, obj);
 }
 
-function getValue(themeMapping, transform, propValueFinal, userValue = propValueFinal) {
+export function getStyleValue(themeMapping, transform, propValueFinal, userValue = propValueFinal) {
   let value;
 
   if (typeof themeMapping === 'function') {
@@ -36,7 +36,7 @@ function getValue(themeMapping, transform, propValueFinal, userValue = propValue
   }
 
   if (transform) {
-    value = transform(value, userValue);
+    value = transform(value, userValue, themeMapping);
   }
 
   return value;
@@ -45,6 +45,8 @@ function getValue(themeMapping, transform, propValueFinal, userValue = propValue
 function style(options) {
   const { prop, cssProperty = options.prop, themeKey, transform } = options;
 
+  // false positive
+  // eslint-disable-next-line react/function-component-definition
   const fn = (props) => {
     if (props[prop] == null) {
       return null;
@@ -54,11 +56,11 @@ function style(options) {
     const theme = props.theme;
     const themeMapping = getPath(theme, themeKey) || {};
     const styleFromPropValue = (propValueFinal) => {
-      let value = getValue(themeMapping, transform, propValueFinal);
+      let value = getStyleValue(themeMapping, transform, propValueFinal);
 
       if (propValueFinal === value && typeof propValueFinal === 'string') {
         // Haven't found value
-        value = getValue(
+        value = getStyleValue(
           themeMapping,
           transform,
           `${prop}${propValueFinal === 'default' ? '' : capitalize(propValueFinal)}`,

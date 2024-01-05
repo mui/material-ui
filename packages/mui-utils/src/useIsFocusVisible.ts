@@ -1,3 +1,4 @@
+'use client';
 // based on https://github.com/WICG/focus-visible/blob/v4.1.5/src/focus-visible.js
 import * as React from 'react';
 
@@ -119,7 +120,7 @@ export interface UseIsFocusVisibleResult {
   isFocusVisibleRef: React.MutableRefObject<boolean>;
   onBlur: (event: React.FocusEvent<any>) => void;
   onFocus: (event: React.FocusEvent<any>) => void;
-  ref: React.Ref<unknown>;
+  ref: React.RefCallback<Element>;
 }
 
 export default function useIsFocusVisible(): UseIsFocusVisibleResult {

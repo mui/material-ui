@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Fade from '../Fade';
@@ -45,17 +46,16 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiBackdrop' });
   const {
     children,
+    className,
     component = 'div',
     components = {},
     componentsProps = {},
-    className,
     invisible = false,
     open,
     slotProps = {},
     slots = {},
-    transitionDuration,
-    // eslint-disable-next-line react/prop-types
     TransitionComponent = Fade,
+    transitionDuration,
     ...other
   } = props;
 
@@ -87,10 +87,10 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
 });
 
 Backdrop.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
@@ -170,6 +170,12 @@ Backdrop.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  /**
+   * The component used for the transition.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default Fade
+   */
+  TransitionComponent: PropTypes.elementType,
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.

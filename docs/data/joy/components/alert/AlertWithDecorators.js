@@ -15,16 +15,7 @@ export default function AlertWithDecorators() {
         color="success"
         startDecorator={<PlaylistAddCheckCircleRoundedIcon />}
         endDecorator={
-          <Button
-            size="sm"
-            variant="outlined"
-            color="success"
-            sx={{
-              textTransform: 'uppercase',
-              fontSize: 'xs',
-              fontWeight: 'xl',
-            }}
-          >
+          <Button size="sm" variant="solid" color="success">
             Close
           </Button>
         }

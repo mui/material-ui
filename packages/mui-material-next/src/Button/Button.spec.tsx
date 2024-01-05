@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Button, { ButtonProps } from '@mui/material-next/Button';
 import { Link as ReactRouterLink, LinkProps } from 'react-router-dom';
 import { expectType } from '@mui/types';
+import Button, { ButtonProps } from '@mui/material-next/Button';
 
 const log = console.log;
 
@@ -14,11 +14,11 @@ const FakeIcon = <div>Icon</div>;
 const buttonTest = () => (
   <div>
     <Button>I am a button!</Button>
-    <Button color="inherit">Contrast</Button>
+    <Button color="secondary">Secondary</Button>
     <Button disabled>Disabled</Button>
     <Button href="#link-button">Link</Button>
     <Button size="small">Small</Button>
-    <Button variant="contained">Contained</Button>
+    <Button variant="filled">Contained</Button>
     <Button variant="outlined" aria-label="add">
       Outlined
     </Button>
@@ -26,7 +26,9 @@ const buttonTest = () => (
       Title
     </Button>
     <Button component="a">Simple Link</Button>
-    <Button component={(props) => <a {...props} />}>Complex Link</Button>
+    <Button component={(props: React.HTMLAttributes<HTMLAnchorElement>) => <a {...props} />}>
+      Complex Link
+    </Button>
     <Button component={ReactRouterLink} to="/open-collective">
       Link
     </Button>

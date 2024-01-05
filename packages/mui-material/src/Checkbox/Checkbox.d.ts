@@ -27,7 +27,7 @@ export interface CheckboxProps
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
   color?: OverridableStringUnion<
@@ -36,10 +36,12 @@ export interface CheckboxProps
   >;
   /**
    * If `true`, the component is disabled.
+   * @default false
    */
   disabled?: SwitchBaseProps['disabled'];
   /**
    * If `true`, the ripple effect is disabled.
+   * @default false
    */
   disableRipple?: SwitchBaseProps['disableRipple'];
   /**
@@ -81,6 +83,7 @@ export interface CheckboxProps
   onChange?: SwitchBaseProps['onChange'];
   /**
    * If `true`, the `input` element is required.
+   * @default false
    */
   required?: SwitchBaseProps['required'];
   /**

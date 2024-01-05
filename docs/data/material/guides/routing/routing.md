@@ -1,6 +1,6 @@
 # Routing libraries
 
-<p class="description">By default, the navigation is performed with a native <code>&lt;a&gt;</code> element. You can customize it to use your own router. For instance, using Next.js's Link or react-router.</p>
+<p class="description">By default, the navigation is performed with a native &lt;a&gt; element. You can customize it, for instance, using Next.js's Link or react-router.</p>
 
 ## Navigation components
 
@@ -20,7 +20,7 @@ For instance, with a `Button` component:
 
 In real-life applications, using a native `<a>` element is rarely enough.
 You can improve the user experience by using an enhanced Link component systematically.
-The theme of MUI allows configuring this component once.
+The Material UI theme lets you configure this component once.
 For instance, with react-router:
 
 ```tsx
@@ -32,7 +32,7 @@ const LinkBehavior = React.forwardRef<
   Omit<RouterLinkProps, 'to'> & { href: RouterLinkProps['to'] }
 >((props, ref) => {
   const { href, ...other } = props;
-  // Map href (MUI) -> to (react-router)
+  // Map href (Material UI) -> to (react-router)
   return <RouterLink ref={ref} to={href} {...other} />;
 });
 
@@ -55,7 +55,7 @@ const theme = createTheme({
 {{"demo": "LinkRouterWithTheme.js", "defaultCodeOpen": false}}
 
 :::warning
-⚠️ This approach has limitations with TypeScript.
+This approach has limitations with TypeScript.
 The `href` prop only accepts a string.
 In the event you need to provide a richer structure, see the next section.
 :::
@@ -63,12 +63,14 @@ In the event you need to provide a richer structure, see the next section.
 ## `component` prop
 
 You can achieve the integration with third-party routing libraries with the `component` prop.
-You can learn more about this prop in the [**composition guide**](/material-ui/guides/composition/#component-prop).
+You can learn more about this prop in the **[composition guide](/material-ui/guides/composition/#component-prop)**.
 
-### Link
+## react-router examples
 
 Here are a few demos with [react-router](https://github.com/remix-run/react-router).
 You can apply the same strategy with all the components: BottomNavigation, Card, etc.
+
+### Link
 
 {{"demo": "LinkRouter.js"}}
 
@@ -97,11 +99,11 @@ const LinkBehavior = React.forwardRef((props, ref) => (
 
 ## More examples
 
-### Next.js
+### Next.js Pages Router
 
-The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/nextjs-with-typescript) provides an adapter for the use of [Next.js's Link component](https://nextjs.org/docs/api-reference/next/link) with MUI.
+The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-nextjs-pages-router-ts) provides an adapter for the use of [Next.js's Link component](https://nextjs.org/docs/pages/api-reference/components/link) with Material UI.
 
-- The first version of the adapter is the [`NextLinkComposed`](https://github.com/mui/material-ui/blob/HEAD/examples/nextjs-with-typescript/src/Link.tsx) component.
+- The first version of the adapter is the [`NextLinkComposed`](https://github.com/mui/material-ui/blob/-/examples/material-ui-nextjs-pages-router-ts/src/Link.tsx) component.
   This component is unstyled and only responsible for handling the navigation.
   The prop `href` was renamed `to` to avoid a naming conflict.
   This is similar to react-router's Link component.
@@ -127,7 +129,7 @@ The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/nextj
 
 - The second version of the adapter is the `Link` component.
   This component is styled.
-  It leverages the [link component of MUI](/material-ui/react-link/) with `NextLinkComposed`.
+  It uses the [Material UI Link component](/material-ui/react-link/) with `NextLinkComposed`.
 
   ```tsx
   import Link from '../src/Link';
@@ -145,9 +147,3 @@ The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/nextj
     );
   }
   ```
-
-### Gatsby
-
-The [Link](https://www.gatsbyjs.com/docs/linking-between-pages/) component of Gatsby is built on `@reach/router`.
-You can use the same previous documentation for react-router.
-Unlike Next.js, it doesn't require you to create an adapter.

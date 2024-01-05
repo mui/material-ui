@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from '@mui-internal/test-utils';
+import { styled } from '@mui/material/styles';
 import FilledInput, { filledInputClasses as classes } from '@mui/material/FilledInput';
 import InputBase from '@mui/material/InputBase';
 
@@ -16,12 +17,17 @@ describe('<FilledInput />', () => {
     testDeepOverrides: { slotName: 'input', slotClassName: classes.input },
     testVariantProps: { variant: 'contained', fullWidth: true },
     testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
+    testLegacyComponentsProp: true,
     slots: {
       // can't test with DOM element as Input places an ownerState prop on it unconditionally.
       root: { expectedClassName: classes.root, testWithElement: null },
       input: { expectedClassName: classes.input, testWithElement: null },
     },
-    skip: ['componentProp', 'componentsProp'],
+    skip: [
+      'componentProp',
+      'componentsProp',
+      'slotPropsCallback', // not supported yet
+    ],
   }));
 
   it('should have the underline class', () => {
@@ -61,5 +67,11 @@ describe('<FilledInput />', () => {
       />,
     );
     expect(document.querySelector('[data-test=test]')).toHaveComputedStyle({ marginTop: '10px' });
+  });
+
+  it('should not throw: "Maximum call stack size exceeded" if both slotProps and an adornment are passed', () => {
+    const Adornment = styled('div')({});
+    render(<FilledInput endAdornment={<Adornment />} slotProps={{}} />);
+    render(<FilledInput startAdornment={<Adornment />} slotProps={{}} />);
   });
 });

@@ -3,8 +3,8 @@ title: Q1 2021 Update
 description: An update on our mission for Q1 2021.
 date: 2021-04-12T00:00:00.000Z
 authors: ['oliviertassinari']
-card: true
 tags: ['Company']
+card: true
 ---
 
 This update covers our progress over the last three months, and what we aim to achieve in the months ahead.
@@ -205,7 +205,7 @@ We have the following objectives:
 
 - 🚀 Get v5-beta (no more breaking changes) out! The development of this new version started almost a year ago. It's time to aim for the stable release.
 - 📅 Start handling the issues with the date picker reported by developers.
-- 🗓 Execute on all the items of the [public roadmap](https://github.com/mui/material-ui/projects/25).
+- 🗓 Execute on all the items of the [public roadmap](https://github.com/orgs/mui/projects/18/views/1).
 - ❓ Please upvote [GitHub issues](https://github.com/mui/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
 ### Advanced components

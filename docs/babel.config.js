@@ -1,5 +1,5 @@
-const fse = require('fs-extra');
 const path = require('path');
+const fse = require('fs-extra');
 
 const errorCodesPath = path.resolve(__dirname, './public/static/error-codes.json');
 
@@ -18,6 +18,7 @@ const alias = {
   '@mui/utils': '../packages/mui-utils/src',
   '@mui/base': '../packages/mui-base/src',
   '@mui/material-next': '../packages/mui-material-next/src',
+  '@mui/material-nextjs': '../packages/mui-material-nextjs/src',
   '@mui/joy': '../packages/mui-joy/src',
   docs: './',
   modules: '../modules',

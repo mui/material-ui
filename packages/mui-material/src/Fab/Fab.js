@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
@@ -76,11 +77,6 @@ const FabRoot = styled(ButtonBase, {
     [`&.${fabClasses.focusVisible}`]: {
       boxShadow: (theme.vars || theme).shadows[6],
     },
-    [`&.${fabClasses.disabled}`]: {
-      color: (theme.vars || theme).palette.action.disabled,
-      boxShadow: (theme.vars || theme).shadows[0],
-      backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
-    },
     ...(ownerState.size === 'small' && {
       width: 40,
       height: 40,
@@ -132,6 +128,13 @@ const FabRoot = styled(ButtonBase, {
         },
       }),
   }),
+  ({ theme }) => ({
+    [`&.${fabClasses.disabled}`]: {
+      color: (theme.vars || theme).palette.action.disabled,
+      boxShadow: (theme.vars || theme).shadows[0],
+      backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
+    },
+  }),
 );
 
 const Fab = React.forwardRef(function Fab(inProps, ref) {
@@ -179,10 +182,10 @@ const Fab = React.forwardRef(function Fab(inProps, ref) {
 });
 
 Fab.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
@@ -198,7 +201,7 @@ Fab.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'default'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

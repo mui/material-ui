@@ -1,9 +1,10 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_useId as useId, chainPropTypes, integerPropType } from '@mui/utils';
 import { unstable_composeClasses as composeClasses, appendOwnerState } from '@mui/base';
-import TablePaginationUnstyled from '@mui/base/TablePaginationUnstyled';
+import { TablePagination as BaseTablePagination } from '@mui/base/TablePagination';
 import { styled, useThemeProps } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
@@ -170,7 +171,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
   const toolbarProps = appendOwnerState(TablePaginationToolbar, {}, ownerState);
 
   return (
-    <TablePaginationUnstyled
+    <BaseTablePagination
       slots={{
         root: TablePaginationRoot,
         actions: ActionsComponent,
@@ -251,10 +252,10 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
 });
 
 TablePagination.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The component used for displaying the actions.
    * Either a string to use a HTML element or a component.

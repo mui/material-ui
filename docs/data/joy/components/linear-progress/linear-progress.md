@@ -1,12 +1,15 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Linear Progress component
+components: LinearProgress
 githubLabel: 'component: LinearProgress'
 ---
 
 # Linear Progress
 
 <p class="description">Linear Progress indicators, commonly known as loaders, express an unspecified wait time or display the length of a process.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Introduction
 
@@ -17,9 +20,7 @@ To actually have it represent how long an operation will take, use the [determin
 
 The animations of the components rely on CSS as much as possible to work even before the JavaScript is loaded.
 
-{{"demo": "LinearProgressUsage.js", "hideToolbar": true}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"demo": "LinearProgressUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Component
 
@@ -52,7 +53,7 @@ The linear progress component comes with three sizes out of the box: `sm`, `md` 
 
 {{"demo": "LinearProgressSizes.js"}}
 
-:::success
+:::info
 To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
 :::
 
@@ -68,13 +69,21 @@ Provides a number to `thickness` prop to control the bar's stroke width.
 
 {{"demo": "LinearProgressThickness.js"}}
 
-## CSS variables
+## 3rd-party integration
+
+### use-count-up
+
+Using the [use-count-up](https://www.npmjs.com/package/use-count-up) package, you can create a counting animation by providing `start`, `end`, and `duration` values.
+
+{{"demo": "LinearProgressCountUp.js"}}
+
+## CSS variables playground
 
 Play around with all the CSS variables available on the component to see how the design changes.
 
 You can use those to customize the component on both the `sx` prop and the theme.
 
-{{"demo": "LinearProgressVariables.js", "hideToolbar": true}}
+{{"demo": "LinearProgressVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Common examples
 

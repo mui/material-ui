@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Chip component
 components: Chip
 githubLabel: 'component: chip'
@@ -77,6 +77,13 @@ You can use the `size` prop to define a small Chip.
 
 {{"demo": "SizesChips.js"}}
 
+## Multiline chip
+
+By default, Chips displays labels only in a single line.
+To have them support multiline content, use the `sx` prop to add `height:auto` to the Chip component, and `whiteSpace: normal` to the `label` styles.
+
+{{"demo": "MultilineChips.js"}}
+
 ## Chip array
 
 An example of rendering multiple chips from an array of values.
@@ -84,11 +91,26 @@ Deleting a chip removes it from the array. Note that since no
 `onClick` prop is defined, the `Chip` can be focused, but does not
 gain depth while clicked or touched.
 
-{{"demo": "ChipsArray.js", "bg": true}}
+{{"demo": "ChipsArray.js"}}
 
 ## Chip playground
 
 {{"demo": "ChipsPlayground.js", "hideToolbar": true}}
+
+## Experimental API
+
+### Material 3 version
+
+The default Material UI Chip component follows the Material Design 2 specs.
+To get the [Material 3](https://m3.material.io/) version, use the new experimental `@mui/material-next` package.
+
+```js
+import Chip from '@mui/material-next/Chip';
+```
+
+{{"demo": "ChipMaterialYouPlayground.js", "hideToolbar": true, "bg": "playground"}}
+
+For more instructions on how to use it, visit the [detailed guide](/material-ui/guides/material-3-components/).
 
 ## Accessibility
 

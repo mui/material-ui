@@ -1,4 +1,5 @@
-import { CODE_VARIANTS } from '../constants';
+import { CODE_VARIANTS } from 'docs/src/modules/constants';
+import type { MuiProductId } from 'docs/src/modules/utils/getProductInfoFromUrl';
 
 type RegExpMatchArrayWithGroupsOnly<T> = {
   groups?: {
@@ -10,7 +11,7 @@ type RegExpMatchArrayWithGroups<T> = (RegExpMatchArray & RegExpMatchArrayWithGro
 export default function SandboxDependencies(
   demo: {
     raw: string;
-    product?: 'joy-ui' | 'base';
+    productId?: MuiProductId;
     codeVariant: keyof typeof CODE_VARIANTS;
   },
   options?: { commitRef?: string },
@@ -105,6 +106,7 @@ export default function SandboxDependencies(
       '@mui/base': getMuiPackageVersion('base'),
       '@mui/utils': getMuiPackageVersion('utils'),
       '@mui/material-next': getMuiPackageVersion('material-next'),
+      '@mui/material-nextjs': getMuiPackageVersion('material-nextjs'),
       '@mui/joy': getMuiPackageVersion('joy'),
     };
 
@@ -123,25 +125,28 @@ export default function SandboxDependencies(
       const name =
         fullName.charAt(0) === '@' ? fullName.split('/', 2).join('/') : fullName.split('/', 1)[0];
 
-      if (!deps[name] && name !== '.') {
+      if (!deps[name] && !name.startsWith('.')) {
         deps[name] = versions[name] ? versions[name] : 'latest';
       }
 
-      // e.g date-fns
+      // e.g. date-fns
       const dateAdapterMatch = fullName.match(
         /^@mui\/(lab|x-date-pickers)\/(?<adapterName>Adapter.*)/,
       ) as RegExpMatchArrayWithGroups<{ adapterName: string }>;
       if (dateAdapterMatch !== null) {
         /**
          * Mapping from the date adapter sub-packages to the npm packages they require.
-         * @example `@mui/lab/AdapterDateFns` has a peer dependency on `date-fns`.
+         * @example `@mui/x-date-pickers/AdapterDayjs` has a peer dependency on `dayjs`.
          */
         const packageName = (
           {
             AdapterDateFns: 'date-fns',
+            AdapterDateFnsJalali: 'date-fns-jalali',
             AdapterDayjs: 'dayjs',
             AdapterLuxon: 'luxon',
             AdapterMoment: 'moment',
+            AdapterMomentHijri: 'moment-hijri',
+            AdapterMomentJalaali: 'moment-jalaali',
           } as Record<string, string>
         )[dateAdapterMatch.groups?.adapterName || ''];
         if (packageName === undefined) {
@@ -165,7 +170,7 @@ export default function SandboxDependencies(
     dependencies.typescript = 'latest';
   }
 
-  if (!demo.product && !dependencies['@mui/material']) {
+  if (!demo.productId && !dependencies['@mui/material']) {
     // The `index.js` imports StyledEngineProvider from '@mui/material', so we need to make sure we have it as a dependency
     const name = '@mui/material';
     const versions = {

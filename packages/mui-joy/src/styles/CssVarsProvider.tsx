@@ -1,18 +1,19 @@
-import { deepmerge } from '@mui/utils';
+'use client';
+// do not remove the following import (https://github.com/microsoft/TypeScript/issues/29808#issuecomment-1320713018)
+/* eslint-disable @typescript-eslint/no-unused-vars */
+// @ts-ignore
+import * as React from 'react';
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
-import extendTheme from './extendTheme';
-import { createSoftInversion, createSolidInversion } from './variantUtils';
-import type { Theme, DefaultColorScheme, ExtendedColorScheme } from './types';
-
-const shouldSkipGeneratingVar = (keys: string[]) =>
-  !!keys[0].match(/^(typography|variants|breakpoints|colorInversion|colorInversionConfig)$/) ||
-  (keys[0] === 'palette' && !!keys[1]?.match(/^(mode)$/)) ||
-  (keys[0] === 'focus' && keys[1] !== 'thickness');
+import defaultTheme from './defaultTheme';
+import type { DefaultColorScheme, ExtendedColorScheme } from './types';
+import THEME_ID from './identifier';
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
-  DefaultColorScheme | ExtendedColorScheme
+  DefaultColorScheme | ExtendedColorScheme,
+  typeof THEME_ID
 >({
-  theme: extendTheme(),
+  themeId: THEME_ID,
+  theme: defaultTheme,
   attribute: 'data-joy-color-scheme',
   modeStorageKey: 'joy-mode',
   colorSchemeStorageKey: 'joy-color-scheme',
@@ -20,19 +21,6 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
     light: 'light',
     dark: 'dark',
   },
-  resolveTheme: (mergedTheme: Theme) => {
-    // `colorInversion` need to be generated after the theme's palette has been calculated.
-    mergedTheme.colorInversion = deepmerge(
-      {
-        soft: createSoftInversion(mergedTheme),
-        solid: createSolidInversion(mergedTheme),
-      },
-      mergedTheme.colorInversion,
-      { clone: false },
-    );
-    return mergedTheme;
-  },
-  shouldSkipGeneratingVar,
 });
 
-export { CssVarsProvider, useColorScheme, getInitColorSchemeScript, shouldSkipGeneratingVar };
+export { CssVarsProvider, useColorScheme, getInitColorSchemeScript };
