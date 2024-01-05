@@ -8,7 +8,7 @@ interface IToggleButtonGroupContext {
   size?: ToggleButtonGroupProps['size'];
   fullWidth?: ToggleButtonGroupProps['fullWidth'];
   color?: ToggleButtonGroupProps['color'];
-  disabled?: boolean;
+  disabled?: ToggleButtonGroupProps['disabled'];
 }
 
 /**
