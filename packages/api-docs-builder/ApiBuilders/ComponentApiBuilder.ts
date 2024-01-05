@@ -104,9 +104,10 @@ export async function computeApiDescription(
   const file = await remark()
     .use(function docsLinksAttacher() {
       return function transformer(tree) {
-        remarkVisit(tree, 'link', (linkNode: Link) => {
-          if ((linkNode.url as string).startsWith('/')) {
-            linkNode.url = `${host}${linkNode.url}`;
+        remarkVisit(tree, 'link', (linkNode) => {
+          const link = linkNode as Link;
+          if ((link.url as string).startsWith('/')) {
+            link.url = `${host}${link.url}`;
           }
         });
       };
