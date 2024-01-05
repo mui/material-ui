@@ -3,8 +3,8 @@ title: Q2 2021 Update
 description: An update on our mission for Q2 2021.
 date: 2021-07-12T00:00:00.000Z
 authors: ['oliviertassinari', 'mbrookes']
-card: true
 tags: ['Company']
+card: true
 ---
 
 This update covers our progress over the last three months.
@@ -120,7 +120,7 @@ The date picker is at the border between the core component and advanced compone
 
   <img loading="lazy" src="/static/blog/2021-q2-update/single-select.png" alt="" style="width: 481px; margin-bottom: 16px;" />
 
-  <p class="blog-description">the <a href="https://codesandbox.io/s/material-demo-forked-iuyo5?file=/demo.js">codesandbox</a></p>
+  <p class="blog-description">the <a href="https://codesandbox.io/p/sandbox/material-demo-forked-iuyo5?file=/demo.js">codesandbox</a></p>
 
   and the **boolean** column type.
 

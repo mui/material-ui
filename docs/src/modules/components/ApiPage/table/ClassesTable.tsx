@@ -10,6 +10,7 @@ import { getHash } from 'docs/src/modules/components/ApiPage/list/ClassesList';
 
 const StyledTable = styled('table')(
   ({ theme }) => ({
+    textAlign: 'left',
     '& .class-name': {
       flexShrink: 0,
       fontWeight: theme.typography.fontWeightSemiBold,

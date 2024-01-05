@@ -219,6 +219,9 @@ const DemoRootMaterial = styled('div', {
     border: `1px solid ${(theme.vars || theme).palette.divider}`,
     borderLeftWidth: 0,
     borderRightWidth: 0,
+    ...theme.applyDarkStyles({
+      backgroundColor: alpha(theme.palette.primaryDark[700], 0.1),
+    }),
   }),
   /* Similar to the outlined one but without padding. Ideal for playground demos. */
   ...(bg === 'playground' && {
@@ -229,10 +232,10 @@ const DemoRootMaterial = styled('div', {
   /* Prepare the background to display an inner elevation. */
   ...(bg === true && {
     padding: theme.spacing(3),
-    backgroundColor: (theme.vars || theme).palette.grey[50],
+    backgroundColor: alpha(theme.palette.grey[50], 0.6),
     border: `1px solid ${(theme.vars || theme).palette.divider}`,
     ...theme.applyDarkStyles({
-      backgroundColor: alpha(theme.palette.primaryDark[700], 0.3),
+      backgroundColor: alpha(theme.palette.primaryDark[700], 0.15),
     }),
   }),
   /* Mostly meant for introduction demos. */
@@ -299,7 +302,7 @@ const DemoRootJoy = joyStyled('div', {
     backgroundColor: '#fff',
     ...theme.applyDarkStyles({
       borderColor: alpha(grey[700], 0.3),
-      backgroundColor: alpha(blueDark[800], 0.2),
+      backgroundColor: alpha(blueDark[700], 0.2),
     }),
   }),
   /* Prepare the background to display an inner elevation. */
@@ -399,7 +402,7 @@ export default function Demo(props) {
       [
         `The following demos use TS directly: ${demoOptions.demo}.`,
         '',
-        'Please run "yarn docs:typescript:formatted" to generate a JS version and reference it:',
+        'Please run "pnpm docs:typescript:formatted" to generate a JS version and reference it:',
         `{{"demo": "${demoOptions.demo.replace(/\.(.*)$/, '.js')}", …}}.`,
         '',
         "Otherwise, if it's not a code demo hide the toolbar:",

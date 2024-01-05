@@ -89,10 +89,10 @@ const Accordion = styled(MuiAccordion)(({ theme }) => ({
   '&:not(:last-of-type)': {
     marginBottom: theme.spacing(2),
   },
-  '&:before': {
+  '&::before': {
     display: 'none',
   },
-  '&:after': {
+  '&::after': {
     display: 'none',
   },
   ...theme.applyDarkStyles({
@@ -573,6 +573,7 @@ export default function Careers() {
       <Head
         title="Careers - MUI"
         description="Interested in joining MUI? Learn about the roles we're hiring for."
+        card="/static/social-previews/careers-preview.jpg"
       />
       <AppHeaderBanner />
       <AppHeader />
