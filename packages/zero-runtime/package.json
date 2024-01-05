@@ -1,6 +1,6 @@
 {
   "name": "@mui/zero-runtime",
-  "version": "0.0.1-alpha.5",
+  "version": "0.0.1",
   "main": "build/index.js",
   "module": "build/index.mjs",
   "types": "build/index.d.ts",
