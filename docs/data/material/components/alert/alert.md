@@ -100,7 +100,7 @@ You can nest this component above the message in your Alert for a neatly styled 
 
 {{"demo": "DescriptionAlerts.js"}}
 
-## Transitions
+### Transitions
 
 You can use [Transition components](/material-ui/transitions/) like [Collapse](/material-ui/transitions/#collapse) to add motion to an Alert's entrance and exit.
 
