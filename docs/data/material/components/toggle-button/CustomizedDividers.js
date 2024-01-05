@@ -18,18 +18,18 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   '& .MuiToggleButtonGroup-grouped': {
     margin: theme.spacing(0.5),
     border: 0,
+    borderRadius: theme.shape.borderRadius,
     '&.Mui-disabled': {
       border: 0,
     },
   },
-  '& .MuiToggleButtonGroup-firstButton': {
-    borderRadius: theme.shape.borderRadius,
-  },
   '& .MuiToggleButtonGroup-middleButton': {
-    borderRadius: theme.shape.borderRadius,
+    marginLeft: -1,
+    borderLeft: '1px solid transparent',
   },
   '& .MuiToggleButtonGroup-lastButton': {
-    borderRadius: theme.shape.borderRadius,
+    marginLeft: -1,
+    borderLeft: '1px solid transparent',
   },
 }));
 
