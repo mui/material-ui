@@ -39,7 +39,7 @@
     },
     "firstButton": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the first button in the button group"
+      "nodeName": "the first button in the toggle button group"
     },
     "fullWidth": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -59,11 +59,11 @@
     },
     "lastButton": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the last button in the button group"
+      "nodeName": "the last button in the toggle button group"
     },
     "middleButton": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "buttons in the middle of the button group"
+      "nodeName": "buttons in the middle of the toggle button group"
     },
     "root": { "description": "Styles applied to the root element." },
     "vertical": {
