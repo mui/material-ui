@@ -23,13 +23,10 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
       border: 0,
     },
   },
-  '& .MuiToggleButtonGroup-middleButton': {
+  '& .MuiToggleButtonGroup-middleButton,& .MuiToggleButtonGroup-lastButton': {
     marginLeft: -1,
     borderLeft: '1px solid transparent',
   },
-  '& .MuiToggleButtonGroup-lastButton': {
-    marginLeft: -1,
-    borderLeft: '1px solid transparent',
   },
 }));
 
