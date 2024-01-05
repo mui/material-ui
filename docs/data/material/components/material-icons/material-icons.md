@@ -8,14 +8,13 @@ githubLabel: 'package: icons'
 
 # Material Icons
 
-<p class="description">2,100+ ready-to-use React Material Icons from the official website.</p>
+<p class="description">2,100+ ready-to-use React Material Icons.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Introduction
 
-[@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material)
-includes the 2,100+ official [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) converted to [`SvgIcon`](/material-ui/icons/#svgicon/) components.
+The [`@mui/icons-material`](https://www.npmjs.com/package/@mui/icons-material) package includes the 2,100+ official [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) converted to [`SvgIcon`](/material-ui/icons/#svgicon/) components.
 It depends on `@mui/material`, which requires Emotion packages.
 Use one of the following commands to install it:
 
@@ -39,25 +38,25 @@ See the [Installation](/material-ui/getting-started/installation/) page for addi
 
 ## Basics
 
-Material Icons use the Material UI [`SvgIcon`](/material-ui/icons/#svgicon/) component under the hood, meaning they render without any form of customization, and it features several handy props for you to quickly customize its styles.
+Material Icons use the Material UI [SVG Icon](/material-ui/icons/#svgicon/) component under the hood, so they render without any customization, and feature several props for quickly customizing styles.
 
 {{"demo": "BasicMaterialIcon.js"}}
 
 :::info
-Visit [the SvgIcon component section in the Icon page](/material-ui/icons/#svgicon/) for further information about its other props, and even how to use it with different icon libraries.
+Visit [the SVG Icon component section in the Icon doc](/material-ui/icons/#svgicon/) for further information about its other props, as well as how to use it with other icon libraries.
 :::
 
 ### Size
 
-Use the `fontSize` prop to toggle between small, medium (default, 24x24px), or large sizes.
-You can also use the `sx` prop to pick values that are outside of this built-in scale.
+Use the `fontSize` prop to toggle between small, medium (default, 24x24px), or large icon sizes.
+You can also use the `sx` prop to pick arbitrary values that are outside of this built-in scale.
 
 {{"demo": "SizeMaterialIcon.js"}}
 
 ### Color
 
-Use the `color` prop to pick from a different palette key from the theme.
-It defaults to the `main` value of whatever palette.
+Use the `color` prop to choose a palette key from the theme.
+It defaults to the `main` value of its respective palette.
 
 {{"demo": "ColorMaterialIcon.js"}}
 
