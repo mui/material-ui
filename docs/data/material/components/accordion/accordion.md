@@ -92,7 +92,7 @@ This default behavior has server-side rendering and SEO in mind.
 If you render the Accordion Details with a big component tree nested inside, or if you have many Accordions, you may want to change this behavior by setting `unmountOnExit` to `true` inside the `TransitionProps` prop to improve performance:
 
 ```jsx
-<Accordion TransitionProps={{ unmountOnExit: true }} />
+<Accordion slotProps={{ transition: { unmountOnExit: true } }} />
 ```
 
 ## Accessibility
