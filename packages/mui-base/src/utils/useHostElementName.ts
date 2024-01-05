@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 
 export function useHostElementName(parameters: { hostElementName?: keyof HTMLElementTagNameMap }) {
