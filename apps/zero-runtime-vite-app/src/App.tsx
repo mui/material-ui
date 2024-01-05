@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/zero-runtime';
-import { Button, bounceAnim } from 'local-library';
+import { Button, bounceAnim } from 'local-ui-lib';
 import Slider from './Slider/ZeroSlider';
 
 const ShowCaseDiv = styled('div')({
