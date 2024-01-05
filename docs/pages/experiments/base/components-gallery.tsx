@@ -27,7 +27,6 @@ import { TabsList } from '@mui/base/TabsList';
 import { TabPanel } from '@mui/base/TabPanel';
 import { Tab } from '@mui/base/Tab';
 import { TextareaAutosize } from '@mui/base/TextareaAutosize';
-import { CssTransition } from '@mui/base/Transitions';
 // Icons import
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
@@ -408,7 +407,7 @@ export default function ComponentsGallery() {
             className="GalleryButtonOutlined"
             onClick={handleClick}
           >
-            Open Popper
+            {open ? 'Close' : 'Open'} Popper
           </button>
           <Popper id={id} open={open} anchorEl={anchorEl}>
             <div className="GalleryPopper">Popper content</div>
@@ -421,17 +420,11 @@ export default function ComponentsGallery() {
             className="GalleryButtonOutlined"
             onClick={popupButtonHandleClick}
           >
-            Open Popup
+            {popupOpen ? 'Close' : 'Open'} Popup
           </button>
-          <CssTransition
-            enterClassName="open"
-            exitClassName="close"
-            lastTransitionedPropertyOnExit="transform"
-          >
-            <Popup id={popupId} open={popupOpen} anchor={popupAnchor}>
-              <div className="GalleryPopup">Popup content</div>
-            </Popup>
-          </CssTransition>
+          <Popup id={popupId} open={popupOpen} anchor={popupAnchor}>
+            <div className="GalleryPopup">Popup content</div>
+          </Popup>
         </div>
         <div>
           <button

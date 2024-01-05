@@ -188,20 +188,6 @@
   margin: 0;
 }
 
-.open {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  filter: blur(0);
-  transition: transform 0.2s cubic-bezier(0.345, 0.275, 0.505, 1.625), opacity 0.2s ease-out;
-}
-
-.close {
-  opacity: 0;
-  transform: translateY(-8px) scale(0.95);
-  filter: blur(3px);
-  transition: transform 0.4s ease-out, opacity 0.4s ease-out, filter 0.2s ease-out;
-}
-
 .GalleryContainer {
   background-color: var(--canvas);
   padding: 24px;
