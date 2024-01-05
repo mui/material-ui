@@ -389,7 +389,7 @@ const Button = React.forwardRef(function Button<
     size = 'medium',
     startIcon: startIconProp,
     variant = 'text',
-    hostElementName: hostElementNameProp = 'button',
+    hostElementName: hostElementNameProp,
     ...other
   } = props;
 
@@ -403,7 +403,7 @@ const Button = React.forwardRef(function Button<
     variant,
   };
 
-  const hostElementName = other.href || other.to ? 'a' : hostElementNameProp;
+  const hostElementName = hostElementNameProp ?? (other.href || other.to ? 'a' : undefined);
 
   const classes = useUtilityClasses(ownerState);
 
@@ -492,7 +492,6 @@ Button.propTypes /* remove-proptypes */ = {
   fullWidth: PropTypes.bool,
   /**
    * The underlying HTML element. To make SSR stable.
-   * @default 'button'
    */
   hostElementName: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**

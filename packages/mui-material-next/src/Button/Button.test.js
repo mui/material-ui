@@ -20,7 +20,7 @@ describe('<Button />', () => {
     testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
     ThemeProvider: CssVarsProvider,
     createTheme: extendTheme,
-    skip: ['componentsProp', 'componentProp'],
+    skip: ['componentsProp'],
   }));
 
   it('should render with the root, text and colorPrimary classes but no others', () => {
@@ -233,14 +233,6 @@ describe('<Button />', () => {
 
         expect(handleSpy.callCount).to.equal(1);
       });
-    });
-  });
-
-  describe('prop: component', () => {
-    it('can render another root component with the `component` prop', () => {
-      const { container } = render(<Button component="em" hostElementName="em" />);
-      const button = container.querySelector('em');
-      expect(button).not.to.equal(null);
     });
   });
 });

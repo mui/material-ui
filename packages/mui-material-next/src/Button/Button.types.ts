@@ -90,7 +90,6 @@ export type ButtonTypeMap<
     >;
     /**
      * The underlying HTML element. To make SSR stable.
-     * @default 'button'
      */
     hostElementName?: keyof HTMLElementTagNameMap;
   };
