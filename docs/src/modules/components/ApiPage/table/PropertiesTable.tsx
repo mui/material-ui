@@ -220,7 +220,10 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                 <td className="MuiPropTable-description-column">
                   {description && <PropDescription description={description} />}
                   {seeMoreDescription && (
-                    <p dangerouslySetInnerHTML={{ __html: seeMoreDescription }} />
+                    <p
+                      dangerouslySetInnerHTML={{ __html: seeMoreDescription }}
+                      className="prop-table-additional-description"
+                    />
                   )}
                   {requiresRef && (
                     <Alert
