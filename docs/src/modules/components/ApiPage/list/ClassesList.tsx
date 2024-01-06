@@ -1,6 +1,7 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
+import kebabCase from 'lodash/kebabCase';
 import { ComponentClassDefinition } from '@mui-internal/docs-utilities';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ExpandableApiItem, {
@@ -43,7 +44,7 @@ type ClassesListProps = {
 type HashParams = { componentName?: string; className: string };
 
 export function getHash({ componentName, className }: HashParams) {
-  return `${componentName ? `${componentName}-` : ''}classes-${className}`;
+  return `${kebabCase(componentName)}-classes-${className}`;
 }
 
 export default function ClassesList(props: ClassesListProps) {
