@@ -36,7 +36,7 @@ export interface BaseTextFieldProps
   /**
    * @ignore
    */
-  children?: React.ReactNode;
+  children?: FormControlProps['children'];
   /**
    * Override or extend the styles applied to the component.
    */

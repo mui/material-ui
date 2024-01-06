@@ -7,7 +7,7 @@ import * as _ from 'lodash';
 import kebabCase from 'lodash/kebabCase';
 import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
-import { Link } from 'mdast';
+import type { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import { renderMarkdown } from '@mui/markdown';
 import { ComponentClassDefinition } from '@mui-internal/docs-utilities';
@@ -104,9 +104,10 @@ export async function computeApiDescription(
   const file = await remark()
     .use(function docsLinksAttacher() {
       return function transformer(tree) {
-        remarkVisit(tree, 'link', (linkNode: Link) => {
-          if ((linkNode.url as string).startsWith('/')) {
-            linkNode.url = `${host}${linkNode.url}`;
+        remarkVisit(tree, 'link', (linkNode) => {
+          const link = linkNode as Link;
+          if ((link.url as string).startsWith('/')) {
+            link.url = `${host}${link.url}`;
           }
         });
       };

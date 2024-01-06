@@ -2,7 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import { unstable_useId } from '@mui/material/utils';
 import Box from '@mui/material/Box';
-import { Input as InputUnstyled } from '@mui/base/Input';
+import { Input } from '@mui/base/Input';
 import { styled, GlobalStyles } from '@mui/system';
 
 const fieldStyles = `
@@ -158,7 +158,7 @@ export default function BaseInputDemo({ styling }: { styling?: 'system' | 'tailw
       }}
     >
       {styling === 'system' && (
-        <InputUnstyled
+        <Input
           placeholder="Type something here"
           slots={{
             root: Field,
@@ -169,11 +169,11 @@ export default function BaseInputDemo({ styling }: { styling?: 'system' | 'tailw
       {styling === 'css' && (
         <React.Fragment>
           <GlobalStyles styles={CSS} />
-          <InputUnstyled placeholder="Type something here" slots={{ input: FloatingLabelInput }} />
+          <Input placeholder="Type something here" slots={{ input: FloatingLabelInput }} />
         </React.Fragment>
       )}
       {styling === 'tailwindcss' && (
-        <InputUnstyled
+        <Input
           placeholder="Type something here"
           className=" p-[0px_0.75rem][box-shadow:var(--shadow)] relative inline-flex h-[--TextInput-height] w-[320px] rounded-[--muidocs-shape-borderRadius] border border-solid border-[--muidocs-palette-grey-300] bg-[--muidocs-palette-background-paper] outline-transparent [--TextInput-height:64px] [--TextInput-labelLineHeight:20px] [--TextInput-labelScale:0.75] [--TextInput-paddingTop:2rem] focus-within:!border-[--palette-primary] focus-within:[outline:3px_solid_var(--focus-ring)] hover:border-[--muidocs-palette-grey-400] dark:border-[--muidocs-palette-grey-800] dark:shadow-[0_2px_4px_0_rgba(0_0_0/0.8)] dark:focus-within:!border-[--palette-primary] dark:focus-within:[outline:3px_solid_var(--focus-ring)] dark:hover:border-[--muidocs-palette-grey-700]"
           slots={{ input: TailwindFloatingLabelInput }}
@@ -283,7 +283,7 @@ const FloatingLabelInput = React.forwardRef(
   );
 });
 
-<InputUnstyled
+<Input
   placeholder="Type something here"
   className="relative inline-flex h-[--TextInput-height] w-[320px] 
     rounded-[--muidocs-shape-borderRadius] border border-solid 

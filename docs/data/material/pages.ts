@@ -205,11 +205,16 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/guides/testing' },
       { pathname: '/material-ui/guides/localization' },
       { pathname: '/material-ui/guides/content-security-policy', title: 'Content Security Policy' },
-      { pathname: '/material-ui/guides/right-to-left', title: 'Right-to-left' },
+      { pathname: '/material-ui/guides/right-to-left', title: 'Right-to-left support' },
       { pathname: '/material-ui/guides/shadow-dom', title: 'Shadow DOM' },
       {
         pathname: '/material-ui/guides/nextjs',
         title: 'Next.js integration',
+        newFeature: true,
+      },
+      {
+        pathname: '/material-ui/guides/material-3-components',
+        title: 'Material 3 components',
         newFeature: true,
       },
     ],

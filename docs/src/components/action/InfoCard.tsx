@@ -69,6 +69,8 @@ export default function InfoCard(props: InfoCardProps) {
       {...(link
         ? {
             noLinkStyle: true,
+            // Fix overloading with prefetch={false}, only prefetch on hover.
+            prefetch: false,
           }
         : {})}
       sx={(theme) => ({
