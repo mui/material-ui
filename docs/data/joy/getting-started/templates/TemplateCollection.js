@@ -40,7 +40,7 @@ const templates = [
     author: authors.MUI,
     design: {
       name: 'Untitled UI',
-      link: 'https://www.figma.com/community/file/1020079203222518115/%E2%9D%96-Untitled-UI-%E2%80%93-FREE-Figma-UI-kit-and-design-system',
+      link: 'https://www.figma.com/community/file/1020079203222518115/untitled-ui-free-figma-ui-kit-and-design-system',
     },
   },
   {
@@ -48,7 +48,7 @@ const templates = [
     author: authors.MUI,
     design: {
       name: 'Untitled UI',
-      link: 'https://www.figma.com/community/file/1020079203222518115/%E2%9D%96-Untitled-UI-%E2%80%93-FREE-Figma-UI-kit-and-design-system',
+      link: 'https://www.figma.com/community/file/1020079203222518115/untitled-ui-free-figma-ui-kit-and-design-system',
     },
   },
   {
@@ -56,7 +56,7 @@ const templates = [
     author: authors.SteveEberger,
     design: {
       name: 'Untitled UI',
-      link: 'https://www.figma.com/community/file/1020079203222518115/%E2%9D%96-Untitled-UI-%E2%80%93-FREE-Figma-UI-kit-and-design-system',
+      link: 'https://www.figma.com/community/file/1020079203222518115/untitled-ui-free-figma-ui-kit-and-design-system',
     },
   },
   {
@@ -68,7 +68,7 @@ const templates = [
     author: authors.SteveEberger,
     design: {
       name: 'Untitled UI',
-      link: 'https://www.figma.com/community/file/1020079203222518115/%E2%9D%96-Untitled-UI-%E2%80%93-FREE-Figma-UI-kit-and-design-system',
+      link: 'https://www.figma.com/community/file/1020079203222518115/untitled-ui-free-figma-ui-kit-and-design-system',
     },
   },
   {
@@ -88,7 +88,7 @@ const templates = [
     author: authors.MUI,
     design: {
       name: 'Frames X',
-      link: 'https://framesxfigma.buninux.com/',
+      link: 'https://framesxdesign.com/',
     },
   },
 ];
@@ -241,7 +241,7 @@ export default function TemplateCollection() {
                       <Link
                         href={template.design.link}
                         target="_blank"
-                        rel="noopener noreferrer"
+                        rel="noopener noreferrer nofollow"
                       >
                         <b>{template.design.name}</b>
                       </Link>

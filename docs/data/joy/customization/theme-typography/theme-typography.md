@@ -134,7 +134,7 @@ Feel free to [submit a PR](https://github.com/mui/material-ui/compare) to add yo
 
 ### Microsoft's Fluent
 
-- Design resource: [Figma](https://www.figma.com/community/file/836828295772957889)
+- Design resource: [Figma](https://www.figma.com/community/file/836828295772957889/microsoft-fluent-2-web)
 - Font: [Segoe UI](https://learn.microsoft.com/en-us/typography/font-list/segoe-ui)
 
 <iframe src="https://codesandbox.io/embed/joy-ui-fluent-typography-system-j86fct?module=%2Fdemo.tsx&fontsize=14&hidenavigation=1&theme=dark&view=preview"
@@ -158,7 +158,7 @@ Feel free to [submit a PR](https://github.com/mui/material-ui/compare) to add yo
 
 ### Google's Material Design 3
 
-- Design resource: [Figma](https://www.figma.com/community/file/1035203688168086460)
+- Design resource: [Figma](https://www.figma.com/community/file/1035203688168086460/material-3-design-kit)
 - Font: [Roboto](https://fonts.google.com/specimen/Roboto)
 
 <iframe src="https://codesandbox.io/embed/joy-ui-material-3-typography-system-lx044f?module=%2Fdemo.tsx&fontsize=14&hidenavigation=1&theme=dark&view=preview"
