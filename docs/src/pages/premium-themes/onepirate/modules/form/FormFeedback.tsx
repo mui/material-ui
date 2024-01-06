@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { experimentalStyled as styled } from '@mui/material/styles';
-import Box, { BoxProps as MuiBoxProps } from '@mui/material/Box';
+import { experimentalStyled as styled, SxProps } from '@mui/material/styles';
 import Typography from '../components/Typography';
 
-interface FormFeedbackProps extends MuiBoxProps {
+interface FormFeedbackProps {
   error?: boolean;
   success?: boolean;
+  sx?: SxProps;
 }
 
-const BoxStyled = styled(Box, {
+const BoxStyled = styled('div', {
   shouldForwardProp: (prop) => prop !== 'error' && prop !== 'success',
 })<FormFeedbackProps>(({ theme, error, success }) => ({
   padding: theme.spacing(2),
@@ -22,7 +22,7 @@ const BoxStyled = styled(Box, {
   }),
 }));
 
-function FormFeedback(
+export default function FormFeedback(
   props: React.HTMLAttributes<HTMLDivElement> & FormFeedbackProps,
 ) {
   const { className, children, error, success, ...others } = props;
@@ -33,5 +33,3 @@ function FormFeedback(
     </BoxStyled>
   );
 }
-
-export default FormFeedback;

@@ -124,6 +124,7 @@ module.exports = {
     'material-ui/docgen-ignore-before-comment': 'error',
     'material-ui/rules-of-use-theme-variants': 'error',
     'material-ui/no-empty-box': 'error',
+    'material-ui/no-styled-box': 'error',
     'material-ui/straight-quotes': 'error',
 
     'react-hooks/exhaustive-deps': ['error', { additionalHooks: 'useEnhancedEffect' }],
