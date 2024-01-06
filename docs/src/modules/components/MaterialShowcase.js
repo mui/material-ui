@@ -519,7 +519,7 @@ export default function Showcase() {
                   }),
                 })}
               >
-                <a href={app.link} rel="noopener nofollow noreferrer" target="_blank">
+                <a href={app.link} rel="noopener nofollow" target="_blank">
                   <CardMedia
                     component="img"
                     loading="lazy"

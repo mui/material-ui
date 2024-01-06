@@ -383,7 +383,7 @@ export default function TopLayoutBlog(props) {
                       <Link
                         href={`https://github.com/${authors[author].github}`}
                         target="_blank"
-                        rel="noreferrer noopener"
+                        rel="noopener"
                         color="primary"
                         variant="body2"
                         sx={{ fontWeight: 500 }}
