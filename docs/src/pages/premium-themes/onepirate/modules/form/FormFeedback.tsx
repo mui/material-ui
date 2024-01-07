@@ -8,6 +8,7 @@ interface FormFeedbackProps extends MuiBoxProps {
   success?: boolean;
 }
 
+// eslint-disable-next-line material-ui/no-styled-box
 const BoxStyled = styled(Box, {
   shouldForwardProp: (prop) => prop !== 'error' && prop !== 'success',
 })<FormFeedbackProps>(({ theme, error, success }) => ({
