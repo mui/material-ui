@@ -16,6 +16,11 @@ import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/Styl
 
 const StyledTable = styled('table')(
   ({ theme }) => ({
+    // Override docs/src/modules/components/MarkdownElement styles
+    '&&': {
+      display: 'table',
+      width: '100%',
+    },
     '& .type-column': {
       minWidth: '20%',
     },
