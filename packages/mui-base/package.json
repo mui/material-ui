@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.23.7",
-    "@floating-ui/react-dom": "^2.0.4",
+    "@floating-ui/react-dom": "^2.0.5",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:^",
     "@popperjs/core": "^2.11.8",
