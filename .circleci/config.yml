@@ -107,8 +107,6 @@ commands:
             - run:
                 name: Install playwright browsers
                 command: pnpm playwright install --with-deps
-                environment:
-                  PLAYWRIGHT_BROWSERS_PATH: /tmp/pw-browsers
       - save_cache:
           name: Save pnpm package cache
           key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
