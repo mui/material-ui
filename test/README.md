@@ -153,12 +153,15 @@ When running this command you should get under `coverage/index.html` a full cove
 
 Testing the components at the React level isn't enough;
 we need to make sure they will behave as expected with a **real DOM**.
-To solve that problem we use [karma](https://github.com/karma-runner/karma),
-which is almost a drop-in replacement of [jsdom](https://github.com/tmpvar/jsdom).
+To solve that problem we use [Karma](https://github.com/karma-runner/karma),
+which is almost a drop-in replacement of [jsdom](https://github.com/jsdom/jsdom).
 Our tests run on different browsers to increase the coverage:
 
 - [Headless Chrome](https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md)
-- Chrome, Firefox, Safari, and Edge thanks to [BrowserStack](https://www.browserstack.com)
+- Headless Firefox
+- Chrome, Safari, and Edge thanks to [BrowserStack](https://www.browserstack.com)
+
+In development mode, if `pnpm test:karma` fails with this error "Cannot start ChromeHeadless. Can not find the binary", you can solve it by installing the missing headless browsers: `pnpm playwright install --with-deps`.
 
 ##### BrowserStack
 
