@@ -180,7 +180,6 @@
     "tsx": "^4.7.0",
     "typescript": "^5.3.3",
     "typescript-to-proptypes": "workspace:^",
-    "vm-browserify": "^1.1.2",
     "webpack": "^5.89.0",
     "webpack-bundle-analyzer": "^4.10.1",
     "webpack-cli": "^5.1.4",

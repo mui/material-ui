@@ -194,7 +194,7 @@ module.exports = function setKarmaConfig(config) {
           stream: false,
           // required by enzyme > cheerio > parse5
           util: require.resolve('util/'),
-          vm: require.resolve('vm-browserify'),
+          vm: false,
         },
       },
       // TODO: 'browserslist:modern'

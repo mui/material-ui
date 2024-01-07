@@ -12,7 +12,12 @@ describe('deepmerge', () => {
     expect({}).not.to.have.property('isAdmin');
   });
 
-  it('should merge objects across realms', () => {
+  it('should merge objects across realms', function test() {
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      // vm is only available in Node.js
+      this.skip();
+    }
+
     const vmObject = runInNewContext('({hello: "realm"})');
     const result = deepmerge({ hello: 'original' }, vmObject);
     expect(result.hello).to.equal('realm');
