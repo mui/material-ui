@@ -35,17 +35,18 @@ const StyledApiItem = styled(ExpandableApiItem)(
   }),
 );
 
+type HashParams = { componentName: string; className: string };
+
+export function getHash({ componentName, className }: HashParams) {
+  return `${kebabCase(componentName)}-classes-${className}`;
+}
+
 type ClassesListProps = {
   componentName: string;
   classes: ComponentClassDefinition[];
   displayOption: 'collapsed' | 'expanded';
   displayClassKeys?: boolean;
 };
-type HashParams = { componentName?: string; className: string };
-
-export function getHash({ componentName, className }: HashParams) {
-  return `${kebabCase(componentName)}-classes-${className}`;
-}
 
 export default function ClassesList(props: ClassesListProps) {
   const { classes, displayOption, componentName, displayClassKeys } = props;
