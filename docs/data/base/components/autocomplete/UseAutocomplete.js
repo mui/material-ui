@@ -22,7 +22,7 @@ export default function UseAutocomplete() {
   });
 
   return (
-    <div style={{ marginBottom: 24 }}>
+    <div style={{ marginBottom: 16 }}>
       <Label {...getInputLabelProps()}>Pick a movie</Label>
       <Root {...getRootProps()} className={focused ? 'Mui-focused' : ''}>
         <Input {...getInputProps()} />
