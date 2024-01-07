@@ -5,7 +5,7 @@ import deepmerge from './deepmerge';
 describe('deepmerge', () => {
   // https://snyk.io/blog/after-three-years-of-silence-a-new-jquery-prototype-pollution-vulnerability-emerges-once-again/
   it('should not be subject to prototype pollution', () => {
-    const result = deepmerge(
+    deepmerge(
       {},
       JSON.parse('{ "myProperty": "a", "__proto__" : { "isAdmin" : true } }'),
       {
@@ -13,7 +13,7 @@ describe('deepmerge', () => {
       },
     );
 
-    expect(result).not.to.have.property('isAdmin');
+    expect({}).not.to.have.property('isAdmin');
   });
 
   it('should merge objects across realms', () => {
