@@ -50,6 +50,8 @@
     "slotDescription": "To learn how to customize the slot, check out the <a href={{slotGuideLink}}>Overriding component structure</a> guide.",
     "slotName": "Slot name",
     "type": "Type",
+    "required": "Required",
+    "optional": "Optional",
     "additional-info": {
       "cssApi": "See <a href='#css'>CSS API</a> below for more details.",
       "sx": "See the <a href='/system/getting-started/the-sx-prop/'>`sx` page</a> for more details.",

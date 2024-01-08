@@ -37,8 +37,13 @@ const StyledApiItem = styled(ExpandableApiItem)(
         fontSize: theme.typography.pxToRem(12),
       },
     },
-    '& .prop-list-deprecated': {
-      '& code': { all: 'unset' },
+    '&.prop-list-deprecated-item': {
+      '& .MuiApi-item-note': {
+        color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
+      },
+      '& .prop-list-alert': {
+        '& code': { all: 'unset' },
+      },
     },
     '& .prop-list-default-props': {
       ...theme.typography.body2,
@@ -78,6 +83,11 @@ const StyledApiItem = styled(ExpandableApiItem)(
       },
       '& .prop-list-default-props': {
         color: `var(--muidocs-palette-grey-300, ${darkTheme.palette.grey[300]})`,
+      },
+      '&.prop-list-deprecated-item': {
+        '& .MuiApi-item-note': {
+          color: `var(--muidocs-palette-warning-400, ${lightTheme.palette.warning[400]})`,
+        },
       },
     },
   }),
@@ -174,9 +184,15 @@ export default function PropertiesList(props: PropertiesListProps) {
             key={propName}
             id={getHash({ componentName, propName, hooksParameters, hooksReturnValue })}
             title={propName}
-            note={(isOptional && 'Optional') || (isRequired && 'Required') || ''}
+            note={
+              (isOptional && t('api-docs.optional')) ||
+              (isRequired && t('api-docs.required')) ||
+              (isDeprecated && t('api-docs.deprecated')) ||
+              ''
+            }
             type="props"
             displayOption={displayOption}
+            className={isDeprecated ? 'prop-list-deprecated-item' : ''}
           >
             {description && <PropDescription description={description} />}
             {seeMoreDescription && <p dangerouslySetInnerHTML={{ __html: seeMoreDescription }} />}
@@ -209,7 +225,7 @@ export default function PropertiesList(props: PropertiesListProps) {
             ))}
             {isDeprecated && (
               <Alert
-                className="MuiApi-collapsible prop-list-deprecated"
+                className="MuiApi-collapsible prop-list-alert"
                 severity="warning"
                 icon={<WarningRoundedIcon fontSize="small" />}
                 sx={{

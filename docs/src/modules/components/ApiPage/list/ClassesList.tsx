@@ -9,7 +9,10 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ExpandableApiItem, {
   ApiItemContaier,
 } from 'docs/src/modules/components/ApiPage/list/ExpandableApiItem';
-import { brandingDarkTheme as darkTheme } from 'docs/src/modules/brandingTheme';
+import {
+  brandingLightTheme as lightTheme,
+  brandingDarkTheme as darkTheme,
+} from 'docs/src/modules/brandingTheme';
 
 const StyledApiItem = styled(ExpandableApiItem)(
   ({ theme }) => ({
@@ -27,14 +30,24 @@ const StyledApiItem = styled(ExpandableApiItem)(
     '& .prop-list-class': {
       margin: 0,
     },
-    '& .classes-list-deprecated': {
-      '& code': { all: 'unset' },
+    '&.classes-list-deprecated-item': {
+      '& .MuiApi-item-note': {
+        color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
+      },
+      '& .classes-list-alert': {
+        '& code': { all: 'unset' },
+      },
     },
   }),
   ({ theme }) => ({
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
       '& .prop-list-title': {
         color: `var(--muidocs-palette-grey-50, ${darkTheme.palette.grey[50]})`,
+      },
+      '&.classes-list-deprecated-item': {
+        '& .MuiApi-item-note': {
+          color: `var(--muidocs-palette-warning-400, ${lightTheme.palette.warning[400]})`,
+        },
       },
     },
   }),
@@ -67,11 +80,14 @@ export default function ClassesList(props: ClassesListProps) {
           <StyledApiItem
             id={getHash({ componentName, className: key })}
             key={key}
-            note={isGlobal ? t('api-docs.state') : ''}
+            note={
+              (isGlobal && t('api-docs.state')) || (isDeprecated && t('api-docs.deprecated')) || ''
+            }
             title={`.${className}`}
             type="classes"
             displayOption={displayOption}
             isExtendable={!!description}
+            className={isDeprecated ? 'classes-list-deprecated-item' : ''}
           >
             {description && <p dangerouslySetInnerHTML={{ __html: description }} />}
             {displayClassKeys && !isGlobal && (
@@ -82,7 +98,7 @@ export default function ClassesList(props: ClassesListProps) {
             )}
             {isDeprecated && (
               <Alert
-                className="MuiApi-collapsible classes-list-deprecated"
+                className="MuiApi-collapsible classes-list-alert"
                 severity="warning"
                 icon={<WarningRoundedIcon fontSize="small" />}
                 sx={{
