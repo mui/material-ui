@@ -89,7 +89,7 @@ const RatingRoot = styled('span', {
   color: '#faaf00',
   cursor: 'pointer',
   textAlign: 'left',
-  width:'min-content',
+  width: 'min-content',
   WebkitTapHighlightColor: 'transparent',
   [`&.${ratingClasses.disabled}`]: {
     opacity: (theme.vars || theme).palette.action.disabledOpacity,
@@ -101,11 +101,9 @@ const RatingRoot = styled('span', {
   [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
   ...(ownerState.size === 'small' && {
     fontSize: theme.typography.pxToRem(18),
-    width: '90px',
   }),
   ...(ownerState.size === 'large' && {
     fontSize: theme.typography.pxToRem(30),
-    width: '150px',
   }),
   // TODO v6: use the .Mui-readOnly global state class
   ...(ownerState.readOnly && {
