@@ -171,6 +171,10 @@ function Styles() {
           color: ${isDarkMode ? cyan[50] : cyan[900]};
         }
 
+        &:focus-visible {
+          outline: 3px solid ${isDarkMode ? cyan[400] : cyan[300]};
+        }
+
         &.${optionClasses.disabled} {
           color: ${isDarkMode ? grey[700] : grey[400]};
         }

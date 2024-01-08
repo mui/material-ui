@@ -4,7 +4,7 @@ title: Overview
 
 # Joy UI - Overview
 
-<p class="description">Joy UI is a library of beautifully designed React UI components built to spark joy in the development process.</p>
+<p class="description">Joy UI is an open-source React component library that implements MUI's own design principles. It's comprehensive and can be used in production out of the box.</p>
 
 ## Introduction
 

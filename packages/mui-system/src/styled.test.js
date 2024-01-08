@@ -432,6 +432,50 @@ describe('styled', () => {
       });
     });
 
+    it('should support variants with props callbacks', () => {
+      const customTheme = createTheme({
+        components: {
+          MuiTest: {
+            variants: [
+              {
+                props: ({ size }) => size === 'large',
+                style: {
+                  width: '400px',
+                  height: '400px',
+                },
+              },
+              {
+                props: ({ size }) => size === 'small',
+                style: {
+                  width: '200px',
+                  height: '200px',
+                },
+              },
+            ],
+          },
+        },
+      });
+      const { getByTestId } = render(
+        <ThemeProvider theme={customTheme}>
+          <TestObj data-testid="large" size="large">
+            Test
+          </TestObj>
+          <TestObj data-testid="small" size="small">
+            Test
+          </TestObj>
+        </ThemeProvider>,
+      );
+
+      expect(getByTestId('large')).toHaveComputedStyle({
+        width: '400px',
+        height: '400px',
+      });
+      expect(getByTestId('small')).toHaveComputedStyle({
+        width: '200px',
+        height: '200px',
+      });
+    });
+
     it('should resolve the sx prop of object type', () => {
       const { container } = render(
         <ThemeProvider theme={theme}>

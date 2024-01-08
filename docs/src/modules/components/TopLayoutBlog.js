@@ -157,9 +157,9 @@ const Root = styled('div')(
       '& h1': {
         marginBottom: theme.spacing(3),
       },
-      '& .markdown-body': {
-        lineHeight: 1.7,
-      },
+    },
+    '& .markdown-body': {
+      lineHeight: 1.7,
       '& img, & video': {
         border: '1px solid',
         borderColor: (theme.vars || theme).palette.grey[200],
@@ -193,6 +193,7 @@ const Root = styled('div')(
         },
       },
       '& th': {
+        width: '100%',
         textAlign: 'left',
         borderBottom: `3px solid rgba(62, 80, 96, 0.2) !important`,
       },
@@ -223,7 +224,7 @@ const Root = styled('div')(
       } 100%)`,
       backgroundSize: '100% 1000px',
       backgroundRepeat: 'no-repeat',
-      [`& .${classes.container}`]: {
+      '& .markdown-body': {
         '& strong': {
           color: (theme.vars || theme).palette.grey[100],
         },
@@ -259,6 +260,17 @@ export default function TopLayoutBlog(props) {
     headers.card === 'true'
       ? `https://mui.com/static/blog/${slug}/card.png`
       : 'https://mui.com/static/logo.png';
+
+  if (process.env.NODE_ENV !== 'production') {
+    if (headers.card === undefined) {
+      throw new Error(
+        [
+          `MUI: the "card" markdown header for the blog post "${slug}" is missing.`,
+          `Set card: true or card: false header in docs/pages/blog/${slug}.md.`,
+        ].join('\n'),
+      );
+    }
+  }
 
   return (
     <BrandingCssVarsProvider>
@@ -360,7 +372,9 @@ export default function TopLayoutBlog(props) {
                       sx={{ width: 36, height: 36 }}
                       alt=""
                       src={`${authors[author].avatar}?s=${36}`}
-                      srcSet={`${authors[author].avatar}?s=${36 * 2} 2x`}
+                      srcSet={`${authors[author].avatar}?s=${36 * 2} 2x, ${
+                        authors[author].avatar
+                      }?s=${36 * 3} 3x`}
                     />
                     <div>
                       <Typography variant="body2" fontWeight="500">
@@ -369,7 +383,7 @@ export default function TopLayoutBlog(props) {
                       <Link
                         href={`https://github.com/${authors[author].github}`}
                         target="_blank"
-                        rel="noreferrer noopener"
+                        rel="noopener"
                         color="primary"
                         variant="body2"
                         sx={{ fontWeight: 500 }}
