@@ -1,8 +1,10 @@
 'use client';
 import * as React from 'react';
-import { Axis } from '@mui/base';
-import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
-import { debounce, isEqual } from 'lodash';
+import { Axis, areArraysEqual } from '@mui/base';
+import {
+  unstable_useEnhancedEffect as useEnhancedEffect,
+  unstable_debounce as debounce,
+} from '@mui/utils';
 
 const overlapCompareFunctionByAxis = {
   horizontal: (firstElementRect: DOMRect, secondElementRect: DOMRect, margin: number) =>
@@ -52,7 +54,7 @@ function useElementsOverlap(axis: Axis, margin: number = 0) {
   const onMove = React.useCallback(() => {
     if (elementsRefList.current.length > 1) {
       const updatedOverlap = getSliderElementsOverlap(elementsRefList.current, axis, margin);
-      if (!isEqual(updatedOverlap, elementsOverlapArray)) {
+      if (!areArraysEqual(updatedOverlap, elementsOverlapArray)) {
         setElementsOverlapArray(updatedOverlap);
       }
     }

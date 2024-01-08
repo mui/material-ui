@@ -158,7 +158,8 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
     SelectProps = {},
     showFirstButton = false,
     showLastButton = false,
-    slotProps,
+    slotProps = {},
+    slots = {},
     ...other
   } = props;
 
@@ -253,7 +254,8 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
           rowsPerPage={rowsPerPage}
           showFirstButton={showFirstButton}
           showLastButton={showLastButton}
-          slotProps={slotProps?.actions}
+          slotProps={slotProps.actions}
+          slots={slots.actions}
           getItemAriaLabel={getItemAriaLabel}
           disabled={disabled}
         />
@@ -263,10 +265,10 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
 });
 
 TablePagination.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The component used for displaying the actions.
    * Either a string to use a HTML element or a component.
@@ -423,11 +425,32 @@ TablePagination.propTypes /* remove-proptypes */ = {
   slotProps: PropTypes.shape({
     actions: PropTypes.shape({
       firstButton: PropTypes.object,
+      firstButtonIcon: PropTypes.object,
       lastButton: PropTypes.object,
+      lastButtonIcon: PropTypes.object,
       nextButton: PropTypes.object,
+      nextButtonIcon: PropTypes.object,
       previousButton: PropTypes.object,
+      previousButtonIcon: PropTypes.object,
     }),
     select: PropTypes.object,
+  }),
+  /**
+   * The components used for each slot inside the TablePagination.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    actions: PropTypes.shape({
+      firstButton: PropTypes.elementType,
+      firstButtonIcon: PropTypes.elementType,
+      lastButton: PropTypes.elementType,
+      lastButtonIcon: PropTypes.elementType,
+      nextButton: PropTypes.elementType,
+      nextButtonIcon: PropTypes.elementType,
+      previousButton: PropTypes.elementType,
+      previousButtonIcon: PropTypes.elementType,
+    }),
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.

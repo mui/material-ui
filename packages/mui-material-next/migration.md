@@ -116,7 +116,7 @@ So the examples below are interchangeable for these components.
 
 ### Removed focusRipple
 
-The `focusRipple` prop was removed as ripples are absent in Material You's focused states.
+The `focusRipple` prop was removed as ripples are absent in Material 3's focused states.
 
 ### Prevent default on `key-up` and `key-down` events
 
@@ -166,13 +166,13 @@ The `FormControlState` interface was renamed to `FormControlContextValue`:
 
 ### Removed the `standard` variant
 
-The standard variant is no longer supported in Material You, use the `filled` or `outlined` variants instead.
+The standard variant is no longer supported in Material 3, use the `filled` or `outlined` variants instead.
 
 ## FormLabel
 
 ### Removed the `standard` variant
 
-The standard variant is no longer supported in Material You, use the `filled` or `outlined` variants instead.
+The standard variant is no longer supported in Material 3, use the `filled` or `outlined` variants instead.
 
 ## InputBase
 
@@ -191,7 +191,7 @@ The standard variant is no longer supported in Material You, use the `filled` or
 
 ### Removed the `standard` variant
 
-The standard variant is no longer supported in Material You, use the `filled` or `outlined` variants instead.
+The standard variant is no longer supported in Material 3, use the `filled` or `outlined` variants instead.
 
 ## Chip
 
@@ -361,7 +361,7 @@ If you are using the `thumb` or `valueLabel` Slider slots, then make sure the co
  <Slider slots={{ thumb: Thumb, valueLabel: ValueLabel }}/>
 ```
 
-This is required in v6 as it's used to apply the overlap styles to these slots. For more info take a look into [Material You's Slider overlapping handles guidelines](https://m3.material.io/components/sliders/guidelines#ad5ceb95-a690-4ddd-8243-53a8e13bdab6).
+This is required in v6 as it's used to apply the overlap styles to these slots. For more info take a look into [Material 3's Slider overlapping handles guidelines](https://m3.material.io/components/sliders/guidelines#ad5ceb95-a690-4ddd-8243-53a8e13bdab6).
 
 ## Divider
 

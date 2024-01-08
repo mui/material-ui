@@ -4,6 +4,7 @@ description: It has taken us two years to do it, but Material UI v1 has finally 
 date: 2018-05-18T00:00:00.000Z
 authors: ['oliviertassinari', 'mbrookes']
 tags: ['Company']
+card: true
 ---
 
 > React components that implement Google's Material Design.
@@ -127,4 +128,4 @@ Material UI is an MIT-licensed open source project. It's an independent project 
 ![Our gold sponsors](https://cdn-images-1.medium.com/max/2000/1*fx_BaOxYY0ZJo3n9iXI1Jg.png)<p class="blog-description">Our gold sponsors</p>
 
 - GitHub: https://github.com/mui/material-ui ⭐
-- Twitter: https://twitter.com/MUI_hq
+- X: https://twitter.com/MUI_hq

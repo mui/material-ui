@@ -48,6 +48,10 @@ const PROJECTS: Project[] = [
     additionalPaths: ['custom'],
     additionalFiles: ['src/utils/createSvgIcon.js'],
   },
+  {
+    name: 'lab',
+    rootPath: path.join(process.cwd(), 'packages/mui-lab'),
+  },
 ];
 
 async function processFile(

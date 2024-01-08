@@ -14,7 +14,7 @@
     "strict": true,
     "baseUrl": "./",
     "paths": {
-      "react-docgen": ["../../packages/api-docs-builder/react-docgen.d.ts"]
+      "@mui/utils": ["../../packages/mui-utils/src"]
     }
   },
   "include": ["./**/*.ts"]

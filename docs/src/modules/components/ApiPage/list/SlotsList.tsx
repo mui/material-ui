@@ -43,18 +43,19 @@ const StyledApiItem = styled(ExpandableApiItem)(
   }),
 );
 
+type HashParams = { componentName: string; className: string };
+
+export function getHash({ componentName, className }: HashParams) {
+  return `${componentName}-css-${className}`;
+}
+
 export type SlotsFormatedParams = {
   className: string;
-  componentName?: string;
+  componentName: string;
   description?: string;
   name: string;
   defaultValue?: string;
 };
-
-type HashParams = { componentName?: string; className: string };
-
-export const getHash = ({ componentName, className }: HashParams) =>
-  `${componentName ? `${componentName}-` : ''}css-${className}`;
 
 interface SlotsListProps {
   slots: SlotsFormatedParams[];

@@ -17,7 +17,7 @@ const Root = styled('div')(
     },
     wordBreak: 'break-word',
     '& pre': {
-      lineHeight: 1.5, // Developers likes when the code is dense.
+      lineHeight: 1.5, // Developers like when the code is dense.
       margin: theme.spacing(2, 'auto'),
       padding: theme.spacing(2),
       backgroundColor: '#0F1924', // a special, one-off, color tailored for the code blocks using MUI's branding theme blue palette as the starting point. It has a less saturaded color but still maintaining a bit of the blue tint.
@@ -50,15 +50,15 @@ const Root = styled('div')(
     },
     // inline code block
     '& :not(pre) > code': {
-      display: 'inline-block',
-      padding: '0 4px',
+      padding: '2px 4px',
       color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
       backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
       border: '1px solid',
       borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
-      borderRadius: 5,
+      borderRadius: 6,
       fontSize: lightTheme.typography.pxToRem(13),
       direction: 'ltr /*! @noflip */',
+      boxDecorationBreak: 'clone',
     },
     '& h1': {
       ...lightTheme.typography.h3,
@@ -133,6 +133,7 @@ const Root = styled('div')(
       '& .anchor-link': {
         // To prevent the link to get the focus.
         display: 'inline-flex',
+        alignItems: 'center',
         visibility: 'hidden',
       },
       '& a:not(.anchor-link):hover': {
@@ -142,6 +143,7 @@ const Root = styled('div')(
         textDecoration: 'none',
       },
       '& .anchor-link, & .comment-link': {
+        padding: 0,
         cursor: 'pointer',
         alignItems: 'center',
         justifyContent: 'center',
@@ -151,20 +153,21 @@ const Root = styled('div')(
         height: 26,
         width: 26,
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
+        color: `var(--muidocs-palette-grey-600, ${lightTheme.palette.grey[600]})`,
         border: '1px solid',
         borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
         borderRadius: 8,
-        color: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
         '&:hover': {
           backgroundColor: alpha(lightTheme.palette.primary[100], 0.4),
           borderColor: `var(--muidocs-palette-primary-100, ${lightTheme.palette.primary[100]})`,
           color: `var(--muidocs-palette-primary-main, ${lightTheme.palette.primary.main})`,
         },
         '& svg': {
-          height: '14px',
-          width: '14px',
+          height: 14,
+          width: 14,
           fill: 'currentColor',
           pointerEvents: 'none',
+          verticalAlign: 'middle',
         },
       },
       '&:hover .anchor-link': {
@@ -177,8 +180,8 @@ const Root = styled('div')(
           duration: theme.transitions.duration.shortest,
         }),
         '& svg': {
-          verticalAlign: 'middle',
           fill: 'currentColor',
+          marginRight: 1.5,
         },
       },
     },
@@ -253,15 +256,16 @@ const Root = styled('div')(
       borderLeft: '1.5px solid',
       borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
       '& p': {
-        fontStyle: 'italic',
-        fontSize: theme.typography.pxToRem(13),
+        fontSize: theme.typography.pxToRem(12.5),
         fontFamily: lightTheme.typography.fontFamilyCode,
         fontWeight: lightTheme.typography.fontWeightMedium,
+        lineHeight: theme.typography.pxToRem(24),
         textIndent: 20,
       },
-      ':before': {
+      '&::before': {
         position: 'absolute',
-        content: 'open-quote',
+        // eslint-disable-next-line material-ui/straight-quotes
+        content: '"“"',
         color: `var(--muidocs-palette-grey-300, ${lightTheme.palette.grey[300]})`,
         fontSize: '2.5rem',
         top: 8,
@@ -387,6 +391,7 @@ const Root = styled('div')(
     '& a, & a code': {
       // Style taken from the Link component
       color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
+      fontWeight: theme.typography.fontWeightMedium,
       textDecoration: 'underline',
       textDecorationColor: alpha(lightTheme.palette.primary.main, 0.4),
       '&:hover': {
@@ -447,6 +452,12 @@ const Root = styled('div')(
       // Font size reset to fix a bug with Safari 16.0 when letterSpacing is set
       fontSize: 10,
     },
+    '& .MuiCode-copy-container': {
+      // This container is only used in demo and highlight code
+      position: 'sticky',
+      zIndex: 1,
+      top: 0,
+    },
     '& .MuiCode-copy': {
       display: 'inline-flex',
       flexDirection: 'row-reverse',
@@ -455,8 +466,8 @@ const Root = styled('div')(
       height: 26,
       cursor: 'pointer',
       position: 'absolute',
-      top: theme.spacing(1),
-      right: 20,
+      top: 12,
+      right: 12,
       padding: theme.spacing(0.5),
       fontFamily: 'inherit',
       fontWeight: 500,
@@ -476,16 +487,16 @@ const Root = styled('div')(
         flexShrink: 0,
         fontSize: '18px',
         margin: 'auto',
-        opacity: 0.6,
+        opacity: 0.5,
       },
       '& .MuiCode-copied-icon': {
         display: 'none',
       },
       '&:hover, &:focus': {
+        backgroundColor: lightTheme.palette.primaryDark[600],
         '& svg': {
           opacity: 1,
         },
-        backgroundColor: lightTheme.palette.primaryDark[500],
         '& .MuiCode-copyKeypress': {
           display: 'block',
           // Approximate no hover capabilities with no keyboard
@@ -573,9 +584,9 @@ const Root = styled('div')(
       },
       '& h1, & h2, & h3, & h4': {
         '&:hover .anchor-link, & .comment-link': {
-          color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
+          color: `var(--muidocs-palette-primary-300, ${darkTheme.palette.primaryDark[300]})`,
           borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
-          backgroundColor: alpha(darkTheme.palette.primary[900], 0.5),
+          backgroundColor: alpha(darkTheme.palette.primary[900], 0.3),
           '&:hover': {
             borderColor: `var(--muidocs-palette-primary-900, ${darkTheme.palette.primary[900]})`,
             backgroundColor: alpha(darkTheme.palette.primary[900], 0.6),
@@ -610,7 +621,7 @@ const Root = styled('div')(
       },
       '& blockquote': {
         borderColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
-        ':before': {
+        '&::before': {
           color: `var(--muidocs-palette-primaryDark-500, ${darkTheme.palette.primaryDark[500]})`,
         },
       },

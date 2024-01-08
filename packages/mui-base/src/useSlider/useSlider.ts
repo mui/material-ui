@@ -305,7 +305,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     if (disabled && sliderRef.current!.contains(document.activeElement)) {
       // This is necessary because Firefox and Safari will keep focus
       // on a disabled element:
-      // https://codesandbox.io/s/mui-pr-22247-forked-h151h?file=/src/App.js
+      // https://codesandbox.io/p/sandbox/mui-pr-22247-forked-h151h?file=/src/App.js
       // @ts-ignore
       document.activeElement?.blur();
     }
@@ -536,8 +536,8 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
     moveCount.current = 0;
     const doc = ownerDocument(sliderRef.current);
-    doc.addEventListener('touchmove', handleTouchMove);
-    doc.addEventListener('touchend', handleTouchEnd);
+    doc.addEventListener('touchmove', handleTouchMove, { passive: true });
+    doc.addEventListener('touchend', handleTouchEnd, { passive: true });
   });
 
   const stopListening = React.useCallback(() => {
@@ -555,10 +555,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     });
 
     return () => {
-      // @ts-ignore
-      slider!.removeEventListener('touchstart', handleTouchStart, {
-        passive: doesSupportTouchActionNone(),
-      });
+      slider!.removeEventListener('touchstart', handleTouchStart);
 
       stopListening();
     };
@@ -602,7 +599,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
       moveCount.current = 0;
       const doc = ownerDocument(sliderRef.current);
-      doc.addEventListener('mousemove', handleTouchMove);
+      doc.addEventListener('mousemove', handleTouchMove, { passive: true });
       doc.addEventListener('mouseup', handleTouchEnd);
     };
 

@@ -4,6 +4,7 @@ description: Material UI v4 has finally arrived. We are so excited about this re
 date: 2019-05-23T00:00:00.000Z
 authors: ['oliviertassinari', 'mbrookes', 'eps1lon']
 tags: ['Company']
+card: true
 ---
 
 > React components for faster and simpler web development. Build your own design system, or start with Material Design.
