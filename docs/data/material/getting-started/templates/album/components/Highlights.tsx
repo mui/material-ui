@@ -80,9 +80,9 @@ export default function Highlights() {
             component="p"
             sx={{ opacity: '70%' }}
           >
-            Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi.
-            Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis
-            ligula consectetur
+            Explore why our product stands out: adaptability, durability,
+            user-friendly design, and innovation. Enjoy reliable customer support and
+            precision in every detail. Choose quality and performance with us.
           </Typography>
         </Box>
         <Grid container spacing={4}>
