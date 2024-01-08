@@ -1708,6 +1708,9 @@ importers:
       '@mui/material':
         specifier: ^5.0.0
         version: link:../mui-material/build
+      clsx:
+        specifier: ^2.1.0
+        version: 2.1.0
     devDependencies:
       '@emotion/cache':
         specifier: ^11.11.0
