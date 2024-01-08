@@ -35,8 +35,8 @@ importers:
         specifier: ^5.0.5
         version: 5.0.5
       '@slack/bolt':
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^3.17.0
+        version: 3.17.0
       google-auth-library:
         specifier: ^9.0.0
         version: 9.0.0
@@ -7497,8 +7497,8 @@ packages:
   /@sinonjs/text-encoding@0.7.2:
     resolution: {integrity: sha512-sXXKG+uL9IrKqViTtao2Ws6dy0znu9sOaP1di/jKGW1M6VssO8vlpXCQcpZ+jisQ1tTFAC5Jo/EOzFbggBagFQ==}
 
-  /@slack/bolt@3.14.0:
-    resolution: {integrity: sha512-Q7QifLEruuXLQQh0H/JODuBSH0UoiQdMxR+g4aVNdJQemv91XyHgbxRZgGuH8Vi1rVrOyDSLS9czS5jwMh2ewQ==}
+  /@slack/bolt@3.17.0:
+    resolution: {integrity: sha512-gxZygJj/wnrrSPCAlXO4D5FIYre2McPC+Vwrkq6CS74S4MI+0/gRvdUUXMHoF+oSGfsGs3ul6Fk+Bc/EE7Waig==}
     engines: {node: '>=12.13.0', npm: '>=6.12.0'}
     dependencies:
       '@slack/logger': 4.0.0
@@ -7509,7 +7509,7 @@ packages:
       '@types/express': 4.17.17
       '@types/promise.allsettled': 1.0.3
       '@types/tsscmp': 1.0.0
-      axios: 0.27.2
+      axios: 1.6.2(debug@4.3.4)
       express: 4.18.2
       path-to-regexp: 6.2.1
       please-upgrade-node: 3.2.0
@@ -9452,15 +9452,6 @@ packages:
     resolution: {integrity: sha512-zIURGIS1E1Q4pcrMjp+nnEh+16G56eG/MUllJH8yEvw7asDo7Ac9uhC9KIH5jzpITueEZolfYglnCGIuSBz39g==}
     engines: {node: '>=4'}
     dev: true
-
-  /axios@0.27.2:
-    resolution: {integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==}
-    dependencies:
-      follow-redirects: 1.15.2(debug@4.3.4)
-      form-data: 4.0.0
-    transitivePeerDependencies:
-      - debug
-    dev: false
 
   /axios@1.6.2(debug@4.3.4):
     resolution: {integrity: sha512-7i24Ri4pmDRfJTR7LDBhsOTtcm+9kjX5WiY1X3wIisx6G9So3pfMkEiU7emUBe46oceVImccTEM3k6C5dbVW8A==}
