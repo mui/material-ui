@@ -4,7 +4,7 @@ import { brandingDarkTheme as darkTheme } from 'docs/src/modules/brandingTheme';
 const StyledTableContainer = styled('div')(
   ({ theme }) => ({
     borderRadius: 12,
-    overflow: 'hidden',
+    overflowX: 'auto',
     '& table': {
       marginLeft: -1,
       marginRight: -1,

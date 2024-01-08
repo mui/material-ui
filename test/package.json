@@ -24,7 +24,7 @@
     "@types/react": "^18.2.46",
     "@types/react-is": "^18.2.1",
     "@types/sinon": "^10.0.20",
-    "chai": "^4.3.10",
+    "chai": "^4.4.0",
     "docs": "workspace:^",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",

@@ -477,11 +477,15 @@ export default function AppLayoutDocsFooter(props) {
                     icon={<PanToolRoundedIcon fontSize="small" />}
                     sx={{ my: 1.5 }}
                   >
-                    <Typography id="feedback-description" color="text.secondary">
+                    <Typography id="feedback-description">
                       {t('feedbackMessageToGitHub.usecases')}{' '}
                       <Link
                         href={`${process.env.SOURCE_CODE_REPO}/issues/new?template=${process.env.GITHUB_TEMPLATE_DOCS_FEEDBACK}&page-url=${window.location.href}`}
                         target="_blank"
+                        underline="always"
+                        sx={{
+                          fontWeight: 'semiBold',
+                        }}
                       >
                         {t('feedbackMessageToGitHub.callToAction.link')}
                       </Link>{' '}

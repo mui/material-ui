@@ -1,13 +1,6 @@
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import type { MuiProductId } from 'docs/src/modules/utils/getProductInfoFromUrl';
 
-type RegExpMatchArrayWithGroupsOnly<T> = {
-  groups?: {
-    [key in keyof T]: string;
-  };
-};
-type RegExpMatchArrayWithGroups<T> = (RegExpMatchArray & RegExpMatchArrayWithGroupsOnly<T>) | null;
-
 export default function SandboxDependencies(
   demo: {
     raw: string;
@@ -62,6 +55,8 @@ export default function SandboxDependencies(
   }
 
   function extractDependencies(raw: string) {
+    const muiDocConfig = (window as any).muiDocConfig;
+
     function includePeerDependencies(
       deps: Record<string, string>,
       versions: Record<string, string>,
@@ -83,8 +78,10 @@ export default function SandboxDependencies(
       }
 
       // TODO: consider if this configuration could be injected in a "cleaner" way.
-      if ((window as any).muiDocConfig) {
-        newDeps = (window as any).muiDocConfig.csbIncludePeerDependencies(newDeps, { versions });
+      if (muiDocConfig) {
+        newDeps = muiDocConfig.csbIncludePeerDependencies(newDeps, {
+          versions,
+        });
       }
 
       return newDeps;
@@ -111,9 +108,9 @@ export default function SandboxDependencies(
     };
 
     // TODO: consider if this configuration could be injected in a "cleaner" way.
-    if ((window as any).muiDocConfig) {
+    if (muiDocConfig) {
       const muiCommitRef = process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined;
-      versions = (window as any).muiDocConfig.csbGetVersions(versions, { muiCommitRef });
+      versions = muiDocConfig.csbGetVersions(versions, { muiCommitRef });
     }
 
     const re = /^import\s'([^']+)'|import\s[\s\S]*?\sfrom\s+'([^']+)/gm;
@@ -126,35 +123,14 @@ export default function SandboxDependencies(
         fullName.charAt(0) === '@' ? fullName.split('/', 2).join('/') : fullName.split('/', 1)[0];
 
       if (!deps[name] && !name.startsWith('.')) {
-        deps[name] = versions[name] ? versions[name] : 'latest';
+        deps[name] = versions[name] ?? 'latest';
       }
 
-      // e.g. date-fns
-      const dateAdapterMatch = fullName.match(
-        /^@mui\/(lab|x-date-pickers)\/(?<adapterName>Adapter.*)/,
-      ) as RegExpMatchArrayWithGroups<{ adapterName: string }>;
-      if (dateAdapterMatch !== null) {
-        /**
-         * Mapping from the date adapter sub-packages to the npm packages they require.
-         * @example `@mui/x-date-pickers/AdapterDayjs` has a peer dependency on `dayjs`.
-         */
-        const packageName = (
-          {
-            AdapterDateFns: 'date-fns',
-            AdapterDateFnsJalali: 'date-fns-jalali',
-            AdapterDayjs: 'dayjs',
-            AdapterLuxon: 'luxon',
-            AdapterMoment: 'moment',
-            AdapterMomentHijri: 'moment-hijri',
-            AdapterMomentJalaali: 'moment-jalaali',
-          } as Record<string, string>
-        )[dateAdapterMatch.groups?.adapterName || ''];
-        if (packageName === undefined) {
-          throw new TypeError(
-            `Can't determine required npm package for adapter '${dateAdapterMatch[1]}'`,
-          );
+      if (muiDocConfig) {
+        const resolvedDep = muiDocConfig?.postProcessImport(fullName);
+        if (resolvedDep) {
+          deps = { ...deps, ...resolvedDep };
         }
-        deps[packageName] = 'latest';
       }
     }
 
