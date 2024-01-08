@@ -108,7 +108,7 @@
     "@octokit/rest": "^20.0.2",
     "@playwright/test": "1.40.1",
     "@slack/bolt": "^3.17.0",
-    "@slack/web-api": "^6.11.0",
+    "@slack/web-api": "^6.11.1",
     "@types/enzyme": "^3.10.18",
     "@types/fs-extra": "^11.0.4",
     "@types/lodash": "^4.14.202",
