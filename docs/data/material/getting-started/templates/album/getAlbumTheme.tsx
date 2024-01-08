@@ -166,8 +166,21 @@ export default function getAlbumTheme(mode: 'light' | 'dark') {
           root: {
             backgroundColor: mode === 'light' ? greyColor[50] : greyColor[900],
             boxShadow: 'none',
-            border: '1px solid rgba(0,0,0,0.1)',
+            border:
+              mode === 'light'
+                ? `1px solid ${alpha(greyColor[200], 0.8)}`
+                : `1px solid ${alpha(greyColor[700], 0.6)}`,
             borderRadius: '8px',
+          },
+        },
+      },
+      MuiDivider: {
+        styleOverrides: {
+          root: {
+            borderColor:
+              mode === 'light'
+                ? `${alpha(greyColor[200], 0.8)}`
+                : `${alpha(greyColor[700], 0.6)}`,
           },
         },
       },
