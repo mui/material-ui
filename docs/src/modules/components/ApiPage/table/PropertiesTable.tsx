@@ -180,7 +180,7 @@ export default function PropertiesTable(props: PropertiesTableProps) {
         <tbody>
           {properties.map((params) => {
             const {
-              targetName,
+              componentName,
               propName,
               description,
               requiresRef,
@@ -201,7 +201,7 @@ export default function PropertiesTable(props: PropertiesTableProps) {
             return (
               <tr
                 key={propName}
-                id={getHash({ targetName, propName, hooksParameters, hooksReturnValue })}
+                id={getHash({ componentName, propName, hooksParameters, hooksReturnValue })}
               >
                 <td className="MuiApi-table-item-title">
                   {propName}
