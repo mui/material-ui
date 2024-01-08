@@ -17,7 +17,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 The Alert component can be used to provide important and potentially time-sensitive information in an unobtrusive manner.
 
 :::info
-This component is not documented in the [Material Design guidelines](https://m2.material.io/), but Material UI supports it.
+This component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.
 :::
 
 ### Usage
