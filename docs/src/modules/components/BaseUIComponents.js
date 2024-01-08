@@ -132,13 +132,15 @@ function components() {
 }
 
 export default function BaseUIComponents() {
+  // Fix overloading with prefetch={false}, only prefetch on hover.
   return (
     <Grid container spacing={2} sx={{ pt: 2, pb: 4 }}>
-      {components().map((component) => (
+      {components().map((component, index) => (
         <Grid item xs={12} sm={4} sx={{ flexGrow: 1 }} key={component.title}>
           <Card
             component={Link}
             noLinkStyle
+            prefetch={false}
             variant="outlined"
             href={component.href}
             sx={(theme) => ({
@@ -156,6 +158,7 @@ export default function BaseUIComponents() {
             <CardMedia
               component="img"
               alt=""
+              loading={index <= 5 ? 'eager' : 'lazy'}
               image={component.srcLight}
               sx={(theme) => ({
                 aspectRatio: '16 / 9',

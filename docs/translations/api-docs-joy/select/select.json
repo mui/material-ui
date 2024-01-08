@@ -35,7 +35,7 @@
       "description": "If <code>true</code>, selecting multiple values is allowed. This affects the type of the <code>value</code>, <code>defaultValue</code>, and <code>onChange</code> props."
     },
     "name": {
-      "description": "Name of the element. For example used by the server to identify the fields in form submits. If the name is provided, the component will render a hidden input element that can be submitted to a server."
+      "description": "Name of the element. For example used by the server to identify the fields in form submits."
     },
     "onChange": { "description": "Callback fired when an option is selected." },
     "onClose": { "description": "Triggered when focus leaves the menu and the menu should close." },

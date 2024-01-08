@@ -65,7 +65,7 @@ You will own the following responsibilities:
 
 - **Build product knowledge**. You will continually research and learn the current and future best practices of using MUI.
 - **Resolve users' issues**. You will solve these issues at two levels:
-  - On the surface, you will answer developers on GitHub, Zendesk, Twitter, email, Slack.
+  - On the surface, you will answer developers on GitHub, Zendesk, X, email, Slack.
   - At the root, you will create/update the documentation, fix bugs in collaboration with the relevant developer, implement community driven features and more.
 - **Provide feedback**. You will work alongside product managers to define and shape the product goals, roadmap, priorities, and strategy based on your frontline knowledge of customer needs.
 - **Operations**.
