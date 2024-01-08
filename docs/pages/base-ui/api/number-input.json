@@ -21,6 +21,7 @@
         "describedArgs": ["event"]
       }
     },
+    "placeholder": { "type": { "name": "string" } },
     "readOnly": { "type": { "name": "bool" }, "default": "false" },
     "required": { "type": { "name": "bool" } },
     "shiftMultiplier": { "type": { "name": "number" } },

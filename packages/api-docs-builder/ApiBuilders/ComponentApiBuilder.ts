@@ -7,7 +7,7 @@ import * as _ from 'lodash';
 import kebabCase from 'lodash/kebabCase';
 import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
-import { Link } from 'mdast';
+import type { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import { renderMarkdown } from '@mui/markdown';
 import { ComponentClassDefinition } from '@mui-internal/docs-utilities';
@@ -104,9 +104,10 @@ export async function computeApiDescription(
   const file = await remark()
     .use(function docsLinksAttacher() {
       return function transformer(tree) {
-        remarkVisit(tree, 'link', (linkNode: Link) => {
-          if ((linkNode.url as string).startsWith('/')) {
-            linkNode.url = `${host}${linkNode.url}`;
+        remarkVisit(tree, 'link', (linkNode) => {
+          const link = linkNode as Link;
+          if ((link.url as string).startsWith('/')) {
+            link.url = `${host}${link.url}`;
           }
         });
       };
@@ -688,28 +689,16 @@ export default async function generateComponentApi(
   project: TypeScriptProject,
   projectSettings: ProjectSettings,
 ) {
-  const {
-    filename,
-    name,
-    muiName,
-    apiPathname,
-    apiPagesDirectory,
-    getInheritance,
-    getDemos,
-    readFile,
-    skipApiGeneration,
-    isSystemComponent,
-  } = componentInfo;
-
-  const { shouldSkip, spread, EOL, src } = readFile();
+  const { shouldSkip, spread, EOL, src } = componentInfo.readFile();
 
   if (shouldSkip) {
     return null;
   }
 
+  const filename = componentInfo.filename;
   let reactApi: ReactApi;
 
-  if (isSystemComponent) {
+  if (componentInfo.isSystemComponent) {
     try {
       reactApi = docgenParse(
         src,
@@ -732,7 +721,7 @@ export default async function generateComponentApi(
                 if (expression.value?.callee) {
                   const definitionName = expression.value.callee.name;
 
-                  if (definitionName === `create${name}`) {
+                  if (definitionName === `create${componentInfo.name}`) {
                     node = expression;
                   }
                 }
@@ -769,12 +758,12 @@ export default async function generateComponentApi(
     reactApi.description = reactApi.description.slice(0, annotatedDescriptionMatch.index).trim();
   }
   reactApi.filename = filename;
-  reactApi.name = name;
-  reactApi.imports = getComponentImports(name, filename);
-  reactApi.muiName = muiName;
-  reactApi.apiPathname = apiPathname;
+  reactApi.name = componentInfo.name;
+  reactApi.imports = getComponentImports(componentInfo.name, filename);
+  reactApi.muiName = componentInfo.muiName;
+  reactApi.apiPathname = componentInfo.apiPathname;
   reactApi.EOL = EOL;
-  reactApi.demos = getDemos();
+  reactApi.demos = componentInfo.getDemos();
   if (reactApi.demos.length === 0) {
     throw new Error(
       'Unable to find demos. \n' +
@@ -788,7 +777,7 @@ export default async function generateComponentApi(
   reactApi.forwardsRefTo = testInfo.forwardsRefTo;
   reactApi.spread = testInfo.spread ?? spread;
   reactApi.themeDefaultProps = testInfo.themeDefaultProps;
-  reactApi.inheritance = getInheritance(testInfo.inheritComponent);
+  reactApi.inheritance = componentInfo.getInheritance(testInfo.inheritComponent);
 
   const { slots, classes } = parseSlotsAndClasses({
     project,
@@ -808,7 +797,7 @@ export default async function generateComponentApi(
   const normalizedApiPathname = reactApi.apiPathname.replace(/\\/g, '/');
   const normalizedFilename = reactApi.filename.replace(/\\/g, '/');
 
-  if (!skipApiGeneration) {
+  if (!componentInfo.skipApiGeneration) {
     // Generate pages, json and translations
     let translationPagesDirectory = 'docs/translations/api-docs';
     if (normalizedApiPathname.startsWith('/joy-ui') && normalizedFilename.includes('mui-joy/src')) {
@@ -828,7 +817,12 @@ export default async function generateComponentApi(
 
     // Once we have the tabs API in all projects, we can make this default
     const generateOnlyJsonFile = normalizedApiPathname.startsWith('/base');
-    generateApiPage(apiPagesDirectory, translationPagesDirectory, reactApi, generateOnlyJsonFile);
+    generateApiPage(
+      componentInfo.apiPagesDirectory,
+      translationPagesDirectory,
+      reactApi,
+      generateOnlyJsonFile,
+    );
 
     // Add comment about demo & api links (including inherited component) to the component file
     await annotateComponentDefinition(reactApi);

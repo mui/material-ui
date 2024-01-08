@@ -50,7 +50,7 @@ const StyledTab = styled(Tab)<{ ownerState: { mounted: boolean } }>(({ theme, ow
     ...(ownerState.mounted && {
       '&.Mui-selected': {
         color: '#FFF',
-        '&:after': {
+        '&::after': {
           content: "''",
           position: 'absolute',
           left: 0,

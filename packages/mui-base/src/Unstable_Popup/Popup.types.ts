@@ -30,7 +30,7 @@ export interface PopupOwnProps {
     | (() => HTMLElement)
     | (() => PopupVirtualElement)
     | null;
-  children?: React.ReactNode | ((props: PopupChildrenProps) => React.ReactNode);
+  children?: React.ReactNode;
   /**
    * An HTML element or function that returns one. The container will have the portal children appended to it.
     By default, it uses the body of the top-level document object, so it's `document.body` in these cases.
@@ -120,13 +120,6 @@ export interface PopupSlots {
    * @default 'div'
    */
   root?: React.ElementType;
-}
-
-export interface PopupChildrenProps {
-  placement: PopupPlacement;
-  requestOpen: boolean;
-  onExited: () => void;
-  onEnter: () => void;
 }
 
 export interface PopupTypeMap<

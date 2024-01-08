@@ -105,10 +105,10 @@ const Icon = React.forwardRef(function Icon(inProps, ref) {
 });
 
 Icon.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The base class applied to the icon. Defaults to 'material-icons', but can be changed to any
    * other base class that suits the icon font you're using (e.g. material-icons-rounded, fas, etc).

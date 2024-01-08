@@ -33,6 +33,9 @@ module.exports = function getBabelConfig(api) {
     '@mui/material-next': resolveAliasPath('./packages/mui-material-next/src'),
     '@mui/material-nextjs': resolveAliasPath('./packages/mui-material-nextjs/src'),
     '@mui/joy': resolveAliasPath('./packages/mui-joy/src'),
+    '@mui/zero-runtime': resolveAliasPath('./packages/zero-runtime/src'),
+    docs: resolveAliasPath('./docs'),
+    test: resolveAliasPath('./test'),
   };
 
   const presets = [
@@ -138,6 +141,16 @@ module.exports = function getBabelConfig(api) {
                 'typescript-to-proptypes': './packages/typescript-to-proptypes/src',
               },
               root: ['./'],
+            },
+          ],
+        ],
+      },
+      rollup: {
+        plugins: [
+          [
+            'babel-plugin-module-resolver',
+            {
+              alias: defaultAlias,
             },
           ],
         ],

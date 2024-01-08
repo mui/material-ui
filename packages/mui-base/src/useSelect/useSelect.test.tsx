@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { renderHook } from '@testing-library/react';
+import { act, renderHook } from '@testing-library/react';
 import { useSelect } from './useSelect';
 
 describe('useSelect', () => {
@@ -124,6 +124,80 @@ describe('useSelect', () => {
         expect(externalOnChangeSpy.calledOnce).to.equal(true);
         expect(externalOnChangeSpy.calledWith({ target: { value: 'foo' } })).to.equal(true);
       });
+    });
+  });
+
+  describe('parameter: buttonRef', () => {
+    it('merges buttonRef parameter with getButtonProps ref', () => {
+      const buttonElement = document.createElement('button');
+      const buttonRefSpy = sinon.spy();
+      const { result } = renderHook(() => useSelect({ buttonRef: buttonRefSpy }));
+
+      const { getButtonProps } = result.current;
+      const { ref: propGetterRefCallback } = getButtonProps();
+
+      expect(propGetterRefCallback).not.to.eq(null);
+
+      act(() => {
+        propGetterRefCallback?.(buttonElement);
+      });
+
+      expect(buttonRefSpy.calledOnce).to.equal(true);
+      expect(buttonRefSpy.calledWith(buttonElement)).to.equal(true);
+    });
+
+    it('merges buttonRef parameter with returned buttonRef', () => {
+      const buttonElement = document.createElement('button');
+      const buttonRefSpy = sinon.spy();
+      const { result } = renderHook(() => useSelect({ buttonRef: buttonRefSpy }));
+
+      const { buttonRef: returnedButtonRef } = result.current;
+
+      expect(returnedButtonRef).not.to.eq(null);
+
+      act(() => {
+        returnedButtonRef?.(buttonElement);
+      });
+
+      expect(buttonRefSpy.calledOnce).to.equal(true);
+      expect(buttonRefSpy.calledWith(buttonElement)).to.equal(true);
+    });
+  });
+
+  describe('parameter: listboxRef', () => {
+    it('merges listboxRef parameter with getListboxProps ref', () => {
+      const listboxElement = document.createElement('ul');
+      const listboxRefSpy = sinon.spy();
+      const { result } = renderHook(() => useSelect({ listboxRef: listboxRefSpy }));
+
+      const { getListboxProps } = result.current;
+      const { ref: propGetterRefCallback } = getListboxProps();
+
+      expect(propGetterRefCallback).not.to.eq(null);
+
+      act(() => {
+        propGetterRefCallback?.(listboxElement);
+      });
+
+      expect(listboxRefSpy.calledOnce).to.equal(true);
+      expect(listboxRefSpy.calledWith(listboxElement)).to.equal(true);
+    });
+
+    it('merges listboxRef parameter with returned listboxRef', () => {
+      const listboxElement = document.createElement('ul');
+      const listboxRefSpy = sinon.spy();
+      const { result } = renderHook(() => useSelect({ listboxRef: listboxRefSpy }));
+
+      const { listboxRef: returnedListboxRef } = result.current;
+
+      expect(returnedListboxRef).not.to.eq(null);
+
+      act(() => {
+        returnedListboxRef?.(listboxElement);
+      });
+
+      expect(listboxRefSpy.calledOnce).to.equal(true);
+      expect(listboxRefSpy.calledWith(listboxElement)).to.equal(true);
     });
   });
 });
