@@ -5,7 +5,7 @@
     "allowJs": true,
     "lib": ["ES2017", "ES2021.String", "DOM"],
     "composite": true,
-    "noEmit": true,
+    "noEmit": false,
     "resolveJsonModule": true
   },
   "include": ["src/**/*.ts"],
