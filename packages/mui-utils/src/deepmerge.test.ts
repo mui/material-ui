@@ -14,7 +14,9 @@ describe('deepmerge', () => {
 
   it('should merge objects across realms', function test() {
     if (!/jsdom/.test(window.navigator.userAgent)) {
-      // vm is only available in Node.js
+      // vm is only available in Node.js.
+      // We could use https://github.com/browserify/vm-browserify to run the test in an iframe when
+      // in Karma but it doesn't seem we need to go as far.
       this.skip();
     }
 
