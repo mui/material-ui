@@ -10,7 +10,7 @@ import Paper, { PaperProps } from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
-import TwitterIcon from '@mui/icons-material/Twitter';
+import XIcon from '@mui/icons-material/X';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import Link from 'docs/src/modules/components/Link';
@@ -148,20 +148,20 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
               component="a"
               href={`https://github.com/${props.github}`}
               target="_blank"
-              rel="noreferrer noopener"
+              rel="noopener"
             >
               <GitHubIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
           )}
           {props.twitter && (
             <IconButton
-              aria-label={`${props.name} Twitter profile`}
+              aria-label={`${props.name} X profile`}
               component="a"
               href={`https://twitter.com/${props.twitter}`}
               target="_blank"
-              rel="noreferrer noopener"
+              rel="noopener"
             >
-              <TwitterIcon fontSize="small" sx={{ color: 'grey.500' }} />
+              <XIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
           )}
           {props.linkedin && (
@@ -170,7 +170,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
               component="a"
               href={`https://www.linkedin.com/${props.linkedin}`}
               target="_blank"
-              rel="noreferrer noopener"
+              rel="noopener"
             >
               <LinkedInIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
@@ -378,7 +378,7 @@ export default function Team() {
       </Section>
       <Divider />
       {/* Community contributors */}
-      <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'primaryDark.900' }}>
+      <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'common.black' }}>
         <Container sx={{ py: { xs: 4, sm: 8 } }}>
           <Typography component="h3" variant="h4" color="primary.200" fontWeight="semiBold">
             Community contributors

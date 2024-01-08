@@ -11,27 +11,12 @@ import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
 
-import useScript from './useScript';
 import Sidebar from './components/Sidebar';
 import OrderTable from './components/OrderTable';
 import OrderList from './components/OrderList';
 import Header from './components/Header';
 
-const useEnhancedEffect =
-  typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
-
 export default function JoyOrderDashboardTemplate() {
-  const status = useScript('https://unpkg.com/feather-icons');
-
-  useEnhancedEffect(() => {
-    // Feather icon setup: https://github.com/feathericons/feather#4-replace
-    // @ts-ignore
-    if (typeof feather !== 'undefined') {
-      // @ts-ignore
-      feather.replace();
-    }
-  }, [status]);
-
   return (
     <CssVarsProvider disableTransitionOnChange>
       <CssBaseline />

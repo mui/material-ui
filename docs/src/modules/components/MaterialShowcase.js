@@ -217,7 +217,7 @@ const appList = [
       'Comet lets you track code, experiments, and results on ML projects. ' +
       "It's fast, simple, and free for open source projects.",
     image: 'comet.jpg',
-    link: 'https://www.comet.com/',
+    link: 'https://www.comet.com/site/',
     similarWebVisits: 180,
     dateAdded: '2019-01-01',
   },
@@ -415,16 +415,6 @@ const appList = [
     dateAdded: '2021-05-06',
   },
   {
-    title: 'Saleor Store Dashboard',
-    description: 'Dashboard application for Saleor headless e-commerce platform',
-    image: 'saleor.jpg',
-    link: 'https://demo.saleor.io/dashboard/',
-    source: 'https://github.com/saleor/saleor-dashboard',
-    stars: 15079,
-    similarWebVisits: 62,
-    dateAdded: '2022-02-05',
-  },
-  {
     title: 'MQTT Explorer',
     description:
       'A comprehensive MQTT Client which visualizes broker traffic in a hierarchical view. ' +
@@ -529,7 +519,7 @@ export default function Showcase() {
                   }),
                 })}
               >
-                <a href={app.link} rel="noopener nofollow noreferrer" target="_blank">
+                <a href={app.link} rel="noopener nofollow" target="_blank">
                   <CardMedia
                     component="img"
                     loading="lazy"

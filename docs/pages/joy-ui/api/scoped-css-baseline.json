@@ -25,15 +25,15 @@
     "import ScopedCssBaseline from '@mui/joy/ScopedCssBaseline';",
     "import { ScopedCssBaseline } from '@mui/joy';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiScopedCssBaseline" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiScopedCssBaseline-root"
+      "class": "MuiScopedCssBaseline-root"
     }
   ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyScopedCssBaseline",

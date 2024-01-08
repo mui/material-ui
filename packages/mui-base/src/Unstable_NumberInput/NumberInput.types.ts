@@ -26,6 +26,10 @@ export type NumberInputOwnProps = Omit<UseNumberInputParameters, 'error'> & {
    */
   id?: string;
   /**
+   * The short hint displayed in the `input` before the user enters a value.
+   */
+  placeholder?: React.InputHTMLAttributes<HTMLInputElement>['placeholder'];
+  /**
    * The props used for each slot inside the NumberInput.
    * @default {}
    */

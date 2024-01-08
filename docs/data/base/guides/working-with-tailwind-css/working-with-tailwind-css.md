@@ -518,4 +518,4 @@ These are the things we covered in this guide:
 We used the `component` prop to pass them into the parent component.\
 ✅ How to apply conditional styling based on the owner component's state using a callback as value for the `slotProps` prop.
 
-Get all the code used in this guide in the [Base UI with Tailwind CSS](https://codesandbox.io/s/working-with-tailwind-css-dhmf8w) example project.
+Get all the code used in this guide in the [Base UI with Tailwind CSS](https://codesandbox.io/p/sandbox/working-with-tailwind-css-dhmf8w) example project.

@@ -34,16 +34,44 @@
     "variant": { "description": "The variant to use." }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "sizeSmall": {
+    "avatar": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the avatar element"
+    },
+    "avatarColorPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
+      "nodeName": "the avatar element",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "avatarColorSecondary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the avatar element",
+      "conditions": "<code>color=\"secondary\"</code>"
+    },
+    "avatarMedium": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the avatar element",
+      "conditions": "<code>size=\"medium\"</code>"
+    },
+    "avatarSmall": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the avatar element",
       "conditions": "<code>size=\"small\"</code>"
     },
-    "sizeMedium": {
+    "clickable": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>size=\"medium\"</code>"
+      "conditions": "<code>onClick</code> is defined or <code>clickable={true}</code>"
+    },
+    "clickableColorPrimary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>onClick</code> and <code>color=\"primary\"</code> is defined or <code>clickable={true}</code>"
+    },
+    "clickableColorSecondary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>onClick</code> and <code>color=\"secondary\"</code> is defined or <code>clickable={true}</code>"
     },
     "colorError": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -75,26 +103,6 @@
       "nodeName": "the root element",
       "conditions": "<code>color=\"warning\"</code>"
     },
-    "disabled": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>disabled={true}</code>"
-    },
-    "clickable": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>onClick</code> is defined or <code>clickable={true}</code>"
-    },
-    "clickableColorPrimary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>onClick</code> and <code>color=\"primary\"</code> is defined or <code>clickable={true}</code>"
-    },
-    "clickableColorSecondary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>onClick</code> and <code>color=\"secondary\"</code> is defined or <code>clickable={true}</code>"
-    },
     "deletable": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -110,108 +118,9 @@
       "nodeName": "the root element",
       "conditions": "<code>onDelete</code> and <code>color=\"secondary\"</code> is defined"
     },
-    "outlined": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code>"
-    },
-    "filled": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"filled\"</code>"
-    },
-    "outlinedPrimary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"primary\"</code>"
-    },
-    "outlinedSecondary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"secondary\"</code>"
-    },
-    "filledPrimary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"filled\"</code> and <code>color=\"primary\"</code>"
-    },
-    "filledSecondary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"filled\"</code> and <code>color=\"secondary\"</code>"
-    },
-    "avatar": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the avatar element"
-    },
-    "avatarSmall": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the avatar element",
-      "conditions": "<code>size=\"small\"</code>"
-    },
-    "avatarMedium": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the avatar element",
-      "conditions": "<code>size=\"medium\"</code>"
-    },
-    "avatarColorPrimary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the avatar element",
-      "conditions": "<code>color=\"primary\"</code>"
-    },
-    "avatarColorSecondary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the avatar element",
-      "conditions": "<code>color=\"secondary\"</code>"
-    },
-    "icon": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the icon element" },
-    "iconSmall": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the icon element",
-      "conditions": "<code>size=\"small\"</code>"
-    },
-    "iconMedium": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the icon element",
-      "conditions": "<code>size=\"medium\"</code>"
-    },
-    "iconColorPrimary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the icon element",
-      "conditions": "<code>color=\"primary\"</code>"
-    },
-    "iconColorSecondary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the icon element",
-      "conditions": "<code>color=\"secondary\"</code>"
-    },
-    "label": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the label <code>span</code> element"
-    },
-    "labelSmall": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the label <code>span</code> element",
-      "conditions": "<code>size=\"small\"</code>"
-    },
-    "labelMedium": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the label <code>span</code> element",
-      "conditions": "<code>size=\"medium\"</code>"
-    },
     "deleteIcon": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the deleteIcon element"
-    },
-    "deleteIconSmall": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the deleteIcon element",
-      "conditions": "<code>size=\"small\"</code>"
-    },
-    "deleteIconMedium": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the deleteIcon element",
-      "conditions": "<code>size=\"medium\"</code>"
     },
     "deleteIconColorPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -223,16 +132,6 @@
       "nodeName": "the deleteIcon element",
       "conditions": "<code>color=\"secondary\"</code> and <code>variant=\"filled\"</code>"
     },
-    "deleteIconOutlinedColorPrimary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the deleteIcon element",
-      "conditions": "<code>color=\"primary\"</code> and <code>variant=\"outlined\"</code>"
-    },
-    "deleteIconOutlinedColorSecondary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the deleteIcon element",
-      "conditions": "<code>color=\"secondary\"</code> and <code>variant=\"outlined\"</code>"
-    },
     "deleteIconFilledColorPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the deleteIcon element",
@@ -243,10 +142,111 @@
       "nodeName": "the deleteIcon element",
       "conditions": "<code>color=\"secondary\"</code> and <code>variant=\"filled\"</code>"
     },
+    "deleteIconMedium": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the deleteIcon element",
+      "conditions": "<code>size=\"medium\"</code>"
+    },
+    "deleteIconOutlinedColorPrimary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the deleteIcon element",
+      "conditions": "<code>color=\"primary\"</code> and <code>variant=\"outlined\"</code>"
+    },
+    "deleteIconOutlinedColorSecondary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the deleteIcon element",
+      "conditions": "<code>color=\"secondary\"</code> and <code>variant=\"outlined\"</code>"
+    },
+    "deleteIconSmall": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the deleteIcon element",
+      "conditions": "<code>size=\"small\"</code>"
+    },
+    "disabled": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "filled": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"filled\"</code>"
+    },
+    "filledPrimary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"filled\"</code> and <code>color=\"primary\"</code>"
+    },
+    "filledSecondary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"filled\"</code> and <code>color=\"secondary\"</code>"
+    },
     "focusVisible": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "keyboard focused"
+    },
+    "icon": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the icon element" },
+    "iconColorPrimary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the icon element",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "iconColorSecondary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the icon element",
+      "conditions": "<code>color=\"secondary\"</code>"
+    },
+    "iconMedium": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the icon element",
+      "conditions": "<code>size=\"medium\"</code>"
+    },
+    "iconSmall": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the icon element",
+      "conditions": "<code>size=\"small\"</code>"
+    },
+    "label": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the label <code>span</code> element"
+    },
+    "labelMedium": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the label <code>span</code> element",
+      "conditions": "<code>size=\"medium\"</code>"
+    },
+    "labelSmall": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the label <code>span</code> element",
+      "conditions": "<code>size=\"small\"</code>"
+    },
+    "outlined": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "outlinedPrimary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"primary\"</code>"
+    },
+    "outlinedSecondary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"secondary\"</code>"
+    },
+    "root": { "description": "Styles applied to the root element." },
+    "sizeMedium": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"medium\"</code>"
+    },
+    "sizeSmall": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"small\"</code>"
     }
   }
 }
