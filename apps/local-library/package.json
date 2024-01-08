@@ -1,8 +1,0 @@
-{
-  "name": "local-ui-lib",
-  "private": true,
-  "version": "0.0.0",
-  "dependencies": {
-    "@mui/zero-runtime": "workspace:*"
-  }
-}

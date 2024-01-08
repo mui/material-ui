@@ -1,65 +1,35 @@
 {
   "name": "@mui/zero-next-plugin",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.1",
+  "main": "build/index.js",
+  "module": "build/index.mjs",
+  "types": "build/index.d.ts",
   "private": true,
-  "author": "MUI Team",
-  "description": "Vite plugin for MUI zero styled implementation.",
-  "main": "./src/index.ts",
-  "keywords": [
-    "zero runtime",
-    "css-in-js",
-    "mui"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mui/material-ui.git",
-    "directory": "packages/zero-next-plugin"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/mui/material-ui/issues"
-  },
-  "homepage": "@TODO",
-  "funding": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/mui-org"
-  },
   "scripts": {
-    "build": "pnpm build:legacy && pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
-    "build:legacy": "node ../../scripts/build.mjs legacy",
-    "build:modern": "node ../../scripts/build.mjs modern",
-    "build:node": "node ../../scripts/build.mjs node",
-    "build:stable": "node ../../scripts/build.mjs stable",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs",
-    "build:types": "node ../../scripts/buildTypes.mjs",
-    "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
-    "release": "pnpm build && npm publish build",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/zero-babel-plugin/**/*.test.{js,ts,tsx}'",
-    "typescript": "tsc -p tsconfig.json",
-    "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
+    "clean": "rimraf build types",
+    "watch": "tsup --watch --tsconfig tsconfig.build.json",
+    "build": "tsup --tsconfig tsconfig.build.json",
+    "typecheck": "tsc --noEmit -p ."
   },
   "dependencies": {
-    "@babel/core": "^7.23.7",
-    "@babel/plugin-syntax-jsx": "^7.23.3",
-    "@babel/preset-typescript": "^7.23.3",
-    "@linaria/babel-preset": "^4.5.4",
-    "@mui/zero-tag-processor": "workspace:^",
-    "file-system-cache": "2.4.4"
+    "@mui/zero-unplugin": "workspace:^"
   },
   "devDependencies": {
-    "@types/babel__core": "^7.20.5",
-    "@types/chai": "^4.3.11",
-    "chai": "^4.4.0",
-    "next": "^13.4.19"
+    "next": "^14.0.1"
   },
   "peerDependencies": {
-    "next": ">=12.0.0 <14.0.0"
+    "next": "^12.0.0 || ^13.0.0 || ^14.0.0"
   },
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
   },
-  "engines": {
-    "node": ">=12.0.0"
-  }
+  "files": [
+    "build",
+    "loader.js",
+    "next-font.js",
+    "next-image.js",
+    "zero-virtual.css",
+    "package.json"
+  ]
 }

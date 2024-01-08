@@ -1,65 +1,39 @@
 {
   "name": "@mui/zero-vite-plugin",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.1",
+  "main": "build/index.js",
+  "module": "build/index.mjs",
+  "types": "build/index.d.ts",
   "private": true,
-  "author": "MUI Team",
-  "description": "Vite plugin for MUI zero styled implementation.",
-  "main": "./src/index.ts",
-  "keywords": [
-    "zero runtime",
-    "css-in-js",
-    "mui"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mui/material-ui.git",
-    "directory": "packages/zero-vite-plugin"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/mui/material-ui/issues"
-  },
-  "homepage": "@TODO",
-  "funding": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/mui-org"
-  },
   "scripts": {
-    "build": "pnpm build:legacy && pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
-    "build:legacy": "node ../../scripts/build.mjs legacy",
-    "build:modern": "node ../../scripts/build.mjs modern",
-    "build:node": "node ../../scripts/build.mjs node",
-    "build:stable": "node ../../scripts/build.mjs stable",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs",
-    "build:types": "node ../../scripts/buildTypes.mjs",
-    "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
-    "release": "pnpm build && pnpm publish",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/zero-babel-plugin/**/*.test.{js,ts,tsx}'",
-    "typescript": "tsc -p tsconfig.json",
-    "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
+    "clean": "rimraf build",
+    "watch": "tsup --watch",
+    "build": "tsup",
+    "typecheck": "tsc --noEmit -p ."
   },
   "dependencies": {
-    "@babel/core": "^7.23.7",
-    "@linaria/babel-preset": "^4.5.4",
-    "@linaria/logger": "^4.5.0",
-    "@linaria/utils": "^4.5.3",
-    "@mui/zero-tag-processor": "workspace:^"
+    "@babel/core": "^7.23.6",
+    "@babel/preset-typescript": "^7.23.3",
+    "@linaria/babel-preset": "^5.0.4",
+    "@linaria/logger": "^5.0.0",
+    "@linaria/utils": "^5.0.2",
+    "@mui/zero-runtime": "workspace:^",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24"
   },
   "devDependencies": {
-    "@types/babel__core": "^7.20.5",
-    "@types/chai": "^4.3.11",
-    "chai": "^4.4.0",
-    "vite": "^4.5.1"
+    "@types/babel__core": "^7.20.3",
+    "@types/debug": "^4.1.12",
+    "vite": "^5.0.0"
   },
   "peerDependencies": {
-    "vite": "^4.0.0"
+    "vite": "^4.0.0 || ^5.0.0"
   },
   "sideEffects": false,
   "publishConfig": {
-    "access": "public",
-    "directory": "build"
+    "access": "public"
   },
-  "engines": {
-    "node": ">=12.0.0"
-  }
+  "files": [
+    "build",
+    "package.json"
+  ]
 }

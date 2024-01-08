@@ -7,7 +7,9 @@
     "proptypes": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./scripts/generateProptypes.ts",
     "deduplicate": "pnpm dedupe",
     "benchmark:browser": "pnpm --filter benchmark browser",
-    "build": "lerna run --parallel --scope \"@mui/*\" build",
+    "build": "lerna run --scope \"@mui/*\" build",
+    "build:zero": "lerna run --scope \"@mui/zero-*\" build",
+    "clean:zero": "pnpm --filter \"@mui/zero-*\" clean",
     "build:codesandbox": "NODE_OPTIONS=\"–max_old_space_size=4096\" lerna run --concurrency 8 --scope \"@mui/*\" build",
     "release:version": "lerna version --no-changelog --no-push --no-git-tag-version --no-private --force-publish=@mui/core-downloads-tracker",
     "release:build": "lerna run --concurrency 8 --scope \"@mui/*\" build --skip-nx-cache",
@@ -73,7 +75,8 @@
     "typescript": "lerna run --no-bail --parallel typescript",
     "typescript:ci": "lerna run --concurrency 5 --no-bail --no-sort typescript",
     "validate-declarations": "tsx scripts/validateTypescriptDeclarations.mts",
-    "generate-codeowners": "node scripts/generateCodeowners.mjs"
+    "generate-codeowners": "node scripts/generateCodeowners.mjs",
+    "watch:zero": "lerna watch -- lerna run watch --scope=$LERNA_PACKAGE_NAME"
   },
   "dependencies": {
     "@googleapis/sheets": "^5.0.5",
@@ -178,6 +181,7 @@
     "stylelint-processor-styled-components": "^1.10.0",
     "terser-webpack-plugin": "^5.3.10",
     "tsx": "^4.7.0",
+    "tsup": "^8.0.1",
     "typescript": "^5.3.3",
     "typescript-to-proptypes": "workspace:^",
     "webpack": "^5.89.0",
