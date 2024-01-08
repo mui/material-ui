@@ -1402,7 +1402,7 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       next:
-        specifier: ^13.4.19
+        specifier: ^13.5.6
         version: 13.5.6(@babel/core@7.23.7)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
@@ -2333,7 +2333,7 @@ importers:
         specifier: ^4.4.0
         version: 4.4.0
       next:
-        specifier: ^13.4.19
+        specifier: ^13.5.6
         version: 13.5.6(@babel/core@7.23.7)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
 
   packages/zero-runtime:
