@@ -88,8 +88,8 @@ const getDesignTokens = (mode: PaletteMode) => ({
             paper: greyColor[50],
           },
           text: {
-            primary: greyColor[900],
-            secondary: greyColor[700],
+            primary: greyColor[800],
+            secondary: greyColor[600],
           },
         }
       : {
