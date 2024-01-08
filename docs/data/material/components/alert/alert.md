@@ -10,18 +10,21 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 
 <p class="description">Alerts display brief messages for the user without interrupting their use of the app.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## Introduction
 
-The Alert component can be used to provide important and potentially time-sensitive information in a way that does not interfere with the user's tasks. (Source: [ARIA APG](https://www.w3.org/WAI/ARIA/apg/patterns/alert/).)
+The Alert component can be used to provide important and potentially time-sensitive information in an unobtrusive manner.
 
-This component is not documented in the [Material Design guidelines](https://material.io/).
-
-:::success
-Alerts should not be confused with alert _dialogs_ ([ARIA](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/)), which _are_ intended to interrupt the user to obtain a response.
-Use the Material UI [Dialog](https://mui.com/material-ui/react-dialog/) if you need this behavior.
+:::info
+This component is not documented in the [Material Design guidelines](https://m2.material.io/), but Material UI supports it.
 :::
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+### Usage
+
+A key trait of the alert pattern is that [it should not interrupt the user's experience](https://www.w3.org/WAI/ARIA/apg/patterns/alert/) of the app.
+Alerts should not be confused with alert _dialogs_ ([ARIA](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/)), which _are_ intended to interrupt the user to obtain a response.
+Use the Material UI [Dialog](https://mui.com/material-ui/react-dialog/) component if you need this behavior.
 
 ## Basics
 
