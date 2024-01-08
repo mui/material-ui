@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
-import MenuItem, { MenuItemProps } from '@mui/material/MenuItem';
+import MenuItem, { MenuItemProps } from '@mui/material-next/MenuItem';
 import Link from '@mui/material/Link';
 
 const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =

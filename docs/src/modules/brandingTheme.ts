@@ -1167,7 +1167,10 @@ export function getThemedComponents(): ThemeOptions {
             } as const,
             theme.applyDarkStyles({
               color: theme.palette.grey[300],
-              borderColor: theme.palette.primaryDark[500],
+              borderColor: theme.palette.primaryDark[700],
+              '&:hover': {
+                backgroundColor: alpha(theme.palette.primaryDark[600], 0.2),
+              },
               '&.Mui-selected': {
                 color: (theme.vars || theme).palette.primary[200],
                 borderColor: `${(theme.vars || theme).palette.primary[700]} !important`,

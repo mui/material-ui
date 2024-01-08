@@ -163,6 +163,9 @@ module.exports = {
     'react/state-in-constructor': 'off',
     // stylistic opinion. For conditional assignment we want it outside, otherwise as static
     'react/static-property-placement': 'off',
+    // noopener is enough, no IE 11 support
+    // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-target-blank.md#rule-options
+    'react/jsx-no-target-blank': ['error', { allowReferrer: true }],
 
     'no-restricted-syntax': [
       // See https://github.com/eslint/eslint/issues/9192 for why it's needed
@@ -209,7 +212,6 @@ module.exports = {
         // matching the pattern of the test runner
         '*.test.mjs',
         '*.test.js',
-        '*.test.mjs',
         '*.test.ts',
         '*.test.tsx',
       ],

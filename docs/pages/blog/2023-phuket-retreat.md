@@ -3,8 +3,8 @@ title: Together Week lands in Phuket, Thailand
 description: The latest team retreat left MUIers feeling more connected and invigorated than ever. Here's how it went down.
 date: 2023-12-13T00:00:00.000Z
 authors: ['mikailaread']
-card: true
 tags: ['Company']
+card: true
 ---
 
 ## What is MUI's Together Week?
@@ -95,15 +95,15 @@ In experience surveys, all respondents rated this Together Week five stars out o
 It's worth highlighting some of the glowing feedback received, to illustrate why we invest in these types of gatherings:
 
 > I want to share how impactful the retreat was for my sense of belonging.
-This marks a before and after in my time at MUI.
-I really appreciate everyone who worked on making it possible, so thank you so much.
+> This marks a before and after in my time at MUI.
+> I really appreciate everyone who worked on making it possible, so thank you so much.
 
 > Everyone I talked to told me this was the best retreat they'd been on - that it was super well-organized, that the accommodation was incredible and it made a huge difference how luxe it was, that the excursions (particularly the boat) were the best yet.
-I think it's a real testament to the work and thoughtfulness that went in to planning every detail, from airport transfers to snacks, swag, sessions, EVERYTHING.
-So just a huge thank you for not only pulling this off but executing it to such a high standard.
+> I think it's a real testament to the work and thoughtfulness that went in to planning every detail, from airport transfers to snacks, swag, sessions, EVERYTHING.
+> So just a huge thank you for not only pulling this off but executing it to such a high standard.
 
 > Honestly, the bonding through cards and games was so important and made me feel much more a part of the team.
-I feel like on this trip the people I work with became true friends and I expect this is going to have a big effect on how we work together.
+> I feel like on this trip the people I work with became true friends and I expect this is going to have a big effect on how we work together.
 
 (You're dang right it is—there's plenty of research to back up [the power of work friends](https://hbr.org/2022/10/the-power-of-work-friends)).
 
