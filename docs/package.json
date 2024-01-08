@@ -107,7 +107,6 @@
     "react-transition-group": "^4.4.5",
     "react-virtuoso": "^4.6.2",
     "react-window": "^1.8.10",
-    "recharts": "2.10.3",
     "rimraf": "^5.0.5",
     "styled-components": "^6.1.6",
     "stylis": "4.2.0",
