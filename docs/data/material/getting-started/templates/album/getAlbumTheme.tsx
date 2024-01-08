@@ -30,15 +30,15 @@ export const secondaryColor = {
 
 export const greyColor = {
   50: '#FBFCFE',
-  100: '#F0F4F8',
-  200: '#DDE7EE',
-  300: '#CDD7E1',
-  400: '#9FA6AD',
-  500: '#636B74',
-  600: '#555E68',
-  700: '#32383E',
-  800: '#171A1C',
-  900: '#0B0D0E',
+  100: '#EAF0F5',
+  200: '#D6E2EB',
+  300: '#BFCCD9',
+  400: '#94A6B8',
+  500: '#5B6B7C',
+  600: '#4C5967',
+  700: '#364049',
+  800: '#131B20',
+  900: '#090E10',
 };
 
 export const successColor = {
