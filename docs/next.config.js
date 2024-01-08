@@ -1,4 +1,6 @@
+// @ts-check
 const path = require('path');
+// @ts-ignore
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const pkg = require('../package.json');
 const withDocsInfra = require('./nextConfigDocsInfra');
@@ -12,7 +14,7 @@ const {
 
 const workspaceRoot = path.join(__dirname, '../');
 
-const l10nPRInNetlify = /^l10n_/.test(process.env.HEAD) && process.env.NETLIFY === 'true';
+const l10nPRInNetlify = /^l10n_/.test(process.env.HEAD || '') && process.env.NETLIFY === 'true';
 const vercelDeploy = Boolean(process.env.VERCEL);
 const isDeployPreview = Boolean(process.env.PULL_REQUEST_ID);
 // For crowdin PRs we want to build all locales for testing.
@@ -48,6 +50,7 @@ module.exports = withDocsInfra({
       const [nextExternals, ...externals] = config.externals;
 
       config.externals = [
+        // @ts-ignore
         (ctx, callback) => {
           const { request } = ctx;
           const hasDependencyOnRepoPackages = [
@@ -71,8 +74,9 @@ module.exports = withDocsInfra({
       ];
     }
 
-    config.module.rules.forEach((r) => {
-      r.resourceQuery = { not: [/raw/] };
+    // @ts-ignore
+    config.module.rules.forEach((rule) => {
+      rule.resourceQuery = { not: [/raw/] };
     });
 
     return {
@@ -83,6 +87,7 @@ module.exports = withDocsInfra({
         // resolve .tsx first
         extensions: [
           '.tsx',
+          // @ts-ignore
           ...config.resolve.extensions.filter((extension) => extension !== '.tsx'),
         ],
       },
@@ -171,25 +176,29 @@ module.exports = withDocsInfra({
     };
   },
   env: {
-    GITHUB_AUTH: process.env.GITHUB_AUTH
-      ? `Basic ${Buffer.from(process.env.GITHUB_AUTH).toString('base64')}`
-      : null,
+    // docs-infra
     LIB_VERSION: pkg.version,
-    FEEDBACK_URL: process.env.FEEDBACK_URL,
-    SOURCE_GITHUB_BRANCH: 'master', // #default-branch-switch
     SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
+    SOURCE_GITHUB_BRANCH: 'master', // #default-branch-switch
     GITHUB_TEMPLATE_DOCS_FEEDBACK: '4.docs-feedback.yml',
     BUILD_ONLY_ENGLISH_LOCALE: String(buildOnlyEnglishLocale),
+    // MUI Core related
+    GITHUB_AUTH: process.env.GITHUB_AUTH
+      ? `Basic ${Buffer.from(process.env.GITHUB_AUTH).toString('base64')}`
+      : '',
   },
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
   // However, we don't in order to prevent any regression in the `findPages()` method.
+  // @ts-ignore
   exportPathMap: () => {
     const pages = findPages();
     const map = {};
 
+    // @ts-ignore
     function traverse(pages2, userLanguage) {
       const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
 
+      // @ts-ignore
       pages2.forEach((page) => {
         // The experiments pages are only meant for experiments, they shouldn't leak to production.
         if (
@@ -206,6 +215,7 @@ module.exports = withDocsInfra({
           // map api-docs to api
           // i: /api-docs/* > /api/* (old structure)
           // ii: /*/api-docs/* > /*/api/* (for new structure)
+          // @ts-ignore
           map[`${prefix}${page.pathname.replace(/^(\/[^/]+)?\/api-docs\/(.*)/, '$1/api/$2')}`] = {
             page: page.pathname,
             query: {
