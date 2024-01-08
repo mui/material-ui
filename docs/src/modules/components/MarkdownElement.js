@@ -467,7 +467,7 @@ const Root = styled('div')(
       cursor: 'pointer',
       position: 'absolute',
       top: 12,
-      right: 16,
+      right: 12,
       padding: theme.spacing(0.5),
       fontFamily: 'inherit',
       fontWeight: 500,
@@ -487,7 +487,7 @@ const Root = styled('div')(
         flexShrink: 0,
         fontSize: '18px',
         margin: 'auto',
-        opacity: 0.4,
+        opacity: 0.5,
       },
       '& .MuiCode-copied-icon': {
         display: 'none',
