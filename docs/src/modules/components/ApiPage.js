@@ -255,7 +255,7 @@ export default function ApiPage(props) {
         <PropertiesSection
           properties={componentProps}
           propertiesDescriptions={propDescriptions}
-          targetName={pageContent.name}
+          componentName={pageContent.name}
           spreadHint={spreadHint}
         />
         {cssComponent && (

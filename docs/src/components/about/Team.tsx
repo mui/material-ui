@@ -148,7 +148,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
               component="a"
               href={`https://github.com/${props.github}`}
               target="_blank"
-              rel="noreferrer noopener"
+              rel="noopener"
             >
               <GitHubIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
@@ -159,7 +159,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
               component="a"
               href={`https://twitter.com/${props.twitter}`}
               target="_blank"
-              rel="noreferrer noopener"
+              rel="noopener"
             >
               <XIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
@@ -170,7 +170,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
               component="a"
               href={`https://www.linkedin.com/${props.linkedin}`}
               target="_blank"
-              rel="noreferrer noopener"
+              rel="noopener"
             >
               <LinkedInIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>

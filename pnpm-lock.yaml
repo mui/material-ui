@@ -35,8 +35,8 @@ importers:
         specifier: ^5.0.5
         version: 5.0.5
       '@slack/bolt':
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^3.17.0
+        version: 3.17.0
       google-auth-library:
         specifier: ^9.0.0
         version: 9.0.0
@@ -289,7 +289,7 @@ importers:
         version: 4.2.1
       postcss-styled-syntax:
         specifier: ^0.6.3
-        version: 0.6.3(postcss@8.4.32)
+        version: 0.6.3(postcss@8.4.33)
       prettier:
         specifier: ^2.8.8
         version: 2.8.8
@@ -654,7 +654,7 @@ importers:
         version: 9.7.3(react-dom@18.2.0)(react@18.2.0)
       autoprefixer:
         specifier: ^10.4.16
-        version: 10.4.16(postcss@8.4.32)
+        version: 10.4.16(postcss@8.4.33)
       autosuggest-highlight:
         specifier: ^3.3.4
         version: 3.3.4
@@ -743,11 +743,11 @@ importers:
         specifier: ^0.2.0
         version: 0.2.0
       postcss:
-        specifier: ^8.4.32
-        version: 8.4.32
+        specifier: ^8.4.33
+        version: 8.4.33
       postcss-import:
         specifier: ^15.1.0
-        version: 15.1.0(postcss@8.4.32)
+        version: 15.1.0(postcss@8.4.33)
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
@@ -879,8 +879,8 @@ importers:
         specifier: ^4.2.0
         version: 4.2.0
       chai:
-        specifier: ^4.3.10
-        version: 4.3.10
+        specifier: ^4.4.0
+        version: 4.4.0
       cross-fetch:
         specifier: ^4.0.0
         version: 4.0.0
@@ -897,8 +897,8 @@ importers:
         specifier: ^2.8.8
         version: 2.8.8
       tailwindcss:
-        specifier: ^3.4.0
-        version: 3.4.0
+        specifier: ^3.4.1
+        version: 3.4.1
       typescript-to-proptypes:
         specifier: workspace:^
         version: link:../packages/typescript-to-proptypes
@@ -985,8 +985,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.3.10
-        version: 4.3.10
+        specifier: ^4.4.0
+        version: 4.4.0
       sinon:
         specifier: ^15.2.0
         version: 15.2.0
@@ -1022,8 +1022,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.3.10
-        version: 4.3.10
+        specifier: ^4.4.0
+        version: 4.4.0
       sinon:
         specifier: ^15.2.0
         version: 15.2.0
@@ -1040,8 +1040,8 @@ importers:
         version: 10.3.0
     devDependencies:
       '@types/eslint':
-        specifier: ^8.56.0
-        version: 8.56.0
+        specifier: ^8.56.1
+        version: 8.56.1
       '@typescript-eslint/parser':
         specifier: ^6.17.0
         version: 6.17.0(eslint@8.56.0)(typescript@5.3.3)
@@ -1059,8 +1059,8 @@ importers:
         version: 9.0.1
     optionalDependencies:
       aws-sdk:
-        specifier: ^2.1529.0
-        version: 2.1529.0
+        specifier: ^2.1531.0
+        version: 2.1531.0
     devDependencies:
       claudia:
         specifier: ^5.14.1
@@ -1085,8 +1085,8 @@ importers:
         specifier: ^4.3.11
         version: 4.3.11
       chai:
-        specifier: ^4.3.10
-        version: 4.3.10
+        specifier: ^4.4.0
+        version: 4.4.0
 
   packages/mui-babel-macros:
     dependencies:
@@ -1122,8 +1122,8 @@ importers:
         specifier: ^11.0.4
         version: 11.0.4(@babel/core@7.23.7)
       chai:
-        specifier: ^4.3.10
-        version: 4.3.10
+        specifier: ^4.4.0
+        version: 4.4.0
 
   packages/mui-base:
     dependencies:
@@ -1131,8 +1131,8 @@ importers:
         specifier: ^7.23.7
         version: 7.23.7
       '@floating-ui/react-dom':
-        specifier: ^2.0.4
-        version: 2.0.4(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^2.0.5
+        version: 2.0.5(react-dom@18.2.0)(react@18.2.0)
       '@mui/types':
         specifier: workspace:^
         version: link:../mui-types/build
@@ -1180,8 +1180,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.3.10
-        version: 4.3.10
+        specifier: ^4.4.0
+        version: 4.4.0
       fast-glob:
         specifier: ^3.3.2
         version: 3.3.2
@@ -1227,8 +1227,8 @@ importers:
         specifier: 0.11.5
         version: 0.11.5
       chai:
-        specifier: ^4.3.10
-        version: 4.3.10
+        specifier: ^4.4.0
+        version: 4.4.0
     publishDirectory: build
 
   packages/mui-core-downloads-tracker:
@@ -1273,8 +1273,8 @@ importers:
         specifier: ^4.3.11
         version: 4.3.11
       chai:
-        specifier: ^4.3.10
-        version: 4.3.10
+        specifier: ^4.4.0
+        version: 4.4.0
       fs-extra:
         specifier: ^11.2.0
         version: 11.2.0
@@ -1301,8 +1301,8 @@ importers:
         specifier: ^18.2.46
         version: 18.2.46
       chai:
-        specifier: ^4.3.10
-        version: 4.3.10
+        specifier: ^4.4.0
+        version: 4.4.0
       chalk:
         specifier: ^5.3.0
         version: 5.3.0
@@ -1393,8 +1393,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.3.10
-        version: 4.3.10
+        specifier: ^4.4.0
+        version: 4.4.0
       fast-glob:
         specifier: ^3.3.2
         version: 3.3.2
@@ -1467,8 +1467,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.3.10
-        version: 4.3.10
+        specifier: ^4.4.0
+        version: 4.4.0
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1562,8 +1562,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.3.10
-        version: 4.3.10
+        specifier: ^4.4.0
+        version: 4.4.0
       css-mediaquery:
         specifier: ^0.1.2
         version: 0.1.2
@@ -1654,7 +1654,7 @@ importers:
         version: 4.4.5(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
       '@emotion/react':
-        specifier: ^11.5.0
+        specifier: ^11.11.3
         version: 11.11.3(@types/react@18.2.46)(react@18.2.0)
       '@mui-internal/babel-macros':
         specifier: workspace:^
@@ -1684,8 +1684,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.3.10
-        version: 4.3.10
+        specifier: ^4.4.0
+        version: 4.4.0
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -1713,7 +1713,7 @@ importers:
         specifier: ^11.11.0
         version: 11.11.0
       '@emotion/react':
-        specifier: ^11.5.0
+        specifier: ^11.11.3
         version: 11.11.3(@types/react@18.2.46)(react@18.2.0)
       '@emotion/server':
         specifier: ^11.11.0
@@ -1753,8 +1753,8 @@ importers:
         specifier: ^18.2.46
         version: 18.2.46
       chai:
-        specifier: ^4.3.10
-        version: 4.3.10
+        specifier: ^4.4.0
+        version: 4.4.0
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1794,8 +1794,8 @@ importers:
         specifier: ^18.2.46
         version: 18.2.46
       chai:
-        specifier: ^4.3.10
-        version: 4.3.10
+        specifier: ^4.4.0
+        version: 4.4.0
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1832,8 +1832,8 @@ importers:
         specifier: ^18.2.46
         version: 18.2.46
       chai:
-        specifier: ^4.3.10
-        version: 4.3.10
+        specifier: ^4.4.0
+        version: 4.4.0
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1915,8 +1915,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.3.10
-        version: 4.3.10
+        specifier: ^4.4.0
+        version: 4.4.0
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1983,8 +1983,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.3.10
-        version: 4.3.10
+        specifier: ^4.4.0
+        version: 4.4.0
       fast-glob:
         specifier: ^3.3.2
         version: 3.3.2
@@ -2058,8 +2058,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.3.10
-        version: 4.3.10
+        specifier: ^4.4.0
+        version: 4.4.0
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2129,11 +2129,11 @@ importers:
         specifier: ^14.1.2
         version: 14.1.2(react-dom@18.2.0)(react@18.2.0)
       chai:
-        specifier: ^4.3.10
-        version: 4.3.10
+        specifier: ^4.4.0
+        version: 4.4.0
       chai-dom:
         specifier: ^1.12.0
-        version: 1.12.0(chai@4.3.10)
+        version: 1.12.0(chai@4.4.0)
       dom-accessibility-api:
         specifier: ^0.6.3
         version: 0.6.3
@@ -2266,8 +2266,8 @@ importers:
         specifier: ^9.0.7
         version: 9.0.7
       chai:
-        specifier: ^4.3.10
-        version: 4.3.10
+        specifier: ^4.4.0
+        version: 4.4.0
       fast-glob:
         specifier: ^3.3.2
         version: 3.3.2
@@ -2327,11 +2327,11 @@ importers:
         specifier: ^7.20.5
         version: 7.20.5
       '@types/chai':
-        specifier: ^4.3.6
+        specifier: ^4.3.11
         version: 4.3.11
       chai:
-        specifier: ^4.3.8
-        version: 4.3.10
+        specifier: ^4.4.0
+        version: 4.4.0
       next:
         specifier: ^13.4.19
         version: 13.5.6(@babel/core@7.23.7)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
@@ -2361,8 +2361,8 @@ importers:
         specifier: ^18.2.46
         version: 18.2.46
       chai:
-        specifier: ^4.3.10
-        version: 4.3.10
+        specifier: ^4.4.0
+        version: 4.4.0
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2458,8 +2458,8 @@ importers:
         specifier: ^4.3.11
         version: 4.3.11
       chai:
-        specifier: ^4.3.10
-        version: 4.3.10
+        specifier: ^4.4.0
+        version: 4.4.0
       vite:
         specifier: ^4.5.1
         version: 4.5.1(@types/node@18.19.4)
@@ -2522,8 +2522,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.3.10
-        version: 4.3.10
+        specifier: ^4.4.0
+        version: 4.4.0
       docs:
         specifier: workspace:^
         version: link:../docs
@@ -5022,32 +5022,40 @@ packages:
       lodash.uniq: 4.5.0
     dev: false
 
-  /@floating-ui/core@1.4.1:
-    resolution: {integrity: sha512-jk3WqquEJRlcyu7997NtR5PibI+y5bi+LS3hPmguVClypenMsCY3CBa3LAQnozRCtCrYWSEtAdiskpamuJRFOQ==}
+  /@floating-ui/core@1.5.3(react@18.2.0):
+    resolution: {integrity: sha512-O0WKDOo0yhJuugCx6trZQj5jVJ9yR0ystG2JaNAemYUWce+pmM6WUEFIibnWyEJKdrDxhm75NoSRME35FNaM/Q==}
     dependencies:
-      '@floating-ui/utils': 0.1.1
+      '@floating-ui/utils': 0.2.0(react@18.2.0)
+    transitivePeerDependencies:
+      - react
     dev: false
 
-  /@floating-ui/dom@1.5.1:
-    resolution: {integrity: sha512-KwvVcPSXg6mQygvA1TjbN/gh///36kKtllIF8SUm0qpFj8+rvYrpvlYdL1JoA71SHpDqgSSdGOSoQ0Mp3uY5aw==}
+  /@floating-ui/dom@1.5.4(react@18.2.0):
+    resolution: {integrity: sha512-jByEsHIY+eEdCjnTVu+E3ephzTOzkQ8hgUfGwos+bg7NlH33Zc5uO+QHz1mrQUOgIKKDD1RtS201P9NvAfq3XQ==}
     dependencies:
-      '@floating-ui/core': 1.4.1
-      '@floating-ui/utils': 0.1.1
+      '@floating-ui/core': 1.5.3(react@18.2.0)
+      '@floating-ui/utils': 0.2.0(react@18.2.0)
+    transitivePeerDependencies:
+      - react
     dev: false
 
-  /@floating-ui/react-dom@2.0.4(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-CF8k2rgKeh/49UrnIBs4BdxPUV6vize/Db1d/YbCLyp9GiVZ0BEwf5AiDSxJRCr6yOkGqTFHtmrULxkEfYZ7dQ==}
+  /@floating-ui/react-dom@2.0.5(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-UsBK30Bg+s6+nsgblXtZmwHhgS2vmbuQK22qgt2pTQM6M3X6H1+cQcLXqgRY3ihVLcZJE6IvqDQozhsnIVqK/Q==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
     dependencies:
-      '@floating-ui/dom': 1.5.1
+      '@floating-ui/dom': 1.5.4(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@floating-ui/utils@0.1.1:
-    resolution: {integrity: sha512-m0G6wlnhm/AX0H12IOWtK8gASEMffnX08RtKkCgTdHb9JpHKGloI7icFfLg9ZmQeavcvR0PKmzxClyuFPSjKWw==}
+  /@floating-ui/utils@0.2.0(react@18.2.0):
+    resolution: {integrity: sha512-T4jNeM6dMzXONGkSjk7+O+eFQTVbw7KHi5OYuvFaBer3Wcrmpwi6fHKcT/FdSf7boWC7H9eXTyYTFZOQdJ1AMA==}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /@fortawesome/fontawesome-common-types@6.5.1:
@@ -5672,7 +5680,7 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.23.7
-      '@floating-ui/react-dom': 2.0.4(react-dom@18.2.0)(react@18.2.0)
+      '@floating-ui/react-dom': 2.0.5(react-dom@18.2.0)(react@18.2.0)
       '@mui/types': 7.2.8(@types/react@18.2.46)
       '@mui/utils': 5.14.16(@types/react@18.2.46)(react@18.2.0)
       '@popperjs/core': 2.11.8
@@ -7497,8 +7505,8 @@ packages:
   /@sinonjs/text-encoding@0.7.2:
     resolution: {integrity: sha512-sXXKG+uL9IrKqViTtao2Ws6dy0znu9sOaP1di/jKGW1M6VssO8vlpXCQcpZ+jisQ1tTFAC5Jo/EOzFbggBagFQ==}
 
-  /@slack/bolt@3.14.0:
-    resolution: {integrity: sha512-Q7QifLEruuXLQQh0H/JODuBSH0UoiQdMxR+g4aVNdJQemv91XyHgbxRZgGuH8Vi1rVrOyDSLS9czS5jwMh2ewQ==}
+  /@slack/bolt@3.17.0:
+    resolution: {integrity: sha512-gxZygJj/wnrrSPCAlXO4D5FIYre2McPC+Vwrkq6CS74S4MI+0/gRvdUUXMHoF+oSGfsGs3ul6Fk+Bc/EE7Waig==}
     engines: {node: '>=12.13.0', npm: '>=6.12.0'}
     dependencies:
       '@slack/logger': 4.0.0
@@ -7509,7 +7517,7 @@ packages:
       '@types/express': 4.17.17
       '@types/promise.allsettled': 1.0.3
       '@types/tsscmp': 1.0.0
-      axios: 0.27.2
+      axios: 1.6.2(debug@4.3.4)
       express: 4.18.2
       path-to-regexp: 6.2.1
       please-upgrade-node: 3.2.0
@@ -8038,11 +8046,11 @@ packages:
   /@types/eslint-scope@3.7.4:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
-      '@types/eslint': 8.56.0
+      '@types/eslint': 8.56.1
       '@types/estree': 1.0.0
 
-  /@types/eslint@8.56.0:
-    resolution: {integrity: sha512-FlsN0p4FhuYRjIxpbdXovvHQhtlG05O1GG/RNWvdAxTboR438IOTwmrY/vLA+Xfgg06BTkP045M3vpFwTMv1dg==}
+  /@types/eslint@8.56.1:
+    resolution: {integrity: sha512-18PLWRzhy9glDQp3+wOgfLYRWlhgX0azxgJ63rdpoUHyrC9z0f5CkFburjQx4uD7ZCruw85ZtMt6K+L+R8fLJQ==}
     dependencies:
       '@types/estree': 1.0.0
       '@types/json-schema': 7.0.12
@@ -8590,7 +8598,7 @@ packages:
     dependencies:
       '@vitest/spy': 0.34.6
       '@vitest/utils': 0.34.6
-      chai: 4.3.10
+      chai: 4.4.0
     dev: true
 
   /@vitest/runner@0.34.6:
@@ -9407,7 +9415,7 @@ packages:
     hasBin: true
     dev: false
 
-  /autoprefixer@10.4.16(postcss@8.4.32):
+  /autoprefixer@10.4.16(postcss@8.4.33):
     resolution: {integrity: sha512-7vd3UC6xKp0HLfua5IjZlcXvGAGy7cBAXTg2lyQ/8WpNhd6SiZ8Be+xm3FyBSYJx5GKcpRCzBh7RH4/0dnY+uQ==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
@@ -9419,7 +9427,7 @@ packages:
       fraction.js: 4.3.6
       normalize-range: 0.1.2
       picocolors: 1.0.0
-      postcss: 8.4.32
+      postcss: 8.4.33
       postcss-value-parser: 4.2.0
     dev: false
 
@@ -9433,8 +9441,8 @@ packages:
     resolution: {integrity: sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==}
     engines: {node: '>= 0.4'}
 
-  /aws-sdk@2.1529.0:
-    resolution: {integrity: sha512-Y+DkK5iD0KAiJAprCCUgIEKTBd+i+hp2uDbTOsyBeOKgojPtIY218X37gYDx395L8Vab2QwIscEOOChYUdpIJQ==}
+  /aws-sdk@2.1531.0:
+    resolution: {integrity: sha512-BnZcutxV8aplvyCQDUxOlHkrqqqmWl1hgY1sq8umP6bcSEknjH+mrBB6e0XyLQY4ParC0Oyw/8IbDWwc+LsDqw==}
     engines: {node: '>= 10.0.0'}
     dependencies:
       buffer: 4.9.2
@@ -9452,15 +9460,6 @@ packages:
     resolution: {integrity: sha512-zIURGIS1E1Q4pcrMjp+nnEh+16G56eG/MUllJH8yEvw7asDo7Ac9uhC9KIH5jzpITueEZolfYglnCGIuSBz39g==}
     engines: {node: '>=4'}
     dev: true
-
-  /axios@0.27.2:
-    resolution: {integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==}
-    dependencies:
-      follow-redirects: 1.15.2(debug@4.3.4)
-      form-data: 4.0.0
-    transitivePeerDependencies:
-      - debug
-    dev: false
 
   /axios@1.6.2(debug@4.3.4):
     resolution: {integrity: sha512-7i24Ri4pmDRfJTR7LDBhsOTtcm+9kjX5WiY1X3wIisx6G9So3pfMkEiU7emUBe46oceVImccTEM3k6C5dbVW8A==}
@@ -10167,17 +10166,17 @@ packages:
   /caniuse-lite@1.0.30001570:
     resolution: {integrity: sha512-+3e0ASu4sw1SWaoCtvPeyXp+5PsjigkSt8OXZbF9StH5pQWbxEjLAZE3n8Aup5udop1uRiKA7a4utUk/uoSpUw==}
 
-  /chai-dom@1.12.0(chai@4.3.10):
+  /chai-dom@1.12.0(chai@4.4.0):
     resolution: {integrity: sha512-pLP8h6IBR8z1AdeQ+EMcJ7dXPdsax/1Q7gdGZjsnAmSBl3/gItQUYSCo32br1qOy4SlcBjvqId7ilAf3uJ2K1w==}
     engines: {node: '>= 0.12.0'}
     peerDependencies:
       chai: '>= 3'
     dependencies:
-      chai: 4.3.10
+      chai: 4.4.0
     dev: false
 
-  /chai@4.3.10:
-    resolution: {integrity: sha512-0UXG04VuVbruMUYbJ6JctvH0YnC/4q3/AkT18q4NaITo91CUm0liMS9VqzT9vZhVQ/1eqPanMWjBM+Juhfb/9g==}
+  /chai@4.4.0:
+    resolution: {integrity: sha512-x9cHNq1uvkCdU+5xTkNh5WtgD4e4yDFCsp9jVc7N7qVeKeftv3gO/ZrviX5d+3ZfxdYnZXZYujjRInu1RogU6A==}
     engines: {node: '>=4'}
     dependencies:
       assertion-error: 1.1.0
@@ -10383,7 +10382,7 @@ packages:
     hasBin: true
     dependencies:
       archiver: 3.1.1
-      aws-sdk: 2.1529.0
+      aws-sdk: 2.1531.0
       fs-extra: 6.0.1
       glob: 7.2.3
       gunzip-maybe: 1.4.2
@@ -18663,28 +18662,28 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
-  /postcss-import@15.1.0(postcss@8.4.32):
+  /postcss-import@15.1.0(postcss@8.4.33):
     resolution: {integrity: sha512-hpr+J05B2FVYUAXHeK1YyI267J/dDDhMU6B6civm8hSY1jYJnBXxzKDKDswzJmtLHryrjhnDjqqp/49t8FALew==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       postcss: ^8.0.0
     dependencies:
-      postcss: 8.4.32
+      postcss: 8.4.33
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.4
 
-  /postcss-js@4.0.1(postcss@8.4.32):
+  /postcss-js@4.0.1(postcss@8.4.33):
     resolution: {integrity: sha512-dDLF8pEO191hJMtlHFPRa8xsizHaM82MLfNkUHdUtVEV3tgTp5oj+8qbEqYM57SLfc74KSbw//4SeJma2LRVIw==}
     engines: {node: ^12 || ^14 || >= 16}
     peerDependencies:
       postcss: ^8.4.21
     dependencies:
       camelcase-css: 2.0.1
-      postcss: 8.4.32
+      postcss: 8.4.33
     dev: true
 
-  /postcss-load-config@4.0.1(postcss@8.4.32):
+  /postcss-load-config@4.0.1(postcss@8.4.33):
     resolution: {integrity: sha512-vEJIc8RdiBRu3oRAI0ymerOn+7rPuMvRXslTvZUKZonDHFIczxztIyJ1urxM1x9JXEikvpWWTUUqal5j/8QgvA==}
     engines: {node: '>= 14'}
     peerDependencies:
@@ -18697,17 +18696,17 @@ packages:
         optional: true
     dependencies:
       lilconfig: 2.1.0
-      postcss: 8.4.32
+      postcss: 8.4.33
       yaml: 2.3.4
     dev: true
 
-  /postcss-nested@6.0.1(postcss@8.4.32):
+  /postcss-nested@6.0.1(postcss@8.4.33):
     resolution: {integrity: sha512-mEp4xPMi5bSWiMbsgoPfcP74lsWLHkQbZc3sY+jWYd65CUwXrUaTp0fmNpa01ZcETKlIgUdFN/MpS2xZtqL9dQ==}
     engines: {node: '>=12.0'}
     peerDependencies:
       postcss: ^8.2.14
     dependencies:
-      postcss: 8.4.32
+      postcss: 8.4.33
       postcss-selector-parser: 6.0.13
     dev: true
 
@@ -18715,13 +18714,13 @@ packages:
     resolution: {integrity: sha512-HvExULSwLqHLgUy1rl3ANIqCsvMS0WHss2UOsXhXnQaZ9VCc2oBvIpXrl00IUFT5ZDITME0o6oiXeiHr2SAIfw==}
     dev: true
 
-  /postcss-safe-parser@6.0.0(postcss@8.4.32):
+  /postcss-safe-parser@6.0.0(postcss@8.4.33):
     resolution: {integrity: sha512-FARHN8pwH+WiS2OPCxJI8FuRJpTVnn6ZNFiqAM2aeW2LwTHWWmWgIyKC6cUo0L8aeKiF/14MNvnpls6R2PBeMQ==}
     engines: {node: '>=12.0'}
     peerDependencies:
       postcss: ^8.3.3
     dependencies:
-      postcss: 8.4.32
+      postcss: 8.4.33
     dev: true
 
   /postcss-selector-parser@6.0.13:
@@ -18732,13 +18731,13 @@ packages:
       util-deprecate: 1.0.2
     dev: true
 
-  /postcss-styled-syntax@0.6.3(postcss@8.4.32):
+  /postcss-styled-syntax@0.6.3(postcss@8.4.33):
     resolution: {integrity: sha512-woEkwRaHWnVOVjToQKeQkRYasTwa3WY+0A7hcY0HmiBw458nxmWFbt7+XMvuGWwB4VYjNqeWYNr04Hx9/GVTpA==}
     engines: {node: '>=14.17'}
     peerDependencies:
       postcss: ^8.4.21
     dependencies:
-      postcss: 8.4.32
+      postcss: 8.4.33
       typescript: 5.3.3
     dev: true
 
@@ -18769,8 +18768,8 @@ packages:
       picocolors: 1.0.0
       source-map-js: 1.0.2
 
-  /postcss@8.4.32:
-    resolution: {integrity: sha512-D/kj5JNu6oo2EIy+XL/26JEDTlIbB8hw85G8StOE6L74RQAVVP5rej6wxCNqyMbR4RkPfqvezVbPw81Ngd6Kcw==}
+  /postcss@8.4.33:
+    resolution: {integrity: sha512-Kkpbhhdjw2qQs2O2DGX+8m5OVqEcbB9HRBvuYM9pgrjEFUg30A9LmXNlTAUj4S9kgtGyrMbTzVjH7E+s5Re2yg==}
     engines: {node: ^10 || ^12 || >=14}
     dependencies:
       nanoid: 3.3.7
@@ -21292,9 +21291,9 @@ packages:
       micromatch: 4.0.5
       normalize-path: 3.0.0
       picocolors: 1.0.0
-      postcss: 8.4.32
+      postcss: 8.4.33
       postcss-resolve-nested-selector: 0.1.1
-      postcss-safe-parser: 6.0.0(postcss@8.4.32)
+      postcss-safe-parser: 6.0.0(postcss@8.4.33)
       postcss-selector-parser: 6.0.13
       postcss-value-parser: 4.2.0
       resolve-from: 5.0.0
@@ -21436,8 +21435,8 @@ packages:
       strip-ansi: 6.0.1
     dev: true
 
-  /tailwindcss@3.4.0:
-    resolution: {integrity: sha512-VigzymniH77knD1dryXbyxR+ePHihHociZbXnLZHUyzf2MMs2ZVqlUrZ3FvpXP8pno9JzmILt1sZPD19M3IxtA==}
+  /tailwindcss@3.4.1:
+    resolution: {integrity: sha512-qAYmXRfk3ENzuPBakNK0SRrUDipP8NQnEY6772uDhflcQz5EhRdD7JNZxyrFHVQNCwULPBn6FNPp9brpO7ctcA==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
@@ -21455,11 +21454,11 @@ packages:
       normalize-path: 3.0.0
       object-hash: 3.0.0
       picocolors: 1.0.0
-      postcss: 8.4.32
-      postcss-import: 15.1.0(postcss@8.4.32)
-      postcss-js: 4.0.1(postcss@8.4.32)
-      postcss-load-config: 4.0.1(postcss@8.4.32)
-      postcss-nested: 6.0.1(postcss@8.4.32)
+      postcss: 8.4.33
+      postcss-import: 15.1.0(postcss@8.4.33)
+      postcss-js: 4.0.1(postcss@8.4.33)
+      postcss-load-config: 4.0.1(postcss@8.4.33)
+      postcss-nested: 6.0.1(postcss@8.4.33)
       postcss-selector-parser: 6.0.13
       resolve: 1.22.4
       sucrase: 3.34.0
@@ -22399,7 +22398,7 @@ packages:
     dependencies:
       '@types/node': 18.19.4
       esbuild: 0.18.20
-      postcss: 8.4.32
+      postcss: 8.4.33
       rollup: 3.29.4
     optionalDependencies:
       fsevents: 2.3.3
@@ -22447,7 +22446,7 @@ packages:
       acorn: 8.10.0
       acorn-walk: 8.2.0
       cac: 6.7.14
-      chai: 4.3.10
+      chai: 4.4.0
       debug: 4.3.4(supports-color@8.1.1)
       jsdom: 22.1.0
       local-pkg: 0.4.3
