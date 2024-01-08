@@ -216,7 +216,7 @@ export default function TemplateCollection() {
                     <Link
                       href={template.author.link}
                       target="_blank"
-                      rel="noopener noreferrer"
+                      rel="noopener nofollow"
                     >
                       <b>{template.author.name}</b>
                     </Link>
@@ -241,7 +241,7 @@ export default function TemplateCollection() {
                       <Link
                         href={template.design.link}
                         target="_blank"
-                        rel="noopener noreferrer nofollow"
+                        rel="noopener nofollow"
                       >
                         <b>{template.design.name}</b>
                       </Link>
