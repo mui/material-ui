@@ -46,6 +46,7 @@ export default function FormDialog() {
           </DialogContentText>
           <TextField
             autoFocus
+            required
             margin="dense"
             id="name"
             name="email"
