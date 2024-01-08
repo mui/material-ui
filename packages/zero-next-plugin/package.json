@@ -48,8 +48,8 @@
   },
   "devDependencies": {
     "@types/babel__core": "^7.20.5",
-    "@types/chai": "^4.3.6",
-    "chai": "^4.3.8",
+    "@types/chai": "^4.3.11",
+    "chai": "^4.4.0",
     "next": "^13.4.19"
   },
   "peerDependencies": {

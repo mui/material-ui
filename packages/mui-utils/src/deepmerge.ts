@@ -1,5 +1,17 @@
+// https://github.com/sindresorhus/is-plain-obj/blob/main/index.js
 export function isPlainObject(item: unknown): item is Record<keyof any, unknown> {
-  return item !== null && typeof item === 'object' && item.constructor === Object;
+  if (typeof item !== 'object' || item === null) {
+    return false;
+  }
+
+  const prototype = Object.getPrototypeOf(item);
+  return (
+    (prototype === null ||
+      prototype === Object.prototype ||
+      Object.getPrototypeOf(prototype) === null) &&
+    !(Symbol.toStringTag in item) &&
+    !(Symbol.iterator in item)
+  );
 }
 
 export interface DeepmergeOptions {
