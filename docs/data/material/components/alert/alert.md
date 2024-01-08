@@ -69,7 +69,7 @@ Check out the [Snackbar—customization](/material-ui/react-snackbar/#customizat
 
 ### Color
 
-Use the `color` prop to override the default color for the specified [`severity`](#basics)—for instance, to apply `warning` colors to a `success` Alert:
+Use the `color` prop to override the default color for the specified [`severity`](#severity)—for instance, to apply `warning` colors to a `success` Alert:
 
 {{"demo": "ColorAlerts.js"}}
 
@@ -88,7 +88,7 @@ Use the `icon` prop to override an Alert's icon.
 As with the [`action`](#actions) prop, your `icon` can be an HTML element, an SVG icon, or a React component.
 Set this prop to `false` to remove the icon altogether.
 
-If you need to override all instances of an icon for a given [`severity`](#basics), you can use the `iconMapping` prop instead.
+If you need to override all instances of an icon for a given [`severity`](#severity), you can use the `iconMapping` prop instead.
 You can define this prop globally by customizing your app's theme. See [Theme components—Default props](/material-ui/customization/theme-components/#theme-default-props) for details.
 
 {{"demo": "IconAlerts.js"}}
