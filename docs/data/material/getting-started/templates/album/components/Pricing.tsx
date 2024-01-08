@@ -120,7 +120,7 @@ export default function Pricing() {
               >
                 <CardContent>
                   <Box
-                    sx={{ display: 'flex', justifyContent: 'space-between', gap: 2 }}
+                    sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}
                   >
                     <Typography variant="h6" gutterBottom>
                       {tier.title}
@@ -167,11 +167,16 @@ export default function Pricing() {
                       &nbsp; per month
                     </Typography>
                   </Box>
-                  <Divider sx={{ my: 2 }} />
+                  <Divider sx={{ my: 3 }} />
                   {tier.description.map((line) => (
                     <Box
                       key={line}
-                      sx={{ display: 'flex', gap: 1, p: 1, alignItems: 'center' }}
+                      sx={{
+                        display: 'flex',
+                        gap: 1.5,
+                        p: 1,
+                        alignItems: 'center',
+                      }}
                     >
                       <CheckCircleRoundedIcon
                         sx={{

@@ -34,7 +34,7 @@ export default function ProductHero() {
         }}
       >
         <Grid container justifyContent="center">
-          <Grid item xs={12} md={6} lg={4}>
+          <Grid item xs={12} md={6} xl={4}>
             <Stack
               direction="column"
               spacing={2}
