@@ -288,8 +288,8 @@ importers:
         specifier: ^4.2.1
         version: 4.2.1
       postcss-styled-syntax:
-        specifier: ^0.6.3
-        version: 0.6.3(postcss@8.4.33)
+        specifier: ^0.6.4
+        version: 0.6.4(postcss@8.4.33)
       prettier:
         specifier: ^2.8.8
         version: 2.8.8
@@ -17650,8 +17650,8 @@ packages:
       util-deprecate: 1.0.2
     dev: true
 
-  /postcss-styled-syntax@0.6.3(postcss@8.4.33):
-    resolution: {integrity: sha512-woEkwRaHWnVOVjToQKeQkRYasTwa3WY+0A7hcY0HmiBw458nxmWFbt7+XMvuGWwB4VYjNqeWYNr04Hx9/GVTpA==}
+  /postcss-styled-syntax@0.6.4(postcss@8.4.33):
+    resolution: {integrity: sha512-uWiLn+9rKgIghUYmTHvXMR6MnyPULMe9Gv3bV537Fg4FH6CA6cn21WMjKss2Qb98LUhT847tKfnRGG3FhSOgUQ==}
     engines: {node: '>=14.17'}
     peerDependencies:
       postcss: ^8.4.21
