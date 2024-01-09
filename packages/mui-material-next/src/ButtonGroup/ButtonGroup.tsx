@@ -96,18 +96,18 @@ const ButtonGroupRoot = styled('div', {
         borderBottomRightRadius: 0,
         borderBottomLeftRadius: 0,
       }),
-      ...(variant === 'text' &&
+      ...(variant === 'filled' &&
         orientation === 'horizontal' && {
           borderRight: `1px solid ${tokens.sys.color.outline}`,
           [`&.${buttonGroupClasses.disabled}`]: {
-            borderRightColor: `rgba(${tokens.sys.color.onSurface}, 0.12)`,
+            borderRightColor: `rgba(${tokens.sys.color.outline}, 0.12)`,
           },
         }),
-      ...(variant === 'text' &&
+      ...(variant === 'filled' &&
         orientation === 'vertical' && {
           borderBottom: `1px solid ${tokens.sys.color.outline}`,
           [`&.${buttonGroupClasses.disabled}`]: {
-            borderBottomColor: `rgba(${tokens.sys.color.onSurface}, 0.12)`,
+            borderBottomColor: `rgba(${tokens.sys.color.outline}, 0.12)`,
           },
         }),
       ...(variant === 'outlined' &&
@@ -117,6 +117,20 @@ const ButtonGroupRoot = styled('div', {
       ...(variant === 'outlined' &&
         orientation === 'vertical' && {
           borderBottomColor: 'transparent',
+        }),
+      ...((variant === 'text' || variant === 'filledTonal' || variant === 'elevated') &&
+        orientation === 'horizontal' && {
+          borderRight: `1px solid ${tokens.sys.color.outlineVariant}`,
+          [`&.${buttonGroupClasses.disabled}`]: {
+            borderRightColor: `rgba(${tokens.sys.color.outlineVariant}, 0.12)`,
+          },
+        }),
+      ...((variant === 'text' || variant === 'filledTonal' || variant === 'elevated') &&
+        orientation === 'vertical' && {
+          borderBottom: `1px solid ${tokens.sys.color.outlineVariant}`,
+          [`&.${buttonGroupClasses.disabled}`]: {
+            borderBottomColor: `rgba(${tokens.sys.color.outlineVariant}, 0.12)`,
+          },
         }),
       '&:hover': {
         ...(variant === 'outlined' &&
