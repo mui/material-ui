@@ -12,7 +12,7 @@ Page.getInitialProps = () => {
   const req = require.context(
     'docs/translations/api-docs-joy/modal-close',
     false,
-    /modal-close.*.json$/,
+    /\.\/modal-close.*.json$/,
   );
   const descriptions = mapApiPageTranslations(req);
 
