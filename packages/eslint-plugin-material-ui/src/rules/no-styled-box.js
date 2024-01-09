@@ -15,7 +15,7 @@ function skipChainExpression(node) {
 const rule = {
   meta: {
     docs: {
-      description: "Disallow use of styled(Box), we prefer the sx prop over system props.",
+      description: 'Disallow use of styled(Box), we prefer the sx prop over system props.',
     },
     messages: {
       noBox: "The use of styled(Box) is not allowed, use styled('div') instead.",
