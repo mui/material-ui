@@ -36,7 +36,7 @@ export default function ResponsiveDrawer(props: Props) {
     setMobileOpen(false);
   };
 
-  const onDrawerTransitionEnd = () => {
+  const handleDrawerTransitionEnd = () => {
     setIsClosing(false);
   };
 
@@ -116,7 +116,7 @@ export default function ResponsiveDrawer(props: Props) {
           container={container}
           variant="temporary"
           open={mobileOpen}
-          onTransitionEnd={onDrawerTransitionEnd}
+          onTransitionEnd={handleDrawerTransitionEnd}
           onClose={handleDrawerClose}
           ModalProps={{
             keepMounted: true, // Better open performance on mobile.
