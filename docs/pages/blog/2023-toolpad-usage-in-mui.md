@@ -1,6 +1,6 @@
 ---
 title: How MUI uses Toolpad?
-description: Explore how we use Toolpad for production usecases at MUI.
+description: Explore how we use Toolpad for production use cases at MUI.
 date: 2024-01-15T00:00:00.000Z
 authors: ['prakhargupta']
 card: true
