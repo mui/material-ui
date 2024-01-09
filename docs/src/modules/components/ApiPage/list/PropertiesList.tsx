@@ -10,7 +10,7 @@ import {
 import ExpandableApiItem, {
   ApiItemContaier,
 } from 'docs/src/modules/components/ApiPage/list/ExpandableApiItem';
-import ApiAlert from 'docs/src/modules/components/ApiPage/ApiAlert';
+import ApiWarning from 'docs/src/modules/components/ApiPage/ApiWarning';
 
 const StyledApiItem = styled(ExpandableApiItem)(
   ({ theme }) => ({
@@ -197,13 +197,13 @@ export default function PropertiesList(props: PropertiesListProps) {
             {description && <PropDescription description={description} />}
             {seeMoreDescription && <p dangerouslySetInnerHTML={{ __html: seeMoreDescription }} />}
             {requiresRef && (
-              <ApiAlert className="MuiApi-collapsible prop-list-alert">
+              <ApiWarning className="MuiApi-collapsible prop-list-alert">
                 <span
                   dangerouslySetInnerHTML={{
                     __html: t('api-docs.requires-ref'),
                   }}
                 />
-              </ApiAlert>
+              </ApiWarning>
             )}
             {additionalInfo.map((key) => (
               <p
@@ -215,7 +215,7 @@ export default function PropertiesList(props: PropertiesListProps) {
               />
             ))}
             {isDeprecated && (
-              <ApiAlert className="MuiApi-collapsible prop-list-alert">
+              <ApiWarning className="MuiApi-collapsible prop-list-alert">
                 {t('api-docs.deprecated')}
                 {deprecationInfo && (
                   <React.Fragment>
@@ -227,7 +227,7 @@ export default function PropertiesList(props: PropertiesListProps) {
                     />
                   </React.Fragment>
                 )}
-              </ApiAlert>
+              </ApiWarning>
             )}
             <div className="prop-list-additional-info">
               {typeName && (

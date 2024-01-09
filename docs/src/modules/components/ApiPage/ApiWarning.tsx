@@ -66,7 +66,7 @@ interface DeprecationAlertProps {
   className?: string;
 }
 
-export default function ApiAlert({ children, className }: DeprecationAlertProps) {
+export default function ApiWarning({ children, className }: DeprecationAlertProps) {
   return (
     <StyledAlert
       className={className}

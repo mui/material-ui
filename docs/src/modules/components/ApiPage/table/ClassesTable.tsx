@@ -9,7 +9,7 @@ import {
 import { getHash } from 'docs/src/modules/components/ApiPage/list/ClassesList';
 import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import ApiAlert from 'docs/src/modules/components/ApiPage/ApiAlert';
+import ApiWarning from 'docs/src/modules/components/ApiPage/ApiWarning';
 
 const StyledTable = styled('table')(
   ({ theme }) => ({
@@ -94,7 +94,7 @@ export default function ClassesTable(props: ClassesTableProps) {
                     }}
                   />
                   {isDeprecated && (
-                    <ApiAlert className="classes-table-alert">
+                    <ApiWarning className="classes-table-alert">
                       {t('api-docs.deprecated')}
                       {deprecationInfo && (
                         <React.Fragment>
@@ -106,7 +106,7 @@ export default function ClassesTable(props: ClassesTableProps) {
                           />
                         </React.Fragment>
                       )}
-                    </ApiAlert>
+                    </ApiWarning>
                   )}
                 </td>
               </tr>

@@ -11,7 +11,7 @@ import {
   getHash,
 } from 'docs/src/modules/components/ApiPage/list/PropertiesList';
 import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
-import ApiAlert from 'docs/src/modules/components/ApiPage/ApiAlert';
+import ApiWarning from 'docs/src/modules/components/ApiPage/ApiWarning';
 
 const StyledTable = styled('table')(
   ({ theme }) => ({
@@ -191,13 +191,13 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                     />
                   )}
                   {requiresRef && (
-                    <ApiAlert className="prop-table-alert">
+                    <ApiWarning className="prop-table-alert">
                       <span
                         dangerouslySetInnerHTML={{
                           __html: t('api-docs.requires-ref'),
                         }}
                       />
-                    </ApiAlert>
+                    </ApiWarning>
                   )}
                   {additionalInfo.map((key) => (
                     <p
@@ -209,7 +209,7 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                     />
                   ))}
                   {isDeprecated && (
-                    <ApiAlert className="prop-table-alert">
+                    <ApiWarning className="prop-table-alert">
                       {t('api-docs.deprecated')}
                       {deprecationInfo && (
                         <React.Fragment>
@@ -221,7 +221,7 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                           />
                         </React.Fragment>
                       )}
-                    </ApiAlert>
+                    </ApiWarning>
                   )}
                   {signature && (
                     <div className="prop-table-signature">
