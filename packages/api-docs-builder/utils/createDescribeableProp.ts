@@ -8,6 +8,13 @@ export interface DescribeablePropDescriptor {
   type: PropTypeDescriptor;
 }
 
+export type CreateDescribeablePropSettings = {
+  /**
+   * Names of props that do not check if the annotations equal runtime default.
+   */
+  propsWithoutDefaultVerification?: string[];
+};
+
 /**
  * Returns `null` if the prop should be ignored.
  * Throws if it is invalid.
@@ -17,8 +24,11 @@ export interface DescribeablePropDescriptor {
 export default function createDescribeableProp(
   prop: PropDescriptor,
   propName: string,
+  settings: CreateDescribeablePropSettings = {},
 ): DescribeablePropDescriptor | null {
   const { defaultValue, jsdocDefaultValue, description, required, type } = prop;
+
+  const { propsWithoutDefaultVerification = [] } = settings;
 
   const renderedDefaultValue = defaultValue?.value.replace(/\r?\n/g, '');
   const renderDefaultValue = Boolean(
@@ -60,7 +70,10 @@ export default function createDescribeableProp(
         `JSDoc @default annotation not found. Add \`@default ${defaultValue.value}\` to the JSDoc of this prop.`,
       );
     }
-  } else if (jsdocDefaultValue !== undefined) {
+  } else if (
+    jsdocDefaultValue !== undefined &&
+    !propsWithoutDefaultVerification.includes(propName)
+  ) {
     // `defaultValue` can't be undefined or we would've thrown earlier.
     if (jsdocDefaultValue.value !== defaultValue!.value) {
       throw new Error(

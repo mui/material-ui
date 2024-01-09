@@ -77,6 +77,14 @@ export default function PropertiesSection(props) {
         'joy-variant',
       ].filter((key) => propData.additionalInfo?.[key]);
 
+      const seeMoreDescription =
+        propDescription?.seeMoreText &&
+        propData.seeMoreLink &&
+        propDescription.seeMoreText.replace(
+          '{{link}}',
+          `<a href="${propData.seeMoreLink.url}">${propData.seeMoreLink.text}</a>`,
+        );
+
       const signature = propData.signature?.type;
       const signatureArgs = propData.signature?.describedArgs?.map((argName) => ({
         argName,
@@ -89,6 +97,7 @@ export default function PropertiesSection(props) {
       return {
         componentName,
         propName,
+        seeMoreDescription,
         description: propDescription?.description,
         requiresRef: propDescription?.requiresRef,
         isOptional,
