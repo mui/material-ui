@@ -35,7 +35,7 @@ export function useHostElementName(
         console.error(
           `useHostElementName: the \`hostElementName\` prop of ${
             componentName ? `the ${componentName} component` : 'a component'
-          } expected the '${hostElementNameProp}' element, but a '${hostElementName}' element was rendered instead`,
+          } expected the '${hostElementNameProp}' element, but a '${hostElementName.toLowerCase()}' was rendered instead`,
           'This may cause hydration issues in an SSR context, e.g. in a Next.js app',
         );
       }

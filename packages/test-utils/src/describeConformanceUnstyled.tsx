@@ -21,6 +21,7 @@ export interface UnstyledConformanceOptions
   ) => Promise<MuiRenderResult> | MuiRenderResult;
   skip?: (keyof typeof fullSuite)[];
   testComponentPropWith?: string;
+  hostElementNameMustMatchComponentProp?: boolean;
 }
 
 function throwMissingPropError(field: string): never {
@@ -60,7 +61,11 @@ function testPropForwarding(
   element: React.ReactElement,
   getOptions: () => UnstyledConformanceOptions,
 ) {
-  const { render, testComponentPropWith: Element = 'div' } = getOptions();
+  const {
+    render,
+    testComponentPropWith: Element = 'div',
+    hostElementNameMustMatchComponentProp = false,
+  } = getOptions();
 
   if (!render) {
     throwMissingPropError('render');
@@ -77,6 +82,7 @@ function testPropForwarding(
     const otherProps = {
       lang: 'fr',
       fooBar: randomStringValue(),
+      hostElementName: hostElementNameMustMatchComponentProp ? Element : undefined,
     };
 
     await render(React.cloneElement(element, { slots: { root: CustomRoot }, ...otherProps }));
@@ -91,6 +97,7 @@ function testPropForwarding(
       lang: 'fr',
       'data-foobar': randomStringValue(),
       'data-testid': 'custom-root',
+      hostElementName: hostElementNameMustMatchComponentProp ? Element : undefined,
     };
 
     render(React.cloneElement(element, { slots: { root: Element }, ...otherProps }));
@@ -102,7 +109,13 @@ function testPropForwarding(
 }
 
 function testSlotsProp(element: React.ReactElement, getOptions: () => UnstyledConformanceOptions) {
-  const { render, slots, skip, testComponentPropWith: Element = 'div' } = getOptions();
+  const {
+    render,
+    slots,
+    skip,
+    testComponentPropWith: Element = 'div',
+    hostElementNameMustMatchComponentProp = false,
+  } = getOptions();
 
   if (!render) {
     throwMissingPropError('render');
@@ -120,11 +133,15 @@ function testSlotsProp(element: React.ReactElement, getOptions: () => UnstyledCo
     it(`allows overriding the ${slotName} slot with a component`, async () => {
       const slotComponent = slotOptions.testWithComponent ?? CustomComponent;
 
+      const hostElementName = hostElementNameMustMatchComponentProp ? 'i' : undefined;
+
       const components = {
         [slotName]: slotComponent,
       };
 
-      const { getByTestId } = await render(React.cloneElement(element, { slots: components }));
+      const { getByTestId } = await render(
+        React.cloneElement(element, { slots: components, hostElementName }),
+      );
       const renderedElement = getByTestId('custom');
       expect(renderedElement).to.have.class(slotOptions.expectedClassName);
     });
@@ -143,8 +160,21 @@ function testSlotsProp(element: React.ReactElement, getOptions: () => UnstyledCo
           },
         };
 
+        let otherProps = {};
+
+        if (hostElementNameMustMatchComponentProp) {
+          otherProps = {
+            ...otherProps,
+            hostElementName: slotElement,
+          };
+        }
+
         const { getByTestId } = await render(
-          React.cloneElement(element, { slots: components, slotProps }),
+          React.cloneElement(element, {
+            slots: components,
+            slotProps,
+            ...otherProps,
+          }),
         );
         const renderedElement = getByTestId('customized');
         expect(renderedElement.nodeName.toLowerCase()).to.equal(slotElement);
@@ -286,7 +316,12 @@ function testOwnerStatePropagation(
   element: React.ReactElement,
   getOptions: () => UnstyledConformanceOptions,
 ) {
-  const { render, slots, testComponentPropWith: Element = 'div' } = getOptions();
+  const {
+    render,
+    slots,
+    testComponentPropWith: Element = 'div',
+    hostElementNameMustMatchComponentProp = false,
+  } = getOptions();
 
   if (!render) {
     throwMissingPropError('render');
@@ -316,7 +351,13 @@ function testOwnerStatePropagation(
         id: 'foo',
       };
 
-      render(React.cloneElement(element, { slots: slotOverrides, id: 'foo' }));
+      render(
+        React.cloneElement(element, {
+          slots: slotOverrides,
+          id: 'foo',
+          hostElementName: hostElementNameMustMatchComponentProp ? Element : undefined,
+        }),
+      );
       expect(componentOwnerState).not.to.equal(undefined);
       expect(componentOwnerState).to.deep.include(expectedOwnerState);
     });

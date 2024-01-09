@@ -56,7 +56,7 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
   }, [focusVisible, isFocusVisibleRef]);
 
   const [hostElementName, updateHostElementName] = useHostElementName({
-    hostElementName: hostElementNameProp,
+    hostElementName: hostElementNameProp ?? (href || to ? 'a' : undefined),
     componentName,
   });
 

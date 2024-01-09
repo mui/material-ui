@@ -12,7 +12,7 @@ import { Button, buttonClasses } from '@mui/base/Button';
 
 describe('<Button />', () => {
   const mount = createMount();
-  const { render } = createRenderer();
+  const { render, renderToString } = createRenderer();
 
   describeConformanceUnstyled(<Button />, () => ({
     inheritComponent: 'button',
@@ -27,6 +27,7 @@ describe('<Button />', () => {
       },
     },
     skip: ['componentProp'],
+    hostElementNameMustMatchComponentProp: true,
   }));
 
   describe('role attribute', () => {
@@ -43,7 +44,7 @@ describe('<Button />', () => {
         ) => <span role={props.role} ref={ref} />,
       );
 
-      const { getByRole } = render(<Button slots={{ root: WrappedSpan }} />);
+      const { getByRole } = render(<Button slots={{ root: WrappedSpan }} hostElementName="span" />);
       expect(getByRole('button')).not.to.equal(null);
     });
 
@@ -159,11 +160,6 @@ describe('<Button />', () => {
       const { getByRole } = render(<Button slots={{ root: 'h1' }} href="#" />);
       expect(getByRole('heading')).not.to.equal(null);
     });
-
-    it('renders as the element provided in the "components.Root" prop, even with a "href" prop', () => {
-      const { getByRole } = render(<Button slots={{ root: 'h1' }} href="#" />);
-      expect(getByRole('heading')).not.to.equal(null);
-    });
   });
 
   describe('prop: to', () => {
@@ -176,10 +172,52 @@ describe('<Button />', () => {
       const { getByRole } = render(<Button slots={{ root: 'h1' }} to="#" />);
       expect(getByRole('heading')).not.to.equal(null);
     });
+  });
 
-    it('renders as the element provided in the "components.Root" prop, even with a "to" prop', () => {
-      const { getByRole } = render(<Button slots={{ root: 'h1' }} to="#" />);
-      expect(getByRole('heading')).not.to.equal(null);
+  describe('prop: hostElementName', () => {
+    it('should warn when the rendered tag does not match the provided hostElementName', () => {
+      expect(() => {
+        render(
+          <Button disabled hostElementName="span">
+            Hello World
+          </Button>,
+        );
+      }).toErrorDev(
+        "useHostElementName: the `hostElementName` prop of the Button component expected the 'span' element, but a 'button' was rendered instead",
+      );
+    });
+
+    describe('server-side rendering', () => {
+      before(function beforeHook() {
+        // Only run the test on node.
+        if (!/jsdom/.test(window.navigator.userAgent)) {
+          this.skip();
+        }
+      });
+
+      it('default tag', () => {
+        const { container } = renderToString(
+          <Button disabled hostElementName="button">
+            Hello World
+          </Button>,
+        );
+
+        expect((container.firstChild as HTMLElement).tagName).to.equal('BUTTON');
+        expect(container.firstChild).to.have.attribute('disabled');
+        expect(container.firstChild).to.not.have.attribute('aria-disabled');
+      });
+
+      it('alternate tag', () => {
+        const { container } = renderToString(
+          <Button disabled slots={{ root: 'span' }}>
+            Hello World
+          </Button>,
+        );
+
+        expect((container.firstChild as HTMLElement).tagName).to.equal('SPAN');
+        expect(container.firstChild).to.not.have.attribute('disabled');
+        expect(container.firstChild).to.have.attribute('aria-disabled');
+      });
     });
   });
 });

@@ -1,5 +1,9 @@
 {
   "parameters": {
+    "componentName": {
+      "type": { "name": "string", "description": "string" },
+      "default": "'useButton'"
+    },
     "disabled": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
     "focusableWhenDisabled": {
       "type": { "name": "boolean", "description": "boolean" },

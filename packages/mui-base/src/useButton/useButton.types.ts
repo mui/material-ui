@@ -23,7 +23,7 @@ export interface UseButtonParameters {
    */
   type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
   /**
-   * The HTML element, e.g. 'button' 'a' etc
+   * The HTML element, e.g.'button', 'a' etc
    * @default ''
    */
   hostElementName?: keyof HTMLElementTagNameMap;
