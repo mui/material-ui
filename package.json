@@ -207,7 +207,7 @@
     "@definitelytyped/utils": "^0.0.191",
     "@types/node": "^18.19.4",
     "@types/react": "^18.2.46",
-    "@types/react-dom": "18.2.7",
+    "@types/react-dom": "18.2.18",
     "cross-fetch": "^4.0.0"
   },
   "nyc": {
