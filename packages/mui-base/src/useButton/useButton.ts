@@ -10,6 +10,7 @@ import {
   UseButtonRootSlotProps,
 } from './useButton.types';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
+import { useHostElementName } from '../utils/useHostElementName';
 import { EventHandlers } from '../utils/types';
 import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 /**
@@ -31,6 +32,7 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
     tabIndex,
     to,
     type,
+    hostElementName: hostElementNameProp,
   } = parameters;
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
 
@@ -52,7 +54,9 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
     isFocusVisibleRef.current = focusVisible;
   }, [focusVisible, isFocusVisibleRef]);
 
-  const [hostElementName, setHostElementName] = React.useState<string>('');
+  const [hostElementName, updateHostElementName] = useHostElementName({
+    hostElementName: hostElementNameProp,
+  });
 
   const createHandleMouseLeave = (otherHandlers: EventHandlers) => (event: React.MouseEvent) => {
     if (focusVisible) {
@@ -171,10 +175,6 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
       }
     };
 
-  const updateHostElementName = React.useCallback((instance: HTMLElement | null) => {
-    setHostElementName(instance?.tagName ?? '');
-  }, []);
-
   const handleRef = useForkRef(updateHostElementName, externalRef, focusVisibleRef, buttonRef);
 
   interface AdditionalButtonProps {
@@ -197,6 +197,14 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
       buttonProps['aria-disabled'] = disabled;
     } else {
       buttonProps.disabled = disabled;
+    }
+  } else if (hostElementName === 'INPUT') {
+    if (type && ['button', 'submit', 'reset'].includes(type)) {
+      if (focusableWhenDisabled) {
+        buttonProps['aria-disabled'] = disabled;
+      } else {
+        buttonProps.disabled = disabled;
+      }
     }
   } else if (hostElementName !== '') {
     if (!href && !to) {

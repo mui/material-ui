@@ -1,12 +1,16 @@
 'use client';
 import * as React from 'react';
+
+type UseHostElementNameParameters = { hostElementName?: keyof HTMLElementTagNameMap };
 /**
  *
  * API:
  *
  * - [useHostElementName API](https://mui.com/base-ui/api/use-host-element-name/)
  */
-export function useHostElementName(parameters: { hostElementName?: keyof HTMLElementTagNameMap }) {
+export function useHostElementName(
+  parameters: UseHostElementNameParameters,
+): [string, (instance: HTMLElement | null) => void] {
   const { hostElementName: hostElementNameProp = '' } = parameters;
 
   const [hostElementName, setHostElementName] = React.useState<string>(
@@ -29,5 +33,5 @@ export function useHostElementName(parameters: { hostElementName?: keyof HTMLEle
     setHostElementName(instance?.tagName ?? '');
   }, []);
 
-  return { hostElementName, updateHostElementName };
+  return [hostElementName, updateHostElementName];
 }
