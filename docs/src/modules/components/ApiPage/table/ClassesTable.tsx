@@ -2,8 +2,6 @@
 import * as React from 'react';
 import { ComponentClassDefinition } from '@mui-internal/docs-utilities';
 import { styled, alpha } from '@mui/material/styles';
-import Alert from '@mui/material/Alert';
-import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
@@ -11,6 +9,7 @@ import {
 import { getHash } from 'docs/src/modules/components/ApiPage/list/ClassesList';
 import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
+import ApiAlert from 'docs/src/modules/components/ApiPage/ApiAlert';
 
 const StyledTable = styled('table')(
   ({ theme }) => ({
@@ -38,31 +37,8 @@ const StyledTable = styled('table')(
       borderColor: alpha(darkTheme.palette.primary[100], 0.8),
       backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
     },
-    '& .classes-table-deprecated': {
-      '& code ': { all: 'unset' },
-    },
     '& .classes-table-alert': {
-      padding: '2px 12px',
       marginTop: 12,
-      color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
-      backgroundColor: alpha(lightTheme.palette.warning[50], 0.5),
-      borderColor: `var(--muidocs-palette-warning-200, ${lightTheme.palette.warning[200]})`,
-      '& .MuiAlert-icon': {
-        padding: 0,
-      },
-      '& strong': {
-        color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
-      },
-      '&>svg': {
-        fill: `var(--muidocs-palette-warning-600, ${lightTheme.palette.warning[600]})`,
-      },
-      '& a': {
-        color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
-        textDecorationColor: alpha(lightTheme.palette.warning.main, 0.4),
-        '&:hover': {
-          textDecorationColor: 'inherit',
-        },
-      },
     },
   }),
   ({ theme }) => ({
@@ -74,20 +50,6 @@ const StyledTable = styled('table')(
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
         borderColor: alpha(darkTheme.palette.primary[400], 0.1),
         backgroundColor: alpha(darkTheme.palette.primary[900], 0.4),
-      },
-      '& .classes-table-alert': {
-        color: `var(--muidocs-palette-warning-50, ${darkTheme.palette.warning[50]})`,
-        backgroundColor: alpha(darkTheme.palette.warning[700], 0.15),
-        borderColor: alpha(darkTheme.palette.warning[600], 0.3),
-        '& strong': {
-          color: `var(--muidocs-palette-warning-200, ${darkTheme.palette.warning[200]})`,
-        },
-        '&>svg': {
-          fill: `var(--muidocs-palette-warning-400, ${darkTheme.palette.warning[400]})`,
-        },
-        '& a': {
-          color: `var(--muidocs-palette-warning-100, ${darkTheme.palette.warning[100]})`,
-        },
       },
     },
   }),
@@ -132,12 +94,7 @@ export default function ClassesTable(props: ClassesTableProps) {
                     }}
                   />
                   {isDeprecated && (
-                    <Alert
-                      severity="warning"
-                      className="classes-table-alert classes-table-deprecated"
-                      icon={<WarningRoundedIcon fontSize="small" />}
-                      sx={{ mb: 1, py: 0, alignItems: 'center' }}
-                    >
+                    <ApiAlert className="classes-table-alert">
                       {t('api-docs.deprecated')}
                       {deprecationInfo && (
                         <React.Fragment>
@@ -149,7 +106,7 @@ export default function ClassesTable(props: ClassesTableProps) {
                           />
                         </React.Fragment>
                       )}
-                    </Alert>
+                    </ApiAlert>
                   )}
                 </td>
               </tr>

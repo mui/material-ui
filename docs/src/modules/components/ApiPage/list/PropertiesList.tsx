@@ -1,8 +1,6 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import Alert from '@mui/material/Alert';
-import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 import kebabCase from 'lodash/kebabCase';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import {
@@ -12,6 +10,7 @@ import {
 import ExpandableApiItem, {
   ApiItemContaier,
 } from 'docs/src/modules/components/ApiPage/list/ExpandableApiItem';
+import ApiAlert from 'docs/src/modules/components/ApiPage/ApiAlert';
 
 const StyledApiItem = styled(ExpandableApiItem)(
   ({ theme }) => ({
@@ -39,11 +38,12 @@ const StyledApiItem = styled(ExpandableApiItem)(
     },
     '&.prop-list-deprecated-item': {
       '& .MuiApi-item-note': {
-        color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
+        color: `var(--muidocs-palette-warning-700, ${lightTheme.palette.warning[700]})`,
       },
-      '& .prop-list-alert': {
-        '& code': { all: 'unset' },
-      },
+    },
+    '& .prop-list-alert': {
+      marginTop: 12,
+      marginBottom: 16,
     },
     '& .prop-list-default-props': {
       ...theme.typography.body2,
@@ -197,22 +197,13 @@ export default function PropertiesList(props: PropertiesListProps) {
             {description && <PropDescription description={description} />}
             {seeMoreDescription && <p dangerouslySetInnerHTML={{ __html: seeMoreDescription }} />}
             {requiresRef && (
-              <Alert
-                severity="warning"
-                icon={<WarningRoundedIcon fontSize="small" />}
-                sx={{
-                  '& .MuiAlert-icon': {
-                    height: 'fit-content',
-                    py: '8px',
-                  },
-                }}
-              >
+              <ApiAlert className="MuiApi-collapsible prop-list-alert">
                 <span
                   dangerouslySetInnerHTML={{
                     __html: t('api-docs.requires-ref'),
                   }}
                 />
-              </Alert>
+              </ApiAlert>
             )}
             {additionalInfo.map((key) => (
               <p
@@ -224,17 +215,7 @@ export default function PropertiesList(props: PropertiesListProps) {
               />
             ))}
             {isDeprecated && (
-              <Alert
-                className="MuiApi-collapsible prop-list-alert"
-                severity="warning"
-                icon={<WarningRoundedIcon fontSize="small" />}
-                sx={{
-                  '& .MuiAlert-icon': {
-                    height: 'fit-content',
-                    py: '8px',
-                  },
-                }}
-              >
+              <ApiAlert className="MuiApi-collapsible prop-list-alert">
                 {t('api-docs.deprecated')}
                 {deprecationInfo && (
                   <React.Fragment>
@@ -246,7 +227,7 @@ export default function PropertiesList(props: PropertiesListProps) {
                     />
                   </React.Fragment>
                 )}
-              </Alert>
+              </ApiAlert>
             )}
             <div className="prop-list-additional-info">
               {typeName && (
