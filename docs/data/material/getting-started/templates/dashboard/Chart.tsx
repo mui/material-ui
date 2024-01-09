@@ -1,11 +1,15 @@
 import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
-import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
+import { LineChart, axisClasses } from '@mui/x-charts';
+import { ChartsTextStyle } from '@mui/x-charts/ChartsText';
 import Title from './Title';
 
 // Generate Sales Data
-function createData(time: string, amount?: number) {
-  return { time, amount };
+function createData(
+  time: string,
+  amount?: number,
+): { time: string; amount: number | null } {
+  return { time, amount: amount ?? null };
 }
 
 const data = [
@@ -17,7 +21,7 @@ const data = [
   createData('15:00', 2000),
   createData('18:00', 2400),
   createData('21:00', 2400),
-  createData('24:00', undefined),
+  createData('24:00'),
 ];
 
 export default function Chart() {
@@ -26,46 +30,51 @@ export default function Chart() {
   return (
     <React.Fragment>
       <Title>Today</Title>
-      <ResponsiveContainer>
+      <div style={{ width: '100%', flexGrow: 1, overflow: 'hidden' }}>
         <LineChart
-          data={data}
+          dataset={data}
           margin={{
             top: 16,
-            right: 16,
-            bottom: 0,
-            left: 24,
+            right: 20,
+            left: 70,
+            bottom: 30,
           }}
-        >
-          <XAxis
-            dataKey="time"
-            stroke={theme.palette.text.secondary}
-            style={theme.typography.body2}
-          />
-          <YAxis
-            stroke={theme.palette.text.secondary}
-            style={theme.typography.body2}
-          >
-            <Label
-              angle={270}
-              position="left"
-              style={{
-                textAnchor: 'middle',
+          xAxis={[
+            {
+              scaleType: 'point',
+              dataKey: 'time',
+              tickNumber: 2,
+              tickLabelStyle: theme.typography.body2 as ChartsTextStyle,
+            },
+          ]}
+          yAxis={[
+            {
+              label: 'Sales ($)',
+              labelStyle: {
+                ...(theme.typography.body1 as ChartsTextStyle),
                 fill: theme.palette.text.primary,
-                ...theme.typography.body1,
-              }}
-            >
-              Sales ($)
-            </Label>
-          </YAxis>
-          <Line
-            isAnimationActive={false}
-            type="monotone"
-            dataKey="amount"
-            stroke={theme.palette.primary.main}
-            dot={false}
-          />
-        </LineChart>
-      </ResponsiveContainer>
+              },
+              tickLabelStyle: theme.typography.body2 as ChartsTextStyle,
+              max: 2500,
+              tickNumber: 3,
+            },
+          ]}
+          series={[
+            {
+              dataKey: 'amount',
+              showMark: false,
+              color: theme.palette.primary.light,
+            },
+          ]}
+          sx={{
+            [`.${axisClasses.root} line`]: { stroke: theme.palette.text.secondary },
+            [`.${axisClasses.root} text`]: { fill: theme.palette.text.secondary },
+            [`& .${axisClasses.left} .${axisClasses.label}`]: {
+              transform: 'translateX(-25px)',
+            },
+          }}
+        />
+      </div>
     </React.Fragment>
   );
 }
