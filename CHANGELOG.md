@@ -1,22 +1,24 @@
 # [Versions](https://mui.com/versions/)
 
 ## 5.15.4
+
 <!-- generated comparing v5.15.3..master -->
+
 _Jan 9, 2024_
 
-A big thanks to the 20 contributors who made this release possible.
-This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+A big thanks to the 20 contributors who made this release possible. Here are some highlights:
+
+- ✨ Material UI's [ToggleButtonGroup](https://mui.com/material-ui/react-toggle-button/) now supports non-button element as a child (e.g., a Tooltip or a disabled Tooltip that wraps a ToggleButton) (#40220)
 
 ### `@mui/material@5.15.4`
 
-- [Dialog] Refactor form submission in FormDialog component (#40470) @sai6855
 - [TextField][FormLabel][InputLabel][FormControl] Use exact children type to allow React children type augmentation (#38872) @nicegamer7
 - [Select] Add form submission regression test (#40176) @mj12albert
 - [ToggleButtonGroup] Support different elements under it (#40220) @Methuselah96
 
 ### `@mui/material-nextjs@5.15.4`
 
-- Fix build size (#40436) @siriwatknp
+- Improve build size issue (#40436) @siriwatknp
 
 ### `@mui/icons-material@5.15.4`
 
@@ -24,12 +26,12 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 ### `@mui/system@5.15.4`
 
-- [zero] Move zero runtime related packages  (#40426) @brijeshb42
+- [zero] Move zero runtime related packages (#40426) @brijeshb42
 - Fix all use of styled(Box) (#40449) @oliviertassinari
 
 ### `@mui/utils@5.15.4`
 
-- Fix isPlainObject to work across realm (#39981) @brijeshb42
+- Fix `isPlainObject` to work across realm (#39981) @brijeshb42
 
 ### `@mui/joy@5.0.0-beta.22`
 
@@ -41,6 +43,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [base-ui] Visual tweaks to the plain CSS theme stylesheet (#40487) @zanivan
 - [base-ui] Add tokens to plain CSS theme stylesheet (#40113) @zanivan
 - [base-ui] Update the overview page (#40412) @danilo-leal
+- [material-ui] Refactor form submission in FormDialog component (#40470) @sai6855
 - [material-ui] Replace recharts with MUI X charts on the Dashboard template (#40107) @alexfauquette
 - [material-ui] Revise the Alert demo page (#34892) @samuelsycamore
 - [material-ui] Revise the Accordion page (#40284) @anle9650
@@ -71,7 +74,6 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [website] Evolve the Developer Advocate role (#40337) @oliviertassinari
 - [website] Fix default social card @oliviertassinari
 - [test] Restore the `t` command (#40430) @michaldudak
-
 
 All contributors of this release in alphabetical order: @alexfauquette, @anle9650, @brijeshb42, @danilo-leal, @DiegoAndai, @iamsaumya, @Janpot, @LukasTy, @Methuselah96, @michaldudak, @mj12albert, @nicegamer7, @oliviertassinari, @renovate[bot], @RiceCrisp, @sai6855, @samuelsycamore, @savalaram-redkar, @siriwatknp, @zanivan
 
