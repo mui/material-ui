@@ -10,10 +10,6 @@ export interface DescribeablePropDescriptor {
 
 export type CreateDescribeablePropSettings = {
   /**
-   * Names of props that do not require default annotation.
-   */
-  propsWithoutMandatoryDefaultAnnotation?: string[];
-  /**
    * Names of props that do not check if the annotations equal runtime default.
    */
   propsWithoutDefaultVerification?: string[];
@@ -32,8 +28,7 @@ export default function createDescribeableProp(
 ): DescribeablePropDescriptor | null {
   const { defaultValue, jsdocDefaultValue, description, required, type } = prop;
 
-  const { propsWithoutMandatoryDefaultAnnotation = [], propsWithoutDefaultVerification = [] } =
-    settings;
+  const { propsWithoutDefaultVerification = [] } = settings;
 
   const renderedDefaultValue = defaultValue?.value.replace(/\r?\n/g, '');
   const renderDefaultValue = Boolean(
@@ -68,7 +63,7 @@ export default function createDescribeableProp(
     const shouldHaveDefaultAnnotation =
       // Discriminator for polymorphism which is not documented at the component level.
       // The documentation of `component` does not know in which component it is used.
-      propName !== 'component' && !propsWithoutMandatoryDefaultAnnotation.includes(propName);
+      propName !== 'component';
 
     if (shouldHaveDefaultAnnotation) {
       throw new Error(
