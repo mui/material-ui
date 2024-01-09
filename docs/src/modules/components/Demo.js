@@ -299,10 +299,11 @@ const DemoRootJoy = joyStyled('div', {
     borderColor: grey[100],
     borderLeftWidth: 0,
     borderRightWidth: 0,
+    borderBottom: 0,
     backgroundColor: '#fff',
     ...theme.applyDarkStyles({
-      borderColor: alpha(grey[700], 0.3),
-      backgroundColor: alpha(blueDark[700], 0.2),
+      borderColor: alpha(blueDark[500], 0.2),
+      backgroundColor: alpha(blueDark[700], 0.1),
     }),
   }),
   /* Prepare the background to display an inner elevation. */
