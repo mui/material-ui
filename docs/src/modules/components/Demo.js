@@ -301,16 +301,6 @@ const DemoRootJoy = joyStyled('div', {
     borderRightWidth: 0,
     backgroundColor: 'transparent',
     ...theme.applyDarkStyles({
-      borderBottom: 0,
-      borderColor: alpha(blueDark[500], 0.2),
-    }),
-  }),
-  ...(bg === 'trueBlack' && {
-    padding: theme.spacing(3),
-    border: `1px solid`,
-    borderColor: grey[100],
-    backgroundColor: 'transparent',
-    ...theme.applyDarkStyles({
       borderColor: alpha(blueDark[500], 0.3),
       backgroundColor: alpha(theme.palette.neutral[900], 0.8),
     }),
