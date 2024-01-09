@@ -84,7 +84,7 @@ async function run(argv) {
     babelArgs.push('--compact false');
   }
 
-  const command = ['yarn babel', ...babelArgs].join(' ');
+  const command = ['pnpm babel', ...babelArgs].join(' ');
 
   if (verbose) {
     // eslint-disable-next-line no-console

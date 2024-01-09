@@ -1,0 +1,7 @@
+packages:
+  - 'benchmark'
+  - 'packages/*'
+  - '!packages/mui-envinfo/test'
+  - 'docs'
+  - 'test'
+  - 'apps/*'

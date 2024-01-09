@@ -12,7 +12,7 @@ Page.getInitialProps = () => {
   const req = require.context(
     'docs/translations/api-docs-joy/aspect-ratio',
     false,
-    /aspect-ratio.*.json$/,
+    /\.\/aspect-ratio.*.json$/,
   );
   const descriptions = mapApiPageTranslations(req);
 

@@ -1,4 +1,4 @@
-import { mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import * as astTypes from 'ast-types';
 import * as babel from '@babel/core';
@@ -7,21 +7,23 @@ import * as _ from 'lodash';
 import kebabCase from 'lodash/kebabCase';
 import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
-import { Link } from 'mdast';
+import type { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import { renderMarkdown } from '@mui/markdown';
 import { ComponentClassDefinition } from '@mui-internal/docs-utilities';
 import { ProjectSettings } from '../ProjectSettings';
-import { ComponentInfo, writePrettifiedFile } from '../buildApiUtils';
+import { ComponentInfo, toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
 import parseTest from '../utils/parseTest';
 import generatePropTypeDescription, { getChained } from '../utils/generatePropTypeDescription';
 import createDescribeableProp, {
+  CreateDescribeablePropSettings,
   DescribeablePropDescriptor,
 } from '../utils/createDescribeableProp';
 import generatePropDescription from '../utils/generatePropDescription';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
 import parseSlotsAndClasses, { Slot } from '../utils/parseSlotsAndClasses';
+import generateApiTranslations from '../utils/generateApiTranslation';
 
 export type AdditionalPropsInfo = {
   cssApi?: boolean;
@@ -31,6 +33,8 @@ export type AdditionalPropsInfo = {
   'joy-color'?: boolean;
   'joy-variant'?: boolean;
 };
+
+export type SeeMore = { description: string; link: { text: string; url: string } };
 
 export interface ReactApi extends ReactDocgenApi {
   demos: ReturnType<ComponentInfo['getDemos']>;
@@ -67,6 +71,7 @@ export interface ReactApi extends ReactDocgenApi {
     deprecationInfo: string | undefined;
     signature: undefined | { type: string; describedArgs?: string[]; returned?: string };
     additionalInfo?: AdditionalPropsInfo;
+    seeMoreLink?: SeeMore['link'];
   }>;
   /**
    * Different ways to import components
@@ -80,11 +85,16 @@ export interface ReactApi extends ReactDocgenApi {
         requiresRef?: boolean;
         deprecated?: string;
         typeDescriptions?: { [t: string]: string };
+        seeMoreText?: string;
       };
     };
     classDescriptions: { [key: string]: { description: string; conditions?: string } };
     slotDescriptions?: { [key: string]: string };
   };
+  /**
+   * The folder used to store the API translation.
+   */
+  apiDocsTranslationFolder?: string;
 }
 
 const cssComponents = ['Box', 'Grid', 'Typography', 'Stack'];
@@ -104,9 +114,10 @@ export async function computeApiDescription(
   const file = await remark()
     .use(function docsLinksAttacher() {
       return function transformer(tree) {
-        remarkVisit(tree, 'link', (linkNode: Link) => {
-          if ((linkNode.url as string).startsWith('/')) {
-            linkNode.url = `${host}${linkNode.url}`;
+        remarkVisit(tree, 'link', (linkNode) => {
+          const link = linkNode as Link;
+          if ((link.url as string).startsWith('/')) {
+            link.url = `${host}${link.url}`;
           }
         });
       };
@@ -147,11 +158,6 @@ async function annotateComponentDefinition(api: ReactApi) {
   let end = null;
   traverse(typesAST, {
     ExportDefaultDeclaration(babelPath) {
-      if (api.filename.includes('mui-base')) {
-        // Base UI does not use default exports.
-        return;
-      }
-
       /**
        * export default function Menu() {}
        */
@@ -205,10 +211,6 @@ async function annotateComponentDefinition(api: ReactApi) {
     },
 
     ExportNamedDeclaration(babelPath) {
-      if (!api.filename.includes('mui-base')) {
-        return;
-      }
-
       let node: babel.Node = babelPath.node;
 
       if (node.declaration == null) {
@@ -350,59 +352,9 @@ function extractClassConditions(descriptions: any) {
   return classConditions;
 }
 
-/**
- * @param filepath - absolute path
- * @example toGitHubPath('/home/user/material-ui/packages/Accordion') === '/packages/Accordion'
- * @example toGitHubPath('C:\\Development\material-ui\packages\Accordion') === '/packages/Accordion'
- */
-export function toGitHubPath(filepath: string): string {
-  return `/${path.relative(process.cwd(), filepath).replace(/\\/g, '/')}`;
-}
-
-const generateApiTranslations = (
-  outputDirectory: string,
-  reactApi: ReactApi,
-  languages: string[],
-) => {
-  const componentName = reactApi.name;
-  const apiDocsTranslationPath = path.resolve(outputDirectory, kebabCase(componentName));
-  function resolveApiDocsTranslationsComponentLanguagePath(
-    language: (typeof languages)[0],
-  ): string {
-    const languageSuffix = language === 'en' ? '' : `-${language}`;
-
-    return path.join(apiDocsTranslationPath, `${kebabCase(componentName)}${languageSuffix}.json`);
-  }
-
-  mkdirSync(apiDocsTranslationPath, {
-    mode: 0o777,
-    recursive: true,
-  });
-
-  writePrettifiedFile(
-    resolveApiDocsTranslationsComponentLanguagePath('en'),
-    JSON.stringify(reactApi.translations),
-  );
-
-  languages.forEach((language) => {
-    if (language !== 'en') {
-      try {
-        writePrettifiedFile(
-          resolveApiDocsTranslationsComponentLanguagePath(language),
-          JSON.stringify(reactApi.translations),
-          undefined,
-          { flag: 'wx' },
-        );
-      } catch (error) {
-        // File exists
-      }
-    }
-  });
-};
-
 const generateApiPage = (
   apiPagesDirectory: string,
-  translationPagesDirectory: string,
+  importTranslationPagesDirectory: string,
   reactApi: ReactApi,
   onlyJsonFile: boolean = false,
 ) => {
@@ -466,9 +418,9 @@ const generateApiPage = (
 
   Page.getInitialProps = () => {
     const req = require.context(
-      '${translationPagesDirectory}/${kebabCase(reactApi.name)}',
+      '${importTranslationPagesDirectory}/${kebabCase(reactApi.name)}',
       false,
-      /${kebabCase(reactApi.name)}.*.json$/,
+      /\\.\\/${kebabCase(reactApi.name)}.*.json$/,
     );
     const descriptions = mapApiPageTranslations(req);
 
@@ -482,7 +434,7 @@ const generateApiPage = (
   }
 };
 
-const attachTranslations = (reactApi: ReactApi) => {
+const attachTranslations = (reactApi: ReactApi, settings?: CreateDescribeablePropSettings) => {
   const translations: ReactApi['translations'] = {
     componentDescription: reactApi.description,
     propDescriptions: {},
@@ -491,12 +443,12 @@ const attachTranslations = (reactApi: ReactApi) => {
   Object.entries(reactApi.props!).forEach(([propName, propDescriptor]) => {
     let prop: DescribeablePropDescriptor | null;
     try {
-      prop = createDescribeableProp(propDescriptor, propName);
+      prop = createDescribeableProp(propDescriptor, propName, settings);
     } catch (error) {
       prop = null;
     }
     if (prop) {
-      const { deprecated, jsDocText, signatureArgs, signatureReturn, requiresRef } =
+      const { deprecated, seeMore, jsDocText, signatureArgs, signatureReturn, requiresRef } =
         generatePropDescription(prop, propName);
       // description = renderMarkdownInline(`${description}`);
 
@@ -510,6 +462,7 @@ const attachTranslations = (reactApi: ReactApi) => {
         requiresRef: requiresRef || undefined,
         deprecated: renderMarkdown(deprecated) || undefined,
         typeDescriptions: Object.keys(typeDescriptions).length > 0 ? typeDescriptions : undefined,
+        seeMoreText: seeMore?.description,
       };
     }
   });
@@ -537,14 +490,14 @@ const attachTranslations = (reactApi: ReactApi) => {
   reactApi.translations = translations;
 };
 
-const attachPropsTable = (reactApi: ReactApi) => {
+const attachPropsTable = (reactApi: ReactApi, settings?: CreateDescribeablePropSettings) => {
   const propErrors: Array<[propName: string, error: Error]> = [];
   type Pair = [string, ReactApi['propsTable'][string]];
   const componentProps: ReactApi['propsTable'] = _.fromPairs(
     Object.entries(reactApi.props!).map(([propName, propDescriptor]): Pair => {
       let prop: DescribeablePropDescriptor | null;
       try {
-        prop = createDescribeableProp(propDescriptor, propName);
+        prop = createDescribeableProp(propDescriptor, propName, settings);
       } catch (error) {
         propErrors.push([`[${reactApi.name}] \`${propName}\``, error as Error]);
         prop = null;
@@ -560,6 +513,7 @@ const attachPropsTable = (reactApi: ReactApi) => {
         signature: signatureType,
         signatureArgs,
         signatureReturn,
+        seeMore,
       } = generatePropDescription(prop, propName);
       const propTypeDescription = generatePropTypeDescription(propDescriptor.type);
       const chainedPropType = getChained(prop.type);
@@ -620,6 +574,7 @@ const attachPropsTable = (reactApi: ReactApi) => {
           signature,
           additionalInfo:
             Object.keys(additionalPropsInfo).length === 0 ? undefined : additionalPropsInfo,
+          seeMoreLink: seeMore?.link,
         },
       ];
     }),
@@ -646,7 +601,7 @@ const attachPropsTable = (reactApi: ReactApi) => {
  * @param filename The filename where its defined (to infer the package)
  * @returns an array of import command
  */
-const getComponentImports = (name: string, filename: string) => {
+const defaultGetComponentImports = (name: string, filename: string) => {
   const githubPath = toGitHubPath(filename);
   const rootImportPath = githubPath.replace(
     /\/packages\/mui(?:-(.+?))?\/src\/.*/,
@@ -688,28 +643,16 @@ export default async function generateComponentApi(
   project: TypeScriptProject,
   projectSettings: ProjectSettings,
 ) {
-  const {
-    filename,
-    name,
-    muiName,
-    apiPathname,
-    apiPagesDirectory,
-    getInheritance,
-    getDemos,
-    readFile,
-    skipApiGeneration,
-    isSystemComponent,
-  } = componentInfo;
-
-  const { shouldSkip, spread, EOL, src } = readFile();
+  const { shouldSkip, spread, EOL, src } = componentInfo.readFile();
 
   if (shouldSkip) {
     return null;
   }
 
+  const filename = componentInfo.filename;
   let reactApi: ReactApi;
 
-  if (isSystemComponent) {
+  if (componentInfo.isSystemComponent) {
     try {
       reactApi = docgenParse(
         src,
@@ -732,7 +675,7 @@ export default async function generateComponentApi(
                 if (expression.value?.callee) {
                   const definitionName = expression.value.callee.name;
 
-                  if (definitionName === `create${name}`) {
+                  if (definitionName === `create${componentInfo.name}`) {
                     node = expression;
                   }
                 }
@@ -768,13 +711,15 @@ export default async function generateComponentApi(
   if (annotatedDescriptionMatch !== null) {
     reactApi.description = reactApi.description.slice(0, annotatedDescriptionMatch.index).trim();
   }
+
+  const { getComponentImports = defaultGetComponentImports } = projectSettings;
   reactApi.filename = filename;
-  reactApi.name = name;
-  reactApi.imports = getComponentImports(name, filename);
-  reactApi.muiName = muiName;
-  reactApi.apiPathname = apiPathname;
+  reactApi.name = componentInfo.name;
+  reactApi.imports = getComponentImports(componentInfo.name, filename);
+  reactApi.muiName = componentInfo.muiName;
+  reactApi.apiPathname = componentInfo.apiPathname;
   reactApi.EOL = EOL;
-  reactApi.demos = getDemos();
+  reactApi.demos = componentInfo.getDemos();
   if (reactApi.demos.length === 0) {
     throw new Error(
       'Unable to find demos. \n' +
@@ -783,12 +728,19 @@ export default async function generateComponentApi(
     );
   }
 
-  const testInfo = await parseTest(filename);
-  // no Object.assign to visually check for collisions
-  reactApi.forwardsRefTo = testInfo.forwardsRefTo;
-  reactApi.spread = testInfo.spread ?? spread;
-  reactApi.themeDefaultProps = testInfo.themeDefaultProps;
-  reactApi.inheritance = getInheritance(testInfo.inheritComponent);
+  try {
+    const testInfo = await parseTest(reactApi.filename);
+    // no Object.assign to visually check for collisions
+    reactApi.forwardsRefTo = testInfo.forwardsRefTo;
+    reactApi.spread = testInfo.spread ?? spread;
+    reactApi.themeDefaultProps = testInfo.themeDefaultProps;
+    reactApi.inheritance = componentInfo.getInheritance(testInfo.inheritComponent);
+  } catch (e) {
+    if (project.name.includes('grid')) {
+      // TODO: Use `describeConformance` for the DataGrid components
+      reactApi.forwardsRefTo = 'GridRoot';
+    }
+  }
 
   const { slots, classes } = parseSlotsAndClasses({
     project,
@@ -799,26 +751,19 @@ export default async function generateComponentApi(
   reactApi.slots = slots;
   reactApi.classes = classes;
 
-  attachPropsTable(reactApi);
-  attachTranslations(reactApi);
+  attachPropsTable(reactApi, projectSettings.propsSettings);
+  attachTranslations(reactApi, projectSettings.propsSettings);
 
   // eslint-disable-next-line no-console
   console.log('Built API docs for', reactApi.apiPathname);
 
-  const normalizedApiPathname = reactApi.apiPathname.replace(/\\/g, '/');
-  const normalizedFilename = reactApi.filename.replace(/\\/g, '/');
-
-  if (!skipApiGeneration) {
-    // Generate pages, json and translations
-    let translationPagesDirectory = 'docs/translations/api-docs';
-    if (normalizedApiPathname.startsWith('/joy-ui') && normalizedFilename.includes('mui-joy/src')) {
-      translationPagesDirectory = 'docs/translations/api-docs-joy';
-    } else if (
-      normalizedApiPathname.startsWith('/base') &&
-      normalizedFilename.includes('mui-base/src')
-    ) {
-      translationPagesDirectory = 'docs/translations/api-docs-base';
-    }
+  if (!componentInfo.skipApiGeneration) {
+    const {
+      skipAnnotatingComponentDefinition,
+      translationPagesDirectory,
+      importTranslationPagesDirectory,
+      generateJsonFileOnly,
+    } = projectSettings;
 
     generateApiTranslations(
       path.join(process.cwd(), translationPagesDirectory),
@@ -827,11 +772,21 @@ export default async function generateComponentApi(
     );
 
     // Once we have the tabs API in all projects, we can make this default
-    const generateOnlyJsonFile = normalizedApiPathname.startsWith('/base');
-    generateApiPage(apiPagesDirectory, translationPagesDirectory, reactApi, generateOnlyJsonFile);
+    generateApiPage(
+      componentInfo.apiPagesDirectory,
+      importTranslationPagesDirectory ?? translationPagesDirectory,
+      reactApi,
+      generateJsonFileOnly,
+    );
 
-    // Add comment about demo & api links (including inherited component) to the component file
-    await annotateComponentDefinition(reactApi);
+    if (
+      typeof skipAnnotatingComponentDefinition === 'function'
+        ? !skipAnnotatingComponentDefinition(reactApi.filename)
+        : !skipAnnotatingComponentDefinition
+    ) {
+      // Add comment about demo & api links (including inherited component) to the component file
+      await annotateComponentDefinition(reactApi);
+    }
   }
 
   return reactApi;
