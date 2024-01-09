@@ -33,13 +33,13 @@ export default function MyApp() {
 
 Chips comes with medium size, primary color, and solid variant set by default.
 
-{{"demo": "BasicChip.js"}}
+{{"demo": "BasicChip.js", "bg": "trueBlack"}}
 
 ### Decorators
 
 Use the `startDecorator` and/or `endDecorator` props to add supporting icons to the chip.
 
-{{"demo": "ChipWithDecorators.js"}}
+{{"demo": "ChipWithDecorators.js", "bg": "trueBlack"}}
 
 ### Delete button
 
@@ -54,7 +54,7 @@ The `onDelete` callback is fired on `ChipDelete` either when:
 import ChipDelete from '@mui/joy/ChipDelete';
 ```
 
-{{"demo": "DeleteButtonChip.js"}}
+{{"demo": "DeleteButtonChip.js", "bg": "trueBlack"}}
 
 ### As a link
 
@@ -63,33 +63,33 @@ Since links are the most appropriate component for navigating through pages, tha
 
 Doing so will automatically change the rendered HTML tag from `<div>` to `<a>`.
 
-{{"demo": "LinkChip.js"}}
+{{"demo": "LinkChip.js", "bg": "trueBlack"}}
 
 ### Clickable
 
 To make chips clickable, pass a function to the `onClick` prop.
 
-{{"demo": "ClickableChip.js"}}
+{{"demo": "ClickableChip.js", "bg": "trueBlack"}}
 
 ### Clickable and deletable
 
 Use both the `onClick` prop and the complementary `ChipDelete` component to make a chip support two actions.
 
-{{"demo": "ClickableAndDeletableChip.js"}}
+{{"demo": "ClickableAndDeletableChip.js", "bg": "trueBlack"}}
 
 ### With radio
 
 Common to filtering UIs, wrap the `Radio` component with the `Chip` to use them together.
 Use radios when you want to enable single selection.
 
-{{"demo": "RadioChip.js"}}
+{{"demo": "RadioChip.js", "bg": "trueBlack"}}
 
 ### With a checkbox
 
 Similar to the above, wrap the `Checkbox` component with the `Chip` to use them together.
 Use checkboxes when you want to enable multiple selection.
 
-{{"demo": "CheckboxChip.js"}}
+{{"demo": "CheckboxChip.js", "bg": "trueBlack"}}
 
 ## CSS variables playground
 
