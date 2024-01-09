@@ -148,8 +148,8 @@ describe('<Select />', () => {
       );
 
       ['Enter', ' '].forEach((key) =>
-        it.only(`selects a highlighted item using the "${key}" key in multiple mode`, async () => {
-          const { getByRole, debug } = await render(
+        it(`selects a highlighted item using the "${key}" key in multiple mode`, async () => {
+          const { getByRole } = await render(
             <Select multiple>
               <Option value={1}>1</Option>
               <Option value={2}>2</Option>
@@ -162,8 +162,6 @@ describe('<Select />', () => {
           await userEvent.keyboard(`{${key}}`);
           await userEvent.keyboard('{ArrowDown}');
           await userEvent.keyboard(`{${key}}`);
-
-          debug();
 
           expect(select).to.have.text('1, 2');
         }),

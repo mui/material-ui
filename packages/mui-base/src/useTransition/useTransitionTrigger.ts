@@ -37,22 +37,15 @@ export function useTransitionTrigger(requestEnter: boolean): UseTransitionTrigge
     dispatch('exited');
   }, []);
 
-  React.useEffect(() => {
-    if (!hasTransition.current) {
-      if (requestEnter) {
-        dispatch('entered');
-      } else {
-        dispatch('exited');
-      }
-    }
-  }, [requestEnter]);
-
   const registerTransition = React.useCallback(() => {
     hasTransition.current = true;
     return () => {
       hasTransition.current = false;
     };
   }, []);
+
+  // If there are no transitions registered, the `exited` state is opposite of `requestEnter` immediately.
+  const hasExited = hasTransition.current ? state.elementExited : !requestEnter;
 
   const contextValue: TransitionContextValue = React.useMemo(
     () => ({
@@ -62,7 +55,7 @@ export function useTransitionTrigger(requestEnter: boolean): UseTransitionTrigge
       onExiting: handleExiting,
       onExited: handleExited,
       registerTransition,
-      hasExited: state.elementExited,
+      hasExited,
     }),
     [
       handleEntering,
@@ -71,13 +64,13 @@ export function useTransitionTrigger(requestEnter: boolean): UseTransitionTrigge
       handleExited,
       requestEnter,
       registerTransition,
-      state.elementExited,
+      hasExited,
     ],
   );
 
   return {
     contextValue,
-    hasExited: state.elementExited,
+    hasExited,
     transitionInProgress: state.inProgress,
   };
 }
