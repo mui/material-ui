@@ -161,6 +161,22 @@ export default function getAlbumTheme(mode: 'light' | 'dark') {
       },
     },
     components: {
+      MuiMenuItem: {
+        styleOverrides: {
+          root: {
+            color: mode === 'light' ? greyColor[500] : greyColor[300],
+            borderRadius: '8px',
+            fontWeight: 500,
+          },
+        },
+      },
+      MuiPaper: {
+        styleOverrides: {
+          root: {
+            backgroundColor: mode === 'light' ? greyColor[100] : greyColor[900],
+          },
+        },
+      },
       MuiCard: {
         styleOverrides: {
           root: {

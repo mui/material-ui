@@ -60,6 +60,7 @@ export default function Pricing() {
   return (
     <div>
       <Container
+        id="pricing"
         sx={{
           position: 'relative',
           display: 'flex',

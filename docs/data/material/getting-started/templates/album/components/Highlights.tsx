@@ -54,7 +54,7 @@ const items = [
 
 export default function Highlights() {
   return (
-    <Box sx={{ color: 'white', bgcolor: '#000' }}>
+    <Box id="highlights" sx={{ color: 'white', bgcolor: '#000' }}>
       <Container
         sx={{
           position: 'relative',

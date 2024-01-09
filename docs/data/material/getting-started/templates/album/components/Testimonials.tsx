@@ -85,7 +85,7 @@ export default function Testimonials() {
   const logos = theme.palette.mode === 'light' ? darkLogos : whiteLogos;
 
   return (
-    <Box>
+    <Box id="testimonials">
       <Container
         sx={{
           position: 'relative',
