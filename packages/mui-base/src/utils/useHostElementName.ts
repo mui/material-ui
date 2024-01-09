@@ -1,7 +1,18 @@
 'use client';
 import * as React from 'react';
 
-type UseHostElementNameParameters = { hostElementName?: keyof HTMLElementTagNameMap };
+type UseHostElementNameParameters = {
+  /**
+   * The HTML element expected to be rendered, e.g. 'div', 'button' etc
+   * @default ''
+   */
+  hostElementName?: keyof HTMLElementTagNameMap;
+  /**
+   * The name of the component using useControllableReducer.
+   * For debugging purposes.
+   */
+  componentName?: string;
+};
 /**
  *
  * API:
@@ -11,7 +22,7 @@ type UseHostElementNameParameters = { hostElementName?: keyof HTMLElementTagName
 export function useHostElementName(
   parameters: UseHostElementNameParameters,
 ): [string, (instance: HTMLElement | null) => void] {
-  const { hostElementName: hostElementNameProp = '' } = parameters;
+  const { hostElementName: hostElementNameProp = '', componentName } = parameters;
 
   const [hostElementName, setHostElementName] = React.useState<string>(
     hostElementNameProp.toUpperCase(),
@@ -22,11 +33,13 @@ export function useHostElementName(
     React.useEffect(() => {
       if (hostElementNameProp && hostElementName !== hostElementNameProp.toUpperCase()) {
         console.error(
-          `useHostElementName: the \`hostElementName\` prop of COMPONENT expected the '${hostElementNameProp}' element, but a '${hostElementName}' element was rendered instead`,
+          `useHostElementName: the \`hostElementName\` prop of ${
+            componentName ? `the ${componentName} component` : 'a component'
+          } expected the '${hostElementNameProp}' element, but a '${hostElementName}' element was rendered instead`,
           'This may cause hydration issues in an SSR context, e.g. in a Next.js app',
         );
       }
-    }, [hostElementNameProp, hostElementName]);
+    }, [hostElementNameProp, hostElementName, componentName]);
   }
 
   const updateHostElementName = React.useCallback((instance: HTMLElement | null) => {

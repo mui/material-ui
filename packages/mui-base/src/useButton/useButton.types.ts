@@ -27,6 +27,12 @@ export interface UseButtonParameters {
    * @default ''
    */
   hostElementName?: keyof HTMLElementTagNameMap;
+  /**
+   * The name of the component using useButton.
+   * For debugging purposes.
+   * @default 'useButton'
+   */
+  componentName?: string;
 }
 
 export interface UseButtonRootSlotOwnProps {
