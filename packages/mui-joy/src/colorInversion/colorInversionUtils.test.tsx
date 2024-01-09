@@ -15,7 +15,7 @@ describe('colorInversionUtil', () => {
 
   it('should not throw error using styled API', () => {
     expect(() => {
-      styled(Box)(applySoftInversion('primary'), applySolidInversion('primary'));
+      styled('div')(applySoftInversion('primary'), applySolidInversion('primary'));
     }).not.to.throw();
   });
 });

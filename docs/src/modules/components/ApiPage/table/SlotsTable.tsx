@@ -11,6 +11,11 @@ import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/Styl
 
 const StyledTable = styled('table')(
   ({ theme }) => ({
+    // Override docs/src/modules/components/MarkdownElement styles
+    '&&': {
+      display: 'table',
+      width: '100%',
+    },
     '& .slot-name': {
       fontFamily: theme.typography.fontFamilyCode,
       fontWeight: theme.typography.fontWeightSemiBold,

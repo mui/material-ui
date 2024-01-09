@@ -7,10 +7,16 @@ import {
   brandingLightTheme as lightTheme,
 } from 'docs/src/modules/brandingTheme';
 import { getHash } from 'docs/src/modules/components/ApiPage/list/ClassesList';
+import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
 
 const StyledTable = styled('table')(
   ({ theme }) => ({
     textAlign: 'left',
+    // Override docs/src/modules/components/MarkdownElement styles
+    '&&': {
+      display: 'table',
+      width: '100%',
+    },
     '& .class-name': {
       flexShrink: 0,
       fontWeight: theme.typography.fontWeightSemiBold,
@@ -53,35 +59,39 @@ interface ClassesTableProps {
 export default function ClassesTable(props: ClassesTableProps) {
   const { classes, componentName, displayClassKeys } = props;
   return (
-    <StyledTable>
-      <thead>
-        <tr>
-          <th>Class name</th>
-          {displayClassKeys && <th>Rule name</th>}
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        {classes.map((params) => {
-          const { className, key, description, isGlobal } = params;
+    <StyledTableContainer>
+      <StyledTable>
+        <thead>
+          <tr>
+            <th>Class name</th>
+            {displayClassKeys && <th>Rule name</th>}
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          {classes.map((params) => {
+            const { className, key, description, isGlobal } = params;
 
-          return (
-            <tr key={className} id={getHash({ componentName, className: key })}>
-              <td>
-                <span className="class-name">.{className}</span>
-              </td>
-              {displayClassKeys && <td>{!isGlobal && <span className="class-key">{key}</span>}</td>}
-              <td>
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: description || '',
-                  }}
-                />
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </StyledTable>
+            return (
+              <tr key={className} id={getHash({ componentName, className: key })}>
+                <td>
+                  <span className="class-name">.{className}</span>
+                </td>
+                {displayClassKeys && (
+                  <td>{!isGlobal && <span className="class-key">{key}</span>}</td>
+                )}
+                <td>
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: description || '',
+                    }}
+                  />
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </StyledTable>
+    </StyledTableContainer>
   );
 }

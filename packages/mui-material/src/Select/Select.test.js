@@ -1560,6 +1560,42 @@ describe('<Select />', () => {
     expect(container.getElementsByClassName(classes.select)[0]).to.toHaveComputedStyle(selectStyle);
   });
 
+  describe('form submission', () => {
+    it('includes Select value in formData only if the `name` attribute is provided', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // FormData is not available in JSDOM
+        this.skip();
+      }
+      const handleSubmit = (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        expect(formData.get('select-one')).to.equal('2');
+
+        const formDataAsObject = Object.fromEntries(formData);
+        expect(Object.keys(formDataAsObject).length).to.equal(1);
+      };
+
+      const { getByText } = render(
+        <form onSubmit={handleSubmit}>
+          <Select defaultValue={2} name="select-one">
+            <MenuItem value={1} />
+            <MenuItem value={2} />
+          </Select>
+          <Select defaultValue="a">
+            <MenuItem value="a" />
+            <MenuItem value="b" />
+          </Select>
+          <button type="submit">Submit</button>
+        </form>,
+      );
+
+      const button = getByText('Submit');
+      act(() => {
+        button.click();
+      });
+    });
+  });
+
   describe('theme styleOverrides:', () => {
     it('should override with error style when `native select` has `error` state', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
