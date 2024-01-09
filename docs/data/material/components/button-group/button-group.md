@@ -56,10 +56,10 @@ You can use the [`<LoadingButton />`](/material-ui/react-button/#loading-button)
 
 {{"demo": "LoadingButtonGroup.js"}}
 
-### Material You version
+### Material 3 version
 
-The default Material UI ButtonGroup components follows the Material Design 2 specs.
-To get the Material You ([Material Design 3](https://m3.material.io/)) version, use the new experimental `@mui/material-next` package:
+The default Material UI ButtonGroup component follows the Material Design 2 specs.
+To get the [Material 3](https://m3.material.io/) version, use the new experimental `@mui/material-next` package.
 
 ```js
 import ButtonGroup from '@mui/material-next/ButtonGroup';
