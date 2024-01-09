@@ -28,6 +28,12 @@ export default function ButtonGroupMaterialYouPlayground() {
           defaultValue: 'medium',
         },
         {
+          propName: 'orientation',
+          knob: 'select',
+          options: ['horizontal', 'vertical'],
+          defaultValue: 'horizontal',
+        },
+        {
           propName: 'disabled',
           knob: 'switch',
           defaultValue: false,
