@@ -1,1 +1,2 @@
 <Slider defaultValue={50} />
+<Slider defaultValue={50} disabled />

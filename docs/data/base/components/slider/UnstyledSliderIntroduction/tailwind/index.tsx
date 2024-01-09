@@ -55,7 +55,7 @@ const Slider = React.forwardRef<HTMLSpanElement, SliderProps>((props, ref) => {
           return {
             ...resolvedSlotProps,
             className: clsx(
-              'block absolute w-full h-1 rounded-sm bg-current opacity-40',
+              'block absolute w-full h-[6px] rounded-full bg-current opacity-40',
               resolvedSlotProps?.className,
             ),
           };
@@ -69,7 +69,7 @@ const Slider = React.forwardRef<HTMLSpanElement, SliderProps>((props, ref) => {
           return {
             ...resolvedSlotProps,
             className: clsx(
-              'block absolute h-1 rounded-sm bg-current',
+              'block absolute h-[6px] rounded-full bg-current',
               resolvedSlotProps?.className,
             ),
           };
@@ -82,9 +82,9 @@ const Slider = React.forwardRef<HTMLSpanElement, SliderProps>((props, ref) => {
           return {
             ...resolvedSlotProps,
             className: clsx(
-              `absolute w-4 h-4 -ml-1.5 -mt-1.5 box-border rounded-full outline-0 border-[3px] border-solid border-current bg-white hover:shadow-outline-purple ${
+              `absolute w-[20px] h-[20px] -ml-1.5 mt-[-7px] box-border rounded-full outline-0 border-4 border-solid border-current bg-white hover:shadow-outline-purple transition ${
                 focused || active
-                  ? 'shadow-[0_0_0_4px_#e9d5ff] dark:shadow-[0_0_0_4px_#7e22ce] active:shadow-[0_0_0_4px_#d8b4fe] dark:active:shadow-[0_0_0_4px_#9333ea] outline-none'
+                  ? 'shadow-[0_0_0_8px_rgba(192,132,252,0.5)] dark:shadow-[0_0_0_4px_rgba(192,132,252,0.5)] active:shadow-[0_0_0_4px_rgba(192,132,252,0.5)] dark:active:shadow-[0_0_0_4px_rgba(192,132,252,0.5)] scale-[1.2] outline-none'
                   : ''
               }`,
               resolvedSlotProps?.className,

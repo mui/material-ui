@@ -6,6 +6,7 @@ export default function UnstyledSliderIntroduction() {
   return (
     <Box sx={{ width: 320 }}>
       <Slider defaultValue={50} />
+      <Slider defaultValue={50} disabled />
     </Box>
   );
 }
