@@ -1,11 +1,11 @@
 extends: substitution
-message: Do you mean '%s' instead of '%s'?
+message: Do you mean '%s' instead of '%s'? Notice the non-breaking space
 level: error
 ignorecase: true
 # swap maps tokens in form of bad: good
 # for more information: https://vale.sh/docs/topics/styles/#substitution
 swap:
-  bellow: below
-  eg: e.g.
-  eg.: e.g.
-  'e.g ': 'e.g. '
+  Material UI: Material UI
+  MUI X: MUI X
+  Base UI: Base UI
+  MUI System: MUI System
