@@ -16,7 +16,7 @@ function ToggleColorMode() {
   const { mode, toggleColorMode } = contextValue;
 
   return (
-    <Box>
+    <Box sx={{ maxWidth: '36px' }}>
       <Button
         variant="outlined"
         onClick={toggleColorMode}

@@ -6,11 +6,11 @@ import Button from '@mui/material/Button';
 import ToggleColorMode from './ToggleColorMode';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import Menu from '@mui/material/Menu';
+import Typography from '@mui/material/Typography';
 import MenuItem from '@mui/material/MenuItem';
+import Drawer from '@mui/material/Drawer';
+
 import MenuIcon from '@mui/icons-material/Menu';
-import Typography from 'docs/src/pages/premium-themes/onepirate/modules/components/Typography';
 
 const logoStyle = {
   width: '140px',
@@ -18,14 +18,10 @@ const logoStyle = {
 };
 
 function AppAppBar() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
 
-  const handleMenuOpen = (event: { currentTarget: React.SetStateAction<null> }) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
+  const toggleDrawer = (newOpen: boolean) => () => {
+    setOpen(newOpen);
   };
 
   const scrollToSection = (sectionId: string) => {
@@ -38,7 +34,7 @@ function AppAppBar() {
         top: targetScroll,
         behavior: 'smooth',
       });
-      handleMenuClose();
+      setOpen(false);
     }
   };
 
@@ -100,76 +96,80 @@ function AppAppBar() {
                 </MenuItem>
               </Box>
             </Box>
-            <Button
-              color="primary"
-              variant="contained"
-              size="small"
-              sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
-            >
-              Sign up
-            </Button>
-            <Button
-              color="primary"
-              variant="outlined"
-              size="small"
-              sx={{ display: { xs: 'none', md: 'flex' } }}
-            >
-              Sign in
-            </Button>
-            <ToggleColorMode />
+
+            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+              <Button color="primary" variant="contained" size="small">
+                Sign up
+              </Button>
+              <Button color="primary" variant="outlined" size="small">
+                Sign in
+              </Button>
+              <ToggleColorMode />
+            </Box>
+
             <Box sx={{ display: { sm: '', md: 'none' } }}>
-              <IconButton
-                aria-label="menu"
-                onClick={handleMenuOpen}
+              <Button
+                variant="outlined"
                 color="primary"
-                sx={{ ml: 1 }}
+                aria-label="menu"
+                onClick={toggleDrawer(true)}
+                sx={{ minWidth: '30px', p: '4px' }}
               >
                 <MenuIcon />
-              </IconButton>
-              <Menu
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={handleMenuClose}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'right',
-                }}
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                sx={{
-                  '& .MuiPaper-root': {
-                    borderRadius: '8px',
-                    minWidth: 180,
-                  },
-                }}
-              >
-                <MenuItem onClick={() => scrollToSection('features')}>
-                  Features
-                </MenuItem>
-                <MenuItem onClick={() => scrollToSection('testimonials')}>
-                  Testimonials
-                </MenuItem>
-                <MenuItem onClick={() => scrollToSection('highlights')}>
-                  Highlights
-                </MenuItem>
-                <MenuItem onClick={() => scrollToSection('pricing')}>
-                  Pricing
-                </MenuItem>
-                <MenuItem onClick={() => scrollToSection('faq')}>FAQ</MenuItem>
-                <Divider />
-                <MenuItem>
-                  <Button color="primary" variant="contained" sx={{ width: '100%' }}>
-                    Sign up
-                  </Button>
-                </MenuItem>
-                <MenuItem>
-                  <Button color="primary" variant="outlined" sx={{ width: '100%' }}>
-                    Sign in
-                  </Button>
-                </MenuItem>
-              </Menu>
+              </Button>
+              <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
+                <Box
+                  sx={{
+                    minWidth: '60dvw',
+                    p: 2,
+                    backgroundColor: 'background.paper',
+                    flexGrow: 1,
+                  }}
+                >
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'end',
+                      flexGrow: 1,
+                    }}
+                  >
+                    <ToggleColorMode />
+                  </Box>
+                  <MenuItem onClick={() => scrollToSection('features')}>
+                    Features
+                  </MenuItem>
+                  <MenuItem onClick={() => scrollToSection('testimonials')}>
+                    Testimonials
+                  </MenuItem>
+                  <MenuItem onClick={() => scrollToSection('highlights')}>
+                    Highlights
+                  </MenuItem>
+                  <MenuItem onClick={() => scrollToSection('pricing')}>
+                    Pricing
+                  </MenuItem>
+                  <MenuItem onClick={() => scrollToSection('faq')}>FAQ</MenuItem>
+                  <Divider />
+                  <MenuItem>
+                    <Button
+                      color="primary"
+                      variant="contained"
+                      sx={{ width: '100%' }}
+                    >
+                      Sign up
+                    </Button>
+                  </MenuItem>
+                  <MenuItem>
+                    <Button
+                      color="primary"
+                      variant="outlined"
+                      sx={{ width: '100%' }}
+                    >
+                      Sign in
+                    </Button>
+                  </MenuItem>
+                </Box>
+              </Drawer>
             </Box>
           </Toolbar>
         </Container>

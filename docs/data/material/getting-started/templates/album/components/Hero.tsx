@@ -40,7 +40,7 @@ export default function ProductHero() {
               direction="column"
               spacing={2}
               justifyContent="center"
-              sx={{ zIndex: 1 }}
+              sx={{ zIndex: 1, mx: { xs: '16px', sm: '0' } }}
             >
               <Chip
                 size="small"

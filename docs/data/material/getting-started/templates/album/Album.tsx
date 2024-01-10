@@ -6,7 +6,7 @@ import Link from '@mui/material/Link';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Divider from '@mui/material/Divider';
 
-import AppBar from './components/AppBar';
+import AppAppBar from './components/AppBar';
 import Hero from './components/Hero';
 import LogoCollection from './components/LogoCollection';
 import Highlights from './components/Highlights';
@@ -59,7 +59,7 @@ export default function Album() {
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <AppBar />
+        <AppAppBar />
         <Hero />
         <Box
           sx={{
