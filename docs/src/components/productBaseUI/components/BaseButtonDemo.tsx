@@ -7,7 +7,7 @@ const buttonStyles = `
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: bold;
   font-size: 0.875rem;
-  background: var(--muidocs-palette-primary-600);
+  background: var(--palette-primary-dark);
   padding: 10px 16px;
   border-radius: 8px;
   color: white;
@@ -33,30 +33,31 @@ const buttonStyles = `
     cursor: not-allowed;
 
     &:hover {
-      background: var(--muidocs-palette-primary-600);
+      background: var(--palette-primary-dark);
     }
   }
 
   :where([data-mui-color-scheme='dark']) & {
-    background: var(--muidocs-palette-primary-700);
 
     &:hover {
-      background: var(--muidocs-palette-primary-800);
+      background: var(--palette-primary-hover);
     }
 
     &.Mui-active {
-      background-color: var(--muidocs-palette-primary-900);
+      background-color: var(--palette-primary-active);
     }
 
     &.Mui-disabled {
       &:hover {
-        background: var(--muidocs-palette-primary-700);
+        background: var(--palette-primary-dark);
       }
     }
   }
 `;
 
 const StyledButton = styled('button')(buttonStyles);
+
+const buttonStylesTailwind = `transition shadow-[--shadow] cursor-pointer rounded-[8px] border-none bg-indigo-600 p-[10px_16px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-indigo-500 ui-active:bg-indigo-800 ui-disabled:cursor-not-allowed ui-disabled:opacity-50 ui-focus-visible:[outline:4px_solid_var(--focus-ring)]`;
 
 export default function BaseButtonDemo({
   styling,
@@ -91,13 +92,8 @@ export default function BaseButtonDemo({
       )}
       {styling === 'tailwindcss' && (
         <React.Fragment>
-          <Button className="transition shadow-[--shadow] cursor-pointer rounded-[8px] border-none bg-indigo-600 p-[10px_16px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-indigo-700 ui-active:bg-indigo-800 ui-disabled:cursor-not-allowed ui-disabled:opacity-50 ui-focus-visible:[outline:4px_solid_var(--focus-ring)]">
-            Button
-          </Button>
-          <Button
-            disabled
-            className="transition shadow-[--shadow] cursor-pointer rounded-[8px] border-none bg-indigo-600 p-[10px_16px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-indigo-700 ui-active:bg-indigo-800 ui-disabled:cursor-not-allowed ui-disabled:opacity-50 ui-focus-visible:[outline:4px_solid_var(--focus-ring)]"
-          >
+          <Button className={buttonStylesTailwind}>Button</Button>
+          <Button className={buttonStylesTailwind} disabled>
             Disabled
           </Button>
         </React.Fragment>
@@ -133,7 +129,7 @@ import './styles.css';
 <Button
   className="transition shadow-[--shadow] cursor-pointer rounded-[8px] 
   border-none bg-indigo-600 p-[10px_16px] text-[0.875rem] font-bold 
-  text-white [font-family:IBM_Plex_sans] hover:bg-indigo-700 
+  text-white [font-family:IBM_Plex_sans] hover:bg-indigo-500 
   ui-active:bg-indigo-800 ui-disabled:cursor-not-allowed ui-disabled:opacity-50 
   ui-focus-visible:[outline:4px_solid_var(--focus-ring)]">
   Button
@@ -141,7 +137,7 @@ import './styles.css';
 <Button
   className="transition shadow-[--shadow] cursor-pointer rounded-[8px] 
   border-none bg-indigo-600 p-[10px_16px] text-[0.875rem] font-bold 
-  text-white [font-family:IBM_Plex_sans] hover:bg-indigo-700 
+  text-white [font-family:IBM_Plex_sans] hover:bg-indigo-500 
   ui-active:bg-indigo-800 ui-disabled:cursor-not-allowed ui-disabled:opacity-50 
   ui-focus-visible:[outline:4px_solid_var(--focus-ring)]">
   Disabled

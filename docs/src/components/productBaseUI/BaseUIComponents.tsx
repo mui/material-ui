@@ -102,7 +102,7 @@ export default function BaseUIComponents() {
                 '--palette-primary': 'var(--muidocs-palette-primary-main)',
                 '--palette-primary-light': 'var(--muidocs-palette-primary-300)',
                 '--palette-primary-hover': 'var(--muidocs-palette-primary-600)',
-                '--palette-primary-dark': 'var(--muidocs-palette-primary-800)',
+                '--palette-primary-dark': 'var(--muidocs-palette-primary-700)',
                 '--focus-ring': 'rgba(102, 178, 255, 0.3)',
                 '--shadow': '0px 2px 2px rgba(205, 210, 215, 0.5)',
                 ...(styling === 'tailwindcss' && {
@@ -119,7 +119,7 @@ export default function BaseUIComponents() {
                   '--palette-primary-hover': '#7F17DE',
                   '--palette-primary-dark': '#581C87',
                   '--focus-ring': 'rgba(216, 180, 254, 0.6)',
-                  '--shadow': '0px 2px 2px rgba(205, 210, 215, 0.5)',
+                  '--shadow': '0px 2px 2px rgba(205, 210, 215, 0.8)',
                 }),
               },
               (theme) =>
@@ -128,13 +128,13 @@ export default function BaseUIComponents() {
                   '--shadow': '0px 2px 2px rgba(0, 0, 0, 0.5)',
                   ...(styling === 'tailwindcss' && {
                     '--palette-primary': '#5B69F6',
-                    '--palette-primary-hover': '#3446F4',
+                    '--palette-primary-hover': '#4A41C8',
                     '--focus-ring': 'rgba(123, 120, 207, 0.6)',
                     '--shadow': '0px 2px 2px rgba(0, 0, 0, 0.5)',
                   }),
                   ...(styling === 'css' && {
                     '--palette-primary': '#B56FFB',
-                    '--palette-primary-hover': '#A651FB',
+                    '--palette-primary-hover': '#7F05fA',
                     '--focus-ring': 'rgba(166, 94, 222, 0.6)',
                     '--shadow': '0px 2px 2px rgba(0, 0, 0, 0.5)',
                   }),
@@ -149,6 +149,7 @@ export default function BaseUIComponents() {
               {demo === 'Slider' && <BaseSliderDemo styling={styling} />}
             </Frame.Demo>
             <Frame.Info
+              data-mui-color-scheme="dark"
               sx={{
                 height: 360,
                 position: 'relative',

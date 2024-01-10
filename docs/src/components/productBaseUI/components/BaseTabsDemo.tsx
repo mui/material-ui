@@ -49,12 +49,13 @@ const tabStyles = `
 
   &:focus-visible {
     color: #FFF;
-    outline: 4px solid var(--focus-ring);
+    outline: 2px solid rgba(255,255,255,0.8);
+    outline-offset: 2px;
   }
 
   &.Mui-selected {
     background-color: #FFF;
-    color: var(--palette-primary);
+    color: var(--palette-primary-dark);
   }
 `;
 
@@ -65,6 +66,10 @@ const CSS = `.MuiTabsList-root {${tabListStyles}}
 .MuiTabPanel-root {${tabPanelStyles}}
 
 .MuiTab-root {${tabStyles}}`;
+
+const tabStylesTailwind = `m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--palette-primary-hover] focus:text-white focus-visible:[outline:2px_solid_rgba(255,255,255,0.8)] outline-offset-2 ui-selected:bg-white ui-selected:text-[--palette-primary-dark] transition`;
+
+const tabPanelStylesTailwind = `text-[0.875rem] [font-family:IBM_Plex_sans]`;
 
 export default function BaseTabsDemo({ styling }: { styling: 'system' | 'tailwindcss' | 'css' }) {
   return (
@@ -112,23 +117,17 @@ export default function BaseTabsDemo({ styling }: { styling: 'system' | 'tailwin
       {styling === 'tailwindcss' && ( // https://play.tailwindcss.com/8jGjUI7EWe
         <Tabs selectionFollowsFocus defaultValue={0}>
           <TabsList className="mb-[16px] flex min-w-[300px] content-between items-center justify-center rounded-[12px] bg-[--palette-primary-dark] [box-shadow:var(--shadow)]">
-            <Tab className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--palette-primary-hover] focus:text-white focus-visible:[outline:3px_solid_var(--focus-ring)] ui-selected:bg-white ui-selected:text-[--palette-primary] transition">
-              One
-            </Tab>
-            <Tab className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--palette-primary-hover] focus:text-white focus-visible:[outline:3px_solid_var(--focus-ring)] ui-selected:bg-white ui-selected:text-[--palette-primary] transition">
-              Two
-            </Tab>
-            <Tab className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--palette-primary-hover] focus:text-white focus-visible:[outline:3px_solid_var(--focus-ring)] ui-selected:bg-white ui-selected:text-[--palette-primary] transition">
-              Three
-            </Tab>
+            <Tab className={tabStylesTailwind}>One</Tab>
+            <Tab className={tabStylesTailwind}>Two</Tab>
+            <Tab className={tabStylesTailwind}>Three</Tab>
           </TabsList>
-          <TabPanel className="text-[0.875rem] [font-family:IBM_Plex_sans]" value={0}>
+          <TabPanel className={tabPanelStylesTailwind} value={0}>
             First page
           </TabPanel>
-          <TabPanel className="text-[0.875rem] [font-family:IBM_Plex_sans]" value={1}>
+          <TabPanel className={tabPanelStylesTailwind} value={1}>
             Second page
           </TabPanel>
-          <TabPanel className="text-[0.875rem] [font-family:IBM_Plex_sans]" value={2}>
+          <TabPanel className={tabPanelStylesTailwind} value={2}>
             Third page
           </TabPanel>
         </Tabs>
@@ -210,17 +209,17 @@ import { Tab } from '@mui/base/Tab';
     </Tab>
   </TabsList>
   <TabPanel
-    className="text-[0.875rem] [font-family:IBM_Plex_sans]"
+    className={tabPanelStylesTailwind}
     value={0}>
     First page
   </TabPanel>
   <TabPanel
-    className="text-[0.875rem] [font-family:IBM_Plex_sans]"
+    className={tabPanelStylesTailwind}
     value={1}>
     Second page
   </TabPanel>
   <TabPanel
-    className="text-[0.875rem] [font-family:IBM_Plex_sans]"
+    className={tabPanelStylesTailwind}
     value={2}>
     Third page
   </TabPanel>
