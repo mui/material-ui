@@ -10,6 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu';
+import Typography from 'docs/src/pages/premium-themes/onepirate/modules/components/Typography';
 
 const logoStyle = {
   width: '140px',
@@ -72,23 +73,37 @@ function AppAppBar() {
               />
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <MenuItem onClick={() => scrollToSection('features')}>
-                  Features
+                  <Typography variant="body2" color="text.primary">
+                    Features
+                  </Typography>
                 </MenuItem>
                 <MenuItem onClick={() => scrollToSection('testimonials')}>
-                  Testimonials
+                  <Typography variant="body2" color="text.primary">
+                    Testimonials
+                  </Typography>
                 </MenuItem>
                 <MenuItem onClick={() => scrollToSection('highlights')}>
-                  Highlights
+                  <Typography variant="body2" color="text.primary">
+                    Highlights
+                  </Typography>
                 </MenuItem>
                 <MenuItem onClick={() => scrollToSection('pricing')}>
-                  Pricing
+                  <Typography variant="body2" color="text.primary">
+                    Pricing
+                  </Typography>
                 </MenuItem>
-                <MenuItem onClick={() => scrollToSection('faq')}>FAQ</MenuItem>
+                <MenuItem onClick={() => scrollToSection('faq')}>
+                  {' '}
+                  <Typography variant="body2" color="text.primary">
+                    FAQ
+                  </Typography>
+                </MenuItem>
               </Box>
             </Box>
             <Button
               color="primary"
               variant="contained"
+              size="small"
               sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
             >
               Sign up
@@ -96,6 +111,7 @@ function AppAppBar() {
             <Button
               color="primary"
               variant="outlined"
+              size="small"
               sx={{ display: { xs: 'none', md: 'flex' } }}
             >
               Sign in

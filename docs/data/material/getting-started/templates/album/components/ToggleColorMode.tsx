@@ -20,9 +20,14 @@ function ToggleColorMode() {
       <Button
         variant="outlined"
         onClick={toggleColorMode}
-        sx={{ minWidth: '36px', px: 0, ml: 1 }}
+        size="small"
+        sx={{ minWidth: '30px', p: '4px', ml: 1 }}
       >
-        {mode === 'dark' ? <WbSunnyRoundedIcon /> : <ModeNightRoundedIcon />}
+        {mode === 'dark' ? (
+          <WbSunnyRoundedIcon fontSize="small" />
+        ) : (
+          <ModeNightRoundedIcon fontSize="small" />
+        )}
       </Button>
     </Box>
   );
