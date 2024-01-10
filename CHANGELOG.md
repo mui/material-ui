@@ -34,6 +34,10 @@ A big thanks to the 22 contributors who made this release possible. Here are som
 
 - Fix `isPlainObject` to work across realm (#39981) @brijeshb42
 
+### `@mui/base@5.0.0-beta.31`
+
+- [base-ui][NumberInput] Remove inputId and inputRef types from NumberInput component (#40425) @sai6855
+
 ### `@mui/joy@5.0.0-beta.22`
 
 - [Badge] Shouldn't crash when using custom size (#39986) @iamsaumya
