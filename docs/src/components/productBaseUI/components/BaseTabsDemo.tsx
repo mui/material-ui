@@ -42,6 +42,7 @@ const tabStyles = `
   display: flex;
   justify-content: center;
   transition: all 120ms ease;
+  user-select: none;
 
   &:hover {
     background-color: var(--primary-hover);
@@ -67,7 +68,7 @@ const CSS = `.MuiTabsList-root {${tabListStyles}}
 
 .MuiTab-root {${tabStyles}}`;
 
-const tabStylesTailwind = `m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--primary-hover] focus:text-white focus-visible:[outline:2px_solid_rgba(255,255,255,0.8)] outline-offset-2 ui-selected:bg-white ui-selected:text-[--primary] transition`;
+const tabStylesTailwind = `m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--primary-hover] focus:text-white focus-visible:[outline:2px_solid_rgba(255,255,255,0.8)] outline-offset-2 ui-selected:bg-white ui-selected:text-[--primary] transition select-none`;
 
 const tabPanelStylesTailwind = `text-[0.875rem] [font-family:IBM_Plex_sans]`;
 
@@ -181,30 +182,27 @@ import { Tab } from '@mui/base/Tab';
         justify-center rounded-[7px] border-none
         bg-transparent p-[12px] text-[0.875rem]
         font-bold text-white [font-family:IBM_Plex_sans]
-        focus:text-white transition
-        focus:[outline:3px_solid_var(--focus-ring)]
-        ui-selected:bg-white
-        ui-selected:text-[--palette-primary]">
+        focus:text-white focus:[outline:3px_solid_var(--focus-ring)]
+        ui-selected:bg-white ui-selected:text-[--palette-primary]
+        transition select-none">
       One
     </Tab>
     <Tab className="m-[6px] flex w-full cursor-pointer
         justify-center rounded-[7px] border-none
         bg-transparent p-[12px] text-[0.875rem]
         font-bold text-white [font-family:IBM_Plex_sans]
-        focus:text-white transition
-        focus:[outline:3px_solid_var(--focus-ring)]
-        ui-selected:bg-white
-        ui-selected:text-[--palette-primary]">
+        focus:text-white focus:[outline:3px_solid_var(--focus-ring)]
+        ui-selected:bg-white ui-selected:text-[--palette-primary]
+        transition select-none">
       Two
     </Tab>
     <Tab className="m-[6px] flex w-full cursor-pointer
         justify-center rounded-[7px] border-none
         bg-transparent p-[12px] text-[0.875rem]
         font-bold text-white [font-family:IBM_Plex_sans]
-        focus:text-white transition
-        focus:[outline:3px_solid_var(--focus-ring)]
-        ui-selected:bg-white
-        ui-selected:text-[--palette-primary]">
+        focus:text-white focus:[outline:3px_solid_var(--focus-ring)]
+        ui-selected:bg-white ui-selected:text-[--palette-primary]
+        transition select-none">
       Three
     </Tab>
   </TabsList>
