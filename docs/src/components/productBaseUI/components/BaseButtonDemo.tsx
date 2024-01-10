@@ -7,7 +7,7 @@ const buttonStyles = `
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: bold;
   font-size: 0.875rem;
-  background-color: var(--palette-primary);
+  background: var(--muidocs-palette-primary-600);
   padding: 10px 16px;
   border-radius: 8px;
   color: white;
@@ -17,7 +17,7 @@ const buttonStyles = `
   box-shadow: var(--shadow);
 
   &:hover {
-    background-color: var(--palette-primary-hover);
+    background: var(--muidocs-palette-primary-700);
   }
 
   &.Mui-active {
@@ -31,6 +31,24 @@ const buttonStyles = `
   &.Mui-disabled {
     opacity: 0.5;
     cursor: not-allowed;
+
+    &:hover {
+      background: var(--muidocs-palette-primary-600);
+    }
+  }
+
+  :where([data-mui-color-scheme='dark']) & {
+    background: var(--muidocs-palette-primary-700);
+
+    &:hover {
+      background: var(--muidocs-palette-primary-800);
+    }
+
+    &.Mui-disabled {
+      &:hover {
+        background: var(--muidocs-palette-primary-700);
+      }
+    }
   }
 `;
 
@@ -69,12 +87,12 @@ export default function BaseButtonDemo({
       )}
       {styling === 'tailwindcss' && (
         <React.Fragment>
-          <Button className="transition-all-[150ms_ease] shaodw-[--shadow] cursor-pointer rounded-[8px] border-none bg-[--palette-primary] p-[10px_16px] text-[0.875rem] font-bold text-white transition [font-family:IBM_Plex_sans] hover:bg-[--palette-primary-hover] ui-active:bg-[--palette-primary-dark] ui-disabled:cursor-not-allowed ui-disabled:opacity-50 ui-focus-visible:[outline:4px_solid_var(--focus-ring)]">
+          <Button className="transition shaodw-[--shadow] cursor-pointer rounded-[8px] border-none bg-indigo-600 p-[10px_16px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-indigo-700 ui-active:bg-indigo-800 ui-disabled:cursor-not-allowed ui-disabled:opacity-50 ui-focus-visible:[outline:4px_solid_var(--focus-ring)]">
             Button
           </Button>
           <Button
             disabled
-            className="transition-all-[150ms_ease] cursor-pointer rounded-[8px] border-none bg-[--palette-primary] p-[10px_16px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] ui-active:bg-[--palette-primary-dark] ui-disabled:cursor-not-allowed ui-disabled:opacity-50 ui-focus-visible:[outline:4px_solid_var(--focus-ring)]"
+            className="transition shaodw-[--shadow] cursor-pointer rounded-[8px] border-none bg-indigo-600 p-[10px_16px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-indigo-700 ui-active:bg-indigo-800 ui-disabled:cursor-not-allowed ui-disabled:opacity-50 ui-focus-visible:[outline:4px_solid_var(--focus-ring)]"
           >
             Disabled
           </Button>
@@ -109,25 +127,19 @@ import './styles.css';
     return `import { Button } from '@mui/base/Button';
 
 <Button
-  className="transition-all-[150ms_ease] cursor-pointer
-    rounded-[8px] border-none bg-[--palette-primary]
-    p-[10px_16px] text-[0.875rem] font-bold
-    text-white [font-family:IBM_Plex_sans]
-    hover:bg-[--palette-primary-hover]
-    shadow-[--shadow]
-    ui-active:bg-[--palette-primary-dark]
-    ui-disabled:cursor-not-allowed ui-disabled:opacity-50
-    ui-focus-visible:[outline:4px_solid_var(--focus-ring) transition">
+  className="transition shaodw-[--shadow] cursor-pointer rounded-[8px] 
+  border-none bg-indigo-600 p-[10px_16px] text-[0.875rem] font-bold 
+  text-white [font-family:IBM_Plex_sans] hover:bg-indigo-700 
+  ui-active:bg-indigo-800 ui-disabled:cursor-not-allowed ui-disabled:opacity-50 
+  ui-focus-visible:[outline:4px_solid_var(--focus-ring)]">
   Button
 </Button>
 <Button
-  className="transition-all-[150ms_ease] cursor-pointer
-    rounded-[8px] border-none bg-[--palette-primary]
-    p-[10px_16px] text-[0.875rem] font-bold
-    text-white [font-family:IBM_Plex_sans]
-    ui-active:bg-[--palette-primary-dark]
-    ui-disabled:cursor-not-allowed ui-disabled:opacity-50
-    ui-focus-visible:[outline:4px_solid_var(--focus-ring)]">
+  className="transition shaodw-[--shadow] cursor-pointer rounded-[8px] 
+  border-none bg-indigo-600 p-[10px_16px] text-[0.875rem] font-bold 
+  text-white [font-family:IBM_Plex_sans] hover:bg-indigo-700 
+  ui-active:bg-indigo-800 ui-disabled:cursor-not-allowed ui-disabled:opacity-50 
+  ui-focus-visible:[outline:4px_solid_var(--focus-ring)]">
   Disabled
 </Button>`;
   }

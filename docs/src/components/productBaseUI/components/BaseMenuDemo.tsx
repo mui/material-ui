@@ -18,7 +18,7 @@ const buttonStyles = `
   border-radius: 8px;
   padding: 8px 12px 8px 6px;
   line-height: 1.5;
-  background: var(--muidocs-palette-background-paper);
+  background: var(--muidocs-palette-background-default);
   box-shadow: var(--shadow);
   border: 1px solid;
   border-color: var(--muidocs-palette-grey-200);
@@ -44,8 +44,8 @@ const buttonStyles = `
     border-color: var(--muidocs-palette-primaryDark-700);
 
     &:hover {
-      background: var(--muidocs-palette-primaryDark-700);
-      border-color: var(--muidocs-palette-primaryDark-500);
+      background: var(--muidocs-palette-primaryDark-800);
+      border-color: var(--muidocs-palette-primaryDark-600);
     }
   }
 `;
@@ -65,11 +65,10 @@ const listboxStyles = `
   border-radius: 12px;
   border: 1px solid;
   border-color: var(--muidocs-palette-grey-200);
-  background: var(--muidocs-palette-background-paper);
+  background: var(--muidocs-palette-background-default);
   box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.2);
 
   :where([data-mui-color-scheme='dark']) & {
-    background: var(--muidocs-palette-primaryDark-800);
     border-color: var(--muidocs-palette-primaryDark-700);
     box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.8);
   }
@@ -129,8 +128,9 @@ export default function BaseMenuDemo({ styling }: { styling?: 'system' | 'tailwi
       {styling === 'tailwindcss' && (
         <Dropdown>
           <MenuButton
-            className="min-h-[calc(1.5em + 22px)] inline-flex items-center gap-[0.5rem] rounded-[8px] border border-solid border-[--muidocs-palette-grey-200] bg-[--muidocs-palette-background-paper] p-[8px_12px_8px_6px] text-[0.875rem] leading-[1.5] transition-all [box-shadow:var(--shadow)] font-['IBM_Plex_Sans'] hover:bg-[--muidocs-palette-grey-50] ui-focus-visible:[outline:4px_solid_var(--focus-ring)] 
-            dark:border-[--muidocs-palette-primaryDark-700] dark:hover:bg-[--muidocs-palette-primaryDark-800]"
+            className="min-h-[calc(1.5em + 22px)] inline-flex items-center gap-[0.5rem] rounded-[8px] font-medium border border-solid border-[--muidocs-palette-grey-200] bg-[--muidocs-palette-background-default] p-[8px_12px_8px_6px] text-[0.875rem] leading-[1.5] transition-all [box-shadow:var(--shadow)] font-['IBM_Plex_Sans'] hover:bg-[--muidocs-palette-grey-50] hover:border-[--muidocs-palette-grey-300] ui-focus-visible:[outline:4px_solid_var(--focus-ring)] 
+            dark:border-[--muidocs-palette-primaryDark-700] dark:hover:bg-[--muidocs-palette-primaryDark-800] 
+            dark:hover:border-[--muidocs-palette-primaryDark-600]"
           >
             <Person className="text-[--palette-primary]" />
             My account
@@ -141,17 +141,17 @@ export default function BaseMenuDemo({ styling }: { styling?: 'system' | 'tailwi
               listbox: {
                 id: 'simple-menu',
                 className:
-                  'mx-0 my-[8px] p-[4px] flex flex-col rounded-[12px] border border-solid border-[--muidocs-palette-grey-200] bg-[--muidocs-palette-background-paper] shadow-[0px_4px_40px_rgba(62,80,96,0.1)] dark:border-[--muidocs-palette-primaryDark-700] dark:shadow-[0px_4px_40px_rgba(11,13,14,0.5)]',
+                  'mx-0 my-[8px] p-[4px] flex flex-col rounded-[12px] border border-solid border-[--muidocs-palette-grey-200] bg-[--muidocs-palette-background-default] shadow-[0px_4px_40px_rgba(62,80,96,0.1)] dark:border-[--muidocs-palette-primaryDark-700] dark:shadow-[0px_4px_40px_rgba(11,13,14,0.5)]',
               },
             }}
           >
-            <MenuItem className="hover:color-[--muidocs-palette-text-primary] flex min-h-[24px] items-center gap-[4px] rounded-[6px] border border-solid border-transparent px-[12px] py-[6px] hover:cursor-default hover:border-[--muidocs-palette-grey-100] hover:bg-[--muidocs-palette-grey-50] ui-focus-visible:cursor-default ui-focus-visible:border-[--muidocs-palette-grey-100] ui-focus-visible:bg-[--muidocs-palette-grey-50] ui-focus-visible:outline-none">
+            <MenuItem className="hover:color-[--muidocs-palette-text-primary] flex min-h-[24px] items-center gap-[4px] rounded-[6px] border border-solid border-transparent px-[12px] py-[6px] hover:cursor-default hover:border-[--muidocs-palette-grey-100] hover:bg-[--muidocs-palette-grey-50] dark:hover:bg-[--muidocs-palette-primaryDark-700] dark:hover:border-[--muidocs-palette-primaryDark-500] ui-focus-visible:cursor-default ui-focus-visible:border-[--muidocs-palette-grey-100] ui-focus-visible:bg-[--muidocs-palette-grey-50] ui-focus-visible:outline-none">
               Profile
             </MenuItem>
-            <MenuItem className="hover:color-[--muidocs-palette-text-primary] flex min-h-[24px] items-center gap-[4px] rounded-[6px] border border-solid border-transparent px-[12px] py-[6px] hover:cursor-default hover:border-[--muidocs-palette-grey-100] hover:bg-[--muidocs-palette-grey-50] ui-focus-visible:cursor-default ui-focus-visible:border-[--muidocs-palette-grey-100] ui-focus-visible:bg-[--muidocs-palette-grey-50] ui-focus-visible:outline-none">
+            <MenuItem className="hover:color-[--muidocs-palette-text-primary] flex min-h-[24px] items-center gap-[4px] rounded-[6px] border border-solid border-transparent px-[12px] py-[6px] hover:cursor-default hover:border-[--muidocs-palette-grey-100] hover:bg-[--muidocs-palette-grey-50] dark:hover:bg-[--muidocs-palette-primaryDark-700] dark:hover:border-[--muidocs-palette-primaryDark-500] ui-focus-visible:cursor-default ui-focus-visible:border-[--muidocs-palette-grey-100] ui-focus-visible:bg-[--muidocs-palette-grey-50] ui-focus-visible:outline-none">
               Language settings
             </MenuItem>
-            <MenuItem className="hover:color-[--muidocs-palette-text-primary] flex min-h-[24px] items-center gap-[4px] rounded-[6px] border border-solid border-transparent px-[12px] py-[6px] hover:cursor-default hover:border-[--muidocs-palette-grey-100] hover:bg-[--muidocs-palette-grey-50] ui-focus-visible:cursor-default ui-focus-visible:border-[--muidocs-palette-grey-100] ui-focus-visible:bg-[--muidocs-palette-grey-50] ui-focus-visible:outline-none">
+            <MenuItem className="hover:color-[--muidocs-palette-text-primary] flex min-h-[24px] items-center gap-[4px] rounded-[6px] border border-solid border-transparent px-[12px] py-[6px] hover:cursor-default hover:border-[--muidocs-palette-grey-100] hover:bg-[--muidocs-palette-grey-50] dark:hover:bg-[--muidocs-palette-primaryDark-700] dark:hover:border-[--muidocs-palette-primaryDark-500] ui-focus-visible:cursor-default ui-focus-visible:border-[--muidocs-palette-grey-100] ui-focus-visible:bg-[--muidocs-palette-grey-50] ui-focus-visible:outline-none">
               Log out
             </MenuItem>
           </Menu>
@@ -270,17 +270,9 @@ function Demo() {
   return (
     <Dropdown>
       <MenuButton
-        className="min-h-[calc(1.5em + 22px)] inline-flex
-          items-center gap-[0.5rem] rounded-[8px] border
-          border-solid border-[--muidocs-palette-grey-200]
-          bg-[--muidocs-palette-background-paper]
-          p-[8px_12px_8px_6px] text-[0.875rem]
-          leading-[1.5] transition-all font-['IBM_Plex_Sans']
-          [box-shadow:var(--shadow)]
-          hover:bg-[--muidocs-palette-grey-50]
-          ui-focus-visible:[outline:3px_solid_var(--focus-ring)]
-          dark:border-[--muidocs-palette-primaryDark-700]
-          dark:hover:bg-[--muidocs-palette-primaryDark-800]"
+        className="min-h-[calc(1.5em + 22px)] inline-flex items-center gap-[0.5rem] rounded-[8px] font-medium border border-solid border-[--muidocs-palette-grey-200] bg-[--muidocs-palette-background-default] p-[8px_12px_8px_6px] text-[0.875rem] leading-[1.5] transition-all [box-shadow:var(--shadow)] font-['IBM_Plex_Sans'] hover:bg-[--muidocs-palette-grey-50] hover:border-[--muidocs-palette-grey-300] ui-focus-visible:[outline:4px_solid_var(--focus-ring)] 
+        dark:border-[--muidocs-palette-primaryDark-700] dark:hover:bg-[--muidocs-palette-primaryDark-800] 
+        dark:hover:border-[--muidocs-palette-primaryDark-600]"
       >
         <Person className="text-[--palette-primary]" />
         My account
@@ -292,7 +284,7 @@ function Demo() {
             id: 'simple-menu',
             className: \`mx-0 my-[8px] p-[4px] flex flex-col rounded-[8px]
               border border-solid border-[--muidocs-palette-grey-200]
-              bg-[--muidocs-palette-background-paper]
+              bg-[--muidocs-palette-background-default]
               shadow-[0px_4px_40px_rgba(62,80,96,0.1)]
               dark:border-[--muidocs-palette-primaryDark-700]
               dark:shadow-[0px_4px_40px_rgba(11,13,14,0.5)]\`,
@@ -300,44 +292,35 @@ function Demo() {
         }}
       >
         <MenuItem
-          className="hover:color-[--muidocs-palette-text-primary]
-            flex min-h-[24px] items-center gap-[4px] rounded-[4px]
-            border border-solid border-transparent px-[12px]
-            py-[6px] hover:cursor-default
-            hover:border-[--muidocs-palette-grey-100]
-            hover:bg-[--muidocs-palette-grey-50]
-            ui-focus-visible:cursor-default
-            ui-focus-visible:border-[--muidocs-palette-grey-100]
-            ui-focus-visible:bg-[--muidocs-palette-grey-50]
-            ui-focus-visible:outline-none"
+          className="flex min-h-[24px] items-center gap-[4px] rounded-[6px] 
+          border border-solid border-transparent px-[12px] py-[6px] 
+          hover:color-[--muidocs-palette-text-primary] hover:cursor-default hover:border-[--muidocs-palette-grey-100] 
+          hover:bg-[--muidocs-palette-grey-50] dark:hover:bg-[--muidocs-palette-primaryDark-700] 
+          dark:hover:border-[--muidocs-palette-primaryDark-500] ui-focus-visible:cursor-default 
+          ui-focus-visible:border-[--muidocs-palette-grey-100] 
+          ui-focus-visible:bg-[--muidocs-palette-grey-50] ui-focus-visible:outline-none"
         >
           Profile
         </MenuItem>
         <MenuItem
-          className="hover:color-[--muidocs-palette-text-primary]
-            flex min-h-[24px] items-center gap-[4px] rounded-[4px]
-            border border-solid border-transparent px-[12px]
-            py-[6px] hover:cursor-default
-            hover:border-[--muidocs-palette-grey-100]
-            hover:bg-[--muidocs-palette-grey-50]
-            ui-focus-visible:cursor-default
-            ui-focus-visible:border-[--muidocs-palette-grey-100]
-            ui-focus-visible:bg-[--muidocs-palette-grey-50]
-            ui-focus-visible:outline-none"
+          className="flex min-h-[24px] items-center gap-[4px] rounded-[6px] 
+          border border-solid border-transparent px-[12px] py-[6px] 
+          hover:color-[--muidocs-palette-text-primary] hover:cursor-default hover:border-[--muidocs-palette-grey-100] 
+          hover:bg-[--muidocs-palette-grey-50] dark:hover:bg-[--muidocs-palette-primaryDark-700] 
+          dark:hover:border-[--muidocs-palette-primaryDark-500] ui-focus-visible:cursor-default 
+          ui-focus-visible:border-[--muidocs-palette-grey-100] 
+          ui-focus-visible:bg-[--muidocs-palette-grey-50] ui-focus-visible:outline-none"
         >
           Language settings
         </MenuItem>
         <MenuItem
-          className="hover:color-[--muidocs-palette-text-primary]
-            flex min-h-[24px] items-center gap-[4px] rounded-[4px]
-            border border-solid border-transparent px-[12px]
-            py-[6px] hover:cursor-default
-            hover:border-[--muidocs-palette-grey-100]
-            hover:bg-[--muidocs-palette-grey-50]
-            ui-focus-visible:cursor-default
-            ui-focus-visible:border-[--muidocs-palette-grey-100]
-            ui-focus-visible:bg-[--muidocs-palette-grey-50]
-            ui-focus-visible:outline-none"
+          className="flex min-h-[24px] items-center gap-[4px] rounded-[6px] 
+          border border-solid border-transparent px-[12px] py-[6px] 
+          hover:color-[--muidocs-palette-text-primary] hover:cursor-default hover:border-[--muidocs-palette-grey-100] 
+          hover:bg-[--muidocs-palette-grey-50] dark:hover:bg-[--muidocs-palette-primaryDark-700] 
+          dark:hover:border-[--muidocs-palette-primaryDark-500] ui-focus-visible:cursor-default 
+          ui-focus-visible:border-[--muidocs-palette-grey-100] 
+          ui-focus-visible:bg-[--muidocs-palette-grey-50] ui-focus-visible:outline-none"
         >
           Log out
         </MenuItem>

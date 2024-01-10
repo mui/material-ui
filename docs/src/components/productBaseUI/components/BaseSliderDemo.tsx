@@ -28,8 +28,8 @@ const rootStyles = `
     display: block;
     position: absolute;
     width: 100%;
-    height: 4px;
-    border-radius: 2px;
+    height: 6px;
+    border-radius: 6px;
     background-color: currentColor;
     opacity: 0.4;
   }
@@ -37,30 +37,40 @@ const rootStyles = `
   & .MuiSlider-track {
     display: block;
     position: absolute;
-    height: 4px;
-    border-radius: 2px;
+    height: 6px;
+    border-radius: 6px;
     background-color: currentColor;
   }
 
   & .MuiSlider-thumb {
     position: absolute;
-    width: 16px;
-    height: 16px;
     margin-left: -6px;
-    margin-top: -6px;
+    margin-top: -7px;
+    width: 20px;
+    height: 20px;
     box-sizing: border-box;
     border-radius: 50%;
     outline: 0;
-    border: 3px solid currentColor;
+    border: 4px solid currentColor;
     background-color: #fff;
+    transition-property: box-shadow, transform;
+    transition-timing-function: ease;
+    transition-duration: 120ms;
+    transform-origin: center;
 
-    &:hover,
+    &:hover {
+      box-shadow: 0 0 0 4px var(--focus-ring);
+    }
+
     &.Mui-focusVisible,
     &.Mui-active {
-      box-shadow: 0 0 0 0.25rem var(--focus-ring);
+      box-shadow: 0 0 0 8px var(--focus-ring);
+      outline: none;
+      transform: scale(1.2);
     }
   }
 `;
+
 const StyledSlider = styled('span')(rootStyles);
 
 const CSS = `.MuiSlider-root {${rootStyles}}`;
@@ -105,14 +115,14 @@ export default function BaseTabsDemo({ styling }: { styling?: 'system' | 'tailwi
                   'py-4 px-0 w-full relative cursor-pointer text-[--palette-primary] touch-action-none tap-highlight-transparent hover:opacity-100 ui-disabled:pointer-events-none ui-disabled:cursor-default ui-disabled:opacity-50 ui-disabled:cursor-default ui-disabled:text-[--palette-primary] ui-disabled:opacity-50',
               },
               rail: {
-                className: 'block absolute w-full h-[4px] rounded-[2px] bg-current opacity-40',
+                className: 'block absolute w-full h-[6px] rounded-full bg-current opacity-40',
               },
               track: {
-                className: 'block absolute h-[4px] rounded-[2px] bg-current',
+                className: 'block absolute h-[6px] rounded-full bg-current',
               },
               thumb: {
                 className:
-                  'absolute w-[16px] h-[16px] -ml-[6px] -mt-[6px] box-border rounded-[50%] outline-none [border:3px_solid_currentcolor] bg-white hover:shadow-[0_0_0_0.25rem_var(--focus-ring)] ui-focus-visible:shadow-[0_0_0_0.25rem_var(--focus-ring)] ui-active:shadow-[0_0_0_0.25rem_var(--focus-ring)]',
+                  'absolute w-[20px] h-[20px] -ml-[6px] -mt-[7px] box-border rounded-[50%] outline-none [border:4px_solid_currentcolor] bg-white hover:shadow-[0_0_0_4px_var(--focus-ring)] ui-focus-visible:shadow-[0_0_0_8px_var(--focus-ring)] ui-active:shadow-[0_0_0_8px_var(--focus-ring)] ui-active:scale-[1.2] transition',
               },
             }}
           />
@@ -125,14 +135,14 @@ export default function BaseTabsDemo({ styling }: { styling?: 'system' | 'tailwi
                   'py-4 px-0 w-full relative cursor-pointer text-[--palette-primary] touch-action-none tap-highlight-transparent hover:opacity-100 ui-disabled:pointer-events-none ui-disabled:cursor-default ui-disabled:opacity-50 ui-disabled:cursor-default ui-disabled:text-[--palette-primary] ui-disabled:opacity-50',
               },
               rail: {
-                className: 'block absolute w-full h-[4px] rounded-[2px] bg-current opacity-40',
+                className: 'block absolute w-full h-[6px] rounded-full bg-current opacity-40',
               },
               track: {
-                className: 'block absolute h-[4px] rounded-[2px] bg-current',
+                className: 'block absolute h-[6px] rounded-full bg-current',
               },
               thumb: {
                 className:
-                  'absolute w-[16px] h-[16px] -ml-[6px] -mt-[6px] box-border rounded-[50%] outline-none [border:3px_solid_currentcolor] bg-white hover:shadow-[0_0_0_0.25rem_var(--focus-ring)] ui-focus-visible:shadow-[0_0_0_0.25rem_var(--focus-ring)] ui-active:shadow-[0_0_0_0.25rem_var(--focus-ring)]',
+                  'absolute w-[20px] h-[20px] -ml-[6px] -mt-[7px] box-border rounded-[50%] outline-none [border:4px_solid_currentcolor] bg-white hover:shadow-[0_0_0_4px_var(--focus-ring)] ui-focus-visible:shadow-[0_0_0_0.8px_var(--focus-ring)] ui-active:shadow-[0_0_0_8px_var(--focus-ring)] ui-active:scale-[1.2] transition',
               },
             }}
           />

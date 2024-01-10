@@ -151,7 +151,7 @@ const StyledSelectButton = styled('button')({
   fontSize: '0.875rem',
   fontFamily: 'var(--muidocs-font-family)',
   lineHeight: 21 / 14,
-  boxShadow: 'var(--formControl-shadow, 0px 2px 2px rgba(205, 210, 215, 0.3))',
+  boxShadow: 'var(--formControl-shadow)',
 
   '&:hover': {
     backgroundColor: 'var(--Tab-hoverBackground)',
@@ -202,7 +202,7 @@ const StyledModalButton = styled('button')({
   '[data-mui-color-scheme="dark"] &': {
     borderColor: 'var(--muidocs-palette-primary-700)',
     backgroundColor: 'var(--muidocs-palette-primary-900)',
-    color: 'var(--muidocs-palette-primary-200)',
+    color: 'var(--muidocs-palette-primary-100)',
     boxShadow: 'var(--formControl-shadow), inset 0px 4px 4px rgba(205, 210, 215, 0.15)',
     '&:hover': {
       backgroundColor: 'var(--muidocs-palette-primary-800)',
@@ -301,8 +301,8 @@ const StyledListbox = styled('ul')({
   border: 'var(--border-width) solid',
   borderColor: 'var(--Select-ringColor, var(--border-color))',
   borderRadius: 'var(--_listbox-radius)',
-  backgroundColor: 'var(--muidocs-palette-background-paper)',
-  boxShadow: '0px 4px 40px rgba(62, 80, 96, 0.1)',
+  backgroundColor: 'var(--muidocs-palette-background-default)',
+  boxShadow: 'var(--Panel-shadow)',
   padding: 'calc(var(--Select-spacing) * 0.5)',
   gap: 'calc(var(--Select-spacing) * 0.2)',
   fontFamily: 'var(--muidocs-font-family)',
@@ -433,14 +433,20 @@ const StyledSlider = styled(Slider)(`
     outline: 0;
     border: 4px solid currentColor;
     background-color: #fff;
+    transition-property: box-shadow, transform;
+    transition-timing-function: ease;
+    transition-duration: 120ms;
+    transform-origin: center;
 
     :hover,
     &.${sliderClasses.focusVisible} {
-      box-shadow: 0 0 0 0.25rem var(--Slider-thumb-focus);
+      box-shadow: 0 0 0 6px var(--Slider-thumb-focus);
     }
 
     &.${sliderClasses.active} {
-      box-shadow: 0 0 0 0.25rem var(--Slider-thumb-focus);
+      box-shadow: 0 0 0 8px var(--Slider-thumb-focus);
+      outline: none;
+      transform: scale(1.2);
     }
   }
 
@@ -482,6 +488,7 @@ const StyledSwitch = styled('span')(`
   height: 20px;
   cursor: pointer;
 
+
   &.${switchClasses.disabled} {
     opacity: 0.4;
     cursor: not-allowed;
@@ -494,6 +501,14 @@ const StyledSwitch = styled('span')(`
     height: 100%;
     width: 100%;
     position: absolute;
+    transition: background-color ease 100ms;
+
+  }
+  
+  :hover {
+    .${switchClasses.track} {
+      background: var(--Switch-hoverBackground, var(--muidocs-palette-grey-400));
+    }
   }
 
   & .${switchClasses.thumb} {
@@ -524,6 +539,12 @@ const StyledSwitch = styled('span')(`
 
     .${switchClasses.track} {
       background: var(--muidocs-palette-primary-500);
+    }
+
+    :hover {
+      .${switchClasses.track} {
+        background: var(--muidocs-palette-primary-700);
+      } 
     }
   }
 
@@ -597,7 +618,7 @@ const AnimatedElement = React.forwardRef(function AnimatedElement(
 });
 
 const Dialog = styled(AnimatedElement)({
-  backgroundColor: 'var(--muidocs-palette-background-paper)',
+  backgroundColor: 'var(--muidocs-palette-background-default)',
   borderRadius: 'min(var(--border-radius) * 2, 32px)',
   border: 'var(--border-width) solid',
   borderColor: 'var(--border-color)',
@@ -679,7 +700,7 @@ const StyledMenuItem = styled(MenuItem)(
   &:hover:not(.${menuItemClasses.disabled}) {
     background-color: ${
       theme.palette.mode === 'dark'
-        ? 'var(--muidocs-palette-grey-800)'
+        ? 'var(--muidocs-palette-primaryDark-700)'
         : 'var(--muidocs-palette-grey-50)'
     };
     color: ${
@@ -701,7 +722,7 @@ const StyledMenuListbox = styled('ul')(`
   border-radius: 12px;
   overflow: auto;
   outline: 0px;
-  background-color: var(--muidocs-palette-background-paper);
+  background-color: var(--muidocs-palette-background-default);
   border-radius: min(var(--border-radius), 16px);
   border: var(--border-width) solid;
   border-color: var(--border-color);
@@ -731,7 +752,7 @@ const snackbarInRight = keyframes`
 `;
 
 const StyledSnackbar = styled(Snackbar)(css`
-  background-color: var(--muidocs-palette-background-paper);
+  background-color: var(--muidocs-palette-background-default);
   border-radius: min(var(--border-radius), 32px);
   border: var(--border-width) solid;
   border-color: var(--border-color);

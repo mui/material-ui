@@ -7,7 +7,7 @@ const sleek = {
   '--border-radius': '8px',
   '--avatar-radius': '99px',
   // components
-  '--Panel-shadow': '0 4px 40px 0 rgba(62, 80, 96, 0.15)',
+  '--Panel-shadow': '0 4px 24px 0 rgba(62, 80, 96, 0.2)',
   '--Tab-radius': '12px',
   '--Tab-hoverBackground': 'var(--muidocs-palette-grey-50)',
   '--Tab-activeSelector': 'calc(-5 * min(2px, var(--border-width, 0px)))',
@@ -16,23 +16,24 @@ const sleek = {
   '--Input-border': 'var(--muidocs-palette-primary-400)',
   '--Input-focus-border': '0 0 0 3px var(--muidocs-palette-primary-200)',
   '--Slider-thumb-focus': 'rgba(0, 127, 255, 0.2)',
-  '--formControl-shadow': '0px 2px 2px rgb(205 210 215 / 20%)',
+  '--formControl-shadow': '0px 2px 3px rgba(205, 210, 215, 0.3)',
   '[data-mui-color-scheme="dark"] &': {
     // dark tokens
     '--color-primary': 'var(--muidocs-palette-primary-light)',
     '--color-primary-light': 'var(--muidocs-palette-primaryDark-600)',
     '--border-color': 'var(--muidocs-palette-primaryDark-700)',
-    '--formControl-shadow': '0px 2px 2px rgb(0 0 0 / 80%)',
+    '--formControl-shadow': '0px 2px 3px rgba(0, 0, 0, 0.6)',
     // dark components
-    '--Panel-shadow': '0 4px 40px 0 rgba(0, 0, 0, 0.15)',
+    '--Panel-shadow': '0 4px 24px 0 rgba(0, 0, 0, 0.4)',
     '--Select-background': 'var(--muidocs-palette-primaryDark-800)',
     '--Tab-hoverBackground': 'var(--muidocs-palette-primaryDark-700)',
     '--Option-selectedBackground': 'var(--muidocs-palette-primaryDark-800)',
     '--Option-hoverBackground': 'var(--muidocs-palette-grey-900)',
     '--Switch-background': 'var(--muidocs-palette-grey-700)',
-    '--Input-border': '0px 2px 2px var(--muidocs-palette-primary-dark)',
+    '--Switch-hoverBackground': 'var(--muidocs-palette-grey-800)',
+    '--Input-border': 'var(--muidocs-palette-primary-500)',
     '--Input-focus-border': '0 0 0 3px var(--muidocs-palette-primary-600)',
-    '--Slider-thumb-focus': 'rgba(0, 127, 255, 0.6)',
+    '--Slider-thumb-focus': 'rgba(51, 153, 255, 0.4)',
   },
 };
 
@@ -72,9 +73,9 @@ const retro = {
     '--Option-selectedBackground': 'var(--muidocs-palette-grey-800)',
     '--Option-hoverBackground': 'var(--muidocs-palette-grey-900)',
     '--Switch-background': 'var(--muidocs-palette-grey-700)',
-    '--Input-border': '0px 2px 2px var(--muidocs-palette-primary-dark)',
+    '--Input-border': 'var(--muidocs-palette-primary-500)',
     '--Input-focus-border': '0 0 0 3px var(--muidocs-palette-primary-600)',
-    '--Slider-thumb-focus': 'rgba(0, 127, 255, 0.6)',
+    '--Slider-thumb-focus': 'rgba(51, 153, 255, 0.4)',
   },
 };
 
@@ -114,9 +115,9 @@ const playful = {
     '--Option-selectedBackground': 'var(--muidocs-palette-primary-900)',
     '--Option-hoverBackground': 'var(--muidocs-palette-grey-900)',
     '--Switch-background': 'var(--muidocs-palette-grey-700)',
-    '--Input-border': '0px 2px 2px var(--muidocs-palette-primary-dark)',
+    '--Input-border': 'var(--muidocs-palette-primary-500)',
     '--Input-focus-border': '0 0 0 3px var(--muidocs-palette-primary-600)',
-    '--Slider-thumb-focus': 'rgba(0, 127, 255, 0.6)',
+    '--Slider-thumb-focus': 'rgba(51, 153, 255, 0.4)',
   },
 };
 

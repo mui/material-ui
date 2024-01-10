@@ -41,6 +41,7 @@ const tabStyles = `
   border-radius: 7px;
   display: flex;
   justify-content: center;
+  transition: all 120ms ease;
 
   &:hover {
     background-color: var(--palette-primary-light);
@@ -111,13 +112,13 @@ export default function BaseTabsDemo({ styling }: { styling: 'system' | 'tailwin
       {styling === 'tailwindcss' && ( // https://play.tailwindcss.com/8jGjUI7EWe
         <Tabs selectionFollowsFocus defaultValue={0}>
           <TabsList className="mb-[16px] flex min-w-[300px] content-between items-center justify-center rounded-[12px] bg-[--palette-primary] [box-shadow:var(--shadow)]">
-            <Tab className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--palette-primary-light] focus:text-white focus-visible:[outline:3px_solid_var(--focus-ring)] ui-selected:bg-white ui-selected:text-[--palette-primary]">
+            <Tab className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--palette-primary-light] focus:text-white focus-visible:[outline:3px_solid_var(--focus-ring)] ui-selected:bg-white ui-selected:text-[--palette-primary] transition">
               One
             </Tab>
-            <Tab className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--palette-primary-light] focus:text-white focus-visible:[outline:3px_solid_var(--focus-ring)] ui-selected:bg-white ui-selected:text-[--palette-primary]">
+            <Tab className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--palette-primary-light] focus:text-white focus-visible:[outline:3px_solid_var(--focus-ring)] ui-selected:bg-white ui-selected:text-[--palette-primary transition">
               Two
             </Tab>
-            <Tab className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--palette-primary-light] focus:text-white focus-visible:[outline:3px_solid_var(--focus-ring)] ui-selected:bg-white ui-selected:text-[--palette-primary]">
+            <Tab className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--palette-primary-light] focus:text-white focus-visible:[outline:3px_solid_var(--focus-ring)] ui-selected:bg-white ui-selected:text-[--palette-primary] transition">
               Three
             </Tab>
           </TabsList>
@@ -181,7 +182,7 @@ import { Tab } from '@mui/base/Tab';
         justify-center rounded-[7px] border-none
         bg-transparent p-[12px] text-[0.875rem]
         font-bold text-white [font-family:IBM_Plex_sans]
-        focus:text-white
+        focus:text-white transition
         focus:[outline:3px_solid_var(--focus-ring)]
         ui-selected:bg-white
         ui-selected:text-[--palette-primary]">
@@ -191,7 +192,7 @@ import { Tab } from '@mui/base/Tab';
         justify-center rounded-[7px] border-none
         bg-transparent p-[12px] text-[0.875rem]
         font-bold text-white [font-family:IBM_Plex_sans]
-        focus:text-white
+        focus:text-white transition
         focus:[outline:3px_solid_var(--focus-ring)]
         ui-selected:bg-white
         ui-selected:text-[--palette-primary]">
@@ -201,7 +202,7 @@ import { Tab } from '@mui/base/Tab';
         justify-center rounded-[7px] border-none
         bg-transparent p-[12px] text-[0.875rem]
         font-bold text-white [font-family:IBM_Plex_sans]
-        focus:text-white
+        focus:text-white transition
         focus:[outline:3px_solid_var(--focus-ring)]
         ui-selected:bg-white
         ui-selected:text-[--palette-primary]">
