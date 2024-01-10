@@ -27,7 +27,7 @@ const buttonStyles = `
   outline-color: transparent;
 
   & svg {
-    color: var(--palette-primary);
+    color: var(--primary);
   }
 
   &:hover {
@@ -134,7 +134,7 @@ export default function BaseMenuDemo({ styling }: { styling?: 'system' | 'tailwi
             dark:border-[--muidocs-palette-primaryDark-700] dark:hover:bg-[--muidocs-palette-primaryDark-800] 
             dark:hover:border-[--muidocs-palette-primaryDark-600]"
           >
-            <Person className="text-[--palette-primary]" />
+            <Person className="text-[--primary]" />
             My account
           </MenuButton>
           <Menu
@@ -270,7 +270,7 @@ function Demo() {
         dark:border-[--muidocs-palette-primaryDark-700] dark:hover:bg-[--muidocs-palette-primaryDark-800] 
         dark:hover:border-[--muidocs-palette-primaryDark-600]"
       >
-        <Person className="text-[--palette-primary]" />
+        <Person className="text-[--primary]" />
         My account
       </ButtonUnstyled>
       <Menu

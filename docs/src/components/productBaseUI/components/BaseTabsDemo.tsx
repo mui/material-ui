@@ -8,7 +8,7 @@ import { styled, GlobalStyles } from '@mui/system';
 
 const tabListStyles = `
   min-width: 300px;
-  background-color: var(--palette-primary-dark);
+  background-color: var(--primary);
   border-radius: 12px;
   margin-bottom: 16px;
   display: flex;
@@ -44,7 +44,7 @@ const tabStyles = `
   transition: all 120ms ease;
 
   &:hover {
-    background-color: var(--palette-primary-hover);
+    background-color: var(--primary-hover);
   }
 
   &:focus-visible {
@@ -55,7 +55,7 @@ const tabStyles = `
 
   &.Mui-selected {
     background-color: #FFF;
-    color: var(--palette-primary-dark);
+    color: var(--primary);
   }
 `;
 
@@ -67,7 +67,7 @@ const CSS = `.MuiTabsList-root {${tabListStyles}}
 
 .MuiTab-root {${tabStyles}}`;
 
-const tabStylesTailwind = `m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--palette-primary-hover] focus:text-white focus-visible:[outline:2px_solid_rgba(255,255,255,0.8)] outline-offset-2 ui-selected:bg-white ui-selected:text-[--palette-primary-dark] transition`;
+const tabStylesTailwind = `m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--primary-hover] focus:text-white focus-visible:[outline:2px_solid_rgba(255,255,255,0.8)] outline-offset-2 ui-selected:bg-white ui-selected:text-[--primary] transition`;
 
 const tabPanelStylesTailwind = `text-[0.875rem] [font-family:IBM_Plex_sans]`;
 
@@ -116,7 +116,7 @@ export default function BaseTabsDemo({ styling }: { styling: 'system' | 'tailwin
       )}
       {styling === 'tailwindcss' && ( // https://play.tailwindcss.com/8jGjUI7EWe
         <Tabs selectionFollowsFocus defaultValue={0}>
-          <TabsList className="mb-[16px] flex min-w-[300px] content-between items-center justify-center rounded-[12px] bg-[--palette-primary-dark] [box-shadow:var(--shadow)]">
+          <TabsList className="mb-[16px] flex min-w-[300px] content-between items-center justify-center rounded-[12px] bg-[--primary] [box-shadow:var(--shadow)]">
             <Tab className={tabStylesTailwind}>One</Tab>
             <Tab className={tabStylesTailwind}>Two</Tab>
             <Tab className={tabStylesTailwind}>Three</Tab>

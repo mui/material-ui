@@ -7,7 +7,7 @@ const buttonStyles = `
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: bold;
   font-size: 0.875rem;
-  background: var(--palette-primary-dark);
+  background: var(--primary);
   padding: 10px 16px;
   border-radius: 8px;
   color: white;
@@ -17,15 +17,16 @@ const buttonStyles = `
   box-shadow: var(--shadow);
 
   &:hover {
-    background: var(--muidocs-palette-primary-700);
+    background: var(--primary-hover);
   }
 
   &.Mui-active {
-    background-color: var(--palette-primary-dark);
+    background: var(--primary-active);
   }
 
   &.Mui-focusVisible {
-    outline: 4px solid var(--focus-ring);
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
   }
 
   &.Mui-disabled {
@@ -33,31 +34,14 @@ const buttonStyles = `
     cursor: not-allowed;
 
     &:hover {
-      background: var(--palette-primary-dark);
-    }
-  }
-
-  :where([data-mui-color-scheme='dark']) & {
-
-    &:hover {
-      background: var(--palette-primary-hover);
-    }
-
-    &.Mui-active {
-      background-color: var(--palette-primary-active);
-    }
-
-    &.Mui-disabled {
-      &:hover {
-        background: var(--palette-primary-dark);
-      }
+      background: var(--primary);
     }
   }
 `;
 
 const StyledButton = styled('button')(buttonStyles);
 
-const buttonStylesTailwind = `transition shadow-[--shadow] cursor-pointer rounded-[8px] border-none bg-indigo-600 p-[10px_16px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-indigo-500 ui-active:bg-indigo-800 ui-disabled:cursor-not-allowed ui-disabled:opacity-50 ui-focus-visible:[outline:4px_solid_var(--focus-ring)]`;
+const buttonStylesTailwind = `cursor-pointer rounded-[8px] border-none bg-[--primary] p-[10px_16px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--primary-hover] ui-active:bg-[--primary-active] ui-disabled:cursor-not-allowed ui-disabled:opacity-50 ui-focus-visible:[outline:3px_solid_var(--focus-ring)] outline-offset-2 transition shadow-[--shadow]`;
 
 export default function BaseButtonDemo({
   styling,
@@ -131,7 +115,7 @@ import './styles.css';
   border-none bg-indigo-600 p-[10px_16px] text-[0.875rem] font-bold 
   text-white [font-family:IBM_Plex_sans] hover:bg-indigo-500 
   ui-active:bg-indigo-800 ui-disabled:cursor-not-allowed ui-disabled:opacity-50 
-  ui-focus-visible:[outline:4px_solid_var(--focus-ring)]">
+  ui-focus-visible:[outline:4px_solid_var(--focus-ring)] outline-offset-2">
   Button
 </Button>
 <Button
@@ -139,7 +123,7 @@ import './styles.css';
   border-none bg-indigo-600 p-[10px_16px] text-[0.875rem] font-bold 
   text-white [font-family:IBM_Plex_sans] hover:bg-indigo-500 
   ui-active:bg-indigo-800 ui-disabled:cursor-not-allowed ui-disabled:opacity-50 
-  ui-focus-visible:[outline:4px_solid_var(--focus-ring)]">
+  ui-focus-visible:[outline:4px_solid_var(--focus-ring)] outline-offset-2">
   Disabled
 </Button>`;
   }
