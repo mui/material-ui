@@ -1,5 +1,5 @@
 name: Docs feedback
-description: Improve documentation about MUI Core.
+description: Improve documentation about Material UI, Joy UI, Base UI, MUI System.
 labels: ['status: waiting for maintainer', 'support: docs-feedback']
 title: '[docs] '
 body:
@@ -44,5 +44,5 @@ body:
         I was looking for ... and it appears that ...
   - type: textarea
     attributes:
-      label: Context 🔦
+      label: Context
       description: What are you trying to accomplish? What brought you to this page? Your context can help us to come up with solutions that benefit the community as a whole.

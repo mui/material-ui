@@ -224,3 +224,12 @@ export function stringifySymbol(symbol: ts.Symbol, project: TypeScriptProject) {
 
   return formatType(rawType);
 }
+
+/**
+ * @param filepath - absolute path
+ * @example toGitHubPath('/home/user/material-ui/packages/Accordion') === '/packages/Accordion'
+ * @example toGitHubPath('C:\\Development\\material-ui\\packages\\Accordion') === '/packages/Accordion'
+ */
+export function toGitHubPath(filepath: string): string {
+  return `/${path.relative(process.cwd(), filepath).replace(/\\/g, '/')}`;
+}

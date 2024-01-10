@@ -90,10 +90,10 @@ const Button = React.forwardRef(function Button<RootComponentType extends React.
 }) as PolymorphicComponent<ButtonTypeMap>;
 
 Button.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A ref for imperative actions. It currently only supports `focusVisible()` action.
    */

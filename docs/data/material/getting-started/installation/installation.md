@@ -24,7 +24,7 @@ pnpm add @mui/material @emotion/react @emotion/styled
 
 ## With styled-components
 
-Material UI uses [Emotion](https://emotion.sh/) as its default styling engine.
+Material UI uses [Emotion](https://emotion.sh/docs/introduction) as its default styling engine.
 If you want to use [styled-components](https://styled-components.com/) instead, run one of the following commands:
 
 <codeblock storageKey="package-manager">
