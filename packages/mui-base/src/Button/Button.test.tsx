@@ -216,9 +216,11 @@ describe('<Button />', () => {
       });
 
       it('renders when slots.root is a wrapped component', () => {
-        const CustomComponent = React.forwardRef((props: any, ref: React.Ref<any>) => (
-          <span {...props} ref={ref} data-testid="custom" />
-        ));
+        const CustomComponent = React.forwardRef(
+          ({ ownerState, ...props }: any, ref: React.Ref<any>) => (
+            <span {...props} ref={ref} data-testid="custom" />
+          ),
+        );
 
         const { container } = renderToString(
           <Button disabled slots={{ root: CustomComponent }} hostElementName="span">
