@@ -12,10 +12,14 @@ unstyled: /base-ui/react-button/
 
 <p class="description">Buttons enable users to take actions and make choices.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+## Introduction
+
 Buttons communicate actions that users can take.
 The Material UI Button component replaces the native HTML `<button>` element and offers expanded options for styling and accessibility.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"demo": "IntroButtons.js"}}
 
 ## Basics
 
@@ -29,11 +33,22 @@ The Button component supports three values for the `variant` prop: `text` (defau
 
 {{"demo": "BasicButtons.js"}}
 
+#### Elevation
+
+Apply the `disableElevation` prop to remove the default drop shadow from the `contained` variant.
+
+{{"demo": "DisableElevation.js"}}
+
 ### Colors
+
+Every palette included in the theme is available via the `color` prop.
 
 {{"demo": "ColorButtons.js"}}
 
-In addition to using the default button colors, you can add custom ones, or disable any you don't need. See the [Adding new colors](/material-ui/customization/palette/#custom-colors) examples for more info.
+:::success
+If the default colors aren't sufficient, you can add custom colors and remove defaults that you don't need.
+See the [Palette—Custom colors](/material-ui/customization/palette/#custom-colors) doc for more info.
+:::
 
 ### Sizes
 
@@ -41,15 +56,9 @@ The Button component comes in three sizes: `small`, `medium` (default), and `lar
 
 {{"demo": "ButtonSizes.js"}}
 
-### Elevation
-
-You can remove the elevation with the `disableElevation` prop.
-
-{{"demo": "DisableElevation.js"}}
-
 ### Start and end icons
 
-Use the `startIcon` or `endIcon` prop to affix an icon to the beginning or end of a Button's contents.
+Use the `startIcon` or `endIcon` prop to append an icon to the beginning or end of a Button's contents.
 
 {{"demo": "IconLabelButtons.js"}}
 
@@ -97,7 +106,7 @@ You can take advantage of this lower-level component to create custom interactio
 
 One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server.
 The Button Base component provides the `component` prop to handle this use case.
-Here is a [more detailed guide](/material-ui/guides/routing/#button).
+For more information, see the [Routing—Button](/material-ui/guides/routing/#button) doc.
 
 #### Limitations
 
@@ -119,9 +128,9 @@ If you wish to use `not-allowed`, you have two options:
 However:
 
 - You should add `pointer-events: none;` back when you need to display [tooltips on disabled elements](/material-ui/react-tooltip/#disabled-elements).
-- The cursor won't change if you render something other than a button element, for instance, a link `<a>` element.
+- The cursor won't change if you render something other than a button element—for instance, a link `<a>` element.
 
-2. **DOM change**. You can wrap the button:
+2. **DOM change**. You can wrap the Button:
 
 ```jsx
 <span style={{ cursor: 'not-allowed' }}>
@@ -131,19 +140,19 @@ However:
 </span>
 ```
 
-This has the advantage of supporting any element, for instance, a link `<a>` element.
+This has the advantage of supporting any element—for instance, a link `<a>` element.
 
 ## Common examples
 
 ### File upload button
 
-To create a file upload button, turn the Button into a label using `component="label"` and then create a visually-hidden input with type `file`.
+To create a file upload button, turn the Button into a label using `component="label"` and then create a visually-hidden input with type `file`, as shown in the demo below:
 
 {{"demo": "InputFileUpload.js"}}
 
 ## Experimental APIs
 
-### Loading button
+### Loading Button
 
 ```jsx
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -188,7 +197,7 @@ For more instructions on how to use it, visit the [detailed guide](/material-ui/
 The Material UI Button is composed of a single root `<button>` element:
 
 ```html
-<button class="MuiButton-root">
+<button class="MuiButtonBase-root MuiButton-root">
   <!-- Button content here -->
 </button>
 ```
