@@ -233,5 +233,4 @@ const Option = styled(BaseOption)(
 
 const Popup = styled('div')`
   z-index: 1;
-  transition: transform 150ms ease;
 `;
