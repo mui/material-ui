@@ -116,7 +116,7 @@ export default function BaseUIComponents() {
                 ...(styling === 'css' && {
                   '--palette-primary': '#9333EA',
                   '--palette-primary-light': '#AC62EF',
-                  '--palette-hover': '#7F17DE',
+                  '--palette-primary-hover': '#7F17DE',
                   '--palette-primary-dark': '#581C87',
                   '--focus-ring': 'rgba(216, 180, 254, 0.6)',
                   '--shadow': '0px 2px 2px rgba(205, 210, 215, 0.5)',
