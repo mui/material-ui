@@ -108,8 +108,19 @@ const ButtonBase = React.forwardRef(function ButtonBase<
     TouchRippleProps,
     touchRippleRef,
     type,
+    hostElementName: hostElementNameProp,
     ...other
   } = props;
+
+  let ComponentProp = component;
+  let hostElementName =
+    hostElementNameProp ??
+    (typeof component === 'string' ? (component as keyof HTMLElementTagNameMap) : undefined);
+
+  if (ComponentProp === 'button' && (other.href || other.to)) {
+    ComponentProp = LinkComponent;
+    hostElementName = hostElementNameProp ?? 'a';
+  }
 
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>(null);
   const handleRef = useForkRef(buttonRef, ref);
@@ -120,12 +131,8 @@ const ButtonBase = React.forwardRef(function ButtonBase<
     to: props.to,
     tabIndex,
     rootRef: handleRef,
+    hostElementName,
   });
-
-  let ComponentProp = component;
-  if (ComponentProp === 'button' && (other.href || other.to)) {
-    ComponentProp = LinkComponent;
-  }
 
   const rippleRef = React.useRef<TouchRippleActions>(null);
   const handleRippleRef = useForkRef(rippleRef, touchRippleRef);
@@ -265,6 +272,10 @@ ButtonBase.propTypes /* remove-proptypes */ = {
    * if needed.
    */
   focusVisibleClassName: PropTypes.string,
+  /**
+   * The HTML element, e.g. 'button'
+   */
+  hostElementName: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
    * The URL to link to when the button is clicked.
    * If defined, an `a` element will be used as the root node.

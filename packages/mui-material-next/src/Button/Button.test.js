@@ -169,7 +169,7 @@ describe('<Button />', () => {
       ));
 
       const { container } = renderToString(
-        <Button disabled component={CustomComponent}>
+        <Button disabled component={CustomComponent} hostElementName="span">
           Hello World
         </Button>,
       );

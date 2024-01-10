@@ -62,6 +62,10 @@ export interface ButtonBaseTypeMap<
      */
     focusVisibleClassName?: string;
     /**
+     * The HTML element, e.g. 'button'
+     */
+    hostElementName?: keyof HTMLElementTagNameMap;
+    /**
      * The URL to link to when the button is clicked.
      * If defined, an `a` element will be used as the root node.
      */

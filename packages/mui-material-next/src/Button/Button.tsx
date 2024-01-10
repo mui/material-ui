@@ -487,6 +487,10 @@ Button.propTypes /* remove-proptypes */ = {
    */
   fullWidth: PropTypes.bool,
   /**
+   * The underlying HTML element. To make SSR stable.
+   */
+  hostElementName: PropTypes /* @typescript-to-proptypes-ignore */.string,
+  /**
    * @ignore
    */
   href: PropTypes.string,
