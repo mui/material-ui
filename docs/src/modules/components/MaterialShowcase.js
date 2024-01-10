@@ -217,7 +217,7 @@ const appList = [
       'Comet lets you track code, experiments, and results on ML projects. ' +
       "It's fast, simple, and free for open source projects.",
     image: 'comet.jpg',
-    link: 'https://www.comet.com/',
+    link: 'https://www.comet.com/site/',
     similarWebVisits: 180,
     dateAdded: '2019-01-01',
   },
@@ -519,7 +519,7 @@ export default function Showcase() {
                   }),
                 })}
               >
-                <a href={app.link} rel="noopener nofollow noreferrer" target="_blank">
+                <a href={app.link} rel="noopener nofollow" target="_blank">
                   <CardMedia
                     component="img"
                     loading="lazy"

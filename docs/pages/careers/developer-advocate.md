@@ -1,4 +1,4 @@
-# Developer Advocate
+# Developer Advocate / Content Engineer
 
 <p class="description">You will strategize and implement educational initiatives from end to end to help developers build better UIs, faster.</p>
 
@@ -92,11 +92,13 @@ For the right candidate:
 - Hands-on developer and skilled React engineer
 - Experience as a teacher, tutor, or mentor
 - Experience as a technical writer or content creator
+- Good product design sensibilities
+- Basic design skills
 
 ### Nice to have (but not required)
 
-- Great taste in product design
-- Knowledge of design trends
+- Great product design sensibilities
+- Good design skills
 - Experience in open-source
 - Experience with design systems
 - Experience with MUI products

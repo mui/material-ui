@@ -1,0 +1,44 @@
+{
+  "name": "@mui-internal/babel-macros",
+  "version": "1.0.0",
+  "private": true,
+  "author": "MUI Team",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mui/material-ui.git",
+    "directory": "packages/mui-babel-macros"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mui/material-ui/issues"
+  },
+  "homepage": "private package",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/mui-org"
+  },
+  "scripts": {
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-babel-macros/**/*.test.{js,ts,tsx}'"
+  },
+  "dependencies": {
+    "@babel/helper-module-imports": "^7.22.15",
+    "@babel/runtime": "^7.23.7",
+    "babel-plugin-macros": "^3.1.0"
+  },
+  "devDependencies": {
+    "@mui-internal/babel-macros": "workspace:*",
+    "@types/babel-plugin-macros": "^3.1.3",
+    "@types/chai": "^4.3.11",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^18.19.4",
+    "babel-plugin-tester": "^11.0.4",
+    "chai": "^4.4.0"
+  },
+  "peerDependencies": {
+    "@mui/utils": "workspace:^"
+  },
+  "sideEffects": false,
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}

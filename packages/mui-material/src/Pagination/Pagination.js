@@ -127,10 +127,10 @@ const Pagination = React.forwardRef(function Pagination(inProps, ref) {
 // @default tags synced with default values from usePagination
 
 Pagination.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Number of always visible pages at the beginning and end.
    * @default 1

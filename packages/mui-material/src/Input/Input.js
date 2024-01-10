@@ -56,7 +56,7 @@ const InputRoot = styled(InputBaseRoot, {
       },
     }),
     ...(!ownerState.disableUnderline && {
-      '&:after': {
+      '&::after': {
         borderBottom: `2px solid ${(theme.vars || theme).palette[ownerState.color].main}`,
         left: 0,
         bottom: 0,
@@ -77,11 +77,11 @@ const InputRoot = styled(InputBaseRoot, {
         transform: 'scaleX(1) translateX(0)',
       },
       [`&.${inputClasses.error}`]: {
-        '&:before, &:after': {
+        '&::before, &::after': {
           borderBottomColor: (theme.vars || theme).palette.error.main,
         },
       },
-      '&:before': {
+      '&::before': {
         borderBottom: `1px solid ${bottomLineColor}`,
         left: 0,
         bottom: 0,
@@ -158,10 +158,10 @@ const Input = React.forwardRef(function Input(inProps, ref) {
 });
 
 Input.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.

@@ -1,4 +1,10 @@
 {
   "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@mui/material": ["../mui-material/src"],
+      "@mui/material/*": ["../mui-material/src/*"]
+    }
+  },
   "include": ["src/**/*"]
 }

@@ -160,10 +160,10 @@ export type HookInfo = {
   skipApiGeneration?: boolean;
 };
 
-export const getApiPath = (
+export function getApiPath(
   demos: Array<{ demoPageTitle: string; demoPathname: string }>,
   name: string,
-) => {
+) {
   let apiPath = null;
 
   if (demos && demos.length > 0) {
@@ -175,7 +175,7 @@ export const getApiPath = (
   }
 
   return apiPath;
-};
+}
 
 export function formatType(rawType: string) {
   if (!rawType) {
@@ -223,4 +223,13 @@ export function stringifySymbol(symbol: ts.Symbol, project: TypeScriptProject) {
   }
 
   return formatType(rawType);
+}
+
+/**
+ * @param filepath - absolute path
+ * @example toGitHubPath('/home/user/material-ui/packages/Accordion') === '/packages/Accordion'
+ * @example toGitHubPath('C:\\Development\\material-ui\\packages\\Accordion') === '/packages/Accordion'
+ */
+export function toGitHubPath(filepath: string): string {
+  return `/${path.relative(process.cwd(), filepath).replace(/\\/g, '/')}`;
 }
