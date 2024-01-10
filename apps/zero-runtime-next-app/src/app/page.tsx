@@ -1,10 +1,8 @@
 import Image from 'next/image';
 import { styled } from '@mui/zero-runtime';
-import Link from 'next/link';
 import styles from './page.module.css';
-import Grid from '../components/Grid';
 
-export const Main = styled('main')({
+const Main = styled.main({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
@@ -13,7 +11,7 @@ export const Main = styled('main')({
   minHeight: '100vh',
 });
 
-const Description = styled.div(({ theme }: any) => ({
+const Description = styled.div({
   display: 'inherit',
   justifyContent: 'inherit',
   alignItems: 'inherit',
@@ -21,7 +19,7 @@ const Description = styled.div(({ theme }: any) => ({
   maxWidth: 'var(--max-width)',
   width: '100%',
   zIndex: 2,
-  fontFamily: theme.typography.fontFamilyCode,
+  fontFamily: 'var(--font-mono)',
   '& a': {
     display: 'flex',
     justifyContent: 'center',
@@ -30,17 +28,22 @@ const Description = styled.div(({ theme }: any) => ({
   },
   '& p': {
     position: 'relative',
-    margin: '0',
+    margin: 0,
     padding: '1rem',
     backgroundColor: 'rgba(var(--callout-rgb), 0.5)',
     border: '1px solid rgba(var(--callout-border-rgb), 0.3)',
     borderRadius: 'var(--border-radius)',
   },
-
-  [theme.breakpoints.down(700.05)]: {
+  '@media (max-width: 700px)': {
     fontSize: '0.8rem',
     '& a': {
       padding: '1rem',
+    },
+    '& p, & div': {
+      display: 'flex',
+      justifyContent: 'center',
+      position: 'fixed',
+      width: '100%',
     },
     '& p': {
       alignItems: 'center',
@@ -49,8 +52,11 @@ const Description = styled.div(({ theme }: any) => ({
       borderRadius: '0',
       border: 'none',
       borderBottom: '1px solid rgba(var(--callout-border-rgb), 0.25)',
-      background:
-        'linear-gradient(to bottom,rgba(var(--background-start-rgb), 1),rgba(var(--callout-rgb), 0.5))',
+      background: `linear-gradient(
+  to bottom,
+  rgba(var(--background-start-rgb), 1),
+  rgba(var(--callout-rgb), 0.5)
+)`,
       backgroundClip: 'padding-box',
       backdropFilter: 'blur(24px)',
     },
@@ -60,103 +66,11 @@ const Description = styled.div(({ theme }: any) => ({
       inset: 'auto 0 0',
       padding: '2rem',
       height: '200px',
-      background: 'linear-gradient(to bottom,transparent 0%,rgb(var(--background-end-rgb)) 40%)',
+      background: `linear-gradient(to bottom, transparent 0%, rgb(var(--background-end-rgb)) 40%)`,
       zIndex: 1,
     },
-    '& p, & div': {
-      display: 'flex',
-      justifyContent: 'center',
-      position: 'fixed',
-      width: '100%',
-    },
   },
-}));
-
-const Code = styled('code')(({ theme }: any) => ({
-  fontWeight: 700,
-  fontFamily: theme.typography.fontFamilyCode,
-}));
-
-const Card = styled('a')(({ theme }: any) => ({
-  padding: '1rem 1.2rem',
-  borderRadius: 'var(--border-radius)',
-  background: 'rgba(var(--card-rgb), 0)',
-  border: '1px solid rgba(var(--card-border-rgb), 0)',
-  transition: 'background 200ms, border 200ms',
-
-  '& span': {
-    display: 'inline-block',
-    transition: 'transform 200ms',
-  },
-
-  '& h2': {
-    fontWeight: 600,
-    marginBottom: '0.7rem',
-  },
-
-  '& p': {
-    margin: '0',
-    opacity: 0.6,
-    fontSize: '0.9rem',
-    lineHeight: 1.5,
-    maxWidth: '30ch',
-  },
-  '@media (hover: hover) and (pointer: fine)': {
-    '&:hover': {
-      background: 'rgba(var(--card-rgb), 0.1)',
-      border: '1px solid rgba(var(--card-border-rgb), 0.15)',
-    },
-    '&:hover span': {
-      transform: 'translateX(4px)',
-    },
-  },
-
-  '@media (prefers-reduced-motion)': {
-    '&:hover span': {
-      transform: 'none',
-    },
-  },
-
-  [theme.breakpoints.down(700.05)]: {
-    padding: '1rem 2.5rem',
-
-    '& h2': {
-      marginBottom: '0.5rem',
-    },
-  },
-}));
-
-const Center = styled('div')(() => ({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  position: 'relative',
-  padding: '4rem 0',
-  '&::before': {
-    background: 'var(--secondary-glow)',
-    borderRadius: '50%',
-    width: '480px',
-    height: '360px',
-    marginLeft: '-400px',
-  },
-  '&::after': {
-    background: 'var(--primary-glow)',
-    width: '240px',
-    height: '180px',
-    zIndex: -1,
-  },
-  '&::before,&::after': {
-    content: "''",
-    left: '50%',
-    position: 'absolute',
-    filter: 'blur(45px)',
-    transform: 'translateZ(0)',
-  },
-  '@media (max-width: 700px)': {
-    padding: '8rem 0 6rem',
-    '&::before': { transform: 'none', height: '300px' },
-  },
-}));
+});
 
 export default function Home() {
   return (
@@ -164,7 +78,7 @@ export default function Home() {
       <Description>
         <p>
           Get started by editing&nbsp;
-          <Code>src/app/page.tsx</Code>
+          <code className={styles.code}>src/app/page.tsx</code>
         </p>
         <div>
           <a
@@ -185,7 +99,7 @@ export default function Home() {
         </div>
       </Description>
 
-      <Center>
+      <div className={styles.center}>
         <Image
           className={styles.logo}
           src="/next.svg"
@@ -194,11 +108,12 @@ export default function Home() {
           height={37}
           priority
         />
-      </Center>
+      </div>
 
-      <Grid>
-        <Card
+      <div className={styles.grid}>
+        <a
           href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          className={styles.card}
           target="_blank"
           rel="noopener"
         >
@@ -206,10 +121,11 @@ export default function Home() {
             Docs <span>-&gt;</span>
           </h2>
           <p>Find in-depth information about Next.js features and API.</p>
-        </Card>
+        </a>
 
-        <Card
+        <a
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          className={styles.card}
           target="_blank"
           rel="noopener"
         >
@@ -217,10 +133,11 @@ export default function Home() {
             Learn <span>-&gt;</span>
           </h2>
           <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </Card>
+        </a>
 
-        <Card
+        <a
           href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          className={styles.card}
           target="_blank"
           rel="noopener"
         >
@@ -228,14 +145,20 @@ export default function Home() {
             Templates <span>-&gt;</span>
           </h2>
           <p>Explore the Next.js 13 playground.</p>
-        </Card>
+        </a>
 
-        <Card as={Link} href="/slider" rel="noopener">
+        <a
+          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          className={styles.card}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <h2>
-            Checkout Slider <span>-&gt;</span>
+            Deploy <span>-&gt;</span>
           </h2>
-        </Card>
-      </Grid>
+          <p>Instantly deploy your Next.js site to a shareable URL with Vercel.</p>
+        </a>
+      </div>
     </Main>
   );
 }

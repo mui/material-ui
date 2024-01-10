@@ -21,7 +21,7 @@ import Box from '@mui/joy/Box';
 /**
  * styled API type check
  */
-const StyledBox = styled(Box)(
+const StyledBox = styled('div')(
   ({ theme }) => ({
     padding: 32,
     display: 'grid',

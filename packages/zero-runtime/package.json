@@ -1,54 +1,44 @@
 {
   "name": "@mui/zero-runtime",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.1",
+  "main": "build/index.js",
+  "module": "build/index.mjs",
+  "types": "build/index.d.ts",
   "private": true,
-  "author": "MUI Team",
-  "description": "Linaria tag processors for custom styled implementation.",
-  "main": "./src/index.ts",
-  "keywords": [
-    "zero runtime",
-    "css-in-js",
-    "mui"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mui/material-ui.git",
-    "directory": "packages/zero-tag-processor"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/mui/material-ui/issues"
-  },
-  "homepage": "@TODO",
-  "funding": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/mui-org"
-  },
   "scripts": {
-    "build": "pnpm build:legacy && pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
-    "build:legacy": "node ../../scripts/build.mjs legacy",
-    "build:modern": "node ../../scripts/build.mjs modern",
-    "build:node": "node ../../scripts/build.mjs node",
-    "build:stable": "node ../../scripts/build.mjs stable",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs styles.css",
-    "build:types": "node ../../scripts/buildTypes.mjs",
-    "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
-    "release": "pnpm build && pnpm publish",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/zero-runtime/**/*.test.{js,ts,tsx}'",
-    "typescript": "tsc -p tsconfig.json",
-    "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
+    "clean": "rimraf build types",
+    "watch": "tsup --watch --clean false",
+    "build": "tsup",
+    "typecheck": "tsc --noEmit -p ."
   },
   "dependencies": {
-    "clsx": "^2.1.0",
-    "csstype": "^3.1.2"
+    "csstype": "^3.1.2",
+    "cssesc": "^3.0.0",
+    "clsx": "^2.0.0",
+    "@babel/core": "^7.23.2",
+    "@babel/helper-module-imports": "^7.22.15",
+    "@babel/helper-plugin-utils": "^7.22.5",
+    "@babel/parser": "^7.23.0",
+    "@babel/types": "^7.23.0",
+    "@emotion/css": "^11.11.2",
+    "@emotion/styled": "^11.11.0",
+    "@linaria/tags": "^5.0.2",
+    "@linaria/utils": "^5.0.2",
+    "@mui/system": "workspace:^",
+    "lodash.set": "^4.3.2",
+    "lodash.get": "^4.4.2",
+    "stylis": "^4.2.0"
   },
   "devDependencies": {
-    "@mui/zero-runtime": "workspace:*",
-    "@types/chai": "^4.3.11",
-    "@types/mocha": "^10.0.6",
-    "@types/node": "^18.19.4",
-    "@types/react": "^18.2.46",
-    "chai": "^4.4.0",
+    "@types/babel__core": "^7.20.3",
+    "@types/babel__helper-module-imports": "^7.18.2",
+    "@types/babel__helper-plugin-utils": "^7.10.2",
+    "@types/cssesc": "^3.0.2",
+    "@types/lodash.get": "^4.4.7",
+    "@types/lodash.set": "^4.3.9",
+    "@types/node": "^18.18.5",
+    "@types/react": "^18.2.31",
+    "@types/stylis": "^4.2.0",
     "react": "^18.2.0"
   },
   "peerDependencies": {
@@ -56,18 +46,49 @@
   },
   "sideEffects": false,
   "publishConfig": {
-    "access": "public",
-    "directory": "build"
-  },
-  "engines": {
-    "node": ">=12.0.0"
+    "access": "public"
   },
   "linaria": {
     "tags": {
-      "styled": "@mui/zero-tag-processor/styled",
-      "default": "@mui/zero-tag-processor/styled",
-      "sx": "@mui/zero-tag-processor/sx",
-      "keyframes": "@mui/zero-tag-processor/keyframes"
+      "styled": "./exports/styled.js",
+      "default": "./exports/styled.js",
+      "sx": "./exports/sx.js",
+      "keyframes": "./exports/keyframes.js",
+      "generateAtomics": "./exports/generateAtomics.js"
+    }
+  },
+  "files": [
+    "build",
+    "exports",
+    "processors",
+    "utils",
+    "package.json",
+    "styles.css",
+    "theme"
+  ],
+  "exports": {
+    ".": {
+      "types": "./build/index.d.ts",
+      "import": "./build/index.mjs",
+      "require": "./build/index.js"
+    },
+    "./package.json": "./package.json",
+    "./theme": {
+      "types": "./theme/index.d.ts",
+      "import": "./theme/index.mjs",
+      "require": "./theme/index.js",
+      "default": "./theme/index.js"
+    },
+    "./styles.css": {
+      "default": "./styles.css"
+    },
+    "./utils": {
+      "types": "./utils/index.d.ts",
+      "import": "./utils/index.mjs",
+      "require": "./utils/index.js"
+    },
+    "./exports/sx-plugin": {
+      "default": "./exports/sx-plugin.js"
     }
   }
 }

@@ -12,7 +12,7 @@ Page.getInitialProps = () => {
   const req = require.context(
     'docs/translations/api-docs/table-sort-label',
     false,
-    /table-sort-label.*.json$/,
+    /\.\/table-sort-label.*.json$/,
   );
   const descriptions = mapApiPageTranslations(req);
 

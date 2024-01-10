@@ -183,6 +183,7 @@ export default function PropertiesTable(props: PropertiesTableProps) {
               componentName,
               propName,
               description,
+              seeMoreDescription,
               requiresRef,
               isOptional,
               isRequired,
@@ -223,6 +224,12 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                 </td>
                 <td className="MuiPropTable-description-column">
                   {description && <PropDescription description={description} />}
+                  {seeMoreDescription && (
+                    <p
+                      dangerouslySetInnerHTML={{ __html: seeMoreDescription }}
+                      className="prop-table-additional-description"
+                    />
+                  )}
                   {requiresRef && (
                     <Alert
                       className="prop-table-alert"
