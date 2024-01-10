@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
@@ -18,7 +17,7 @@ const faqData = [
     summary: 'How long until MUI Connect is out?',
     detail: (
       <React.Fragment>
-        We’re still polishing it for a &quot;stable&quot; release. Add your email in the input
+        We&apos;re still polishing it for a &quot;stable&quot; release. Add your email in the input
         available in the section above to be notified of any updates as we get further into
         development.
       </React.Fragment>
