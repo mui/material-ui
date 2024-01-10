@@ -371,29 +371,33 @@ describe('<Masonry />', () => {
   });
 
   describe('prop: sequential', () => {
-    it('should place children in sequential order', function test() {
+    const pause = (timeout) =>
+      new Promise((resolve) => {
+        setTimeout(() => {
+          resolve();
+        }, timeout);
+      });
+
+    it('should place children in sequential order', async function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // only run on browser
         this.skip();
       }
 
-      const firstChildHeight = 20;
-      const secondChildHeight = 10;
-      const thirdChildHeight = 10;
-
       const { getByTestId } = render(
-        <Masonry columns={2} spacing={0} sequential data-testid="container">
-          <div style={{ height: `${firstChildHeight}px` }} />
-          <div style={{ height: `${secondChildHeight}px` }} />
-          <div style={{ height: `${thirdChildHeight}px` }} />
+        <Masonry columns={2} spacing={1} sequential>
+          <div style={{ height: `20px` }} data-testid="child1" />
+          <div style={{ height: `10px` }} data-testid="child2" />
+          <div style={{ height: `10px` }} data-testid="child3" />
         </Masonry>,
       );
-
-      const masonry = getByTestId('container');
-
-      expect(window.getComputedStyle(masonry).height).to.equal(
-        `${firstChildHeight + thirdChildHeight}px`,
-      );
+      await pause(400); // Masonry elements aren't ordered immediately, and so we need the pause to wait for them to be ordered
+      const child1 = getByTestId('child1');
+      const child2 = getByTestId('child2');
+      const child3 = getByTestId('child3');
+      expect(window.getComputedStyle(child1).order).to.equal(`1`);
+      expect(window.getComputedStyle(child2).order).to.equal(`2`);
+      expect(window.getComputedStyle(child3).order).to.equal(`1`);
     });
   });
 });
