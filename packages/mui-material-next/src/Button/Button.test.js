@@ -154,6 +154,14 @@ describe('<Button />', () => {
       const { container } = renderToString(<Button>Hello World</Button>);
       expect(container.firstChild).to.have.text('Hello World');
     });
+
+    it('should server-side render the disabled state', () => {
+      const { container } = renderToString(<Button disabled>Hello World</Button>);
+
+      expect(container.firstChild?.tagName).to.equal('BUTTON');
+      expect(container.firstChild).to.have.attribute('disabled');
+      expect(container.firstChild).to.not.have.attribute('aria-disabled');
+    });
   });
 
   it('should automatically change the button to an anchor element when href is provided', () => {
