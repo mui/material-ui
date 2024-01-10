@@ -15,6 +15,16 @@ import Section from 'docs/src/layouts/Section';
 
 const faqData = [
   {
+    summary: 'How long until MUI Connect is out?',
+    detail: (
+      <React.Fragment>
+        We’re still polishing it for a &quot;stable&quot; release. Add your email in the input
+        available in the section above to be notified of any updates as we get further into
+        development.
+      </React.Fragment>
+    ),
+  },
+  {
     summary: 'What long-term support do you offer?',
     detail: (
       <React.Fragment>
@@ -31,18 +41,18 @@ const faqData = [
       <React.Fragment>
         The number of licenses purchased must correspond to the maximum number of editors working
         concurrently in a 24 hour period. An editor is somebody contributing changes to the designed
-        screens that use the UI kits. No licenses are required for viewing the designs.
+        screens that use the Design kits. No licenses are required for viewing the designs.
       </React.Fragment>
     ),
   },
   {
-    summary: 'The UI kit got an update. How do I get it?',
+    summary: 'The Design kit got an update. How do I get it?',
     detail: (
       <React.Fragment>
         We&apos;ll send you an email when a new release is available. You can access the item on the{' '}
         <InternalLink href="https://mui.com/store/account/downloads/">download</InternalLink> page
-        of your store account. You can find a detailed description of the changes under the
-        &quot;Changelog&quot; tab on this page.
+        of your store account and find a detailed description of the changes under
+        the&quot;Changelog&quot; tab on this page..
       </React.Fragment>
     ),
   },
@@ -64,7 +74,7 @@ const faqData = [
     detail: (
       <React.Fragment>
         We aim to keep feature parity between the Figma, Sketch, and Adobe XD kits where possible.
-        We have a 50% off coupon for past customers who want to switch between two design tools.
+        We have a 50% off coupon for past customers who want to switch between them.
       </React.Fragment>
     ),
   },
@@ -77,7 +87,7 @@ const Accordion = styled(MuiAccordion)(({ theme }) => ({
     borderRadius: theme.shape.borderRadius,
   },
   '&:hover': {
-    boxShadow: '1px 1px 20px 0 rgb(90 105 120 / 20%)',
+    boxShadow: '1px 1px 8px 0 rgb(90 105 120 / 20%)',
   },
   '&:not(:last-of-type)': {
     marginBottom: theme.spacing(2),
@@ -158,18 +168,17 @@ export default function DesignKitFAQ() {
               borderStyle: 'dashed',
               borderColor: 'grey.300',
               bgcolor: 'white',
+              textAlign: 'left',
               ...theme.applyDarkStyles({
                 borderColor: 'primaryDark.600',
                 bgcolor: 'primaryDark.800',
               }),
             })}
           >
-            <Box sx={{ textAlign: 'left' }}>
-              <Typography variant="body2" color="text.primary" fontWeight="bold">
-                Got any questions unanswered or need more help?
-              </Typography>
-            </Box>
-            <Typography variant="body2" color="text.primary" sx={{ my: 1, textAlign: 'left' }}>
+            <Typography variant="body2" color="text.primary" fontWeight="bold" gutterBottom>
+              Got any questions unanswered or need more help?
+            </Typography>
+            <Typography variant="body2" color="text.primary" gutterBottom>
               From community help to premium business support, we&apos;re here to help.
             </Typography>
             <Button
