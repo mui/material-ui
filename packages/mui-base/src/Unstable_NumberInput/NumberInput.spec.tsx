@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NumberInput } from './NumberInput';
+import { Unstable_NumberInput as NumberInput } from '@mui/base/Unstable_NumberInput';
 
-/* @ts-expect-error */
+/* @ts-expect-error - inputId shouldn't be available on NumberInput */
 <NumberInput inputId="" />;
