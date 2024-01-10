@@ -66,3 +66,5 @@ import ButtonGroup from '@mui/material-next/ButtonGroup';
 ```
 
 {{"demo": "ButtonGroupMaterialYouPlayground.js", "hideToolbar": true, "bg": "playground"}}
+
+For more instructions on how to use it, visit the [detailed guide](/material-ui/guides/material-3-components/).
