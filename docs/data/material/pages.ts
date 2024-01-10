@@ -162,27 +162,51 @@ const pages: MuiPage[] = [
         pathname: '/material-ui/customization/theme',
         subheader: '/material-ui/customization/theme',
         children: [
-          { pathname: '/material-ui/customization/theming' },
+          { pathname: '/material-ui/customization/default-theme', title: 'Default theme viewer' },
+          { pathname: '/material-ui/customization/theming', title: 'Customizing the theme' },
+          {
+            pathname: '/material-ui/customization/creating-themed-components',
+            title: 'Creating themed components',
+          },
+          { pathname: '/material-ui/customization/theme-components', title: 'Components' },
+        ],
+      },
+      {
+        pathname: '/material-ui/customization/tokens',
+        subheader: 'tokens',
+        children: [
           { pathname: '/material-ui/customization/palette' },
-          { pathname: '/material-ui/customization/dark-mode' },
           { pathname: '/material-ui/customization/typography' },
           { pathname: '/material-ui/customization/spacing' },
           { pathname: '/material-ui/customization/breakpoints' },
           { pathname: '/material-ui/customization/density' },
           { pathname: '/material-ui/customization/z-index', title: 'z-index' },
           { pathname: '/material-ui/customization/transitions' },
-          { pathname: '/material-ui/customization/theme-components', title: 'Components' },
-          { pathname: '/material-ui/customization/default-theme', title: 'Default theme viewer' },
         ],
       },
-      { pathname: '/material-ui/customization/how-to-customize' },
-      { pathname: '/material-ui/customization/color' },
+      {
+        pathname: '/material-ui/customization/general',
+        subheader: 'general',
+        children: [
+          { pathname: '/material-ui/customization/how-to-customize' },
+          { pathname: '/material-ui/customization/dark-mode' },
+          { pathname: '/material-ui/customization/color' },
+          { pathname: '/material-ui/customization/right-to-left', title: 'Right-to-left' },
+          { pathname: '/material-ui/customization/shadow-dom', title: 'Shadow DOM' },
+        ],
+      },
     ],
   },
   {
     pathname: '/material-ui/guides',
     title: 'How-to guides',
     children: [
+      { pathname: '/material-ui/guides/minimizing-bundle-size' },
+      { pathname: '/material-ui/guides/routing' },
+      { pathname: '/material-ui/guides/server-rendering' },
+      { pathname: '/material-ui/guides/responsive-ui', title: 'Responsive UI' },
+      { pathname: '/material-ui/guides/testing' },
+      { pathname: '/material-ui/guides/localization' },
       {
         pathname: '/material-ui/guides/general',
         subheader: 'general',
@@ -198,56 +222,28 @@ const pages: MuiPage[] = [
             pathname: '/material-ui/guides/content-security-policy',
             title: 'Content Security Policy',
           },
-          {
-            pathname: '/material-ui/guides/pickers-migration',
-            title: 'Migration from @material-ui/pickers',
-          },
         ],
+      },
+    ],
+  },
+  {
+    pathname: '/material-ui/integrations',
+    title: 'Integrations',
+    children: [
+      {
+        pathname: '/material-ui/integrations/nextjs',
+        title: 'Next.js integration',
+        newFeature: true,
       },
       {
-        pathname: '/material-ui/guides/guides',
-        subheader: 'guides',
-        children: [
-          { pathname: '/material-ui/guides/minimizing-bundle-size' },
-          { pathname: '/material-ui/guides/routing' },
-          { pathname: '/material-ui/guides/server-rendering' },
-          { pathname: '/material-ui/guides/responsive-ui', title: 'Responsive UI' },
-          { pathname: '/material-ui/guides/testing' },
-          { pathname: '/material-ui/guides/localization' },
-        ],
+        pathname: '/material-ui/integrations/styled-components',
+        title: 'Usage with styled-components',
       },
       {
-        pathname: '/material-ui/guides/customziation',
-        subheader: 'customization',
-        children: [
-          {
-            pathname: '/material-ui/guides/creating-themed-components',
-            title: 'Creating themed components',
-          },
-          { pathname: '/material-ui/guides/right-to-left', title: 'Right-to-left' },
-          { pathname: '/material-ui/guides/shadow-dom', title: 'Shadow DOM' },
-          { pathname: '/material-ui/guides/theme-scoping' },
-        ],
+        pathname: '/material-ui/integrations/interoperability',
+        title: 'Style library interoperability',
       },
-      {
-        pathname: '/material-ui/guides/integrations',
-        subheader: 'integrations',
-        children: [
-          {
-            pathname: '/material-ui/guides/styled-components',
-            title: 'Usage with styled-components',
-          },
-          {
-            pathname: '/material-ui/guides/interoperability',
-            title: 'Style library interoperability',
-          },
-          {
-            pathname: '/material-ui/guides/nextjs',
-            title: 'Next.js integration',
-            newFeature: true,
-          },
-        ],
-      },
+      { pathname: '/material-ui/integrations/theme-scoping' },
     ],
   },
   {
@@ -274,24 +270,16 @@ const pages: MuiPage[] = [
     ],
   },
   {
-    pathname: '/material-ui/discover-more',
-    children: [
-      { pathname: '/material-ui/discover-more/showcase' },
-      { pathname: '/material-ui/discover-more/related-projects' },
-      { pathname: '/material-ui/discover-more/design-kits' },
-      { pathname: '/material-ui/discover-more/roadmap' },
-      { pathname: '/material-ui/discover-more/backers', title: 'Sponsors and Backers' },
-      { pathname: '/material-ui/discover-more/vision' },
-      { pathname: '/material-ui/discover-more/changelog' },
-    ],
-  },
-  {
     pathname: '/material-ui/migration',
     title: 'Migration',
     children: [
       {
         pathname: '/material-ui/migration/migration-grid-v2',
         title: 'Migrating to Grid v2',
+      },
+      {
+        pathname: '/material-ui/migration/pickers-migration',
+        title: 'Migration from @material-ui/pickers',
       },
       {
         pathname: '/material-ui/migration/v5',
@@ -327,6 +315,18 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/migration/migration-v0x', title: 'Migration from v0.x to v1' },
         ],
       },
+    ],
+  },
+  {
+    pathname: '/material-ui/discover-more',
+    children: [
+      { pathname: '/material-ui/discover-more/showcase' },
+      { pathname: '/material-ui/discover-more/related-projects' },
+      { pathname: '/material-ui/discover-more/design-kits' },
+      { pathname: '/material-ui/discover-more/roadmap' },
+      { pathname: '/material-ui/discover-more/backers', title: 'Sponsors and Backers' },
+      { pathname: '/material-ui/discover-more/vision' },
+      { pathname: '/material-ui/discover-more/changelog' },
     ],
   },
   {
