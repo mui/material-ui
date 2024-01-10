@@ -162,6 +162,22 @@ describe('<Button />', () => {
       expect(container.firstChild).to.have.attribute('disabled');
       expect(container.firstChild).to.not.have.attribute('aria-disabled');
     });
+
+    it('renders when the `component` prop is a wrapped component', () => {
+      const CustomComponent = React.forwardRef((props, ref) => (
+        <span {...props} ref={ref} data-testid="custom" />
+      ));
+
+      const { container } = renderToString(
+        <Button disabled component={CustomComponent}>
+          Hello World
+        </Button>,
+      );
+
+      expect(container.firstChild?.tagName).to.equal('SPAN');
+      expect(container.firstChild).to.not.have.attribute('disabled');
+      expect(container.firstChild).to.have.attribute('aria-disabled');
+    });
   });
 
   it('should automatically change the button to an anchor element when href is provided', () => {
