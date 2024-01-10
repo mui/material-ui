@@ -13,13 +13,17 @@ import { TransitionContextValue } from './TransitionContext';
  *
  * - [useTransitionTrigger API](https://mui.com/base-ui/react-transitions/hooks-api/#use-transition-trigger)
  */
-export function useTransitionTrigger(requestEnter: boolean): UseTransitionTriggerReturnValue {
+export function useTransitionTrigger(
+  requestEnter: boolean,
+  initiallyEntered: boolean = false,
+): UseTransitionTriggerReturnValue {
   const [state, dispatch] = React.useReducer(transitionStateReducer, {
-    elementExited: !requestEnter,
+    elementExited: !initiallyEntered,
     inProgress: false,
   });
 
-  const hasTransition = React.useRef(false);
+  const registeredTransitions = React.useRef(0);
+  const [hasTransition, setHasTransition] = React.useState(false);
 
   const handleEntering = React.useCallback(() => {
     dispatch('entering');
@@ -38,14 +42,18 @@ export function useTransitionTrigger(requestEnter: boolean): UseTransitionTrigge
   }, []);
 
   const registerTransition = React.useCallback(() => {
-    hasTransition.current = true;
+    registeredTransitions.current += 1;
+    setHasTransition(true);
     return () => {
-      hasTransition.current = false;
+      registeredTransitions.current -= 1;
+      if (registeredTransitions.current === 0) {
+        setHasTransition(false);
+      }
     };
   }, []);
 
   // If there are no transitions registered, the `exited` state is opposite of `requestEnter` immediately.
-  const hasExited = hasTransition.current ? state.elementExited : !requestEnter;
+  const hasExited = hasTransition ? state.elementExited : !requestEnter;
 
   const contextValue: TransitionContextValue = React.useMemo(
     () => ({
