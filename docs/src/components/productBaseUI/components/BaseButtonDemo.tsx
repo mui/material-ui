@@ -44,6 +44,10 @@ const buttonStyles = `
       background: var(--muidocs-palette-primary-800);
     }
 
+    &.Mui-active {
+      background-color: var(--muidocs-palette-primary-900);
+    }
+
     &.Mui-disabled {
       &:hover {
         background: var(--muidocs-palette-primary-700);
