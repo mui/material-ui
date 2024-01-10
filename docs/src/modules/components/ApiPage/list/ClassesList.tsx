@@ -76,13 +76,17 @@ export default function ClassesList(props: ClassesListProps) {
         const { className, key, description, isGlobal, isDeprecated, deprecationInfo } =
           classDefinition;
 
+        let note = isGlobal ? t('api-docs.state') : '';
+
+        if (isDeprecated) {
+          note = [note, t('api-docs.deprecated')].filter(Boolean).join(' - ');
+        }
+
         return (
           <StyledApiItem
             id={getHash({ componentName, className: key })}
             key={key}
-            note={
-              (isGlobal && t('api-docs.state')) || (isDeprecated && t('api-docs.deprecated')) || ''
-            }
+            note={note}
             title={`.${className}`}
             type="classes"
             displayOption={displayOption}

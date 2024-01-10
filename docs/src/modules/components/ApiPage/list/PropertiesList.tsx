@@ -179,17 +179,20 @@ export default function PropertiesList(props: PropertiesListProps) {
           signatureArgs,
           signatureReturnDescription,
         } = params;
+
+        let note =
+          (isOptional && t('api-docs.optional')) || (isRequired && t('api-docs.required')) || '';
+
+        if (isDeprecated) {
+          note = [note, t('api-docs.deprecated')].filter(Boolean).join(' - ');
+        }
+
         return (
           <StyledApiItem
             key={propName}
             id={getHash({ componentName, propName, hooksParameters, hooksReturnValue })}
             title={propName}
-            note={
-              (isOptional && t('api-docs.optional')) ||
-              (isRequired && t('api-docs.required')) ||
-              (isDeprecated && t('api-docs.deprecated')) ||
-              ''
-            }
+            note={note}
             type="props"
             displayOption={displayOption}
             className={isDeprecated ? 'prop-list-deprecated-item' : ''}
