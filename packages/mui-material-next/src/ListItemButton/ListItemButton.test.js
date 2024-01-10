@@ -99,9 +99,7 @@ describe('<ListItemButton />', () => {
       expect(!!link).to.equal(true);
     });
 
-    // TODO v7: support hostElementName prop
-    // eslint-disable-next-line mocha/no-skipped-tests
-    it.skip('should rendered as specifying component', () => {
+    it('should rendered as specifying component', () => {
       const { getByRole } = render(<ListItemButton href={href} component="h1" />);
 
       const heading = getByRole('heading');
@@ -137,9 +135,7 @@ describe('<ListItemButton />', () => {
       expect(!!link).to.equal(true);
     });
 
-    // TODO v7: support hostElementName prop
-    // eslint-disable-next-line mocha/no-skipped-tests
-    it.skip('should rendered as specifying component', () => {
+    it('should rendered as specifying component', () => {
       const { getByRole } = render(<ListItemButton to={to} component="h1" />);
 
       const heading = getByRole('heading');
@@ -167,9 +163,7 @@ describe('<ListItemButton />', () => {
       expect(button).to.have.attribute('href', href);
     });
 
-    // TODO v7: support hostElementName prop
-    // eslint-disable-next-line mocha/no-skipped-tests
-    it.skip('should ignore LinkComponent if component is provided', () => {
+    it('should ignore LinkComponent if component is provided', () => {
       const { container, queryByTestId } = render(
         <ListItemButton href={href} LinkComponent={CustomLink} component="h1" />,
       );
