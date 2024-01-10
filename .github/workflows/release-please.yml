@@ -1,0 +1,59 @@
+on:
+    push:
+        branches:
+            - main
+
+permissions:
+    contents: write
+    pull-requests: write
+
+name: release-please
+
+jobs:
+    release-please:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: google-github-actions/release-please-action@v3
+              id: 'release'
+              with:
+                  command: manifest
+            - name: Check out repository code
+              uses: actions/checkout@v3
+              if: ${{ steps.release.outputs.release_created }}
+            - name: Set up Node@16
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 16
+                  cache: 'npm'
+                  cache-dependency-path: '**/package-lock.json'
+              if: ${{ steps.release.outputs.release_created }}
+            - name: Get package version
+              id: get-version
+              run: |
+                  PKG_VERSION=$(jq -r '.version' package.json)
+                  echo "pkg_version=$PKG_VERSION" >> $GITHUB_OUTPUT
+              if: ${{ steps.release.outputs.release_created }}
+            - name: Configure AWS credentials
+              uses: aws-actions/configure-aws-credentials@v1-node16
+              with:
+                  aws-access-key-id: ${{ secrets.CLOUD_ENGINEERING_PROD_AWS_ACCESS_KEY_ID }}
+                  aws-secret-access-key: ${{ secrets.CLOUD_ENGINEERING_PROD_AWS_SECRET_KEY }}
+                  aws-region: us-east-1
+              if: ${{ steps.release.outputs.release_created }}
+            - name: Set-up NPM
+              id: codeartifact-token
+              run: |
+                  ARTIFACT_AUTH_TOKEN=$(aws codeartifact get-authorization-token --domain energysage --domain-owner 659694780082 --query authorizationToken --output text)
+                  npm config set registry=https://energysage-659694780082.d.codeartifact.us-east-1.amazonaws.com/npm/innovate-repo/
+                  npm config set //energysage-659694780082.d.codeartifact.us-east-1.amazonaws.com/npm/cloud-engineering/:_authToken=$ARTIFACT_AUTH_TOKEN
+                  npm config set //energysage-659694780082.d.codeartifact.us-east-1.amazonaws.com/npm/cloud-engineering/:always-auth=true
+              if: ${{ steps.release.outputs.release_created }}
+            - name: Install dependencies
+              run: npm install
+              if: ${{ steps.release.outputs.release_created }}
+            - name: Publish Packages
+              id: publish-packages
+              run: |
+                  npm run build
+                  npm publish
+              if: ${{ steps.release.outputs.release_created }}
