@@ -18,13 +18,6 @@ export interface CssTransitionProps {
    */
   exitClassName?: string;
   /**
-   * The name of the CSS property that is transitioned the longest (has the largest `transition-duration`) on enter.
-   * This is used to determine when the transition has ended.
-   * If not specified, the transition will be considered finished end when the first property is transitioned.
-   * If all properties have the same `transition-duration` (or there is just one transitioned property), this can be omitted.
-   */
-  lastTransitionedPropertyOnEnter?: string;
-  /**
    * The name of the CSS property that is transitioned the longest (has the largest `transition-duration`) on exit.
    * This is used to determine when the transition has ended.
    * If not specified, the transition will be considered finished end when the first property is transitioned.
@@ -52,15 +45,13 @@ const CssTransition = React.forwardRef(function CssTransition(
   const {
     children,
     className,
-    lastTransitionedPropertyOnEnter,
     lastTransitionedPropertyOnExit,
     enterClassName,
     exitClassName,
     ...other
   } = props;
 
-  const { requestedEnter, onEntering, onEntered, onExiting, onExited } =
-    useTransitionStateManager();
+  const { requestedEnter, onExited } = useTransitionStateManager();
 
   const [isEntering, setIsEntering] = React.useState(false);
 
@@ -78,37 +69,17 @@ const CssTransition = React.forwardRef(function CssTransition(
     }
   }, [requestedEnter]);
 
-  React.useEffect(() => {
-    if (requestedEnter) {
-      onEntering();
-    } else {
-      onExiting();
-    }
-  }, [requestedEnter, onEntering, onExiting]);
-
   const handleTransitionEnd = React.useCallback(
     (event: React.TransitionEvent) => {
-      if (requestedEnter) {
-        if (
-          lastTransitionedPropertyOnEnter == null ||
-          event.propertyName === lastTransitionedPropertyOnEnter
-        ) {
-          onEntered();
-        }
-      } else if (
-        lastTransitionedPropertyOnExit == null ||
-        event.propertyName === lastTransitionedPropertyOnExit
+      if (
+        !requestedEnter &&
+        (lastTransitionedPropertyOnExit == null ||
+          event.propertyName === lastTransitionedPropertyOnExit)
       ) {
         onExited();
       }
     },
-    [
-      onExited,
-      onEntered,
-      requestedEnter,
-      lastTransitionedPropertyOnEnter,
-      lastTransitionedPropertyOnExit,
-    ],
+    [onExited, requestedEnter, lastTransitionedPropertyOnExit],
   );
 
   return (

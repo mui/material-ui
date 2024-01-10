@@ -6,7 +6,6 @@ import { CssAnimation } from './CssAnimation';
 import { TransitionContext, TransitionContextValue } from '../useTransition';
 
 const onExitedSpy = spy();
-const onEnteredSpy = spy();
 
 function TestTransitionContextProvider(props: {
   requestEnter: boolean;
@@ -15,9 +14,6 @@ function TestTransitionContextProvider(props: {
   const contextValue: TransitionContextValue = React.useMemo(
     () => ({
       requestedEnter: props.requestEnter,
-      onEntering: spy(),
-      onEntered: onEnteredSpy,
-      onExiting: spy(),
       onExited: onExitedSpy,
       registerTransition: () => () => {},
     }),
@@ -32,7 +28,6 @@ function TestTransitionContextProvider(props: {
 describe('CssAnimation', () => {
   beforeEach(() => {
     onExitedSpy.resetHistory();
-    onEnteredSpy.resetHistory();
   });
 
   const { render } = createRenderer();
@@ -119,39 +114,6 @@ describe('CssAnimation', () => {
           // wait for internal event handlers to be called
           requestAnimationFrame(() => {
             expect(onExitedSpy.callCount).to.equal(1);
-            resolve();
-          });
-        });
-      });
-
-      return promise;
-    });
-
-    it('calls onEntered when the enter animation ends', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-
-      const styles = `
-        @keyframes enter {}
-        .enter {
-          animation-name: enter;
-          animation-duration: 10ms;
-        }
-      `;
-      const { getByTestId } = render(
-        <TestTransitionContextProvider requestEnter>
-          <style>{styles}</style>
-          <CssAnimation enterClassName="enter" enterAnimationName="enter" data-testid="root" />
-        </TestTransitionContextProvider>,
-      );
-      const animationRoot = getByTestId('root');
-
-      const promise = new Promise<void>((resolve) => {
-        animationRoot.addEventListener('animationend', () => {
-          // wait for internal event handlers to be called
-          requestAnimationFrame(() => {
-            expect(onEnteredSpy.callCount).to.equal(1);
             resolve();
           });
         });
