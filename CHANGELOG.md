@@ -8,7 +8,7 @@ _Jan 10, 2024_
 
 A big thanks to the 22 contributors who made this release possible. Here are some highlights:
 
-- ✨ Material UI's [ToggleButtonGroup](https://mui.com/material-ui/react-toggle-button/) now supports non-button element as a child (e.g., showing a Tooltip on a disabled ToggleButton) (#40220)
+- ✨ Material UI's [ToggleButtonGroup](https://mui.com/material-ui/react-toggle-button/) now supports non-button element as a child (e.g., showing a Tooltip on a disabled ToggleButton) (#40220) @Methuselah96
 
 ### `@mui/material@5.15.4`
 
