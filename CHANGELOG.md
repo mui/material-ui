@@ -4,7 +4,7 @@
 
 <!-- generated comparing v5.15.3..master -->
 
-_Jan 9, 2024_
+_Jan 10, 2024_
 
 A big thanks to the 22 contributors who made this release possible. Here are some highlights:
 
@@ -44,6 +44,7 @@ A big thanks to the 22 contributors who made this release possible. Here are som
 - [base-ui] Visual tweaks to the plain CSS theme stylesheet (#40487) @zanivan
 - [base-ui] Add tokens to plain CSS theme stylesheet (#40113) @zanivan
 - [base-ui] Update the overview page (#40412) @danilo-leal
+- [material-ui][Drawer] Resolve flickering when double-clicking on the backdrop to close it (#40343) @aacevski
 - [material-ui] Refactor form submission in FormDialog component (#40470) @sai6855
 - [material-ui] Replace recharts with MUI X charts on the Dashboard template (#40107) @alexfauquette
 - [material-ui] Revise the Alert demo page (#34892) @samuelsycamore
@@ -62,11 +63,12 @@ A big thanks to the 22 contributors who made this release possible. Here are som
 - [code-infra] Don't require noreferrer on target link (#40447) @oliviertassinari
 - [code-infra] Use tsx instead of ts-node (#40428) @michaldudak
 - [code-infra] Add options to docs-api generation to support X code structure (#40111) @alexfauquette
-- [docs-infra] Remove explicit `mui-x` dependency resolving (#40257) @LukasTy
+- [docs-infra] Add types for withDocsInfra (#40301) @oliviertassinari
 - [docs-infra] Fix anchor links in API pages (#40450) @oliviertassinari
 - [docs-infra] Fix API table full-width (#40476) @oliviertassinari
 - [docs-infra] Fix the copy button overlapping with the scrollbar (#40405) @danilo-leal
-- [docs-infra] Add types for withDocsInfra (#40301) @oliviertassinari
+- [docs-infra] Remove explicit `mui-x` dependency resolving (#40257) @LukasTy
+- [docs-infra] Update the outlined Demo container dark mode color (#40488) @danilo-leal
 - [core] Lock file maintenance (#34538) @renovate[bot]
 - [core] Remove duplicate devDependencies (#40438) @michaldudak
 - [core] Remove issue emoji @oliviertassinari
