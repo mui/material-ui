@@ -82,7 +82,7 @@ function testPropForwarding(
     const otherProps = {
       lang: 'fr',
       fooBar: randomStringValue(),
-      hostElementName: hostElementNameMustMatchComponentProp ? Element : undefined,
+      ...(hostElementNameMustMatchComponentProp ? { hostElementName: Element } : {}),
     };
 
     await render(React.cloneElement(element, { slots: { root: CustomRoot }, ...otherProps }));
@@ -97,7 +97,7 @@ function testPropForwarding(
       lang: 'fr',
       'data-foobar': randomStringValue(),
       'data-testid': 'custom-root',
-      hostElementName: hostElementNameMustMatchComponentProp ? Element : undefined,
+      ...(hostElementNameMustMatchComponentProp ? { hostElementName: Element } : {}),
     };
 
     render(React.cloneElement(element, { slots: { root: Element }, ...otherProps }));
@@ -133,14 +133,15 @@ function testSlotsProp(element: React.ReactElement, getOptions: () => UnstyledCo
     it(`allows overriding the ${slotName} slot with a component`, async () => {
       const slotComponent = slotOptions.testWithComponent ?? CustomComponent;
 
-      const hostElementName = hostElementNameMustMatchComponentProp ? 'i' : undefined;
-
       const components = {
         [slotName]: slotComponent,
       };
 
       const { getByTestId } = await render(
-        React.cloneElement(element, { slots: components, hostElementName }),
+        React.cloneElement(element, {
+          slots: components,
+          ...(hostElementNameMustMatchComponentProp ? { hostElementName: 'i' } : {}),
+        }),
       );
       const renderedElement = getByTestId('custom');
       expect(renderedElement).to.have.class(slotOptions.expectedClassName);
@@ -160,20 +161,11 @@ function testSlotsProp(element: React.ReactElement, getOptions: () => UnstyledCo
           },
         };
 
-        let otherProps = {};
-
-        if (hostElementNameMustMatchComponentProp) {
-          otherProps = {
-            ...otherProps,
-            hostElementName: slotElement,
-          };
-        }
-
         const { getByTestId } = await render(
           React.cloneElement(element, {
             slots: components,
             slotProps,
-            ...otherProps,
+            ...(hostElementNameMustMatchComponentProp ? { hostElementName: slotElement } : {}),
           }),
         );
         const renderedElement = getByTestId('customized');
@@ -355,7 +347,7 @@ function testOwnerStatePropagation(
         React.cloneElement(element, {
           slots: slotOverrides,
           id: 'foo',
-          hostElementName: hostElementNameMustMatchComponentProp ? Element : undefined,
+          ...(hostElementNameMustMatchComponentProp ? { hostElementName: Element } : {}),
         }),
       );
       expect(componentOwnerState).not.to.equal(undefined);
