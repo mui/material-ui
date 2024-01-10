@@ -87,12 +87,12 @@ export default function BaseButtonDemo({
       )}
       {styling === 'tailwindcss' && (
         <React.Fragment>
-          <Button className="transition shaodw-[--shadow] cursor-pointer rounded-[8px] border-none bg-indigo-600 p-[10px_16px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-indigo-700 ui-active:bg-indigo-800 ui-disabled:cursor-not-allowed ui-disabled:opacity-50 ui-focus-visible:[outline:4px_solid_var(--focus-ring)]">
+          <Button className="transition shadow-[--shadow] cursor-pointer rounded-[8px] border-none bg-indigo-600 p-[10px_16px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-indigo-700 ui-active:bg-indigo-800 ui-disabled:cursor-not-allowed ui-disabled:opacity-50 ui-focus-visible:[outline:4px_solid_var(--focus-ring)]">
             Button
           </Button>
           <Button
             disabled
-            className="transition shaodw-[--shadow] cursor-pointer rounded-[8px] border-none bg-indigo-600 p-[10px_16px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-indigo-700 ui-active:bg-indigo-800 ui-disabled:cursor-not-allowed ui-disabled:opacity-50 ui-focus-visible:[outline:4px_solid_var(--focus-ring)]"
+            className="transition shadow-[--shadow] cursor-pointer rounded-[8px] border-none bg-indigo-600 p-[10px_16px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-indigo-700 ui-active:bg-indigo-800 ui-disabled:cursor-not-allowed ui-disabled:opacity-50 ui-focus-visible:[outline:4px_solid_var(--focus-ring)]"
           >
             Disabled
           </Button>
@@ -127,7 +127,7 @@ import './styles.css';
     return `import { Button } from '@mui/base/Button';
 
 <Button
-  className="transition shaodw-[--shadow] cursor-pointer rounded-[8px] 
+  className="transition shadow-[--shadow] cursor-pointer rounded-[8px] 
   border-none bg-indigo-600 p-[10px_16px] text-[0.875rem] font-bold 
   text-white [font-family:IBM_Plex_sans] hover:bg-indigo-700 
   ui-active:bg-indigo-800 ui-disabled:cursor-not-allowed ui-disabled:opacity-50 
@@ -135,7 +135,7 @@ import './styles.css';
   Button
 </Button>
 <Button
-  className="transition shaodw-[--shadow] cursor-pointer rounded-[8px] 
+  className="transition shadow-[--shadow] cursor-pointer rounded-[8px] 
   border-none bg-indigo-600 p-[10px_16px] text-[0.875rem] font-bold 
   text-white [font-family:IBM_Plex_sans] hover:bg-indigo-700 
   ui-active:bg-indigo-800 ui-disabled:cursor-not-allowed ui-disabled:opacity-50 
