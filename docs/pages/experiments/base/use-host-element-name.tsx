@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Button as BaseButton, buttonClasses } from '@mui/base/Button';
 import { prepareForSlot } from '@mui/base/utils';
-import { styled } from '@mui/system';
+import { styled, Theme } from '@mui/system';
 import { Stack } from '@mui/material';
 import Link from 'next/link';
 
@@ -29,8 +29,8 @@ const grey = {
   900: '#1C2025',
 };
 
-const StyledHtmlInput = styled('input')(
-  ({ theme }) => `
+// copy-pasta from base button intro demo
+const STYLES = ({ theme }: { theme: Theme }) => `
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
   font-size: 0.875rem;
@@ -70,144 +70,19 @@ const StyledHtmlInput = styled('input')(
     box-shadow: none;
     transform: scale(1);
   }
-  `,
-);
+  `;
 
-const StyledHtmlButton = styled('button')(
-  ({ theme }) => `
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-weight: 600;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  text-decoration: none;
-  background-color: ${blue[500]};
-  padding: 8px 16px;
-  border-radius: 8px;
-  color: white;
-  transition: all 150ms ease;
-  cursor: pointer;
-  border: 1px solid ${blue[500]};
-  box-shadow: 0 2px 1px ${
-    theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(45, 45, 60, 0.2)'
-  }, inset 0 1.5px 1px ${blue[400]}, inset 0 -2px 1px ${blue[600]};
+const StyledHtmlInput = styled('input')(STYLES);
 
-  &:hover {
-    background-color: ${blue[600]};
-  }
+const StyledHtmlButton = styled('button')(STYLES);
 
-  &.${buttonClasses.active} {
-    background-color: ${blue[700]};
-    box-shadow: none;
-    transform: scale(0.99);
-  }
+const StyledBaseButton = styled(BaseButton)(STYLES);
 
-  &.${buttonClasses.focusVisible} {
-    box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[300] : blue[200]};
-    outline: none;
-  }
-
-  &.${buttonClasses.disabled} {
-    background-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    color: ${theme.palette.mode === 'dark' ? grey[200] : grey[700]};
-    border: 0;
-    cursor: default;
-    box-shadow: none;
-    transform: scale(1);
-  }
-  `,
-);
-
-const StyledBaseButton = styled(BaseButton)(
-  ({ theme }) => `
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-weight: 600;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  text-decoration: none;
-  background-color: ${blue[500]};
-  padding: 8px 16px;
-  border-radius: 8px;
-  color: white;
-  transition: all 150ms ease;
-  cursor: pointer;
-  border: 1px solid ${blue[500]};
-  box-shadow: 0 2px 1px ${
-    theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(45, 45, 60, 0.2)'
-  }, inset 0 1.5px 1px ${blue[400]}, inset 0 -2px 1px ${blue[600]};
-
-  &:hover {
-    background-color: ${blue[600]};
-  }
-
-  &.${buttonClasses.active} {
-    background-color: ${blue[700]};
-    box-shadow: none;
-    transform: scale(0.99);
-  }
-
-  &.${buttonClasses.focusVisible} {
-    box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[300] : blue[200]};
-    outline: none;
-  }
-
-  &.${buttonClasses.disabled} {
-    background-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    color: ${theme.palette.mode === 'dark' ? grey[200] : grey[700]};
-    border: 0;
-    cursor: default;
-    box-shadow: none;
-    transform: scale(1);
-  }
-  `,
-);
-
-const StyledHtmlAnchor = styled('a')(
-  ({ theme }) => `
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-weight: 600;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  text-decoration: none;
-  background-color: ${blue[500]};
-  padding: 8px 16px;
-  border-radius: 8px;
-  color: white;
-  transition: all 150ms ease;
-  cursor: pointer;
-  border: 1px solid ${blue[500]};
-  box-shadow: 0 2px 1px ${
-    theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(45, 45, 60, 0.2)'
-  }, inset 0 1.5px 1px ${blue[400]}, inset 0 -2px 1px ${blue[600]};
-
-  &:hover {
-    background-color: ${blue[600]};
-  }
-
-  &.${buttonClasses.active} {
-    background-color: ${blue[700]};
-    box-shadow: none;
-    transform: scale(0.99);
-  }
-
-  &.${buttonClasses.focusVisible} {
-    box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[300] : blue[200]};
-    outline: none;
-  }
-
-  &.${buttonClasses.disabled} {
-    background-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    color: ${theme.palette.mode === 'dark' ? grey[200] : grey[700]};
-    border: 0;
-    cursor: default;
-    box-shadow: none;
-    transform: scale(1);
-  }
-  `,
-);
+const StyledHtmlAnchor = styled('a')(STYLES);
 
 export default function ServerRenderedButtons() {
   return (
-    <Stack spacing={8} direction="column">
+    <Stack spacing={8} direction="column" style={{ padding: 16 }}>
       <Stack spacing={3} mb={24}>
         <pre style={{ fontSize: 16, fontWeight: 500, marginBottom: -12 }}>Normal cases:</pre>
         <pre style={{ lineHeight: 1.8, marginBottom: 12 }}>
