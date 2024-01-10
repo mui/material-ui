@@ -109,6 +109,7 @@ const StyledTab = styled('button')({
   fontSize: 14,
   fontWeight: 600,
   color: 'var(--muidocs-palette-text-secondary)',
+  userSelect: 'none',
 
   '&:hover:not(.Mui-selected)': {
     background: 'var(--Tab-hoverBackground)',
@@ -190,6 +191,7 @@ const StyledModalButton = styled('button')({
   fontWeight: 600,
   color: 'var(--muidocs-palette-primary-600)',
   lineHeight: 21 / 14,
+  userSelect: 'none',
 
   '&:hover': {
     backgroundColor: 'var(--muidocs-palette-primary-100)',
@@ -226,6 +228,7 @@ const StyledSnackbarButton = styled('button')({
   fontWeight: 600,
   color: 'var(--muidocs-palette-grey-900)',
   lineHeight: 21 / 14,
+  userSelect: 'none',
 
   '&:hover': {
     backgroundColor: 'var(--muidocs-palette-grey-200)',
@@ -263,6 +266,7 @@ const StyledViewCode = styled(Link)({
   fontWeight: 600,
   color: 'var(--muidocs-palette-grey-200)',
   lineHeight: 21 / 14,
+  userSelect: 'none',
 
   '&:hover': {
     backgroundColor: 'var(--muidocs-palette-primaryDark-600)',
