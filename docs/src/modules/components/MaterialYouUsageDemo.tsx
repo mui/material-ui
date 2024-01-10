@@ -158,7 +158,10 @@ interface MaterialYouUsageDemoProps<ComponentProps> {
      * If `false`, the prop does not display in the code block.
      */
     codeBlockDisplay?: boolean;
-    onChange?: (event: React.SyntheticEvent) => void;
+    onChange?: (
+      event: React.SyntheticEvent,
+      handleUpdateOptionProps?: React.Dispatch<React.SetStateAction<ComponentProps>>,
+    ) => void;
   }>;
   /**
    * A function to override the code block result.
@@ -352,21 +355,11 @@ export default function MaterialYouUsageDemo<T extends { [k: string]: any } = {}
                     placeholder="Select a variant..."
                     value={(resolvedValue || 'none') as string}
                     onChange={(event) => {
-                      setProps((latestProps) => {
-                        const variantShouldSpecialUpdate =
-                          componentName === 'LinearProgress' &&
-                          propName === 'type' &&
-                          event.target.value === 'CircularProgress' &&
-                          !['indeterminate', 'determinate'].includes(latestProps.variant);
-                        return {
-                          ...latestProps,
-                          variant: variantShouldSpecialUpdate
-                            ? 'indeterminate'
-                            : latestProps.variant,
-                          [propName]: event.target.value,
-                        };
-                      });
-                      onChange?.(event as React.SyntheticEvent);
+                      setProps((latestProps) => ({
+                        ...latestProps,
+                        [propName]: event.target.value,
+                      }));
+                      onChange?.(event as React.SyntheticEvent, setProps);
                     }}
                   >
                     {options.map((value) => (

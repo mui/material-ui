@@ -27,7 +27,20 @@ export default function ProgressMaterialYouPlayground() {
           options: ['CircularProgress', 'LinearProgress'],
           defaultValue: 'CircularProgress',
           codeBlockDisplay: false,
-          onChange: (e) => setType(e.target.value),
+          onChange: (e, handleUpdateOptionProps) => {
+            setType(e.target.value);
+            if (handleUpdateOptionProps) {
+              handleUpdateOptionProps((latestProps) =>
+                event.target.value === 0 &&
+                !['indeterminate', 'determinate'].includes(latestProps.variant)
+                  ? {
+                      ...latestProps,
+                      variant: 'indeterminate',
+                    }
+                  : latestProps,
+              );
+            }
+          },
         },
         {
           propName: 'variant',
