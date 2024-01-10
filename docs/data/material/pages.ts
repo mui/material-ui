@@ -15,6 +15,10 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/getting-started/learn' },
       { pathname: '/material-ui/getting-started/design-resources' },
       { pathname: '/material-ui/getting-started/faq', title: 'FAQs' },
+      {
+        pathname: '/material-ui/getting-started/understand-mui-packages',
+        title: 'Understanding MUI packages',
+      },
       { pathname: '/material-ui/getting-started/supported-components' },
       { pathname: '/material-ui/getting-started/supported-platforms' },
       { pathname: '/material-ui/getting-started/support' },
@@ -158,6 +162,11 @@ const pages: MuiPage[] = [
   {
     pathname: '/material-ui/customization',
     children: [
+      { pathname: '/material-ui/customization/how-to-customize' },
+      { pathname: '/material-ui/customization/dark-mode' },
+      { pathname: '/material-ui/customization/color' },
+      { pathname: '/material-ui/customization/right-to-left', title: 'Right-to-left' },
+      { pathname: '/material-ui/customization/shadow-dom', title: 'Shadow DOM' },
       {
         pathname: '/material-ui/customization/theme',
         subheader: '/material-ui/customization/theme',
@@ -184,17 +193,6 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/customization/transitions' },
         ],
       },
-      {
-        pathname: '/material-ui/customization/general',
-        subheader: 'general',
-        children: [
-          { pathname: '/material-ui/customization/how-to-customize' },
-          { pathname: '/material-ui/customization/dark-mode' },
-          { pathname: '/material-ui/customization/color' },
-          { pathname: '/material-ui/customization/right-to-left', title: 'Right-to-left' },
-          { pathname: '/material-ui/customization/shadow-dom', title: 'Shadow DOM' },
-        ],
-      },
     ],
   },
   {
@@ -212,22 +210,12 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/guides/responsive-ui', title: 'Responsive UI' },
       { pathname: '/material-ui/guides/testing' },
       { pathname: '/material-ui/guides/localization' },
+      { pathname: '/material-ui/guides/api', title: 'API design approach' },
+      { pathname: '/material-ui/guides/typescript', title: 'TypeScript' },
+      { pathname: '/material-ui/guides/composition' },
       {
-        pathname: '/material-ui/guides/general',
-        subheader: 'general',
-        children: [
-          {
-            pathname: '/material-ui/guides/understand-mui-packages',
-            title: 'Understanding MUI packages',
-          },
-          { pathname: '/material-ui/guides/api', title: 'API design approach' },
-          { pathname: '/material-ui/guides/typescript', title: 'TypeScript' },
-          { pathname: '/material-ui/guides/composition' },
-          {
-            pathname: '/material-ui/guides/content-security-policy',
-            title: 'Content Security Policy',
-          },
-        ],
+        pathname: '/material-ui/guides/content-security-policy',
+        title: 'Content Security Policy',
       },
     ],
   },
