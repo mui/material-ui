@@ -115,6 +115,9 @@ export default function DemoEditor(props: DemoEditorProps) {
     >
       <div className="MuiCode-root" {...handlers}>
         <div className="scrollContainer">
+          <NoSsr>
+            <CodeCopyButton {...copyButtonProps} code={value} />
+          </NoSsr>
           <StyledSimpleCodeEditor
             padding={contextTheme.spacing(2)}
             highlight={(code: any) =>
@@ -162,9 +165,6 @@ export default function DemoEditor(props: DemoEditorProps) {
             __html: t('editorHint'),
           }}
         />
-        <NoSsr>
-          <CodeCopyButton {...copyButtonProps} code={value} />
-        </NoSsr>
         {children}
       </div>
     </StyledMarkdownElement>

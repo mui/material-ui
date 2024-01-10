@@ -72,7 +72,7 @@ export default function DiamondSponsors() {
                 component="a"
                 href="mailto:sales@mui.com"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
                 color="primary"
                 sx={(theme) => ({
                   mr: 2,
@@ -91,7 +91,7 @@ export default function DiamondSponsors() {
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   To join us, contact us at{' '}
-                  <Link href="mailto:sales@mui.com" target="_blank" rel="noopener noreferrer">
+                  <Link href="mailto:sales@mui.com" target="_blank" rel="noopener">
                     sales@mui.com
                   </Link>{' '}
                   for pre-approval.

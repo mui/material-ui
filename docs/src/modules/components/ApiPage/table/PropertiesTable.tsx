@@ -16,6 +16,11 @@ import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/Styl
 
 const StyledTable = styled('table')(
   ({ theme }) => ({
+    // Override docs/src/modules/components/MarkdownElement styles
+    '&&': {
+      display: 'table',
+      width: '100%',
+    },
     '& .type-column': {
       minWidth: '20%',
     },
@@ -175,9 +180,10 @@ export default function PropertiesTable(props: PropertiesTableProps) {
         <tbody>
           {properties.map((params) => {
             const {
-              targetName,
+              componentName,
               propName,
               description,
+              seeMoreDescription,
               requiresRef,
               isOptional,
               isRequired,
@@ -196,7 +202,7 @@ export default function PropertiesTable(props: PropertiesTableProps) {
             return (
               <tr
                 key={propName}
-                id={getHash({ targetName, propName, hooksParameters, hooksReturnValue })}
+                id={getHash({ componentName, propName, hooksParameters, hooksReturnValue })}
               >
                 <td className="MuiApi-table-item-title">
                   {propName}
@@ -218,6 +224,12 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                 </td>
                 <td className="MuiPropTable-description-column">
                   {description && <PropDescription description={description} />}
+                  {seeMoreDescription && (
+                    <p
+                      dangerouslySetInnerHTML={{ __html: seeMoreDescription }}
+                      className="prop-table-additional-description"
+                    />
+                  )}
                   {requiresRef && (
                     <Alert
                       className="prop-table-alert"

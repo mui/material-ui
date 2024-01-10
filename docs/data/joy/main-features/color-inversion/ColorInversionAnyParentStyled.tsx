@@ -5,7 +5,7 @@ import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Typography from '@mui/joy/Typography';
 
-const StyledBox = styled(Box)(
+const StyledBox = styled('div')(
   ({ theme }) => ({
     padding: 32,
     display: 'grid',

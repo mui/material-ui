@@ -12,7 +12,7 @@ Page.getInitialProps = () => {
   const req = require.context(
     'docs/translations/api-docs/timeline-opposite-content',
     false,
-    /timeline-opposite-content.*.json$/,
+    /\.\/timeline-opposite-content.*.json$/,
   );
   const descriptions = mapApiPageTranslations(req);
 
