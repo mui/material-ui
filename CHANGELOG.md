@@ -6,7 +6,7 @@
 
 _Jan 9, 2024_
 
-A big thanks to the 20 contributors who made this release possible. Here are some highlights:
+A big thanks to the 22 contributors who made this release possible. Here are some highlights:
 
 - ✨ Material UI's [ToggleButtonGroup](https://mui.com/material-ui/react-toggle-button/) now supports non-button element as a child (e.g., a Tooltip or a disabled Tooltip that wraps a ToggleButton) (#40220)
 
@@ -15,6 +15,7 @@ A big thanks to the 20 contributors who made this release possible. Here are som
 - [TextField][FormLabel][InputLabel][FormControl] Use exact children type to allow React children type augmentation (#38872) @nicegamer7
 - [Select] Add form submission regression test (#40176) @mj12albert
 - [ToggleButtonGroup] Support different elements under it (#40220) @Methuselah96
+- [ClickAwayListener] Fix export of types (#40485) @illume
 
 ### `@mui/material-nextjs@5.15.4`
 
@@ -56,16 +57,17 @@ A big thanks to the 20 contributors who made this release possible. Here are som
 
 ### Core
 
-- [core] Lock file maintenance (#34538) @renovate[bot]
 - [examples] Use material-nextjs integration package (#40199) @siriwatknp
 - [code-infra] Configure build dependencies in nx (#40482) @michaldudak
 - [code-infra] Don't require noreferrer on target link (#40447) @oliviertassinari
 - [code-infra] Use tsx instead of ts-node (#40428) @michaldudak
+- [code-infra] Add options to docs-api generation to support X code structure (#40111) @alexfauquette
 - [docs-infra] Remove explicit `mui-x` dependency resolving (#40257) @LukasTy
 - [docs-infra] Fix anchor links in API pages (#40450) @oliviertassinari
 - [docs-infra] Fix API table full-width (#40476) @oliviertassinari
 - [docs-infra] Fix the copy button overlapping with the scrollbar (#40405) @danilo-leal
 - [docs-infra] Add types for withDocsInfra (#40301) @oliviertassinari
+- [core] Lock file maintenance (#34538) @renovate[bot]
 - [core] Remove duplicate devDependencies (#40438) @michaldudak
 - [core] Remove issue emoji @oliviertassinari
 - [core] Move prefetch at the core, will propagate to MUI X @oliviertassinari
@@ -75,7 +77,7 @@ A big thanks to the 20 contributors who made this release possible. Here are som
 - [website] Fix default social card @oliviertassinari
 - [test] Restore the `t` command (#40430) @michaldudak
 
-All contributors of this release in alphabetical order: @alexfauquette, @anle9650, @brijeshb42, @danilo-leal, @DiegoAndai, @iamsaumya, @Janpot, @LukasTy, @Methuselah96, @michaldudak, @mj12albert, @nicegamer7, @oliviertassinari, @renovate[bot], @RiceCrisp, @sai6855, @samuelsycamore, @savalaram-redkar, @siriwatknp, @zanivan
+All contributors of this release in alphabetical order: @aacevski, @alexfauquette, @anle9650, @brijeshb42, @danilo-leal, @DiegoAndai, @iamsaumya, @illume, @Janpot, @LukasTy, @Methuselah96, @michaldudak, @mj12albert, @nicegamer7, @oliviertassinari, @renovate[bot], @RiceCrisp, @sai6855, @samuelsycamore, @savalaram-redkar, @siriwatknp, @zanivan
 
 ## 5.15.3
 
