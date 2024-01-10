@@ -195,21 +195,33 @@ describe('<Button />', () => {
         }
       });
 
-      it('default tag', () => {
-        const { container } = renderToString(
-          <Button disabled hostElementName="button">
-            Hello World
-          </Button>,
-        );
+      it('renders the default element', () => {
+        const { container } = renderToString(<Button disabled>Hello World</Button>);
 
         expect((container.firstChild as HTMLElement).tagName).to.equal('BUTTON');
         expect(container.firstChild).to.have.attribute('disabled');
         expect(container.firstChild).to.not.have.attribute('aria-disabled');
       });
 
-      it('alternate tag', () => {
+      it('infers hostElementName if `slots.root` is a string', () => {
         const { container } = renderToString(
           <Button disabled slots={{ root: 'span' }}>
+            Hello World
+          </Button>,
+        );
+
+        expect((container.firstChild as HTMLElement).tagName).to.equal('SPAN');
+        expect(container.firstChild).to.not.have.attribute('disabled');
+        expect(container.firstChild).to.have.attribute('aria-disabled');
+      });
+
+      it('renders when slots.root is a wrapped component', () => {
+        const CustomComponent = React.forwardRef((props: any, ref: React.Ref<any>) => (
+          <span {...props} ref={ref} data-testid="custom" />
+        ));
+
+        const { container } = renderToString(
+          <Button disabled slots={{ root: CustomComponent }} hostElementName="span">
             Hello World
           </Button>,
         );
