@@ -1,5 +1,5 @@
 extends: substitution
-message: Do you mean '%s' instead of '%s'? Notice the non-breaking space
+message: Use a non-breaking space for brand name ('%s' instead of '%s')
 level: error
 ignorecase: true
 # swap maps tokens in form of bad: good
