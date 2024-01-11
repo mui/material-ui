@@ -10577,6 +10577,7 @@ export { default as WysiwygOutlined } from './WysiwygOutlined';
 export { default as WysiwygRounded } from './WysiwygRounded';
 export { default as WysiwygSharp } from './WysiwygSharp';
 export { default as WysiwygTwoTone } from './WysiwygTwoTone';
+export { default as X } from './X';
 export { default as Yard } from './Yard';
 export { default as YardOutlined } from './YardOutlined';
 export { default as YardRounded } from './YardRounded';

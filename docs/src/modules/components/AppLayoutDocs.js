@@ -34,7 +34,7 @@ const Main = styled('main', {
         },
       }),
   '& .markdown-body .comment-link': {
-    display: 'inline-block',
+    display: 'flex',
   },
 }));
 

@@ -3,6 +3,7 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
+import kebabCase from 'lodash/kebabCase';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import {
   brandingDarkTheme as darkTheme,
@@ -99,12 +100,12 @@ function PropDescription(props: { description: string }) {
 }
 
 export function getHash({
-  targetName,
+  componentName,
   propName,
   hooksParameters,
   hooksReturnValue,
 }: {
-  targetName: string;
+  componentName: string;
   propName: string;
   hooksParameters?: boolean;
   hooksReturnValue?: boolean;
@@ -115,12 +116,13 @@ export function getHash({
   } else if (hooksReturnValue) {
     sectionName = 'return-value';
   }
-  return `${targetName ? `${targetName}-` : ''}${sectionName}-${propName}`;
+  return `${kebabCase(componentName)}-${sectionName}-${propName}`;
 }
 
 export interface PropDescriptionParams {
-  targetName: string;
+  componentName: string;
   propName: string;
+  seeMoreDescription?: string;
   description?: string;
   requiresRef?: string;
   isOptional?: boolean;
@@ -149,8 +151,9 @@ export default function PropertiesList(props: PropertiesListProps) {
     <ApiItemContaier>
       {properties.map((params) => {
         const {
-          targetName,
+          componentName,
           propName,
+          seeMoreDescription,
           description,
           requiresRef,
           isOptional,
@@ -169,13 +172,14 @@ export default function PropertiesList(props: PropertiesListProps) {
         return (
           <StyledApiItem
             key={propName}
-            id={getHash({ targetName, propName, hooksParameters, hooksReturnValue })}
+            id={getHash({ componentName, propName, hooksParameters, hooksReturnValue })}
             title={propName}
             note={(isOptional && 'Optional') || (isRequired && 'Required') || ''}
             type="props"
             displayOption={displayOption}
           >
             {description && <PropDescription description={description} />}
+            {seeMoreDescription && <p dangerouslySetInnerHTML={{ __html: seeMoreDescription }} />}
             {requiresRef && (
               <Alert
                 severity="warning"

@@ -1,8 +1,7 @@
 import * as React from 'react';
-import Stack from '@mui/system/Stack';
 import Box from '@mui/system/Box';
+import Stack from '@mui/system/Stack';
 import styled from '@mui/system/styled';
-import SettingsIcon from '@mui/icons-material/Settings';
 import { Transition } from 'react-transition-group';
 import { Badge } from '@mui/base/Badge';
 import { Button } from '@mui/base/Button';
@@ -15,15 +14,12 @@ import { Popper } from '@mui/base/Popper';
 import { Unstable_Popup as Popup } from '@mui/base/Unstable_Popup';
 import { Unstable_NumberInput as NumberInput } from '@mui/base/Unstable_NumberInput';
 import { Select, SelectRootSlotProps } from '@mui/base/Select';
-import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 import { Option } from '@mui/base/Option';
 import { Slider } from '@mui/base/Slider';
 import { Snackbar } from '@mui/base/Snackbar';
-// TODO: re-export from the @mui/base/Snackbar, if developer only uses the component
-// it is not intuitive to import types from a different module
+// TODO: re-export from the @mui/base/Snackbar, if only using the component
+// it's not intuitive to import types from a different module
 import { SnackbarCloseReason } from '@mui/base/useSnackbar';
-import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
-import CloseIcon from '@mui/icons-material/Close';
 import { Switch } from '@mui/base/Switch';
 import { TablePagination } from '@mui/base/TablePagination';
 import { Tabs } from '@mui/base/Tabs';
@@ -31,6 +27,15 @@ import { TabsList } from '@mui/base/TabsList';
 import { TabPanel } from '@mui/base/TabPanel';
 import { Tab } from '@mui/base/Tab';
 import { TextareaAutosize } from '@mui/base/TextareaAutosize';
+// Icons import
+import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
+import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
+import FormatColorFillRoundedIcon from '@mui/icons-material/FormatColorFillRounded';
+import FirstPageRoundedIcon from '@mui/icons-material/FirstPageRounded';
+import LastPageRoundedIcon from '@mui/icons-material/LastPageRounded';
+import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
+import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
+import CloseIcon from '@mui/icons-material/Close';
 
 // Snackbar demo
 const positioningStyles = {
@@ -58,29 +63,47 @@ const hslPickerLinearGradient = [...new Array(36)]
   .map((_, i) => `hsl(${i * 10}, 68%, 38%)`)
   .join(',');
 
-const ColorPickerSlider = styled(Slider)({
-  width: '100%',
-  background: `-webkit-linear-gradient(left, ${hslPickerLinearGradient})`,
-  margin: '16px 0',
-  height: '6px',
-  '& .MuiSlider-thumb': {
-    position: 'absolute',
-    width: '16px',
-    height: '16px',
-    marginLeft: '-6px',
-    marginTop: '-6px',
-    borderRadius: '50%',
-    border: '1px solid black',
-    backgroundColor: 'white',
-  },
-});
+const ColorPickerSlider = styled(Slider)(
+  ({ theme }) => `
+    width: 100%;
+    background: -webkit-linear-gradient(left, ${hslPickerLinearGradient});
+    margin: 16px 0;
+    height: 8px;
+    border-radius: 8px;
+  
+    & .MuiSlider-thumb {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      margin-left: -6px;
+      margin-top: -6.5px;
+      border-radius: 50%;
+      background-color: white;
+      border: 1px solid;
+      border-color: ${theme.palette.mode === 'dark' ? 'white' : '#CBCBCB'};
+      transition: all 120ms ease;
+  
+      &:hover {
+        box-shadow: 0 0 0 4px ${
+          theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)'
+        };
+      }
+  
+      &:active {
+        box-shadow: 0 0 0 6px ${
+          theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)'
+        };
+        transform: scale(1.2);
+      },
+    },
+    `,
+);
 
 const CopyButton = styled(Button)({
   float: 'right',
 });
 
 const SettingsButton = styled(Button)({
-  marginTop: '10px',
   display: 'flex',
   alignItems: 'center',
   float: 'right',
@@ -90,7 +113,8 @@ const SettingsButton = styled(Button)({
 const SettingsPopup = styled('div')({
   display: 'flex',
   flexDirection: 'column',
-  width: '300px',
+  width: '250px',
+  marginTop: '12px !important',
 });
 
 export default function ComponentsGallery() {
@@ -212,16 +236,16 @@ export default function ComponentsGallery() {
   const colorPickerSliderChangeHandler = (e: Event, value: number | number[]) => {
     setRootStyles(`
 :root {
-  --primary-50: hsl(${value}, 76%, 95%);
-  --primary-100: hsl(${value}, 70%, 86%);
-  --primary-200: hsl(${value}, 59%, 75%);
-  --primary-300: hsl(${value}, 49%, 60%);
-  --primary-400: hsl(${value}, 68%, 38%);
-  --primary-500: hsl(${value}, 76%, 21%);
-  --primary-600: hsl(${value}, 80%, 18%);
-  --primary-700: hsl(${value}, 84%, 15%);
-  --primary-800: hsl(${value}, 86%, 12%);
-  --primary-900: hsl(${value}, 90%, 8%);
+  --primary-50: ${value}, 90%, 97%;
+  --primary-100: ${value}, 90%, 88%;
+  --primary-200: ${value}, 90%, 78%;
+  --primary-300: ${value}, 90%, 65%;
+  --primary-400: ${value}, 90%, 41%;
+  --primary-500: ${value}, 90%, 26%;
+  --primary-600: ${value}, 90%, 22%;
+  --primary-700: ${value}, 90%, 17%;
+  --primary-800: ${value}, 90%, 14%;
+  --primary-900: ${value}, 90%, 12%;
 }
     `);
 
@@ -233,14 +257,34 @@ export default function ComponentsGallery() {
   };
 
   return (
-    <Stack gap={2} sx={{ padding: 1 }}>
+    <Stack className="GalleryContainer" gap={2}>
       {/* Copy theme button */}
-      <Box sx={{ position: 'absolute', right: '10px' }}>
+      <Stack direction="row" spacing={1.5} sx={{ position: 'absolute', right: 24 }}>
+        <SettingsButton
+          aria-describedby={settingsId}
+          className="GalleryButtonOutlined"
+          onClick={settingsButtonHandleClick}
+        >
+          <FormatColorFillRoundedIcon />
+        </SettingsButton>
+        <Popper id={settingsId} open={settingsOpen} anchorEl={settingsAnchor}>
+          <SettingsPopup className="GalleryPopup">
+            <Box component="h3" sx={{ fontWeight: 500, fontSize: '0.875rem', m: 0 }}>
+              Change the primary color:
+            </Box>
+            <ColorPickerSlider
+              defaultValue={210}
+              min={0}
+              max={360}
+              onChange={colorPickerSliderChangeHandler}
+            />
+          </SettingsPopup>
+        </Popper>
         <CopyButton className="GalleryButton" style={{ float: 'right' }} onClick={copyTheme}>
           Export theme
         </CopyButton>
         <Snackbar
-          autoHideDuration={2000}
+          autoHideDuration={5000}
           open={copySnackbarOpen}
           onClose={handleCopyClose}
           exited={copySnackbarExited}
@@ -273,9 +317,9 @@ export default function ComponentsGallery() {
                   }}
                 />
                 <div className="snackbar-message">
-                  <p className="snackbar-title">Done!</p>
+                  <p className="snackbar-title">Theme exported!</p>
                   <p className="snackbar-description">
-                    The theme stylesheet has been copied to clipboard!
+                    The theme stylesheet has been copied to your clipboard.
                   </p>
                 </div>
                 <CloseIcon onClick={handleCopyClose} className="snackbar-close-icon" />
@@ -283,30 +327,11 @@ export default function ComponentsGallery() {
             )}
           </Transition>
         </Snackbar>
-        <br />
-        <SettingsButton
-          aria-describedby={settingsId}
-          className="GalleryButton"
-          onClick={settingsButtonHandleClick}
-        >
-          <SettingsIcon />
-        </SettingsButton>
-        <Popper id={settingsId} open={settingsOpen} anchorEl={settingsAnchor}>
-          <SettingsPopup className="GalleryPopup">
-            <h3>Primary color</h3>
-            <ColorPickerSlider
-              defaultValue={189}
-              min={0}
-              max={360}
-              onChange={colorPickerSliderChangeHandler}
-            />
-          </SettingsPopup>
-        </Popper>
-      </Box>
+      </Stack>
       <div>
         <Badge
           slotProps={{
-            root: { className: 'GalleryBadge' },
+            root: { className: 'GalleryBadge-root' },
             badge: { className: 'GalleryBadge-badge' },
           }}
           badgeContent={5}
@@ -314,87 +339,148 @@ export default function ComponentsGallery() {
           <span className="GalleryBadge-content" />
         </Badge>
       </div>
-      <div>
-        <Button className="GalleryButton">Button</Button>
+      <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap">
+        <Button className="GalleryButton">Solid button</Button>
+        <Button className="GalleryButtonOutlined">Outlined button</Button>
+        <Button className="GalleryButtonPlain">Plain button</Button>
         <Button className="GalleryButton" disabled>
-          Disabled
+          Disabled button
         </Button>
-      </div>
-      <div>
-        <Input placeholder="Write your name here" className="GalleryInput" />
-      </div>
-      <div>
-        <Dropdown>
-          <MenuButton className="GalleryButton">My account</MenuButton>
-          <Menu
-            className="GalleryMenu"
-            slotProps={{
-              listbox: { className: 'GalleryMenu-listbox' },
-            }}
+      </Stack>
+      <Input placeholder="Write something here" className="GalleryInput" />
+      <TextareaAutosize
+        className="GalleryTextarea"
+        aria-label="empty textarea"
+        placeholder="Write something here"
+      />
+      <NumberInput
+        slotProps={{
+          root: { className: 'GalleryNumberInput' },
+          input: { className: 'input' },
+          decrementButton: { className: 'btn decrement', children: '▾' },
+          incrementButton: { className: 'btn increment', children: '▴' },
+        }}
+        aria-label="Demo number input"
+        placeholder="Type a number…"
+      />
+      <Select
+        className="GallerySelect"
+        slots={{
+          root: SelectButton,
+        }}
+        slotProps={{
+          listbox: { className: 'GallerySelect-listbox' },
+          popper: { className: 'GallerySelect-popper' },
+        }}
+        defaultValue={10}
+      >
+        <Option className="GallerySelect-option" value={10}>
+          Documentation
+        </Option>
+        <Option className="GallerySelect-option" value={20}>
+          Components
+        </Option>
+        <Option className="GallerySelect-option" value={30}>
+          Features
+        </Option>
+      </Select>
+      <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap">
+        <div>
+          <Dropdown>
+            <MenuButton className="GalleryButtonOutlined">Open menu</MenuButton>
+            <Menu
+              className="GalleryMenu"
+              slotProps={{
+                listbox: { className: 'GalleryMenu-listbox' },
+              }}
+            >
+              <MenuItem className="GalleryMenu-item">Profile</MenuItem>
+              <MenuItem className="GalleryMenu-item">Language settings</MenuItem>
+              <MenuItem className="GalleryMenu-item">Log out</MenuItem>
+            </Menu>
+          </Dropdown>
+        </div>
+        <div>
+          <button
+            type="button"
+            aria-describedby={id}
+            className="GalleryButtonOutlined"
+            onClick={handleClick}
           >
-            <MenuItem className="GalleryMenu-item">Profile</MenuItem>
-            <MenuItem className="GalleryMenu-item">Language settings</MenuItem>
-            <MenuItem className="GalleryMenu-item">Log out</MenuItem>
-          </Menu>
-        </Dropdown>
-      </div>
-      <div style={{ maxWidth: '350px' }}>
-        <NumberInput
-          slotProps={{
-            root: { className: 'GalleryNumberInput' },
-            input: { className: 'input' },
-            decrementButton: { className: 'btn decrement', children: '▾' },
-            incrementButton: { className: 'btn increment', children: '▴' },
-          }}
-          aria-label="Demo number input"
-          placeholder="Type a number…"
-        />
-      </div>
-      <div>
-        <button type="button" aria-describedby={id} className="GalleryButton" onClick={handleClick}>
-          Toggle Popper
-        </button>
-        <Popper id={id} open={open} anchorEl={anchorEl}>
-          <div className="GalleryPopper">The content of the Popper.</div>
-        </Popper>
-      </div>
-      <div>
-        <button
-          type="button"
-          aria-describedby={id}
-          className="GalleryButton"
-          onClick={popupButtonHandleClick}
-        >
-          Toggle Popup
-        </button>
-        <Popup id={popupId} open={popupOpen} anchor={popupAnchor}>
-          <div className="GalleryPopup">The content of the Popup.</div>
-        </Popup>
-      </div>
-      <div>
-        <Select
-          className="GallerySelect"
-          slots={{
-            root: SelectButton,
-          }}
-          slotProps={{
-            listbox: { className: 'GallerySelect-listbox' },
-            popper: { className: 'GallerySelect-popper' },
-          }}
-          defaultValue={10}
-        >
-          <Option className="GallerySelect-option" value={10}>
-            Documentation
-          </Option>
-          <Option className="GallerySelect-option" value={20}>
-            Components
-          </Option>
-          <Option className="GallerySelect-option" value={30}>
-            Features
-          </Option>
-        </Select>
-      </div>
-      <div style={{ width: 320 }}>
+            {open ? 'Close' : 'Open'} Popper
+          </button>
+          <Popper id={id} open={open} anchorEl={anchorEl}>
+            <div className="GalleryPopper">Popper content</div>
+          </Popper>
+        </div>
+        <div>
+          <button
+            type="button"
+            aria-describedby={id}
+            className="GalleryButtonOutlined"
+            onClick={popupButtonHandleClick}
+          >
+            {popupOpen ? 'Close' : 'Open'} Popup
+          </button>
+          <Popup id={popupId} open={popupOpen} anchor={popupAnchor}>
+            <div className="GalleryPopup">Popup content</div>
+          </Popup>
+        </div>
+        <div>
+          <button
+            className="GalleryButtonOutlined"
+            type="button"
+            onClick={handleSnackbarButtonClick}
+          >
+            Open snackbar
+          </button>
+          <Snackbar
+            autoHideDuration={5000}
+            open={snackbarOpen}
+            onClose={handleClose}
+            exited={exited}
+            className="GallerySnackbar"
+          >
+            <Transition
+              timeout={{ enter: 400, exit: 400 }}
+              in={snackbarOpen}
+              appear
+              unmountOnExit
+              onEnter={handleOnEnter}
+              onExited={handleOnExited}
+              nodeRef={nodeRef}
+            >
+              {(status) => (
+                <div
+                  className="GallerySnackbar-content"
+                  style={{
+                    transform: positioningStyles[status],
+                    transition: 'transform 300ms ease',
+                  }}
+                  ref={nodeRef}
+                >
+                  <CheckRoundedIcon
+                    sx={{
+                      color: 'success.main',
+                      flexShrink: 0,
+                      width: '1.25rem',
+                      height: '1.5rem',
+                    }}
+                  />
+                  <div className="snackbar-message">
+                    <p className="snackbar-title">Notifications sent</p>
+                    <p className="snackbar-description">
+                      Everything was sent to the desired address.
+                    </p>
+                  </div>
+                  <CloseIcon onClick={handleClose} className="snackbar-close-icon" />
+                </div>
+              )}
+            </Transition>
+          </Snackbar>
+        </div>
+      </Stack>
+      <div style={{ width: 300 }}>
         <Slider
           slotProps={{
             root: { className: 'GallerySlider' },
@@ -415,56 +501,7 @@ export default function ComponentsGallery() {
           disabled
         />
       </div>
-      <div>
-        <button className="GalleryButton" type="button" onClick={handleSnackbarButtonClick}>
-          Open snackbar
-        </button>
-        <Snackbar
-          autoHideDuration={5000}
-          open={snackbarOpen}
-          onClose={handleClose}
-          exited={exited}
-          className="GallerySnackbar"
-        >
-          <Transition
-            timeout={{ enter: 400, exit: 400 }}
-            in={snackbarOpen}
-            appear
-            unmountOnExit
-            onEnter={handleOnEnter}
-            onExited={handleOnExited}
-            nodeRef={nodeRef}
-          >
-            {(status) => (
-              <div
-                className="GallerySnackbar-content"
-                style={{
-                  transform: positioningStyles[status],
-                  transition: 'transform 300ms ease',
-                }}
-                ref={nodeRef}
-              >
-                <CheckRoundedIcon
-                  sx={{
-                    color: 'success.main',
-                    flexShrink: 0,
-                    width: '1.25rem',
-                    height: '1.5rem',
-                  }}
-                />
-                <div className="snackbar-message">
-                  <p className="snackbar-title">Notifications sent</p>
-                  <p className="snackbar-description">
-                    Everything was sent to the desired address.
-                  </p>
-                </div>
-                <CloseIcon onClick={handleClose} className="snackbar-close-icon" />
-              </div>
-            )}
-          </Transition>
-        </Snackbar>
-      </div>
-      <div>
+      <Stack direction="row" spacing={2} useFlexGap>
         <Switch
           slotProps={{
             root: { className: 'GallerySwitch' },
@@ -501,65 +538,66 @@ export default function ComponentsGallery() {
           }}
           disabled
         />
-      </div>
-      <div className="TablePaginationDemo">
-        <table aria-label="custom pagination table">
-          <tfoot>
-            <tr>
-              <TablePagination
-                className="GalleryTablePagination"
-                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-                colSpan={3}
-                count={13}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                slotProps={{
-                  select: {
-                    'aria-label': 'rows per page',
+      </Stack>
+      <table aria-label="custom pagination table">
+        <tfoot>
+          <tr>
+            <TablePagination
+              className="GalleryTablePagination"
+              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+              colSpan={3}
+              count={13}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+              slotProps={{
+                select: {
+                  'aria-label': 'rows per page',
+                },
+                actions: {
+                  showFirstButton: true,
+                  showLastButton: true,
+                  slots: {
+                    firstPageIcon: FirstPageRoundedIcon,
+                    lastPageIcon: LastPageRoundedIcon,
+                    nextPageIcon: ChevronRightRoundedIcon,
+                    backPageIcon: ChevronLeftRoundedIcon,
                   },
-                  actions: {
-                    showFirstButton: true,
-                    showLastButton: true,
-                  },
-                }}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-              />
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-      <div style={{ maxWidth: '550px' }}>
-        <Tabs defaultValue={0}>
-          <TabsList className="GalleryTabsList">
-            <Tab className="GalleryTab" value={0}>
-              My account
-            </Tab>
-            <Tab className="GalleryTab" value={1}>
-              Profile
-            </Tab>
-            <Tab className="GalleryTab" value={2}>
-              Language
-            </Tab>
-          </TabsList>
-          <TabPanel className="GalleryTabPanel" value={0}>
-            My account page
-          </TabPanel>
-          <TabPanel className="GalleryTabPanel" value={1}>
-            Profile page
-          </TabPanel>
-          <TabPanel className="GalleryTabPanel" value={2}>
-            Language page
-          </TabPanel>
-        </Tabs>
-      </div>
-      <div>
-        <TextareaAutosize
-          className="GalleryTextarea"
-          aria-label="empty textarea"
-          placeholder="Empty"
-        />
-      </div>
+                },
+              }}
+            />
+          </tr>
+        </tfoot>
+      </table>
+      <Tabs defaultValue={0}>
+        <TabsList className="GalleryTabsList">
+          <Tab className="GalleryTab" value={0}>
+            Account
+          </Tab>
+          <Tab className="GalleryTab" value={1}>
+            Notifications
+          </Tab>
+          <Tab className="GalleryTab" value={2}>
+            Language
+          </Tab>
+          <Tab className="GalleryTab" value={3} disabled>
+            Calendar
+          </Tab>
+        </TabsList>
+        <TabPanel className="GalleryTabPanel" value={0}>
+          My account page
+        </TabPanel>
+        <TabPanel className="GalleryTabPanel" value={1}>
+          Profile page
+        </TabPanel>
+        <TabPanel className="GalleryTabPanel" value={2}>
+          Language page
+        </TabPanel>
+        <TabPanel className="GalleryTabPanel" value={3}>
+          Calendar page
+        </TabPanel>
+      </Tabs>
     </Stack>
   );
 }

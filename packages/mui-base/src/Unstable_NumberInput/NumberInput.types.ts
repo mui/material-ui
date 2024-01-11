@@ -12,7 +12,10 @@ export interface NumberInputRootSlotPropsOverrides {}
 export interface NumberInputInputSlotPropsOverrides {}
 export interface NumberInputStepperButtonSlotPropsOverrides {}
 
-export type NumberInputOwnProps = Omit<UseNumberInputParameters, 'error'> & {
+export type NumberInputOwnProps = Omit<
+  UseNumberInputParameters,
+  'error' | 'inputId' | 'inputRef'
+> & {
   /**
    * Trailing adornment for this input.
    */

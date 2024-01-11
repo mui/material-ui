@@ -34,7 +34,7 @@ describe('<ButtonGroup />', () => {
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'span',
       muiName: 'MuiButtonGroup',
-      testVariantProps: { variant: 'contained' },
+      testVariantProps: { variant: 'filled' },
       skip: ['componentsProp'],
       ThemeProvider: CssVarsProvider,
       createTheme: extendTheme,
@@ -49,7 +49,7 @@ describe('<ButtonGroup />', () => {
     );
     const buttonGroup = container.firstChild;
     expect(buttonGroup).to.have.class(classes.root);
-    expect(buttonGroup).not.to.have.class(classes.contained);
+    expect(buttonGroup).not.to.have.class(classes.filled);
     expect(buttonGroup).not.to.have.class(classes.fullWidth);
   });
 
@@ -60,11 +60,12 @@ describe('<ButtonGroup />', () => {
       </ButtonGroup>,
     );
     const button = getByRole('button');
+    const buttonGroup = getByRole('group');
     expect(button).to.have.class(buttonClasses.outlined);
     expect(button).to.have.class(classes.grouped);
-    expect(button).to.have.class(classes.groupedOutlined);
-    expect(button).to.have.class(classes.groupedOutlinedPrimary);
-    expect(button).not.to.have.class(classes.groupedOutlinedSecondary);
+    expect(buttonGroup).to.have.class(classes.outlined);
+    expect(buttonGroup).to.have.class(classes.primary);
+    expect(buttonGroup).not.to.have.class(classes.secondary);
   });
 
   it('can render an outlined primary button', () => {
@@ -74,27 +75,28 @@ describe('<ButtonGroup />', () => {
       </ButtonGroup>,
     );
     const button = getByRole('button');
+    const buttonGroup = getByRole('group');
     expect(button).to.have.class(buttonClasses.outlined);
     expect(button).to.have.class(buttonClasses.colorPrimary);
     expect(button).to.have.class(classes.grouped);
-    expect(button).to.have.class(classes.groupedOutlined);
-    expect(button).to.have.class(classes.groupedOutlinedPrimary);
-    expect(button).not.to.have.class(classes.groupedOutlinedSecondary);
+    expect(buttonGroup).to.have.class(classes.outlined);
+    expect(buttonGroup).to.have.class(classes.primary);
+    expect(buttonGroup).not.to.have.class(classes.secondary);
   });
 
-  // TODO v6: change to filled when MD3 styles are applied
-  it('can render a text button', () => {
+  it('can render a filled button', () => {
     const { getByRole } = render(
-      <ButtonGroup variant="text">
+      <ButtonGroup variant="filled">
         <Button>Hello World</Button>
       </ButtonGroup>,
     );
     const button = getByRole('button');
-    expect(button).to.have.class(buttonClasses.text);
+    const buttonGroup = getByRole('group');
+    expect(button).to.have.class(buttonClasses.filled);
     expect(button).to.have.class(classes.grouped);
-    expect(button).to.have.class(classes.groupedText);
-    expect(button).to.have.class(classes.groupedTextPrimary);
-    expect(button).not.to.have.class(classes.groupedTextSecondary);
+    expect(buttonGroup).to.have.class(classes.filled);
+    expect(buttonGroup).to.have.class(classes.primary);
+    expect(buttonGroup).not.to.have.class(classes.secondary);
   });
 
   it('can render a small button', () => {
@@ -186,7 +188,7 @@ describe('<ButtonGroup />', () => {
   it('should forward the context to children', () => {
     let context: ButtonGroupContextType | null;
     render(
-      <ButtonGroup size="large" variant="contained">
+      <ButtonGroup size="large" variant="filled">
         <ButtonGroupContext.Consumer>
           {(value) => {
             context = value;
@@ -195,7 +197,7 @@ describe('<ButtonGroup />', () => {
         </ButtonGroupContext.Consumer>
       </ButtonGroup>,
     );
-    expect(context!.variant).to.equal('contained');
+    expect(context!.variant).to.equal('filled');
     expect(context!.size).to.equal('large');
     expect(context!.fullWidth).to.equal(false);
     expect(context!.disableRipple).to.equal(false);
@@ -215,7 +217,7 @@ describe('<ButtonGroup />', () => {
                 defaultProps: {
                   color: 'primary',
                   size: 'medium',
-                  variant: 'contained',
+                  variant: 'text',
                 },
               },
             },
