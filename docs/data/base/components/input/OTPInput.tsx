@@ -1,21 +1,6 @@
 import * as React from 'react';
-import { Input as BaseInput, InputProps } from '@mui/base/Input';
+import { Input as BaseInput } from '@mui/base/Input';
 import { Box, styled } from '@mui/system';
-
-const CustomNumberInput = React.forwardRef(function CustomNumberInput(
-  props: InputProps,
-  ref: React.ForwardedRef<HTMLDivElement>,
-) {
-  return (
-    <BaseInput
-      slots={{
-        input: InputElement,
-      }}
-      {...props}
-      ref={ref}
-    />
-  );
-});
 
 export default function OTPInput() {
   const inputCount = 6;
@@ -100,7 +85,10 @@ export default function OTPInput() {
   return (
     <Box sx={{ display: 'flex', gap: '1rem' }}>
       {new Array(inputCount).fill(null).map((_, index) => (
-        <CustomNumberInput
+        <BaseInput
+          slots={{
+            input: InputElement,
+          }}
           key={index}
           slotProps={{
             input: {
