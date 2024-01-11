@@ -143,7 +143,7 @@ const grey = {
 
 const InputElement = styled('input')(
   ({ theme }) => `
-  width: 15px;
+  width: 40px;
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
