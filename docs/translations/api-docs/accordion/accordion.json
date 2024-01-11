@@ -18,9 +18,7 @@
         "expanded": "The <code>expanded</code> state of the accordion."
       }
     },
-    "slotProps": {
-      "description": "The extra props for the slot components. You can override the existing props or add new ones."
-    },
+    "slotProps": { "description": "The props used for each slot inside." },
     "slots": { "description": "The components used for each slot inside." },
     "square": { "description": "If <code>true</code>, rounded corners are disabled." },
     "sx": {
@@ -60,5 +58,6 @@
       "nodeName": "the root element",
       "conditions": "<code>square={true}</code>"
     }
-  }
+  },
+  "slotDescriptions": { "transition": "The component that renders the transition." }
 }
