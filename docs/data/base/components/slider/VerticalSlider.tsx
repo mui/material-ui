@@ -25,7 +25,7 @@ const Slider = styled(BaseSlider)(
   ({ theme }) => `
   color: ${theme.palette.mode === 'light' ? blue[500] : blue[400]};
   height: 95%;
-  width: 6px;
+  width: 4px;
   display: inline-block;
   position: relative;
   margin-top: 0.75rem;
@@ -41,7 +41,7 @@ const Slider = styled(BaseSlider)(
     width: inherit;
     border-radius: 6px;
     background-color: currentColor;
-    opacity: 0.4;
+    opacity: 0.3;
   }
 
   & .${sliderClasses.track} {
@@ -62,8 +62,7 @@ const Slider = styled(BaseSlider)(
     box-sizing: border-box;
     border-radius: 50%;
     outline: 0;
-    border: 4px solid currentColor;
-    background-color: #fff;
+    background-color: ${theme.palette.mode === 'light' ? blue[500] : blue[400]};  
     left: 50%;
     -webkit-transform: translate(-50%, 50%);
     -moz-transform: translate(-50%, 50%);

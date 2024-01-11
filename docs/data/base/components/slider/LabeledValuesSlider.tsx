@@ -52,7 +52,8 @@ const Slider = styled(BaseSlider)(
   height: 6px;
   width: 100%;
   padding: 16px 0;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   position: relative;
   cursor: pointer;
   touch-action: none;
@@ -62,29 +63,28 @@ const Slider = styled(BaseSlider)(
     pointer-events: none;
     cursor: default;
     color: ${theme.palette.mode === 'light' ? grey[300] : grey[600]};
-    opacity: 0.5;
+    opacity: 0.4;
   }
 
   & .${sliderClasses.rail} {
     display: block;
     position: absolute;
     width: 100%;
-    height: 6px;
+    height: 4px;
     border-radius: 6px;
     background-color: currentColor;
-    opacity: 0.4;
+    opacity: 0.3;
   }
 
   & .${sliderClasses.track} {
     display: block;
     position: absolute;
-    height: 6px;
+    height: 4px;
     border-radius: 6px;
     background-color: currentColor;
   }
 
   & .${sliderClasses.thumb} {
-    top: 28%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -95,8 +95,7 @@ const Slider = styled(BaseSlider)(
     box-sizing: border-box;
     border-radius: 50%;
     outline: 0;
-    border: 4px solid currentColor;
-    background-color: #fff;
+    background-color: ${theme.palette.mode === 'light' ? blue[500] : blue[400]};
     transition-property: box-shadow, transform;
     transition-timing-function: ease;
     transition-duration: 120ms;

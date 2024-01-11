@@ -67,10 +67,11 @@ function Styles() {
     <style>{`
     .CustomSlider {
       color: ${isDarkMode ? cyan[300] : cyan[500]};
-      height: 6px;
+      height: 4px;
       width: 100%;
       padding: 16px 0;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       position: relative;
       cursor: pointer;
       touch-action: none;
@@ -85,7 +86,7 @@ function Styles() {
       pointer-events: none;
       cursor: default;
       color: ${isDarkMode ? grey[600] : grey[300]};
-      opacity: 0.5;
+      opacity: 0.4;
       outline: none;
     }
 
@@ -93,22 +94,21 @@ function Styles() {
       display: block;
       position: absolute;
       width: 100%;
-      height: 6px;
+      height: 4px;
       border-radius: 6px;
       background-color: currentColor;
-      opacity: 0.4;
+      opacity: 0.3;
     }
 
     .CustomSlider-track {
       display: block;
       position: absolute;
-      height: 6px;
+      height: 4px;
       border-radius: 6px;
       background-color: currentColor;
     }
 
     .CustomSlider-thumb {
-      top: 45%;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -116,12 +116,10 @@ function Styles() {
       width: 20px;
       height: 20px;
       margin-left: -6px;
-      margin-top: -6px;
       box-sizing: border-box;
       border-radius: 50%;
       outline: 0;
-      border: 4px solid currentColor;
-      background-color: #fff;
+      background-color: ${isDarkMode ? cyan[300] : cyan[500]};
       transition-property: box-shadow, transform;
       transition-timing-function: ease;
       transition-duration: 120ms;
@@ -141,6 +139,10 @@ function Styles() {
       box-shadow: 0 0 0 8px ${alpha(isDarkMode ? cyan[400] : cyan[200], 0.5)};
       outline: none;
       transform: scale(1.2);
+    }
+
+    .CustomSlider-thumb.${sliderClasses.disabled} {
+      background-color: ${isDarkMode ? grey[600] : grey[300]};
     }
     `}</style>
   );
