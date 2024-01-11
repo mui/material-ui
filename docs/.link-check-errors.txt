@@ -2,5 +2,4 @@ Broken links found by `pnpm docs:link-check` that exist:
 
 - https://mui.com/blog/material-ui-v4-is-out/#premium-themes-store-✨
 - https://mui.com/material-ui/discover-more/roadmap/#priorities
-- https://mui.com/material-ui/react-button/#material-3-version
 - https://mui.com/size-snapshot/
