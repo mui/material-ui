@@ -28,7 +28,7 @@ const rootStyles = `
     display: block;
     position: absolute;
     width: 100%;
-    height: 6px;
+    height: 4px;
     border-radius: 6px;
     background-color: currentColor;
     opacity: 0.4;
@@ -37,7 +37,7 @@ const rootStyles = `
   & .MuiSlider-track {
     display: block;
     position: absolute;
-    height: 6px;
+    height: 4px;
     border-radius: 6px;
     background-color: currentColor;
   }
@@ -45,13 +45,12 @@ const rootStyles = `
   & .MuiSlider-thumb {
     position: absolute;
     margin-left: -6px;
-    margin-top: -7px;
+    margin-top: -8.5px;
     width: 20px;
     height: 20px;
     box-sizing: border-box;
     border-radius: 50%;
     outline: 0;
-    border: 4px solid currentColor;
     background-color: var(--primary);
     transition-property: box-shadow, transform;
     transition-timing-function: ease;
@@ -115,14 +114,14 @@ export default function BaseTabsDemo({ styling }: { styling?: 'system' | 'tailwi
                   'py-4 px-0 w-full relative cursor-pointer text-[--primary] touch-action-none tap-highlight-transparent hover:opacity-100 ui-disabled:pointer-events-none ui-disabled:cursor-default ui-disabled:opacity-50 ui-disabled:cursor-default ui-disabled:text-[--primary] ui-disabled:opacity-50',
               },
               rail: {
-                className: 'block absolute w-full h-[6px] rounded-full bg-current opacity-40',
+                className: 'block absolute w-full h-[4px] rounded-full bg-current opacity-40',
               },
               track: {
-                className: 'block absolute h-[6px] rounded-full bg-current',
+                className: 'block absolute h-[4px] rounded-full bg-current',
               },
               thumb: {
                 className:
-                  'absolute w-[20px] h-[20px] -ml-[6px] -mt-[7px] box-border rounded-[50%] outline-none [border:4px_solid_currentcolor] bg-[--primary] hover:shadow-[0_0_0_4px_var(--slider-ring)] ui-focus-visible:shadow-[0_0_0_8px_var(--slider-ring)] ui-active:shadow-[0_0_0_8px_var(--slider-ring)] ui-active:scale-[1.2] transition',
+                  'absolute w-[20px] h-[20px] -ml-[6px] -mt-[8.5px] box-border rounded-[50%] outline-none [border:4px_solid_currentcolor] bg-[--primary] hover:shadow-[0_0_0_4px_var(--slider-ring)] ui-focus-visible:shadow-[0_0_0_8px_var(--slider-ring)] ui-active:shadow-[0_0_0_8px_var(--slider-ring)] ui-active:scale-[1.2] transition',
               },
             }}
           />
@@ -135,14 +134,14 @@ export default function BaseTabsDemo({ styling }: { styling?: 'system' | 'tailwi
                   'py-4 px-0 w-full relative cursor-pointer text-[--primary] touch-action-none tap-highlight-transparent hover:opacity-100 ui-disabled:pointer-events-none ui-disabled:cursor-default ui-disabled:opacity-50 ui-disabled:cursor-default ui-disabled:text-[--primary] ui-disabled:opacity-50',
               },
               rail: {
-                className: 'block absolute w-full h-[6px] rounded-full bg-current opacity-40',
+                className: 'block absolute w-full h-[4px] rounded-full bg-current opacity-40',
               },
               track: {
-                className: 'block absolute h-[6px] rounded-full bg-current',
+                className: 'block absolute h-[4px] rounded-full bg-current',
               },
               thumb: {
                 className:
-                  'absolute w-[20px] h-[20px] -ml-[6px] -mt-[7px] box-border rounded-[50%] outline-none [border:4px_solid_currentcolor] bg-[--primary] hover:shadow-[0_0_0_4px_var(--slider-ring)] ui-focus-visible:shadow-[0_0_0_0.8px_var(--slider-ring)] ui-active:shadow-[0_0_0_8px_var(--slider-ring)] ui-active:scale-[1.2] transition',
+                  'absolute w-[20px] h-[20px] -ml-[6px] -mt-[8.5px] box-border rounded-[50%] outline-none [border:4px_solid_currentcolor] bg-[--primary] hover:shadow-[0_0_0_4px_var(--slider-ring)] ui-focus-visible:shadow-[0_0_0_8px_var(--slider-ring)] ui-active:shadow-[0_0_0_8px_var(--slider-ring)] ui-active:scale-[1.2] transition',
               },
             }}
           />

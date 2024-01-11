@@ -435,8 +435,7 @@ const StyledSlider = styled(Slider)(`
     box-sizing: border-box;
     border-radius: var(--border-radius);
     outline: 0;
-    border: 4px solid currentColor;
-    background-color: #fff;
+    background-color: var(--color-primary);
     transition-property: box-shadow, transform;
     transition-timing-function: ease;
     transition-duration: 120ms;

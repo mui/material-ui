@@ -105,6 +105,7 @@ export default function BaseUIComponents() {
                 '--focus-ring': 'rgba(0, 114, 229, 0.3)',
                 '--slider-ring': 'rgba(0, 114, 229, 0.3)',
                 '--shadow': '0px 2px 4px rgba(229, 234, 232, 0.8)',
+                '--button-shadow': '',
                 ...(styling === 'tailwindcss' && {
                   '--primary': '#7716D0',
                   '--primary-hover': '#6512B0',

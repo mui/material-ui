@@ -81,9 +81,13 @@ const menuItemStyles = `
   align-items: center;
   padding: 6px 12px;
   min-height: 24px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.5;
   border-radius: 6px;
   border: 1px solid transparent;
   gap: 4px;
+  
   &:hover,
   &.Mui-focusVisible {
     cursor: default;
@@ -113,7 +117,7 @@ const CSS = `.Mui-base.MuiMenuButton-root {${buttonStyles}}
 
 .Mui-base.MuiMenuItem-root {${menuItemStyles}}`;
 
-const menuItemStylesTailwind = `hover:color-[--muidocs-palette-text-primary] flex min-h-[24px] items-center gap-[4px] rounded-[6px] border border-solid border-transparent px-[12px] py-[6px] hover:cursor-default hover:border-[--muidocs-palette-grey-100] hover:bg-[--muidocs-palette-grey-50] dark:hover:bg-[--muidocs-palette-primaryDark-700] dark:hover:border-[--muidocs-palette-primaryDark-500] ui-focus-visible:cursor-default ui-focus-visible:border-[--muidocs-palette-grey-100] ui-focus-visible:bg-[--muidocs-palette-grey-50] ui-focus-visible:outline-none`;
+const menuItemStylesTailwind = `flex min-h-[24px] items-center gap-[4px] rounded-[6px] border border-solid border-transparent px-[12px] py-[6px] font-medium text-sm leading-[1.5] hover:cursor-default hover:border-[--muidocs-palette-grey-100] hover:color-[--muidocs-palette-text-primary]  hover:bg-[--muidocs-palette-grey-50] dark:hover:bg-[--muidocs-palette-primaryDark-700] dark:hover:border-[--muidocs-palette-primaryDark-500] ui-focus-visible:cursor-default ui-focus-visible:border-[--muidocs-palette-grey-100] ui-focus-visible:bg-[--muidocs-palette-grey-50] ui-focus-visible:outline-none`;
 
 export default function BaseMenuDemo({ styling }: { styling?: 'system' | 'tailwindcss' | 'css' }) {
   return (
@@ -290,7 +294,7 @@ function Demo() {
       >
         <MenuItem
           className="flex min-h-[24px] items-center gap-[4px] rounded-[6px] 
-          border border-solid border-transparent px-[12px] py-[6px] 
+          border border-solid border-transparent px-[12px] py-[6px] font-medium text-sm leading-[1.5]
           hover:color-[--muidocs-palette-text-primary] hover:cursor-default hover:border-[--muidocs-palette-grey-100] 
           hover:bg-[--muidocs-palette-grey-50] dark:hover:bg-[--muidocs-palette-primaryDark-700] 
           dark:hover:border-[--muidocs-palette-primaryDark-500] ui-focus-visible:cursor-default 
@@ -301,7 +305,7 @@ function Demo() {
         </MenuItem>
         <MenuItem
           className="flex min-h-[24px] items-center gap-[4px] rounded-[6px] 
-          border border-solid border-transparent px-[12px] py-[6px] 
+          border border-solid border-transparent px-[12px] py-[6px] font-medium text-sm leading-[1.5]
           hover:color-[--muidocs-palette-text-primary] hover:cursor-default hover:border-[--muidocs-palette-grey-100] 
           hover:bg-[--muidocs-palette-grey-50] dark:hover:bg-[--muidocs-palette-primaryDark-700] 
           dark:hover:border-[--muidocs-palette-primaryDark-500] ui-focus-visible:cursor-default 
@@ -312,7 +316,7 @@ function Demo() {
         </MenuItem>
         <MenuItem
           className="flex min-h-[24px] items-center gap-[4px] rounded-[6px] 
-          border border-solid border-transparent px-[12px] py-[6px] 
+          border border-solid border-transparent px-[12px] py-[6px] font-medium text-sm leading-[1.5]
           hover:color-[--muidocs-palette-text-primary] hover:cursor-default hover:border-[--muidocs-palette-grey-100] 
           hover:bg-[--muidocs-palette-grey-50] dark:hover:bg-[--muidocs-palette-primaryDark-700] 
           dark:hover:border-[--muidocs-palette-primaryDark-500] ui-focus-visible:cursor-default 

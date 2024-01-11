@@ -5,10 +5,11 @@ import { styled, GlobalStyles } from '@mui/system';
 
 const buttonStyles = `
   font-family: 'IBM Plex Sans', sans-serif;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 0.875rem;
+  line-height: 1.5;
   background: var(--primary);
-  padding: 10px 16px;
+  padding: 6px 12px;
   border-radius: 8px;
   color: white;
   transition: all 150ms ease;
