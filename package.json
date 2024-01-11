@@ -76,7 +76,7 @@
     "typescript:ci": "lerna run --concurrency 5 --no-bail --no-sort typescript",
     "validate-declarations": "tsx scripts/validateTypescriptDeclarations.mts",
     "generate-codeowners": "node scripts/generateCodeowners.mjs",
-    "watch:zero": "lerna watch -- lerna run watch --scope=$LERNA_PACKAGE_NAME"
+    "watch:zero": "nx run-many -t watch --projects=\"@mui/zero-*\" --parallel"
   },
   "dependencies": {
     "@googleapis/sheets": "^5.0.5",
