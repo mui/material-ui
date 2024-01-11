@@ -1,5 +1,5 @@
 extends: existence
-message: We avoid referencing the company name '%s'. Instead you can reference a product or the team or use we.
+message: We avoid referencing the company name '%s'. Instead you can reference a product or the team.
 level: warning
 ignorecase: false
 tokens:
