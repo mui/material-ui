@@ -177,7 +177,7 @@ export default function Notifications() {
                   0,
                 )
               : 0
-          } ${t('toggleNotifications')}`}
+          } ${t('unreadNotifications')}`}
           data-ga-event-category="AppBar"
           data-ga-event-action="toggleNotifications"
           onClick={handleToggle}
