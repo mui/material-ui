@@ -93,21 +93,6 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
         },
       },
     },
-    '& .MuiAlert-standardWarning': {
-      padding: '6px 12px',
-      fontWeight: theme.typography.fontWeightMedium,
-      border: '1px solid',
-      borderColor: `var(--muidocs-palette-warning-300, ${lightTheme.palette.warning[300]})`,
-      borderRadius: 12,
-      backgroundColor: `var(--muidocs-palette-warning-50, ${lightTheme.palette.warning[50]})`,
-      color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
-      marginBottom: 16,
-      '.MuiAlert-icon': {
-        display: 'flex',
-        alignItems: 'center',
-        fill: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
-      },
-    },
     '& code.Api-code': {
       ...theme.typography.caption,
       fontFamily: theme.typography.fontFamilyCode,
@@ -150,14 +135,6 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
         },
         '& .MuiApi-item-note': {
           color: `var(--muidocs-palette-success-400, ${darkTheme.palette.success[400]})`,
-        },
-      },
-      '& .MuiAlert-standardWarning': {
-        borderColor: alpha(darkTheme.palette.warning[800], 0.3),
-        backgroundColor: alpha(darkTheme.palette.warning[800], 0.2),
-        color: `var(--muidocs-palette-warning-100, ${darkTheme.palette.warning[100]})`,
-        '.MuiAlert-icon svg': {
-          fill: `var(--muidocs-palette-warning-400, ${darkTheme.palette.warning[400]})`,
         },
       },
       '& code.Api-code': {
