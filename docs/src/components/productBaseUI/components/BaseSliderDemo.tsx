@@ -7,7 +7,8 @@ const rootStyles = `
   color: var(--primary);
   width: 100%;
   padding: 16px 0;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   position: relative;
   cursor: pointer;
   touch-action: none;
@@ -45,7 +46,6 @@ const rootStyles = `
   & .MuiSlider-thumb {
     position: absolute;
     margin-left: -6px;
-    margin-top: -8.5px;
     width: 20px;
     height: 20px;
     box-sizing: border-box;
@@ -111,7 +111,7 @@ export default function BaseTabsDemo({ styling }: { styling?: 'system' | 'tailwi
             slotProps={{
               root: {
                 className:
-                  'py-4 px-0 w-full relative cursor-pointer text-[--primary] touch-action-none tap-highlight-transparent hover:opacity-100 ui-disabled:pointer-events-none ui-disabled:cursor-default ui-disabled:opacity-50 ui-disabled:cursor-default ui-disabled:text-[--primary] ui-disabled:opacity-50',
+                  'py-4 px-0 w-full relative inline-flex items-center cursor-pointer text-[--primary] touch-action-none tap-highlight-transparent hover:opacity-100 ui-disabled:pointer-events-none ui-disabled:cursor-default ui-disabled:opacity-50 ui-disabled:cursor-default ui-disabled:text-[--primary] ui-disabled:opacity-50',
               },
               rail: {
                 className: 'block absolute w-full h-[4px] rounded-full bg-current opacity-40',
@@ -121,7 +121,7 @@ export default function BaseTabsDemo({ styling }: { styling?: 'system' | 'tailwi
               },
               thumb: {
                 className:
-                  'absolute w-[20px] h-[20px] -ml-[6px] -mt-[8.5px] box-border rounded-[50%] outline-none [border:4px_solid_currentcolor] bg-[--primary] hover:shadow-[0_0_0_4px_var(--slider-ring)] ui-focus-visible:shadow-[0_0_0_8px_var(--slider-ring)] ui-active:shadow-[0_0_0_8px_var(--slider-ring)] ui-active:scale-[1.2] transition',
+                  'absolute w-[20px] h-[20px] -ml-[6px] box-border rounded-[50%] outline-none [border:4px_solid_currentcolor] bg-[--primary] hover:shadow-[0_0_0_4px_var(--slider-ring)] ui-focus-visible:shadow-[0_0_0_8px_var(--slider-ring)] ui-active:shadow-[0_0_0_8px_var(--slider-ring)] ui-active:scale-[1.2] transition',
               },
             }}
           />
@@ -131,7 +131,7 @@ export default function BaseTabsDemo({ styling }: { styling?: 'system' | 'tailwi
             slotProps={{
               root: {
                 className:
-                  'py-4 px-0 w-full relative cursor-pointer text-[--primary] touch-action-none tap-highlight-transparent hover:opacity-100 ui-disabled:pointer-events-none ui-disabled:cursor-default ui-disabled:opacity-50 ui-disabled:cursor-default ui-disabled:text-[--primary] ui-disabled:opacity-50',
+                  'py-4 px-0 w-full relative inline-flex items-center cursor-pointer text-[--primary] touch-action-none tap-highlight-transparent hover:opacity-100 ui-disabled:pointer-events-none ui-disabled:cursor-default ui-disabled:opacity-50 ui-disabled:cursor-default ui-disabled:text-[--primary] ui-disabled:opacity-50',
               },
               rail: {
                 className: 'block absolute w-full h-[4px] rounded-full bg-current opacity-40',
@@ -141,7 +141,7 @@ export default function BaseTabsDemo({ styling }: { styling?: 'system' | 'tailwi
               },
               thumb: {
                 className:
-                  'absolute w-[20px] h-[20px] -ml-[6px] -mt-[8.5px] box-border rounded-[50%] outline-none [border:4px_solid_currentcolor] bg-[--primary] hover:shadow-[0_0_0_4px_var(--slider-ring)] ui-focus-visible:shadow-[0_0_0_8px_var(--slider-ring)] ui-active:shadow-[0_0_0_8px_var(--slider-ring)] ui-active:scale-[1.2] transition',
+                  'absolute w-[20px] h-[20px] -ml-[6px] box-border rounded-[50%] outline-none [border:4px_solid_currentcolor] bg-[--primary] hover:shadow-[0_0_0_4px_var(--slider-ring)] ui-focus-visible:shadow-[0_0_0_8px_var(--slider-ring)] ui-active:shadow-[0_0_0_8px_var(--slider-ring)] ui-active:scale-[1.2] transition',
               },
             }}
           />
@@ -194,7 +194,7 @@ ${CSS}
   slotProps={{
     root: {
       className: \`py-4 px-0 w-full relative 
-        cursor-pointer text-[--primary] 
+        cursor-pointer text-[--primary] inline-flex items-center
         touch-action-none tap-highlight-transparent 
         hover:opacity-100 
         ui-disabled:pointer-events-none 
@@ -227,7 +227,7 @@ ${CSS}
   slotProps={{
     root: {
       className: \`py-4 px-0 w-full relative 
-        cursor-pointer text-[--primary] 
+        cursor-pointer text-[--primary] inline-flex items-center
         touch-action-none tap-highlight-transparent 
         hover:opacity-100 
         ui-disabled:pointer-events-none 
