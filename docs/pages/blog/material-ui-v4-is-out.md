@@ -22,7 +22,7 @@ Material UI v4 has finally arrived. We are so excited about this release, as it 
 - [High-level goals for v4](#high-level-goals-for-v4)
 - [What's new?](#whats-new)
 - [What's next?](#whats-next)
-- [Premium themes store](#premium-themes-store-✨)
+- [Premium theme store](#premium-theme-store)
 
 ## High-level goals for v4
 
@@ -314,11 +314,11 @@ import { Button } from '@mui/material';
   Developers should be able to use their preferred styling solution without paying the cost of two CSS-in-JS runtimes.
 - **Accessibility.** While we try to fix all accessibility issues as they are reported by our users, we feel that we can do better. We want to run a professional ADA audit of all our components ♿️.
 
-## Premium themes store ✨
+## Premium theme store
 
 How are we going to sustain this ambitious roadmap?
 We will follow the Bootstrap model.
-We are working on [a Premium themes store](https://mui.com/store/).
+We are working on [a Premium theme store](https://mui.com/store/).
 
 We have built partnerships with the best theme authors of the ecosystem.
 Within a few weeks, you should find a collection of the best Material UI templates and themes 😍.
