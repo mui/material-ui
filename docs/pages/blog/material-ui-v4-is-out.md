@@ -30,7 +30,7 @@ Material UI v1 was [released](https://medium.com/material-ui/material-ui-v1-is-o
 
 This release happens within our [fixed frequency](https://mui.com/versions/#release-frequency) release strategy. We try to release a major at least every 12 months and at most every 6 months. The migration from v0 to v1 was painful, it almost felt like using two different UI libraries. We've done our best to minimize the time needed to migrate from v3 to v4. To help ease the transition, you can follow this [migration guide](/material-ui/migration/migration-v3/) 📚. It shouldn't take more than a few hours.
 
-This release is influenced by two major factors. First, following the Developer Survey we ran in March, we have [analyzed the results](/blog/2019-developer-survey-results/) and used them to change [our priorities](/material-ui/discover-more/roadmap/#priorities) for the coming year. Secondly, we needed to be up to date with the latest best practices in the React community and with the Material Design Specification.
+This release is influenced by two major factors. First, following the Developer Survey we ran in March, we have [analyzed the results](/blog/2019-developer-survey-results/) and used them to change [our priorities](/material-ui/discover-more/roadmap/) for the coming year. Secondly, we needed to be up to date with the latest best practices in the React community and with the Material Design Specification.
 
 ### Customization
 

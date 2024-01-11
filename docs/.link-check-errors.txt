@@ -1,4 +1,3 @@
 Broken links found by `pnpm docs:link-check` that exist:
 
-- https://mui.com/material-ui/discover-more/roadmap/#priorities
 - https://mui.com/size-snapshot/
