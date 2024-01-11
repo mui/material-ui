@@ -1,3 +1,4 @@
+# Without a non-breaking space, brand names can be split in the middle, with the start and end on two different lines.
 extends: substitution
 message: Use a non-breaking space for brand name ('%s' instead of '%s')
 level: error
