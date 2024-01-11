@@ -69,7 +69,14 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
             </Highlighter>
           </Group>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          sx={{
+            minHeight: { lg: '590px' },
+          }}
+        >
           <Frame>
             <Frame.Demo
               sx={{
