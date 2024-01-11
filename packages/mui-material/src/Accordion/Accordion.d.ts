@@ -5,7 +5,7 @@ import { TransitionProps } from '../transitions/transition';
 import { AccordionClasses } from './accordionClasses';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ExtendPaperTypeMap } from '../Paper/Paper';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/slotsTypes';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface AccordionSlots {
   /**

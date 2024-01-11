@@ -1,22 +1,16 @@
 import { SxProps } from '@mui/system';
+import { SlotComponentProps } from '@mui/base';
 
 export type SlotCommonProps = {
   component?: React.ElementType;
   sx?: SxProps;
 };
 
-export type SlotProps<TSlotComponent extends React.ElementType, TOverrides, TOwnerState> =
-  // omit `color` from HTML attributes because it conflicts with Material UI `color` prop.
-  | (Omit<React.ComponentPropsWithRef<TSlotComponent>, 'color'> &
-      TOverrides &
-      SlotCommonProps &
-      Record<string, unknown>)
-  | ((
-      ownerState: TOwnerState,
-    ) => Omit<React.ComponentPropsWithRef<TSlotComponent>, 'color'> &
-      TOverrides &
-      SlotCommonProps &
-      Record<string, unknown>);
+export type SlotProps<
+  TSlotComponent extends React.ElementType,
+  TOverrides,
+  TOwnerState,
+> = SlotComponentProps<TSlotComponent, SlotCommonProps & TOverrides, TOwnerState>;
 
 /**
  * Use the keys of `Slots` to make sure that K contains all of the keys

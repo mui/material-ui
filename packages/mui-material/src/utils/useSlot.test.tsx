@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { createRenderer } from '@mui-internal/test-utils';
 import { Popper } from '@mui/base/Popper';
 import { styled } from '../styles';
-import { SlotProps } from './slotsTypes';
+import { SlotProps } from './types';
 import useSlot from './useSlot';
 
 describe('useSlot', () => {
