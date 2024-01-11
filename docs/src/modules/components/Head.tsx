@@ -21,7 +21,7 @@ interface HeadProps {
 export default function Head(props: HeadProps) {
   const t = useTranslate();
   const {
-    card = '/static/social-previews/default-preview.jpg',
+    card = '/static/social-previews/home-preview.jpg',
     children,
     description = t('strapline'),
     disableAlternateLocale = false,

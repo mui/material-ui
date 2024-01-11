@@ -1,5 +1,3 @@
-'use-client';
-
 import * as React from 'react';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/utils';
@@ -14,7 +12,8 @@ import { styled } from '@mui/zero-runtime';
 import { capitalize } from '@mui/material/utils';
 import SliderValueLabel from '@mui/material/Slider/SliderValueLabel';
 import { useSlider, valueToPercent } from '@mui/base/useSlider';
-import { alpha, lighten, darken } from '../utils/colorManipulator';
+import { alpha, lighten, darken } from '@mui/system/colorManipulator';
+import type { Theme } from '@mui/material/styles';
 
 const shouldSpreadAdditionalProps = (Slot?: React.ElementType) => {
   return !Slot || !isHostComponent(Slot);
@@ -57,7 +56,7 @@ const SliderRoot = styled('span', {
   [`&.${sliderClasses.disabled}`]: {
     pointerEvents: 'none',
     cursor: 'default',
-    color: theme.palette.grey[400],
+    color: (theme.vars || theme).palette.grey[400],
   },
   [`&.${sliderClasses.dragging}`]: {
     [`& .${sliderClasses.thumb}, & .${sliderClasses.track}`]: {
@@ -66,11 +65,11 @@ const SliderRoot = styled('span', {
   },
   variants: [
     {
-      props: {
-        color: 'primary',
+      props({ color }) {
+        return color === 'primary';
       },
       style: {
-        color: theme.palette.primary.main,
+        color: (theme.vars || theme).palette.primary.main,
       },
     },
     {
@@ -78,7 +77,7 @@ const SliderRoot = styled('span', {
         color: 'secondary',
       },
       style: {
-        color: theme.palette.secondary.main,
+        color: (theme.vars || theme).palette.secondary.main,
       },
     },
     {
@@ -203,10 +202,18 @@ const SliderTrack = styled('span', {
   slot: 'Track',
   overridesResolver: (props, styles) => styles.track,
 })<SliderNestedOwnerState>(({ theme }) => {
-  const lightPrimaryColor = lighten(theme.palette.primary.main, 0.62);
-  const lightSecondaryColor = lighten(theme.palette.secondary.main, 0.62);
-  const darkPrimaryColor = darken(theme.palette.primary.main, 0.5);
-  const darkSecondaryColor = darken(theme.palette.secondary.main, 0.5);
+  const lightPrimaryColor = theme.vars
+    ? theme.vars.palette.Slider.primaryTrack
+    : lighten(theme.palette.primary.main, 0.62);
+  const lightSecondaryColor = theme.vars
+    ? theme.vars.palette.Slider.secondaryTrack
+    : lighten(theme.palette.secondary.main, 0.62);
+  const darkPrimaryColor = theme.vars
+    ? theme.vars.palette.Slider.primaryTrack
+    : darken(theme.palette.primary.main, 0.5);
+  const darkSecondaryColor = theme.vars
+    ? theme.vars.palette.Slider.secondaryTrack
+    : darken(theme.palette.secondary.main, 0.5);
 
   return {
     display: 'block',
@@ -327,7 +334,7 @@ const SliderThumb = styled('span', {
   transition: theme.transitions.create(['box-shadow', 'left', 'bottom'], {
     duration: theme.transitions.duration.shortest,
   }),
-  '&::before': {
+  '&:before': {
     position: 'absolute',
     content: '""',
     borderRadius: 'inherit',
@@ -368,7 +375,7 @@ const SliderThumb = styled('span', {
       style: {
         '--slider-thumb-shadow-color': theme.vars
           ? `rgba(${theme.vars.palette.primary.mainChannel} / 0.16)`
-          : alpha(theme.palette.primary.main, 0.16),
+          : alpha((theme as Theme).palette.primary.main, 0.16),
       },
     },
     {
@@ -378,7 +385,7 @@ const SliderThumb = styled('span', {
       style: {
         '--slider-thumb-shadow-color': theme.vars
           ? `rgba(${theme.vars.palette.secondary.mainChannel} / 0.16)`
-          : alpha(theme.palette.secondary.main, 0.16),
+          : alpha((theme as Theme).palette.secondary.main, 0.16),
       },
     },
     {
@@ -388,7 +395,7 @@ const SliderThumb = styled('span', {
       style: {
         width: 12,
         height: 12,
-        '&::before': {
+        '&:before': {
           boxShadow: 'none',
         },
       },
@@ -454,7 +461,7 @@ const StyledSliderValueLabel = styled(SliderValueLabel, {
         top: '-10px',
         transformOrigin: 'bottom center',
         transform: 'translateY(-100%) scale(0)',
-        '&::before': {
+        '&:before': {
           position: 'absolute',
           content: '""',
           width: 8,
@@ -478,7 +485,7 @@ const StyledSliderValueLabel = styled(SliderValueLabel, {
         right: '30px',
         transform: 'translateY(-50%) scale(0)',
         transformOrigin: 'right center',
-        '&::before': {
+        '&:before': {
           position: 'absolute',
           content: '""',
           width: 8,
@@ -510,6 +517,7 @@ export { StyledSliderValueLabel as SliderValueLabel };
 const SliderMark = styled('span', {
   name: 'MuiSlider',
   slot: 'Mark',
+  shouldForwardProp: (prop) => prop !== 'markActive',
   // @TODO - Support this in `styled` implementation
   // shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'markActive',
   overridesResolver: (props, styles) => {
@@ -664,18 +672,13 @@ const Slider = React.forwardRef<HTMLSpanElement, SliderProps>(function Slider(pr
     marks: marksProp = false,
     max = 100,
     min = 0,
-    name,
-    onChange,
-    onChangeCommitted,
     orientation = 'horizontal',
     size = 'medium',
     step = 1,
     scale = Identity,
     slotProps,
     slots,
-    tabIndex,
     track = 'normal',
-    value: valueProp,
     valueLabelDisplay = 'off',
     valueLabelFormat = Identity,
     ...other
@@ -794,7 +797,7 @@ const Slider = React.forwardRef<HTMLSpanElement, SliderProps>(function Slider(pr
     externalSlotProps: thumbSlotProps,
     ownerState: {
       ...ownerState,
-      // @ts-expect-error @TODO Fix type
+      // @ts-expect-error
       ...thumbSlotProps?.ownerState,
     },
     className: classes.thumb,
@@ -805,7 +808,7 @@ const Slider = React.forwardRef<HTMLSpanElement, SliderProps>(function Slider(pr
     externalSlotProps: valueLabelSlotProps,
     ownerState: {
       ...ownerState,
-      // @ts-expect-error @TODO
+      // @ts-expect-error
       ...valueLabelSlotProps?.ownerState,
     },
     className: classes.valueLabel,

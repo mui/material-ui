@@ -137,7 +137,7 @@ export default function AppFooter(props: AppFooterProps) {
             </Box>
             <Link href={ROUTES.support}>Support</Link>
             <Link href={ROUTES.privacyPolicy}>Privacy policy</Link>
-            <Link target="_blank" rel="noopener noreferrer" href="mailto:contact@mui.com">
+            <Link target="_blank" rel="noopener" href="mailto:contact@mui.com">
               Contact us
             </Link>
           </Box>
@@ -157,7 +157,7 @@ export default function AppFooter(props: AppFooterProps) {
         <Stack spacing={1} direction="row" flexWrap="wrap" useFlexGap>
           <IconButton
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             href="https://github.com/mui"
             aria-label="github"
             title="GitHub"
@@ -167,7 +167,7 @@ export default function AppFooter(props: AppFooterProps) {
           </IconButton>
           <IconButton
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             href={ROUTES.rssFeed}
             aria-label="RSS Feed"
             title="RSS Feed"
@@ -177,7 +177,7 @@ export default function AppFooter(props: AppFooterProps) {
           </IconButton>
           <IconButton
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             href="https://twitter.com/MUI_hq"
             aria-label="twitter"
             title="X"
@@ -187,7 +187,7 @@ export default function AppFooter(props: AppFooterProps) {
           </IconButton>
           <IconButton
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             href="https://www.linkedin.com/company/mui/"
             aria-label="linkedin"
             title="LinkedIn"
@@ -197,7 +197,7 @@ export default function AppFooter(props: AppFooterProps) {
           </IconButton>
           <IconButton
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             href="https://www.youtube.com/@MUI_hq"
             aria-label="YouTube"
             title="YouTube"
@@ -207,7 +207,7 @@ export default function AppFooter(props: AppFooterProps) {
           </IconButton>
           <IconButton
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             href="https://mui.com/r/discord/"
             aria-label="Discord"
             title="Discord"
@@ -218,7 +218,7 @@ export default function AppFooter(props: AppFooterProps) {
           {stackOverflowUrl ? (
             <IconButton
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
               href={stackOverflowUrl}
               aria-label="Stack Overflow"
               title="Stack Overflow"

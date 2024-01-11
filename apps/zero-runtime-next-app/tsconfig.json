@@ -23,5 +23,19 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "references": [
+    {
+      "path": "../../packages/mui-system/tsconfig.build.json"
+    },
+    {
+      "path": "../../packages/mui-base/tsconfig.build.json"
+    },
+    {
+      "path": "../../packages/mui-material/tsconfig.build.json"
+    },
+    {
+      "path": "../../packages/zero-runtime/tsconfig.json"
+    }
+  ]
 }

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ToggleButton, { ToggleButtonProps } from '@mui/material/ToggleButton';
@@ -138,15 +137,6 @@ const TooltipToggleButton = React.forwardRef<HTMLButtonElement, TooltipToggleBut
     );
   },
 );
-
-TooltipToggleButton.propTypes = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
-  title: PropTypes.string.isRequired,
-  TooltipProps: PropTypes.object,
-};
 
 interface ToggleDisplayOptionProps {
   displayOption: ApiDisplayOptions;
