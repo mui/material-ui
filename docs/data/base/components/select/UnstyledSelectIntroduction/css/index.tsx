@@ -8,7 +8,7 @@ import {
 import { Option, optionClasses } from '@mui/base/Option';
 import { useTheme } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
-import { PopupContext } from '@mui/base/Unstable_Popup/PopupContext';
+import { PopupContext } from '@mui/base/Unstable_Popup';
 import { CssTransition } from '@mui/base';
 
 export default function UnstyledSelectIntroduction() {

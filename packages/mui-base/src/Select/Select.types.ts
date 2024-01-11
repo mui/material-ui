@@ -3,7 +3,7 @@ import { Simplify } from '@mui/types';
 import { SelectValue, UseSelectButtonSlotProps, UseSelectListboxSlotProps } from '../useSelect';
 import { SelectOption } from '../useOption';
 import { PopupProps } from '../Unstable_Popup';
-import { PolymorphicProps, SlotComponentProps, WithOptionalOwnerState } from '../utils';
+import { PolymorphicProps, SlotComponentProps } from '../utils';
 
 export interface SelectRootSlotPropsOverrides {}
 export interface SelectListboxSlotPropsOverrides {}
@@ -118,7 +118,7 @@ export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean
     >;
     popup?: SlotComponentProps<
       'div',
-      SelectPopupSlotPropsOverrides,
+      SelectPopupSlotPropsOverrides & PopupProps,
       SelectOwnerState<OptionValue, Multiple>
     >;
   };
@@ -132,7 +132,7 @@ export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: SelectSlots<OptionValue, Multiple>;
+  slots?: SelectSlots;
   /**
    * The selected value.
    * Set to `null` to deselect all options.
@@ -140,7 +140,7 @@ export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean
   value?: SelectValue<OptionValue, Multiple>;
 }
 
-export interface SelectSlots<OptionValue extends {}, Multiple extends boolean> {
+export interface SelectSlots {
   /**
    * The component that renders the root.
    * @default 'button'
@@ -155,7 +155,7 @@ export interface SelectSlots<OptionValue extends {}, Multiple extends boolean> {
    * The component that wraps the popup.
    * @default 'div'
    */
-  popup?: React.ComponentType<WithOptionalOwnerState<SelectPopupSlotProps<OptionValue, Multiple>>>;
+  popup?: React.ElementType;
 }
 
 export interface SelectTypeMap<

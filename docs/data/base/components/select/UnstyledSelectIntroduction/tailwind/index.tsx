@@ -13,7 +13,7 @@ import {
 import { useTheme } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 import clsx from 'clsx';
-import { PopupContext } from '@mui/base/Unstable_Popup/PopupContext';
+import { PopupContext } from '@mui/base/Unstable_Popup';
 import { CssTransition } from '@mui/base/Transitions';
 
 function useIsDarkMode() {
