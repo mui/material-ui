@@ -97,7 +97,7 @@ function AppAppBar() {
               </Box>
             </Box>
 
-            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1 }}>
               <Button color="primary" variant="contained" size="small">
                 Sign up
               </Button>

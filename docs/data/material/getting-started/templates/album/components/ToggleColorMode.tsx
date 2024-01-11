@@ -21,7 +21,7 @@ function ToggleColorMode() {
         variant="outlined"
         onClick={toggleColorMode}
         size="small"
-        sx={{ minWidth: '30px', p: '4px', ml: 1 }}
+        sx={{ minWidth: '30px', p: '4px' }}
       >
         {mode === 'dark' ? (
           <WbSunnyRoundedIcon fontSize="small" />

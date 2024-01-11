@@ -67,7 +67,7 @@ export default function Highlights() {
         <Box
           sx={{
             width: { sm: '100%', md: '60%' },
-            mb: 4,
+            mb: 8,
             textAlign: { sm: 'left', md: 'center' },
           }}
         >
