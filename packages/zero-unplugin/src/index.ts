@@ -8,11 +8,8 @@ import { transformAsync } from '@babel/core';
 import type { PluginOptions as LinariaPluginOptions, Preprocessor } from '@linaria/babel-preset';
 import { TransformCacheCollection, transform } from '@linaria/babel-preset';
 import { createPerfMeter, asyncResolveFallback, slugify } from '@linaria/utils';
-import {
-  generateCss,
-  preprocessor as basePreprocessor,
-  generateThemeTokens,
-} from '@mui/zero-runtime/utils';
+import { preprocessor as basePreprocessor } from '@mui/zero-runtime/utils';
+import { Interpolation, serializeStyles } from '@emotion/serialize';
 
 type NextMeta = {
   type: 'next';
@@ -32,10 +29,14 @@ type WebpackMeta = {
 
 type Meta = NextMeta | ViteMeta | WebpackMeta;
 
-export type PluginOptions<Theme = unknown> = {
+type BaseTheme = {
+  cssVarPrefix: string;
+  colorSchemes: Record<string, unknown>;
+  generateCssVars: (colorScheme?: string) => { css: Record<string, string> };
+};
+
+export type PluginOptions<Theme extends BaseTheme = BaseTheme> = {
   theme: Theme;
-  cssVariablesPrefix?: string;
-  injectDefaultThemeInRoot?: boolean;
   transformLibraries?: string[];
   preprocessor?: Preprocessor;
   debug?: boolean;
@@ -90,8 +91,6 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
   const {
     theme,
     meta,
-    cssVariablesPrefix = 'mui',
-    injectDefaultThemeInRoot = true,
     transformLibraries = [],
     preprocessor = basePreprocessor,
     asyncResolve: asyncResolveOpt,
@@ -101,12 +100,6 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
     overrideContext,
     ...rest
   } = options;
-  const themeArgs = { theme };
-  const isExtendTheme = !!(theme && typeof theme === 'object' && 'vars' in theme && theme.vars);
-  const varPrefix: string =
-    isExtendTheme && 'cssVarPrefix' in theme
-      ? (theme.cssVarPrefix as string) ?? cssVariablesPrefix
-      : cssVariablesPrefix;
   const cache = new TransformCacheCollection();
   const { emitter, onDone } = createPerfMeter(debug);
   const cssLookup = meta?.type === 'next' ? globalCssLookup : new Map<string, string>();
@@ -114,12 +107,18 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
   const isNext = meta?.type === 'next';
   const outputCss = isNext && meta.outputCss;
 
-  const themeTokenCss = generateCss(
-    { themeArgs, cssVariablesPrefix: varPrefix },
-    {
-      injectInRoot: injectDefaultThemeInRoot,
-    },
-  );
+  // create stylesheet as object
+  const stylesheetObj: Interpolation<unknown> = {
+    ':root': theme.generateCssVars().css,
+  };
+  Object.entries(theme.colorSchemes).forEach(([key]) => {
+    stylesheetObj[
+      `${key === 'light' ? ':root, ' : ''}[data-${theme.cssVarPrefix}-color-scheme="${key}"]`
+    ] = theme.generateCssVars(key).css;
+  });
+
+  // use emotion to serialize the object to css string
+  const { styles: stylesheet } = serializeStyles([stylesheetObj]);
 
   const babelTransformPlugin: UnpluginOptions = {
     name: 'zero-plugin-transform-babel',
@@ -169,7 +168,7 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
             themeArgs: {
               theme,
             },
-            cssVariablesPrefix: varPrefix,
+            cssVariablesPrefix: theme.cssVarPrefix,
             overrideContext(context: Record<string, unknown>, filename: string) {
               if (overrideContext) {
                 return overrideContext(context, filename);
@@ -275,11 +274,10 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
             },
             transform(_code, id) {
               if (id.endsWith('styles.css')) {
-                return themeTokenCss;
+                return stylesheet;
               }
               if (id.endsWith('theme.js')) {
-                const tokens = generateThemeTokens(theme, varPrefix);
-                return `export default ${JSON.stringify(tokens)};`;
+                return `export default ${JSON.stringify(theme)};`;
               }
               return null;
             },
@@ -299,11 +297,10 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
             },
             load(id) {
               if (id === VIRTUAL_CSS_FILE) {
-                return themeTokenCss;
+                return stylesheet;
               }
               if (id === VIRTUAL_THEME_FILE) {
-                const tokens = generateThemeTokens(theme, varPrefix);
-                return `export default ${JSON.stringify(tokens)};`;
+                return `export default ${JSON.stringify(theme)};`;
               }
               return null;
             },
