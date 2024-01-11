@@ -53,14 +53,14 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
             description="Reach out for the Design kits and the MUI Connect plug-in to bridge the gap between development and design when using Material UI."
           />
           <Group sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
-            <Highlighter disableBorder selected={customized} onClick={() => setCustomized(false)}>
+            <Highlighter disableBorder selected={customized} onClick={() => setCustomized(true)}>
               <Item
                 icon={<ExtensionRoundedIcon color="primary" />}
                 title="MUI Connect"
                 description="This Figma plug-in generates a theme file with the customizations done on the Material UI design kit, allowing you to export it and paste it into your codebase."
               />
             </Highlighter>
-            <Highlighter disableBorder selected={!customized} onClick={() => setCustomized(true)}>
+            <Highlighter disableBorder selected={!customized} onClick={() => setCustomized(false)}>
               <Item
                 icon={<DrawRoundedIcon color="primary" />}
                 title="Design kits"
@@ -227,7 +227,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                 </Box>
               </Fade>
             </Frame.Demo>
-            {customized ? (
+            {!customized ? (
               <Frame.Info
                 data-mui-color-scheme="dark"
                 sx={{
