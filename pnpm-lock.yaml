@@ -1369,7 +1369,7 @@ importers:
         specifier: workspace:*
         version: link:../mui-base/build
       '@mui/material':
-        specifier: '>=5.10.11'
+        specifier: '>=5.15.0'
         version: link:../mui-material/build
       '@mui/system':
         specifier: workspace:^
