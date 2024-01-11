@@ -302,10 +302,9 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   const name = inProps.name || radioGroup?.name || nameProp;
   const disableIcon = inProps.disableIcon || radioGroup?.disableIcon || disableIconProp;
   const overlay = inProps.overlay || radioGroup?.overlay || overlayProp;
-  const isValueValid = value !== undefined && value !== null && value !== '';
 
   const radioChecked =
-    typeof checkedProp === 'undefined' && isValueValid
+    typeof checkedProp === 'undefined' && value != null
       ? areEqualValues(radioGroup?.value, value)
       : checkedProp;
   const useRadioProps = {
