@@ -22,7 +22,7 @@
     "docs:build": "pnpm --filter docs build",
     "docs:build-sw": "pnpm --filter docs build-sw",
     "docs:build-color-preview": "babel-node scripts/buildColorTypes",
-    "docs:deploy": "pnpm --filter docs deploy",
+    "docs:deploy": "pnpm --filter docs run deploy",
     "docs:dev": "pnpm --filter docs dev",
     "docs:export": "pnpm --filter docs export",
     "docs:icons": "pnpm --filter docs icons",
