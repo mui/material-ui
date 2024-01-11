@@ -5,8 +5,28 @@ import { TransitionProps } from '../transitions/transition';
 import { AccordionClasses } from './accordionClasses';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ExtendPaperTypeMap } from '../Paper/Paper';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/slotsTypes';
+
+export interface AccordionSlots {
+  /**
+   * The component that renders the transition.
+   * @default Collapse
+   */
+  transition?: React.ElementType;
+}
 
 export interface AccordionTransitionSlotPropsOverrides {}
+
+export type AccordionSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  AccordionSlots,
+  {
+    transition: SlotProps<
+      React.ElementType<TransitionProps>,
+      AccordionTransitionSlotPropsOverrides,
+      AccordionOwnerState
+    >;
+  }
+>;
 
 export type AccordionTypeMap<
   AdditionalProps = {},
@@ -50,25 +70,6 @@ export type AccordionTypeMap<
        */
       onChange?: (event: React.SyntheticEvent, expanded: boolean) => void;
       /**
-       * The components used for each slot inside.
-       *
-       * @default {}
-       */
-      slots?: {
-        transition?: React.JSXElementConstructor<
-          TransitionProps & { children?: React.ReactElement<any, any> }
-        >;
-      };
-      /**
-       * The extra props for the slot components.
-       * You can override the existing props or add new ones.
-       *
-       * @default {}
-       */
-      slotProps?: {
-        transition?: TransitionProps & AccordionTransitionSlotPropsOverrides;
-      };
-      /**
        * The system prop that allows defining system overrides as well as additional CSS styles.
        */
       sx?: SxProps<Theme>;
@@ -86,7 +87,7 @@ export type AccordionTypeMap<
        * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7.
        */
       TransitionProps?: TransitionProps;
-    };
+    } & AccordionSlotsAndSlotProps;
     defaultComponent: RootComponent;
   },
   'onChange' | 'classes'
@@ -111,5 +112,7 @@ export type AccordionProps<
 > = OverrideProps<AccordionTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
 };
+
+export interface AccordionOwnerState extends AccordionProps {}
 
 export default Accordion;

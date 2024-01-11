@@ -33,7 +33,7 @@ describe('<Accordion />', () => {
         testWithElement: null,
       },
     },
-    skip: ['componentProp', 'componentsProp', 'slotPropsCallback'],
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render and not be controlled', () => {
