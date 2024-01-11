@@ -86,7 +86,7 @@ const StyledApiItem = styled(ExpandableApiItem)(
       },
       '&.prop-list-deprecated-item': {
         '& .MuiApi-item-note': {
-          color: `var(--muidocs-palette-warning-400, ${lightTheme.palette.warning[400]})`,
+          color: `var(--muidocs-palette-warning-400, ${darkTheme.palette.warning[400]})`,
         },
       },
     },
