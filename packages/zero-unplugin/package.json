@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@babel/core": "^7.23.2",
-    "@emotion/serialize": "^1.1.3",
     "@linaria/babel-preset": "^5.0.4",
     "@linaria/logger": "^5.0.0",
     "@linaria/utils": "^5.0.2",

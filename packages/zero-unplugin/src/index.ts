@@ -8,8 +8,7 @@ import { transformAsync } from '@babel/core';
 import type { PluginOptions as LinariaPluginOptions, Preprocessor } from '@linaria/babel-preset';
 import { TransformCacheCollection, transform } from '@linaria/babel-preset';
 import { createPerfMeter, asyncResolveFallback, slugify } from '@linaria/utils';
-import { preprocessor as basePreprocessor } from '@mui/zero-runtime/utils';
-import { Interpolation, serializeStyles } from '@emotion/serialize';
+import { preprocessor as basePreprocessor, generateThemeTokens } from '@mui/zero-runtime/utils';
 
 type NextMeta = {
   type: 'next';
@@ -106,20 +105,6 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
   const cssFileLookup = meta?.type === 'next' ? globalCssFileLookup : new Map<string, string>();
   const isNext = meta?.type === 'next';
   const outputCss = isNext && meta.outputCss;
-
-  // create stylesheet as object
-  const stylesheetObj: Interpolation<unknown> = {
-    ':root': theme.generateCssVars().css,
-  };
-  Object.entries(theme.colorSchemes).forEach(([key]) => {
-    stylesheetObj[
-      `${key === 'light' ? ':root, ' : ''}[data-${theme.cssVarPrefix}-color-scheme="${key}"]`
-    ] = theme.generateCssVars(key).css;
-  });
-
-  // use emotion to serialize the object to css string
-  const { styles: stylesheet } = serializeStyles([stylesheetObj]);
-
   const babelTransformPlugin: UnpluginOptions = {
     name: 'zero-plugin-transform-babel',
     enforce: 'post',
@@ -274,7 +259,7 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
             },
             transform(_code, id) {
               if (id.endsWith('styles.css')) {
-                return stylesheet;
+                return generateThemeTokens(theme);
               }
               if (id.endsWith('theme.js')) {
                 return `export default ${JSON.stringify(theme)};`;
@@ -297,7 +282,7 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
             },
             load(id) {
               if (id === VIRTUAL_CSS_FILE) {
-                return stylesheet;
+                return generateThemeTokens(theme);
               }
               if (id === VIRTUAL_THEME_FILE) {
                 return `export default ${JSON.stringify(theme)};`;

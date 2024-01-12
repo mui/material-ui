@@ -1,7 +1,6 @@
 import type { Plugin } from 'vite';
-import { preprocessor as basePreprocessor } from '@mui/zero-runtime/utils';
+import { preprocessor as basePreprocessor, generateThemeTokens } from '@mui/zero-runtime/utils';
 import { transformAsync } from '@babel/core';
-import { Interpolation, serializeStyles } from '@emotion/serialize';
 import baseZeroVitePlugin, { type VitePluginOptions } from './zero-vite-plugin';
 
 type BaseTheme = {
@@ -55,19 +54,6 @@ export function zeroVitePlugin(options: ZeroVitePluginOptions) {
     ...rest
   } = options ?? {};
 
-  // create stylesheet as object
-  const stylesheetObj: Interpolation<unknown> = {
-    ':root': theme.generateCssVars().css,
-  };
-  Object.entries(theme.colorSchemes).forEach(([key]) => {
-    stylesheetObj[
-      `${key === 'light' ? ':root, ' : ''}[data-${theme.cssVarPrefix}-color-scheme="${key}"]`
-    ] = theme.generateCssVars(key).css;
-  });
-
-  // use emotion to serialize the object to css string
-  const { styles: stylesheet } = serializeStyles([stylesheetObj]);
-
   function injectMUITokensPlugin(): Plugin {
     return {
       name: 'vite-mui-theme-injection-plugin',
@@ -83,7 +69,7 @@ export function zeroVitePlugin(options: ZeroVitePluginOptions) {
       },
       load(id) {
         if (id === VIRTUAL_CSS_FILE) {
-          return stylesheet;
+          return generateThemeTokens(theme);
         }
         if (id === VIRTUAL_THEME_FILE) {
           return `export default ${JSON.stringify(theme)};`;
