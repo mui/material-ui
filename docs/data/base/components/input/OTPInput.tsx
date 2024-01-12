@@ -101,7 +101,7 @@ function OTP({
         slots={{
           input: InputElement,
         }}
-        aria-label='OTP input field'
+        aria-label="OTP input field"
         slotProps={{
           input: {
             ref: (ele) => {
