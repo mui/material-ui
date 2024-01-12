@@ -121,8 +121,8 @@ function OTP({
 
 export default function OTPInput() {
   return (
-    <Box sx={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-      <OTP seperator={<span>-</span>} inputCount={6} />
+    <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+      <OTP seperator={<span>-</span>} inputCount={5} />
     </Box>
   );
 }

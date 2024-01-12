@@ -1,1 +1,1 @@
-<OTP seperator={<span>-</span>} inputCount={6} />
+<OTP seperator={<span>-</span>} inputCount={5} />
