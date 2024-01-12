@@ -7,12 +7,13 @@ import Chip from '@mui/material/Chip';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
-import { greyColor, secondaryColor } from '../getAlbumTheme';
+import { greyColor, secondaryColor } from '../getLPTheme';
 import CelebrationRoundedIcon from '@mui/icons-material/CelebrationRounded';
 
 export default function ProductHero() {
   return (
     <Box
+      id="hero"
       sx={{
         width: '100%',
         backgroundImage: `url("https://images.unsplash.com/photo-1638272181967-7d3772a91265?q=80&w=3570&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")`,
@@ -34,12 +35,12 @@ export default function ProductHero() {
         }}
       >
         <Grid container justifyContent="center">
-          <Grid item xs={12} sm={10} md={4}>
+          <Grid item xs={12} md={6} xl={4}>
             <Stack
               direction="column"
               spacing={2}
               justifyContent="center"
-              sx={{ zIndex: 1 }}
+              sx={{ zIndex: 1, mx: { xs: '16px', sm: '0' } }}
             >
               <Chip
                 size="small"

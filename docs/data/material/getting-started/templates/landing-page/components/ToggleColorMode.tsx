@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { ColorModeContext } from '../Album';
+import { ColorModeContext } from '../LandingPage';
 
 import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded';
 import ModeNightRoundedIcon from '@mui/icons-material/ModeNightRounded';
@@ -16,13 +16,18 @@ function ToggleColorMode() {
   const { mode, toggleColorMode } = contextValue;
 
   return (
-    <Box>
+    <Box sx={{ maxWidth: '36px' }}>
       <Button
         variant="outlined"
         onClick={toggleColorMode}
-        sx={{ minWidth: '36px', px: 0, ml: 1 }}
+        size="small"
+        sx={{ minWidth: '30px', p: '4px' }}
       >
-        {mode === 'dark' ? <WbSunnyRoundedIcon /> : <ModeNightRoundedIcon />}
+        {mode === 'dark' ? (
+          <WbSunnyRoundedIcon fontSize="small" />
+        ) : (
+          <ModeNightRoundedIcon fontSize="small" />
+        )}
       </Button>
     </Box>
   );

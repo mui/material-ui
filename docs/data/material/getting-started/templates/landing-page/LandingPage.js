@@ -15,7 +15,7 @@ import Features from './components/Features';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 
-import getAlbumTheme from './getAlbumTheme';
+import getLPTheme from './getLPTheme';
 
 function Copyright() {
   return (
@@ -30,17 +30,10 @@ function Copyright() {
   );
 }
 
-interface ColorMode {
-  mode: 'light' | 'dark';
-  toggleColorMode: () => void;
-}
+export const ColorModeContext = React.createContext(undefined);
 
-export const ColorModeContext = React.createContext<ColorMode | undefined>(
-  undefined,
-);
-
-export default function Album() {
-  const [colorMode, setColorMode] = React.useState<ColorMode>({
+export default function LandingPage() {
+  const [colorMode, setColorMode] = React.useState({
     mode: 'light',
     toggleColorMode: () => {
       setColorMode((prevMode) => ({
@@ -51,7 +44,7 @@ export default function Album() {
   });
 
   const theme = React.useMemo(
-    () => createTheme(getAlbumTheme(colorMode.mode)),
+    () => createTheme(getLPTheme(colorMode.mode)),
     [colorMode.mode],
   );
 

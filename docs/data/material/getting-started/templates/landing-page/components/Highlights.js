@@ -4,7 +4,7 @@ import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import { greyColor } from '../getAlbumTheme';
+import { greyColor } from '../getLPTheme';
 
 import SettingsSuggestRoundedIcon from '@mui/icons-material/SettingsSuggestRounded';
 import ConstructionRoundedIcon from '@mui/icons-material/ConstructionRounded';

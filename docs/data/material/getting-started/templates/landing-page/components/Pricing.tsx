@@ -10,7 +10,7 @@ import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import { alpha } from '@mui/system';
 
-import { brandColor } from '../getAlbumTheme';
+import { brandColor } from '../getLPTheme';
 
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';

@@ -10,7 +10,7 @@ import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import { alpha } from '@mui/system';
 
-import { brandColor } from '../getAlbumTheme';
+import { brandColor } from '../getLPTheme';
 
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
@@ -60,6 +60,7 @@ export default function Pricing() {
   return (
     <div>
       <Container
+        id="pricing"
         sx={{
           position: 'relative',
           display: 'flex',
@@ -120,7 +121,7 @@ export default function Pricing() {
               >
                 <CardContent>
                   <Box
-                    sx={{ display: 'flex', justifyContent: 'space-between', gap: 2 }}
+                    sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}
                   >
                     <Typography variant="h6" gutterBottom>
                       {tier.title}
@@ -167,11 +168,16 @@ export default function Pricing() {
                       &nbsp; per month
                     </Typography>
                   </Box>
-                  <Divider sx={{ my: 2 }} />
+                  <Divider sx={{ my: 3 }} />
                   {tier.description.map((line) => (
                     <Box
                       key={line}
-                      sx={{ display: 'flex', gap: 1, p: 1, alignItems: 'center' }}
+                      sx={{
+                        display: 'flex',
+                        gap: 1.5,
+                        p: 1,
+                        alignItems: 'center',
+                      }}
                     >
                       <CheckCircleRoundedIcon
                         sx={{
@@ -186,7 +192,13 @@ export default function Pricing() {
                   ))}
                 </CardContent>
                 <CardActions>
-                  <Button fullWidth variant={tier.buttonVariant}>
+                  <Button
+                    fullWidth
+                    variant={tier.buttonVariant}
+                    component="a"
+                    href="/material-ui/getting-started/templates/checkout/"
+                    target="_blank"
+                  >
                     {tier.buttonText}
                   </Button>
                 </CardActions>

@@ -1,5 +1,5 @@
 import { red } from '@mui/material/colors';
-
+import { PaletteMode } from '@mui/material';
 import { alpha } from '@mui/material';
 
 export const brandColor = {
@@ -30,15 +30,15 @@ export const secondaryColor = {
 
 export const greyColor = {
   50: '#FBFCFE',
-  100: '#F0F4F8',
-  200: '#DDE7EE',
-  300: '#CDD7E1',
-  400: '#9FA6AD',
-  500: '#636B74',
-  600: '#555E68',
-  700: '#32383E',
-  800: '#171A1C',
-  900: '#0B0D0E',
+  100: '#EAF0F5',
+  200: '#D6E2EB',
+  300: '#BFCCD9',
+  400: '#94A6B8',
+  500: '#5B6B7C',
+  600: '#4C5967',
+  700: '#364049',
+  800: '#131B20',
+  900: '#090E10',
 };
 
 export const successColor = {
@@ -54,7 +54,7 @@ export const successColor = {
   900: '#021D02',
 };
 
-const getDesignTokens = (mode) => ({
+const getDesignTokens = (mode: PaletteMode) => ({
   palette: {
     mode,
     ...(mode === 'light'
@@ -88,8 +88,8 @@ const getDesignTokens = (mode) => ({
             paper: greyColor[50],
           },
           text: {
-            primary: greyColor[900],
-            secondary: greyColor[700],
+            primary: greyColor[800],
+            secondary: greyColor[600],
           },
         }
       : {
@@ -143,7 +143,7 @@ const fontHeader = {
   letterSpacing: '-0.025em',
 };
 
-export default function getAlbumTheme(mode) {
+export default function getLPTheme(mode: 'light' | 'dark') {
   const modeDesignTokens = getDesignTokens(mode);
 
   const fontHeader = {
@@ -161,66 +161,103 @@ export default function getAlbumTheme(mode) {
       },
     },
     components: {
+      MuiMenuItem: {
+        styleOverrides: {
+          root: {
+            color: mode === 'light' ? greyColor[500] : greyColor[300],
+            borderRadius: '8px',
+            fontWeight: 500,
+          },
+        },
+      },
+      MuiPaper: {
+        styleOverrides: {
+          root: {
+            backgroundColor: mode === 'light' ? greyColor[100] : greyColor[900],
+          },
+        },
+      },
       MuiCard: {
         styleOverrides: {
           root: {
             backgroundColor: mode === 'light' ? greyColor[50] : greyColor[900],
             boxShadow: 'none',
-            border: '1px solid rgba(0,0,0,0.1)',
+            border:
+              mode === 'light'
+                ? `1px solid ${alpha(greyColor[200], 0.8)}`
+                : `1px solid ${alpha(greyColor[700], 0.6)}`,
             borderRadius: '8px',
+          },
+        },
+      },
+      MuiDivider: {
+        styleOverrides: {
+          root: {
+            borderColor:
+              mode === 'light'
+                ? `${alpha(greyColor[200], 0.8)}`
+                : `${alpha(greyColor[700], 0.6)}`,
           },
         },
       },
       MuiButton: {
         styleOverrides: {
-          root: ({ ownerState }) => ({
-            boxShadow: 'none',
-            borderRadius: '8px',
-            ...(ownerState.variant === 'contained' &&
-              ownerState.color === 'primary' && {
-                boxShadow: `inset 0px 1px 1px ${
-                  brandColor[400]
-                }, inset 0px -2px 1px ${brandColor[600]}, 0px 0px 0px 1px ${alpha(
-                  brandColor[500],
-                  0.5,
-                )}, 0px 2px 4px rgba(0, 0, 0, 0.1)`,
-                '&:hover': {
-                  backgroundColor: brandColor[600],
-                  boxShadow: 'none',
-                },
-              }),
-            ...(ownerState.variant === 'contained' &&
-              ownerState.color === 'secondary' && {
-                boxShadow: `inset 0px 1px 1px ${
-                  secondaryColor[400]
-                }, inset 0px -2px 1px ${
-                  secondaryColor[600]
-                }, 0px 0px 0px 1px ${alpha(
-                  secondaryColor[500],
-                  0.5,
-                )}, 0px 2px 4px rgba(0, 0, 0, 0.1)`,
-                '&:hover': {
-                  backgroundColor: secondaryColor[600],
-                  boxShadow: 'none',
-                },
-              }),
-            ...(ownerState.variant === 'outlined' && {
-              backgroundColor:
-                mode === 'light'
-                  ? alpha(brandColor[300], 0.1)
-                  : alpha(brandColor[600], 0.1),
-              borderColor: mode === 'light' ? brandColor[300] : brandColor[700],
-              color: mode === 'light' ? brandColor[500] : brandColor[300],
-              '&:hover': {
+          root: ({
+            ownerState,
+          }: {
+            ownerState: {
+              color: string;
+              variant?: string;
+            };
+          }) =>
+            ({
+              boxShadow: 'none',
+              borderRadius: '8px',
+              ...(ownerState.variant === 'contained' &&
+                ownerState.color === 'primary' && {
+                  boxShadow: `inset 0px 1px 1px ${
+                    brandColor[400]
+                  }, inset 0px -2px 1px ${brandColor[600]}, 0px 0px 0px 1px ${alpha(
+                    brandColor[500],
+                    0.5,
+                  )}, 0px 2px 4px rgba(0, 0, 0, 0.1)`,
+                  '&:hover': {
+                    backgroundColor: brandColor[600],
+                    boxShadow: 'none',
+                  },
+                }),
+              ...(ownerState.variant === 'contained' &&
+                ownerState.color === 'secondary' && {
+                  boxShadow: `inset 0px 1px 1px ${
+                    secondaryColor[400]
+                  }, inset 0px -2px 1px ${
+                    secondaryColor[600]
+                  }, 0px 0px 0px 1px ${alpha(
+                    secondaryColor[500],
+                    0.5,
+                  )}, 0px 2px 4px rgba(0, 0, 0, 0.1)`,
+                  '&:hover': {
+                    backgroundColor: secondaryColor[600],
+                    boxShadow: 'none',
+                  },
+                }),
+              ...(ownerState.variant === 'outlined' && {
                 backgroundColor:
                   mode === 'light'
-                    ? alpha(brandColor[300], 0.3)
-                    : alpha(brandColor[600], 0.3),
-                borderColor: mode === 'light' ? brandColor[200] : brandColor[700],
-              },
-            }),
-            textTransform: 'none',
-          }),
+                    ? alpha(brandColor[300], 0.1)
+                    : alpha(brandColor[600], 0.1),
+                borderColor: mode === 'light' ? brandColor[300] : brandColor[700],
+                color: mode === 'light' ? brandColor[500] : brandColor[300],
+                '&:hover': {
+                  backgroundColor:
+                    mode === 'light'
+                      ? alpha(brandColor[300], 0.3)
+                      : alpha(brandColor[600], 0.3),
+                  borderColor: mode === 'light' ? brandColor[200] : brandColor[700],
+                },
+              }),
+              textTransform: 'none',
+            } as const),
         },
       },
       MuiLink: {
@@ -228,11 +265,12 @@ export default function getAlbumTheme(mode) {
           underline: 'none',
         },
         styleOverrides: {
-          root: ({ ownerState }) => ({
-            ...(ownerState.color === 'primary' && {
-              color: mode === 'light' ? brandColor[500] : brandColor[400],
-            }),
-          }),
+          root: ({ ownerState }: { ownerState: { color?: string } }) =>
+            ({
+              ...(ownerState.color === 'primary' && {
+                color: mode === 'light' ? brandColor[500] : brandColor[400],
+              }),
+            } as const),
         },
       },
       MuiAccordion: {
@@ -341,5 +379,5 @@ export default function getAlbumTheme(mode) {
         fontSize: 14,
       },
     },
-  };
+  } as const;
 }

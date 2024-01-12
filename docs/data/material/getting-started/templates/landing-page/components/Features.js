@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import { alpha } from '@mui/system';
 
-import { greyColor, brandColor } from '../getAlbumTheme';
+import { greyColor, brandColor } from '../getLPTheme';
 
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import ViewQuiltRoundedIcon from '@mui/icons-material/ViewQuiltRounded';
@@ -51,7 +51,7 @@ export default function Features() {
   };
 
   return (
-    <Box>
+    <Box id="features">
       <Container>
         <Grid container spacing={4}>
           <Grid item xs={12} md={6}>

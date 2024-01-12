@@ -135,7 +135,7 @@ const blacklist = [
   'docs-discover-more-languages', // No public components
   'docs-discover-more-showcase', // No public components
   'docs-discover-more-team', // No public components
-  'docs-getting-started-templates-album/Album.png', // Flaky image loading
+  'docs-getting-started-templates-landing-page/LandingPage.png', // Flaky image loading
   'docs-getting-started-templates-blog', // Flaky random images
   'docs-getting-started-templates-checkout/AddressForm.png', // Already tested in docs-getting-started-templates-checkout/Checkout
   'docs-getting-started-templates-checkout/PaymentForm.png', // Already tested in docs-getting-started-templates-checkout/Checkout

@@ -4,7 +4,7 @@ import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import { greyColor } from '../getAlbumTheme';
+import { greyColor } from '../getLPTheme';
 
 import SettingsSuggestRoundedIcon from '@mui/icons-material/SettingsSuggestRounded';
 import ConstructionRoundedIcon from '@mui/icons-material/ConstructionRounded';
@@ -54,7 +54,7 @@ const items = [
 
 export default function Highlights() {
   return (
-    <Box sx={{ color: 'white', bgcolor: '#000' }}>
+    <Box id="highlights" sx={{ color: 'white', bgcolor: '#000' }}>
       <Container
         sx={{
           position: 'relative',
@@ -67,7 +67,7 @@ export default function Highlights() {
         <Box
           sx={{
             width: { sm: '100%', md: '60%' },
-            mb: 4,
+            mb: 8,
             textAlign: { sm: 'left', md: 'center' },
           }}
         >
@@ -80,9 +80,9 @@ export default function Highlights() {
             component="p"
             sx={{ opacity: '70%' }}
           >
-            Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi.
-            Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis
-            ligula consectetur
+            Explore why our product stands out: adaptability, durability,
+            user-friendly design, and innovation. Enjoy reliable customer support and
+            precision in every detail. Choose quality and performance with us.
           </Typography>
         </Box>
         <Grid container spacing={4}>

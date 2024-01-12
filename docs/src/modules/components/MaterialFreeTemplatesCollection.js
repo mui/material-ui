@@ -60,11 +60,11 @@ function layouts(t) {
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/checkout`,
     },
     {
-      title: t('albumTitle'),
-      description: t('albumDescr'),
-      src: '/static/images/templates/album.png',
-      href: '/material-ui/getting-started/templates/album/',
-      source: `${sourcePrefix}/docs/data/material/getting-started/templates/album`,
+      title: t('landingPageTitle'),
+      description: t('landingPageDescr'),
+      src: '/static/images/templates/landing-page.png',
+      href: '/material-ui/getting-started/templates/landing-page/',
+      source: `${sourcePrefix}/docs/data/material/getting-started/templates/landing-page`,
     },
     {
       title: t('pricingTitle'),

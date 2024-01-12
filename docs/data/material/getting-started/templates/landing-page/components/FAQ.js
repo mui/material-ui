@@ -17,7 +17,7 @@ export default function FAQ() {
   };
 
   return (
-    <Box>
+    <Box id="faq">
       <Container
         sx={{
           position: 'relative',

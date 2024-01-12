@@ -1,5 +1,5 @@
 import { red } from '@mui/material/colors';
-import { PaletteMode } from '@mui/material';
+
 import { alpha } from '@mui/material';
 
 export const brandColor = {
@@ -54,7 +54,7 @@ export const successColor = {
   900: '#021D02',
 };
 
-const getDesignTokens = (mode: PaletteMode) => ({
+const getDesignTokens = (mode) => ({
   palette: {
     mode,
     ...(mode === 'light'
@@ -143,7 +143,7 @@ const fontHeader = {
   letterSpacing: '-0.025em',
 };
 
-export default function getAlbumTheme(mode: 'light' | 'dark') {
+export default function getLPTheme(mode) {
   const modeDesignTokens = getDesignTokens(mode);
 
   const fontHeader = {
@@ -202,62 +202,54 @@ export default function getAlbumTheme(mode: 'light' | 'dark') {
       },
       MuiButton: {
         styleOverrides: {
-          root: ({
-            ownerState,
-          }: {
-            ownerState: {
-              color: string;
-              variant?: string;
-            };
-          }) =>
-            ({
-              boxShadow: 'none',
-              borderRadius: '8px',
-              ...(ownerState.variant === 'contained' &&
-                ownerState.color === 'primary' && {
-                  boxShadow: `inset 0px 1px 1px ${
-                    brandColor[400]
-                  }, inset 0px -2px 1px ${brandColor[600]}, 0px 0px 0px 1px ${alpha(
-                    brandColor[500],
-                    0.5,
-                  )}, 0px 2px 4px rgba(0, 0, 0, 0.1)`,
-                  '&:hover': {
-                    backgroundColor: brandColor[600],
-                    boxShadow: 'none',
-                  },
-                }),
-              ...(ownerState.variant === 'contained' &&
-                ownerState.color === 'secondary' && {
-                  boxShadow: `inset 0px 1px 1px ${
-                    secondaryColor[400]
-                  }, inset 0px -2px 1px ${
-                    secondaryColor[600]
-                  }, 0px 0px 0px 1px ${alpha(
-                    secondaryColor[500],
-                    0.5,
-                  )}, 0px 2px 4px rgba(0, 0, 0, 0.1)`,
-                  '&:hover': {
-                    backgroundColor: secondaryColor[600],
-                    boxShadow: 'none',
-                  },
-                }),
-              ...(ownerState.variant === 'outlined' && {
-                backgroundColor:
-                  mode === 'light'
-                    ? alpha(brandColor[300], 0.1)
-                    : alpha(brandColor[600], 0.1),
-                borderColor: mode === 'light' ? brandColor[300] : brandColor[700],
-                color: mode === 'light' ? brandColor[500] : brandColor[300],
+          root: ({ ownerState }) => ({
+            boxShadow: 'none',
+            borderRadius: '8px',
+            ...(ownerState.variant === 'contained' &&
+              ownerState.color === 'primary' && {
+                boxShadow: `inset 0px 1px 1px ${
+                  brandColor[400]
+                }, inset 0px -2px 1px ${brandColor[600]}, 0px 0px 0px 1px ${alpha(
+                  brandColor[500],
+                  0.5,
+                )}, 0px 2px 4px rgba(0, 0, 0, 0.1)`,
                 '&:hover': {
-                  backgroundColor:
-                    mode === 'light'
-                      ? alpha(brandColor[300], 0.3)
-                      : alpha(brandColor[600], 0.3),
-                  borderColor: mode === 'light' ? brandColor[200] : brandColor[700],
+                  backgroundColor: brandColor[600],
+                  boxShadow: 'none',
                 },
               }),
-              textTransform: 'none',
-            } as const),
+            ...(ownerState.variant === 'contained' &&
+              ownerState.color === 'secondary' && {
+                boxShadow: `inset 0px 1px 1px ${
+                  secondaryColor[400]
+                }, inset 0px -2px 1px ${
+                  secondaryColor[600]
+                }, 0px 0px 0px 1px ${alpha(
+                  secondaryColor[500],
+                  0.5,
+                )}, 0px 2px 4px rgba(0, 0, 0, 0.1)`,
+                '&:hover': {
+                  backgroundColor: secondaryColor[600],
+                  boxShadow: 'none',
+                },
+              }),
+            ...(ownerState.variant === 'outlined' && {
+              backgroundColor:
+                mode === 'light'
+                  ? alpha(brandColor[300], 0.1)
+                  : alpha(brandColor[600], 0.1),
+              borderColor: mode === 'light' ? brandColor[300] : brandColor[700],
+              color: mode === 'light' ? brandColor[500] : brandColor[300],
+              '&:hover': {
+                backgroundColor:
+                  mode === 'light'
+                    ? alpha(brandColor[300], 0.3)
+                    : alpha(brandColor[600], 0.3),
+                borderColor: mode === 'light' ? brandColor[200] : brandColor[700],
+              },
+            }),
+            textTransform: 'none',
+          }),
         },
       },
       MuiLink: {
@@ -265,12 +257,11 @@ export default function getAlbumTheme(mode: 'light' | 'dark') {
           underline: 'none',
         },
         styleOverrides: {
-          root: ({ ownerState }: { ownerState: { color?: string } }) =>
-            ({
-              ...(ownerState.color === 'primary' && {
-                color: mode === 'light' ? brandColor[500] : brandColor[400],
-              }),
-            } as const),
+          root: ({ ownerState }) => ({
+            ...(ownerState.color === 'primary' && {
+              color: mode === 'light' ? brandColor[500] : brandColor[400],
+            }),
+          }),
         },
       },
       MuiAccordion: {
@@ -379,5 +370,5 @@ export default function getAlbumTheme(mode: 'light' | 'dark') {
         fontSize: 14,
       },
     },
-  } as const;
+  };
 }

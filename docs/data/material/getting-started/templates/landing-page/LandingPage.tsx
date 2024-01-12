@@ -6,7 +6,7 @@ import Link from '@mui/material/Link';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Divider from '@mui/material/Divider';
 
-import AppBar from './components/AppBar';
+import AppAppBar from './components/AppBar';
 import Hero from './components/Hero';
 import LogoCollection from './components/LogoCollection';
 import Highlights from './components/Highlights';
@@ -15,7 +15,7 @@ import Features from './components/Features';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 
-import getAlbumTheme from './getAlbumTheme';
+import getLPTheme from './getLPTheme';
 
 function Copyright() {
   return (
@@ -30,10 +30,17 @@ function Copyright() {
   );
 }
 
-export const ColorModeContext = React.createContext(undefined);
+interface ColorMode {
+  mode: 'light' | 'dark';
+  toggleColorMode: () => void;
+}
 
-export default function Album() {
-  const [colorMode, setColorMode] = React.useState({
+export const ColorModeContext = React.createContext<ColorMode | undefined>(
+  undefined,
+);
+
+export default function LandingPage() {
+  const [colorMode, setColorMode] = React.useState<ColorMode>({
     mode: 'light',
     toggleColorMode: () => {
       setColorMode((prevMode) => ({
@@ -44,7 +51,7 @@ export default function Album() {
   });
 
   const theme = React.useMemo(
-    () => createTheme(getAlbumTheme(colorMode.mode)),
+    () => createTheme(getLPTheme(colorMode.mode)),
     [colorMode.mode],
   );
 
@@ -52,7 +59,7 @@ export default function Album() {
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <AppBar />
+        <AppAppBar />
         <Hero />
         <Box
           sx={{

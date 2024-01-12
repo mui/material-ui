@@ -7,7 +7,7 @@ import Chip from '@mui/material/Chip';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
-import { greyColor, secondaryColor } from '../getAlbumTheme';
+import { greyColor, secondaryColor } from '../getLPTheme';
 import CelebrationRoundedIcon from '@mui/icons-material/CelebrationRounded';
 
 export default function ProductHero() {

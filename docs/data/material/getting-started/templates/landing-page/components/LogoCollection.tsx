@@ -34,7 +34,7 @@ export default function LogoCollection() {
   const logos = theme.palette.mode === 'light' ? darkLogos : whiteLogos;
 
   return (
-    <Box sx={{ mt: 10, textAlign: 'center', opacity: 0.7 }}>
+    <Box id="logoCollection" sx={{ mt: 10, textAlign: 'center', opacity: 0.7 }}>
       <Typography
         component="h2"
         variant="subtitle2"

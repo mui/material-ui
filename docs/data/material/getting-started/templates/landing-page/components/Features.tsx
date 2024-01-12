@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import { alpha } from '@mui/system';
 
-import { greyColor, brandColor } from '../getAlbumTheme';
+import { greyColor, brandColor } from '../getLPTheme';
 
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import ViewQuiltRoundedIcon from '@mui/icons-material/ViewQuiltRounded';
