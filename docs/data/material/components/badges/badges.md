@@ -74,10 +74,10 @@ You should provide a full description, for instance, with `aria-label`:
 
 ## Experimental APIs
 
-### Material 3 version
+### Material 3 Badge
 
 The default Material UI Badge component follows the Material Design 2 specs.
-To get the [Material 3](https://m3.material.io/) version, use the new experimental `@mui/material-next` package.
+To use the [Material 3](https://m3.material.io/) version, install the experimental `@mui/material-next` package.
 
 ```js
 import Badge from '@mui/material-next/Badge';
@@ -85,4 +85,4 @@ import Badge from '@mui/material-next/Badge';
 
 {{"demo": "BadgeMaterialYouPlayground.js", "hideToolbar": true, "bg": "playground"}}
 
-For more instructions on how to use it, visit the [detailed guide](/material-ui/guides/material-3-components/).
+To learn more about Material UI's MD3 implementation, visit the [Material 3 Components documentation](/material-ui/guides/material-3-components/).

@@ -1,16 +1,42 @@
 import * as ts from 'typescript';
 import { ComponentClassDefinition } from '@mui-internal/docs-utilities';
+import { renderMarkdown } from '@mui/markdown';
 import { getSymbolDescription, getSymbolJSDocTags } from '../buildApiUtils';
 import { TypeScriptProject } from './createTypeScriptProject';
 import { getPropsFromComponentNode } from './getPropsFromComponentNode';
 import resolveExportSpecifier from './resolveExportSpecifier';
 import { ProjectSettings } from '../ProjectSettings';
 
+interface ClassInfo {
+  description: string;
+  isDeprecated?: true;
+  deprecationInfo?: string;
+}
+
 export interface Slot {
   class: string | null;
   name: string;
   description: string;
   default?: string;
+}
+
+/**
+ * Gets the deprecation information for a given symbol.
+ * @param symbol - The TypeScript symbol.
+ * @returns An object containing the deprecation information, if the symbol is deprecated.
+ */
+function getClassDeprecationObject(symbol: ts.Symbol): {
+  isDeprecated?: true;
+  deprecationInfo?: string;
+} {
+  const tags = getSymbolJSDocTags(symbol);
+  if (tags.deprecated) {
+    return {
+      isDeprecated: true,
+      deprecationInfo: renderMarkdown(tags.deprecated.text?.[0].text || '').trim() || undefined,
+    };
+  }
+  return {};
 }
 
 interface ParseSlotsAndClassesParameters {
@@ -86,6 +112,7 @@ function extractClassesFromInterface(
         className: projectSettings.generateClassName(muiName, symbol.name),
         description: getSymbolDescription(symbol, typescriptProject),
         isGlobal: projectSettings.isGlobalClassName(symbol.name),
+        ...getClassDeprecationObject(symbol),
       });
     });
   }
@@ -120,24 +147,27 @@ function extractClassesFromProps(
     return null;
   }
 
-  const classes: Record<string, string> = {};
+  const classes: Record<string, ClassInfo> = {};
   classesProp.signatures.forEach((propType) => {
     const type = typescriptProject.checker.getTypeAtLocation(propType.symbol.declarations?.[0]!);
     removeUndefinedFromType(type)
       ?.getProperties()
       .forEach((property) => {
-        classes[property.escapedName.toString()] = getSymbolDescription(
-          property,
-          typescriptProject,
-        );
+        const description = getSymbolDescription(property, typescriptProject);
+        classes[property.escapedName.toString()] = {
+          description,
+          ...getClassDeprecationObject(property),
+        };
       });
   });
 
   return Object.keys(classes).map((name) => ({
     key: name,
     className: projectSettings.generateClassName(muiName, name),
-    description: name !== classes[name] ? classes[name] : '',
+    description: name !== classes[name].description ? classes[name].description : '',
     isGlobal: projectSettings.isGlobalClassName(name),
+    isDeprecated: classes[name].isDeprecated,
+    deprecationInfo: classes[name].deprecationInfo,
   }));
 }
 

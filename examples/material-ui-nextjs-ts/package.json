@@ -15,6 +15,7 @@
     "@emotion/styled": "latest",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
+    "@mui/material-nextjs": "latest",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"

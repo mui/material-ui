@@ -38,6 +38,7 @@ type ClassDescription = {
     description: string;
     nodeName?: string;
     conditions?: string;
+    deprecationInfo?: string;
   };
 };
 export type ClassesSectionProps = {
@@ -80,6 +81,7 @@ export default function ClassesSection(props: ClassesSectionProps) {
           ?.replace(/{{conditions}}/, classDescriptions[classDefinition.key].conditions!)
           ?.replace(/{{nodeName}}/, classDescriptions[classDefinition.key].nodeName!) ??
         classDefinition.description,
+      deprecationInfo: classDescriptions[classDefinition.key]?.deprecationInfo,
     };
   });
 

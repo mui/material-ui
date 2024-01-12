@@ -264,7 +264,7 @@ $ pnpm docs:api
 ### Coding style
 
 Please follow the coding style of the project.
-MUI Core projects use prettier and eslint, so if possible, enable linting in your editor to get real-time feedback.
+MUI Core projects use prettier and ESLint, so if possible, enable linting in your editor to get real-time feedback.
 
 - `pnpm prettier` reformats the code.
 - `pnpm eslint` runs the linting rules.
