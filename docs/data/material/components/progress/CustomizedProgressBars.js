@@ -55,6 +55,7 @@ function FacebookCircularProgress(props) {
 }
 
 // From https://github.com/mui/material-ui/issues/9496#issuecomment-959408221
+
 function GradientCircularProgress() {
   return (
     <React.Fragment>
