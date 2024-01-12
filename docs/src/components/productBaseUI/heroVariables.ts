@@ -17,6 +17,8 @@ const sleek = {
   '--Input-focus-border': '0 0 0 3px var(--muidocs-palette-primary-200)',
   '--Slider-thumb-focus': 'rgba(0, 127, 255, 0.2)',
   '--formControl-shadow': '0px 2px 3px rgba(205, 210, 215, 0.3)',
+  '--Button-outlinedGrey-shadow':
+    '0 -2px 0.5px 0 var(--muidocs-palette-grey-50) inset, 0 1px 2px 0 rgba(205, 210, 215, 0.5)',
   '[data-mui-color-scheme="dark"] &': {
     // dark tokens
     '--color-primary': 'var(--muidocs-palette-primary-light)',
@@ -34,6 +36,8 @@ const sleek = {
     '--Input-border': 'var(--muidocs-palette-primary-500)',
     '--Input-focus-border': '0 0 0 3px var(--muidocs-palette-primary-600)',
     '--Slider-thumb-focus': 'rgba(51, 153, 255, 0.4)',
+    '--Button-outlinedGrey-shadow':
+      '0 -2px 0.5px 0 var(--muidocs-palette-primaryDark-800) inset, 0 1px 2px 0 rgba(0, 0, 0, 0.5)',
   },
 };
 

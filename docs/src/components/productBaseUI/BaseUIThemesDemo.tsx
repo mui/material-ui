@@ -218,20 +218,23 @@ const StyledSnackbarButton = styled('button')({
   width: '100%',
   padding: '8px 12px',
   cursor: 'pointer',
-  backgroundColor: 'var(--muidocs-palette-grey-50)',
+  backgroundColor: '#FFF',
   border: '1px solid',
   borderColor: 'var(--muidocs-palette-grey-200)',
   borderRadius: 'var(--border-radius)',
-  boxShadow: 'var(--formControl-shadow), inset 0px 4px 4px rgba(205, 210, 215, 0.3)',
+  boxShadow: 'var(--Button-outlinedGrey-shadow)',
   fontFamily: 'var(--muidocs-font-family)',
   fontSize: '0.875rem',
   fontWeight: 600,
   color: 'var(--muidocs-palette-grey-900)',
   lineHeight: 21 / 14,
   userSelect: 'none',
+  transition: 'all 100ms ease',
 
   '&:hover': {
-    backgroundColor: 'var(--muidocs-palette-grey-200)',
+    backgroundColor: 'var(--muidocs-palette-grey-50)',
+    borderColor: 'var(--muidocs-palette-grey-300)',
+    boxShadow: 'none',
   },
 
   '&:focus-visible': {
@@ -242,9 +245,10 @@ const StyledSnackbarButton = styled('button')({
     borderColor: 'var(--muidocs-palette-grey-800)',
     backgroundColor: 'var(--muidocs-palette-grey-900)',
     color: 'var(--muidocs-palette-primary-100)',
-    boxShadow: 'var(--formControl-shadow), inset 0px 4px 4px rgba(205, 210, 215, 0.05)',
+
     '&:hover': {
       backgroundColor: 'var(--muidocs-palette-primaryDark-700)',
+      borderColor: 'var(--muidocs-palette-grey-700)',
     },
   },
 });
