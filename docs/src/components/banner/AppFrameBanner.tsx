@@ -6,7 +6,7 @@ import FEATURE_TOGGLE from 'docs/src/featureToggle';
 export default function AppFrameBanner() {
   return FEATURE_TOGGLE.enable_docsnav_banner ? (
     <Link
-      href="https://mui.com/blog/mui-x-v6/"
+      href="https://tally.so/r/3Ex4PN?source=docs-banner"
       target="_blank"
       variant="caption"
       sx={[
@@ -40,7 +40,7 @@ export default function AppFrameBanner() {
           }),
       ]}
     >
-      🚀 MUI X v6 is out! Discover what&apos;s new and get started now!
+      🚀 The MUI Developer Survey 2023 is live! Participate and help shape MUI's roadmap for 2024!
       <br />
     </Link>
   ) : null;
