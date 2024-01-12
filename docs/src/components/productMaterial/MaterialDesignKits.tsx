@@ -102,15 +102,18 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                       '&:nth-of-type(2)': {
                         width: { xs: 240, sm: 350 },
                         top: { xs: 130, sm: 40 },
-                        left: { xs: '55%', sm: '50%' },
-                        transform: { xs: 'scale(1.8) translate(-20%)', sm: 'auto' },
+                        left: { xs: '55%', sm: '40%' },
+                        transform: {
+                          xs: 'scale(1.8) translate(-20%)',
+                          sm: 'scale(1) translate(0%)',
+                        },
                       },
                     },
                     '&:hover': {
                       '& img': {
                         '&:nth-of-type(2)': {
                           top: 140,
-                          transform: 'scale(1.5) translate(-20%)',
+                          transform: 'scale(1.5) translate(-10%)',
                           filter: `drop-shadow(-16px 12px 20px ${alpha(
                             theme.palette.grey[800],
                             0.5,

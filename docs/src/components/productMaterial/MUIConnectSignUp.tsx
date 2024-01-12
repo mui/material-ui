@@ -97,8 +97,6 @@ export default function MUIConnectSignUp({ sx }: { sx?: SxProps<Theme> }) {
           flexDirection: { xs: 'column', sm: 'row' },
           mt: 1,
           gap: 1.5,
-          width: { xs: '100%', sm: 'auto' },
-          maxWidth: { xs: '100%', sm: 320 },
         }}
       >
         <InputBase
@@ -111,6 +109,7 @@ export default function MUIConnectSignUp({ sx }: { sx?: SxProps<Theme> }) {
           inputProps={{ required: true }}
           sx={[
             (theme) => ({
+              flexGrow: 1,
               minWidth: 220,
               borderRadius: 1,
               border: '1px solid',
