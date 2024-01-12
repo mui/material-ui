@@ -87,8 +87,20 @@
       "import": "./utils/index.mjs",
       "require": "./utils/index.js"
     },
+    "./exports/generateAtomics": {
+      "default": "./exports/generateAtomics.js"
+    },
+    "./exports/keyframes": {
+      "default": "./exports/keyframes.js"
+    },
+    "./exports/styled": {
+      "default": "./exports/styled.js"
+    },
     "./exports/sx-plugin": {
       "default": "./exports/sx-plugin.js"
+    },
+    "./exports/sx": {
+      "default": "./exports/sx.js"
     }
   }
 }
