@@ -1,16 +1,1 @@
-{new Array(inputCount).fill(null).map((_, index) => (
-  <CustomNumberInput
-    key={index}
-    slotProps={{
-      input: {
-        ref: (ele) => {
-          inputRefs.current[index] = ele!;
-        },
-        onKeyDown: (event) => handleKeyDown(event, index),
-        onChange: (event) => handleChange(event, index),
-        onClick: (event) => handleClick(event, index),
-        value: otp[index],
-      },
-    }}
-  />
-))}
+<OTP seperator={<span>-</span>} inputCount={6} />
