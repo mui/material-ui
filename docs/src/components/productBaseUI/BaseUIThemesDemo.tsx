@@ -110,6 +110,7 @@ const StyledTab = styled('button')({
   fontWeight: 600,
   color: 'var(--muidocs-palette-text-secondary)',
   userSelect: 'none',
+  transition: 'all 100ms ease',
 
   '&:hover:not(.Mui-selected)': {
     background: 'var(--Tab-hoverBackground)',
@@ -137,25 +138,27 @@ const StyledTab = styled('button')({
 });
 
 const StyledSelectButton = styled('button')({
-  width: '100%',
-  cursor: 'pointer',
-  maxWidth: '100%',
-  minHeight: 'calc(2 * var(--border-width, 0px) + 37px)',
-  border: 'var(--border-width, 1px) solid',
-  borderColor: 'var(--Select-ringColor, var(--border-color))',
-  borderRadius: 'var(--border-radius)',
-  padding: '8px 12px',
-  backgroundColor: 'var(--Select-background)',
   display: 'flex',
-  color: 'var(--muidocs-palette-text-secondary)',
-  alignItems: 'center',
-  fontSize: '0.875rem',
+  width: '100%',
+  padding: '8px 12px',
+  cursor: 'pointer',
+  backgroundColor: 'var(--Button-bg)',
+  border: 'var(--border-style)',
+  borderColor: 'var(--Button-border)',
+  borderRadius: 'var(--border-radius)',
+  boxShadow: 'var(--Button-shadow)',
   fontFamily: 'var(--muidocs-font-family)',
+  fontSize: '0.875rem',
+  fontWeight: 500,
+  color: 'var(--Button-color)',
   lineHeight: 21 / 14,
-  boxShadow: 'var(--formControl-shadow)',
+  userSelect: 'none',
+  transition: 'all 100ms ease',
 
   '&:hover': {
-    backgroundColor: 'var(--Tab-hoverBackground)',
+    backgroundColor: 'var(--Button-bg-hover)',
+    borderColor: 'var(--Button-border-hover)',
+    boxShadow: 'none',
   },
 
   '&:focus-visible': {
@@ -169,125 +172,65 @@ const StyledSelectButton = styled('button')({
   '& svg:first-child': {
     marginRight: 'var(--Select-spacing)',
   },
-
-  '&:not(:empty)': {
-    fontWeight: 500,
-  },
 });
 
-const StyledModalButton = styled('button')({
+const StyledLinkButton = styled(Link)({
   display: 'flex',
   justifyContent: 'center',
   width: '100%',
   padding: '8px 12px',
   cursor: 'pointer',
-  backgroundColor: 'var(--muidocs-palette-primary-50)',
-  border: '1px solid',
-  borderColor: 'var(--muidocs-palette-primary-100)',
+  backgroundColor: 'var(--LinkButton-bg)',
+  border: 'var(--border-style)',
+  borderColor: 'var(--LinkButton-border)',
   borderRadius: 'var(--border-radius)',
-  boxShadow: 'var(--formControl-shadow), inset 0px 4px 4px rgba(205, 210, 215, 0.3)',
+  boxShadow: 'var(--LinkButton-shadow)',
   fontFamily: 'var(--muidocs-font-family)',
   fontSize: '0.875rem',
   fontWeight: 600,
-  color: 'var(--muidocs-palette-primary-600)',
-  lineHeight: 21 / 14,
-  userSelect: 'none',
-
-  '&:hover': {
-    backgroundColor: 'var(--muidocs-palette-primary-100)',
-  },
-
-  '&:focus-visible': {
-    outline: '3px solid var(--muidocs-palette-primary-300)',
-  },
-
-  '[data-mui-color-scheme="dark"] &': {
-    borderColor: 'var(--muidocs-palette-primary-700)',
-    backgroundColor: 'var(--muidocs-palette-primary-900)',
-    color: 'var(--muidocs-palette-primary-100)',
-    boxShadow: 'var(--formControl-shadow), inset 0px 4px 4px rgba(205, 210, 215, 0.15)',
-    '&:hover': {
-      backgroundColor: 'var(--muidocs-palette-primary-800)',
-    },
-  },
-});
-
-const StyledSnackbarButton = styled('button')({
-  display: 'flex',
-  justifyContent: 'center',
-  width: '100%',
-  padding: '8px 12px',
-  cursor: 'pointer',
-  backgroundColor: '#FFF',
-  border: '1px solid',
-  borderColor: 'var(--muidocs-palette-grey-200)',
-  borderRadius: 'var(--border-radius)',
-  boxShadow: 'var(--Button-outlinedGrey-shadow)',
-  fontFamily: 'var(--muidocs-font-family)',
-  fontSize: '0.875rem',
-  fontWeight: 600,
-  color: 'var(--muidocs-palette-grey-900)',
+  color: 'var(--LinkButton-color) !important',
   lineHeight: 21 / 14,
   userSelect: 'none',
   transition: 'all 100ms ease',
 
   '&:hover': {
-    backgroundColor: 'var(--muidocs-palette-grey-50)',
-    borderColor: 'var(--muidocs-palette-grey-300)',
+    backgroundColor: 'var(--LinkButton-bg-hover)',
+    borderColor: 'var(--LinkButton-border-hover)',
     boxShadow: 'none',
   },
 
   '&:focus-visible': {
     outline: '3px solid var(--muidocs-palette-primary-300)',
   },
-
-  '[data-mui-color-scheme="dark"] &': {
-    borderColor: 'var(--muidocs-palette-grey-800)',
-    backgroundColor: 'var(--muidocs-palette-grey-900)',
-    color: 'var(--muidocs-palette-primary-100)',
-
-    '&:hover': {
-      backgroundColor: 'var(--muidocs-palette-primaryDark-700)',
-      borderColor: 'var(--muidocs-palette-grey-700)',
-    },
-  },
 });
 
-const StyledViewCode = styled(Link)({
+const StyledButton = styled('button')({
   display: 'flex',
   justifyContent: 'center',
-  alignItems: 'end',
   width: '100%',
-  padding: '12px 16px',
+  padding: '8px 12px',
   cursor: 'pointer',
-  backgroundColor: 'var(--muidocs-palette-primaryDark-800)',
-  border: '1px solid',
-  borderColor: 'var(--muidocs-palette-grey-800)',
+  backgroundColor: 'var(--Button-bg)',
+  border: 'var(--border-style)',
+  borderColor: 'var(--Button-border)',
   borderRadius: 'var(--border-radius)',
-  boxShadow: 'var(--formControl-shadow), inset 0px 4px 4px rgba(205, 210, 215, 0.3)',
+  boxShadow: 'var(--Button-shadow)',
   fontFamily: 'var(--muidocs-font-family)',
   fontSize: '0.875rem',
   fontWeight: 600,
-  color: 'var(--muidocs-palette-grey-200)',
+  color: 'var(--Button-color)',
   lineHeight: 21 / 14,
   userSelect: 'none',
+  transition: 'all 100ms ease',
 
   '&:hover': {
-    backgroundColor: 'var(--muidocs-palette-primaryDark-600)',
-    color: 'var(--muidocs-palette-primary-50)',
+    backgroundColor: 'var(--Button-bg-hover)',
+    borderColor: 'var(--Button-border-hover)',
+    boxShadow: 'none',
   },
 
   '&:focus-visible': {
     outline: '3px solid var(--muidocs-palette-primary-300)',
-  },
-
-  '[data-mui-color-scheme="dark"] &': {
-    color: 'var(--muidocs-palette-primary-100)',
-    boxShadow: 'var(--formControl-shadow), inset 0px 4px 4px rgba(205, 210, 215, 0.05)',
-    '&:hover': {
-      color: 'var(--muidocs-palette-primary-50)',
-      backgroundColor: 'var(--muidocs-palette-primaryDark-700)',
-    },
   },
 });
 
@@ -742,6 +685,7 @@ const StyledMenuButton = styled(MenuButton)({
   border: 'none',
   background: 'transparent',
   borderRadius: 'var(--avatar-radius)',
+  transition: 'all 100ms ease',
 
   '&:focus-visible': {
     outline: '3px solid var(--muidocs-palette-primary-300)',
@@ -1061,9 +1005,9 @@ export default function BaseUIThemesDemo() {
             '& > button': { flex: 1 },
           }}
         >
-          <StyledModalButton type="button" onClick={handleOpenModal}>
+          <StyledButton type="button" onClick={handleOpenModal}>
             View modal
-          </StyledModalButton>
+          </StyledButton>
           <StyledModal
             disablePortal
             aria-labelledby="unstyled-modal-title"
@@ -1090,12 +1034,12 @@ export default function BaseUIThemesDemo() {
                 Base UI modals manages modal stacking when more than one is needed, creates a
                 backdrop to disable interaction with the rest of the app, and a lot more.
               </Box>
-              <StyledSnackbarButton onClick={handleCloseModal}>Close</StyledSnackbarButton>
+              <StyledButton onClick={handleCloseModal}>Close</StyledButton>
             </Dialog>
           </StyledModal>
-          <StyledSnackbarButton type="button" onClick={handleClickSnackbar}>
+          <StyledButton type="button" onClick={handleClickSnackbar}>
             View snackbar
-          </StyledSnackbarButton>
+          </StyledButton>
           <StyledSnackbar open={openSnackbar} autoHideDuration={5000} onClose={handleCloseSnackbar}>
             <CheckCircleRoundedIcon fontSize="small" />
             <div>
@@ -1106,9 +1050,9 @@ export default function BaseUIThemesDemo() {
         </Box>
         {/* Button "View all components" component */}
         <Box sx={{ display: 'flex', p: '1rem', gap: '0.5rem', '& > button': { flex: 1 } }}>
-          <StyledViewCode href={ROUTES.baseComponents}>
+          <StyledLinkButton href={ROUTES.baseComponents}>
             View all components <ChevronRightRoundedIcon fontSize="small" />
-          </StyledViewCode>
+          </StyledLinkButton>
         </Box>
       </Panel>
     </Fade>

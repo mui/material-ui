@@ -105,7 +105,10 @@ export default function BaseUIComponents() {
                 '--focus-ring': 'rgba(0, 114, 229, 0.3)',
                 '--slider-ring': 'rgba(0, 114, 229, 0.3)',
                 '--shadow': '0px 2px 4px rgba(229, 234, 232, 0.8)',
-                '--button-shadow': '',
+                '--solid-btn-shadow':
+                  '0 -2px 0.5px 0 var(--muidocs-palette-primary-700) inset, 0 2px 0.5px 0 var(--muidocs-palette-primary-400) inset, 0 1px 0.5px 0 var(--muidocs-palette-primary-900)',
+                '--outlined-btn-shadow':
+                  '0 -2px 0.5px 0 var(--muidocs-palette-grey-100) inset, 0 1px 0.5px 0 var(--muidocs-palette-grey-300)',
                 ...(styling === 'tailwindcss' && {
                   '--primary': '#7716D0',
                   '--primary-hover': '#6512B0',
@@ -113,6 +116,8 @@ export default function BaseUIComponents() {
                   '--focus-ring': 'rgba(119, 22, 208, 0.3)',
                   '--slider-ring': 'rgba(119, 22, 208, 0.3)',
                   '--shadow': '0px 2px 4px rgba(229, 234, 232, 0.8)',
+                  '--solid-btn-shadow':
+                    '0 -2px 0.5px 0 #500E8B inset, 0 2px 0.5px 0 #902FE9 inset, 0 1px 0.5px 0 #902FE9',
                 }),
                 ...(styling === 'css' && {
                   '--primary': '#EA2FAC',
@@ -121,6 +126,8 @@ export default function BaseUIComponents() {
                   '--focus-ring': 'rgba(234, 47, 172, 0.3)',
                   '--slider-ring': 'rgba(234, 47, 172, 0.3)',
                   '--shadow': '0px 2px 4px rgba(229, 234, 232, 0.8)',
+                  '--solid-btn-shadow':
+                    '0 -2px 0.5px 0 #B0127B inset, 0 2px 0.5px 0 #EE5DBE inset, 0 1px 0.5px 0 #F495D4',
                 }),
               },
               (theme) =>
@@ -128,15 +135,21 @@ export default function BaseUIComponents() {
                   '--focus-ring': 'rgba(0, 114, 229, 0.6)',
                   '--slider-ring': 'rgba(0, 114, 229, 0.4)',
                   '--shadow': '0px 2px 2px rgba(0, 0, 0, 0.5)',
+                  '--outlined-btn-shadow':
+                    '0 -2px 0.5px 0 var(--muidocs-palette-grey-900) inset, 0 1px 0.5px 0 var(--muidocs-palette-primaryDark-900)',
                   ...(styling === 'tailwindcss' && {
                     '--focus-ring': 'rgba(119, 22, 208, 0.9)',
                     '--slider-ring': 'rgba(119, 22, 208, 0.5)',
                     '--shadow': '0px 2px 2px rgba(0, 0, 0, 0.5)',
+                    '--solid-btn-shadow':
+                      '0 -2px 0.5px 0 #500E8B inset, 0 2px 0.5px 0 #902FE9 inset, 0 1px 0.5px 0 rgba(0, 0, 0, 0.5)',
                   }),
                   ...(styling === 'css' && {
                     '--focus-ring': 'rgba(176, 18, 123, 0.8)',
                     '--slider-ring': 'rgba(176, 18, 123, 0.5)',
                     '--shadow': '0px 2px 2px rgba(0, 0, 0, 0.5)',
+                    '--solid-btn-shadow':
+                      '0 -2px 0.5px 0 #B0127B inset, 0 2px 0.5px 0 #EE5DBE inset, 0 1px 0.5px 0 rgba(0, 0, 0, 0.5)',
                   }),
                 }),
             ]}

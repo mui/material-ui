@@ -15,7 +15,7 @@ const buttonStyles = `
   transition: all 150ms ease;
   cursor: pointer;
   border: none;
-  box-shadow: var(--shadow);
+  box-shadow: var(--solid-btn-shadow);
   user-select: none;
 
   &:hover {
@@ -43,7 +43,7 @@ const buttonStyles = `
 
 const StyledButton = styled('button')(buttonStyles);
 
-const buttonStylesTailwind = `cursor-pointer select-none rounded-[8px] border-none bg-[--primary] p-[10px_16px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--primary-hover] ui-active:bg-[--primary-active] ui-disabled:cursor-not-allowed ui-disabled:opacity-50 ui-focus-visible:[outline:3px_solid_var(--focus-ring)] outline-offset-2 transition shadow-[--shadow]`;
+const buttonStylesTailwind = `cursor-pointer select-none rounded-[8px] border-none bg-[--primary] p-[6px_12px] text-[0.875rem] leading-[1.5] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--primary-hover] ui-active:bg-[--primary-active] ui-disabled:cursor-not-allowed ui-disabled:opacity-50 ui-focus-visible:[outline:3px_solid_var(--focus-ring)] outline-offset-2 transition [box-shadow:var(--solid-btn-shadow)]`;
 
 export default function BaseButtonDemo({
   styling,
@@ -114,18 +114,20 @@ import './styles.css';
 
 <Button
   className="cursor-pointer select-none rounded-[8px] 
-  border-none bg-indigo-600 p-[10px_16px] text-[0.875rem] font-bold 
+  border-none bg-indigo-600 p-[6px_12px] text-[0.875rem] leading-[1.5] font-bold 
   text-white [font-family:IBM_Plex_sans] hover:bg-indigo-500 
   ui-active:bg-indigo-800 ui-disabled:cursor-not-allowed ui-disabled:opacity-50 
-  ui-focus-visible:[outline:4px_solid_var(--focus-ring)] outline-offset-2 transition shadow-[--shadow]">
+  ui-focus-visible:[outline:4px_solid_var(--focus-ring)] outline-offset-2 
+  transition [box-shadow:var(--solid-btn-shadow)]">
   Button
 </Button>
 <Button
   className="cursor-pointer select-none rounded-[8px] 
-  border-none bg-indigo-600 p-[10px_16px] text-[0.875rem] font-bold 
+  border-none bg-indigo-600 p-[6px_12px] text-[0.875rem] leading-[1.5] font-bold 
   text-white [font-family:IBM_Plex_sans] hover:bg-indigo-500 
   ui-active:bg-indigo-800 ui-disabled:cursor-not-allowed ui-disabled:opacity-50 
-  ui-focus-visible:[outline:4px_solid_var(--focus-ring)] outline-offset-2 transition shadow-[--shadow]">
+  ui-focus-visible:[outline:4px_solid_var(--focus-ring)] outline-offset-2 
+  transition [box-shadow:var(--solid-btn-shadow)]">
   Disabled
 </Button>`;
   }
