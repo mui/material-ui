@@ -16,7 +16,7 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Frame from 'docs/src/components/action/Frame';
 import Link from 'docs/src/modules/components/Link';
-import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
+import MUIConnectSignUp from './MUIConnectSignUp';
 
 const Image = styled('img')(({ theme }) => ({
   transition: '0.4s',
@@ -327,7 +327,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                   Add your email if you&apos;re interested in joining the beta testers list, and
                   we&apos;ll let you know how to get access to it once the first release is ready!
                 </Typography>
-                <EmailSubscribe />
+                <MUIConnectSignUp />
                 {/* the EmailSubscribe component above will be potentially replaced */}
               </Frame.Info>
             )}
