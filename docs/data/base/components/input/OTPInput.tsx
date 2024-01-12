@@ -27,12 +27,14 @@ export default function OTPInput() {
     switch (event.key) {
       case 'ArrowLeft':
         if (currentIndex > 0) {
+          event.preventDefault();
           focusInput(currentIndex - 1);
           selectInput(currentIndex - 1);
         }
         break;
       case 'ArrowRight':
         if (currentIndex < inputCount - 1) {
+          event.preventDefault();
           focusInput(currentIndex + 1);
           selectInput(currentIndex + 1);
         }

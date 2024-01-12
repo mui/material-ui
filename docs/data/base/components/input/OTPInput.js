@@ -24,12 +24,14 @@ export default function OTPInput() {
     switch (event.key) {
       case 'ArrowLeft':
         if (currentIndex > 0) {
+          event.preventDefault();
           focusInput(currentIndex - 1);
           selectInput(currentIndex - 1);
         }
         break;
       case 'ArrowRight':
         if (currentIndex < inputCount - 1) {
+          event.preventDefault();
           focusInput(currentIndex + 1);
           selectInput(currentIndex + 1);
         }
@@ -59,7 +61,17 @@ export default function OTPInput() {
     setOtp((prev) => {
       const otpArray = [...prev];
       const lastValue = value[value.length - 1];
-      otpArray[currentIndex] = lastValue;
+      let indexToEnter = 0;
+
+      while (indexToEnter <= currentIndex) {
+        if (prev[indexToEnter]) {
+          indexToEnter+=1;
+        } else {
+          break;
+        }
+      }
+
+      otpArray[indexToEnter] = lastValue;
       return otpArray;
     });
     if (value !== '') {
