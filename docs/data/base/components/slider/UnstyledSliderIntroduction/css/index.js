@@ -82,7 +82,7 @@ function Styles() {
       opacity: 1;
     }
 
-    .CustomSlider.${sliderClasses.disabled} {
+    .CustomSlider.${sliderClasses.disabled} { 
       pointer-events: none;
       cursor: default;
       color: ${isDarkMode ? grey[600] : grey[300]};
