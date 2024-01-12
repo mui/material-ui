@@ -95,11 +95,11 @@ export default function BaseTabsDemo({ styling }: { styling?: 'system' | 'tailwi
         <React.Fragment>
           <Slider
             slots={{ root: styling !== 'system' ? undefined : StyledSlider }}
-            defaultValue={10}
+            defaultValue={50}
           />
           <Slider
             slots={{ root: styling !== 'system' ? undefined : StyledSlider }}
-            defaultValue={10}
+            defaultValue={30}
             disabled
           />
         </React.Fragment>
