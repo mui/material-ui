@@ -9,7 +9,9 @@ function OTP({
   seperator: React.ReactNode;
   inputCount: number;
 }) {
-  const inputRefs = React.useRef<HTMLInputElement[]>(new Array(inputCount).fill(null));
+  const inputRefs = React.useRef<HTMLInputElement[]>(
+    new Array(inputCount).fill(null),
+  );
   const [otp, setOtp] = React.useState<string[]>(new Array(inputCount).fill(''));
 
   const focusInput = (targetIndex: number) => {
