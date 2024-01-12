@@ -88,7 +88,14 @@ export interface ReactApi extends ReactDocgenApi {
         seeMoreText?: string;
       };
     };
-    classDescriptions: { [key: string]: { description: string; conditions?: string } };
+    classDescriptions: {
+      [key: string]: {
+        description: string;
+        conditions?: string;
+        nodeName?: string;
+        deprecationInfo?: string;
+      };
+    };
     slotDescriptions?: { [key: string]: string };
   };
   /**
@@ -320,36 +327,30 @@ async function annotateComponentDefinition(api: ReactApi) {
 /**
  * Substitute CSS class description conditions with placeholder
  */
-function extractClassConditions(descriptions: any) {
-  const classConditions: {
-    [key: string]: { description: string; conditions?: string; nodeName?: string };
-  } = {};
+function extractClassCondition(description: string) {
   const stylesRegex =
     /((Styles|State class|Class name) applied to )(.*?)(( if | unless | when |, ){1}(.*))?\./;
 
-  Object.entries(descriptions).forEach(([className, description]: any) => {
-    if (className) {
-      const conditions = description.match(stylesRegex);
+  const conditions = description.match(stylesRegex);
 
-      if (conditions && conditions[6]) {
-        classConditions[className] = {
-          description: renderMarkdown(
-            description.replace(stylesRegex, '$1{{nodeName}}$5{{conditions}}.'),
-          ),
-          nodeName: renderMarkdown(conditions[3]),
-          conditions: renderMarkdown(conditions[6].replace(/`(.*?)`/g, '<code>$1</code>')),
-        };
-      } else if (conditions && conditions[3] && conditions[3] !== 'the root element') {
-        classConditions[className] = {
-          description: renderMarkdown(description.replace(stylesRegex, '$1{{nodeName}}$5.')),
-          nodeName: renderMarkdown(conditions[3]),
-        };
-      } else {
-        classConditions[className] = { description: renderMarkdown(description) };
-      }
-    }
-  });
-  return classConditions;
+  if (conditions && conditions[6]) {
+    return {
+      description: renderMarkdown(
+        description.replace(stylesRegex, '$1{{nodeName}}$5{{conditions}}.'),
+      ),
+      nodeName: renderMarkdown(conditions[3]),
+      conditions: renderMarkdown(conditions[6].replace(/`(.*?)`/g, '<code>$1</code>')),
+    };
+  }
+
+  if (conditions && conditions[3] && conditions[3] !== 'the root element') {
+    return {
+      description: renderMarkdown(description.replace(stylesRegex, '$1{{nodeName}}$5.')),
+      nodeName: renderMarkdown(conditions[3]),
+    };
+  }
+
+  return { description: renderMarkdown(description) };
 }
 
 const generateApiPage = (
@@ -479,14 +480,16 @@ const attachTranslations = (reactApi: ReactApi, settings?: CreateDescribeablePro
   }
 
   /**
-   * CSS class descriptions.
+   * CSS class descriptions and deprecations.
    */
-  const classDescriptions: Record<string, string> = {};
-  reactApi.classes.forEach((classDefinition) => {
-    classDescriptions[classDefinition.key] = classDefinition.description;
+  reactApi.classes.forEach((classDefinition, index) => {
+    translations.classDescriptions[classDefinition.key] = {
+      ...extractClassCondition(classDefinition.description),
+      deprecationInfo: classDefinition.deprecationInfo,
+    };
+    delete reactApi.classes[index].deprecationInfo; // store deprecation info in translations only
   });
 
-  translations.classDescriptions = extractClassConditions(classDescriptions);
   reactApi.translations = translations;
 };
 
