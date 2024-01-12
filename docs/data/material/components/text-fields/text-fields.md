@@ -11,13 +11,39 @@ unstyled: /base-ui/react-input/
 
 <p class="description">Text Fields let users enter and edit text.</p>
 
-Text fields allow users to enter text into a UI. They typically appear in forms and dialogs.
+## Introduction
+
+Text fields let users enter text into a UI.
+They typically appear in forms and dialogs.
+
+Text Field is composed of smaller components (
+[`FormControl`](/material-ui/api/form-control/),
+[`Input`](/material-ui/api/input/),
+[`FilledInput`](/material-ui/api/filled-input/),
+[`InputLabel`](/material-ui/api/input-label/),
+[`OutlinedInput`](/material-ui/api/outlined-input/),
+and [`FormHelperText`](/material-ui/api/form-helper-text/)
+) that you can leverage directly to significantly customize your form inputs.
+
+You might also have noticed that some native HTML input properties are missing from the Text Field component.
+This is on purpose.
+The component takes care of the most used properties.
+Then, it's up to the user to use the underlying component shown in the following demo. Still, you can use `inputProps` (and `InputProps`, `InputLabelProps` properties) if you want to avoid some boilerplate.
+
+{{"demo": "ComposedTextField.js"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic TextField
+## Basics
 
-The `TextField` wrapper component is a complete form control including a label, input, and help text.
+```jsx
+import TextField from '@mui/material/TextField';
+```
+
+The Text Field wrapper component is a complete form control including a label, input, and help text.
+
+### Variants
+
 It comes with three variants: outlined (default), filled, and standard.
 
 {{"demo": "BasicTextFields.js"}}
@@ -28,20 +54,20 @@ The standard variant of the Text Field is no longer documented in the [Material 
 but Material UI will continue to support it.
 :::
 
-## Form props
+### Form props
 
-Standard form attributes are supported e.g. `required`, `disabled`, `type`, etc. as well as a `helperText` which is used to give context about a field's input, such as how the input will be used.
+Standard form attributes are supported: `required`, `disabled`, and `type`, as well as a `helperText`, which is used to give context about a field's input, such as how the input will be used.
 
 {{"demo": "FormPropsTextFields.js"}}
 
-## Validation
+### Validation
 
 The `error` prop toggles the error state.
 The `helperText` prop can then be used to provide feedback to the user about the error.
 
 {{"demo": "ValidationTextFields.js"}}
 
-## Multiline
+### Multiline
 
 The `multiline` prop transforms the text field into a [TextareaAutosize](/material-ui/react-textarea-autosize/) element.
 Unless the `rows` prop is set, the height of the text field dynamically matches its content (using [TextareaAutosize](/material-ui/react-textarea-autosize/)).
@@ -49,19 +75,19 @@ You can use the `minRows` and `maxRows` props to bound it.
 
 {{"demo": "MultilineTextFields.js"}}
 
-## Select
+### Select
 
 The `select` prop makes the text field use the [Select](/material-ui/react-select/) component internally.
 
 {{"demo": "SelectTextFields.js"}}
 
-## Icons
+### Icons
 
 There are multiple ways to display an icon with a text field.
 
 {{"demo": "InputWithIcon.js"}}
 
-### Input Adornments
+#### Input Adornments
 
 The main way is with an `InputAdornment`.
 This can be used to add a prefix, a suffix, or an action to an input.
@@ -69,7 +95,7 @@ For instance, you can use an icon button to hide or reveal the password.
 
 {{"demo": "InputAdornments.js"}}
 
-## Sizes
+### Sizes
 
 Fancy smaller inputs? Use the `size` prop.
 
@@ -79,20 +105,20 @@ The `filled` variant input height can be further reduced by rendering the label 
 
 {{"demo": "TextFieldHiddenLabel.js"}}
 
-## Margin
+### Margin
 
 The `margin` prop can be used to alter the vertical spacing of the text field.
 Using `none` (default) doesn't apply margins to the `FormControl` whereas `dense` and `normal` do.
 
 {{"demo": "LayoutTextFields.js"}}
 
-## Full width
+### Full width
 
 `fullWidth` can be used to make the input take up the full width of its container.
 
 {{"demo": "FullWidthTextField.js"}}
 
-## Uncontrolled vs. Controlled
+### Uncontrolled vs. Controlled
 
 The component can be controlled or uncontrolled.
 
@@ -106,38 +132,17 @@ Learn more about controlled and uncontrolled components in the [React documentat
 
 {{"demo": "StateTextFields.js"}}
 
-## Components
-
-`TextField` is composed of smaller components (
-[`FormControl`](/material-ui/api/form-control/),
-[`Input`](/material-ui/api/input/),
-[`FilledInput`](/material-ui/api/filled-input/),
-[`InputLabel`](/material-ui/api/input-label/),
-[`OutlinedInput`](/material-ui/api/outlined-input/),
-and [`FormHelperText`](/material-ui/api/form-helper-text/)
-) that you can leverage directly to significantly customize your form inputs.
-
-You might also have noticed that some native HTML input properties are missing from the `TextField` component.
-This is on purpose.
-The component takes care of the most used properties.
-Then, it's up to the user to use the underlying component shown in the following demo. Still, you can use `inputProps` (and `InputProps`, `InputLabelProps` properties) if you want to avoid some boilerplate.
-
-{{"demo": "ComposedTextField.js"}}
-
-## Inputs
+### Inputs
 
 {{"demo": "Inputs.js"}}
 
-## Color
+### Color
 
 The `color` prop changes the highlight color of the text field when focused.
 
 {{"demo": "ColorTextFields.js"}}
 
 ## Customization
-
-Here are some examples of customizing the component.
-You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 ### Using the styled API
 
@@ -152,13 +157,13 @@ See the [theme style overrides](/material-ui/customization/theme-components/#the
 
 Customization does not stop at CSS.
 You can use composition to build custom components and give your app a unique feel.
-Below is an example using the [`InputBase`](/material-ui/api/input-base/) component, inspired by Google Maps.
+Below is an example using the [Input Base2](/material-ui/api/input-base/) component, inspired by Google Maps.
 
 {{"demo": "CustomizedInputBase.js", "bg": true}}
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/text-field/).
 
-## `useFormControl`
+### The useFormControl hook
 
 For advanced customization use cases, a `useFormControl()` hook is exposed.
 This hook returns the context value of the parent `FormControl` component.
@@ -280,7 +285,7 @@ This can be fixed by passing a space character to the `helperText` prop:
 
 {{"demo": "HelperTextAligned.js"}}
 
-## Integration with 3rd party input libraries
+## Third-party integrations
 
 You can use third-party libraries to format an input.
 You have to provide a custom implementation of the `<input>` element with the `inputComponent` property.
@@ -337,8 +342,8 @@ In order for the text field to be accessible, **the input should be linked to th
 </div>
 ```
 
-- If you are using the `TextField` component, you just have to provide a unique `id` unless you're using the `TextField` only client side.
-  Until the UI is hydrated `TextField` without an explicit `id` will not have associated labels.
+- If you are using the Text Field component, you just have to provide a unique `id` unless you're using the Text Field only client side.
+  Until the UI is hydrated Text Field without an explicit `id` will not have associated labels.
 - If you are composing the component:
 
 ```jsx
