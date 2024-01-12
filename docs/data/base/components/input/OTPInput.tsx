@@ -2,13 +2,15 @@ import * as React from 'react';
 import { Input as BaseInput } from '@mui/base/Input';
 import { Box, styled } from '@mui/system';
 
-export default function OTPInput() {
-  const inputCount = 6;
+function OTP({
+  seperator,
+  inputCount,
+}: {
+  seperator: React.ReactNode;
+  inputCount: number;
+}) {
   const inputRefs = React.useRef<HTMLInputElement[]>(new Array(6).fill(null));
   const [otp, setOtp] = React.useState<string[]>(new Array(inputCount).fill(''));
-
-  const otpAsString = otp.join('');
-  console.log(otpAsString);
 
   const focusInput = (targetIndex: number) => {
     const targetInput = inputRefs.current[targetIndex];
@@ -64,10 +66,19 @@ export default function OTPInput() {
     currentIndex: number,
   ) => {
     const value = event.target.value;
+    let indexToEnter = 0;
+
+    while (indexToEnter <= currentIndex) {
+      if (otp[indexToEnter] && indexToEnter < currentIndex) {
+        indexToEnter += 1;
+      } else {
+        break;
+      }
+    }
     setOtp((prev) => {
       const otpArray = [...prev];
       const lastValue = value[value.length - 1];
-      otpArray[currentIndex] = lastValue;
+      otpArray[indexToEnter] = lastValue;
       return otpArray;
     });
     if (value !== '') {
@@ -85,28 +96,35 @@ export default function OTPInput() {
   };
 
   return (
-    <Box sx={{ display: 'flex', gap: '1rem' }}>
+    <Box sx={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
       {new Array(inputCount).fill(null).map((_, index) => (
-        <BaseInput
-          slots={{
-            input: InputElement,
-          }}
-          key={index}
-          slotProps={{
-            input: {
-              ref: (ele) => {
-                inputRefs.current[index] = ele!;
+        <React.Fragment>
+          <BaseInput
+            slots={{
+              input: InputElement,
+            }}
+            key={index}
+            slotProps={{
+              input: {
+                ref: (ele) => {
+                  inputRefs.current[index] = ele!;
+                },
+                onKeyDown: (event) => handleKeyDown(event, index),
+                onChange: (event) => handleChange(event, index),
+                onClick: (event) => handleClick(event, index),
+                value: otp[index],
               },
-              onKeyDown: (event) => handleKeyDown(event, index),
-              onChange: (event) => handleChange(event, index),
-              onClick: (event) => handleClick(event, index),
-              value: otp[index],
-            },
-          }}
-        />
+            }}
+          />
+          {index === inputCount - 1 ? null : seperator}
+        </React.Fragment>
       ))}
     </Box>
   );
+}
+
+export default function OTPInput() {
+  return <OTP seperator={<span>-</span>} inputCount={6} />;
 }
 
 const blue = {
@@ -143,7 +161,7 @@ const InputElement = styled('input')(
   text-align: center;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
   box-shadow: 0px 2px 4px ${
     theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
   };
