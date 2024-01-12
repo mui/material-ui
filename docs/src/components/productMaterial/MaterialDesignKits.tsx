@@ -93,6 +93,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                     '& img': {
                       position: 'absolute',
                       '&:nth-of-type(1)': {
+                        visibility: { xs: 'hidden', sm: 'visible' },
                         width: { xs: 240, sm: 600 },
                         top: 100,
                         left: '50%',
@@ -100,8 +101,9 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                       },
                       '&:nth-of-type(2)': {
                         width: { xs: 240, sm: 350 },
-                        top: 40,
-                        left: '50%',
+                        top: { xs: 130, sm: 40 },
+                        left: { xs: '55%', sm: '50%' },
+                        transform: { xs: 'scale(1.8) translate(-20%)', sm: 'auto' },
                       },
                     },
                     '&:hover': {
