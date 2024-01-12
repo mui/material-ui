@@ -95,36 +95,35 @@ function OTP({
     selectInput(currentIndex);
   };
 
-  return (
-    <Box sx={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-      {new Array(inputCount).fill(null).map((_, index) => (
-        <React.Fragment>
-          <BaseInput
-            slots={{
-              input: InputElement,
-            }}
-            key={index}
-            slotProps={{
-              input: {
-                ref: (ele) => {
-                  inputRefs.current[index] = ele!;
-                },
-                onKeyDown: (event) => handleKeyDown(event, index),
-                onChange: (event) => handleChange(event, index),
-                onClick: (event) => handleClick(event, index),
-                value: otp[index],
-              },
-            }}
-          />
-          {index === inputCount - 1 ? null : seperator}
-        </React.Fragment>
-      ))}
-    </Box>
-  );
+  return new Array(inputCount).fill(null).map((_, index) => (
+    <React.Fragment key={index}>
+      <BaseInput
+        slots={{
+          input: InputElement,
+        }}
+        slotProps={{
+          input: {
+            ref: (ele) => {
+              inputRefs.current[index] = ele!;
+            },
+            onKeyDown: (event) => handleKeyDown(event, index),
+            onChange: (event) => handleChange(event, index),
+            onClick: (event) => handleClick(event, index),
+            value: otp[index],
+          },
+        }}
+      />
+      {index === inputCount - 1 ? null : seperator}
+    </React.Fragment>
+  ));
 }
 
 export default function OTPInput() {
-  return <OTP seperator={<span>-</span>} inputCount={6} />;
+  return (
+    <Box sx={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+      <OTP seperator={<span>-</span>} inputCount={6} />
+    </Box>
+  );
 }
 
 const blue = {
@@ -156,12 +155,12 @@ const InputElement = styled('input')(
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
-  padding: 8px 12px;
+  padding: 8px 0px;
   border-radius: 8px;
   text-align: center;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[500]};
   box-shadow: 0px 2px 4px ${
     theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
   };
