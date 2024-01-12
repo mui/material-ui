@@ -24,9 +24,11 @@ The demo below, inspired by Google Keep, shows a basic Snackbar with a text elem
 
 Snackbars differ from [Alerts](/material-ui/react-alert/) in that Snackbars have a fixed position and a high z-index, so they're intended to break out of the document flow; Alerts, on the other hand, are usually part of the flow—except when they're [used as children of a Snackbar](#use-with-alerts).
 
-Snackbars also from differ from [Dialogs](/material-ui/react-dialog/) in that Snackbars are not intended to convey _critical_ information or block the user from interacting with the rest of the app; Dialogs, by contrast, require input from the user before they can be dismissed.
+Snackbars also from differ from [Dialogs](/material-ui/react-dialog/) in that Snackbars are not intended to convey _critical_ information or block the user from interacting with the rest of the app; Dialogs, by contrast, require input from the user in order to be dismissed.
 
 ## Basics
+
+### Import
 
 ```jsx
 import Snackbar from '@mui/material/Snackbar';
@@ -48,12 +50,6 @@ Use the Snackbar Content component to add text and actions to the Snackbar.
 
 {{"demo": "LongTextSnackbar.js"}}
 
-### Transitions
-
-You can use the `TransitionComponent` prop to change the transition of the Snackbar from [Grow](/material-ui/transitions/#grow) (the default) to others such as [Slide](/material-ui/transitions/#slide).
-
-{{"demo": "TransitionsSnackbar.js"}}
-
 ### Automatic dismiss
 
 Use the `autoHideDuration` prop to automatically trigger the Snackbar's `onClose` function after a set period of time (in milliseconds).
@@ -61,6 +57,12 @@ Use the `autoHideDuration` prop to automatically trigger the Snackbar's `onClose
 Make sure to [provide sufficient time](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html) for the user to process the information displayed on it.
 
 {{"demo": "AutohideSnackbar.js"}}
+
+### Transitions
+
+You can use the `TransitionComponent` prop to change the transition of the Snackbar from [Grow](/material-ui/transitions/#grow) (the default) to others such as [Slide](/material-ui/transitions/#slide).
+
+{{"demo": "TransitionsSnackbar.js"}}
 
 ## Customization
 
@@ -72,7 +74,7 @@ Use an Alert inside a Snackbar for messages that communicate a certain severity.
 
 ### Use with Floating Action Buttons
 
-If you're using a [Floating Action Button](/material-ui/react-floating-action-button/) on mobile, Material Design recommends positioning Snackbars directly above it, as shown in the demo below:
+If you're using a [Floating Action Button](/material-ui/react-floating-action-button/) on mobile, Material Design recommends positioning snackbars directly above it, as shown in the demo below:
 
 {{"demo": "FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 400}}
 
@@ -95,6 +97,10 @@ With an imperative API, [notistack](https://github.com/iamhosseindhv/notistack) 
 Even though this is discouraged in the Material Design guidelines, it is still a common pattern.
 
 {{"demo": "IntegrationNotistack.js", "defaultCodeOpen": false}}
+
+:::warning
+Note that notistack prevents Snackbars from being [closed by pressing <kbd class="key">Escape</kbd>](#accessibility).
+:::
 
 ## Accessibility
 
