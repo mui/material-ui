@@ -1666,6 +1666,7 @@ importers:
       react:
         specifier: ^18.2.0
         version: 18.2.0
+    publishDirectory: build
 
   packages/mui-private-theming:
     dependencies:
