@@ -16,7 +16,7 @@ export default function UnstyledSliderIntroduction() {
   return (
     <div className={isDarkMode ? 'dark' : ''} style={{ width: 320 }}>
       <Slider defaultValue={50} />
-      <Slider defaultValue={10} disabled />
+      <Slider defaultValue={30} disabled />
     </div>
   );
 }
@@ -41,7 +41,7 @@ const Slider = React.forwardRef((props, ref) => {
               `h-1.5 w-full py-4 inline-flex items-center relative touch-none ${
                 ownerState.disabled
                   ? 'opacity-50 cursor-default pointer-events-none text-slate-300 dark:text-slate-600'
-                  : 'hover:opacity-100 cursor-pointer text-purple-500 dark:text-purple-400'
+                  : 'hover:opacity-100 cursor-pointer text-purple-600 dark:text-purple-400'
               }`,
               resolvedSlotProps?.className,
             ),

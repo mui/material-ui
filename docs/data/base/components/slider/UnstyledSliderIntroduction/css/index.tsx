@@ -21,7 +21,7 @@ export default function UnstyledSliderIntroduction() {
           track: { className: 'CustomSlider-track' },
           thumb: { className: 'CustomSlider-thumb' },
         }}
-        defaultValue={10}
+        defaultValue={30}
         disabled
       />
       <Styles />

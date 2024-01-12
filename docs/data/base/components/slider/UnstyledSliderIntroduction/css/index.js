@@ -21,7 +21,7 @@ export default function UnstyledSliderIntroduction() {
           track: { className: 'CustomSlider-track' },
           thumb: { className: 'CustomSlider-thumb' },
         }}
-        defaultValue={10}
+        defaultValue={30}
         disabled
       />
       <Styles />
@@ -82,7 +82,7 @@ function Styles() {
       opacity: 1;
     }
 
-    .CustomSlider.${sliderClasses.disabled} { 
+    .CustomSlider.${sliderClasses.disabled} {
       pointer-events: none;
       cursor: default;
       color: ${isDarkMode ? grey[600] : grey[300]};

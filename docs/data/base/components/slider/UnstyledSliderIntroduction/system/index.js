@@ -6,7 +6,7 @@ export default function UnstyledSliderIntroduction() {
   return (
     <Box sx={{ width: 320 }}>
       <Slider defaultValue={50} />
-      <Slider defaultValue={50} disabled />
+      <Slider defaultValue={30} disabled />
     </Box>
   );
 }
@@ -48,7 +48,7 @@ const Slider = styled(BaseSlider)(
   touch-action: none;
   -webkit-tap-highlight-color: transparent;
 
-  &.${sliderClasses.disabled} { 
+  &.${sliderClasses.disabled} {
     pointer-events: none;
     cursor: default;
     color: ${theme.palette.mode === 'light' ? grey[300] : grey[600]};
@@ -113,7 +113,7 @@ const Slider = styled(BaseSlider)(
       outline: none;
       transform: scale(1.2);
     }
-    
+
     &.${sliderClasses.disabled} {
       background-color: ${theme.palette.mode === 'light' ? grey[300] : grey[600]};
     }

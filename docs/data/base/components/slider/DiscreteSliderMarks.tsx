@@ -101,7 +101,6 @@ const Slider = styled(BaseSlider)(
   }
 
   & .${sliderClasses.thumb} {
-    top: 24%;
     display: flex;
     align-items: center;
     justify-content: center;
