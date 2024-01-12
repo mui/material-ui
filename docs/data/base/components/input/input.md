@@ -139,4 +139,6 @@ The following demo shows how to insert a Textarea Autosize component into an Inp
 
 ### OTP Input
 
+The following demo shows how to build a one-time password component using `Input`.
+
 {{"demo": "OTPInput.js"}}
