@@ -3,7 +3,7 @@ import { Input as BaseInput } from '@mui/base/Input';
 import { Box, styled } from '@mui/system';
 
 function OTP({ seperator, inputCount }) {
-  const inputRefs = React.useRef(new Array(6).fill(null));
+  const inputRefs = React.useRef(new Array(inputCount).fill(null));
   const [otp, setOtp] = React.useState(new Array(inputCount).fill(''));
 
   const focusInput = (targetIndex) => {
