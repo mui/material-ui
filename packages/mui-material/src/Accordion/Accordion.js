@@ -180,6 +180,8 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     ownerState,
   });
 
+  delete transitionProps.ownerState;
+
   return (
     <AccordionRoot
       className={clsx(classes.root, className)}
