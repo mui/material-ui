@@ -98,10 +98,24 @@ function AppAppBar() {
             </Box>
 
             <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1 }}>
-              <Button color="primary" variant="contained" size="small">
+              <Button
+                color="primary"
+                variant="contained"
+                size="small"
+                component="a"
+                href="/material-ui/getting-started/templates/sign-up/"
+                target="_blank"
+              >
                 Sign up
               </Button>
-              <Button color="primary" variant="outlined" size="small">
+              <Button
+                color="primary"
+                variant="outlined"
+                size="small"
+                component="a"
+                href="/material-ui/getting-started/templates/sign-in/"
+                target="_blank"
+              >
                 Sign in
               </Button>
               <ToggleColorMode />
@@ -154,6 +168,9 @@ function AppAppBar() {
                     <Button
                       color="primary"
                       variant="contained"
+                      component="a"
+                      href="/material-ui/getting-started/templates/sign-up/"
+                      target="_blank"
                       sx={{ width: '100%' }}
                     >
                       Sign up
@@ -163,6 +180,9 @@ function AppAppBar() {
                     <Button
                       color="primary"
                       variant="outlined"
+                      component="a"
+                      href="/material-ui/getting-started/templates/sign-in/"
+                      target="_blank"
                       sx={{ width: '100%' }}
                     >
                       Sign in
