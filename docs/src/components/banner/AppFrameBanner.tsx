@@ -11,8 +11,9 @@ export default function AppFrameBanner() {
       variant="caption"
       sx={[
         (theme) => ({
-          display: { xs: 'none', lg: 'block' },
-          p: 1,
+          display: { xs: 'none', md: 'block' },
+          padding: theme.spacing('7px', 1.5, '8px', 1.5),
+          textWrap: 'nowrap',
           maxHeight: '34px',
           backgroundColor: (theme.vars || theme).palette.primary[50],
           border: '1px solid',
@@ -21,7 +22,6 @@ export default function AppFrameBanner() {
           transitionProperty: 'all',
           transitionTiming: 'cubic-bezier(0.4, 0, 0.2, 1)',
           transitionDuration: '150ms',
-          color: (theme.vars || theme).palette.primary[600],
           fontWeight: 'medium',
           '&:hover, &:focus-visible': {
             backgroundColor: alpha(theme.palette.primary[100], 0.4),
@@ -32,7 +32,6 @@ export default function AppFrameBanner() {
           theme.applyDarkStyles({
             backgroundColor: alpha(theme.palette.primary[900], 0.3),
             borderColor: (theme.vars || theme).palette.primaryDark[700],
-            color: (theme.vars || theme).palette.primary[100],
             '&:hover, &:focus-visible': {
               backgroundColor: alpha(theme.palette.primary[900], 0.6),
               borderColor: (theme.vars || theme).palette.primaryDark[500],
@@ -41,7 +40,6 @@ export default function AppFrameBanner() {
       ]}
     >
       🚀 The MUI Developer Survey 2023 is live! Participate and help shape MUI's roadmap for 2024!
-      <br />
     </Link>
   ) : null;
 }
