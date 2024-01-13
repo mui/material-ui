@@ -42,7 +42,8 @@
     "light": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>light={true}</code>"
+      "conditions": "<code>light={true}</code>",
+      "deprecationInfo": "Use &lt;Divider sx={{ bgcolor: &#39;#eee&#39; }} /&gt; instead."
     },
     "middle": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -73,7 +74,8 @@
     "withChildrenVertical": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "divider have text and <code>orientation=\"vertical\"</code>"
+      "conditions": "divider have text and <code>orientation=\"vertical\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/divider/#Divider-classes-withChildren\">.MuiDivider-withChildren</a> and <a href=\"/material-ui/api/divider/#Divider-classes-vertical\">.MuiDivider-vertical</a> classes instead."
     },
     "wrapper": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
