@@ -5,7 +5,12 @@
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "component": { "type": { "name": "elementType" } },
     "flexItem": { "type": { "name": "bool" }, "default": "false" },
-    "light": { "type": { "name": "bool" }, "default": "false" },
+    "light": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "deprecated": true,
+      "deprecationInfo": "Use &lt;Divider sx={{ bgcolor: &#39;#eee&#39; }} /&gt; instead."
+    },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'horizontal'"
