@@ -3712,7 +3712,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 ### Core
 
-- [core] Close 2022 developer survey @oliviertassinari
+- [core] Close 2022 Developer Survey @oliviertassinari
 - [core] Fix the product license reference name (#35703) @oliviertassinari
 - [core] Use TypeScript AST instead of TTP for component doc building (#35379) @flaviendelangle
 - [test] Always use & for nesting styles (#35702) @oliviertassinari
@@ -3946,7 +3946,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - [docs] Fix typo in FormControl API docs (#35449) @Spanishiwa
 - [docs] Update callouts design (#35390) @danilo-leal
 - [website] New wave of open roles (#35240) @mnajdova
-- [website] Developer survey 2022 (#35407) @joserodolfofreitas
+- [website] Developer Survey 2022 (#35407) @joserodolfofreitas
 
 ### Core
 
@@ -7469,7 +7469,7 @@ This is an early release to fix `export 'useId' (imported as 'React') was not fo
 - &#8203;<!-- 9 -->[core] Fix PR run detection in test_bundle_size_monitor (#29879) @eps1lon
 - &#8203;<!-- 8 -->[core] Move bundle size monitoring to CircleCI (#29876) @eps1lon
 - &#8203;<!-- 7 -->[docs] Add keys to Responsive AppBar demo (#29884) @mbrookes
-- &#8203;<!-- 6 -->[docs] MUI's 2021 Developer survey (#29765) @prakhargupta1
+- &#8203;<!-- 6 -->[docs] MUI's 2021 Developer Survey (#29765) @prakhargupta1
 - &#8203;<!-- 5 -->[docs] Smoother image loading UX (#29858) @oliviertassinari
 - &#8203;<!-- 4 -->[Select] Fix select display value with React Nodes (#29836) @kegi
 - &#8203;<!-- 3 -->[system] Add `experimental_sx` utility (#29833) @mnajdova

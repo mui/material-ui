@@ -19,7 +19,7 @@ function getSurveyMessage() {
           },
         }}
       >
-        MUI Developer survey 2023 →
+        MUI Developer Survey 2023 →
       </Link>
     </React.Fragment>
   );
