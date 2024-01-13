@@ -39,7 +39,11 @@
       "nodeName": "the root element",
       "conditions": "<code>variant=\"inset\"</code>"
     },
-    "light": { "description": "Styles applied to the root element if <code>light={true}</code>" },
+    "light": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>light={true}</code>"
+    },
     "middle": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
