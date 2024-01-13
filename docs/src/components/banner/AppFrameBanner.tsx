@@ -11,10 +11,12 @@ export default function AppFrameBanner() {
   const productName = convertProductIdToName(pageContext) || 'MUI';
   const message = `Influence ${productName}'s 2024 roadmap! Take a few minutes to answer the latest Developer Survey`;
 
-  if (message.length > 100) {
-    throw new Error(
-      `Docs-infra: AppFrameBanner message is too long. It will overflow on smaller screens.`,
-    );
+  if (process.env.NODE_ENV !== 'production') {
+    if (message.length > 100) {
+      throw new Error(
+        `Docs-infra: AppFrameBanner message is too long. It will overflow on smaller screens.`,
+      );
+    }
   }
 
   return FEATURE_TOGGLE.enable_docsnav_banner ? (
