@@ -10,9 +10,7 @@ export interface DividerClasses {
   inset: string;
   /** Styles applied to the root element if `variant="fullWidth"`. */
   fullWidth: string;
-  /** Styles applied to the root element if `light={true}`.
-   * @deprecated Use <Divider sx={{ bgcolor: '#eee' }} /> instead.
-   */
+  /** Styles applied to the root element if `light={true}` */
   light: string;
   /** Styles applied to the root element if `variant="middle"`. */
   middle: string;

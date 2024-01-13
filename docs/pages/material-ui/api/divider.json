@@ -70,9 +70,8 @@
     {
       "key": "light",
       "className": "MuiDivider-light",
-      "description": "Styles applied to the root element if `light={true}`.",
-      "isGlobal": false,
-      "isDeprecated": true
+      "description": "Styles applied to the root element if `light={true}`",
+      "isGlobal": false
     },
     {
       "key": "middle",
