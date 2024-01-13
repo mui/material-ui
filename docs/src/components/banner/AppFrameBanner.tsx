@@ -2,8 +2,21 @@ import * as React from 'react';
 import { alpha } from '@mui/material/styles';
 import Link from 'docs/src/modules/components/Link';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
+import PageContext from 'docs/src/modules/components/PageContext';
+import { convertProductIdToName } from 'docs/src/modules/components/AppSearch';
 
 export default function AppFrameBanner() {
+  const pageContext = React.useContext(PageContext);
+
+  const productName = convertProductIdToName(pageContext) || 'MUI';
+  const message = `The latest Developer Survey is open! Help shape ${productName}'s roadmap for 2024!`;
+
+  if (message.length > 100) {
+    throw new Error(
+      `Docs-infra: AppFrameBanner message is too long. It will overflow on smaller screens.`,
+    );
+  }
+
   return FEATURE_TOGGLE.enable_docsnav_banner ? (
     <Link
       href="https://tally.so/r/3Ex4PN?source=docs-banner"
@@ -39,7 +52,7 @@ export default function AppFrameBanner() {
           }),
       ]}
     >
-      🚀 The MUI Developer Survey 2023 is live! Participate and help shape MUI's roadmap for 2024!
+      {message}
     </Link>
   ) : null;
 }
