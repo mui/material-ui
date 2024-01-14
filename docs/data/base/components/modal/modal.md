@@ -15,7 +15,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
-- 📦 [5.1 kB gzipped](/size-snapshot/).
+- 📦 [5.1 kB gzipped](https://bundlephobia.com/package/@mui/base).
 
 ## Introduction
 

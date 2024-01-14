@@ -13,7 +13,7 @@ githubLabel: 'component: FocusTrap'
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
-- 📦 [1.6 kB gzipped](/size-snapshot/).
+- 📦 [1.6 kB gzipped](https://bundlephobia.com/package/@mui/base).
 
 ## Introduction
 

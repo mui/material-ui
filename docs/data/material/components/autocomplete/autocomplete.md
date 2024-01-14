@@ -172,7 +172,7 @@ The `useAutocomplete` hook is also reexported from @mui/material for convenience
 import useAutocomplete from '@mui/material/useAutocomplete';
 ```
 
-- 📦 [4.5 kB gzipped](/size-snapshot/).
+- 📦 [4.6 kB gzipped](https://bundlephobia.com/package/@mui/material).
 
 {{"demo": "UseAutocomplete.js", "defaultCodeOpen": false}}
 

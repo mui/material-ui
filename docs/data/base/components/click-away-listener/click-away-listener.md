@@ -13,7 +13,7 @@ githubLabel: 'component: ClickAwayListener'
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
-- 📦 [0.9 kB gzipped](/size-snapshot/).
+- 📦 [0.9 kB gzipped](https://bundlephobia.com/package/@mui/base).
 
 ## Introduction
 
