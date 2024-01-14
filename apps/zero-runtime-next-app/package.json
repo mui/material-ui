@@ -17,7 +17,7 @@
     "local-ui-lib": "workspace:^",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.0.1"
+    "next": "14.0.4"
   },
   "devDependencies": {
     "@mui/zero-next-plugin": "workspace:^",
