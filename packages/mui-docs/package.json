@@ -34,7 +34,7 @@
     "test": "exit 0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.7",
+    "@babel/runtime": "^7.23.8",
     "@mui/base": "workspace:*",
     "@mui/utils": "workspace:^",
     "nprogress": "^0.2.0",
