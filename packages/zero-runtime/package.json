@@ -34,7 +34,7 @@
     "@types/babel__helper-module-imports": "^7.18.2",
     "@types/babel__helper-plugin-utils": "^7.10.2",
     "@types/cssesc": "^3.0.2",
-    "@types/lodash.get": "^4.4.7",
+    "@types/lodash.get": "^4.4.9",
     "@types/lodash.set": "^4.3.9",
     "@types/node": "^18.18.5",
     "@types/react": "^18.2.31",
