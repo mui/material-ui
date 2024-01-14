@@ -14,7 +14,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
-- 📦 [4.5 kB gzipped](/size-snapshot/).
+- 📦 [4.5 kB gzipped](https://bundlephobia.com/package/@mui/base).
 
 ## Introduction
 
