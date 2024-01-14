@@ -14,6 +14,7 @@ import generalDocsPages from 'docs/data/docs/pages';
 import basePages from 'docs/data/base/pages';
 import docsInfraPages from 'docs/data/docs-infra/pages';
 import materialPages from 'docs/data/material/pages';
+import InitialPropsContext from 'docs/src/docs-infra/InitialPropsContext';
 import joyPages from 'docs/data/joy/pages';
 import systemPages from 'docs/data/system/pages';
 import PageContext from 'docs/src/modules/components/PageContext';
@@ -137,7 +138,7 @@ Tip: you can access the documentation \`theme\` object directly in the console.
   );
 }
 function AppWrapper(props) {
-  const { children, emotionCache, pageProps } = props;
+  const { children, emotionCache, pageProps, initialProps } = props;
 
   const router = useRouter();
   // TODO move productId & productCategoryId resolution to page layout.
@@ -294,22 +295,24 @@ function AppWrapper(props) {
         <meta name="mui:productId" content={productId} />
         <meta name="mui:productCategoryId" content={productCategoryId} />
       </NextHead>
-      <UserLanguageProvider defaultUserLanguage={pageProps.userLanguage}>
-        <CodeCopyProvider>
-          <CodeStylingProvider>
-            <CodeVariantProvider>
-              <PageContext.Provider value={pageContextValue}>
-                <ThemeProvider>
-                  <DocsStyledEngineProvider cacheLtr={emotionCache}>
-                    {children}
-                    <GoogleAnalytics />
-                  </DocsStyledEngineProvider>
-                </ThemeProvider>
-              </PageContext.Provider>
-            </CodeVariantProvider>
-          </CodeStylingProvider>
-        </CodeCopyProvider>
-      </UserLanguageProvider>
+      <InitialPropsContext.Provider value={initialProps}>
+        <UserLanguageProvider defaultUserLanguage={pageProps.userLanguage}>
+          <CodeCopyProvider>
+            <CodeStylingProvider>
+              <CodeVariantProvider>
+                <PageContext.Provider value={pageContextValue}>
+                  <ThemeProvider>
+                    <DocsStyledEngineProvider cacheLtr={emotionCache}>
+                      {children}
+                      <GoogleAnalytics />
+                    </DocsStyledEngineProvider>
+                  </ThemeProvider>
+                </PageContext.Provider>
+              </CodeVariantProvider>
+            </CodeStylingProvider>
+          </CodeCopyProvider>
+        </UserLanguageProvider>
+      </InitialPropsContext.Provider>
     </React.Fragment>
   );
 }
@@ -317,15 +320,17 @@ function AppWrapper(props) {
 AppWrapper.propTypes = {
   children: PropTypes.node.isRequired,
   emotionCache: PropTypes.object.isRequired,
+  initialProps: PropTypes.object,
   pageProps: PropTypes.object.isRequired,
 };
 
 export default function MyApp(props) {
-  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+  const { Component, emotionCache = clientSideEmotionCache, pageProps: pagePropsProp } = props;
   const getLayout = Component.getLayout ?? ((page) => page);
+  const { initialProps, ...pageProps } = pagePropsProp;
 
   return (
-    <AppWrapper emotionCache={emotionCache} pageProps={pageProps}>
+    <AppWrapper emotionCache={emotionCache} pageProps={pageProps} initialProps={initialProps}>
       {getLayout(<Component {...pageProps} />)}
     </AppWrapper>
   );

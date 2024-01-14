@@ -10,7 +10,16 @@ import AdobeXDIcon from 'docs/src/modules/components/AdobeXDIcon';
 import BundleSizeIcon from 'docs/src/modules/components/BundleSizeIcon';
 import W3CIcon from 'docs/src/modules/components/W3CIcon';
 import MaterialDesignIcon from 'docs/src/modules/components/MaterialDesignIcon';
+import InitialPropsContext from 'docs/src/docs-infra/InitialPropsContext';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
+
+function formatBytes(bytes, decimals = 2) {
+  const k = 1024;
+  const dm = decimals < 0 ? 0 : decimals;
+  const sizes = ['Bytes', 'kB', 'MB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+}
 
 const Root = styled('ul')({
   margin: 0,
@@ -37,9 +46,18 @@ export default function ComponentLinkHeader(props) {
     design,
   } = props;
   const t = useTranslate();
-
+  const initialProps = React.useContext(InitialPropsContext);
+  const modules = headers.components.concat(headers.hooks);
   const packageName =
     headers.packageName ?? defaultPackageNames[headers.productId] ?? '@mui/material';
+
+  let bundleSizeLabel = t('bundleSize');
+
+  console.log(initialProps.moduleSize);
+
+  if (Object.keys(initialProps.moduleSize).length > 0) {
+    bundleSizeLabel = `${bundleSizeLabel}: ${formatBytes(initialProps.moduleSize[modules[0]])}`;
+  }
 
   return (
     <Root>
@@ -79,7 +97,7 @@ export default function ComponentLinkHeader(props) {
             data-ga-event-action="click"
             data-ga-event-label={t('bundleSize')}
             data-ga-event-split="0.1"
-            label={t('bundleSize')}
+            label={bundleSizeLabel}
           />
         </Tooltip>
       </li>

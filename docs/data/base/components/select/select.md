@@ -15,6 +15,8 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-sel
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
+- 📦 [16.8 kB gzipped](https://bundlephobia.com/package/@mui/base).
+
 ## Introduction
 
 A select is a UI element that gives users a list of options to choose from.
