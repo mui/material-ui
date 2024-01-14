@@ -22,9 +22,9 @@ Tabs are implemented using a collection of related components:
 
 - `<Tab />` - the tab element itself. Clicking on a tab displays its corresponding panel.
 - `<Tabs />` - the container that houses the tabs. Responsible for handling focus and keyboard navigation between tabs.
-- `<TabList />` - an alternative to the Tabs component, which automatically implements accessible tabs following [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/).
-- `<TabPanel />` - an optional card that hosts the content associated with a tab, which automatically implements accessible tabs following [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/).
-- `<TabContext />` - an optional top-level component that wraps the Tab List and Tab Panel components, which automatically implements accessible tabs following [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/).
+- `<TabList />` - an alternative to the Tabs component, which automatically injects props to implement accessible tabs.
+- `<TabPanel />` - the card that hosts the content associated with a tab.
+- `<TabContext />` - the top-level component that wraps the Tab List and Tab Panel components, and automatically injects props to implement accessible tabs.
 
 {{"demo": "BasicTabs.js"}}
 
