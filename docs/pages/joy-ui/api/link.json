@@ -64,6 +64,12 @@
   "imports": ["import Link from '@mui/joy/Link';", "import { Link } from '@mui/joy';"],
   "slots": [
     {
+      "name": "endDecorator",
+      "description": "The component that renders the end decorator.",
+      "default": "'span'",
+      "class": "MuiLink-endDecorator"
+    },
+    {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'a'",
@@ -74,12 +80,6 @@
       "description": "The component that renders the start decorator.",
       "default": "'span'",
       "class": "MuiLink-startDecorator"
-    },
-    {
-      "name": "endDecorator",
-      "description": "The component that renders the end decorator.",
-      "default": "'span'",
-      "class": "MuiLink-endDecorator"
     }
   ],
   "classes": [

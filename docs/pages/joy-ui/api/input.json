@@ -41,10 +41,10 @@
   "imports": ["import Input from '@mui/joy/Input';", "import { Input } from '@mui/joy';"],
   "slots": [
     {
-      "name": "root",
-      "description": "The component that renders the root.",
+      "name": "endDecorator",
+      "description": "The component that renders the end decorator.",
       "default": "'div'",
-      "class": "MuiInput-root"
+      "class": "MuiInput-endDecorator"
     },
     {
       "name": "input",
@@ -53,16 +53,16 @@
       "class": "MuiInput-input"
     },
     {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": "MuiInput-root"
+    },
+    {
       "name": "startDecorator",
       "description": "The component that renders the start decorator.",
       "default": "'div'",
       "class": "MuiInput-startDecorator"
-    },
-    {
-      "name": "endDecorator",
-      "description": "The component that renders the end decorator.",
-      "default": "'div'",
-      "class": "MuiInput-endDecorator"
     }
   ],
   "classes": [

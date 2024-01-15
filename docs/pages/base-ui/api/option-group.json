@@ -25,12 +25,6 @@
   ],
   "slots": [
     {
-      "name": "root",
-      "description": "The component that renders the root.",
-      "default": "'li'",
-      "class": "MuiOptionGroup-root"
-    },
-    {
       "name": "label",
       "description": "The component that renders the label.",
       "default": "'span'",
@@ -41,6 +35,12 @@
       "description": "The component that renders the list.",
       "default": "'ul'",
       "class": "MuiOptionGroup-list"
+    },
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'li'",
+      "class": "MuiOptionGroup-root"
     }
   ],
   "classes": [

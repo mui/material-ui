@@ -41,10 +41,10 @@
   ],
   "slots": [
     {
-      "name": "root",
-      "description": "The component that renders the root.",
-      "default": "'nav'",
-      "class": "MuiBreadcrumbs-root"
+      "name": "li",
+      "description": "The component that renders the li.",
+      "default": "'li'",
+      "class": "MuiBreadcrumbs-li"
     },
     {
       "name": "ol",
@@ -53,10 +53,10 @@
       "class": "MuiBreadcrumbs-ol"
     },
     {
-      "name": "li",
-      "description": "The component that renders the li.",
-      "default": "'li'",
-      "class": "MuiBreadcrumbs-li"
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'nav'",
+      "class": "MuiBreadcrumbs-root"
     },
     {
       "name": "separator",

@@ -62,6 +62,12 @@
   ],
   "slots": [
     {
+      "name": "endDecorator",
+      "description": "The component that renders the end decorator.",
+      "default": "'span'",
+      "class": "MuiTypography-endDecorator"
+    },
+    {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'a'",
@@ -72,12 +78,6 @@
       "description": "The component that renders the start decorator.",
       "default": "'span'",
       "class": "MuiTypography-startDecorator"
-    },
-    {
-      "name": "endDecorator",
-      "description": "The component that renders the end decorator.",
-      "default": "'span'",
-      "class": "MuiTypography-endDecorator"
     }
   ],
   "classes": [

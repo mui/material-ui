@@ -68,18 +68,6 @@
   ],
   "slots": [
     {
-      "name": "root",
-      "description": "The component that renders the root.",
-      "default": "'button'",
-      "class": "MuiMenuButton-root"
-    },
-    {
-      "name": "startDecorator",
-      "description": "The component that renders the start decorator.",
-      "default": "'span'",
-      "class": "MuiMenuButton-startDecorator"
-    },
-    {
       "name": "endDecorator",
       "description": "The component that renders the end decorator.",
       "default": "'span'",
@@ -90,6 +78,18 @@
       "description": "The component that renders the loading indicator center.",
       "default": "'span'",
       "class": "MuiMenuButton-loadingIndicatorCenter"
+    },
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'button'",
+      "class": "MuiMenuButton-root"
+    },
+    {
+      "name": "startDecorator",
+      "description": "The component that renders the start decorator.",
+      "default": "'span'",
+      "class": "MuiMenuButton-startDecorator"
     }
   ],
   "classes": [

@@ -73,6 +73,18 @@
   "imports": ["import Snackbar from '@mui/joy/Snackbar';", "import { Snackbar } from '@mui/joy';"],
   "slots": [
     {
+      "name": "clickAway",
+      "description": "The component that renders the click away.",
+      "default": "ClickAwayListener",
+      "class": null
+    },
+    {
+      "name": "endDecorator",
+      "description": "The component that renders the end decorator.",
+      "default": "'span'",
+      "class": "MuiSnackbar-endDecorator"
+    },
+    {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
@@ -83,18 +95,6 @@
       "description": "The component that renders the start decorator.",
       "default": "'span'",
       "class": "MuiSnackbar-startDecorator"
-    },
-    {
-      "name": "endDecorator",
-      "description": "The component that renders the end decorator.",
-      "default": "'span'",
-      "class": "MuiSnackbar-endDecorator"
-    },
-    {
-      "name": "clickAway",
-      "description": "The component that renders the click away.",
-      "default": "ClickAwayListener",
-      "class": null
     }
   ],
   "classes": [

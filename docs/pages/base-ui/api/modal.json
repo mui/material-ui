@@ -43,15 +43,15 @@
   "imports": ["import { Modal } from '@mui/base/Modal';", "import { Modal } from '@mui/base';"],
   "slots": [
     {
+      "name": "backdrop",
+      "description": "The component that renders the backdrop.",
+      "class": "MuiModal-backdrop"
+    },
+    {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
       "class": "MuiModal-root"
-    },
-    {
-      "name": "backdrop",
-      "description": "The component that renders the backdrop.",
-      "class": "MuiModal-backdrop"
     }
   ],
   "classes": [

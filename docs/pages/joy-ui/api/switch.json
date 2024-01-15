@@ -66,22 +66,16 @@
   "imports": ["import Switch from '@mui/joy/Switch';", "import { Switch } from '@mui/joy';"],
   "slots": [
     {
-      "name": "root",
-      "description": "The component that renders the root.",
-      "default": "'div'",
-      "class": "MuiSwitch-root"
-    },
-    {
-      "name": "thumb",
-      "description": "The component that renders the thumb.",
-      "default": "'span'",
-      "class": "MuiSwitch-thumb"
-    },
-    {
       "name": "action",
       "description": "The component that renders the action.",
       "default": "'div'",
       "class": "MuiSwitch-action"
+    },
+    {
+      "name": "endDecorator",
+      "description": "The component that renders the end decorator.",
+      "default": "'span'",
+      "class": "MuiSwitch-endDecorator"
     },
     {
       "name": "input",
@@ -90,10 +84,10 @@
       "class": "MuiSwitch-input"
     },
     {
-      "name": "track",
-      "description": "The component that renders the track.",
-      "default": "'span'",
-      "class": "MuiSwitch-track"
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": "MuiSwitch-root"
     },
     {
       "name": "startDecorator",
@@ -102,10 +96,16 @@
       "class": "MuiSwitch-startDecorator"
     },
     {
-      "name": "endDecorator",
-      "description": "The component that renders the end decorator.",
+      "name": "thumb",
+      "description": "The component that renders the thumb.",
       "default": "'span'",
-      "class": "MuiSwitch-endDecorator"
+      "class": "MuiSwitch-thumb"
+    },
+    {
+      "name": "track",
+      "description": "The component that renders the track.",
+      "default": "'span'",
+      "class": "MuiSwitch-track"
     }
   ],
   "classes": [

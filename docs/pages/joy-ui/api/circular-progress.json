@@ -58,6 +58,12 @@
   ],
   "slots": [
     {
+      "name": "progress",
+      "description": "The component that renders the progress.",
+      "default": "'circle'",
+      "class": "MuiCircularProgress-progress"
+    },
+    {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'span'",
@@ -74,12 +80,6 @@
       "description": "The component that renders the track.",
       "default": "'circle'",
       "class": "MuiCircularProgress-track"
-    },
-    {
-      "name": "progress",
-      "description": "The component that renders the progress.",
-      "default": "'circle'",
-      "class": "MuiCircularProgress-progress"
     }
   ],
   "classes": [

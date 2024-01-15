@@ -22,16 +22,16 @@
   "imports": ["import { Badge } from '@mui/base/Badge';", "import { Badge } from '@mui/base';"],
   "slots": [
     {
-      "name": "root",
-      "description": "The component that renders the root.",
-      "default": "'span'",
-      "class": "MuiBadge-root"
-    },
-    {
       "name": "badge",
       "description": "The component that renders the badge.",
       "default": "'span'",
       "class": "MuiBadge-badge"
+    },
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'span'",
+      "class": "MuiBadge-root"
     }
   ],
   "classes": [

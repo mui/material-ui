@@ -34,16 +34,16 @@
   "imports": ["import Step from '@mui/joy/Step';", "import { Step } from '@mui/joy';"],
   "slots": [
     {
-      "name": "root",
-      "description": "The component that renders the root.",
-      "default": "'li'",
-      "class": "MuiStep-root"
-    },
-    {
       "name": "indicator",
       "description": "The component that renders the indicator.",
       "default": "'div'",
       "class": "MuiStep-indicator"
+    },
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'li'",
+      "class": "MuiStep-root"
     }
   ],
   "classes": [

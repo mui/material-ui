@@ -51,16 +51,10 @@
   ],
   "slots": [
     {
-      "name": "root",
-      "description": "The component that renders the root.",
-      "default": "'div'",
-      "class": "MuiNumberInput-root"
-    },
-    {
-      "name": "input",
-      "description": "The component that renders the input.",
-      "default": "'input'",
-      "class": "MuiNumberInput-input"
+      "name": "decrementButton",
+      "description": "The component that renders the decrement button.",
+      "default": "'button'",
+      "class": "MuiNumberInput-decrementButton"
     },
     {
       "name": "incrementButton",
@@ -69,10 +63,16 @@
       "class": "MuiNumberInput-incrementButton"
     },
     {
-      "name": "decrementButton",
-      "description": "The component that renders the decrement button.",
-      "default": "'button'",
-      "class": "MuiNumberInput-decrementButton"
+      "name": "input",
+      "description": "The component that renders the input.",
+      "default": "'input'",
+      "class": "MuiNumberInput-input"
+    },
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": "MuiNumberInput-root"
     }
   ],
   "classes": [

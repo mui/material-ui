@@ -38,12 +38,6 @@
   "imports": ["import { Select } from '@mui/base/Select';", "import { Select } from '@mui/base';"],
   "slots": [
     {
-      "name": "root",
-      "description": "The component that renders the root.",
-      "default": "'button'",
-      "class": "MuiSelect-root"
-    },
-    {
       "name": "listbox",
       "description": "The component that renders the listbox.",
       "default": "'ul'",
@@ -54,6 +48,12 @@
       "description": "The component that renders the popper.",
       "default": "Popper",
       "class": "MuiSelect-popper"
+    },
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'button'",
+      "class": "MuiSelect-root"
     }
   ],
   "classes": [
