@@ -1,8 +1,6 @@
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Divider from '@mui/material/Divider';
 
@@ -14,21 +12,9 @@ import Pricing from './components/Pricing';
 import Features from './components/Features';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
+import Footer from './components/Footer';
 
 import getLPTheme from './getLPTheme';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 interface ColorMode {
   mode: 'light' | 'dark';
@@ -77,28 +63,7 @@ export default function LandingPage() {
           <Pricing />
           <Divider />
           <FAQ />
-          <Box
-            sx={{
-              bgcolor: 'background.paper',
-              p: 6,
-              borderTop: '1px solid',
-              borderColor: 'divider',
-            }}
-            component="footer"
-          >
-            <Typography variant="h6" align="center" gutterBottom>
-              Footer
-            </Typography>
-            <Typography
-              variant="subtitle1"
-              align="center"
-              color="text.secondary"
-              component="p"
-            >
-              Something here to give the footer a purpose!
-            </Typography>
-            <Copyright />
-          </Box>
+          <Footer />
         </Box>
       </ThemeProvider>
     </ColorModeContext.Provider>

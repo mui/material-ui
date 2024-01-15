@@ -84,7 +84,17 @@ export default function ProductHero() {
                   size="small"
                   variant="outlined"
                   placeholder="Your email address"
-                  sx={{ minWidth: '45%' }}
+                  sx={{
+                    minWidth: '45%',
+                    '& .MuiOutlinedInput-root': {
+                      color: 'white',
+                      '& fieldset': {
+                        borderColor: greyColor[600],
+                        boxShadow:
+                          '0 1px 1px rgba(255, 255, 255, 0.1) inset, 0px 2px 4px rgba(0, 0, 0, 0.8)',
+                      },
+                    },
+                  }}
                 />
                 <Button variant="contained" color="secondary">
                   Start using

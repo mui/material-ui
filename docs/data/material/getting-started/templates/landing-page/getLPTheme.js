@@ -137,12 +137,6 @@ const typographyBase = {
   fontWeightMedium: 500,
 };
 
-const fontHeader = {
-  fontFamily: "'Inter', sans-serif",
-  fontWeight: typographyBase.fontWeightMedium,
-  letterSpacing: '-0.025em',
-};
-
 export default function getLPTheme(mode) {
   const modeDesignTokens = getDesignTokens(mode);
 
@@ -300,26 +294,25 @@ export default function getLPTheme(mode) {
             },
             '& .MuiInputBase-input': {
               fontSize: '14px',
-              color: 'white',
             },
             '& .MuiOutlinedInput-root': {
               '& fieldset': {
                 borderRadius: '8px',
-                borderColor: 'rgba(255, 255, 255, 0.2)',
+                borderColor: mode === 'light' ? greyColor[300] : greyColor[600],
+                boxShadow:
+                  mode === 'light'
+                    ? '0 -1px 1px rgba(0, 0, 0, 0.1) inset, 0px 2px 4px rgba(0, 0, 0, 0.1)'
+                    : '0 1px 1px rgba(255, 255, 255, 0.1) inset, 0px 2px 4px rgba(0, 0, 0, 0.8)',
               },
               '&:hover fieldset': {
-                borderColor: 'white',
+                borderColor: greyColor[400],
               },
               '&.Mui-focused fieldset': {
-                borderColor: 'white',
+                borderColor: brandColor[400],
               },
             },
             '& .MuiInputLabel-root': {
-              color: 'white',
               fontSize: '14px',
-            },
-            '& .MuiOutlinedInput-input:-webkit-autofill': {
-              '-webkit-box-shadow': '0 0 0 100px rgba(255, 255, 255, 0.2) inset',
             },
           },
         },
