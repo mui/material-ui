@@ -818,8 +818,8 @@ importers:
         specifier: ^4.2.0
         version: 4.2.0
       chai:
-        specifier: ^4.4.0
-        version: 4.4.0
+        specifier: ^4.4.1
+        version: 4.4.1
       cross-fetch:
         specifier: ^4.0.0
         version: 4.0.0
@@ -924,8 +924,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.4.0
-        version: 4.4.0
+        specifier: ^4.4.1
+        version: 4.4.1
       sinon:
         specifier: ^15.2.0
         version: 15.2.0
@@ -961,8 +961,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.4.0
-        version: 4.4.0
+        specifier: ^4.4.1
+        version: 4.4.1
       sinon:
         specifier: ^15.2.0
         version: 15.2.0
@@ -1024,8 +1024,8 @@ importers:
         specifier: ^4.3.11
         version: 4.3.11
       chai:
-        specifier: ^4.4.0
-        version: 4.4.0
+        specifier: ^4.4.1
+        version: 4.4.1
 
   packages/mui-babel-macros:
     dependencies:
@@ -1061,8 +1061,8 @@ importers:
         specifier: ^11.0.4
         version: 11.0.4(@babel/core@7.23.7)
       chai:
-        specifier: ^4.4.0
-        version: 4.4.0
+        specifier: ^4.4.1
+        version: 4.4.1
 
   packages/mui-base:
     dependencies:
@@ -1119,8 +1119,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.4.0
-        version: 4.4.0
+        specifier: ^4.4.1
+        version: 4.4.1
       fast-glob:
         specifier: ^3.3.2
         version: 3.3.2
@@ -1166,8 +1166,8 @@ importers:
         specifier: 0.11.5
         version: 0.11.5
       chai:
-        specifier: ^4.4.0
-        version: 4.4.0
+        specifier: ^4.4.1
+        version: 4.4.1
     publishDirectory: build
 
   packages/mui-core-downloads-tracker:
@@ -1212,8 +1212,8 @@ importers:
         specifier: ^4.3.11
         version: 4.3.11
       chai:
-        specifier: ^4.4.0
-        version: 4.4.0
+        specifier: ^4.4.1
+        version: 4.4.1
       fs-extra:
         specifier: ^11.2.0
         version: 11.2.0
@@ -1240,8 +1240,8 @@ importers:
         specifier: ^18.2.46
         version: 18.2.46
       chai:
-        specifier: ^4.4.0
-        version: 4.4.0
+        specifier: ^4.4.1
+        version: 4.4.1
       chalk:
         specifier: ^5.3.0
         version: 5.3.0
@@ -1332,8 +1332,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.4.0
-        version: 4.4.0
+        specifier: ^4.4.1
+        version: 4.4.1
       fast-glob:
         specifier: ^3.3.2
         version: 3.3.2
@@ -1406,8 +1406,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.4.0
-        version: 4.4.0
+        specifier: ^4.4.1
+        version: 4.4.1
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1501,8 +1501,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.4.0
-        version: 4.4.0
+        specifier: ^4.4.1
+        version: 4.4.1
       css-mediaquery:
         specifier: ^0.1.2
         version: 0.1.2
@@ -1623,8 +1623,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.4.0
-        version: 4.4.0
+        specifier: ^4.4.1
+        version: 4.4.1
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -1693,8 +1693,8 @@ importers:
         specifier: ^18.2.46
         version: 18.2.46
       chai:
-        specifier: ^4.4.0
-        version: 4.4.0
+        specifier: ^4.4.1
+        version: 4.4.1
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1734,8 +1734,8 @@ importers:
         specifier: ^18.2.46
         version: 18.2.46
       chai:
-        specifier: ^4.4.0
-        version: 4.4.0
+        specifier: ^4.4.1
+        version: 4.4.1
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1772,8 +1772,8 @@ importers:
         specifier: ^18.2.46
         version: 18.2.46
       chai:
-        specifier: ^4.4.0
-        version: 4.4.0
+        specifier: ^4.4.1
+        version: 4.4.1
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1855,8 +1855,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.4.0
-        version: 4.4.0
+        specifier: ^4.4.1
+        version: 4.4.1
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1923,8 +1923,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.4.0
-        version: 4.4.0
+        specifier: ^4.4.1
+        version: 4.4.1
       fast-glob:
         specifier: ^3.3.2
         version: 3.3.2
@@ -1998,8 +1998,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.4.0
-        version: 4.4.0
+        specifier: ^4.4.1
+        version: 4.4.1
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2069,11 +2069,11 @@ importers:
         specifier: ^14.1.2
         version: 14.1.2(react-dom@18.2.0)(react@18.2.0)
       chai:
-        specifier: ^4.4.0
-        version: 4.4.0
+        specifier: ^4.4.1
+        version: 4.4.1
       chai-dom:
         specifier: ^1.12.0
-        version: 1.12.0(chai@4.4.0)
+        version: 1.12.0(chai@4.4.1)
       dom-accessibility-api:
         specifier: ^0.6.3
         version: 0.6.3
@@ -2206,8 +2206,8 @@ importers:
         specifier: ^9.0.7
         version: 9.0.7
       chai:
-        specifier: ^4.4.0
-        version: 4.4.0
+        specifier: ^4.4.1
+        version: 4.4.1
       fast-glob:
         specifier: ^3.3.2
         version: 3.3.2
@@ -2431,8 +2431,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.4.0
-        version: 4.4.0
+        specifier: ^4.4.1
+        version: 4.4.1
       docs:
         specifier: workspace:^
         version: link:../docs
@@ -9578,17 +9578,17 @@ packages:
   /caniuse-lite@1.0.30001570:
     resolution: {integrity: sha512-+3e0ASu4sw1SWaoCtvPeyXp+5PsjigkSt8OXZbF9StH5pQWbxEjLAZE3n8Aup5udop1uRiKA7a4utUk/uoSpUw==}
 
-  /chai-dom@1.12.0(chai@4.4.0):
+  /chai-dom@1.12.0(chai@4.4.1):
     resolution: {integrity: sha512-pLP8h6IBR8z1AdeQ+EMcJ7dXPdsax/1Q7gdGZjsnAmSBl3/gItQUYSCo32br1qOy4SlcBjvqId7ilAf3uJ2K1w==}
     engines: {node: '>= 0.12.0'}
     peerDependencies:
       chai: '>= 3'
     dependencies:
-      chai: 4.4.0
+      chai: 4.4.1
     dev: false
 
-  /chai@4.4.0:
-    resolution: {integrity: sha512-x9cHNq1uvkCdU+5xTkNh5WtgD4e4yDFCsp9jVc7N7qVeKeftv3gO/ZrviX5d+3ZfxdYnZXZYujjRInu1RogU6A==}
+  /chai@4.4.1:
+    resolution: {integrity: sha512-13sOfMv2+DWduEU+/xbun3LScLoqN17nBeTLUsmDfKdoiC1fr0n9PU4guu4AhRcOVFk/sW8LyZWHuhWtQZiF+g==}
     engines: {node: '>=4'}
     dependencies:
       assertion-error: 1.1.0
