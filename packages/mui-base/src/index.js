@@ -49,3 +49,8 @@ export * from './useTabPanel';
 export * from './useTabs';
 export * from './useTabsList';
 export * from './unstable_useModal';
+
+export {
+  generateUtilityClass as unstable_generateUtilityClass,
+  isGlobalState as unstable_isGlobalState,
+} from './generateUtilityClass';

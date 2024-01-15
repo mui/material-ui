@@ -80,6 +80,9 @@ importers:
       '@babel/preset-react':
         specifier: ^7.23.3
         version: 7.23.3(@babel/core@7.23.7)
+      '@babel/preset-typescript':
+        specifier: ^7.23.3
+        version: 7.23.3(@babel/core@7.23.7)
       '@babel/register':
         specifier: ^7.23.7
         version: 7.23.7(@babel/core@7.23.7)
