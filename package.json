@@ -109,7 +109,7 @@
     "@next/eslint-plugin-next": "^14.0.4",
     "@octokit/rest": "^20.0.2",
     "@playwright/test": "1.40.1",
-    "@slack/web-api": "^6.11.1",
+    "@slack/web-api": "^6.11.2",
     "@types/enzyme": "^3.10.18",
     "@types/fs-extra": "^11.0.4",
     "@types/lodash": "^4.14.202",
