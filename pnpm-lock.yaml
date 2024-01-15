@@ -2294,7 +2294,7 @@ importers:
         specifier: ^3.0.2
         version: 3.0.2
       '@types/lodash.get':
-        specifier: ^4.4.7
+        specifier: ^4.4.9
         version: 4.4.9
       '@types/lodash.set':
         specifier: ^4.3.9
