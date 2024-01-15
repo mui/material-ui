@@ -24,6 +24,7 @@ import generatePropDescription from '../utils/generatePropDescription';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
 import parseSlotsAndClasses, { Slot } from '../utils/parseSlotsAndClasses';
 import generateApiTranslations from '../utils/generateApiTranslation';
+import { sortAlphabetical } from '../utils/sortObjects';
 
 export type AdditionalPropsInfo = {
   cssApi?: boolean;
@@ -378,8 +379,8 @@ const generateApiPage = (
     ),
     name: reactApi.name,
     imports: reactApi.imports,
-    ...(reactApi.slots?.length > 0 && { slots: reactApi.slots }),
-    classes: reactApi.classes,
+    ...(reactApi.slots?.length > 0 && { slots: reactApi.slots.sort(sortAlphabetical('name')) }),
+    classes: reactApi.classes.sort(sortAlphabetical('key')),
     spread: reactApi.spread,
     themeDefaultProps: reactApi.themeDefaultProps,
     muiName: normalizedApiPathname.startsWith('/joy-ui')
