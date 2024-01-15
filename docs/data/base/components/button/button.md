@@ -15,6 +15,8 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
+- 📦 [3.3 kB gzipped](https://bundlephobia.com/package/@mui/base).
+
 ## Introduction
 
 The Button component replaces the native HTML `<button>` element, and offers expanded options for styling and accessibility.

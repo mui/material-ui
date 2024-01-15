@@ -12,6 +12,8 @@ components: NoSsr
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
+- 📦 [0.3 kB gzipped](https://bundlephobia.com/package/@mui/base).
+
 ## Introduction
 
 No-SSR is a utility component that prevents its children from being rendered on the server.

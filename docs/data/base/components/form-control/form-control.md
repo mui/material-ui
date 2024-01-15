@@ -14,6 +14,8 @@ githubLabel: 'component: FormControl'
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
+- 📦 [2.4 kB gzipped](https://bundlephobia.com/package/@mui/base).
+
 ## Introduction
 
 Form Control is a utility that wraps an input component with other associated components in order to make the state of the input available to those components.

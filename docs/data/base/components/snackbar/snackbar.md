@@ -14,6 +14,8 @@ githubLabel: 'component: snackbar'
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
+- 📦 [3.1 kB gzipped](https://bundlephobia.com/package/@mui/base).
+
 ## Introduction
 
 A snackbar provides users with a brief, temporary message about app processes without interrupting their activity or experience.
