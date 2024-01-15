@@ -55,16 +55,16 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
           <Group sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
             <Highlighter disableBorder selected={customized} onClick={() => setCustomized(true)}>
               <Item
-                icon={<ExtensionRoundedIcon color="primary" />}
-                title="MUI Connect"
-                description="This Figma plug-in generates a theme file with the customizations done on the Material UI design kit, allowing you to export it and paste it into your codebase."
+                icon={<DrawRoundedIcon color="primary" />}
+                title="Design kits"
+                description="The Design kits contain many of the Material UI components with states, variations, colors, typography, and icons. We frequently update it to sync with the most up-to-date release."
               />
             </Highlighter>
             <Highlighter disableBorder selected={!customized} onClick={() => setCustomized(false)}>
               <Item
-                icon={<DrawRoundedIcon color="primary" />}
-                title="Design kits"
-                description="The Design kits contain many of the Material UI components with states, variations, colors, typography, and icons. We frequently update it to sync with the most up-to-date release."
+                icon={<ExtensionRoundedIcon color="primary" />}
+                title="Connect plug-in"
+                description="This Figma plug-in generates a theme file with customizations done on the design kits, allowing you to export it and paste it directly into your codebase."
               />
             </Highlighter>
           </Group>
@@ -86,76 +86,6 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
               }}
             >
               <Fade in={customized} timeout={500}>
-                <Box
-                  sx={(theme) => ({
-                    width: '100%',
-                    height: '100%',
-                    '& img': {
-                      position: 'absolute',
-                      '&:nth-of-type(1)': {
-                        visibility: { xs: 'hidden', sm: 'visible' },
-                        width: { xs: 240, sm: 600 },
-                        top: 100,
-                        left: '50%',
-                        transform: 'translate(-40%)',
-                      },
-                      '&:nth-of-type(2)': {
-                        width: { xs: 240, sm: 350 },
-                        top: { xs: 130, sm: 40 },
-                        left: { xs: '55%', sm: '40%' },
-                        transform: {
-                          xs: 'scale(1.8) translate(-20%)',
-                          sm: 'scale(1) translate(0%)',
-                        },
-                      },
-                    },
-                    '&:hover': {
-                      '& img': {
-                        '&:nth-of-type(2)': {
-                          top: 140,
-                          transform: 'scale(1.5) translate(-10%)',
-                          filter: `drop-shadow(-16px 12px 20px ${alpha(
-                            theme.palette.grey[800],
-                            0.5,
-                          )})`,
-                        },
-                      },
-                    },
-                    ...theme.applyDarkStyles({
-                      '&:hover': {
-                        '& img': {
-                          filter: `drop-shadow(-16px 12px 20px ${alpha(
-                            theme.palette.common.black,
-                            0.2,
-                          )})`,
-                        },
-                      },
-                    }),
-                  })}
-                >
-                  <Image
-                    src={`/static/branding/design-kits/connect-plug-in-figma-light.jpg`}
-                    alt="Screenshot of Figma displaying the Material UI Design kit"
-                    loading="lazy"
-                    sx={(theme) =>
-                      theme.applyDarkStyles({
-                        content: `url(/static/branding/design-kits/connect-plug-in-figma-dark.jpg)`,
-                      })
-                    }
-                  />
-                  <Image
-                    src={`/static/branding/design-kits/connect-plug-in-light.jpg`}
-                    alt=""
-                    loading="lazy"
-                    sx={(theme) =>
-                      theme.applyDarkStyles({
-                        content: `url(/static/branding/design-kits/connect-plug-in-dark.jpg)`,
-                      })
-                    }
-                  />
-                </Box>
-              </Fade>
-              <Fade in={!customized} timeout={500}>
                 <Box
                   sx={[
                     {
@@ -238,8 +168,93 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                   />
                 </Box>
               </Fade>
+              <Fade in={!customized} timeout={500}>
+                <Box
+                  sx={(theme) => ({
+                    width: '100%',
+                    height: '100%',
+                    '& img': {
+                      position: 'absolute',
+                      '&:nth-of-type(1)': {
+                        visibility: { xs: 'hidden', sm: 'visible' },
+                        width: { xs: 240, sm: 600 },
+                        top: 100,
+                        left: '50%',
+                        transform: 'translate(-40%)',
+                      },
+                      '&:nth-of-type(2)': {
+                        width: { xs: 240, sm: 350 },
+                        top: { xs: 130, sm: 40 },
+                        left: { xs: '55%', sm: '40%' },
+                        transform: {
+                          xs: 'scale(1.8) translate(-20%)',
+                          sm: 'scale(1) translate(0%)',
+                        },
+                      },
+                    },
+                    '&:hover': {
+                      '& img': {
+                        '&:nth-of-type(2)': {
+                          top: { xs: 130, sm: 140 },
+                          transform: {
+                            xs: 'scale(1.8) translate(-20%)',
+                            sm: 'scale(1.5) translate(-10%)',
+                          },
+                          filter: {
+                            xs: 'auto',
+                            sm: `drop-shadow(-16px 12px 20px ${alpha(
+                              theme.palette.grey[600],
+                              0.5,
+                            )})`,
+                          },
+                        },
+                      },
+                    },
+                    ...theme.applyDarkStyles({
+                      '&:hover': {
+                        '& img': {
+                          '&:nth-of-type(2)': {
+                            filter: {
+                              xs: 'auto',
+                              sm: `drop-shadow(-16px 12px 20px ${alpha(
+                                theme.palette.common.black,
+                                0.8,
+                              )})`,
+                            },
+                          },
+                          filter: `drop-shadow(-16px 12px 20px ${alpha(
+                            theme.palette.common.black,
+                            0.2,
+                          )})`,
+                        },
+                      },
+                    }),
+                  })}
+                >
+                  <Image
+                    src={`/static/branding/design-kits/connect-plug-in-figma-light.jpg`}
+                    alt="Screenshot of Figma displaying the Material UI Design kit"
+                    loading="lazy"
+                    sx={(theme) =>
+                      theme.applyDarkStyles({
+                        content: `url(/static/branding/design-kits/connect-plug-in-figma-dark.jpg)`,
+                      })
+                    }
+                  />
+                  <Image
+                    src={`/static/branding/design-kits/connect-plug-in-light.jpg`}
+                    alt=""
+                    loading="lazy"
+                    sx={(theme) =>
+                      theme.applyDarkStyles({
+                        content: `url(/static/branding/design-kits/connect-plug-in-dark.jpg)`,
+                      })
+                    }
+                  />
+                </Box>
+              </Fade>
             </Frame.Demo>
-            {!customized ? (
+            {customized ? (
               <Frame.Info
                 data-mui-color-scheme="dark"
                 sx={{
@@ -318,22 +333,15 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
               <Frame.Info data-mui-color-scheme="dark">
                 <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 1 }}>
                   <Typography variant="body2" fontWeight="bold" gutterBottom>
-                    Want to try MUI Connect out?
+                    Want to try Connect out?
                   </Typography>
-                  <Chip
-                    label="Beta"
-                    size="small"
-                    color="success"
-                    variant="outlined"
-                    sx={{ height: 20 }}
-                  />
+                  <Chip label="Beta" size="small" color="success" variant="outlined" />
                 </Box>
                 <Typography variant="body2" color="text.secondary" mb={1}>
                   Add your email if you&apos;re interested in joining the beta testers list, and
                   we&apos;ll let you know how to get access to it once the first release is ready!
                 </Typography>
                 <MUIConnectSignUp />
-                {/* the EmailSubscribe component above will be potentially replaced */}
               </Frame.Info>
             )}
           </Frame>

@@ -14,7 +14,7 @@ import Section from 'docs/src/layouts/Section';
 
 const faqData = [
   {
-    summary: 'How long until MUI Connect is out?',
+    summary: 'How long until the Connect plug-in is out?',
     detail: (
       <React.Fragment>
         We&apos;re still polishing it for a &quot;stable&quot; release. Add your email in the input

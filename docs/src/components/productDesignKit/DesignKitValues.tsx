@@ -6,6 +6,7 @@ import LibraryBooks from '@mui/icons-material/LibraryBooks';
 import CodeRounded from '@mui/icons-material/CodeRounded';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Section from 'docs/src/layouts/Section';
+import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import InfoCard from 'docs/src/components/action/InfoCard';
 
 const content = [
@@ -25,21 +26,23 @@ const content = [
     icon: <CodeRounded fontSize="small" color="primary" />,
     title: 'For developers',
     description:
-      'Effortlessly communicate with designers using the same language around the MUI Core components props and variants.',
+      'Effortlessly communicate with designers using the same language around the Material UI components props and variants.',
   },
 ];
 
 function DesignKitValues() {
   return (
     <Section>
-      <Typography variant="body2" color="primary" fontWeight="bold">
-        Collaboration
-      </Typography>
-      <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 }, maxWidth: 500 }}>
-        Be more efficient <GradientText>designing and developing</GradientText> with the same
-        library
-      </Typography>
-      <Grid container spacing={3}>
+      <SectionHeadline
+        overline="Collaboration"
+        title={
+          <Typography variant="h2" sx={{ mt: 1 }}>
+            Be more efficient <GradientText>designing and developing</GradientText> with the same
+            library
+          </Typography>
+        }
+      />
+      <Grid container spacing={3} mt={4}>
         {content.map(({ icon, title, description }) => (
           <Grid key={title} item xs={12} sm={6} md={4}>
             <InfoCard title={title} icon={icon} description={description} />
