@@ -12,7 +12,7 @@
     "typecheck": "tsc --noEmit -p ."
   },
   "dependencies": {
-    "@babel/core": "^7.23.6",
+    "@babel/core": "^7.23.7",
     "@babel/preset-typescript": "^7.23.3",
     "@linaria/babel-preset": "^5.0.4",
     "@linaria/logger": "^5.0.0",
@@ -21,7 +21,7 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24"
   },
   "devDependencies": {
-    "@types/babel__core": "^7.20.3",
+    "@types/babel__core": "^7.20.5",
     "@types/debug": "^4.1.12",
     "vite": "^5.0.0"
   },
