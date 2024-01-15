@@ -1,7 +1,10 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "lib": ["es2022", "dom"]
+    "lib": ["es2022", "dom"],
+    "resolveJsonModule": true,
+    "target": "ES2015"
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*.ts"],
+  "exclude": ["./tsup.config.ts"]
 }

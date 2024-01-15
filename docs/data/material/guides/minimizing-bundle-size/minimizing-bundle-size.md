@@ -5,7 +5,7 @@
 ## Bundle size matters
 
 Material UI's maintainers take bundle size very seriously. Size snapshots are taken
-on every commit for every package and critical parts of those packages ([view the latest snapshot](/size-snapshot/)).
+on every commit for every package and critical parts of those packages.
 Combined with [dangerJS](https://danger.systems/js/) we can inspect
 [detailed bundle size changes](https://github.com/mui/material-ui/pull/14638#issuecomment-466658459) on every Pull Request.
 
@@ -82,7 +82,7 @@ import TabIndicator from '@mui/material/Tabs/TabIndicator';
 //                                           ^^^^^^^^^^^^ 3rd level
 ```
 
-If you're using `eslint` you can catch problematic imports with the [`no-restricted-imports` rule](https://eslint.org/docs/latest/rules/no-restricted-imports). The following `.eslintrc` configuration will highlight problematic imports from `@mui` packages:
+If you're using ESLint you can catch problematic imports with the [`no-restricted-imports` rule](https://eslint.org/docs/latest/rules/no-restricted-imports). The following `.eslintrc` configuration will highlight problematic imports from `@mui` packages:
 
 ```json
 {

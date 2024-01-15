@@ -9,6 +9,6 @@
     "esModuleInterop": true,
     "incremental": true
   },
-  "include": ["next-env.d.ts", "types", "src", "pages", "data"],
+  "include": ["next-env.d.ts", "types", "src", "pages", "data", "next.config.js"],
   "exclude": ["node_modules", "export"]
 }

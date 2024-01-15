@@ -1,7 +1,10 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "lib": ["es2022", "dom"]
+    "target": "ES2022",
+    "paths": {
+      "@babel/core": ["./node_modules/@babel/core"]
+    }
   },
   "include": ["src/**/*"]
 }

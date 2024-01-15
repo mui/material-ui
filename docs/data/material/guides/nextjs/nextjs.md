@@ -63,7 +63,7 @@ To learn more about it, see [the MDN CSS layer documentation](https://developer.
 
 This section walks through the Material UI integration with the Next.js [Pages Router](https://nextjs.org/docs/pages/building-your-application), for both [Server Side Rendering](https://nextjs.org/docs/pages/building-your-application/rendering/server-side-rendering) (SSR) and [Static Site Generation](https://nextjs.org/docs/pages/building-your-application/rendering/static-site-generation) (SSG).
 
-### Intalling the dependencies
+### Installing the dependencies
 
 Start by ensuring that you already have `@mui/material` and `next` installed.
 Then, run one of the following commands to install the dependencies:

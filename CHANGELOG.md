@@ -1,5 +1,90 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.15.4
+
+<!-- generated comparing v5.15.3..master -->
+
+_Jan 10, 2024_
+
+A big thanks to the 22 contributors who made this release possible. Here are some highlights:
+
+- ✨ Material UI's [ToggleButtonGroup](https://mui.com/material-ui/react-toggle-button/) now supports non-button element as a child (e.g., showing a Tooltip on a disabled ToggleButton) (#40220) @Methuselah96
+
+### `@mui/material@5.15.4`
+
+- [TextField][FormLabel][InputLabel][FormControl] Use exact children type to allow React children type augmentation (#38872) @nicegamer7
+- [Select] Add form submission regression test (#40176) @mj12albert
+- [ToggleButtonGroup] Support different elements under it (#40220) @Methuselah96
+- [ClickAwayListener] Fix export of types (#40485) @illume
+
+### `@mui/material-nextjs@5.15.4`
+
+- Improve build size issue (#40436) @siriwatknp
+
+### `@mui/icons-material@5.15.4`
+
+- Update the icons (#40365) @michaldudak
+
+### `@mui/system@5.15.4`
+
+- [zero] Move zero runtime related packages (#40426) @brijeshb42
+- Fix all use of styled(Box) (#40449) @oliviertassinari
+
+### `@mui/utils@5.15.4`
+
+- Fix `isPlainObject` to work across realm (#39981) @brijeshb42
+
+### `@mui/base@5.0.0-beta.31`
+
+- [base-ui][NumberInput] Remove inputId and inputRef types from NumberInput component (#40425) @sai6855
+
+### `@mui/joy@5.0.0-beta.22`
+
+- [Badge] Shouldn't crash when using custom size (#39986) @iamsaumya
+- [ToggleButtonGroup] Add `JoyToggleButtonGroup` to extendTheme's components type export (#40407) @RiceCrisp
+
+### Docs
+
+- [base-ui] Visual tweaks to the plain CSS theme stylesheet (#40487) @zanivan
+- [base-ui] Add tokens to plain CSS theme stylesheet (#40113) @zanivan
+- [base-ui] Update the overview page (#40412) @danilo-leal
+- [material-ui][Drawer] Resolve flickering when double-clicking on the backdrop to close it (#40343) @aacevski
+- [material-ui] Refactor form submission in FormDialog component (#40470) @sai6855
+- [material-ui] Replace recharts with MUI X charts on the Dashboard template (#40107) @alexfauquette
+- [material-ui] Revise the Alert demo page (#34892) @samuelsycamore
+- [material-ui] Revise the Accordion page (#40284) @anle9650
+- [material-ui] Add docs for complementary Card components (#40346) @anle9650
+- [material-ui] Add Material 3 components page (#40350) @DiegoAndai
+- Fix strange italic style @oliviertassinari
+- Fix references to ESLint @oliviertassinari
+- Fix 301 redirections @oliviertassinari
+- Right-to-left revision and addition to Joy UI (#39158) @danilo-leal
+
+### Core
+
+- [examples] Use material-nextjs integration package (#40199) @siriwatknp
+- [code-infra] Configure build dependencies in nx (#40482) @michaldudak
+- [code-infra] Don't require noreferrer on target link (#40447) @oliviertassinari
+- [code-infra] Use tsx instead of ts-node (#40428) @michaldudak
+- [code-infra] Add options to docs-api generation to support X code structure (#40111) @alexfauquette
+- [docs-infra] Add types for withDocsInfra (#40301) @oliviertassinari
+- [docs-infra] Fix anchor links in API pages (#40450) @oliviertassinari
+- [docs-infra] Fix API table full-width (#40476) @oliviertassinari
+- [docs-infra] Fix the copy button overlapping with the scrollbar (#40405) @danilo-leal
+- [docs-infra] Remove explicit `mui-x` dependency resolving (#40257) @LukasTy
+- [docs-infra] Update the outlined Demo container dark mode color (#40488) @danilo-leal
+- [core] Lock file maintenance (#34538) @renovate[bot]
+- [core] Remove duplicate devDependencies (#40438) @michaldudak
+- [core] Remove issue emoji @oliviertassinari
+- [core] Move prefetch at the core, will propagate to MUI X @oliviertassinari
+- [core] Change package manager to pnpm (#36287) @Janpot
+- [core][docs] Remove the "Understand MUI packages" page (#39835) @savalaram-redkar
+- [website] Evolve the Developer Advocate role (#40337) @oliviertassinari
+- [website] Fix default social card @oliviertassinari
+- [test] Restore the `t` command (#40430) @michaldudak
+
+All contributors of this release in alphabetical order: @aacevski, @alexfauquette, @anle9650, @brijeshb42, @danilo-leal, @DiegoAndai, @iamsaumya, @illume, @Janpot, @LukasTy, @Methuselah96, @michaldudak, @mj12albert, @nicegamer7, @oliviertassinari, @renovate[bot], @RiceCrisp, @sai6855, @samuelsycamore, @savalaram-redkar, @siriwatknp, @zanivan
+
 ## 5.15.3
 
 <!-- generated comparing v5.15.2..master -->
@@ -12480,7 +12565,7 @@ Here are some highlights ✨:
 
 - 👩‍🎨 A first iteration on the new styling solution.
 
-  You can find a [new version](https://mui.com/components/slider-styled/) of the slider in the lab powered by [emotion](https://emotion.sh/).
+  You can find a [new version](https://mui.com/components/slider-styled/) of the slider in the lab powered by [Emotion](https://emotion.sh/).
 
   In the event that you are already using styled-components in your application, you can swap emotion for styled-components 💅. Check [this CodeSandbox](https://codesandbox.io/p/sandbox/sliderstyled-with-styled-components-forked-olc27?file=/package.json) for a demo. It relies on aliases to prevent any bundle size overhead.
 

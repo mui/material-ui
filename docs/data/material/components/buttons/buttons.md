@@ -125,7 +125,7 @@ You can learn more about this in the [overrides documentation page](/material-ui
 
 {{"demo": "CustomizedButtons.js", "defaultCodeOpen": false}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/button/).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/button-introduction--docs).
 
 ## Complex button
 
@@ -199,13 +199,15 @@ To prevent this, ensure that the contents of the Loading Button are nested insid
 
 :::
 
-### Material You version
+### Material 3 Button
 
 The default Material UI Button component follows the Material Design 2 specs.
-To get the Material You ([Material Design 3](https://m3.material.io/)) version, use the new experimental `@mui/material-next` package:
+To use the [Material 3](https://m3.material.io/) version, install the experimental `@mui/material-next` package.
 
 ```js
 import Button from '@mui/material-next/Button';
 ```
 
 {{"demo": "ButtonMaterialYouPlayground.js", "hideToolbar": true, "bg": "playground"}}
+
+To learn more about Material UI's MD3 implementation, visit the [Material 3 Components documentation](/material-ui/guides/material-3-components/).

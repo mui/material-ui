@@ -3,7 +3,8 @@
   "extends": "nx/presets/npm.json",
   "targetDefaults": {
     "build": {
-      "cache": true
+      "cache": true,
+      "dependsOn": ["^build"]
     }
   }
 }
