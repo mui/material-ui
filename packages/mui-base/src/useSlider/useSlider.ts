@@ -253,7 +253,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
   const range = Array.isArray(valueDerived);
   let values = range ? valueDerived.slice().sort(asc) : [valueDerived];
-  values = values.map((value) => clamp(value, min, max));
+  values = values.map((value) => (value == null ? min : clamp(value, min, max)));
 
   const marks =
     marksProp === true && step !== null
