@@ -1102,7 +1102,7 @@ importers:
         version: 14.1.2(react-dom@18.2.0)(react@18.2.0)
       '@testing-library/user-event':
         specifier: ^14.5.2
-        version: 14.5.2(@testing-library/dom@9.3.3)
+        version: 14.5.2(@testing-library/dom@9.3.4)
       '@types/chai':
         specifier: ^4.3.11
         version: 4.3.11
@@ -1480,11 +1480,11 @@ importers:
         specifier: ^5.0.5
         version: 5.0.5(rollup@3.29.4)
       '@testing-library/dom':
-        specifier: ^9.3.3
-        version: 9.3.3
+        specifier: ^9.3.4
+        version: 9.3.4
       '@testing-library/user-event':
         specifier: ^14.5.2
-        version: 14.5.2(@testing-library/dom@9.3.3)
+        version: 14.5.2(@testing-library/dom@9.3.4)
       '@types/chai':
         specifier: ^4.3.11
         version: 4.3.11
@@ -1603,7 +1603,7 @@ importers:
         version: link:../test-utils
       '@testing-library/user-event':
         specifier: ^14.5.2
-        version: 14.5.2(@testing-library/dom@9.3.3)
+        version: 14.5.2(@testing-library/dom@9.3.4)
       '@types/chai':
         specifier: ^4.3.11
         version: 4.3.11
@@ -2063,8 +2063,8 @@ importers:
         specifier: ^0.2.0
         version: 0.2.0(enzyme@3.11.0)(react-dom@18.2.0)(react@18.2.0)
       '@testing-library/dom':
-        specifier: ^9.3.3
-        version: 9.3.3
+        specifier: ^9.3.4
+        version: 9.3.4
       '@testing-library/react':
         specifier: ^14.1.2
         version: 14.1.2(react-dom@18.2.0)(react@18.2.0)
@@ -2416,8 +2416,8 @@ importers:
         specifier: 1.40.1
         version: 1.40.1
       '@testing-library/dom':
-        specifier: ^9.3.3
-        version: 9.3.3
+        specifier: ^9.3.4
+        version: 9.3.4
       '@types/chai':
         specifier: ^4.3.11
         version: 4.3.11
@@ -7300,8 +7300,8 @@ packages:
       defer-to-connect: 2.0.1
     dev: true
 
-  /@testing-library/dom@9.3.3:
-    resolution: {integrity: sha512-fB0R+fa3AUqbLHWyxXa2kGVtf1Fe1ZZFr0Zp6AIbIAzXb2mKbEXl+PCQNUOaq5lbTab5tfctfXRNsWXxa2f7Aw==}
+  /@testing-library/dom@9.3.4:
+    resolution: {integrity: sha512-FlS4ZWlp97iiNWig0Muq8p+3rVDjRiYE+YKGbAqXOu9nwJFFOdL00kFpz42M+4huzYi86vAK1sOOfyOG45muIQ==}
     engines: {node: '>=14'}
     dependencies:
       '@babel/code-frame': 7.23.5
@@ -7321,18 +7321,18 @@ packages:
       react-dom: ^18.0.0
     dependencies:
       '@babel/runtime': 7.23.8
-      '@testing-library/dom': 9.3.3
+      '@testing-library/dom': 9.3.4
       '@types/react-dom': 18.2.18
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  /@testing-library/user-event@14.5.2(@testing-library/dom@9.3.3):
+  /@testing-library/user-event@14.5.2(@testing-library/dom@9.3.4):
     resolution: {integrity: sha512-YAh82Wh4TIrxYLmfGcixwD18oIjyC1pFQC2Y01F2lzV2HTMiYrI0nze0FD0ocB//CKS/7jIUgae+adPqxK5yCQ==}
     engines: {node: '>=12', npm: '>=6'}
     peerDependencies:
       '@testing-library/dom': '>=7.21.4'
     dependencies:
-      '@testing-library/dom': 9.3.3
+      '@testing-library/dom': 9.3.4
     dev: true
 
   /@theme-ui/color-modes@0.16.1(@emotion/react@11.11.3)(react@18.2.0):
