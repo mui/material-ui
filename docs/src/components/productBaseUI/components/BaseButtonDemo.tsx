@@ -20,6 +20,7 @@ const buttonStyles = `
 
   &:hover {
     background: var(--primary-hover);
+    box-shadow: none;
   }
 
   &.Mui-active {
@@ -43,7 +44,7 @@ const buttonStyles = `
 
 const StyledButton = styled('button')(buttonStyles);
 
-const buttonStylesTailwind = `cursor-pointer select-none rounded-[8px] border-none bg-[--primary] p-[6px_12px] text-[0.875rem] leading-[1.5] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--primary-hover] ui-active:bg-[--primary-active] ui-disabled:cursor-not-allowed ui-disabled:opacity-50 ui-focus-visible:[outline:3px_solid_var(--focus-ring)] outline-offset-2 transition [box-shadow:var(--solid-btn-shadow)]`;
+const buttonStylesTailwind = `cursor-pointer select-none rounded-[8px] border-none bg-[--primary] p-[6px_12px] text-[0.875rem] leading-[1.5] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--primary-hover] ui-active:bg-[--primary-active] ui-disabled:cursor-not-allowed ui-disabled:opacity-50 ui-focus-visible:[outline:3px_solid_var(--focus-ring)] outline-offset-2 transition [box-shadow:var(--solid-btn-shadow)] hover:[box-shadow:none]`;
 
 export default function BaseButtonDemo({
   styling,
@@ -118,7 +119,7 @@ import './styles.css';
   text-white [font-family:IBM_Plex_sans] hover:bg-indigo-500 
   ui-active:bg-indigo-800 ui-disabled:cursor-not-allowed ui-disabled:opacity-50 
   ui-focus-visible:[outline:4px_solid_var(--focus-ring)] outline-offset-2 
-  transition [box-shadow:var(--solid-btn-shadow)]">
+  transition [box-shadow:var(--solid-btn-shadow)] hover:[box-shadow:none]">
   Button
 </Button>
 <Button
@@ -127,7 +128,7 @@ import './styles.css';
   text-white [font-family:IBM_Plex_sans] hover:bg-indigo-500 
   ui-active:bg-indigo-800 ui-disabled:cursor-not-allowed ui-disabled:opacity-50 
   ui-focus-visible:[outline:4px_solid_var(--focus-ring)] outline-offset-2 
-  transition [box-shadow:var(--solid-btn-shadow)]">
+  transition [box-shadow:var(--solid-btn-shadow)] hover:[box-shadow:none]">
   Disabled
 </Button>`;
   }

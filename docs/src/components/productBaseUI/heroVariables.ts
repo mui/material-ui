@@ -26,11 +26,11 @@ const sleek = {
   '--Button-border-hover': 'var(--muidocs-palette-grey-300)',
   '--Button-bg-hover': 'var(--muidocs-palette-grey-100)',
   '--LinkButton-shadow':
-    '0 -2px 0.5px 0 var(--muidocs-palette-primary-50) inset, 0 1px 2px 0 rgba(205, 210, 215, 0.5)',
-  '--LinkButton-border': 'var(--muidocs-palette-primary-200)',
+    '0 -2px 0.5px 0 var(--muidocs-palette-primary-100) inset, 0 1px 2px 0 rgba(205, 210, 215, 0.5)',
+  '--LinkButton-border': 'var(--muidocs-palette-primary-100)',
   '--LinkButton-bg': 'var(--muidocs-palette-primary-50)',
   '--LinkButton-color': 'var(--muidocs-palette-primary-600)',
-  '--LinkButton-border-hover': 'var(--muidocs-palette-primary-300)',
+  '--LinkButton-border-hover': 'var(--muidocs-palette-primary-200)',
   '--LinkButton-bg-hover': 'var(--muidocs-palette-primary-100)',
   '[data-mui-color-scheme="dark"] &': {
     // dark tokens
@@ -50,7 +50,7 @@ const sleek = {
     '--Input-focus-border': '0 0 0 3px var(--muidocs-palette-primary-600)',
     '--Slider-thumb-focus': 'rgba(51, 153, 255, 0.4)',
     '--Button-shadow':
-      '0 -2px 0.5px 0 var(--muidocs-palette-primaryDark-800) inset, 0 1px 2px 0 rgba(0, 0, 0, 0.5)',
+      '0 -2px 0.5px 0 var(--muidocs-palette-primaryDark-900) inset, 0 1px 2px 0 rgba(0, 0, 0, 0.5)',
     '--Button-border': 'var(--muidocs-palette-grey-800)',
     '--Button-bg': 'var(--muidocs-palette-grey-900)',
     '--Button-color': 'var(--muidocs-palette-primary-100)',
