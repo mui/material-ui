@@ -14,7 +14,7 @@
   "dependencies": {
     "csstype": "^3.1.2",
     "cssesc": "^3.0.0",
-    "clsx": "^2.0.0",
+    "clsx": "^2.1.0",
     "@babel/core": "^7.23.7",
     "@babel/helper-module-imports": "^7.22.15",
     "@babel/helper-plugin-utils": "^7.22.5",

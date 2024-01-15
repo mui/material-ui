@@ -2263,7 +2263,7 @@ importers:
         specifier: workspace:^
         version: link:../mui-system/build
       clsx:
-        specifier: ^2.0.0
+        specifier: ^2.1.0
         version: 2.1.0
       cssesc:
         specifier: ^3.0.0
