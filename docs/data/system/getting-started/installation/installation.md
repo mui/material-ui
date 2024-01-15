@@ -26,7 +26,7 @@ pnpm add @mui/system @emotion/react @emotion/styled
 
 <!-- #react-peer-version -->
 
-Please note that [react](https://www.npmjs.com/package/react) is peer dependencies, meaning you should ensure it's installed for MUI System to work.
+Please note that [react](https://www.npmjs.com/package/react) is a peer dependency, meaning you should ensure it is installed before installing MUI System.
 
 ```json
 "peerDependencies": {
