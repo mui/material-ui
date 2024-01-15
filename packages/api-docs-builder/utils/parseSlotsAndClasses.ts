@@ -60,14 +60,16 @@ export default function parseSlotsAndClasses({
   project,
   componentName,
   muiName,
+  slotInterfaceName
 }: {
   project: TypeScriptProject;
   componentName: string;
   muiName: string;
+  slotInterfaceName?: string;
 }): { slots: Slot[]; classes: ComponentClassDefinition[] } {
   // Obtain an array of classes for the given component
   const classDefinitions = extractClasses(project, componentName, muiName);
-  const slots = extractSlots(project, componentName, classDefinitions);
+  const slots = extractSlots(project, componentName, classDefinitions, slotInterfaceName);
 
   const nonSlotClassDefinitions = classDefinitions
     .filter((classDefinition) => !Object.keys(slots).includes(classDefinition.key))
@@ -179,9 +181,10 @@ function extractSlots(
   project: TypeScriptProject,
   componentName: string,
   classDefinitions: ComponentClassDefinition[],
+  slotsInterfaceName?: string,
 ): Record<string, Slot> {
-  const slotsInterfaceName = `${componentName}Slots`;
-  const exportedSymbol = project.exports[slotsInterfaceName];
+  const defaultSlotsInterfaceName = `${componentName}Slots`;
+  const exportedSymbol = project.exports[slotsInterfaceName ?? defaultSlotsInterfaceName];
   if (!exportedSymbol) {
     console.warn(`No declaration for ${slotsInterfaceName}`);
     return {};

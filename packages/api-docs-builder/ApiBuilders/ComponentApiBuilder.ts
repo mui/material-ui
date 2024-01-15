@@ -750,6 +750,7 @@ export default async function generateComponentApi(
     project,
     componentName: reactApi.name,
     muiName: reactApi.muiName,
+    slotInterfaceName: componentInfo.slotInterfaceName,
   });
 
   reactApi.slots = slots;
