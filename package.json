@@ -80,7 +80,7 @@
   },
   "dependencies": {
     "@googleapis/sheets": "^5.0.5",
-    "@slack/bolt": "^3.17.0",
+    "@slack/bolt": "^3.17.1",
     "google-auth-library": "^9.4.1"
   },
   "devDependencies": {
