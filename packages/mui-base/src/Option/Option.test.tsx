@@ -49,7 +49,6 @@ describe('<Option />', () => {
     },
     refInstanceof: window.HTMLLIElement,
     testComponentPropWith: 'span',
-    muiName: 'MuiOption',
     slots: {
       root: {
         expectedClassName: optionClasses.root,

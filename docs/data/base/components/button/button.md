@@ -39,7 +39,7 @@ Notice that the second button cannot be clicked due to the `disabled` prop:
 The Button component is composed of a root `<button>` slot with no interior slots:
 
 ```html
-<button class="MuiButton-root">
+<button class="base-Button-root">
   <!-- button text goes here -->
 </button>
 ```

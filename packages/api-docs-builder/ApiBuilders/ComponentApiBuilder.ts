@@ -746,7 +746,8 @@ export default async function generateComponentApi(
   }
 
   const { slots, classes } = parseSlotsAndClasses({
-    project,
+    typescriptProject: project,
+    projectSettings,
     componentName: reactApi.name,
     muiName: reactApi.muiName,
   });

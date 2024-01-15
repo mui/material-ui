@@ -39,8 +39,8 @@ The following demo shows how to create and style an input component, including `
 The Input component is composed of a root `<div>` slot that houses one interior `<input>` slot:
 
 ```html
-<div class="MuiInput-root">
-  <input class="MuiInput-input" />
+<div class="base-Input-root">
+  <input class="base-Input-input" />
 </div>
 ```
 

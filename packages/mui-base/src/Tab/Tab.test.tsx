@@ -55,7 +55,6 @@ describe('<Tab />', () => {
     },
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'div',
-    muiName: 'MuiTab',
     slots: {
       root: {
         expectedClassName: tabClasses.root,

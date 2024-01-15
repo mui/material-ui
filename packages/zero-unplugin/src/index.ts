@@ -99,6 +99,7 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
     sourceMap = false,
     transformSx = true,
     overrideContext,
+    tagResolver,
     ...rest
   } = options;
   const themeArgs = { theme };
@@ -166,6 +167,7 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
           root: process.cwd(),
           preprocessor,
           pluginOptions: {
+            ...rest,
             themeArgs: {
               theme,
             },
@@ -179,7 +181,16 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
               }
               return context;
             },
-            ...rest,
+            tagResolver(source: string, tag: string) {
+              const tagResult = tagResolver?.(source, tag);
+              if (tagResult) {
+                return tagResult;
+              }
+              if (source.endsWith('/zero-styled')) {
+                return `${process.env.RUNTIME_PACKAGE_NAME}/exports/${tag}`;
+              }
+              return null;
+            },
             babelOptions: {
               ...rest.babelOptions,
               plugins: [
