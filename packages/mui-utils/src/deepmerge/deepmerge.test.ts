@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { runInNewContext } from 'vm';
 import deepmerge from './deepmerge';
 
 describe('deepmerge', () => {
@@ -9,6 +10,19 @@ describe('deepmerge', () => {
     });
 
     expect({}).not.to.have.property('isAdmin');
+  });
+
+  it('should merge objects across realms', function test() {
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      // vm is only available in Node.js.
+      // We could use https://github.com/browserify/vm-browserify to run the test in an iframe when
+      // in Karma but it doesn't seem we need to go as far.
+      this.skip();
+    }
+
+    const vmObject = runInNewContext('({hello: "realm"})');
+    const result = deepmerge({ hello: 'original' }, vmObject);
+    expect(result.hello).to.equal('realm');
   });
 
   // https://github.com/mui/material-ui/issues/20095

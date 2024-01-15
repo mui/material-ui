@@ -10,38 +10,40 @@ import ToggleDisplayOption, {
 import PropertiesList, { getHash } from 'docs/src/modules/components/ApiPage/list/PropertiesList';
 import PropertiesTable from 'docs/src/modules/components/ApiPage/table/PropertiesTable';
 
-export const getPropsToC = ({
+export function getPropsToC({
   componentName,
   componentProps,
   inheritance,
   themeDefaultProps,
   t,
   hash,
-}) => ({
-  text: t('api-docs.props'),
-  hash: hash ?? 'props',
-  children: [
-    ...Object.entries(componentProps)
-      .filter(([, propData]) => propData.description !== '@ignore')
-      .map(([propName]) => ({
-        text: propName,
-        hash: getHash({ propName, targetName: componentName }),
-        children: [],
-      })),
-    ...(inheritance
-      ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
-      : []),
-    ...(themeDefaultProps
-      ? [{ text: t('api-docs.themeDefaultProps'), hash: 'theme-default-props', children: [] }]
-      : []),
-  ],
-});
+}) {
+  return {
+    text: t('api-docs.props'),
+    hash: hash ?? 'props',
+    children: [
+      ...Object.entries(componentProps)
+        .filter(([, propData]) => propData.description !== '@ignore')
+        .map(([propName]) => ({
+          text: propName,
+          hash: getHash({ propName, componentName }),
+          children: [],
+        })),
+      ...(inheritance
+        ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
+        : []),
+      ...(themeDefaultProps
+        ? [{ text: t('api-docs.themeDefaultProps'), hash: 'theme-default-props', children: [] }]
+        : []),
+    ],
+  };
+}
 
 export default function PropertiesSection(props) {
   const {
     properties,
     propertiesDescriptions,
-    targetName = '',
+    componentName = '',
     showOptionalAbbr = false,
     title = 'api-docs.props',
     titleHash = 'props',
@@ -75,6 +77,14 @@ export default function PropertiesSection(props) {
         'joy-variant',
       ].filter((key) => propData.additionalInfo?.[key]);
 
+      const seeMoreDescription =
+        propDescription?.seeMoreText &&
+        propData.seeMoreLink &&
+        propDescription.seeMoreText.replace(
+          '{{link}}',
+          `<a href="${propData.seeMoreLink.url}">${propData.seeMoreLink.text}</a>`,
+        );
+
       const signature = propData.signature?.type;
       const signatureArgs = propData.signature?.describedArgs?.map((argName) => ({
         argName,
@@ -85,8 +95,9 @@ export default function PropertiesSection(props) {
         propertiesDescriptions[propName].typeDescriptions[propData.signature.returned];
 
       return {
-        targetName,
+        componentName,
         propName,
+        seeMoreDescription,
         description: propDescription?.description,
         requiresRef: propDescription?.requiresRef,
         isOptional,
@@ -122,9 +133,7 @@ export default function PropertiesSection(props) {
         </Level>
         <ToggleDisplayOption displayOption={displayOption} setDisplayOption={setDisplayOption} />
       </Box>
-
       {spreadHint && <p dangerouslySetInnerHTML={{ __html: spreadHint }} />}
-
       {displayOption === 'table' ? (
         <PropertiesTable properties={formatedProperties} />
       ) : (
@@ -135,6 +144,7 @@ export default function PropertiesSection(props) {
 }
 
 PropertiesSection.propTypes = {
+  componentName: PropTypes.string,
   hooksParameters: PropTypes.bool,
   hooksReturnValue: PropTypes.bool,
   level: PropTypes.string,
@@ -142,7 +152,6 @@ PropertiesSection.propTypes = {
   propertiesDescriptions: PropTypes.object.isRequired,
   showOptionalAbbr: PropTypes.bool,
   spreadHint: PropTypes.string,
-  targetName: PropTypes.string,
   title: PropTypes.string,
   titleHash: PropTypes.string,
 };

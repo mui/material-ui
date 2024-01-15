@@ -260,7 +260,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
 
   const handleKeyUp = useEventCallback((event) => {
     // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
-    // https://codesandbox.io/s/button-keyup-preventdefault-dn7f0
+    // https://codesandbox.io/p/sandbox/button-keyup-preventdefault-dn7f0
     if (
       focusRipple &&
       event.key === ' ' &&
@@ -372,10 +372,10 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
 });
 
 ButtonBase.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A ref for imperative actions.
    * It currently only supports `focusVisible()` action.

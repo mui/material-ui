@@ -32,29 +32,52 @@
   },
   "name": "Step",
   "imports": ["import Step from '@mui/joy/Step';", "import { Step } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiStep" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'li'",
-      "class": ".MuiStep-root"
+      "class": "MuiStep-root"
     },
     {
       "name": "indicator",
       "description": "The component that renders the indicator.",
       "default": "'div'",
-      "class": ".MuiStep-indicator"
+      "class": "MuiStep-indicator"
     }
   ],
-  "classes": {
-    "classes": ["active", "completed", "disabled", "horizontal", "vertical"],
-    "globalClasses": {
-      "active": "Mui-active",
-      "completed": "Mui-completed",
-      "disabled": "Mui-disabled"
+  "classes": [
+    {
+      "key": "active",
+      "className": "Mui-active",
+      "description": "Class name applied to the root element if `active` is true.",
+      "isGlobal": true
+    },
+    {
+      "key": "completed",
+      "className": "Mui-completed",
+      "description": "Class name applied to the root element if `completed` is true.",
+      "isGlobal": true
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "Class name applied to the root element if `disabled` is true.",
+      "isGlobal": true
+    },
+    {
+      "key": "horizontal",
+      "className": "MuiStep-horizontal",
+      "description": "Class name applied to the root element if `orientation=\"horizontal\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "vertical",
+      "className": "MuiStep-vertical",
+      "description": "Class name applied to the root element if `orientation=\"vertical\"`.",
+      "isGlobal": false
     }
-  },
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyStep",

@@ -16,13 +16,13 @@ export default function UnstyledSelectCustomRenderValue() {
     <Select
       defaultValue={10}
       renderValue={(option: SelectOption<number> | null) => {
-        if (option == null || option.value === null) {
+        if (option == null || option.value === 0) {
           return 'Select an option…';
         }
         return `${option.label} (${option.value})`;
       }}
     >
-      <Option value={null}>None</Option>
+      <Option value={0}>None</Option>
       <Option value={10}>Ten</Option>
       <Option value={20}>Twenty</Option>
       <Option value={30}>Thirty</Option>
@@ -82,7 +82,7 @@ const Button = React.forwardRef(function Button<
 
 const StyledButton = styled('button', { shouldForwardProp: () => true })(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   min-width: 320px;
@@ -125,7 +125,7 @@ const StyledButton = styled('button', { shouldForwardProp: () => true })(
 
 const Listbox = styled('ul')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   padding: 6px;
@@ -167,6 +167,10 @@ const Option = styled(BaseOption)(
   &.${optionClasses.highlighted}.${optionClasses.selected} {
     background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
+  }
+
+  &:focus-visible {
+    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
   }
 
   &.${optionClasses.disabled} {

@@ -237,12 +237,12 @@ async function generateProptypes(
         filename: sourceFile,
       },
       comment: [
-        '----------------------------- Warning --------------------------------',
-        '| These PropTypes are generated from the TypeScript type definitions |',
+        '┌────────────────────────────── Warning ──────────────────────────────┐',
+        '│ These PropTypes are generated from the TypeScript type definitions. │',
         isTsFile
-          ? '|     To update them edit TypeScript types and run "yarn proptypes"  |'
-          : '|     To update them edit the d.ts file and run "yarn proptypes"     |',
-        '----------------------------------------------------------------------',
+          ? '│ To update them, edit the TypeScript types and run `pnpm proptypes`. │'
+          : '│    To update them, edit the d.ts file and run `pnpm proptypes`.     │',
+        '└─────────────────────────────────────────────────────────────────────┘',
       ].join('\n'),
       ensureBabelPluginTransformReactRemovePropTypesIntegration: true,
       getSortLiteralUnions,

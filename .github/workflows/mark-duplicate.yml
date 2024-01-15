@@ -19,5 +19,5 @@ jobs:
           actions: 'mark-duplicate'
           token: ${{ secrets.GITHUB_TOKEN }}
           duplicate-labels: 'duplicate'
-          remove-labels: 'status: incomplete,status: needs triage'
+          remove-labels: 'status: incomplete,status: waiting for maintainer'
           close-issue: true

@@ -46,7 +46,7 @@ const Badge = styled(BaseBadge)(
   padding: 0;
   font-size: 14px;
   list-style: none;
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   position: relative;
   display: inline-block;
   line-height: 1;
@@ -69,7 +69,7 @@ const Badge = styled(BaseBadge)(
     background: ${blue[500]};
     box-shadow: 0px 4px 6x ${theme.palette.mode === 'dark' ? grey[900] : grey[300]};
     transform: translate(50%, -50%);
-    transform-origin: 100% 0; 
+    transform-origin: 100% 0;
   }
   `,
 );

@@ -14,7 +14,7 @@ Feel free to submit a pull request!
 
 ## IDE tools
 
-- [eslint: detect unused classes](https://github.com/jens-ox/eslint-plugin-material-ui-unused-classes): ESLint plugin to detect unused styling classes with `@mui/styles`.
+- [eslint-plugin-material-ui-unused-classes](https://github.com/jens-ox/eslint-plugin-material-ui-unused-classes): ESLint plugin to detect unused styling classes with `@mui/styles`.
 
 ## Theming
 
@@ -52,6 +52,10 @@ Feel free to submit a pull request!
 
 - [mui-color-input](https://github.com/viclafouch/mui-color-input): A color input designed for use with Material UI, built with [TinyColor](https://tinycolor.vercel.app/).
 - [material-ui-color](https://github.com/mikbry/material-ui-color): Collections of color components for Material UI. No dependencies, small, highly customizable, and supports theming.
+
+### Rich text
+
+- [mui-tiptap](https://github.com/sjdemartini/mui-tiptap): A customizable Material UI-styled WYSIWYG (What You See Is What You Get) rich text editor, using [Tiptap](https://tiptap.dev/).
 
 ### Sparkline
 

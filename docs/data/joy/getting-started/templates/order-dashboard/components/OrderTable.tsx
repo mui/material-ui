@@ -24,7 +24,7 @@ import Menu from '@mui/joy/Menu';
 import MenuButton from '@mui/joy/MenuButton';
 import MenuItem from '@mui/joy/MenuItem';
 import Dropdown from '@mui/joy/Dropdown';
-// icons
+
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import SearchIcon from '@mui/icons-material/Search';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -127,7 +127,7 @@ const rows = [
     },
   },
   {
-    id: 'INV-1234',
+    id: 'INV-1225',
     date: 'Feb 3, 2023',
     status: 'Paid',
     customer: {
@@ -137,7 +137,7 @@ const rows = [
     },
   },
   {
-    id: 'INV-1233',
+    id: 'INV-1224',
     date: 'Feb 3, 2023',
     status: 'Cancelled',
     customer: {
@@ -147,7 +147,7 @@ const rows = [
     },
   },
   {
-    id: 'INV-1232',
+    id: 'INV-1223',
     date: 'Feb 3, 2023',
     status: 'Paid',
     customer: {
@@ -157,7 +157,7 @@ const rows = [
     },
   },
   {
-    id: 'INV-1231',
+    id: 'INV-1221',
     date: 'Feb 3, 2023',
     status: 'Refunded',
     customer: {
@@ -167,7 +167,7 @@ const rows = [
     },
   },
   {
-    id: 'INV-1230',
+    id: 'INV-1220',
     date: 'Feb 3, 2023',
     status: 'Paid',
     customer: {
@@ -177,7 +177,7 @@ const rows = [
     },
   },
   {
-    id: 'INV-1229',
+    id: 'INV-1219',
     date: 'Feb 3, 2023',
     status: 'Cancelled',
     customer: {
@@ -187,7 +187,7 @@ const rows = [
     },
   },
   {
-    id: 'INV-1228',
+    id: 'INV-1218',
     date: 'Feb 3, 2023',
     status: 'Cancelled',
     customer: {
@@ -197,7 +197,7 @@ const rows = [
     },
   },
   {
-    id: 'INV-1227',
+    id: 'INV-1217',
     date: 'Feb 3, 2023',
     status: 'Paid',
     customer: {
@@ -207,7 +207,7 @@ const rows = [
     },
   },
   {
-    id: 'INV-1226',
+    id: 'INV-1216',
     date: 'Feb 3, 2023',
     status: 'Cancelled',
     customer: {
@@ -297,7 +297,6 @@ export default function OrderTable() {
           <Option value="cancelled">Cancelled</Option>
         </Select>
       </FormControl>
-
       <FormControl size="sm">
         <FormLabel>Category</FormLabel>
         <Select size="sm" placeholder="All">
@@ -307,7 +306,6 @@ export default function OrderTable() {
           <Option value="debit">Debit</Option>
         </Select>
       </FormControl>
-
       <FormControl size="sm">
         <FormLabel>Customer</FormLabel>
         <Select size="sm" placeholder="All">
@@ -327,10 +325,7 @@ export default function OrderTable() {
       <Sheet
         className="SearchAndFilters-mobile"
         sx={{
-          display: {
-            xs: 'flex',
-            sm: 'none',
-          },
+          display: { xs: 'flex', sm: 'none' },
           my: 1,
           gap: 1,
         }}
@@ -370,17 +365,11 @@ export default function OrderTable() {
         sx={{
           borderRadius: 'sm',
           py: 2,
-          display: {
-            xs: 'none',
-            sm: 'flex',
-          },
+          display: { xs: 'none', sm: 'flex' },
           flexWrap: 'wrap',
           gap: 1.5,
           '& > *': {
-            minWidth: {
-              xs: '120px',
-              md: '160px',
-            },
+            minWidth: { xs: '120px', md: '160px' },
           },
         }}
       >

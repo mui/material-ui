@@ -67,7 +67,7 @@ export const FormLabelRoot = styled('label', {
     },
     [`&.${formLabelClasses.disabled}`]: {
       color:
-        'color-mix(in srgb, var(--md-comp-form-label-disabled-color), transparent calc(var(--md-comp-form-label-disabled-opacity) * 100%))',
+        'color-mix(in srgb, var(--md-comp-form-label-disabled-color) calc(var(--md-comp-form-label-disabled-opacity) * 100%), transparent)',
     },
     [`&.${formLabelClasses.error}`]: {
       color: 'var(--md-comp-form-label-error-color)',
@@ -147,10 +147,10 @@ const FormLabel = React.forwardRef(function FormLabel<
 }) as OverridableComponent<FormLabelTypeMap>;
 
 FormLabel.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

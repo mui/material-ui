@@ -1,9 +1,10 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["src/**/*", "test/**/*"],
+  "include": ["src/**/*"],
   "compilerOptions": {
-    "lib": ["ES2022", "DOM"],
-    "target": "ES2015",
-    "types": ["mocha", "node", "chai"]
+    "target": "ES2022",
+    "paths": {
+      "@babel/core": ["./node_modules/@babel/core"]
+    }
   }
 }

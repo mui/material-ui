@@ -34,11 +34,18 @@ const getStyleOverrides = (name, theme) => {
 };
 
 const transformVariants = (variants) => {
+  let numOfCallbacks = 0;
   const variantsStyles = {};
 
   if (variants) {
     variants.forEach((definition) => {
-      const key = propsToClassKey(definition.props);
+      let key = '';
+      if (typeof definition.props === 'function') {
+        key = `callback${numOfCallbacks}`;
+        numOfCallbacks += 1;
+      } else {
+        key = propsToClassKey(definition.props);
+      }
       variantsStyles[key] = definition.style;
     });
   }
@@ -57,17 +64,31 @@ const getVariantStyles = (name, theme) => {
 const variantsResolver = (props, styles, variants) => {
   const { ownerState = {} } = props;
   const variantsStyles = [];
+  let numOfCallbacks = 0;
 
   if (variants) {
     variants.forEach((variant) => {
       let isMatch = true;
-      Object.keys(variant.props).forEach((key) => {
-        if (ownerState[key] !== variant.props[key] && props[key] !== variant.props[key]) {
-          isMatch = false;
-        }
-      });
+      if (typeof variant.props === 'function') {
+        const propsToCheck = { ...props, ...ownerState };
+        isMatch = variant.props(propsToCheck);
+      } else {
+        Object.keys(variant.props).forEach((key) => {
+          if (ownerState[key] !== variant.props[key] && props[key] !== variant.props[key]) {
+            isMatch = false;
+          }
+        });
+      }
       if (isMatch) {
-        variantsStyles.push(styles[propsToClassKey(variant.props)]);
+        if (typeof variant.props === 'function') {
+          variantsStyles.push(styles[`callback${numOfCallbacks}`]);
+        } else {
+          variantsStyles.push(styles[propsToClassKey(variant.props)]);
+        }
+      }
+
+      if (typeof variant.props === 'function') {
+        numOfCallbacks += 1;
       }
     });
   }

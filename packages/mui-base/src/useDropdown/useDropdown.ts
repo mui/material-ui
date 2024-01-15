@@ -17,7 +17,7 @@ import { dropdownReducer } from './dropdownReducer';
  * - [useDropdown API](https://mui.com/base-ui/react-menu/hooks-api/#use-dropdown)
  */
 export function useDropdown(parameters: UseDropdownParameters = {}) {
-  const { defaultOpen, onOpenChange, open: openProp } = parameters;
+  const { defaultOpen, onOpenChange, open: openProp, componentName = 'useDropdown' } = parameters;
   const [popupId, setPopupId] = React.useState<string>('');
   const [triggerElement, setTriggerElement] = React.useState<HTMLElement | null>(null);
   const lastActionType = React.useRef<string | null>(null);
@@ -43,6 +43,7 @@ export function useDropdown(parameters: UseDropdownParameters = {}) {
     initialState: defaultOpen ? { open: true } : { open: false },
     onStateChange: handleStateChange,
     reducer: dropdownReducer,
+    componentName,
   });
 
   React.useEffect(() => {

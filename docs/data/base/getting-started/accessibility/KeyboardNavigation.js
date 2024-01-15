@@ -72,7 +72,7 @@ const grey = {
 
 const Button = styled('button')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   min-width: 200px;
@@ -116,7 +116,7 @@ const Button = styled('button')(
 
 const Listbox = styled('ul')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   padding: 6px;
@@ -153,6 +153,10 @@ const Option = styled(BaseOption)(
   &.${optionClasses.highlighted} {
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  }
+
+  &:focus-visible {
+    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
   }
 
   &.${optionClasses.highlighted}.${optionClasses.selected} {
@@ -202,7 +206,7 @@ const MenuItem = styled(BaseMenuItem)(
 
 const MenuButton = styled(BaseMenuButton)(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
   font-size: 0.875rem;
   box-sizing: border-box;

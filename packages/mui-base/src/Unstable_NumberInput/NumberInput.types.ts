@@ -12,7 +12,10 @@ export interface NumberInputRootSlotPropsOverrides {}
 export interface NumberInputInputSlotPropsOverrides {}
 export interface NumberInputStepperButtonSlotPropsOverrides {}
 
-export type NumberInputOwnProps = Omit<UseNumberInputParameters, 'error'> & {
+export type NumberInputOwnProps = Omit<
+  UseNumberInputParameters,
+  'error' | 'inputId' | 'inputRef'
+> & {
   /**
    * Trailing adornment for this input.
    */
@@ -25,6 +28,10 @@ export type NumberInputOwnProps = Omit<UseNumberInputParameters, 'error'> & {
    * The id of the `input` element.
    */
   id?: string;
+  /**
+   * The short hint displayed in the `input` before the user enters a value.
+   */
+  placeholder?: React.InputHTMLAttributes<HTMLInputElement>['placeholder'];
   /**
    * The props used for each slot inside the NumberInput.
    * @default {}

@@ -176,7 +176,7 @@ export default function HowToSupport() {
               // @ts-expect-error
               variant="link"
               size="small"
-              href="https://opencollective.com/mui"
+              href="https://opencollective.com/mui-org"
               endIcon={<KeyboardArrowRightRounded />}
               sx={{ ml: -1, mt: 'auto', width: 'fit-content' }}
             >

@@ -312,7 +312,7 @@ export const ButtonRoot = styled(ButtonBase, {
       backgroundColor: hoveredContainerColor[ownerState.variant ?? 'text'],
       boxShadow: hoveredContainerElevation[ownerState.variant ?? 'text'],
     },
-    [`&.${buttonBaseClasses.active}`]: {
+    '&:active': {
       '--md-comp-button-icon-color': 'var(--md-comp-button-pressed-icon-color)',
       ...((ownerState.disableRipple || ownerState.disableTouchRipple) && {
         backgroundColor: pressedContainerColor[ownerState.variant ?? 'text'],
@@ -374,7 +374,10 @@ const Button = React.forwardRef(function Button<
 >(inProps: ButtonProps<BaseComponentType>, ref: React.ForwardedRef<any>) {
   const contextProps = React.useContext(ButtonGroupContext);
   const buttonGroupButtonContextPositionClassName = React.useContext(ButtonGroupButtonContext);
-  const resolvedProps = resolveProps(contextProps as ButtonProps<BaseComponentType>, inProps);
+  const resolvedProps = resolveProps(
+    (contextProps ?? {}) as ButtonProps<BaseComponentType>,
+    inProps,
+  );
   const props = useThemeProps({ props: resolvedProps, name: 'MuiButton' });
   const {
     children,
@@ -412,7 +415,7 @@ const Button = React.forwardRef(function Button<
       ref,
     },
     ownerState,
-    className: clsx(contextProps.className, positionClassName),
+    className: clsx(contextProps?.className, positionClassName),
   });
 
   const startIcon = startIconProp && (
@@ -437,10 +440,10 @@ const Button = React.forwardRef(function Button<
 }) as ExtendButton<ButtonTypeMap>;
 
 Button.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

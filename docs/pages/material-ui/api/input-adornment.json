@@ -28,21 +28,62 @@
     "import InputAdornment from '@mui/material/InputAdornment';",
     "import { InputAdornment } from '@mui/material';"
   ],
-  "styles": {
-    "classes": [
-      "root",
-      "filled",
-      "outlined",
-      "standard",
-      "positionStart",
-      "positionEnd",
-      "disablePointerEvents",
-      "hiddenLabel",
-      "sizeSmall"
-    ],
-    "globalClasses": {},
-    "name": "MuiInputAdornment"
-  },
+  "classes": [
+    {
+      "key": "disablePointerEvents",
+      "className": "MuiInputAdornment-disablePointerEvents",
+      "description": "Styles applied to the root element if `disablePointerEvents={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "filled",
+      "className": "MuiInputAdornment-filled",
+      "description": "Styles applied to the root element if `variant=\"filled\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "hiddenLabel",
+      "className": "MuiInputAdornment-hiddenLabel",
+      "description": "Styles applied if the adornment is used inside <FormControl hiddenLabel />.",
+      "isGlobal": false
+    },
+    {
+      "key": "outlined",
+      "className": "MuiInputAdornment-outlined",
+      "description": "Styles applied to the root element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "positionEnd",
+      "className": "MuiInputAdornment-positionEnd",
+      "description": "Styles applied to the root element if `position=\"end\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "positionStart",
+      "className": "MuiInputAdornment-positionStart",
+      "description": "Styles applied to the root element if `position=\"start\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiInputAdornment-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSmall",
+      "className": "MuiInputAdornment-sizeSmall",
+      "description": "Styles applied if the adornment is used inside <FormControl size=\"small\" />.",
+      "isGlobal": false
+    },
+    {
+      "key": "standard",
+      "className": "MuiInputAdornment-standard",
+      "description": "Styles applied to the root element if `variant=\"standard\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiInputAdornment",
