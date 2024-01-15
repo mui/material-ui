@@ -9,7 +9,7 @@ export default function AppFrameBanner() {
   const pageContext = React.useContext(PageContext);
 
   const productName = convertProductIdToName(pageContext) || 'MUI';
-  const message = `Influence ${productName}'s 2024 roadmap! Take a few minutes to answer the latest Developer Survey`;
+  const message = `Influence ${productName}'s 2024 roadmap! Participate in the latest Developer Survey`;
 
   if (process.env.NODE_ENV !== 'production') {
     if (message.length > 100) {
