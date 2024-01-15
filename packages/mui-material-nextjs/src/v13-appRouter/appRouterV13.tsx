@@ -81,6 +81,7 @@ export default function AppRouterCacheProvider(props: AppRouterCacheProviderProp
       <React.Fragment>
         {globals.map(({ name, style }) => (
           <style
+            nonce={options?.nonce}
             key={name}
             data-emotion={`${registry.cache.key}-global ${name}`}
             // eslint-disable-next-line react/no-danger
@@ -89,6 +90,7 @@ export default function AppRouterCacheProvider(props: AppRouterCacheProviderProp
         ))}
         {styles && (
           <style
+            nonce={options?.nonce}
             data-emotion={dataEmotionAttribute}
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{ __html: styles }}

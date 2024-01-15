@@ -12,7 +12,6 @@ describe('<OptionGroup />', () => {
     mount,
     refInstanceof: window.HTMLLIElement,
     testComponentPropWith: 'span',
-    muiName: 'MuiOptionGroup',
     slots: {
       root: {
         expectedClassName: optionGroupClasses.root,

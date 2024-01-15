@@ -60,7 +60,7 @@ export interface ModalDialogTypeMap<P = {}, D extends React.ElementType = 'div'>
      * The layout of the dialog
      * @default 'center'
      */
-    layout?: 'center' | 'fullscreen';
+    layout?: OverridableStringUnion<'center' | 'fullscreen', ModalDialogPropsLayoutOverrides>;
     /**
      * The component orientation.
      * @default 'vertical'
