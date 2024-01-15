@@ -7,7 +7,7 @@ import FEATURE_TOGGLE from 'docs/src/featureToggle';
 function getSurveyMessage() {
   return (
     <React.Fragment>
-      {`🚀 Influence MUI's 2024 roadmap! Take a few minutes to answer the latest`}
+      {`🚀 Influence MUI's 2024 roadmap! Participate in the latest`}
       &nbsp;
       <Link
         href="https://tally.so/r/3Ex4PN?source=website"
