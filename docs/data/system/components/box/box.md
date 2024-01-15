@@ -14,7 +14,12 @@ githubLabel: 'component: Box'
 ## Introduction
 
 The Box component is a generic container for grouping other components.
-It's a fundamental building block when building with MUI component libraries—you can think of it as a `<div>` with special features (like access to your app's theme and the [`sx` prop](/system/getting-started/the-sx-prop/)).
+It's a fundamental building block when working with MUI component libraries—you can think of it as a `<div>` with extra built-in features, like access to your app's theme and the [`sx` prop](/system/getting-started/the-sx-prop/).
+
+### Usage
+
+The Box component differs from other containers available in Material UI because its usage is intended to be multipurpose and open-ended, just like a `<div>`.
+Components like [Stack](/material-ui/react-stack/) and [Paper](/material-ui/react-paper/), by contrast, feature usage-specific props that make them ideal for certain use cases—Stack for one-dimensional layouts, and Paper for elevated surfaces.
 
 ## Basics
 
@@ -27,28 +32,23 @@ The demo below replaces the `<div>` with a `<section>` element:
 
 {{"demo": "BoxBasic.js", "defaultCodeOpen": true }}
 
-:::info
-The Box component differs from other containers available in Material UI and Joy UI because it's intended to be multipurpose—components like [Stack](/material-ui/react-stack/) and [Paper](/material-ui/react-paper/), by contrast, feature usage-specific props that make them ideal for certain use cases.
-:::
+## Customization
 
-## Component
+### Using system props
+
+As a CSS utility component, the Box supports all [MUI System properties](/system/properties/).
+You can use them as props directly on the component.
+
+{{"demo": "BoxSystemProps.js", "defaultCodeOpen": true }}
 
 ### Using the sx prop
 
-Use the [`sx` prop](/system/getting-started/the-sx-prop/) to quickly customize any Box instance using a superset of CSS with access to all the style functions and theme-aware properties exposed in the MUI System package.
+Use the [`sx` prop](/system/getting-started/the-sx-prop/) to quickly customize any Box instance using a superset of CSS that has access to all the style functions and theme-aware properties exposed in the MUI System package.
+The demo below shows how to apply colors from the theme using this prop:
 
 {{"demo": "BoxSx.js", "defaultCodeOpen": true }}
 
-### System props
-
-As a CSS utility component, the Box supports all [MUI System properties](/system/properties/).
-You can use them as prop directly on the component.
-
-```jsx
-<Box height={20} width={20} my={4} display="flex" alignItems="center" gap={4}>
-```
-
-## Create your own Box component
+### Create your own Box
 
 Use the `createBox()` utility to create your version of the Box component.
 This is useful if you need to expose your container to a theme that's different from the default theme of the library you're working with:
