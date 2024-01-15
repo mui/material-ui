@@ -2330,7 +2330,7 @@ importers:
         specifier: ^0.4.24
         version: 0.4.24
       unplugin:
-        specifier: ^1.5.1
+        specifier: ^1.6.0
         version: 1.6.0
     devDependencies:
       '@mui/zero-runtime':

@@ -17,7 +17,7 @@
     "@linaria/logger": "^5.0.0",
     "@linaria/utils": "^5.0.2",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "unplugin": "^1.5.1"
+    "unplugin": "^1.6.0"
   },
   "devDependencies": {
     "@mui/zero-runtime": "workspace:^",
