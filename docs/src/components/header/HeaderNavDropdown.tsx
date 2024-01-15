@@ -67,7 +67,7 @@ const PRODUCTS = [
   },
   {
     name: 'Templates',
-    description: 'Fully built Material UI templates for your application.',
+    description: 'Fully built, out-of-the-box, templates for your application.',
     href: ROUTES.productTemplates,
   },
   {
@@ -86,12 +86,12 @@ const PRODUCTS = [
 const DOCS = [
   {
     name: 'Material UI',
-    description: `A meticulous React implementation of Google's Material Design.`,
+    description: "Component library that implements Google's Material Design.",
     href: ROUTES.materialDocs,
   },
   {
     name: 'Joy UI',
-    description: 'React components for building your design system.',
+    description: "Component library that implements MUI's own in-house design principles.",
     href: ROUTES.joyDocs,
   },
   {
@@ -106,7 +106,7 @@ const DOCS = [
   },
   {
     name: 'MUI X',
-    description: 'Advanced and powerful components for complex use cases.',
+    description: 'Advanced components for complex use cases.',
     href: ROUTES.xIntro,
   },
   {

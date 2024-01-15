@@ -174,7 +174,15 @@ describe('<Dialog />', () => {
       const onBackdropClick = spy();
       const onClose = spy();
       render(
-        <Dialog onBackdropClick={onBackdropClick} onClose={onClose} open>
+        <Dialog
+          onClose={(event, reason) => {
+            onClose();
+            if (reason === 'backdropClick') {
+              onBackdropClick();
+            }
+          }}
+          open
+        >
           foo
         </Dialog>,
       );
@@ -187,7 +195,14 @@ describe('<Dialog />', () => {
     it('should ignore the backdrop click if the event did not come from the backdrop', () => {
       const onBackdropClick = spy();
       const { getByRole } = render(
-        <Dialog onBackdropClick={onBackdropClick} open>
+        <Dialog
+          onClose={(event, reason) => {
+            if (reason === 'backdropClick') {
+              onBackdropClick();
+            }
+          }}
+          open
+        >
           <div tabIndex={-1}>
             <h2>my dialog</h2>
           </div>

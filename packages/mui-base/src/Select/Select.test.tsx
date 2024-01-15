@@ -6,14 +6,18 @@ import {
   createRenderer,
   describeConformanceUnstyled,
   fireEvent,
-  userEvent,
   act,
   screen,
 } from '@mui-internal/test-utils';
+import userEvent from '@testing-library/user-event';
 import { Select, SelectListboxSlotProps, selectClasses } from '@mui/base/Select';
 import { SelectOption } from '@mui/base/useOption';
 import { Option, OptionProps, OptionRootSlotProps, optionClasses } from '@mui/base/Option';
 import { OptionGroup } from '@mui/base/OptionGroup';
+
+// TODO v6: initialize @testing-library/user-event using userEvent.setup() instead of directly calling methods e.g. userEvent.click() for all related tests in this file
+// currently the setup() method uses the ClipboardEvent constructor which is incompatible with our lowest supported version of iOS Safari (12.2) https://github.com/mui/material-ui/blob/master/.browserslistrc#L44
+// userEvent.setup() requires Safari 14 or up to work
 
 describe('<Select />', () => {
   const mount = createMount();
@@ -52,15 +56,14 @@ describe('<Select />', () => {
 
   describe('keyboard navigation', () => {
     ['Enter', 'ArrowDown', 'ArrowUp', ' '].forEach((key) => {
-      it(`opens the dropdown when the "${key}" key is down on the button`, () => {
-        // can't use the default native `button` as it doesn't treat enter or space press as a click
-        const { getByRole } = render(<Select slots={{ root: 'div' }} />);
+      it(`opens the dropdown when the "${key}" key is down on the button`, async () => {
+        const { getByRole } = render(<Select />);
         const select = getByRole('combobox');
         act(() => {
           select.focus();
         });
 
-        fireEvent.keyDown(select, { key });
+        await userEvent.keyboard(`{${key}}`);
 
         expect(select).to.have.attribute('aria-expanded', 'true');
         expect(getByRole('listbox')).not.to.equal(null);
@@ -68,7 +71,7 @@ describe('<Select />', () => {
     });
 
     ['Enter', ' ', 'Escape'].forEach((key) => {
-      it(`closes the dropdown when the "${key}" key is pressed`, () => {
+      it(`closes the dropdown when the "${key}" key is pressed`, async () => {
         const { getByRole } = render(
           <Select>
             <Option value={1}>1</Option>
@@ -76,12 +79,11 @@ describe('<Select />', () => {
         );
         const select = getByRole('combobox');
         act(() => {
-          select.focus();
-          fireEvent.mouseDown(select);
+          select.click();
         });
 
         const listbox = getByRole('listbox');
-        fireEvent.keyDown(select, { key });
+        await userEvent.keyboard(`{${key}}`);
 
         expect(select).to.have.attribute('aria-expanded', 'false');
         expect(listbox).not.toBeVisible();
@@ -89,7 +91,7 @@ describe('<Select />', () => {
     });
 
     ['Enter', ' '].forEach((key) => {
-      it(`does not close the multiselect dropdown when the "${key}" key is pressed`, () => {
+      it(`does not close the multiselect dropdown when the "${key}" key is pressed`, async () => {
         const { getByRole, queryByRole } = render(
           <Select multiple>
             <Option value={1}>1</Option>
@@ -97,11 +99,10 @@ describe('<Select />', () => {
         );
         const select = getByRole('combobox');
         act(() => {
-          select.focus();
           select.click();
         });
 
-        userEvent.keyPress(select, { key });
+        await userEvent.keyboard(`{${key}}`);
 
         expect(select).to.have.attribute('aria-expanded', 'true');
         expect(queryByRole('listbox')).not.to.equal(null);
@@ -110,7 +111,7 @@ describe('<Select />', () => {
 
     describe('item selection', () => {
       ['Enter', ' '].forEach((key) =>
-        it(`selects a highlighted item using the "${key}" key`, () => {
+        it(`selects a highlighted item using the "${key}" key in single mode`, async () => {
           const { getByRole } = render(
             <Select>
               <Option value={1}>1</Option>
@@ -119,21 +120,38 @@ describe('<Select />', () => {
           );
 
           const select = getByRole('combobox');
-          act(() => {
-            select.focus();
-            fireEvent.mouseDown(select);
-          });
 
-          userEvent.keyPress(select, { key: 'ArrowDown' }); // highlights '2'
-          fireEvent.keyDown(select, { key });
+          await userEvent.pointer({ target: select, keys: '[MouseLeft]' });
+          await userEvent.keyboard('{ArrowDown}');
+          await userEvent.keyboard(`{${key}}`);
 
           expect(select).to.have.text('2');
+        }),
+      );
+
+      ['Enter', ' '].forEach((key) =>
+        it(`selects a highlighted item using the "${key}" key in multiple mode`, async () => {
+          const { getByRole } = render(
+            <Select multiple>
+              <Option value={1}>1</Option>
+              <Option value={2}>2</Option>
+            </Select>,
+          );
+
+          const select = getByRole('combobox');
+
+          await userEvent.pointer({ target: select, keys: '[MouseLeft]' });
+          await userEvent.keyboard(`{${key}}`);
+          await userEvent.keyboard('{ArrowDown}');
+          await userEvent.keyboard(`{${key}}`);
+
+          expect(select).to.have.text('1, 2');
         }),
       );
     });
 
     describe('text navigation', () => {
-      it('navigate to matched key', () => {
+      it('navigate to matched key', async () => {
         const { getByRole, getByText } = render(
           <Select>
             <Option value={1}>Apple</Option>
@@ -147,19 +165,18 @@ describe('<Select />', () => {
 
         const select = getByRole('combobox');
         act(() => {
-          select.focus();
           select.click();
         });
 
-        userEvent.keyPress(select, { key: 'd' });
+        await userEvent.keyboard('d');
         expect(getByText('Dragon Fruit')).to.have.class(optionClasses.highlighted);
-        userEvent.keyPress(select, { key: 'r' });
+        await userEvent.keyboard('r');
         expect(getByText('Dragon Fruit')).to.have.class(optionClasses.highlighted);
-        userEvent.keyPress(select, { key: 'z' });
+        await userEvent.keyboard('z');
         expect(getByText('Dragon Fruit')).to.have.class(optionClasses.highlighted);
       });
 
-      it('navigate to next element with same starting character on repeated keys', () => {
+      it('navigate to next element with same starting character on repeated keys', async () => {
         const { getByRole, getByText } = render(
           <Select>
             <Option value={1}>Apple</Option>
@@ -173,19 +190,18 @@ describe('<Select />', () => {
 
         const select = getByRole('combobox');
         act(() => {
-          select.focus();
           select.click();
         });
 
-        userEvent.keyPress(select, { key: 'c' });
+        await userEvent.keyboard('c');
         expect(getByText('Cherry')).to.have.class(optionClasses.highlighted);
-        userEvent.keyPress(select, { key: 'c' });
+        await userEvent.keyboard('c');
         expect(getByText('Calamondin')).to.have.class(optionClasses.highlighted);
-        userEvent.keyPress(select, { key: 'c' });
+        await userEvent.keyboard('c');
         expect(getByText('Cherry')).to.have.class(optionClasses.highlighted);
       });
 
-      it('navigate using the label prop', () => {
+      it('navigate using the label prop', async () => {
         function RichOption(props: OptionProps<number>) {
           return (
             <Option {...props}>
@@ -213,19 +229,18 @@ describe('<Select />', () => {
 
         const select = getByRole('combobox');
         act(() => {
-          select.focus();
           select.click();
         });
 
-        userEvent.keyPress(select, { key: 'd' });
+        await userEvent.keyboard('d');
         expect(getByTestId('5')).to.have.class(optionClasses.highlighted);
-        userEvent.keyPress(select, { key: 'r' });
+        await userEvent.keyboard('r');
         expect(getByTestId('5')).to.have.class(optionClasses.highlighted);
-        userEvent.keyPress(select, { key: 'z' });
+        await userEvent.keyboard('z');
         expect(getByTestId('5')).to.have.class(optionClasses.highlighted);
       });
 
-      it('skips the non-stringifiable options', () => {
+      it('skips the non-stringifiable options', async () => {
         const { getByRole, getByText } = render(
           <Select>
             <Option value={{ key: 'Apple' }}>Apple</Option>
@@ -242,19 +257,18 @@ describe('<Select />', () => {
 
         const select = getByRole('combobox');
         act(() => {
-          select.focus();
           select.click();
         });
 
-        userEvent.keyPress(select, { key: 'c' });
+        await userEvent.keyboard('c');
         expect(getByText('Cherry')).to.have.class(optionClasses.highlighted);
-        userEvent.keyPress(select, { key: 'c' });
+        await userEvent.keyboard('c');
         expect(getByText('Calamondin')).to.have.class(optionClasses.highlighted);
-        userEvent.keyPress(select, { key: 'c' });
+        await userEvent.keyboard('c');
         expect(getByText('Cherry')).to.have.class(optionClasses.highlighted);
       });
 
-      it('navigate to options with diacritic characters', () => {
+      it('navigate to options with diacritic characters', async () => {
         const { getByRole, getByText } = render(
           <Select>
             <Option value={{ key: 'Aa' }}>Aa</Option>
@@ -267,20 +281,17 @@ describe('<Select />', () => {
 
         const select = getByRole('combobox');
         act(() => {
-          select.focus();
           select.click();
         });
 
-        userEvent.keyPress(select, { key: 'b' });
+        await userEvent.keyboard('b');
         expect(getByText('Ba')).to.have.class(optionClasses.highlighted);
 
-        userEvent.keyPress(select, { key: 'Control' });
-        userEvent.keyPress(select, { key: 'Alt' });
-        userEvent.keyPress(select, { key: 'ą' });
+        await userEvent.keyboard('{Control>}{Alt>}ą{/Alt}{/Control}');
         expect(getByText('Bą')).to.have.class(optionClasses.highlighted);
       });
 
-      it('navigate to next options with beginning diacritic characters', () => {
+      it('navigate to next options with beginning diacritic characters', async () => {
         const { getByRole, getByText } = render(
           <Select>
             <Option value={{ key: 'Aa' }}>Aa</Option>
@@ -292,28 +303,21 @@ describe('<Select />', () => {
 
         const select = getByRole('combobox');
         act(() => {
-          select.focus();
           select.click();
         });
 
-        userEvent.keyPress(select, { key: 'Control' });
-        userEvent.keyPress(select, { key: 'Alt' });
-        userEvent.keyPress(select, { key: 'ą' });
+        await userEvent.keyboard('{Control>}{Alt>}ą{/Alt}{/Control}');
         expect(getByText('ąa')).to.have.class(optionClasses.highlighted);
 
-        userEvent.keyPress(select, { key: 'Alt' });
-        userEvent.keyPress(select, { key: 'Control' });
-        userEvent.keyPress(select, { key: 'ą' });
+        await userEvent.keyboard('{Alt>}{Control>}ą{/Control}{/Alt}');
         expect(getByText('ąb')).to.have.class(optionClasses.highlighted);
 
-        userEvent.keyPress(select, { key: 'Control' });
-        userEvent.keyPress(select, { key: 'AltGraph' });
-        userEvent.keyPress(select, { key: 'ą' });
+        await userEvent.keyboard('{Control>}{AltGraph>}ą{/AltGraph}{/Control}');
         expect(getByText('ąc')).to.have.class(optionClasses.highlighted);
       });
     });
 
-    it('closes the listbox without selecting an option when "Escape" is pressed', () => {
+    it('closes the listbox without selecting an option when "Escape" is pressed', async () => {
       const { getByRole, queryByRole } = render(
         <Select defaultValue={1}>
           <Option value={1}>1</Option>
@@ -324,19 +328,37 @@ describe('<Select />', () => {
       const select = getByRole('combobox');
 
       act(() => {
-        select.focus();
         select.click();
       });
 
-      fireEvent.keyDown(select, { key: 'ArrowDown' }); // highlights '2'
-      fireEvent.keyDown(select, { key: 'Escape' });
+      await userEvent.keyboard('{ArrowDown}'); // highlights '2'
+      await userEvent.keyboard('{Escape}');
 
       expect(select).to.have.attribute('aria-expanded', 'false');
       expect(select).to.have.text('1');
       expect(queryByRole('listbox', { hidden: true })).not.toBeVisible();
     });
 
-    it('scrolls to highlighted option so it is visible', function test() {
+    it('closes the listbox after selecting with keyboard', async () => {
+      const { getByRole, queryByRole } = render(
+        <Select defaultValue={1}>
+          <Option value={1}>1</Option>
+          <Option value={2}>2</Option>
+        </Select>,
+      );
+
+      const select = getByRole('combobox');
+
+      await userEvent.pointer({ target: select, keys: '[MouseLeft]' });
+      await userEvent.keyboard('{ArrowDown}'); // highlights '2'
+      await userEvent.keyboard('{Enter}');
+
+      expect(select).to.have.attribute('aria-expanded', 'false');
+      expect(select).to.have.text('2');
+      expect(queryByRole('listbox', { hidden: true })).not.toBeVisible();
+    });
+
+    it('scrolls to highlighted option so it is visible', async function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
@@ -374,23 +396,23 @@ describe('<Select />', () => {
         select.focus();
       });
 
-      fireEvent.keyDown(select, { key: 'ArrowDown' }); // opens the listbox and highlights 1
+      await userEvent.keyboard('{ArrowDown}'); // opens the listbox and highlights 1
 
       const listbox = getByRole('listbox');
 
-      fireEvent.keyDown(select, { key: 'ArrowDown' }); // highlights 2
+      await userEvent.keyboard('{ArrowDown}'); // highlights 2
       expect(listbox.scrollTop).to.equal(0);
 
-      fireEvent.keyDown(select, { key: 'ArrowDown' }); // highlights 3
+      await userEvent.keyboard('{ArrowDown}'); // highlights 3
       expect(listbox.scrollTop).to.equal(50);
 
-      fireEvent.keyDown(select, { key: 'ArrowDown' }); // highlights 4
+      await userEvent.keyboard('{ArrowDown}'); // highlights 4
       expect(listbox.scrollTop).to.equal(100);
 
-      fireEvent.keyDown(select, { key: 'ArrowUp' }); // highlights 3
+      await userEvent.keyboard('{ArrowUp}'); // highlights 3
       expect(listbox.scrollTop).to.equal(100);
 
-      fireEvent.keyDown(select, { key: 'ArrowUp' }); // highlights 2
+      await userEvent.keyboard('{ArrowUp}'); // highlights 2
       expect(listbox.scrollTop).to.equal(50);
     });
   });
@@ -927,7 +949,7 @@ describe('<Select />', () => {
 
       const select = screen.getByRole('combobox');
       act(() => {
-        fireEvent.mouseDown(select);
+        select.click();
       });
 
       expect(select).to.have.attribute('aria-expanded', 'true');
@@ -943,7 +965,7 @@ describe('<Select />', () => {
       const select = screen.getByRole('combobox');
 
       act(() => {
-        fireEvent.mouseDown(select);
+        select.click();
       });
 
       const listbox = screen.getByRole('listbox');
@@ -953,7 +975,7 @@ describe('<Select />', () => {
       expect(select).to.have.attribute('aria-controls', listboxId!);
     });
 
-    it('should have the aria-activedescendant attribute', () => {
+    it('should have the correct tabindex attribute', () => {
       render(
         <Select>
           <Option value={1}>One</Option>
@@ -962,14 +984,13 @@ describe('<Select />', () => {
 
       const select = screen.getByRole('combobox');
       act(() => {
-        select.focus();
         select.click();
       });
 
-      fireEvent.keyDown(select, { key: 'ArrowDown' });
-
       const options = screen.getAllByRole('option');
-      expect(select).to.have.attribute('aria-activedescendant', options[0].getAttribute('id')!);
+
+      expect(select).not.to.have.attribute('tabindex');
+      expect(options[0]).to.have.attribute('tabindex', '0');
     });
   });
 
@@ -983,13 +1004,13 @@ describe('<Select />', () => {
 
       const select = getByRole('combobox');
       act(() => {
-        fireEvent.mouseDown(select);
+        select.click();
       });
 
       expect(select).to.have.attribute('aria-expanded', 'true');
     });
 
-    it('closes the listbox when the select is clicked again', () => {
+    it('closes the listbox when the select is clicked again', async () => {
       const { getByRole } = render(
         <Select>
           <Option value={1}>One</Option>
@@ -997,18 +1018,17 @@ describe('<Select />', () => {
       );
 
       const select = getByRole('combobox');
-      act(() => {
-        fireEvent.mouseDown(select);
-      });
 
-      act(() => {
-        fireEvent.mouseDown(select);
-      });
+      await userEvent.pointer({ keys: '[MouseLeft]', target: select });
+
+      expect(select).to.have.attribute('aria-expanded', 'true');
+
+      await userEvent.pointer({ keys: '[MouseLeft]', target: select });
 
       expect(select).to.have.attribute('aria-expanded', 'false');
     });
 
-    it('closes the listbox without selecting an option when focus is lost', () => {
+    it('closes the listbox without selecting an option when focus is lost', async () => {
       const { getByRole, getByTestId } = render(
         <div>
           <Select defaultValue={1}>
@@ -1024,12 +1044,11 @@ describe('<Select />', () => {
       const select = getByRole('combobox');
 
       act(() => {
-        select.focus();
-        fireEvent.mouseDown(select);
+        select.click();
       });
 
       const listbox = getByRole('listbox');
-      userEvent.keyPress(select, { key: 'ArrowDown' }); // highlights '2'
+      await userEvent.keyboard('{ArrowDown}'); // highlights '2'
 
       const focusTarget = getByTestId('focus-target');
       act(() => {
@@ -1058,30 +1077,13 @@ describe('<Select />', () => {
       });
 
       const selectedOption = getByTestId('selected-option');
-      fireEvent.click(selectedOption);
+
+      act(() => {
+        selectedOption.click();
+      });
 
       expect(select).to.have.attribute('aria-expanded', 'false');
       expect(select).to.have.text('1');
-    });
-
-    it('keeps the trigger focused when the listbox is opened and interacted with', () => {
-      const { getByRole } = render(
-        <Select>
-          <Option value={1}>1</Option>
-          <Option value={2}>2</Option>
-        </Select>,
-      );
-
-      const select = getByRole('combobox');
-      act(() => {
-        select.focus();
-        select.click();
-      });
-
-      expect(document.activeElement).to.equal(select);
-      fireEvent.keyDown(select, { key: 'ArrowDown' });
-
-      expect(document.activeElement).to.equal(select);
     });
 
     it('does not steal focus from other elements on page when it is open on mount', () => {
@@ -1134,7 +1136,7 @@ describe('<Select />', () => {
       const select = getByRole('combobox');
 
       act(() => {
-        fireEvent.mouseDown(select);
+        select.click();
       });
 
       const listbox = getByRole('listbox');
@@ -1198,7 +1200,7 @@ describe('<Select />', () => {
     expect(selectButton).to.have.text('1, 2');
   });
 
-  it('perf: does not rerender options unnecessarily', () => {
+  it('perf: does not rerender options unnecessarily', async () => {
     const renderOption1Spy = spy();
     const renderOption2Spy = spy();
     const renderOption3Spy = spy();
@@ -1210,6 +1212,7 @@ describe('<Select />', () => {
     ) {
       const { renderSpy, ownerState, ...other } = props;
       renderSpy();
+
       return <li {...other} ref={ref} />;
     });
 
@@ -1253,20 +1256,19 @@ describe('<Select />', () => {
 
     const select = getByRole('combobox');
     act(() => {
-      select.focus();
-      fireEvent.mouseDown(select); // opens and highlights '1'
+      select.click(); // opens the listbox
     });
 
     // React renders twice in strict mode, so we expect twice the number of spy calls
-    expect(renderOption1Spy.callCount).to.equal(2);
+    expect(renderOption1Spy.callCount).to.equal(2); // '1' as focusVisible becomes true
 
-    fireEvent.keyDown(select, { key: 'ArrowDown' }); // highlights '2'
-    expect(renderOption1Spy.callCount).to.equal(4); // '1' rerenders as it loses highlight
-    expect(renderOption2Spy.callCount).to.equal(2); // '2' rerenders as it receives highlight
+    await userEvent.keyboard('{ArrowDown}'); // highlights '2'
+    expect(renderOption1Spy.callCount).to.equal(6); // '1' rerenders as it loses highlight
+    expect(renderOption2Spy.callCount).to.equal(4); // '2' rerenders as it receives highlight
 
-    fireEvent.keyDown(select, { key: 'Enter' }); // selects '2'
-    expect(renderOption1Spy.callCount).to.equal(4);
-    expect(renderOption2Spy.callCount).to.equal(4);
+    await userEvent.keyboard('{Enter}'); // selects '2'
+    expect(renderOption1Spy.callCount).to.equal(6);
+    expect(renderOption2Spy.callCount).to.equal(8);
 
     // neither the highlighted nor the selected state of these options changed,
     // so they don't need to rerender:

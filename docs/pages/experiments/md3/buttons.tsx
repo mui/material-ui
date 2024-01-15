@@ -201,17 +201,8 @@ function DemoComponents() {
 
 // custom MD3 theme
 const cssVarsTheme = extendTheme({
-  colorSchemes: {
-    light: {
-      ref: {
-        palette: customPalette,
-      },
-    },
-    dark: {
-      ref: {
-        palette: customPalette,
-      },
-    },
+  ref: {
+    palette: customPalette,
   },
 });
 

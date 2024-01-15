@@ -14,7 +14,7 @@ Feel free to submit a pull request!
 
 ## IDE tools
 
-- [eslint: detect unused classes](https://github.com/jens-ox/eslint-plugin-material-ui-unused-classes): ESLint plugin to detect unused styling classes with `@mui/styles`.
+- [eslint-plugin-material-ui-unused-classes](https://github.com/jens-ox/eslint-plugin-material-ui-unused-classes): ESLint plugin to detect unused styling classes with `@mui/styles`.
 
 ## Theming
 

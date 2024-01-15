@@ -5,7 +5,7 @@
 
 <h1 align="center">Base UI</h1>
 
-Base UI is a library of unstyled React UI components and hooks. With Base UI, you gain complete control over your app's CSS and accessibility features.
+Base UI is a library of headless ("unstyled") React components and low-level hooks. You gain complete control over your app's CSS and accessibility features.
 
 ## Installation
 

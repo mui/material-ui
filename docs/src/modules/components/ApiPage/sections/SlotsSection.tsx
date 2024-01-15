@@ -12,7 +12,7 @@ import SlotsTable from 'docs/src/modules/components/ApiPage/table/SlotsTable';
 export type SlotsSectionProps = {
   componentSlots: { class: string; name: string; default: string }[];
   slotDescriptions: { [key: string]: string };
-  componentName?: string;
+  componentName: string;
   title?: string;
   titleHash?: string;
   level?: 'h2' | 'h3' | 'h4';
@@ -38,9 +38,8 @@ export default function SlotsSection(props: SlotsSectionProps) {
   }
 
   const formatedSlots = componentSlots?.map(({ class: className, name, default: defaultValue }) => {
-    const description = slotDescriptions[name];
     return {
-      description,
+      description: slotDescriptions[name],
       className,
       name,
       defaultValue,

@@ -89,10 +89,10 @@ const Accordion = styled(MuiAccordion)(({ theme }) => ({
   '&:not(:last-of-type)': {
     marginBottom: theme.spacing(2),
   },
-  '&:before': {
+  '&::before': {
     display: 'none',
   },
-  '&:after': {
+  '&::after': {
     display: 'none',
   },
   ...theme.applyDarkStyles({
@@ -174,7 +174,7 @@ const openRolesData = [
     title: 'Developer Experience',
     roles: [
       {
-        title: 'Developer Advocate',
+        title: 'Developer Advocate / Content Engineer',
         description:
           'You will strategize and implement educational initiatives from end to end to help developers build better UIs, faster.',
         url: '/careers/developer-advocate/',

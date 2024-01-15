@@ -479,7 +479,7 @@ chai.use((chaiAPI, utils) => {
       utils.flag(
         this,
         'message',
-        "Looks like the error was not minified. This can happen if the error code hasn't been generated yet. Run `yarn extract-error-codes` and try again.",
+        "Looks like the error was not minified. This can happen if the error code hasn't been generated yet. Run `pnpm extract-error-codes` and try again.",
       );
       // TODO: Investigate if `as any` can be removed after https://github.com/DefinitelyTyped/DefinitelyTyped/issues/48634 is resolved.
       (this as any).to.throw('Minified MUI error', 'helper');

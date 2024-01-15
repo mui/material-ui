@@ -110,6 +110,8 @@ class AdErrorBoundary extends React.Component {
 export const AD_MARGIN_TOP = 3;
 export const AD_MARGIN_BOTTOM = 3;
 export const AD_HEIGHT = 126;
+// Add more height on mobile as the text tends to wrap beyond the image height.
+export const AD_HEIGHT_MOBILE = 126 + 16;
 
 // https://stackoverflow.com/a/20084661
 function isBot() {
@@ -214,25 +216,25 @@ export default function Ad() {
   return (
     <Box
       component="span"
-      sx={{
+      sx={(theme) => ({
         position: 'relative',
         display: 'block',
         mt: AD_MARGIN_TOP,
         mb: AD_MARGIN_BOTTOM,
-        ...(adShape === 'image' && {
+        minHeight: AD_HEIGHT_MOBILE,
+        [theme.breakpoints.up('sm')]: {
           minHeight: AD_HEIGHT,
-        }),
+        },
+        ...(adShape === 'image' && {}),
         ...(adShape === 'inline' && {
-          minHeight: AD_HEIGHT,
           display: 'flex',
           alignItems: 'flex-end',
         }),
         ...(adShape === 'inline2' && {
-          minHeight: AD_HEIGHT,
           display: 'flex',
           alignItems: 'flex-end',
         }),
-      }}
+      })}
       data-ga-event-category="ad"
       data-ga-event-action="click"
       data-ga-event-label={eventLabel}
