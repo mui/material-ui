@@ -287,12 +287,15 @@ Alert.propTypes /* remove-proptypes */ = {
    * If you wish to change this mapping, you can provide your own.
    * Alternatively, you can use the `icon` prop to override the icon displayed.
    */
-  iconMapping: PropTypes.shape({
-    error: PropTypes.node,
-    info: PropTypes.node,
-    success: PropTypes.node,
-    warning: PropTypes.node,
-  }),
+  iconMapping: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.shape({
+      error: PropTypes.node,
+      info: PropTypes.node,
+      success: PropTypes.node,
+      warning: PropTypes.node,
+    }),
+    PropTypes.objectOf(PropTypes.node),
+  ]),
   /**
    * Callback fired when the component requests to be closed.
    * When provided and no `action` prop is set, a close icon button is displayed that triggers the callback when clicked.
@@ -308,7 +311,10 @@ Alert.propTypes /* remove-proptypes */ = {
    * The severity of the alert. This defines the color and icon used.
    * @default 'success'
    */
-  severity: PropTypes.oneOf(['error', 'info', 'success', 'warning']),
+  severity: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['error', 'info', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
