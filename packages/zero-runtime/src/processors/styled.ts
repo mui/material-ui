@@ -338,7 +338,10 @@ export class StyledProcessor extends BaseProcessor {
       );
     }
 
-    const styledImportIdentifier = t.addNamedImport(this.tagSource.imported, this.tagSource.source);
+    const styledImportIdentifier = t.addNamedImport(
+      this.tagSource.imported,
+      process.env.PACKAGE_NAME as string,
+    );
     const styledCall = t.callExpression(
       styledImportIdentifier,
       componentMetaExpression ? [componentName, componentMetaExpression] : [componentName],
