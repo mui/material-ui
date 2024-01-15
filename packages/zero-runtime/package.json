@@ -36,7 +36,7 @@
     "@types/cssesc": "^3.0.2",
     "@types/lodash.get": "^4.4.9",
     "@types/lodash.set": "^4.3.9",
-    "@types/node": "^18.18.5",
+    "@types/node": "^18.19.7",
     "@types/react": "^18.2.31",
     "@types/stylis": "^4.2.0",
     "react": "^18.2.0"
