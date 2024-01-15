@@ -117,7 +117,7 @@ importers:
         specifier: 1.40.1
         version: 1.40.1
       '@slack/web-api':
-        specifier: ^6.11.1
+        specifier: ^6.11.2
         version: 6.11.2
       '@types/enzyme':
         specifier: ^3.10.18
