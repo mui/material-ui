@@ -60,7 +60,7 @@ export default function parseSlotsAndClasses({
   project,
   componentName,
   muiName,
-  slotInterfaceName
+  slotInterfaceName,
 }: {
   project: TypeScriptProject;
   componentName: string;
