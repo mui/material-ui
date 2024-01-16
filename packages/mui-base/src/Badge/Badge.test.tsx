@@ -17,7 +17,6 @@ describe('<Badge />', () => {
       mount,
       refInstanceof: window.HTMLSpanElement,
       testComponentPropWith: 'div',
-      muiName: 'BaseBadge',
       slots: {
         root: {
           expectedClassName: classes.root,

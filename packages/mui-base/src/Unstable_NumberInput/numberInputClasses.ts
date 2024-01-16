@@ -1,6 +1,8 @@
 import { generateUtilityClass } from '../generateUtilityClass';
 import { generateUtilityClasses } from '../generateUtilityClasses';
 
+const COMPONENT_NAME = 'NumberInput';
+
 export interface NumberInputClasses {
   /** Class name applied to the root element. */
   root: string;
@@ -29,10 +31,10 @@ export interface NumberInputClasses {
 export type NumberInputClassKey = keyof NumberInputClasses;
 
 export function getNumberInputUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiNumberInput', slot);
+  return generateUtilityClass(COMPONENT_NAME, slot);
 }
 
-export const numberInputClasses: NumberInputClasses = generateUtilityClasses('MuiNumberInput', [
+export const numberInputClasses: NumberInputClasses = generateUtilityClasses(COMPONENT_NAME, [
   'root',
   'formControl',
   'focused',

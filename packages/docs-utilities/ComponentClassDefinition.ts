@@ -3,4 +3,6 @@ export interface ComponentClassDefinition {
   className: string;
   description: string;
   isGlobal: boolean;
+  isDeprecated?: boolean;
+  deprecationInfo?: string;
 }

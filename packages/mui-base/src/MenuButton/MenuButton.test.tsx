@@ -38,7 +38,6 @@ describe('<MenuButton />', () => {
       return wrapper.childAt(0);
     },
     refInstanceof: window.HTMLButtonElement,
-    muiName: 'MuiMenuButton',
     slots: {
       root: {
         expectedClassName: menuButtonClasses.root,

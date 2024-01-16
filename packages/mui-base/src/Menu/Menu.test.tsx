@@ -39,7 +39,6 @@ describe('<Menu />', () => {
       return wrapper.childAt(0);
     },
     refInstanceof: window.HTMLDivElement,
-    muiName: 'MuiMenu',
     slots: {
       root: {
         expectedClassName: menuClasses.root,

@@ -97,7 +97,7 @@ The following demo shows how to apply this prop to keep the Modal mounted:
 {{"demo": "KeepMountedModal.js", "defaultCodeOpen": false}}
 
 :::info
-You can use the `MuiModal-hidden` class to hide the modal when it is not open.
+You can use the `base-Modal-hidden` class to hide the modal when it is not open.
 :::
 
 As with any performance optimization, the `keepMounted` prop won't necessarily solve all of your problems.
