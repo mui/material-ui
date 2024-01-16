@@ -191,7 +191,7 @@ This tool is _not_ maintained by MUI.
 ### 2. Use [tss-react](https://github.com/garronej/tss-react)
 
 :::error
-This API will not work if you are [using `styled-components` as the underlying styling engine in place of `@emotion`](/material-ui/guides/interoperability/#styled-components).
+This API will not work if you are [using `styled-components` as the underlying styling engine in place of `@emotion`](/material-ui/integrations/interoperability/#styled-components).
 :::
 
 The API is similar to JSS `makeStyles`, but under the hood, it uses `@emotion/react`.

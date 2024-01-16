@@ -106,7 +106,7 @@ But if you are using the default styled engine (`@mui/styled-engine`) the Emotio
 
 Perhaps, however, you're adding some Material UI components to an app that already uses another styling solution,
 or are already familiar with a different API, and don't want to learn a new one? In that case, head over to the
-[Style library interoperability](/material-ui/guides/interoperability/) section,
+[Style library interoperability](/material-ui/integrations/interoperability/) section,
 where we show how simple it is to restyle Material UI components with alternative style libraries.
 
 ## When should I use inline-style vs. CSS?
@@ -121,7 +121,7 @@ The CSS alternative provides more advantages, such as:
 
 ## How do I use react-router?
 
-We detail the [integration with third-party routing libraries](/material-ui/guides/routing/) like react-router or Next.js in our guide.
+We detail the [integration with third-party routing libraries](/material-ui/integrations/routing/) like react-router or Next.js in our guide.
 
 ## How can I access the DOM element?
 

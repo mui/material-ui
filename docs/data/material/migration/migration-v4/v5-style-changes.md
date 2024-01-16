@@ -661,7 +661,7 @@ The GitHub icon was reduced in size from 24px to 22px wide to match the size of 
 
 ## @material-ui/pickers
 
-We have a [dedicated page](/material-ui/guides/pickers-migration/) for migrating `@material-ui/pickers` to v5.
+We have a [dedicated page](/material-ui/migration/pickers-migration/) for migrating `@material-ui/pickers` to v5.
 
 ## System
 
