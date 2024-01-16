@@ -138,7 +138,7 @@ export default function BaseUIComponents() {
                   '--outlined-btn-shadow':
                     '0 -2px 0.5px 0 var(--muidocs-palette-grey-900) inset, 0 1px 0.5px 0 var(--muidocs-palette-primaryDark-900)',
                   ...(styling === 'tailwindcss' && {
-                    '--focus-ring': 'rgba(119, 22, 208, 0.9)',
+                    '--focus-ring': 'rgba(119, 22, 208, 0.5)',
                     '--slider-ring': 'rgba(119, 22, 208, 0.5)',
                     '--shadow': '0px 2px 2px rgba(0, 0, 0, 0.5)',
                     '--solid-btn-shadow':
