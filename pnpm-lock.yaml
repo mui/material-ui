@@ -926,9 +926,6 @@ importers:
       '@mui/markdown':
         specifier: workspace:^
         version: link:../markdown
-      '@mui/utils':
-        specifier: workspace:^
-        version: link:../mui-utils/build
       ast-types:
         specifier: ^0.14.2
         version: 0.14.2
