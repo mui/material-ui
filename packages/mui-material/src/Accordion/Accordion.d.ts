@@ -10,9 +10,12 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 export interface AccordionSlots {
   /**
    * The component that renders the transition.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Collapse
    */
-  transition?: React.ElementType;
+  transition?: React.JSXElementConstructor<
+    TransitionProps & { children?: React.ReactElement<any, any> }
+  >;
 }
 
 export interface AccordionTransitionSlotPropsOverrides {}
