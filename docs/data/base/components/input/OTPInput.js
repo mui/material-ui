@@ -18,15 +18,15 @@ function OTP({ seperator, inputCount, otp, setOtp }) {
   const handleKeyDown = (event, currentIndex) => {
     switch (event.key) {
       case 'ArrowLeft':
+        event.preventDefault();
         if (currentIndex > 0) {
-          event.preventDefault();
           focusInput(currentIndex - 1);
           selectInput(currentIndex - 1);
         }
         break;
       case 'ArrowRight':
+        event.preventDefault();
         if (currentIndex < inputCount - 1) {
-          event.preventDefault();
           focusInput(currentIndex + 1);
           selectInput(currentIndex + 1);
         }
