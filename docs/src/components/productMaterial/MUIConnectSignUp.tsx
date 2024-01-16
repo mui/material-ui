@@ -156,7 +156,7 @@ export default function MUIConnectSignUp({ sx }: { sx?: SxProps<Theme> }) {
           ]}
         />
         <Button variant="outlined" disabled={form.status === 'loading'} type="submit">
-          Sign up
+          Join the beta list
         </Button>
       </Box>
       {form.status === 'failure' && (
