@@ -550,36 +550,25 @@ export function getThemedComponents(): ThemeOptions {
             ...(ownerState.variant === 'contained' &&
               ownerState.color === 'primary' && {
                 color: '#FFF',
-                backgroundImage: `linear-gradient(180deg, ${alpha(
-                  theme.palette.primary[300],
-                  0.5,
-                )} 0%, ${alpha(theme.palette.primary[600], 0.5)} 100%)`,
-                boxShadow: `0px 1px 2px ${alpha(
-                  theme.palette.primary[900],
-                  0.1,
-                )}, inset 0px 0px 0px 1px ${
+                backgroundColor: (theme.vars || theme).palette.primary[500],
+                boxShadow: `${theme.palette.primary[400]} 0 2px 0 0 inset, ${alpha(
+                  theme.palette.primary[700],
+                  0.6,
+                )} 0 -3px 0 0 inset, ${alpha(theme.palette.common.black, 0.1)} 0 2px 4px 0, ${
                   theme.palette.primary[600]
-                }, inset 0px 0px 0px 2px rgba(255, 255, 255, 0.2), 0px 2px 1px ${alpha(
-                  theme.palette.primary[200],
-                  0.3,
-                )} `,
+                } 0 0 0 1px`,
+                textShadow: `0 1px 2px ${alpha(theme.palette.common.black, 0.4)}`,
                 '&:hover': {
                   backgroundColor: (theme.vars || theme).palette.primary[600],
                 },
-                textShadow: `0px 1px 1px ${alpha(theme.palette.grey[900], 0.3)}`,
                 ...theme.applyDarkStyles({
-                  backgroundImage: `linear-gradient(180deg, ${alpha(
-                    theme.palette.primary[400],
-                    0.2,
-                  )} 0%, ${alpha(theme.palette.primary[700], 0.8)} 100%)`,
-                  boxShadow: `0px 1px 2px ${alpha(
-                    theme.palette.primary[900],
-                    0.1,
-                  )}, inset 0px 0px 0px 1px ${
+                  backgroundColor: (theme.vars || theme).palette.primary[500],
+                  boxShadow: `${theme.palette.primary[400]} 0 2px 0 0 inset, ${alpha(
+                    theme.palette.primary[700],
+                    0.8,
+                  )} 0 -3px 0 0 inset, ${theme.palette.common.black} 0 2px 4px 0, ${
                     theme.palette.primary[600]
-                  }, inset 0px 0px 0px 2px rgba(255, 255, 255, 0.1), 0px 2px 1px ${
-                    theme.palette.common.black
-                  } `,
+                  } 0 0 0 1px`,
                 }),
               }),
           }),
