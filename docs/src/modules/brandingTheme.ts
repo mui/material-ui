@@ -467,14 +467,17 @@ export function getThemedComponents(): ThemeOptions {
             ...(ownerState.size === 'large' && {
               ...theme.typography.body1,
               lineHeight: 21 / 16,
-              fontWeight: theme.typography.fontWeightBold,
-              padding: theme.spacing('12px', '12px', '12px', '14px'),
+              fontWeight: theme.typography.fontWeightSemiBold,
               minHeight: 0,
+              padding: theme.spacing('10px', '12px', '12px', '14px'),
+              borderRadius: 8,
               '& > span': { transition: '0.2s', marginLeft: 4 },
               '&:hover > span': { transform: 'translateX(2px)' },
             }),
             ...(ownerState.size === 'medium' && {
-              padding: theme.spacing('8px', '12px'),
+              fontWeight: theme.typography.fontWeightSemiBold,
+              padding: theme.spacing('6px', '12px', '8px', '12px'),
+              borderRadius: 8,
               '& > span': { transition: '0.2s', marginLeft: 4 },
               '&:hover > span': { transform: 'translateX(2px)' },
             }),
@@ -550,23 +553,23 @@ export function getThemedComponents(): ThemeOptions {
             ...(ownerState.variant === 'contained' &&
               ownerState.color === 'primary' && {
                 color: '#FFF',
-                backgroundColor: (theme.vars || theme).palette.primary[500],
+                backgroundColor: (theme.vars || theme).palette.primary[600],
                 boxShadow: `${theme.palette.primary[400]} 0 2px 0 0 inset, ${alpha(
                   theme.palette.primary[700],
                   0.6,
-                )} 0 -3px 0 0 inset, ${alpha(theme.palette.common.black, 0.1)} 0 2px 4px 0, ${
+                )} 0 -3.5px 0 0 inset, ${alpha(theme.palette.common.black, 0.1)} 0 2px 4px 0, ${
                   theme.palette.primary[600]
                 } 0 0 0 1px`,
                 textShadow: `0 1px 2px ${alpha(theme.palette.common.black, 0.4)}`,
                 '&:hover': {
-                  backgroundColor: (theme.vars || theme).palette.primary[600],
+                  backgroundColor: (theme.vars || theme).palette.primary[700],
                 },
                 ...theme.applyDarkStyles({
-                  backgroundColor: (theme.vars || theme).palette.primary[500],
+                  backgroundColor: (theme.vars || theme).palette.primary[600],
                   boxShadow: `${theme.palette.primary[400]} 0 2px 0 0 inset, ${alpha(
                     theme.palette.primary[700],
                     0.8,
-                  )} 0 -3px 0 0 inset, ${theme.palette.common.black} 0 2px 4px 0, ${
+                  )} 0 -3.5px 0 0 inset, ${theme.palette.common.black} 0 2px 4px 0, ${
                     theme.palette.primary[600]
                   } 0 0 0 1px`,
                 }),
