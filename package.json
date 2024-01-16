@@ -8,6 +8,7 @@
     "deduplicate": "pnpm dedupe",
     "benchmark:browser": "pnpm --filter benchmark browser",
     "build": "lerna run --scope \"@mui/*\" build",
+    "build:all": "lerna run build",
     "build:zero": "lerna run --scope \"@mui/zero-*\" build",
     "clean:zero": "pnpm --filter \"@mui/zero-*\" clean",
     "build:codesandbox": "NODE_OPTIONS=\"--max_old_space_size=4096\" lerna run --concurrency 8 --scope \"@mui/*\" --scope \"@mui-internal/*\" --no-private build",
