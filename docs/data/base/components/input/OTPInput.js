@@ -2,9 +2,8 @@ import * as React from 'react';
 import { Input as BaseInput } from '@mui/base/Input';
 import { Box, styled } from '@mui/system';
 
-function OTP({ seperator, inputCount }) {
+function OTP({ seperator, inputCount, otp, setOtp }) {
   const inputRefs = React.useRef(new Array(inputCount).fill(null));
-  const [otp, setOtp] = React.useState(new Array(inputCount).fill(''));
 
   const focusInput = (targetIndex) => {
     const targetInput = inputRefs.current[targetIndex];
@@ -105,9 +104,16 @@ function OTP({ seperator, inputCount }) {
 }
 
 export default function OTPInput() {
+  const inputCount = 5;
+  const [otp, setOtp] = React.useState(new Array(inputCount).fill(''));
   return (
     <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-      <OTP seperator={<span>-</span>} inputCount={5} />
+      <OTP
+        seperator={<span>-</span>}
+        otp={otp}
+        setOtp={setOtp}
+        inputCount={inputCount}
+      />
     </Box>
   );
 }

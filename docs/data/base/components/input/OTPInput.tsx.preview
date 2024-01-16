@@ -1,1 +1,6 @@
-<OTP seperator={<span>-</span>} inputCount={5} />
+<OTP
+  seperator={<span>-</span>}
+  otp={otp}
+  setOtp={setOtp}
+  inputCount={inputCount}
+/>
