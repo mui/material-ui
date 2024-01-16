@@ -506,7 +506,7 @@ describe('experimental_extendTheme', () => {
   });
 
   it('should use the right selector with applyDarkStyles', function test() {
-    const theme = extendTheme();
+    const defaultTheme = extendTheme();
     const attribute = 'data-custom-color-scheme';
     let darkStyles = {};
     const Test = styled('div')(({ theme }) => {
@@ -516,8 +516,8 @@ describe('experimental_extendTheme', () => {
       return null;
     });
 
-    const { container } = render(
-      <CssVarsProvider attribute={attribute} theme={theme}>
+    render(
+      <CssVarsProvider attribute={attribute} theme={defaultTheme}>
         <Test />
       </CssVarsProvider>,
     );

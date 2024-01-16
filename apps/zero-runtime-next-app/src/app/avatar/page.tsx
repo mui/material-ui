@@ -1,6 +1,5 @@
-import * as React from 'react';
-import Avatar from '@/components/Avatar/Avatar';
 import Stack from '@mui/material/Stack';
+import Avatar from '@/components/Avatar/Avatar';
 
 export default function Avatars() {
   return (

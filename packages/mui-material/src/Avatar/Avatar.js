@@ -68,8 +68,8 @@ const AvatarRoot = styled('div', {
               backgroundColor: theme.vars.palette.Avatar.defaultBg,
             }
           : {
-              backgroundColor:
-                theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
+              backgroundColor: theme.palette.grey[400],
+              ...theme.applyDarkStyles({ backgroundColor: theme.palette.grey[600] }),
             }),
       },
     },
