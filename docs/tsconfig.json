@@ -10,16 +10,6 @@
     "incremental": true,
     "isolatedModules": true
   },
-  "include": [
-    "next-env.d.ts",
-    "types",
-    "src",
-    "pages",
-    "data",
-    "next.config.js"
-  ],
-  "exclude": [
-    "node_modules",
-    "export"
-  ]
+  "include": ["next-env.d.ts", "types", "src", "pages", "data", "next.config.js"],
+  "exclude": ["node_modules", "export"]
 }
