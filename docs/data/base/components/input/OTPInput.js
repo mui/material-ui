@@ -79,6 +79,35 @@ function OTP({ seperator, inputCount, otp, setOtp }) {
     selectInput(currentIndex);
   };
 
+  const handlePaste = (event, currentIndex) => {
+    event.preventDefault();
+    const clipboardData = event.clipboardData;
+
+    // Check if there is text data in the clipboard
+    if (clipboardData.types.includes('text/plain')) {
+      let pastedText = clipboardData.getData('text/plain');
+      pastedText = pastedText.substring(0, inputCount);
+      let indexToEnter = 0;
+
+      while (indexToEnter <= currentIndex) {
+        if (otp[indexToEnter] && indexToEnter < currentIndex) {
+          indexToEnter += 1;
+        } else {
+          break;
+        }
+      }
+
+      const otpArray = [...otp];
+
+      for (let i = indexToEnter; i < inputCount; i += 1) {
+        const lastValue = pastedText[i - indexToEnter] ?? '';
+        otpArray[i] = lastValue;
+      }
+
+      setOtp(otpArray);
+    }
+  };
+
   return new Array(inputCount).fill(null).map((_, index) => (
     <React.Fragment key={index}>
       <BaseInput
@@ -94,6 +123,7 @@ function OTP({ seperator, inputCount, otp, setOtp }) {
             onKeyDown: (event) => handleKeyDown(event, index),
             onChange: (event) => handleChange(event, index),
             onClick: (event) => handleClick(event, index),
+            onPaste: (event) => handlePaste(event, index),
             value: otp[index],
           },
         }}
