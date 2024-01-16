@@ -14,10 +14,7 @@ import deepMerge from 'lodash.merge';
 import BaseProcessor from './base-processor';
 import type { IOptions } from './styled';
 import { cache, css } from '../utils/emotion';
-
-type Primitive = string | number | boolean | null | undefined;
-
-type TemplateCallback = (params: Record<string, unknown> | undefined) => string | number;
+import type { Primitive, TemplateCallback } from './keyframes';
 
 /**
  * @description Scope css class generation similar to css from emotion.
