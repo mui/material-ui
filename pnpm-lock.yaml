@@ -428,8 +428,8 @@ importers:
         version: 18.2.0(react@18.2.0)
     devDependencies:
       '@babel/preset-env':
-        specifier: ^7.23.7
-        version: 7.23.7(@babel/core@7.23.7)
+        specifier: ^7.23.8
+        version: 7.23.8(@babel/core@7.23.7)
       '@babel/preset-react':
         specifier: ^7.23.3
         version: 7.23.3(@babel/core@7.23.7)
@@ -462,7 +462,7 @@ importers:
         version: 1.0.1
       vite:
         specifier: 5.0.10
-        version: 5.0.10(@types/node@18.19.4)
+        version: 5.0.10(@types/node@18.19.7)
 
   benchmark:
     dependencies:
@@ -8165,7 +8165,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.23.3(@babel/core@7.23.7)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.0
-      vite: 5.0.10(@types/node@18.19.4)
+      vite: 5.0.10(@types/node@18.19.7)
     transitivePeerDependencies:
       - supports-color
     dev: true
