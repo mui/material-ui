@@ -26,18 +26,16 @@ export default function AppFrameBanner() {
       variant="caption"
       sx={[
         (theme) => ({
-          display: { xs: 'none', md: 'block' },
           padding: theme.spacing('7px', 1.5, '8px', 1.5),
+          display: { xs: 'none', md: 'block' },
+          fontWeight: 'medium',
           textWrap: 'nowrap',
           maxHeight: '34px',
           backgroundColor: (theme.vars || theme).palette.primary[50],
           border: '1px solid',
           borderColor: (theme.vars || theme).palette.grey[200],
           borderRadius: 1,
-          transitionProperty: 'all',
-          transitionTiming: 'cubic-bezier(0.4, 0, 0.2, 1)',
-          transitionDuration: '150ms',
-          fontWeight: 'medium',
+          transition: 'all 150ms ease',
           '&:hover, &:focus-visible': {
             backgroundColor: alpha(theme.palette.primary[100], 0.4),
             borderColor: (theme.vars || theme).palette.primary[200],
@@ -45,11 +43,11 @@ export default function AppFrameBanner() {
         }),
         (theme) =>
           theme.applyDarkStyles({
-            backgroundColor: alpha(theme.palette.primary[900], 0.3),
+            backgroundColor: alpha(theme.palette.primary[900], 0.2),
             borderColor: (theme.vars || theme).palette.primaryDark[700],
             '&:hover, &:focus-visible': {
               backgroundColor: alpha(theme.palette.primary[900], 0.6),
-              borderColor: (theme.vars || theme).palette.primaryDark[500],
+              borderColor: (theme.vars || theme).palette.primary[800],
             },
           }),
       ]}
