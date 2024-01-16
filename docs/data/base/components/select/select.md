@@ -128,11 +128,11 @@ The Select component is composed of a root `<button>` along with a `<div>` that 
 Option renders as an `<li>`, and Option Group renders a `<ul>` with an `<li>` that represents its label.
 
 ```html
-<button class="MuiSelect-root" type="button">Open</button>
-<div class="MuiSelect-popper">
-  <ul class="MuiSelect-listbox">
-    <li class="MuiOption-root">Option one</li>
-    <li class="MuiOption-root">Option two</li>
+<button class="base-Select-root" type="button">Open</button>
+<div class="base-Select-popper">
+  <ul class="base-Select-listbox">
+    <li class="base-Option-root">Option one</li>
+    <li class="base-Option-root">Option two</li>
   </ul>
 </div>
 ```

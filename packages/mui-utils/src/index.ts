@@ -38,6 +38,7 @@ export { default as integerPropType } from './integerPropType';
 export { default as internal_resolveProps } from './resolveProps';
 export { default as unstable_composeClasses } from './composeClasses';
 export { default as unstable_generateUtilityClass } from './generateUtilityClass';
+export { isGlobalState as unstable_isGlobalState } from './generateUtilityClass';
 export * from './generateUtilityClass';
 export { default as unstable_generateUtilityClasses } from './generateUtilityClasses';
 export { default as unstable_ClassNameGenerator } from './ClassNameGenerator';

@@ -1,9 +1,8 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
 
-export default function CustomizedSnackbars() {
+export default function AutohideSnackbar() {
   const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
@@ -21,16 +20,12 @@ export default function CustomizedSnackbars() {
   return (
     <div>
       <Button onClick={handleClick}>Open Snackbar</Button>
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert
-          onClose={handleClose}
-          severity="success"
-          variant="filled"
-          sx={{ width: '100%' }}
-        >
-          This is a success Alert inside a Snackbar!
-        </Alert>
-      </Snackbar>
+      <Snackbar
+        open={open}
+        autoHideDuration={5000}
+        onClose={handleClose}
+        message="This Snackbar will be dismissed in 5 seconds."
+      />
     </div>
   );
 }
