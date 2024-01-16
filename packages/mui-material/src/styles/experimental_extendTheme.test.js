@@ -505,60 +505,27 @@ describe('experimental_extendTheme', () => {
     });
   });
 
-  it('should apply dark styles when using applyDarkStyles if mode="dark"', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
+  it('should use the right selector with applyDarkStyles', function test() {
     const theme = extendTheme();
-
+    const attribute = 'data-custom-color-scheme';
+    let darkStyles = {};
     const Test = styled('div')(({ theme }) => {
-      return {
-        backgroundColor: 'rgb(255, 255, 255)',
-        ...theme.applyDarkStyles({
-          backgroundColor: 'rgba(0, 0, 0, 0)',
-        }),
-      };
+      darkStyles = theme.applyDarkStyles({
+        backgroundColor: 'rgba(0, 0, 0, 0)',
+      });
+      return null;
     });
 
     const { container } = render(
-      <CssVarsProvider colorSchemeSelector="#dark-mode-by-default" theme={theme} defaultMode="dark">
-        <div id="dark-mode-by-default">
-          <Test />
-        </div>
+      <CssVarsProvider attribute={attribute} theme={theme}>
+        <Test />
       </CssVarsProvider>,
     );
 
-    expect(container.firstChild.firstChild).toHaveComputedStyle({
-      backgroundColor: 'rgba(0, 0, 0, 0)',
-    });
-  });
-
-  it('should not apply dark styles when using applyDarkStyles if mode="light"', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
-
-    const theme = extendTheme();
-
-    const Test = styled('div')(({ theme }) => {
-      return {
-        backgroundColor: 'rgb(255, 255, 255)',
-        ...theme.applyDarkStyles({
-          backgroundColor: 'rgba(0, 0, 0, 0)',
-        }),
-      };
-    });
-
-    const { container } = render(
-      <CssVarsProvider colorSchemeSelector="light-mode" theme={theme} defaultMode="light">
-        <div id="light-mode">
-          <Test />
-        </div>
-      </CssVarsProvider>,
-    );
-
-    expect(container.firstChild.firstChild).toHaveComputedStyle({
-      backgroundColor: 'rgb(255, 255, 255)',
+    expect(darkStyles).to.deep.equal({
+      [`:where([${attribute}="dark"]) &`]: {
+        backgroundColor: 'rgba(0, 0, 0, 0)',
+      },
     });
   });
 });
