@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled } from '@mui/zero-runtime';
 import { useThemeProps } from '@mui/material/styles';
+/* eslint-disable-next-line no-restricted-imports */
 import Person from '@mui/material/internal/svg-icons/Person';
 import { getAvatarUtilityClass } from '@mui/material/Avatar';
 
@@ -68,8 +69,8 @@ const AvatarRoot = styled('div', {
               backgroundColor: theme.vars.palette.Avatar.defaultBg,
             }
           : {
-              backgroundColor:
-                theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
+              backgroundColor: theme.palette.grey[400],
+              ...theme.applyDarkStyles({ backgroundColor: theme.palette.grey[600] }),
             }),
       },
     },

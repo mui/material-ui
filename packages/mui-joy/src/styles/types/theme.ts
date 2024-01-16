@@ -118,6 +118,7 @@ export interface Theme extends ThemeScales, RuntimeColorSystem {
   shouldSkipGeneratingVar: (keys: string[], value: string | number) => boolean;
   unstable_sxConfig: SxConfig;
   unstable_sx: (props: SxProps) => CSSObject;
+  applyDarkStyles: (css: CSSObject) => CSSObject;
 }
 
 export type SxProps = SystemSxProps<Theme>;
