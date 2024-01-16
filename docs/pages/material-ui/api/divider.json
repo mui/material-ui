@@ -9,7 +9,7 @@
       "type": { "name": "bool" },
       "default": "false",
       "deprecated": true,
-      "deprecationInfo": "Use &lt;Divider sx={{ bgcolor: &#39;#eee&#39; }} /&gt; instead."
+      "deprecationInfo": "Use &lt;Divider sx={{ bgcolor: &#39;#eee&#39; }} /&gt; (or any color) instead."
     },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
