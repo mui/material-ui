@@ -97,6 +97,7 @@
     "@babel/plugin-transform-runtime": "^7.23.7",
     "@babel/preset-env": "^7.23.8",
     "@babel/preset-react": "^7.23.3",
+    "@babel/preset-typescript": "^7.23.3",
     "@babel/register": "^7.23.7",
     "@mnajdova/enzyme-adapter-react-18": "^0.2.0",
     "@mui-internal/api-docs-builder": "workspace:^",

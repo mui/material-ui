@@ -7,8 +7,19 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "incremental": true
+    "incremental": true,
+    "isolatedModules": true
   },
-  "include": ["next-env.d.ts", "types", "src", "pages", "data", "next.config.js"],
-  "exclude": ["node_modules", "export"]
+  "include": [
+    "next-env.d.ts",
+    "types",
+    "src",
+    "pages",
+    "data",
+    "next.config.js"
+  ],
+  "exclude": [
+    "node_modules",
+    "export"
+  ]
 }

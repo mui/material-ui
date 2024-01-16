@@ -58,7 +58,6 @@ describe('<TablePagination />', () => {
       },
       refInstanceof: window.HTMLTableCellElement,
       testComponentPropWith: 'th',
-      muiName: 'MuiTablePagination',
       slots: {
         root: {
           expectedClassName: classes.root,

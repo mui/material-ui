@@ -13,7 +13,6 @@ describe('<Switch />', () => {
     mount,
     refInstanceof: window.HTMLSpanElement,
     testComponentPropWith: 'span',
-    muiName: 'MuiSwitch',
     slots: {
       root: {
         expectedClassName: switchClasses.root,

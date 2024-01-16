@@ -6,7 +6,7 @@ import { usePreviousProps } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useBadge } from '@mui/base/useBadge';
 import { useSlotProps } from '@mui/base';
-import styled from '../styles/styled';
+import { styled } from '../zero-styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';

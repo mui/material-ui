@@ -3,6 +3,7 @@
   "compilerOptions": {
     "resolveJsonModule": true,
     "target": "ES2022",
+    "moduleResolution": "node",
     "paths": {
       "@babel/core": ["./node_modules/@babel/core"]
     }
