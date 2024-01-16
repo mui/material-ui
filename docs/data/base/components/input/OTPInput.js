@@ -85,7 +85,7 @@ function OTP({ seperator, inputCount, otp, setOtp }) {
         slots={{
           input: InputElement,
         }}
-        aria-label="OTP input field"
+        aria-label={`Digit ${index + 1} of OTP`}
         slotProps={{
           input: {
             ref: (ele) => {
