@@ -205,7 +205,6 @@ const pages: MuiPage[] = [
         newFeature: true,
       },
       { pathname: '/material-ui/guides/minimizing-bundle-size' },
-      { pathname: '/material-ui/guides/routing' },
       { pathname: '/material-ui/guides/server-rendering' },
       { pathname: '/material-ui/guides/responsive-ui', title: 'Responsive UI' },
       { pathname: '/material-ui/guides/testing' },
@@ -228,6 +227,7 @@ const pages: MuiPage[] = [
         title: 'Next.js integration',
         newFeature: true,
       },
+      { pathname: '/material-ui/integrations/routing', title: 'Routing libraries' },
       {
         pathname: '/material-ui/integrations/styled-components',
         title: 'Usage with styled-components',
