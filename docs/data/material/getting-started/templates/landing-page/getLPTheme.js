@@ -1,5 +1,4 @@
 import { red } from '@mui/material/colors';
-
 import { alpha } from '@mui/material';
 
 export const brandColor = {

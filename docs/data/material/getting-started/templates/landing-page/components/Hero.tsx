@@ -7,10 +7,12 @@ import Chip from '@mui/material/Chip';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
-import { greyColor, secondaryColor } from '../getLPTheme';
+
 import CelebrationRoundedIcon from '@mui/icons-material/CelebrationRounded';
 
-export default function ProductHero() {
+import { greyColor, secondaryColor } from '../getLPTheme';
+
+export default function Hero() {
   return (
     <Box
       id="hero"
@@ -106,7 +108,7 @@ export default function ProductHero() {
                 color={greyColor[500]}
                 paragraph
               >
-                By clicking "Start using" you agree to our{' '}
+                By clicking &quot;Start using&quot; you agree to our
                 <span>
                   <Link
                     href="#"

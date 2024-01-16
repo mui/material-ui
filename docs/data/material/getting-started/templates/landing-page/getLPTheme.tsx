@@ -1,6 +1,5 @@
 import { red } from '@mui/material/colors';
-import { PaletteMode } from '@mui/material';
-import { alpha } from '@mui/material';
+import { alpha, PaletteMode } from '@mui/material';
 
 export const brandColor = {
   50: '#EDF5FD',

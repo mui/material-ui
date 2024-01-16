@@ -4,7 +4,6 @@ import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import { greyColor } from '../getLPTheme';
 
 import SettingsSuggestRoundedIcon from '@mui/icons-material/SettingsSuggestRounded';
 import ConstructionRoundedIcon from '@mui/icons-material/ConstructionRounded';
@@ -12,6 +11,8 @@ import AutoFixHighRoundedIcon from '@mui/icons-material/AutoFixHighRounded';
 import QueryStatsRoundedIcon from '@mui/icons-material/QueryStatsRounded';
 import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
 import SupportAgentRoundedIcon from '@mui/icons-material/SupportAgentRounded';
+
+import { greyColor } from '../getLPTheme';
 
 const items = [
   {
@@ -101,12 +102,12 @@ export default function Highlights() {
                   height: '100%',
                 }}
               >
-                <Box>
+                <div>
                   <Box sx={{ opacity: '50%' }}>{item.icon}</Box>
                   <Typography variant="h6" color="inherit">
                     {item.title}
                   </Typography>
-                </Box>
+                </div>
                 <Typography variant="body2" color="inherit" sx={{ opacity: '70%' }}>
                   {item.description}
                 </Typography>

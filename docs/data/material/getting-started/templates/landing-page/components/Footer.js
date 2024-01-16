@@ -9,8 +9,8 @@ import {
   Container,
   Stack,
 } from '@mui/material';
-import FacebookIcon from '@mui/icons-material/Github';
-import TwitterIcon from '@mui/icons-material/x';
+import FacebookIcon from '@mui/icons-material/GitHub';
+import TwitterIcon from '@mui/icons-material/X';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 function Copyright() {
@@ -164,7 +164,7 @@ export default function Footer() {
             width: '100%',
           }}
         >
-          <Box>
+          <div>
             <Typography variant="body2" color="text.secondary">
               <Link color="inherit" href="#">
                 Privacy Policy
@@ -173,9 +173,8 @@ export default function Footer() {
                 Terms of Service
               </Link>
             </Typography>
-
             <Copyright />
-          </Box>
+          </div>
           <Box sx={{ display: 'flex', justifyContent: 'left' }}>
             <IconButton
               color="primary"

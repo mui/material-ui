@@ -62,7 +62,8 @@ export default function FAQ() {
               >
                 You can reach our customer support team by emailing
                 <Link> support@email.com </Link>
-                or calling our toll-free number. We're here to assist you promptly.
+                or calling our toll-free number. We&apos;re here to assist you
+                promptly.
               </Typography>
             </AccordionDetails>
           </Accordion>
@@ -76,7 +77,7 @@ export default function FAQ() {
               id="panel2d-header"
             >
               <Typography variant="subtitle2">
-                Can I return the product if it doesn't meet my expectations?
+                Can I return the product if it doesn&apos;t meet my expectations?
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
@@ -85,7 +86,7 @@ export default function FAQ() {
                 gutterBottom
                 sx={{ maxWidth: { sm: '100%', md: '60%' } }}
               >
-                Absolutely! We offer a hassle-free return policy. If you're not
+                Absolutely! We offer a hassle-free return policy. If you&apos;re not
                 completely satisfied, you can return the product within [number of
                 days] days for a full refund or exchange.
               </Typography>

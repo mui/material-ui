@@ -9,12 +9,12 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import { alpha } from '@mui/system';
 
-import { greyColor, brandColor } from '../getLPTheme';
-
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import ViewQuiltRoundedIcon from '@mui/icons-material/ViewQuiltRounded';
 import EdgesensorHighRoundedIcon from '@mui/icons-material/EdgesensorHighRounded';
 import DevicesRoundedIcon from '@mui/icons-material/DevicesRounded';
+
+import { greyColor, brandColor } from '../getLPTheme';
 
 const items = [
   {
@@ -85,22 +85,26 @@ export default function Features() {
                   component={Button}
                   onClick={() => handleItemClick(index)}
                   sx={{
-                    backgroundColor: (theme) =>
-                      theme.palette.mode === 'light'
-                        ? selectedItemIndex === index
+                    backgroundColor: (theme) => {
+                      if (theme.palette.mode === 'light') {
+                        return selectedItemIndex === index
                           ? alpha(brandColor[300], 0.2)
-                          : 'transparent'
-                        : selectedItemIndex === index
+                          : 'transparent';
+                      }
+                      return selectedItemIndex === index
                         ? alpha(brandColor[800], 0.2)
-                        : 'transparent',
-                    borderColor: (theme) =>
-                      theme.palette.mode === 'light'
-                        ? selectedItemIndex === index
+                        : 'transparent';
+                    },
+                    borderColor: (theme) => {
+                      if (theme.palette.mode === 'light') {
+                        return selectedItemIndex === index
                           ? alpha(brandColor[400], 0.2)
-                          : greyColor[200]
-                        : selectedItemIndex === index
+                          : greyColor[200];
+                      }
+                      return selectedItemIndex === index
                         ? alpha(brandColor[800], 0.7)
-                        : greyColor[800],
+                        : greyColor[800];
+                    },
                     '&:hover': {
                       borderColor: (theme) =>
                         theme.palette.mode === 'light'
@@ -128,14 +132,16 @@ export default function Features() {
                   >
                     <Box
                       sx={{
-                        color: (theme) =>
-                          theme.palette.mode === 'light'
-                            ? selectedItemIndex === index
+                        color: (theme) => {
+                          if (theme.palette.mode === 'light') {
+                            return selectedItemIndex === index
                               ? brandColor[500]
-                              : greyColor[400]
-                            : selectedItemIndex === index
+                              : greyColor[400];
+                          }
+                          return selectedItemIndex === index
                             ? brandColor[500]
-                            : greyColor[600],
+                            : greyColor[600];
+                        },
                       }}
                     >
                       {icon}

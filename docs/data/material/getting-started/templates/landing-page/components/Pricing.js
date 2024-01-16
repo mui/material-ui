@@ -10,11 +10,11 @@ import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import { alpha } from '@mui/system';
 
-import { brandColor } from '../getLPTheme';
-
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import Chip from '@mui/material/Chip';
+
+import { brandColor } from '../getLPTheme';
 
 const tiers = [
   {
@@ -99,24 +99,30 @@ export default function Pricing() {
                   flexDirection: 'column',
                   gap: '8px',
                   p: 1,
-                  border: (theme) =>
-                    tier.title === 'Professional'
-                      ? theme.palette.mode === 'light'
+                  border: (theme) => {
+                    if (tier.title === 'Professional') {
+                      return theme.palette.mode === 'light'
                         ? `1px solid ${brandColor[200]}`
-                        : `1px solid ${brandColor[700]}`
-                      : '',
-                  bgcolor: (theme) =>
-                    tier.title === 'Professional'
-                      ? theme.palette.mode === 'light'
+                        : `1px solid ${brandColor[700]}`;
+                    }
+                    return '';
+                  },
+                  bgcolor: (theme) => {
+                    if (tier.title === 'Professional') {
+                      return theme.palette.mode === 'light'
                         ? alpha(brandColor[100], 0.5)
-                        : alpha(brandColor[900], 0.7)
-                      : '',
-                  boxShadow: (theme) =>
-                    tier.title === 'Professional'
-                      ? theme.palette.mode === 'light'
+                        : alpha(brandColor[900], 0.7);
+                    }
+                    return '';
+                  },
+                  boxShadow: (theme) => {
+                    if (tier.title === 'Professional') {
+                      return theme.palette.mode === 'light'
                         ? `0 0 24px ${brandColor[100]}`
-                        : `0 0 24px ${brandColor[800]}`
-                      : 'none',
+                        : `0 0 24px ${brandColor[800]}`;
+                    }
+                    return '';
+                  },
                 }}
               >
                 <CardContent>
