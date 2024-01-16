@@ -51,7 +51,7 @@ Use the `defaultExpanded` prop on the Accordion component to have it opened by d
 
 ### Transition
 
-Use the `TransitionComponent` and `TransitionProps` props to change the Accordion's default transition.
+Use the `slots.transition` and `slotProps.transition` props to change the Accordion's default transition.
 
 {{"demo": "AccordionTransition.js", "bg": true}}
 
