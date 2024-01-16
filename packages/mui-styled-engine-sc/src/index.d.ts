@@ -281,7 +281,7 @@ declare function css(
     | CSSObject
     | InterpolationFunction<ThemedStyledProps<object, DefaultTheme>>,
   ...interpolations: Interpolation<ThemedStyledProps<object, DefaultTheme>>[]
-): RuleSet<ThemedStyledProps<object, DefaultTheme>>;
+): RuleSet<object>;
 
 declare function css<Props extends object>(
   styles:
@@ -289,7 +289,7 @@ declare function css<Props extends object>(
     | CSSObject
     | InterpolationFunction<ThemedStyledProps<Props, DefaultTheme>>,
   ...interpolations: Interpolation<ThemedStyledProps<Props, DefaultTheme>>[]
-): RuleSet<ThemedStyledProps<Props, DefaultTheme>>;
+): RuleSet<Props>;
 
 export { css };
 
