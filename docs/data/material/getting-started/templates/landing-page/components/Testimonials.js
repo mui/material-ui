@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Masonry from '@mui/lab/Masonry';
 import { useMediaQuery } from '@mui/material';
-import { useTheme } from '@mui/styles';
+import { useTheme } from '@mui/system';
 
 const userTestimonials = [
   {

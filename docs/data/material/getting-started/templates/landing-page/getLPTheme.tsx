@@ -199,7 +199,7 @@ export default function getLPTheme(mode: 'light' | 'dark') {
             ownerState,
           }: {
             ownerState: {
-              color: string;
+              color?: string;
               variant?: string;
             };
           }) =>
@@ -263,8 +263,9 @@ export default function getLPTheme(mode: 'light' | 'dark') {
               ...(ownerState.color === 'primary' && {
                 color: mode === 'light' ? brandColor[500] : brandColor[400],
               }),
+              color: ownerState.color as string,
             } as const),
-        },
+        } as any,
       },
       MuiAccordion: {
         defaultProps: {

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, ThemeOptions } from '@mui/material/styles';
 import Divider from '@mui/material/Divider';
 
 import AppAppBar from './components/AppAppBar';
@@ -36,7 +36,7 @@ export default function LandingPage() {
     },
   });
 
-  const theme = React.useMemo(
+  const theme = React.useMemo<ThemeOptions>(
     () => createTheme(getLPTheme(colorMode.mode)),
     [colorMode.mode],
   );

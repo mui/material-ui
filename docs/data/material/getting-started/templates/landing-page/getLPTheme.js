@@ -254,6 +254,7 @@ export default function getLPTheme(mode) {
             ...(ownerState.color === 'primary' && {
               color: mode === 'light' ? brandColor[500] : brandColor[400],
             }),
+            color: ownerState.color,
           }),
         },
       },
