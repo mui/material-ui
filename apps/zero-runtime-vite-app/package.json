@@ -29,6 +29,6 @@
     "@vitejs/plugin-react": "^4.2.1",
     "postcss": "^8.4.33",
     "postcss-combine-media-query": "^1.0.1",
-    "vite": "5.0.10"
+    "vite": "5.0.11"
   }
 }
