@@ -51,7 +51,7 @@ export default function LandingPage() {
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            gap: { xs: 8, sm: 16 },
+            gap: { xs: 8, sm: 12 },
             bgcolor: 'background.default',
           }}
         >

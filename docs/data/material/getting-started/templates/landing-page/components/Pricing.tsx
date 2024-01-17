@@ -8,7 +8,6 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
-import { alpha } from '@mui/system';
 
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
@@ -38,6 +37,8 @@ const tiers = [
       '10 GB of storage',
       'Help center access',
       'Priority email support',
+      'Dedicated team',
+      'Best deals',
     ],
     buttonText: 'Get started',
     buttonVariant: 'contained',
@@ -71,11 +72,11 @@ export default function Pricing() {
         <Box
           sx={{
             width: { sm: '100%', md: '60%' },
-            mb: 8,
+            mb: 6,
             textAlign: { sm: 'left', md: 'center' },
           }}
         >
-          <Typography component="h2" variant="h4" color="text.primary" gutterBottom>
+          <Typography component="h2" variant="h4" color="text.primary">
             Pricing
           </Typography>
           <Typography variant="body1" color="text.secondary" component="p">
@@ -102,35 +103,24 @@ export default function Pricing() {
                   border: (theme) => {
                     if (tier.title === 'Professional') {
                       return theme.palette.mode === 'light'
-                        ? `1px solid ${brandColor[200]}`
+                        ? `1px solid ${brandColor[500]}`
                         : `1px solid ${brandColor[700]}`;
                     }
                     return '';
                   },
-                  bgcolor: (theme) => {
-                    if (tier.title === 'Professional') {
-                      return theme.palette.mode === 'light'
-                        ? alpha(brandColor[100], 0.5)
-                        : alpha(brandColor[900], 0.7);
-                    }
-                    return '';
-                  },
-
-                  boxShadow: (theme) => {
-                    if (tier.title === 'Professional') {
-                      return theme.palette.mode === 'light'
-                        ? `0 0 24px ${brandColor[100]}`
-                        : `0 0 24px ${brandColor[800]}`;
-                    }
-                    return '';
-                  },
+                  bgcolor: tier.title === 'Professional' ? brandColor[900] : '',
                 }}
               >
                 <CardContent>
                   <Box
-                    sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      mb: 1,
+                      color: tier.title === 'Professional' ? brandColor[50] : '',
+                    }}
                   >
-                    <Typography variant="h6" gutterBottom>
+                    <Typography variant="h6" gutterBottom color="inherit">
                       {tier.title}
                     </Typography>
                     {tier.title === 'Professional' && (
@@ -144,19 +134,19 @@ export default function Pricing() {
                           backgroundColor: (theme) =>
                             theme.palette.mode === 'light'
                               ? brandColor[100]
-                              : brandColor[800],
+                              : brandColor[300],
                           fontWeight: '600',
                           '& .MuiChip-label': {
                             color: (theme) =>
                               theme.palette.mode === 'light'
                                 ? brandColor[500]
-                                : brandColor[400],
+                                : brandColor[900],
                           },
                           '& .MuiChip-icon': {
                             color: (theme) =>
                               theme.palette.mode === 'light'
                                 ? brandColor[500]
-                                : brandColor[400],
+                                : brandColor[800],
                           },
                         }}
                       />
@@ -166,16 +156,29 @@ export default function Pricing() {
                     sx={{
                       display: 'flex',
                       alignItems: 'baseline',
+                      color: tier.title === 'Professional' ? brandColor[50] : '',
                     }}
                   >
-                    <Typography component="h2" variant="h2" color="text.primary">
+                    <Typography component="h2" variant="h2" color="inherit">
                       ${tier.price}
                     </Typography>
-                    <Typography variant="h6" color="text.secondary">
+                    <Typography variant="h6" color="inherit">
                       &nbsp; per month
                     </Typography>
                   </Box>
-                  <Divider sx={{ my: 3 }} />
+                  <Divider
+                    sx={{
+                      my: 3,
+                      borderColor: (theme) => {
+                        if (tier.title === 'Professional') {
+                          return theme.palette.mode === 'light'
+                            ? brandColor[600]
+                            : brandColor[500];
+                        }
+                        return '';
+                      },
+                    }}
+                  />
                   {tier.description.map((line) => (
                     <Box
                       key={line}
@@ -184,6 +187,7 @@ export default function Pricing() {
                         gap: 1.5,
                         p: 1,
                         alignItems: 'center',
+                        color: tier.title === 'Professional' ? brandColor[200] : '',
                       }}
                     >
                       <CheckCircleRoundedIcon
@@ -192,7 +196,7 @@ export default function Pricing() {
                           color: 'success.main',
                         }}
                       />
-                      <Typography variant="subtitle2" color="text.secondary">
+                      <Typography variant="subtitle2" color="inherit">
                         {line}
                       </Typography>
                     </Box>

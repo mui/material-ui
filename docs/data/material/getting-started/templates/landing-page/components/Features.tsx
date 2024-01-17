@@ -56,12 +56,7 @@ export default function Features() {
         <Grid container spacing={4}>
           <Grid item xs={12} md={6}>
             <Box sx={{ mb: 4 }}>
-              <Typography
-                component="h2"
-                variant="h4"
-                color="text.primary"
-                gutterBottom
-              >
+              <Typography component="h2" variant="h4" color="text.primary">
                 Product features
               </Typography>
               <Typography variant="body1" color="text.secondary" component="p">
@@ -85,6 +80,7 @@ export default function Features() {
                   component={Button}
                   onClick={() => handleItemClick(index)}
                   sx={{
+                    height: '33%',
                     backgroundColor: (theme) => {
                       if (theme.palette.mode === 'light') {
                         return selectedItemIndex === index

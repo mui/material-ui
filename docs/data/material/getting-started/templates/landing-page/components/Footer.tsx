@@ -13,12 +13,17 @@ import FacebookIcon from '@mui/icons-material/GitHub';
 import TwitterIcon from '@mui/icons-material/X';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
+const logoStyle = {
+  width: '140px',
+  height: 'auto',
+};
+
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" mt={1}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        MUI
+        Sitemark&nbsp;
       </Link>
       {new Date().getFullYear()}
     </Typography>
@@ -60,11 +65,18 @@ export default function Footer() {
             }}
           >
             <Box sx={{ width: { xs: '100%', sm: '60%' } }}>
-              <Typography variant="subtitle2" gutterBottom>
-                Newsletter
-              </Typography>
+              <Box sx={{ ml: '-15px' }}>
+                <img
+                  src={
+                    'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
+                  }
+                  style={logoStyle}
+                  alt="logo"
+                />
+              </Box>
+              <Typography variant="subtitle2">Newsletter</Typography>
               <Typography variant="body1" color="text.secondary" component="div">
-                Subscribe to our newsletter for updates and promotions.
+                Subscribe to our newsletter for weekly updates and promotions.
               </Typography>
               <Stack direction="row" spacing={1} sx={{ pt: 2 }}>
                 <TextField
@@ -88,27 +100,27 @@ export default function Footer() {
               gap: 1,
             }}
           >
-            <Typography variant="h6" gutterBottom>
+            <Typography variant="subtitle2" gutterBottom>
               Product
             </Typography>
 
-            <Link color="inherit" href="#">
+            <Link color="inherit" href="#" sx={{ opacity: 0.7 }}>
               Features
             </Link>
 
-            <Link color="inherit" href="#">
+            <Link color="inherit" href="#" sx={{ opacity: 0.7 }}>
               Testimonials
             </Link>
 
-            <Link color="inherit" href="#">
+            <Link color="inherit" href="#" sx={{ opacity: 0.7 }}>
               Highlights
             </Link>
 
-            <Link color="inherit" href="#">
+            <Link color="inherit" href="#" sx={{ opacity: 0.7 }}>
               Pricing
             </Link>
 
-            <Link color="inherit" href="#">
+            <Link color="inherit" href="#" sx={{ opacity: 0.7 }}>
               FAQs
             </Link>
           </Box>
@@ -123,15 +135,15 @@ export default function Footer() {
               Company
             </Typography>
 
-            <Link color="inherit" href="#">
+            <Link color="inherit" href="#" sx={{ opacity: 0.7 }}>
               About us
             </Link>
 
-            <Link color="inherit" href="#">
+            <Link color="inherit" href="#" sx={{ opacity: 0.7 }}>
               Careers
             </Link>
 
-            <Link color="inherit" href="#">
+            <Link color="inherit" href="#" sx={{ opacity: 0.7 }}>
               Press
             </Link>
           </Box>
@@ -145,13 +157,13 @@ export default function Footer() {
             <Typography variant="subtitle2" gutterBottom>
               Legal
             </Typography>
-            <Link color="inherit" href="#">
+            <Link color="inherit" href="#" sx={{ opacity: 0.7 }}>
               Terms
             </Link>
-            <Link color="inherit" href="#">
+            <Link color="inherit" href="#" sx={{ opacity: 0.7 }}>
               Privacy
             </Link>
-            <Link color="inherit" href="#">
+            <Link color="inherit" href="#" sx={{ opacity: 0.7 }}>
               Contact
             </Link>
           </Box>
@@ -160,17 +172,20 @@ export default function Footer() {
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
+            pt: 8,
             mt: 8,
             width: '100%',
+            borderTop: '1px solid',
+            borderColor: 'divider',
           }}
         >
           <div>
             <Typography variant="body2" color="text.secondary">
               <Link color="inherit" href="#">
-                Privacy Policy
+                Privacy Policy •
               </Link>
               <Link color="inherit" href="#">
-                Terms of Service
+                &nbsp;Terms of Service
               </Link>
             </Typography>
             <Copyright />

@@ -31,10 +31,9 @@ export default function FAQ() {
           component="h2"
           variant="h4"
           color="text.primary"
-          gutterBottom
           sx={{
             width: { sm: '100%', md: '60%' },
-            mb: 8,
+            mb: 6,
             textAlign: { sm: 'left', md: 'center' },
           }}
         >

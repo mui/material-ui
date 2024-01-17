@@ -34,7 +34,7 @@ export default function LogoCollection() {
   const logos = theme.palette.mode === 'light' ? darkLogos : whiteLogos;
 
   return (
-    <Box id="logoCollection" sx={{ mt: 10, textAlign: 'center', opacity: 0.7 }}>
+    <Box id="logoCollection" sx={{ mt: 8, textAlign: 'center', opacity: 0.7 }}>
       <Typography
         component="h2"
         variant="subtitle2"
@@ -43,7 +43,7 @@ export default function LogoCollection() {
       >
         Trusted by the best companies
       </Typography>
-      <Grid container justifyContent="center" spacing={2} sx={{ mt: 1 }}>
+      <Grid container justifyContent="center" spacing={2} sx={{ mt: 0.5 }}>
         {logos.map((logo, index) => (
           <Grid item key={index}>
             <img src={logo} alt={`Logo ${index + 1}`} style={logoStyle} />

@@ -70,28 +70,42 @@ function AppAppBar() {
                 alt="logo"
               />
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                <MenuItem onClick={() => scrollToSection('features')}>
+                <MenuItem
+                  onClick={() => scrollToSection('features')}
+                  sx={{ py: '6px', px: '12px' }}
+                >
                   <Typography variant="body2" color="text.primary">
                     Features
                   </Typography>
                 </MenuItem>
-                <MenuItem onClick={() => scrollToSection('testimonials')}>
+                <MenuItem
+                  onClick={() => scrollToSection('testimonials')}
+                  sx={{ py: '6px', px: '12px' }}
+                >
                   <Typography variant="body2" color="text.primary">
                     Testimonials
                   </Typography>
                 </MenuItem>
-                <MenuItem onClick={() => scrollToSection('highlights')}>
+                <MenuItem
+                  onClick={() => scrollToSection('highlights')}
+                  sx={{ py: '6px', px: '12px' }}
+                >
                   <Typography variant="body2" color="text.primary">
                     Highlights
                   </Typography>
                 </MenuItem>
-                <MenuItem onClick={() => scrollToSection('pricing')}>
+                <MenuItem
+                  onClick={() => scrollToSection('pricing')}
+                  sx={{ py: '6px', px: '12px' }}
+                >
                   <Typography variant="body2" color="text.primary">
                     Pricing
                   </Typography>
                 </MenuItem>
-                <MenuItem onClick={() => scrollToSection('faq')}>
-                  {' '}
+                <MenuItem
+                  onClick={() => scrollToSection('faq')}
+                  sx={{ py: '6px', px: '12px' }}
+                >
                   <Typography variant="body2" color="text.primary">
                     FAQ
                   </Typography>
@@ -100,16 +114,7 @@ function AppAppBar() {
             </Box>
 
             <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1 }}>
-              <Button
-                color="primary"
-                variant="contained"
-                size="small"
-                component="a"
-                href="/material-ui/getting-started/templates/sign-up/"
-                target="_blank"
-              >
-                Sign up
-              </Button>
+              <ToggleColorMode />
               <Button
                 color="primary"
                 variant="outlined"
@@ -120,7 +125,16 @@ function AppAppBar() {
               >
                 Sign in
               </Button>
-              <ToggleColorMode />
+              <Button
+                color="primary"
+                variant="contained"
+                size="small"
+                component="a"
+                href="/material-ui/getting-started/templates/sign-up/"
+                target="_blank"
+              >
+                Sign up
+              </Button>
             </Box>
 
             <Box sx={{ display: { sm: '', md: 'none' } }}>
