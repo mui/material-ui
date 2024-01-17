@@ -34,6 +34,7 @@ function OTP({
     switch (event.key) {
       case 'ArrowUp':
       case 'ArrowDown':
+      case ' ':
         event.preventDefault();
         break;
       case 'ArrowLeft':
@@ -76,6 +77,7 @@ function OTP({
         });
 
         break;
+
       default:
         break;
     }

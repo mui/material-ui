@@ -20,6 +20,7 @@ function OTP({ separator, inputCount, value, onChange }) {
     switch (event.key) {
       case 'ArrowUp':
       case 'ArrowDown':
+      case ' ':
         event.preventDefault();
         break;
       case 'ArrowLeft':
@@ -42,7 +43,7 @@ function OTP({ separator, inputCount, value, onChange }) {
         onChange((prev) => {
           const otpArray = prev.split('');
           otpArray.splice(currentIndex, 1);
-          otpArray.push('');
+          otpArray.push(' ');
           return otpArray.join('');
         });
 
@@ -57,11 +58,12 @@ function OTP({ separator, inputCount, value, onChange }) {
         onChange((prev) => {
           const otpArray = prev.split('');
           otpArray.splice(currentIndex, 1);
-          otpArray.push('');
+          otpArray.push(' ');
           return otpArray.join('');
         });
 
         break;
+
       default:
         break;
     }
@@ -102,7 +104,7 @@ function OTP({ separator, inputCount, value, onChange }) {
     // Check if there is text data in the clipboard
     if (clipboardData.types.includes('text/plain')) {
       let pastedText = clipboardData.getData('text/plain');
-      pastedText = pastedText.substring(0, inputCount);
+      pastedText = pastedText.substring(0, inputCount).trim();
       let indexToEnter = 0;
 
       while (indexToEnter <= currentIndex) {
@@ -116,7 +118,7 @@ function OTP({ separator, inputCount, value, onChange }) {
       const otpArray = value.split('');
 
       for (let i = indexToEnter; i < inputCount; i += 1) {
-        const lastValue = pastedText[i - indexToEnter] ?? '';
+        const lastValue = pastedText[i - indexToEnter] ?? ' ';
         otpArray[i] = lastValue;
       }
 
