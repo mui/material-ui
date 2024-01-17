@@ -87,9 +87,7 @@ export function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbar
 
   // Pause the timer when the user is interacting with the Snackbar
   // or when the user hide the window.
-  const handlePause = () => {
-    timerAutoHide.clear();
-  };
+  const handlePause = timerAutoHide.clear;
 
   // Restart the timer when the user is no longer interacting with the Snackbar
   // or when the window is shown back.
