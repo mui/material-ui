@@ -14,7 +14,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 ### `@mui/material@5.15.5`
 
 - &#8203;<!-- 42 -->[Accordion] Deprecate \*Props props and classes for v6 (#40418) @DiegoAndai
-- &#8203;<!-- 41 -->[material-ui][Alert] Update TypeScript types to allow color override types to be added to `iconMapping` and `severity` props (#40551) @2metres
+- &#8203;<!-- 41 -->[Alert] Update TypeScript types to allow color override types to be added to `iconMapping` and `severity` props (#40551) @2metres
 - &#8203;<!-- 27 -->[Dialog] Remove deprecated onBackdropClick from Dialog tests (#40505) @sai6855
 - &#8203;<!-- 26 -->[Divider] Deprecate props and classes for v6 (#40563) @sai6855
 
@@ -37,8 +37,8 @@ To adapt your code to the new pattern:
 
 #### Changes
 
-- &#8203;<!-- 39 -->[select] Fix screen-reader CSS to avoid body scrollbar (#40599) @brijeshb42
-- &#8203;<!-- 38 -->[switch] Add border-box to demos (#40638) @zanivan
+- &#8203;<!-- 39 -->[Select] Fix screen-reader CSS to avoid body scrollbar (#40599) @brijeshb42
+- &#8203;<!-- 38 -->[Switch] Add border-box to demos (#40638) @zanivan
 
 ### `@mui/joy@5.0.0-beta.23`
 
@@ -57,10 +57,10 @@ To adapt your code to the new pattern:
 
 - &#8203;<!-- 08 -->Fix release script (#40519) @petrovmiroslav
 - &#8203;<!-- 07 -->Support Nonces in the App Router Provider (#40269) @josh-feldman
+- &#8203;<!-- 06 -->Polish @mui/material-nextjs (#40473) @oliviertassinari
 
 ### `@mui/system@5.15.5`
 
-- &#8203;<!-- 06 -->Polish @mui/material-nextjs (#40473) @oliviertassinari
 - &#8203;<!-- 05 -->Fix import path for @mui/system in vite apps (#40490) @brijeshb42
 - &#8203;<!-- 02 -->Fix css vars generation and simplify the code (#40530) @siriwatknp
 - &#8203;<!-- 01 -->Identify zero runtime styled path (#40555) @brijeshb42
