@@ -39,12 +39,10 @@ function OTP({ separator, inputCount, value, onChange }) {
         break;
       case 'Delete':
         event.preventDefault();
-
-        onChange((prev) => {
-          const otpArray = prev.split('');
-          otpArray.splice(currentIndex, 1);
-          otpArray.push(' ');
-          return otpArray.join('');
+        onChange((prevOtp) => {
+          let otp = prevOtp;
+          otp = otp.slice(0, currentIndex) + otp.slice(currentIndex + 1);
+          return otp;
         });
 
         break;
@@ -55,11 +53,10 @@ function OTP({ separator, inputCount, value, onChange }) {
           selectInput(currentIndex - 1);
         }
 
-        onChange((prev) => {
-          const otpArray = prev.split('');
-          otpArray.splice(currentIndex, 1);
-          otpArray.push(' ');
-          return otpArray.join('');
+        onChange((prevOtp) => {
+          let otp = prevOtp;
+          otp = otp.slice(0, currentIndex) + otp.slice(currentIndex + 1);
+          return otp;
         });
 
         break;
@@ -74,7 +71,7 @@ function OTP({ separator, inputCount, value, onChange }) {
     let indexToEnter = 0;
 
     while (indexToEnter <= currentIndex) {
-      if (value[indexToEnter] && indexToEnter < currentIndex) {
+      if (inputRefs.current[indexToEnter].value && indexToEnter < currentIndex) {
         indexToEnter += 1;
       } else {
         break;
@@ -108,7 +105,7 @@ function OTP({ separator, inputCount, value, onChange }) {
       let indexToEnter = 0;
 
       while (indexToEnter <= currentIndex) {
-        if (value[indexToEnter] && indexToEnter < currentIndex) {
+        if (inputRefs.current[indexToEnter].value && indexToEnter < currentIndex) {
           indexToEnter += 1;
         } else {
           break;
@@ -144,7 +141,7 @@ function OTP({ separator, inputCount, value, onChange }) {
                 onChange: (event) => handleChange(event, index),
                 onClick: (event) => handleClick(event, index),
                 onPaste: (event) => handlePaste(event, index),
-                value: value[index],
+                value: value[index] ?? '',
               },
             }}
           />
@@ -164,6 +161,7 @@ OTP.propTypes = {
 
 export default function OTPInput() {
   const [otp, setOtp] = React.useState('');
+
   return (
     <Box
       sx={{
