@@ -24,7 +24,19 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
 ### `@mui/base@5.0.0-beta.32`
 
+#### Breaking changes
+
 - &#8203;<!-- 40 -->Change the CSS class prefix to `base-` (#40205) @michaldudak
+
+The class prefix of Base UI components have been changed from `Mui-` to `base-`. This only affects codebases that uses class names verbatim, i.e. not exposed by JS objects such as `buttonClasses`, but as plain strings or in CSS stylesheets (`.MuiButton.root`)
+
+To adapt your code to the new pattern:
+
+- replace all occurrences of the regex `.Mui([A-Z][A-Za-z]*)-` with `.base-$1-` (so `MuiButton-root` becomes `base-Button-root`, etc.),
+- replace all occurrences of the regex `.Mui-([a-z]*)` with `.base--$1` (so `Mui-disabled` becomes `base--disabled`, etc.).
+
+#### Changes
+
 - &#8203;<!-- 39 -->[select] Fix screen-reader CSS to avoid body scrollbar (#40599) @brijeshb42
 - &#8203;<!-- 38 -->[switch] Add border-box to demos (#40638) @zanivan
 
