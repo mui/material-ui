@@ -287,15 +287,12 @@ Alert.propTypes /* remove-proptypes */ = {
    * If you wish to change this mapping, you can provide your own.
    * Alternatively, you can use the `icon` prop to override the icon displayed.
    */
-  iconMapping: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.shape({
-      error: PropTypes.node,
-      info: PropTypes.node,
-      success: PropTypes.node,
-      warning: PropTypes.node,
-    }),
-    PropTypes.objectOf(PropTypes.node),
-  ]),
+  iconMapping: PropTypes.shape({
+    error: PropTypes.node,
+    info: PropTypes.node,
+    success: PropTypes.node,
+    warning: PropTypes.node,
+  }),
   /**
    * Callback fired when the component requests to be closed.
    * When provided and no `action` prop is set, a close icon button is displayed that triggers the callback when clicked.
