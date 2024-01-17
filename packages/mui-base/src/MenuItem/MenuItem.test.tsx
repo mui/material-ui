@@ -36,7 +36,6 @@ describe('<MenuItem />', () => {
     },
     refInstanceof: window.HTMLLIElement,
     testComponentPropWith: 'span',
-    muiName: 'MuiMenuItem',
     slots: {
       root: {
         expectedClassName: menuItemClasses.root,

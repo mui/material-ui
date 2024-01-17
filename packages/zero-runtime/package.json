@@ -14,13 +14,14 @@
   "dependencies": {
     "csstype": "^3.1.2",
     "cssesc": "^3.0.0",
-    "clsx": "^2.0.0",
-    "@babel/core": "^7.23.2",
+    "clsx": "^2.1.0",
+    "@babel/core": "^7.23.7",
     "@babel/helper-module-imports": "^7.22.15",
     "@babel/helper-plugin-utils": "^7.22.5",
-    "@babel/parser": "^7.23.0",
-    "@babel/types": "^7.23.0",
+    "@babel/parser": "^7.23.6",
+    "@babel/types": "^7.23.6",
     "@emotion/css": "^11.11.2",
+    "@emotion/serialize": "^1.1.3",
     "@emotion/styled": "^11.11.0",
     "@linaria/tags": "^5.0.2",
     "@linaria/utils": "^5.0.2",
@@ -30,13 +31,13 @@
     "stylis": "^4.2.0"
   },
   "devDependencies": {
-    "@types/babel__core": "^7.20.3",
-    "@types/babel__helper-module-imports": "^7.18.2",
-    "@types/babel__helper-plugin-utils": "^7.10.2",
+    "@types/babel__core": "^7.20.5",
+    "@types/babel__helper-module-imports": "^7.18.3",
+    "@types/babel__helper-plugin-utils": "^7.10.3",
     "@types/cssesc": "^3.0.2",
-    "@types/lodash.get": "^4.4.7",
+    "@types/lodash.get": "^4.4.9",
     "@types/lodash.set": "^4.3.9",
-    "@types/node": "^18.18.5",
+    "@types/node": "^18.19.7",
     "@types/react": "^18.2.31",
     "@types/stylis": "^4.2.0",
     "react": "^18.2.0"
@@ -87,8 +88,20 @@
       "import": "./utils/index.mjs",
       "require": "./utils/index.js"
     },
+    "./exports/generateAtomics": {
+      "default": "./exports/generateAtomics.js"
+    },
+    "./exports/keyframes": {
+      "default": "./exports/keyframes.js"
+    },
+    "./exports/styled": {
+      "default": "./exports/styled.js"
+    },
     "./exports/sx-plugin": {
       "default": "./exports/sx-plugin.js"
+    },
+    "./exports/sx": {
+      "default": "./exports/sx.js"
     }
   }
 }

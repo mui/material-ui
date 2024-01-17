@@ -55,7 +55,6 @@ describe('<Select />', () => {
     mount,
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'span',
-    muiName: 'MuiSelect',
     slots: {
       root: {
         expectedClassName: selectClasses.root,
