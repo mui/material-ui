@@ -5,12 +5,6 @@ const { experimental_extendTheme: extendTheme } = require('@mui/material/styles'
 
 const theme = extendTheme({ cssVarPrefix: 'app' });
 
-theme.applyDarkStyles = function applyDarkStyles(obj) {
-  return {
-    ':where([data-mui-color-scheme="dark"]) &': obj,
-  };
-};
-
 /**
  * @typedef {import('@mui/zero-next-plugin').ZeroPluginConfig} ZeroPluginConfig
  */

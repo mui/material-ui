@@ -3,10 +3,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
-import Person from '../internal/svg-icons/Person';
-import { getAvatarUtilityClass } from './avatarClasses';
+import { styled } from '@mui/zero-runtime';
+import { useThemeProps } from '@mui/material/styles';
+/* eslint-disable-next-line no-restricted-imports */
+import Person from '@mui/material/internal/svg-icons/Person';
+import { getAvatarUtilityClass } from '@mui/material/Avatar';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant, colorDefault } = ownerState;
