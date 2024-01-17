@@ -42,3 +42,4 @@ export { isGlobalState as unstable_isGlobalState } from './generateUtilityClass'
 export * from './generateUtilityClass';
 export { default as unstable_generateUtilityClasses } from './generateUtilityClasses';
 export { default as unstable_ClassNameGenerator } from './ClassNameGenerator';
+export { default as clamp } from './clamp';

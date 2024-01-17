@@ -926,9 +926,6 @@ importers:
       '@mui/markdown':
         specifier: workspace:^
         version: link:../markdown
-      '@mui/utils':
-        specifier: workspace:^
-        version: link:../mui-utils/build
       ast-types:
         specifier: ^0.14.2
         version: 0.14.2
@@ -2314,6 +2311,9 @@ importers:
       '@emotion/css':
         specifier: ^11.11.2
         version: 11.11.2
+      '@emotion/serialize':
+        specifier: ^1.1.3
+        version: 1.1.3
       '@emotion/styled':
         specifier: ^11.11.0
         version: 11.11.0(@emotion/react@11.11.3)(@types/react@18.2.46)(react@18.2.0)

@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import {
   Experimental_CssVarsProvider as CssVarsProvider,
   experimental_extendTheme as extendTheme,
+  styled,
 } from '@mui/material/styles';
 import { deepOrange, green } from '@mui/material/colors';
 
@@ -501,6 +502,30 @@ describe('experimental_extendTheme', () => {
 
     Object.keys(keys).forEach((key) => {
       expect(theme[key]).to.deep.equal(theme.vars[key]);
+    });
+  });
+
+  it('should use the right selector with applyDarkStyles', function test() {
+    const defaultTheme = extendTheme();
+    const attribute = 'data-custom-color-scheme';
+    let darkStyles = {};
+    const Test = styled('div')(({ theme }) => {
+      darkStyles = theme.applyDarkStyles({
+        backgroundColor: 'rgba(0, 0, 0, 0)',
+      });
+      return null;
+    });
+
+    render(
+      <CssVarsProvider attribute={attribute} theme={defaultTheme}>
+        <Test />
+      </CssVarsProvider>,
+    );
+
+    expect(darkStyles).to.deep.equal({
+      [`:where([${attribute}="dark"]) &`]: {
+        backgroundColor: 'rgba(0, 0, 0, 0)',
+      },
     });
   });
 });

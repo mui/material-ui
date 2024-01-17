@@ -16,7 +16,8 @@ import { cssFnValueToVariable } from '../utils/cssFnValueToVariable';
 import { processCssObject } from '../utils/processCssObject';
 import { valueToLiteral } from '../utils/valueToLiteral';
 import BaseProcessor from './base-processor';
-import { Theme } from '../utils/generateCss';
+
+type Theme = { [key: 'unstable_sxConfig' | string]: string | number | Theme };
 
 type VariantData = {
   props: (componentProps: unknown) => boolean | Record<string, string | number | boolean | null>;
