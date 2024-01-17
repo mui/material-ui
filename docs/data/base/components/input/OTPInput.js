@@ -40,8 +40,8 @@ function OTP({ separator, inputCount, value, onChange }) {
       case 'Delete':
         event.preventDefault();
         onChange((prevOtp) => {
-          let otp = prevOtp;
-          otp = otp.slice(0, currentIndex) + otp.slice(currentIndex + 1);
+          const otp =
+            prevOtp.slice(0, currentIndex) + prevOtp.slice(currentIndex + 1);
           return otp;
         });
 
@@ -54,11 +54,10 @@ function OTP({ separator, inputCount, value, onChange }) {
         }
 
         onChange((prevOtp) => {
-          let otp = prevOtp;
-          otp = otp.slice(0, currentIndex) + otp.slice(currentIndex + 1);
+          const otp =
+            prevOtp.slice(0, currentIndex) + prevOtp.slice(currentIndex + 1);
           return otp;
         });
-
         break;
 
       default:
