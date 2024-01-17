@@ -3,7 +3,7 @@
 const { withZeroPlugin } = require('@mui/zero-next-plugin');
 const { experimental_extendTheme: extendTheme } = require('@mui/material/styles');
 
-const theme = extendTheme();
+const theme = extendTheme({ cssVarPrefix: 'app' });
 
 theme.applyDarkStyles = function applyDarkStyles(obj) {
   return {
@@ -20,7 +20,6 @@ theme.applyDarkStyles = function applyDarkStyles(obj) {
  */
 const zeroPluginOptions = {
   theme,
-  cssVariablesPrefix: 'app',
   transformLibraries: ['local-ui-lib'],
   sourceMap: true,
   displayName: true,
