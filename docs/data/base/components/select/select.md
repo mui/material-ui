@@ -124,12 +124,12 @@ The following demo shows how to group Options with the Option Group component:
 
 ### Anatomy
 
-The Select component is composed of a root `<button>` along with a `<div>` that houses a `<ul>` within a [Popper](/base-ui/react-popper/).
+The Select component is composed of a root `<button>` along with a `<div>` that houses a `<ul>` within a [Popup](/base-ui/react-popup/).
 Option renders as an `<li>`, and Option Group renders a `<ul>` with an `<li>` that represents its label.
 
 ```html
 <button class="base-Select-root" type="button">Open</button>
-<div class="base-Select-popper">
+<div class="base-Select-popup">
   <ul class="base-Select-listbox">
     <li class="base-Option-root">Option one</li>
     <li class="base-Option-root">Option two</li>
@@ -159,12 +159,19 @@ The following code snippet applies a CSS class called `my-listbox` to the listbo
 
 ### Portals
 
-By default, the Select's popup is rendered in a [Portal](https://mui.com/base-ui/react-portal/) and appended to the bottom of the DOM.
-To instead render the popup where the component is defined, override the `disablePortal` prop of the underlying Popper, as shown below:
+By default, the Select's popup is rendered in a [Portal](/base-ui/react-portal/) and appended to the bottom of the DOM.
+To instead render the popup where the component is defined, override the `disablePortal` prop of the underlying Popup, as shown below:
 
 ```jsx
-<Select slotProps={{ popper: { disablePortal: true } }} />
+<Select slotProps={{ popup: { disablePortal: true } }} />
 ```
+
+### Transitions
+
+The Select component supports the [Transitions API](/base-ui/react-transitions/), so it's possible to animate the appearing and disappearing Listbox.
+To do this, override the Listbox slot of the Select and wrap it with a transition component ([CssTransition](/base-ui/react-transitions/#css-transition), [CssAnimation](/base-ui/react-transitions/#css-animation), or a custom-built one).
+
+{{"demo": "UnstyledSelectTransitions.js", "defaultCodeOpen": false}}
 
 ### Usage with TypeScript
 

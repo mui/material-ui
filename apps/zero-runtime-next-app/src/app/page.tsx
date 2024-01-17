@@ -3,6 +3,8 @@ import { styled } from '@mui/zero-runtime';
 import styles from './page.module.css';
 
 const Main = styled.main({
+  color: 'rgb(var(--foreground-rgb))',
+  background: `linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb))`,
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',

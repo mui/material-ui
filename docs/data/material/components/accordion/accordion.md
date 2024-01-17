@@ -51,7 +51,7 @@ Use the `defaultExpanded` prop on the Accordion component to have it opened by d
 
 ### Transition
 
-Use the `TransitionComponent` and `TransitionProps` props to change the Accordion's default transition.
+Use the `slots.transition` and `slotProps.transition` props to change the Accordion's default transition.
 
 {{"demo": "AccordionTransition.js", "bg": true}}
 
@@ -89,10 +89,10 @@ The demo below also shows a bit of visual customziation.
 The Accordion content is mounted by default even if it's not expanded.
 This default behavior has server-side rendering and SEO in mind.
 
-If you render the Accordion Details with a big component tree nested inside, or if you have many Accordions, you may want to change this behavior by setting `unmountOnExit` to `true` inside the `TransitionProps` prop to improve performance:
+If you render the Accordion Details with a big component tree nested inside, or if you have many Accordions, you may want to change this behavior by setting `unmountOnExit` to `true` inside the `slotProps.transition` prop to improve performance:
 
 ```jsx
-<Accordion TransitionProps={{ unmountOnExit: true }} />
+<Accordion slotProps={{ transition: { unmountOnExit: true } }} />
 ```
 
 ## Accessibility

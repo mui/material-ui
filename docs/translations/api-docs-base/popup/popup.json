@@ -11,7 +11,7 @@
       "description": "If <code>true</code>, the popup will be rendered where it is defined, without the use of portals."
     },
     "keepMounted": {
-      "description": "If <code>true</code>, the popup will exist in the DOM even if it&#39;s closed. Its visibility will be controlled by the <code>display</code> CSS property.<br>Otherwise, a closed popup will be removed from the DOM."
+      "description": "If <code>true</code>, the popup will exist in the DOM even if it&#39;s closed. Its visibility will be controlled by the <code>visibility</code> CSS property.<br>Otherwise, a closed popup will be removed from the DOM."
     },
     "middleware": {
       "description": "Collection of Floating UI middleware to use when positioning the popup. If not provided, the <a href=\"https://floating-ui.com/docs/offset\"><code>offset</code></a> and <a href=\"https://floating-ui.com/docs/flip\"><code>flip</code></a> functions will be used."
