@@ -20,8 +20,12 @@ describe('<Alert />', () => {
     testDeepOverrides: { slotName: 'message', slotClassName: classes.message },
     testLegacyComponentsProp: true,
     slots: {
-      closeButton: {},
-      closeIcon: {},
+      closeButton: {
+        expectedClassName: classes.closeButton,
+      },
+      closeIcon: {
+        expectedClassName: classes.closeIcon,
+      },
     },
     skip: [
       'componentsProp',

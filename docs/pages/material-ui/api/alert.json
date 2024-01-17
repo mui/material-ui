@@ -15,11 +15,15 @@
         "name": "shape",
         "description": "{ CloseButton?: elementType, CloseIcon?: elementType }"
       },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in v7."
     },
     "componentsProps": {
       "type": { "name": "shape", "description": "{ closeButton?: object, closeIcon?: object }" },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in v7."
     },
     "icon": { "type": { "name": "node" } },
     "iconMapping": {
