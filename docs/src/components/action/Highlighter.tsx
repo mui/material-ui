@@ -70,22 +70,22 @@ export default function Highlighter({
           ...theme.applyDarkStyles({
             color: 'primary.800',
             ...((!disableBorder || selected) && {
-              borderColor: `${alpha(theme.palette.primaryDark[600], 0.3)}`,
+              borderColor: alpha(theme.palette.primaryDark[600], 0.3),
             }),
             ...(!selected && {
               '&:hover, &:focus': {
-                bgcolor: `${alpha(theme.palette.primary[800], 0.1)}`,
-                borderColor: `${alpha(theme.palette.primary[500], 0.3)}`,
+                bgcolor: alpha(theme.palette.primary[800], 0.1),
+                borderColor: alpha(theme.palette.primary[500], 0.3),
                 '@media (hover: none)': {
                   bgcolor: 'transparent',
                 },
               },
             }),
             ...(selected && {
-              bgcolor: `${alpha(theme.palette.primary[800], 0.2)}`,
-              borderColor: 'primary.700',
+              bgcolor: alpha(theme.palette.primary[800], 0.2),
+              borderColor: alpha(theme.palette.primary[700], 0.8),
               color: 'primary.300',
-              boxShadow: `${alpha(theme.palette.primary[900], 0.4)} 0 -3px 1px inset, ${
+              boxShadow: `${alpha(theme.palette.common.black, 0.5)} 0 -3px 1px inset, ${
                 theme.palette.common.black
               } 0 2px 3px 0`,
             }),

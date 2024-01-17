@@ -162,16 +162,16 @@ export default function HeaderNavDropdown() {
             top: 56,
             left: 0,
             right: 0,
-            boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
+            boxShadow: `0px 16px 20px rgba(170, 180, 190, 0.3)`,
             ...theme.applyDarkStyles({
-              boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.8)',
+              boxShadow: '0px 16px 20px rgba(0, 0, 0, 0.8)',
             }),
           })}
         >
           <Box
             sx={{
               p: 2,
-              bgcolor: 'background.paper',
+              bgcolor: 'background.default',
               maxHeight: 'calc(100vh - 56px)',
               overflow: 'auto',
             }}
