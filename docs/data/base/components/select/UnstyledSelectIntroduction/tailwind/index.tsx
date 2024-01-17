@@ -181,7 +181,7 @@ const Select = React.forwardRef(function CustomSelect<
           return {
             ...resolvedSlotProps,
             className: clsx(
-              `${isDarkMode ? 'dark' : ''} z-10 transition-transform`,
+              `${isDarkMode ? 'dark' : ''} z-10x`,
               resolvedSlotProps?.className,
             ),
           };

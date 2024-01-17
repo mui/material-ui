@@ -195,7 +195,6 @@ function Styles() {
       }
       .CustomSelectIntroduction-popup {
         z-index: 1;
-        transition: transform 150ms ease;
       }
       .CustomSelectIntroduction-option {
         list-style: none;
