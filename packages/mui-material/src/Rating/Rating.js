@@ -1,21 +1,21 @@
 'use client';
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { chainPropTypes, visuallyHidden } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import useTheme from '../styles/useTheme';
-import {
-  capitalize,
-  useForkRef,
-  useIsFocusVisible,
-  useControlled,
-  unstable_useId as useId,
-} from '../utils';
+import { chainPropTypes, visuallyHidden } from '@mui/utils';
+import clsx from 'clsx';
+import PropTypes from 'prop-types';
+import * as React from 'react';
 import Star from '../internal/svg-icons/Star';
 import StarBorder from '../internal/svg-icons/StarBorder';
-import useThemeProps from '../styles/useThemeProps';
 import styled, { slotShouldForwardProp } from '../styles/styled';
+import useTheme from '../styles/useTheme';
+import useThemeProps from '../styles/useThemeProps';
+import {
+  capitalize,
+  useControlled,
+  useForkRef,
+  unstable_useId as useId,
+  useIsFocusVisible,
+} from '../utils';
 import ratingClasses, { getRatingUtilityClass } from './ratingClasses';
 
 function clamp(value, min, max) {
