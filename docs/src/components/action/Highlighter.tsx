@@ -52,9 +52,10 @@ export default function Highlighter({
           ...(selected && {
             bgcolor: `${alpha(theme.palette.primary[50], 0.5)}`,
             borderColor: 'primary.300',
-            boxShadow: `0px 1px 4px ${
-              (theme.vars || theme).palette.primary[200]
-            }, inset 0px 2px 4px ${alpha(theme.palette.primary[100], 0.5)}`,
+            boxShadow: `${alpha(theme.palette.primary[100], 0.4)} 0 -3px 1px inset, ${alpha(
+              theme.palette.primary[100],
+              0.3,
+            )} 0 2px 4px 0`,
             color: 'primary.500',
           }),
           ...(!selected && {
@@ -81,12 +82,12 @@ export default function Highlighter({
               },
             }),
             ...(selected && {
-              bgcolor: `${alpha(theme.palette.primary[800], 0.3)}`,
+              bgcolor: `${alpha(theme.palette.primary[800], 0.2)}`,
               borderColor: 'primary.700',
               color: 'primary.300',
-              boxShadow: `0px 1px 4px ${
-                (theme.vars || theme).palette.primary[900]
-              }, inset 0px 2px 4px ${(theme.vars || theme).palette.primaryDark[800]}`,
+              boxShadow: `${alpha(theme.palette.primary[900], 0.4)} 0 -3px 1px inset, ${
+                theme.palette.common.black
+              } 0 2px 3px 0`,
             }),
           }),
           '&.Mui-disabled': {
