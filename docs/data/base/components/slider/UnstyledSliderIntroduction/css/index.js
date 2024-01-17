@@ -10,7 +10,7 @@ export default function UnstyledSliderIntroduction() {
           root: { className: 'CustomSlider' },
           rail: { className: 'CustomSlider-rail' },
           track: { className: 'CustomSlider-track' },
-          thumb: { className: 'CustomSlider-thumb', tabIndex: 0 },
+          thumb: { className: 'CustomSlider-thumb' },
         }}
         defaultValue={50}
       />
@@ -77,10 +77,6 @@ function Styles() {
       -webkit-tap-highlight-color: transparent;
     }
 
-    .CustomSlider:hover {
-      opacity: 1;
-    }
-
     .CustomSlider.${sliderClasses.disabled} { 
       pointer-events: none;
       cursor: default;
@@ -124,13 +120,14 @@ function Styles() {
       box-shadow: 0 0 0 0.25rem ${alpha(isDarkMode ? cyan[300] : cyan[200], 0.5)};
     }
 
-    .CustomSlider-thumb:focus-visible {
+    .CustomSlider-thumb.${sliderClasses.focusVisible} {
       box-shadow: 0 0 0 4px ${isDarkMode ? cyan[700] : cyan[200]};
-      
+      outline: none;
     }
 
     .CustomSlider-thumb.${sliderClasses.active} {
       box-shadow: 0 0 0 4px ${isDarkMode ? cyan[600] : cyan[300]};
+      outline: none;
     }
     `}</style>
   );
