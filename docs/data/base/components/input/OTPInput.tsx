@@ -137,42 +137,53 @@ function OTP({
     }
   };
 
-  return new Array(inputCount).fill(null).map((_, index) => (
-    <React.Fragment key={index}>
-      <BaseInput
-        slots={{
-          input: InputElement,
-        }}
-        aria-label={`Digit ${index + 1} of OTP`}
-        slotProps={{
-          input: {
-            ref: (ele) => {
-              inputRefs.current[index] = ele!;
-            },
-            onKeyDown: (event) => handleKeyDown(event, index),
-            onChange: (event) => handleChange(event, index),
-            onClick: (event) => handleClick(event, index),
-            onPaste: (event) => handlePaste(event, index),
-            value: value[index],
-          },
-        }}
-      />
-      {index === inputCount - 1 ? null : seperator}
-    </React.Fragment>
-  ));
+  return (
+    <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+      {new Array(inputCount).fill(null).map((_, index) => (
+        <React.Fragment key={index}>
+          <BaseInput
+            slots={{
+              input: InputElement,
+            }}
+            aria-label={`Digit ${index + 1} of OTP`}
+            slotProps={{
+              input: {
+                ref: (ele) => {
+                  inputRefs.current[index] = ele!;
+                },
+                onKeyDown: (event) => handleKeyDown(event, index),
+                onChange: (event) => handleChange(event, index),
+                onClick: (event) => handleClick(event, index),
+                onPaste: (event) => handlePaste(event, index),
+                value: value[index],
+              },
+            }}
+          />
+          {index === inputCount - 1 ? null : seperator}
+        </React.Fragment>
+      ))}
+    </Box>
+  );
 }
 
 export default function OTPInput() {
   const inputCount = 5;
   const [otp, setOtp] = React.useState<string[]>(new Array(inputCount).fill(''));
   return (
-    <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 2,
+      }}
+    >
       <OTP
         seperator={<span>-</span>}
         value={otp}
         onChange={setOtp}
         inputCount={inputCount}
       />
+      <span>Entered value: {otp.join('')}</span>
     </Box>
   );
 }

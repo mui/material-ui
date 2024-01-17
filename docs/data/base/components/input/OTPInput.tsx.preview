@@ -4,3 +4,4 @@
   onChange={setOtp}
   inputCount={inputCount}
 />
+<span>Entered value: {otp.join('')}</span>
