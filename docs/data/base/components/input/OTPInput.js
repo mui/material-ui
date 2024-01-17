@@ -36,6 +36,7 @@ function OTP({ seperator, inputCount, otp, setOtp }) {
         }
         break;
       case 'Backspace':
+      case 'Delete':
         event.preventDefault();
         if (currentIndex > 0) {
           focusInput(currentIndex - 1);
