@@ -10,8 +10,8 @@ function OTP({
 }: {
   separator: React.ReactNode;
   inputCount: number;
-  value: string[];
-  onChange: React.Dispatch<React.SetStateAction<string[]>>;
+  value: string;
+  onChange: React.Dispatch<React.SetStateAction<string>>;
 }) {
   const inputRefs = React.useRef<HTMLInputElement[]>(
     new Array(inputCount).fill(null),
@@ -54,10 +54,10 @@ function OTP({
         event.preventDefault();
 
         onChange((prev) => {
-          const otpArray = [...prev];
+          const otpArray = prev.split('');
           otpArray.splice(currentIndex, 1);
-          otpArray.push('');
-          return otpArray;
+          otpArray.push(' ');
+          return otpArray.join('');
         });
 
         break;
@@ -69,10 +69,10 @@ function OTP({
         }
 
         onChange((prev) => {
-          const otpArray = [...prev];
+          const otpArray = prev.split('');
           otpArray.splice(currentIndex, 1);
-          otpArray.push('');
-          return otpArray;
+          otpArray.push(' ');
+          return otpArray.join('');
         });
 
         break;
@@ -96,10 +96,10 @@ function OTP({
       }
     }
     onChange((prev) => {
-      const otpArray = [...prev];
+      const otpArray = prev.split('');
       const lastValue = currentValue[currentValue.length - 1];
       otpArray[indexToEnter] = lastValue;
-      return otpArray;
+      return otpArray.join('');
     });
     if (currentValue !== '') {
       if (currentIndex < inputCount - 1) {
@@ -125,7 +125,7 @@ function OTP({
     // Check if there is text data in the clipboard
     if (clipboardData.types.includes('text/plain')) {
       let pastedText = clipboardData.getData('text/plain');
-      pastedText = pastedText.substring(0, inputCount);
+      pastedText = pastedText.substring(0, inputCount).trim();
       let indexToEnter = 0;
 
       while (indexToEnter <= currentIndex) {
@@ -136,14 +136,14 @@ function OTP({
         }
       }
 
-      const otpArray = [...value];
+      const otpArray = value.split('');
 
       for (let i = indexToEnter; i < inputCount; i += 1) {
-        const lastValue = pastedText[i - indexToEnter] ?? '';
+        const lastValue = pastedText[i - indexToEnter] ?? ' ';
         otpArray[i] = lastValue;
       }
 
-      onChange(otpArray);
+      onChange(otpArray.join(''));
     }
   };
 
@@ -177,8 +177,7 @@ function OTP({
 }
 
 export default function OTPInput() {
-  const inputCount = 5;
-  const [otp, setOtp] = React.useState<string[]>(new Array(inputCount).fill(''));
+  const [otp, setOtp] = React.useState('');
   return (
     <Box
       sx={{
@@ -187,13 +186,8 @@ export default function OTPInput() {
         gap: 2,
       }}
     >
-      <OTP
-        separator={<span>-</span>}
-        value={otp}
-        onChange={setOtp}
-        inputCount={otp.length}
-      />
-      <span>Entered value: {otp.join('')}</span>
+      <OTP separator={<span>-</span>} value={otp} onChange={setOtp} inputCount={5} />
+      <span>Entered value: {otp}</span>
     </Box>
   );
 }

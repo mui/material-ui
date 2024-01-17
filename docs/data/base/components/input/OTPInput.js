@@ -40,10 +40,10 @@ function OTP({ separator, inputCount, value, onChange }) {
         event.preventDefault();
 
         onChange((prev) => {
-          const otpArray = [...prev];
+          const otpArray = prev.split('');
           otpArray.splice(currentIndex, 1);
           otpArray.push('');
-          return otpArray;
+          return otpArray.join('');
         });
 
         break;
@@ -55,10 +55,10 @@ function OTP({ separator, inputCount, value, onChange }) {
         }
 
         onChange((prev) => {
-          const otpArray = [...prev];
+          const otpArray = prev.split('');
           otpArray.splice(currentIndex, 1);
           otpArray.push('');
-          return otpArray;
+          return otpArray.join('');
         });
 
         break;
@@ -79,10 +79,10 @@ function OTP({ separator, inputCount, value, onChange }) {
       }
     }
     onChange((prev) => {
-      const otpArray = [...prev];
+      const otpArray = prev.split('');
       const lastValue = currentValue[currentValue.length - 1];
       otpArray[indexToEnter] = lastValue;
-      return otpArray;
+      return otpArray.join('');
     });
     if (currentValue !== '') {
       if (currentIndex < inputCount - 1) {
@@ -113,14 +113,14 @@ function OTP({ separator, inputCount, value, onChange }) {
         }
       }
 
-      const otpArray = [...value];
+      const otpArray = value.split('');
 
       for (let i = indexToEnter; i < inputCount; i += 1) {
         const lastValue = pastedText[i - indexToEnter] ?? '';
         otpArray[i] = lastValue;
       }
 
-      onChange(otpArray);
+      onChange(otpArray.join(''));
     }
   };
 
@@ -157,12 +157,11 @@ OTP.propTypes = {
   inputCount: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
   separator: PropTypes.node,
-  value: PropTypes.arrayOf(PropTypes.string).isRequired,
+  value: PropTypes.string.isRequired,
 };
 
 export default function OTPInput() {
-  const inputCount = 5;
-  const [otp, setOtp] = React.useState(new Array(inputCount).fill(''));
+  const [otp, setOtp] = React.useState('');
   return (
     <Box
       sx={{
@@ -171,13 +170,8 @@ export default function OTPInput() {
         gap: 2,
       }}
     >
-      <OTP
-        separator={<span>-</span>}
-        value={otp}
-        onChange={setOtp}
-        inputCount={otp.length}
-      />
-      <span>Entered value: {otp.join('')}</span>
+      <OTP separator={<span>-</span>} value={otp} onChange={setOtp} inputCount={5} />
+      <span>Entered value: {otp}</span>
     </Box>
   );
 }

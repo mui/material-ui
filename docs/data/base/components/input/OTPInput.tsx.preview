@@ -1,7 +1,2 @@
-<OTP
-  separator={<span>-</span>}
-  value={otp}
-  onChange={setOtp}
-  inputCount={otp.length}
-/>
-<span>Entered value: {otp.join('')}</span>
+<OTP separator={<span>-</span>} value={otp} onChange={setOtp} inputCount={5} />
+<span>Entered value: {otp}</span>
