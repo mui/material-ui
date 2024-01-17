@@ -32,6 +32,10 @@ function OTP({
     currentIndex: number,
   ) => {
     switch (event.key) {
+      case 'ArrowUp':
+      case 'ArrowDown':
+        event.preventDefault();
+        break;
       case 'ArrowLeft':
         event.preventDefault();
         if (currentIndex > 0) {
