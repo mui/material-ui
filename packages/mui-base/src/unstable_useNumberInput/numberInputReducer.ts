@@ -5,13 +5,13 @@ import {
   StepDirection,
 } from './useNumberInput.types';
 import { NumberInputActionTypes } from './numberInputAction.types';
-import { clamp, isNumber } from './utils';
+import { clampStepwise, isNumber } from './utils';
 
 // extracted from handleValueChange
 function getClampedValues(rawValue: number | undefined, context: NumberInputActionContext) {
   const { min, max, step } = context;
 
-  const clampedValue = rawValue === undefined ? '' : clamp(rawValue, min, max, step);
+  const clampedValue = rawValue === undefined ? '' : clampStepwise(rawValue, min, max, step);
 
   const newInputValue = clampedValue === undefined ? '' : String(clampedValue);
 
