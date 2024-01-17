@@ -6,14 +6,15 @@
 
 _Jan 17, 2024_
 
-A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
 - Base UI's CSS class prefix is now `base-` (#40205) @michaldudak
 - Bug fixes, and a lot of improvements to code and docs infra
 
 ### `@mui/material@5.15.5`
 
-- &#8203;<!-- 41 -->[Accordion] Deprecate \*Props props and classes for v6 (#40418) @DiegoAndai
+- &#8203;<!-- 42 -->[Accordion] Deprecate \*Props props and classes for v6 (#40418) @DiegoAndai
+- &#8203;<!-- 41 -->[material-ui][Alert] Update TypeScript types to allow color override types to be added to `iconMapping` and `severity` props (#40551) @2metres
 - &#8203;<!-- 27 -->[Dialog] Remove deprecated onBackdropClick from Dialog tests (#40505) @sai6855
 - &#8203;<!-- 26 -->[Divider] Deprecate props and classes for v6 (#40563) @sai6855
 
@@ -83,7 +84,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - &#8203;<!-- 04 -->[utils] Centralize clamp implementation in utils (#40267) @Kamino0
 - &#8203;<!-- 03 -->[website] Polish the Base UI page demos (#40504) @danilo-leal
 
-All contributors of this release in alphabetical order: @aacevski, @brijeshb42, @danilo-leal, @DiegoAndai, @josh-feldman, @Kamino0, @lhilgert9, @maakcode, @michaldudak, @oliviertassinari, @petrovmiroslav, @sai6855, @samuelsycamore, @siriwatknp, @zanivan, @ZeeshanTamboli, @zinoroman
+All contributors of this release in alphabetical order: @2metres, @aacevski, @brijeshb42, @danilo-leal, @DiegoAndai, @josh-feldman, @Kamino0, @lhilgert9, @maakcode, @michaldudak, @oliviertassinari, @petrovmiroslav, @sai6855, @samuelsycamore, @siriwatknp, @zanivan, @ZeeshanTamboli, @zinoroman
 
 ## 5.15.4
 
