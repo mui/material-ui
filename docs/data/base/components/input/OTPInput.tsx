@@ -3,12 +3,12 @@ import { Input as BaseInput } from '@mui/base/Input';
 import { Box, styled } from '@mui/system';
 
 function OTP({
-  seperator,
+  separator,
   inputCount,
   value,
   onChange,
 }: {
-  seperator: React.ReactNode;
+  separator: React.ReactNode;
   inputCount: number;
   value: string[];
   onChange: React.Dispatch<React.SetStateAction<string[]>>;
@@ -169,7 +169,7 @@ function OTP({
               },
             }}
           />
-          {index === inputCount - 1 ? null : seperator}
+          {index === inputCount - 1 ? null : separator}
         </React.Fragment>
       ))}
     </Box>
@@ -188,7 +188,7 @@ export default function OTPInput() {
       }}
     >
       <OTP
-        seperator={<span>-</span>}
+        separator={<span>-</span>}
         value={otp}
         onChange={setOtp}
         inputCount={otp.length}

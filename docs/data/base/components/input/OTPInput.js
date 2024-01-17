@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Input as BaseInput } from '@mui/base/Input';
 import { Box, styled } from '@mui/system';
 
-function OTP({ seperator, inputCount, value, onChange }) {
+function OTP({ separator, inputCount, value, onChange }) {
   const inputRefs = React.useRef(new Array(inputCount).fill(null));
 
   const focusInput = (targetIndex) => {
@@ -146,7 +146,7 @@ function OTP({ seperator, inputCount, value, onChange }) {
               },
             }}
           />
-          {index === inputCount - 1 ? null : seperator}
+          {index === inputCount - 1 ? null : separator}
         </React.Fragment>
       ))}
     </Box>
@@ -156,7 +156,7 @@ function OTP({ seperator, inputCount, value, onChange }) {
 OTP.propTypes = {
   inputCount: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
-  seperator: PropTypes.node,
+  separator: PropTypes.node,
   value: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
@@ -172,7 +172,7 @@ export default function OTPInput() {
       }}
     >
       <OTP
-        seperator={<span>-</span>}
+        separator={<span>-</span>}
         value={otp}
         onChange={setOtp}
         inputCount={otp.length}

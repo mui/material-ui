@@ -1,5 +1,5 @@
 <OTP
-  seperator={<span>-</span>}
+  separator={<span>-</span>}
   value={otp}
   onChange={setOtp}
   inputCount={otp.length}
