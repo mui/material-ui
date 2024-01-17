@@ -133,6 +133,12 @@ Increasing _x_ by one increases the represented value by factor _2_.
 
 {{"demo": "NonLinearSlider.js"}}
 
+## Custom marks for minimum and maximum values
+
+You can add your custom marks for minimum and maximum values, in case if standard one doesn't fit your needs
+
+{{"demo": "CustomMarks.js"}}
+
 ## Accessibility
 
 (WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/)
