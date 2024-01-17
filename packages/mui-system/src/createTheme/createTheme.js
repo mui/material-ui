@@ -29,6 +29,13 @@ function createTheme(options = {}, ...args) {
     other,
   );
 
+  muiTheme.applyStyles = function applyStyles(mode, styles) {
+    if (this.palette.mode === mode) {
+      return styles;
+    }
+    return undefined;
+  };
+
   muiTheme = args.reduce((acc, argument) => deepmerge(acc, argument), muiTheme);
 
   muiTheme.unstable_sxConfig = {

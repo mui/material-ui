@@ -152,6 +152,31 @@ describe('createTheme', () => {
         maxWidth: '600px',
       });
     });
+
+    it('apply correct styles', () => {
+      const darkTheme = createTheme({
+        palette: {
+          mode: 'dark',
+          primary: {
+            main: 'rgb(0, 0, 255)',
+          },
+          secondary: {
+            main: 'rgb(0, 255, 0)',
+          },
+        },
+      });
+
+      expect(darkTheme.applyStyles('dark', { color: 'red' })).to.deep.equal({
+        color: 'red',
+      });
+      expect(darkTheme.applyStyles('light', { color: 'salmon' })).to.deep.equal(undefined);
+
+      darkTheme.palette.mode = 'light';
+      expect(darkTheme.applyStyles('dark', { color: 'red' })).to.deep.equal(undefined);
+      expect(darkTheme.applyStyles('light', { color: 'salmon' })).to.deep.equal({
+        color: 'salmon',
+      });
+    });
   });
 
   it('does not throw if used without ThemeProvider', function test() {

@@ -35,6 +35,7 @@ export interface Theme {
   mixins?: unknown;
   typography?: unknown;
   zIndex?: unknown;
+  applyStyles: (mode: 'light' | 'dark', styles: CSSObject) => CSSObject;
   unstable_sxConfig: SxConfig;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
 }
