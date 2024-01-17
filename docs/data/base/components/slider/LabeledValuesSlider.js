@@ -109,7 +109,7 @@ const Slider = styled(BaseSlider)(
       )};
     }
 
-    &:focus-visible {
+    &.${sliderClasses.focusVisible} {
       box-shadow: 0 0 0 8px ${alpha(
         theme.palette.mode === 'light' ? blue[200] : blue[400],
         0.5,
