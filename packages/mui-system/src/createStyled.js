@@ -150,6 +150,57 @@ const muiStyledFunctionResolver = ({ styledArg, props, defaultTheme, themeId }) 
   return resolvedStyles;
 };
 
+const createResolveExpression = ({ defaultTheme, themeId }) => {
+  const resolveExpression = (stylesArg) => {
+    if (Array.isArray(stylesArg)) {
+      return stylesArg.map(resolveExpression);
+    }
+    // On the server Emotion doesn't use React.forwardRef for creating components, so the created
+    // component stays as a function. This condition makes sure that we do not interpolate functions
+    // which are basically components used as a selectors.
+    if (typeof stylesArg === 'function' && stylesArg.__emotion_real !== stylesArg) {
+      return (props) => {
+        const resolvedFunction = muiStyledFunctionResolver({
+          styledArg: stylesArg,
+          props,
+          defaultTheme,
+          themeId,
+        });
+
+        return resolveExpression(resolvedFunction);
+      };
+    }
+    if (isPlainObject(stylesArg)) {
+      let transformedStylesArg = stylesArg;
+      let styledArgVariants;
+
+      if (stylesArg && stylesArg.variants) {
+        styledArgVariants = stylesArg.variants;
+        delete transformedStylesArg.variants;
+
+        transformedStylesArg = (props) => {
+          let result = stylesArg;
+          const variantStyles = variantsResolver(
+            props,
+            transformVariants(styledArgVariants),
+            styledArgVariants,
+          );
+          variantStyles.forEach((variantStyle) => {
+            result = deepmerge(result, variantStyle);
+          });
+
+          return result;
+        };
+      }
+      return transformedStylesArg;
+    }
+
+    return stylesArg;
+  };
+
+  return resolveExpression;
+};
+
 export default function createStyled(input = {}) {
   const {
     themeId,
@@ -157,6 +208,8 @@ export default function createStyled(input = {}) {
     rootShouldForwardProp = shouldForwardProp,
     slotShouldForwardProp = shouldForwardProp,
   } = input;
+
+  const resolveExpression = createResolveExpression({ defaultTheme, themeId });
 
   const systemSx = (props) => {
     return styleFunctionSx({ ...props, theme: resolveTheme({ ...props, defaultTheme, themeId }) });
@@ -218,76 +271,9 @@ export default function createStyled(input = {}) {
       ...options,
     });
     const muiStyledResolver = (styleArg, ...expressions) => {
-      const expressionsWithDefaultTheme = expressions
-        ? expressions.map((stylesArg) => {
-            // On the server Emotion doesn't use React.forwardRef for creating components, so the created
-            // component stays as a function. This condition makes sure that we do not interpolate functions
-            // which are basically components used as a selectors.
-            if (typeof stylesArg === 'function' && stylesArg.__emotion_real !== stylesArg) {
-              return (props) =>
-                muiStyledFunctionResolver({ styledArg: stylesArg, props, defaultTheme, themeId });
-            }
-            if (isPlainObject(stylesArg)) {
-              let transformedStylesArg = stylesArg;
-              let styledArgVariants;
+      const expressionsWithDefaultTheme = expressions ? expressions.map(resolveExpression) : [];
 
-              if (stylesArg && stylesArg.variants) {
-                styledArgVariants = stylesArg.variants;
-                delete transformedStylesArg.variants;
-
-                transformedStylesArg = (props) => {
-                  let result = stylesArg;
-                  const variantStyles = variantsResolver(
-                    props,
-                    transformVariants(styledArgVariants),
-                    styledArgVariants,
-                  );
-                  variantStyles.forEach((variantStyle) => {
-                    result = deepmerge(result, variantStyle);
-                  });
-
-                  return result;
-                };
-              }
-              return transformedStylesArg;
-            }
-            return stylesArg;
-          })
-        : [];
-
-      let transformedStyleArg = styleArg;
-
-      if (isPlainObject(styleArg)) {
-        let styledArgVariants;
-        if (styleArg && styleArg.variants) {
-          styledArgVariants = styleArg.variants;
-          delete transformedStyleArg.variants;
-
-          transformedStyleArg = (props) => {
-            let result = styleArg;
-            const variantStyles = variantsResolver(
-              props,
-              transformVariants(styledArgVariants),
-              styledArgVariants,
-            );
-            variantStyles.forEach((variantStyle) => {
-              result = deepmerge(result, variantStyle);
-            });
-
-            return result;
-          };
-        }
-      } else if (
-        typeof styleArg === 'function' &&
-        // On the server Emotion doesn't use React.forwardRef for creating components, so the created
-        // component stays as a function. This condition makes sure that we do not interpolate functions
-        // which are basically components used as a selectors.
-        styleArg.__emotion_real !== styleArg
-      ) {
-        // If the type is function, we need to define the default theme.
-        transformedStyleArg = (props) =>
-          muiStyledFunctionResolver({ styledArg: styleArg, props, defaultTheme, themeId });
-      }
+      let transformedStyleArg = resolveExpression(styleArg);
 
       if (componentName && overridesResolver) {
         expressionsWithDefaultTheme.push((props) => {
