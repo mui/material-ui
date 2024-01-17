@@ -1,3 +1,4 @@
+'use client';
 import useLazyRef from './useLazyRef';
 import useOnMount from './useOnMount';
 
