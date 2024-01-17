@@ -91,6 +91,8 @@ Material UI Buttons accept an `onClick` handler that's applied to the root DOM e
 
 ## Customization
 
+### Button Base
+
 ```jsx
 import ButtonBase from '@mui/material/ButtonBase';
 ```
