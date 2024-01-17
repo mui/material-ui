@@ -24,8 +24,8 @@
     "icon": { "type": { "name": "node" } },
     "iconMapping": {
       "type": {
-        "name": "union",
-        "description": "{ error?: node, info?: node, success?: node, warning?: node }<br>&#124;&nbsp;objectOf"
+        "name": "shape",
+        "description": "{ error?: node, info?: node, success?: node, warning?: node }"
       }
     },
     "onClose": {
