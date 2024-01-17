@@ -191,7 +191,7 @@ export default function OTPInput() {
         seperator={<span>-</span>}
         value={otp}
         onChange={setOtp}
-        inputCount={inputCount}
+        inputCount={otp.length}
       />
       <span>Entered value: {otp.join('')}</span>
     </Box>
