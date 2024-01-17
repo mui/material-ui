@@ -213,6 +213,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     rootRef: ref,
     scale = Identity,
     step = 1,
+    pageStep = 10,
     tabIndex,
     value: valueProp,
   } = parameters;
@@ -296,6 +297,86 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
       otherHandlers?.onBlur?.(event);
     };
 
+  const changeValue = (event: React.KeyboardEvent | React.ChangeEvent, valueInput: number) => {
+    let newValue = valueInput;
+    const index = Number(event.currentTarget.getAttribute('data-index'));
+    const value = values[index];
+    const marksIndex = marksValues.indexOf(newValue);
+    if (marks && step == null) {
+      const maxMarksValue = marksValues[marksValues.length - 1];
+      if (newValue > maxMarksValue) {
+        newValue = maxMarksValue;
+      } else if (newValue < marksValues[0]) {
+        newValue = marksValues[0];
+      } else {
+        newValue = newValue < value ? marksValues[marksIndex - 1] : marksValues[marksIndex + 1];
+      }
+    }
+
+    newValue = clamp(newValue, min, max);
+
+    if (range) {
+      // Bound the new value to the thumb's neighbours.
+      if (disableSwap) {
+        newValue = clamp(newValue, values[index - 1] || -Infinity, values[index + 1] || Infinity);
+      }
+
+      const previousValue = newValue;
+      const newValueAsArray = setValueIndex({
+        values,
+        newValue,
+        index,
+      });
+
+      let activeIndex = index;
+
+      // Potentially swap the index if needed.
+      if (!disableSwap) {
+        activeIndex = newValueAsArray.indexOf(previousValue);
+      }
+
+      focusThumb({ sliderRef, activeIndex });
+    }
+
+    setValueState(newValue);
+    setFocusedThumbIndex(index);
+
+    if (handleChange && !areValuesEqual(newValue, valueDerived)) {
+      handleChange(event, newValue, index);
+    }
+
+    if (onChangeCommitted) {
+      onChangeCommitted(event, newValue);
+    }
+  };
+
+  const createHandleHiddenInputKeyDown =
+    (otherHandlers: EventHandlers) => (event: React.KeyboardEvent) => {
+      const index = Number(event.currentTarget.getAttribute('data-index'));
+      const value = values[index];
+      const marksIndex = marksValues.indexOf(value);
+
+      // From handleChange
+      let newValue = null;
+      if (
+        ((event.key === 'ArrowLeft' || event.key === 'ArrowDown') && event.shiftKey) ||
+        event.key === 'PageDown'
+      ) {
+        newValue = Math.max(value - pageStep * (step ?? 1), min);
+      } else if (
+        ((event.key === 'ArrowRight' || event.key === 'ArrowUp') && event.shiftKey) ||
+        event.key === 'PageUp'
+      ) {
+        newValue = Math.min(value + pageStep * (step ?? 1), max);
+      }
+
+      if (newValue !== null) {
+        changeValue(event, newValue);
+      }
+      // End from handleChane
+      otherHandlers?.onKeyDown?.(event);
+    };
+
   useEnhancedEffect(() => {
     if (disabled && sliderRef.current!.contains(document.activeElement)) {
       // This is necessary because Firefox and Safari will keep focus
@@ -316,60 +397,8 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
   const createHandleHiddenInputChange =
     (otherHandlers: EventHandlers) => (event: React.ChangeEvent) => {
       otherHandlers.onChange?.(event);
-
-      const index = Number(event.currentTarget.getAttribute('data-index'));
-      const value = values[index];
-      const marksIndex = marksValues.indexOf(value);
-
       // @ts-ignore
-      let newValue = event.target.valueAsNumber;
-
-      if (marks && step == null) {
-        const maxMarksValue = marksValues[marksValues.length - 1];
-        if (newValue > maxMarksValue) {
-          newValue = maxMarksValue;
-        } else if (newValue < marksValues[0]) {
-          newValue = marksValues[0];
-        } else {
-          newValue = newValue < value ? marksValues[marksIndex - 1] : marksValues[marksIndex + 1];
-        }
-      }
-
-      newValue = clamp(newValue, min, max);
-
-      if (range) {
-        // Bound the new value to the thumb's neighbours.
-        if (disableSwap) {
-          newValue = clamp(newValue, values[index - 1] || -Infinity, values[index + 1] || Infinity);
-        }
-
-        const previousValue = newValue;
-        newValue = setValueIndex({
-          values,
-          newValue,
-          index,
-        });
-
-        let activeIndex = index;
-
-        // Potentially swap the index if needed.
-        if (!disableSwap) {
-          activeIndex = newValue.indexOf(previousValue);
-        }
-
-        focusThumb({ sliderRef, activeIndex });
-      }
-
-      setValueState(newValue);
-      setFocusedThumbIndex(index);
-
-      if (handleChange && !areValuesEqual(newValue, valueDerived)) {
-        handleChange(event, newValue, index);
-      }
-
-      if (onChangeCommitted) {
-        onChangeCommitted(event, newValue);
-      }
+      changeValue(event, event.target.valueAsNumber);
     };
 
   const previousIndex = React.useRef<number>();
@@ -670,6 +699,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
       onChange: createHandleHiddenInputChange(externalHandlers || {}),
       onFocus: createHandleHiddenInputFocus(externalHandlers || {}),
       onBlur: createHandleHiddenInputBlur(externalHandlers || {}),
+      onKeyDown: createHandleHiddenInputKeyDown(externalHandlers || {}),
     };
 
     const mergedEventHandlers = {
