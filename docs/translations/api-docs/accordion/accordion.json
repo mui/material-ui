@@ -18,6 +18,8 @@
         "expanded": "The <code>expanded</code> state of the accordion."
       }
     },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "square": { "description": "If <code>true</code>, rounded corners are disabled." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
@@ -56,5 +58,8 @@
       "nodeName": "the root element",
       "conditions": "<code>square={true}</code>"
     }
+  },
+  "slotDescriptions": {
+    "transition": "The component that renders the transition.\n[Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component."
   }
 }

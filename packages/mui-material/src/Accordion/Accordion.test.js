@@ -28,6 +28,11 @@ describe('<Accordion />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiAccordion',
     testVariantProps: { variant: 'rounded' },
+    slots: {
+      transition: {
+        testWithElement: null,
+      },
+    },
     skip: ['componentProp', 'componentsProp'],
   }));
 
@@ -209,5 +214,41 @@ describe('<Accordion />', () => {
     expect(() => setProps({ expanded: true })).toErrorDev(
       'MUI: A component is changing the uncontrolled expanded state of Accordion to be controlled.',
     );
+  });
+
+  describe('prop: TransitionProps', () => {
+    it('should apply properties to the Transition component', () => {
+      const { getByTestId } = render(
+        <Accordion TransitionProps={{ 'data-testid': 'transition-testid' }}>
+          {minimalChildren}
+        </Accordion>,
+      );
+
+      expect(getByTestId('transition-testid')).not.to.equal(null);
+    });
+  });
+
+  describe('details unmounting behavior', () => {
+    it('does not unmount by default', () => {
+      const { queryByTestId } = render(
+        <Accordion expanded={false}>
+          <AccordionSummary>Summary</AccordionSummary>
+          <div data-testid="details">Details</div>
+        </Accordion>,
+      );
+
+      expect(queryByTestId('details')).not.to.equal(null);
+    });
+
+    it('unmounts if opted in via slotProps.transition', () => {
+      const { queryByTestId } = render(
+        <Accordion expanded={false} slotProps={{ transition: { unmountOnExit: true } }}>
+          <AccordionSummary>Summary</AccordionSummary>
+          <div data-testid="details">Details</div>
+        </Accordion>,
+      );
+
+      expect(queryByTestId('details')).to.equal(null);
+    });
   });
 });

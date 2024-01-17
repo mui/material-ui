@@ -257,6 +257,7 @@ Divider.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the divider will have a lighter color.
    * @default false
+   * @deprecated Use <Divider sx={{ bgcolor: '#eee' }} /> (or any color) instead.
    */
   light: PropTypes.bool,
   /**
