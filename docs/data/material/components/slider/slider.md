@@ -108,6 +108,12 @@ This might be less confusing to users compared to a change in direction.
 
 {{"demo": "VerticalAccessibleSlider.js"}}
 
+## Marks placement
+
+You can customize your slider by adding and repositioning marks for minimum and maximum values.
+
+{{"demo": "CustomMarks.js"}}
+
 ## Track
 
 The track shows the range available for user selection.
@@ -132,12 +138,6 @@ In the following demo, the value _x_ represents the value _2^x_.
 Increasing _x_ by one increases the represented value by factor _2_.
 
 {{"demo": "NonLinearSlider.js"}}
-
-## Custom marks for minimum and maximum values
-
-You can add your custom marks for minimum and maximum values, in case if standard one doesn't fit your needs
-
-{{"demo": "CustomMarks.js"}}
 
 ## Accessibility
 

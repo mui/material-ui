@@ -3,8 +3,8 @@ import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import Slider from '@mui/material/Slider';
 
-const MAX = 300;
-const MIN = 30;
+const MAX = 100;
+const MIN = 0;
 const marks = [
   {
     value: MIN,
@@ -18,9 +18,8 @@ const marks = [
 
 const Label = styled('div')(() => ({
   fontSize: '0.875rem',
-  lineHeight: '1.43',
-  color: 'rgba(0, 0, 0, 0.87)',
-  fontWeight: 400,
+  lineHeight: '1.5',
+  fontWeight: 500,
   cursor: 'pointer',
 }));
 
@@ -29,7 +28,6 @@ export default function CustomMarks() {
   const handleChange = (_, newValue) => {
     setVal(newValue);
   };
-
   return (
     <Box sx={{ width: 250 }}>
       <div>
@@ -37,7 +35,6 @@ export default function CustomMarks() {
           marks={marks}
           step={10}
           value={val}
-          defaultValue={MIN}
           valueLabelDisplay="auto"
           min={MIN}
           max={MAX}
