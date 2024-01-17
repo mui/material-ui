@@ -5,13 +5,13 @@ import { Box, styled } from '@mui/system';
 function OTP({
   seperator,
   inputCount,
-  otp,
-  setOtp,
+  value,
+  onChange,
 }: {
   seperator: React.ReactNode;
   inputCount: number;
-  otp: string[];
-  setOtp: React.Dispatch<React.SetStateAction<string[]>>;
+  value: string[];
+  onChange: React.Dispatch<React.SetStateAction<string[]>>;
 }) {
   const inputRefs = React.useRef<HTMLInputElement[]>(
     new Array(inputCount).fill(null),
@@ -58,7 +58,7 @@ function OTP({
           selectInput(currentIndex - 1);
         }
 
-        setOtp((prev) => {
+        onChange((prev) => {
           const otpArray = [...prev];
           otpArray.splice(currentIndex, 1);
           otpArray.push('');
@@ -75,23 +75,23 @@ function OTP({
     event: React.ChangeEvent<HTMLInputElement>,
     currentIndex: number,
   ) => {
-    const value = event.target.value;
+    const currentValue = event.target.value;
     let indexToEnter = 0;
 
     while (indexToEnter <= currentIndex) {
-      if (otp[indexToEnter] && indexToEnter < currentIndex) {
+      if (value[indexToEnter] && indexToEnter < currentIndex) {
         indexToEnter += 1;
       } else {
         break;
       }
     }
-    setOtp((prev) => {
+    onChange((prev) => {
       const otpArray = [...prev];
-      const lastValue = value[value.length - 1];
+      const lastValue = currentValue[currentValue.length - 1];
       otpArray[indexToEnter] = lastValue;
       return otpArray;
     });
-    if (value !== '') {
+    if (currentValue !== '') {
       if (currentIndex < inputCount - 1) {
         focusInput(currentIndex + 1);
       }
@@ -119,21 +119,21 @@ function OTP({
       let indexToEnter = 0;
 
       while (indexToEnter <= currentIndex) {
-        if (otp[indexToEnter] && indexToEnter < currentIndex) {
+        if (value[indexToEnter] && indexToEnter < currentIndex) {
           indexToEnter += 1;
         } else {
           break;
         }
       }
 
-      const otpArray = [...otp];
+      const otpArray = [...value];
 
       for (let i = indexToEnter; i < inputCount; i += 1) {
         const lastValue = pastedText[i - indexToEnter] ?? '';
         otpArray[i] = lastValue;
       }
 
-      setOtp(otpArray);
+      onChange(otpArray);
     }
   };
 
@@ -153,7 +153,7 @@ function OTP({
             onChange: (event) => handleChange(event, index),
             onClick: (event) => handleClick(event, index),
             onPaste: (event) => handlePaste(event, index),
-            value: otp[index],
+            value: value[index],
           },
         }}
       />
@@ -169,8 +169,8 @@ export default function OTPInput() {
     <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
       <OTP
         seperator={<span>-</span>}
-        otp={otp}
-        setOtp={setOtp}
+        value={otp}
+        onChange={setOtp}
         inputCount={inputCount}
       />
     </Box>

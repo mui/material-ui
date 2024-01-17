@@ -1,6 +1,6 @@
 <OTP
   seperator={<span>-</span>}
-  otp={otp}
-  setOtp={setOtp}
+  value={otp}
+  onChange={setOtp}
   inputCount={inputCount}
 />
