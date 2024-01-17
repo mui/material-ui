@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-  Unstable_NumberInput as NumberInput,
+  Unstable_NumberInput as BaseNumberInput,
   numberInputClasses,
 } from '@mui/base/Unstable_NumberInput';
 import { useTheme } from '@mui/system';
@@ -8,18 +8,12 @@ import { useTheme } from '@mui/system';
 export default function NumberInputIntroduction() {
   return (
     <React.Fragment>
-      <NumberInput
+      <BaseNumberInput
         slotProps={{
           root: { className: 'CustomNumberInput' },
-          input: { className: 'CustomNumberInput-input' },
-          decrementButton: {
-            className: 'CustomNumberInput-button CustomNumberInput-decrementButton',
-            children: <span className="arrow">▾</span>,
-          },
-          incrementButton: {
-            className: 'CustomNumberInput-button CustomNumberInput-incrementButton',
-            children: <span className="arrow">▴</span>,
-          },
+          input: { className: 'input' },
+          decrementButton: { className: 'btn decrement', children: '▾' },
+          incrementButton: { className: 'btn increment', children: '▴' },
         }}
         aria-label="Demo number input"
         placeholder="Type a number…"
@@ -44,15 +38,15 @@ const cyan = {
 
 const grey = {
   50: '#F3F6F9',
-  100: '#E7EBF0',
-  200: '#E0E3E7',
-  300: '#CDD2D7',
-  400: '#B2BAC2',
-  500: '#A0AAB4',
-  600: '#6F7E8C',
-  700: '#3E5060',
-  800: '#2D3843',
-  900: '#1A2027',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
 function useIsDarkMode() {
@@ -68,19 +62,21 @@ function Styles() {
     <style>
       {`
       .CustomNumberInput {
-        font-family: IBM Plex Sans, sans-serif;
-        font-size: 0.875rem;
+        font-family: 'IBM Plex Sans', sans-serif;
         font-weight: 400;
-        line-height: 1.5;
         border-radius: 8px;
         color: ${isDarkMode ? grey[300] : grey[900]};
         background: ${isDarkMode ? grey[900] : '#fff'};
         border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
-        box-shadow: 0px 2px 24px ${isDarkMode ? grey[900] : grey[100]};
+        box-shadow: 0px 2px 4px ${
+          isDarkMode ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
+        };
         display: grid;
         grid-template-columns: 1fr 19px;
         grid-template-rows: 1fr 1fr;
         overflow: hidden;
+        column-gap: 8px;
+        padding: 4px;
       }
 
       .CustomNumberInput:hover {
@@ -89,17 +85,17 @@ function Styles() {
 
       .CustomNumberInput.${numberInputClasses.focused} {
         border-color: ${cyan[400]};
-        box-shadow: 0 0 0 3px ${isDarkMode ? cyan[600] : cyan[200]};
+        box-shadow: 0 0 0 3px ${isDarkMode ? cyan[500] : cyan[200]};
       }
 
-      .CustomNumberInput .CustomNumberInput-input {
+      .CustomNumberInput .input {
+        font-size: 0.875rem;
         font-family: inherit;
-        font-size: inherit;
-        font-weight: inherit;
-        line-height: inherit;
+        font-weight: 400;
+        line-height: 1.5;
         grid-column: 1/2;
         grid-row: 1/3;
-        color: red;
+        color: ${isDarkMode ? grey[300] : grey[900]};
         background: inherit;
         border: none;
         border-radius: inherit;
@@ -107,11 +103,11 @@ function Styles() {
         outline: 0;
       }
 
-      .CustomNumberInput .CustomNumberInput-button:focus-visible {
+      .CustomNumberInput .input:focus-visible {
         outline: 0;
       }
 
-      .CustomNumberInput .CustomNumberInput-button {
+      .CustomNumberInput .btn {
         display: flex;
         flex-flow: row nowrap;
         justify-content: center;
@@ -122,32 +118,59 @@ function Styles() {
         height: 19px;
         font-family: system-ui, sans-serif;
         font-size: 0.875rem;
-        box-sizing: border-box;
         line-height: 1;
+        box-sizing: border-box;
         background: ${isDarkMode ? grey[900] : '#fff'};
-        color: ${isDarkMode ? grey[300] : grey[900]};
         border: 0;
-
+        color: ${isDarkMode ? grey[300] : grey[900]};
         transition-property: all;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 120ms;
       }
 
-      .CustomNumberInput .CustomNumberInput-button:hover {
+      .CustomNumberInput .btn:hover {
         background: ${isDarkMode ? grey[800] : grey[50]};
         border-color: ${isDarkMode ? grey[600] : grey[300]};
         cursor: pointer;
       }
 
-      .CustomNumberInput .CustomNumberInput-button.CustomNumberInput-incrementButton {
+      .CustomNumberInput .btn.increment {
         grid-column: 2/3;
         grid-row: 1/2;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        border: 1px solid;
+        border-bottom: 0;
+        border-color: ${isDarkMode ? grey[800] : grey[200]};
+        background: ${isDarkMode ? grey[900] : grey[50]};
+        color: ${isDarkMode ? grey[200] : grey[900]};
+
+          &:hover {
+            cursor: pointer;
+            color: #FFF;
+            background: ${isDarkMode ? cyan[100] : cyan[500]};
+            border-color: ${isDarkMode ? cyan[400] : cyan[600]};
+          }
       }
 
-      .CustomNumberInput .CustomNumberInput-button.CustomNumberInput-decrementButton {
+      .CustomNumberInput .btn.decrement {
         grid-column: 2/3;
         grid-row: 2/3;
-      }
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+        border: 1px solid;
+        border-color: ${isDarkMode ? grey[800] : grey[200]};
+        background: ${isDarkMode ? grey[900] : grey[50]};
+        color: ${isDarkMode ? grey[200] : grey[900]};
+
+          &:hover {
+            cursor: pointer;
+            color: #FFF;
+            background: ${isDarkMode ? cyan[100] : cyan[500]};
+            border-color: ${isDarkMode ? cyan[400] : cyan[600]};
+          }
+        }
+
       & .arrow {
         transform: translateY(-1px);
       }

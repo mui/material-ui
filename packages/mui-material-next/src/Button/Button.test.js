@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, createRenderer, fireEvent, act } from 'test/utils';
+import { describeConformance, createRenderer, fireEvent, act } from '@mui-internal/test-utils';
 import { camelCase } from 'lodash';
 import Button, { buttonClasses as classes } from '@mui/material-next/Button';
 import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';

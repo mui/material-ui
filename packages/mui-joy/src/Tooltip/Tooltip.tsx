@@ -17,7 +17,6 @@ import { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useSlot from '../utils/useSlot';
-import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
 import { getTooltipUtilityClass } from './tooltipClasses';
 import { TooltipProps, TooltipOwnerState, TooltipTypeMap } from './TooltipProps';
 
@@ -124,7 +123,7 @@ const TooltipArrow = styled('span', {
     height: 'var(--Tooltip-arrowSize)',
     boxSizing: 'border-box',
     // use pseudo element because Popper controls the `transform` property of the arrow.
-    '&:before': {
+    '&::before': {
       content: '""',
       display: 'block',
       position: 'absolute',
@@ -232,15 +231,13 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     modifiers: modifiersProp,
     placement = 'bottom',
     title,
-    color: colorProp = 'neutral',
+    color = 'neutral',
     variant = 'solid',
     size = 'md',
     slots = {},
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = disablePortal ? getColor(inProps.color, colorProp) : colorProp;
 
   const [childNode, setChildNode] = React.useState<Element>();
   const [arrowRef, setArrowRef] = React.useState<HTMLSpanElement | null>(null);
@@ -597,39 +594,30 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     ownerState,
   });
 
-  const result = (
-    <SlotRoot
-      {...rootProps}
-      {...(!props.slots?.root && {
-        as: Popper,
-        slots: {
-          root: component || 'div',
-        },
-      })}
-    >
-      {title}
-      {arrow ? <SlotArrow {...arrowProps} /> : null}
-    </SlotRoot>
-  );
-
   return (
     <React.Fragment>
       {React.isValidElement(children) && React.cloneElement(children, childrenProps)}
-      {disablePortal ? (
-        result
-      ) : (
-        // For portal popup, the children should not inherit color inversion from the upper parent.
-        <ColorInversion.Provider value={undefined}>{result}</ColorInversion.Provider>
-      )}
+      <SlotRoot
+        {...rootProps}
+        {...(!props.slots?.root && {
+          as: Popper,
+          slots: {
+            root: component || 'div',
+          },
+        })}
+      >
+        {title}
+        {arrow ? <SlotArrow {...arrowProps} /> : null}
+      </SlotRoot>
     </React.Fragment>
   );
 }) as OverridableComponent<TooltipTypeMap>;
 
 Tooltip.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, adds an arrow to the tooltip.
    * @default false

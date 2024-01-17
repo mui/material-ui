@@ -36,7 +36,7 @@ function composeTest() {
 function interopTest() {
   const mixin = style({ prop: 'color' });
   // built-in style function
-  const SystemSpacingBox = styled.div`
+  const SystemSpacingBox = styled('div')<{ m: number }>`
     ${spacing}
     ${mixin}
   `;

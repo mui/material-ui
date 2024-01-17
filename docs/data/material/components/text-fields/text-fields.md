@@ -156,7 +156,7 @@ Below is an example using the [`InputBase`](/material-ui/api/input-base/) compon
 
 {{"demo": "CustomizedInputBase.js", "bg": true}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/text-field/).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/textField-introduction--docs).
 
 ## `useFormControl`
 
@@ -194,6 +194,40 @@ import { useFormControl } from '@mui/material/FormControl';
 
 {{"demo": "UseFormControl.js"}}
 
+## Performance
+
+Global styles for the auto-fill keyframes are injected and removed on each mount and unmount, respectively.
+If you are loading a large number of Text Field components at once, it might be a good idea to change this default behavior by enabling [`disableInjectingGlobalStyles`](/material-ui/api/input-base/#InputBase-prop-disableInjectingGlobalStyles) in `MuiInputBase`.
+Make sure to inject `GlobalStyles` for the auto-fill keyframes at the top of your application.
+
+```jsx
+import { GlobalStyles, createTheme, ThemeProvider } from '@mui/material';
+
+const theme = createTheme({
+  components: {
+    MuiInputBase: {
+      defaultProps: {
+        disableInjectingGlobalStyles: true,
+      },
+    },
+  },
+});
+
+export default function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyles
+        styles={{
+          '@keyframes mui-auto-fill': { from: { display: 'block' } },
+          '@keyframes mui-auto-fill-cancel': { from: { display: 'block' } },
+        }}
+      />
+      ...
+    </ThemeProvider>
+  );
+}
+```
+
 ## Limitations
 
 ### Shrink
@@ -224,20 +258,17 @@ Make sure that the input is larger than the label to display correctly.
 
 ### type="number"
 
-Inputs of type="number" have potential usability issues:
+:::warning
+We do not recommend using `type="number"` with a Text Field due to potential usability issues:
 
-- Allowing certain non-numeric characters ('e', '+', '-', '.') and silently discarding others
-- The functionality of scrolling to increment/decrement the number can cause accidental and hard-to-notice changes
+- it allows certain non-numeric characters ('e', '+', '-', '.') and silently discards others
+- the functionality of scrolling to increment/decrement the number can cause accidental and hard-to-notice changes
+- and more—see [Why the GOV.UK Design System team changed the input type for numbers](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) for a more detailed explanation of the limitations of `<input type="number">`
+  :::
 
-and more - see [this article](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) by the GOV.UK Design System team for a more detailed explanation.
+If you need a text field with number validation, you can use Base UI's [Number Input](/base-ui/react-number-input/) instead.
 
-For number validation, one viable alternative is to use the default input type="text" with the _pattern_ attribute, for example:
-
-```jsx
-<TextField inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} />
-```
-
-In the future, we might provide a [number input component](https://github.com/mui/material-ui/issues/19154).
+You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/19154) to track the progress of introducing the Number Input component to Material UI.
 
 ### Helper text
 

@@ -6,7 +6,7 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ['class'],
+  darkMode: ['class', '[data-mui-color-scheme="dark"]'],
   content: [
     './data/**/*.{js,ts,jsx,tsx,mdx}',
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -24,7 +24,7 @@ module.exports = {
         'outline-purple': '0 0 0 4px rgba(192, 132, 252, 0.25)',
         'outline-purple-light': '0 0 0 4px rgba(245, 208, 254, 0.25)',
         'outline-purple-xs': '0 0 0 1px rgba(192, 132, 252, 0.25)',
-        'outline-switch': '0 0 1px 8px rgba(168, 85, 247, 0.35)',
+        'outline-switch': '0 0 1px 3px rgba(168, 85, 247, 0.35)',
       },
       cursor: {
         inherit: 'inherit',

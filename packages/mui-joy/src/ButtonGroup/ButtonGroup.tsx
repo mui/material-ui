@@ -64,14 +64,15 @@ export const StyledButtonGroup = styled('div')<{ ownerState: ButtonGroupOwnerSta
         }
       },
     );
+    const outlinedStyle = theme.variants.outlined?.[ownerState.color!];
+    const outlinedDisabledStyle = theme.variants.outlinedDisabled?.[ownerState.color!];
+    const outlinedHoverStyle = theme.variants.outlinedHover?.[ownerState.color!];
 
     return [
       {
         '--ButtonGroup-separatorSize':
           ownerState.variant === 'outlined' ? '1px' : 'calc(var(--ButtonGroup-connected) * 1px)',
-        ...(ownerState.color !== 'context' && {
-          '--ButtonGroup-separatorColor': theme.vars.palette[ownerState.color!]?.outlinedBorder,
-        }),
+        '--ButtonGroup-separatorColor': outlinedStyle?.borderColor,
         '--ButtonGroup-radius': theme.vars.radius.sm,
         '--Divider-inset': '0.5rem',
         '--unstable_childRadius':
@@ -131,19 +132,14 @@ export const StyledButtonGroup = styled('div')<{ ownerState: ButtonGroupOwnerSta
           '&:not(:disabled)': {
             zIndex: 1, // to make borders appear above disabled buttons.
           },
-          ...(ownerState.color !== 'context' && {
-            '&:disabled': {
-              '--ButtonGroup-separatorColor':
-                theme.vars.palette[ownerState.color!]?.outlinedDisabledBorder,
+          '&:disabled': {
+            '--ButtonGroup-separatorColor': outlinedDisabledStyle?.borderColor,
+          },
+          ...(ownerState.variant === 'outlined' && {
+            '&:hover': {
+              '--ButtonGroup-separatorColor': outlinedHoverStyle?.borderColor,
             },
           }),
-          ...(ownerState.variant === 'outlined' &&
-            ownerState.color !== 'context' && {
-              '&:hover': {
-                '--ButtonGroup-separatorColor':
-                  theme.vars.palette[ownerState.color!]?.outlinedHoverBorder,
-              },
-            }),
           [`&:hover, ${theme.focus.selector}`]: {
             zIndex: 2, // to make borders appear above sibling.
           },
@@ -265,10 +261,10 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
 }) as OverridableComponent<ButtonGroupTypeMap>;
 
 ButtonGroup.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The flex value of the button.
    * @example buttonFlex={1} will set flex: '1 1 auto' on each button (stretch the button to equally fill the available space).

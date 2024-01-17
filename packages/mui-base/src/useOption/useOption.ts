@@ -2,9 +2,13 @@
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
 import { SelectOption, UseOptionParameters, UseOptionReturnValue } from './useOption.types';
-import { EventHandlers } from '../utils';
+import { extractEventHandlers } from '../utils/extractEventHandlers';
 import { useListItem } from '../useList';
-import { useCompoundItem } from '../utils/useCompoundItem';
+import { useCompoundItem } from '../useCompound';
+import { useButton } from '../useButton';
+import { combineHooksSlotProps } from '../utils/combineHooksSlotProps';
+import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
+import { EventHandlers } from '../utils/types';
 
 /**
  *
@@ -21,16 +25,20 @@ export function useOption<Value>(params: UseOptionParameters<Value>): UseOptionR
 
   const {
     getRootProps: getListItemProps,
-    rootRef: listItemRefHandler,
     highlighted,
     selected,
   } = useListItem({
     item: value,
   });
 
+  const { getRootProps: getButtonProps, rootRef: buttonRefHandler } = useButton({
+    disabled,
+    focusableWhenDisabled: true,
+  });
+
   const id = useId(idParam);
 
-  const optionRef = React.useRef<Element>(null);
+  const optionRef = React.useRef<HTMLElement>(null);
 
   const selectOption: SelectOption<Value> = React.useMemo(
     () => ({
@@ -45,17 +53,43 @@ export function useOption<Value>(params: UseOptionParameters<Value>): UseOptionR
 
   const { index } = useCompoundItem<Value, SelectOption<Value>>(value, selectOption);
 
-  const handleRef = useForkRef(optionRefParam, optionRef, listItemRefHandler)!;
+  const handleRef = useForkRef(optionRefParam, optionRef, buttonRefHandler)!;
+
+  const createHandleKeyDown =
+    (otherHandlers: EventHandlers) => (event: React.KeyboardEvent & MuiCancellableEvent) => {
+      otherHandlers.onKeyDown?.(event);
+      if (event.defaultMuiPrevented) {
+        return;
+      }
+
+      if ([' ', 'Enter'].includes(event.key)) {
+        event.defaultMuiPrevented = true; // prevent listbox onKeyDown
+      }
+    };
+
+  const getOwnHandlers = (otherHandlers: EventHandlers = {}) => ({
+    onKeyDown: createHandleKeyDown(otherHandlers),
+  });
 
   return {
-    getRootProps: <Other extends EventHandlers = {}>(otherHandlers: Other = {} as Other) => ({
-      ...otherHandlers,
-      ...getListItemProps(otherHandlers),
-      id,
-      ref: handleRef,
-      role: 'option',
-      'aria-selected': selected,
-    }),
+    getRootProps: <ExternalProps extends Record<string, unknown> = {}>(
+      externalProps: ExternalProps = {} as ExternalProps,
+    ) => {
+      const externalEventHandlers = extractEventHandlers(externalProps);
+      const getCombinedRootProps = combineHooksSlotProps(
+        getListItemProps,
+        combineHooksSlotProps(getButtonProps, getOwnHandlers),
+      );
+      return {
+        ...externalProps,
+        ...externalEventHandlers,
+        ...getCombinedRootProps(externalEventHandlers),
+        id,
+        ref: handleRef,
+        role: 'option',
+        'aria-selected': selected,
+      };
+    },
     highlighted,
     index,
     selected,

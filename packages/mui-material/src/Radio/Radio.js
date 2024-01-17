@@ -34,7 +34,11 @@ const RadioRoot = styled(SwitchBase, {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
-    return [styles.root, styles[`color${capitalize(ownerState.color)}`]];
+    return [
+      styles.root,
+      ownerState.size !== 'medium' && styles[`size${capitalize(ownerState.size)}`],
+      styles[`color${capitalize(ownerState.color)}`],
+    ];
   },
 })(({ theme, ownerState }) => ({
   color: (theme.vars || theme).palette.text.secondary,
@@ -135,10 +139,10 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
 });
 
 Radio.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, the component is checked.
    */
@@ -159,7 +163,7 @@ Radio.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

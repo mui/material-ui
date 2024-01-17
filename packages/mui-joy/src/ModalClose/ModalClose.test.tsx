@@ -1,12 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import {
-  createRenderer,
-  describeConformance,
-  describeJoyColorInversion,
-  fireEvent,
-} from 'test/utils';
+import { createRenderer, describeConformance, fireEvent } from '@mui-internal/test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Modal from '@mui/joy/Modal';
@@ -31,8 +26,6 @@ describe('<ModalClose />', () => {
       },
     },
   }));
-
-  describeJoyColorInversion(<ModalClose />, { muiName: 'JoyModalClose', classes });
 
   describe('prop: variant', () => {
     it('plain by default', () => {

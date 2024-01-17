@@ -67,13 +67,13 @@ The `centered` prop should be used for larger views.
 
 ### Automatic scroll buttons
 
-By default, left and right scroll buttons are automatically presented on desktop and hidden on mobile. (based on viewport width)
+Use the `variant="scrollable"` and `scrollButtons="auto"` props to display left and right scroll buttons on desktop that are hidden on mobile:
 
 {{"demo": "ScrollableTabsButtonAuto.js", "bg": true}}
 
 ### Forced scroll buttons
 
-Left and right scroll buttons be presented (reserve space) regardless of the viewport width with `scrollButtons={true}` `allowScrollButtonsMobile`:
+Apply `scrollButtons={true}` and the `allowScrollButtonsMobile` prop to display the left and right scroll buttons on all viewports:
 
 {{"demo": "ScrollableTabsButtonForce.js", "bg": true}}
 
@@ -101,7 +101,7 @@ You can learn more about this in the [overrides documentation page](/material-ui
 
 {{"demo": "CustomizedTabs.js"}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/tabs/).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/tabs-introduction--docs).
 
 ## Vertical tabs
 

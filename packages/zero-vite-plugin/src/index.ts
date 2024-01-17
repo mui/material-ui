@@ -1,15 +1,19 @@
-import type { Plugin, PluginOption } from 'vite';
-import { generateCss } from '@mui/zero-tag-processor/generateCss';
+import type { Plugin } from 'vite';
+import { preprocessor as basePreprocessor, generateThemeTokens } from '@mui/zero-runtime/utils';
 import { transformAsync } from '@babel/core';
-import baseLinaria from '@linaria/vite';
+import baseZeroVitePlugin, { type VitePluginOptions } from './zero-vite-plugin';
 
-type LinariaOptions = Exclude<Parameters<typeof baseLinaria>[0], undefined>;
+type BaseTheme = {
+  cssVarPrefix: string;
+  colorSchemes: Record<string, unknown>;
+  generateCssVars: (colorScheme?: string) => { css: Record<string, string> };
+};
 
-export interface ZeroVitePluginOptions extends LinariaOptions {
+export interface ZeroVitePluginOptions extends VitePluginOptions {
   /**
    * The theme object that you want to be passed to the `styled` function
    */
-  theme: unknown;
+  theme: BaseTheme;
   /**
    * Prefix string to use in the generated css variables.
    */
@@ -21,77 +25,100 @@ export interface ZeroVitePluginOptions extends LinariaOptions {
   injectDefaultThemeInRoot?: boolean;
 }
 
-type LinariaWrapperOptions = Exclude<ZeroVitePluginOptions, 'theme'> & {
-  themeArgs: Record<string, unknown>;
-};
+const VIRTUAL_CSS_FILE = `\0zero-runtime-styles.css`;
+const VIRTUAL_THEME_FILE = `\0zero-runtime-theme.js`;
 
-const linaria = (options: LinariaWrapperOptions): Plugin => {
-  return baseLinaria(options);
-};
+const extensions = ['.js', '.jsx', '.mjs', '.cjs', '.ts', '.tsx', '.mts', '.cts'];
 
-export function zeroVitePlugin(options: ZeroVitePluginOptions): PluginOption {
-  const { cssVariablesPrefix = 'mui', injectDefaultThemeInRoot = true, theme } = options ?? {};
+function hasCorectExtension(fileName: string) {
+  return extensions.some((ext) => fileName.endsWith(ext));
+}
 
-  function injectMUITokensPlugin(): PluginOption {
+function isZeroRuntimeProcessableFile(fileName: string, transformLibraries: string[]) {
+  const isNodeModule = fileName.includes('node_modules');
+  const isTransformableFile =
+    isNodeModule && transformLibraries.some((libName) => fileName.includes(libName));
+  return (
+    hasCorectExtension(fileName) &&
+    (isTransformableFile || !isNodeModule) &&
+    !fileName.includes('runtime/dist')
+  );
+}
+
+export function zeroVitePlugin(options: ZeroVitePluginOptions) {
+  const {
+    theme,
+    babelOptions = {},
+    preprocessor = basePreprocessor,
+    transformLibraries = [],
+    ...rest
+  } = options ?? {};
+
+  function injectMUITokensPlugin(): Plugin {
     return {
       name: 'vite-mui-theme-injection-plugin',
+      enforce: 'pre',
+      resolveId(source) {
+        if (source === '@mui/zero-runtime/styles.css') {
+          return VIRTUAL_CSS_FILE;
+        }
+        if (source === '@mui/zero-runtime/theme') {
+          return VIRTUAL_THEME_FILE;
+        }
+        return null;
+      },
       load(id) {
-        if (id.endsWith('@mui/zero-runtime/styles.css')) {
-          return {
-            code: generateCss(
-              {
-                cssVariablesPrefix,
-                themeArgs: {
-                  theme,
-                },
-              },
-              {
-                defaultThemeKey: 'theme',
-                injectInRoot: injectDefaultThemeInRoot,
-              },
-            ),
-            map: null,
-          };
+        if (id === VIRTUAL_CSS_FILE) {
+          return generateThemeTokens(theme);
+        }
+        if (id === VIRTUAL_THEME_FILE) {
+          return `export default ${JSON.stringify(theme)};`;
         }
         return null;
       },
     };
   }
-  const extensions = ['.ts', '.tsx', '.js', '.jsx', '.mts', '.mjs', '.cts', '.cjs', '.mtsx'];
 
-  function intermediateBabelPlugin(): PluginOption {
+  function intermediateBabelPlugin(): Plugin {
     return {
-      name: 'vite-intermediate-plugin',
+      name: 'vite-mui-zero-intermediate-plugin',
+      enforce: 'post',
       async transform(code, id) {
         const [filename] = id.split('?');
-        if (!extensions.some((ext) => filename.endsWith(ext))) {
+        if (!isZeroRuntimeProcessableFile(id, transformLibraries)) {
           return null;
         }
-        const result = await transformAsync(code, {
-          filename,
-          babelrc: false,
-          configFile: false,
-          plugins: [['@mui/zero-tag-processor/pre-linaria-plugin']],
-        });
-        return {
-          code: result?.code ?? code,
-          map: result?.map,
-        };
+        try {
+          const result = await transformAsync(code, {
+            filename,
+            babelrc: false,
+            configFile: false,
+            plugins: [['@mui/zero-runtime/exports/sx-plugin']],
+          });
+          return {
+            code: result?.code ?? code,
+            map: result?.map,
+          };
+        } catch (ex) {
+          console.error(ex);
+          return null;
+        }
       },
     };
   }
 
-  const linariaPlugin = linaria({
-    cssVariablesPrefix,
+  const zeroPlugin = baseZeroVitePlugin({
+    cssVariablesPrefix: theme.cssVarPrefix,
     themeArgs: {
       theme,
     },
-    ...options,
+    preprocessor,
     babelOptions: {
-      ...options?.babelOptions,
-      plugins: ['@babel/plugin-syntax-jsx'],
+      ...babelOptions,
+      plugins: ['@babel/plugin-syntax-typescript', ...(babelOptions.plugins ?? [])],
     },
+    ...rest,
   });
 
-  return [injectMUITokensPlugin(), intermediateBabelPlugin(), linariaPlugin];
+  return [injectMUITokensPlugin(), intermediateBabelPlugin(), zeroPlugin];
 }

@@ -62,22 +62,22 @@
     },
     "getHiddenInputProps": {
       "type": {
-        "name": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseSliderHiddenInputProps&lt;TOther&gt;",
-        "description": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseSliderHiddenInputProps&lt;TOther&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderHiddenInputProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderHiddenInputProps&lt;ExternalProps&gt;"
       },
       "required": true
     },
     "getRootProps": {
       "type": {
-        "name": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseSliderRootSlotProps&lt;TOther&gt;",
-        "description": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseSliderRootSlotProps&lt;TOther&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderRootSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderRootSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },
     "getThumbProps": {
       "type": {
-        "name": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseSliderThumbSlotProps&lt;TOther&gt;",
-        "description": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseSliderThumbSlotProps&lt;TOther&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderThumbSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderThumbSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },

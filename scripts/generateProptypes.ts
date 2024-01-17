@@ -20,10 +20,8 @@ import {
   createTypeScriptProjectBuilder,
   TypeScriptProject,
 } from '@mui-internal/api-docs-builder/utils/createTypeScriptProject';
-import {
-  CORE_TYPESCRIPT_PROJECTS,
-  CoreTypeScriptProjects,
-} from '@mui-internal/api-docs-builder/utils/coreTypeScriptProjects';
+
+import CORE_TYPESCRIPT_PROJECTS from './coreTypeScriptProjects';
 
 const useExternalPropsFromInputBase = [
   'autoComplete',
@@ -210,7 +208,8 @@ async function generateProptypes(
     component.types.forEach((prop) => {
       if (
         !prop.jsDoc ||
-        (ignoreExternalDocumentation[component.name] &&
+        (project.name !== 'base' &&
+          ignoreExternalDocumentation[component.name] &&
           ignoreExternalDocumentation[component.name].includes(prop.name))
       ) {
         prop.jsDoc = '@ignore';
@@ -238,12 +237,12 @@ async function generateProptypes(
         filename: sourceFile,
       },
       comment: [
-        '----------------------------- Warning --------------------------------',
-        '| These PropTypes are generated from the TypeScript type definitions |',
+        '┌────────────────────────────── Warning ──────────────────────────────┐',
+        '│ These PropTypes are generated from the TypeScript type definitions. │',
         isTsFile
-          ? '|     To update them edit TypeScript types and run "yarn proptypes"  |'
-          : '|     To update them edit the d.ts file and run "yarn proptypes"     |',
-        '----------------------------------------------------------------------',
+          ? '│ To update them, edit the TypeScript types and run `pnpm proptypes`. │'
+          : '│    To update them, edit the d.ts file and run `pnpm proptypes`.     │',
+        '└─────────────────────────────────────────────────────────────────────┘',
       ].join('\n'),
       ensureBabelPluginTransformReactRemovePropTypesIntegration: true,
       getSortLiteralUnions,

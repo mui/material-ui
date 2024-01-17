@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, visuallyHidden } from '@mui/utils';
+import { chainPropTypes, visuallyHidden, clamp } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import useTheme from '../styles/useTheme';
 import {
@@ -17,16 +17,6 @@ import StarBorder from '../internal/svg-icons/StarBorder';
 import useThemeProps from '../styles/useThemeProps';
 import styled, { slotShouldForwardProp } from '../styles/styled';
 import ratingClasses, { getRatingUtilityClass } from './ratingClasses';
-
-function clamp(value, min, max) {
-  if (value < min) {
-    return min;
-  }
-  if (value > max) {
-    return max;
-  }
-  return value;
-}
 
 function getDecimalPrecision(num) {
   const decimalPart = num.toString().split('.')[1];
@@ -367,14 +357,14 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     }
 
     const rootNode = rootRef.current;
-    const { right, left } = rootNode.getBoundingClientRect();
-    const { width } = rootNode.firstChild.getBoundingClientRect();
+    const { right, left, width: containerWidth } = rootNode.getBoundingClientRect();
+
     let percent;
 
     if (theme.direction === 'rtl') {
-      percent = (right - event.clientX) / (width * max);
+      percent = (right - event.clientX) / containerWidth;
     } else {
-      percent = (event.clientX - left) / (width * max);
+      percent = (event.clientX - left) / containerWidth;
     }
 
     let newHover = roundValueToPrecision(max * percent + precision / 2, precision);
@@ -616,10 +606,10 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 });
 
 Rating.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Override or extend the styles applied to the component.
    */

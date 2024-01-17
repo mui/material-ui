@@ -7,7 +7,7 @@ import {
   createMount,
   describeConformanceUnstyled,
   fireEvent,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import { Snackbar, snackbarClasses as classes } from '@mui/base/Snackbar';
 
 describe('<Snackbar />', () => {
@@ -40,7 +40,6 @@ describe('<Snackbar />', () => {
       render,
       mount,
       refInstanceof: window.HTMLDivElement,
-      muiName: 'BaseSnackbar',
       slots: {
         root: {
           expectedClassName: classes.root,

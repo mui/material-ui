@@ -1,25 +1,34 @@
 {
-  "name": "@app/zero-runtime-vite-app",
+  "name": "@app/vite-app",
   "version": "0.0.0",
   "private": true,
   "type": "module",
   "scripts": {
+    "preview": "vite preview",
     "dev": "vite",
     "build": "vite build"
   },
   "dependencies": {
-    "@mui/zero-runtime": "file:../../packages/zero-runtime/build",
+    "@mui/base": "workspace:^",
+    "@mui/system": "workspace:^",
+    "@mui/zero-runtime": "workspace:^",
+    "clsx": "^2.0.0",
+    "local-ui-lib": "workspace:^",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@mui/utils": "file:../../packages/mui-utils/build",
-    "@mui/material": "file:../../packages/mui-material/build",
-    "@mui/zero-vite-plugin": "file:../../packages/zero-vite-plugin/build",
-    "@vitejs/plugin-react": "^4.0.4",
-    "vite": "4.4.9"
-  },
-  "resolutions": {
-    "@mui/zero-tag-processor": "file:../../packages/zero-tag-processor/build"
+    "@babel/preset-env": "^7.23.2",
+    "@babel/preset-react": "^7.22.15",
+    "@babel/preset-typescript": "^7.23.2",
+    "@mui/material": "workspace:^",
+    "@mui/utils": "workspace:^",
+    "@mui/zero-vite-plugin": "workspace:^",
+    "@types/react": "^18.2.47",
+    "@types/react-dom": "^18.2.18",
+    "@vitejs/plugin-react": "^4.2.1",
+    "postcss": "^8.4.33",
+    "postcss-combine-media-query": "^1.0.1",
+    "vite": "5.0.11"
   }
 }

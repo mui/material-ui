@@ -1,15 +1,17 @@
 import { generateUtilityClass } from '../generateUtilityClass';
 import { generateUtilityClasses } from '../generateUtilityClasses';
 
+const COMPONENT_NAME = 'NumberInput';
+
 export interface NumberInputClasses {
   /** Class name applied to the root element. */
   root: string;
   /** Class name applied to the root element if the component is a descendant of `FormControl`. */
   formControl: string;
   /** Class name applied to the root element if `startAdornment` is provided. */
-  // TODO:  adornedStart: string;
+  adornedStart: string;
   /** Class name applied to the root element if `endAdornment` is provided. */
-  // TODO: adornedEnd: string;
+  adornedEnd: string;
   /** Class name applied to the root element if the component is focused. */
   focused: string;
   /** Class name applied to the root element if `disabled={true}`. */
@@ -29,10 +31,10 @@ export interface NumberInputClasses {
 export type NumberInputClassKey = keyof NumberInputClasses;
 
 export function getNumberInputUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiNumberInput', slot);
+  return generateUtilityClass(COMPONENT_NAME, slot);
 }
 
-export const numberInputClasses: NumberInputClasses = generateUtilityClasses('MuiNumberInput', [
+export const numberInputClasses: NumberInputClasses = generateUtilityClasses(COMPONENT_NAME, [
   'root',
   'formControl',
   'focused',
@@ -42,6 +44,6 @@ export const numberInputClasses: NumberInputClasses = generateUtilityClasses('Mu
   'input',
   'incrementButton',
   'decrementButton',
-  // 'adornedStart',
-  // 'adornedEnd',
+  'adornedStart',
+  'adornedEnd',
 ]);

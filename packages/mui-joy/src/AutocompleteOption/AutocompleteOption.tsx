@@ -10,7 +10,6 @@ import { styled, useThemeProps } from '../styles';
 import { useVariantColor } from '../styles/variantColorInheritance';
 import { getAutocompleteOptionUtilityClass } from './autocompleteOptionClasses';
 import { AutocompleteOptionOwnerState, AutocompleteOptionTypeMap } from './AutocompleteOptionProps';
-import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: AutocompleteOptionOwnerState) => {
@@ -68,12 +67,10 @@ const AutocompleteOption = React.forwardRef(function AutocompleteOption(inProps,
     slotProps = {},
     ...other
   } = props;
-  const { variant = variantProp, color: inheritedColor = colorProp } = useVariantColor(
+  const { variant = variantProp, color = colorProp } = useVariantColor(
     inProps.variant,
     inProps.color,
   );
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, inheritedColor);
 
   const ownerState = {
     ...props,
@@ -101,10 +98,10 @@ const AutocompleteOption = React.forwardRef(function AutocompleteOption(inProps,
 }) as OverridableComponent<AutocompleteOptionTypeMap>;
 
 AutocompleteOption.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */

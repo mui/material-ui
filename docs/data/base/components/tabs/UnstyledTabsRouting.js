@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Tabs } from '@mui/base/Tabs';
-import { Tab, tabClasses } from '@mui/base/Tab';
-import { TabsList } from '@mui/base/TabsList';
+import { Tab as BaseTab, tabClasses } from '@mui/base/Tab';
+import { TabsList as BaseTabsList } from '@mui/base/TabsList';
 import {
   MemoryRouter,
   Route,
@@ -55,17 +55,17 @@ function MyTabs() {
 
   return (
     <Tabs value={currentTab}>
-      <StyledTabsList>
-        <StyledTab value="/inbox/:id" to="/inbox/1" slots={{ root: RouterLink }}>
+      <TabsList>
+        <Tab value="/inbox/:id" to="/inbox/1" slots={{ root: RouterLink }}>
           Inbox
-        </StyledTab>
-        <StyledTab value="/drafts" to="/drafts" slots={{ root: RouterLink }}>
+        </Tab>
+        <Tab value="/drafts" to="/drafts" slots={{ root: RouterLink }}>
           Drafts
-        </StyledTab>
-        <StyledTab value="/trash" to="/trash" slots={{ root: RouterLink }}>
+        </Tab>
+        <Tab value="/trash" to="/trash" slots={{ root: RouterLink }}>
           Trash
-        </StyledTab>
-      </StyledTabsList>
+        </Tab>
+      </TabsList>
     </Tabs>
   );
 }
@@ -102,16 +102,16 @@ const blue = {
 };
 
 const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
 const RouteDisplay = styled('p')`
@@ -128,7 +128,7 @@ RouterLink.propTypes = {
   ownerState: PropTypes.object.isRequired,
 };
 
-const StyledTab = styled(Tab)`
+const Tab = styled(BaseTab)`
   font-family: 'IBM Plex Sans', sans-serif;
   color: #fff;
   cursor: pointer;
@@ -159,7 +159,7 @@ const StyledTab = styled(Tab)`
   }
 `;
 
-const StyledTabsList = styled(TabsList)(
+const TabsList = styled(BaseTabsList)(
   ({ theme }) => `
   min-width: 400px;
   background-color: ${blue[500]};

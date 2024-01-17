@@ -25,7 +25,7 @@ export default function HeroEnd() {
         `,
         ...theme.applyDarkStyles({
           background: `linear-gradient(180deg, ${
-            (theme.vars || theme).palette.primaryDark[800]
+            (theme.vars || theme).palette.primaryDark[900]
           } 50%,
           ${alpha(theme.palette.primary[900], 0.2)} 100%)
           `,

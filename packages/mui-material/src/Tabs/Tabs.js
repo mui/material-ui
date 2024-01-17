@@ -575,10 +575,29 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
         updateIndicatorState();
       }
     });
+
+    let resizeObserver;
+
+    /**
+     * @type {MutationCallback}
+     */
+    const handleMutation = (records) => {
+      records.forEach((record) => {
+        record.removedNodes.forEach((item) => {
+          resizeObserver?.unobserve(item);
+        });
+        record.addedNodes.forEach((item) => {
+          resizeObserver?.observe(item);
+        });
+      });
+      handleResize();
+      updateScrollButtonState();
+    };
+
     const win = ownerWindow(tabsRef.current);
     win.addEventListener('resize', handleResize);
 
-    let resizeObserver;
+    let mutationObserver;
 
     if (typeof ResizeObserver !== 'undefined') {
       resizeObserver = new ResizeObserver(handleResize);
@@ -587,14 +606,20 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       });
     }
 
+    if (typeof MutationObserver !== 'undefined') {
+      mutationObserver = new MutationObserver(handleMutation);
+      mutationObserver.observe(tabListRef.current, {
+        childList: true,
+      });
+    }
+
     return () => {
       handleResize.clear();
       win.removeEventListener('resize', handleResize);
-      if (resizeObserver) {
-        resizeObserver.disconnect();
-      }
+      mutationObserver?.disconnect();
+      resizeObserver?.disconnect();
     };
-  }, [updateIndicatorState]);
+  }, [updateIndicatorState, updateScrollButtonState]);
 
   /**
    * Toggle visibility of start and end scroll buttons
@@ -791,10 +816,10 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 });
 
 Tabs.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Callback fired when the component mounts.
    * This is useful when you want to trigger an action programmatically.

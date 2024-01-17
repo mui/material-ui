@@ -6,7 +6,6 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { useColorInversion } from '../styles/ColorInversion';
 import { getDialogTitleUtilityClass } from './dialogTitleClasses';
 import { DialogTitleProps, DialogTitleOwnerState, DialogTitleTypeMap } from './DialogTitleProps';
 import cardOverflowClasses from '../CardOverflow/cardOverflowClasses';
@@ -60,7 +59,6 @@ const DialogTitleRoot = styled('h2', {
 const sizeToLevel = { sm: 'title-md', md: 'title-lg', lg: 'h4' } as const;
 
 /**
- * ⚠️ DialogTitle must be used as a direct child of the [Card](https://mui.com/joy-ui/react-card/) component.
  *
  * Demos:
  *
@@ -89,8 +87,7 @@ const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
     ...other
   } = props;
 
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, variant ? colorProp ?? 'neutral' : colorProp);
+  const color = inProps.color || (variant ? colorProp ?? 'neutral' : colorProp);
 
   const externalForwardedProps = { ...other, component, slots, slotProps };
 
@@ -119,10 +116,10 @@ const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
 }) as OverridableComponent<DialogTitleTypeMap>;
 
 DialogTitle.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Used to render icon or text elements inside the DialogTitle if `src` is not set.
    * This can be an element, or just a string.

@@ -3,9 +3,9 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import MuiError from '@mui/utils/macros/MuiError.macro';
+import MuiError from '@mui-internal/babel-macros/MuiError.macro';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { refType } from '@mui/utils';
+import { refType, unstable_useId as useId } from '@mui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import capitalize from '../utils/capitalize';
 import Menu from '../Menu/Menu';
@@ -487,12 +487,15 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     ...MenuProps.slotProps?.paper,
   };
 
+  const listboxId = useId();
+
   return (
     <React.Fragment>
       <SelectSelect
         ref={handleDisplayRef}
         tabIndex={tabIndex}
-        role="button"
+        role="combobox"
+        aria-controls={listboxId}
         aria-disabled={disabled ? 'true' : undefined}
         aria-expanded={open ? 'true' : 'false'}
         aria-haspopup="listbox"
@@ -551,9 +554,11 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
           role: 'listbox',
           'aria-multiselectable': multiple ? 'true' : undefined,
           disableListWrap: true,
+          id: listboxId,
           ...MenuProps.MenuListProps,
         }}
         slotProps={{
+          ...MenuProps.slotProps,
           paper: {
             ...paperProps,
             style: {

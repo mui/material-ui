@@ -7,7 +7,6 @@ import { unstable_composeClasses as composeClasses } from '@mui/base/composeClas
 import { useMenu, MenuProvider } from '@mui/base/useMenu';
 import { ListActionTypes } from '@mui/base/useList';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import GroupListContext from '../List/GroupListContext';
@@ -73,14 +72,12 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     children,
     size = 'md',
     variant = 'outlined',
-    color: colorProp = 'neutral',
+    color = 'neutral',
     onItemsChange,
     slots = {},
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const {
     contextValue: menuContextValue,
@@ -134,10 +131,10 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
 }) as OverridableComponent<MenuListTypeMap>;
 
 MenuList.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A ref with imperative actions.
    * It allows to select the first or last menu item.

@@ -3,7 +3,7 @@
   <Anchor ref={setAnchor} aria-describedby="placement-popper">
     Anchor
   </Anchor>
-  <Popup
+  <BasePopup
     id="placement-popper"
     open={Boolean(anchor)}
     anchor={anchor}
@@ -11,5 +11,5 @@
     offset={4}
   >
     <PopupBody>The content of the Popup.</PopupBody>
-  </Popup>
+  </BasePopup>
 </div>

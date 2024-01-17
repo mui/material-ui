@@ -42,7 +42,7 @@ const Switch = React.forwardRef((props, ref) => {
           return {
             ...resolvedSlotProps,
             className: clsx(
-              `relative inline-block w-10 h-6 m-2.5 ${
+              `group relative inline-block w-[38px] h-[24px] m-2.5 ${
                 ownerState.disabled
                   ? 'cursor-not-allowed opacity-40'
                   : 'cursor-pointer'
@@ -59,7 +59,7 @@ const Switch = React.forwardRef((props, ref) => {
           return {
             ...resolvedSlotProps,
             className: clsx(
-              'cursor-inherit absolute w-full h-full top-0 left-0 opacity-0 z-10 m-0',
+              'cursor-inherit absolute w-full h-full top-0 left-0 opacity-0 z-10 border-none',
               resolvedSlotProps?.className,
             ),
           };
@@ -73,11 +73,12 @@ const Switch = React.forwardRef((props, ref) => {
           return {
             ...resolvedSlotProps,
             className: clsx(
-              `absolute block w-full h-full rounded-2xl ${
+              `absolute block w-full h-full transition rounded-full border border-solid outline-none border-slate-300 dark:border-gray-700 group-[.base--focusVisible]:shadow-outline-switch
+              ${
                 ownerState.checked
                   ? 'bg-purple-500'
-                  : 'bg-slate-400 dark:bg-slate-600'
-              }`,
+                  : 'bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-800'
+              } `,
               resolvedSlotProps?.className,
             ),
           };
@@ -90,15 +91,11 @@ const Switch = React.forwardRef((props, ref) => {
           return {
             ...resolvedSlotProps,
             className: clsx(
-              `block w-4 h-4 top-1 ${
-                ownerState.checked ? 'left-5' : 'left-1'
-              } rounded-2xl ${
-                ownerState.focusVisible
-                  ? `${
-                      ownerState.checked ? 'bg-white' : 'bg-slate-500'
-                    } shadow-outline-switch`
-                  : 'bg-white'
-              } relative transition-all`,
+              `block w-4 h-4 top-1 rounded-2xl border border-solid outline-none border-slate-300 dark:border-gray-700 transition shadow-[0_1px_2px_rgb(0_0_0_/_0.1)] dark:shadow-[0_1px_2px_rgb(0_0_0_/_0.25)] ${
+                ownerState.checked
+                  ? 'left-[18px] bg-white shadow-[0_0_0_rgb(0_0_0_/_0.3)]'
+                  : 'left-[4px] bg-white'
+              }  relative transition-all`,
               resolvedSlotProps?.className,
             ),
           };

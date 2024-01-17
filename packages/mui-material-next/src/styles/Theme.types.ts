@@ -26,7 +26,9 @@ export interface MD3NeutralTones extends MD3Tones {
   17: string;
   22: string;
   92: string;
+  96: string;
 }
+
 export interface MD3Palettes {
   primary: MD3Tones;
   secondary: MD3Tones;
@@ -66,12 +68,18 @@ export interface MD3ColorSchemeTokens {
 
   info: string;
   onInfo: string;
+  infoContainer: string;
+  onInfoContainer: string;
 
   warning: string;
   onWarning: string;
+  warningContainer: string;
+  onWarningContainer: string;
 
   success: string;
   onSuccess: string;
+  successContainer: string;
+  onSuccessContainer: string;
 
   background: string;
   onBackground: string;
@@ -80,6 +88,7 @@ export interface MD3ColorSchemeTokens {
   onSurface: string;
   surfaceVariant: string;
   onSurfaceVariant: string;
+  surfaceContainerLow: string;
   surfaceContainerHigh: string;
   surfaceContainerHighest: string;
 
@@ -89,6 +98,7 @@ export interface MD3ColorSchemeTokens {
   surfaceTint?: string;
 
   outline: string;
+  outlineVariant: string;
   shadow: string;
 
   // channels
@@ -229,6 +239,7 @@ export interface Motion {
 export interface MD3CssVarsThemeOptions extends Omit<MD2CssVarsThemeOptions, 'colorSchemes'> {
   ref?: {
     typeface?: Partial<MD3Typeface>;
+    palette?: Partial<MD3Palettes>;
   };
   sys?: {
     typescale?: Partial<MD3Typescale>;
@@ -240,9 +251,6 @@ export interface MD3CssVarsThemeOptions extends Omit<MD2CssVarsThemeOptions, 'co
 }
 
 export interface ColorSystemOptions extends MD2ColorSystemOptions {
-  ref?: {
-    palette?: Partial<MD3Palettes>;
-  };
   sys?: {
     color?: Partial<MD3ColorSchemeTokens>;
     elevation?: string[];

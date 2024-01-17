@@ -95,6 +95,7 @@ export const SliderRoot = styled('span', {
     },
   };
 });
+
 export const SliderRail = styled('span', {
   name: 'MuiSlider',
   slot: 'Rail',
@@ -238,7 +239,7 @@ export const SliderThumb = styled('span', {
     },
     [`&.${sliderClasses.disabled}`]: {
       boxShadow: 'none',
-      '&:before': {
+      '&::before': {
         boxShadow: tokens.sys.elevation[0],
       },
     },
@@ -764,10 +765,10 @@ const Slider = React.forwardRef(function Slider<
 });
 
 Slider.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The label of the slider.
    */
@@ -811,7 +812,7 @@ Slider.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

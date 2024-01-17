@@ -31,10 +31,12 @@ const ListItemDecoratorRoot = styled('span', {
   ...(ownerState.parentOrientation === 'horizontal'
     ? {
         minInlineSize: 'var(--ListItemDecorator-size)',
+        marginInlineEnd: 'calc(-1 * var(--ListItem-gap))',
       }
     : {
         minBlockSize: 'var(--ListItemDecorator-size)',
         justifyContent: 'center',
+        marginBlockEnd: 'calc(-1 * var(--ListItem-gap))',
       }),
 }));
 /**
@@ -75,10 +77,10 @@ const ListItemDecorator = React.forwardRef(function ListItemDecorator(inProps, r
 }) as OverridableComponent<ListItemDecoratorTypeMap>;
 
 ListItemDecorator.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

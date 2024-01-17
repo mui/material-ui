@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import MuiPaper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
 import copy from 'clipboard-copy';
 import InputBase from '@mui/material/InputBase';
 import Typography from '@mui/material/Typography';
@@ -164,7 +163,7 @@ const Icons = React.memo(function Icons(props) {
               {/*  eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
               <div onClick={handleLabelClick}>{icon.importName}</div>
             </div>
-            {/* eslint-enable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */}
+            {/* eslint-enable jsx-a11y/click-events-have-key-events */}
           </StyledIcon>
         );
       })}
@@ -209,7 +208,7 @@ const Title = styled(Typography)(({ theme }) => ({
   },
 }));
 
-const CanvasComponent = styled(Box)(({ theme }) => ({
+const CanvasComponent = styled('div')(({ theme }) => ({
   fontSize: 210,
   marginTop: theme.spacing(2),
   color: theme.palette.text.primary,
@@ -226,7 +225,7 @@ const FontSizeComponent = styled('span')(({ theme }) => ({
   margin: theme.spacing(2),
 }));
 
-const ContextComponent = styled(Box, {
+const ContextComponent = styled('div', {
   shouldForwardProp: (prop) => prop !== 'contextColor',
 })(({ theme, contextColor }) => ({
   margin: theme.spacing(0.5),

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, createRenderer, fireEvent } from 'test/utils';
+import { describeConformance, createRenderer, fireEvent } from '@mui-internal/test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import NativeSelectInput from './NativeSelectInput';
 import nativeSelectClasses from './nativeSelectClasses';

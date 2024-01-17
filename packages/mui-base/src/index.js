@@ -29,15 +29,15 @@ export * from './TabsList';
 export * from './Tabs';
 export * from './Tab';
 export { TextareaAutosize } from './TextareaAutosize';
+export * from './Transitions';
 export * from './useAutocomplete';
 export * from './useBadge';
 export * from './useButton';
-export { useDropdown } from './useDropdown';
+export * from './useDropdown';
 export * from './useInput';
 export * from './useMenu';
 export * from './useMenuButton';
 export * from './useMenuItem';
-
 export * from './unstable_useNumberInput';
 export * from './useOption';
 export * from './useSelect';
@@ -49,3 +49,8 @@ export * from './useTabPanel';
 export * from './useTabs';
 export * from './useTabsList';
 export * from './unstable_useModal';
+
+export {
+  generateUtilityClass as unstable_generateUtilityClass,
+  isGlobalState as unstable_isGlobalState,
+} from './generateUtilityClass';

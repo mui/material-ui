@@ -24,6 +24,7 @@ const pages: MuiPage[] = [
     pathname: '/material-ui/react-',
     title: 'Components',
     children: [
+      { pathname: '/material-ui/all-components', title: 'All components' },
       {
         pathname: '/material-ui/components/inputs',
         subheader: 'inputs',
@@ -133,7 +134,9 @@ const pages: MuiPage[] = [
         subheader: 'MUI X',
         children: [
           { pathname: '/x/react-data-grid', title: 'Data Grid' },
-          { pathname: '/x/react-date-pickers/getting-started', title: 'Date & Time Pickers' },
+          { pathname: '/x/react-date-pickers', title: 'Date & Time Pickers' },
+          { pathname: '/x/react-charts' },
+          { pathname: '/x/react-tree-view', title: 'Tree View' },
         ],
       },
       {
@@ -181,8 +184,10 @@ const pages: MuiPage[] = [
     title: 'How-to guides',
     children: [
       { pathname: '/material-ui/guides/api', title: 'API design approach' },
-      { pathname: '/material-ui/guides/themeable-component', title: 'Themeable component' },
-      { pathname: '/material-ui/guides/understand-mui-packages', title: 'Understand MUI packages' },
+      {
+        pathname: '/material-ui/guides/creating-themed-components',
+        title: 'Creating themed components',
+      },
       { pathname: '/material-ui/guides/typescript', title: 'TypeScript' },
       { pathname: '/material-ui/guides/interoperability', title: 'Style library interoperability' },
       { pathname: '/material-ui/guides/styled-components', title: 'Using styled-components' },
@@ -199,11 +204,17 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/guides/testing' },
       { pathname: '/material-ui/guides/localization' },
       { pathname: '/material-ui/guides/content-security-policy', title: 'Content Security Policy' },
-      { pathname: '/material-ui/guides/right-to-left', title: 'Right-to-left' },
+      { pathname: '/material-ui/guides/right-to-left', title: 'Right-to-left support' },
       { pathname: '/material-ui/guides/shadow-dom', title: 'Shadow DOM' },
       {
-        pathname: '/material-ui/guides/next-js-app-router',
-        title: 'Next.js App Router',
+        pathname: '/material-ui/guides/nextjs',
+        title: 'Next.js integration',
+        newFeature: true,
+      },
+      {
+        pathname: '/material-ui/guides/material-3-components',
+        title: 'Material 3 components',
+        newFeature: true,
       },
     ],
   },
@@ -237,7 +248,7 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/discover-more/related-projects' },
       { pathname: '/material-ui/discover-more/design-kits' },
       { pathname: '/material-ui/discover-more/roadmap' },
-      { pathname: '/material-ui/discover-more/backers', title: 'Sponsors & Backers' },
+      { pathname: '/material-ui/discover-more/backers', title: 'Sponsors and Backers' },
       { pathname: '/material-ui/discover-more/vision' },
       { pathname: '/material-ui/discover-more/changelog' },
     ],

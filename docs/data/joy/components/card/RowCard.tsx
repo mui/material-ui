@@ -30,7 +30,7 @@ export default function RowCard() {
         sx={{
           px: 0.2,
           writingMode: 'vertical-rl',
-          textAlign: 'center',
+          justifyContent: 'center',
           fontSize: 'xs',
           fontWeight: 'xl',
           letterSpacing: '1px',

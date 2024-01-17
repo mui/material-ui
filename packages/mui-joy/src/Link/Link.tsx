@@ -12,7 +12,6 @@ import {
 import { unstable_extendSxProp as extendSxProp } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
 import { LinkProps, LinkOwnerState, LinkTypeMap } from './LinkProps';
@@ -87,7 +86,9 @@ const LinkRoot = styled('a', {
       ...(ownerState.underline === 'hover' && {
         textDecoration: 'none',
         '&:hover': {
-          textDecorationLine: 'underline',
+          '@media (hover: hover)': {
+            textDecorationLine: 'underline',
+          },
         },
       }),
       ...(ownerState.underline === 'always' && {
@@ -109,11 +110,9 @@ const LinkRoot = styled('a', {
       borderRadius: theme.vars.radius.xs,
       padding: 0, // Remove the padding in Firefox
       cursor: 'pointer',
-      ...(ownerState.color !== 'context' && {
-        textDecorationColor: `rgba(${
-          theme.vars.palette[ownerState.color!]?.mainChannel
-        } / var(--Link-underlineOpacity, 0.72))`,
-      }),
+      textDecorationColor: `var(--variant-outlinedBorder, rgba(${
+        theme.vars.palette[ownerState.color!]?.mainChannel
+      } / var(--Link-underlineOpacity, 0.72)))`,
       ...(ownerState.variant
         ? {
             paddingBlock: 'min(0.1em, 4px)',
@@ -123,17 +122,17 @@ const LinkRoot = styled('a', {
             }),
           }
         : {
-            ...(ownerState.color !== 'context' && {
-              color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`,
-            }),
+            color: `var(--variant-plainColor, rgba(${
+              theme.vars.palette[ownerState.color!]?.mainChannel
+            } / 1))`,
             [`&.${linkClasses.disabled}`]: {
               pointerEvents: 'none',
-              ...(ownerState.color !== 'context' && {
-                color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 0.6)`,
-              }),
+              color: `var(--variant-plainDisabledColor, rgba(${
+                theme.vars.palette[ownerState.color!]?.mainChannel
+              } / 0.6))`,
             },
           }),
-      userSelect: 'none',
+      userSelect: ownerState.component === 'button' ? 'none' : undefined,
       MozAppearance: 'none', // Reset
       WebkitAppearance: 'none', // Reset
       '&::-moz-focus-inner': {
@@ -164,7 +163,9 @@ const LinkRoot = styled('a', {
     } as const,
     ownerState.variant && {
       ...theme.variants[ownerState.variant]?.[ownerState.color!],
-      '&:hover': theme.variants[`${ownerState.variant}Hover`]?.[ownerState.color!],
+      '&:hover': {
+        '@media (hover: hover)': theme.variants[`${ownerState.variant}Hover`]?.[ownerState.color!],
+      },
       '&:active': theme.variants[`${ownerState.variant}Active`]?.[ownerState.color!],
       [`&.${linkClasses.disabled}`]:
         theme.variants[`${ownerState.variant}Disabled`]?.[ownerState.color!],
@@ -183,7 +184,7 @@ const LinkRoot = styled('a', {
  */
 const Link = React.forwardRef(function Link(inProps, ref) {
   const {
-    color: colorProp = 'primary',
+    color = 'primary',
     textColor,
     variant,
     ...themeProps
@@ -192,8 +193,6 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     name: 'JoyLink',
   });
 
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
   const nesting = React.useContext(TypographyNestedContext);
   const inheriting = React.useContext(TypographyInheritContext);
 
@@ -304,10 +303,10 @@ const Link = React.forwardRef(function Link(inProps, ref) {
 }) as OverridableComponent<LinkTypeMap>;
 
 Link.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

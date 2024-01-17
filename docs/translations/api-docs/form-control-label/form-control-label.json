@@ -30,7 +30,29 @@
     "value": { "description": "The value of the component." }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "asterisk": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the asterisk element"
+    },
+    "disabled": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "error": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>error={true}</code>"
+    },
+    "label": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the label&#39;s Typography component"
+    },
+    "labelPlacementBottom": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>labelPlacement=\"bottom\"</code>"
+    },
     "labelPlacementStart": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -41,33 +63,11 @@
       "nodeName": "the root element",
       "conditions": "<code>labelPlacement=\"top\"</code>"
     },
-    "labelPlacementBottom": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>labelPlacement=\"bottom\"</code>"
-    },
-    "disabled": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>disabled={true}</code>"
-    },
-    "label": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the label&#39;s Typography component"
-    },
-    "error": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>error={true}</code>"
-    },
     "required": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>required={true}</code>"
     },
-    "asterisk": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the asterisk element"
-    }
+    "root": { "description": "Styles applied to the root element." }
   }
 }

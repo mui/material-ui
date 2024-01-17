@@ -199,7 +199,7 @@ export const SliderThumb = styled('span', {
     left: '50%',
     transform: 'translate(-50%, 50%)',
   }),
-  '&:before': {
+  '&::before': {
     position: 'absolute',
     content: '""',
     borderRadius: 'inherit',
@@ -276,7 +276,7 @@ export const SliderValueLabel = styled(BaseSliderValueLabel, {
   ...(ownerState.orientation === 'horizontal' && {
     top: '-10px',
     transformOrigin: 'bottom center',
-    '&:before': {
+    '&::before': {
       position: 'absolute',
       content: '""',
       width: 8,
@@ -291,7 +291,7 @@ export const SliderValueLabel = styled(BaseSliderValueLabel, {
     right: ownerState.size === 'small' ? '20px' : '30px',
     top: '50%',
     transformOrigin: 'right center',
-    '&:before': {
+    '&::before': {
       position: 'absolute',
       content: '""',
       width: 8,
@@ -702,10 +702,10 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
 });
 
 Slider.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The label of the slider.
    */
@@ -753,11 +753,11 @@ Slider.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['primary', 'secondary']),
+    PropTypes.oneOf(['primary', 'secondary', 'error', 'info', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

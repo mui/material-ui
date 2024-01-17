@@ -24,7 +24,7 @@ Tabs are implemented using a collection of related components:
 - `<TabPanel />` - the card that hosts the content associated with a tab.
 - `<Tabs />` - the top-level component that wraps the Tabs List and Tab Panel components so that tabs and their panels can communicate with one another.
 
-{{"demo": "UnstyledTabsIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledTabsIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Components
 

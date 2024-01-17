@@ -176,10 +176,10 @@ const AppBar = React.forwardRef(function AppBar(inProps, ref) {
 });
 
 AppBar.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
@@ -195,11 +195,21 @@ AppBar.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary', 'transparent']),
+    PropTypes.oneOf([
+      'default',
+      'inherit',
+      'primary',
+      'secondary',
+      'transparent',
+      'error',
+      'info',
+      'success',
+      'warning',
+    ]),
     PropTypes.string,
   ]),
   /**

@@ -36,7 +36,7 @@ In this specific example, you would need to bump the version of `@mui/x-data-gri
 
 ## Storybook and Emotion
 
-If your project uses Storybook v6.x, you will need to update the `.storybook/main.js` webpack config to use the most recent version of Emotion:
+If your project uses Storybook v6.x, you will need to update the `.storybook/main.js` Webpack config to use the most recent version of Emotion:
 
 ```js
 // .storybook/main.js
@@ -204,7 +204,7 @@ For more details, see [this GitHub issue](https://github.com/mui/material-ui/iss
 We recommend using this codemod to fix all imports in your project:
 
 ```bash
-npx @mui/codemod v5.0.0/optimal-imports <path>
+npx @mui/codemod@latest v5.0.0/optimal-imports <path>
 ```
 
 You can fix it manually like this:

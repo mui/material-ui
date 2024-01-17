@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from 'test/utils';
+import { createRenderer, screen } from '@mui-internal/test-utils';
 import { styled, createTheme, ThemeProvider } from '@mui/system';
 
 describe('styled', () => {
@@ -429,6 +429,50 @@ describe('styled', () => {
       expect(container.firstChild).toHaveComputedStyle({
         width: '500px',
         height: '400px',
+      });
+    });
+
+    it('should support variants with props callbacks', () => {
+      const customTheme = createTheme({
+        components: {
+          MuiTest: {
+            variants: [
+              {
+                props: ({ size }) => size === 'large',
+                style: {
+                  width: '400px',
+                  height: '400px',
+                },
+              },
+              {
+                props: ({ size }) => size === 'small',
+                style: {
+                  width: '200px',
+                  height: '200px',
+                },
+              },
+            ],
+          },
+        },
+      });
+      const { getByTestId } = render(
+        <ThemeProvider theme={customTheme}>
+          <TestObj data-testid="large" size="large">
+            Test
+          </TestObj>
+          <TestObj data-testid="small" size="small">
+            Test
+          </TestObj>
+        </ThemeProvider>,
+      );
+
+      expect(getByTestId('large')).toHaveComputedStyle({
+        width: '400px',
+        height: '400px',
+      });
+      expect(getByTestId('small')).toHaveComputedStyle({
+        width: '200px',
+        height: '200px',
       });
     });
 

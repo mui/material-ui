@@ -142,7 +142,7 @@ function Demo({
               minHeight: 'initial',
               '& .MuiTabs-indicator': {
                 bgcolor: 'transparent',
-                '&:before': {
+                '&::before': {
                   height: '100%',
                   content: '""',
                   display: 'block',
@@ -342,7 +342,7 @@ export function buildTheme(): ThemeOptions {
               },
             },
             theme.applyDarkStyles({
-              backgroundColor: alpha(theme.palette.primaryDark[900], 0.5),
+              backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
               color: (theme.vars || theme).palette.primaryDark[50],
               borderColor: alpha(theme.palette.primaryDark[500], 0.2),
               '& .MuiAlert-icon': {
@@ -376,7 +376,7 @@ export function buildTheme(): ThemeOptions {
               },
               '& .MuiInputBase-root': {
                 fontWeight: 700,
-                '&:before': {
+                '&::before': {
                   borderColor: (theme.vars || theme).palette.grey[300],
                 },
               },
@@ -384,10 +384,10 @@ export function buildTheme(): ThemeOptions {
                 backgroundColor: '#fff',
                 border: '1px solid',
                 borderColor: (theme.vars || theme).palette.grey[100],
-                '&:before': {
+                '&::before': {
                   borderColor: (theme.vars || theme).palette.grey[300],
                 },
-                '&:after': {
+                '&::after': {
                   borderColor: (theme.vars || theme).palette.primary[400],
                 },
                 '&:hover': {
@@ -398,7 +398,7 @@ export function buildTheme(): ThemeOptions {
                 color: (theme.vars || theme).palette.grey[800],
               },
               '& .MuiInput-root.Mui-focused': {
-                '&:after': {
+                '&::after': {
                   borderColor: (theme.vars || theme).palette.primary[400],
                 },
               },
@@ -408,7 +408,7 @@ export function buildTheme(): ThemeOptions {
             },
             theme.applyDarkStyles({
               '& .MuiInputBase-root': {
-                '&:before': {
+                '&::before': {
                   borderColor: (theme.vars || theme).palette.primaryDark[500],
                 },
               },
@@ -419,25 +419,25 @@ export function buildTheme(): ThemeOptions {
                 borderColor: (theme.vars || theme).palette.primary[300],
               },
               '& .MuiOutlinedInput-input': {
-                backgroundColor: 'transparent',
+                backgroundColor: (theme.vars || theme).palette.primaryDark[900],
               },
               '& .MuiFilledInput-root': {
-                borderColor: (theme.vars || theme).palette.primaryDark[800],
-                backgroundColor: alpha(theme.palette.primaryDark[800], 0.5),
-                '&:after': {
+                borderColor: (theme.vars || theme).palette.primaryDark[700],
+                backgroundColor: alpha(theme.palette.primaryDark[900], 0.5),
+                '&::after': {
                   borderColor: (theme.vars || theme).palette.primary[300],
                 },
                 '&:hover': {
                   backgroundColor: alpha(theme.palette.primaryDark[700], 0.8),
-                  borderColor: (theme.vars || theme).palette.primaryDark[500],
+                  borderColor: (theme.vars || theme).palette.primaryDark[600],
                 },
               },
               '& .MuiInputLabel-filled.Mui-focused': {
                 color: (theme.vars || theme).palette.grey[500],
               },
               '& .MuiInput-root.Mui-focused': {
-                '&:after': {
-                  borderColor: (theme.vars || theme).palette.primaryDark[800],
+                '&::after': {
+                  borderColor: (theme.vars || theme).palette.primaryDark[400],
                 },
               },
               '& .MuiInputLabel-root.Mui-focused': {
@@ -547,7 +547,7 @@ export default function MaterialDesignComponents() {
         />
         <StyledChip
           color="primary"
-          label="Custom Theme"
+          label="Custom theme"
           size="small"
           variant={customized ? 'filled' : 'outlined'}
           onClick={() => setCustomized(true)}

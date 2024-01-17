@@ -10,18 +10,8 @@
       "default": "'neutral'",
       "additionalInfo": { "joy-color": true }
     },
-    "component": { "type": { "name": "elementType" } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "label": { "type": { "name": "union", "description": "element<br>&#124;&nbsp;string" } },
-    "slotProps": {
-      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
-      "default": "{}"
-    },
-    "slots": {
-      "type": { "name": "shape", "description": "{ root?: elementType }" },
-      "default": "{}",
-      "additionalInfo": { "slotsApi": true }
-    },
     "sx": {
       "type": {
         "name": "union",
@@ -40,33 +30,94 @@
   },
   "name": "Option",
   "imports": ["import Option from '@mui/joy/Option';", "import { Option } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiOption" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'li'",
-      "class": ".MuiOption-root"
+      "class": "MuiOption-root"
     }
   ],
-  "classes": {
-    "classes": [
-      "colorContext",
-      "colorDanger",
-      "colorNeutral",
-      "colorPrimary",
-      "colorSuccess",
-      "colorWarning",
-      "disabled",
-      "highlighted",
-      "selected",
-      "variantOutlined",
-      "variantPlain",
-      "variantSoft",
-      "variantSolid"
-    ],
-    "globalClasses": { "disabled": "Mui-disabled", "selected": "Mui-selected" }
-  },
+  "classes": [
+    {
+      "key": "colorContext",
+      "className": "MuiOption-colorContext",
+      "description": "Class name applied to the root element if `color=\"context\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorDanger",
+      "className": "MuiOption-colorDanger",
+      "description": "Class name applied to the root element if `color=\"danger\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorNeutral",
+      "className": "MuiOption-colorNeutral",
+      "description": "Class name applied to the root element if `color=\"neutral\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiOption-colorPrimary",
+      "description": "Class name applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSuccess",
+      "className": "MuiOption-colorSuccess",
+      "description": "Class name applied to the root element if `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorWarning",
+      "className": "MuiOption-colorWarning",
+      "description": "Class name applied to the root element if `color=\"warning\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "highlighted",
+      "className": "MuiOption-highlighted",
+      "description": "State class applied to the root element if the option is highlighted.",
+      "isGlobal": false
+    },
+    {
+      "key": "selected",
+      "className": "Mui-selected",
+      "description": "State class applied to the root element if the option is selected.",
+      "isGlobal": true
+    },
+    {
+      "key": "variantOutlined",
+      "className": "MuiOption-variantOutlined",
+      "description": "State class applied to the root element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantPlain",
+      "className": "MuiOption-variantPlain",
+      "description": "State class applied to the root element if `variant=\"plain\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSoft",
+      "className": "MuiOption-variantSoft",
+      "description": "State class applied to the root element if `variant=\"soft\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSolid",
+      "className": "MuiOption-variantSolid",
+      "description": "State class applied to the root element if `variant=\"solid\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": null,
   "muiName": "JoyOption",

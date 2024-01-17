@@ -30,7 +30,7 @@ It's meant to be an improved version of the "react-select" and "downshift" packa
 ## Props
 
 The Select component is implemented as a custom `<input>` element of the [InputBase](/material-ui/api/input-base/).
-It extends the [text field components](/material-ui/react-text-field/) sub-components, either the [OutlinedInput](/material-ui/api/outlined-input/), [Input](/material-ui/api/input/), or [FilledInput](/material-ui/api/filled-input/), depending on the variant selected.
+It extends the [text field components](/material-ui/react-text-field/) subcomponents, either the [OutlinedInput](/material-ui/api/outlined-input/), [Input](/material-ui/api/input/), or [FilledInput](/material-ui/api/filled-input/), depending on the variant selected.
 It shares the same styles and many of the same props. Refer to the respective component's API page for details.
 
 ### Filled and standard variants
@@ -80,7 +80,7 @@ Notice that the `"standard"` variant is easier to customize, since it does not w
 
 {{"demo": "CustomizedSelects.js"}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/select/).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/select-introduction--docs).
 
 ## Multiple select
 

@@ -22,9 +22,7 @@ export default function MenuListComposition() {
     if (event.key === 'Tab') {
       setOpen(false);
     } else if (event.key === 'Escape') {
-      if (buttonRef.current) {
-        buttonRef.current?.focus();
-      }
+      buttonRef.current.focus();
       setOpen(false);
     }
   };
@@ -60,7 +58,13 @@ export default function MenuListComposition() {
           },
         ]}
       >
-        <ClickAwayListener onClickAway={handleClose}>
+        <ClickAwayListener
+          onClickAway={(event) => {
+            if (event.target !== buttonRef.current) {
+              handleClose();
+            }
+          }}
+        >
           <MenuList
             variant="outlined"
             onKeyDown={handleListKeyDown}

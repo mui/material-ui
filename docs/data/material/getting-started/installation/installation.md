@@ -22,9 +22,22 @@ pnpm add @mui/material @emotion/react @emotion/styled
 
 </codeblock>
 
+### Peer dependencies
+
+<!-- #react-peer-version -->
+
+Please note that [react](https://www.npmjs.com/package/react) and [react-dom](https://www.npmjs.com/package/react-dom) are peer dependencies, meaning you should ensure they are installed before installing Material UI.
+
+```json
+"peerDependencies": {
+  "react": "^17.0.0 || ^18.0.0",
+  "react-dom": "^17.0.0 || ^18.0.0"
+},
+```
+
 ## With styled-components
 
-Material UI uses [Emotion](https://emotion.sh/) as its default styling engine.
+Material UI uses [Emotion](https://emotion.sh/docs/introduction) as its default styling engine.
 If you want to use [styled-components](https://styled-components.com/) instead, run one of the following commands:
 
 <codeblock storageKey="package-manager">
@@ -43,6 +56,8 @@ pnpm add @mui/material @mui/styled-engine-sc styled-components
 
 </codeblock>
 
+Next, follow the [styled-components how-to guide](/material-ui/guides/styled-components/) to properly configure your bundler to support `@mui/styled-engine-sc`.
+
 :::error
 As of late 2021, [styled-components](https://github.com/styled-components/styled-components) is **not compatible** with server-rendered Material UI projects.
 This is because `babel-plugin-styled-components` isn't able to work with the `styled()` utility inside `@mui` packages.
@@ -50,19 +65,6 @@ See [this GitHub issue](https://github.com/mui/material-ui/issues/29742) for mor
 
 We **strongly recommend** using Emotion for SSR projects.
 :::
-
-## Peer dependencies
-
-<!-- #react-peer-version -->
-
-Please note that [react](https://www.npmjs.com/package/react) and [react-dom](https://www.npmjs.com/package/react-dom) are peer dependencies too:
-
-```json
-"peerDependencies": {
-  "react": "^17.0.0 || ^18.0.0",
-  "react-dom": "^17.0.0 || ^18.0.0"
-},
-```
 
 ## Roboto font
 

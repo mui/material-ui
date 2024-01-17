@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { OverridableStringUnion, OverrideProps, PartiallyRequired } from '@mui/types';
 import { SlotComponentProps } from '@mui/base';
 import { Theme } from '../styles';
 import { BadgeClasses } from './badgeClasses';
@@ -61,7 +61,7 @@ export interface BadgeTypeMap<
     /**
      * The color of the component.
      * It supports both default and custom theme colors, which can be added as shown in the
-     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+     * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
      * @default 'error'
      */
     color?: OverridableStringUnion<
@@ -126,10 +126,8 @@ export type BadgeProps<
   AdditionalProps = {},
 > = OverrideProps<BadgeTypeMap<RootComponent, AdditionalProps>, RootComponent>;
 
-export interface BadgeOwnerState extends BadgeProps {
-  size: NonNullable<BadgeProps['size']>;
-  variant: NonNullable<BadgeProps['variant']>;
-  anchorOrigin: NonNullable<BadgeProps['anchorOrigin']>;
-  overlap: NonNullable<BadgeProps['overlap']>;
-  color: NonNullable<BadgeProps['color']>;
-}
+export interface BadgeOwnerState
+  extends PartiallyRequired<
+    BadgeProps,
+    'anchorOrigin' | 'color' | 'overlap' | 'size' | 'variant'
+  > {}

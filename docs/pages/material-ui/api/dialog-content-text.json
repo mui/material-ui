@@ -15,7 +15,14 @@
     "import DialogContentText from '@mui/material/DialogContentText';",
     "import { DialogContentText } from '@mui/material';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiDialogContentText" },
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiDialogContentText-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiDialogContentText",

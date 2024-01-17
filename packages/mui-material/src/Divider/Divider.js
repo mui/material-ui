@@ -222,10 +222,10 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
 Divider.muiSkipListHighlight = true;
 
 Divider.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Absolutely position the element.
    * @default false
@@ -257,6 +257,7 @@ Divider.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the divider will have a lighter color.
    * @default false
+   * @deprecated Use <Divider sx={{ bgcolor: '#eee' }} /> (or any color) instead.
    */
   light: PropTypes.bool,
   /**

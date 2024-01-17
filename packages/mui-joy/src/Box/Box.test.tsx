@@ -1,7 +1,7 @@
 /* eslint-disable material-ui/no-empty-box */
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from '@mui-internal/test-utils';
 import { ThemeProvider, CssVarsProvider, extendTheme, PalettePrimary } from '@mui/joy/styles';
 import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/joy/className';
 import Box from '@mui/joy/Box';

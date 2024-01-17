@@ -196,11 +196,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const clientSize = vertical ? 'clientHeight' : 'clientWidth';
   const size = vertical ? 'height' : 'width';
 
-  const { contextValue: tabsContextValue } = useTabs({
-    ...props,
-    direction: theme.direction ?? 'ltr',
-  });
-
   const ownerState = {
     ...props,
     component,
@@ -219,6 +214,11 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     centered: centered && !scrollable,
     scrollButtonsHideMobile: !allowScrollButtonsMobile,
   };
+
+  const { contextValue: tabsContextValue } = useTabs({
+    ...ownerState,
+    direction: theme.direction ?? 'ltr',
+  });
 
   const classes = useUtilityClasses(ownerState);
 
@@ -623,10 +623,10 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 });
 
 Tabs.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Callback fired when the component mounts.
    * This is useful when you want to trigger an action programmatically.

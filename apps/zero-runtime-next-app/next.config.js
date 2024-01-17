@@ -1,32 +1,26 @@
-const { createTheme } = require('@mui/material/styles');
-const withZero = require('@mui/zero-next-plugin').default;
+/* eslint-env node */
+// eslint-ignore-next-line import/no-unresolved
+const { withZeroPlugin } = require('@mui/zero-next-plugin');
+const { experimental_extendTheme: extendTheme } = require('@mui/material/styles');
 
-const theme = createTheme({
-  typography: {
-    fontFamilyCode: 'Menlo,Consolas,"Droid Sans Mono",monospace',
-  },
-});
-// @TODO - Make this part of the main package
-// @ts-ignore
-theme.applyDarkStyles = function applyDarkStyles(obj) {
-  return {
-    // @TODO - Use custom stylis plugin as in docs/src/createEmotionCache.ts
-    // so that we don't need to use *
-    '* :where([data-mui-color-scheme="dark"]) &': obj,
-  };
-};
+const theme = extendTheme({ cssVarPrefix: 'app' });
 
-/** @type {import('@mui/zero-webpack-plugin').ZeroPluginOptions} */
-const zeroPluginConfig = {
+/**
+ * @typedef {import('@mui/zero-next-plugin').ZeroPluginConfig} ZeroPluginConfig
+ */
+
+/**
+ * @type {ZeroPluginConfig}
+ */
+const zeroPluginOptions = {
   theme,
-  cssVariablesPrefix: 'app',
+  transformLibraries: ['local-ui-lib'],
+  sourceMap: true,
   displayName: true,
-  // sourceMap: true,
 };
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // linaria: zeroPluginConfig,
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -35,4 +29,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withZero(nextConfig, zeroPluginConfig);
+module.exports = withZeroPlugin(nextConfig, zeroPluginOptions);

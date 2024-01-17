@@ -7,7 +7,6 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import useThemeProps from '../styles/useThemeProps';
 import useSlot from '../utils/useSlot';
 import styled from '../styles/styled';
-import { useColorInversion } from '../styles/ColorInversion';
 import { getAspectRatioUtilityClass } from './aspectRatioClasses';
 import { AspectRatioProps, AspectRatioOwnerState, AspectRatioTypeMap } from './AspectRatioProps';
 
@@ -111,7 +110,7 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
     minHeight,
     maxHeight,
     objectFit = 'cover',
-    color: colorProp = 'neutral',
+    color = 'neutral',
     variant = 'soft',
     component,
     flex = false,
@@ -119,8 +118,6 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
@@ -165,10 +162,10 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
 }) as OverridableComponent<AspectRatioTypeMap>;
 
 AspectRatio.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Used to render icon or text elements inside the AspectRatio if `src` is not set.
    * This can be an element, or just a string.

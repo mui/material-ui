@@ -7,6 +7,7 @@ import {
   AutocompleteChangeReason,
   AutocompleteCloseReason,
   AutocompleteInputChangeReason,
+  AutocompleteValue,
   createFilterOptions,
   UseAutocompleteProps,
   AutocompleteFreeSoloValueMapping,
@@ -22,6 +23,7 @@ export {
   AutocompleteChangeReason,
   AutocompleteCloseReason,
   AutocompleteInputChangeReason,
+  AutocompleteValue,
   createFilterOptions,
 };
 
@@ -193,6 +195,9 @@ export interface AutocompleteProps<
    * @default 'No options'
    */
   noOptionsText?: React.ReactNode;
+  onKeyDown?: (
+    event: React.KeyboardEvent<HTMLDivElement> & { defaultMuiPrevented?: boolean },
+  ) => void;
   /**
    * Override the default text for the *open popup* icon button.
    *

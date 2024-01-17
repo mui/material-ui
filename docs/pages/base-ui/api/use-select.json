@@ -9,6 +9,10 @@
     "buttonRef": {
       "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
     },
+    "componentName": {
+      "type": { "name": "string", "description": "string" },
+      "default": "'useSelect'"
+    },
     "defaultOpen": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
     "defaultValue": {
       "type": {
@@ -89,29 +93,29 @@
     "disabled": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "dispatch": {
       "type": {
-        "name": "(action: ListAction&lt;Value&gt; | SelectAction) =&gt; void",
-        "description": "(action: ListAction&lt;Value&gt; | SelectAction) =&gt; void"
+        "name": "(action: ListAction&lt;Value&gt; | SelectAction&lt;Value&gt;) =&gt; void",
+        "description": "(action: ListAction&lt;Value&gt; | SelectAction&lt;Value&gt;) =&gt; void"
       },
       "required": true
     },
     "getButtonProps": {
       "type": {
-        "name": "&lt;OtherHandlers extends EventHandlers = {}&gt;(otherHandlers?: OtherHandlers) =&gt; UseSelectButtonSlotProps&lt;OtherHandlers&gt;",
-        "description": "&lt;OtherHandlers extends EventHandlers = {}&gt;(otherHandlers?: OtherHandlers) =&gt; UseSelectButtonSlotProps&lt;OtherHandlers&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSelectButtonSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSelectButtonSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },
     "getHiddenInputProps": {
       "type": {
-        "name": "&lt;OtherHandlers extends EventHandlers = {}&gt;(otherHandlers?: OtherHandlers) =&gt; UseSelectHiddenInputSlotProps&lt;OtherHandlers&gt;",
-        "description": "&lt;OtherHandlers extends EventHandlers = {}&gt;(otherHandlers?: OtherHandlers) =&gt; UseSelectHiddenInputSlotProps&lt;OtherHandlers&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSelectHiddenInputSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSelectHiddenInputSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },
     "getListboxProps": {
       "type": {
-        "name": "&lt;OtherHandlers extends EventHandlers = {}&gt;(otherHandlers?: OtherHandlers) =&gt; UseSelectListboxSlotProps&lt;OtherHandlers&gt;",
-        "description": "&lt;OtherHandlers extends EventHandlers = {}&gt;(otherHandlers?: OtherHandlers) =&gt; UseSelectListboxSlotProps&lt;OtherHandlers&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSelectListboxSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSelectListboxSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },

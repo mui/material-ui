@@ -43,7 +43,7 @@ export function Group({
           },
           '& > *:last-child': {
             position: 'relative',
-            '&:after': {
+            '&::after': {
               // to create scroll spacing on the right edge
               content: '""',
               position: 'absolute',
@@ -101,7 +101,7 @@ export default function Item({
           color="text.primary"
           variant="body2"
           fontWeight="bold"
-          sx={{ display: 'block', mr: 2 }}
+          sx={{ display: 'block' }}
         >
           {title}
         </Typography>

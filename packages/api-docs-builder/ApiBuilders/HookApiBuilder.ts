@@ -1,4 +1,4 @@
-import { mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import * as ts from 'typescript';
 import * as astTypes from 'ast-types';
@@ -9,17 +9,18 @@ import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-doc
 import kebabCase from 'lodash/kebabCase';
 import upperFirst from 'lodash/upperFirst';
 import { renderMarkdown } from '@mui/markdown';
-import { LANGUAGES } from 'docs/config';
-import { toGitHubPath, computeApiDescription } from './ComponentApiBuilder';
+import { ProjectSettings } from '../ProjectSettings';
+import { computeApiDescription } from './ComponentApiBuilder';
 import {
   getSymbolDescription,
   getSymbolJSDocTags,
   HookInfo,
   stringifySymbol,
+  toGitHubPath,
   writePrettifiedFile,
 } from '../buildApiUtils';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
-import muiDefaultParamsHandler from '../utils/defaultParamsHandler';
+import generateApiTranslations from '../utils/generateApiTranslation';
 
 interface ParsedProperty {
   name: string;
@@ -87,6 +88,10 @@ export interface ReactApi extends ReactDocgenApi {
       };
     };
   };
+  /**
+   * The folder used to store the API translation.
+   */
+  apiDocsTranslationFolder?: string;
 }
 
 /**
@@ -431,43 +436,6 @@ const generateApiJson = (outputDirectory: string, reactApi: ReactApi) => {
   );
 };
 
-const generateApiTranslations = (outputDirectory: string, reactApi: ReactApi) => {
-  const hookName = reactApi.name;
-  const apiDocsTranslationPath = path.resolve(outputDirectory, kebabCase(hookName));
-  function resolveApiDocsTranslationsComponentLanguagePath(
-    language: (typeof LANGUAGES)[0],
-  ): string {
-    const languageSuffix = language === 'en' ? '' : `-${language}`;
-
-    return path.join(apiDocsTranslationPath, `${kebabCase(hookName)}${languageSuffix}.json`);
-  }
-
-  mkdirSync(apiDocsTranslationPath, {
-    mode: 0o777,
-    recursive: true,
-  });
-
-  writePrettifiedFile(
-    resolveApiDocsTranslationsComponentLanguagePath('en'),
-    JSON.stringify(reactApi.translations),
-  );
-
-  LANGUAGES.forEach((language) => {
-    if (language !== 'en') {
-      try {
-        writePrettifiedFile(
-          resolveApiDocsTranslationsComponentLanguagePath(language),
-          JSON.stringify(reactApi.translations),
-          undefined,
-          { flag: 'wx' },
-        );
-      } catch (error) {
-        // File exists
-      }
-    }
-  });
-};
-
 const extractInfoFromType = (typeName: string, project: TypeScriptProject): ParsedProperty[] => {
   // Generate the params
   let result: ParsedProperty[] = [];
@@ -536,7 +504,11 @@ const getHookImports = (name: string, filename: string) => {
   return [subpathImport, rootImport];
 };
 
-export default async function generateHookApi(hooksInfo: HookInfo, project: TypeScriptProject) {
+export default async function generateHookApi(
+  hooksInfo: HookInfo,
+  project: TypeScriptProject,
+  projectSettings: ProjectSettings,
+) {
   const { filename, name, apiPathname, apiPagesDirectory, getDemos, readFile, skipApiGeneration } =
     hooksInfo;
 
@@ -560,7 +532,7 @@ export default async function generateHookApi(hooksInfo: HookInfo, project: Type
       });
       return node;
     },
-    defaultHandlers.concat(muiDefaultParamsHandler),
+    defaultHandlers,
     { filename },
   );
 
@@ -600,7 +572,11 @@ export default async function generateHookApi(hooksInfo: HookInfo, project: Type
 
   if (!skipApiGeneration) {
     // Generate pages, json and translations
-    generateApiTranslations(path.join(process.cwd(), 'docs/translations/api-docs'), reactApi);
+    generateApiTranslations(
+      path.join(process.cwd(), 'docs/translations/api-docs'),
+      reactApi,
+      projectSettings.translationLanguages,
+    );
     generateApiJson(apiPagesDirectory, reactApi);
 
     // Add comment about demo & api links to the component hook file

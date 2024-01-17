@@ -19,7 +19,7 @@
     },
     {
       "groupName": "babel",
-      "matchPackagePatterns": "@babel/*"
+      "matchPackagePatterns": ["^@babel/", "^@types/babel"]
     },
     {
       "groupName": "Emotion",
@@ -67,11 +67,6 @@
       "matchPackageNames": ["react", "react-dom", "react-is", "react-test-renderer"]
     },
     {
-      "groupName": "tslint",
-      "matchPackageNames": ["tslint"],
-      "allowedVersions": "<= 5.14.0"
-    },
-    {
       "groupName": "typescript-eslint",
       "matchPackagePatterns": "@typescript-eslint/*"
     },
@@ -112,7 +107,7 @@
       "matchPackagePatterns": ["@definitelytyped/*"]
     }
   ],
-  "postUpdateOptions": ["yarnDedupeHighest"],
+  "postUpdateOptions": ["pnpmDedupe"],
   "prConcurrentLimit": 30,
   "prHourlyLimit": 0,
   "rangeStrategy": "bump",

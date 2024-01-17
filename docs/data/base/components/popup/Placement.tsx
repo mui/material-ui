@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { Unstable_Popup as Popup, PopupPlacement } from '@mui/base/Unstable_Popup';
+import {
+  Unstable_Popup as BasePopup,
+  PopupPlacement,
+} from '@mui/base/Unstable_Popup';
 import { styled, css, Theme } from '@mui/system';
 
 function Radio({ value, ...props }: JSX.IntrinsicElements['input']) {
@@ -95,7 +98,7 @@ export default function Placement() {
         <Anchor ref={setAnchor} aria-describedby="placement-popper">
           Anchor
         </Anchor>
-        <Popup
+        <BasePopup
           id="placement-popper"
           open={Boolean(anchor)}
           anchor={anchor}
@@ -103,25 +106,30 @@ export default function Placement() {
           offset={4}
         >
           <PopupBody>The content of the Popup.</PopupBody>
-        </Popup>
+        </BasePopup>
       </div>
     </div>
   );
 }
 
 const grey = {
-  50: '#f6f8fa',
-  200: '#d0d7de',
-  500: '#6e7781',
-  700: '#424a53',
-  900: '#24292f',
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
 const PopupBody = styled('div')(
   ({ theme }: { theme: Theme }) => css`
     padding: 0.5rem 1rem;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    background-color: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+    background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
     border-radius: 8px;
     box-shadow: ${theme.palette.mode === 'dark'
       ? `0px 4px 8px rgb(0 0 0 / 0.7)`

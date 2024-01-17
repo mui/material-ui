@@ -48,6 +48,10 @@ const PROJECTS: Project[] = [
     additionalPaths: ['custom'],
     additionalFiles: ['src/utils/createSvgIcon.js'],
   },
+  {
+    name: 'lab',
+    rootPath: path.join(process.cwd(), 'packages/mui-lab'),
+  },
 ];
 
 async function processFile(
@@ -71,21 +75,6 @@ async function processFile(
   const newContents = `${lineToPrepend}\n${contents}`;
 
   await fse.writeFile(filename, newContents);
-}
-
-function getIndexFile(directory: string) {
-  const items = fse.readdirSync(directory);
-
-  const indexFile = items.reduce((prev, curr) => {
-    if (!/^index.(js|ts)/.test(curr)) {
-      return prev;
-    }
-    return curr;
-  }, '');
-
-  return {
-    filename: path.join(directory, indexFile),
-  };
 }
 
 async function findAll(
@@ -124,24 +113,11 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
       ];
     }
 
-    const indexFile = getIndexFile(projectSrc);
-
-    try {
-      processFile(indexFile.filename);
-    } catch (error: any) {
-      error.message = `${path.relative(process.cwd(), indexFile.filename)}: ${error.message}`;
-      throw error;
-    }
-
     const components = await findAll(directories, grep, findComponents);
 
     components.forEach(async (component) => {
       try {
         processFile(component.filename);
-
-        if (component.indexFilename) {
-          processFile(component.indexFilename);
-        }
       } catch (error: any) {
         error.message = `${path.relative(process.cwd(), component.filename)}: ${error.message}`;
         throw error;
@@ -153,10 +129,6 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
     hooks.forEach(async (hook) => {
       try {
         processFile(hook.filename);
-
-        if (hook.indexFilename) {
-          processFile(hook.indexFilename);
-        }
       } catch (error: any) {
         error.message = `${path.relative(process.cwd(), hook.filename)}: ${error.message}`;
         throw error;

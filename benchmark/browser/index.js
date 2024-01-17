@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import * as ReactDOMClient from 'react-dom/client';
 import PropTypes from 'prop-types';
 import { logReactMetrics } from './utils';
 
@@ -7,6 +7,7 @@ import { logReactMetrics } from './utils';
 const requirePerfScenarios = require.context('./scenarios', true, /(js|ts|tsx)$/);
 
 const rootEl = document.getElementById('root');
+const root = ReactDOMClient.createRoot(rootEl);
 
 const scenarioSuitePath = window.location.search.replace('?', '');
 
@@ -35,11 +36,10 @@ Measure.propTypes = {
   children: PropTypes.node,
 };
 
-ReactDOM.render(
+root.render(
   <React.Profiler id={scenarioSuitePath} onRender={logReactMetrics}>
     <Measure>
       <Component />
     </Measure>
   </React.Profiler>,
-  rootEl,
 );

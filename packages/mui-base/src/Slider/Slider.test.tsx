@@ -8,7 +8,7 @@ import {
   describeConformanceUnstyled,
   fireEvent,
   screen,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import {
   Slider,
   sliderClasses as classes,
@@ -47,7 +47,6 @@ describe('<Slider />', () => {
     mount,
     refInstanceof: window.HTMLSpanElement,
     testComponentPropWith: 'div',
-    muiName: 'MuiSlider',
     slots: {
       root: {
         expectedClassName: classes.root,

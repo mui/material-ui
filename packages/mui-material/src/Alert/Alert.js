@@ -214,10 +214,10 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
 });
 
 Alert.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The action to display. It renders after the message, at the end of the alert.
    */
@@ -244,7 +244,7 @@ Alert.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component. Unless provided, the value is taken from the `severity` prop.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['error', 'info', 'success', 'warning']),
@@ -308,7 +308,10 @@ Alert.propTypes /* remove-proptypes */ = {
    * The severity of the alert. This defines the color and icon used.
    * @default 'success'
    */
-  severity: PropTypes.oneOf(['error', 'info', 'success', 'warning']),
+  severity: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['error', 'info', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The extra props for the slot components.
    * You can override the existing props or add new ones.

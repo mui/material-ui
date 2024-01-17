@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
+import { createMount, createRenderer, describeConformanceUnstyled } from '@mui-internal/test-utils';
 import { Tab, tabClasses } from '@mui/base/Tab';
 import { TabsListProvider, TabsListProviderValue } from '../useTabsList';
 import { TabsContext } from '../Tabs';
@@ -16,8 +16,6 @@ describe('<Tab />', () => {
     getItemState() {
       return { disabled: false, highlighted: false, selected: false, focusable: true, index: 0 };
     },
-    registerHighlightChangeHandler: () => () => {},
-    registerSelectionChangeHandler: () => () => {},
   };
 
   describeConformanceUnstyled(<Tab value="1" />, () => ({
@@ -57,7 +55,6 @@ describe('<Tab />', () => {
     },
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'div',
-    muiName: 'MuiTab',
     slots: {
       root: {
         expectedClassName: tabClasses.root,

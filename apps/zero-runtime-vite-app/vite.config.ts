@@ -1,26 +1,23 @@
 import { defineConfig, splitVendorChunkPlugin } from 'vite';
 import reactPlugin from '@vitejs/plugin-react';
-import { zeroVitePlugin } from '@mui/zero-vite-plugin';
-import { createTheme } from '@mui/material/styles';
+import { zeroVitePlugin as zeroPlugin } from '@mui/zero-vite-plugin';
+import { experimental_extendTheme as extendTheme } from '@mui/material/styles';
 
-const theme = createTheme();
+const theme = extendTheme();
 // @TODO - Make this part of the main package
 // @ts-ignore
 theme.applyDarkStyles = function applyDarkStyles(obj) {
   return {
-    // @TODO - Use custom stylis plugin as in docs/src/createEmotionCache.ts
-    // so that we don't need to use *
-    '* :where([data-mui-color-scheme="dark"]) &': obj,
+    ':where([data-mui-color-scheme="dark"]) &': obj,
   };
 };
 
-const varPrefix = 'app';
-
 export default defineConfig({
   plugins: [
-    zeroVitePlugin({
-      cssVariablesPrefix: varPrefix,
+    zeroPlugin({
       theme,
+      transformLibraries: ['local-ui-lib'],
+      displayName: true,
     }),
     reactPlugin(),
     splitVendorChunkPlugin(),

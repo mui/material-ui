@@ -228,7 +228,6 @@ function checkType({
           return createInterfaceType({
             jsDoc,
             types: filtered.map((x) => {
-              // eslint-disable-next-line @typescript-eslint/no-use-before-define -- TODO dependency cycle between checkSymbol and checkType
               const definition = checkSymbol({
                 symbol: x,
                 location,
