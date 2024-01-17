@@ -49,7 +49,7 @@ Inside `app/layout.tsx`, import the `AppRouterCacheProvider` and wrap all elemen
 
 ### Custom cache
 
-Use `options` prop to override the default [cache options](https://emotion.sh/docs/@emotion/cache#options), for example, changing the CSS key to `css` (the default is `mui`):
+Use the `options` prop to override the default [cache options](https://emotion.sh/docs/@emotion/cache#options)—for example, the code snippet below shows how to change the CSS key to `css` (the default is `mui`):
 
 ```diff
   <AppRouterCacheProvider
@@ -61,7 +61,7 @@ Use `options` prop to override the default [cache options](https://emotion.sh/do
 
 ### Theming
 
-Create a new file and export a custom theme with `use client;` directive:
+Create a new file and export a custom theme that includes the `'use client';` directive:
 
 ```js
 // src/theme.ts
@@ -114,7 +114,7 @@ To learn more about theming, check out the [theming guide](/material-ui/customiz
 
 #### CSS theme variables
 
-If you want to use [CSS theme variables](/material-ui/experimental-api/css-theme-variables/overview/), use the `extendTheme` and `CssVarsProvider` instead:
+If you want to use [CSS theme variables](/material-ui/experimental-api/css-theme-variables/overview/), use the `extendTheme` and `CssVarsProvider` utilities instead:
 
 ```diff
 // src/theme.ts
@@ -127,7 +127,7 @@ If you want to use [CSS theme variables](/material-ui/experimental-api/css-theme
 + import { CssVarsProvider } from '@mui/material/styles';
 ```
 
-To learn more about it, check out the [advantages](/material-ui/experimental-api/css-theme-variables/overview/#advantages) of CSS theme variables.
+Learn more about [the advantages of CSS theme variables](/material-ui/experimental-api/css-theme-variables/overview/#advantages).
 
 ### Using other styling solutions
 
@@ -221,7 +221,7 @@ Then, inside `pages/_app.tsx`, import the `AppCacheProvider` component and rende
 
 ### Custom cache
 
-To use a custom [emotion cache](https://emotion.sh/docs/@emotion/cache), pass it to `emotionCache` property:
+To use a custom [Emotion cache](https://emotion.sh/docs/@emotion/cache), pass it to the `emotionCache` property in `_document.tsx`:
 
 ```diff
 // pages/_document.tsx
@@ -237,14 +237,14 @@ MyDocument.getInitialProps = async (ctx) => {
 
 ### App enhancement
 
-Pass an array to the `plugins` property to enhance the app with additional features, for example, server-side rendered styles from JSS and styled-components:
+Pass an array to the `plugins` property to enhance the app with additional features, like server-side-rendered styles if you're using JSS and styled-components.
 
 Each plugin can have the following properties:
 
 - `enhanceApp`: a higher-order component that receives the `App` component and returns a new app component.
 - `resolveProps`: a function that receives the initial props and returns a new props object.
 
-The `enhanceApp` of all plugins will be first called from top to bottom, and then the same order applies for `resolveProps`.
+When run, `enhanceApp` from each plugin is called first, from top to bottom, and then the process is repeated for `resolveProps`.
 
 ```js
 import { ServerStyleSheet } from 'styled-components';
@@ -348,7 +348,7 @@ export default function MyApp(props: AppProps) {
 }
 ```
 
-To learn more about theming, check out the [theming guide](/material-ui/customization/theming/) page.
+To learn more about theming, check out the [Theming guide](/material-ui/customization/theming/).
 
 #### CSS theme variables
 
@@ -360,4 +360,4 @@ If you want to use [CSS theme variables](/material-ui/experimental-api/css-theme
 +import { CssVarsProvider, extendTheme } from '@mui/material/styles';
 ```
 
-To learn more about it, check out the [advantages](/material-ui/experimental-api/css-theme-variables/overview/#advantages) of CSS theme variables.
+Learn more about [the advantages of CSS theme variables](/material-ui/experimental-api/css-theme-variables/overview/#advantages).
