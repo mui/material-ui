@@ -10,7 +10,6 @@ import { MenuItem, menuItemClasses } from '@mui/base/MenuItem';
 import { MenuButton } from '@mui/base/MenuButton';
 import { Modal, modalClasses } from '@mui/base/Modal';
 import { Option } from '@mui/base/Option';
-import { Popper } from '@mui/base/Popper';
 import { Select } from '@mui/base/Select';
 import { Slider, sliderClasses } from '@mui/base/Slider';
 import { Snackbar } from '@mui/base/Snackbar';
@@ -234,7 +233,7 @@ const StyledButton = styled('button')({
   },
 });
 
-const StyledPopper = styled(Popper)({
+const Popup = styled('div')({
   zIndex: 1,
 });
 
@@ -885,11 +884,11 @@ export default function BaseUIThemesDemo() {
             defaultValue={10}
             slots={{
               root: StyledSelectButton,
-              popper: StyledPopper,
+              popup: Popup,
               listbox: StyledListbox,
             }}
             slotProps={{
-              popper: {
+              popup: {
                 disablePortal: true,
               },
             }}

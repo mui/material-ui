@@ -4,31 +4,34 @@ import { Select as BaseSelect, selectClasses } from '@mui/base/Select';
 import { Option as BaseOption, optionClasses } from '@mui/base/Option';
 import { styled } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
+import { CssTransition } from '@mui/base/Transitions';
+import { PopupContext } from '@mui/base/Unstable_Popup';
 
-export default function UnstyledSelectMultiple() {
+export default function UnstyledSelectTransitions() {
   return (
-    <MultiSelect defaultValue={[10, 20]}>
-      <Option value={10}>Ten</Option>
-      <Option value={20}>Twenty</Option>
-      <Option value={30}>Thirty</Option>
-      <Option value={40}>Forty</Option>
-      <Option value={50}>Fifty</Option>
-    </MultiSelect>
+    <Select placeholder="Choose a character…">
+      <Option value="Geralt">Geralt</Option>
+      <Option value="Ciri">Ciri</Option>
+      <Option value="Jaskier">Jaskier</Option>
+      <Option value="Zoltan">Zoltan Chivay</Option>
+      <Option value="Regis">Regis</Option>
+      <Option value="Milva">Milva</Option>
+    </Select>
   );
 }
 
-const MultiSelect = React.forwardRef(function CustomMultiSelect(props, ref) {
+const Select = React.forwardRef(function CustomSelect(props, ref) {
   const slots = {
-    root: Button,
-    listbox: Listbox,
+    root: StyledButton,
+    listbox: AnimatedListbox,
     popup: Popup,
     ...props.slots,
   };
 
-  return <BaseSelect {...props} multiple ref={ref} slots={slots} />;
+  return <BaseSelect {...props} ref={ref} slots={slots} />;
 });
 
-MultiSelect.propTypes = {
+Select.propTypes = {
   /**
    * The components used for each slot inside the Select.
    * Either a string to use a HTML element or a component.
@@ -47,6 +50,7 @@ const blue = {
   400: '#3399FF',
   500: '#007FFF',
   600: '#0072E5',
+  700: '#0059B2',
   900: '#003A75',
 };
 
@@ -66,10 +70,10 @@ const grey = {
 const Button = React.forwardRef(function Button(props, ref) {
   const { ownerState, ...other } = props;
   return (
-    <StyledButton type="button" {...other} ref={ref}>
+    <button type="button" {...other} ref={ref}>
       {other.children}
       <UnfoldMoreRoundedIcon />
-    </StyledButton>
+    </button>
   );
 });
 
@@ -78,7 +82,7 @@ Button.propTypes = {
   ownerState: PropTypes.object.isRequired,
 };
 
-const StyledButton = styled('button', { shouldForwardProp: () => true })(
+const StyledButton = styled(Button, { shouldForwardProp: () => true })(
   ({ theme }) => `
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
@@ -92,7 +96,9 @@ const StyledButton = styled('button', { shouldForwardProp: () => true })(
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   position: relative;
-  box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  box-shadow: 0px 2px 4px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
+  };
 
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -106,7 +112,7 @@ const StyledButton = styled('button', { shouldForwardProp: () => true })(
   &.${selectClasses.focusVisible} {
     outline: 0;
     border-color: ${blue[400]};
-    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
   }
 
   & > svg {
@@ -133,11 +139,58 @@ const Listbox = styled('ul')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 2px 6px ${
-    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  box-shadow: 0px 2px 4px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
   };
+  
+  .closed & {
+    opacity: 0;
+    transform: scale(0.95, 0.8);
+    transition: opacity 200ms ease-in, transform 200ms ease-in;
+  }
+  
+  .open & {
+    opacity: 1;
+    transform: scale(1, 1);
+    transition: opacity 100ms ease-out, transform 100ms cubic-bezier(0.43, 0.29, 0.37, 1.48);
+  }
+
+  .placement-top & {
+    transform-origin: bottom;
+  }
+
+  .placement-bottom & {
+    transform-origin: top;
+  }
   `,
 );
+
+const AnimatedListbox = React.forwardRef(function AnimatedListbox(props, ref) {
+  const { ownerState, ...other } = props;
+  const popupContext = React.useContext(PopupContext);
+
+  if (popupContext == null) {
+    throw new Error(
+      'The `AnimatedListbox` component cannot be rendered outside a `Popup` component',
+    );
+  }
+
+  const verticalPlacement = popupContext.placement.split('-')[0];
+
+  return (
+    <CssTransition
+      className={`placement-${verticalPlacement}`}
+      enterClassName="open"
+      exitClassName="closed"
+    >
+      <Listbox {...other} ref={ref} />
+    </CssTransition>
+  );
+});
+
+AnimatedListbox.propTypes = {
+  ownerState: PropTypes.object.isRequired,
+};
 
 const Option = styled(BaseOption)(
   ({ theme }) => `
@@ -145,7 +198,6 @@ const Option = styled(BaseOption)(
   padding: 8px;
   border-radius: 8px;
   cursor: default;
-  transition: border-radius 300ms ease;
 
   &:last-of-type {
     border-bottom: none;
@@ -161,27 +213,13 @@ const Option = styled(BaseOption)(
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
 
-  @supports selector(:has(*)) {
-    &.${optionClasses.selected} {
-      & + .${optionClasses.selected} {
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-      }
-
-      &:has(+ .${optionClasses.selected}) {
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-      }
-    }
+  &:focus-visible {
+    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
   }
-
+  
   &.${optionClasses.highlighted}.${optionClasses.selected} {
     background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
-  }
-
-  &:focus-visible {
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
   }
 
   &.${optionClasses.disabled} {
