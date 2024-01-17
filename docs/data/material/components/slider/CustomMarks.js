@@ -24,7 +24,7 @@ const Label = styled('div')(() => ({
   cursor: 'pointer',
 }));
 
-export default function NonLinearSlider() {
+export default function CustomMarks() {
   const [val, setVal] = React.useState(MIN);
   const handleChange = (_, newValue) => {
     setVal(newValue);
