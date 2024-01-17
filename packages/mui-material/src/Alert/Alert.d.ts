@@ -62,7 +62,7 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
    * The severity of the alert. This defines the color and icon used.
    * @default 'success'
    */
-  severity?: AlertColor;
+  severity?: OverridableStringUnion<AlertColor, AlertPropsColorOverrides>;
   /**
    * Override the icon displayed before the children.
    * Unless provided, the icon is mapped to the value of the `severity` prop.
@@ -80,7 +80,9 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
    * If you wish to change this mapping, you can provide your own.
    * Alternatively, you can use the `icon` prop to override the icon displayed.
    */
-  iconMapping?: Partial<Record<AlertColor, React.ReactNode>>;
+  iconMapping?: Partial<
+    Record<OverridableStringUnion<AlertColor, AlertPropsColorOverrides>, React.ReactNode>
+  >;
   /**
    * Callback fired when the component requests to be closed.
    * When provided and no `action` prop is set, a close icon button is displayed that triggers the callback when clicked.
