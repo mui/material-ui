@@ -36,8 +36,18 @@ function OTP({ seperator, inputCount, value, onChange }) {
           selectInput(currentIndex + 1);
         }
         break;
-      case 'Backspace':
       case 'Delete':
+        event.preventDefault();
+
+        onChange((prev) => {
+          const otpArray = [...prev];
+          otpArray.splice(currentIndex, 1);
+          otpArray.push('');
+          return otpArray;
+        });
+
+        break;
+      case 'Backspace':
         event.preventDefault();
         if (currentIndex > 0) {
           focusInput(currentIndex - 1);
