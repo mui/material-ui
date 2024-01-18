@@ -15,12 +15,6 @@ const marks = [
     label: '',
   },
 ];
-const labelStyle = {
-  fontSize: '0.875rem',
-  lineHeight: '1.43',
-  fontWeight: 400,
-  cursor: 'pointer',
-};
 
 export default function CustomMarks() {
   const [val, setVal] = React.useState<number>(MIN);
@@ -40,10 +34,10 @@ export default function CustomMarks() {
         onChange={handleChange}
       />
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Typography onClick={() => setVal(MIN)} sx={labelStyle}>
+        <Typography variant="body2" onClick={() => setVal(MIN)}>
           {MIN} min
         </Typography>
-        <Typography onClick={() => setVal(MAX)} sx={labelStyle}>
+        <Typography variant="body2" onClick={() => setVal(MAX)}>
           {MAX} max
         </Typography>
       </Box>
