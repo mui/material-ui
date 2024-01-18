@@ -1,17 +1,10 @@
 import { validateParams, BaseProcessor } from '@linaria/tags';
 import type { Expression, Params, TailProcessorParams } from '@linaria/tags';
-import { parseExpression } from '@babel/parser';
-import { ObjectExpression } from '@babel/types';
 
 export class UseThemePropsProcessor extends BaseProcessor {
-  tagParams: ObjectExpression;
-
   constructor(params: Params, ...args: TailProcessorParams) {
     super(params, ...args);
-    validateParams(params, ['callee', 'call'], `Invalid use of ${this.tagSource.imported} tag.`);
-    const [, [, tagParams]] = params;
-    console.log('tagParams.source', tagParams.source);
-    this.tagParams = parseExpression(tagParams.source) as ObjectExpression;
+    validateParams(params, ['callee', 'call'], BaseProcessor.SKIP);
   }
 
   build(): void {}
@@ -23,12 +16,11 @@ export class UseThemePropsProcessor extends BaseProcessor {
   }
 
   /**
-   * ```js
-   * const props = useThemeProps({
-   *   theme: themeConfig,
-   *   props,
+   * Add `theme` config to the `createUseThemeProps` call argument:
    *
-   * })
+   * ```diff
+   * - const useThemeProps = createUseThemeProps();
+   * + const useThemeProps = createUseThemeProps(theme);
    * ```
    */
   doRuntimeReplacement(): void {
@@ -38,15 +30,20 @@ export class UseThemePropsProcessor extends BaseProcessor {
       this.tagSource.imported,
       process.env.PACKAGE_NAME as string,
     );
+    console.log('useThemePropsImportIdentifier', useThemePropsImportIdentifier);
 
     const themeImportIdentifier = this.astService.addDefaultImport(
       `${process.env.PACKAGE_NAME}/theme`,
       'theme',
     );
 
-    this.tagParams.properties.push(t.objectProperty(t.identifier('theme'), themeImportIdentifier));
+    console.log('themeImportIdentifier', themeImportIdentifier);
 
-    this.replacer(t.callExpression(useThemePropsImportIdentifier, [this.tagParams]), true);
+    this.replacer(
+      t.callExpression(useThemePropsImportIdentifier, [t.identifier(themeImportIdentifier.name)]),
+      true,
+    );
+    console.log(this.tagSourceCode());
   }
 
   public override get asSelector(): string {
