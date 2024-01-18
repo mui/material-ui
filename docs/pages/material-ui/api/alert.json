@@ -48,7 +48,10 @@
       "default": "'success'"
     },
     "slotProps": {
-      "type": { "name": "shape", "description": "{ closeButton?: object, closeIcon?: object }" },
+      "type": {
+        "name": "shape",
+        "description": "{ closeButton?: func<br>&#124;&nbsp;object, closeIcon?: func<br>&#124;&nbsp;object }"
+      },
       "default": "{}"
     },
     "slots": {
