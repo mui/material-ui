@@ -18,7 +18,7 @@ It has proven beneficial as we now have well-organized, centrally located KPI da
 <img alt="MUI public app for tracking KPIs" src="/static/blog/2023-toolpad-usage-in-mui/tools-public.png"  loading="lazy" width="2400" height="1394" />
 </a>
 
-## Problems tacked through Toolpad
+## Problems tackled through Toolpad
 
 1. Our internal tooling is easy to use and less error prone now; earlier, some apps were a set of instructions written on a Google doc/Notion.
 2. A user had to log into multiple services to update/manage their day-to-day chores. Now, one interface does it all.
