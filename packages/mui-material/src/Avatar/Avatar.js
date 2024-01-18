@@ -69,7 +69,7 @@ const AvatarRoot = styled('div', {
             }
           : {
               backgroundColor: theme.palette.grey[400],
-              ...theme.applyDarkStyles({ backgroundColor: theme.palette.grey[600] }),
+              ...theme.applyStyles('dark', { backgroundColor: theme.palette.grey[600] }),
             }),
       },
     },
