@@ -62,6 +62,9 @@
       }
     },
     "orientation": { "description": "The component orientation." },
+    "pageStep": {
+      "description": "The granularity with which the slider can step through values when using Page Up/Page Down or Shift + Arrow Up/Arrow Down. The value provided will be multiplied by the step prop to determine the size of each movement."
+    },
     "scale": { "description": "A transformation function, to change the scale of the slider." },
     "size": { "description": "The size of the slider." },
     "slotProps": { "description": "The props used for each slot inside the Slider." },

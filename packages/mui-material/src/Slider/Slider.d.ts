@@ -167,6 +167,13 @@ export interface SliderOwnProps {
    */
   orientation?: 'horizontal' | 'vertical';
   /**
+   * The granularity with which the slider can step through values when using Page Up/Page Down or Shift + Arrow Up/Arrow Down.
+   * The value provided will be multiplied by the step prop to determine the size of each movement.
+   *
+   * @default 10
+   */
+  pageStep?: number;
+  /**
    * A transformation function, to change the scale of the slider.
    * @param {any} x
    * @returns {any}

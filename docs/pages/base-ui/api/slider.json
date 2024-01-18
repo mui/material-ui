@@ -48,6 +48,7 @@
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'horizontal'"
     },
+    "pageStep": { "type": { "name": "number" }, "default": "10" },
     "scale": {
       "type": { "name": "func" },
       "default": "function Identity(x) {\n  return x;\n}",

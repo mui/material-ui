@@ -301,7 +301,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     let newValue = valueInput;
     const index = Number(event.currentTarget.getAttribute('data-index'));
     const value = values[index];
-    const marksIndex = marksValues.indexOf(newValue);
+    const marksIndex = marksValues.indexOf(value);
     if (marks && step == null) {
       const maxMarksValue = marksValues[marksValues.length - 1];
       if (newValue > maxMarksValue) {
@@ -352,28 +352,30 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
   const createHandleHiddenInputKeyDown =
     (otherHandlers: EventHandlers) => (event: React.KeyboardEvent) => {
-      const index = Number(event.currentTarget.getAttribute('data-index'));
-      const value = values[index];
-      const marksIndex = marksValues.indexOf(value);
+      // The Shift + Up/Down keyboard shortcuts for moving the slider makes sense to be supported
+      // only if the step is defined. If the step is null, this means tha the marks are used for specifying the valid values.
+      if (step !== null) {
+        const index = Number(event.currentTarget.getAttribute('data-index'));
+        const value = values[index];
 
-      // From handleChange
-      let newValue = null;
-      if (
-        ((event.key === 'ArrowLeft' || event.key === 'ArrowDown') && event.shiftKey) ||
-        event.key === 'PageDown'
-      ) {
-        newValue = Math.max(value - pageStep * (step ?? 1), min);
-      } else if (
-        ((event.key === 'ArrowRight' || event.key === 'ArrowUp') && event.shiftKey) ||
-        event.key === 'PageUp'
-      ) {
-        newValue = Math.min(value + pageStep * (step ?? 1), max);
+        let newValue = null;
+        if (
+          ((event.key === 'ArrowLeft' || event.key === 'ArrowDown') && event.shiftKey) ||
+          event.key === 'PageDown'
+        ) {
+          newValue = Math.max(value - pageStep * step, min);
+        } else if (
+          ((event.key === 'ArrowRight' || event.key === 'ArrowUp') && event.shiftKey) ||
+          event.key === 'PageUp'
+        ) {
+          newValue = Math.min(value + pageStep * step, max);
+        }
+
+        if (newValue !== null) {
+          changeValue(event, newValue);
+        }
       }
 
-      if (newValue !== null) {
-        changeValue(event, newValue);
-      }
-      // End from handleChane
       otherHandlers?.onKeyDown?.(event);
     };
 
