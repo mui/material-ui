@@ -18,14 +18,14 @@ const rootStyles = `
     opacity: 1;
   }
 
-  &.Mui-disabled {
+  &.base--disabled {
     pointer-events: none;
     cursor: default;
     color: var(--primary);
     opacity: 0.5;
   }
 
-  & .MuiSlider-rail {
+  & .base-Slider-rail {
     display: block;
     position: absolute;
     width: 100%;
@@ -35,7 +35,7 @@ const rootStyles = `
     opacity: 0.4;
   }
 
-  & .MuiSlider-track {
+  & .base-Slider-track {
     display: block;
     position: absolute;
     height: 4px;
@@ -43,7 +43,7 @@ const rootStyles = `
     background-color: currentColor;
   }
 
-  & .MuiSlider-thumb {
+  & .base-Slider-thumb {
     position: absolute;
     margin-left: -6px;
     width: 20px;
@@ -61,8 +61,8 @@ const rootStyles = `
       box-shadow: 0 0 0 4px var(--slider-ring);
     }
 
-    &.Mui-focusVisible,
-    &.Mui-active {
+    &.base--focusVisible,
+    &.base--active {
       box-shadow: 0 0 0 8px var(--slider-ring);
       outline: none;
       transform: scale(1.2);
@@ -72,7 +72,7 @@ const rootStyles = `
 
 const StyledSlider = styled('span')(rootStyles);
 
-const CSS = `.MuiSlider-root {${rootStyles}}`;
+const CSS = `.base-Slider-root {${rootStyles}}`;
 
 export default function BaseTabsDemo({ styling }: { styling?: 'system' | 'tailwindcss' | 'css' }) {
   return (
