@@ -11,7 +11,9 @@ export interface ApplyStyles<K extends string> {
  *  - [CSS theme variables](https://mui.com/material-ui/experimental-api/css-theme-variables/overview/)
  *  - Zero-runtime engine
  *
- * 💡 Recommend to use `theme.applyStyles()` in an array, not spreading it in an object.
+ * Tips: Use an array over object spread and place the default styles first and the overrides last.
+ * ✅ [{ background: '#e5e5e5' }, theme.applyStyles('dark', { background: '#1c1c1c' })]
+ * 🚫 { background: '#e5e5e5', ...theme.applyStyles('dark', { background: '#1c1c1c' })}
  *
  * @example
  * 1. using with `styled`:
