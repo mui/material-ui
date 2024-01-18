@@ -5,8 +5,32 @@ import { TransitionProps } from '../transitions/transition';
 import { Theme } from '../styles';
 import { BackdropClasses } from './backdropClasses';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
+export interface BackdropSlots {
+  /**
+   * The component that renders the transition.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default Collapse
+   */
+  transition?: React.JSXElementConstructor<
+    TransitionProps & { children?: React.ReactElement<any, any> }
+  >;
+}
 export interface BackdropComponentsPropsOverrides {}
+
+export interface BackdropTransitionSlotPropsOverrides {}
+
+export type BackdropSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  BackdropSlots,
+  {
+    transition: SlotProps<
+      React.JSXElementConstructor<TransitionProps>,
+      BackdropTransitionSlotPropsOverrides,
+      BackdropOwnerState
+    >;
+  }
+>;
 
 export interface BackdropOwnProps extends Partial<Omit<FadeProps, 'children'>> {
   /**
@@ -84,6 +108,7 @@ export interface BackdropOwnProps extends Partial<Omit<FadeProps, 'children'>> {
    * The component used for the transition.
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
+   * @deprecated Use `slots.transition` instead. This prop will be removed in v7.
    */
   TransitionComponent?: React.JSXElementConstructor<
     TransitionProps & {
@@ -96,7 +121,7 @@ export interface BackdropTypeMap<
   AdditionalProps = {},
   RootComponent extends React.ElementType = 'div',
 > {
-  props: AdditionalProps & BackdropOwnProps;
+  props: AdditionalProps & BackdropOwnProps & BackdropSlotsAndSlotProps;
   defaultComponent: RootComponent;
 }
 
@@ -123,5 +148,7 @@ export type BackdropProps<
 > = OverrideProps<BackdropTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
 };
+
+export interface BackdropOwnerState extends BackdropProps {}
 
 export default Backdrop;

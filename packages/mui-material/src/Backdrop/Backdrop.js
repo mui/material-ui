@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import useSlot from '../utils/useSlot';
 import Fade from '../Fade';
 import { getBackdropUtilityClass } from './backdropClasses';
 
@@ -54,7 +55,7 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
     open,
     slotProps = {},
     slots = {},
-    TransitionComponent = Fade,
+    TransitionComponent: TransitionComponentProp,
     transitionDuration,
     ...other
   } = props;
@@ -69,8 +70,20 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
 
   const rootSlotProps = slotProps.root ?? componentsProps.root;
 
+  const backwardCompatibleSlots = { transition: TransitionComponentProp, ...slots };
+
+  const [TransitionSlot, transitionProps] = useSlot('transition', {
+    elementType: Fade,
+    externalForwardedProps: {
+      slots: backwardCompatibleSlots,
+    },
+    ownerState,
+  });
+
+  delete transitionProps.ownerState;
+
   return (
-    <TransitionComponent in={open} timeout={transitionDuration} {...other}>
+    <TransitionSlot in={open} timeout={transitionDuration} {...other} {...transitionProps}>
       <BackdropRoot
         aria-hidden
         {...rootSlotProps}
@@ -82,7 +95,7 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
       >
         {children}
       </BackdropRoot>
-    </TransitionComponent>
+    </TransitionSlot>
   );
 });
 
@@ -161,6 +174,7 @@ Backdrop.propTypes /* remove-proptypes */ = {
    */
   slots: PropTypes.shape({
     root: PropTypes.elementType,
+    transition: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
@@ -174,6 +188,7 @@ Backdrop.propTypes /* remove-proptypes */ = {
    * The component used for the transition.
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
+   * @depricated Use 'slot.transition' instead. This prop will be removed in v7.
    */
   TransitionComponent: PropTypes.elementType,
   /**

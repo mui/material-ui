@@ -19,6 +19,7 @@
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "transition": { "name": "shape", "description": "{ transition?: elementType }" },
       "default": "{}"
     },
     "sx": {
@@ -28,7 +29,12 @@
       },
       "additionalInfo": { "sx": true }
     },
-    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Fade" },
+    "TransitionComponent": {
+      "type": { "name": "elementType" },
+      "default": "Fade",
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slots.transition</code> instead. This prop will be removed in v7."
+    },
     "transitionDuration": {
       "type": {
         "name": "union",
