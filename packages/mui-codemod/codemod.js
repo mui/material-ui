@@ -40,7 +40,7 @@ async function runTransform(transform, files, flags, codemodFlags) {
     transformerPath,
     ...codemodFlags,
     '--extensions',
-    'js,ts,jsx,tsx',
+    'js,ts,jsx,tsx,json',
     '--parser',
     flags.parser || 'tsx',
     '--ignore-pattern',

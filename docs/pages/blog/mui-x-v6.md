@@ -252,7 +252,7 @@ If you're coming from previous versions, we recommend you check our migration gu
 We also provide codemods to automate some of the necessary updates in your codebase.
 
 ```bash
-npx @mui/x-codemod v6.0.0/preset-safe <path>
+npx @mui/x-codemod@latest v6.0.0/preset-safe <path>
 ```
 
 ## What's next?

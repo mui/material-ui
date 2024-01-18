@@ -8,6 +8,7 @@ const CarbonRoot = styled('span')(({ theme }) => {
   const styles = adStylesObject['body-image'](theme);
 
   return {
+    width: '100%',
     '& > div': {
       // The isolation logic of carbonads is broken.
       // Once the script starts loading, it will asynchronous resolve, with no way to stop it.
