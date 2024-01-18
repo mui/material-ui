@@ -41,7 +41,7 @@ export async function writePrettifiedFile(
   prettierConfigPath: string = DEFAULT_PRETTIER_CONFIG_PATH,
   options: object = {},
 ) {
-  const prettierConfig = prettier.resolveConfig.sync(filename, {
+  const prettierConfig = await prettier.resolveConfig(filename, {
     config: prettierConfigPath,
   });
   if (prettierConfig === null) {
