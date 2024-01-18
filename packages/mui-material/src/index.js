@@ -3,6 +3,7 @@
 import * as colors from './colors';
 
 export { colors };
+export { default as styled } from './styles';
 export * from './styles';
 
 // TODO remove, import directly from Base UI or create one folder per module

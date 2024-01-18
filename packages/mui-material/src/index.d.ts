@@ -70,6 +70,7 @@ export namespace PropTypes {
 import * as colors from './colors';
 
 export { colors };
+export { default as styled } from './styles';
 export * from './styles';
 
 export * from './utils';
