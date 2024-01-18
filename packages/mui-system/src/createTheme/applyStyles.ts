@@ -64,7 +64,6 @@ export interface ApplyStyles<K extends string> {
  */
 export default function applyStyles<K extends string>(key: K, styles: CSSObject) {
   // @ts-expect-error this is 'any' type
-  // eslint-disable-next-line consistent-this
   const theme = this as {
     palette: { mode: 'light' | 'dark' };
     vars?: any;
