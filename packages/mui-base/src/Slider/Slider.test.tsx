@@ -554,12 +554,9 @@ describe('<Slider />', () => {
 
   it('should stop at max/min when using Shift + Left Arrow / Right Arrow keys', () => {
     const hanleChange = spy();
-    const defaultValue = 5;
-    const pageStep = 3;
-    const step = 5;
     const { getByTestId } = render(
       <Slider
-        defaultValue={defaultValue}
+        defaultValue={5}
         onChange={hanleChange}
         max={8}
         slotProps={{
