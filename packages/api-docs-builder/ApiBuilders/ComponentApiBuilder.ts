@@ -499,13 +499,15 @@ const attachTranslations = (reactApi: ReactApi, settings?: CreateDescribeablePro
    */
   [...reactApi.classes]
     .sort(sortAlphabetical('key')) // Sort to ensure consitency of object key order
-    .forEach((classDefinition, index) => {
+    .forEach((classDefinition) => {
       translations.classDescriptions[classDefinition.key] = {
         ...extractClassCondition(classDefinition.description),
         deprecationInfo: classDefinition.deprecationInfo,
       };
-      delete reactApi.classes[index].deprecationInfo; // store deprecation info in translations only
     });
+  reactApi.classes.forEach((classDefinition, index) => {
+    delete reactApi.classes[index].deprecationInfo; // store deprecation info in translations only
+  });
 
   reactApi.translations = translations;
 };
