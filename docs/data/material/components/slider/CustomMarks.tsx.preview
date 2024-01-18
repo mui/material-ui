@@ -1,0 +1,15 @@
+<div>
+  <Slider
+    marks={marks}
+    step={10}
+    value={val}
+    valueLabelDisplay="auto"
+    min={MIN}
+    max={MAX}
+    onChange={handleChange}
+  />
+</div>
+<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+  <Label onClick={() => setVal(MIN)}>{MIN} min</Label>
+  <Label onClick={() => setVal(MAX)}>{MAX} max</Label>
+</div>

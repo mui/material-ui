@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, generateAtomics } from '@mui/zero-runtime';
+import { styled, generateAtomics, css } from '@mui/zero-runtime';
 import type { Breakpoint } from '@mui/system';
 import { Button, bounceAnim } from 'local-ui-lib';
 import Slider from './Slider/ZeroSlider';
@@ -57,7 +57,11 @@ export function App({ isRed }: AppProps) {
   const [isHorizontal, setIsHorizontal] = React.useState(true);
 
   return (
-    <div>
+    <div
+      className={css`
+        color: red;
+      `}
+    >
       <ShowCaseDiv>
         <Button>This button&apos;s text color has been overridden.</Button>
       </ShowCaseDiv>
