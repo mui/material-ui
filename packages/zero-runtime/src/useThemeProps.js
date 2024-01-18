@@ -1,19 +1,17 @@
 import { internal_resolveProps as resolveProps } from '@mui/utils';
 
-export default function createUseThemeProps(theme) {
-  console.log('theme', theme);
-  return function useThemeProps({ props, name }) {
-    if (
-      !theme ||
-      !theme.components ||
-      !theme.components[name] ||
-      !theme.components[name].defaultProps
-    ) {
+/**
+ * Runtime function for creating `useThemeProps`.
+ * In the codebase, the first argument will be a string that represent the component slug (should match one of the `theme.components.*`).
+ * Then, the transformation will replace the first argument with the `defaultProps` object if provided.
+ */
+export default function createUseThemeProps(nameOrDefaultProps) {
+  return function useThemeProps({ props }) {
+    if (typeof nameOrDefaultProps === 'string') {
+      // if no default props provided in the theme, return the props as is.
       return props;
     }
-
-    const defaultProps = theme.components[name].defaultProps;
-
+    const defaultProps = nameOrDefaultProps;
     // The same logic as in packages/mui-utils/src/resolveProps.ts
     // TODO: consider reusing the logic from the utils package
     const output = { ...props };

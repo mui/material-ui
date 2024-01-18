@@ -1,52 +1,73 @@
-import { validateParams, BaseProcessor } from '@linaria/tags';
+import { validateParams, IOptions as IBaseOptions } from '@linaria/tags';
 import type { Expression, Params, TailProcessorParams } from '@linaria/tags';
+import BaseProcessor from './base-processor';
+import { valueToLiteral } from '../utils/valueToLiteral';
+
+type IOptions = IBaseOptions & {
+  themeArgs: {
+    theme: { components?: Record<string, { defaultProps?: Record<string, unknown> }> };
+  };
+};
 
 export class UseThemePropsProcessor extends BaseProcessor {
+  componentName: string;
+
   constructor(params: Params, ...args: TailProcessorParams) {
     super(params, ...args);
-    validateParams(params, ['callee', 'call'], BaseProcessor.SKIP);
+    if (params.length > 2) {
+      // no need to do any processing if it is an already transformed call or just a reference.
+      throw BaseProcessor.SKIP;
+    }
+    validateParams(params, ['callee', 'call'], `Invalid use of ${this.tagSource.imported} tag.`);
+    const [, callParam] = params;
+    const [, callArg] = callParam;
+    if (!callArg || callArg.ex.type !== 'StringLiteral') {
+      throw new Error(
+        `Invalid usage of \`createUseThemeProps\` tag, expected one string literal argument but got ${callArg?.ex.type}.`,
+      );
+    }
+    this.componentName = callArg.ex.value;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   build(): void {}
 
-  doEvaltimeReplacement(): void {}
+  doEvaltimeReplacement(): void {
+    this.replacer(this.value, false);
+  }
 
   get value(): Expression {
     return this.astService.nullLiteral();
   }
 
-  /**
-   * Add `theme` config to the `createUseThemeProps` call argument:
-   *
-   * ```diff
-   * - const useThemeProps = createUseThemeProps();
-   * + const useThemeProps = createUseThemeProps(theme);
-   * ```
-   */
   doRuntimeReplacement(): void {
     const t = this.astService;
+
+    const { themeArgs: { theme } = {} } = this.options as IOptions;
+    if (
+      !theme ||
+      !theme.components ||
+      !theme.components[this.componentName] ||
+      !theme.components[this.componentName].defaultProps
+    ) {
+      return;
+    }
 
     const useThemePropsImportIdentifier = t.addNamedImport(
       this.tagSource.imported,
       process.env.PACKAGE_NAME as string,
     );
-    console.log('useThemePropsImportIdentifier', useThemePropsImportIdentifier);
-
-    const themeImportIdentifier = this.astService.addDefaultImport(
-      `${process.env.PACKAGE_NAME}/theme`,
-      'theme',
-    );
-
-    console.log('themeImportIdentifier', themeImportIdentifier);
 
     this.replacer(
-      t.callExpression(useThemePropsImportIdentifier, [t.identifier(themeImportIdentifier.name)]),
+      t.callExpression(useThemePropsImportIdentifier, [
+        valueToLiteral(theme.components[this.componentName].defaultProps),
+      ]),
       true,
     );
-    console.log(this.tagSourceCode());
   }
 
   public override get asSelector(): string {
+    // For completeness, this is not intended to be used.
     return `.${this.className}`;
   }
 }

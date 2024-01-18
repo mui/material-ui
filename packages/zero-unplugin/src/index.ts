@@ -191,11 +191,6 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
       try {
         const result = await transform(transformServices, code, asyncResolve);
 
-        if (id.includes('mui-material') && id.endsWith('Badge.js')) {
-          console.log('code', result.code);
-          console.log('css', result.cssText);
-        }
-
         if (!result.cssText) {
           return null;
         }

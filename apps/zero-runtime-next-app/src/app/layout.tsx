@@ -2,11 +2,8 @@ import type { Metadata } from 'next';
 import { styled } from '@mui/zero-runtime';
 import { Inter } from 'next/font/google';
 import '@mui/zero-runtime/styles.css';
-import theme from '@mui/zero-runtime/theme';
 
 import './globals.css';
-
-console.log('zero theme', theme);
 
 const inter = Inter({ subsets: ['latin'] });
 

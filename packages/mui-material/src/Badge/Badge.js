@@ -14,7 +14,7 @@ import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
 const RADIUS_STANDARD = 10;
 const RADIUS_DOT = 4;
 
-const useThemeProps = createUseThemeProps();
+const useThemeProps = createUseThemeProps('MuiBadge');
 
 const useUtilityClasses = (ownerState) => {
   const { color, anchorOrigin, invisible, overlap, variant, classes = {} } = ownerState;
