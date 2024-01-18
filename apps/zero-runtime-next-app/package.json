@@ -15,16 +15,16 @@
     "@mui/material": "workspace:^",
     "@mui/system": "workspace:^",
     "local-ui-lib": "workspace:^",
-    "react": "^18",
-    "react-dom": "^18",
-    "next": "14.0.1"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "next": "14.0.4"
   },
   "devDependencies": {
     "@mui/zero-next-plugin": "workspace:^",
     "@types/node": "^20.5.7",
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.18",
-    "eslint": "^8.52.0",
+    "eslint": "^8.56.0",
     "typescript": "^5.3.3"
   }
 }

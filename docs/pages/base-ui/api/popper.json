@@ -52,13 +52,13 @@
   "classes": [
     {
       "key": "root",
-      "className": "MuiPopper-root",
+      "className": "base-Popper-root",
       "description": "Class name applied to the root element.",
       "isGlobal": false
     }
   ],
   "spread": true,
-  "muiName": "MuiPopper",
+  "muiName": "Popper",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/Popper/Popper.tsx",
   "inheritance": null,

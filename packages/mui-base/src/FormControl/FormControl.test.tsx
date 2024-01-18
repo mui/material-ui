@@ -19,7 +19,6 @@ describe('<FormControl />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'div',
-    muiName: 'BaseFormControl',
     slots: {
       root: {
         expectedClassName: formControlClasses.root,

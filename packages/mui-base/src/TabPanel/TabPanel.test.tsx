@@ -36,7 +36,6 @@ describe('<TabPanel />', () => {
     },
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'div',
-    muiName: 'MuiTabPanel',
     slots: {
       root: {
         expectedClassName: tabPanelClasses.root,

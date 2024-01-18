@@ -516,3 +516,99 @@ The following example replaces the `MuiCircularProgress-circleDeterminate` class
 - .MuiCircularProgress-circleDeterminate
 + .MuiCircularProgress-determinate .MuiCircularProgress-circle
 ```
+
+## ButtonGroup
+
+### Removed combined styleOverrides keys
+
+The following `styleOverrides` `MuiButtonGroup` keys were removed:
+
+- `contained`
+- `groupedHorizontal`
+- `groupedVertical`
+- `groupedContained`
+- `groupedText`
+- `groupedOutlined`
+- `groupedContainedHorizontal`
+- `groupedTextHorizontal`
+- `groupedOutlinedHorizontal`
+- `groupedContainedVertical`
+- `groupedTextVertical`
+- `groupedOutlinedVertical`
+- `groupedContainedPrimary`
+- `groupedTextPrimary`
+- `groupedOutlinedPrimary`
+- `groupedContainedSecondary`
+- `groupedTextSecondary`
+- `groupedOutlinedSecondary`
+
+The following `styleOverrides` `MuiButtonGroup` keys were added:
+
+- `primary`
+- `secondary`
+- `tertiary`
+- `filled`
+- `filledPartial`
+- `elevated`
+
+You can replace them by using the variants API and CSS Selectors.
+The following example replaces the usage of `groupedOutlined` with the variants API:
+
+```diff
+ const theme = extendTheme({
+   components: {
+     MuiButtonGroup: {
+       styleOverrides: {
+-        groupedOutlined: {
+-          background: "fuchsia"
+-        }
++        outlined: {
++          ".MuiButtonGroup-grouped": {
++            background: "fuchsia"
++          }
++        }
+       }
+     }
+   }
+ });
+```
+
+### Removed combined classes
+
+The following classes were removed:
+
+- `MuiButtonGroup-contained`
+- `MuiButtonGroup-groupedHorizontal`
+- `MuiButtonGroup-groupedVertical`
+- `MuiButtonGroup-groupedText`
+- `MuiButtonGroup-groupedTextHorizontal`
+- `MuiButtonGroup-groupedTextVertical`
+- `MuiButtonGroup-groupedTextPrimary`
+- `MuiButtonGroup-groupedTextSecondary`
+- `MuiButtonGroup-groupedOutlined`
+- `MuiButtonGroup-groupedOutlinedHorizontal`
+- `MuiButtonGroup-groupedOutlinedVertical`
+- `MuiButtonGroup-groupedOutlinedPrimary`
+- `MuiButtonGroup-groupedOutlinedSecondary`
+- `MuiButtonGroup-groupedContained`
+- `MuiButtonGroup-groupedContainedHorizontal`
+- `MuiButtonGroup-groupedContainedVertical`
+- `MuiButtonGroup-groupedContainedPrimary`
+- `MuiButtonGroup-groupedContainedSecondary`
+
+The following classes were added:
+
+- `MuiButtonGroup-filled`
+- `MuiButtonGroup-filledTonal`
+- `MuiButtonGroup-elevated`
+- `MuiButtonGroup-primary`
+- `MuiButtonGroup-secondary`
+- `MuiButtonGroup-tertiary`
+
+You can replace them by combining classes with a CSS selector.
+The following example replaces the `MuiButtonGroup-groupedOutlined` class using `MuiButtonGroup-grouped` and `MuiButtonGroup-outline`:
+
+```diff
+- .MuiButtonGroup-groupedOutlined
++ .MuiButtonGroup-outlined .MuiButtonGroup-grouped
+```

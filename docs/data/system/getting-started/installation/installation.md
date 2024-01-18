@@ -22,6 +22,18 @@ pnpm add @mui/system @emotion/react @emotion/styled
 
 </codeblock>
 
+### Peer dependencies
+
+<!-- #react-peer-version -->
+
+Please note that [react](https://www.npmjs.com/package/react) is a peer dependency, meaning you should ensure it is installed before installing MUI System.
+
+```json
+"peerDependencies": {
+  "react": "^17.0.0 || ^18.0.0"
+},
+```
+
 ## With styled-components
 
 MUI System uses [Emotion](https://emotion.sh/docs/introduction) as its default styling engine.
@@ -50,15 +62,3 @@ See [this GitHub issue](https://github.com/mui/material-ui/issues/29742) for mor
 
 We **strongly recommend** using Emotion for SSR projects.
 :::
-
-## Peer dependencies
-
-<!-- #react-peer-version -->
-
-Please note that [react](https://www.npmjs.com/package/react) is a peer dependency too:
-
-```json
-"peerDependencies": {
-  "react": "^17.0.0 || ^18.0.0"
-},
-```

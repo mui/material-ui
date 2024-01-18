@@ -40,7 +40,6 @@ describe('<Snackbar />', () => {
       render,
       mount,
       refInstanceof: window.HTMLDivElement,
-      muiName: 'BaseSnackbar',
       slots: {
         root: {
           expectedClassName: classes.root,
