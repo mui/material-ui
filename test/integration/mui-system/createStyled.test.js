@@ -40,6 +40,10 @@ describe('createStyled', () => {
         ${cssStub}
       `;
 
+      beforeEach(() => {
+        cssStub.resetHistory();
+      });
+
       it('should resolve nested functions with props', () => {
         const { container } = render(<Div color={redColor}>Test</Div>);
 
@@ -69,6 +73,10 @@ describe('createStyled', () => {
       const Div = scStyled('div')`
         ${({ color }) => color && nestedCss}
       `;
+
+      beforeEach(() => {
+        cssStub.resetHistory();
+      });
 
       it('should resolve nested functions with props', () => {
         const { container } = render(<Div color={redColor}>Test</Div>);
