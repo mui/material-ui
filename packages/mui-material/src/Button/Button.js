@@ -23,8 +23,7 @@ const useUtilityClasses = (ownerState) => {
       `${variant}${capitalize(color)}`,
       `size${capitalize(size)}`,
       `${variant}Size${capitalize(size)}`,
-      ['primary', 'secondary', 'error', 'info', 'success', 'warning', 'inherit'].includes(color) &&
-        `color${capitalize(color)}`,
+      `color${capitalize(color)}`,
       disableElevation && 'disableElevation',
       fullWidth && 'fullWidth',
     ],
