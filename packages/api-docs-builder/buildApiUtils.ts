@@ -178,7 +178,7 @@ export function getApiPath(
   return apiPath;
 }
 
-export function formatType(rawType: string) {
+export async function formatType(rawType: string) {
   if (!rawType) {
     return '';
   }
@@ -186,7 +186,7 @@ export function formatType(rawType: string) {
   const prefix = 'type FakeType = ';
   const signatureWithTypeName = `${prefix}${rawType}`;
 
-  const prettifiedSignatureWithTypeName = prettier.format(signatureWithTypeName, {
+  const prettifiedSignatureWithTypeName = await prettier.format(signatureWithTypeName, {
     printWidth: 999,
     singleQuote: true,
     semi: false,
@@ -209,7 +209,7 @@ export function getSymbolJSDocTags(symbol: ts.Symbol) {
   return Object.fromEntries(symbol.getJsDocTags().map((tag) => [tag.name, tag]));
 }
 
-export function stringifySymbol(symbol: ts.Symbol, project: TypeScriptProject) {
+export async function stringifySymbol(symbol: ts.Symbol, project: TypeScriptProject) {
   let rawType: string;
 
   const declaration = symbol.declarations?.[0];

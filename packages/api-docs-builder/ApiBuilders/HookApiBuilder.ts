@@ -30,12 +30,15 @@ interface ParsedProperty {
   typeStr: string;
 }
 
-const parseProperty = (propertySymbol: ts.Symbol, project: TypeScriptProject): ParsedProperty => ({
+const parseProperty = async (
+  propertySymbol: ts.Symbol,
+  project: TypeScriptProject,
+): Promise<ParsedProperty> => ({
   name: propertySymbol.name,
   description: getSymbolDescription(propertySymbol, project),
   tags: getSymbolJSDocTags(propertySymbol),
   required: !propertySymbol.declarations?.find(ts.isPropertySignature)?.questionToken,
-  typeStr: stringifySymbol(propertySymbol, project),
+  typeStr: await stringifySymbol(propertySymbol, project),
 });
 
 export interface ReactApi extends ReactDocgenApi {
@@ -454,9 +457,11 @@ const extractInfoFromType = (typeName: string, project: TypeScriptProject): Pars
     const propertiesOnProject = type.getProperties();
 
     // @ts-ignore
-    propertiesOnProject.forEach((propertySymbol) => {
-      properties[propertySymbol.name] = parseProperty(propertySymbol, project);
-    });
+    await Promise.all(
+      propertiesOnProject.map(async (propertySymbol) => {
+        properties[propertySymbol.name] = await parseProperty(propertySymbol, project);
+      }),
+    );
 
     result = Object.values(properties)
       .filter((property) => !property.tags.ignore)
