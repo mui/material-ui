@@ -9,7 +9,11 @@ import {
   DocumentContext,
 } from 'next/document';
 import { AppProps } from 'next/app';
-import { DocumentHeadTags, DocumentHeadTagsProps, documentGetInitialProps } from '@mui/material-nextjs/v14-pagesRouter';
+import {
+  DocumentHeadTags,
+  DocumentHeadTagsProps,
+  documentGetInitialProps,
+} from '@mui/material-nextjs/v14-pagesRouter';
 import { ServerStyleSheets as JSSServerStyleSheets } from '@mui/styles';
 import theme from '../src/theme';
 
