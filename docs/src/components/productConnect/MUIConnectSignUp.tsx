@@ -78,7 +78,7 @@ export default function MUIConnectSignUp({ sx }: { sx?: SxProps<Theme> }) {
         }}
       >
         <Box mt="3px">
-          Thanks for signing up! We will contact you when you can start testing MUI Connect.
+          Thanks for signing up! We will contact you when you can start testing Connect.
         </Box>
       </Alert>
     );
@@ -155,8 +155,8 @@ export default function MUIConnectSignUp({ sx }: { sx?: SxProps<Theme> }) {
               }),
           ]}
         />
-        <Button variant="outlined" disabled={form.status === 'loading'} type="submit">
-          Join the beta list
+        <Button variant="contained" disabled={form.status === 'loading'} type="submit">
+          Join the email list
         </Button>
       </Box>
       {form.status === 'failure' && (

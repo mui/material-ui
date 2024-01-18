@@ -16,7 +16,7 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Frame from 'docs/src/components/action/Frame';
 import Link from 'docs/src/modules/components/Link';
-import MUIConnectSignUp from './MUIConnectSignUp';
+import MUIConnectSignUp from '../productConnect/MUIConnectSignUp';
 
 const Image = styled('img')(({ theme }) => ({
   transition: '0.4s',
@@ -335,11 +335,11 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                   <Typography variant="body2" fontWeight="bold" gutterBottom>
                     Want to try Connect out?
                   </Typography>
-                  <Chip label="Beta" size="small" color="success" variant="outlined" />
+                  <Chip label="Beta version" size="small" color="primary" variant="outlined" />
                 </Box>
                 <Typography variant="body2" color="text.secondary" mb={1}>
-                  Add your email if you&apos;re interested in joining the beta testers list, and
-                  we&apos;ll let you know how to get access to it once the first release is ready!
+                  Add your email if you want to be notified when the Connect beta version becomes
+                  available for testing in the Figma community.
                 </Typography>
                 <MUIConnectSignUp />
               </Frame.Info>

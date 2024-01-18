@@ -70,7 +70,7 @@ export default function AppFooter(props: AppFooterProps) {
           }}
         >
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
+            <Typography fontWeight="semiBold" variant="body2" sx={{ mb: 0.5 }}>
               Products
             </Typography>
             <Link href={ROUTES.productMaterial}>Material UI</Link>
@@ -79,9 +79,10 @@ export default function AppFooter(props: AppFooterProps) {
             <Link href={ROUTES.productToolpad}>MUI Toolpad</Link>
             <Link href={ROUTES.productTemplates}>Templates</Link>
             <Link href={ROUTES.productDesignKits}>Design kits</Link>
+            <Link href={ROUTES.productConnect}>Connect</Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
+            <Typography fontWeight="semiBold" variant="body2" sx={{ mb: 0.5 }}>
               Resources
             </Typography>
             <Link href={ROUTES.materialIcons}>Material Icons</Link>
@@ -91,7 +92,7 @@ export default function AppFooter(props: AppFooterProps) {
             <Link href={ROUTES.theming}>Theming</Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
+            <Typography fontWeight="semiBold" variant="body2" sx={{ mb: 0.5 }}>
               Explore
             </Typography>
             <Link href={ROUTES.documentation}>Documentation</Link>
@@ -101,7 +102,7 @@ export default function AppFooter(props: AppFooterProps) {
             <Link href={ROUTES.coreRoadmap}>Roadmap</Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
+            <Typography fontWeight="semiBold" variant="body2" sx={{ mb: 0.5 }}>
               Company
             </Typography>
             <Link href={ROUTES.about}>About</Link>
