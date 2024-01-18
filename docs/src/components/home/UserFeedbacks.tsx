@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { alpha } from '@mui/material/styles';
-import SwipeableViews from 'react-swipeable-views';
 import Avatar from '@mui/material/Avatar';
-import ButtonBase from '@mui/material/ButtonBase';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import ArrowButton from 'docs/src/components/action/ArrowButton';
+import Masonry from '@mui/lab/Masonry';
 
 function Feedback({
   quote,
@@ -21,11 +19,20 @@ function Feedback({
   };
 }) {
   return (
-    <Box sx={{ color: '#fff' }}>
+    <Box
+      sx={{
+        p: 3,
+        border: '1px solid',
+        borderColor: 'divider',
+        borderRadius: 1,
+        color: '#fff',
+        backgroundColor: 'rgba(255,255,255,0.01)',
+      }}
+    >
       <Typography variant="body1" fontWeight="medium" component="div" sx={{ mb: 2.5 }}>
         {quote}
       </Typography>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
         <Box
           sx={(theme) => ({
             p: 0.5,
@@ -41,8 +48,8 @@ function Feedback({
             alt={`${profile.name}'s profile picture`}
             imgProps={{ loading: 'lazy' }}
             sx={{
-              width: 52,
-              height: 52,
+              width: 40,
+              height: 40,
             }}
           />
         </Box>
@@ -61,6 +68,25 @@ function Feedback({
 }
 
 const TESTIMONIALS = [
+  {
+    quote:
+      '"We\'ve relied on Material UI really heavily. I override a lot of default styles to try and make things our own, but the time we save with complex components like the Autocomplete and the Data Grid are so worth it. Every other library I try has 80% of what I\'m looking for when it comes to complex use cases, Material UI has it all under one roof which is a huge help for our small team."',
+    profile: {
+      avatarSrc: 'https://avatars.githubusercontent.com/u/21114044?s=58',
+      avatarSrcSet: 'https://avatars.githubusercontent.com/u/21114044?s=116 2x',
+      name: 'Kyle Gill',
+      role: 'Engineer & Designer',
+      company: (
+        <img
+          src="/static/branding/companies/particl-dark.svg"
+          width="90"
+          height="16"
+          alt="Particl logo"
+          loading="lazy"
+        />
+      ),
+    },
+  },
   {
     quote:
       '"Material UI looks great and lets us deliver fast, thanks to their solid API design and documentation - it\'s refreshing to use a component library where you get everything you need from their site rather than Stack Overflow. We think the upcoming version, with extra themes and customizability, will make Material UI even more of a game changer. We\'re extremely grateful to the team for the time and effort spent maintaining the project."',
@@ -121,58 +147,11 @@ const TESTIMONIALS = [
 ];
 
 export default function UserFeedbacks() {
-  const [slideIndex, setSlideIndex] = React.useState(0);
   return (
-    <Box sx={{ maxWidth: { md: 500 } }}>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
-        <ArrowButton
-          direction="left"
-          disabled={slideIndex === 0}
-          onClick={() => setSlideIndex((i) => i - 1)}
-        />
-        <ArrowButton
-          direction="right"
-          disabled={slideIndex === TESTIMONIALS.length - 1}
-          onClick={() => setSlideIndex((i) => i + 1)}
-          sx={{ mr: 'auto' }}
-        />
-        <Box sx={{ alignSelf: 'center' }}>
-          {TESTIMONIALS.map((item, index) => (
-            <ButtonBase
-              key={index}
-              aria-label={`Testimonial from ${item.profile.name}`}
-              onClick={() => setSlideIndex(index)}
-              sx={{
-                display: 'inline-block',
-                width: 16,
-                height: 16,
-                borderRadius: '50%',
-                p: '4px',
-                ml: index !== 0 ? '2px' : 0,
-                '&:focus': {
-                  boxShadow: (theme) => `0px 0px 0px 2px ${theme.palette.primaryDark[400]}`,
-                },
-              }}
-            >
-              <Box
-                sx={{
-                  height: '100%',
-                  borderRadius: 1,
-                  bgcolor: 'primaryDark.500',
-                  ...(index === slideIndex && {
-                    bgcolor: 'primaryDark.300',
-                  }),
-                }}
-              />
-            </ButtonBase>
-          ))}
-        </Box>
-      </Box>
-      <SwipeableViews index={slideIndex} onChangeIndex={(index) => setSlideIndex(index)}>
-        {TESTIMONIALS.map((item) => (
-          <Feedback key={item.profile.name} {...item} />
-        ))}
-      </SwipeableViews>
-    </Box>
+    <Masonry columns={2} spacing={3}>
+      {TESTIMONIALS.map((item) => (
+        <Feedback key={item.profile.name} {...item} />
+      ))}
+    </Masonry>
   );
 }
