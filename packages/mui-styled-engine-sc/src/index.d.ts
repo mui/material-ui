@@ -397,3 +397,23 @@ export interface MUIStyledComponent<
     tag: Tag,
   ): MUIStyledComponent<ComponentProps, JSX.IntrinsicElements[Tag]>;
 }
+
+type RuleSet<Props> = Interpolation<Props>[];
+
+export type MUICssWithTheme<Theme extends object = {}> = {
+  (
+    styles:
+      | TemplateStringsArray
+      | CSSObject
+      | InterpolationFunction<ThemedStyledProps<object, Theme>>,
+    ...interpolations: Interpolation<ThemedStyledProps<object, Theme>>[]
+  ): RuleSet<object>;
+
+  <Props extends object>(
+    styles:
+      | TemplateStringsArray
+      | CSSObject
+      | InterpolationFunction<ThemedStyledProps<Props, Theme>>,
+    ...interpolations: Interpolation<ThemedStyledProps<Props, Theme>>[]
+  ): RuleSet<Props>;
+};
