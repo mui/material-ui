@@ -261,6 +261,7 @@ export default function getLPTheme(mode: 'light' | 'dark') {
         styleOverrides: {
           root: ({ ownerState }: { ownerState: { color?: string } }) =>
             ({
+              color: mode === 'light' ? brandColor[500] : brandColor[200],
               fontWeight: 500,
               position: 'relative',
               textDecoration: 'none',
@@ -279,10 +280,6 @@ export default function getLPTheme(mode: 'light' | 'dark') {
                 width: '100%',
                 opacity: 1,
               },
-              ...(ownerState.color === 'primary' && {
-                color: mode === 'light' ? brandColor[500] : brandColor[400],
-              }),
-              color: ownerState.color as string,
             } as const),
         } as any,
       },
@@ -327,7 +324,10 @@ export default function getLPTheme(mode: 'light' | 'dark') {
               height: '40px',
               '& fieldset': {
                 borderRadius: '8px',
-                borderColor: mode === 'light' ? greyColor[300] : greyColor[600],
+                borderColor:
+                  mode === 'light'
+                    ? `${alpha(greyColor[500], 0.4)}`
+                    : `${alpha(greyColor[500], 0.6)}`,
                 boxShadow:
                   mode === 'light'
                     ? '0 -1px 1px rgba(0, 0, 0, 0.1) inset, 0px 2px 4px rgba(0, 0, 0, 0.1)'

@@ -16,6 +16,7 @@ import ToggleColorMode from './ToggleColorMode';
 const logoStyle = {
   width: '140px',
   height: 'auto',
+  cursor: 'pointer',
 };
 
 function AppAppBar() {
@@ -42,24 +43,44 @@ function AppAppBar() {
   return (
     <div>
       <AppBar
-        enableColorOnDark
         position="fixed"
         sx={{
           boxShadow: 0,
-          bgcolor: (theme) => (theme.palette.mode === 'light' ? '#fff' : '#000'),
-          borderBottom: 1,
-          borderColor: 'divider',
+          bgcolor: 'transparent',
+          backgroundImage: 'none',
           paddingX: 0,
+          mt: 2,
         }}
       >
         <Container maxWidth="lg">
-          <Toolbar disableGutters sx={{}}>
+          <Toolbar
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexShrink: 0,
+              borderRadius: '999px',
+              bgcolor: (theme) =>
+                theme.palette.mode === 'light'
+                  ? 'rgba(255,255,255,0.5)'
+                  : 'rgba(0,0,0,0.4)',
+              backdropFilter: 'blur(24px)',
+              maxHeight: '48px',
+              border: '1px solid',
+              borderColor: 'divider',
+              boxShadow: (theme) =>
+                theme.palette.mode === 'light'
+                  ? '0 0 1px rgba(0, 0, 0, 0.01), 1px 1.5px 2px -1px rgba(0, 0, 0, 0.1), 4px 6px 12px -2.5px rgba(0, 0, 0, 0.15)'
+                  : 'rgba(0,0,0,0.5)',
+            }}
+          >
             <Box
               sx={{
                 flexGrow: 1,
                 display: 'flex',
                 alignItems: 'center',
                 ml: '-18px',
+                px: 0,
               }}
             >
               <img
@@ -68,6 +89,7 @@ function AppAppBar() {
                 }
                 style={logoStyle}
                 alt="logo"
+                onClick={() => scrollToSection('hero')}
               />
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <MenuItem
