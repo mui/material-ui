@@ -1,20 +1,22 @@
+import { ComponentClassDefinition } from '@mui-internal/docs-utilities/ComponentClassDefinition';
 import { ComponentInfo, HookInfo } from './buildApiUtils';
 import { CreateTypeScriptProjectOptions } from './utils/createTypeScriptProject';
 import { CreateDescribeablePropSettings } from './utils/createDescribeableProp';
 import { ReactApi as ComponentReactApi } from './ApiBuilders/ComponentApiBuilder';
 import { ReactApi as HookReactApi } from './ApiBuilders/HookApiBuilder';
+import { Slot } from './utils/parseSlotsAndClasses';
 
 export type SortingStrategiesType = {
   /**
    * Sort slots items. Setting null result in no sorting (respect the order provided by TS).
    * @default alphabetical order.
    */
-  classesSort?: null | ((a: unknown, b: unknown) => number);
+  classesSort?: null | ((a: ComponentClassDefinition, b: ComponentClassDefinition) => number);
   /**
    * Sort slots items. Setting null result in no sorting (respect the order provided by TS).
    * @default required props first and alphabetcal order otherwise.
    */
-  propsSort?: null | ((a: unknown, b: unknown) => number);
+  slotsSort?: null | ((a: Slot, b: Slot) => number);
 };
 
 export interface ProjectSettings {
