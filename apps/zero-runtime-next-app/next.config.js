@@ -14,12 +14,6 @@ const theme = extendTheme({
   },
 });
 
-theme.applyDarkStyles = function applyDarkStyles(obj) {
-  return {
-    ':where([data-mui-color-scheme="dark"]) &': obj,
-  };
-};
-
 /**
  * @typedef {import('@mui/zero-next-plugin').ZeroPluginConfig} ZeroPluginConfig
  */

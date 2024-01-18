@@ -131,7 +131,7 @@
 @media (prefers-color-scheme: dark) {
   .GalleryContainer,
   .GalleryMenu,
-  .GalleryPopper,
+  .GalleryPopup,
   .GalleryPopup,
   .GallerySelect-listbox {
     --canvas: #0f0f0f;
@@ -641,7 +641,7 @@
   box-shadow: var(--shadow-elevation-2);
 }
 
-.GallerySelect-popper {
+.GallerySelect-popup {
   z-index: 1;
 }
 

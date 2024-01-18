@@ -16,15 +16,10 @@ const Html = styled.html({
   color: 'red',
 });
 
-const Body = styled.body({
-  color: 'rgb(var(--foreground-rgb))',
-  background: `linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb))`,
-});
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <Html lang="en">
-      <Body className={inter.className}>{children}</Body>
+      <body className={inter.className}>{children}</body>
     </Html>
   );
 }
