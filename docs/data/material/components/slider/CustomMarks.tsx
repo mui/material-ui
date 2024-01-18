@@ -20,7 +20,6 @@ const labelStyle = {
   lineHeight: '1.43',
   fontWeight: 400,
   cursor: 'pointer',
-  color: 'rgba(0, 0, 0, 0.6)',
 };
 
 export default function CustomMarks() {
