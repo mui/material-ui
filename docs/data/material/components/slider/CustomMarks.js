@@ -34,10 +34,18 @@ export default function CustomMarks() {
         onChange={handleChange}
       />
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Typography variant="body2" onClick={() => setVal(MIN)}>
+        <Typography
+          variant="body2"
+          onClick={() => setVal(MIN)}
+          sx={{ cursor: 'pointer' }}
+        >
           {MIN} min
         </Typography>
-        <Typography variant="body2" onClick={() => setVal(MAX)}>
+        <Typography
+          variant="body2"
+          onClick={() => setVal(MAX)}
+          sx={{ cursor: 'pointer' }}
+        >
           {MAX} max
         </Typography>
       </Box>
