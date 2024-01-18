@@ -439,7 +439,10 @@ const generateApiJson = async (outputDirectory: string, reactApi: ReactApi) => {
   );
 };
 
-const extractInfoFromType = (typeName: string, project: TypeScriptProject): ParsedProperty[] => {
+const extractInfoFromType = async (
+  typeName: string,
+  project: TypeScriptProject,
+): Promise<ParsedProperty[]> => {
   // Generate the params
   let result: ParsedProperty[] = [];
 
@@ -541,8 +544,8 @@ export default async function generateHookApi(
     { filename },
   );
 
-  const parameters = extractInfoFromType(`${upperFirst(name)}Parameters`, project);
-  const returnValue = extractInfoFromType(`${upperFirst(name)}ReturnValue`, project);
+  const parameters = await extractInfoFromType(`${upperFirst(name)}Parameters`, project);
+  const returnValue = await extractInfoFromType(`${upperFirst(name)}ReturnValue`, project);
 
   // Ignore what we might have generated in `annotateHookDefinition`
   const annotatedDescriptionMatch = reactApi.description.match(/(Demos|API):\r?\n\r?\n/);
