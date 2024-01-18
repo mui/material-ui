@@ -89,7 +89,7 @@ const menuItemStyles = `
   gap: 4px;
   
   &:hover,
-  &.Mui-focusVisible {
+  &.base--focusVisible {
     cursor: default;
     outline: none;
     color: var(--muidocs-palette-text-primary);
@@ -100,7 +100,7 @@ const menuItemStyles = `
   :where([data-mui-color-scheme='dark']) & {
     color: var(--muidocs-palette-grey-300);
     &:hover,
-    &.Mui-focusVisible {
+    &.base--focusVisible {
       color: var(--muidocs-palette-text-primary);
       background: var(--muidocs-palette-primaryDark-700);
       border-color: var(--muidocs-palette-primaryDark-500);
@@ -109,13 +109,13 @@ const menuItemStyles = `
 `;
 const StyledMenuItem = styled('li')(menuItemStyles);
 
-const CSS = `.Mui-base.MuiMenuButton-root {${buttonStyles}}
+const CSS = `.Mui-base.base-MenuButton-root {${buttonStyles}}
 
-.Mui-base.MuiMenu-root {${popperStyles}}
+.Mui-base.base-Menu-root {${popperStyles}}
 
-.Mui-base.MuiMenu-listbox {${listboxStyles}}
+.Mui-base.base-Menu-listbox {${listboxStyles}}
 
-.Mui-base.MuiMenuItem-root {${menuItemStyles}}`;
+.Mui-base.base-MenuItem-root {${menuItemStyles}}`;
 
 const menuItemStylesTailwind = `flex min-h-[24px] items-center gap-[4px] rounded-[6px] border border-solid border-transparent px-[8px] py-[6px] font-medium text-sm leading-[1.5] hover:cursor-default hover:border-[--muidocs-palette-grey-100] hover:color-[--muidocs-palette-text-primary]  hover:bg-[--muidocs-palette-grey-50] dark:hover:bg-[--muidocs-palette-primaryDark-700] dark:hover:border-[--muidocs-palette-primaryDark-500] ui-focus-visible:cursor-default ui-focus-visible:border-[--muidocs-palette-grey-100] ui-focus-visible:bg-[--muidocs-palette-grey-50] ui-focus-visible:outline-none`;
 
