@@ -335,7 +335,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                   <Typography variant="body2" fontWeight="bold" gutterBottom>
                     Want to try Connect out?
                   </Typography>
-                  <Chip label="Beta version" size="small" color="primary" variant="outlined" />
+                  <Chip label="Beta release" size="small" color="primary" variant="outlined" />
                 </Box>
                 <Typography variant="body2" color="text.secondary" mb={1}>
                   Add your email if you want to be notified when the Connect beta version becomes
