@@ -14,7 +14,9 @@ import BaseProcessor from './base-processor';
 import type { IOptions } from './styled';
 import { cache, keyframes } from '../utils/emotion';
 
-type Primitive = string | number | boolean | null | undefined;
+export type Primitive = string | number | boolean | null | undefined;
+
+export type TemplateCallback = (params: Record<string, unknown> | undefined) => string | number;
 
 export class KeyframesProcessor extends BaseProcessor {
   callParam: CallParam | TemplateParam;
@@ -59,23 +61,26 @@ export class KeyframesProcessor extends BaseProcessor {
 
   private handleTemplate([, callArgs]: TemplateParam, values: ValueCache) {
     const templateStrs: string[] = [];
+    // @ts-ignore @TODO - Fix this. No idea how to initialize a Tagged String array.
+    templateStrs.raw = [];
     const templateExpressions: Primitive[] = [];
+    const { themeArgs } = this.options as IOptions;
+
     callArgs.forEach((item) => {
       if ('kind' in item) {
         switch (item.kind) {
-          case ValueType.FUNCTION:
-            throw item.buildCodeFrameError(
-              'Functions are not allowed to be interpolated in keyframes tag.',
-            );
+          case ValueType.FUNCTION: {
+            const value = values.get(item.ex.name) as TemplateCallback;
+            templateExpressions.push(value(themeArgs));
+            break;
+          }
           case ValueType.CONST:
             templateExpressions.push(item.value);
             break;
           case ValueType.LAZY: {
             const evaluatedValue = values.get(item.ex.name);
             if (typeof evaluatedValue === 'function') {
-              throw item.buildCodeFrameError(
-                'Functions are not allowed to be interpolated in keyframes tag.',
-              );
+              templateExpressions.push(evaluatedValue(themeArgs));
             } else {
               templateExpressions.push(evaluatedValue as Primitive);
             }
@@ -86,6 +91,8 @@ export class KeyframesProcessor extends BaseProcessor {
         }
       } else if (item.type === 'TemplateElement') {
         templateStrs.push(item.value.cooked as string);
+        // @ts-ignore
+        templateStrs.raw.push(item.value.raw);
       }
     });
     this.generateArtifacts(templateStrs, ...templateExpressions);
