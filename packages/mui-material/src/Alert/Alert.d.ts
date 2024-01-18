@@ -4,12 +4,17 @@ import { SxProps } from '@mui/system';
 import { IconButtonProps, InternalStandardProps as StandardProps, SvgIconProps, Theme } from '..';
 import { PaperProps } from '../Paper';
 import { AlertClasses } from './alertClasses';
+import { SlotProps } from '../utils/types';
 
 export type AlertColor = 'success' | 'info' | 'warning' | 'error';
 
 export interface AlertPropsVariantOverrides {}
 
 export interface AlertPropsColorOverrides {}
+
+export interface AlertCloseButtonSlotPropsOverrides {}
+
+export interface AlertCloseIconSlotPropsOverrides {}
 
 export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
   /**
@@ -99,8 +104,16 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
    * @default {}
    */
   slotProps?: {
-    closeButton?: IconButtonProps;
-    closeIcon?: SvgIconProps;
+    closeButton?: SlotProps<
+      React.ElementType<IconButtonProps>,
+      AlertCloseButtonSlotPropsOverrides,
+      AlertOwnerState
+    >;
+    closeIcon?: SlotProps<
+      React.ElementType<SvgIconProps>,
+      AlertCloseIconSlotPropsOverrides,
+      AlertOwnerState
+    >;
   };
   /**
    * The components used for each slot inside.
@@ -116,6 +129,8 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
    */
   sx?: SxProps<Theme>;
 }
+
+export interface AlertOwnerState extends AlertProps {}
 
 /**
  *

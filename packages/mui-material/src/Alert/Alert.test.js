@@ -27,10 +27,7 @@ describe('<Alert />', () => {
         expectedClassName: classes.closeIcon,
       },
     },
-    skip: [
-      'componentsProp',
-      'slotPropsCallback', // not supported yet
-    ],
+    skip: ['componentsProp'],
   }));
 
   describe('prop: square', () => {

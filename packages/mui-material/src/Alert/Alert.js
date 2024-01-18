@@ -340,8 +340,8 @@ Alert.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    closeButton: PropTypes.object,
-    closeIcon: PropTypes.object,
+    closeButton: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    closeIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
