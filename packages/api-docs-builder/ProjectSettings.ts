@@ -4,6 +4,19 @@ import { CreateDescribeablePropSettings } from './utils/createDescribeableProp';
 import { ReactApi as ComponentReactApi } from './ApiBuilders/ComponentApiBuilder';
 import { ReactApi as HookReactApi } from './ApiBuilders/HookApiBuilder';
 
+export type SortingStrategiesType = {
+  /**
+   * Sort slots items. Setting null result in no sorting (respect the order provided by TS).
+   * @default alphabetical order.
+   */
+  classesSort?: null | ((a: unknown, b: unknown) => number);
+  /**
+   * Sort slots items. Setting null result in no sorting (respect the order provided by TS).
+   * @default required props first and alphabetcal order otherwise.
+   */
+  propsSort?: null | ((a: unknown, b: unknown) => number);
+};
+
 export interface ProjectSettings {
   output: {
     /**
@@ -18,6 +31,10 @@ export interface ProjectSettings {
   getApiPages: () => Array<{ pathname: string }>;
   getComponentInfo: (filename: string) => ComponentInfo;
   getHookInfo?: (filename: string) => HookInfo;
+  /**
+   * Allows to force sorting startegies for listed properties.
+   */
+  sortingStrategies?: SortingStrategiesType;
   /**
    * Callback function to be called when the API generation is completed
    */

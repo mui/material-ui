@@ -71,9 +71,9 @@ export default function parseSlotsAndClasses({
   const classDefinitions = extractClasses(project, componentName, muiName);
   const slots = extractSlots(project, componentName, classDefinitions, slotInterfaceName);
 
-  const nonSlotClassDefinitions = classDefinitions
-    .filter((classDefinition) => !Object.keys(slots).includes(classDefinition.key))
-    .sort((a, b) => a.key.localeCompare(b.key));
+  const nonSlotClassDefinitions = classDefinitions.filter(
+    (classDefinition) => !Object.keys(slots).includes(classDefinition.key),
+  );
 
   return {
     slots: Object.values(slots),
