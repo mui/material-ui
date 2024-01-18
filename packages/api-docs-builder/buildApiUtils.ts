@@ -50,7 +50,8 @@ export async function writePrettifiedFile(
     );
   }
 
-  fs.writeFileSync(filename, prettier.format(data, { ...prettierConfig, filepath: filename }), {
+  const formatted = await prettier.format(data, { ...prettierConfig, filepath: filename })
+  fs.writeFileSync(filename, formatted, {
     encoding: 'utf8',
     ...options,
   });
