@@ -3,6 +3,7 @@ import { Breakpoints, BreakpointsOptions } from './createBreakpoints';
 import { Shape, ShapeOptions } from './shape';
 import { Spacing, SpacingOptions } from './createSpacing';
 import { SxConfig, SxProps } from '../styleFunctionSx';
+import { ApplyStyles } from './applyStyles';
 
 export { Breakpoint, BreakpointOverrides } from './createBreakpoints';
 
@@ -35,7 +36,7 @@ export interface Theme {
   mixins?: unknown;
   typography?: unknown;
   zIndex?: unknown;
-  applyStyles: (mode: 'light' | 'dark', styles: CSSObject) => CSSObject;
+  applyStyles: ApplyStyles<'light' | 'dark'>;
   unstable_sxConfig: SxConfig;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
 }

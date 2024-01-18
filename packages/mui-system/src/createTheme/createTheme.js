@@ -4,6 +4,7 @@ import shape from './shape';
 import createSpacing from './createSpacing';
 import styleFunctionSx from '../styleFunctionSx/styleFunctionSx';
 import defaultSxConfig from '../styleFunctionSx/defaultSxConfig';
+import applyStyles from './applyStyles';
 
 function createTheme(options = {}, ...args) {
   const {
@@ -29,12 +30,7 @@ function createTheme(options = {}, ...args) {
     other,
   );
 
-  muiTheme.applyStyles = function applyStyles(mode, styles) {
-    if (this.palette.mode === mode) {
-      return styles;
-    }
-    return undefined;
-  };
+  muiTheme.applyStyles = applyStyles;
 
   muiTheme = args.reduce((acc, argument) => deepmerge(acc, argument), muiTheme);
 

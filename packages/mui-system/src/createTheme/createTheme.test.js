@@ -169,11 +169,32 @@ describe('createTheme', () => {
       expect(darkTheme.applyStyles('dark', { color: 'red' })).to.deep.equal({
         color: 'red',
       });
-      expect(darkTheme.applyStyles('light', { color: 'salmon' })).to.deep.equal(undefined);
+      expect(darkTheme.applyStyles('light', { color: 'salmon' })).to.deep.equal({});
 
+      // assume switching to light theme
       darkTheme.palette.mode = 'light';
-      expect(darkTheme.applyStyles('dark', { color: 'red' })).to.deep.equal(undefined);
+      expect(darkTheme.applyStyles('dark', { color: 'red' })).to.deep.equal({});
       expect(darkTheme.applyStyles('light', { color: 'salmon' })).to.deep.equal({
+        color: 'salmon',
+      });
+    });
+
+    it('apply correct styles with new theme', () => {
+      const darkTheme = createTheme({
+        palette: {
+          mode: 'dark',
+          primary: {
+            main: 'rgb(0, 0, 255)',
+          },
+          secondary: {
+            main: 'rgb(0, 255, 0)',
+          },
+        },
+      });
+
+      const newTheme = { ...darkTheme, palette: { mode: 'light' } };
+      expect(newTheme.applyStyles('dark', { color: 'red' })).to.deep.equal({});
+      expect(newTheme.applyStyles('light', { color: 'salmon' })).to.deep.equal({
         color: 'salmon',
       });
     });
