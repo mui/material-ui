@@ -35,7 +35,7 @@ export function fixPathname(pathname: string): string {
 
 const DEFAULT_PRETTIER_CONFIG_PATH = path.join(process.cwd(), 'prettier.config.js');
 
-export function writePrettifiedFile(
+export async function writePrettifiedFile(
   filename: string,
   data: string,
   prettierConfigPath: string = DEFAULT_PRETTIER_CONFIG_PATH,
