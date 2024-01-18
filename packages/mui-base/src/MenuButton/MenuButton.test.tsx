@@ -135,63 +135,10 @@ describe('<MenuButton />', () => {
   });
 
   describe('keyboard navigation', () => {
-    ['ArrowUp', 'ArrowDown'].forEach((key) =>
-      it(`opens the menu when pressing ${key}`, async () => {
-        const dispatchSpy = spy();
-        const context = {
-          ...testContext,
-          state: { open: false },
-          dispatch: dispatchSpy,
-        };
-
-        const { getByRole } = render(
-          <DropdownContext.Provider value={context}>
-            <MenuButton />
-          </DropdownContext.Provider>,
-        );
-
-        const button = getByRole('button');
-        act(() => {
-          button.focus();
-        });
-
-        await userEvent.keyboard(`{${key}}`);
-
-        expect(dispatchSpy.calledOnce).to.equal(true);
-        expect(dispatchSpy.args[0][0]).to.contain({ type: DropdownActionTypes.open });
-      }),
-    );
-
-    ['Enter', ' '].forEach((key) =>
-      it(`opens the menu when pressing ${key}`, async () => {
-        const dispatchSpy = spy();
-        const context = {
-          ...testContext,
-          state: { open: false },
-          dispatch: dispatchSpy,
-        };
-
-        const { getByRole } = render(
-          <DropdownContext.Provider value={context}>
-            <MenuButton />
-          </DropdownContext.Provider>,
-        );
-
-        const button = getByRole('button');
-        act(() => {
-          button.focus();
-        });
-
-        await userEvent.keyboard(`{${key}}`);
-
-        expect(dispatchSpy.calledOnce).to.equal(true);
-        expect(dispatchSpy.args[0][0]).to.contain({ type: DropdownActionTypes.toggle });
-      }),
-    );
-
-    describe('non-native button', () => {
-      ['Enter', ' '].forEach((key) =>
-        it(`opens the menu when pressing ${key}`, async () => {
+    [<MenuButton />, <MenuButton slots={{ root: 'span' }} />].forEach((buttonComponent) => {
+      const buttonType = buttonComponent.props.slots?.root ? 'non-native' : 'native';
+      ['ArrowUp', 'ArrowDown'].forEach((key) =>
+        it(`opens the menu when pressing "${key}" on a ${buttonType} button`, async () => {
           const dispatchSpy = spy();
           const context = {
             ...testContext,
@@ -200,9 +147,32 @@ describe('<MenuButton />', () => {
           };
 
           const { getByRole } = render(
-            <DropdownContext.Provider value={context}>
-              <MenuButton slots={{ root: 'span' }} />
-            </DropdownContext.Provider>,
+            <DropdownContext.Provider value={context}>{buttonComponent}</DropdownContext.Provider>,
+          );
+
+          const button = getByRole('button');
+          act(() => {
+            button.focus();
+          });
+
+          await userEvent.keyboard(`{${key}}`);
+
+          expect(dispatchSpy.calledOnce).to.equal(true);
+          expect(dispatchSpy.args[0][0]).to.contain({ type: DropdownActionTypes.open });
+        }),
+      );
+
+      ['Enter', ' '].forEach((key) =>
+        it(`opens the menu when pressing "${key}" on a ${buttonType} button`, async () => {
+          const dispatchSpy = spy();
+          const context = {
+            ...testContext,
+            state: { open: false },
+            dispatch: dispatchSpy,
+          };
+
+          const { getByRole } = render(
+            <DropdownContext.Provider value={context}>{buttonComponent}</DropdownContext.Provider>,
           );
 
           const button = getByRole('button');
