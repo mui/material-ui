@@ -21,6 +21,7 @@
     "@babel/parser": "^7.23.6",
     "@babel/types": "^7.23.6",
     "@emotion/css": "^11.11.2",
+    "@emotion/serialize": "^1.1.3",
     "@emotion/styled": "^11.11.0",
     "@linaria/tags": "^5.0.2",
     "@linaria/utils": "^5.0.2",
@@ -87,8 +88,20 @@
       "import": "./utils/index.mjs",
       "require": "./utils/index.js"
     },
+    "./exports/generateAtomics": {
+      "default": "./exports/generateAtomics.js"
+    },
+    "./exports/keyframes": {
+      "default": "./exports/keyframes.js"
+    },
+    "./exports/styled": {
+      "default": "./exports/styled.js"
+    },
     "./exports/sx-plugin": {
       "default": "./exports/sx-plugin.js"
+    },
+    "./exports/sx": {
+      "default": "./exports/sx.js"
     }
   }
 }

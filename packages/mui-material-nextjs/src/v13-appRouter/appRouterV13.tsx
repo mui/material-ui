@@ -1,20 +1,23 @@
 'use client';
 import * as React from 'react';
-import createCache from '@emotion/cache';
-import { useServerInsertedHTML } from 'next/navigation';
+import createCache, { EmotionCache, Options as OptionsOfCreateCache } from '@emotion/cache';
 import { CacheProvider as DefaultCacheProvider } from '@emotion/react';
-import type { EmotionCache, Options as OptionsOfCreateCache } from '@emotion/cache';
+import { useServerInsertedHTML } from 'next/navigation';
 
 export type AppRouterCacheProviderProps = {
-  /** These are the options passed to createCache() from 'import createCache from "@emotion/cache"' */
+  /**
+   * These are the options passed to createCache() from 'import createCache from "@emotion/cache"'.
+   */
   options?: Partial<OptionsOfCreateCache> & {
     /**
      * If `true`, the generated styles are wrapped within `@layer mui`.
-     * This is useful if you want to override the Material UI's generated styles with different styling solution, like Tailwind, plain CSS etc.
+     * This is useful if you want to override the Material UI's generated styles with different styling solution, like Tailwind CSS, plain CSS etc.
      */
     enableCssLayer?: boolean;
   };
-  /** By default <CacheProvider /> from 'import { CacheProvider } from "@emotion/react"' */
+  /**
+   * By default <CacheProvider /> from 'import { CacheProvider } from "@emotion/react"'.
+   */
   CacheProvider?: (props: {
     value: EmotionCache;
     children: React.ReactNode;
@@ -81,6 +84,7 @@ export default function AppRouterCacheProvider(props: AppRouterCacheProviderProp
       <React.Fragment>
         {globals.map(({ name, style }) => (
           <style
+            nonce={options?.nonce}
             key={name}
             data-emotion={`${registry.cache.key}-global ${name}`}
             // eslint-disable-next-line react/no-danger
@@ -89,6 +93,7 @@ export default function AppRouterCacheProvider(props: AppRouterCacheProviderProp
         ))}
         {styles && (
           <style
+            nonce={options?.nonce}
             data-emotion={dataEmotionAttribute}
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{ __html: styles }}

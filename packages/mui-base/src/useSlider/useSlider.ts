@@ -8,6 +8,7 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
   visuallyHidden,
+  clamp,
 } from '@mui/utils';
 import {
   Mark,
@@ -23,13 +24,6 @@ const INTENTIONAL_DRAG_COUNT_THRESHOLD = 2;
 
 function asc(a: number, b: number) {
   return a - b;
-}
-
-function clamp(value: number, min: number, max: number) {
-  if (value == null) {
-    return min;
-  }
-  return Math.min(Math.max(min, value), max);
 }
 
 function findClosest(values: number[], currentValue: number) {
@@ -259,7 +253,8 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
   const range = Array.isArray(valueDerived);
   let values = range ? valueDerived.slice().sort(asc) : [valueDerived];
-  values = values.map((value) => clamp(value, min, max));
+  values = values.map((value) => (value == null ? min : clamp(value, min, max)));
+
   const marks =
     marksProp === true && step !== null
       ? [...Array(Math.floor((max - min) / step) + 1)].map((_, index) => ({

@@ -108,6 +108,12 @@ This might be less confusing to users compared to a change in direction.
 
 {{"demo": "VerticalAccessibleSlider.js"}}
 
+## Marks placement
+
+You can customize your slider by adding and repositioning marks for minimum and maximum values.
+
+{{"demo": "CustomMarks.js"}}
+
 ## Track
 
 The track shows the range available for user selection.

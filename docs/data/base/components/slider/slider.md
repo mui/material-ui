@@ -42,38 +42,38 @@ The Slider component is composed of a root `<span>` that houses several interior
 - valueLabel: optional label to display the values on a range slider
 
 ```html
-<span class="MuiSlider-root">
-  <span class="MuiSlider-rail"></span>
-  <span class="MuiSlider-track"></span>
+<span class="base-Slider-root">
+  <span class="base-Slider-rail"></span>
+  <span class="base-Slider-track"></span>
   <span
     data-index="0"
-    class="MuiSlider-mark MuiSlider-markActive"
+    class="base-Slider-mark base-Slider-markActive"
     style="left: 0%;"
   ></span>
   <span
     aria-hidden="true"
     data-index="0"
-    class="MuiSlider-markLabel MuiSlider-markLabelActive"
+    class="base-Slider-markLabel base-Slider-markLabelActive"
     style="left: 0%;"
     >0</span
   >
-  <span data-index="1" class="MuiSlider-mark" style="left: 50%;"></span>
+  <span data-index="1" class="base-Slider-mark" style="left: 50%;"></span>
   <span
     aria-hidden="true"
     data-index="1"
-    class="MuiSlider-markLabel"
+    class="base-Slider-markLabel"
     style="left: 50%;"
     >50</span
   >
-  <span data-index="2" class="MuiSlider-mark" style="left: 100%;"></span>
+  <span data-index="2" class="base-Slider-mark" style="left: 100%;"></span>
   <span
     aria-hidden="true"
     data-index="2"
-    class="MuiSlider-markLabel"
+    class="base-Slider-markLabel"
     style="left: 100%;"
     >100</span
   >
-  <span class="MuiSlider-thumb">
+  <span class="base-Slider-thumb">
     <input />
   </span>
 </span>
