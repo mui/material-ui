@@ -20,14 +20,14 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ listbox?: func<br>&#124;&nbsp;object, popper?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+        "description": "{ listbox?: func<br>&#124;&nbsp;object, popup?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ listbox?: elementType, popper?: elementType, root?: elementType }"
+        "description": "{ listbox?: elementType, popup?: elementType, root?: elementType }"
       },
       "default": "{}",
       "additionalInfo": { "slotsApi": true }
@@ -50,10 +50,10 @@
       "class": "base-Select-listbox"
     },
     {
-      "name": "popper",
-      "description": "The component that renders the popper.",
-      "default": "Popper",
-      "class": "base-Select-popper"
+      "name": "popup",
+      "description": "The component that wraps the popup.",
+      "default": "'div'",
+      "class": "base-Select-popup"
     }
   ],
   "classes": [
