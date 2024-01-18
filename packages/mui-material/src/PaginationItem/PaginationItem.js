@@ -41,6 +41,7 @@ const useUtilityClasses = (ownerState) => {
       `size${capitalize(size)}`,
       variant,
       shape,
+      ['primary', 'secondary'].includes(color) && `color${capitalize(color)}`,
       color !== 'standard' && `${variant}${capitalize(color)}`,
       disabled && 'disabled',
       selected && 'selected',
