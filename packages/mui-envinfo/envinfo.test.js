@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const { execFileSync } = require('child_process');
 const path = require('path');
 const { expect } = require('chai');
@@ -6,22 +5,6 @@ const { expect } = require('chai');
 describe('@mui/envinfo', () => {
   const packagePath = __dirname;
   const testProjectPath = path.resolve(packagePath, 'test');
-
-  before(function beforeHook() {
-    // only run in node
-    if (!/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
-
-    // Insatlling dependencies might take some time
-    this.timeout(20000);
-    console.time('Installing dependencies');
-    execFileSync('pnpm', ['install'], {
-      cwd: testProjectPath,
-      stdio: 'pipe',
-    });
-    console.timeEnd('Installing dependencies');
-  });
 
   function execEnvinfo(args) {
     const envinfoPath = path.resolve(packagePath, 'envinfo.js');
@@ -33,6 +16,11 @@ describe('@mui/envinfo', () => {
   }
 
   it('includes info about the environment relevant to MUI', function test() {
+    // only run in node
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
     const envinfoJSON = execEnvinfo(['--json']);
 
     const envinfo = JSON.parse(envinfoJSON);
