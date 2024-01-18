@@ -188,6 +188,35 @@ describe('<MenuButton />', () => {
         expect(dispatchSpy.args[0][0]).to.contain({ type: DropdownActionTypes.toggle });
       }),
     );
+
+    describe('non-native button', () => {
+      ['Enter', ' '].forEach((key) =>
+        it(`opens the menu when pressing ${key}`, async () => {
+          const dispatchSpy = spy();
+          const context = {
+            ...testContext,
+            state: { open: false },
+            dispatch: dispatchSpy,
+          };
+
+          const { getByRole } = render(
+            <DropdownContext.Provider value={context}>
+              <MenuButton slots={{ root: 'span' }} />
+            </DropdownContext.Provider>,
+          );
+
+          const button = getByRole('button');
+          act(() => {
+            button.focus();
+          });
+
+          await userEvent.keyboard(`{${key}}`);
+
+          expect(dispatchSpy.calledOnce).to.equal(true);
+          expect(dispatchSpy.args[0][0]).to.contain({ type: DropdownActionTypes.toggle });
+        }),
+      );
+    });
   });
 
   describe('accessibility attributes', () => {
