@@ -45,16 +45,16 @@
   "imports": ["import { Input } from '@mui/base/Input';", "import { Input } from '@mui/base';"],
   "slots": [
     {
-      "name": "input",
-      "description": "The component that renders the input.",
-      "default": "'input'",
-      "class": "base-Input-input"
-    },
-    {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
       "class": "base-Input-root"
+    },
+    {
+      "name": "input",
+      "description": "The component that renders the input.",
+      "default": "'input'",
+      "class": "base-Input-input"
     },
     {
       "name": "textarea",

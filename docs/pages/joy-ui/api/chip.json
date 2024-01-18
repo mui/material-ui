@@ -57,16 +57,10 @@
   "imports": ["import Chip from '@mui/joy/Chip';", "import { Chip } from '@mui/joy';"],
   "slots": [
     {
-      "name": "action",
-      "description": "The component that renders the action.",
-      "default": "'button'",
-      "class": null
-    },
-    {
-      "name": "endDecorator",
-      "description": "The component that renders the end decorator.",
-      "default": "'span'",
-      "class": "MuiChip-endDecorator"
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": "MuiChip-root"
     },
     {
       "name": "label",
@@ -75,16 +69,22 @@
       "class": "MuiChip-label"
     },
     {
-      "name": "root",
-      "description": "The component that renders the root.",
-      "default": "'div'",
-      "class": "MuiChip-root"
+      "name": "action",
+      "description": "The component that renders the action.",
+      "default": "'button'",
+      "class": null
     },
     {
       "name": "startDecorator",
       "description": "The component that renders the start decorator.",
       "default": "'span'",
       "class": "MuiChip-startDecorator"
+    },
+    {
+      "name": "endDecorator",
+      "description": "The component that renders the end decorator.",
+      "default": "'span'",
+      "class": "MuiChip-endDecorator"
     }
   ],
   "classes": [

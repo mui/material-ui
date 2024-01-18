@@ -59,16 +59,16 @@
   ],
   "slots": [
     {
-      "name": "content",
-      "description": "The component that renders the content.",
-      "default": "'div'",
-      "class": "MuiAspectRatio-content"
-    },
-    {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
       "class": "MuiAspectRatio-root"
+    },
+    {
+      "name": "content",
+      "description": "The component that renders the content.",
+      "default": "'div'",
+      "class": "MuiAspectRatio-content"
     }
   ],
   "classes": [

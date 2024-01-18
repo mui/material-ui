@@ -25,16 +25,16 @@
   "imports": ["import { Menu } from '@mui/base/Menu';", "import { Menu } from '@mui/base';"],
   "slots": [
     {
-      "name": "listbox",
-      "description": "The component that renders the listbox.",
-      "default": "'ul'",
-      "class": "base-Menu-listbox"
-    },
-    {
       "name": "root",
       "description": "The component that renders the popup element.",
       "default": "'div'",
       "class": "base-Menu-root"
+    },
+    {
+      "name": "listbox",
+      "description": "The component that renders the listbox.",
+      "default": "'ul'",
+      "class": "base-Menu-listbox"
     }
   ],
   "classes": [

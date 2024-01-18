@@ -71,18 +71,6 @@
   "imports": ["import Button from '@mui/joy/Button';", "import { Button } from '@mui/joy';"],
   "slots": [
     {
-      "name": "endDecorator",
-      "description": "The component that renders the end decorator.",
-      "default": "'span'",
-      "class": "MuiButton-endDecorator"
-    },
-    {
-      "name": "loadingIndicatorCenter",
-      "description": "The component that renders the loading indicator center.",
-      "default": "'span'",
-      "class": "MuiButton-loadingIndicatorCenter"
-    },
-    {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'button'",
@@ -93,6 +81,18 @@
       "description": "The component that renders the start decorator.",
       "default": "'span'",
       "class": "MuiButton-startDecorator"
+    },
+    {
+      "name": "endDecorator",
+      "description": "The component that renders the end decorator.",
+      "default": "'span'",
+      "class": "MuiButton-endDecorator"
+    },
+    {
+      "name": "loadingIndicatorCenter",
+      "description": "The component that renders the loading indicator center.",
+      "default": "'span'",
+      "class": "MuiButton-loadingIndicatorCenter"
     }
   ],
   "classes": [

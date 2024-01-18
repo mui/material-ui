@@ -76,16 +76,22 @@
   "imports": ["import Checkbox from '@mui/joy/Checkbox';", "import { Checkbox } from '@mui/joy';"],
   "slots": [
     {
-      "name": "action",
-      "description": "The component that renders the action.",
+      "name": "root",
+      "description": "The component that renders the root.",
       "default": "'span'",
-      "class": "MuiCheckbox-action"
+      "class": "MuiCheckbox-root"
     },
     {
       "name": "checkbox",
       "description": "The component that renders the checkbox.",
       "default": "'span'",
       "class": "MuiCheckbox-checkbox"
+    },
+    {
+      "name": "action",
+      "description": "The component that renders the action.",
+      "default": "'span'",
+      "class": "MuiCheckbox-action"
     },
     {
       "name": "input",
@@ -98,12 +104,6 @@
       "description": "The component that renders the label.",
       "default": "'label'",
       "class": "MuiCheckbox-label"
-    },
-    {
-      "name": "root",
-      "description": "The component that renders the root.",
-      "default": "'span'",
-      "class": "MuiCheckbox-root"
     }
   ],
   "classes": [

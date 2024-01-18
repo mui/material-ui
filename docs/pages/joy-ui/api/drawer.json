@@ -66,6 +66,12 @@
   "imports": ["import Drawer from '@mui/joy/Drawer';", "import { Drawer } from '@mui/joy';"],
   "slots": [
     {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": "MuiDrawer-root"
+    },
+    {
       "name": "backdrop",
       "description": "The component that renders the backdrop.",
       "default": "'div'",
@@ -76,12 +82,6 @@
       "description": "The component that renders the content of the drawer.",
       "default": "'div'",
       "class": "MuiDrawer-content"
-    },
-    {
-      "name": "root",
-      "description": "The component that renders the root.",
-      "default": "'div'",
-      "class": "MuiDrawer-root"
     }
   ],
   "classes": [

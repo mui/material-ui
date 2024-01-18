@@ -51,16 +51,10 @@
   ],
   "slots": [
     {
-      "name": "decrementButton",
-      "description": "The component that renders the decrement button.",
-      "default": "'button'",
-      "class": "base-NumberInput-decrementButton"
-    },
-    {
-      "name": "incrementButton",
-      "description": "The component that renders the increment button.",
-      "default": "'button'",
-      "class": "base-NumberInput-incrementButton"
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": "base-NumberInput-root"
     },
     {
       "name": "input",
@@ -69,10 +63,16 @@
       "class": "base-NumberInput-input"
     },
     {
-      "name": "root",
-      "description": "The component that renders the root.",
-      "default": "'div'",
-      "class": "base-NumberInput-root"
+      "name": "incrementButton",
+      "description": "The component that renders the increment button.",
+      "default": "'button'",
+      "class": "base-NumberInput-incrementButton"
+    },
+    {
+      "name": "decrementButton",
+      "description": "The component that renders the decrement button.",
+      "default": "'button'",
+      "class": "base-NumberInput-decrementButton"
     }
   ],
   "classes": [

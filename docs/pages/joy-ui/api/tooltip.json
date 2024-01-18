@@ -95,16 +95,16 @@
   "imports": ["import Tooltip from '@mui/joy/Tooltip';", "import { Tooltip } from '@mui/joy';"],
   "slots": [
     {
-      "name": "arrow",
-      "description": "The component that renders the arrow.",
-      "default": "'span'",
-      "class": "MuiTooltip-arrow"
-    },
-    {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
       "class": "MuiTooltip-root"
+    },
+    {
+      "name": "arrow",
+      "description": "The component that renders the arrow.",
+      "default": "'span'",
+      "class": "MuiTooltip-arrow"
     }
   ],
   "classes": [

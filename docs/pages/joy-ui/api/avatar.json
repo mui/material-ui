@@ -56,10 +56,10 @@
   "imports": ["import Avatar from '@mui/joy/Avatar';", "import { Avatar } from '@mui/joy';"],
   "slots": [
     {
-      "name": "fallback",
-      "description": "The component that renders the fallback.",
-      "default": "'svg'",
-      "class": "MuiAvatar-fallback"
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": "MuiAvatar-root"
     },
     {
       "name": "img",
@@ -68,10 +68,10 @@
       "class": "MuiAvatar-img"
     },
     {
-      "name": "root",
-      "description": "The component that renders the root.",
-      "default": "'div'",
-      "class": "MuiAvatar-root"
+      "name": "fallback",
+      "description": "The component that renders the fallback.",
+      "default": "'svg'",
+      "class": "MuiAvatar-fallback"
     }
   ],
   "classes": [

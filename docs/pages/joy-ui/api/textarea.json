@@ -44,16 +44,16 @@
   "imports": ["import Textarea from '@mui/joy/Textarea';", "import { Textarea } from '@mui/joy';"],
   "slots": [
     {
-      "name": "endDecorator",
-      "description": "The component that renders the end decorator.",
-      "default": "'div'",
-      "class": "MuiTextarea-endDecorator"
-    },
-    {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
       "class": "MuiTextarea-root"
+    },
+    {
+      "name": "textarea",
+      "description": "The component that renders the textarea.",
+      "default": "'textarea'",
+      "class": "MuiTextarea-textarea"
     },
     {
       "name": "startDecorator",
@@ -62,10 +62,10 @@
       "class": "MuiTextarea-startDecorator"
     },
     {
-      "name": "textarea",
-      "description": "The component that renders the textarea.",
-      "default": "'textarea'",
-      "class": "MuiTextarea-textarea"
+      "name": "endDecorator",
+      "description": "The component that renders the end decorator.",
+      "default": "'div'",
+      "class": "MuiTextarea-endDecorator"
     }
   ],
   "classes": [

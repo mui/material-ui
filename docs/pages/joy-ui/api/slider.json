@@ -125,10 +125,28 @@
   "imports": ["import Slider from '@mui/joy/Slider';", "import { Slider } from '@mui/joy';"],
   "slots": [
     {
-      "name": "input",
-      "description": "The component that renders the input.",
-      "default": "'input'",
-      "class": null
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'span'",
+      "class": "MuiSlider-root"
+    },
+    {
+      "name": "track",
+      "description": "The component that renders the track.",
+      "default": "'span'",
+      "class": "MuiSlider-track"
+    },
+    {
+      "name": "rail",
+      "description": "The component that renders the rail.",
+      "default": "'span'",
+      "class": "MuiSlider-rail"
+    },
+    {
+      "name": "thumb",
+      "description": "The component that renders the thumb.",
+      "default": "'span'",
+      "class": "MuiSlider-thumb"
     },
     {
       "name": "mark",
@@ -143,33 +161,15 @@
       "class": "MuiSlider-markLabel"
     },
     {
-      "name": "rail",
-      "description": "The component that renders the rail.",
-      "default": "'span'",
-      "class": "MuiSlider-rail"
-    },
-    {
-      "name": "root",
-      "description": "The component that renders the root.",
-      "default": "'span'",
-      "class": "MuiSlider-root"
-    },
-    {
-      "name": "thumb",
-      "description": "The component that renders the thumb.",
-      "default": "'span'",
-      "class": "MuiSlider-thumb"
-    },
-    {
-      "name": "track",
-      "description": "The component that renders the track.",
-      "default": "'span'",
-      "class": "MuiSlider-track"
-    },
-    {
       "name": "valueLabel",
       "description": "The component that renders the value label.",
       "default": "'span'",
+      "class": null
+    },
+    {
+      "name": "input",
+      "description": "The component that renders the input.",
+      "default": "'input'",
       "class": null
     }
   ],

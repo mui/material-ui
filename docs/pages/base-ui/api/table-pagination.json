@@ -60,28 +60,16 @@
   ],
   "slots": [
     {
-      "name": "actions",
-      "description": "The component that renders the actions.",
-      "default": "TablePaginationActions",
-      "class": "base-TablePagination-actions"
-    },
-    {
-      "name": "displayedRows",
-      "description": "The component that renders the displayed rows.",
-      "default": "'p'",
-      "class": "base-TablePagination-displayedRows"
-    },
-    {
-      "name": "menuItem",
-      "description": "The component that renders the menu item.",
-      "default": "'option'",
-      "class": "base-TablePagination-menuItem"
-    },
-    {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'td'",
       "class": "base-TablePagination-root"
+    },
+    {
+      "name": "actions",
+      "description": "The component that renders the actions.",
+      "default": "TablePaginationActions",
+      "class": "base-TablePagination-actions"
     },
     {
       "name": "select",
@@ -96,16 +84,28 @@
       "class": "base-TablePagination-selectLabel"
     },
     {
-      "name": "spacer",
-      "description": "The component that renders the spacer.",
-      "default": "'div'",
-      "class": "base-TablePagination-spacer"
+      "name": "menuItem",
+      "description": "The component that renders the menu item.",
+      "default": "'option'",
+      "class": "base-TablePagination-menuItem"
+    },
+    {
+      "name": "displayedRows",
+      "description": "The component that renders the displayed rows.",
+      "default": "'p'",
+      "class": "base-TablePagination-displayedRows"
     },
     {
       "name": "toolbar",
       "description": "The component that renders the toolbar.",
       "default": "'div'",
       "class": "base-TablePagination-toolbar"
+    },
+    {
+      "name": "spacer",
+      "description": "The component that renders the spacer.",
+      "default": "'div'",
+      "class": "base-TablePagination-spacer"
     }
   ],
   "classes": [

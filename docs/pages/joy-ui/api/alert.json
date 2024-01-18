@@ -56,12 +56,6 @@
   "imports": ["import Alert from '@mui/joy/Alert';", "import { Alert } from '@mui/joy';"],
   "slots": [
     {
-      "name": "endDecorator",
-      "description": "The component that renders the end decorator.",
-      "default": "'span'",
-      "class": "MuiAlert-endDecorator"
-    },
-    {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
@@ -72,6 +66,12 @@
       "description": "The component that renders the start decorator.",
       "default": "'span'",
       "class": "MuiAlert-startDecorator"
+    },
+    {
+      "name": "endDecorator",
+      "description": "The component that renders the end decorator.",
+      "default": "'span'",
+      "class": "MuiAlert-endDecorator"
     }
   ],
   "classes": [

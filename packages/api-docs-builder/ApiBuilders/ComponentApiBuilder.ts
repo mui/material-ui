@@ -486,7 +486,7 @@ const attachTranslations = (reactApi: ReactApi, settings?: CreateDescribeablePro
    */
   if (reactApi.slots?.length > 0) {
     translations.slotDescriptions = {};
-    reactApi.slots
+    [...reactApi.slots]
       .sort(sortAlphabetical('name')) // Sort to ensure consitency of object key order
       .forEach((slot: Slot) => {
         const { name, description } = slot;
@@ -497,7 +497,7 @@ const attachTranslations = (reactApi: ReactApi, settings?: CreateDescribeablePro
   /**
    * CSS class descriptions and deprecations.
    */
-  reactApi.classes
+  [...reactApi.classes]
     .sort(sortAlphabetical('key')) // Sort to ensure consitency of object key order
     .forEach((classDefinition, index) => {
       translations.classDescriptions[classDefinition.key] = {

@@ -25,6 +25,12 @@
   ],
   "slots": [
     {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'li'",
+      "class": "base-OptionGroup-root"
+    },
+    {
       "name": "label",
       "description": "The component that renders the label.",
       "default": "'span'",
@@ -35,12 +41,6 @@
       "description": "The component that renders the list.",
       "default": "'ul'",
       "class": "base-OptionGroup-list"
-    },
-    {
-      "name": "root",
-      "description": "The component that renders the root.",
-      "default": "'li'",
-      "class": "base-OptionGroup-root"
     }
   ],
   "classes": [

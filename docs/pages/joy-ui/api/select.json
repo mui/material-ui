@@ -69,10 +69,22 @@
   "imports": ["import Select from '@mui/joy/Select';", "import { Select } from '@mui/joy';"],
   "slots": [
     {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": "MuiSelect-root"
+    },
+    {
       "name": "button",
       "description": "The component that renders the button.",
       "default": "'button'",
       "class": "MuiSelect-button"
+    },
+    {
+      "name": "startDecorator",
+      "description": "The component that renders the start decorator.",
+      "default": "'span'",
+      "class": "MuiSelect-startDecorator"
     },
     {
       "name": "endDecorator",
@@ -91,18 +103,6 @@
       "description": "The component that renders the listbox.",
       "default": "'ul'",
       "class": "MuiSelect-listbox"
-    },
-    {
-      "name": "root",
-      "description": "The component that renders the root.",
-      "default": "'div'",
-      "class": "MuiSelect-root"
-    },
-    {
-      "name": "startDecorator",
-      "description": "The component that renders the start decorator.",
-      "default": "'span'",
-      "class": "MuiSelect-startDecorator"
     }
   ],
   "classes": [
