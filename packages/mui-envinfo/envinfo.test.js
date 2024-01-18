@@ -1,8 +1,7 @@
+/* eslint-disable no-console */
 const { execFileSync } = require('child_process');
 const path = require('path');
 const { expect } = require('chai');
-
-const isRunningOnWindows = process.platform === 'win32';
 
 describe('@mui/envinfo', () => {
   const packagePath = __dirname;
@@ -14,37 +13,26 @@ describe('@mui/envinfo', () => {
       this.skip();
     }
 
-    // Building might take some time
+    // Insatlling dependencies might take some time
     this.timeout(20000);
-    execFileSync('pnpm', ['build'], {
-      cwd: packagePath,
-      stdio: 'pipe',
-    });
-
-    execFileSync('npm', ['install'], {
+    console.time('Installing dependencies');
+    execFileSync('pnpm', ['install'], {
       cwd: testProjectPath,
       stdio: 'pipe',
     });
+    console.timeEnd('Installing dependencies');
   });
 
   function execEnvinfo(args) {
-    const buildPath = path.resolve(packagePath, 'build');
-
-    return execFileSync(
-      isRunningOnWindows ? 'npx.cmd' : 'npx',
-      ['--package', buildPath, 'envinfo', ...args],
-      {
-        encoding: 'utf8',
-        stdio: 'pipe',
-        cwd: testProjectPath,
-      },
-    );
+    const envinfoPath = path.resolve(packagePath, 'envinfo.js');
+    return execFileSync('node', [envinfoPath, ...args], {
+      encoding: 'utf8',
+      stdio: 'pipe',
+      cwd: testProjectPath,
+    });
   }
 
   it('includes info about the environment relevant to MUI', function test() {
-    // Need more time to download packages
-    this.timeout(20000);
-
     const envinfoJSON = execEnvinfo(['--json']);
 
     const envinfo = JSON.parse(envinfoJSON);
@@ -60,7 +48,7 @@ describe('@mui/envinfo', () => {
     // Non-exhaustive list of `@mui/*` packages
     expect(envinfo).to.have.nested.property('npmPackages.@mui/material');
     expect(envinfo).to.have.nested.property('npmPackages.@mui/joy');
-    expect(envinfo).to.have.nested.property('npmPackages.@mui/utils');
+    expect(envinfo).to.have.nested.property('npmPackages.@mui/base');
     // Other libraries
     expect(envinfo).to.have.nested.property('npmPackages.react');
     expect(envinfo).to.have.nested.property('npmPackages.react-dom');
