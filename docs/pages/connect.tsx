@@ -100,13 +100,7 @@ export default function Connect() {
               <MUIConnectSignUp />
             </Grid>
           </Grid>
-        </Section>
-        <Divider />
-        <Box sx={{ maxWidth: 1300, mx: 'auto', mt: { xs: 0, sm: '-64px' }, px: { xs: 0, sm: 2 } }}>
-          <Image src="/static/branding/design-kits/connect-plug-in-figma-light.jpg" />
-        </Box>
-        <Section cozy>
-          <Grid container spacing={3}>
+          <Grid container spacing={3} mt={1}>
             {content.map(({ icon, title, description }) => (
               <Grid key={title} item xs={12} md={4}>
                 <InfoCard title={title} icon={icon} description={description} />
@@ -114,6 +108,18 @@ export default function Connect() {
             ))}
           </Grid>
         </Section>
+        <Divider />
+        <Box
+          sx={{
+            maxWidth: 1300,
+            mx: 'auto',
+            mt: { xs: 0, sm: '-120px' },
+            mb: { xs: 8, sm: 12 },
+            px: { xs: 0, sm: 2 },
+          }}
+        >
+          <Image src="/static/branding/design-kits/connect-plug-in-figma-light.jpg" />
+        </Box>
         <Divider />
       </main>
       <AppFooter stackOverflowUrl="https://stackoverflow.com/questions/tagged/material-ui" />
