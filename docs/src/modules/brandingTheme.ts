@@ -573,7 +573,7 @@ export function getThemedComponents(): ThemeOptions {
                   theme.palette.primary[700],
                   0.6,
                 )} 0 -3px 1px inset, ${alpha(theme.palette.common.black, 0.1)} 0 2px 4px 0`,
-                textShadow: `0 1px 2px ${alpha(theme.palette.common.black, 0.6)}`,
+                textShadow: `0 1px 1px ${alpha(theme.palette.common.black, 0.6)}`,
                 '&:hover': {
                   backgroundColor: (theme.vars || theme).palette.primary[700],
                 },
