@@ -1385,4 +1385,21 @@ describe('<Select />', () => {
       );
     });
   });
+
+  describe('non-native trigger', () => {
+    ['Enter', 'ArrowDown', 'ArrowUp', ' '].forEach((key) => {
+      it(`opens the dropdown when the "${key}" key is down on the trigger`, async () => {
+        const { getByRole } = render(<Select slots={{ root: 'span' }} />);
+        const select = getByRole('combobox');
+        act(() => {
+          select.focus();
+        });
+
+        await userEvent.keyboard(`{${key}}`);
+
+        expect(select).to.have.attribute('aria-expanded', 'true');
+        expect(getByRole('listbox')).not.to.equal(null);
+      });
+    });
+  });
 });
