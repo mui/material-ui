@@ -534,7 +534,7 @@ export function getThemedComponents(): ThemeOptions {
                     0.5,
                   )} 0 -3px 1px inset, ${theme.palette.common.black} 0 1px 2px 0`,
                   '&:hover': {
-                    backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+                    backgroundColor: (theme.vars || theme).palette.primaryDark[700],
                   },
                 }),
               }),
@@ -568,14 +568,14 @@ export function getThemedComponents(): ThemeOptions {
             ...(ownerState.variant === 'contained' &&
               ownerState.color === 'primary' && {
                 color: '#FFF',
-                backgroundColor: (theme.vars || theme).palette.primary[600],
+                textShadow: `0 1px 1px ${alpha(theme.palette.common.black, 0.6)}`,
+                backgroundImage: `linear-gradient(180deg, ${theme.palette.primary[500]} 0%, ${theme.palette.primary[700]} 100%)`,
                 boxShadow: `${theme.palette.primary[400]} 0 2px 0.5px inset, ${alpha(
                   theme.palette.primary[700],
                   0.6,
                 )} 0 -3px 1px inset, ${alpha(theme.palette.common.black, 0.1)} 0 2px 4px 0`,
-                textShadow: `0 1px 1px ${alpha(theme.palette.common.black, 0.6)}`,
                 '&:hover': {
-                  backgroundColor: (theme.vars || theme).palette.primary[700],
+                  backgroundImage: `linear-gradient(180deg, ${theme.palette.primary[600]} 0%, ${theme.palette.primary[800]} 100%)`,
                 },
                 ...theme.applyDarkStyles({
                   backgroundColor: (theme.vars || theme).palette.primary[600],
