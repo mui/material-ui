@@ -394,7 +394,7 @@ const attachTranslations = (reactApi: ReactApi) => {
   reactApi.translations = translations;
 };
 
-const generateApiJson = (outputDirectory: string, reactApi: ReactApi) => {
+const generateApiJson = async (outputDirectory: string, reactApi: ReactApi) => {
   /**
    * Gather the metadata needed for the component's API page.
    */
@@ -430,7 +430,7 @@ const generateApiJson = (outputDirectory: string, reactApi: ReactApi) => {
       .join('\n')}</ul>`,
   };
 
-  writePrettifiedFile(
+  await writePrettifiedFile(
     path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.json`),
     JSON.stringify(pageContent),
   );
@@ -572,12 +572,12 @@ export default async function generateHookApi(
 
   if (!skipApiGeneration) {
     // Generate pages, json and translations
-    generateApiTranslations(
+    await generateApiTranslations(
       path.join(process.cwd(), 'docs/translations/api-docs'),
       reactApi,
       projectSettings.translationLanguages,
     );
-    generateApiJson(apiPagesDirectory, reactApi);
+    await generateApiJson(apiPagesDirectory, reactApi);
 
     // Add comment about demo & api links to the component hook file
     await annotateHookDefinition(reactApi);
