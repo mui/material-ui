@@ -1,5 +1,103 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.15.5
+
+<!-- generated comparing v5.15.4..master -->
+
+_Jan 17, 2024_
+
+A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
+
+- Base UI's CSS class prefix is now `base-` (#40205) @michaldudak
+- Bug fixes, and a lot of improvements to code and docs infra
+
+### `@mui/material@5.15.5`
+
+- &#8203;<!-- 42 -->[Accordion] Deprecate \*Props props and classes for v6 (#40418) @DiegoAndai
+- &#8203;<!-- 41 -->[Alert] Update TypeScript types to allow color override types to be added to `iconMapping` and `severity` props (#40551) @2metres
+- &#8203;<!-- 27 -->[Dialog] Remove deprecated onBackdropClick from Dialog tests (#40505) @sai6855
+- &#8203;<!-- 26 -->[Divider] Deprecate props and classes for v6 (#40563) @sai6855
+
+### `@mui/material-next@6.0.0-alpha.118`
+
+- &#8203;<!-- 36 -->[ButtonGroup] Apply MD3 style to `ButtonGroup` (#40124) @lhilgert9
+
+### `@mui/base@5.0.0-beta.32`
+
+#### Breaking changes
+
+- &#8203;<!-- 40 -->Change the CSS class prefix to `base-` (#40205) @michaldudak
+
+The class prefix of Base UI components have been changed from `Mui-` to `base-`. This only affects codebases that uses class names verbatim, i.e. not exposed by JS objects such as `buttonClasses`, but as plain strings or in CSS stylesheets (`.MuiButton.root`)
+
+To adapt your code to the new pattern:
+
+- replace all occurrences of the regex `.Mui([A-Z][A-Za-z]*)-` with `.base-$1-` (so `MuiButton-root` becomes `base-Button-root`, etc.),
+- replace all occurrences of the regex `.Mui-([a-z]*)` with `.base--$1` (so `Mui-disabled` becomes `base--disabled`, etc.).
+
+#### Changes
+
+- &#8203;<!-- 39 -->[Select] Fix screen-reader CSS to avoid body scrollbar (#40599) @brijeshb42
+- &#8203;<!-- 38 -->[Switch] Add border-box to demos (#40638) @zanivan
+
+### `@mui/joy@5.0.0-beta.23`
+
+- &#8203;<!-- 11 -->[ModalDialog] Fix ModalDialog layout prop override (#40512) @maakcode
+- &#8203;<!-- 10 -->[RadioGroup] Allow zero number as a value (#40344) @aacevski
+
+### `@mui/codemod@5.15.5`
+
+- &#8203;<!-- 31 -->Allow `json` files to be transformed (#40536) @ZeeshanTamboli
+
+### `@mui/lab@5.0.0-alpha.161`
+
+- &#8203;<!-- 09 -->Update `@mui/material` peer dependency version (#40528) @ZeeshanTamboli
+
+### `@mui/material-nextjs@5.15.5`
+
+- &#8203;<!-- 08 -->Fix release script (#40519) @petrovmiroslav
+- &#8203;<!-- 07 -->Support Nonces in the App Router Provider (#40269) @josh-feldman
+- &#8203;<!-- 06 -->Polish @mui/material-nextjs (#40473) @oliviertassinari
+
+### `@mui/system@5.15.5`
+
+- &#8203;<!-- 05 -->Fix import path for @mui/system in vite apps (#40490) @brijeshb42
+- &#8203;<!-- 02 -->Fix css vars generation and simplify the code (#40530) @siriwatknp
+- &#8203;<!-- 01 -->Identify zero runtime styled path (#40555) @brijeshb42
+
+### Docs
+
+- &#8203;<!-- 35 -->[joy-ui][Card] Fix text alignment in horizontal aligned card demo (#40562) @ZeeshanTamboli
+- &#8203;<!-- 25 -->Improve instructions about peer dependencies (#40621) @danilo-leal
+- &#8203;<!-- 24 -->Solve page description length @oliviertassinari
+- &#8203;<!-- 23 -->Fix MUI Treasury links (#40561) @siriwatknp
+- &#8203;<!-- 17 -->[material-ui] Update <ListItem button/> to ListItemButton in demos (#40564) @sai6855
+- &#8203;<!-- 16 -->[material-ui] Revise the Snackbar page (#39298) @danilo-leal
+- &#8203;<!-- 15 -->[material-ui] Sharpen Material 3 copy on demo pages (#40546) @samuelsycamore
+- &#8203;<!-- 14 -->[material-ui] Fix typo on Next.js integration guide (#40538) @zanivan
+- &#8203;<!-- 13 -->[material-ui][Snackbar] Remove unused `State` interface from Consecutive Snackbars demo (#40410)
+  @zinoroman
+- &#8203;<!-- 12 -->[website] Resolve broken links reported by `docs:link-check` (#40547) @samuelsycamore
+
+### Core
+
+- &#8203;<!-- 37 -->[blog] Fix 404 link to MUI Treasury @oliviertassinari
+- &#8203;<!-- 34 -->[code-infra] Add `run` command to deploy docs (#40513) @siriwatknp
+- &#8203;<!-- 32 -->[core] Update the lockfile (#40628) @michaldudak
+- &#8203;<!-- 31 -->[core] Remove dead code and follow standard @oliviertassinari
+- &#8203;<!-- 30 -->[core] Simplify server detection (#40471) @oliviertassinari
+- &#8203;<!-- 29 -->[core] Sync playwright cache between MUI X and Material UI (#40475) @oliviertassinari
+- &#8203;<!-- 28 -->[dependencies] Bump tough-cookie (#40437) @michaldudak
+- &#8203;<!-- 22 -->[docs-infra] Enforce brand name rules (#40525) @oliviertassinari
+- &#8203;<!-- 21 -->[docs-infra] Minimize ad layout shift on mobile (#40582) @oliviertassinari
+- &#8203;<!-- 20 -->[docs-infra] Improve API page deprecation info (#40440) @DiegoAndai
+- &#8203;<!-- 19 -->[docs-infra] Remove old tocs banners (#40537) @oliviertassinari
+- &#8203;<!-- 18 -->[docs-infra] Remove dead code aria-label sponsors (#40526) @oliviertassinari
+- &#8203;<!-- 04 -->[utils] Centralize clamp implementation in utils (#40267) @Kamino0
+- &#8203;<!-- 03 -->[website] Polish the Base UI page demos (#40504) @danilo-leal
+
+All contributors of this release in alphabetical order: @2metres, @aacevski, @brijeshb42, @danilo-leal, @DiegoAndai, @josh-feldman, @Kamino0, @lhilgert9, @maakcode, @michaldudak, @oliviertassinari, @petrovmiroslav, @sai6855, @samuelsycamore, @siriwatknp, @zanivan, @ZeeshanTamboli, @zinoroman
+
 ## 5.15.4
 
 <!-- generated comparing v5.15.3..master -->
