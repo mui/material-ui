@@ -13,9 +13,7 @@ function OTP({
   value: string;
   onChange: React.Dispatch<React.SetStateAction<string>>;
 }) {
-  const inputRefs = React.useRef<HTMLInputElement[]>(
-    new Array(length).fill(null),
-  );
+  const inputRefs = React.useRef<HTMLInputElement[]>(new Array(length).fill(null));
 
   const focusInput = (targetIndex: number) => {
     const targetInput = inputRefs.current[targetIndex];
