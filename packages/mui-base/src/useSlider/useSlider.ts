@@ -298,10 +298,11 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     };
 
   const changeValue = (event: React.KeyboardEvent | React.ChangeEvent, valueInput: number) => {
-    let newValue = valueInput;
     const index = Number(event.currentTarget.getAttribute('data-index'));
     const value = values[index];
     const marksIndex = marksValues.indexOf(value);
+    let newValue: number | number[] = valueInput;
+
     if (marks && step == null) {
       const maxMarksValue = marksValues[marksValues.length - 1];
       if (newValue > maxMarksValue) {
@@ -322,7 +323,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
       }
 
       const previousValue = newValue;
-      const newValueAsArray = setValueIndex({
+      newValue = setValueIndex({
         values,
         newValue,
         index,
@@ -332,7 +333,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
       // Potentially swap the index if needed.
       if (!disableSwap) {
-        activeIndex = newValueAsArray.indexOf(previousValue);
+        activeIndex = newValue.indexOf(previousValue);
       }
 
       focusThumb({ sliderRef, activeIndex });

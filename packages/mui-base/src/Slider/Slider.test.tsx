@@ -447,4 +447,112 @@ describe('<Slider />', () => {
       expect(secondThumb.getAttribute('data-active')).to.equal('false');
     });
   });
+
+  it('should support Shift + Left Arrow / Right Arrow keys', () => {
+    const hanleChange = spy();
+    const { getByTestId } = render(
+      <Slider
+        defaultValue={20}
+        onChange={hanleChange}
+        slotProps={{
+          thumb: (_, { index, focused, active }) => ({
+            'data-testid': `thumb-${index}`,
+            'data-focused': focused,
+            'data-active': active,
+          }),
+        }}
+      />,
+    );
+
+    const thumb = getByTestId('thumb-0');
+    const input = thumb.firstChild;
+
+    fireEvent.keyDown(document.body, { key: 'TAB' });
+    act(() => {
+      (input as HTMLInputElement).focus();
+    });
+
+    fireEvent.keyDown(input!, { key: 'ArrowLeft', shiftKey: true });
+    expect(hanleChange.callCount).to.equal(1);
+    expect(hanleChange.args[0][1]).to.deep.equal(10);
+
+    fireEvent.keyDown(input!, { key: 'ArrowRight', shiftKey: true });
+    expect(hanleChange.callCount).to.equal(2);
+    expect(hanleChange.args[1][1]).to.deep.equal(20);
+  });
+
+  it('should support Shift + Left Arrow / Right Arrow keys by taking acount step and pageStep', () => {
+    const hanleChange = spy();
+    const defaultValue = 20;
+    const pageStep = 3;
+    const step = 5;
+    const { getByTestId } = render(
+      <Slider
+        defaultValue={defaultValue}
+        onChange={hanleChange}
+        pageStep={pageStep}
+        step={step}
+        slotProps={{
+          thumb: (_, { index, focused, active }) => ({
+            'data-testid': `thumb-${index}`,
+            'data-focused': focused,
+            'data-active': active,
+          }),
+        }}
+      />,
+    );
+
+    const thumb = getByTestId('thumb-0');
+    const input = thumb.firstChild;
+
+    fireEvent.keyDown(document.body, { key: 'TAB' });
+    act(() => {
+      (input as HTMLInputElement).focus();
+    });
+
+    fireEvent.keyDown(input!, { key: 'ArrowLeft', shiftKey: true });
+    expect(hanleChange.callCount).to.equal(1);
+    expect(hanleChange.args[0][1]).to.deep.equal(defaultValue - pageStep * step);
+
+    fireEvent.keyDown(input!, { key: 'ArrowRight', shiftKey: true });
+    expect(hanleChange.callCount).to.equal(2);
+    expect(hanleChange.args[1][1]).to.deep.equal(defaultValue);
+  });
+
+  it('should stop at max/min when using Shift + Left Arrow / Right Arrow keys', () => {
+    const hanleChange = spy();
+    const defaultValue = 5;
+    const pageStep = 3;
+    const step = 5;
+    const { getByTestId } = render(
+      <Slider
+        defaultValue={defaultValue}
+        onChange={hanleChange}
+        max={8}
+        slotProps={{
+          thumb: (_, { index, focused, active }) => ({
+            'data-testid': `thumb-${index}`,
+            'data-focused': focused,
+            'data-active': active,
+          }),
+        }}
+      />,
+    );
+
+    const thumb = getByTestId('thumb-0');
+    const input = thumb.firstChild;
+
+    fireEvent.keyDown(document.body, { key: 'TAB' });
+    act(() => {
+      (input as HTMLInputElement).focus();
+    });
+
+    fireEvent.keyDown(input!, { key: 'ArrowLeft', shiftKey: true });
+    expect(hanleChange.callCount).to.equal(1);
+    expect(hanleChange.args[0][1]).to.deep.equal(0);
+
+    fireEvent.keyDown(input!, { key: 'ArrowRight', shiftKey: true });
+    expect(hanleChange.callCount).to.equal(2);
+    expect(hanleChange.args[1][1]).to.deep.equal(8);
+  });
 });
