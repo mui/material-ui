@@ -18,7 +18,7 @@
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
     "lodash": "^4.17.21",
-    "prettier": "^2.8.8",
+    "prettier": "^3.2.4",
     "react-docgen": "^5.4.3",
     "recast": "^0.23.4",
     "remark": "^13.0.0",
