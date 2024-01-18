@@ -1,12 +1,90 @@
 import * as React from 'react';
+import * as styledEngine from '@mui/styled-engine';
+import * as styledEngineSc from '@mui/styled-engine-sc';
 import { expect } from 'chai';
-import { spy } from 'sinon';
-import createStyled from '@mui/system/createStyled';
+import { spy, stub } from 'sinon';
+import createStyled, { systemDefaultTheme } from '@mui/system/createStyled';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { createRenderer } from '@mui-internal/test-utils';
 
 describe('createStyled', () => {
   const { render } = createRenderer();
+
+  describe('css', () => {
+    const styled = createStyled({
+      styledEngineStyled: styledEngine.default,
+      processStyles: styledEngine.internal_processStyles,
+    });
+
+    const css = styledEngine.css;
+
+    const scStyled = createStyled({
+      styledEngineStyled: styledEngineSc.default,
+      processStyles: styledEngineSc.internal_processStyles,
+    });
+
+    const scCss = styledEngineSc.css;
+
+    const redColor = 'rgb(255, 0, 0)';
+
+    describe('styled-engine', () => {
+      const cssStub = stub().returns(
+        ({ color }) =>
+          color &&
+          css`
+            color: ${color};
+          `,
+      );
+
+      const Div = styled('div')`
+        ${cssStub}
+      `;
+
+      it('should resolve nested functions with props', () => {
+        const { container } = render(<Div color={redColor}>Test</Div>);
+
+        expect(container.firstChild).toHaveComputedStyle({
+          color: redColor,
+        });
+      });
+
+      it('should resolve nested functions with mui theme', () => {
+        render(<Div color={redColor}>Test</Div>);
+
+        expect(cssStub.firstCall.firstArg.theme).to.equal(systemDefaultTheme);
+      });
+    });
+
+    describe('styled-engine-sc', () => {
+      const cssStub = stub().returns(({ color }) => color);
+
+      const deeplyNestedCss = scCss`
+        color: ${cssStub};
+      `;
+
+      const nestedCss = scCss`
+        ${deeplyNestedCss}
+      `;
+
+      const Div = scStyled('div')`
+        ${({ color }) => color && nestedCss}
+      `;
+
+      it('should resolve nested functions with props', () => {
+        const { container } = render(<Div color={redColor}>Test</Div>);
+
+        expect(container.firstChild).toHaveComputedStyle({
+          color: redColor,
+        });
+      });
+
+      it('should resolve nested functions with mui theme', () => {
+        render(<Div color={redColor}>Test</Div>);
+
+        expect(cssStub.firstCall.firstArg.theme).to.equal(systemDefaultTheme);
+      });
+    });
+  });
 
   describe('displayName', () => {
     // These tests rely on implementation details (namely `displayName`)

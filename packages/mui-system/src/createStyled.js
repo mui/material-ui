@@ -1,5 +1,7 @@
 /* eslint-disable no-underscore-dangle */
-import styledEngineStyled, { internal_processStyles as processStyles } from '@mui/styled-engine';
+import defaultStyledEngineStyled, {
+  internal_processStyles as defaultProcessStyles,
+} from '@mui/styled-engine';
 import {
   getDisplayName,
   unstable_capitalize as capitalize,
@@ -203,6 +205,8 @@ const createResolveExpression = ({ defaultTheme, themeId }) => {
 
 export default function createStyled(input = {}) {
   const {
+    styledEngineStyled = defaultStyledEngineStyled,
+    processStyles = defaultProcessStyles,
     themeId,
     defaultTheme = systemDefaultTheme,
     rootShouldForwardProp = shouldForwardProp,
