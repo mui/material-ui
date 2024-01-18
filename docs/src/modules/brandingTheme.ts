@@ -456,12 +456,17 @@ export function getThemedComponents(): ThemeOptions {
       MuiButtonBase: {
         defaultProps: {
           disableTouchRipple: true,
+          disableRipple: true,
         },
         styleOverrides: {
-          root: {
+          root: ({ theme }) => ({
             transition: 'all 100ms ease-in',
             '&:active': { transform: 'scale(.98)' },
-          },
+            '&:focus-visible': {
+              outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
+              outlineOffset: '2px',
+            },
+          }),
         },
       },
       MuiButton: {
@@ -848,7 +853,7 @@ export function getThemedComponents(): ThemeOptions {
           underline: 'none',
         },
         styleOverrides: {
-          root: {
+          root: ({ theme }) => ({
             fontWeight: 700,
             display: 'inline-flex',
             alignItems: 'center',
@@ -858,7 +863,11 @@ export function getThemedComponents(): ThemeOptions {
             '& svg:last-child': {
               marginLeft: 2,
             },
-          },
+            '&:focus-visible': {
+              outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
+              outlineOffset: '2px',
+            },
+          }),
         },
         variants: [
           {
@@ -1083,6 +1092,10 @@ export function getThemedComponents(): ThemeOptions {
                   '&:hover': {
                     borderColor: (theme.vars || theme).palette.primary[200],
                     boxShadow: `0px 4px 16px ${(theme.vars || theme).palette.grey[200]}`,
+                  },
+                  '&:focus-visible': {
+                    outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
+                    outlineOffset: '2px',
                   },
                 },
                 ':is(a&), :is(button&)': {
