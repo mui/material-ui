@@ -543,7 +543,7 @@ export function getThemedComponents(): ThemeOptions {
                 borderColor: (theme.vars || theme).palette.primary[100],
                 boxShadow: `${theme.palette.primary[50]} 0 2px 1px inset, ${alpha(
                   theme.palette.primary[100],
-                  0.4,
+                  0.2,
                 )} 0 -3px 1px inset, ${alpha(theme.palette.primary[100], 0.3)} 0 2px 4px 0`,
                 '&:hover': {
                   background: (theme.vars || theme).palette.primary[50],
@@ -551,7 +551,7 @@ export function getThemedComponents(): ThemeOptions {
                 },
                 ...theme.applyDarkStyles({
                   color: (theme.vars || theme).palette.primary[200],
-                  borderColor: alpha(theme.palette.primary[900], 0.5),
+                  borderColor: alpha(theme.palette.primary[900], 0.7),
                   backgroundColor: alpha(theme.palette.primary[900], 0.2),
                   boxShadow: `${alpha(theme.palette.primary[900], 0.1)} 0 2px 1px inset, ${alpha(
                     theme.palette.common.black,
