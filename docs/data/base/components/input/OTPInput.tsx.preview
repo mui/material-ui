@@ -1,2 +1,2 @@
-<OTP separator={<span>-</span>} value={otp} onChange={setOtp} inputCount={5} />
+<OTP separator={<span>-</span>} value={otp} onChange={setOtp} length={5} />
 <span>Entered value: {otp}</span>

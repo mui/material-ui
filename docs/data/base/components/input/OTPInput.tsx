@@ -4,17 +4,17 @@ import { Box, styled } from '@mui/system';
 
 function OTP({
   separator,
-  inputCount,
+  length,
   value,
   onChange,
 }: {
   separator: React.ReactNode;
-  inputCount: number;
+  length: number;
   value: string;
   onChange: React.Dispatch<React.SetStateAction<string>>;
 }) {
   const inputRefs = React.useRef<HTMLInputElement[]>(
-    new Array(inputCount).fill(null),
+    new Array(length).fill(null),
   );
 
   const focusInput = (targetIndex: number) => {
@@ -46,7 +46,7 @@ function OTP({
         break;
       case 'ArrowRight':
         event.preventDefault();
-        if (currentIndex < inputCount - 1) {
+        if (currentIndex < length - 1) {
           focusInput(currentIndex + 1);
           selectInput(currentIndex + 1);
         }
@@ -100,7 +100,7 @@ function OTP({
       return otpArray.join('');
     });
     if (currentValue !== '') {
-      if (currentIndex < inputCount - 1) {
+      if (currentIndex < length - 1) {
         focusInput(currentIndex + 1);
       }
     }
@@ -123,7 +123,7 @@ function OTP({
     // Check if there is text data in the clipboard
     if (clipboardData.types.includes('text/plain')) {
       let pastedText = clipboardData.getData('text/plain');
-      pastedText = pastedText.substring(0, inputCount).trim();
+      pastedText = pastedText.substring(0, length).trim();
       let indexToEnter = 0;
 
       while (indexToEnter <= currentIndex) {
@@ -136,7 +136,7 @@ function OTP({
 
       const otpArray = value.split('');
 
-      for (let i = indexToEnter; i < inputCount; i += 1) {
+      for (let i = indexToEnter; i < length; i += 1) {
         const lastValue = pastedText[i - indexToEnter] ?? ' ';
         otpArray[i] = lastValue;
       }
@@ -147,7 +147,7 @@ function OTP({
 
   return (
     <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-      {new Array(inputCount).fill(null).map((_, index) => (
+      {new Array(length).fill(null).map((_, index) => (
         <React.Fragment key={index}>
           <BaseInput
             slots={{
@@ -167,7 +167,7 @@ function OTP({
               },
             }}
           />
-          {index === inputCount - 1 ? null : separator}
+          {index === length - 1 ? null : separator}
         </React.Fragment>
       ))}
     </Box>
@@ -185,7 +185,7 @@ export default function OTPInput() {
         gap: 2,
       }}
     >
-      <OTP separator={<span>-</span>} value={otp} onChange={setOtp} inputCount={5} />
+      <OTP separator={<span>-</span>} value={otp} onChange={setOtp} length={5} />
       <span>Entered value: {otp}</span>
     </Box>
   );

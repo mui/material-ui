@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Input as BaseInput } from '@mui/base/Input';
 import { Box, styled } from '@mui/system';
 
-function OTP({ separator, inputCount, value, onChange }) {
-  const inputRefs = React.useRef(new Array(inputCount).fill(null));
+function OTP({ separator, length, value, onChange }) {
+  const inputRefs = React.useRef(new Array(length).fill(null));
 
   const focusInput = (targetIndex) => {
     const targetInput = inputRefs.current[targetIndex];
@@ -32,7 +32,7 @@ function OTP({ separator, inputCount, value, onChange }) {
         break;
       case 'ArrowRight':
         event.preventDefault();
-        if (currentIndex < inputCount - 1) {
+        if (currentIndex < length - 1) {
           focusInput(currentIndex + 1);
           selectInput(currentIndex + 1);
         }
@@ -83,7 +83,7 @@ function OTP({ separator, inputCount, value, onChange }) {
       return otpArray.join('');
     });
     if (currentValue !== '') {
-      if (currentIndex < inputCount - 1) {
+      if (currentIndex < length - 1) {
         focusInput(currentIndex + 1);
       }
     }
@@ -100,7 +100,7 @@ function OTP({ separator, inputCount, value, onChange }) {
     // Check if there is text data in the clipboard
     if (clipboardData.types.includes('text/plain')) {
       let pastedText = clipboardData.getData('text/plain');
-      pastedText = pastedText.substring(0, inputCount).trim();
+      pastedText = pastedText.substring(0, length).trim();
       let indexToEnter = 0;
 
       while (indexToEnter <= currentIndex) {
@@ -113,7 +113,7 @@ function OTP({ separator, inputCount, value, onChange }) {
 
       const otpArray = value.split('');
 
-      for (let i = indexToEnter; i < inputCount; i += 1) {
+      for (let i = indexToEnter; i < length; i += 1) {
         const lastValue = pastedText[i - indexToEnter] ?? ' ';
         otpArray[i] = lastValue;
       }
@@ -124,7 +124,7 @@ function OTP({ separator, inputCount, value, onChange }) {
 
   return (
     <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-      {new Array(inputCount).fill(null).map((_, index) => (
+      {new Array(length).fill(null).map((_, index) => (
         <React.Fragment key={index}>
           <BaseInput
             slots={{
@@ -144,7 +144,7 @@ function OTP({ separator, inputCount, value, onChange }) {
               },
             }}
           />
-          {index === inputCount - 1 ? null : separator}
+          {index === length - 1 ? null : separator}
         </React.Fragment>
       ))}
     </Box>
@@ -152,7 +152,7 @@ function OTP({ separator, inputCount, value, onChange }) {
 }
 
 OTP.propTypes = {
-  inputCount: PropTypes.number.isRequired,
+  length: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
   separator: PropTypes.node,
   value: PropTypes.string.isRequired,
@@ -169,7 +169,7 @@ export default function OTPInput() {
         gap: 2,
       }}
     >
-      <OTP separator={<span>-</span>} value={otp} onChange={setOtp} inputCount={5} />
+      <OTP separator={<span>-</span>} value={otp} onChange={setOtp} length={5} />
       <span>Entered value: {otp}</span>
     </Box>
   );
