@@ -26,6 +26,7 @@
     "@linaria/tags": "^5.0.2",
     "@linaria/utils": "^5.0.2",
     "@mui/system": "workspace:^",
+    "lodash.merge": "^4.6.2",
     "lodash.set": "^4.3.2",
     "lodash.get": "^4.4.2",
     "stylis": "^4.2.0"
@@ -36,6 +37,7 @@
     "@types/babel__helper-plugin-utils": "^7.10.3",
     "@types/cssesc": "^3.0.2",
     "@types/lodash.get": "^4.4.9",
+    "@types/lodash.merge": "^4.6.9",
     "@types/lodash.set": "^4.3.9",
     "@types/node": "^18.19.7",
     "@types/react": "^18.2.31",
@@ -55,7 +57,8 @@
       "default": "./exports/styled.js",
       "sx": "./exports/sx.js",
       "keyframes": "./exports/keyframes.js",
-      "generateAtomics": "./exports/generateAtomics.js"
+      "generateAtomics": "./exports/generateAtomics.js",
+      "css": "./exports/css.js"
     }
   },
   "files": [

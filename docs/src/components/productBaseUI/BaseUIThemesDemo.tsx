@@ -10,7 +10,6 @@ import { MenuItem, menuItemClasses } from '@mui/base/MenuItem';
 import { MenuButton } from '@mui/base/MenuButton';
 import { Modal, modalClasses } from '@mui/base/Modal';
 import { Option } from '@mui/base/Option';
-import { Popper } from '@mui/base/Popper';
 import { Select } from '@mui/base/Select';
 import { Slider, sliderClasses } from '@mui/base/Slider';
 import { Snackbar } from '@mui/base/Snackbar';
@@ -112,7 +111,7 @@ const StyledTab = styled('button')({
   userSelect: 'none',
   transition: 'all 100ms ease',
 
-  '&:hover:not(.Mui-selected)': {
+  '&:hover:not(.base--selected)': {
     background: 'var(--Tab-hoverBackground)',
   },
 
@@ -121,7 +120,7 @@ const StyledTab = styled('button')({
     outlineOffset: -4,
   },
 
-  '&.Mui-selected': {
+  '&.base--selected': {
     color: 'var(--color-primary)',
 
     '&::after': {
@@ -234,7 +233,7 @@ const StyledButton = styled('button')({
   },
 });
 
-const StyledPopper = styled(Popper)({
+const Popup = styled('div')({
   zIndex: 1,
 });
 
@@ -291,12 +290,12 @@ const StyledListbox = styled('ul')({
       cursor: 'pointer',
       borderRadius: 'calc(var(--_listbox-radius) - var(--Select-spacing) * 0.05)',
 
-      '&:hover, &.MuiOption-highlighted': {
+      '&:hover, &.base-Option-highlighted': {
         backgroundColor: 'var(--Option-hoverBackground, var(--muidocs-palette-grey-50))',
         color: 'var(--muidocs-palette-text-primary)',
       },
 
-      '&.Mui-selected': {
+      '&.base--selected': {
         backgroundColor: 'var(--Option-selectedBackground, var(--muidocs-palette-grey-50))',
         borderColor: 'var(--border-color)',
         color: 'var(--muidocs-palette-text-primary)',
@@ -514,7 +513,7 @@ const StyledSwitch = styled('span')(`
 const Backdrop = React.forwardRef<HTMLDivElement, { open?: boolean; className: string }>(
   (props, ref) => {
     const { open, className, ...other } = props;
-    return <div className={clsx({ 'MuiBackdrop-open': open }, className)} ref={ref} {...other} />;
+    return <div className={clsx({ 'base-Backdrop-open': open }, className)} ref={ref} {...other} />;
   },
 );
 
@@ -885,11 +884,11 @@ export default function BaseUIThemesDemo() {
             defaultValue={10}
             slots={{
               root: StyledSelectButton,
-              popper: StyledPopper,
+              popup: Popup,
               listbox: StyledListbox,
             }}
             slotProps={{
-              popper: {
+              popup: {
                 disablePortal: true,
               },
             }}
