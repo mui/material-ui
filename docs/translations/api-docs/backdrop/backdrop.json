@@ -20,16 +20,13 @@
       "description": "The extra props for the slot components. You can override the existing props or add new ones.<br>This prop is an alias for the <code>componentsProps</code> prop, which will be deprecated in the future."
     },
     "slots": {
-      "type": { "name": "shape", "description": "{ transition?: elementType }" },
-      "default": "{}"
+      "description": "The components used for each slot inside.<br>This prop is an alias for the <code>components</code> prop, which will be deprecated in the future."
     },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
     "TransitionComponent": {
-      "type": { "name": "elementType" },
-      "deprecated": true,
-      "deprecationInfo": "Use <code>slots.transition</code> instead. This prop will be removed in v7."
+      "description": "The component used for the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
     },
     "transitionDuration": {
       "description": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object."
@@ -42,5 +39,8 @@
       "conditions": "<code>invisible={true}</code>"
     },
     "root": { "description": "Styles applied to the root element." }
+  },
+  "slotDescriptions": {
+    "transition": "The component that renders the transition.\n[Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component."
   }
 }

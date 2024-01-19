@@ -11,10 +11,10 @@ export interface BackdropSlots {
   /**
    * The component that renders the transition.
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-   * @default Collapse
+   * @default Fade
    */
   transition?: React.JSXElementConstructor<
-    TransitionProps & { children?: React.ReactElement<any, any> }
+    TransitionProps & { children: React.ReactElement<any, any> }
   >;
 }
 export interface BackdropComponentsPropsOverrides {}
@@ -24,6 +24,7 @@ export interface BackdropTransitionSlotPropsOverrides {}
 export type BackdropSlotsAndSlotProps = CreateSlotsAndSlotProps<
   BackdropSlots,
   {
+    root: React.HTMLAttributes<HTMLDivElement> & BackdropComponentsPropsOverrides;
     transition: SlotProps<
       React.JSXElementConstructor<TransitionProps>,
       BackdropTransitionSlotPropsOverrides,

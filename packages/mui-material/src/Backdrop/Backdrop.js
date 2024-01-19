@@ -76,6 +76,7 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
     elementType: Fade,
     externalForwardedProps: {
       slots: backwardCompatibleSlots,
+      slotProps,
     },
     ownerState,
   });
