@@ -13,11 +13,11 @@ type UseHostElementNameParameters = {
    */
   componentName?: string;
 };
+
 /**
+ * @ignore - do not document.
  *
- * API:
- *
- * - [useHostElementName API](https://mui.com/base-ui/api/use-host-element-name/)
+ * Use this function determine the host element correctly on the server (in a SSR context, e.g. Next.js)
  */
 export function useHostElementName(
   parameters: UseHostElementNameParameters,
