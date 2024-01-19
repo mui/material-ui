@@ -16,13 +16,11 @@ const TRANSITION_DURATION = 100;
 
 function FakeTransition(props: React.PropsWithChildren<{}>) {
   const { children: transitionChildren } = props;
-  const { requestedEnter, onExited, onEntering } = useTransitionStateManager();
+  const { requestedEnter, onExited } = useTransitionStateManager();
 
   React.useEffect(() => {
     let timeoutId: NodeJS.Timeout | null = null;
-    if (requestedEnter) {
-      onEntering();
-    } else {
+    if (!requestedEnter) {
       timeoutId = setTimeout(() => {
         act(() => onExited());
       }, TRANSITION_DURATION);
@@ -35,7 +33,7 @@ function FakeTransition(props: React.PropsWithChildren<{}>) {
         timeoutId = null;
       }
     };
-  }, [requestedEnter, onExited, onEntering]);
+  }, [requestedEnter, onExited]);
 
   return <div>{transitionChildren}</div>;
 }
@@ -387,12 +385,12 @@ describe('<Popup />', () => {
     });
   });
 
-  describe('display', () => {
+  describe('visibility', () => {
     clock.withFakeTimers();
 
-    it('should keep display:none when not toggled and transition/keepMounted/disablePortal props are set', async () => {
+    it('should keep visibility:hidden when not toggled and transition/keepMounted/disablePortal props are set', async () => {
       const { getByRole, setProps } = render(
-        <Popup {...defaultProps} open={false} keepMounted withTransition disablePortal>
+        <Popup {...defaultProps} open={false} keepMounted disablePortal>
           <FakeTransition>
             <span>Hello World</span>
           </FakeTransition>

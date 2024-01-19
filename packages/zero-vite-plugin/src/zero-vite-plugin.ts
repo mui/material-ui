@@ -43,6 +43,7 @@ export default function zeroVitePlugin({
   preprocessor,
   transformLibraries = [],
   overrideContext,
+  tagResolver,
   ...rest
 }: VitePluginOptions = {}): Plugin {
   const filter = createFilter(include, exclude);
@@ -116,7 +117,7 @@ export default function zeroVitePlugin({
       let shouldReturn = url.includes('node_modules');
 
       if (shouldReturn) {
-        shouldReturn = !transformLibraries.some((libName) => url.includes(libName));
+        shouldReturn = !transformLibraries.some((libName: string) => url.includes(libName));
       }
 
       if (shouldReturn) {
@@ -133,6 +134,10 @@ export default function zeroVitePlugin({
       log('Vite transform', getFileIdx(id));
 
       const asyncResolve = async (what: string, importer: string, stack: string[]) => {
+        // @TODO - Remove this when @mui/system published esm files by default at the base directory
+        if (what.startsWith('@mui/system') && !what.includes('esm')) {
+          return what.replace('@mui/system', '@mui/system/esm');
+        }
         const resolved = await this.resolve(what, importer);
         if (resolved) {
           if (resolved.external) {
@@ -194,6 +199,16 @@ export default function zeroVitePlugin({
                     context.$RefreshSig$ = outerNoop;
                   }
                   return context;
+                },
+                tagResolver(source: string, tag: string) {
+                  const tagResult = tagResolver?.(source, tag);
+                  if (tagResult) {
+                    return tagResult;
+                  }
+                  if (source.endsWith('/zero-styled')) {
+                    return `${process.env.RUNTIME_PACKAGE_NAME}/exports/${tag}`;
+                  }
+                  return null;
                 },
               },
             },

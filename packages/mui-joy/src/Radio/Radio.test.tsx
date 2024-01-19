@@ -4,6 +4,7 @@ import { describeConformance, act, createRenderer, fireEvent } from '@mui-intern
 import Radio, { radioClasses as classes } from '@mui/joy/Radio';
 import { ThemeProvider, extendTheme } from '@mui/joy/styles';
 import FormControl from '@mui/joy/FormControl';
+import RadioGroup from '@mui/joy/RadioGroup';
 
 describe('<Radio />', () => {
   const { render } = createRenderer();
@@ -133,5 +134,39 @@ describe('<Radio />', () => {
 
     rerender(<Radio size="sm" />);
     expect(container.firstChild).to.have.class(classes.sizeSm);
+  });
+
+  it('should be checked when it is selected in the radio group', () => {
+    const { getByRole } = render(
+      <RadioGroup defaultValue="1">
+        <Radio value="1" />
+        <Radio value="2" />
+      </RadioGroup>,
+    );
+
+    expect(getByRole('radio', { checked: true })).to.have.property('value', '1');
+  });
+
+  it('should be checked when changing the value', () => {
+    const { getByRole } = render(
+      <RadioGroup defaultValue={1}>
+        <Radio name="0" value={0} />
+        <Radio name="1" value={1} />
+      </RadioGroup>,
+    );
+
+    expect(getByRole('radio', { checked: true })).to.have.property('value', '1');
+
+    act(() => {
+      getByRole('radio', { checked: false }).click();
+    });
+
+    expect(getByRole('radio', { checked: true })).to.have.property('value', '0');
+
+    act(() => {
+      getByRole('radio', { checked: false }).click();
+    });
+
+    expect(getByRole('radio', { checked: true })).to.have.property('value', '1');
   });
 });

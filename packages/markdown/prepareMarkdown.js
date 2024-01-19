@@ -49,7 +49,6 @@ function resolveComponentApiUrl(productId, componentPkg, component) {
 function prepareMarkdown(config) {
   const { fileRelativeContext, translations, componentPackageMapping = {}, options } = config;
 
-  const demos = {};
   /**
    * @type {Record<string, { rendered: Array<string | { component: string } | { demo:string }> }>}
    */
@@ -253,7 +252,7 @@ ${headers.hooks
     }
   }
 
-  return { demos, docs };
+  return { docs };
 }
 
 module.exports = prepareMarkdown;

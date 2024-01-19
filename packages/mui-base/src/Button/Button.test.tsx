@@ -20,7 +20,6 @@ describe('<Button />', () => {
     mount,
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'span',
-    muiName: 'MuiButton',
     slots: {
       root: {
         expectedClassName: buttonClasses.root,
