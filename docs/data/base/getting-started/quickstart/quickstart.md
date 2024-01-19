@@ -30,7 +30,7 @@ pnpm add @mui/base
 
 <!-- #react-peer-version -->
 
-Please note that [react](https://www.npmjs.com/package/react) and [react-dom](https://www.npmjs.com/package/react-dom) are peer dependencies too:
+Please note that [react](https://www.npmjs.com/package/react) and [react-dom](https://www.npmjs.com/package/react-dom) are peer dependencies, meaning you should ensure they are installed before installing Base UI.
 
 ```json
 "peerDependencies": {
@@ -111,7 +111,7 @@ Base UI components like the Button come with a classes object (e.g. `buttonClass
 ```css
 /* To style the disabled state: */
 
-.${buttonClasses.disabled} { /* ".MuiButton-disabled" */
+.${buttonClasses.disabled} { /* ".base-Button-disabled" */
   cursor: not-allowed;
 }
 ```

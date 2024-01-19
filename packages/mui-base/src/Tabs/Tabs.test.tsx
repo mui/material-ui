@@ -35,7 +35,6 @@ describe('<Tabs />', () => {
     inheritComponent: 'div',
     render,
     mount,
-    muiName: 'MuiTabs',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'header',
     slots: {

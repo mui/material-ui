@@ -28,25 +28,25 @@
       "name": "root",
       "description": "The component that renders the popup element.",
       "default": "'div'",
-      "class": "MuiMenu-root"
+      "class": "base-Menu-root"
     },
     {
       "name": "listbox",
       "description": "The component that renders the listbox.",
       "default": "'ul'",
-      "class": "MuiMenu-listbox"
+      "class": "base-Menu-listbox"
     }
   ],
   "classes": [
     {
       "key": "expanded",
-      "className": "Mui-expanded",
+      "className": "base--expanded",
       "description": "State class applied to the root element if `open={true}`.",
       "isGlobal": true
     }
   ],
   "spread": true,
-  "muiName": "MuiMenu",
+  "muiName": "Menu",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/Menu/Menu.tsx",
   "inheritance": null,

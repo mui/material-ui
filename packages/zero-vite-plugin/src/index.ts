@@ -1,17 +1,19 @@
 import type { Plugin } from 'vite';
-import {
-  generateCss,
-  preprocessor as basePreprocessor,
-  generateThemeTokens,
-} from '@mui/zero-runtime/utils';
+import { preprocessor as basePreprocessor, generateThemeTokens } from '@mui/zero-runtime/utils';
 import { transformAsync } from '@babel/core';
 import baseZeroVitePlugin, { type VitePluginOptions } from './zero-vite-plugin';
+
+type BaseTheme = {
+  cssVarPrefix: string;
+  colorSchemes: Record<string, unknown>;
+  generateCssVars: (colorScheme?: string) => { css: Record<string, string> };
+};
 
 export interface ZeroVitePluginOptions extends VitePluginOptions {
   /**
    * The theme object that you want to be passed to the `styled` function
    */
-  theme: unknown;
+  theme: BaseTheme;
   /**
    * Prefix string to use in the generated css variables.
    */
@@ -45,19 +47,12 @@ function isZeroRuntimeProcessableFile(fileName: string, transformLibraries: stri
 
 export function zeroVitePlugin(options: ZeroVitePluginOptions) {
   const {
-    cssVariablesPrefix = 'mui',
-    injectDefaultThemeInRoot = true,
     theme,
     babelOptions = {},
     preprocessor = basePreprocessor,
     transformLibraries = [],
     ...rest
   } = options ?? {};
-  const isExtendTheme = !!(theme && typeof theme === 'object' && 'vars' in theme && theme.vars);
-  const varPrefix: string =
-    isExtendTheme && 'cssVarPrefix' in theme
-      ? (theme.cssVarPrefix as string) ?? cssVariablesPrefix
-      : cssVariablesPrefix;
 
   function injectMUITokensPlugin(): Plugin {
     return {
@@ -74,22 +69,10 @@ export function zeroVitePlugin(options: ZeroVitePluginOptions) {
       },
       load(id) {
         if (id === VIRTUAL_CSS_FILE) {
-          return generateCss(
-            {
-              cssVariablesPrefix: varPrefix,
-              themeArgs: {
-                theme,
-              },
-            },
-            {
-              defaultThemeKey: 'theme',
-              injectInRoot: injectDefaultThemeInRoot,
-            },
-          );
+          return generateThemeTokens(theme);
         }
         if (id === VIRTUAL_THEME_FILE) {
-          const tokens = generateThemeTokens(theme, varPrefix);
-          return `export default ${JSON.stringify(tokens)};`;
+          return `export default ${JSON.stringify(theme)};`;
         }
         return null;
       },
@@ -125,7 +108,7 @@ export function zeroVitePlugin(options: ZeroVitePluginOptions) {
   }
 
   const zeroPlugin = baseZeroVitePlugin({
-    cssVariablesPrefix: varPrefix,
+    cssVariablesPrefix: theme.cssVarPrefix,
     themeArgs: {
       theme,
     },

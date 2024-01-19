@@ -1,6 +1,6 @@
 {
   "name": "@mui/material-next",
-  "version": "6.0.0-alpha.116",
+  "version": "6.0.0-alpha.118",
   "private": false,
   "author": "MUI Team",
   "description": "v6-alpha: React components that implement Google's Material Design",
@@ -40,7 +40,7 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.7",
+    "@babel/runtime": "^7.23.8",
     "@mui/base": "workspace:*",
     "@mui/material": "workspace:^",
     "@mui/system": "workspace:^",
@@ -63,11 +63,11 @@
     "@types/react-dom": "^18.2.18",
     "@types/react-is": "^18.2.3",
     "@types/sinon": "^10.0.20",
-    "chai": "^4.4.0",
+    "chai": "^4.4.1",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.21.1",
+    "react-router-dom": "^6.21.2",
     "sinon": "^15.2.0"
   },
   "peerDependencies": {

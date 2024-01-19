@@ -1,4 +1,4 @@
-import { mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import * as ts from 'typescript';
 import * as astTypes from 'ast-types';
@@ -10,15 +10,17 @@ import kebabCase from 'lodash/kebabCase';
 import upperFirst from 'lodash/upperFirst';
 import { renderMarkdown } from '@mui/markdown';
 import { ProjectSettings } from '../ProjectSettings';
-import { toGitHubPath, computeApiDescription } from './ComponentApiBuilder';
+import { computeApiDescription } from './ComponentApiBuilder';
 import {
   getSymbolDescription,
   getSymbolJSDocTags,
   HookInfo,
   stringifySymbol,
+  toGitHubPath,
   writePrettifiedFile,
 } from '../buildApiUtils';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
+import generateApiTranslations from '../utils/generateApiTranslation';
 
 interface ParsedProperty {
   name: string;
@@ -86,6 +88,10 @@ export interface ReactApi extends ReactDocgenApi {
       };
     };
   };
+  /**
+   * The folder used to store the API translation.
+   */
+  apiDocsTranslationFolder?: string;
 }
 
 /**
@@ -428,47 +434,6 @@ const generateApiJson = (outputDirectory: string, reactApi: ReactApi) => {
     path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.json`),
     JSON.stringify(pageContent),
   );
-};
-
-const generateApiTranslations = (
-  outputDirectory: string,
-  reactApi: ReactApi,
-  languages: string[],
-) => {
-  const hookName = reactApi.name;
-  const apiDocsTranslationPath = path.resolve(outputDirectory, kebabCase(hookName));
-  function resolveApiDocsTranslationsComponentLanguagePath(
-    language: (typeof languages)[0],
-  ): string {
-    const languageSuffix = language === 'en' ? '' : `-${language}`;
-
-    return path.join(apiDocsTranslationPath, `${kebabCase(hookName)}${languageSuffix}.json`);
-  }
-
-  mkdirSync(apiDocsTranslationPath, {
-    mode: 0o777,
-    recursive: true,
-  });
-
-  writePrettifiedFile(
-    resolveApiDocsTranslationsComponentLanguagePath('en'),
-    JSON.stringify(reactApi.translations),
-  );
-
-  languages.forEach((language) => {
-    if (language !== 'en') {
-      try {
-        writePrettifiedFile(
-          resolveApiDocsTranslationsComponentLanguagePath(language),
-          JSON.stringify(reactApi.translations),
-          undefined,
-          { flag: 'wx' },
-        );
-      } catch (error) {
-        // File exists
-      }
-    }
-  });
 };
 
 const extractInfoFromType = (typeName: string, project: TypeScriptProject): ParsedProperty[] => {
