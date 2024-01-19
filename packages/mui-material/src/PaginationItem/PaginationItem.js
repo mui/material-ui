@@ -41,6 +41,7 @@ const useUtilityClasses = (ownerState) => {
       `size${capitalize(size)}`,
       variant,
       shape,
+      color !== 'standard' && `color${capitalize(color)}`,
       color !== 'standard' && `${variant}${capitalize(color)}`,
       disabled && 'disabled',
       selected && 'selected',
@@ -333,10 +334,10 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
 });
 
 PaginationItem.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */

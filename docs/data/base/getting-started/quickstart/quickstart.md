@@ -30,7 +30,7 @@ pnpm add @mui/base
 
 <!-- #react-peer-version -->
 
-Please note that [react](https://www.npmjs.com/package/react) and [react-dom](https://www.npmjs.com/package/react-dom) are peer dependencies too:
+Please note that [react](https://www.npmjs.com/package/react) and [react-dom](https://www.npmjs.com/package/react-dom) are peer dependencies, meaning you should ensure they are installed before installing Base UI.
 
 ```json
 "peerDependencies": {
@@ -41,7 +41,7 @@ Please note that [react](https://www.npmjs.com/package/react) and [react-dom](ht
 
 ## Implementing a Button
 
-This is a quick tutorial that goes through the basics of using and styling Base UI components by replicating a button from GitHub's UI, using their [Primer design system](https://primer.style/components/button) as a reference.
+This is a quick tutorial that goes through the basics of using and styling Base UI components by replicating a button from GitHub's UI, using their [Primer design system](https://primer.style/components/button/) as a reference.
 
 {{"demo": "Tutorial.js", "defaultCodeOpen": false, "hideToolbar": true}}
 
@@ -111,7 +111,7 @@ Base UI components like the Button come with a classes object (e.g. `buttonClass
 ```css
 /* To style the disabled state: */
 
-.${buttonClasses.disabled} { /* ".MuiButton-disabled" */
+.${buttonClasses.disabled} { /* ".base-Button-disabled" */
   cursor: not-allowed;
 }
 ```

@@ -8,6 +8,7 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
   visuallyHidden,
+  clamp,
 } from '@mui/utils';
 import {
   Mark,
@@ -23,13 +24,6 @@ const INTENTIONAL_DRAG_COUNT_THRESHOLD = 2;
 
 function asc(a: number, b: number) {
   return a - b;
-}
-
-function clamp(value: number, min: number, max: number) {
-  if (value == null) {
-    return min;
-  }
-  return Math.min(Math.max(min, value), max);
 }
 
 function findClosest(values: number[], currentValue: number) {
@@ -259,7 +253,8 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
   const range = Array.isArray(valueDerived);
   let values = range ? valueDerived.slice().sort(asc) : [valueDerived];
-  values = values.map((value) => clamp(value, min, max));
+  values = values.map((value) => (value == null ? min : clamp(value, min, max)));
+
   const marks =
     marksProp === true && step !== null
       ? [...Array(Math.floor((max - min) / step) + 1)].map((_, index) => ({
@@ -305,7 +300,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     if (disabled && sliderRef.current!.contains(document.activeElement)) {
       // This is necessary because Firefox and Safari will keep focus
       // on a disabled element:
-      // https://codesandbox.io/s/mui-pr-22247-forked-h151h?file=/src/App.js
+      // https://codesandbox.io/p/sandbox/mui-pr-22247-forked-h151h?file=/src/App.js
       // @ts-ignore
       document.activeElement?.blur();
     }
@@ -536,8 +531,8 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
     moveCount.current = 0;
     const doc = ownerDocument(sliderRef.current);
-    doc.addEventListener('touchmove', handleTouchMove);
-    doc.addEventListener('touchend', handleTouchEnd);
+    doc.addEventListener('touchmove', handleTouchMove, { passive: true });
+    doc.addEventListener('touchend', handleTouchEnd, { passive: true });
   });
 
   const stopListening = React.useCallback(() => {
@@ -555,10 +550,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     });
 
     return () => {
-      // @ts-ignore
-      slider!.removeEventListener('touchstart', handleTouchStart, {
-        passive: doesSupportTouchActionNone(),
-      });
+      slider!.removeEventListener('touchstart', handleTouchStart);
 
       stopListening();
     };
@@ -602,7 +594,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
       moveCount.current = 0;
       const doc = ownerDocument(sliderRef.current);
-      doc.addEventListener('mousemove', handleTouchMove);
+      doc.addEventListener('mousemove', handleTouchMove, { passive: true });
       doc.addEventListener('mouseup', handleTouchEnd);
     };
 

@@ -5,8 +5,8 @@ import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import useTheme from '../styles/useTheme';
 import IconButton from '../IconButton';
-import LastPageIcon from '../internal/svg-icons/LastPage';
-import FirstPageIcon from '../internal/svg-icons/FirstPage';
+import LastPageIconDefault from '../internal/svg-icons/LastPage';
+import FirstPageIconDefault from '../internal/svg-icons/FirstPage';
 
 /**
  * @ignore - internal component.
@@ -23,7 +23,8 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
     rowsPerPage,
     showFirstButton,
     showLastButton,
-    slotProps,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -45,49 +46,88 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
     onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
 
+  const FirstButton = slots.firstButton ?? IconButton;
+  const LastButton = slots.lastButton ?? IconButton;
+  const NextButton = slots.nextButton ?? IconButton;
+  const PreviousButton = slots.previousButton ?? IconButton;
+  const FirstButtonIcon = slots.firstButtonIcon ?? FirstPageIconDefault;
+  const LastButtonIcon = slots.lastButtonIcon ?? LastPageIconDefault;
+  const NextButtonIcon = slots.nextButtonIcon ?? KeyboardArrowRight;
+  const PreviousButtonIcon = slots.previousButtonIcon ?? KeyboardArrowLeft;
+
+  const FirstButtonSlot = theme.direction === 'rtl' ? LastButton : FirstButton;
+  const PreviousButtonSlot = theme.direction === 'rtl' ? NextButton : PreviousButton;
+  const NextButtonSlot = theme.direction === 'rtl' ? PreviousButton : NextButton;
+  const LastButtonSlot = theme.direction === 'rtl' ? FirstButton : LastButton;
+
+  const firstButtonSlotProps =
+    theme.direction === 'rtl' ? slotProps.lastButton : slotProps.firstButton;
+  const previousButtonSlotProps =
+    theme.direction === 'rtl' ? slotProps.nextButton : slotProps.previousButton;
+  const nextButtonSlotProps =
+    theme.direction === 'rtl' ? slotProps.previousButton : slotProps.nextButton;
+  const lastButtonSlotProps =
+    theme.direction === 'rtl' ? slotProps.firstButton : slotProps.lastButton;
+
   return (
     <div ref={ref} {...other}>
       {showFirstButton && (
-        <IconButton
+        <FirstButtonSlot
           onClick={handleFirstPageButtonClick}
           disabled={disabled || page === 0}
           aria-label={getItemAriaLabel('first', page)}
           title={getItemAriaLabel('first', page)}
-          {...(slotProps?.firstButton ?? {})}
+          {...firstButtonSlotProps}
         >
-          {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
-        </IconButton>
+          {theme.direction === 'rtl' ? (
+            <LastButtonIcon {...slotProps.lastButtonIcon} />
+          ) : (
+            <FirstButtonIcon {...slotProps.firstButtonIcon} />
+          )}
+        </FirstButtonSlot>
       )}
-      <IconButton
+      <PreviousButtonSlot
         onClick={handleBackButtonClick}
         disabled={disabled || page === 0}
         color="inherit"
         aria-label={getItemAriaLabel('previous', page)}
         title={getItemAriaLabel('previous', page)}
-        {...(slotProps?.previousButton ?? backIconButtonProps)}
+        {...(previousButtonSlotProps ?? backIconButtonProps)}
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-      </IconButton>
-      <IconButton
+        {theme.direction === 'rtl' ? (
+          <NextButtonIcon {...slotProps.nextButtonIcon} />
+        ) : (
+          <PreviousButtonIcon {...slotProps.previousButtonIcon} />
+        )}
+      </PreviousButtonSlot>
+      <NextButtonSlot
         onClick={handleNextButtonClick}
         disabled={disabled || (count !== -1 ? page >= Math.ceil(count / rowsPerPage) - 1 : false)}
         color="inherit"
         aria-label={getItemAriaLabel('next', page)}
         title={getItemAriaLabel('next', page)}
-        {...(slotProps?.nextButton ?? nextIconButtonProps)}
+        {...(nextButtonSlotProps ?? nextIconButtonProps)}
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-      </IconButton>
+        {theme.direction === 'rtl' ? (
+          <PreviousButtonIcon {...slotProps.previousButtonIcon} />
+        ) : (
+          <NextButtonIcon {...slotProps.nextButtonIcon} />
+        )}
+      </NextButtonSlot>
       {showLastButton && (
-        <IconButton
+        <LastButtonSlot
           onClick={handleLastPageButtonClick}
           disabled={disabled || page >= Math.ceil(count / rowsPerPage) - 1}
           aria-label={getItemAriaLabel('last', page)}
           title={getItemAriaLabel('last', page)}
-          {...(slotProps?.lastButton ?? {})}
+          {...lastButtonSlotProps}
         >
-          {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
-        </IconButton>
+          {theme.direction === 'rtl' ? (
+            <FirstButtonIcon {...slotProps.firstButtonIcon} />
+          ) : (
+            <LastButtonIcon {...slotProps.lastButtonIcon} />
+          )}
+        </LastButtonSlot>
       )}
     </div>
   );
@@ -150,9 +190,28 @@ TablePaginationActions.propTypes = {
    */
   slotProps: PropTypes.shape({
     firstButton: PropTypes.object,
+    firstButtonIcon: PropTypes.object,
     lastButton: PropTypes.object,
+    lastButtonIcon: PropTypes.object,
     nextButton: PropTypes.object,
+    nextButtonIcon: PropTypes.object,
     previousButton: PropTypes.object,
+    previousButtonIcon: PropTypes.object,
+  }),
+  /**
+   * The components used for each slot inside the TablePaginationActions.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    firstButton: PropTypes.elementType,
+    firstButtonIcon: PropTypes.elementType,
+    lastButton: PropTypes.elementType,
+    lastButtonIcon: PropTypes.elementType,
+    nextButton: PropTypes.elementType,
+    nextButtonIcon: PropTypes.elementType,
+    previousButton: PropTypes.elementType,
+    previousButtonIcon: PropTypes.elementType,
   }),
 };
 

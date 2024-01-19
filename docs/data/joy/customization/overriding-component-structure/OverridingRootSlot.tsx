@@ -7,7 +7,7 @@ export default function OverridingRootSlot() {
       component="a"
       href="https://mui.com/about/"
       target="_blank"
-      rel="noopener noreferrer"
+      rel="noopener"
     >
       About us
     </Button>

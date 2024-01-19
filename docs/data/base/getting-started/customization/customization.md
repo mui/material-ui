@@ -101,7 +101,7 @@ If you're happy with the default structure of a component's rendered HTML, you c
 
 Each component has its own set of classes.
 Some classes are **static**, which is to say that they are always present on the component.
-Others are applied **conditionally**—like `Mui-disabled`, for example, which is only present when a component is disabled.
+Others are applied **conditionally**—like `base--disabled`, for example, which is only present when a component is disabled.
 
 Each component's API documentation lists all classes that the component uses.
 Additionally, you can import a `[componentName]Classes` object that describes all the classes a given component uses, as the following demo illustrates:

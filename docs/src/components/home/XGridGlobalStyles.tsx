@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { CSSObject, Keyframes } from '@emotion/react';
 import { alpha } from '@mui/material/styles';
 import GlobalStyles from '@mui/material/GlobalStyles';
 
@@ -158,7 +157,7 @@ export default function XGridGlobalStyles({
               },
             },
           },
-        }) as CSSObject | Keyframes,
+        }),
       ]}
     />
   );

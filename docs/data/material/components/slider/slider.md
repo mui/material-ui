@@ -108,6 +108,12 @@ This might be less confusing to users compared to a change in direction.
 
 {{"demo": "VerticalAccessibleSlider.js"}}
 
+## Marks placement
+
+You can customize your slider by adding and repositioning marks for minimum and maximum values.
+
+{{"demo": "CustomMarks.js"}}
+
 ## Track
 
 The track shows the range available for user selection.
@@ -161,13 +167,15 @@ You can solve the issue with:
 
 ## Experimental APIs
 
-### Material You version
+### Material 3 Slider
 
 The default Material UI Slider component follows the Material Design 2 specs.
-To get the Material You ([Material Design 3](https://m3.material.io/)) version, use the new experimental `@mui/material-next` package:
+To use the [Material 3](https://m3.material.io/) version, install the experimental `@mui/material-next` package.
 
 ```js
 import Slider from '@mui/material-next/Slider';
 ```
 
 {{"demo": "SliderMaterialYouPlayground.js", "hideToolbar": true, "bg": "playground"}}
+
+To learn more about Material UI's MD3 implementation, visit the [Material 3 Components documentation](/material-ui/guides/material-3-components/).

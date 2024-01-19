@@ -15,7 +15,7 @@ export default function UnstyledSelectBasic() {
         }}
         slotProps={{
           listbox: { className: 'CustomSelect-listbox' },
-          popper: { className: 'CustomSelect-popper' },
+          popup: { className: 'CustomSelect-popup' },
         }}
         defaultValue={10}
       >
@@ -143,7 +143,7 @@ function Styles() {
           isDarkMode ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
         };
       }
-      .CustomSelect-popper {
+      .CustomSelect-popup {
         z-index: 1;
       }
       .CustomSelect-option {
@@ -169,6 +169,10 @@ function Styles() {
         &.${optionClasses.highlighted}.${optionClasses.selected} {
           background-color: ${isDarkMode ? cyan[700] : cyan[100]};
           color: ${isDarkMode ? cyan[50] : cyan[900]};
+        }
+
+        &:focus-visible {
+          outline: 3px solid ${isDarkMode ? cyan[400] : cyan[300]};
         }
 
         &.${optionClasses.disabled} {

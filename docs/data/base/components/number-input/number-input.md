@@ -24,7 +24,7 @@ Base UI's Number Input component is a customizable replacement for the native HT
 - Incompatibilities with assistive technologies and limited accessibility features
 
 :::info
-See [_Why the GOV.UK Design System team changed the input type for numbers_](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) for a more detailed explanation of the limitations of `<input type="number">`.
+See [Why the GOV.UK Design System team changed the input type for numbers](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) for a more detailed explanation of the limitations of `<input type="number">`.
 :::
 
 {{"demo": "NumberInputIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
@@ -49,10 +49,10 @@ The Base UI Number Input component consists of four slots:
 - `decrementButton`: a `<button>` for decreasing the value
 
 ```html
-<div class="MuiNumberInput-root">
-  <button class="MuiNumberInput-decrementButton" />
-  <button class="MuiNumberInput-incrementButton" />
-  <input class="MuiNumberInput-input" />
+<div class="base-NumberInput-root">
+  <button class="base-NumberInput-decrementButton" />
+  <button class="base-NumberInput-incrementButton" />
+  <input class="base-NumberInput-input" />
 </div>
 ```
 

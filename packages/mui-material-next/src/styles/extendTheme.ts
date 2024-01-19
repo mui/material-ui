@@ -90,7 +90,7 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
     ref: {
       ...input.ref,
       typeface,
-      palette: deepmerge(md3CommonPalette, colorSchemesInput.light?.ref?.palette),
+      palette: deepmerge(md3CommonPalette, input.ref?.palette),
     },
     sys: {
       ...input.sys,
@@ -121,7 +121,7 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
     ref: {
       ...input.ref,
       typeface,
-      palette: deepmerge(md3CommonPalette, colorSchemesInput.dark?.ref?.palette),
+      palette: deepmerge(md3CommonPalette, input.ref?.palette),
     },
     sys: {
       ...input.sys,

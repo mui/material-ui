@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import MuiError from '@mui/utils/macros/MuiError.macro';
+import MuiError from '@mui-internal/babel-macros/MuiError.macro';
 import {
   unstable_useForkRef as useForkRef,
   unstable_useId as useId,
@@ -19,7 +19,7 @@ import {
   UseNumberInputReturnValue,
   StepDirection,
 } from './useNumberInput.types';
-import { clamp, isNumber } from './utils';
+import { clampStepwise, isNumber } from './utils';
 
 const STEP_KEYS = ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown'];
 
@@ -132,7 +132,7 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
         newValue = val;
         setDirtyValue('');
       } else {
-        newValue = clamp(val, min, max, step);
+        newValue = clampStepwise(val, min, max, step);
         setDirtyValue(String(newValue));
       }
 

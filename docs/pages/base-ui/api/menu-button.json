@@ -24,31 +24,31 @@
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'button'",
-      "class": "MuiMenuButton-root"
+      "class": "base-MenuButton-root"
     }
   ],
   "classes": [
     {
       "key": "active",
-      "className": "Mui-active",
+      "className": "base--active",
       "description": "State class applied to the root element if `active={true}`.",
       "isGlobal": true
     },
     {
       "key": "disabled",
-      "className": "Mui-disabled",
+      "className": "base--disabled",
       "description": "State class applied to the root element if `disabled={true}`.",
       "isGlobal": true
     },
     {
       "key": "expanded",
-      "className": "Mui-expanded",
+      "className": "base--expanded",
       "description": "State class applied to the root element if the associated menu is open.",
       "isGlobal": true
     }
   ],
   "spread": true,
-  "muiName": "MuiMenuButton",
+  "muiName": "MenuButton",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-base/src/MenuButton/MenuButton.tsx",
   "inheritance": null,

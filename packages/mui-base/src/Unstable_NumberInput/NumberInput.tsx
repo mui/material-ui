@@ -189,10 +189,10 @@ const NumberInput = React.forwardRef(function NumberInput(
 }) as OverridableComponent<NumberInputTypeMap>;
 
 NumberInput.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */
@@ -215,7 +215,7 @@ NumberInput.propTypes /* remove-proptypes */ = {
    */
   endAdornment: PropTypes.node,
   /**
-   * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input and the `Mui-error` class on the root element.
+   * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input and the `baseui--error` class on the root element.
    */
   error: PropTypes.bool,
   /**
@@ -256,7 +256,7 @@ NumberInput.propTypes /* remove-proptypes */ = {
    */
   onInputChange: PropTypes.func,
   /**
-   * @ignore
+   * The short hint displayed in the `input` before the user enters a value.
    */
   placeholder: PropTypes.string,
   /**

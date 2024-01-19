@@ -30,7 +30,7 @@ export interface PopupOwnProps {
     | (() => HTMLElement)
     | (() => PopupVirtualElement)
     | null;
-  children?: React.ReactNode | ((props: PopupChildrenProps) => React.ReactNode);
+  children?: React.ReactNode;
   /**
    * An HTML element or function that returns one. The container will have the portal children appended to it.
     By default, it uses the body of the top-level document object, so it's `document.body` in these cases.
@@ -43,7 +43,7 @@ export interface PopupOwnProps {
   disablePortal?: boolean;
   /**
    * If `true`, the popup will exist in the DOM even if it's closed.
-   * Its visibility will be controlled by the `display` CSS property.
+   * Its visibility will be controlled by the `visibility` CSS property.
    *
    * Otherwise, a closed popup will be removed from the DOM.
    *
@@ -120,13 +120,6 @@ export interface PopupSlots {
    * @default 'div'
    */
   root?: React.ElementType;
-}
-
-export interface PopupChildrenProps {
-  placement: PopupPlacement;
-  requestOpen: boolean;
-  onExited: () => void;
-  onEnter: () => void;
 }
 
 export interface PopupTypeMap<
