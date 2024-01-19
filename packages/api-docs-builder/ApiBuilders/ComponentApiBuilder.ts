@@ -490,7 +490,7 @@ const attachTranslations = (reactApi: ReactApi, settings?: CreateDescribeablePro
       .sort(sortAlphabetical('name')) // Sort to ensure consitency of object key order
       .forEach((slot: Slot) => {
         const { name, description } = slot;
-        translations.slotDescriptions![name] = description;
+        translations.slotDescriptions![name] = renderMarkdown(description);
       });
   }
 

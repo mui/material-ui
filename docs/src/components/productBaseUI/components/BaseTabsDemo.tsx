@@ -54,7 +54,7 @@ const tabStyles = `
     outline-offset: 2px;
   }
 
-  &.Mui-selected {
+  &.base--selected {
     background-color: #FFF;
     color: var(--primary);
   }
@@ -62,11 +62,11 @@ const tabStyles = `
 
 const StyledTab = styled('button')(tabStyles);
 
-const CSS = `.MuiTabsList-root {${tabListStyles}}
+const CSS = `.base-TabsList-root {${tabListStyles}}
 
-.MuiTabPanel-root {${tabPanelStyles}}
+.base-TabPanel-root {${tabPanelStyles}}
 
-.MuiTab-root {${tabStyles}}`;
+.base-Tab-root {${tabStyles}}`;
 
 const tabStylesTailwind = `m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--primary-hover] focus:text-white focus-visible:[outline:2px_solid_rgba(255,255,255,0.8)] outline-offset-2 ui-selected:bg-white ui-selected:text-[--primary] transition select-none`;
 

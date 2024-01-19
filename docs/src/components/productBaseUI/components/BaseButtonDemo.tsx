@@ -23,16 +23,16 @@ const buttonStyles = `
     box-shadow: none;
   }
 
-  &.Mui-active {
+  &.base--active {
     background: var(--primary-active);
   }
 
-  &.Mui-focusVisible {
+  &.base--focusVisible {
     outline: 3px solid var(--focus-ring);
     outline-offset: 2px;
   }
 
-  &.Mui-disabled {
+  &.base--disabled {
     opacity: 0.5;
     cursor: not-allowed;
 
@@ -73,7 +73,7 @@ export default function BaseButtonDemo({
       )}
       {styling === 'css' && (
         <React.Fragment>
-          <GlobalStyles styles={`.MuiButton-root {${buttonStyles}}`} />
+          <GlobalStyles styles={`.base-Button-root {${buttonStyles}}`} />
           <Button>Button</Button>
           <Button disabled>Disabled</Button>
         </React.Fragment>
@@ -108,7 +108,7 @@ import './styles.css';
 <Button disabled>Disabled</Button>
 
 /* styles.css */
-.MuiButton-root {${buttonStyles}}
+.base-Button-root {${buttonStyles}}
 `;
   }
   if (styling === 'tailwindcss') {
