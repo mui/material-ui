@@ -43,7 +43,7 @@ const InnerOption = React.memo(
     // If `label` is not explicitly provided, the `children` are used for convenience.
     // This is used to populate the select's trigger with the selected option's label.
     const computedLabel =
-      label ?? (typeof children === 'string' ? children : optionRef.current?.innerText);
+      label ?? (typeof children === 'string' ? children : optionRef.current?.textContent?.trim());
 
     const { getRootProps, selected, highlighted, index } = useOption({
       disabled,
