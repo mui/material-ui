@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { styled } from '@mui/material/styles';
 import Slider from '@mui/material/Slider';
+import Typography from '@mui/material/Typography';
 
 const MAX = 100;
 const MIN = 0;
@@ -16,35 +16,39 @@ const marks = [
   },
 ];
 
-const Label = styled('div')(() => ({
-  fontSize: '0.875rem',
-  lineHeight: '1.5',
-  fontWeight: 500,
-  cursor: 'pointer',
-}));
-
 export default function CustomMarks() {
   const [val, setVal] = React.useState<number>(MIN);
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number);
   };
+
   return (
     <Box sx={{ width: 250 }}>
-      <div>
-        <Slider
-          marks={marks}
-          step={10}
-          value={val}
-          valueLabelDisplay="auto"
-          min={MIN}
-          max={MAX}
-          onChange={handleChange}
-        />
-      </div>
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Label onClick={() => setVal(MIN)}>{MIN} min</Label>
-        <Label onClick={() => setVal(MAX)}>{MAX} max</Label>
-      </div>
+      <Slider
+        marks={marks}
+        step={10}
+        value={val}
+        valueLabelDisplay="auto"
+        min={MIN}
+        max={MAX}
+        onChange={handleChange}
+      />
+      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Typography
+          variant="body2"
+          onClick={() => setVal(MIN)}
+          sx={{ cursor: 'pointer' }}
+        >
+          {MIN} min
+        </Typography>
+        <Typography
+          variant="body2"
+          onClick={() => setVal(MAX)}
+          sx={{ cursor: 'pointer' }}
+        >
+          {MAX} max
+        </Typography>
+      </Box>
     </Box>
   );
 }
