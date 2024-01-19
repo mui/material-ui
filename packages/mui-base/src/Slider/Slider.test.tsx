@@ -517,7 +517,7 @@ describe('<Slider />', () => {
   it('should support Shift + Left Arrow / Right Arrow keys by taking acount step and pageStep', () => {
     const hanleChange = spy();
     const defaultValue = 20;
-    const pageStep = 3;
+    const pageStep = 15;
     const step = 5;
     const { getByTestId } = render(
       <Slider
@@ -545,11 +545,13 @@ describe('<Slider />', () => {
 
     fireEvent.keyDown(input!, { key: 'ArrowLeft', shiftKey: true });
     expect(hanleChange.callCount).to.equal(1);
-    expect(hanleChange.args[0][1]).to.deep.equal(defaultValue - pageStep * step);
+    expect(hanleChange.args[0][1]).to.deep.equal(defaultValue - pageStep);
+    expect(input).to.have.attribute('aria-valuenow', `${defaultValue - pageStep}`);
 
     fireEvent.keyDown(input!, { key: 'ArrowRight', shiftKey: true });
     expect(hanleChange.callCount).to.equal(2);
     expect(hanleChange.args[1][1]).to.deep.equal(defaultValue);
+    expect(input).to.have.attribute('aria-valuenow', `${defaultValue}`);
   });
 
   it('should stop at max/min when using Shift + Left Arrow / Right Arrow keys', () => {

@@ -14,7 +14,7 @@ export default function DiscreteSlider() {
         defaultValue={30}
         getAriaValueText={valuetext}
         valueLabelDisplay="auto"
-        pageStep={3}
+        pageStep={30}
         step={10}
         marks
         min={10}

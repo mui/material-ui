@@ -364,16 +364,17 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
           ((event.key === 'ArrowLeft' || event.key === 'ArrowDown') && event.shiftKey) ||
           event.key === 'PageDown'
         ) {
-          newValue = Math.max(value - pageStep * step, min);
+          newValue = Math.max(value - pageStep, min);
         } else if (
           ((event.key === 'ArrowRight' || event.key === 'ArrowUp') && event.shiftKey) ||
           event.key === 'PageUp'
         ) {
-          newValue = Math.min(value + pageStep * step, max);
+          newValue = Math.min(value + pageStep, max);
         }
 
         if (newValue !== null) {
           changeValue(event, newValue);
+          event.preventDefault();
         }
       }
 
