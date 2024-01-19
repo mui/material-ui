@@ -16,6 +16,7 @@ import isMuiElement from '../utils/isMuiElement';
 import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
 import speedDialClasses, { getSpeedDialUtilityClass } from './speedDialClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, open, direction } = ownerState;
@@ -139,9 +140,11 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
     onOpen,
     open: openProp,
     openIcon,
-    TransitionComponent = Zoom,
+    slots = {},
+    slotProps = {},
+    TransitionComponent: TransitionComponentProp,
+    TransitionProps: TransitionPropsProp,
     transitionDuration = defaultTransitionDuration,
-    TransitionProps,
     ...other
   } = props;
 
@@ -356,6 +359,18 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
     });
   });
 
+  const backwardCompatibleSlots = { transition: TransitionComponentProp, ...slots };
+  const backwardCompatibleSlotProps = { transition: TransitionPropsProp, ...slotProps };
+
+  const [TransitionSlot, transitionProps] = useSlot('transition', {
+    elementType: Zoom,
+    externalForwardedProps: {
+      slots: backwardCompatibleSlots,
+      slotProps: backwardCompatibleSlotProps,
+    },
+    ownerState,
+  });
+
   return (
     <SpeedDialRoot
       className={clsx(classes.root, className)}
@@ -369,12 +384,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
       ownerState={ownerState}
       {...other}
     >
-      <TransitionComponent
-        in={!hidden}
-        timeout={transitionDuration}
-        unmountOnExit
-        {...TransitionProps}
-      >
+      <TransitionSlot in={!hidden} timeout={transitionDuration} unmountOnExit {...transitionProps}>
         <SpeedDialFab
           color="primary"
           aria-label={ariaLabel}
@@ -391,7 +401,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
             ? React.cloneElement(icon, { open })
             : icon}
         </SpeedDialFab>
-      </TransitionComponent>
+      </TransitionSlot>
       <SpeedDialActions
         id={`${id}-actions`}
         role="menu"
@@ -490,6 +500,23 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    */
   openIcon: PropTypes.node,
   /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   *
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    transition: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -510,6 +537,7 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    *   enter: theme.transitions.duration.enteringScreen,
    *   exit: theme.transitions.duration.leavingScreen,
    * }
+   * @deprecated
    */
   transitionDuration: PropTypes.oneOfType([
     PropTypes.number,
@@ -521,7 +549,8 @@ SpeedDial.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * @deprecated
    */
   TransitionProps: PropTypes.object,
 };
