@@ -355,7 +355,7 @@ export default function getLPTheme(mode: 'light' | 'dark') {
                     : '0 1px 1px rgba(255, 255, 255, 0.1) inset, 0px 2px 4px rgba(0, 0, 0, 0.8)',
                 background:
                   mode === 'light'
-                    ? `${alpha(greyColor[50], 0.2)}`
+                    ? `${alpha('#FFF', 0.3)}`
                     : `${alpha(greyColor[800], 0.4)}`,
               },
               '&:hover fieldset': {

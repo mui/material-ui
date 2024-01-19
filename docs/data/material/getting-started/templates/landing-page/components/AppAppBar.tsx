@@ -48,12 +48,12 @@ function AppAppBar() {
           boxShadow: 0,
           bgcolor: 'transparent',
           backgroundImage: 'none',
-          paddingX: 0,
           mt: 2,
         }}
       >
         <Container maxWidth="lg">
           <Toolbar
+            variant="regular"
             sx={{
               display: 'flex',
               alignItems: 'center',
@@ -62,16 +62,16 @@ function AppAppBar() {
               borderRadius: '999px',
               bgcolor: (theme) =>
                 theme.palette.mode === 'light'
-                  ? 'rgba(255,255,255,0.5)'
-                  : 'rgba(0,0,0,0.4)',
+                  ? 'rgba(255,255,255,0.7)'
+                  : 'rgba(0,0,0,0.6)',
               backdropFilter: 'blur(24px)',
-              maxHeight: '48px',
+              maxHeight: '40px',
               border: '1px solid',
               borderColor: 'divider',
               boxShadow: (theme) =>
                 theme.palette.mode === 'light'
-                  ? '0 0 1px rgba(179, 85, 246, 0.1), 1px 1.5px 2px -1px rgba(179, 85, 246, 0.15), 4px 4px 12px -2.5px rgba(179, 85, 246, 0.15)'
-                  : '0 0 1px rgba(35, 2, 59, 0.7), 1px 1.5px 2px -1px rgba(35, 2, 59, 0.65), 4px 4px 12px -2.5px rgba(35, 2, 59, 0.65)',
+                  ? '0 0 1px rgba(85, 166, 246, 0.1), 1px 1.5px 2px -1px rgba(85, 166, 246, 0.15), 4px 4px 12px -2.5px rgba(85, 166, 246, 0.15)'
+                  : '0 0 1px rgba(2, 31, 59, 0.7), 1px 1.5px 2px -1px rgba(2, 31, 59, 0.65), 4px 4px 12px -2.5px rgba(2, 31, 59, 0.65)',
             }}
           >
             <Box

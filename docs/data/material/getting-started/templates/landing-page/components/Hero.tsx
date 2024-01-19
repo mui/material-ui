@@ -11,7 +11,7 @@ import { alpha } from '@mui/material';
 
 import CelebrationRoundedIcon from '@mui/icons-material/CelebrationRounded';
 
-import { greyColor, secondaryColor } from '../getLPTheme';
+import { greyColor, brandColor } from '../getLPTheme';
 
 export default function Hero() {
   return (
@@ -21,8 +21,8 @@ export default function Hero() {
         width: '100%',
         background: (theme) =>
           theme.palette.mode === 'light'
-            ? `linear-gradient(to bottom, ${secondaryColor[100]}, #FFF)`
-            : `linear-gradient(to bottom, ${secondaryColor[900]}, ${greyColor[900]})`,
+            ? `linear-gradient(to bottom, ${brandColor[100]}, #FFF)`
+            : `linear-gradient(to bottom, ${brandColor[800]}, ${greyColor[900]})`,
       }}
     >
       <Container
@@ -45,25 +45,21 @@ export default function Hero() {
               px: 0.5,
               background: (theme) =>
                 theme.palette.mode === 'light'
-                  ? `linear-gradient(to bottom right, ${secondaryColor[50]}, ${secondaryColor[100]})`
-                  : `linear-gradient(to bottom right, ${secondaryColor[700]}, ${secondaryColor[900]})`,
+                  ? `linear-gradient(to bottom right, ${brandColor[50]}, ${brandColor[100]})`
+                  : `linear-gradient(to bottom right, ${brandColor[700]}, ${brandColor[900]})`,
               border: '1px solid',
               borderColor: (theme) =>
                 theme.palette.mode === 'light'
-                  ? `${alpha(secondaryColor[500], 0.3)}`
-                  : `${alpha(secondaryColor[500], 0.5)}`,
+                  ? `${alpha(brandColor[500], 0.3)}`
+                  : `${alpha(brandColor[500], 0.5)}`,
               fontWeight: '600',
               '& .MuiChip-label': {
                 color: (theme) =>
-                  theme.palette.mode === 'light'
-                    ? secondaryColor[500]
-                    : secondaryColor[200],
+                  theme.palette.mode === 'light' ? brandColor[500] : brandColor[200],
               },
               '& .MuiChip-icon': {
                 color: (theme) =>
-                  theme.palette.mode === 'light'
-                    ? secondaryColor[500]
-                    : secondaryColor[200],
+                  theme.palette.mode === 'light' ? brandColor[500] : brandColor[200],
               },
             }}
           />
@@ -76,9 +72,7 @@ export default function Hero() {
               variant="h1"
               sx={{
                 color: (theme) =>
-                  theme.palette.mode === 'light'
-                    ? secondaryColor[400]
-                    : secondaryColor[200],
+                  theme.palette.mode === 'light' ? brandColor[400] : brandColor[200],
               }}
             >
               products
@@ -136,9 +130,13 @@ export default function Hero() {
             outline: '4px solid',
             outlineColor: (theme) =>
               theme.palette.mode === 'light'
-                ? `${alpha(secondaryColor[200], 0.5)}`
-                : `${alpha(secondaryColor[800], 0.7)}`,
+                ? `${alpha(brandColor[500], 0.3)}`
+                : `${alpha(brandColor[700], 0.7)}`,
             borderRadius: '12px',
+            boxShadow: (theme) =>
+              theme.palette.mode === 'light'
+                ? '0 0 1px rgba(85, 166, 246, 0.1), 1px 1.5px 2px -1px rgba(85, 166, 246, 0.15), 4px 4px 12px -2.5px rgba(85, 166, 246, 0.15)'
+                : '0 0 1px rgba(2, 31, 59, 0.7), 1px 1.5px 2px -1px rgba(2, 31, 59, 0.65), 4px 4px 12px -2.5px rgba(2, 31, 59, 0.65)',
           }}
         />
       </Container>
