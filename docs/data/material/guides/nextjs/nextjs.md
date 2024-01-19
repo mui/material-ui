@@ -47,7 +47,7 @@ Inside `app/layout.tsx`, import the `AppRouterCacheProvider` and wrap all elemen
  }
 ```
 
-### Custom cache
+#### Custom cache (optional)
 
 Use the `options` prop to override the default [cache options](https://emotion.sh/docs/@emotion/cache#options)—for example, the code snippet below shows how to change the CSS key to `css` (the default is `mui`):
 
@@ -219,7 +219,7 @@ Then, inside `pages/_app.tsx`, import the `AppCacheProvider` component and rende
  }
 ```
 
-### Custom cache
+#### Custom cache (optional)
 
 To use a custom [Emotion cache](https://emotion.sh/docs/@emotion/cache), pass it to the `emotionCache` property in `_document.tsx`:
 
@@ -235,11 +235,11 @@ MyDocument.getInitialProps = async (ctx) => {
 };
 ```
 
-### App enhancement
+#### App enhancement (optional)
 
 Pass an array to the `plugins` property to enhance the app with additional features, like server-side-rendered styles if you're using JSS and styled-components.
 
-Each plugin can have the following properties:
+Each plugin must have the following properties:
 
 - `enhanceApp`: a higher-order component that receives the `App` component and returns a new app component.
 - `resolveProps`: a function that receives the initial props and returns a new props object.
