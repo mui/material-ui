@@ -1678,7 +1678,7 @@ importers:
         specifier: 18.2.18
         version: 18.2.18
       '@types/react-is':
-        specifier: ^18.2.3
+        specifier: ^18.2.4
         version: 18.2.4
       '@types/sinon':
         specifier: ^10.0.20
@@ -2495,7 +2495,7 @@ importers:
         specifier: ^18.2.46
         version: 18.2.46
       '@types/react-is':
-        specifier: ^18.2.1
+        specifier: ^18.2.4
         version: 18.2.4
       '@types/sinon':
         specifier: ^10.0.20
