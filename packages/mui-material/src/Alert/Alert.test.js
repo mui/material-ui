@@ -6,6 +6,7 @@ import Alert, { alertClasses as classes } from '@mui/material/Alert';
 import Paper, { paperClasses } from '@mui/material/Paper';
 import { iconButtonClasses } from '@mui/material/IconButton';
 import { svgIconClasses } from '@mui/material/SvgIcon';
+import capitalize from '../utils/capitalize';
 
 describe('<Alert />', () => {
   const { render } = createRenderer();
@@ -146,6 +147,16 @@ describe('<Alert />', () => {
       const closeIcon = screen.getByTestId('closeIcon');
       expect(closeIcon).to.have.class(svgIconClasses.fontSizeLarge);
       expect(closeIcon).to.have.class('my-class');
+    });
+  });
+
+  describe('classes', () => {
+    ['info', 'warning', 'error'].forEach((color) => {
+      it('should apply non-default color classes to the root', () => {
+        render(<Alert data-testid="alert" color={color} />);
+
+        expect(screen.getByTestId('alert')).to.have.class(classes[`color${capitalize(color)}`]);
+      });
     });
   });
 });

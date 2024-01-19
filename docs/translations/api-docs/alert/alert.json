@@ -49,6 +49,21 @@
       "nodeName": "the action wrapper element",
       "conditions": "<code>action</code> is provided"
     },
+    "colorError": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"error\"</code>"
+    },
+    "colorInfo": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"info\"</code>"
+    },
+    "colorWarning": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"warning\"</code>"
+    },
     "filled": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -57,22 +72,24 @@
     "filledError": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"filled\"</code> and <code>color=\"error\"</code>"
+      "conditions": "<code>variant=\"filled\"</code> and <code>color=\"error\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/alert/#alert-classes-filled\">.MuiAlert-filled</a> and <a href=\"/material-ui/api/alert/#alert-classes-colorError\">.MuiAlert-colorError</a> classes instead."
     },
     "filledInfo": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"filled\"</code> and <code>color=\"info\"</code>"
+      "conditions": "<code>variant=\"filled\"</code> and <code>color=\"info\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/alert/#alert-classes-filled\">.MuiAlert-filled</a> and <a href=\"/material-ui/api/alert/#alert-classes-colorInfo\">.MuiAlert-colorInfo</a> classes instead."
     },
     "filledSuccess": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"filled\"</code> and <code>color=\"success\"</code>"
+      "conditions": "<code>variant=\"filled\"</code> and <code>color=\"success\"</code>",
+      "deprecationInfo": "Use the <a href=\"/material-ui/api/alert/#alert-classes-filled\">.MuiAlert-filled</a> class instead. Success is the default color."
     },
     "filledWarning": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"filled\"</code> and <code>color=\"warning\"</code>"
+      "description": "Styles applied to the root element if <code>variant=&quot;filled&quot;</code> and <code>color=&quot;warning&quot;</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/alert/#alert-classes-filled\">.MuiAlert-filled</a> and <a href=\"/material-ui/api/alert/#alert-classes-colorWarning\">.MuiAlert-colorWarning</a> classes instead."
     },
     "icon": {
       "description": "Styles applied to {{nodeName}}.",
@@ -90,22 +107,26 @@
     "outlinedError": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"error\"</code>"
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"error\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/alert/#alert-classes-outlined\">.MuiAlert-outlined</a> and <a href=\"/material-ui/api/alert/#alert-classes-colorError\">.MuiAlert-colorError</a> classes instead."
     },
     "outlinedInfo": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"info\"</code>"
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"info\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/alert/#alert-classes-outlined\">.MuiAlert-outlined</a> and <a href=\"/material-ui/api/alert/#alert-classes-colorInfo\">.MuiAlert-colorInfo</a> classes instead."
     },
     "outlinedSuccess": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"success\"</code>"
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"success\"</code>",
+      "deprecationInfo": "Use the <a href=\"/material-ui/api/alert/#alert-classes-outlined\">.MuiAlert-outlined</a> class instead. Success is the default color."
     },
     "outlinedWarning": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"warning\"</code>"
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"warning\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/alert/#alert-classes-outlined\">.MuiAlert-outlined</a> and <a href=\"/material-ui/api/alert/#alert-classes-colorWarning\">.MuiAlert-colorWarning</a> classes instead."
     },
     "root": { "description": "Styles applied to the root element." },
     "standard": {
@@ -116,22 +137,26 @@
     "standardError": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"standard\"</code> and <code>color=\"error\"</code>"
+      "conditions": "<code>variant=\"standard\"</code> and <code>color=\"error\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/alert/#alert-classes-standard\">.MuiAlert-standard</a> and <a href=\"/material-ui/api/alert/#alert-classes-colorError\">.MuiAlert-colorError</a> classes instead."
     },
     "standardInfo": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"standard\"</code> and <code>color=\"info\"</code>"
+      "conditions": "<code>variant=\"standard\"</code> and <code>color=\"info\"</code>",
+      "deprecationInfo": "Use the <a href=\"/material-ui/api/alert/#alert-classes-standard\">.MuiAlert-standard</a> and <a href=\"/material-ui/api/alert/#alert-classes-colorInfo\">.MuiAlert-colorInfo</a> classes instead."
     },
     "standardSuccess": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"standard\"</code> and <code>color=\"success\"</code>"
+      "conditions": "<code>variant=\"standard\"</code> and <code>color=\"success\"</code>",
+      "deprecationInfo": "Use the <a href=\"/material-ui/api/alert/#alert-classes-standard\">.MuiAlert-standard</a> class instead. Success is the default color."
     },
     "standardWarning": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"standard\"</code> and <code>color=\"warning\"</code>"
+      "conditions": "<code>variant=\"standard\"</code> and <code>color=\"warning\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/alert/#alert-classes-standard\">.MuiAlert-standard</a> and <a href=\"/material-ui/api/alert/#alert-classes-colorWarning\">.MuiAlert-colorWarning</a> classes instead."
     }
   }
 }
