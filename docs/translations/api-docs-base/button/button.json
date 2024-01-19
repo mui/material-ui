@@ -4,9 +4,6 @@
     "action": {
       "description": "A ref for imperative actions. It currently only supports <code>focusVisible()</code> action."
     },
-    "componentName": {
-      "description": "The name of the component using useButton. For debugging purposes."
-    },
     "disabled": { "description": "If <code>true</code>, the component is disabled." },
     "focusableWhenDisabled": {
       "description": "If <code>true</code>, allows a disabled button to receive focus."

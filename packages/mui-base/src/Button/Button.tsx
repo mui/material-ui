@@ -43,7 +43,6 @@ const Button = React.forwardRef(function Button<RootComponentType extends React.
     slotProps = {},
     slots = {},
     hostElementName: hostElementNameProp = 'button',
-    componentName = 'Button',
     ...other
   } = props;
 
@@ -61,7 +60,6 @@ const Button = React.forwardRef(function Button<RootComponentType extends React.
     ...props,
     focusableWhenDisabled,
     hostElementName,
-    componentName,
   });
 
   React.useImperativeHandle(
@@ -125,12 +123,6 @@ Button.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * The name of the component using useButton.
-   * For debugging purposes.
-   * @default 'Button'
-   */
-  componentName: PropTypes.string,
   /**
    * If `true`, the component is disabled.
    * @default false

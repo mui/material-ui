@@ -33,7 +33,6 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
     to,
     type,
     hostElementName: hostElementNameProp,
-    componentName = 'useButton',
   } = parameters;
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
 
@@ -57,7 +56,7 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
 
   const [hostElementName, updateHostElementName] = useHostElementName({
     hostElementName: hostElementNameProp ?? (href || to ? 'a' : undefined),
-    componentName,
+    componentName: 'Button',
   });
 
   const createHandleMouseLeave = (otherHandlers: EventHandlers) => (event: React.MouseEvent) => {
