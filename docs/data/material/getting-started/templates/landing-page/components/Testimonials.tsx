@@ -112,22 +112,24 @@ export default function Testimonials() {
         </Box>
         <Masonry columns={columns} spacing={2}>
           {userTestimonials.map((testimonial, index) => (
-            <Card key={index}>
+            <Card key={index} sx={{ p: 1 }}>
+              <CardContent>
+                <Typography variant="body2" color="text.secondary">
+                  {testimonial.testimonial}
+                </Typography>
+              </CardContent>
               <Box
                 sx={{
                   display: 'flex',
                   flexDirection: 'row',
                   justifyContent: 'space-between',
-                  mr: '16px',
+                  pr: 2,
                 }}
               >
                 <CardHeader
                   avatar={testimonial.avatar}
                   title={testimonial.name}
                   subheader={testimonial.occupation}
-                  sx={{
-                    pb: 0,
-                  }}
                 />
                 <img
                   src={logos[index]}
@@ -135,11 +137,6 @@ export default function Testimonials() {
                   style={logoStyle}
                 />
               </Box>
-              <CardContent>
-                <Typography variant="body2" color="text.secondary">
-                  {testimonial.testimonial}
-                </Typography>
-              </CardContent>
             </Card>
           ))}
         </Masonry>

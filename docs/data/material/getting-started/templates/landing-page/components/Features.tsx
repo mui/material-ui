@@ -84,7 +84,7 @@ export default function Features() {
                     backgroundColor: (theme) => {
                       if (theme.palette.mode === 'light') {
                         return selectedItemIndex === index
-                          ? alpha(brandColor[300], 0.2)
+                          ? alpha(brandColor[100], 0.2)
                           : 'transparent';
                       }
                       return selectedItemIndex === index
@@ -94,11 +94,11 @@ export default function Features() {
                     borderColor: (theme) => {
                       if (theme.palette.mode === 'light') {
                         return selectedItemIndex === index
-                          ? alpha(brandColor[400], 0.2)
+                          ? alpha(brandColor[300], 0.5)
                           : greyColor[200];
                       }
                       return selectedItemIndex === index
-                        ? alpha(brandColor[800], 0.7)
+                        ? alpha(brandColor[700], 0.7)
                         : greyColor[800];
                     },
                     '&:hover': {
@@ -117,13 +117,13 @@ export default function Features() {
                   <Box
                     component="span"
                     sx={{
+                      p: 2,
+                      width: '100%',
                       display: 'flex',
                       textAlign: 'left',
-                      p: 2,
                       flexDirection: { xs: 'column', md: 'row' },
                       alignItems: { md: 'center' },
-                      gap: 2,
-                      width: '100%',
+                      gap: 3,
                     }}
                   >
                     <Box

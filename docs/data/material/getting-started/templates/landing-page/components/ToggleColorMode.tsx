@@ -19,7 +19,7 @@ function ToggleColorMode() {
   return (
     <Box sx={{ maxWidth: '32px' }}>
       <Button
-        variant="outlined"
+        variant="text"
         onClick={toggleColorMode}
         size="small"
         sx={{ minWidth: '32px', height: '32px', p: '4px' }}

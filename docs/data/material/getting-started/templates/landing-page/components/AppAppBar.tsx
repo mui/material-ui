@@ -70,8 +70,8 @@ function AppAppBar() {
               borderColor: 'divider',
               boxShadow: (theme) =>
                 theme.palette.mode === 'light'
-                  ? '0 0 1px rgba(0, 0, 0, 0.01), 1px 1.5px 2px -1px rgba(0, 0, 0, 0.1), 4px 6px 12px -2.5px rgba(0, 0, 0, 0.15)'
-                  : 'rgba(0,0,0,0.5)',
+                  ? '0 0 1px rgba(179, 85, 246, 0.1), 1px 1.5px 2px -1px rgba(179, 85, 246, 0.15), 4px 4px 12px -2.5px rgba(179, 85, 246, 0.15)'
+                  : '0 0 1px rgba(35, 2, 59, 0.7), 1px 1.5px 2px -1px rgba(35, 2, 59, 0.65), 4px 4px 12px -2.5px rgba(35, 2, 59, 0.65)',
             }}
           >
             <Box
@@ -135,11 +135,11 @@ function AppAppBar() {
               </Box>
             </Box>
 
-            <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1 }}>
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 0.5 }}>
               <ToggleColorMode />
               <Button
                 color="primary"
-                variant="outlined"
+                variant="text"
                 size="small"
                 component="a"
                 href="/material-ui/getting-started/templates/sign-in/"

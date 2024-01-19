@@ -247,6 +247,16 @@ export default function getLPTheme(mode: 'light' | 'dark') {
                   borderColor: mode === 'light' ? brandColor[200] : brandColor[700],
                 },
               }),
+              ...(ownerState.variant === 'text' && {
+                color: mode === 'light' ? brandColor[500] : brandColor[300],
+                '&:hover': {
+                  backgroundColor:
+                    mode === 'light'
+                      ? alpha(brandColor[300], 0.3)
+                      : alpha(brandColor[600], 0.3),
+                  borderColor: mode === 'light' ? brandColor[200] : brandColor[700],
+                },
+              }),
               textTransform: 'none',
               '&:active': {
                 transform: 'scale(0.98)',
@@ -296,6 +306,14 @@ export default function getLPTheme(mode: 'light' | 'dark') {
             ':before': {
               backgroundColor: 'transparent',
             },
+            '&:first-of-type': {
+              borderTopLeftRadius: '8px',
+              borderTopRightRadius: '8px',
+            },
+            '&:last-of-type': {
+              borderBottomLeftRadius: '8px',
+              borderBottomRightRadius: '8px',
+            },
           },
         },
       },
@@ -318,12 +336,15 @@ export default function getLPTheme(mode: 'light' | 'dark') {
               color: 'white',
             },
             '& .MuiInputBase-input': {
+              '&::placeholder': {
+                opacity: 0.7,
+              },
               fontSize: '14px',
             },
             '& .MuiOutlinedInput-root': {
+              borderRadius: '8px',
               height: '40px',
               '& fieldset': {
-                borderRadius: '8px',
                 borderColor:
                   mode === 'light'
                     ? `${alpha(greyColor[500], 0.4)}`
@@ -332,6 +353,10 @@ export default function getLPTheme(mode: 'light' | 'dark') {
                   mode === 'light'
                     ? '0 -1px 1px rgba(0, 0, 0, 0.1) inset, 0px 2px 4px rgba(0, 0, 0, 0.1)'
                     : '0 1px 1px rgba(255, 255, 255, 0.1) inset, 0px 2px 4px rgba(0, 0, 0, 0.8)',
+                background:
+                  mode === 'light'
+                    ? `${alpha(greyColor[50], 0.2)}`
+                    : `${alpha(greyColor[800], 0.4)}`,
               },
               '&:hover fieldset': {
                 borderColor: greyColor[400],

@@ -33,7 +33,7 @@ export default function Hero() {
           pt: 20,
         }}
       >
-        <Stack spacing={3} sx={{ mx: { xs: '16px', sm: '0' }, width: '60%', mb: 4 }}>
+        <Stack spacing={2} sx={{ mx: { xs: '16px', sm: '0' }, width: '60%' }}>
           <Chip
             size="small"
             variant="filled"
@@ -41,8 +41,8 @@ export default function Hero() {
             icon={<CelebrationRoundedIcon />}
             sx={{
               alignSelf: 'center',
-              py: 2,
-              px: 1,
+              py: 1.5,
+              px: 0.5,
               background: (theme) =>
                 theme.palette.mode === 'light'
                   ? `linear-gradient(to bottom right, ${secondaryColor[50]}, ${secondaryColor[100]})`
@@ -102,15 +102,9 @@ export default function Hero() {
               placeholder="Your email address"
               sx={{
                 minWidth: '250px',
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': {
-                    boxShadow:
-                      '0 1px 1px rgba(255, 255, 255, 0.1) inset, 0px 2px 4px rgba(0, 0, 0, 0.1)',
-                  },
-                },
               }}
             />
-            <Button variant="contained" color="secondary">
+            <Button variant="contained" color="primary">
               Start using
             </Button>
           </Stack>
@@ -132,15 +126,18 @@ export default function Hero() {
         <Box
           id="image"
           sx={{
-            m: 6,
+            mt: 10,
             alignSelf: 'center',
-            height: '400px',
-            width: '800px',
+            height: '600px',
+            width: 'calc(100% - 8px)',
             backgroundImage:
               'url("https://images.unsplash.com/photo-1566241440091-ec10de8db2e1?q=80&w=3316&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
             backgroundSize: 'cover',
-            border: '4px solid',
-            borderColor: `${alpha(greyColor[500], 0.9)}`,
+            outline: '4px solid',
+            outlineColor: (theme) =>
+              theme.palette.mode === 'light'
+                ? `${alpha(secondaryColor[200], 0.5)}`
+                : `${alpha(secondaryColor[800], 0.7)}`,
             borderRadius: '12px',
           }}
         />

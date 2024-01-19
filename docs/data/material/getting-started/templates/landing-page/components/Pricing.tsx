@@ -8,6 +8,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
+import { alpha } from '@mui/material';
 
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
@@ -99,7 +100,7 @@ export default function Pricing() {
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '8px',
-                  p: 1,
+                  p: 2,
                   border: (theme) => {
                     if (tier.title === 'Professional') {
                       return theme.palette.mode === 'light'
@@ -108,19 +109,40 @@ export default function Pricing() {
                     }
                     return '';
                   },
-                  bgcolor: tier.title === 'Professional' ? brandColor[900] : '',
+                  background: (theme) => {
+                    if (tier.title === 'Professional') {
+                      return theme.palette.mode === 'light'
+                        ? `linear-gradient(to bottom, ${brandColor[700]}, ${brandColor[900]})`
+                        : `linear-gradient(to bottom, ${brandColor[800]}, ${brandColor[900]})`;
+                    }
+                    return '';
+                  },
                 }}
               >
                 <CardContent>
                   <Box
                     sx={{
+                      mb: 1,
                       display: 'flex',
                       justifyContent: 'space-between',
-                      mb: 1,
+                      alignItems: 'center',
                       color: tier.title === 'Professional' ? brandColor[50] : '',
                     }}
                   >
-                    <Typography variant="h6" gutterBottom color="inherit">
+                    <Typography
+                      variant="h6"
+                      color="inherit"
+                      sx={{
+                        color: (theme) => {
+                          if (tier.title === 'Professional') {
+                            return theme.palette.mode === 'light'
+                              ? brandColor[200]
+                              : brandColor[300];
+                          }
+                          return '';
+                        },
+                      }}
+                    >
                       {tier.title}
                     </Typography>
                     {tier.title === 'Professional' && (
@@ -129,12 +151,10 @@ export default function Pricing() {
                         label={tier.subheader}
                         size="small"
                         sx={{
-                          alignSelf: 'center',
-                          mb: 1,
                           backgroundColor: (theme) =>
                             theme.palette.mode === 'light'
                               ? brandColor[100]
-                              : brandColor[300],
+                              : brandColor[200],
                           fontWeight: '600',
                           '& .MuiChip-label': {
                             color: (theme) =>
@@ -169,14 +189,7 @@ export default function Pricing() {
                   <Divider
                     sx={{
                       my: 3,
-                      borderColor: (theme) => {
-                        if (tier.title === 'Professional') {
-                          return theme.palette.mode === 'light'
-                            ? brandColor[600]
-                            : brandColor[500];
-                        }
-                        return '';
-                      },
+                      borderColor: `${alpha(brandColor[500], 0.3)}`,
                     }}
                   />
                   {tier.description.map((line) => (
@@ -193,10 +206,18 @@ export default function Pricing() {
                       <CheckCircleRoundedIcon
                         sx={{
                           width: '20px',
-                          color: 'success.main',
+                          color:
+                            tier.title === 'Professional'
+                              ? brandColor[200]
+                              : brandColor[300],
                         }}
                       />
-                      <Typography variant="subtitle2" color="inherit">
+                      <Typography
+                        variant="subtitle2"
+                        sx={{
+                          color: tier.title === 'Professional' ? brandColor[50] : '',
+                        }}
+                      >
                         {line}
                       </Typography>
                     </Box>

@@ -74,8 +74,10 @@ export default function Footer() {
                   alt="logo"
                 />
               </Box>
-              <Typography variant="subtitle2">Newsletter</Typography>
-              <Typography variant="body1" color="text.secondary" component="div">
+              <Typography variant="body2" sx={{ fontWeight: 600 }}>
+                Newsletter
+              </Typography>
+              <Typography variant="body2" color="text.secondary" component="div">
                 Subscribe to our newsletter for weekly updates and promotions.
               </Typography>
               <Stack direction="row" spacing={1} sx={{ pt: 2 }}>
@@ -100,7 +102,7 @@ export default function Footer() {
               gap: 1,
             }}
           >
-            <Typography variant="subtitle2" gutterBottom>
+            <Typography variant="body2" sx={{ fontWeight: 600 }}>
               Product
             </Typography>
 
@@ -131,7 +133,7 @@ export default function Footer() {
               gap: 1,
             }}
           >
-            <Typography variant="subtitle2" gutterBottom>
+            <Typography variant="body2" sx={{ fontWeight: 600 }}>
               Company
             </Typography>
 
@@ -154,7 +156,7 @@ export default function Footer() {
               gap: 1,
             }}
           >
-            <Typography variant="subtitle2" gutterBottom>
+            <Typography variant="body2" sx={{ fontWeight: 600 }}>
               Legal
             </Typography>
             <Link color="inherit" href="#" sx={{ opacity: 0.7 }}>
@@ -180,20 +182,25 @@ export default function Footer() {
           }}
         >
           <div>
-            <Typography variant="body2" color="text.secondary">
-              <Link color="inherit" href="#">
-                Privacy Policy •
-              </Link>
-              <Link color="inherit" href="#">
-                &nbsp;Terms of Service
-              </Link>
-            </Typography>
+            <Link variant="body2" color="text.secondary" href="#">
+              Privacy Policy •
+            </Link>
+            <Link variant="body2" color="text.secondary" href="#">
+              &nbsp;Terms of Service
+            </Link>
+
             <Copyright />
           </div>
-          <Box sx={{ display: 'flex', justifyContent: 'left' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'left',
+              gap: 1,
+              color: 'text.secondary',
+            }}
+          >
             <IconButton
-              color="primary"
-              component={Link}
+              color="inherit"
               href="https://github.com/mui"
               aria-label="Github"
               sx={{ alignSelf: 'center' }}
@@ -201,8 +208,7 @@ export default function Footer() {
               <FacebookIcon />
             </IconButton>
             <IconButton
-              color="primary"
-              component={Link}
+              color="inherit"
               href="https://twitter.com/MaterialUI"
               aria-label="X"
               sx={{ alignSelf: 'center' }}
@@ -210,8 +216,7 @@ export default function Footer() {
               <TwitterIcon />
             </IconButton>
             <IconButton
-              color="primary"
-              component={Link}
+              color="inherit"
               href="https://www.linkedin.com/company/mui/"
               aria-label="LinkedIn"
               sx={{ alignSelf: 'center' }}
