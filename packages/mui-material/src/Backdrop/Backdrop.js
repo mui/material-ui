@@ -165,6 +165,7 @@ Backdrop.propTypes /* remove-proptypes */ = {
    */
   slotProps: PropTypes.shape({
     root: PropTypes.object,
+    transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
@@ -189,7 +190,7 @@ Backdrop.propTypes /* remove-proptypes */ = {
    * The component used for the transition.
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
-   * @depricated Use 'slot.transition' instead. This prop will be removed in v7.
+   * @deprecated Use `slots.transition` instead. This prop will be removed in v7.
    */
   TransitionComponent: PropTypes.elementType,
   /**
