@@ -5,9 +5,12 @@ import { InternalStandardProps as StandardProps } from '..';
 import { FabProps } from '../Fab';
 import { TransitionProps } from '../transitions';
 import { SpeedDialClasses } from './speedDialClasses';
+import { SlotProps } from '../utils/types';
 
 export type CloseReason = 'toggle' | 'blur' | 'mouseLeave' | 'escapeKeyDown';
 export type OpenReason = 'toggle' | 'focus' | 'mouseEnter';
+
+export interface SpeedDialSlotPropsOverrides {}
 
 export interface SpeedDialProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'> {
@@ -83,14 +86,39 @@ export interface SpeedDialProps
    *   enter: theme.transitions.duration.enteringScreen,
    *   exit: theme.transitions.duration.leavingScreen,
    * }
+   * @deprecated
    */
   transitionDuration?: TransitionProps['timeout'];
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * @deprecated
    */
   TransitionProps?: TransitionProps;
+  /**
+   * The components used for each slot inside.
+   *
+   * @default {}
+   */
+  slots?: {
+    transition?: React.ElementType;
+  };
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * @default {}
+   */
+  slotProps?: {
+    transition?: SlotProps<
+      React.JSXElementConstructor<TransitionProps>,
+      SpeedDialSlotPropsOverrides,
+      SpeedDialOwnerState
+    >;
+  };
 }
+
+export interface SpeedDialOwnerState extends SpeedDialProps {}
 
 /**
  *

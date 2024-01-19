@@ -36,6 +36,10 @@
     "openIcon": {
       "description": "The icon to display in the SpeedDial Fab when the SpeedDial is open."
     },
+    "slotProps": {
+      "description": "The extra props for the slot components. You can override the existing props or add new ones."
+    },
+    "slots": { "description": "The components used for each slot inside." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },

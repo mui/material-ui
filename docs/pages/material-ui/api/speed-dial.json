@@ -29,6 +29,14 @@
     },
     "open": { "type": { "name": "bool" } },
     "openIcon": { "type": { "name": "node" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ transition?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ transition?: elementType }" },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -42,9 +50,10 @@
         "name": "union",
         "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
-      "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}"
+      "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}",
+      "deprecated": true
     },
-    "TransitionProps": { "type": { "name": "object" } }
+    "TransitionProps": { "type": { "name": "object" }, "deprecated": true }
   },
   "name": "SpeedDial",
   "imports": [

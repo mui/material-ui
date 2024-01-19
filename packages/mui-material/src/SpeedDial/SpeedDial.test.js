@@ -40,6 +40,11 @@ describe('<SpeedDial />', () => {
       'componentsProp',
       'reactTestRenderer',
     ],
+    slots: {
+      transition: {
+        expectedClassName: classes.actionsClosed,
+      },
+    },
   }));
 
   it('should render a Fade transition', () => {
