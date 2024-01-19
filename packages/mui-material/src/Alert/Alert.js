@@ -168,31 +168,27 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const backwardCompatibleSlots = {
-    closeButton: components.CloseButton,
-    closeIcon: components.CloseIcon,
-    ...slots,
-  };
-  const backwardCompatibleSlotProps = {
-    ...componentsProps,
-    ...slotProps,
+  const externalForwardedProps = {
+    slots: {
+      closeButton: components.CloseButton,
+      closeIcon: components.CloseIcon,
+      ...slots,
+    },
+    slotProps: {
+      ...componentsProps,
+      ...slotProps,
+    },
   };
 
   const [CloseButtonSlot, closeButtonProps] = useSlot('closeButton', {
     elementType: IconButton,
-    externalForwardedProps: {
-      slots: backwardCompatibleSlots,
-      slotProps: backwardCompatibleSlotProps,
-    },
+    externalForwardedProps,
     ownerState,
   });
 
   const [CloseIconSlot, closeIconProps] = useSlot('closeIcon', {
     elementType: CloseIcon,
-    externalForwardedProps: {
-      slots: backwardCompatibleSlots,
-      slotProps: backwardCompatibleSlotProps,
-    },
+    externalForwardedProps,
     ownerState,
   });
 
