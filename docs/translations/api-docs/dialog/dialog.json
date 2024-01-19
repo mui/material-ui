@@ -32,6 +32,8 @@
       "description": "Props applied to the <a href=\"/material-ui/api/paper/\"><code>Paper</code></a> element."
     },
     "scroll": { "description": "Determine the container for scrolling the dialog." },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
@@ -115,5 +117,8 @@
       "nodeName": "the container element",
       "conditions": "<code>scroll=\"paper\"</code>"
     }
+  },
+  "slotDescriptions": {
+    "transition": "The component that renders the transition.\n[Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component."
   }
 }

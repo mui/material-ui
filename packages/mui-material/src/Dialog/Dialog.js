@@ -14,6 +14,7 @@ import dialogClasses, { getDialogUtilityClass } from './dialogClasses';
 import DialogContext from './DialogContext';
 import Backdrop from '../Backdrop';
 import useTheme from '../styles/useTheme';
+import useSlot from '../utils/useSlot';
 
 const DialogBackdrop = styled(Backdrop, {
   name: 'MuiDialog',
@@ -187,9 +188,11 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     PaperComponent = Paper,
     PaperProps = {},
     scroll = 'paper',
-    TransitionComponent = Fade,
+    slots = {},
+    slotProps = {},
+    TransitionComponent: TransitionComponentProp = Fade,
     transitionDuration = defaultTransitionDuration,
-    TransitionProps,
+    TransitionProps: TransitionPropsProp,
     ...other
   } = props;
 
@@ -232,6 +235,23 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     return { titleId: ariaLabelledby };
   }, [ariaLabelledby]);
 
+  const backwardCompatibleSlots = { transition: TransitionComponentProp, ...slots };
+  const backwardCompatibleSlotProps = {
+    transition: TransitionPropsProp,
+    ...slotProps,
+  };
+
+  const [TransitionSlot, transitionProps] = useSlot('transition', {
+    elementType: TransitionComponentProp,
+    externalForwardedProps: {
+      slots: backwardCompatibleSlots,
+      slotProps: backwardCompatibleSlotProps,
+    },
+    ownerState,
+  });
+
+  delete transitionProps.ownerState;
+
   return (
     <DialogRoot
       className={clsx(classes.root, className)}
@@ -252,12 +272,12 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
       ownerState={ownerState}
       {...other}
     >
-      <TransitionComponent
+      <TransitionSlot
         appear
         in={open}
         timeout={transitionDuration}
         role="presentation"
-        {...TransitionProps}
+        {...transitionProps}
       >
         {/* roles are applied via cloneElement from TransitionComponent */}
         {/* roles needs to be applied on the immediate child of Modal or it'll inject one */}
@@ -279,7 +299,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
             <DialogContext.Provider value={dialogContextValue}>{children}</DialogContext.Provider>
           </DialogPaper>
         </DialogContainer>
-      </TransitionComponent>
+      </TransitionSlot>
     </DialogRoot>
   );
 });
@@ -387,6 +407,20 @@ Dialog.propTypes /* remove-proptypes */ = {
    */
   scroll: PropTypes.oneOf(['body', 'paper']),
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    transition: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -398,6 +432,7 @@ Dialog.propTypes /* remove-proptypes */ = {
    * The component used for the transition.
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
+   * @deprecated Use `slots.transition` instead. This prop will be removed in v7.
    */
   TransitionComponent: PropTypes.elementType,
   /**
@@ -419,6 +454,7 @@ Dialog.propTypes /* remove-proptypes */ = {
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7.
    */
   TransitionProps: PropTypes.object,
 };
