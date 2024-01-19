@@ -8,6 +8,7 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface BackdropSlots {
+  root?: React.ElementType;
   /**
    * The component that renders the transition.
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
