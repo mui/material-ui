@@ -45,27 +45,30 @@ function defaultOverridesResolver(slot) {
 }
 
 function processStyleArg(styles, props) {
-  const { variants = [], ...otherStyles } = styles;
-  const variantStyles = [];
-  variants.forEach((variant) => {
-    let isMatch = true;
-    if (typeof variant.props === 'function') {
-      const propsToCheck = { ...props, ...props.ownerState };
-      isMatch = variant.props(propsToCheck);
-    } else {
-      Object.keys(variant.props).forEach((key) => {
-        if (props.ownerState[key] !== variant.props[key] && props[key] !== variant.props[key]) {
-          isMatch = false;
-        }
-      });
-    }
-    if (isMatch) {
-      variantStyles.push(
-        typeof variant.style === 'function' ? variant.style(props) : variant.style,
-      );
-    }
-  });
-  return [otherStyles, ...variantStyles];
+  if (typeof styles === 'object' && !!styles) {
+    const { variants = [], ...otherStyles } = styles;
+    const variantStyles = [];
+    variants.forEach((variant) => {
+      let isMatch = true;
+      if (typeof variant.props === 'function') {
+        const propsToCheck = { ...props, ...props.ownerState };
+        isMatch = variant.props(propsToCheck);
+      } else {
+        Object.keys(variant.props).forEach((key) => {
+          if (props.ownerState?.[key] !== variant.props[key] && props[key] !== variant.props[key]) {
+            isMatch = false;
+          }
+        });
+      }
+      if (isMatch) {
+        variantStyles.push(
+          typeof variant.style === 'function' ? variant.style(props) : variant.style,
+        );
+      }
+    });
+    return [otherStyles, ...variantStyles];
+  }
+  return styles;
 }
 
 export default function createStyled(input = {}) {
@@ -139,19 +142,20 @@ export default function createStyled(input = {}) {
       // On the server Emotion doesn't use React.forwardRef for creating components, so the created
       // component stays as a function. This condition makes sure that we do not interpolate functions
       // which are basically components used as a selectors.
-      if (typeof stylesArg === 'function' && stylesArg.__emotion_real !== stylesArg) {
-        return (props) =>
-          processStyleArg(stylesArg(props), {
+      if (
+        (typeof stylesArg === 'function' && stylesArg.__emotion_real !== stylesArg) ||
+        isPlainObject(stylesArg)
+      ) {
+        return (props) => {
+          const resolvedProps = {
             ...props,
             theme: resolveTheme({ theme: props.theme, defaultTheme, themeId }),
-          });
-      }
-      if (isPlainObject(stylesArg)) {
-        return (props) =>
-          processStyleArg(stylesArg, {
-            ...props,
-            theme: resolveTheme({ theme: props.theme, defaultTheme, themeId }),
-          });
+          };
+          return processStyleArg(
+            typeof stylesArg === 'function' ? stylesArg(resolvedProps) : stylesArg,
+            resolvedProps,
+          );
+        };
       }
       return stylesArg;
     };
@@ -171,9 +175,12 @@ export default function createStyled(input = {}) {
           }
           const styleOverrides = theme.components[componentName].styleOverrides;
           const resolvedStyleOverrides = {};
+          const resolvedProps = { ...props, theme };
           Object.entries(styleOverrides).forEach(([slotKey, slotStyle]) => {
-            resolvedStyleOverrides[slotKey] =
-              typeof slotStyle === 'function' ? slotStyle({ ...props, theme }) : slotStyle;
+            resolvedStyleOverrides[slotKey] = processStyleArg(
+              typeof slotStyle === 'function' ? slotStyle(resolvedProps) : slotStyle,
+              resolvedProps,
+            );
           });
           return overridesResolver(props, resolvedStyleOverrides);
         });

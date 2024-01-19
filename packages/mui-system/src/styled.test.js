@@ -159,10 +159,31 @@ describe('styled', () => {
                   height: '400px',
                 },
               },
+              {
+                props: ({ variant }) => variant === 'circle',
+                style: ({ theme: t }) => ({
+                  width: t.shape.borderRadius,
+                  height: t.shape.borderRadius,
+                }),
+              },
             ],
             styleOverrides: {
               root: {
                 width: '250px',
+                variants: [
+                  {
+                    props: { variant: 'triangle' },
+                    style: {
+                      width: '250px',
+                    },
+                  },
+                  {
+                    props: ({ variant }) => variant === 'triangle',
+                    style: ({ theme: t }) => ({
+                      height: t.shape.borderRadius,
+                    }),
+                  },
+                ],
               },
               rect: {
                 height: '250px',
@@ -172,10 +193,10 @@ describe('styled', () => {
         },
       });
 
-      const testOverridesResolver = (props, styles) => ({
-        ...styles.root,
-        ...(props.variant && styles[props.variant]),
-      });
+      const testOverridesResolver = (props, styles) => [
+        styles.root,
+        ...(props.variant ? [styles[props.variant]] : []),
+      ];
 
       Test = styled('div', {
         shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
@@ -391,6 +412,32 @@ describe('styled', () => {
       expect(container.firstChild).toHaveComputedStyle({
         width: '400px',
         height: '400px',
+      });
+    });
+
+    it('variants should work with callbacks', () => {
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Test variant="circle">Test</Test>
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        width: `${theme.shape.borderRadius}px`,
+        height: `${theme.shape.borderRadius}px`,
+      });
+    });
+
+    it('variants should work inside overrides', () => {
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Test variant="triangle">Test</Test>
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        width: '250px',
+        height: `${theme.shape.borderRadius}px`,
       });
     });
 
