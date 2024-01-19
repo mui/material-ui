@@ -109,7 +109,6 @@ export default function ServerRenderedButtons() {
             slots={{ root: StyledHtmlInput }}
             value="Button 1D"
             type="button"
-            componentName="Button-1D"
           />
         </Stack>
 
@@ -126,16 +125,11 @@ export default function ServerRenderedButtons() {
           hostElementName is not passed
         </pre>
         <Stack spacing={2} direction="row" style={{ marginBottom: 48 }}>
-          <StyledBaseButton disabled hostElementName="span" componentName="Button-2A">
+          <StyledBaseButton disabled hostElementName="span">
             Button 2A
           </StyledBaseButton>
 
-          <BaseButton
-            disabled
-            hostElementName="span"
-            slots={{ root: StyledHtmlButton }}
-            componentName="Button-2B"
-          >
+          <BaseButton disabled hostElementName="span" slots={{ root: StyledHtmlButton }}>
             Button 2B
           </BaseButton>
 
@@ -144,7 +138,6 @@ export default function ServerRenderedButtons() {
             slots={{ root: StyledHtmlInput }}
             value="Button 2C"
             type="button"
-            componentName="Button-2C"
           />
         </Stack>
 
@@ -163,20 +156,10 @@ export default function ServerRenderedButtons() {
           <StyledBaseButton disabled href="https://mui.com/">
             Link-3A
           </StyledBaseButton>
-          <StyledBaseButton
-            disabled
-            href="https://mui.com/"
-            slots={{ root: LinkSlot }}
-            componentName="Link-3B"
-          >
+          <StyledBaseButton disabled href="https://mui.com/" slots={{ root: LinkSlot }}>
             Link-3B (Next.js Link)
           </StyledBaseButton>
-          <StyledBaseButton
-            disabled
-            href="https://mui.com/"
-            slots={{ root: StyledHtmlAnchor }}
-            componentName="Link-3C"
-          >
+          <StyledBaseButton disabled href="https://mui.com/" slots={{ root: StyledHtmlAnchor }}>
             Link-3C
           </StyledBaseButton>
           <BaseButton
@@ -184,7 +167,6 @@ export default function ServerRenderedButtons() {
             href="https://mui.com/"
             slots={{ root: StyledHtmlInput }}
             value="Link 3D"
-            componentName="Link-3D"
             type="button"
             hostElementName="input"
           />
@@ -193,7 +175,6 @@ export default function ServerRenderedButtons() {
             href="https://mui.com/"
             slots={{ root: 'input' }}
             value="Link 3E"
-            componentName="Link-3E"
             type="button"
           />
         </Stack>
