@@ -91,9 +91,9 @@ const inputStyles = `
 `;
 const StyledInput = styled('input')(inputStyles);
 
-const CSS = `.MuiInput-root {${fieldStyles}}
+const CSS = `.base-Input-root {${fieldStyles}}
 
-.MuiInput-input {${inputStyles}}`;
+.base-Input-input {${inputStyles}}`;
 
 const StyledFloatingLabelInput = React.forwardRef<HTMLInputElement, JSX.IntrinsicElements['input']>(
   function StyledFloatingLabelInput(props, ref) {
