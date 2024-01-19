@@ -7,6 +7,7 @@ import { alpha } from '@mui/material/styles';
 import MuiStatistics from 'docs/src/components/home/MuiStatistics';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
+import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 
 const UserFeedbacks = dynamic(() => import('./UserFeedbacks'));
 
@@ -31,9 +32,9 @@ export default function Testimonials() {
               Supported by thousands of <GradientText>developers and designers</GradientText>
             </Typography>
           }
-          description="Together, we are enabling developers & designers to bring stunning UIs to life with unrivalled speed and ease."
         />
-        <MuiStatistics />
+        {/* <MuiStatistics /> */}
+        <GetStartedButtons primaryLabel="Discover the Core libraries" primaryUrl="/core/" />
         <UserFeedbacks />
       </Section>
     </Box>

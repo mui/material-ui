@@ -11,7 +11,7 @@ const data = [
 
 export default function MuiStatistics() {
   return (
-    <Box sx={{ my: 8, display: 'flex', justifyContent: 'center', gap: 2 }}>
+    <Box sx={{ py: 3, display: 'flex', justifyContent: 'center', gap: 2, width: '100%' }}>
       {data.map((item) => (
         <Box key={item.title} sx={{ height: '100%', width: { xs: '100%', sm: 200 } }}>
           <Typography

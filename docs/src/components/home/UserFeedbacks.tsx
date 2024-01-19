@@ -3,7 +3,8 @@ import { alpha } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Masonry from '@mui/lab/Masonry';
+import Grid from '@mui/material/Unstable_Grid2';
+import MuiStatistics from 'docs/src/components/home/MuiStatistics';
 
 function Feedback({
   quote,
@@ -22,11 +23,11 @@ function Feedback({
     <Box
       sx={{
         p: 3,
-        border: '1px solid',
-        borderColor: 'divider',
-        borderRadius: 1,
-        color: '#fff',
-        backgroundColor: 'rgba(255,255,255,0.01)',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        color: '#FFF',
       }}
     >
       <Typography variant="body1" fontWeight="medium" component="div" sx={{ mb: 2.5 }}>
@@ -148,10 +149,35 @@ const TESTIMONIALS = [
 
 export default function UserFeedbacks() {
   return (
-    <Masonry columns={2} spacing={3}>
+    <Grid
+      container
+      sx={{
+        mt: 4,
+        backgroundColor: 'rgba(255,255,255,0.01)',
+        border: '1px solid',
+        borderColor: 'divider',
+        borderRadius: 1,
+        overflow: 'clip',
+        '> :nth-of-type(1)': { borderBottom: '1px solid', borderColor: 'divider' },
+        '> :nth-of-type(2)': {
+          borderBottom: '1px solid',
+          borderRight: '1px solid',
+          borderColor: 'divider',
+        },
+        '> :nth-of-type(3)': { borderBottom: '1px solid', borderColor: 'divider' },
+        '> :nth-of-type(4)': {
+          borderRight: '1px solid',
+          borderBottom: { xs: '1px solid', sm: 0 },
+          borderColor: 'divider',
+        },
+      }}
+    >
+      <MuiStatistics />
       {TESTIMONIALS.map((item) => (
-        <Feedback key={item.profile.name} {...item} />
+        <Grid xs={12} sm={6}>
+          <Feedback key={item.profile.name} {...item} />
+        </Grid>
       ))}
-    </Masonry>
+    </Grid>
   );
 }
