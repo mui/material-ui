@@ -10,15 +10,27 @@ import type {
 import type { Replacements, Rules } from '@linaria/utils';
 import { ValueType } from '@linaria/utils';
 import type { CSSInterpolation } from '@emotion/css';
+import deepMerge from 'lodash.merge';
 import BaseProcessor from './base-processor';
 import type { IOptions } from './styled';
-import { cache, keyframes } from '../utils/emotion';
+import { cache, css } from '../utils/emotion';
+import type { Primitive, TemplateCallback } from './keyframes';
 
-export type Primitive = string | number | boolean | null | undefined;
-
-export type TemplateCallback = (params: Record<string, unknown> | undefined) => string | number;
-
-export class KeyframesProcessor extends BaseProcessor {
+/**
+ * @description Scope css class generation similar to css from emotion.
+ *
+ * @example
+ * ```ts
+ * import { css } from '@mui/zero-runtime';
+ *
+ * const class1 = css(({theme}) => ({
+ *  color: (theme.vars || theme).palette.primary.main,
+ * }))
+ * ```
+ *
+ * <html className={class1} />
+ */
+export class CssProcessor extends BaseProcessor {
   callParam: CallParam | TemplateParam;
 
   constructor(params: Params, ...args: TailProcessorParams) {
@@ -34,7 +46,8 @@ export class KeyframesProcessor extends BaseProcessor {
 
     const [, callParams] = params;
     if (callParams[0] === 'call') {
-      this.dependencies.push(callParams[1]);
+      const [, ...callArgs] = callParams;
+      this.dependencies.push(...callArgs);
     } else if (callParams[0] === 'template') {
       callParams[1].forEach((element) => {
         if ('kind' in element && element.kind !== ValueType.CONST) {
@@ -99,9 +112,8 @@ export class KeyframesProcessor extends BaseProcessor {
   }
 
   generateArtifacts(styleObjOrTaggged: CSSInterpolation | string[], ...args: Primitive[]) {
-    const keyframeName = keyframes(styleObjOrTaggged, ...args);
-    const cacheCssText = cache.inserted[keyframeName.replace('animation-', '')] as string;
-    const cssText = cacheCssText.replaceAll(keyframeName, '');
+    const cssClassName = css(styleObjOrTaggged, ...args);
+    const cssText = cache.registered[cssClassName] as string;
 
     const rules: Rules = {
       [this.asSelector]: {
@@ -129,19 +141,27 @@ export class KeyframesProcessor extends BaseProcessor {
     this.artifacts.push(['css', [rules, sourceMapReplacements]]);
   }
 
-  private handleCall([, callArg]: CallParam, values: ValueCache) {
-    let styleObj: CSSInterpolation;
-    if (callArg.kind === ValueType.LAZY) {
-      styleObj = values.get(callArg.ex.name) as CSSInterpolation;
-    } else if (callArg.kind === ValueType.FUNCTION) {
-      const { themeArgs } = this.options as IOptions;
-      const value = values.get(callArg.ex.name) as (
-        args: Record<string, unknown> | undefined,
-      ) => CSSInterpolation;
-      styleObj = value(themeArgs);
-    }
-    if (styleObj) {
-      this.generateArtifacts(styleObj);
+  private handleCall([, ...callArgs]: CallParam, values: ValueCache) {
+    const mergedStyleObj: CSSInterpolation = {};
+
+    callArgs.forEach((callArg) => {
+      let styleObj: CSSInterpolation;
+      if (callArg.kind === ValueType.LAZY) {
+        styleObj = values.get(callArg.ex.name) as CSSInterpolation;
+      } else if (callArg.kind === ValueType.FUNCTION) {
+        const { themeArgs } = this.options as IOptions;
+        const value = values.get(callArg.ex.name) as (
+          args: Record<string, unknown> | undefined,
+        ) => CSSInterpolation;
+        styleObj = value(themeArgs);
+      }
+
+      if (styleObj) {
+        deepMerge(mergedStyleObj, styleObj);
+      }
+    });
+    if (Object.keys(mergedStyleObj).length > 0) {
+      this.generateArtifacts(mergedStyleObj);
     }
   }
 
@@ -154,7 +174,7 @@ export class KeyframesProcessor extends BaseProcessor {
   }
 
   get asSelector() {
-    return this.className;
+    return `.${this.className}`;
   }
 
   get value(): Expression {

@@ -71,10 +71,6 @@ commands:
             node scripts/useReactVersion.mjs
             # log a patch for maintainers who want to check out this change
             git --no-pager diff HEAD
-      - restore_cache:
-          name: Restore pnpm package cache
-          keys:
-            - pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
       - when:
           condition: << parameters.browsers >>
           steps:
@@ -107,14 +103,6 @@ commands:
             - run:
                 name: Install playwright browsers
                 command: pnpm playwright install --with-deps
-      - save_cache:
-          name: Save pnpm package cache
-          key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
-          paths:
-            - node_modules
-      - when:
-          condition: << parameters.browsers >>
-          steps:
             - save_cache:
                 name: Save playwright cache
                 key: v6-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
