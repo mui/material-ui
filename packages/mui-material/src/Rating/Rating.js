@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, clamp, visuallyHidden } from '@mui/utils';
+import { chainPropTypes, visuallyHidden, clamp } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import useTheme from '../styles/useTheme';
 import {
