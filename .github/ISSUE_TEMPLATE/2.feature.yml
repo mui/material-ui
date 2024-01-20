@@ -1,20 +1,16 @@
 name: Feature request 💄
-description: Suggest a new idea for MUI Core.
+description: Suggest a new idea for Material UI, Base UI, MUI System, or Joy UI.
 labels: ['status: waiting for maintainer']
 body:
   - type: markdown
     attributes:
-      value: |
-        Please provide a searchable summary of the issue in the title above ⬆️.
-
-        Thanks for contributing by creating an issue! ❤️
-  - type: checkboxes
+      value: Thanks for contributing by creating an issue! ❤️ Please provide a searchable summary of the issue in the title above ⬆️.
+  - type: input
     attributes:
-      label: Duplicates
-      description: Please [search the history](https://github.com/mui/material-ui/issues) to see if an issue already exists for the same problem.
-      options:
-        - label: I have searched the existing issues
-          required: true
+      label: Search keywords
+      description: 'Your issue may have already been reported! Please list the words you've used to search the [existing issues](https://github.com/mui/material-ui/issues):'
+    validations:
+      required: true
   - type: checkboxes
     attributes:
       label: Latest version
@@ -33,4 +29,4 @@ body:
   - type: textarea
     attributes:
       label: Motivation
-      description: What are you trying to accomplish? How has the lack of this feature affected you? Providing context helps us come up with a solution that is more useful in the real world.
+      description: What are you trying to accomplish? Providing context helps us come up with a solution that is more useful in the real world.
