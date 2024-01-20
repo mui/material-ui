@@ -12,31 +12,31 @@ card: true
 If you're a close follower of everything MUI, you might be aware that we've been working on a new design system.
 If not, then this post will give you a first look at **Joy UI**－MUI's new starting point for your design system!
 
-If you've ever considered using Material UI because of the developer experience, reliability, and completeness, but hesitated because of the design, this is great news for you.
+If you've ever considered using Material UI because of the developer experience, reliability, and completeness, but hesitated because of the design, this is great news for you.
 Joy UI offers all of that, but with a modern look and feel, ease of customization, and lower overhead by not carrying unused Material Design specific code and styling.
 
-## How does Joy UI relate to Material UI?
+## How does Joy UI relate to Material UI?
 
-You might naturally associate MUI with Material UI, which despite the similar names, are separate things.
-Material UI is MUI's React implementation of Google's Material Design.
+You might naturally associate MUI with Material UI, which despite the similar names, are separate things.
+Material UI is MUI's React implementation of Google's Material Design.
 
-Over time Material UI has established itself as the go-to library for quickly breathing life into products, mostly thanks to its design, customizability, and documentation.
+Over time Material UI has established itself as the go-to library for quickly breathing life into products, mostly thanks to its design, customizability, and documentation.
 However, the components do come by default with the 2018 Google look and feel that is no longer as popular as it once was.
 And as we've confirmed with [our latest developer survey](/blog/2021-developer-survey-results/#what-are-your-most-important-criteria-for-choosing-a-ui-library), design quality is one of the most important elements that developers consider when choosing a UI library.
 
-## Why not just build a new Material UI theme?
+## Why not just build a new Material UI theme?
 
 One of the main objectives with this new product is to break away from Material Design.
-A different theme would still require you and your team to have at least some understanding of how Material Design is structured, and how that is expressed in Material UI.
+A different theme would still require you and your team to have at least some understanding of how Material Design is structured, and how that is expressed in Material UI.
 With Joy, you're able to start with a fresh design by default.
 
-We also had many ideas for improving the experience of developing design systems, so a separate package is an opportunity to prototype and test some of these new features without running the risk of compromising the experience of the thousands of teams that use Material UI today.
+We also had many ideas for improving the experience of developing design systems, so a separate package is an opportunity to prototype and test some of these new features without running the risk of compromising the experience of the thousands of teams that use Material UI today.
 
-Material UI and Joy UI still share many of the same conventions and features.
+Material UI and Joy UI still share many of the same conventions and features.
 We've done this not only to decrease the learning curve for adopting Joy UI, but also because we believe that the conventions we've established represent the ideal developer experience for working with design systems.
 
 :::info
-Any new DX feature introduced in Joy UI will eventually be reproduced in Material UI, and vice versa.
+Any new DX feature introduced in Joy UI will eventually be reproduced in Material UI, and vice versa.
 :::
 
 ## What new features does Joy UI offer?
