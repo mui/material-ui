@@ -299,10 +299,10 @@ const DemoRootJoy = joyStyled('div', {
     borderColor: grey[100],
     borderLeftWidth: 0,
     borderRightWidth: 0,
-    backgroundColor: '#fff',
+    backgroundColor: 'transparent',
     ...theme.applyDarkStyles({
-      borderColor: alpha(grey[700], 0.3),
-      backgroundColor: alpha(blueDark[700], 0.2),
+      borderColor: alpha(blueDark[500], 0.3),
+      backgroundColor: alpha(theme.palette.neutral[900], 0.8),
     }),
   }),
   /* Prepare the background to display an inner elevation. */
@@ -328,7 +328,7 @@ const DemoRootJoy = joyStyled('div', {
       radial-gradient(at 93% 85%, ${alpha(blue[100], 0.2)} 0px, transparent 50%);`,
     ...theme.applyDarkStyles({
       backgroundColor: alpha(blue[900], 0.1),
-      borderColor: alpha(grey[700], 0.3),
+      borderColor: alpha(blueDark[700], 1),
       backgroundImage: `radial-gradient(at 51% 52%, ${alpha(
         blueDark[700],
         0.5,

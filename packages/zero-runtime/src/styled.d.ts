@@ -14,7 +14,7 @@ type FastOmit<T extends object, U extends string | number | symbol> = {
 export type Substitute<A extends object, B extends object> = FastOmit<A, keyof B> & B;
 
 export interface StyledVariants<Props extends BaseDefaultProps> {
-  props: Partial<Props>;
+  props: Partial<Props> | ((props: Props) => boolean);
   style: CSSObject<Props>;
 }
 
@@ -54,7 +54,10 @@ export interface StyledComponent<Props extends BaseDefaultProps = BaseDefaultPro
   toString: () => string;
 }
 
-export interface CreateStyledComponent<Component extends React.ElementType, OuterProps extends {}> {
+export interface CreateStyledComponent<
+  Component extends React.ElementType,
+  OuterProps extends object,
+> {
   /**
    * @typeparam Props: Additional props to add to the styled component
    */
@@ -69,8 +72,9 @@ export interface StyledOptions<Props extends BaseDefaultProps = BaseDefaultProps
   slot?: string;
   skipSx?: boolean;
   skipVariantsResolver?: boolean;
+  shouldForwardProp?: (propName: string) => boolean;
   overridesResolver?: (
-    props: Props,
+    props: any | Props,
     styles: Record<string, string>,
   ) => (string | Falsy) | Array<string | Falsy>;
 }

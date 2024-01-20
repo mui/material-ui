@@ -1,24 +1,52 @@
 import * as React from 'react';
-import { styled } from '@mui/zero-runtime';
+import { styled, generateAtomics, css } from '@mui/zero-runtime';
+import type { Breakpoint } from '@mui/system';
 import { Button, bounceAnim } from 'local-ui-lib';
 import Slider from './Slider/ZeroSlider';
 
 const ShowCaseDiv = styled('div')({
   [`.${Button}`]: {
     color: '#f94564',
+    animation: `${bounceAnim} 1s ease infinite`,
   },
 });
 
-const HalfWidth = styled.div({
+const atomics = generateAtomics(({ theme }) => ({
+  conditions: Object.entries(theme.breakpoints.values).reduce((acc, [key, value]) => {
+    if (key === 'xs') {
+      return acc;
+    }
+    acc[key as Breakpoint] = theme.breakpoints.up(value);
+    return acc;
+  }, {} as Record<Breakpoint, string>),
+  defaultCondition: 'sm',
+  properties: {
+    display: ['none', 'flex', 'block', 'grid', 'inline-flex', 'inline-block'],
+    flexDirection: ['row', 'column', 'row-reverse', 'column-reverse'],
+    justifyContent: ['center', 'space-between'],
+    alignItems: ['center'],
+  },
+}));
+
+const HalfWidth = styled.div<{ isRed?: boolean }>(({ theme }) => ({
   marginLeft: 20,
   width: '50%',
   maxHeight: 100,
   padding: 20,
   border: '1px solid #ccc',
-  animation: `${bounceAnim} 1s ease infinite`,
-});
+  color: ({ isRed }) => {
+    if (isRed) {
+      return (theme.vars || theme).palette.primary.main;
+    }
+    return (theme.vars || theme).palette.secondary.main;
+  },
+}));
 
-export default function App({ isRed }: any) {
+type AppProps = {
+  isRed?: boolean;
+};
+
+export function App({ isRed }: AppProps) {
   const [count, setCount] = React.useState(0);
   const [value, setValue] = React.useState(50);
   const [isColorPrimary, setIsColorPrimary] = React.useState(true);
@@ -29,13 +57,17 @@ export default function App({ isRed }: any) {
   const [isHorizontal, setIsHorizontal] = React.useState(true);
 
   return (
-    <div>
-      <Button isRed={count % 2 === 1} onClick={() => setCount(count + 1)}>
-        Click Count {count}
-      </Button>
+    <div
+      className={css`
+        color: red;
+      `}
+    >
       <ShowCaseDiv>
         <Button>This button&apos;s text color has been overridden.</Button>
       </ShowCaseDiv>
+      <Button isRed={count % 2 === 1} onClick={() => setCount(count + 1)}>
+        Click Count {count}
+      </Button>
       <div>
         <div>
           <label>
@@ -91,8 +123,9 @@ export default function App({ isRed }: any) {
       </div>
       <div>
         <HalfWidth
+          isRed={count % 2 === 0}
           sx={({ theme }) => ({
-            color: theme.palette.primary.main,
+            color: (theme.vars || theme).palette.primary.main,
             fontSize: isRed ? 'h1.fontSize' : 'h2.fontSize',
             ':hover': {
               backgroundColor: ['primary.dark', 'secondary.main'],
@@ -120,6 +153,23 @@ export default function App({ isRed }: any) {
             onChange={(ev, val) => setValue(val as number)}
           />
         </HalfWidth>
+      </div>
+      <div>
+        <h1>Atomics Demo</h1>
+        <div
+          {...atomics({
+            display: 'flex',
+            flexDirection: {
+              lg: 'row',
+              md: 'column',
+              sm: 'column',
+            },
+            justifyContent: 'space-between',
+          })}
+        >
+          <span>Hello1</span>
+          <span>Hello2</span>
+        </div>
       </div>
     </div>
   );

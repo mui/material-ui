@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@babel/helper-module-imports": "^7.22.15",
-    "@babel/runtime": "^7.23.7",
+    "@babel/runtime": "^7.23.8",
     "babel-plugin-macros": "^3.1.0"
   },
   "devDependencies": {
@@ -30,9 +30,9 @@
     "@types/babel-plugin-macros": "^3.1.3",
     "@types/chai": "^4.3.11",
     "@types/mocha": "^10.0.6",
-    "@types/node": "^18.19.4",
+    "@types/node": "^18.19.7",
     "babel-plugin-tester": "^11.0.4",
-    "chai": "^4.3.10"
+    "chai": "^4.4.1"
   },
   "peerDependencies": {
     "@mui/utils": "workspace:^"

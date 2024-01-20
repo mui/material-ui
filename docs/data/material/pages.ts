@@ -188,7 +188,6 @@ const pages: MuiPage[] = [
         pathname: '/material-ui/guides/creating-themed-components',
         title: 'Creating themed components',
       },
-      { pathname: '/material-ui/guides/understand-mui-packages', title: 'Understand MUI packages' },
       { pathname: '/material-ui/guides/typescript', title: 'TypeScript' },
       { pathname: '/material-ui/guides/interoperability', title: 'Style library interoperability' },
       { pathname: '/material-ui/guides/styled-components', title: 'Using styled-components' },

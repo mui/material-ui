@@ -134,7 +134,12 @@ const StyledSwitchRoot = styled('span')(`
   margin: 10px;
   cursor: pointer;
   border-radius: 16px;
-  background: #A0AAB4;
+  background: #B0B8C4;
+  transition: all ease 120ms;
+
+  :hover {
+    background: #9DA8B7;
+  }
 
   &.Mui-disabled {
     opacity: 0.4;
@@ -143,14 +148,24 @@ const StyledSwitchRoot = styled('span')(`
 
   &.Mui-checked {
     background: #007FFF;
+    :hover {
+      background: #0072E5;
+    }
     & .MuiSwitch-thumb {
       left: 20px;
     }
   }
 
   &.Mui-focusVisible {
-    outline: 2px solid #007FFF;
-    outline-offset: 2px;
+    outline: 4px solid rgba(0, 127, 255, 0.4);
+  }
+
+  :where([data-mui-color-scheme='dark']) & {
+    background: #6B7A90;
+  
+    :hover {
+      background: #434D5B;
+    }
   }
 `);
 

@@ -43,7 +43,7 @@ export interface PopupOwnProps {
   disablePortal?: boolean;
   /**
    * If `true`, the popup will exist in the DOM even if it's closed.
-   * Its visibility will be controlled by the `display` CSS property.
+   * Its visibility will be controlled by the `visibility` CSS property.
    *
    * Otherwise, a closed popup will be removed from the DOM.
    *
