@@ -10,8 +10,9 @@ body:
   - type: input
     attributes:
       label: Search keywords
-      description: "Your issue may have already been reported! Please list the words you've used to search the [existing issues](https://github.com/mui/material-ui/issues):"
-    validations:
+      description: |
+        Your issue may have already been reported! First search for duplicates among the [existing issues](https://github.com/mui/material-ui/issues).
+        If your issue isn't a duplicate, great! Please list the keywords you used so people in the future can find this one more easily:
       required: true
   - type: checkboxes
     attributes:
