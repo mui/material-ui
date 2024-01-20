@@ -2,7 +2,7 @@
 
 <p class="description">The shadow DOM lets you encapsulate parts of an app to keep them separate from global styles that target the regular DOM tree.</p>
 
-## How to use the shadow DOM with Material UI
+## How to use the shadow DOM with Material UI
 
 ### 1. Styles
 
@@ -32,7 +32,7 @@ ReactDOM.createRoot(shadowRootElement).render(
 
 ### 2. Theme
 
-Material UI components like `Menu`, `Dialog`, `Popover` and others use [`Portal`](/material-ui/react-portal/) to render a new "subtree" in a container outside of current DOM hierarchy.
+Material UI components like `Menu`, `Dialog`, `Popover` and others use [`Portal`](/material-ui/react-portal/) to render a new "subtree" in a container outside of current DOM hierarchy.
 By default, this container is `document.body`.
 But since the styles are applied only inside of the Shadow DOM, we need to render portals inside the Shadow DOM container as well:
 
