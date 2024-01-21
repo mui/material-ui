@@ -36,11 +36,11 @@ Inside `app/layout.tsx`, import the `AppRouterCacheProvider` and wrap all elemen
  // or `v1X-appRouter` if you are using Next.js v1X
 
  export default function RootLayout(props) {
-   const { children } = props;
    return (
      <html lang="en">
        <body>
-+        <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
+-        {props.children}
++        <AppRouterCacheProvider>{props.children}</AppRouterCacheProvider>
        </body>
      </html>
    );
