@@ -134,7 +134,7 @@ Button.propTypes /* remove-proptypes */ = {
    */
   focusableWhenDisabled: PropTypes.bool,
   /**
-   * The HTML element, e.g.'button', 'a' etc
+   * The HTML element that is ultimately rendered, for example 'button' or 'a'
    * @default 'button'
    */
   hostElementName: PropTypes /* @typescript-to-proptypes-ignore */.string,
