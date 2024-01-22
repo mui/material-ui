@@ -27,6 +27,18 @@ The Material UI Button component replaces the native HTML `<button>` element and
 import Button from '@mui/material/Button';
 ```
 
+### Links
+
+The Material UI Button accepts an `href` prop which automatically inserts an `<a>` element with the target link.
+
+```jsx
+<Button href="/home">Home</Button>
+
+// renders as
+
+<button><a href="/home">Home</a></button>
+```
+
 ### Variants
 
 The Button component supports three values for the `variant` prop: `text` (default), `contained`, and `outlined`.
@@ -61,6 +73,15 @@ The Button component comes in three sizes: `small`, `medium` (default), and `lar
 Use the `startIcon` or `endIcon` prop to append an icon to the beginning or end of a Button's contents.
 
 {{"demo": "IconLabelButtons.js"}}
+
+### Ripple effect
+
+The Ripple effect provides visual feedback to the user that the Button is being clicked or focused.
+Use the `disableFocusRipple` prop to remove only the focus effect, or `disableRipple` to remove the Ripple entirely.
+
+Note that when `disableRipple` is applied, there are no default styles for the `:focus-visible` state, so you should use the `.Mui-focusVisible` class to define your own.
+
+{{"demo": "RippleButtons.js"}}
 
 ### Icon Buttons
 
