@@ -7,6 +7,11 @@ export interface PieSeriesType<Tdata = PieValueType> {
   data: Tdata[];
 }
 
+interface PieSeriesType2 {
+  type: 'pie';
+  data: string[];
+}
+
 type LineValueType = number;
 
 export interface LineSeriesType<Tdata = LineValueType> {
@@ -18,9 +23,10 @@ type ChartSeries = PieSeriesType | LineSeriesType;
 
 interface Props {
   series: ChartSeries;
+  pieSeries: PieSeriesType | PieSeriesType2;
 }
 
 export default function Grid(props: Props) {
-  const { series } = props;
+  const { series, pieSeries } = props;
   return <div>{series.type}</div>;
 }
