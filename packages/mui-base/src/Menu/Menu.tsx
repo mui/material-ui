@@ -101,7 +101,7 @@ const Menu = React.forwardRef(function Menu<RootComponentType extends React.Elem
   }
 
   return (
-    <Popup {...rootProps} open={open} anchor={anchor} slots={{ root: Root }}>
+    <Popup keepMounted {...rootProps} open={open} anchor={anchor} slots={{ root: Root }}>
       <Listbox {...listboxProps}>
         <MenuProvider value={contextValue}>{children}</MenuProvider>
       </Listbox>
