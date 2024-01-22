@@ -185,6 +185,26 @@ const theme = createTheme();
             },
           },
         ],
+        styleOverrides: {
+          root: {
+            variants: [
+              {
+                props: { variant: 'contained' },
+                style: {
+                  backdropFilter: 'none',
+                },
+              },
+            ],
+          },
+          endIcon: ({ theme: t }) => ({
+            backgroundColor: t.vars.palette.primary.main,
+            variants: [
+              {
+                props: ({ ownerState }) => ownerState.color === 'primary',
+              },
+            ],
+          }),
+        },
       },
     },
   });

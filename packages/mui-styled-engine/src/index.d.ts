@@ -62,7 +62,10 @@ export interface CSSObject
     Omit<CSSOthersObject, 'variants'> {}
 
 interface CSSObjectWithVariants<Props> extends Omit<CSSObject, 'variants'> {
-  variants: Array<{ props: Props; style: CSSObject }>;
+  variants: Array<{
+    props: Props | ((props: { ownerState: Props }) => boolean);
+    style: CSSObject;
+  }>;
 }
 
 export interface ComponentSelector {
