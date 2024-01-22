@@ -136,6 +136,7 @@ export function createUndefinedType(init: { jsDoc: string | undefined }): Undefi
   };
 }
 
+let unique = 0;
 export function uniqueUnionTypes(node: UnionType): UnionType {
   return {
     type: node.type,
@@ -147,6 +148,13 @@ export function uniqueUnionTypes(node: UnionType): UnionType {
 
       if (type.type === 'InstanceOfNode') {
         return `${type.type}.${type.instance}`;
+      }
+
+      if (type.type === 'InterfaceNode') {
+        // Allows union of mulitple interface nodes
+        const rep = unique;
+        unique += 1;
+        return rep;
       }
 
       return type.type;

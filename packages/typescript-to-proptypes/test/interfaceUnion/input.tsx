@@ -14,16 +14,10 @@ export interface LineSeriesType<Tdata = LineValueType> {
   data: Tdata[];
 }
 
-interface Config {
-  pie: { series: PieSeriesType };
-  line: { series: LineSeriesType };
-}
+type ChartSeries = PieSeriesType | LineSeriesType;
 
-// type ChartSeries<T extends 'line' | 'pie'> = Config[T]['series'];
-type ChartSeries<T> = PieSeriesType | LineSeriesType;
-
-interface Props<T extends 'line' | 'pie' = 'line' | 'pie'> {
-  series: ChartSeries<T>;
+interface Props {
+  series: ChartSeries;
 }
 
 export default function Grid(props: Props) {
