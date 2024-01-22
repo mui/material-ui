@@ -1,17 +1,15 @@
 {
   "extends": "../tsconfig.json",
-  "include": ["next-env.d.ts", "types", "src", "pages", "data", "next.config.js"],
   "compilerOptions": {
-    "allowJs": true,
-    "isolatedModules": true,
-    /* files are emitted by babel */
-    "noEmit": true,
+    "module": "ES2020",
+    "moduleResolution": "node",
     "noUnusedLocals": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "types": ["react"],
-    "incremental": true
+    "incremental": true,
+    "isolatedModules": true
   },
-  "exclude": ["node_modules"]
+  "include": ["next-env.d.ts", "types", "src", "pages", "data", "next.config.js"],
+  "exclude": ["node_modules", "export"]
 }

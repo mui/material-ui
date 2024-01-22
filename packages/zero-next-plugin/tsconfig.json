@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "lib": ["es2022", "dom"],
     "resolveJsonModule": true,
     "target": "ES2015"
   },

@@ -1,10 +1,11 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["src/**/*"],
   "compilerOptions": {
     "target": "ES2022",
+    "moduleResolution": "node",
     "paths": {
       "@babel/core": ["./node_modules/@babel/core"]
     }
-  }
+  },
+  "include": ["src/**/*"]
 }
