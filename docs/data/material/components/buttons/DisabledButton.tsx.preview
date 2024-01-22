@@ -1,0 +1,4 @@
+<Button variant="outlined">Default</Button>
+<Button variant="outlined" disabled>
+  Click disabled
+</Button>

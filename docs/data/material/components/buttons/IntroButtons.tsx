@@ -7,10 +7,24 @@ import Stack from '@mui/material/Stack';
 export default function IntroButtons() {
   return (
     <Stack direction="row" spacing={2}>
-      <Button variant="outlined" startIcon={<DeleteIcon />} color="error">
+      <Button disabled>Go back</Button>
+      <Button
+        variant="outlined"
+        startIcon={<DeleteIcon />}
+        color="error"
+        onClick={() => {
+          alert('Canceled.');
+        }}
+      >
         Cancel
       </Button>
-      <Button variant="contained" startIcon={<CheckIcon />} color="success">
+      <Button
+        variant="contained"
+        startIcon={<CheckIcon />}
+        onClick={() => {
+          alert('Confirmed.');
+        }}
+      >
         Confirm
       </Button>
     </Stack>

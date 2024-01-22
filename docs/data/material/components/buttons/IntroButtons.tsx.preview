@@ -1,6 +1,0 @@
-<Button variant="outlined" startIcon={<DeleteIcon />} color="error">
-  Cancel
-</Button>
-<Button variant="contained" startIcon={<CheckIcon />} color="success">
-  Confirm
-</Button>

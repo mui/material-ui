@@ -29,14 +29,14 @@ import Button from '@mui/material/Button';
 
 ### Links
 
-The Material UI Button accepts an `href` prop which automatically inserts an `<a>` element with the target link.
+The Material UI Button accepts an `href` prop, which turns the HTML `<button>` element into an `<a>` with the target link.
 
 ```jsx
 <Button href="/home">Home</Button>
 
 // renders as
 
-<button><a href="/home">Home</a></button>
+<a href="/home">Home</a>
 ```
 
 ### Variants
@@ -50,12 +50,6 @@ The Button component supports three values for the `variant` prop: `text` (defau
 Apply the `disableElevation` prop to remove the default drop shadow from the `contained` variant.
 
 {{"demo": "DisableElevation.js"}}
-
-#### Disabled
-
-Use the `disabled` prop to disable clicking on a Button.
-
-{{"demo": "DisabledButton.js"}}
 
 ### Colors
 
@@ -88,10 +82,15 @@ Use the `startIcon` or `endIcon` prop to append an icon to the beginning or end 
 
 ### Ripple effect
 
-The Ripple effect provides visual feedback to the user that the Button is being clicked or focused.
-Use the `disableFocusRipple` prop to remove only the focus effect, or `disableRipple` to remove the Ripple entirely.
+The ripple effect provides visual feedback to the user that the Button is being clicked or focused.
+Use the `disableFocusRipple` prop to remove only the focus effect, or `disableRipple` to remove the ripple when focusing and clicking.
 
-Note that when `disableRipple` is applied, there are no default styles for the `:focus-visible` state, so you should use the `.Mui-focusVisible` class to define your own.
+:::warning
+These props remove _all_ default styles from the `:focus-visible` state, which means the user won't have any visual indication that the Button is focused.
+You can target the `.Mui-focusVisible` class to define your own styles for a better user experience.
+
+The demo below shows what happens if you don't define custom styles for the focus state.
+:::
 
 {{"demo": "RippleButtons.js"}}
 
@@ -121,6 +120,12 @@ Material UI Buttons accept an `onClick` handler that's applied to the root DOM e
   Click me
 </Button>
 ```
+
+#### Disable
+
+Use the `disabled` prop to disable clicking on a Button.
+
+{{"demo": "DisabledButton.js"}}
 
 ## Customization
 
