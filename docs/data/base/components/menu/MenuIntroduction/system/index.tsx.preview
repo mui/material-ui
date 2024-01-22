@@ -1,6 +1,6 @@
 <Dropdown>
   <MenuButton>My account</MenuButton>
-  <Menu slots={{ listbox: Listbox }}>
+  <Menu slots={{ listbox: AnimatedListbox }}>
     <MenuItem onClick={createHandleMenuClick('Profile')}>Profile</MenuItem>
     <MenuItem onClick={createHandleMenuClick('Language settings')}>
       Language settings
