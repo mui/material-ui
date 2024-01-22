@@ -1,6 +1,11 @@
 /* eslint-disable no-underscore-dangle */
 import styledEngineStyled, { internal_processStyles as processStyles } from '@mui/styled-engine';
-import { getDisplayName, unstable_capitalize as capitalize, isPlainObject } from '@mui/utils';
+import {
+  getDisplayName,
+  unstable_capitalize as capitalize,
+  isPlainObject,
+  deepmerge,
+} from '@mui/utils';
 import createTheme from './createTheme';
 import styleFunctionSx from './styleFunctionSx';
 
@@ -44,29 +49,33 @@ function defaultOverridesResolver(slot) {
   return (props, styles) => styles[slot];
 }
 
-function processStyleArg(styles, props) {
+function processStyleArg(styles, propsWithResolvedTheme) {
   if (!!styles && typeof styles === 'object' && Array.isArray(styles.variants)) {
+    const { ownerState, ...props } = propsWithResolvedTheme;
     const { variants = [], ...otherStyles } = styles;
-    const variantStyles = [];
+    let result = otherStyles;
     variants.forEach((variant) => {
       let isMatch = true;
       if (typeof variant.props === 'function') {
-        const propsToCheck = { ...props, ...props.ownerState };
+        const propsToCheck = { ...props, ...ownerState };
         isMatch = variant.props(propsToCheck);
       } else {
         Object.keys(variant.props).forEach((key) => {
-          if (props.ownerState?.[key] !== variant.props[key] && props[key] !== variant.props[key]) {
+          if (ownerState?.[key] !== variant.props[key] && props[key] !== variant.props[key]) {
             isMatch = false;
           }
         });
       }
       if (isMatch) {
-        variantStyles.push(
-          typeof variant.style === 'function' ? variant.style(props) : variant.style,
+        result = deepmerge(
+          result,
+          typeof variant.style === 'function'
+            ? variant.style(propsWithResolvedTheme)
+            : variant.style,
         );
       }
     });
-    return [otherStyles, ...variantStyles];
+    return result;
   }
   return styles;
 }
@@ -74,7 +83,7 @@ function processStyleArg(styles, props) {
 /**
  * @param {*} callableStyle user provided styles that could be a function or array of styles.
  * @param {*} propsWithResolvedTheme props with a theme that is resolved by the theme id.
- * @returns array of styles that are passed to the styled-engine (emotion/styled-components)
+ * @returns styles that are passed to the styled-engine (emotion/styled-components)
  */
 function resolveStyleArg(callableStyle, propsWithResolvedTheme) {
   const resolvedStylesArg =
