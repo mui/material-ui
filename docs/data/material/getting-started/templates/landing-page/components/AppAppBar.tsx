@@ -161,7 +161,7 @@ function AppAppBar() {
 
             <Box sx={{ display: { sm: '', md: 'none' } }}>
               <Button
-                variant="outlined"
+                variant="text"
                 color="primary"
                 aria-label="menu"
                 onClick={toggleDrawer(true)}

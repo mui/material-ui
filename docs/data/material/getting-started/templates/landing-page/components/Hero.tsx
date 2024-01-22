@@ -21,7 +21,7 @@ export default function Hero() {
         width: '100%',
         background: (theme) =>
           theme.palette.mode === 'light'
-            ? `linear-gradient(to bottom, ${brandColor[100]}, #FFF)`
+            ? `linear-gradient(to bottom, ${brandColor[200]}, #FFF)`
             : `linear-gradient(to bottom, ${brandColor[800]}, ${greyColor[900]})`,
       }}
     >
@@ -30,10 +30,10 @@ export default function Hero() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          pt: 20,
+          pt: { xs: 14, sm: 20 },
         }}
       >
-        <Stack spacing={2} sx={{ mx: { xs: '16px', sm: '0' }, width: '60%' }}>
+        <Stack spacing={2} sx={{ width: { xs: '100%', sm: '60%' } }}>
           <Chip
             size="small"
             variant="filled"
@@ -63,7 +63,14 @@ export default function Hero() {
               },
             }}
           />
-          <Box sx={{ display: 'flex', flexDirection: 'row', alignSelf: 'center' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: { xs: 'column', sm: 'row' },
+              alignSelf: 'center',
+              textAlign: 'center',
+            }}
+          >
             <Typography component="h1" variant="h1">
               Our latest&nbsp;
             </Typography>
@@ -72,7 +79,7 @@ export default function Hero() {
               variant="h1"
               sx={{
                 color: (theme) =>
-                  theme.palette.mode === 'light' ? brandColor[400] : brandColor[200],
+                  theme.palette.mode === 'light' ? brandColor[500] : brandColor[200],
               }}
             >
               products
@@ -120,18 +127,17 @@ export default function Hero() {
         <Box
           id="image"
           sx={{
-            mt: 10,
+            mt: { xs: 8, sm: 10 },
             alignSelf: 'center',
-            height: '600px',
+            height: { xs: '200px', sm: '600px' },
             width: 'calc(100% - 8px)',
-            backgroundImage:
-              'url("https://images.unsplash.com/photo-1566241440091-ec10de8db2e1?q=80&w=3316&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+            backgroundImage: (theme) =>
+              theme.palette.mode === 'light'
+                ? 'url("/static/images/templates/templates-images/dashboard-placeholder-image-light.png")'
+                : 'url("/static/images/templates/templates-images/dashboard-placeholder-image-dark.png")',
             backgroundSize: 'cover',
             outline: '4px solid',
-            outlineColor: (theme) =>
-              theme.palette.mode === 'light'
-                ? `${alpha(brandColor[500], 0.3)}`
-                : `${alpha(brandColor[700], 0.7)}`,
+            outlineColor: `${alpha(brandColor[500], 0.2)}`,
             borderRadius: '12px',
             boxShadow: (theme) =>
               theme.palette.mode === 'light'

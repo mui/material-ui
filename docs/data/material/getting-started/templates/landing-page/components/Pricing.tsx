@@ -151,22 +151,22 @@ export default function Pricing() {
                         label={tier.subheader}
                         size="small"
                         sx={{
-                          backgroundColor: (theme) =>
+                          borderColor: (theme) =>
                             theme.palette.mode === 'light'
-                              ? brandColor[100]
-                              : brandColor[200],
+                              ? ''
+                              : `${alpha(brandColor[500], 0.3)}`,
+                          background: (theme) =>
+                            theme.palette.mode === 'light'
+                              ? ''
+                              : `linear-gradient(to bottom right, ${brandColor[50]}, ${brandColor[100]})`,
                           fontWeight: '600',
                           '& .MuiChip-label': {
                             color: (theme) =>
-                              theme.palette.mode === 'light'
-                                ? brandColor[500]
-                                : brandColor[900],
+                              theme.palette.mode === 'light' ? '' : brandColor[500],
                           },
                           '& .MuiChip-icon': {
                             color: (theme) =>
-                              theme.palette.mode === 'light'
-                                ? brandColor[500]
-                                : brandColor[800],
+                              theme.palette.mode === 'light' ? '' : brandColor[500],
                           },
                         }}
                       />

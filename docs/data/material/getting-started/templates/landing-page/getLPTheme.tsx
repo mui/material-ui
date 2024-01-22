@@ -187,6 +187,31 @@ export default function getLPTheme(mode: 'light' | 'dark') {
           },
         },
       },
+      MuiChip: {
+        styleOverrides: {
+          root: {
+            alignSelf: 'center',
+            py: 1.5,
+            px: 0.5,
+            background:
+              mode === 'light'
+                ? `linear-gradient(to bottom right, ${brandColor[50]}, ${brandColor[100]})`
+                : `linear-gradient(to bottom right, ${brandColor[700]}, ${brandColor[900]})`,
+            border: '1px solid',
+            borderColor:
+              mode === 'light'
+                ? `${alpha(brandColor[500], 0.3)}`
+                : `${alpha(brandColor[500], 0.5)}`,
+            fontWeight: '600',
+            '& .MuiChip-label': {
+              color: mode === 'light' ? brandColor[500] : brandColor[200],
+            },
+            '& .MuiChip-icon': {
+              color: mode === 'light' ? brandColor[500] : brandColor[200],
+            },
+          },
+        },
+      },
       MuiButton: {
         styleOverrides: {
           root: ({
