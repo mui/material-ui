@@ -191,3 +191,21 @@ import Button from '@mui/material-next/Button';
 {{"demo": "ButtonMaterialYouPlayground.js", "hideToolbar": true, "bg": "playground"}}
 
 To learn more about Material UI's MD3 implementation, visit the [Material 3 Components documentation](/material-ui/guides/material-3-components/).
+
+## Anatomy
+
+The Material UI Button component is composed of a single root `<button>` element with a `<span>` nested inside that houses the touch ripple effect.
+Optional [start and end icons](#start-and-end-icons) are rendered inside of `<span>` elements.
+
+```html
+<button class="MuiButtonBase-root MuiButton-root">
+  <span class="MuiButton-startIcon">
+    <svg class="MuiSvgIcon-root"></svg>
+  </span>
+  <!-- Button contents here -->
+  <span class="MuiButton-endIcon">
+    <svg class="MuiSvgIcon-root"></svg>
+  </span>
+  <span class="MuiTouchRipple-root"></span>
+</button>
+```
