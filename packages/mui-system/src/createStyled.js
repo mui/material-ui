@@ -45,7 +45,7 @@ function defaultOverridesResolver(slot) {
 }
 
 function processStyleArg(styles, props) {
-  if (typeof styles === 'object' && !!styles) {
+  if (!!styles && typeof styles === 'object' && Array.isArray(styles.variants)) {
     const { variants = [], ...otherStyles } = styles;
     const variantStyles = [];
     variants.forEach((variant) => {
@@ -69,6 +69,22 @@ function processStyleArg(styles, props) {
     return [otherStyles, ...variantStyles];
   }
   return styles;
+}
+
+/**
+ * @param {*} callableStyle user provided styles that could be a function or array of styles.
+ * @param {*} propsWithResolvedTheme props with a theme that is resolved by the theme id.
+ * @returns array of styles that are passed to the styled-engine (emotion/styled-components)
+ */
+function resolveStyleArg(callableStyle, propsWithResolvedTheme) {
+  const resolvedStylesArg =
+    typeof callableStyle === 'function' ? callableStyle(propsWithResolvedTheme) : callableStyle;
+  if (Array.isArray(resolvedStylesArg)) {
+    return resolvedStylesArg.flatMap((resolvedStyle) =>
+      resolveStyleArg(resolvedStyle, propsWithResolvedTheme),
+    );
+  }
+  return processStyleArg(resolvedStylesArg, propsWithResolvedTheme);
 }
 
 export default function createStyled(input = {}) {
@@ -138,6 +154,7 @@ export default function createStyled(input = {}) {
       label,
       ...options,
     });
+
     const transformStyleArg = (stylesArg) => {
       // On the server Emotion doesn't use React.forwardRef for creating components, so the created
       // component stays as a function. This condition makes sure that we do not interpolate functions
@@ -146,16 +163,11 @@ export default function createStyled(input = {}) {
         (typeof stylesArg === 'function' && stylesArg.__emotion_real !== stylesArg) ||
         isPlainObject(stylesArg)
       ) {
-        return (props) => {
-          const resolvedProps = {
+        return (props) =>
+          resolveStyleArg(stylesArg, {
             ...props,
             theme: resolveTheme({ theme: props.theme, defaultTheme, themeId }),
-          };
-          return processStyleArg(
-            typeof stylesArg === 'function' ? stylesArg(resolvedProps) : stylesArg,
-            resolvedProps,
-          );
-        };
+          });
       }
       return stylesArg;
     };
@@ -175,12 +187,9 @@ export default function createStyled(input = {}) {
           }
           const styleOverrides = theme.components[componentName].styleOverrides;
           const resolvedStyleOverrides = {};
-          const resolvedProps = { ...props, theme };
+          // TODO: v7 remove iteration and use `resolveStyleArg(styleOverrides[slot])` directly
           Object.entries(styleOverrides).forEach(([slotKey, slotStyle]) => {
-            resolvedStyleOverrides[slotKey] = processStyleArg(
-              typeof slotStyle === 'function' ? slotStyle(resolvedProps) : slotStyle,
-              resolvedProps,
-            );
+            resolvedStyleOverrides[slotKey] = resolveStyleArg(slotStyle, { ...props, theme });
           });
           return overridesResolver(props, resolvedStyleOverrides);
         });
