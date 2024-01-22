@@ -56,12 +56,12 @@ const UList = styled('ul')({
 
 const PRODUCTS = [
   {
-    name: 'MUI Core',
+    name: 'MUI Core',
     description: 'Ready-to-use foundational React components, free forever.',
     href: ROUTES.productCore,
   },
   {
-    name: 'MUI X',
+    name: 'MUI X',
     description: 'Advanced and powerful components for complex use cases.',
     href: ROUTES.productAdvanced,
   },
@@ -76,7 +76,7 @@ const PRODUCTS = [
     href: ROUTES.productDesignKits,
   },
   {
-    name: 'MUI Toolpad',
+    name: 'MUI Toolpad',
     description: 'Low-code admin builder.',
     href: ROUTES.productToolpad,
     chip: 'Beta',
@@ -85,32 +85,32 @@ const PRODUCTS = [
 
 const DOCS = [
   {
-    name: 'Material UI',
+    name: 'Material UI',
     description: "Component library that implements Google's Material Design.",
     href: ROUTES.materialDocs,
   },
   {
-    name: 'Joy UI',
+    name: 'Joy UI',
     description: "Component library that implements MUI's own in-house design principles.",
     href: ROUTES.joyDocs,
   },
   {
-    name: 'Base UI',
+    name: 'Base UI',
     description: 'Unstyled React components and low-level hooks.',
     href: ROUTES.baseDocs,
   },
   {
-    name: 'MUI System',
+    name: 'MUI System',
     description: 'CSS utilities for rapidly laying out custom designs.',
     href: ROUTES.systemDocs,
   },
   {
-    name: 'MUI X',
+    name: 'MUI X',
     description: 'Advanced components for complex use cases.',
     href: ROUTES.xIntro,
   },
   {
-    name: 'MUI Toolpad',
+    name: 'MUI Toolpad',
     description: 'Low-code admin builder.',
     href: ROUTES.toolpadDocs,
     chip: 'Beta',

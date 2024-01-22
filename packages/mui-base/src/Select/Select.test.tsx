@@ -71,6 +71,51 @@ describe('<Select />', () => {
     skip: ['componentProp', 'reactTestRenderer'],
   }));
 
+  describe('selected option rendering', () => {
+    it('renders the selected option when it is specified as an only child', async () => {
+      const markup = (
+        <Select defaultValue="1">
+          <Option value="1">One</Option>
+        </Select>
+      );
+
+      const { getByRole } = await render(markup);
+      const select = getByRole('combobox');
+
+      expect(select).to.have.text('One');
+    });
+
+    it('renders the selected option when it is specified among many children', async () => {
+      const markup = (
+        <Select defaultValue="1">
+          <Option value="1">
+            <img src="one.png" alt="One" /> One
+          </Option>
+        </Select>
+      );
+
+      const { getByRole } = await render(markup);
+      const select = getByRole('combobox');
+
+      expect(select).to.have.text('One');
+    });
+
+    it('renders the selected option when it is specified in the label prop', async () => {
+      const markup = (
+        <Select defaultValue="1">
+          <Option value="1" label="One">
+            <img src="one.png" alt="One" />
+          </Option>
+        </Select>
+      );
+
+      const { getByRole } = await render(markup);
+      const select = getByRole('combobox');
+
+      expect(select).to.have.text('One');
+    });
+  });
+
   describe('keyboard navigation', () => {
     ['Enter', 'ArrowDown', 'ArrowUp', ' '].forEach((key) => {
       it(`opens the dropdown when the "${key}" key is down on the button`, async () => {

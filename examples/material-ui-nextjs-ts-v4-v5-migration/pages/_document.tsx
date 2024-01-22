@@ -20,7 +20,6 @@ export default function MyDocument(props: DocumentProps) {
         {/* PWA primary color */}
         <meta name="theme-color" content={theme.palette.primary.main} />
         <link rel="shortcut icon" href="/favicon.ico" />
-        {/* Inject MUI styles first to match with the prepend: true configuration. */}
         <DocumentHeadTags {...props} />
       </Head>
       <body>

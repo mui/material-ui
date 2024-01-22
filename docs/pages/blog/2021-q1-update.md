@@ -96,7 +96,7 @@ This new feature removes the need to create a wrapper component.
 
   We are synchronizing the development of the Base package with the creation of the second theme (and not v5).
 
-- 🛠 We added a subset of the system as flattened props to the CSS utility components (Box, Typography, Stack, and Grid).
+- 🛠 We added a subset of MUI System as flattened props to the CSS utility components (Box, Typography, Stack, and Grid).
   We initially didn't plan to do so but reversed on hearing the feedback from the community.
   In addition to using the `sx` prop, you can now do, for example:
 
@@ -136,7 +136,7 @@ The date picker is at the border between the advanced components and the design 
 - 🚨 We have started to work on breaking changes to reach a stable state.
 - 💾 We have extended the support of @mui/material to handle v4 and v5 at the same time.
   In the future, we might desynchronize the release version of _mui/material-ui_ and _mui/mui-x_.
-  For MUI X, we will likely need to release breaking changes at a higher frequency: every six months.
+  For MUI X, we will likely need to release breaking changes at a higher frequency: every six months.
 - 🎛 We have added a column selector.
 
   <img src="/static/blog/2021-q1-update/column-selector.png" alt="" style="width: 518px; margin-bottom: 16px;" />

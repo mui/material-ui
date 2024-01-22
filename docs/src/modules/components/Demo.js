@@ -57,15 +57,15 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
 
   return React.useMemo(() => {
     let productId;
-    let name = 'Material UI';
+    let name = 'Material UI';
     if (canonicalAs.startsWith('/joy-ui/')) {
       productId = 'joy-ui';
-      name = 'Joy UI';
+      name = 'Joy UI';
     } else if (canonicalAs.startsWith('/base-ui/')) {
       productId = 'base-ui';
-      name = 'Base UI';
+      name = 'Base UI';
     } else if (canonicalAs.startsWith('/x/')) {
-      name = 'MUI X';
+      name = 'MUI X';
     }
 
     let codeOptions = {};
@@ -414,10 +414,10 @@ export default function Demo(props) {
 
   if (demoOptions.bg == null) {
     demoOptions.bg = 'outlined';
-  }
 
-  if (demoOptions.iframe) {
-    demoOptions.bg = true;
+    if (demoOptions.iframe) {
+      demoOptions.bg = true;
+    }
   }
 
   const [codeOpen, setCodeOpen] = React.useState(demoOptions.defaultCodeOpen || false);

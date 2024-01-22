@@ -162,7 +162,7 @@ function NewStartScreen() {
     },
     {
       category: {
-        name: 'MUI X',
+        name: 'MUI X',
       },
       items: [
         {
@@ -269,11 +269,11 @@ function NewStartScreen() {
 }
 
 const displayTagProductId = {
-  'material-ui': 'Material UI',
-  'joy-ui': 'Joy UI',
-  'base-ui': 'Base UI',
-  x: 'MUI X',
-  system: 'MUI System',
+  'material-ui': 'Material UI',
+  'joy-ui': 'Joy UI',
+  'base-ui': 'Base UI',
+  x: 'MUI X',
+  system: 'MUI System',
   toolpad: 'Toolpad',
 };
 

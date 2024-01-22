@@ -14,7 +14,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/link/
 
 ## Introduction
 
-The Joy UI Link component replaces the native HTML `<a>` element and accepts the same props as the [Typography](/joy-ui/react-typography/) component, as well as MUI System props.
+The Joy UI Link component replaces the native HTML `<a>` element and accepts the same props as the [Typography](/joy-ui/react-typography/) component, as well as MUI System props.
 
 {{"demo": "LinkUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
