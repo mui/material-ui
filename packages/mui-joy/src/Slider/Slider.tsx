@@ -421,6 +421,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     onChangeCommitted,
     onMouseDown,
     orientation = 'horizontal',
+    pageStep = 10,
     scale = Identity,
     step = 1,
     tabIndex,
@@ -449,6 +450,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     max,
     min,
     orientation,
+    pageStep,
     scale,
     step,
     track,
@@ -784,6 +786,11 @@ Slider.propTypes /* remove-proptypes */ = {
    * @default 'horizontal'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
+   * The granularity with which the slider can step through values when using Page Up/Page Down or Shift + Arrow Up/Arrow Down.
+   * @default 10
+   */
+  pageStep: PropTypes.number,
   /**
    * A transformation function, to change the scale of the slider.
    * @param {any} x

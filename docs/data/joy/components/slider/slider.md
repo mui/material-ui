@@ -33,6 +33,7 @@ export default function MyApp() {
 ### Steps
 
 Change the default step increments by setting a desired value to the `step` prop.
+Make sure to adjust the `pageStep` prop (the granularity with which the slider can step when using Page Up/Down) to a value divadable with the `step`.
 
 {{"demo": "StepsSlider.js"}}
 
