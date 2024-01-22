@@ -1,5 +1,5 @@
 ---
-title: MUI X v6.18.0 and the latest features before the next major
+title: MUI X v6.18.0 and the latest features before the next major
 description: New components, polished features, better performance and more.
 date: 2023-11-13T00:00:00.000Z
 authors: ['josefreitas']
@@ -9,11 +9,11 @@ tags: ['MUI X', 'News']
 
 <div style="max-width: 692px; width: 100%; height: 230px; overflow: hidden; margin-bottom: 16px;">
   <a href="https://github.com/mui/mui-x/releases/tag/v6.18.0">
-    <img src="/static/blog/mui-x-end-v6-features/intro.png" alt="MUI X v6.18.0 release" width="1200" height="400" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
+    <img src="/static/blog/mui-x-end-v6-features/intro.png" alt="MUI X v6.18.0 release" width="1200" height="400" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
   </a>
 </div>
 
-We are happy to share the newest MUI X features with the release of [MUI X v6.18.0](https://github.com/mui/mui-x/releases/tag/v6.18.0), sealing v6 with new components and solid functionality.
+We are happy to share the newest MUI X features with the release of [MUI X v6.18.0](https://github.com/mui/mui-x/releases/tag/v6.18.0), sealing v6 with new components and solid functionality.
 
 As we gear up to focus on the next major version, let's review the notable new features introduced since [our last blog post](/blog/mui-x-mid-v6-features/).
 
@@ -38,7 +38,7 @@ As we gear up to focus on the next major version, let's review the notable new f
 
 ### Charts
 
-The stable version of MUI X Charts supports the most commonly used chart plots you'll need in your day-to-day applications.
+The stable version of MUI X Charts supports the most commonly used chart plots you'll need in your day-to-day applications.
 It features lines, areas, bars, pie charts, and scatter plots.
 And the latest version also includes:
 
@@ -61,7 +61,7 @@ Check out [the Bar Chart layout documentation](/x/react-charts/bars/#layout) for
 Customize the legend text to your heart's content, making your charts more readable and visually
 appealing.
 
-👉 [Get started with MUI X Charts now](/x/react-charts/getting-started/)!
+👉 [Get started with MUI X Charts now](/x/react-charts/getting-started/)!
 
 ### Tree view
 
@@ -71,7 +71,7 @@ After an extensive period of development and refinement in the lab and pre-relea
   <source src="/static/blog/mui-x-end-v6-features/tree-view-gmail.mp4" type="video/mp4">
 </video>
 
-👉 [Get started with MUI X Tree View now](/x/react-tree-view/getting-started/)!
+👉 [Get started with MUI X Tree View now](/x/react-tree-view/getting-started/)!
 
 ## Date Pickers
 
@@ -111,9 +111,9 @@ We're continuously improving our docs, and we're starting to add more advanced e
 
 ### Sparkline as a column type
 
-You can integrate the MUI X Charts with the Data Grid to add Sparkline Charts to columns.
+You can integrate the MUI X Charts with the Data Grid to add Sparkline Charts to columns.
 
-<img alt="Sparkline charts on the MUI X Data Grid" src="/static/blog/mui-x-end-v6-features/sparkline-datagrid.png" width="1200" height="840" loading="lazy" style="margin-bottom: 16px;" />
+<img alt="Sparkline charts on the MUI X Data Grid" src="/static/blog/mui-x-end-v6-features/sparkline-datagrid.png" width="1200" height="840" loading="lazy" style="margin-bottom: 16px;" />
 
 👉 [Get started with Sparkline Charts in the Data Grid now](/x/react-data-grid/custom-columns/#sparkline)!
 
@@ -136,7 +136,7 @@ Note that these results are based on raw filtering speed—not end-to-end operat
 
 ## What's next?
 
-We're now working on the next MUI X major, v7, which will include many new features and improvements.
+We're now working on the next MUI X major, v7, which will include many new features and improvements.
 Most notably:
 
 - [Date and Time Picker](/x/react-date-pickers/) improvements:
@@ -162,7 +162,7 @@ At the same time, v6 will transition to [Long-Term Support](/versions/#long-term
 
 ## Give us feedback
 
-We're excited to hear from you about improving MUI X!
+We're excited to hear from you about improving MUI X!
 Please share your requests, suggestions, pain points, and use cases through [this Google Form](https://forms.gle/vsBv6CLPz9h57xg8A).
 
 Cheers!
