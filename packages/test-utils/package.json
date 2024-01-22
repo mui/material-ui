@@ -47,7 +47,7 @@
     "@types/enzyme": "^3.10.18",
     "@types/format-util": "^1.0.4",
     "@types/prop-types": "^15.7.11",
-    "@types/react": "^18.2.46",
+    "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
     "@types/react-test-renderer": "^18.0.7",
     "@types/sinon": "^10.0.20",

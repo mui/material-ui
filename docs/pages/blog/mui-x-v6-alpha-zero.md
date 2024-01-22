@@ -1,19 +1,19 @@
 ---
-title: A major update is coming for MUI X—and you can get involved
-description: Let us know what you want to see in MUI X v6 as we begin the alpha phase of development.
+title: A major update is coming for MUI X—and you can get involved
+description: Let us know what you want to see in MUI X v6 as we begin the alpha phase of development.
 date: 2022-09-30T00:00:00.000Z
 authors: ['josefreitas']
 tags: ['MUI X', 'News']
 card: true
 ---
 
-We're kicking off the development of [MUI X v6](https://github.com/mui/mui-x/releases/tag/v6.0.0-alpha.0).
+We're kicking off the development of [MUI X v6](https://github.com/mui/mui-x/releases/tag/v6.0.0-alpha.0).
 Both the Data Grid and the Date and Time Pickers will get a new major version.
 We want to share our plans and invite you to join us on this next step.
 
 :::warning
-It's important to note that only MUI X is getting a new version—MUI Core (including Material UI) will remain in v5 for now.
-You can rest assured that all MUI X v6 components will be fully compatible with MUI Core v5.
+It's important to note that only MUI X is getting a new version—MUI Core (including Material UI) will remain in v5 for now.
+You can rest assured that all MUI X v6 components will be fully compatible with MUI Core v5.
 ::::
 
 ## What's the plan to get to a stable release?

@@ -1,5 +1,5 @@
 ---
-title: Introducing MUI X v6
+title: Introducing MUI X v6
 description: Introducing the new major version of the advanced components.
 date: 2023-03-06T00:00:00.000Z
 authors: ['josefreitas']
@@ -29,7 +29,7 @@ tags: ['MUI X', 'News']
   - [Edit date ranges with drag and drop](#edit-date-ranges-with-drag-and-drop) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 - [Installation and migration](#installation-and-migration)
 - [What's next](#whats-next)
-- [Decoupling versions from MUI Core](#decoupling-versions-from-mui-core)
+- [Decoupling versions from MUI Core](#decoupling-versions-from-mui-core)
 - [Feedback](#feedback)
 
 ## Data Grid - features highlights ✨
@@ -58,7 +58,7 @@ See the [apiRef reference documentation](/x/react-data-grid/api-object/) for mor
 
 This is the first feature we ever move from the Pro plan to be MIT licensed.
 We identified that this feature in the Pro plan was going against our objectives.
-Our goal is for MUI X data grid to become the best grid for React developers, when compared to other standalone open-source grid.
+Our goal is for MUI X data grid to become the best grid for React developers, when compared to other standalone open-source grid.
 To do such, developers need to have access to all the primitives required to customize it.
 
 And if you want to understand more about our view of the open-source/commercial balance, check our [Stewardship page](https://mui-org.notion.site/Stewardship-542a2226043d4f4a96dfb429d16cf5bd).
@@ -286,14 +286,14 @@ Here's a list of what you can expect to be delivered in the following months (wh
 
 You can get more details of our next steps in [MUI X public roadmap](https://github.com/mui/mui-x/projects/1).
 
-## Decoupling versions from MUI Core
+## Decoupling versions from MUI Core
 
-We have decoupled MUI X's versioning from MUI Core (including `@mui/material`: Material UI). We understand that this may cause confusion, so we'd like to explain the main reasons why we're moving in this direction:
+We have decoupled MUI X's versioning from MUI Core (including `@mui/material`: Material UI). We understand that this may cause confusion, so we'd like to explain the main reasons why we're moving in this direction:
 
 1. Soften migration pains with a yearly release cycle.\
-   The MUI X codebase is dynamic, and the constant development of new features often requires a faster breaking changes pace than MUI Core. With a yearly release, we aim to deliver those in smaller, more digestible sizes, in a time window that you can rely on to make your plans and prepare for updates.
+   The MUI X codebase is dynamic, and the constant development of new features often requires a faster breaking changes pace than MUI Core. With a yearly release, we aim to deliver those in smaller, more digestible sizes, in a time window that you can rely on to make your plans and prepare for updates.
 
-2. We aim to support not only Material UI but also Joy UI and, in the future, Base UI.
+2. We aim to support not only Material UI but also Joy UI and, in the future, Base UI.
 
 ## Feedback
 

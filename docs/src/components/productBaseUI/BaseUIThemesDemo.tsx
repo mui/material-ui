@@ -111,7 +111,7 @@ const StyledTab = styled('button')({
   userSelect: 'none',
   transition: 'all 100ms ease',
 
-  '&:hover:not(.Mui-selected)': {
+  '&:hover:not(.base--selected)': {
     background: 'var(--Tab-hoverBackground)',
   },
 
@@ -120,7 +120,7 @@ const StyledTab = styled('button')({
     outlineOffset: -4,
   },
 
-  '&.Mui-selected': {
+  '&.base--selected': {
     color: 'var(--color-primary)',
 
     '&::after': {
@@ -290,12 +290,12 @@ const StyledListbox = styled('ul')({
       cursor: 'pointer',
       borderRadius: 'calc(var(--_listbox-radius) - var(--Select-spacing) * 0.05)',
 
-      '&:hover, &.MuiOption-highlighted': {
+      '&:hover, &.base-Option-highlighted': {
         backgroundColor: 'var(--Option-hoverBackground, var(--muidocs-palette-grey-50))',
         color: 'var(--muidocs-palette-text-primary)',
       },
 
-      '&.Mui-selected': {
+      '&.base--selected': {
         backgroundColor: 'var(--Option-selectedBackground, var(--muidocs-palette-grey-50))',
         borderColor: 'var(--border-color)',
         color: 'var(--muidocs-palette-text-primary)',
@@ -513,7 +513,7 @@ const StyledSwitch = styled('span')(`
 const Backdrop = React.forwardRef<HTMLDivElement, { open?: boolean; className: string }>(
   (props, ref) => {
     const { open, className, ...other } = props;
-    return <div className={clsx({ 'MuiBackdrop-open': open }, className)} ref={ref} {...other} />;
+    return <div className={clsx({ 'base-Backdrop-open': open }, className)} ref={ref} {...other} />;
   },
 );
 
