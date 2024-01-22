@@ -49,10 +49,22 @@ function defaultOverridesResolver(slot) {
   return (props, styles) => styles[slot];
 }
 
-function processStyleArg(styles, propsWithResolvedTheme) {
-  if (!!styles && typeof styles === 'object' && Array.isArray(styles.variants)) {
-    const { ownerState, ...props } = propsWithResolvedTheme;
-    const { variants = [], ...otherStyles } = styles;
+function processStyleArg(callableStyle, { ownerState, ...props }) {
+  const resolvedStylesArg =
+    typeof callableStyle === 'function' ? callableStyle({ ownerState, ...props }) : callableStyle;
+
+  if (Array.isArray(resolvedStylesArg)) {
+    return resolvedStylesArg.flatMap((resolvedStyle) =>
+      processStyleArg(resolvedStyle, { ownerState, ...props }),
+    );
+  }
+
+  if (
+    !!resolvedStylesArg &&
+    typeof resolvedStylesArg === 'object' &&
+    Array.isArray(resolvedStylesArg.variants)
+  ) {
+    const { variants = [], ...otherStyles } = resolvedStylesArg;
     let result = otherStyles;
     variants.forEach((variant) => {
       let isMatch = true;
@@ -67,33 +79,12 @@ function processStyleArg(styles, propsWithResolvedTheme) {
         });
       }
       if (isMatch) {
-        result = deepmerge(
-          result,
-          typeof variant.style === 'function'
-            ? variant.style(propsWithResolvedTheme)
-            : variant.style,
-        );
+        result = deepmerge(result, variant.style);
       }
     });
     return result;
   }
-  return styles;
-}
-
-/**
- * @param {*} callableStyle user provided styles that could be a function or array of styles.
- * @param {*} propsWithResolvedTheme props with a theme that is resolved by the theme id.
- * @returns styles that are passed to the styled-engine (emotion/styled-components)
- */
-function resolveStyleArg(callableStyle, propsWithResolvedTheme) {
-  const resolvedStylesArg =
-    typeof callableStyle === 'function' ? callableStyle(propsWithResolvedTheme) : callableStyle;
-  if (Array.isArray(resolvedStylesArg)) {
-    return resolvedStylesArg.flatMap((resolvedStyle) =>
-      resolveStyleArg(resolvedStyle, propsWithResolvedTheme),
-    );
-  }
-  return processStyleArg(resolvedStylesArg, propsWithResolvedTheme);
+  return resolvedStylesArg;
 }
 
 export default function createStyled(input = {}) {
@@ -173,7 +164,7 @@ export default function createStyled(input = {}) {
         isPlainObject(stylesArg)
       ) {
         return (props) =>
-          resolveStyleArg(stylesArg, {
+          processStyleArg(stylesArg, {
             ...props,
             theme: resolveTheme({ theme: props.theme, defaultTheme, themeId }),
           });
@@ -198,7 +189,7 @@ export default function createStyled(input = {}) {
           const resolvedStyleOverrides = {};
           // TODO: v7 remove iteration and use `resolveStyleArg(styleOverrides[slot])` directly
           Object.entries(styleOverrides).forEach(([slotKey, slotStyle]) => {
-            resolvedStyleOverrides[slotKey] = resolveStyleArg(slotStyle, { ...props, theme });
+            resolvedStyleOverrides[slotKey] = processStyleArg(slotStyle, { ...props, theme });
           });
           return overridesResolver(props, resolvedStyleOverrides);
         });
@@ -208,13 +199,7 @@ export default function createStyled(input = {}) {
         expressionsWithDefaultTheme.push((props) => {
           const theme = resolveTheme({ ...props, defaultTheme, themeId });
           const themeVariants = theme?.components?.[componentName]?.variants;
-          return processStyleArg(
-            { variants: themeVariants },
-            {
-              ...props,
-              theme: resolveTheme({ theme, defaultTheme, themeId }),
-            },
-          );
+          return processStyleArg({ variants: themeVariants }, { ...props, theme });
         });
       }
 
