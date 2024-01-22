@@ -435,7 +435,7 @@ describe('<Menu />', () => {
             <DropdownContext.Provider value={testContext}>
               <Menu
                 anchor={anchor}
-                slotProps={{ root: { 'data-testid': 'popup', placement: 'bottom-start' } }}
+                slotProps={{ root: { 'data-testid': 'popup', placement: 'bottom-start' } as any }}
               >
                 <MenuItem>1</MenuItem>
                 <MenuItem>2</MenuItem>
@@ -487,7 +487,7 @@ describe('<Menu />', () => {
         <DropdownContext.Provider value={testContext}>
           <Menu
             anchor={virtualElement}
-            slotProps={{ root: { 'data-testid': 'popup', placement: 'bottom-start' } }}
+            slotProps={{ root: { 'data-testid': 'popup', placement: 'bottom-start' } as any }}
           >
             <MenuItem>1</MenuItem>
             <MenuItem>2</MenuItem>
