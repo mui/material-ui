@@ -89,7 +89,7 @@ export type MenuRootSlotProps = {
   ref: React.Ref<any>;
 };
 
-export type MenuPopupSlotProps = UseMenuListboxSlotProps & {
+export type MenuListboxSlotProps = UseMenuListboxSlotProps & {
   children?: React.ReactNode;
   className?: string;
   ownerState: MenuOwnerState;
