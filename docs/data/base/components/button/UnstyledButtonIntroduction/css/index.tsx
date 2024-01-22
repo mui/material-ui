@@ -86,9 +86,11 @@ function Styles() {
         vertical-align: middle;
       }
       @media (prefers-reduced-motion: no-preference) {
-        transition-duration: 150ms;
-        transition-property: background-color, box-shadow;
-        transition-timing-function: ease;
+        .Button {
+          transition-duration: 150ms;
+          transition-property: background-color, box-shadow;
+          transition-timing-function: ease;
+        }
       }
       @media (any-hover: hover) {
         .Button:hover {
@@ -107,9 +109,9 @@ function Styles() {
       }
       .Button.base--disabled {
         background-color: ${isDarkMode ? grey[700] : grey[200]};
-        color: ${isDarkMode ? grey[200] : grey[700]};
         border: none;
         box-shadow: none;
+        color: ${isDarkMode ? grey[200] : grey[700]};
         cursor: not-allowed;
       }
   `}</style>
