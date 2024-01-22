@@ -893,7 +893,6 @@ Slider.propTypes /* remove-proptypes */ = {
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * The granularity with which the slider can step through values when using Page Up/Page Down or Shift + Arrow Up/Arrow Down.
-   *
    * @default 10
    */
   pageStep: PropTypes.number,
