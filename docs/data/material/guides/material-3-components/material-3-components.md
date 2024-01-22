@@ -10,7 +10,7 @@ MD3 implementation is a work in progress, targeted for completion in late 2024.
 You can try out Material UI's MD3 components as they're developed using the `@mui/material-next` package.
 
 :::warning
-The MD3 components are currently in alpha and subject to change.
+The Material 3 components are currently in alpha and subject to change.
 :::
 
 ## Supported components
@@ -44,11 +44,11 @@ pnpm add @mui/material-next @emotion/react @emotion/styled
 
 </codeblock>
 
-**Peer dependencies**
+#### Peer dependencies
 
 <!-- #react-peer-version -->
 
-Please note that [react](https://www.npmjs.com/package/react) and [react-dom](https://www.npmjs.com/package/react-dom) are peer dependencies too:
+Please note that [react](https://www.npmjs.com/package/react) and [react-dom](https://www.npmjs.com/package/react-dom) are peer dependencies, meaning you should ensure they are installed before installing the Material UI Next package.
 
 ```json
 "peerDependencies": {
@@ -57,7 +57,7 @@ Please note that [react](https://www.npmjs.com/package/react) and [react-dom](ht
 },
 ```
 
-**Roboto font**
+#### Roboto font
 
 Material UI uses the [Roboto](https://fonts.google.com/specimen/Roboto) font by default.
 Add it to your project via Fontsource, or with the Google Fonts CDN.
@@ -129,5 +129,5 @@ You can use Material Design's [Figma MD3 Theme Builder](https://www.figma.com/co
 
 ## Stable release
 
-The stable release of the MD3 components is tentatively targeted for Q4 2024 in Material UI v7.
-To follow the progress or contribute to the project, check out the [Material 3 GitHub issue](https://github.com/mui/material-ui/issues/29345).
+The stable release of the MD3 components is tentatively targeted for Q4 2024 in Material UI v7.
+To follow the progress or contribute to the project, check out [the Material 3 GitHub issue](https://github.com/mui/material-ui/issues/29345).
