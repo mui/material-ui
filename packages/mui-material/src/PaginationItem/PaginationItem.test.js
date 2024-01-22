@@ -42,6 +42,18 @@ describe('<PaginationItem />', () => {
     expect(getByRole('button')).to.have.class(classes.selected);
   });
 
+  it('should add the `colorPrimary` class to the root element if `color="primary"`', () => {
+    const { getByRole } = render(<PaginationItem color="primary" />);
+
+    expect(getByRole('button')).to.have.class(classes.colorPrimary);
+  });
+
+  it('should add the `colorSecondary` class to the root element if `color="secondary"`', () => {
+    const { getByRole } = render(<PaginationItem color="secondary" />);
+
+    expect(getByRole('button')).to.have.class(classes.colorSecondary);
+  });
+
   describe('prop: disabled', () => {
     it('should add the `disabled` class to the root element if `disabled={true}`', () => {
       const { getByRole } = render(<PaginationItem disabled />);

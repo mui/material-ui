@@ -40,11 +40,11 @@ export interface DocumentHeadTagsProps {
   emotionStyleTags: React.JSX.Element[];
 }
 
-export function DocumentHeadTags({ emotionStyleTags }: DocumentHeadTagsProps) {
+export function DocumentHeadTags(props: DocumentHeadTagsProps) {
   return (
     <React.Fragment>
       <meta name="emotion-insertion-point" content="" />
-      {emotionStyleTags}
+      {props.emotionStyleTags}
     </React.Fragment>
   );
 }

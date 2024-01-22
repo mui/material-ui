@@ -1,13 +1,13 @@
 # Material 3 Components
 
-<p class="description">Try out Material UI's implementation of MD3 and learn how to contribute to the project.</p>
+<p class="description">Try out Material UI's implementation of MD3 and learn how to contribute to the project.</p>
 
 ## Material 3
 
 Material 3 (MD3), also referred to as [Material You](https://m3.material.io), is the latest version of Google's design system.
-The primary Material UI package (`@mui/material`) currently implements Material 2.
+The primary Material UI package (`@mui/material`) currently implements Material 2.
 MD3 implementation is a work in progress, targeted for completion in late 2024.
-You can try out Material UI's MD3 components as they're developed using the `@mui/material-next` package.
+You can try out Material UI's MD3 components as they're developed using the `@mui/material-next` package.
 
 :::warning
 The MD3 components are currently in alpha and subject to change.
@@ -59,7 +59,7 @@ Please note that [react](https://www.npmjs.com/package/react) and [react-dom](ht
 
 **Roboto font**
 
-Material UI uses the [Roboto](https://fonts.google.com/specimen/Roboto) font by default.
+Material UI uses the [Roboto](https://fonts.google.com/specimen/Roboto) font by default.
 Add it to your project via Fontsource, or with the Google Fonts CDN.
 
 <codeblock storageKey="package-manager">
@@ -88,7 +88,7 @@ import '@fontsource/roboto/700.css';
 ```
 
 :::info
-Fontsource can be configured to load specific subsets, weights and styles. Material UI's default typography configuration relies only on the 300, 400, 500, and 700 font weights.
+Fontsource can be configured to load specific subsets, weights and styles. Material UI's default typography configuration relies only on the 300, 400, 500, and 700 font weights.
 :::
 
 To install Roboto through the Google Web Fonts CDN, add the following code inside your project's <head /> tag:
@@ -104,7 +104,7 @@ To install Roboto through the Google Web Fonts CDN, add the following code insid
 
 ### Usage
 
-After [installation](/material-ui/guides/material-3-components/#installation), you can import any component from `@mui/material-next` just as you would do with the stable Material UI package.
+After [installation](/material-ui/guides/material-3-components/#installation), you can import any component from `@mui/material-next` just as you would do with the stable Material UI package.
 
 {{"demo": "MD3ButtonUsage.js"}}
 
@@ -129,5 +129,5 @@ You can use Material Design's [Figma MD3 Theme Builder](https://www.figma.com/co
 
 ## Stable release
 
-The stable release of the MD3 components is tentatively targeted for Q4 2024 in Material UI v7.
+The stable release of the MD3 components is tentatively targeted for Q4 2024 in Material UI v7.
 To follow the progress or contribute to the project, check out the [Material 3 GitHub issue](https://github.com/mui/material-ui/issues/29345).

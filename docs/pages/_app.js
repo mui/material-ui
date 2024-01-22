@@ -161,8 +161,8 @@ function AppWrapper(props) {
 
     if (productId === 'material-ui') {
       return {
-        metadata: 'MUI Core',
-        name: 'Material UI',
+        metadata: 'MUI Core',
+        name: 'Material UI',
         versions: [
           { text: `v${materialPkgJson.version}`, current: true },
           {
@@ -179,16 +179,16 @@ function AppWrapper(props) {
 
     if (productId === 'joy-ui') {
       return {
-        metadata: 'MUI Core',
-        name: 'Joy UI',
+        metadata: 'MUI Core',
+        name: 'Joy UI',
         versions: [{ text: `v${joyPkgJson.version}`, current: true }],
       };
     }
 
     if (productId === 'system') {
       return {
-        metadata: 'MUI Core',
-        name: 'MUI System',
+        metadata: 'MUI Core',
+        name: 'MUI System',
         versions: [
           { text: `v${systemPkgJson.version}`, current: true },
           { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
@@ -202,7 +202,7 @@ function AppWrapper(props) {
 
     if (productId === 'base-ui') {
       return {
-        metadata: 'MUI Core',
+        metadata: 'MUI Core',
         name: 'Base UI',
         versions: [{ text: `v${basePkgJson.version}`, current: true }],
       };
@@ -211,7 +211,7 @@ function AppWrapper(props) {
     if (productId === 'core') {
       return {
         metadata: '',
-        name: 'MUI Core',
+        name: 'MUI Core',
         versions: [
           { text: `v${materialPkgJson.version}`, current: true },
           {

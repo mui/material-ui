@@ -9,8 +9,8 @@ import type { PluginOptions as LinariaPluginOptions, Preprocessor } from '@linar
 import { TransformCacheCollection, transform } from '@linaria/babel-preset';
 import { createPerfMeter, asyncResolveFallback, slugify } from '@linaria/utils';
 import {
-  generateCss,
   preprocessor as basePreprocessor,
+  generateTokenCss,
   generateThemeTokens,
 } from '@mui/zero-runtime/utils';
 
@@ -32,10 +32,14 @@ type WebpackMeta = {
 
 type Meta = NextMeta | ViteMeta | WebpackMeta;
 
-export type PluginOptions<Theme = unknown> = {
+type BaseTheme = {
+  cssVarPrefix: string;
+  colorSchemes: Record<string, unknown>;
+  generateCssVars: (colorScheme?: string) => { css: Record<string, string> };
+};
+
+export type PluginOptions<Theme extends BaseTheme = BaseTheme> = {
   theme: Theme;
-  cssVariablesPrefix?: string;
-  injectDefaultThemeInRoot?: boolean;
   transformLibraries?: string[];
   preprocessor?: Preprocessor;
   debug?: boolean;
@@ -90,8 +94,6 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
   const {
     theme,
     meta,
-    cssVariablesPrefix = 'mui',
-    injectDefaultThemeInRoot = true,
     transformLibraries = [],
     preprocessor = basePreprocessor,
     asyncResolve: asyncResolveOpt,
@@ -102,26 +104,12 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
     tagResolver,
     ...rest
   } = options;
-  const themeArgs = { theme };
-  const isExtendTheme = !!(theme && typeof theme === 'object' && 'vars' in theme && theme.vars);
-  const varPrefix: string =
-    isExtendTheme && 'cssVarPrefix' in theme
-      ? (theme.cssVarPrefix as string) ?? cssVariablesPrefix
-      : cssVariablesPrefix;
   const cache = new TransformCacheCollection();
   const { emitter, onDone } = createPerfMeter(debug);
   const cssLookup = meta?.type === 'next' ? globalCssLookup : new Map<string, string>();
   const cssFileLookup = meta?.type === 'next' ? globalCssFileLookup : new Map<string, string>();
   const isNext = meta?.type === 'next';
   const outputCss = isNext && meta.outputCss;
-
-  const themeTokenCss = generateCss(
-    { themeArgs, cssVariablesPrefix: varPrefix },
-    {
-      injectInRoot: injectDefaultThemeInRoot,
-    },
-  );
-
   const babelTransformPlugin: UnpluginOptions = {
     name: 'zero-plugin-transform-babel',
     enforce: 'post',
@@ -171,7 +159,7 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
             themeArgs: {
               theme,
             },
-            cssVariablesPrefix: varPrefix,
+            cssVariablesPrefix: theme.cssVarPrefix,
             overrideContext(context: Record<string, unknown>, filename: string) {
               if (overrideContext) {
                 return overrideContext(context, filename);
@@ -280,17 +268,16 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
                 // this file should exist in the package
                 id.endsWith('@mui/zero-runtime/styles.css') ||
                 id.endsWith('/zero-runtime/styles.css') ||
-                id.endsWith('@mui/zero-runtime/theme') ||
-                id.endsWith('/zero-runtime/theme.js')
+                id.includes('@mui/zero-runtime/theme') ||
+                id.includes('/zero-runtime/theme')
               );
             },
             transform(_code, id) {
               if (id.endsWith('styles.css')) {
-                return themeTokenCss;
+                return generateTokenCss(theme);
               }
-              if (id.endsWith('theme.js')) {
-                const tokens = generateThemeTokens(theme, varPrefix);
-                return `export default ${JSON.stringify(tokens)};`;
+              if (id.includes('zero-runtime/theme')) {
+                return `export default ${JSON.stringify(generateThemeTokens(theme))};`;
               }
               return null;
             },
@@ -310,11 +297,10 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
             },
             load(id) {
               if (id === VIRTUAL_CSS_FILE) {
-                return themeTokenCss;
+                return generateTokenCss(theme);
               }
               if (id === VIRTUAL_THEME_FILE) {
-                const tokens = generateThemeTokens(theme, varPrefix);
-                return `export default ${JSON.stringify(tokens)};`;
+                return `export default ${JSON.stringify(generateThemeTokens(theme))};`;
               }
               return null;
             },

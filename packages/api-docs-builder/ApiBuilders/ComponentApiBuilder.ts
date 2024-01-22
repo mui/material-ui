@@ -475,7 +475,7 @@ const attachTranslations = (reactApi: ReactApi, settings?: CreateDescribeablePro
     translations.slotDescriptions = {};
     reactApi.slots.forEach((slot: Slot) => {
       const { name, description } = slot;
-      translations.slotDescriptions![name] = description;
+      translations.slotDescriptions![name] = renderMarkdown(description);
     });
   }
 

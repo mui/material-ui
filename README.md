@@ -1,19 +1,19 @@
 <!-- markdownlint-disable-next-line -->
 <p align="center">
-  <a href="https://mui.com/core/" rel="noopener" target="_blank"><img width="150" height="133" src="https://mui.com/static/logo.svg" alt="MUI Core logo"></a>
+  <a href="https://mui.com/core/" rel="noopener" target="_blank"><img width="150" height="133" src="https://mui.com/static/logo.svg" alt="MUI Core logo"></a>
 </p>
 
-<h1 align="center">MUI Core</h1>
+<h1 align="center">MUI Core</h1>
 
-**MUI Core** contains foundational React UI component libraries for shipping new features faster:
+**MUI Core** contains foundational React UI component libraries for shipping new features faster:
 
-- [Material UI](https://mui.com/material-ui/) is a comprehensive library of components that features our implementation of Google's [Material Design](https://m2.material.io/design/introduction/) system.
+- [Material UI](https://mui.com/material-ui/) is a comprehensive library of components that features our implementation of Google's [Material Design](https://m2.material.io/design/introduction/) system.
 
 - [Joy UI](https://mui.com/joy-ui/getting-started/) is a library of beautifully designed React UI components built to spark joy.
 
-- [Base UI](https://mui.com/base-ui/) is a library of unstyled React UI components and hooks. With Base UI, you gain complete control over your app's CSS and accessibility features.
+- [Base UI](https://mui.com/base-ui/) is a library of unstyled React UI components and hooks. With Base UI, you gain complete control over your app's CSS and accessibility features.
 
-- [MUI System](https://mui.com/system/getting-started/) is a collection of CSS utilities to help you rapidly lay out custom designs.
+- [MUI System](https://mui.com/system/getting-started/) is a collection of CSS utilities to help you rapidly lay out custom designs.
 
 <div align="center">
 
@@ -33,7 +33,7 @@
 
 ## Documentation
 
-### Material UI
+### Material UI
 
 Visit [https://mui.com/material-ui/](https://mui.com/material-ui/) to view the full documentation.
 
@@ -56,14 +56,14 @@ Visit [https://mui.com/joy-ui/getting-started/](https://mui.com/joy-ui/getting-s
 **Note**: Joy UI is still in beta.
 We are adding new components regularly and you're welcome to contribute!
 
-### Base UI
+### Base UI
 
 Visit [https://mui.com/base-ui/](https://mui.com/base-ui/) to view the full documentation.
 
-**Note**: Base UI is still in beta.
+**Note**: Base UI is still in beta.
 We are adding new components regularly and you're welcome to contribute!
 
-### MUI System
+### MUI System
 
 Visit [https://mui.com/system/getting-started/](https://mui.com/system/getting-started/) to view the full documentation.
 
@@ -109,7 +109,7 @@ Our documentation features [a collection of example projects](https://github.com
 
 ## Premium templates
 
-You can find complete templates and themes in the [MUI Store](https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=readme-store).
+You can find complete templates and themes in the [MUI Store](https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=readme-store).
 
 ## Contributing
 
