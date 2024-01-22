@@ -51,6 +51,12 @@ Apply the `disableElevation` prop to remove the default drop shadow from the `co
 
 {{"demo": "DisableElevation.js"}}
 
+#### Disabled
+
+Use the `disabled` prop to disable clicking on a Button.
+
+{{"demo": "DisabledButton.js"}}
+
 ### Colors
 
 Every palette included in the theme is available via the `color` prop.
@@ -68,7 +74,7 @@ The Button component comes in three sizes: `small`, `medium` (default), and `lar
 
 {{"demo": "ButtonSizes.js"}}
 
-### Width
+#### Width
 
 Use the `fullWidth` prop to stretch the Button to fill its container.
 
