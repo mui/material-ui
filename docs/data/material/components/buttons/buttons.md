@@ -68,6 +68,12 @@ The Button component comes in three sizes: `small`, `medium` (default), and `lar
 
 {{"demo": "ButtonSizes.js"}}
 
+### Width
+
+Use the `fullWidth` prop to stretch the Button to fill its container.
+
+{{"demo": "FullWidthButton.js"}}
+
 ### Start and end icons
 
 Use the `startIcon` or `endIcon` prop to append an icon to the beginning or end of a Button's contents.
