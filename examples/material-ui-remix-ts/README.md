@@ -1,4 +1,4 @@
-# Material UI - Remix example in TypeScript
+# Material UI - Remix example in TypeScript
 
 ## How to use
 

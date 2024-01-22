@@ -1,4 +1,4 @@
-# Material UI - Server-side-rendered example
+# Material UI - Server-side-rendered example
 
 ## How to use
 

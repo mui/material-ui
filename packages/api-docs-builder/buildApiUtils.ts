@@ -139,7 +139,7 @@ export type ComponentInfo = {
   apiPagesDirectory: string;
   skipApiGeneration?: boolean;
   /**
-   * If `true`, the component's name match one of the system components.
+   * If `true`, the component's name match one of the MUI System components.
    */
   isSystemComponent?: boolean;
 };

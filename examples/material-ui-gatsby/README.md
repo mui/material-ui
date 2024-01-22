@@ -1,4 +1,4 @@
-# Material UI - Gatsby example
+# Material UI - Gatsby example
 
 ## How to use
 

@@ -1,4 +1,4 @@
-# MUI Testing
+# Testing
 
 Thanks for writing tests! Here's a quick run-down on our current setup.
 
@@ -108,7 +108,7 @@ expect(() => {
 
 ## Commands
 
-MUI uses a wide range of tests approach as each of them comes with a different
+We uses a wide range of tests approach as each of them comes with a different
 trade-off, mainly completeness vs. speed.
 
 ### React API level

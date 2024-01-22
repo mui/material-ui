@@ -1,4 +1,4 @@
-# Material UI v5 and Next.js example with @mui/styles (in TypeScript)
+# Material UI v5 and Next.js example with @mui/styles (in TypeScript)
 
 ## How to use
 

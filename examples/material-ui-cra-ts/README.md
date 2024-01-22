@@ -1,4 +1,4 @@
-# Material UI - Create React App example in TypeScript
+# Material UI - Create React App example in TypeScript
 
 ## How to use
 

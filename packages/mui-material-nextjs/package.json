@@ -40,7 +40,7 @@
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.3",
     "@emotion/server": "^11.11.0",
-    "@types/react": "^18.2.46",
+    "@types/react": "^18.2.48",
     "next": "13.4.19",
     "react": "^18.2.0"
   },
