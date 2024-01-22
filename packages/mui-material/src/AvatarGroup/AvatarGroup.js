@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import styled from '../styles/styled';
+import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';
 import Avatar, { avatarClasses } from '../Avatar';
 import avatarGroupClasses, { getAvatarGroupUtilityClass } from './avatarGroupClasses';
@@ -88,6 +89,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     variant,
   };
 
+  const theme = useTheme();
   const classes = useUtilityClasses(ownerState);
 
   const children = React.Children.toArray(childrenProp).filter((child) => {
@@ -117,7 +119,9 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
   const extraAvatars = Math.max(totalAvatars - clampedMax, totalAvatars - maxAvatars, 0);
   const extraAvatarsElement = renderSurplus ? renderSurplus(extraAvatars) : `+${extraAvatars}`;
 
-  const marginLeft = spacing && SPACINGS[spacing] !== undefined ? SPACINGS[spacing] : -spacing;
+  const marginValue = spacing && SPACINGS[spacing] !== undefined ? SPACINGS[spacing] : -spacing;
+  const marginStyle =
+    theme.direction === 'rtl' ? { marginRight: marginValue } : { marginLeft: marginValue };
 
   const additionalAvatarSlotProps = slotProps.additionalAvatar ?? componentsProps.additionalAvatar;
 
@@ -135,7 +139,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
           variant={variant}
           {...additionalAvatarSlotProps}
           className={clsx(classes.avatar, additionalAvatarSlotProps?.className)}
-          style={{ marginLeft, ...additionalAvatarSlotProps?.style }}
+          style={{ ...marginStyle, ...additionalAvatarSlotProps?.style }}
         >
           {extraAvatarsElement}
         </AvatarGroupAvatar>
@@ -148,8 +152,8 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
             className: clsx(child.props.className, classes.avatar),
             style: {
               // Consistent with "&:last-child" styling for the default spacing,
-              // we do not apply custom marginLeft spacing on the last child
-              marginLeft: index === maxAvatars - 1 ? undefined : marginLeft,
+              // we do not apply custom margin spacing on the last child
+              ...(index === maxAvatars - 1 ? undefined : marginStyle),
               ...child.props.style,
             },
             variant: child.props.variant || variant,
