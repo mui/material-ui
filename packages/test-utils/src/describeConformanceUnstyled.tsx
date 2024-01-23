@@ -21,7 +21,7 @@ export interface UnstyledConformanceOptions
   ) => Promise<MuiRenderResult> | MuiRenderResult;
   skip?: (keyof typeof fullSuite)[];
   testComponentPropWith?: string;
-  hostElementNameMustMatchComponentProp?: boolean;
+  rootElementNameMustMatchComponentProp?: boolean;
 }
 
 function throwMissingPropError(field: string): never {
@@ -64,7 +64,7 @@ function testPropForwarding(
   const {
     render,
     testComponentPropWith: Element = 'div',
-    hostElementNameMustMatchComponentProp = false,
+    rootElementNameMustMatchComponentProp = false,
   } = getOptions();
 
   if (!render) {
@@ -82,7 +82,7 @@ function testPropForwarding(
     const otherProps = {
       lang: 'fr',
       fooBar: randomStringValue(),
-      ...(hostElementNameMustMatchComponentProp ? { hostElementName: Element } : {}),
+      ...(rootElementNameMustMatchComponentProp ? { rootElementName: Element } : {}),
     };
 
     await render(React.cloneElement(element, { slots: { root: CustomRoot }, ...otherProps }));
@@ -97,7 +97,7 @@ function testPropForwarding(
       lang: 'fr',
       'data-foobar': randomStringValue(),
       'data-testid': 'custom-root',
-      ...(hostElementNameMustMatchComponentProp ? { hostElementName: Element } : {}),
+      ...(rootElementNameMustMatchComponentProp ? { rootElementName: Element } : {}),
     };
 
     render(React.cloneElement(element, { slots: { root: Element }, ...otherProps }));
@@ -114,7 +114,7 @@ function testSlotsProp(element: React.ReactElement, getOptions: () => UnstyledCo
     slots,
     skip,
     testComponentPropWith: Element = 'div',
-    hostElementNameMustMatchComponentProp = false,
+    rootElementNameMustMatchComponentProp = false,
   } = getOptions();
 
   if (!render) {
@@ -140,7 +140,7 @@ function testSlotsProp(element: React.ReactElement, getOptions: () => UnstyledCo
       const { getByTestId } = await render(
         React.cloneElement(element, {
           slots: components,
-          ...(hostElementNameMustMatchComponentProp ? { hostElementName: 'i' } : {}),
+          ...(rootElementNameMustMatchComponentProp ? { rootElementName: 'i' } : {}),
         }),
       );
       const renderedElement = getByTestId('custom');
@@ -165,7 +165,7 @@ function testSlotsProp(element: React.ReactElement, getOptions: () => UnstyledCo
           React.cloneElement(element, {
             slots: components,
             slotProps,
-            ...(hostElementNameMustMatchComponentProp ? { hostElementName: slotElement } : {}),
+            ...(rootElementNameMustMatchComponentProp ? { rootElementName: slotElement } : {}),
           }),
         );
         const renderedElement = getByTestId('customized');
@@ -312,7 +312,7 @@ function testOwnerStatePropagation(
     render,
     slots,
     testComponentPropWith: Element = 'div',
-    hostElementNameMustMatchComponentProp = false,
+    rootElementNameMustMatchComponentProp = false,
   } = getOptions();
 
   if (!render) {
@@ -347,7 +347,7 @@ function testOwnerStatePropagation(
         React.cloneElement(element, {
           slots: slotOverrides,
           id: 'foo',
-          ...(hostElementNameMustMatchComponentProp ? { hostElementName: Element } : {}),
+          ...(rootElementNameMustMatchComponentProp ? { rootElementName: Element } : {}),
         }),
       );
       expect(componentOwnerState).not.to.equal(undefined);

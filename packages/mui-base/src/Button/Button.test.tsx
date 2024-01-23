@@ -26,7 +26,7 @@ describe('<Button />', () => {
       },
     },
     skip: ['componentProp'],
-    hostElementNameMustMatchComponentProp: true,
+    rootElementNameMustMatchComponentProp: true,
   }));
 
   describe('role attribute', () => {
@@ -43,7 +43,7 @@ describe('<Button />', () => {
         ) => <span role={props.role} ref={ref} />,
       );
 
-      const { getByRole } = render(<Button slots={{ root: WrappedSpan }} hostElementName="span" />);
+      const { getByRole } = render(<Button slots={{ root: WrappedSpan }} rootElementName="span" />);
       expect(getByRole('button')).not.to.equal(null);
     });
 
@@ -173,16 +173,16 @@ describe('<Button />', () => {
     });
   });
 
-  describe('prop: hostElementName', () => {
-    it('should warn when the rendered tag does not match the provided hostElementName', () => {
+  describe('prop: rootElementName', () => {
+    it('should warn when the rendered tag does not match the provided rootElementName', () => {
       expect(() => {
         render(
-          <Button disabled hostElementName="span">
+          <Button disabled rootElementName="span">
             Hello World
           </Button>,
         );
       }).toErrorDev(
-        "useHostElementName: the `hostElementName` prop of the Button component expected the 'span' element, but a 'button' was rendered instead",
+        "useRootElementName: the `rootElementName` prop of the Button component expected the 'span' element, but a 'button' was rendered instead",
       );
     });
 
@@ -202,7 +202,7 @@ describe('<Button />', () => {
         expect(container.firstChild).to.not.have.attribute('aria-disabled');
       });
 
-      it('infers hostElementName if `slots.root` is a string', () => {
+      it('infers rootElementName if `slots.root` is a string', () => {
         const { container } = renderToString(
           <Button disabled slots={{ root: 'span' }}>
             Hello World
@@ -222,7 +222,7 @@ describe('<Button />', () => {
         );
 
         const { container } = renderToString(
-          <Button disabled slots={{ root: CustomComponent }} hostElementName="span">
+          <Button disabled slots={{ root: CustomComponent }} rootElementName="span">
             Hello World
           </Button>,
         );

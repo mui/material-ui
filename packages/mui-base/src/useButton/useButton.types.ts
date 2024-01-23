@@ -26,7 +26,7 @@ export interface UseButtonParameters {
    * The HTML element, e.g.'button', 'a' etc
    * @default ''
    */
-  hostElementName?: keyof HTMLElementTagNameMap;
+  rootElementName?: keyof HTMLElementTagNameMap;
 }
 
 export interface UseButtonRootSlotOwnProps {
