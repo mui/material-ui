@@ -101,6 +101,9 @@ export default function Hero() {
               size="small"
               variant="outlined"
               placeholder="Your email address"
+              inputProps={{
+                autocomplete: 'off',
+              }}
               sx={{
                 minWidth: '250px',
               }}
@@ -138,11 +141,11 @@ export default function Hero() {
             backgroundSize: 'cover',
             outline: '4px solid',
             outlineColor: `${alpha(brandColor[500], 0.2)}`,
-            borderRadius: '12px',
+            borderRadius: '8px',
             boxShadow: (theme) =>
               theme.palette.mode === 'light'
-                ? '0 0 1px rgba(85, 166, 246, 0.1), 1px 1.5px 2px -1px rgba(85, 166, 246, 0.15), 4px 4px 12px -2.5px rgba(85, 166, 246, 0.15)'
-                : '0 0 1px rgba(2, 31, 59, 0.7), 1px 1.5px 2px -1px rgba(2, 31, 59, 0.65), 4px 4px 12px -2.5px rgba(2, 31, 59, 0.65)',
+                ? `0 0 24px ${brandColor[200]}`
+                : `0 0 24px ${brandColor[800]}`,
           }}
         />
       </Container>

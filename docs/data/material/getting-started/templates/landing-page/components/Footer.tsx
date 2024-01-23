@@ -88,6 +88,9 @@ export default function Footer() {
                   variant="outlined"
                   fullWidth
                   placeholder="Your email address"
+                  inputProps={{
+                    autocomplete: 'off',
+                  }}
                 />
                 <Button variant="contained" color="primary" sx={{ flexShrink: 0 }}>
                   Subscribe

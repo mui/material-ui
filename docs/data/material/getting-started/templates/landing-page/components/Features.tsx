@@ -69,12 +69,11 @@ export default function Features() {
                 the features.
               </Typography>
             </Box>
-            <Box
-              sx={{
-                display: { xs: 'flex', sm: 'none' },
-                gap: 1,
-                overflow: 'auto',
-              }}
+            <Grid
+              container
+              item
+              gap={1}
+              sx={{ display: { xs: 'auto', sm: 'none' } }}
             >
               {items.map(({ title }, index) => (
                 <Chip
@@ -102,7 +101,7 @@ export default function Features() {
                   }}
                 />
               ))}
-            </Box>
+            </Grid>
             <Box
               sx={{
                 display: { xs: 'auto', sm: 'none' },
@@ -111,7 +110,7 @@ export default function Features() {
                   theme.palette.mode === 'light' ? greyColor[200] : greyColor[700],
                 backgroundColor: (theme) =>
                   theme.palette.mode === 'light' ? greyColor[100] : greyColor[800],
-                borderRadius: '12px',
+                borderRadius: '8px',
                 p: 2,
                 mt: 4,
               }}
@@ -121,9 +120,8 @@ export default function Features() {
                   backgroundImage: items[selectedItemIndex].image,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
-                  borderRadius: '8px',
-                  height: '100%',
-                  minHeight: '400px',
+                  borderRadius: '4px',
+                  minHeight: '300px',
                   marginBottom: '16px',
                   outline: '1px solid',
                   outlineColor: (theme) =>
@@ -167,7 +165,6 @@ export default function Features() {
                 </Link>
               </Box>
             </Box>
-
             <Stack
               direction="column"
               justifyContent="center"
@@ -297,10 +294,9 @@ export default function Features() {
                 backgroundImage: items[selectedItemIndex].image,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
-                borderRadius: '12px',
+                borderRadius: '8px',
                 height: '100%',
                 minHeight: '400px',
-                marginBottom: '16px',
                 outline: '4px solid',
                 outlineColor: `${alpha(brandColor[500], 0.2)}`,
               }}

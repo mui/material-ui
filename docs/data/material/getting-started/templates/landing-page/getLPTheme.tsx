@@ -209,6 +209,10 @@ export default function getLPTheme(mode: 'light' | 'dark') {
             '& .MuiChip-icon': {
               color: mode === 'light' ? brandColor[500] : brandColor[200],
             },
+            '&:focus-visible': {
+              borderColor: mode === 'light' ? brandColor[800] : brandColor[200],
+              backgroundColor: mode === 'light' ? brandColor[200] : brandColor[600],
+            },
           },
         },
       },
