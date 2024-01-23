@@ -7,11 +7,10 @@ export const metadata = {
 };
 
 export default function RootLayout(props: { children: React.ReactNode }) {
-  const { children } = props;
   return (
     <html lang="en">
       <body>
-        <ThemeRegistry>{children}</ThemeRegistry>
+        <ThemeRegistry>{props.children}</ThemeRegistry>
       </body>
     </html>
   );

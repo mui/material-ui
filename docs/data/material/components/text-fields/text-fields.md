@@ -25,7 +25,7 @@ It comes with three variants: outlined (default), filled, and standard.
 :::info
 The standard variant of the Text Field is no longer documented in the [Material Design guidelines](https://m2.material.io/)
 ([this article explains why](https://medium.com/google-design/the-evolution-of-material-designs-text-fields-603688b3fe03)),
-but Material UI will continue to support it.
+but Material UI will continue to support it.
 :::
 
 ## Form props
@@ -145,7 +145,7 @@ You can learn more about this in the [overrides documentation page](/material-ui
 
 ### Using the theme style overrides API
 
-Use the `styleOverrides` key to change any style injected by Material UI into the DOM.
+Use the `styleOverrides` key to change any style injected by Material UI into the DOM.
 See the [theme style overrides](/material-ui/customization/theme-components/#theme-style-overrides) documentation for further details.
 
 {{"demo": "CustomizedInputsStyleOverrides.js"}}
@@ -266,9 +266,9 @@ We do not recommend using `type="number"` with a Text Field due to potential usa
 - and more—see [Why the GOV.UK Design System team changed the input type for numbers](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) for a more detailed explanation of the limitations of `<input type="number">`
   :::
 
-If you need a text field with number validation, you can use Base UI's [Number Input](/base-ui/react-number-input/) instead.
+If you need a text field with number validation, you can use Base UI's [Number Input](/base-ui/react-number-input/) instead.
 
-You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/19154) to track the progress of introducing the Number Input component to Material UI.
+You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/19154) to track the progress of introducing the Number Input component to Material UI.
 
 ### Helper text
 
@@ -354,9 +354,9 @@ In order for the text field to be accessible, **the input should be linked to th
 For more advanced use cases, you might be able to take advantage of:
 
 - [react-hook-form](https://react-hook-form.com/): React hook for form validation.
-- [react-hook-form-mui](https://github.com/dohomi/react-hook-form-mui): Material UI and react-hook-form combined.
-- [formik-material-ui](https://github.com/stackworx/formik-mui): Bindings for using Material UI with [formik](https://formik.org/).
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using Material UI with [Redux Form](https://redux-form.com/).
-- [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using Material UI with [React Final Form](https://final-form.org/react).
-- [@ui-schema/ds-material](https://www.npmjs.com/package/@ui-schema/ds-material) Bindings for using Material UI with [UI Schema](https://github.com/ui-schema/ui-schema). JSON Schema compatible.
-- [@data-driven-forms/mui-component-mapper](https://www.data-driven-forms.org/provided-mappers/mui-component-mapper): Bindings for using Material UI with [Data Driven Forms](https://github.com/data-driven-forms/react-forms).
+- [react-hook-form-mui](https://github.com/dohomi/react-hook-form-mui): Material UI and react-hook-form combined.
+- [formik-material-ui](https://github.com/stackworx/formik-mui): Bindings for using Material UI with [formik](https://formik.org/).
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using Material UI with [Redux Form](https://redux-form.com/).
+- [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using Material UI with [React Final Form](https://final-form.org/react).
+- [@ui-schema/ds-material](https://www.npmjs.com/package/@ui-schema/ds-material) Bindings for using Material UI with [UI Schema](https://github.com/ui-schema/ui-schema). JSON Schema compatible.
+- [@data-driven-forms/mui-component-mapper](https://www.data-driven-forms.org/provided-mappers/mui-component-mapper): Bindings for using Material UI with [Data Driven Forms](https://github.com/data-driven-forms/react-forms).

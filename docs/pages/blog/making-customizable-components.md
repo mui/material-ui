@@ -14,7 +14,7 @@ This variety of users presents a dilemma for us as maintainers: hobbyists workin
 Managing these contradictory needs only becomes more difficult as component complexity increases.
 
 This article reviews several different approaches that a developer might take to customize UI components, as well as the various tradeoffs associated with each method.
-Along the way, we'll explore how these tradeoffs ultimately led to the solution that we've settled on for customizing MUI components: the slot strategy.
+Along the way, we'll explore how these tradeoffs ultimately led to the solution that we've settled on for customizing Material UI components: the slot strategy.
 
 ## Style modification
 
@@ -27,7 +27,7 @@ Let's start with the easiest part: modifying the style.
 This will necessarily involve CSS—especially the notion of [specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity), which says that if an element is targeted by two CSS selectors, the browser will apply the more specific one.
 Usually this means that the selector with more classes applied to it is more specific and therefore takes precedence.
 
-For example, if we look at the Material UI `Switch` component, we have multiple subcomponents that we could expect to modify.
+For example, if we look at the Material UI `Switch` component, we have multiple subcomponents that we could expect to modify.
 For each of them, we assign a specific CSS class:
 
 <img src="/static/blog/making-customizable-components/switchHighlighted.png" style="width: 692px; aspect-ratio: 173/80; margin-top: 16px; margin-bottom: 16px;" loading="lazy" alt="Switch component with highlighted sub components" />
@@ -65,7 +65,7 @@ Maybe you don't want to spend your time switching between CSS and JavaScript fil
 To avoid these problems you can integrate styles directly into your JS code. 🎉
 
 Because the level of customization varies across projects, MUI's components can be customized in several different ways.
-For more information on this topic, check out the [Material UI customization documentation](https://mui.com/material-ui/customization/how-to-customize/).
+For more information on this topic, check out the [Material UI customization documentation](https://mui.com/material-ui/customization/how-to-customize/).
 
 ## Logic modification
 
@@ -136,7 +136,7 @@ If your main priority is to get up and running quickly, then this may not be a v
 #### Subdivide your components
 
 Another approach I like is to provide subcomponents.
-This is what we do for MUI Core components such as the [Menu](https://mui.com/material-ui/react-menu/).
+This is what we do for MUI Core components such as the [Menu](https://mui.com/material-ui/react-menu/).
 
 This is also the approach used by [react-admin](https://marmelab.com/react-admin/) to provide a customizable administration interface.
 Here is their quick start example:
@@ -176,7 +176,7 @@ _The more freedom, the more bugs_.
 
 ##### Drawback example
 
-To show you how easy it is to make a mistake using this technique, here is a personal example involving Material UI components.
+To show you how easy it is to make a mistake using this technique, here is a personal example involving Material UI components.
 
 I recently tried to wrap a `TextField` component in a `FormControl`, and was frustrated when it didn't work.
 But the reason why is quite simple: the `TextField` component is itself composed of an input wrapped inside of a `FormControl`, and neither TypeScript nor `console.error` messages could warn me that my rendered markup was redundant and broken.
@@ -303,10 +303,10 @@ For example, a grid can exist without its filter panel, or without its toolbar.
 
 In our last two annual [developer surveys](/blog/2021-developer-survey-results/), our users made it clear that customization is always a top priority when choosing a UI library.
 
-Thanks to the slot strategy and the introduction of supplementary tools like [MUI System's `sx` prop](https://mui.com/system/getting-started/the-sx-prop/), it has never been easier to customize MUI's components to suit your specific needs.
+Thanks to the slot strategy and the introduction of supplementary tools like [MUI System's `sx` prop](https://mui.com/system/getting-started/the-sx-prop/), it has never been easier to customize MUI's components to suit your specific needs.
 
-[Material UI](https://mui.com/material-ui/getting-started/) and [Joy UI](https://mui.com/joy-ui/getting-started/) are designed to be both beautiful and flexible right out of the box, while [Base UI](https://mui.com/base-ui/getting-started/) gives you the most freedom to implement your own custom styling solution.
-[MUI X](https://mui.com/x/introduction/) is comprised of fully featured complex components like the `DataGrid` which—as we've seen—can still be customized in many ways with minimal friction.
+[Material UI](https://mui.com/material-ui/getting-started/) and [Joy UI](https://mui.com/joy-ui/getting-started/) are designed to be both beautiful and flexible right out of the box, while [Base UI](https://mui.com/base-ui/getting-started/) gives you the most freedom to implement your own custom styling solution.
+[MUI X](https://mui.com/x/introduction/) is comprised of fully featured complex components like the `DataGrid` which—as we've seen—can still be customized in many ways with minimal friction.
 
-Get started building with the MUI X Data Grid by [installing the MIT-licensed Community package](https://mui.com/x/react-data-grid/getting-started/#installation) today.
+Get started building with the MUI X Data Grid by [installing the MIT-licensed Community package](https://mui.com/x/react-data-grid/getting-started/#installation) today.
 And be sure to let us know what you think about the customization experience!
