@@ -8,7 +8,7 @@ import { Slot } from './utils/parseSlotsAndClasses';
 
 export type SortingStrategiesType = {
   /**
-   * Sort slots items. Setting null result in no sorting (respect the order provided by TS).
+   * Sort slots items. Setting it to `null` keeps the order defined in the source code.
    * @default alphabetical order.
    */
   classesSort?: null | ((a: ComponentClassDefinition, b: ComponentClassDefinition) => number);
