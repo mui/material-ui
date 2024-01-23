@@ -8,7 +8,7 @@
     "focusableWhenDisabled": {
       "description": "If <code>true</code>, allows a disabled button to receive focus."
     },
-    "hostElementName": {
+    "rootElementName": {
       "description": "The HTML element that is ultimately rendered, for example &#39;button&#39; or &#39;a&#39;"
     },
     "slotProps": { "description": "The props used for each slot inside the Button." },

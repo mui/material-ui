@@ -134,11 +134,6 @@ Button.propTypes /* remove-proptypes */ = {
    */
   focusableWhenDisabled: PropTypes.bool,
   /**
-   * The HTML element that is ultimately rendered, for example 'button' or 'a'
-   * @default 'button'
-   */
-  rootElementName: PropTypes /* @typescript-to-proptypes-ignore */.string,
-  /**
    * @ignore
    */
   href: PropTypes.string,
@@ -146,6 +141,11 @@ Button.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   onFocusVisible: PropTypes.func,
+  /**
+   * The HTML element that is ultimately rendered, for example 'button' or 'a'
+   * @default 'button'
+   */
+  rootElementName: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
    * The props used for each slot inside the Button.
    * @default {}

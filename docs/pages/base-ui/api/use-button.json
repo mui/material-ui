@@ -5,16 +5,16 @@
       "type": { "name": "boolean", "description": "boolean" },
       "default": "false"
     },
-    "hostElementName": {
+    "href": { "type": { "name": "string", "description": "string" } },
+    "onFocusVisible": {
+      "type": { "name": "React.FocusEventHandler", "description": "React.FocusEventHandler" }
+    },
+    "rootElementName": {
       "type": {
         "name": "keyof HTMLElementTagNameMap",
         "description": "keyof HTMLElementTagNameMap"
       },
       "default": "''"
-    },
-    "href": { "type": { "name": "string", "description": "string" } },
-    "onFocusVisible": {
-      "type": { "name": "React.FocusEventHandler", "description": "React.FocusEventHandler" }
     },
     "rootRef": {
       "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }

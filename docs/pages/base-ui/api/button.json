@@ -8,7 +8,7 @@
     },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "focusableWhenDisabled": { "type": { "name": "bool" }, "default": "false" },
-    "hostElementName": { "type": { "name": "string" }, "default": "'button'" },
+    "rootElementName": { "type": { "name": "string" }, "default": "'button'" },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
       "default": "{}"
