@@ -117,6 +117,10 @@ export type ComponentInfo = {
    * Component name with `Mui` prefix, in the global HTML page namespace.
    */
   muiName: string;
+  /**
+   * The name of the slots interface. By default we consider `${componentName}Slots`.
+   */
+  slotInterfaceName?: string;
   apiPathname: string;
   readFile: () => {
     src: string;
