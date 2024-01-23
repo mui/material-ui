@@ -57,7 +57,7 @@ export interface PopupOwnProps {
    *
    * @see https://floating-ui.com/docs/computePosition#middleware
    */
-  middleware?: Array<PopupMiddleware | null | undefined | false>;
+  middleware?: ReadonlyArray<PopupMiddleware | null | undefined | false>;
   /**
    * Distance between a popup and the trigger element.
    * This prop is ignored when custom `middleware` is provided.
