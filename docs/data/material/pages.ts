@@ -258,6 +258,10 @@ const pages: MuiPage[] = [
     title: 'Migration',
     children: [
       {
+        pathname: '/material-ui/migration/migrating-deprecations',
+        title: 'Migrating deprecations',
+      },
+      {
         pathname: '/material-ui/migration/migration-grid-v2',
         title: 'Migrating to Grid v2',
       },

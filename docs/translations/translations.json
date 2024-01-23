@@ -473,6 +473,7 @@
     "/material-ui/discover-more/vision": "Vision",
     "/material-ui/discover-more/changelog": "Changelog",
     "/material-ui/migration": "Migration",
+    "/material-ui/migration/migrating-deprecations": "Migrating deprecations",
     "/material-ui/migration/migration-grid-v2": "Migrating to Grid v2",
     "Upgrade to v5": "Upgrade to v5",
     "/material-ui/migration/migration-v4": "Migrating to v5: getting started",
