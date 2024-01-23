@@ -1153,7 +1153,6 @@ export function getThemedComponents(): ThemeOptions {
               fontWeight: 500,
               color: theme.palette.grey[700],
               borderColor: theme.palette.grey[200],
-              zIndex: 1,
               ...(ownerState.size === 'small' && {
                 padding: '0.375rem 0.75rem',
               }),
@@ -1161,7 +1160,6 @@ export function getThemedComponents(): ThemeOptions {
                 color: (theme.vars || theme).palette.primary[500],
                 borderColor: `${(theme.vars || theme).palette.primary[500]} !important`,
                 backgroundColor: (theme.vars || theme).palette.primary[50],
-                zIndex: 2,
                 '&:hover': {
                   backgroundColor: (theme.vars || theme).palette.primary[100],
                 },
