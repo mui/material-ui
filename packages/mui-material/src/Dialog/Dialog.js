@@ -191,7 +191,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     slots = {},
     slotProps = {},
     TransitionComponent: TransitionComponentProp = Fade,
-    transitionDuration = defaultTransitionDuration,
+    transitionDuration: transitionDurationProp = defaultTransitionDuration,
     TransitionProps: TransitionPropsProp,
     ...other
   } = props;
@@ -237,7 +237,10 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
 
   const backwardCompatibleSlots = { transition: TransitionComponentProp, ...slots };
   const backwardCompatibleSlotProps = {
-    transition: TransitionPropsProp,
+    transition: {
+      ...TransitionPropsProp,
+      timeout: slotProps.transition?.timeout || transitionDurationProp,
+    },
     ...slotProps,
   };
 
@@ -259,7 +262,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
       components={{ Backdrop: DialogBackdrop }}
       componentsProps={{
         backdrop: {
-          transitionDuration,
+          transitionDuration: transitionProps.timeout,
           as: BackdropComponent,
           ...BackdropProps,
         },
@@ -275,7 +278,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
       <TransitionSlot
         appear
         in={open}
-        timeout={transitionDuration}
+        timeout={transitionProps.timeout}
         role="presentation"
         {...transitionProps}
       >
@@ -442,6 +445,7 @@ Dialog.propTypes /* remove-proptypes */ = {
    *   enter: theme.transitions.duration.enteringScreen,
    *   exit: theme.transitions.duration.leavingScreen,
    * }
+   * @deprecated Use `slotProps.transition.timeout` instead. This prop will be removed in v7.
    */
   transitionDuration: PropTypes.oneOfType([
     PropTypes.number,

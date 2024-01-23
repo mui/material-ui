@@ -65,7 +65,9 @@
         "name": "union",
         "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
-      "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}"
+      "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}",
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.transition.timeout</code> instead. This prop will be removed in v7."
     },
     "TransitionProps": {
       "type": { "name": "object" },

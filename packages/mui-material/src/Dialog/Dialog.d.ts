@@ -125,6 +125,7 @@ export interface DialogProps
    *   enter: theme.transitions.duration.enteringScreen,
    *   exit: theme.transitions.duration.leavingScreen,
    * }
+   * @deprecated Use `slotProps.transition.timeout` instead. This prop will be removed in v7.
    */
   transitionDuration?: TransitionProps['timeout'];
   /**
