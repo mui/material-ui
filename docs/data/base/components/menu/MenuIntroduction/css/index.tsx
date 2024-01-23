@@ -21,7 +21,7 @@ export default function MenuIntroduction() {
       <Menu
         className="CustomMenuIntroduction"
         slots={{
-          listbox: AnimatedListbox,
+          listbox: Listbox,
         }}
         slotProps={{
           listbox: { className: 'CustomMenuIntroduction--listbox' },
@@ -51,7 +51,7 @@ export default function MenuIntroduction() {
   );
 }
 
-const AnimatedListbox = React.forwardRef(function AnimatedListbox(
+const Listbox = React.forwardRef(function Listbox(
   props: MenuListboxSlotProps,
   ref: React.ForwardedRef<HTMLUListElement>,
 ) {
@@ -60,7 +60,7 @@ const AnimatedListbox = React.forwardRef(function AnimatedListbox(
 
   if (popupContext == null) {
     throw new Error(
-      'The `AnimatedListbox` component cannot be rendered outside a `Popup` component',
+      'The `Listbox` component cannot be rendered outside a `Popup` component',
     );
   }
 

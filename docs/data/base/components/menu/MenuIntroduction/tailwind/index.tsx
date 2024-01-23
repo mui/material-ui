@@ -51,7 +51,7 @@ const Menu = React.forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
       ref={ref}
       {...props}
       slots={{
-        listbox: AnimatedListbox,
+        listbox: Listbox,
       }}
       slotProps={{
         ...props.slotProps,
@@ -116,7 +116,7 @@ const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>((props, ref) => 
   );
 });
 
-const AnimatedListbox = React.forwardRef(function AnimatedListbox(
+const Listbox = React.forwardRef(function Listbox(
   props: MenuListboxSlotProps,
   ref: React.ForwardedRef<HTMLUListElement>,
 ) {
@@ -125,7 +125,7 @@ const AnimatedListbox = React.forwardRef(function AnimatedListbox(
 
   if (popupContext == null) {
     throw new Error(
-      'The `AnimatedListbox` component cannot be rendered outside a `Popup` component',
+      'The `Listbox` component cannot be rendered outside a `Popup` component',
     );
   }
 
@@ -134,8 +134,7 @@ const AnimatedListbox = React.forwardRef(function AnimatedListbox(
   return (
     <CssTransition
       className={`placement-${verticalPlacement}`}
-      enterClassName="open"
-      exitClassName="closed"
+      enterClassName="base--expanded"
     >
       <ul {...other} ref={ref} />
     </CssTransition>
