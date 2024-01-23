@@ -89,7 +89,7 @@ export default theme;
 Then in `src/app/layout.tsx`, pass the theme to `ThemeProvider`:
 
 ```diff
-// app/layout.tsx
+ // app/layout.tsx
  import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 + import { ThemeProvider } from '@mui/material/styles';
 + import theme from '../theme';
@@ -117,12 +117,12 @@ To learn more about theming, check out the [theming guide](/material-ui/customiz
 If you want to use [CSS theme variables](/material-ui/experimental-api/css-theme-variables/overview/), use the `extendTheme` and `CssVarsProvider` utilities instead:
 
 ```diff
-// src/theme.ts
-'use client';
+ // src/theme.ts
+ 'use client';
 - import { createTheme } from '@mui/material/styles';
 + import { extendTheme } from '@mui/material/styles';
 
-// app/layout.tsx
+ // app/layout.tsx
 - import { ThemeProvider } from '@mui/material/styles';
 + import { CssVarsProvider } from '@mui/material/styles';
 ```
@@ -224,15 +224,15 @@ Then, inside `pages/_app.tsx`, import the `AppCacheProvider` component and rende
 To use a custom [Emotion cache](https://emotion.sh/docs/@emotion/cache), pass it to the `emotionCache` property in `_document.tsx`:
 
 ```diff
-// pages/_document.tsx
-...
+ // pages/_document.tsx
+ ...
 
-MyDocument.getInitialProps = async (ctx) => {
+ MyDocument.getInitialProps = async (ctx) => {
   const finalProps = await documentGetInitialProps(ctx, {
 +   emotionCache: createCustomCache(),
   });
   return finalProps;
-};
+ };
 ```
 
 #### App enhancement (optional)
@@ -316,10 +316,10 @@ If you are using TypeScript, add `DocumentHeadTagsProps` to the Document's props
 In `pages/_app.tsx`, create a new theme and pass it to `ThemeProvider`:
 
 ```diff
-import * as React from 'react';
-import Head from 'next/head';
-import { AppProps } from 'next/app';
-import { AppCacheProvider } from '@mui/material-nextjs/v13-pagesRouter';
+ import * as React from 'react';
+ import Head from 'next/head';
+ import { AppProps } from 'next/app';
+ import { AppCacheProvider } from '@mui/material-nextjs/v13-pagesRouter';
 +import { ThemeProvider, createTheme } from '@mui/material/styles';
 +import { Roboto } from 'next/font/google';
 
@@ -335,7 +335,7 @@ import { AppCacheProvider } from '@mui/material-nextjs/v13-pagesRouter';
 +  },
 +});
 
-export default function MyApp(props: AppProps) {
+ export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
   return (
     <AppCacheProvider {...props}>
@@ -345,7 +345,7 @@ export default function MyApp(props: AppProps) {
 +      </ThemeProvider>
     </AppCacheProvider>
   );
-}
+ }
 ```
 
 To learn more about theming, check out the [Theming guide](/material-ui/customization/theming/).
@@ -355,7 +355,7 @@ To learn more about theming, check out the [Theming guide](/material-ui/customiz
 If you want to use [CSS theme variables](/material-ui/experimental-api/css-theme-variables/overview/), use the `extendTheme` and `CssVarsProvider` instead:
 
 ```diff
-// pages/_app.tsx
+ // pages/_app.tsx
 -import { ThemeProvider, createTheme } from '@mui/material/styles';
 +import { CssVarsProvider, extendTheme } from '@mui/material/styles';
 ```
