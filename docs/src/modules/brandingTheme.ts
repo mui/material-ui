@@ -1273,6 +1273,14 @@ export function getThemedComponents(): ThemeOptions {
         defaultProps: {
           enableColorScheme: true,
         },
+        styleOverrides: {
+          html: {
+            overflowY: 'scroll',
+            // TODO add support for it,
+            // https://github.com/mui/material-ui/issues/40748
+            // scrollbarGutter: 'stable',
+          },
+        },
       },
     },
   };
