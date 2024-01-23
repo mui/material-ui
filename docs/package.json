@@ -137,7 +137,7 @@
     "cross-fetch": "^4.0.0",
     "gm": "^1.25.0",
     "marked": "^5.1.2",
-    "playwright": "^1.40.1",
+    "playwright": "^1.41.1",
     "prettier": "^2.8.8",
     "tailwindcss": "^3.4.1",
     "typescript-to-proptypes": "workspace:^",

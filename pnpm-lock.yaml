@@ -117,8 +117,8 @@ importers:
         specifier: ^20.0.2
         version: 20.0.2
       '@playwright/test':
-        specifier: 1.40.1
-        version: 1.40.1
+        specifier: 1.41.1
+        version: 1.41.1
       '@slack/web-api':
         specifier: ^6.11.2
         version: 6.11.2
@@ -506,8 +506,8 @@ importers:
         specifier: ^10.10.0
         version: 10.10.0
       playwright:
-        specifier: ^1.40.1
-        version: 1.40.1
+        specifier: ^1.41.1
+        version: 1.41.1
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
@@ -894,8 +894,8 @@ importers:
         specifier: ^5.1.2
         version: 5.1.2
       playwright:
-        specifier: ^1.40.1
-        version: 1.40.1
+        specifier: ^1.41.1
+        version: 1.41.1
       prettier:
         specifier: ^2.8.8
         version: 2.8.8
@@ -1580,8 +1580,8 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       playwright:
-        specifier: ^1.40.1
-        version: 1.40.1
+        specifier: ^1.41.1
+        version: 1.41.1
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2157,8 +2157,8 @@ importers:
         specifier: ^10.2.0
         version: 10.2.0
       playwright:
-        specifier: ^1.40.1
-        version: 1.40.1
+        specifier: ^1.41.1
+        version: 1.41.1
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
@@ -2483,8 +2483,8 @@ importers:
         specifier: workspace:^
         version: link:../packages/mui-utils/build
       '@playwright/test':
-        specifier: 1.40.1
-        version: 1.40.1
+        specifier: 1.41.1
+        version: 1.41.1
       '@testing-library/dom':
         specifier: ^9.3.4
         version: 9.3.4
@@ -2519,8 +2519,8 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       playwright:
-        specifier: ^1.40.1
-        version: 1.40.1
+        specifier: ^1.41.1
+        version: 1.41.1
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
@@ -6412,12 +6412,12 @@ packages:
     requiresBuild: true
     optional: true
 
-  /@playwright/test@1.40.1:
-    resolution: {integrity: sha512-EaaawMTOeEItCRvfmkI9v6rBkF1svM8wjl/YPRrg2N2Wmp+4qJYkWtJsbew1szfKKDm6fPLy4YAanBhIlf9dWw==}
+  /@playwright/test@1.41.1:
+    resolution: {integrity: sha512-9g8EWTjiQ9yFBXc6HjCWe41msLpxEX0KhmfmPl9RPLJdfzL4F0lg2BdJ91O9azFdl11y1pmpwdjBiSxvqc+btw==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
-      playwright: 1.40.1
+      playwright: 1.41.1
     dev: true
 
   /@polka/url@1.0.0-next.21:
@@ -17579,17 +17579,17 @@ packages:
     resolution: {integrity: sha512-fnWVljUchTro6RiCFvCXBbNhJc2NijN7oIQxbwsyL0buWJPG85v81ehlHI9fXrJsMNgTofEoWIQeClKpgxFLrg==}
     dev: false
 
-  /playwright-core@1.40.1:
-    resolution: {integrity: sha512-+hkOycxPiV534c4HhpfX6yrlawqVUzITRKwHAmYfmsVreltEl6fAZJ3DPfLMOODw0H3s1Itd6MDCWmP1fl/QvQ==}
+  /playwright-core@1.41.1:
+    resolution: {integrity: sha512-/KPO5DzXSMlxSX77wy+HihKGOunh3hqndhqeo/nMxfigiKzogn8kfL0ZBDu0L1RKgan5XHCPmn6zXd2NUJgjhg==}
     engines: {node: '>=16'}
     hasBin: true
 
-  /playwright@1.40.1:
-    resolution: {integrity: sha512-2eHI7IioIpQ0bS1Ovg/HszsN/XKNwEG1kbzSDDmADpclKc7CyqkHw7Mg2JCz/bbCxg25QUPcjksoMW7JcIFQmw==}
+  /playwright@1.41.1:
+    resolution: {integrity: sha512-gdZAWG97oUnbBdRL3GuBvX3nDDmUOuqzV/D24dytqlKt+eI5KbwusluZRGljx1YoJKZ2NRPaeWiFTeGZO7SosQ==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
-      playwright-core: 1.40.1
+      playwright-core: 1.41.1
     optionalDependencies:
       fsevents: 2.3.2
 
