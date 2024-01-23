@@ -56,7 +56,7 @@ export default function Home() {
         <Divider />
         <ValueProposition />
         <Divider />
-        {/* <DesignSystemComponents /> */}
+        <DesignSystemComponents />
         <Divider />
         <Testimonials />
         <Divider />

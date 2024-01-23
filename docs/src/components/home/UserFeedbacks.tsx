@@ -6,68 +6,6 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2';
 import MuiStatistics from 'docs/src/components/home/MuiStatistics';
 
-function Feedback({
-  quote,
-  profile,
-}: {
-  quote: string;
-  profile: {
-    avatarSrc: string;
-    avatarSrcSet: string;
-    name: string;
-    role: string;
-    company?: React.ReactElement;
-  };
-}) {
-  return (
-    <Box
-      sx={{
-        p: 3,
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        color: '#FFF',
-      }}
-    >
-      <Typography variant="body1" fontWeight="medium" component="div" sx={{ mb: 2.5 }}>
-        {quote}
-      </Typography>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-        <Box
-          sx={(theme) => ({
-            p: 0.5,
-            border: '1px solid',
-            borderColor: 'primary.800',
-            bgcolor: alpha(theme.palette.primary[900], 0.5),
-            borderRadius: 99,
-          })}
-        >
-          <Avatar
-            srcSet={profile.avatarSrcSet}
-            src={profile.avatarSrc}
-            alt={`${profile.name}'s profile picture`}
-            imgProps={{ loading: 'lazy' }}
-            sx={{
-              width: 40,
-              height: 40,
-            }}
-          />
-        </Box>
-        <div>
-          <Typography fontWeight="semiBold" color="text.primary">
-            {profile.name}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {profile.role}
-          </Typography>
-        </div>
-        <Box sx={{ ml: 'auto' }}>{profile.company}</Box>
-      </Box>
-    </Box>
-  );
-}
-
 const TESTIMONIALS = [
   {
     quote:
@@ -147,30 +85,98 @@ const TESTIMONIALS = [
   },
 ];
 
+function Feedback({
+  quote,
+  profile,
+}: {
+  quote: string;
+  profile: {
+    avatarSrc: string;
+    avatarSrcSet: string;
+    name: string;
+    role: string;
+    company?: React.ReactElement;
+  };
+}) {
+  return (
+    <Box
+      sx={{
+        p: 3,
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        color: '#FFF',
+      }}
+    >
+      <Typography
+        variant="body2"
+        sx={{
+          mb: 2.5,
+          lineHeight: 1.6,
+          color: 'grey.200',
+          fontSize: (theme) => theme.typography.pxToRem(15),
+        }}
+      >
+        {quote}
+      </Typography>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+        <Box
+          sx={(theme) => ({
+            p: 0.5,
+            border: '1px solid',
+            borderColor: 'primary.800',
+            bgcolor: alpha(theme.palette.primary[900], 0.5),
+            borderRadius: 99,
+          })}
+        >
+          <Avatar
+            srcSet={profile.avatarSrcSet}
+            src={profile.avatarSrc}
+            alt={`${profile.name}'s profile picture`}
+            imgProps={{ loading: 'lazy' }}
+            sx={{
+              width: 40,
+              height: 40,
+            }}
+          />
+        </Box>
+        <div>
+          <Typography fontWeight="medium" color="text.primary">
+            {profile.name}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {profile.role}
+          </Typography>
+        </div>
+        <Box sx={{ ml: 'auto' }}>{profile.company}</Box>
+      </Box>
+    </Box>
+  );
+}
+
 export default function UserFeedbacks() {
   return (
     <Grid
       container
-      sx={{
+      sx={(theme) => ({
         mt: 4,
         backgroundColor: 'rgba(255,255,255,0.01)',
         border: '1px solid',
         borderColor: 'divider',
         borderRadius: 1,
         overflow: 'clip',
-        '> :nth-of-type(1)': { borderBottom: '1px solid', borderColor: 'divider' },
+        '> :nth-of-type(1)': { borderBottom: `1px solid ${theme.palette.divider}` },
         '> :nth-of-type(2)': {
-          borderBottom: '1px solid',
-          borderRight: '1px solid',
-          borderColor: 'divider',
+          borderBottom: `1px solid ${theme.palette.divider}`,
+          borderRight: { xs: 0, sm: `1px solid ${theme.palette.divider}` },
         },
-        '> :nth-of-type(3)': { borderBottom: '1px solid', borderColor: 'divider' },
+        '> :nth-of-type(3)': { borderBottom: `1px solid ${theme.palette.divider}` },
         '> :nth-of-type(4)': {
-          borderRight: '1px solid',
-          borderBottom: { xs: '1px solid', sm: 0 },
-          borderColor: 'divider',
+          borderRight: { xs: 0, sm: `1px solid ${theme.palette.divider}` },
+          borderBottom: { xs: `1px solid ${theme.palette.divider}`, sm: 0 },
         },
-      }}
+      })}
     >
       <MuiStatistics />
       {TESTIMONIALS.map((item) => (

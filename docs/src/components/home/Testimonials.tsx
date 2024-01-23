@@ -1,13 +1,11 @@
 import * as React from 'react';
 import dynamic from 'next/dynamic';
-import Box from '@mui/material/Box';
-import Section from 'docs/src/layouts/Section';
-import Typography from '@mui/material/Typography';
 import { alpha } from '@mui/material/styles';
-import MuiStatistics from 'docs/src/components/home/MuiStatistics';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
-import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 
 const UserFeedbacks = dynamic(() => import('./UserFeedbacks'));
 
@@ -16,25 +14,23 @@ export default function Testimonials() {
     <Box
       data-mui-color-scheme="dark"
       sx={(theme) => ({
-        background: `linear-gradient(180deg, ${
-          (theme.vars || theme).palette.primaryDark[800]
-        } 2%, ${alpha(theme.palette.primaryDark[700], 0.5)} 80%),
+        background: `linear-gradient(180deg, ${alpha(
+          theme.palette.primaryDark[800],
+          0.8,
+        )}2%, ${alpha(theme.palette.primaryDark[900], 0.5)} 80%),
         ${(theme.vars || theme).palette.common.black}
         `,
       })}
     >
       <Section bg="transparent" cozy>
         <SectionHeadline
-          alwaysCenter
-          overline="Community"
+          overline="Join the community"
           title={
             <Typography variant="h2" component="h1">
               Supported by thousands of <GradientText>developers and designers</GradientText>
             </Typography>
           }
         />
-        {/* <MuiStatistics /> */}
-        <GetStartedButtons primaryLabel="Discover the Core libraries" primaryUrl="/core/" />
         <UserFeedbacks />
       </Section>
     </Box>

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
@@ -11,15 +12,31 @@ const data = [
 
 export default function MuiStatistics() {
   return (
-    <Box sx={{ py: 3, display: 'flex', justifyContent: 'center', gap: 2, width: '100%' }}>
+    <Box
+      data-mui-color-scheme="dark"
+      sx={(theme) => ({
+        pt: 2.5,
+        pb: 3,
+        px: { xs: 3, sm: 0 },
+        display: 'flex',
+        justifyContent: 'center',
+        gap: 2,
+        width: '100%',
+        flexWrap: 'wrap',
+        background: `linear-gradient(180deg, ${alpha(
+          theme.palette.primary[900],
+          0.1,
+        )} 2%, transparent 80%)`,
+      })}
+    >
       {data.map((item) => (
-        <Box key={item.title} sx={{ height: '100%', width: { xs: '100%', sm: 200 } }}>
+        <Box key={item.title} sx={{ width: { xs: '100%', sm: 200 } }}>
           <Typography
             component="p"
             variant="h4"
             fontWeight="bold"
+            textAlign="center"
             sx={(theme) => ({
-              textAlign: { xs: 'left', sm: 'center' },
               color: 'primary.main',
               ...theme.applyDarkStyles({
                 color: 'primary.200',
@@ -28,7 +45,7 @@ export default function MuiStatistics() {
           >
             {item.title}
           </Typography>
-          <Typography color="text.secondary" sx={{ textAlign: { xs: 'left', sm: 'center' } }}>
+          <Typography color="text.secondary" textAlign="center">
             {item.metadata}
           </Typography>
         </Box>
