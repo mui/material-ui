@@ -487,7 +487,7 @@ export function getThemedComponents(): ThemeOptions {
             ...(ownerState.size === 'medium' && {
               fontSize: defaultTheme.typography.pxToRem(15),
               padding: theme.spacing('8px', '10px', '8px', '12px'),
-              fontWeight: theme.typography.fontWeightBold,
+              fontWeight: theme.typography.fontWeightSemiBold,
               borderRadius: 8,
               '& > span': { transition: '0.2s', marginLeft: 4 },
               '&:hover > span': { transform: 'translateX(2px)' },
@@ -570,12 +570,12 @@ export function getThemedComponents(): ThemeOptions {
                 textShadow: `0 1px 1px ${alpha(theme.palette.common.black, 0.6)}`,
                 backgroundColor: (theme.vars || theme).palette.primary[500],
                 backgroundImage: `linear-gradient(180deg, ${alpha(
-                  theme.palette.primary[400],
+                  theme.palette.primary[500],
                   0.6,
-                )} 0%, ${alpha(theme.palette.primary[600], 0.8)} 100%)`,
-                boxShadow: `${theme.palette.primary[300]} 0 2px 0.5px inset, ${alpha(
+                )} 0%, ${theme.palette.primary[600]} 100%)`,
+                boxShadow: `${theme.palette.primary[400]} 0 2px 0.5px inset, ${alpha(
                   theme.palette.primary[700],
-                  0.5,
+                  0.7,
                 )} 0 -3px 1px inset, ${alpha(theme.palette.common.black, 0.1)} 0 2px 4px 0`,
                 '&:hover': {
                   backgroundColor: (theme.vars || theme).palette.primary[500],
