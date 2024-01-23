@@ -565,16 +565,6 @@
   padding: 0.75rem;
   opacity: 1;
   margin: 0.25rem 0px;
-}
-
-.GalleryPopper {
-  color: var(--font-color-soft);
-  background: var(--bg-default);
-  border: var(--border-soft);
-  box-shadow: var(--shadow-elevation-2);
-}
-
-.GalleryPopup {
   color: var(--font-color-soft);
   background: var(--bg-default);
   border: var(--border-soft);
