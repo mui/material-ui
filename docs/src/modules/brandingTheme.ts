@@ -485,8 +485,8 @@ export function getThemedComponents(): ThemeOptions {
               '&:hover > span': { transform: 'translateX(2px)' },
             }),
             ...(ownerState.size === 'medium' && {
-              padding: theme.spacing('6px', '12px', '8px', '12px'),
-              fontWeight: theme.typography.fontWeightSemiBold,
+              padding: theme.spacing('6px', '10px', '8px', '12px'),
+              fontWeight: theme.typography.fontWeightBold,
               borderRadius: 8,
               '& > span': { transition: '0.2s', marginLeft: 4 },
               '&:hover > span': { transform: 'translateX(2px)' },
@@ -571,7 +571,7 @@ export function getThemedComponents(): ThemeOptions {
                 backgroundImage: `linear-gradient(180deg, ${alpha(
                   theme.palette.primary[400],
                   0.6,
-                )} 0%, ${alpha(theme.palette.primary[600], 0.5)} 100%)`,
+                )} 0%, ${alpha(theme.palette.primary[600], 0.8)} 100%)`,
                 boxShadow: `${theme.palette.primary[300]} 0 2px 0.5px inset, ${alpha(
                   theme.palette.primary[700],
                   0.5,
