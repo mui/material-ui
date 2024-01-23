@@ -456,6 +456,17 @@ export function getThemedComponents(): ThemeOptions {
       MuiButtonBase: {
         defaultProps: {
           disableTouchRipple: true,
+          disableRipple: true,
+        },
+        styleOverrides: {
+          root: ({ theme }) => ({
+            transition: 'all 100ms ease-in',
+            '&:active': { transform: 'scale(.98)' },
+            '&:focus-visible': {
+              outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
+              outlineOffset: '2px',
+            },
+          }),
         },
       },
       MuiButton: {
@@ -464,17 +475,21 @@ export function getThemedComponents(): ThemeOptions {
         },
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
+            transition: 'all 120ms ease-in',
+            '&:active': { transform: 'scale(.96)' },
             ...(ownerState.size === 'large' && {
               ...theme.typography.body1,
               lineHeight: 21 / 16,
-              fontWeight: theme.typography.fontWeightBold,
-              padding: theme.spacing('12px', '12px', '12px', '14px'),
-              minHeight: 0,
+              padding: theme.spacing('8px', '12px', '10px', '14px'),
+              fontWeight: theme.typography.fontWeightSemiBold,
+              borderRadius: 10,
               '& > span': { transition: '0.2s', marginLeft: 4 },
               '&:hover > span': { transform: 'translateX(2px)' },
             }),
             ...(ownerState.size === 'medium' && {
-              padding: theme.spacing('8px', '12px'),
+              padding: theme.spacing('6px', '12px', '8px', '12px'),
+              fontWeight: theme.typography.fontWeightSemiBold,
+              borderRadius: 8,
               '& > span': { transition: '0.2s', marginLeft: 4 },
               '&:hover > span': { transform: 'translateX(2px)' },
             }),
@@ -500,47 +515,50 @@ export function getThemedComponents(): ThemeOptions {
             }),
             ...(ownerState.variant === 'outlined' &&
               ownerState.color === 'secondary' && {
-                color: (theme.vars || theme).palette.text.secondary,
+                color: (theme.vars || theme).palette.text.primary,
                 backgroundColor: alpha(theme.palette.primaryDark[50], 0.3),
                 borderColor: (theme.vars || theme).palette.primaryDark[100],
-                boxShadow: `0px 2px 1px ${alpha(
-                  theme.palette.grey[200],
-                  0.3,
-                )}, inset 0px 2px 3px ${alpha(theme.palette.primaryDark[100], 0.2)}`,
+                boxShadow: `${alpha(theme.palette.grey[50], 0.5)} 0 2px 0.5px inset, ${alpha(
+                  theme.palette.grey[100],
+                  0.8,
+                )} 0 -2px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
                 '&:hover': {
                   background: (theme.vars || theme).palette.primaryDark[50],
                 },
                 ...theme.applyDarkStyles({
                   color: (theme.vars || theme).palette.primaryDark[100],
-                  borderColor: (theme.vars || theme).palette.primaryDark[600],
-                  backgroundColor: (theme.vars || theme).palette.primaryDark[700],
-                  boxShadow: `0px 2px 1px ${theme.palette.common.black}, inset 0px 2px 3px ${alpha(
-                    theme.palette.primaryDark[500],
-                    0.3,
-                  )}`,
+                  borderColor: alpha(theme.palette.primaryDark[600], 0.5),
+                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+                  boxShadow: `${alpha(theme.palette.primaryDark[600], 0.2)} 0 2px 0 inset, ${alpha(
+                    theme.palette.primaryDark[900],
+                    0.5,
+                  )} 0 -3px 1px inset, ${theme.palette.common.black} 0 1px 2px 0`,
                   '&:hover': {
-                    backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+                    backgroundColor: (theme.vars || theme).palette.primaryDark[700],
                   },
                 }),
               }),
             ...(ownerState.variant === 'outlined' &&
               ownerState.color === 'primary' && {
-                color: (theme.vars || theme).palette.primary[500],
+                color: (theme.vars || theme).palette.primary[600],
                 backgroundColor: alpha(theme.palette.primary[50], 0.3),
                 borderColor: (theme.vars || theme).palette.primary[100],
-                boxShadow: `0px 1px 1px ${alpha(
+                boxShadow: `${theme.palette.primary[50]} 0 2px 0.5px inset, ${alpha(
                   theme.palette.primary[100],
-                  0.5,
-                )}, inset 0px 4px 2px ${alpha(theme.palette.primary[100], 0.1)}`,
+                  0.2,
+                )} 0 -3px 0 inset, ${alpha(theme.palette.primary[100], 0.3)} 0 1px 2px 0`,
                 '&:hover': {
                   background: (theme.vars || theme).palette.primary[50],
                   borderColor: (theme.vars || theme).palette.primary[300],
                 },
                 ...theme.applyDarkStyles({
                   color: (theme.vars || theme).palette.primary[200],
-                  borderColor: (theme.vars || theme).palette.primary[900],
+                  borderColor: alpha(theme.palette.primary[900], 0.7),
                   backgroundColor: alpha(theme.palette.primary[900], 0.2),
-                  boxShadow: '0px 2px 2px #0B0D0E, inset 0px 4px 4px rgba(20, 25, 31, 0.3)',
+                  boxShadow: `${alpha(theme.palette.primary[900], 0.1)} 0 2px 1px inset, ${alpha(
+                    theme.palette.common.black,
+                    0.5,
+                  )} 0 -3px 0 inset, ${theme.palette.common.black} 0 1px 2px 0`,
                   '&:hover': {
                     backgroundColor: (theme.vars || theme).palette.primary[900],
                     borderColor: (theme.vars || theme).palette.primary[700],
@@ -550,36 +568,18 @@ export function getThemedComponents(): ThemeOptions {
             ...(ownerState.variant === 'contained' &&
               ownerState.color === 'primary' && {
                 color: '#FFF',
-                backgroundImage: `linear-gradient(180deg, ${alpha(
-                  theme.palette.primary[300],
-                  0.5,
-                )} 0%, ${alpha(theme.palette.primary[600], 0.5)} 100%)`,
-                boxShadow: `0px 1px 2px ${alpha(
-                  theme.palette.primary[900],
-                  0.1,
-                )}, inset 0px 0px 0px 1px ${
-                  theme.palette.primary[600]
-                }, inset 0px 0px 0px 2px rgba(255, 255, 255, 0.2), 0px 2px 1px ${alpha(
-                  theme.palette.primary[200],
-                  0.3,
-                )} `,
+                textShadow: `0 1px 1px ${alpha(theme.palette.common.black, 0.6)}`,
+                backgroundImage: `linear-gradient(180deg, ${theme.palette.primary[500]} 0%, ${theme.palette.primary[700]} 100%)`,
+                boxShadow: `${theme.palette.primary[400]} 0 2px 0.5px inset, ${alpha(
+                  theme.palette.primary[800],
+                  0.6,
+                )} 0 -3px 1px inset, ${alpha(theme.palette.common.black, 0.1)} 0 2px 4px 0`,
                 '&:hover': {
-                  backgroundColor: (theme.vars || theme).palette.primary[600],
+                  backgroundImage: `linear-gradient(180deg, ${theme.palette.primary[600]} 0%, ${theme.palette.primary[800]} 100%)`,
                 },
-                textShadow: `0px 1px 1px ${alpha(theme.palette.grey[900], 0.3)}`,
                 ...theme.applyDarkStyles({
-                  backgroundImage: `linear-gradient(180deg, ${alpha(
-                    theme.palette.primary[400],
-                    0.2,
-                  )} 0%, ${alpha(theme.palette.primary[700], 0.8)} 100%)`,
-                  boxShadow: `0px 1px 2px ${alpha(
-                    theme.palette.primary[900],
-                    0.1,
-                  )}, inset 0px 0px 0px 1px ${
-                    theme.palette.primary[600]
-                  }, inset 0px 0px 0px 2px rgba(255, 255, 255, 0.1), 0px 2px 1px ${
-                    theme.palette.common.black
-                  } `,
+                  backgroundColor: (theme.vars || theme).palette.primary[600],
+                  boxShadow: `${theme.palette.primary[400]} 0 2px 0.5px inset, ${theme.palette.primary[800]} 0 -3px 1px inset, ${theme.palette.common.black} 0 2px 4px 0`,
                 }),
               }),
           }),
@@ -850,7 +850,7 @@ export function getThemedComponents(): ThemeOptions {
           underline: 'none',
         },
         styleOverrides: {
-          root: {
+          root: ({ theme }) => ({
             fontWeight: 700,
             display: 'inline-flex',
             alignItems: 'center',
@@ -860,7 +860,11 @@ export function getThemedComponents(): ThemeOptions {
             '& svg:last-child': {
               marginLeft: 2,
             },
-          },
+            '&:focus-visible': {
+              outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
+              outlineOffset: '2px',
+            },
+          }),
         },
         variants: [
           {
@@ -1085,6 +1089,10 @@ export function getThemedComponents(): ThemeOptions {
                   '&:hover': {
                     borderColor: (theme.vars || theme).palette.primary[200],
                     boxShadow: `0px 4px 16px ${(theme.vars || theme).palette.grey[200]}`,
+                  },
+                  '&:focus-visible': {
+                    outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
+                    outlineOffset: '2px',
                   },
                 },
                 ':is(a&), :is(button&)': {

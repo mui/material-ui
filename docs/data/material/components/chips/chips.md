@@ -101,7 +101,7 @@ gain depth while clicked or touched.
 
 ### Material 3 Chip
 
-The default Material UI Chip component follows the Material Design 2 specs.
+The default Material UI Chip component follows the Material Design 2 specs.
 To use the [Material 3](https://m3.material.io/) version, install the experimental `@mui/material-next` package.
 
 ```js
@@ -110,7 +110,7 @@ import Chip from '@mui/material-next/Chip';
 
 {{"demo": "ChipMaterialYouPlayground.js", "hideToolbar": true, "bg": "playground"}}
 
-To learn more about Material UI's MD3 implementation, visit the [Material 3 Components documentation](/material-ui/guides/material-3-components/).
+To learn more about Material UI's MD3 implementation, visit the [Material 3 Components documentation](/material-ui/guides/material-3-components/).
 
 ## Accessibility
 

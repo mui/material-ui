@@ -15,7 +15,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
 
 ## Introduction
 
-The Material UI Accordion component includes several complementary utility components to handle various use cases:
+The Material UI Accordion component includes several complementary utility components to handle various use cases:
 
 - Accordion: the wrapper for grouping related components.
 - Accordion Summary: the wrapper for the Accordion header, which expands or collapses the content when clicked.
@@ -25,7 +25,7 @@ The Material UI Accordion component includes several complementary utility compo
 {{"demo": "AccordionUsage.js", "bg": true}}
 
 :::info
-This component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.
+This component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.
 :::
 
 ## Basics

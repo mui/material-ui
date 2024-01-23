@@ -67,7 +67,7 @@
 
       function ProTip() {
         return (
-          <Typography sx={{ mt: 6, mb: 3 }} color="text.secondary">
+          <Typography sx={{ mt: 6, mb: 3, color: 'text.secondary' }}>
             <LightBulbIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
             {'Pro tip: See more '}
             <Link href="https://mui.com/material-ui/getting-started/templates/">templates</Link>
@@ -93,7 +93,7 @@
         return (
           <Container maxWidth="sm">
             <Box sx={{ my: 4 }}>
-              <Typography variant="h4" component="h1" gutterBottom>
+              <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
                 Material UI CDN example
               </Typography>
               <ProTip />
