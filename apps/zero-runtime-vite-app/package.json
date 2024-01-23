@@ -18,9 +18,9 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.23.2",
-    "@babel/preset-react": "^7.22.15",
-    "@babel/preset-typescript": "^7.23.2",
+    "@babel/preset-env": "^7.23.8",
+    "@babel/preset-react": "^7.23.3",
+    "@babel/preset-typescript": "^7.23.3",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
     "@mui/zero-vite-plugin": "workspace:^",
