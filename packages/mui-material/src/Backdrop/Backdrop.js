@@ -156,11 +156,7 @@ Backdrop.propTypes /* remove-proptypes */ = {
    */
   open: PropTypes.bool.isRequired,
   /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
+   * The props used for each slot inside.
    * @default {}
    */
   slotProps: PropTypes.shape({

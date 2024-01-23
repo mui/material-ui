@@ -8,6 +8,10 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface BackdropSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
   root?: React.ElementType;
   /**
    * The component that renders the transition.
@@ -76,17 +80,6 @@ export interface BackdropOwnProps extends Partial<Omit<FadeProps, 'children'>> {
    * If `true`, the component is shown.
    */
   open: boolean;
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
-   * @default {}
-   */
-  slotProps?: {
-    root?: React.HTMLAttributes<HTMLDivElement> & BackdropComponentsPropsOverrides;
-  };
   /**
    * The components used for each slot inside.
    *

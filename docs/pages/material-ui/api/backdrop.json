@@ -14,7 +14,10 @@
     },
     "invisible": { "type": { "name": "bool" }, "default": "false" },
     "slotProps": {
-      "type": { "name": "shape", "description": "{ root?: object }" },
+      "type": {
+        "name": "shape",
+        "description": "{ root?: object, transition?: func<br>&#124;&nbsp;object }"
+      },
       "default": "{}"
     },
     "slots": {
@@ -31,7 +34,12 @@
       },
       "additionalInfo": { "sx": true }
     },
-    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Fade" },
+    "TransitionComponent": {
+      "type": { "name": "elementType" },
+      "default": "Fade",
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slots.transition</code> instead. This prop will be removed in v7."
+    },
     "transitionDuration": {
       "type": {
         "name": "union",
@@ -46,9 +54,15 @@
   ],
   "slots": [
     {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": "MuiBackdrop-root"
+    },
+    {
       "name": "transition",
       "description": "The component that renders the transition.\n[Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
-      "default": "Collapse",
+      "default": "Fade",
       "class": null
     }
   ],
@@ -57,12 +71,6 @@
       "key": "invisible",
       "className": "MuiBackdrop-invisible",
       "description": "Styles applied to the root element if `invisible={true}`.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiBackdrop-root",
-      "description": "Styles applied to the root element.",
       "isGlobal": false
     }
   ],
