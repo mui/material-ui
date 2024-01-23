@@ -2,9 +2,9 @@
 
 A zero-runtime CSS-in-JS library that extracts the colocated css to it's own css files at build-time.
 
-### Getting started
+## Getting started
 
-Zero-runtime supports Next.js and Vite—you must install the corresponding plugin, as shown below. The package currently has a dependency on `@mui/material` to initialize the theme object, but this is only at build time. There won't be any Material UI code at runtime if you're not using it otherwise—in that case, you can move it to dev dependencies instead (as shown with the plugins).
+Zero-runtime supports Next.js and Vite with future support for more bundlers—you must install the corresponding plugin, as shown below.
 
 ### Installation
 
@@ -16,6 +16,7 @@ npm install --save-dev @mui/zero-next-plugin
 npm install --save-dev @mui/zero-vite-plugin
 ```
 
+The package currently has a dependency on `@mui/material` to initialize the theme object, but this is only at build time. There won't be any Material UI code at runtime if you're not using it otherwise—in that case, you can move it to dev dependencies instead (as shown with the plugin packages).
 
 #### Next.js
 
@@ -38,15 +39,11 @@ const theme = extendTheme();
 
 ```js
 module.exports = withZeroPlugin(nextConfig, {
-  sourceMap: true,
   theme,
 });
 ```
 
-Setting `sourceMap` to true will take you to the style definition in the JS file when you click on the class name in the browser dev tools. It should ideally be off in production.
-
 #### Vite
-
 
 In your vite config file,
 
@@ -70,7 +67,6 @@ export default defineConfig({
   plugins: [
     zeroVitePlugin({
       theme,
-      sourceMap: true,
     }),
     // ... Your other plugins.
   ],
@@ -171,6 +167,16 @@ const Button = styled.button(() => ({
       },
       style: {
         // Styles to be applied when <Button size="small" color="primary" />
+      },
+    },
+    {
+      // If key value pair doesn't suffice, you can use the callback syntax
+      // to return `true` if you want the styles to be applied
+      props({ children }) {
+        return !!children;
+      },
+      style: {
+        // CSS
       },
     },
   ],
