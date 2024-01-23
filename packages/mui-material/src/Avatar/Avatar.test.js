@@ -212,6 +212,13 @@ describe('<Avatar />', () => {
 
       expect(avatar).to.have.class(classes.colorDefault);
     });
+
+    it('should fallback if children is empty string', () => {
+      const container = render(<Avatar>{''}</Avatar>).container;
+      const avatar = container.firstChild;
+
+      expect(avatar.firstChild).to.have.attribute('data-testid', 'PersonIcon');
+    });
   });
 
   it('should not throw error when ownerState is used in styleOverrides', () => {
