@@ -1088,7 +1088,7 @@ export function getThemedComponents(): ThemeOptions {
                   }, 0 1px 2px ${alpha(theme.palette.grey[100], 0.6)}`,
                   '&:hover': {
                     borderColor: (theme.vars || theme).palette.primary[200],
-                    boxShadow: `0px 4px 16px ${(theme.vars || theme).palette.grey[200]}`,
+                    boxShadow: `0px 2px 8px ${(theme.vars || theme).palette.primary[100]}`,
                   },
                   '&:focus-visible': {
                     outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
@@ -1115,7 +1115,7 @@ export function getThemedComponents(): ThemeOptions {
                   }, 0 1px 2px ${(theme.vars || theme).palette.common.black}`,
                   '&:hover': {
                     borderColor: alpha(theme.palette.primary[600], 0.5),
-                    boxShadow: `0px 4px 24px ${(theme.vars || theme).palette.common.black}`,
+                    boxShadow: `0px 2px 8px ${alpha(theme.palette.primary[900], 0.6)}`,
                   },
                 },
                 ':is(a&), :is(button&)': {
