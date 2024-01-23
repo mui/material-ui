@@ -378,7 +378,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     externalProps: ExternalProps = {} as ExternalProps,
   ): UseSelectButtonSlotProps<ExternalProps> => {
     const externalEventHandlers = extractEventHandlers(externalProps);
-    const combinedProps = combineHooksSlotProps(getButtonRootProps, getSelectTriggerProps);
+    const combinedProps = combineHooksSlotProps(getSelectTriggerProps, getButtonRootProps);
 
     return {
       ...externalProps,

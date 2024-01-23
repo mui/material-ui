@@ -37,7 +37,7 @@ export function createGetInitialProps(plugins: Plugin[]) {
 }
 
 export interface DocumentHeadTagsProps {
-  emotionStyleTags: React.JSX.Element[];
+  emotionStyleTags: React.ReactElement[];
 }
 
 export function DocumentHeadTags(props: DocumentHeadTagsProps) {

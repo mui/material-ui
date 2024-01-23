@@ -18,10 +18,7 @@ export type AppRouterCacheProviderProps = {
   /**
    * By default <CacheProvider /> from 'import { CacheProvider } from "@emotion/react"'.
    */
-  CacheProvider?: (props: {
-    value: EmotionCache;
-    children: React.ReactNode;
-  }) => React.JSX.Element | null;
+  CacheProvider?: React.ElementType<{ value: EmotionCache }>;
   children: React.ReactNode;
 };
 

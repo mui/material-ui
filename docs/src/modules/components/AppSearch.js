@@ -62,6 +62,10 @@ const SearchButton = styled('button')(({ theme }) => [
       background: (theme.vars || theme).palette.grey[100],
       borderColor: (theme.vars || theme).palette.grey[300],
     },
+    '&:focus-visible': {
+      outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
+      outlineOffset: '2px',
+    },
   },
   theme.applyDarkStyles({
     backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
