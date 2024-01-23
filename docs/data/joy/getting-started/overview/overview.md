@@ -20,10 +20,10 @@ Look for the [`package: joy-ui`](https://github.com/mui/material-ui/labels/packa
 
 ## Why use Joy UI
 
-Maintained by MUI, **Joy UI is an alternative to Material UI** for projects that **don't adhere to Material Design** guidelines as a design system starting point.
+Maintained by MUI, **Joy UI is an alternative to Material UI** for projects that **don't adhere to Material Design** guidelines as a design system starting point.
 
 These two sister libraries feature many of the same components, with similarly designed component APIs and customization features.
-Joy UI applies the decade of lessons learned in building and maintaining Material UI, for developers looking for sleek design, next-gen DX, and extensible components.
+Joy UI applies the decade of lessons learned in building and maintaining Material UI, for developers looking for sleek design, next-gen DX, and extensible components.
 
 Learn more about why you should use Joy UI for your next project below.
 
@@ -34,12 +34,12 @@ Simple and functional, it offers a thoughtfully crafted set of defaults to ensur
 
 For example, the [Order Dashboard template](/joy-ui/getting-started/templates/order-dashboard/) (pictured below) is minimally customized beyond defaults, to demonstrate how meticulously we've designed each component for consistency and cohesion across the UI:
 
-<img src="/static/joy-ui/overview/order-dashboard.png" style="width: 814px; margin-top: 4px; margin-bottom: 8px;" alt="The Order Dashboard template, inspired by Untitled UI and built by the MUI team using Joy UI with very little customizations." width="1628" height="400" />
+<img src="/static/joy-ui/overview/order-dashboard.png" style="width: 814px; margin-top: 4px; margin-bottom: 8px;" alt="The Order Dashboard template, inspired by Untitled UI and built using Joy UI with very little customizations." width="1628" height="400" />
 
 ### Highly customizable
 
 You should feel inspired and empowered to change, extend, and revamp Joy UI's appearance and behavior with ease.
-Drawing from many years of experience maintaining Material UI, Joy UI applies new approaches to customization, enabling you to customize every piece of the components to match your unique design.
+Drawing from many years of experience maintaining Material UI, Joy UI applies new approaches to customization, enabling you to customize every piece of the components to match your unique design.
 
 For example, the demo below shows how to customize the [List](/joy-ui/react-list/) component using built-in CSS variables to match the design of the [Gatsby documentation side nav](https://www.gatsbyjs.com/docs/):
 
@@ -56,7 +56,7 @@ For example, observe how each element of the [Input](/joy-ui/react-input/) compo
 
 ### Accessibility
 
-Joy UI components are built on top of [Base UI's unstyled components and low-level hooks](/base-ui/getting-started/), giving you many accessibility features out of the box.
+Joy UI components are built on top of [Base UI's unstyled components and low-level hooks](/base-ui/getting-started/), giving you many accessibility features out of the box.
 We strive to make all components accessible to end users who require assistive technology, and offer suggestions for optimizing accessibility throughout our documentation.
 
 Joy UI's Form Control component automatically generates a unique ID that links the Input that it wraps with the Form Label and Form Helper Text components, ensuring that your app complies with this guideline:

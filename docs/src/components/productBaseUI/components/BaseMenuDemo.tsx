@@ -47,6 +47,7 @@ const buttonStyles = `
 
     &:hover {
       background: var(--muidocs-palette-primaryDark-800);
+      border-color: var(--muidocs-palette-primaryDark-500);
     }
   }
 `;

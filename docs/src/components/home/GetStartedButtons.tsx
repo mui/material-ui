@@ -47,6 +47,7 @@ export default function GetStartedButtons(props: GetStartedButtonsProps) {
         sx={{
           display: 'flex',
           flexWrap: { xs: 'wrap', md: 'nowrap' },
+          gap: 1.5,
           '&& > *': {
             minWidth: { xs: '100%', md: '0%' },
           },
@@ -64,7 +65,6 @@ export default function GetStartedButtons(props: GetStartedButtonsProps) {
           endIcon={<KeyboardArrowRightRounded />}
           sx={{
             flexShrink: 0,
-            mr: { xs: 0, md: 1.5 },
             mb: { xs: 2, md: 0 },
           }}
         >
