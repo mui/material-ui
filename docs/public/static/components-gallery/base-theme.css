@@ -428,19 +428,14 @@
   border-bottom: none;
 }
 
-.GalleryMenu-item.base--focusVisible {
+.GalleryMenu-item:focus {
   outline: none;
   box-shadow: var(--shadow-interactive-focus-visible);
-  background-color: var(--background-surface-soft);
+  background-color: var(--bg-soft);
   color: var(--font-color-soft);
 }
 
 .GalleryMenu-item.base--disabled {
-  color: var(--font-color-soft);
-}
-
-.GalleryMenu-item:hover:not(.base--disabled) {
-  background-color: var(--bg-soft);
   color: var(--font-color-soft);
 }
 
