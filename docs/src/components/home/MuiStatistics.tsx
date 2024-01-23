@@ -4,9 +4,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 const data = [
-  { title: '4M', metadata: 'Weekly downloads on npm' },
-  { title: '90k', metadata: 'Stars on GitHub' },
-  { title: '2.7k', metadata: 'Open-source contributors' },
+  { title: '5.8M', metadata: 'Weekly downloads on npm' },
+  { title: '90.5k', metadata: 'Stars on GitHub' },
+  { title: '2.9k', metadata: 'Open-source contributors' },
   { title: '18.9k', metadata: 'Followers on X' },
 ];
 
