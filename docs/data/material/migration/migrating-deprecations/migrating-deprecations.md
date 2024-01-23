@@ -5,9 +5,8 @@
 ## Why you should migrate
 
 Deprecations are added as APIs are improved.
-Migrating to these improved APIs will result in a better developer experience.
-The deprecated APIs will eventually be removed and become breaking changes.
-The sooner you migrate, the smoother future major updates will become.
+Migrating to these improved APIs results in a better developer experience.
+The sooner you migrate, the smoother future major updates become.
 
 ## Migrating
 
@@ -17,7 +16,7 @@ The easiest way to migrate is running the deprecations codemod:
 npx @mui/codemod@latest deprecations/all <path>
 ```
 
-This will run all the current deprecations codemods, automatically migrating to the updated API.
+This command runs all the current deprecations codemods, automatically migrating to the updated API.
 If you wish to run a particular codemod, search for the deprecation below for the specific command.
 
 ### Manual migration
