@@ -75,15 +75,15 @@ declare module '@mui/material/Chip' {
 const defaultTheme = createTheme();
 
 export const blue = {
-  50: '#F0F7FF',
-  100: '#C2E0FF',
-  200: '#99CCF3',
+  50: '#EBF5FF',
+  100: '#CCE5FF',
+  200: '#99CCFF',
   300: '#66B2FF',
   400: '#3399FF',
   main: '#007FFF',
   500: '#007FFF',
-  600: '#0072E5', // vs blueDark 900: WCAG 4.6 AAA (large), APCA 36 Not for reading text
-  700: '#0059B2',
+  600: '#0066CC',
+  700: '#004C99',
   800: '#004C99',
   900: '#003A75',
 };
@@ -461,7 +461,6 @@ export function getThemedComponents(): ThemeOptions {
         styleOverrides: {
           root: ({ theme }) => ({
             transition: 'all 100ms ease-in',
-            '&:active': { transform: 'scale(.98)' },
             '&:focus-visible': {
               outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
               outlineOffset: '2px',
@@ -476,18 +475,18 @@ export function getThemedComponents(): ThemeOptions {
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
             transition: 'all 120ms ease-in',
-            '&:active': { transform: 'scale(.96)' },
             ...(ownerState.size === 'large' && {
               ...theme.typography.body1,
               lineHeight: 21 / 16,
-              padding: theme.spacing('8px', '12px', '10px', '14px'),
+              padding: theme.spacing('8px', '10px', '10px', '12px'),
               fontWeight: theme.typography.fontWeightSemiBold,
               borderRadius: 10,
               '& > span': { transition: '0.2s', marginLeft: 4 },
               '&:hover > span': { transform: 'translateX(2px)' },
             }),
             ...(ownerState.size === 'medium' && {
-              padding: theme.spacing('6px', '12px', '8px', '12px'),
+              fontSize: defaultTheme.typography.pxToRem(15),
+              padding: theme.spacing('8px', '10px', '8px', '12px'),
               fontWeight: theme.typography.fontWeightSemiBold,
               borderRadius: 8,
               '& > span': { transition: '0.2s', marginLeft: 4 },
@@ -569,18 +568,19 @@ export function getThemedComponents(): ThemeOptions {
               ownerState.color === 'primary' && {
                 color: '#FFF',
                 textShadow: `0 1px 1px ${alpha(theme.palette.common.black, 0.6)}`,
-                backgroundImage: `linear-gradient(180deg, ${theme.palette.primary[500]} 0%, ${theme.palette.primary[700]} 100%)`,
-                boxShadow: `${theme.palette.primary[400]} 0 2px 0.5px inset, ${alpha(
-                  theme.palette.primary[800],
+                backgroundColor: (theme.vars || theme).palette.primary[500],
+                backgroundImage: `linear-gradient(180deg, ${alpha(
+                  theme.palette.primary[500],
                   0.6,
+                )} 0%, ${theme.palette.primary[600]} 100%)`,
+                boxShadow: `${theme.palette.primary[400]} 0 2px 0.5px inset, ${alpha(
+                  theme.palette.primary[700],
+                  0.7,
                 )} 0 -3px 1px inset, ${alpha(theme.palette.common.black, 0.1)} 0 2px 4px 0`,
                 '&:hover': {
-                  backgroundImage: `linear-gradient(180deg, ${theme.palette.primary[600]} 0%, ${theme.palette.primary[800]} 100%)`,
+                  backgroundColor: (theme.vars || theme).palette.primary[500],
+                  backgroundImage: 'none',
                 },
-                ...theme.applyDarkStyles({
-                  backgroundColor: (theme.vars || theme).palette.primary[600],
-                  boxShadow: `${theme.palette.primary[400]} 0 2px 0.5px inset, ${theme.palette.primary[800]} 0 -3px 1px inset, ${theme.palette.common.black} 0 2px 4px 0`,
-                }),
               }),
           }),
         },
@@ -1088,7 +1088,7 @@ export function getThemedComponents(): ThemeOptions {
                   }, 0 1px 2px ${alpha(theme.palette.grey[100], 0.6)}`,
                   '&:hover': {
                     borderColor: (theme.vars || theme).palette.primary[200],
-                    boxShadow: `0px 4px 16px ${(theme.vars || theme).palette.grey[200]}`,
+                    boxShadow: `0px 2px 8px ${(theme.vars || theme).palette.primary[100]}`,
                   },
                   '&:focus-visible': {
                     outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
@@ -1115,7 +1115,7 @@ export function getThemedComponents(): ThemeOptions {
                   }, 0 1px 2px ${(theme.vars || theme).palette.common.black}`,
                   '&:hover': {
                     borderColor: alpha(theme.palette.primary[600], 0.5),
-                    boxShadow: `0px 4px 24px ${(theme.vars || theme).palette.common.black}`,
+                    boxShadow: `0px 2px 8px ${alpha(theme.palette.primary[900], 0.6)}`,
                   },
                 },
                 ':is(a&), :is(button&)': {

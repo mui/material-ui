@@ -60,7 +60,6 @@ export default function GetStartedButtons(props: GetStartedButtonsProps) {
           target={primaryUrlTarget}
           rel={primaryUrlTarget ? 'noopener' : ''}
           noLinkStyle
-          size="large"
           variant="contained"
           endIcon={<KeyboardArrowRightRounded />}
           sx={{
@@ -72,7 +71,6 @@ export default function GetStartedButtons(props: GetStartedButtonsProps) {
         </Button>
         {installation ? (
           <Button
-            size="large"
             // @ts-expect-error
             variant="codeOutlined"
             endIcon={copied ? <CheckRounded color="primary" /> : <ContentCopyRounded />}
@@ -99,7 +97,6 @@ export default function GetStartedButtons(props: GetStartedButtonsProps) {
             rel={secondaryUrlTarget ? 'noopener' : ''}
             noLinkStyle
             variant="outlined"
-            size="large"
             color="secondary"
             endIcon={<KeyboardArrowRightRounded />}
           >
