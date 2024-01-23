@@ -49,6 +49,7 @@ interface ItemsChangeAction<ItemValue> {
   event: null;
   items: ItemValue[];
   previousItems: ItemValue[];
+  triggerKey?: 'ArrowDown' | 'ArrowUp';
 }
 
 interface ResetHighlightAction {

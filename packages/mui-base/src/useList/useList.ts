@@ -24,9 +24,19 @@ import { useTextNavigation } from '../utils/useTextNavigation';
 import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
 import { EventHandlers } from '../utils/types';
+import { DropdownContext, DropdownContextValue } from '../useDropdown';
 
 const EMPTY_OBJECT = {};
 const NOOP = () => {};
+
+const FALLBACK_MENU_CONTEXT: DropdownContextValue = {
+  dispatch: () => {},
+  popupId: '',
+  registerPopup: () => {},
+  registerTrigger: () => {},
+  state: { open: true },
+  triggerElement: null,
+};
 
 const defaultItemComparer = <ItemValue>(optionA: ItemValue, optionB: ItemValue) =>
   optionA === optionB;
@@ -109,6 +119,10 @@ function useList<
 
   const listRef = React.useRef<HTMLUListElement>(null);
   const handleRef = useForkRef(externalListRef, listRef);
+
+  const {
+    state: { keyPressedToOpen: triggerKey },
+  } = React.useContext(DropdownContext) ?? FALLBACK_MENU_CONTEXT;
 
   const handleHighlightChange = React.useCallback(
     (
@@ -249,11 +263,12 @@ function useList<
       event: null,
       items,
       previousItems: previousItems.current,
+      triggerKey,
     });
 
     previousItems.current = items;
     onItemsChange?.(items);
-  }, [items, itemComparer, dispatch, onItemsChange]);
+  }, [items, itemComparer, dispatch, onItemsChange, triggerKey]);
 
   const createHandleKeyDown =
     (externalHandlers: EventHandlers) =>

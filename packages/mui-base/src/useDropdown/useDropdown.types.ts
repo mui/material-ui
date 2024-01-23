@@ -76,4 +76,4 @@ export type DropdownAction =
   | DropdownOpenAction
   | DropdownCloseAction;
 
-export type DropdownState = { open: boolean };
+export type DropdownState = { open: boolean; keyPressedToOpen?: 'ArrowUp' | 'ArrowDown' };
