@@ -212,8 +212,8 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  useEnhancedEffect(() => {
-    const handleResize = (masonryChildren) => {
+  const handleResize = React.useCallback(
+    (masonryChildren) => {
       if (!masonryRef.current || !masonryChildren || masonryChildren.length === 0) {
         return;
       }
@@ -287,8 +287,11 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
           setNumberOfLineBreaks(currentNumberOfColumns > 0 ? currentNumberOfColumns - 1 : 0);
         });
       }
-    };
+    },
+    [sequential],
+  );
 
+  useEnhancedEffect(() => {
     // IE and old browsers are not supported
     if (typeof ResizeObserver === 'undefined') {
       return undefined;
@@ -315,7 +318,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
         resizeObserver.disconnect();
       }
     };
-  }, [columns, spacing, children, sequential]);
+  }, [columns, spacing, children, handleResize]);
 
   const handleRef = useForkRef(ref, masonryRef);
 
