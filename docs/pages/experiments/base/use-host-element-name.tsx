@@ -88,9 +88,9 @@ export default function ServerRenderedButtons() {
         <pre style={{ lineHeight: 1.8, marginBottom: 12 }}>
           1A: defaults
           <br />
-          1B: `slots.root` is a `span`, hostElementName is inferred
+          1B: `slots.root` is a `span`, rootElementName is inferred
           <br />
-          1C & 1D: `slots.root` is a styled component, hostElementName is manually passed
+          1C & 1D: `slots.root` is a styled component, rootElementName is manually passed
         </pre>
         <Stack spacing={2} direction="row" style={{ marginBottom: 48 }}>
           <StyledBaseButton disabled>Button 1A</StyledBaseButton>
@@ -99,13 +99,13 @@ export default function ServerRenderedButtons() {
             Button 1B
           </StyledBaseButton>
 
-          <BaseButton disabled slots={{ root: StyledHtmlButton }} hostElementName="button">
+          <BaseButton disabled slots={{ root: StyledHtmlButton }} rootElementName="button">
             Button 1C
           </BaseButton>
 
           <StyledBaseButton
             disabled
-            hostElementName="input"
+            rootElementName="input"
             slots={{ root: StyledHtmlInput }}
             value="Button 1D"
             type="button"
@@ -116,20 +116,20 @@ export default function ServerRenderedButtons() {
           Cases where the runtime warning is triggered:
         </pre>
         <pre style={{ lineHeight: 1.8, marginBottom: 12 }}>
-          2A: rendering default element, hostElementName is given an incorrect value of `span`
+          2A: rendering default element, rootElementName is given an incorrect value of `span`
           <br />
           2B: rendering a styled component that returns the default `button` element,
-          hostElementName is given an incorrect value of `span`
+          rootElementName is given an incorrect value of `span`
           <br />
           2C: rendering a styled component that returns the non-default `input` element,
-          hostElementName is not passed
+          rootElementName is not passed
         </pre>
         <Stack spacing={2} direction="row" style={{ marginBottom: 48 }}>
-          <StyledBaseButton disabled hostElementName="span">
+          <StyledBaseButton disabled rootElementName="span">
             Button 2A
           </StyledBaseButton>
 
-          <BaseButton disabled hostElementName="span" slots={{ root: StyledHtmlButton }}>
+          <BaseButton disabled rootElementName="span" slots={{ root: StyledHtmlButton }}>
             Button 2B
           </BaseButton>
 
@@ -144,7 +144,7 @@ export default function ServerRenderedButtons() {
         <pre style={{ fontSize: 16, fontWeight: 500, marginBottom: -12 }}>Links:</pre>
         <pre style={{ lineHeight: 1.8, marginBottom: 12 }}>
           3A, 3B, 3C: As long as `href` or `to` are passed, and all involved components only render
-          `a` tags, hostElementName will be inferred automatically
+          `a` tags, rootElementName will be inferred automatically
           <br />
           3D: `slots.root` is a styled `input`, but an `a` is expected because `href` is passed so
           the warning is triggered
@@ -168,7 +168,7 @@ export default function ServerRenderedButtons() {
             slots={{ root: StyledHtmlInput }}
             value="Link 3D"
             type="button"
-            hostElementName="input"
+            rootElementName="input"
           />
           <StyledBaseButton
             disabled
