@@ -485,6 +485,7 @@ export function getThemedComponents(): ThemeOptions {
               '&:hover > span': { transform: 'translateX(2px)' },
             }),
             ...(ownerState.size === 'medium' && {
+              fontSize: defaultTheme.typography.pxToRem(15),
               padding: theme.spacing('6px', '10px', '8px', '12px'),
               fontWeight: theme.typography.fontWeightBold,
               borderRadius: 8,
