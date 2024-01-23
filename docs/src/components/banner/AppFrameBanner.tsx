@@ -6,8 +6,12 @@ import PageContext from 'docs/src/modules/components/PageContext';
 import { convertProductIdToName } from 'docs/src/modules/components/AppSearch';
 
 export default function AppFrameBanner() {
-  const pageContext = React.useContext(PageContext);
+  if (!FEATURE_TOGGLE.enable_docsnav_banner) {
+    return null;
+  }
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const pageContext = React.useContext(PageContext);
   const productName = convertProductIdToName(pageContext) || 'MUI';
   const message = `Influence ${productName}'s 2024 roadmap! Participate in the latest Developer Survey`;
 
@@ -19,7 +23,7 @@ export default function AppFrameBanner() {
     }
   }
 
-  return FEATURE_TOGGLE.enable_docsnav_banner ? (
+  return (
     <Link
       href="https://tally.so/r/3Ex4PN?source=docs-banner"
       target="_blank"
@@ -54,5 +58,5 @@ export default function AppFrameBanner() {
     >
       {message}
     </Link>
-  ) : null;
+  );
 }
