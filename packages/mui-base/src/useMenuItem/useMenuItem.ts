@@ -55,6 +55,7 @@ export function useMenuItem(params: UseMenuItemParameters): UseMenuItemReturnVal
 
   const { getRootProps: getListRootProps, highlighted } = useListItem({
     item: id,
+    handlePointerOverEvents: true,
   });
 
   const { index, totalItemCount } = useCompoundItem(id ?? idGenerator, itemMetadata);
