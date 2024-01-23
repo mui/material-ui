@@ -12,7 +12,7 @@
     "@mui/base": "workspace:^",
     "@mui/system": "workspace:^",
     "@mui/zero-runtime": "workspace:^",
-    "clsx": "^2.0.0",
+    "clsx": "^2.1.0",
     "local-ui-lib": "workspace:^",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

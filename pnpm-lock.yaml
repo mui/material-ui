@@ -415,7 +415,7 @@ importers:
         specifier: workspace:^
         version: link:../../packages/zero-runtime
       clsx:
-        specifier: ^2.0.0
+        specifier: ^2.1.0
         version: 2.1.0
       local-ui-lib:
         specifier: workspace:^
