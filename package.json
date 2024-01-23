@@ -107,7 +107,7 @@
     "@mui/joy": "workspace:*",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@next/eslint-plugin-next": "^14.0.4",
+    "@next/eslint-plugin-next": "^14.1.0",
     "@octokit/rest": "^20.0.2",
     "@playwright/test": "1.41.1",
     "@slack/web-api": "^6.11.2",
