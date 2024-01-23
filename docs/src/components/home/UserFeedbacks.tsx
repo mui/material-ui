@@ -166,15 +166,15 @@ export default function UserFeedbacks() {
         borderColor: 'divider',
         borderRadius: 1,
         overflow: 'clip',
-        '> :nth-of-type(1)': { borderBottom: `1px solid ${theme.palette.divider}` },
+        '> :nth-of-type(1)': { borderBottom: `1px solid ${theme.palette.primaryDark[700]}` },
         '> :nth-of-type(2)': {
-          borderBottom: `1px solid ${theme.palette.divider}`,
-          borderRight: { xs: 0, sm: `1px solid ${theme.palette.divider}` },
+          borderBottom: `1px solid ${theme.palette.primaryDark[700]}`,
+          borderRight: { xs: 0, sm: `1px solid ${theme.palette.primaryDark[700]}` },
         },
-        '> :nth-of-type(3)': { borderBottom: `1px solid ${theme.palette.divider}` },
+        '> :nth-of-type(3)': { borderBottom: `1px solid ${theme.palette.primaryDark[700]}` },
         '> :nth-of-type(4)': {
-          borderRight: { xs: 0, sm: `1px solid ${theme.palette.divider}` },
-          borderBottom: { xs: `1px solid ${theme.palette.divider}`, sm: 0 },
+          borderRight: { xs: 0, sm: `1px solid ${theme.palette.primaryDark[700]}` },
+          borderBottom: { xs: `1px solid ${theme.palette.primaryDark[700]}`, sm: 0 },
         },
       })}
     >

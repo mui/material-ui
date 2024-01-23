@@ -529,23 +529,25 @@ export default function MaterialDesignComponents() {
       <Box
         sx={{
           mt: { xs: 2, md: 2 },
-          mb: 4,
+          mb: 2,
           display: 'flex',
-          justifyContent: 'center',
+          justifyContent: 'start',
         }}
       >
         <StyledChip
-          label="Material Design"
-          variant={!customized ? 'filled' : 'outlined'}
-          color={!customized ? 'primary' : 'secondary'}
-          onClick={() => setCustomized(false)}
-        />
-        <StyledChip
+          size="small"
           label="Custom theme"
           variant={customized ? 'filled' : 'outlined'}
           color={customized ? 'primary' : 'secondary'}
           onClick={() => setCustomized(true)}
-          sx={{ ml: 1 }}
+          sx={{ mr: 1 }}
+        />
+        <StyledChip
+          size="small"
+          label="Material Design"
+          variant={!customized ? 'filled' : 'outlined'}
+          color={!customized ? 'primary' : 'secondary'}
+          onClick={() => setCustomized(false)}
         />
       </Box>
       <Grid>
