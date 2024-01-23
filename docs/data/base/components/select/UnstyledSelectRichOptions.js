@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Select as BaseSelect, selectClasses } from '@mui/base/Select';
 import { Option as BaseOption, optionClasses } from '@mui/base/Option';
 import { styled } from '@mui/system';
-import { Popper as BasePopper } from '@mui/base/Popper';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
 export default function UnstyledSelectRichOptions() {
@@ -30,7 +29,7 @@ const Select = React.forwardRef(function CustomSelect(props, ref) {
   const slots = {
     root: Button,
     listbox: Listbox,
-    popper: Popper,
+    popup: Popup,
     ...props.slots,
   };
 
@@ -45,7 +44,7 @@ Select.propTypes = {
    */
   slots: PropTypes.shape({
     listbox: PropTypes.elementType,
-    popper: PropTypes.func,
+    popup: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
 };
@@ -194,7 +193,7 @@ const Option = styled(BaseOption)(
   `,
 );
 
-const Popper = styled(BasePopper)`
+const Popup = styled('div')`
   z-index: 1;
 `;
 

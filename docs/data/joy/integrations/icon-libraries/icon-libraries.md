@@ -2,7 +2,7 @@
 
 <p class="description">Learn how to use your favorite icon library with Joy UI.</p>
 
-## Material UI Icons
+## Material UI Icons
 
 [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material)
 includes the 2,100+ official [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) converted to [SVG Icon](/material-ui/api/svg-icon/) components.
@@ -79,7 +79,7 @@ If you use TypeScript, you will need to update the TSConfig.
 :::
 
 :::error
-`<CssVarsProvider />` is _required_ when working with Material UI's icons inside an app using Joy UI, so that the components can correctly adjust the icons based on the usage.
+`<CssVarsProvider />` is _required_ when working with Material UI's icons inside an app using Joy UI, so that the components can correctly adjust the icons based on the usage.
 :::
 
 ### Usage

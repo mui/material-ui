@@ -106,12 +106,12 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
-    "thumb": "The component that renders the thumb.",
     "action": "The component that renders the action.",
+    "endDecorator": "The component that renders the end decorator.",
     "input": "The component that renders the input.",
-    "track": "The component that renders the track.",
+    "root": "The component that renders the root.",
     "startDecorator": "The component that renders the start decorator.",
-    "endDecorator": "The component that renders the end decorator."
+    "thumb": "The component that renders the thumb.",
+    "track": "The component that renders the track."
   }
 }

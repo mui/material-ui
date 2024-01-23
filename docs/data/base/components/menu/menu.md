@@ -17,7 +17,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 
 ## Introduction
 
-The Base UI Dropdown Menu is implemented using a collection of related components:
+The Base UI Dropdown Menu is implemented using a collection of related components:
 
 - Dropdown - The outermost container that houses all Menu components.
 - Menu Button - The button that toggles the visibility of the Menu.
@@ -59,10 +59,10 @@ Clicking on a Menu Item closes its associated Menu.
 - The `<MenuItem />` renders a `<li>`.
 
 ```html
-<button class="MuiMenuButton-root">Click me</button>
-<div class="MuiMenu-root">
-  <ul class="MuiMenu-listbox">
-    <li class="MuiMenuItem-root">List item</li>
+<button class="base-MenuButton-root">Click me</button>
+<div class="base-Menu-root">
+  <ul class="base-Menu-listbox">
+    <li class="base-MenuItem-root">List item</li>
   </ul>
 </div>
 ```

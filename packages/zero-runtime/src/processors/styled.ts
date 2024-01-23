@@ -16,7 +16,8 @@ import { cssFnValueToVariable } from '../utils/cssFnValueToVariable';
 import { processCssObject } from '../utils/processCssObject';
 import { valueToLiteral } from '../utils/valueToLiteral';
 import BaseProcessor from './base-processor';
-import { Theme } from '../utils/generateCss';
+
+type Theme = { [key: 'unstable_sxConfig' | string]: string | number | Theme };
 
 type VariantData = {
   props: (componentProps: unknown) => boolean | Record<string, string | number | boolean | null>;
@@ -338,7 +339,10 @@ export class StyledProcessor extends BaseProcessor {
       );
     }
 
-    const styledImportIdentifier = t.addNamedImport(this.tagSource.imported, this.tagSource.source);
+    const styledImportIdentifier = t.addNamedImport(
+      this.tagSource.imported,
+      process.env.PACKAGE_NAME as string,
+    );
     const styledCall = t.callExpression(
       styledImportIdentifier,
       componentMetaExpression ? [componentName, componentMetaExpression] : [componentName],

@@ -11,7 +11,7 @@ import type { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import { renderMarkdown } from '@mui/markdown';
 import { ComponentClassDefinition } from '@mui-internal/docs-utilities';
-import { ProjectSettings } from '../ProjectSettings';
+import { ProjectSettings, SortingStrategiesType } from '../ProjectSettings';
 import { ComponentInfo, toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
 import parseTest from '../utils/parseTest';
@@ -24,6 +24,7 @@ import generatePropDescription from '../utils/generatePropDescription';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
 import parseSlotsAndClasses, { Slot } from '../utils/parseSlotsAndClasses';
 import generateApiTranslations from '../utils/generateApiTranslation';
+import { sortAlphabetical } from '../utils/sortObjects';
 
 export type AdditionalPropsInfo = {
   cssApi?: boolean;
@@ -88,7 +89,14 @@ export interface ReactApi extends ReactDocgenApi {
         seeMoreText?: string;
       };
     };
-    classDescriptions: { [key: string]: { description: string; conditions?: string } };
+    classDescriptions: {
+      [key: string]: {
+        description: string;
+        conditions?: string;
+        nodeName?: string;
+        deprecationInfo?: string;
+      };
+    };
     slotDescriptions?: { [key: string]: string };
   };
   /**
@@ -320,42 +328,37 @@ async function annotateComponentDefinition(api: ReactApi) {
 /**
  * Substitute CSS class description conditions with placeholder
  */
-function extractClassConditions(descriptions: any) {
-  const classConditions: {
-    [key: string]: { description: string; conditions?: string; nodeName?: string };
-  } = {};
+function extractClassCondition(description: string) {
   const stylesRegex =
     /((Styles|State class|Class name) applied to )(.*?)(( if | unless | when |, ){1}(.*))?\./;
 
-  Object.entries(descriptions).forEach(([className, description]: any) => {
-    if (className) {
-      const conditions = description.match(stylesRegex);
+  const conditions = description.match(stylesRegex);
 
-      if (conditions && conditions[6]) {
-        classConditions[className] = {
-          description: renderMarkdown(
-            description.replace(stylesRegex, '$1{{nodeName}}$5{{conditions}}.'),
-          ),
-          nodeName: renderMarkdown(conditions[3]),
-          conditions: renderMarkdown(conditions[6].replace(/`(.*?)`/g, '<code>$1</code>')),
-        };
-      } else if (conditions && conditions[3] && conditions[3] !== 'the root element') {
-        classConditions[className] = {
-          description: renderMarkdown(description.replace(stylesRegex, '$1{{nodeName}}$5.')),
-          nodeName: renderMarkdown(conditions[3]),
-        };
-      } else {
-        classConditions[className] = { description: renderMarkdown(description) };
-      }
-    }
-  });
-  return classConditions;
+  if (conditions && conditions[6]) {
+    return {
+      description: renderMarkdown(
+        description.replace(stylesRegex, '$1{{nodeName}}$5{{conditions}}.'),
+      ),
+      nodeName: renderMarkdown(conditions[3]),
+      conditions: renderMarkdown(conditions[6].replace(/`(.*?)`/g, '<code>$1</code>')),
+    };
+  }
+
+  if (conditions && conditions[3] && conditions[3] !== 'the root element') {
+    return {
+      description: renderMarkdown(description.replace(stylesRegex, '$1{{nodeName}}$5.')),
+      nodeName: renderMarkdown(conditions[3]),
+    };
+  }
+
+  return { description: renderMarkdown(description) };
 }
 
 const generateApiPage = (
   apiPagesDirectory: string,
   importTranslationPagesDirectory: string,
   reactApi: ReactApi,
+  sortingStrategies?: SortingStrategiesType,
   onlyJsonFile: boolean = false,
 ) => {
   const normalizedApiPathname = reactApi.apiPathname.replace(/\\/g, '/');
@@ -397,6 +400,17 @@ const generateApiPage = (
       .join('\n')}</ul>`,
     cssComponent: cssComponents.indexOf(reactApi.name) >= 0,
   };
+
+  const { classesSort = sortAlphabetical('key'), slotsSort = null } = {
+    ...sortingStrategies,
+  };
+
+  if (classesSort) {
+    pageContent.classes = [...pageContent.classes].sort(classesSort);
+  }
+  if (slotsSort && pageContent.slots) {
+    pageContent.slots = [...pageContent.slots].sort(slotsSort);
+  }
 
   writePrettifiedFile(
     path.resolve(apiPagesDirectory, `${kebabCase(reactApi.name)}.json`),
@@ -472,21 +486,29 @@ const attachTranslations = (reactApi: ReactApi, settings?: CreateDescribeablePro
    */
   if (reactApi.slots?.length > 0) {
     translations.slotDescriptions = {};
-    reactApi.slots.forEach((slot: Slot) => {
-      const { name, description } = slot;
-      translations.slotDescriptions![name] = description;
-    });
+    [...reactApi.slots]
+      .sort(sortAlphabetical('name')) // Sort to ensure consistency of object key order
+      .forEach((slot: Slot) => {
+        const { name, description } = slot;
+        translations.slotDescriptions![name] = renderMarkdown(description);
+      });
   }
 
   /**
-   * CSS class descriptions.
+   * CSS class descriptions and deprecations.
    */
-  const classDescriptions: Record<string, string> = {};
-  reactApi.classes.forEach((classDefinition) => {
-    classDescriptions[classDefinition.key] = classDefinition.description;
+  [...reactApi.classes]
+    .sort(sortAlphabetical('key')) // Sort to ensure consistency of object key order
+    .forEach((classDefinition) => {
+      translations.classDescriptions[classDefinition.key] = {
+        ...extractClassCondition(classDefinition.description),
+        deprecationInfo: classDefinition.deprecationInfo,
+      };
+    });
+  reactApi.classes.forEach((classDefinition, index) => {
+    delete reactApi.classes[index].deprecationInfo; // store deprecation info in translations only
   });
 
-  translations.classDescriptions = extractClassConditions(classDescriptions);
   reactApi.translations = translations;
 };
 
@@ -743,9 +765,11 @@ export default async function generateComponentApi(
   }
 
   const { slots, classes } = parseSlotsAndClasses({
-    project,
+    typescriptProject: project,
+    projectSettings,
     componentName: reactApi.name,
     muiName: reactApi.muiName,
+    slotInterfaceName: componentInfo.slotInterfaceName,
   });
 
   reactApi.slots = slots;
@@ -776,6 +800,7 @@ export default async function generateComponentApi(
       componentInfo.apiPagesDirectory,
       importTranslationPagesDirectory ?? translationPagesDirectory,
       reactApi,
+      projectSettings.sortingStrategies,
       generateJsonFileOnly,
     );
 

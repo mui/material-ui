@@ -4,28 +4,28 @@
 
 ## Community help
 
-Welcome to the MUI community!
+Welcome to the Material UI community!
 Our tools are used by thousands of developers and teams all around the world, many of whom actively engage with the community through various online platforms.
 These are the best places to start asking questions and looking for answers when you need help.
 
 ### Stack Overflow
 
-[Stack Overflow](https://stackoverflow.com/) contains a wealth of information about Material UI and other MUI products, spanning many years and countless discussion threads.
-Head here to see if your problem has already been resolved by the community, or else [post a question](https://stackoverflow.com/questions/tagged/material-ui) to get help from community experts as well as MUI maintainers.
+[Stack Overflow](https://stackoverflow.com/) contains a wealth of information about Material UI and other MUI products, spanning many years and countless discussion threads.
+Head here to see if your problem has already been resolved by the community, or else [post a question](https://stackoverflow.com/questions/tagged/material-ui) to get help from community experts as well as maintainers.
 
 :::success
-If you're using an older version of Material UI, you may find answers on SO with links to content that no longer exists in the latest version of the documentation.
-Visit the [MUI Versions](https://mui.com/versions/) page to find the archived documentation that corresponds to your version.
+If you're using an older version of Material UI, you may find answers on SO with links to content that no longer exists in the latest version of the documentation.
+Visit the [Material UI Versions](https://mui.com/versions/) page to find the archived documentation that corresponds to your version.
 :::
 
 ### GitHub
 
-MUI uses GitHub issues to track bug reports and feature requests.
+Material UI uses GitHub issues to track bug reports and feature requests.
 
 If you think you've found a bug in the codebase, or you have an idea for a new feature, please [search the issues on GitHub](https://github.com/mui/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed) before opening a new one, to ensure you're not creating a duplicate.
 
-- [Open an issue on MUI Core](https://github.com/mui/material-ui/issues/new/choose): for issues related to Material UI, Base UI, Joy UI, and MUI System.
-- [Open an issue on MUI X](https://github.com/mui/mui-x/issues/new/choose): for issues related to the Data Grid, Date and Time Pickers, and Charts.
+- [Open an issue on MUI Core](https://github.com/mui/material-ui/issues/new/choose): for issues related to Material UI, Base UI, Joy UI, and MUI System.
+- [Open an issue on MUI X](https://github.com/mui/mui-x/issues/new/choose): for issues related to the Data Grid, Date and Time Pickers, and Charts.
 
 #### New issue guidelines
 
@@ -38,31 +38,31 @@ If you think you've found a bug in the codebase, or you have an idea for a new f
 
 ### Social media
 
-The MUI community is active on both [X](https://twitter.com/MUI_hq) and [LinkedIn](https://www.linkedin.com/company/mui/).
+The Material UI community is active on both [X](https://twitter.com/MaterialUI) and [LinkedIn](https://www.linkedin.com/company/mui/).
 These are great platforms to share what you're working on and connect with other developers.
 
 Please keep in mind that we don't actively monitor direct messages on the company's social media accounts, so this is _not_ a good way to get in touch with us directly.
 
 ## Paid support
 
-MUI does _not_ offer paid support for Core libraries like Material UI.
-The section below covers support for MUI X components—see the [MUI X Support page](https://mui.com/x/introduction/support/#technical-support) for complete details.
+MUI does _not_ offer paid support for Core libraries like Material UI.
+The section below covers support for MUI X components—see the [MUI X Support page](https://mui.com/x/introduction/support/#technical-support) for complete details.
 
 ### Pro and Premium plans
 
-MUI X is available through one of [three pricing plans](https://mui.com/pricing/): Community, Pro, and Premium.
+MUI X is available through one of [three pricing plans](https://mui.com/pricing/): Community, Pro, and Premium.
 
-Support for the (free) Community plan is limited to the public channels outlined above—the same as what's available for MUI Core libraries.
+Support for the (free) Community plan is limited to the public channels outlined above—the same as what's available for MUI Core libraries.
 
-Pro and Premium users can receive direct support from MUI X maintainers, but keep in mind that this support does _not_ extend to MUI Core libraries.
-Please make use of community support for non-MUI X components.
+Pro and Premium users can receive direct support from MUI X maintainers, but keep in mind that this support does _not_ extend to MUI Core libraries.
+Please make use of community support for non-MUI X components.
 
 The Premium plan provides developers with the highest priority for support tickets.
 We don't currently offer service-level agreements (SLAs), but we plan to in the future.
 
 ### Tidelift subscription
 
-MUI and the maintainers of thousands of other packages work with Tidelift to deliver one enterprise subscription that covers all of the open-source you use.
+We and the maintainers of thousands of other packages work with Tidelift to deliver one enterprise subscription that covers all of the open-source you use.
 
 If you want the flexibility of open-source and the confidence of commercial-grade software, this is worth looking at.
 
