@@ -99,7 +99,7 @@ export interface UseSliderParameters {
    * The value of the slider.
    * For ranged sliders, provide an array with two values.
    */
-  value?: number | Readonly<number>;
+  value?: number | ReadonlyArray<number>;
 }
 
 export interface Mark {
