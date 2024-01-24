@@ -65,7 +65,7 @@ export default function Connect() {
   return (
     <BrandingCssVarsProvider>
       <Head
-        title="Connect"
+        title="Connect: A Figma plug-in that exports a Material UI theme"
         description="A Figma plug-in that exports a Material UI theme object."
         card="/static/social-previews/connect-preview.jpg"
       />
@@ -94,7 +94,7 @@ export default function Connect() {
             </Grid>
             <Grid item xs={12} md={5}>
               <Typography variant="body2" color="text.secondary" mb={1}>
-                Add your email if you want to be notified when the MUI Connect beta version becomes
+                Add your email if you want to be notified when the Connect beta version becomes
                 available for testing in the Figma community.
               </Typography>
               <MUIConnectSignUp />
