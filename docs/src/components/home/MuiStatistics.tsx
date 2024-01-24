@@ -15,12 +15,13 @@ export default function MuiStatistics() {
     <Box
       data-mui-color-scheme="dark"
       sx={(theme) => ({
-        pt: 2.5,
-        pb: 3,
-        px: { xs: 3, sm: 0 },
+        pt: { xs: 1, sm: 2.5 },
+        pb: { xs: 2, sm: 3 },
+        pl: { xs: 2, sm: 0 },
+        pr: 0,
         display: 'flex',
         justifyContent: 'center',
-        gap: 2,
+        gap: { xs: 0, sm: 1 },
         width: '100%',
         flexWrap: 'wrap',
         background: `linear-gradient(180deg, ${alpha(
@@ -30,13 +31,12 @@ export default function MuiStatistics() {
       })}
     >
       {data.map((item) => (
-        <Box key={item.title} sx={{ width: { xs: '100%', sm: 200 } }}>
+        <Box key={item.title} sx={{ width: { xs: '50%', sm: 200 }, p: { xs: 1, sm: 0 } }}>
           <Typography
-            component="p"
             variant="h4"
-            fontWeight="bold"
-            textAlign="center"
+            fontWeight="semiBold"
             sx={(theme) => ({
+              textAlign: { xs: 'left', sm: 'center' },
               color: 'primary.main',
               ...theme.applyDarkStyles({
                 color: 'primary.200',
@@ -45,7 +45,11 @@ export default function MuiStatistics() {
           >
             {item.title}
           </Typography>
-          <Typography color="text.secondary" textAlign="center">
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{ textAlign: { xs: 'left', sm: 'center' } }}
+          >
             {item.metadata}
           </Typography>
         </Box>

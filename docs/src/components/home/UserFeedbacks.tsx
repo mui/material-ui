@@ -110,7 +110,6 @@ function Feedback({
       }}
     >
       <Typography
-        variant="body2"
         sx={{
           mb: 2.5,
           lineHeight: 1.6,
@@ -136,13 +135,13 @@ function Feedback({
             alt={`${profile.name}'s profile picture`}
             imgProps={{ loading: 'lazy' }}
             sx={{
-              width: 40,
-              height: 40,
+              width: 36,
+              height: 36,
             }}
           />
         </Box>
         <div>
-          <Typography fontWeight="medium" color="text.primary">
+          <Typography variant="body2" fontWeight="semiBold" color="text.primary">
             {profile.name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
