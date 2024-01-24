@@ -125,7 +125,9 @@ export type OverridesStyleRules<
   Interpolation<
     // Record<string, unknown> is for other props that the slot receive internally
     // Documenting all ownerStates could be a huge work, let's wait until we have a real needs from developers.
-    (ComponentName extends keyof ComponentsPropsList ? ComponentsPropsList[ComponentName] : {}) & {
+    (ComponentName extends keyof ComponentsPropsList
+      ? { ownerState: ComponentsPropsList[ComponentName] & Record<string, unknown> }
+      : {}) & {
       theme: Theme;
     } & Record<string, unknown>
   >
