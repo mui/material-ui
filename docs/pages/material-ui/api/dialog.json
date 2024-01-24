@@ -33,18 +33,34 @@
         "describedArgs": ["event", "reason"]
       }
     },
-    "PaperComponent": { "type": { "name": "elementType" }, "default": "Paper" },
-    "PaperProps": { "type": { "name": "object" }, "default": "{}" },
+    "PaperComponent": {
+      "type": { "name": "elementType" },
+      "default": "Paper",
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slots.paper</code> instead. This prop will be removed in v7."
+    },
+    "PaperProps": {
+      "type": { "name": "object" },
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.paper</code> instead. This prop will be removed in v7."
+    },
     "scroll": {
       "type": { "name": "enum", "description": "'body'<br>&#124;&nbsp;'paper'" },
       "default": "'paper'"
     },
     "slotProps": {
-      "type": { "name": "shape", "description": "{ transition?: func<br>&#124;&nbsp;object }" },
+      "type": {
+        "name": "shape",
+        "description": "{ paper?: func<br>&#124;&nbsp;object, transition?: func<br>&#124;&nbsp;object }"
+      },
       "default": "{}"
     },
     "slots": {
-      "type": { "name": "shape", "description": "{ transition?: elementType }" },
+      "type": {
+        "name": "shape",
+        "description": "{ paper?: elementType, transition?: elementType }"
+      },
       "default": "{}"
     },
     "sx": {
@@ -86,6 +102,12 @@
       "description": "The component that renders the transition.\n[Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
       "default": "Collapse",
       "class": null
+    },
+    {
+      "name": "paper",
+      "description": "The component used to render the body of the dialog.",
+      "default": "Paper",
+      "class": "MuiDialog-paper"
     }
   ],
   "classes": [
@@ -93,12 +115,6 @@
       "key": "container",
       "className": "MuiDialog-container",
       "description": "Styles applied to the container element.",
-      "isGlobal": false
-    },
-    {
-      "key": "paper",
-      "className": "MuiDialog-paper",
-      "description": "Styles applied to the Paper component.",
       "isGlobal": false
     },
     {

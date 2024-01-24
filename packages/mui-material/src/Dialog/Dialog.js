@@ -185,8 +185,8 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     onBackdropClick,
     onClose,
     open,
-    PaperComponent = Paper,
-    PaperProps = {},
+    PaperComponent: PaperComponentProp = Paper,
+    PaperProps: PaperPropsProp = {},
     scroll = 'paper',
     slots = {},
     slotProps = {},
@@ -235,12 +235,17 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     return { titleId: ariaLabelledby };
   }, [ariaLabelledby]);
 
-  const backwardCompatibleSlots = { transition: TransitionComponentProp, ...slots };
+  const backwardCompatibleSlots = {
+    transition: TransitionComponentProp,
+    paper: PaperComponentProp,
+    ...slots,
+  };
   const backwardCompatibleSlotProps = {
     transition: {
       ...TransitionPropsProp,
       timeout: slotProps.transition?.timeout || transitionDurationProp,
     },
+    paper: PaperPropsProp,
     ...slotProps,
   };
 
@@ -254,6 +259,15 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
   });
 
   delete transitionProps.ownerState;
+
+  const [PaperSlot, paperProps] = useSlot('paper', {
+    elementType: DialogPaper,
+    externalForwardedProps: {
+      slots: backwardCompatibleSlots,
+      slotProps: backwardCompatibleSlotProps,
+    },
+    ownerState,
+  });
 
   return (
     <DialogRoot
@@ -289,18 +303,18 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
           onMouseDown={handleMouseDown}
           ownerState={ownerState}
         >
-          <DialogPaper
-            as={PaperComponent}
+          <PaperSlot
+            as={PaperComponentProp}
             elevation={24}
             role="dialog"
             aria-describedby={ariaDescribedby}
             aria-labelledby={ariaLabelledby}
-            {...PaperProps}
-            className={clsx(classes.paper, PaperProps.className)}
+            {...paperProps}
+            className={clsx(classes.paper, paperProps.className)}
             ownerState={ownerState}
           >
             <DialogContext.Provider value={dialogContextValue}>{children}</DialogContext.Provider>
-          </DialogPaper>
+          </PaperSlot>
         </DialogContainer>
       </TransitionSlot>
     </DialogRoot>
@@ -397,11 +411,13 @@ Dialog.propTypes /* remove-proptypes */ = {
   /**
    * The component used to render the body of the dialog.
    * @default Paper
+   * @deprecated Use `slots.paper` instead. This prop will be removed in v7.
    */
   PaperComponent: PropTypes.elementType,
   /**
    * Props applied to the [`Paper`](/material-ui/api/paper/) element.
    * @default {}
+   * @deprecated Use `slotProps.paper` instead. This prop will be removed in v7.
    */
   PaperProps: PropTypes.object,
   /**
@@ -414,6 +430,7 @@ Dialog.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
+    paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -421,6 +438,7 @@ Dialog.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
+    paper: PropTypes.elementType,
     transition: PropTypes.elementType,
   }),
   /**

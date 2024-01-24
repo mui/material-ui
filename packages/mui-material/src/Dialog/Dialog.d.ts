@@ -16,9 +16,15 @@ export interface DialogSlots {
   transition?: React.JSXElementConstructor<
     TransitionProps & { children?: React.ReactElement<any, any> }
   >;
+  /**
+   * The component used to render the body of the dialog.
+   * @default Paper
+   */
+  paper?: React.JSXElementConstructor<PaperProps>;
 }
 
 export interface DialogTransitionSlotPropsOverrides {}
+export interface DialogPaperSlotPropsOverrides {}
 
 export type DialogSlotsAndSlotProps = CreateSlotsAndSlotProps<
   DialogSlots,
@@ -26,6 +32,11 @@ export type DialogSlotsAndSlotProps = CreateSlotsAndSlotProps<
     transition: SlotProps<
       React.ElementType<TransitionProps>,
       DialogTransitionSlotPropsOverrides,
+      DialogOwnerState
+    >;
+    paper: SlotProps<
+      React.ElementType<PaperProps>,
+      DialogPaperSlotPropsOverrides,
       DialogOwnerState
     >;
   }
@@ -93,11 +104,13 @@ export interface DialogProps
   /**
    * The component used to render the body of the dialog.
    * @default Paper
+   * @deprecated Use `slots.paper` instead. This prop will be removed in v7.
    */
   PaperComponent?: React.JSXElementConstructor<PaperProps>;
   /**
    * Props applied to the [`Paper`](/material-ui/api/paper/) element.
    * @default {}
+   * @deprecated Use `slotProps.paper` instead. This prop will be removed in v7.
    */
   PaperProps?: Partial<PaperProps<React.ElementType>>;
   /**
