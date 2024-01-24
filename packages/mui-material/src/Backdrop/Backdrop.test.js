@@ -20,9 +20,9 @@ describe('<Backdrop />', () => {
     slots: {
       root: {
         expectedClassName: classes.root,
-        transition: {
-          testWithElement: null,
-        },
+      },
+      transition: {
+        testWithElement: null,
       },
     },
     skip: [

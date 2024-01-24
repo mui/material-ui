@@ -81,16 +81,6 @@ export interface BackdropOwnProps extends Partial<Omit<FadeProps, 'children'>> {
    */
   open: boolean;
   /**
-   * The components used for each slot inside.
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
-   *
-   * @default {}
-   */
-  slots?: {
-    root?: React.ElementType;
-  };
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;

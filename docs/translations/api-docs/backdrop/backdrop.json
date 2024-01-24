@@ -17,9 +17,7 @@
     },
     "open": { "description": "If <code>true</code>, the component is shown." },
     "slotProps": { "description": "The props used for each slot inside." },
-    "slots": {
-      "description": "The components used for each slot inside.<br>This prop is an alias for the <code>components</code> prop, which will be deprecated in the future."
-    },
+    "slots": { "description": "The components used for each slot inside." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
