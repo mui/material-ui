@@ -1,6 +1,6 @@
 ---
 title: Aggregate data like in Excel, but easier!
-description: Aggregation functions and summary rows are now available in the MUI X Premium Data Grid.
+description: Aggregation functions and summary rows are now available in the MUI X Premium Data Grid.
 date: 2022-08-01T00:00:00.000Z
 authors: ['josefreitas', 'flaviendelangle', 'cherniavskii']
 tags: ['MUI X', 'News']
@@ -115,5 +115,5 @@ We hope you're excited about the new features as we are!
 As always, we're happy to hear from you.
 Please feel free to open new issues to report bugs or suggest improvements.
 
-Moreover, we're planning MUI X v6, and we'd love to hear more about your pain points and use cases.
+Moreover, we're planning MUI X v6, and we'd love to hear more about your pain points and use cases.
 If you want to help steer the direction of our components, please consider [contacting us](https://forms.gle/vsBv6CLPz9h57xg8A) to schedule a 30-minute user interview session.

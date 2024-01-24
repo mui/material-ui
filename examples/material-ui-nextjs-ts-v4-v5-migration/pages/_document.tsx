@@ -9,18 +9,21 @@ import {
   DocumentContext,
 } from 'next/document';
 import { AppProps } from 'next/app';
-import { DocumentHeadTags, documentGetInitialProps } from '@mui/material-nextjs/v14-pagesRouter';
+import {
+  DocumentHeadTags,
+  DocumentHeadTagsProps,
+  documentGetInitialProps,
+} from '@mui/material-nextjs/v14-pagesRouter';
 import { ServerStyleSheets as JSSServerStyleSheets } from '@mui/styles';
 import theme from '../src/theme';
 
-export default function MyDocument(props: DocumentProps) {
+export default function MyDocument(props: DocumentProps & DocumentHeadTagsProps) {
   return (
     <Html lang="en">
       <Head>
         {/* PWA primary color */}
         <meta name="theme-color" content={theme.palette.primary.main} />
         <link rel="shortcut icon" href="/favicon.ico" />
-        {/* Inject MUI styles first to match with the prepend: true configuration. */}
         <DocumentHeadTags {...props} />
       </Head>
       <body>

@@ -2,7 +2,7 @@
 
 <p class="description">Support the development of the open-source projects of the MUI organization through crowdfunding.</p>
 
-Material UI, Joy UI, and Base UI are crowd-funded open-source projects, licensed under the permissive MIT license.
+Material UI, Base UI, MUI System, and Joy UI are crowd-funded open-source projects, licensed under the permissive MIT license.
 Sponsorship increases the rate of bug fixes, documentation improvements, and feature development.
 
 ## Diamond sponsors
@@ -63,26 +63,27 @@ via [Open Collective](https://opencollective.com/mui-org)
 
 ## FAQ
 
-### Why is Material UI a "crowd-funded open-source project"?
+### Why is Material UI a "crowd-funded open-source project"?
 
-Material UI (as well as [Base UI](/base-ui/) and [Joy UI](/joy-ui/getting-started/)) is open-source to give users great freedom in how they use the software, and to enable the community to have influence over how the project progresses to make it appropriate for a wide range of use-cases. To ensure that MUI's component libraries can stand the test of time for our users, they need to be well directed and financially sustainable.
+Material UI (as well as Base UI, MUI System, and Joy UI) is open-source to give users great freedom in how they use the software, and to enable the community to have influence over how the project progresses to make it appropriate for a wide range of use-cases. To ensure that MUI's component libraries can stand the test of time for our users, they need to be well directed and financially sustainable.
 
-The absolute best way to support MUI's libraries ongoing development efforts is to become a sponsor. Crowd-sourced funding enables us to spend the most time directly working on improving MUI's products, which you and other MUI users then benefit from.
+The absolute best way to support MUI's libraries ongoing development efforts is to become a sponsor.
+Crowd-sourced funding enables us to spend the most time directly working on improving the open-source projects, which you and the rest of the community then benefit from.
 
 ### How is sponsorship money spent?
 
 Sponsorship money is used to fund open-source software development, testing, documentation, and releases of the projects.
 
-### Is sponsorship required to use MUI's products?
+### Is sponsorship required to use Material UI?
 
-Users are not obligated to give back to MUI, but it is in their interest to do so.
+Users are not obligated to give back to Material UI, but it is in their interest to do so.
 
 By significantly reducing the amount of work needed to achieve business goals and reducing running costs, MUI's libraries result in huge time and money savings for users. We encourage organizations to contribute a portion of these savings back, enabling the project to advance more rapidly and result in even greater savings for your organization.
 
 ### What's the difference between Open Collective and the for-profit?
 
 Funds donated via Open Collective are managed transparently and aimed to sustain the MIT projects.
-MUI benefits from the Open Collective's fiscal sponsorship (hosted as a non-profit), in exchange for 10% of the donations.
+The MUI non-profit organzation benefits from the Open Collective's fiscal sponsorship (hosted as a non-profit), in exchange for 10% of the donations.
 
 Funds transferred to the MUI for-profit support the company's mission.
 

@@ -39,8 +39,8 @@
     "@types/lodash.get": "^4.4.9",
     "@types/lodash.merge": "^4.6.9",
     "@types/lodash.set": "^4.3.9",
-    "@types/node": "^18.19.7",
-    "@types/react": "^18.2.31",
+    "@types/node": "^18.19.8",
+    "@types/react": "^18.2.48",
     "@types/stylis": "^4.2.0",
     "react": "^18.2.0"
   },
@@ -58,7 +58,8 @@
       "sx": "./exports/sx.js",
       "keyframes": "./exports/keyframes.js",
       "generateAtomics": "./exports/generateAtomics.js",
-      "css": "./exports/css.js"
+      "css": "./exports/css.js",
+      "createUseThemeProps": "./exports/createUseThemeProps.js"
     }
   },
   "files": [
@@ -105,6 +106,9 @@
     },
     "./exports/sx": {
       "default": "./exports/sx.js"
+    },
+    "./exports/createUseThemeProps": {
+      "default": "./exports/createUseThemeProps.js"
     }
   }
 }

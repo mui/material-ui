@@ -1,5 +1,5 @@
 ---
-title: MUI X v6.11.0. A roundup of all new features
+title: MUI X v6.11.0. A roundup of all new features
 description: Support for time zones, Charts in alpha, Data Grid filtering, and more.
 date: 2023-08-14T00:00:00.000Z
 authors: ['richbustos', 'josefreitas']
@@ -12,7 +12,7 @@ tags: ['MUI X', 'News']
 </a>
 
 Since the first v6 stable release, we've continuously rolled out new major features.
-Now that we've reached [MUI X v6.11.0](https://github.com/mui/mui-x/releases/tag/v6.11.0), it's time to delve into the most recent additions to MUI X v6, and why you should get the latest version now.
+Now that we've reached [MUI X v6.11.0](https://github.com/mui/mui-x/releases/tag/v6.11.0), it's time to delve into the most recent additions to MUI X v6, and why you should get the latest version now.
 
 ## Table of contents
 
@@ -23,7 +23,7 @@ Now that we've reached [MUI X v6.11.0](https://github.com/mui/mui-x/releases/ta
   - [Filter on column headers](#filter-on-column-headers) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
   - [Copy and paste](#copy-and-paste) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'premium plan')
 - [Charts - alpha version](#charts-alpha-version)
-- [Tree View is moving to MUI X](#tree-view-is-moving-to-mui-x)
+- [Tree View is moving to MUI X](#tree-view-is-moving-to-mui-x)
 - [Feedback](#feedback)
 
 ## Date Pickers
@@ -97,9 +97,9 @@ For more details on how to use clipboard copy and paste, check out the [Data Gri
 
 ## Charts - alpha version
 
-We are delighted to announce the upcoming expansion of MUI X: a brand-new suite of components for building and customizing charts.
+We are delighted to announce the upcoming expansion of MUI X: a brand-new suite of components for building and customizing charts.
 
-With MUI X Charts, you can choose from a wide range of chart types, including line charts, bar charts, pie charts, area charts, scatter plots, and more.
+With MUI X Charts, you can choose from a wide range of chart types, including line charts, bar charts, pie charts, area charts, scatter plots, and more.
 Each chart type is thoughtfully crafted with attention to detail, ensuring that the visual representations are not only aesthetically pleasing, but also highly effective in conveying complex data.
 
 And it ships with gorgeous palettes that were specially crafted by our designers!
@@ -118,9 +118,9 @@ Your input can directly influence our development schedule, so don't hesitate to
 
 [Get started with charts now!](https://mui.com/x/react-charts/)
 
-## Tree View is moving to MUI X
+## Tree View is moving to MUI X
 
-Tree View is being migrated from the [lab](https://mui.com/material-ui/about-the-lab/) to MUI X, it will soon have a first Alpha release!
+Tree View is being migrated from the [lab](https://mui.com/material-ui/about-the-lab/) to MUI X, it will soon have a first Alpha release!
 
 The Tree View is a component that represents hierarchical in a tree-like format.
 Think of a file system navigator displaying folders and files or a navigation list.
@@ -131,13 +131,13 @@ Think of a file system navigator displaying folders and files or a navigation li
 
 Keep on the look out on our next blog for the Tree View migration.
 
-We decided to migrate this component to MUI X as there are still many features that would be great to build (e.g. checkbox, drag & drop, virtualization) and it's usually not a significant component of a design system.
-Head to [MUI Core vs. MUI X](https://mui-org.notion.site/X-FAQ-c33e9a7eabba4da1ad7f8c04f99044cc) if you would like to learn more about this decision.
+We decided to migrate this component to MUI X as there are still many features that would be great to build (e.g. checkbox, drag & drop, virtualization) and it's usually not a significant component of a design system.
+Head to [MUI Core vs. MUI X](https://mui-org.notion.site/X-FAQ-c33e9a7eabba4da1ad7f8c04f99044cc) if you would like to learn more about this decision.
 
 ## Feedback
 
 We are always happy to get feedback, so if you'd like to share your pain points and use cases, please leave your contact info with us through [this Google Form](https://forms.gle/vsBv6CLPz9h57xg8A).
-As usual, you're welcome to request new features, report bugs and join the discussion in MUI X [GitHub repository](https://github.com/mui/mui-x/issues).
+As usual, you're welcome to request new features, report bugs and join the discussion in MUI X [GitHub repository](https://github.com/mui/mui-x/issues).
 If you haven't yet, join our growing community in the recently launched [MUI Discord server](https://mui.com/r/discord/).
 
 Cheers!

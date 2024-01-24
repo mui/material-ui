@@ -79,6 +79,7 @@ const RatingRoot = styled('span', {
   color: '#faaf00',
   cursor: 'pointer',
   textAlign: 'left',
+  width: 'min-content',
   WebkitTapHighlightColor: 'transparent',
   [`&.${ratingClasses.disabled}`]: {
     opacity: (theme.vars || theme).palette.action.disabledOpacity,

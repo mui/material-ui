@@ -115,7 +115,15 @@ export default function Templates() {
                 title={layout.title}
                 rel="nofollow"
                 target="_blank"
-                sx={{ height: 0, pt: '65%' }}
+                sx={(theme) => ({
+                  height: 0,
+                  pt: '65%',
+                  '&:focus-visible': {
+                    borderRadius: 1,
+                    outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
+                    outlineOffset: '-8px',
+                  },
+                })}
               />
               <NextLink href={layout.href} passHref legacyBehavior>
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
@@ -140,7 +148,7 @@ export default function Templates() {
                     bgcolor: alpha(theme.palette.primary[50], 0.5),
                     backdropFilter: 'blur(4px)',
                     opacity: 0,
-                    '&:hover, &:focus': {
+                    '&:hover, &:focus-visible': {
                       opacity: 1,
                     },
                     ...theme.applyDarkStyles({
