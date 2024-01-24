@@ -60,9 +60,40 @@ npx @mui/codemod@latest <transform> <path> --jscodeshift="--printOptions='{\"quo
 
 ## Included scripts
 
+- [Deprecation](#deprecations)
+- [v5](#v500)
+- [v4](#v400)
+- [v1](#v100)
+- [v0.15](#v0150)
+
+### Deprecations
+
+```bash
+npx @mui/codemod@latest deprecations/all <path>
+```
+
+#### `all`
+
+A combination of all deprecations.
+
+#### `accordion-props`
+
+```diff
+ <Accordion
+-    TransitionComponent={CustomTransition}
+-    TransitionProps={{ unmountOnExit: true }}
++    slots={{ transition: CustomTransition }}
++    slotProps={{ transition: { unmountOnExit: true } }}
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/accordion-props <path>
+```
+
 ### v5.0.0
 
-### `base-use-named-exports`
+#### `base-use-named-exports`
 
 Base UI default exports were changed to named ones. Previously we had a mix of default and named ones.
 This was changed to improve consistency and avoid problems some bundlers have with default exports.
@@ -81,7 +112,7 @@ This codemod updates the import and re-export statements.
 npx @mui/codemod@latest v5.0.0/base-use-named-exports <path>
 ```
 
-### `base-remove-unstyled-suffix`
+#### `base-remove-unstyled-suffix`
 
 The `Unstyled` suffix has been removed from all Base UI component names, including names of types and other related identifiers.
 
