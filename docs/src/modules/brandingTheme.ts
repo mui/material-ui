@@ -419,7 +419,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
 
       return undefined;
     },
-  } as ThemeOptions);
+  }) as ThemeOptions;
 
 export function getThemedComponents(): ThemeOptions {
   return {

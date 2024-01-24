@@ -38,12 +38,11 @@ interface ListItemLinkProps {
   to: string;
 }
 
-const Link = React.forwardRef<HTMLAnchorElement, RouterLinkProps>(function Link(
-  itemProps,
-  ref,
-) {
-  return <RouterLink ref={ref} {...itemProps} role={undefined} />;
-});
+const Link = React.forwardRef<HTMLAnchorElement, RouterLinkProps>(
+  function Link(itemProps, ref) {
+    return <RouterLink ref={ref} {...itemProps} role={undefined} />;
+  },
+);
 
 function ListItemLink(props: ListItemLinkProps) {
   const { icon, primary, to } = props;
