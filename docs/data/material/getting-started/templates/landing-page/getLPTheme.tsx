@@ -1,18 +1,7 @@
-import { CSSObject } from '@mui/system';
 import type {} from '@mui/material/themeCssVarsAugmentation';
-import { createTheme, ThemeOptions, Theme, alpha } from '@mui/material/styles';
+import { createTheme, ThemeOptions, alpha } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
 import { PaletteMode } from '@mui/material';
-
-interface ApplyDarkStyles {
-  (scheme: CSSObject): CSSObject;
-}
-
-declare module '@mui/material/styles' {
-  interface Theme {
-    applyDarkStyles: ApplyDarkStyles;
-  }
-}
 
 declare module '@mui/material/styles/createPalette' {
   interface ColorRange {
@@ -30,8 +19,6 @@ declare module '@mui/material/styles/createPalette' {
 
   interface PaletteColor extends ColorRange {}
 }
-
-const defaultTheme = createTheme();
 
 export const brandColor = {
   50: '#F0F7FF',
@@ -85,118 +72,111 @@ export const successColor = {
   900: '#021D02',
 };
 
-export const getMetaThemeColor = (mode: 'light' | 'dark') => {
-  const themeColor = {
-    light: brandColor[500],
-    dark: brandColor[900],
-  };
-  return themeColor[mode];
-};
-
-export const getDesignTokens = (mode: 'light' | 'dark') =>
-  ({
-    palette: {
-      primary: {
-        light: brandColor[300],
+const getDesignTokens = (mode: PaletteMode) => ({
+  palette: {
+    primary: {
+      light: brandColor[300],
+      main: brandColor[500],
+      dark: brandColor[800],
+      ...(mode === 'dark' && {
+        light: brandColor[400],
         main: brandColor[500],
         dark: brandColor[800],
-        ...defaultTheme.applyDarkStyles({
-          light: brandColor[400],
-          main: brandColor[500],
-          dark: brandColor[800],
-        }),
-      },
-      secondary: {
-        light: secondaryColor[300],
+      }),
+    },
+    secondary: {
+      light: secondaryColor[300],
+      main: secondaryColor[500],
+      dark: secondaryColor[800],
+      ...(mode === 'dark' && {
+        light: secondaryColor[400],
         main: secondaryColor[500],
-        dark: secondaryColor[800],
-        ...defaultTheme.applyDarkStyles({
-          light: secondaryColor[400],
-          main: secondaryColor[500],
-          dark: secondaryColor[900],
-        }),
-      },
-      warning: {
-        main: '#F7B538',
-        dark: '#F79F00',
-        ...defaultTheme.applyDarkStyles({
-          main: '#F7B538',
-          dark: '#F79F00',
-        }),
-      },
-      error: {
-        light: red[50],
-        main: red[500],
-        dark: red[700],
-        ...defaultTheme.applyDarkStyles({
-          light: '#D32F2F',
-          main: '#D32F2F',
-          dark: '#B22A2A',
-        }),
-      },
-      success: {
-        light: successColor[300],
-        main: successColor[400],
-        dark: successColor[800],
-        ...defaultTheme.applyDarkStyles({
-          light: successColor[400],
-          main: successColor[500],
-          dark: successColor[700],
-        }),
-      },
-      background: {
-        default: '#fff',
-        paper: greyColor[50],
-        ...defaultTheme.applyDarkStyles({
-          default: greyColor[900],
-          paper: greyColor[800],
-        }),
-      },
-      text: {
-        primary: greyColor[800],
-        secondary: greyColor[600],
-        ...defaultTheme.applyDarkStyles({
-          primary: '#fff',
-          secondary: greyColor[300],
-        }),
-      },
+        dark: secondaryColor[900],
+      }),
     },
-
-    applyDarkStyles(css: Parameters<ApplyDarkStyles>[0]) {
-      if ((this as Theme).vars) {
-        // If CssVarsProvider is used as a provider,
-        // returns ':where([data-mui-color-scheme="light|dark"]) &'
-        const selector = (this as Theme)
-          .getColorSchemeSelector('dark')
-          .replace(/(\[[^\]]+\])/, ':where($1)');
-        return {
-          [selector]: css,
-        };
-      }
-      if ((this as Theme).palette.mode === 'dark') {
-        return css;
-      }
-
-      return undefined;
+    warning: {
+      main: '#F7B538',
+      dark: '#F79F00',
+      ...(mode === 'dark' && { main: '#F7B538', dark: '#F79F00' }),
     },
-  } as ThemeOptions);
-
-const typographyBase = {
-  fontFamily: "'Inter', sans-serif",
-  fontSize: 14,
-  fontWeightLight: 300,
-  fontWeightRegular: 400,
-  fontWeightMedium: 500,
-};
-
-const fontHeader = {
-  color: defaultTheme.palette.text.primary,
-  fontWeight: typographyBase.fontWeightMedium,
-  fontFamily: "'Inter', sans-serif",
-};
+    error: {
+      light: red[50],
+      main: red[500],
+      dark: red[700],
+      ...(mode === 'dark' && { light: '#D32F2F', main: '#D32F2F', dark: '#B22A2A' }),
+    },
+    success: {
+      light: successColor[300],
+      main: successColor[400],
+      dark: successColor[800],
+      ...(mode === 'dark' && {
+        light: successColor[400],
+        main: successColor[500],
+        dark: successColor[700],
+      }),
+    },
+    background: {
+      default: '#fff',
+      paper: greyColor[50],
+      ...(mode === 'dark' && { default: greyColor[900], paper: greyColor[800] }),
+    },
+    text: {
+      primary: greyColor[800],
+      secondary: greyColor[600],
+      ...(mode === 'dark' && { primary: '#fff', secondary: greyColor[300] }),
+    },
+  },
+  typography: {
+    fontFamily: ['"Inter", "sans-serif"'].join(','),
+    h1: {
+      fontWeight: 600,
+      lineHeight: 78 / 70,
+      fontSize: 60,
+      letterSpacing: -0.2,
+    },
+    h2: {
+      fontSize: 48,
+      lineHeight: 1.2,
+    },
+    h3: {
+      fontSize: 42,
+      lineHeight: 1.2,
+    },
+    h4: {
+      fontSize: 36,
+      lineHeight: 1.5,
+    },
+    h5: {
+      fontSize: 20,
+      fontWeight: 600,
+    },
+    h6: {
+      fontSize: 18,
+    },
+    subtitle1: {
+      fontSize: 18,
+    },
+    subtitle2: {
+      fontSize: 16,
+    },
+    body1: {
+      fontWeight: 500,
+      fontSize: '14px',
+    },
+    body2: {
+      fontWeight: 400,
+      fontSize: 14,
+    },
+    caption: {
+      fontWeight: 400,
+      fontSize: 10,
+    },
+  },
+});
 
 export default function getLPTheme(): ThemeOptions {
   return {
+    ...getDesignTokens,
     components: {
       MuiMenuItem: {
         styleOverrides: {
@@ -300,6 +280,7 @@ export default function getLPTheme(): ThemeOptions {
             }),
             ...(ownerState.variant === 'contained' &&
               ownerState.color === 'primary' && {
+                color: greyColor[50],
                 backgroundColor: brandColor[400],
                 border: `1px solid ${alpha(brandColor[600], 0.5)}`,
                 boxShadow: `inset 0px 1px 1px ${
@@ -468,6 +449,8 @@ export default function getLPTheme(): ThemeOptions {
             },
             ...theme.applyDarkStyles({
               '& .MuiOutlinedInput-root': {
+                borderRadius: '8px',
+                height: '40px',
                 '& fieldset': {
                   borderColor: `${alpha(greyColor[500], 0.6)}`,
                   boxShadow:
@@ -479,63 +462,16 @@ export default function getLPTheme(): ThemeOptions {
           }),
         },
       },
-      MuiTypography: {
-        styleOverrides: {
-          ...typographyBase,
-          ...fontHeader,
-          h1: {
-            ...fontHeader,
-            fontSize: 60,
-            lineHeight: 1.2,
-          },
-          h2: {
-            ...fontHeader,
-            fontSize: 48,
-            lineHeight: 1.2,
-          },
-          h3: {
-            ...fontHeader,
-            fontSize: 42,
-            lineHeight: 1.2,
-          },
-          h4: {
-            ...fontHeader,
-            fontSize: 36,
-            lineHeight: 1.5,
-          },
-          h5: {
-            fontSize: 20,
-            fontWeight: typographyBase.fontWeightLight,
-          },
-          h6: {
-            ...fontHeader,
-            fontSize: 18,
-          },
-          subtitle1: {
-            fontSize: 18,
-          },
-          subtitle2: {
-            fontSize: 16,
-          },
-          body1: {
-            fontWeight: typographyBase.fontWeightRegular,
-            fontSize: 16,
-          },
-          body2: {
-            fontSize: 14,
-          },
-        },
-      },
     },
   };
 }
 
-export const brandingDarkTheme = createTheme({
+export const LPDarkTheme = createTheme({
   ...getDesignTokens('dark'),
   ...getLPTheme(),
 });
 
-export const brandingLightTheme = createTheme({
+export const LPLightTheme = createTheme({
   ...getDesignTokens('light'),
   ...getLPTheme(),
 });
