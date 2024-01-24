@@ -953,6 +953,9 @@ importers:
       remark:
         specifier: ^13.0.0
         version: 13.0.0
+      typescript:
+        specifier: ^5.3.3
+        version: 5.3.3
       unist-util-visit:
         specifier: ^2.0.3
         version: 2.0.3
@@ -990,20 +993,17 @@ importers:
       sinon:
         specifier: ^15.2.0
         version: 15.2.0
-      typescript:
-        specifier: ^5.3.3
-        version: 5.3.3
 
   packages/api-docs-builder-core:
     dependencies:
       '@mui-internal/api-docs-builder':
-        specifier: ^1.0.0
+        specifier: workspace:^
         version: link:../api-docs-builder
       '@mui/markdown':
-        specifier: ^5.0.0
+        specifier: workspace:^
         version: link:../markdown
       docs:
-        specifier: ^5.0.0
+        specifier: workspace:^
         version: link:../../docs
       lodash:
         specifier: ^4.17.21
