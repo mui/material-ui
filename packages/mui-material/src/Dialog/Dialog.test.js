@@ -226,6 +226,18 @@ describe('<Dialog />', () => {
     });
   });
 
+  describe('prop: TransitionProps', () => {
+    it('should apply properties to the Transition component', () => {
+      const { getByTestId } = render(
+        <Dialog open TransitionProps={{ 'data-testid': 'transition-testid' }}>
+          <div>Hello</div>
+        </Dialog>,
+      );
+
+      expect(getByTestId('transition-testid')).not.to.equal(null);
+    });
+  });
+
   describe('prop: classes', () => {
     it('should add the class on the Paper element', () => {
       const { getByTestId } = render(
@@ -386,6 +398,29 @@ describe('<Dialog />', () => {
       const container = document.querySelector(`.${classes.container}`);
       expect(container).toHaveComputedStyle({
         transitionDuration: '0.001s',
+      });
+    });
+
+    it('timeout provided through slotProps should override transitionDuration', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      render(
+        <Dialog
+          open
+          transitionDuration={{ enter: 1000 }}
+          slotProps={{
+            transition: {
+              timeout: 2000,
+            },
+          }}
+        />,
+      );
+
+      const container = document.querySelector(`.${classes.container}`);
+      expect(container).toHaveComputedStyle({
+        transitionDuration: '2s',
       });
     });
   });
