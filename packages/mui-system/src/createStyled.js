@@ -78,7 +78,12 @@ function processStyleArg(callableStyle, { ownerState, ...props }) {
         });
       }
       if (isMatch) {
-        result = deepmerge(result, variant.style);
+        result = deepmerge(
+          result,
+          typeof variant.style === 'function'
+            ? variant.style({ ownerState, ...props })
+            : variant.style,
+        );
       }
     });
     return result;
