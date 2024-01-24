@@ -161,8 +161,6 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const loaded = useLoaded({ ...imgProps, src, srcSet });
   const hasImg = src || srcSet;
   const hasImgNotFailing = hasImg && loaded !== 'error';
-  const hasAtLeastOneChar = typeof childrenProp === 'string' && childrenProp !== '';
-  const hasNodeChildren = typeof childrenProp !== 'string';
 
   const ownerState = {
     ...props,
@@ -185,7 +183,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
         {...imgProps}
       />
     );
-  } else if (childrenProp != null && (hasAtLeastOneChar || hasNodeChildren)) {
+  } else if (childrenProp != null && childrenProp !== '' && typeof childrenProp !== 'boolean') {
     children = childrenProp;
   } else if (hasImg && alt) {
     children = alt[0];

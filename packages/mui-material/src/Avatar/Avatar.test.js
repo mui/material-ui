@@ -219,6 +219,20 @@ describe('<Avatar />', () => {
 
       expect(avatar.firstChild).to.have.attribute('data-testid', 'PersonIcon');
     });
+
+    it('should fallback if children is false', () => {
+      const container = render(<Avatar>{false}</Avatar>).container;
+      const avatar = container.firstChild;
+
+      expect(avatar.firstChild).to.have.attribute('data-testid', 'PersonIcon');
+    });
+
+    it('should fallback if children is true', () => {
+      const container = render(<Avatar>{true}</Avatar>).container;
+      const avatar = container.firstChild;
+
+      expect(avatar.firstChild).to.have.attribute('data-testid', 'PersonIcon');
+    });
   });
 
   it('should not throw error when ownerState is used in styleOverrides', () => {
