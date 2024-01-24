@@ -9,7 +9,7 @@ card: true
 
 Here are the most significant improvements in May:
 
-- 🎉 We released MUI v4 stable during the React Europe conference.
+- 🎉 We released Material UI v4 stable during the React Europe conference.
   You can find the details in our [blog post 📝](/blog/material-ui-v4-is-out/) and a quick introduction in this [5 minutes talk](https://www.youtube.com/watch?v=m54_CPfbWow).
 - 🐛 We have made two subsequent releases after v4.0.0, containing a significant number of fixes (v4.0.1 and v4.0.2).
 

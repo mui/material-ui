@@ -93,11 +93,10 @@ export default function ThemeRegistry(props) {
 
 // app/layout.tsx
 export default function RootLayout(props) {
-  const { children } = props;
   return (
     <html lang="en">
       <body>
-        <ThemeRegistry options={{ key: 'joy' }}>{children}</ThemeRegistry>
+        <ThemeRegistry options={{ key: 'joy' }}>{props.children}</ThemeRegistry>
       </body>
     </html>
   );

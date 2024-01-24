@@ -18,21 +18,25 @@ export type AppRouterCacheProviderProps = {
   /**
    * By default <CacheProvider /> from 'import { CacheProvider } from "@emotion/react"'.
    */
-  CacheProvider?: (props: {
-    value: EmotionCache;
-    children: React.ReactNode;
-  }) => React.JSX.Element | null;
+  CacheProvider?: React.ElementType<{ value: EmotionCache }>;
   children: React.ReactNode;
 };
 
+/**
+ * Emotion works OK without this provider but it's recommended to use this provider to improve performance.
+ * Without it, Emotion will generate a new <style> tag during SSR for every component.
+ * See https://github.com/mui/material-ui/issues/26561#issuecomment-855286153 for why it's a problem.
+ */
 export default function AppRouterCacheProvider(props: AppRouterCacheProviderProps) {
   const { options, CacheProvider = DefaultCacheProvider, children } = props;
 
   const [registry] = React.useState(() => {
     const cache = createCache({ ...options, key: options?.key ?? 'mui' });
     cache.compat = true;
+
     const prevInsert = cache.insert;
     let inserted: { name: string; isGlobal: boolean }[] = [];
+    // Override the insert method to support streaming SSR with flush().
     cache.insert = (...args) => {
       if (options?.enableCssLayer) {
         args[1].styles = `@layer mui {${args[1].styles}}`;

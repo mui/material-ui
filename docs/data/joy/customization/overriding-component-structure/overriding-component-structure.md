@@ -4,7 +4,7 @@
 
 Joy UI components are designed to suit the widest possible range of use cases, but you may occasionally need to change how a component's structure is rendered in the DOM.
 
-To understand how to do this, it helps to have an accurate mental model of MUI components.
+To understand how to do this, it helps to have an accurate mental model of the components.
 
 ## The mental model
 

@@ -17,7 +17,7 @@ githubLabel: 'component: number input'
 ## Introduction
 
 A number input is a UI element that accepts numeric values from the user.
-Base UI's Number Input component is a customizable replacement for the native HTML `<input type="number">` that solves common usability issues of its native counterpart, such as:
+Base UI's Number Input component is a customizable replacement for the native HTML `<input type="number">` that solves common usability issues of its native counterpart, such as:
 
 - Inconsistencies across browsers in the appearance and behavior of the stepper buttons
 - Allowing certain non-numeric characters ('e', '+', '-', '.') and silently discarding others
@@ -41,7 +41,7 @@ The following demo shows how to create a Number Input component, apply some styl
 
 ### Anatomy
 
-The Base UI Number Input component consists of four slots:
+The Base UI Number Input component consists of four slots:
 
 - `root`: an outer `<div>` containing the other interior slots
 - `input`: an `<input>` element
