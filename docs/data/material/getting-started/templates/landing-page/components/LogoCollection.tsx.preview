@@ -6,7 +6,7 @@
 >
   Trusted by the best companies
 </Typography>
-<Grid container justifyContent="center" spacing={2} sx={{ mt: 1 }}>
+<Grid container justifyContent="center" sx={{ mt: 0.5 }}>
   {logos.map((logo, index) => (
     <Grid item key={index}>
       <img src={logo} alt={`Logo ${index + 1}`} style={logoStyle} />

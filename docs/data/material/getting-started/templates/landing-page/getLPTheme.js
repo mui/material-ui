@@ -1,30 +1,30 @@
 import { red } from '@mui/material/colors';
-import { alpha } from '@mui/material';
+import { createTheme, alpha } from '@mui/material/styles';
 
 export const brandColor = {
-  50: '#EDF5FD',
-  100: '#E3EFFB',
-  200: '#C7DFF7',
-  300: '#97C3F0',
-  400: '#4393E4',
-  500: '#0B6BCB',
-  600: '#185EA5',
-  700: '#0E3862',
-  800: '#0A2744',
-  900: '#051423',
+  50: '#F0F7FF',
+  100: '#CEE5FD',
+  200: '#9CCCFC',
+  300: '#55A6F6',
+  400: '#0A66C2',
+  500: '#0959AA',
+  600: '#064079',
+  700: '#033363',
+  800: '#02294F',
+  900: '#021F3B',
 };
 
 export const secondaryColor = {
-  50: '#F8EDFF',
-  100: '#EEDCFF',
-  200: '#D9B9FF',
-  300: '#C496FF',
-  400: '#AC76F0',
-  500: '#915CD4',
-  600: '#7742B8',
-  700: '#5E269F',
-  800: '#460085',
-  900: '#2A0054',
+  50: '#F9F0FF',
+  100: '#E9CEFD',
+  200: '#D49CFC',
+  300: '#B355F6',
+  400: '#750AC2',
+  500: '#6709AA',
+  600: '#490679',
+  700: '#3B0363',
+  800: '#2F024F',
+  900: '#23023B',
 };
 
 export const greyColor = {
@@ -52,6 +52,8 @@ export const successColor = {
   800: '#042F04',
   900: '#021D02',
 };
+
+const theme = createTheme();
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -136,60 +138,95 @@ const typographyBase = {
   fontWeightMedium: 500,
 };
 
-export default function getLPTheme(mode) {
-  const modeDesignTokens = getDesignTokens(mode);
-
+export default function getLPTheme() {
   const fontHeader = {
-    color: modeDesignTokens.palette.text.primary,
+    color: theme.palette.text.primary,
     fontWeight: typographyBase.fontWeightMedium,
     fontFamily: "'Inter', sans-serif",
   };
 
   return {
-    ...modeDesignTokens,
-    palette: {
-      ...modeDesignTokens.palette,
-      background: {
-        ...modeDesignTokens.palette.background,
-      },
-    },
     components: {
       MuiMenuItem: {
         styleOverrides: {
           root: {
-            color: mode === 'light' ? greyColor[500] : greyColor[300],
             borderRadius: '8px',
+            color: greyColor[500],
             fontWeight: 500,
+            ...theme.applyDarkStyles({
+              color: greyColor[300],
+            }),
           },
         },
       },
       MuiPaper: {
         styleOverrides: {
           root: {
-            backgroundColor: mode === 'light' ? greyColor[100] : greyColor[900],
+            backgroundColor: greyColor[100],
+            ...theme.applyDarkStyles({
+              backgroundColor: greyColor[900],
+            }),
           },
         },
       },
       MuiCard: {
         styleOverrides: {
           root: {
-            backgroundColor: mode === 'light' ? greyColor[50] : greyColor[900],
-            boxShadow: 'none',
-            border:
-              mode === 'light'
-                ? `1px solid ${alpha(greyColor[200], 0.8)}`
-                : `1px solid ${alpha(greyColor[700], 0.6)}`,
+            backgroundColor: greyColor[50],
             borderRadius: '8px',
+            border: `1px solid ${alpha(greyColor[200], 0.8)}`,
+            boxShadow: 'none',
+            ...theme.applyDarkStyles({
+              backgroundColor: greyColor[900],
+              border: `1px solid ${alpha(greyColor[700], 0.6)}`,
+            }),
           },
         },
       },
       MuiDivider: {
         styleOverrides: {
           root: {
-            borderColor:
-              mode === 'light'
-                ? `${alpha(greyColor[200], 0.8)}`
-                : `${alpha(greyColor[700], 0.6)}`,
+            borderColor: `${alpha(greyColor[200], 0.8)}`,
+            ...theme.applyDarkStyles({
+              borderColor: `${alpha(greyColor[700], 0.6)}`,
+            }),
+          },
+        },
+      },
+      MuiChip: {
+        styleOverrides: {
+          root: {
+            alignSelf: 'center',
+            py: 1.5,
+            px: 0.5,
+            background: `linear-gradient(to bottom right, ${brandColor[50]}, ${brandColor[100]})`,
+            border: '1px solid',
+            borderColor: `${alpha(brandColor[500], 0.3)}`,
+            fontWeight: '600',
+            '&:focus-visible': {
+              borderColor: brandColor[800],
+              backgroundColor: brandColor[200],
+            },
+            '& .MuiChip-label': {
+              color: brandColor[500],
+            },
+            '& .MuiChip-icon': {
+              color: brandColor[500],
+            },
+            ...theme.applyDarkStyles({
+              background: `linear-gradient(to bottom right, ${brandColor[700]}, ${brandColor[900]})`,
+              borderColor: `${alpha(brandColor[500], 0.5)}`,
+              '&:focus-visible': {
+                borderColor: brandColor[200],
+                backgroundColor: brandColor[600],
+              },
+              '& .MuiChip-label': {
+                color: brandColor[200],
+              },
+              '& .MuiChip-icon': {
+                color: brandColor[200],
+              },
+            }),
           },
         },
       },
@@ -198,12 +235,20 @@ export default function getLPTheme(mode) {
           root: ({ ownerState }) => ({
             boxShadow: 'none',
             borderRadius: '8px',
+            ...(ownerState.size === 'small' && {
+              maxHeight: '32px',
+            }),
+            ...(ownerState.size === 'medium' && {
+              height: '40px',
+            }),
             ...(ownerState.variant === 'contained' &&
               ownerState.color === 'primary' && {
+                backgroundColor: brandColor[400],
+                border: `1px solid ${alpha(brandColor[600], 0.5)}`,
                 boxShadow: `inset 0px 1px 1px ${
-                  brandColor[400]
-                }, inset 0px -2px 1px ${brandColor[600]}, 0px 0px 0px 1px ${alpha(
-                  brandColor[500],
+                  brandColor[300]
+                }, inset 0px -2px 1px ${alpha(
+                  brandColor[700],
                   0.5,
                 )}, 0px 2px 4px rgba(0, 0, 0, 0.1)`,
                 '&:hover': {
@@ -213,35 +258,52 @@ export default function getLPTheme(mode) {
               }),
             ...(ownerState.variant === 'contained' &&
               ownerState.color === 'secondary' && {
-                boxShadow: `inset 0px 1px 1px ${
-                  secondaryColor[400]
-                }, inset 0px -2px 1px ${
-                  secondaryColor[600]
-                }, 0px 0px 0px 1px ${alpha(
-                  secondaryColor[500],
-                  0.5,
-                )}, 0px 2px 4px rgba(0, 0, 0, 0.1)`,
+                backgroundColor: secondaryColor[500],
+                border: `1px solid ${alpha(secondaryColor[600], 0.5)}`,
+                boxShadow: `inset 0px 1px 1px ${secondaryColor[300]}, inset 0px -2px 1px ${secondaryColor[600]},  0px 2px 4px rgba(0, 0, 0, 0.1)`,
                 '&:hover': {
                   backgroundColor: secondaryColor[600],
                   boxShadow: 'none',
                 },
               }),
             ...(ownerState.variant === 'outlined' && {
-              backgroundColor:
-                mode === 'light'
-                  ? alpha(brandColor[300], 0.1)
-                  : alpha(brandColor[600], 0.1),
-              borderColor: mode === 'light' ? brandColor[300] : brandColor[700],
-              color: mode === 'light' ? brandColor[500] : brandColor[300],
+              backgroundColor: alpha(brandColor[300], 0.1),
+              borderColor: brandColor[300],
+              color: brandColor[500],
               '&:hover': {
-                backgroundColor:
-                  mode === 'light'
-                    ? alpha(brandColor[300], 0.3)
-                    : alpha(brandColor[600], 0.3),
-                borderColor: mode === 'light' ? brandColor[200] : brandColor[700],
+                backgroundColor: alpha(brandColor[300], 0.3),
+                borderColor: brandColor[200],
+              },
+            }),
+            ...(ownerState.variant === 'text' && {
+              color: brandColor[500],
+              '&:hover': {
+                backgroundColor: alpha(brandColor[300], 0.3),
+                borderColor: brandColor[200],
               },
             }),
             textTransform: 'none',
+            '&:active': {
+              transform: 'scale(0.98)',
+            },
+            ...theme.applyDarkStyles({
+              ...(ownerState.variant === 'outlined' && {
+                backgroundColor: alpha(brandColor[600], 0.1),
+                borderColor: brandColor[700],
+                color: brandColor[300],
+                '&:hover': {
+                  backgroundColor: alpha(brandColor[600], 0.3),
+                  borderColor: brandColor[700],
+                },
+              }),
+              ...(ownerState.variant === 'text' && {
+                color: brandColor[300],
+                '&:hover': {
+                  backgroundColor: alpha(brandColor[600], 0.3),
+                  borderColor: brandColor[700],
+                },
+              }),
+            }),
           }),
         },
       },
@@ -251,10 +313,28 @@ export default function getLPTheme(mode) {
         },
         styleOverrides: {
           root: ({ ownerState }) => ({
-            ...(ownerState.color === 'primary' && {
-              color: mode === 'light' ? brandColor[500] : brandColor[400],
+            color: brandColor[500],
+            fontWeight: 500,
+            position: 'relative',
+            textDecoration: 'none',
+            '&::before': {
+              content: '""',
+              position: 'absolute',
+              width: 0,
+              height: '1px',
+              bottom: 0,
+              left: 0,
+              backgroundColor: brandColor[200],
+              opacity: 0.5,
+              transition: 'width 0.3s ease, opacity 0.3s ease',
+            },
+            '&:hover::before': {
+              width: '100%',
+              opacity: 1,
+            },
+            ...theme.applyDarkStyles({
+              color: brandColor[200],
             }),
-            color: ownerState.color,
           }),
         },
       },
@@ -265,12 +345,24 @@ export default function getLPTheme(mode) {
         },
         styleOverrides: {
           root: {
-            backgroundColor: mode === 'light' ? '#fff' : greyColor[900],
+            backgroundColor: '#fff',
             border: '1px solid',
-            borderColor: mode === 'light' ? greyColor[100] : greyColor[800],
+            borderColor: greyColor[100],
             ':before': {
               backgroundColor: 'transparent',
             },
+            '&:first-of-type': {
+              borderTopLeftRadius: '8px',
+              borderTopRightRadius: '8px',
+            },
+            '&:last-of-type': {
+              borderBottomLeftRadius: '8px',
+              borderBottomRightRadius: '8px',
+            },
+            ...theme.applyDarkStyles({
+              backgroundColor: greyColor[900],
+              borderColor: greyColor[800],
+            }),
           },
         },
       },
@@ -293,16 +385,19 @@ export default function getLPTheme(mode) {
               color: 'white',
             },
             '& .MuiInputBase-input': {
+              '&::placeholder': {
+                opacity: 0.7,
+              },
               fontSize: '14px',
             },
             '& .MuiOutlinedInput-root': {
+              borderRadius: '8px',
+              height: '40px',
               '& fieldset': {
-                borderRadius: '8px',
-                borderColor: mode === 'light' ? greyColor[300] : greyColor[600],
+                borderColor: `${alpha(greyColor[500], 0.4)}`,
                 boxShadow:
-                  mode === 'light'
-                    ? '0 -1px 1px rgba(0, 0, 0, 0.1) inset, 0px 2px 4px rgba(0, 0, 0, 0.1)'
-                    : '0 1px 1px rgba(255, 255, 255, 0.1) inset, 0px 2px 4px rgba(0, 0, 0, 0.8)',
+                  '0 -1px 1px rgba(0, 0, 0, 0.1) inset, 0px 2px 4px rgba(0, 0, 0, 0.1)',
+                background: `${alpha('#FFF', 0.3)}`,
               },
               '&:hover fieldset': {
                 borderColor: greyColor[400],
@@ -314,6 +409,16 @@ export default function getLPTheme(mode) {
             '& .MuiInputLabel-root': {
               fontSize: '14px',
             },
+            ...theme.applyDarkStyles({
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                  borderColor: `${alpha(greyColor[500], 0.6)}`,
+                  boxShadow:
+                    '0 1px 1px rgba(255, 255, 255, 0.1) inset, 0px 2px 4px rgba(0, 0, 0, 0.8)',
+                  background: `${alpha(greyColor[800], 0.4)}`,
+                },
+              },
+            }),
           },
         },
       },

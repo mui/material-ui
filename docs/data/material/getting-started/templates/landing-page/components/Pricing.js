@@ -8,7 +8,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
-import { alpha } from '@mui/system';
+import { alpha } from '@mui/material';
 
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
@@ -38,6 +38,8 @@ const tiers = [
       '10 GB of storage',
       'Help center access',
       'Priority email support',
+      'Dedicated team',
+      'Best deals',
     ],
     buttonText: 'Get started',
     buttonVariant: 'contained',
@@ -71,11 +73,11 @@ export default function Pricing() {
         <Box
           sx={{
             width: { sm: '100%', md: '60%' },
-            mb: 8,
+            mb: 6,
             textAlign: { sm: 'left', md: 'center' },
           }}
         >
-          <Typography component="h2" variant="h4" color="text.primary" gutterBottom>
+          <Typography component="h2" variant="h4" color="text.primary">
             Pricing
           </Typography>
           <Typography variant="body1" color="text.secondary" component="p">
@@ -98,28 +100,20 @@ export default function Pricing() {
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '8px',
-                  p: 1,
+                  p: 2,
                   border: (theme) => {
                     if (tier.title === 'Professional') {
                       return theme.palette.mode === 'light'
-                        ? `1px solid ${brandColor[200]}`
+                        ? `1px solid ${brandColor[500]}`
                         : `1px solid ${brandColor[700]}`;
                     }
                     return '';
                   },
-                  bgcolor: (theme) => {
+                  background: (theme) => {
                     if (tier.title === 'Professional') {
                       return theme.palette.mode === 'light'
-                        ? alpha(brandColor[100], 0.5)
-                        : alpha(brandColor[900], 0.7);
-                    }
-                    return '';
-                  },
-                  boxShadow: (theme) => {
-                    if (tier.title === 'Professional') {
-                      return theme.palette.mode === 'light'
-                        ? `0 0 24px ${brandColor[100]}`
-                        : `0 0 24px ${brandColor[800]}`;
+                        ? `linear-gradient(to bottom, ${brandColor[700]}, ${brandColor[900]})`
+                        : `linear-gradient(to bottom, ${brandColor[800]}, ${brandColor[900]})`;
                     }
                     return '';
                   },
@@ -127,9 +121,28 @@ export default function Pricing() {
               >
                 <CardContent>
                   <Box
-                    sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}
+                    sx={{
+                      mb: 1,
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      color: tier.title === 'Professional' ? brandColor[50] : '',
+                    }}
                   >
-                    <Typography variant="h6" gutterBottom>
+                    <Typography
+                      variant="h6"
+                      color="inherit"
+                      sx={{
+                        color: (theme) => {
+                          if (tier.title === 'Professional') {
+                            return theme.palette.mode === 'light'
+                              ? brandColor[200]
+                              : brandColor[300];
+                          }
+                          return '';
+                        },
+                      }}
+                    >
                       {tier.title}
                     </Typography>
                     {tier.title === 'Professional' && (
@@ -138,24 +151,22 @@ export default function Pricing() {
                         label={tier.subheader}
                         size="small"
                         sx={{
-                          alignSelf: 'center',
-                          mb: 1,
-                          backgroundColor: (theme) =>
+                          borderColor: (theme) =>
                             theme.palette.mode === 'light'
-                              ? brandColor[100]
-                              : brandColor[800],
+                              ? ''
+                              : `${alpha(brandColor[500], 0.3)}`,
+                          background: (theme) =>
+                            theme.palette.mode === 'light'
+                              ? ''
+                              : `linear-gradient(to bottom right, ${brandColor[50]}, ${brandColor[100]})`,
                           fontWeight: '600',
                           '& .MuiChip-label': {
                             color: (theme) =>
-                              theme.palette.mode === 'light'
-                                ? brandColor[500]
-                                : brandColor[400],
+                              theme.palette.mode === 'light' ? '' : brandColor[500],
                           },
                           '& .MuiChip-icon': {
                             color: (theme) =>
-                              theme.palette.mode === 'light'
-                                ? brandColor[500]
-                                : brandColor[400],
+                              theme.palette.mode === 'light' ? '' : brandColor[500],
                           },
                         }}
                       />
@@ -165,16 +176,22 @@ export default function Pricing() {
                     sx={{
                       display: 'flex',
                       alignItems: 'baseline',
+                      color: tier.title === 'Professional' ? brandColor[50] : '',
                     }}
                   >
-                    <Typography component="h2" variant="h2" color="text.primary">
+                    <Typography component="h2" variant="h2" color="inherit">
                       ${tier.price}
                     </Typography>
-                    <Typography variant="h6" color="text.secondary">
+                    <Typography variant="h6" color="inherit">
                       &nbsp; per month
                     </Typography>
                   </Box>
-                  <Divider sx={{ my: 3 }} />
+                  <Divider
+                    sx={{
+                      my: 3,
+                      borderColor: `${alpha(brandColor[500], 0.3)}`,
+                    }}
+                  />
                   {tier.description.map((line) => (
                     <Box
                       key={line}
@@ -183,15 +200,24 @@ export default function Pricing() {
                         gap: 1.5,
                         p: 1,
                         alignItems: 'center',
+                        color: tier.title === 'Professional' ? brandColor[200] : '',
                       }}
                     >
                       <CheckCircleRoundedIcon
                         sx={{
                           width: '20px',
-                          color: 'success.main',
+                          color:
+                            tier.title === 'Professional'
+                              ? brandColor[200]
+                              : brandColor[300],
                         }}
                       />
-                      <Typography variant="subtitle2" color="text.secondary">
+                      <Typography
+                        variant="subtitle2"
+                        sx={{
+                          color: tier.title === 'Professional' ? brandColor[50] : '',
+                        }}
+                      >
                         {line}
                       </Typography>
                     </Box>

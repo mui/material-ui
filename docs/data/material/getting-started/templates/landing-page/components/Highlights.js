@@ -31,7 +31,7 @@ const items = [
     icon: <ThumbUpAltRoundedIcon />,
     title: 'Great user experience',
     description:
-      'Seamlessly integrate our product into your routine with an intuitive and easy-to-use interface.',
+      'Integrate our product into your routine with an intuitive and easy-to-use interface.',
   },
   {
     icon: <AutoFixHighRoundedIcon />,
@@ -68,11 +68,11 @@ export default function Highlights() {
         <Box
           sx={{
             width: { sm: '100%', md: '60%' },
-            mb: 8,
+            mb: 6,
             textAlign: { sm: 'left', md: 'center' },
           }}
         >
-          <Typography component="h2" variant="h4" color="inherit" gutterBottom>
+          <Typography component="h2" variant="h4" color="inherit">
             Highlights
           </Typography>
           <Typography

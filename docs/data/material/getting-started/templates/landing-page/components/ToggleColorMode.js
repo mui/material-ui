@@ -17,12 +17,12 @@ function ToggleColorMode() {
   const { mode, toggleColorMode } = contextValue;
 
   return (
-    <Box sx={{ maxWidth: '36px' }}>
+    <Box sx={{ maxWidth: '32px' }}>
       <Button
-        variant="outlined"
+        variant="text"
         onClick={toggleColorMode}
         size="small"
-        sx={{ minWidth: '30px', p: '4px' }}
+        sx={{ minWidth: '32px', height: '32px', p: '4px' }}
       >
         {mode === 'dark' ? (
           <WbSunnyRoundedIcon fontSize="small" />

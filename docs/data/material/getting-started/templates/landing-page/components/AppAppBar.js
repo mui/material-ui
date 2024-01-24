@@ -16,6 +16,7 @@ import ToggleColorMode from './ToggleColorMode';
 const logoStyle = {
   width: '140px',
   height: 'auto',
+  cursor: 'pointer',
 };
 
 function AppAppBar() {
@@ -42,24 +43,44 @@ function AppAppBar() {
   return (
     <div>
       <AppBar
-        enableColorOnDark
         position="fixed"
         sx={{
           boxShadow: 0,
-          bgcolor: (theme) => (theme.palette.mode === 'light' ? '#fff' : '#000'),
-          borderBottom: 1,
-          borderColor: 'divider',
-          paddingX: 0,
+          bgcolor: 'transparent',
+          backgroundImage: 'none',
+          mt: 2,
         }}
       >
         <Container maxWidth="lg">
-          <Toolbar disableGutters sx={{}}>
+          <Toolbar
+            variant="regular"
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexShrink: 0,
+              borderRadius: '999px',
+              bgcolor: (theme) =>
+                theme.palette.mode === 'light'
+                  ? 'rgba(255,255,255,0.7)'
+                  : 'rgba(0,0,0,0.6)',
+              backdropFilter: 'blur(24px)',
+              maxHeight: '40px',
+              border: '1px solid',
+              borderColor: 'divider',
+              boxShadow: (theme) =>
+                theme.palette.mode === 'light'
+                  ? '0 0 1px rgba(85, 166, 246, 0.1), 1px 1.5px 2px -1px rgba(85, 166, 246, 0.15), 4px 4px 12px -2.5px rgba(85, 166, 246, 0.15)'
+                  : '0 0 1px rgba(2, 31, 59, 0.7), 1px 1.5px 2px -1px rgba(2, 31, 59, 0.65), 4px 4px 12px -2.5px rgba(2, 31, 59, 0.65)',
+            }}
+          >
             <Box
               sx={{
                 flexGrow: 1,
                 display: 'flex',
                 alignItems: 'center',
                 ml: '-18px',
+                px: 0,
               }}
             >
               <img
@@ -68,30 +89,45 @@ function AppAppBar() {
                 }
                 style={logoStyle}
                 alt="logo"
+                onClick={() => scrollToSection('hero')}
               />
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                <MenuItem onClick={() => scrollToSection('features')}>
+                <MenuItem
+                  onClick={() => scrollToSection('features')}
+                  sx={{ py: '6px', px: '12px' }}
+                >
                   <Typography variant="body2" color="text.primary">
                     Features
                   </Typography>
                 </MenuItem>
-                <MenuItem onClick={() => scrollToSection('testimonials')}>
+                <MenuItem
+                  onClick={() => scrollToSection('testimonials')}
+                  sx={{ py: '6px', px: '12px' }}
+                >
                   <Typography variant="body2" color="text.primary">
                     Testimonials
                   </Typography>
                 </MenuItem>
-                <MenuItem onClick={() => scrollToSection('highlights')}>
+                <MenuItem
+                  onClick={() => scrollToSection('highlights')}
+                  sx={{ py: '6px', px: '12px' }}
+                >
                   <Typography variant="body2" color="text.primary">
                     Highlights
                   </Typography>
                 </MenuItem>
-                <MenuItem onClick={() => scrollToSection('pricing')}>
+                <MenuItem
+                  onClick={() => scrollToSection('pricing')}
+                  sx={{ py: '6px', px: '12px' }}
+                >
                   <Typography variant="body2" color="text.primary">
                     Pricing
                   </Typography>
                 </MenuItem>
-                <MenuItem onClick={() => scrollToSection('faq')}>
-                  {' '}
+                <MenuItem
+                  onClick={() => scrollToSection('faq')}
+                  sx={{ py: '6px', px: '12px' }}
+                >
                   <Typography variant="body2" color="text.primary">
                     FAQ
                   </Typography>
@@ -99,7 +135,18 @@ function AppAppBar() {
               </Box>
             </Box>
 
-            <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1 }}>
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 0.5 }}>
+              <ToggleColorMode />
+              <Button
+                color="primary"
+                variant="text"
+                size="small"
+                component="a"
+                href="/material-ui/getting-started/templates/sign-in/"
+                target="_blank"
+              >
+                Sign in
+              </Button>
               <Button
                 color="primary"
                 variant="contained"
@@ -110,22 +157,11 @@ function AppAppBar() {
               >
                 Sign up
               </Button>
-              <Button
-                color="primary"
-                variant="outlined"
-                size="small"
-                component="a"
-                href="/material-ui/getting-started/templates/sign-in/"
-                target="_blank"
-              >
-                Sign in
-              </Button>
-              <ToggleColorMode />
             </Box>
 
             <Box sx={{ display: { sm: '', md: 'none' } }}>
               <Button
-                variant="outlined"
+                variant="text"
                 color="primary"
                 aria-label="menu"
                 onClick={toggleDrawer(true)}

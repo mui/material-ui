@@ -1,8 +1,8 @@
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
-import { ThemeProvider, createTheme, ThemeOptions } from '@mui/material/styles';
 import Divider from '@mui/material/Divider';
+import { ThemeProvider, createTheme, ThemeOptions } from '@mui/material/styles';
 
 import AppAppBar from './components/AppAppBar';
 import Hero from './components/Hero';
