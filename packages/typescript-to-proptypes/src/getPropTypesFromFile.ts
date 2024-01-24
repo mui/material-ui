@@ -117,6 +117,7 @@ function checkType({
         if (!project.shouldUseObjectForDate?.({ name })) {
           return createInstanceOfType({ jsDoc, instance: 'Date' });
         }
+        break;
       }
       default:
         // continue with function execution
