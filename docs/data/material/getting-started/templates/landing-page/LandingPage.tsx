@@ -16,56 +16,32 @@ import Footer from './components/Footer';
 
 import getLPTheme from './getLPTheme';
 
-interface ColorMode {
-  mode: 'light' | 'dark';
-  toggleColorMode: () => void;
-}
-
-export const ColorModeContext = React.createContext<ColorMode | undefined>(
-  undefined,
-);
-
 export default function LandingPage() {
-  const [colorMode, setColorMode] = React.useState<ColorMode>({
-    mode: 'light',
-    toggleColorMode: () => {
-      setColorMode((prevMode) => ({
-        mode: prevMode.mode === 'light' ? 'dark' : 'light',
-        toggleColorMode: prevMode.toggleColorMode,
-      }));
-    },
-  });
-
-  const theme = React.useMemo<ThemeOptions>(
-    () => createTheme(getLPTheme(colorMode.mode)),
-    [colorMode.mode],
-  );
+  const theme = getLPTheme();
 
   return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <AppAppBar />
-        <Hero />
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: { xs: 8, sm: 12 },
-            bgcolor: 'background.default',
-          }}
-        >
-          <LogoCollection />
-          <Features />
-          <Divider />
-          <Testimonials />
-          <Highlights />
-          <Pricing />
-          <Divider />
-          <FAQ />
-          <Footer />
-        </Box>
-      </ThemeProvider>
-    </ColorModeContext.Provider>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <AppAppBar />
+      <Hero />
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: { xs: 8, sm: 12 },
+          bgcolor: 'background.default',
+        }}
+      >
+        <LogoCollection />
+        <Features />
+        <Divider />
+        <Testimonials />
+        <Highlights />
+        <Pricing />
+        <Divider />
+        <FAQ />
+        <Footer />
+      </Box>
+    </ThemeProvider>
   );
 }

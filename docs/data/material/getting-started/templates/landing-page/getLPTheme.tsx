@@ -1,6 +1,37 @@
+import { CSSObject } from '@mui/system';
+import type {} from '@mui/material/themeCssVarsAugmentation';
+import { createTheme, ThemeOptions, Theme, alpha } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
-import { createTheme, ThemeOptions, alpha } from '@mui/material/styles';
 import { PaletteMode } from '@mui/material';
+
+interface ApplyDarkStyles {
+  (scheme: CSSObject): CSSObject;
+}
+
+declare module '@mui/material/styles' {
+  interface Theme {
+    applyDarkStyles: ApplyDarkStyles;
+  }
+}
+
+declare module '@mui/material/styles/createPalette' {
+  interface ColorRange {
+    50: string;
+    100: string;
+    200: string;
+    300: string;
+    400: string;
+    500: string;
+    600: string;
+    700: string;
+    800: string;
+    900: string;
+  }
+
+  interface PaletteColor extends ColorRange {}
+}
+
+const defaultTheme = createTheme();
 
 export const brandColor = {
   50: '#F0F7FF',
@@ -54,81 +85,99 @@ export const successColor = {
   900: '#021D02',
 };
 
-const theme = createTheme();
+export const getMetaThemeColor = (mode: 'light' | 'dark') => {
+  const themeColor = {
+    light: brandColor[500],
+    dark: brandColor[900],
+  };
+  return themeColor[mode];
+};
 
-const getDesignTokens = (mode: PaletteMode) =>
+export const getDesignTokens = (mode: 'light' | 'dark') =>
   ({
     palette: {
-      mode,
-      ...(mode === 'light'
-        ? {
-            primary: {
-              light: brandColor[300],
-              main: brandColor[500],
-              dark: brandColor[800],
-            },
-            secondary: {
-              light: secondaryColor[300],
-              main: secondaryColor[500],
-              dark: secondaryColor[800],
-            },
-            warning: {
-              main: '#F7B538',
-              dark: '#F79F00',
-            },
-            error: {
-              light: red[50],
-              main: red[500],
-              dark: red[700],
-            },
-            success: {
-              light: successColor[300],
-              main: successColor[400],
-              dark: successColor[800],
-            },
-            background: {
-              default: '#fff',
-              paper: greyColor[50],
-            },
-            text: {
-              primary: greyColor[800],
-              secondary: greyColor[600],
-            },
-          }
-        : {
-            primary: {
-              light: brandColor[400],
-              main: brandColor[500],
-              dark: brandColor[800],
-            },
-            secondary: {
-              light: secondaryColor[400],
-              main: secondaryColor[500],
-              dark: secondaryColor[900],
-            },
-            warning: {
-              main: '#F7B538',
-              dark: '#F79F00',
-            },
-            error: {
-              light: '#D32F2F',
-              main: '#D32F2F',
-              dark: '#B22A2A',
-            },
-            success: {
-              light: successColor[400],
-              main: successColor[500],
-              dark: successColor[700],
-            },
-            background: {
-              default: greyColor[900],
-              paper: greyColor[800],
-            },
-            text: {
-              primary: '#fff',
-              secondary: greyColor[300],
-            },
-          }),
+      primary: {
+        light: brandColor[300],
+        main: brandColor[500],
+        dark: brandColor[800],
+        ...defaultTheme.applyDarkStyles({
+          light: brandColor[400],
+          main: brandColor[500],
+          dark: brandColor[800],
+        }),
+      },
+      secondary: {
+        light: secondaryColor[300],
+        main: secondaryColor[500],
+        dark: secondaryColor[800],
+        ...defaultTheme.applyDarkStyles({
+          light: secondaryColor[400],
+          main: secondaryColor[500],
+          dark: secondaryColor[900],
+        }),
+      },
+      warning: {
+        main: '#F7B538',
+        dark: '#F79F00',
+        ...defaultTheme.applyDarkStyles({
+          main: '#F7B538',
+          dark: '#F79F00',
+        }),
+      },
+      error: {
+        light: red[50],
+        main: red[500],
+        dark: red[700],
+        ...defaultTheme.applyDarkStyles({
+          light: '#D32F2F',
+          main: '#D32F2F',
+          dark: '#B22A2A',
+        }),
+      },
+      success: {
+        light: successColor[300],
+        main: successColor[400],
+        dark: successColor[800],
+        ...defaultTheme.applyDarkStyles({
+          light: successColor[400],
+          main: successColor[500],
+          dark: successColor[700],
+        }),
+      },
+      background: {
+        default: '#fff',
+        paper: greyColor[50],
+        ...defaultTheme.applyDarkStyles({
+          default: greyColor[900],
+          paper: greyColor[800],
+        }),
+      },
+      text: {
+        primary: greyColor[800],
+        secondary: greyColor[600],
+        ...defaultTheme.applyDarkStyles({
+          primary: '#fff',
+          secondary: greyColor[300],
+        }),
+      },
+    },
+
+    applyDarkStyles(css: Parameters<ApplyDarkStyles>[0]) {
+      if ((this as Theme).vars) {
+        // If CssVarsProvider is used as a provider,
+        // returns ':where([data-mui-color-scheme="light|dark"]) &'
+        const selector = (this as Theme)
+          .getColorSchemeSelector('dark')
+          .replace(/(\[[^\]]+\])/, ':where($1)');
+        return {
+          [selector]: css,
+        };
+      }
+      if ((this as Theme).palette.mode === 'dark') {
+        return css;
+      }
+
+      return undefined;
     },
   } as ThemeOptions);
 
@@ -140,40 +189,40 @@ const typographyBase = {
   fontWeightMedium: 500,
 };
 
-export default function getLPTheme(): ThemeOptions {
-  const fontHeader = {
-    color: theme.palette.text.primary,
-    fontWeight: typographyBase.fontWeightMedium,
-    fontFamily: "'Inter', sans-serif",
-  };
+const fontHeader = {
+  color: defaultTheme.palette.text.primary,
+  fontWeight: typographyBase.fontWeightMedium,
+  fontFamily: "'Inter', sans-serif",
+};
 
+export default function getLPTheme(): ThemeOptions {
   return {
     components: {
       MuiMenuItem: {
         styleOverrides: {
-          root: {
+          root: ({ theme, ownerState }) => ({
             borderRadius: '8px',
             color: greyColor[500],
             fontWeight: 500,
             ...theme.applyDarkStyles({
               color: greyColor[300],
             }),
-          },
+          }),
         },
       },
       MuiPaper: {
         styleOverrides: {
-          root: {
+          root: ({ theme, ownerState }) => ({
             backgroundColor: greyColor[100],
             ...theme.applyDarkStyles({
               backgroundColor: greyColor[900],
             }),
-          },
+          }),
         },
       },
       MuiCard: {
         styleOverrides: {
-          root: {
+          root: ({ theme, ownerState }) => ({
             backgroundColor: greyColor[50],
             borderRadius: '8px',
             border: `1px solid ${alpha(greyColor[200], 0.8)}`,
@@ -182,22 +231,22 @@ export default function getLPTheme(): ThemeOptions {
               backgroundColor: greyColor[900],
               border: `1px solid ${alpha(greyColor[700], 0.6)}`,
             }),
-          },
+          }),
         },
       },
       MuiDivider: {
         styleOverrides: {
-          root: {
+          root: ({ theme, ownerState }) => ({
             borderColor: `${alpha(greyColor[200], 0.8)}`,
             ...theme.applyDarkStyles({
               borderColor: `${alpha(greyColor[700], 0.6)}`,
             }),
-          },
+          }),
         },
       },
       MuiChip: {
         styleOverrides: {
-          root: {
+          root: ({ theme, ownerState }) => ({
             alignSelf: 'center',
             py: 1.5,
             px: 0.5,
@@ -235,94 +284,84 @@ export default function getLPTheme(): ThemeOptions {
                 color: brandColor[200],
               },
             }),
-          },
+          }),
         },
       },
-
       MuiButton: {
         styleOverrides: {
-          root: ({
-            ownerState,
-          }: {
-            ownerState: {
-              color?: string;
-              variant?: string;
-              size?: string;
-            };
-          }) =>
-            ({
-              boxShadow: 'none',
-              borderRadius: '8px',
-              ...(ownerState.size === 'small' && {
-                maxHeight: '32px',
-              }),
-              ...(ownerState.size === 'medium' && {
-                height: '40px',
-              }),
-              ...(ownerState.variant === 'contained' &&
-                ownerState.color === 'primary' && {
-                  backgroundColor: brandColor[400],
-                  border: `1px solid ${alpha(brandColor[600], 0.5)}`,
-                  boxShadow: `inset 0px 1px 1px ${
-                    brandColor[300]
-                  }, inset 0px -2px 1px ${alpha(
-                    brandColor[700],
-                    0.5,
-                  )}, 0px 2px 4px rgba(0, 0, 0, 0.1)`,
-                  '&:hover': {
-                    backgroundColor: brandColor[600],
-                    boxShadow: 'none',
-                  },
-                }),
-              ...(ownerState.variant === 'contained' &&
-                ownerState.color === 'secondary' && {
-                  backgroundColor: secondaryColor[500],
-                  border: `1px solid ${alpha(secondaryColor[600], 0.5)}`,
-                  boxShadow: `inset 0px 1px 1px ${secondaryColor[300]}, inset 0px -2px 1px ${secondaryColor[600]},  0px 2px 4px rgba(0, 0, 0, 0.1)`,
-                  '&:hover': {
-                    backgroundColor: secondaryColor[600],
-                    boxShadow: 'none',
-                  },
-                }),
-              ...(ownerState.variant === 'outlined' && {
-                backgroundColor: alpha(brandColor[300], 0.1),
-                borderColor: brandColor[300],
-                color: brandColor[500],
+          root: ({ theme, ownerState }) => ({
+            boxShadow: 'none',
+            borderRadius: '8px',
+            ...(ownerState.size === 'small' && {
+              maxHeight: '32px',
+            }),
+            ...(ownerState.size === 'medium' && {
+              height: '40px',
+            }),
+            ...(ownerState.variant === 'contained' &&
+              ownerState.color === 'primary' && {
+                backgroundColor: brandColor[400],
+                border: `1px solid ${alpha(brandColor[600], 0.5)}`,
+                boxShadow: `inset 0px 1px 1px ${
+                  brandColor[300]
+                }, inset 0px -2px 1px ${alpha(
+                  brandColor[700],
+                  0.5,
+                )}, 0px 2px 4px rgba(0, 0, 0, 0.1)`,
                 '&:hover': {
-                  backgroundColor: alpha(brandColor[300], 0.3),
-                  borderColor: brandColor[200],
+                  backgroundColor: brandColor[600],
+                  boxShadow: 'none',
+                },
+              }),
+            ...(ownerState.variant === 'contained' &&
+              ownerState.color === 'secondary' && {
+                backgroundColor: secondaryColor[500],
+                border: `1px solid ${alpha(secondaryColor[600], 0.5)}`,
+                boxShadow: `inset 0px 1px 1px ${secondaryColor[300]}, inset 0px -2px 1px ${secondaryColor[600]},  0px 2px 4px rgba(0, 0, 0, 0.1)`,
+                '&:hover': {
+                  backgroundColor: secondaryColor[600],
+                  boxShadow: 'none',
+                },
+              }),
+            ...(ownerState.variant === 'outlined' && {
+              backgroundColor: alpha(brandColor[300], 0.1),
+              borderColor: brandColor[300],
+              color: brandColor[500],
+              '&:hover': {
+                backgroundColor: alpha(brandColor[300], 0.3),
+                borderColor: brandColor[200],
+              },
+            }),
+            ...(ownerState.variant === 'text' && {
+              color: brandColor[500],
+              '&:hover': {
+                backgroundColor: alpha(brandColor[300], 0.3),
+                borderColor: brandColor[200],
+              },
+            }),
+            textTransform: 'none',
+            '&:active': {
+              transform: 'scale(0.98)',
+            },
+            ...theme.applyDarkStyles({
+              ...(ownerState.variant === 'outlined' && {
+                backgroundColor: alpha(brandColor[600], 0.1),
+                borderColor: brandColor[700],
+                color: brandColor[300],
+                '&:hover': {
+                  backgroundColor: alpha(brandColor[600], 0.3),
+                  borderColor: brandColor[700],
                 },
               }),
               ...(ownerState.variant === 'text' && {
-                color: brandColor[500],
+                color: brandColor[300],
                 '&:hover': {
-                  backgroundColor: alpha(brandColor[300], 0.3),
-                  borderColor: brandColor[200],
+                  backgroundColor: alpha(brandColor[600], 0.3),
+                  borderColor: brandColor[700],
                 },
               }),
-              textTransform: 'none',
-              '&:active': {
-                transform: 'scale(0.98)',
-              },
-              ...theme.applyDarkStyles({
-                ...(ownerState.variant === 'outlined' && {
-                  backgroundColor: alpha(brandColor[600], 0.1),
-                  borderColor: brandColor[700],
-                  color: brandColor[300],
-                  '&:hover': {
-                    backgroundColor: alpha(brandColor[600], 0.3),
-                    borderColor: brandColor[700],
-                  },
-                }),
-                ...(ownerState.variant === 'text' && {
-                  color: brandColor[300],
-                  '&:hover': {
-                    backgroundColor: alpha(brandColor[600], 0.3),
-                    borderColor: brandColor[700],
-                  },
-                }),
-              }),
-            } as const),
+            }),
+          }),
         },
       },
       MuiLink: {
@@ -330,32 +369,31 @@ export default function getLPTheme(): ThemeOptions {
           underline: 'none',
         },
         styleOverrides: {
-          root: ({ ownerState }: { ownerState: { color?: string } }) =>
-            ({
-              color: brandColor[500],
-              fontWeight: 500,
-              position: 'relative',
-              textDecoration: 'none',
-              '&::before': {
-                content: '""',
-                position: 'absolute',
-                width: 0,
-                height: '1px',
-                bottom: 0,
-                left: 0,
-                backgroundColor: brandColor[200],
-                opacity: 0.5,
-                transition: 'width 0.3s ease, opacity 0.3s ease',
-              },
-              '&:hover::before': {
-                width: '100%',
-                opacity: 1,
-              },
-              ...theme.applyDarkStyles({
-                color: brandColor[200],
-              }),
-            } as const),
-        } as any,
+          root: ({ theme, ownerState }) => ({
+            color: brandColor[500],
+            fontWeight: 500,
+            position: 'relative',
+            textDecoration: 'none',
+            '&::before': {
+              content: '""',
+              position: 'absolute',
+              width: 0,
+              height: '1px',
+              bottom: 0,
+              left: 0,
+              backgroundColor: brandColor[200],
+              opacity: 0.5,
+              transition: 'width 0.3s ease, opacity 0.3s ease',
+            },
+            '&:hover::before': {
+              width: '100%',
+              opacity: 1,
+            },
+            ...theme.applyDarkStyles({
+              color: brandColor[200],
+            }),
+          }),
+        },
       },
       MuiAccordion: {
         defaultProps: {
@@ -363,7 +401,7 @@ export default function getLPTheme(): ThemeOptions {
           disableGutters: true,
         },
         styleOverrides: {
-          root: {
+          root: ({ theme, ownerState }) => ({
             backgroundColor: '#fff',
             border: '1px solid',
             borderColor: greyColor[100],
@@ -382,7 +420,7 @@ export default function getLPTheme(): ThemeOptions {
               backgroundColor: greyColor[900],
               borderColor: greyColor[800],
             }),
-          },
+          }),
         },
       },
       MuiAccordionSummary: {
@@ -399,7 +437,7 @@ export default function getLPTheme(): ThemeOptions {
       },
       MuiTextField: {
         styleOverrides: {
-          root: {
+          root: ({ theme, ownerState }) => ({
             '& label.Mui-focused': {
               color: 'white',
             },
@@ -438,54 +476,66 @@ export default function getLPTheme(): ThemeOptions {
                 },
               },
             }),
+          }),
+        },
+      },
+      MuiTypography: {
+        styleOverrides: {
+          ...typographyBase,
+          ...fontHeader,
+          h1: {
+            ...fontHeader,
+            fontSize: 60,
+            lineHeight: 1.2,
+          },
+          h2: {
+            ...fontHeader,
+            fontSize: 48,
+            lineHeight: 1.2,
+          },
+          h3: {
+            ...fontHeader,
+            fontSize: 42,
+            lineHeight: 1.2,
+          },
+          h4: {
+            ...fontHeader,
+            fontSize: 36,
+            lineHeight: 1.5,
+          },
+          h5: {
+            fontSize: 20,
+            fontWeight: typographyBase.fontWeightLight,
+          },
+          h6: {
+            ...fontHeader,
+            fontSize: 18,
+          },
+          subtitle1: {
+            fontSize: 18,
+          },
+          subtitle2: {
+            fontSize: 16,
+          },
+          body1: {
+            fontWeight: typographyBase.fontWeightRegular,
+            fontSize: 16,
+          },
+          body2: {
+            fontSize: 14,
           },
         },
       },
     },
-    typography: {
-      ...typographyBase,
-      ...fontHeader,
-      h1: {
-        ...fontHeader,
-        fontSize: 60,
-        lineHeight: 1.2,
-      },
-      h2: {
-        ...fontHeader,
-        fontSize: 48,
-        lineHeight: 1.2,
-      },
-      h3: {
-        ...fontHeader,
-        fontSize: 42,
-        lineHeight: 1.2,
-      },
-      h4: {
-        ...fontHeader,
-        fontSize: 36,
-        lineHeight: 1.5,
-      },
-      h5: {
-        fontSize: 20,
-        fontWeight: typographyBase.fontWeightLight,
-      },
-      h6: {
-        ...fontHeader,
-        fontSize: 18,
-      },
-      subtitle1: {
-        fontSize: 18,
-      },
-      subtitle2: {
-        fontSize: 16,
-      },
-      body1: {
-        fontWeight: typographyBase.fontWeightRegular,
-        fontSize: 16,
-      },
-      body2: {
-        fontSize: 14,
-      },
-    },
-  } as const;
+  };
 }
+
+export const brandingDarkTheme = createTheme({
+  ...getDesignTokens('dark'),
+  ...getLPTheme(),
+});
+
+export const brandingLightTheme = createTheme({
+  ...getDesignTokens('light'),
+  ...getLPTheme(),
+});

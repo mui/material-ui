@@ -5,19 +5,10 @@ import Button from '@mui/material/Button';
 import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded';
 import ModeNightRoundedIcon from '@mui/icons-material/ModeNightRounded';
 
-import { ColorModeContext } from '../LandingPage';
-
 function ToggleColorMode() {
-  const contextValue = React.useContext(ColorModeContext);
-
-  if (!contextValue) {
-    throw new Error('ColorModeContext value is undefined');
-  }
-
-  const { mode, toggleColorMode } = contextValue;
-
   return (
-    <Box sx={{ maxWidth: '32px' }}>
+    <Box></Box>
+    /*<Box sx={{ maxWidth: '32px' }}>
       <Button
         variant="text"
         onClick={toggleColorMode}
@@ -30,7 +21,7 @@ function ToggleColorMode() {
           <ModeNightRoundedIcon fontSize="small" />
         )}
       </Button>
-    </Box>
+    </Box>*/
   );
 }
 
