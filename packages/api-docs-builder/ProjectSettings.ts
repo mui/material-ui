@@ -40,7 +40,7 @@ export interface ProjectSettings {
   /**
    * Callback function to be called when the API generation is completed
    */
-  onCompleted?: () => void;
+  onCompleted?: () => void | Promise<void>;
   /**
    * Callback to customize the manifest file before it's written to the disk
    */

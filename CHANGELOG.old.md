@@ -2331,7 +2331,7 @@ Here are some highlights ✨:
   You can [learn more about the difference](https://v4.mui.com/styles/basics/#material-ui-core-styles-vs-material-ui-styles) in the documentation.
 
 - ♿️ Improve the accessibility of the table and select components (#17696, #17773) @adeelibr, @eps1lon.
-- 📊 Launch a [developer survey](https://www.surveymonkey.com/r/5XHDL76) as a precursor to a major DatePicker enhancement effort.
+- 📊 Launch a Developer Survey as a precursor to a major DatePicker enhancement effort.
 - 💄 Add support for different [slider track mode](https://mui.com/components/slider/#track) (#17714) @slipmat.
 - And many more 🐛 bug fixes and 📚 improvements.
 
@@ -2390,7 +2390,7 @@ Here are some highlights ✨:
 - [docs] Mentioned CSS required for disabling transitions (#17802) @burtyish
 - [docs] Migrate Globals demo to TypeScript (#17785) @limatgans
 - [docs] Migrate Palette demo to TypeScript (#17683) @limatgans
-- [docs] Prepare the DatePicker developer survey notification (#17805) @oliviertassinari
+- [docs] Prepare the DatePicker Developer Survey notification (#17805) @oliviertassinari
 - [docs] Update "Who's using" (#17830) @mbrookes
 - [docs] Update notification @oliviertassinari
 - [docs] Update useMediaQuery example to avoid confusion with print (#17642) @epeicher

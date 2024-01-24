@@ -115,7 +115,6 @@ export default function XRoadmap() {
             component={Link}
             href={ROUTES.xRoadmap}
             noLinkStyle
-            size="large"
             variant="contained"
             endIcon={<KeyboardArrowRightRounded />}
             sx={{ width: { xs: '100%', sm: 'auto' } }}

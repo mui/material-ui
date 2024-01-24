@@ -19,9 +19,9 @@ overrides:
   '@babel/preset-typescript': ^7.23.3
   '@babel/runtime': ^7.23.8
   '@babel/types': ^7.23.6
-  '@definitelytyped/header-parser': ^0.1.1
-  '@definitelytyped/typescript-versions': ^0.0.184
-  '@definitelytyped/utils': ^0.0.191
+  '@definitelytyped/header-parser': ^0.2.1
+  '@definitelytyped/typescript-versions': ^0.1.0
+  '@definitelytyped/utils': ^0.1.1
   '@types/node': ^18.19.8
   '@types/react': ^18.2.48
   '@types/react-dom': 18.2.18
@@ -111,14 +111,14 @@ importers:
         specifier: workspace:^
         version: link:packages/mui-utils/build
       '@next/eslint-plugin-next':
-        specifier: ^14.0.4
-        version: 14.0.4
+        specifier: ^14.1.0
+        version: 14.1.0
       '@octokit/rest':
         specifier: ^20.0.2
         version: 20.0.2
       '@playwright/test':
-        specifier: 1.40.1
-        version: 1.40.1
+        specifier: 1.41.1
+        version: 1.41.1
       '@slack/web-api':
         specifier: ^6.11.2
         version: 6.11.2
@@ -375,8 +375,8 @@ importers:
         specifier: workspace:^
         version: link:../local-ui-lib
       next:
-        specifier: 14.0.4
-        version: 14.0.4(@babel/core@7.23.7)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 14.1.0
+        version: 14.1.0(@babel/core@7.23.7)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -506,8 +506,8 @@ importers:
         specifier: ^10.10.0
         version: 10.10.0
       playwright:
-        specifier: ^1.40.1
-        version: 1.40.1
+        specifier: ^1.41.1
+        version: 1.41.1
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
@@ -626,26 +626,26 @@ importers:
         specifier: workspace:^
         version: link:../packages/mui-utils/build
       '@mui/x-charts':
-        specifier: 6.18.7
-        version: 6.18.7(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 6.19.1
+        version: 6.19.1(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-data-grid':
-        specifier: 6.18.7
-        version: 6.18.7(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 6.19.1
+        version: 6.19.1(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-data-grid-generator':
-        specifier: 6.18.7
-        version: 6.18.7(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 6.19.1
+        version: 6.19.1(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-data-grid-premium':
-        specifier: 6.18.7
-        version: 6.18.7(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 6.19.1
+        version: 6.19.1(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-data-grid-pro':
-        specifier: 6.18.7
-        version: 6.18.7(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 6.19.1
+        version: 6.19.1(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-date-pickers':
-        specifier: 6.18.7
-        version: 6.18.7(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 6.19.0
+        version: 6.19.0(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-date-pickers-pro':
-        specifier: 6.18.7
-        version: 6.18.7(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 6.19.0
+        version: 6.19.0(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-license-pro':
         specifier: 6.10.2
         version: 6.10.2(@types/react@18.2.48)(react@18.2.0)
@@ -894,8 +894,8 @@ importers:
         specifier: ^5.1.2
         version: 5.1.2
       playwright:
-        specifier: ^1.40.1
-        version: 1.40.1
+        specifier: ^1.41.1
+        version: 1.41.1
       prettier:
         specifier: ^2.8.8
         version: 2.8.8
@@ -953,6 +953,9 @@ importers:
       remark:
         specifier: ^13.0.0
         version: 13.0.0
+      typescript:
+        specifier: ^5.3.3
+        version: 5.3.3
       unist-util-visit:
         specifier: ^2.0.3
         version: 2.0.3
@@ -990,20 +993,17 @@ importers:
       sinon:
         specifier: ^15.2.0
         version: 15.2.0
-      typescript:
-        specifier: ^5.3.3
-        version: 5.3.3
 
   packages/api-docs-builder-core:
     dependencies:
       '@mui-internal/api-docs-builder':
-        specifier: ^1.0.0
+        specifier: workspace:^
         version: link:../api-docs-builder
       '@mui/markdown':
-        specifier: ^5.0.0
+        specifier: workspace:^
         version: link:../markdown
       docs:
-        specifier: ^5.0.0
+        specifier: workspace:^
         version: link:../../docs
       lodash:
         specifier: ^4.17.21
@@ -1059,8 +1059,8 @@ importers:
         version: 9.0.1
     optionalDependencies:
       aws-sdk:
-        specifier: ^2.1531.0
-        version: 2.1531.0
+        specifier: ^2.1541.0
+        version: 2.1541.0
     devDependencies:
       claudia:
         specifier: ^5.14.1
@@ -1580,8 +1580,8 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       playwright:
-        specifier: ^1.40.1
-        version: 1.40.1
+        specifier: ^1.41.1
+        version: 1.41.1
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2157,8 +2157,8 @@ importers:
         specifier: ^10.2.0
         version: 10.2.0
       playwright:
-        specifier: ^1.40.1
-        version: 1.40.1
+        specifier: ^1.41.1
+        version: 1.41.1
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
@@ -2288,8 +2288,8 @@ importers:
         version: link:../zero-unplugin
     devDependencies:
       next:
-        specifier: ^14.0.4
-        version: 14.0.4(@babel/core@7.23.7)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^14.1.0
+        version: 14.1.0(@babel/core@7.23.7)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
 
   packages/zero-runtime:
     dependencies:
@@ -2483,8 +2483,8 @@ importers:
         specifier: workspace:^
         version: link:../packages/mui-utils/build
       '@playwright/test':
-        specifier: 1.40.1
-        version: 1.40.1
+        specifier: 1.41.1
+        version: 1.41.1
       '@testing-library/dom':
         specifier: ^9.3.4
         version: 9.3.4
@@ -2519,8 +2519,8 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       playwright:
-        specifier: ^1.40.1
-        version: 1.40.1
+        specifier: ^1.41.1
+        version: 1.41.1
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
@@ -5387,8 +5387,8 @@ packages:
       react-is: 18.2.0
     dev: false
 
-  /@mui/x-charts@6.18.7(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-s7a24H0vEnOGjLv4DNHsjLAScu6rLHOLDUV5LFe22Kv0//Xl4r8bjmX7BXzy3ma3z9Uy2gw5Ey9ASpi0sQKjeg==}
+  /@mui/x-charts@6.19.1(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-7FJFwL+6o0Qt7RcQCeDeGL5aPzMpX8Dyh7+IOoNoaLiIHVNssAYh4D3uD2mKpZ+pcW6SE54aE5WM1SWDEC8TQA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@emotion/react': ^11.9.0
@@ -5422,8 +5422,8 @@ packages:
       - '@types/react'
     dev: false
 
-  /@mui/x-data-grid-generator@6.18.7(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-OQZ1rZxt6PUAAR2CZ5R0ddhifSS/KnFtrAUn7UMEnC6kIRRVaCjTnkSJcxqcJT/5kYYuaU93tv7WS1e9DRaN2A==}
+  /@mui/x-data-grid-generator@6.19.1(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-5d6e5bS+/r/PI68+/E7qPJkQ3ogQHz1JNchPp6f9NaZoTQqpgOukn+mb/tJi3j/04lG3rQmX93rSfacbRBDKSg==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@mui/icons-material': ^5.4.1
@@ -5434,7 +5434,7 @@ packages:
       '@mui/base': 5.0.0-beta.30(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
       '@mui/icons-material': link:packages/mui-icons-material/build
       '@mui/material': link:packages/mui-material/build
-      '@mui/x-data-grid-premium': 6.18.7(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
+      '@mui/x-data-grid-premium': 6.19.1(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
       chance: 1.1.11
       clsx: 2.1.0
       lru-cache: 7.18.3
@@ -5445,8 +5445,8 @@ packages:
       - react-dom
     dev: false
 
-  /@mui/x-data-grid-premium@6.18.7(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-mX1Ek3Nu/o0ypUhvqvxH/IQDKF1TNgYRTTIBANyylPt92jlXzS5hAKpEw188Iu/0nueOoCHT5EdBj+5pPCfAuw==}
+  /@mui/x-data-grid-premium@6.19.1(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-jixEeZdrPiqNC5ZgIY+23ivgCgX0tGizkLAJtk6UorAQO5bZg4F2j0Q0h7JOgzZJ9SfHVRUd5vrTsWJs+d9DQA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@mui/material': ^5.4.1
@@ -5458,8 +5458,8 @@ packages:
       '@mui/material': link:packages/mui-material/build
       '@mui/system': link:packages/mui-system/build
       '@mui/utils': 5.15.3(@types/react@18.2.48)(react@18.2.0)
-      '@mui/x-data-grid': 6.18.7(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
-      '@mui/x-data-grid-pro': 6.18.7(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
+      '@mui/x-data-grid': 6.19.1(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
+      '@mui/x-data-grid-pro': 6.19.1(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-license-pro': 6.10.2(@types/react@18.2.48)(react@18.2.0)
       '@types/format-util': 1.0.4
       clsx: 2.1.0
@@ -5472,8 +5472,8 @@ packages:
       - '@types/react'
     dev: false
 
-  /@mui/x-data-grid-pro@6.18.7(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-NuL3o7sHmbx85mYRMW5UG8E3I3ogBtLp1xPBzpNrsrkbzpH6Ec45OzGzu1y9NljC2GfNpdbZhKirYLqFkQt7+A==}
+  /@mui/x-data-grid-pro@6.19.1(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-E9WOUvSxyLnin6F5npqBjTbHMN1ovJ7Jige9SadvKCmXtVS88HU/OtYWNnzVPrLtnIoOrI3yxdqltqzcC2kfOw==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@mui/material': ^5.4.1
@@ -5485,7 +5485,7 @@ packages:
       '@mui/material': link:packages/mui-material/build
       '@mui/system': link:packages/mui-system/build
       '@mui/utils': 5.15.3(@types/react@18.2.48)(react@18.2.0)
-      '@mui/x-data-grid': 6.18.7(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
+      '@mui/x-data-grid': 6.19.1(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-license-pro': 6.10.2(@types/react@18.2.48)(react@18.2.0)
       '@types/format-util': 1.0.4
       clsx: 2.1.0
@@ -5497,8 +5497,8 @@ packages:
       - '@types/react'
     dev: false
 
-  /@mui/x-data-grid@6.18.7(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-K1A3pMUPxI4/Mt5A4vrK45fBBQK5rZvBVqRMrB5n8zX++Bj+WLWKvLTtfCmlriUtzuadr/Hl7Z+FDRXUJAx6qg==}
+  /@mui/x-data-grid@6.19.1(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-qtmt+XAOdxwb7p3vjk4HcfncAOe+0HzpcC6o6G+rzk9Hqq6MgG3yODrN9mRc/ONg0fD0eVlqDogXxNtJhcFmTQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@mui/material': ^5.4.1
@@ -5519,15 +5519,15 @@ packages:
       - '@types/react'
     dev: false
 
-  /@mui/x-date-pickers-pro@6.18.7(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-9EclhrdlB5GSvSJF2arbIT1BfMv8o/uZVgV8O0F0yAekavkRDn+2bWw4H9jNHeD0RiXDWPHRAmZ+5VzIwAA0QA==}
+  /@mui/x-date-pickers-pro@6.19.0(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-+wOvgROI1MkdF4H9XJ7hRpee0i+OvY+JW/fytGTJeAZy/VHBCdF8IMBhwrE5NctR369LjDwtNykIxRg0yIgwWQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@emotion/react': ^11.9.0
       '@emotion/styled': ^11.8.1
       '@mui/material': ^5.8.6
       '@mui/system': ^5.8.0
-      date-fns: ^2.25.0
+      date-fns: ^2.25.0 || ^3.2.0
       date-fns-jalali: ^2.13.0-0
       dayjs: ^1.10.7
       luxon: ^3.0.2
@@ -5563,7 +5563,7 @@ packages:
       '@mui/material': link:packages/mui-material/build
       '@mui/system': link:packages/mui-system/build
       '@mui/utils': 5.15.3(@types/react@18.2.48)(react@18.2.0)
-      '@mui/x-date-pickers': 6.18.7(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0)
+      '@mui/x-date-pickers': 6.19.0(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-license-pro': 6.10.2(@types/react@18.2.48)(react@18.2.0)
       clsx: 2.1.0
       date-fns: 2.30.0
@@ -5576,15 +5576,15 @@ packages:
       - '@types/react'
     dev: false
 
-  /@mui/x-date-pickers@6.18.7(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-4NoapaCT3jvEk2cuAUjG0ReZvTEk1i4dGDz94Gt1Oc08GuC1AuzYRwCR1/1tdmbDynwkR8ilkKL6AyS3NL1H4A==}
+  /@mui/x-date-pickers@6.19.0(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.48)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-/GccT+iFJTKjI6b9b0MWojyRKnizL/VYYAfPnR1q0wSVVXjYv7a1NK0uQlan4JbnovqoQCNVeTOCy/0bUJyD2Q==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@emotion/react': ^11.9.0
       '@emotion/styled': ^11.8.1
       '@mui/material': ^5.8.6
       '@mui/system': ^5.8.0
-      date-fns: ^2.25.0
+      date-fns: ^2.25.0 || ^3.2.0
       date-fns-jalali: ^2.13.0-0
       dayjs: ^1.10.7
       luxon: ^3.0.2
@@ -5676,13 +5676,13 @@ packages:
   /@next/env@13.4.19:
     resolution: {integrity: sha512-FsAT5x0jF2kkhNkKkukhsyYOrRqtSxrEhfliniIq0bwWbuXLgyt3Gv0Ml+b91XwjwArmuP7NxCiGd++GGKdNMQ==}
 
-  /@next/env@14.0.4:
-    resolution: {integrity: sha512-irQnbMLbUNQpP1wcE5NstJtbuA/69kRfzBrpAD7Gsn8zm/CY6YQYc3HQBz8QPxwISG26tIm5afvvVbu508oBeQ==}
+  /@next/env@14.1.0:
+    resolution: {integrity: sha512-Py8zIo+02ht82brwwhTg36iogzFqGLPXlRGKQw5s+qP/kMNc4MAyDeEwBKDijk6zTIbegEgu8Qy7C1LboslQAw==}
 
-  /@next/eslint-plugin-next@14.0.4:
-    resolution: {integrity: sha512-U3qMNHmEZoVmHA0j/57nRfi3AscXNvkOnxDmle/69Jz/G0o/gWjXTDdlgILZdrxQ0Lw/jv2mPW8PGy0EGIHXhQ==}
+  /@next/eslint-plugin-next@14.1.0:
+    resolution: {integrity: sha512-x4FavbNEeXx/baD/zC/SdrvkjSby8nBn8KcCREqk6UuwvwoAPZmaV8TFCAuo/cpovBRTIY67mHhe86MQQm/68Q==}
     dependencies:
-      glob: 7.1.7
+      glob: 10.3.10
     dev: true
 
   /@next/swc-darwin-arm64@13.4.19:
@@ -5693,8 +5693,8 @@ packages:
     requiresBuild: true
     optional: true
 
-  /@next/swc-darwin-arm64@14.0.4:
-    resolution: {integrity: sha512-mF05E/5uPthWzyYDyptcwHptucf/jj09i2SXBPwNzbgBNc+XnwzrL0U6BmPjQeOL+FiB+iG1gwBeq7mlDjSRPg==}
+  /@next/swc-darwin-arm64@14.1.0:
+    resolution: {integrity: sha512-nUDn7TOGcIeyQni6lZHfzNoo9S0euXnu0jhsbMOmMJUBfgsnESdjN97kM7cBqQxZa8L/bM9om/S5/1dzCrW6wQ==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
@@ -5709,8 +5709,8 @@ packages:
     requiresBuild: true
     optional: true
 
-  /@next/swc-darwin-x64@14.0.4:
-    resolution: {integrity: sha512-IZQ3C7Bx0k2rYtrZZxKKiusMTM9WWcK5ajyhOZkYYTCc8xytmwSzR1skU7qLgVT/EY9xtXDG0WhY6fyujnI3rw==}
+  /@next/swc-darwin-x64@14.1.0:
+    resolution: {integrity: sha512-1jgudN5haWxiAl3O1ljUS2GfupPmcftu2RYJqZiMJmmbBT5M1XDffjUtRUzP4W3cBHsrvkfOFdQ71hAreNQP6g==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
@@ -5725,8 +5725,8 @@ packages:
     requiresBuild: true
     optional: true
 
-  /@next/swc-linux-arm64-gnu@14.0.4:
-    resolution: {integrity: sha512-VwwZKrBQo/MGb1VOrxJ6LrKvbpo7UbROuyMRvQKTFKhNaXjUmKTu7wxVkIuCARAfiI8JpaWAnKR+D6tzpCcM4w==}
+  /@next/swc-linux-arm64-gnu@14.1.0:
+    resolution: {integrity: sha512-RHo7Tcj+jllXUbK7xk2NyIDod3YcCPDZxj1WLIYxd709BQ7WuRYl3OWUNG+WUfqeQBds6kvZYlc42NJJTNi4tQ==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
@@ -5741,8 +5741,8 @@ packages:
     requiresBuild: true
     optional: true
 
-  /@next/swc-linux-arm64-musl@14.0.4:
-    resolution: {integrity: sha512-8QftwPEW37XxXoAwsn+nXlodKWHfpMaSvt81W43Wh8dv0gkheD+30ezWMcFGHLI71KiWmHK5PSQbTQGUiidvLQ==}
+  /@next/swc-linux-arm64-musl@14.1.0:
+    resolution: {integrity: sha512-v6kP8sHYxjO8RwHmWMJSq7VZP2nYCkRVQ0qolh2l6xroe9QjbgV8siTbduED4u0hlk0+tjS6/Tuy4n5XCp+l6g==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
@@ -5757,8 +5757,8 @@ packages:
     requiresBuild: true
     optional: true
 
-  /@next/swc-linux-x64-gnu@14.0.4:
-    resolution: {integrity: sha512-/s/Pme3VKfZAfISlYVq2hzFS8AcAIOTnoKupc/j4WlvF6GQ0VouS2Q2KEgPuO1eMBwakWPB1aYFIA4VNVh667A==}
+  /@next/swc-linux-x64-gnu@14.1.0:
+    resolution: {integrity: sha512-zJ2pnoFYB1F4vmEVlb/eSe+VH679zT1VdXlZKX+pE66grOgjmKJHKacf82g/sWE4MQ4Rk2FMBCRnX+l6/TVYzQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
@@ -5773,8 +5773,8 @@ packages:
     requiresBuild: true
     optional: true
 
-  /@next/swc-linux-x64-musl@14.0.4:
-    resolution: {integrity: sha512-m8z/6Fyal4L9Bnlxde5g2Mfa1Z7dasMQyhEhskDATpqr+Y0mjOBZcXQ7G5U+vgL22cI4T7MfvgtrM2jdopqWaw==}
+  /@next/swc-linux-x64-musl@14.1.0:
+    resolution: {integrity: sha512-rbaIYFt2X9YZBSbH/CwGAjbBG2/MrACCVu2X0+kSykHzHnYH5FjHxwXLkcoJ10cX0aWCEynpu+rP76x0914atg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
@@ -5789,8 +5789,8 @@ packages:
     requiresBuild: true
     optional: true
 
-  /@next/swc-win32-arm64-msvc@14.0.4:
-    resolution: {integrity: sha512-7Wv4PRiWIAWbm5XrGz3D8HUkCVDMMz9igffZG4NB1p4u1KoItwx9qjATHz88kwCEal/HXmbShucaslXCQXUM5w==}
+  /@next/swc-win32-arm64-msvc@14.1.0:
+    resolution: {integrity: sha512-o1N5TsYc8f/HpGt39OUQpQ9AKIGApd3QLueu7hXk//2xq5Z9OxmV6sQfNp8C7qYmiOlHYODOGqNNa0e9jvchGQ==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [win32]
@@ -5805,8 +5805,8 @@ packages:
     requiresBuild: true
     optional: true
 
-  /@next/swc-win32-ia32-msvc@14.0.4:
-    resolution: {integrity: sha512-zLeNEAPULsl0phfGb4kdzF/cAVIfaC7hY+kt0/d+y9mzcZHsMS3hAS829WbJ31DkSlVKQeHEjZHIdhN+Pg7Gyg==}
+  /@next/swc-win32-ia32-msvc@14.1.0:
+    resolution: {integrity: sha512-XXIuB1DBRCFwNO6EEzCTMHT5pauwaSj4SWs7CYnME57eaReAKBXCnkUE80p/pAZcewm7hs+vGvNqDPacEXHVkw==}
     engines: {node: '>= 10'}
     cpu: [ia32]
     os: [win32]
@@ -5821,8 +5821,8 @@ packages:
     requiresBuild: true
     optional: true
 
-  /@next/swc-win32-x64-msvc@14.0.4:
-    resolution: {integrity: sha512-yEh2+R8qDlDCjxVpzOTEpBLQTEFAcP2A8fUFLaWNap9GitYKkKv1//y2S6XY6zsR4rCOPRpU7plYDR+az2n30A==}
+  /@next/swc-win32-x64-msvc@14.1.0:
+    resolution: {integrity: sha512-9WEbVRRAqJ3YFVqEZIxUqkiO8l1nool1LmNxygr5HWF8AcSYsEpneUDhmjUVJEzO2A04+oPtZdombzzPPkTtgg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
@@ -6412,12 +6412,12 @@ packages:
     requiresBuild: true
     optional: true
 
-  /@playwright/test@1.40.1:
-    resolution: {integrity: sha512-EaaawMTOeEItCRvfmkI9v6rBkF1svM8wjl/YPRrg2N2Wmp+4qJYkWtJsbew1szfKKDm6fPLy4YAanBhIlf9dWw==}
+  /@playwright/test@1.41.1:
+    resolution: {integrity: sha512-9g8EWTjiQ9yFBXc6HjCWe41msLpxEX0KhmfmPl9RPLJdfzL4F0lg2BdJ91O9azFdl11y1pmpwdjBiSxvqc+btw==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
-      playwright: 1.40.1
+      playwright: 1.41.1
     dev: true
 
   /@polka/url@1.0.0-next.21:
@@ -8986,8 +8986,8 @@ packages:
     resolution: {integrity: sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==}
     engines: {node: '>= 0.4'}
 
-  /aws-sdk@2.1531.0:
-    resolution: {integrity: sha512-BnZcutxV8aplvyCQDUxOlHkrqqqmWl1hgY1sq8umP6bcSEknjH+mrBB6e0XyLQY4ParC0Oyw/8IbDWwc+LsDqw==}
+  /aws-sdk@2.1541.0:
+    resolution: {integrity: sha512-+xS/Gq/+j/RKb3A6SHXn6tOCaog1O3troklpVxxNaqVNnq+zlwjFderGNzR6S4ftfNG7sKMUP++Znsqte8GMaw==}
     engines: {node: '>= 10.0.0'}
     dependencies:
       buffer: 4.9.2
@@ -9875,7 +9875,7 @@ packages:
     hasBin: true
     dependencies:
       archiver: 3.1.1
-      aws-sdk: 2.1531.0
+      aws-sdk: 2.1541.0
       fs-extra: 6.0.1
       glob: 7.2.3
       gunzip-maybe: 1.4.2
@@ -12845,17 +12845,6 @@ packages:
       minimatch: 3.1.2
       once: 1.4.0
       path-is-absolute: 1.0.1
-
-  /glob@7.1.7:
-    resolution: {integrity: sha512-OvD9ENzPLbegENnYP5UUfJIirTg4+XwMWGaQfQTY0JenxNvvIKP3U3/tAQSPIu/lHxXYSZmpXlUHeqAIdKzBLQ==}
-    dependencies:
-      fs.realpath: 1.0.0
-      inflight: 1.0.6
-      inherits: 2.0.4
-      minimatch: 3.1.2
-      once: 1.4.0
-      path-is-absolute: 1.0.1
-    dev: true
 
   /glob@7.2.0:
     resolution: {integrity: sha512-lmLf6gtyrPq8tTjSmrO94wBeQbFR3HbLHbuyD69wuyQkImp2hWqMGB47OX65FBkPffO641IP9jWa1z4ivqG26Q==}
@@ -16370,8 +16359,8 @@ packages:
       - '@babel/core'
       - babel-plugin-macros
 
-  /next@14.0.4(@babel/core@7.23.7)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-qbwypnM7327SadwFtxXnQdGiKpkuhaRLE2uq62/nRul9cj9KhQ5LhHmlziTNqUidZotw/Q1I9OjirBROdUJNgA==}
+  /next@14.1.0(@babel/core@7.23.7)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-wlzrsbfeSU48YQBjZhDzOwhWhGsy+uQycR8bHAOt1LY1bn3zZEcDyHQOEoN3aWzQ8LHCAJ1nqrWCc9XF2+O45Q==}
     engines: {node: '>=18.17.0'}
     hasBin: true
     peerDependencies:
@@ -16385,7 +16374,7 @@ packages:
       sass:
         optional: true
     dependencies:
-      '@next/env': 14.0.4
+      '@next/env': 14.1.0
       '@swc/helpers': 0.5.2
       busboy: 1.6.0
       caniuse-lite: 1.0.30001579
@@ -16394,17 +16383,16 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       styled-jsx: 5.1.1(@babel/core@7.23.7)(babel-plugin-macros@3.1.0)(react@18.2.0)
-      watchpack: 2.4.0
     optionalDependencies:
-      '@next/swc-darwin-arm64': 14.0.4
-      '@next/swc-darwin-x64': 14.0.4
-      '@next/swc-linux-arm64-gnu': 14.0.4
-      '@next/swc-linux-arm64-musl': 14.0.4
-      '@next/swc-linux-x64-gnu': 14.0.4
-      '@next/swc-linux-x64-musl': 14.0.4
-      '@next/swc-win32-arm64-msvc': 14.0.4
-      '@next/swc-win32-ia32-msvc': 14.0.4
-      '@next/swc-win32-x64-msvc': 14.0.4
+      '@next/swc-darwin-arm64': 14.1.0
+      '@next/swc-darwin-x64': 14.1.0
+      '@next/swc-linux-arm64-gnu': 14.1.0
+      '@next/swc-linux-arm64-musl': 14.1.0
+      '@next/swc-linux-x64-gnu': 14.1.0
+      '@next/swc-linux-x64-musl': 14.1.0
+      '@next/swc-win32-arm64-msvc': 14.1.0
+      '@next/swc-win32-ia32-msvc': 14.1.0
+      '@next/swc-win32-x64-msvc': 14.1.0
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
@@ -17579,17 +17567,17 @@ packages:
     resolution: {integrity: sha512-fnWVljUchTro6RiCFvCXBbNhJc2NijN7oIQxbwsyL0buWJPG85v81ehlHI9fXrJsMNgTofEoWIQeClKpgxFLrg==}
     dev: false
 
-  /playwright-core@1.40.1:
-    resolution: {integrity: sha512-+hkOycxPiV534c4HhpfX6yrlawqVUzITRKwHAmYfmsVreltEl6fAZJ3DPfLMOODw0H3s1Itd6MDCWmP1fl/QvQ==}
+  /playwright-core@1.41.1:
+    resolution: {integrity: sha512-/KPO5DzXSMlxSX77wy+HihKGOunh3hqndhqeo/nMxfigiKzogn8kfL0ZBDu0L1RKgan5XHCPmn6zXd2NUJgjhg==}
     engines: {node: '>=16'}
     hasBin: true
 
-  /playwright@1.40.1:
-    resolution: {integrity: sha512-2eHI7IioIpQ0bS1Ovg/HszsN/XKNwEG1kbzSDDmADpclKc7CyqkHw7Mg2JCz/bbCxg25QUPcjksoMW7JcIFQmw==}
+  /playwright@1.41.1:
+    resolution: {integrity: sha512-gdZAWG97oUnbBdRL3GuBvX3nDDmUOuqzV/D24dytqlKt+eI5KbwusluZRGljx1YoJKZ2NRPaeWiFTeGZO7SosQ==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
-      playwright-core: 1.40.1
+      playwright-core: 1.41.1
     optionalDependencies:
       fsevents: 2.3.2
 
