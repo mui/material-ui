@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
+import Dialog, { DialogSlots } from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
@@ -35,7 +35,9 @@ export default function AlertDialogSlide() {
       </Button>
       <Dialog
         open={open}
-        TransitionComponent={Transition}
+        slots={{
+          transition: Transition as DialogSlots['transition'],
+        }}
         keepMounted
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"

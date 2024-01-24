@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
+import Dialog, { DialogSlots } from '@mui/material/Dialog';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemButton from '@mui/material/ListItemButton';
 import List from '@mui/material/List';
@@ -42,7 +42,7 @@ export default function FullScreenDialog() {
         fullScreen
         open={open}
         onClose={handleClose}
-        TransitionComponent={Transition}
+        slots={{ transition: Transition as DialogSlots['transition'] }}
       >
         <AppBar sx={{ position: 'relative' }}>
           <Toolbar>
