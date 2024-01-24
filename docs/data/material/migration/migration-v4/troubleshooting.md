@@ -1,8 +1,8 @@
 # Troubleshooting
 
-<p class="description">This document covers known issues and common problems encountered when migrating from Material UI v4 to v5.</p>
+<p class="description">This document covers known issues and common problems encountered when migrating from Material UI v4 to v5.</p>
 
-## Material UI v5 migration
+## Material UI v5 migration
 
 1. [Getting started](/material-ui/migration/migration-v4/)
 2. [Breaking changes part one: style and theme](/material-ui/migration/v5-style-changes/)
@@ -18,7 +18,7 @@ First, check if you have configured the `StyledEngineProvider` correctly, as sho
 
 If the `StyledEngineProvider` is already used at the top of your application and the styles are still broken, it may be the case that you still have `@material-ui/core` in your application.
 
-This could be caused by other dependencies in the app that still rely on Material UI v4.
+This could be caused by other dependencies in the app that still rely on Material UI v4.
 
 To check this, run `npm ls @material-ui/core` (or `yarn why @material-ui/core`).
 If your project contains such dependencies, you will see a list that looks something like this:

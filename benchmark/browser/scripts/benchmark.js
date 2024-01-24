@@ -215,7 +215,7 @@ async function run() {
         name: 'Box Chakra-UI',
         path: './box-chakra-ui/index.js',
       },
-      // Test the system perf difference with alternatives
+      // Test MUI System perf difference with alternatives
       {
         name: 'styled-components Box + @mui/system',
         path: './styled-components-box-material-ui-system/index.js',

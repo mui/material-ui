@@ -99,8 +99,8 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
     "input": "The component that renders the input.",
+    "root": "The component that renders the root.",
     "textarea": "The component that renders the textarea."
   }
 }

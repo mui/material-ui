@@ -8,7 +8,11 @@ import { transformAsync } from '@babel/core';
 import type { PluginOptions as LinariaPluginOptions, Preprocessor } from '@linaria/babel-preset';
 import { TransformCacheCollection, transform } from '@linaria/babel-preset';
 import { createPerfMeter, asyncResolveFallback, slugify } from '@linaria/utils';
-import { preprocessor as basePreprocessor, generateThemeTokens } from '@mui/zero-runtime/utils';
+import {
+  preprocessor as basePreprocessor,
+  generateTokenCss,
+  generateThemeTokens,
+} from '@mui/zero-runtime/utils';
 
 type NextMeta = {
   type: 'next';
@@ -264,16 +268,16 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
                 // this file should exist in the package
                 id.endsWith('@mui/zero-runtime/styles.css') ||
                 id.endsWith('/zero-runtime/styles.css') ||
-                id.endsWith('@mui/zero-runtime/theme') ||
-                id.endsWith('/zero-runtime/theme.js')
+                id.includes('@mui/zero-runtime/theme') ||
+                id.includes('/zero-runtime/theme')
               );
             },
             transform(_code, id) {
               if (id.endsWith('styles.css')) {
-                return generateThemeTokens(theme);
+                return generateTokenCss(theme);
               }
-              if (id.endsWith('theme.js')) {
-                return `export default ${JSON.stringify(theme)};`;
+              if (id.includes('zero-runtime/theme')) {
+                return `export default ${JSON.stringify(generateThemeTokens(theme))};`;
               }
               return null;
             },
@@ -293,10 +297,10 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
             },
             load(id) {
               if (id === VIRTUAL_CSS_FILE) {
-                return generateThemeTokens(theme);
+                return generateTokenCss(theme);
               }
               if (id === VIRTUAL_THEME_FILE) {
-                return `export default ${JSON.stringify(theme)};`;
+                return `export default ${JSON.stringify(generateThemeTokens(theme))};`;
               }
               return null;
             },

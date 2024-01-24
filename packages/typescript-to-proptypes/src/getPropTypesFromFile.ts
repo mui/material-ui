@@ -125,6 +125,7 @@ function checkType({
   if (project.checker.isArrayType(type)) {
     // @ts-ignore
     const arrayType: ts.Type = project.checker.getElementTypeOfArrayType(type);
+
     return createArrayType({
       arrayType: checkType({ type: arrayType, location, typeStack, name, project }),
       jsDoc,
