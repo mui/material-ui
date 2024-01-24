@@ -78,7 +78,7 @@ const Description = styled.div({
 export default function Home() {
   return (
     <Main>
-      <Badge>
+      <Badge variant="dot">
         <div>Hey</div>
       </Badge>
       <Description>

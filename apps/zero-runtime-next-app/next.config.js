@@ -13,6 +13,8 @@ const theme = extendTheme({
     },
   },
 });
+theme.getColorSchemeSelector = (targetColorScheme) =>
+  `[data-mui-color-scheme="${targetColorScheme}"] &`;
 
 /**
  * @typedef {import('@mui/zero-next-plugin').ZeroPluginConfig} ZeroPluginConfig

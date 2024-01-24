@@ -174,7 +174,7 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
               if (tagResult) {
                 return tagResult;
               }
-              if (source.endsWith('/zero-styled') || source.endsWith('/zero-useThemeProps')) {
+              if (source.endsWith('/zero-styled')) {
                 return `${process.env.RUNTIME_PACKAGE_NAME}/exports/${tag}`;
               }
               return null;

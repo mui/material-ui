@@ -9,7 +9,7 @@ type IOptions = IBaseOptions & {
   };
 };
 
-export class UseThemePropsProcessor extends BaseProcessor {
+export class CreateUseThemePropsProcessor extends BaseProcessor {
   componentName: string;
 
   constructor(params: Params, ...args: TailProcessorParams) {
@@ -44,12 +44,7 @@ export class UseThemePropsProcessor extends BaseProcessor {
     const t = this.astService;
 
     const { themeArgs: { theme } = {} } = this.options as IOptions;
-    if (
-      !theme ||
-      !theme.components ||
-      !theme.components[this.componentName] ||
-      !theme.components[this.componentName].defaultProps
-    ) {
+    if (!theme?.components?.[this.componentName]?.defaultProps) {
       return;
     }
 
