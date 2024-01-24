@@ -1,8 +1,23 @@
+import { ComponentClassDefinition } from '@mui-internal/docs-utilities/ComponentClassDefinition';
 import { ComponentInfo, HookInfo } from './buildApiUtils';
 import { CreateTypeScriptProjectOptions } from './utils/createTypeScriptProject';
 import { CreateDescribeablePropSettings } from './utils/createDescribeableProp';
 import { ReactApi as ComponentReactApi } from './ApiBuilders/ComponentApiBuilder';
 import { ReactApi as HookReactApi } from './ApiBuilders/HookApiBuilder';
+import { Slot } from './utils/parseSlotsAndClasses';
+
+export type SortingStrategiesType = {
+  /**
+   * Sort slots items. Setting it to `null` keeps the order defined in the source code.
+   * @default alphabetical order.
+   */
+  classesSort?: null | ((a: ComponentClassDefinition, b: ComponentClassDefinition) => number);
+  /**
+   * Sort slots items. Setting null result in no sorting (respect the order provided by TS).
+   * @default required props first and alphabetcal order otherwise.
+   */
+  slotsSort?: null | ((a: Slot, b: Slot) => number);
+};
 
 export interface ProjectSettings {
   output: {
@@ -18,6 +33,10 @@ export interface ProjectSettings {
   getApiPages: () => Array<{ pathname: string }>;
   getComponentInfo: (filename: string) => ComponentInfo;
   getHookInfo?: (filename: string) => HookInfo;
+  /**
+   * Allows to force sorting startegies for listed properties.
+   */
+  sortingStrategies?: SortingStrategiesType;
   /**
    * Callback function to be called when the API generation is completed
    */

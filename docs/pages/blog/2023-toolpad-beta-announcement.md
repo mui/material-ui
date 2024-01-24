@@ -15,7 +15,7 @@ It's been over a year since we released the first version of Toolpad. Today, we'
 
 ## Why did we decide to build Toolpad?
 
-Toolpad was created to meet the needs of the MUI community. As a result of surveys we conducted, and market research we undertook, we decided to develop an internal tool builder because the idea resonates with MUI's mission of empowering developers to build apps faster and more efficiently.
+Toolpad was created to meet the needs of the Material UI community. As a result of surveys we conducted, and market research we undertook, we decided to develop an internal tool builder because the idea resonates with MUI's mission of empowering developers to build apps faster and more efficiently.
 
 Internal tools are software applications that are developed and used within an organization itself. They can automate tasks, manage data, and help foster collaboration. Internal tools are a valuable asset for businesses of all sizes, as they help to improve efficiency, productivity, and communication.
 
@@ -33,7 +33,7 @@ Toolpad is not ideal for building static web pages, mobile apps, or customer-fac
 
 ## Who is Toolpad for?
 
-Before the arrival of Toolpad, MUI primarily catered to the front-end needs of the development process. Our products were mostly useful for React engineers or designers, but we saw many full-stack engineers use our advanced components for data-intensive apps. These highly customizable components are well-suited for complex apps, but not all apps require the same level of customization: for example, internal tools just need basic theming.
+Before the arrival of Toolpad, the MUI organization primarily catered to the front-end needs of the development process. Our products were mostly useful for React engineers or designers, but we saw many full-stack engineers use our advanced components for data-intensive apps. These highly customizable components are well-suited for complex apps, but not all apps require the same level of customization: for example, internal tools just need basic theming.
 
 <img alt="Toolpad personas" src="/static/blog/2023-toolpad-beta-announcement/personas.png"  loading="lazy" width="2076" height="900" style="margin-bottom:24px;" />
 
@@ -73,9 +73,9 @@ Toolpad runs completely locally. You're not stuck with an online code editor or 
 <img alt="Building an application on Toolpad" src="/static/blog/2023-toolpad-beta-announcement/code.png"  loading="lazy" width="2400" height="1394" />
 </a>
 
-### 6. A catalogue of components powered by Material UI
+### 6. A catalogue of components powered by Material UI
 
-Material UI provides production-ready React components; a chosen few are currently available inside Toolpad, and we're adding more all the time.
+Material UI provides production-ready React components; a chosen few are currently available inside Toolpad, and we're adding more all the time.
 
 <a href="https://mui.com/toolpad/examples/npm-stats/">
 <img alt="Building an application on Toolpad" src="/static/blog/2023-toolpad-beta-announcement/library.png"  loading="lazy" width="2400" height="1394" />

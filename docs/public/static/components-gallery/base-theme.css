@@ -431,7 +431,7 @@
 .GalleryMenu-item.base--focusVisible {
   outline: none;
   box-shadow: var(--shadow-interactive-focus-visible);
-  background-color: var(--background-surface-soft);
+  background-color: var(--bg-soft);
   color: var(--font-color-soft);
 }
 
@@ -505,7 +505,7 @@
   align-items: center;
   appearance: none;
   box-sizing: border-box;
-  background: var(--background-surface-soft);
+  background: var(--bg-soft);
   border: 0;
   transition: all 120ms ease;
 }
@@ -565,16 +565,6 @@
   padding: 0.75rem;
   opacity: 1;
   margin: 0.25rem 0px;
-}
-
-.GalleryPopper {
-  color: var(--font-color-soft);
-  background: var(--bg-default);
-  border: var(--border-soft);
-  box-shadow: var(--shadow-elevation-2);
-}
-
-.GalleryPopup {
   color: var(--font-color-soft);
   background: var(--bg-default);
   border: var(--border-soft);
@@ -917,7 +907,7 @@
 /* Table pagination styles */
 
 .GalleryTablePaginationDemo th {
-  background-color: var(--background-surface-default);
+  background-color: var(--bg-default);
 }
 
 .GalleryTablePaginationDemo table {
@@ -1035,7 +1025,7 @@
   min-width: 300px;
   max-width: 500px;
   width: 100%;
-  background-color: var(--background-surface-soft);
+  background-color: var(--bg-default);
   border: var(--border-default);
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-interactive-switch-track);
@@ -1061,7 +1051,7 @@
 }
 
 .GalleryTab:hover {
-  background-color: var(--bg-hard);
+  background-color: var(--bg-soft);
 }
 
 .GalleryTab:focus-visible {
@@ -1075,7 +1065,7 @@
 }
 
 .GalleryTab.base--disabled {
-  opacity: 0.5;
+  opacity: 0.3;
   cursor: not-allowed;
   background-color: transparent;
 }
@@ -1090,7 +1080,7 @@
   font: var(--text-body);
   color: var(--font-color-soft);
   padding: 24px;
-  background: var(--background-surface-soft);
+  background: var(--bg-soft);
   border-radius: var(--border-radius-md);
   border: var(--border-default);
   border-style: dashed;

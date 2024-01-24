@@ -139,7 +139,7 @@ const Item = styled(
         },
       }),
       '&.Mui-focusVisible': {
-        backgroundColor: (theme.vars || theme).palette.action.focus,
+        backgroundColor: (theme.vars || theme).palette.divider,
       },
       [theme.breakpoints.up('md')]: {
         paddingTop: 4,

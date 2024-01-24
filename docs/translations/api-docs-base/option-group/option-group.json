@@ -18,8 +18,8 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
     "label": "The component that renders the label.",
-    "list": "The component that renders the list."
+    "list": "The component that renders the list.",
+    "root": "The component that renders the root."
   }
 }

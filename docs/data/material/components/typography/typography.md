@@ -14,7 +14,7 @@ materialDesign: https://m2.material.io/design/typography/the-type-system.html
 
 ## Roboto font
 
-Material UI uses the [Roboto](https://fonts.google.com/specimen/Roboto) font by default.
+Material UI uses the [Roboto](https://fonts.google.com/specimen/Roboto) font by default.
 Add it to your project via Fontsource, or with the Google Fonts CDN.
 
 <codeblock storageKey="package-manager">
@@ -43,7 +43,7 @@ import '@fontsource/roboto/700.css';
 ```
 
 :::info
-Fontsource can be configured to load specific subsets, weights, and styles. Material UI's default typography configuration relies only on the 300, 400, 500, and 700 font weights.
+Fontsource can be configured to load specific subsets, weights, and styles. Material UI's default typography configuration relies only on the 300, 400, 500, and 700 font weights.
 :::
 
 ### Google Web Fonts
