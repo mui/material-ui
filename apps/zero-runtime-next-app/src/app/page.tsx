@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { styled } from '@mui/zero-runtime';
+import Badge from '@mui/material/Badge';
 import styles from './page.module.css';
 
 const Main = styled.main({
@@ -77,6 +78,9 @@ const Description = styled.div({
 export default function Home() {
   return (
     <Main>
+      <Badge variant="dot">
+        <div>Hey</div>
+      </Badge>
       <Description>
         <p>
           Get started by editing&nbsp;
