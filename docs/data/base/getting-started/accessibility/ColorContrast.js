@@ -40,9 +40,7 @@ const Button = styled(BaseButton)`
   }
 
   &.${buttonClasses.focusVisible} {
-    box-shadow:
-      0 4px 20px 0 rgb(61 71 82 / 0.1),
-      0 0 0 5px rgb(0 127 255 / 0.5);
+    box-shadow: 0 4px 20px 0 rgb(61 71 82 / 0.1), 0 0 0 5px rgb(0 127 255 / 0.5);
     outline: none;
   }
 
@@ -74,9 +72,7 @@ const PoorContrastButton = styled(BaseButton)`
   }
 
   &.${buttonClasses.focusVisible} {
-    box-shadow:
-      0 4px 20px 0 rgb(61 71 82 / 0.1),
-      0 0 0 5px rgb(0 127 255 / 0.5);
+    box-shadow: 0 4px 20px 0 rgb(61 71 82 / 0.1), 0 0 0 5px rgb(0 127 255 / 0.5);
     outline: none;
   }
 
