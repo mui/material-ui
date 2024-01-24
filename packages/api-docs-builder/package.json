@@ -22,6 +22,7 @@
     "react-docgen": "^5.4.3",
     "recast": "^0.23.4",
     "remark": "^13.0.0",
+    "typescript": "^5.3.3",
     "unist-util-visit": "^2.0.3"
   },
   "devDependencies": {
@@ -35,7 +36,6 @@
     "@types/react-docgen": "workspace:*",
     "@types/sinon": "^10.0.20",
     "chai": "^4.4.1",
-    "sinon": "^15.2.0",
-    "typescript": "^5.3.3"
+    "sinon": "^15.2.0"
   }
 }
