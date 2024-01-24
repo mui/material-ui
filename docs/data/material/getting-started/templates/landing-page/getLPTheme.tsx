@@ -205,6 +205,9 @@ export default function getLPTheme(): ThemeOptions {
             border: '1px solid',
             borderColor: `${alpha(brandColor[500], 0.3)}`,
             fontWeight: '600',
+            '&:hover': {
+              backgroundColor: brandColor[500],
+            },
             '&:focus-visible': {
               borderColor: brandColor[800],
               backgroundColor: brandColor[200],
@@ -218,6 +221,9 @@ export default function getLPTheme(): ThemeOptions {
             ...theme.applyDarkStyles({
               background: `linear-gradient(to bottom right, ${brandColor[700]}, ${brandColor[900]})`,
               borderColor: `${alpha(brandColor[500], 0.5)}`,
+              '&:hover': {
+                backgroundColor: brandColor[600],
+              },
               '&:focus-visible': {
                 borderColor: brandColor[200],
                 backgroundColor: brandColor[600],
@@ -232,6 +238,7 @@ export default function getLPTheme(): ThemeOptions {
           },
         },
       },
+
       MuiButton: {
         styleOverrides: {
           root: ({
