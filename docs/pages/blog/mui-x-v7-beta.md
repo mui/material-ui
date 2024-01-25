@@ -67,7 +67,7 @@ Integration with the server side has been a huge pain point for our community; w
 
 This new interface establishes more efficient data management and seamless interactions, allowing developers to build more responsive and robust applications that connect UI elements to backend services with less complexity.
 
-It’s initially designed for the Data Grid, but we plan that the DataSource will serve data to multiple components in the future. 
+It’s initially designed for the Data Grid, but we plan that the DataSource will serve data to multiple components in the future.
 
 ```jsx
 const myDataSource: DataSource = {
@@ -173,7 +173,7 @@ While our journey towards these new additions continues, our commitment to impro
 ### Date Time Range Picker [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 Support new use cases with this most anticipated component.
-The latest addition to the Date Pickers suite is the `<DateTimeRangePicker />`, a component designed to enrich the user experience with advanced date and time selection. 
+The latest addition to the Date Pickers suite is the `<DateTimeRangePicker />`, a component designed to enrich the user experience with advanced date and time selection.
 This intuitive picker simplifies the process of selecting date and time ranges, making it ideal for applications that require detailed scheduling or period selection.
 
 <video preload="metadata" style="margin-bottom: 10px;" autoplay muted loop playsinline width="600" height="508">
@@ -181,6 +181,7 @@ This intuitive picker simplifies the process of selecting date and time ranges, 
 </video>
 
 Learn how to use and customize the [new component](https://next.mui.com/x/react-date-pickers/date-time-range-picker/) now!
+
 ### Support to date-fns v3
 
 The Pickers now support both versions of v2 and v3 of date-fns and you can select your desired version from one of the two import lines:
