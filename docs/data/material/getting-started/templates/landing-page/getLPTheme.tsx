@@ -170,7 +170,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
     },
     caption: {
       fontWeight: 400,
-      fontSize: 10,
+      fontSize: 12,
     },
   },
 });
@@ -182,7 +182,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
       MuiMenuItem: {
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
-            borderRadius: '8px',
+            borderRadius: '10px',
             color: greyColor[500],
             fontWeight: 500,
             ...theme.applyDarkStyles({
@@ -205,7 +205,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
             backgroundColor: greyColor[50],
-            borderRadius: '8px',
+            borderRadius: '10px',
             border: `1px solid ${alpha(greyColor[200], 0.8)}`,
             boxShadow: 'none',
             ...theme.applyDarkStyles({
@@ -272,7 +272,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
             boxShadow: 'none',
-            borderRadius: '8px',
+            borderRadius: '10px',
             ...(ownerState.size === 'small' && {
               maxHeight: '32px',
             }),
@@ -281,28 +281,12 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
             }),
             ...(ownerState.variant === 'contained' &&
               ownerState.color === 'primary' && {
-                color: greyColor[50],
-                backgroundColor: brandColor[400],
-                border: `1px solid ${alpha(brandColor[600], 0.5)}`,
-                boxShadow: `inset 0px 1px 1px ${
-                  brandColor[300]
-                }, inset 0px -2px 1px ${alpha(
-                  brandColor[700],
-                  0.5,
-                )}, 0px 2px 4px rgba(0, 0, 0, 0.1)`,
+                background: `linear-gradient(to bottom, ${brandColor[400]}, ${brandColor[600]})`,
+                boxShadow: `inset 0 1px ${alpha(brandColor[300], 0.4)}`,
+                outline: `1px solid  ${brandColor[700]}`,
                 '&:hover': {
-                  backgroundColor: brandColor[600],
-                  boxShadow: 'none',
-                },
-              }),
-            ...(ownerState.variant === 'contained' &&
-              ownerState.color === 'secondary' && {
-                backgroundColor: secondaryColor[500],
-                border: `1px solid ${alpha(secondaryColor[600], 0.5)}`,
-                boxShadow: `inset 0px 1px 1px ${secondaryColor[300]}, inset 0px -2px 1px ${secondaryColor[600]},  0px 2px 4px rgba(0, 0, 0, 0.1)`,
-                '&:hover': {
-                  backgroundColor: secondaryColor[600],
-                  boxShadow: 'none',
+                  background: `linear-gradient(to bottom, ${brandColor[400]}, ${brandColor[500]})`,
+                  boxShadow: `0 0 0 1px  ${alpha(brandColor[300], 0.5)}`,
                 },
               }),
             ...(ownerState.variant === 'outlined' && {
@@ -352,6 +336,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
         },
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
+            alignSelf: 'center',
             color: brandColor[500],
             fontWeight: 500,
             position: 'relative',
@@ -364,7 +349,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
               bottom: 0,
               left: 0,
               backgroundColor: brandColor[200],
-              opacity: 0.5,
+              opacity: 0.7,
               transition: 'width 0.3s ease, opacity 0.3s ease',
             },
             '&:hover::before': {
@@ -430,12 +415,14 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
               fontSize: '14px',
             },
             '& .MuiOutlinedInput-root': {
-              borderRadius: '8px',
-              height: '40px',
+              height: '100%',
+              minHeight: '40px',
+              border: 'none',
+              borderRadius: '10px',
+              outline: `1px solid ${alpha(greyColor[500], 0.3)}`,
               '& fieldset': {
-                borderColor: `${alpha(greyColor[500], 0.4)}`,
-                boxShadow:
-                  '0 -1px 1px rgba(0, 0, 0, 0.1) inset, 0px 2px 4px rgba(0, 0, 0, 0.1)',
+                border: 'none',
+                boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
                 background: `${alpha('#FFF', 0.3)}`,
               },
               '&:hover fieldset': {
@@ -450,12 +437,14 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
             },
             ...theme.applyDarkStyles({
               '& .MuiOutlinedInput-root': {
-                borderRadius: '8px',
-                height: '40px',
+                height: '100%',
+                minHeight: '40px',
+                border: 'none',
+                borderRadius: '10px',
+                outline: `1px solid ${alpha(greyColor[500], 0.6)}`,
                 '& fieldset': {
-                  borderColor: `${alpha(greyColor[500], 0.6)}`,
-                  boxShadow:
-                    '0 1px 1px rgba(255, 255, 255, 0.1) inset, 0px 2px 4px rgba(0, 0, 0, 0.8)',
+                  border: 'none',
+                  boxShadow: ' 0px 2px 4px rgba(0, 0, 0, 0.4)',
                   background: `${alpha(greyColor[800], 0.4)}`,
                 },
               },
