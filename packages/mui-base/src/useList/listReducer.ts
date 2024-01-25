@@ -58,14 +58,14 @@ function findValidItemToHighlight<ItemValue>(
  * Gets the next item to highlight based on the current highlighted item and the search direction.
  *
  * @param previouslyHighlightedValue The item from which to start the search for the next candidate.
- * @param offset The offset from the previously highlighted item to search for the next candidate or a special named value ('reset', 'reset-to-end', 'start', 'end').
+ * @param offset The offset from the previously highlighted item to search for the next candidate or a special named value ('reset', 'start', 'end').
  * @param context The list action context.
  *
  * @returns The next item to highlight or null if no item is valid.
  */
 export function moveHighlight<ItemValue>(
   previouslyHighlightedValue: ItemValue | null,
-  offset: number | 'reset' | 'reset-to-end' | 'start' | 'end',
+  offset: number | 'reset' | 'start' | 'end',
   context: ListActionContext<ItemValue>,
 ) {
   const {
@@ -100,16 +100,6 @@ export function moveHighlight<ItemValue>(
 
       nextIndexCandidate = 0;
       lookupDirection = 'next';
-      wrapAround = false;
-      break;
-
-    case 'reset-to-end':
-      if (defaultHighlightedIndex === -1) {
-        return null;
-      }
-
-      nextIndexCandidate = maxIndex;
-      lookupDirection = 'previous';
       wrapAround = false;
       break;
 
@@ -407,7 +397,6 @@ function handleItemsChange<ItemValue, State extends ListState<ItemValue>>(
   previousItems: ItemValue[],
   state: State,
   context: ListActionContext<ItemValue>,
-  triggerKey: 'ArrowDown' | 'ArrowUp' | undefined,
 ): State {
   const { itemComparer, focusManagement } = context;
 
@@ -416,11 +405,7 @@ function handleItemsChange<ItemValue, State extends ListState<ItemValue>>(
   if (state.highlightedValue != null) {
     newHighlightedValue = items.find((item) => itemComparer(item, state.highlightedValue!)) ?? null;
   } else if (focusManagement === 'DOM' && previousItems.length === 0) {
-    if (triggerKey === 'ArrowUp') {
-      newHighlightedValue = moveHighlight(null, 'reset-to-end', context);
-    } else {
-      newHighlightedValue = moveHighlight(null, 'reset', context);
-    }
+    newHighlightedValue = moveHighlight(null, 'reset', context);
   }
 
   // exclude selected values that are no longer in the items list
@@ -443,6 +428,16 @@ function handleResetHighlight<ItemValue, State extends ListState<ItemValue>>(
   return {
     ...state,
     highlightedValue: moveHighlight(null, 'reset', context),
+  };
+}
+
+function handleHighlightLast<ItemValue, State extends ListState<ItemValue>>(
+  state: State,
+  context: ListActionContext<ItemValue>,
+) {
+  return {
+    ...state,
+    highlightedValue: moveHighlight(null, 'end', context),
   };
 }
 
@@ -473,15 +468,11 @@ export function listReducer<ItemValue, State extends ListState<ItemValue>>(
     case ListActionTypes.textNavigation:
       return handleTextNavigation(state, action.searchString, context);
     case ListActionTypes.itemsChange:
-      return handleItemsChange(
-        action.items,
-        action.previousItems,
-        state,
-        context,
-        action.triggerKey,
-      );
+      return handleItemsChange(action.items, action.previousItems, state, context);
     case ListActionTypes.resetHighlight:
       return handleResetHighlight(state, context);
+    case ListActionTypes.highlightLast:
+      return handleHighlightLast(state, context);
     case ListActionTypes.clearSelection:
       return handleClearSelection(state, context);
     default:

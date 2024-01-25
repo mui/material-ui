@@ -177,7 +177,7 @@ describe('<Dropdown />', () => {
     expect(menuItems[2]).toHaveFocus();
   });
 
-  it('should focus on second-to-last item when last item is disabled and disabledItemsFocusable set to false', () => {
+  it('should focus on last non-disabled item when disabledItemsFocusable is set to false', () => {
     const CustomMenu = React.forwardRef(function CustomMenu(
       props: React.ComponentPropsWithoutRef<'ul'>,
       ref: React.Ref<HTMLUListElement>,

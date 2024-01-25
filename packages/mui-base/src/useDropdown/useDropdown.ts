@@ -43,7 +43,9 @@ export function useDropdown(parameters: UseDropdownParameters = {}) {
 
   const [state, dispatch] = useControllableReducer({
     controlledProps,
-    initialState: defaultOpen ? { open: true } : { open: false },
+    initialState: defaultOpen
+      ? { open: true, changeReason: null }
+      : { open: false, changeReason: null },
     onStateChange: handleStateChange,
     reducer: dropdownReducer,
     componentName,

@@ -1,34 +1,17 @@
 import { DropdownAction, DropdownActionTypes, DropdownState } from './useDropdown.types';
 
-function isUpOrDownKey(key: string): key is 'ArrowUp' | 'ArrowDown' {
-  return key === 'ArrowUp' || key === 'ArrowDown';
-}
-
-function getKeyboardEventKey(
-  event:
-    | React.KeyboardEvent<Element>
-    | React.MouseEvent<Element, MouseEvent>
-    | React.FocusEvent<Element, Element>
-    | null,
-): 'ArrowUp' | 'ArrowDown' | undefined {
-  return event && 'key' in event && isUpOrDownKey(event.key) ? event.key : undefined;
-}
-
 export function dropdownReducer(state: DropdownState, action: DropdownAction): DropdownState {
   switch (action.type) {
     case DropdownActionTypes.blur:
-      return { open: false };
+      return { open: false, changeReason: action.event };
     case DropdownActionTypes.escapeKeyDown:
-      return { open: false };
+      return { open: false, changeReason: action.event };
     case DropdownActionTypes.toggle:
-      return { open: !state.open };
+      return { open: !state.open, changeReason: action.event };
     case DropdownActionTypes.open:
-      return {
-        open: true,
-        keyPressedToOpen: getKeyboardEventKey(action.event),
-      };
+      return { open: true, changeReason: action.event };
     case DropdownActionTypes.close:
-      return { open: false };
+      return { open: false, changeReason: action.event };
     default:
       throw new Error(`Unhandled action`);
   }

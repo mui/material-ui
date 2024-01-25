@@ -76,4 +76,7 @@ export type DropdownAction =
   | DropdownOpenAction
   | DropdownCloseAction;
 
-export type DropdownState = { open: boolean; keyPressedToOpen?: 'ArrowUp' | 'ArrowDown' };
+export type DropdownState = {
+  open: boolean;
+  changeReason: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null;
+};
