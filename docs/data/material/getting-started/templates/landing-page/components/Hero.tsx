@@ -91,8 +91,9 @@ export default function Hero() {
             paragraph
             sx={{ opacity: 0.8 }}
           >
-            Discover our newest collection of high-quality products. From electronics
-            to fashion, we have something for everyone.
+            Explore our cutting-edge dashboard, delivering high-quality solutions
+            tailored to your needs. <br />
+            Elevate your experience with top-tier features and services.
           </Typography>
           <Stack direction="row" spacing={1} sx={{ pt: 2, alignSelf: 'center' }}>
             <TextField
@@ -133,19 +134,17 @@ export default function Hero() {
             mt: { xs: 8, sm: 10 },
             alignSelf: 'center',
             height: { xs: '200px', sm: '600px' },
-            width: 'calc(100% - 8px)',
+            width: '100%',
             backgroundImage: (theme) =>
               theme.palette.mode === 'light'
                 ? 'url("/static/images/templates/templates-images/dashboard-placeholder-image-light.png")'
                 : 'url("/static/images/templates/templates-images/dashboard-placeholder-image-dark.png")',
             backgroundSize: 'cover',
-            outline: '4px solid',
-            outlineColor: `${alpha(brandColor[500], 0.2)}`,
             borderRadius: '8px',
             boxShadow: (theme) =>
               theme.palette.mode === 'light'
-                ? `0 0 24px ${brandColor[200]}`
-                : `0 0 24px ${brandColor[800]}`,
+                ? `0 0 24px 12px ${alpha(brandColor[200], 0.3)}`
+                : `0 0 24px 12px ${alpha(brandColor[700], 0.2)}`,
           }}
         />
       </Container>
