@@ -99,9 +99,10 @@ While string values remain compatible for these types, any updates to the `filte
 
 ### New stable features
 
-During major versions, MUI X releases new features under the `experimental` flag as a failsafe in case there's a need to change the API based on user feedback.
+During major version updates, MUI X introduces new features under the `experimentalFeatures` flag or using the `unstable_` prefix.
+This approach serves as a failsafe in case there's a need to change the API based on user feedback.
 
-We're now excited to announce that the following features have been promoted to stable and don't require the use of the flag anymore.
+We're excited to announce that the following features have been promoted to stable:
 
 - [Column groups](https://next.mui.com/x/react-data-grid/column-groups/)
 - [Cell selection](https://next.mui.com/x/react-data-grid/cell-selection/) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
