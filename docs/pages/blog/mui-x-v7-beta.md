@@ -225,8 +225,8 @@ We fully understand that updating a dependency library can sometimes be daunting
 
 - [Data Grid](https://next.mui.com/x/migration/migration-data-grid-v6/)
 - [Date pickers](https://next.mui.com/x/migration/migration-date-pickers-v6/)
-- Charts
-- TreeView
+- [Charts](https://next.mui.com/x/migration/migration-charts-v6/)
+- [TreeView](https://next.mui.com/x/migration/migration-tree-view-v6/)
 
 These component-specific guides are a reference tool designed to assist you if you encounter any challenges while updating to the new major version. It's our way of making the upgrade process more manageable and less burdensome for you. However, should you need further assistance or have specific queries, please don't hesitate to contact us and send your feedback.
 
