@@ -115,7 +115,7 @@ We're now excited to announce that the following features have been promoted to 
 Following the promotion of the component from the labs to MUI X, our primary focus has been on improving its developer experience.
 This includes efforts to clarify documentation and improve key examples, making them more informative and user-friendly.
 
-A particularly significant initiative is the practical alternative to the traditional JSX architecture, the RichTreeView.
+A particularly significant initiative is the time-saving alternative to the traditional JSX architecture, the RichTreeView.
 
 ### RichTreeView
 
