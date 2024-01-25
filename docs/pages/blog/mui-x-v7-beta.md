@@ -23,34 +23,32 @@ Most breaking changes are in place, and we shift our focus towards refining and 
 
 - [What's New](#whats-new)
   - [Data Grid](#data-grid)
-    - [Sticky Headers](#sticky-headers)
-    - [Server-Side Data Source](#server-side-data-source)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+    - [Sticky headers](#sticky-headers)
+    - [Server-side data source](#server-side-data-source)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
     - [Date Object Support in Filter Model](#date-object-support-in-filter-model)
-    - [New Stable Features](#new-stable-features)
-  - [TreeView](#treeview)
+    - [New stable features](#new-stable-features)
+  - [Tree View](#tree-view)
     - [RichTreeView](#richtreeview-new-component)
   - [Charts](#charts)
     - [Reference Line](#reference-line)
   - [Date Pickers](#date-pickers)
-    - [Date Time Range Picker](#date-time-range-picker)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
     - [Support for date-fns v3](#support-for-date-fns-v3)
-- [What's Next](#whats-next)
-- [Migration Guide](#migration-guide)
-- [How to Get Involved](#how-to-get-involved)
-
-# What's new
+    - [Date Time Range Picker](#date-time-range-picker)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+- [What's next](#whats-next)
+- [Migration guide](#migration-guide)
+- [How to get involved](#how-to-get-involved)
 
 ## Data Grid
 
 We have introduced critical breaking changes designed not only to enhance the developer experience but also to bring the user experience to a new level.
 
-### Sticky Headers
+### Sticky headers
 
 The column headers and pinning implementations have been refactored for a significantly better user experience.
 You'll notice a more responsive Data Grid with smoother scrolling and better screen reader support.
 The video below showcases some of these improvements.
 
-<video preload="metadata" style="margin-bottom: 10px;" autoplay muted loop playsinline width="690" height="417">
+<video preload="metadata" style="margin-bottom: 10px;" autoplay muted loop playsinline width="690" height="417" controls>
   <source src="/static/blog/mui-x-v7-beta/sticky-headers.mp4" type="video/mp4">
 </video>
 
@@ -62,7 +60,7 @@ If you're using our theming system, the DataGrid will adapt to your application 
 Without the theming system, you may need to manually set an appropriate background color to maintain your design.
 :::
 
-### Server-Side Data Source
+### Server-side data source
 
 Integration with the server side has been a huge pain point for our community; we aim to enhance developer experience and productivity by introducing the `DataSource` interface.
 
@@ -106,11 +104,11 @@ During major versions, MUI X releases new features under the `experimental` flag
 
 We're now excited to announce that the following features have been promoted to stable and don't require the use of the flag anymore.
 
+- [Column groups](https://next.mui.com/x/react-data-grid/column-groups/)
 - [Cell selection](https://next.mui.com/x/react-data-grid/cell-selection/) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
-- [Clipboard pasting](https://next.mui.com/x/react-data-grid/clipboard/#clipboard-paste) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
-- [Column grouping](https://next.mui.com/x/react-data-grid/column-groups/)
+- [Clipboard paste](https://next.mui.com/x/react-data-grid/clipboard/#clipboard-paste) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
-## TreeView
+## Tree View
 
 Following the promotion of the component from the labs to MUI X, our primary focus has been on improving its developer experience.
 This includes efforts to clarify documentation and improve key examples, making them more informative and user-friendly.
@@ -129,18 +127,18 @@ Similar to the DataGrid, it requires only a dataset and possibly a few propertie
 
 ```jsx
 const myDataSet = [
-    {
-        id: 'node-1',
-        label: 'Node 1',
-        children: [
-            { id: 'node-1-1', label: Node 1.1' },
-            { id: 'node-1-2', label: Node 1.2' },
-        ],
-    },
-        {
-        id: 'node-2',
-        label: 'Node 2',
-    },
+  {
+    id: 'node-1',
+    label: 'Node 1',
+    children: [
+      { id: 'node-1-1', label: 'Node 1.1' },
+      { id: 'node-1-2', label: 'Node 1.2' },
+    ],
+  },
+  {
+    id: 'node-2',
+    label: 'Node 2',
+  },
 ];
 ```
 
@@ -156,7 +154,7 @@ Check out the [new component](https://next.mui.com/x/react-tree-view/rich-tree-v
 
 ## Charts
 
-Since the initial stable release of the charts components a few months ago, we have been diligently listening to your feedback and focusing on refining the foundational charts to ensure they effectively cater to your diverse use cases.
+Since the initial stable release of MUI X Chart a few months ago, we have been diligently listening to your feedback and focusing on refining the foundational charts to ensure they effectively cater to your diverse use cases.
 This includes bug fixes, doc improvements, and support for more complex use cases.
 
 ### Reference line
@@ -186,7 +184,7 @@ This intuitive picker simplifies the process of selecting date and time ranges, 
 
 Learn how to use and customize the [new component](https://next.mui.com/x/react-date-pickers/date-time-range-picker/) now!
 
-### Support to date-fns v3
+### Support for date-fns v3
 
 The Pickers now support both versions of v2 and v3 of date-fns and you can select your desired version from one of the two import lines:
 
@@ -200,7 +198,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 ```
 
-# What's next
+## What's next
 
 As we approach the stable release of v7, our roadmap is well-defined, focusing on delivering key enhancements and features either just before or within a couple of weeks following the stable version's launch.
 
@@ -209,7 +207,7 @@ As we approach the stable release of v7, our roadmap is well-defined, focusing o
 - [Pivoting](https://github.com/mui/mui-x/issues/214) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 - [Improved column management panel](https://github.com/mui/mui-x/issues/5700)
 
-**TreeView**
+**Tree View**
 
 - [Drag and drop support for RichTreeView](https://github.com/mui/mui-x/issues/9686)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 - [Checkbox selection for Simple- and RichTreeView](https://github.com/mui/mui-x/issues/214)
@@ -218,30 +216,30 @@ As we approach the stable release of v7, our roadmap is well-defined, focusing o
 
 - [Click events handling](https://github.com/mui/mui-x/issues/10005)
 
-**Date pickers**
+**Date Pickers**
 
 - [TimeRangePicker](https://github.com/mui/mui-x/issues/4460)
 - Field with improved accessibility
 
-# Migration guide
+## Migration guide
 
 We fully understand that updating a dependency library can sometimes be daunting.
 To smooth the transition to the new version, we have documented all breaking changes in our migration guides:
 
 - [Data Grid](https://next.mui.com/x/migration/migration-data-grid-v6/)
-- [Date pickers](https://next.mui.com/x/migration/migration-date-pickers-v6/)
+- [Date Pickers](https://next.mui.com/x/migration/migration-pickers-v6/)
 - [Charts](https://next.mui.com/x/migration/migration-charts-v6/)
-- [TreeView](https://next.mui.com/x/migration/migration-tree-view-v6/)
+- [Tree View](https://next.mui.com/x/migration/migration-tree-view-v6/)
 
 These component-specific guides are reference pages designed to assist you if you encounter any challenges while updating to the new major version.
 It's our way of making the upgrade process more manageable and less burdensome for you.
 However, should you need further assistance, please don't hesitate to contact us and send your feedback.
 
-# How to get involved
+## How to get involved
 
 Your feedback has been invaluable in developing MUI X, and we're always happy to hear from you. Please consider sharing your experiences and pain points by:
 
 - [Giving us a user interview](https://forms.gle/vsBv6CLPz9h57xg8A).
 - Reporting bugs and suggesting features on our [GitHub repository](https://github.com/mui/mui-x/issues/new/choose).
 
-We look forward to your input!X
+We look forward to your input!
