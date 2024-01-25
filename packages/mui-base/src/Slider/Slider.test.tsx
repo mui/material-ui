@@ -47,7 +47,6 @@ describe('<Slider />', () => {
     mount,
     refInstanceof: window.HTMLSpanElement,
     testComponentPropWith: 'div',
-    muiName: 'MuiSlider',
     slots: {
       root: {
         expectedClassName: classes.root,

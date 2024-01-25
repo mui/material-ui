@@ -1,8 +1,8 @@
-# Customizing Base UI components
+# Customizing Base UI components
 
-<p class="description">There are several ways to customize Base UI components, from applying custom CSS rules to building fully custom components using hooks.</p>
+<p class="description">There are several ways to customize Base UI components, from applying custom CSS rules to building fully custom components using hooks.</p>
 
-With Base UI, you have the freedom to decide how much you want to customize a component's structure and style.
+With Base UI, you have the freedom to decide how much you want to customize a component's structure and style.
 
 ## Styling the components
 
@@ -10,13 +10,13 @@ This section reviews several methods of customization that are available: applyi
 
 ### Which option to choose?
 
-The multitude of options can be overwhelming, especially if you're new to Base UI.
+The multitude of options can be overwhelming, especially if you're new to Base UI.
 How to decide which one to use, then?
 
 The first decision to make is whether to use unstyled components or hooks.
 Hooks are better suited for making component libraries that can be further customized.
-For example, our own Joy UI is implemented using hooks from Base UI.
-Hooks also serve as the basis for several Material UI components, and future versions of the library will use them even more extensively.
+For example, our own Joy UI is implemented using hooks from Base UI.
+Hooks also serve as the basis for several Material UI components, and future versions of the library will use them even more extensively.
 
 If you don't need to make your component library customizable (for instance, by exposing `slotProps`), then the unstyled components may be a better option thanks to their simplicity.
 
@@ -83,11 +83,11 @@ export default function Switch(props) {
 }
 ```
 
-See our [Working with Tailwind CSS guide](/base-ui/guides/working-with-tailwind-css/) for more information about integrating Base UI and Tailwind CSS.
+See our [Working with Tailwind CSS guide](/base-ui/guides/working-with-tailwind-css/) for more information about integrating Base UI and Tailwind CSS.
 
 #### Styled components
 
-If you use a CSS-in-JS solution with a styled-components-like API (such as [MUI System](/system/getting-started/) or [Emotion](https://emotion.sh/docs/introduction)), the best method is to provide the styled subcomponents using the [`slots` prop](#overriding-subcomponent-slots), as shown in the [demo below](#overriding-subcomponent-slots).
+If you use a CSS-in-JS solution with a styled-components-like API (such as [MUI System](/system/getting-started/) or [Emotion](https://emotion.sh/docs/introduction)), the best method is to provide the styled subcomponents using the [`slots` prop](#overriding-subcomponent-slots), as shown in the [demo below](#overriding-subcomponent-slots).
 
 Alternatively, you can wrap the whole unstyled component in a `styled` utility and target the individual subcomponents using CSS classes:
 
@@ -101,7 +101,7 @@ If you're happy with the default structure of a component's rendered HTML, you c
 
 Each component has its own set of classes.
 Some classes are **static**, which is to say that they are always present on the component.
-Others are applied **conditionally**—like `Mui-disabled`, for example, which is only present when a component is disabled.
+Others are applied **conditionally**—like `base--disabled`, for example, which is only present when a component is disabled.
 
 Each component's API documentation lists all classes that the component uses.
 Additionally, you can import a `[componentName]Classes` object that describes all the classes a given component uses, as the following demo illustrates:
@@ -117,7 +117,7 @@ If you want to make changes to a component's rendered HTML structure, you can ov
 
 The following demo uses [Switch](/base-ui/react-switch/) to show how to create a styled component by applying styles to three of its subcomponent slots: `root`, `thumb`, and `input`.
 
-Note that although this demo uses [MUI System](/system/styled/) as a styling solution, you are free to choose any alternative.
+Note that although this demo uses [MUI System](/system/styled/) as a styling solution, you are free to choose any alternative.
 
 {{"demo": "StylingSlots.js"}}
 

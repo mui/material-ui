@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
@@ -66,10 +66,9 @@ export default function TransferList() {
           const labelId = `transfer-list-item-${value}-label`;
 
           return (
-            <ListItem
+            <ListItemButton
               key={value}
               role="listitem"
-              button
               onClick={handleToggle(value)}
             >
               <ListItemIcon>
@@ -83,7 +82,7 @@ export default function TransferList() {
                 />
               </ListItemIcon>
               <ListItemText id={labelId} primary={`List item ${value + 1}`} />
-            </ListItem>
+            </ListItemButton>
           );
         })}
       </List>

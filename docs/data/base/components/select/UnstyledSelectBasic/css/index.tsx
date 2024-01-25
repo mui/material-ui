@@ -14,7 +14,7 @@ export default function UnstyledSelectBasic() {
         }}
         slotProps={{
           listbox: { className: 'CustomSelect-listbox' },
-          popper: { className: 'CustomSelect-popper' },
+          popup: { className: 'CustomSelect-popup' },
         }}
         defaultValue={10}
       >
@@ -143,7 +143,7 @@ function Styles() {
           isDarkMode ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
         };
       }
-      .CustomSelect-popper {
+      .CustomSelect-popup {
         z-index: 1;
       }
       .CustomSelect-option {

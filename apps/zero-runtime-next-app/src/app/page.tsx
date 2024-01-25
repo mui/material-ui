@@ -1,8 +1,11 @@
 import Image from 'next/image';
 import { styled } from '@mui/zero-runtime';
+import Badge from '@mui/material/Badge';
 import styles from './page.module.css';
 
 const Main = styled.main({
+  color: 'rgb(var(--foreground-rgb))',
+  background: `linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb))`,
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
@@ -75,6 +78,9 @@ const Description = styled.div({
 export default function Home() {
   return (
     <Main>
+      <Badge variant="dot">
+        <div>Hey</div>
+      </Badge>
       <Description>
         <p>
           Get started by editing&nbsp;

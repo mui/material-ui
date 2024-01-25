@@ -2,7 +2,6 @@
   "props": {
     "enterClassName": { "type": { "name": "string" } },
     "exitClassName": { "type": { "name": "string" } },
-    "lastTransitionedPropertyOnEnter": { "type": { "name": "string" } },
     "lastTransitionedPropertyOnExit": { "type": { "name": "string" } }
   },
   "name": "CssTransition",
@@ -13,7 +12,7 @@
   "classes": [],
   "spread": true,
   "themeDefaultProps": null,
-  "muiName": "MuiCssTransition",
+  "muiName": "CssTransition",
   "filename": "/packages/mui-base/src/Transitions/CssTransition.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/base-ui/react-transitions/\">Transitions</a></li></ul>",
