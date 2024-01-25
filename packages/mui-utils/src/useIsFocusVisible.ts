@@ -1,10 +1,11 @@
 'use client';
 // based on https://github.com/WICG/focus-visible/blob/v4.1.5/src/focus-visible.js
 import * as React from 'react';
+import { Timeout } from './useTimeout';
 
 let hadKeyboardEvent = true;
 let hadFocusVisibleRecently = false;
-let hadFocusVisibleRecentlyTimeout: undefined | number;
+const hadFocusVisibleRecentlyTimeout = new Timeout();
 
 const inputTypesWhitelist: Record<string, boolean> = {
   text: true,
@@ -147,10 +148,9 @@ export default function useIsFocusVisible(): UseIsFocusVisibleResult {
       // If we don't see a visibility change within 100ms, it's probably a
       // regular focus change.
       hadFocusVisibleRecently = true;
-      window.clearTimeout(hadFocusVisibleRecentlyTimeout!);
-      hadFocusVisibleRecentlyTimeout = window.setTimeout(() => {
+      hadFocusVisibleRecentlyTimeout.start(100, () => {
         hadFocusVisibleRecently = false;
-      }, 100);
+      });
 
       isFocusVisibleRef.current = false;
 
