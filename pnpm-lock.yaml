@@ -2084,9 +2084,6 @@ importers:
 
   packages/proptypes-builder:
     dependencies:
-      '@mui-internal/api-docs-builder':
-        specifier: workspace:^
-        version: link:../api-docs-builder
       '@mui-internal/docs-utils':
         specifier: workspace:^
         version: link:../docs-utils
@@ -2102,6 +2099,10 @@ importers:
       prettier:
         specifier: ^2.8.8
         version: 2.8.8
+    devDependencies:
+      rimraf:
+        specifier: ^5.0.5
+        version: 5.0.5
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
@@ -2471,6 +2472,8 @@ importers:
       vite:
         specifier: ^5.0.12
         version: 5.0.12(@types/node@18.19.10)
+
+  scripts: {}
 
   test:
     devDependencies:
@@ -6693,7 +6696,7 @@ packages:
       '@babel/plugin-transform-sticky-regex': 7.23.3(@babel/core@7.23.9)
       '@babel/plugin-transform-typescript': 7.23.6(@babel/core@7.23.9)
       '@babel/plugin-transform-unicode-regex': 7.23.3(@babel/core@7.23.9)
-      '@babel/template': 7.22.15
+      '@babel/template': 7.23.9
       '@react-native/babel-plugin-codegen': 0.74.0(@babel/preset-env@7.23.9)
       babel-plugin-transform-flow-enums: 0.0.2(@babel/core@7.23.9)
       react-refresh: 0.14.0
@@ -15852,7 +15855,7 @@ packages:
     dependencies:
       '@babel/core': 7.23.9
       '@babel/generator': 7.23.6
-      '@babel/template': 7.22.15
+      '@babel/template': 7.23.9
       '@babel/traverse': 7.23.9
       nullthrows: 1.1.1
     transitivePeerDependencies:
@@ -15890,7 +15893,7 @@ packages:
       '@babel/core': 7.23.9
       '@babel/generator': 7.23.6
       '@babel/parser': 7.23.9
-      '@babel/template': 7.22.15
+      '@babel/template': 7.23.9
       '@babel/traverse': 7.23.9
       '@babel/types': 7.23.9
       accepts: 1.3.8

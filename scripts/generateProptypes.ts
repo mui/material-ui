@@ -2,6 +2,8 @@ import path from 'node:path';
 import yargs from 'yargs';
 import { generatePropTypes, ProjectSettings } from '@mui-internal/proptypes-builder';
 
+const workspaceRoot = path.resolve(__dirname, '..');
+
 const useExternalPropsFromInputBase = [
   'autoComplete',
   'autoFocus',
@@ -118,10 +120,10 @@ interface CommandOptions {
 
 const projectSettings: ProjectSettings[] = [
   {
-    rootPath: path.resolve(process.cwd(), 'packages/mui-system/src'),
+    rootPath: path.resolve(workspaceRoot, 'packages/mui-system/src'),
     typeScriptProject: {
       name: 'system',
-      rootPath: path.join(process.cwd(), 'packages/mui-system'),
+      rootPath: path.join(workspaceRoot, 'packages/mui-system'),
       entryPointPath: 'src/index.d.ts',
     },
     useExternalDocumentation: {
@@ -130,10 +132,10 @@ const projectSettings: ProjectSettings[] = [
     },
   },
   {
-    rootPath: path.resolve(process.cwd(), 'packages/mui-base/src'),
+    rootPath: path.resolve(workspaceRoot, 'packages/mui-base/src'),
     typeScriptProject: {
       name: 'base',
-      rootPath: path.join(process.cwd(), 'packages/mui-base'),
+      rootPath: path.join(workspaceRoot, 'packages/mui-base'),
       entryPointPath: 'src/index.d.ts',
     },
     useExternalDocumentation: {
@@ -141,38 +143,38 @@ const projectSettings: ProjectSettings[] = [
     },
   },
   {
-    rootPath: path.resolve(process.cwd(), 'packages/mui-material/src'),
+    rootPath: path.resolve(workspaceRoot, 'packages/mui-material/src'),
     typeScriptProject: {
       name: 'material',
-      rootPath: path.join(process.cwd(), 'packages/mui-material'),
+      rootPath: path.join(workspaceRoot, 'packages/mui-material'),
       entryPointPath: 'src/index.d.ts',
     },
     useExternalDocumentation: useMaterialUiExternalDocumentation,
     ignoreExternalDocumentation: ignoreMaterialUiExternalDocumentation,
   },
   {
-    rootPath: path.resolve(process.cwd(), 'packages/mui-lab/src'),
+    rootPath: path.resolve(workspaceRoot, 'packages/mui-lab/src'),
     typeScriptProject: {
       name: 'lab',
-      rootPath: path.join(process.cwd(), 'packages/mui-lab'),
+      rootPath: path.join(workspaceRoot, 'packages/mui-lab'),
       entryPointPath: 'src/index.d.ts',
     },
   },
   {
-    rootPath: path.resolve(process.cwd(), 'packages/mui-material-next/src'),
+    rootPath: path.resolve(workspaceRoot, 'packages/mui-material-next/src'),
     typeScriptProject: {
       name: 'material-next',
-      rootPath: path.join(process.cwd(), 'packages/mui-material-next'),
+      rootPath: path.join(workspaceRoot, 'packages/mui-material-next'),
       entryPointPath: 'src/index.ts',
     },
     useExternalDocumentation: useMaterialUiExternalDocumentation,
     ignoreExternalDocumentation: ignoreMaterialUiExternalDocumentation,
   },
   {
-    rootPath: path.resolve(process.cwd(), 'packages/mui-joy/src'),
+    rootPath: path.resolve(workspaceRoot, 'packages/mui-joy/src'),
     typeScriptProject: {
       name: 'joy',
-      rootPath: path.join(process.cwd(), 'packages/mui-joy'),
+      rootPath: path.join(workspaceRoot, 'packages/mui-joy'),
       entryPointPath: 'src/index.ts',
     },
     useExternalDocumentation: {

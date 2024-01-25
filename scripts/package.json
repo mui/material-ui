@@ -1,0 +1,22 @@
+{
+  "name": "scripts",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "proptypes": "tsx ./generateProptypes.ts"
+  },
+  "nx": {
+    "targets": {
+      "proptypes": {
+        "dependsOn": [
+          {
+            "projects": [
+              "@mui-internal/proptypes-builder"
+            ],
+            "target": "build"
+          }
+        ]
+      }
+    }
+  }
+}

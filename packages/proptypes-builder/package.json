@@ -1,13 +1,26 @@
 {
   "name": "@mui-internal/proptypes-builder",
   "version": "1.0.0",
-  "private": "true",
-  "main": "./index.ts",
+  "author": "MUI Team",
+  "description": "A utility to create prop types based on TS definitions in MUI codebase. This is an internal package not meant for general use.",
+  "main": "./build/index.js",
+  "exports": {
+    ".": "./build/index.js"
+  },
+  "types": "./build/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mui/material-ui.git",
+    "directory": "packages/proptypes-builder"
+  },
   "scripts": {
-    "typescript": "tsc -p tsconfig.json"
+    "prebuild": "rimraf ./build",
+    "build": "tsc -b tsconfig.build.json",
+    "typescript": "tsc -b tsconfig.json",
+    "release:publish": "pnpm publish --tag latest",
+    "release:publish:dry-run": "pnpm publish --tag latest --registry=\"http://localhost:4873/\""
   },
   "dependencies": {
-    "@mui-internal/api-docs-builder": "workspace:^",
     "@mui-internal/docs-utils": "workspace:^",
     "@mui-internal/typescript-to-proptypes": "workspace:^",
     "fast-glob": "^3.3.2",
@@ -15,6 +28,7 @@
     "prettier": "^2.8.8"
   },
   "devDependencies": {
+    "rimraf": "^5.0.5",
     "typescript": "^5.3.3"
   }
 }

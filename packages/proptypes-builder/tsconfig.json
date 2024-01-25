@@ -1,22 +1,15 @@
 {
   "compilerOptions": {
-    "allowJs": true,
-    "isolatedModules": true,
     "noEmit": true,
-    "noUnusedLocals": false,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "types": ["node", "mocha"],
-    "target": "ES2020",
-    "module": "CommonJS",
     "moduleResolution": "node",
+    "types": ["node", "mocha"],
     "strict": true,
-    "baseUrl": "./",
-    "paths": {
-      "react-docgen": ["./react-docgen.d.ts"]
-    }
+    "esModuleInterop": true,
+    "isolatedModules": true
   },
-  "include": ["./**/*.ts", "./**/*.js"],
-  "exclude": ["node_modules"]
+  "include": ["./src/*.ts", "./test/*.ts"],
+  "references": [
+    { "path": "../docs-utils/tsconfig.build.json" },
+    { "path": "../typescript-to-proptypes/tsconfig.build.json" }
+  ]
 }

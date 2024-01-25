@@ -20,6 +20,7 @@
     "packages/mui-types",
     "packages/mui-utils",
     "packages/docs-utils",
+    "packages/proptypes-builder",
     "packages/typescript-to-proptypes"
   ],
   "publishDirectory": {
@@ -40,6 +41,7 @@
     "@mui/types": "packages/mui-types/build",
     "@mui/utils": "packages/mui-utils/build",
     "@mui-internal/docs-utils": "packages/docs-utils",
+    "@mui-internal/proptypes-builder": "packages/proptypes-builder",
     "@mui-internal/typescript-to-proptypes": "packages/typescript-to-proptypes"
   },
   "sandboxes": [

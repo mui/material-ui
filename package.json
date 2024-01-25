@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "proptypes": "tsx ./scripts/generateProptypes.ts",
+    "proptypes": "nx run scripts:proptypes",
     "deduplicate": "pnpm dedupe",
     "benchmark:browser": "pnpm --filter benchmark browser",
     "build": "lerna run --scope \"@mui/*\" build",
@@ -221,5 +221,6 @@
     ],
     "sourceMap": false,
     "instrument": false
-  }
+  },
+  "nx": {}
 }

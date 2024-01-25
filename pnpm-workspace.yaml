@@ -5,3 +5,4 @@ packages:
   - 'docs'
   - 'test'
   - 'apps/*'
+  - 'scripts'
