@@ -21,7 +21,6 @@ Most breaking changes are in place, and we shift our focus towards refining and 
 
 ## Table of contents
 
-- [What's New](#whats-new)
   - [Data Grid](#data-grid)
     - [Sticky headers](#sticky-headers)
     - [Server-side data source](#server-side-data-source)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
