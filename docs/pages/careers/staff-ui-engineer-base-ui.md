@@ -66,15 +66,15 @@ Depending on the day, you'll:
 
 - **Expertise with the modern JavaScript ecosystem**. Base UI is built on modern front-end technologies like TypeScript, Node.js, React, Next.js, Webpack, and Babel. Working knowledge of these technologies is critical.
 - **Expertise with CSS.** Deep knowledge of the functional aspects of CSS will be required.
-- **Familiarity with a11y requirements.** We’re looking for someone familiar with ARIA requirements, who cares about building accessible UI, and wants to make the web a more accessible place.
+- **Familiarity with a11y requirements.** We are looking for someone familiar with ARIA requirements, who cares about building accessible UI, and wants to make the web a more accessible place.
 - **An eye for detail.** We appreciate people who sweat the details. People who go above and beyond to make interfaces fast, accessible, beautiful, and delightful.
-- **Experience shipping production code in a team setting.** We’re looking for someone with multiple years of experience working on production code.
+- **Experience shipping production code in a team setting.** We are looking for someone with multiple years of experience working on production code.
 - **Strong written and verbal communication skills**. As part of the team, you'll communicate both directly and indirectly with community members and enterprise customers, and contribute to user documentation. Clear communication is important in creating intuitive and compelling resources.
 
 ### Nice to have (but not required)
 
 - **Experience working remotely.** Experience is not necessarily mandatory, but remote work can be a different challenge sometimes, so some experience would be helpful.
-- **Experience working with design systems**. We’re not looking for visual designers, but familiarity with the needs of design system maintainers would be helpful.
+- **Experience working with design systems**. We are not looking for visual designers, but familiarity with the needs of design system maintainers would be helpful.
 - **Experience contributing to OSS**. MUI is all about open-source software, so OSS experience would be awesome.
 
 ## Benefits and compensation
