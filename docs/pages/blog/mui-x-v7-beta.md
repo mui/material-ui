@@ -13,15 +13,15 @@ card: true
   </a>
 </div>
 
-It’s the end of January, and we’re ready to start rolling out some of the plans for 2024!
+It's the end of January, and we're ready to start rolling out some of the plans for 2024!
 We have new components, exciting features, and a lot of improvements for both developers and end-users.
 
-Starting [now](https://github.com/mui/mui-x/releases/tag/v7.0.0-beta.0), MUI X v7 is in beta. Most breaking changes are in place, and we shift our focus towards refining and expanding over the new version.
+Starting [now](https://github.com/mui/mui-x/releases/tag/v7.0.0-beta.0), MUI X v7 is in beta.
+Most breaking changes are in place, and we shift our focus towards refining and expanding over the new version.
 
 ## Table of contents
 
-- [What’s New](#whats-new)
-
+- [What's New](#whats-new)
   - [Data Grid](#data-grid)
     - [Sticky Headers](#sticky-headers)
     - [Server-Side Data Source](#server-side-data-source)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
@@ -34,12 +34,11 @@ Starting [now](https://github.com/mui/mui-x/releases/tag/v7.0.0-beta.0), MUI X v
   - [Date Pickers](#date-pickers)
     - [Date Time Range Picker](#date-time-range-picker)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
     - [Support for date-fns v3](#support-for-date-fns-v3)
-
 - [What's Next](#whats-next)
 - [Migration Guide](#migration-guide)
 - [How to Get Involved](#how-to-get-involved)
 
-# What’s new
+# What's new
 
 ## Data Grid
 
@@ -47,7 +46,9 @@ We have introduced critical breaking changes designed not only to enhance the de
 
 ### Sticky Headers
 
-The column headers and pinning implementations have been refactored for a significantly better user experience. You’ll notice a more responsive Data Grid with smoother scrolling and better screen reader support. The video below showcases some of these improvements.
+The column headers and pinning implementations have been refactored for a significantly better user experience.
+You'll notice a more responsive Data Grid with smoother scrolling and better screen reader support.
+The video below showcases some of these improvements.
 
 <video preload="metadata" style="margin-bottom: 10px;" autoplay muted loop playsinline width="690" height="417">
   <source src="/static/blog/mui-x-v7-beta/sticky-headers.mp4" type="video/mp4">
@@ -67,7 +68,7 @@ Integration with the server side has been a huge pain point for our community; w
 
 This new interface establishes more efficient data management and seamless interactions, allowing developers to build more responsive and robust applications that connect UI elements to backend services with less complexity.
 
-It’s initially designed for the Data Grid, but we plan that the DataSource will serve data to multiple components in the future.
+It's initially designed for the Data Grid, but we plan that the DataSource will serve data to multiple components in the future.
 
 ```jsx
 const myDataSource: DataSource = {
@@ -101,9 +102,9 @@ While string values remain compatible for these types, any updates to the `filte
 
 ### New stable features
 
-During major versions, MUI X releases new features under the `experimental` flag as a failsafe in case there’s a need to change the API based on user feedback.
+During major versions, MUI X releases new features under the `experimental` flag as a failsafe in case there's a need to change the API based on user feedback.
 
-We're now excited to announce that the following features have been promoted to stable and don’t require the use of the flag anymore.
+We're now excited to announce that the following features have been promoted to stable and don't require the use of the flag anymore.
 
 - [Cell selection](https://next.mui.com/x/react-data-grid/cell-selection/) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 - [Clipboard pasting](https://next.mui.com/x/react-data-grid/clipboard/#clipboard-paste) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
@@ -111,7 +112,8 @@ We're now excited to announce that the following features have been promoted to 
 
 ## TreeView
 
-Following the promotion of the component from the labs to MUI X, our primary focus has been on improving its developer experience. This includes efforts to clarify documentation and improve key examples, making them more informative and user-friendly.
+Following the promotion of the component from the labs to MUI X, our primary focus has been on improving its developer experience.
+This includes efforts to clarify documentation and improve key examples, making them more informative and user-friendly.
 
 A particularly significant initiative is the practical alternative to the traditional JSX architecture, the RichTreeView.
 
@@ -127,18 +129,18 @@ Similar to the DataGrid, it requires only a dataset and possibly a few propertie
 
 ```jsx
 const myDataSet = [
-	{
-		id: 'node-1',
-		label: 'Node 1',
-		children: [
-			{ id: 'node-1-1', label: Node 1.1' },
-			{ id: 'node-1-2', label: Node 1.2' },
-		],
-	},
-		{
-		id: 'node-2',
-		label: 'Node 2',
-	},
+    {
+        id: 'node-1',
+        label: 'Node 1',
+        children: [
+            { id: 'node-1-1', label: Node 1.1' },
+            { id: 'node-1-2', label: Node 1.2' },
+        ],
+    },
+        {
+        id: 'node-2',
+        label: 'Node 2',
+    },
 ];
 ```
 
@@ -154,7 +156,8 @@ Checkout the [new component](https://next.mui.com/x/react-tree-view/rich-tree-vi
 
 ## Charts
 
-Since the initial stable release of the charts components a few months ago, we have been diligently listening to your feedback and focusing on refining the foundational charts to ensure they effectively cater to your diverse use cases. This includes bug fixes, doc improvements, and support for more complex use cases.
+Since the initial stable release of the charts components a few months ago, we have been diligently listening to your feedback and focusing on refining the foundational charts to ensure they effectively cater to your diverse use cases.
+This includes bug fixes, doc improvements, and support for more complex use cases.
 
 ### Reference line
 
@@ -168,7 +171,8 @@ You can find more details on its [documentation](https://next.mui.com/x/react-ch
 
 The focus has been mostly on developing the highly anticipated new components, DateTimeRangePicker and TimeRangePicker, alongside a significant effort to enhance accessibility in the fields, ensuring that our components are as inclusive and user-friendly as possible.
 
-While our journey towards these new additions continues, our commitment to improving existing features remains unwavering, and we ensure that the existing components have been up-to-date with supported date libraries.
+While our journey towards these new additions continues, our commitment to improving existing features remains a top priority.
+Accordingly, we consistently update existing components to align seamlessly with the latest versions of supported date libraries.
 
 ### Date Time Range Picker [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
@@ -221,20 +225,23 @@ As we approach the stable release of v7, our roadmap is well-defined, focusing o
 
 # Migration guide
 
-We fully understand that updating a dependency library can sometimes be daunting. To smooth the transition to the new version, we have documented all breaking changes in our migration guides:
+We fully understand that updating a dependency library can sometimes be daunting.
+To smooth the transition to the new version, we have documented all breaking changes in our migration guides:
 
 - [Data Grid](https://next.mui.com/x/migration/migration-data-grid-v6/)
 - [Date pickers](https://next.mui.com/x/migration/migration-date-pickers-v6/)
 - [Charts](https://next.mui.com/x/migration/migration-charts-v6/)
 - [TreeView](https://next.mui.com/x/migration/migration-tree-view-v6/)
 
-These component-specific guides are a reference tool designed to assist you if you encounter any challenges while updating to the new major version. It's our way of making the upgrade process more manageable and less burdensome for you. However, should you need further assistance or have specific queries, please don't hesitate to contact us and send your feedback.
+These component-specific guides are reference pages designed to assist you if you encounter any challenges while updating to the new major version.
+It's our way of making the upgrade process more manageable and less burdensome for you.
+However, should you need further assistance, please don't hesitate to contact us and send your feedback.
 
 # How to get involved
 
-Your feedback has been invaluable in developing MUI X, and we’re always happy to hear from you. Please consider sharing your experiences and pain points by:
+Your feedback has been invaluable in developing MUI X, and we're always happy to hear from you. Please consider sharing your experiences and pain points by:
 
 - [Giving us a user interview](https://forms.gle/vsBv6CLPz9h57xg8A).
 - Reporting bugs and suggesting features on our [GitHub repository](https://github.com/mui/mui-x/issues/new/choose).
 
-We look forward to your input!
+We look forward to your input!X
