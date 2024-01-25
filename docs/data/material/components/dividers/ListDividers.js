@@ -21,15 +21,15 @@ export default function ListDividers() {
       <ListItem>
         <ListItemText primary="Inbox" />
       </ListItem>
-      <Divider component="li" sx={{ bgcolor: grey[100] }} />
+      <Divider component="li" sx={{ bgcolor: grey[50] }} />
       <ListItem>
         <ListItemText primary="Drafts" />
       </ListItem>
-      <Divider component="li" sx={{ bgcolor: grey[100] }} />
+      <Divider component="li" sx={{ bgcolor: grey[50] }} />
       <ListItem>
         <ListItemText primary="Trash" />
       </ListItem>
-      <Divider component="li" sx={{ bgcolor: grey[100] }} />
+      <Divider component="li" sx={{ bgcolor: grey[50] }} />
       <ListItem>
         <ListItemText primary="Spam" />
       </ListItem>

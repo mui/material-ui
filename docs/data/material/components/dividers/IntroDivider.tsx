@@ -24,7 +24,7 @@ export default function IntroDivider() {
           just down the hall.
         </Typography>
       </Box>
-      <Divider sx={{ bgcolor: grey[100] }} />
+      <Divider sx={{ bgcolor: grey[50] }} />
       <Box sx={{ p: 2 }}>
         <Typography gutterBottom variant="body2">
           Select type
