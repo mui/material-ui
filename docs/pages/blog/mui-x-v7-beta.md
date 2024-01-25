@@ -21,18 +21,18 @@ Most breaking changes are in place, and we shift our focus towards refining and 
 
 ## Table of contents
 
-  - [Data Grid](#data-grid)
-    - [Sticky headers](#sticky-headers)
-    - [Server-side data source](#server-side-data-source)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
-    - [Date Object Support in Filter Model](#date-object-support-in-filter-model)
-    - [New stable features](#new-stable-features)
-  - [Tree View](#tree-view)
-    - [RichTreeView](#richtreeview-new-component)
-  - [Charts](#charts)
-    - [Reference Line](#reference-line)
-  - [Date Pickers](#date-pickers)
-    - [Support for date-fns v3](#support-for-date-fns-v3)
-    - [Date Time Range Picker](#date-time-range-picker)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+- [Data Grid](#data-grid)
+  - [Sticky headers](#sticky-headers)
+  - [Server-side data source](#server-side-data-source)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+  - [Date Object Support in Filter Model](#date-object-support-in-filter-model)
+  - [New stable features](#new-stable-features)
+- [Tree View](#tree-view)
+  - [RichTreeView](#richtreeview-new-component)
+- [Charts](#charts)
+  - [Reference Line](#reference-line)
+- [Date Pickers](#date-pickers)
+  - [Support for date-fns v3](#support-for-date-fns-v3)
+  - [Date Time Range Picker](#date-time-range-picker)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 - [What's next](#whats-next)
 - [Migration guide](#migration-guide)
 - [How to get involved](#how-to-get-involved)
@@ -116,7 +116,7 @@ A particularly significant initiative is the time-saving alternative to the trad
 
 ### RichTreeView
 
-We've evolved the TreeView into two distinct components.
+We've split the Tree View into two distinct components.
 
 The first is the `SimpleTreeView`, which retains the classic and familiar JSX approach and is still the one behind the original `<TreeView />` tag.
 
@@ -154,7 +154,7 @@ Check out the [new component](https://next.mui.com/x/react-tree-view/rich-tree-v
 ## Charts
 
 Since the initial stable release of MUI X Chart a few months ago, we have been diligently listening to your feedback and focusing on refining the foundational charts to ensure they effectively cater to your diverse use cases.
-This includes bug fixes, doc improvements, and support for more complex use cases.
+This includes bug fixes, doc improvements, and support for more complex scenarios.
 
 ### Reference line
 
