@@ -13,8 +13,9 @@ import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
-import MUIConnectSignUp from 'docs/src/components/productConnect/MUIConnectSignUp';
+// import MUIConnectSignUp from 'docs/src/components/productConnect/MUIConnectSignUp';
 import InfoCard from 'docs/src/components/action/InfoCard';
+import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
 import AccessibilityNewRounded from '@mui/icons-material/AccessibilityNewRounded';
@@ -73,33 +74,22 @@ export default function Connect() {
       <AppHeader gitHubRepository="https://github.com/mui/mui-design-kits" />
       <main id="main-content">
         <Section bg="gradient">
-          <Grid
-            container
-            spacing={{ xs: 0, sm: 2 }}
-            alignItems="center"
-            justifyContent="space-between"
-          >
-            <Grid item md={6} sx={{ minWidth: 0 }}>
-              <SectionHeadline
-                overline={
-                  <Chip label="Beta release" size="small" color="primary" variant="outlined" />
-                }
-                title={
-                  <Typography variant="h2" component="h1">
-                    <GradientText>Bridge the gap</GradientText> between Figma and your codebase
-                  </Typography>
-                }
-                description="Connect is a Figma plug-in that lets you bring Material UI component customizations done in Figma to your codebase."
-              />
-            </Grid>
-            <Grid item xs={12} md={5}>
-              <Typography variant="body2" color="text.secondary" mb={1}>
-                Add your email if you want to be notified when the Connect beta version becomes
-                available for testing in the Figma community.
+          <SectionHeadline
+            alwaysCenter
+            overline={<Chip label="Beta release" size="small" color="primary" variant="outlined" />}
+            title={
+              <Typography variant="h2" component="h1">
+                <GradientText>Bridge the gap</GradientText> between Figma and your codebase
               </Typography>
-              <MUIConnectSignUp />
-            </Grid>
-          </Grid>
+            }
+            description="Connect is a Figma plug-in that lets you bring Material UI component customizations done in Figma to your codebase."
+          />
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <GetStartedButtons
+              primaryLabel="Get it at the Figma Community"
+              primaryUrl="/connect/"
+            />
+          </Box>
         </Section>
         <Divider />
         <Box
