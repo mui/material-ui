@@ -152,7 +152,7 @@ const myDataSet = [
 />
 ```
 
-Checkout the [new component](https://next.mui.com/x/react-tree-view/rich-tree-view/items/)!
+Check out the [new component](https://next.mui.com/x/react-tree-view/rich-tree-view/items/)!
 
 ## Charts
 
