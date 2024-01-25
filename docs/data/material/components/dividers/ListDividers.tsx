@@ -3,6 +3,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
+import { grey } from '@mui/material/colors';
 
 const style = {
   p: 0,
@@ -20,15 +21,15 @@ export default function ListDividers() {
       <ListItem>
         <ListItemText primary="Inbox" />
       </ListItem>
-      <Divider component="li" light />
+      <Divider component="li" sx={{ bgcolor: grey[100] }} />
       <ListItem>
         <ListItemText primary="Drafts" />
       </ListItem>
-      <Divider component="li" light />
+      <Divider component="li" sx={{ bgcolor: grey[100] }} />
       <ListItem>
         <ListItemText primary="Trash" />
       </ListItem>
-      <Divider component="li" light />
+      <Divider component="li" sx={{ bgcolor: grey[100] }} />
       <ListItem>
         <ListItemText primary="Spam" />
       </ListItem>

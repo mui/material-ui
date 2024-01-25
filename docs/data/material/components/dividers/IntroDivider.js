@@ -5,6 +5,7 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
+import { grey } from '@mui/material/colors';
 
 export default function IntroDivider() {
   return (
@@ -23,7 +24,7 @@ export default function IntroDivider() {
           just down the hall.
         </Typography>
       </Box>
-      <Divider light />
+      <Divider sx={{ bgcolor: grey[100] }} />
       <Box sx={{ p: 2 }}>
         <Typography gutterBottom variant="body2">
           Select type
