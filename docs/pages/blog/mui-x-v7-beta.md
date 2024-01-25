@@ -1,7 +1,7 @@
 ---
 title: MUI X v7 is now in beta
 description: Check out what's new and what's next for v7 stable.
-date: 2024-01-31T00:00:00.000Z
+date: 2024-01-29T00:00:00.000Z
 authors: ['josefreitas']
 tags: ['MUI X', 'News']
 card: true
