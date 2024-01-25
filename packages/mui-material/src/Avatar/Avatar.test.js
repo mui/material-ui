@@ -227,11 +227,12 @@ describe('<Avatar />', () => {
       expect(avatar.firstChild).to.have.attribute('data-testid', 'PersonIcon');
     });
 
-    it('should fallback if children is true', () => {
-      const container = render(<Avatar>{true}</Avatar>).container;
-      const avatar = container.firstChild;
-
-      expect(avatar.firstChild).to.have.attribute('data-testid', 'PersonIcon');
+    it('should throw propTypes error if children is boolean true', () => {
+      expect(() => {
+        render(<Avatar>{true}</Avatar>);
+      }).toErrorDev(
+        'Warning: Failed prop type: Invalid prop `children` supplied to `ForwardRef(Avatar)`, expected a ReactNode.',
+      );
     });
   });
 
