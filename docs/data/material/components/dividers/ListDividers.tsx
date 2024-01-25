@@ -20,15 +20,15 @@ export default function ListDividers() {
       <ListItem>
         <ListItemText primary="Inbox" />
       </ListItem>
-      <Divider component="li" light />
+      <Divider component="li" />
       <ListItem>
         <ListItemText primary="Drafts" />
       </ListItem>
-      <Divider component="li" light />
+      <Divider component="li" />
       <ListItem>
         <ListItemText primary="Trash" />
       </ListItem>
-      <Divider component="li" light />
+      <Divider component="li" />
       <ListItem>
         <ListItemText primary="Spam" />
       </ListItem>
