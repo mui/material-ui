@@ -43,8 +43,8 @@ We have introduced critical breaking changes designed not only to enhance the de
 
 ### Sticky headers
 
-The column headers and pinning implementations have been refactored for a significantly better user experience.
-You'll notice a more responsive Data Grid with smoother scrolling and better screen reader support.
+The column headers and pinning implementations have been refactored for an improved user experience.
+You'll notice a more responsive Data Grid with smoother vertical scrolling and better screen reader support.
 The video below showcases some of these improvements.
 
 <video preload="metadata" style="margin-bottom: 10px;" autoplay muted loop playsinline width="690" height="417" controls>
