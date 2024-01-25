@@ -8,33 +8,49 @@
 - **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
 - **Level**: [IC5 or above](https://mui-org.notion.site/Levelling-at-MUI-5c30f9bfe65149d697f346447cef9db1).
 
-## About MUI
+## The company
 
-MUI began in 2014 with Material UI, the most successful React implementation of Google's Material Design. Today, Material UI stands as one of the most popular open-source libraries on GitHub.
+MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
+Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
+We're a company of 31+ people as of late 2023, and we're growing.
 
-Today, we maintain an ever-expanding suite of component libraries, developer tools, and design tools:
+## The products
 
-- Material UI is our styled UI component library built on Google’s Material Design System.
-- Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
-- Base UI is our headless/unstyled UI component library.
-- MUI Connect is a Figma —> Code tool.
-- MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
-- Toolpad is a low-code admin builder that helps companies build internal tools locally.
-- We also house a host of design kits and pre-built templates in our Store.
+MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
+Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
+We also host Design Kits and pre-built Templates.
 
-We're a company of 32+ people, and we're growing. Overall, both our open-source community and our premium products are growing fast (x2 YoY). We need talented people to keep that going!
+Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
 
-## Our culture
+We're also making ambitious moves to incorporate our full suite of components into Toolpad, a low-code admin builder tool for assembling full-stack apps faster than ever.
 
-MUI is a fully remote company with a team that spans the globe. The majority of our work is asynchronous, and we rely on written communication to collaborate. We're radically transparent: nearly all of our work happens in public. Each contributor has the freedom to decide how and when they work, and that work is primarily self-directed: it's your responsibility to define and complete your own tasks in a timely manner.
+Learn more about MUI's products in this blog post: [An introduction to the MUI ecosystem](https://mui.com/blog/mui-product-comparison/).
 
-For additional details about the culture, you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://www.notion.so/Handbook-f086d47e10794d5e839aef9dc67f324b?pvs=21).
+## The culture
+
+MUI is a fully remote company with a team that spans the globe.
+The majority of our work is asynchronous, and we rely on written communication to collaborate.
+We're radically transparent: nearly all of our work happens in public.
+Each contributor has the freedom to decide how and when they work, and that work is primarily self-directed: it's your responsibility to define and complete your own tasks in a timely manner.
+
+For additional details about the culture, you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
+
+## Why we're hiring
+
+The Base UI team is just starting to take shape now, and we have big goals for the next few years. We need experienced people to work alongside excellent UI engineers and designers, in an IC capacity, to research, spec, build, document, and ship high-quality, unstyled UI components with a focus on a11y.
+
+Overall, both our open-source community and our premium products are growing fast (x2 YoY).
+We need talented people to keep that going!
+
+### Why this is interesting
+
+Our products empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month. We're planning to invest heavily in Base UI this year and into the future. Our goal is to make Base UI one the best unstyled UI libs available, and in the process, help millions of developers build more accessible products.
 
 ## The role
 
-The Base UI team is just starting to take shape now. You will work alongside excellent UI engineers and designers, in an IC capacity, to research, spec, build, document, and ship high-quality, unstyled UI components with a focus on a11y.
+### What you'll do on a day-to-day basis
 
-## What you will do
+Depending on the day, you'll:
 
 - Build UI components with React and TypeScript.
 - Perform code reviews and help to maintain a high-bar for code quality.
@@ -44,7 +60,7 @@ The Base UI team is just starting to take shape now. You will work alongside exc
 - Contribute to Base UI documentation.
 - Help out with community support on GitHub and Discord.
 
-## Who we are looking for
+## Who we're looking for
 
 ### Required
 
@@ -57,34 +73,19 @@ The Base UI team is just starting to take shape now. You will work alongside exc
 
 ### Nice to have (but not required)
 
-- **[Bonus] Experience working remotely.** Experience is not necessarily mandatory, but remote work can be a different challenge sometimes, so some experience would be helpful.
-- **[Bonus] Experience working with design systems**. We’re not looking for visual designers, but familiarity with the needs of design system maintainers would be helpful.
-- **[Bonus] Experience contributing to OSS**. MUI is all about open-source software, so OSS experience would be awesome.
-
-## The best parts of this role
-
-- **You'll be at the cutting edge of application development** — working on one of the fastest-growing UI libraries on the market.
-- **You'll be part of an active, open, friendly community** of developers that are excited about building awesome applications.
-- **Your role will be key to making MUI the go-to UI solution** for building applications, websites, and design systems with React.
-
-## The worst parts of this role
-
-- **Shifting context.** You will necessarily have to shift context and dive into a different feature before the current one is done. It may even be in an area of the codebase you're unfamiliar with or don't have a ton of understanding about. It's fun, rewarding work, but it can be very challenging.
-- **We move quickly but don't sacrifice quality**. We ship early, often, and quickly. You may not be initially comfortable with the cadence with which we ship high-quality features and improvements to end-users. By doing so, we sacrifice on solving each problem 100% in exchange for fast feedback. Solving 50-70% of the issue with quality should be enough for any given iteration. Our users quickly tell us when we haven't pushed a solution far enough.
-- **MUI has a large codebase**. You may bang your head against the wall at times, and then write tests to assist future you 😌. The work you will be doing is somewhat unique and idiosyncratic. You probably have not had a similar role before.
-- **In open-source, you're faced with a non-stop stream of bug reports and support requests**. That means you need to develop an intuition for when to ignore something, and when to dig in further.
+- **Experience working remotely.** Experience is not necessarily mandatory, but remote work can be a different challenge sometimes, so some experience would be helpful.
+- **Experience working with design systems**. We’re not looking for visual designers, but familiarity with the needs of design system maintainers would be helpful.
+- **Experience contributing to OSS**. MUI is all about open-source software, so OSS experience would be awesome.
 
 ## Benefits and compensation
 
-- Competitive compensation depending on the profile and location. We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
-- 33 days of paid time off globally.
-- $2,500 USD office/equipment budget.
-- Work remotely. Our entire company is globally distributed.
-- Retreats every 8 months for a week of working & having fun together.
+Competitive compensation depending on the profile and location.
+We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
+You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## How to apply
 
-[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/c45a0b2d-aa37-4dec-8bcd-e70040f3af49/application?utm_source=ZNRrPGBkqO)
+[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/__ID__/application?utm_source=ZNRrPGBkqO)
 
 Don't meet every requirement?
 Apply anyway!
