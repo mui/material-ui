@@ -11,7 +11,7 @@ function Placeholder() {
   return (
     <Box
       sx={(theme) => ({
-        height: { xs: 1484, sm: 825, md: 605 },
+        height: { xs: 1484, sm: 825, md: 601 },
         borderRadius: 1,
         bgcolor: 'grey.100',
         ...theme.applyDarkStyles({
@@ -26,7 +26,7 @@ const MaterialDesignComponents = dynamic(() => import('./MaterialDesignComponent
   loading: Placeholder,
 });
 
-function DesignSystemComponents() {
+export default function DesignSystemComponents() {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0,
@@ -47,5 +47,3 @@ function DesignSystemComponents() {
     </Section>
   );
 }
-
-export default DesignSystemComponents;
