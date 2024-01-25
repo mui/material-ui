@@ -7,7 +7,7 @@ import type {
   ObjectExpression,
   PrivateName,
 } from '@babel/types';
-import { findIdentifiers } from '@linaria/utils';
+import { findIdentifiers } from '@wyw-in-js/transform';
 import { isStaticObjectOrArrayExpression } from './checkStaticObjectOrArray';
 
 function validateObjectKey(
@@ -26,13 +26,13 @@ function validateObjectKey(
     throw keyPath.buildCodeFrameError('Expressions in css object keys are not supported.');
   }
   if (
-    !identifiers.every((item) => {
+    !identifiers.every((item: any) => {
       const binding = item.scope.getBinding(item.node.name);
       if (!binding) {
         return false;
       }
       if (
-        binding.path.findParent((parent) => parent === parentCall) ||
+        binding.path.findParent((parent: any) => parent === parentCall) ||
         binding.path.scope === rootScope
       ) {
         return true;
@@ -72,7 +72,7 @@ function traverseObjectExpression(
         const identifiers = findIdentifiers([value], 'reference');
         const themeIdentifiers: NodePath<Identifier>[] = [];
         const localIdentifiers: NodePath<Identifier>[] = [];
-        identifiers.forEach((id) => {
+        identifiers.forEach((id: any) => {
           if (!id.isIdentifier()) {
             return;
           }
@@ -80,7 +80,7 @@ function traverseObjectExpression(
           if (!binding) {
             return;
           }
-          if (binding.path.findParent((parent) => parent === parentCall)) {
+          if (binding.path.findParent((parent: any) => parent === parentCall)) {
             themeIdentifiers.push(id);
           } else if (binding.scope !== rootScope) {
             localIdentifiers.push(id);
@@ -101,7 +101,7 @@ function traverseObjectExpression(
     } else if (property.isSpreadElement()) {
       const identifiers = findIdentifiers([property.get('argument')]);
       if (
-        !identifiers.every((id) => {
+        !identifiers.every((id: any) => {
           const binding = property.scope.getBinding(id.node.name);
           if (!binding || binding.scope !== rootScope) {
             return false;
