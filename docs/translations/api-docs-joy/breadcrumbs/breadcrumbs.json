@@ -33,9 +33,9 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
-    "ol": "The component that renders the ol.",
     "li": "The component that renders the li.",
+    "ol": "The component that renders the ol.",
+    "root": "The component that renders the root.",
     "separator": "The component that renders the separator."
   }
 }
