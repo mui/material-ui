@@ -26,6 +26,7 @@ Do not use them interchangeably.
 
 - `createTheme()` returns a theme for `ThemeProvider`.
 - `extendTheme()` returns a theme for `CssVarsProvider`.
+
   :::
 
 ### Color schemes
