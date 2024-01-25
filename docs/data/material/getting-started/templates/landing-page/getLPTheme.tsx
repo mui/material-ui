@@ -1,5 +1,5 @@
 import type {} from '@mui/material/themeCssVarsAugmentation';
-import { createTheme, ThemeOptions, alpha } from '@mui/material/styles';
+import { ThemeOptions, alpha } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
 import { PaletteMode } from '@mui/material';
 
@@ -74,6 +74,7 @@ export const successColor = {
 
 const getDesignTokens = (mode: PaletteMode) => ({
   palette: {
+    mode,
     primary: {
       light: brandColor[300],
       main: brandColor[500],
@@ -174,9 +175,9 @@ const getDesignTokens = (mode: PaletteMode) => ({
   },
 });
 
-export default function getLPTheme(): ThemeOptions {
+export default function getLPTheme(mode: PaletteMode): ThemeOptions {
   return {
-    ...getDesignTokens,
+    ...getDesignTokens(mode),
     components: {
       MuiMenuItem: {
         styleOverrides: {
@@ -465,13 +466,3 @@ export default function getLPTheme(): ThemeOptions {
     },
   };
 }
-
-export const LPDarkTheme = createTheme({
-  ...getDesignTokens('dark'),
-  ...getLPTheme(),
-});
-
-export const LPLightTheme = createTheme({
-  ...getDesignTokens('light'),
-  ...getLPTheme(),
-});

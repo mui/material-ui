@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { PaletteMode } from '@mui/material';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -19,7 +20,12 @@ const logoStyle = {
   cursor: 'pointer',
 };
 
-function AppAppBar() {
+interface AppAppBarProps {
+  mode: PaletteMode;
+  toggleColorMode: () => void;
+}
+
+function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen: boolean) => () => {
@@ -136,7 +142,7 @@ function AppAppBar() {
             </Box>
 
             <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 0.5 }}>
-              <ToggleColorMode />
+              <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
               <Button
                 color="primary"
                 variant="text"
@@ -186,7 +192,7 @@ function AppAppBar() {
                       flexGrow: 1,
                     }}
                   >
-                    <ToggleColorMode />
+                    <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
                   </Box>
                   <MenuItem onClick={() => scrollToSection('features')}>
                     Features
