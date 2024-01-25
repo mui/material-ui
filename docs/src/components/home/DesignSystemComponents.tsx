@@ -33,11 +33,11 @@ function DesignSystemComponents() {
     rootMargin: '500px',
   });
   return (
-    <Section ref={ref}>
+    <Section ref={ref} cozy>
       <SectionHeadline
         overline="Production-ready components"
         title={
-          <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 } }}>
+          <Typography variant="h2">
             Beautiful and powerful,
             <br /> <GradientText>right out of the box</GradientText>
           </Typography>
