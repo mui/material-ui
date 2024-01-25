@@ -336,7 +336,6 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
         },
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
-            alignSelf: 'center',
             color: brandColor[500],
             fontWeight: 500,
             position: 'relative',

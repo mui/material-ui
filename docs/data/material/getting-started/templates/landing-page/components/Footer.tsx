@@ -156,19 +156,20 @@ export default function Footer() {
             sx={{
               display: { xs: 'none', sm: 'flex' },
               flexDirection: 'column',
+
               gap: 1,
             }}
           >
-            <Typography variant="body2" sx={{ fontWeight: 600 }}>
+            <Typography variant="body2" textAlign="left" sx={{ fontWeight: 600 }}>
               Legal
             </Typography>
-            <Link color="inherit" href="#" sx={{ opacity: 0.7 }}>
+            <Link color="inherit" textAlign="left" href="#" sx={{ opacity: 0.7 }}>
               Terms
             </Link>
-            <Link color="inherit" href="#" sx={{ opacity: 0.7 }}>
+            <Link color="inherit" textAlign="left" href="#" sx={{ opacity: 0.7 }}>
               Privacy
             </Link>
-            <Link color="inherit" href="#" sx={{ opacity: 0.7 }}>
+            <Link color="inherit" textAlign="left" href="#" sx={{ opacity: 0.7 }}>
               Contact
             </Link>
           </Box>
@@ -186,10 +187,11 @@ export default function Footer() {
         >
           <div>
             <Link variant="body2" color="text.secondary" href="#">
-              Privacy Policy •
+              Privacy Policy
             </Link>
+            <span>&nbsp;•&nbsp;</span>
             <Link variant="body2" color="text.secondary" href="#">
-              &nbsp;Terms of Service
+              Terms of Service
             </Link>
 
             <Copyright />

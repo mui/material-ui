@@ -166,7 +166,7 @@ export default function Pricing() {
                           },
                           '& .MuiChip-icon': {
                             color: (theme) =>
-                              theme.palette.mode === 'light' ? '' : brandColor[500],
+                              theme.palette.mode === 'light' ? '' : brandColor[100],
                           },
                         }}
                       />

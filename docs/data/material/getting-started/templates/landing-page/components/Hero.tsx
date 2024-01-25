@@ -14,6 +14,9 @@ import CelebrationRoundedIcon from '@mui/icons-material/CelebrationRounded';
 import { greyColor, brandColor } from '../getLPTheme';
 
 export default function Hero() {
+  const handleClick = () => {
+    console.info('You clicked the Chip.');
+  };
   return (
     <Box
       id="hero"
@@ -39,28 +42,11 @@ export default function Hero() {
             variant="filled"
             label="New arrivals"
             icon={<CelebrationRoundedIcon />}
+            onClick={handleClick}
             sx={{
               alignSelf: 'center',
               py: 1.5,
               px: 0.5,
-              background: (theme) =>
-                theme.palette.mode === 'light'
-                  ? `linear-gradient(to bottom right, ${brandColor[50]}, ${brandColor[100]})`
-                  : `linear-gradient(to bottom right, ${brandColor[700]}, ${brandColor[900]})`,
-              border: '1px solid',
-              borderColor: (theme) =>
-                theme.palette.mode === 'light'
-                  ? `${alpha(brandColor[500], 0.3)}`
-                  : `${alpha(brandColor[500], 0.5)}`,
-              fontWeight: '600',
-              '& .MuiChip-label': {
-                color: (theme) =>
-                  theme.palette.mode === 'light' ? brandColor[500] : brandColor[200],
-              },
-              '& .MuiChip-icon': {
-                color: (theme) =>
-                  theme.palette.mode === 'light' ? brandColor[500] : brandColor[200],
-              },
             }}
           />
           <Box
@@ -140,7 +126,7 @@ export default function Hero() {
                 ? 'url("/static/images/templates/templates-images/dashboard-placeholder-image-light.png")'
                 : 'url("/static/images/templates/templates-images/dashboard-placeholder-image-dark.png")',
             backgroundSize: 'cover',
-            borderRadius: '8px',
+            borderRadius: '10px',
             boxShadow: (theme) =>
               theme.palette.mode === 'light'
                 ? `0 0 24px 12px ${alpha(brandColor[200], 0.3)}`

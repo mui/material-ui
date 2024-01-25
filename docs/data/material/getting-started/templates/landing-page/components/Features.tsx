@@ -23,24 +23,30 @@ const items = [
     title: 'Dashboard',
     description:
       'This item could provide a snapshot of the most important metrics or data points related to the product.',
-    image:
-      'url("https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=3570&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+    imageLight:
+      'url("/static/images/templates/templates-images/dashboard-placeholder-dashboard-light.png")',
+    imageDark:
+      'url("/static/images/templates/templates-images/dashboard-placeholder-dashboard-dark.png")',
   },
   {
     icon: <EdgesensorHighRoundedIcon />,
     title: 'Mobile integration',
     description:
       'This item could provide information about the mobile app version of the product.',
-    image:
-      'url("https://images.unsplash.com/photo-1581287053822-fd7bf4f4bfec?q=80&w=3602&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+    imageLight:
+      'url("/static/images/templates/templates-images/dashboard-placeholder-mobile-light.png")',
+    imageDark:
+      'url("/static/images/templates/templates-images/dashboard-placeholder-mobile-dark.png")',
   },
   {
     icon: <DevicesRoundedIcon />,
     title: 'Available in all platforms',
     description:
       'This item could let users know that the product is available on all platforms, such as web, mobile, and desktop.',
-    image:
-      'url("https://images.unsplash.com/photo-1597740985671-2a8a3b80502e?q=80&w=3456&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+    imageLight:
+      'url("/static/images/templates/templates-images/dashboard-placeholder-platforms-light.png")',
+    imageDark:
+      'url("/static/images/templates/templates-images/dashboard-placeholder-platforms-dark.png")',
   },
 ];
 
@@ -105,27 +111,35 @@ export default function Features() {
             <Box
               sx={{
                 display: { xs: 'auto', sm: 'none' },
-                border: '1px solid',
-                borderColor: (theme) =>
-                  theme.palette.mode === 'light' ? greyColor[200] : greyColor[700],
-                backgroundColor: (theme) =>
-                  theme.palette.mode === 'light' ? greyColor[100] : greyColor[800],
-                borderRadius: '8px',
                 p: 2,
                 mt: 4,
+                borderRadius: '10px',
+                border: '1px solid',
+                borderColor: (theme) =>
+                  theme.palette.mode === 'light'
+                    ? `${alpha(greyColor[300], 0.5)}`
+                    : `${alpha(greyColor[700], 0.5)}`,
+                background: (theme) =>
+                  theme.palette.mode === 'light'
+                    ? `linear-gradient(to bottom, ${greyColor[50]}, ${greyColor[100]})`
+                    : `linear-gradient(to bottom, ${greyColor[800]}, ${greyColor[900]})`,
+                boxShadow: (theme) =>
+                  theme.palette.mode === 'light'
+                    ? `inner 0 0 24px 12px ${alpha(greyColor[300], 0.3)}`
+                    : `inner 0 0 24px 12px ${alpha(greyColor[600], 0.2)}`,
               }}
             >
               <Box
                 sx={{
-                  backgroundImage: items[selectedItemIndex].image,
+                  backgroundImage: (theme) =>
+                    theme.palette.mode === 'light'
+                      ? items[selectedItemIndex].imageLight
+                      : items[selectedItemIndex].imageDark,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   borderRadius: '4px',
                   minHeight: '300px',
                   marginBottom: '16px',
-                  outline: '1px solid',
-                  outlineColor: (theme) =>
-                    theme.palette.mode === 'light' ? greyColor[200] : greyColor[700],
                 }}
               />
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -290,17 +304,37 @@ export default function Features() {
           <Grid item xs={12} md={6}>
             <Box
               sx={{
-                display: { xs: 'none', sm: 'flex' },
-                backgroundImage: items[selectedItemIndex].image,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                borderRadius: '8px',
+                borderRadius: '10px',
                 height: '100%',
-                minHeight: '400px',
-                outline: '4px solid',
-                outlineColor: `${alpha(brandColor[500], 0.2)}`,
+                display: { xs: 'none', sm: 'flex' },
+                background: (theme) =>
+                  theme.palette.mode === 'light'
+                    ? `linear-gradient(to bottom, ${greyColor[50]}, ${greyColor[100]})`
+                    : `linear-gradient(to bottom, ${greyColor[800]}, ${greyColor[900]})`,
+                boxShadow: (theme) =>
+                  theme.palette.mode === 'light'
+                    ? `inner 0 0 24px 12px ${alpha(greyColor[300], 0.3)}`
+                    : `inner 0 0 24px 12px ${alpha(greyColor[600], 0.2)}`,
+                border: '1px solid',
+                borderColor: (theme) =>
+                  theme.palette.mode === 'light'
+                    ? `${alpha(greyColor[300], 0.5)}`
+                    : `${alpha(greyColor[700], 0.5)}`,
               }}
-            />
+            >
+              <Box
+                sx={{
+                  m: 'auto',
+                  width: '420px',
+                  height: '420px',
+                  backgroundSize: 'contain',
+                  backgroundImage: (theme) =>
+                    theme.palette.mode === 'light'
+                      ? items[selectedItemIndex].imageLight
+                      : items[selectedItemIndex].imageDark,
+                }}
+              />
+            </Box>
           </Grid>
         </Grid>
       </Container>

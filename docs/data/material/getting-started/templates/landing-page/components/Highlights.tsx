@@ -4,6 +4,7 @@ import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
+import { alpha } from '@mui/system';
 
 import SettingsSuggestRoundedIcon from '@mui/icons-material/SettingsSuggestRounded';
 import ConstructionRoundedIcon from '@mui/icons-material/ConstructionRounded';
@@ -94,12 +95,11 @@ export default function Highlights() {
                 color="inherit"
                 spacing={1}
                 sx={{
-                  border: '1px solid',
-                  borderColor: greyColor[800],
-                  backgroundColor: greyColor[900],
-                  borderRadius: '8px',
                   p: 2,
                   height: '100%',
+                  borderRadius: '10px',
+                  border: `1px solid ${alpha(greyColor[700], 0.6)}`,
+                  backgroundColor: greyColor[900],
                 }}
               >
                 <div>
