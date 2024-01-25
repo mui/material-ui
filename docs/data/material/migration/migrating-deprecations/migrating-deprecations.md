@@ -10,25 +10,27 @@ The sooner you migrate, the smoother future major updates become.
 
 ## Migrating
 
-The easiest way to migrate is running the deprecations codemod:
+The easiest way to migrate is running the `deprecations/all` codemod:
 
 ```bash
 npx @mui/codemod@latest deprecations/all <path>
 ```
 
-This command runs all the current deprecations codemods, automatically migrating to the updated API.
-If you wish to run a particular codemod, search for the deprecation below for the specific command.
+This command runs all the current [deprecations codemods](#/), automatically migrating to the updated API.
+This codemod can be run multiple times to keep up with new deprecations.
 
-### Manual migration
+:::info
 
-If you need to manually migrate, examples are listed below for each deprecation.
+If you need to migrate a deprecation manually, examples on how to do so are listed below for each current deprecation.
+If you need to run a specific codemod, those are also listed for each deprecation.
+
+:::
 
 ## Accordion
 
 ### TransitionComponent
 
 Deprecated in favor of `slots.transition`.
-To migrate replace `TransitionComponent` with `slots.transition`:
 
 ```diff
  <Accordion
@@ -38,7 +40,10 @@ To migrate replace `TransitionComponent` with `slots.transition`:
 ```
 
 <details>
-<summary>Codemod command</summary>
+<summary>Codemod</summary>
+<br/>
+
+Run the codemod for this deprecation with the following command ([source](#/))
 
 ```bash
 npx @mui/codemod@latest deprecations/accordion-props <path>
@@ -49,7 +54,6 @@ npx @mui/codemod@latest deprecations/accordion-props <path>
 ### TransitionProps
 
 Deprecated in favor of `slotProps.transition`.
-To migrate replace `TransitionProps` with `slotProps.transition`:
 
 ```diff
  <Accordion
@@ -59,7 +63,10 @@ To migrate replace `TransitionProps` with `slotProps.transition`:
 ```
 
 <details>
-<summary>Codemod command</summary>
+<summary>Codemod</summary>
+<br/>
+
+Run the codemod for this deprecation with the following command ([source](#/))
 
 ```bash
 npx @mui/codemod@latest deprecations/accordion-props <path>
