@@ -10,23 +10,14 @@ interface SectionHeadlineProps {
    * For using with dark background.
    */
   inverted?: boolean;
-  largerContentWidth?: boolean;
   overline?: React.ReactNode;
   title: string | React.ReactElement;
 }
 
 export default function SectionHeadline(props: SectionHeadlineProps) {
-  const {
-    alwaysCenter = false,
-    description,
-    id,
-    inverted = false,
-    largerContentWidth = false,
-    overline,
-    title,
-  } = props;
+  const { alwaysCenter = false, description, id, inverted = false, overline, title } = props;
   return (
-    <Box sx={{ maxWidth: largerContentWidth ? 650 : 500, m: alwaysCenter ? 'auto' : 'none' }}>
+    <Box sx={{ maxWidth: 500, m: alwaysCenter ? 'auto' : 'none', mb: 3 }}>
       {overline && (
         <Typography
           id={id}
@@ -81,8 +72,7 @@ export default function SectionHeadline(props: SectionHeadlineProps) {
         <Typography
           sx={(theme) => ({
             mt: 1,
-            mb: 3,
-            maxWidth: largerContentWidth ? 650 : 450,
+            maxWidth: 450,
             ...(inverted
               ? {
                   color: 'grey.400',
@@ -96,7 +86,6 @@ export default function SectionHeadline(props: SectionHeadlineProps) {
             ...(alwaysCenter && {
               textAlign: 'center',
               mx: 'auto',
-              maxWidth: 600,
             }),
           })}
         >
