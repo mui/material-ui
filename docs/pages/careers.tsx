@@ -431,7 +431,7 @@ function CareersContent() {
               />
             </Typography>
           }
-          description="The company was incorporated in mid-2019 and has been bootstrapped so far. We’re growing fast—2× YoY—and have kept a steady pace of increasing the team: in 2020, we were 6; 15 in 2021, 25 in 2022, and 32 in 2023. We plan to grow the team to 60 people in 2024 in the following areas:"
+          description="The company was incorporated in mid-2019 and has been bootstrapped so far. We're growing fast—2× YoY—and have kept a steady pace of increasing the team: in 2020, we were 6; 15 in 2021, 25 in 2022, and 32 in 2023. We plan to grow the team to 60 people in 2024 in the following areas:"
           largerContentWidth
         />
         <Divider sx={{ my: { xs: 2, sm: 4 } }} />
