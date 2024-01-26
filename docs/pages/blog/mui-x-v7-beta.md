@@ -178,7 +178,7 @@ Support new use cases with this most anticipated component.
 The latest addition to the Date Pickers suite is the `<DateTimeRangePicker />`, a component designed to enrich the user experience with advanced date and time selection.
 This intuitive picker simplifies the process of selecting date and time ranges, making it ideal for applications that require detailed scheduling or period selection.
 
-<video preload="metadata" style="margin-bottom: 10px;" autoplay muted loop playsinline width="600" height="508">
+<video preload="metadata" autoplay muted loop playsinline width="100%" height="510">
   <source src="/static/blog/mui-x-v7-beta/date-time-range-picker.mp4" type="video/mp4">
 </video>
 
