@@ -33,7 +33,7 @@ const styles: {
 
 type TextareaStyles = {
   outerHeightStyle: number;
-  overflow: boolean;
+  overflowing: boolean;
 };
 
 function isEmpty(obj: TextareaStyles) {
@@ -41,7 +41,7 @@ function isEmpty(obj: TextareaStyles) {
     obj === undefined ||
     obj === null ||
     Object.keys(obj).length === 0 ||
-    (obj.outerHeightStyle === 0 && !obj.overflow)
+    (obj.outerHeightStyle === 0 && !obj.overflowing)
   );
 }
 
@@ -66,8 +66,6 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   const inputRef = React.useRef<HTMLTextAreaElement>(null);
   const handleRef = useForkRef(forwardedRef, inputRef);
   const shadowRef = React.useRef<HTMLTextAreaElement>(null);
-  const heightRef = React.useRef(0);
-  const overflowRef = React.useRef(false);
 
   const calculateTextareaStyles = React.useCallback(() => {
     const input = inputRef.current!;
@@ -79,7 +77,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
     if (computedStyle.width === '0px') {
       return {
         outerHeightStyle: 0,
-        overflow: false,
+        overflowing: false,
       };
     }
 
@@ -120,9 +118,9 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
 
     // Take the box sizing into account for applying this value as a style.
     const outerHeightStyle = outerHeight + (boxSizing === 'border-box' ? padding + border : 0);
-    const overflow = Math.abs(outerHeight - innerHeight) <= 1;
+    const overflowing = Math.abs(outerHeight - innerHeight) <= 1;
 
-    return { outerHeightStyle, overflow };
+    return { outerHeightStyle, overflowing };
   }, [maxRows, minRows, props.placeholder]);
 
   const syncHeight = React.useCallback(() => {
@@ -132,19 +130,9 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
       return;
     }
 
-    // Store height only when it is different from the previous height value.
-    if (heightRef.current !== textareaStyles.outerHeightStyle) {
-      heightRef.current = textareaStyles.outerHeightStyle;
-    }
-
-    // Store if it's overflowing only when it is different from the previous overflow value.
-    if (overflowRef.current !== textareaStyles.overflow) {
-      overflowRef.current = textareaStyles.overflow;
-    }
-
     const input = inputRef.current!;
     input.style.setProperty('height', `${textareaStyles.outerHeightStyle}px`);
-    input.style.setProperty('overflow', textareaStyles.overflow ? 'hidden' : '');
+    input.style.setProperty('overflow', textareaStyles.overflowing ? 'hidden' : '');
   }, [calculateTextareaStyles]);
 
   useEnhancedEffect(() => {
