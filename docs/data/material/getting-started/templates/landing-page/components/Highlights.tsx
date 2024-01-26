@@ -98,6 +98,7 @@ export default function Highlights() {
                   height: '100%',
                   border: '1px solid',
                   borderColor: 'grey.800',
+                  background: 'none',
                   backgroundColor: 'grey.900',
                 }}
               >
