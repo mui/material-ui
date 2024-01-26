@@ -1,10 +1,12 @@
+# Contributing
+
 ## Understanding the codemod
 
 The codemod is a tool that helps developers migrate thier codebase when we introduced changes in new version. The changes could be deprecations, enhancements, or breaking changes.
 
 The codemod is based on [jscodeshift](https://github.com/facebook/jscodeshift) which is a wrapper of [recast](https://github.com/benjamn/recast).
 
-## Adding new codemods
+## Adding a new codemod
 
 1. Create a new folder in `packages/mui-codemod/src/*/*` with the name of the codemod.
 2. The folder should include:
@@ -23,7 +25,7 @@ The codemod is based on [jscodeshift](https://github.com/facebook/jscodeshift) w
 
 Open the terminal at root directory and run the codemod to test the transformation, for example, testing the `accordion-props` codemod:
 
-```sh
+```bash
 node packages/mui-codemod/codemod deprecations/accordion-props packages/mui-codemod/src/deprecations/accordion-props/test-cases/theme.actual.js
 ```
 
@@ -33,12 +35,12 @@ Open the CodeSandbox CI build and copy the link from the "Local Install Instruct
 
 Run the codemod to test the transformation:
 
-```sh
+```bash
 npx @mui/codemod@<link> <codemod> <path>
 ```
 
 For example:
 
-```sh
+```bash
 npx @mui/codemod@https://pkg.csb.dev/mui/material-ui/commit/39bf9464/@mui/codemod deprecations/accordion-props docs/src/modules/brandingTheme.ts
 ```
