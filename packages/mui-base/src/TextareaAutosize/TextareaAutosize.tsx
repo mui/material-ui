@@ -63,7 +63,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   const { onChange, maxRows, minRows = 1, style, value, ...other } = props;
 
   const { current: isControlled } = React.useRef(value != null);
-  const inputRef = React.useRef<HTMLInputElement>(null);
+  const inputRef = React.useRef<HTMLTextAreaElement>(null);
   const handleRef = useForkRef(forwardedRef, inputRef);
   const shadowRef = React.useRef<HTMLTextAreaElement>(null);
   const renders = React.useRef(0);
