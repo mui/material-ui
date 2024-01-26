@@ -126,11 +126,7 @@ const myDataSet = [
 ```
 
 ```jsx
-<RichTreeView
-  items={myDataSet}
-  defaultCollapseIcon={<ExpandMoreIcon />}
-  defaultExpandIcon={<ChevronRightIcon />}
-/>
+<RichTreeView items={myDataSet} multiSelect />
 ```
 
 Check out the [new component](https://next.mui.com/x/react-tree-view/rich-tree-view/items/)!
