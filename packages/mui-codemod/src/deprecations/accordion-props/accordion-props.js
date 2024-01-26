@@ -1,3 +1,7 @@
+import findComponentJSX from '../../util/findComponentJSX';
+import assignObject from '../../util/assignObject';
+import appendAttribute from '../../util/appendAttribute';
+
 /**
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
@@ -7,81 +11,66 @@ export default function transformer(file, api, options) {
   const root = j(file.source);
   const printOptions = options.printOptions;
 
-  root.find(j.JSXAttribute, { name: { name: 'TransitionComponent' } }).forEach((path) => {
-    const slotsNode = /** @type import('jscodeshift').JSXOpeningElement */ (
-      path.parent.node
-    ).attributes.find((attr) => attr.name?.name === 'slots');
+  findComponentJSX(j, { root, componentName: 'Accordion' }, (elementPath) => {
+    let expression = elementPath.node.openingElement.attributes.find(
+      (attr) => attr.type === 'JSXAttribute' && attr.name.name === 'TransitionComponent',
+    )?.value?.expression;
+    if (expression) {
+      const slotsNode = elementPath.node.openingElement.attributes.find(
+        (attr) => attr.name?.name === 'slots',
+      );
 
-    if (slotsNode) {
-      const expContainer = /** @type import('jscodeshift').JSXExpressionContainer */ (
-        slotsNode.value
-      );
-      if (expContainer.expression.type === 'ObjectExpression') {
-        // case `slots={{ ... }}`
-        expContainer.expression.properties.push(
-          j.objectProperty(j.identifier('transition'), path.node.value.expression),
-        );
-      } else if (expContainer.expression.type === 'Identifier') {
-        // case `slots={outerSlots}
-        expContainer.expression = j.objectExpression([
-          j.spreadElement(j.identifier(expContainer.expression.name)),
-          j.objectProperty(j.identifier('transition'), path.node.value.expression),
-        ]);
+      if (slotsNode) {
+        assignObject(j, {
+          target: slotsNode,
+          key: 'transition',
+          expression,
+        });
+      } else {
+        appendAttribute(j, {
+          target: elementPath.node,
+          attributeName: 'slots',
+          expression: j.objectExpression([
+            j.objectProperty(j.identifier('transition'), expression),
+          ]),
+        });
       }
-    } else {
-      path.insertAfter(
-        j.jsxAttribute(
-          j.jsxIdentifier('slots'),
-          j.jsxExpressionContainer(
-            j.objectExpression([
-              j.objectProperty(j.identifier('transition'), path.node.value.expression),
-            ]),
-          ),
-        ),
-      );
+
+      elementPath.node.openingElement.attributes =
+        elementPath.node.openingElement.attributes.filter(
+          (attr) => attr.name.name === 'TransitionComponent',
+        );
     }
 
-    // remove `TransitionComponent` prop
-    path.replace();
-  });
-
-  root.find(j.JSXAttribute, { name: { name: 'TransitionProps' } }).forEach((path) => {
-    const slotPropsNode = /** @type import('jscodeshift').JSXOpeningElement */ (
-      path.parent.node
-    ).attributes.find((attr) => attr.name?.name === 'slotProps');
-
-    if (slotPropsNode) {
-      // insert to `slotProps` prop
-      const expContainer = /** @type import('jscodeshift').JSXExpressionContainer */ (
-        slotPropsNode.value
+    expression = elementPath.node.openingElement.attributes.find(
+      (attr) => attr.type === 'JSXAttribute' && attr.name.name === 'TransitionProps',
+    )?.value?.expression;
+    if (expression) {
+      const slotsNode = elementPath.node.openingElement.attributes.find(
+        (attr) => attr.name?.name === 'slotProps',
       );
-      if (expContainer.expression.type === 'ObjectExpression') {
-        // case `slotProps={{ ... }}`
-        expContainer.expression.properties.push(
-          j.objectProperty(j.identifier('transition'), path.node.value.expression),
-        );
-      } else if (expContainer.expression.type === 'Identifier') {
-        // case `slotProps={outerSlotProps}
-        expContainer.expression = j.objectExpression([
-          j.spreadElement(j.identifier(expContainer.expression.name)),
-          j.objectProperty(j.identifier('transition'), path.node.value.expression),
-        ]);
+
+      if (slotsNode) {
+        assignObject(j, {
+          target: slotsNode,
+          key: 'transition',
+          expression,
+        });
+      } else {
+        appendAttribute(j, {
+          target: elementPath.node,
+          attributeName: 'slotProps',
+          expression: j.objectExpression([
+            j.objectProperty(j.identifier('transition'), expression),
+          ]),
+        });
       }
-    } else {
-      path.insertAfter(
-        j.jsxAttribute(
-          j.jsxIdentifier('slotProps'),
-          j.jsxExpressionContainer(
-            j.objectExpression([
-              j.objectProperty(j.identifier('transition'), path.node.value.expression),
-            ]),
-          ),
-        ),
-      );
-    }
 
-    // remove `TransitionProps` prop
-    path.replace();
+      elementPath.node.openingElement.attributes =
+        elementPath.node.openingElement.attributes.filter(
+          (attr) => attr.name.name === 'TransitionProps',
+        );
+    }
   });
 
   root.find(j.ObjectProperty, { key: { name: 'TransitionComponent' } }).forEach((path) => {
