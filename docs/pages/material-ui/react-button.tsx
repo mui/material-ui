@@ -7,6 +7,6 @@ export default function Page() {
   return <MarkdownDocs {...pageProps} />;
 }
 
-Page.getLayout = (page) => {
+Page.getLayout = (page: React.ReactNode) => {
   return <AppFrame>{page}</AppFrame>;
 };

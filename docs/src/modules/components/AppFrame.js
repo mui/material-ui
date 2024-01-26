@@ -158,6 +158,7 @@ const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) =>
 
 export const HEIGHT = 64;
 
+/** @type {React.FC} */
 export default function AppFrame(props) {
   const { children, disableDrawer = false, className, BannerComponent = AppFrameBanner } = props;
   const t = useTranslate();
