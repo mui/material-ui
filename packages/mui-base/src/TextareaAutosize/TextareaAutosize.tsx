@@ -132,18 +132,19 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
       return;
     }
 
-    const input = inputRef.current!;
-
+    // Store height only when it is different from the previous height value.
     if (heightRef.current !== textareaStyles.outerHeightStyle) {
       heightRef.current = textareaStyles.outerHeightStyle;
     }
 
+    // Store if it's overflowing only when it is different from the previous overflow value.
     if (overflowRef.current !== textareaStyles.overflow) {
       overflowRef.current = textareaStyles.overflow;
     }
 
-    input.style.setProperty('overflow', textareaStyles.overflow ? 'hidden' : '');
+    const input = inputRef.current!;
     input.style.setProperty('height', `${textareaStyles.outerHeightStyle}px`);
+    input.style.setProperty('overflow', textareaStyles.overflow ? 'hidden' : '');
   }, [calculateTextareaStyles]);
 
   useEnhancedEffect(() => {
