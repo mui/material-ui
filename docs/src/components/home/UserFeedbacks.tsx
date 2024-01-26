@@ -179,8 +179,8 @@ export default function UserFeedbacks() {
     >
       <MuiStatistics />
       {TESTIMONIALS.map((item) => (
-        <Grid xs={12} sm={6}>
-          <Feedback key={item.profile.name} {...item} />
+        <Grid key={item.profile.name} xs={12} sm={6}>
+          <Feedback {...item} />
         </Grid>
       ))}
     </Grid>
