@@ -24,7 +24,7 @@ Most breaking changes are in place, and we shift our focus towards refining and 
 - [Data Grid](#data-grid)
   - [Sticky headers](#sticky-headers)
   - [Improved columns panel design](#improved-columns-panel-design)
-  - [Date Object Support in Filter Model](#date-object-support-in-filter-model)
+  - [Date Object support in filter model](#date-object-support-in-filter-model)
   - [New stable features](#new-stable-features)
   - [Smaller bundle size](#smaller-bundle-size)
 - [Tree View](#tree-view)
