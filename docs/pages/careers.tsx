@@ -36,22 +36,22 @@ function Role(props: RoleProps) {
   if (props.url) {
     return (
       <Box
-        component="div"
         sx={{
+          py: 1,
           display: 'flex',
+          flexDirection: { xs: 'column', lg: 'row' },
           justifyContent: 'space-between',
           alignItems: 'start',
-          flexDirection: { xs: 'column', lg: 'row' },
         }}
       >
-        <span>
-          <Typography variant="body1" color="text.primary" fontWeight="semiBold" gutterBottom>
+        <div>
+          <Typography variant="body1" color="text.primary" fontWeight="medium" gutterBottom>
             {props.title}
           </Typography>
-          <Typography component="p" color="text.secondary" sx={{ maxWidth: 700 }}>
+          <Typography variant="body2" color="text.secondary" sx={{ maxWidth: 650 }}>
             {props.description}
           </Typography>
-        </span>
+        </div>
         <Button
           component="a"
           // @ts-expect-error
@@ -68,10 +68,10 @@ function Role(props: RoleProps) {
 
   return (
     <div>
-      <Typography variant="body1" color="text.primary" fontWeight={700} sx={{ my: 1 }}>
+      <Typography variant="body1" color="text.primary" fontWeight="medium" gutterBottom>
         {props.title}
       </Typography>
-      <Typography color="text.secondary" sx={{ maxWidth: 700 }}>
+      <Typography variant="body2" color="text.secondary" sx={{ maxWidth: 650 }}>
         {props.description}
       </Typography>
     </div>
@@ -127,7 +127,7 @@ const AccordionDetails = styled(MuiAccordionDetail)(({ theme }) => ({
 const faqData = [
   {
     summary: 'Are there application deadlines?',
-    detail: 'No. If a job is visible on our careers page, then you can still apply.',
+    detail: 'No. You can still apply if a position is visible on our careers page.',
   },
   {
     summary: 'Does MUI do whiteboarding during interviews?',
@@ -306,7 +306,7 @@ function CareersContent() {
   return (
     <React.Fragment>
       {/* Hero */}
-      <Section cozy>
+      <Section cozy bg="gradient">
         <SectionHeadline
           alwaysCenter
           overline="Join us"
@@ -427,33 +427,20 @@ function CareersContent() {
                 badgeContent={openRolesData.reduce((acc, item) => acc + item.roles.length, 0)}
                 color="success"
                 showZero
-                sx={{ ml: 3 }}
+                sx={{ ml: 3, '& .MuiBadge-badge': { fontWeight: 'bold' } }}
               />
             </Typography>
           }
-          description="The company is bootstrapped (so far). It was incorporated in mid-2019 and is growing fast (x2 YoY). We doubled the team in 2020 (6), and kept a similar pace since: 2021 (15), 2022 (25). We plan to reach 40 people in 2023. We're looking for help to
-          grow in the following areas:"
+          description="The company was incorporated in mid-2019 and has been bootstrapped so far. We’re growing fast—2× YoY—and have kept a steady pace of increasing the team: in 2020, we were 6; 15 in 2021, 25 in 2022, and 32 in 2023. We plan to grow the team to 60 people in 2024 in the following areas:"
+          largerContentWidth
         />
         <Divider sx={{ my: { xs: 2, sm: 4 } }} />
-        <Stack
-          spacing={2}
-          divider={
-            <Divider
-              sx={(theme) => ({
-                my: { xs: 1, sm: 2 },
-                borderColor: 'grey.100',
-                ...theme.applyDarkStyles({
-                  borderColor: 'primaryDark.600',
-                }),
-              })}
-            />
-          }
-        >
+        <Stack spacing={2} divider={<Divider />}>
           {openRolesData.map((category) => {
             const roles = category.roles;
             return (
               <React.Fragment key={category.title}>
-                <Typography component="h3" variant="h5" fontWeight="extraBold">
+                <Typography component="h3" variant="h5" fontWeight="semiBold">
                   {category.title}
                 </Typography>
                 {roles.length > 0 ? (
@@ -486,16 +473,16 @@ function CareersContent() {
               }
               description={
                 <React.Fragment>
-                  If none of the roles below fit with what you are looking for, apply to the{' '}
+                  If none of the roles below fit with what you are looking for, apply to{' '}
                   <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
-                    Dream job
-                  </Link>{' '}
-                  role!
+                    the Dream job role
+                  </Link>
+                  !
                 </React.Fragment>
               }
             />
             <Divider sx={{ my: { xs: 2, sm: 4 } }} />
-            <Stack spacing={2} divider={<Divider sx={{ my: { xs: 1, sm: 2 } }} />}>
+            <Stack spacing={2} divider={<Divider />}>
               {nextRolesData.map((category) => {
                 const roles = category.roles;
                 return (

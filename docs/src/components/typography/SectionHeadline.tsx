@@ -3,21 +3,30 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 interface SectionHeadlineProps {
+  alwaysCenter?: boolean;
   description?: React.ReactNode;
   id?: string;
-  overline?: React.ReactNode;
-  title: string | React.ReactElement;
-  alwaysCenter?: boolean;
   /**
    * For using with dark background.
    */
   inverted?: boolean;
+  largerContentWidth?: boolean;
+  overline?: React.ReactNode;
+  title: string | React.ReactElement;
 }
 
 export default function SectionHeadline(props: SectionHeadlineProps) {
-  const { description, id, overline, title, alwaysCenter = false, inverted = false } = props;
+  const {
+    alwaysCenter = false,
+    description,
+    id,
+    inverted = false,
+    largerContentWidth = false,
+    overline,
+    title,
+  } = props;
   return (
-    <Box sx={{ maxWidth: 500, m: alwaysCenter ? 'auto' : 'none' }}>
+    <Box sx={{ maxWidth: largerContentWidth ? 650 : 500, m: alwaysCenter ? 'auto' : 'none' }}>
       {overline && (
         <Typography
           id={id}
@@ -73,7 +82,7 @@ export default function SectionHeadline(props: SectionHeadlineProps) {
           sx={(theme) => ({
             mt: 1,
             mb: 3,
-            maxWidth: 450,
+            maxWidth: largerContentWidth ? 650 : 450,
             ...(inverted
               ? {
                   color: 'grey.400',
