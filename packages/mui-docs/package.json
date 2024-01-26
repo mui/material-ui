@@ -42,12 +42,14 @@
   },
   "devDependencies": {
     "@types/react": "^18.2.48",
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "next": "13.4.19"
   },
   "peerDependencies": {
     "@mui/material": "workspace:^",
     "@types/react": "^17.0.0 || ^18.0.0",
-    "react": "^17.0.0 || ^18.0.0"
+    "react": "^17.0.0 || ^18.0.0",
+    "next": "13.4.19"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -55,8 +57,21 @@
     }
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "build"
+    "access": "public"
+  },
+  "exports": {
+    ".": {
+      "default": "./src/index.js"
+    },
+    "./config": {
+      "default": "./src/config.js"
+    },
+    "./svgIcons/*": {
+      "default": "./src/svgIcons/*.js"
+    },
+    "./components/*": {
+      "default": "./src/components/*/index.js"
+    }
   },
   "engines": {
     "node": ">=12.0.0"

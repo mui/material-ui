@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
 import SettingsIcon from '@mui/icons-material/SettingsOutlined';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import NProgressBar from '@mui/docs/NProgressBar';
+import NProgressBar from '@mui/docs/components/NProgressBar';
 import { debounce } from '@mui/material/utils';
 import NextLink from 'next/link';
 import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu';

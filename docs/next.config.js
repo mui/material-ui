@@ -1,16 +1,15 @@
 // @ts-check
 const path = require('path');
-// @ts-ignore
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const pkg = require('../package.json');
-const withDocsInfra = require('./nextConfigDocsInfra');
-const { findPages } = require('./src/modules/utils/find');
+const withDocsInfra = require('@mui/docs');
 const {
   LANGUAGES,
   LANGUAGES_SSR,
   LANGUAGES_IGNORE_PAGES,
   LANGUAGES_IN_PROGRESS,
-} = require('./config');
+} = require('@mui/docs/config');
+const pkg = require('../package.json');
+const { findPages } = require('./src/modules/utils/find');
 
 const workspaceRoot = path.join(__dirname, '../');
 

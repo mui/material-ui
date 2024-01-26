@@ -11,7 +11,7 @@
   "dependencies": {
     "@mui-internal/api-docs-builder": "workspace:^",
     "@mui/markdown": "workspace:^",
-    "docs": "workspace:^",
+    "@mui/docs": "workspace:^",
     "lodash": "^4.17.21"
   },
   "devDependencies": {

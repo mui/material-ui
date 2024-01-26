@@ -588,7 +588,7 @@ importers:
         version: link:../packages/mui-base/build
       '@mui/docs':
         specifier: workspace:^
-        version: link:../packages/mui-docs/build
+        version: link:../packages/mui-docs
       '@mui/icons-material':
         specifier: workspace:^
         version: link:../packages/mui-icons-material/build
@@ -881,6 +881,9 @@ importers:
       '@types/stylis':
         specifier: ^4.2.0
         version: 4.2.0
+      '@types/webpack-bundle-analyzer':
+        specifier: ^4.6.3
+        version: 4.6.3(esbuild@0.19.11)(webpack-cli@5.1.4)
       chai:
         specifier: ^4.4.1
         version: 4.4.1
@@ -999,12 +1002,12 @@ importers:
       '@mui-internal/api-docs-builder':
         specifier: workspace:^
         version: link:../api-docs-builder
+      '@mui/docs':
+        specifier: workspace:^
+        version: link:../mui-docs
       '@mui/markdown':
         specifier: workspace:^
         version: link:../markdown
-      docs:
-        specifier: workspace:^
-        version: link:../../docs
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -1258,10 +1261,12 @@ importers:
       '@types/react':
         specifier: ^18.2.48
         version: 18.2.48
+      next:
+        specifier: 13.4.19
+        version: 13.4.19(@babel/core@7.23.7)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
-    publishDirectory: build
 
   packages/mui-envinfo:
     dependencies:
@@ -8000,6 +8005,19 @@ packages:
 
   /@types/uuid@9.0.7:
     resolution: {integrity: sha512-WUtIVRUZ9i5dYXefDEAI7sh9/O7jGvHg7Df/5O/gtH3Yabe5odI3UWopVR1qbPXQtvOxWu3mM4XxlYeZtMWF4g==}
+    dev: true
+
+  /@types/webpack-bundle-analyzer@4.6.3(esbuild@0.19.11)(webpack-cli@5.1.4):
+    resolution: {integrity: sha512-XYU3m7oRb1tlE8YhwkKLi1xba2buNB9V4VkQtOVTfJuUm/413pE/UCMVcPDFFBwpzGkr9y1WbSEvdPjKVPt0gw==}
+    dependencies:
+      '@types/node': 18.19.8
+      tapable: 2.2.1
+      webpack: 5.89.0(esbuild@0.19.11)(webpack-cli@5.1.4)
+    transitivePeerDependencies:
+      - '@swc/core'
+      - esbuild
+      - uglify-js
+      - webpack-cli
     dev: true
 
   /@types/webxr@0.5.10:
