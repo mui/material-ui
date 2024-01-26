@@ -1,6 +1,6 @@
 import path from 'path';
 import { expect } from 'chai';
-import jscodeshift from 'jscodeshift';
+import { jscodeshift } from '../../../testUtils';
 import transform from './accordion-props';
 import readFile from '../../util/readFile';
 
@@ -12,28 +12,14 @@ describe('@mui/codemod', () => {
   describe('deprecations', () => {
     describe('accordion-props', () => {
       it('transforms props as needed', () => {
-        const actual = transform(
-          {
-            source: read('./test-cases/actual.js'),
-            path: require.resolve('./test-cases/actual.js'),
-          },
-          { jscodeshift },
-          {},
-        );
+        const actual = transform({ source: read('./test-cases/actual.js') }, { jscodeshift }, {});
 
         const expected = read('./test-cases/expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
 
       it('should be idempotent', () => {
-        const actual = transform(
-          {
-            source: read('./test-cases/expected.js'),
-            path: require.resolve('./test-cases/expected.js'),
-          },
-          { jscodeshift },
-          {},
-        );
+        const actual = transform({ source: read('./test-cases/expected.js') }, { jscodeshift }, {});
 
         const expected = read('./test-cases/expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
@@ -43,10 +29,7 @@ describe('@mui/codemod', () => {
     describe('[theme] accordion-props', () => {
       it('transforms props as needed', () => {
         const actual = transform(
-          {
-            source: read('./test-cases/theme.actual.js'),
-            path: require.resolve('./test-cases/theme.actual.js'),
-          },
+          { source: read('./test-cases/theme.actual.js') },
           { jscodeshift },
           {},
         );
@@ -57,10 +40,7 @@ describe('@mui/codemod', () => {
 
       it('should be idempotent', () => {
         const actual = transform(
-          {
-            source: read('./test-cases/theme.expected.js'),
-            path: require.resolve('./test-cases/theme.expected.js'),
-          },
+          { source: read('./test-cases/theme.expected.js') },
           { jscodeshift },
           {},
         );

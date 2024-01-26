@@ -84,7 +84,7 @@ export default function transformer(file, api, options) {
     path.replace();
   });
 
-  root.find(j.Property, { key: { name: 'TransitionComponent' } }).forEach((path) => {
+  root.find(j.ObjectProperty, { key: { name: 'TransitionComponent' } }).forEach((path) => {
     if (path.parent?.parent?.parent?.parent?.node.key?.name === 'MuiAccordion') {
       path.replace(
         j.property(
@@ -96,7 +96,7 @@ export default function transformer(file, api, options) {
     }
   });
 
-  root.find(j.Property, { key: { name: 'TransitionProps' } }).forEach((path) => {
+  root.find(j.ObjectProperty, { key: { name: 'TransitionProps' } }).forEach((path) => {
     if (path.parent?.parent?.parent?.parent?.node.key?.name === 'MuiAccordion') {
       path.replace(
         j.property(
