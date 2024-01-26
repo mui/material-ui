@@ -332,7 +332,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
       },
       MuiChip: {
         styleOverrides: {
-          root: ({ theme, ownerState }) => ({
+          root: ({ theme }) => ({
             alignSelf: 'center',
             py: 1.5,
             px: 0.5,
@@ -375,7 +375,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
       },
       MuiDivider: {
         styleOverrides: {
-          root: ({ theme, ownerState }) => ({
+          root: ({ theme }) => ({
             borderColor: `${alpha(greyColor[200], 0.8)}`,
             ...theme.applyDarkStyles({
               borderColor: `${alpha(greyColor[700], 0.6)}`,
@@ -432,6 +432,65 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
             backgroundColor: greyColor[100],
             ...theme.applyDarkStyles({
               backgroundColor: greyColor[900],
+            }),
+          }),
+        },
+      },
+      MuiSwitch: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            padding: 8,
+            '& .MuiSwitch-switchBase': {
+              '& + .MuiSwitch-track': {
+                backgroundColor: brandColor[500],
+                opacity: 1,
+                border: '1px solid',
+                borderColor: greyColor[400],
+              },
+            },
+            '& .MuiSwitch-track': {
+              borderRadius: 22 / 2,
+              '&::before, &::after': {
+                content: '""',
+                position: 'absolute',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                width: 16,
+                height: 16,
+              },
+              '&::before': {
+                left: 12,
+              },
+              '&::after': {
+                left: 12,
+              },
+            },
+            '& .MuiSwitch-thumb': {
+              boxShadow: '0 1px 1px 0 rgba(0, 0, 0, 0.5)',
+              backgroundColor: brandColor[100],
+              width: 16,
+              height: 16,
+              margin: 2,
+            },
+            ...theme.applyDarkStyles({
+              '& .MuiSwitch-switchBase': {
+                '& + .MuiSwitch-track': {
+                  backgroundColor: brandColor[700],
+                  opacity: 1,
+                  border: '1px solid',
+                  borderColor: greyColor[600],
+                },
+              },
+              '& .MuiSwitch-track': {
+                borderRadius: 22 / 2,
+              },
+              '& .MuiSwitch-thumb': {
+                boxShadow: '0 1px 1px 0 rgba(0, 0, 0, 0.5)',
+                backgroundColor: brandColor[200],
+                width: 16,
+                height: 16,
+                margin: 2,
+              },
             }),
           }),
         },

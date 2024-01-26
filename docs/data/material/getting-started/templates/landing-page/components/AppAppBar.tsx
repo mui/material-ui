@@ -140,8 +140,13 @@ function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
                 </MenuItem>
               </Box>
             </Box>
-
-            <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 0.5 }}>
+            <Box
+              sx={{
+                display: { xs: 'none', md: 'flex' },
+                gap: 0.5,
+                alignItems: 'center',
+              }}
+            >
               <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
               <Button
                 color="primary"
@@ -164,7 +169,6 @@ function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
                 Sign up
               </Button>
             </Box>
-
             <Box sx={{ display: { sm: '', md: 'none' } }}>
               <Button
                 variant="text"

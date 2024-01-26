@@ -8,13 +8,51 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import Switch from '@mui/material/Switch';
 
+import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
+import BlockRoundedIcon from '@mui/icons-material/BlockRounded';
 import CelebrationRoundedIcon from '@mui/icons-material/CelebrationRounded';
 
-export default function Hero() {
-  const handleClick = () => {
-    console.info('You clicked the Chip.');
-  };
+interface HeroProps {
+  showCustomTheme: boolean;
+  toggleCustomTheme: () => void;
+}
+
+interface ToggleCustomTheme {
+  showCustomTheme: boolean;
+  toggleCustomTheme: () => void;
+}
+
+function ToggleCustomTheme({
+  showCustomTheme,
+  toggleCustomTheme,
+}: ToggleCustomTheme) {
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        alignSelf: 'center',
+        px: 1,
+        borderRadius: '999px',
+        border: '1px solid ',
+        borderColor: 'divider',
+        backgroundColor: 'background.paper',
+      }}
+    >
+      <BlockRoundedIcon sx={{ color: 'primary.light', fontSize: '20px' }} />
+      <Switch
+        checked={showCustomTheme}
+        onChange={toggleCustomTheme}
+        color="primary"
+      />
+      <AutoAwesomeRoundedIcon sx={{ color: 'primary.light', fontSize: '20px' }} />
+    </Box>
+  );
+}
+
+export default function Hero({ showCustomTheme, toggleCustomTheme }: HeroProps) {
   return (
     <Box
       id="hero"
@@ -34,8 +72,8 @@ export default function Hero() {
           pt: { xs: 14, sm: 20 },
         }}
       >
-        <Stack spacing={2} sx={{ width: { xs: '100%', sm: '60%' } }}>
-          <Chip
+        <Stack spacing={2} sx={{ width: { xs: '100%', sm: '70%' } }}>
+          {/* <Chip
             size="small"
             variant="filled"
             label="New arrivals"
@@ -46,6 +84,10 @@ export default function Hero() {
               py: 1.5,
               px: 0.5,
             }}
+          /> */}
+          <ToggleCustomTheme
+            showCustomTheme={showCustomTheme}
+            toggleCustomTheme={toggleCustomTheme}
           />
           <Box
             sx={{

@@ -128,17 +128,12 @@ export default function Pricing() {
                         sx={{
                           background: (theme) =>
                             theme.palette.mode === 'light' ? '' : 'none',
-                          backgroundColor: (theme) =>
-                            theme.palette.mode === 'light'
-                              ? ''
-                              : 'primary.contrastText',
+                          backgroundColor: 'primary.contrastText',
                           '& .MuiChip-label': {
-                            color: (theme) =>
-                              theme.palette.mode === 'light' ? '' : 'primary.main',
+                            color: 'primary.dark',
                           },
                           '& .MuiChip-icon': {
-                            color: (theme) =>
-                              theme.palette.mode === 'light' ? '' : 'primary.main',
+                            color: 'primary.dark',
                           },
                         }}
                       />
@@ -185,7 +180,17 @@ export default function Pricing() {
                               : 'primary.main',
                         }}
                       />
-                      <Typography variant="subtitle2">{line}</Typography>
+                      <Typography
+                        variant="subtitle2"
+                        sx={{
+                          color:
+                            tier.title === 'Professional'
+                              ? 'primary.contrastText'
+                              : '',
+                        }}
+                      >
+                        {line}
+                      </Typography>
                     </Box>
                   ))}
                 </CardContent>
