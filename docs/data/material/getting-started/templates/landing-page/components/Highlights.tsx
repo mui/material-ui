@@ -1,19 +1,16 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import { alpha } from '@mui/system';
 
-import SettingsSuggestRoundedIcon from '@mui/icons-material/SettingsSuggestRounded';
-import ConstructionRoundedIcon from '@mui/icons-material/ConstructionRounded';
 import AutoFixHighRoundedIcon from '@mui/icons-material/AutoFixHighRounded';
+import ConstructionRoundedIcon from '@mui/icons-material/ConstructionRounded';
 import QueryStatsRoundedIcon from '@mui/icons-material/QueryStatsRounded';
-import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
+import SettingsSuggestRoundedIcon from '@mui/icons-material/SettingsSuggestRounded';
 import SupportAgentRoundedIcon from '@mui/icons-material/SupportAgentRounded';
-
-import { greyColor } from '../getLPTheme';
+import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
 
 const items = [
   {
@@ -98,8 +95,9 @@ export default function Highlights() {
                   p: 2,
                   height: '100%',
                   borderRadius: '10px',
-                  border: `1px solid ${alpha(greyColor[700], 0.6)}`,
-                  backgroundColor: greyColor[900],
+                  border: '1px solid',
+                  borderColor: 'grey.800',
+                  backgroundColor: 'grey.900',
                 }}
               >
                 <div>
