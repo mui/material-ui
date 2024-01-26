@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+import { alpha, ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button, { buttonClasses } from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -19,7 +19,7 @@ const lineMapping: Record<string, number | number[]> = {
   stack: 3,
   iconButton: 9,
   card: 0,
-  switch: 21,
+  switch: 25,
   editIcon: 10,
   typography: 4,
   typography2: 5,
@@ -54,14 +54,14 @@ export default function CoreShowcase() {
                   root: {
                     boxShadow:
                       mode === 'dark'
-                        ? '0px 4px 30px rgba(29, 29, 29, 0.6)'
-                        : '0px 4px 20px rgba(61, 71, 82, 0.2)',
+                        ? '0px 4px 12px rgba(0, 0, 0, 0.4)'
+                        : '0px 4px 12px rgba(61, 71, 82, 0.1)',
                     backgroundColor:
                       mode === 'dark' ? globalTheme.palette.primaryDark[800] : '#fff',
                     border: '1px solid',
                     borderColor:
                       mode === 'dark'
-                        ? globalTheme.palette.primaryDark[600]
+                        ? globalTheme.palette.primaryDark[700]
                         : globalTheme.palette.grey[200],
                   },
                 },
@@ -81,7 +81,7 @@ export default function CoreShowcase() {
                     border: '1px solid',
                     borderColor:
                       mode === 'dark'
-                        ? globalTheme.palette.primaryDark[500]
+                        ? globalTheme.palette.primaryDark[700]
                         : globalTheme.palette.grey[200],
                     color:
                       mode === 'dark'
@@ -99,7 +99,7 @@ export default function CoreShowcase() {
               MuiChip: {
                 styleOverrides: {
                   filled: {
-                    fontWeight: 700,
+                    fontWeight: 'semiBold',
                     '&.MuiChip-colorSuccess': {
                       backgroundColor:
                         mode === 'dark'
@@ -137,7 +137,6 @@ export default function CoreShowcase() {
   }
   return (
     <ShowcaseContainer
-      sx={{ mt: { md: 2 } }}
       previewSx={{
         minHeight: 220,
         pb: 4,
@@ -181,9 +180,10 @@ export default function CoreShowcase() {
         <div data-mui-color-scheme="dark">
           <Box
             sx={{
-              p: { xs: 2, sm: 1 },
+              pb: 1.5,
               display: 'flex',
               alignItems: 'center',
+              gap: 1,
               right: 0,
               zIndex: 10,
               [`& .${buttonClasses.root}`]: {
@@ -192,32 +192,25 @@ export default function CoreShowcase() {
                 fontSize: '0.75rem',
                 lineHeight: 18 / 12,
               },
-              [`& .${buttonClasses.outlined}`]: {
-                color: '#fff',
-                backgroundColor: 'primary.700',
-                borderColor: 'primary.500',
-                '&:hover': {
-                  backgroundColor: 'primary.700',
-                },
-              },
-              [`& .${buttonClasses.text}`]: {
-                color: 'grey.400',
+              '& .MuiButton-outlinedPrimary': {
+                backgroundColor: (theme) => alpha(theme.palette.primary[900], 0.5),
               },
             }}
           >
             <Button
               size="small"
-              variant={customized ? 'text' : 'outlined'}
+              variant="outlined"
+              color={customized ? 'secondary' : 'primary'}
               onClick={() => {
                 setCustomized(false);
               }}
-              sx={{ ml: 0 }}
             >
               Material Design
             </Button>
             <Button
               size="small"
-              variant={customized ? 'outlined' : 'text'}
+              variant="outlined"
+              color={customized ? 'primary' : 'secondary'}
               onClick={() => {
                 setCustomized(true);
               }}
@@ -227,9 +220,8 @@ export default function CoreShowcase() {
           </Box>
           <Box
             sx={{
-              p: 2,
-              pt: 0,
-              overflow: 'hidden',
+              position: 'relative',
+              overflow: 'clip',
               flexGrow: 1,
               '&::-webkit-scrollbar': {
                 display: 'none',
@@ -245,16 +237,14 @@ export default function CoreShowcase() {
             }}
           >
             <Box sx={{ position: 'relative' }}>
-              {startLine !== undefined && (
-                <FlashCode startLine={startLine} endLine={endLine} sx={{ mx: -2 }} />
-              )}
+              {startLine !== undefined && <FlashCode startLine={startLine} endLine={endLine} />}
               <HighlightedCode
                 copyButtonHidden
                 component={MarkdownElement}
                 code={componentCode}
                 language="jsx"
               />
-              <StylingInfo appeared={customized} sx={{ mb: -2, mx: -2 }} />
+              <StylingInfo appeared={customized} sx={{ mb: 0, mx: -2 }} />
             </Box>
           </Box>
         </div>
