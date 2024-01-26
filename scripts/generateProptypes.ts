@@ -162,10 +162,6 @@ const getSortLiteralUnions: InjectPropTypesInFileOptions['getSortLiteralUnions']
   return undefined;
 };
 
-const prettierConfig = prettier.resolveConfig.sync(process.cwd(), {
-  config: path.join(__dirname, '../prettier.config.js'),
-});
-
 async function generateProptypes(
   project: TypeScriptProject,
   sourceFile: string,
@@ -306,7 +302,11 @@ async function generateProptypes(
     throw new Error('Unable to produce inject propTypes into code.');
   }
 
-  const prettified = prettier.format(result, { ...prettierConfig, filepath: sourceFile });
+  const prettierConfig = await prettier.resolveConfig(process.cwd(), {
+    config: path.join(__dirname, '../prettier.config.js'),
+  });
+
+  const prettified = await prettier.format(result, { ...prettierConfig, filepath: sourceFile });
   const formatted = fixBabelGeneratorIssues(prettified);
   const correctedLineEndings = fixLineEndings(sourceContent, formatted);
 
