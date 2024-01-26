@@ -1,6 +1,6 @@
 import * as React from 'react';
+import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
 const data = [
@@ -12,37 +12,48 @@ const data = [
 
 export default function MuiStatistics() {
   return (
-    <Grid item xs={12} md={6} container spacing={4}>
+    <Box
+      data-mui-color-scheme="dark"
+      sx={(theme) => ({
+        pt: { xs: 1, sm: 2.5 },
+        pb: { xs: 2, sm: 3 },
+        pl: { xs: 2, sm: 0 },
+        pr: 0,
+        display: 'flex',
+        justifyContent: 'center',
+        gap: { xs: 0, sm: 1 },
+        width: '100%',
+        flexWrap: 'wrap',
+        background: `linear-gradient(180deg, ${alpha(
+          theme.palette.primary[900],
+          0.1,
+        )} 2%, transparent 80%)`,
+      })}
+    >
       {data.map((item) => (
-        <Grid key={item.title} item xs={6}>
-          <Box
+        <Box key={item.title} sx={{ width: { xs: '50%', sm: 200 }, p: { xs: 1, sm: 0 } }}>
+          <Typography
+            variant="h4"
+            fontWeight="semiBold"
             sx={(theme) => ({
-              height: '100%',
-              pl: 2,
-              borderLeft: '1px solid',
-              borderColor: 'primary.100',
+              textAlign: { xs: 'left', sm: 'center' },
+              color: 'primary.main',
               ...theme.applyDarkStyles({
-                borderColor: 'primaryDark.600',
+                color: 'primary.200',
               }),
             })}
           >
-            <Typography
-              component="div"
-              variant="h4"
-              fontWeight="bold"
-              sx={(theme) => ({
-                color: 'primary.main',
-                ...theme.applyDarkStyles({
-                  color: 'primary.200',
-                }),
-              })}
-            >
-              {item.title}
-            </Typography>
-            <Typography color="text.secondary">{item.metadata}</Typography>
-          </Box>
-        </Grid>
+            {item.title}
+          </Typography>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{ textAlign: { xs: 'left', sm: 'center' } }}
+          >
+            {item.metadata}
+          </Typography>
+        </Box>
       ))}
-    </Grid>
+    </Box>
   );
 }
