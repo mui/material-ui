@@ -26,6 +26,7 @@ Most breaking changes are in place, and we shift our focus towards refining and 
   - [Server-side data source](#server-side-data-source)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
   - [Date Object Support in Filter Model](#date-object-support-in-filter-model)
   - [New stable features](#new-stable-features)
+  - [New columns panel design](#new-columns-panel-design)
 - [Tree View](#tree-view)
   - [RichTreeView](#richtreeview-new-component)
 - [Charts](#charts)
@@ -44,7 +45,7 @@ We have introduced critical breaking changes designed not only to enhance the de
 ### Sticky headers
 
 The column headers and pinning implementations have been refactored for an improved user experience.
-You'll notice a more responsive Data Grid with smoother vertical scrolling and better screen reader support.
+You'll notice a more responsive Data Grid with smoother horizontal scrolling and better screen reader support.
 The video below showcases some of these improvements.
 
 <video preload="metadata" autoplay muted loop playsinline width="690" height="417" controls>
@@ -91,6 +92,12 @@ const myDataSource: DataSource = {
 
 Learn more on [the server side integration page](https://next.mui.com/x/react-data-grid/server-side-data/#data-source).
 
+### Smaller bundle size
+
+The locales now have a separate entry point. This reduced the bundle size by ~22% (from 114.2kB to 88.5kB for `@mui/x-data-grid`):
+
+<img width="694" alt="Bundle size change" src="https://github.com/mui/material-ui/assets/13808724/11bfbb38-6805-4e54-99a2-e48d544e97c8">
+
 ### Date Object support in filter model
 
 The `filterModel` now supports `Date` objects for `date` and `dateTime` column types, providing a more intuitive and efficient filtering experience.
@@ -105,8 +112,15 @@ This approach serves as a failsafe in case there's a need to change the API base
 We're excited to announce that the following features have been promoted to stable:
 
 - [Column groups](https://next.mui.com/x/react-data-grid/column-groups/)
+- [Header filters](https://next.mui.com/x/react-data-grid/filtering/header-filters/) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 - [Cell selection](https://next.mui.com/x/react-data-grid/cell-selection/) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 - [Clipboard paste](https://next.mui.com/x/react-data-grid/clipboard/#clipboard-paste) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
+
+## New columns panel design
+
+The columns management panel has been redesigned to have a more sleek checkbox-based design as compared to the previous toggle button-based design. The internal component has also been extracted to pave the way for the new pivoting UI.
+
+  <img width="310" alt="image" src="https://github.com/mui/mui-x/assets/12609561/a79dac8b-d54d-4e69-a63a-ef78f3993f37">
 
 ## Tree View
 
@@ -121,9 +135,9 @@ We've split the Tree View into two distinct components.
 
 The first is the `SimpleTreeView`, which retains the classic and familiar JSX approach and is still the one behind the original `<TreeView />` tag.
 
-The second is the `RichTreeView` , a new variant designed to streamline the development process, and with which we aim to support several common use cases out-of-the-box.
+The second is the `RichTreeView`, a new variant designed to streamline the development process, and with which we aim to support several common use cases out-of-the-box.
 
-Similar to the DataGrid, it requires only a dataset and possibly a few properties to render; it does all the heavy lifting for you, handling most of the complexities internally.
+Similar to the Data Grid, it requires only a dataset and possibly a few properties to render; it does all the heavy lifting for you, handling most of the complexities internally.
 
 ```jsx
 const myDataSet = [
@@ -155,17 +169,17 @@ Check out the [new component](https://next.mui.com/x/react-tree-view/rich-tree-v
 ## Charts
 
 Since the initial stable release of MUI X Chart a few months ago, we have been diligently listening to your feedback and focusing on refining the foundational charts to ensure they effectively cater to your diverse use cases.
-This includes bug fixes, doc improvements, and support for more complex scenarios.
+This includes bug fixes, documentation improvements, and support for more complex scenarios.
 
 ### Reference line
 
-The `<ChartsReferenceLine />` component enhances data visualization, providing users with a clear reference to better understand and analyze key data points.
+The `ChartsReferenceLine` component enhances data visualization, providing users with a clear reference to better understand and analyze key data points.
 
 <img alt="Charts reference line" src="/static/blog/mui-x-v7-beta/charts-reference-line.png" width="1200" height="840" loading="lazy" />
 
 You can find more details on its [documentation](https://next.mui.com/x/react-charts/axis/#reference-line).
 
-## Date Pickers
+## Date and Time Pickers
 
 The focus has been mostly on developing the highly anticipated new components, DateTimeRangePicker and TimeRangePicker, alongside a significant effort to enhance accessibility in the fields, ensuring that our components are as inclusive and user-friendly as possible.
 
@@ -175,7 +189,7 @@ Accordingly, we consistently update existing components to align seamlessly with
 ### Date Time Range Picker [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 Support new use cases with this most anticipated component.
-The latest addition to the Date Pickers suite is the `<DateTimeRangePicker />`, a component designed to enrich the user experience with advanced date and time selection.
+The latest addition to the Date and Time Pickers suite is the `<DateTimeRangePicker />`, a component designed to enrich the user experience with advanced date and time selection.
 This intuitive picker simplifies the process of selecting date and time ranges, making it ideal for applications that require detailed scheduling or period selection.
 
 <video preload="metadata" autoplay muted loop playsinline width="100%" height="510">
@@ -186,7 +200,7 @@ Learn how to use and customize the [new component](https://next.mui.com/x/react-
 
 ### Support for date-fns v3
 
-The Pickers now support both versions of v2 and v3 of date-fns and you can select your desired version from one of the two import lines:
+The Date and Time Pickers now support both versions of v2 and v3 of date-fns and you can select your desired version from one of the two import lines:
 
 ```jsx
 // date-fns v2.x
@@ -205,7 +219,8 @@ As we approach the stable release of v7, our roadmap is well-defined, focusing o
 **Data Grid**
 
 - [Pivoting](https://github.com/mui/mui-x/issues/214) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
-- [Improved column management panel](https://github.com/mui/mui-x/issues/5700)
+- [Improved column management panel with support for pivoting](https://github.com/mui/mui-x/issues/5700)
+- [Data source implementation for tree-data](https://next.mui.com/x/react-data-grid/server-side-data/tree-data/)
 
 **Tree View**
 
@@ -216,7 +231,7 @@ As we approach the stable release of v7, our roadmap is well-defined, focusing o
 
 - [Click events handling](https://github.com/mui/mui-x/issues/10005)
 
-**Date Pickers**
+**Date and Time Pickers**
 
 - [TimeRangePicker](https://github.com/mui/mui-x/issues/4460)
 - Field with improved accessibility
@@ -227,7 +242,7 @@ We fully understand that updating a dependency library can sometimes be daunting
 To smooth the transition to the new version, we have documented all breaking changes in our migration guides:
 
 - [Data Grid](https://next.mui.com/x/migration/migration-data-grid-v6/)
-- [Date Pickers](https://next.mui.com/x/migration/migration-pickers-v6/)
+- [Date and Time Pickers](https://next.mui.com/x/migration/migration-pickers-v6/)
 - [Charts](https://next.mui.com/x/migration/migration-charts-v6/)
 - [Tree View](https://next.mui.com/x/migration/migration-tree-view-v6/)
 
