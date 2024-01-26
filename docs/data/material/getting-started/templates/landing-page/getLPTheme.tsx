@@ -116,6 +116,18 @@ const getDesignTokens = (mode: PaletteMode) => ({
         dark: successColor[700],
       }),
     },
+    grey: {
+      50: greyColor[50],
+      100: greyColor[100],
+      200: greyColor[200],
+      300: greyColor[300],
+      400: greyColor[400],
+      500: greyColor[500],
+      600: greyColor[600],
+      700: greyColor[700],
+      800: greyColor[800],
+      900: greyColor[900],
+    },
     background: {
       default: '#fff',
       paper: greyColor[50],
@@ -125,6 +137,12 @@ const getDesignTokens = (mode: PaletteMode) => ({
       primary: greyColor[800],
       secondary: greyColor[600],
       ...(mode === 'dark' && { primary: '#fff', secondary: greyColor[300] }),
+    },
+    action: {
+      selected: `${alpha(brandColor[100], 0.2)}`,
+      ...(mode === 'dark' && {
+        selected: alpha(brandColor[800], 0.2),
+      }),
     },
   },
   typography: {
@@ -179,93 +197,44 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
   return {
     ...getDesignTokens(mode),
     components: {
-      MuiMenuItem: {
-        styleOverrides: {
-          root: ({ theme, ownerState }) => ({
-            borderRadius: '10px',
-            color: greyColor[500],
-            fontWeight: 500,
-            ...theme.applyDarkStyles({
-              color: greyColor[300],
-            }),
-          }),
+      MuiAccordion: {
+        defaultProps: {
+          elevation: 0,
+          disableGutters: true,
         },
-      },
-      MuiPaper: {
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
-            backgroundColor: greyColor[100],
-            ...theme.applyDarkStyles({
-              backgroundColor: greyColor[900],
-            }),
-          }),
-        },
-      },
-      MuiCard: {
-        styleOverrides: {
-          root: ({ theme, ownerState }) => ({
-            backgroundColor: greyColor[50],
-            borderRadius: '10px',
-            border: `1px solid ${alpha(greyColor[200], 0.8)}`,
-            boxShadow: 'none',
-            ...theme.applyDarkStyles({
-              backgroundColor: greyColor[900],
-              border: `1px solid ${alpha(greyColor[700], 0.6)}`,
-            }),
-          }),
-        },
-      },
-      MuiDivider: {
-        styleOverrides: {
-          root: ({ theme, ownerState }) => ({
-            borderColor: `${alpha(greyColor[200], 0.8)}`,
-            ...theme.applyDarkStyles({
-              borderColor: `${alpha(greyColor[700], 0.6)}`,
-            }),
-          }),
-        },
-      },
-      MuiChip: {
-        styleOverrides: {
-          root: ({ theme, ownerState }) => ({
-            alignSelf: 'center',
-            py: 1.5,
-            px: 0.5,
-            background: `linear-gradient(to bottom right, ${brandColor[50]}, ${brandColor[100]})`,
+            backgroundColor: '#fff',
             border: '1px solid',
-            borderColor: `${alpha(brandColor[500], 0.3)}`,
-            fontWeight: '600',
-            '&:hover': {
-              backgroundColor: brandColor[500],
+            borderColor: greyColor[100],
+            ':before': {
+              backgroundColor: 'transparent',
             },
-            '&:focus-visible': {
-              borderColor: brandColor[800],
-              backgroundColor: brandColor[200],
+            '&:first-of-type': {
+              borderTopLeftRadius: '8px',
+              borderTopRightRadius: '8px',
             },
-            '& .MuiChip-label': {
-              color: brandColor[500],
-            },
-            '& .MuiChip-icon': {
-              color: brandColor[500],
+            '&:last-of-type': {
+              borderBottomLeftRadius: '8px',
+              borderBottomRightRadius: '8px',
             },
             ...theme.applyDarkStyles({
-              background: `linear-gradient(to bottom right, ${brandColor[700]}, ${brandColor[900]})`,
-              borderColor: `${alpha(brandColor[500], 0.5)}`,
-              '&:hover': {
-                backgroundColor: brandColor[600],
-              },
-              '&:focus-visible': {
-                borderColor: brandColor[200],
-                backgroundColor: brandColor[600],
-              },
-              '& .MuiChip-label': {
-                color: brandColor[200],
-              },
-              '& .MuiChip-icon': {
-                color: brandColor[200],
-              },
+              backgroundColor: greyColor[900],
+              borderColor: greyColor[800],
             }),
           }),
+        },
+      },
+      MuiAccordionSummary: {
+        styleOverrides: {
+          root: {
+            border: 'none',
+          },
+        },
+      },
+      MuiAccordionDetails: {
+        styleOverrides: {
+          root: { mb: 20, border: 'none' },
         },
       },
       MuiButton: {
@@ -330,6 +299,87 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
           }),
         },
       },
+      MuiCard: {
+        styleOverrides: {
+          root: ({ theme, ownerState }) => ({
+            backgroundColor: greyColor[50],
+            borderRadius: '10px',
+            border: `1px solid ${alpha(greyColor[200], 0.8)}`,
+            boxShadow: 'none',
+            ...(ownerState.variant === 'outlined' && {
+              background: `linear-gradient(to bottom, ${greyColor[50]}, ${greyColor[100]})`,
+              '&:hover': {
+                borderColor: brandColor[300],
+                boxShadow: `0 0 24px ${brandColor[100]}`,
+              },
+            }),
+            ...theme.applyDarkStyles({
+              backgroundColor: greyColor[900],
+              border: `1px solid ${alpha(greyColor[700], 0.6)}`,
+              ...(ownerState.variant === 'outlined' && {
+                background: `linear-gradient(to bottom, ${greyColor[800]}, ${greyColor[900]})`,
+                '&:hover': {
+                  borderColor: brandColor[700],
+                  boxShadow: `0 0 24px ${brandColor[800]}`,
+                },
+              }),
+            }),
+          }),
+        },
+      },
+      MuiChip: {
+        styleOverrides: {
+          root: ({ theme, ownerState }) => ({
+            alignSelf: 'center',
+            py: 1.5,
+            px: 0.5,
+            background: `linear-gradient(to bottom right, ${brandColor[50]}, ${brandColor[100]})`,
+            border: '1px solid',
+            borderColor: `${alpha(brandColor[500], 0.3)}`,
+            fontWeight: '600',
+            '&:hover': {
+              backgroundColor: brandColor[500],
+            },
+            '&:focus-visible': {
+              borderColor: brandColor[800],
+              backgroundColor: brandColor[200],
+            },
+            '& .MuiChip-label': {
+              color: brandColor[500],
+            },
+            '& .MuiChip-icon': {
+              color: brandColor[500],
+            },
+            ...theme.applyDarkStyles({
+              background: `linear-gradient(to bottom right, ${brandColor[700]}, ${brandColor[900]})`,
+              borderColor: `${alpha(brandColor[500], 0.5)}`,
+              '&:hover': {
+                backgroundColor: brandColor[600],
+              },
+              '&:focus-visible': {
+                borderColor: brandColor[200],
+                backgroundColor: brandColor[600],
+              },
+              '& .MuiChip-label': {
+                color: brandColor[200],
+              },
+              '& .MuiChip-icon': {
+                color: brandColor[200],
+              },
+            }),
+          }),
+        },
+      },
+      MuiDivider: {
+        styleOverrides: {
+          root: ({ theme, ownerState }) => ({
+            borderColor: `${alpha(greyColor[200], 0.8)}`,
+            ...theme.applyDarkStyles({
+              borderColor: `${alpha(greyColor[700], 0.6)}`,
+            }),
+          }),
+        },
+      },
       MuiLink: {
         defaultProps: {
           underline: 'none',
@@ -361,44 +411,26 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
           }),
         },
       },
-      MuiAccordion: {
-        defaultProps: {
-          elevation: 0,
-          disableGutters: true,
-        },
+      MuiMenuItem: {
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
-            backgroundColor: '#fff',
-            border: '1px solid',
-            borderColor: greyColor[100],
-            ':before': {
-              backgroundColor: 'transparent',
-            },
-            '&:first-of-type': {
-              borderTopLeftRadius: '8px',
-              borderTopRightRadius: '8px',
-            },
-            '&:last-of-type': {
-              borderBottomLeftRadius: '8px',
-              borderBottomRightRadius: '8px',
-            },
+            borderRadius: '10px',
+            color: greyColor[500],
+            fontWeight: 500,
             ...theme.applyDarkStyles({
-              backgroundColor: greyColor[900],
-              borderColor: greyColor[800],
+              color: greyColor[300],
             }),
           }),
         },
       },
-      MuiAccordionSummary: {
+      MuiPaper: {
         styleOverrides: {
-          root: {
-            border: 'none',
-          },
-        },
-      },
-      MuiAccordionDetails: {
-        styleOverrides: {
-          root: { mb: 20, border: 'none' },
+          root: ({ theme, ownerState }) => ({
+            backgroundColor: greyColor[100],
+            ...theme.applyDarkStyles({
+              backgroundColor: greyColor[900],
+            }),
+          }),
         },
       },
       MuiTextField: {

@@ -17,6 +17,8 @@ import Footer from './components/Footer';
 
 import getLPTheme from './getLPTheme';
 
+const defaultTheme = createTheme({});
+
 export default function LandingPage() {
   const [mode, setMode] = React.useState<PaletteMode>('light');
   const theme = createTheme(getLPTheme(mode));

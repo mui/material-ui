@@ -1,21 +1,18 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
-import Card from '@mui/material/Card';
-import Stack from '@mui/material/Stack';
-import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
 import Chip from '@mui/material/Chip';
-import { alpha } from '@mui/system';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Link from '@mui/material/Link';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
-import ViewQuiltRoundedIcon from '@mui/icons-material/ViewQuiltRounded';
-import EdgesensorHighRoundedIcon from '@mui/icons-material/EdgesensorHighRounded';
 import DevicesRoundedIcon from '@mui/icons-material/DevicesRounded';
-
-import { greyColor, brandColor } from '../getLPTheme';
+import EdgesensorHighRoundedIcon from '@mui/icons-material/EdgesensorHighRounded';
+import ViewQuiltRoundedIcon from '@mui/icons-material/ViewQuiltRounded';
 
 const items = [
   {
@@ -89,9 +86,9 @@ export default function Features() {
                   sx={{
                     borderColor: (theme) => {
                       if (theme.palette.mode === 'light') {
-                        return selectedItemIndex === index ? brandColor[300] : '';
+                        return selectedItemIndex === index ? 'primary.light' : '';
                       }
-                      return selectedItemIndex === index ? brandColor[200] : '';
+                      return selectedItemIndex === index ? 'primary.light' : '';
                     },
                     background: (theme) => {
                       if (theme.palette.mode === 'light') {
@@ -100,33 +97,21 @@ export default function Features() {
                       return selectedItemIndex === index ? 'none' : '';
                     },
                     backgroundColor:
-                      selectedItemIndex === index ? brandColor[500] : '',
+                      selectedItemIndex === index ? 'primary.main' : '',
                     '& .MuiChip-label': {
-                      color: selectedItemIndex === index ? brandColor[50] : '',
+                      color: selectedItemIndex === index ? '#fff' : '',
                     },
                   }}
                 />
               ))}
             </Grid>
             <Box
+              component={Card}
+              variant="outlined"
               sx={{
                 display: { xs: 'auto', sm: 'none' },
                 p: 2,
                 mt: 4,
-                borderRadius: '10px',
-                border: '1px solid',
-                borderColor: (theme) =>
-                  theme.palette.mode === 'light'
-                    ? `${alpha(greyColor[300], 0.5)}`
-                    : `${alpha(greyColor[700], 0.5)}`,
-                background: (theme) =>
-                  theme.palette.mode === 'light'
-                    ? `linear-gradient(to bottom, ${greyColor[50]}, ${greyColor[100]})`
-                    : `linear-gradient(to bottom, ${greyColor[800]}, ${greyColor[900]})`,
-                boxShadow: (theme) =>
-                  theme.palette.mode === 'light'
-                    ? `inner 0 0 24px 12px ${alpha(greyColor[300], 0.3)}`
-                    : `inner 0 0 24px 12px ${alpha(greyColor[600], 0.2)}`,
               }}
             >
               <Box
@@ -188,43 +173,25 @@ export default function Features() {
             >
               {items.map(({ icon, title, description }, index) => (
                 <Card
-                  variant="outlined"
                   key={index}
                   component={Button}
                   onClick={() => handleItemClick(index)}
                   sx={{
                     height: '33%',
-                    backgroundColor: (theme) => {
-                      if (theme.palette.mode === 'light') {
-                        return selectedItemIndex === index
-                          ? alpha(brandColor[100], 0.2)
-                          : 'transparent';
-                      }
-                      return selectedItemIndex === index
-                        ? alpha(brandColor[800], 0.2)
-                        : 'transparent';
-                    },
+                    width: '100%',
+                    background: 'none',
+                    backgroundColor:
+                      selectedItemIndex === index ? 'action.selected' : '',
                     borderColor: (theme) => {
                       if (theme.palette.mode === 'light') {
                         return selectedItemIndex === index
-                          ? alpha(brandColor[300], 0.5)
-                          : greyColor[200];
+                          ? 'primary.light'
+                          : 'grey.200';
                       }
                       return selectedItemIndex === index
-                        ? alpha(brandColor[700], 0.7)
-                        : greyColor[800];
+                        ? 'primary.dark'
+                        : 'grey.800';
                     },
-                    '&:hover': {
-                      borderColor: (theme) =>
-                        theme.palette.mode === 'light'
-                          ? brandColor[300]
-                          : brandColor[700],
-                      boxShadow: (theme) =>
-                        theme.palette.mode === 'light'
-                          ? `0 0 24px ${brandColor[100]}`
-                          : `0 0 24px ${brandColor[800]}`,
-                    },
-                    width: '100%',
                   }}
                 >
                   <Box
@@ -244,12 +211,12 @@ export default function Features() {
                         color: (theme) => {
                           if (theme.palette.mode === 'light') {
                             return selectedItemIndex === index
-                              ? brandColor[500]
-                              : greyColor[400];
+                              ? 'primary.main'
+                              : 'grey.400';
                           }
                           return selectedItemIndex === index
-                            ? brandColor[500]
-                            : greyColor[600];
+                            ? 'primary.main'
+                            : 'grey.700';
                         },
                       }}
                     >
@@ -303,23 +270,12 @@ export default function Features() {
           </Grid>
           <Grid item xs={12} md={6}>
             <Box
+              component={Card}
+              variant="outlined"
               sx={{
-                borderRadius: '10px',
                 height: '100%',
                 display: { xs: 'none', sm: 'flex' },
-                background: (theme) =>
-                  theme.palette.mode === 'light'
-                    ? `linear-gradient(to bottom, ${greyColor[50]}, ${greyColor[100]})`
-                    : `linear-gradient(to bottom, ${greyColor[800]}, ${greyColor[900]})`,
-                boxShadow: (theme) =>
-                  theme.palette.mode === 'light'
-                    ? `inner 0 0 24px 12px ${alpha(greyColor[300], 0.3)}`
-                    : `inner 0 0 24px 12px ${alpha(greyColor[600], 0.2)}`,
-                border: '1px solid',
-                borderColor: (theme) =>
-                  theme.palette.mode === 'light'
-                    ? `${alpha(greyColor[300], 0.5)}`
-                    : `${alpha(greyColor[700], 0.5)}`,
+                pointerEvents: 'none',
               }}
             >
               <Box
