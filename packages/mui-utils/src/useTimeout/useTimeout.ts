@@ -1,6 +1,6 @@
 'use client';
-import useLazyRef from './useLazyRef';
-import useOnMount from './useOnMount';
+import useLazyRef from '../useLazyRef/useLazyRef';
+import useOnMount from '../useOnMount/useOnMount';
 
 export class Timeout {
   static create() {
