@@ -19,7 +19,7 @@ const validBundles = [
 ];
 
 async function run(argv) {
-  const { bundle, largeFiles, outDir: relativeOutDir, verbose } = argv;
+  const { bundle, largeFiles, outDir: relativeOutDir, verbose, ignoreTopLevel } = argv;
 
   if (validBundles.indexOf(bundle) === -1) {
     throw new TypeError(
@@ -61,9 +61,9 @@ async function run(argv) {
     // Different extensions are not viable yet since they require additional bundler config for users and additional transpilation steps in our repo.
     // Switch to `exports` field in v6.
     {
-      node: topLevelPathImportsCanBePackages ? './node' : './',
+      node: !ignoreTopLevel && topLevelPathImportsCanBePackages ? './node' : './',
       modern: './modern',
-      stable: topLevelPathImportsCanBePackages ? './' : './esm',
+      stable: !ignoreTopLevel && topLevelPathImportsCanBePackages ? './' : './esm',
       legacy: './legacy',
     }[bundle],
   );
@@ -118,6 +118,11 @@ yargs(process.argv.slice(2))
           describe: 'Set to `true` if you know you are transpiling large files.',
         })
         .option('out-dir', { default: './build', type: 'string' })
+        .option('ignoreTopLevel', {
+          type: 'boolean',
+          default: false,
+          describe: 'Set to `true` to ignore switching out-dir based on top level import.',
+        })
         .option('verbose', { type: 'boolean' });
     },
     handler: run,

@@ -9,7 +9,7 @@ import {
   programmaticFocusTriggersFocusVisible,
 } from '@mui-internal/test-utils';
 import useIsFocusVisible, { teardown as teardownFocusVisible } from './useIsFocusVisible';
-import useForkRef from './useForkRef';
+import useForkRef from '../useForkRef';
 
 const SimpleButton = React.forwardRef(function SimpleButton(props, ref) {
   const {
