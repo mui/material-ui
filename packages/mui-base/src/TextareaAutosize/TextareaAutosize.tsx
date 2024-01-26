@@ -66,7 +66,6 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   const inputRef = React.useRef<HTMLTextAreaElement>(null);
   const handleRef = useForkRef(forwardedRef, inputRef);
   const shadowRef = React.useRef<HTMLTextAreaElement>(null);
-  const renders = React.useRef(0);
   const heightRef = React.useRef(0);
   const overflowRef = React.useRef(false);
 
@@ -148,7 +147,6 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
 
   useEnhancedEffect(() => {
     const handleResize = () => {
-      renders.current = 0;
       syncHeight();
     };
     // Workaround a "ResizeObserver loop completed with undelivered notifications" error
@@ -191,13 +189,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
     syncHeight();
   });
 
-  React.useEffect(() => {
-    renders.current = 0;
-  }, [value]);
-
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    renders.current = 0;
-
     if (!isControlled) {
       syncHeight();
     }
