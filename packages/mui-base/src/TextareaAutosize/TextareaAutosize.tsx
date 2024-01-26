@@ -9,11 +9,6 @@ import {
 } from '@mui/utils';
 import { TextareaAutosizeProps } from './TextareaAutosize.types';
 
-type State = {
-  outerHeightStyle: number;
-  overflow?: boolean | undefined;
-};
-
 function getStyleValue(value: string) {
   return parseInt(value, 10) || 0;
 }
@@ -36,7 +31,12 @@ const styles: {
   },
 };
 
-function isEmpty(obj: State) {
+type TextareaStyles = {
+  outerHeightStyle: number;
+  overflow: boolean;
+};
+
+function isEmpty(obj: TextareaStyles) {
   return (
     obj === undefined ||
     obj === null ||
@@ -69,7 +69,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   const heightRef = React.useRef(0);
   const overflowRef = React.useRef(false);
 
-  const getUpdatedState = React.useCallback(() => {
+  const calculateTextareaStyles = React.useCallback(() => {
     const input = inputRef.current!;
 
     const containerWindow = ownerWindow(input);
@@ -79,6 +79,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
     if (computedStyle.width === '0px') {
       return {
         outerHeightStyle: 0,
+        overflow: false,
       };
     }
 
@@ -125,25 +126,25 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   }, [maxRows, minRows, props.placeholder]);
 
   const syncHeight = React.useCallback(() => {
-    const newState = getUpdatedState();
+    const textareaStyles = calculateTextareaStyles();
 
-    if (isEmpty(newState)) {
+    if (isEmpty(textareaStyles)) {
       return;
     }
 
     const input = inputRef.current!;
 
-    if (heightRef.current !== newState.outerHeightStyle) {
-      heightRef.current = newState.outerHeightStyle;
+    if (heightRef.current !== textareaStyles.outerHeightStyle) {
+      heightRef.current = textareaStyles.outerHeightStyle;
     }
 
-    if (overflowRef.current !== newState.overflow) {
-      overflowRef.current = newState.overflow!;
+    if (overflowRef.current !== textareaStyles.overflow) {
+      overflowRef.current = textareaStyles.overflow;
     }
 
-    input.style.setProperty('height', `${newState.outerHeightStyle}px`);
-    input.style.setProperty('overflow', newState.overflow ? 'hidden' : '');
-  }, [getUpdatedState]);
+    input.style.setProperty('overflow', textareaStyles.overflow ? 'hidden' : '');
+    input.style.setProperty('height', `${textareaStyles.outerHeightStyle}px`);
+  }, [calculateTextareaStyles]);
 
   useEnhancedEffect(() => {
     const handleResize = () => {
@@ -183,7 +184,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
         resizeObserver.disconnect();
       }
     };
-  }, [getUpdatedState, syncHeight]);
+  }, [calculateTextareaStyles, syncHeight]);
 
   useEnhancedEffect(() => {
     syncHeight();
