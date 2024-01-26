@@ -190,24 +190,20 @@ function Demo({
 const StyledChip = styled(Chip)(({ theme }) => [
   {
     fontWeight: 700,
-    transition: 'none',
     '&.MuiChip-outlined': {
-      border: 'none',
       color: (theme.vars || theme).palette.text.secondary,
     },
-    '&.MuiChip-clickable:active': {
-      boxShadow: 'none',
-    },
     '&.MuiChip-filled': {
-      border: '1px solid',
       borderColor: (theme.vars || theme).palette.primary[300],
-      backgroundColor: (theme.vars || theme).palette.primary[500],
-      color: '#fff',
+      backgroundColor: alpha(theme.palette.primary[100], 0.5),
+      color: (theme.vars || theme).palette.primary[600],
     },
   },
   theme.applyDarkStyles({
     '&.MuiChip-filled': {
-      backgroundColor: (theme.vars || theme).palette.primary[700],
+      borderColor: (theme.vars || theme).palette.primary[500],
+      backgroundColor: (theme.vars || theme).palette.primary[800],
+      color: (theme.vars || theme).palette.primary[100],
     },
   }),
 ]);
@@ -532,26 +528,26 @@ export default function MaterialDesignComponents() {
     <div>
       <Box
         sx={{
-          mt: { xs: 2, md: 4 },
+          mt: { xs: 2, md: 2 },
           mb: 2,
           display: 'flex',
-          justifyContent: { sm: 'flex-start', md: 'flex-end' },
+          justifyContent: 'start',
         }}
       >
         <StyledChip
-          color="primary"
-          label="Material Design"
           size="small"
-          variant={!customized ? 'filled' : 'outlined'}
-          onClick={() => setCustomized(false)}
+          label="Custom theme"
+          variant={customized ? 'filled' : 'outlined'}
+          color={customized ? 'primary' : 'secondary'}
+          onClick={() => setCustomized(true)}
+          sx={{ mr: 1 }}
         />
         <StyledChip
-          color="primary"
-          label="Custom theme"
           size="small"
-          variant={customized ? 'filled' : 'outlined'}
-          onClick={() => setCustomized(true)}
-          sx={{ ml: 1 }}
+          label="Material Design"
+          variant={!customized ? 'filled' : 'outlined'}
+          color={!customized ? 'primary' : 'secondary'}
+          onClick={() => setCustomized(false)}
         />
       </Box>
       <Grid>

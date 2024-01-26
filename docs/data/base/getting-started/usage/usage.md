@@ -28,6 +28,7 @@ For example, the Base UI Badge contains two slots:
 
 - `root`: the container element that wraps the children.
 - `badge`: the badge element itself.
+
   :::
 
 You can use the `slots` prop to override default slots with either custom components or HTML elements.

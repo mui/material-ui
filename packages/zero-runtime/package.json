@@ -58,7 +58,8 @@
       "sx": "./exports/sx.js",
       "keyframes": "./exports/keyframes.js",
       "generateAtomics": "./exports/generateAtomics.js",
-      "css": "./exports/css.js"
+      "css": "./exports/css.js",
+      "createUseThemeProps": "./exports/createUseThemeProps.js"
     }
   },
   "files": [
@@ -105,6 +106,9 @@
     },
     "./exports/sx": {
       "default": "./exports/sx.js"
+    },
+    "./exports/createUseThemeProps": {
+      "default": "./exports/createUseThemeProps.js"
     }
   }
 }
