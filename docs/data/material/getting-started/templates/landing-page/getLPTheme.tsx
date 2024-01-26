@@ -82,7 +82,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
       contrastText: brandColor[100],
       ...(mode === 'dark' && {
         contrastText: brandColor[100],
-        light: brandColor[400],
+        light: brandColor[300],
         main: brandColor[500],
         dark: brandColor[800],
       }),
@@ -252,6 +252,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
             }),
             ...(ownerState.variant === 'contained' &&
               ownerState.color === 'primary' && {
+                color: brandColor[50],
                 background: `linear-gradient(to bottom, ${brandColor[400]}, ${brandColor[600]})`,
                 boxShadow: `inset 0 1px ${alpha(brandColor[300], 0.4)}`,
                 outline: `1px solid  ${brandColor[700]}`,

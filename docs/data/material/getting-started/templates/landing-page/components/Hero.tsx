@@ -1,17 +1,15 @@
 import * as React from 'react';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import Chip from '@mui/material/Chip';
-import Link from '@mui/material/Link';
-import TextField from '@mui/material/TextField';
-import Container from '@mui/material/Container';
 import { alpha } from '@mui/material';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Chip from '@mui/material/Chip';
+import Container from '@mui/material/Container';
+import Link from '@mui/material/Link';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 
 import CelebrationRoundedIcon from '@mui/icons-material/CelebrationRounded';
-
-import { greyColor, brandColor } from '../getLPTheme';
 
 export default function Hero() {
   const handleClick = () => {
@@ -24,8 +22,8 @@ export default function Hero() {
         width: '100%',
         background: (theme) =>
           theme.palette.mode === 'light'
-            ? `linear-gradient(to bottom, ${brandColor[200]}, #FFF)`
-            : `linear-gradient(to bottom, ${brandColor[800]}, ${greyColor[900]})`,
+            ? 'linear-gradient( #9CCCFC, #FFF)'
+            : 'linear-gradient( #02294F, #090E10)',
       }}
     >
       <Container
@@ -65,7 +63,7 @@ export default function Hero() {
               variant="h1"
               sx={{
                 color: (theme) =>
-                  theme.palette.mode === 'light' ? brandColor[500] : brandColor[200],
+                  theme.palette.mode === 'light' ? 'primary.main' : 'primary.light',
               }}
             >
               products
@@ -129,8 +127,8 @@ export default function Hero() {
             borderRadius: '10px',
             boxShadow: (theme) =>
               theme.palette.mode === 'light'
-                ? `0 0 24px 12px ${alpha(brandColor[200], 0.3)}`
-                : `0 0 24px 12px ${alpha(brandColor[700], 0.2)}`,
+                ? `0 0 24px 12px ${alpha('#9CCCFC', 0.3)}`
+                : `0 0 24px 12px ${alpha('#033363', 0.2)}`,
           }}
         />
       </Container>

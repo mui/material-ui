@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
@@ -90,11 +91,11 @@ export default function Highlights() {
               <Stack
                 direction="column"
                 color="inherit"
+                component={Card}
                 spacing={1}
                 sx={{
                   p: 2,
                   height: '100%',
-                  borderRadius: '10px',
                   border: '1px solid',
                   borderColor: 'grey.800',
                   backgroundColor: 'grey.900',
