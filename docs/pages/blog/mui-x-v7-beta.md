@@ -187,14 +187,14 @@ As we approach the stable release of v7, our roadmap is well-defined, focusing o
 
 **Data Grid**
 
+- [Improved Server side integration](https://next.mui.com/x/react-data-grid/server-side-data/)
+- [Column management panel with support for pivoting](https://github.com/mui/mui-x/issues/5700)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 - [Pivoting](https://github.com/mui/mui-x/issues/214) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
-- [Improved column management panel with support for pivoting](https://github.com/mui/mui-x/issues/5700)
-- [Data source implementation for tree-data](https://next.mui.com/x/react-data-grid/server-side-data/tree-data/)
 
 **Tree View**
 
-- [Drag and drop support for RichTreeView](https://github.com/mui/mui-x/issues/9686)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 - [Checkbox selection for Simple- and RichTreeView](https://github.com/mui/mui-x/issues/214)
+- [Drag and drop support for RichTreeView](https://github.com/mui/mui-x/issues/9686)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 **Charts**
 
