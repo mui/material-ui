@@ -1,7 +1,6 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import * as ReactDOM from 'react-dom';
 import {
   unstable_debounce as debounce,
   unstable_useForkRef as useForkRef,
@@ -68,9 +67,8 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   const handleRef = useForkRef(forwardedRef, inputRef);
   const shadowRef = React.useRef<HTMLTextAreaElement>(null);
   const renders = React.useRef(0);
-  const [state, setState] = React.useState<State>({
-    outerHeightStyle: 0,
-  });
+  const heightRef = React.useRef(0);
+  const overflowRef = React.useRef(false);
 
   const getUpdatedState = React.useCallback(() => {
     const input = inputRef.current!;
@@ -127,35 +125,6 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
     return { outerHeightStyle, overflow };
   }, [maxRows, minRows, props.placeholder]);
 
-  const updateState = (prevState: State, newState: State) => {
-    const { outerHeightStyle, overflow } = newState;
-    // Need a large enough difference to update the height.
-    // This prevents infinite rendering loop.
-    if (
-      renders.current < 20 &&
-      ((outerHeightStyle > 0 &&
-        Math.abs((prevState.outerHeightStyle || 0) - outerHeightStyle) > 1) ||
-        prevState.overflow !== overflow)
-    ) {
-      renders.current += 1;
-      return {
-        overflow,
-        outerHeightStyle,
-      };
-    }
-    if (process.env.NODE_ENV !== 'production') {
-      if (renders.current === 20) {
-        console.error(
-          [
-            'MUI: Too many re-renders. The layout is unstable.',
-            'TextareaAutosize limits the number of renders to prevent an infinite loop.',
-          ].join('\n'),
-        );
-      }
-    }
-    return prevState;
-  };
-
   const syncHeight = React.useCallback(() => {
     const newState = getUpdatedState();
 
@@ -163,30 +132,24 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
       return;
     }
 
-    setState((prevState) => updateState(prevState, newState));
+    const input = inputRef.current!;
+
+    if (heightRef.current !== newState.outerHeightStyle) {
+      heightRef.current = newState.outerHeightStyle;
+    }
+
+    if (overflowRef.current !== newState.overflow) {
+      overflowRef.current = newState.overflow!;
+    }
+
+    input.style.setProperty('height', `${newState.outerHeightStyle}px`);
+    input.style.setProperty('overflow', newState.overflow ? 'hidden' : '');
   }, [getUpdatedState]);
 
   useEnhancedEffect(() => {
-    const syncHeightWithFlushSync = () => {
-      const newState = getUpdatedState();
-
-      if (isEmpty(newState)) {
-        return;
-      }
-
-      // In React 18, state updates in a ResizeObserver's callback are happening after
-      // the paint, this leads to an infinite rendering.
-      //
-      // Using flushSync ensures that the states is updated before the next pain.
-      // Related issue - https://github.com/facebook/react/issues/24331
-      ReactDOM.flushSync(() => {
-        setState((prevState) => updateState(prevState, newState));
-      });
-    };
-
     const handleResize = () => {
       renders.current = 0;
-      syncHeightWithFlushSync();
+      syncHeight();
     };
     // Workaround a "ResizeObserver loop completed with undelivered notifications" error
     // in test.
@@ -222,7 +185,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
         resizeObserver.disconnect();
       }
     };
-  }, [getUpdatedState]);
+  }, [getUpdatedState, syncHeight]);
 
   useEnhancedEffect(() => {
     syncHeight();
@@ -252,13 +215,6 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
         ref={handleRef}
         // Apply the rows prop to get a "correct" first SSR paint
         rows={minRows as number}
-        style={{
-          height: state.outerHeightStyle,
-          // Need a large enough difference to allow scrolling.
-          // This prevents infinite rendering loop.
-          overflow: state.overflow ? 'hidden' : undefined,
-          ...style,
-        }}
         {...other}
       />
       <textarea
