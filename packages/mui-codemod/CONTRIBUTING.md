@@ -1,0 +1,44 @@
+## Understanding the codemod
+
+The codemod is a tool that helps developers migrate thier codebase when we introduced changes in new version. The changes could be deprecations, enhancements, or breaking changes.
+
+The codemod is based on [jscodeshift](https://github.com/facebook/jscodeshift) which is a wrapper of [recast](https://github.com/benjamn/recast).
+
+## Adding new codemods
+
+1. Create a new folder in `packages/mui-codemod/src/*/*` with the name of the codemod.
+2. The folder should include:
+   - `<codemod>.js` - the transform implementation
+   - `<codemod>.test.js` - tests for the codemod (use jscodeshift from the `testUtils` folder)
+   - `test-cases` - folder with fixtures for the codemod
+     - `actual.js` - the input for the codemod
+     - `expected.js` - the expected output of the codemod
+3. Use [astexplorer](https://astexplorer.net/) to check the AST types and properties (set </> to @babel/parser because we use [`tsx`](https://github.com/benjamn/recast/blob/master/parsers/babel.ts) as a default parser for our codemod).
+4. [Test the codemod locally](#local)
+5. Add the codemod to README.md
+
+## Testing
+
+### Local
+
+Open the terminal at root directory and run the codemod to test the transformation, for example, testing the `accordion-props` codemod:
+
+```sh
+node packages/mui-codemod/codemod deprecations/accordion-props packages/mui-codemod/src/deprecations/accordion-props/test-cases/theme.actual.js
+```
+
+### CI
+
+Open the CodeSandbox CI build and copy the link from the "Local Install Instructions" section.
+
+Run the codemod to test the transformation:
+
+```sh
+npx @mui/codemod@<link> <codemod> <path>
+```
+
+For example:
+
+```sh
+npx @mui/codemod@https://pkg.csb.dev/mui/material-ui/commit/39bf9464/@mui/codemod deprecations/accordion-props docs/src/modules/brandingTheme.ts
+```
