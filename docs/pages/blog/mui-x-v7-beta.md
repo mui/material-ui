@@ -23,10 +23,10 @@ Most breaking changes are in place, and we shift our focus towards refining and 
 
 - [Data Grid](#data-grid)
   - [Sticky headers](#sticky-headers)
-  - [Server-side data source](#server-side-data-source)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+  - [Improved columns panel design](#improved-columns-panel-design)
   - [Date Object Support in Filter Model](#date-object-support-in-filter-model)
   - [New stable features](#new-stable-features)
-  - [New columns panel design](#new-columns-panel-design)
+  - [Smaller bundle size](#smaller-bundle-size)
 - [Tree View](#tree-view)
   - [RichTreeView](#richtreeview-new-component)
 - [Charts](#charts)
@@ -60,49 +60,24 @@ If you're using our theming system, the DataGrid will adapt to your application 
 Without the theming system, you may need to manually set an appropriate background color to maintain your design.
 :::
 
-### Server-side data source
+### Improved columns panel design
 
-Integration with the server side has been a huge pain point for our community; we aim to enhance developer experience and productivity by introducing the `DataSource` interface.
+The column management panel now features a sleeker, checkbox-based design, replacing the previous toggle button style. Additionally, we've extracted the internal component to facilitate the introduction of the upcoming pivoting UI.
 
-This new interface establishes more efficient data management and seamless interactions, allowing developers to build more responsive and robust applications that connect UI elements to backend services with less complexity.
-
-It's initially designed for the Data Grid, but we plan that the DataSource will serve data to multiple components in the future.
-
-```jsx
-const myDataSource: DataSource = {
-  getRows: async (params: GetRowsParams): GetRowsResponse => {
-    // fetch data from server
-    const response = await fetch('https://my-api.com/data', {
-      method: 'GET',
-      body: JSON.stringify(params),
-    });
-    const data = await response.json();
-    // return the data and the total number of rows
-    return {
-      rows: data.rows,
-      rowCount: data.totalCount,
-    };
-  },
-};
-```
-
-```jsx
-<DataGridPro dataSource={myDataSource} columns={columns} />
-```
-
-Learn more on [the server side integration page](https://next.mui.com/x/react-data-grid/server-side-data/#data-source).
-
-### Smaller bundle size
-
-The locales now have a separate entry point. This reduced the bundle size by ~22% (from 114.2kB to 88.5kB for `@mui/x-data-grid`):
-
-<img width="694" alt="Bundle size change" src="https://github.com/mui/material-ui/assets/13808724/11bfbb38-6805-4e54-99a2-e48d544e97c8">
+<img width="310" alt="new column management panel design" src="/static/blog/mui-x-v7-beta/column-management-panel.png">
 
 ### Date Object support in filter model
 
 The `filterModel` now supports `Date` objects for `date` and `dateTime` column types, providing a more intuitive and efficient filtering experience.
 
 While string values remain compatible for these types, any updates to the `filterModel` made through the UI (such as via the filter panel) will now automatically use `Date` objects, ensuring consistency and ease of data handling.
+
+### Smaller bundle size
+
+The introduction of a separate entry point for locales has significantly optimized our bundle size.
+This change led to a reduction of approximately 22% – shrinking the bundle size from 114.2kB to 88.5kB for `@mui/x-data-grid`.
+
+<img width="694" alt="Bundle size change" src="/static/blog/mui-x-v7-beta/new-bundle-size.png">
 
 ### New stable features
 
@@ -115,12 +90,6 @@ We're excited to announce that the following features have been promoted to stab
 - [Header filters](https://next.mui.com/x/react-data-grid/filtering/header-filters/) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 - [Cell selection](https://next.mui.com/x/react-data-grid/cell-selection/) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 - [Clipboard paste](https://next.mui.com/x/react-data-grid/clipboard/#clipboard-paste) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
-
-## New columns panel design
-
-The columns management panel has been redesigned to have a more sleek checkbox-based design as compared to the previous toggle button-based design. The internal component has also been extracted to pave the way for the new pivoting UI.
-
-  <img width="310" alt="image" src="https://github.com/mui/mui-x/assets/12609561/a79dac8b-d54d-4e69-a63a-ef78f3993f37">
 
 ## Tree View
 
