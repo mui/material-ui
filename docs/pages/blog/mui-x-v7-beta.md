@@ -47,7 +47,7 @@ The column headers and pinning implementations have been refactored for an impro
 You'll notice a more responsive Data Grid with smoother vertical scrolling and better screen reader support.
 The video below showcases some of these improvements.
 
-<video preload="metadata" style="margin-bottom: 10px;" autoplay muted loop playsinline width="690" height="417" controls>
+<video preload="metadata" autoplay muted loop playsinline width="690" height="417" controls>
   <source src="/static/blog/mui-x-v7-beta/sticky-headers.mp4" type="video/mp4">
 </video>
 
@@ -161,7 +161,7 @@ This includes bug fixes, doc improvements, and support for more complex scenario
 
 The `<ChartsReferenceLine />` component enhances data visualization, providing users with a clear reference to better understand and analyze key data points.
 
-<img alt="Charts reference line" src="/static/blog/mui-x-v7-beta/charts-reference-line.png" width="1200" height="840" loading="lazy" style="margin-bottom: 16px;" />
+<img alt="Charts reference line" src="/static/blog/mui-x-v7-beta/charts-reference-line.png" width="1200" height="840" loading="lazy" />
 
 You can find more details on its [documentation](https://next.mui.com/x/react-charts/axis/#reference-line).
 
