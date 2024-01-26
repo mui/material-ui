@@ -1,7 +1,7 @@
 'use client';
 // based on https://github.com/WICG/focus-visible/blob/v4.1.5/src/focus-visible.js
 import * as React from 'react';
-import { Timeout } from './useTimeout';
+import { Timeout } from '../useTimeout/useTimeout';
 
 let hadKeyboardEvent = true;
 let hadFocusVisibleRecently = false;
