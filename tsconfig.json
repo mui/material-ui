@@ -43,6 +43,8 @@
       "@mui/material-nextjs/*": ["./packages/mui-material-nextjs/src/*"],
       "@mui/joy": ["./packages/mui-joy/src"],
       "@mui/joy/*": ["./packages/mui-joy/src/*"],
+      "@mui/icons-material": ["./packages/mui-icons-material/lib"],
+      "@mui/icons-material/*": ["./packages/mui-icons-material/lib/*"],
       "@mui/zero-next-plugin": ["./packages/zero-next-plugin/src"],
       "@mui/zero-next-plugin/*": ["./packages/zero-next-plugin/src/*"],
       "@mui/zero-runtime": ["./packages/zero-runtime/src"],
