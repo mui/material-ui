@@ -185,22 +185,22 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 
 As we approach the stable release of v7, our roadmap is well-defined, focusing on delivering key enhancements and features either just before or within a couple of weeks following the stable version's launch.
 
-**Data Grid**
+### Data Grid
 
 - [Improved Server side integration](https://next.mui.com/x/react-data-grid/server-side-data/)
 - [Column management panel with support for pivoting](https://github.com/mui/mui-x/issues/5700)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 - [Pivoting](https://github.com/mui/mui-x/issues/214) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
-**Tree View**
+### Tree View
 
 - [Checkbox selection for Simple- and RichTreeView](https://github.com/mui/mui-x/issues/214)
 - [Drag and drop support for RichTreeView](https://github.com/mui/mui-x/issues/9686)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
-**Charts**
+### Charts
 
 - [Click events handling](https://github.com/mui/mui-x/issues/10005)
 
-**Date and Time Pickers**
+### Date and Time Pickers
 
 - [TimeRangePicker](https://github.com/mui/mui-x/issues/4460)
 - Field with improved accessibility
