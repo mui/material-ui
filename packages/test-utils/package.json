@@ -33,7 +33,7 @@
     "enzyme": "^3.11.0",
     "format-util": "^1.0.5",
     "fs-extra": "^11.2.0",
-    "jsdom": "^22.1.0",
+    "jsdom": "^24.0.0",
     "lodash": "^4.17.21",
     "mocha": "^10.2.0",
     "playwright": "^1.41.1",
