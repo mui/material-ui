@@ -21,7 +21,7 @@
     "@babel/plugin-transform-modules-commonjs": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
     "@babel/register": "^7.23.7",
-    "@babel/runtime": "^7.23.8",
+    "@babel/runtime": "^7.23.9",
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.3",
     "@mnajdova/enzyme-adapter-react-18": "^0.2.0",
