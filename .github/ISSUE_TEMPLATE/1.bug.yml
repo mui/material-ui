@@ -26,7 +26,7 @@ body:
       description: |
         **⚠️ Issues that we can't reproduce can't be fixed.**
 
-        Please provide a link to a live example and an unambiguous set of steps to reproduce this bug. As a starting point, we recommend you browse our [documentation](https://mui.com/material-ui/getting-started/installation/), and [select](https://mui.com/static/docs/forking-an-example.png) the closest example to your use case. Or you can use the [official template](https://mui.com/r/issue-template) to build a reproduction case.
+        Please provide a link to a live example and an unambiguous set of steps to reproduce this bug. See our [documentation](https://mui.com/material-ui/getting-started/support/#bug-reproductions) on how to build a reproduction case.
       value: |
         Link to live example: (required)
 
