@@ -505,25 +505,24 @@ describe('experimental_extendTheme', () => {
     });
   });
 
-  it('should use the right selector with applyDarkStyles', function test() {
-    const defaultTheme = extendTheme();
+  it('should use the right selector with applyStyles', function test() {
     const attribute = 'data-custom-color-scheme';
     let darkStyles = {};
     const Test = styled('div')(({ theme }) => {
-      darkStyles = theme.applyDarkStyles({
+      darkStyles = theme.applyStyles('dark', {
         backgroundColor: 'rgba(0, 0, 0, 0)',
       });
       return null;
     });
 
     render(
-      <CssVarsProvider attribute={attribute} theme={defaultTheme}>
+      <CssVarsProvider attribute={attribute}>
         <Test />
       </CssVarsProvider>,
     );
 
     expect(darkStyles).to.deep.equal({
-      [`:where([${attribute}="dark"]) &`]: {
+      [`*:where([${attribute}="dark"]) &`]: {
         backgroundColor: 'rgba(0, 0, 0, 0)',
       },
     });

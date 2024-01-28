@@ -354,7 +354,7 @@ function extractClassCondition(description: string) {
   return { description: renderMarkdown(description) };
 }
 
-const generateApiPage = (
+const generateApiPage = async (
   apiPagesDirectory: string,
   importTranslationPagesDirectory: string,
   reactApi: ReactApi,
@@ -412,13 +412,13 @@ const generateApiPage = (
     pageContent.slots = [...pageContent.slots].sort(slotsSort);
   }
 
-  writePrettifiedFile(
+  await writePrettifiedFile(
     path.resolve(apiPagesDirectory, `${kebabCase(reactApi.name)}.json`),
     JSON.stringify(pageContent),
   );
 
   if (!onlyJsonFile) {
-    writePrettifiedFile(
+    await writePrettifiedFile(
       path.resolve(apiPagesDirectory, `${kebabCase(reactApi.name)}.js`),
       `import * as React from 'react';
   import ApiPage from 'docs/src/modules/components/ApiPage';
@@ -789,14 +789,14 @@ export default async function generateComponentApi(
       generateJsonFileOnly,
     } = projectSettings;
 
-    generateApiTranslations(
+    await generateApiTranslations(
       path.join(process.cwd(), translationPagesDirectory),
       reactApi,
       projectSettings.translationLanguages,
     );
 
     // Once we have the tabs API in all projects, we can make this default
-    generateApiPage(
+    await generateApiPage(
       componentInfo.apiPagesDirectory,
       importTranslationPagesDirectory ?? translationPagesDirectory,
       reactApi,

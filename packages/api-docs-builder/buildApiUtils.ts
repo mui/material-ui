@@ -35,13 +35,13 @@ export function fixPathname(pathname: string): string {
 
 const DEFAULT_PRETTIER_CONFIG_PATH = path.join(process.cwd(), 'prettier.config.js');
 
-export function writePrettifiedFile(
+export async function writePrettifiedFile(
   filename: string,
   data: string,
   prettierConfigPath: string = DEFAULT_PRETTIER_CONFIG_PATH,
   options: object = {},
 ) {
-  const prettierConfig = prettier.resolveConfig.sync(filename, {
+  const prettierConfig = await prettier.resolveConfig(filename, {
     config: prettierConfigPath,
   });
   if (prettierConfig === null) {
@@ -50,7 +50,8 @@ export function writePrettifiedFile(
     );
   }
 
-  fs.writeFileSync(filename, prettier.format(data, { ...prettierConfig, filepath: filename }), {
+  const formatted = await prettier.format(data, { ...prettierConfig, filepath: filename });
+  fs.writeFileSync(filename, formatted, {
     encoding: 'utf8',
     ...options,
   });
@@ -181,7 +182,7 @@ export function getApiPath(
   return apiPath;
 }
 
-export function formatType(rawType: string) {
+export async function formatType(rawType: string) {
   if (!rawType) {
     return '';
   }
@@ -189,7 +190,7 @@ export function formatType(rawType: string) {
   const prefix = 'type FakeType = ';
   const signatureWithTypeName = `${prefix}${rawType}`;
 
-  const prettifiedSignatureWithTypeName = prettier.format(signatureWithTypeName, {
+  const prettifiedSignatureWithTypeName = await prettier.format(signatureWithTypeName, {
     printWidth: 999,
     singleQuote: true,
     semi: false,
@@ -212,7 +213,7 @@ export function getSymbolJSDocTags(symbol: ts.Symbol) {
   return Object.fromEntries(symbol.getJsDocTags().map((tag) => [tag.name, tag]));
 }
 
-export function stringifySymbol(symbol: ts.Symbol, project: TypeScriptProject) {
+export async function stringifySymbol(symbol: ts.Symbol, project: TypeScriptProject) {
   let rawType: string;
 
   const declaration = symbol.declarations?.[0];

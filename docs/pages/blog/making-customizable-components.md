@@ -301,7 +301,7 @@ For example, a grid can exist without its filter panel, or without its toolbar.
 
 ## Customization is key
 
-In our last two annual [developer surveys](/blog/2021-developer-survey-results/), our users made it clear that customization is always a top priority when choosing a UI library.
+In our last two annual [Developer Surveys](/blog/2021-developer-survey-results/), our users made it clear that customization is always a top priority when choosing a UI library.
 
 Thanks to the slot strategy and the introduction of supplementary tools like [MUI System's `sx` prop](https://mui.com/system/getting-started/the-sx-prop/), it has never been easier to customize MUI's components to suit your specific needs.
 
