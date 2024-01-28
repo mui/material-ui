@@ -33,7 +33,7 @@ function openSandbox({ files, codeVariant, initialFile }: any) {
   document.body.removeChild(form);
 }
 
-const createReactApp = (demoData: DemoData) => {
+function createReactApp(demoData: DemoData) {
   const ext = getFileExtension(demoData.codeVariant);
   const { title, githubLocation: description } = demoData;
 
@@ -86,15 +86,15 @@ const createReactApp = (demoData: DemoData) => {
     openSandbox: (initialFile: string = `/src/Demo.${ext}`) =>
       openSandbox({ files, codeVariant: demoData.codeVariant, initialFile }),
   };
-};
+}
 
-const createJoyTemplate = (templateData: {
+function createJoyTemplate(templateData: {
   title: string;
   files: Record<string, string>;
   githubLocation: string;
   codeVariant: CodeVariant;
   codeStyling?: CodeStyling;
-}) => {
+}) {
   const ext = getFileExtension(templateData.codeVariant);
   const { title, githubLocation: description } = templateData;
 
@@ -172,7 +172,7 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
     openSandbox: (initialFile: string = '/App') =>
       openSandbox({ files, codeVariant: templateData.codeVariant, initialFile }),
   };
-};
+}
 
 export default {
   createReactApp,
