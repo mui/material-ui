@@ -1059,8 +1059,8 @@ importers:
         version: 9.0.1
     optionalDependencies:
       aws-sdk:
-        specifier: ^2.1541.0
-        version: 2.1541.0
+        specifier: ^2.1545.0
+        version: 2.1545.0
     devDependencies:
       claudia:
         specifier: ^5.14.1
@@ -8982,8 +8982,8 @@ packages:
     resolution: {integrity: sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==}
     engines: {node: '>= 0.4'}
 
-  /aws-sdk@2.1541.0:
-    resolution: {integrity: sha512-+xS/Gq/+j/RKb3A6SHXn6tOCaog1O3troklpVxxNaqVNnq+zlwjFderGNzR6S4ftfNG7sKMUP++Znsqte8GMaw==}
+  /aws-sdk@2.1545.0:
+    resolution: {integrity: sha512-iDUv6ksG7lTA0l/HlOgYdO6vfYFA1D2/JzAEXSdgKY0C901WgJqBtfs2CncOkCgDe2CjmlMuqciBzAfxCIiKFA==}
     engines: {node: '>= 10.0.0'}
     dependencies:
       buffer: 4.9.2
@@ -8995,7 +8995,7 @@ packages:
       url: 0.10.3
       util: 0.12.5
       uuid: 8.0.0
-      xml2js: 0.5.0
+      xml2js: 0.6.2
 
   /axe-core@4.7.2:
     resolution: {integrity: sha512-zIURGIS1E1Q4pcrMjp+nnEh+16G56eG/MUllJH8yEvw7asDo7Ac9uhC9KIH5jzpITueEZolfYglnCGIuSBz39g==}
@@ -9863,7 +9863,7 @@ packages:
     hasBin: true
     dependencies:
       archiver: 3.1.1
-      aws-sdk: 2.1541.0
+      aws-sdk: 2.1545.0
       fs-extra: 6.0.1
       glob: 7.2.3
       gunzip-maybe: 1.4.2
@@ -21665,8 +21665,8 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
-  /xml2js@0.5.0:
-    resolution: {integrity: sha512-drPFnkQJik/O+uPKpqSgr22mpuFHqKdbS835iAQrUC73L2F5WkboIRd63ai/2Yg6I1jzifPFKH2NTK+cfglkIA==}
+  /xml2js@0.6.2:
+    resolution: {integrity: sha512-T4rieHaC1EXcES0Kxxj4JWgaUQHDk+qwHcYOCFHfiwKz7tOVPLq7Hjq9dM1WCMhylqMEfP7hMcOIChvotiZegA==}
     engines: {node: '>=4.0.0'}
     requiresBuild: true
     dependencies:
