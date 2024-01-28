@@ -183,6 +183,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
         {...imgProps}
       />
     );
+
     // Consider the children valid to render as long as not flasy and not 0.
   } else if (!(!childrenProp && childrenProp !== 0)) {
     children = childrenProp;
