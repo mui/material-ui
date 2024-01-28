@@ -1,6 +1,6 @@
 # Support
 
-<p class="description">Learn how to get support for Material UI components, including feature requests, bug fixes, and technical support from the team.</p>
+<p class="description">Learn how to get support for Base UI components, including feature requests, bug fixes, and technical support from the team.</p>
 
 ## GitHub
 
@@ -10,7 +10,7 @@ If you think you've found a bug, or you have a new feature idea:
 
 1. Please start by [making sure it hasn't already been reported or fixed](https://github.com/mui/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed).
    You can search through existing issues and pull requests to see if someone has reported one similar to yours.
-2. Then, if no duplicates exist, [open an issue](https://github.com/mui/material-ui/issues/new/choose) in the Material UI repository.
+2. Then, if no duplicates exist, [open an issue](https://github.com/mui/material-ui/issues/new/choose) in the Base UI repository.
 
 ### New issue guidelines
 
@@ -28,26 +28,21 @@ It significantly increases the odds of fixing the problem.
 You have a few options possible to provide it:
 
 - You can browse the documentation, find an example close to your use case, and then open it in a live editor:
-  [![Forking an example](https://mui.com/static/docs/forking-an-example.png)](/material-ui/react-button/#basic-button)
+  [![Forking an example](https://mui.com/static/docs/forking-an-example.png)](/base-ui/react-button/#introduction)
 
 - You can use a starter React template to build a reproduction case with [JavaScript](https://mui.com/r/issue-template-js/) or [TypeScript](https://mui.com/r/issue-template-ts/).
 
 ## Stack Overflow
 
-We use Stack Overflow for how-to questions. Answers are crowdsourced from expert developers in the Material UI community as well as Material UI maintainers.
+We use Stack Overflow for how-to questions. Answers are crowdsourced from expert developers in the Base UI community as well as Base UI maintainers.
 
-You can search through existing questions and answers to see if someone has asked a similar question using the [material-ui tags](https://stackoverflow.com/questions/tagged/material-ui):
+You can search through existing questions and answers to see if someone has asked a similar question using the [base-ui tags](https://stackoverflow.com/questions/tagged/base-ui):
 
-If you can't find your answer, [ask a new question](https://stackoverflow.com/questions/ask?tags=reactjs%20material-ui) using the relevant tags.
-
-:::success
-If you're using an older version of Material UI, you may find answers on SO with links to content that no longer exists in the latest version of the documentation.
-Visit the [Material UI Versions](https://mui.com/versions/) page to find the archived documentation that corresponds to your version.
-:::
+If you can't find your answer, [ask a new question](https://stackoverflow.com/questions/ask?tags=reactjs%20base-ui) using the relevant tags.
 
 ## Technical support
 
-We do _not_ offer paid support for Core libraries like Material UI.
+We do _not_ offer paid support for Core libraries like Base UI.
 
 But you might want to read the [technical support offered](https://mui.com/x/introduction/support/#technical-support) on MUI X components.
 
@@ -60,23 +55,23 @@ This includes issues introduced by external sources, like browser upgrades or ch
 
 ### Supported versions
 
-- Material UI v5: ✅ Stable major (Continuous support)
-- [Material UI v4](https://v4.mui.com/): ⚠️ Long-term support (Guaranteed Support for security issues and regressions).
-- [Material UI v3](https://v3.mui.com/): 🅧 No longer supported.
-- Material UI v2: 🅧 Never existed.
-- [Material UI v1](https://v1.mui.com/): 🅧 No longer supported.
-- [Material UI v0.x](https://v0.mui.com/#/): 🅧 No longer supported.
+- Base UI v5: ⚠️ Beta version.
+- Base UI v4 🅧 Never existed.
+- Base UI v3 🅧 Never existed.
+- Base UI v2: 🅧 Never existed.
+- Base UI v1: 🅧 Never existed.
+- Base UI v0.x: 🅧 Never existed.
 
 ## Community
 
 ### Social media
 
-The Material UI community is active on both [X/Twitter](https://twitter.com/MaterialUI) and [LinkedIn](https://www.linkedin.com/company/mui/).
+The Base UI community is active on both [X/Twitter](https://twitter.com/MaterialUI) and [LinkedIn](https://www.linkedin.com/company/mui/).
 These are great platforms to share what you're working on and connect with other developers.
 
 ### Discord
 
-We have a [Discord Server](https://mui.com/r/discord/) to bring the Material UI community together.
+We have a [Discord Server](https://mui.com/r/discord/) to bring the Base UI community together.
 Our tools are used by thousands of developers and teams all around the world, many of whom actively engage with the community.
 
 You can join Discord to engage in lively discussions, share your projects, and interact with developers just like you from all around the world. We'd love for you to join us!
@@ -87,9 +82,9 @@ How-to questions are not accepted on Discord, they should be asked on [Stack Ove
 
 ## Custom work
 
-If your team gets stuck and needs help getting unblocked, Material UI's engineers may be available on a contract basis.
+If your team gets stuck and needs help getting unblocked, Base UI's engineers may be available on a contract basis.
 
-Keep in mind that the work must be directly related to Material UI's products—we don't accept general web development or React work.
+Keep in mind that the work must be directly related to Base UI's products—we don't accept general web development or React work.
 
 Our contracting price starts at $200/hour or $1,500/day.
 
