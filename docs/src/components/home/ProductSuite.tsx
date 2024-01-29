@@ -59,7 +59,6 @@ export default function ProductSuite() {
             }
             description="Build at an accelerated pace without sacrificing flexibility or control."
           />
-          <Box sx={{ mt: 4 }} />
           <ProductsSwitcher
             inView={inView}
             productIndex={productIndex}
