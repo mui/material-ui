@@ -13,7 +13,7 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import SvgMaterialDesign from 'docs/src/icons/SvgMaterialDesign';
 import Frame from 'docs/src/components/action/Frame';
-import MUIConnectSignUp from '../productConnect/MUIConnectSignUp';
+import MUIConnectSignUp from './MUIConnectSignUp';
 
 const Image = styled('img')(({ theme }) => ({
   transition: '0.4s',

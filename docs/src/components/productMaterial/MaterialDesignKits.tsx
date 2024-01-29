@@ -349,8 +349,8 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                     <Chip label="Beta release" size="small" color="primary" variant="outlined" />
                   </Box>
                   <Typography variant="body2" color="text.secondary">
-                    We’re gathering as many users as possible to try it out and get early feedback
-                    on the following features we can add.
+                    We&apos;re gathering as many users as possible to try it out and get early
+                    feedback on the following features we can add.
                   </Typography>
                 </div>
                 <Button
