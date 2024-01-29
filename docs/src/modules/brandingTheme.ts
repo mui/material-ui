@@ -837,7 +837,7 @@ export function getThemedComponents(): ThemeOptions {
         },
         styleOverrides: {
           root: ({ theme }) => ({
-            fontWeight: 700,
+            fontWeight: theme.typography.fontWeightSemiBold,
             display: 'inline-flex',
             alignItems: 'center',
             '&.MuiTypography-body1 > svg': {

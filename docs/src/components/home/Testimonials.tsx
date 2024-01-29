@@ -14,12 +14,9 @@ export default function Testimonials() {
     <Box
       data-mui-color-scheme="dark"
       sx={(theme) => ({
-        background: `linear-gradient(180deg, ${alpha(
-          theme.palette.primaryDark[800],
-          0.8,
-        )}2%, ${alpha(theme.palette.primaryDark[900], 0.5)} 80%),
-        ${(theme.vars || theme).palette.common.black}
-        `,
+        background: `linear-gradient(180deg, ${alpha(theme.palette.primaryDark[800], 0.8)}2%, ${
+          theme.palette.primaryDark[900]
+        } 80%), ${theme.palette.primaryDark[900]}`,
       })}
     >
       <Section bg="transparent" cozy>
