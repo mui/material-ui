@@ -72,7 +72,7 @@ export default function SectionHeadline(props: SectionHeadlineProps) {
         <Typography
           sx={(theme) => ({
             mt: 1,
-            maxWidth: 450,
+            maxWidth: 500,
             ...(inverted
               ? {
                   color: 'grey.400',
