@@ -848,9 +848,6 @@ importers:
       '@types/json2mq':
         specifier: ^0.2.2
         version: 0.2.2
-      '@types/markdown-to-jsx':
-        specifier: ^7.0.1
-        version: 7.0.1(react@18.2.0)
       '@types/node':
         specifier: ^18.19.10
         version: 18.19.10
@@ -7783,15 +7780,6 @@ packages:
 
   /@types/lodash@4.14.202:
     resolution: {integrity: sha512-OvlIYQK9tNneDlS0VN54LLd5uiPCBOp7gS5Z0f1mjoJYBrtStzgmJBxONW3U6OZqdtNzZPmn9BS/7WI7BFFcFQ==}
-
-  /@types/markdown-to-jsx@7.0.1(react@18.2.0):
-    resolution: {integrity: sha512-m9WVgoC+xggBNuaqHj/ONk6erCr2S+ok18/OdDovlqD3UCHyRA66o/y5QvTrQhm2XEeDwz/zA89jyrEykSm2wg==}
-    deprecated: This is a stub types definition. markdown-to-jsx provides its own type definitions, so you do not need this installed.
-    dependencies:
-      markdown-to-jsx: 7.4.0(react@18.2.0)
-    transitivePeerDependencies:
-      - react
-    dev: true
 
   /@types/mdast@3.0.10:
     resolution: {integrity: sha512-W864tg/Osz1+9f4lrGTZpCSO5/z4608eUp19tbozkq2HJK6i3z1kT0H9tlADXuYIb1YYOBByU4Jsqkk75q48qA==}
@@ -15492,6 +15480,7 @@ packages:
       react: '>= 0.14.0'
     dependencies:
       react: 18.2.0
+    dev: false
 
   /markdownlint-cli2-formatter-default@0.0.4(markdownlint-cli2@0.12.1):
     resolution: {integrity: sha512-xm2rM0E+sWgjpPn1EesPXx5hIyrN2ddUnUwnbCsD/ONxYtw3PX6LydvdH6dciWAoFDpwzbHM1TO7uHfcMd6IYg==}
