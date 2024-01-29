@@ -115,6 +115,12 @@ MenuItem.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
+   * If `true`, the menu item won't receive focus when the mouse moves over it.
+   *
+   * @default false
+   */
+  disableFocusOnHover: PropTypes.bool,
+  /**
    * A text representation of the menu item's content.
    * Used for keyboard text navigation matching.
    */
