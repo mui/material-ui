@@ -1681,9 +1681,6 @@ const rows = [
 export default function DataTable() {
   return (
     <ShowcaseContainer
-      previewSx={{
-        py: 2,
-      }}
       preview={
         <Paper
           variant="outlined"
