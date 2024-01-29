@@ -1,19 +1,54 @@
 import * as React from 'react';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import Chip from '@mui/material/Chip';
-import Link from '@mui/material/Link';
-import TextField from '@mui/material/TextField';
-import Container from '@mui/material/Container';
+import PropTypes from 'prop-types';
 import { alpha } from '@mui/material';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import Link from '@mui/material/Link';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+import Tooltip from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
+import Switch from '@mui/material/Switch';
 
-import CelebrationRoundedIcon from '@mui/icons-material/CelebrationRounded';
+import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
+import BlockRoundedIcon from '@mui/icons-material/BlockRounded';
 
-import { greyColor, brandColor } from '../getLPTheme';
+function ToggleCustomTheme({ showCustomTheme, toggleCustomTheme }) {
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        alignSelf: 'center',
+        px: 1,
+        borderRadius: '999px',
+        border: '1px solid ',
+        borderColor: 'divider',
+        backgroundColor: 'background.paper',
+      }}
+    >
+      <Tooltip title="Material Design" placement="left">
+        <BlockRoundedIcon sx={{ color: 'primary.light', fontSize: '20px' }} />
+      </Tooltip>
+      <Switch
+        checked={showCustomTheme}
+        onChange={toggleCustomTheme}
+        color="primary"
+      />
+      <Tooltip title="Custom theme" placement="right">
+        <AutoAwesomeRoundedIcon sx={{ color: 'primary.light', fontSize: '20px' }} />
+      </Tooltip>
+    </Box>
+  );
+}
 
-export default function Hero() {
+ToggleCustomTheme.propTypes = {
+  showCustomTheme: PropTypes.bool.isRequired,
+  toggleCustomTheme: PropTypes.func.isRequired,
+};
+
+function Hero({ showCustomTheme, toggleCustomTheme }) {
   return (
     <Box
       id="hero"
@@ -21,8 +56,8 @@ export default function Hero() {
         width: '100%',
         background: (theme) =>
           theme.palette.mode === 'light'
-            ? `linear-gradient(to bottom, ${brandColor[200]}, #FFF)`
-            : `linear-gradient(to bottom, ${brandColor[800]}, ${greyColor[900]})`,
+            ? 'linear-gradient( #9CCCFC, #FFF)'
+            : 'linear-gradient( #02294F, #090E10)',
       }}
     >
       <Container
@@ -33,40 +68,15 @@ export default function Hero() {
           pt: { xs: 14, sm: 20 },
         }}
       >
-        <Stack spacing={2} sx={{ width: { xs: '100%', sm: '60%' } }}>
-          <Chip
-            size="small"
-            variant="filled"
-            label="New arrivals"
-            icon={<CelebrationRoundedIcon />}
-            sx={{
-              alignSelf: 'center',
-              py: 1.5,
-              px: 0.5,
-              background: (theme) =>
-                theme.palette.mode === 'light'
-                  ? `linear-gradient(to bottom right, ${brandColor[50]}, ${brandColor[100]})`
-                  : `linear-gradient(to bottom right, ${brandColor[700]}, ${brandColor[900]})`,
-              border: '1px solid',
-              borderColor: (theme) =>
-                theme.palette.mode === 'light'
-                  ? `${alpha(brandColor[500], 0.3)}`
-                  : `${alpha(brandColor[500], 0.5)}`,
-              fontWeight: '600',
-              '& .MuiChip-label': {
-                color: (theme) =>
-                  theme.palette.mode === 'light' ? brandColor[500] : brandColor[200],
-              },
-              '& .MuiChip-icon': {
-                color: (theme) =>
-                  theme.palette.mode === 'light' ? brandColor[500] : brandColor[200],
-              },
-            }}
+        <Stack spacing={2} sx={{ width: { xs: '100%', sm: '70%' } }}>
+          <ToggleCustomTheme
+            showCustomTheme={showCustomTheme}
+            toggleCustomTheme={toggleCustomTheme}
           />
           <Box
             sx={{
               display: 'flex',
-              flexDirection: { xs: 'column', sm: 'row' },
+              flexDirection: { xs: 'column', md: 'row' },
               alignSelf: 'center',
               textAlign: 'center',
             }}
@@ -79,7 +89,7 @@ export default function Hero() {
               variant="h1"
               sx={{
                 color: (theme) =>
-                  theme.palette.mode === 'light' ? brandColor[500] : brandColor[200],
+                  theme.palette.mode === 'light' ? 'primary.main' : 'primary.light',
               }}
             >
               products
@@ -91,8 +101,9 @@ export default function Hero() {
             paragraph
             sx={{ opacity: 0.8 }}
           >
-            Discover our newest collection of high-quality products. From electronics
-            to fashion, we have something for everyone.
+            Explore our cutting-edge dashboard, delivering high-quality solutions
+            tailored to your needs. <br />
+            Elevate your experience with top-tier features and services.
           </Typography>
           <Stack direction="row" spacing={1} sx={{ pt: 2, alignSelf: 'center' }}>
             <TextField
@@ -133,22 +144,27 @@ export default function Hero() {
             mt: { xs: 8, sm: 10 },
             alignSelf: 'center',
             height: { xs: '200px', sm: '600px' },
-            width: 'calc(100% - 8px)',
+            width: '100%',
             backgroundImage: (theme) =>
               theme.palette.mode === 'light'
                 ? 'url("/static/images/templates/templates-images/dashboard-placeholder-image-light.png")'
                 : 'url("/static/images/templates/templates-images/dashboard-placeholder-image-dark.png")',
             backgroundSize: 'cover',
-            outline: '4px solid',
-            outlineColor: `${alpha(brandColor[500], 0.2)}`,
-            borderRadius: '8px',
+            borderRadius: '10px',
             boxShadow: (theme) =>
               theme.palette.mode === 'light'
-                ? `0 0 24px ${brandColor[200]}`
-                : `0 0 24px ${brandColor[800]}`,
+                ? `0 0 24px 12px ${alpha('#9CCCFC', 0.3)}`
+                : `0 0 24px 12px ${alpha('#033363', 0.2)}`,
           }}
         />
       </Container>
     </Box>
   );
 }
+
+Hero.propTypes = {
+  showCustomTheme: PropTypes.bool.isRequired,
+  toggleCustomTheme: PropTypes.func.isRequired,
+};
+
+export default Hero;

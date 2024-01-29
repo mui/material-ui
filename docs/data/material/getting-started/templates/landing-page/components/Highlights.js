@@ -1,18 +1,17 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
 
-import SettingsSuggestRoundedIcon from '@mui/icons-material/SettingsSuggestRounded';
-import ConstructionRoundedIcon from '@mui/icons-material/ConstructionRounded';
 import AutoFixHighRoundedIcon from '@mui/icons-material/AutoFixHighRounded';
+import ConstructionRoundedIcon from '@mui/icons-material/ConstructionRounded';
 import QueryStatsRoundedIcon from '@mui/icons-material/QueryStatsRounded';
-import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
+import SettingsSuggestRoundedIcon from '@mui/icons-material/SettingsSuggestRounded';
 import SupportAgentRoundedIcon from '@mui/icons-material/SupportAgentRounded';
-
-import { greyColor } from '../getLPTheme';
+import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
 
 const items = [
   {
@@ -92,14 +91,15 @@ export default function Highlights() {
               <Stack
                 direction="column"
                 color="inherit"
+                component={Card}
                 spacing={1}
                 sx={{
-                  border: '1px solid',
-                  borderColor: greyColor[800],
-                  backgroundColor: greyColor[900],
-                  borderRadius: '8px',
                   p: 2,
                   height: '100%',
+                  border: '1px solid',
+                  borderColor: 'grey.800',
+                  background: 'none',
+                  backgroundColor: 'grey.900',
                 }}
               >
                 <div>

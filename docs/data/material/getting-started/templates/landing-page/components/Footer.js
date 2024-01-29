@@ -1,17 +1,16 @@
 import * as React from 'react';
-import {
-  Box,
-  Typography,
-  Link,
-  IconButton,
-  TextField,
-  Button,
-  Container,
-  Stack,
-} from '@mui/material';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import IconButton from '@mui/material/IconButton';
+import Link from '@mui/material/Link';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+
 import FacebookIcon from '@mui/icons-material/GitHub';
-import TwitterIcon from '@mui/icons-material/X';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import TwitterIcon from '@mui/icons-material/X';
 
 const logoStyle = {
   width: '140px',
@@ -159,16 +158,16 @@ export default function Footer() {
               gap: 1,
             }}
           >
-            <Typography variant="body2" sx={{ fontWeight: 600 }}>
+            <Typography variant="body2" textAlign="left" sx={{ fontWeight: 600 }}>
               Legal
             </Typography>
-            <Link color="inherit" href="#" sx={{ opacity: 0.7 }}>
+            <Link color="inherit" textAlign="left" href="#" sx={{ opacity: 0.7 }}>
               Terms
             </Link>
-            <Link color="inherit" href="#" sx={{ opacity: 0.7 }}>
+            <Link color="inherit" textAlign="left" href="#" sx={{ opacity: 0.7 }}>
               Privacy
             </Link>
-            <Link color="inherit" href="#" sx={{ opacity: 0.7 }}>
+            <Link color="inherit" textAlign="left" href="#" sx={{ opacity: 0.7 }}>
               Contact
             </Link>
           </Box>
@@ -186,10 +185,11 @@ export default function Footer() {
         >
           <div>
             <Link variant="body2" color="text.secondary" href="#">
-              Privacy Policy •
+              Privacy Policy
             </Link>
+            <span>&nbsp;•&nbsp;</span>
             <Link variant="body2" color="text.secondary" href="#">
-              &nbsp;Terms of Service
+              Terms of Service
             </Link>
 
             <Copyright />

@@ -1,21 +1,19 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
-import Card from '@mui/material/Card';
-import Stack from '@mui/material/Stack';
-import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
 import Chip from '@mui/material/Chip';
-import { alpha } from '@mui/system';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Link from '@mui/material/Link';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
-import ViewQuiltRoundedIcon from '@mui/icons-material/ViewQuiltRounded';
-import EdgesensorHighRoundedIcon from '@mui/icons-material/EdgesensorHighRounded';
 import DevicesRoundedIcon from '@mui/icons-material/DevicesRounded';
-
-import { greyColor, brandColor } from '../getLPTheme';
+import EdgesensorHighRoundedIcon from '@mui/icons-material/EdgesensorHighRounded';
+import ViewQuiltRoundedIcon from '@mui/icons-material/ViewQuiltRounded';
+import { alpha } from '@mui/system';
 
 const items = [
   {
@@ -23,24 +21,30 @@ const items = [
     title: 'Dashboard',
     description:
       'This item could provide a snapshot of the most important metrics or data points related to the product.',
-    image:
-      'url("https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=3570&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+    imageLight:
+      'url("/static/images/templates/templates-images/dashboard-placeholder-dashboard-light.png")',
+    imageDark:
+      'url("/static/images/templates/templates-images/dashboard-placeholder-dashboard-dark.png")',
   },
   {
     icon: <EdgesensorHighRoundedIcon />,
     title: 'Mobile integration',
     description:
       'This item could provide information about the mobile app version of the product.',
-    image:
-      'url("https://images.unsplash.com/photo-1581287053822-fd7bf4f4bfec?q=80&w=3602&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+    imageLight:
+      'url("/static/images/templates/templates-images/dashboard-placeholder-mobile-light.png")',
+    imageDark:
+      'url("/static/images/templates/templates-images/dashboard-placeholder-mobile-dark.png")',
   },
   {
     icon: <DevicesRoundedIcon />,
     title: 'Available in all platforms',
     description:
       'This item could let users know that the product is available on all platforms, such as web, mobile, and desktop.',
-    image:
-      'url("https://images.unsplash.com/photo-1597740985671-2a8a3b80502e?q=80&w=3456&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+    imageLight:
+      'url("/static/images/templates/templates-images/dashboard-placeholder-platforms-light.png")',
+    imageDark:
+      'url("/static/images/templates/templates-images/dashboard-placeholder-platforms-dark.png")',
   },
 ];
 
@@ -83,9 +87,9 @@ export default function Features() {
                   sx={{
                     borderColor: (theme) => {
                       if (theme.palette.mode === 'light') {
-                        return selectedItemIndex === index ? brandColor[300] : '';
+                        return selectedItemIndex === index ? 'primary.light' : '';
                       }
-                      return selectedItemIndex === index ? brandColor[200] : '';
+                      return selectedItemIndex === index ? 'primary.light' : '';
                     },
                     background: (theme) => {
                       if (theme.palette.mode === 'light') {
@@ -94,75 +98,87 @@ export default function Features() {
                       return selectedItemIndex === index ? 'none' : '';
                     },
                     backgroundColor:
-                      selectedItemIndex === index ? brandColor[500] : '',
+                      selectedItemIndex === index ? 'primary.main' : '',
                     '& .MuiChip-label': {
-                      color: selectedItemIndex === index ? brandColor[50] : '',
+                      color: selectedItemIndex === index ? '#fff' : '',
                     },
                   }}
                 />
               ))}
             </Grid>
             <Box
+              component={Card}
+              variant="outlined"
               sx={{
                 display: { xs: 'auto', sm: 'none' },
-                border: '1px solid',
-                borderColor: (theme) =>
-                  theme.palette.mode === 'light' ? greyColor[200] : greyColor[700],
-                backgroundColor: (theme) =>
-                  theme.palette.mode === 'light' ? greyColor[100] : greyColor[800],
-                borderRadius: '8px',
-                p: 2,
                 mt: 4,
               }}
             >
               <Box
                 sx={{
-                  backgroundImage: items[selectedItemIndex].image,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  borderRadius: '4px',
-                  minHeight: '300px',
-                  marginBottom: '16px',
-                  outline: '1px solid',
-                  outlineColor: (theme) =>
-                    theme.palette.mode === 'light' ? greyColor[200] : greyColor[700],
+                  p: 2,
+                  backgroundImage: (theme) =>
+                    theme.palette.mode === 'light'
+                      ? `radial-gradient(${alpha('#D6E2EB', 0.4)} 1.3px, ${alpha(
+                          '#FBFCFE',
+                          0.2,
+                        )} 1.3px)`
+                      : `radial-gradient(${alpha('#131B20', 0.9)} 1.3px, ${alpha(
+                          '#090E10',
+                          0.2,
+                        )} 1.3px)`,
+                  backgroundSize: '24px 24px',
                 }}
-              />
-              <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                <Typography
-                  component="span"
-                  color="text.primary"
-                  variant="body2"
-                  fontWeight="bold"
-                >
-                  {selectedFeature.title}
-                </Typography>
-                <Typography
-                  component="span"
-                  color="text.secondary"
-                  variant="body2"
-                  fontWeight="regular"
-                  sx={{ my: 0.5 }}
-                >
-                  {selectedFeature.description}
-                </Typography>
-                <Link
-                  color="primary"
-                  variant="body2"
-                  fontWeight="bold"
+              >
+                <Box
                   sx={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    '& > svg': { transition: '0.2s' },
-                    '&:hover > svg': { transform: 'translateX(2px)' },
+                    backgroundImage: (theme) =>
+                      theme.palette.mode === 'light'
+                        ? items[selectedItemIndex].imageLight
+                        : items[selectedItemIndex].imageDark,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    borderRadius: '4px',
+                    minHeight: '300px',
+                    marginBottom: '16px',
                   }}
-                >
-                  <span>Learn more</span>
-                  <ChevronRightRoundedIcon
-                    fontSize="small"
-                    sx={{ mt: '1px', ml: '2px' }}
-                  />
-                </Link>
+                />
+                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                  <Typography
+                    component="span"
+                    color="text.primary"
+                    variant="body2"
+                    fontWeight="bold"
+                  >
+                    {selectedFeature.title}
+                  </Typography>
+                  <Typography
+                    component="span"
+                    color="text.secondary"
+                    variant="body2"
+                    fontWeight="regular"
+                    sx={{ my: 0.5 }}
+                  >
+                    {selectedFeature.description}
+                  </Typography>
+                  <Link
+                    color="primary"
+                    variant="body2"
+                    fontWeight="bold"
+                    sx={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      '& > svg': { transition: '0.2s' },
+                      '&:hover > svg': { transform: 'translateX(2px)' },
+                    }}
+                  >
+                    <span>Learn more</span>
+                    <ChevronRightRoundedIcon
+                      fontSize="small"
+                      sx={{ mt: '1px', ml: '2px' }}
+                    />
+                  </Link>
+                </Box>
               </Box>
             </Box>
             <Stack
@@ -174,43 +190,25 @@ export default function Features() {
             >
               {items.map(({ icon, title, description }, index) => (
                 <Card
-                  variant="outlined"
                   key={index}
                   component={Button}
                   onClick={() => handleItemClick(index)}
                   sx={{
                     height: '33%',
-                    backgroundColor: (theme) => {
-                      if (theme.palette.mode === 'light') {
-                        return selectedItemIndex === index
-                          ? alpha(brandColor[100], 0.2)
-                          : 'transparent';
-                      }
-                      return selectedItemIndex === index
-                        ? alpha(brandColor[800], 0.2)
-                        : 'transparent';
-                    },
+                    width: '100%',
+                    background: 'none',
+                    backgroundColor:
+                      selectedItemIndex === index ? 'action.selected' : '',
                     borderColor: (theme) => {
                       if (theme.palette.mode === 'light') {
                         return selectedItemIndex === index
-                          ? alpha(brandColor[300], 0.5)
-                          : greyColor[200];
+                          ? 'primary.light'
+                          : 'grey.200';
                       }
                       return selectedItemIndex === index
-                        ? alpha(brandColor[700], 0.7)
-                        : greyColor[800];
+                        ? 'primary.dark'
+                        : 'grey.800';
                     },
-                    '&:hover': {
-                      borderColor: (theme) =>
-                        theme.palette.mode === 'light'
-                          ? brandColor[300]
-                          : brandColor[700],
-                      boxShadow: (theme) =>
-                        theme.palette.mode === 'light'
-                          ? `0 0 24px ${brandColor[100]}`
-                          : `0 0 24px ${brandColor[800]}`,
-                    },
-                    width: '100%',
                   }}
                 >
                   <Box
@@ -230,12 +228,12 @@ export default function Features() {
                         color: (theme) => {
                           if (theme.palette.mode === 'light') {
                             return selectedItemIndex === index
-                              ? brandColor[500]
-                              : greyColor[400];
+                              ? 'primary.main'
+                              : 'grey.400';
                           }
                           return selectedItemIndex === index
-                            ? brandColor[500]
-                            : greyColor[600];
+                            ? 'primary.main'
+                            : 'grey.700';
                         },
                       }}
                     >
@@ -289,18 +287,47 @@ export default function Features() {
           </Grid>
           <Grid item xs={12} md={6}>
             <Box
+              component={Card}
+              variant="outlined"
               sx={{
-                display: { xs: 'none', sm: 'flex' },
-                backgroundImage: items[selectedItemIndex].image,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                borderRadius: '8px',
                 height: '100%',
-                minHeight: '400px',
-                outline: '4px solid',
-                outlineColor: `${alpha(brandColor[500], 0.2)}`,
+                display: { xs: 'none', sm: 'flex' },
+                pointerEvents: 'none',
               }}
-            />
+            >
+              <Box
+                sx={{
+                  height: '100%',
+                  width: '100%',
+                  display: { xs: 'none', sm: 'flex' },
+                  pointerEvents: 'none',
+                  backgroundImage: (theme) =>
+                    theme.palette.mode === 'light'
+                      ? `radial-gradient(${alpha('#D6E2EB', 0.4)} 1.3px, ${alpha(
+                          '#FBFCFE',
+                          0.2,
+                        )} 1.3px)`
+                      : `radial-gradient(${alpha('#131B20', 0.9)} 1.3px, ${alpha(
+                          '#090E10',
+                          0.2,
+                        )} 1.3px)`,
+                  backgroundSize: '24px 24px',
+                }}
+              >
+                <Box
+                  sx={{
+                    m: 'auto',
+                    width: '420px',
+                    height: '420px',
+                    backgroundSize: 'contain',
+                    backgroundImage: (theme) =>
+                      theme.palette.mode === 'light'
+                        ? items[selectedItemIndex].imageLight
+                        : items[selectedItemIndex].imageDark,
+                  }}
+                />
+              </Box>
+            </Box>
           </Grid>
         </Grid>
       </Container>

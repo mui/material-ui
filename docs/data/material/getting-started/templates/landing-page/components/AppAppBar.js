@@ -1,4 +1,6 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
+
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -19,7 +21,7 @@ const logoStyle = {
   cursor: 'pointer',
 };
 
-function AppAppBar() {
+function AppAppBar({ mode, toggleColorMode }) {
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen) => () => {
@@ -134,9 +136,14 @@ function AppAppBar() {
                 </MenuItem>
               </Box>
             </Box>
-
-            <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 0.5 }}>
-              <ToggleColorMode />
+            <Box
+              sx={{
+                display: { xs: 'none', md: 'flex' },
+                gap: 0.5,
+                alignItems: 'center',
+              }}
+            >
+              <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
               <Button
                 color="primary"
                 variant="text"
@@ -158,7 +165,6 @@ function AppAppBar() {
                 Sign up
               </Button>
             </Box>
-
             <Box sx={{ display: { sm: '', md: 'none' } }}>
               <Button
                 variant="text"
@@ -186,7 +192,7 @@ function AppAppBar() {
                       flexGrow: 1,
                     }}
                   >
-                    <ToggleColorMode />
+                    <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
                   </Box>
                   <MenuItem onClick={() => scrollToSection('features')}>
                     Features
@@ -235,5 +241,10 @@ function AppAppBar() {
     </div>
   );
 }
+
+AppAppBar.propTypes = {
+  mode: PropTypes.oneOf(['dark', 'light']).isRequired,
+  toggleColorMode: PropTypes.func.isRequired,
+};
 
 export default AppAppBar;

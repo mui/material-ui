@@ -1,21 +1,13 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
+
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
 import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded';
 import ModeNightRoundedIcon from '@mui/icons-material/ModeNightRounded';
 
-import { ColorModeContext } from '../LandingPage';
-
-function ToggleColorMode() {
-  const contextValue = React.useContext(ColorModeContext);
-
-  if (!contextValue) {
-    throw new Error('ColorModeContext value is undefined');
-  }
-
-  const { mode, toggleColorMode } = contextValue;
-
+function ToggleColorMode({ mode, toggleColorMode }) {
   return (
     <Box sx={{ maxWidth: '32px' }}>
       <Button
@@ -33,5 +25,10 @@ function ToggleColorMode() {
     </Box>
   );
 }
+
+ToggleColorMode.propTypes = {
+  mode: PropTypes.oneOf(['dark', 'light']).isRequired,
+  toggleColorMode: PropTypes.func.isRequired,
+};
 
 export default ToggleColorMode;
