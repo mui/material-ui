@@ -44,7 +44,7 @@ We're establishing a one-year cycle for major versions, meaning the next major w
 During v6 pre-releases, v5 will continue to be the official current major, and it will remain supported during this time.
 However, we will only release new v5 versions as needed to patch bugs or add community contributions.
 
-All new features and enhancements will go to v6, and after its first stable release, v5 will officially transition to [long-term support](https://mui.com/versions/#long-term-support-lts) status.
+All new features and enhancements will go to v6, and after its first stable release, v5 will officially transition to [long-term support](https://mui.com/x/introduction/support/#long-term-support-lts) status.
 
 ## Where's the v6 documentation?
 
