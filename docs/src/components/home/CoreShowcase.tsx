@@ -154,7 +154,7 @@ export default function CoreShowcase() {
       code={
         <div data-mui-color-scheme="dark">
           <Box
-            sx={(theme) => ({
+            sx={{
               pb: 1.5,
               display: 'flex',
               alignItems: 'center',
@@ -168,9 +168,9 @@ export default function CoreShowcase() {
                 lineHeight: 18 / 12,
               },
               '& .MuiButton-outlinedPrimary': {
-                backgroundColor: alpha(theme.palette.primary[900], 0.5),
+                backgroundColor: alpha(globalTheme.palette.primary[900], 0.5),
               },
-            })}
+            }}
           >
             <Button
               size="small"
