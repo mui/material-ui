@@ -36,26 +36,27 @@ function Role(props: RoleProps) {
   if (props.url) {
     return (
       <Box
-        component="div"
         sx={{
+          py: 1,
           display: 'flex',
+          flexDirection: { xs: 'column', lg: 'row' },
           justifyContent: 'space-between',
           alignItems: 'start',
-          flexDirection: { xs: 'column', lg: 'row' },
+          gap: 2,
         }}
       >
-        <span>
-          <Typography variant="body1" color="text.primary" fontWeight="semiBold" gutterBottom>
+        <div>
+          <Typography variant="body1" color="text.primary" fontWeight="medium" gutterBottom>
             {props.title}
           </Typography>
-          <Typography component="p" color="text.secondary" sx={{ maxWidth: 700 }}>
+          <Typography variant="body2" color="text.secondary" sx={{ maxWidth: 550 }}>
             {props.description}
           </Typography>
-        </span>
+        </div>
         <Button
           component="a"
-          // @ts-expect-error
-          variant="link"
+          variant="outlined"
+          color="secondary"
           size="small"
           href={props.url}
           endIcon={<KeyboardArrowRightRounded />}
@@ -68,10 +69,10 @@ function Role(props: RoleProps) {
 
   return (
     <div>
-      <Typography variant="body1" color="text.primary" fontWeight={700} sx={{ my: 1 }}>
+      <Typography variant="body1" color="text.primary" fontWeight="medium" gutterBottom>
         {props.title}
       </Typography>
-      <Typography color="text.secondary" sx={{ maxWidth: 700 }}>
+      <Typography variant="body2" color="text.secondary" sx={{ maxWidth: 650 }}>
         {props.description}
       </Typography>
     </div>
@@ -127,7 +128,7 @@ const AccordionDetails = styled(MuiAccordionDetail)(({ theme }) => ({
 const faqData = [
   {
     summary: 'Are there application deadlines?',
-    detail: 'No. If a job is visible on our careers page, then you can still apply.',
+    detail: 'No. You can still apply if a position is visible on our careers page.',
   },
   {
     summary: 'Does MUI do whiteboarding during interviews?',
@@ -277,6 +278,24 @@ const nextRolesData = [
   },
 ] as typeof openRolesData;
 
+const companyInfo = [
+  {
+    title: 'About us',
+    description: 'Meet the team and a little bit of our history.',
+    routeUrl: ROUTES.about,
+  },
+  {
+    title: 'Handbook',
+    description: 'Learn everything about how MUI as a company is run.',
+    routeUrl: ROUTES.handbook,
+  },
+  {
+    title: 'Blog',
+    description: 'Check behind-the-scenes and news about the company.',
+    routeUrl: ROUTES.blog,
+  },
+];
+
 function renderFAQItem(index: number, defaultExpanded?: boolean) {
   const faq = faqData[index];
   return (
@@ -302,271 +321,6 @@ function renderFAQItem(index: number, defaultExpanded?: boolean) {
   );
 }
 
-function CareersContent() {
-  return (
-    <React.Fragment>
-      {/* Hero */}
-      <Section cozy>
-        <SectionHeadline
-          alwaysCenter
-          overline="Join us"
-          title={
-            <Typography variant="h2" component="h1">
-              Build <GradientText>the next generation</GradientText>
-              <br /> of tools for UI development
-            </Typography>
-          }
-          description="Together, we are enabling developers & designers to bring stunning UIs to life with unrivalled speed and ease."
-        />
-      </Section>
-      <Divider />
-      <OurValues />
-      <Divider />
-      {/* Perks & benefits */}
-      <Section bg="gradient" cozy>
-        <Grid container spacing={5} alignItems="center">
-          <Grid item md={6}>
-            <SectionHeadline
-              overline="Working at MUI"
-              title={
-                <Typography variant="h2" id="perks-and-benefits">
-                  Perks & benefits
-                </Typography>
-              }
-              description="To help you go above and beyond with us, we provide:"
-            />
-            {[
-              ['100% remote work:', 'Our entire company is globally distributed.'],
-              [
-                'Retreats:',
-                'We meet up every 8 months for a week of working & having fun together!',
-              ],
-              [
-                'Equipment:',
-                'We provide the hardware of your choice (initial grant of $2,500 USD).',
-              ],
-              ['Time off:', 'We provide 33 days of paid time off globally.'],
-            ].map((textArray) => (
-              <Box key={textArray[0]} sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
-                <IconImage name="pricing/yes" />
-                <Typography variant="body2" color="text.primary" sx={{ ml: 1 }}>
-                  <span style={{ fontWeight: 600 }}>{`${textArray[0]}  `}</span>
-                  {textArray[1]}
-                </Typography>
-              </Box>
-            ))}
-          </Grid>
-          <Grid item xs={12} md={6} container>
-            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2 }}>
-              <Paper
-                component={Link}
-                href={ROUTES.handbook}
-                noLinkStyle
-                variant="outlined"
-                sx={{ p: 2, width: '100%' }}
-              >
-                <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
-                  Handbook
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                  Learn everything about how MUI as a company is run.
-                </Typography>
-                <Typography
-                  sx={(theme) => ({
-                    color: 'primary.600',
-                    ...theme.applyDarkStyles({
-                      color: 'primary.400',
-                    }),
-                  })}
-                  variant="body2"
-                  fontWeight="bold"
-                >
-                  Learn more{' '}
-                  <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
-                </Typography>
-              </Paper>
-              <Paper
-                component={Link}
-                href={ROUTES.blog}
-                noLinkStyle
-                variant="outlined"
-                sx={{ p: 2, width: '100%' }}
-              >
-                <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
-                  Blog
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                  Check behind the scenes and news from the company.
-                </Typography>
-                <Typography
-                  sx={(theme) => ({
-                    color: 'primary.600',
-                    ...theme.applyDarkStyles({
-                      color: 'primary.400',
-                    }),
-                  })}
-                  variant="body2"
-                  fontWeight="bold"
-                >
-                  Learn more{' '}
-                  <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
-                </Typography>
-              </Paper>
-            </Box>
-          </Grid>
-        </Grid>
-      </Section>
-      <Divider />
-      {/* Open roles */}
-      <Section cozy>
-        <SectionHeadline
-          title={
-            <Typography variant="h2" id="open-roles" gutterBottom>
-              Open roles
-              <Badge
-                badgeContent={openRolesData.reduce((acc, item) => acc + item.roles.length, 0)}
-                color="success"
-                showZero
-                sx={{ ml: 3 }}
-              />
-            </Typography>
-          }
-          description="The company is bootstrapped (so far). It was incorporated in mid-2019 and is growing fast (x2 YoY). We doubled the team in 2020 (6), and kept a similar pace since: 2021 (15), 2022 (25). We plan to reach 40 people in 2023. We're looking for help to
-          grow in the following areas:"
-        />
-        <Divider sx={{ my: { xs: 2, sm: 4 } }} />
-        <Stack
-          spacing={2}
-          divider={
-            <Divider
-              sx={(theme) => ({
-                my: { xs: 1, sm: 2 },
-                borderColor: 'grey.100',
-                ...theme.applyDarkStyles({
-                  borderColor: 'primaryDark.600',
-                }),
-              })}
-            />
-          }
-        >
-          {openRolesData.map((category) => {
-            const roles = category.roles;
-            return (
-              <React.Fragment key={category.title}>
-                <Typography component="h3" variant="h5" fontWeight="extraBold">
-                  {category.title}
-                </Typography>
-                {roles.length > 0 ? (
-                  roles.map((role) => (
-                    <Role
-                      key={role.title}
-                      title={role.title}
-                      description={role.description}
-                      url={role.url}
-                    />
-                  ))
-                ) : (
-                  <Typography color="text.secondary">No open roles.</Typography>
-                )}
-              </React.Fragment>
-            );
-          })}
-        </Stack>
-      </Section>
-      <Divider />
-      {/* Next roles */}
-      {nextRolesData.length > 0 && (
-        <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'common.black' }}>
-          <Section bg="transparent">
-            <SectionHeadline
-              title={
-                <Typography variant="h2" id="next-roles" gutterBottom>
-                  Next roles
-                </Typography>
-              }
-              description={
-                <React.Fragment>
-                  If none of the roles below fit with what you are looking for, apply to the{' '}
-                  <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
-                    Dream job
-                  </Link>{' '}
-                  role!
-                </React.Fragment>
-              }
-            />
-            <Divider sx={{ my: { xs: 2, sm: 4 } }} />
-            <Stack spacing={2} divider={<Divider sx={{ my: { xs: 1, sm: 2 } }} />}>
-              {nextRolesData.map((category) => {
-                const roles = category.roles;
-                return (
-                  <React.Fragment key={category.title}>
-                    <Typography component="h3" variant="h5" fontWeight="extraBold">
-                      {category.title}
-                    </Typography>
-                    {roles.length > 0 ? (
-                      roles.map((role) => (
-                        <Role
-                          key={role.title}
-                          title={role.title}
-                          description={role.description}
-                          url={role.url}
-                        />
-                      ))
-                    ) : (
-                      <Typography color="text.secondary">No plans yet.</Typography>
-                    )}
-                  </React.Fragment>
-                );
-              })}
-            </Stack>
-          </Section>
-        </Box>
-      )}
-      <Divider />
-      {/* Frequently asked questions */}
-      <Section bg="transparent">
-        <Typography variant="h2" sx={{ mb: { xs: 2, sm: 4 } }}>
-          Frequently asked questions
-        </Typography>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
-            {renderFAQItem(0, true)}
-            {renderFAQItem(1)}
-          </Grid>
-          <Grid item xs={12} md={6}>
-            {renderFAQItem(2)}
-            <Paper
-              variant="outlined"
-              sx={(theme) => ({
-                p: 2,
-                borderStyle: 'dashed',
-                borderColor: 'divider',
-                bgcolor: 'white',
-                ...theme.applyDarkStyles({
-                  bgcolor: 'primaryDark.800',
-                }),
-              })}
-            >
-              <Box sx={{ textAlign: 'left' }}>
-                <Typography variant="body2" color="text.primary" fontWeight="bold">
-                  Got any questions unanswered or need more help?
-                </Typography>
-              </Box>
-              <Typography variant="body2" color="text.secondary" sx={{ my: 1, textAlign: 'left' }}>
-                We&apos;re here to help you with any other question you have about our hiring
-                process.
-              </Typography>
-              <Link href="mailto:job@mui.com" variant="body2">
-                Contact us <KeyboardArrowRightRounded fontSize="small" />
-              </Link>
-            </Paper>
-          </Grid>
-        </Grid>
-      </Section>
-    </React.Fragment>
-  );
-}
-
 export default function Careers() {
   return (
     <BrandingCssVarsProvider>
@@ -578,7 +332,241 @@ export default function Careers() {
       <AppHeaderBanner />
       <AppHeader />
       <main id="main-content">
-        <CareersContent />
+        <Section cozy bg="gradient">
+          <SectionHeadline
+            alwaysCenter
+            overline="Join us"
+            title={
+              <Typography variant="h2" component="h1">
+                Build <GradientText>the next generation</GradientText>
+                <br /> of tools for UI development
+              </Typography>
+            }
+            description="Together, we are enabling developers & designers to bring stunning UIs to life with unrivalled speed and ease."
+          />
+        </Section>
+        <Divider />
+        <OurValues />
+        <Divider />
+        {/* Perks & benefits */}
+        <Section bg="gradient">
+          <Grid container spacing={5} alignItems="center">
+            <Grid item md={6}>
+              <SectionHeadline
+                overline="Working at MUI"
+                title={
+                  <Typography variant="h2" id="perks-and-benefits">
+                    Perks & benefits
+                  </Typography>
+                }
+                description="To help you go above and beyond with us, we provide:"
+              />
+              <Box sx={{ maxWidth: 500 }}>
+                {[
+                  ['100% remote work', 'Our entire company is globally distributed.'],
+                  [
+                    'Retreats',
+                    'We meet up every 8 months for a week of working & having fun together!',
+                  ],
+                  [
+                    'Equipment',
+                    'We provide the hardware of your choice (initial grant of $2,500 USD).',
+                  ],
+                  ['Time off', 'We provide 33 days of paid time off globally.'],
+                ].map((textArray) => (
+                  <Box
+                    key={textArray[0]}
+                    sx={{ display: 'flex', alignItems: 'center', gap: 2, mt: 1, py: 0.5 }}
+                  >
+                    <IconImage name="pricing/yes" />
+                    <div>
+                      <Typography variant="body2" color="text.primary" fontWeight="semiBold">
+                        {textArray[0]}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        {textArray[1]}
+                      </Typography>
+                    </div>
+                  </Box>
+                ))}
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Stack spacing={2} useFlexGap>
+                {companyInfo.map(({ title, description, routeUrl }) => (
+                  <Paper
+                    component={Link}
+                    href={routeUrl}
+                    noLinkStyle
+                    variant="outlined"
+                    sx={{ p: 2, width: '100%' }}
+                  >
+                    <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
+                      {title}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                      {description}
+                    </Typography>
+                    <Typography
+                      sx={(theme) => ({
+                        color: 'primary.600',
+                        ...theme.applyDarkStyles({
+                          color: 'primary.400',
+                        }),
+                      })}
+                      variant="body2"
+                      fontWeight="bold"
+                    >
+                      Learn more{' '}
+                      <KeyboardArrowRightRounded
+                        fontSize="small"
+                        sx={{ verticalAlign: 'middle' }}
+                      />
+                    </Typography>
+                  </Paper>
+                ))}
+              </Stack>
+            </Grid>
+          </Grid>
+        </Section>
+        <Divider />
+        {/* Open roles */}
+        <Section cozy>
+          <SectionHeadline
+            title={
+              <Typography variant="h2" id="open-roles" gutterBottom>
+                Open roles
+                <Badge
+                  badgeContent={openRolesData.reduce((acc, item) => acc + item.roles.length, 0)}
+                  color="success"
+                  showZero
+                  sx={{ ml: 3, '& .MuiBadge-badge': { fontWeight: 'bold' } }}
+                />
+              </Typography>
+            }
+            description="The company was incorporated in mid-2019 and has been bootstrapped so far. We're growing fast—2× YoY—and have kept a steady pace of increasing the team: in 2020, we were 6; 15 in 2021, 25 in 2022, and 32 in 2023. We plan to grow the team to 60 people in 2024 in the following areas:"
+          />
+          <Divider sx={{ borderStyle: 'dashed', my: { xs: 2, sm: 6 } }} />
+          <Stack spacing={2} divider={<Divider />}>
+            {openRolesData.map((category) => {
+              const roles = category.roles;
+              return (
+                <React.Fragment key={category.title}>
+                  <Typography component="h3" variant="h5" fontWeight="semiBold">
+                    {category.title}
+                  </Typography>
+                  {roles.length > 0 ? (
+                    roles.map((role) => (
+                      <Role
+                        key={role.title}
+                        title={role.title}
+                        description={role.description}
+                        url={role.url}
+                      />
+                    ))
+                  ) : (
+                    <Typography color="text.secondary">No open roles.</Typography>
+                  )}
+                </React.Fragment>
+              );
+            })}
+          </Stack>
+        </Section>
+        <Divider />
+        {/* Next roles */}
+        {nextRolesData.length > 0 && (
+          <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'common.black' }}>
+            <Section bg="transparent" cozy>
+              <SectionHeadline
+                alwaysCenter
+                title={
+                  <Typography variant="h2" id="next-roles" gutterBottom>
+                    Next roles
+                  </Typography>
+                }
+                description={
+                  <React.Fragment>
+                    If none of the roles below fit with what you are looking for, apply to{' '}
+                    <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
+                      the Dream job role
+                    </Link>
+                    !
+                  </React.Fragment>
+                }
+              />
+              <Divider sx={{ borderStyle: 'dashed', my: { xs: 2, sm: 6 } }} />
+              <Stack spacing={2} divider={<Divider />}>
+                {nextRolesData.map((category) => {
+                  const roles = category.roles;
+                  return (
+                    <React.Fragment key={category.title}>
+                      <Typography component="h3" variant="h5" fontWeight="extraBold">
+                        {category.title}
+                      </Typography>
+                      {roles.length > 0 ? (
+                        roles.map((role) => (
+                          <Role
+                            key={role.title}
+                            title={role.title}
+                            description={role.description}
+                            url={role.url}
+                          />
+                        ))
+                      ) : (
+                        <Typography color="text.secondary">No plans yet.</Typography>
+                      )}
+                    </React.Fragment>
+                  );
+                })}
+              </Stack>
+            </Section>
+          </Box>
+        )}
+        <Divider />
+        {/* Frequently asked questions */}
+        <Section bg="transparent" cozy>
+          <Typography variant="h2" sx={{ mb: { xs: 2, sm: 4 } }}>
+            Frequently asked questions
+          </Typography>
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={6}>
+              {renderFAQItem(0, true)}
+              {renderFAQItem(1)}
+            </Grid>
+            <Grid item xs={12} md={6}>
+              {renderFAQItem(2)}
+              <Paper
+                variant="outlined"
+                sx={(theme) => ({
+                  p: 2,
+                  borderStyle: 'dashed',
+                  borderColor: 'divider',
+                  bgcolor: 'white',
+                  ...theme.applyDarkStyles({
+                    bgcolor: 'primaryDark.800',
+                  }),
+                })}
+              >
+                <Box sx={{ textAlign: 'left' }}>
+                  <Typography variant="body2" color="text.primary" fontWeight="bold">
+                    Got any questions unanswered or need more help?
+                  </Typography>
+                </Box>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ my: 1, textAlign: 'left' }}
+                >
+                  We&apos;re here to help you with any other question you have about our hiring
+                  process.
+                </Typography>
+                <Link href="mailto:job@mui.com" variant="body2">
+                  Contact us <KeyboardArrowRightRounded fontSize="small" />
+                </Link>
+              </Paper>
+            </Grid>
+          </Grid>
+        </Section>
       </main>
       <Divider />
       <AppFooter />
