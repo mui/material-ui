@@ -30,7 +30,7 @@ export interface UseCompoundItemReturnValue<Key> {
  *
  * @param id A unique key for the child component. If the `id` is `undefined`, the registration logic will not run (this can sometimes be the case during SSR).
  *   This can be either a value, or a function that generates a value based on already registered siblings' ids.
- *   If a functio, it's called with the set of the ids of all the items that have already been registered.
+ *   If a function, it's called with the set of the ids of all the items that have already been registered.
  *   Return `existingKeys.size` if you want to use the index of the new item as the id.
  * @param itemMetadata Arbitrary metadata to pass to the parent component. This should be a stable reference (e.g. a memoized object), to avoid unnecessary re-registrations.
  *
