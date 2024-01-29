@@ -20,8 +20,7 @@ export default function StartToday() {
         overline="Start now"
         title={
           <Typography variant="h2">
-            Ship your next project
-            <GradientText>faster</GradientText>
+            Ship your next project <GradientText>faster</GradientText>
           </Typography>
         }
         description="Find out why MUI's tools are trusted by thousands of open-source developers and teams around the world."
