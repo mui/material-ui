@@ -11,6 +11,7 @@ import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
+import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
 
 export default function MaterialEnd() {
@@ -55,11 +56,11 @@ export default function MaterialEnd() {
               <GlowingIconContainer icon={<CompareIcon color="primary" />} />
               <div>
                 <Typography color="text.primary" fontWeight="semiBold" gutterBottom>
-                  Base UI vs. Material UI
+                  Material UI vs. Base UI
                 </Typography>
                 <Typography>
-                  Base UI features many of the same components as Material UI, but without the
-                  Material Design implementation.
+                  Material UI implements Google's Material Design whereas Base UI features many of
+                  the same components, but without the Material Design implementation.
                 </Typography>
               </div>
             </ListItem>
@@ -67,12 +68,18 @@ export default function MaterialEnd() {
               <GlowingIconContainer icon={<StyleRoundedIcon color="primary" />} />
               <div>
                 <Typography color="text.primary" fontWeight="semiBold" gutterBottom>
-                  Does it come with styles?
+                  Does it support Material 3?
                 </Typography>
                 <Typography>
-                  Base UI <i>is not packaged</i> with any default theme or built-in style engine.
-                  This makes it a great choice if you need complete control over how your app&apos;s
-                  CSS is implemented.
+                  The adoption of Material 3 is tentatively planned for Material UI v6. See the{' '}
+                  <Link href="https://mui.com/versions/#release-schedule">
+                    the release schedule
+                  </Link>{' '}
+                  and follow{' '}
+                  <Link href="https://github.com/mui/material-ui/issues/29345">
+                    this GitHub issue
+                  </Link>{' '}
+                  for future updates.
                 </Typography>
               </div>
             </ListItem>
