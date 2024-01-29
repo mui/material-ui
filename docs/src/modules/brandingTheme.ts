@@ -1093,7 +1093,7 @@ export function getThemedComponents(): ThemeOptions {
               backgroundColor: (theme.vars || theme).palette.primaryDark[900],
               ...(ownerState.variant === 'outlined' && {
                 borderColor: (theme.vars || theme).palette.primaryDark[700],
-                backgroundColor: alpha(theme.palette.primaryDark[800], 0.8),
+                backgroundColor: alpha(theme.palette.primaryDark[800], 0.6),
                 '&[href]': {
                   textDecorationLine: 'none',
                   boxShadow: `inset 0 1px 1px ${
