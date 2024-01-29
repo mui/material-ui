@@ -59,8 +59,8 @@ export default function MaterialEnd() {
                   Material UI vs. Base UI
                 </Typography>
                 <Typography>
-                  Material UI implements Google's Material Design whereas Base UI features many of
-                  the same components, but without the Material Design implementation.
+                  Material UI implements Google&apos;s Material Design whereas Base UI features many
+                  of the same components, but without the Material Design implementation.
                 </Typography>
               </div>
             </ListItem>
