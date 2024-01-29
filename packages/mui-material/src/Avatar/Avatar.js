@@ -183,7 +183,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
         {...imgProps}
       />
     );
-  } else if (childrenProp != null) {
+  } else if (childrenProp != null && childrenProp !== '' && typeof childrenProp !== 'boolean') {
     children = childrenProp;
   } else if (hasImg && alt) {
     children = alt[0];

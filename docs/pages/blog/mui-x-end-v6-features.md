@@ -158,7 +158,7 @@ Use the following list to quickly access each component's issues:
 - [Date and Time pickers](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+label%3A%22component%3A+pickers%22+label%3A%22waiting+for+%F0%9F%91%8D%22)
 
 Going forward, the next major version—v7—will be released in alpha and then beta between now and March 2024, at which point we'll bump it to a stable release.
-At the same time, v6 will transition to [Long-Term Support](/versions/#long-term-support-lts), while support for v5 will be discontinued.
+At the same time, v6 will transition to [long-term support](https://mui.com/x/introduction/support/#long-term-support-lts), while support for v5 will be discontinued.
 
 ## Give us feedback
 

@@ -111,7 +111,7 @@ function Styles() {
       border-bottom: none;
     }
 
-    .CustomMenuIntroduction--item.${menuItemClasses.focusVisible} {
+    .CustomMenuIntroduction--item:focus {
       outline: 3px solid ${isDarkMode ? cyan[600] : cyan[200]};
       background-color: ${isDarkMode ? grey[800] : grey[100]};
       color: ${isDarkMode ? grey[300] : grey[900]};
@@ -119,11 +119,6 @@ function Styles() {
 
     .CustomMenuIntroduction--item.${menuItemClasses.disabled} {
       color: ${isDarkMode ? grey[700] : grey[400]};
-    }
-
-    .CustomMenuIntroduction--item:hover:not(.${menuItemClasses.disabled}) {
-      background-color: ${isDarkMode ? cyan[800] : cyan[50]};
-      color: ${isDarkMode ? grey[300] : grey[900]};
     }
 
     .TriggerButtonIntroduction {

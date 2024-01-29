@@ -19,7 +19,7 @@ const validBundles = [
 ];
 
 async function run(argv) {
-  const { bundle, largeFiles, outDir: relativeOutDir, verbose } = argv;
+  const { bundle, largeFiles, outDir: relativeOutDir, verbose, ignoreTopLevel } = argv;
 
   if (validBundles.indexOf(bundle) === -1) {
     throw new TypeError(
@@ -59,11 +59,12 @@ async function run(argv) {
     // The first case resolves to a file while the second case resolves to a package first i.e. a package.json
     // This means that only in the second case the bundler can decide whether it uses ES modules or CommonJS modules.
     // Different extensions are not viable yet since they require additional bundler config for users and additional transpilation steps in our repo.
-    // Switch to `exports` field in v6.
+    //
+    // TODO v6: Switch to `exports` field.
     {
-      node: topLevelPathImportsCanBePackages ? './node' : './',
+      node: !ignoreTopLevel && topLevelPathImportsCanBePackages ? './node' : './',
       modern: './modern',
-      stable: topLevelPathImportsCanBePackages ? './' : './esm',
+      stable: !ignoreTopLevel && topLevelPathImportsCanBePackages ? './' : './esm',
       legacy: './legacy',
     }[bundle],
   );
@@ -118,6 +119,11 @@ yargs(process.argv.slice(2))
           describe: 'Set to `true` if you know you are transpiling large files.',
         })
         .option('out-dir', { default: './build', type: 'string' })
+        .option('ignoreTopLevel', {
+          type: 'boolean',
+          default: false,
+          describe: 'Set to `true` to ignore switching out-dir based on top level import.',
+        })
         .option('verbose', { type: 'boolean' });
     },
     handler: run,

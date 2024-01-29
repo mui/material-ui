@@ -18,10 +18,6 @@ The Material UI Divider component renders as a dark gray `<hr>` by default, and
 
 {{"demo": "IntroDivider.js", "bg": true}}
 
-:::success
-Use the handy `light` prop to make the Divider slightly lighter.
-:::
-
 ## Basics
 
 ```jsx
