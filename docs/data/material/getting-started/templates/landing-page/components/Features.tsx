@@ -13,6 +13,7 @@ import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import DevicesRoundedIcon from '@mui/icons-material/DevicesRounded';
 import EdgesensorHighRoundedIcon from '@mui/icons-material/EdgesensorHighRounded';
 import ViewQuiltRoundedIcon from '@mui/icons-material/ViewQuiltRounded';
+import { alpha } from '@mui/system';
 
 const items = [
   {
@@ -280,16 +281,36 @@ export default function Features() {
             >
               <Box
                 sx={{
-                  m: 'auto',
-                  width: '420px',
-                  height: '420px',
-                  backgroundSize: 'contain',
+                  height: '100%',
+                  width: '100%',
+                  display: { xs: 'none', sm: 'flex' },
+                  pointerEvents: 'none',
                   backgroundImage: (theme) =>
                     theme.palette.mode === 'light'
-                      ? items[selectedItemIndex].imageLight
-                      : items[selectedItemIndex].imageDark,
+                      ? `radial-gradient(${alpha('#D6E2EB', 0.4)} 1.3px, ${alpha(
+                          '#FBFCFE',
+                          0.2,
+                        )} 1.3px)`
+                      : `radial-gradient(${alpha('#131B20', 0.9)} 1.3px, ${alpha(
+                          '#090E10',
+                          0.2,
+                        )} 1.3px)`,
+                  backgroundSize: '24px 24px',
                 }}
-              />
+              >
+                <Box
+                  sx={{
+                    m: 'auto',
+                    width: '420px',
+                    height: '420px',
+                    backgroundSize: 'contain',
+                    backgroundImage: (theme) =>
+                      theme.palette.mode === 'light'
+                        ? items[selectedItemIndex].imageLight
+                        : items[selectedItemIndex].imageDark,
+                  }}
+                />
+              </Box>
             </Box>
           </Grid>
         </Grid>
