@@ -1263,7 +1263,7 @@ importers:
         version: 18.2.48
       next:
         specifier: 13.4.19
-        version: 13.4.19(@babel/core@7.23.7)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
+        version: 13.4.19(@babel/core@7.23.9)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -8011,9 +8011,9 @@ packages:
   /@types/webpack-bundle-analyzer@4.6.3(esbuild@0.19.11)(webpack-cli@5.1.4):
     resolution: {integrity: sha512-XYU3m7oRb1tlE8YhwkKLi1xba2buNB9V4VkQtOVTfJuUm/413pE/UCMVcPDFFBwpzGkr9y1WbSEvdPjKVPt0gw==}
     dependencies:
-      '@types/node': 18.19.8
+      '@types/node': 18.19.10
       tapable: 2.2.1
-      webpack: 5.89.0(esbuild@0.19.11)(webpack-cli@5.1.4)
+      webpack: 5.90.0(esbuild@0.19.11)(webpack-cli@5.1.4)
     transitivePeerDependencies:
       - '@swc/core'
       - esbuild

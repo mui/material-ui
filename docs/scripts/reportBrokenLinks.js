@@ -3,7 +3,7 @@ const path = require('path');
 const fse = require('fs-extra');
 const { createRender } = require('@mui/markdown');
 const { marked } = require('marked');
-const { LANGUAGES_IGNORE_PAGES } = require('../config');
+const { LANGUAGES_IGNORE_PAGES } = require('@mui/docs/config');
 
 // Use renderer to extract all links into a markdown document
 function getPageLinks(markdown) {

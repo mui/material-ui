@@ -1,5 +1,5 @@
 import { createRender } from '@mui/markdown';
-import { LANGUAGES_IGNORE_PAGES } from '../../../config';
+import { LANGUAGES_IGNORE_PAGES } from '@mui/docs/config';
 
 const notEnglishJsonRegExp = /-([a-z]{2})\.json$/;
 
