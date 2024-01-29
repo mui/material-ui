@@ -1,6 +1,5 @@
 import * as React from 'react';
 import MuiAvatar from '@mui/material/Avatar';
-import MuiButton from '@mui/material/Button';
 import MuiChip from '@mui/material/Chip';
 import MuiCard, { CardProps } from '@mui/material/Card';
 import MuiSwitch from '@mui/material/Switch';
@@ -26,9 +25,6 @@ export const componentCode = `<Card sx={{ p: 2.5 }}>
     </div>
     <Switch sx={{ ml: 'auto' }} />
   </Stack>
-  <Button variant="outlined" color="secondary" size="small" fullWidth>
-    Edit user
-  </Button> 
 </Card>
 `;
 
@@ -40,7 +36,6 @@ const Typography = withPointer(MuiTypography, { id: 'typography', name: 'Typogra
 const Typography2 = withPointer(MuiTypography, { id: 'typography2', name: 'Typography' });
 const Stack = withPointer(MuiStack, { id: 'stack', name: 'Stack' });
 const Stack2 = withPointer(MuiStack, { id: 'stack2', name: 'Stack' });
-const Button = withPointer(MuiButton, { id: 'button', name: 'Button' });
 
 export default function MaterialDesignDemo(props: CardProps) {
   const [active, setActive] = React.useState(false);
@@ -80,9 +75,6 @@ export default function MaterialDesignDemo(props: CardProps) {
           sx={{ ml: 'auto' }}
         />
       </Stack>
-      <Button variant="outlined" color="secondary" size="small" fullWidth sx={{ mt: 2 }}>
-        Edit user
-      </Button>
     </Card>
   );
 }

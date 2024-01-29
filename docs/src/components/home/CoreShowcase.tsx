@@ -21,7 +21,6 @@ const lineMapping: Record<string, number | number[]> = {
   typography: 5,
   typography2: [12, 14],
   switch: 16,
-  button: [18, 20],
 };
 
 export default function CoreShowcase() {
