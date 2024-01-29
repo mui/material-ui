@@ -9,7 +9,7 @@
  */
 export default function assignObject(j, options) {
   const { target, expression, key } = options;
-  if (target && target.type === 'JSXOpeningElement') {
+  if (target && target.type === 'JSXAttribute') {
     const expContainer = /** @type import('jscodeshift').JSXExpressionContainer */ (target.value);
 
     if (expContainer.expression.type === 'ObjectExpression') {

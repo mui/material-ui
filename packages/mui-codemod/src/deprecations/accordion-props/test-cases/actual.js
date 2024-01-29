@@ -1,17 +1,36 @@
 import Accordion from '@mui/material/Accordion';
 import { Accordion as MyAccordion } from '@mui/material';
 
-<Accordion TransitionComponent={CustomTransition} TransitionProps={{ unmountOnExit: true }} />;
-<MyAccordion TransitionComponent={CustomTransition} TransitionProps={transitionVars} />;
+<Accordion slots={{
+  transition: CustomTransition
+}} slotProps={{
+  transition: { unmountOnExit: true }
+}} />;
+<MyAccordion slots={{
+  transition: CustomTransition
+}} slotProps={{
+  transition: transitionVars
+}} />;
 <Accordion
-  slots={{ root: 'div' }}
-  slotProps={{ root: { className: 'foo' } }}
-  TransitionComponent={CustomTransition}
-  TransitionProps={{ unmountOnExit: true }}
-/>;
+  slots={{
+    root: 'div',
+    transition: CustomTransition
+  }}
+  slotProps={{
+    root: { className: 'foo' },
+    transition: { unmountOnExit: true }
+  }} />;
 <MyAccordion
-  slots={outerSlots}
-  slotProps={outerSlotProps}
+  slots={{
+    ...outerSlots,
+    transition: CustomTransition
+  }}
+  slotProps={{
+    ...outerSlotProps,
+    transition: { unmountOnExit: true }
+  }} />;
+// should skip non MUI components
+<NonMuiAccordion
   TransitionComponent={CustomTransition}
   TransitionProps={{ unmountOnExit: true }}
 />;
