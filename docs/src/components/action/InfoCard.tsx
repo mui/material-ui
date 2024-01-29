@@ -93,7 +93,7 @@ export default function InfoCard(props: InfoCardProps) {
       {svg && svg}
       {icon && <GlowingIconContainer icon={icon} />}
       <Typography
-        fontWeight="bold"
+        fontWeight="semiBold"
         component="h3"
         color="text.primary"
         variant="body2"
