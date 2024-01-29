@@ -593,7 +593,7 @@ export default function CssModulesSliderDeep2() {
 
 ### The `css` prop
 
-Emotion's **css()** method works seamlessly with Material&nbsp;UI.
+Emotion's `css()` method works seamlessly with Material&nbsp;UI.
 
 {{"demo": "EmotionCSS.js", "defaultCodeOpen": true}}
 
