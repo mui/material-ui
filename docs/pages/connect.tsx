@@ -6,20 +6,14 @@ import Chip from '@mui/material/Chip';
 import Head from 'docs/src/modules/components/Head';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeader from 'docs/src/layouts/AppHeader';
-import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
-// import MUIConnectSignUp from 'docs/src/components/productConnect/MUIConnectSignUp';
-import InfoCard from 'docs/src/components/action/InfoCard';
+import ConnectFeatures from 'docs/src/components/productConnect/ConnectFeatures';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
-
-import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
-import AccessibilityNewRounded from '@mui/icons-material/AccessibilityNewRounded';
-import PhishingRoundedIcon from '@mui/icons-material/PhishingRounded';
 
 const Image = styled('img')(({ theme }) => ({
   width: '100%',
@@ -40,27 +34,6 @@ const Image = styled('img')(({ theme }) => ({
     filter: `drop-shadow(-2px 6px 24px ${alpha(theme.palette.primary[900], 0.8)})`,
   }),
 }));
-
-const content = [
-  {
-    icon: <StyleRoundedIcon color="primary" />,
-    title: 'Lorem ipsum dolor',
-    description:
-      'Maecenas molestie blandit ligula, non suscipit est. Proin luctus venenatis fermentum.',
-  },
-  {
-    icon: <PhishingRoundedIcon color="primary" />,
-    title: 'Lorem ipsum dolor',
-    description:
-      'Maecenas molestie blandit ligula, non suscipit est. Proin luctus venenatis fermentum.',
-  },
-  {
-    icon: <AccessibilityNewRounded color="primary" />,
-    title: 'Lorem ipsum dolor',
-    description:
-      'Maecenas molestie blandit ligula, non suscipit est. Proin luctus venenatis fermentum.',
-  },
-];
 
 export default function Connect() {
   return (
@@ -96,22 +69,14 @@ export default function Connect() {
           sx={{
             maxWidth: 1300,
             mx: 'auto',
-            mt: { xs: 0, sm: '-80px' },
+            mt: { xs: 0, sm: '-46px' },
             mb: '-16px',
             px: { xs: 0, sm: 2 },
           }}
         >
           <Image src="/static/branding/design-kits/connect-plug-in-figma-light.jpg" />
         </Box>
-        <Section cozy>
-          <Grid container spacing={3}>
-            {content.map(({ icon, title, description }) => (
-              <Grid key={title} item xs={12} md={4}>
-                <InfoCard title={title} icon={icon} description={description} />
-              </Grid>
-            ))}
-          </Grid>
-        </Section>
+        <ConnectFeatures />
         <Divider />
       </main>
       <AppFooter stackOverflowUrl="https://stackoverflow.com/questions/tagged/material-ui" />

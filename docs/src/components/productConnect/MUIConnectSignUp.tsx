@@ -142,7 +142,7 @@ export default function MUIConnectSignUp({ sx }: { sx?: SxProps<Theme> }) {
               }),
           ]}
         />
-        <Button type="submit" variant="contained" disabled={form.status === 'loading'}>
+        <Button type="submit" variant="contained" size="small" disabled={form.status === 'loading'}>
           Join the email list
         </Button>
       </Box>

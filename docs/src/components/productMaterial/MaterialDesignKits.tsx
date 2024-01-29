@@ -16,7 +16,6 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Frame from 'docs/src/components/action/Frame';
 import Link from 'docs/src/modules/components/Link';
-import MUIConnectSignUp from '../productConnect/MUIConnectSignUp';
 
 const Image = styled('img')(({ theme }) => ({
   transition: '0.4s',
@@ -64,7 +63,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
               <Item
                 icon={<ExtensionRoundedIcon color="primary" />}
                 title="Connect plug-in"
-                description="This Figma plug-in generates a theme file with customizations done on the design kits, allowing you to export it and paste it directly into your codebase."
+                description="This Figma plug-in generates a theme file with customizations done on the design kits, allowing you to export and paste it directly into your codebase."
               />
             </Highlighter>
           </Group>
@@ -308,6 +307,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                       />
                     }
                     sx={{
+                      height: 'fit-content',
                       width: { xs: '100%', sm: 'fit-content' },
                     }}
                   >
@@ -321,6 +321,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                     endIcon={<ChevronRightRoundedIcon />}
                     sx={{
                       ml: { xs: 0, sm: 'auto' },
+                      height: 'fit-content',
                       width: { xs: '100%', sm: 'fit-content' },
                       color: '#FFF !important',
                     }}
@@ -330,18 +331,44 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                 </Box>
               </Frame.Info>
             ) : (
-              <Frame.Info data-mui-color-scheme="dark">
-                <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 1 }}>
-                  <Typography variant="body2" fontWeight="bold" gutterBottom>
-                    Want to try Connect out?
+              <Frame.Info
+                data-mui-color-scheme="dark"
+                sx={{
+                  display: 'flex',
+                  flexDirection: { xs: 'column', sm: 'row' },
+                  alignItems: 'center',
+                  justifyContent: { xs: 'flex-strart', sm: 'space-between' },
+                  gap: { xs: 2, sm: 4 },
+                }}
+              >
+                <div>
+                  <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 1 }}>
+                    <Typography variant="body2" fontWeight="bold" gutterBottom>
+                      Available on the Figma Community
+                    </Typography>
+                    <Chip label="Beta release" size="small" color="primary" variant="outlined" />
+                  </Box>
+                  <Typography variant="body2" color="text.secondary">
+                    We’re gathering as many users as possible to try it out and get early feedback
+                    on the following features we can add.
                   </Typography>
-                  <Chip label="Beta release" size="small" color="primary" variant="outlined" />
-                </Box>
-                <Typography variant="body2" color="text.secondary" mb={1}>
-                  Add your email if you want to be notified when the Connect beta version becomes
-                  available for testing in the Figma community.
-                </Typography>
-                <MUIConnectSignUp />
+                </div>
+                <Button
+                  component={Link}
+                  variant="contained"
+                  size="small"
+                  href="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=design-cta2#design"
+                  endIcon={<ChevronRightRoundedIcon />}
+                  sx={{
+                    flexShrink: 0,
+                    ml: { xs: 0, sm: 'auto' },
+                    height: 'fit-content',
+                    width: { xs: '100%', sm: 'fit-content' },
+                    color: '#FFF !important',
+                  }}
+                >
+                  Get it now
+                </Button>
               </Frame.Info>
             )}
           </Frame>
