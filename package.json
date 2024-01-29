@@ -187,7 +187,7 @@
     "webpack-cli": "^5.1.4",
     "yargs": "^17.7.2"
   },
-  "packageManager": "pnpm@8.14.3",
+  "packageManager": "pnpm@8.15.0",
   "resolutions": {
     "@babel/core": "^7.23.9",
     "@babel/code-frame": "^7.23.5",
