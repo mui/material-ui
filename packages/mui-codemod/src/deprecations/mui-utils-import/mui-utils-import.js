@@ -10,6 +10,7 @@ export default function transformer(file, api, options) {
   // @mui/utils
   const timeoutSpecifiers = [];
   const deepmergeSpecifiers = [];
+  const scrollLeftSpecifier = [];
   root
     .find(j.ImportDeclaration)
     .filter((path) => path.node.source.value === '@mui/utils')
@@ -23,6 +24,10 @@ export default function transformer(file, api, options) {
           deepmergeSpecifiers.push(j.importSpecifier(j.identifier(specifier.local.name)));
         } else if (specifier.imported.name === 'deepmerge') {
           deepmergeSpecifiers.push(j.importDefaultSpecifier(j.identifier(specifier.local.name)));
+        } else if (specifier.imported.name === 'unstable_detectScrollType') {
+          scrollLeftSpecifier.push(j.importSpecifier(j.identifier(specifier.local.name)));
+        } else if (specifier.imported.name === 'unstable_getNormalizedScrollLeft') {
+          scrollLeftSpecifier.push(j.importSpecifier(j.identifier(specifier.local.name)));
         } else {
           path.insertAfter(
             j.importDeclaration(
@@ -40,6 +45,11 @@ export default function transformer(file, api, options) {
       if (deepmergeSpecifiers.length) {
         path.insertAfter(
           j.importDeclaration(deepmergeSpecifiers, j.stringLiteral(`@mui/utils/deepmerge`)),
+        );
+      }
+      if (scrollLeftSpecifier.length) {
+        path.insertAfter(
+          j.importDeclaration(scrollLeftSpecifier, j.stringLiteral(`@mui/utils/scrollLeft`)),
         );
       }
       path.replace();
