@@ -95,9 +95,9 @@ importers:
       '@mui-internal/api-docs-builder-core':
         specifier: workspace:^
         version: link:packages/api-docs-builder-core
-      '@mui-internal/docs-utilities':
+      '@mui-internal/docs-utils':
         specifier: workspace:^
-        version: link:packages/docs-utilities
+        version: link:packages/docs-utils
       '@mui-internal/test-utils':
         specifier: workspace:^
         version: link:packages/test-utils
@@ -830,9 +830,9 @@ importers:
       '@babel/preset-typescript':
         specifier: ^7.23.3
         version: 7.23.3(@babel/core@7.23.9)
-      '@mui-internal/docs-utilities':
+      '@mui-internal/docs-utils':
         specifier: workspace:^
-        version: link:../packages/docs-utilities
+        version: link:../packages/docs-utils
       '@mui-internal/test-utils':
         specifier: workspace:^
         version: link:../packages/test-utils
@@ -914,9 +914,9 @@ importers:
       '@babel/traverse':
         specifier: ^7.23.9
         version: 7.23.9
-      '@mui-internal/docs-utilities':
+      '@mui-internal/docs-utils':
         specifier: workspace:^
-        version: link:../docs-utilities
+        version: link:../docs-utils
       '@mui/markdown':
         specifier: workspace:^
         version: link:../markdown
@@ -1025,7 +1025,14 @@ importers:
         specifier: ^5.3.3
         version: 5.3.3
 
-  packages/docs-utilities: {}
+  packages/docs-utils:
+    dependencies:
+      rimraf:
+        specifier: ^5.0.5
+        version: 5.0.5
+      typescript:
+        specifier: ^5.1.6
+        version: 5.3.3
 
   packages/eslint-plugin-material-ui:
     dependencies:
@@ -2217,9 +2224,9 @@ importers:
       '@babel/types':
         specifier: ^7.23.9
         version: 7.23.9
-      '@mui-internal/api-docs-builder':
+      '@mui-internal/docs-utils':
         specifier: workspace:*
-        version: link:../api-docs-builder
+        version: link:../docs-utils
       doctrine:
         specifier: ^3.0.0
         version: 3.0.0
