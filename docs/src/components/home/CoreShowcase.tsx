@@ -13,18 +13,15 @@ import StylingInfo from 'docs/src/components/action/StylingInfo';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 
 const lineMapping: Record<string, number | number[]> = {
-  avatar: 2,
-  divider: 13,
-  chip: 20,
-  stack: 3,
-  iconButton: 9,
   card: 0,
-  switch: 25,
-  editIcon: 10,
-  typography: 4,
-  typography2: 5,
-  locationOnIcon: 6,
-  stack2: [14, 19],
+  stack: [1, 17],
+  avatar: 2,
+  stack2: [4, 11],
+  chip: [6, 10],
+  typography: 5,
+  typography2: [12, 14],
+  switch: 16,
+  button: [18, 20],
 };
 
 export default function CoreShowcase() {
@@ -45,7 +42,7 @@ export default function CoreShowcase() {
               },
             },
             shape: {
-              borderRadius: 10,
+              borderRadius: 12,
             },
             shadows: ['none', '0px 4px 20px 0px hsla(210, 14%, 28%, 0.2)'],
             components: {
@@ -69,29 +66,9 @@ export default function CoreShowcase() {
               MuiAvatar: {
                 styleOverrides: {
                   root: {
-                    width: 60,
-                    height: 60,
+                    width: 50,
+                    height: 50,
                     borderRadius: 99,
-                  },
-                },
-              },
-              MuiIconButton: {
-                styleOverrides: {
-                  root: {
-                    border: '1px solid',
-                    borderColor:
-                      mode === 'dark'
-                        ? globalTheme.palette.primaryDark[700]
-                        : globalTheme.palette.grey[200],
-                    color:
-                      mode === 'dark'
-                        ? globalTheme.palette.grey[200]
-                        : globalTheme.palette.grey[800],
-                    borderRadius: 10,
-                    '&:hover, &.Mui-focusVisible': {
-                      borderColor: globalTheme.palette.primary.main,
-                      color: globalTheme.palette.primary.main,
-                    },
                   },
                 },
               },
@@ -99,22 +76,22 @@ export default function CoreShowcase() {
               MuiChip: {
                 styleOverrides: {
                   filled: {
-                    fontWeight: 'semiBold',
+                    fontWeight: 'medium',
                     '&.MuiChip-colorSuccess': {
                       backgroundColor:
                         mode === 'dark'
-                          ? globalTheme.palette.success[800]
+                          ? globalTheme.palette.success[900]
                           : globalTheme.palette.success[100],
                       color:
                         mode === 'dark'
                           ? globalTheme.palette.success[100]
-                          : globalTheme.palette.success[800],
+                          : globalTheme.palette.success[900],
                     },
                     '&.MuiChip-colorDefault': {
                       backgroundColor:
                         mode === 'dark'
-                          ? globalTheme.palette.primaryDark[600]
-                          : globalTheme.palette.grey[200],
+                          ? globalTheme.palette.primaryDark[700]
+                          : globalTheme.palette.grey[100],
                       color:
                         mode === 'dark'
                           ? globalTheme.palette.grey[200]
@@ -137,10 +114,6 @@ export default function CoreShowcase() {
   }
   return (
     <ShowcaseContainer
-      previewSx={{
-        minHeight: 220,
-        pb: 4,
-      }}
       preview={
         <React.Fragment>
           <Box
@@ -157,12 +130,14 @@ export default function CoreShowcase() {
           >
             <Typography
               variant="caption"
-              fontWeight={500}
+              fontWeight="medium"
               color="text.primary"
               noWrap
-              sx={{ opacity: 0.5 }}
+              sx={{ opacity: 0.3 }}
             >
-              <TouchAppRounded sx={{ fontSize: '0.875rem', verticalAlign: 'text-bottom' }} />
+              <TouchAppRounded
+                sx={{ fontSize: '0.875rem', verticalAlign: 'text-bottom', mr: 0.5 }}
+              />
               Hover over the component to highlight the code.
             </Typography>
           </Box>
@@ -171,7 +146,7 @@ export default function CoreShowcase() {
               onElementChange={setElement}
               sx={{ minWidth: 300, width: '80%', maxWidth: '100%' }}
             >
-              <MaterialDesignDemo sx={{ transform: 'translate(0, -8px)' }} />
+              <MaterialDesignDemo />
             </PointerContainer>
           </ThemeProvider>
         </React.Fragment>
