@@ -1131,8 +1131,8 @@ importers:
         specifier: ^7.23.9
         version: 7.23.9
       '@floating-ui/react-dom':
-        specifier: ^2.0.7
-        version: 2.0.7(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^2.0.8
+        version: 2.0.8(react-dom@18.2.0)(react@18.2.0)
       '@mui/types':
         specifier: workspace:^
         version: link:../mui-types/build
@@ -4758,20 +4758,20 @@ packages:
       '@floating-ui/utils': 0.2.1
     dev: false
 
-  /@floating-ui/dom@1.6.0:
-    resolution: {integrity: sha512-SZ0BEXzsaaS6THZfZJUcAobbZTD+MvfGM42bxgeg0Tnkp4/an/avqwAXiVLsFtIBZtfsx3Ymvwx0+KnnhdA/9g==}
+  /@floating-ui/dom@1.6.1:
+    resolution: {integrity: sha512-iA8qE43/H5iGozC3W0YSnVSW42Vh522yyM1gj+BqRwVsTNOyr231PsXDaV04yT39PsO0QL2QpbI/M0ZaLUQgRQ==}
     dependencies:
       '@floating-ui/core': 1.6.0
       '@floating-ui/utils': 0.2.1
     dev: false
 
-  /@floating-ui/react-dom@2.0.7(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-B5GJxKUyPcGsvE1vua+Abvw0t6zVMyTbtG+Jk7BoI4hfc5Ahv50dstRIAn0nS0274kR9gnKwxIXyGA8EzBZJrA==}
+  /@floating-ui/react-dom@2.0.8(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-HOdqOt3R3OGeTKidaLvJKcgg75S6tibQ3Tif4eyd91QnIJWr0NLvoXFpJA/j8HqkFSL68GDca9AuyWEHlhyClw==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
     dependencies:
-      '@floating-ui/dom': 1.6.0
+      '@floating-ui/dom': 1.6.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
@@ -5234,7 +5234,7 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.23.9
-      '@floating-ui/react-dom': 2.0.7(react-dom@18.2.0)(react@18.2.0)
+      '@floating-ui/react-dom': 2.0.8(react-dom@18.2.0)(react@18.2.0)
       '@mui/types': 7.2.12(@types/react@18.2.48)
       '@mui/utils': 5.15.3(@types/react@18.2.48)(react@18.2.0)
       '@popperjs/core': 2.11.8
