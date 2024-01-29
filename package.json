@@ -182,7 +182,7 @@
     "tsup": "^8.0.1",
     "typescript": "^5.3.3",
     "typescript-to-proptypes": "workspace:^",
-    "webpack": "^5.89.0",
+    "webpack": "^5.90.0",
     "webpack-bundle-analyzer": "^4.10.1",
     "webpack-cli": "^5.1.4",
     "yargs": "^17.7.2"

@@ -42,7 +42,7 @@
     "stylis-plugin-rtl": "^2.1.1",
     "stylis-plugin-rtl-sc": "npm:stylis-plugin-rtl@^1.1.0",
     "webfontloader": "^1.6.28",
-    "webpack": "^5.89.0",
+    "webpack": "^5.90.0",
     "yargs": "^17.7.2"
   }
 }
