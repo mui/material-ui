@@ -47,6 +47,88 @@ Inside `app/layout.tsx`, import the `AppRouterCacheProvider` and wrap all elemen
  }
 ```
 
+#### Custom cache (optional)
+
+Use the `options` prop to override the default [cache options](https://emotion.sh/docs/@emotion/cache#options)—for example, the code snippet below shows how to change the CSS key to `css` (the default is `mui`):
+
+```diff
+  <AppRouterCacheProvider
++   options={{ key: 'css' }}
+  >
+    {children}
+  </AppRouterCacheProvider>
+```
+
+### Theming
+
+Create a new file and export a custom theme that includes the `'use client';` directive:
+
+```js
+// src/theme.ts
+'use client';
+import { createTheme } from '@mui/material/styles';
+
+import { Roboto } from 'next/font/google';
+import { createTheme } from '@mui/material/styles';
+
+const roboto = Roboto({
+  weight: ['300', '400', '500', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+});
+
+const theme = createTheme({
+  typography: {
+    fontFamily: roboto.style.fontFamily,
+  },
+});
+
+export default theme;
+```
+
+Then in `src/app/layout.tsx`, pass the theme to `ThemeProvider`:
+
+```diff
+ // app/layout.tsx
+ import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
++ import { ThemeProvider } from '@mui/material/styles';
++ import theme from '../theme';
+
+ export default function RootLayout(props) {
+   const { children } = props;
+   return (
+     <html lang="en">
+       <body>
+          <AppRouterCacheProvider>
++           <ThemeProvider theme={theme}>
+              {children}
++           </ThemeProvider>
+          </AppRouterCacheProvider>
+       </body>
+     </html>
+   );
+ }
+```
+
+To learn more about theming, check out the [theming guide](/material-ui/customization/theming/) page.
+
+#### CSS theme variables
+
+If you want to use [CSS theme variables](/material-ui/experimental-api/css-theme-variables/overview/), use the `extendTheme` and `CssVarsProvider` utilities instead:
+
+```diff
+ // src/theme.ts
+ 'use client';
+- import { createTheme } from '@mui/material/styles';
++ import { extendTheme } from '@mui/material/styles';
+
+ // app/layout.tsx
+- import { ThemeProvider } from '@mui/material/styles';
++ import { CssVarsProvider } from '@mui/material/styles';
+```
+
+Learn more about [the advantages of CSS theme variables](/material-ui/experimental-api/css-theme-variables/overview/#advantages).
+
 ### Using other styling solutions
 
 If you are using a styling solution other than Emotion to customize Material UI components, set `enableCssLayer: true` in the `options` prop:
@@ -137,6 +219,85 @@ Then, inside `pages/_app.tsx`, import the `AppCacheProvider` component and rende
  }
 ```
 
+#### Custom cache (optional)
+
+To use a custom [Emotion cache](https://emotion.sh/docs/@emotion/cache), pass it to the `emotionCache` property in `_document.tsx`:
+
+```diff
+ // pages/_document.tsx
+ ...
+
+ MyDocument.getInitialProps = async (ctx) => {
+  const finalProps = await documentGetInitialProps(ctx, {
++   emotionCache: createCustomCache(),
+  });
+  return finalProps;
+ };
+```
+
+#### App enhancement (optional)
+
+Pass an array to the `plugins` property to enhance the app with additional features, like server-side-rendered styles if you're using JSS and styled-components.
+
+Each plugin must have the following properties:
+
+- `enhanceApp`: a higher-order component that receives the `App` component and returns a new app component.
+- `resolveProps`: a function that receives the initial props and returns a new props object.
+
+When run, `enhanceApp` from each plugin is called first, from top to bottom, and then the process is repeated for `resolveProps`.
+
+```js
+import { ServerStyleSheet } from 'styled-components';
+
+MyDocument.getInitialProps = async (ctx) => {
+  const jssSheets = new JSSServerStyleSheets();
+  const styledComponentsSheet = new ServerStyleSheet();
+
+  try {
+    const finalProps = await documentGetInitialProps(ctx, {
+      emotionCache: createEmotionCache(),
+      plugins: [
+        {
+          // styled-components
+          enhanceApp: (App) => (props) =>
+            styledComponentsSheet.collectStyles(<App {...props} />),
+          resolveProps: async (initialProps) => ({
+            ...initialProps,
+            styles: [
+              styledComponentsSheet.getStyleElement(),
+              ...initialProps.styles,
+            ],
+          }),
+        },
+        {
+          // JSS
+          enhanceApp: (App) => (props) => jssSheets.collect(<App {...props} />),
+          resolveProps: async (initialProps) => {
+            const css = jssSheets.toString();
+            return {
+              ...initialProps,
+              styles: [
+                ...initialProps.styles,
+                <style
+                  id="jss-server-side"
+                  key="jss-server-side"
+                  // eslint-disable-next-line react/no-danger
+                  dangerouslySetInnerHTML={{ __html: css }}
+                />,
+                <style id="insertion-point-jss" key="insertion-point-jss" />,
+              ],
+            };
+          },
+        },
+      ],
+    });
+    return finalProps;
+  } finally {
+    styledComponentsSheet.seal();
+  }
+};
+```
+
 ### TypeScript
 
 If you are using TypeScript, add `DocumentHeadTagsProps` to the Document's props interface:
@@ -149,3 +310,54 @@ If you are using TypeScript, add `DocumentHeadTagsProps` to the Document's props
    ...
  }
 ```
+
+### Theming
+
+In `pages/_app.tsx`, create a new theme and pass it to `ThemeProvider`:
+
+```diff
+ import * as React from 'react';
+ import Head from 'next/head';
+ import { AppProps } from 'next/app';
+ import { AppCacheProvider } from '@mui/material-nextjs/v13-pagesRouter';
++import { ThemeProvider, createTheme } from '@mui/material/styles';
++import { Roboto } from 'next/font/google';
+
++const roboto = Roboto({
++  weight: ['300', '400', '500', '700'],
++  subsets: ['latin'],
++  display: 'swap',
++});
+
++const theme = createTheme({
++  typography: {
++    fontFamily: roboto.style.fontFamily,
++  },
++});
+
+ export default function MyApp(props: AppProps) {
+  const { Component, pageProps } = props;
+  return (
+    <AppCacheProvider {...props}>
+      <Head>...</Head>
++      <ThemeProvider theme={theme}>
+        <Component {...pageProps} />
++      </ThemeProvider>
+    </AppCacheProvider>
+  );
+ }
+```
+
+To learn more about theming, check out the [Theming guide](/material-ui/customization/theming/).
+
+#### CSS theme variables
+
+If you want to use [CSS theme variables](/material-ui/experimental-api/css-theme-variables/overview/), use the `extendTheme` and `CssVarsProvider` instead:
+
+```diff
+ // pages/_app.tsx
+-import { ThemeProvider, createTheme } from '@mui/material/styles';
++import { CssVarsProvider, extendTheme } from '@mui/material/styles';
+```
+
+Learn more about [the advantages of CSS theme variables](/material-ui/experimental-api/css-theme-variables/overview/#advantages).

@@ -6,9 +6,10 @@ import { alpha } from '@mui/material/styles';
 interface SelectionProps extends BoxProps {
   bg?: 'white' | 'comfort' | 'dim' | 'gradient' | 'transparent';
   /**
-   * More spacing
+   * Less vertical spacing
    */
   cozy?: boolean;
+  noPaddingBottom?: boolean;
 }
 
 const map = {
@@ -31,7 +32,7 @@ const map = {
 };
 
 const Section = React.forwardRef<HTMLDivElement, SelectionProps>(function Section(props, ref) {
-  const { bg = 'white', children, sx, cozy = false, ...other } = props;
+  const { bg = 'white', children, sx, cozy = false, noPaddingBottom = false, ...other } = props;
 
   return (
     <Box
@@ -56,7 +57,8 @@ const Section = React.forwardRef<HTMLDivElement, SelectionProps>(function Sectio
                   bgcolor: map[bg].dark,
                 }),
               }),
-          py: cozy ? { xs: 6, sm: 8, md: 10 } : { xs: 4, sm: 12, md: 14 },
+          py: cozy ? { xs: 6, sm: 10, md: 12 } : { xs: 4, sm: 12, md: 14 },
+          pb: noPaddingBottom ? '0 !important' : undefined,
           overflow: 'hidden',
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
