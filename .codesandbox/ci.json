@@ -25,6 +25,7 @@
     "@mui/base": "packages/mui-base/build",
     "@mui/codemod": "packages/mui-codemod/build",
     "@mui/core-downloads-tracker": "packages/mui-core-downloads-tracker/build",
+    "@mui/docs": "packages/mui-docs",
     "@mui/icons-material": "packages/mui-icons-material/build",
     "@mui/joy": "packages/mui-joy/build",
     "@mui/lab": "packages/mui-lab/build",
