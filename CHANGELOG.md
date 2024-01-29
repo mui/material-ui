@@ -1,5 +1,64 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.15.6
+
+<!-- generated comparing v5.15.5..master -->
+
+_Jan 22, 2024_
+
+A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.15.6`
+
+- &#8203;<!-- 29 -->[Avatar] Use variants api (#40324) @mnajdova
+- &#8203;<!-- 27 -->[TablePagination] Accept readonly array for `rowsPerPageOptions` prop (#40481) @pcorpet
+- &#8203;<!-- 06 -->[PaginationItem] Deprecate classes for v6 (#40673) @sai6855
+- &#8203;<!-- 05 -->[Rating] Fix rating width via min-content (#40503) @devhik0
+
+### `@mui/base@5.0.0-beta.33`
+
+- &#8203;<!-- 26 -->[Select] Fix display of selected Options with rich content (#40689) @michaldudak
+- &#8203;<!-- 25 -->[Select] Use Popup instead of Popper (#40524) @michaldudak
+- &#8203;<!-- 26 -->[useMenuButton] Fix non native button triggers (#40645) @DiegoAndai
+
+### `@mui/system@5.15.6`
+
+- &#8203;<!-- 02 -->[zero] Fix theme token import in source file (#40691) @brijeshb42
+- &#8203;<!-- 01 -->[zero] Add support for css import (#40541) @brijeshb42
+
+### `@mui/icons-material@5.15.6`
+
+- &#8203;<!-- 07 -->[icons-material] Fix icons package.json version (#40655) @mj12albert
+
+### Docs
+
+- &#8203;<!-- 28 -->[base-ui] Polish the Slider demos (#40332) @danilo-leal
+- &#8203;<!-- 24 -->[base-ui][Slider] Fix plain CSS demo's wrong keyboard behavior (#40652) @mnajdova
+- &#8203;<!-- 23 -->[base-ui][TextareaAutosize] Add border-box to demo (#40646) @ANUGLYPLUGIN
+- &#8203;<!-- 16 -->Fix brand name non-breaking space (#40701) @oliviertassinari
+- &#8203;<!-- 15 -->Improve error message for MUI Vale rule @oliviertassinari
+- &#8203;<!-- 14 -->Add notification to publish the survey (#40552) @joserodolfofreitas
+- &#8203;<!-- 04 -->[system] Explain a bit more how AppRouterCacheProvider works @oliviertassinari
+- &#8203;<!-- 12 -->[joy-ui] Move tutorial to iframe (#40567) @oliviertassinari
+- &#8203;<!-- 10 -->[material-ui][Slider] Remove custom divs from new demo (#40674) @zanivan
+- &#8203;<!-- 11 -->[material-ui] Improve TabContext, TabList, and TabPanel documentation (#40587) @anle9650
+- &#8203;<!-- 09 -->[material-ui][Slider] Added custom mark labels demo (#40647) @DonikaV
+
+### Core
+
+- &#8203;<!-- 30 -->[core] Fix RXDB-logo Url (#40724) @mohamedsaiedd
+- &#8203;<!-- 24 -->[code-infra] Improve proptypes-generation (#40617) @alexfauquette
+- &#8203;<!-- 22 -->[code-infra] Disable pnpm package cache on CircleCI (#40670) @michaldudak
+- &#8203;<!-- 21 -->[code-infra] Add missing package to CodeSandbox CI config (#40657) @michaldudak
+- &#8203;<!-- 20 -->[code-infra] Remove unnecessary @mui/utils dependency from api-docs-builder (#40632) @michaldudak
+- &#8203;<!-- 19 -->[core] Polish issue templates @oliviertassinari
+- &#8203;<!-- 13 -->[docs-infra] Support markdown link in slots descriptions (#40679) @alexfauquette
+- &#8203;<!-- 08 -->[examples] Simplify Next.js example (#40661) @oliviertassinari
+- &#8203;<!-- 03 -->[website] Fix broken styles on Base UI page (#40683) @michaldudak
+
+All contributors of this release in alphabetical order: @alexfauquette, @anle9650, @ANUGLYPLUGIN, @brijeshb42, @danilo-leal, @devhik0, @DiegoAndai, @DonikaV, @joserodolfofreitas, @michaldudak, @mj12albert, @mnajdova, @mohamedsaiedd, @oliviertassinari, @pcorpet, @sai6855, @zanivan
+
 ## v5.15.5
 
 <!-- generated comparing v5.15.4..master -->
@@ -3653,7 +3712,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 ### Core
 
-- [core] Close 2022 developer survey @oliviertassinari
+- [core] Close 2022 Developer Survey @oliviertassinari
 - [core] Fix the product license reference name (#35703) @oliviertassinari
 - [core] Use TypeScript AST instead of TTP for component doc building (#35379) @flaviendelangle
 - [test] Always use & for nesting styles (#35702) @oliviertassinari
@@ -3887,7 +3946,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - [docs] Fix typo in FormControl API docs (#35449) @Spanishiwa
 - [docs] Update callouts design (#35390) @danilo-leal
 - [website] New wave of open roles (#35240) @mnajdova
-- [website] Developer survey 2022 (#35407) @joserodolfofreitas
+- [website] Developer Survey 2022 (#35407) @joserodolfofreitas
 
 ### Core
 
@@ -7410,7 +7469,7 @@ This is an early release to fix `export 'useId' (imported as 'React') was not fo
 - &#8203;<!-- 9 -->[core] Fix PR run detection in test_bundle_size_monitor (#29879) @eps1lon
 - &#8203;<!-- 8 -->[core] Move bundle size monitoring to CircleCI (#29876) @eps1lon
 - &#8203;<!-- 7 -->[docs] Add keys to Responsive AppBar demo (#29884) @mbrookes
-- &#8203;<!-- 6 -->[docs] MUI's 2021 Developer survey (#29765) @prakhargupta1
+- &#8203;<!-- 6 -->[docs] MUI's 2021 Developer Survey (#29765) @prakhargupta1
 - &#8203;<!-- 5 -->[docs] Smoother image loading UX (#29858) @oliviertassinari
 - &#8203;<!-- 4 -->[Select] Fix select display value with React Nodes (#29836) @kegi
 - &#8203;<!-- 3 -->[system] Add `experimental_sx` utility (#29833) @mnajdova

@@ -170,7 +170,7 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
-    "arrow": "The component that renders the arrow."
+    "arrow": "The component that renders the arrow.",
+    "root": "The component that renders the root."
   }
 }

@@ -12,12 +12,14 @@ import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 export default function StartToday() {
   return (
     <Grid container spacing={{ xs: 5, md: 4 }} alignItems="center">
-      <Grid item xs={12} sm={6} md={6} sx={{ mb: { md: 4 } }}>
+      <Grid item xs={12} sm={6}>
         <SectionHeadline
           overline="Start now"
           title={
             <Typography variant="h2" sx={{ maxWidth: 460, mb: 1 }}>
-              Ship your next project <GradientText>faster</GradientText>
+              Ship your next project
+              <br />
+              <GradientText>faster</GradientText>
             </Typography>
           }
           description="Find out why MUI's tools are trusted by thousands of open-source developers and teams around the world."

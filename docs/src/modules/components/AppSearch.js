@@ -62,6 +62,10 @@ const SearchButton = styled('button')(({ theme }) => [
       background: (theme.vars || theme).palette.grey[100],
       borderColor: (theme.vars || theme).palette.grey[300],
     },
+    '&:focus-visible': {
+      outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
+      outlineOffset: '2px',
+    },
   },
   theme.applyDarkStyles({
     backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
@@ -264,7 +268,7 @@ function NewStartScreen() {
   );
 }
 
-const displayTagProductId = {
+const productNameProductId = {
   'material-ui': 'Material UI',
   'joy-ui': 'Joy UI',
   'base-ui': 'Base UI',
@@ -273,27 +277,30 @@ const displayTagProductId = {
   toolpad: 'Toolpad',
 };
 
+export function convertProductIdToName(productInfo) {
+  return (
+    productNameProductId[productInfo.productId] ||
+    productNameProductId[productInfo.productCategoryId]
+  );
+}
+
 function getDisplayTag(hit) {
   if (hit.productId === undefined || hit.productCategoryId === undefined) {
     return null;
   }
 
-  const productInfo = {
+  const productName = convertProductIdToName({
     productId: hit.productId,
     productCategoryId: hit.productCategoryId,
-  };
+  });
 
-  const displayTag =
-    displayTagProductId[productInfo.productId] ||
-    displayTagProductId[productInfo.productCategoryId];
-
-  if (!displayTag) {
+  if (!productName) {
     console.error(
-      `getDisplayTag missing mapping for productId: ${productInfo.productId}, pathname: ${hit.pathname}.`,
+      `getDisplayTag missing mapping for productId: ${hit.productId}, pathname: ${hit.pathname}.`,
     );
   }
 
-  return <Chip label={displayTag} size="small" variant="outlined" sx={{ mr: 1 }} />;
+  return <Chip label={productName} size="small" variant="outlined" sx={{ mr: 1 }} />;
 }
 
 function DocSearchHit(props) {

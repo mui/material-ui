@@ -117,18 +117,21 @@ describe('<Select />', () => {
   });
 
   describe('keyboard navigation', () => {
-    ['Enter', 'ArrowDown', 'ArrowUp', ' '].forEach((key) => {
-      it(`opens the dropdown when the "${key}" key is down on the button`, async () => {
-        const { getByRole } = await render(<Select />);
-        const select = getByRole('combobox');
-        act(() => {
-          select.focus();
+    [<Select />, <Select slots={{ root: 'span' }} />].forEach((selectComponent) => {
+      const triggerType = selectComponent.props.slots?.root ? 'non-native' : 'native';
+      ['Enter', 'ArrowDown', 'ArrowUp', ' '].forEach((key) => {
+        it(`opens the dropdown when the "${key}" key is pressed on a ${triggerType} button trigger`, async () => {
+          const { getByRole } = await render(selectComponent);
+          const select = getByRole('combobox');
+          act(() => {
+            select.focus();
+          });
+
+          await userEvent.keyboard(`{${key}}`);
+
+          expect(select).to.have.attribute('aria-expanded', 'true');
+          expect(getByRole('listbox')).not.to.equal(null);
         });
-
-        await userEvent.keyboard(`{${key}}`);
-
-        expect(select).to.have.attribute('aria-expanded', 'true');
-        expect(getByRole('listbox')).not.to.equal(null);
       });
     });
 

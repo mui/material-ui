@@ -92,8 +92,8 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
+    "fallback": "The component that renders the fallback.",
     "img": "The component that renders the img.",
-    "fallback": "The component that renders the fallback."
+    "root": "The component that renders the root."
   }
 }

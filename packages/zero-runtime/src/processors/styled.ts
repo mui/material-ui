@@ -40,8 +40,6 @@ type ComponentMeta = {
   skipSx?: boolean;
 };
 
-type DefaultProps = Record<string, string | number | boolean | unknown>;
-
 /**
  * Linaria tag processor responsible for converting complex `styled()()` calls
  * at build-time to simple `styled` calls supported by runtime.
@@ -114,8 +112,6 @@ export class StyledProcessor extends BaseProcessor {
   collectedVariants: VariantDataTransformed[] = [];
 
   originalLocation: SourceLocation | null = null;
-
-  defaultProps: DefaultProps = {};
 
   constructor(params: Params, ...args: TailProcessorParams) {
     super(params, ...args);
@@ -333,11 +329,6 @@ export class StyledProcessor extends BaseProcessor {
         componentMetaExpression = parsedMeta as ObjectExpression;
       }
     }
-    if (this.defaultProps && Object.keys(this.defaultProps).length > 0) {
-      argProperties.push(
-        t.objectProperty(t.identifier('defaultProps'), valueToLiteral(this.defaultProps)),
-      );
-    }
 
     const styledImportIdentifier = t.addNamedImport(
       this.tagSource.imported,
@@ -418,9 +409,6 @@ export class StyledProcessor extends BaseProcessor {
     }
     if ('variants' in componentData && componentData.variants) {
       variantsAccumulator.push(...(componentData.variants as unknown as VariantData[]));
-    }
-    if ('defaultProps' in componentData && componentData.defaultProps) {
-      this.defaultProps = componentData.defaultProps as DefaultProps;
     }
   }
 

@@ -45,7 +45,7 @@ Currently, we have five main projects that are not at all related to MD:
   Today, the flagship is the [Data Grid](https://mui.com/x/react-data-grid/), a game-changing component for presenting large amounts of data, which integrates perfectly with MUI Core.
 - MUI Toolpad: a very recent endeavor aimed at exploring how our users can visually create apps 10x faster with the power of low-code and the flexibility of pro-code.
 
-We also know, especially due to [our annual developer survey](https://mui.com/blog/2021-developer-survey-results/), that design quality plays a huge part when developers are considering component library options.
+We also know, especially due to [our annual Developer Survey](https://mui.com/blog/2021-developer-survey-results/), that design quality plays a huge part when developers are considering component library options.
 Therefore, we need to grow the design team to help us push these initiatives further.
 
 ## The role
