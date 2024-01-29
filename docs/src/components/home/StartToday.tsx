@@ -11,8 +11,7 @@ export default function StartToday() {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
-        position: 'relative',
+        alignItems: { xs: 'auto', sm: 'center' },
       }}
     >
       <SectionHeadline
