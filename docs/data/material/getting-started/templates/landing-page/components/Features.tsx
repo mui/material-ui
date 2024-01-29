@@ -111,58 +111,74 @@ export default function Features() {
               variant="outlined"
               sx={{
                 display: { xs: 'auto', sm: 'none' },
-                p: 2,
                 mt: 4,
               }}
             >
               <Box
                 sx={{
+                  p: 2,
                   backgroundImage: (theme) =>
                     theme.palette.mode === 'light'
-                      ? items[selectedItemIndex].imageLight
-                      : items[selectedItemIndex].imageDark,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  borderRadius: '4px',
-                  minHeight: '300px',
-                  marginBottom: '16px',
+                      ? `radial-gradient(${alpha('#D6E2EB', 0.4)} 1.3px, ${alpha(
+                          '#FBFCFE',
+                          0.2,
+                        )} 1.3px)`
+                      : `radial-gradient(${alpha('#131B20', 0.9)} 1.3px, ${alpha(
+                          '#090E10',
+                          0.2,
+                        )} 1.3px)`,
+                  backgroundSize: '24px 24px',
                 }}
-              />
-              <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                <Typography
-                  component="span"
-                  color="text.primary"
-                  variant="body2"
-                  fontWeight="bold"
-                >
-                  {selectedFeature.title}
-                </Typography>
-                <Typography
-                  component="span"
-                  color="text.secondary"
-                  variant="body2"
-                  fontWeight="regular"
-                  sx={{ my: 0.5 }}
-                >
-                  {selectedFeature.description}
-                </Typography>
-                <Link
-                  color="primary"
-                  variant="body2"
-                  fontWeight="bold"
+              >
+                <Box
                   sx={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    '& > svg': { transition: '0.2s' },
-                    '&:hover > svg': { transform: 'translateX(2px)' },
+                    backgroundImage: (theme) =>
+                      theme.palette.mode === 'light'
+                        ? items[selectedItemIndex].imageLight
+                        : items[selectedItemIndex].imageDark,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    borderRadius: '4px',
+                    minHeight: '300px',
+                    marginBottom: '16px',
                   }}
-                >
-                  <span>Learn more</span>
-                  <ChevronRightRoundedIcon
-                    fontSize="small"
-                    sx={{ mt: '1px', ml: '2px' }}
-                  />
-                </Link>
+                />
+                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                  <Typography
+                    component="span"
+                    color="text.primary"
+                    variant="body2"
+                    fontWeight="bold"
+                  >
+                    {selectedFeature.title}
+                  </Typography>
+                  <Typography
+                    component="span"
+                    color="text.secondary"
+                    variant="body2"
+                    fontWeight="regular"
+                    sx={{ my: 0.5 }}
+                  >
+                    {selectedFeature.description}
+                  </Typography>
+                  <Link
+                    color="primary"
+                    variant="body2"
+                    fontWeight="bold"
+                    sx={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      '& > svg': { transition: '0.2s' },
+                      '&:hover > svg': { transform: 'translateX(2px)' },
+                    }}
+                  >
+                    <span>Learn more</span>
+                    <ChevronRightRoundedIcon
+                      fontSize="small"
+                      sx={{ mt: '1px', ml: '2px' }}
+                    />
+                  </Link>
+                </Box>
               </Box>
             </Box>
             <Stack
