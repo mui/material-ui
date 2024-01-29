@@ -18,7 +18,7 @@ interface HeroProps {
   toggleCustomTheme: () => void;
 }
 
-interface ToggleCustomTheme {
+interface ToggleCustomThemeProps {
   showCustomTheme: boolean;
   toggleCustomTheme: () => void;
 }
@@ -26,7 +26,7 @@ interface ToggleCustomTheme {
 function ToggleCustomTheme({
   showCustomTheme,
   toggleCustomTheme,
-}: ToggleCustomTheme) {
+}: ToggleCustomThemeProps) {
   return (
     <Box
       sx={{

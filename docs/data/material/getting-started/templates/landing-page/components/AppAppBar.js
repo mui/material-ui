@@ -91,7 +91,6 @@ function AppAppBar({ mode, toggleColorMode }) {
                 }
                 style={logoStyle}
                 alt="logo"
-                onClick={() => scrollToSection('hero')}
               />
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <MenuItem

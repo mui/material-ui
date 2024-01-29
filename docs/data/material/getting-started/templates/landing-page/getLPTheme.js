@@ -186,7 +186,7 @@ export default function getLPTheme(mode) {
           disableGutters: true,
         },
         styleOverrides: {
-          root: ({ theme, ownerState }) => ({
+          root: ({ theme }) => ({
             backgroundColor: '#fff',
             border: '1px solid',
             borderColor: greyColor[100],
@@ -369,7 +369,7 @@ export default function getLPTheme(mode) {
           underline: 'none',
         },
         styleOverrides: {
-          root: ({ theme, ownerState }) => ({
+          root: ({ theme }) => ({
             color: brandColor[500],
             fontWeight: 500,
             position: 'relative',
@@ -397,7 +397,7 @@ export default function getLPTheme(mode) {
       },
       MuiMenuItem: {
         styleOverrides: {
-          root: ({ theme, ownerState }) => ({
+          root: ({ theme }) => ({
             borderRadius: '10px',
             color: greyColor[500],
             fontWeight: 500,
@@ -409,7 +409,7 @@ export default function getLPTheme(mode) {
       },
       MuiPaper: {
         styleOverrides: {
-          root: ({ theme, ownerState }) => ({
+          root: ({ theme }) => ({
             backgroundColor: greyColor[100],
             ...theme.applyDarkStyles({
               backgroundColor: greyColor[900],
@@ -478,7 +478,7 @@ export default function getLPTheme(mode) {
       },
       MuiTextField: {
         styleOverrides: {
-          root: ({ theme, ownerState }) => ({
+          root: ({ theme }) => ({
             '& label.Mui-focused': {
               color: 'white',
             },
