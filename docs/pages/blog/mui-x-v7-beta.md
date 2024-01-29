@@ -53,9 +53,9 @@ The video below showcases some of these improvements.
 </video>
 
 :::warning
-The new experience is far better, but the solution has a limitation: **column headers can no longer be transparent** because content scrolls behind them.
+The new horizontal scroll experience is far better, but the solution has a limitation: **column headers can no longer be transparent** because content scrolls behind them.
 
-If you're using our theming system, the DataGrid will adapt to your application seamlessly.
+If you're using our theming system, the Data Grid will adapt to your application seamlessly.
 
 Without the theming system, you may need to manually set an appropriate background color to maintain your design.
 :::
@@ -74,10 +74,11 @@ While string values remain compatible for these types, any updates to the `filte
 
 ### Smaller bundle size
 
-The introduction of a separate entry point for locales has significantly optimized our bundle size.
-This change led to a reduction of approximately 22% – shrinking the bundle size from 114.2kB to 88.5kB for `@mui/x-data-grid`.
+The introduction of a separate entry point for locales has significantly reduced the bundle size of the barrel index in development mode.
 
-<img width="694" alt="Bundle size change" src="/static/blog/mui-x-v7-beta/new-bundle-size.png">
+For example with the `@mui/x-data-grid` npm package, this change led to a reduction of approximately 22% – shrinking the bundle size from [114.2kB](https://bundlephobia.com/package/@mui/x-data-grid@6.19.2) to [88.5kB](https://bundlephobia.com/package/@mui/x-data-grid@7.0.0-beta.0).
+
+<img width="694" alt="Bundle size change" src="/static/blog/mui-x-v7-beta/new-bundle-size.png" style="padding-left: 20px; padding-right: 5px;">
 
 ### New stable features
 
@@ -157,7 +158,7 @@ Support new use cases with this most anticipated component.
 The latest addition to the Date and Time Pickers suite is the `<DateTimeRangePicker />`, a component designed to enrich the user experience with advanced date and time selection.
 This intuitive picker simplifies the process of selecting date and time ranges, making it ideal for applications that require detailed scheduling or period selection.
 
-<video preload="metadata" autoplay muted loop playsinline width="100%" height="510">
+<video preload="metadata" autoplay muted loop playsinline width="600" height="510">
   <source src="/static/blog/mui-x-v7-beta/date-time-range-picker.mp4" type="video/mp4">
 </video>
 
