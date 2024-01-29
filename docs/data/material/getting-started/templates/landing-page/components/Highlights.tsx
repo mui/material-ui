@@ -71,15 +71,10 @@ export default function Highlights() {
             textAlign: { sm: 'left', md: 'center' },
           }}
         >
-          <Typography component="h2" variant="h4" color="inherit">
+          <Typography component="h2" variant="h4">
             Highlights
           </Typography>
-          <Typography
-            variant="body1"
-            color="inherit"
-            component="p"
-            sx={{ opacity: '70%' }}
-          >
+          <Typography variant="body1" sx={{ opacity: '70%' }}>
             Explore why our product stands out: adaptability, durability,
             user-friendly design, and innovation. Enjoy reliable customer support and
             precision in every detail. Choose quality and performance with us.
@@ -93,6 +88,7 @@ export default function Highlights() {
                 color="inherit"
                 component={Card}
                 spacing={1}
+                useFlexGap
                 sx={{
                   p: 2,
                   height: '100%',
@@ -104,11 +100,9 @@ export default function Highlights() {
               >
                 <div>
                   <Box sx={{ opacity: '50%' }}>{item.icon}</Box>
-                  <Typography variant="h6" color="inherit">
-                    {item.title}
-                  </Typography>
+                  <Typography variant="h6">{item.title}</Typography>
                 </div>
-                <Typography variant="body2" color="inherit" sx={{ opacity: '70%' }}>
+                <Typography variant="body2" sx={{ opacity: '70%' }}>
                   {item.description}
                 </Typography>
               </Stack>

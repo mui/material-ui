@@ -75,12 +75,14 @@ export default function Hero({ showCustomTheme, toggleCustomTheme }: HeroProps) 
           pt: { xs: 14, sm: 20 },
         }}
       >
-        <Stack spacing={2} sx={{ width: { xs: '100%', sm: '70%' } }}>
+        <Stack spacing={2} useFlexGap sx={{ width: { xs: '100%', sm: '70%' } }}>
           <ToggleCustomTheme
             showCustomTheme={showCustomTheme}
             toggleCustomTheme={toggleCustomTheme}
           />
-          <Box
+          <Typography
+            component="h1"
+            variant="h1"
             sx={{
               display: 'flex',
               flexDirection: { xs: 'column', md: 'row' },
@@ -88,11 +90,9 @@ export default function Hero({ showCustomTheme, toggleCustomTheme }: HeroProps) 
               textAlign: 'center',
             }}
           >
-            <Typography component="h1" variant="h1">
-              Our latest&nbsp;
-            </Typography>
+            Our latest&nbsp;
             <Typography
-              component="h1"
+              component="span"
               variant="h1"
               sx={{
                 color: (theme) =>
@@ -101,18 +101,19 @@ export default function Hero({ showCustomTheme, toggleCustomTheme }: HeroProps) 
             >
               products
             </Typography>
-          </Box>
-          <Typography
-            variant="body1"
-            textAlign="center"
-            paragraph
-            sx={{ opacity: 0.8 }}
-          >
+          </Typography>
+          <Typography variant="body1" textAlign="center" sx={{ opacity: 0.8 }}>
             Explore our cutting-edge dashboard, delivering high-quality solutions
             tailored to your needs. <br />
             Elevate your experience with top-tier features and services.
           </Typography>
-          <Stack direction="row" spacing={1} sx={{ pt: 2, alignSelf: 'center' }}>
+          <Stack
+            direction="row"
+            alignSelf="center"
+            spacing={1}
+            useFlexGap
+            sx={{ pt: 2 }}
+          >
             <TextField
               id="outlined-basic"
               hiddenLabel
@@ -130,19 +131,11 @@ export default function Hero({ showCustomTheme, toggleCustomTheme }: HeroProps) 
               Start using
             </Button>
           </Stack>
-          <Typography
-            variant="caption"
-            color="inherit"
-            paragraph
-            textAlign="center"
-            sx={{ opacity: 0.8 }}
-          >
+          <Typography variant="caption" textAlign="center" sx={{ opacity: 0.8 }}>
             By clicking &quot;Start using&quot; you agree to our&nbsp;
-            <span>
-              <Link href="#" color="primary" sx={{ opacity: 1 }}>
-                Terms & Conditions
-              </Link>
-            </span>
+            <Link href="#" color="primary">
+              Terms & Conditions
+            </Link>
           </Typography>
         </Stack>
         <Box
@@ -150,7 +143,7 @@ export default function Hero({ showCustomTheme, toggleCustomTheme }: HeroProps) 
           sx={{
             mt: { xs: 8, sm: 10 },
             alignSelf: 'center',
-            height: { xs: '200px', sm: '600px' },
+            height: { xs: 200, sm: 600 },
             width: '100%',
             backgroundImage: (theme) =>
               theme.palette.mode === 'light'

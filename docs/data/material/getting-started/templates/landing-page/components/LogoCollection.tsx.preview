@@ -1,15 +1,14 @@
-<Typography
-  component="h2"
-  variant="subtitle2"
-  align="center"
-  color="text.secondary"
->
+<Typography variant="subtitle2" align="center" color="text.secondary">
   Trusted by the best companies
 </Typography>
 <Grid container justifyContent="center" sx={{ mt: 0.5 }}>
   {logos.map((logo, index) => (
     <Grid item key={index}>
-      <img src={logo} alt={`Logo ${index + 1}`} style={logoStyle} />
+      <img
+        src={logo}
+        alt={`Fake company number ${index + 1}`}
+        style={logoStyle}
+      />
     </Grid>
   ))}
 </Grid>

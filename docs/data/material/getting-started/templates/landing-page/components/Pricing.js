@@ -2,16 +2,15 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
+import Chip from '@mui/material/Chip';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
-import Chip from '@mui/material/Chip';
 
 const tiers = [
   {
@@ -77,7 +76,7 @@ export default function Pricing() {
           <Typography component="h2" variant="h4" color="text.primary">
             Pricing
           </Typography>
-          <Typography variant="body1" color="text.secondary" component="p">
+          <Typography variant="body1" color="text.secondary">
             Quickly build an effective pricing table for your potential customers
             with this layout. It&apos;s built with default MUI components with little
             customization.
@@ -117,9 +116,7 @@ export default function Pricing() {
                         tier.title === 'Professional' ? 'primary.contrastText' : '',
                     }}
                   >
-                    <Typography variant="h6" color="inherit">
-                      {tier.title}
-                    </Typography>
+                    <Typography variant="h6">{tier.title}</Typography>
                     {tier.title === 'Professional' && (
                       <Chip
                         icon={<AutoAwesomeIcon />}
@@ -144,15 +141,15 @@ export default function Pricing() {
                       display: 'flex',
                       alignItems: 'baseline',
                       color:
-                        tier.title === 'Professional' ? 'primary.contrastText' : '',
+                        tier.title === 'Professional'
+                          ? 'primary.contrastText'
+                          : undefined,
                     }}
                   >
-                    <Typography component="h2" variant="h2" color="inherit">
+                    <Typography component="h2" variant="h2">
                       ${tier.price}
                     </Typography>
-                    <Typography variant="h6" color="inherit">
-                      &nbsp; per month
-                    </Typography>
+                    <Typography variant="h6">&nbsp; per month</Typography>
                   </Box>
                   <Divider
                     sx={{

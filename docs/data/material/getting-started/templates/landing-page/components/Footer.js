@@ -21,9 +21,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" mt={1}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Sitemark&nbsp;
-      </Link>
+      <Link href="https://mui.com/">Sitemark&nbsp;</Link>
       {new Date().getFullYear()}
     </Typography>
   );
@@ -73,13 +71,13 @@ export default function Footer() {
                   alt="logo"
                 />
               </Box>
-              <Typography variant="body2" sx={{ fontWeight: 600 }}>
+              <Typography variant="body2" fontWeight={600} gutterBottom>
                 Newsletter
               </Typography>
-              <Typography variant="body2" color="text.secondary" component="div">
+              <Typography variant="body2" color="text.secondary" mb={2}>
                 Subscribe to our newsletter for weekly updates and promotions.
               </Typography>
-              <Stack direction="row" spacing={1} sx={{ pt: 2 }}>
+              <Stack direction="row" spacing={1} useFlexGap>
                 <TextField
                   id="outlined-basic"
                   hiddenLabel
@@ -104,27 +102,22 @@ export default function Footer() {
               gap: 1,
             }}
           >
-            <Typography variant="body2" sx={{ fontWeight: 600 }}>
+            <Typography variant="body2" fontWeight={600}>
               Product
             </Typography>
-
-            <Link color="inherit" href="#" sx={{ opacity: 0.7 }}>
+            <Link color="text.secondary" href="#">
               Features
             </Link>
-
-            <Link color="inherit" href="#" sx={{ opacity: 0.7 }}>
+            <Link color="text.secondary" href="#">
               Testimonials
             </Link>
-
-            <Link color="inherit" href="#" sx={{ opacity: 0.7 }}>
+            <Link color="text.secondary" href="#">
               Highlights
             </Link>
-
-            <Link color="inherit" href="#" sx={{ opacity: 0.7 }}>
+            <Link color="text.secondary" href="#">
               Pricing
             </Link>
-
-            <Link color="inherit" href="#" sx={{ opacity: 0.7 }}>
+            <Link color="text.secondary" href="#">
               FAQs
             </Link>
           </Box>
@@ -135,19 +128,16 @@ export default function Footer() {
               gap: 1,
             }}
           >
-            <Typography variant="body2" sx={{ fontWeight: 600 }}>
+            <Typography variant="body2" fontWeight={600}>
               Company
             </Typography>
-
-            <Link color="inherit" href="#" sx={{ opacity: 0.7 }}>
+            <Link color="text.secondary" href="#">
               About us
             </Link>
-
-            <Link color="inherit" href="#" sx={{ opacity: 0.7 }}>
+            <Link color="text.secondary" href="#">
               Careers
             </Link>
-
-            <Link color="inherit" href="#" sx={{ opacity: 0.7 }}>
+            <Link color="text.secondary" href="#">
               Press
             </Link>
           </Box>
@@ -158,16 +148,16 @@ export default function Footer() {
               gap: 1,
             }}
           >
-            <Typography variant="body2" textAlign="left" sx={{ fontWeight: 600 }}>
+            <Typography variant="body2" fontWeight={600}>
               Legal
             </Typography>
-            <Link color="inherit" textAlign="left" href="#" sx={{ opacity: 0.7 }}>
+            <Link color="text.secondary" href="#">
               Terms
             </Link>
-            <Link color="inherit" textAlign="left" href="#" sx={{ opacity: 0.7 }}>
+            <Link color="text.secondary" href="#">
               Privacy
             </Link>
-            <Link color="inherit" textAlign="left" href="#" sx={{ opacity: 0.7 }}>
+            <Link color="text.secondary" href="#">
               Contact
             </Link>
           </Box>
@@ -184,14 +174,15 @@ export default function Footer() {
           }}
         >
           <div>
-            <Link variant="body2" color="text.secondary" href="#">
+            <Link color="text.secondary" href="#">
               Privacy Policy
             </Link>
-            <span>&nbsp;•&nbsp;</span>
-            <Link variant="body2" color="text.secondary" href="#">
+            <Typography display="inline" sx={{ mx: 0.5, opacity: 0.5 }}>
+              &nbsp;•&nbsp;
+            </Typography>
+            <Link color="text.secondary" href="#">
               Terms of Service
             </Link>
-
             <Copyright />
           </div>
           <Box

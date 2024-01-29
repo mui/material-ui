@@ -62,17 +62,17 @@ export default function Features() {
       <Container>
         <Grid container spacing={4}>
           <Grid item xs={12} md={6}>
-            <Box sx={{ mb: 4 }}>
+            <div>
               <Typography component="h2" variant="h4" color="text.primary">
                 Product features
               </Typography>
-              <Typography variant="body1" color="text.secondary" component="p">
+              <Typography variant="body1" color="text.secondary" mb={4}>
                 Here you can provide a brief overview of the key features of the
                 product. For example, you could list the number of features, the
                 types of features (e.g., core features, add-ons), or the benefits of
                 the features.
               </Typography>
-            </Box>
+            </div>
             <Grid
               container
               item
@@ -139,24 +139,17 @@ export default function Features() {
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     borderRadius: '4px',
-                    minHeight: '300px',
+                    minHeight: 300,
                     marginBottom: '16px',
                   }}
                 />
-                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                  <Typography
-                    component="span"
-                    color="text.primary"
-                    variant="body2"
-                    fontWeight="bold"
-                  >
+                <div>
+                  <Typography color="text.primary" variant="body2" fontWeight="bold">
                     {selectedFeature.title}
                   </Typography>
                   <Typography
-                    component="span"
                     color="text.secondary"
                     variant="body2"
-                    fontWeight="regular"
                     sx={{ my: 0.5 }}
                   >
                     {selectedFeature.description}
@@ -178,7 +171,7 @@ export default function Features() {
                       sx={{ mt: '1px', ml: '2px' }}
                     />
                   </Link>
-                </Box>
+                </div>
               </Box>
             </Box>
             <Stack
@@ -186,6 +179,7 @@ export default function Features() {
               justifyContent="center"
               alignItems="flex-start"
               spacing={2}
+              useFlexGap
               sx={{ width: '100%', display: { xs: 'none', sm: 'flex' } }}
             >
               {items.map(({ icon, title, description }, index) => (
@@ -212,7 +206,6 @@ export default function Features() {
                   }}
                 >
                   <Box
-                    component="span"
                     sx={{
                       p: 2,
                       width: '100%',
@@ -239,22 +232,17 @@ export default function Features() {
                     >
                       {icon}
                     </Box>
-                    <span>
+                    <div>
                       <Typography
-                        component="span"
                         color="text.primary"
                         variant="body2"
                         fontWeight="bold"
-                        display="block"
                       >
                         {title}
                       </Typography>
                       <Typography
-                        component="span"
                         color="text.secondary"
                         variant="body2"
-                        fontWeight="regular"
-                        display="block"
                         sx={{ my: 0.5 }}
                       >
                         {description}
@@ -279,7 +267,7 @@ export default function Features() {
                           sx={{ mt: '1px', ml: '2px' }}
                         />
                       </Link>
-                    </span>
+                    </div>
                   </Box>
                 </Card>
               ))}
