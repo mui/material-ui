@@ -5,7 +5,6 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-
 import AutoFixHighRoundedIcon from '@mui/icons-material/AutoFixHighRounded';
 import ConstructionRoundedIcon from '@mui/icons-material/ConstructionRounded';
 import QueryStatsRoundedIcon from '@mui/icons-material/QueryStatsRounded';
@@ -24,7 +23,7 @@ const items = [
     icon: <ConstructionRoundedIcon />,
     title: 'Built to last',
     description:
-      'Experience unmatched durability that goes above and beyond, ensuring a lasting investment.',
+      'Experience unmatched durability that goes above and beyond, with lasting investment.',
   },
   {
     icon: <ThumbUpAltRoundedIcon />,
@@ -84,7 +83,7 @@ export default function Highlights() {
           <Typography variant="body1" sx={{ color: 'grey.400' }}>
             Explore why our product stands out: adaptability, durability,
             user-friendly design, and innovation. Enjoy reliable customer support and
-            precision in every detail. Choose quality and performance with us.
+            precision in every detail.
           </Typography>
         </Box>
         <Grid container spacing={2.5}>
