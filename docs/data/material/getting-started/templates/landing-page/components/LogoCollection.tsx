@@ -34,14 +34,11 @@ export default function LogoCollection() {
   const logos = theme.palette.mode === 'light' ? darkLogos : whiteLogos;
 
   return (
-    <Box
-      id="logoCollection"
-      sx={{ mt: { xs: 8, sm: 12 }, textAlign: 'center', opacity: 0.7 }}
-    >
+    <Box id="logoCollection" sx={{ py: 4 }}>
       <Typography variant="subtitle2" align="center" color="text.secondary">
         Trusted by the best companies
       </Typography>
-      <Grid container justifyContent="center" sx={{ mt: 0.5 }}>
+      <Grid container justifyContent="center" sx={{ mt: 0.5, opacity: 0.6 }}>
         {logos.map((logo, index) => (
           <Grid item key={index}>
             <img

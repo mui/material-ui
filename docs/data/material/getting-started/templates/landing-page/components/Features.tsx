@@ -58,9 +58,9 @@ export default function Features() {
   const selectedFeature = items[selectedItemIndex];
 
   return (
-    <Box id="features" sx={{ mt: { xs: 0, sm: 4 } }}>
+    <Box id="features" sx={{ py: { xs: 8, sm: 16 } }}>
       <Container>
-        <Grid container spacing={4}>
+        <Grid container spacing={6}>
           <Grid item xs={12} md={6}>
             <div>
               <Typography component="h2" variant="h4" color="text.primary">
@@ -188,11 +188,12 @@ export default function Features() {
                   component={Button}
                   onClick={() => handleItemClick(index)}
                   sx={{
-                    height: '33%',
+                    p: 3,
+                    height: 'fit-content',
                     width: '100%',
                     background: 'none',
                     backgroundColor:
-                      selectedItemIndex === index ? 'action.selected' : '',
+                      selectedItemIndex === index ? 'action.selected' : undefined,
                     borderColor: (theme) => {
                       if (theme.palette.mode === 'light') {
                         return selectedItemIndex === index
@@ -207,13 +208,12 @@ export default function Features() {
                 >
                   <Box
                     sx={{
-                      p: 2,
                       width: '100%',
                       display: 'flex',
                       textAlign: 'left',
                       flexDirection: { xs: 'column', md: 'row' },
                       alignItems: { md: 'center' },
-                      gap: 3,
+                      gap: 2.5,
                     }}
                   >
                     <Box
@@ -222,7 +222,7 @@ export default function Features() {
                           if (theme.palette.mode === 'light') {
                             return selectedItemIndex === index
                               ? 'primary.main'
-                              : 'grey.400';
+                              : 'grey.300';
                           }
                           return selectedItemIndex === index
                             ? 'primary.main'
@@ -289,6 +289,7 @@ export default function Features() {
                   width: '100%',
                   display: { xs: 'none', sm: 'flex' },
                   pointerEvents: 'none',
+                  backgroundSize: '24px 24px',
                   backgroundImage: (theme) =>
                     theme.palette.mode === 'light'
                       ? `radial-gradient(${alpha('#D6E2EB', 0.4)} 1.3px, ${alpha(
@@ -299,7 +300,6 @@ export default function Features() {
                           '#090E10',
                           0.2,
                         )} 1.3px)`,
-                  backgroundSize: '24px 24px',
                 }}
               >
                 <Box

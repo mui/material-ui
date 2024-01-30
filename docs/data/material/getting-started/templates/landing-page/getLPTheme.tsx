@@ -76,7 +76,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
   palette: {
     mode,
     primary: {
-      light: brand[300],
+      light: brand[200],
       main: brand[500],
       dark: brand[800],
       contrastText: brand[100],
@@ -142,7 +142,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
       ...(mode === 'dark' && { primary: '#fff', secondary: gray[300] }),
     },
     action: {
-      selected: `${alpha(brand[100], 0.2)}`,
+      selected: `${alpha(brand[200], 0.2)}`,
       ...(mode === 'dark' && {
         selected: alpha(brand[800], 0.2),
       }),
@@ -158,6 +158,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
     },
     h2: {
       fontSize: 48,
+      fontWeight: 600,
       lineHeight: 1.2,
     },
     h3: {
@@ -166,6 +167,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
     },
     h4: {
       fontSize: 36,
+      fontWeight: 500,
       lineHeight: 1.5,
     },
     h5: {
@@ -183,7 +185,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
     },
     body1: {
       fontWeight: 500,
-      fontSize: '14px',
+      fontSize: 15,
     },
     body2: {
       fontWeight: 400,
@@ -327,9 +329,10 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
             backgroundColor: gray[50],
-            borderRadius: '10px',
+            borderRadius: 16,
             border: `1px solid ${alpha(gray[200], 0.8)}`,
             boxShadow: 'none',
+            transition: 'background-color, border, 80ms ease',
             ...(ownerState.variant === 'outlined' && {
               background: `linear-gradient(to bottom, ${gray[50]}, ${gray[100]})`,
               '&:hover': {

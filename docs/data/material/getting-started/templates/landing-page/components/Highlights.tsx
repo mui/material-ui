@@ -74,7 +74,7 @@ export default function Highlights() {
           <Typography component="h2" variant="h4">
             Highlights
           </Typography>
-          <Typography variant="body1" sx={{ opacity: '70%' }}>
+          <Typography variant="body1" color="text.secondary">
             Explore why our product stands out: adaptability, durability,
             user-friendly design, and innovation. Enjoy reliable customer support and
             precision in every detail. Choose quality and performance with us.
