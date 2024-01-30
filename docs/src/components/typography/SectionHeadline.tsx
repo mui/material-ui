@@ -17,7 +17,7 @@ interface SectionHeadlineProps {
 export default function SectionHeadline(props: SectionHeadlineProps) {
   const { alwaysCenter = false, description, id, inverted = false, overline, title } = props;
   return (
-    <Box sx={{ maxWidth: 500, m: alwaysCenter ? 'auto' : 'none', mb: 3 }}>
+    <Box sx={{ m: alwaysCenter ? 'auto' : 'none' }}>
       {overline && (
         <Typography
           id={id}
@@ -39,6 +39,7 @@ export default function SectionHeadline(props: SectionHeadlineProps) {
         <Typography
           variant="h2"
           sx={(theme) => ({
+            maxWidth: 500,
             ...(inverted
               ? {
                   color: '#fff',
@@ -51,6 +52,7 @@ export default function SectionHeadline(props: SectionHeadlineProps) {
                 }),
             ...(alwaysCenter && {
               textAlign: 'center',
+              maxWidth: '100%',
             }),
           })}
         >
@@ -59,7 +61,9 @@ export default function SectionHeadline(props: SectionHeadlineProps) {
       ) : (
         React.cloneElement(title, {
           style: {
+            maxWidth: 500,
             ...(alwaysCenter && {
+              maxWidth: '100%',
               textAlign: 'center',
             }),
             ...(inverted && {
@@ -72,6 +76,7 @@ export default function SectionHeadline(props: SectionHeadlineProps) {
         <Typography
           sx={(theme) => ({
             mt: 1,
+            mb: 3,
             maxWidth: 500,
             ...(inverted
               ? {

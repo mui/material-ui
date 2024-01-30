@@ -11,13 +11,15 @@ import {
 import { Menu, menuClasses } from '@mui/base/Menu';
 import { MenuItem, MenuItemRootSlotProps } from '@mui/base/MenuItem';
 import { DropdownContext, DropdownContextValue } from '@mui/base/useDropdown';
+import { Popper } from '@mui/base/Popper';
+import { MenuProvider, useMenu } from '@mui/base/useMenu';
 
 const testContext: DropdownContextValue = {
   dispatch: () => {},
   popupId: 'menu-popup',
   registerPopup: () => {},
   registerTrigger: () => {},
-  state: { open: true },
+  state: { open: true, changeReason: null },
   triggerElement: null,
 };
 
@@ -69,6 +71,116 @@ describe('<Menu />', () => {
 
       expect(firstItem.tabIndex).to.equal(0);
       otherItems.forEach((item) => {
+        expect(item.tabIndex).to.equal(-1);
+      });
+    });
+
+    it('highlights first item when down arrow key opens the menu', () => {
+      const context: DropdownContextValue = {
+        ...testContext,
+        state: {
+          ...testContext.state,
+          open: true,
+          changeReason: {
+            type: 'keydown',
+            key: 'ArrowDown',
+          } as React.KeyboardEvent,
+        },
+      };
+      const { getAllByRole } = render(
+        <DropdownContext.Provider value={context}>
+          <Menu>
+            <MenuItem>1</MenuItem>
+            <MenuItem>2</MenuItem>
+            <MenuItem>3</MenuItem>
+          </Menu>
+        </DropdownContext.Provider>,
+      );
+      const [firstItem, ...otherItems] = getAllByRole('menuitem');
+
+      expect(firstItem.tabIndex).to.equal(0);
+      otherItems.forEach((item) => {
+        expect(item.tabIndex).to.equal(-1);
+      });
+    });
+
+    it('highlights last item when up arrow key opens the menu', () => {
+      const context: DropdownContextValue = {
+        ...testContext,
+        state: {
+          ...testContext.state,
+          open: true,
+          changeReason: {
+            key: 'ArrowUp',
+            type: 'keydown',
+          } as React.KeyboardEvent,
+        },
+      };
+      const { getAllByRole } = render(
+        <DropdownContext.Provider value={context}>
+          <Menu>
+            <MenuItem>1</MenuItem>
+            <MenuItem>2</MenuItem>
+            <MenuItem>3</MenuItem>
+          </Menu>
+        </DropdownContext.Provider>,
+      );
+
+      const [firstItem, secondItem, lastItem] = getAllByRole('menuitem');
+
+      expect(lastItem.tabIndex).to.equal(0);
+      [firstItem, secondItem].forEach((item) => {
+        expect(item.tabIndex).to.equal(-1);
+      });
+    });
+
+    it('highlights last non-disabled item when disabledItemsFocusable is set to false', () => {
+      const CustomMenu = React.forwardRef(function CustomMenu(
+        props: React.ComponentPropsWithoutRef<'ul'>,
+        ref: React.Ref<HTMLUListElement>,
+      ) {
+        const { children, ...other } = props;
+
+        const { open, triggerElement, contextValue, getListboxProps } = useMenu({
+          listboxRef: ref,
+          disabledItemsFocusable: false,
+        });
+
+        const anchorEl = triggerElement ?? document.createElement('div');
+
+        return (
+          <Popper open={open} anchorEl={anchorEl}>
+            <ul className="menu-root" {...other} {...getListboxProps()}>
+              <MenuProvider value={contextValue}>{children}</MenuProvider>
+            </ul>
+          </Popper>
+        );
+      });
+
+      const context: DropdownContextValue = {
+        ...testContext,
+        state: {
+          ...testContext.state,
+          open: true,
+          changeReason: {
+            key: 'ArrowUp',
+            type: 'keydown',
+          } as React.KeyboardEvent,
+        },
+      };
+      const { getAllByRole } = render(
+        <DropdownContext.Provider value={context}>
+          <CustomMenu>
+            <MenuItem>1</MenuItem>
+            <MenuItem>2</MenuItem>
+            <MenuItem disabled>3</MenuItem>
+          </CustomMenu>
+        </DropdownContext.Provider>,
+      );
+      const [firstItem, secondItem, lastItem] = getAllByRole('menuitem');
+
+      expect(secondItem.tabIndex).to.equal(0);
+      [firstItem, lastItem].forEach((item) => {
         expect(item.tabIndex).to.equal(-1);
       });
     });
