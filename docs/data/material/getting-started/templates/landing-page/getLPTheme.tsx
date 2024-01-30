@@ -209,6 +209,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
         },
         styleOverrides: {
           root: ({ theme }) => ({
+            overflow: 'clip',
             backgroundColor: '#fff',
             border: '1px solid',
             borderColor: gray[100],
@@ -216,12 +217,12 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
               backgroundColor: 'transparent',
             },
             '&:first-of-type': {
-              borderTopLeftRadius: '8px',
-              borderTopRightRadius: '8px',
+              borderTopLeftRadius: 16,
+              borderTopRightRadius: 16,
             },
             '&:last-of-type': {
-              borderBottomLeftRadius: '8px',
-              borderBottomRightRadius: '8px',
+              borderBottomLeftRadius: 16,
+              borderBottomRightRadius: 16,
             },
             ...theme.applyDarkStyles({
               backgroundColor: gray[900],
@@ -234,6 +235,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
         styleOverrides: {
           root: {
             border: 'none',
+            '&:hover': { backgroundColor: gray[100] },
           },
         },
       },
@@ -414,7 +416,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
         styleOverrides: {
           root: ({ theme }) => ({
             color: brand[600],
-            fontWeight: 600,
+            fontWeight: 500,
             position: 'relative',
             textDecoration: 'none',
             '&::before': {

@@ -41,6 +41,7 @@ export default function Footer() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          gap: 8,
           py: { xs: 8, sm: 12 },
           textAlign: { sm: 'center', md: 'left' },
         }}
@@ -167,7 +168,6 @@ export default function Footer() {
             display: 'flex',
             justifyContent: 'space-between',
             pt: 8,
-            mt: 8,
             width: '100%',
             borderTop: '1px solid',
             borderColor: 'divider',
