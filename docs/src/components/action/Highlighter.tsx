@@ -52,7 +52,7 @@ export default function Highlighter({
           ...(selected && {
             bgcolor: `${alpha(theme.palette.primary[50], 0.5)}`,
             borderColor: 'primary.300',
-            boxShadow: `${alpha(theme.palette.primary[100], 0.4)} 0 -3px 1px inset, ${alpha(
+            boxShadow: `${alpha(theme.palette.primary[100], 0.5)} 0 -3px 1px inset, ${alpha(
               theme.palette.primary[100],
               0.3,
             )} 0 2px 4px 0`,
@@ -74,8 +74,8 @@ export default function Highlighter({
             }),
             ...(!selected && {
               '&:hover, &:focus': {
-                bgcolor: alpha(theme.palette.primary[800], 0.1),
-                borderColor: alpha(theme.palette.primary[500], 0.3),
+                bgcolor: alpha(theme.palette.primary[900], 0.1),
+                borderColor: alpha(theme.palette.primary[800], 0.4),
                 '@media (hover: none)': {
                   bgcolor: 'transparent',
                 },
@@ -85,8 +85,8 @@ export default function Highlighter({
               bgcolor: alpha(theme.palette.primary[800], 0.2),
               borderColor: alpha(theme.palette.primary[700], 0.8),
               color: 'primary.300',
-              boxShadow: `${alpha(theme.palette.common.black, 0.5)} 0 -3px 1px inset, ${
-                theme.palette.common.black
+              boxShadow: `${alpha(theme.palette.common.black, 0.2)} 0 -3px 1px inset, ${
+                theme.palette.primaryDark[900]
               } 0 2px 3px 0`,
             }),
           }),
