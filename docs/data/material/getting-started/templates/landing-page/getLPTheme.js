@@ -57,10 +57,10 @@ const getDesignTokens = (mode) => ({
   palette: {
     mode,
     primary: {
-      light: brand[300],
+      light: brand[200],
       main: brand[500],
       dark: brand[800],
-      contrastText: brand[100],
+      contrastText: brand[50],
       ...(mode === 'dark' && {
         contrastText: brand[100],
         light: brand[300],
@@ -111,6 +111,7 @@ const getDesignTokens = (mode) => ({
       800: gray[800],
       900: gray[900],
     },
+    divider: mode === 'dark' ? alpha(gray[600], 0.3) : alpha(gray[300], 0.5),
     background: {
       default: '#fff',
       paper: gray[50],
@@ -119,10 +120,10 @@ const getDesignTokens = (mode) => ({
     text: {
       primary: gray[800],
       secondary: gray[600],
-      ...(mode === 'dark' && { primary: '#fff', secondary: gray[300] }),
+      ...(mode === 'dark' && { primary: '#fff', secondary: gray[400] }),
     },
     action: {
-      selected: `${alpha(brand[100], 0.2)}`,
+      selected: `${alpha(brand[200], 0.2)}`,
       ...(mode === 'dark' && {
         selected: alpha(brand[800], 0.2),
       }),
@@ -138,6 +139,7 @@ const getDesignTokens = (mode) => ({
     },
     h2: {
       fontSize: 48,
+      fontWeight: 600,
       lineHeight: 1.2,
     },
     h3: {
@@ -146,6 +148,7 @@ const getDesignTokens = (mode) => ({
     },
     h4: {
       fontSize: 36,
+      fontWeight: 500,
       lineHeight: 1.5,
     },
     h5: {
@@ -162,8 +165,8 @@ const getDesignTokens = (mode) => ({
       fontSize: 16,
     },
     body1: {
-      fontWeight: 500,
-      fontSize: '14px',
+      fontWeight: 400,
+      fontSize: 15,
     },
     body2: {
       fontWeight: 400,
@@ -187,6 +190,8 @@ export default function getLPTheme(mode) {
         },
         styleOverrides: {
           root: ({ theme }) => ({
+            padding: 8,
+            overflow: 'clip',
             backgroundColor: '#fff',
             border: '1px solid',
             borderColor: gray[100],
@@ -194,12 +199,12 @@ export default function getLPTheme(mode) {
               backgroundColor: 'transparent',
             },
             '&:first-of-type': {
-              borderTopLeftRadius: '8px',
-              borderTopRightRadius: '8px',
+              borderTopLeftRadius: 10,
+              borderTopRightRadius: 10,
             },
             '&:last-of-type': {
-              borderBottomLeftRadius: '8px',
-              borderBottomRightRadius: '8px',
+              borderBottomLeftRadius: 10,
+              borderBottomRightRadius: 10,
             },
             ...theme.applyDarkStyles({
               backgroundColor: gray[900],
@@ -210,14 +215,34 @@ export default function getLPTheme(mode) {
       },
       MuiAccordionSummary: {
         styleOverrides: {
-          root: {
+          root: ({ theme }) => ({
             border: 'none',
-          },
+            borderRadius: 8,
+            '&:hover': { backgroundColor: gray[100] },
+            ...theme.applyDarkStyles({
+              '&:hover': { backgroundColor: gray[800] },
+            }),
+          }),
         },
       },
       MuiAccordionDetails: {
         styleOverrides: {
           root: { mb: 20, border: 'none' },
+        },
+      },
+      MuiButtonBase: {
+        defaultProps: {
+          disableTouchRipple: true,
+          disableRipple: true,
+        },
+        styleOverrides: {
+          root: {
+            transition: 'all 100ms ease-in',
+            '&:focus-visible': {
+              outline: `3px solid ${alpha(brand[500], 0.5)}`,
+              outlineOffset: '2px',
+            },
+          },
         },
       },
       MuiButton: {
@@ -234,11 +259,13 @@ export default function getLPTheme(mode) {
             ...(ownerState.variant === 'contained' &&
               ownerState.color === 'primary' && {
                 color: brand[50],
-                background: `linear-gradient(to bottom, ${brand[400]}, ${brand[600]})`,
+                background: brand[500],
+                backgroundImage: `linear-gradient(to bottom, ${brand[400]}, ${brand[600]})`,
                 boxShadow: `inset 0 1px ${alpha(brand[300], 0.4)}`,
-                outline: `1px solid  ${brand[700]}`,
+                outline: `1px solid ${brand[700]}`,
                 '&:hover': {
-                  background: `linear-gradient(to bottom, ${brand[400]}, ${brand[500]})`,
+                  background: brand[400],
+                  backgroundImage: 'none',
                   boxShadow: `0 0 0 1px  ${alpha(brand[300], 0.5)}`,
                 },
               }),
@@ -287,9 +314,10 @@ export default function getLPTheme(mode) {
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
             backgroundColor: gray[50],
-            borderRadius: '10px',
+            borderRadius: 10,
             border: `1px solid ${alpha(gray[200], 0.8)}`,
             boxShadow: 'none',
+            transition: 'background-color, border, 80ms ease',
             ...(ownerState.variant === 'outlined' && {
               background: `linear-gradient(to bottom, ${gray[50]}, ${gray[100]})`,
               '&:hover': {
@@ -298,8 +326,8 @@ export default function getLPTheme(mode) {
               },
             }),
             ...theme.applyDarkStyles({
-              backgroundColor: gray[900],
-              border: `1px solid ${alpha(gray[700], 0.6)}`,
+              backgroundColor: alpha(gray[800], 0.6),
+              border: `1px solid ${alpha(gray[600], 0.3)}`,
               ...(ownerState.variant === 'outlined' && {
                 background: `linear-gradient(to bottom, ${gray[800]}, ${gray[900]})`,
                 '&:hover': {
@@ -359,7 +387,7 @@ export default function getLPTheme(mode) {
           root: ({ theme }) => ({
             borderColor: `${alpha(gray[200], 0.8)}`,
             ...theme.applyDarkStyles({
-              borderColor: `${alpha(gray[700], 0.6)}`,
+              borderColor: `${alpha(gray[700], 0.4)}`,
             }),
           }),
         },
@@ -370,7 +398,7 @@ export default function getLPTheme(mode) {
         },
         styleOverrides: {
           root: ({ theme }) => ({
-            color: brand[500],
+            color: brand[600],
             fontWeight: 500,
             position: 'relative',
             textDecoration: 'none',
@@ -398,7 +426,7 @@ export default function getLPTheme(mode) {
       MuiMenuItem: {
         styleOverrides: {
           root: ({ theme }) => ({
-            borderRadius: '10px',
+            borderRadius: '99px',
             color: gray[500],
             fontWeight: 500,
             ...theme.applyDarkStyles({
@@ -410,9 +438,10 @@ export default function getLPTheme(mode) {
       MuiPaper: {
         styleOverrides: {
           root: ({ theme }) => ({
+            backgroundImage: 'none',
             backgroundColor: gray[100],
             ...theme.applyDarkStyles({
-              backgroundColor: gray[900],
+              backgroundColor: alpha(gray[900], 0.6),
             }),
           }),
         },
@@ -420,66 +449,69 @@ export default function getLPTheme(mode) {
       MuiSwitch: {
         styleOverrides: {
           root: ({ theme }) => ({
-            padding: 8,
+            width: 36,
+            height: 24,
+            padding: 0,
+            transition: 'background-color 100ms ease-in',
+            '&:hover': {
+              '& .MuiSwitch-track': {
+                backgroundColor: brand[600],
+              },
+            },
             '& .MuiSwitch-switchBase': {
-              '& + .MuiSwitch-track': {
-                backgroundColor: brand[500],
-                opacity: 1,
-                border: '1px solid',
-                borderColor: gray[400],
+              '&.Mui-checked': {
+                transform: 'translateX(13px)',
               },
             },
             '& .MuiSwitch-track': {
-              borderRadius: 22 / 2,
-              '&::before, &::after': {
-                content: '""',
-                position: 'absolute',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                width: 16,
-                height: 16,
-              },
-              '&::before': {
-                left: 12,
-              },
-              '&::after': {
-                left: 12,
-              },
+              borderRadius: 50,
             },
             '& .MuiSwitch-thumb': {
-              boxShadow: '0 1px 1px 0 rgba(0, 0, 0, 0.5)',
-              backgroundColor: brand[100],
+              boxShadow: '0 0 2px 2px rgba(0, 0, 0, 0.2)',
+              backgroundColor: '#FFF',
               width: 16,
               height: 16,
               margin: 2,
             },
             ...theme.applyDarkStyles({
-              '& .MuiSwitch-switchBase': {
-                '& + .MuiSwitch-track': {
-                  backgroundColor: brand[700],
-                  opacity: 1,
-                  border: '1px solid',
-                  borderColor: gray[600],
+              width: 36,
+              height: 24,
+              padding: 0,
+              transition: 'background-color 100ms ease-in',
+              '&:hover': {
+                '& .MuiSwitch-track': {
+                  backgroundColor: brand[600],
                 },
               },
-              '& .MuiSwitch-track': {
-                borderRadius: 22 / 2,
+              '& .MuiSwitch-switchBase': {
+                '&.Mui-checked': {
+                  transform: 'translateX(13px)',
+                },
               },
               '& .MuiSwitch-thumb': {
-                boxShadow: '0 1px 1px 0 rgba(0, 0, 0, 0.5)',
-                backgroundColor: brand[200],
+                boxShadow: '0 0 2px 2px rgba(0, 0, 0, 0.2)',
+                backgroundColor: '#FFF',
                 width: 16,
                 height: 16,
                 margin: 2,
               },
             }),
           }),
+          switchBase: {
+            height: 24,
+            width: 24,
+            padding: 0,
+            color: '#fff',
+            '&.Mui-checked + .MuiSwitch-track': {
+              opacity: 1,
+            },
+          },
         },
       },
       MuiTextField: {
         styleOverrides: {
           root: ({ theme }) => ({
-            '& label.Mui-focused': {
+            '& label .Mui-focused': {
               color: 'white',
             },
             '& .MuiInputBase-input': {
@@ -488,34 +520,48 @@ export default function getLPTheme(mode) {
               },
             },
             '& .MuiOutlinedInput-root': {
+              minWidth: 280,
+              minHeight: 40,
               height: '100%',
-              minHeight: '40px',
-              border: 'none',
               borderRadius: '10px',
-              outline: `1px solid ${alpha(gray[500], 0.3)}`,
+              border: '1px solid',
+              borderColor: gray[200],
+              transition: 'border-color 120ms ease-in',
               '& fieldset': {
                 border: 'none',
                 boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
                 background: `${alpha('#FFF', 0.3)}`,
               },
-              '&:hover fieldset': {
-                borderColor: gray[400],
+              '&:hover': {
+                borderColor: brand[300],
               },
-              '&.Mui-focused fieldset': {
+              '&.Mui-focused': {
                 borderColor: brand[400],
+                outline: '4px solid',
+                outlineColor: brand[200],
               },
             },
             ...theme.applyDarkStyles({
               '& .MuiOutlinedInput-root': {
+                minWidth: 280,
+                minHeight: 40,
                 height: '100%',
-                minHeight: '40px',
-                border: 'none',
                 borderRadius: '10px',
-                outline: `1px solid ${alpha(gray[500], 0.6)}`,
+                border: '1px solid',
+                borderColor: gray[600],
+                transition: 'border-color 120ms ease-in',
                 '& fieldset': {
                   border: 'none',
                   boxShadow: ' 0px 2px 4px rgba(0, 0, 0, 0.4)',
                   background: `${alpha(gray[800], 0.4)}`,
+                },
+                '&:hover': {
+                  borderColor: brand[300],
+                },
+                '&.Mui-focused': {
+                  borderColor: brand[400],
+                  outline: '4px solid',
+                  outlineColor: alpha(brand[500], 0.5),
                 },
               },
             }),

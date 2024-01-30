@@ -95,7 +95,7 @@ export default function Hero({ showCustomTheme, toggleCustomTheme }: HeroProps) 
               textAlign: 'center',
             }}
           >
-            Expand your&nbsp;
+            Our latest&nbsp;
             <Typography
               component="span"
               variant="h1"
@@ -153,7 +153,7 @@ export default function Hero({ showCustomTheme, toggleCustomTheme }: HeroProps) 
                 ? 'url("/static/images/templates/templates-images/dashboard-placeholder-image-light.png")'
                 : 'url("/static/images/templates/templates-images/dashboard-placeholder-image-dark.png")',
             backgroundSize: 'cover',
-            borderRadius: '16px',
+            borderRadius: '10px',
             outline: '1px solid',
             outlineColor:
               theme.palette.mode === 'light'
@@ -162,7 +162,7 @@ export default function Hero({ showCustomTheme, toggleCustomTheme }: HeroProps) 
             boxShadow:
               theme.palette.mode === 'light'
                 ? `0 0 12px 8px ${alpha('#9CCCFC', 0.2)}`
-                : `0 0 24px 12px ${alpha('#033363', 0.1)}`,
+                : `0 0 24px 12px ${alpha('#033363', 0.2)}`,
           })}
         />
       </Container>

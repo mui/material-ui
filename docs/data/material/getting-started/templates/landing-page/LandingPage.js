@@ -20,7 +20,7 @@ import getLPTheme from './getLPTheme';
 const defaultTheme = createTheme({});
 
 export default function LandingPage() {
-  const [mode, setMode] = React.useState('dark');
+  const [mode, setMode] = React.useState('light');
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const LPtheme = createTheme(getLPTheme(mode));
 
@@ -40,22 +40,18 @@ export default function LandingPage() {
         showCustomTheme={showCustomTheme}
         toggleCustomTheme={toggleCustomTheme}
       />
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: { xs: 8, sm: 12 },
-          bgcolor: 'background.default',
-        }}
-      >
+      <Box sx={{ bgcolor: 'background.default' }}>
         <LogoCollection />
         <Features />
         <Divider />
         <Testimonials />
+        <Divider />
         <Highlights />
+        <Divider />
         <Pricing />
         <Divider />
         <FAQ />
+        <Divider />
         <Footer />
       </Box>
     </ThemeProvider>

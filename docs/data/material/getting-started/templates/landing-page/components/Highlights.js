@@ -5,7 +5,6 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-
 import AutoFixHighRoundedIcon from '@mui/icons-material/AutoFixHighRounded';
 import ConstructionRoundedIcon from '@mui/icons-material/ConstructionRounded';
 import QueryStatsRoundedIcon from '@mui/icons-material/QueryStatsRounded';
@@ -24,7 +23,7 @@ const items = [
     icon: <ConstructionRoundedIcon />,
     title: 'Built to last',
     description:
-      'Experience unmatched durability that goes above and beyond, ensuring a lasting investment.',
+      'Experience unmatched durability that goes above and beyond, with lasting investment.',
   },
   {
     icon: <ThumbUpAltRoundedIcon />,
@@ -54,33 +53,40 @@ const items = [
 
 export default function Highlights() {
   return (
-    <Box id="highlights" sx={{ color: 'white', bgcolor: '#000' }}>
+    <Box
+      id="highlights"
+      sx={{
+        pt: { xs: 4, sm: 12 },
+        pb: { xs: 8, sm: 16 },
+        color: 'white',
+        bgcolor: '#06090a',
+      }}
+    >
       <Container
         sx={{
           position: 'relative',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          py: 12,
+          gap: 6,
         }}
       >
         <Box
           sx={{
             width: { sm: '100%', md: '60%' },
-            mb: 6,
             textAlign: { sm: 'left', md: 'center' },
           }}
         >
           <Typography component="h2" variant="h4">
             Highlights
           </Typography>
-          <Typography variant="body1" sx={{ opacity: '70%' }}>
+          <Typography variant="body1" sx={{ color: 'grey.400' }}>
             Explore why our product stands out: adaptability, durability,
             user-friendly design, and innovation. Enjoy reliable customer support and
-            precision in every detail. Choose quality and performance with us.
+            precision in every detail.
           </Typography>
         </Box>
-        <Grid container spacing={4}>
+        <Grid container spacing={2.5}>
           {items.map((item, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <Stack
@@ -90,21 +96,23 @@ export default function Highlights() {
                 spacing={1}
                 useFlexGap
                 sx={{
-                  p: 2,
+                  p: 3,
                   height: '100%',
                   border: '1px solid',
                   borderColor: 'grey.800',
-                  background: 'none',
+                  background: 'transparent',
                   backgroundColor: 'grey.900',
                 }}
               >
+                <Box sx={{ opacity: '50%' }}>{item.icon}</Box>
                 <div>
-                  <Box sx={{ opacity: '50%' }}>{item.icon}</Box>
-                  <Typography variant="h6">{item.title}</Typography>
+                  <Typography fontWeight="medium" gutterBottom>
+                    {item.title}
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: 'grey.400' }}>
+                    {item.description}
+                  </Typography>
                 </div>
-                <Typography variant="body2" sx={{ opacity: '70%' }}>
-                  {item.description}
-                </Typography>
               </Stack>
             </Grid>
           ))}

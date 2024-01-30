@@ -27,7 +27,7 @@ const tiers = [
   },
   {
     title: 'Professional',
-    subheader: 'Best choice',
+    subheader: 'Recommended',
     price: '15',
     description: [
       '20 users included',
@@ -37,7 +37,7 @@ const tiers = [
       'Dedicated team',
       'Best deals',
     ],
-    buttonText: 'Get started',
+    buttonText: 'Start now',
     buttonVariant: 'contained',
   },
   {
@@ -56,157 +56,159 @@ const tiers = [
 
 export default function Pricing() {
   return (
-    <div>
-      <Container
-        id="pricing"
+    <Container
+      id="pricing"
+      sx={{
+        pt: { xs: 4, sm: 12 },
+        pb: { xs: 8, sm: 16 },
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 6,
+      }}
+    >
+      <Box
         sx={{
-          position: 'relative',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+          width: { sm: '100%', md: '60%' },
+          textAlign: { sm: 'left', md: 'center' },
         }}
       >
-        <Box
-          sx={{
-            width: { sm: '100%', md: '60%' },
-            mb: 6,
-            textAlign: { sm: 'left', md: 'center' },
-          }}
-        >
-          <Typography component="h2" variant="h4" color="text.primary">
-            Pricing
-          </Typography>
-          <Typography variant="body1" color="text.secondary">
-            Quickly build an effective pricing table for your potential customers
-            with this layout. It&apos;s built with default MUI components with little
-            customization.
-          </Typography>
-        </Box>
-        <Grid container spacing={3} alignItems="center" justifyContent="center">
-          {tiers.map((tier) => (
-            <Grid
-              item
-              key={tier.title}
-              xs={12}
-              sm={tier.title === 'Enterprise' ? 12 : 6}
-              md={4}
+        <Typography component="h2" variant="h4" color="text.primary">
+          Pricing
+        </Typography>
+        <Typography variant="body1" color="text.secondary">
+          Quickly build an effective pricing table for your potential customers with
+          this layout. <br />
+          It&apos;s built with default Material UI components with little
+          customization.
+        </Typography>
+      </Box>
+      <Grid container spacing={3} alignItems="center" justifyContent="center">
+        {tiers.map((tier) => (
+          <Grid
+            item
+            key={tier.title}
+            xs={12}
+            sm={tier.title === 'Enterprise' ? 12 : 6}
+            md={4}
+          >
+            <Card
+              sx={{
+                p: 2,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 4,
+                border: tier.title === 'Professional' ? '1px solid' : undefined,
+                borderColor:
+                  tier.title === 'Professional' ? 'primary.main' : undefined,
+                background:
+                  tier.title === 'Professional'
+                    ? 'linear-gradient(#033363, #021F3B)'
+                    : undefined,
+              }}
             >
-              <Card
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '8px',
-                  p: 2,
-                  border: tier.title === 'Professional' ? '1px solid' : '',
-                  borderColor: tier.title === 'Professional' ? 'primary.main' : '',
-                  background:
-                    tier.title === 'Professional'
-                      ? 'linear-gradient(#033363, #021F3B)'
-                      : '',
-                }}
-              >
-                <CardContent>
-                  <Box
-                    sx={{
-                      mb: 1,
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      color:
-                        tier.title === 'Professional' ? 'primary.contrastText' : '',
-                    }}
-                  >
-                    <Typography variant="h6">{tier.title}</Typography>
-                    {tier.title === 'Professional' && (
-                      <Chip
-                        icon={<AutoAwesomeIcon />}
-                        label={tier.subheader}
-                        size="small"
-                        sx={{
-                          background: (theme) =>
-                            theme.palette.mode === 'light' ? '' : 'none',
-                          backgroundColor: 'primary.contrastText',
-                          '& .MuiChip-label': {
-                            color: 'primary.dark',
-                          },
-                          '& .MuiChip-icon': {
-                            color: 'primary.dark',
-                          },
-                        }}
-                      />
-                    )}
-                  </Box>
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      alignItems: 'baseline',
-                      color:
-                        tier.title === 'Professional'
-                          ? 'primary.contrastText'
-                          : undefined,
-                    }}
-                  >
-                    <Typography component="h2" variant="h2">
-                      ${tier.price}
-                    </Typography>
-                    <Typography variant="h6">&nbsp; per month</Typography>
-                  </Box>
-                  <Divider
-                    sx={{
-                      my: 3,
-                      opacity: 0.2,
-                      borderColor: 'grey.500',
-                    }}
-                  />
-                  {tier.description.map((line) => (
-                    <Box
-                      key={line}
+              <CardContent>
+                <Box
+                  sx={{
+                    mb: 1,
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    color:
+                      tier.title === 'Professional' ? 'primary.contrastText' : '',
+                  }}
+                >
+                  <Typography variant="h6">{tier.title}</Typography>
+                  {tier.title === 'Professional' && (
+                    <Chip
+                      icon={<AutoAwesomeIcon />}
+                      label={tier.subheader}
+                      size="small"
                       sx={{
-                        display: 'flex',
-                        gap: 1.5,
-                        p: 1,
-                        alignItems: 'center',
+                        background: (theme) =>
+                          theme.palette.mode === 'light' ? '' : 'none',
+                        backgroundColor: 'primary.contrastText',
+                        '& .MuiChip-label': {
+                          color: 'primary.dark',
+                        },
+                        '& .MuiChip-icon': {
+                          color: 'primary.dark',
+                        },
+                      }}
+                    />
+                  )}
+                </Box>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'baseline',
+                    color:
+                      tier.title === 'Professional'
+                        ? 'primary.contrastText'
+                        : undefined,
+                  }}
+                >
+                  <Typography component="h2" variant="h2">
+                    ${tier.price}
+                  </Typography>
+                  <Typography variant="h6">&nbsp; per month</Typography>
+                </Box>
+                <Divider
+                  sx={{
+                    my: 2,
+                    opacity: 0.2,
+                    borderColor: 'grey.500',
+                  }}
+                />
+                {tier.description.map((line) => (
+                  <Box
+                    key={line}
+                    sx={{
+                      py: 1,
+                      display: 'flex',
+                      gap: 1.5,
+                      alignItems: 'center',
+                    }}
+                  >
+                    <CheckCircleRoundedIcon
+                      sx={{
+                        width: 20,
+                        color:
+                          tier.title === 'Professional'
+                            ? 'primary.light'
+                            : 'primary.main',
+                      }}
+                    />
+                    <Typography
+                      variant="subtitle2"
+                      sx={{
+                        color:
+                          tier.title === 'Professional'
+                            ? 'primary.contrastText'
+                            : undefined,
                       }}
                     >
-                      <CheckCircleRoundedIcon
-                        sx={{
-                          width: '20px',
-                          color:
-                            tier.title === 'Professional'
-                              ? 'primary.light'
-                              : 'primary.main',
-                        }}
-                      />
-                      <Typography
-                        variant="subtitle2"
-                        sx={{
-                          color:
-                            tier.title === 'Professional'
-                              ? 'primary.contrastText'
-                              : '',
-                        }}
-                      >
-                        {line}
-                      </Typography>
-                    </Box>
-                  ))}
-                </CardContent>
-                <CardActions>
-                  <Button
-                    fullWidth
-                    variant={tier.buttonVariant}
-                    component="a"
-                    href="/material-ui/getting-started/templates/checkout/"
-                    target="_blank"
-                  >
-                    {tier.buttonText}
-                  </Button>
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
-    </div>
+                      {line}
+                    </Typography>
+                  </Box>
+                ))}
+              </CardContent>
+              <CardActions>
+                <Button
+                  fullWidth
+                  variant={tier.buttonVariant}
+                  component="a"
+                  href="/material-ui/getting-started/templates/checkout/"
+                  target="_blank"
+                >
+                  {tier.buttonText}
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
   );
 }

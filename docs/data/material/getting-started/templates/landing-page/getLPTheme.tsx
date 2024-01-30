@@ -218,12 +218,12 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
               backgroundColor: 'transparent',
             },
             '&:first-of-type': {
-              borderTopLeftRadius: 16,
-              borderTopRightRadius: 16,
+              borderTopLeftRadius: 10,
+              borderTopRightRadius: 10,
             },
             '&:last-of-type': {
-              borderBottomLeftRadius: 16,
-              borderBottomRightRadius: 16,
+              borderBottomLeftRadius: 10,
+              borderBottomRightRadius: 10,
             },
             ...theme.applyDarkStyles({
               backgroundColor: gray[900],
@@ -268,7 +268,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
             boxShadow: 'none',
-            borderRadius: '99px',
+            borderRadius: '10px',
             ...(ownerState.size === 'small' && {
               maxHeight: '32px',
             }),
@@ -279,12 +279,9 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
               ownerState.color === 'primary' && {
                 color: brand[50],
                 background: brand[500],
-                backgroundImage: `linear-gradient(to bottom, ${brand[400]}, ${brand[500]})`,
-                boxShadow: `inset 0 2px ${alpha(
-                  brand[300],
-                  0.4,
-                )}, inset 0 -2px ${alpha(brand[600], 0.4)}`,
-                outline: `1px solid ${brand[500]}`,
+                backgroundImage: `linear-gradient(to bottom, ${brand[400]}, ${brand[600]})`,
+                boxShadow: `inset 0 1px ${alpha(brand[300], 0.4)}`,
+                outline: `1px solid ${brand[700]}`,
                 '&:hover': {
                   background: brand[400],
                   backgroundImage: 'none',
@@ -336,7 +333,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
             backgroundColor: gray[50],
-            borderRadius: 16,
+            borderRadius: 10,
             border: `1px solid ${alpha(gray[200], 0.8)}`,
             boxShadow: 'none',
             transition: 'background-color, border, 80ms ease',
@@ -545,7 +542,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
               minWidth: 280,
               minHeight: 40,
               height: '100%',
-              borderRadius: '99px',
+              borderRadius: '10px',
               border: '1px solid',
               borderColor: gray[200],
               transition: 'border-color 120ms ease-in',
@@ -568,7 +565,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
                 minWidth: 280,
                 minHeight: 40,
                 height: '100%',
-                borderRadius: '99px',
+                borderRadius: '10px',
                 border: '1px solid',
                 borderColor: gray[600],
                 transition: 'border-color 120ms ease-in',
