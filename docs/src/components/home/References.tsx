@@ -24,7 +24,7 @@ export default function References({
     | typeof TEMPLATES_CUSTOMERS;
 }) {
   return (
-    <Section cozy>
+    <Section cozy bg="transparent">
       <Box sx={{ minHeight: { xs: 236, sm: 144, md: 52 } }}>
         <CompaniesGrid data={companies} />
       </Box>

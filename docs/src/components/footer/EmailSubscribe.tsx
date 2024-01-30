@@ -90,7 +90,7 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
           display: 'flex',
           flexDirection: { xs: 'column', sm: 'row' },
           mt: 1,
-          gap: 1.5,
+          gap: 1,
           width: { xs: '100%', sm: 'auto' },
           maxWidth: { xs: '100%', sm: 320 },
         }}
@@ -108,7 +108,7 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
               typography: 'body1',
               flexGrow: 1,
               minWidth: 220,
-              borderRadius: 1,
+              borderRadius: '8px',
               border: '1px solid',
               borderColor: 'grey.200',
               bgcolor: '#FFF',
