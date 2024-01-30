@@ -11,10 +11,8 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 ### `@mui/material@5.15.7`
 
-- &#8203;<!-- 52 -->[Alert] Add action, icon, and iconMapping tests (#40682) @DiegoAndai
 - &#8203;<!-- 51 -->[Avatar] Improve fallback when `children` is empty string or boolean (#40766) @mirus-ua
 - &#8203;<!-- 50 -->[AvatarGroup] Refactor component thereby fixing custom spacing logic (#40686) @ZeeshanTamboli
-- &#8203;<!-- 31 -->[Divider] Remove light prop references from docs (#40782) @sai6855
 
 ### `@mui/codemod@5.15.7`
 
@@ -28,8 +26,8 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 ### `@mui/utils@5.15.7`
 
-- &#8203;<!-- 16 -->Remove unnecessary default export (#40788) @siriwatknp
-- &#8203;<!-- 15 -->Convert all exports to modules (#39882) @mnajdova
+- &#8203;<!-- 16 -->[core] Remove unnecessary default export (#40788) @siriwatknp
+- &#8203;<!-- 15 -->[core] Convert all exports to modules (#39882) @mnajdova
 - &#8203;<!-- 20 -->[perf] Prevent unneeded `clearTimeout` calls (#39060) @romgrk
 
 ### `@mui/base@5.0.0-beta.34`
@@ -49,6 +47,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 ### Docs
 
 - &#8203;<!-- 49 -->[base-ui] Fix CSS vars from the plain CSS theme stylesheet (#40762) @zanivan
+- &#8203;<!-- 31 -->[material-ui][Divider] Remove light prop references from docs (#40782) @sai6855
 - &#8203;<!-- 30 -->Fix build @oliviertassinari
 - &#8203;<!-- 29 -->Add support pages for each product @oliviertassinari
 - &#8203;<!-- 28 -->Add survey banner to docs and website (#40553) @joserodolfofreitas
@@ -57,6 +56,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 ### Core
 
+- &#8203;<!-- 52 -->[material-ui][test][Alert] Add action, icon, and iconMapping tests (#40682) @DiegoAndai
 - &#8203;<!-- 45 -->[blog] Lint duplicate h1 on the page (#40835) @oliviertassinari
 - &#8203;<!-- 44 -->[blog] MUI X v7 beta announcement blogpost (#40784) @joserodolfofreitas
 - &#8203;<!-- 43 -->[code-infra] Remove custom TS installation script (#40636) @michaldudak
