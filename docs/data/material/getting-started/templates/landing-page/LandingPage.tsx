@@ -45,10 +45,13 @@ export default function LandingPage() {
         <Features />
         <Divider />
         <Testimonials />
+        <Divider />
         <Highlights />
+        <Divider />
         <Pricing />
         <Divider />
         <FAQ />
+        <Divider />
         <Footer />
       </Box>
     </ThemeProvider>

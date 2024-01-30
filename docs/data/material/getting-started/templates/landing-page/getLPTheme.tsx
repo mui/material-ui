@@ -130,7 +130,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
       800: gray[800],
       900: gray[900],
     },
-    divider: mode === 'dark' ? alpha(gray[600], 0.4) : alpha(gray[300], 0.5),
+    divider: mode === 'dark' ? alpha(gray[600], 0.3) : alpha(gray[300], 0.5),
     background: {
       default: '#fff',
       paper: gray[50],
@@ -139,7 +139,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
     text: {
       primary: gray[800],
       secondary: gray[600],
-      ...(mode === 'dark' && { primary: '#fff', secondary: gray[200] }),
+      ...(mode === 'dark' && { primary: '#fff', secondary: gray[400] }),
     },
     action: {
       selected: `${alpha(brand[200], 0.2)}`,
@@ -209,6 +209,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
         },
         styleOverrides: {
           root: ({ theme }) => ({
+            padding: 8,
             overflow: 'clip',
             backgroundColor: '#fff',
             border: '1px solid',
@@ -233,10 +234,14 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
       },
       MuiAccordionSummary: {
         styleOverrides: {
-          root: {
+          root: ({ theme }) => ({
             border: 'none',
+            borderRadius: 8,
             '&:hover': { backgroundColor: gray[100] },
-          },
+            ...theme.applyDarkStyles({
+              '&:hover': { backgroundColor: gray[800] },
+            }),
+          }),
         },
       },
       MuiAccordionDetails: {
@@ -343,8 +348,8 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
               },
             }),
             ...theme.applyDarkStyles({
-              backgroundColor: gray[900],
-              border: `1px solid ${alpha(gray[700], 0.6)}`,
+              backgroundColor: alpha(gray[800], 0.6),
+              border: `1px solid ${alpha(gray[600], 0.3)}`,
               ...(ownerState.variant === 'outlined' && {
                 background: `linear-gradient(to bottom, ${gray[800]}, ${gray[900]})`,
                 '&:hover': {
@@ -404,7 +409,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
           root: ({ theme }) => ({
             borderColor: `${alpha(gray[200], 0.8)}`,
             ...theme.applyDarkStyles({
-              borderColor: `${alpha(gray[700], 0.6)}`,
+              borderColor: `${alpha(gray[700], 0.4)}`,
             }),
           }),
         },
@@ -455,9 +460,10 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
       MuiPaper: {
         styleOverrides: {
           root: ({ theme }) => ({
+            backgroundImage: 'none',
             backgroundColor: gray[100],
             ...theme.applyDarkStyles({
-              backgroundColor: gray[900],
+              backgroundColor: alpha(gray[900], 0.6),
             }),
           }),
         },
@@ -490,16 +496,23 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
               margin: 2,
             },
             ...theme.applyDarkStyles({
+              width: 36,
+              height: 24,
+              padding: 0,
+              transition: 'background-color 100ms ease-in',
+              '&:hover': {
+                '& .MuiSwitch-track': {
+                  backgroundColor: brand[600],
+                },
+              },
               '& .MuiSwitch-switchBase': {
-                '& + .MuiSwitch-track': {
-                  // backgroundColor: brand[700],
-                  border: '1px solid',
-                  // borderColor: gray[600],
+                '&.Mui-checked': {
+                  transform: 'translateX(13px)',
                 },
               },
               '& .MuiSwitch-thumb': {
-                boxShadow: '0 1px 1px 0 rgba(0, 0, 0, 0.5)',
-                // backgroundColor: brand[200],
+                boxShadow: '0 0 2px 2px rgba(0, 0, 0, 0.2)',
+                backgroundColor: '#FFF',
                 width: 16,
                 height: 16,
                 margin: 2,
@@ -552,10 +565,25 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
             },
             ...theme.applyDarkStyles({
               '& .MuiOutlinedInput-root': {
+                minWidth: 280,
+                minHeight: 40,
+                height: '100%',
+                borderRadius: '99px',
+                border: '1px solid',
+                borderColor: gray[600],
+                transition: 'border-color 120ms ease-in',
                 '& fieldset': {
                   border: 'none',
                   boxShadow: ' 0px 2px 4px rgba(0, 0, 0, 0.4)',
                   background: `${alpha(gray[800], 0.4)}`,
+                },
+                '&:hover': {
+                  borderColor: brand[300],
+                },
+                '&.Mui-focused': {
+                  borderColor: brand[400],
+                  outline: '4px solid',
+                  outlineColor: alpha(brand[500], 0.5),
                 },
               },
             }),

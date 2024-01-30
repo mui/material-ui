@@ -261,8 +261,7 @@ export default function Features() {
           </Stack>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Box
-            component={Card}
+          <Card
             variant="outlined"
             sx={{
               height: '100%',
@@ -302,7 +301,7 @@ export default function Features() {
                 }}
               />
             </Box>
-          </Box>
+          </Card>
         </Grid>
       </Grid>
     </Container>
