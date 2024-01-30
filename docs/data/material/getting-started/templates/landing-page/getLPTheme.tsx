@@ -130,6 +130,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
       800: gray[800],
       900: gray[900],
     },
+    divider: mode === 'dark' ? alpha(gray[600], 0.4) : alpha(gray[300], 0.5),
     background: {
       default: '#fff',
       paper: gray[50],
@@ -239,11 +240,26 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
           root: { mb: 20, border: 'none' },
         },
       },
+      MuiButtonBase: {
+        defaultProps: {
+          disableTouchRipple: true,
+          disableRipple: true,
+        },
+        styleOverrides: {
+          root: {
+            transition: 'all 100ms ease-in',
+            '&:focus-visible': {
+              outline: `3px solid ${alpha(brand[500], 0.5)}`,
+              outlineOffset: '2px',
+            },
+          },
+        },
+      },
       MuiButton: {
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
             boxShadow: 'none',
-            borderRadius: '10px',
+            borderRadius: '99px',
             ...(ownerState.size === 'small' && {
               maxHeight: '32px',
             }),
@@ -253,11 +269,16 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
             ...(ownerState.variant === 'contained' &&
               ownerState.color === 'primary' && {
                 color: brand[50],
-                background: `linear-gradient(to bottom, ${brand[400]}, ${brand[600]})`,
-                boxShadow: `inset 0 1px ${alpha(brand[300], 0.4)}`,
-                outline: `1px solid  ${brand[700]}`,
+                background: brand[500],
+                backgroundImage: `linear-gradient(to bottom, ${brand[400]}, ${brand[500]})`,
+                boxShadow: `inset 0 2px ${alpha(
+                  brand[300],
+                  0.4,
+                )}, inset 0 -2px ${alpha(brand[600], 0.4)}`,
+                outline: `1px solid ${brand[500]}`,
                 '&:hover': {
-                  background: `linear-gradient(to bottom, ${brand[400]}, ${brand[500]})`,
+                  background: brand[400],
+                  backgroundImage: 'none',
                   boxShadow: `0 0 0 1px  ${alpha(brand[300], 0.5)}`,
                 },
               }),
@@ -389,8 +410,8 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
         },
         styleOverrides: {
           root: ({ theme }) => ({
-            color: brand[500],
-            fontWeight: 500,
+            color: brand[600],
+            fontWeight: 600,
             position: 'relative',
             textDecoration: 'none',
             '&::before': {
@@ -417,7 +438,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
       MuiMenuItem: {
         styleOverrides: {
           root: ({ theme }) => ({
-            borderRadius: '10px',
+            borderRadius: '99px',
             color: gray[500],
             fontWeight: 500,
             ...theme.applyDarkStyles({
@@ -439,35 +460,26 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
       MuiSwitch: {
         styleOverrides: {
           root: ({ theme }) => ({
-            padding: 8,
+            width: 36,
+            height: 24,
+            padding: 0,
+            transition: 'background-color 100ms ease-in',
+            '&:hover': {
+              '& .MuiSwitch-track': {
+                backgroundColor: brand[600],
+              },
+            },
             '& .MuiSwitch-switchBase': {
-              '& + .MuiSwitch-track': {
-                backgroundColor: brand[500],
-                opacity: 1,
-                border: '1px solid',
-                borderColor: gray[400],
+              '&.Mui-checked': {
+                transform: 'translateX(13px)',
               },
             },
             '& .MuiSwitch-track': {
-              borderRadius: 22 / 2,
-              '&::before, &::after': {
-                content: '""',
-                position: 'absolute',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                width: 16,
-                height: 16,
-              },
-              '&::before': {
-                left: 12,
-              },
-              '&::after': {
-                left: 12,
-              },
+              borderRadius: 50,
             },
             '& .MuiSwitch-thumb': {
-              boxShadow: '0 1px 1px 0 rgba(0, 0, 0, 0.5)',
-              backgroundColor: brand[100],
+              boxShadow: '0 0 2px 2px rgba(0, 0, 0, 0.2)',
+              backgroundColor: '#FFF',
               width: 16,
               height: 16,
               margin: 2,
@@ -475,66 +487,66 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
             ...theme.applyDarkStyles({
               '& .MuiSwitch-switchBase': {
                 '& + .MuiSwitch-track': {
-                  backgroundColor: brand[700],
-                  opacity: 1,
+                  // backgroundColor: brand[700],
                   border: '1px solid',
-                  borderColor: gray[600],
+                  // borderColor: gray[600],
                 },
-              },
-              '& .MuiSwitch-track': {
-                borderRadius: 22 / 2,
               },
               '& .MuiSwitch-thumb': {
                 boxShadow: '0 1px 1px 0 rgba(0, 0, 0, 0.5)',
-                backgroundColor: brand[200],
+                // backgroundColor: brand[200],
                 width: 16,
                 height: 16,
                 margin: 2,
               },
             }),
           }),
+          switchBase: {
+            height: 24,
+            width: 24,
+            padding: 0,
+            color: '#fff',
+            '&.Mui-checked + .MuiSwitch-track': {
+              opacity: 1,
+            },
+          },
         },
       },
       MuiTextField: {
         styleOverrides: {
           root: ({ theme }) => ({
-            '& label.Mui-focused': {
+            '& label .Mui-focused': {
               color: 'white',
             },
             '& .MuiInputBase-input': {
               '&::placeholder': {
                 opacity: 0.7,
               },
-              fontSize: '14px',
             },
             '& .MuiOutlinedInput-root': {
+              minWidth: 280,
+              minHeight: 40,
               height: '100%',
-              minHeight: '40px',
-              border: 'none',
-              borderRadius: '10px',
-              outline: `1px solid ${alpha(gray[500], 0.3)}`,
+              borderRadius: '99px',
+              border: '1px solid',
+              borderColor: gray[200],
+              transition: 'border-color 120ms ease-in',
               '& fieldset': {
                 border: 'none',
                 boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
                 background: `${alpha('#FFF', 0.3)}`,
               },
-              '&:hover fieldset': {
-                borderColor: gray[400],
+              '&:hover': {
+                borderColor: brand[300],
               },
-              '&.Mui-focused fieldset': {
+              '&.Mui-focused': {
                 borderColor: brand[400],
+                outline: '4px solid',
+                outlineColor: brand[200],
               },
-            },
-            '& .MuiInputLabel-root': {
-              fontSize: '14px',
             },
             ...theme.applyDarkStyles({
               '& .MuiOutlinedInput-root': {
-                height: '100%',
-                minHeight: '40px',
-                border: 'none',
-                borderRadius: '10px',
-                outline: `1px solid ${alpha(gray[500], 0.6)}`,
                 '& fieldset': {
                   border: 'none',
                   boxShadow: ' 0px 2px 4px rgba(0, 0, 0, 0.4)',

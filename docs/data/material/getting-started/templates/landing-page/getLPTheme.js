@@ -486,7 +486,6 @@ export default function getLPTheme(mode) {
               '&::placeholder': {
                 opacity: 0.7,
               },
-              fontSize: '14px',
             },
             '& .MuiOutlinedInput-root': {
               height: '100%',
@@ -505,9 +504,6 @@ export default function getLPTheme(mode) {
               '&.Mui-focused fieldset': {
                 borderColor: brand[400],
               },
-            },
-            '& .MuiInputLabel-root': {
-              fontSize: '14px',
             },
             ...theme.applyDarkStyles({
               '& .MuiOutlinedInput-root': {
