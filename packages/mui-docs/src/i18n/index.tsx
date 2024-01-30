@@ -1,6 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
+declare global {
+  interface NodeRequire {
+    context: (path: string, useSubdirectories: boolean, regex: RegExp) => RequireContext;
+  }
+}
+
 interface RequireContext {
   (req: string): string;
   keys: () => string[];
@@ -20,11 +26,7 @@ function mapTranslations(req: RequireContext) {
   return translations;
 }
 
-const req: RequireContext = (require as any).context(
-  'docs/translations',
-  false,
-  /translations.*\.json$/,
-);
+const req: RequireContext = require.context('docs/translations', false, /translations.*\.json$/);
 const translations = mapTranslations(req);
 
 function getPath(obj: any, path: string): any {

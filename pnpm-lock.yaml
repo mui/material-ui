@@ -1249,6 +1249,9 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
     devDependencies:
+      '@types/node':
+        specifier: ^18.19.10
+        version: 18.19.10
       '@types/prop-types':
         specifier: ^15.7.11
         version: 15.7.11
