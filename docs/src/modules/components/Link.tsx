@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link';
 import { styled } from '@mui/material/styles';
-import { useUserLanguage } from 'docs/src/modules/utils/i18n';
+import { useUserLanguage } from '@mui/docs/i18n';
 import { LANGUAGES_IGNORE_PAGES } from 'docs/config';
 
 /**
