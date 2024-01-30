@@ -178,18 +178,19 @@ export default function Footer() {
           </Link>
           <Copyright />
         </div>
-        <Box
+        <Stack
+          direction="row"
+          justifyContent="left"
+          spacing={1}
+          useFlexGap
           sx={{
-            display: 'flex',
-            justifyContent: 'left',
-            gap: 1,
             color: 'text.secondary',
           }}
         >
           <IconButton
             color="inherit"
             href="https://github.com/mui"
-            aria-label="Github"
+            aria-label="GitHub"
             sx={{ alignSelf: 'center' }}
           >
             <FacebookIcon />
@@ -210,7 +211,7 @@ export default function Footer() {
           >
             <LinkedInIcon />
           </IconButton>
-        </Box>
+        </Stack>
       </Box>
     </Container>
   );

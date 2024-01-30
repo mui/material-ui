@@ -27,7 +27,7 @@ const tiers = [
   },
   {
     title: 'Professional',
-    subheader: 'Best choice',
+    subheader: 'Recommended',
     price: '15',
     description: [
       '20 users included',

@@ -95,7 +95,7 @@ export default function Hero({ showCustomTheme, toggleCustomTheme }: HeroProps) 
               textAlign: 'center',
             }}
           >
-            Our latest&nbsp;
+            Expand your&nbsp;
             <Typography
               component="span"
               variant="h1"

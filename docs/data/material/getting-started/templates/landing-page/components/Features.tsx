@@ -68,8 +68,7 @@ export default function Features() {
             <Typography variant="body1" color="text.secondary" mb={4}>
               Here you can provide a brief overview of the key features of the
               product. For example, you could list the number of features, the types
-              of features (e.g., core features, add-ons), or the benefits of the
-              features.
+              of features, add-ons, or the benefits of the features.
             </Typography>
           </div>
           <Grid container item gap={1} sx={{ display: { xs: 'auto', sm: 'none' } }}>
