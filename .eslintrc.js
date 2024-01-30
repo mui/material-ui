@@ -65,7 +65,7 @@ module.exports = {
     'no-restricted-imports': [
       'error',
       {
-        patterns: ['@mui/*/*/*', '!@mui/docs/components/*'],
+        patterns: ['@mui/*/*/*'],
       },
     ],
     'no-continue': 'off',
