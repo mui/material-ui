@@ -237,7 +237,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
 
   const backwardCompatibleSlots = {
     transition: TransitionComponentProp,
-    paper: PaperComponentProp,
+    paper: DialogPaper,
     ...slots,
   };
   const backwardCompatibleSlotProps = {
@@ -261,7 +261,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
   delete transitionProps.ownerState;
 
   const [PaperSlot, paperProps] = useSlot('paper', {
-    elementType: DialogPaper,
+    elementType: PaperComponentProp,
     externalForwardedProps: {
       slots: backwardCompatibleSlots,
       slotProps: backwardCompatibleSlotProps,
