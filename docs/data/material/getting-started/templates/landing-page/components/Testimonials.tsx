@@ -85,19 +85,19 @@ export default function Testimonials() {
   const logos = theme.palette.mode === 'light' ? darkLogos : whiteLogos;
 
   return (
-    <Box id="testimonials">
+    <Box id="testimonials" sx={{ pt: { xs: 4, sm: 12 }, pb: { xs: 8, sm: 16 } }}>
       <Container
         sx={{
           position: 'relative',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          gap: 6,
         }}
       >
         <Box
           sx={{
             width: { sm: '100%', md: '60%' },
-            mb: 6,
             textAlign: { sm: 'left', md: 'center' },
           }}
         >
