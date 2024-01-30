@@ -43,7 +43,7 @@ Heading.propTypes = {
 };
 
 export default function HooksApiContent(props) {
-  const { descriptions, pagesContents } = props;
+  const { descriptions, pagesContents, defaultLayout = 'table' } = props;
   const userLanguage = useUserLanguage();
   const t = useTranslate();
 
@@ -76,6 +76,7 @@ export default function HooksApiContent(props) {
               level="h3"
               title="api-docs.parameters"
               titleHash={`${hookNameKebabCase}-parameters`}
+              defaultLayout={defaultLayout}
             />
           ) : (
             <span>{t('api-docs.hooksNoParameters')}</span>
@@ -89,6 +90,7 @@ export default function HooksApiContent(props) {
             level="h3"
             title="api-docs.returnValue"
             titleHash={`${hookNameKebabCase}-return-value`}
+            defaultLayout={defaultLayout}
           />
           <br />
         </MarkdownElement>
@@ -103,6 +105,7 @@ export default function HooksApiContent(props) {
 }
 
 HooksApiContent.propTypes = {
+  defaultLayout: PropTypes.oneOf(['collapsed', 'expanded', 'table']),
   descriptions: PropTypes.object.isRequired,
   pagesContents: PropTypes.object.isRequired,
 };

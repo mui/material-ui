@@ -49,7 +49,7 @@ Heading.propTypes = {
 };
 
 export default function ComponentsApiContent(props) {
-  const { descriptions, pageContents } = props;
+  const { descriptions, pageContents, defaultLayout = 'table' } = props;
   const t = useTranslate();
   const userLanguage = useUserLanguage();
   const router = useRouter();
@@ -150,6 +150,7 @@ export default function ComponentsApiContent(props) {
             spreadHint={spreadHint}
             level="h3"
             titleHash={`${componentNameKebabCase}-props`}
+            defaultLayout={defaultLayout}
           />
           <br />
           {cssComponent && (
@@ -216,6 +217,7 @@ export default function ComponentsApiContent(props) {
               slotGuideLink &&
               t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink)
             }
+            defaultLayout={defaultLayout}
           />
           <ClassesSection
             componentClasses={componentClasses}
@@ -224,6 +226,7 @@ export default function ComponentsApiContent(props) {
             spreadHint={t('api-docs.classesDescription')}
             titleHash={`${componentNameKebabCase}-classes`}
             level="h3"
+            defaultLayout={defaultLayout}
           />
         </MarkdownElement>
         <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">
@@ -237,6 +240,7 @@ export default function ComponentsApiContent(props) {
 }
 
 ComponentsApiContent.propTypes = {
+  defaultLayout: PropTypes.oneOf(['collapsed', 'expanded', 'table']),
   descriptions: PropTypes.object.isRequired,
   pageContents: PropTypes.object.isRequired,
 };

@@ -51,10 +51,12 @@ export default function PropertiesSection(props) {
     spreadHint,
     hooksParameters = false,
     hooksReturnValue = false,
+    defaultLayout,
+    layoutStorageKey = API_LAYOUT_STORAGE_KEYS.props,
   } = props;
   const t = useTranslate();
 
-  const [displayOption, setDisplayOption] = useApiPageOption(API_LAYOUT_STORAGE_KEYS.props);
+  const [displayOption, setDisplayOption] = useApiPageOption(layoutStorageKey, defaultLayout);
   const formatedProperties = Object.entries(properties)
     .filter(([, propData]) => propData.description !== '@ignore')
     .map(([propName, propData]) => {
@@ -131,7 +133,11 @@ export default function PropertiesSection(props) {
             </svg>
           </a>
         </Level>
-        <ToggleDisplayOption displayOption={displayOption} setDisplayOption={setDisplayOption} />
+        <ToggleDisplayOption
+          displayOption={displayOption}
+          setDisplayOption={setDisplayOption}
+          sectionType="props"
+        />
       </Box>
       {spreadHint && <p dangerouslySetInnerHTML={{ __html: spreadHint }} />}
       {displayOption === 'table' ? (
@@ -145,8 +151,10 @@ export default function PropertiesSection(props) {
 
 PropertiesSection.propTypes = {
   componentName: PropTypes.string,
+  defaultLayout: PropTypes.oneOf(['collapsed', 'expanded', 'table']).isRequired,
   hooksParameters: PropTypes.bool,
   hooksReturnValue: PropTypes.bool,
+  layoutStorageKey: PropTypes.string,
   level: PropTypes.string,
   properties: PropTypes.object.isRequired,
   propertiesDescriptions: PropTypes.object.isRequired,

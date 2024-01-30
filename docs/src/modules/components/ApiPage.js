@@ -68,7 +68,7 @@ Heading.propTypes = {
 };
 
 export default function ApiPage(props) {
-  const { descriptions, disableAd = false, pageContent } = props;
+  const { descriptions, disableAd = false, pageContent, defaultLayout = 'table' } = props;
   const t = useTranslate();
   const userLanguage = useUserLanguage();
 
@@ -257,6 +257,7 @@ export default function ApiPage(props) {
           propertiesDescriptions={propDescriptions}
           componentName={pageContent.name}
           spreadHint={spreadHint}
+          defaultLayout={defaultLayout}
         />
         {cssComponent && (
           <React.Fragment>
@@ -314,6 +315,7 @@ export default function ApiPage(props) {
             slotGuideLink &&
             t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink)
           }
+          defaultLayout={defaultLayout}
         />
         <ClassesSection
           componentClasses={componentClasses}
@@ -321,6 +323,7 @@ export default function ApiPage(props) {
           classDescriptions={classDescriptions}
           spreadHint={t('api-docs.classesDescription')}
           styleOverridesLink={styleOverridesLink}
+          defaultLayout={defaultLayout}
           displayClassKeys
         />
       </MarkdownElement>
@@ -334,6 +337,7 @@ export default function ApiPage(props) {
 }
 
 ApiPage.propTypes = {
+  defaultLayout: PropTypes.oneOf(['collapsed', 'expanded', 'table']),
   descriptions: PropTypes.object.isRequired,
   disableAd: PropTypes.bool,
   pageContent: PropTypes.object.isRequired,
