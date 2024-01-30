@@ -85,7 +85,7 @@ export default function Testimonials() {
   const logos = theme.palette.mode === 'light' ? darkLogos : whiteLogos;
 
   return (
-    <Box id="testimonials" sx={{ pt: { xs: 4, sm: 12 }, pb: { xs: 8, sm: 16 } }}>
+    <Box id="testimonials" sx={{ pt: { xs: 4, sm: 10 }, pb: { xs: 8, sm: 16 } }}>
       <Container
         sx={{
           position: 'relative',
