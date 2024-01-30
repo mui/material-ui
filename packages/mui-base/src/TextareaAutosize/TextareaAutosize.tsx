@@ -131,8 +131,8 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
     }
 
     const input = inputRef.current!;
-    input.style.setProperty('height', `${textareaStyles.outerHeightStyle}px`);
-    input.style.setProperty('overflow', textareaStyles.overflowing ? 'hidden' : null);
+    input.style.height = `${textareaStyles.outerHeightStyle}px`;
+    input.style.overflow = textareaStyles.overflowing ? 'hidden' : '';
   }, [calculateTextareaStyles]);
 
   useEnhancedEffect(() => {
