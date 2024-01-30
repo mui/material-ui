@@ -529,9 +529,9 @@ export default function MaterialDesignComponents() {
       <Box
         sx={{
           mt: { xs: 2, md: 2 },
-          mb: 2,
+          mb: 4,
           display: 'flex',
-          justifyContent: 'start',
+          justifyContent: 'center',
         }}
       >
         <StyledChip
