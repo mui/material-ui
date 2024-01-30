@@ -1249,6 +1249,9 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
     devDependencies:
+      '@types/prop-types':
+        specifier: ^15.7.11
+        version: 15.7.11
       '@types/react':
         specifier: ^18.2.48
         version: 18.2.48

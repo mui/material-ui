@@ -1,8 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
-function mapTranslations(req) {
-  const translations = {};
+interface RequireContext {
+  (req: string): string;
+  keys: () => string[];
+}
+
+function mapTranslations(req: RequireContext) {
+  const translations: Record<string, string> = {};
   req.keys().forEach((filename) => {
     const match = filename.match(/-([a-z]{2}).json$/);
 
@@ -15,10 +20,14 @@ function mapTranslations(req) {
   return translations;
 }
 
-const req = require.context('docs/translations', false, /translations.*\.json$/);
+const req: RequireContext = (require as any).context(
+  'docs/translations',
+  false,
+  /translations.*\.json$/,
+);
 const translations = mapTranslations(req);
 
-function getPath(obj, path) {
+function getPath(obj: any, path: string): any {
   if (!path || typeof path !== 'string') {
     return null;
   }
@@ -26,12 +35,25 @@ function getPath(obj, path) {
   return path.split('.').reduce((acc, item) => (acc && acc[item] ? acc[item] : null), obj);
 }
 
-const UserLanguageContext = React.createContext({ userLanguage: '', setUserLanguage: () => {} });
+interface UserLanguageContextValue {
+  userLanguage: string;
+  setUserLanguage: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const UserLanguageContext = React.createContext<UserLanguageContextValue>({
+  userLanguage: '',
+  setUserLanguage: () => {},
+});
 if (process.env.NODE_ENV !== 'production') {
   UserLanguageContext.displayName = 'UserLanguage';
 }
 
-export function UserLanguageProvider(props) {
+export interface UserLanguageProviderProps {
+  children: React.ReactNode;
+  defaultUserLanguage: string;
+}
+
+export function UserLanguageProvider(props: UserLanguageProviderProps) {
   const { children, defaultUserLanguage } = props;
 
   const [userLanguage, setUserLanguage] = React.useState(defaultUserLanguage);
@@ -58,14 +80,18 @@ export function useSetUserLanguage() {
   return React.useContext(UserLanguageContext).setUserLanguage;
 }
 
-const warnedOnce = {};
+const warnedOnce: Record<string, boolean> = {};
+
+export interface TranslateOptions {
+  ignoreWarning?: boolean;
+}
 
 export function useTranslate() {
   const userLanguage = useUserLanguage();
 
   return React.useMemo(
     () =>
-      function translate(key, options = {}) {
+      function translate(key: string, options: TranslateOptions = {}) {
         const { ignoreWarning = false } = options;
         const wordings = translations[userLanguage];
 
