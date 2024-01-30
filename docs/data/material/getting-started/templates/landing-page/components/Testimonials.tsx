@@ -85,62 +85,59 @@ export default function Testimonials() {
   const logos = theme.palette.mode === 'light' ? darkLogos : whiteLogos;
 
   return (
-    <Box id="testimonials" sx={{ pt: { xs: 4, sm: 10 }, pb: { xs: 8, sm: 16 } }}>
-      <Container
+    <Container
+      id="testimonials"
+      sx={{
+        pt: { xs: 4, sm: 10 },
+        pb: { xs: 8, sm: 16 },
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 6,
+      }}
+    >
+      <Box
         sx={{
-          position: 'relative',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: 6,
+          width: { sm: '100%', md: '60%' },
+          textAlign: { sm: 'left', md: 'center' },
         }}
       >
-        <Box
-          sx={{
-            width: { sm: '100%', md: '60%' },
-            textAlign: { sm: 'left', md: 'center' },
-          }}
-        >
-          <Typography component="h2" variant="h4" color="text.primary">
-            Testimonials
-          </Typography>
-          <Typography variant="body1" color="text.secondary">
-            See what our customers love about our products. Discover how we excel in
-            efficiency, durability, and satisfaction. Join us for quality,
-            innovation, and reliable support.
-          </Typography>
-        </Box>
-        <Masonry columns={columns} spacing={2}>
-          {userTestimonials.map((testimonial, index) => (
-            <Card key={index} sx={{ p: 1 }}>
-              <CardContent>
-                <Typography variant="body2" color="text.secondary">
-                  {testimonial.testimonial}
-                </Typography>
-              </CardContent>
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  pr: 2,
-                }}
-              >
-                <CardHeader
-                  avatar={testimonial.avatar}
-                  title={testimonial.name}
-                  subheader={testimonial.occupation}
-                />
-                <img
-                  src={logos[index]}
-                  alt={`Logo ${index + 1}`}
-                  style={logoStyle}
-                />
-              </Box>
-            </Card>
-          ))}
-        </Masonry>
-      </Container>
-    </Box>
+        <Typography component="h2" variant="h4" color="text.primary">
+          Testimonials
+        </Typography>
+        <Typography variant="body1" color="text.secondary">
+          See what our customers love about our products. Discover how we excel in
+          efficiency, durability, and satisfaction. Join us for quality, innovation,
+          and reliable support.
+        </Typography>
+      </Box>
+      <Masonry columns={columns} spacing={2}>
+        {userTestimonials.map((testimonial, index) => (
+          <Card key={index} sx={{ p: 1 }}>
+            <CardContent>
+              <Typography variant="body2" color="text.secondary">
+                {testimonial.testimonial}
+              </Typography>
+            </CardContent>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                pr: 2,
+              }}
+            >
+              <CardHeader
+                avatar={testimonial.avatar}
+                title={testimonial.name}
+                subheader={testimonial.occupation}
+              />
+              <img src={logos[index]} alt={`Logo ${index + 1}`} style={logoStyle} />
+            </Box>
+          </Card>
+        ))}
+      </Masonry>
+    </Container>
   );
 }
