@@ -180,7 +180,7 @@ const Option = React.forwardRef(function Option<RootComponentType extends React.
     [context.dense, dense, disableGutters],
   );
 
-  const optionRef = React.useRef<HTMLElement | null>(null);
+  const optionRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(optionRef, ref);
 
   const { getRootProps, disabled, focusVisible, highlighted } = useMenuItem({

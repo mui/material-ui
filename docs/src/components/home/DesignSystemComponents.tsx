@@ -35,6 +35,7 @@ export default function DesignSystemComponents() {
   return (
     <Section ref={ref} cozy>
       <SectionHeadline
+        alwaysCenter
         overline="Production-ready components"
         title={
           <Typography variant="h2">

@@ -64,7 +64,6 @@ export default function GetStartedButtons(props: GetStartedButtonsProps) {
           endIcon={<KeyboardArrowRightRounded />}
           sx={{
             flexShrink: 0,
-            mb: { xs: 2, md: 0 },
           }}
         >
           {primaryLabel}
