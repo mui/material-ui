@@ -240,8 +240,8 @@ importers:
         specifier: ^11.2.0
         version: 11.2.0
       globby:
-        specifier: ^13.2.2
-        version: 13.2.2
+        specifier: ^14.0.0
+        version: 14.0.0
       karma:
         specifier: ^6.4.2
         version: 6.4.2
