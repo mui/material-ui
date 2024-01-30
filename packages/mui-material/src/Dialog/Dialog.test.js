@@ -333,6 +333,50 @@ describe('<Dialog />', () => {
       expect(getByTestId('paper')).to.have.class('custom-paper-class');
     });
   });
+  describe('prop: slotProps.paper', () => {
+    it('should override PaperProps className', () => {
+      const { getByTestId } = render(
+        <Dialog
+          open
+          PaperProps={{ className: 'custom-paper-props-class', 'data-testid': 'paper' }}
+          slotProps={{
+            paper: {
+              className: 'custom-slotprops-paper-class',
+              'data-testid': 'paper',
+            },
+          }}
+        >
+          foo
+        </Dialog>,
+      );
+
+      expect(getByTestId('paper')).to.have.class(classes.paper);
+      expect(getByTestId('paper')).to.have.class('custom-slotprops-paper-class');
+      expect(getByTestId('paper')).not.to.have.class('custom-paper-props-class');
+    });
+  });
+  describe('prop: slots.paper', () => {
+    it('should override PaperComponent', () => {
+      const { getByTestId } = render(
+        <Dialog
+          open
+          PaperComponent={'span'}
+          slots={{
+            paper: 'a',
+          }}
+          slotProps={{
+            paper: {
+              'data-testid': 'paper',
+            },
+          }}
+        >
+          foo
+        </Dialog>,
+      );
+
+      expect(getByTestId('paper').nodeName).to.equal('a');
+    });
+  });
 
   describe('a11y', () => {
     it('can be labelled by another element', () => {
