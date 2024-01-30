@@ -1,4 +1,5 @@
-import transformAccordionProps from '../accordion-props/accordion-props';
+import transformAccordionProps from '../accordion-props';
+import transformAvatarProps from '../avatar-props';
 
 /**
  * @param {import('jscodeshift').FileInfo} file
@@ -6,6 +7,7 @@ import transformAccordionProps from '../accordion-props/accordion-props';
  */
 export default function deprecationsAll(file, api, options) {
   file.source = transformAccordionProps(file, api, options);
+  file.source = transformAvatarProps(file, api, options);
 
   return file.source;
 }
