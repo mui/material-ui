@@ -174,8 +174,8 @@ importers:
         specifier: ^5.3.0
         version: 5.3.0
       compression-webpack-plugin:
-        specifier: ^10.0.0
-        version: 10.0.0(webpack@5.90.0)
+        specifier: ^11.0.0
+        version: 11.0.0(webpack@5.90.0)
       concurrently:
         specifier: ^8.2.2
         version: 8.2.2
@@ -9109,7 +9109,7 @@ packages:
     dependencies:
       '@babel/core': 7.23.9
       find-cache-dir: 4.0.0
-      schema-utils: 4.0.0
+      schema-utils: 4.2.0
       webpack: 5.90.0(esbuild@0.19.11)(webpack-cli@5.1.4)
     dev: true
 
@@ -10216,14 +10216,14 @@ packages:
     dependencies:
       mime-db: 1.52.0
 
-  /compression-webpack-plugin@10.0.0(webpack@5.90.0):
-    resolution: {integrity: sha512-wLXLIBwpul/ALcm7Aj+69X0pYT3BYt6DdPn3qrgBIh9YejV9Bju9ShhlAsjujLyWMo6SAweFIWaUoFmXZNuNrg==}
-    engines: {node: '>= 14.15.0'}
+  /compression-webpack-plugin@11.0.0(webpack@5.90.0):
+    resolution: {integrity: sha512-Nz9dMiu0sag+mgJ5QTkRx0+vwrDZPU/gps7IdrkFE+oRSkgyoX4wbMol7QnXjI5/TEWx8yEwew9MiMjZgdLtjg==}
+    engines: {node: '>= 18.12.0'}
     peerDependencies:
       webpack: ^5.1.0
     dependencies:
-      schema-utils: 4.0.0
-      serialize-javascript: 6.0.1
+      schema-utils: 4.2.0
+      serialize-javascript: 6.0.2
       webpack: 5.90.0(esbuild@0.19.11)(webpack-cli@5.1.4)
     dev: true
 
@@ -19277,8 +19277,8 @@ packages:
       ajv: 6.12.6
       ajv-keywords: 3.5.2(ajv@6.12.6)
 
-  /schema-utils@4.0.0:
-    resolution: {integrity: sha512-1edyXKgh6XnJsJSQ8mKWXnN/BVaIbFMLpouRUrXgVq7WYne5kw3MW7UPhO44uRXQSIpTSXoJbmrR2X0w9kUTyg==}
+  /schema-utils@4.2.0:
+    resolution: {integrity: sha512-L0jRsrPpjdckP3oPug3/VxNKt2trR8TcabrM6FOAAlvC/9Phcmm+cuAgTlxBqdBR1WJx7Naj9WHw+aOmheSVbw==}
     engines: {node: '>= 12.13.0'}
     dependencies:
       '@types/json-schema': 7.0.12
@@ -19359,8 +19359,8 @@ packages:
     dependencies:
       randombytes: 2.1.0
 
-  /serialize-javascript@6.0.1:
-    resolution: {integrity: sha512-owoXEFjWRllis8/M1Q+Cw5k8ZH40e3zhp/ovX+Xr/vi1qj6QesbyXXViFbpNvWvPNAD62SutwEXavefrLJWj7w==}
+  /serialize-javascript@6.0.2:
+    resolution: {integrity: sha512-Saa1xPByTTq2gdeFZYLLo+RFE35NHZkAbqZeWNd3BpzppeVisAqpDjcp8dyf6uIvEqJRd46jemmyA4iFIeVk8g==}
     dependencies:
       randombytes: 2.1.0
 
@@ -20465,7 +20465,7 @@ packages:
       esbuild: 0.19.11
       jest-worker: 27.5.1
       schema-utils: 3.3.0
-      serialize-javascript: 6.0.1
+      serialize-javascript: 6.0.2
       terser: 5.26.0
       webpack: 5.90.0(esbuild@0.19.11)(webpack-cli@5.1.4)
 
