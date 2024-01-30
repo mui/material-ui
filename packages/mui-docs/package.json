@@ -69,8 +69,8 @@
     "./svgIcons/*": {
       "default": "./src/svgIcons/*.js"
     },
-    "./components/*": {
-      "default": "./src/components/*/index.js"
+    "./*": {
+      "default": "./src/*/index.js"
     }
   },
   "engines": {
