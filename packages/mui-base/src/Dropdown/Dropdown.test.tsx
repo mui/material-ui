@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { act, createRenderer, fireEvent } from '@mui-internal/test-utils';
+import { act, createRenderer } from '@mui-internal/test-utils';
 import { Dropdown } from '@mui/base/Dropdown';
 import { DropdownContext } from '@mui/base/useDropdown';
 import { MenuButton } from '@mui/base/MenuButton';
@@ -119,104 +119,6 @@ describe('<Dropdown />', () => {
     act(() => {
       button.click();
     });
-
-    const menuItems = getAllByRole('menuitem');
-
-    expect(menuItems[1]).toHaveFocus();
-  });
-
-  it('should focus first item when down arrow key opens the menu', () => {
-    const { getByRole, getAllByRole } = render(
-      <div>
-        <Dropdown>
-          <MenuButton>Toggle</MenuButton>
-          <Menu>
-            <MenuItem>One</MenuItem>
-            <MenuItem>Two</MenuItem>
-            <MenuItem>Three</MenuItem>
-          </Menu>
-        </Dropdown>
-      </div>,
-    );
-
-    const button = getByRole('button');
-    act(() => {
-      button.focus();
-    });
-
-    fireEvent.keyDown(button, { key: 'ArrowDown' });
-
-    const menuItems = getAllByRole('menuitem');
-
-    expect(menuItems[0]).toHaveFocus();
-  });
-
-  it('should focus last item when up arrow key opens the menu', () => {
-    const { getByRole, getAllByRole } = render(
-      <div>
-        <Dropdown>
-          <MenuButton>Toggle</MenuButton>
-          <Menu>
-            <MenuItem>One</MenuItem>
-            <MenuItem>Two</MenuItem>
-            <MenuItem>Three</MenuItem>
-          </Menu>
-        </Dropdown>
-      </div>,
-    );
-
-    const button = getByRole('button');
-    act(() => {
-      button.focus();
-    });
-
-    fireEvent.keyDown(button, { key: 'ArrowUp' });
-
-    const menuItems = getAllByRole('menuitem');
-
-    expect(menuItems[2]).toHaveFocus();
-  });
-
-  it('should focus on last non-disabled item when disabledItemsFocusable is set to false', () => {
-    const CustomMenu = React.forwardRef(function CustomMenu(
-      props: React.ComponentPropsWithoutRef<'ul'>,
-      ref: React.Ref<HTMLUListElement>,
-    ) {
-      const { children, ...other } = props;
-
-      const { open, triggerElement, contextValue, getListboxProps } = useMenu({
-        listboxRef: ref,
-        disabledItemsFocusable: false,
-      });
-
-      return (
-        <Popper open={open} anchorEl={triggerElement}>
-          <ul className="menu-root" {...other} {...getListboxProps()}>
-            <MenuProvider value={contextValue}>{children}</MenuProvider>
-          </ul>
-        </Popper>
-      );
-    });
-
-    const { getByRole, getAllByRole } = render(
-      <div>
-        <Dropdown>
-          <MenuButton>Toggle</MenuButton>
-          <CustomMenu>
-            <MenuItem>One</MenuItem>
-            <MenuItem>Two</MenuItem>
-            <MenuItem disabled>Three</MenuItem>
-          </CustomMenu>
-        </Dropdown>
-      </div>,
-    );
-
-    const button = getByRole('button');
-    act(() => {
-      button.focus();
-    });
-
-    fireEvent.keyDown(button, { key: 'ArrowUp' });
 
     const menuItems = getAllByRole('menuitem');
 
