@@ -8,12 +8,7 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
-interface HeroProps {
-  showCustomTheme: boolean;
-  toggleCustomTheme: () => void;
-}
-
-export default function Hero({ showCustomTheme, toggleCustomTheme }: HeroProps) {
+export default function Hero() {
   return (
     <Box
       id="hero"

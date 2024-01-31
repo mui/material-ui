@@ -8,7 +8,8 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
-import BlockRoundedIcon from '@mui/icons-material/BlockRounded';
+import AndroidRoundedIcon from '@mui/icons-material/AndroidRounded';
+
 import AppAppBar from './components/AppAppBar';
 import Hero from './components/Hero';
 import LogoCollection from './components/LogoCollection';
@@ -23,6 +24,52 @@ import getLPTheme from './getLPTheme';
 
 const defaultTheme = createTheme({});
 
+interface ToggleCustomThemeProps {
+  showCustomTheme: Boolean;
+  toggleCustomTheme: () => void;
+}
+
+function ToggleCustomTheme({
+  showCustomTheme,
+  toggleCustomTheme,
+}: ToggleCustomThemeProps) {
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: '100dvw',
+        position: 'fixed',
+        bottom: 24,
+      }}
+    >
+      <ToggleButtonGroup
+        color="primary"
+        value={showCustomTheme}
+        exclusive
+        onChange={toggleCustomTheme}
+        aria-label="Platform"
+        sx={{
+          backgroundColor: 'background.default',
+          '& .Mui-selected': {
+            pointerEvents: 'none',
+          },
+        }}
+      >
+        <ToggleButton value>
+          <AutoAwesomeRoundedIcon sx={{ fontSize: '20px', mr: 1 }} />
+          Custom theme
+        </ToggleButton>
+        <ToggleButton value={false}>
+          <AndroidRoundedIcon sx={{ fontSize: '20px', mr: 1 }} />
+          Default theme
+        </ToggleButton>
+      </ToggleButtonGroup>
+    </Box>
+  );
+}
+
 export default function LandingPage() {
   const [mode, setMode] = React.useState<PaletteMode>('dark');
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
@@ -36,52 +83,11 @@ export default function LandingPage() {
     setShowCustomTheme((prev) => !prev);
   };
 
-  const ToggleCustomTheme = () => {
-    return (
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          width: '100dvw',
-          position: 'fixed',
-          bottom: 24,
-        }}
-      >
-        <ToggleButtonGroup
-          color="primary"
-          value={showCustomTheme}
-          exclusive
-          onChange={toggleCustomTheme}
-          aria-label="Platform"
-          sx={{
-            backgroundColor: 'background.default',
-            '& .Mui-selected': {
-              pointerEvents: 'none',
-            },
-          }}
-        >
-          <ToggleButton value={true}>
-            <AutoAwesomeRoundedIcon sx={{ fontSize: '20px', mr: 1 }} />
-            Custom theme
-          </ToggleButton>
-          <ToggleButton value={false}>
-            <BlockRoundedIcon sx={{ fontSize: '20px', mr: 1 }} />
-            Default design
-          </ToggleButton>
-        </ToggleButtonGroup>
-      </Box>
-    );
-  };
-
   return (
     <ThemeProvider theme={showCustomTheme ? LPtheme : defaultTheme}>
       <CssBaseline />
       <AppAppBar mode={mode} toggleColorMode={toggleColorMode} />
-      <Hero
-        showCustomTheme={showCustomTheme}
-        toggleCustomTheme={toggleCustomTheme}
-      />
+      <Hero />
       <Box sx={{ bgcolor: 'background.default' }}>
         <LogoCollection />
         <Features />
@@ -96,7 +102,10 @@ export default function LandingPage() {
         <Divider />
         <Footer />
       </Box>
-      <ToggleCustomTheme />
+      <ToggleCustomTheme
+        showCustomTheme={showCustomTheme}
+        toggleCustomTheme={toggleCustomTheme}
+      />
     </ThemeProvider>
   );
 }

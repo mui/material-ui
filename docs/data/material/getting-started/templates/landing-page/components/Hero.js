@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { alpha } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -9,7 +8,7 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
-function Hero({ showCustomTheme, toggleCustomTheme }) {
+export default function Hero() {
   return (
     <Box
       id="hero"
@@ -117,10 +116,3 @@ function Hero({ showCustomTheme, toggleCustomTheme }) {
     </Box>
   );
 }
-
-Hero.propTypes = {
-  showCustomTheme: PropTypes.bool.isRequired,
-  toggleCustomTheme: PropTypes.func.isRequired,
-};
-
-export default Hero;

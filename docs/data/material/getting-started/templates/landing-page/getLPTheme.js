@@ -249,11 +249,11 @@ export default function getLPTheme(mode) {
       },
       MuiToggleButton: {
         styleOverrides: {
-          root: ({ theme }) => ({
+          root: {
             textTransform: 'none',
             borderRadius: '10px',
             fontWeight: 600,
-          }),
+          },
         },
       },
       MuiButtonBase: {
