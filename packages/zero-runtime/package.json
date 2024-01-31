@@ -26,9 +26,7 @@
     "@linaria/tags": "^5.0.2",
     "@linaria/utils": "^5.0.2",
     "@mui/system": "workspace:^",
-    "lodash.merge": "^4.6.2",
-    "lodash.set": "^4.3.2",
-    "lodash.get": "^4.4.2",
+    "lodash": "^4.17.21",
     "stylis": "^4.2.0"
   },
   "devDependencies": {
@@ -36,9 +34,7 @@
     "@types/babel__helper-module-imports": "^7.18.3",
     "@types/babel__helper-plugin-utils": "^7.10.3",
     "@types/cssesc": "^3.0.2",
-    "@types/lodash.get": "^4.4.9",
-    "@types/lodash.merge": "^4.6.9",
-    "@types/lodash.set": "^4.3.9",
+    "@types/lodash": "^4.14.202",
     "@types/node": "^18.19.10",
     "@types/react": "^18.2.48",
     "@types/stylis": "^4.2.0",
