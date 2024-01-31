@@ -249,6 +249,32 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
           root: { mb: 20, border: 'none' },
         },
       },
+      MuiToggleButtonGroup: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            borderRadius: '10px',
+            boxShadow: `0 4px 16px ${alpha(gray[400], 0.2)}`,
+            '& .Mui-selected': {
+              color: brand[500],
+            },
+            ...(theme.palette.mode === 'dark' && {
+              '& .Mui-selected': {
+                color: '#fff',
+              },
+              boxShadow: `0 4px 16px ${alpha(brand[700], 0.5)}`,
+            }),
+          }),
+        },
+      },
+      MuiToggleButton: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            textTransform: 'none',
+            borderRadius: '10px',
+            fontWeight: 600,
+          }),
+        },
+      },
       MuiButtonBase: {
         defaultProps: {
           disableTouchRipple: true,
@@ -263,40 +289,6 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
               outlineOffset: '2px',
             },
           },
-        },
-      },
-      MuiToggleButtonGroup: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            textTransform: 'none',
-            borderRadius: '10px',
-            border: '1px solid',
-            borderColor: brand[300],
-            boxShadow: `0 4px 16px ${alpha(brand[300], 0.3)}`,
-            backgroundColor: brand[50],
-            '& .Mui-selected': {
-              backgroundColor: brand[500],
-              color: brand[100],
-            },
-            ...(theme.palette.mode === 'dark' && {
-              borderColor: brand[700],
-              backgroundColor: brand[900],
-              boxShadow: `0 4px 16px ${alpha(brand[700], 0.5)}`,
-              '& .Mui-selected': {
-                color: brand[50],
-                backgroundColor: brand[500],
-              },
-            }),
-          }),
-        },
-      },
-      MuiToggleButton: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            textTransform: 'none',
-            borderRadius: '10px',
-            fontWeight: 600,
-          }),
         },
       },
       MuiButton: {
