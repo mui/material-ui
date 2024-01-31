@@ -11,6 +11,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 ### `@mui/material@5.15.7`
 
+- &#8203;<!-- 55 -->[Select] Fix to show notched outline when `displayEmpty` (#40865) @ZeeshanTamboli
 - &#8203;<!-- 51 -->[Avatar] Improve fallback when `children` is empty string or boolean (#40766) @mirus-ua
 - &#8203;<!-- 50 -->[AvatarGroup] Refactor component thereby fixing custom spacing logic (#40686) @ZeeshanTamboli
 
@@ -20,6 +21,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 ### `@mui/system@5.15.7`
 
+- &#8203;<!-- 56 -->[zero-runtime] Use lodash instead of its subpackages (#40868) @michaldudak
 - &#8203;<!-- 19 -->Add `applyStyles()` to theme (#40667) @siriwatknp
 - &#8203;<!-- 02 -->[zero] Use `theme.applyStyles` in the demo app (#40787) @siriwatknp
 - &#8203;<!-- 01 -->[zero] Add `useThemeProps` processor (#40648) @siriwatknp
@@ -46,6 +48,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 ### Docs
 
+- &#8203;<!-- 53 -->[material-ui] Fix typo on styled-components guide (#40858) @dancielos
 - &#8203;<!-- 49 -->[base-ui] Fix CSS vars from the plain CSS theme stylesheet (#40762) @zanivan
 - &#8203;<!-- 31 -->[material-ui][Divider] Remove light prop references from docs (#40782) @sai6855
 - &#8203;<!-- 30 -->Fix build @oliviertassinari
@@ -56,6 +59,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 ### Core
 
+- &#8203;<!-- 54 -->[website] Move `React Engineer - X` into the future roles section (#40867) @DanailH
 - &#8203;<!-- 52 -->[material-ui][test][Alert] Add action, icon, and iconMapping tests (#40682) @DiegoAndai
 - &#8203;<!-- 45 -->[blog] Lint duplicate h1 on the page (#40835) @oliviertassinari
 - &#8203;<!-- 44 -->[blog] MUI X v7 beta announcement blogpost (#40784) @joserodolfofreitas
