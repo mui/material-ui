@@ -226,7 +226,7 @@ const FontSizeComponent = styled('span')(({ theme }) => ({
 }));
 
 const ContextComponent = styled('div', {
-  shouldForwardProp: (prop) => prop !== 'contextColor',
+  shouldForwardProp: (prop) => !['contextColor', 'as'].includes(prop),
 })(({ theme, contextColor }) => ({
   margin: theme.spacing(0.5),
   padding: theme.spacing(1, 2),
@@ -268,6 +268,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
 
     setCopied(true);
   };
+  // console.log();
 
   return (
     <Dialog fullWidth maxWidth="sm" open={open} onClose={handleClose}>
@@ -309,7 +310,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
             <Grid container>
               <Grid item xs>
                 <Grid container justifyContent="center">
-                  <CanvasComponent component={selectedIcon.Component} />
+                  <CanvasComponent as={selectedIcon.Component} />
                 </Grid>
               </Grid>
               <Grid item xs>
@@ -338,31 +339,31 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                 </Grid>
                 <Grid container justifyContent="center">
                   <ContextComponent
-                    component={selectedIcon.Component}
+                    as={selectedIcon.Component}
                     contextColor="primary"
                   />
                   <ContextComponent
-                    component={selectedIcon.Component}
+                    as={selectedIcon.Component}
                     contextColor="primaryInverse"
                   />
                 </Grid>
                 <Grid container justifyContent="center">
                   <ContextComponent
-                    component={selectedIcon.Component}
+                    as={selectedIcon.Component}
                     contextColor="textPrimary"
                   />
                   <ContextComponent
-                    component={selectedIcon.Component}
+                    as={selectedIcon.Component}
                     contextColor="textPrimaryInverse"
                   />
                 </Grid>
                 <Grid container justifyContent="center">
                   <ContextComponent
-                    component={selectedIcon.Component}
+                    as={selectedIcon.Component}
                     contextColor="textSecondary"
                   />
                   <ContextComponent
-                    component={selectedIcon.Component}
+                    as={selectedIcon.Component}
                     contextColor="textSecondaryInverse"
                   />
                 </Grid>
