@@ -67,7 +67,7 @@ const createReactApp = (demoData: DemoData) => {
         start: 'react-scripts start',
         build: 'react-scripts build',
         test: 'react-scripts test',
-        eject: 'react-scripts ejec',
+        eject: 'react-scripts eject',
       },
       ...(demoData.codeVariant === 'TS' && {
         main: 'index.tsx',
@@ -162,7 +162,7 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
         start: 'react-scripts start',
         build: 'react-scripts build',
         test: 'react-scripts test',
-        eject: 'react-scripts ejec',
+        eject: 'react-scripts eject',
       },
       ...(templateData.codeVariant === 'TS' && {
         main: 'index.tsx',
