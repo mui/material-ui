@@ -48,6 +48,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 ### Docs
 
+- &#8203;<!-- 57 -->[material-ui] Fix the icon preview dialog (#40863) @danilo-leal
 - &#8203;<!-- 53 -->[material-ui] Fix typo on styled-components guide (#40858) @dancielos
 - &#8203;<!-- 49 -->[base-ui] Fix CSS vars from the plain CSS theme stylesheet (#40762) @zanivan
 - &#8203;<!-- 31 -->[material-ui][Divider] Remove light prop references from docs (#40782) @sai6855
