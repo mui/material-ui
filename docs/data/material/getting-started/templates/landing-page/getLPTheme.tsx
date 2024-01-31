@@ -225,7 +225,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
               borderBottomLeftRadius: 10,
               borderBottomRightRadius: 10,
             },
-            ...theme.applyDarkStyles({
+            ...(theme.palette.mode === 'dark' && {
               backgroundColor: gray[900],
               borderColor: gray[800],
             }),
@@ -238,7 +238,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
             border: 'none',
             borderRadius: 8,
             '&:hover': { backgroundColor: gray[100] },
-            ...theme.applyDarkStyles({
+            ...(theme.palette.mode === 'dark' && {
               '&:hover': { backgroundColor: gray[800] },
             }),
           }),
@@ -256,6 +256,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
         },
         styleOverrides: {
           root: {
+            boxSizing: 'border-box',
             transition: 'all 100ms ease-in',
             '&:focus-visible': {
               outline: `3px solid ${alpha(brand[500], 0.5)}`,
@@ -264,11 +265,50 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
           },
         },
       },
+      MuiToggleButtonGroup: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            textTransform: 'none',
+            borderRadius: '10px',
+            border: '1px solid',
+            borderColor: brand[300],
+            boxShadow: `0 4px 16px ${alpha(brand[300], 0.3)}`,
+            backgroundColor: brand[50],
+            '& .Mui-selected': {
+              backgroundColor: brand[500],
+              color: brand[100],
+            },
+            ...(theme.palette.mode === 'dark' && {
+              borderColor: brand[700],
+              backgroundColor: brand[900],
+              boxShadow: `0 4px 16px ${alpha(brand[700], 0.5)}`,
+              '& .Mui-selected': {
+                color: brand[50],
+                backgroundColor: brand[500],
+              },
+            }),
+          }),
+        },
+      },
+      MuiToggleButton: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            textTransform: 'none',
+            borderRadius: '10px',
+            fontWeight: 600,
+          }),
+        },
+      },
       MuiButton: {
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
+            boxSizing: 'border-box',
             boxShadow: 'none',
             borderRadius: '10px',
+            textTransform: 'none',
+            '&:active': {
+              transform: 'scale(0.98)',
+            },
             ...(ownerState.size === 'small' && {
               maxHeight: '32px',
             }),
@@ -304,11 +344,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
                 borderColor: brand[200],
               },
             }),
-            textTransform: 'none',
-            '&:active': {
-              transform: 'scale(0.98)',
-            },
-            ...theme.applyDarkStyles({
+            ...(theme.palette.mode === 'dark' && {
               ...(ownerState.variant === 'outlined' && {
                 backgroundColor: alpha(brand[600], 0.1),
                 borderColor: brand[700],
@@ -344,7 +380,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
                 boxShadow: `0 0 24px ${brand[100]}`,
               },
             }),
-            ...theme.applyDarkStyles({
+            ...(theme.palette.mode === 'dark' && {
               backgroundColor: alpha(gray[800], 0.6),
               border: `1px solid ${alpha(gray[600], 0.3)}`,
               ...(ownerState.variant === 'outlined' && {
@@ -381,7 +417,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
             '& .MuiChip-icon': {
               color: brand[500],
             },
-            ...theme.applyDarkStyles({
+            ...(theme.palette.mode === 'dark' && {
               background: `linear-gradient(to bottom right, ${brand[700]}, ${brand[900]})`,
               borderColor: `${alpha(brand[500], 0.5)}`,
               '&:hover': {
@@ -405,7 +441,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
         styleOverrides: {
           root: ({ theme }) => ({
             borderColor: `${alpha(gray[200], 0.8)}`,
-            ...theme.applyDarkStyles({
+            ...(theme.palette.mode === 'dark' && {
               borderColor: `${alpha(gray[700], 0.4)}`,
             }),
           }),
@@ -436,7 +472,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
               width: '100%',
               opacity: 1,
             },
-            ...theme.applyDarkStyles({
+            ...(theme.palette.mode === 'dark' && {
               color: brand[200],
             }),
           }),
@@ -448,7 +484,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
             borderRadius: '99px',
             color: gray[500],
             fontWeight: 500,
-            ...theme.applyDarkStyles({
+            ...(theme.palette.mode === 'dark' && {
               color: gray[300],
             }),
           }),
@@ -459,7 +495,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
           root: ({ theme }) => ({
             backgroundImage: 'none',
             backgroundColor: gray[100],
-            ...theme.applyDarkStyles({
+            ...(theme.palette.mode === 'dark' && {
               backgroundColor: alpha(gray[900], 0.6),
             }),
           }),
@@ -468,6 +504,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
       MuiSwitch: {
         styleOverrides: {
           root: ({ theme }) => ({
+            boxSizing: 'border-box',
             width: 36,
             height: 24,
             padding: 0,
@@ -492,7 +529,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
               height: 16,
               margin: 2,
             },
-            ...theme.applyDarkStyles({
+            ...(theme.palette.mode === 'dark' && {
               width: 36,
               height: 24,
               padding: 0,
@@ -534,11 +571,13 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
               color: 'white',
             },
             '& .MuiInputBase-input': {
+              boxSizing: 'border-box',
               '&::placeholder': {
                 opacity: 0.7,
               },
             },
             '& .MuiOutlinedInput-root': {
+              boxSizing: 'border-box',
               minWidth: 280,
               minHeight: 40,
               height: '100%',
@@ -560,8 +599,9 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
                 outlineColor: brand[200],
               },
             },
-            ...theme.applyDarkStyles({
+            ...(theme.palette.mode === 'dark' && {
               '& .MuiOutlinedInput-root': {
+                boxSizing: 'border-box',
                 minWidth: 280,
                 minHeight: 40,
                 height: '100%',

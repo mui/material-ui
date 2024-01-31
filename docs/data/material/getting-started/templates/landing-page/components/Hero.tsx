@@ -6,55 +6,11 @@ import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
-import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-import Switch from '@mui/material/Switch';
-
-import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
-import BlockRoundedIcon from '@mui/icons-material/BlockRounded';
 
 interface HeroProps {
   showCustomTheme: boolean;
   toggleCustomTheme: () => void;
-}
-
-interface ToggleCustomThemeProps {
-  showCustomTheme: boolean;
-  toggleCustomTheme: () => void;
-}
-
-function ToggleCustomTheme({
-  showCustomTheme,
-  toggleCustomTheme,
-}: ToggleCustomThemeProps) {
-  return (
-    <Stack
-      direction="row"
-      alignItems="center"
-      alignSelf="center"
-      spacing={1}
-      useFlexGap
-      sx={{
-        p: 1,
-        borderRadius: '999px',
-        border: '1px solid ',
-        borderColor: 'divider',
-        backgroundColor: 'background.default',
-      }}
-    >
-      <Tooltip title="Switch to Material Design" placement="left">
-        <BlockRoundedIcon sx={{ color: 'primary.light', fontSize: '20px' }} />
-      </Tooltip>
-      <Switch
-        checked={showCustomTheme}
-        onChange={toggleCustomTheme}
-        color="primary"
-      />
-      <Tooltip title="Switch to the custom theme" placement="right">
-        <AutoAwesomeRoundedIcon sx={{ color: 'primary.light', fontSize: '20px' }} />
-      </Tooltip>
-    </Stack>
-  );
 }
 
 export default function Hero({ showCustomTheme, toggleCustomTheme }: HeroProps) {
@@ -81,10 +37,6 @@ export default function Hero({ showCustomTheme, toggleCustomTheme }: HeroProps) 
         }}
       >
         <Stack spacing={2} useFlexGap sx={{ width: { xs: '100%', sm: '70%' } }}>
-          <ToggleCustomTheme
-            showCustomTheme={showCustomTheme}
-            toggleCustomTheme={toggleCustomTheme}
-          />
           <Typography
             component="h1"
             variant="h1"
