@@ -37,7 +37,7 @@ export default function ShowcaseContainer({
             position: 'relative',
             justifyContent: 'center',
             alignItems: 'center',
-            minHeight: 240,
+            minHeight: 220,
             p: 2,
           }}
         >
