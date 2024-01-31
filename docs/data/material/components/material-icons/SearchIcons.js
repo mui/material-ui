@@ -2,7 +2,6 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import MuiPaper from '@mui/material/Paper';
 import copy from 'clipboard-copy';
-import Box from '@mui/material/Box';
 import InputBase from '@mui/material/InputBase';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
