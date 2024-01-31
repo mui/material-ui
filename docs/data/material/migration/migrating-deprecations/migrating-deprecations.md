@@ -1,27 +1,27 @@
 # Migrating deprecations
 
-<p class="description">This guide explains how to migrate current deprecated APIs.</p>
+<p class="description">Learn how to migrate away from recently deprecated APIs before they become breaking changes.</p>
 
 ## Why you should migrate
 
-Deprecations are added as APIs are improved.
-Migrating to these improved APIs results in a better developer experience.
-The sooner you migrate, the smoother future major updates become.
+Features become deprecated over time as maintainers make improvements to the APIs.
+Migrating to these improved APIs results in a better developer experience, so it's in your best interest to stay up to date.
+Deprecated APIs often become breaking changes in subsequent major versions, so the sooner you migrate, the smoother the next major update will be.
 
 ## Migrating
 
-The easiest way to migrate is running the `deprecations/all` codemod:
+Material UI provides the `deprecations/all` codemod to help you stay up to date with minimal effort.
 
 ```bash
 npx @mui/codemod@latest deprecations/all <path>
 ```
 
 This command runs all the current [deprecations codemods](https://github.com/mui/material-ui/tree/master/packages/mui-codemod#deprecations), automatically migrating to the updated API.
-This codemod can be run multiple times to keep up with new deprecations.
+You can run this codemod as often as necessary to keep up with the latest changes.
 
 :::info
 
-If you need to migrate a deprecation manually, examples on how to do so are listed below for each current deprecation.
+If you need to manually migrate from a deprecated API, you can find examples below for all deprecations that have been added in Material UI v5.
 If you need to run a specific codemod, those are also linked below.
 
 :::
