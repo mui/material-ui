@@ -150,7 +150,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - &#8203;<!-- 19 -->[core] Polish issue templates @oliviertassinari
 - &#8203;<!-- 13 -->[docs-infra] Support markdown link in slots descriptions (#40679) @alexfauquette
 - &#8203;<!-- 08 -->[examples] Simplify Next.js example (#40661) @oliviertassinari
-- &#8203;<!-- 03 -->[website] Fix broken styles on Base UI page (#40683) @michaldudak
+- &#8203;<!-- 03 -->[website] Fix broken styles on Base UI page (#40683) @michaldudak
 
 All contributors of this release in alphabetical order: @alexfauquette, @anle9650, @ANUGLYPLUGIN, @brijeshb42, @danilo-leal, @devhik0, @DiegoAndai, @DonikaV, @joserodolfofreitas, @michaldudak, @mj12albert, @mnajdova, @mohamedsaiedd, @oliviertassinari, @pcorpet, @sai6855, @zanivan
 
