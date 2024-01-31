@@ -152,12 +152,12 @@ const openRolesData = [
           'You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
         url: '/careers/react-engineer-x-charts/',
       },
-      {
-        title: 'React Engineer - X',
-        description:
-          'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-        url: '/careers/react-engineer-x/',
-      },
+      // {
+      //   title: 'React Engineer - X',
+      //   description:
+      //     'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
+      //   url: '/careers/react-engineer-x/',
+      // },
       {
         title: 'Staff UI Engineer - Base UI',
         description:
@@ -206,12 +206,12 @@ const nextRolesData = [
           'You will join the MUI Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.',
         url: '/careers/fullstack-engineer/',
       },
-      // {
-      //   title: 'React Engineer - X',
-      //   description:
-      //     'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-      //   url: '/careers/react-engineer-x/',
-      // },
+      {
+        title: 'React Engineer - X',
+        description:
+          'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
+        url: '/careers/react-engineer-x/',
+      },
       {
         title: 'React Tech Lead - Core',
         description:
