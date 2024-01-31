@@ -26,13 +26,13 @@ function validateObjectKey(
     throw keyPath.buildCodeFrameError('Expressions in css object keys are not supported.');
   }
   if (
-    !identifiers.every((item: any) => {
+    !identifiers.every((item) => {
       const binding = item.scope.getBinding(item.node.name);
       if (!binding) {
         return false;
       }
       if (
-        binding.path.findParent((parent: any) => parent === parentCall) ||
+        binding.path.findParent((parent) => parent === parentCall) ||
         binding.path.scope === rootScope
       ) {
         return true;
@@ -72,7 +72,7 @@ function traverseObjectExpression(
         const identifiers = findIdentifiers([value], 'reference');
         const themeIdentifiers: NodePath<Identifier>[] = [];
         const localIdentifiers: NodePath<Identifier>[] = [];
-        identifiers.forEach((id: any) => {
+        identifiers.forEach((id) => {
           if (!id.isIdentifier()) {
             return;
           }
@@ -80,7 +80,7 @@ function traverseObjectExpression(
           if (!binding) {
             return;
           }
-          if (binding.path.findParent((parent: any) => parent === parentCall)) {
+          if (binding.path.findParent((parent) => parent === parentCall)) {
             themeIdentifiers.push(id);
           } else if (binding.scope !== rootScope) {
             localIdentifiers.push(id);
@@ -101,7 +101,7 @@ function traverseObjectExpression(
     } else if (property.isSpreadElement()) {
       const identifiers = findIdentifiers([property.get('argument')]);
       if (
-        !identifiers.every((id: any) => {
+        !identifiers.every((id) => {
           const binding = property.scope.getBinding(id.node.name);
           if (!binding || binding.scope !== rootScope) {
             return false;

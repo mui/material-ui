@@ -95,7 +95,6 @@ export class GenerateAtomicsProcessor extends BaseProcessor {
   }
 
   doRuntimeReplacement(): void {
-    console.log(this.runtimeConfig);
     if (!this.runtimeConfig) {
       this.doEvaltimeReplacement();
       return;

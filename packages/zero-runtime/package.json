@@ -47,7 +47,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "linaria": {
+  "wyw-in-js": {
     "tags": {
       "styled": "./exports/styled.js",
       "default": "./exports/styled.js",

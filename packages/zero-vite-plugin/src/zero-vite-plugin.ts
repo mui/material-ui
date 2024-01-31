@@ -10,11 +10,6 @@ import path from 'node:path';
 import type { ModuleNode, Plugin, ResolvedConfig, ViteDevServer, FilterPattern } from 'vite';
 import { optimizeDeps, createFilter } from 'vite';
 
-// import { transform, slugify, TransformCacheCollection } from '@linaria/babel-preset';
-// import type { PluginOptions, Preprocessor } from '@linaria/babel-preset';
-// import { linariaLogger } from '@linaria/logger';
-// import type { IPerfMeterOptions } from '@linaria/utils';
-// import { createPerfMeter, getFileIdx, syncResolve } from '@linaria/utils';
 import { slugify, logger as wywLogger, syncResolve } from '@wyw-in-js/shared';
 import {
   TransformCacheCollection,

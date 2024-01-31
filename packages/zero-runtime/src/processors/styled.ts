@@ -15,6 +15,7 @@ import {
   type Replacements,
   type Rules,
 } from '@wyw-in-js/shared';
+import { CSSObject } from '@emotion/serialize';
 import type { PluginCustomOptions } from '../utils/cssFnValueToVariable';
 import { cssFnValueToVariable } from '../utils/cssFnValueToVariable';
 import { processCssObject } from '../utils/processCssObject';

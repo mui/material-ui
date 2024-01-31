@@ -14,9 +14,6 @@ import {
   createUnplugin,
   UnpluginOptions,
 } from 'unplugin';
-// import type { PluginOptions as LinariaPluginOptions, Preprocessor } from '@linaria/babel-preset';
-// import { TransformCacheCollection, transform } from '@linaria/babel-preset';
-// import { createPerfMeter, asyncResolveFallback, slugify } from '@linaria/utils';
 import {
   preprocessor as basePreprocessor,
   generateTokenCss,
