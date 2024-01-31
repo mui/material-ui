@@ -374,7 +374,7 @@ describe('<Dialog />', () => {
         </Dialog>,
       );
 
-      expect(getByTestId('paper').nodeName).to.equal('a');
+      expect(getByTestId('paper').nodeName.toLowerCase()).to.equal('a');
     });
   });
 

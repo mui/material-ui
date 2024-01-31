@@ -311,7 +311,6 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
             aria-labelledby={ariaLabelledby}
             {...paperProps}
             className={clsx(classes.paper, paperProps.className)}
-            ownerState={ownerState}
           >
             <DialogContext.Provider value={dialogContextValue}>{children}</DialogContext.Provider>
           </PaperSlot>
