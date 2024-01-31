@@ -68,7 +68,13 @@ Heading.propTypes = {
 };
 
 export default function ApiPage(props) {
-  const { descriptions, disableAd = false, pageContent, defaultLayout = 'table' } = props;
+  const {
+    descriptions,
+    disableAd = false,
+    pageContent,
+    defaultLayout = 'table',
+    layoutStorageKey,
+  } = props;
   const t = useTranslate();
   const userLanguage = useUserLanguage();
 
@@ -258,6 +264,7 @@ export default function ApiPage(props) {
           componentName={pageContent.name}
           spreadHint={spreadHint}
           defaultLayout={defaultLayout}
+          layoutStorageKey={layoutStorageKey?.props}
         />
         {cssComponent && (
           <React.Fragment>
@@ -316,6 +323,7 @@ export default function ApiPage(props) {
             t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink)
           }
           defaultLayout={defaultLayout}
+          layoutStorageKey={layoutStorageKey?.slots}
         />
         <ClassesSection
           componentClasses={componentClasses}
@@ -324,6 +332,7 @@ export default function ApiPage(props) {
           spreadHint={t('api-docs.classesDescription')}
           styleOverridesLink={styleOverridesLink}
           defaultLayout={defaultLayout}
+          layoutStorageKey={layoutStorageKey?.classes}
           displayClassKeys
         />
       </MarkdownElement>
@@ -340,6 +349,11 @@ ApiPage.propTypes = {
   defaultLayout: PropTypes.oneOf(['collapsed', 'expanded', 'table']),
   descriptions: PropTypes.object.isRequired,
   disableAd: PropTypes.bool,
+  layoutStorageKey: PropTypes.shape({
+    props: PropTypes.string,
+    slots: PropTypes.string,
+    classes: PropTypes.string,
+  }),
   pageContent: PropTypes.object.isRequired,
 };
 

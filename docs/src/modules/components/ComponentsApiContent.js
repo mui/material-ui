@@ -49,7 +49,7 @@ Heading.propTypes = {
 };
 
 export default function ComponentsApiContent(props) {
-  const { descriptions, pageContents, defaultLayout = 'table' } = props;
+  const { descriptions, pageContents, defaultLayout = 'table', layoutStorageKey } = props;
   const t = useTranslate();
   const userLanguage = useUserLanguage();
   const router = useRouter();
@@ -151,6 +151,7 @@ export default function ComponentsApiContent(props) {
             level="h3"
             titleHash={`${componentNameKebabCase}-props`}
             defaultLayout={defaultLayout}
+            layoutStorageKey={layoutStorageKey?.props}
           />
           <br />
           {cssComponent && (
@@ -218,6 +219,7 @@ export default function ComponentsApiContent(props) {
               t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink)
             }
             defaultLayout={defaultLayout}
+            layoutStorageKey={layoutStorageKey?.slots}
           />
           <ClassesSection
             componentClasses={componentClasses}
@@ -227,6 +229,7 @@ export default function ComponentsApiContent(props) {
             titleHash={`${componentNameKebabCase}-classes`}
             level="h3"
             defaultLayout={defaultLayout}
+            layoutStorageKey={layoutStorageKey?.classes}
           />
         </MarkdownElement>
         <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">
@@ -242,6 +245,11 @@ export default function ComponentsApiContent(props) {
 ComponentsApiContent.propTypes = {
   defaultLayout: PropTypes.oneOf(['collapsed', 'expanded', 'table']),
   descriptions: PropTypes.object.isRequired,
+  layoutStorageKey: PropTypes.shape({
+    props: PropTypes.string,
+    slots: PropTypes.string,
+    classes: PropTypes.string,
+  }),
   pageContents: PropTypes.object.isRequired,
 };
 
