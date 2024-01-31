@@ -4,7 +4,7 @@
 
 <!-- generated comparing v5.15.6..master -->
 
-_Jan 30, 2024_
+_Jan 31, 2024_
 
 A big thanks to the 21 contributors who made this release possible.
 This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
