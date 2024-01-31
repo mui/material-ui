@@ -63,7 +63,8 @@ function prepareMarkdown(config) {
       const { filename, markdown, userLanguage } = translation;
       const headers = getHeaders(markdown);
       const location = headers.filename || `/${fileRelativeContext}/${filename}`;
-      const title = headers.title || getTitle(markdown);
+      const markdownH1 = getTitle(markdown);
+      const title = headers.title || markdownH1;
       const description = headers.description || getDescription(markdown);
 
       if (title == null || title === '') {
@@ -102,9 +103,8 @@ function prepareMarkdown(config) {
         contents.push(`
 ## Unstyled
 
-:::success
-[Base UI](/base-ui/) provides a headless ("unstyled") version of this [${title}](${headers.unstyled}). Try it if you need more flexibility in customization and a smaller bundle size.
-:::
+A version of this component is available without any styles: [Base UI ${markdownH1}](${headers.unstyled}).
+Use this component for heavily customization or smaller bundle size.
         `);
       }
 
