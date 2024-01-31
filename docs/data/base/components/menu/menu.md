@@ -17,7 +17,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 
 ## Introduction
 
-The Base UI Dropdown Menu is implemented using a collection of related components:
+The Base UI Dropdown Menu is implemented using a collection of related components:
 
 - Dropdown - The outermost container that houses all Menu components.
 - Menu Button - The button that toggles the visibility of the Menu.

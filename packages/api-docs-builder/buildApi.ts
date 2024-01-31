@@ -189,8 +189,8 @@ async function buildSingleProject(
     source = projectSettings.onWritingManifestFile(builds, source);
   }
 
-  writePrettifiedFile(apiPagesManifestPath, source);
+  await writePrettifiedFile(apiPagesManifestPath, source);
 
-  projectSettings.onCompleted?.();
+  await projectSettings.onCompleted?.();
   return builds;
 }

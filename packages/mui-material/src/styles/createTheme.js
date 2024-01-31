@@ -43,21 +43,6 @@ function createTheme(options = {}, ...args) {
     typography: createTypography(palette, typographyInput),
     transitions: createTransitions(transitionsInput),
     zIndex: { ...zIndex },
-    applyDarkStyles(css) {
-      if (this.vars) {
-        // If CssVarsProvider is used as a provider,
-        // returns ':where([data-mui-color-scheme="light|dark"]) &'
-        const selector = this.getColorSchemeSelector('dark').replace(/(\[[^\]]+\])/, ':where($1)');
-        return {
-          [selector]: css,
-        };
-      }
-      if (this.palette.mode === 'dark') {
-        return css;
-      }
-
-      return {};
-    },
   });
 
   muiTheme = deepmerge(muiTheme, other);
