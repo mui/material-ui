@@ -1,4 +1,4 @@
-# Migrating deprecations
+# Migrating from deprecated APIs
 
 <p class="description">Learn how to migrate away from recently deprecated APIs before they become breaking changes.</p>
 
@@ -30,7 +30,7 @@ If you need to run a specific codemod, those are also linked below.
 
 ### TransitionComponent
 
-Deprecated in favor of `slots.transition` ([Codemod](https://github.com/mui/material-ui/tree/master/packages/mui-codemod#accordion-props)).
+The Accordion's `TransitionComponent` was deprecated in favor of `slots.transition` ([Codemod](https://github.com/mui/material-ui/tree/master/packages/mui-codemod#accordion-props)):
 
 ```diff
  <Accordion
@@ -41,7 +41,7 @@ Deprecated in favor of `slots.transition` ([Codemod](https://github.com/mui/mate
 
 ### TransitionProps
 
-Deprecated in favor of `slotProps.transition` ([Codemod](https://github.com/mui/material-ui/tree/master/packages/mui-codemod#accordion-props)).
+The Accordion's `TransitionProps` was deprecated in favor of `slotProps.transition` ([Codemod](https://github.com/mui/material-ui/tree/master/packages/mui-codemod#accordion-props)):
 
 ```diff
  <Accordion
