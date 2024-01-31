@@ -91,6 +91,21 @@ A combination of all deprecations.
 npx @mui/codemod@latest deprecations/accordion-props <path>
 ```
 
+#### `dialog-props`
+
+```diff
+ <Dialog
+-    TransitionComponent={CustomTransition}
+-    TransitionProps={{ unmountOnExit: true }}
++    slots={{ transition: CustomTransition }}
++    slotProps={{ transition: { unmountOnExit: true } }}
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/dialog-props <path>
+```
+
 ### v5.0.0
 
 #### `base-use-named-exports`
