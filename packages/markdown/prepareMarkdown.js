@@ -104,7 +104,7 @@ function prepareMarkdown(config) {
 ## Unstyled
 
 A version of this component is available without any styles: [Base UI ${markdownH1}](${headers.unstyled}).
-Use this component for heavily customization or smaller bundle size.
+Use this component for heavy customizations or smaller bundle sizes.
         `);
       }
 
