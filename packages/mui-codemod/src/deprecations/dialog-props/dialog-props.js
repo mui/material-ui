@@ -186,31 +186,6 @@ export default function transformer(file, api, options) {
     }
   });
 
-  // root.find(j.ObjectProperty).forEach((path) => {
-  //   if (
-  //     path.parent?.parent?.parent?.parent?.node.key?.name === 'MuiDialog' &&
-  //     ['PaperProps', 'TransitionProps'].includes(path.node.key.name)
-  //   ) {
-  //     if (!isSlotPropsCreated) {
-  //       path.replace(
-  //         j.property(
-  //           'init',
-  //           j.identifier('slotProps'),
-  //           j.objectExpression(
-  //             [
-  //               TransitionProps
-  //                 ? j.objectProperty(j.identifier('transition'), TransitionProps)
-  //                 : TransitionProps,
-  //               PaperProps ? j.objectProperty(j.identifier('paper'), PaperProps) : null,
-  //             ].filter(Boolean),
-  //           ),
-  //         ),
-  //       );
-  //       isSlotPropsCreated = true;
-  //     }
-  //   }
-  // });
-
   root.find(j.ObjectExpression).forEach((path) => {
     if (path.node.properties) {
       path.node.properties = path.node.properties.filter(
