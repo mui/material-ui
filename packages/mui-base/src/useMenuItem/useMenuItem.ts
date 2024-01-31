@@ -47,6 +47,7 @@ export function useMenuItem(params: UseMenuItemParameters): UseMenuItemReturnVal
     rootRef: externalRef,
     label,
     disableFocusOnHover = false,
+    disableCloseOnClick = false,
   } = params;
 
   const id = useId(idParam);
@@ -86,10 +87,12 @@ export function useMenuItem(params: UseMenuItemParameters): UseMenuItemReturnVal
         return;
       }
 
-      dispatch({
-        type: DropdownActionTypes.close,
-        event,
-      });
+      if (!disableCloseOnClick) {
+        dispatch({
+          type: DropdownActionTypes.close,
+          event,
+        });
+      }
     };
 
   const getOwnHandlers = <ExternalProps extends EventHandlers>(
