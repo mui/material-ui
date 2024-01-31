@@ -25,7 +25,6 @@ export interface UseMenuItemParameters {
   id?: string;
   label?: string;
   onClick?: React.MouseEventHandler<any>;
-  disableCloseOnClick?: boolean;
   rootRef: React.Ref<Element>;
   /**
    * If `true`, the menu item won't receive focus when the mouse moves over it.
@@ -33,6 +32,12 @@ export interface UseMenuItemParameters {
    * @default false
    */
   disableFocusOnHover?: boolean;
+  /**
+   * If `true`, the menu won't close when menu item is clicked.
+   *
+   * @default false
+   */
+  disableCloseOnClick?: boolean;
 }
 
 export interface UseMenuItemReturnValue {

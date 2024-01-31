@@ -4,6 +4,10 @@
       "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" },
       "required": true
     },
+    "disableCloseOnClick": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false"
+    },
     "disabled": { "type": { "name": "boolean", "description": "boolean" } },
     "disableFocusOnHover": {
       "type": { "name": "boolean", "description": "boolean" },

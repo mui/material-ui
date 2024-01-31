@@ -38,6 +38,7 @@ const InnerMenuItem = React.memo(
       id,
       slotProps = {},
       slots = {},
+      disableCloseOnClick = false,
       ...other
     } = props;
 
@@ -46,6 +47,7 @@ const InnerMenuItem = React.memo(
       disabled: disabledProp,
       rootRef: forwardedRef,
       label,
+      disableCloseOnClick,
     });
 
     const ownerState: MenuItemOwnerState = { ...props, disabled, focusVisible, highlighted };
@@ -109,6 +111,12 @@ MenuItem.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * If `true`, the menu won't close when menu item is clicked.
+   *
+   * @default false
+   */
+  disableCloseOnClick: PropTypes.bool,
   /**
    * If `true`, the menu item will be disabled.
    * @default false

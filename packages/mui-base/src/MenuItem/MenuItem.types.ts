@@ -46,6 +46,12 @@ export interface MenuItemOwnProps {
    * @default false
    */
   disableFocusOnHover?: boolean;
+  /**
+   * If `true`, the menu won't close when menu item is clicked.
+   *
+   * @default false
+   */
+  disableCloseOnClick?: boolean;
 }
 
 export interface MenuItemSlots {

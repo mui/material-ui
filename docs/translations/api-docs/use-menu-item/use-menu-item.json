@@ -1,6 +1,9 @@
 {
   "hookDescription": "",
   "parametersDescriptions": {
+    "disableCloseOnClick": {
+      "description": "If <code>true</code>, the menu won&#39;t close when menu item is clicked."
+    },
     "disableFocusOnHover": {
       "description": "If <code>true</code>, the menu item won&#39;t receive focus when the mouse moves over it."
     }
