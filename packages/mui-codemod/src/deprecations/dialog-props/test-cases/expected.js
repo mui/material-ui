@@ -1,36 +1,50 @@
-import Accordion from '@mui/material/Accordion';
-import { Accordion as MyAccordion } from '@mui/material';
+import Dialog from '@mui/material/Dialog';
+import { Dialog as MyDialog } from '@mui/material';
 
-<Accordion slots={{
-  transition: CustomTransition
-}} slotProps={{
-  transition: { unmountOnExit: true }
-}} />;
-<MyAccordion slots={{
-  transition: CustomTransition
-}} slotProps={{
-  transition: transitionVars
-}} />;
-<Accordion
+<Dialog
+  slots={{
+    transition: CustomTransition,
+    paper: CustomPaper
+  }}
+  slotProps={{
+    transition: { unmountOnExit: true },
+    paper: { className: 'paper' }
+  }} />;
+<MyDialog
+  slots={{
+    transition: CustomTransition,
+    paper: CustomTransition
+  }}
+  slotProps={{
+    transition: transitionVars,
+    paper: paperProps
+  }} />;
+<Dialog
   slots={{
     root: 'div',
-    transition: CustomTransition
+    transition: CustomTransition,
+    paper: CustomPaper
   }}
   slotProps={{
     root: { className: 'foo' },
-    transition: { unmountOnExit: true }
+    transition: { unmountOnExit: true },
+    paper: { className: 'paper' }
   }} />;
-<MyAccordion
+<MyDialog
   slots={{
     ...outerSlots,
-    transition: CustomTransition
+    transition: CustomTransition,
+    paper: CustomTransition
   }}
   slotProps={{
     ...outerSlotProps,
-    transition: { unmountOnExit: true }
+    transition: transitionVars,
+    paper: paperProps
   }} />;
 // should skip non MUI components
-<NonMuiAccordion
+<NonMuiDialog
   TransitionComponent={CustomTransition}
   TransitionProps={{ unmountOnExit: true }}
+  PaperComponent={CustomPaper}
+  PaperProps={{ className: 'paper' }}
 />;

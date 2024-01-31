@@ -1,8 +1,18 @@
 import Dialog from '@mui/material/Dialog';
 import { Dialog as MyDialog } from '@mui/material';
 
-<Dialog TransitionComponent={CustomTransition} TransitionProps={{ unmountOnExit: true }} />;
-<MyDialog TransitionComponent={CustomTransition} TransitionProps={transitionVars} />;
+<Dialog
+  TransitionComponent={CustomTransition}
+  TransitionProps={{ unmountOnExit: true }}
+  PaperComponent={CustomPaper}
+  PaperProps={{ className: 'paper' }}
+/>;
+<MyDialog
+  TransitionComponent={CustomTransition}
+  TransitionProps={transitionVars}
+  PaperComponent={CustomTransition}
+  PaperProps={paperProps}
+/>;
 <Dialog
   slots={{
     root: 'div',
@@ -12,6 +22,8 @@ import { Dialog as MyDialog } from '@mui/material';
     root: { className: 'foo' },
   }}
   TransitionProps={{ unmountOnExit: true }}
+  PaperComponent={CustomPaper}
+  PaperProps={{ className: 'paper' }}
 />;
 <MyDialog
   slots={{
@@ -22,6 +34,13 @@ import { Dialog as MyDialog } from '@mui/material';
     ...outerSlotProps,
   }}
   TransitionProps={transitionVars}
+  PaperComponent={CustomTransition}
+  PaperProps={paperProps}
 />;
 // should skip non MUI components
-<NonMuiDialog TransitionComponent={CustomTransition} TransitionProps={{ unmountOnExit: true }} />;
+<NonMuiDialog
+  TransitionComponent={CustomTransition}
+  TransitionProps={{ unmountOnExit: true }}
+  PaperComponent={CustomPaper}
+  PaperProps={{ className: 'paper' }}
+/>;

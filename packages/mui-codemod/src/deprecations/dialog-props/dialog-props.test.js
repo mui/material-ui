@@ -24,6 +24,12 @@ describe('@mui/codemod', () => {
         const expected = read('./test-cases/expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
+
+      it('actual.js should not be equal to expected.js', () => {
+        const actual = read('./test-cases/actual.js');
+        const expected = read('./test-cases/expected.js');
+        expect(actual).to.not.equal(expected);
+      });
     });
 
     describe('[theme] dialog-props', () => {
@@ -47,6 +53,12 @@ describe('@mui/codemod', () => {
 
         const expected = read('./test-cases/theme.expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+
+      it('actual.theme.js should not be equal to expected.theme.js', () => {
+        const actual = read('./test-cases/actual.theme.js');
+        const expected = read('./test-cases/expected.theme.js');
+        expect(actual).to.not.equal(expected);
       });
     });
   });
