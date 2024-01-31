@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "5.15.6",
+  "version": "5.15.7",
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -128,7 +128,7 @@
     "babel-plugin-react-remove-properties": "^0.3.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "chalk": "^5.3.0",
-    "compression-webpack-plugin": "^10.0.0",
+    "compression-webpack-plugin": "^11.0.0",
     "concurrently": "^8.2.2",
     "cpy-cli": "^5.0.0",
     "cross-env": "^7.0.3",
@@ -150,7 +150,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
-    "globby": "^13.2.2",
+    "globby": "^14.0.0",
     "karma": "^6.4.2",
     "karma-browserstack-launcher": "~1.6.0",
     "karma-chrome-launcher": "^3.2.0",
