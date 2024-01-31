@@ -134,3 +134,11 @@ To set minimum and maximum sizes, add the `minRows` and `maxRows` props.
 The following demo shows how to insert a Textarea Autosize component into an Input so that its height grows with the length of the content:
 
 {{"demo": "InputMultilineAutosize.js"}}
+
+## Common examples
+
+### OTP Input
+
+The following demo shows how to build a one-time password component using `Input`.
+
+{{"demo": "OTPInput.js"}}

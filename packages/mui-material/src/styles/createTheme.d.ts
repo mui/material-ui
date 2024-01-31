@@ -45,7 +45,6 @@ export interface Theme extends BaseTheme {
   components?: Components<BaseTheme>;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
   unstable_sxConfig: SxConfig;
-  applyDarkStyles: (css: CSSObject) => CSSObject;
 }
 
 /**

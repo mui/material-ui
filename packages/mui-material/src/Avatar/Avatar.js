@@ -69,7 +69,7 @@ const AvatarRoot = styled('div', {
             }
           : {
               backgroundColor: theme.palette.grey[400],
-              ...theme.applyDarkStyles({ backgroundColor: theme.palette.grey[600] }),
+              ...theme.applyStyles('dark', { backgroundColor: theme.palette.grey[600] }),
             }),
       },
     },
@@ -183,7 +183,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
         {...imgProps}
       />
     );
-  } else if (childrenProp != null) {
+  } else if (childrenProp != null && childrenProp !== '' && typeof childrenProp !== 'boolean') {
     children = childrenProp;
   } else if (hasImg && alt) {
     children = alt[0];

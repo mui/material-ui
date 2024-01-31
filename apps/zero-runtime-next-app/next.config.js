@@ -3,7 +3,18 @@
 const { withZeroPlugin } = require('@mui/zero-next-plugin');
 const { experimental_extendTheme: extendTheme } = require('@mui/material/styles');
 
-const theme = extendTheme({ cssVarPrefix: 'app' });
+const theme = extendTheme({
+  cssVarPrefix: 'app',
+  components: {
+    MuiBadge: {
+      defaultProps: {
+        color: 'error',
+      },
+    },
+  },
+});
+theme.getColorSchemeSelector = (targetColorScheme) =>
+  `[data-mui-color-scheme="${targetColorScheme}"] &`;
 
 /**
  * @typedef {import('@mui/zero-next-plugin').ZeroPluginConfig} ZeroPluginConfig

@@ -9,8 +9,8 @@ import {
   unstable_createGetCssVar as systemCreateGetCssVar,
   unstable_styleFunctionSx as styleFunctionSx,
   SxConfig,
-  CSSObject,
 } from '@mui/system';
+import { unstable_applyStyles as applyStyles } from '@mui/system/createTheme';
 import defaultSxConfig from './sxConfig';
 import colors from '../colors';
 import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
@@ -565,23 +565,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     cssVarPrefix,
     getCssVar,
     spacing: createSpacing(spacing),
-    applyDarkStyles(css: CSSObject) {
-      if ((this as Theme).vars) {
-        // If CssVarsProvider is used as a provider,
-        // returns ':where([data-mui-color-scheme="light|dark"]) &'
-        const selector = (this as Theme)
-          .getColorSchemeSelector('dark')
-          .replace(/(\[[^\]]+\])/, ':where($1)');
-        return {
-          [selector]: css,
-        };
-      }
-      if ((this as Theme).palette.mode === 'dark') {
-        return css;
-      }
-
-      return {};
-    },
   } as unknown as Theme; // Need type casting due to module augmentation inside the repo
 
   /**
@@ -680,6 +663,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   };
 
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
+  theme.applyStyles = applyStyles;
 
   return theme;
 }

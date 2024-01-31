@@ -83,7 +83,7 @@ const MenuItem = styled(BaseMenuItem)(
     border-bottom: none;
   }
 
-  &.${menuItemClasses.focusVisible} {
+  &:focus {
     outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
@@ -91,11 +91,6 @@ const MenuItem = styled(BaseMenuItem)(
 
   &.${menuItemClasses.disabled} {
     color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
-  }
-
-  &:hover:not(.${menuItemClasses.disabled}) {
-    background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[50]};
-    color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
   `,
 );
