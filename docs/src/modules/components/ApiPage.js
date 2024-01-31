@@ -350,9 +350,9 @@ ApiPage.propTypes = {
   descriptions: PropTypes.object.isRequired,
   disableAd: PropTypes.bool,
   layoutStorageKey: PropTypes.shape({
+    classes: PropTypes.string,
     props: PropTypes.string,
     slots: PropTypes.string,
-    classes: PropTypes.string,
   }),
   pageContent: PropTypes.object.isRequired,
 };

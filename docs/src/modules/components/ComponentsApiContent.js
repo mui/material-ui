@@ -246,9 +246,9 @@ ComponentsApiContent.propTypes = {
   defaultLayout: PropTypes.oneOf(['collapsed', 'expanded', 'table']),
   descriptions: PropTypes.object.isRequired,
   layoutStorageKey: PropTypes.shape({
+    classes: PropTypes.string,
     props: PropTypes.string,
     slots: PropTypes.string,
-    classes: PropTypes.string,
   }),
   pageContents: PropTypes.object.isRequired,
 };
