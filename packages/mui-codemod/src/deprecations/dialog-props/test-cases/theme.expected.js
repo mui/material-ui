@@ -3,13 +3,13 @@ fn({
     defaultProps: {
       slots: {
         transition: CustomTransition,
-        paper: CustomPaper,
+        paper: CustomPaper
       },
 
       slotProps: {
         transition: { unmountOnExit: true },
-        paper: { className: 'paper' },
-      },
+        paper: { className: 'paper' }
+      }
     },
   },
 });

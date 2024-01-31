@@ -56,8 +56,8 @@ describe('@mui/codemod', () => {
       });
 
       it('actual.theme.js should not be equal to expected.theme.js', () => {
-        const actual = read('./test-cases/actual.theme.js');
-        const expected = read('./test-cases/expected.theme.js');
+        const actual = read('./test-cases/theme.actual.js');
+        const expected = read('./test-cases/theme.expected.js');
         expect(actual).to.not.equal(expected);
       });
     });

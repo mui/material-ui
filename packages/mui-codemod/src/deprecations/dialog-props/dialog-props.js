@@ -123,13 +123,43 @@ export default function transformer(file, api, options) {
     }
   });
 
+  let TransitionComponent;
+  let PaperComponent;
+  let TransitionProps;
+  let PaperProps;
+
+  root.find(j.ObjectProperty).forEach((path) => {
+    if (
+      path.parent?.parent?.parent?.parent?.node.key?.name === 'MuiDialog' &&
+      ['TransitionComponent', 'PaperComponent', 'PaperProps', 'TransitionProps'].includes(
+        path.node.key.name,
+      )
+    ) {
+      if (path.node.key.name === 'TransitionComponent') {
+        TransitionComponent = path.node.value;
+      }
+      if (path.node.key.name === 'PaperComponent') {
+        PaperComponent = path.node.value;
+      }
+      if (path.node.key.name === 'TransitionProps') {
+        TransitionProps = path.node.value;
+      }
+      if (path.node.key.name === 'PaperProps') {
+        PaperProps = path.node.value;
+      }
+    }
+  });
+
   root.find(j.ObjectProperty, { key: { name: 'TransitionComponent' } }).forEach((path) => {
     if (path.parent?.parent?.parent?.parent?.node.key?.name === 'MuiDialog') {
       path.replace(
         j.property(
           'init',
           j.identifier('slots'),
-          j.objectExpression([j.objectProperty(j.identifier('transition'), path.node.value)]),
+          j.objectExpression([
+            j.objectProperty(j.identifier('transition'), TransitionComponent),
+            j.objectProperty(j.identifier('paper'), PaperComponent),
+          ]),
         ),
       );
     }
@@ -141,32 +171,22 @@ export default function transformer(file, api, options) {
         j.property(
           'init',
           j.identifier('slotProps'),
-          j.objectExpression([j.objectProperty(j.identifier('transition'), path.node.value)]),
+          j.objectExpression([
+            j.objectProperty(j.identifier('transition'), TransitionProps),
+            j.objectProperty(j.identifier('paper'), PaperProps),
+          ]),
         ),
       );
     }
   });
 
-  root.find(j.ObjectProperty, { key: { name: 'PaperComponent' } }).forEach((path) => {
-    if (path.parent?.parent?.parent?.parent?.node.key?.name === 'MuiDialog') {
-      path.replace(
-        j.property(
-          'init',
-          j.identifier('slots'),
-          j.objectExpression([j.objectProperty(j.identifier('paper'), path.node.value)]),
-        ),
-      );
-    }
-  });
-
-  root.find(j.ObjectProperty, { key: { name: 'PaperProps' } }).forEach((path) => {
-    if (path.parent?.parent?.parent?.parent?.node.key?.name === 'MuiDialog') {
-      path.replace(
-        j.property(
-          'init',
-          j.identifier('slotProps'),
-          j.objectExpression([j.objectProperty(j.identifier('paper'), path.node.value)]),
-        ),
+  root.find(j.ObjectExpression).forEach((path) => {
+    if (path.node.properties) {
+      path.node.properties = path.node.properties.filter(
+        (prop) =>
+          !['PaperComponent', 'TransitionComponent', 'TransitionProps', 'PaperProps'].includes(
+            prop.key.name,
+          ),
       );
     }
   });
