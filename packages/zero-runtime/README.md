@@ -6,19 +6,18 @@ A zero-runtime CSS-in-JS library that extracts the colocated css to it's own css
 
 Zero-runtime supports Next.js and Vite with future support for more bundlers—you must install the corresponding plugin, as shown below.
 
-### Installation
+The package currently has a dependency on `@mui/material` to initialize the theme object, but this is only at build time. There won't be any Material UI code at runtime if you're not using it otherwise—in that case, you can move it to dev dependencies instead (as shown with the plugin packages).
+
+### Next.js
+
+#### Installation
 
 ```bash
 npm install @mui/zero-runtime @mui/material
-# For Next.js
 npm install --save-dev @mui/zero-next-plugin
-# For Vite
-npm install --save-dev @mui/zero-vite-plugin
 ```
 
-The package currently has a dependency on `@mui/material` to initialize the theme object, but this is only at build time. There won't be any Material UI code at runtime if you're not using it otherwise—in that case, you can move it to dev dependencies instead (as shown with the plugin packages).
-
-#### Next.js
+#### Configuration
 
 In your `next.config.js` file,
 
@@ -43,7 +42,16 @@ module.exports = withZeroPlugin(nextConfig, {
 });
 ```
 
-#### Vite
+### Vite
+
+#### Installation
+
+```bash
+npm install @mui/zero-runtime @mui/material
+npm install --save-dev @mui/zero-vite-plugin
+```
+
+#### Configuration
 
 In your vite config file,
 
@@ -113,7 +121,8 @@ The `styled` function must account for all combinations of props. If you're crea
 
 ```jsx
 const Button = styled.button(() => ({
-  // ... base css styles to be applied across all prop values.
+  border: 'none',
+  // ... other base css styles to be applied across all prop values.
   variants: [
     {
       // prop combinations
