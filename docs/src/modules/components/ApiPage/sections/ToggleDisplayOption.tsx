@@ -157,8 +157,9 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
         value="collapsed"
         aria-label="colapsed list"
         title="Collapse list view"
-        data-ga-event-action="collapsed"
-        data-ga-event-category={sectionType}
+        data-ga-event-category="layout"
+        data-ga-event-action={sectionType}
+        data-ga-event-label="collapsed"
       >
         <ReorderRoundedIcon size="small" />
       </TooltipToggleButton>
@@ -166,8 +167,9 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
         value="expanded"
         aria-label="expanded list"
         title="Expand list view"
-        data-ga-event-action="expanded"
-        data-ga-event-category={sectionType}
+        data-ga-event-category="layout"
+        data-ga-event-action={sectionType}
+        data-ga-event-label="expanded"
       >
         <CalendarViewDayRoundedIcon />
       </TooltipToggleButton>
@@ -175,8 +177,9 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
         value="table"
         aria-label="table"
         title="Table view"
-        data-ga-event-action="table"
-        data-ga-event-category={sectionType}
+        data-ga-event-category="layout"
+        data-ga-event-action={sectionType}
+        data-ga-event-label="table"
       >
         <TableChartRoundedIcon />
       </TooltipToggleButton>
