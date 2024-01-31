@@ -1,4 +1,4 @@
-# Staff UI Engineer — Base UI
+# Staff UI Engineer — Base UI
 
 <p class="description">Research, build, document, and ship high-quality, unstyled UI components with a focus on a11y.</p>
 
@@ -37,14 +37,14 @@ For additional details about the culture, you can check our [careers](https://mu
 
 ## Why we're hiring
 
-The Base UI team is just starting to take shape now, and we have big goals for the next few years. We need experienced people to work alongside excellent UI engineers and designers, in an IC capacity, to research, spec, build, document, and ship high-quality, unstyled UI components with a focus on a11y.
+The Base UI team is just starting to take shape now, and we have big goals for the next few years. We need experienced people to work alongside excellent UI engineers and designers, in an IC capacity, to research, spec, build, document, and ship high-quality, unstyled UI components with a focus on a11y.
 
 Overall, both our open-source community and our premium products are growing fast (x2 YoY).
 We need talented people to keep that going!
 
 ### Why this is interesting
 
-Our products empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month. We're planning to invest heavily in Base UI this year and into the future. Our goal is to make Base UI one the best unstyled UI libs available, and in the process, help millions of developers build more accessible products.
+Our products empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month. We're planning to invest heavily in Base UI this year and into the future. Our goal is to make Base UI one the best unstyled UI libs available, and in the process, help millions of developers build more accessible products.
 
 ## The role
 
@@ -53,18 +53,18 @@ Our products empower React developers to build awesome applications faster – w
 Depending on the day, you'll:
 
 - Build UI components with React and TypeScript.
-- Perform code reviews and help to maintain a high-bar for code quality.
-- Test Base UI components on various devices, browsers, platforms, and screen readers.
+- Perform code reviews and help to maintain a high bar for code quality.
+- Test Base UI components on various devices, browsers, platforms, and screen readers.
 - Research a11y requirements for UI components.
 - Contribute to component API design decisions and architecture.
-- Contribute to Base UI documentation.
+- Contribute to Base UI documentation.
 - Help out with community support on GitHub and Discord.
 
 ## Who we're looking for
 
 ### Required
 
-- **Expertise with the modern JavaScript ecosystem**. Base UI is built on modern front-end technologies like TypeScript, Node.js, React, Next.js, Webpack, and Babel. Working knowledge of these technologies is critical.
+- **Expertise with the modern JavaScript ecosystem**. Base UI is built on modern front-end technologies like TypeScript, Node.js, React, Next.js, Webpack, and Babel. Working knowledge of these technologies is critical.
 - **Expertise with CSS.** Deep knowledge of the functional aspects of CSS will be required.
 - **Familiarity with a11y requirements.** We are looking for someone familiar with ARIA requirements, who cares about building accessible UI, and wants to make the web a more accessible place.
 - **An eye for detail.** We appreciate people who sweat the details. People who go above and beyond to make interfaces fast, accessible, beautiful, and delightful.
