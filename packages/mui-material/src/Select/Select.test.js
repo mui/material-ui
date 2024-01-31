@@ -912,7 +912,7 @@ describe('<Select />', () => {
       expect(getByRole('combobox')).to.have.text('Ten');
     });
 
-    it('should notch the outline to accommodate the label when displayEmpty', () => {
+    it('should notch the outline to accommodate the label when displayEmpty', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
