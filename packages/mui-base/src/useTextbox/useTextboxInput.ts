@@ -132,13 +132,7 @@ export function useTextboxInput(parameters: UseTextboxInputParameters): UseTextb
   };
 
   return {
-    // disabled,
-    // error,
-    // focused,
-    // formControlContext,
     getProps,
     ref: handleInputRef,
-    // required,
-    // value,
   };
 }

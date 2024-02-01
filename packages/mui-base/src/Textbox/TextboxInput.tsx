@@ -1,5 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
+import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { TextboxContext } from './TextboxContext';
 import { useTextboxInput } from '../useTextbox';
 import { TextboxInputProps } from './TextboxInput.types';
@@ -25,10 +26,19 @@ const TextboxInput = React.forwardRef(function TextboxInput(
 
   const { getProps, ref } = useTextboxInput({ ...context, inputRef: forwardedRef });
 
+  const updateRef = React.useCallback(
+    (element: HTMLElement | null) => {
+      context.registerInput(element);
+    },
+    [context],
+  );
+
+  const handleRef = useForkRef(ref, updateRef);
+
   const inputProps = {
     ...getProps(other),
     className: clsx(className, classes.input),
-    ref,
+    ref: handleRef,
   };
 
   return render(inputProps, context.ownerState);
