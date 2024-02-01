@@ -37,20 +37,25 @@ For additional details about the culture, you can check our [careers](https://mu
 
 ## Why we're hiring
 
-One of MUI's company values is is to [#putcommunityfirst](https://www.notion.so/mui-org/Values-behaviors-d3a1e1c60e2a4c0782f770cceada54bd?pvs=4#63393bde7da14f0698de0653f07a8dc7), and that includes high quality and timely responses to customer support requests. While technical support for bugs and features is provided by our product and engineering teams, all sales and product inquiries are currently handled by a small team of two support and operations agents. We're looking to add a support-focused agent to this stellar team, to ensure our resources and bandwidth continue to match our customer needs.
+One of MUI's company values is is to [#putcommunityfirst](https://www.notion.so/mui-org/Values-behaviors-d3a1e1c60e2a4c0782f770cceada54bd?pvs=4#63393bde7da14f0698de0653f07a8dc7), and that includes high quality and timely responses to customer support requests.
+While technical support for bugs and features is provided by our product and engineering teams, all sales and product inquiries are currently handled by a small team of two support and operations agents.
+We're looking to add a support-focused agent to this stellar team, to ensure our resources and bandwidth continue to match our customer needs.
 
 Overall, both our open-source community and our premium products are growing fast (x2 YoY).
 We need talented people to keep that going!
 
 ### Why this is interesting
 
-This is an opportunity to work fully remote with an agile, industry-leading company. We offer a dynamic work environment that is best suited to independent learners who are eager to proactively dig into customer requests and who enjoy problem-solving independently.
+This is an opportunity to work fully remote with an agile, industry-leading company.
+We offer a dynamic work environment that is best suited to independent learners who are eager to proactively dig into customer requests and who enjoy problem-solving independently.
 
 Our products empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
 
 ## The role
 
-As a customer support agent, you will focus on delivering consistent, high quality support to our customers, providing product information, sales quotes, and filling out compliance requests with the support of our Head of Operations. This could include handling requests that are not yet documented in our existing knowledge base, and working with the team to create clear guidelines around common support requests and agreed upon responses. While this is not a technical role, having a basic understanding of what a UI library is and how they work will be fundamental.
+As a customer support agent, you will focus on delivering consistent, high quality support to our customers, providing product information, sales quotes, and filling out compliance requests with the support of our Head of Operations.
+This could include handling requests that are not yet documented in our existing knowledge base, and working with the team to create clear guidelines around common support requests and agreed upon responses.
+While this is not a technical role, having a basic understanding of what a UI library is and how they work will be fundamental.
 
 Taking initiative, actively documenting, and being comfortable with new challenges are the main keys to success in the role.
 
