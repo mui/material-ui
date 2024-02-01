@@ -7,18 +7,37 @@ import { Dialog as MyDialog } from '@mui/material';
     paper: CustomPaper
   }}
   slotProps={{
-    transition: { unmountOnExit: true },
-    paper: { className: 'paper' }
+    paper: { className: 'paper' },
+
+    transition: {
+      timeout: 1000,
+      unmountOnExit: true
+    }
   }} />;
+<Dialog slotProps={{
+  transition: {
+    timeout: 1000
+  }
+}} />;
+<Dialog slotProps={{
+  transition: {
+    timeout: transitionDuration
+  }
+}} />;
 <MyDialog
   slots={{
     transition: CustomTransition,
     paper: CustomTransition
   }}
   slotProps={{
-    transition: transitionVars,
-    paper: paperProps
+    paper: paperProps,
+
+    transition: {
+      ...transitionVars,
+      timeout: transitionDuration
+    }
   }} />;
+
 <Dialog
   slots={{
     root: 'div',
@@ -27,8 +46,12 @@ import { Dialog as MyDialog } from '@mui/material';
   }}
   slotProps={{
     root: { className: 'foo' },
-    transition: { unmountOnExit: true },
-    paper: { className: 'paper' }
+    paper: { className: 'paper' },
+
+    transition: {
+      timeout: 1000,
+      unmountOnExit: true
+    }
   }} />;
 <MyDialog
   slots={{
@@ -38,8 +61,12 @@ import { Dialog as MyDialog } from '@mui/material';
   }}
   slotProps={{
     ...outerSlotProps,
-    transition: transitionVars,
-    paper: paperProps
+    paper: paperProps,
+
+    transition: {
+      ...transitionVars,
+      timeout: transitionDuration
+    }
   }} />;
 // should skip non MUI components
 <NonMuiDialog
@@ -47,4 +74,5 @@ import { Dialog as MyDialog } from '@mui/material';
   TransitionProps={{ unmountOnExit: true }}
   PaperComponent={CustomPaper}
   PaperProps={{ className: 'paper' }}
+  transitionDuration={1000}
 />;

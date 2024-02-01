@@ -111,12 +111,80 @@ export default function transformer(file, api, options) {
           });
         }
       });
+
       if (!hasNode) {
         appendAttribute(j, {
           target: elementPath.node,
           attributeName: 'slotProps',
           expression: j.objectExpression([
             j.objectProperty(j.identifier('paper'), removed[0].value.expression),
+          ]),
+        });
+      }
+    }
+  });
+
+  findComponentJSX(j, { root, componentName: 'Dialog' }, (elementPath) => {
+    const index = elementPath.node.openingElement.attributes.findIndex(
+      (attr) => attr.type === 'JSXAttribute' && attr.name.name === 'transitionDuration',
+    );
+
+    if (index !== -1) {
+      const removed = elementPath.node.openingElement.attributes.splice(index, 1);
+      let hasNode = false;
+      elementPath.node.openingElement.attributes.forEach((attr) => {
+        if (attr.name?.name === 'slotProps') {
+          const transition = attr.value.expression.properties.find(
+            (prop) => prop?.key?.name === 'transition',
+          );
+          hasNode = true;
+          if (!transition) {
+            assignObject(j, {
+              target: attr,
+              key: 'transition',
+              expression: j.objectExpression([
+                j.objectProperty(j.identifier('timeout'), removed[0].value.expression),
+              ]),
+            });
+          } else {
+            attr.value.expression.properties = attr.value.expression.properties.filter(
+              (prop) => prop?.key?.name !== 'transition',
+            );
+
+            if (transition.value.type === 'ObjectExpression') {
+              assignObject(j, {
+                target: attr,
+                key: 'transition',
+                expression: j.objectExpression([
+                  j.objectProperty(j.identifier('timeout'), removed[0].value.expression),
+                  ...(transition?.value?.properties || []),
+                ]),
+              });
+            } else if (transition.value.type === 'Identifier') {
+              assignObject(j, {
+                target: attr,
+                key: 'transition',
+                expression: j.objectExpression([
+                  j.spreadElement(j.identifier(transition.value.name)),
+                  j.objectProperty(j.identifier('timeout'), removed[0].value.expression),
+                ]),
+              });
+            }
+          }
+        }
+      });
+
+      if (!hasNode) {
+        appendAttribute(j, {
+          target: elementPath.node,
+          attributeName: 'slotProps',
+          expression: j.objectExpression([
+            j.objectProperty(
+              j.identifier('transition'),
+              j.objectExpression([
+                j.objectProperty(j.identifier('timeout'), removed[0].value.expression),
+              ]),
+            ),
           ]),
         });
       }
