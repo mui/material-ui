@@ -86,7 +86,7 @@ Depending on the day, you'll:
 
 ### Nice to have (but not required)
 
-- Experience (1+ years) providing customer support for similar companies (developer tools, IT tools, digital products) will be considered a bonus.
+Experience (1+ years) providing customer support for similar companies (developer tools, IT tools, digital products) will be considered a bonus.
 
 ## Benefits and compensation
 
