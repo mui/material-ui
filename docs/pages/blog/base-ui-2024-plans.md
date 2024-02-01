@@ -3,7 +3,7 @@ title: An exciting year ahead for Base UI
 description: Base UI will see an exciting year in 2024, including a stable release, plenty of new components, and more. Here’s what to expect.
 date: 2024-02-07T00:00:00.000Z
 authors: ['michaldudak', 'danilo-leal']
-tags: ['Company']
+tags: ['Base UI', 'Product']
 card: true
 ---
 
