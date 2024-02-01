@@ -191,7 +191,7 @@ export default function transformer(file, api, options) {
       path.node.properties = path.node.properties.filter(
         (prop) =>
           !['PaperComponent', 'TransitionComponent', 'TransitionProps', 'PaperProps'].includes(
-            prop.key.name,
+            prop?.key?.name,
           ),
       );
     }
