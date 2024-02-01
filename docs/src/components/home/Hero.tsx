@@ -80,12 +80,12 @@ export default function Hero() {
     <HeroContainer
       linearGradient
       left={
-        <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
-          <Typography variant="h1" sx={{ mb: 2, maxWidth: 500 }}>
+        <Box sx={{ textAlign: { xs: 'center', md: 'left' }, maxWidth: 500 }}>
+          <Typography variant="h1" mb={1}>
             <GradientText>Move faster</GradientText> <br />
             with intuitive React UI tools
           </Typography>
-          <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
+          <Typography color="text.secondary" mb={3}>
             MUI offers a comprehensive suite of free UI tools to help you ship new features faster.
             Start with Material UI, our fully-loaded component library, or bring your own design
             system to our production-ready components.
@@ -115,7 +115,7 @@ export default function Hero() {
       right={
         <React.Fragment>
           {isMdUp && (
-            <Stack spacing={3} sx={{ '& > .MuiPaper-root': { maxWidth: 'none' } }}>
+            <Stack spacing={3} useFlexGap sx={{ '& > .MuiPaper-root': { maxWidth: 'none' } }}>
               <TaskCard />
               <ThemeChip />
               <ThemeDatePicker />
@@ -124,7 +124,11 @@ export default function Hero() {
             </Stack>
           )}
           {isMdUp && (
-            <Stack spacing={3} sx={{ ml: 3, '& > .MuiPaper-root': { maxWidth: 'none' } }}>
+            <Stack
+              spacing={3}
+              useFlexGap
+              sx={{ ml: 3, '& > .MuiPaper-root': { maxWidth: 'none' } }}
+            >
               <ThemeTimeline />
               <ThemeToggleButton />
               <ThemeSlider />
