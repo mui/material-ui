@@ -34,7 +34,7 @@ const TaskCard = dynamic(() => import('../showcase/TaskCard'), {
 });
 const PlayerCard = dynamic(() => import('../showcase/PlayerCard'), {
   ssr: false,
-  loading: createLoading({ width: 400, height: 240 }),
+  loading: createLoading({ width: 400, height: 134 }),
 });
 const ThemeToggleButton = dynamic(() => import('../showcase/ThemeToggleButton'), {
   ssr: false,
@@ -42,19 +42,19 @@ const ThemeToggleButton = dynamic(() => import('../showcase/ThemeToggleButton'),
 });
 const ThemeChip = dynamic(() => import('../showcase/ThemeChip'), {
   ssr: false,
-  loading: createLoading({ width: 400, height: 24 }),
+  loading: createLoading({ width: 360, height: 24 }),
 });
 const ThemeTimeline = dynamic(() => import('../showcase/ThemeTimeline'), {
   ssr: false,
-  loading: createLoading({ width: 400, height: 180 }),
+  loading: createLoading({ width: 400, height: 175 }),
 });
 const FolderTable = dynamic(() => import('../showcase/FolderTable'), {
   ssr: false,
-  loading: createLoading({ width: 360, height: 210 }),
+  loading: createLoading({ width: 400, height: 294 }),
 });
 const ThemeDatePicker = dynamic(() => import('../showcase/ThemeDatePicker'), {
   ssr: false,
-  loading: createLoading({ width: 360, height: 260 }),
+  loading: createLoading({ width: 360, height: 245 }),
 });
 const ThemeTabs = dynamic(() => import('../showcase/ThemeTabs'), {
   ssr: false,
@@ -66,11 +66,11 @@ const ThemeSlider = dynamic(() => import('../showcase/ThemeSlider'), {
 });
 const ThemeAccordion = dynamic(() => import('../showcase/ThemeAccordion'), {
   ssr: false,
-  loading: createLoading({ width: { md: 360, xl: 400 }, height: 231 }),
+  loading: createLoading({ width: 360, height: 252 }),
 });
 const NotificationCard = dynamic(() => import('../showcase/NotificationCard'), {
   ssr: false,
-  loading: createLoading({ width: { md: 360, xl: 400 }, height: 103 }),
+  loading: createLoading({ width: 360, height: 98 }),
 });
 
 export default function Hero() {
