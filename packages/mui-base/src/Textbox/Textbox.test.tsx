@@ -8,16 +8,16 @@ import {
 } from '@mui-internal/test-utils';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { Input, inputClasses } from '@mui/base/Input';
+import { Textbox, textboxClasses } from '@mui/base/Textbox';
 
-describe('<Input />', () => {
+describe('<Textbox />', () => {
   const mount = createMount();
   const { render } = createRenderer();
 
   describeConformanceUnstyled(
-    <Input>
-      <Input.Input />
-    </Input>,
+    <Textbox>
+      <Textbox.Input />
+    </Textbox>,
     () => ({
       inheritComponent: 'div',
       render,
@@ -26,10 +26,10 @@ describe('<Input />', () => {
       testComponentPropWith: 'div',
       slots: {
         root: {
-          expectedClassName: inputClasses.root,
+          expectedClassName: textboxClasses.root,
         },
         input: {
-          expectedClassName: inputClasses.input,
+          expectedClassName: textboxClasses.input,
           testWithElement: 'input',
         },
       },
@@ -45,7 +45,7 @@ describe('<Input />', () => {
       const handleKeyDown = spy();
       const handleKeyUp = spy();
       const { getByRole } = render(
-        <Input
+        <Textbox
           onChange={handleChange}
           onBlur={handleBlur}
           onKeyUp={handleKeyUp}
@@ -79,7 +79,7 @@ describe('<Input />', () => {
 
   describe('controlled', () => {
     it('should considered [] as controlled', () => {
-      const { getByRole } = render(<Input value={[]} />);
+      const { getByRole } = render(<Textbox value={[]} />);
       const input = getByRole('textbox');
 
       expect(input).to.have.property('value', '');

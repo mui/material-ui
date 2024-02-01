@@ -369,9 +369,9 @@
   scale: 1;
 }
 
-/* Input styles */
+/* Textbox styles */
 
-.GalleryInput .base-Input-input {
+.GalleryTextbox .base-Textbox-input {
   box-sizing: border-box;
   width: 300px;
   font: var(--text-body);
@@ -384,18 +384,18 @@
   transition: all 120ms ease;
 }
 
-.GalleryInput .base-Input-input:hover {
+.GalleryTextbox .base-Textbox-input:hover {
   border: var(--border-hard);
   background: var(--bg-input-hover);
 }
 
-.GalleryInput .base-Input-input:focus {
+.GalleryTextbox .base-Textbox-input:focus {
   box-shadow: var(--shadow-interactive-focus-visible);
   border: var(--border-interactive);
   outline: 0;
 }
 
-.GalleryInput .base-Input-input::placeholder {
+.GalleryTextbox .base-Textbox-input::placeholder {
   color: var(--font-color-placeholder);
 }
 

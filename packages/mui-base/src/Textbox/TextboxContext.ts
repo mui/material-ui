@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { InputOwnerState, type InputProps } from './Input.types';
+import { TextboxOwnerState, type TextboxProps } from './Textbox.types';
 
-export type InputContextValue = InputProps & {
+export type TextboxContextValue = TextboxProps & {
   registerInput: (element: HTMLElement | null) => void;
   focused: boolean;
   setFocused: React.Dispatch<React.SetStateAction<boolean>>;
-  ownerState: InputOwnerState;
+  ownerState: TextboxOwnerState;
   defautValue?: unknown;
   value?: unknown;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 };
 
-export const InputContext = React.createContext<InputContextValue | null>(null);
+export const TextboxContext = React.createContext<TextboxContextValue | null>(null);
