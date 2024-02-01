@@ -2,8 +2,6 @@ import * as React from 'react';
 import { alpha, ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button, { buttonClasses } from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import TouchAppRounded from '@mui/icons-material/TouchAppRounded';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import MaterialDesignDemo, { componentCode } from 'docs/src/components/home/MaterialDesignDemo';
@@ -13,14 +11,15 @@ import StylingInfo from 'docs/src/components/action/StylingInfo';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 
 const lineMapping: Record<string, number | number[]> = {
-  card: 0,
-  stack: [1, 17],
-  avatar: 2,
-  stack2: [4, 11],
-  chip: [6, 10],
-  typography: 5,
-  typography2: [12, 14],
-  switch: 16,
+  card: [0, 20],
+  cardmedia: [1, 5],
+  stack: [6, 19],
+  stack2: [7, 16],
+  typography: 8,
+  stack3: [9, 16],
+  chip: [10, 14],
+  rating: 15,
+  switch: 18,
 };
 
 export default function CoreShowcase() {
@@ -114,41 +113,14 @@ export default function CoreShowcase() {
   return (
     <ShowcaseContainer
       preview={
-        <React.Fragment>
-          <Box
-            textAlign="center"
-            sx={{
-              py: 0.5,
-              ml: 'auto',
-              position: 'absolute',
-              bottom: 0,
-              left: '50%',
-              transform: 'translate(-50%)',
-              width: '100%',
-            }}
+        <ThemeProvider theme={theme}>
+          <PointerContainer
+            onElementChange={setElement}
+            sx={{ minWidth: 300, width: '100%', maxWidth: '100%' }}
           >
-            <Typography
-              variant="caption"
-              fontWeight="medium"
-              color="text.primary"
-              noWrap
-              sx={{ opacity: 0.3 }}
-            >
-              <TouchAppRounded
-                sx={{ fontSize: '0.875rem', verticalAlign: 'text-bottom', mr: 0.5 }}
-              />
-              Hover over the component to highlight the code.
-            </Typography>
-          </Box>
-          <ThemeProvider theme={theme}>
-            <PointerContainer
-              onElementChange={setElement}
-              sx={{ minWidth: 300, width: '80%', maxWidth: '100%' }}
-            >
-              <MaterialDesignDemo />
-            </PointerContainer>
-          </ThemeProvider>
-        </React.Fragment>
+            <MaterialDesignDemo />
+          </PointerContainer>
+        </ThemeProvider>
       }
       code={
         <div data-mui-color-scheme="dark">

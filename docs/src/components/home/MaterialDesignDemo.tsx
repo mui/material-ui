@@ -1,56 +1,62 @@
 import * as React from 'react';
-import MuiAvatar from '@mui/material/Avatar';
 import MuiChip from '@mui/material/Chip';
+import MuiCardMedia from '@mui/material/CardMedia';
 import MuiCard, { CardProps } from '@mui/material/Card';
 import MuiSwitch from '@mui/material/Switch';
 import MuiTypography from '@mui/material/Typography';
 import MuiStack from '@mui/material/Stack';
+import MuiRating from '@mui/material/Rating';
 import { withPointer } from 'docs/src/components/home/ElementPointer';
 
-export const componentCode = `<Card sx={{ p: 2.5 }}>
-  <Stack direction="row" alignItems="center" spacing={2} useFlexGap>
-    <Avatar variant="rounded" src="avatar.jpg" />
-    <div>
-      <Stack direction="row" alignItems="center" spacing={1} useFlexGap>
-        <Typography fontWeight="semiBold">Lucas Smith</Typography>
+export const componentCode = `
+<Card>
+  <CardMedia
+    component="img"
+    alt="Yosemite National Park"
+    image="/static/images/cards/yosemite.jpeg"
+  />
+  <Stack direction="row" alignItems="center" spacing={3} p={2} useFlexGap>
+    <Stack direction="column" spacing={0.5} useFlexGap>
+      <Typography>Yosemite National Park, California, USA</Typography>
+      <Stack direction="row" spacing={1} useFlexGap>
         <Chip
           size="small"
-          color={active ? 'success' : 'default'}
           label={active ? 'Active' : 'Inactive'}
+          color={active ? 'success' : 'default'}
         />
+        <Rating defaultValue={1} size="small" />
       </Stack>
-      <Typography2 variant="body2" color="text.secondary">
-        Scranton, PA, United States
-      </Typography2>
-    </div>
-    <Switch sx={{ ml: 'auto' }} />
+    </Stack>
+    <Switch checked={active} />
   </Stack>
 </Card>
 `;
 
-const Avatar = withPointer(MuiAvatar, { id: 'avatar', name: 'Avatar' });
-const Chip = withPointer(MuiChip, { id: 'chip', name: 'Chip' });
 const Card = withPointer(MuiCard, { id: 'card', name: 'Card' });
-const Switch = withPointer(MuiSwitch, { id: 'switch', name: 'Switch' });
-const Typography = withPointer(MuiTypography, { id: 'typography', name: 'Typography' });
-const Typography2 = withPointer(MuiTypography, { id: 'typography2', name: 'Typography' });
+const CardMedia = withPointer(MuiCardMedia, { id: 'cardmedia', name: 'CardMedia' });
 const Stack = withPointer(MuiStack, { id: 'stack', name: 'Stack' });
 const Stack2 = withPointer(MuiStack, { id: 'stack2', name: 'Stack' });
+const Stack3 = withPointer(MuiStack, { id: 'stack3', name: 'Stack' });
+const Typography = withPointer(MuiTypography, { id: 'typography', name: 'Typography' });
+const Chip = withPointer(MuiChip, { id: 'chip', name: 'Chip' });
+const Rating = withPointer(MuiRating, { id: 'rating', name: 'Rating' });
+const Switch = withPointer(MuiSwitch, { id: 'switch', name: 'Switch' });
 
 export default function MaterialDesignDemo(props: CardProps) {
-  const [active, setActive] = React.useState(false);
+  const [active, setActive] = React.useState(true);
   return (
-    <Card {...props} sx={{ p: 2.5 }}>
-      <Stack alignItems="center" direction="row" spacing={2} useFlexGap>
-        <Avatar
-          variant="rounded"
-          sizes="small"
-          src="/static/images/avatar/2.jpg"
-          imgProps={{ 'aria-labelledby': 'demo-task-card-assignee-name' }}
-        />
-        <div>
-          <Stack2 direction="row" alignItems="center" spacing={1} useFlexGap>
-            <Typography fontWeight="semiBold">Lucas Smith</Typography>
+    <Card {...props} sx={{ p: 2 }}>
+      <CardMedia
+        component="img"
+        alt="Yosemite National Park"
+        height="100"
+        image="/static/images/cards/yosemite.jpeg"
+        sx={{ borderRadius: 0.5 }}
+      />
+      <Stack alignItems="center" direction="row" spacing={3} mt={2} useFlexGap>
+        <Stack2 direction="column" spacing={0.5} useFlexGap>
+          <Typography fontWeight="semiBold">Yosemite National Park, California, USA</Typography>
+          <Stack3 direction="row" spacing={1} useFlexGap>
             <Chip
               label={active ? 'Active' : 'Inactive'}
               color={active ? 'success' : 'default'}
@@ -59,15 +65,13 @@ export default function MaterialDesignDemo(props: CardProps) {
                 width: 'fit-content',
                 fontSize: 12,
                 height: 20,
-                px: '2px',
-                '& .MuiChip-label': { px: 0.5 },
+                px: 0,
+                zIndex: 2,
               }}
             />
-          </Stack2>
-          <Typography2 variant="body2" color="text.secondary">
-            Scranton, PA, United States
-          </Typography2>
-        </div>
+            <Rating name="Rating component" defaultValue={1} size="small" />
+          </Stack3>
+        </Stack2>
         <Switch
           inputProps={{ 'aria-label': active ? 'Active' : 'Inactive' }}
           checked={active}
