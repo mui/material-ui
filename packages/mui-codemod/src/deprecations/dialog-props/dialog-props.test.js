@@ -55,7 +55,7 @@ describe('@mui/codemod', () => {
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
 
-      it('actual.theme.js should not be equal to expected.theme.js', () => {
+      it('theme.actual.js should not be equal to theme.expected.js', () => {
         const actual = read('./test-cases/theme.actual.js');
         const expected = read('./test-cases/theme.expected.js');
         expect(actual).to.not.equal(expected);
