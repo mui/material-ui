@@ -213,7 +213,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     rootRef: ref,
     scale = Identity,
     step = 1,
-    pageStep = 10,
+    shiftStep = 10,
     tabIndex,
     value: valueProp,
   } = parameters;
@@ -364,12 +364,12 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
           ((event.key === 'ArrowLeft' || event.key === 'ArrowDown') && event.shiftKey) ||
           event.key === 'PageDown'
         ) {
-          newValue = Math.max(value - pageStep, min);
+          newValue = Math.max(value - shiftStep, min);
         } else if (
           ((event.key === 'ArrowRight' || event.key === 'ArrowUp') && event.shiftKey) ||
           event.key === 'PageUp'
         ) {
-          newValue = Math.min(value + pageStep, max);
+          newValue = Math.min(value + shiftStep, max);
         }
 
         if (newValue !== null) {

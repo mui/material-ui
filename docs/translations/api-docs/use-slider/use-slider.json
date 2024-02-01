@@ -31,7 +31,7 @@
       "description": "Callback function that is fired when the <code>mouseup</code> is triggered."
     },
     "orientation": { "description": "The component orientation." },
-    "pageStep": {
+    "shiftStep": {
       "description": "The granularity with which the slider can step through values when using Page Up/Page Down or Shift + Arrow Up/Arrow Down."
     },
     "rootRef": { "description": "The ref attached to the root of the Slider." },

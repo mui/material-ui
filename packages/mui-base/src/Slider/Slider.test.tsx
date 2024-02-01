@@ -514,16 +514,16 @@ describe('<Slider />', () => {
     expect(hanleChange.args[1][1]).to.deep.equal(20);
   });
 
-  it('should support Shift + Left Arrow / Right Arrow keys by taking acount step and pageStep', () => {
+  it('should support Shift + Left Arrow / Right Arrow keys by taking acount step and shiftStep', () => {
     const hanleChange = spy();
     const defaultValue = 20;
-    const pageStep = 15;
+    const shiftStep = 15;
     const step = 5;
     const { getByTestId } = render(
       <Slider
         defaultValue={defaultValue}
         onChange={hanleChange}
-        pageStep={pageStep}
+        shiftStep={shiftStep}
         step={step}
         slotProps={{
           thumb: (_, { index, focused, active }) => ({
@@ -545,8 +545,8 @@ describe('<Slider />', () => {
 
     fireEvent.keyDown(input!, { key: 'ArrowLeft', shiftKey: true });
     expect(hanleChange.callCount).to.equal(1);
-    expect(hanleChange.args[0][1]).to.deep.equal(defaultValue - pageStep);
-    expect(input).to.have.attribute('aria-valuenow', `${defaultValue - pageStep}`);
+    expect(hanleChange.args[0][1]).to.deep.equal(defaultValue - shiftStep);
+    expect(input).to.have.attribute('aria-valuenow', `${defaultValue - shiftStep}`);
 
     fireEvent.keyDown(input!, { key: 'ArrowRight', shiftKey: true });
     expect(hanleChange.callCount).to.equal(2);

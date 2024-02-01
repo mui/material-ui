@@ -170,7 +170,7 @@ export interface SliderOwnProps {
    * The granularity with which the slider can step through values when using Page Up/Page Down or Shift + Arrow Up/Arrow Down.
    * @default 10
    */
-  pageStep?: number;
+  shiftStep?: number;
   /**
    * A transformation function, to change the scale of the slider.
    * @param {any} x

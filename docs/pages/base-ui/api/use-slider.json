@@ -31,7 +31,7 @@
       },
       "default": "'horizontal'"
     },
-    "pageStep": { "type": { "name": "number", "description": "number" }, "default": "10" },
+    "shiftStep": { "type": { "name": "number", "description": "number" }, "default": "10" },
     "rootRef": {
       "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
     },
