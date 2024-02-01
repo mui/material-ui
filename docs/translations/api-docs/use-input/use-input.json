@@ -23,8 +23,8 @@
     "formControlContext": {
       "description": "Return value from the <code>useFormControlContext</code> hook."
     },
-    "getInputProps": { "description": "Resolver for the input slot&#39;s props." },
-    "getRootProps": { "description": "Resolver for the root slot&#39;s props." },
+    "getProps": { "description": "Resolver for the input slot&#39;s props." },
+    "inputRef": { "description": "Resolver for the root slot&#39;s props." },
     "required": {
       "description": "If <code>true</code>, the <code>input</code> will indicate that it&#39;s required."
     },

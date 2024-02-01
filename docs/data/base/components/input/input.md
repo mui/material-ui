@@ -20,8 +20,6 @@ An input is a UI element that accepts text data from the user.
 The Input component replaces the native HTML `<input>` tag, and offers expanded customization and accessibility features.
 It can also be transformed into a `<textarea>` as needed.
 
-{{"demo": "UnstyledInputIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
-
 ## Component
 
 ```jsx
@@ -31,8 +29,6 @@ import { Input } from '@mui/base/Input';
 Input behaves similarly to the native HTML `<input>`, except that it's nested inside of a root `<div>`—see [Anatomy](#anatomy) for details.
 
 The following demo shows how to create and style an input component, including `placeholder` text:
-
-{{"demo": "UnstyledInputBasic", "defaultCodeOpen": false}}
 
 ### Anatomy
 
@@ -99,8 +95,6 @@ You may not need to use hooks unless you find that you're limited by the customi
 
 The demo below shows how to use the `useInput` hook to create a custom input component that receives all the necessary props:
 
-{{"demo": "UseInput.js", "defaultCodeOpen": false}}
-
 ## Customization
 
 :::info
@@ -118,13 +112,9 @@ Common use cases of adornments include:
 
 The following demo shows examples of both of these use cases:
 
-{{"demo": "InputAdornments.js", "defaultCodeOpen": false}}
-
 ### Multiline
 
 The `multiline` prop transforms the `<input>` field into a `<textarea>` element, as shown below:
-
-{{"demo": "InputMultiline.js"}}
 
 If you want the `<textarea>` to grow with the content, you can use the [Textarea Autosize](/base-ui/react-textarea-autosize/) component within the input.
 
@@ -133,12 +123,8 @@ To set minimum and maximum sizes, add the `minRows` and `maxRows` props.
 
 The following demo shows how to insert a Textarea Autosize component into an Input so that its height grows with the length of the content:
 
-{{"demo": "InputMultilineAutosize.js"}}
-
 ## Common examples
 
 ### OTP Input
 
 The following demo shows how to build a one-time password component using `Input`.
-
-{{"demo": "OTPInput.js"}}

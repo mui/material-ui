@@ -1,36 +1,13 @@
 {
   "props": {
-    "autoComplete": { "type": { "name": "string" } },
-    "autoFocus": { "type": { "name": "bool" } },
     "className": { "type": { "name": "string" } },
-    "defaultValue": { "type": { "name": "any" } },
-    "disabled": { "type": { "name": "bool" } },
     "endAdornment": { "type": { "name": "node" } },
     "error": { "type": { "name": "bool" } },
     "id": { "type": { "name": "string" } },
-    "maxRows": { "type": { "name": "number" } },
-    "minRows": { "type": { "name": "number" } },
-    "multiline": { "type": { "name": "bool" }, "default": "false" },
     "name": { "type": { "name": "string" } },
     "placeholder": { "type": { "name": "string" } },
     "readOnly": { "type": { "name": "bool" } },
-    "required": { "type": { "name": "bool" } },
-    "rows": { "type": { "name": "number" } },
-    "slotProps": {
-      "type": {
-        "name": "shape",
-        "description": "{ input?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
-      },
-      "default": "{}"
-    },
-    "slots": {
-      "type": {
-        "name": "shape",
-        "description": "{ input?: elementType, root?: elementType, textarea?: elementType }"
-      },
-      "default": "{}",
-      "additionalInfo": { "slotsApi": true }
-    },
+    "render": { "type": { "name": "func" }, "default": "false" },
     "startAdornment": { "type": { "name": "node" } },
     "type": {
       "type": {
@@ -43,26 +20,6 @@
   },
   "name": "Input",
   "imports": ["import { Input } from '@mui/base/Input';", "import { Input } from '@mui/base';"],
-  "slots": [
-    {
-      "name": "root",
-      "description": "The component that renders the root.",
-      "default": "'div'",
-      "class": "base-Input-root"
-    },
-    {
-      "name": "input",
-      "description": "The component that renders the input.",
-      "default": "'input'",
-      "class": "base-Input-input"
-    },
-    {
-      "name": "textarea",
-      "description": "The component that renders the textarea.",
-      "default": "'textarea'",
-      "class": null
-    }
-  ],
   "classes": [
     {
       "key": "adornedEnd",
@@ -101,6 +58,12 @@
       "isGlobal": false
     },
     {
+      "key": "input",
+      "className": "base-Input-input",
+      "description": "Class name applied to the input element.",
+      "isGlobal": false
+    },
+    {
       "key": "inputMultiline",
       "className": "base-Input-inputMultiline",
       "description": "Class name applied to the input element if `multiline={true}`.",
@@ -116,6 +79,12 @@
       "key": "multiline",
       "className": "base-Input-multiline",
       "description": "Class name applied to the root element if `multiline={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "base-Input-root",
+      "description": "Class name applied to the root element.",
       "isGlobal": false
     }
   ],
