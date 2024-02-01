@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Section from 'docs/src/layouts/Section';
@@ -17,9 +18,15 @@ function NotFoundIllustration() {
         border: '1px solid',
         borderColor: 'divider',
         overflow: 'clip',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.05)',
+        boxShadow: `0px 2px 8px -2px ${alpha(
+          theme.palette.primary[300],
+          0.3,
+        )}, 0px 6px 12px -2px ${alpha(theme.palette.primary[100], 0.2)}`,
         ...theme.applyDarkStyles({
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+          boxShadow: `0px 2px 8px -2px ${alpha(
+            theme.palette.common.black,
+            0.3,
+          )}, 0px 6px 12px -2px ${alpha(theme.palette.common.black, 0.2)}`,
         }),
       })}
     >
