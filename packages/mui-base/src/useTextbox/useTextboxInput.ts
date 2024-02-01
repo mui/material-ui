@@ -3,20 +3,14 @@ import * as React from 'react';
 import MuiError from '@mui-internal/babel-macros/MuiError.macro';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
-import { UseInputInputSlotProps, UseInputParameters, UseInputReturnValue } from './useInput.types';
+import {
+  UseTextboxInputSlotProps,
+  UseTextboxInputParameters,
+  UseTextboxInputReturnValue,
+} from './useTextboxInput.types';
 import { FormControlState, useFormControlContext } from '../FormControl';
-import { InputContext } from '../Input/InputContext';
-/**
- *
- * Demos:
- *
- * - [Input](https://mui.com/base-ui/react-input/#hook)
- *
- * API:
- *
- * - [useInput API](https://mui.com/base-ui/react-input/hooks-api/#use-input)
- */
-export function useInput(parameters: UseInputParameters): UseInputReturnValue {
+
+export function useTextboxInput(parameters: UseTextboxInputParameters): UseTextboxInputReturnValue {
   const {
     defaultValue,
     disabled = false,
@@ -27,17 +21,11 @@ export function useInput(parameters: UseInputParameters): UseInputReturnValue {
     required = false,
     value,
     inputRef: inputRefProp,
-    focused,
     setFocused,
   } = parameters;
 
   const { current: isControlled } = React.useRef(value != null);
   const formControlContext: FormControlState | undefined = useFormControlContext();
-  const inputContext = React.useContext(InputContext);
-
-  if (!inputContext) {
-    throw new MuiError('Base UI: InputInput must be used inside an Input.');
-  }
 
   const handleInputRefWarning = React.useCallback((instance: HTMLElement) => {
     if (process.env.NODE_ENV !== 'production') {
@@ -109,7 +97,7 @@ export function useInput(parameters: UseInputParameters): UseInputReturnValue {
 
   const getProps = <ExternalProps extends Record<string, any> = {}>(
     externalProps: ExternalProps = {} as ExternalProps,
-  ): UseInputInputSlotProps<ExternalProps> => {
+  ): UseTextboxInputSlotProps<ExternalProps> => {
     const propsEventHandlers: Record<string, React.EventHandler<any> | undefined> = {
       onBlur,
       onChange,
@@ -139,13 +127,13 @@ export function useInput(parameters: UseInputParameters): UseInputReturnValue {
   };
 
   return {
-    disabled,
-    error,
-    focused,
-    formControlContext,
+    // disabled,
+    // error,
+    // focused,
+    // formControlContext,
     getProps,
-    inputRef: handleInputRef,
-    required,
-    value,
+    ref: handleInputRef,
+    // required,
+    // value,
   };
 }

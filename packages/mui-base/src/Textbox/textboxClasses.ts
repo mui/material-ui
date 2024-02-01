@@ -1,9 +1,9 @@
 import { generateUtilityClass } from '../generateUtilityClass';
 import { generateUtilityClasses } from '../generateUtilityClasses';
 
-const COMPONENT_NAME = 'Input';
+const COMPONENT_NAME = 'Textbox';
 
-export interface InputClasses {
+export interface TextboxClasses {
   /** Class name applied to the root element. */
   root: string;
   /** Class name applied to the root element if the component is a descendant of `FormControl`. */
@@ -28,13 +28,13 @@ export interface InputClasses {
   inputTypeSearch: string;
 }
 
-export type InputClassKey = keyof InputClasses;
+export type TextboxClassKey = keyof TextboxClasses;
 
-export function getInputUtilityClass(slot: string): string {
+export function getTextboxUtilityClass(slot: string): string {
   return generateUtilityClass(COMPONENT_NAME, slot);
 }
 
-export const inputClasses: InputClasses = generateUtilityClasses(COMPONENT_NAME, [
+export const textboxClasses: TextboxClasses = generateUtilityClasses(COMPONENT_NAME, [
   'root',
   'formControl',
   'focused',

@@ -1,24 +1,13 @@
 import * as React from 'react';
 import { extractEventHandlers } from '../utils';
-import { UseInputRootSlotProps } from './useInput.types';
+import {
+  UseTextboxParameters,
+  UseTextboxReturnValue,
+  UseTextboxRootSlotProps,
+} from './useTextbox.types';
 import { FormControlState, useFormControlContext } from '../FormControl';
 
-export interface UseInputRootParameters {
-  inputRef: React.RefObject<HTMLElement> | null;
-  defaultValue?: unknown;
-  disabled?: boolean;
-  error?: boolean;
-  required?: boolean;
-  value?: unknown;
-  onBlur?: React.FocusEventHandler<HTMLInputElement>;
-}
-/**
- *
- * API:
- *
- * - [useInputRoot API](https://mui.com/base-ui/api/use-input-root/)
- */
-export function useInputRoot(parameters: UseInputRootParameters) {
+export function useTextbox(parameters: UseTextboxParameters): UseTextboxReturnValue {
   const {
     inputRef,
     defaultValue: defaultValueParam,
@@ -90,9 +79,9 @@ export function useInputRoot(parameters: UseInputRootParameters) {
       otherHandlers.onClick?.(event);
     };
 
-  const getRootProps = <ExternalProps extends Record<string, any> = {}>(
+  const getProps = <ExternalProps extends Record<string, any> = {}>(
     externalProps: ExternalProps = {} as ExternalProps,
-  ): UseInputRootSlotProps<ExternalProps> => {
+  ): UseTextboxRootSlotProps<ExternalProps> => {
     // onBlur, onChange and onFocus are forwarded to the input slot.
     const propsEventHandlers = extractEventHandlers(parameters, ['onBlur', 'onChange', 'onFocus']);
     const externalEventHandlers = { ...propsEventHandlers, ...extractEventHandlers(externalProps) };
@@ -105,7 +94,7 @@ export function useInputRoot(parameters: UseInputRootParameters) {
   };
 
   return {
-    getRootProps,
+    getProps,
     defaultValue,
     disabled,
     error,

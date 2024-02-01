@@ -2,14 +2,14 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { getInputUtilityClass } from './inputClasses';
-import { InputOwnerState, InputProps } from './Input.types';
+import { getTextboxUtilityClass } from './textboxClasses';
+import { TextboxOwnerState, TextboxProps } from './Textbox.types';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import { useInputRoot } from '../useInput/useInputRoot';
-import { InputContext } from './InputContext';
+import { useTextbox } from '../useTextbox';
+import { TextboxContext } from './TextboxContext';
 
-const useUtilityClasses = (ownerState: InputOwnerState) => {
+const useUtilityClasses = (ownerState: TextboxOwnerState) => {
   const { disabled, error, focused, formControlContext } = ownerState;
 
   const slots = {
@@ -23,7 +23,7 @@ const useUtilityClasses = (ownerState: InputOwnerState) => {
     input: ['input', disabled && 'disabled'],
   };
 
-  return composeClasses(slots, useClassNamesOverride(getInputUtilityClass));
+  return composeClasses(slots, useClassNamesOverride(getTextboxUtilityClass));
 };
 
 function defaultRender(props: React.ComponentPropsWithRef<'div'>) {
@@ -34,14 +34,14 @@ function defaultRender(props: React.ComponentPropsWithRef<'div'>) {
  *
  * Demos:
  *
- * - [Input](https://mui.com/base-ui/react-input/)
+ * - [Textbox](https://mui.com/base-ui/react-input/)
  *
  * API:
  *
- * - [Input API](https://mui.com/base-ui/react-input/components-api/#input)
+ * - [Textbox API](https://mui.com/base-ui/react-input/components-api/#input)
  */
-const Input = React.forwardRef(function Input(
-  props: InputProps,
+const Textbox = React.forwardRef(function Textbox(
+  props: TextboxProps,
   forwardedRef: React.ForwardedRef<HTMLInputElement>,
 ) {
   const {
@@ -67,13 +67,13 @@ const Input = React.forwardRef(function Input(
 
   const inputRef = React.useRef<HTMLElement | null>(null);
 
-  const { getRootProps, disabled, error, required, focused, setFocused, formControlContext } =
-    useInputRoot({
+  const { getProps, disabled, error, required, focused, setFocused, formControlContext } =
+    useTextbox({
       ...props,
       inputRef,
     });
 
-  const ownerState: InputOwnerState = React.useMemo(
+  const ownerState: TextboxOwnerState = React.useMemo(
     () => ({
       disabled,
       error,
@@ -87,7 +87,7 @@ const Input = React.forwardRef(function Input(
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootProps = getRootProps({
+  const rootProps = getProps({
     ...other,
     children,
     ref: forwardedRef,
@@ -105,13 +105,13 @@ const Input = React.forwardRef(function Input(
   );
 
   return (
-    <InputContext.Provider value={contextValue}>
+    <TextboxContext.Provider value={contextValue}>
       {render(rootProps, ownerState)}
-    </InputContext.Provider>
+    </TextboxContext.Provider>
   );
 });
 
-Input.propTypes /* remove-proptypes */ = {
+Textbox.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
@@ -221,4 +221,4 @@ Input.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 } as any;
 
-export { Input };
+export { Textbox };
