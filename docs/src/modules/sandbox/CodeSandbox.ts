@@ -63,11 +63,14 @@ function createReactApp(demoData: DemoData) {
       description,
       dependencies,
       devDependencies,
+      scripts: {
+        start: 'react-scripts start',
+        build: 'react-scripts build',
+        test: 'react-scripts test',
+        eject: 'react-scripts eject',
+      },
       ...(demoData.codeVariant === 'TS' && {
         main: 'index.tsx',
-        scripts: {
-          start: 'react-scripts start',
-        },
       }),
     },
   };
@@ -155,11 +158,14 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
       description,
       dependencies,
       devDependencies,
+      scripts: {
+        start: 'react-scripts start',
+        build: 'react-scripts build',
+        test: 'react-scripts test',
+        eject: 'react-scripts eject',
+      },
       ...(templateData.codeVariant === 'TS' && {
         main: 'index.tsx',
-        scripts: {
-          start: 'react-scripts start',
-        },
       }),
     },
   };
