@@ -21,9 +21,15 @@ Base UI today offers a modest set of components and hooks, including some slight
 However, we're conscious that many primitive components that would allow a real-world website or application to use Base UI as its foundation are missing.
 Worry no more, as we're focused on shipping the first versions of all of the components listed below for the stable release:
 
-[image, or a table, or a bullet list, something]
-
-[components to be highlighted: Accordion, Alert Dialog, Checkbox, Collapsible, Dialog, Radio Group, Tooltip, and Drawer)
+| To-be-added components |                                                                                                |
+| :--------------------- | ---------------------------------------------------------------------------------------------: |
+| Accordion              | [View&nbsp;the&nbsp;GitHub&nbsp;issue&nbsp;→](https://github.com/mui/material-ui/issues/38037) |
+| Alert Dialog           |                                                              [View the GitHub issue&nbsp;→](/) |
+| Checkbox               |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/38036) |
+| Collapsible            |                                                                   View the GitHub issue&nbsp;→ |
+| Drawer                 |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/38181) |
+| Radio Group            |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/38038) |
+| Tooltip                |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/38045) |
 
 ## More thorough animation support
 
