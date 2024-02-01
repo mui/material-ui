@@ -103,7 +103,7 @@ function prepareMarkdown(config) {
         contents.push(`
 ## Unstyled
 
-A version of this component is available without any styles: [Base UI ${markdownH1}](${headers.unstyled}).
+To completely own the design, without having to customize parting from Material Design, use the [Base UI ${markdownH1}](${headers.unstyled}) for an unstyled version of this component
 Use this component for heavy customizations or smaller bundle sizes.
         `);
       }
