@@ -307,11 +307,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                       display: 'flex',
                       flexDirection: 'column',
                       position: 'relative',
-                      transition: 'all ease 120ms',
-                      '&:hover, &:focus-within': {
-                        borderColor: 'grey.300',
-                        boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
-                      },
+                      boxShadow: '0px 4px 16px rgba(170, 180, 190, 0.2)',
                       '&:focus-within': {
                         '& a': {
                           outline: 0,
@@ -320,10 +316,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                     },
                     (theme) =>
                       theme.applyDarkStyles({
-                        '&:hover, &:focus-within': {
-                          borderColor: 'primary.600',
-                          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.5)',
-                        },
+                        boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.4)',
                       }),
                   ]}
                 >
