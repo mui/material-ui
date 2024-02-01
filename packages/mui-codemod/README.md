@@ -97,8 +97,11 @@ npx @mui/codemod@latest deprecations/accordion-props <path>
  <Dialog
 -    TransitionComponent={CustomTransition}
 -    TransitionProps={{ unmountOnExit: true }}
+-    PaperProps={{className: "paper" }}
+-    PaperComponent={PaperTransition}
+-    transitionDuration={1000}
 +    slots={{ transition: CustomTransition }}
-+    slotProps={{ transition: { unmountOnExit: true } }}
++    slotProps={{ transition: { unmountOnExit: true , timeout: 1000} , paper: { className: "paper" }}}
  />
 ```
 
