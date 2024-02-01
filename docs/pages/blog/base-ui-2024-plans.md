@@ -34,7 +34,7 @@ Worry no more, as we're focused on shipping the first versions of all of the com
 ## More thorough animation support
 
 Animation is a key element for adding delight to any application.
-We've already kicked off work on animation support by releasing the [`CssTransition`](/base-ui/react-transitions/#css-transition/) and [`CssAnimation`](/base-ui/react-transitions/#css-animation/) components, and the `useTransitionTrigger` and `useTransitionStateManager` hooks.
+We've already kicked off work on animation support by releasing the [`CssTransition`](/base-ui/react-transitions/#css-transitions) and [`CssAnimation`](/base-ui/react-transitions/#css-animation) components, and the `useTransitionTrigger` and `useTransitionStateManager` hooks.
 They're currently available for use with the Popup, Menu, and Select components, but the plan is to extend their coverage significantly while also adding more features.
 
 {{"demo": "../../data/base/components/transitions/AllTransitionsDemo.js", "hideToolbar": true}}

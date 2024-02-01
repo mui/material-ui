@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { styled } from '@mui/system';
 import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
 import { Button as BaseButton } from '@mui/base/Button';
-import { CssAnimation } from '@mui/base/Transitions';
+import { CssAnimation, CssTransition } from '@mui/base/Transitions';
 
 const styles = `
   @keyframes open-animation {
@@ -32,17 +32,31 @@ const styles = `
 
     100% {
       opacity: 0;
-      transform: scale(1.2) rotate(4deg);
-      filter: blur(3px);
+      transform: scale(1.5) rotate(8deg);
+      filter: blur(4px);
     }
   }
 
   .anim-open {
-    animation: open-animation 0.2s ease-out both;
+    animation: open-animation 1s ease-out both;
   }
 
   .anim-close {
-    animation: close-animation 0.4s ease-out forwards;
+    animation: close-animation 1s ease-out forwards;
+  }
+
+  .open {
+    opacity: 1;
+    transform: translateY(0) scale(1)
+    filter: blur(0);
+    transition: transform 0.2s cubic-bezier(0.345, 0.275, 0.505, 1.625), opacity 0.2s ease-out;
+  }
+
+  .close {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.95);
+    filter: blur(3px);
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out, filter 0.2s ease-out;
   }
 `;
 
@@ -63,6 +77,7 @@ const blue = {
 
 const Button = styled(BaseButton)(
   ({ theme }) => `
+  min-width: 165px;
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
   font-size: 0.875rem;
@@ -71,11 +86,11 @@ const Button = styled(BaseButton)(
   padding: 8px 16px;
   border-radius: 8px;
   color: white;
-  transition: all 150ms ease;
+  transition: background-color, box-shadow, 120ms ease;
   cursor: pointer;
   border: 1px solid ${blue[500]};
-  box-shadow: 0 2px 1px ${
-    theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(45, 45, 60, 0.2)'
+  box-shadow: 0 1px 1px ${
+    theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(45, 45, 60, 0.1)'
   }, inset 0 1.5px 1px ${blue[400]}, inset 0 -2px 1px ${blue[600]};
 
   &:hover {
@@ -85,7 +100,6 @@ const Button = styled(BaseButton)(
   &:active {
     background-color: ${blue[700]};
     box-shadow: none;
-    transform: scale(0.99);
   }
 
   &:focus-visible {
@@ -119,25 +133,36 @@ const PopupBody = styled('div')(
 );
 
 const Section = styled('div')`
-  padding: 8px;
-  width: 150px;
   display: flex;
+  gap: 12px;
+  padding: 8px;
 `;
 
 export default function AllTransitionsDemo() {
   return (
     <div>
       <style>{styles}</style>
-      <PopupWithTrigger>
-        <CssAnimation
-          enterClassName="anim-open"
-          exitClassName="anim-close"
-          enterAnimationName="open-animation"
-          exitAnimationName="close-animation"
-        >
-          <PopupBody>This is an animated popup</PopupBody>
-        </CssAnimation>
-      </PopupWithTrigger>
+      <Section>
+        <PopupWithTrigger>
+          <CssTransition
+            enterClassName="open"
+            exitClassName="close"
+            lastTransitionedPropertyOnExit="transform"
+          >
+            <PopupBody>Animated with the CssTransition component.</PopupBody>
+          </CssTransition>
+        </PopupWithTrigger>
+        <PopupWithTrigger2>
+          <CssAnimation
+            enterClassName="anim-open"
+            exitClassName="anim-close"
+            enterAnimationName="open-animation"
+            exitAnimationName="close-animation"
+          >
+            <PopupBody>Animated with the CssAnimation component.</PopupBody>
+          </CssAnimation>
+        </PopupWithTrigger2>
+      </Section>
     </div>
   );
 }
@@ -149,17 +174,39 @@ function PopupWithTrigger(props) {
   const { children, ...other } = props;
 
   return (
-    <Section>
+    <React.Fragment>
       <Button ref={setAnchor} onClick={() => setOpen((o) => !o)}>
-        {open ? 'Hide popup' : 'Show popup'}
+        {open ? 'Hide popup' : 'Open CssTransition'}
       </Button>
       <StyledPopup anchor={anchor} open={open} {...other}>
         {children}
       </StyledPopup>
-    </Section>
+    </React.Fragment>
   );
 }
 
 PopupWithTrigger.propTypes = {
+  children: PropTypes.node,
+};
+
+function PopupWithTrigger2(props) {
+  const [anchor, setAnchor] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
+
+  const { children, ...other } = props;
+
+  return (
+    <React.Fragment>
+      <Button ref={setAnchor} onClick={() => setOpen((o) => !o)}>
+        {open ? 'Hide popup' : 'Open CssAnimation'}
+      </Button>
+      <StyledPopup anchor={anchor} open={open} {...other}>
+        {children}
+      </StyledPopup>
+    </React.Fragment>
+  );
+}
+
+PopupWithTrigger2.propTypes = {
   children: PropTypes.node,
 };
