@@ -27,6 +27,8 @@ export interface UseInputParameters {
    */
   required?: boolean;
   value?: unknown;
+  focused: boolean;
+  setFocused: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface UseInputRootSlotOwnProps {
@@ -79,7 +81,7 @@ export interface UseInputReturnValue {
    * @param externalProps props for the input slot
    * @returns props that should be spread on the input slot
    */
-  getInputProps: <ExternalProps extends Record<string, any> = {}>(
+  getProps: <ExternalProps extends Record<string, any> = {}>(
     externalProps?: ExternalProps,
   ) => UseInputInputSlotProps<ExternalProps>;
   /**
@@ -87,9 +89,6 @@ export interface UseInputReturnValue {
    * @param externalProps props for the root slot
    * @returns props that should be spread on the root slot
    */
-  getRootProps: <ExternalProps extends Record<string, any> = {}>(
-    externalProps?: ExternalProps,
-  ) => UseInputRootSlotProps<ExternalProps>;
   inputRef: React.RefCallback<HTMLInputElement | HTMLTextAreaElement> | null;
   /**
    * If `true`, the `input` will indicate that it's required.

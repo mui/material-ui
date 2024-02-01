@@ -1,170 +1,77 @@
 import * as React from 'react';
-import { Simplify } from '@mui/types';
-import { FormControlState } from '../FormControl';
-import { UseInputParameters, UseInputRootSlotProps } from '../useInput';
-import { PolymorphicProps, SlotComponentProps } from '../utils';
+import type { Simplify } from '@mui/types';
+import type { FormControlState } from '../FormControl';
+import type { UseInputRootSlotProps } from '../useInput';
+import { UseInputRootParameters } from '../useInput/useInputRoot';
 
-export interface InputRootSlotPropsOverrides {}
-export interface InputInputSlotPropsOverrides {}
+type InputRootRenderFunction = (
+  props: React.ComponentPropsWithRef<'div'>,
+  ownerState: InputOwnerState,
+) => React.ReactNode;
 
-export interface SingleLineInputProps {
+export type InputProps = Omit<UseInputRootParameters, 'error' | 'inputRef'> & {
+  children?: React.ReactNode;
   /**
-   * Maximum number of rows to display when multiline option is set to true.
+   * Class name applied to the root element.
    */
-  maxRows?: undefined;
+  className?: string;
   /**
-   * Minimum number of rows to display when multiline option is set to true.
+   * Trailing adornment for this input.
    */
-  minRows?: undefined;
+  endAdornment?: React.ReactNode;
+  /**
+   * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input and the `baseui--error` class on the root element.
+   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   */
+  error?: boolean;
+  /**
+   * The id of the `input` element.
+   */
+  id?: string;
+  /**
+   * Name attribute of the `input` element.
+   */
+  name?: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
+  onKeyUp?: React.KeyboardEventHandler<HTMLInputElement>;
+  /**
+   * The short hint displayed in the `input` before the user enters a value.
+   */
+  placeholder?: string;
+  /**
+   * It prevents the user from changing the value of the field
+   * (not from interacting with the field).
+   */
+  readOnly?: boolean;
   /**
    * If `true`, a `textarea` element is rendered.
    * @default false
    */
-  multiline?: false;
+  render?: InputRootRenderFunction;
   /**
-   * Number of rows to display when multiline option is set to true.
+   * Leading adornment for this input.
    */
-  rows?: undefined;
+  startAdornment?: React.ReactNode;
   /**
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    * @default 'text'
    */
   type?: React.HTMLInputTypeAttribute;
-}
+  /**
+   * The value of the `input` element, required for a controlled component.
+   */
+  value?: unknown;
+};
 
-export interface MultiLineInputProps {
-  /**
-   * Maximum number of rows to display when multiline option is set to true.
-   */
-  maxRows?: number;
-  /**
-   * Minimum number of rows to display when multiline option is set to true.
-   */
-  minRows?: number;
-  /**
-   * If `true`, a `textarea` element is rendered.
-   * @default false
-   */
-  multiline: true;
-  /**
-   * Number of rows to display when multiline option is set to true.
-   */
-  rows?: number;
-  /**
-   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
-   * @default 'text'
-   */
-  type?: undefined;
-}
-
-export type InputOwnProps = (SingleLineInputProps | MultiLineInputProps) &
-  Omit<UseInputParameters, 'error'> & {
-    'aria-describedby'?: string;
-    'aria-label'?: string;
-    'aria-labelledby'?: string;
-    /**
-     * This prop helps users to fill forms faster, especially on mobile devices.
-     * The name can be confusing, as it's more like an autofill.
-     * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
-     */
-    autoComplete?: string;
-    /**
-     * If `true`, the `input` element is focused during the first mount.
-     */
-    autoFocus?: boolean;
-    /**
-     * Class name applied to the root element.
-     */
-    className?: string;
-    /**
-     * Trailing adornment for this input.
-     */
-    endAdornment?: React.ReactNode;
-    /**
-     * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input and the `baseui--error` class on the root element.
-     * The prop defaults to the value (`false`) inherited from the parent FormControl component.
-     */
-    error?: boolean;
-    /**
-     * The id of the `input` element.
-     */
-    id?: string;
-    /**
-     * Name attribute of the `input` element.
-     */
-    name?: string;
-    onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
-    onKeyUp?: React.KeyboardEventHandler<HTMLInputElement>;
-    /**
-     * The short hint displayed in the `input` before the user enters a value.
-     */
-    placeholder?: string;
-    /**
-     * It prevents the user from changing the value of the field
-     * (not from interacting with the field).
-     */
-    readOnly?: boolean;
-    /**
-     * The props used for each slot inside the Input.
-     * @default {}
-     */
-    slotProps?: {
-      root?: SlotComponentProps<'div', InputRootSlotPropsOverrides, InputOwnerState>;
-      input?: SlotComponentProps<'input', InputInputSlotPropsOverrides, InputOwnerState>;
-    };
-    /**
-     * The components used for each slot inside the InputBase.
-     * Either a string to use a HTML element or a component.
-     * @default {}
-     */
-    slots?: InputSlots;
-    /**
-     * Leading adornment for this input.
-     */
-    startAdornment?: React.ReactNode;
-    /**
-     * The value of the `input` element, required for a controlled component.
-     */
-    value?: unknown;
-  };
-
-export interface InputSlots {
-  /**
-   * The component that renders the root.
-   * @default 'div'
-   */
-  root?: React.ElementType;
-  /**
-   * The component that renders the input.
-   * @default 'input'
-   */
-  input?: React.ElementType;
-  /**
-   * The component that renders the textarea.
-   * @default 'textarea'
-   */
-  textarea?: React.ElementType;
-}
-
-export interface InputTypeMap<
-  AdditionalProps = {},
-  RootComponentType extends React.ElementType = 'div',
-> {
-  props: InputOwnProps & AdditionalProps;
-  defaultComponent: RootComponentType;
-}
-
-export type InputProps<
-  RootComponentType extends React.ElementType = InputTypeMap['defaultComponent'],
-> = PolymorphicProps<InputTypeMap<{}, RootComponentType>, RootComponentType>;
-
-export type InputOwnerState = Simplify<
-  InputOwnProps & {
-    formControlContext: FormControlState | undefined;
-    focused: boolean;
-    type: React.InputHTMLAttributes<HTMLInputElement>['type'] | undefined;
-  }
->;
+export type InputOwnerState = {
+  disabled: boolean;
+  error: boolean;
+  focused: boolean;
+  formControlContext: FormControlState | undefined;
+  required: boolean;
+  type: React.InputHTMLAttributes<HTMLInputElement>['type'] | undefined;
+};
 
 export type InputRootSlotProps = Simplify<
   UseInputRootSlotProps & {
