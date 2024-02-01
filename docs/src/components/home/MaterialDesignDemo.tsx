@@ -43,7 +43,7 @@ const Rating = withPointer(MuiRating, { id: 'rating', name: 'Rating' });
 const Switch = withPointer(MuiSwitch, { id: 'switch', name: 'Switch' });
 
 export default function MaterialDesignDemo(props: CardProps) {
-  const [active, setActive] = React.useState(false);
+  const [active, setActive] = React.useState(true);
   return (
     <Card {...props} sx={{ p: 2 }}>
       <CardMedia
