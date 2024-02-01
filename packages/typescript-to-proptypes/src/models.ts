@@ -1,3 +1,5 @@
+import ts from 'typescript';
+
 export interface PropTypeDefinition {
   name: string;
   jsDoc: string | undefined;
@@ -78,7 +80,7 @@ export interface InterfaceType extends BasePropType {
 }
 
 export interface LiteralType extends BasePropType {
-  value: unknown;
+  value: string | number | ts.PseudoBigInt;
   type: 'LiteralNode';
 }
 

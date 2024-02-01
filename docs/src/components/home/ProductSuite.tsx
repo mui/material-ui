@@ -39,7 +39,7 @@ const AdvancedShowcase = dynamic(() => import('./AdvancedShowcase'), {
 const StoreTemplatesBanner = dynamic(() => import('./StoreTemplatesBanner'));
 const DesignKits = dynamic(() => import('./DesignKits'));
 
-function ProductSuite() {
+export default function ProductSuite() {
   const [productIndex, setProductIndex] = React.useState(0);
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -59,7 +59,6 @@ function ProductSuite() {
             }
             description="Build at an accelerated pace without sacrificing flexibility or control."
           />
-          <Box sx={{ mt: 4 }} />
           <ProductsSwitcher
             inView={inView}
             productIndex={productIndex}
@@ -72,7 +71,7 @@ function ProductSuite() {
           md={6}
           sx={productIndex === 0 ? { minHeight: { xs: 777, sm: 757, md: 'unset' } } : {}}
         >
-          {inView && (
+          {inView ? (
             <React.Fragment>
               <PrefetchStoreTemplateImages />
               <PrefetchDesignKitImages />
@@ -81,11 +80,11 @@ function ProductSuite() {
               {productIndex === 2 && <StoreTemplatesBanner />}
               {productIndex === 3 && <DesignKits />}
             </React.Fragment>
+          ) : (
+            <Box sx={{ height: { xs: 0, md: 803 } }} />
           )}
         </Grid>
       </Grid>
     </Section>
   );
 }
-
-export default ProductSuite;

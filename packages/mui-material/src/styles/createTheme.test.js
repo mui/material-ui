@@ -251,7 +251,7 @@ describe('createTheme', () => {
     });
   });
 
-  it('should apply dark styles when using applyDarkStyles if mode="dark"', function test() {
+  it('should apply dark styles when using applyStyles if mode="dark"', function test() {
     const darkTheme = createTheme({
       palette: {
         mode: 'dark',
@@ -260,7 +260,7 @@ describe('createTheme', () => {
 
     const Test = styled('div')(({ theme }) => ({
       backgroundColor: 'rgb(255, 255, 255)',
-      ...theme.applyDarkStyles({
+      ...theme.applyStyles('dark', {
         backgroundColor: 'rgb(0, 0, 0)',
       }),
     }));
@@ -276,12 +276,12 @@ describe('createTheme', () => {
     });
   });
 
-  it('should apply dark styles when using applyDarkStyles if mode="light"', function test() {
+  it('should not apply dark styles when using applyStyles if mode="light"', function test() {
     const lightTheme = createTheme();
 
     const Test = styled('div')(({ theme }) => ({
       backgroundColor: 'rgb(255, 255, 255)',
-      ...theme.applyDarkStyles({
+      ...theme.applyStyles('dark', {
         backgroundColor: 'rgb(0, 0, 0)',
       }),
     }));

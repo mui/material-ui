@@ -40,12 +40,7 @@ function defaultShouldForwardProp(propKey) {
  * @param {Object} componentMeta.defaultProps Default props object copied over and inlined from theme object
  */
 export default function styled(tag, componentMeta = {}) {
-  const {
-    name,
-    slot,
-    defaultProps = {},
-    shouldForwardProp = defaultShouldForwardProp,
-  } = componentMeta;
+  const { name, slot, shouldForwardProp = defaultShouldForwardProp } = componentMeta;
   /**
    * @TODO - Filter props and only pass necessary props to children
    *
@@ -64,7 +59,6 @@ export default function styled(tag, componentMeta = {}) {
    * @param {string} options.name
    * @param {string} options.slot
    * @param {ShouldForwardProp} options.shouldForwardProp
-   * @param {Object} options.defaultProps Default props object copied over and inlined from theme object
    */
   function scopedStyledWithOptions(options = {}) {
     const { displayName, classes = [], vars: cssVars = {}, variants = [] } = options;
@@ -163,7 +157,6 @@ export default function styled(tag, componentMeta = {}) {
     });
 
     StyledComponent.displayName = `Styled(${componentName})`;
-    StyledComponent.defaultProps = defaultProps;
     // eslint-disable-next-line no-underscore-dangle
     StyledComponent.__isStyled = true;
 

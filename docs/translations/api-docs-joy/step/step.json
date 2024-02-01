@@ -54,7 +54,7 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
-    "indicator": "The component that renders the indicator."
+    "indicator": "The component that renders the indicator.",
+    "root": "The component that renders the root."
   }
 }
