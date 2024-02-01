@@ -3,8 +3,8 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import * as pageProps from 'docs/data/base/components/input/input.md?@mui/markdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import InputApiJsonPageContent from '../../api/input.json';
-import useInputApiJsonPageContent from '../../api/use-input.json';
+import TextboxApiJsonPageContent from '../../api/textbox.json';
+import useTextboxApiJsonPageContent from '../../api/use-textbox.json';
 
 export default function Page(props) {
   const { userLanguage, ...other } = props;
@@ -23,26 +23,26 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps = () => {
-  const InputApiReq = require.context(
-    'docs/translations/api-docs-base/input',
+  const TextboxApiReq = require.context(
+    'docs/translations/api-docs-base/textbox',
     false,
-    /input.*.json$/,
+    /textbox.*.json$/,
   );
-  const InputApiDescriptions = mapApiPageTranslations(InputApiReq);
+  const TextboxApiDescriptions = mapApiPageTranslations(TextboxApiReq);
 
-  const useInputApiReq = require.context(
-    'docs/translations/api-docs/use-input',
+  const useTextboxApiReq = require.context(
+    'docs/translations/api-docs/use-textbox',
     false,
-    /use-input.*.json$/,
+    /use-textbox.*.json$/,
   );
-  const useInputApiDescriptions = mapApiPageTranslations(useInputApiReq);
+  const useTextboxApiDescriptions = mapApiPageTranslations(useTextboxApiReq);
 
   return {
     props: {
-      componentsApiDescriptions: { Input: InputApiDescriptions },
-      componentsApiPageContents: { Input: InputApiJsonPageContent },
-      hooksApiDescriptions: { useInput: useInputApiDescriptions },
-      hooksApiPageContents: { useInput: useInputApiJsonPageContent },
+      componentsApiDescriptions: { Textbox: TextboxApiDescriptions },
+      componentsApiPageContents: { Textbox: TextboxApiJsonPageContent },
+      hooksApiDescriptions: { useTextbox: useTextboxApiDescriptions },
+      hooksApiPageContents: { useTextbox: useTextboxApiJsonPageContent },
     },
   };
 };

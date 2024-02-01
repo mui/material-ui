@@ -13,8 +13,8 @@
     "error": { "type": { "name": "boolean", "description": "boolean" } },
     "inputRef": {
       "type": {
-        "name": "React.Ref&lt;HTMLInputElement | HTMLTextAreaElement&gt;",
-        "description": "React.Ref&lt;HTMLInputElement | HTMLTextAreaElement&gt;"
+        "name": "React.Ref&lt;HTMLInputElement&gt;",
+        "description": "React.Ref&lt;HTMLInputElement&gt;"
       }
     },
     "onBlur": {
@@ -42,38 +42,26 @@
     "value": { "type": { "name": "unknown", "description": "unknown" } }
   },
   "returnValue": {
-    "disabled": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
-    "error": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
-    "focused": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
-    "formControlContext": {
-      "type": {
-        "name": "FormControlState | undefined",
-        "description": "FormControlState | undefined"
-      },
-      "required": true
-    },
     "getProps": {
       "type": {
-        "name": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseInputInputSlotProps&lt;ExternalProps&gt;",
-        "description": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseInputInputSlotProps&lt;ExternalProps&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseTextboxInputSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseTextboxInputSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },
-    "inputRef": {
+    "ref": {
       "type": {
-        "name": "React.RefCallback&lt;HTMLInputElement | HTMLTextAreaElement&gt; | null",
-        "description": "React.RefCallback&lt;HTMLInputElement | HTMLTextAreaElement&gt; | null"
+        "name": "React.RefCallback&lt;HTMLInputElement&gt; | null",
+        "description": "React.RefCallback&lt;HTMLInputElement&gt; | null"
       },
       "required": true
-    },
-    "required": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
-    "value": { "type": { "name": "unknown", "description": "unknown" }, "required": true }
+    }
   },
-  "name": "useInput",
-  "filename": "/packages/mui-base/src/useInput/useInput.ts",
+  "name": "useTextboxInput",
+  "filename": "/packages/mui-base/src/useTextbox/useTextboxInput.ts",
   "imports": [
-    "import { useInput } from '@mui/base/useInput';",
-    "import { useInput } from '@mui/base';"
+    "import { useTextboxInput } from '@mui/base/useTextbox';",
+    "import { useTextboxInput } from '@mui/base';"
   ],
-  "demos": "<ul><li><a href=\"/base-ui/react-input/#hook\">Input</a></li></ul>"
+  "demos": "<ul></ul>"
 }

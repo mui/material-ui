@@ -1,14 +1,12 @@
 {
   "props": {
     "className": { "type": { "name": "string" } },
-    "endAdornment": { "type": { "name": "node" } },
     "error": { "type": { "name": "bool" } },
     "id": { "type": { "name": "string" } },
     "name": { "type": { "name": "string" } },
     "placeholder": { "type": { "name": "string" } },
     "readOnly": { "type": { "name": "bool" } },
     "render": { "type": { "name": "func" }, "default": "false" },
-    "startAdornment": { "type": { "name": "node" } },
     "type": {
       "type": {
         "name": "enum",
@@ -18,18 +16,21 @@
     },
     "value": { "type": { "name": "any" } }
   },
-  "name": "Input",
-  "imports": ["import { Input } from '@mui/base/Input';", "import { Input } from '@mui/base';"],
+  "name": "Textbox",
+  "imports": [
+    "import { Textbox } from '@mui/base/Textbox';",
+    "import { Textbox } from '@mui/base';"
+  ],
   "classes": [
     {
       "key": "adornedEnd",
-      "className": "base-Input-adornedEnd",
+      "className": "base-Textbox-adornedEnd",
       "description": "Class name applied to the root element if `endAdornment` is provided.",
       "isGlobal": false
     },
     {
       "key": "adornedStart",
-      "className": "base-Input-adornedStart",
+      "className": "base-Textbox-adornedStart",
       "description": "Class name applied to the root element if `startAdornment` is provided.",
       "isGlobal": false
     },
@@ -53,45 +54,45 @@
     },
     {
       "key": "formControl",
-      "className": "base-Input-formControl",
+      "className": "base-Textbox-formControl",
       "description": "Class name applied to the root element if the component is a descendant of `FormControl`.",
       "isGlobal": false
     },
     {
       "key": "input",
-      "className": "base-Input-input",
+      "className": "base-Textbox-input",
       "description": "Class name applied to the input element.",
       "isGlobal": false
     },
     {
       "key": "inputMultiline",
-      "className": "base-Input-inputMultiline",
+      "className": "base-Textbox-inputMultiline",
       "description": "Class name applied to the input element if `multiline={true}`.",
       "isGlobal": false
     },
     {
       "key": "inputTypeSearch",
-      "className": "base-Input-inputTypeSearch",
+      "className": "base-Textbox-inputTypeSearch",
       "description": "Class name applied to the input element if `type=\"search\"`.",
       "isGlobal": false
     },
     {
       "key": "multiline",
-      "className": "base-Input-multiline",
+      "className": "base-Textbox-multiline",
       "description": "Class name applied to the root element if `multiline={true}`.",
       "isGlobal": false
     },
     {
       "key": "root",
-      "className": "base-Input-root",
+      "className": "base-Textbox-root",
       "description": "Class name applied to the root element.",
       "isGlobal": false
     }
   ],
   "spread": true,
-  "muiName": "Input",
+  "muiName": "Textbox",
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/mui-base/src/Input/Input.tsx",
+  "filename": "/packages/mui-base/src/Textbox/Textbox.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/base-ui/react-input/\">Input</a></li></ul>",
   "cssComponent": false

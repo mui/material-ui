@@ -9,7 +9,12 @@ import {
   UseTextboxInputReturnValue,
 } from './useTextboxInput.types';
 import { FormControlState, useFormControlContext } from '../FormControl';
-
+/**
+ *
+ * API:
+ *
+ * - [useTextboxInput API](https://mui.com/base-ui/api/use-textbox-input/)
+ */
 export function useTextboxInput(parameters: UseTextboxInputParameters): UseTextboxInputReturnValue {
   const {
     defaultValue,

@@ -6,7 +6,16 @@ import {
   UseTextboxRootSlotProps,
 } from './useTextbox.types';
 import { FormControlState, useFormControlContext } from '../FormControl';
-
+/**
+ *
+ * Demos:
+ *
+ * - [Input](https://mui.com/base-ui/react-input/#hook)
+ *
+ * API:
+ *
+ * - [useTextbox API](https://mui.com/base-ui/react-input/hooks-api/#use-textbox)
+ */
 export function useTextbox(parameters: UseTextboxParameters): UseTextboxReturnValue {
   const {
     inputRef,
