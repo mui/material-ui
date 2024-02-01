@@ -45,7 +45,9 @@ export default function ComponentPerNode() {
       >
         <AccountCircleIcon />
         <Input.Input
-          render={({ value: localValue, ...other }) => <textarea {...other}>{localValue}</textarea>}
+          render={({ value: localValue, ...other }) => (
+            <textarea {...(other as any)}>{localValue}</textarea>
+          )}
           className="grow font-sans border-0 focus-visible:outline-0 resize-none h-20"
         />
       </Input>

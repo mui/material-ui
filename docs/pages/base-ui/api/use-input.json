@@ -1,5 +1,13 @@
 {
   "parameters": {
+    "focused": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "setFocused": {
+      "type": {
+        "name": "React.Dispatch&lt;React.SetStateAction&lt;boolean&gt;&gt;",
+        "description": "React.Dispatch&lt;React.SetStateAction&lt;boolean&gt;&gt;"
+      },
+      "required": true
+    },
     "defaultValue": { "type": { "name": "unknown", "description": "unknown" } },
     "disabled": { "type": { "name": "boolean", "description": "boolean" } },
     "error": { "type": { "name": "boolean", "description": "boolean" } },
@@ -44,17 +52,10 @@
       },
       "required": true
     },
-    "getInputProps": {
+    "getProps": {
       "type": {
         "name": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseInputInputSlotProps&lt;ExternalProps&gt;",
         "description": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseInputInputSlotProps&lt;ExternalProps&gt;"
-      },
-      "required": true
-    },
-    "getRootProps": {
-      "type": {
-        "name": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseInputRootSlotProps&lt;ExternalProps&gt;",
-        "description": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseInputRootSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },

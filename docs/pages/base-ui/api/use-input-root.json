@@ -1,0 +1,11 @@
+{
+  "parameters": {},
+  "returnValue": {},
+  "name": "useInputRoot",
+  "filename": "/packages/mui-base/src/useInput/useInputRoot.ts",
+  "imports": [
+    "import { useInputRoot } from '@mui/base/useInput';",
+    "import { useInputRoot } from '@mui/base';"
+  ],
+  "demos": "<ul></ul>"
+}
