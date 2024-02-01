@@ -124,7 +124,7 @@ const Section = styled('div')`
   display: flex;
 `;
 
-export default function CssAnimationComponent() {
+export default function AllTransitionsDemo() {
   return (
     <div>
       <style>{styles}</style>

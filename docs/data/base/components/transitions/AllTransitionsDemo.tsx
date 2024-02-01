@@ -137,7 +137,7 @@ const Section = styled('div')`
   padding: 8px;
 `;
 
-export default function CssAnimationComponent() {
+export default function AllTransitionsDemo() {
   return (
     <div>
       <style>{styles}</style>
