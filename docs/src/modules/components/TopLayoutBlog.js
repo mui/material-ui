@@ -16,7 +16,7 @@ import HeroEnd from 'docs/src/components/home/HeroEnd';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import ROUTES from 'docs/src/route';
-import Link from 'docs/src/modules/components/Link';
+import Link from '@mui/docs/Link';
 
 export const authors = {
   oliviertassinari: {

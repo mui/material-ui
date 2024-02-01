@@ -1242,6 +1242,12 @@ importers:
       '@mui/utils':
         specifier: workspace:^
         version: link:../mui-utils/build
+      clsx:
+        specifier: ^2.1.0
+        version: 2.1.0
+      invariant:
+        specifier: ^2.2.4
+        version: 2.2.4
       nprogress:
         specifier: ^0.2.0
         version: 0.2.0
@@ -1249,6 +1255,9 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
     devDependencies:
+      '@types/invariant':
+        specifier: ^2.2.37
+        version: 2.2.37
       '@types/node':
         specifier: ^18.19.10
         version: 18.19.10
@@ -1258,6 +1267,9 @@ importers:
       '@types/react':
         specifier: ^18.2.48
         version: 18.2.48
+      next:
+        specifier: ^14.1.0
+        version: 14.1.0(@babel/core@7.23.9)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -7784,6 +7796,10 @@ packages:
   /@types/http-errors@2.0.1:
     resolution: {integrity: sha512-/K3ds8TRAfBvi5vfjuz8y6+GiAYBZ0x4tXv1Av6CWBWn0IlADc+ZX9pMq7oU0fNQPnBwIZl3rmeLp6SBApbxSQ==}
     dev: false
+
+  /@types/invariant@2.2.37:
+    resolution: {integrity: sha512-IwpIMieE55oGWiXkQPSBY1nw1nFs6bsKXTFskNY8sdS17K24vyEBRQZEwlRS7ZmXCWnJcQtbxWzly+cODWGs2A==}
+    dev: true
 
   /@types/is-stream@1.1.0:
     resolution: {integrity: sha512-jkZatu4QVbR60mpIzjINmtS1ZF4a/FqdTUTBeQDVOQ2PYyidtwFKr0B5G6ERukKwliq+7mIXvxyppwzG5EgRYg==}

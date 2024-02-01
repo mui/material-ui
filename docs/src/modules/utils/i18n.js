@@ -1,3 +1,4 @@
-// Backwards compatibility for Toolpad X.
-// TODO: remove when X/Toolpad migrated to `@mui/docs/i18n`
+// Backwards compatibility for Toolpad and X.
+// TODO: remove when Toolpad and X migrated to `@mui/docs/i18n`
+
 export * from '@mui/docs/i18n';

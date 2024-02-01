@@ -21,7 +21,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import SvgIcon from '@mui/material/SvgIcon';
 import * as mui from '@mui/icons-material';
-import Link from 'docs/src/modules/components/Link';
+import Link from '@mui/docs/Link';
 import { useTranslate } from '@mui/docs/i18n';
 import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterState';
 // For Debugging
