@@ -44,13 +44,16 @@ We need talented people to keep that going!
 
 ### Why this is interesting
 
-This is an opportunity to work fully remote with an agile, industry-leading company. We offer a dynamic work environment that is best suited to independent learners who are eager to proactively dig into customer requests and who enjoy problem-solving independently.
+This is an opportunity to work fully remote with an agile, industry-leading company.
+We offer a dynamic work environment that is best suited to independent learners who are eager to proactively dig into customer requests and who enjoy problem-solving independently.
 
 Our products empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
 
 ## The role
 
-As a customer support agent, you will focus on delivering consistent, high quality support to our customers, providing product information, sales quotes, and filling out compliance requests with the support of our Head of Operations. This could include handling requests that are not yet documented in our existing knowledge base, and working with the team to create clear guidelines around common support requests and agreed upon responses. While this is not a technical role, having a basic understanding of what a UI library is and how they work will be fundamental. 
+As a customer support agent, you will focus on delivering consistent, high quality support to our customers, providing product information, sales quotes, and filling out compliance requests with the support of our Head of Operations.
+This could include handling requests that are not yet documented in our existing knowledge base, and working with the team to create clear guidelines around common support requests and agreed upon responses.
+While this is not a technical role, having a basic understanding of what a UI library is and how they work will be fundamental.
 
 Taking initiative, actively documenting, and being comfortable with new challenges are the main keys to success in the role.
 
@@ -59,16 +62,15 @@ Taking initiative, actively documenting, and being comfortable with new challeng
 Depending on the day, you'll:
 
 - Manage our queue of customer support tickets and execute associated tasks for resolution, including but not limited to processing refunds, deleting user accounts, processing quote requests, and answering FAQs
-- Contribute to our support request types and macros database, making sure it’s detailed, clear, and up to date
+- Contribute to our support request types and macros database, making sure it's detailed, clear, and up to date
 - Maintain our ticket database for analytics and historical reference by leveraging tags, internal comments, and creating canned responses where appropriate
 - Suggest and implement workflow improvements, including automations and helpful reports to stay on top of ticket volume
 - Moderate our store reviews and escalate important feedback to the relevant parties (internal or store contributors)
-- Respond to Paypal & Stripe disputes 
+- Respond to Paypal & Stripe disputes
 - Actively follow-up on critical customer communications, such as overdue invoices
 - Collaborate with a Customer Success Engineer and a Product Engineer for our Store to find new solutions to recurring customer pain points (updating legal documents for clarity, creating new internal apps for frequent use cases, adding feature requests to GitHub)
 - Stay up to date on any major releases or changes to our product offerings by attending monthly company meetings and incorporating any changes to our [legal pages](https://mui.com/legal/) in your work
 - Create Notion pages to suggest opportunities to improve the quality and efficiency of our customer service operation overall
-
 
 ## Who we're looking for
 
@@ -81,7 +83,6 @@ Depending on the day, you'll:
 - **Self-management:** as a remote and async company, we firmly avoid micromanaging practices, relying on everyone to leverage their own strategies for productivity and focusing on output, not process.
 - **Organised documenter:** we thrive when using thorough documentation and categorisation, meaning tickets are labeled, patterns become templates, and ideas for automation/improvement become entries in our project database.
 - **Comfortable around technical language:** engineering skills are absolutely not required, however you will need some basic literacy around web development and digital products work (downloads, installs, upgrades, updates, bugs, etc).
-
 
 ### Nice to have (but not required)
 
