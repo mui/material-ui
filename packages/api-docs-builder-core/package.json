@@ -9,7 +9,6 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@mui/docs": "workspace:^",
     "@mui-internal/api-docs-builder": "workspace:^",
     "@mui/markdown": "workspace:^",
     "docs": "workspace:^",

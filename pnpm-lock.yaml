@@ -993,9 +993,6 @@ importers:
       '@mui-internal/api-docs-builder':
         specifier: workspace:^
         version: link:../api-docs-builder
-      '@mui/docs':
-        specifier: workspace:^
-        version: link:../mui-docs/build
       '@mui/markdown':
         specifier: workspace:^
         version: link:../markdown

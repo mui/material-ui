@@ -1,5 +1,5 @@
 import path from 'path';
-import { LANGUAGES } from '@mui/docs/config';
+import { LANGUAGES } from 'docs/config';
 import { ProjectSettings } from '@mui-internal/api-docs-builder';
 import findApiPages from '@mui-internal/api-docs-builder/utils/findApiPages';
 import {
