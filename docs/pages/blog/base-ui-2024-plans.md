@@ -39,6 +39,10 @@ They're currently available for use with the Popup, Menu, and Select components,
 
 [demo of the two existing components for now]
 
+{{"demo": "../../data/base/components/button/UnstyledButtonsSimple.js"}}
+
+{{"component": "components/showcase/FolderTable.tsx"}}
+
 ## Independent component versioning
 
 The biggest benefit of making each Base UI component available through its own npm package is speed.
