@@ -37,7 +37,7 @@ For additional details about the culture, you can check our [careers](https://mu
 
 ## Why we're hiring
 
-One of MUI’s company values is is to [#putcommunityfirst](https://www.notion.so/mui-org/Values-behaviors-d3a1e1c60e2a4c0782f770cceada54bd?pvs=4#63393bde7da14f0698de0653f07a8dc7), and that includes high quality and timely responses to customer support requests. While technical support for bugs and features is provided by our product and engineering teams, all sales and product inquiries are currently handled by a small team of two support and operations agents. We’re looking to add a support-focused agent to this stellar team, to ensure our resources and bandwidth continue to match our customer needs.
+One of MUI’s company values is to [#putcommunityfirst](https://www.notion.so/mui-org/Values-behaviors-d3a1e1c60e2a4c0782f770cceada54bd?pvs=4#63393bde7da14f0698de0653f07a8dc7), and that includes high quality and timely responses to customer support requests. While technical support for bugs and features is provided by our product and engineering teams, all sales and product inquiries are currently handled by a small team of two support and operations agents. We’re looking to add a support-focused agent to this stellar team, to ensure our resources and bandwidth continue to match our customer needs.
 
 Overall, both our open-source community and our premium products are growing fast (x2 YoY).
 We need talented people to keep that going!
@@ -57,6 +57,7 @@ Taking initiative, actively documenting, and being comfortable with new challeng
 ### What you'll do on a day-to-day basis
 
 Depending on the day, you'll:
+
 - Manage our queue of customer support tickets and execute associated tasks for resolution, including but not limited to processing refunds, deleting user accounts, processing quote requests, and answering FAQs
 - Contribute to our support request types and macros database, making sure it’s detailed, clear, and up to date
 - Maintain our ticket database for analytics and historical reference by leveraging tags, internal comments, and creating canned responses where appropriate
@@ -87,13 +88,13 @@ Depending on the day, you'll:
 - Experience (1+ years) providing customer support for similar companies (developer tools, IT tools, digital products) will be considered a bonus.
 
 ## Benefits and compensation
-
-**Compensation bands:** $20-30k USD or equivalent in local currency.
+**Compensation bands:** 20-30k USD, or equivalent in local currency, per year.
+You can find our perks & benefits on the [careers](/careers/#perks-and-benefits/) page.
 You can find our perks & benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## How to apply
 
-[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/__ID__/application?utm_source=ZNRrPGBkqO)
+[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/79a9b5ec-6fb3-41ec-b48b-0a792ced7c19)
 
 Don't meet every requirement?
 Apply anyway!
