@@ -12,8 +12,10 @@ function NotFoundIllustration() {
       sx={(theme) => ({
         mx: 'auto',
         mb: 4,
-        height: 150,
-        width: 200,
+        height: { xs: 200, sm: 150 },
+        width: { xs: 100, sm: 200 },
+        display: 'flex',
+        flexDirection: { xs: 'column-reverse', sm: 'column' },
         borderRadius: 1,
         border: '1px solid',
         borderColor: 'divider',
@@ -33,7 +35,7 @@ function NotFoundIllustration() {
       <Box
         sx={{
           p: 1.5,
-          display: 'flex',
+          display: { xs: 'none', sm: 'flex' },
           gap: 1,
           borderBottom: '1px solid',
           borderColor: 'divider',
@@ -50,7 +52,27 @@ function NotFoundIllustration() {
           sx={{ width: 10, height: 10, borderRadius: 2, bgcolor: 'success.500', opacity: '80%' }}
         />
       </Box>
-      <Box sx={{ height: '75%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <Box
+        sx={{
+          pt: 1,
+          pb: '5px',
+          display: { xs: 'flex', sm: 'none' },
+          justifyContent: 'center',
+          borderTop: '1px solid',
+          borderColor: 'divider',
+          bgcolor: 'background.paper',
+        }}
+      >
+        <Box
+          sx={{
+            height: 3,
+            width: '40%',
+            bgcolor: 'rgba(0,0,0,0.3)',
+            borderRadius: 2,
+          }}
+        />
+      </Box>
+      <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <SearchOffRoundedIcon sx={{ fontSize: 50, color: 'primary.500', opacity: '40%' }} />
       </Box>
     </Box>
