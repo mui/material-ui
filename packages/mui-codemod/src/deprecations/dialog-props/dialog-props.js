@@ -126,7 +126,7 @@ export default function transformer(file, api, options) {
   root.find(j.ObjectProperty).forEach((path) => {
     if (path.parent?.parent?.parent?.parent?.node.key?.name === 'MuiDialog') {
       if (['PaperComponent', 'TransitionComponent'].includes(path.node.key.name)) {
-        const isSlotsCreated = !!path.parent.parent.node.value?.properties?.find(
+        const isSlotsCreated = path.parent.parent.node.value?.properties?.some(
           (prop) => prop.key.name === 'slots',
         );
 
@@ -155,7 +155,7 @@ export default function transformer(file, api, options) {
         }
       }
       if (['PaperProps', 'TransitionProps'].includes(path.node.key.name)) {
-        const isSlotPropsCreated = !!path.parent.parent.node.value?.properties?.find(
+        const isSlotPropsCreated = path.parent.parent.node.value?.properties?.some(
           (prop) => prop.key.name === 'slotProps',
         );
 
