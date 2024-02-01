@@ -1,3 +1,4 @@
+/* eslint-disable no-irregular-whitespace */
 const fs = require('fs');
 const path = require('path');
 const kebabCase = require('lodash/kebabCase');
@@ -100,11 +101,17 @@ function prepareMarkdown(config) {
       const contents = getContents(markdown);
 
       if (headers.unstyled) {
+        // TODO v7:
+        //         contents.push(`
+        // ## Unstyled
+
+        // To completely own the design, without having to customize the built-in styles of Material UI, use the [Base UI ${markdownH1}](${headers.unstyled}). It's the unstyled version of the same component Material UI is built on top of. It's great for heavy customizations or smaller bundle sizes.
+        //         `);
+
         contents.push(`
 ## Unstyled
 
-To completely own the design, without having to customize parting from Material Design, use the [Base UI ${markdownH1}](${headers.unstyled}) for an unstyled version of this component
-Use this component for heavy customizations or smaller bundle sizes.
+To completely own the design, without having to customize the built-in styles of Material UI, use the [Base UI ${markdownH1}](${headers.unstyled}). It's the unstyled version of the same component. It's great for heavy customizations or smaller bundle sizes.
         `);
       }
 
