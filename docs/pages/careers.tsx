@@ -147,7 +147,7 @@ const openRolesData = [
     title: 'Engineering',
     roles: [
       {
-        title: 'React Engineer - xCharts',
+        title: 'React Engineer — xCharts',
         description:
           'You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
         url: '/careers/react-engineer-x-charts/',
@@ -159,7 +159,7 @@ const openRolesData = [
       //   url: '/careers/react-engineer-x/',
       // },
       {
-        title: 'Staff UI Engineer - Base UI',
+        title: 'Staff UI Engineer — Base UI',
         description:
           'Research, build, document, and ship high-quality, unstyled UI components with a focus on a11y.',
         url: '/careers/staff-ui-engineer-base-ui/',
@@ -170,7 +170,7 @@ const openRolesData = [
     title: 'Design',
     roles: [
       {
-        title: 'Design Engineer - xGrid',
+        title: 'Design Engineer — xGrid',
         description:
           'You will design and implement a great user and developer experience for the MUI X Data Grid.',
         url: '/careers/design-engineer-x-grid/',
@@ -201,31 +201,31 @@ const nextRolesData = [
         url: '/careers/accessibility-engineer/',
       },
       {
-        title: 'Full-stack Engineer - Toolpad',
+        title: 'Full-stack Engineer — Toolpad',
         description:
           'You will join the MUI Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.',
         url: '/careers/fullstack-engineer/',
       },
       {
-        title: 'React Engineer - X',
+        title: 'React Engineer — X',
         description:
           'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
         url: '/careers/react-engineer-x/',
       },
       {
-        title: 'React Tech Lead - Core',
+        title: 'React Tech Lead — Core',
         description:
           'You will lead the development of MUI Core, positioning the library as the industry standard for design teams while doubling its adoption.',
         url: '/careers/react-tech-lead-core/',
       },
       {
-        title: 'React Engineer - Core',
+        title: 'React Engineer — Core',
         description:
           'You will strengthen the core components team by collaborating with the community to land contributions.',
         url: '/careers/react-engineer-core/',
       },
       {
-        title: 'React Community Engineer - X',
+        title: 'React Community Engineer — X',
         description:
           'You will provide guidance to the community and solve their struggle, working primarily in the advanced components team.',
         url: '/careers/react-community-engineer/',

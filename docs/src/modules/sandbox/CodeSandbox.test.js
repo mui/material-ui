@@ -41,6 +41,12 @@ describe('CodeSandbox', () => {
           devDependencies: {
             'react-scripts': 'latest',
           },
+          scripts: {
+            start: 'react-scripts start',
+            build: 'react-scripts build',
+            test: 'react-scripts test',
+            eject: 'react-scripts eject',
+          },
         },
       },
       'public/index.html': {
@@ -130,7 +136,10 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
           },
           main: 'index.tsx',
           scripts: {
+            build: 'react-scripts build',
+            eject: 'react-scripts eject',
             start: 'react-scripts start',
+            test: 'react-scripts test',
           },
         },
       },

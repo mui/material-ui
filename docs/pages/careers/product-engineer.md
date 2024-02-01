@@ -1,4 +1,4 @@
-# Product Engineer - Store
+# Product Engineer — Store
 
 <p class="description">You will lead the technical, product, and operational development of the store.</p>
 

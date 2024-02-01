@@ -18,7 +18,7 @@ export default function findComponentJSX(j, options, callback) {
   root
     .find(j.ImportDeclaration)
     .filter((path) =>
-      path.node.source.value.match(new RegExp(`^@mui/material/?(${componentName})?`)),
+      path.node.source.value.match(new RegExp(`^@mui/material(/${componentName})?$`)),
     )
     .forEach((path) => {
       path.node.specifiers.forEach((specifier) => {
