@@ -37,7 +37,7 @@ For additional details about the culture, you can check our [careers](https://mu
 
 ## Why we're hiring
 
-One of MUI’s company values is to [#putcommunityfirst](https://www.notion.so/mui-org/Values-behaviors-d3a1e1c60e2a4c0782f770cceada54bd?pvs=4#63393bde7da14f0698de0653f07a8dc7), and that includes high quality and timely responses to customer support requests. While technical support for bugs and features is provided by our product and engineering teams, all sales and product inquiries are currently handled by a small team of two support and operations agents. We’re looking to add a support-focused agent to this stellar team, to ensure our resources and bandwidth continue to match our customer needs.
+One of MUI's company values is to [#putcommunityfirst](https://www.notion.so/mui-org/Values-behaviors-d3a1e1c60e2a4c0782f770cceada54bd?pvs=4#63393bde7da14f0698de0653f07a8dc7), and that includes high quality and timely responses to customer support requests. While technical support for bugs and features is provided by our product and engineering teams, all sales and product inquiries are currently handled by a small team of two support and operations agents. We're looking to add a support-focused agent to this stellar team, to ensure our resources and bandwidth continue to match our customer needs.
 
 Overall, both our open-source community and our premium products are growing fast (x2 YoY).
 We need talented people to keep that going!
@@ -89,8 +89,8 @@ Depending on the day, you'll:
 - Experience (1+ years) providing customer support for similar companies (developer tools, IT tools, digital products) will be considered a bonus.
 
 ## Benefits and compensation
+
 **Compensation bands:** 20-30k USD, or equivalent in local currency, per year.
-You can find our perks & benefits on the [careers](/careers/#perks-and-benefits/) page.
 You can find our perks & benefits on the [careers](/careers/#perks-and-benefits/) page.
 
 ## How to apply
