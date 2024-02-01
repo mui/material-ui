@@ -1,13 +1,12 @@
-# Engineering Manager — Toolpad
+# Staff UI Engineer — Base UI
 
-<p class="description">You will grow the small engineering team currently working on MUI Toolpad.</p>
+<p class="description">Research, build, document, and ship high-quality, unstyled UI components with a focus on a11y.</p>
 
 ## Details of the role
 
 - **Location**: Remote (preference for UTC-6 to UTC+5).
 - **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
-- **Level**: [IC4 or above](https://mui-org.notion.site/Levelling-at-MUI-5c30f9bfe65149d697f346447cef9db1).
-- We're a **remote** company, we prefer asynchronous communication over meetings.
+- **Level**: [IC5 or above](https://mui-org.notion.site/Levelling-at-MUI-5c30f9bfe65149d697f346447cef9db1).
 
 ## The company
 
@@ -38,24 +37,14 @@ For additional details about the culture, you can check our [careers](https://mu
 
 ## Why we're hiring
 
-Our mission is to empower as many people as possible to build great UIs, faster.
-The faster and simpler it is, and the broader the audience that can create custom UIs, the better.
-We believe that the best way to improve on these dimensions is to eliminate [80%](https://www.youtube.com/watch?v=GnO7D5UaDig&t=2451s) of the code that has to be written.
-
-A few months back we started to work on [MUI Toolpad](https://github.com/mui/mui-toolpad), an ambitious project to deliver on this objective.
-We have found the beginning of a market fit in this low-code segment.
-We need help to structure & grow the engineering team.
+The Base UI team is just starting to take shape now, and we have big goals for the next few years. We need experienced people to work alongside excellent UI engineers and designers, in an IC capacity, to research, spec, build, document, and ship high-quality, unstyled UI components with a focus on a11y.
 
 Overall, both our open-source community and our premium products are growing fast (x2 YoY).
 We need talented people to keep that going!
 
 ### Why this is interesting
 
-Our products empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
-
-Toolpad targets around half of this audience.
-While the team is still very small (5), we believe that the headcount on this product has needs to grow +14% MoM until the end of 2023 (>70 people).
-Growing the Toolpad engineering team will be full of challenges.
+Our products empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month. We're planning to invest heavily in Base UI this year and into the future. Our goal is to make Base UI one the best unstyled UI libs available, and in the process, help millions of developers build more accessible products.
 
 ## The role
 
@@ -63,30 +52,30 @@ Growing the Toolpad engineering team will be full of challenges.
 
 Depending on the day, you'll:
 
-- Hire and grow a diverse engineering team in a fast-scaling organization.
-- Cultivate excellence in the craft of the software your team builds.
-- Act as a servant leader for the engineers that report to you. You will support the career growth of individuals on your team.
-- Develop a great work environment.
-- Work directly with users and the engineering team to improve the product.
-- Improve our processes, e.g. the lifecycle of feature development from design through testing and release.
-
-For the right candidate:
-
-- Working with the Leadership to construct and execute a hiring plan to grow the engineering team on toolpad from one to multiple
+- Build UI components with React and TypeScript.
+- Perform code reviews and help to maintain a high bar for code quality.
+- Test Base UI components on various devices, browsers, platforms, and screen readers.
+- Research a11y requirements for UI components.
+- Contribute to component API design decisions and architecture.
+- Contribute to Base UI documentation.
+- Help out with community support on GitHub and Discord.
 
 ## Who we're looking for
 
 ### Required
 
-- You've managed or supported a diverse, distributed engineers on small or large teams.
-- You have an interest in building a support structure for engineers to help them succeed.
-- You have phenomenal communication skills for working across the organization, capable of building strong relationships with peers and leadership.
-- You have had strong expertise and mastery of React or front-end development in the past.
-- You have deep empathy for users. You have experience with customer support or OSS community support.
+- **Expertise with the modern JavaScript ecosystem**. Base UI is built on modern front-end technologies like TypeScript, Node.js, React, Next.js, Webpack, and Babel. Working knowledge of these technologies is critical.
+- **Expertise with CSS.** Deep knowledge of the functional aspects of CSS will be required.
+- **Familiarity with a11y requirements.** We are looking for someone familiar with ARIA requirements, who cares about building accessible UI, and wants to make the web a more accessible place.
+- **An eye for detail.** We appreciate people who sweat the details. People who go above and beyond to make interfaces fast, accessible, beautiful, and delightful.
+- **Experience shipping production code in a team setting.** We are looking for someone with multiple years of experience working on production code.
+- **Strong written and verbal communication skills**. As part of the team, you'll communicate both directly and indirectly with community members and enterprise customers, and contribute to user documentation. Clear communication is important in creating intuitive and compelling resources.
 
 ### Nice to have (but not required)
 
-- **You've maintained an active repository before**. Maybe you've helped maintain a popular open-source repository, or perhaps you've worked on internal repositories that saw contributions from multiple teams. Previous experience with highly active repository workflows is a definite plus for this role.
+- **Experience working remotely.** Experience is not necessarily mandatory, but remote work can be a different challenge sometimes, so some experience would be helpful.
+- **Experience working with design systems**. We are not looking for visual designers, but familiarity with the needs of design system maintainers would be helpful.
+- **Experience contributing to OSS**. MUI is all about open-source software, so OSS experience would be awesome.
 
 ## Benefits and compensation
 
@@ -96,7 +85,7 @@ You can find the other perks & benefits on the [careers](https://mui.com/careers
 
 ## How to apply
 
-[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/__ID__/application?utm_source=ZNRrPGBkqO)
+[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/3094f65a-0144-4bd2-ba5b-6b9c61040858/application?utm_source=ZNRrPGBkqO)
 
 Don't meet every requirement?
 Apply anyway!
