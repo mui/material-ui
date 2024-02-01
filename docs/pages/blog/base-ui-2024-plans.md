@@ -4,7 +4,7 @@ description: Base UI will see an exciting year in 2024, including a stable relea
 date: 2024-02-07T00:00:00.000Z
 authors: ['michaldudak', 'danilo-leal']
 tags: ['Company']
-card: false
+card: true
 ---
 
 It's been a while since we started work on Base UI, a library of unstyled React UI components and hooks.
