@@ -9,8 +9,26 @@ fn({
       },
 
       slotProps: {
-        transition: { unmountOnExit: true },
+        transition: {
+          timeout: 1000,
+          unmountOnExit: true
+        },
+
         paper: { className: 'paper' }
+      }
+    },
+  },
+});
+
+fn({
+  MuiDialog: {
+    defaultProps: {
+      className: 'root',
+
+      slotProps: {
+        transition: {
+          timeout: 1000
+        }
       }
     },
   },
@@ -26,7 +44,10 @@ fn({
       },
 
       slotProps: {
-        transition: { unmountOnExit: true }
+        transition: {
+          timeout: 1000,
+          unmountOnExit: true
+        }
       }
     },
   },
@@ -42,6 +63,10 @@ fn({
       },
 
       slotProps: {
+        transition: {
+          timeout: 1000
+        },
+
         paper: { className: 'paper' }
       }
     },

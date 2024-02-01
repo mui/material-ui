@@ -222,7 +222,7 @@ export default function transformer(file, api, options) {
           );
         }
       }
-      if (['PaperProps', 'TransitionProps'].includes(path.node.key.name)) {
+      if (['PaperProps', 'TransitionProps', 'transitionDuration'].includes(path.node.key.name)) {
         const isSlotPropsCreated = path.parent.parent.node.value?.properties?.some(
           (prop) => prop.key.name === 'slotProps',
         );
@@ -234,6 +234,29 @@ export default function transformer(file, api, options) {
           (prop) => prop.key.name === 'TransitionProps',
         )?.value;
 
+        const transitionDuration = path.parent.parent.node.value?.properties?.find(
+          (prop) => prop.key.name === 'transitionDuration',
+        )?.value;
+
+        let transitionSlotProps = null;
+
+        if (TransitionProps && transitionDuration) {
+          transitionSlotProps = j.objectProperty(
+            j.identifier('transition'),
+            j.objectExpression([
+              j.objectProperty(j.identifier('timeout'), transitionDuration),
+              ...(TransitionProps?.properties || []),
+            ]),
+          );
+        } else if (TransitionProps) {
+          transitionSlotProps = j.objectProperty(j.identifier('transition'), TransitionProps);
+        } else if (transitionDuration) {
+          transitionSlotProps = j.objectProperty(
+            j.identifier('transition'),
+            j.objectExpression([j.objectProperty(j.identifier('timeout'), transitionDuration)]),
+          );
+        }
+
         if (!isSlotPropsCreated) {
           path.replace(
             j.property(
@@ -241,9 +264,7 @@ export default function transformer(file, api, options) {
               j.identifier('slotProps'),
               j.objectExpression(
                 [
-                  TransitionProps
-                    ? j.objectProperty(j.identifier('transition'), TransitionProps)
-                    : TransitionProps,
+                  transitionSlotProps,
                   PaperProps ? j.objectProperty(j.identifier('paper'), PaperProps) : null,
                 ].filter(Boolean),
               ),
@@ -258,9 +279,13 @@ export default function transformer(file, api, options) {
     if (path.node.properties) {
       path.node.properties = path.node.properties.filter(
         (prop) =>
-          !['PaperComponent', 'TransitionComponent', 'TransitionProps', 'PaperProps'].includes(
-            prop?.key?.name,
-          ),
+          ![
+            'PaperComponent',
+            'TransitionComponent',
+            'TransitionProps',
+            'PaperProps',
+            'transitionDuration',
+          ].includes(prop?.key?.name),
       );
     }
   });
