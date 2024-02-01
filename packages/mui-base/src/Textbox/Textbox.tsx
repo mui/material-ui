@@ -133,10 +133,6 @@ Textbox.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
-   * Trailing adornment for this input.
-   */
-  endAdornment: PropTypes.node,
-  /**
    * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input and the `baseui--error` class on the root element.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
@@ -183,10 +179,6 @@ Textbox.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   required: PropTypes.bool,
-  /**
-   * Leading adornment for this input.
-   */
-  startAdornment: PropTypes.node,
   /**
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    * @default 'text'

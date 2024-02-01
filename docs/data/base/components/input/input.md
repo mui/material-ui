@@ -1,8 +1,8 @@
 ---
 productId: base-ui
 title: React Input component and hook
-components: Input
-hooks: useInput
+components: Textbox
+hooks: useTextbox
 githubLabel: 'component: input'
 ---
 
