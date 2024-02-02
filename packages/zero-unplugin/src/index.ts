@@ -13,6 +13,7 @@ import {
   generateTokenCss,
   generateThemeTokens,
 } from '@mui/zero-runtime/utils';
+import type { Theme as BaseTheme } from '@mui/zero-runtime';
 
 type NextMeta = {
   type: 'next';
@@ -32,14 +33,8 @@ type WebpackMeta = {
 
 type Meta = NextMeta | ViteMeta | WebpackMeta;
 
-type BaseTheme = {
-  cssVarPrefix: string;
-  colorSchemes: Record<string, unknown>;
-  generateCssVars: (colorScheme?: string) => { css: Record<string, string> };
-};
-
 export type PluginOptions<Theme extends BaseTheme = BaseTheme> = {
-  theme: Theme;
+  theme?: Theme;
   transformLibraries?: string[];
   preprocessor?: Preprocessor;
   debug?: boolean;
@@ -159,7 +154,6 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
             themeArgs: {
               theme,
             },
-            cssVariablesPrefix: theme.cssVarPrefix,
             overrideContext(context: Record<string, unknown>, filename: string) {
               if (overrideContext) {
                 return overrideContext(context, filename);
@@ -274,10 +268,12 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
             },
             transform(_code, id) {
               if (id.endsWith('styles.css')) {
-                return generateTokenCss(theme);
+                return theme ? generateTokenCss(theme) : '';
               }
               if (id.includes('zero-runtime/theme')) {
-                return `export default ${JSON.stringify(generateThemeTokens(theme))};`;
+                return `export default ${
+                  theme ? JSON.stringify(generateThemeTokens(theme)) : '{}'
+                };`;
               }
               return null;
             },
@@ -297,10 +293,12 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
             },
             load(id) {
               if (id === VIRTUAL_CSS_FILE) {
-                return generateTokenCss(theme);
+                return theme ? generateTokenCss(theme) : '';
               }
               if (id === VIRTUAL_THEME_FILE) {
-                return `export default ${JSON.stringify(generateThemeTokens(theme))};`;
+                return `export default ${
+                  theme ? JSON.stringify(generateThemeTokens(theme)) : '{}'
+                };`;
               }
               return null;
             },
