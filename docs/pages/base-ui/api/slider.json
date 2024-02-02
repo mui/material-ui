@@ -48,12 +48,12 @@
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'horizontal'"
     },
-    "shiftStep": { "type": { "name": "number" }, "default": "10" },
     "scale": {
       "type": { "name": "func" },
       "default": "function Identity(x) {\n  return x;\n}",
       "signature": { "type": "function(x: any) => any", "describedArgs": [] }
     },
+    "shiftStep": { "type": { "name": "number" }, "default": "10" },
     "slotProps": {
       "type": {
         "name": "shape",

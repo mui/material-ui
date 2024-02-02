@@ -892,11 +892,6 @@ Slider.propTypes /* remove-proptypes */ = {
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
-   * The granularity with which the slider can step through values when using Page Up/Page Down or Shift + Arrow Up/Arrow Down.
-   * @default 10
-   */
-  shiftStep: PropTypes.number,
-  /**
    * A transformation function, to change the scale of the slider.
    * @param {any} x
    * @returns {any}
@@ -905,6 +900,11 @@ Slider.propTypes /* remove-proptypes */ = {
    * }
    */
   scale: PropTypes.func,
+  /**
+   * The granularity with which the slider can step through values when using Page Up/Page Down or Shift + Arrow Up/Arrow Down.
+   * @default 10
+   */
+  shiftStep: PropTypes.number,
   /**
    * The size of the slider.
    * @default 'medium'
