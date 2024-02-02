@@ -79,6 +79,7 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
           codeVariant: CODE_VARIANTS.TS,
           githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
           raw: demo.rawTS,
+          module: demo.moduleTS,
           Component: demo.tsx,
           sourceLanguage: 'tsx',
         };
@@ -87,6 +88,7 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
           codeVariant: CODE_VARIANTS.JS,
           githubLocation,
           raw: demo.raw,
+          module: demo.module,
           Component: demo.js,
           sourceLanguage: 'jsx',
         };
@@ -97,6 +99,7 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
           codeVariant: CODE_VARIANTS.TS,
           githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/tailwind/index.tsx'),
           raw: demo.rawTailwindTS,
+          module: demo.moduleTS,
           Component: demo.tsxTailwind,
           sourceLanguage: 'tsx',
         };
@@ -105,6 +108,7 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
           codeVariant: CODE_VARIANTS.JS,
           githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/tailwind/index.js'),
           raw: demo.rawTailwind ?? demo.raw,
+          module: demo.module,
           Component: demo.jsTailwind ?? demo.js,
           sourceLanguage: 'jsx',
         };
@@ -115,6 +119,7 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
           codeVariant: CODE_VARIANTS.TS,
           githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/css/index.tsx'),
           raw: demo.rawCSSTS,
+          module: demo.moduleTS,
           Component: demo.tsxCSS,
           sourceLanguage: 'tsx',
         };
@@ -123,6 +128,7 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
           codeVariant: CODE_VARIANTS.JS,
           githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/css/index.js'),
           raw: demo.rawCSS ?? demo.raw,
+          module: demo.module,
           Component: demo.jsCSS ?? demo.js,
           sourceLanguage: 'jsx',
         };
@@ -538,11 +544,11 @@ export default function Demo(props) {
 
   const tabs = React.useMemo(() => {
     if (!demo.relativeModules) {
-      return [{ module: demo.module, raw: demo.raw }];
+      return [{ module: demoData.module, raw: demoData.raw }];
     }
 
-    return [{ module: demo.module, raw: demo.raw }, ...demo.relativeModules];
-  }, [demo.module, demo.raw, demo.relativeModules]);
+    return [{ module: demoData.module, raw: demoData.raw }, ...demo.relativeModules];
+  }, [demo.relativeModules, demoData.module, demoData.raw]);
 
   return (
     <Root>
@@ -633,7 +639,7 @@ export default function Demo(props) {
                 />
               ) : (
                 tabs.map((tab, index) => (
-                  <TabPanel value={index} index={index}>
+                  <TabPanel value={index} index={index} key={index}>
                     {index === 0 ? (
                       <DemoEditor
                         // Mount a new text editor when the preview mode change to reset the undo/redo history.

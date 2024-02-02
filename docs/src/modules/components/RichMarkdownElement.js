@@ -114,6 +114,7 @@ export default function RichMarkdownElement(props) {
         cssJsxPreview: demo.cssJsxPreview,
         rawTS: demo.rawTS,
         module: demo.module,
+        moduleTS: demo.moduleTS,
         tsx: demoComponents[demo.moduleTS] ?? null,
         rawTailwind: demo.rawTailwind,
         rawTailwindTS: demo.rawTailwindTS,
