@@ -44,21 +44,17 @@ export class CreateUseThemePropsProcessor extends BaseProcessor {
     const t = this.astService;
 
     const { themeArgs: { theme } = {} } = this.options as IOptions;
-    if (!theme?.components?.[this.componentName]?.defaultProps) {
-      return;
-    }
 
     const useThemePropsImportIdentifier = t.addNamedImport(
       this.tagSource.imported,
       process.env.PACKAGE_NAME as string,
     );
 
-    this.replacer(
-      t.callExpression(useThemePropsImportIdentifier, [
-        valueToLiteral(theme.components[this.componentName].defaultProps),
-      ]),
-      true,
-    );
+    let replacement: Expression = t.stringLiteral(this.componentName);
+    if (theme?.components?.[this.componentName]?.defaultProps) {
+      replacement = valueToLiteral(theme.components[this.componentName].defaultProps);
+    }
+    this.replacer(t.callExpression(useThemePropsImportIdentifier, [replacement]), true);
   }
 
   public override get asSelector(): string {

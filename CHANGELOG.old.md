@@ -909,7 +909,7 @@ A big thanks to the 25 contributors who made this release possible.
 - [docs] Improve a11y of the chip array example (#20294) @m4theushw
 - [docs] Refactor markdown parsing (#20549) @eps1lon
 - [docs] Remove old workarounds (#20587) @eps1lon
-- [docs] Remove unnecessary webpack loaders (#20563) @eps1lon
+- [docs] Remove unnecessary Webpack loaders (#20563) @eps1lon
 - [docs] Sync translations (#20498) @oliviertassinari
 - [docs] Use reactStrictMode over custom switch (#20522) @eps1lon
 
@@ -7473,7 +7473,7 @@ A big thanks to the 14 contributors who made this release possible.
 - [RaisedButton] Conditionally apply overlay backgroundColor (#9811) @walwoodr
 - [Snackbar] Static properties for reason string constants (#10300) @RavenHursT
 - [TextField] Fix caret position issue (#10214) @MaratFaskhiev
-- Add sideEffects: false for webpack 4 (#11167) @matthoffner
+- Add sideEffects: false for Webpack 4 (#11167) @matthoffner
 
 ### Docs
 
@@ -11051,7 +11051,7 @@ We do, we have extended the support of React to the 16.0.0-alpha.13 release (aka
 - [docs] Fix typo in class name (#7192) @ossan-engineer
 - [docs] Add supported server section (#7231) @oliviertassinari
 - [docs] Detail the browser support (#7188) @oliviertassinari
-- [docs] Upgrade to webpack v3 (#7210) @oliviertassinari
+- [docs] Upgrade to Webpack v3 (#7210) @oliviertassinari
 - [docs] More documentation on the typography (#7248) @oliviertassinari
 
 ### Core
@@ -11630,7 +11630,7 @@ _Feb 26, 2017_
 
 ### Docs
 
-- [docs] Use webpack 2 & dll bundle (#6160) @nathanmarks
+- [docs] Use Webpack 2 & dll bundle (#6160) @nathanmarks
 - [docs] Improve the user experience on mobile (#6154) @oliviertassinari
 - [docs] Fix the Table examples on mobile (425d8ed47e0282b8c0409517c53e00ef61374b02) @oliviertassinari
 - [docs] Add an API section (#6239) @oliviertassinari
@@ -11640,7 +11640,7 @@ _Feb 26, 2017_
 
 - [core] Fix typos in styles/transitions pointed out in issue (#6175) @Shahrukh-Zindani
 - [core] Lightweight the build (#6152) @oliviertassinari
-- [core] Add exports to index.js for inclusion in webpack bundle (#6144) @fkretzer
+- [core] Add exports to index.js for inclusion in Webpack bundle (#6144) @fkretzer
 - [test] Integration of test suite to run on BrowserStack (#6236) @oliviertassinari
 - [test] Bump vrtest version for exit code fix (1831aa76fe72e9b22a0b82f2a360f860ca89fdce) @nathanmarks
 

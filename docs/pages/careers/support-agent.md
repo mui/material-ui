@@ -1,4 +1,4 @@
-# Support Agent - Store (future role)
+# Support Agent — Store (future role)
 
 <p class="description">You will provide support for the customers of MUI Store. You will directly impact customers' satisfaction and success.</p>
 

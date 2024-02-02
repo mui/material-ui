@@ -1,4 +1,4 @@
-# Engineering Manager - Toolpad
+# Engineering Manager — Toolpad
 
 <p class="description">You will grow the small engineering team currently working on MUI Toolpad.</p>
 
