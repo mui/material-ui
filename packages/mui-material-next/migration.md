@@ -30,7 +30,7 @@ Here's an example of the change using the Badge component:
 
 ### Remove composed CSS classes and `styleOverrides` keys
 
-Classes composed of two or more existing classes are removed in v6.
+Classes composed of two or more existing classes are removed in `@mui/material-next`.
 For example, the `MuiChip-filledPrimary` class is removed in favor of the `MuiChip-filled` and `MuiChip-colorPrimary` classes.
 Composed `styleOverrides` keys are also removed.
 Following the example above, the chip component's `filledPrimary` `styleOverrides` key is removed.
