@@ -210,4 +210,4 @@ import Button from '@mui/material-next/Button';
 
 {{"demo": "ButtonMaterialYouPlayground.js", "hideToolbar": true, "bg": "playground"}}
 
-To learn more about Material UI's MD3 implementation, visit the [M3 Components documentation](/material-ui/guides/material-3-components/).
+To learn more about Material UI's M3 implementation, visit the [M3 Components documentation](/material-ui/guides/material-3-components/).

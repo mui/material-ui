@@ -85,4 +85,4 @@ import Badge from '@mui/material-next/Badge';
 
 {{"demo": "BadgeMaterialYouPlayground.js", "hideToolbar": true, "bg": "playground"}}
 
-To learn more about Material UI's MD3 implementation, visit the [M3 Components documentation](/material-ui/guides/material-3-components/).
+To learn more about Material UI's M3 implementation, visit the [M3 Components documentation](/material-ui/guides/material-3-components/).
