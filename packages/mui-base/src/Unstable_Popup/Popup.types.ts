@@ -103,15 +103,6 @@ export interface PopupOwnProps {
    * @see https://floating-ui.com/docs/computePosition#strategy
    */
   strategy?: PopupStrategy;
-  /**
-   * If `true`, the popup will not disappear immediately when it needs to be closed
-   * but wait until the exit transition has finished.
-   * In such a case, a function form of `children` must be used and `onExited`
-   * callback function must be called when the transition or animation finish.
-   *
-   * @default false
-   */
-  withTransition?: boolean;
 }
 
 export interface PopupSlots {
@@ -142,5 +133,12 @@ export interface PopupOwnerState extends PopupOwnProps {
   placement: PopupPlacement;
   finalPlacement: PopupPlacement;
   strategy: PopupStrategy;
-  withTransition: boolean;
 }
+
+export type PopupRootSlotProps = {
+  className?: string;
+  children?: React.ReactNode;
+  ownerState: PopupOwnerState;
+  style: React.CSSProperties;
+  role: React.AriaRole;
+};

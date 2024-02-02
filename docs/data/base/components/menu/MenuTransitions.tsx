@@ -7,7 +7,7 @@ import { styled } from '@mui/system';
 import { CssTransition } from '@mui/base/Transitions';
 import { PopupContext } from '@mui/base/Unstable_Popup';
 
-export default function MenuIntroduction() {
+export default function MenuTransitions() {
   const createHandleMenuClick = (menuItem: string) => {
     return () => {
       console.log(`Clicked on ${menuItem}`);
@@ -131,7 +131,7 @@ const MenuItem = styled(BaseMenuItem)(
     border-bottom: none;
   }
 
-  &:focus {
+  &.${menuItemClasses.focusVisible} {
     outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
@@ -139,6 +139,11 @@ const MenuItem = styled(BaseMenuItem)(
 
   &.${menuItemClasses.disabled} {
     color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
+  }
+
+  &:hover:not(.${menuItemClasses.disabled}) {
+    background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[50]};
+    color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
   `,
 );

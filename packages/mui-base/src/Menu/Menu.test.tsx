@@ -7,6 +7,9 @@ import {
   describeConformanceUnstyled,
   fireEvent,
   act,
+  MuiRenderResult,
+  RenderOptions,
+  flushMicrotasks,
 } from '@mui-internal/test-utils';
 import { Menu, menuClasses } from '@mui/base/Menu';
 import { MenuItem, MenuItemRootSlotProps } from '@mui/base/MenuItem';
@@ -25,7 +28,16 @@ const testContext: DropdownContextValue = {
 
 describe('<Menu />', () => {
   const mount = createMount();
-  const { render } = createRenderer();
+  const { render: internalRender } = createRenderer();
+
+  async function render(
+    element: React.ReactElement<any, string | React.JSXElementConstructor<any>>,
+    options?: RenderOptions,
+  ): Promise<MuiRenderResult> {
+    const rendered = internalRender(element, options);
+    await flushMicrotasks();
+    return rendered;
+  }
 
   describeConformanceUnstyled(<Menu />, () => ({
     inheritComponent: 'div',
@@ -65,8 +77,8 @@ describe('<Menu />', () => {
       );
     }
 
-    it('highlights the first item when the menu is opened', () => {
-      const { getAllByRole } = render(<Test />);
+    it('highlights the first item when the menu is opened', async () => {
+      const { getAllByRole } = await render(<Test />);
       const [firstItem, ...otherItems] = getAllByRole('menuitem');
 
       expect(firstItem.tabIndex).to.equal(0);
@@ -187,8 +199,8 @@ describe('<Menu />', () => {
   });
 
   describe('keyboard navigation', () => {
-    it('changes the highlighted item using the arrow keys', () => {
-      const { getByTestId } = render(
+    it('changes the highlighted item using the arrow keys', async () => {
+      const { getByTestId } = await render(
         <DropdownContext.Provider value={testContext}>
           <Menu>
             <MenuItem data-testid="item-1">1</MenuItem>
@@ -216,8 +228,8 @@ describe('<Menu />', () => {
       expect(document.activeElement).to.equal(item2);
     });
 
-    it('changes the highlighted item using the Home and End keys', () => {
-      const { getByTestId } = render(
+    it('changes the highlighted item using the Home and End keys', async () => {
+      const { getByTestId } = await render(
         <DropdownContext.Provider value={testContext}>
           <Menu>
             <MenuItem data-testid="item-1">1</MenuItem>
@@ -241,8 +253,8 @@ describe('<Menu />', () => {
       expect(document.activeElement).to.equal(getByTestId('item-1'));
     });
 
-    it('includes disabled items during keyboard navigation', () => {
-      const { getByTestId } = render(
+    it('includes disabled items during keyboard navigation', async () => {
+      const { getByTestId } = await render(
         <DropdownContext.Provider value={testContext}>
           <Menu>
             <MenuItem data-testid="item-1">1</MenuItem>
@@ -267,14 +279,14 @@ describe('<Menu />', () => {
     });
 
     describe('text navigation', () => {
-      it('changes the highlighted item', function test() {
+      it('changes the highlighted item', async function test() {
         if (/jsdom/.test(window.navigator.userAgent)) {
           // useMenu Text navigation match menu items using HTMLElement.innerText
           // innerText is not supported by JsDom
           this.skip();
         }
 
-        const { getByText, getAllByRole } = render(
+        const { getByText, getAllByRole } = await render(
           <DropdownContext.Provider value={testContext}>
             <Menu>
               <MenuItem>Aa</MenuItem>
@@ -302,14 +314,14 @@ describe('<Menu />', () => {
         expect(getByText('Cd')).to.have.attribute('tabindex', '0');
       });
 
-      it('repeated keys circulate all items starting with that letter', function test() {
+      it('repeated keys circulate all items starting with that letter', async function test() {
         if (/jsdom/.test(window.navigator.userAgent)) {
           // useMenu Text navigation match menu items using HTMLElement.innerText
           // innerText is not supported by JsDom
           this.skip();
         }
 
-        const { getByText, getAllByRole } = render(
+        const { getByText, getAllByRole } = await render(
           <DropdownContext.Provider value={testContext}>
             <Menu>
               <MenuItem>Aa</MenuItem>
@@ -339,8 +351,8 @@ describe('<Menu />', () => {
         expect(getByText('Ba')).to.have.attribute('tabindex', '0');
       });
 
-      it('changes the highlighted item using text navigation on label prop', () => {
-        const { getAllByRole } = render(
+      it('changes the highlighted item using text navigation on label prop', async () => {
+        const { getAllByRole } = await render(
           <DropdownContext.Provider value={testContext}>
             <Menu>
               <MenuItem label="Aa">1</MenuItem>
@@ -370,14 +382,14 @@ describe('<Menu />', () => {
         expect(items[1]).to.have.attribute('tabindex', '0');
       });
 
-      it('skips the non-stringifiable items', function test() {
+      it('skips the non-stringifiable items', async function test() {
         if (/jsdom/.test(window.navigator.userAgent)) {
           // useMenu Text navigation match menu items using HTMLElement.innerText
           // innerText is not supported by JsDom
           this.skip();
         }
 
-        const { getByText, getAllByRole } = render(
+        const { getByText, getAllByRole } = await render(
           <DropdownContext.Provider value={testContext}>
             <Menu>
               <MenuItem>Aa</MenuItem>
@@ -412,14 +424,14 @@ describe('<Menu />', () => {
         expect(getByText('Ba')).to.have.attribute('tabindex', '0');
       });
 
-      it('navigate to options with diacritic characters', function test() {
+      it('navigate to options with diacritic characters', async function test() {
         if (/jsdom/.test(window.navigator.userAgent)) {
           // useMenu Text navigation match menu items using HTMLElement.innerText
           // innerText is not supported by JsDom
           this.skip();
         }
 
-        const { getByText, getAllByRole } = render(
+        const { getByText, getAllByRole } = await render(
           <DropdownContext.Provider value={testContext}>
             <Menu>
               <MenuItem>Aa</MenuItem>
@@ -447,14 +459,14 @@ describe('<Menu />', () => {
         expect(getByText('Bą')).to.have.attribute('tabindex', '0');
       });
 
-      it('navigate to next options with beginning diacritic characters', function test() {
+      it('navigate to next options with beginning diacritic characters', async function test() {
         if (/jsdom/.test(window.navigator.userAgent)) {
           // useMenu Text navigation match menu items using HTMLElement.innerText
           // innerText is not supported by JsDom
           this.skip();
         }
 
-        const { getByText, getAllByRole } = render(
+        const { getByText, getAllByRole } = await render(
           <DropdownContext.Provider value={testContext}>
             <Menu>
               <MenuItem>Aa</MenuItem>
@@ -493,10 +505,10 @@ describe('<Menu />', () => {
   });
 
   describe('prop: onItemsChange', () => {
-    it('should be called when the menu items change', () => {
+    it('should be called when the menu items change', async () => {
       const handleItemsChange = spy();
 
-      const { setProps } = render(
+      const { setProps } = await render(
         <DropdownContext.Provider value={testContext}>
           <Menu onItemsChange={handleItemsChange}>
             <MenuItem key="1">1</MenuItem>
@@ -522,7 +534,11 @@ describe('<Menu />', () => {
   });
 
   describe('prop: anchor', () => {
-    it('should be placed near the specified element', async () => {
+    it('should be placed near the specified element', async function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
       function TestComponent() {
         const [anchor, setAnchor] = React.useState<HTMLElement | null>(null);
 
@@ -531,7 +547,7 @@ describe('<Menu />', () => {
             <DropdownContext.Provider value={testContext}>
               <Menu
                 anchor={anchor}
-                slotProps={{ root: { 'data-testid': 'popup', placement: 'bottom-start' } }}
+                slotProps={{ root: { 'data-testid': 'popup', placement: 'bottom-start' } as any }}
               >
                 <MenuItem>1</MenuItem>
                 <MenuItem>2</MenuItem>
@@ -542,19 +558,29 @@ describe('<Menu />', () => {
         );
       }
 
-      const { getByTestId } = render(<TestComponent />);
+      const { getByTestId } = await render(<TestComponent />);
 
       const popup = getByTestId('popup');
       const anchor = getByTestId('anchor');
 
       const anchorPosition = anchor.getBoundingClientRect();
 
-      expect(popup.style.getPropertyValue('transform')).to.equal(
-        `translate(${anchorPosition.left}px, ${anchorPosition.bottom}px)`,
-      );
+      await new Promise<void>((resolve) => {
+        // position gets updated in the next frame
+        requestAnimationFrame(() => {
+          expect(popup.style.getPropertyValue('transform')).to.equal(
+            `translate(${anchorPosition.left}px, ${anchorPosition.bottom}px)`,
+          );
+          resolve();
+        });
+      });
     });
 
-    it('should be placed at the specified position', async () => {
+    it('should be placed at the specified position', async function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
       const boundingRect = {
         x: 200,
         y: 100,
@@ -569,11 +595,11 @@ describe('<Menu />', () => {
 
       const virtualElement = { getBoundingClientRect: () => boundingRect };
 
-      const { getByTestId } = render(
+      const { getByTestId } = await render(
         <DropdownContext.Provider value={testContext}>
           <Menu
             anchor={virtualElement}
-            slotProps={{ root: { 'data-testid': 'popup', placement: 'bottom-start' } }}
+            slotProps={{ root: { 'data-testid': 'popup', placement: 'bottom-start' } as any }}
           >
             <MenuItem>1</MenuItem>
             <MenuItem>2</MenuItem>
@@ -581,11 +607,18 @@ describe('<Menu />', () => {
         </DropdownContext.Provider>,
       );
       const popup = getByTestId('popup');
-      expect(popup.style.getPropertyValue('transform')).to.equal(`translate(200px, 100px)`);
+
+      await new Promise<void>((resolve) => {
+        // position gets updated in the next frame
+        requestAnimationFrame(() => {
+          expect(popup.style.getPropertyValue('transform')).to.equal(`translate(200px, 100px)`);
+          resolve();
+        });
+      });
     });
   });
 
-  it('perf: does not rerender menu items unnecessarily', () => {
+  it('perf: does not rerender menu items unnecessarily', async () => {
     const renderItem1Spy = spy();
     const renderItem2Spy = spy();
     const renderItem3Spy = spy();
@@ -600,7 +633,7 @@ describe('<Menu />', () => {
       return <li {...other} ref={ref} />;
     });
 
-    const { getAllByRole } = render(
+    const { getAllByRole } = await render(
       <DropdownContext.Provider value={testContext}>
         <Menu>
           <MenuItem
