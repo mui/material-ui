@@ -9,8 +9,6 @@ const buttons = [
   <Button key="three">Three</Button>,
 ];
 
-const ariaLabel = 'Vertical button group';
-
 export default function GroupOrientation() {
   return (
     <Box
@@ -21,13 +19,21 @@ export default function GroupOrientation() {
         },
       }}
     >
-      <ButtonGroup orientation="vertical" aria-label={ariaLabel}>
+      <ButtonGroup orientation="vertical" aria-label="Vertical button group">
         {buttons}
       </ButtonGroup>
-      <ButtonGroup orientation="vertical" aria-label={ariaLabel} variant="contained">
+      <ButtonGroup
+        orientation="vertical"
+        aria-label="Vertical button group"
+        variant="contained"
+      >
         {buttons}
       </ButtonGroup>
-      <ButtonGroup orientation="vertical" aria-label={ariaLabel} variant="text">
+      <ButtonGroup
+        orientation="vertical"
+        aria-label="Vertical button group"
+        variant="text"
+      >
         {buttons}
       </ButtonGroup>
     </Box>

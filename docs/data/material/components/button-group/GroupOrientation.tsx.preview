@@ -1,9 +1,0 @@
-<ButtonGroup orientation="vertical" aria-label={ariaLabel}>
-  {buttons}
-</ButtonGroup>
-<ButtonGroup orientation="vertical" aria-label={ariaLabel} variant="contained">
-  {buttons}
-</ButtonGroup>
-<ButtonGroup orientation="vertical" aria-label={ariaLabel} variant="text">
-  {buttons}
-</ButtonGroup>
