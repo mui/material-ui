@@ -95,12 +95,15 @@ importers:
       '@mui-internal/api-docs-builder-core':
         specifier: workspace:^
         version: link:packages/api-docs-builder-core
-      '@mui-internal/docs-utilities':
+      '@mui-internal/docs-utils':
         specifier: workspace:^
-        version: link:packages/docs-utilities
+        version: link:packages/docs-utils
       '@mui-internal/test-utils':
         specifier: workspace:^
         version: link:packages/test-utils
+      '@mui-internal/typescript-to-proptypes':
+        specifier: workspace:^
+        version: link:packages/typescript-to-proptypes
       '@mui/joy':
         specifier: workspace:*
         version: link:packages/mui-joy/build
@@ -329,9 +332,6 @@ importers:
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
-      typescript-to-proptypes:
-        specifier: workspace:^
-        version: link:packages/typescript-to-proptypes
       webpack:
         specifier: ^5.90.0
         version: 5.90.0(esbuild@0.19.11)(webpack-cli@5.1.4)
@@ -830,12 +830,15 @@ importers:
       '@babel/preset-typescript':
         specifier: ^7.23.3
         version: 7.23.3(@babel/core@7.23.9)
-      '@mui-internal/docs-utilities':
+      '@mui-internal/docs-utils':
         specifier: workspace:^
-        version: link:../packages/docs-utilities
+        version: link:../packages/docs-utils
       '@mui-internal/test-utils':
         specifier: workspace:^
         version: link:../packages/test-utils
+      '@mui-internal/typescript-to-proptypes':
+        specifier: workspace:^
+        version: link:../packages/typescript-to-proptypes
       '@types/autosuggest-highlight':
         specifier: ^3.2.3
         version: 3.2.3
@@ -896,9 +899,6 @@ importers:
       tailwindcss:
         specifier: ^3.4.1
         version: 3.4.1
-      typescript-to-proptypes:
-        specifier: workspace:^
-        version: link:../packages/typescript-to-proptypes
       yargs:
         specifier: ^17.7.2
         version: 17.7.2
@@ -914,9 +914,9 @@ importers:
       '@babel/traverse':
         specifier: ^7.23.9
         version: 7.23.9
-      '@mui-internal/docs-utilities':
+      '@mui-internal/docs-utils':
         specifier: workspace:^
-        version: link:../docs-utilities
+        version: link:../docs-utils
       '@mui/markdown':
         specifier: workspace:^
         version: link:../markdown
@@ -1025,7 +1025,14 @@ importers:
         specifier: ^5.3.3
         version: 5.3.3
 
-  packages/docs-utilities: {}
+  packages/docs-utils:
+    dependencies:
+      rimraf:
+        specifier: ^5.0.5
+        version: 5.0.5
+      typescript:
+        specifier: ^5.1.6
+        version: 5.3.3
 
   packages/eslint-plugin-material-ui:
     dependencies:
@@ -2245,9 +2252,9 @@ importers:
       '@babel/types':
         specifier: ^7.23.9
         version: 7.23.9
-      '@mui-internal/api-docs-builder':
+      '@mui-internal/docs-utils':
         specifier: workspace:*
-        version: link:../api-docs-builder
+        version: link:../docs-utils
       doctrine:
         specifier: ^3.0.0
         version: 3.0.0
@@ -2286,7 +2293,7 @@ importers:
         specifier: ^18.2.48
         version: 18.2.48
       '@types/uuid':
-        specifier: ^9.0.8
+        specifier: ^9.0.7
         version: 9.0.8
       chai:
         specifier: ^4.4.1

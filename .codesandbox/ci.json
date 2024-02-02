@@ -18,7 +18,9 @@
     "packages/mui-styles",
     "packages/mui-system",
     "packages/mui-types",
-    "packages/mui-utils"
+    "packages/mui-utils",
+    "packages/docs-utils",
+    "packages/typescript-to-proptypes"
   ],
   "publishDirectory": {
     "@mui/base": "packages/mui-base/build",
@@ -36,7 +38,9 @@
     "@mui/styles": "packages/mui-styles/build",
     "@mui/system": "packages/mui-system/build",
     "@mui/types": "packages/mui-types/build",
-    "@mui/utils": "packages/mui-utils/build"
+    "@mui/utils": "packages/mui-utils/build",
+    "@mui-internal/docs-utils": "packages/docs-utils",
+    "@mui-internal/typescript-to-proptypes": "packages/typescript-to-proptypes"
   },
   "sandboxes": [
     "material-ui-issue-latest-s2dsx",
