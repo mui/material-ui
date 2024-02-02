@@ -361,7 +361,7 @@ If you are using the `thumb` or `valueLabel` Slider slots, then make sure the co
  <Slider slots={{ thumb: Thumb, valueLabel: ValueLabel }}/>
 ```
 
-This is required in v6 as it's used to apply the overlap styles to these slots. For more info take a look into [Material 3's Slider overlapping handles guidelines](https://m3.material.io/components/sliders/guidelines#ad5ceb95-a690-4ddd-8243-53a8e13bdab6).
+This is required in v6 as it's used to apply the overlap styles to these slots. For more info take a look into [M3's Slider overlapping handles guidelines](https://m3.material.io/components/sliders/guidelines#ad5ceb95-a690-4ddd-8243-53a8e13bdab6).
 
 ## Divider
 
