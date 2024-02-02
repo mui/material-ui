@@ -3,8 +3,8 @@ import * as doctrine from 'doctrine';
 import {
   GetPropsFromComponentDeclarationOptions,
   getPropsFromComponentNode,
-} from '@mui-internal/api-docs-builder/utils/getPropsFromComponentNode';
-import { TypeScriptProject } from '@mui-internal/api-docs-builder/utils/createTypeScriptProject';
+  TypeScriptProject,
+} from '@mui-internal/docs-utils';
 import {
   createUnionType,
   createUndefinedType,
