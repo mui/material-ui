@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "skipLibCheck": true,
     "types": ["react", "node"]
   },
   "include": ["src/**/*", "test/**/*"]
