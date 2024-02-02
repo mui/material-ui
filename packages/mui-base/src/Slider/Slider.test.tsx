@@ -481,6 +481,39 @@ describe('<Slider />', () => {
     expect(hanleChange.args[1][1]).to.deep.equal(20);
   });
 
+  it('should support Shift + Up Arrow / Down Arrow keys', () => {
+    const hanleChange = spy();
+    const { getByTestId } = render(
+      <Slider
+        defaultValue={20}
+        onChange={hanleChange}
+        slotProps={{
+          thumb: (_, { index, focused, active }) => ({
+            'data-testid': `thumb-${index}`,
+            'data-focused': focused,
+            'data-active': active,
+          }),
+        }}
+      />,
+    );
+
+    const thumb = getByTestId('thumb-0');
+    const input = thumb.firstChild;
+
+    fireEvent.keyDown(document.body, { key: 'TAB' });
+    act(() => {
+      (input as HTMLInputElement).focus();
+    });
+
+    fireEvent.keyDown(input!, { key: 'ArrowDown', shiftKey: true });
+    expect(hanleChange.callCount).to.equal(1);
+    expect(hanleChange.args[0][1]).to.deep.equal(10);
+
+    fireEvent.keyDown(input!, { key: 'ArrowUp', shiftKey: true });
+    expect(hanleChange.callCount).to.equal(2);
+    expect(hanleChange.args[1][1]).to.deep.equal(20);
+  });
+
   it('should support PageUp / PageDown keys', () => {
     const hanleChange = spy();
     const { getByTestId } = render(
