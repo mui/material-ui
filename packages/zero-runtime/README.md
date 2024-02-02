@@ -430,6 +430,25 @@ In the above example, `light` (default) and `dark` color schemes are defined. Ne
   }
   ```
 
+#### CSS variables prefix
+
+You can add a prefix to the generated CSS variables by providing a `cssVarPrefix` option to the `extendTheme` utility:
+
+```jsx
+extendTheme({
+  cssVarPrefix: 'zero',
+});
+```
+
+The generated CSS variables will have the `zero` prefix:
+
+```css
+:root {
+  --zero-colors-background: #f9f9f9;
+  --zero-colors-foreground: #121212;
+}
+```
+
 #### Mutliple themes
 
 > ⏳ Currently, zero-runtime only supports a single theme.
