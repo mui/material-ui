@@ -7,7 +7,7 @@ import AppFooter from 'docs/src/layouts/AppFooter';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 import NotFoundHero from 'docs/src/components/NotFoundHero';
 
-export default function NotFound() {
+export default function Custom404() {
   return (
     <BrandingCssVarsProvider>
       <Head
