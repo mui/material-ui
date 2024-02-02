@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { UserLanguageProvider } from '../i18n';
 
 export interface DocsConfig {
   LANGUAGES: string[];
@@ -11,11 +12,18 @@ const DocsConfigContext = React.createContext<DocsConfig | null>(null);
 
 export interface DocsProviderProps {
   config: DocsConfig;
+  defaultUserLanguage: string;
   children?: React.ReactNode;
 }
 
-export function DocsProvider({ config, children }: DocsProviderProps) {
-  return <DocsConfigContext.Provider value={config}>{children}</DocsConfigContext.Provider>;
+export function DocsProvider({ config, defaultUserLanguage, children }: DocsProviderProps) {
+  return (
+    <DocsConfigContext.Provider value={config}>
+      <UserLanguageProvider defaultUserLanguage={defaultUserLanguage}>
+        {children}
+      </UserLanguageProvider>
+    </DocsConfigContext.Provider>
+  );
 }
 
 export function useDocsConfig() {

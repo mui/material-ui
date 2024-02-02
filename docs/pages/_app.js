@@ -22,7 +22,6 @@ import { CodeCopyProvider } from 'docs/src/modules/utils/CodeCopy';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { CodeVariantProvider } from 'docs/src/modules/utils/codeVariant';
 import { CodeStylingProvider } from 'docs/src/modules/utils/codeStylingSolution';
-import { UserLanguageProvider } from '@mui/docs/i18n';
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import findActivePage from 'docs/src/modules/utils/findActivePage';
@@ -296,23 +295,21 @@ function AppWrapper(props) {
         <meta name="mui:productId" content={productId} />
         <meta name="mui:productCategoryId" content={productCategoryId} />
       </NextHead>
-      <DocsProvider config={config}>
-        <UserLanguageProvider defaultUserLanguage={pageProps.userLanguage}>
-          <CodeCopyProvider>
-            <CodeStylingProvider>
-              <CodeVariantProvider>
-                <PageContext.Provider value={pageContextValue}>
-                  <ThemeProvider>
-                    <DocsStyledEngineProvider cacheLtr={emotionCache}>
-                      {children}
-                      <GoogleAnalytics />
-                    </DocsStyledEngineProvider>
-                  </ThemeProvider>
-                </PageContext.Provider>
-              </CodeVariantProvider>
-            </CodeStylingProvider>
-          </CodeCopyProvider>
-        </UserLanguageProvider>
+      <DocsProvider config={config} defaultUserLanguage={pageProps.userLanguage}>
+        <CodeCopyProvider>
+          <CodeStylingProvider>
+            <CodeVariantProvider>
+              <PageContext.Provider value={pageContextValue}>
+                <ThemeProvider>
+                  <DocsStyledEngineProvider cacheLtr={emotionCache}>
+                    {children}
+                    <GoogleAnalytics />
+                  </DocsStyledEngineProvider>
+                </ThemeProvider>
+              </PageContext.Provider>
+            </CodeVariantProvider>
+          </CodeStylingProvider>
+        </CodeCopyProvider>
       </DocsProvider>
     </React.Fragment>
   );
