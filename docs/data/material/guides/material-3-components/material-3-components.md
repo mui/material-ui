@@ -121,7 +121,7 @@ Use the `extendTheme` function to modify the default theme.
 The theme structure follows [M3 specifications](https://m3.material.io/styles/color/system/overview).
 For example, if you wanted to modify the primary color, you would provide the [color tones](https://m3.material.io/styles/color/system/how-the-system-works#e1e92a3b-8702-46b6-8132-58321aa600bd) via `ref.palette.primary`:
 
-{{"demo": "M3Theming.js"}}
+{{"demo": "MD3Theming.js"}}
 
 :::success
 You can use Material Design's [Figma Material Theme Builder](https://www.figma.com/community/plugin/1034969338659738588/material-theme-builder) plugin to generate palette tones.
