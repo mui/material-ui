@@ -23,5 +23,8 @@
   "dependencies": {
     "rimraf": "^5.0.5",
     "typescript": "^5.1.6"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
