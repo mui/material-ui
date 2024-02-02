@@ -333,9 +333,24 @@ export default function DemoToolbar(props) {
     setSnackbarOpen(false);
   };
 
+  const copyWithRelativeModules = React.useCallback(
+    (raw) => {
+      if (demo.relativeModules) {
+        demo.relativeModules.forEach(({ module, raw: content }) => {
+          // remove exports from relative module
+          content = content.replace(/export default (.*);/gm, '');
+          // replace import statement with relative module content
+          raw = raw.replace(new RegExp(`import (.*) from '${module}';`, 'g'), content);
+        });
+      }
+      return copy(raw);
+    },
+    [demo.relativeModules],
+  );
+
   const handleCopyClick = async () => {
     try {
-      await copy(demoData.raw);
+      await copyWithRelativeModules(demoData.raw);
       setSnackbarMessage(t('copiedSource'));
       setSnackbarOpen(true);
     } finally {
