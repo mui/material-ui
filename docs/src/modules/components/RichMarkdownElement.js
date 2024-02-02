@@ -113,6 +113,7 @@ export default function RichMarkdownElement(props) {
         tailwindJsxPreview: demo.tailwindJsxPreview,
         cssJsxPreview: demo.cssJsxPreview,
         rawTS: demo.rawTS,
+        module: demo.module,
         tsx: demoComponents[demo.moduleTS] ?? null,
         rawTailwind: demo.rawTailwind,
         rawTailwindTS: demo.rawTailwindTS,
@@ -123,6 +124,7 @@ export default function RichMarkdownElement(props) {
         jsCSS: demoComponents[demo.moduleCSS] ?? null,
         tsxCSS: demoComponents[demo.moduleTSCSS] ?? null,
         gaLabel: fileNameWithLocation.replace(/^\/docs\/data\//, ''),
+        relativeModules: demo.relativeModules,
       }}
       disableAd={disableAd}
       demoOptions={renderedMarkdownOrDemo}

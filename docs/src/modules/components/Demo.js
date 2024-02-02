@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 import { debounce } from '@mui/material/utils';
 import { alpha, styled } from '@mui/material/styles';
 import { styled as joyStyled } from '@mui/joy/styles';
+import { Tabs } from '@mui/base/Tabs';
+import { TabPanel } from '@mui/base/TabPanel';
 import { unstable_useId as useId } from '@mui/utils';
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
@@ -24,6 +26,7 @@ import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMappin
 import BrandingProvider from 'docs/src/BrandingProvider';
 import DemoToolbarRoot from 'docs/src/modules/components/DemoToolbarRoot';
 import { blue, blueDark, grey } from 'docs/src/modules/brandingTheme';
+import { StyledTab, StyledTabList } from './HighlightedCodeWithTabs';
 
 /**
  * Removes leading spaces (indentation) present in the `.tsx` previews
@@ -364,6 +367,21 @@ const InitialFocus = styled(IconButton)(({ theme }) => ({
   pointerEvents: 'none',
 }));
 
+const selectionOverride = (theme) => ({
+  '&.base--selected': {
+    color: '#FFF',
+    '&::after': {
+      content: "''",
+      position: 'absolute',
+      left: 0,
+      bottom: '-6px',
+      height: 2,
+      width: '100%',
+      bgcolor: (theme.vars || theme).palette.primary.light,
+    },
+  },
+});
+
 export default function Demo(props) {
   const { demo, demoOptions, disableAd, githubLocation, mode } = props;
 
@@ -512,6 +530,20 @@ export default function Demo(props) {
     liveDemoActive,
   });
 
+  const [activeTab, setActiveTab] = React.useState(0);
+  const handleChange = (event, newValue) => {
+    setActiveTab(newValue);
+  };
+  const ownerState = { mounted: true };
+
+  const tabs = React.useMemo(() => {
+    if (!demo.relativeModules) {
+      return [{ module: demo.module, raw: demo.raw }];
+    }
+
+    return [{ module: demo.module, raw: demo.raw }, ...demo.relativeModules];
+  }, [demo.module, demo.raw, demo.relativeModules]);
+
   return (
     <Root>
       <AnchorLink id={demoName} />
@@ -570,46 +602,80 @@ export default function Demo(props) {
               </React.Suspense>
             </NoSsr>
           </DemoToolbarRoot>
-          <Collapse in={openDemoSource} unmountOnExit timeout={150}>
-            {/* A limitation from https://github.com/nihgwu/react-runner,
+          <Tabs defaultValue={0} value={activeTab} onChange={handleChange}>
+            {demo.relativeModules ? (
+              <StyledTabList>
+                {tabs.map((tab, index) => (
+                  <StyledTab
+                    sx={selectionOverride}
+                    ownerState={ownerState}
+                    key={tab.module}
+                    value={index}
+                  >
+                    {tab.module}
+                  </StyledTab>
+                ))}
+              </StyledTabList>
+            ) : null}
+            <Collapse in={openDemoSource} unmountOnExit timeout={150}>
+              {/* A limitation from https://github.com/nihgwu/react-runner,
                 we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
-            {demoOptions.disableLiveEdit ? (
-              <DemoCodeViewer
-                code={editorCode.value}
-                id={demoSourceId}
-                language={demoData.sourceLanguage}
-                copyButtonProps={{
-                  'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                  'data-ga-event-label': demo.gaLabel,
-                  'data-ga-event-action': 'copy-click',
-                }}
-              />
-            ) : (
-              <DemoEditor
-                // Mount a new text editor when the preview mode change to reset the undo/redo history.
-                key={editorCode.isPreview}
-                value={editorCode.value}
-                onChange={(value) => {
-                  setEditorCode({
-                    ...editorCode,
-                    value,
-                  });
-                }}
-                onFocus={() => {
-                  setLiveDemoActive(true);
-                }}
-                id={demoSourceId}
-                language={demoData.sourceLanguage}
-                copyButtonProps={{
-                  'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                  'data-ga-event-label': demo.gaLabel,
-                  'data-ga-event-action': 'copy-click',
-                }}
-              >
-                <DemoEditorError>{debouncedError}</DemoEditorError>
-              </DemoEditor>
-            )}
-          </Collapse>
+              {demoOptions.disableLiveEdit ? (
+                <DemoCodeViewer
+                  code={editorCode.value}
+                  id={demoSourceId}
+                  language={demoData.sourceLanguage}
+                  copyButtonProps={{
+                    'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+                    'data-ga-event-label': demo.gaLabel,
+                    'data-ga-event-action': 'copy-click',
+                  }}
+                />
+              ) : (
+                tabs.map((tab, index) => (
+                  <TabPanel value={index} index={index}>
+                    {index === 0 ? (
+                      <DemoEditor
+                        // Mount a new text editor when the preview mode change to reset the undo/redo history.
+                        key={editorCode.isPreview}
+                        value={editorCode.value}
+                        onChange={(value) => {
+                          setEditorCode({
+                            ...editorCode,
+                            value,
+                          });
+                        }}
+                        onFocus={() => {
+                          setLiveDemoActive(true);
+                        }}
+                        id={demoSourceId}
+                        language={demoData.sourceLanguage}
+                        copyButtonProps={{
+                          'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+                          'data-ga-event-label': demo.gaLabel,
+                          'data-ga-event-action': 'copy-click',
+                        }}
+                      >
+                        <DemoEditorError>{debouncedError}</DemoEditorError>
+                      </DemoEditor>
+                    ) : (
+                      <DemoCodeViewer
+                        code={tab.raw}
+                        key={tab.module}
+                        id={`relative-${tab.module}`}
+                        language={tab.language}
+                        copyButtonProps={{
+                          'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+                          'data-ga-event-label': demo.gaLabel,
+                          'data-ga-event-action': 'copy-click',
+                        }}
+                      />
+                    )}
+                  </TabPanel>
+                ))
+              )}
+            </Collapse>
+          </Tabs>
           {adVisibility ? <AdCarbonInline /> : null}
         </Wrapper>
       )}

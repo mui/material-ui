@@ -332,6 +332,7 @@ export default function DemoToolbar(props) {
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
   };
+
   const handleCopyClick = async () => {
     try {
       await copy(demoData.raw);

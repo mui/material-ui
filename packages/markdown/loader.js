@@ -140,6 +140,7 @@ module.exports = async function demoLoader() {
   const components = {};
   const demoModuleIDs = new Set();
   const componentModuleIDs = new Set();
+  const relativeModules = new Map();
   const demoNames = Array.from(
     new Set(
       docs.en.rendered
@@ -178,9 +179,19 @@ module.exports = async function demoLoader() {
         raw: await fs.readFile(moduleFilepath, { encoding: 'utf8' }),
       };
       demoModuleIDs.add(moduleID);
-      extractImports(demos[demoName].raw).forEach((importModuleID) =>
-        importedModuleIDs.add(importModuleID),
-      );
+      extractImports(demos[demoName].raw).forEach((importModuleID) => {
+        // detect relative import
+        if (importModuleID.startsWith('.')) {
+          // resolve the path of the relative import file
+          relativeModules.set(
+            demoName,
+            relativeModules.has(demoName)
+              ? [...relativeModules.get(demoName), importModuleID]
+              : [importModuleID],
+          );
+        }
+        importedModuleIDs.add(importModuleID);
+      });
 
       if (multipleDemoVersionsUsed) {
         // Add Tailwind demo data
@@ -324,6 +335,36 @@ module.exports = async function demoLoader() {
         } catch (error) {
           // No preview exists. This is fine.
         }
+      }
+
+      if (relativeModules.has(demoName)) {
+        const relativeModuleIDs = relativeModules.get(demoName);
+
+        // Add relative demo data for each relative module, iterate over each relative module
+        // use Promise.all for parallel processing
+        const relativeModuleData = await Promise.all(
+          relativeModuleIDs.map(async (relativeModuleID) => {
+            // Add relative demo data
+            const relativeModuleFilepath = path.join(
+              moduleFilepath,
+              '..',
+              relativeModuleID.replace(/\//g, path.sep),
+            );
+
+            const extension = path.extname(relativeModuleFilepath).replace('.', '');
+
+            const relativeModuleRaw = await fs.readFile(relativeModuleFilepath, {
+              encoding: 'utf8',
+            });
+
+            return {
+              module: relativeModuleID,
+              raw: relativeModuleRaw,
+              language: extension,
+            };
+          }),
+        );
+        demos[demoName].relativeModules = relativeModuleData;
       }
 
       try {
