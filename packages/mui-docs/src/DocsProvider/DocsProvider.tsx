@@ -1,5 +1,4 @@
 import * as React from 'react';
-import invariant from 'invariant';
 
 export interface DocsConfig {
   LANGUAGES: string[];
@@ -21,9 +20,10 @@ export function DocsProvider({ config, children }: DocsProviderProps) {
 
 export function useDocsConfig() {
   const config = React.useContext(DocsConfigContext);
-  invariant(
-    config,
-    'Could not find docs config context value; please ensure the component is wrapped in a <DocsProvider>',
-  );
+  if (!config) {
+    throw new Error(
+      'Could not find docs config context value; please ensure the component is wrapped in a <DocsProvider>',
+    );
+  }
   return config;
 }
