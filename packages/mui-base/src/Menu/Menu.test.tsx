@@ -87,7 +87,7 @@ describe('<Menu />', () => {
       });
     });
 
-    it('highlights first item when down arrow key opens the menu', () => {
+    it('highlights first item when down arrow key opens the menu', async () => {
       const context: DropdownContextValue = {
         ...testContext,
         state: {
@@ -99,7 +99,7 @@ describe('<Menu />', () => {
           } as React.KeyboardEvent,
         },
       };
-      const { getAllByRole } = render(
+      const { getAllByRole } = await render(
         <DropdownContext.Provider value={context}>
           <Menu>
             <MenuItem>1</MenuItem>
@@ -116,7 +116,7 @@ describe('<Menu />', () => {
       });
     });
 
-    it('highlights last item when up arrow key opens the menu', () => {
+    it('highlights last item when up arrow key opens the menu', async () => {
       const context: DropdownContextValue = {
         ...testContext,
         state: {
@@ -128,7 +128,7 @@ describe('<Menu />', () => {
           } as React.KeyboardEvent,
         },
       };
-      const { getAllByRole } = render(
+      const { getAllByRole } = await render(
         <DropdownContext.Provider value={context}>
           <Menu>
             <MenuItem>1</MenuItem>
@@ -146,7 +146,7 @@ describe('<Menu />', () => {
       });
     });
 
-    it('highlights last non-disabled item when disabledItemsFocusable is set to false', () => {
+    it('highlights last non-disabled item when disabledItemsFocusable is set to false', async () => {
       const CustomMenu = React.forwardRef(function CustomMenu(
         props: React.ComponentPropsWithoutRef<'ul'>,
         ref: React.Ref<HTMLUListElement>,
@@ -180,7 +180,7 @@ describe('<Menu />', () => {
           } as React.KeyboardEvent,
         },
       };
-      const { getAllByRole } = render(
+      const { getAllByRole } = await render(
         <DropdownContext.Provider value={context}>
           <CustomMenu>
             <MenuItem>1</MenuItem>
