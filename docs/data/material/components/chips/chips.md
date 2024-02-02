@@ -99,7 +99,7 @@ gain depth while clicked or touched.
 
 ## Experimental API
 
-### Material 3 Chip
+### Material Design 3
 
 The default Material UI Chip component follows the Material Design 2 specs.
 To use the [Material 3](https://m3.material.io/) version, install the experimental `@mui/material-next` package.

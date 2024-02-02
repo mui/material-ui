@@ -199,7 +199,7 @@ To prevent this, ensure that the contents of the Loading Button are nested insid
 
 :::
 
-### Material 3 Button
+### Material Design 3
 
 The default Material UI Button component follows the Material Design 2 specs.
 To use the [Material 3](https://m3.material.io/) version, install the experimental `@mui/material-next` package.

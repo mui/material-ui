@@ -93,7 +93,7 @@ The Divider component is composed of a root `<hr>`.
 
 ## Experimental APIs
 
-### Material 3 Divider
+### Material Design 3
 
 The default Material UI Divider component follows the Material Design 2 specs.
 To use the [Material 3](https://m3.material.io/) version, install the experimental `@mui/material-next` package.

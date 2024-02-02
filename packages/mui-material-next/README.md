@@ -1,6 +1,6 @@
 # @mui/material-next
 
-[Material 3](https://m3.material.io/) components built using [@mui/base](https://mui.com/base-ui/getting-started/overview/).
+[Material Design 3](https://m3.material.io/) components built using [@mui/base](https://mui.com/base-ui/getting-started/overview/).
 
 This package is a nursery for components that will ultimately replace the @mui/material ones.
 

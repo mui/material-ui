@@ -116,7 +116,7 @@ So the examples below are interchangeable for these components.
 
 ### Removed focusRipple
 
-The `focusRipple` prop was removed as ripples are absent in Material 3's focused states.
+The `focusRipple` prop was removed as ripples are absent in Material Design 3's focused states.
 
 ### Prevent default on `key-up` and `key-down` events
 
@@ -166,13 +166,13 @@ The `FormControlState` interface was renamed to `FormControlContextValue`:
 
 ### Removed the `standard` variant
 
-The standard variant is no longer supported in Material 3, use the `filled` or `outlined` variants instead.
+The standard variant is no longer supported in M3, use the `filled` or `outlined` variants instead.
 
 ## FormLabel
 
 ### Removed the `standard` variant
 
-The standard variant is no longer supported in Material 3, use the `filled` or `outlined` variants instead.
+The standard variant is no longer supported in M3, use the `filled` or `outlined` variants instead.
 
 ## InputBase
 
@@ -191,7 +191,7 @@ The standard variant is no longer supported in Material 3, use the `filled` or `
 
 ### Removed the `standard` variant
 
-The standard variant is no longer supported in Material 3, use the `filled` or `outlined` variants instead.
+The standard variant is no longer supported in M3, use the `filled` or `outlined` variants instead.
 
 ## Chip
 

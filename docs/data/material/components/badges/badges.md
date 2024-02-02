@@ -74,7 +74,7 @@ You should provide a full description, for instance, with `aria-label`:
 
 ## Experimental APIs
 
-### Material 3 Badge
+### Material Design 3
 
 The default Material UI Badge component follows the Material Design 2 specs.
 To use the [Material 3](https://m3.material.io/) version, install the experimental `@mui/material-next` package.

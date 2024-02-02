@@ -153,7 +153,7 @@ You can solve the latter with:
 
 ## Experimental APIs
 
-### Material 3 Progress
+### Material Design 3
 
 The default Material UI Progress components follow the Material Design 2 specs.
 To use the [Material 3](https://m3.material.io/) version, install the experimental `@mui/material-next` package.

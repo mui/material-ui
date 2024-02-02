@@ -167,7 +167,7 @@ You can solve the issue with:
 
 ## Experimental APIs
 
-### Material 3 Slider
+### Material Design 3
 
 The default Material UI Slider component follows the Material Design 2 specs.
 To use the [Material 3](https://m3.material.io/) version, install the experimental `@mui/material-next` package.

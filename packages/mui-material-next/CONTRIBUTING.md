@@ -1,6 +1,6 @@
 # Contributing
 
-The Material 3 components are targeted for v7, so they will be developed on the `material-next` package.
+The Material Design 3 components are targeted for v7, so they will be developed on the `material-next` package.
 
 The progress for each component will be tracked in a separate GitHub issue. If you wish to contribute to the migration go to a component's linked issue to see what tasks are missing (see progress tracker [here](https://github.com/mui/material-ui/issues/29345)).
 

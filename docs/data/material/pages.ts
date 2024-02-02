@@ -213,7 +213,7 @@ const pages: MuiPage[] = [
       },
       {
         pathname: '/material-ui/guides/material-3-components',
-        title: 'Material 3 components',
+        title: 'Material Design 3 components',
         newFeature: true,
       },
     ],
