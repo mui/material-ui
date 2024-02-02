@@ -106,7 +106,7 @@ To install Roboto through the Google Web Fonts CDN, add the following code insid
 
 After [installation](/material-ui/guides/material-3-components/#installation), you can import any component from `@mui/material-next` just as you would do with the stable Material UI package.
 
-{{"demo": "M3ButtonUsage.js"}}
+{{"demo": "MD3ButtonUsage.js"}}
 
 :::warning
 If your application uses the `ThemeProvider` from `@mui/material`, you must include `CssVarsProvider` from `@mui/material-next` in the tree above the M3 components.
