@@ -2,7 +2,7 @@
 
 <p class="description">Try out Material UI's implementation of M3 and learn how to contribute to the project.</p>
 
-## Material UI and M3
+## Material UI and M3
 
 Material Design 3 (M3), also referred to as [Material You](https://m3.material.io), is the latest version of Google's design system.
 The primary Material UI package (`@mui/material`) currently implements Material Design 2.
