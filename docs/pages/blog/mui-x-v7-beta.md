@@ -1,5 +1,5 @@
 ---
-title: MUI X v7 is now in beta
+title: MUI X v7 is now in beta
 description: Check out what's new and what's next for v7 stable.
 date: 2024-01-29T00:00:00.000Z
 authors: ['josefreitas']
@@ -9,14 +9,14 @@ card: true
 
 <div style="max-width: 692px; width: 100%; height: 100%; overflow: hidden;">
   <a href="https://github.com/mui/mui-x/releases/tag/v7.0.0-beta.0">
-    <img src="/static/blog/mui-x-v7-beta/intro.png" alt="MUI X v7 beta release" width="1200" height="400" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
+    <img src="/static/blog/mui-x-v7-beta/intro.png" alt="MUI X v7 beta release" width="1200" height="400" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
   </a>
 </div>
 
 It's the end of January, and we're ready to start rolling out some of the plans for 2024!
 We have new components, exciting features, and a lot of improvements for both developers and end-users.
 
-Starting [now](https://github.com/mui/mui-x/releases/tag/v7.0.0-beta.0), MUI X v7 is in beta.
+Starting [now](https://github.com/mui/mui-x/releases/tag/v7.0.0-beta.0), MUI X v7 is in beta.
 Most breaking changes are in place, and we shift our focus towards refining and expanding over the new version.
 
 ## Table of contents
@@ -74,7 +74,7 @@ While string values remain compatible for these types, any updates to the `filte
 
 ### Smaller bundle size
 
-The introduction of a separate entry point for locales has significantly reduced the bundle size of the barrel index in development mode.
+The introduction of a separate entry point for locales has significantly reduced the bundle size of the barrel index when tree-shaking isn't operational (e.g. Webpack in dev mode).
 
 For example with the `@mui/x-data-grid` npm package, this change led to a reduction of approximately 22% – shrinking the bundle size from [114.2kB](https://bundlephobia.com/package/@mui/x-data-grid@6.19.2) to [88.5kB](https://bundlephobia.com/package/@mui/x-data-grid@7.0.0-beta.0).
 
@@ -82,7 +82,7 @@ For example with the `@mui/x-data-grid` npm package, this change led to a reduct
 
 ### New stable features
 
-During major version updates, MUI X introduces new features under the `experimentalFeatures` flag or using the `unstable_` prefix.
+During major version updates, MUI X introduces new features under the `experimentalFeatures` flag or using the `unstable_` prefix.
 This approach serves as a failsafe in case there's a need to change the API based on user feedback.
 
 We're excited to announce that the following features have been promoted to stable:
@@ -94,7 +94,7 @@ We're excited to announce that the following features have been promoted to stab
 
 ## Tree View
 
-Following the promotion of the component from the labs to MUI X, our primary focus has been on improving its developer experience.
+Following the promotion of the component from the labs to MUI X, our primary focus has been on improving its developer experience.
 This includes efforts to clarify documentation and improve key examples, making them more informative and user-friendly.
 
 A particularly significant initiative is the time-saving alternative to the traditional JSX architecture, the RichTreeView.
@@ -134,7 +134,7 @@ Check out the [new component](https://next.mui.com/x/react-tree-view/rich-tree-v
 
 ## Charts
 
-Since the initial stable release of MUI X Chart a few months ago, we have been diligently listening to your feedback and focusing on refining the foundational charts to ensure they effectively cater to your diverse use cases.
+Since the initial stable release of MUI X Charts a few months ago, we have been diligently listening to your feedback and focusing on refining the foundational charts to ensure they effectively cater to your diverse use cases.
 This includes bug fixes, documentation improvements, and support for more complex scenarios.
 
 ### Reference line
@@ -218,7 +218,7 @@ However, should you need further assistance, please don't hesitate to contact us
 
 ## How to get involved
 
-Your feedback has been invaluable in developing MUI X, and we're always happy to hear from you. Please consider sharing your experiences and pain points by:
+Your feedback has been invaluable in developing MUI X, and we're always happy to hear from you. Please consider sharing your experiences and pain points by:
 
 - [Giving us a user interview](https://forms.gle/vsBv6CLPz9h57xg8A).
 - Reporting bugs and suggesting features on our [GitHub repository](https://github.com/mui/mui-x/issues/new/choose).

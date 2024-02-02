@@ -1,6 +1,9 @@
-# typescript-to-proptypes
+# @mui-internal/typescript-to-proptypes
 
-An API for converting [TypeScript](https://www.npmjs.com/package/typescript) definitions to [PropTypes](https://www.npmjs.com/package/prop-types) using the TypeScript Compiler API
+An API for converting [TypeScript](https://www.npmjs.com/package/typescript) definitions to [PropTypes](https://www.npmjs.com/package/prop-types) using the TypeScript Compiler API.
+
+This package has been adapted for MUI needs.
+It is not meant for general use.
 
 ## Support
 
@@ -15,3 +18,8 @@ An API for converting [TypeScript](https://www.npmjs.com/package/typescript) def
 ## License
 
 This project is licensed under the terms of the [MIT license](/LICENSE).
+
+## Release
+
+1. Build the project: `pnpm build`
+2. Publish the build artifacts to npm: `pnpm release:publish`

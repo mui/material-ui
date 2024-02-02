@@ -1631,7 +1631,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 ### Core
 
 - [changelog] Fix issues in highlight @oliviertassinari
-- [core] Remove redundant `@material-ui/` aliases from regression test webpack config (#38574) @ZeeshanTamboli
+- [core] Remove redundant `@material-ui/` aliases from regression test Webpack config (#38574) @ZeeshanTamboli
 - [core] Fix CI error @oliviertassinari
 - [core] Remove unnecessary Box (#38461) @oliviertassinari
 - [core] Set GitHub Action top level permission @oliviertassinari
@@ -4768,7 +4768,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [docs] Fix typo in `Grid` docs (#34475) @Dustin-Digitar
 - [docs] Fix typo in `Back to top` section in AppBar docs (#34479) @Dustin-Digitar
 - [docs] Standardize all "Installation" pages (#34168) @samuelsycamore
-- [docs] Fix webpack file name to the standard: `webpack.config.js` (#34446) @CodingItWrong
+- [docs] Fix Webpack file name to the standard: `webpack.config.js` (#34446) @CodingItWrong
 - [docs] Fix Select `onChange` call (#34408) @siriwatknp
 - [docs] Notification for pickers blog - v5 stable (#34400) @joserodolfofreitas
 - [docs] Improve social sharing of docs pages (#34346) @oliviertassinari
@@ -5443,7 +5443,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - [docs] Update to React 18 (#33196) @mnajdova
 - [docs] Simplify "Upload button" demo (#33326) @baharalidurrani
 - [docs] Add "refine" demo to showcase (#33240) @omeraplak
-- [docs] Add webpack alias for legacy utils package (#33376) @jgbae
+- [docs] Add Webpack alias for legacy utils package (#33376) @jgbae
 - [docs] Improve external link icons synonyms (#33257) @davidgarciab
 - [examples] Update Base UI with Tailwind CSS to use the latest versions of the dependencies (#33401) @mnajdova
 - [examples] Add Base UI example (#33154) @siriwatknp
@@ -8210,7 +8210,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - &#8203;<!-- 42 -->[core] Remove code handling JSS components (#28421) @eps1lon
 - &#8203;<!-- 41 -->[core] Remove unused dependencies (#28468) @eps1lon
 - &#8203;<!-- 40 -->[core] Ensure both docs bundles are analyzeable (#28410) @eps1lon
-- &#8203;<!-- 39 -->[core] Switch to webpack 5 (#28248) @eps1lon
+- &#8203;<!-- 39 -->[core] Switch to Webpack 5 (#28248) @eps1lon
 - &#8203;<!-- 38 -->[core] Batch small changes (#28177) @oliviertassinari
 - &#8203;<!-- 37 -->[core] Update publish tag to latest (#28382) @mnajdova
 - &#8203;<!-- 19 -->[framer] Update @mui/\* dependencies (#28469) @eps1lon
@@ -8958,7 +8958,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [docs] Sort the size in a more logical order (#27186) @oliviertassinari
 - [docs] Use actual link to paperbase (#27063) @eps1lon
 - [docs] Use custom markdown loader for landing page (#27065) @eps1lon
-- [docs] Use webpack 5 (#27077) @eps1lon
+- [docs] Use Webpack 5 (#27077) @eps1lon
 - [examples] Fix CDN warning (#27229) @oliviertassinari
 - [examples] Remove `StyledEngineProvider` as JSS is not used (#27133) @mnajdova
 - [examples] Remove forgotten StyledEngineProvider (#27163) @oliviertassinari
@@ -9088,7 +9088,7 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 - &#8203;<!-- 35 -->[docs] Fix /components/hidden merge conflict (#26997) @eps1lon
 - &#8203;<!-- 26 -->[docs] Fix 404 links (#26963) @oliviertassinari
 - &#8203;<!-- 24 -->[docs] Remove link that points to v4 blog post (#26960) @steveafrost
-- &#8203;<!-- 16 -->[docs] Use custom webpack loader for markdown (#26774) @eps1lon
+- &#8203;<!-- 16 -->[docs] Use custom Webpack loader for markdown (#26774) @eps1lon
 - &#8203;<!-- 11 -->[docs] Fix 301 links (#26942) @oliviertassinari
 - &#8203;<!-- 01 -->[docs] Add page for the `sx` prop (#26769) @mnajdova
 - &#8203;<!-- 52 -->[docs] pre-fill issue when a demo crashes (#27034) @eps1lon
