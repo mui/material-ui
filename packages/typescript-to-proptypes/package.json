@@ -1,6 +1,6 @@
 {
   "name": "@mui-internal/typescript-to-proptypes",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "MUI Team",
   "description": "Generate proptypes from TypeScript declarations. This is a fork of the typescript-to-proptypes package adapted for MUI needs. This is an internal package not meant for general use.",
   "main": "build/index.js",
@@ -15,7 +15,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "prepublish": "rimraf ./build",
+    "prebuild": "rimraf ./build",
     "build": "tsc -b tsconfig.build.json",
     "release:publish": "pnpm publish --tag latest",
     "release:publish:dry-run": "pnpm publish --tag latest --registry=\"http://localhost:4873/\"",

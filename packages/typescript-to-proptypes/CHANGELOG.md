@@ -5,6 +5,10 @@ For changes before the package was forked, while it was and published as `typesc
 
 Unfortunately changes done between forking the `typescript-to-proptypes` and publishing `@mui-internal/typescript-to-proptypes` are not documented.
 
+## 1.0.2
+
+Fix the incorrectly published package.
+
 ## 1.0.1
 
 Fix the incorrectly published package.
