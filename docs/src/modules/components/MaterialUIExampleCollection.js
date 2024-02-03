@@ -47,6 +47,12 @@ const examples = [
     src: '/static/images/examples/tailwindcss.svg',
   },
   {
+    name: 'Tailwind CSS + Next.js App Router',
+    label: 'View TS example',
+    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-app-router-tailwind-ts',
+    src: '/static/images/examples/tailwindcss.svg',
+  },
+  {
     name: 'Create React App',
     label: 'View JS example',
     tsLabel: 'View TS example',
