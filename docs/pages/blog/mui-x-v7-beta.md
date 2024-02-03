@@ -9,7 +9,7 @@ card: true
 
 <div style="max-width: 692px; width: 100%; height: 100%; overflow: hidden;">
   <a href="https://github.com/mui/mui-x/releases/tag/v7.0.0-beta.0">
-    <img src="/static/blog/mui-x-v7-beta/intro.png" alt="MUI X v7 beta release" width="1200" height="400" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
+    <img src="/static/blog/mui-x-v7-beta/intro.jpg" alt="MUI X v7 beta release" width="1200" height="400" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
   </a>
 </div>
 
