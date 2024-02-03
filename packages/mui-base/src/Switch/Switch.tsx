@@ -103,6 +103,9 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
     elementType: Input,
     getSlotProps: getInputProps,
     externalSlotProps: slotProps.input,
+    additionalProps: {
+      role: 'switch', // Switch component should have the role "switch" to meet a11y guidelines
+    },
     ownerState,
     className: classes.input,
   });
