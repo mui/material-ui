@@ -290,8 +290,7 @@ const Root = styled('div')(
         borderColor: `var(--muidocs-palette-grey-300, ${lightTheme.palette.grey[300]})`,
       },
       '& .MuiCallout-content': {
-        // Allows content to shrink. Useful when callout contains code blocks
-        minWidth: 0,
+        minWidth: 0, // Allows content to shrink. Useful when callout contains code block
         flexGrow: 1,
         '& > p:last-child, & > ul:last-child': {
           // Avoid margin on last child
