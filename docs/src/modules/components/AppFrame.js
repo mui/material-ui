@@ -31,10 +31,10 @@ const nProgressStart = debounce(() => {
   NProgress.start();
 }, 200);
 
-const nProgressDone = () => {
+function nProgressDone() {
   nProgressStart.clear();
   NProgress.done();
-};
+}
 
 export function NextNProgressBar() {
   const router = useRouter();
@@ -67,6 +67,7 @@ export function NextNProgressBar() {
 const sx = { minWidth: { sm: 160 } };
 
 const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
+
 export function DeferredAppSearch() {
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
