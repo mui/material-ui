@@ -84,7 +84,8 @@ Base UI includes two kinds of building blocks: **components** and **hooks**.
 Hooks encapsulate _logic_; components provide _structure_.
 :::
 
-Many Base UI components are implemented with the help of [React hooks](https://react.dev/reference/react/hooks). You can use components or hooks—or a combination both—when building custom components.
+Many Base UI components are implemented with the help of [React hooks](https://react.dev/reference/react/hooks).
+You can use components or hooks—or a combination of both—when building custom components.
 
 In general, we recommend that you begin building with the component, and if you find that you are too limited by the customization options available, then consider refactoring your component to use the corresponding hook instead.
 
