@@ -14,15 +14,15 @@ Then, run one of the following commands to install the dependencies:
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/material-nextjs @emotion/cache
+npm install @mui/material-nextjs @emotion/cache @emotion/react @emotion/styled
 ```
 
 ```bash yarn
-yarn add @mui/material-nextjs @emotion/cache
+yarn add @mui/material-nextjs @emotion/cache @emotion/react @emotion/styled
 ```
 
 ```bash pnpm
-pnpm add @mui/material-nextjs @emotion/cache
+pnpm add @mui/material-nextjs @emotion/cache @emotion/react @emotion/styled
 ```
 
 </codeblock>
@@ -98,11 +98,11 @@ Then in `src/app/layout.tsx`, pass the theme to `ThemeProvider`:
    return (
      <html lang="en">
        <body>
-          <AppRouterCacheProvider>
-+           <ThemeProvider theme={theme}>
+-         <AppRouterCacheProvider>
++         <ThemeProvider theme={theme}>
               {children}
-+           </ThemeProvider>
-          </AppRouterCacheProvider>
++         </ThemeProvider>
+-         </AppRouterCacheProvider>
        </body>
      </html>
    );
