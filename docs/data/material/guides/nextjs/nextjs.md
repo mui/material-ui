@@ -39,8 +39,9 @@ Inside `app/layout.tsx`, import the `AppRouterCacheProvider` and wrap all elemen
    return (
      <html lang="en">
        <body>
--        {props.children}
-+        <AppRouterCacheProvider>{props.children}</AppRouterCacheProvider>
++        <AppRouterCacheProvider>
+           {props.children}
++        </AppRouterCacheProvider>
        </body>
      </html>
    );
