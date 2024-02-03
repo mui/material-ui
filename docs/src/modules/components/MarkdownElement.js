@@ -292,6 +292,7 @@ const Root = styled('div')(
       '& .MuiCallout-content': {
         // Allows content to shrink. Useful when callout contains code blocks
         minWidth: 0,
+        flexGrow: 1,
         '& > p:last-child, & > ul:last-child': {
           // Avoid margin on last child
           marginBottom: 0,
