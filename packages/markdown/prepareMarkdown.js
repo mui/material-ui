@@ -101,17 +101,11 @@ function prepareMarkdown(config) {
       const contents = getContents(markdown);
 
       if (headers.unstyled) {
-        // TODO v7:
-        //         contents.push(`
-        // ## Unstyled
-
-        // To completely own the design, without having to customize the built-in styles of Material UI, use the [Base UI ${markdownH1}](${headers.unstyled}). It's the unstyled version of the same component Material UI is built on top of. It's great for heavy customizations or smaller bundle sizes.
-        //         `);
-
         contents.push(`
 ## Unstyled
 
-To completely own the design, without having to customize the built-in styles of Material UI, use the [Base UI ${markdownH1}](${headers.unstyled}). It's the unstyled version of the same component. It's great for heavy customizations or smaller bundle sizes.
+Use the [Base UI ${markdownH1}](${headers.unstyled}) for complete ownership of the component's design, with no Material UI styles to override.
+This unstyled version of the component is the ideal choice for heavy customization with a smaller bundle size.
         `);
       }
 
