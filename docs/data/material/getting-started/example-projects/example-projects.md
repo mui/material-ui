@@ -30,15 +30,6 @@ They're great resources for learning more about real-world usage of Material UI
 
 ### Free
 
-- [GraphQL API and Relay Starter Kit](https://github.com/kriasoft/relay-starter-kit):
-
-  - ![stars](https://img.shields.io/github/stars/kriasoft/graphql-starter.svg?style=social&label=Star)
-  - GraphQL API project using code-first design (TypeScript, OAuth, GraphQL.js, Knex, Cloud SQL).
-  - Web application project pre-configured with Webpack v5, TypeScript, React, Relay, Material UI.
-  - Serverless deployment: `api` -> Cloud Functions, `web` -> Cloudflare Workers.
-  - Client-side page routing/rendering at CDN edge locations, lazy loading.
-  - Optimized for fast CI/CD builds and deployments using Yarn v2 monorepo design.
-
 - [React Admin](https://github.com/marmelab/react-admin)
 
   - ![stars](https://img.shields.io/github/stars/marmelab/react-admin.svg?style=social&label=Star)
