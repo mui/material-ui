@@ -21,6 +21,17 @@ If you think you've found a bug, or you have a new feature idea:
 - Please don't group multiple topics in one issue.
 - Please don't comment "+1" on an issue. It spams the maintainers and doesn't help move the issue forward. Use GitHub reactions instead (👍).
 
+### Bug reproductions
+
+We require bug reports to be accompanied by a minimal reproduction.
+It significantly increases the odds of fixing the problem.
+You have a few options possible to provide it:
+
+- You can browse the documentation, find an example close to your use case, and then open it in a live editor:
+  [![Forking an example](/static/docs-infra/forking-an-example.png)](/base-ui/react-button/#introduction)
+
+- You can use a starter React template to build a reproduction case with [JavaScript](https://stackblitz.com/fork/github/stackblitz/starters/tree/main/react) or [TypeScript](https://stackblitz.com/fork/github/stackblitz/starters/tree/main/react-ts).
+
 ## Stack Overflow
 
 We use Stack Overflow for how-to questions. Answers are crowdsourced from expert developers in the Base UI community as well as Base UI maintainers.
