@@ -76,7 +76,8 @@
     "typescript:ci": "lerna run --concurrency 5 --no-bail --no-sort typescript",
     "validate-declarations": "tsx scripts/validateTypescriptDeclarations.mts",
     "generate-codeowners": "node scripts/generateCodeowners.mjs",
-    "watch:zero": "nx run-many -t watch --projects=\"@mui/zero-*\" --parallel"
+    "watch:zero": "nx run-many -t watch --projects=\"@mui/zero-*\" --parallel",
+    "generate-index:mui-joy": "tsx scripts/generateIndex.mts ts mui-joy '[\"colors\", \"styles\", \"GlobalStyles\"]'"
   },
   "dependencies": {
     "@googleapis/sheets": "^5.0.5",

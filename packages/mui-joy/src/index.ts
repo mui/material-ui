@@ -1,5 +1,10 @@
+// This file is auto-generated
+// Please use `pnpm generate-index:mui-joy` instead of changing it manually
+
 'use client';
+
 export { default as colors } from './colors';
+
 export * from './styles';
 
 export { default as GlobalStyles } from './GlobalStyles';
@@ -199,8 +204,8 @@ export * from './Slider';
 export { default as Snackbar } from './Snackbar';
 export * from './Snackbar';
 
-export { default as Stepper } from './Stepper';
-export * from './Stepper';
+export { default as Stack } from './Stack';
+export * from './Stack';
 
 export { default as Step } from './Step';
 export * from './Step';
@@ -211,8 +216,8 @@ export * from './StepButton';
 export { default as StepIndicator } from './StepIndicator';
 export * from './StepIndicator';
 
-export { default as Stack } from './Stack';
-export * from './Stack';
+export { default as Stepper } from './Stepper';
+export * from './Stepper';
 
 export { default as SvgIcon } from './SvgIcon';
 export * from './SvgIcon';
