@@ -14,15 +14,15 @@ Then, run one of the following commands to install the dependencies:
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/material-nextjs @emotion/cache
+npm install @mui/material-nextjs @emotion/cache @emotion/react @emotion/styled
 ```
 
 ```bash yarn
-yarn add @mui/material-nextjs @emotion/cache
+yarn add @mui/material-nextjs @emotion/cache @emotion/react @emotion/styled
 ```
 
 ```bash pnpm
-pnpm add @mui/material-nextjs @emotion/cache
+pnpm add @mui/material-nextjs @emotion/cache @emotion/react @emotion/styled
 ```
 
 </codeblock>
@@ -64,7 +64,7 @@ Use the `options` prop to override the default [cache options](https://emotion.s
 
 Create a new file and export a custom theme that includes the `'use client';` directive:
 
-```js
+```diff
 // src/theme.ts
 'use client';
 import { Roboto } from 'next/font/google';
@@ -98,11 +98,11 @@ Then in `src/app/layout.tsx`, pass the theme to `ThemeProvider`:
    return (
      <html lang="en">
        <body>
-          <AppRouterCacheProvider>
+-          <AppRouterCacheProvider>
 +           <ThemeProvider theme={theme}>
               {children}
 +           </ThemeProvider>
-          </AppRouterCacheProvider>
+-          </AppRouterCacheProvider>
        </body>
      </html>
    );
