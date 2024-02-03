@@ -39,8 +39,9 @@ Inside `app/layout.tsx`, import the `AppRouterCacheProvider` and wrap all elemen
    return (
      <html lang="en">
        <body>
--        {props.children}
-+        <AppRouterCacheProvider>{props.children}</AppRouterCacheProvider>
++        <AppRouterCacheProvider>
+           {props.children}
++        </AppRouterCacheProvider>
        </body>
      </html>
    );
@@ -66,8 +67,6 @@ Create a new file and export a custom theme that includes the `'use client';` di
 ```js
 // src/theme.ts
 'use client';
-import { createTheme } from '@mui/material/styles';
-
 import { Roboto } from 'next/font/google';
 import { createTheme } from '@mui/material/styles';
 
@@ -91,8 +90,8 @@ Then in `src/app/layout.tsx`, pass the theme to `ThemeProvider`:
 ```diff
  // app/layout.tsx
  import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
-+ import { ThemeProvider } from '@mui/material/styles';
-+ import theme from '../theme';
++import { ThemeProvider } from '@mui/material/styles';
++import theme from '../theme';
 
  export default function RootLayout(props) {
    const { children } = props;
@@ -119,12 +118,12 @@ If you want to use [CSS theme variables](/material-ui/experimental-api/css-theme
 ```diff
  // src/theme.ts
  'use client';
-- import { createTheme } from '@mui/material/styles';
-+ import { extendTheme } from '@mui/material/styles';
+-import { createTheme } from '@mui/material/styles';
++import { extendTheme } from '@mui/material/styles';
 
  // app/layout.tsx
-- import { ThemeProvider } from '@mui/material/styles';
-+ import { CssVarsProvider } from '@mui/material/styles';
+-import { ThemeProvider } from '@mui/material/styles';
++import { CssVarsProvider } from '@mui/material/styles';
 ```
 
 Learn more about [the advantages of CSS theme variables](/material-ui/experimental-api/css-theme-variables/overview/#advantages).
@@ -228,10 +227,10 @@ To use a custom [Emotion cache](https://emotion.sh/docs/@emotion/cache), pass it
  ...
 
  MyDocument.getInitialProps = async (ctx) => {
-  const finalProps = await documentGetInitialProps(ctx, {
-+   emotionCache: createCustomCache(),
-  });
-  return finalProps;
+   const finalProps = await documentGetInitialProps(ctx, {
++    emotionCache: createCustomCache(),
+   });
+   return finalProps;
  };
 ```
 
@@ -303,10 +302,10 @@ MyDocument.getInitialProps = async (ctx) => {
 If you are using TypeScript, add `DocumentHeadTagsProps` to the Document's props interface:
 
 ```diff
-+ import type { DocumentHeadTagsProps } from '@mui/material-nextjs/v13-pagesRouter';
-  // or `v1X-pagesRouter` if you are using Next.js v1X
++import type { DocumentHeadTagsProps } from '@mui/material-nextjs/v13-pagesRouter';
+ // or `v1X-pagesRouter` if you are using Next.js v1X
 
-+ export default function MyDocument(props: DocumentProps & DocumentHeadTagsProps) {
++export default function MyDocument(props: DocumentProps & DocumentHeadTagsProps) {
    ...
  }
 ```
@@ -340,9 +339,9 @@ In `pages/_app.tsx`, create a new theme and pass it to `ThemeProvider`:
   return (
     <AppCacheProvider {...props}>
       <Head>...</Head>
-+      <ThemeProvider theme={theme}>
++     <ThemeProvider theme={theme}>
         <Component {...pageProps} />
-+      </ThemeProvider>
++     </ThemeProvider>
     </AppCacheProvider>
   );
  }
