@@ -66,7 +66,6 @@ Create a new file and export a custom theme that includes the `'use client';` di
 ```js
 // src/theme.ts
 'use client';
-
 import { Roboto } from 'next/font/google';
 import { createTheme } from '@mui/material/styles';
 
