@@ -65,7 +65,7 @@ describe('useSwitch', () => {
       render(<Switch />);
 
       act(() => {
-        screen.getByRole('switch').click();
+        screen.getByRole('checkbox').click();
       });
 
       expect(handleChange.callCount).to.equal(1);
@@ -85,7 +85,7 @@ describe('useSwitch', () => {
         return <input {...getInputProps()} />;
       }
       render(<Switch />);
-      const checkbox = screen.getByRole('switch');
+      const checkbox = screen.getByRole('checkbox');
 
       simulatePointerDevice();
       act(() => {
