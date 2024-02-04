@@ -13188,7 +13188,7 @@ Here are some highlights ✨:
 #### Breaking changes
 
 - [Modal] Remove `onRendered` prop from Modal and Portal (#22464) @eps1lon
-  Depending on your use case either use a [callback ref](https://legacy.reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
+  Depending on your use case either use a [callback ref](https://react.dev/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback) on the child element or an effect hook in the child component.
 
 #### Changes
 
