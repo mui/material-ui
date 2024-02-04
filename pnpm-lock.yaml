@@ -1267,8 +1267,8 @@ importers:
   packages/mui-envinfo:
     dependencies:
       envinfo:
-        specifier: ^7.11.0
-        version: 7.11.0
+        specifier: ^7.11.1
+        version: 7.11.1
     devDependencies:
       '@types/chai':
         specifier: ^4.3.11
@@ -6535,7 +6535,7 @@ packages:
       chalk: 4.1.2
       command-exists: 1.2.9
       deepmerge: 4.3.1
-      envinfo: 7.11.0
+      envinfo: 7.11.1
       execa: 5.1.1
       hermes-profile-transformer: 0.0.6
       ip: 1.1.8
@@ -11342,8 +11342,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /envinfo@7.11.0:
-    resolution: {integrity: sha512-G9/6xF1FPbIw0TtalAMaVPpiq2aDEuKLXM314jPVAO9r2fo2a4BLqMNkmRS7O/xPPZ+COAhGIz3ETvHEV3eUcg==}
+  /envinfo@7.11.1:
+    resolution: {integrity: sha512-8PiZgZNIB4q/Lw4AhOvAfB/ityHAd2bli3lESSWmWSzSsl5dKpy5N1d1Rfkd2teq/g9xN90lc6o98DOjMeYHpg==}
     engines: {node: '>=4'}
     hasBin: true
 
@@ -21369,7 +21369,7 @@ packages:
       colorette: 2.0.20
       commander: 10.0.1
       cross-spawn: 7.0.3
-      envinfo: 7.11.0
+      envinfo: 7.11.1
       fastest-levenshtein: 1.0.16
       import-local: 3.1.0
       interpret: 3.1.1
