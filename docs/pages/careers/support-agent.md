@@ -91,7 +91,7 @@ Experience (1+ years) providing customer support for similar companies (develope
 ## Benefits and compensation
 
 **Compensation bands:** 20-30k USD, or equivalent in local currency, per year.
-You can find our perks & benefits on the [careers](/careers/#perks-and-benefits/) page.
+You can find our perks & benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## How to apply
 

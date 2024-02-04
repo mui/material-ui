@@ -23,9 +23,9 @@ If you think you've found a bug, or you have a new feature idea:
 
 ### Bug reproductions
 
-We require bug reports to be accompanied by a minimal reproduction.
+We require bug reports to be accompanied by a **minimal reproduction**.
 It significantly increases the odds of fixing the problem.
-You have a few options possible to provide it:
+You have a few possible options to provide it:
 
 - You can browse the documentation, find an example close to your use case, and then open it in a live editor:
   [![Forking an example](/static/docs-infra/forking-an-example.png)](/base-ui/react-button/#introduction)
