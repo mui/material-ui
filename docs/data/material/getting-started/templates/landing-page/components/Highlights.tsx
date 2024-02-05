@@ -23,7 +23,7 @@ const items = [
     icon: <ConstructionRoundedIcon />,
     title: 'Built to last',
     description:
-      'Experience unmatched durability that goes above and beyond, with lasting investment.',
+      'Experience unmatched durability that goes above and beyond with lasting investment.',
   },
   {
     icon: <ThumbUpAltRoundedIcon />,
