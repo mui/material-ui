@@ -20,5 +20,15 @@ export default function transformer(file, api, options) {
     );
   });
 
+  root.find(j.ObjectProperty, { key: { name: 'MuiDivider' } }).forEach((path) => {
+    const defaultPropsObject = path.value.value.properties.find(
+      (key) => key.key.name === 'defaultProps',
+    );
+
+    defaultPropsObject.value.properties = defaultPropsObject.value.properties.filter(
+      (prop) => !['light'].includes(prop?.key?.name),
+    );
+  });
+
   return root.toSource(printOptions);
 }
