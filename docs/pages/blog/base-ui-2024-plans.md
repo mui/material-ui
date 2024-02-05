@@ -11,7 +11,7 @@ It's been a while since we started work on Base UI, a library of unstyled React 
 It all started years ago, way before similar products were as widely known as today when we imagined a world where Material UI existed without Material Design.
 
 We're super excited because this world is getting closer than ever.
-This year will see a lot of investment in Base UI as we expand the team (we're hiring!) and focus hard on a stable release (tentatively planned for Q3), which will come full of new components, features, and improvements.
+This year will see a lot of investment in Base UI as we expand the team ([we're hiring!](/careers/staff-ui-engineer-base-ui/)) and focus hard on a stable release (tentatively planned for Q3), which will come full of new components, features, and improvements.
 
 Let's walk through some of the things we're cooking up.
 
@@ -36,7 +36,7 @@ Worry no more, as we're focused on shipping the first versions of all of the com
 Currently, Base UI can be customized to your heart's content using the `slots` and `slotProps` props.
 This API, while powerful, has proven to be less than ideal in some instances.
 Most notably, it's too lengthy and complicated to write and read when used with libraries such as Tailwind CSS.
-Additionally, since the `slots` and the corresponding `slotProps` are not related to Typescript types, it's possible to introduce bugs or have the compiler complain about valid code.
+Additionally, since the `slots` and the corresponding `slotProps` are not related to Typescript types, it's possible to introduce bugs or have the compiler complain about invalid valid code.
 
 To address these issues, we're considering adopting another customization API.
 We're still fleshing out the details and plan to release an RFC on GitHub in the upcoming days.
@@ -72,13 +72,13 @@ We intend to move Base UI to a dedicated GitHub repo and potentially move the pa
 Full support for various accessibility-related features and an intuitive API for extensive customization are at the core of what Base UI strives to deliver out of the box.
 We've earmarked several bugs we want to tackle before the stable release in areas such as keyboard navigation, better ARIA support, focus styles, and more.
 
-If you want to see if the specific bug that was annoying you was solved, head over to the Base UI stable release milestone on GitHub. There, you can see every issue we have lined up for it.
+If you want to see if the specific bug that was annoying you was solved, head over to [the Base UI stable release milestone](https://github.com/mui/material-ui/milestone/46) on GitHub. There, you can see every issue we have lined up for it.
 
 ## Join us on the ride
 
-If you're passionate about the mission of extending the web platform with powerful, accessibility-focused, unstyled components, we're hiring UI Engineers to work on the Base UI team and help us accelerate this more and more!
+If you're passionate about the mission of extending the web platform with powerful, accessibility-focused, unstyled components, [we're hiring UI Engineers](/careers/staff-ui-engineer-base-ui/) to work on the Base UI team and help us accelerate this more and more!
 
 Lastly, we'd love to know your thoughts or comments.
-Please hop over to the GitHub repo and feel free to open or chime in on issues.
+Please hop over to [the GitHub repo](https://github.com/mui/material-ui/issues?q=is:open+is:issue+label:%22package:+base-ui%22) and feel free to open or chime in on issues.
 
-Happy development!
+Happy development! 👋
