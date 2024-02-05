@@ -11,7 +11,7 @@ It's been a while since we started work on Base UI, a library of unstyled React 
 It all started years ago, way before similar products were as widely known as today when we imagined a world where Material UI existed without Material Design.
 
 We're super excited because this world is getting closer than ever.
-This year will see a lot of investment in Base UI as we expand the team ([we're hiring!](/careers/staff-ui-engineer-base-ui/)) and focus hard on a stable release (tentatively planned for Q3), which will come full of new components, features, and improvements.
+This year will see a lot of investment in Base UI as we expand the team ([we're hiring!](/careers/staff-ui-engineer-base-ui/)) and focus hard on a [stable release](https://github.com/mui/material-ui/milestone/46) (tentatively planned for Q3), which will come full of new components, features, and improvements.
 
 Let's walk through some of the things we're cooking up.
 
