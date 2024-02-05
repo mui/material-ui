@@ -1,8 +1,9 @@
 import Divider from '@mui/material/Divider';
-import { Card as MyDivider } from '@mui/material';
+import { Divider as MyDivider } from '@mui/material';
 
-import Button from '@mui/material/Button';
-
-<Divider a />;
-<MyDivider a />;
-<Button />
+<Divider light />;
+<MyDivider light />;
+<Divider light={false} />;
+<MyDivider light={false} />;
+<Divider light={light} />;
+<MyDivider light={light} />;

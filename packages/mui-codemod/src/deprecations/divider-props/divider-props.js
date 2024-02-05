@@ -10,7 +10,6 @@ export default function transformer(file, api, options) {
   const printOptions = options.printOptions;
 
   findComponentJSX(j, { root, componentName: 'Divider' }, (elementPath) => {
-    console.log(elementPath.node.openingElement.name.name);
     elementPath.node.openingElement.attributes = elementPath.node.openingElement.attributes.filter(
       (attr) => {
         if (attr.type === 'JSXAttribute' && attr.name.name === 'light') {
