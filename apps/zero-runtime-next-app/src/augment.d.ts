@@ -25,7 +25,7 @@ declare module '@mui/zero-runtime/theme' {
     };
   }
 
-  export interface ThemeArgs {
+  interface ThemeArgs {
     theme: ExtendTheme<{
       colorScheme: 'light' | 'dark';
       tokens: ThemeTokens;

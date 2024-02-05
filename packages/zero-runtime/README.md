@@ -2,7 +2,6 @@
 
 A zero-runtime CSS-in-JS library that extracts the colocated css to it's own css files at build-time.
 
-- [Mental model](#mental-model)
 - [Getting started](#getting-started)
   - [Next.js](#nextjs)
   - [Vite](#vite)
@@ -17,10 +16,6 @@ A zero-runtime CSS-in-JS library that extracts the colocated css to it's own css
   - [CSS variables support](#css-variables-support)
   - [Color schemes](#color-schemes)
   - [Mutliple themes](#mutliple-themes)
-
-## Mental model
-
-// TODO: Add a mental model
 
 ## Getting started
 
@@ -38,19 +33,9 @@ Then, in your `next.config.js` file, import the plugin and wrap the exported con
 ```js
 const { withZeroPlugin } = require('@mui/zero-next-plugin');
 
-/**
- * @type {ZeroPluginConfig}
- */
-const zeroPluginOptions = {
-  theme: {}, // To learn more, check the "Theme" section.
-};
-
-module.exports = withZeroPlugin(
-  {
-    // ...other nextConfig
-  },
-  zeroPluginOptions,
-);
+module.exports = withZeroPlugin({
+  // ... Your nextjs config.
+});
 ```
 
 ### Vite
@@ -67,9 +52,7 @@ import { zeroVitePlugin } from '@mui/zero-vite-plugin';
 
 export default defineConfig({
   plugins: [
-    zeroVitePlugin({
-      theme: {}, // To learn more, check the "Theme" section.
-    }),
+    zeroVitePlugin(),
     // ... Your other plugins.
   ],
 });
@@ -210,8 +193,8 @@ const Button = styled('button')({
 
 Use a callback function as a value to create a dynamic style for the specific CSS property:
 
-```tsx
-const Heading = styled.h1<{ isError?: boolean }>({
+```jsx
+const Heading = styled('h1')({
   color: ({ isError }) => (isError ? 'red' : 'black'),
 });
 ```
@@ -262,6 +245,16 @@ const ExtraHeading = styled(Heading)({
 });
 ```
 
+#### TypeScript
+
+Add the type of the props before the styles to get the type checking:
+
+```tsx
+const Heading = styled('h1')<{ isError?: boolean }>({
+  color: ({ isError }) => (isError ? 'red' : 'black'),
+});
+```
+
 ### Theme
 
 Theme lets you reuse the same values, such as colors, spacing, and typography, across your application. It is a plain object of any structure that you can define in your config file.
@@ -271,30 +264,25 @@ For example, in Next.js, you can define the theme in the `next.config.js` file:
 ```js
 const { withZeroPlugin } = require('@mui/zero-next-plugin');
 
-/**
- * @type {ZeroPluginConfig}
- */
-const zeroPluginOptions = {
-  theme: {
-    colors: {
-      primary: 'tomato',
-      secondary: 'cyan',
-    },
-    spacing: {
-      unit: 8,
-    },
-    typography: {
-      fontFamily: 'Inter, sans-serif',
-    },
-    // ...more keys and values, it's free style!
-  },
-};
-
 module.exports = withZeroPlugin(
   {
     // ...other nextConfig
   },
-  zeroPluginOptions,
+  {
+    theme: {
+      colors: {
+        primary: 'tomato',
+        secondary: 'cyan',
+      },
+      spacing: {
+        unit: 8,
+      },
+      typography: {
+        fontFamily: 'Inter, sans-serif',
+      },
+      // ...more keys and values, it's free style!
+    },
+  },
 );
 ```
 
@@ -317,33 +305,28 @@ Zero-runtime can generate CSS variables from the theme values when you wrap your
 ```js
 const { withZeroPlugin, extendTheme } = require('@mui/zero-next-plugin');
 
-/**
- * @type {ZeroPluginConfig}
- */
-const zeroPluginOptions = {
-  theme: extendTheme({
-    colors: {
-      primary: 'tomato',
-      secondary: 'cyan',
-    },
-    spacing: {
-      unit: 8,
-    },
-    typography: {
-      fontFamily: 'Inter, sans-serif',
-    },
-  }),
-};
-
 module.exports = withZeroPlugin(
   {
     // ...other nextConfig
   },
-  zeroPluginOptions,
+  {
+    theme: extendTheme({
+      colors: {
+        primary: 'tomato',
+        secondary: 'cyan',
+      },
+      spacing: {
+        unit: 8,
+      },
+      typography: {
+        fontFamily: 'Inter, sans-serif',
+      },
+    }),
+  },
 );
 ```
 
-The `extendTheme` utility will go through the theme object and create a `vars` object which represents the theme tokens that are available as CSS variables.
+The `extendTheme` utility will go through the theme and create a `vars` object which represents the tokens that refer to CSS variables.
 
 ```jsx
 const theme = extendTheme({
@@ -357,13 +340,11 @@ console.log(theme.colors.primary); // 'tomato'
 console.log(theme.vars.colors.primary); // 'var(--colors-primary)'
 ```
 
-When `extendTheme` is used, zero-runtime will extract and generate CSS variables to a separate CSS file.
-
 #### Color schemes
 
 Some tokens, especially color-related tokens, can have different values for different scenarios. For example in a daylight condition, the background color might be white, but in a dark condition, it might be black.
 
-The `extendTheme` utility lets you define unlimited color schemes:
+The `extendTheme` utility lets you define theme with a special `colorSchemes` key:
 
 ```jsx
 extendTheme({
@@ -381,54 +362,42 @@ extendTheme({
       },
     },
   },
-  defaultColorScheme: 'light',
 });
 ```
 
-In the above example, `light` (default) and `dark` color schemes are defined. Next, choose one or both methods to switch between color schemes:
+In the above example, `light` (default) and `dark` color schemes are defined. The structure of each color scheme must be a plain object with keys and values.
 
-- **CSS media query**: It uses the [`prefers-color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query, no extra JavaScript is required at runtime.
+#### Switching color schemes
 
-  ```diff
-   extendTheme({
-     colorSchemes: {
-       light: { ... },
-       dark: { ... },
-     },
-     defaultColorScheme: 'light',
-  +  prefersColorScheme: {
-  +    light: 'light',
-  +    dark: 'dark',
-  +  }
-   });
-  ```
+By default, when `colorSchemes` is defined, zero-runtime uses the [`prefers-color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query to switch between color schemes based on user's system settings.
 
-- **class, data-\* attribute** : provide a `getColorSchemeSelector` function to tell zero-runtime what selector to apply for each color scheme. This method is more flexible but you need to write a JavaScript to control when and where to attach the attribute.
+However, if you want to control the color scheme based on application logic, for example, using a button to switch between light and dark mode, you can customize the behavior by providing a `getSelector` function:
 
-  ```diff
-   extendTheme({
-     colorSchemes: {
-       light: { ... },
-       dark: { ... },
-     },
-     defaultColorScheme: 'light',
-  +  getColorSchemeSelector: (colorScheme) => `.${colorScheme}`,
-   });
-  ```
+```diff
+  extendTheme({
+    colorSchemes: {
+      light: { ... },
+      dark: { ... },
+    },
++   getSelector: (colorScheme) => colorScheme ? `.theme-${colorScheme}` : ':root',
+  });
+```
 
-  The result CSS will be:
+Note that you need to add a logic to a button by yourself. Here is an example of how to do it:
 
-  ```css
-  :root,
-  .light {
-    --colors-background: #f9f9f9;
-    --colors-foreground: #121212;
-  }
-  .dark {
-    --colors-background: #212121;
-    --colors-foreground: #fff;
-  }
-  ```
+```jsx
+function App() {
+  return (
+    <button
+      onClick={() => {
+        document.documentElement.classList.toggle('theme-dark');
+      }}
+    >
+      Toggle color scheme
+    </button>
+  );
+}
+```
 
 #### CSS variables prefix
 
@@ -446,6 +415,28 @@ The generated CSS variables will have the `zero` prefix:
 :root {
   --zero-colors-background: #f9f9f9;
   --zero-colors-foreground: #121212;
+}
+```
+
+#### TypeScript
+
+To get the type checking for the theme, you need to augment the theme type:
+
+```ts
+// any file that is included in your tsconfig.json
+import type { ExtendTheme } from '@mui/zero-runtime';
+
+declare module '@mui/zero-runtime/theme' {
+  interface ThemeTokens {
+    // the structure of your theme
+  }
+
+  interface ThemeArgs {
+    theme: ExtendTheme<{
+      colorScheme: 'light' | 'dark';
+      tokens: ThemeTokens;
+    }>;
+  }
 }
 ```
 
