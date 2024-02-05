@@ -1,5 +1,71 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.15.8<!-- generated comparing v5.15.7..master -->
+
+_Feb 5, 2024_
+
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+
+- ✨ Added support for Arrow Down/Up + Shift and Page Up/Down keys for faster stepping in the Slider component (#40676) @mnajdova
+- many 🐛 bug fixes and 📚 documentation improvements
+
+### `@mui/material@5.15.8`
+
+- &#8203;<!-- 36 -->[Avatar] Simplify valid children assertion (#40834) @oliviertassinari
+
+### `@mui/codemod@5.15.8`
+
+- &#8203;<!-- 37 -->[Accordion] Update props actual.js test case (#40879) @DiegoAndai
+- &#8203;<!-- 12 -->Fix `findComponentJSX` util (#40855) @sai6855
+
+### `@mui/system@5.15.8`
+
+- &#8203;<!-- 10 -->Add blend color manipulator (#40258) @romgrk
+- &#8203;<!-- 02 -->[zero] Always replace the `createUseThemeProps` call (#40885) @siriwatknp
+- &#8203;<!-- 01 -->[zero] Add README with installation and basic usage (#40761) @brijeshb42
+
+### `@mui/base@5.0.0-beta.34`
+
+- &#8203;<!-- 35 -->[Button] Add support for `hostElementName` prop to improve SSR (#40507) @mj12albert
+- &#8203;<!-- 30 -->[Menu] Use Popup instead of Popper (#40731) @michaldudak
+- &#8203;<!-- 29 -->[useNumberInput] Integrate useNumberInput with useControllableReducer (#40206) @mj12albert
+- &#8203;<!-- 11 -->[Slider] Add support for Arrow Down/Up + Shift and Page Up/Down keys (#40676) @mnajdova
+
+### Docs
+
+- &#8203;<!-- 34 -->[base-ui] Update usage.md (#40916) @adebiyial
+- &#8203;<!-- 33 -->[base-ui] Improve Base UI traffic from Material UI (#40875) @oliviertassinari
+- &#8203;<!-- 32 -->[base-ui] Change Radio component terminology from Button to Group (#40888) @danilo-leal
+- &#8203;<!-- 14 -->[material-ui] Fix createTheme import and markdown format in the Next.js guide (#40895) @hsmtkk
+- &#8203;<!-- 13 -->[material-ui] Correct Google font CDN URL as Roboto 600 weight is not used (#40852) @xuhdev
+- &#8203;<!-- 22 -->[docs] Fix image size and dark mode @oliviertassinari
+- &#8203;<!-- 21 -->[docs] Migrate links from legacy.reactjs.org to react.dev @oliviertassinari
+- &#8203;<!-- 20 -->[docs] Fix 301 links @oliviertassinari
+- &#8203;<!-- 19 -->[docs] Fix outdated link @oliviertassinari
+- &#8203;<!-- 18 -->[docs] Fix URL and typo in CONTRIBUTING.md (#40899) @Smileek
+
+### Core
+
+- &#8203;<!-- 31 -->[Menu][base-ui] Fix improperly merged tests (#40896) @michaldudak
+- &#8203;<!-- 28 -->[blog] Optimize images for /blog/mui-x-v7-beta/ @oliviertassinari
+- &#8203;<!-- 27 -->[blog] Clarify barrel index tree-shaking @oliviertassinari
+- &#8203;<!-- 26 -->[code-infra] Simplify bug reproduction (#40833) @oliviertassinari
+- &#8203;<!-- 25 -->[code-infra] Prepare publishing @mui-internal/typescript-to-proptypes to npm (#40842) @michaldudak
+- &#8203;<!-- 24 -->[core] Use Google Font v2 API @oliviertassinari
+- &#8203;<!-- 23 -->[core] Add missing change to v5.15.7 changelog (#40872) @DiegoAndai
+- &#8203;<!-- 17 -->[docs-infra] Fix arbitrary gap between paragraphs in callouts (#40911) @oliviertassinari
+- &#8203;<!-- 16 -->[docs-infra] Allow developers to build their CodeSandbox export (#40878) @oliviertassinari
+- &#8203;<!-- 15 -->[docs-infra] Improve StackBlitz support (#40832) @oliviertassinari
+- &#8203;<!-- 09 -->[utils] Use consistent build approach (#40837) @siriwatknp
+- &#8203;<!-- 08 -->[website] Fix React missing key console error @oliviertassinari
+- &#8203;<!-- 07 -->[website] Fix broken link @oliviertassinari
+- &#8203;<!-- 06 -->[website] Fix heading structure (#40912) @oliviertassinari
+- &#8203;<!-- 05 -->[website] Add Customer Support Agent role to careers page (#40890) @rluzists1
+- &#8203;<!-- 04 -->[website] Refine the Material UI homepage demo (#40881) @danilo-leal
+- &#8203;<!-- 03 -->[website] Use em-dash when relevant over hyphen @oliviertassinari
+
+All contributors of this release in alphabetical order: @adebiyial, @brijeshb42, @danilo-leal, @DiegoAndai, @hsmtkk, @michaldudak, @mj12albert, @mnajdova, @oliviertassinari, @rluzists1, @romgrk, @sai6855, @siriwatknp, @Smileek, @xuhdev
+
 ## v5.15.7
 
 <!-- generated comparing v5.15.6..master -->
