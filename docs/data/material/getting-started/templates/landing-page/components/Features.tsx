@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { alpha } from '@mui/system';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -8,12 +9,10 @@ import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import DevicesRoundedIcon from '@mui/icons-material/DevicesRounded';
 import EdgesensorHighRoundedIcon from '@mui/icons-material/EdgesensorHighRounded';
 import ViewQuiltRoundedIcon from '@mui/icons-material/ViewQuiltRounded';
-import { alpha } from '@mui/system';
 
 const items = [
   {
@@ -21,30 +20,24 @@ const items = [
     title: 'Dashboard',
     description:
       'This item could provide a snapshot of the most important metrics or data points related to the product.',
-    imageLight:
-      'url("/static/images/templates/templates-images/dashboard-placeholder-dashboard-light.png")',
-    imageDark:
-      'url("/static/images/templates/templates-images/dashboard-placeholder-dashboard-dark.png")',
+    imageLight: 'url("/static/images/templates/templates-images/dash-light.png")',
+    imageDark: 'url("/static/images/templates/templates-images/dash-dark.png")',
   },
   {
     icon: <EdgesensorHighRoundedIcon />,
     title: 'Mobile integration',
     description:
       'This item could provide information about the mobile app version of the product.',
-    imageLight:
-      'url("/static/images/templates/templates-images/dashboard-placeholder-mobile-light.png")',
-    imageDark:
-      'url("/static/images/templates/templates-images/dashboard-placeholder-mobile-dark.png")',
+    imageLight: 'url("/static/images/templates/templates-images/mobile-light.png")',
+    imageDark: 'url("/static/images/templates/templates-images/mobile-dark.png")',
   },
   {
     icon: <DevicesRoundedIcon />,
     title: 'Available in all platforms',
     description:
       'This item could let users know that the product is available on all platforms, such as web, mobile, and desktop.',
-    imageLight:
-      'url("/static/images/templates/templates-images/dashboard-placeholder-platforms-light.png")',
-    imageDark:
-      'url("/static/images/templates/templates-images/dashboard-placeholder-platforms-dark.png")',
+    imageLight: 'url("/static/images/templates/templates-images/devices-light.png")',
+    imageDark: 'url("/static/images/templates/templates-images/devices-dark.png")',
   },
 ];
 
@@ -270,36 +263,16 @@ export default function Features() {
           >
             <Box
               sx={{
-                height: '100%',
-                width: '100%',
-                display: { xs: 'none', sm: 'flex' },
-                pointerEvents: 'none',
-                backgroundSize: '24px 24px',
+                m: 'auto',
+                width: 420,
+                height: 500,
+                backgroundSize: 'contain',
                 backgroundImage: (theme) =>
                   theme.palette.mode === 'light'
-                    ? `radial-gradient(${alpha('#D6E2EB', 0.4)} 1.3px, ${alpha(
-                        '#FBFCFE',
-                        0.2,
-                      )} 1.3px)`
-                    : `radial-gradient(${alpha('#131B20', 0.9)} 1.3px, ${alpha(
-                        '#090E10',
-                        0.2,
-                      )} 1.3px)`,
+                    ? items[selectedItemIndex].imageLight
+                    : items[selectedItemIndex].imageDark,
               }}
-            >
-              <Box
-                sx={{
-                  m: 'auto',
-                  width: '420px',
-                  height: '420px',
-                  backgroundSize: 'contain',
-                  backgroundImage: (theme) =>
-                    theme.palette.mode === 'light'
-                      ? items[selectedItemIndex].imageLight
-                      : items[selectedItemIndex].imageDark,
-                }}
-              />
-            </Box>
+            />
           </Card>
         </Grid>
       </Grid>
