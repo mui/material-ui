@@ -51,6 +51,8 @@ They're currently available for use with the Popup, Menu, and Select components,
 
 {{"demo": "../../data/base/components/transitions/AllTransitionsDemo.js", "hideToolbar": true}}
 
+<p class="blog-description" style="margin: -16px 0 0 0;">The CSS Animation transition was exaggerated for easier differentiation.</p>
+
 ## Independent component versioning
 
 The biggest benefit of making each Base UI component available through its own npm package is speed.
