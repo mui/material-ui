@@ -3,7 +3,7 @@
   slotProps={{
     listbox: {
       style: {
-        backgroundColor: 'white',
+        backgroundColor: isDarkMode ? 'black' : 'white',
       },
     },
   }}
