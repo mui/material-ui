@@ -42,8 +42,8 @@ importers:
         version: 9.5.0
     devDependencies:
       '@argos-ci/core':
-        specifier: ^1.5.1
-        version: 1.5.1
+        specifier: ^1.5.3
+        version: 1.5.3
       '@babel/cli':
         specifier: ^7.23.9
         version: 7.23.9(@babel/core@7.23.9)
@@ -2731,8 +2731,8 @@ packages:
       '@jridgewell/gen-mapping': 0.1.1
       '@jridgewell/trace-mapping': 0.3.20
 
-  /@argos-ci/core@1.5.1:
-    resolution: {integrity: sha512-CoCe81ee+eQpah3CRi+Uxv9KAUjnfHWYFHZ3bGz0aUC/p9UkCPFKOEHvakO1W2hjx2Nj1bj6QOSod87Vavty+g==}
+  /@argos-ci/core@1.5.3:
+    resolution: {integrity: sha512-qODX23ou3CwagOFwtYZyvXPAd2fXOu5ntnH5MbQcSzP3TdK8H2wkacNaLwvLEVpOeT3jdrfoQvROInewMfbHxQ==}
     engines: {node: '>=16.0.0'}
     dependencies:
       '@argos-ci/util': 1.2.0
