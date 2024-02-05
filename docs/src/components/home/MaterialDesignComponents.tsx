@@ -248,9 +248,9 @@ export function buildTheme(): ThemeOptions {
           contained: ({ theme }) => ({
             color: (theme.vars || theme).palette.primaryDark[50],
             backgroundColor: (theme.vars || theme).palette.primary[600],
-            boxShadow: '0 2px 0 rgba(255,255,255,0.1) inset',
+            boxShadow: '0 2px 0 rgba(255,255,255,0.1) inset, 0 -1px 0 rgba(0,0,0,0.1) inset',
             border: '1px solid',
-            borderColor: (theme.vars || theme).palette.primary[700],
+            borderColor: (theme.vars || theme).palette.primary[600],
             ...theme.applyDarkStyles({
               backgroundColor: (theme.vars || theme).palette.primary[600],
               borderColor: (theme.vars || theme).palette.primary[800],
@@ -482,9 +482,9 @@ export function buildTheme(): ThemeOptions {
       },
       MuiMenu: {
         styleOverrides: {
-          list: ({ theme }) => ({
+          list: {
             padding: 0,
-          }),
+          },
         },
       },
       MuiMenuItem: {
