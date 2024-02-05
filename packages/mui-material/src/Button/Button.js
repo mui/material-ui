@@ -271,10 +271,6 @@ const ButtonStartIcon = styled('span', {
 })(({ ownerState }) => ({
   display: 'inherit',
   marginRight: 8,
-  marginLeft: -4,
-  ...(ownerState.size === 'small' && {
-    marginLeft: -2,
-  }),
   ...commonIconStyles(ownerState),
 }));
 
@@ -288,11 +284,7 @@ const ButtonEndIcon = styled('span', {
   },
 })(({ ownerState }) => ({
   display: 'inherit',
-  marginRight: -4,
   marginLeft: 8,
-  ...(ownerState.size === 'small' && {
-    marginRight: -2,
-  }),
   ...commonIconStyles(ownerState),
 }));
 
