@@ -124,8 +124,8 @@ export default function FAQ() {
         >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel3d-content"
-            id="panel3d-header"
+            aria-controls="panel4d-content"
+            id="panel4d-header"
           >
             <Typography component="h3" variant="subtitle2">
               Is there a warranty on the product, and what does it cover?
