@@ -12,16 +12,16 @@ export default function Custom404() {
     <BrandingCssVarsProvider>
       <Head
         title="404: This page could not be found - MUI"
-        description="MUI provides a simple, customizable, and accessible library of React components. Follow your own design system, or start with Material Design."
+        description=""
         card="/static/social-previews/home-preview.jpg"
       />
       <AppHeaderBanner />
-      <AppHeader gitHubRepository="https://github.com/mui/material-ui" />
+      <AppHeader />
       <main id="main-content">
         <NotFoundHero />
         <Divider />
       </main>
-      <AppFooter stackOverflowUrl="https://stackoverflow.com/questions/tagged/material-ui" />
+      <AppFooter />
     </BrandingCssVarsProvider>
   );
 }
