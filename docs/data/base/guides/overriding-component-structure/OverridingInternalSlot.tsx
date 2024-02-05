@@ -19,6 +19,9 @@ export default function OverridingInternalSlot() {
         listbox: {
           style: {
             backgroundColor: isDarkMode ? 'black' : 'white',
+            padding: '8px 12px',
+            listStylePosition: 'inside',
+            boxSizing: 'border-box',
           },
         },
       }}
