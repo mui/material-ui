@@ -2293,7 +2293,7 @@ importers:
         specifier: ^18.2.48
         version: 18.2.48
       '@types/uuid':
-        specifier: ^9.0.7
+        specifier: ^9.0.8
         version: 9.0.8
       chai:
         specifier: ^4.4.1
