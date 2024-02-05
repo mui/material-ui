@@ -23,17 +23,29 @@ Worry no more, as we're focused on shipping the first versions of all of the com
 
 | To-be-added components |                                                                                                |
 | :--------------------- | ---------------------------------------------------------------------------------------------: |
-| Accordion              | [View&nbsp;the&nbsp;GitHub&nbsp;issue&nbsp;→](https://github.com/mui/material-ui/issues/38037) |
-| Alert Dialog           |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/40886) |
-| Checkbox               |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/38036) |
-| Collapsible            |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/40959) |
-| Drawer                 |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/38181) |
-| Radio Group            |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/38038) |
-| Tooltip                |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/38045) |
+| 1. Accordion           | [View&nbsp;the&nbsp;GitHub&nbsp;issue&nbsp;→](https://github.com/mui/material-ui/issues/38037) |
+| 2. Alert Dialog        |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/40886) |
+| 3. Checkbox            |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/38036) |
+| 4. Collapsible         |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/40959) |
+| 5. Drawer              |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/38181) |
+| 6. Radio Group         |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/38038) |
+| 7. Tooltip             |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/38045) |
 
 ## Improved customization API
 
-Currently, Base UI can be customized to your heart's content using the `slots` and `slotProps` props.
+Currently, Base UI components can be customized to your heart's content using the `slots` and `slotProps` props.
+
+```tsx
+// Example of the slot prop
+<Select slots={{ listbox: 'ol' }} defaultValue="First option">
+  <Option value="First option">First option</Option>
+  <Option value="Second option">Second option</Option>
+</Select>
+
+// Example of the slotProps prop
+<Badge slotProps={{ badge: { className: 'my-badge' } }} />
+```
+
 This API, while powerful, has proven to be less than ideal in some instances.
 Most notably, it's too lengthy and complicated to write and read when used with libraries such as Tailwind CSS.
 Additionally, since the `slots` and the corresponding `slotProps` are not related to Typescript types, it's possible to introduce bugs or have the compiler complain about valid code.
@@ -41,6 +53,7 @@ Additionally, since the `slots` and the corresponding `slotProps` are not re
 To address these issues, we're considering adopting another customization API.
 We're still fleshing out the details and plan to release an RFC on GitHub in the upcoming days.
 We are aware that a significant number of projects depend on the current API; therefore, we want to assure you that offering a smooth migration experience is very high on our priority list.
+
 Once we know all the details about the new API, we'll figure out the best way to migrate existing projects (with either a codemod, wrapper components exposing the old API, or something else).
 
 ## More thorough animation support
@@ -66,6 +79,8 @@ Until now, all Base UI-related development happened within the Material UI GitHu
 That made a lot of sense, given that initially, we weren't shooting for Base UI to be a standalone product with its own audience.
 As a natural consequence, we've seen developers hesitant to use it out of concern about dealing with anything related to Material Design. This is not the case, as no theme or style is attached to the components.
 
+<img alt="Material UI vs. Base UI: independent but related products." src="/static/blog/base-ui-2024-plans/material-vs-base.png" width="1200" height="450" loading="lazy" />
+
 That has already changed, as we want developers to gain the benefits of Base UI way beyond the scope of Material UI.
 We intend to move Base UI to a dedicated GitHub repo and potentially move the packages to a separate npm org for more focused communication and to make room for its independent growth.
 
@@ -73,6 +88,8 @@ We intend to move Base UI to a dedicated GitHub repo and potentially move the pa
 
 Full support for various accessibility-related features and an intuitive API for extensive customization are at the core of what Base UI strives to deliver out of the box.
 We've earmarked several bugs we want to tackle before the stable release in areas such as keyboard navigation, better ARIA support, focus styles, and more.
+
+<img alt="A screenshot of the Base UI stable release milestone on GitHub as of January 2024." src="/static/blog/base-ui-2024-plans/base-ui-milestone.png" width="1200" height="600" loading="lazy" />
 
 If you want to see if the specific bug that was annoying you was solved, head over to [the Base UI stable release milestone](https://github.com/mui/material-ui/milestone/46) on GitHub. There, you can see every issue we have lined up for it.
 
