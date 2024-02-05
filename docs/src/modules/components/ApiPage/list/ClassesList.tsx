@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import kebabCase from 'lodash/kebabCase';
-import { ComponentClassDefinition } from '@mui-internal/docs-utilities';
+import { ComponentClassDefinition } from '@mui-internal/docs-utils';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ExpandableApiItem, {
   ApiItemContaier,

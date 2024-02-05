@@ -284,7 +284,7 @@ const Root = styled('div')(
       borderRadius: `var(--muidocs-shape-borderRadius, ${
         theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
       }px)`,
-      '&>code': {
+      '& > code': {
         height: 'fit-content',
         backgroundColor: `var(--muidocs-palette-grey-100, ${lightTheme.palette.grey[100]})`,
         borderColor: `var(--muidocs-palette-grey-300, ${lightTheme.palette.grey[300]})`,
@@ -292,23 +292,22 @@ const Root = styled('div')(
       '& .MuiCallout-content': {
         minWidth: 0, // Allows content to shrink. Useful when callout contains code block
         flexGrow: 1,
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 6,
-        '&>p, ul': {
+        '& > p:last-child, & > ul:last-child': {
+          // Avoid margin on last child
           marginBottom: 0,
         },
         '& .MuiCode-root': {
-          '&>pre': {
+          '& > pre': {
             margin: 0,
             marginTop: 4,
           },
         },
-        '&>ul': {
+        '& > ul': {
+          // Because of the gap left by the icon, we visually need less padding
           paddingLeft: 22,
         },
       },
-      '&>svg': {
+      '& > svg': {
         marginTop: 2,
         width: 20,
         height: 20,
@@ -329,7 +328,7 @@ const Root = styled('div')(
         '& strong': {
           color: `var(--muidocs-palette-error-800, ${lightTheme.palette.error[800]})`,
         },
-        '&>svg': {
+        '& > svg': {
           fill: `var(--muidocs-palette-error-500, ${lightTheme.palette.error[600]})`,
         },
         '& a': {
@@ -347,7 +346,7 @@ const Root = styled('div')(
         '& strong': {
           color: `var(--muidocs-palette-primary-800, ${lightTheme.palette.primary[800]})`,
         },
-        '&>svg': {
+        '& > svg': {
           fill: `var(--muidocs-palette-grey-600, ${lightTheme.palette.grey[600]})`,
         },
       },
@@ -358,7 +357,7 @@ const Root = styled('div')(
         '& strong': {
           color: `var(--muidocs-palette-success-900, ${lightTheme.palette.success[900]})`,
         },
-        '&>svg': {
+        '& > svg': {
           fill: `var(--muidocs-palette-success-600, ${lightTheme.palette.success[600]})`,
         },
         '& a': {
@@ -376,7 +375,7 @@ const Root = styled('div')(
         '& strong': {
           color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
         },
-        '&>svg': {
+        '& > svg': {
           fill: `var(--muidocs-palette-warning-600, ${lightTheme.palette.warning[600]})`,
         },
         '& a': {
@@ -627,7 +626,7 @@ const Root = styled('div')(
       },
       '& .MuiCallout-root': {
         borderColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
-        '&>code': {
+        '& > code': {
           height: 'fit-content',
           backgroundColor: `var(--muidocs-palette-primaryDark-600, ${lightTheme.palette.primaryDark[600]})`,
           borderColor: `var(--muidocs-palette-primaryDark-500, ${lightTheme.palette.primaryDark[500]})`,
@@ -639,7 +638,7 @@ const Root = styled('div')(
           '& strong': {
             color: `var(--muidocs-palette-error-300, ${darkTheme.palette.error[300]})`,
           },
-          '&>svg': {
+          '& > svg': {
             fill: `var(--muidocs-palette-error-500, ${darkTheme.palette.error[500]})`,
           },
           '& a': {
@@ -653,7 +652,7 @@ const Root = styled('div')(
           '& strong': {
             color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
           },
-          '&>svg': {
+          '& > svg': {
             fill: `var(--muidocs-palette-grey-400, ${darkTheme.palette.grey[400]})`,
           },
         },
@@ -664,7 +663,7 @@ const Root = styled('div')(
           '& strong': {
             color: `var(--muidocs-palette-success-200, ${darkTheme.palette.success[200]})`,
           },
-          '&>svg': {
+          '& > svg': {
             fill: `var(--muidocs-palette-success-500, ${darkTheme.palette.success[500]})`,
           },
           '& a': {
@@ -678,7 +677,7 @@ const Root = styled('div')(
           '& strong': {
             color: `var(--muidocs-palette-warning-200, ${darkTheme.palette.warning[200]})`,
           },
-          '&>svg': {
+          '& > svg': {
             fill: `var(--muidocs-palette-warning-400, ${darkTheme.palette.warning[400]})`,
           },
           '& a': {

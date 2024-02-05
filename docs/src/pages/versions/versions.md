@@ -75,30 +75,6 @@ You can follow the [milestones](https://github.com/mui/material-ui/milestones) f
 **Disclaimer**: We operate in a dynamic environment, and things are subject to change. The information provided is intended to outline the general framework direction, for informational purposes only. We may decide to add or remove new items at any time, depending on our capability to deliver while meeting our quality standards. The development, releases, and timing of any features or functionality remain at the sole discretion of MUI. The roadmap does not represent a commitment, obligation, or promise to deliver at any time.
 :::
 
-## Supported versions
-
-Material UI has been open-source ([MIT](https://tldrlegal.com/license/mit-license)) since the very beginning, and always will be.
-Developers can ensure it's the right choice for their React applications through it's community maintenance strategy.
-The Material UI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
-
-Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v5](/material-ui/migration/migration-v4/).
-The open-source community is always welcome to submit new features and bug fixes as well.
-
-The current status of each version is as follows:
-
-- Material UI v5: ✅ Active development and continuous support.
-- [Material UI v4](https://v4.mui.com/): ⚠️ Guaranteed Support for security issues and regressions.
-- [Material UI v3](https://v3.mui.com/): 🅧 No longer supported.
-- Material UI v2: 🅧 Never existed.
-- [Material UI v1](https://v1.mui.com/): 🅧 No longer supported.
-- [Material UI v0.x](https://v0.mui.com/#/): 🅧 No longer supported.
-
-For teams and organizations that require additional support for older versions, there are [options available](/material-ui/getting-started/support/#paid-support).
-
-### Long-term support (LTS)
-
-We will continue to provide security updates and support for regressions for one version prior to the current major version, for example regressions caused by external factors such as browser updates, or changes to upstream dependencies.
-
 ## Deprecation practices
 
 Sometimes "breaking changes", such as the removal of support for select APIs and features, are necessary.
