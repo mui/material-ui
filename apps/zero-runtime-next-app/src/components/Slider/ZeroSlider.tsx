@@ -231,7 +231,7 @@ const SliderTrack = styled('span', {
         },
         style: {
           '--slider-track-color': lightPrimaryColor,
-          ...theme.applyDarkStyles({
+          ...theme.applyStyles('dark', {
             '--slider-track-color': darkPrimaryColor,
           }),
         },
@@ -242,7 +242,7 @@ const SliderTrack = styled('span', {
         },
         style: {
           '--slider-track-color': lightSecondaryColor,
-          ...theme.applyDarkStyles({
+          ...theme.applyStyles('dark', {
             '--slider-track-color': darkSecondaryColor,
           }),
         },
@@ -686,7 +686,6 @@ const Slider = React.forwardRef<HTMLSpanElement, SliderProps>(function Slider(pr
 
   const ownerState: SliderOwnerState = {
     ...props,
-    // @ts-expect-error  @TODO - Figure out how to support rtl/ltr with themes
     isRtl,
     max,
     min,
@@ -761,7 +760,6 @@ const Slider = React.forwardRef<HTMLSpanElement, SliderProps>(function Slider(pr
     },
     ownerState: {
       ...ownerState,
-      // @ts-expect-error
       ...rootSlotProps?.ownerState,
     },
     className: [classes.root, className],
@@ -785,7 +783,6 @@ const Slider = React.forwardRef<HTMLSpanElement, SliderProps>(function Slider(pr
     },
     ownerState: {
       ...ownerState,
-      // @ts-expect-error
       ...trackSlotProps?.ownerState,
     },
     className: classes.track,
@@ -797,7 +794,6 @@ const Slider = React.forwardRef<HTMLSpanElement, SliderProps>(function Slider(pr
     externalSlotProps: thumbSlotProps,
     ownerState: {
       ...ownerState,
-      // @ts-expect-error
       ...thumbSlotProps?.ownerState,
     },
     className: classes.thumb,
@@ -808,7 +804,6 @@ const Slider = React.forwardRef<HTMLSpanElement, SliderProps>(function Slider(pr
     externalSlotProps: valueLabelSlotProps,
     ownerState: {
       ...ownerState,
-      // @ts-expect-error
       ...valueLabelSlotProps?.ownerState,
     },
     className: classes.valueLabel,

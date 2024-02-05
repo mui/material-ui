@@ -238,6 +238,7 @@ You are strongly discouraged to:
   ```
 
   You have no guarantee that these imports will continue to work from one version to the next.
+
   :::
 
 A great way to use these bundles is to configure bundler aliases, for example with [Webpack's `resolve.alias`](https://webpack.js.org/configuration/resolve/#resolvealias):

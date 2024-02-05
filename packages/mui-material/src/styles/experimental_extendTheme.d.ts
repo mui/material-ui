@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { OverridableStringUnion } from '@mui/types';
-import { SxConfig, SxProps, CSSObject } from '@mui/system';
+import { SxConfig, SxProps, CSSObject, ApplyStyles } from '@mui/system';
 import { ThemeOptions, Theme } from './createTheme';
 import { Palette, PaletteOptions } from './createPalette';
 import { Shadows } from './shadows';
@@ -432,6 +432,7 @@ export interface CssVarsTheme extends ColorSystem {
   shouldSkipGeneratingVar: (keys: string[], value: string | number) => boolean;
   unstable_sxConfig: SxConfig;
   unstable_sx: (props: SxProps<CssVarsTheme>) => CSSObject;
+  applyStyles: ApplyStyles<SupportedColorScheme>;
 }
 
 /**
@@ -443,4 +444,4 @@ export interface CssVarsTheme extends ColorSystem {
 export default function experimental_extendTheme(
   options?: CssVarsThemeOptions,
   ...args: object[]
-): Omit<Theme, 'palette'> & CssVarsTheme;
+): Omit<Theme, 'palette' | 'applyStyles'> & CssVarsTheme;
