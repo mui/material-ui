@@ -101,7 +101,7 @@ describe('<ListItemButton />', () => {
 
     // TODO v7: support hostElementName prop
     // eslint-disable-next-line mocha/no-skipped-tests
-    it.skip('should rendered as specifying component', () => {
+    it.skip('should be rendered as the specifed component', () => {
       const { getByRole } = render(<ListItemButton href={href} component="h1" />);
 
       const heading = getByRole('heading');
@@ -139,7 +139,7 @@ describe('<ListItemButton />', () => {
 
     // TODO v7: support hostElementName prop
     // eslint-disable-next-line mocha/no-skipped-tests
-    it.skip('should rendered as specifying component', () => {
+    it.skip('should be rendered as the specifed component', () => {
       const { getByRole } = render(<ListItemButton to={to} component="h1" />);
 
       const heading = getByRole('heading');
@@ -156,7 +156,7 @@ describe('<ListItemButton />', () => {
       return <a data-testid={customLinkId} ref={ref} {...props} />;
     });
 
-    it('should rendered as LinkComponent when href is provided', () => {
+    it('should render as LinkComponent when href is provided', () => {
       const { container, getByTestId } = render(
         <ListItemButton href={href} LinkComponent={CustomLink} />,
       );
@@ -180,7 +180,7 @@ describe('<ListItemButton />', () => {
       expect(button).to.have.attribute('href', href);
     });
 
-    it('should rendered as LinkComponent (from theme) when href is provided', () => {
+    it('should render as LinkComponent (from theme) when href is provided', () => {
       const theme = createTheme({
         components: {
           MuiListItemButton: {
@@ -202,7 +202,7 @@ describe('<ListItemButton />', () => {
       expect(button).to.have.attribute('href', href);
     });
 
-    it('should rendered as LinkComponent (from theme MuiButtonBase) when href is provided', () => {
+    it('should render as LinkComponent (from theme MuiButtonBase) when href is provided', () => {
       const theme = createTheme({
         components: {
           MuiButtonBase: {

@@ -8,7 +8,7 @@ type UseRootElementNameParameters = {
    */
   rootElementName?: keyof HTMLElementTagNameMap;
   /**
-   * The name of the component using useControllableReducer.
+   * The name of the component using useRootElementName.
    * For debugging purposes.
    */
   componentName?: string;
