@@ -61,7 +61,7 @@ Your browser does not support the video tag.
 </video>
 
 We opted for Toolpad since Metabase doesn't support importing data from REST APIs.
-This is possible in Google Sheets but it requires writing a lot of JS code, and since we wanted to embed it in a [Notion page](https://mui-org.notion.site/KPIs-1ce9658b85ce4628a2a2ed2ae74ff69c?pvs=4#3974cb6ed12b4c5a9013bac63113e3bc), Toolpad was the ideal choice.
+This is possible in Google Sheets but it requires writing a lot of JavaScript code, and since we wanted to embed it in a [Notion page](https://mui-org.notion.site/KPIs-1ce9658b85ce4628a2a2ed2ae74ff69c?pvs=4#3974cb6ed12b4c5a9013bac63113e3bc), Toolpad was the ideal choice.
 Toolpad handles state management and routing, and simplifies query building and data binding, removing the need to write glue code.
 
 You can explore both of the aforementioned apps in dev mode on your device by running the underlying [Node application](https://github.com/mui/mui-public/tree/HEAD/tools-public).
