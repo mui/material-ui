@@ -493,6 +493,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const handleRef = useForkRef(children.ref, focusVisibleRef, setChildNode, ref);
 
   // There is no point in displaying an empty tooltip.
+  // So we exclude all falsy values, except 0, which is valid.
   if (!title && title !== 0) {
     open = false;
   }

@@ -43,7 +43,7 @@ export default function Highlighter({
           height: '100%',
           border: '1px solid transparent',
           transitionProperty: 'all',
-          transitionDuration: '150ms',
+          transitionDuration: '100ms',
           color: 'primary.300',
           overflow: 'auto',
           ...((!disableBorder || selected) && {

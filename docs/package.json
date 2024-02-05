@@ -117,8 +117,9 @@
   "devDependencies": {
     "@babel/plugin-transform-react-constant-elements": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
-    "@mui-internal/docs-utilities": "workspace:^",
+    "@mui-internal/docs-utils": "workspace:^",
     "@mui-internal/test-utils": "workspace:^",
+    "@mui-internal/typescript-to-proptypes": "workspace:^",
     "@types/autosuggest-highlight": "^3.2.3",
     "@types/chai": "^4.3.11",
     "@types/css-mediaquery": "^0.1.4",
@@ -139,7 +140,6 @@
     "playwright": "^1.41.1",
     "prettier": "^2.8.8",
     "tailwindcss": "^3.4.1",
-    "typescript-to-proptypes": "workspace:^",
     "yargs": "^17.7.2"
   }
 }

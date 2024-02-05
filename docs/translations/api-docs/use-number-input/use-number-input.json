@@ -1,6 +1,9 @@
 {
   "hookDescription": "",
   "parametersDescriptions": {
+    "componentName": {
+      "description": "The name of the component using useNumberInput. For debugging purposes."
+    },
     "defaultValue": {
       "description": "The default value. Use when the component is not controlled."
     },
