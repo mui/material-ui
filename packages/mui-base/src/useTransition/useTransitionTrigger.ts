@@ -63,8 +63,6 @@ export function useTransitionTrigger(requestEnter: boolean): UseTransitionTrigge
     hasExited = !hasPendingExitTransition.current && exitTransitionFinished;
   }
 
-  // console.log({ hasExited, requestEnter, hasPendingExitTransition, exitTransitionFinished });
-
   const contextValue: TransitionContextValue = React.useMemo(
     () => ({
       requestedEnter: requestEnter,

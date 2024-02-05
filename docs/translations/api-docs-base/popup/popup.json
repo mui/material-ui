@@ -27,10 +27,7 @@
     "slots": {
       "description": "The components used for each slot inside the Popup. Either a string to use a HTML element or a component."
     },
-    "strategy": { "description": "The type of CSS position property to use (absolute or fixed)." },
-    "withTransition": {
-      "description": "If <code>true</code>, the popup will not disappear immediately when it needs to be closed but wait until the exit transition has finished. In such a case, a function form of <code>children</code> must be used and <code>onExited</code> callback function must be called when the transition or animation finish."
-    }
+    "strategy": { "description": "The type of CSS position property to use (absolute or fixed)." }
   },
   "classDescriptions": {
     "open": {

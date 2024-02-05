@@ -911,6 +911,24 @@ describe('<Select />', () => {
 
       expect(getByRole('combobox')).to.have.text('Ten');
     });
+
+    it('should notch the outline to accommodate the label when displayEmpty', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const { container } = render(
+        <Select value="" label="Age" displayEmpty>
+          <MenuItem value="">None</MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+        </Select>,
+      );
+
+      expect(container.querySelector('legend')).toHaveComputedStyle({
+        maxWidth: '100%',
+      });
+    });
   });
 
   describe('prop: renderValue', () => {
