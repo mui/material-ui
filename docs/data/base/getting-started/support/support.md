@@ -28,7 +28,14 @@ It significantly increases the odds of fixing the problem.
 You have a few possible options to provide it:
 
 - You can browse the documentation, find an example close to your use case, and then open it in a live editor:
-  [![Forking an example](/static/docs-infra/forking-an-example.png)](/base-ui/react-button/#introduction)
+  <a href="/base-ui/react-button/#introduction">
+  <span class="only-light-mode">
+  <img src="/static/docs-infra/forking-an-example.png" alt="Forking an example" loading="lazy" width="1548" height="606" style="display: block; max-width: 774px;">
+  </span>
+  <span class="only-dark-mode">
+  <img src="/static/docs-infra/forking-an-example-dark.png" alt="Forking an example" loading="lazy" width="1548" height="606" style="display: block; max-width: 774px;">
+  </span>
+  </a>
 
 - You can use a starter React template to build a reproduction case with [JavaScript](https://stackblitz.com/fork/github/stackblitz/starters/tree/main/react) or [TypeScript](https://stackblitz.com/fork/github/stackblitz/starters/tree/main/react-ts).
 
