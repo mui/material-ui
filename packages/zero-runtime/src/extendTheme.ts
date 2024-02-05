@@ -1,7 +1,9 @@
+import deepMerge from 'lodash/merge';
 import { prepareCssVars } from '@mui/system/cssVars';
 import type { SxConfig } from '@mui/system/styleFunctionSx';
+import type { CSSObject } from './base';
 
-export interface ThemeInput {
+export interface ThemeInput<ColorScheme extends string = string> {
   /**
    * The prefix to be used for the CSS variables.
    */
@@ -9,26 +11,40 @@ export interface ThemeInput {
   /**
    * The color schemes to be used for the theme.
    */
-  colorSchemes?: Record<string, any>;
+  colorSchemes?: Record<ColorScheme, any>;
   /**
-   * The default color scheme to be used for the theme.
+   * The default color scheme to be used for the theme. It must be one of the keys from `theme.colorSchemes`.
    * Required when `colorSchemes` is provided.
+   * @default 'light'
    */
-  defaultColorScheme?: string;
-  /**
-   * If provided, the `prefers-color-scheme` media query will be used to apply the CSS variables based on the `light` and `dark` color schemes.
-   */
-  prefersColorScheme?: {
-    light: string;
-    dark: string;
-  };
+  defaultColorScheme?: ColorScheme;
   /**
    * If provided, it will be used to create a selector for the color scheme.
    * This is useful if you want to use class or data-* attributes to apply the color scheme.
+   *
+   * The default selector is `:root`.
+   *
+   * @example
+   * // class selector
+   * (colorScheme) => colorScheme ? `.theme-${colorScheme}` : ":root"
+   *
+   * @example
+   * // data-* attribute selector
+   * (colorScheme) => colorScheme ? `[data-theme="${colorScheme}"`] : ":root"
    */
-  getColorSchemeSelector?: (colorScheme: string) => string;
+  getSelector?: (
+    colorScheme: ColorScheme | undefined,
+    css: Record<string, any>,
+  ) => string | Record<string, any>;
   /**
    * A function to skip generating a CSS variable for a specific path or value.
+   *
+   * Note: properties with function as a value are always skipped.
+   *
+   * @example
+   * // skip the `meta.*` fields from generating CSS variables and `theme.vars`
+   * (keys, value) => keys[0] === 'meta'
+   *
    */
   shouldSkipGeneratingVar?: (objectPathKeys: Array<string>, value: string | number) => boolean;
   components?: Partial<
@@ -42,31 +58,114 @@ export interface ThemeInput {
   >;
 }
 
-export interface Theme extends ThemeInput {
-  vars: Record<string, string>;
-  generateCssVars: (colorScheme?: string) => { css: Record<string, string> };
-  unstable_sxConfig?: SxConfig;
-}
+export type ExtendTheme<
+  Options extends {
+    colorScheme: string;
+    tokens: Record<string, any>;
+  } = {
+    colorScheme: string;
+    tokens: Record<string, any>;
+  },
+> = ThemeInput<Options['colorScheme']> &
+  Options['tokens'] & {
+    vars: Options['tokens'];
+    applyStyles: (
+      colorScheme: Options['colorScheme'],
+      styles: CSSObject<any>,
+    ) => Record<string, CSSObject<any>>;
+    getColorSchemeSelector: (colorScheme: Options['colorScheme']) => string;
+    generateCssVars: (colorScheme?: Options['colorScheme']) => {
+      css: Record<string, string | number>;
+      selector: string | Record<string, any>;
+    };
+    unstable_sxConfig?: SxConfig;
+  };
+
+export type Theme = ExtendTheme;
 
 /**
  * A utility to tell zero-runtime to generate CSS variables for the theme.
  */
-export default function extendTheme<T extends ThemeInput>(theme: T) {
-  const { cssVarPrefix, shouldSkipGeneratingVar, prefersColorScheme, ...otherTheme } = theme;
+export default function extendTheme<
+  Options extends {
+    colorScheme: string;
+    tokens: Record<string, any>;
+  } = {
+    colorScheme: string;
+    tokens: Record<string, any>;
+  },
+>(theme: ThemeInput) {
+  const {
+    cssVarPrefix,
+    shouldSkipGeneratingVar,
+    getSelector = defaultGetSelector,
+    defaultColorScheme = 'light',
+    ...otherTheme
+  } = theme;
 
-  if (theme.colorSchemes && !theme.defaultColorScheme) {
-    throw new Error('Zero: `defaultColorScheme` is required when `colorSchemes` is provided.');
+  function defaultGetSelector(
+    colorScheme: string | undefined,
+    css: Record<string, any>,
+  ): string | Record<string, any> {
+    if (colorScheme === 'light' && defaultColorScheme !== 'light') {
+      return {
+        '@media (prefers-color-scheme: light)': {
+          ':root': css,
+        },
+      };
+    }
+    if (colorScheme === 'dark' && defaultColorScheme !== 'dark') {
+      return {
+        '@media (prefers-color-scheme: dark)': {
+          ':root': css,
+        },
+      };
+    }
+    return ':root';
+  }
+
+  if (
+    theme.colorSchemes &&
+    (!defaultColorScheme || !Object.keys(theme.colorSchemes).includes(defaultColorScheme))
+  ) {
+    throw new Error(
+      `Zero: \`defaultColorScheme\` must be one of ${JSON.stringify(
+        theme.colorSchemes,
+      )}, but got "\`${theme.defaultColorScheme}\`".`,
+    );
   }
 
   const parserConfig = {
     prefix: cssVarPrefix,
     shouldSkipGeneratingVar,
+    getSelector,
   };
-  const { vars, generateCssVars } = prepareCssVars(otherTheme, parserConfig);
+  const { generateCssVars } = prepareCssVars(otherTheme, parserConfig);
 
-  return {
+  let { vars } = generateCssVars();
+  Object.entries(theme.colorSchemes || {}).forEach(([key]) => {
+    vars = deepMerge(vars, generateCssVars(key).vars);
+  });
+
+  const finalTheme = {
     ...theme,
+    defaultColorScheme,
     vars,
     generateCssVars,
+  } as unknown as ExtendTheme<{ colorScheme: Options['colorScheme']; tokens: Options['tokens'] }>;
+
+  finalTheme.getColorSchemeSelector = (colorScheme: string) => {
+    if (!theme.getSelector) {
+      return `@media (prefers-color-scheme: ${colorScheme})`;
+    }
+    return `:where(${theme.getSelector(colorScheme, {})}) &`;
   };
+
+  finalTheme.applyStyles = function applyStyles(colorScheme, styles) {
+    return {
+      [this.getColorSchemeSelector(colorScheme)]: styles,
+    };
+  };
+
+  return finalTheme;
 }

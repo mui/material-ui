@@ -3,42 +3,33 @@ import { Theme } from '../extendTheme';
 
 export function generateTokenCss(theme: Theme) {
   // create stylesheet as object
-  const rootCss = theme.generateCssVars().css;
-  const stylesheetObj: Record<string, Record<string, any>> = {};
+  const { css: rootCss, selector: rootSelector } = theme.generateCssVars();
+  const stylesheets: Array<Record<string, any>> = [];
   if (Object.keys(rootCss).length) {
-    stylesheetObj[':root'] = rootCss;
+    stylesheets.push(typeof rootSelector === 'string' ? { [rootSelector]: rootCss } : rootSelector);
   }
-  Object.entries(theme.colorSchemes || {}).forEach(([key]) => {
-    const css = theme.generateCssVars(key).css;
-    if (Object.keys(css).length) {
-      if (theme.prefersColorScheme) {
-        if (theme.defaultColorScheme === key) {
-          stylesheetObj[':root'] = css;
-        }
-        if (theme.prefersColorScheme.light === key) {
-          stylesheetObj['@media (prefers-color-scheme: light)'] = {
-            ':root': css,
-          };
-        }
-        if (theme.prefersColorScheme.dark === key) {
-          stylesheetObj['@media (prefers-color-scheme: dark)'] = {
-            ':root': css,
-          };
-        }
-      }
-      if (theme.getColorSchemeSelector) {
-        if (theme.defaultColorScheme === key) {
-          stylesheetObj[`:root, ${theme.getColorSchemeSelector(key)}`] = css;
-        } else {
-          stylesheetObj[theme.getColorSchemeSelector(key)] = css;
-        }
+  if (theme.colorSchemes) {
+    const { [theme.defaultColorScheme!]: defaultScheme, ...otherColorSchemes } = theme.colorSchemes;
+
+    if (defaultScheme) {
+      // need to generate default color scheme first for the prefers-color-scheme media query to work
+      // because media-queries does not increase specificity
+      const { css, selector } = theme.generateCssVars(theme.defaultColorScheme);
+      if (Object.keys(css).length) {
+        stylesheets.push(typeof selector === 'string' ? { [selector]: css } : selector);
       }
     }
-  });
+
+    Object.entries(otherColorSchemes).forEach(([key]) => {
+      const { css, selector } = theme.generateCssVars(key);
+      if (Object.keys(css).length) {
+        stylesheets.push(typeof selector === 'string' ? { [selector]: css } : selector);
+      }
+    });
+  }
 
   // use emotion to serialize the object to css string
-  const { styles } = serializeStyles([stylesheetObj]);
-  console.log('styles', styles);
+  const { styles } = serializeStyles(stylesheets);
   return styles;
 }
 

@@ -6,11 +6,16 @@ export interface DefaultCssVarsTheme {
   defaultColorScheme?: string;
 }
 
-function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<string, any>>(
+function prepareCssVars<
+  T extends DefaultCssVarsTheme,
+  ThemeVars extends Record<string, any>,
+  Selector = any,
+>(
   theme: T,
   parserConfig?: {
     prefix?: string;
     shouldSkipGeneratingVar?: (objectPathKeys: Array<string>, value: string | number) => boolean;
+    getSelector?: (colorScheme: string | undefined, css: Record<string, any>) => Selector;
   },
 ) {
   // @ts-ignore - ignore components do not exist
@@ -39,11 +44,18 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
 
   const generateCssVars = (colorScheme?: string) => {
     if (!colorScheme) {
-      return { css: { ...rootCss }, vars: rootVars };
+      const css = { ...rootCss };
+      return {
+        css,
+        vars: rootVars,
+        selector: parserConfig?.getSelector?.(colorScheme, css) || ':root',
+      };
     }
+    const css = { ...colorSchemesMap[colorScheme].css };
     return {
-      css: { ...colorSchemesMap[colorScheme].css },
+      css,
       vars: colorSchemesMap[colorScheme].vars,
+      selector: parserConfig?.getSelector?.(colorScheme, css) || ':root',
     };
   };
 
