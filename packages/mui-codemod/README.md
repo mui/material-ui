@@ -750,11 +750,10 @@ CSS transforms:
 +.MuiPaginationItem-outlined.MuiPaginationItem-primary
 -.MuiPaginationItem-outlinedSecondary
 +.MuiPaginationItem-outlined.MuiPaginationItem-secondary
- />
 ```
 
 ```bash
-npx @mui/codemod@latest deprecations/pagination-item-classes <path>
+ npx @mui/codemod@latest deprecations/pagination-item-classes <path>
 ```
 
 #### `slider-props`
@@ -781,6 +780,21 @@ npx @mui/codemod@latest deprecations/pagination-item-classes <path>
 
 ```bash
 npx @mui/codemod@latest deprecations/slider-props <path>
+```
+
+#### `backdrop-props`
+
+```diff
+ <Backdrop
+-    TransitionComponent={CustomTransition}
+-    TransitionProps={{ unmountOnExit: true }}
++    slots={{ transition: CustomTransition }}
++    slotProps={{ transition: { unmountOnExit: true } }}
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/backdrop-props <path>
 ```
 
 ### v5.0.0
