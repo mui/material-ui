@@ -60,11 +60,11 @@ export default function Hero() {
             Elevate your experience with top-tier features and services.
           </Typography>
           <Stack
-            direction="row"
+            direction={{ xs: 'column', sm: 'row' }}
             alignSelf="center"
             spacing={1}
             useFlexGap
-            sx={{ pt: 2 }}
+            sx={{ pt: 2, width: { xs: '100%', sm: 'auto' } }}
           >
             <TextField
               id="outlined-basic"
@@ -99,8 +99,8 @@ export default function Hero() {
             width: '100%',
             backgroundImage:
               theme.palette.mode === 'light'
-                ? 'url("/static/images/templates/templates-images/dashboard-placeholder-image-light.png")'
-                : 'url("/static/images/templates/templates-images/dashboard-placeholder-image-dark.png")',
+                ? 'url("/static/images/templates/templates-images/hero-light.png")'
+                : 'url("/static/images/templates/templates-images/hero-dark.png")',
             backgroundSize: 'cover',
             borderRadius: '10px',
             outline: '1px solid',

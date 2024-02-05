@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { alpha } from '@mui/system';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -58,7 +57,11 @@ export default function Features() {
             <Typography component="h2" variant="h4" color="text.primary">
               Product features
             </Typography>
-            <Typography variant="body1" color="text.secondary" mb={4}>
+            <Typography
+              variant="body1"
+              color="text.secondary"
+              sx={{ mb: { xs: 2, sm: 4 } }}
+            >
               Here you can provide a brief overview of the key features of the
               product. For example, you could list the number of features, the types
               of features, add-ons, or the benefits of the features.
@@ -101,58 +104,39 @@ export default function Features() {
           >
             <Box
               sx={{
-                p: 2,
                 backgroundImage: (theme) =>
                   theme.palette.mode === 'light'
-                    ? `radial-gradient(${alpha('#D6E2EB', 0.4)} 1.3px, ${alpha(
-                        '#FBFCFE',
-                        0.2,
-                      )} 1.3px)`
-                    : `radial-gradient(${alpha('#131B20', 0.9)} 1.3px, ${alpha(
-                        '#090E10',
-                        0.2,
-                      )} 1.3px)`,
-                backgroundSize: '24px 24px',
+                    ? items[selectedItemIndex].imageLight
+                    : items[selectedItemIndex].imageDark,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                minHeight: 280,
               }}
-            >
-              <Box
+            />
+            <Box sx={{ px: 2, pb: 2 }}>
+              <Typography color="text.primary" variant="body2" fontWeight="bold">
+                {selectedFeature.title}
+              </Typography>
+              <Typography color="text.secondary" variant="body2" sx={{ my: 0.5 }}>
+                {selectedFeature.description}
+              </Typography>
+              <Link
+                color="primary"
+                variant="body2"
+                fontWeight="bold"
                 sx={{
-                  backgroundImage: (theme) =>
-                    theme.palette.mode === 'light'
-                      ? items[selectedItemIndex].imageLight
-                      : items[selectedItemIndex].imageDark,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  borderRadius: '4px',
-                  minHeight: 300,
-                  marginBottom: '16px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  '& > svg': { transition: '0.2s' },
+                  '&:hover > svg': { transform: 'translateX(2px)' },
                 }}
-              />
-              <div>
-                <Typography color="text.primary" variant="body2" fontWeight="bold">
-                  {selectedFeature.title}
-                </Typography>
-                <Typography color="text.secondary" variant="body2" sx={{ my: 0.5 }}>
-                  {selectedFeature.description}
-                </Typography>
-                <Link
-                  color="primary"
-                  variant="body2"
-                  fontWeight="bold"
-                  sx={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    '& > svg': { transition: '0.2s' },
-                    '&:hover > svg': { transform: 'translateX(2px)' },
-                  }}
-                >
-                  <span>Learn more</span>
-                  <ChevronRightRoundedIcon
-                    fontSize="small"
-                    sx={{ mt: '1px', ml: '2px' }}
-                  />
-                </Link>
-              </div>
+              >
+                <span>Learn more</span>
+                <ChevronRightRoundedIcon
+                  fontSize="small"
+                  sx={{ mt: '1px', ml: '2px' }}
+                />
+              </Link>
             </Box>
           </Box>
           <Stack
@@ -252,11 +236,17 @@ export default function Features() {
             ))}
           </Stack>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          sx={{ display: { xs: 'none', sm: 'flex' }, width: '100%' }}
+        >
           <Card
             variant="outlined"
             sx={{
               height: '100%',
+              width: '100%',
               display: { xs: 'none', sm: 'flex' },
               pointerEvents: 'none',
             }}

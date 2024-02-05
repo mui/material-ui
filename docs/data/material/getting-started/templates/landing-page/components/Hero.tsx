@@ -60,11 +60,11 @@ export default function Hero() {
             Elevate your experience with top-tier features and services.
           </Typography>
           <Stack
-            direction="row"
+            direction={{ xs: 'column', sm: 'row' }}
             alignSelf="center"
             spacing={1}
             useFlexGap
-            sx={{ pt: 2 }}
+            sx={{ pt: 2, width: { xs: '100%', sm: 'auto' } }}
           >
             <TextField
               id="outlined-basic"

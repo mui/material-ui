@@ -64,7 +64,7 @@ const getDesignTokens = (mode) => ({
       ...(mode === 'dark' && {
         contrastText: brand[100],
         light: brand[300],
-        main: brand[500],
+        main: brand[400],
         dark: brand[800],
       }),
     },
@@ -132,9 +132,9 @@ const getDesignTokens = (mode) => ({
   typography: {
     fontFamily: ['"Inter", "sans-serif"'].join(','),
     h1: {
+      fontSize: 60,
       fontWeight: 600,
       lineHeight: 78 / 70,
-      fontSize: 60,
       letterSpacing: -0.2,
     },
     h2: {
@@ -249,11 +249,17 @@ export default function getLPTheme(mode) {
       },
       MuiToggleButton: {
         styleOverrides: {
-          root: {
+          root: ({ theme }) => ({
+            padding: '12px 16px',
             textTransform: 'none',
             borderRadius: '10px',
-            fontWeight: 600,
-          },
+            fontWeight: 500,
+            ...(theme.palette.mode === 'dark' && {
+              color: gray[400],
+              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.5)',
+              '&.Mui-selected': { color: brand[300] },
+            }),
+          }),
         },
       },
       MuiButtonBase: {
@@ -347,7 +353,7 @@ export default function getLPTheme(mode) {
             boxShadow: 'none',
             transition: 'background-color, border, 80ms ease',
             ...(ownerState.variant === 'outlined' && {
-              background: `linear-gradient(to bottom, ${gray[50]}, ${gray[100]})`,
+              background: `linear-gradient(to bottom, #FFF, ${gray[50]})`,
               '&:hover': {
                 borderColor: brand[300],
                 boxShadow: `0 0 24px ${brand[100]}`,
@@ -355,9 +361,12 @@ export default function getLPTheme(mode) {
             }),
             ...(theme.palette.mode === 'dark' && {
               backgroundColor: alpha(gray[800], 0.6),
-              border: `1px solid ${alpha(gray[600], 0.3)}`,
+              border: `1px solid ${alpha(gray[700], 0.3)}`,
               ...(ownerState.variant === 'outlined' && {
-                background: `linear-gradient(to bottom, ${gray[800]}, ${gray[900]})`,
+                background: `linear-gradient(to bottom, ${gray[900]}, ${alpha(
+                  gray[800],
+                  0.5,
+                )})`,
                 '&:hover': {
                   borderColor: brand[700],
                   boxShadow: `0 0 24px ${brand[800]}`,

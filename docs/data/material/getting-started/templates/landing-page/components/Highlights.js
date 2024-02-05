@@ -68,7 +68,7 @@ export default function Highlights() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: 6,
+          gap: { xs: 3, sm: 6 },
         }}
       >
         <Box
