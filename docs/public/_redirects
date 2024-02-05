@@ -498,7 +498,6 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /material-ui/guides/next-js-app-router/ /material-ui/guides/nextjs/ 301
 /material-ui/guides/understand-mui-packages/ /blog/mui-product-comparison/ 301
 # 2024
-/material-ui/guides/creating-themed-components/ /material-ui/integrations/nextjs/ 301
 /material-ui/guides/nextjs/ /material-ui/integrations/nextjs/ 301
 /material-ui/guides/interoperability/ /material-ui/integrations/interoperability/ 301
 /material-ui/guides/theme-scoping/ /material-ui/integrations/theme-scoping/ 301
