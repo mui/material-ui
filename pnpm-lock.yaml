@@ -1031,7 +1031,7 @@ importers:
         specifier: ^5.0.5
         version: 5.0.5
       typescript:
-        specifier: ^5.1.6
+        specifier: ^5.3.3
         version: 5.3.3
 
   packages/eslint-plugin-material-ui:
