@@ -137,29 +137,15 @@ function focusThumb({
 
 function areValuesEqual(
   newValue: number | ReadonlyArray<number>,
-  oldValue: number | Array<number>,
+  oldValue: number | ReadonlyArray<number>,
 ): boolean {
   if (typeof newValue === 'number' && typeof oldValue === 'number') {
     return newValue === oldValue;
   }
-  if (Array.isArray(newValue) && Array.isArray(oldValue)) {
+  if (typeof newValue === 'object' && typeof oldValue === 'object') {
     return areArraysEqual(newValue, oldValue);
   }
   return false;
-}
-
-function areArraysEqual(arr1: ReadonlyArray<number>, arr2: ReadonlyArray<number>): boolean {
-  if (arr1.length !== arr2.length) {
-    return false;
-  }
-
-  for (let i = 0; i < arr1.length; i++) {
-    if (arr1[i] !== arr2[i]) {
-      return false;
-    }
-  }
-
-  return true;
 }
 
 const axisProps = {
