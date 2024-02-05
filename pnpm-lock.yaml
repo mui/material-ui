@@ -294,11 +294,11 @@ importers:
         specifier: ^0.6.4
         version: 0.6.4(postcss@8.4.33)
       prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
+        specifier: ^3.2.5
+        version: 3.2.5
       pretty-quick:
         specifier: ^3.3.1
-        version: 3.3.1(prettier@2.8.8)
+        version: 3.3.1(prettier@3.2.5)
       process:
         specifier: ^0.11.10
         version: 0.11.10
@@ -894,8 +894,8 @@ importers:
         specifier: ^1.41.2
         version: 1.41.2
       prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
+        specifier: ^3.2.5
+        version: 3.2.5
       tailwindcss:
         specifier: ^3.4.1
         version: 3.4.1
@@ -936,8 +936,8 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
+        specifier: ^3.2.5
+        version: 3.2.5
       react-docgen:
         specifier: ^5.4.3
         version: 5.4.3
@@ -2302,8 +2302,8 @@ importers:
         specifier: ^3.3.2
         version: 3.3.2
       prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
+        specifier: ^3.2.5
+        version: 3.2.5
       rimraf:
         specifier: ^5.0.5
         version: 5.0.5
@@ -17747,6 +17747,12 @@ packages:
     resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
     engines: {node: '>=10.13.0'}
     hasBin: true
+    dev: true
+
+  /prettier@3.2.5:
+    resolution: {integrity: sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==}
+    engines: {node: '>=14'}
+    hasBin: true
 
   /pretty-error@4.0.0:
     resolution: {integrity: sha512-AoJ5YMAcXKYxKhuJGdcvse+Voc6v1RgnsR3nWcYU7q4t6z0Q6T86sv5Zq8VIRbOWWFpvdGE83LtdSMNd+6Y0xw==}
@@ -17781,7 +17787,7 @@ packages:
       ansi-styles: 5.2.0
       react-is: 18.2.0
 
-  /pretty-quick@3.3.1(prettier@2.8.8):
+  /pretty-quick@3.3.1(prettier@3.2.5):
     resolution: {integrity: sha512-3b36UXfYQ+IXXqex6mCca89jC8u0mYLqFAN5eTQKoXO6oCQYcIVYZEB/5AlBHI7JPYygReM2Vv6Vom/Gln7fBg==}
     engines: {node: '>=10.13'}
     hasBin: true
@@ -17794,7 +17800,7 @@ packages:
       mri: 1.2.0
       picocolors: 1.0.0
       picomatch: 3.0.1
-      prettier: 2.8.8
+      prettier: 3.2.5
       tslib: 2.6.2
     dev: true
 
