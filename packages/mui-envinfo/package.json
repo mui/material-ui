@@ -20,7 +20,7 @@
     "build": "node scripts/build"
   },
   "dependencies": {
-    "envinfo": "^7.11.0"
+    "envinfo": "^7.11.1"
   },
   "devDependencies": {
     "@types/chai": "^4.3.11",
