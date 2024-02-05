@@ -119,7 +119,9 @@ export default function Pricing() {
                       tier.title === 'Professional' ? 'primary.contrastText' : '',
                   }}
                 >
-                  <Typography variant="h6">{tier.title}</Typography>
+                  <Typography component="h3" variant="h6">
+                    {tier.title}
+                  </Typography>
                   {tier.title === 'Professional' && (
                     <Chip
                       icon={<AutoAwesomeIcon />}
@@ -149,10 +151,12 @@ export default function Pricing() {
                         : undefined,
                   }}
                 >
-                  <Typography component="h2" variant="h2">
+                  <Typography component="h3" variant="h2">
                     ${tier.price}
                   </Typography>
-                  <Typography variant="h6">&nbsp; per month</Typography>
+                  <Typography component="h3" variant="h6">
+                    &nbsp; per month
+                  </Typography>
                 </Box>
                 <Divider
                   sx={{
@@ -181,6 +185,7 @@ export default function Pricing() {
                       }}
                     />
                     <Typography
+                      component="text"
                       variant="subtitle2"
                       sx={{
                         color:

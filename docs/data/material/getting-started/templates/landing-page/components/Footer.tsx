@@ -62,7 +62,7 @@ export default function Footer() {
                   'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
                 }
                 style={logoStyle}
-                alt="logo"
+                alt="logo of sitemark"
               />
             </Box>
             <Typography variant="body2" fontWeight={600} gutterBottom>
@@ -78,9 +78,11 @@ export default function Footer() {
                 size="small"
                 variant="outlined"
                 fullWidth
+                aria-label="Enter your email address"
                 placeholder="Your email address"
                 inputProps={{
                   autocomplete: 'off',
+                  ariaLabel: 'Enter your email address',
                 }}
               />
               <Button variant="contained" color="primary" sx={{ flexShrink: 0 }}>

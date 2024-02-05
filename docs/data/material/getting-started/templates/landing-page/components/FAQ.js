@@ -50,7 +50,7 @@ export default function FAQ() {
             aria-controls="panel1d-content"
             id="panel1d-header"
           >
-            <Typography variant="subtitle2">
+            <Typography component="h3" variant="subtitle2">
               How do I contact customer support if I have a question or issue?
             </Typography>
           </AccordionSummary>
@@ -76,7 +76,7 @@ export default function FAQ() {
             aria-controls="panel2d-content"
             id="panel2d-header"
           >
-            <Typography variant="subtitle2">
+            <Typography component="h3" variant="subtitle2">
               Can I return the product if it doesn&apos;t meet my expectations?
             </Typography>
           </AccordionSummary>
@@ -101,7 +101,7 @@ export default function FAQ() {
             aria-controls="panel3d-content"
             id="panel3d-header"
           >
-            <Typography variant="subtitle2">
+            <Typography component="h3" variant="subtitle2">
               What makes your product stand out from others in the market?
             </Typography>
           </AccordionSummary>
@@ -126,7 +126,7 @@ export default function FAQ() {
             aria-controls="panel3d-content"
             id="panel3d-header"
           >
-            <Typography variant="subtitle2">
+            <Typography component="h3" variant="subtitle2">
               Is there a warranty on the product, and what does it cover?
             </Typography>
           </AccordionSummary>
