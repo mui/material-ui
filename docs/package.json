@@ -124,7 +124,7 @@
     "@types/chai": "^4.3.11",
     "@types/css-mediaquery": "^0.1.4",
     "@types/json2mq": "^0.2.2",
-    "@types/node": "^18.19.10",
+    "@types/node": "^18.19.14",
     "@types/prop-types": "^15.7.11",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
