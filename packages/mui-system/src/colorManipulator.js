@@ -348,3 +348,30 @@ export function private_safeEmphasize(color, coefficient, warning) {
     return color;
   }
 }
+
+/**
+ * Blend a transparent overlay color with a background color, resulting in a single
+ * RGB color.
+ * @param {string} background - CSS color
+ * @param {string} overlay - CSS color
+ * @param {number} opacity - Opacity multiplier in the range 0 - 1
+ * @param {number} [gamma=1.0] - Gamma correction factor. For gamma-correct blending, 2.2 is usual.
+ */
+export function blend(background, overlay, opacity, gamma = 1.0) {
+  const blendChannel = (b, o) =>
+    Math.round((b ** (1 / gamma) * (1 - opacity) + o ** (1 / gamma) * opacity) ** gamma);
+
+  const backgroundColor = decomposeColor(background);
+  const overlayColor = decomposeColor(overlay);
+
+  const rgb = [
+    blendChannel(backgroundColor.values[0], overlayColor.values[0]),
+    blendChannel(backgroundColor.values[1], overlayColor.values[1]),
+    blendChannel(backgroundColor.values[2], overlayColor.values[2]),
+  ];
+
+  return recomposeColor({
+    type: 'rgb',
+    values: rgb,
+  });
+}
