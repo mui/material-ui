@@ -10,7 +10,7 @@ Deprecated APIs often become breaking changes in subsequent major versions, so t
 
 ## Migrating
 
-Material UI provides the `deprecations/all` codemod to help you stay up to date with minimal effort.
+Material UI provides the `deprecations/all` codemod to help you stay up to date with minimal effort.
 
 ```bash
 npx @mui/codemod@latest deprecations/all <path>
@@ -21,7 +21,7 @@ You can run this codemod as often as necessary to keep up with the latest change
 
 :::info
 
-If you need to manually migrate from a deprecated API, you can find examples below for all deprecations that have been added in Material UI v5.
+If you need to manually migrate from a deprecated API, you can find examples below for all deprecations that have been added in Material UI v5.
 If you need to run a specific codemod, those are also linked below.
 
 :::
