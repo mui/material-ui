@@ -83,7 +83,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
       ...(mode === 'dark' && {
         contrastText: brand[100],
         light: brand[300],
-        main: brand[500],
+        main: brand[400],
         dark: brand[800],
       }),
     },
@@ -268,11 +268,17 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
       },
       MuiToggleButton: {
         styleOverrides: {
-          root: {
+          root: ({ theme }) => ({
+            padding: '12px 16px',
             textTransform: 'none',
             borderRadius: '10px',
-            fontWeight: 600,
-          },
+            fontWeight: 500,
+            ...(theme.palette.mode === 'dark' && {
+              color: gray[400],
+              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.5)',
+              '&.Mui-selected': { color: brand[300] },
+            }),
+          }),
         },
       },
       MuiButtonBase: {
