@@ -31,6 +31,18 @@ Worry no more, as we're focused on shipping the first versions of all of the com
 | Radio Group            |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/38038) |
 | Tooltip                |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/38045) |
 
+## Improved customization API
+
+Currently, Base UI can be customized to your heart's content using the `slots` and `slotProps` props.
+This API, while powerful, has proven to be less than ideal in some instances.
+Most notably, it's too lengthy and complicated to write and read when used with libraries such as Tailwind CSS.
+Additionally, since the `slots` and the corresponding `slotProps` are not related to Typescript types, it's possible to introduce bugs or have the compiler complain about valid code.
+
+To address these issues, we're considering adopting another customization API.
+We're still fleshing out the details and plan to release an RFC on GitHub in the upcoming days.
+We are aware that a significant number of projects depend on the current API; therefore, we want to assure you that offering a smooth migration experience is very high on our priority list.
+Once we know all the details about the new API, we'll figure out the best way to migrate existing projects (with either a codemod, wrapper components exposing the old API, or something else).
+
 ## More thorough animation support
 
 Animation is a key element for adding delight to any application.
