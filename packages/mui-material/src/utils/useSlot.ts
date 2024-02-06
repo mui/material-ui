@@ -114,11 +114,11 @@ export default function useSlot<
     ...other
   } = externalForwardedProps;
 
-  const elementType = slots[name] || initialElementType;
-
   // `slotProps[name]` can be a callback that receives the component's ownerState.
   // `resolvedComponentsProps` is always a plain object.
   const resolvedComponentsProps = resolveComponentProps(slotProps[name], ownerState);
+
+  const elementType = slots[name] || resolvedComponentsProps?.component || initialElementType;
 
   const {
     props: { component: slotComponent, ...mergedProps },
