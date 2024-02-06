@@ -114,15 +114,16 @@ const StyledSvgIcon = styled(SvgIcon)(({ theme }) => ({
   boxSizing: 'content-box',
   cursor: 'pointer',
   color: theme.palette.text.primary,
-  borderRadius: theme.shape.borderRadius,
+  border: '1px solid transparent',
+  borderRadius: '12px',
   transition: theme.transitions.create(['background-color', 'box-shadow'], {
     duration: theme.transitions.duration.shortest,
   }),
   padding: theme.spacing(2),
   margin: theme.spacing(0.5, 0),
   '&:hover': {
-    backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[1],
+    backgroundColor: theme.palette.background.default,
+    borderColor: theme.palette.primary.light,
   },
 }));
 
@@ -210,7 +211,6 @@ const Title = styled(Typography)(({ theme }) => ({
 
 const CanvasComponent = styled('div')(({ theme }) => ({
   fontSize: 210,
-  marginTop: theme.spacing(2),
   color: theme.palette.text.primary,
   backgroundSize: '30px 30px',
   backgroundColor: 'transparent',
@@ -226,7 +226,7 @@ const FontSizeComponent = styled('span')(({ theme }) => ({
 }));
 
 const ContextComponent = styled('div', {
-  shouldForwardProp: (prop) => prop !== 'contextColor',
+  shouldForwardProp: (prop) => prop !== 'contextColor' && prop !== 'as',
 })(({ theme, contextColor }) => ({
   margin: theme.spacing(0.5),
   padding: theme.spacing(1, 2),
@@ -270,7 +270,20 @@ const DialogDetails = React.memo(function DialogDetails(props) {
   };
 
   return (
-    <Dialog fullWidth maxWidth="sm" open={open} onClose={handleClose}>
+    <Dialog
+      fullWidth
+      maxWidth="sm"
+      open={open}
+      onClose={handleClose}
+      sx={{
+        '& .MuiDialog-paper': {
+          borderRadius: 2.5,
+          backgroundImage: 'none',
+          border: '1px solid',
+          borderColor: 'divider',
+        },
+      }}
+    >
       {selectedIcon ? (
         <React.Fragment>
           <DialogTitle>
@@ -309,7 +322,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
             <Grid container>
               <Grid item xs>
                 <Grid container justifyContent="center">
-                  <CanvasComponent component={selectedIcon.Component} />
+                  <CanvasComponent as={selectedIcon.Component} />
                 </Grid>
               </Grid>
               <Grid item xs>
@@ -338,38 +351,38 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                 </Grid>
                 <Grid container justifyContent="center">
                   <ContextComponent
-                    component={selectedIcon.Component}
+                    as={selectedIcon.Component}
                     contextColor="primary"
                   />
                   <ContextComponent
-                    component={selectedIcon.Component}
+                    as={selectedIcon.Component}
                     contextColor="primaryInverse"
                   />
                 </Grid>
                 <Grid container justifyContent="center">
                   <ContextComponent
-                    component={selectedIcon.Component}
+                    as={selectedIcon.Component}
                     contextColor="textPrimary"
                   />
                   <ContextComponent
-                    component={selectedIcon.Component}
+                    as={selectedIcon.Component}
                     contextColor="textPrimaryInverse"
                   />
                 </Grid>
                 <Grid container justifyContent="center">
                   <ContextComponent
-                    component={selectedIcon.Component}
+                    as={selectedIcon.Component}
                     contextColor="textSecondary"
                   />
                   <ContextComponent
-                    component={selectedIcon.Component}
+                    as={selectedIcon.Component}
                     contextColor="textSecondaryInverse"
                   />
                 </Grid>
               </Grid>
             </Grid>
           </DialogContent>
-          <DialogActions>
+          <DialogActions sx={{ borderTop: '1px solid', borderColor: 'divider' }}>
             <Button onClick={handleClose}>{t('close')}</Button>
           </DialogActions>
         </React.Fragment>
@@ -394,7 +407,6 @@ const Form = styled('form')({
 const Paper = styled(MuiPaper)(({ theme }) => ({
   position: 'sticky',
   top: 80,
-  padding: '2px 4px',
   display: 'flex',
   alignItems: 'center',
   marginBottom: theme.spacing(2),
@@ -402,6 +414,7 @@ const Paper = styled(MuiPaper)(({ theme }) => ({
   borderRadius: '12px',
   border: '1px solid',
   borderColor: theme.palette.divider,
+  boxShadow: 'none',
 }));
 
 function formatNumber(value) {
@@ -409,7 +422,6 @@ function formatNumber(value) {
 }
 
 const Input = styled(InputBase)({
-  marginLeft: 8,
   flex: 1,
 });
 
@@ -523,7 +535,7 @@ export default function SearchIcons() {
   );
 
   return (
-    <Grid container sx={{ minHeight: 500, my: 2 }}>
+    <Grid container sx={{ minHeight: 500 }}>
       <Grid item xs={12} sm={3}>
         <Form>
           <Typography fontWeight={500} sx={{ mb: 1 }}>

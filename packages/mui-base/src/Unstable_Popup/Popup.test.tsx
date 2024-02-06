@@ -293,12 +293,12 @@ describe('<Popup />', () => {
     });
   });
 
-  describe('prop: withTransition', () => {
+  describe('transitions', () => {
     clock.withFakeTimers();
 
     it('should work', async () => {
       const { queryByRole, getByRole, setProps } = render(
-        <Popup {...defaultProps} withTransition>
+        <Popup {...defaultProps}>
           <FakeTransition>
             <span>Hello World</span>
           </FakeTransition>
@@ -334,7 +334,7 @@ describe('<Popup />', () => {
               <button type="button" onClick={this.handleClick}>
                 Toggle Tooltip
               </button>
-              <Popup {...defaultProps} open={this.state.open} withTransition>
+              <Popup {...defaultProps} open={this.state.open}>
                 <FakeTransition>
                   <p>Hello World</p>
                 </FakeTransition>

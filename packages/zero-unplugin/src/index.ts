@@ -175,7 +175,7 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
                 return tagResult;
               }
               if (source.endsWith('/zero-styled')) {
-                return `${process.env.RUNTIME_PACKAGE_NAME}/exports/${tag}`;
+                return require.resolve(`${process.env.RUNTIME_PACKAGE_NAME}/exports/${tag}`);
               }
               return null;
             },

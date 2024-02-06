@@ -38,6 +38,7 @@ You can generate a mark for each step with `marks={true}`.
 ### Small steps
 
 You can change the default step increment.
+Make sure to adjust the `shiftStep` prop (the granularity with which the slider can step when using Page Up/Down or Shift + Arrow Up/Down) to a value divadable with the `step`.
 
 {{"demo": "DiscreteSliderSteps.js"}}
 

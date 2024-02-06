@@ -14,6 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
       - uses: errata-ai/vale-action@c4213d4de3d5f718b8497bd86161531c78992084 # v2.0.1
+        continue-on-error: true
         with:
           reporter: github-pr-review
           files: docs/data

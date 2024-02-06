@@ -41,6 +41,7 @@
       },
       "default": "function Identity(x) {\nreturn x;\n}"
     },
+    "shiftStep": { "type": { "name": "number", "description": "number" }, "default": "10" },
     "step": { "type": { "name": "number | null", "description": "number | null" }, "default": "1" },
     "tabIndex": { "type": { "name": "number", "description": "number" } },
     "value": { "type": { "name": "number | number[]", "description": "number | number[]" } }
