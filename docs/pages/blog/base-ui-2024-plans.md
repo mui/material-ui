@@ -23,13 +23,13 @@ Worry no more, as we're focused on shipping the first versions of all of the com
 
 | To-be-added components |                                                                                                |
 | :--------------------- | ---------------------------------------------------------------------------------------------: |
-| 1. Accordion           | [View&nbsp;the&nbsp;GitHub&nbsp;issue&nbsp;→](https://github.com/mui/material-ui/issues/38037) |
-| 2. Alert Dialog        |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/40886) |
-| 3. Checkbox            |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/38036) |
-| 4. Collapsible         |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/40959) |
-| 5. Drawer              |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/38181) |
-| 6. Radio Group         |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/38038) |
-| 7. Tooltip             |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/38045) |
+| Accordion              | [View&nbsp;the&nbsp;GitHub&nbsp;issue&nbsp;→](https://github.com/mui/material-ui/issues/38037) |
+| Alert Dialog           |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/40886) |
+| Checkbox               |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/38036) |
+| Collapsible            |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/40959) |
+| Drawer                 |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/38181) |
+| Radio Group            |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/38038) |
+| Tooltip                |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/38045) |
 
 ## Improved customization API
 
