@@ -3,7 +3,6 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ToggleDisplayOption, {
-  API_LAYOUT_STORAGE_KEYS,
   ApiDisplayOptions,
   useApiPageOption,
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
@@ -18,7 +17,7 @@ export type SlotsSectionProps = {
   titleHash?: string;
   level?: 'h2' | 'h3' | 'h4';
   defaultLayout: ApiDisplayOptions;
-  layoutStorageKey?: string;
+  layoutStorageKey: string;
   spreadHint?: string;
 };
 
@@ -32,7 +31,7 @@ export default function SlotsSection(props: SlotsSectionProps) {
     level: Level = 'h2',
     spreadHint,
     defaultLayout,
-    layoutStorageKey = API_LAYOUT_STORAGE_KEYS.slots,
+    layoutStorageKey,
   } = props;
   const t = useTranslate();
 

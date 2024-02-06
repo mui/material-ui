@@ -10,6 +10,7 @@ import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
+import { DEFAULT_API_LAYOUT_STORAGE_KEYS } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 
 function getTranslatedHeader(t, header, text) {
   const translations = {
@@ -49,7 +50,12 @@ Heading.propTypes = {
 };
 
 export default function ComponentsApiContent(props) {
-  const { descriptions, pageContents, defaultLayout = 'table', layoutStorageKey } = props;
+  const {
+    descriptions,
+    pageContents,
+    defaultLayout = 'table',
+    layoutStorageKey = DEFAULT_API_LAYOUT_STORAGE_KEYS,
+  } = props;
   const t = useTranslate();
   const userLanguage = useUserLanguage();
   const router = useRouter();
@@ -151,7 +157,7 @@ export default function ComponentsApiContent(props) {
             level="h3"
             titleHash={`${componentNameKebabCase}-props`}
             defaultLayout={defaultLayout}
-            layoutStorageKey={layoutStorageKey?.props}
+            layoutStorageKey={layoutStorageKey.props}
           />
           <br />
           {cssComponent && (
@@ -219,7 +225,7 @@ export default function ComponentsApiContent(props) {
               t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink)
             }
             defaultLayout={defaultLayout}
-            layoutStorageKey={layoutStorageKey?.slots}
+            layoutStorageKey={layoutStorageKey.slots}
           />
           <ClassesSection
             componentClasses={componentClasses}
@@ -229,7 +235,7 @@ export default function ComponentsApiContent(props) {
             titleHash={`${componentNameKebabCase}-classes`}
             level="h3"
             defaultLayout={defaultLayout}
-            layoutStorageKey={layoutStorageKey?.classes}
+            layoutStorageKey={layoutStorageKey.classes}
           />
         </MarkdownElement>
         <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">

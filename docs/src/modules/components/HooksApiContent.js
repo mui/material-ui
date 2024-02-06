@@ -7,6 +7,7 @@ import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import { DEFAULT_API_LAYOUT_STORAGE_KEYS } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 
 function getTranslatedHeader(t, header, text) {
   const translations = {
@@ -43,7 +44,12 @@ Heading.propTypes = {
 };
 
 export default function HooksApiContent(props) {
-  const { descriptions, pagesContents, defaultLayout = 'table', layoutStorageKey } = props;
+  const {
+    descriptions,
+    pagesContents,
+    defaultLayout = 'table',
+    layoutStorageKey = DEFAULT_API_LAYOUT_STORAGE_KEYS,
+  } = props;
   const userLanguage = useUserLanguage();
   const t = useTranslate();
 

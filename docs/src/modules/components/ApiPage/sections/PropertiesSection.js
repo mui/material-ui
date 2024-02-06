@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ToggleDisplayOption, {
-  API_LAYOUT_STORAGE_KEYS,
   useApiPageOption,
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import PropertiesList, { getHash } from 'docs/src/modules/components/ApiPage/list/PropertiesList';
@@ -52,7 +51,7 @@ export default function PropertiesSection(props) {
     hooksParameters = false,
     hooksReturnValue = false,
     defaultLayout,
-    layoutStorageKey = API_LAYOUT_STORAGE_KEYS.props,
+    layoutStorageKey,
   } = props;
   const t = useTranslate();
 
@@ -154,7 +153,7 @@ PropertiesSection.propTypes = {
   defaultLayout: PropTypes.oneOf(['collapsed', 'expanded', 'table']).isRequired,
   hooksParameters: PropTypes.bool,
   hooksReturnValue: PropTypes.bool,
-  layoutStorageKey: PropTypes.string,
+  layoutStorageKey: PropTypes.string.isRequired,
   level: PropTypes.string,
   properties: PropTypes.object.isRequired,
   propertiesDescriptions: PropTypes.object.isRequired,

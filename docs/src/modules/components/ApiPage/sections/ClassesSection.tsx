@@ -4,7 +4,6 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { ComponentClassDefinition } from '@mui-internal/docs-utilities';
 import Box from '@mui/material/Box';
 import ToggleDisplayOption, {
-  API_LAYOUT_STORAGE_KEYS,
   ApiDisplayOptions,
   useApiPageOption,
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
@@ -51,7 +50,7 @@ export type ClassesSectionProps = {
   titleHash: string;
   level?: 'h2' | 'h3' | 'h4';
   defaultLayout: ApiDisplayOptions;
-  layoutStorageKey?: string;
+  layoutStorageKey: string;
   displayClassKeys: boolean;
   styleOverridesLink: string;
 };
@@ -68,7 +67,7 @@ export default function ClassesSection(props: ClassesSectionProps) {
     displayClassKeys,
     styleOverridesLink,
     defaultLayout,
-    layoutStorageKey = API_LAYOUT_STORAGE_KEYS.classes,
+    layoutStorageKey,
   } = props;
   const t = useTranslate();
 

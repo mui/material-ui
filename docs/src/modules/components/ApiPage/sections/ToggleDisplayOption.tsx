@@ -11,7 +11,7 @@ export type ApiDisplayOptions = 'collapsed' | 'expanded' | 'table';
 
 const options: ApiDisplayOptions[] = ['collapsed', 'expanded', 'table'];
 
-export const API_LAYOUT_STORAGE_KEYS = {
+export const DEFAULT_API_LAYOUT_STORAGE_KEYS = {
   slots: 'apiPage_slots',
   props: 'apiPage_props',
   classes: 'apiPage_classes',
@@ -69,20 +69,6 @@ export function useApiPageOption(
   );
 
   return [option, updateOption];
-}
-
-export function getApiPageLayout() {
-  const rep: { [key: string]: string } = {};
-
-  Object.values(API_LAYOUT_STORAGE_KEYS).forEach((localStorageKey) => {
-    try {
-      const savedOption = localStorage.getItem(localStorageKey);
-      rep[localStorageKey] = savedOption || 'none';
-    } catch {
-      rep[localStorageKey] = 'none';
-    }
-  });
-  return rep;
 }
 
 // Fix Toggle buton highlight (taken from https://github.com/mui/material-ui/issues/18091)

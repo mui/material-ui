@@ -21,6 +21,7 @@ import ClassesSection, {
   getClassesToC,
 } from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
+import { DEFAULT_API_LAYOUT_STORAGE_KEYS } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 
 export function getTranslatedHeader(t, header) {
   const translations = {
@@ -73,7 +74,7 @@ export default function ApiPage(props) {
     disableAd = false,
     pageContent,
     defaultLayout = 'table',
-    layoutStorageKey,
+    layoutStorageKey = DEFAULT_API_LAYOUT_STORAGE_KEYS,
   } = props;
   const t = useTranslate();
   const userLanguage = useUserLanguage();
@@ -264,7 +265,7 @@ export default function ApiPage(props) {
           componentName={pageContent.name}
           spreadHint={spreadHint}
           defaultLayout={defaultLayout}
-          layoutStorageKey={layoutStorageKey?.props}
+          layoutStorageKey={layoutStorageKey.props}
         />
         {cssComponent && (
           <React.Fragment>
@@ -323,7 +324,7 @@ export default function ApiPage(props) {
             t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink)
           }
           defaultLayout={defaultLayout}
-          layoutStorageKey={layoutStorageKey?.slots}
+          layoutStorageKey={layoutStorageKey.slots}
         />
         <ClassesSection
           componentClasses={componentClasses}
@@ -332,7 +333,7 @@ export default function ApiPage(props) {
           spreadHint={t('api-docs.classesDescription')}
           styleOverridesLink={styleOverridesLink}
           defaultLayout={defaultLayout}
-          layoutStorageKey={layoutStorageKey?.classes}
+          layoutStorageKey={layoutStorageKey.classes}
           displayClassKeys
         />
       </MarkdownElement>
