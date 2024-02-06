@@ -27,7 +27,7 @@ const Image = styled('img')(({ theme }) => ({
   overflow: 'clip',
   backgroundClip: 'padding-box',
   [theme.breakpoints.up('sm')]: {
-    borderRadius: 10,
+    borderRadius: 12,
   },
   ...theme.applyDarkStyles({
     borderColor: theme.palette.primaryDark[600],
@@ -39,8 +39,8 @@ export default function Connect() {
   return (
     <BrandingCssVarsProvider>
       <Head
-        title="Connect: A Figma plug-in that exports a Material UI theme"
-        description="A Figma plug-in that exports a Material UI theme object."
+        title="MUI Connect: A Figma plug-in that exports a Material UI theme"
+        description="A Figma plug-in that exports a full-fledged Material UI theme."
         card="/static/social-previews/connect-preview.jpg"
       />
       <AppHeaderBanner />
@@ -55,7 +55,7 @@ export default function Connect() {
                 <GradientText>Bridge the gap</GradientText> between Figma and your codebase
               </Typography>
             }
-            description="Connect is a Figma plug-in that lets you bring Material UI component customizations done in Figma to your codebase."
+            description="MUI Connect is a Figma plug-in that exports a full-fledged Material UI theme to get your design customization up as fast as possible."
           />
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <GetStartedButtons
@@ -70,8 +70,8 @@ export default function Connect() {
             maxWidth: 1300,
             mx: 'auto',
             mt: { xs: 0, sm: '-46px' },
-            mb: '-16px',
             px: { xs: 0, sm: 2 },
+            pb: { xs: 4, sm: 8 },
           }}
         >
           <Image src="/static/branding/design-kits/connect-plug-in-figma-light.jpg" />
