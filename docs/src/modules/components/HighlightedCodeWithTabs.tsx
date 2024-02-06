@@ -9,19 +9,11 @@ import HighlightedCode from './HighlightedCode';
 export const StyledTabList = styled(TabsList)(({ theme }) => ({
   padding: theme.spacing(1),
   display: 'flex',
-<<<<<<< Updated upstream
-  border: '1px solid',
-  borderColor: (theme.vars || theme).palette.primaryDark[700],
-  backgroundColor: (theme.vars || theme).palette.primaryDark[900],
-  borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
-  borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
-=======
   gap: theme.spacing(0.5),
   borderLeft: '1px solid',
   borderRight: '1px solid',
   borderColor: (theme.vars || theme).palette.divider,
   backgroundColor: alpha(theme.palette.grey[50], 0.2),
->>>>>>> Stashed changes
   ...theme.applyDarkStyles({
     backgroundColor: alpha(theme.palette.primaryDark[800], 0.2),
   }),
