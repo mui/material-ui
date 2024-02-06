@@ -1,3 +1,10 @@
+import { MUICssWithTheme } from '@mui/system';
+import { Theme } from './createTheme';
+
+declare const css: MUICssWithTheme<Theme>;
+
+export { css };
+
 export { default as THEME_ID } from './identifier';
 export {
   default as createTheme,
@@ -47,7 +54,6 @@ export {
   Interpolation,
   CSSInterpolation,
   CSSObject,
-  css,
   keyframes,
   // color manipulators
   hexToRgb,

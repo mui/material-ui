@@ -1,3 +1,5 @@
+import { MUICssWithTheme as MUICssWithThemeStyledEngine } from '@mui/styled-engine';
+import { Theme as DefaultTheme } from './createTheme';
 import {
   ComposedStyleFunction,
   StyleFunction,
@@ -96,7 +98,6 @@ export type ResponsiveStyleValue<T> = T | Array<T | null> | { [key: string]: T |
 export { DefaultTheme } from '@mui/private-theming';
 
 export {
-  css,
   keyframes,
   StyledEngineProvider,
   Interpolation,
@@ -105,6 +106,13 @@ export {
 } from '@mui/styled-engine';
 export { default as GlobalStyles } from './GlobalStyles';
 export type { GlobalStylesProps } from './GlobalStyles';
+
+export type MUICssWithTheme<Theme extends object = DefaultTheme> =
+  MUICssWithThemeStyledEngine<Theme>;
+
+declare const css: MUICssWithTheme;
+
+export { css };
 
 export * from './style';
 export * from './spacing';

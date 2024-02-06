@@ -1,6 +1,6 @@
 import * as CSS from 'csstype';
 import { StyledComponent, StyledOptions } from '@emotion/styled';
-import { PropsOf } from '@emotion/react';
+import { css, PropsOf } from '@emotion/react';
 
 export * from '@emotion/styled';
 export { default } from '@emotion/styled';
@@ -214,3 +214,6 @@ export interface CreateMUIStyled<
     options?: StyledOptions<MUIStyledCommonProps> & MuiStyledOptions,
   ): CreateStyledComponent<MUIStyledCommonProps, JSX.IntrinsicElements[Tag], {}, Theme>;
 }
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export type MUICssWithTheme<Theme extends object = {}> = typeof css;
