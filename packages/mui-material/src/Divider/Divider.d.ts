@@ -30,8 +30,7 @@ export interface DividerOwnProps {
   /**
    * If `true`, the divider will have a lighter color.
    * @default false
-   * @deprecated Use <Divider sx={{ bgcolor: '#eee' }} /> (or any color) instead.
-   * [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+   * @deprecated Use <Divider sx={{ bgcolor: '#eee' }} /> (or any color) instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
    */
   light?: boolean;
   /**
