@@ -63,7 +63,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
               <Item
                 icon={<ExtensionRoundedIcon color="primary" />}
                 title="Connect plug-in"
-                description="This Figma plug-in generates a theme file with customizations done on the design kits, allowing you to export and paste it directly into your codebase."
+                description="Generate a theme file with customizations done on the design kits, and then export and paste it directly into your codebase."
               />
             </Highlighter>
           </Group>
@@ -76,11 +76,11 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
             minHeight: { lg: '590px' },
           }}
         >
-          <Frame>
+          <Frame sx={{ height: '100%' }}>
             <Frame.Demo
               sx={{
                 overflow: 'hidden',
-                height: { xs: 240, sm: 390 },
+                height: { xs: 240, sm: 420 },
                 perspective: '1000px',
               }}
             >
