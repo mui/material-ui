@@ -12,8 +12,8 @@ export const StyledTabList = styled(TabsList)(({ theme }) => ({
   border: '1px solid',
   borderColor: (theme.vars || theme).palette.primaryDark[700],
   backgroundColor: (theme.vars || theme).palette.primaryDark[900],
-  // borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
-  // borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
+  borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
+  borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
   ...theme.applyDarkStyles({
     backgroundColor: alpha(theme.palette.primaryDark[800], 0.5),
   }),

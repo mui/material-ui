@@ -373,6 +373,11 @@ const InitialFocus = styled(IconButton)(({ theme }) => ({
   pointerEvents: 'none',
 }));
 
+const bordersOverride = {
+  borderTopLeftRadius: 0,
+  borderTopRightRadius: 0,
+};
+
 const selectionOverride = (theme) => ({
   '&.base--selected': {
     color: '#FFF',
@@ -610,7 +615,7 @@ export default function Demo(props) {
           </DemoToolbarRoot>
           <Tabs defaultValue={0} value={activeTab} onChange={handleChange}>
             {demo.relativeModules ? (
-              <StyledTabList>
+              <StyledTabList sx={bordersOverride}>
                 {tabs.map((tab, index) => (
                   <StyledTab
                     sx={selectionOverride}
@@ -626,60 +631,61 @@ export default function Demo(props) {
             <Collapse in={openDemoSource} unmountOnExit timeout={150}>
               {/* A limitation from https://github.com/nihgwu/react-runner,
                 we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
-              {demoOptions.disableLiveEdit ? (
-                <DemoCodeViewer
-                  code={editorCode.value}
-                  id={demoSourceId}
-                  language={demoData.sourceLanguage}
-                  copyButtonProps={{
-                    'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                    'data-ga-event-label': demo.gaLabel,
-                    'data-ga-event-action': 'copy-click',
-                  }}
-                />
-              ) : (
-                tabs.map((tab, index) => (
-                  <TabPanel value={index} index={index} key={index}>
-                    {index === 0 ? (
-                      <DemoEditor
-                        // Mount a new text editor when the preview mode change to reset the undo/redo history.
-                        key={editorCode.isPreview}
-                        value={editorCode.value}
-                        onChange={(value) => {
-                          setEditorCode({
-                            ...editorCode,
-                            value,
-                          });
-                        }}
-                        onFocus={() => {
-                          setLiveDemoActive(true);
-                        }}
-                        id={demoSourceId}
-                        language={demoData.sourceLanguage}
-                        copyButtonProps={{
-                          'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                          'data-ga-event-label': demo.gaLabel,
-                          'data-ga-event-action': 'copy-click',
-                        }}
-                      >
-                        <DemoEditorError>{debouncedError}</DemoEditorError>
-                      </DemoEditor>
-                    ) : (
-                      <DemoCodeViewer
-                        code={tab.raw}
-                        key={tab.module}
-                        id={`relative-${tab.module}`}
-                        language={tab.language}
-                        copyButtonProps={{
-                          'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                          'data-ga-event-label': demo.gaLabel,
-                          'data-ga-event-action': 'copy-click',
-                        }}
-                      />
-                    )}
-                  </TabPanel>
-                ))
-              )}
+              {demoOptions.disableLiveEdit
+                ? tabs.map((tab, index) => (
+                    <DemoCodeViewer
+                      key={index}
+                      code={tab.raw}
+                      id={demoSourceId}
+                      language={tab.language}
+                      copyButtonProps={{
+                        'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+                        'data-ga-event-label': demo.gaLabel,
+                        'data-ga-event-action': 'copy-click',
+                      }}
+                    />
+                  ))
+                : tabs.map((tab, index) => (
+                    <TabPanel value={index} index={index} key={index}>
+                      {index === 0 ? (
+                        <DemoEditor
+                          // Mount a new text editor when the preview mode change to reset the undo/redo history.
+                          key={editorCode.isPreview}
+                          value={editorCode.value}
+                          onChange={(value) => {
+                            setEditorCode({
+                              ...editorCode,
+                              value,
+                            });
+                          }}
+                          onFocus={() => {
+                            setLiveDemoActive(true);
+                          }}
+                          id={demoSourceId}
+                          language={demoData.sourceLanguage}
+                          copyButtonProps={{
+                            'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+                            'data-ga-event-label': demo.gaLabel,
+                            'data-ga-event-action': 'copy-click',
+                          }}
+                        >
+                          <DemoEditorError>{debouncedError}</DemoEditorError>
+                        </DemoEditor>
+                      ) : (
+                        <DemoCodeViewer
+                          code={tab.raw}
+                          key={tab.module}
+                          id={`relative-${tab.module}`}
+                          language={tab.language}
+                          copyButtonProps={{
+                            'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+                            'data-ga-event-label': demo.gaLabel,
+                            'data-ga-event-action': 'copy-click',
+                          }}
+                        />
+                      )}
+                    </TabPanel>
+                  ))}
             </Collapse>
           </Tabs>
           {adVisibility ? <AdCarbonInline /> : null}

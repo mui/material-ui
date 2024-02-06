@@ -182,7 +182,6 @@ module.exports = async function demoLoader() {
       extractImports(demos[demoName].raw).forEach((importModuleID) => {
         // detect relative import
         if (importModuleID.startsWith('.')) {
-          // resolve the path of the relative import file
           relativeModules.set(
             demoName,
             relativeModules.has(demoName)
@@ -344,13 +343,15 @@ module.exports = async function demoLoader() {
         // use Promise.all for parallel processing
         const relativeModuleData = await Promise.all(
           relativeModuleIDs.map(async (relativeModuleID) => {
-            // Add relative demo data
+            // Resolve the relative module filepath
             const relativeModuleFilepath = path.join(
               moduleFilepath,
               '..',
               relativeModuleID.replace(/\//g, path.sep),
             );
-
+            // Use the extension to determine the language
+            // e.g. .tsx for TypeScript => language = 'tsx'
+            // e.g. .js for JavaScript => language = 'js'
             const extension = path.extname(relativeModuleFilepath).replace('.', '');
 
             const relativeModuleRaw = await fs.readFile(relativeModuleFilepath, {
