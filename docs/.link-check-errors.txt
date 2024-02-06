@@ -1,2 +1,3 @@
 Broken links found by `pnpm docs:link-check` that exist:
 
+- https://mui.com/base-ui/react-transitions/#css-transitions
