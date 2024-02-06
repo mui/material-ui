@@ -1,3 +1,5 @@
+import appendAttribute from '../../util/appendAttribute';
+import assignObject from '../../util/assignObject';
 import findComponentJSX from '../../util/findComponentJSX';
 
 /**
@@ -18,6 +20,34 @@ export default function transformer(file, api, options) {
         return true;
       },
     );
+
+    const sxIndex = elementPath.node.openingElement.attributes.findIndex(
+      (attr) => attr.type === 'JSXAttribute' && attr.name.name === 'sx',
+    );
+    if (sxIndex === -1) {
+      appendAttribute(j, {
+        target: elementPath.node,
+        attributeName: 'sx',
+        expression: j.objectExpression([
+          j.objectProperty(j.identifier('opacity'), j.literal('0.6')),
+        ]),
+      });
+    } else {
+      // append opacity if only opacity key doesn't exist
+      // console.log(elementPath.node.openingElement.attributes[sxIndex].value.expression.properties);
+
+      const opacityIndex = elementPath.node.openingElement.attributes[
+        sxIndex
+      ].value.expression.properties.findIndex((key) => key.key.name === 'opacity');
+
+      if (opacityIndex === -1) {
+        assignObject(j, {
+          target: elementPath.node.openingElement.attributes[sxIndex],
+          key: 'opacity',
+          expression: j.literal('0.6'),
+        });
+      }
+    }
   });
 
   root.find(j.ObjectProperty, { key: { name: 'MuiDivider' } }).forEach((path) => {
