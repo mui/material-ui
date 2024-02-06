@@ -290,7 +290,7 @@ export default function GlobalCssSliderDeep() {
 ### Change the default styled engine
 
 By default, Material UI components come with Emotion as their style engine.
-If, however, you would like to use styled-components, you can configure your app by following the [styled-components guide](/material-ui/guides/styled-components/) or starting with one of the example projects:
+If, however, you would like to use styled-components, you can configure your app by following the [styled-components guide](/material-ui/integrations/styled-components/) or starting with one of the example projects:
 
 <!-- #default-branch-switch -->
 
@@ -593,17 +593,17 @@ export default function CssModulesSliderDeep2() {
 
 ### The `css` prop
 
-Emotion's **css()** method works seamlessly with Material UI.
+Emotion's `css()` method works seamlessly with Material UI.
 
 {{"demo": "EmotionCSS.js", "defaultCodeOpen": true}}
 
 ### Theme
 
-It works exactly like styled components. You can [use the same guide](/material-ui/guides/interoperability/#styled-components).
+It works exactly like styled components. You can [use the same guide](/material-ui/integrations/interoperability/#styled-components).
 
 ### The `styled()` API
 
-It works exactly like styled components. You can [use the same guide](/material-ui/guides/interoperability/#styled-components).
+It works exactly like styled components. You can [use the same guide](/material-ui/integrations/interoperability/#styled-components).
 
 ## Tailwind CSS
 
