@@ -5,7 +5,6 @@ import Typography from '@mui/material/Typography';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import SearchOffRoundedIcon from '@mui/icons-material/SearchOffRounded';
-import { DeferredAppSearch } from 'docs/src/modules/components/AppFrame';
 
 function NotFoundIllustration() {
   return (
@@ -103,9 +102,8 @@ export default function NotFoundHero() {
             Page not found
           </Typography>
         }
-        description="Apologies, but the page you were looking for wasn't found. Try using the search button below to look for another one."
+        description="Apologies, but the page you were looking for wasn't found. Try reaching for the search button on the nav bar above to look for another one."
       />
-      <DeferredAppSearch />
     </Section>
   );
 }
