@@ -92,7 +92,7 @@ We've earmarked several bugs we want to tackle before the stable release in area
 
 <img alt="A screenshot of the Base UI stable release milestone on GitHub as of January 2024." src="/static/blog/base-ui-2024-plans/base-ui-milestone.png" width="1200" height="600" loading="lazy" />
 
-If you want to see if the specific bug that was annoying you was solved, head over to [the Base UI stable release milestone](https://github.com/mui/material-ui/milestone/46) on GitHub. There, you can see every issue we have lined up for it.
+If you want to see if the specific bug that was annoying you was solved, head over to [the Base UI stable release milestone](https://github.com/mui/material-ui/milestone/46) on GitHub.
 
 ## Join us on the ride
 
