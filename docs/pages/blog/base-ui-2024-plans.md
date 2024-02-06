@@ -50,7 +50,7 @@ This API, while powerful, has proven to be less than ideal in some instances.
 Most notably, it's too lengthy and complicated to write and read when used with libraries such as Tailwind CSS.
 Additionally, since the `slots` and the corresponding `slotProps` are not related in terms of TypeScript types, it's possible to introduce bugs or have the compiler complain about valid code.
 
-To address these issues, we're considering adopting a new API that would assign a discrete subcomponent to each DOM node—the pattern favored by many other headless component libraries. (Think: `<Slider.Track />`, `<Slider.Thumb />`, etc.)
+To address these issues, we're considering adopting a new API that would assign a discrete subcomponent to each DOM node—the pattern favored by many other headless component libraries (think: `<Slider.Track />`, `<Slider.Thumb />`, etc.).
 This pattern has the potential to radically improve the customization experience, both for styles and structure.
 We're still fleshing out the details and plan to release an RFC on GitHub in the coming days—we'll update this blog post with the link when it's available.
 We know that a significant number of projects depend on the existing API, and we want to assure you that one of our top priorities is to provide a smooth migration experience.
