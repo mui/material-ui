@@ -184,7 +184,7 @@ onChange: (
 ) => void;
 ```
 
-It's called when the `<input>` element is blurred, or when the stepper buttons are clicked, after the value has been clamped based on the [`min`, `max`](#minimum-and-maximum), or [`step`](#incremental-steps) props.
+It's called when the `<input>` element is blurred if the value has changed, or when the stepper buttons are clicked. This is after the value has been clamped based on the [`min`, `max`](#minimum-and-maximum), or [`step`](#incremental-steps) props.
 
 :::info
 When using the component, `onChange` can only be passed as a prop on the component—not through `slotProps`.

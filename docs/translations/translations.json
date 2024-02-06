@@ -61,8 +61,8 @@
       "joy-variant": "To learn how to add your own variants, check out <a href='/joy-ui/customization/themed-components/#extend-variants'>Themed components—Extend variants</a>."
     }
   },
-  "albumDescr": "A responsive album / gallery page layout with a hero unit and footer.",
-  "albumTitle": "Album",
+  "landingPageDescr": "A responsive landing page layout with many common sections.",
+  "landingPageTitle": "Landing page",
   "searchButton": "Search…",
   "algoliaSearch": "What are you looking for?",
   "appFrame": {
@@ -258,7 +258,7 @@
     "/base-ui/react-checkbox": "Checkbox",
     "/base-ui/react-input": "Input",
     "/base-ui/react-number-input": "Number Input",
-    "/base-ui/react-radio-button": "Radio Button",
+    "/base-ui/react-radio-group": "Radio Group",
     "/base-ui/react-rating": "Rating",
     "/base-ui/react-select": "Select",
     "/base-ui/react-slider": "Slider",

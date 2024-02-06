@@ -1,4 +1,4 @@
-# Design Engineer - xGrid
+# Design Engineer — xGrid
 
 <p class="description">You will design and implement a great user and developer experience for the MUI X Data Grid.</p>
 

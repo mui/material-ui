@@ -10,7 +10,7 @@ import type {
 import type { Replacements, Rules } from '@linaria/utils';
 import { ValueType } from '@linaria/utils';
 import type { CSSInterpolation } from '@emotion/css';
-import deepMerge from 'lodash.merge';
+import deepMerge from 'lodash/merge';
 import BaseProcessor from './base-processor';
 import type { IOptions } from './styled';
 import { cache, css } from '../utils/emotion';

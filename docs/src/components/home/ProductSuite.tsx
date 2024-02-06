@@ -53,7 +53,7 @@ export default function ProductSuite() {
           <SectionHeadline
             overline="Products"
             title={
-              <Typography variant="h2" sx={{ my: 1 }}>
+              <Typography variant="h2">
                 Every component you need is <GradientText>ready for production</GradientText>
               </Typography>
             }
