@@ -11,6 +11,7 @@ import { ValueType } from '@linaria/utils';
 import type { Rules, Replacements, ExpressionValue, LazyValue, ConstValue } from '@linaria/utils';
 import { parseExpression } from '@babel/parser';
 import type { ObjectExpression, SourceLocation } from '@babel/types';
+import { CSSObject } from '@emotion/css';
 import type { PluginCustomOptions } from '../utils/cssFnValueToVariable';
 import { cssFnValueToVariable } from '../utils/cssFnValueToVariable';
 import { processCssObject } from '../utils/processCssObject';
@@ -35,7 +36,7 @@ type ComponentNames = keyof Exclude<Theme['components'], undefined>;
 
 type ComponentMeta = {
   name?: ComponentNames;
-  // slot?: string;
+  slot?: string;
   skipVariantsResolver?: boolean;
   skipSx?: boolean;
 };
@@ -106,8 +107,6 @@ export class StyledProcessor extends BaseProcessor {
   collectedStyles: [string, string, ExpressionValue | null][] = [];
 
   collectedVariables: [string, Expression, boolean][] = [];
-
-  collectedOverrides: [string, string][] = [];
 
   collectedVariants: VariantDataTransformed[] = [];
 
@@ -379,35 +378,41 @@ export class StyledProcessor extends BaseProcessor {
     }
     const value = values.get(this.componentMetaArg.ex.name) as ComponentMeta;
     const { themeArgs: { theme } = {} } = this.options as IOptions;
-    if (!value.name || !theme) {
+    if (!value.name || !value.slot || !theme) {
       return;
     }
     const componentData = (theme as Theme).components?.[value.name];
     if (!componentData) {
       return;
     }
+
     if ('styleOverrides' in componentData) {
-      const overrides = componentData.styleOverrides;
-      if (overrides && typeof overrides !== 'string') {
-        Object.entries(overrides).forEach(([key, overrideStyle]) => {
-          if (typeof overrideStyle === 'string') {
-            const className = this.getClassName();
-            this.collectedOverrides.push([key, className]);
-            this.collectedStyles.push([className, overrideStyle, null]);
-            return;
-          }
-          const finalStyle = this.processCss(overrideStyle, null, variantsAccumulator);
-          const className = this.getClassName();
-          this.collectedOverrides.push([key, className]);
-          this.baseClasses.push(className);
-          this.collectedStyles.push([className, finalStyle, null]);
-        });
+      const overrides = componentData.styleOverrides as Record<string, CSSObject>;
+      if (!overrides) {
+        return;
       }
+      const overrideStyle = (overrides[value.slot.toLowerCase()] || overrides[value.slot]) as
+        | string
+        | CSSObject;
+      const className = this.getClassName();
+      if (typeof overrideStyle === 'string') {
+        this.collectedStyles.push([className, overrideStyle, null]);
+        return;
+      }
+      const finalStyle = this.processCss(overrideStyle, null, variantsAccumulator);
+      this.baseClasses.push(className);
+      this.collectedStyles.push([className, finalStyle, null]);
     }
+
     if (!variantsAccumulator) {
       return;
     }
-    if ('variants' in componentData && componentData.variants) {
+
+    if (
+      'variants' in componentData &&
+      componentData.variants &&
+      value.slot.toLowerCase() === 'root'
+    ) {
       variantsAccumulator.push(...(componentData.variants as unknown as VariantData[]));
     }
   }
