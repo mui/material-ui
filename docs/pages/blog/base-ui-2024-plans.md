@@ -33,7 +33,8 @@ Worry no more, as we're focused on shipping the first versions of all of the com
 
 ## Improved customization API
 
-Currently, Base UI components can be customized to your heart's content using the `slots` and `slotProps` props.
+Currently, Base UI components can be customized to your heart's content using the `slots` and `slotProps` props.
+(Read more about them in the "[Overriding component structure](/base-ui/guides/overriding-component-structure/)" guide.)
 
 ```tsx
 // Example of the slot prop
@@ -48,7 +49,7 @@ Currently, Base UI components can be customized to your heart's content using th
 
 This API, while powerful, has proven to be less than ideal in some instances.
 Most notably, it's too lengthy and complicated to write and read when used with libraries such as Tailwind CSS.
-Additionally, since the `slots` and the corresponding `slotProps` are not related to Typescript types, it's possible to introduce bugs or have the compiler complain about valid code.
+Additionally, since the `slots` and the corresponding `slotProps` are not related to Typescript types, it's possible to introduce bugs or have the compiler complain about valid code.
 
 To address these issues, we're considering adopting another customization API.
 We're still fleshing out the details and plan to release an RFC on GitHub in the upcoming days.
