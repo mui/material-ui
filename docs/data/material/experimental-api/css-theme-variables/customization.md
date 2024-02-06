@@ -227,7 +227,7 @@ const theme = extendTheme({ cssVarPrefix: '' });
 
 ## Custom styles per mode
 
-To customize the style without creating new tokens, you can use the `theme.getColorSchemeSelector` utility:
+Starting from `@mui/material` [v5.15.7](https://github.com/mui/material-ui/releases/tag/v5.15.7), we recommend using `theme.applyStyles` utility to apply styles for a specific mode:
 
 ```js
 const Button = styled('button')(({ theme }) => ({
@@ -239,14 +239,14 @@ const Button = styled('button')(({ theme }) => ({
   },
 
   // in dark mode.
-  [theme.getColorSchemeSelector('dark')]: {
+  ...theme.applyStyles('dark', {
     backgroundColor: theme.vars.palette.primary.dark,
     color: theme.vars.palette.primary.main,
     '&:hover': {
       color: '#fff',
       backgroundColor: theme.vars.palette.primary.dark,
     },
-  },
+  }),
 }));
 ```
 
