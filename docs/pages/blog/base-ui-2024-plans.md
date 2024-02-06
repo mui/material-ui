@@ -8,7 +8,7 @@ card: true
 ---
 
 It's been a while since we started work on Base UI, a library of unstyled React UI components and hooks.
-It all started years ago, way before similar products were as widely known as today when we imagined a world where Material UI existed without Material Design.
+It all began years ago, way before similar products were as widely known as today when we imagined a world where Material UI existed without Material Design.
 
 We're super excited because this world is getting closer than ever.
 This year will see a lot of investment in Base UI as we expand the team ([we're hiring!](/careers/staff-ui-engineer-base-ui/)) and focus hard on a [stable release](https://github.com/mui/material-ui/milestone/46) (tentatively planned for Q3/2024), which will come full of new components, features, and improvements.
@@ -49,7 +49,7 @@ Currently, Base UI components can be customized to your heart's content using th
 
 This API, while powerful, has proven to be less than ideal in some instances.
 Most notably, it's too lengthy and complicated to write and read when used with libraries such as Tailwind CSS.
-Additionally, since the `slots` and the corresponding `slotProps` are not related to Typescript types, it's possible to introduce bugs or have the compiler complain about valid code.
+Additionally, since the `slots` and the corresponding `slotProps` are not related in terms of TypeScript types, it's possible to introduce bugs or have the compiler complain about valid code.
 
 To address these issues, we're considering adopting another customization API.
 We're still fleshing out the details and plan to release an RFC on GitHub in the upcoming days.
