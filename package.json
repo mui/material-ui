@@ -117,7 +117,7 @@
     "@types/mocha": "^10.0.6",
     "@types/node": "^18.19.14",
     "@types/prettier": "^2.7.3",
-    "@types/react": "^18.2.48",
+    "@types/react": "^18.2.55",
     "@types/yargs": "^17.0.32",
     "@typescript-eslint/eslint-plugin": "^6.19.1",
     "@typescript-eslint/parser": "^6.19.1",
@@ -206,7 +206,7 @@
     "@definitelytyped/typescript-versions": "^0.1.0",
     "@definitelytyped/utils": "^0.1.1",
     "@types/node": "^18.19.14",
-    "@types/react": "^18.2.48",
+    "@types/react": "^18.2.55",
     "@types/react-dom": "18.2.18",
     "cross-fetch": "^4.0.0"
   },
