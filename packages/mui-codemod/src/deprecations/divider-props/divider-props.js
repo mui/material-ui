@@ -55,6 +55,27 @@ export default function transformer(file, api, options) {
     defaultPropsObject.value.properties = defaultPropsObject.value.properties.filter(
       (prop) => !['light'].includes(prop?.key?.name),
     );
+
+    const sxIndex = defaultPropsObject.value.properties.findIndex((prop) => prop.key.name === 'sx');
+
+    if (sxIndex === -1) {
+      defaultPropsObject.value.properties.push(
+        j.objectProperty(
+          j.identifier('sx'),
+          j.objectExpression([j.objectProperty(j.identifier('opacity'), j.literal('0.6'))]),
+        ),
+      );
+    } else {
+      const opacityIndex = defaultPropsObject.value.properties[sxIndex].value.properties.findIndex(
+        (key) => key.key.name === 'opacity',
+      );
+
+      if (opacityIndex === -1) {
+        defaultPropsObject.value.properties[sxIndex].value.properties.push(
+          j.objectProperty(j.identifier('opacity'), j.literal('0.6')),
+        );
+      }
+    }
   });
 
   return root.toSource(printOptions);
