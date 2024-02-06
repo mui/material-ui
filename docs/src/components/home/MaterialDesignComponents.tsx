@@ -248,8 +248,12 @@ export function buildTheme(): ThemeOptions {
           contained: ({ theme }) => ({
             color: (theme.vars || theme).palette.primaryDark[50],
             backgroundColor: (theme.vars || theme).palette.primary[600],
+            boxShadow: '0 2px 0 rgba(255,255,255,0.1) inset, 0 -1px 0 rgba(0,0,0,0.1) inset',
+            border: '1px solid',
+            borderColor: (theme.vars || theme).palette.primary[600],
             ...theme.applyDarkStyles({
               backgroundColor: (theme.vars || theme).palette.primary[600],
+              borderColor: (theme.vars || theme).palette.primary[800],
             }),
           }),
           outlined: ({ theme }) => ({
@@ -415,7 +419,8 @@ export function buildTheme(): ThemeOptions {
                 borderColor: (theme.vars || theme).palette.primary[300],
               },
               '& .MuiOutlinedInput-input': {
-                backgroundColor: (theme.vars || theme).palette.primaryDark[900],
+                borderRadius: 'inherit',
+                backgroundColor: (theme.vars || theme).palette.primaryDark[800],
               },
               '& .MuiFilledInput-root': {
                 borderColor: (theme.vars || theme).palette.primaryDark[700],
@@ -470,31 +475,36 @@ export function buildTheme(): ThemeOptions {
           paper: ({ theme }) => ({
             boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
             ...theme.applyDarkStyles({
-              boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.5)',
+              boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.2)',
             }),
           }),
         },
       },
       MuiMenu: {
         styleOverrides: {
-          list: ({ theme }) => ({
-            padding: theme.spacing(1, 0),
-          }),
+          list: {
+            padding: 0,
+          },
         },
       },
       MuiMenuItem: {
         styleOverrides: {
           root: ({ theme }) => [
             {
-              padding: theme.spacing(1, 2),
+              margin: theme.spacing(1),
+              padding: '4px 8px',
+              borderRadius: '8px',
+              '& .MuiListItemIcon-root': {
+                minWidth: '24px',
+              },
               '& svg': {
-                fontSize: '1.125rem',
-                color: (theme.vars || theme).palette.primaryDark[400],
+                fontSize: '1rem',
+                color: (theme.vars || theme).palette.grey[500],
               },
             },
             theme.applyDarkStyles({
               '& svg': {
-                color: (theme.vars || theme).palette.primary[300],
+                color: (theme.vars || theme).palette.grey[400],
               },
             }),
           ],
