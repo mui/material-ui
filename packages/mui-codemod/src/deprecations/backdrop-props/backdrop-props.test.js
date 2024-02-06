@@ -25,5 +25,29 @@ describe('@mui/codemod', () => {
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
     });
+
+    describe('[theme] backdrop-props', () => {
+      it('transforms props as needed', () => {
+        const actual = transform(
+          { source: read('./test-cases/theme.actual.js') },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./test-cases/theme.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+
+      it('should be idempotent', () => {
+        const actual = transform(
+          { source: read('./test-cases/theme.expected.js') },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./test-cases/theme.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+    });
   });
 });

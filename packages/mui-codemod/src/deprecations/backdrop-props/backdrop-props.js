@@ -40,10 +40,20 @@ export default function transformer(file, api, options) {
     }
 
     index = elementPath.node.openingElement.attributes.findIndex(
-      (attr) => attr.type === 'JSXAttribute' && attr.name.name === 'TransitionProps',
+      (attr) => attr.type === 'JSXAttribute' && attr.name.name === 'transitionDuration',
     );
+
     if (index !== -1) {
       const removed = elementPath.node.openingElement.attributes.splice(index, 1);
+      const updated = j.objectExpression([
+        j.objectProperty(
+          j.identifier('transition'),
+          j.objectExpression([
+            j.objectProperty(j.identifier('timeout'), removed[0].value.expression),
+          ]),
+        ),
+      ]);
+
       let hasNode = false;
       elementPath.node.openingElement.attributes.forEach((attr) => {
         if (attr.name?.name === 'slotProps') {
@@ -51,7 +61,7 @@ export default function transformer(file, api, options) {
           assignObject(j, {
             target: attr,
             key: 'transition',
-            expression: removed[0].value.expression,
+            expression: updated,
           });
         }
       });
@@ -59,9 +69,7 @@ export default function transformer(file, api, options) {
         appendAttribute(j, {
           target: elementPath.node,
           attributeName: 'slotProps',
-          expression: j.objectExpression([
-            j.objectProperty(j.identifier('transition'), removed[0].value.expression),
-          ]),
+          expression: updated,
         });
       }
     }
@@ -79,13 +87,13 @@ export default function transformer(file, api, options) {
     }
   });
 
-  root.find(j.ObjectProperty, { key: { name: 'TransitionProps' } }).forEach((path) => {
+  root.find(j.ObjectProperty, { key: { name: 'transitionDuration' } }).forEach((path) => {
     if (path.parent?.parent?.parent?.parent?.node.key?.name === 'MuiBackdrop') {
       path.replace(
         j.property(
           'init',
           j.identifier('slotProps'),
-          j.objectExpression([j.objectProperty(j.identifier('transition'), path.node.value)]),
+          j.objectExpression([j.objectProperty(j.identifier('transition'),  j.objectExpression([j.objectProperty(j.identifier('timeout'), path.node.value)]))]),
         ),
       );
     }
