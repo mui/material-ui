@@ -376,6 +376,7 @@ const selectionOverride = (theme) => ({
       bottom: '-6px',
       height: 2,
       width: '100%',
+      borderRadius: 4,
       bgcolor: (theme.vars || theme).palette.primary.light,
     },
     ...theme.applyDarkStyles({
