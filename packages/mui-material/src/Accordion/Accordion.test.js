@@ -260,7 +260,9 @@ describe('<Accordion />', () => {
     const { getByText } = render(
       <Accordion
         expanded
-        slotProps={{ transition: { component: CustomTransition, unmountOnExit: true } }}
+        slotProps={{
+          transition: { component: CustomTransition, unmountOnExit: true, timeout: 400 },
+        }}
       >
         {minimalChildren}
         <AccordionDetails>details</AccordionDetails>
