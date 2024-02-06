@@ -96,6 +96,7 @@ npx @mui/codemod@latest deprecations/accordion-props <path>
 ```diff
  <Divider
 -    light
++    sx={{opacity: "0.6"}}
  />
 ```
 
