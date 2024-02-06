@@ -7,21 +7,20 @@ tags: ['Base UI', 'Product']
 card: true
 ---
 
-It's been a while since we started work on Base UI, a library of unstyled React UI components and hooks.
-It all began years ago, way before similar products were as widely known as today when we imagined a world where Material UI existed without Material Design.
+The [story of Base UI](/blog/introducing-base-ui/) began several years ago—long before headless React component libraries skyrocketed in popularity—when we started to imagine a world in which Material UI could exist without Material Design.
 
-We're super excited because this world is getting closer than ever.
-This year will see a lot of investment in Base UI as we expand the team ([we're hiring!](/careers/staff-ui-engineer-base-ui/)) and focus hard on a [stable release](https://github.com/mui/material-ui/milestone/46) (tentatively planned for Q3/2024), which will come full of new components, features, and improvements.
+We're super excited to share that this dream has become a reality!
+This year will see a lot of investment in Base UI as we expand the team ([we're hiring!](/careers/staff-ui-engineer-base-ui/)) and focus hard on a [stable release](https://github.com/mui/material-ui/milestone/46) (tentatively planned for late 2024), which will come full of new components, features, and improvements.
 
 Let's walk through some of the things we're cooking up.
 
 ## A larger set of components
 
-Base UI today offers a modest set of components and hooks, including some slightly more complex ones such as Autocomplete and Number Input.
-However, we're conscious that many primitive components that would allow a real-world website or application to use Base UI as its foundation are missing.
-Worry no more, as we're focused on shipping the first versions of all of the components listed below for the stable release:
+Base UI today offers a modest set of components and hooks, including some slightly more complex ones such as [Autocomplete](/base-ui/react-autocomplete/) and [Number Input](/base-ui/react-number-input/).
+However, we're aware that the package is still missing many primitive components that developers would need in order to adopt it for real-world applications.
+Fear not, because we're working hard to ship all of the components listed below with the stable release:
 
-| To-be-added components |                                                                                                |
+| Components to be added |                                                                                                |
 | :--------------------- | ---------------------------------------------------------------------------------------------: |
 | Accordion              | [View&nbsp;the&nbsp;GitHub&nbsp;issue&nbsp;→](https://github.com/mui/material-ui/issues/38037) |
 | Alert Dialog           |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/40886) |
@@ -37,7 +36,7 @@ Currently, Base UI components can be customized to your heart's content using th
 (Read more about them in the "[Overriding component structure](/base-ui/guides/overriding-component-structure/)" guide.)
 
 ```tsx
-// Example of the slot prop
+// Example of the slots prop
 <Select slots={{ listbox: 'ol' }} defaultValue="First option">
   <Option value="First option">First option</Option>
   <Option value="Second option">Second option</Option>
@@ -51,54 +50,56 @@ This API, while powerful, has proven to be less than ideal in some instances.
 Most notably, it's too lengthy and complicated to write and read when used with libraries such as Tailwind CSS.
 Additionally, since the `slots` and the corresponding `slotProps` are not related in terms of TypeScript types, it's possible to introduce bugs or have the compiler complain about valid code.
 
-To address these issues, we're considering adopting another customization API.
-We're still fleshing out the details and plan to release an RFC on GitHub in the upcoming days.
-We are aware that a significant number of projects depend on the current API; therefore, we want to assure you that offering a smooth migration experience is very high on our priority list.
-
-Once we know all the details about the new API, we'll figure out the best way to migrate existing projects (with either a codemod, wrapper components exposing the old API, or something else).
+To address these issues, we're considering adopting a new API that would assign a discrete subcomponent to each DOM node—the pattern favored by many other headless component libraries. (Think: `<Slider.Track />`, `<Slider.Thumb />`, etc.)
+This pattern has the potential to radically improve the customization experience, both for styles and structure.
+We're still fleshing out the details and plan to release an RFC on GitHub in the coming days—we'll update this blog post with the link when it's available.
+We know that a significant number of projects depend on the existing API, and we want to assure you that one of our top priorities is to provide a smooth migration experience.
 
 ## More thorough animation support
 
 Animation is a key element for adding delight to any application.
-We've already kicked off work on animation support by releasing the [`CssTransition`](/base-ui/react-transitions/#css-transition) and [`CssAnimation`](/base-ui/react-transitions/#css-animation) components, and the `useTransitionTrigger` and `useTransitionStateManager` hooks.
-They're currently available for use with the Popup, Menu, and Select components, but the plan is to extend their coverage significantly while also adding more features.
+We've already kicked off work on animation support by releasing the [CSS Transition](/base-ui/react-transitions/#css-transition) and [CSS Animation](/base-ui/react-transitions/#css-animation) components, as well as the `useTransitionTrigger` and `useTransitionStateManager` hooks.
+They're currently available for use with the Popup, Menu, and Select, and the plan is to extend support to more components while also adding more features.
 
 {{"demo": "../../data/base/components/transitions/AllTransitionsDemo.js", "hideToolbar": true}}
 
-<p class="blog-description" style="margin: -16px 0 0 0;">The CSS Animation transition was exaggerated for easier differentiation.</p>
+<p class="blog-description" style="margin: -16px 0 0 0;">The CSS Animation transition is exaggerated here for the sake of demonstration.</p>
 
 ## Independent component versioning
 
-The biggest benefit of making each Base UI component available through its own npm package is speed.
-All of the above-listed components and any future bug fix and/or feature addition that may be considered as a breaking change would get out of the door and into your project a lot faster, given we wouldn't need to coordinate and/or wait for a significant amount of them to pile up for a next package-wide major release.
+Instead of versioning the package as a whole, we're transitioning to offering each Base UI component as its own individual NPM package with its own version.
+This is a huge DX win, because it enables us to iterate much more quickly on individual components, and get bug fixes out to you on a per-component basis with no need to wait for a package-wide major release.
 
-Although installing each component individually can initially sound like a hurdle, it will enable you to experiment with each one at a time and only commit to those you're interested in using.
+Although it may initially sound like a burden to install each component individually, it means that you only have to commit to those you're actually interested in using.
+Pick and choose only what you need, or even mix and match with complementary component libraries that you're already using.
 
 ## A more independent product
 
-Until now, all Base UI-related development happened within the Material UI GitHub repository.
-That made a lot of sense, given that initially, we weren't shooting for Base UI to be a standalone product with its own audience.
-As a natural consequence, we've seen developers hesitant to use it out of concern about dealing with anything related to Material Design. This is not the case, as no theme or style is attached to the components.
+Thus far, all Base UI-related development has happened within the Material UI GitHub repository.
+That made a lot of sense in the beginning, because we didn't intend for Base UI to be a standalone product at the time.
+As a result of this early decision, we've seen that some developers are hesitant to try it out because of the apparent association with Material Design.
+Rest assured that Base UI _is_ now a standalone library, and it doesn't come packaged with _any_ default styles or themes.
 
 <img alt="Material UI vs. Base UI: independent but related products." src="/static/blog/base-ui-2024-plans/material-vs-base.png" width="1200" height="450" loading="lazy" />
 
-That has already changed, as we want developers to gain the benefits of Base UI way beyond the scope of Material UI.
-We intend to move Base UI to a dedicated GitHub repo and potentially move the packages to a separate npm org for more focused communication and to make room for its independent growth.
+Base UI is no longer _merely_ "Material UI without the styles"—as we've seen with developer trends over the last few years, the potential for growth and adoption of headless components could actually dwarf Material UI in the near future.
+To acknowledge that Base UI has the potential to outgrow Material UI, we plan to move it to its own dedicated GitHub repo for more focused communication and collaboration with the community that's growing around it.
 
-## Getting many bugs out of the way
+## Getting bugs out of the way
 
-Full support for various accessibility-related features and an intuitive API for extensive customization are at the core of what Base UI strives to deliver out of the box.
+The core of what Base UI strives to deliver out of the box is first-class accessibility and an intuitive API for extensive customization.
 We've earmarked several bugs we want to tackle before the stable release in areas such as keyboard navigation, better ARIA support, focus styles, and more.
 
 <img alt="A screenshot of the Base UI stable release milestone on GitHub as of January 2024." src="/static/blog/base-ui-2024-plans/base-ui-milestone.png" width="1200" height="600" loading="lazy" />
 
-If you want to see if the specific bug that was annoying you was solved, head over to [the Base UI stable release milestone](https://github.com/mui/material-ui/milestone/46) on GitHub.
+You can track our progress fixing any specific bugs by checking out the list of [Base UI stable release milestones on GitHub](https://github.com/mui/material-ui/milestone/46).
 
 ## Join us on the ride
 
-If you're passionate about the mission of extending the web platform with powerful, accessibility-focused, unstyled components, [we're hiring UI Engineers](/careers/staff-ui-engineer-base-ui/) to work on the Base UI team and help us accelerate this more and more!
+If you're passionate about the mission of extending the web platform with powerful, accessible, unstyled components, [we're hiring UI Engineers](/careers/staff-ui-engineer-base-ui/) to work on the Base UI team and help us accelerate its growth.
 
-Lastly, we'd love to know your thoughts or comments.
-Please hop over to [the GitHub repo](https://github.com/mui/material-ui/issues?q=is:open+is:issue+label:%22package:+base-ui%22) and feel free to open or chime in on issues.
+Lastly, we'd love to hear your feedback.
+The best place to share your ideas and requests is in [the GitHub repo](https://github.com/mui/material-ui/issues?q=is:open+is:issue+label:%22package:+base-ui%22).
+Check out the existing issues and add your thoughts, and feel free to open your own issue if you don't see your concerns addressed elsewhere.
 
 Happy development! 👋
