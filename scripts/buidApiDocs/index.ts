@@ -28,7 +28,7 @@ yargs(process.argv.slice(2))
     builder: (command) => {
       return command.option('grep', {
         description:
-          'Only generate files for component filenames matching the pattern. The string is treated as a RegExp.',
+          'Generate files only for component filenames that match the specified pattern, treating the string as a regular expression.',
         type: 'string',
       });
     },
