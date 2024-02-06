@@ -61,8 +61,8 @@
       "joy-variant": "To learn how to add your own variants, check out <a href='/joy-ui/customization/themed-components/#extend-variants'>Themed components—Extend variants</a>."
     }
   },
-  "albumDescr": "A responsive album / gallery page layout with a hero unit and footer.",
-  "albumTitle": "Album",
+  "landingPageDescr": "A responsive landing page layout with many common sections.",
+  "landingPageTitle": "Landing page",
   "searchButton": "Search…",
   "algoliaSearch": "What are you looking for?",
   "appFrame": {
