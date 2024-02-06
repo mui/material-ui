@@ -4,7 +4,7 @@
 
 _Feb 6, 2024_
 
-A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
 
 - 💫 Added a redesigned [landing page template](https://mui.com/material-ui/getting-started/templates/landing-page/) (#37557) @zanivan
 - ✨ Added support for Arrow Down/Up + Shift and Page Up/Down keys for faster stepping in the Slider component (#40676) @mnajdova
@@ -44,6 +44,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - &#8203;<!-- 13 -->[material-ui] Correct Google font CDN URL as Roboto 600 weight is not used (#40852) @xuhdev
 - &#8203;<!-- 14 -->[material-ui] Replace the Album template with a landing page (#37557) @zanivan
 - &#8203;<!-- 21 -->[material-ui] Add deprecations migration guide (#40767) @DiegoAndai
+- &#8203;<!-- 22 -->[material-ui] Improve aria-label throughout the Button Group demos (#40892) @danilo-leal
 - &#8203;<!-- 17 -->[joy-ui] Update the Overview callout (#40900) @danilo-leal
 - &#8203;<!-- 22 -->Fix image size and dark mode @oliviertassinari
 - &#8203;<!-- 21 -->Migrate links from legacy.reactjs.org to react.dev @oliviertassinari
@@ -57,6 +58,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - &#8203;<!-- 27 -->[blog] Clarify barrel index tree-shaking @oliviertassinari
 - &#8203;<!-- 26 -->[code-infra] Simplify bug reproduction (#40833) @oliviertassinari
 - &#8203;<!-- 25 -->[code-infra] Prepare publishing @mui-internal/typescript-to-proptypes to npm (#40842) @michaldudak
+- &#8203;<!-- 40 -->[code-infra] Remove babel alias from the docs (#40792) @Janpot
 - &#8203;<!-- 24 -->[core] Use Google Font v2 API @oliviertassinari
 - &#8203;<!-- 23 -->[core] Add missing change to v5.15.7 changelog (#40872) @DiegoAndai
 - &#8203;<!-- 31 -->[core] Normalize `<meta name="viewport" />`` @oliviertassinari
@@ -75,7 +77,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - &#8203;<!-- 03 -->[website] Use em-dash when relevant over hyphen @oliviertassinari
 - &#8203;<!-- 03 -->[zero] Fix build for demo next.js app (#40854) @brijeshb42
 
-All contributors of this release in alphabetical order: @adebiyial, @brijeshb42, @danilo-leal, @DiegoAndai, @hsmtkk, @michaldudak, @mj12albert, @mnajdova, @oliviertassinari, @rluzists1, @romgrk, @sai6855, @siriwatknp, @Smileek, @xuhdev, @zanivan
+All contributors of this release in alphabetical order: @adebiyial, @brijeshb42, @danilo-leal, @DiegoAndai, @hsmtkk, @Janpot, @michaldudak, @mj12albert, @mnajdova, @oliviertassinari, @rluzists1, @romgrk, @sai6855, @siriwatknp, @Smileek, @xuhdev, @zanivan
 
 ## v5.15.7
 
