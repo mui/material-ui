@@ -63,7 +63,7 @@ export interface CSSObject
 
 interface CSSObjectWithVariants<Props> extends Omit<CSSObject, 'variants'> {
   variants: Array<{
-    props: Props | ((props: { ownerState: Props }) => boolean);
+    props: Props | ((props: Props) => boolean);
     style: CSSObject;
   }>;
 }
