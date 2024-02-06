@@ -91,7 +91,15 @@ function App() {
 
 The `css` function will be replaced with a unique string that represents the CSS class name for the generated styles.
 
-You can reuse the styles across your application by applying the class name to any element.
+Use a callback function to get access to the theme values:
+
+```js
+const title = css(({ theme }) => ({
+  color: theme.colors.primary,
+  fontSize: theme.spacing.unit * 4,
+  fontFamily: theme.typography.fontFamily,
+}));
+```
 
 To Learn more about using theme, check out [Theme](#theme) section.
 
