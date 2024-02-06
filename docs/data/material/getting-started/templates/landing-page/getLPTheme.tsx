@@ -572,7 +572,6 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
               color: 'white',
             },
             '& .MuiInputBase-input': {
-              boxSizing: 'border-box',
               '&::placeholder': {
                 opacity: 0.7,
               },

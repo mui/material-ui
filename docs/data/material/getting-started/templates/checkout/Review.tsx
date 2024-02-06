@@ -38,11 +38,10 @@ export default function Review() {
         </ListItem>
       </List>
       <Divider />
-
       <Stack
         direction="row"
         divider={<Divider orientation="vertical" flexItem />}
-        spacing={4}
+        spacing={2}
       >
         <div>
           <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>

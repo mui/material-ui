@@ -4,6 +4,12 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import Card from '@mui/material/Card';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+
+import CreditCardRoundedIcon from '@mui/icons-material/CreditCardRounded';
+import AccountBalanceRoundedIcon from '@mui/icons-material/AccountBalanceRounded';
 
 export default function PaymentForm() {
   return (
@@ -11,6 +17,24 @@ export default function PaymentForm() {
       <Typography variant="h6" gutterBottom>
         Payment method
       </Typography>
+      <Stack direction="row" spacing={2} sx={{ width: '100%', my: 2 }}>
+        <Card
+          component={Button}
+          startIcon={<CreditCardRoundedIcon />}
+          fullWidth
+          sx={{ justifyContent: 'start', pl: 4, py: 4 }}
+        >
+          <Typography>Credit card</Typography>
+        </Card>
+        <Card
+          component={Button}
+          startIcon={<AccountBalanceRoundedIcon />}
+          fullWidth
+          sx={{ justifyContent: 'start', pl: 4, py: 4 }}
+        >
+          <Typography>Bank account</Typography>
+        </Card>
+      </Stack>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
           <TextField

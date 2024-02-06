@@ -16,6 +16,7 @@ import Grid from '@mui/material/Grid';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 
 const LPtheme = createTheme(getLPTheme('dark'));
+const defaultTheme = createTheme({});
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
@@ -23,6 +24,7 @@ const logoStyle = {
   width: '140px',
   height: 'auto',
   margin: 'auto',
+  opacity: 0.3,
 };
 
 function getStepContent(step: number) {
@@ -58,8 +60,12 @@ export default function Checkout() {
           xs={12}
           sm={6}
           sx={{
+            display: 'flex',
             width: '100%',
             backgroundColor: 'background.paper',
+            borderRight: '1px solid',
+            borderColor: 'divider',
+            alignItems: 'center',
           }}
         >
           <Box
@@ -68,40 +74,43 @@ export default function Checkout() {
               flexDirection: 'column',
               flexGrow: 1,
               maxWidth: 500,
-              m: '20% auto 40%',
+              height: 600,
+              mr: 10,
+              ml: 'auto',
             }}
           >
             <Button
               startIcon={<ArrowBackRoundedIcon />}
               component="a"
               href="/material-ui/getting-started/templates/landing-page/"
-              sx={{ alignSelf: 'start' }}
+              sx={{ alignSelf: 'start', ml: '-8px' }}
             >
               Back
             </Button>
             <Info />
-          </Box>
-        </Grid>
-        <Grid item xs={12} sm={6} sx={{ display: 'flex' }}>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              flexGrow: 1,
-              maxWidth: 600,
-              maxHeight: 800,
-              m: '20% auto 40%',
-            }}
-          >
-            <Box sx={{ display: 'flex', width: '100%', mb: 2 }}>
+            <Box sx={{ display: 'flex' }}>
               <img
                 src={
-                  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
+                  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf7356420e154daf_SitemarkLight.svg'
                 }
                 style={logoStyle}
                 alt="logo of sitemark"
               />
             </Box>
+          </Box>
+        </Grid>
+        <Grid item xs={12} sm={6} sx={{ display: 'flex', alignItems: 'center' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              flexGrow: 1,
+              maxWidth: 500,
+              height: 600,
+              mr: 'auto',
+              ml: 10,
+            }}
+          >
             <Stepper activeStep={activeStep} sx={{ pb: 4 }}>
               {steps.map((label) => (
                 <Step
@@ -120,11 +129,14 @@ export default function Checkout() {
                 <Typography variant="h5" gutterBottom>
                   Thank you for your order.
                 </Typography>
-                <Typography variant="subtitle1">
+                <Typography variant="subtitle1" gutterBottom>
                   Your order number is #2001539. We have emailed your order
                   confirmation, and will send you an update when your order has
                   shipped.
                 </Typography>
+                <Button variant="contained" sx={{ alignSelf: 'start', mt: 2 }}>
+                  Go to my orders
+                </Button>
               </React.Fragment>
             ) : (
               <React.Fragment>
@@ -135,11 +147,12 @@ export default function Checkout() {
                     justifyContent: 'flex-end',
                     alignItems: 'end',
                     flexGrow: 1,
+                    gap: 1,
                   }}
                 >
                   {activeStep !== 0 && <Button onClick={handleBack}>Back</Button>}
                   <Button variant="contained" onClick={handleNext}>
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next step'}
+                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
                   </Button>
                 </Box>
               </React.Fragment>
