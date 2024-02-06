@@ -11,10 +11,13 @@ A zero-runtime CSS-in-JS library that extracts the colocated css to it's own css
     - [Styling based on props](#styling-based-on-props)
     - [Styling based on runtime values](#styling-based-on-runtime-values)
     - [Styled component as a CSS selector](#styled-component-as-a-css-selector)
+    - [Typing props](#typing-props)
 - [Theme](#theme)
   - [Accesing theme values](#accesing-theme-values)
   - [CSS variables support](#css-variables-support)
   - [Color schemes](#color-schemes)
+  - [Switching color schemes](#switching-color-schemes)
+  - [TypeScript](#typescript)
   - [Mutliple themes](#mutliple-themes)
 
 ## Getting started
@@ -245,9 +248,9 @@ const ExtraHeading = styled(Heading)({
 });
 ```
 
-#### TypeScript
+#### Typing props
 
-Add the type of the props before the styles to get the type checking:
+If you use TypeScript, add the props typing before the styles to get the type checking:
 
 ```tsx
 const Heading = styled('h1')<{ isError?: boolean }>({
