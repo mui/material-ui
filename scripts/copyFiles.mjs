@@ -7,7 +7,7 @@ const packagePath = process.cwd();
 const buildPath = path.join(packagePath, './build');
 const srcPath = path.join(packagePath, './src');
 
-async function includeFileInBuild(file) {
+export async function includeFileInBuild(file) {
   const sourcePath = path.resolve(packagePath, file);
   const targetPath = path.resolve(buildPath, path.basename(file));
   await fse.copy(sourcePath, targetPath);
@@ -25,7 +25,7 @@ async function includeFileInBuild(file) {
  * @param {string} param0.from
  * @param {string} param0.to
  */
-async function createModulePackages({ from, to }) {
+export async function createModulePackages({ from, to }) {
   const directoryPackages = glob.sync('*/index.{js,ts,tsx}', { cwd: from }).map(path.dirname);
 
   await Promise.all(
@@ -73,7 +73,7 @@ async function createModulePackages({ from, to }) {
   );
 }
 
-async function typescriptCopy({ from, to }) {
+export async function typescriptCopy({ from, to }) {
   if (!(await fse.pathExists(to))) {
     console.warn(`path ${to} does not exists`);
     return [];
@@ -84,7 +84,7 @@ async function typescriptCopy({ from, to }) {
   return Promise.all(cmds);
 }
 
-async function createPackageFile() {
+export async function createPackageFile() {
   const packageData = await fse.readFile(path.resolve(packagePath, './package.json'), 'utf8');
   const { nyc, scripts, devDependencies, workspaces, ...packageDataOther } =
     JSON.parse(packageData);
@@ -117,7 +117,7 @@ async function createPackageFile() {
   return newPackageData;
 }
 
-async function prepend(file, string) {
+export async function prepend(file, string) {
   const data = await fse.readFile(file, 'utf8');
   await fse.writeFile(file, string + data, 'utf8');
 }
