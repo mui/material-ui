@@ -337,9 +337,12 @@ const DemoRootJoy = joyStyled('div', {
 const DemoCodeViewer = styled(HighlightedCode)(() => ({
   '& pre': {
     margin: 0,
+    marginTop: -1,
     maxHeight: 'min(68vh, 1000px)',
     maxWidth: 'initial',
     borderRadius: 0,
+    borderBottomLeftRadius: 12,
+    borderBottomRightRadius: 12,
   },
 }));
 
@@ -364,7 +367,7 @@ const bordersOverride = {
 
 const selectionOverride = (theme) => ({
   '&.base--selected': {
-    color: '#FFF',
+    color: (theme.vars || theme).palette.primary[500],
     '&::after': {
       content: "''",
       position: 'absolute',
@@ -374,6 +377,9 @@ const selectionOverride = (theme) => ({
       width: '100%',
       bgcolor: (theme.vars || theme).palette.primary.light,
     },
+    ...theme.applyDarkStyles({
+      color: (theme.vars || theme).palette.primary[200],
+    }),
   },
 });
 

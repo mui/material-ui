@@ -26,8 +26,7 @@ const Root = styled('div')(
       borderRadius: `var(--muidocs-shape-borderRadius, ${
         theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
       }px)`,
-      border: '1px solid',
-      borderColor: `var(--muidocs-palette-primaryDark-700, ${lightTheme.palette.primaryDark[700]})`,
+      border: `1px solid ${(theme.vars || theme).palette.divider}`,
       overflow: 'auto',
       WebkitOverflowScrolling: 'touch',
       fontSize: lightTheme.typography.pxToRem(13),

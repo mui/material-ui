@@ -7,22 +7,30 @@ import { Tab } from '@mui/base/Tab';
 import HighlightedCode from './HighlightedCode';
 
 export const StyledTabList = styled(TabsList)(({ theme }) => ({
-  padding: 6,
+  padding: theme.spacing(1),
   display: 'flex',
+<<<<<<< Updated upstream
   border: '1px solid',
   borderColor: (theme.vars || theme).palette.primaryDark[700],
   backgroundColor: (theme.vars || theme).palette.primaryDark[900],
   borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
   borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
+=======
+  gap: theme.spacing(0.5),
+  borderLeft: '1px solid',
+  borderRight: '1px solid',
+  borderColor: (theme.vars || theme).palette.divider,
+  backgroundColor: alpha(theme.palette.grey[50], 0.2),
+>>>>>>> Stashed changes
   ...theme.applyDarkStyles({
-    backgroundColor: alpha(theme.palette.primaryDark[800], 0.5),
+    backgroundColor: alpha(theme.palette.primaryDark[800], 0.2),
   }),
 }));
 
 export const StyledTabPanel = styled(TabPanel)<{ ownerState: { mounted: boolean } }>(
-  ({ ownerState }) => ({
+  ({ theme, ownerState }) => ({
+    marginTop: -1,
     '& pre': {
-      marginTop: -1,
       borderTopLeftRadius: 0,
       borderTopRightRadius: 0,
       '& code': {
@@ -32,54 +40,43 @@ export const StyledTabPanel = styled(TabPanel)<{ ownerState: { mounted: boolean 
   }),
 );
 
-export const StyledTab = styled(Tab)<{ ownerState: { mounted: boolean } }>(
-  ({ theme, ownerState }) =>
-    theme.unstable_sx({
-      p: 0.8,
-      border: 'none',
-      bgcolor: 'transparent',
-      color: (theme.vars || theme).palette.grey[500],
-      fontSize: theme.typography.pxToRem(12),
-      fontWeight: theme.typography.fontWeightSemiBold,
-      fontFamily: theme.typography.fontFamilyCode,
-      outline: 'none',
-      minWidth: 52,
-      cursor: 'pointer',
-      borderRadius: '8px',
-      position: 'relative',
-      '&:not(:first-of-type)': {
-        marginLeft: 0.5,
-      },
-      ...(ownerState.mounted && {
-        '&.Mui-selected': {
-          color: '#FFF',
-          '&::after': {
-            content: "''",
-            position: 'absolute',
-            left: 0,
-            bottom: '-6px',
-            height: 2,
-            width: '100%',
-            bgcolor: (theme.vars || theme).palette.primary.light,
-          },
-        },
-      }),
-      '&:hover': {
-        backgroundColor: alpha(theme.palette.primaryDark[500], 0.5),
-      },
-      '&:focus-visible': {
-        outline: '2px solid',
-        outlineOffset: '-2px',
-        outlineColor: (theme.vars || theme).palette.primary.light,
-      },
-    }),
-);
+export const StyledTab = styled(Tab)(({ theme }) => ({
+  padding: '6px',
+  border: 'none',
+  background: 'transparent',
+  fontSize: theme.typography.pxToRem(13),
+  fontWeight: theme.typography.fontWeightSemiBold,
+  fontFamily: theme.typography.fontFamily,
+  color: (theme.vars || theme).palette.text.tertiary,
+  letterSpacing: '0.2px',
+  outline: 'none',
+  minWidth: 52,
+  borderRadius: '8px',
+  position: 'relative',
+  transition: 'background, color, 100ms ease',
+  '&:hover': {
+    backgroundColor: alpha(theme.palette.grey[100], 0.5),
+    color: (theme.vars || theme).palette.text.secondary,
+  },
+  '&:focus-visible': {
+    outline: '2px solid',
+    outlineOffset: '-2px',
+    outlineColor: (theme.vars || theme).palette.primary.light,
+  },
+  ...theme.applyDarkStyles({
+    '&:hover': {
+      backgroundColor: alpha(theme.palette.primaryDark[700], 0.6),
+      color: (theme.vars || theme).palette.grey[400],
+    },
+  }),
+}));
 
 type TabsConfig = {
   code: string | ((tab: string) => string);
   language: string;
   tab: string;
 };
+
 export default function HighlightedCodeWithTabs({
   tabs,
   storageKey,
