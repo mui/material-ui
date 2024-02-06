@@ -103,7 +103,7 @@ export default function NotFoundHero() {
             Page not found
           </Typography>
         }
-        description="Apologies, but the page you were looking for wasn't found. Try using the search button below to look for another page."
+        description="Apologies, but the page you were looking for wasn't found. Try using the search button below to look for another one."
       />
       <DeferredAppSearch />
     </Section>
