@@ -60,11 +60,42 @@ npx @mui/codemod@latest <transform> <path> --jscodeshift="--printOptions='{\"quo
 
 ## Included scripts
 
+- [Deprecation](#deprecations)
+- [v5](#v500)
+- [v4](#v400)
+- [v1](#v100)
+- [v0.15](#v0150)
+
+### Deprecations
+
+```bash
+npx @mui/codemod@latest deprecations/all <path>
+```
+
+#### `all`
+
+A combination of all deprecations.
+
+#### `accordion-props`
+
+```diff
+ <Accordion
+-    TransitionComponent={CustomTransition}
+-    TransitionProps={{ unmountOnExit: true }}
++    slots={{ transition: CustomTransition }}
++    slotProps={{ transition: { unmountOnExit: true } }}
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/accordion-props <path>
+```
+
 ### v5.0.0
 
-### `base-use-named-exports`
+#### `base-use-named-exports`
 
-Base UI default exports were changed to named ones. Previously we had a mix of default and named ones.
+Base UI default exports were changed to named ones. Previously we had a mix of default and named ones.
 This was changed to improve consistency and avoid problems some bundlers have with default exports.
 See https://github.com/mui/material-ui/issues/21862 for more context.
 
@@ -81,9 +112,9 @@ This codemod updates the import and re-export statements.
 npx @mui/codemod@latest v5.0.0/base-use-named-exports <path>
 ```
 
-### `base-remove-unstyled-suffix`
+#### `base-remove-unstyled-suffix`
 
-The `Unstyled` suffix has been removed from all Base UI component names, including names of types and other related identifiers.
+The `Unstyled` suffix has been removed from all Base UI component names, including names of types and other related identifiers.
 
 ```diff
 -  <Input component='a' href='url' />;
@@ -96,9 +127,9 @@ npx @mui/codemod@latest v5.0.0/base-remove-unstyled-suffix <path>
 
 #### `base-remove-component-prop`
 
-Remove `component` prop from all Base UI components by transferring its value into `slots.root`.
+Remove `component` prop from all Base UI components by transferring its value into `slots.root`.
 
-This change only affects Base UI components.
+This change only affects Base UI components.
 
 ```diff
 -  <Input component={CustomRoot} />
@@ -126,7 +157,7 @@ npx @mui/codemod@latest v5.0.0/rename-css-variables <path>
 
 #### `base-hook-imports`
 
-Updates the sources of the imports of the Base UI hooks to adapt to the new directories of the hooks.
+Updates the sources of the imports of the Base UI hooks to adapt to the new directories of the hooks.
 
 ```diff
 -  import { useBadge } from '@mui/base/BadgeUnstyled';
@@ -452,7 +483,7 @@ You can find more details about this breaking change in [the migration guide](ht
 Renames the `components` and `componentsProps` props to `slots` and `slotProps`, respectively.
 Also, changes `slots`' fields names to camelCase.
 
-This change only affects Base UI components.
+This change only affects Base UI components.
 
 ```diff
  <BadgeUnstyled
@@ -1551,7 +1582,7 @@ Head to https://mui.com/guides/minimizing-bundle-size/ to understand when it's u
 #### `import-path`
 
 Updates the `import-paths` for the new location of the components.
-MUI v1.0.0 flatten the import paths.
+Material UI v1.0.0 flatten the import paths.
 The diff should look like this:
 
 ```diff
@@ -1576,7 +1607,7 @@ Subsequently, you can run the above `find ...` command to flatten your imports.
 
 #### `color-imports`
 
-Updates the `color-imports` for the new location of MUI color palettes.
+Updates the `color-imports` for the new location of Material UI color palettes.
 The diff should look like this:
 
 ```diff
@@ -1641,7 +1672,7 @@ npx @mui/codemod@latest v1.0.0/menu-item-primary-text <path>
 #### `import-path`
 
 Updates the `import-paths` for the new location of the components.
-MUI v0.15.0 is reorganizing the folder distribution of the project.
+Material UI v0.15.0 is reorganizing the folder distribution of the project.
 The diff should look like this:
 
 ```diff

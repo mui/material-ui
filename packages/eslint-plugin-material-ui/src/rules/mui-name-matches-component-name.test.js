@@ -45,6 +45,9 @@ ruleTester.run('mui-name-matches-component-name', rule, {
       useThemeProps: (inProps) => useThemeProps({ props: inProps, name: 'MuiGrid2' }),
     }) as OverridableComponent<Grid2TypeMap>;
     `,
+    `
+    const useThemeProps = createUseThemeProps('MuiBadge');
+    `,
     {
       code: `
         const StaticDateRangePicker = React.forwardRef(function StaticDateRangePicker<TDate>(
@@ -139,6 +142,38 @@ ruleTester.run('mui-name-matches-component-name', rule, {
           message:
             "Expected `name` to be 'MuiStaticDateRangePicker' but instead got 'MuiPickersDateRangePicker'.",
           type: 'Literal',
+        },
+      ],
+    },
+    {
+      code: `
+        const useThemeProps = createUseThemeProps();
+
+        const Badge = React.forwardRef(function Badge(inProps, ref) {
+          const props = useThemeProps({ props: inProps, name: 'MuiBadge' });
+        });
+      `,
+      errors: [
+        {
+          message:
+            'Unable to resolve `name`. Please hardcode the `name` i.e. use a string literal.',
+          type: 'CallExpression',
+        },
+      ],
+    },
+    {
+      code: `
+        const useThemeProps = createUseThemeProps({ name: 'MuiBadge' });
+
+        const Badge = React.forwardRef(function Badge(inProps, ref) {
+          const props = useThemeProps({ props: inProps, name: 'MuiBadge' });
+        });
+      `,
+      errors: [
+        {
+          message:
+            'Unable to resolve `name`. Please hardcode the `name` i.e. use a string literal.',
+          type: 'ObjectExpression',
         },
       ],
     },

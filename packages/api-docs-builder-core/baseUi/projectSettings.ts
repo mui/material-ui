@@ -27,8 +27,8 @@ export const projectSettings: ProjectSettings = {
   getHookInfo: getBaseUiHookInfo,
   translationLanguages: LANGUAGES,
   skipComponent: () => false,
-  onCompleted: () => {
-    generateBaseUIApiPages();
+  onCompleted: async () => {
+    await generateBaseUIApiPages();
   },
   onWritingManifestFile(builds, source) {
     const apiLinks = generateApiLinks(builds);

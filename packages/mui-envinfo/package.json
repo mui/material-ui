@@ -1,6 +1,6 @@
 {
   "name": "@mui/envinfo",
-  "version": "2.0.16",
+  "version": "2.0.17",
   "private": false,
   "author": "MUI Team",
   "description": "Logs infos about the environment relevant to @mui/*",
@@ -20,7 +20,7 @@
     "build": "node scripts/build"
   },
   "dependencies": {
-    "envinfo": "^7.11.0"
+    "envinfo": "^7.11.1"
   },
   "devDependencies": {
     "@types/chai": "^4.3.11",

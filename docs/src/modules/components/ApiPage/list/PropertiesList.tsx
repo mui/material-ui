@@ -129,28 +129,28 @@ export function getHash({
   return `${kebabCase(componentName)}-${sectionName}-${propName}`;
 }
 
-export interface PropDescriptionParams {
+export interface Properties {
+  additionalInfo: string[];
   componentName: string;
-  propName: string;
-  seeMoreDescription?: string;
+  deprecationInfo?: string;
   description?: string;
-  requiresRef?: string;
-  isOptional?: boolean;
-  isRequired?: boolean;
-  isDeprecated?: boolean;
   hooksParameters?: boolean;
   hooksReturnValue?: boolean;
-  deprecationInfo?: string;
-  typeName: string;
+  isDeprecated?: boolean;
+  isOptional?: boolean;
+  isRequired?: boolean;
   propDefault?: string;
-  additionalInfo: string[];
+  propName: string;
+  requiresRef?: string;
+  seeMoreDescription?: string;
   signature?: string;
   signatureArgs?: { argName: string; argDescription?: string }[];
   signatureReturnDescription?: string;
+  typeName: string;
 }
 
 interface PropertiesListProps {
-  properties: PropDescriptionParams[];
+  properties: Properties[];
   displayOption: 'collapsed' | 'expanded';
 }
 

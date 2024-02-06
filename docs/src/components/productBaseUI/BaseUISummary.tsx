@@ -47,7 +47,7 @@ export default function BaseUISummary() {
         }
         description="Base UI abstracts away the more frustrating aspects of UI development—like accessibility, cross-browser compatibility, and event handling—so you can skip ahead to design implementation."
       />
-      <Box sx={{ mt: 8 }}>
+      <Box sx={{ mt: 6 }}>
         <Grid container spacing={3}>
           {content.map(({ icon, title, description, link }) => (
             <Grid key={title} item xs={12} md={4}>
@@ -56,7 +56,7 @@ export default function BaseUISummary() {
           ))}
         </Grid>
       </Box>
-      <Typography fontWeight={500} textAlign="center" mt={8} mb={2} fontSize="0.875rem">
+      <Typography fontWeight="medium" textAlign="center" mt={6} mb={2} fontSize="0.875rem">
         Alternative to libraries such as:
       </Typography>
       <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center' }}>

@@ -18,8 +18,8 @@ export default function AccordionTransition() {
       <Accordion
         expanded={expanded}
         onChange={handleExpansion}
-        TransitionComponent={Fade}
-        TransitionProps={{ timeout: 200 }}
+        slots={{ transition: Fade }}
+        slotProps={{ transition: { timeout: 400 } }}
         sx={{
           '& .MuiAccordion-region': { height: expanded ? 'auto' : 0 },
           '& .MuiAccordionDetails-root': { display: expanded ? 'block' : 'none' },

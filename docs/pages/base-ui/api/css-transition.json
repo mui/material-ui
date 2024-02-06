@@ -2,7 +2,6 @@
   "props": {
     "enterClassName": { "type": { "name": "string" } },
     "exitClassName": { "type": { "name": "string" } },
-    "lastTransitionedPropertyOnEnter": { "type": { "name": "string" } },
     "lastTransitionedPropertyOnExit": { "type": { "name": "string" } }
   },
   "name": "CssTransition",

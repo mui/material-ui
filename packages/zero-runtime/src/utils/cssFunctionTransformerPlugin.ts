@@ -1,8 +1,9 @@
 import { declare } from '@babel/helper-plugin-utils';
 import defaultSxConfig from '@mui/system/styleFunctionSx/defaultSxConfig';
-import get from 'lodash.get';
+import get from 'lodash/get';
 import type { PluginCustomOptions } from './cssFnValueToVariable';
-import { Theme } from './generateCss';
+
+type Theme = { [key: 'unstable_sxConfig' | string]: string | number | Theme };
 
 type BabelPluginOptions = {
   styleKey: string;

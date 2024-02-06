@@ -13,8 +13,8 @@ export function Group({
     <Box
       {...props}
       sx={{
-        maxWidth: rowLayout ? 'none' : { md: 500 },
         overflow: 'auto',
+        maxWidth: rowLayout ? 'none' : { md: 500 },
         display: { xs: 'grid', sm: rowLayout ? 'flex' : 'grid' },
         justifyContent: { xs: 'start', sm: rowLayout ? 'center' : null },
         gap: 1,
@@ -95,7 +95,7 @@ export default function Item({
       <Box component="span" sx={{ mr: 2, lineHeight: 0 }}>
         {icon}
       </Box>
-      <span>
+      <Box sx={{ flexWrap: 'wrap' }}>
         <Typography
           component="span"
           color="text.primary"
@@ -116,7 +116,7 @@ export default function Item({
             {description}
           </Typography>
         )}
-      </span>
+      </Box>
     </Box>
   );
 }

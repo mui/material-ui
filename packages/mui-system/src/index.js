@@ -1,4 +1,3 @@
-'use client';
 import MuiError from '@mui-internal/babel-macros/MuiError.macro';
 
 export { css, keyframes, StyledEngineProvider } from '@mui/styled-engine';

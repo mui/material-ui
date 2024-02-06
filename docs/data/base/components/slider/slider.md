@@ -152,6 +152,7 @@ The most basic Slider is _continuous_, which means it does not have pre-defined 
 This is suitable for situations in which an approximate value is good enough for the user, such as brightness or volume.
 
 But if your users need more precise options, you can create a discrete Slider that snaps the thumb to pre-defined stops along the bar.
+Make sure to adjust the `shiftStep` prop (the granularity with which the slider can step when using Page Up/Down or Shift + Arrow Up/Down) to a value divadable with the `step`.
 
 To generate a mark for each stop, use `marks={true}`:
 

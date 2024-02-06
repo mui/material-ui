@@ -131,7 +131,7 @@ const pages: MuiPage[] = [
       },
       {
         pathname: '/mui-x', // the pathname does not matter here because the links to MUI X are outbound.
-        subheader: 'MUI X',
+        subheader: 'MUI X',
         children: [
           { pathname: '/x/react-data-grid', title: 'Data Grid' },
           { pathname: '/x/react-date-pickers', title: 'Date & Time Pickers' },

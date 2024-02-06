@@ -105,6 +105,12 @@
     {
       "groupName": "@definitelytyped tools",
       "matchPackagePatterns": ["@definitelytyped/*"]
+    },
+    {
+      "groupName": "envinfo tests",
+      "matchPaths": ["packages/mui-envinfo/test/package.json"],
+      "matchPackagePatterns": ["@mui/*"],
+      "enabled": false
     }
   ],
   "postUpdateOptions": ["pnpmDedupe"],

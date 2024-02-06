@@ -127,13 +127,7 @@ export default function XTheming() {
             <Paper
               id="data-grid-theming"
               variant="outlined"
-              sx={(theme) => ({
-                height: 418,
-                borderColor: 'grey.200',
-                ...theme.applyDarkStyles({
-                  borderColor: 'primaryDark.600',
-                }),
-              })}
+              sx={{ height: 418, borderColor: 'divider' }}
             >
               {dataGridStyleOverrides}
               <DataGridPro

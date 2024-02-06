@@ -1681,10 +1681,6 @@ const rows = [
 export default function DataTable() {
   return (
     <ShowcaseContainer
-      sx={{ mt: { md: 2 } }}
-      previewSx={{
-        py: 2,
-      }}
       preview={
         <Paper
           variant="outlined"
@@ -1719,7 +1715,6 @@ export default function DataTable() {
       code={
         <Box
           sx={{
-            p: 2,
             overflow: 'auto',
             flexGrow: 1,
             '&::-webkit-scrollbar': {

@@ -2,7 +2,6 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme, styled, alpha } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import FormLabel from '@mui/material/FormLabel';
@@ -56,34 +55,23 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
   if (form.status === 'sent') {
     return (
       <Alert
+        icon={<CheckCircleRoundedIcon fontSize="small" />}
         severity="success"
         sx={[
           (theme) => ({
-            maxWidth: { sm: 400 },
+            fontWeight: 'medium',
             bgcolor: 'success.50',
+            border: '1px solid',
+            borderColor: 'success.200',
+            color: 'success.900',
             ...theme.applyDarkStyles({
-              bgcolor: 'primaryDark.700',
+              color: 'success.200',
+              bgcolor: alpha(theme.palette.success[700], 0.1),
+              borderColor: alpha(theme.palette.success[600], 0.3),
             }),
           }),
-          ...(Array.isArray(sx) ? sx : [sx]),
         ]}
-        iconMapping={{
-          success: (
-            <CheckCircleRoundedIcon
-              fontSize="small"
-              sx={(theme: Theme) => ({
-                color: 'success.700',
-                ...theme.applyDarkStyles({
-                  color: 'success.600',
-                }),
-              })}
-            />
-          ),
-        }}
       >
-        <AlertTitle sx={{ typography: 'body2', fontWeight: 700 }}>
-          Thanks for subscribing!
-        </AlertTitle>
         Go to your email and open the <strong>confirmation email</strong> to confirm your
         subscription.
       </Alert>
@@ -102,7 +90,7 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
           display: 'flex',
           flexDirection: { xs: 'column', sm: 'row' },
           mt: 1,
-          gap: 1.5,
+          gap: 1,
           width: { xs: '100%', sm: 'auto' },
           maxWidth: { xs: '100%', sm: 320 },
         }}
@@ -117,27 +105,26 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
           inputProps={{ required: true }}
           sx={[
             (theme) => ({
+              typography: 'body1',
+              flexGrow: 1,
               minWidth: 220,
-              borderRadius: 1,
+              borderRadius: '8px',
               border: '1px solid',
-              bgcolor: '#fff',
+              borderColor: 'grey.200',
+              bgcolor: '#FFF',
               boxShadow: `inset 0 1px 2px ${
                 (theme.vars || theme).palette.grey[50]
-              }, 0 1px 0.5px ${alpha(theme.palette.grey[100], 0.6)}`,
-              borderColor: 'grey.200',
-              typography: 'body2',
+              }, 0 2px .5px ${alpha(theme.palette.grey[100], 0.5)}`,
               '&:hover': {
                 borderColor: 'grey.300',
-                boxShadow: `inset 0 1px 2px ${(theme.vars || theme).palette.grey[50]}, 0 1px 2px ${
-                  (theme.vars || theme).palette.grey[100]
-                }`,
+                boxShadow: `inset 0 1px 2px ${(theme.vars || theme).palette.grey[100]}`,
               },
               [`&.${inputBaseClasses.focused}`]: {
                 boxShadow: `0 0 0 3px ${(theme.vars || theme).palette.primary[200]}`,
-                borderColor: 'primary.300',
+                borderColor: 'primary.500',
               },
               [`& .${inputBaseClasses.input}`]: {
-                borderRadius: `calc(${theme.shape.borderRadius}px - 1px)`,
+                borderRadius: theme.shape.borderRadius,
                 py: 1,
                 px: 1.5,
               },
@@ -145,19 +132,17 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
             (theme) =>
               theme.applyDarkStyles({
                 bgcolor: 'primaryDark.800',
+                borderColor: alpha(theme.palette.primaryDark[600], 0.8),
                 boxShadow: `inset 0 1px 1px ${
                   (theme.vars || theme).palette.primaryDark[900]
-                }, 0 1px 0.5px ${(theme.vars || theme).palette.common.black}`,
-                borderColor: 'primaryDark.600',
+                }, 0 2px .5px ${(theme.vars || theme).palette.common.black}`,
                 '&:hover': {
-                  borderColor: 'primaryDark.400',
-                  boxShadow: `inset 0 1px 1px ${
-                    (theme.vars || theme).palette.primaryDark[900]
-                  }, 0 1px 2px ${(theme.vars || theme).palette.common.black}`,
+                  borderColor: 'primaryDark.500',
+                  boxShadow: `inset 0 1px 2px ${(theme.vars || theme).palette.common.black}`,
                 },
                 [`&.${inputBaseClasses.focused}`]: {
                   boxShadow: `0 0 0 3px ${(theme.vars || theme).palette.primary[800]}`,
-                  borderColor: 'primary.600',
+                  borderColor: 'primary.400',
                 },
               }),
           ]}
@@ -169,9 +154,11 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
       {form.status === 'failure' && (
         <FormHelperText
           sx={(theme) => ({
-            color: 'warning.800',
+            mt: 1,
+            fontWeight: 'semiBold',
+            color: 'error.700',
             ...theme.applyDarkStyles({
-              color: 'warning.500',
+              color: 'error.400',
             }),
           })}
         >

@@ -98,7 +98,7 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
   const theme = useTheme();
   const isRtl = theme.direction === 'rtl';
 
-  const listRef = React.useRef<HTMLElement | null>(null);
+  const listRef = React.useRef<HTMLElement>(null);
 
   // TODO v6: Handle the rest of the props from the MenuListProps prop
   const {

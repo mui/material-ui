@@ -1,19 +1,13 @@
-function simpleClamp(
-  val: number,
-  min: number = Number.MIN_SAFE_INTEGER,
-  max: number = Number.MAX_SAFE_INTEGER,
-): number {
-  return Math.max(min, Math.min(val, max));
-}
+import { clamp } from '@mui/utils';
 
-export function clamp(
+export function clampStepwise(
   val: number,
   min: number = Number.MIN_SAFE_INTEGER,
   max: number = Number.MAX_SAFE_INTEGER,
   stepProp: number = NaN,
 ): number {
   if (Number.isNaN(stepProp)) {
-    return simpleClamp(val, min, max);
+    return clamp(val, min, max);
   }
 
   const step = stepProp || 1;
@@ -23,10 +17,10 @@ export function clamp(
   const positivity = Math.sign(remainder);
 
   if (Math.abs(remainder) > step / 2) {
-    return simpleClamp(val + positivity * (step - Math.abs(remainder)), min, max);
+    return clamp(val + positivity * (step - Math.abs(remainder)), min, max);
   }
 
-  return simpleClamp(val - positivity * Math.abs(remainder), min, max);
+  return clamp(val - positivity * Math.abs(remainder), min, max);
 }
 
 export function isNumber(val: unknown): val is number {

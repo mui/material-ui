@@ -15,7 +15,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
 
 ## Introduction
 
-The Material UI Accordion component includes several complementary utility components to handle various use cases:
+The Material UI Accordion component includes several complementary utility components to handle various use cases:
 
 - Accordion: the wrapper for grouping related components.
 - Accordion Summary: the wrapper for the Accordion header, which expands or collapses the content when clicked.
@@ -25,7 +25,7 @@ The Material UI Accordion component includes several complementary utility compo
 {{"demo": "AccordionUsage.js", "bg": true}}
 
 :::info
-This component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.
+This component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.
 :::
 
 ## Basics
@@ -51,7 +51,7 @@ Use the `defaultExpanded` prop on the Accordion component to have it opened by d
 
 ### Transition
 
-Use the `TransitionComponent` and `TransitionProps` props to change the Accordion's default transition.
+Use the `slots.transition` and `slotProps.transition` props to change the Accordion's default transition.
 
 {{"demo": "AccordionTransition.js", "bg": true}}
 
@@ -89,10 +89,10 @@ The demo below also shows a bit of visual customziation.
 The Accordion content is mounted by default even if it's not expanded.
 This default behavior has server-side rendering and SEO in mind.
 
-If you render the Accordion Details with a big component tree nested inside, or if you have many Accordions, you may want to change this behavior by setting `unmountOnExit` to `true` inside the `TransitionProps` prop to improve performance:
+If you render the Accordion Details with a big component tree nested inside, or if you have many Accordions, you may want to change this behavior by setting `unmountOnExit` to `true` inside the `slotProps.transition` prop to improve performance:
 
 ```jsx
-<Accordion TransitionProps={{ unmountOnExit: true }} />
+<Accordion slotProps={{ transition: { unmountOnExit: true } }} />
 ```
 
 ## Accessibility

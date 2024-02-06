@@ -1,4 +1,3 @@
-'use client';
 export { default as chainPropTypes } from './chainPropTypes';
 export { default as deepmerge } from './deepmerge';
 export { isPlainObject } from './deepmerge';
@@ -25,6 +24,9 @@ export { default as unstable_unsupportedProp } from './unsupportedProp';
 export { default as unstable_useControlled } from './useControlled';
 export { default as unstable_useEventCallback } from './useEventCallback';
 export { default as unstable_useForkRef } from './useForkRef';
+export { default as unstable_useLazyRef } from './useLazyRef';
+export { default as unstable_useTimeout, Timeout as unstable_Timeout } from './useTimeout';
+export { default as unstable_useOnMount } from './useOnMount';
 export { default as unstable_useIsFocusVisible } from './useIsFocusVisible';
 export { default as unstable_getScrollbarSize } from './getScrollbarSize';
 export {
@@ -42,3 +44,4 @@ export { isGlobalState as unstable_isGlobalState } from './generateUtilityClass'
 export * from './generateUtilityClass';
 export { default as unstable_generateUtilityClasses } from './generateUtilityClasses';
 export { default as unstable_ClassNameGenerator } from './ClassNameGenerator';
+export { default as clamp } from './clamp';

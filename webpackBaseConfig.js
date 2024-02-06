@@ -25,7 +25,11 @@ module.exports = {
       '@mui/material-nextjs': path.resolve(__dirname, './packages/mui-material-nextjs/src'),
       '@mui/joy': path.resolve(__dirname, './packages/mui-joy/src'),
       '@mui/zero-runtime': path.resolve(__dirname, './packages/zero-runtime/src'),
-      'typescript-to-proptypes': path.resolve(__dirname, './packages/typescript-to-proptypes/src'),
+      '@mui-internal/docs-utils': path.resolve(__dirname, './packages/docs-utils/src'),
+      '@mui-internal/typescript-to-proptypes': path.resolve(
+        __dirname,
+        './packages/typescript-to-proptypes/src',
+      ),
       docs: path.resolve(__dirname, './docs'),
     },
     extensions: ['.js', '.ts', '.tsx', '.d.ts'],

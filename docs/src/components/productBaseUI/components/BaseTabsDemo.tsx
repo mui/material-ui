@@ -8,7 +8,7 @@ import { styled, GlobalStyles } from '@mui/system';
 
 const tabListStyles = `
   min-width: 300px;
-  background-color: var(--palette-primary);
+  background-color: var(--primary);
   border-radius: 12px;
   margin-bottom: 16px;
   display: flex;
@@ -41,29 +41,36 @@ const tabStyles = `
   border-radius: 7px;
   display: flex;
   justify-content: center;
+  transition: all 120ms ease;
+  user-select: none;
 
   &:hover {
-    background-color: var(--palette-primary-light);
+    background-color: var(--primary-hover);
   }
 
   &:focus-visible {
     color: #FFF;
-    outline: 3px solid var(--focus-ring);
+    outline: 2px solid rgba(255,255,255,0.8);
+    outline-offset: 2px;
   }
 
-  &.Mui-selected {
+  &.base--selected {
     background-color: #FFF;
-    color: var(--palette-primary);
+    color: var(--primary);
   }
 `;
 
 const StyledTab = styled('button')(tabStyles);
 
-const CSS = `.MuiTabsList-root {${tabListStyles}}
+const CSS = `.base-TabsList-root {${tabListStyles}}
 
-.MuiTabPanel-root {${tabPanelStyles}}
+.base-TabPanel-root {${tabPanelStyles}}
 
-.MuiTab-root {${tabStyles}}`;
+.base-Tab-root {${tabStyles}}`;
+
+const tabStylesTailwind = `m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--primary-hover] focus:text-white focus-visible:[outline:2px_solid_rgba(255,255,255,0.8)] outline-offset-2 ui-selected:bg-white ui-selected:text-[--primary] transition select-none`;
+
+const tabPanelStylesTailwind = `text-[0.875rem] [font-family:IBM_Plex_sans]`;
 
 export default function BaseTabsDemo({ styling }: { styling: 'system' | 'tailwindcss' | 'css' }) {
   return (
@@ -110,24 +117,18 @@ export default function BaseTabsDemo({ styling }: { styling: 'system' | 'tailwin
       )}
       {styling === 'tailwindcss' && ( // https://play.tailwindcss.com/8jGjUI7EWe
         <Tabs selectionFollowsFocus defaultValue={0}>
-          <TabsList className="mb-[16px] flex min-w-[300px] content-between items-center justify-center rounded-[12px] bg-[--palette-primary] [box-shadow:var(--shadow)]">
-            <Tab className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--palette-primary-light] focus:text-white focus-visible:[outline:3px_solid_var(--focus-ring)] ui-selected:bg-white ui-selected:text-[--palette-primary]">
-              One
-            </Tab>
-            <Tab className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--palette-primary-light] focus:text-white focus-visible:[outline:3px_solid_var(--focus-ring)] ui-selected:bg-white ui-selected:text-[--palette-primary]">
-              Two
-            </Tab>
-            <Tab className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--palette-primary-light] focus:text-white focus-visible:[outline:3px_solid_var(--focus-ring)] ui-selected:bg-white ui-selected:text-[--palette-primary]">
-              Three
-            </Tab>
+          <TabsList className="mb-[16px] flex min-w-[300px] content-between items-center justify-center rounded-[12px] bg-[--primary] [box-shadow:var(--shadow)]">
+            <Tab className={tabStylesTailwind}>One</Tab>
+            <Tab className={tabStylesTailwind}>Two</Tab>
+            <Tab className={tabStylesTailwind}>Three</Tab>
           </TabsList>
-          <TabPanel className="text-[0.875rem] [font-family:IBM_Plex_sans]" value={0}>
+          <TabPanel className={tabPanelStylesTailwind} value={0}>
             First page
           </TabPanel>
-          <TabPanel className="text-[0.875rem] [font-family:IBM_Plex_sans]" value={1}>
+          <TabPanel className={tabPanelStylesTailwind} value={1}>
             Second page
           </TabPanel>
-          <TabPanel className="text-[0.875rem] [font-family:IBM_Plex_sans]" value={2}>
+          <TabPanel className={tabPanelStylesTailwind} value={2}>
             Third page
           </TabPanel>
         </Tabs>
@@ -181,45 +182,42 @@ import { Tab } from '@mui/base/Tab';
         justify-center rounded-[7px] border-none
         bg-transparent p-[12px] text-[0.875rem]
         font-bold text-white [font-family:IBM_Plex_sans]
-        focus:text-white
-        focus:[outline:3px_solid_var(--focus-ring)]
-        ui-selected:bg-white
-        ui-selected:text-[--palette-primary]">
+        focus:text-white focus:[outline:3px_solid_var(--focus-ring)]
+        ui-selected:bg-white ui-selected:text-[--palette-primary]
+        transition select-none">
       One
     </Tab>
     <Tab className="m-[6px] flex w-full cursor-pointer
         justify-center rounded-[7px] border-none
         bg-transparent p-[12px] text-[0.875rem]
         font-bold text-white [font-family:IBM_Plex_sans]
-        focus:text-white
-        focus:[outline:3px_solid_var(--focus-ring)]
-        ui-selected:bg-white
-        ui-selected:text-[--palette-primary]">
+        focus:text-white focus:[outline:3px_solid_var(--focus-ring)]
+        ui-selected:bg-white ui-selected:text-[--palette-primary]
+        transition select-none">
       Two
     </Tab>
     <Tab className="m-[6px] flex w-full cursor-pointer
         justify-center rounded-[7px] border-none
         bg-transparent p-[12px] text-[0.875rem]
         font-bold text-white [font-family:IBM_Plex_sans]
-        focus:text-white
-        focus:[outline:3px_solid_var(--focus-ring)]
-        ui-selected:bg-white
-        ui-selected:text-[--palette-primary]">
+        focus:text-white focus:[outline:3px_solid_var(--focus-ring)]
+        ui-selected:bg-white ui-selected:text-[--palette-primary]
+        transition select-none">
       Three
     </Tab>
   </TabsList>
   <TabPanel
-    className="text-[0.875rem] [font-family:IBM_Plex_sans]"
+    className={tabPanelStylesTailwind}
     value={0}>
     First page
   </TabPanel>
   <TabPanel
-    className="text-[0.875rem] [font-family:IBM_Plex_sans]"
+    className={tabPanelStylesTailwind}
     value={1}>
     Second page
   </TabPanel>
   <TabPanel
-    className="text-[0.875rem] [font-family:IBM_Plex_sans]"
+    className={tabPanelStylesTailwind}
     value={2}>
     Third page
   </TabPanel>

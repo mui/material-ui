@@ -6,7 +6,7 @@
 
 <!-- #default-branch-switch -->
 
-Material UI requires a minimum version of TypeScript 3.5. Have a look at the [Create React App with TypeScript](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-ts) example.
+Material UI requires a minimum version of TypeScript 3.5. Have a look at the [Create React App with TypeScript](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-ts) example.
 
 For types to work, it's recommended that you have at least the following options enabled in your `tsconfig.json`:
 
@@ -49,10 +49,10 @@ Moved to [/customization/theming/#custom-variables](/material-ui/customization/t
 
 ## Complications with the `component` prop
 
-Because of some TypeScript limitations, using the `component` prop can be problematic if you are creating your custom component based on the Material UI's components.
+Because of some TypeScript limitations, using the `component` prop can be problematic if you are creating your custom component based on the Material UI's components.
 For the composition of the components, you will likely need to use one of these two options:
 
-1. Wrap the Material UI component in order to enhance it
+1. Wrap the Material UI component in order to enhance it
 2. Use the `styled()` utility in order to customize the styles of the component
 
 If you are using the first option, take a look at the [composition guide](/material-ui/guides/composition/#with-typescript) for more details.

@@ -233,7 +233,7 @@ export default function XHero() {
                   theme.applyDarkStyles({
                     '& .MuiDataGrid-root': {
                       '& .MuiDataGrid-columnHeaders': {
-                        borderColor: 'primaryDark.600',
+                        borderColor: 'divider',
                       },
                       '& .MuiDataGrid-cell': {
                         borderColor: alpha(theme.palette.primaryDark[600], 0.5),
@@ -257,6 +257,14 @@ export default function XHero() {
                         color: yellow[200],
                         backgroundColor: alpha(yellow[900], 0.2),
                         borderColor: alpha(yellow[700], 0.2),
+                      },
+                      '& .MuiDataGrid-pinnedRows': {
+                        backgroundColor: alpha(theme.palette.primaryDark[800], 1),
+                        backgroundImage: 'none',
+                        boxShadow: '0px -6px 12px rgba(0 0 0 /  0.5)',
+                        '& .MuiDataGrid-footerCell': {
+                          color: 'primary.light',
+                        },
                       },
                     },
                   }),

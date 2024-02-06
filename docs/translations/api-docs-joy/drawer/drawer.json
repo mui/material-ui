@@ -119,8 +119,8 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
     "backdrop": "The component that renders the backdrop.",
-    "content": "The component that renders the content of the drawer."
+    "content": "The component that renders the content of the drawer.",
+    "root": "The component that renders the root."
   }
 }

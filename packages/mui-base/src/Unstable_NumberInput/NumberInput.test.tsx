@@ -497,32 +497,64 @@ describe('<NumberInput />', () => {
       expect(input.value).to.equal('1');
     });
 
-    it('sets value to min when the input has no value and ArrowUp is pressed', async () => {
-      const handleChange = spy();
+    describe('when the input has no value and ArrowUp is pressed', () => {
+      it('sets value to min if min is provided', async () => {
+        const handleChange = spy();
 
-      const { getByRole } = render(<NumberInput min={5} onChange={handleChange} />);
+        const { getByRole } = render(<NumberInput min={5} onChange={handleChange} />);
 
-      const input = getByRole('textbox') as HTMLInputElement;
+        const input = getByRole('textbox') as HTMLInputElement;
 
-      await userEvent.click(input);
-      await userEvent.keyboard('[ArrowUp]');
+        await userEvent.click(input);
+        await userEvent.keyboard('[ArrowUp]');
 
-      expect(handleChange.args[0][1]).to.equal(5);
-      expect(input.value).to.equal('5');
+        expect(handleChange.args[0][1]).to.equal(5);
+        expect(input.value).to.equal('5');
+      });
+
+      it('sets value to 1 if min is not provided', async () => {
+        const handleChange = spy();
+
+        const { getByRole } = render(<NumberInput onChange={handleChange} />);
+
+        const input = getByRole('textbox') as HTMLInputElement;
+
+        await userEvent.click(input);
+        await userEvent.keyboard('[ArrowUp]');
+
+        expect(handleChange.args[0][1]).to.equal(1);
+        expect(input.value).to.equal('1');
+      });
     });
 
-    it('sets value to max when the input has no value and ArrowDown is pressed', async () => {
-      const handleChange = spy();
+    describe('when the input has no value and ArrowDown is pressed', () => {
+      it('sets value to max when max is provided', async () => {
+        const handleChange = spy();
 
-      const { getByRole } = render(<NumberInput max={9} onChange={handleChange} />);
+        const { getByRole } = render(<NumberInput max={9} onChange={handleChange} />);
 
-      const input = getByRole('textbox') as HTMLInputElement;
+        const input = getByRole('textbox') as HTMLInputElement;
 
-      await userEvent.click(input);
-      await userEvent.keyboard('[ArrowDown]');
+        await userEvent.click(input);
+        await userEvent.keyboard('[ArrowDown]');
 
-      expect(handleChange.args[0][1]).to.equal(9);
-      expect(input.value).to.equal('9');
+        expect(handleChange.args[0][1]).to.equal(9);
+        expect(input.value).to.equal('9');
+      });
+
+      it('sets value to -1 when max is not provided', async () => {
+        const handleChange = spy();
+
+        const { getByRole } = render(<NumberInput onChange={handleChange} />);
+
+        const input = getByRole('textbox') as HTMLInputElement;
+
+        await userEvent.click(input);
+        await userEvent.keyboard('[ArrowDown]');
+
+        expect(handleChange.args[0][1]).to.equal(-1);
+        expect(input.value).to.equal('-1');
+      });
     });
 
     it('only includes the input element in the tab order', async () => {
@@ -555,5 +587,31 @@ describe('<NumberInput />', () => {
 
       expect(getByTestId('adornment')).not.to.equal(null);
     });
+  });
+
+  it('Should update NumberInput value when value prop is set through side effects', async () => {
+    function App() {
+      const [value, setValue] = React.useState(10);
+
+      return (
+        <div>
+          <button data-testid="button" onClick={() => setValue(20)}>
+            Enable
+          </button>
+          <NumberInput value={value} />
+        </div>
+      );
+    }
+    const { getByRole, getByTestId } = render(<App />);
+
+    const input = getByRole('textbox') as HTMLInputElement;
+    const button = getByTestId('button') as HTMLButtonElement;
+
+    act(() => {
+      fireEvent.click(button);
+    });
+
+    await userEvent.click(input);
+    expect(input.value).to.equal('20');
   });
 });

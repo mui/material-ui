@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { TransitionGroup } from 'react-transition-group';
 import clsx from 'clsx';
 import { keyframes, useThemeProps } from '@mui/system';
+import { unstable_useTimeout as useTimeout } from '@mui/utils';
 import styled from '@mui/material/styles/styled';
 import { TouchRippleActions, TouchRippleProps } from './TouchRipple.types';
 import Ripple from './Ripple';
@@ -104,17 +105,11 @@ const TouchRipple = React.forwardRef<TouchRippleActions, TouchRippleProps>(funct
   const ignoringMouseDown = React.useRef(false);
   // We use a timer in order to only show the ripples for touch "click" like events.
   // We don't want to display the ripple for touch scroll events.
-  const startTimer = React.useRef<ReturnType<typeof setTimeout>>();
+  const startTimer = useTimeout();
 
   // This is the hook called once the previous timeout is ready.
   const startTimerCommit = React.useRef<(() => void) | null>(null);
   const container = React.useRef<HTMLSpanElement>(null);
-
-  React.useEffect(() => {
-    return () => {
-      clearTimeout(startTimer.current);
-    };
-  }, []);
 
   const startCommit = React.useCallback(
     (params: { rippleX: number; rippleY: number; rippleSize: number; cb: () => void }) => {
@@ -217,44 +212,48 @@ const TouchRipple = React.forwardRef<TouchRippleActions, TouchRippleProps>(funct
             startCommit({ rippleX, rippleY, rippleSize, cb });
           };
           // Delay the execution of the ripple effect.
-          startTimer.current = setTimeout(() => {
+          // We have to make a tradeoff with this delay value.
+          startTimer.start(DELAY_RIPPLE, () => {
             if (startTimerCommit.current) {
               startTimerCommit.current();
               startTimerCommit.current = null;
             }
-          }, DELAY_RIPPLE); // We have to make a tradeoff with this value.
+          });
         }
       } else {
         startCommit({ rippleX, rippleY, rippleSize, cb });
       }
     },
-    [centerProp, startCommit],
+    [centerProp, startCommit, startTimer],
   );
 
-  const stop = React.useCallback<TouchRippleActions['stop']>((event, cb) => {
-    clearTimeout(startTimer.current);
+  const stop = React.useCallback<TouchRippleActions['stop']>(
+    (event, cb) => {
+      startTimer.clear();
 
-    // The touch interaction occurs too quickly.
-    // We still want to show ripple effect.
-    if (event?.type === 'touchend' && startTimerCommit.current) {
-      startTimerCommit.current();
-      startTimerCommit.current = null;
-      startTimer.current = setTimeout(() => {
-        stop(event, cb);
-      });
-      return;
-    }
-
-    startTimerCommit.current = null;
-
-    setRipples((oldRipples) => {
-      if (oldRipples.length > 0) {
-        return oldRipples.slice(1);
+      // The touch interaction occurs too quickly.
+      // We still want to show ripple effect.
+      if (event?.type === 'touchend' && startTimerCommit.current) {
+        startTimerCommit.current();
+        startTimerCommit.current = null;
+        startTimer.start(0, () => {
+          stop(event, cb);
+        });
+        return;
       }
-      return oldRipples;
-    });
-    rippleCallback.current = cb;
-  }, []);
+
+      startTimerCommit.current = null;
+
+      setRipples((oldRipples) => {
+        if (oldRipples.length > 0) {
+          return oldRipples.slice(1);
+        }
+        return oldRipples;
+      });
+      rippleCallback.current = cb;
+    },
+    [startTimer],
+  );
 
   React.useImperativeHandle(
     ref,

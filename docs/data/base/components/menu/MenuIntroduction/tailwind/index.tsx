@@ -1,10 +1,12 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { Menu as BaseMenu, MenuProps } from '@mui/base/Menu';
+import { Menu as BaseMenu, MenuListboxSlotProps, MenuProps } from '@mui/base/Menu';
 import { MenuButton as BaseMenuButton, MenuButtonProps } from '@mui/base/MenuButton';
 import { MenuItem as BaseMenuItem, MenuItemProps } from '@mui/base/MenuItem';
 import { Dropdown } from '@mui/base/Dropdown';
 import { useTheme } from '@mui/system';
+import { PopupContext } from '@mui/base/Unstable_Popup';
+import { CssTransition } from '@mui/base/Transitions';
 
 function useIsDarkMode() {
   const theme = useTheme();
@@ -48,6 +50,9 @@ const Menu = React.forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
     <BaseMenu
       ref={ref}
       {...props}
+      slots={{
+        listbox: Listbox,
+      }}
       slotProps={{
         ...props.slotProps,
         root: (ownerState) => {
@@ -71,7 +76,7 @@ const Menu = React.forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
           return {
             ...resolvedSlotProps,
             className: clsx(
-              'text-sm box-border font-sans p-1.5 my-3 mx-0 rounded-xl overflow-auto outline-0 bg-white dark:bg-slate-900 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-300 min-w-listbox shadow-md dark:shadow-slate-900',
+              'text-sm box-border font-sans p-1.5 my-3 mx-0 rounded-xl overflow-auto outline-0 bg-white dark:bg-slate-900 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-300 min-w-listbox shadow-md dark:shadow-slate-900 [.open_&]:opacity-100 [.open_&]:scale-100 transition-[opacity,transform] [.closed_&]:opacity-0 [.closed_&]:scale-90 [.placement-top_&]:origin-bottom [.placement-bottom_&]:origin-top',
               resolvedSlotProps?.className,
             ),
           };
@@ -103,10 +108,35 @@ const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>((props, ref) => 
     <BaseMenuItem
       ref={ref}
       className={clsx(
-        'list-none p-2 rounded-lg cursor-default select-none last-of-type:border-b-0 focus-visible:shadow-outline-purple focus-visible:outline-0 focus-visible:bg-slate-100 focus-visible:dark:bg-slate-800 focus-visible-text-slate-900 focus-visible:dark:text-slate-300 disabled:text-slate-400 disabled:dark:text-slate-700 disabled:hover:text-slate-400 disabled:hover:dark:text-slate-700 hover:bg-purple-50 hover:dark:bg-purple-950 hover:text-slate-900 hover:dark:text-slate-300',
+        'list-none p-2 rounded-lg cursor-default select-none last-of-type:border-b-0 focus:shadow-outline-purple focus:outline-0 focus:bg-slate-100 focus:dark:bg-slate-800 focus:text-slate-900 focus:dark:text-slate-300 disabled:text-slate-400 disabled:dark:text-slate-700 disabled:hover:text-slate-400 disabled:hover:dark:text-slate-700',
         className,
       )}
       {...other}
     />
+  );
+});
+
+const Listbox = React.forwardRef(function Listbox(
+  props: MenuListboxSlotProps,
+  ref: React.ForwardedRef<HTMLUListElement>,
+) {
+  const { ownerState, ...other } = props;
+  const popupContext = React.useContext(PopupContext);
+
+  if (popupContext == null) {
+    throw new Error(
+      'The `Listbox` component cannot be rendered outside a `Popup` component',
+    );
+  }
+
+  const verticalPlacement = popupContext.placement.split('-')[0];
+
+  return (
+    <CssTransition
+      className={`placement-${verticalPlacement}`}
+      enterClassName="base--expanded"
+    >
+      <ul {...other} ref={ref} />
+    </CssTransition>
   );
 });

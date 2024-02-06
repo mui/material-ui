@@ -17,7 +17,7 @@ Taking the imaginary `useAwesomeControl` as an example:
 
 ### Implementation
 
-Most Base UI hooks have a similar structure:
+Most Base UI hooks have a similar structure:
 
 1. [Parameters destructuring](#parameters-destructuring)
 2. Hook-specific logic
@@ -45,7 +45,7 @@ In other words, instead of defining the `handleClick(event: React.MouseEvent) =>
 
 By convention, we call them `createHandle[EventName]`.
 
-If we allow a developer to skip running our logic for a given handler, we check the `event.defaultMuiPrevented` field. It's an equivalent of the native `defaultPrevented` that works just for Base UI code:
+If we allow a developer to skip running our logic for a given handler, we check the `event.defaultMuiPrevented` field. It's an equivalent of the native `defaultPrevented` that works just for Base UI code:
 
 ```tsx
 const createHandleKeyDown = (otherHandlers: EventHandlers) => (event: React.KeyboardEvent & MuiCancellableEvent) => {

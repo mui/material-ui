@@ -20,7 +20,7 @@ For instance, with a `Button` component:
 
 In real-life applications, using a native `<a>` element is rarely enough.
 You can improve the user experience by using an enhanced Link component systematically.
-The Material UI theme lets you configure this component once.
+The Material UI theme lets you configure this component once.
 For instance, with react-router:
 
 ```tsx
@@ -32,7 +32,7 @@ const LinkBehavior = React.forwardRef<
   Omit<RouterLinkProps, 'to'> & { href: RouterLinkProps['to'] }
 >((props, ref) => {
   const { href, ...other } = props;
-  // Map href (Material UI) -> to (react-router)
+  // Map href (Material UI) -> to (react-router)
   return <RouterLink ref={ref} to={href} {...other} />;
 });
 
@@ -101,7 +101,7 @@ const LinkBehavior = React.forwardRef((props, ref) => (
 
 ### Next.js Pages Router
 
-The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-nextjs-pages-router-ts) provides an adapter for the use of [Next.js's Link component](https://nextjs.org/docs/pages/api-reference/components/link) with Material UI.
+The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-nextjs-pages-router-ts) provides an adapter for the use of [Next.js's Link component](https://nextjs.org/docs/pages/api-reference/components/link) with Material UI.
 
 - The first version of the adapter is the [`NextLinkComposed`](https://github.com/mui/material-ui/blob/-/examples/material-ui-nextjs-pages-router-ts/src/Link.tsx) component.
   This component is unstyled and only responsible for handling the navigation.
@@ -129,7 +129,7 @@ The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/mater
 
 - The second version of the adapter is the `Link` component.
   This component is styled.
-  It uses the [Material UI Link component](/material-ui/react-link/) with `NextLinkComposed`.
+  It uses the [Material UI Link component](/material-ui/react-link/) with `NextLinkComposed`.
 
   ```tsx
   import Link from '../src/Link';

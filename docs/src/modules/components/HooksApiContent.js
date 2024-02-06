@@ -70,9 +70,9 @@ export default function HooksApiContent(props) {
           {Object.keys(parameters).length > 0 ? (
             <PropertiesSection
               properties={parameters}
-              targetName={hookNameKebabCase}
-              hooksParameters
               propertiesDescriptions={parametersDescriptions}
+              componentName={hookName}
+              hooksParameters
               level="h3"
               title="api-docs.parameters"
               titleHash={`${hookNameKebabCase}-parameters`}
@@ -81,11 +81,11 @@ export default function HooksApiContent(props) {
             <span>{t('api-docs.hooksNoParameters')}</span>
           )}
           <PropertiesSection
-            showOptionalAbbr
             properties={returnValue}
-            targetName={hookNameKebabCase}
-            hooksReturnValue
             propertiesDescriptions={returnValueDescriptions}
+            componentName={hookName}
+            showOptionalAbbr
+            hooksReturnValue
             level="h3"
             title="api-docs.returnValue"
             titleHash={`${hookNameKebabCase}-return-value`}

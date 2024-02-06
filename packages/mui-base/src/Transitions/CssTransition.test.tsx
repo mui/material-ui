@@ -6,7 +6,6 @@ import { CssTransition } from './CssTransition';
 import { TransitionContext, TransitionContextValue } from '../useTransition';
 
 const onExitedSpy = spy();
-const onEnteredSpy = spy();
 
 function TestTransitionContextProvider(props: {
   requestEnter: boolean;
@@ -15,9 +14,6 @@ function TestTransitionContextProvider(props: {
   const contextValue: TransitionContextValue = React.useMemo(
     () => ({
       requestedEnter: props.requestEnter,
-      onEntering: spy(),
-      onEntered: onEnteredSpy,
-      onExiting: spy(),
       onExited: onExitedSpy,
       registerTransition: () => () => {},
     }),
@@ -32,7 +28,6 @@ function TestTransitionContextProvider(props: {
 describe('CssTransition', () => {
   beforeEach(() => {
     onExitedSpy.resetHistory();
-    onEnteredSpy.resetHistory();
   });
 
   const { render, clock } = createRenderer();
@@ -52,7 +47,7 @@ describe('CssTransition', () => {
   describe('prop: enterClassName, exitClassName', () => {
     clock.withFakeTimers();
 
-    it('applies enterClassName, then immediately exitClassName when requested to exit', function test() {
+    it('applies exitClassName when requested to exit', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
@@ -65,13 +60,9 @@ describe('CssTransition', () => {
 
       const root = getByTestId('root');
 
-      // briefly after mounting
-      expect(root).to.have.class('enter');
-      expect(root).not.to.have.class('exit');
-
-      clock.runToLast();
       expect(root).to.have.class('exit');
       expect(root).not.to.have.class('enter');
+      clock.runToLast();
     });
 
     it('applies exitClassName, then immediately enterClassName when requested to enter', () => {

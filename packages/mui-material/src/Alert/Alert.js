@@ -308,7 +308,10 @@ Alert.propTypes /* remove-proptypes */ = {
    * The severity of the alert. This defines the color and icon used.
    * @default 'success'
    */
-  severity: PropTypes.oneOf(['error', 'info', 'success', 'warning']),
+  severity: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['error', 'info', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The extra props for the slot components.
    * You can override the existing props or add new ones.

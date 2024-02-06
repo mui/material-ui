@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "esModuleInterop": true,
-    "lib": ["ES2018"],
-    "strict": true,
+    "noEmit": true,
     "moduleResolution": "node",
-    "types": ["node"],
-    "noEmit": true
+    "types": ["node", "mocha"],
+    "strict": true,
+    "esModuleInterop": true,
+    "isolatedModules": true
   },
-  "include": ["src"]
+  "include": ["./src/*.ts", "./test/*.ts"],
+  "references": [{ "path": "../docs-utils/tsconfig.build.json" }]
 }

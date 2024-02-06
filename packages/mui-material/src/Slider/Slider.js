@@ -432,6 +432,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     onChange,
     onChangeCommitted,
     orientation = 'horizontal',
+    shiftStep = 10,
     size = 'medium',
     step = 1,
     scale = Identity,
@@ -458,6 +459,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     color,
     size,
     step,
+    shiftStep,
     scale,
     track,
     valueLabelDisplay,
@@ -898,6 +900,11 @@ Slider.propTypes /* remove-proptypes */ = {
    * }
    */
   scale: PropTypes.func,
+  /**
+   * The granularity with which the slider can step through values when using Page Up/Page Down or Shift + Arrow Up/Arrow Down.
+   * @default 10
+   */
+  shiftStep: PropTypes.number,
   /**
    * The size of the slider.
    * @default 'medium'

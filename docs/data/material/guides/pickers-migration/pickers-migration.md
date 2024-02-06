@@ -6,9 +6,9 @@
 **Only use this migration guide if you need to use Date and Time pickers from `@mui/lab`.**
 
 The components are available in alpha version in the lab between `v5.0.0-alpha.30` and `v5.0.0-alpha.89` inclusively.
-They won't receive any new feature of bug fixes and won't be compatible with future major releases of MUI packages.
+They won't receive any new feature of bug fixes and won't be compatible with future major releases of Material UI packages.
 
-If you want to use the **stable version** of those components, please have a look at the new [MUI X packages](/x/react-date-pickers/getting-started/) `@mui/x-date-pickers` and `@mui/x-date-pickers-pro`.
+If you want to use the **stable version** of those components, please have a look at the new [MUI X packages](/x/react-date-pickers/getting-started/) `@mui/x-date-pickers` and `@mui/x-date-pickers-pro`.
 
 To migrate from `@mui/lab` to `@mui/x-date-pickers` you can follow the dedicated [migration guide](/x/migration/migration-pickers-lab/).
 :::
@@ -87,7 +87,7 @@ function App() {
 
 ## Render input
 
-We introduced a new **required** `renderInput` prop. This simplifies using non-Material UI text field input components.
+We introduced a new **required** `renderInput` prop. This simplifies using non-Material UI text field input components.
 
 ```jsx
 <DatePicker renderInput={(props) => <TextField {...props} />} />
@@ -143,7 +143,7 @@ There are many changes, be careful, make sure your tests, and build passes.
 In the event you have an advanced usage of the date picker, it will likely be simpler to rewrite it.
 
 :::success
-In case you are considering your picker component rewrite, consider using the latest [MUI X packages](/x/react-date-pickers/getting-started/).
+In case you are considering your picker component rewrite, consider using the latest [MUI X packages](/x/react-date-pickers/getting-started/).
 :::
 
 Please open a pull request to improve the guide if you notice an opportunity for doing such.

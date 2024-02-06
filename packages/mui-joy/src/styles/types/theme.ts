@@ -6,6 +6,7 @@ import {
   SystemProps as SystemSystemProps,
   CSSObject,
   SxConfig,
+  ApplyStyles,
 } from '@mui/system';
 import { DefaultColorScheme, ExtendedColorScheme } from './colorScheme';
 import { ColorSystem } from './colorSystem';
@@ -118,6 +119,7 @@ export interface Theme extends ThemeScales, RuntimeColorSystem {
   shouldSkipGeneratingVar: (keys: string[], value: string | number) => boolean;
   unstable_sxConfig: SxConfig;
   unstable_sx: (props: SxProps) => CSSObject;
+  applyStyles: ApplyStyles<DefaultColorScheme | ExtendedColorScheme>;
 }
 
 export type SxProps = SystemSxProps<Theme>;

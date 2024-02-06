@@ -49,32 +49,25 @@ const values = [
 export default function OurValues() {
   return (
     <Section cozy>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-        }}
+      <SectionHeadline
+        overline="Our values"
+        title={
+          <Typography variant="h2">
+            The MUI <GradientText>team pact</GradientText>
+          </Typography>
+        }
+        description="They explain the behaviors and mindsets we actively encourage, discourage, and why. They serve as a guide toward better decision-making, results, and experiences at work."
+      />
+      <Button
+        component={Link}
+        noLinkStyle
+        href={ROUTES.handbook}
+        endIcon={<KeyboardArrowRightRounded fontSize="small" />}
+        variant="contained"
+        sx={{ width: { xs: '100%', sm: 'fit-content' } }}
       >
-        <SectionHeadline
-          overline="Our values"
-          title={
-            <Typography variant="h2">
-              The MUI <GradientText>team pact</GradientText>
-            </Typography>
-          }
-          description="They explain the behaviors and mindsets we actively encourage, discourage, and why. They serve as a guide toward better decision-making, results, and experiences at work."
-        />
-        <Button
-          component={Link}
-          noLinkStyle
-          href={ROUTES.handbook}
-          endIcon={<KeyboardArrowRightRounded fontSize="small" />}
-          variant="contained"
-          sx={{ width: { xs: '100%', sm: 'fit-content' } }}
-        >
-          View our handbook
-        </Button>
-      </Box>
+        View our handbook
+      </Button>
       <Grid container spacing={3} sx={{ mt: { xs: 1, sm: 2 } }}>
         {values.map(({ title, description, darkIcon, lightIcon, height, width }) => (
           <Grid key={title} item xs={12} md={3}>

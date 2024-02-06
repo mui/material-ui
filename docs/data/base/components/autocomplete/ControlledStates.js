@@ -32,20 +32,21 @@ export default function ControlledStates() {
       <Pre>
         inputValue: <code>{inputValue ?? ' '}</code>
       </Pre>
-      <StyledAutocomplete>
-        <StyledInputRoot {...getRootProps()} className={focused ? 'focused' : ''}>
-          <StyledInput {...getInputProps()} />
-        </StyledInputRoot>
+      <AutocompleteWrapper>
+        <AutocompleteRoot
+          {...getRootProps()}
+          className={focused ? 'Mui-focused' : ''}
+        >
+          <Input {...getInputProps()} />
+        </AutocompleteRoot>
         {groupedOptions.length > 0 && (
-          <StyledListbox {...getListboxProps()}>
+          <Listbox {...getListboxProps()}>
             {groupedOptions.map((option, index) => (
-              <StyledOption {...getOptionProps({ option, index })}>
-                {option}
-              </StyledOption>
+              <Option {...getOptionProps({ option, index })}>{option}</Option>
             ))}
-          </StyledListbox>
+          </Listbox>
         )}
-      </StyledAutocomplete>
+      </AutocompleteWrapper>
     </Layout>
   );
 }
@@ -73,11 +74,11 @@ const grey = {
   900: '#1C2025',
 };
 
-const StyledAutocomplete = styled('div')`
+const AutocompleteWrapper = styled('div')`
   position: relative;
 `;
 
-const StyledInputRoot = styled('div')(
+const AutocompleteRoot = styled('div')(
   ({ theme }) => `
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 400;
@@ -94,7 +95,7 @@ const StyledInputRoot = styled('div')(
   overflow: hidden;
   width: 320px;
 
-  &.focused {
+  &.Mui-focused {
     border-color: ${blue[400]};
     box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
   }
@@ -109,7 +110,7 @@ const StyledInputRoot = styled('div')(
 `,
 );
 
-const StyledInput = styled('input')(
+const Input = styled('input')(
   ({ theme }) => `
   font-size: 0.875rem;
   font-family: inherit;
@@ -125,7 +126,7 @@ const StyledInput = styled('input')(
 `,
 );
 
-const StyledListbox = styled('ul')(
+const Listbox = styled('ul')(
   ({ theme }) => `
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
@@ -150,7 +151,7 @@ const StyledListbox = styled('ul')(
   `,
 );
 
-const StyledOption = styled('li')(
+const Option = styled('li')(
   ({ theme }) => `
   list-style: none;
   padding: 8px;

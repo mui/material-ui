@@ -127,7 +127,7 @@ You can even use SVGs, as shown in the demo below:
 
 ### Using with links
 
-The following demo illustrates how to use the Button as a link, whether using the Base UI Button itself for the `href`, or with the [Next.js Link component](https://nextjs.org/docs/pages/api-reference/components/link):
+The following demo illustrates how to use the Button as a link, whether using the Base UI Button itself for the `href`, or with the [Next.js Link component](https://nextjs.org/docs/pages/api-reference/components/link):
 
 {{"demo": "UnstyledLinkButton.js", "defaultCodeOpen": true}}
 
@@ -142,7 +142,7 @@ Instead, `aria-disabled` is used, which makes the Button focusable.
 
 This should be used whenever the disabled Button needs to be read by screen readers.
 
-Base UI uses this prop internally in [menu items](/base-ui/react-menu/), making it possible to use the keyboard to navigate to disabled items (in compliance with [ARIA guidelines](https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#x6-7-focusability-of-disabled-controls)).
+Base UI uses this prop internally in [menu items](/base-ui/react-menu/), making it possible to use the keyboard to navigate to disabled items (in compliance with [ARIA guidelines](https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#x6-7-focusability-of-disabled-controls)).
 
 The following demo shows how the `focusableWhenDisabled` prop works—use the <kbd class="key">Tab</kbd> key to navigate within this document to see that only the second Button accepts the focus:
 

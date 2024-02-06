@@ -4,6 +4,8 @@ import { Select, selectClasses } from '@mui/base/Select';
 import { Option, optionClasses } from '@mui/base/Option';
 import { useTheme } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
+import { PopupContext } from '@mui/base/Unstable_Popup';
+import { CssTransition } from '@mui/base';
 
 export default function UnstyledSelectIntroduction() {
   return (
@@ -12,10 +14,11 @@ export default function UnstyledSelectIntroduction() {
         className="CustomSelectIntroduction"
         slots={{
           root: Button,
+          listbox: AnimatedListbox,
         }}
         slotProps={{
           listbox: { className: 'CustomSelectIntroduction-listbox' },
-          popper: { className: 'CustomSelectIntroduction-popper' },
+          popup: { className: 'CustomSelectIntroduction-popup' },
         }}
         defaultValue={10}
       >
@@ -72,6 +75,33 @@ const Button = React.forwardRef(function Button(props, ref) {
 
 Button.propTypes = {
   children: PropTypes.node,
+  ownerState: PropTypes.object.isRequired,
+};
+
+const AnimatedListbox = React.forwardRef(function AnimatedListbox(props, ref) {
+  const { ownerState, ...other } = props;
+  const popupContext = React.useContext(PopupContext);
+
+  if (popupContext == null) {
+    throw new Error(
+      'The `AnimatedListbox` component cannot be rendered outside a `Popup` component',
+    );
+  }
+
+  const verticalPlacement = popupContext.placement.split('-')[0];
+
+  return (
+    <CssTransition
+      className={`placement-${verticalPlacement}`}
+      enterClassName="open"
+      exitClassName="closed"
+    >
+      <ul {...other} ref={ref} />
+    </CssTransition>
+  );
+});
+
+AnimatedListbox.propTypes = {
   ownerState: PropTypes.object.isRequired,
 };
 
@@ -142,8 +172,28 @@ function Styles() {
         box-shadow: 0px 4px 6px ${
           isDarkMode ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
         };
+
+        .closed & {
+          opacity: 0;
+          transform: scale(0.95, 0.8);
+          transition: opacity 200ms ease-in, transform 200ms ease-in;
+        }
+        
+        .open & {
+          opacity: 1;
+          transform: scale(1, 1);
+          transition: opacity 100ms ease-out, transform 100ms cubic-bezier(0.43, 0.29, 0.37, 1.48);
+        }
+      
+        .placement-top & {
+          transform-origin: bottom;
+        }
+      
+        .placement-bottom & {
+          transform-origin: top;
+        }
       }
-      .CustomSelectIntroduction-popper {
+      .CustomSelectIntroduction-popup {
         z-index: 1;
       }
       .CustomSelectIntroduction-option {

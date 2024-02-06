@@ -1,4 +1,4 @@
-# MUI Scripts
+# Scripts
 
 ## Release
 

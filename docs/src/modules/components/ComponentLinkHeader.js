@@ -19,8 +19,15 @@ const Root = styled('ul')({
   display: 'flex',
   flexWrap: 'wrap',
   gap: 8,
-  '& .MuiChip-root .MuiChip-iconSmall': {
-    marginLeft: 4,
+  '& .MuiChip-root': {
+    height: 26,
+    padding: '0 8px',
+    gap: 6,
+    '& .MuiChip-label': { padding: 0 },
+    '& .MuiChip-iconSmall': {
+      margin: 0,
+      fontSize: 14,
+    },
   },
 });
 

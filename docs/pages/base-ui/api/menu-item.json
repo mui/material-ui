@@ -1,6 +1,7 @@
 {
   "props": {
     "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableFocusOnHover": { "type": { "name": "bool" }, "default": "false" },
     "label": { "type": { "name": "string" } },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },

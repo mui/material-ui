@@ -308,6 +308,7 @@ export default function MaterialComponents() {
               </CssVarsProvider>
             </Frame.Demo>
             <Frame.Info
+              data-mui-color-scheme="dark"
               sx={{
                 minHeight: 180,
                 maxHeight: demo === 'Table' ? 260 : 'none',

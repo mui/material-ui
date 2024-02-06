@@ -81,7 +81,7 @@ function PostPreview(props: BlogPost) {
       >
         <Link
           aria-describedby={`describe-${props.slug}`}
-          href={`/blog/${props.slug}`}
+          href={`/blog/${props.slug}/`}
           sx={{
             color: 'text.primary',
             '&:hover': {

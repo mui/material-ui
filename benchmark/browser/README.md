@@ -21,7 +21,7 @@ Grid (html):
   28.34 ±01.80ms
 Grid System:
   167 ±2%
-Grid Material UI:
+Grid Material UI:
   179 ±1%
 Table:
   128 ±3%

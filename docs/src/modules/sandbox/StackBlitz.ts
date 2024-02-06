@@ -5,7 +5,7 @@ import * as CRA from 'docs/src/modules/sandbox/CreateReactApp';
 import getFileExtension from 'docs/src/modules/sandbox/FileExtension';
 import { DemoData } from 'docs/src/modules/sandbox/types';
 
-const createReactApp = (demoData: DemoData) => {
+function createReactApp(demoData: DemoData) {
   const ext = getFileExtension(demoData.codeVariant);
   const { title, githubLocation: description } = demoData;
 
@@ -52,7 +52,7 @@ const createReactApp = (demoData: DemoData) => {
       document.body.removeChild(form);
     },
   };
-};
+}
 
 export default {
   createReactApp,

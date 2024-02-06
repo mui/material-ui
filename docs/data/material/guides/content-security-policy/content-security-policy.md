@@ -20,7 +20,7 @@ You can read more about CSP on the [MDN Web Docs](https://developer.mozilla.org/
 
 ### Server-Side Rendering (SSR)
 
-To use CSP with Material UI (and Emotion), you need to use a nonce.
+To use CSP with Material UI (and Emotion), you need to use a nonce.
 A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request.
 
 A CSP nonce is a Base 64 encoded string. You can generate one like this:

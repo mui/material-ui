@@ -27,13 +27,7 @@ function Animated(
   }>,
 ) {
   const { children, className } = props;
-  const { requestedEnter, onEntering, onExited } = useTransitionStateManager();
-
-  React.useEffect(() => {
-    if (requestedEnter) {
-      onEntering();
-    }
-  }, [onEntering, requestedEnter]);
+  const { requestedEnter, onExited } = useTransitionStateManager();
 
   const handleAnimationEnd = React.useCallback(() => {
     if (!requestedEnter) {

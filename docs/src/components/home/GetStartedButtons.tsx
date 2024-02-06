@@ -47,6 +47,7 @@ export default function GetStartedButtons(props: GetStartedButtonsProps) {
         sx={{
           display: 'flex',
           flexWrap: { xs: 'wrap', md: 'nowrap' },
+          gap: 1.5,
           '&& > *': {
             minWidth: { xs: '100%', md: '0%' },
           },
@@ -59,20 +60,16 @@ export default function GetStartedButtons(props: GetStartedButtonsProps) {
           target={primaryUrlTarget}
           rel={primaryUrlTarget ? 'noopener' : ''}
           noLinkStyle
-          size="large"
           variant="contained"
           endIcon={<KeyboardArrowRightRounded />}
           sx={{
             flexShrink: 0,
-            mr: { xs: 0, md: 1.5 },
-            mb: { xs: 2, md: 0 },
           }}
         >
           {primaryLabel}
         </Button>
         {installation ? (
           <Button
-            size="large"
             // @ts-expect-error
             variant="codeOutlined"
             endIcon={copied ? <CheckRounded color="primary" /> : <ContentCopyRounded />}
@@ -99,7 +96,6 @@ export default function GetStartedButtons(props: GetStartedButtonsProps) {
             rel={secondaryUrlTarget ? 'noopener' : ''}
             noLinkStyle
             variant="outlined"
-            size="large"
             color="secondary"
             endIcon={<KeyboardArrowRightRounded />}
           >

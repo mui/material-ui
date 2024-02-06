@@ -5,14 +5,14 @@ import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import {
   SelectListboxSlotProps,
   SelectOwnerState,
-  SelectPopperSlotProps,
+  SelectPopupSlotProps,
   SelectProps,
   SelectRootSlotProps,
   SelectType,
 } from './Select.types';
 import { useSelect, SelectValue } from '../useSelect';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
-import { Popper } from '../Popper';
+import { Popup } from '../Unstable_Popup/Popup';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getSelectUtilityClass } from './selectClasses';
 import { defaultOptionStringifier } from '../useSelect/defaultOptionStringifier';
@@ -44,7 +44,7 @@ function useUtilityClasses<OptionValue extends {}, Multiple extends boolean>(
       open && 'expanded',
     ],
     listbox: ['listbox', disabled && 'disabled'],
-    popper: ['popper'],
+    popup: ['popup'],
   };
 
   return composeClasses(slots, useClassNamesOverride(getSelectUtilityClass));
@@ -103,7 +103,7 @@ const Select = React.forwardRef(function Select<
 
   const Button = slots.root ?? 'button';
   const ListboxRoot = slots.listbox ?? 'ul';
-  const PopperComponent = slots.popper ?? Popper;
+  const PopupComponent = slots.popup ?? 'div';
 
   const handleButtonRefChange = React.useCallback((element: HTMLElement | null) => {
     setButtonDefined(element != null);
@@ -183,19 +183,19 @@ const Select = React.forwardRef(function Select<
       className: classes.listbox,
     });
 
-  const popperProps: WithOptionalOwnerState<SelectPopperSlotProps<OptionValue, Multiple>> =
+  const popupProps: WithOptionalOwnerState<SelectPopupSlotProps<OptionValue, Multiple>> =
     useSlotProps({
-      elementType: PopperComponent,
-      externalSlotProps: slotProps.popper,
+      elementType: PopupComponent,
+      externalSlotProps: slotProps.popup,
       additionalProps: {
-        anchorEl: buttonRef.current,
+        anchor: buttonRef.current,
         keepMounted: true,
         open,
         placement: 'bottom-start' as const,
         role: undefined,
       },
       ownerState,
-      className: classes.popper,
+      className: classes.popup,
     });
 
   let selectedOptionsMetadata: SelectValue<SelectOption<OptionValue>, Multiple>;
@@ -220,11 +220,11 @@ const Select = React.forwardRef(function Select<
         )}
       </Button>
       {buttonDefined && (
-        <PopperComponent {...popperProps}>
+        <Popup slots={{ root: PopupComponent }} {...popupProps}>
           <ListboxRoot {...listboxProps}>
             <SelectProvider value={contextValue}>{children}</SelectProvider>
           </ListboxRoot>
-        </PopperComponent>
+        </Popup>
       )}
 
       <input {...getHiddenInputProps()} autoComplete={autoComplete} />
@@ -340,7 +340,7 @@ Select.propTypes /* remove-proptypes */ = {
    */
   slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    popup: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -350,7 +350,7 @@ Select.propTypes /* remove-proptypes */ = {
    */
   slots: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     listbox: PropTypes.elementType,
-    popper: PropTypes.elementType,
+    popup: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
   /**

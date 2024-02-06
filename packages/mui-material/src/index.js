@@ -1,4 +1,3 @@
-'use client';
 /* eslint-disable import/export */
 import * as colors from './colors';
 

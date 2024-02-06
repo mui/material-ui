@@ -54,7 +54,7 @@ Nested Typography components are rendered as `<span>` elements (unless customize
 
 ### System props
 
-As a CSS utility component, Typography supports every [MUI System](/system/properties/) property.
+As a CSS utility component, Typography supports every [MUI System](/system/properties/) property.
 These properties can be used to customize the styling of the component and make it fit seamlessly with the overall design.
 
 :::warning

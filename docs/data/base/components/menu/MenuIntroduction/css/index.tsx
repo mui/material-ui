@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { Menu } from '@mui/base/Menu';
+import { Menu, MenuListboxSlotProps } from '@mui/base/Menu';
 import { MenuItem, menuItemClasses } from '@mui/base/MenuItem';
 import { MenuButton } from '@mui/base/MenuButton';
 import { Dropdown } from '@mui/base/Dropdown';
 import { useTheme } from '@mui/system';
+import { CssTransition } from '@mui/base/Transitions';
+import { PopupContext } from '@mui/base/Unstable_Popup';
 
 export default function MenuIntroduction() {
   const createHandleMenuClick = (menuItem: string) => {
@@ -18,6 +20,9 @@ export default function MenuIntroduction() {
 
       <Menu
         className="CustomMenuIntroduction"
+        slots={{
+          listbox: Listbox,
+        }}
         slotProps={{
           listbox: { className: 'CustomMenuIntroduction--listbox' },
         }}
@@ -45,6 +50,32 @@ export default function MenuIntroduction() {
     </Dropdown>
   );
 }
+
+const Listbox = React.forwardRef(function Listbox(
+  props: MenuListboxSlotProps,
+  ref: React.ForwardedRef<HTMLUListElement>,
+) {
+  const { ownerState, ...other } = props;
+  const popupContext = React.useContext(PopupContext);
+
+  if (popupContext == null) {
+    throw new Error(
+      'The `Listbox` component cannot be rendered outside a `Popup` component',
+    );
+  }
+
+  const verticalPlacement = popupContext.placement.split('-')[0];
+
+  return (
+    <CssTransition
+      className={`placement-${verticalPlacement}`}
+      enterClassName="open"
+      exitClassName="closed"
+    >
+      <ul {...other} ref={ref} />
+    </CssTransition>
+  );
+});
 
 const cyan = {
   50: '#E9F8FC',
@@ -97,6 +128,26 @@ function Styles() {
       border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
       color: ${isDarkMode ? grey[300] : grey[900]};
       box-shadow: 0px 4px 30px ${isDarkMode ? grey[900] : grey[200]};
+
+      .closed & {
+        opacity: 0;
+        transform: scale(0.95, 0.8);
+        transition: opacity 200ms ease-in, transform 200ms ease-in;
+      }
+      
+      .open & {
+        opacity: 1;
+        transform: scale(1, 1);
+        transition: opacity 100ms ease-out, transform 100ms cubic-bezier(0.43, 0.29, 0.37, 1.48);
+      }
+    
+      .placement-top & {
+        transform-origin: bottom;
+      }
+    
+      .placement-bottom & {
+        transform-origin: top;
+      }
     }
 
     .CustomMenuIntroduction--item {
@@ -111,7 +162,7 @@ function Styles() {
       border-bottom: none;
     }
 
-    .CustomMenuIntroduction--item.${menuItemClasses.focusVisible} {
+    .CustomMenuIntroduction--item:focus {
       outline: 3px solid ${isDarkMode ? cyan[600] : cyan[200]};
       background-color: ${isDarkMode ? grey[800] : grey[100]};
       color: ${isDarkMode ? grey[300] : grey[900]};
@@ -119,11 +170,6 @@ function Styles() {
 
     .CustomMenuIntroduction--item.${menuItemClasses.disabled} {
       color: ${isDarkMode ? grey[700] : grey[400]};
-    }
-
-    .CustomMenuIntroduction--item:hover:not(.${menuItemClasses.disabled}) {
-      background-color: ${isDarkMode ? cyan[800] : cyan[50]};
-      color: ${isDarkMode ? grey[300] : grey[900]};
     }
 
     .TriggerButtonIntroduction {
@@ -155,7 +201,6 @@ function Styles() {
         outline: none;
       }
     }
-
 
     .CustomMenuIntroduction {
       z-index: 1;

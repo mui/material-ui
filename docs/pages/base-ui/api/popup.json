@@ -42,8 +42,7 @@
     "strategy": {
       "type": { "name": "enum", "description": "'absolute'<br>&#124;&nbsp;'fixed'" },
       "default": "'absolute'"
-    },
-    "withTransition": { "type": { "name": "bool" }, "default": "false" }
+    }
   },
   "name": "Popup",
   "imports": [

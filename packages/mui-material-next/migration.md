@@ -1,6 +1,6 @@
 # Migration
 
-This is a reference guide on how to migrate from Material UI v5 to v6.
+This is a reference guide on how to migrate from Material UI v5 to v6.
 
 ## Breaking changes: components
 

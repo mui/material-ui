@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import AutoAwesomeRounded from '@mui/icons-material/AutoAwesomeRounded';
@@ -86,17 +85,15 @@ export default function MaterialTheming() {
     <Section>
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box sx={{ maxWidth: 500 }}>
-            <SectionHeadline
-              overline="Theming"
-              title={
-                <Typography variant="h2">
-                  Build <GradientText>your design system</GradientText> just as you want it to be
-                </Typography>
-              }
-              description="Start quickly with Material Design or use the advanced theming feature to easily tailor the components to your needs."
-            />
-          </Box>
+          <SectionHeadline
+            overline="Theming"
+            title={
+              <Typography variant="h2">
+                Build <GradientText>your design system</GradientText> just as you want it to be
+              </Typography>
+            }
+            description="Start quickly with Material Design or use the advanced theming feature to easily tailor the components to your needs."
+          />
           <Group sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
             <Highlighter disableBorder selected={customized} onClick={() => setCustomized(true)}>
               <Item

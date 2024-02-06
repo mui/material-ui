@@ -1,4 +1,4 @@
-# Material UI - Create React App example with styled-components in TypeScript
+# Material UI - Create React App example with styled-components in TypeScript
 
 The main difference between this and the non-TypeScript example is that you need to add the following path config to your `tsconfig.json`:
 
@@ -46,7 +46,7 @@ The following link leverages this demo: https://mui.com/guides/interoperability/
 
 ## The idea behind the example
 
-This example demonstrates how to set up Material UI with [Create React App](https://github.com/facebookincubator/create-react-app) with [styled-components](https://styled-components.com/) as a style engine for your application using TypeScript.
+This example demonstrates how to set up Material UI with [Create React App](https://github.com/facebookincubator/create-react-app) with [styled-components](https://styled-components.com/) as a style engine for your application using TypeScript.
 
 ## Versions compatibility
 

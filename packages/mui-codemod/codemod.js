@@ -10,27 +10,39 @@ const jscodeshiftDirectory = path.dirname(require.resolve('jscodeshift'));
 const jscodeshiftExecutable = path.join(jscodeshiftDirectory, jscodeshiftPackage.bin.jscodeshift);
 
 async function runTransform(transform, files, flags, codemodFlags) {
-  const transformerSrcPath = path.resolve(__dirname, './src', `${transform}.js`);
-  const transformerBuildPath = path.resolve(__dirname, './node', `${transform}.js`);
+  const paths = [
+    path.resolve(__dirname, './src', `${transform}/index.js`),
+    path.resolve(__dirname, './src', `${transform}.js`),
+    path.resolve(__dirname, './node', `${transform}/index.js`),
+    path.resolve(__dirname, './node', `${transform}.js`),
+  ];
+
   let transformerPath;
-  try {
-    await fs.stat(transformerSrcPath);
-    transformerPath = transformerSrcPath;
-  } catch (srcPathError) {
+  let error;
+  // eslint-disable-next-line no-restricted-syntax
+  for (const item of paths) {
     try {
-      await fs.stat(transformerBuildPath);
-      transformerPath = transformerBuildPath;
-    } catch (buildPathError) {
-      if (buildPathError.code === 'ENOENT') {
-        throw new Error(
-          `Transform '${transform}' not found. Check out ${path.resolve(
-            __dirname,
-            './README.md for a list of available codemods.',
-          )}`,
-        );
-      }
-      throw buildPathError;
+      // eslint-disable-next-line no-await-in-loop
+      await fs.stat(item);
+      error = undefined;
+      transformerPath = item;
+      break;
+    } catch (srcPathError) {
+      error = srcPathError;
+      continue;
     }
+  }
+
+  if (error) {
+    if (error?.code === 'ENOENT') {
+      throw new Error(
+        `Transform '${transform}' not found. Check out ${path.resolve(
+          __dirname,
+          './README.md for a list of available codemods.',
+        )}`,
+      );
+    }
+    throw error;
   }
 
   const args = [

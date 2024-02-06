@@ -73,8 +73,8 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
     "listbox": "The component that renders the listbox.",
-    "popper": "The component that renders the popper."
+    "popup": "The component that wraps the popup.",
+    "root": "The component that renders the root."
   }
 }

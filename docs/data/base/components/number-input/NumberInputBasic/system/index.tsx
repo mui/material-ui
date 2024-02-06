@@ -33,7 +33,7 @@ const NumberInput = React.forwardRef(function CustomNumberInput(
 });
 
 export default function NumberInputBasic() {
-  const [value, setValue] = React.useState<number | undefined>();
+  const [value, setValue] = React.useState<number | null>(null);
   return (
     <NumberInput
       aria-label="Demo number input"

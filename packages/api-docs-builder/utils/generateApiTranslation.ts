@@ -9,7 +9,7 @@ interface MinimalReactAPI {
   translations: object;
 }
 
-export default function generateApiTranslations<ReactApi extends MinimalReactAPI>(
+export default async function generateApiTranslations<ReactApi extends MinimalReactAPI>(
   outputDirectory: string,
   reactApi: ReactApi,
   languages: string[],
@@ -30,23 +30,25 @@ export default function generateApiTranslations<ReactApi extends MinimalReactAPI
   });
   reactApi.apiDocsTranslationFolder = apiDocsTranslationPath;
 
-  writePrettifiedFile(
+  await writePrettifiedFile(
     resolveApiDocsTranslationsComponentLanguagePath('en'),
     JSON.stringify(reactApi.translations),
   );
 
-  languages.forEach((language) => {
-    if (language !== 'en') {
-      try {
-        writePrettifiedFile(
-          resolveApiDocsTranslationsComponentLanguagePath(language),
-          JSON.stringify(reactApi.translations),
-          undefined,
-          { flag: 'wx' },
-        );
-      } catch (error) {
-        // File exists
+  await Promise.all(
+    languages.map(async (language) => {
+      if (language !== 'en') {
+        try {
+          await writePrettifiedFile(
+            resolveApiDocsTranslationsComponentLanguagePath(language),
+            JSON.stringify(reactApi.translations),
+            undefined,
+            { flag: 'wx' },
+          );
+        } catch (error) {
+          // File exists
+        }
       }
-    }
-  });
+    }),
+  );
 }

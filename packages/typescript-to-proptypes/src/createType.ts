@@ -1,3 +1,4 @@
+import ts from 'typescript';
 import _ from 'lodash';
 import {
   PropType,
@@ -16,6 +17,7 @@ import {
   ObjectType,
   NumericType,
 } from './models';
+import getTypeHash from './getTypeHash';
 
 export function createAnyType(init: { jsDoc: string | undefined }): AnyType {
   return {
@@ -94,7 +96,7 @@ export function createInterfaceType(init: {
 }
 
 export function createLiteralType(init: {
-  value: unknown;
+  value: string | number | ts.PseudoBigInt;
   jsDoc: string | undefined;
 }): LiteralType {
   return {
@@ -141,15 +143,7 @@ export function uniqueUnionTypes(node: UnionType): UnionType {
     type: node.type,
     jsDoc: node.jsDoc,
     types: _.uniqBy(node.types, (type) => {
-      if (type.type === 'LiteralNode') {
-        return type.value;
-      }
-
-      if (type.type === 'InstanceOfNode') {
-        return `${type.type}.${type.instance}`;
-      }
-
-      return type.type;
+      return getTypeHash(type);
     }),
   };
 }

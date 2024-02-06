@@ -14,71 +14,68 @@ import { TransitionContextValue } from './TransitionContext';
  * - [useTransitionTrigger API](https://mui.com/base-ui/react-transitions/hooks-api/#use-transition-trigger)
  */
 export function useTransitionTrigger(requestEnter: boolean): UseTransitionTriggerReturnValue {
-  const [state, dispatch] = React.useReducer(transitionStateReducer, {
-    elementExited: !requestEnter,
-    inProgress: false,
-  });
+  const [exitTransitionFinished, setExitTransitionFinished] = React.useState(true);
+  const hasPendingExitTransition = React.useRef(false);
 
-  const hasTransition = React.useRef(false);
+  const registeredTransitions = React.useRef(0);
+  const [hasTransition, setHasTransition] = React.useState(false);
 
-  const handleEntering = React.useCallback(() => {
-    dispatch('entering');
-  }, []);
-
-  const handleEntered = React.useCallback(() => {
-    dispatch('entered');
-  }, []);
-
-  const handleExiting = React.useCallback(() => {
-    dispatch('exiting');
-  }, []);
-
-  const handleExited = React.useCallback(() => {
-    dispatch('exited');
-  }, []);
+  const previousRequestEnter = React.useRef(requestEnter);
 
   React.useEffect(() => {
-    if (!hasTransition.current) {
-      if (requestEnter) {
-        dispatch('entered');
-      } else {
-        dispatch('exited');
-      }
+    if (
+      !requestEnter &&
+      // checking registeredTransitions.current instead of hasTransition to avoid this effect re-firing whenever hasTransition changes
+      registeredTransitions.current > 0 &&
+      // prevents waiting for a pending transition right after mounting
+      previousRequestEnter.current !== requestEnter
+    ) {
+      hasPendingExitTransition.current = true;
+      setExitTransitionFinished(false);
     }
+
+    previousRequestEnter.current = requestEnter;
   }, [requestEnter]);
 
+  const handleExited = React.useCallback(() => {
+    hasPendingExitTransition.current = false;
+    setExitTransitionFinished(true);
+  }, []);
+
   const registerTransition = React.useCallback(() => {
-    hasTransition.current = true;
+    registeredTransitions.current += 1;
+    setHasTransition(true);
     return () => {
-      hasTransition.current = false;
+      registeredTransitions.current -= 1;
+      if (registeredTransitions.current === 0) {
+        setHasTransition(false);
+      }
     };
   }, []);
+
+  let hasExited: boolean;
+  if (!hasTransition) {
+    // If there are no transitions registered, the `exited` state is opposite of `requestEnter` immediately.
+    hasExited = !requestEnter;
+  } else if (requestEnter) {
+    hasExited = false;
+  } else {
+    hasExited = !hasPendingExitTransition.current && exitTransitionFinished;
+  }
 
   const contextValue: TransitionContextValue = React.useMemo(
     () => ({
       requestedEnter: requestEnter,
-      onEntering: handleEntering,
-      onEntered: handleEntered,
-      onExiting: handleExiting,
       onExited: handleExited,
       registerTransition,
-      hasExited: state.elementExited,
+      hasExited,
     }),
-    [
-      handleEntering,
-      handleEntered,
-      handleExiting,
-      handleExited,
-      requestEnter,
-      registerTransition,
-      state.elementExited,
-    ],
+    [handleExited, requestEnter, registerTransition, hasExited],
   );
 
   return {
     contextValue,
-    hasExited: state.elementExited,
-    transitionInProgress: state.inProgress,
+    hasExited,
   };
 }
 
@@ -91,48 +88,4 @@ export type UseTransitionTriggerReturnValue = {
    * `true`, if the transitioned element has exited completely (or not entered yet).
    */
   hasExited: boolean;
-  /**
-   * `true`, if the transition is in progress.
-   */
-  transitionInProgress: boolean;
 };
-
-function transitionStateReducer(_: TransitionState, action: TransitionAction): TransitionState {
-  switch (action) {
-    case 'entering':
-      return {
-        elementExited: false,
-        inProgress: true,
-      };
-    case 'entered':
-      return {
-        elementExited: false,
-        inProgress: false,
-      };
-    case 'exiting':
-      return {
-        elementExited: false,
-        inProgress: true,
-      };
-    case 'exited':
-      return {
-        elementExited: true,
-        inProgress: false,
-      };
-    default:
-      throw new Error(`Unhandled action: ${action}`);
-  }
-}
-
-type TransitionAction = 'entering' | 'entered' | 'exiting' | 'exited';
-
-interface TransitionState {
-  /**
-   * `true`, if the transitioned element has exited completely.
-   */
-  elementExited: boolean;
-  /**
-   * `true`, if the transition is in progress.
-   */
-  inProgress: boolean;
-}

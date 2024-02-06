@@ -1,4 +1,4 @@
-# Material UI - CDN example
+# Material UI - CDN example
 
 ## How to use
 
@@ -17,7 +17,7 @@ open index.html
 
 ## The idea behind the example
 
-You can start using Material UI with minimal front-end infrastructure, which is great for prototyping.
+You can start using Material UI with minimal front-end infrastructure, which is great for prototyping.
 We discourage using this approach in production, though.
 The client has to download the entire library, regardless of which components are used, affecting performance and bandwidth usage.
 

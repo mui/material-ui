@@ -205,7 +205,7 @@ export default function zeroVitePlugin({
                   if (tagResult) {
                     return tagResult;
                   }
-                  if (source.endsWith('/zero-styled')) {
+                  if (source.endsWith('/zero-styled') || source.endsWith('/zero-useThemeProps')) {
                     return `${process.env.RUNTIME_PACKAGE_NAME}/exports/${tag}`;
                   }
                   return null;

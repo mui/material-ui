@@ -3,8 +3,8 @@ import * as doctrine from 'doctrine';
 import {
   GetPropsFromComponentDeclarationOptions,
   getPropsFromComponentNode,
-} from '@mui-internal/api-docs-builder/utils/getPropsFromComponentNode';
-import { TypeScriptProject } from '@mui-internal/api-docs-builder/utils/createTypeScriptProject';
+  TypeScriptProject,
+} from '@mui-internal/docs-utils';
 import {
   createUnionType,
   createUndefinedType,
@@ -114,7 +114,11 @@ function checkType({
         return createInstanceOfType({ jsDoc, instance: 'RegExp' });
       }
       case 'Date': {
-        return createInstanceOfType({ jsDoc, instance: 'Date' });
+        if (!project.shouldUseObjectForDate?.({ name })) {
+          return createInstanceOfType({ jsDoc, instance: 'Date' });
+        }
+
+        return createObjectType({ jsDoc });
       }
       default:
         // continue with function execution
@@ -125,6 +129,7 @@ function checkType({
   if (project.checker.isArrayType(type)) {
     // @ts-ignore
     const arrayType: ts.Type = project.checker.getElementTypeOfArrayType(type);
+
     return createArrayType({
       arrayType: checkType({ type: arrayType, location, typeStack, name, project }),
       jsDoc,
@@ -461,6 +466,7 @@ export function getPropTypesFromFile({
   project,
   shouldInclude: inShouldInclude,
   shouldResolveObject: inShouldResolveObject,
+  shouldUseObjectForDate,
   checkDeclarations,
 }: GetPropTypesFromFileOptions) {
   const sourceFile = project.program.getSourceFile(filePath);
@@ -512,6 +518,7 @@ export function getPropTypesFromFile({
     ...project,
     reactComponentName,
     shouldResolveObject,
+    shouldUseObjectForDate,
     shouldInclude,
     createPropTypeId,
   };
@@ -552,11 +559,18 @@ export interface GetPropTypesFromFileOptions
     propertyCount: number;
     depth: number;
   }) => boolean | undefined;
+  /**
+   * Called to know if a date should be represented as `PropTypes.object` or `PropTypes.instanceOf(Date)
+   * @returns true to use `PropTypes.object`, false to use `PropTypes.instanceOf(Date)`.
+   * @default false
+   */
+  shouldUseObjectForDate?: (data: { name: string }) => boolean;
 }
 
 interface PropTypesProject extends TypeScriptProject {
   reactComponentName: string | undefined;
   shouldResolveObject: NonNullable<GetPropTypesFromFileOptions['shouldResolveObject']>;
+  shouldUseObjectForDate: GetPropTypesFromFileOptions['shouldUseObjectForDate'];
   shouldInclude: NonNullable<GetPropTypesFromFileOptions['shouldInclude']>;
   createPropTypeId: (sigil: ts.Symbol | ts.Type) => number;
 }

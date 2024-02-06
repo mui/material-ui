@@ -110,8 +110,8 @@ describe('typescript-to-proptypes', () => {
         result = injected;
       }
 
-      const prettierConfig = prettier.resolveConfig.sync(outputPath);
-      const propTypes = prettier.format(result, {
+      const prettierConfig = await prettier.resolveConfig(outputPath);
+      const propTypes = await prettier.format(result, {
         ...prettierConfig,
         filepath: outputPath,
       });

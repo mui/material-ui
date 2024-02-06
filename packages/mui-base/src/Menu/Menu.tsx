@@ -8,7 +8,7 @@ import { getMenuUtilityClass } from './menuClasses';
 import { useMenu } from '../useMenu';
 import { MenuProvider } from '../useMenu/MenuProvider';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
-import { Popper } from '../Popper';
+import { Unstable_Popup as Popup } from '../Unstable_Popup';
 import { useSlotProps } from '../utils/useSlotProps';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { WithOptionalOwnerState } from '../utils';
@@ -101,11 +101,11 @@ const Menu = React.forwardRef(function Menu<RootComponentType extends React.Elem
   }
 
   return (
-    <Popper {...rootProps} open={open} anchorEl={anchor} slots={{ root: Root }}>
+    <Popup keepMounted {...rootProps} open={open} anchor={anchor} slots={{ root: Root }}>
       <Listbox {...listboxProps}>
         <MenuProvider value={contextValue}>{children}</MenuProvider>
       </Listbox>
-    </Popper>
+    </Popup>
   );
 }) as PolymorphicComponent<MenuTypeMap>;
 

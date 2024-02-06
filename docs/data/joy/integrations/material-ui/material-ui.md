@@ -1,21 +1,21 @@
-# Using Joy UI and Material UI together
+# Using Joy UI and Material UI together
 
-<p class="description">Learn how to use Joy UI and Material UI together in the same project.</p>
+<p class="description">Learn how to use Joy UI and Material UI together in the same project.</p>
 
 ## Introduction
 
 There are two main use cases for using them together:
 
-1. Your existing project already uses Material UI but you're willing to explore the new components and style Joy UI offers.
+1. Your existing project already uses Material UI but you're willing to explore the new components and style Joy UI offers.
 2. You've started your project with Joy UI but you find a key component you need is missing.
 
 :::info
-Once Joy UI reaches component parity with Material UI, we recommend that you **_choose one or the other_**. Not only do they have a different design language (and therefore a different theme structure) but they would increase your bundle size as well as potentially create unnecessary complexities.
+Once Joy UI reaches component parity with Material UI, we recommend that you **_choose one or the other_**. Not only do they have a different design language (and therefore a different theme structure) but they would increase your bundle size as well as potentially create unnecessary complexities.
 :::
 
 Additionally, keep these in mind when using them together:
 
-- Both of them use [MUI System](/system/getting-started/) as their style engine, which uses React context for theming.
+- Both of them use [MUI System](/system/getting-started/) as their style engine, which uses React context for theming.
 - Theme scoping must be done on one of the libraries.
 
 ## Prerequisite
@@ -25,7 +25,7 @@ Additionally, keep these in mind when using them together:
 
 ## Set up the providers
 
-Render Joy UI's `CssVarsProvider` inside Material UI's provider and use `THEME_ID` to separate the themes from each other.
+Render Joy UI's `CssVarsProvider` inside Material UI's provider and use `THEME_ID` to separate the themes from each other.
 
 ```js
 import {
@@ -43,7 +43,7 @@ export default function App() {
     <MaterialCssVarsProvider theme={{ [MATERIAL_THEME_ID]: materialTheme }}>
       <JoyCssVarsProvider>
         <CssBaseline enableColorScheme />
-        ...Material UI and Joy UI components
+        ...Material UI and Joy UI components
       </JoyCssVarsProvider>
     </MaterialCssVarsProvider>
   );
@@ -84,7 +84,7 @@ const ModeToggle = () => {
         setJoyMode(mode === 'dark' ? 'light' : 'dark');
       }}
     >
-      {/** You can use `mode` from Joy UI or Material UI since they are synced **/}
+      {/** You can use `mode` from Joy UI or Material UI since they are synced **/}
       {mode === 'dark' ? <DarkMode /> : <LightMode />}
     </IconButton>
   );
@@ -102,7 +102,7 @@ If you want to change the `defaultMode`, you have to specify the prop to both of
 >
   <JoyCssVarsProvider defaultMode="system">
     <CssBaseline enableColorScheme />
-    ...Material UI and Joy UI components
+    ...Material UI and Joy UI components
   </JoyCssVarsProvider>
 </MaterialCssVarsProvider>
 ```
@@ -134,4 +134,4 @@ import Stack from '@mui/material/Stack';
 </Stack>;
 ```
 
-Joy UI and Material UI components have a different name for [theming the components](/joy-ui/customization/themed-components/#component-identifier). For example, Joy UI's Button uses `JoyButton` whereas Material UI's Button uses `MuiButton`.
+Joy UI and Material UI components have a different name for [theming the components](/joy-ui/customization/themed-components/#component-identifier). For example, Joy UI's Button uses `JoyButton` whereas Material UI's Button uses `MuiButton`.

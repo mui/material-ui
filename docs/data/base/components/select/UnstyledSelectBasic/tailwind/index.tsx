@@ -139,9 +139,9 @@ const Select = React.forwardRef(function CustomSelect<
             ),
           };
         },
-        popper: (ownerState) => {
+        popup: (ownerState) => {
           const resolvedSlotProps = resolveSlotProps(
-            props.slotProps?.popper,
+            props.slotProps?.popup,
             ownerState,
           );
           return {

@@ -1,4 +1,4 @@
-# Material UI - Create React App example with styled-components
+# Material UI - Create React App example with styled-components
 
 ## How to use
 
@@ -30,7 +30,7 @@ The following link leverages this demo: https://mui.com/guides/interoperability/
 
 ## The idea behind the example
 
-This example demonstrates how to set up Material UI with [Create React App](https://github.com/facebookincubator/create-react-app), using [styled-components](https://styled-components.com/) as a style engine for your application.
+This example demonstrates how to set up Material UI with [Create React App](https://github.com/facebookincubator/create-react-app), using [styled-components](https://styled-components.com/) as a style engine for your application.
 
 ## Versions compatibility
 

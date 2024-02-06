@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Select as BaseSelect, SelectProps, selectClasses } from '@mui/base/Select';
 import { Option as BaseOption, optionClasses } from '@mui/base/Option';
-import { Popper as BasePopper } from '@mui/base/Popper';
 import { Dropdown } from '@mui/base/Dropdown';
 import { Menu } from '@mui/base/Menu';
 import { MenuButton as BaseMenuButton } from '@mui/base/MenuButton';
@@ -42,7 +41,7 @@ const Select = React.forwardRef(function Select<
   const slots: SelectProps<TValue, Multiple>['slots'] = {
     root: Button,
     listbox: Listbox,
-    popper: Popper,
+    popup: Popup,
     ...props.slots,
   };
 
@@ -244,6 +243,6 @@ const Container = styled('div')`
   gap: 10px;
 `;
 
-const Popper = styled(BasePopper)`
+const Popup = styled('div')`
   z-index: 1;
 `;

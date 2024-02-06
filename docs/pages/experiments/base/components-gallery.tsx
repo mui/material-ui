@@ -370,7 +370,7 @@ export default function ComponentsGallery() {
         }}
         slotProps={{
           listbox: { className: 'GallerySelect-listbox' },
-          popper: { className: 'GallerySelect-popper' },
+          popup: { className: 'GallerySelect-popup' },
         }}
         defaultValue={10}
       >

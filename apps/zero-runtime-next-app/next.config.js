@@ -3,13 +3,18 @@
 const { withZeroPlugin } = require('@mui/zero-next-plugin');
 const { experimental_extendTheme: extendTheme } = require('@mui/material/styles');
 
-const theme = extendTheme();
-
-theme.applyDarkStyles = function applyDarkStyles(obj) {
-  return {
-    ':where([data-mui-color-scheme="dark"]) &': obj,
-  };
-};
+const theme = extendTheme({
+  cssVarPrefix: 'app',
+  components: {
+    MuiBadge: {
+      defaultProps: {
+        color: 'error',
+      },
+    },
+  },
+});
+theme.getColorSchemeSelector = (targetColorScheme) =>
+  `[data-mui-color-scheme="${targetColorScheme}"] &`;
 
 /**
  * @typedef {import('@mui/zero-next-plugin').ZeroPluginConfig} ZeroPluginConfig
@@ -20,7 +25,6 @@ theme.applyDarkStyles = function applyDarkStyles(obj) {
  */
 const zeroPluginOptions = {
   theme,
-  cssVariablesPrefix: 'app',
   transformLibraries: ['local-ui-lib'],
   sourceMap: true,
   displayName: true,

@@ -17,7 +17,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 
 ## Introduction
 
-The Base UI Dropdown Menu is implemented using a collection of related components:
+The Base UI Dropdown Menu is implemented using a collection of related components:
 
 - Dropdown - The outermost container that houses all Menu components.
 - Menu Button - The button that toggles the visibility of the Menu.
@@ -101,6 +101,13 @@ The same applies to props specific to custom primitive elements:
 ```tsx
 <Menu<'ol'> slots={{ root: 'ol' }} start={5} />
 ```
+
+### Transitions
+
+The Menu component supports the [Transitions API](/base-ui/react-transitions/), so it's possible to animate the appearing and disappearing Listbox.
+To do this, override the Listbox slot of the Menu and wrap it with a transition component ([CssTransition](/base-ui/react-transitions/#css-transition), [CssAnimation](/base-ui/react-transitions/#css-animation), or a custom-built one).
+
+{{"demo": "MenuTransitions.js", "defaultCodeOpen": false}}
 
 ## Hooks
 

@@ -22,7 +22,6 @@ export default function ThemeToggleButton() {
               textTransform: 'none',
               fontWeight: 600,
               color: 'grey.700',
-              borderColor: 'grey.200',
               '&.Mui-selected': {
                 color: 'primary.600',
                 bgcolor: 'primary.100',
@@ -34,7 +33,6 @@ export default function ThemeToggleButton() {
               bgcolor: 'primaryDark.900',
               '& .MuiToggleButton-root': {
                 color: 'grey.400',
-                borderColor: 'primaryDark.700',
                 '&.Mui-selected': {
                   color: 'primary.100',
                   bgcolor: 'primary.900',

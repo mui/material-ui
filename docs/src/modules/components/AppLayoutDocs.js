@@ -121,17 +121,17 @@ export default function AppLayoutDocs(props) {
   const { canonicalAs } = pathnameToLanguage(router.asPath);
   let productName = 'MUI';
   if (canonicalAs.startsWith('/material-ui/')) {
-    productName = 'Material UI';
+    productName = 'Material UI';
   } else if (canonicalAs.startsWith('/base-ui/')) {
-    productName = 'Base UI';
+    productName = 'Base UI';
   } else if (canonicalAs.startsWith('/x/')) {
-    productName = 'MUI X';
+    productName = 'MUI X';
   } else if (canonicalAs.startsWith('/system/')) {
-    productName = 'MUI System';
+    productName = 'MUI System';
   } else if (canonicalAs.startsWith('/toolpad/')) {
-    productName = 'MUI Toolpad';
+    productName = 'MUI Toolpad';
   } else if (canonicalAs.startsWith('/joy-ui/')) {
-    productName = 'Joy UI';
+    productName = 'Joy UI';
   }
 
   const Layout = disableLayout ? React.Fragment : AppFrame;

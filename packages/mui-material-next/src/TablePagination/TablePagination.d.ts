@@ -126,7 +126,7 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    * Use -1 for the value with a custom label to show all the rows.
    * @default [10, 25, 50, 100]
    */
-  rowsPerPageOptions?: Array<
+  rowsPerPageOptions?: ReadonlyArray<
     | number
     | {
         value: number;

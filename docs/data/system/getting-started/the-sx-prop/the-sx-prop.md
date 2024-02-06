@@ -3,7 +3,7 @@
 <p class="description">The sx prop is a shortcut for defining custom styles that has access to the theme.</p>
 
 The `sx` prop lets you work with a superset of CSS that packages all of the style functions exposed in `@mui/system`.
-You can specify any valid CSS using this prop, as well as many _theme-aware_ properties that are unique to MUI System.
+You can specify any valid CSS using this prop, as well as many _theme-aware_ properties that are unique to MUI System.
 
 ## Basic example
 
@@ -288,7 +288,7 @@ Each index can be an object or a callback.
 
 ## Passing the sx prop
 
-If you want to receive the `sx` prop from a custom component and pass it down to an MUI component, we recommend this approach:
+If you want to receive the `sx` prop from a custom component and pass it down to another MUI System, we recommend this approach:
 
 {{"demo": "PassingSxProp.js", "bg": true, "defaultCodeOpen": true}}
 
