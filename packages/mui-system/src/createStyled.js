@@ -1,11 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import styledEngineStyled, { internal_processStyles as processStyles } from '@mui/styled-engine';
-import {
-  getDisplayName,
-  unstable_capitalize as capitalize,
-  isPlainObject,
-  deepmerge,
-} from '@mui/utils';
+import { getDisplayName, unstable_capitalize as capitalize, isPlainObject } from '@mui/utils';
 import createTheme from './createTheme';
 import styleFunctionSx from './styleFunctionSx';
 
@@ -78,8 +73,10 @@ function processStyleArg(callableStyle, { ownerState, ...props }) {
         });
       }
       if (isMatch) {
-        result = deepmerge(
-          result,
+        if (!Array.isArray(result)) {
+          result = [result];
+        }
+        result.push(
           typeof variant.style === 'function'
             ? variant.style({ ownerState, ...props })
             : variant.style,
