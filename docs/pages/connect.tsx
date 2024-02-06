@@ -21,13 +21,14 @@ const Image = styled('img')(({ theme }) => ({
   display: 'block',
   height: 'auto',
   borderRadius: 0,
-  border: '1px solid',
-  borderColor: alpha(theme.palette.primary[100], 0.8),
+  border: 'none',
   filter: `drop-shadow(-2px 4px 6px ${alpha(theme.palette.primary[200], 0.5)})`,
   overflow: 'clip',
   backgroundClip: 'padding-box',
   [theme.breakpoints.up('sm')]: {
     borderRadius: 12,
+    border: '1px solid',
+    borderColor: alpha(theme.palette.primary[100], 0.8),
   },
   ...theme.applyDarkStyles({
     borderColor: theme.palette.primaryDark[600],
@@ -47,17 +48,25 @@ export default function Connect() {
       <AppHeader gitHubRepository="https://github.com/mui/mui-design-kits" />
       <main id="main-content">
         <Section bg="gradient">
-          <SectionHeadline
-            alwaysCenter
-            overline={<Chip label="Beta release" size="small" color="primary" variant="outlined" />}
-            title={
-              <Typography variant="h2" component="h1">
-                <GradientText>Bridge the gap</GradientText> between Figma and your codebase
-              </Typography>
-            }
-            description="MUI Connect is a Figma plug-in that exports a full-fledged Material UI theme to get your design customization up as fast as possible."
-          />
-          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: { xs: 'auto', sm: 'center' },
+            }}
+          >
+            <SectionHeadline
+              alwaysCenter
+              overline={
+                <Chip label="Beta release" size="small" color="primary" variant="outlined" />
+              }
+              title={
+                <Typography variant="h2" component="h1">
+                  <GradientText>Bridge the gap</GradientText> between Figma and your codebase
+                </Typography>
+              }
+              description="MUI Connect is a Figma plug-in that exports a full-fledged Material UI theme to get your design customization up as fast as possible."
+            />
             <GetStartedButtons
               primaryLabel="Get it at the Figma Community"
               primaryUrl="/connect/"

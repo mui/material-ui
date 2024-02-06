@@ -3,8 +3,7 @@ import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import Chip from '@mui/material/Chip';
-import Fade from '@mui/material/Fade';
+// import Fade from '@mui/material/Fade';
 import FormatShapesRoundedIcon from '@mui/icons-material/FormatShapesRounded';
 import SvgStorybook from 'docs/src/icons/SvgStorybook';
 import ImagesearchRollerRoundedIcon from '@mui/icons-material/ImagesearchRollerRounded';
@@ -134,19 +133,15 @@ export default function ConnectFeatures() {
               </Box>
               {/* <Fade timeout={500}></Fade> */}
             </Frame.Demo>
-            {/* <Frame.Info data-mui-color-scheme="dark">
-              <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 1 }}>
-                <Typography variant="body2" fontWeight="bold" gutterBottom>
-                  Want to try MUI Connect out?
-                </Typography>
-                <Chip label="Beta release" size="small" color="primary" variant="outlined" />
-              </Box>
+            <Frame.Info data-mui-color-scheme="dark">
+              <Typography variant="body2" fontWeight="bold" gutterBottom>
+                Stay on the loop about the MUI Connect progress!
+              </Typography>
               <Typography variant="body2" color="text.secondary" mb={1}>
-                Add your email if you want to be notified when the Connect beta version becomes
-                available for testing in the Figma community.
+                Add your email to be notified about the plug-in progress as we go.
               </Typography>
               <MUIConnectSignUp />
-            </Frame.Info> */}
+            </Frame.Info>
           </Frame>
         </Grid>
       </Grid>
