@@ -11,7 +11,6 @@ import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
-import SvgMaterialDesign from 'docs/src/icons/SvgMaterialDesign';
 import Frame from 'docs/src/components/action/Frame';
 import MUIConnectSignUp from './MUIConnectSignUp';
 
@@ -30,7 +29,7 @@ const Image = styled('img')(({ theme }) => ({
 }));
 
 export default function ConnectFeatures() {
-  const [customized, setCustomized] = React.useState(true);
+  const [index, setIndex] = React.useState(0);
   return (
     <Section>
       <Grid container spacing={2}>
@@ -45,18 +44,25 @@ export default function ConnectFeatures() {
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
           />
           <Group sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
-            <Highlighter disableBorder selected={customized} onClick={() => setCustomized(true)}>
+            <Highlighter disableBorder onClick={() => setIndex(0)}>
               <Item
                 icon={<AutoAwesomeRounded color="warning" />}
-                title="Feature 1"
-                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                title="Customize your design tokens"
+                description="Visually tweak your color palettes, typography styles, shadows, spacing values, and border-radius through Figma's variables panel. Then, use Connect to generate a theme file quickly with all these changes!"
               />
             </Highlighter>
-            <Highlighter disableBorder selected={!customized} onClick={() => setCustomized(false)}>
+            <Highlighter disableBorder onClick={() => setIndex(1)}>
               <Item
-                icon={<SvgMaterialDesign />}
-                title="Feature 2"
-                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                icon={<AutoAwesomeRounded color="warning" />}
+                title="Redesign your components"
+                description="Want to make your primary button full-rounded and with lower-case text? MUI Connect also generates code for custom component styles. While in the beta version, this feature currently works just for the Button and Switch components."
+              />
+            </Highlighter>
+            <Highlighter disableBorder onClick={() => setIndex(2)}>
+              <Item
+                icon={<AutoAwesomeRounded color="warning" />}
+                title="Preview your changes on Storybook"
+                description="All of the changes you run through the MUI Connect plug-in can also be visualized on a Storybook preview instance automatically set up for you."
               />
             </Highlighter>
           </Group>
@@ -70,7 +76,7 @@ export default function ConnectFeatures() {
                 perspective: '1000px',
               }}
             >
-              <Fade in={!customized} timeout={500}>
+              <Fade timeout={500}>
                 <Box
                   sx={(theme) => ({
                     width: '100%',
