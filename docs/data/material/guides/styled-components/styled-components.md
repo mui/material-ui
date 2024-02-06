@@ -14,7 +14,7 @@ By default, Material UI uses [Emotion](https://github.com/emotion-js/emotion) t
 All components rely on the `styled()` API to inject CSS into the page.
 This API is supported by multiple popular styling libraries, which makes it possible to switch between them in Material UI.
 
-We provides two different packages to wrap your chosen styling solution for compatibility with Material UI:
+We provide two different packages to wrap your chosen styling solution for compatibility with Material UI:
 
 - `@mui/styled-engine`: a thin wrapper around Emotion's [`styled()`](https://emotion.sh/docs/styled) API that includes required utilities like the `<GlobalStyles />` component, the `css` and `keyframe` helpers, and more. This is the default, and you do not need to install it.
 - `@mui/styled-engine-sc`: a similar wrapper, but specifically tailored for styled-components. You must install and implement this package to use styled-components with Material UI.

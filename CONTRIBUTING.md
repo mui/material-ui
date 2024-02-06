@@ -40,10 +40,10 @@ Working on your first pull request? You can learn how in this free video series:
 Get started with [good first issues](https://github.com/mui/material-ui/issues?q=is:open+is:issue+label:"good+first+issue"), which have a limited scope and a working solution that's already been discussed.
 This makes them ideal for newer developers, or those who are new to these libraries and want to see how the contribution process works.
 
-We also have a list of [good to take issues](https://github.com/mui/material-ui/issues?q=is:open+is:issue+label:"good+to+take"), which are issues that have already been at least partially resolved in discussion, to the point that it's clear what to do next.
+We also have a list of [ready to take issues](https://github.com/mui/material-ui/issues?q=is:open+is:issue+label:"ready+to+take"), which are issues that have already been at least partially resolved in discussion, to the point that it's clear what to do next.
 These issues are great for developers who want to reduce their chances of falling down a rabbit hole in search of a solution.
 
-Of course, you can work on any other issue you like—the "good first" and "good to take" issues are simply those where the scope and timeline may be better defined.
+Of course, you can work on any other issue you like—the "good first" and "ready to take" issues are simply those where the scope and timeline may be better defined.
 Pull requests for other issues, or completely novel problems, may take a bit longer to review if they don't fit into our current development cycle.
 
 If you decide to fix an issue, please make sure to check the comment thread in case somebody is already working on a fix.

@@ -1,4 +1,4 @@
-# Full-stack Engineer - Toolpad (future role)
+# Full-stack Engineer — Toolpad (future role)
 
 <p class="description">You will join the MUI Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.</p>
 
