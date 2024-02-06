@@ -6,6 +6,7 @@ import { describeConformance, createRenderer, fireEvent } from '@mui-internal/te
 import Accordion, { accordionClasses as classes } from '@mui/material/Accordion';
 import Paper from '@mui/material/Paper';
 import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
 import Fade from '@mui/material/Fade';
 
 function NoTransition(props) {
@@ -252,19 +253,20 @@ describe('<Accordion />', () => {
       expect(queryByTestId('details')).to.equal(null);
     });
   });
-  it('slotProps.transition.component should take precedence over default TransitionComponent', () => {
+  it('slotProps.transition.component should be taken into account when provided', () => {
     const CustomTransition = React.forwardRef(function CustomFade(props, ref) {
-      return <Fade {...props} ref={ref} />;
+      return <Fade data-testid="test" {...props} ref={ref} />;
     });
-    const { getByRole } = render(
+    const { getByText } = render(
       <Accordion
         expanded
-        slotProps={{ transition: { component: CustomTransition, 'data-testid': 'test' } }}
+        slotProps={{ transition: { component: CustomTransition, unmountOnExit: true } }}
       >
         {minimalChildren}
+        <AccordionDetails>details</AccordionDetails>
       </Accordion>,
     );
 
-    expect(getByRole('region')).toBeVisible();
+    expect(getByText('details')).toBeVisible();
   });
 });
