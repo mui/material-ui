@@ -39,9 +39,11 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - &#8203;<!-- 33 -->[base-ui] Improve Base UI traffic from Material UI (#40875) @oliviertassinari
 - &#8203;<!-- 32 -->[base-ui] Change Radio component terminology from Button to Group (#40888) @danilo-leal
 - &#8203;<!-- 42 -->[base-ui] Remove redundant "Styled" prefix (#40478) @oliviertassinari
+- &#8203;<!-- 48 -->[base-ui] Update listbox slot style in demo (#40952) @sai6855
 - &#8203;<!-- 14 -->[material-ui] Fix createTheme import and markdown format in the Next.js guide (#40895) @hsmtkk
 - &#8203;<!-- 13 -->[material-ui] Correct Google font CDN URL as Roboto 600 weight is not used (#40852) @xuhdev
 - &#8203;<!-- 14 -->[material-ui] Replace the Album template with a landing page (#37557) @zanivan
+- &#8203;<!-- 21 -->[material-ui] Add deprecations migration guide (#40767) @DiegoAndai
 - &#8203;<!-- 17 -->[joy-ui] Update the Overview callout (#40900) @danilo-leal
 - &#8203;<!-- 22 -->Fix image size and dark mode @oliviertassinari
 - &#8203;<!-- 21 -->Migrate links from legacy.reactjs.org to react.dev @oliviertassinari
