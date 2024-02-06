@@ -2,7 +2,7 @@
 
 ## v5.15.8<!-- generated comparing v5.15.7..master -->
 
-_Feb 5, 2024_
+_Feb 6, 2024_
 
 A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
