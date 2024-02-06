@@ -5,4 +5,4 @@ export { generateAtomics, atomics } from './generateAtomics';
 export { default as css } from './css';
 export { default as createUseThemeProps } from './createUseThemeProps';
 export { default as extendTheme } from './extendTheme';
-export type { Theme, ExtendTheme, ThemeInput } from './extendTheme';
+export type { Theme, ExtendTheme } from './extendTheme';
