@@ -20,7 +20,7 @@ export const StyledTabList = styled(TabsList)(({ theme }) => ({
 }));
 
 export const StyledTabPanel = styled(TabPanel)<{ ownerState: { mounted: boolean } }>(
-  ({ theme, ownerState }) => ({
+  ({ ownerState }) => ({
     marginTop: -1,
     '& pre': {
       borderTopLeftRadius: 0,
