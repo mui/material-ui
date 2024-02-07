@@ -327,11 +327,6 @@ const pages: MuiPage[] = [
     title: 'Template store',
     icon: standardNavIcons.WebIcon,
   },
-  {
-    pathname: '/blog/mui-product-comparison/',
-    title: 'Understand the MUI ecosystem',
-    icon: standardNavIcons.CategoryIcon,
-  },
 ];
 
 export default pages;
