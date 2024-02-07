@@ -8,7 +8,7 @@ export interface UseSliderParameters {
   /**
    * The default value. Use when the component is not controlled.
    */
-  defaultValue?: number | number[];
+  defaultValue?: number | ReadonlyArray<number>;
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -30,7 +30,7 @@ export interface UseSliderParameters {
    * If an array, it should contain objects with `value` and an optional `label` keys.
    * @default false
    */
-  marks?: boolean | Mark[];
+  marks?: boolean | ReadonlyArray<Mark>;
   /**
    * The maximum allowed value of the slider.
    * Should not be equal to min.
@@ -104,7 +104,7 @@ export interface UseSliderParameters {
    * The value of the slider.
    * For ranged sliders, provide an array with two values.
    */
-  value?: number | number[];
+  value?: number | ReadonlyArray<number>;
 }
 
 export interface Mark {

@@ -85,6 +85,24 @@ module.exports = withDocsInfra({
       resolve: {
         ...config.resolve,
         // resolve .tsx first
+        alias: {
+          ...config.resolve.alias,
+
+          // for 3rd party packages with dependencies in this repository
+          '@mui/material': path.resolve(workspaceRoot, 'packages/mui-material/src'),
+          '@mui/docs': path.resolve(workspaceRoot, 'packages/mui-docs/src'),
+          '@mui/icons-material': path.resolve(workspaceRoot, 'packages/mui-icons-material/lib'),
+          '@mui/lab': path.resolve(workspaceRoot, 'packages/mui-lab/src'),
+          '@mui/styled-engine': path.resolve(workspaceRoot, 'packages/mui-styled-engine/src'),
+          '@mui/styles': path.resolve(workspaceRoot, 'packages/mui-styles/src'),
+          '@mui/system': path.resolve(workspaceRoot, 'packages/mui-system/src'),
+          '@mui/private-theming': path.resolve(workspaceRoot, 'packages/mui-private-theming/src'),
+          '@mui/utils': path.resolve(workspaceRoot, 'packages/mui-utils/src'),
+          '@mui/base': path.resolve(workspaceRoot, 'packages/mui-base/src'),
+          '@mui/material-next': path.resolve(workspaceRoot, 'packages/mui-material-next/src'),
+          '@mui/material-nextjs': path.resolve(workspaceRoot, 'packages/mui-material-nextjs/src'),
+          '@mui/joy': path.resolve(workspaceRoot, 'packages/mui-joy/src'),
+        },
         extensions: [
           '.tsx',
           // @ts-ignore
@@ -119,45 +137,6 @@ module.exports = withDocsInfra({
                 type: 'asset/source',
               },
             ],
-          },
-          // transpile 3rd party packages with dependencies in this repository
-          {
-            test: /\.(js|mjs|jsx)$/,
-            resourceQuery: { not: [/raw/] },
-            include:
-              /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator|@mui(\/|\\)x-date-pickers-pro|@mui(\/|\\)x-date-pickers|@mui(\/|\\)x-charts|@mui(\/|\\)x-tree-view)/,
-            use: {
-              loader: 'babel-loader',
-              options: {
-                // on the server we use the transpiled commonJS build, on client ES6 modules
-                // babel needs to figure out in what context to parse the file
-                sourceType: 'unambiguous',
-                plugins: [
-                  [
-                    'babel-plugin-module-resolver',
-                    {
-                      alias: {
-                        // all packages in this monorepo
-                        '@mui/material': '../packages/mui-material/src',
-                        '@mui/docs': '../packages/mui-docs/src',
-                        '@mui/icons-material': '../packages/mui-icons-material/lib',
-                        '@mui/lab': '../packages/mui-lab/src',
-                        '@mui/styled-engine': '../packages/mui-styled-engine/src',
-                        '@mui/styles': '../packages/mui-styles/src',
-                        '@mui/system': '../packages/mui-system/src',
-                        '@mui/private-theming': '../packages/mui-private-theming/src',
-                        '@mui/utils': '../packages/mui-utils/src',
-                        '@mui/base': '../packages/mui-base/src',
-                        '@mui/material-next': '../packages/mui-material-next/src',
-                        '@mui/material-nextjs': '../packages/mui-material-nextjs/src',
-                        '@mui/joy': '../packages/mui-joy/src',
-                      },
-                      // transformFunctions: ['require'],
-                    },
-                  ],
-                ],
-              },
-            },
           },
           // required to transpile ../packages/
           {

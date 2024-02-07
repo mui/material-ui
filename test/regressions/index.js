@@ -133,6 +133,7 @@ const blacklist = [
   'docs-customization-density/DensityTool.png', // Redux isolation
   'docs-customization-transitions/TransitionHover.png', // Need interaction
   'docs-customization-typography/ResponsiveFontSizesChart.png',
+  'docs-customization-right-to-left/RtlDemo.png',
   'docs-discover-more-languages', // No public components
   'docs-discover-more-showcase', // No public components
   'docs-discover-more-team', // No public components
