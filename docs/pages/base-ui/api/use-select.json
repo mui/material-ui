@@ -58,8 +58,8 @@
     "open": { "type": { "name": "boolean", "description": "boolean" } },
     "options": {
       "type": {
-        "name": "SelectOptionDefinition&lt;OptionValue&gt;[]",
-        "description": "SelectOptionDefinition&lt;OptionValue&gt;[]"
+        "name": "ReadonlyArray&lt;SelectOptionDefinition&lt;OptionValue&gt;&gt;",
+        "description": "ReadonlyArray&lt;SelectOptionDefinition&lt;OptionValue&gt;&gt;"
       }
     },
     "required": { "type": { "name": "boolean", "description": "boolean" } },
