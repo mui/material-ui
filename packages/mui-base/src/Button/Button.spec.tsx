@@ -33,8 +33,6 @@ const polymorphicComponentTest = () => {
       {/* @ts-expect-error */}
       <Button invalidProp={0} />
 
-      <Button slots={{ root: 'a' }} href="#" />
-
       <Button
         ref={(elem) => {
           expectType<HTMLButtonElement | null, typeof elem>(elem);

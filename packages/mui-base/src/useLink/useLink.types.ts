@@ -1,37 +1,33 @@
 import * as React from 'react';
 import { MuiCancellableEventHandler } from '../utils/MuiCancellableEvent';
 
-export interface UseButtonParameters {
+export interface UseLinkParameters {
   /**
    * If `true`, the component is disabled.
    * @default false
    */
   disabled?: boolean;
   /**
-   * If `true`, allows a disabled button to receive focus.
+   * If `true`, allows a disabled link to receive focus.
    * @default false
    */
   focusableWhenDisabled?: boolean;
+  href?: string;
   onFocusVisible?: React.FocusEventHandler;
   rootRef?: React.Ref<Element>;
   tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
+  to?: string;
   /**
-   * Type attribute applied when the `component` is `button`.
-   * @default 'button'
-   */
-  type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
-  /**
-   * The HTML element, e.g.'button', 'input' etc
+   * The HTML element, e.g.'a', 'span' etc
    * @default ''
    */
   rootElementName?: keyof HTMLElementTagNameMap;
 }
 
-export interface UseButtonRootSlotOwnProps {
+export interface UseLinkRootSlotOwnProps {
   'aria-disabled'?: React.AriaAttributes['aria-disabled'];
   disabled?: boolean;
   tabIndex?: number;
-  type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
   role?: React.AriaRole;
   onBlur: React.FocusEventHandler;
   onFocus: React.FocusEventHandler;
@@ -42,9 +38,9 @@ export interface UseButtonRootSlotOwnProps {
   ref: React.RefCallback<Element> | null;
 }
 
-export type UseButtonRootSlotProps<ExternalProps = {}> = ExternalProps & UseButtonRootSlotOwnProps;
+export type UseLinkRootSlotProps<ExternalProps = {}> = ExternalProps & UseLinkRootSlotOwnProps;
 
-export interface UseButtonReturnValue {
+export interface UseLinkReturnValue {
   /**
    * Resolver for the root slot's props.
    * @param externalProps additional props for the root slot
@@ -52,7 +48,7 @@ export interface UseButtonReturnValue {
    */
   getRootProps: <ExternalProps extends Record<string, any> = {}>(
     externalProps?: ExternalProps,
-  ) => UseButtonRootSlotProps<ExternalProps>;
+  ) => UseLinkRootSlotProps<ExternalProps>;
   /**
    * If `true`, the component is being focused using keyboard.
    */

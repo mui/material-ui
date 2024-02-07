@@ -52,8 +52,6 @@ const Button = React.forwardRef(function Button<RootComponentType extends React.
 
   if (typeof slots.root === 'string') {
     rootElementName = slots.root as keyof HTMLElementTagNameMap;
-  } else if (other.href || other.to) {
-    rootElementName = 'a';
   }
 
   const { active, focusVisible, setFocusVisible, getRootProps } = useButton({
@@ -82,8 +80,7 @@ const Button = React.forwardRef(function Button<RootComponentType extends React.
 
   const classes = useUtilityClasses(ownerState);
 
-  const defaultElement = other.href || other.to ? 'a' : 'button';
-  const Root: React.ElementType = slots.root ?? defaultElement;
+  const Root: React.ElementType = slots.root ?? 'button';
   const rootProps: WithOptionalOwnerState<ButtonRootSlotProps> = useSlotProps({
     elementType: Root,
     getSlotProps: getRootProps,

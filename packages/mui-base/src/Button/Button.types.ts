@@ -40,7 +40,7 @@ export interface ButtonOwnProps extends Omit<UseButtonParameters, 'rootRef'> {
 export interface ButtonSlots {
   /**
    * The component that renders the root.
-   * @default props.href || props.to ? 'a' : 'button'
+   * @default 'button'
    */
   root?: React.ElementType;
 }

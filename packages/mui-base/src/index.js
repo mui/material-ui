@@ -34,6 +34,7 @@ export * from './useBadge';
 export * from './useButton';
 export * from './useDropdown';
 export * from './useInput';
+export * from './useLink';
 export * from './useMenu';
 export * from './useMenuButton';
 export * from './useMenuItem';

@@ -6,6 +6,7 @@ import {
   EventHandlers,
   unstable_composeClasses as composeClasses,
   useButton,
+  useLink,
   useSlotProps,
 } from '@mui/base';
 import styled, { rootShouldForwardProp } from '../styles/styled';
@@ -113,7 +114,24 @@ const ButtonBase = React.forwardRef(function ButtonBase<
 
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>(null);
   const handleRef = useForkRef(buttonRef, ref);
-  const { focusVisible, active, setFocusVisible, getRootProps } = useButton({
+  const {
+    focusVisible: buttonFocusVisible,
+    active: buttonActive,
+    setFocusVisible: buttonSetFocusVisible,
+    getRootProps: buttonGetRootProps,
+  } = useButton({
+    disabled,
+    focusableWhenDisabled,
+    tabIndex,
+    rootRef: handleRef,
+  });
+
+  const {
+    focusVisible: linkFocusVisible,
+    active: linkActive,
+    setFocusVisible: linkSetFocusVisible,
+    getRootProps: linkGetRootProps,
+  } = useLink({
     disabled,
     focusableWhenDisabled,
     href: props.href,
@@ -121,6 +139,12 @@ const ButtonBase = React.forwardRef(function ButtonBase<
     tabIndex,
     rootRef: handleRef,
   });
+
+  const isLink = props.href != null || props.to != null;
+  const focusVisible = isLink ? linkFocusVisible : buttonFocusVisible;
+  const active = isLink ? linkActive : buttonActive;
+  const setFocusVisible = isLink ? linkSetFocusVisible : buttonSetFocusVisible;
+  const getRootProps = isLink ? linkGetRootProps : buttonGetRootProps;
 
   let ComponentProp = component;
   if (ComponentProp === 'button' && (other.href || other.to)) {

@@ -4,11 +4,7 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
 } from '@mui/utils';
-import {
-  UseButtonParameters,
-  UseButtonReturnValue,
-  UseButtonRootSlotProps,
-} from './useButton.types';
+import { UseLinkParameters, UseLinkReturnValue, UseLinkRootSlotProps } from './useLink.types';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
 import { useRootElementName } from '../utils/useRootElementName';
 import { EventHandlers } from '../utils/types';
@@ -17,22 +13,23 @@ import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
  *
  * Demos:
  *
- * - [Button](https://mui.com/base-ui/react-button/#hook)
+ * - [Link](https://mui.com/base-ui/react-link/#hook)
  *
  * API:
  *
- * - [useButton API](https://mui.com/base-ui/react-button/hooks-api/#use-button)
+ * - [useLink API](https://mui.com/base-ui/react-link/hooks-api/#use-link)
  */
-export function useButton(parameters: UseButtonParameters = {}): UseButtonReturnValue {
+export function useLink(parameters: UseLinkParameters = {}): UseLinkReturnValue {
   const {
     disabled = false,
     focusableWhenDisabled,
+    href,
     rootRef: externalRef,
     tabIndex,
-    type,
-    rootElementName: rootElementNameProp,
+    to,
+    rootElementName: rootElementNameProp = 'a',
   } = parameters;
-  const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
+  const linkRef = React.useRef<HTMLLinkElement | HTMLAnchorElement | HTMLElement>();
 
   const [active, setActive] = React.useState<boolean>(false);
 
@@ -54,7 +51,7 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
 
   const [rootElementName, updateRootElementName] = useRootElementName({
     rootElementName: rootElementNameProp,
-    componentName: 'Button',
+    componentName: 'Link',
   });
 
   const createHandleMouseLeave = (otherHandlers: EventHandlers) => (event: React.MouseEvent) => {
@@ -76,10 +73,10 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
   };
 
   const createHandleFocus =
-    (otherHandlers: EventHandlers) => (event: React.FocusEvent<HTMLButtonElement>) => {
+    (otherHandlers: EventHandlers) => (event: React.FocusEvent<HTMLLinkElement>) => {
       // Fix for https://github.com/facebook/react/issues/7769
-      if (!buttonRef.current) {
-        buttonRef.current = event.currentTarget;
+      if (!linkRef.current) {
+        linkRef.current = event.currentTarget;
       }
 
       handleFocusVisible(event);
@@ -91,14 +88,10 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
       otherHandlers.onFocus?.(event);
     };
 
-  const isNativeButton = () => {
-    const button = buttonRef.current;
+  const isNativeLink = () => {
+    const link = linkRef.current;
 
-    return (
-      rootElementName === 'BUTTON' ||
-      (rootElementName === 'INPUT' &&
-        ['button', 'submit', 'reset'].includes((button as HTMLInputElement)?.type))
-    );
+    return rootElementName === 'A' && (link as HTMLAnchorElement)?.href;
   };
 
   const createHandleClick = (otherHandlers: EventHandlers) => (event: React.MouseEvent) => {
@@ -130,7 +123,7 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
         return;
       }
 
-      if (event.target === event.currentTarget && !isNativeButton() && event.key === ' ') {
+      if (event.target === event.currentTarget && !isNativeLink() && event.key === ' ') {
         event.preventDefault();
       }
 
@@ -141,7 +134,7 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
       // Keyboard accessibility for non interactive elements
       if (
         event.target === event.currentTarget &&
-        !isNativeButton() &&
+        !isNativeLink() &&
         event.key === 'Enter' &&
         !disabled
       ) {
@@ -152,8 +145,8 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
 
   const createHandleKeyUp =
     (otherHandlers: EventHandlers) => (event: React.KeyboardEvent & MuiCancellableEvent) => {
-      // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
-      // https://codesandbox.io/p/sandbox/button-keyup-preventdefault-dn7f0
+      // calling preventDefault in keyUp on a <link> will not dispatch a click event if Space is pressed
+      // https://codesandbox.io/p/sandbox/link-keyup-preventdefault-tgr8f6
 
       if (event.target === event.currentTarget) {
         setActive(false);
@@ -164,7 +157,7 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
       // Keyboard accessibility for non interactive elements
       if (
         event.target === event.currentTarget &&
-        !isNativeButton() &&
+        !isNativeLink() &&
         !disabled &&
         event.key === ' ' &&
         !event.defaultMuiPrevented
@@ -173,58 +166,43 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
       }
     };
 
-  const handleRef = useForkRef(updateRootElementName, externalRef, focusVisibleRef, buttonRef);
+  const handleRef = useForkRef(updateRootElementName, externalRef, focusVisibleRef, linkRef);
 
-  interface AdditionalButtonProps {
-    type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
+  interface AdditionalLinkProps {
+    type?: React.LinkHTMLAttributes<HTMLLinkElement>['type'];
     disabled?: boolean;
     role?: React.AriaRole;
     'aria-disabled'?: React.AriaAttributes['aria-disabled'];
     tabIndex?: number;
   }
 
-  const buttonProps: AdditionalButtonProps = {};
+  const linkProps: AdditionalLinkProps = {};
 
   if (tabIndex !== undefined) {
-    buttonProps.tabIndex = tabIndex;
+    linkProps.tabIndex = tabIndex;
   }
 
-  if (rootElementName === 'BUTTON') {
-    buttonProps.type = type ?? 'button';
-    if (focusableWhenDisabled) {
-      buttonProps['aria-disabled'] = disabled;
-    } else {
-      buttonProps.disabled = disabled;
+  if (rootElementName !== 'A') {
+    if (!href && !to) {
+      linkProps.role = 'link';
     }
-  } else if (rootElementName === 'INPUT') {
-    if (type && ['button', 'submit', 'reset'].includes(type)) {
-      if (focusableWhenDisabled) {
-        buttonProps['aria-disabled'] = disabled;
-      } else {
-        buttonProps.disabled = disabled;
-      }
-    }
-  } else if (rootElementName !== '') {
-    buttonProps.role = 'button';
-    buttonProps.tabIndex = tabIndex ?? 0;
-    if (disabled) {
-      buttonProps['aria-disabled'] = disabled as boolean;
-      buttonProps.tabIndex = focusableWhenDisabled ? tabIndex ?? 0 : -1;
-    }
+  }
+  if (disabled) {
+    linkProps['aria-disabled'] = disabled as boolean;
+    linkProps.tabIndex = focusableWhenDisabled ? tabIndex ?? 0 : -1;
   }
 
   const getRootProps = <ExternalProps extends Record<string, any> = {}>(
     externalProps: ExternalProps = {} as ExternalProps,
-  ): UseButtonRootSlotProps<ExternalProps> => {
+  ): UseLinkRootSlotProps<ExternalProps> => {
     const externalEventHandlers = {
       ...extractEventHandlers(parameters),
       ...extractEventHandlers(externalProps),
     };
 
     const props = {
-      type,
       ...externalEventHandlers,
-      ...buttonProps,
+      ...linkProps,
       ...externalProps,
       onBlur: createHandleBlur(externalEventHandlers),
       onClick: createHandleClick(externalEventHandlers),
