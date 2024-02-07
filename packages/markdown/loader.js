@@ -157,6 +157,29 @@ module.exports = async function demoLoader() {
     ),
   );
 
+  /**
+   * @param {*} demoName
+   * @param {*} variant
+   * @param {*} importModuleID
+   * @example detectRelativeImports('Button', 'JS', './data/Button-data.js') => relativeModules.set('Button', new Map([['./data/Button-data.js', ['JS']]]))
+   */
+
+  function detectRelativeImports(demoName, variant, importModuleID) {
+    if (importModuleID.startsWith('.')) {
+      const demoMap = relativeModules.get(demoName);
+      if (!demoMap) {
+        relativeModules.set(demoName, new Map([[importModuleID, [variant]]]));
+      } else {
+        const variantArray = demoMap.get(importModuleID);
+        if (variantArray) {
+          variantArray.push(variant);
+        } else {
+          demoMap.set(importModuleID, [variant]);
+        }
+      }
+    }
+  }
+
   await Promise.all(
     demoNames.map(async (demoName) => {
       const multipleDemoVersionsUsed = !demoName.endsWith('.js');
@@ -185,14 +208,10 @@ module.exports = async function demoLoader() {
       demoModuleIDs.add(moduleID);
       extractImports(demos[demoName].raw).forEach((importModuleID) => {
         // detect relative import
-        // skip this for modules that are not demos
-        if (!toolbarHidden.has(moduleID.replace('./', '')) && importModuleID.startsWith('.')) {
-          relativeModules.set(
-            demoName,
-            relativeModules.has(demoName)
-              ? [...relativeModules.get(demoName), importModuleID]
-              : [importModuleID],
-          );
+        // skip for modules that are not demos
+        if (!toolbarHidden.has(moduleID.replace('./', ''))) {
+          console.log('detecting relative imports for ', moduleID, 'JS');
+          detectRelativeImports(demoName, 'JS', importModuleID);
         }
         importedModuleIDs.add(importModuleID);
       });
@@ -341,38 +360,6 @@ module.exports = async function demoLoader() {
         }
       }
 
-      if (relativeModules.has(demoName)) {
-        const relativeModuleIDs = relativeModules.get(demoName);
-
-        // Add relative demo data for each relative module, iterate over each relative module
-        // use Promise.all for parallel processing
-        const relativeModuleData = await Promise.all(
-          relativeModuleIDs.map(async (relativeModuleID) => {
-            // Resolve the relative module filepath
-            const relativeModuleFilepath = path.join(
-              moduleFilepath,
-              '..',
-              relativeModuleID.replace(/\//g, path.sep),
-            );
-            // Use the extension to determine the language
-            // e.g. .tsx for TypeScript => language = 'tsx'
-            // e.g. .js for JavaScript => language = 'js'
-            const extension = path.extname(relativeModuleFilepath).replace('.', '');
-
-            const relativeModuleRaw = await fs.readFile(relativeModuleFilepath, {
-              encoding: 'utf8',
-            });
-
-            return {
-              module: relativeModuleID,
-              raw: relativeModuleRaw,
-              language: extension,
-            };
-          }),
-        );
-        demos[demoName].relativeModules = relativeModuleData;
-      }
-
       try {
         const previewFilepath = moduleFilepath.replace(/\.js$/, '.tsx.preview');
 
@@ -397,9 +384,60 @@ module.exports = async function demoLoader() {
         // But this leads to building both demo version i.e. more build time.
         demos[demoName].moduleTS = this.mode === 'production' ? moduleID : moduleTS;
         demos[demoName].rawTS = rawTS;
+
+        // Extract relative imports from the TypeScript version
+        // of demos which have relative imports in the JS version
+        // Array.from(relativeModules.keys()).forEach((demoWithRelativeImports) => {
+        //   extractImports(demos[demoWithRelativeImports].rawTS).forEach((importModuleID) => {
+        //     console.log('detecting relative imports for ', demoWithRelativeImports, 'TS');
+        //     detectRelativeImports(demoWithRelativeImports, 'TS', importModuleID);
+        //     importedModuleIDs.add(importModuleID);
+        //   });
+        // });
+
         demoModuleIDs.add(demos[demoName].moduleTS);
       } catch (error) {
         // TS version of the demo doesn't exist. This is fine.
+      }
+
+      /* Map over relative import module IDs and resolve them
+       * while grouping by demo variant
+       * From:
+       * relativeModules: { 'ComboBox.js' =>
+       *    { './data/top100Films.js'  => 'JS,TS' }
+       * }
+       * To:
+       * demos["ComboBox.js"].relativeModules = {
+       *     JS: [{ module: './data/top100Films.js', raw: '...' }],
+       *     TS: [{ module: './data/top100Films.js', raw: '...' }]
+       *   }
+       * }
+       */
+
+      if (relativeModules.has(demoName)) {
+        demos[demoName].relativeModules = {};
+        await Promise.all(
+          Array.from(relativeModules.get(demoName)).map(async ([relativeModuleID, variants]) => {
+            console.log('relativeModuleID', relativeModuleID, variants);
+            const relativeModuleFilepath = path.join(
+              moduleFilepath,
+              '..',
+              relativeModuleID.replace(/\//g, path.sep),
+            );
+            const raw = await fs.readFile(relativeModuleFilepath, { encoding: 'utf8' });
+
+            const moduleData = {
+              module: relativeModuleID,
+              raw,
+            };
+            variants.forEach((variant) => {
+              if (!demos[demoName].relativeModules[variant]) {
+                demos[demoName].relativeModules[variant] = [moduleData];
+              }
+              demos[demoName].relativeModules[variant].push(moduleData);
+            });
+          }),
+        );
       }
     }),
   );

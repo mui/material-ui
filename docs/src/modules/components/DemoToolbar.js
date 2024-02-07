@@ -335,17 +335,17 @@ export default function DemoToolbar(props) {
 
   const copyWithRelativeModules = React.useCallback(
     (raw) => {
-      if (demo.relativeModules) {
-        demo.relativeModules.forEach(({ module, raw: content }) => {
+      if (demoData.relativeModules) {
+        demoData.relativeModules.forEach(({ module, raw: content }) => {
           // remove exports from relative module
-          content = content.replace(/export default (.*);/gm, '');
+          content = content.replace(/export( )*(default)*( )*\w+;|export default|export/gm, '');
           // replace import statement with relative module content
           raw = raw.replace(new RegExp(`import (.*) from '${module}';`, 'g'), content);
         });
       }
       return copy(raw);
     },
-    [demo.relativeModules],
+    [demoData.relativeModules],
   );
 
   const handleCopyClick = async () => {

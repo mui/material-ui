@@ -72,7 +72,6 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
     }
 
     let codeOptions = {};
-
     if (codeStyling === CODE_STYLING.SYSTEM) {
       if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
         codeOptions = {
@@ -83,6 +82,9 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
           Component: demo.tsx,
           sourceLanguage: 'tsx',
         };
+        if (demo.relativeModules) {
+          codeOptions.relativeModules = demo.relativeModules[CODE_VARIANTS.TS];
+        }
       } else {
         codeOptions = {
           codeVariant: CODE_VARIANTS.JS,
@@ -92,6 +94,9 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
           Component: demo.js,
           sourceLanguage: 'jsx',
         };
+        if (demo.relativeModules) {
+          codeOptions.relativeModules = demo.relativeModules[CODE_VARIANTS.JS];
+        }
       }
     } else if (codeStyling === CODE_STYLING.TAILWIND) {
       if (codeVariant === CODE_VARIANTS.TS && demo.rawTailwindTS) {
@@ -367,6 +372,7 @@ const bordersOverride = {
 };
 
 const selectionOverride = (theme) => ({
+  cursor: 'pointer',
   '&.base--selected': {
     color: (theme.vars || theme).palette.primary[500],
     '&::after': {
@@ -540,12 +546,12 @@ export default function Demo(props) {
   const ownerState = { mounted: true };
 
   const tabs = React.useMemo(() => {
-    if (!demo.relativeModules) {
+    if (!demoData.relativeModules) {
       return [{ module: demoData.module, raw: demoData.raw }];
     }
 
-    return [{ module: demoData.module, raw: demoData.raw }, ...demo.relativeModules];
-  }, [demo.relativeModules, demoData.module, demoData.raw]);
+    return [{ module: demoData.module, raw: demoData.raw }, ...demoData.relativeModules];
+  }, [demoData.relativeModules, demoData.module, demoData.raw]);
 
   return (
     <Root>
@@ -606,7 +612,7 @@ export default function Demo(props) {
             </NoSsr>
           </DemoToolbarRoot>
           <Tabs defaultValue={0} value={activeTab} onChange={handleChange}>
-            {demo.relativeModules ? (
+            {demo.relativeModules && codeOpen ? (
               <StyledTabList sx={bordersOverride}>
                 {tabs.map((tab, index) => (
                   <StyledTab
