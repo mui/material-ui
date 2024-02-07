@@ -238,8 +238,10 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
     },
   };
 
-  const plugins: Array<UnpluginOptions> = [
-    {
+  const plugins: Array<UnpluginOptions> = [];
+
+  if (theme) {
+    plugins.push({
       name: 'zero-plugin-theme-tokens',
       enforce: 'pre',
       webpack(compiler) {
@@ -268,12 +270,10 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
             },
             transform(_code, id) {
               if (id.endsWith('styles.css')) {
-                return theme ? generateTokenCss(theme) : '';
+                return generateTokenCss(theme);
               }
               if (id.includes('zero-runtime/theme')) {
-                return `export default ${
-                  theme ? JSON.stringify(generateThemeTokens(theme)) : '{}'
-                };`;
+                return `export default ${JSON.stringify(generateThemeTokens(theme))};`;
               }
               return null;
             },
@@ -293,18 +293,16 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
             },
             load(id) {
               if (id === VIRTUAL_CSS_FILE) {
-                return theme ? generateTokenCss(theme) : '';
+                return generateTokenCss(theme);
               }
               if (id === VIRTUAL_THEME_FILE) {
-                return `export default ${
-                  theme ? JSON.stringify(generateThemeTokens(theme)) : '{}'
-                };`;
+                return `export default ${JSON.stringify(generateThemeTokens(theme))};`;
               }
               return null;
             },
           }),
-    },
-  ];
+    });
+  }
 
   if (transformSx) {
     plugins.push(babelTransformPlugin);
