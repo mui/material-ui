@@ -1,13 +1,19 @@
+import { transformAsync } from '@babel/core';
+import {
+  type Preprocessor,
+  type PluginOptions as LinariaPluginOptions,
+  type IFileReporterOptions,
+  TransformCacheCollection,
+  transform,
+  createFileReporter,
+} from '@wyw-in-js/transform';
+import { asyncResolveFallback, slugify } from '@wyw-in-js/shared';
 import {
   UnpluginFactoryOutput,
   WebpackPluginInstance,
   createUnplugin,
   UnpluginOptions,
 } from 'unplugin';
-import { transformAsync } from '@babel/core';
-import type { PluginOptions as LinariaPluginOptions, Preprocessor } from '@linaria/babel-preset';
-import { TransformCacheCollection, transform } from '@linaria/babel-preset';
-import { createPerfMeter, asyncResolveFallback, slugify } from '@linaria/utils';
 import {
   preprocessor as basePreprocessor,
   generateTokenCss,
@@ -42,7 +48,7 @@ export type PluginOptions<Theme extends BaseTheme = BaseTheme> = {
   theme: Theme;
   transformLibraries?: string[];
   preprocessor?: Preprocessor;
-  debug?: boolean;
+  debug?: IFileReporterOptions | false;
   sourceMap?: boolean;
   meta?: Meta;
   asyncResolve?: (what: string) => string | null;
@@ -105,7 +111,7 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
     ...rest
   } = options;
   const cache = new TransformCacheCollection();
-  const { emitter, onDone } = createPerfMeter(debug);
+  const { emitter, onDone } = createFileReporter(debug ?? false);
   const cssLookup = meta?.type === 'next' ? globalCssLookup : new Map<string, string>();
   const cssFileLookup = meta?.type === 'next' ? globalCssFileLookup : new Map<string, string>();
   const isNext = meta?.type === 'next';
