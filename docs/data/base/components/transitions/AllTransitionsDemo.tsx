@@ -148,7 +148,7 @@ export default function AllTransitionsDemo() {
             exitClassName="close"
             lastTransitionedPropertyOnExit="transform"
           >
-            <PopupBody>Animated with the CssTransition component.</PopupBody>
+            <PopupBody>Animated with the CSS Transition component.</PopupBody>
           </CssTransition>
         </PopupWithTrigger>
         <PopupWithTrigger2>
@@ -158,7 +158,7 @@ export default function AllTransitionsDemo() {
             enterAnimationName="open-animation"
             exitAnimationName="close-animation"
           >
-            <PopupBody>Animated with the CssAnimation component.</PopupBody>
+            <PopupBody>Animated with the CSS Animation component.</PopupBody>
           </CssAnimation>
         </PopupWithTrigger2>
       </Section>
@@ -175,7 +175,7 @@ function PopupWithTrigger(props: PopupProps) {
   return (
     <React.Fragment>
       <Button ref={setAnchor} onClick={() => setOpen((o) => !o)}>
-        {open ? 'Hide popup' : 'Open CssTransition'}
+        {open ? 'Hide popup' : 'Open CSS Transition'}
       </Button>
       <StyledPopup anchor={anchor} open={open} {...other}>
         {children}
@@ -192,7 +192,7 @@ function PopupWithTrigger2(props: PopupProps) {
   return (
     <React.Fragment>
       <Button ref={setAnchor} onClick={() => setOpen((o) => !o)}>
-        {open ? 'Hide popup' : 'Open CssAnimation'}
+        {open ? 'Hide popup' : 'Open CSS Animation'}
       </Button>
       <StyledPopup anchor={anchor} open={open} {...other}>
         {children}
