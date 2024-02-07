@@ -324,7 +324,7 @@ const pages: MuiPage[] = [
   },
   {
     pathname: 'https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=sidenav',
-    title: 'Templates store',
+    title: 'Template store',
     icon: standardNavIcons.WebIcon,
   },
   {
