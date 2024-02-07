@@ -1,0 +1,7 @@
+.MuiAccordionSummary-gutters .MuiAccordionSummary-content {
+  color: red;
+}
+
+.MuiAccordionSummary-root.MuiAccordionSummary-gutters .MuiAccordionSummary-content {
+  color: red;
+}

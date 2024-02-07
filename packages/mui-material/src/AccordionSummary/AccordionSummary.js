@@ -27,7 +27,10 @@ const useUtilityClasses = (ownerState) => {
 const AccordionSummaryRoot = styled(ButtonBase, {
   name: 'MuiAccordionSummary',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+    return [styles.root, !ownerState.disableGutters && styles.gutters];
+  },
 })(({ theme, ownerState }) => {
   const transition = {
     duration: theme.transitions.duration.shortest,
@@ -58,7 +61,7 @@ const AccordionSummaryRoot = styled(ButtonBase, {
 const AccordionSummaryContent = styled('div', {
   name: 'MuiAccordionSummary',
   slot: 'Content',
-  overridesResolver: (props, styles) => styles.content,
+  overridesResolver: (props, styles) => [styles.content, styles.contentGutters],
 })(({ theme, ownerState }) => ({
   display: 'flex',
   flexGrow: 1,
