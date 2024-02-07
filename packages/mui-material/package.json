@@ -1,6 +1,6 @@
 {
   "name": "@mui/material",
-  "version": "5.15.7",
+  "version": "5.15.8",
   "private": false,
   "author": "MUI Team",
   "description": "Material UI is an open-source React component library that implements Google's Material Design. It's comprehensive and can be used in production out of the box.",
@@ -48,6 +48,7 @@
     "@mui/system": "workspace:^",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:^",
+    "@mui/zero-runtime": "workspace:^",
     "@types/react-transition-group": "^4.4.10",
     "clsx": "^2.1.0",
     "csstype": "^3.1.2",
@@ -65,7 +66,7 @@
     "@testing-library/user-event": "^14.5.2",
     "@types/chai": "^4.3.11",
     "@types/prop-types": "^15.7.11",
-    "@types/react": "^18.2.48",
+    "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.18",
     "@types/sinon": "^10.0.20",
     "chai": "^4.4.1",
@@ -74,7 +75,7 @@
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
     "lodash": "^4.17.21",
-    "playwright": "^1.41.1",
+    "playwright": "^1.41.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.3",
@@ -89,6 +90,7 @@
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
+    "@mui/zero-runtime": "workspace:^",
     "@types/react": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"
@@ -101,6 +103,9 @@
       "optional": true
     },
     "@emotion/styled": {
+      "optional": true
+    },
+    "@mui/zero-runtime": {
       "optional": true
     }
   },

@@ -188,6 +188,17 @@ const openRolesData = [
       },
     ],
   },
+  {
+    title: 'Support',
+    roles: [
+      {
+        title: 'Customer Support Agent',
+        description:
+          'You will help MUI provide timely and efficient support to our customers and continue to streamline our customer operations across the board.',
+        url: '/careers/support-agent/',
+      },
+    ],
+  },
 ];
 
 const nextRolesData = [
@@ -259,16 +270,6 @@ const nextRolesData = [
         title: 'Account Executive',
         description:
           'You will build client relationships and manage the sales process from start to finish.',
-      },
-    ],
-  },
-  {
-    title: 'Support',
-    roles: [
-      {
-        title: 'Support Agent',
-        description:
-          'You will provide support for the customers. You will directly impact customer satisfaction and success.',
       },
     ],
   },
@@ -406,6 +407,7 @@ export default function Careers() {
                     noLinkStyle
                     variant="outlined"
                     sx={{ p: 2, width: '100%' }}
+                    key={title}
                   >
                     <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
                       {title}

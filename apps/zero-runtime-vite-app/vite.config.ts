@@ -22,4 +22,12 @@ export default defineConfig({
     reactPlugin(),
     splitVendorChunkPlugin(),
   ],
+  resolve: {
+    alias: [
+      {
+        find: /^@mui\/system\/(.*)/,
+        replacement: '@mui/system/esm/$1',
+      },
+    ],
+  },
 });
