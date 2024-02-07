@@ -1,6 +1,6 @@
 {
   "props": {
-    "defaultValue": { "type": { "name": "any" } },
+    "defaultValue": { "type": { "name": "number" } },
     "disabled": { "type": { "name": "bool" } },
     "endAdornment": { "type": { "name": "node" } },
     "error": { "type": { "name": "bool" } },
@@ -42,7 +42,7 @@
     },
     "startAdornment": { "type": { "name": "node" } },
     "step": { "type": { "name": "number" } },
-    "value": { "type": { "name": "number" } }
+    "value": { "type": { "name": "number" }, "default": "null" }
   },
   "name": "NumberInput",
   "imports": [

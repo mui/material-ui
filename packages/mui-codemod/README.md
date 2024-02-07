@@ -102,10 +102,10 @@ See https://github.com/mui/material-ui/issues/21862 for more context.
 This codemod updates the import and re-export statements.
 
 ```diff
--  import BaseButton from '@mui/base/Button';
-+  import { Button as BaseButton } from '@mui/base/Button';
--  export { default as BaseSlider } from '@mui/base/Slider';
-+  export { Slider as BaseSlider } from '@mui/base/Slider';
+-import BaseButton from '@mui/base/Button';
+-export { default as BaseSlider } from '@mui/base/Slider';
++import { Button as BaseButton } from '@mui/base/Button';
++export { Slider as BaseSlider } from '@mui/base/Slider';
 ```
 
 ```bash
@@ -117,8 +117,8 @@ npx @mui/codemod@latest v5.0.0/base-use-named-exports <path>
 The `Unstyled` suffix has been removed from all Base UI component names, including names of types and other related identifiers.
 
 ```diff
--  <Input component='a' href='url' />;
-+  <Input slots={{ root: 'a' }} href='url' />;
+-<Input component='a' href='url' />;
++<Input slots={{ root: 'a' }} href='url' />;
 ```
 
 ```bash
@@ -132,8 +132,8 @@ Remove `component` prop from all Base UI components by transferring its value i
 This change only affects Base UI components.
 
 ```diff
--  <Input component={CustomRoot} />
-+  <Input slots={{ root: CustomRoot }} />
+-<Input component={CustomRoot} />
++<Input slots={{ root: CustomRoot }} />
 ```
 
 ```bash
@@ -145,10 +145,10 @@ npx @mui/codemod@latest v5.0.0/base-remove-component-prop <path>
 Updates the names of the CSS variables of the Joy UI components to adapt to the new naming standards of the CSS variables for components.
 
 ```diff
--  <List sx={{ py: 'var(--List-divider-gap)' }}>
-+  <List sx={{ py: 'var(--ListDivider-gap)' }}>
--  <Switch sx={{ '--Switch-track-width': '40px' }}>
-+  <Switch sx={{ '--Switch-trackWidth': '40px' }}>
+-<List sx={{ py: 'var(--List-divider-gap)' }}>
+-<Switch sx={{ '--Switch-track-width': '40px' }}>
++<List sx={{ py: 'var(--ListDivider-gap)' }}>
++<Switch sx={{ '--Switch-trackWidth': '40px' }}>
 ```
 
 ```bash
@@ -160,8 +160,8 @@ npx @mui/codemod@latest v5.0.0/rename-css-variables <path>
 Updates the sources of the imports of the Base UI hooks to adapt to the new directories of the hooks.
 
 ```diff
--  import { useBadge } from '@mui/base/BadgeUnstyled';
-+  import useBadge from '@mui/base/useBadge';
+-import { useBadge } from '@mui/base/BadgeUnstyled';
++import useBadge from '@mui/base/useBadge';
 ```
 
 ```bash
@@ -283,8 +283,8 @@ This change only affects Joy UI components.
 ```diff
  <Autocomplete
 -  components={{ listbox: CustomListbox }}
-+  slots={{ listbox: CustomListbox }}
 -  componentsProps={{ root: { className: 'root' }, listbox: { 'data-testid': 'listbox' } }}
++  slots={{ listbox: CustomListbox }}
 +  slotProps={{ root: { className: 'root' }, listbox: { 'data-testid': 'listbox' } }}
  />;
 ```
@@ -488,8 +488,8 @@ This change only affects Base UI components.
 ```diff
  <BadgeUnstyled
 -  components={{ Root, Badge: CustomBadge }}
-+  slots={{ root: Root, badge: CustomBadge }}
 -  componentsProps={{ root: { className: 'root' }, badge: { 'data-testid': 'badge' } }}
++  slots={{ root: Root, badge: CustomBadge }}
 +  slotProps={{ root: { className: 'root' }, badge: { 'data-testid': 'badge' } }}
  />;
 ```

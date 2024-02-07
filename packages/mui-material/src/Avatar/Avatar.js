@@ -183,7 +183,10 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
         {...imgProps}
       />
     );
-  } else if (childrenProp != null && childrenProp !== '' && typeof childrenProp !== 'boolean') {
+
+    // We only render valid children, non valid children are rendered with a fallback
+    // We consider that invalid children are all falsy values, except 0, which is valid.
+  } else if (!!childrenProp || childrenProp === 0) {
     children = childrenProp;
   } else if (hasImg && alt) {
     children = alt[0];
