@@ -57,7 +57,7 @@ The Accordion's `TransitionProps` was deprecated in favor of `slotProps.transiti
 The Divider's `light` prop was deprecated, Use `sx={{ opacity : "0.6" }}` (or any opacity). ([Codemod](https://github.com/mui/material-ui/tree/master/packages/mui-codemod#divider-props)):
 
 ```diff
- <Accordion
+ <Divider
 -    light
 +    sx={{ opacity : "0.6" }}
  />
