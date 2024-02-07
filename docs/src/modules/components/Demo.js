@@ -83,7 +83,7 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
           sourceLanguage: 'tsx',
         };
         if (demo.relativeModules) {
-          codeOptions.relativeModules = demo.relativeModules[CODE_VARIANTS.TS];
+          codeOptions.relativeModules = demo.relativeModules?.[CODE_VARIANTS.TS];
         }
       } else {
         codeOptions = {
@@ -95,7 +95,7 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
           sourceLanguage: 'jsx',
         };
         if (demo.relativeModules) {
-          codeOptions.relativeModules = demo.relativeModules[CODE_VARIANTS.JS];
+          codeOptions.relativeModules = demo.relativeModules?.[CODE_VARIANTS.JS];
         }
       }
     } else if (codeStyling === CODE_STYLING.TAILWIND) {

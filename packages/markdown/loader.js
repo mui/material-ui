@@ -210,7 +210,6 @@ module.exports = async function demoLoader() {
         // detect relative import
         // skip for modules that are not demos
         if (!toolbarHidden.has(moduleID.replace('./', ''))) {
-          console.log('detecting relative imports for ', moduleID, 'JS');
           detectRelativeImports(demoName, 'JS', importModuleID);
         }
         importedModuleIDs.add(importModuleID);
@@ -387,13 +386,12 @@ module.exports = async function demoLoader() {
 
         // Extract relative imports from the TypeScript version
         // of demos which have relative imports in the JS version
-        // Array.from(relativeModules.keys()).forEach((demoWithRelativeImports) => {
-        //   extractImports(demos[demoWithRelativeImports].rawTS).forEach((importModuleID) => {
-        //     console.log('detecting relative imports for ', demoWithRelativeImports, 'TS');
-        //     detectRelativeImports(demoWithRelativeImports, 'TS', importModuleID);
-        //     importedModuleIDs.add(importModuleID);
-        //   });
-        // });
+        Array.from(relativeModules.keys()).forEach((demoWithRelativeImports) => {
+          extractImports(demos[demoWithRelativeImports].rawTS).forEach((importModuleID) => {
+            detectRelativeImports(demoWithRelativeImports, 'TS', importModuleID);
+            importedModuleIDs.add(importModuleID);
+          });
+        });
 
         demoModuleIDs.add(demos[demoName].moduleTS);
       } catch (error) {
@@ -415,26 +413,26 @@ module.exports = async function demoLoader() {
        */
 
       if (relativeModules.has(demoName)) {
-        demos[demoName].relativeModules = {};
         await Promise.all(
           Array.from(relativeModules.get(demoName)).map(async ([relativeModuleID, variants]) => {
-            console.log('relativeModuleID', relativeModuleID, variants);
             const relativeModuleFilepath = path.join(
               moduleFilepath,
               '..',
               relativeModuleID.replace(/\//g, path.sep),
             );
-            const raw = await fs.readFile(relativeModuleFilepath, { encoding: 'utf8' });
 
-            const moduleData = {
-              module: relativeModuleID,
-              raw,
-            };
+            const raw = await fs.readFile(relativeModuleFilepath, { encoding: 'utf8' });
+            const moduleData = { module: relativeModuleID, raw };
+
             variants.forEach((variant) => {
-              if (!demos[demoName].relativeModules[variant]) {
+              if (!demos[demoName].relativeModules) {
+                demos[demoName].relativeModules = {};
+              }
+              if (demos[demoName].relativeModules[variant]) {
+                demos[demoName].relativeModules[variant].push(moduleData);
+              } else {
                 demos[demoName].relativeModules[variant] = [moduleData];
               }
-              demos[demoName].relativeModules[variant].push(moduleData);
             });
           }),
         );
