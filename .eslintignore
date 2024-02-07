@@ -11,6 +11,7 @@
 /examples/material-ui-nextjs/src
 /packages/mui-codemod/lib
 /packages/mui-codemod/src/*/*.test/*
+/packages/mui-codemod/src/**/test-cases/*
 /packages/mui-icons-material/fixtures
 /packages/mui-icons-material/legacy
 /packages/mui-icons-material/lib

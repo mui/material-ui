@@ -15,12 +15,15 @@ const path = require('path');
 const fse = require('fs-extra');
 const babel = require('@babel/core');
 const prettier = require('prettier');
-const { getPropTypesFromFile, injectPropTypesInFile } = require('typescript-to-proptypes');
+const {
+  getPropTypesFromFile,
+  injectPropTypesInFile,
+} = require('@mui-internal/typescript-to-proptypes');
 const {
   createTypeScriptProjectBuilder,
 } = require('@mui-internal/api-docs-builder/utils/createTypeScriptProject');
 const yargs = require('yargs');
-const { fixBabelGeneratorIssues, fixLineEndings } = require('@mui-internal/docs-utilities');
+const { fixBabelGeneratorIssues, fixLineEndings } = require('@mui-internal/docs-utils');
 const { default: CORE_TYPESCRIPT_PROJECTS } = require('../../scripts/coreTypeScriptProjects');
 
 const babelConfig = {
