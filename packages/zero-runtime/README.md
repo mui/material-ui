@@ -18,7 +18,6 @@ A zero-runtime CSS-in-JS library that extracts the colocated css to it's own css
   - [Color schemes](#color-schemes)
   - [Switching color schemes](#switching-color-schemes)
   - [TypeScript](#typescript)
-  - [Mutliple themes](#mutliple-themes)
 
 ## Getting started
 
@@ -89,9 +88,9 @@ function App() {
 }
 ```
 
-The `css` function will be replaced with a unique string that represents the CSS class name for the generated styles.
+The call to `css` function will be replaced with a unique string that represents the CSS class name for the generated styles.
 
-Use a callback function to get access to the theme values:
+Use a callback function to get access to the [theme](#theme) values:
 
 ```js
 const title = css(({ theme }) => ({
@@ -100,8 +99,6 @@ const title = css(({ theme }) => ({
   fontFamily: theme.typography.fontFamily,
 }));
 ```
-
-To Learn more about using theme, check out [Theme](#theme) section.
 
 ### Creating components
 
@@ -450,7 +447,3 @@ declare module '@mui/zero-runtime/theme' {
   }
 }
 ```
-
-#### Mutliple themes
-
-> ⏳ Currently, zero-runtime only supports a single theme.
