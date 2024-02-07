@@ -8062,7 +8062,7 @@ packages:
   /@types/webpack-bundle-analyzer@4.6.3(esbuild@0.19.11)(webpack-cli@5.1.4):
     resolution: {integrity: sha512-XYU3m7oRb1tlE8YhwkKLi1xba2buNB9V4VkQtOVTfJuUm/413pE/UCMVcPDFFBwpzGkr9y1WbSEvdPjKVPt0gw==}
     dependencies:
-      '@types/node': 18.19.10
+      '@types/node': 18.19.14
       tapable: 2.2.1
       webpack: 5.90.0(esbuild@0.19.11)(webpack-cli@5.1.4)
     transitivePeerDependencies:
