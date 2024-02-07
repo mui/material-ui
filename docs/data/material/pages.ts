@@ -15,10 +15,6 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/getting-started/learn' },
       { pathname: '/material-ui/getting-started/design-resources' },
       { pathname: '/material-ui/getting-started/faq', title: 'FAQs' },
-      {
-        pathname: '/material-ui/getting-started/understand-mui-packages',
-        title: 'Understanding MUI packages',
-      },
       { pathname: '/material-ui/getting-started/supported-components' },
       { pathname: '/material-ui/getting-started/supported-platforms' },
       { pathname: '/material-ui/getting-started/support' },
@@ -328,8 +324,13 @@ const pages: MuiPage[] = [
   },
   {
     pathname: 'https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=sidenav',
-    title: 'Templates',
-    icon: standardNavIcons.ReaderIcon,
+    title: 'Templates store',
+    icon: standardNavIcons.WebRoundedIcon,
+  },
+  {
+    pathname: '/blog/mui-product-comparison/',
+    title: 'Understand the MUI ecosystem',
+    icon: standardNavIcons.CategoryOutlinedIcon,
   },
 ];
 
