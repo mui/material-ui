@@ -13,16 +13,65 @@ import Info from './Info';
 import getLPTheme from '../landing-page/getLPTheme';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
+import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
+import SvgMaterialDesign from 'docs/src/icons/SvgMaterialDesign';
 
-const LPtheme = createTheme(getLPTheme('dark'));
 const defaultTheme = createTheme({});
+
+interface ToggleCustomThemeProps {
+  showCustomTheme: Boolean;
+  toggleCustomTheme: () => void;
+}
+
+function ToggleCustomTheme({
+  showCustomTheme,
+  toggleCustomTheme,
+}: ToggleCustomThemeProps) {
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: '100dvw',
+        position: 'fixed',
+        bottom: 24,
+      }}
+    >
+      <ToggleButtonGroup
+        color="primary"
+        exclusive
+        value={showCustomTheme}
+        onChange={toggleCustomTheme}
+        aria-label="Platform"
+        sx={{
+          backgroundColor: 'background.default',
+          '& .Mui-selected': {
+            pointerEvents: 'none',
+          },
+        }}
+      >
+        <ToggleButton value>
+          <AutoAwesomeRoundedIcon sx={{ fontSize: '20px', mr: 1 }} />
+          Custom theme
+        </ToggleButton>
+        <ToggleButton value={false}>
+          <SvgMaterialDesign sx={{ fontSize: '20px', mr: 1 }} />
+          Material Design
+        </ToggleButton>
+      </ToggleButtonGroup>
+    </Box>
+  );
+}
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
 const logoStyle = {
   width: '140px',
-  height: 'auto',
+  height: '56px',
   margin: 'auto',
   opacity: 0.3,
 };
@@ -41,7 +90,13 @@ function getStepContent(step: number) {
 }
 
 export default function Checkout() {
+  const [showCustomTheme, setShowCustomTheme] = React.useState(true);
+  const LPtheme = createTheme(getLPTheme('dark'));
   const [activeStep, setActiveStep] = React.useState(0);
+
+  const toggleCustomTheme = () => {
+    setShowCustomTheme((prev) => !prev);
+  };
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -52,31 +107,41 @@ export default function Checkout() {
   };
 
   return (
-    <ThemeProvider theme={LPtheme}>
+    <ThemeProvider theme={showCustomTheme ? LPtheme : defaultTheme}>
       <CssBaseline />
       <Grid container sx={{ height: '100dvh' }}>
         <Grid
           item
           xs={12}
-          sm={6}
+          sm={5}
           sx={{
             display: 'flex',
-            width: '100%',
-            backgroundColor: 'background.paper',
+            flexDirection: 'column',
+            backgroundColor: 'background.default',
             borderRight: '1px solid',
             borderColor: 'divider',
-            alignItems: 'center',
+            alignItems: 'start',
+            pt: 4,
+            px: 10,
+            gap: 10,
           }}
         >
+          <Box sx={{ display: 'flex', ml: '-18px' }}>
+            <img
+              src={
+                'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf7356420e154daf_SitemarkLight.svg'
+              }
+              style={logoStyle}
+              alt="logo of sitemark"
+            />
+          </Box>
           <Box
             sx={{
               display: 'flex',
               flexDirection: 'column',
               flexGrow: 1,
+              width: '100%',
               maxWidth: 500,
-              height: 600,
-              mr: 10,
-              ml: 'auto',
             }}
           >
             <Button
@@ -88,30 +153,34 @@ export default function Checkout() {
               Back
             </Button>
             <Info />
-            <Box sx={{ display: 'flex' }}>
-              <img
-                src={
-                  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf7356420e154daf_SitemarkLight.svg'
-                }
-                style={logoStyle}
-                alt="logo of sitemark"
-              />
-            </Box>
           </Box>
         </Grid>
-        <Grid item xs={12} sm={6} sx={{ display: 'flex', alignItems: 'center' }}>
+        <Grid
+          item
+          xs={12}
+          sm={7}
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            backgroundColor: 'background.paper',
+            borderRight: '1px solid',
+            borderColor: 'divider',
+            alignItems: 'start',
+            pt: 35,
+            px: 10,
+          }}
+        >
           <Box
             sx={{
               display: 'flex',
               flexDirection: 'column',
               flexGrow: 1,
-              maxWidth: 500,
+              maxWidth: 600,
               height: 600,
-              mr: 'auto',
-              ml: 10,
+              maxHeight: '600px',
             }}
           >
-            <Stepper activeStep={activeStep} sx={{ pb: 4 }}>
+            <Stepper activeStep={activeStep} sx={{ mb: 10 }}>
               {steps.map((label) => (
                 <Step
                   sx={{
@@ -130,7 +199,7 @@ export default function Checkout() {
                   Thank you for your order.
                 </Typography>
                 <Typography variant="subtitle1" gutterBottom>
-                  Your order number is #2001539. We have emailed your order
+                  Your order number is #140396. We have emailed your order
                   confirmation, and will send you an update when your order has
                   shipped.
                 </Typography>
@@ -160,6 +229,10 @@ export default function Checkout() {
           </Box>
         </Grid>
       </Grid>
+      <ToggleCustomTheme
+        showCustomTheme={showCustomTheme}
+        toggleCustomTheme={toggleCustomTheme}
+      />
     </ThemeProvider>
   );
 }

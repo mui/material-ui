@@ -31,7 +31,7 @@ const products = [
 export default function Info() {
   return (
     <React.Fragment>
-      <Typography variant="subtitle2" color="text.secondary" sx={{ mt: 4 }}>
+      <Typography variant="subtitle2" color="text.secondary" sx={{ mt: 10 }}>
         Total
       </Typography>
       <Typography variant="h4" gutterBottom>

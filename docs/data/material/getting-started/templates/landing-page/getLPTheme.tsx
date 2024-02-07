@@ -627,6 +627,36 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
           }),
         },
       },
+      MuiStepConnector: {
+        styleOverrides: {
+          line: {
+            borderColor: 'divider',
+            borderRadius: '99px',
+            opacity: 0.5,
+          },
+        },
+      },
+      MuiStepIcon: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            color: theme.palette.background.default,
+            border: `1px solid ${alpha(gray[200], 0.8)}`,
+            borderRadius: '99px',
+            '&.Mui-active': {
+              color: theme.palette.primary.main,
+            },
+            '&.Mui-completed': {
+              color: theme.palette.success.light,
+            },
+            ...(theme.palette.mode === 'dark' && {
+              border: `1px solid ${alpha(gray[700], 0.3)}`,
+              '&.Mui-completed': {
+                color: theme.palette.success.dark,
+              },
+            }),
+          }),
+        },
+      },
     },
   };
 }
