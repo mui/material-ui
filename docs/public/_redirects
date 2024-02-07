@@ -493,10 +493,19 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /material-ui/react-tree-view/ /x/react-tree-view/ 301
 /material-ui/api/tree-view/ /x/api/tree-view/tree-view/ 301
 /material-ui/api/tree-item/ /x/api/tree-view/tree-item/ 301
-/material-ui/guides/styled-engine/ /material-ui/guides/styled-components/ 301
-/material-ui/guides/themeable-component/ /material-ui/guides/creating-themed-components/ 301
+/material-ui/guides/styled-engine/ /material-ui/integrations/styled-components/ 301
+/material-ui/guides/themeable-component/ /material-ui/customization/creating-themed-components/ 301
 /material-ui/guides/next-js-app-router/ /material-ui/guides/nextjs/ 301
 /material-ui/guides/understand-mui-packages/ /blog/mui-product-comparison/ 301
+# 2024
+/material-ui/guides/nextjs/ /material-ui/integrations/nextjs/ 301
+/material-ui/guides/interoperability/ /material-ui/integrations/interoperability/ 301
+/material-ui/guides/theme-scoping/ /material-ui/integrations/theme-scoping/ 301
+/material-ui/guides/routing/ /material-ui/integrations/routing/ 301
+/material-ui/guides/creating-themed-components/ /material-ui/customization/creating-themed-components/ 301
+/material-ui/guides/shadow-dom/ /material-ui/customization/shadow-dom/ 301
+/material-ui/guides/right-to-left/ /material-ui/customization/right-to-left/ 301
+/material-ui/guides/pickers-migration/ /material-ui/migration/pickers-migration/ 301
 
 # Proxies
 

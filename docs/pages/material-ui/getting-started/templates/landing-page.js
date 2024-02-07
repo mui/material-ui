@@ -1,11 +1,11 @@
 import * as React from 'react';
 import AppTheme from 'docs/src/modules/components/AppTheme';
-import Album from 'docs/data/material/getting-started/templates/album/Album';
+import LandingPage from 'docs/data/material/getting-started/templates/landing-page/LandingPage';
 
 export default function Page() {
   return (
     <AppTheme>
-      <Album />
+      <LandingPage />
     </AppTheme>
   );
 }

@@ -1,6 +1,6 @@
 {
   "name": "@mui-internal/typescript-to-proptypes",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "MUI Team",
   "description": "Generate proptypes from TypeScript declarations. This is a fork of the typescript-to-proptypes package adapted for MUI needs. This is an internal package not meant for general use.",
   "main": "build/index.js",
@@ -42,7 +42,7 @@
     "@types/lodash": "^4.14.202",
     "@types/node": "^18.19.14",
     "@types/prettier": "^2.7.3",
-    "@types/react": "^18.2.48",
+    "@types/react": "^18.2.55",
     "@types/uuid": "^9.0.8",
     "chai": "^4.4.1",
     "fast-glob": "^3.3.2",
