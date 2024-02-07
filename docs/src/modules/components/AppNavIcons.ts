@@ -11,8 +11,8 @@ const standardNavIcons = {
   BookIcon: BookRoundedIcon,
   DescriptionIcon: ArticleRoundedIcon,
   VisibilityIcon: VisibilityRoundedIcon,
-  WebRoundedIcon: WebRoundedIcon,
-  CategoryOutlinedIcon: CategoryOutlinedIcon,
+  WebIcon: WebRoundedIcon,
+  CategoryIcon: CategoryOutlinedIcon,
 };
 
 export default standardNavIcons;

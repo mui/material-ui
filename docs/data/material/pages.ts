@@ -325,12 +325,12 @@ const pages: MuiPage[] = [
   {
     pathname: 'https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=sidenav',
     title: 'Templates store',
-    icon: standardNavIcons.WebRoundedIcon,
+    icon: standardNavIcons.WebIcon,
   },
   {
     pathname: '/blog/mui-product-comparison/',
     title: 'Understand the MUI ecosystem',
-    icon: standardNavIcons.CategoryOutlinedIcon,
+    icon: standardNavIcons.CategoryIcon,
   },
 ];
 
