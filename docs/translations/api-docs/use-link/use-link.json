@@ -3,14 +3,9 @@
   "parametersDescriptions": {
     "disabled": { "description": "If <code>true</code>, the component is disabled." },
     "focusableWhenDisabled": {
-      "description": "If <code>true</code>, allows a disabled button to receive focus."
+      "description": "If <code>true</code>, allows a disabled link to receive focus."
     },
-    "rootElementName": {
-      "description": "The HTML element, e.g.&#39;button&#39;, &#39;input&#39; etc"
-    },
-    "type": {
-      "description": "Type attribute applied when the <code>component</code> is <code>button</code>."
-    }
+    "rootElementName": { "description": "The HTML element, e.g.&#39;a&#39;, &#39;span&#39; etc" }
   },
   "returnValueDescriptions": {
     "active": { "description": "If <code>true</code>, the component is active (pressed)." },

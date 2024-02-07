@@ -133,10 +133,6 @@ Button.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  href: PropTypes.string,
-  /**
-   * @ignore
-   */
   onFocusVisible: PropTypes.func,
   /**
    * The HTML element that is ultimately rendered, for example 'button' or 'a'
@@ -158,10 +154,6 @@ Button.propTypes /* remove-proptypes */ = {
   slots: PropTypes.shape({
     root: PropTypes.elementType,
   }),
-  /**
-   * @ignore
-   */
-  to: PropTypes.string,
 } as any;
 
 export { Button };

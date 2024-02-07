@@ -25,7 +25,7 @@
     {
       "name": "root",
       "description": "The component that renders the root.",
-      "default": "props.href || props.to ? 'a' : 'button'",
+      "default": "'button'",
       "class": "base-Button-root"
     }
   ],

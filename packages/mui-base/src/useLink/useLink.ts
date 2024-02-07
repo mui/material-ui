@@ -11,13 +11,9 @@ import { EventHandlers } from '../utils/types';
 import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 /**
  *
- * Demos:
- *
- * - [Link](https://mui.com/base-ui/react-link/#hook)
- *
  * API:
  *
- * - [useLink API](https://mui.com/base-ui/react-link/hooks-api/#use-link)
+ * - [useLink API](https://mui.com/base-ui/api/use-link/)
  */
 export function useLink(parameters: UseLinkParameters = {}): UseLinkReturnValue {
   const {
