@@ -20,8 +20,8 @@ export default function Home() {
   return (
     <BrandingCssVarsProvider>
       <Head
-        title="MUI: The React component library you always wanted"
-        description="MUI provides a simple, customizable, and accessible library of React components. Follow your own design system, or start with Material Design."
+        title="MUI: A comprehensive ecosystem of React UI libraries"
+        description="MUI provides production-ready, customizable, and accessible libraries of React components. Follow your own design system, or start with Material Design."
         card="/static/social-previews/home-preview.jpg"
       >
         <script
