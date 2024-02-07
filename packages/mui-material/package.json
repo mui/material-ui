@@ -103,6 +103,9 @@
     },
     "@emotion/styled": {
       "optional": true
+    },
+    "@mui/zero-runtime": {
+      "optional": true
     }
   },
   "sideEffects": false,
