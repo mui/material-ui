@@ -7,10 +7,10 @@ import FEATURE_TOGGLE from 'docs/src/featureToggle';
 function getSurveyMessage() {
   return (
     <React.Fragment>
-      {`🚀 Influence MUI's 2024 roadmap! Participate in the latest`}
+      {`🚀 Support Palestine 🇵🇸 Help Provide Humanitarian Aid to Palestine.`}
       &nbsp;
       <Link
-        href="https://tally.so/r/3Ex4PN?source=website"
+        href="https://globalmedic.ca/middle-east-conflict-response-2023/?gclid=CjwKCAiA8YyuBhBSEiwA5R3-ExozuYSylArX9nS7DFsL05cM1-YWm0ufLZNVLzuB20yQBfgefRjM-RoCQfgQAvD_BwE"
         target="_blank"
         color="inherit"
         underline="always"
@@ -20,7 +20,7 @@ function getSurveyMessage() {
           },
         }}
       >
-        Developer Survey →
+        Click here →
       </Link>
     </React.Fragment>
   );
