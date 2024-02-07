@@ -28,9 +28,15 @@ If you need to run a specific codemod, those are also linked below.
 
 ## Accordion
 
+Use the [codemod](https://github.com/mui/material-ui/tree/master/packages/mui-codemod#accordion-props) below to migrate your code:
+
+```bash
+npx @mui/codemod@latest deprecations/accordion-props <path>
+```
+
 ### TransitionComponent
 
-The Accordion's `TransitionComponent` was deprecated in favor of `slots.transition` ([Codemod](https://github.com/mui/material-ui/tree/master/packages/mui-codemod#accordion-props)):
+The Accordion's `TransitionComponent` was deprecated in favor of `slots.transition`:
 
 ```diff
  <Accordion
@@ -41,11 +47,35 @@ The Accordion's `TransitionComponent` was deprecated in favor of `slots.transiti
 
 ### TransitionProps
 
-The Accordion's `TransitionProps` was deprecated in favor of `slotProps.transition` ([Codemod](https://github.com/mui/material-ui/tree/master/packages/mui-codemod#accordion-props)):
+The Accordion's `TransitionProps` was deprecated in favor of `slotProps.transition`:
 
 ```diff
  <Accordion
 -    TransitionProps={{ unmountOnExit: true }}
 +    slotProps={{ transition: { unmountOnExit: true } }}
  />
+```
+
+## Avatar
+
+### imgProps
+
+The `imgProps` was deprecated in favor of `slotProps.img`. Use the [codemod](https://github.com/mui/material-ui/tree/master/packages/mui-codemod#avatar-props) below to migrate your code:
+
+```bash
+npx @mui/codemod@latest deprecations/avatar-props <path>
+```
+
+```diff
+  <Avatar
+-   imgProps={{
+-     onError: () => {},
+-     onLoad: () => {},
++   slotProps={{
++     img: {
++       onError: () => {},
++       onLoad: () => {},
++     }
+    }}
+  />;
 ```
