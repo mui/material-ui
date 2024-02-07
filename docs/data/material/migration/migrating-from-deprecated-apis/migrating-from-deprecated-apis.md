@@ -16,7 +16,7 @@ Material UI provides the `deprecations/all` codemod to help you stay up to date
 npx @mui/codemod@latest deprecations/all <path>
 ```
 
-This command runs all the current [deprecations codemods](https://github.com/mui/material-ui/tree/master/packages/mui-codemod#deprecations), automatically migrating to the updated API.
+This command runs all the current [deprecations codemods](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#deprecations), automatically migrating to the updated API.
 You can run this codemod as often as necessary to keep up with the latest changes.
 
 :::info
@@ -30,22 +30,22 @@ If you need to run a specific codemod, those are also linked below.
 
 ### TransitionComponent
 
-The Accordion's `TransitionComponent` was deprecated in favor of `slots.transition` ([Codemod](https://github.com/mui/material-ui/tree/master/packages/mui-codemod#accordion-props)):
+The Accordion's `TransitionComponent` was deprecated in favor of `slots.transition` ([Codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#accordion-props)):
 
 ```diff
  <Accordion
--    TransitionComponent={CustomTransition}
-+    slots={{ transition: CustomTransition }}
+-  TransitionComponent={CustomTransition}
++  slots={{ transition: CustomTransition }}
  />
 ```
 
 ### TransitionProps
 
-The Accordion's `TransitionProps` was deprecated in favor of `slotProps.transition` ([Codemod](https://github.com/mui/material-ui/tree/master/packages/mui-codemod#accordion-props)):
+The Accordion's `TransitionProps` was deprecated in favor of `slotProps.transition` ([Codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#accordion-props)):
 
 ```diff
  <Accordion
--    TransitionProps={{ unmountOnExit: true }}
-+    slotProps={{ transition: { unmountOnExit: true } }}
+-  TransitionProps={{ unmountOnExit: true }}
++  slotProps={{ transition: { unmountOnExit: true } }}
  />
 ```
