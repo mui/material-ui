@@ -5,9 +5,7 @@ fn({
         transition: CustomTransition
       },
 
-      slotProps: {
-        transition: { unmountOnExit: true }
-      }
+      TransitionProps: { unmountOnExit: true }
     },
   },
 });

@@ -17,9 +17,6 @@ describe('<Backdrop />', () => {
     muiName: 'MuiBackdrop',
     testVariantProps: { invisible: true },
     slots: {
-      root: {
-        expectedClassName: classes.root,
-      },
       transition: {
         testWithElement: null,
       },
