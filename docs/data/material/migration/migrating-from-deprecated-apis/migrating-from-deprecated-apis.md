@@ -28,7 +28,7 @@ If you need to run a specific codemod, those are also linked below.
 
 ## Accordion
 
-Use the [codemod](https://github.com/mui/material-ui/tree/master/packages/mui-codemod#accordion-props) below to migrate your code:
+Use the [codemod](https://github.com/mui/material-ui/tree/master/packages/mui-codemod#accordion-props) below to migrate the code as decribed in the following sections:
 
 ```bash
 npx @mui/codemod@latest deprecations/accordion-props <path>
@@ -58,13 +58,15 @@ The Accordion's `TransitionProps` was deprecated in favor of `slotProps.transiti
 
 ## Avatar
 
-### imgProps
-
-The `imgProps` was deprecated in favor of `slotProps.img`. Use the [codemod](https://github.com/mui/material-ui/tree/master/packages/mui-codemod#avatar-props) below to migrate your code:
+Use the [codemod](https://github.com/mui/material-ui/tree/master/packages/mui-codemod#avatar-props) below to migrate the code as decribed in the following sections:
 
 ```bash
 npx @mui/codemod@latest deprecations/avatar-props <path>
 ```
+
+### imgProps
+
+The Avatar's `imgProps` was deprecated in favor of `slotProps.img`:
 
 ```diff
   <Avatar
