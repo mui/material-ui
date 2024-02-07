@@ -91,6 +91,19 @@ A combination of all deprecations.
 npx @mui/codemod@latest deprecations/accordion-props <path>
 ```
 
+#### `divider-props`
+
+```diff
+ <Divider
+-  light
++  sx={{opacity: "0.6"}}
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/divider-props <path>
+```
+
 ### v5.0.0
 
 #### `base-use-named-exports`

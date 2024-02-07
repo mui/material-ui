@@ -49,3 +49,16 @@ The Accordion's `TransitionProps` was deprecated in favor of `slotProps.transiti
 +  slotProps={{ transition: { unmountOnExit: true } }}
  />
 ```
+
+## Divider
+
+### light
+
+The Divider's `light` prop was deprecated, Use `sx={{ opacity : "0.6" }}` (or any opacity). ([Codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#divider-props)):
+
+```diff
+ <Divider
+-  light
++  sx={{ opacity : "0.6" }}
+ />
+```
