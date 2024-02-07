@@ -7,10 +7,10 @@ export default function BoxSx() {
       sx={{
         width: 300,
         height: 300,
-        backgroundColor: 'primary.dark',
+        borderRadius: '4px',
+        backgroundColor: 'primary.main',
         '&:hover': {
-          backgroundColor: 'primary.main',
-          opacity: [0.9, 0.8, 0.7],
+          backgroundColor: 'primary.dark',
         },
       }}
     />
