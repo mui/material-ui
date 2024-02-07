@@ -1,11 +1,7 @@
 import * as React from 'react';
 import { Button as BaseButton, buttonClasses } from '@mui/base/Button';
-import { prepareForSlot } from '@mui/base/utils';
 import { styled, Theme } from '@mui/system';
 import { Stack } from '@mui/material';
-import Link from 'next/link';
-
-const LinkSlot = prepareForSlot(Link);
 
 const blue = {
   200: '#99CCFF',
@@ -78,8 +74,6 @@ const StyledHtmlButton = styled('button')(STYLES);
 
 const StyledBaseButton = styled(BaseButton)(STYLES);
 
-const StyledHtmlAnchor = styled('a')(STYLES);
-
 export default function ServerRenderedButtons() {
   return (
     <Stack spacing={8} direction="column" style={{ padding: 16 }}>
@@ -137,44 +131,6 @@ export default function ServerRenderedButtons() {
             disabled
             slots={{ root: StyledHtmlInput }}
             value="Button 2C"
-            type="button"
-          />
-        </Stack>
-
-        <pre style={{ fontSize: 16, fontWeight: 500, marginBottom: -12 }}>Links:</pre>
-        <pre style={{ lineHeight: 1.8, marginBottom: 12 }}>
-          3A, 3B, 3C: As long as `href` or `to` are passed, and all involved components only render
-          `a` tags, rootElementName will be inferred automatically
-          <br />
-          3D: `slots.root` is a styled `input`, but an `a` is expected because `href` is passed so
-          the warning is triggered
-          <br />
-          3E: Achieves the same as 3D but circumvents the warning, even though this results in
-          invalid HTML
-        </pre>
-        <Stack spacing={2} direction="row">
-          <StyledBaseButton disabled href="https://mui.com/">
-            Link-3A
-          </StyledBaseButton>
-          <StyledBaseButton disabled href="https://mui.com/" slots={{ root: LinkSlot }}>
-            Link-3B (Next.js Link)
-          </StyledBaseButton>
-          <StyledBaseButton disabled href="https://mui.com/" slots={{ root: StyledHtmlAnchor }}>
-            Link-3C
-          </StyledBaseButton>
-          <BaseButton
-            disabled
-            href="https://mui.com/"
-            slots={{ root: StyledHtmlInput }}
-            value="Link 3D"
-            type="button"
-            rootElementName="input"
-          />
-          <StyledBaseButton
-            disabled
-            href="https://mui.com/"
-            slots={{ root: 'input' }}
-            value="Link 3E"
             type="button"
           />
         </Stack>
