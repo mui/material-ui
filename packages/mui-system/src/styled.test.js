@@ -446,10 +446,10 @@ describe('styled', () => {
               },
               {
                 props: ({ size }) => size === 'small',
-                style: {
-                  width: '200px',
-                  height: '200px',
-                },
+                style: ({ theme: t }) => ({
+                  width: t.spacing(10),
+                  height: t.spacing(10),
+                }),
               },
             ],
           },
@@ -471,8 +471,8 @@ describe('styled', () => {
         height: '400px',
       });
       expect(getByTestId('small')).toHaveComputedStyle({
-        width: '200px',
-        height: '200px',
+        width: theme.spacing(10),
+        height: theme.spacing(10),
       });
     });
 
