@@ -34,8 +34,8 @@ The Accordion's `TransitionComponent` was deprecated in favor of `slots.transiti
 
 ```diff
  <Accordion
--    TransitionComponent={CustomTransition}
-+    slots={{ transition: CustomTransition }}
+-  TransitionComponent={CustomTransition}
++  slots={{ transition: CustomTransition }}
  />
 ```
 
@@ -45,7 +45,7 @@ The Accordion's `TransitionProps` was deprecated in favor of `slotProps.transiti
 
 ```diff
  <Accordion
--    TransitionProps={{ unmountOnExit: true }}
-+    slotProps={{ transition: { unmountOnExit: true } }}
+-  TransitionProps={{ unmountOnExit: true }}
++  slotProps={{ transition: { unmountOnExit: true } }}
  />
 ```

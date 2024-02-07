@@ -80,10 +80,10 @@ A combination of all deprecations.
 
 ```diff
  <Accordion
--    TransitionComponent={CustomTransition}
--    TransitionProps={{ unmountOnExit: true }}
-+    slots={{ transition: CustomTransition }}
-+    slotProps={{ transition: { unmountOnExit: true } }}
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={{ unmountOnExit: true }}
++  slots={{ transition: CustomTransition }}
++  slotProps={{ transition: { unmountOnExit: true } }}
  />
 ```
 
