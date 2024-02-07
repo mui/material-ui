@@ -93,7 +93,12 @@ export default function transformer(file, api, options) {
         j.property(
           'init',
           j.identifier('slotProps'),
-          j.objectExpression([j.objectProperty(j.identifier('transition'),  j.objectExpression([j.objectProperty(j.identifier('timeout'), path.node.value)]))]),
+          j.objectExpression([
+            j.objectProperty(
+              j.identifier('transition'),
+              j.objectExpression([j.objectProperty(j.identifier('timeout'), path.node.value)]),
+            ),
+          ]),
         ),
       );
     }
