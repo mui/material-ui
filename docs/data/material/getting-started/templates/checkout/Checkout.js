@@ -1,34 +1,88 @@
 import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import AppBar from '@mui/material/AppBar';
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Toolbar from '@mui/material/Toolbar';
-import Paper from '@mui/material/Paper';
-import Stepper from '@mui/material/Stepper';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import Grid from '@mui/material/Grid';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
-import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
+import Stepper from '@mui/material/Stepper';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
+import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
+import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
+
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
+import Info from './Info';
+import ToggleColorMode from './ToggleColorMode';
+import getLPTheme from '../landing-page/getLPTheme';
+import SvgMaterialDesign from 'docs/src/icons/SvgMaterialDesign';
 
-function Copyright() {
+const defaultTheme = createTheme({});
+
+function ToggleCustomTheme({ showCustomTheme, toggleCustomTheme }) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: '100dvw',
+        position: 'fixed',
+        bottom: 24,
+      }}
+    >
+      <ToggleButtonGroup
+        color="primary"
+        exclusive
+        value={showCustomTheme}
+        onChange={toggleCustomTheme}
+        aria-label="Platform"
+        sx={{
+          backgroundColor: 'background.default',
+          '& .Mui-selected': {
+            pointerEvents: 'none',
+          },
+        }}
+      >
+        <ToggleButton value>
+          <AutoAwesomeRoundedIcon sx={{ fontSize: '20px', mr: 1 }} />
+          Custom theme
+        </ToggleButton>
+        <ToggleButton value={false}>
+          <SvgMaterialDesign sx={{ fontSize: '20px', mr: 1 }} />
+          Material Design
+        </ToggleButton>
+      </ToggleButtonGroup>
+    </Box>
   );
 }
 
+ToggleCustomTheme.propTypes = {
+  showCustomTheme: PropTypes.shape({
+    valueOf: PropTypes.func.isRequired,
+  }).isRequired,
+  toggleCustomTheme: PropTypes.func.isRequired,
+};
+
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
+
+const whiteLogo =
+  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf7356420e154daf_SitemarkLight.svg';
+const darkLogo =
+  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73563dba154dad_SitemarkDark.svg';
+
+const logoStyle = {
+  width: '140px',
+  height: '56px',
+  opacity: 0.8,
+};
 
 function getStepContent(step) {
   switch (step) {
@@ -44,7 +98,19 @@ function getStepContent(step) {
 }
 
 export default function Checkout() {
+  const [mode, setMode] = React.useState('dark');
+  const [showCustomTheme, setShowCustomTheme] = React.useState(true);
+  const LPtheme = createTheme(getLPTheme(mode));
   const [activeStep, setActiveStep] = React.useState(0);
+  const logo = LPtheme.palette.mode === 'light' ? darkLogo : whiteLogo;
+
+  const toggleColorMode = () => {
+    setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
+  const toggleCustomTheme = () => {
+    setShowCustomTheme((prev) => !prev);
+  };
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -55,69 +121,157 @@ export default function Checkout() {
   };
 
   return (
-    <React.Fragment>
+    <ThemeProvider theme={showCustomTheme ? LPtheme : defaultTheme}>
       <CssBaseline />
-      <AppBar
-        position="absolute"
-        color="default"
-        elevation={0}
-        sx={{
-          position: 'relative',
-          borderBottom: (t) => `1px solid ${t.palette.divider}`,
-        }}
-      >
-        <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
-            Company name
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
-        <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
-          <Typography component="h1" variant="h4" align="center">
-            Checkout
-          </Typography>
-          <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
-            {steps.map((label) => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            ))}
-          </Stepper>
-          {activeStep === steps.length ? (
-            <React.Fragment>
-              <Typography variant="h5" gutterBottom>
-                Thank you for your order.
-              </Typography>
-              <Typography variant="subtitle1">
-                Your order number is #2001539. We have emailed your order
-                confirmation, and will send you an update when your order has
-                shipped.
-              </Typography>
-            </React.Fragment>
-          ) : (
-            <React.Fragment>
-              {getStepContent(activeStep)}
-              <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                {activeStep !== 0 && (
-                  <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                    Back
-                  </Button>
-                )}
+      <Grid container sx={{ height: '100dvh' }}>
+        <Grid
+          item
+          xs={12}
+          sm={5}
+          lg={4}
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            backgroundColor: 'background.default',
+            borderRight: '1px solid',
+            borderColor: 'divider',
+            alignItems: 'start',
+            pt: 4,
+            px: 10,
+            gap: 16,
+          }}
+        >
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              width: '100%',
+              ml: '-18px',
+              alignItems: 'center',
+            }}
+          >
+            <img src={logo} style={logoStyle} alt="logo of sitemark" />
+          </Box>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              flexGrow: 1,
+              width: '100%',
+              maxWidth: 500,
+            }}
+          >
+            <Button
+              startIcon={<ArrowBackRoundedIcon />}
+              component="a"
+              href="/material-ui/getting-started/templates/landing-page/"
+              sx={{ alignSelf: 'start', ml: '-8px' }}
+            >
+              Back to Sitemark
+            </Button>
+            <Info />
+          </Box>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          sm={7}
+          lg={8}
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            backgroundColor: 'background.paper',
+            borderRight: '1px solid',
+            borderColor: 'divider',
+            alignItems: 'start',
+            pt: 4,
+            px: 10,
+            gap: 16,
+          }}
+        >
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              width: '100%',
+              maxWidth: 600,
+              height: 56,
+            }}
+          >
+            <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+          </Box>
 
-                <Button
-                  variant="contained"
-                  onClick={handleNext}
-                  sx={{ mt: 3, ml: 1 }}
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              flexGrow: 1,
+              maxWidth: 600,
+              height: 600,
+              maxHeight: '700px',
+            }}
+          >
+            <Stepper activeStep={activeStep} sx={{ mb: 10 }}>
+              {steps.map((label) => (
+                <Step
+                  sx={{
+                    ':first-child': { pl: 0 },
+                    ':last-child': { pr: 0 },
+                  }}
+                  key={label}
                 >
-                  {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                  <StepLabel>{label}</StepLabel>
+                </Step>
+              ))}
+            </Stepper>
+            {activeStep === steps.length ? (
+              <React.Fragment>
+                <Typography variant="h5" gutterBottom>
+                  Thank you for your order.
+                </Typography>
+                <Typography variant="subtitle1" gutterBottom>
+                  Your order number is #140396. We have emailed your order
+                  confirmation, and will send you an update when your order has
+                  shipped.
+                </Typography>
+                <Button variant="contained" sx={{ alignSelf: 'start', mt: 2 }}>
+                  Go to my orders
                 </Button>
-              </Box>
-            </React.Fragment>
-          )}
-        </Paper>
-        <Copyright />
-      </Container>
-    </React.Fragment>
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                {getStepContent(activeStep)}
+                <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: activeStep !== 0 ? 'space-between' : 'flex-end',
+                    alignItems: 'end',
+                    flexGrow: 1,
+                    gap: 1,
+                  }}
+                >
+                  {activeStep !== 0 && (
+                    <Button
+                      startIcon={<ArrowBackIosNewRoundedIcon />}
+                      onClick={handleBack}
+                    >
+                      Previous
+                    </Button>
+                  )}
+
+                  <Button variant="contained" onClick={handleNext}>
+                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                  </Button>
+                </Box>
+              </React.Fragment>
+            )}
+          </Box>
+        </Grid>
+      </Grid>
+      <ToggleCustomTheme
+        showCustomTheme={showCustomTheme}
+        toggleCustomTheme={toggleCustomTheme}
+      />
+    </ThemeProvider>
   );
 }

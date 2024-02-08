@@ -1,9 +1,16 @@
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import FormLabel from '@mui/material/FormLabel';
+import InputBase from '@mui/material/InputBase';
+import { styled } from '@mui/system';
+
+const FormGrid = styled(Grid)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+}));
 
 export default function AddressForm() {
   return (
@@ -12,97 +19,109 @@ export default function AddressForm() {
         Shipping address
       </Typography>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="firstName"
-            name="firstName"
-            label="First name"
-            fullWidth
-            autoComplete="given-name"
-            variant="standard"
+        <FormGrid item xs={12} sm={6}>
+          <FormLabel>First name</FormLabel>
+          <InputBase
+            id="first-name"
+            name="first-name"
+            type="name"
+            placeholder="John"
+            autoComplete="first name"
+            inputProps={{ required: true }}
+            sx={{ minWidth: 280 }}
           />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="lastName"
-            name="lastName"
-            label="Last name"
-            fullWidth
-            autoComplete="family-name"
-            variant="standard"
+        </FormGrid>
+        <FormGrid item xs={12} sm={6}>
+          <FormLabel>Last name</FormLabel>
+          <InputBase
+            id="last-name"
+            name="last-name"
+            type="last-name"
+            placeholder="Snow"
+            autoComplete="last name"
+            inputProps={{ required: true }}
+            sx={{ minWidth: 280 }}
           />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            required
-            id="address1"
-            name="address1"
-            label="Address line 1"
-            fullWidth
-            autoComplete="shipping address-line1"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            id="address2"
-            name="address2"
-            label="Address line 2"
-            fullWidth
-            autoComplete="shipping address-line2"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="city"
-            name="city"
-            label="City"
-            fullWidth
-            autoComplete="shipping address-level2"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            id="state"
-            name="state"
-            label="State/Province/Region"
-            fullWidth
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="zip"
-            name="zip"
-            label="Zip / Postal code"
-            fullWidth
-            autoComplete="shipping postal-code"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
+        </FormGrid>
+        <FormGrid item xs={12} sm={6}>
+          <FormLabel>Country</FormLabel>
+          <InputBase
             id="country"
             name="country"
-            label="Country"
-            fullWidth
+            type="country"
+            placeholder="United States"
             autoComplete="shipping country"
-            variant="standard"
+            inputProps={{ required: true }}
+            sx={{ minWidth: 280 }}
           />
-        </Grid>
-        <Grid item xs={12}>
+        </FormGrid>
+        <FormGrid item xs={12} sm={6}>
+          <FormLabel>Zip / Postal code</FormLabel>
+          <InputBase
+            id="zip"
+            name="zip"
+            type="zip"
+            placeholder="12345"
+            autoComplete="shipping postal-code"
+            inputProps={{ required: true }}
+            sx={{ minWidth: 280 }}
+          />
+        </FormGrid>
+
+        <FormGrid item xs={12}>
+          <FormLabel>Address line 1</FormLabel>
+          <InputBase
+            id="address1"
+            name="address1"
+            type="address1"
+            placeholder="Street name and number"
+            autoComplete="shipping address-line1"
+            inputProps={{ required: true }}
+            sx={{ minWidth: 280 }}
+          />
+        </FormGrid>
+        <FormGrid item xs={12}>
+          <FormLabel>Address line 2</FormLabel>
+          <InputBase
+            id="address2"
+            name="address2"
+            type="address2"
+            placeholder="Apartment, suite, unit, etc. (optional)"
+            autoComplete="shipping address-line2"
+            inputProps={{ required: true }}
+            sx={{ minWidth: 280 }}
+          />
+        </FormGrid>
+        <FormGrid item xs={12} sm={6}>
+          <FormLabel>City</FormLabel>
+          <InputBase
+            id="City"
+            name="City"
+            type="City"
+            placeholder="New York"
+            autoComplete="City"
+            inputProps={{ required: true }}
+            sx={{ minWidth: 280 }}
+          />
+        </FormGrid>
+        <FormGrid item xs={12} sm={6}>
+          <FormLabel>State</FormLabel>
+          <InputBase
+            id="State"
+            name="State"
+            type="State"
+            placeholder="NY"
+            autoComplete="State"
+            inputProps={{ required: true }}
+            sx={{ minWidth: 280 }}
+          />
+        </FormGrid>
+        <FormGrid item xs={12}>
           <FormControlLabel
             control={<Checkbox name="saveAddress" value="yes" />}
             label="Use this address for payment details"
           />
-        </Grid>
+        </FormGrid>
       </Grid>
     </React.Fragment>
   );

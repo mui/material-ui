@@ -1,15 +1,23 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import TextField from '@mui/material/TextField';
+import FormHelperText from '@mui/material/FormHelperText';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import FormLabel from '@mui/material/FormLabel';
+import InputBase from '@mui/material/InputBase';
+import { styled } from '@mui/system';
 
 import CreditCardRoundedIcon from '@mui/icons-material/CreditCardRounded';
 import AccountBalanceRoundedIcon from '@mui/icons-material/AccountBalanceRounded';
+
+const FormGrid = styled(Grid)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+}));
 
 export default function PaymentForm() {
   return (
@@ -36,53 +44,61 @@ export default function PaymentForm() {
         </Card>
       </Stack>
       <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="cardName"
-            label="Name on card"
-            fullWidth
-            autoComplete="cc-name"
-            variant="standard"
+        <FormGrid item xs={12} md={6}>
+          <FormLabel>Name on card</FormLabel>
+          <InputBase
+            id="card-name"
+            name="card-name"
+            type="card-name"
+            placeholder="John Snow"
+            autoComplete="card name"
+            inputProps={{ required: true }}
+            sx={{ minWidth: 280 }}
           />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="cardNumber"
-            label="Card number"
-            fullWidth
+        </FormGrid>
+        <FormGrid item xs={12} md={6}>
+          <FormLabel>Card number</FormLabel>
+          <InputBase
+            id="card-number"
+            name="card-number"
+            type="card-number"
+            placeholder="0000 0000 0000 0000"
             autoComplete="cc-number"
-            variant="standard"
+            inputProps={{ required: true }}
+            sx={{ minWidth: 280 }}
           />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="expDate"
-            label="Expiry date"
-            fullWidth
+        </FormGrid>
+        <FormGrid item xs={12} md={6}>
+          <FormLabel>Expiry date</FormLabel>
+          <InputBase
+            id="card-exp"
+            name="card-exp"
+            type="card-exp"
+            placeholder="02 / 24"
             autoComplete="cc-exp"
-            variant="standard"
+            inputProps={{ required: true }}
+            sx={{ minWidth: 280, maxHeight: '40px' }}
           />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            required
+        </FormGrid>
+        <FormGrid item xs={12} md={6}>
+          <FormLabel>CVV</FormLabel>
+          <InputBase
             id="cvv"
-            label="CVV"
-            helperText="Last three digits on signature strip"
-            fullWidth
-            autoComplete="cc-csc"
-            variant="standard"
+            name="cvv"
+            type="cvv"
+            placeholder="123"
+            autoComplete="cvv"
+            inputProps={{ required: true }}
+            sx={{ minWidth: 280 }}
           />
-        </Grid>
-        <Grid item xs={12}>
+          <FormHelperText>Last three digits on signature strip</FormHelperText>
+        </FormGrid>
+        <FormGrid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveCard" value="yes" />}
             label="Remember credit card details for next time"
           />
-        </Grid>
+        </FormGrid>
       </Grid>
     </React.Fragment>
   );

@@ -1,22 +1,27 @@
 import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
-import Stepper from '@mui/material/Stepper';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import Grid from '@mui/material/Grid';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
-import Button from '@mui/material/Button';
+import Stepper from '@mui/material/Stepper';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { PaletteMode } from '@mui/material';
+
+import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
+import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
+import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
+
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
 import Info from './Info';
+import ToggleColorMode from './ToggleColorMode';
 import getLPTheme from '../landing-page/getLPTheme';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
-import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import SvgMaterialDesign from 'docs/src/icons/SvgMaterialDesign';
 
 const defaultTheme = createTheme({});
@@ -69,11 +74,15 @@ function ToggleCustomTheme({
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
+const whiteLogo =
+  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf7356420e154daf_SitemarkLight.svg';
+const darkLogo =
+  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73563dba154dad_SitemarkDark.svg';
+
 const logoStyle = {
   width: '140px',
   height: '56px',
-  margin: 'auto',
-  opacity: 0.3,
+  opacity: 0.8,
 };
 
 function getStepContent(step: number) {
@@ -90,9 +99,15 @@ function getStepContent(step: number) {
 }
 
 export default function Checkout() {
+  const [mode, setMode] = React.useState<PaletteMode>('dark');
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
-  const LPtheme = createTheme(getLPTheme('dark'));
+  const LPtheme = createTheme(getLPTheme(mode));
   const [activeStep, setActiveStep] = React.useState(0);
+  const logo = LPtheme.palette.mode === 'light' ? darkLogo : whiteLogo;
+
+  const toggleColorMode = () => {
+    setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   const toggleCustomTheme = () => {
     setShowCustomTheme((prev) => !prev);
@@ -114,6 +129,7 @@ export default function Checkout() {
           item
           xs={12}
           sm={5}
+          lg={4}
           sx={{
             display: 'flex',
             flexDirection: 'column',
@@ -123,17 +139,19 @@ export default function Checkout() {
             alignItems: 'start',
             pt: 4,
             px: 10,
-            gap: 10,
+            gap: 16,
           }}
         >
-          <Box sx={{ display: 'flex', ml: '-18px' }}>
-            <img
-              src={
-                'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf7356420e154daf_SitemarkLight.svg'
-              }
-              style={logoStyle}
-              alt="logo of sitemark"
-            />
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              width: '100%',
+              ml: '-18px',
+              alignItems: 'center',
+            }}
+          >
+            <img src={logo} style={logoStyle} alt="logo of sitemark" />
           </Box>
           <Box
             sx={{
@@ -150,7 +168,7 @@ export default function Checkout() {
               href="/material-ui/getting-started/templates/landing-page/"
               sx={{ alignSelf: 'start', ml: '-8px' }}
             >
-              Back
+              Back to Sitemark
             </Button>
             <Info />
           </Box>
@@ -159,6 +177,7 @@ export default function Checkout() {
           item
           xs={12}
           sm={7}
+          lg={8}
           sx={{
             display: 'flex',
             flexDirection: 'column',
@@ -166,10 +185,23 @@ export default function Checkout() {
             borderRight: '1px solid',
             borderColor: 'divider',
             alignItems: 'start',
-            pt: 35,
+            pt: 4,
             px: 10,
+            gap: 16,
           }}
         >
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              width: '100%',
+              maxWidth: 600,
+              height: 56,
+            }}
+          >
+            <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+          </Box>
+
           <Box
             sx={{
               display: 'flex',
@@ -177,7 +209,7 @@ export default function Checkout() {
               flexGrow: 1,
               maxWidth: 600,
               height: 600,
-              maxHeight: '600px',
+              maxHeight: '700px',
             }}
           >
             <Stepper activeStep={activeStep} sx={{ mb: 10 }}>
@@ -213,13 +245,20 @@ export default function Checkout() {
                 <Box
                   sx={{
                     display: 'flex',
-                    justifyContent: 'flex-end',
+                    justifyContent: activeStep !== 0 ? 'space-between' : 'flex-end',
                     alignItems: 'end',
                     flexGrow: 1,
                     gap: 1,
                   }}
                 >
-                  {activeStep !== 0 && <Button onClick={handleBack}>Back</Button>}
+                  {activeStep !== 0 && (
+                    <Button
+                      startIcon={<ArrowBackIosNewRoundedIcon />}
+                      onClick={handleBack}
+                    >
+                      Previous
+                    </Button>
+                  )}
                   <Button variant="contained" onClick={handleNext}>
                     {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
                   </Button>

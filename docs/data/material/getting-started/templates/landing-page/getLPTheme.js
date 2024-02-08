@@ -546,6 +546,61 @@ export default function getLPTheme(mode) {
           },
         },
       },
+      MuiInputBase: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            boxSizing: 'border-box',
+            flexGrow: 1,
+            minWidth: 280,
+            minHeight: 40,
+            height: '100%',
+            borderRadius: '10px',
+            border: '1px solid',
+            borderColor: gray[200],
+            transition: 'border-color 120ms ease-in',
+            backgroundColor: alpha(gray[100], 0.4),
+            '&:hover': {
+              borderColor: brand[300],
+            },
+            '&.Mui-focused': {
+              borderColor: brand[400],
+              outline: '4px solid',
+              outlineColor: brand[200],
+            },
+            ...(theme.palette.mode === 'dark' && {
+              boxSizing: 'border-box',
+              flexGrow: 1,
+              minWidth: 280,
+              minHeight: 40,
+              height: '100%',
+              borderRadius: '10px',
+              border: '1px solid',
+              borderColor: gray[700],
+              backgroundColor: alpha(gray[900], 0.3),
+              transition: 'border-color 120ms ease-in',
+              '&:hover': {
+                borderColor: brand[300],
+              },
+              '&.Mui-focused': {
+                borderColor: brand[400],
+                outline: '4px solid',
+                outlineColor: alpha(brand[500], 0.5),
+              },
+            }),
+          }),
+          input: {
+            paddingLeft: 10,
+          },
+        },
+      },
+      MuiFormLabel: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            typography: theme.typography.caption,
+            marginBottom: 8,
+          }),
+        },
+      },
       MuiTextField: {
         styleOverrides: {
           root: ({ theme }) => ({
@@ -553,7 +608,6 @@ export default function getLPTheme(mode) {
               color: 'white',
             },
             '& .MuiInputBase-input': {
-              boxSizing: 'border-box',
               '&::placeholder': {
                 opacity: 0.7,
               },
@@ -589,7 +643,7 @@ export default function getLPTheme(mode) {
                 height: '100%',
                 borderRadius: '10px',
                 border: '1px solid',
-                borderColor: gray[600],
+                borderColor: gray[700],
                 transition: 'border-color 120ms ease-in',
                 '& fieldset': {
                   border: 'none',
@@ -604,6 +658,72 @@ export default function getLPTheme(mode) {
                   outline: '4px solid',
                   outlineColor: alpha(brand[500], 0.5),
                 },
+              },
+            }),
+          }),
+        },
+      },
+      MuiStepConnector: {
+        styleOverrides: {
+          line: ({ theme }) => ({
+            borderTop: 'none',
+            height: '1px',
+            flex: 1,
+            background: `repeating-linear-gradient(90deg, ${theme.palette.grey[400]}, ${theme.palette.grey[400]} 1px, transparent 1px, transparent 8px)`,
+            borderRadius: '99px',
+            ...(theme.palette.mode === 'dark' && {
+              background: `repeating-linear-gradient(90deg, ${theme.palette.grey[700]}, ${theme.palette.grey[700]} 1px, transparent 1px, transparent 8px)`,
+            }),
+          }),
+        },
+      },
+      MuiStepLabel: {
+        styleOverrides: {
+          label: ({ theme }) => ({
+            '&.Mui-completed': {
+              opacity: 0.4,
+              ...(theme.palette.mode === 'dark' && { opacity: 0.3 }),
+            },
+          }),
+        },
+      },
+      MuiStepIcon: {
+        variants: [
+          {
+            props: { completed: true },
+            style: ({ theme }) => ({
+              width: 12,
+              height: 12,
+            }),
+          },
+        ],
+        styleOverrides: {
+          root: ({ theme }) => ({
+            color: 'transparent',
+            border: `1px solid ${gray[400]}`,
+            width: 8,
+            height: 8,
+            borderRadius: '50%',
+            '& text': {
+              display: 'none',
+            },
+            '&.Mui-active': {
+              border: 'none',
+              color: theme.palette.primary.main,
+            },
+            '&.Mui-completed': {
+              border: 'none',
+              color: theme.palette.success.main,
+            },
+            ...(theme.palette.mode === 'dark' && {
+              border: `1px solid ${gray[700]}`,
+              '&.Mui-active': {
+                border: 'none',
+                color: theme.palette.primary.light,
+              },
+              '&.Mui-completed': {
+                border: 'none',
+                color: theme.palette.success.light,
               },
             }),
           }),
