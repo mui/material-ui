@@ -77,7 +77,7 @@ const blue = {
 
 const Button = styled(ButtonBase)(
   ({ theme }) => `
-  min-width: 165px;
+  min-width: 175px;
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
   font-size: 0.875rem;
@@ -136,6 +136,10 @@ const Section = styled('div')`
   display: flex;
   gap: 12px;
   padding: 8px;
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
 `;
 
 export default function AllTransitionsDemo() {

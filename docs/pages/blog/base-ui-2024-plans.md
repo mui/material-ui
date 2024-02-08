@@ -18,7 +18,7 @@ Let's walk through some of the things we're cooking up.
 
 Base UI today offers a modest set of components and hooks, including some slightly more complex ones such as [Autocomplete](/base-ui/react-autocomplete/) and [Number Input](/base-ui/react-number-input/).
 However, we're aware that the package is still missing many primitive components that developers would need in order to adopt it for real-world applications.
-Fear not, because we're working hard to ship all of the components listed below with the stable release:
+Fear not, because we're working hard to ship more components with the stable release, including:
 
 | Components to be added |                                                                                                |
 | :--------------------- | ---------------------------------------------------------------------------------------------: |
@@ -30,8 +30,8 @@ Fear not, because we're working hard to ship all of the components listed below 
 | Radio Group            |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/38038) |
 | Tooltip                |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/38045) |
 
-Aside from these, we're considering adding even more.
-So, definitely keep an eye on open issues marked with the [`package: base-ui` and `waiting for 👍`](https://github.com/mui/material-ui/issues?q=is:open+is:issue+label:%22package:+base-ui%22+label:%22waiting+for+%F0%9F%91%8D%22) labels for an opportunity to chime in and help us prioritize.
+And potentially more!
+We'd love for you to chime in and help us prioritize, so keep an eye on open issues marked with the [`package: base-ui` and `waiting for 👍`](https://github.com/mui/material-ui/issues?q=is:open+is:issue+label:%22package:+base-ui%22+label:%22waiting+for+%F0%9F%91%8D%22) labels.
 
 ## Improved customization API
 
