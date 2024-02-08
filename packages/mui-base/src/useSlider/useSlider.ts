@@ -136,8 +136,8 @@ function focusThumb({
 }
 
 function areValuesEqual(
-  newValue: number | Array<number>,
-  oldValue: number | Array<number>,
+  newValue: number | ReadonlyArray<number>,
+  oldValue: number | ReadonlyArray<number>,
 ): boolean {
   if (typeof newValue === 'number' && typeof oldValue === 'number') {
     return newValue === oldValue;

@@ -465,7 +465,7 @@ module.exports = {
       },
     },
     {
-      files: ['scripts/**/*.mjs', 'packages/**/*.mjs'],
+      files: ['**/*.mjs'],
       rules: {
         'import/extensions': ['error', 'ignorePackages'],
       },
