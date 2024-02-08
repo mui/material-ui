@@ -28,7 +28,7 @@ If you need to run a specific codemod, those are also linked below.
 
 ## Accordion
 
-Use the [codemod](https://github.com/mui/material-ui/tree/master/packages/mui-codemod#accordion-props) below to migrate the code as decribed in the following sections:
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#accordion-props) below to migrate the code as described in the following sections:
 
 ```bash
 npx @mui/codemod@latest deprecations/accordion-props <path>
@@ -58,7 +58,7 @@ The Accordion's `TransitionProps` was deprecated in favor of `slotProps.transiti
 
 ## Avatar
 
-Use the [codemod](https://github.com/mui/material-ui/tree/master/packages/mui-codemod#avatar-props) below to migrate the code as decribed in the following sections:
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#avatar-props) below to migrate the code as described in the following sections:
 
 ```bash
 npx @mui/codemod@latest deprecations/avatar-props <path>
@@ -84,7 +84,7 @@ The Avatar's `imgProps` was deprecated in favor of `slotProps.img`:
 
 ## Divider
 
-Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#divider-props) below to migrate the code as decribed in the following sections:
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#divider-props) below to migrate the code as described in the following sections:
 
 ```bash
 npx @mui/codemod@latest deprecations/divider-props <path>
