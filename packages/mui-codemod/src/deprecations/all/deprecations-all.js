@@ -1,5 +1,5 @@
 import transformAccordionProps from '../accordion-props/accordion-props';
-import transformAccordionClasses from '../accordion-classes/accordion-classes';
+import transformAccordionClasses from '../accordion-summary-classes/accordion-summary-classes';
 
 /**
  * @param {import('jscodeshift').FileInfo} file

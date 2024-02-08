@@ -2,7 +2,7 @@ import path from 'path';
 import { expect } from 'chai';
 import postcss from 'postcss';
 import { jscodeshift } from '../../../testUtils';
-import jsTransform from './accordion-classes';
+import jsTransform from './accordion-summary-classes';
 import { plugin as postcssPlugin } from './postcss-plugin';
 import readFile from '../../util/readFile';
 
@@ -14,7 +14,7 @@ const postcssProcessor = postcss([postcssPlugin]);
 
 describe('@mui/codemod', () => {
   describe('deprecations', () => {
-    describe('accordion-classes', () => {
+    describe('accordion-summary-classes', () => {
       describe('js-transform', () => {
         it('transforms props as needed', () => {
           const actual = jsTransform(

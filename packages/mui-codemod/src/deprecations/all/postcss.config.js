@@ -1,5 +1,5 @@
-const { plugin: accordionClassesPlugin } = require('../accordion-classes/postcss-plugin');
+const { plugin: accordionSummaryClassesPlugin } = require('../accordion-summary-classes/postcss-plugin');
 
 module.exports = {
-  plugins: [accordionClassesPlugin],
+  plugins: [accordionSummaryClassesPlugin],
 };
