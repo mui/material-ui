@@ -16,12 +16,18 @@ export interface IconButtonSlots {
    * @default 'button'
    */
   root?: React.ElementType;
+  /**
+   * The component that renders the loading indicator.
+   * @default 'span'
+   */
+  loadingIndicator?: React.ElementType;
 }
 
 export type IconButtonSlotsAndSlotProps = CreateSlotsAndSlotProps<
   IconButtonSlots,
   {
     root: SlotProps<'button', {}, IconButtonOwnerState>;
+    loadingIndicator: SlotProps<'span', {}, IconButtonOwnerState>;
   }
 >;
 
@@ -74,6 +80,17 @@ export interface IconButtonTypeMap<P = {}, D extends React.ElementType = 'button
      * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, IconButtonPropsVariantOverrides>;
+    /**
+     * If `true`, the loading indicator is shown and the button becomes disabled.
+     * @default false
+     */
+    loading?: boolean;
+    /**
+     * The node should contain an element with `role="progressbar"` with an accessible name.
+     * By default we render a `CircularProgress` that is labelled by the button itself.
+     * @default <CircularProgress />
+     */
+    loadingIndicator?: React.ReactNode;
   } & IconButtonSlotsAndSlotProps;
   defaultComponent: D;
 }
