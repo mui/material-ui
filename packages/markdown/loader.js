@@ -149,6 +149,7 @@ module.exports = async function demoLoader() {
           return typeof markdownOrComponentConfig !== 'string' && markdownOrComponentConfig.demo;
         })
         .map((demoConfig) => {
+          // Create a set of modules which are not demos
           if (demoConfig.hideToolbar) {
             toolbarHidden.add(demoConfig.demo);
           }
@@ -163,7 +164,6 @@ module.exports = async function demoLoader() {
    * @param {*} importModuleID
    * @example detectRelativeImports('Button', 'JS', './data/Button-data.js') => relativeModules.set('Button', new Map([['./data/Button-data.js', ['JS']]]))
    */
-
   function detectRelativeImports(demoName, variant, importModuleID) {
     if (importModuleID.startsWith('.')) {
       const demoMap = relativeModules.get(demoName);
@@ -402,7 +402,7 @@ module.exports = async function demoLoader() {
        * while grouping by demo variant
        * From:
        * relativeModules: { 'ComboBox.js' =>
-       *    { './data/top100Films.js'  => 'JS,TS' }
+       *    { './data/top100Films.js'  => ['JS', 'TS'] }
        * }
        * To:
        * demos["ComboBox.js"].relativeModules = {
@@ -411,10 +411,14 @@ module.exports = async function demoLoader() {
        *   }
        * }
        */
-
       if (relativeModules.has(demoName)) {
+        if (!demos[demoName].relativeModules) {
+          demos[demoName].relativeModules = {};
+        }
+
         await Promise.all(
           Array.from(relativeModules.get(demoName)).map(async ([relativeModuleID, variants]) => {
+            // Join the relative module path with the demo directory
             const relativeModuleFilepath = path.join(
               moduleFilepath,
               '..',
@@ -423,15 +427,16 @@ module.exports = async function demoLoader() {
 
             const raw = await fs.readFile(relativeModuleFilepath, { encoding: 'utf8' });
             const moduleData = { module: relativeModuleID, raw };
+            const modules = demos[demoName].relativeModules;
 
             variants.forEach((variant) => {
-              if (!demos[demoName].relativeModules) {
-                demos[demoName].relativeModules = {};
-              }
-              if (demos[demoName].relativeModules[variant]) {
-                demos[demoName].relativeModules[variant].push(moduleData);
+              if (modules[variant]) {
+                // Avoid duplicates
+                if (!modules[variant].some((elem) => elem.module === relativeModuleID)) {
+                  modules[variant].push(moduleData);
+                }
               } else {
-                demos[demoName].relativeModules[variant] = [moduleData];
+                modules[variant] = [moduleData];
               }
             });
           }),

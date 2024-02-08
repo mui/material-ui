@@ -83,7 +83,7 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
           sourceLanguage: 'tsx',
         };
         if (demo.relativeModules) {
-          codeOptions.relativeModules = demo.relativeModules?.[CODE_VARIANTS.TS];
+          codeOptions.relativeModules = demo.relativeModules[CODE_VARIANTS.TS];
         }
       } else {
         codeOptions = {
@@ -95,7 +95,7 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
           sourceLanguage: 'jsx',
         };
         if (demo.relativeModules) {
-          codeOptions.relativeModules = demo.relativeModules?.[CODE_VARIANTS.JS];
+          codeOptions.relativeModules = demo.relativeModules[CODE_VARIANTS.JS];
         }
       }
     } else if (codeStyling === CODE_STYLING.TAILWIND) {
@@ -612,7 +612,7 @@ export default function Demo(props) {
             </NoSsr>
           </DemoToolbarRoot>
           <Tabs defaultValue={0} value={activeTab} onChange={handleChange}>
-            {demo.relativeModules && codeOpen ? (
+            {demoData.relativeModules && codeOpen ? (
               <StyledTabList sx={bordersOverride}>
                 {tabs.map((tab, index) => (
                   <StyledTab
@@ -635,7 +635,7 @@ export default function Demo(props) {
                       key={index}
                       code={tab.raw}
                       id={demoSourceId}
-                      language={tab.language}
+                      language={demoData.sourceLanguage}
                       copyButtonProps={{
                         'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
                         'data-ga-event-label': demo.gaLabel,
@@ -674,7 +674,7 @@ export default function Demo(props) {
                           code={tab.raw}
                           key={tab.module}
                           id={`relative-${tab.module}`}
-                          language={tab.language}
+                          language={demoData.sourceLanguage}
                           copyButtonProps={{
                             'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
                             'data-ga-event-label': demo.gaLabel,
