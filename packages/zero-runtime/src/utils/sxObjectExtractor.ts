@@ -7,7 +7,7 @@ import type {
   ObjectExpression,
   PrivateName,
 } from '@babel/types';
-import { findIdentifiers } from '@linaria/utils';
+import { findIdentifiers } from '@wyw-in-js/transform';
 import { isStaticObjectOrArrayExpression } from './checkStaticObjectOrArray';
 
 function validateObjectKey(

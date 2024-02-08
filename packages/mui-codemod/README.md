@@ -80,10 +80,10 @@ A combination of all deprecations.
 
 ```diff
  <Accordion
--    TransitionComponent={CustomTransition}
--    TransitionProps={{ unmountOnExit: true }}
-+    slots={{ transition: CustomTransition }}
-+    slotProps={{ transition: { unmountOnExit: true } }}
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={{ unmountOnExit: true }}
++  slots={{ transition: CustomTransition }}
++  slotProps={{ transition: { unmountOnExit: true } }}
  />
 ```
 
@@ -94,17 +94,30 @@ npx @mui/codemod@latest deprecations/accordion-props <path>
 #### `avatar-props`
 
 ```diff
-  <Avatar
--   imgProps={{
--     onError: () => {},
--     onLoad: () => {},
-+   slotProps={{
-+     img: {
-+       onError: () => {},
-+       onLoad: () => {},
-+     }
-    }}
-  />;
+ <Avatar
+-  imgProps={{
+-    onError: () => {},
+-    onLoad: () => {},
++  slotProps={{
++    img: {
++      onError: () => {},
++      onLoad: () => {},
++    }
+   }}
+ />;
+```
+
+#### `divider-props`
+
+```diff
+ <Divider
+-  light
++  sx={{opacity: "0.6"}}
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/divider-props <path>
 ```
 
 ### v5.0.0

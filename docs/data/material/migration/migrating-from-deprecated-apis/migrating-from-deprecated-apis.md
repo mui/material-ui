@@ -16,7 +16,7 @@ Material UI provides the `deprecations/all` codemod to help you stay up to date
 npx @mui/codemod@latest deprecations/all <path>
 ```
 
-This command runs all the current [deprecations codemods](https://github.com/mui/material-ui/tree/master/packages/mui-codemod#deprecations), automatically migrating to the updated API.
+This command runs all the current [deprecations codemods](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#deprecations), automatically migrating to the updated API.
 You can run this codemod as often as necessary to keep up with the latest changes.
 
 :::info
@@ -40,8 +40,8 @@ The Accordion's `TransitionComponent` was deprecated in favor of `slots.transiti
 
 ```diff
  <Accordion
--    TransitionComponent={CustomTransition}
-+    slots={{ transition: CustomTransition }}
+-  TransitionComponent={CustomTransition}
++  slots={{ transition: CustomTransition }}
  />
 ```
 
@@ -51,8 +51,21 @@ The Accordion's `TransitionProps` was deprecated in favor of `slotProps.transiti
 
 ```diff
  <Accordion
--    TransitionProps={{ unmountOnExit: true }}
-+    slotProps={{ transition: { unmountOnExit: true } }}
+-  TransitionProps={{ unmountOnExit: true }}
++  slotProps={{ transition: { unmountOnExit: true } }}
+ />
+```
+
+## Divider
+
+### light
+
+The Divider's `light` prop was deprecated, Use `sx={{ opacity : "0.6" }}` (or any opacity). ([Codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#divider-props)):
+
+```diff
+ <Divider
+-  light
++  sx={{ opacity : "0.6" }}
  />
 ```
 
@@ -69,15 +82,15 @@ npx @mui/codemod@latest deprecations/avatar-props <path>
 The Avatar's `imgProps` was deprecated in favor of `slotProps.img`:
 
 ```diff
-  <Avatar
--   imgProps={{
--     onError: () => {},
--     onLoad: () => {},
-+   slotProps={{
-+     img: {
-+       onError: () => {},
-+       onLoad: () => {},
-+     }
-    }}
-  />;
+ <Avatar
+-  imgProps={{
+-    onError: () => {},
+-    onLoad: () => {},
++  slotProps={{
++    img: {
++      onError: () => {},
++      onLoad: () => {},
++    }
+ }}
+ />;
 ```
