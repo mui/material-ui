@@ -22,17 +22,14 @@ export default function findComponentJSX(j, options, callback) {
     )
     .forEach((path) => {
       path.node.specifiers.forEach((specifier) => {
-        importName.add(specifier.local.name);
+        if (specifier.type === 'ImportDefaultSpecifier') {
+          importName.add(specifier.local.name);
+        }
+        if (specifier.type === 'ImportSpecifier' && specifier.imported.name === componentName) {
+          importName.add(specifier.local.name);
+        }
       });
     });
-
-  root.find(j.ImportDeclaration, { source: { value: '@mui/material' } }).forEach((path) => {
-    path.node.specifiers.forEach((specifier) => {
-      if (specifier.type === 'ImportSpecifier' && specifier.imported.name === componentName) {
-        importName.add(specifier.local.name);
-      }
-    });
-  });
 
   [...importName].forEach((name) => {
     root.findJSXElements(name).forEach((elementPath) => {
