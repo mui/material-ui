@@ -195,7 +195,7 @@ describe('<ButtonGroup />', () => {
     expect(getAllByRole('button')[1]).to.have.property('disabled', true);
   });
 
-  it('pass disabled to buttons inless it is overriden', () => {
+  it('pass disabled to buttons unless it is overriden', () => {
     const { getAllByRole } = render(
       <ButtonGroup disabled>
         <Button disabled={false} />
