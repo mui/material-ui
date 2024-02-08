@@ -1,5 +1,84 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.15.8<!-- generated comparing v5.15.7..master -->
+
+_Feb 6, 2024_
+
+A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+
+- 💫 Added a redesigned [landing page template](https://mui.com/material-ui/getting-started/templates/landing-page/) (#37557) @zanivan
+- ✨ Added support for Arrow Down/Up + Shift and Page Up/Down keys for faster stepping in the Slider component (#40676) @mnajdova
+- many 🐛 bug fixes and 📚 documentation improvements
+
+### `@mui/material@5.15.8`
+
+- &#8203;<!-- 36 -->[Avatar] Simplify valid children assertion (#40834) @oliviertassinari
+
+### `@mui/codemod@5.15.8`
+
+- &#8203;<!-- 37 -->[Accordion] Update props actual.js test case (#40879) @DiegoAndai
+- &#8203;<!-- 12 -->Fix `findComponentJSX` util (#40855) @sai6855
+
+### `@mui/system@5.15.8`
+
+- &#8203;<!-- 10 -->Add blend color manipulator (#40258) @romgrk
+- &#8203;<!-- 38 -->Support variants in `theme.styleOverrides` (#40690) @siriwatknp
+- &#8203;<!-- 02 -->[zero] Always replace the `createUseThemeProps` call (#40885) @siriwatknp
+- &#8203;<!-- 01 -->[zero] Add README with installation and basic usage (#40761) @brijeshb42
+
+### `@mui/base@5.0.0-beta.34`
+
+- &#8203;<!-- 35 -->[Button] Add support for `hostElementName` prop to improve SSR (#40507) @mj12albert
+- &#8203;<!-- 30 -->[Menu] Use Popup instead of Popper (#40731) @michaldudak
+- &#8203;<!-- 29 -->[useNumberInput] Integrate useNumberInput with useControllableReducer (#40206) @mj12albert
+- &#8203;<!-- 11 -->[Slider] Add support for Arrow Down/Up + Shift and Page Up/Down keys (#40676) @mnajdova
+
+### Docs
+
+- &#8203;<!-- 34 -->[base-ui] Update usage.md (#40916) @adebiyial
+- &#8203;<!-- 33 -->[base-ui] Improve Base UI traffic from Material UI (#40875) @oliviertassinari
+- &#8203;<!-- 32 -->[base-ui] Change Radio component terminology from Button to Group (#40888) @danilo-leal
+- &#8203;<!-- 42 -->[base-ui] Remove redundant "Styled" prefix (#40478) @oliviertassinari
+- &#8203;<!-- 48 -->[base-ui] Update listbox slot style in demo (#40952) @sai6855
+- &#8203;<!-- 14 -->[material-ui] Fix createTheme import and markdown format in the Next.js guide (#40895) @hsmtkk
+- &#8203;<!-- 13 -->[material-ui] Correct Google font CDN URL as Roboto 600 weight is not used (#40852) @xuhdev
+- &#8203;<!-- 14 -->[material-ui] Replace the Album template with a landing page (#37557) @zanivan
+- &#8203;<!-- 21 -->[material-ui] Add deprecations migration guide (#40767) @DiegoAndai
+- &#8203;<!-- 22 -->[material-ui] Improve aria-label throughout the Button Group demos (#40892) @danilo-leal
+- &#8203;<!-- 17 -->[joy-ui] Update the Overview callout (#40900) @danilo-leal
+- &#8203;<!-- 22 -->Fix image size and dark mode @oliviertassinari
+- &#8203;<!-- 21 -->Migrate links from legacy.reactjs.org to react.dev @oliviertassinari
+- &#8203;<!-- 20 -->Fix 301 links @oliviertassinari
+- &#8203;<!-- 19 -->Fix outdated link @oliviertassinari
+- &#8203;<!-- 18 -->Fix URL and typo in CONTRIBUTING.md (#40899) @Smileek
+
+### Core
+
+- &#8203;<!-- 28 -->[blog] Optimize images for /blog/mui-x-v7-beta/ @oliviertassinari
+- &#8203;<!-- 27 -->[blog] Clarify barrel index tree-shaking @oliviertassinari
+- &#8203;<!-- 26 -->[code-infra] Simplify bug reproduction (#40833) @oliviertassinari
+- &#8203;<!-- 25 -->[code-infra] Prepare publishing @mui-internal/typescript-to-proptypes to npm (#40842) @michaldudak
+- &#8203;<!-- 40 -->[code-infra] Remove babel alias from the docs (#40792) @Janpot
+- &#8203;<!-- 24 -->[core] Use Google Font v2 API @oliviertassinari
+- &#8203;<!-- 23 -->[core] Add missing change to v5.15.7 changelog (#40872) @DiegoAndai
+- &#8203;<!-- 31 -->[core] Normalize `<meta name="viewport" />`` @oliviertassinari
+- &#8203;<!-- 28 -->[dependencies] Do not update envinfo test dependencies (#40950) @michaldudak
+- &#8203;<!-- 17 -->[docs-infra] Fix arbitrary gap between paragraphs in callouts (#40911) @oliviertassinari
+- &#8203;<!-- 16 -->[docs-infra] Allow developers to build their CodeSandbox export (#40878) @oliviertassinari
+- &#8203;<!-- 15 -->[docs-infra] Improve StackBlitz support (#40832) @oliviertassinari
+- &#8203;<!-- 21 -->[docs-infra] Improve support for absolute locale URL (#40940) @oliviertassinari
+- &#8203;<!-- 31 -->[Menu][base-ui] Fix improperly merged tests (#40896) @michaldudak
+- &#8203;<!-- 09 -->[utils] Use consistent build approach (#40837) @siriwatknp
+- &#8203;<!-- 08 -->[website] Fix React missing key console error @oliviertassinari
+- &#8203;<!-- 07 -->[website] Fix broken link @oliviertassinari
+- &#8203;<!-- 06 -->[website] Fix heading structure (#40912) @oliviertassinari
+- &#8203;<!-- 05 -->[website] Add Customer Support Agent role to careers page (#40890) @rluzists1
+- &#8203;<!-- 04 -->[website] Refine the Material UI homepage demo (#40881) @danilo-leal
+- &#8203;<!-- 03 -->[website] Use em-dash when relevant over hyphen @oliviertassinari
+- &#8203;<!-- 03 -->[zero] Fix build for demo next.js app (#40854) @brijeshb42
+
+All contributors of this release in alphabetical order: @adebiyial, @brijeshb42, @danilo-leal, @DiegoAndai, @hsmtkk, @Janpot, @michaldudak, @mj12albert, @mnajdova, @oliviertassinari, @rluzists1, @romgrk, @sai6855, @siriwatknp, @Smileek, @xuhdev, @zanivan
+
 ## v5.15.7
 
 <!-- generated comparing v5.15.6..master -->
