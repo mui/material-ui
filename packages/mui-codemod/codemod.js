@@ -136,7 +136,7 @@ async function runPostcssTransform(transform, files) {
     const cssPaths = await parseCssFilePaths(files);
 
     if (cssPaths.length > 0) {
-      const args = [postcssExecutable, ...cssPaths, '--config', configPath, '--replace'];
+      const args = [postcssExecutable, ...cssPaths, '--config', configPath, '--replace', '--verbose'];
 
       // eslint-disable-next-line no-console -- debug information
       console.log(`Executing command: postcss ${args.join(' ')}`);

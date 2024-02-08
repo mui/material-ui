@@ -50,6 +50,45 @@ The Accordion's `TransitionProps` was deprecated in favor of `slotProps.transiti
  />
 ```
 
+## AccordionSummary
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#accordion-summary-classes) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/accordion-summary-classes <path>
+```
+
+### .MuiAccordionSummary-contentGutters
+
+The AccordionSummary's `.MuiAccordionSummary-contentGutters` class was deprecated in favor of the `.MuiAccordionSummary-gutters` and `.MuiAccordionSummary-content` classes.
+Bear in mind that the `.MuiAccordionSummary-gutters` class is applied to the component's root, whereas the `.MuiAccordionSummary-contentGutters` and `.MuiAccordionSummary-content` classes are applied to the content element.
+
+```diff
+-.MuiAccordionSummary-contentGutters
++.MuiAccordionSummary-gutters .MuiAccordionSummary-content
+ />
+```
+
+```diff
+-.MuiAccordionSummary-root .MuiAccordionSummary-contentGutters
++.MuiAccordionSummary-root.MuiAccordionSummary-gutters .MuiAccordionSummary-content
+ />
+```
+
+```diff
+ MuiAccordionSummary: {
+   styleOverrides: {
+-    contentGutters: {
++    gutters: {
++      '& .MuiAccordionSummary-content': {
+         color: 'red',
+        },
++    },
+-    },
+   },
+ },
+```
+
 ## Divider
 
 ### light

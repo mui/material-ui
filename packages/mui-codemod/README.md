@@ -91,6 +91,38 @@ A combination of all deprecations.
 npx @mui/codemod@latest deprecations/accordion-props <path>
 ```
 
+#### `accordion-summary-classes`
+
+```diff
+-.MuiAccordionSummary-contentGutters
++.MuiAccordionSummary-gutters .MuiAccordionSummary-content
+ />
+```
+
+```diff
+-.MuiAccordionSummary-root .MuiAccordionSummary-contentGutters
++.MuiAccordionSummary-root.MuiAccordionSummary-gutters .MuiAccordionSummary-content
+ />
+```
+
+```diff
+ MuiAccordionSummary: {
+   styleOverrides: {
+-    contentGutters: {
++    gutters: {
++      '& .MuiAccordionSummary-content': {
+         color: 'red',
+        },
++    },
+-    },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/accordion-summary-classes <path>
+```
+
 #### `divider-props`
 
 ```diff
