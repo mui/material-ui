@@ -878,9 +878,6 @@ importers:
       '@types/stylis':
         specifier: ^4.2.0
         version: 4.2.5
-      '@types/webpack-bundle-analyzer':
-        specifier: ^4.6.3
-        version: 4.6.3(esbuild@0.19.11)(webpack-cli@5.1.4)
       chai:
         specifier: ^4.4.1
         version: 4.4.1
@@ -7904,19 +7901,6 @@ packages:
 
   /@types/uuid@9.0.8:
     resolution: {integrity: sha512-jg+97EGIcY9AGHJJRaaPVgetKDsrTgbRjQ5Msgjh/DQKEFl0DtyRr/VCOyD1T2R1MNeWPK/u7JoGhlDZnKBAfA==}
-    dev: true
-
-  /@types/webpack-bundle-analyzer@4.6.3(esbuild@0.19.11)(webpack-cli@5.1.4):
-    resolution: {integrity: sha512-XYU3m7oRb1tlE8YhwkKLi1xba2buNB9V4VkQtOVTfJuUm/413pE/UCMVcPDFFBwpzGkr9y1WbSEvdPjKVPt0gw==}
-    dependencies:
-      '@types/node': 18.19.14
-      tapable: 2.2.1
-      webpack: 5.90.0(esbuild@0.19.11)(webpack-cli@5.1.4)
-    transitivePeerDependencies:
-      - '@swc/core'
-      - esbuild
-      - uglify-js
-      - webpack-cli
     dev: true
 
   /@types/webxr@0.5.13:
