@@ -369,6 +369,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   const [SlotInput, inputProps] = useSlot('input', {
     additionalProps: {
       type: 'radio',
+      role: 'radio',
       id,
       name,
       readOnly,
