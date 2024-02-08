@@ -5,14 +5,14 @@ A zero-runtime CSS-in-JS library that extracts the colocated css to it's own css
 - [Getting started](#getting-started)
   - [Next.js](#nextjs)
   - [Vite](#vite)
-- [Usage](#usage)
+- [Basic usage](#basic-usage)
   - [Creating styles](#creating-styles)
   - [Creating components](#creating-components)
     - [Styling based on props](#styling-based-on-props)
     - [Styling based on runtime values](#styling-based-on-runtime-values)
     - [Styled component as a CSS selector](#styled-component-as-a-css-selector)
     - [Typing props](#typing-props)
-- [Theme](#theme)
+- [Theming](#theming)
   - [Accesing theme values](#accesing-theme-values)
   - [CSS variables support](#css-variables-support)
   - [Color schemes](#color-schemes)
@@ -60,7 +60,7 @@ export default defineConfig({
 });
 ```
 
-## Usage
+## Basic usage
 
 > You must configure zero-runtime with [Next.js](#nextjs) or [Vite](#vite) first.
 
@@ -90,7 +90,7 @@ function App() {
 
 The call to `css` function will be replaced with a unique string that represents the CSS class name for the generated styles.
 
-Use a callback function to get access to the [theme](#theme) values:
+Use a callback function to get access to the [theme](#theming) values:
 
 ```js
 const title = css(({ theme }) => ({
@@ -263,11 +263,15 @@ const Heading = styled('h1')<{ isError?: boolean }>({
 });
 ```
 
-### Theme
+### Theming
 
-Theme lets you reuse the same values, such as colors, spacing, and typography, across your application. It is a plain object of any structure that you can define in your config file.
+Theming is an **optional** feature that lets you reuse the same values, such as colors, spacing, and typography, across your application. It is a plain object of any structure that you can define in your config file.
 
-For example, in Next.js, you can define the theme in the `next.config.js` file:
+> **💡 Good to know**:
+>
+> The **theme** object are used at build time without relying on React context like common CSS-in-JS libraries. This means that components created by zero-runtime `styled` will be React Server Component by default and still get benefits from theming.
+
+For example, in Next.js, you can define a theme in the `next.config.js` file like this:
 
 ```js
 const { withZeroPlugin } = require('@mui/zero-next-plugin');
