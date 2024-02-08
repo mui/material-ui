@@ -29,12 +29,9 @@ export interface UseLinkRootSlotOwnProps {
   disabled?: boolean;
   tabIndex?: number;
   role?: React.AriaRole;
-  onBlur: React.FocusEventHandler;
-  onFocus: React.FocusEventHandler;
   onKeyDown: MuiCancellableEventHandler<React.KeyboardEvent>;
   onKeyUp: MuiCancellableEventHandler<React.KeyboardEvent>;
   onMouseDown: React.MouseEventHandler;
-  onMouseLeave: React.MouseEventHandler;
   ref: React.RefCallback<Element> | null;
 }
 
@@ -49,14 +46,6 @@ export interface UseLinkReturnValue {
   getRootProps: <ExternalProps extends Record<string, any> = {}>(
     externalProps?: ExternalProps,
   ) => UseLinkRootSlotProps<ExternalProps>;
-  /**
-   * If `true`, the component is being focused using keyboard.
-   */
-  focusVisible: boolean;
-  /**
-   * Callback for setting the `focusVisible` param.
-   */
-  setFocusVisible: React.Dispatch<React.SetStateAction<boolean>>;
   /**
    * If `true`, the component is active (pressed).
    */

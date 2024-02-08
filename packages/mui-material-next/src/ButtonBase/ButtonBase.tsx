@@ -115,10 +115,10 @@ const ButtonBase = React.forwardRef(function ButtonBase<
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>(null);
   const handleRef = useForkRef(buttonRef, ref);
   const {
-    focusVisible: buttonFocusVisible,
-    active: buttonActive,
-    setFocusVisible: buttonSetFocusVisible,
-    getRootProps: buttonGetRootProps,
+    focusVisible,
+    active,
+    setFocusVisible,
+    getRootProps: getButtonRootProps,
   } = useButton({
     disabled,
     focusableWhenDisabled,
@@ -126,12 +126,7 @@ const ButtonBase = React.forwardRef(function ButtonBase<
     rootRef: handleRef,
   });
 
-  const {
-    focusVisible: linkFocusVisible,
-    active: linkActive,
-    setFocusVisible: linkSetFocusVisible,
-    getRootProps: linkGetRootProps,
-  } = useLink({
+  const { getRootProps: getLinkRootProps } = useLink({
     disabled,
     focusableWhenDisabled,
     href: props.href,
@@ -141,10 +136,6 @@ const ButtonBase = React.forwardRef(function ButtonBase<
   });
 
   const isLink = props.href != null || props.to != null;
-  const focusVisible = isLink ? linkFocusVisible : buttonFocusVisible;
-  const active = isLink ? linkActive : buttonActive;
-  const setFocusVisible = isLink ? linkSetFocusVisible : buttonSetFocusVisible;
-  const getRootProps = isLink ? linkGetRootProps : buttonGetRootProps;
 
   let ComponentProp = component;
   if (ComponentProp === 'button' && (other.href || other.to)) {
@@ -186,14 +177,25 @@ const ButtonBase = React.forwardRef(function ButtonBase<
 
   const rootProps = useSlotProps({
     elementType: ButtonBaseRoot,
-    getSlotProps: (otherHandlers: EventHandlers) => ({
-      ...getRootProps({
-        ...otherHandlers,
-        ...getRippleHandlers(props),
-      }),
-      // If provided, the type prop overrides useButton's type which is more restricted
-      ...(!!type && { type }),
-    }),
+    getSlotProps: (otherHandlers: EventHandlers) => {
+      const { onKeyDown, onKeyUp, onClick, onMouseDown, ...restHandlers } = otherHandlers;
+
+      return {
+        ...getButtonRootProps({
+          ...(!isLink && {
+            onKeyDown,
+            onKeyUp,
+            onClick,
+            onMouseDown,
+          }),
+          ...restHandlers,
+          ...getRippleHandlers(props),
+        }),
+        ...(isLink && getLinkRootProps({ onKeyDown, onKeyUp, onClick, onMouseDown })),
+        // If provided, the type prop overrides useButton's type which is more restricted
+        ...(!!type && { type }),
+      };
+    },
     externalForwardedProps: other,
     externalSlotProps: {},
     additionalProps: {

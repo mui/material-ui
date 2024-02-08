@@ -18,7 +18,6 @@ import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 export function useLink(parameters: UseLinkParameters = {}): UseLinkReturnValue {
   const {
     disabled = false,
-    focusableWhenDisabled,
     href,
     rootRef: externalRef,
     tabIndex,
@@ -29,71 +28,13 @@ export function useLink(parameters: UseLinkParameters = {}): UseLinkReturnValue 
 
   const [active, setActive] = React.useState<boolean>(false);
 
-  const {
-    isFocusVisibleRef,
-    onFocus: handleFocusVisible,
-    onBlur: handleBlurVisible,
-    ref: focusVisibleRef,
-  } = useIsFocusVisible();
-
-  const [focusVisible, setFocusVisible] = React.useState(false);
-  if (disabled && !focusableWhenDisabled && focusVisible) {
-    setFocusVisible(false);
-  }
-
-  React.useEffect(() => {
-    isFocusVisibleRef.current = focusVisible;
-  }, [focusVisible, isFocusVisibleRef]);
-
   const [rootElementName, updateRootElementName] = useRootElementName({
     rootElementName: rootElementNameProp,
     componentName: 'Link',
   });
 
-  const createHandleMouseLeave = (otherHandlers: EventHandlers) => (event: React.MouseEvent) => {
-    if (focusVisible) {
-      event.preventDefault();
-    }
-
-    otherHandlers.onMouseLeave?.(event);
-  };
-
-  const createHandleBlur = (otherHandlers: EventHandlers) => (event: React.FocusEvent) => {
-    handleBlurVisible(event);
-
-    if (isFocusVisibleRef.current === false) {
-      setFocusVisible(false);
-    }
-
-    otherHandlers.onBlur?.(event);
-  };
-
-  const createHandleFocus =
-    (otherHandlers: EventHandlers) => (event: React.FocusEvent<HTMLLinkElement>) => {
-      // Fix for https://github.com/facebook/react/issues/7769
-      if (!linkRef.current) {
-        linkRef.current = event.currentTarget;
-      }
-
-      handleFocusVisible(event);
-      if (isFocusVisibleRef.current === true) {
-        setFocusVisible(true);
-        otherHandlers.onFocusVisible?.(event);
-      }
-
-      otherHandlers.onFocus?.(event);
-    };
-
   const isNativeLink = () => {
-    const link = linkRef.current;
-
-    return rootElementName === 'A' && (link as HTMLAnchorElement)?.href;
-  };
-
-  const createHandleClick = (otherHandlers: EventHandlers) => (event: React.MouseEvent) => {
-    if (!disabled) {
-      otherHandlers.onClick?.(event);
-    }
+    return rootElementName === 'A' && (linkRef.current as HTMLAnchorElement)?.href;
   };
 
   const createHandleMouseDown = (otherHandlers: EventHandlers) => (event: React.MouseEvent) => {
@@ -162,7 +103,7 @@ export function useLink(parameters: UseLinkParameters = {}): UseLinkReturnValue 
       }
     };
 
-  const handleRef = useForkRef(updateRootElementName, externalRef, focusVisibleRef, linkRef);
+  const handleRef = useForkRef(updateRootElementName, externalRef, linkRef);
 
   interface AdditionalLinkProps {
     type?: React.LinkHTMLAttributes<HTMLLinkElement>['type'];
@@ -185,7 +126,7 @@ export function useLink(parameters: UseLinkParameters = {}): UseLinkReturnValue 
   }
   if (disabled) {
     linkProps['aria-disabled'] = disabled as boolean;
-    linkProps.tabIndex = focusableWhenDisabled ? tabIndex ?? 0 : -1;
+    linkProps.tabIndex = tabIndex ?? 0;
   }
 
   const getRootProps = <ExternalProps extends Record<string, any> = {}>(
@@ -200,13 +141,9 @@ export function useLink(parameters: UseLinkParameters = {}): UseLinkReturnValue 
       ...externalEventHandlers,
       ...linkProps,
       ...externalProps,
-      onBlur: createHandleBlur(externalEventHandlers),
-      onClick: createHandleClick(externalEventHandlers),
-      onFocus: createHandleFocus(externalEventHandlers),
       onKeyDown: createHandleKeyDown(externalEventHandlers),
       onKeyUp: createHandleKeyUp(externalEventHandlers),
       onMouseDown: createHandleMouseDown(externalEventHandlers),
-      onMouseLeave: createHandleMouseLeave(externalEventHandlers),
       ref: handleRef,
     };
 
@@ -220,8 +157,6 @@ export function useLink(parameters: UseLinkParameters = {}): UseLinkReturnValue 
 
   return {
     getRootProps,
-    focusVisible,
-    setFocusVisible,
     active,
     rootRef: handleRef,
   };
