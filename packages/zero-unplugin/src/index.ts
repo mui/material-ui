@@ -231,6 +231,7 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
             }),
           )}`;
           return {
+            // CSS import should be the last so that nested components produce correct CSS order injection.
             code: `${result.code}\nimport ${JSON.stringify(data)};`,
             map: result.sourceMap,
           };
