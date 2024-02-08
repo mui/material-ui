@@ -1,7 +1,7 @@
 ---
 title: An exciting year ahead for Base UI
 description: The unstyled component library will get a stable release, lots of new components, and even better DX in 2024.
-date: 2024-02-09T00:00:00.000Z
+date: 2024-02-13T00:00:00.000Z
 authors: ['danilo-leal', 'michaldudak', 'colmtuite', 'oliviertassinari']
 tags: ['Base UI', 'Product']
 card: true
