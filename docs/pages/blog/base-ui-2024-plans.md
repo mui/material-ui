@@ -67,11 +67,11 @@ They're currently available for use with the Popup, Menu, and Select, and the pl
 
 ## Independent component versioning
 
-Instead of versioning the package as a whole, we're transitioning to offering each Base UI component as its own individual npm package with its own version.
-This is a huge DX win, because it enables us to iterate much more quickly on individual components, and get bug fixes out to you on a per-component basis with no need to wait for a package-wide major release.
-
+Instead of versioning the package as a whole, we're considering offering each Base UI component as its own individual npm package with its own version.
 Although it may initially sound like a burden to install each component individually, it means that you only have to commit to those you're actually interested in using.
 Pick and choose only what you need, or even mix and match with complementary component libraries that you're already using.
+
+This would be a huge DX win because it enables us to iterate much more quickly on individual components and get bug fixes out to you on a per-component basis with no need to wait for a package-wide major release.
 
 ## A more independent product
 
