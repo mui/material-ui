@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import { Unstable_Popup as BasePopup, PopupProps } from '@mui/base/Unstable_Popup';
-import { Button as BaseButton } from '@mui/base/Button';
+import { Unstable_Popup as PopupBase, PopupProps } from '@mui/base/Unstable_Popup';
+import { Button as ButtonBase } from '@mui/base/Button';
 import { CssAnimation, CssTransition } from '@mui/base/Transitions';
 
 const styles = `
@@ -74,7 +74,7 @@ const blue = {
   700: '#0066CC',
 };
 
-const Button = styled(BaseButton)(
+const Button = styled(ButtonBase)(
   ({ theme }) => `
   min-width: 165px;
   font-family: 'IBM Plex Sans', sans-serif;
@@ -108,7 +108,7 @@ const Button = styled(BaseButton)(
 `,
 );
 
-const StyledPopup = styled(BasePopup)`
+const Popup = styled(PopupBase)`
   width: max-content;
 `;
 
@@ -177,9 +177,9 @@ function PopupWithTrigger(props: PopupProps) {
       <Button ref={setAnchor} onClick={() => setOpen((o) => !o)}>
         {open ? 'Hide popup' : 'Open CSS Transition'}
       </Button>
-      <StyledPopup anchor={anchor} open={open} {...other}>
+      <Popup anchor={anchor} open={open} {...other}>
         {children}
-      </StyledPopup>
+      </Popup>
     </React.Fragment>
   );
 }
@@ -194,9 +194,9 @@ function PopupWithTrigger2(props: PopupProps) {
       <Button ref={setAnchor} onClick={() => setOpen((o) => !o)}>
         {open ? 'Hide popup' : 'Open CSS Animation'}
       </Button>
-      <StyledPopup anchor={anchor} open={open} {...other}>
+      <Popup anchor={anchor} open={open} {...other}>
         {children}
-      </StyledPopup>
+      </Popup>
     </React.Fragment>
   );
 }

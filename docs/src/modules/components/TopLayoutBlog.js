@@ -106,6 +106,11 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/92274722',
     github: 'richbustos',
   },
+  colmtuite: {
+    name: 'Colm Tuite',
+    avatar: 'https://avatars.githubusercontent.com/u/805073',
+    github: 'colmtuite',
+  },
 };
 
 const classes = {

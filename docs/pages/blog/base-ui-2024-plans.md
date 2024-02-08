@@ -2,7 +2,7 @@
 title: An exciting year ahead for Base UI
 description: The unstyled component library will get a stable release, lots of new components, and even better DX in 2024.
 date: 2024-02-09T00:00:00.000Z
-authors: ['michaldudak', 'danilo-leal']
+authors: ['danilo-leal', 'michaldudak', 'colmtuite', 'oliviertassinari']
 tags: ['Base UI', 'Product']
 card: true
 ---
@@ -61,13 +61,13 @@ Animation is a key element for adding delight to any application.
 We've already kicked off work on animation support by releasing the [CSS Transition](/base-ui/react-transitions/#css-transition) and [CSS Animation](/base-ui/react-transitions/#css-animation) components, as well as the `useTransitionTrigger` and `useTransitionStateManager` hooks.
 They're currently available for use with the Popup, Menu, and Select, and the plan is to extend support to more components while also adding more features.
 
-{{"demo": "../../data/base/components/transitions/AllTransitionsDemo.js", "hideToolbar": true}}
+{{"demo": "../../data/base/components/transitions/AllTransitionsDemo.js"}}
 
 <p class="blog-description" style="margin: -16px 0 0 0;">The CSS Animation transition is exaggerated here for the sake of demonstration.</p>
 
 ## Independent component versioning
 
-Instead of versioning the package as a whole, we're transitioning to offering each Base UI component as its own individual NPM package with its own version.
+Instead of versioning the package as a whole, we're transitioning to offering each Base UI component as its own individual npm package with its own version.
 This is a huge DX win, because it enables us to iterate much more quickly on individual components, and get bug fixes out to you on a per-component basis with no need to wait for a package-wide major release.
 
 Although it may initially sound like a burden to install each component individually, it means that you only have to commit to those you're actually interested in using.
@@ -75,10 +75,11 @@ Pick and choose only what you need, or even mix and match with complementary com
 
 ## A more independent product
 
-Thus far, all Base UI-related development has happened within the Material UI GitHub repository.
-That made a lot of sense in the beginning, because we didn't intend for Base UI to be a standalone product at the time.
+Thus far, all Base UI-related development has happened within the [Material UI GitHub repository](http://github.com/mui/material-ui).
+That made a lot of sense in the beginning because we didn't intend for Base UI to be a standalone product at the time.
 As a result of this early decision, we've seen that some developers are hesitant to try it out because of the apparent association with Material Design.
-Rest assured that Base UI _is_ now a standalone library, and it doesn't come packaged with _any_ default styles or themes.
+Rest assured that Base UI _is_ a standalone library, and it doesn't come packaged with _any_ default styles or themes.
+That's why, later in the year, we plan to move it to its own dedicated GitHub repository.
 
 <img alt="Material UI vs. Base UI: independent but related products." src="/static/blog/base-ui-2024-plans/material-vs-base.png" width="1200" height="450" loading="lazy" />
 
