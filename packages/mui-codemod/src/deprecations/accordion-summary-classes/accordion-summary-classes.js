@@ -26,31 +26,24 @@ export default function transformer(file, api, options) {
     }
   });
 
-  root
-    .find(j.Literal, (literal) => literal.value.match(/^.MuiAccordionSummary-contentGutters/))
-    .forEach((path) => {
-      path.replace(
-        j.literal(
-          path.value.value.replace(
-            /^.MuiAccordionSummary-contentGutters/,
-            '.MuiAccordionSummary-gutters .MuiAccordionSummary-content',
-          ),
-        ),
-      );
-    });
-
   const directRegex = new RegExp(`^${deprecatedClass}`);
   root
-    .find(j.Literal, (literal) => literal.value.match(directRegex))
+    .find(
+      j.Literal,
+      (literal) => typeof literal.value === 'string' && literal.value.match(directRegex),
+    )
     .forEach((path) => {
       path.replace(j.literal(path.value.value.replace(directRegex, replacementSelector)));
     });
 
   // this is a special case for contentGutters as it's applied to the content child
   // but gutters is applied to the parent element, so the gutter class needs to go on the parent
-  const childSelectorRegex = new RegExp(`^& ${deprecatedClass}`);
+  const childSelectorRegex = new RegExp(`(^&)? ${deprecatedClass}`);
   root
-    .find(j.Literal, (literal) => literal.value.match(childSelectorRegex))
+    .find(
+      j.Literal,
+      (literal) => typeof literal.value === 'string' && literal.value.match(childSelectorRegex),
+    )
     .forEach((path) => {
       path.replace(j.literal(path.value.value.replace(childSelectorRegex, replacementSelector)));
     });
