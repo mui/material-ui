@@ -11,7 +11,7 @@ A big thanks to the 7 contributors who made this release possible. Here are some
 ### `@mui/material@5.15.9`
 
 - &#8203;<!-- 11 -->[autocomplete] Avoid spread operator (#40968) @oliviertassinari
-- &#8203;<!-- 05 -->[material] Fix: Remove zero-runtime from peer dep (#41003) @brijeshb42
+- &#8203;<!-- 05 -->[material] Remove zero-runtime from peer dep (#41003) @brijeshb42
 
 ### `@mui/base@5.0.0-beta.36`
 
