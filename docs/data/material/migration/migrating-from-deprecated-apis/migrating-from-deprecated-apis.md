@@ -56,19 +56,6 @@ The Accordion's `TransitionProps` was deprecated in favor of `slotProps.transiti
  />
 ```
 
-## Divider
-
-### light
-
-The Divider's `light` prop was deprecated, Use `sx={{ opacity : "0.6" }}` (or any opacity). ([Codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#divider-props)):
-
-```diff
- <Divider
--  light
-+  sx={{ opacity : "0.6" }}
- />
-```
-
 ## Avatar
 
 Use the [codemod](https://github.com/mui/material-ui/tree/master/packages/mui-codemod#avatar-props) below to migrate the code as decribed in the following sections:
@@ -91,6 +78,25 @@ The Avatar's `imgProps` was deprecated in favor of `slotProps.img`:
 +      onError: () => {},
 +      onLoad: () => {},
 +    }
- }}
+   }}
  />;
+```
+
+## Divider
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#divider-props) below to migrate the code as decribed in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/divider-props <path>
+```
+
+### light
+
+The Divider's `light` prop was deprecated, Use `sx={{ opacity : "0.6" }}` (or any opacity):
+
+```diff
+ <Divider
+-  light
++  sx={{ opacity : "0.6" }}
+ />
 ```
