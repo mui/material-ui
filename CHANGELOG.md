@@ -1,5 +1,40 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.15.9<!-- generated comparing v5.15.8..master -->
+
+_Feb 8, 2024_
+
+A big thanks to the 7 contributors who made this release possible. Here are some highlights ✨:
+
+- 🐛 A critical fix to remove non-published library usage in `@mui/material` peerDependencies.
+
+### `@mui/material@5.15.9`
+
+- &#8203;<!-- 11 -->[autocomplete] Avoid spread operator (#40968) @oliviertassinari
+- &#8203;<!-- 05 -->[material] Remove zero-runtime from peer dep (#41003) @brijeshb42
+
+### `@mui/base@5.0.0-beta.36`
+
+- &#8203;<!-- 10 -->[base-ui] Update props using Array to ReadonlyArray type (#40754) @RaghavenderSingh
+
+### `@mui/system@5.15.9`
+
+- &#8203;<!-- 02 -->[system] use `ReadonlyArray` for CSS related types (#40972) @siriwatknp
+- &#8203;<!-- 01 -->[zero] Migrate to use wyw-in-js instead of linaria (#40866) @brijeshb42
+
+### Docs
+
+- &#8203;<!-- 06 -->[docs] Polish codemod git diff format @oliviertassinari
+- &#8203;<!-- 05 -->[material-ui][docs] Migrating from deprecated apis follow up (#40981) @DiegoAndai
+
+### Core
+
+- &#8203;<!-- 09 -->[code-infra] Move next config to ESM (#40869) @Janpot
+- &#8203;<!-- 08 -->[code-infra] Update prettier (#40772) @Janpot
+- &#8203;<!-- 07 -->[code-infra] Add codemod for `light` prop removal (#40947) @sai6855
+
+All contributors of this release in alphabetical order: @brijeshb42, @DiegoAndai, @Janpot, @oliviertassinari, @RaghavenderSingh, @sai6855, @siriwatknp
+
 ## v5.15.8<!-- generated comparing v5.15.7..master -->
 
 _Feb 6, 2024_
