@@ -30,6 +30,9 @@ Fear not, because we're working hard to ship all of the components listed below 
 | Radio Group            |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/38038) |
 | Tooltip                |                [View the GitHub issue&nbsp;→](https://github.com/mui/material-ui/issues/38045) |
 
+Aside from these, we're considering adding even more.
+So, definitely keep an eye on open issues marked with the [`package: base-ui` and `waiting for 👍`](https://github.com/mui/material-ui/issues?q=is:open+is:issue+label:%22package:+base-ui%22+label:%22waiting+for+%F0%9F%91%8D%22) labels for an opportunity to chime in and help us prioritize.
+
 ## Improved customization API
 
 Currently, Base UI components can be customized to your heart's content using the `slots` and `slotProps` props.
