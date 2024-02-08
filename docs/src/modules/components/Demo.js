@@ -79,7 +79,7 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
           githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
           raw: demo.rawTS,
           module: demo.moduleTS,
-          Component: demo.tsx,
+          Component: demo.tsx ?? null,
           sourceLanguage: 'tsx',
         };
         if (demo.relativeModules) {
@@ -549,9 +549,21 @@ export default function Demo(props) {
     if (!demoData.relativeModules) {
       return [{ module: demoData.module, raw: demoData.raw }];
     }
+    let demoModule = demoData.module;
+    if (codeVariant === CODE_VARIANTS.TS && demo.moduleTS) {
+      demoModule =
+        demo.moduleTS === demo.module ? demoData.module.replace(/\.js$/, '.tsx') : demo.moduleTS;
+    }
 
-    return [{ module: demoData.module, raw: demoData.raw }, ...demoData.relativeModules];
-  }, [demoData.relativeModules, demoData.module, demoData.raw]);
+    return [{ module: demoModule, raw: demoData.raw }, ...demoData.relativeModules];
+  }, [
+    codeVariant,
+    demo.moduleTS,
+    demo.module,
+    demoData.module,
+    demoData.raw,
+    demoData.relativeModules,
+  ]);
 
   return (
     <Root>

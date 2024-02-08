@@ -385,13 +385,13 @@ module.exports = async function demoLoader() {
         demos[demoName].rawTS = rawTS;
 
         // Extract relative imports from the TypeScript version
-        // of demos which have relative imports in the JS version
-        Array.from(relativeModules.keys()).forEach((demoWithRelativeImports) => {
-          extractImports(demos[demoWithRelativeImports].rawTS).forEach((importModuleID) => {
-            detectRelativeImports(demoWithRelativeImports, 'TS', importModuleID);
+        //  of demos which have relative imports in the JS version
+        if (relativeModules.has(demoName)) {
+          extractImports(demos[demoName].rawTS).forEach((importModuleID) => {
+            detectRelativeImports(demoName, 'TS', importModuleID);
             importedModuleIDs.add(importModuleID);
           });
-        });
+        }
 
         demoModuleIDs.add(demos[demoName].moduleTS);
       } catch (error) {

@@ -7,7 +7,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
-import { not, intersection } from './utils/helpers.ts';
+import { not, intersection } from './utils/helpers.js';
 
 export default function TransferList() {
   const [checked, setChecked] = React.useState<readonly number[]>([]);
