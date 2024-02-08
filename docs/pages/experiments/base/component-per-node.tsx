@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { Textbox } from '@mui/base/Textbox';
+import { Textarea } from '@mui/base/Textarea';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { styled } from '@mui/system';
 
@@ -41,32 +42,49 @@ export default function ComponentPerNode() {
     setValue(event.target.value);
   };
 
+  const [multilineValue, setMultilineValue] = React.useState('Hello World\nWelcome!');
+  const handleMultilineChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setMultilineValue(event.target.value);
+  };
+
   return (
     <div className="box-border max-w-screen-lg min-h-screen mx-auto p-8 bg-slate-100">
       <h1 className="text-slate-800 text-lg">Tailwind - basic</h1>
-      <Textbox
-        defaultValue="Hello World"
-        className="flex items-center w-72 text-left space-x-3 px-4 h-12 bg-white
-                   ring-1 ring-slate-900/10
-                   focus-within:outline-none focus-within:ring-2 focus-within:ring-sky-500 
-                   shadow-sm rounded-lg text-slate-400"
-      >
-        <AccountCircleIcon />
-        <Textbox.Input className="grow font-sans border-0 focus-visible:outline-0" />
-      </Textbox>
+      <div className="grid grid-cols-2">
+        <Textbox
+          defaultValue="Hello World"
+          className="flex items-center w-72 text-left space-x-3 px-4 h-12 bg-white
+                     ring-1 ring-slate-900/10
+                     focus-within:outline-none focus-within:ring-2 focus-within:ring-sky-500
+                     shadow-sm rounded-lg text-slate-400"
+        >
+          <AccountCircleIcon />
+          <Textbox.Input className="grow font-sans border-0 focus-visible:outline-0" />
+        </Textbox>
+
+        <Textarea defaultValue="multiline">
+          <Textarea.Input />
+        </Textarea>
+      </div>
 
       <h1 className="text-slate-800 text-lg">Tailwind - controlled</h1>
-      <Textbox
-        value={value}
-        onChange={handleChange}
-        className="flex items-center w-72 text-left space-x-3 px-4 h-12 bg-white
-                   ring-1 ring-slate-900/10
-                   focus-within:outline-none focus-within:ring-2 focus-within:ring-sky-500 
-                   shadow-sm rounded-lg text-slate-400"
-      >
-        <AccountCircleIcon />
-        <Textbox.Input className="grow font-sans border-0 focus-visible:outline-0" />
-      </Textbox>
+      <div className="grid grid-cols-2">
+        <Textbox
+          value={value}
+          onChange={handleChange}
+          className="flex items-center w-72 text-left space-x-3 px-4 h-12 bg-white
+                     ring-1 ring-slate-900/10
+                     focus-within:outline-none focus-within:ring-2 focus-within:ring-sky-500
+                     shadow-sm rounded-lg text-slate-400"
+        >
+          <AccountCircleIcon />
+          <Textbox.Input className="grow font-sans border-0 focus-visible:outline-0" />
+        </Textbox>
+
+        <Textarea value={multilineValue} onChange={handleMultilineChange}>
+          <Textarea.Input />
+        </Textarea>
+      </div>
 
       <h1 className="text-slate-800 text-lg">MUI System</h1>
       <Textbox render={(props) => <StyledRoot {...props} />}>

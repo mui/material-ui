@@ -1,16 +1,14 @@
 'use client';
 import { Textarea } from './Textarea';
-import { TextareaAutosize } from '../TextareaAutosize';
+import { TextareaInput } from './TextareaInput';
 
 type TextareaRootExport = typeof Textarea & {
-  Input: typeof TextareaAutosize;
+  Input: typeof TextareaInput;
 };
 
 const textareaExport = Textarea as TextareaRootExport;
-textareaExport.Input = TextareaAutosize;
+textareaExport.Input = TextareaInput;
 
 export { textareaExport as Textarea };
 
 export * from './Textarea.types';
-// export * from './TextareaInput.types';
-// export * from './textareaClasses';

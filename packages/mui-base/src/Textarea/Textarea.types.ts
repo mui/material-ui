@@ -1,6 +1,10 @@
 import type { TextboxProps, TextboxOwnerState } from '../Textbox';
 
-export type TextareaProps = TextboxProps & {
+export type TextareaProps = Omit<TextboxProps, 'onChange' | 'onKeyUp' | 'onKeyDown'> & {
+  onBlur?: React.ChangeEventHandler<HTMLTextAreaElement>;
+  onChange?: React.ChangeEventHandler<HTMLTextAreaElement>;
+  onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement>;
+  onKeyUp?: React.KeyboardEventHandler<HTMLTextAreaElement>;
   /**
    * Maximum number of rows to display
    */

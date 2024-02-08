@@ -6,9 +6,9 @@ export type TextareaContextValue = TextareaProps & {
   focused: boolean;
   setFocused: React.Dispatch<React.SetStateAction<boolean>>;
   ownerState: TextareaOwnerState;
-  defautValue?: unknown;
-  value?: unknown;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  defaultValue?: string;
+  value?: string;
+  onChange?: React.ChangeEventHandler<HTMLTextAreaElement>;
 };
 
 export const TextareaContext = React.createContext<TextareaContextValue | null>(null);
