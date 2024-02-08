@@ -388,7 +388,7 @@ describe('<Popup />', () => {
   describe('visibility', () => {
     clock.withFakeTimers();
 
-    it('should keep visibility:hidden when not toggled and transition/keepMounted/disablePortal props are set', async () => {
+    it('should keep visibility:hidden when not toggled and keepMounted/disablePortal props are set', async () => {
       const { getByRole, setProps } = render(
         <Popup {...defaultProps} open={false} keepMounted disablePortal>
           <FakeTransition>

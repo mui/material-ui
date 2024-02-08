@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import { TransitionContextValue } from './TransitionContext';
 
 /**
@@ -14,32 +15,32 @@ import { TransitionContextValue } from './TransitionContext';
  * - [useTransitionTrigger API](https://mui.com/base-ui/react-transitions/hooks-api/#use-transition-trigger)
  */
 export function useTransitionTrigger(requestEnter: boolean): UseTransitionTriggerReturnValue {
-  const [exitTransitionFinished, setExitTransitionFinished] = React.useState(true);
-  const hasPendingExitTransition = React.useRef(false);
+  const [exitTransitionState, setExitTransitionState] = React.useState<
+    'notStarted' | 'inProgress' | 'finished'
+  >('notStarted');
 
   const registeredTransitions = React.useRef(0);
   const [hasTransition, setHasTransition] = React.useState(false);
 
   const previousRequestEnter = React.useRef(requestEnter);
 
-  React.useEffect(() => {
-    if (
-      !requestEnter &&
+  useEnhancedEffect(() => {
+    if (requestEnter) {
+      setExitTransitionState('notStarted');
+    } else if (
       // checking registeredTransitions.current instead of hasTransition to avoid this effect re-firing whenever hasTransition changes
       registeredTransitions.current > 0 &&
       // prevents waiting for a pending transition right after mounting
       previousRequestEnter.current !== requestEnter
     ) {
-      hasPendingExitTransition.current = true;
-      setExitTransitionFinished(false);
+      setExitTransitionState('inProgress');
     }
 
     previousRequestEnter.current = requestEnter;
   }, [requestEnter]);
 
   const handleExited = React.useCallback(() => {
-    hasPendingExitTransition.current = false;
-    setExitTransitionFinished(true);
+    setExitTransitionState('finished');
   }, []);
 
   const registerTransition = React.useCallback(() => {
@@ -60,7 +61,12 @@ export function useTransitionTrigger(requestEnter: boolean): UseTransitionTrigge
   } else if (requestEnter) {
     hasExited = false;
   } else {
-    hasExited = !hasPendingExitTransition.current && exitTransitionFinished;
+    const hasPendingExitTransition =
+      registeredTransitions.current > 0 &&
+      exitTransitionState !== 'finished' &&
+      previousRequestEnter.current !== requestEnter;
+
+    hasExited = exitTransitionState !== 'inProgress' && !hasPendingExitTransition;
   }
 
   const contextValue: TransitionContextValue = React.useMemo(
