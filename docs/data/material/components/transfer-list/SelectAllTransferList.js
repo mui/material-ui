@@ -9,18 +9,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-
-function not(a, b) {
-  return a.filter((value) => b.indexOf(value) === -1);
-}
-
-function intersection(a, b) {
-  return a.filter((value) => b.indexOf(value) !== -1);
-}
-
-function union(a, b) {
-  return [...a, ...not(b, a)];
-}
+import { not, intersection, union } from './utils/helpers.ts';
 
 export default function SelectAllTransferList() {
   const [checked, setChecked] = React.useState([]);
