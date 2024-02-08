@@ -17444,7 +17444,7 @@ packages:
       postcss: ^8.0.0
     dependencies:
       chalk: 4.1.2
-      chokidar: 3.5.3
+      chokidar: 3.6.0
       dependency-graph: 0.9.0
       fs-extra: 9.1.0
       get-stdin: 8.0.0
