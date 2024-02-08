@@ -1535,9 +1535,6 @@ importers:
       '@mui/utils':
         specifier: workspace:^
         version: link:../mui-utils/build
-      '@mui/zero-runtime':
-        specifier: workspace:^
-        version: link:../zero-runtime
       '@types/react-transition-group':
         specifier: ^4.4.10
         version: 4.4.10
