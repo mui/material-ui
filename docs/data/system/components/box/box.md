@@ -19,7 +19,7 @@ It's a fundamental building block when working with MUI component libraries—yo
 ### Usage
 
 The Box component differs from other containers available in Material UI because its usage is intended to be multipurpose and open-ended, just like a `<div>`.
-Components like [Stack](/material-ui/react-stack/) and [Paper](/material-ui/react-paper/), by contrast, feature usage-specific props that make them ideal for certain use cases—Stack for one-dimensional layouts, and Paper for elevated surfaces.
+Components like [Container](/system/react-container/), [Stack](/system/react-stack/) and [Paper](/material-ui/react-paper/), by contrast, feature usage-specific props that make them ideal for certain use cases: Container for horizontal centering, Stack for one-dimensional layouts, and Paper for elevated surfaces.
 
 ## Basics
 
@@ -31,8 +31,6 @@ The Box component renders as a `<div>` by default, but you can swap in any other
 The demo below replaces the `<div>` with a `<section>` element:
 
 {{"demo": "BoxBasic.js", "defaultCodeOpen": true }}
-
-## Customization
 
 ### Using system props
 
@@ -47,6 +45,8 @@ Use the [`sx` prop](/system/getting-started/the-sx-prop/) to quickly customize a
 The demo below shows how to apply colors from the theme using this prop:
 
 {{"demo": "BoxSx.js", "defaultCodeOpen": true }}
+
+## Customization
 
 ### Create your own Box
 
@@ -63,4 +63,13 @@ const defaultTheme = createTheme({
 const Box = createBox({ defaultTheme });
 
 export default Box;
+```
+## Anatomy
+
+The Box component is composed of a single root `<div>` element:
+
+```html
+<div className="MuiBox-root">
+  <!-- contents of the Box -->
+</div>
 ```
