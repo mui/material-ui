@@ -21,7 +21,6 @@ import {
   createStringType,
 } from './createType';
 import { PropTypeDefinition, PropTypesComponent, PropType } from './models';
-import { ProjectFileMap } from 'nx/src/config/project-graph';
 
 function getSymbolFileNames(symbol: ts.Symbol): Set<string> {
   const declarations = symbol.getDeclarations() || [];
@@ -75,7 +74,7 @@ function getType({
 
   let type: ts.Type;
   if (declaration === undefined) {
-    return symbolType;
+    type = symbolType;
   } else {
     const declaredType = project.checker.getTypeAtLocation(declaration);
     const baseConstraintOfType = project.checker.getBaseConstraintOfType(declaredType);
