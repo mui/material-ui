@@ -48,7 +48,7 @@ const StyledTab = styled(Tab)<{ ownerState: { mounted: boolean } }>(({ theme, ow
       marginLeft: 0.5,
     },
     ...(ownerState.mounted && {
-      '&.Mui-selected': {
+      '&.base--selected': {
         color: '#FFF',
         '&::after': {
           content: "''",
