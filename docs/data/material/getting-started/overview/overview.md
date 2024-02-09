@@ -16,7 +16,7 @@ Material UI is beautiful by design and features a suite of customization option
 
 :::info
 Material UI v5 supports Material Design v2.
-Adoption of v3 is tentatively planned for Material UI v6—see [the release schedule](https://mui.com/versions/#release-schedule).
+Adoption of Material Design 3 is tentatively planned for Material UI v6—see [the announcement blog post](/blog/2023-material-ui-v6-and-beyond/) for more details.
 You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/29345) for future updates.
 :::
 
