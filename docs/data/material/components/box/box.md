@@ -20,7 +20,7 @@ It's a fundamental building block when working with Material UI—you can think 
 
 ### Usage
 
-The Box component differs from other containers available in Material UI because its usage is intended to be multipurpose and open-ended, just like a `<div>`.
+The Box component differs from other containers available in Material UI in that its usage is intended to be multipurpose and open-ended, just like a `<div>`.
 Components like [Container](/material-ui/react-container/), [Stack](/material-ui/react-stack/) and [Paper](/material-ui/react-paper/), by contrast, feature usage-specific props that make them ideal for certain use cases: Container for horizontal centering, Stack for one-dimensional layouts, and Paper for elevated surfaces.
 
 ## Basics

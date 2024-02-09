@@ -20,7 +20,7 @@ It's a fundamental building block when working with Joy UI—you can think of it
 
 ### Usage
 
-The Box component differs from other containers available in Joy UI because its usage is intended to be multipurpose and open-ended, just like a `<div>`.
+The Box component differs from other containers available in Joy UI in that its usage is intended to be multipurpose and open-ended, just like a `<div>`.
 Components like [Stack](/joy-ui/react-stack/) and [Sheet](/joy-ui/react-sheet/), by contrast, feature usage-specific props that make them ideal for certain use cases: Stack for one-dimensional layouts, and Sheet for surfaces that need access to Joy UI's global variants.
 
 ## Basics

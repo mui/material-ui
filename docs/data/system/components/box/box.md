@@ -20,7 +20,7 @@ It's a fundamental building block when working with MUI System—you can think o
 
 ### Usage
 
-The Box component differs from other containers available in MUI System because its usage is intended to be multipurpose and open-ended, just like a `<div>`.
+The Box component differs from other containers available in MUI System in that its usage is intended to be multipurpose and open-ended, just like a `<div>`.
 Components like [Container](/system/react-container/) and [Stack](/system/react-stack/), by contrast, feature usage-specific props that make them ideal for certain use cases: Container for horizontal centering, and Stack for one-dimensional layouts.
 
 ## Basics
