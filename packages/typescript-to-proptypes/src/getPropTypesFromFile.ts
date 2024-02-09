@@ -259,6 +259,10 @@ function checkType({
     return createObjectType({ jsDoc });
   }
 
+  if (ts.TypeFlags[type.flags] === 'IncludesWildcard') {
+    console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+  }
+
   console.warn(
     `${project.reactComponentName}: Unable to handle node of type "ts.TypeFlags.${
       ts.TypeFlags[type.flags]

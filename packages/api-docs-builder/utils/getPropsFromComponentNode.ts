@@ -72,8 +72,6 @@ function parsePropsType({
 }): ParsedComponent {
   const parsedProps: Record<string, ParsedProp> = {};
 
-  console.log('HEY')
-
   type
     .getProperties()
     .filter((property) => shouldInclude({ name: property.getName(), depth: 1 }))
