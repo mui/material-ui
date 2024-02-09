@@ -65,8 +65,9 @@ Overall, the community is more diverse, and virtually every other category had t
 ### How did you first hear about MUI?
 
 The majority of community members heard about MUI through their workplaces, indicating MUI's widespread use in various companies. Interestingly but not surpring, a substantial number of people are learning about MUI through online videos.
-We plan on starting doing some videos as well, but we’d like to leave a big shout-out to all MUI-content creators out there:  
-Thank you, and let us know what you’re making!
+We plan on starting doing some videos as well, but we'd like to leave a big shout-out to all MUI-content creators out there:
+
+Thank you, and let us know what you're making!
 
 <img src="/static/blog/2022-developer-survey-results/2.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 
@@ -82,7 +83,7 @@ Almost half of the community, around 45%, are engaged in building enterprise pro
 
 ### Who are you building the app for?
 
-Very similar to the previous survey, a significant proportion of the community (65%) is developing products for the companies they work at, but we’ve seen a significant rise in work for clients, from 12% previously to over 45% in 2022.
+Very similar to the previous survey, a significant proportion of the community (65%) is developing products for the companies they work at, but we've seen a significant rise in work for clients, from 12% previously to over 45% in 2022.
 
 <img src="/static/blog/2022-developer-survey-results/4.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">1896 respondents.</p>
@@ -164,7 +165,7 @@ However, we are keen to understand and address the concerns of the 10% who find 
 
 ### Please rate the following statements (our initiatives)
 
-We were surprised with the number of people that would benefit from kitchen sink examples (47%), so we’re working to bring more of them, and we’re super glad to see that more than 50% of you are excited to see Joy UI.
+We were surprised with the number of people that would benefit from kitchen sink examples (47%), so we're working to bring more of them, and we're super glad to see that more than 50% of you are excited to see Joy UI.
 
 Also, over 78% of you think it'd be good to have a discord server, so we've finally launched one. Join our [new community hub](https://mui.com/r/discord/)!
 
@@ -236,7 +237,7 @@ We hear you, and we want to provide the best platform to connect with your favor
 
 ### Are you using MUI X components (Data Grid or Date Pickers)?
 
-Over 65% of the community uses MUI X components, showcasing the popularity and validating the need for these components. We’re working to increase our advanced components portfolio to supply other community demands.
+Over 65% of the community uses MUI X components, showcasing the popularity and validating the need for these components. We're working to increase our advanced components portfolio to supply other community demands.
 
 <img src="/static/blog/2022-developer-survey-results/20.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">1108 respondents.</p>
