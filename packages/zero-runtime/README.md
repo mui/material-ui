@@ -1,6 +1,6 @@
 # zero-runtime
 
-A zero-runtime CSS-in-JS library that extracts the colocated css to it's own css files at build-time.
+A zero-runtime CSS-in-JS library that extracts the colocated styles to their own CSS files at build-time.
 
 - [Getting started](#getting-started)
   - [Next.js](#nextjs)
@@ -21,7 +21,7 @@ A zero-runtime CSS-in-JS library that extracts the colocated css to it's own css
 
 ## Getting started
 
-Zero-runtime supports Next.js and Vite with future support for more bundlers—you must install the corresponding plugin, as shown below.
+Zero-runtime supports Next.js and Vite with future support for more bundlers. You must install the corresponding plugin, as shown below.
 
 ### Next.js
 
@@ -88,7 +88,7 @@ function App() {
 }
 ```
 
-The call to `css` function will be replaced with a unique string that represents the CSS class name for the generated styles.
+The call to the `css` function will be replaced with a unique string that represents the CSS class name for the generated styles.
 
 Use a callback function to get access to the [theme](#theming) values:
 
@@ -128,7 +128,7 @@ The zero-runtime package differs from "standard" runtime CSS-in-JS libraries in 
 
 > 💡 This approach is recommended when the value of the prop is known at build time (finite values).
 
-Use the `variants` to define styles for a combination of the component's props.
+Use the `variants` key to define styles for a combination of the component's props.
 
 Each variant is an object with `props` and `style` keys. The styles are applied when the component's props match the `props` object.
 
@@ -298,7 +298,7 @@ module.exports = withZeroPlugin(
 );
 ```
 
-#### Accesing theme values
+#### Accessing theme values
 
 A callback can be used with **styled** and **css** APIs to access the theme values:
 
