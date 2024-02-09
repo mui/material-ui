@@ -13,7 +13,11 @@ const pages: readonly MuiPage[] = [
   {
     pathname: '/company/docs/operational',
     title: 'Operational',
-    children: [{ pathname: '/company/docs/branding' }, { pathname: '/company/docs/contact' }],
+    children: [
+      { pathname: '/company/docs/branding' },
+      { pathname: '/company/docs/contact' },
+      { pathname: '/company/docs/sponsors' },
+    ],
   },
 ];
 
