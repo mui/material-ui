@@ -290,8 +290,6 @@ function checkType({
     return createFunctionType({ jsDoc });
   }
 
-  return createAnyType({ jsDoc });
-
   // Object-like type
   {
     const properties = type.getProperties();
@@ -334,11 +332,6 @@ function checkType({
     (type.flags & ts.TypeFlags.NonPrimitive && project.checker.typeToString(type) === 'object')
   ) {
     return createObjectType({ jsDoc });
-  }
-
-  // @ts-ignore
-  if (type.flags & ts.TypeFlags.IncludesWildcard) {
-    console.log(type);
   }
 
   console.warn(
