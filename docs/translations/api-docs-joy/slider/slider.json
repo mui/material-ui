@@ -141,13 +141,13 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
-    "track": "The component that renders the track.",
-    "rail": "The component that renders the rail.",
-    "thumb": "The component that renders the thumb.",
+    "input": "The component that renders the input.",
     "mark": "The component that renders the mark.",
     "markLabel": "The component that renders the mark label.",
-    "valueLabel": "The component that renders the value label.",
-    "input": "The component that renders the input."
+    "rail": "The component that renders the rail.",
+    "root": "The component that renders the root.",
+    "thumb": "The component that renders the thumb.",
+    "track": "The component that renders the track.",
+    "valueLabel": "The component that renders the value label."
   }
 }

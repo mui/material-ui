@@ -38,7 +38,7 @@ There are a plethora of reasons why you should join, but here are the three bigg
    Someone is out there using this same tool as you.
    We created two awesome channels to help you find work opportunities (and we can always create more—just let us know what you need)!
    1. 🎨 │ Show-Off
-      - Show off your MUI projects! Get wild. Ask questions.
+      - Show off your project built with one of the MUI's open source projects! Get wild. Ask questions.
         Or use this channel simply to boast. 😉
    2. 📝 │ Freelance
       - Looking for some help on completing your vision?

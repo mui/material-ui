@@ -32,7 +32,7 @@ const AvatarRoot = styled('div', {
       ownerState.colorDefault && styles.colorDefault,
     ];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
@@ -46,23 +46,34 @@ const AvatarRoot = styled('div', {
   borderRadius: '50%',
   overflow: 'hidden',
   userSelect: 'none',
-  ...(ownerState.variant === 'rounded' && {
-    borderRadius: (theme.vars || theme).shape.borderRadius,
-  }),
-  ...(ownerState.variant === 'square' && {
-    borderRadius: 0,
-  }),
-  ...(ownerState.colorDefault && {
-    color: (theme.vars || theme).palette.background.default,
-    ...(theme.vars
-      ? {
-          backgroundColor: theme.vars.palette.Avatar.defaultBg,
-        }
-      : {
-          backgroundColor:
-            theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
-        }),
-  }),
+  variants: [
+    {
+      props: { variant: 'rounded' },
+      style: {
+        borderRadius: (theme.vars || theme).shape.borderRadius,
+      },
+    },
+    {
+      props: { variant: 'square' },
+      style: {
+        borderRadius: 0,
+      },
+    },
+    {
+      props: { colorDefault: true },
+      style: {
+        color: (theme.vars || theme).palette.background.default,
+        ...(theme.vars
+          ? {
+              backgroundColor: theme.vars.palette.Avatar.defaultBg,
+            }
+          : {
+              backgroundColor: theme.palette.grey[400],
+              ...theme.applyStyles('dark', { backgroundColor: theme.palette.grey[600] }),
+            }),
+      },
+    },
+  ],
 }));
 
 const AvatarImg = styled('img', {
@@ -172,7 +183,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
         {...imgProps}
       />
     );
-  } else if (childrenProp != null) {
+  } else if (childrenProp != null && childrenProp !== '' && typeof childrenProp !== 'boolean') {
     children = childrenProp;
   } else if (hasImg && alt) {
     children = alt[0];

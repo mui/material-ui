@@ -134,6 +134,10 @@ export default function zeroVitePlugin({
       log('Vite transform', getFileIdx(id));
 
       const asyncResolve = async (what: string, importer: string, stack: string[]) => {
+        // @TODO - Remove this when @mui/system published esm files by default at the base directory
+        if (what.startsWith('@mui/system') && !what.includes('esm')) {
+          return what.replace('@mui/system', '@mui/system/esm');
+        }
         const resolved = await this.resolve(what, importer);
         if (resolved) {
           if (resolved.external) {
@@ -201,7 +205,7 @@ export default function zeroVitePlugin({
                   if (tagResult) {
                     return tagResult;
                   }
-                  if (source.endsWith('/zero-styled')) {
+                  if (source.endsWith('/zero-styled') || source.endsWith('/zero-useThemeProps')) {
                     return `${process.env.RUNTIME_PACKAGE_NAME}/exports/${tag}`;
                   }
                   return null;

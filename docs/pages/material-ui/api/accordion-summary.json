@@ -28,7 +28,8 @@
       "key": "contentGutters",
       "className": "MuiAccordionSummary-contentGutters",
       "description": "Styles applied to the children wrapper element unless `disableGutters={true}`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "disabled",

@@ -52,6 +52,7 @@ const grey = {
 
 const BasicSwitchRoot = styled('span')(
   ({ theme }) => `
+  box-sizing: border-box;
   font-size: 0;
   position: relative;
   display: inline-block;
@@ -94,6 +95,7 @@ const BasicSwitchRoot = styled('span')(
 );
 
 const BasicSwitchInput = styled('input')`
+  box-sizing: border-box;
   cursor: inherit;
   position: absolute;
   width: 100%;
@@ -107,6 +109,7 @@ const BasicSwitchInput = styled('input')`
 
 const BasicSwitchThumb = styled('span')(
   ({ theme }) => `
+  box-sizing: border-box;
   display: block;
   width: 16px;
   height: 16px;

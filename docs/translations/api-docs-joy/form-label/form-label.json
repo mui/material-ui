@@ -14,7 +14,7 @@
   },
   "classDescriptions": {},
   "slotDescriptions": {
-    "root": "The component that renders the root.",
-    "asterisk": "The component that renders the asterisk."
+    "asterisk": "The component that renders the asterisk.",
+    "root": "The component that renders the root."
   }
 }
