@@ -66,6 +66,7 @@ const Box = createBox({ defaultTheme });
 
 export default Box;
 ```
+
 ## Anatomy
 
 The Box component is composed of a single root `<div>` element:

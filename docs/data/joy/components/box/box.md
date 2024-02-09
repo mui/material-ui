@@ -21,7 +21,7 @@ It's a fundamental building block when working with Joy UI—you can think of it
 ### Usage
 
 The Box component differs from other containers available in Joy UI because its usage is intended to be multipurpose and open-ended, just like a `<div>`.
-Components like [Container](/joy-ui/react-container/) and [Stack](/joy-ui/react-stack/), by contrast, feature usage-specific props that make them ideal for certain use cases: Container for horizontal centering, and Stack for one-dimensional layouts.
+[Stack](/joy-ui/react-stack/), by contrast, features usage-specific props that make it ideal for for one-dimensional layouts.
 
 ## Basics
 
@@ -66,6 +66,7 @@ const Box = createBox({ defaultTheme });
 
 export default Box;
 ```
+
 ## Anatomy
 
 The Box component is composed of a single root `<div>` element:

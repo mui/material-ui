@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Box } from '@mui/system';
-import Button from '@mui/material/Button';
+import { Box } from '@mui/joy';
+import Button from '@mui/joy/Button';
 
 export default function BoxComponent() {
   return (
