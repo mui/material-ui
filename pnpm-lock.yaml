@@ -737,7 +737,7 @@ importers:
         specifier: ^5.0.10
         version: 5.0.10(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
       next:
-        specifier: 13.5.1
+        specifier: ^13.5.1
         version: 13.5.1(@babel/core@7.23.9)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
       notistack:
         specifier: 3.0.1
