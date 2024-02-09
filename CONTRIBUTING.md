@@ -238,7 +238,7 @@ Clicking on **Details** will show you the differences.
 #### deploy/netlify
 
 This renders a preview of the docs with your changes if it succeeds.
-Otherwise `yarn docs:build` usually fail locally as well.
+Otherwise `yarn docs:build` usually fails locally as well.
 
 #### codecov/project
 
