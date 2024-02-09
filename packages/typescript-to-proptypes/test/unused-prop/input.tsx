@@ -1,7 +1,17 @@
 import * as React from 'react';
 
-type Props = {};
+type Props = {
+  foo: string;
+  bar: string;
+  baz: string;
+};
 
 export default function Foo(props: Props) {
-  return <div>TEST</div>;
+  const { foo, ...other } = props;
+
+  return (
+    <div className={props.bar} {...other}>
+      {foo}
+    </div>
+  );
 }
