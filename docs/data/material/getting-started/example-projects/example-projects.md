@@ -4,7 +4,7 @@
 
 ## Official examples
 
-The following starter projects are all available in the MUI Core [`/examples`](https://github.com/mui/material-ui/tree/master/examples) folder.
+The following starter projects are all available in the Material UI [`/examples`](https://github.com/mui/material-ui/tree/master/examples) folder.
 These examples feature Material UI paired with other popular React libraries and frameworks, so you can skip the initial setup steps and jump straight into building.
 
 Not sure which to pick?
