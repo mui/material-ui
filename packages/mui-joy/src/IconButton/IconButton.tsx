@@ -116,7 +116,7 @@ export const IconButtonRoot = styled(StyledIconButton, {
 })({});
 
 const ButtonLoading = styled('span', {
-  name: 'JoyButton',
+  name: 'JoyIconButton',
   slot: 'LoadingIndicator',
   overridesResolver: (props, styles) => styles.loadingIndicator,
 })<{ ownerState: IconButtonOwnerState }>(({ theme, ownerState }) => ({
@@ -168,7 +168,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
   const size = inProps.size || buttonGroup.size || sizeProp;
   const color = inProps.color || buttonGroup.color || colorProp;
   const disabled =
-    (inProps.loading || inProps.disabled) ?? (buttonGroup.disabled || disabledProp || loading);
+    (inProps.loading || inProps.disabled) ?? (buttonGroup.disabled || loading || disabledProp);
 
   const buttonRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(buttonRef, ref);
@@ -320,7 +320,7 @@ IconButton.propTypes /* remove-proptypes */ = {
    */
   focusVisibleClassName: PropTypes.string,
   /**
-   * If `true`, the loading indicator is shown and the button becomes disabled.
+   * If `true`, the loading indicator is shown and the icon button becomes disabled.
    * @default false
    */
   loading: PropTypes.bool,

@@ -74,7 +74,7 @@
       "name": "loadingIndicator",
       "description": "The component that renders the loading indicator.",
       "default": "'span'",
-      "class": null
+      "class": "MuiIconButton-loadingIndicator"
     }
   ],
   "classes": [

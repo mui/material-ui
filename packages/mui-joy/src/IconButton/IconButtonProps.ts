@@ -8,7 +8,7 @@ import {
 import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
-export type IconButtonSlot = 'root';
+export type IconButtonSlot = 'root' | 'loadingIndicator';
 
 export interface IconButtonSlots {
   /**
@@ -81,7 +81,7 @@ export interface IconButtonTypeMap<P = {}, D extends React.ElementType = 'button
      */
     variant?: OverridableStringUnion<VariantProp, IconButtonPropsVariantOverrides>;
     /**
-     * If `true`, the loading indicator is shown and the button becomes disabled.
+     * If `true`, the loading indicator is shown and the icon button becomes disabled.
      * @default false
      */
     loading?: boolean;

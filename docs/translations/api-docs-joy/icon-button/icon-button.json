@@ -15,7 +15,7 @@
       "description": "This prop can help identify which element has keyboard focus. The class name will be applied when the element gains the focus through keyboard interaction. It&#39;s a polyfill for the <a href=\"https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo\">CSS :focus-visible selector</a>. The rationale for using this feature <a href=\"https://github.com/WICG/focus-visible/blob/HEAD/explainer.md\">is explained here</a>. A <a href=\"https://github.com/WICG/focus-visible\">polyfill can be used</a> to apply a <code>focus-visible</code> class to other components if needed."
     },
     "loading": {
-      "description": "If <code>true</code>, the loading indicator is shown and the button becomes disabled."
+      "description": "If <code>true</code>, the loading indicator is shown and the icon button becomes disabled."
     },
     "loadingIndicator": {
       "description": "The node should contain an element with <code>role=&quot;progressbar&quot;</code> with an accessible name. By default we render a <code>CircularProgress</code> that is labelled by the button itself."
