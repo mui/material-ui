@@ -55,6 +55,7 @@ Additionally, since the `slots` and the corresponding `slotProps` are not relate
 
 To address these issues, we're considering adopting a new API that would assign a discrete subcomponent to each DOM node—the pattern favored by many other headless component libraries (think: `<Slider.Track />`, `<Slider.Thumb />`, etc.).
 This pattern has the potential to radically improve the customization experience, both for styles and structure.
+
 We're still fleshing out the details and plan to release an RFC on GitHub in the coming days.
 We'll update this blog post with the link when it's available.
 We know that a significant number of projects depend on the existing API, and we want to assure you that one of our top priorities is to provide a smooth migration experience.
@@ -69,6 +70,15 @@ They're currently available for use with the Popup, Menu, and Select, and the pl
 
 <p class="blog-description" style="margin: -16px 0 0 0;">The CSS Animation transition is exaggerated here for the sake of demonstration.</p>
 
+## Getting many issues out of the way
+
+The core of what Base UI strives to deliver out of the box is first-class accessibility and an intuitive API for extensive customization.
+We've earmarked several issues we want to tackle before the stable release in areas such as keyboard navigation, better ARIA support, focus styles, and more.
+
+<img alt="A screenshot of the Base UI stable release milestone on GitHub as of January 2024." src="/static/blog/base-ui-2024-plans/base-ui-milestone.png" width="1200" height="600" loading="lazy" />
+
+You can track our progress fixing any specific issues by checking out the list of [Base UI stable release milestones on GitHub](https://github.com/mui/material-ui/milestone/46).
+
 ## A more independent product
 
 So far, all Base UI-related development has happened within the [Material UI GitHub repository](http://github.com/mui/material-ui).
@@ -80,15 +90,6 @@ Rest assured that Base UI _is_ a standalone library, and it doesn't come package
 
 Base UI is no longer _merely_ "Material UI without the styles"—as we've seen with developer trends over the last few years, the potential for growth and adoption of headless components could actually dwarf Material UI in the near future.
 To acknowledge that Base UI has the potential to outgrow Material UI, we plan to move it to its own dedicated GitHub repo for more focused communication and collaboration with the community that's growing around it.
-
-## Getting bugs out of the way
-
-The core of what Base UI strives to deliver out of the box is first-class accessibility and an intuitive API for extensive customization.
-We've earmarked several issues we want to tackle before the stable release in areas such as keyboard navigation, better ARIA support, focus styles, and more.
-
-<img alt="A screenshot of the Base UI stable release milestone on GitHub as of January 2024." src="/static/blog/base-ui-2024-plans/base-ui-milestone.png" width="1200" height="600" loading="lazy" />
-
-You can track our progress fixing any specific issues by checking out the list of [Base UI stable release milestones on GitHub](https://github.com/mui/material-ui/milestone/46).
 
 ## Join us on the ride
 
