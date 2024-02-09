@@ -259,7 +259,7 @@ function checkType({
     return createObjectType({ jsDoc });
   }
 
-  console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+  console.log(ts.TypeFlags);
 
   console.warn(
     `${project.reactComponentName}: Unable to handle node of type "ts.TypeFlags.${
