@@ -5,6 +5,8 @@ components: Box
 githubLabel: 'component: Box'
 ---
 
+<!-- This page's content is duplicated (with some product-specific details) across the Material UI, Joy UI, and MUI System docs. Any changes should be applied to all three pages at the same time. -->
+
 # Box
 
 <p class="description">The Box component is a generic, theme-aware container with access to CSS utilities from MUI System.</p>
@@ -14,7 +16,7 @@ githubLabel: 'component: Box'
 ## Introduction
 
 The Box component is a generic container for grouping other components.
-It's a fundamental building block when working with MUI component libraries—you can think of it as a `<div>` with extra built-in features, like access to your app's theme and the [`sx` prop](/system/getting-started/the-sx-prop/).
+It's a fundamental building block when working with MUI System—you can think of it as a `<div>` with extra built-in features, like access to your app's theme and the [`sx` prop](/system/getting-started/the-sx-prop/).
 
 ### Usage
 
