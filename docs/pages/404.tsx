@@ -13,7 +13,6 @@ export default function Custom404() {
       <Head
         title="404: This page could not be found - MUI"
         description=""
-        card="/static/social-previews/home-preview.jpg"
       />
       <AppHeaderBanner />
       <AppHeader />
