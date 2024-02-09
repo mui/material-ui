@@ -707,8 +707,8 @@ importers:
         specifier: ^4.20.10
         version: 4.20.10
       flexsearch:
-        specifier: ^0.7.31
-        version: 0.7.31
+        specifier: ^0.7.43
+        version: 0.7.43
       fs-extra:
         specifier: ^11.2.0
         version: 11.2.0
@@ -12306,8 +12306,8 @@ packages:
     resolution: {integrity: sha512-36yxDn5H7OFZQla0/jFJmbIKTdZAQHngCedGxiMmpNfEZM0sdEeT+WczLQrjK6D7o2aiyLYDnkw0R3JK0Qv1RQ==}
     dev: true
 
-  /flexsearch@0.7.31:
-    resolution: {integrity: sha512-XGozTsMPYkm+6b5QL3Z9wQcJjNYxp0CYn3U1gO7dwD6PAqU1SVWZxI9CCg3z+ml3YfqdPnrBehaBrnH2AGKbNA==}
+  /flexsearch@0.7.43:
+    resolution: {integrity: sha512-c5o/+Um8aqCSOXGcZoqZOm+NqtVwNsvVpWv6lfmSclU954O3wvQKxxK8zj74fPaSJbXpSLTs4PRhh+wnoCXnKg==}
     dev: false
 
   /flow-enums-runtime@0.0.6:
