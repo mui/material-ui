@@ -124,14 +124,14 @@ export default function Checkout() {
   return (
     <ThemeProvider theme={showCustomTheme ? LPtheme : defaultTheme}>
       <CssBaseline />
-      <Grid container sx={{ height: '100dvh' }}>
+      <Grid container sx={{ height: { xs: '100%', sm: '100dvh' } }}>
         <Grid
           item
           xs={12}
           sm={5}
           lg={4}
           sx={{
-            display: 'flex',
+            display: { xs: 'none', sm: 'flex' },
             flexDirection: 'column',
             backgroundColor: 'background.default',
             borderRight: '1px solid',
@@ -181,13 +181,13 @@ export default function Checkout() {
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            backgroundColor: 'background.paper',
+            backgroundColor: { xs: 'transparent', sm: 'background.paper' },
             borderRight: '1px solid',
             borderColor: 'divider',
             alignItems: 'start',
-            pt: 4,
-            px: 10,
-            gap: 16,
+            pt: { xs: 2, sm: 4 },
+            px: { xs: 2, sm: 10 },
+            gap: { xs: 2, sm: 16 },
           }}
         >
           <Box
@@ -199,6 +199,34 @@ export default function Checkout() {
               height: 56,
             }}
           >
+            <Box
+              sx={{
+                display: { xs: 'flex', sm: 'none' },
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                width: '100%',
+                alignItems: 'center',
+              }}
+            >
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  flexGrow: 1,
+                  width: '100%',
+                  maxWidth: 500,
+                }}
+              >
+                <Button
+                  startIcon={<ArrowBackRoundedIcon />}
+                  component="a"
+                  href="/material-ui/getting-started/templates/landing-page/"
+                  sx={{ alignSelf: 'start', ml: '-8px' }}
+                >
+                  Back to Sitemark
+                </Button>
+              </Box>
+            </Box>
             <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
           </Box>
 
@@ -208,11 +236,14 @@ export default function Checkout() {
               flexDirection: 'column',
               flexGrow: 1,
               maxWidth: 600,
-              height: 600,
-              maxHeight: '700px',
+              maxHeight: '720px',
             }}
           >
-            <Stepper activeStep={activeStep} sx={{ mb: 10 }}>
+            <Stepper
+              id="desktop-stepper"
+              activeStep={activeStep}
+              sx={{ display: { xs: 'none', sm: 'flex' }, mb: 10 }}
+            >
               {steps.map((label) => (
                 <Step
                   sx={{
@@ -225,15 +256,43 @@ export default function Checkout() {
                 </Step>
               ))}
             </Stepper>
+            <Stepper
+              id="mobile-stepper"
+              activeStep={activeStep}
+              alternativeLabel
+              sx={{ display: { xs: 'flex', sm: 'none' }, mb: 4 }}
+            >
+              {steps.map((label) => (
+                <Step
+                  sx={{
+                    ':first-child': { pl: 0 },
+                    ':last-child': { pr: 0 },
+                  }}
+                  key={label}
+                >
+                  <StepLabel
+                    sx={{ '.MuiStepLabel-labelContainer': { maxWidth: '70px' } }}
+                  >
+                    {label}
+                  </StepLabel>
+                </Step>
+              ))}
+            </Stepper>
             {activeStep === steps.length ? (
               <React.Fragment>
+                <Typography variant="h1" gutterBottom>
+                  📦
+                </Typography>
                 <Typography variant="h5" gutterBottom>
                   Thank you for your order.
                 </Typography>
                 <Typography variant="subtitle1" gutterBottom>
-                  Your order number is #140396. We have emailed your order
-                  confirmation, and will send you an update when your order has
-                  shipped.
+                  Your order number is
+                  <Typography component="span" sx={{ fontWeight: 600 }}>
+                    &nbsp;#140396
+                  </Typography>
+                  . We have emailed your order confirmation, and will send you an
+                  update when your order has shipped.
                 </Typography>
                 <Button variant="contained" sx={{ alignSelf: 'start', mt: 2 }}>
                   Go to my orders
@@ -249,6 +308,7 @@ export default function Checkout() {
                     alignItems: 'end',
                     flexGrow: 1,
                     gap: 1,
+                    pb: { xs: 12, sm: 0 },
                   }}
                 >
                   {activeStep !== 0 && (

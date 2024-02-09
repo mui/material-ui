@@ -22,10 +22,10 @@ const FormGrid = styled(Grid)(({ theme }) => ({
 export default function PaymentForm() {
   return (
     <React.Fragment>
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h6" sx={{ mb: 4 }}>
         Payment method
       </Typography>
-      <Stack direction="row" spacing={2} sx={{ width: '100%', my: 2 }}>
+      <Stack direction="row" spacing={2} sx={{ width: '100%', mb: 4 }}>
         <Card
           component={Button}
           startIcon={<CreditCardRoundedIcon />}
@@ -45,7 +45,7 @@ export default function PaymentForm() {
       </Stack>
       <Grid container spacing={3}>
         <FormGrid item xs={12} md={6}>
-          <FormLabel>Name on card</FormLabel>
+          <FormLabel required>Name on card</FormLabel>
           <InputBase
             id="card-name"
             name="card-name"
@@ -57,19 +57,18 @@ export default function PaymentForm() {
           />
         </FormGrid>
         <FormGrid item xs={12} md={6}>
-          <FormLabel>Card number</FormLabel>
+          <FormLabel required>Card number</FormLabel>
           <InputBase
             id="card-number"
             name="card-number"
             type="card-number"
             placeholder="0000 0000 0000 0000"
             autoComplete="cc-number"
-            inputProps={{ required: true }}
             sx={{ minWidth: 280 }}
           />
         </FormGrid>
         <FormGrid item xs={12} md={6}>
-          <FormLabel>Expiry date</FormLabel>
+          <FormLabel required>Expiry date</FormLabel>
           <InputBase
             id="card-exp"
             name="card-exp"
@@ -81,7 +80,7 @@ export default function PaymentForm() {
           />
         </FormGrid>
         <FormGrid item xs={12} md={6}>
-          <FormLabel>CVV</FormLabel>
+          <FormLabel required>CVV</FormLabel>
           <InputBase
             id="cvv"
             name="cvv"

@@ -15,12 +15,12 @@ const FormGrid = styled(Grid)(({ theme }) => ({
 export default function AddressForm() {
   return (
     <React.Fragment>
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h6" sx={{ mb: 4 }}>
         Shipping address
       </Typography>
       <Grid container spacing={3}>
         <FormGrid item xs={12} sm={6}>
-          <FormLabel>First name</FormLabel>
+          <FormLabel required>First name</FormLabel>
           <InputBase
             id="first-name"
             name="first-name"
@@ -32,7 +32,7 @@ export default function AddressForm() {
           />
         </FormGrid>
         <FormGrid item xs={12} sm={6}>
-          <FormLabel>Last name</FormLabel>
+          <FormLabel required>Last name</FormLabel>
           <InputBase
             id="last-name"
             name="last-name"
@@ -44,7 +44,7 @@ export default function AddressForm() {
           />
         </FormGrid>
         <FormGrid item xs={12} sm={6}>
-          <FormLabel>Country</FormLabel>
+          <FormLabel required>Country</FormLabel>
           <InputBase
             id="country"
             name="country"
@@ -56,7 +56,7 @@ export default function AddressForm() {
           />
         </FormGrid>
         <FormGrid item xs={12} sm={6}>
-          <FormLabel>Zip / Postal code</FormLabel>
+          <FormLabel required>Zip / Postal code</FormLabel>
           <InputBase
             id="zip"
             name="zip"
@@ -69,7 +69,7 @@ export default function AddressForm() {
         </FormGrid>
 
         <FormGrid item xs={12}>
-          <FormLabel>Address line 1</FormLabel>
+          <FormLabel required>Address line 1</FormLabel>
           <InputBase
             id="address1"
             name="address1"
@@ -93,7 +93,7 @@ export default function AddressForm() {
           />
         </FormGrid>
         <FormGrid item xs={12} sm={6}>
-          <FormLabel>City</FormLabel>
+          <FormLabel required>City</FormLabel>
           <InputBase
             id="City"
             name="City"
@@ -105,7 +105,7 @@ export default function AddressForm() {
           />
         </FormGrid>
         <FormGrid item xs={12} sm={6}>
-          <FormLabel>State</FormLabel>
+          <FormLabel required>State</FormLabel>
           <InputBase
             id="State"
             name="State"

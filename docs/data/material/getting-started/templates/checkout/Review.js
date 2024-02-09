@@ -18,7 +18,7 @@ const payments = [
 export default function Review() {
   return (
     <React.Fragment>
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h6" sx={{ mb: 4 }}>
         Order summary
       </Typography>
       <List disablePadding>
