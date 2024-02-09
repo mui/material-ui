@@ -1,6 +1,4 @@
-<React.Fragment>
-  <Button onClick={toggleDrawer(true)}>Open drawer</Button>
-  <Drawer open={open} onClose={toggleDrawer(false)}>
-    {DrawerList}
-  </Drawer>
-</React.Fragment>
+<Button onClick={toggleDrawer(true)}>Open drawer</Button>
+<Drawer open={open} onClose={toggleDrawer(false)}>
+  {DrawerList}
+</Drawer>

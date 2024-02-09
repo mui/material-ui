@@ -50,12 +50,10 @@ export default function TemporaryDrawer() {
 
   return (
     <div>
-      <React.Fragment>
-        <Button onClick={toggleDrawer(true)}>Open drawer</Button>
-        <Drawer open={open} onClose={toggleDrawer(false)}>
-          {DrawerList}
-        </Drawer>
-      </React.Fragment>
+      <Button onClick={toggleDrawer(true)}>Open drawer</Button>
+      <Drawer open={open} onClose={toggleDrawer(false)}>
+        {DrawerList}
+      </Drawer>
     </div>
   );
 }
