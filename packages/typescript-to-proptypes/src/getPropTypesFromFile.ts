@@ -21,6 +21,7 @@ import {
   createStringType,
 } from './createType';
 import { PropTypeDefinition, PropTypesComponent, PropType } from './models';
+import { ProjectFileMap } from 'nx/src/config/project-graph';
 
 function getSymbolFileNames(symbol: ts.Symbol): Set<string> {
   const declarations = symbol.getDeclarations() || [];
@@ -53,6 +54,48 @@ function getSymbolDocumentation({
 
   const comment = ts.displayPartsToString(symbol.getDocumentationComment(project.checker));
   return comment !== '' ? comment : undefined;
+}
+
+function getType({
+  project,
+  symbol,
+  declaration,
+  location,
+}: {
+  project: PropTypesProject;
+  symbol: ts.Symbol;
+  declaration: ts.Declaration | undefined;
+  location: ts.Node;
+}) {
+  const symbolType = declaration
+    ? // The proptypes aren't detailed enough that we need all the different combinations
+      // so we just pick the first and ignore the rest
+      project.checker.getTypeOfSymbolAtLocation(symbol, declaration)
+    : project.checker.getTypeOfSymbolAtLocation(symbol, location);
+
+  let type: ts.Type;
+  if (declaration === undefined) {
+    return symbolType;
+  } else {
+    const declaredType = project.checker.getTypeAtLocation(declaration);
+    const baseConstraintOfType = project.checker.getBaseConstraintOfType(declaredType);
+
+    if (baseConstraintOfType === undefined || baseConstraintOfType === declaredType) {
+      type = symbolType;
+    }
+    // get `React.ElementType` from `C extends React.ElementType`
+    else if (baseConstraintOfType.aliasSymbol?.escapedName === 'ElementType') {
+      type = baseConstraintOfType;
+    } else {
+      type = symbolType;
+    }
+  }
+
+  if (!type) {
+    throw new Error('No types found');
+  }
+
+  return type;
 }
 
 function checkType({
@@ -206,6 +249,38 @@ function checkType({
     return createLiteralType({ jsDoc, value: 'null' });
   }
 
+  if (type.flags & ts.TypeFlags.IndexedAccess) {
+    const objectType = (type as ts.IndexedAccessType).objectType;
+
+    if (objectType.flags & ts.TypeFlags.Conditional) {
+      const node = createUnionType({
+        jsDoc,
+        types: [
+          (objectType as ts.ConditionalType).resolvedTrueType,
+          (objectType as ts.ConditionalType).resolvedFalseType,
+        ]
+          .map((resolveType) => resolveType?.getProperty(name))
+          .filter((propertySymbol): propertySymbol is ts.Symbol => !!propertySymbol)
+          .map((propertySymbol) =>
+            checkType({
+              type: getType({
+                project,
+                symbol: propertySymbol,
+                declaration: propertySymbol.declarations?.[0],
+                location,
+              }),
+              location,
+              typeStack,
+              name,
+              project,
+            }),
+          ),
+      });
+
+      return node.types.length === 1 ? node.types[0] : node;
+    }
+  }
+
   if (type.getCallSignatures().length) {
     return createFunctionType({ jsDoc });
   }
@@ -214,6 +289,8 @@ function checkType({
   if (type.getConstructSignatures().length) {
     return createFunctionType({ jsDoc });
   }
+
+  return createAnyType({ jsDoc });
 
   // Object-like type
   {
@@ -332,33 +409,7 @@ function checkSymbol({
     }
   }
 
-  const symbolType = declaration
-    ? // The proptypes aren't detailed enough that we need all the different combinations
-      // so we just pick the first and ignore the rest
-      project.checker.getTypeOfSymbolAtLocation(symbol, declaration)
-    : project.checker.getTypeOfSymbolAtLocation(symbol, location);
-
-  let type: ts.Type;
-  if (declaration === undefined) {
-    type = symbolType;
-  } else {
-    const declaredType = project.checker.getTypeAtLocation(declaration);
-    const baseConstraintOfType = project.checker.getBaseConstraintOfType(declaredType);
-
-    if (baseConstraintOfType === undefined || baseConstraintOfType === declaredType) {
-      type = symbolType;
-    }
-    // get `React.ElementType` from `C extends React.ElementType`
-    else if (baseConstraintOfType.aliasSymbol?.escapedName === 'ElementType') {
-      type = baseConstraintOfType;
-    } else {
-      type = symbolType;
-    }
-  }
-
-  if (!type) {
-    throw new Error('No types found');
-  }
+  const type = getType({ project, symbol, declaration, location });
 
   // Typechecker only gives the type "any" if it's present in a union
   // This means the type of "a" in {a?:any} isn't "any | undefined"
@@ -579,5 +630,3 @@ interface PropTypesProject extends TypeScriptProject {
   shouldInclude: NonNullable<GetPropTypesFromFileOptions['shouldInclude']>;
   createPropTypeId: (sigil: ts.Symbol | ts.Type) => number;
 }
-
-// project.checker.getTypeAtLocation(property.declarations?.[0]!)

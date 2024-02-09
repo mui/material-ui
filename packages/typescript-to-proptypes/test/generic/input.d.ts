@@ -1,10 +1,5 @@
-type Type = 'one' | 'two' | 'three'
+type TextFieldProps<A extends boolean> = A extends true ? { testProp: string } : { testProp: boolean }
 
-interface ParentProps<T extends Type> {
-  optionalType?: T;
-  requiredType: T
-}
+type Props<A extends boolean = false> = Omit<TextFieldProps<A>, 'b'>
 
-interface ChildProps extends ParentProps<'one' | 'two'> {}
-
-export function Foo(props: ChildProps): JSX.Element;
+export function Foo<A extends boolean = false>(props: Props<A>): JSX.Element;
