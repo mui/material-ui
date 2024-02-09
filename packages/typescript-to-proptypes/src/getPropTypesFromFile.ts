@@ -259,7 +259,10 @@ function checkType({
     return createObjectType({ jsDoc });
   }
 
-  console.log(ts.TypeFlags);
+  // @ts-ignore
+  if (type.flags & ts.TypeFlags.IncludesWildcard) {
+    console.log(type);
+  }
 
   console.warn(
     `${project.reactComponentName}: Unable to handle node of type "ts.TypeFlags.${
