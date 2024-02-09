@@ -27,7 +27,8 @@ It closes when an item is selected, handled by controlling the `open` prop.
 
 ### Anchor
 
-You can use the `anchor` prop to specify which side of the screen the Drawer should originate from. The default value is `left`.
+Use the `anchor` prop to specify which side of the screen the Drawer should originate from. 
+The default value is `left`.
 
 {{"demo": "AnchorTemporaryDrawer.js"}}
 
