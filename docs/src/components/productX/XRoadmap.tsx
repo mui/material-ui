@@ -96,8 +96,8 @@ export default function XRoadmap() {
         background: (theme) =>
           `linear-gradient(180deg, ${(theme.vars || theme).palette.primaryDark[900]} 50%, 
         ${alpha(theme.palette.primary[800], 0.2)} 100%), ${
-            (theme.vars || theme).palette.primaryDark[900]
-          }`,
+          (theme.vars || theme).palette.primaryDark[900]
+        }`,
       }}
     >
       <Grid container spacing={2} alignItems="center" justifyContent="space-between">

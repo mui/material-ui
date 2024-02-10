@@ -33,6 +33,9 @@
     "orientation": { "description": "The component orientation." },
     "rootRef": { "description": "The ref attached to the root of the Slider." },
     "scale": { "description": "A transformation function, to change the scale of the slider." },
+    "shiftStep": {
+      "description": "The granularity with which the slider can step through values when using Page Up/Page Down or Shift + Arrow Up/Arrow Down."
+    },
     "step": {
       "description": "The granularity with which the slider can step through values. (A &quot;discrete&quot; slider.) The <code>min</code> prop serves as the origin for the valid values. We recommend (max - min) to be evenly divisible by the step.<br>When step is <code>null</code>, the thumb can only be slid onto marks provided with the <code>marks</code> prop."
     },

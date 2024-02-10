@@ -1,8 +1,8 @@
-import type { ExpressionValue, FunctionValue } from '@linaria/utils';
+import type { ExpressionValue, FunctionValue } from '@wyw-in-js/shared';
 import { transformSync, type Node } from '@babel/core';
 import { parseExpression } from '@babel/parser';
-import type { Expression } from '@linaria/tags';
 import * as t from '@babel/types';
+import type { Expression } from '@babel/types';
 import { isUnitLess } from './isUnitLess';
 import { cssFunctionTransformerPlugin } from './cssFunctionTransformerPlugin';
 

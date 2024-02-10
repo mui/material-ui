@@ -117,7 +117,7 @@ const StyledAppBar = styled(AppBar, {
     borderColor: (theme.vars || theme).palette.grey[100],
     borderWidth: 0,
     borderBottomWidth: 'thin',
-    backgroundColor: 'rgba(255,255,255,0.9)',
+    backgroundColor: 'rgba(255,255,255,0.8)',
     color: (theme.vars || theme).palette.grey[800],
     ...theme.applyDarkStyles({
       borderColor: alpha(theme.palette.primary[100], 0.08),

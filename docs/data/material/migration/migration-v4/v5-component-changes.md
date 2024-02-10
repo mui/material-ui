@@ -1034,7 +1034,7 @@ Use `onClose` with `reason === "escapeKeyDown"` instead.
 
 Remove the `onRendered` prop.
 
-Depending on your use case, you can either use a [callback ref](https://legacy.reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element, or an effect hook in the child component.
+Depending on your use case, you can either use a [callback ref](https://react.dev/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback) on the child element, or an effect hook in the child component.
 
 ## NativeSelect
 
@@ -1177,7 +1177,7 @@ Read the [Popper.js migration guide](https://popper.js.org/docs/v2/migration-gui
 
 Remove the `onRendered` prop.
 
-Depending on your use case, you can either use a [callback ref](https://legacy.reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element, or an effect hook in the child component.
+Depending on your use case, you can either use a [callback ref](https://react.dev/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback) on the child element, or an effect hook in the child component.
 
 ## Radio
 

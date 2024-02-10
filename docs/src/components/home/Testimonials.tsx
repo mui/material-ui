@@ -23,7 +23,7 @@ export default function Testimonials() {
         <SectionHeadline
           overline="Join the community"
           title={
-            <Typography variant="h2" component="h1">
+            <Typography variant="h2" component="h2">
               Supported by thousands of <GradientText>developers and designers</GradientText>
             </Typography>
           }
