@@ -36,7 +36,7 @@ They're great resources for learning more about real-world usage of Material UI
   - A frontend framework for building B2B applications running in the browser.
   - On top of REST/GraphQL APIs, using ES6, React and Material Design.
 
-- [refine](https://github.com/refinedev/refine):
+- [refine](https://refine.dev/docs/ui-integrations/material-ui/introduction/#installation):
 
   - ![stars](https://img.shields.io/github/stars/refinedev/refine.svg?style=social&label=Star)
   - An open-source, headless, React-based framework for the rapid development of web applications that supports Vite, Next.js and Remix.
@@ -46,28 +46,9 @@ They're great resources for learning more about real-world usage of Material UI
   - Out-of-the-box support for live/real-time applications, audit logs, authentication, access control flows and i18n.
   - Advanced routing with any router library.
 
-- [React Most Wanted](https://github.com/TarikHuber/react-most-wanted):
-
-  - ![stars](https://img.shields.io/github/stars/TarikHuber/react-most-wanted.svg?style=social&label=Star)
-  - Created with Create React App.
-  - Custom Create React App script to start a new project with just a single CLI command.
-  - Build for Firebase including Authentication using the official Firebase Web Auth UI.
-  - Routing with React Router including error handling (404) and lazy loading.
-  - All PWA features included (SW, Notifications, deferred installation prompt, and more).
-  - Optimized and scalable performance (all ~100 points on Lighthouse).
-
-- [React SaaS Template](https://github.com/dunky11/react-saas-template):
-
-  - ![stars](https://img.shields.io/github/stars/dunky11/react-saas-template.svg?style=social&label=Star)
-  - Created with Create React App.
-  - Features a landing page, a blog, an area to login/register and an admin-dashboard.
-  - Fully routed using react-router.
-  - Lazy loads components to boost performance.
-  - Components for statistics, text with emoji support, image upload, and more.
-
 ### Paid
 
-- [ScaffoldHub](https://www.scaffoldhub.io/?partner=1):
+- [ScaffoldHub](https://v2.scaffoldhub.io/scaffolds/react-material-ui):
 
   - Tool for building web applications.
   - Choose your framework and library (React with Material UI).
