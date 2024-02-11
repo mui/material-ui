@@ -1,14 +1,14 @@
 # Example projects
 
-<p class="description">A collection of example, boilerplates, and scaffolds to jumpstart your next Material UI project.</p>
+<p class="description">A collection of examples, boilerplates, and scaffolds to jumpstart your next Material UI project.</p>
 
 ## Official examples
 
-The following starter projects are all available in the MUI Core [`/examples`](https://github.com/mui/material-ui/tree/master/examples) folder.
+The following starter projects are all available in the [`/examples`](https://github.com/mui/material-ui/tree/master/examples) folder of the Material UI repository.
 These examples feature Material UI paired with other popular React libraries and frameworks, so you can skip the initial setup steps and jump straight into building.
 
 Not sure which to pick?
-We recommend Next.js for a comprehensive solution, or Vite if you're looking for a leaner development experience.
+We recommend Next.js for server-side rendering, or Vite if you're looking to build a SPA.
 See [Start a New React Project](https://react.dev/learn/start-a-new-react-project) from the official React docs to learn more about the options available.
 
 <!-- #default-branch-switch -->
@@ -25,7 +25,7 @@ For more complex prebuilt UIs, check out our [premium themes and templates](http
 
 ## Community projects
 
-The following projects are maintained by the community and curated by MUI.
+The following projects are maintained by the community and curated by Material UI's team.
 They're great resources for learning more about real-world usage of Material UI alongside other popular libraries and tools.
 
 ### Free
