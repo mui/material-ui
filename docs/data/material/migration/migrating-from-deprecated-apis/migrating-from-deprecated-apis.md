@@ -28,9 +28,15 @@ If you need to run a specific codemod, those are also linked below.
 
 ## Accordion
 
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#accordion-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/accordion-props <path>
+```
+
 ### TransitionComponent
 
-The Accordion's `TransitionComponent` was deprecated in favor of `slots.transition` ([Codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#accordion-props)):
+The Accordion's `TransitionComponent` was deprecated in favor of `slots.transition`:
 
 ```diff
  <Accordion
@@ -41,7 +47,7 @@ The Accordion's `TransitionComponent` was deprecated in favor of `slots.transiti
 
 ### TransitionProps
 
-The Accordion's `TransitionProps` was deprecated in favor of `slotProps.transition` ([Codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#accordion-props)):
+The Accordion's `TransitionProps` was deprecated in favor of `slotProps.transition`:
 
 ```diff
  <Accordion
@@ -50,11 +56,43 @@ The Accordion's `TransitionProps` was deprecated in favor of `slotProps.transiti
  />
 ```
 
+## Avatar
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#avatar-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/avatar-props <path>
+```
+
+### imgProps
+
+The Avatar's `imgProps` was deprecated in favor of `slotProps.img`:
+
+```diff
+ <Avatar
+-  imgProps={{
+-    onError: () => {},
+-    onLoad: () => {},
++  slotProps={{
++    img: {
++      onError: () => {},
++      onLoad: () => {},
++    }
+   }}
+ />;
+```
+
 ## Divider
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#divider-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/divider-props <path>
+```
 
 ### light
 
-The Divider's `light` prop was deprecated, Use `sx={{ opacity : "0.6" }}` (or any opacity). ([Codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#divider-props)):
+The Divider's `light` prop was deprecated, Use `sx={{ opacity : "0.6" }}` (or any opacity):
 
 ```diff
  <Divider
