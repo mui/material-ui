@@ -12,10 +12,6 @@ export interface AlertPropsVariantOverrides {}
 
 export interface AlertPropsColorOverrides {}
 
-export interface AlertCloseButtonSlotPropsOverrides {}
-
-export interface AlertCloseIconSlotPropsOverrides {}
-
 export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
   /**
    * The action to display. It renders after the message, at the end of the alert.
@@ -104,16 +100,8 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
    * @default {}
    */
   slotProps?: {
-    closeButton?: SlotProps<
-      React.ElementType<IconButtonProps>,
-      AlertCloseButtonSlotPropsOverrides,
-      AlertOwnerState
-    >;
-    closeIcon?: SlotProps<
-      React.ElementType<SvgIconProps>,
-      AlertCloseIconSlotPropsOverrides,
-      AlertOwnerState
-    >;
+    closeButton?: SlotProps<React.ElementType<IconButtonProps>, {}, AlertOwnerState>;
+    closeIcon?: SlotProps<React.ElementType<SvgIconProps>, {}, AlertOwnerState>;
   };
   /**
    * The components used for each slot inside.
