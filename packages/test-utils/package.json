@@ -36,7 +36,7 @@
     "jsdom": "^24.0.0",
     "lodash": "^4.17.21",
     "mocha": "^10.2.0",
-    "playwright": "^1.41.1",
+    "playwright": "^1.41.2",
     "prop-types": "^15.8.1",
     "react-test-renderer": "^18.2.0",
     "sinon": "^15.2.0"
@@ -47,7 +47,7 @@
     "@types/enzyme": "^3.10.18",
     "@types/format-util": "^1.0.4",
     "@types/prop-types": "^15.7.11",
-    "@types/react": "^18.2.48",
+    "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.18",
     "@types/react-test-renderer": "^18.0.7",
     "@types/sinon": "^10.0.20",

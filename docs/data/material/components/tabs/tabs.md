@@ -135,7 +135,7 @@ By default, tabs use a `button` element, but you can provide your custom tag or 
 
 One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server.
 The `Tab` component provides the `component` prop to handle this use case.
-Here is a [more detailed guide](/material-ui/guides/routing/#tabs).
+Here is a [more detailed guide](/material-ui/integrations/routing/#tabs).
 
 ## Icon tabs
 

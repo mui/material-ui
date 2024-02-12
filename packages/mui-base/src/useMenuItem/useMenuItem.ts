@@ -26,7 +26,7 @@ const FALLBACK_MENU_CONTEXT: DropdownContextValue = {
   popupId: '',
   registerPopup: () => {},
   registerTrigger: () => {},
-  state: { open: true },
+  state: { open: true, changeReason: null },
   triggerElement: null,
 };
 

@@ -569,7 +569,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
                 bottom: cursorPosition.y,
                 width: 0,
                 height: 0,
-              } as DOMRect),
+              }) as DOMRect,
           }
         : childNode,
       open: childNode ? open : false,

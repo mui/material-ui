@@ -78,4 +78,38 @@ describe('Joy <IconButton />', () => {
     expect(button).to.have.property('disabled', true);
     expect(button).to.have.class(classes.disabled);
   });
+
+  describe('prop: loadingIndicator', () => {
+    const content = 'Test';
+    const loadingText = 'loading...';
+
+    it('is not rendered by default', () => {
+      const { queryByRole } = render(
+        <IconButton loadingIndicator={<span role="progressbar">{loadingText}</span>}>
+          {content}
+        </IconButton>,
+      );
+
+      const button = queryByRole('button');
+      const progressbar = queryByRole('progressbar');
+
+      expect(progressbar).to.equal(null);
+      expect(button).to.have.text(content);
+    });
+
+    it('is rendered properly when `loading` and children should not be visible', function test() {
+      const { getByRole } = render(
+        <IconButton loadingIndicator={<span role="progressbar">{loadingText}</span>} loading>
+          {content}
+        </IconButton>,
+      );
+
+      const button = getByRole('button');
+      const progressbar = getByRole('progressbar');
+
+      expect(progressbar).to.have.text(loadingText);
+      expect(button).to.have.class(classes.disabled);
+      expect(button).not.to.have.text(content);
+    });
+  });
 });
