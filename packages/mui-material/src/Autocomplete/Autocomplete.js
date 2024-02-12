@@ -214,8 +214,8 @@ const AutocompleteEndAdornment = styled('div', {
   // We use a position absolute to support wrapping tags.
   position: 'absolute',
   right: 0,
-  top: 50%,
-  transform: translate(0, -50%),
+  top: '50%',
+  transform: 'translate(0, -50%)',
 });
 
 const AutocompleteClearIndicator = styled(IconButton, {
