@@ -1,5 +1,3 @@
-import transformAccordionProps from '../accordion-props/accordion-props';
-import transformAccordionClasses from '../accordion-summary-classes/accordion-summary-classes';
 import transformAccordionProps from '../accordion-props';
 import transformAvatarProps from '../avatar-props';
 import transformDividerProps from '../divider-props';
