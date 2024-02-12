@@ -93,6 +93,7 @@ Bear in mind that the `.MuiAccordionSummary-gutters` class is applied to the com
 -    },
    },
  },
+```
 
 ## Avatar
 
@@ -118,7 +119,7 @@ The Avatar's `imgProps` was deprecated in favor of `slotProps.img`:
 +    }
    }}
  />;
-
+```
 
 ## Divider
 

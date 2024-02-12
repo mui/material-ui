@@ -138,6 +138,7 @@ CSS transforms:
 
 ```bash
 npx @mui/codemod@latest deprecations/accordion-summary-classes <path>
+```
 
 #### `avatar-props`
 
@@ -153,7 +154,7 @@ npx @mui/codemod@latest deprecations/accordion-summary-classes <path>
 +    }
    }}
  />;
-
+```
 
 #### `divider-props`
 
