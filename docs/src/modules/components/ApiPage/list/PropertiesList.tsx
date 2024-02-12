@@ -139,6 +139,8 @@ export interface Properties {
   isDeprecated?: boolean;
   isOptional?: boolean;
   isRequired?: boolean;
+  isProPlan?: boolean;
+  isPremiumPlan?: boolean;
   propDefault?: string;
   propName: string;
   requiresRef?: string;
@@ -169,6 +171,8 @@ export default function PropertiesList(props: PropertiesListProps) {
           isOptional,
           isRequired,
           isDeprecated,
+          isProPlan,
+          isPremiumPlan,
           hooksParameters,
           hooksReturnValue,
           deprecationInfo,
@@ -191,7 +195,21 @@ export default function PropertiesList(props: PropertiesListProps) {
           <StyledApiItem
             key={propName}
             id={getHash({ componentName, propName, hooksParameters, hooksReturnValue })}
-            title={propName}
+            title={
+              <React.Fragment>
+                {propName}
+                {isProPlan && (
+                  <a href="/x/introduction/licensing/#pro-plan">
+                    <span className="plan-pro" />
+                  </a>
+                )}
+                {isPremiumPlan && (
+                  <a href="/x/introduction/licensing/#premium-plan">
+                    <span className="plan-premium" />
+                  </a>
+                )}
+              </React.Fragment>
+            }
             note={note}
             type="props"
             displayOption={displayOption}

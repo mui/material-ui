@@ -147,6 +147,8 @@ export default function PropertiesTable(props: PropertiesTableProps) {
               requiresRef,
               isOptional,
               isRequired,
+              isProPlan,
+              isPremiumPlan,
               isDeprecated,
               hooksParameters,
               hooksReturnValue,
@@ -168,6 +170,16 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                   {propName}
                   {isRequired ? '*' : ''}
                   {isOptional ? '?' : ''}
+                  {isProPlan && (
+                    <a href="/x/introduction/licensing/#pro-plan">
+                      <span className="plan-pro" />
+                    </a>
+                  )}
+                  {isPremiumPlan && (
+                    <a href="/x/introduction/licensing/#premium-plan">
+                      <span className="plan-premium" />
+                    </a>
+                  )}
                 </td>
                 <td className="type-column">
                   {
