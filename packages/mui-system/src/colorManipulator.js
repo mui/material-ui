@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-import { clamp } from '@mui/utils';
+import clamp from "@mui/utils/clamp";
 import MuiError from '@mui-internal/babel-macros/MuiError.macro';
 
 /**
