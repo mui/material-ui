@@ -34,38 +34,21 @@ The demo below replaces the `<div>` with a `<section>` element:
 
 {{"demo": "BoxBasic.js", "defaultCodeOpen": true }}
 
-### Using System props
+## Customization
+
+### With MUI System props
 
 As a CSS utility component, the Box supports all [MUI System properties](/system/properties/).
 You can use them as props directly on the component.
 
 {{"demo": "BoxSystemProps.js", "defaultCodeOpen": true }}
 
-### Using the sx prop
+### With the sx prop
 
 Use the [`sx` prop](/system/getting-started/the-sx-prop/) to quickly customize any Box instance using a superset of CSS that has access to all the style functions and theme-aware properties exposed in the MUI System package.
 The demo below shows how to apply colors from the theme using this prop:
 
 {{"demo": "BoxSx.js", "defaultCodeOpen": true }}
-
-## Customization
-
-### Create your own Box
-
-Use the `createBox()` utility to create your version of the Box component.
-This is useful if you need to expose your container to a theme that's different from the default theme of the library you're working with:
-
-```js
-import { createBox, createTheme } from '@mui/system';
-
-const defaultTheme = createTheme({
-  // your custom theme values
-});
-
-const Box = createBox({ defaultTheme });
-
-export default Box;
-```
 
 ## Anatomy
 
