@@ -7,6 +7,7 @@ import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Person from '../internal/svg-icons/Person';
 import { getAvatarUtilityClass } from './avatarClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant, colorDefault } = ownerState;
@@ -147,6 +148,8 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     children: childrenProp,
     className,
     component = 'div',
+    slots = {},
+    slotProps = {},
     imgProps,
     sizes,
     src,
@@ -171,19 +174,19 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  if (hasImgNotFailing) {
-    children = (
-      <AvatarImg
-        alt={alt}
-        srcSet={srcSet}
-        src={src}
-        sizes={sizes}
-        ownerState={ownerState}
-        className={classes.img}
-        {...imgProps}
-      />
-    );
+  const [ImgSlot, imgSlotProps] = useSlot('img', {
+    className: classes.img,
+    elementType: AvatarImg,
+    externalForwardedProps: {
+      slots,
+      slotProps: { img: { ...imgProps, ...slotProps.img } },
+    },
+    additionalProps: { alt, src, srcSet, sizes },
+    ownerState,
+  });
 
+  if (hasImgNotFailing) {
+    children = <ImgSlot {...imgSlotProps} />;
     // We only render valid children, non valid children are rendered with a fallback
     // We consider that invalid children are all falsy values, except 0, which is valid.
   } else if (!!childrenProp || childrenProp === 0) {
@@ -238,12 +241,27 @@ Avatar.propTypes /* remove-proptypes */ = {
   /**
    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes) applied to the `img` element if the component is used to display an image.
    * It can be used to listen for the loading error event.
+   * @deprecated Use `slotProps.img` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    */
   imgProps: PropTypes.object,
   /**
    * The `sizes` attribute for the `img` element.
    */
   sizes: PropTypes.string,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    img: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    img: PropTypes.elementType,
+  }),
   /**
    * The `src` attribute for the `img` element.
    */

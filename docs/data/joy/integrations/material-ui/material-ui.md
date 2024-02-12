@@ -50,7 +50,7 @@ export default function App() {
 }
 ```
 
-<iframe src="https://codesandbox.io/embed/using-joy-ui-and-material-ui-together-tx58w5?module=%2Fdemo.tsx&fontsize=14&hidenavigation=1&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/using-joy-ui-and-material-ui-together-qrsz2h?module=%2Fdemo.tsx&fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:400px; border:0; border-radius: 4px; overflow:hidden;"
      title="Joy UI - Human Interface Guidelines Typography System"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
