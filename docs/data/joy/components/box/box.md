@@ -26,7 +26,7 @@ Components like [Stack](/joy-ui/react-stack/) and [Sheet](/joy-ui/react-sheet/),
 ## Basics
 
 ```jsx
-import Box from '@mui/joy-ui/Box';
+import Box from '@mui/joy/Box';
 ```
 
 The Box component renders as a `<div>` by default, but you can swap in any other valid HTML tag or React component using the `component` prop.
