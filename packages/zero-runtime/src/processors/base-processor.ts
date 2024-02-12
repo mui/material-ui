@@ -1,11 +1,11 @@
+import { slugify, IVariableContext } from '@wyw-in-js/shared';
 import {
-  BaseProcessor as LinariaBaseProcessor,
-  toValidCSSIdentifier,
   buildSlug,
-} from '@linaria/tags';
-import { slugify, type IVariableContext } from '@linaria/utils';
+  BaseProcessor as WywBaseProcessor,
+  toValidCSSIdentifier,
+} from '@wyw-in-js/processor-utils';
 
-export default abstract class BaseProcessor extends LinariaBaseProcessor {
+export default abstract class BaseProcessor extends WywBaseProcessor {
   variableIdx = 0;
 
   // Implementation taken from Linaria - https://github.com/callstack/linaria/blob/master/packages/react/src/processors/styled.ts#L284

@@ -54,7 +54,7 @@ const SearchButton = styled('button')(({ theme }) => [
     cursor: 'pointer',
     transitionProperty: 'all',
     transitionDuration: '150ms',
-    boxShadow: `inset 0 1px 1px ${(theme.vars || theme).palette.grey[100]}, 0 1px 0.5px ${alpha(
+    boxShadow: `inset 0 -1px 1px ${(theme.vars || theme).palette.grey[100]}, 0 1px 0.5px ${alpha(
       theme.palette.grey[100],
       0.6,
     )}`,
@@ -62,11 +62,15 @@ const SearchButton = styled('button')(({ theme }) => [
       background: (theme.vars || theme).palette.grey[100],
       borderColor: (theme.vars || theme).palette.grey[300],
     },
+    '&:focus-visible': {
+      outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
+      outlineOffset: '2px',
+    },
   },
   theme.applyDarkStyles({
     backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
     borderColor: (theme.vars || theme).palette.primaryDark[700],
-    boxShadow: `inset 0 1px 1px ${(theme.vars || theme).palette.primaryDark[900]}, 0 1px 0.5px ${
+    boxShadow: `inset 0 -1px 1px ${(theme.vars || theme).palette.primaryDark[900]}, 0 1px 0.5px ${
       (theme.vars || theme).palette.common.black
     }`,
     '&:hover': {
@@ -158,7 +162,7 @@ function NewStartScreen() {
     },
     {
       category: {
-        name: 'MUI X',
+        name: 'MUI X',
       },
       items: [
         {
@@ -264,36 +268,39 @@ function NewStartScreen() {
   );
 }
 
-const displayTagProductId = {
-  'material-ui': 'Material UI',
-  'joy-ui': 'Joy UI',
-  'base-ui': 'Base UI',
-  x: 'MUI X',
-  system: 'MUI System',
+const productNameProductId = {
+  'material-ui': 'Material UI',
+  'joy-ui': 'Joy UI',
+  'base-ui': 'Base UI',
+  x: 'MUI X',
+  system: 'MUI System',
   toolpad: 'Toolpad',
 };
+
+export function convertProductIdToName(productInfo) {
+  return (
+    productNameProductId[productInfo.productId] ||
+    productNameProductId[productInfo.productCategoryId]
+  );
+}
 
 function getDisplayTag(hit) {
   if (hit.productId === undefined || hit.productCategoryId === undefined) {
     return null;
   }
 
-  const productInfo = {
+  const productName = convertProductIdToName({
     productId: hit.productId,
     productCategoryId: hit.productCategoryId,
-  };
+  });
 
-  const displayTag =
-    displayTagProductId[productInfo.productId] ||
-    displayTagProductId[productInfo.productCategoryId];
-
-  if (!displayTag) {
+  if (!productName) {
     console.error(
-      `getDisplayTag missing mapping for productId: ${productInfo.productId}, pathname: ${hit.pathname}.`,
+      `getDisplayTag missing mapping for productId: ${hit.productId}, pathname: ${hit.pathname}.`,
     );
   }
 
-  return <Chip label={displayTag} size="small" variant="outlined" sx={{ mr: 1 }} />;
+  return <Chip label={productName} size="small" variant="outlined" sx={{ mr: 1 }} />;
 }
 
 function DocSearchHit(props) {

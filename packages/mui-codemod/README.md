@@ -1,12 +1,12 @@
 # @mui/codemod
 
-> Codemod scripts for MUI
+> Codemod scripts for Material UI, Base UI, MUI System, Joy UI.
 
 [![npm version](https://img.shields.io/npm/v/@mui/codemod.svg?style=flat-square)](https://www.npmjs.com/package/@mui/codemod)
 [![npm downloads](https://img.shields.io/npm/dm/@mui/codemod.svg?style=flat-square)](https://www.npmjs.com/package/@mui/codemod)
 
 This repository contains a collection of codemod scripts based for use with
-[jscodeshift](https://github.com/facebook/jscodeshift) that help update MUI APIs.
+[jscodeshift](https://github.com/facebook/jscodeshift) that help update the APIs.
 
 ## Setup & run
 
@@ -60,34 +60,78 @@ npx @mui/codemod@latest <transform> <path> --jscodeshift="--printOptions='{\"quo
 
 ## Included scripts
 
+- [Deprecation](#deprecations)
+- [v5](#v500)
+- [v4](#v400)
+- [v1](#v100)
+- [v0.15](#v0150)
+
+### Deprecations
+
+```bash
+npx @mui/codemod@latest deprecations/all <path>
+```
+
+#### `all`
+
+A combination of all deprecations.
+
+#### `accordion-props`
+
+```diff
+ <Accordion
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={{ unmountOnExit: true }}
++  slots={{ transition: CustomTransition }}
++  slotProps={{ transition: { unmountOnExit: true } }}
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/accordion-props <path>
+```
+
+#### `divider-props`
+
+```diff
+ <Divider
+-  light
++  sx={{opacity: "0.6"}}
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/divider-props <path>
+```
+
 ### v5.0.0
 
-### `base-use-named-exports`
+#### `base-use-named-exports`
 
-Base UI default exports were changed to named ones. Previously we had a mix of default and named ones.
+Base UI default exports were changed to named ones. Previously we had a mix of default and named ones.
 This was changed to improve consistency and avoid problems some bundlers have with default exports.
 See https://github.com/mui/material-ui/issues/21862 for more context.
 
 This codemod updates the import and re-export statements.
 
 ```diff
--  import BaseButton from '@mui/base/Button';
-+  import { Button as BaseButton } from '@mui/base/Button';
--  export { default as BaseSlider } from '@mui/base/Slider';
-+  export { Slider as BaseSlider } from '@mui/base/Slider';
+-import BaseButton from '@mui/base/Button';
+-export { default as BaseSlider } from '@mui/base/Slider';
++import { Button as BaseButton } from '@mui/base/Button';
++export { Slider as BaseSlider } from '@mui/base/Slider';
 ```
 
 ```bash
 npx @mui/codemod@latest v5.0.0/base-use-named-exports <path>
 ```
 
-### `base-remove-unstyled-suffix`
+#### `base-remove-unstyled-suffix`
 
-The `Unstyled` suffix has been removed from all Base UI component names, including names of types and other related identifiers.
+The `Unstyled` suffix has been removed from all Base UI component names, including names of types and other related identifiers.
 
 ```diff
--  <Input component='a' href='url' />;
-+  <Input slots={{ root: 'a' }} href='url' />;
+-<Input component='a' href='url' />;
++<Input slots={{ root: 'a' }} href='url' />;
 ```
 
 ```bash
@@ -96,13 +140,13 @@ npx @mui/codemod@latest v5.0.0/base-remove-unstyled-suffix <path>
 
 #### `base-remove-component-prop`
 
-Remove `component` prop from all Base UI components by transferring its value into `slots.root`.
+Remove `component` prop from all Base UI components by transferring its value into `slots.root`.
 
-This change only affects Base UI components.
+This change only affects Base UI components.
 
 ```diff
--  <Input component={CustomRoot} />
-+  <Input slots={{ root: CustomRoot }} />
+-<Input component={CustomRoot} />
++<Input slots={{ root: CustomRoot }} />
 ```
 
 ```bash
@@ -114,10 +158,10 @@ npx @mui/codemod@latest v5.0.0/base-remove-component-prop <path>
 Updates the names of the CSS variables of the Joy UI components to adapt to the new naming standards of the CSS variables for components.
 
 ```diff
--  <List sx={{ py: 'var(--List-divider-gap)' }}>
-+  <List sx={{ py: 'var(--ListDivider-gap)' }}>
--  <Switch sx={{ '--Switch-track-width': '40px' }}>
-+  <Switch sx={{ '--Switch-trackWidth': '40px' }}>
+-<List sx={{ py: 'var(--List-divider-gap)' }}>
+-<Switch sx={{ '--Switch-track-width': '40px' }}>
++<List sx={{ py: 'var(--ListDivider-gap)' }}>
++<Switch sx={{ '--Switch-trackWidth': '40px' }}>
 ```
 
 ```bash
@@ -126,11 +170,11 @@ npx @mui/codemod@latest v5.0.0/rename-css-variables <path>
 
 #### `base-hook-imports`
 
-Updates the sources of the imports of the Base UI hooks to adapt to the new directories of the hooks.
+Updates the sources of the imports of the Base UI hooks to adapt to the new directories of the hooks.
 
 ```diff
--  import { useBadge } from '@mui/base/BadgeUnstyled';
-+  import useBadge from '@mui/base/useBadge';
+-import { useBadge } from '@mui/base/BadgeUnstyled';
++import useBadge from '@mui/base/useBadge';
 ```
 
 ```bash
@@ -252,8 +296,8 @@ This change only affects Joy UI components.
 ```diff
  <Autocomplete
 -  components={{ listbox: CustomListbox }}
-+  slots={{ listbox: CustomListbox }}
 -  componentsProps={{ root: { className: 'root' }, listbox: { 'data-testid': 'listbox' } }}
++  slots={{ listbox: CustomListbox }}
 +  slotProps={{ root: { className: 'root' }, listbox: { 'data-testid': 'listbox' } }}
  />;
 ```
@@ -452,13 +496,13 @@ You can find more details about this breaking change in [the migration guide](ht
 Renames the `components` and `componentsProps` props to `slots` and `slotProps`, respectively.
 Also, changes `slots`' fields names to camelCase.
 
-This change only affects Base UI components.
+This change only affects Base UI components.
 
 ```diff
  <BadgeUnstyled
 -  components={{ Root, Badge: CustomBadge }}
-+  slots={{ root: Root, badge: CustomBadge }}
 -  componentsProps={{ root: { className: 'root' }, badge: { 'data-testid': 'badge' } }}
++  slots={{ root: Root, badge: CustomBadge }}
 +  slotProps={{ root: { className: 'root' }, badge: { 'data-testid': 'badge' } }}
  />;
 ```
@@ -1551,7 +1595,7 @@ Head to https://mui.com/guides/minimizing-bundle-size/ to understand when it's u
 #### `import-path`
 
 Updates the `import-paths` for the new location of the components.
-MUI v1.0.0 flatten the import paths.
+Material UI v1.0.0 flatten the import paths.
 The diff should look like this:
 
 ```diff
@@ -1576,7 +1620,7 @@ Subsequently, you can run the above `find ...` command to flatten your imports.
 
 #### `color-imports`
 
-Updates the `color-imports` for the new location of MUI color palettes.
+Updates the `color-imports` for the new location of Material UI color palettes.
 The diff should look like this:
 
 ```diff
@@ -1641,7 +1685,7 @@ npx @mui/codemod@latest v1.0.0/menu-item-primary-text <path>
 #### `import-path`
 
 Updates the `import-paths` for the new location of the components.
-MUI v0.15.0 is reorganizing the folder distribution of the project.
+Material UI v0.15.0 is reorganizing the folder distribution of the project.
 The diff should look like this:
 
 ```diff

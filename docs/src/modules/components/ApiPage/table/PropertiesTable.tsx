@@ -6,10 +6,7 @@ import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
 } from 'docs/src/modules/brandingTheme';
-import {
-  PropDescriptionParams,
-  getHash,
-} from 'docs/src/modules/components/ApiPage/list/PropertiesList';
+import { Properties, getHash } from 'docs/src/modules/components/ApiPage/list/PropertiesList';
 import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
 import ApiWarning from 'docs/src/modules/components/ApiPage/ApiWarning';
 
@@ -120,7 +117,7 @@ function PropDescription({ description }: { description: string }) {
 }
 
 interface PropertiesTableProps {
-  properties: PropDescriptionParams[];
+  properties: Properties[];
 }
 
 export default function PropertiesTable(props: PropertiesTableProps) {

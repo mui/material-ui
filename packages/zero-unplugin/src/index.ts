@@ -1,14 +1,24 @@
+import { transformAsync } from '@babel/core';
+import {
+  type Preprocessor,
+  type PluginOptions as LinariaPluginOptions,
+  type IFileReporterOptions,
+  TransformCacheCollection,
+  transform,
+  createFileReporter,
+} from '@wyw-in-js/transform';
+import { asyncResolveFallback, slugify } from '@wyw-in-js/shared';
 import {
   UnpluginFactoryOutput,
   WebpackPluginInstance,
   createUnplugin,
   UnpluginOptions,
 } from 'unplugin';
-import { transformAsync } from '@babel/core';
-import type { PluginOptions as LinariaPluginOptions, Preprocessor } from '@linaria/babel-preset';
-import { TransformCacheCollection, transform } from '@linaria/babel-preset';
-import { createPerfMeter, asyncResolveFallback, slugify } from '@linaria/utils';
-import { preprocessor as basePreprocessor, generateThemeTokens } from '@mui/zero-runtime/utils';
+import {
+  preprocessor as basePreprocessor,
+  generateTokenCss,
+  generateThemeTokens,
+} from '@mui/zero-runtime/utils';
 
 type NextMeta = {
   type: 'next';
@@ -38,7 +48,7 @@ export type PluginOptions<Theme extends BaseTheme = BaseTheme> = {
   theme: Theme;
   transformLibraries?: string[];
   preprocessor?: Preprocessor;
-  debug?: boolean;
+  debug?: IFileReporterOptions | false;
   sourceMap?: boolean;
   meta?: Meta;
   asyncResolve?: (what: string) => string | null;
@@ -101,7 +111,7 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
     ...rest
   } = options;
   const cache = new TransformCacheCollection();
-  const { emitter, onDone } = createPerfMeter(debug);
+  const { emitter, onDone } = createFileReporter(debug ?? false);
   const cssLookup = meta?.type === 'next' ? globalCssLookup : new Map<string, string>();
   const cssFileLookup = meta?.type === 'next' ? globalCssFileLookup : new Map<string, string>();
   const isNext = meta?.type === 'next';
@@ -171,7 +181,7 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
                 return tagResult;
               }
               if (source.endsWith('/zero-styled')) {
-                return `${process.env.RUNTIME_PACKAGE_NAME}/exports/${tag}`;
+                return require.resolve(`${process.env.RUNTIME_PACKAGE_NAME}/exports/${tag}`);
               }
               return null;
             },
@@ -264,16 +274,16 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
                 // this file should exist in the package
                 id.endsWith('@mui/zero-runtime/styles.css') ||
                 id.endsWith('/zero-runtime/styles.css') ||
-                id.endsWith('@mui/zero-runtime/theme') ||
-                id.endsWith('/zero-runtime/theme.js')
+                id.includes('@mui/zero-runtime/theme') ||
+                id.includes('/zero-runtime/theme')
               );
             },
             transform(_code, id) {
               if (id.endsWith('styles.css')) {
-                return generateThemeTokens(theme);
+                return generateTokenCss(theme);
               }
-              if (id.endsWith('theme.js')) {
-                return `export default ${JSON.stringify(theme)};`;
+              if (id.includes('zero-runtime/theme')) {
+                return `export default ${JSON.stringify(generateThemeTokens(theme))};`;
               }
               return null;
             },
@@ -293,10 +303,10 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
             },
             load(id) {
               if (id === VIRTUAL_CSS_FILE) {
-                return generateThemeTokens(theme);
+                return generateTokenCss(theme);
               }
               if (id === VIRTUAL_THEME_FILE) {
-                return `export default ${JSON.stringify(theme)};`;
+                return `export default ${JSON.stringify(generateThemeTokens(theme))};`;
               }
               return null;
             },
