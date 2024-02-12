@@ -1,5 +1,56 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.15.10
+
+<!-- generated comparing v5.15.9..master -->
+
+_Feb 12, 2024_
+
+A big thanks to the 8 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.15.10`
+
+- [Avatar] Add props deprecation with a codemod (#40853) @siriwatknp
+
+### `@mui/system@5.15.10`
+
+- [Stack] Update import statement for Stack component (#41032) @sai6855
+
+### `@mui/joy@5.0.0-beta.28`
+
+- [Button] Fix `disabled` prop priority when inside button group (#41000) @Smileek
+- [IconButton] Support loading prop (#40949) @Smileek
+
+### Docs
+
+- [Button][material-ui] Fix 'File upload' demo a11y (#40943) @oliviertassinari
+- [TableRow][material-ui] Escape markup in `children` prop so docgen tools don't parse it as HTML (#40992) @millerized
+- [material-ui] Remove outdated example projects link (it uses Joy UI now) (#40913) @oliviertassinari
+- [material-ui] Fix the "Intro to the MUI ecosystem" link placement (#40988) @danilo-leal
+- Fix 301 redirection to StackBlitz @oliviertassinari
+- Fix h1 on Joy UI templates @oliviertassinari
+- Have MUI workspace own the CodeSandbox @oliviertassinari
+- Add notification for mui x v7 beta (#41001) @joserodolfofreitas
+- Fix 301 links @oliviertassinari
+- Fix Next.js v13.5.1 <title> SEO regression (#40302) @oliviertassinari
+- Add a 404 page (#40884) @danilo-leal
+- Fix missing GitHub label when opening new issue @oliviertassinari
+
+### Core
+
+- [blog] Add post about upcoming plans for Base UI (#40882) @danilo-leal
+- [core] Simplify CodeSandbox reproduction @oliviertassinari
+- [core] Missing redirection @oliviertassinari
+- [core] Export functions from `copyFiles` script to reuse in MUI X repo (#40970) @cherniavskii
+- [core] Avoid variable shorthands @oliviertassinari
+- [docs-infra] Fix search icon issue (#40957) @oliviertassinari
+- [docs-infra] Ignore classes tagged with `@ignore` (#41009) @cherniavskii
+- [docs-infra] Fix selected tab on codeblocks (#41036) @danilo-leal
+- [website] Polish Customer Support Agent role @oliviertassinari
+
+All contributors of this release in alphabetical order: @cherniavskii, @danilo-leal, @joserodolfofreitas, @millerized, @oliviertassinari, @sai6855, @siriwatknp, @Smileek
+
 ## v5.15.9<!-- generated comparing v5.15.8..master -->
 
 _Feb 8, 2024_
