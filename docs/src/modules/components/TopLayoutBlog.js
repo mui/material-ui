@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled, alpha } from '@mui/material/styles';
+import { useTheme } from '@mui/system';
 import { useRouter } from 'next/router';
 import { exactProp } from '@mui/utils';
 import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
@@ -14,6 +15,7 @@ import AppContainer from 'docs/src/modules/components/AppContainer';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
@@ -103,6 +105,11 @@ export const authors = {
     name: 'Rich Bustos',
     avatar: 'https://avatars.githubusercontent.com/u/92274722',
     github: 'richbustos',
+  },
+  colmtuite: {
+    name: 'Colm Tuite',
+    avatar: 'https://avatars.githubusercontent.com/u/805073',
+    github: 'colmtuite',
   },
 };
 
@@ -250,7 +257,8 @@ const Root = styled('div')(
 );
 
 export default function TopLayoutBlog(props) {
-  const { className, docs } = props;
+  const theme = useTheme();
+  const { className, docs, demos, demoComponents, srcComponents } = props;
   const { description, rendered, title, headers } = docs.en;
   const finalTitle = title || headers.title;
   const router = useRouter();
@@ -397,7 +405,20 @@ export default function TopLayoutBlog(props) {
             </React.Fragment>
           ) : null}
           {rendered.map((chunk, index) => {
-            return <MarkdownElement key={index} renderedMarkdown={chunk} />;
+            return (
+              <RichMarkdownElement
+                key={index}
+                demos={demos}
+                demoComponents={demoComponents}
+                srcComponents={srcComponents}
+                renderedMarkdown={chunk}
+                disableAd
+                localizedDoc={docs.en}
+                renderedMarkdownOrDemo={chunk}
+                theme={theme}
+                WrapperComponent={React.Fragment}
+              />
+            );
           })}
         </AppContainer>
         <Divider />
@@ -411,7 +432,10 @@ export default function TopLayoutBlog(props) {
 
 TopLayoutBlog.propTypes = {
   className: PropTypes.string,
+  demoComponents: PropTypes.object,
+  demos: PropTypes.object,
   docs: PropTypes.object.isRequired,
+  srcComponents: PropTypes.object,
 };
 
 if (process.env.NODE_ENV !== 'production') {
