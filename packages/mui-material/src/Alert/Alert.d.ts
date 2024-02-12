@@ -4,7 +4,7 @@ import { SxProps } from '@mui/system';
 import { IconButtonProps, InternalStandardProps as StandardProps, SvgIconProps, Theme } from '..';
 import { PaperProps } from '../Paper';
 import { AlertClasses } from './alertClasses';
-import { SlotProps } from '../utils/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type AlertColor = 'success' | 'info' | 'warning' | 'error';
 
@@ -12,7 +12,28 @@ export interface AlertPropsVariantOverrides {}
 
 export interface AlertPropsColorOverrides {}
 
-export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
+export interface AlertSlots {
+  /**
+   * The component that renders the close button.
+   * @default IconButton
+   */
+  closeButton?: React.ElementType;
+  /**
+   * The component that renders the close icon.
+   * @default svg
+   */
+  closeIcon?: React.ElementType;
+}
+
+export type AlertSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  AlertSlots,
+  {
+    closeButton: SlotProps<React.ElementType<IconButtonProps>, {}, AlertOwnerState>;
+    closeIcon: SlotProps<React.ElementType<SvgIconProps>, {}, AlertOwnerState>;
+  }
+>;
+
+export interface AlertOwnProps extends StandardProps<PaperProps, 'variant'> {
   /**
    * The action to display. It renders after the message, at the end of the alert.
    */
@@ -94,31 +115,12 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
    */
   variant?: OverridableStringUnion<'standard' | 'filled' | 'outlined', AlertPropsVariantOverrides>;
   /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * @default {}
-   */
-  slotProps?: {
-    closeButton?: SlotProps<React.ElementType<IconButtonProps>, {}, AlertOwnerState>;
-    closeIcon?: SlotProps<React.ElementType<SvgIconProps>, {}, AlertOwnerState>;
-  };
-  /**
-   * The components used for each slot inside.
-   *
-   * @default {}
-   */
-  slots?: {
-    closeButton?: React.ElementType;
-    closeIcon?: React.ElementType;
-  };
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
 }
 
-export interface AlertOwnerState extends AlertProps {}
+export interface AlertOwnerState extends AlertOwnProps {}
 
 /**
  *
@@ -131,4 +133,4 @@ export interface AlertOwnerState extends AlertProps {}
  * - [Alert API](https://mui.com/material-ui/api/alert/)
  * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
  */
-export default function Alert(props: AlertProps): JSX.Element;
+export default function Alert(props: AlertOwnProps & AlertSlotsAndSlotProps): JSX.Element;

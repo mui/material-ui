@@ -30,9 +30,7 @@
     "severity": {
       "description": "The severity of the alert. This defines the color and icon used."
     },
-    "slotProps": {
-      "description": "The extra props for the slot components. You can override the existing props or add new ones."
-    },
+    "slotProps": { "description": "The props used for each slot inside." },
     "slots": { "description": "The components used for each slot inside." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
@@ -129,5 +127,9 @@
       "nodeName": "the root element",
       "conditions": "<code>variant=\"standard\"</code> and <code>color=\"warning\"</code>"
     }
+  },
+  "slotDescriptions": {
+    "closeButton": "The component that renders the close button.",
+    "closeIcon": "The component that renders the close icon."
   }
 }
