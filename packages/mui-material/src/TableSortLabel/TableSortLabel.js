@@ -1,5 +1,5 @@
 'use client';
-import composeClasses from "@mui/utils/composeClasses";
+import composeClasses from '@mui/utils/composeClasses';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';

@@ -1,10 +1,10 @@
-'use client';;
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import composeClasses from "@mui/utils/composeClasses";
+import composeClasses from '@mui/utils/composeClasses';
 import { keyframes, css } from '@mui/system';
-import { darken, lighten } from "@mui/system/colorManipulator";
+import { darken, lighten } from '@mui/system/colorManipulator';
 import capitalize from '../utils/capitalize';
 import useTheme from '../styles/useTheme';
 import styled from '../styles/styled';

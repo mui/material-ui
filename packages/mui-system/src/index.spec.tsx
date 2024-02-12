@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { breakpoints, display, compose, spacing, style, styled as muiStyled } from '@mui/system';
 
-import createTheme from "@mui/system/createTheme";
+import createTheme from '@mui/system/createTheme';
 
 function composeTest() {
   function first(props: { color: string }) {

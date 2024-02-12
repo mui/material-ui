@@ -1,10 +1,10 @@
-'use client';;
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import composeClasses from "@mui/utils/composeClasses";
-import useId from "@mui/utils/useId";
-import refType from "@mui/utils/refType";
+import composeClasses from '@mui/utils/composeClasses';
+import useId from '@mui/utils/useId';
+import refType from '@mui/utils/refType';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Input from '../Input';

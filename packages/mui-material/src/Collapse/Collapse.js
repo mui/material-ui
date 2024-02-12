@@ -1,11 +1,11 @@
-'use client';;
+'use client';
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
-import useTimeout from "@mui/utils/useTimeout";
-import elementTypeAcceptingRef from "@mui/utils/elementTypeAcceptingRef";
-import composeClasses from "@mui/utils/composeClasses";
+import useTimeout from '@mui/utils/useTimeout';
+import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
+import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { duration } from '../styles/createTransitions';

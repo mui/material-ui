@@ -1,12 +1,12 @@
-'use client';;
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import chainPropTypes from "@mui/utils/chainPropTypes";
-import { isHostComponent, useSlotProps } from "@mui/base/utils";
-import composeClasses from "@mui/utils/composeClasses";
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import { isHostComponent, useSlotProps } from '@mui/base/utils';
+import composeClasses from '@mui/utils/composeClasses';
 import { useSlider, valueToPercent } from '@mui/base/useSlider';
-import { alpha, lighten, darken } from "@mui/system/colorManipulator";
+import { alpha, lighten, darken } from '@mui/system/colorManipulator';
 import useThemeProps from '../styles/useThemeProps';
 import styled, { slotShouldForwardProp } from '../styles/styled';
 import useTheme from '../styles/useTheme';

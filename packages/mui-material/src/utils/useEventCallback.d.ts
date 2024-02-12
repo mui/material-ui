@@ -1,3 +1,3 @@
-import useEventCallback from "@mui/utils/useEventCallback";
+import useEventCallback from '@mui/utils/useEventCallback';
 
 export default useEventCallback;

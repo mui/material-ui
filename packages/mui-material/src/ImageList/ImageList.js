@@ -1,6 +1,6 @@
 'use client';
-import composeClasses from "@mui/utils/composeClasses";
-import integerPropType from "@mui/utils/integerPropType";
+import composeClasses from '@mui/utils/composeClasses';
+import integerPropType from '@mui/utils/integerPropType';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';

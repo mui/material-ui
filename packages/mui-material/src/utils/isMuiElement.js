@@ -1,3 +1,3 @@
-import isMuiElement from "@mui/utils/isMuiElement";
+import isMuiElement from '@mui/utils/isMuiElement';
 
 export default isMuiElement;

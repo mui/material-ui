@@ -3,8 +3,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import resolveProps from "@mui/utils/resolveProps";
-import composeClasses from "@mui/utils/composeClasses";
+import resolveProps from '@mui/utils/resolveProps';
+import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '../styles';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';

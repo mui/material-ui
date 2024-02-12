@@ -1,4 +1,4 @@
-import capitalize from "@mui/utils/capitalize";
+import capitalize from '@mui/utils/capitalize';
 
 function isEmpty(string) {
   return string.length === 0;

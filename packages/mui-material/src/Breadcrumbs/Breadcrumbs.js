@@ -1,11 +1,11 @@
-'use client';;
+'use client';
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import integerPropType from "@mui/utils/integerPropType";
-import { useSlotProps } from "@mui/base/utils";
-import composeClasses from "@mui/utils/composeClasses";
+import integerPropType from '@mui/utils/integerPropType';
+import { useSlotProps } from '@mui/base/utils';
+import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Typography from '../Typography';

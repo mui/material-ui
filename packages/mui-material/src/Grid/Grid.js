@@ -1,4 +1,4 @@
-'use client';;
+'use client';
 // A grid component using the following libs as inspiration.
 //
 // For the implementation:
@@ -16,8 +16,8 @@ import {
   handleBreakpoints,
   unstable_resolveBreakpointValues as resolveBreakpointValues,
 } from '@mui/system';
-import { extendSxProp } from "@mui/system/styleFunctionSx";
-import composeClasses from "@mui/utils/composeClasses";
+import { extendSxProp } from '@mui/system/styleFunctionSx';
+import composeClasses from '@mui/utils/composeClasses';
 import requirePropFactory from '../utils/requirePropFactory';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';

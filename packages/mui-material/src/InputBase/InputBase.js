@@ -1,13 +1,13 @@
-'use client';;
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import elementTypeAcceptingRef from "@mui/utils/elementTypeAcceptingRef";
-import refType from "@mui/utils/refType";
+import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
+import refType from '@mui/utils/refType';
 import MuiError from '@mui-internal/babel-macros/MuiError.macro';
 import { TextareaAutosize } from '@mui/base';
-import { isHostComponent } from "@mui/base/utils";
-import composeClasses from "@mui/utils/composeClasses";
+import { isHostComponent } from '@mui/base/utils';
+import composeClasses from '@mui/utils/composeClasses';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext from '../FormControl/FormControlContext';
 import useFormControl from '../FormControl/useFormControl';

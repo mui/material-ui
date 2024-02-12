@@ -1,4 +1,4 @@
 'use client';
-import useIsFocusVisible from "@mui/utils/useIsFocusVisible";
+import useIsFocusVisible from '@mui/utils/useIsFocusVisible';
 
 export default useIsFocusVisible;

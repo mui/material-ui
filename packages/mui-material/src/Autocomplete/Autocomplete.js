@@ -1,12 +1,12 @@
-'use client';;
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import integerPropType from "@mui/utils/integerPropType";
-import chainPropTypes from "@mui/utils/chainPropTypes";
+import integerPropType from '@mui/utils/integerPropType';
+import chainPropTypes from '@mui/utils/chainPropTypes';
 import { useAutocomplete, createFilterOptions } from '@mui/base';
-import composeClasses from "@mui/utils/composeClasses";
-import { alpha } from "@mui/system/colorManipulator";
+import composeClasses from '@mui/utils/composeClasses';
+import { alpha } from '@mui/system/colorManipulator';
 import Popper from '../Popper';
 import ListSubheader from '../ListSubheader';
 import Paper from '../Paper';

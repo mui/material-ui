@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import { createRenderer, describeConformance } from '@mui-internal/test-utils';
 import { Box, ThemeProvider, boxClasses as classes } from '@mui/system';
 
-import createTheme from "@mui/system/createTheme";
+import createTheme from '@mui/system/createTheme';
 
 describe('<Box />', () => {
   const { render } = createRenderer();

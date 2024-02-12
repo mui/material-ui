@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { createRenderer } from '@mui-internal/test-utils';
 import { styled, ThemeProvider } from '@mui/system';
 
-import createTheme from "@mui/system/createTheme";
+import createTheme from '@mui/system/createTheme';
 
 describe('createTheme', () => {
   const { render } = createRenderer();

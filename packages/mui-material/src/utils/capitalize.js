@@ -1,3 +1,3 @@
-import capitalize from "@mui/utils/capitalize";
+import capitalize from '@mui/utils/capitalize';
 
 export default capitalize;

@@ -1,12 +1,12 @@
-'use client';;
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import useTimeout, { Timeout } from "@mui/utils/useTimeout";
-import elementAcceptingRef from "@mui/utils/elementAcceptingRef";
-import { appendOwnerState } from "@mui/base/utils";
-import composeClasses from "@mui/utils/composeClasses";
-import { alpha } from "@mui/system/colorManipulator";
+import useTimeout, { Timeout } from '@mui/utils/useTimeout';
+import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
+import { appendOwnerState } from '@mui/base/utils';
+import composeClasses from '@mui/utils/composeClasses';
+import { alpha } from '@mui/system/colorManipulator';
 import styled from '../styles/styled';
 import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';

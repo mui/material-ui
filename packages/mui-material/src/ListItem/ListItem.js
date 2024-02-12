@@ -1,12 +1,12 @@
-'use client';;
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { isHostComponent } from "@mui/base/utils";
-import composeClasses from "@mui/utils/composeClasses";
-import elementTypeAcceptingRef from "@mui/utils/elementTypeAcceptingRef";
-import chainPropTypes from "@mui/utils/chainPropTypes";
-import { alpha } from "@mui/system/colorManipulator";
+import { isHostComponent } from '@mui/base/utils';
+import composeClasses from '@mui/utils/composeClasses';
+import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import { alpha } from '@mui/system/colorManipulator';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import ButtonBase from '../ButtonBase';

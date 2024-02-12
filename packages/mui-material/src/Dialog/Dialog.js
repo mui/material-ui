@@ -2,8 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import composeClasses from "@mui/utils/composeClasses";
-import useId from "@mui/utils/useId";
+import composeClasses from '@mui/utils/composeClasses';
+import useId from '@mui/utils/useId';
 import capitalize from '../utils/capitalize';
 import Modal from '../Modal';
 import Fade from '../Fade';

@@ -14,7 +14,7 @@ import {
   getLuminance,
   lighten,
   colorChannel,
-} from "@mui/system/colorManipulator";
+} from '@mui/system/colorManipulator';
 
 describe('utils/colorManipulator', () => {
   describe('recomposeColor', () => {

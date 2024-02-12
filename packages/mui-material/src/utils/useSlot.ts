@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import { ClassValue } from 'clsx';
-import useForkRef from "@mui/utils/useForkRef";
+import useForkRef from '@mui/utils/useForkRef';
 import { appendOwnerState, resolveComponentProps, mergeSlotProps } from '@mui/base/utils';
 
 export type WithCommonProps<T> = T & {
