@@ -1,14 +1,14 @@
 # Example projects
 
-<p class="description">A collection of example, boilerplates, and scaffolds to jumpstart your next Material UI project.</p>
+<p class="description">A collection of examples, boilerplates, and scaffolds to jumpstart your next Material UI project.</p>
 
 ## Official examples
 
-The following starter projects are all available in the MUI Core [`/examples`](https://github.com/mui/material-ui/tree/master/examples) folder.
+The following starter projects are all available in the [`/examples`](https://github.com/mui/material-ui/tree/master/examples) folder of the Material UI repository.
 These examples feature Material UI paired with other popular React libraries and frameworks, so you can skip the initial setup steps and jump straight into building.
 
 Not sure which to pick?
-We recommend Next.js for a comprehensive solution, or Vite if you're looking for a leaner development experience.
+We recommend Next.js for server-side rendering, or Vite if you're looking to build a SPA.
 See [Start a New React Project](https://react.dev/learn/start-a-new-react-project) from the official React docs to learn more about the options available.
 
 <!-- #default-branch-switch -->
@@ -25,19 +25,10 @@ For more complex prebuilt UIs, check out our [premium themes and templates](http
 
 ## Community projects
 
-The following projects are maintained by the community and curated by MUI.
+The following projects are maintained by the community and curated by Material UI's team.
 They're great resources for learning more about real-world usage of Material UI alongside other popular libraries and tools.
 
 ### Free
-
-- [GraphQL API and Relay Starter Kit](https://github.com/kriasoft/relay-starter-kit):
-
-  - ![stars](https://img.shields.io/github/stars/kriasoft/graphql-starter.svg?style=social&label=Star)
-  - GraphQL API project using code-first design (TypeScript, OAuth, GraphQL.js, Knex, Cloud SQL).
-  - Web application project pre-configured with Webpack v5, TypeScript, React, Relay, Material UI.
-  - Serverless deployment: `api` -> Cloud Functions, `web` -> Cloudflare Workers.
-  - Client-side page routing/rendering at CDN edge locations, lazy loading.
-  - Optimized for fast CI/CD builds and deployments using Yarn v2 monorepo design.
 
 - [React Admin](https://github.com/marmelab/react-admin)
 
@@ -45,7 +36,7 @@ They're great resources for learning more about real-world usage of Material UI
   - A frontend framework for building B2B applications running in the browser.
   - On top of REST/GraphQL APIs, using ES6, React and Material Design.
 
-- [refine](https://github.com/refinedev/refine):
+- [refine](https://refine.dev/docs/ui-integrations/material-ui/introduction/#installation):
 
   - ![stars](https://img.shields.io/github/stars/refinedev/refine.svg?style=social&label=Star)
   - An open-source, headless, React-based framework for the rapid development of web applications that supports Vite, Next.js and Remix.
@@ -55,28 +46,9 @@ They're great resources for learning more about real-world usage of Material UI
   - Out-of-the-box support for live/real-time applications, audit logs, authentication, access control flows and i18n.
   - Advanced routing with any router library.
 
-- [React Most Wanted](https://github.com/TarikHuber/react-most-wanted):
-
-  - ![stars](https://img.shields.io/github/stars/TarikHuber/react-most-wanted.svg?style=social&label=Star)
-  - Created with Create React App.
-  - Custom Create React App script to start a new project with just a single CLI command.
-  - Build for Firebase including Authentication using the official Firebase Web Auth UI.
-  - Routing with React Router including error handling (404) and lazy loading.
-  - All PWA features included (SW, Notifications, deferred installation prompt, and more).
-  - Optimized and scalable performance (all ~100 points on Lighthouse).
-
-- [React SaaS Template](https://github.com/dunky11/react-saas-template):
-
-  - ![stars](https://img.shields.io/github/stars/dunky11/react-saas-template.svg?style=social&label=Star)
-  - Created with Create React App.
-  - Features a landing page, a blog, an area to login/register and an admin-dashboard.
-  - Fully routed using react-router.
-  - Lazy loads components to boost performance.
-  - Components for statistics, text with emoji support, image upload, and more.
-
 ### Paid
 
-- [ScaffoldHub](https://www.scaffoldhub.io/?partner=1):
+- [ScaffoldHub](https://v2.scaffoldhub.io/scaffolds/react-material-ui):
 
   - Tool for building web applications.
   - Choose your framework and library (React with Material UI).

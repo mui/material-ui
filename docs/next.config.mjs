@@ -174,6 +174,7 @@ export default withDocsInfra({
       ? `Basic ${Buffer.from(process.env.GITHUB_AUTH).toString('base64')}`
       : '',
   },
+  distDir: 'export',
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
   // However, we don't in order to prevent any regression in the `findPages()` method.
   // @ts-ignore
@@ -232,13 +233,20 @@ export default withDocsInfra({
 
     return map;
   },
-  // rewrites has no effect when run `next export` for production
-  rewrites: async () => {
-    return [
-      { source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' },
-      // Make sure to include the trailing slash if `trailingSlash` option is set
-      { source: '/api/:rest*/', destination: '/api-docs/:rest*/' },
-      { source: `/static/x/:rest*`, destination: 'http://0.0.0.0:3001/static/x/:rest*' },
-    ];
-  },
+  // Used to signal we run yarn build
+  ...(process.env.NODE_ENV === 'production'
+    ? {
+        output: 'export',
+      }
+    : {
+        // rewrites has no effect when run `next export` for production
+        rewrites: async () => {
+          return [
+            { source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' },
+            // Make sure to include the trailing slash if `trailingSlash` option is set
+            { source: '/api/:rest*/', destination: '/api-docs/:rest*/' },
+            { source: `/static/x/:rest*`, destination: 'http://0.0.0.0:3001/static/x/:rest*' },
+          ];
+        },
+      }),
 });
