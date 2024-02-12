@@ -1,12 +1,12 @@
 # @mui/codemod
 
-> Codemod scripts for MUI
+> Codemod scripts for Material UI, Base UI, MUI System, Joy UI.
 
 [![npm version](https://img.shields.io/npm/v/@mui/codemod.svg?style=flat-square)](https://www.npmjs.com/package/@mui/codemod)
 [![npm downloads](https://img.shields.io/npm/dm/@mui/codemod.svg?style=flat-square)](https://www.npmjs.com/package/@mui/codemod)
 
 This repository contains a collection of codemod scripts based for use with
-[jscodeshift](https://github.com/facebook/jscodeshift) that help update MUI APIs.
+[jscodeshift](https://github.com/facebook/jscodeshift) that help update the APIs.
 
 ## Setup & run
 
@@ -80,15 +80,44 @@ A combination of all deprecations.
 
 ```diff
  <Accordion
--    TransitionComponent={CustomTransition}
--    TransitionProps={{ unmountOnExit: true }}
-+    slots={{ transition: CustomTransition }}
-+    slotProps={{ transition: { unmountOnExit: true } }}
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={{ unmountOnExit: true }}
++  slots={{ transition: CustomTransition }}
++  slotProps={{ transition: { unmountOnExit: true } }}
  />
 ```
 
 ```bash
 npx @mui/codemod@latest deprecations/accordion-props <path>
+```
+
+#### `avatar-props`
+
+```diff
+ <Avatar
+-  imgProps={{
+-    onError: () => {},
+-    onLoad: () => {},
++  slotProps={{
++    img: {
++      onError: () => {},
++      onLoad: () => {},
++    }
+   }}
+ />;
+```
+
+#### `divider-props`
+
+```diff
+ <Divider
+-  light
++  sx={{opacity: "0.6"}}
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/divider-props <path>
 ```
 
 ### v5.0.0

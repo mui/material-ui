@@ -13,13 +13,16 @@ const ShowCaseDiv = styled('div')({
 });
 
 const atomics = generateAtomics(({ theme }) => ({
-  conditions: Object.entries(theme.breakpoints.values).reduce((acc, [key, value]) => {
-    if (key === 'xs') {
+  conditions: Object.entries(theme.breakpoints.values).reduce(
+    (acc, [key, value]) => {
+      if (key === 'xs') {
+        return acc;
+      }
+      acc[key as Breakpoint] = theme.breakpoints.up(value);
       return acc;
-    }
-    acc[key as Breakpoint] = theme.breakpoints.up(value);
-    return acc;
-  }, {} as Record<Breakpoint, string>),
+    },
+    {} as Record<Breakpoint, string>,
+  ),
   defaultCondition: 'sm',
   properties: {
     display: ['none', 'flex', 'block', 'grid', 'inline-flex', 'inline-block'],

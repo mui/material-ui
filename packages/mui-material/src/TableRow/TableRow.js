@@ -96,7 +96,7 @@ TableRow.propTypes /* remove-proptypes */ = {
   // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
-   * Should be valid <tr> children such as `TableCell`.
+   * Should be valid `<tr>` children such as `TableCell`.
    */
   children: PropTypes.node,
   /**

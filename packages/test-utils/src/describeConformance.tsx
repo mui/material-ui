@@ -986,7 +986,7 @@ function describeConformance(
       ({
         addListener: () => {},
         removeListener: () => {},
-      } as unknown as MediaQueryList);
+      }) as unknown as MediaQueryList;
   });
   afterEach(() => {
     window.matchMedia = originalMatchmedia;

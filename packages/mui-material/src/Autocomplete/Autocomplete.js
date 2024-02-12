@@ -554,9 +554,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   const renderGroup = renderGroupProp || defaultRenderGroup;
   const defaultRenderOption = (props2, option) => {
-    const { key, ...otherProps } = props2;
+    // Need to clearly apply key because of https://github.com/vercel/next.js/issues/55642
     return (
-      <li key={key} {...otherProps}>
+      <li {...props2} key={props2.key}>
         {getOptionLabel(option)}
       </li>
     );

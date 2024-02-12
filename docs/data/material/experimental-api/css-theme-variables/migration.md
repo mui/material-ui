@@ -93,7 +93,7 @@ Save the file and start the development server.
 Your application should be able to run without crashing.
 
 :::info
-If you encounter any errors, please [open an issue](https://github.com/mui/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml) to share it with us. We'd love to help.
+If you encounter any errors, please [open an issue](https://github.com/mui/material-ui/issues/new/choose) to share it with us. We'd love to help.
 :::
 
 If you inspect the page, you will see the generated CSS variables in the stylesheet. Material UI components that render inside the new provider will automatically use the CSS theme variables.
