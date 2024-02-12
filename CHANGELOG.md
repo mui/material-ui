@@ -1,7 +1,9 @@
 # [Versions](https://mui.com/versions/)
 
 ## v5.15.10
+
 <!-- generated comparing v5.15.9..master -->
+
 _Feb 12, 2024_
 
 A big thanks to the 8 contributors who made this release possible.
