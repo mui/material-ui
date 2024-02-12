@@ -91,6 +91,22 @@ A combination of all deprecations.
 npx @mui/codemod@latest deprecations/accordion-props <path>
 ```
 
+#### `avatar-props`
+
+```diff
+ <Avatar
+-  imgProps={{
+-    onError: () => {},
+-    onLoad: () => {},
++  slotProps={{
++    img: {
++      onError: () => {},
++      onLoad: () => {},
++    }
+   }}
+ />;
+```
+
 #### `divider-props`
 
 ```diff
