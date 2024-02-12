@@ -20,6 +20,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 ### `@mui/joy@5.0.0-beta.28`
 
 - [joy-ui][Button] Fix `disabled` prop priority when inside button group (#41000) @Smileek
+- [joy-ui][IconButton] Support loading prop (#40949) @Smileek
 
 ### Docs
 
@@ -38,12 +39,14 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 ### Core
 
+- [blog] Add post about upcoming plans for Base UI (#40882) @danilo-leal
 - [core] Simplify CodeSandbox reproduction @oliviertassinari
 - [core] Missing redirection @oliviertassinari
 - [core] Export functions from `copyFiles` script to reuse in MUI X repo (#40970) @cherniavskii
 - [core] Avoid variable shorthands @oliviertassinari
 - [docs-infra] Fix search icon issue (#40957) @oliviertassinari
 - [docs-infra] Ignore classes tagged with `@ignore` (#41009) @cherniavskii
+- [docs-infra] Fix selected tab on codeblocks (#41036) @danilo-leal
 - [website] Polish Customer Support Agent role @oliviertassinari
 
 All contributors of this release in alphabetical order: @cherniavskii, @danilo-leal, @joserodolfofreitas, @millerized, @oliviertassinari, @sai6855, @siriwatknp, @Smileek
