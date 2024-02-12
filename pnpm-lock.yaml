@@ -324,8 +324,8 @@ importers:
         specifier: ^5.3.10
         version: 5.3.10(esbuild@0.19.11)(webpack@5.90.0)
       tsup:
-        specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.34)(typescript@5.3.3)
+        specifier: ^8.0.2
+        version: 8.0.2(postcss@8.4.34)(typescript@5.3.3)
       tsx:
         specifier: ^4.7.0
         version: 4.7.0
@@ -20515,8 +20515,8 @@ packages:
     engines: {node: '>=0.6.x'}
     dev: false
 
-  /tsup@8.0.1(postcss@8.4.34)(typescript@5.3.3):
-    resolution: {integrity: sha512-hvW7gUSG96j53ZTSlT4j/KL0q1Q2l6TqGBFc6/mu/L46IoNWqLLUzLRLP1R8Q7xrJTmkDxxDoojV5uCVs1sVOg==}
+  /tsup@8.0.2(postcss@8.4.34)(typescript@5.3.3):
+    resolution: {integrity: sha512-NY8xtQXdH7hDUAZwcQdY/Vzlw9johQsaqf7iwZ6g1DOUlFYQ5/AtVAjTvihhEyeRlGo4dLRVHtrRaL35M1daqQ==}
     engines: {node: '>=18'}
     hasBin: true
     peerDependencies:
