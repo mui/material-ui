@@ -91,7 +91,7 @@ export default function createContainer<Theme extends RequiredThemeStructure = D
             paddingRight: theme.spacing(3),
           },
         }),
-      } as Interpolation<StyleFnProps<Theme>>),
+      }) as Interpolation<StyleFnProps<Theme>>,
     ({ theme, ownerState }: StyleFnProps<Theme>) =>
       ownerState.fixed &&
       Object.keys(theme.breakpoints.values).reduce((acc, breakpointValueKey) => {

@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { styled, generateAtomics, css } from '@mui/zero-runtime';
+import { styled, generateAtomics } from '@mui/zero-runtime';
 import type { Breakpoint } from '@mui/system';
 import { Button, bounceAnim } from 'local-ui-lib';
 import Slider from './Slider/ZeroSlider';
+import { Box } from './Box';
 
 const ShowCaseDiv = styled('div')({
   [`.${Button}`]: {
@@ -12,13 +13,16 @@ const ShowCaseDiv = styled('div')({
 });
 
 const atomics = generateAtomics(({ theme }) => ({
-  conditions: Object.entries(theme.breakpoints.values).reduce((acc, [key, value]) => {
-    if (key === 'xs') {
+  conditions: Object.entries(theme.breakpoints.values).reduce(
+    (acc, [key, value]) => {
+      if (key === 'xs') {
+        return acc;
+      }
+      acc[key as Breakpoint] = theme.breakpoints.up(value);
       return acc;
-    }
-    acc[key as Breakpoint] = theme.breakpoints.up(value);
-    return acc;
-  }, {} as Record<Breakpoint, string>),
+    },
+    {} as Record<Breakpoint, string>,
+  ),
   defaultCondition: 'sm',
   properties: {
     display: ['none', 'flex', 'block', 'grid', 'inline-flex', 'inline-block'],
@@ -57,11 +61,7 @@ export function App({ isRed }: AppProps) {
   const [isHorizontal, setIsHorizontal] = React.useState(true);
 
   return (
-    <div
-      className={css`
-        color: red;
-      `}
-    >
+    <div>
       <ShowCaseDiv>
         <Button>This button&apos;s text color has been overridden.</Button>
       </ShowCaseDiv>
@@ -171,6 +171,7 @@ export function App({ isRed }: AppProps) {
           <span>Hello2</span>
         </div>
       </div>
+      <Box as="div">Hello</Box>
     </div>
   );
 }

@@ -273,7 +273,6 @@ const nextRolesData = [
       },
     ],
   },
-
   {
     title: 'Marketing',
     roles: [
@@ -408,6 +407,7 @@ export default function Careers() {
                     noLinkStyle
                     variant="outlined"
                     sx={{ p: 2, width: '100%' }}
+                    key={title}
                   >
                     <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
                       {title}

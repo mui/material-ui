@@ -56,7 +56,7 @@ pnpm add @mui/material @mui/styled-engine-sc styled-components
 
 </codeblock>
 
-Next, follow the [styled-components how-to guide](/material-ui/guides/styled-components/) to properly configure your bundler to support `@mui/styled-engine-sc`.
+Next, follow the [styled-components how-to guide](/material-ui/integrations/styled-components/) to properly configure your bundler to support `@mui/styled-engine-sc`.
 
 :::error
 As of late 2021, [styled-components](https://github.com/styled-components/styled-components) is **not compatible** with server-rendered Material UI projects.
@@ -109,7 +109,7 @@ To install Roboto through the Google Web Fonts CDN, add the following code insid
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
   rel="stylesheet"
-  href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
 />
 ```
 

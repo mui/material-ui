@@ -10,7 +10,7 @@ There are many ways to support us:
 
 - **Spread the word**. Evangelize MUI's products by [linking to mui.com](https://mui.com/) on your website—every backlink matters.
   Follow us on [X](https://twitter.com/MUI_hq), like and retweet the important news. Or just talk about us with your friends.
-- **Give us feedback**. Tell us what we're doing well or where we can improve. Please upvote (👍) the issues that you are the most interested in seeing solved.
+- **Give us feedback**. Tell us what is going well or where there is improvement opportunities. Please upvote (👍) the issues that you are the most interested in seeing solved.
 - **Help new users**. You can answer questions on
   [Stack Overflow](https://stackoverflow.com/questions/tagged/material-ui).
 - **Make changes happen**.
@@ -59,7 +59,7 @@ import { createTheme } from '@mui/material';
 
 const theme = createTheme({
   transitions: {
-    // So we have `transition: none;` everywhere
+    // So `transition: none;` gets applied everywhere
     create: () => 'none',
   },
 });
@@ -106,8 +106,7 @@ But if you are using the default styled engine (`@mui/styled-engine`) the Emotio
 
 Perhaps, however, you're adding some Material UI components to an app that already uses another styling solution,
 or are already familiar with a different API, and don't want to learn a new one? In that case, head over to the
-[Style library interoperability](/material-ui/guides/interoperability/) section,
-where we show how simple it is to restyle Material UI components with alternative style libraries.
+[Style library interoperability](/material-ui/integrations/interoperability/) section to learn how to restyle Material UI components with alternative style libraries.
 
 ## When should I use inline-style vs. CSS?
 
@@ -121,7 +120,7 @@ The CSS alternative provides more advantages, such as:
 
 ## How do I use react-router?
 
-We detail the [integration with third-party routing libraries](/material-ui/guides/routing/) like react-router or Next.js in our guide.
+Visit the guide about [integration with third-party routing libraries](/material-ui/integrations/routing/), like react-router or Next.js, for more details.
 
 ## How can I access the DOM element?
 
@@ -138,7 +137,7 @@ const ref = React.createRef();
 const element = ref.current;
 ```
 
-If you're not sure if the Material UI component in question forwards its ref you can check the API documentation under "Props".
+If you're not sure if the Material UI component in question forwards its ref you can check the API documentation under "Props."
 You should find the message below, like in the [Button API](/material-ui/api/button/#props), [Button API](/material-ui/api/button/#props)
 
 > The ref is forwarded to the root element.
@@ -204,7 +203,7 @@ In the example above, the `Portal` would run an effect once, but might not re-re
 This is especially apparent for React.lazy components in Suspense.
 The above implementation could also not account for a change in the DOM node.
 
-This is why we require a prop with the actual DOM node so that React can take care of determining when the `Portal` should re-render:
+This is why a prop is required to the actual DOM node so that React can take care of determining when the `Portal` should re-render:
 
 ```jsx
 function App() {
@@ -276,8 +275,8 @@ This may cause theme propagation issues, broken class names, specificity issues,
 There are several common reasons for this to happen:
 
 - You have another `@mui/styles` library somewhere in your dependencies.
-- You have a monorepo structure for your project (e.g, lerna, yarn workspaces) and `@mui/styles` module is a dependency in more than one package (this one is more or less the same as the previous one).
-- You have several applications that are using `@mui/styles` running on the same page (e.g., several entry points in Webpack are loaded on the same page).
+- You have a monorepo structure for your project (for example, lerna or yarn workspaces) and `@mui/styles` module is a dependency in more than one package (this one is more or less the same as the previous one).
+- You have several applications that are using `@mui/styles` running on the same page (for example, several entry points in Webpack are loaded on the same page).
 
 ### Duplicated module in node_modules
 

@@ -36,7 +36,7 @@ const styles = ({ theme }: { theme: Theme }) =>
     '& .MuiSnackbarContent-close': {
       padding: theme.spacing(1),
     },
-  } as const);
+  }) as const;
 
 function Transition(
   props: TransitionProps & { children: React.ReactElement<any, any> },

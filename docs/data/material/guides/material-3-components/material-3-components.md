@@ -48,7 +48,7 @@ pnpm add @mui/material-next @emotion/react @emotion/styled
 
 <!-- #react-peer-version -->
 
-Please note that [react](https://www.npmjs.com/package/react) and [react-dom](https://www.npmjs.com/package/react-dom) are peer dependencies, meaning you should ensure they are installed before installing the Material UI Next package.
+Please note that [react](https://www.npmjs.com/package/react) and [react-dom](https://www.npmjs.com/package/react-dom) are peer dependencies, meaning you should ensure they are installed before installing the Material UI Next package.
 
 ```json
 "peerDependencies": {
@@ -98,7 +98,7 @@ To install Roboto through the Google Web Fonts CDN, add the following code insid
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
   rel="stylesheet"
-  href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
 />
 ```
 
