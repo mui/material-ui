@@ -37,7 +37,7 @@ You have a few possible options to provide it:
   </span>
   </a>
 
-- You can use a starter React template to build a reproduction case with [JavaScript](https://stackblitz.com/fork/github/stackblitz/starters/tree/main/react) or [TypeScript](https://stackblitz.com/fork/github/stackblitz/starters/tree/main/react-ts).
+- You can use a starter React template to build a reproduction case with [JavaScript](https://stackblitz.com/github/stackblitz/starters/tree/main/react) or [TypeScript](https://stackblitz.com/github/stackblitz/starters/tree/main/react-ts).
 
 ## Stack Overflow
 
