@@ -138,7 +138,22 @@ CSS transforms:
 
 ```bash
 npx @mui/codemod@latest deprecations/accordion-summary-classes <path>
-```
+
+#### `avatar-props`
+
+```diff
+ <Avatar
+-  imgProps={{
+-    onError: () => {},
+-    onLoad: () => {},
++  slotProps={{
++    img: {
++      onError: () => {},
++      onLoad: () => {},
++    }
+   }}
+ />;
+
 
 #### `divider-props`
 

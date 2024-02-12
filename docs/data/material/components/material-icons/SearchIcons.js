@@ -14,7 +14,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Button from '@mui/material/Button';
-import { Index as FlexSearchIndex } from 'flexsearch';
+import * as flexsearch from 'flexsearch';
 import SearchIcon from '@mui/icons-material/Search';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -47,6 +47,8 @@ import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterStat
 // import DeleteForeverSharp from '@mui/icons-material/DeleteForeverSharp';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import synonyms from './synonyms';
+
+const FlexSearchIndex = flexsearch.default.Index;
 
 const UPDATE_SEARCH_INDEX_WAIT_MS = 220;
 
