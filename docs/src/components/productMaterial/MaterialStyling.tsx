@@ -2,7 +2,9 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import AutoAwesomeRounded from '@mui/icons-material/AutoAwesomeRounded';
+import DevicesOtherRoundedIcon from '@mui/icons-material/DevicesOtherRounded';
+import ContrastRoundedIcon from '@mui/icons-material/ContrastRounded';
+import SwitchAccessShortcutRoundedIcon from '@mui/icons-material/SwitchAccessShortcutRounded';
 import DragHandleRounded from '@mui/icons-material/DragHandleRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
@@ -49,12 +51,12 @@ const code = `
         py: 0.4,
         pl: 0.5,
         pr: 1,
+        borderRadius: 12,
+        display: 'flex',
+        border: '1px solid',
         typography: 'caption',
         fontWeight: 'semiBold',
-        borderRadius: 10,
-        display: 'flex',
         bgcolor: 'primary.50',
-        border: '1px solid',
         borderColor: 'primary.100',
         color: 'primary.700',
         ...theme.applyDarkStyles({
@@ -70,8 +72,8 @@ const code = `
   </Box>
 </Card>`;
 
-const startLine = [29, 21, 17];
-const endLine = [46, 26, 17];
+const startLine = [36, 21, 17];
+const endLine = [44, 26, 17];
 const scrollTo = [540, 320, 200];
 
 export const useResizeHandle = (
@@ -179,21 +181,21 @@ export default function MaterialStyling() {
           <Group sx={{ m: -2, p: 2 }}>
             <Highlighter disableBorder {...getSelectedProps(0)} onClick={() => setIndex(0)}>
               <Item
-                icon={<AutoAwesomeRounded color="warning" />}
+                icon={<ContrastRoundedIcon color="primary" />}
                 title="Leverage the tokens from your theme"
                 description="Easily use the design tokens defined in your theme for any CSS property out there."
               />
             </Highlighter>
             <Highlighter disableBorder {...getSelectedProps(1)} onClick={() => setIndex(1)}>
               <Item
-                icon={<AutoAwesomeRounded color="warning" />}
+                icon={<SwitchAccessShortcutRoundedIcon color="primary" />}
                 title="No context switching"
                 description="The styling and component usage are both in the same place, right where you need them."
               />
             </Highlighter>
             <Highlighter disableBorder {...getSelectedProps(2)} onClick={() => setIndex(2)}>
               <Item
-                icon={<AutoAwesomeRounded color="warning" />}
+                icon={<DevicesOtherRoundedIcon color="primary" />}
                 title="Responsive styles right inside system prop"
                 description="An elegant API for writing CSS media queries that match your theme breakpoints."
               />
