@@ -566,6 +566,9 @@ const Root = styled('div')(
       '& hr': {
         backgroundColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
       },
+      '& img': {
+        borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
+      },
       '& h1': {
         color: `var(--muidocs-palette-grey-50, ${darkTheme.palette.grey[50]})`,
       },
