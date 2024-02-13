@@ -70,12 +70,6 @@ The AccordionSummary's `.MuiAccordionSummary-contentGutters` class was deprecate
 Bear in mind that the `.MuiAccordionSummary-gutters` class is applied to the component's root, whereas the `.MuiAccordionSummary-contentGutters` and `.MuiAccordionSummary-content` classes are applied to the content element.
 
 ```diff
--.MuiAccordionSummary-contentGutters
-+.MuiAccordionSummary-gutters .MuiAccordionSummary-content
- />
-```
-
-```diff
 -.MuiAccordionSummary-root .MuiAccordionSummary-contentGutters
 +.MuiAccordionSummary-root.MuiAccordionSummary-gutters .MuiAccordionSummary-content
  />
@@ -84,13 +78,12 @@ Bear in mind that the `.MuiAccordionSummary-gutters` class is applied to the com
 ```diff
  MuiAccordionSummary: {
    styleOverrides: {
--    contentGutters: {
-+    root: {
+     root: {
+-      '& .MuiAccordionSummary-contentGutters': {
 +      '&.MuiAccordionSummary-gutters .MuiAccordionSummary-content': {
          color: 'red',
         },
-+    },
--    },
+     },
    },
  },
 ```

@@ -12,34 +12,16 @@ fn({
 
 styled(Component)(() => {
   return {
-    '.MuiAccordionSummary-gutters .MuiAccordionSummary-content': {
+    '&.MuiAccordionSummary-gutters .MuiAccordionSummary-content': {
       color: 'red',
     },
   };
 });
 
-styled(Component)(() => {
-  return {
-    '.MuiAccordionSummary-gutters .MuiAccordionSummary-content': {
+<AccordionSummary
+  sx={{
+    '&.MuiAccordionSummary-gutters .MuiAccordionSummary-content': {
       color: 'red',
     },
-  };
-});
-
-<>
-  <AccordionSummary
-    sx={{
-      '.MuiAccordionSummary-gutters .MuiAccordionSummary-content': {
-        color: 'red',
-      },
-    }}
-  />
-
-  <AccordionSummary
-    sx={{
-      '.MuiAccordionSummary-gutters .MuiAccordionSummary-content': {
-        color: 'red',
-      },
-    }}
-  />
-</>;
+  }}
+/>;

@@ -99,36 +99,17 @@ JS transforms:
 ```diff
  MuiAccordionSummary: {
    styleOverrides: {
--    contentGutters: {
-+    root: {
+     root: {
+-      '& .MuiAccordionSummary-contentGutters': {
 +      '&.MuiAccordionSummary-gutters .MuiAccordionSummary-content': {
          color: 'red',
         },
-+    },
--    },
+     },
    },
  },
 ```
 
-```diff
- styled(AccordionSummary)(() => {
-   return {
--    '& .MuiAccordionSummary-contentGutters': {
-+    '.MuiAccordionSummary-gutters .MuiAccordionSummary-content': {
-       color: 'red',
-+    },
--    },
-   };
- });
-```
-
 CSS transforms:
-
-```diff
--.MuiAccordionSummary-contentGutters
-+.MuiAccordionSummary-gutters .MuiAccordionSummary-content
- />
-```
 
 ```diff
 -.MuiAccordionSummary-root .MuiAccordionSummary-contentGutters

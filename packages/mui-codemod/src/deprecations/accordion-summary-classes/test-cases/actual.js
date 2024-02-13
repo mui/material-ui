@@ -1,19 +1,13 @@
 fn({
   MuiAccordionSummary: {
     styleOverrides: {
-      contentGutters: {
-        color: 'red',
+      root: {
+        '& .MuiAccordionSummary-contentGutters': {
+          color: 'red',
+        },
       },
     },
   },
-});
-
-styled(Component)(() => {
-  return {
-    '.MuiAccordionSummary-contentGutters': {
-      color: 'red',
-    },
-  };
 });
 
 styled(Component)(() => {
@@ -24,20 +18,10 @@ styled(Component)(() => {
   };
 });
 
-<>
-  <AccordionSummary
-    sx={{
-      '.MuiAccordionSummary-contentGutters': {
-        color: 'red',
-      },
-    }}
-  />
-
-  <AccordionSummary
-    sx={{
-      '& .MuiAccordionSummary-contentGutters': {
-        color: 'red',
-      },
-    }}
-  />
-</>;
+<AccordionSummary
+  sx={{
+    '& .MuiAccordionSummary-contentGutters': {
+      color: 'red',
+    },
+  }}
+/>;
