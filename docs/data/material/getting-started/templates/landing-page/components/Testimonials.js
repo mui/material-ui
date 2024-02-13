@@ -80,7 +80,6 @@ const logoStyle = {
 
 export default function Testimonials() {
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery('(max-width:600px)');
   const logos = theme.palette.mode === 'light' ? darkLogos : whiteLogos;
 
   return (
