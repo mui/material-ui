@@ -43,8 +43,6 @@
     "@mui-internal/typescript-to-proptypes": "packages/typescript-to-proptypes"
   },
   "sandboxes": [
-    "material-ui-issue-latest-s2dsx",
-    "/examples/material-ui-cra",
     "/examples/material-ui-cra-ts",
     "/examples/joy-ui-cra-ts",
     "/examples/base-ui-cra-ts"

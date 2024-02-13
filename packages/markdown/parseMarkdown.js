@@ -263,6 +263,8 @@ const noSEOadvantage = [
   'https://www.radix-ui.com/',
   'https://react-spectrum.adobe.com/',
   'https://headlessui.com/',
+  'https://refine.dev/',
+  'https://scaffoldhub.io/',
 ];
 
 /**

@@ -40,13 +40,13 @@
     "@types/chai": "^4.3.11",
     "@types/doctrine": "^0.0.9",
     "@types/lodash": "^4.14.202",
-    "@types/node": "^18.19.14",
+    "@types/node": "^18.19.15",
     "@types/prettier": "^2.7.3",
     "@types/react": "^18.2.55",
     "@types/uuid": "^9.0.8",
     "chai": "^4.4.1",
     "fast-glob": "^3.3.2",
-    "prettier": "^2.8.8",
+    "prettier": "^3.2.5",
     "rimraf": "^5.0.5"
   },
   "publishConfig": {

@@ -1,10 +1,11 @@
-import type { ExpressionValue, FunctionValue } from '@linaria/utils';
+import type { ExpressionValue, FunctionValue } from '@wyw-in-js/shared';
 import { transformSync, type Node } from '@babel/core';
 import { parseExpression } from '@babel/parser';
-import type { Expression } from '@linaria/tags';
 import * as t from '@babel/types';
+import type { Expression } from '@babel/types';
 import { isUnitLess } from './isUnitLess';
 import { cssFunctionTransformerPlugin } from './cssFunctionTransformerPlugin';
+import type { Theme } from '../extendTheme';
 
 interface StyleObj {
   [key: string]: string | number | (() => void) | StyleObj;
@@ -12,13 +13,9 @@ interface StyleObj {
 
 export type PluginCustomOptions = {
   /**
-   * To generate css variables like this `--{cssVariablesPrefix}-palette-primary-main`
-   */
-  cssVariablesPrefix?: string;
-  /**
    * Object to pass as parameter to the styled css callback functions.
    */
-  themeArgs?: Record<string, unknown>;
+  themeArgs?: { theme?: Theme };
 };
 
 type CssFnValueToVariableParams = {

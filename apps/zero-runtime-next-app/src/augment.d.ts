@@ -1,14 +1,34 @@
-import type { Theme } from '@mui/material/styles';
-import type {} from '@mui/material/themeCssVarsAugmentation';
-import '@mui/zero-runtime/theme';
+import type { ExtendTheme } from '@mui/zero-runtime';
 
 declare module '@mui/zero-runtime/theme' {
-  export interface ThemeArgs {
-    theme: Omit<Theme, 'applyStyles'> & {
-      applyStyles: (
-        colorScheme: 'light' | 'dark',
-        styles: Record<string, any>,
-      ) => Record<string, any>;
+  interface ThemeTokens {
+    'max-width': string;
+    'border-radius': string;
+    'font-mono': string;
+    'foreground-rgb': string;
+    'background-start-rgb': string;
+    'background-end-rgb': string;
+    'primary-glow': string;
+    'secondary-glow': string;
+    title: {
+      'start-rgb': string;
+      'end-rgb': string;
+      border: string;
     };
+    callout: {
+      rgb: string;
+      'border-rgb': string;
+    };
+    card: {
+      rgb: string;
+      'border-rgb': string;
+    };
+  }
+
+  interface ThemeArgs {
+    theme: ExtendTheme<{
+      colorScheme: 'light' | 'dark';
+      tokens: ThemeTokens;
+    }>;
   }
 }

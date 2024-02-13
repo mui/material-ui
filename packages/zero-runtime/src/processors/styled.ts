@@ -1,17 +1,21 @@
-import { validateParams } from '@linaria/tags';
-import type {
-  Expression,
+import { parseExpression } from '@babel/parser';
+import type { ObjectExpression, SourceLocation, Identifier, Expression } from '@babel/types';
+import {
   Params,
   TailProcessorParams,
   ValueCache,
+  validateParams,
   IOptions as IBaseOptions,
-  WrappedNode,
-} from '@linaria/tags';
-import { ValueType } from '@linaria/utils';
-import type { Rules, Replacements, ExpressionValue, LazyValue, ConstValue } from '@linaria/utils';
-import { parseExpression } from '@babel/parser';
-import type { ObjectExpression, SourceLocation } from '@babel/types';
-import { CSSObject } from '@emotion/css';
+} from '@wyw-in-js/processor-utils';
+import {
+  ValueType,
+  type ConstValue,
+  type ExpressionValue,
+  type LazyValue,
+  type Replacements,
+  type Rules,
+} from '@wyw-in-js/shared';
+import { CSSObject } from '@emotion/serialize';
 import type { PluginCustomOptions } from '../utils/cssFnValueToVariable';
 import { cssFnValueToVariable } from '../utils/cssFnValueToVariable';
 import { processCssObject } from '../utils/processCssObject';
@@ -30,6 +34,14 @@ type VariantDataTransformed = {
   props: VariantData['props'];
   className: string;
 };
+
+export type WrappedNode =
+  | string
+  | {
+      node: Identifier;
+      nonLinaria?: true;
+      source: string;
+    };
 
 export type IOptions = IBaseOptions & PluginCustomOptions;
 type ComponentNames = keyof Exclude<Theme['components'], undefined>;
@@ -113,11 +125,11 @@ export class StyledProcessor extends BaseProcessor {
   originalLocation: SourceLocation | null = null;
 
   constructor(params: Params, ...args: TailProcessorParams) {
-    super(params, ...args);
     if (params.length <= 2) {
       // no need to do any processing if it is an already transformed call or just a reference.
       throw BaseProcessor.SKIP;
     }
+    super([params[0]], ...args);
     validateParams(
       params,
       ['callee', ['call', 'member'], ['call', 'template']],
@@ -381,7 +393,7 @@ export class StyledProcessor extends BaseProcessor {
     if (!value.name || !value.slot || !theme) {
       return;
     }
-    const componentData = (theme as Theme).components?.[value.name];
+    const componentData = theme.components?.[value.name];
     if (!componentData) {
       return;
     }
