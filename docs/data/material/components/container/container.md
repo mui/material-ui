@@ -7,9 +7,10 @@ githubLabel: 'component: Container'
 
 # Container
 
-<p class="description">The Container component centers .</p>
+<p class="description">The Container component centers primary layout elements with a responsive or fixed width.</p>
 
-While containers can be nested, most layouts do not require a nested container.
+The Container component is intended to be a top-level generic container for centering the layout of your page or app.
+Containers can have a [responsive](#responsive) or [fixed](#fixed) width.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
