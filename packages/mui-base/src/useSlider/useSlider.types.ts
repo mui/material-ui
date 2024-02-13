@@ -164,17 +164,17 @@ export interface AxisProps<T extends Axis> {
   ) => T extends 'horizontal'
     ? { left: string }
     : T extends 'vertical'
-    ? { bottom: string }
-    : T extends 'horizontal-reverse'
-    ? { right: string }
-    : never;
+      ? { bottom: string }
+      : T extends 'horizontal-reverse'
+        ? { right: string }
+        : never;
   leap: (
     percent: number,
   ) => T extends 'horizontal' | 'horizontal-reverse'
     ? { width: string }
     : T extends 'vertical'
-    ? { height: string }
-    : never;
+      ? { height: string }
+      : never;
 }
 
 export interface UseSliderReturnValue {

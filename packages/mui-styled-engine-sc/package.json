@@ -1,6 +1,6 @@
 {
   "name": "@mui/styled-engine-sc",
-  "version": "6.0.0-alpha.15",
+  "version": "6.0.0-alpha.16",
   "private": false,
   "author": "MUI Team",
   "description": "styled() API wrapper package for styled-components.",
@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.23.9",
-    "csstype": "^3.1.2",
+    "csstype": "^3.1.3",
     "hoist-non-react-statics": "^3.3.2",
     "prop-types": "^15.8.1"
   },
