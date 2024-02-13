@@ -4,9 +4,8 @@ import {
   type TailProcessorParams,
   type ValueCache,
   validateParams,
-} from '@linaria/tags';
-import { ValueType } from '@linaria/utils';
-import type { ExpressionValue, Replacements, Rules } from '@linaria/utils';
+} from '@wyw-in-js/processor-utils';
+import { ValueType, type ExpressionValue, type Replacements, type Rules } from '@wyw-in-js/shared';
 
 import { CSSInterpolation } from '@emotion/css';
 import BaseProcessor from './base-processor';
@@ -25,8 +24,7 @@ export class GenerateAtomicsProcessor extends BaseProcessor {
   runtimeConfig?: RuntimeConfig;
 
   constructor(params: Params, ...args: TailProcessorParams) {
-    super(params, ...args);
-
+    super([params[0]], ...args);
     validateParams(params, ['callee', ['call']], `Invalid use of ${this.tagSource.imported} tag.`);
     const [, callParam] = params;
     const [, callParamArgument] = callParam;

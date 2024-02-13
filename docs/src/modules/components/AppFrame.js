@@ -31,10 +31,10 @@ const nProgressStart = debounce(() => {
   NProgress.start();
 }, 200);
 
-const nProgressDone = () => {
+function nProgressDone() {
   nProgressStart.clear();
   NProgress.done();
-};
+}
 
 export function NextNProgressBar() {
   const router = useRouter();
@@ -67,6 +67,7 @@ export function NextNProgressBar() {
 const sx = { minWidth: { sm: 160 } };
 
 const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
+
 export function DeferredAppSearch() {
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
@@ -117,7 +118,7 @@ const StyledAppBar = styled(AppBar, {
     borderColor: (theme.vars || theme).palette.grey[100],
     borderWidth: 0,
     borderBottomWidth: 'thin',
-    backgroundColor: 'rgba(255,255,255,0.9)',
+    backgroundColor: 'rgba(255,255,255,0.8)',
     color: (theme.vars || theme).palette.grey[800],
     ...theme.applyDarkStyles({
       borderColor: alpha(theme.palette.primary[100], 0.08),

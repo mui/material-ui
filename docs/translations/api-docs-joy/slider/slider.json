@@ -60,6 +60,9 @@
     },
     "orientation": { "description": "The component orientation." },
     "scale": { "description": "A transformation function, to change the scale of the slider." },
+    "shiftStep": {
+      "description": "The granularity with which the slider can step through values when using Page Up/Page Down or Shift + Arrow Up/Arrow Down."
+    },
     "size": {
       "description": "The size of the component. It accepts theme values between &#39;sm&#39; and &#39;lg&#39;."
     },

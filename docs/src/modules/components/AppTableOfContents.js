@@ -204,7 +204,7 @@ export default function AppTableOfContents(props) {
   useThrottledOnScroll(items.length > 0 ? findActiveIndex : null, 166);
 
   const handleClick = (hash) => (event) => {
-    // Ignore click for new tab/new window behavior
+    // Ignore click events meant for native link handling, e.g. open in new tab
     if (samePageLinkNavigation(event)) {
       return;
     }

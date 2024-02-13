@@ -26,7 +26,7 @@ The last item of the previous demo shows how you can render a link:
 </ListItemButton>
 ```
 
-You can find a [demo with React Router following this section](/material-ui/guides/routing/#list) of the documentation.
+You can find a [demo with React Router following this section](/material-ui/integrations/routing/#list) of the documentation.
 
 ## Nested List
 
