@@ -7,22 +7,28 @@ import Tabs, { tabsClasses } from '@mui/material/Tabs';
 import Tab, { tabClasses } from '@mui/material/Tab';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import Link from 'docs/src/modules/components/Link';
+import AdsClickRoundedIcon from '@mui/icons-material/AdsClickRounded';
+import FactCheckRoundedIcon from '@mui/icons-material/FactCheckRounded';
 
 export const HEIGHT = 50;
 
 const StyledTab = styled(Tab)(({ theme }) => ({
-  padding: theme.spacing(1),
-  marginBottom: theme.spacing(1),
-  marginRight: theme.spacing(1),
-  fontWeight: 600,
-  minHeight: 32,
+  padding: theme.spacing(0.5, 1, 0.5, 0.5),
+  border: '1px solid',
+  borderColor: 'transparent',
+  marginBottom: theme.spacing(1.5),
+  fontWeight: theme.typography.fontWeightSemiBold,
+  minHeight: 30,
   minWidth: 0,
-  borderRadius: '12px',
+  borderRadius: '8px',
   '&:hover': {
     background: (theme.vars || theme).palette.grey[50],
+    borderColor: (theme.vars || theme).palette.divider,
+    color: (theme.vars || theme).palette.text.primary,
   },
   ...theme.applyDarkStyles({
     '&:hover': {
+      borderColor: (theme.vars || theme).palette.divider,
       background: (theme.vars || theme).palette.primaryDark[700],
     },
     '&.Mui-selected': {
@@ -55,7 +61,7 @@ export default function ComponentPageTabs(props) {
           position: 'sticky',
           top: 65, // to be positioned below the app bar
           mt: 1,
-          pt: 1,
+          pt: 1.5,
           mx: {
             xs: -2,
             sm: 0,
@@ -64,11 +70,13 @@ export default function ComponentPageTabs(props) {
             xs: 2,
             sm: 0,
           },
-          backgroundColor: (theme) =>
-            theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : 'rgba(255,255,255)',
+          backgroundColor: 'background.default',
           borderBottom: 1,
           borderColor: 'divider',
           zIndex: 1000,
+          [`& .${tabsClasses.flexContainer}`]: {
+            gap: 0.5,
+          },
           [`& .${tabsClasses.indicator}`]: {
             transition: 'none',
           },
@@ -89,6 +97,8 @@ export default function ComponentPageTabs(props) {
           href={demosHref}
           label={t('api-docs.demos')}
           value=""
+          icon={<AdsClickRoundedIcon sx={{ fontSize: 16 }} />}
+          iconPosition="start"
         />
         {headers.components?.length > 0 && (
           <StyledTab
@@ -99,6 +109,8 @@ export default function ComponentPageTabs(props) {
             href={componentsHref}
             label={t('api-docs.componentsApi')}
             value="components-api"
+            icon={<FactCheckRoundedIcon sx={{ fontSize: 16 }} />}
+            iconPosition="start"
           />
         )}
         {headers.hooks && headers.hooks.length > 0 && (
@@ -110,6 +122,8 @@ export default function ComponentPageTabs(props) {
             href={hooksHref}
             label={t('api-docs.hooksApi')}
             value="hooks-api"
+            icon={<FactCheckRoundedIcon sx={{ fontSize: 16 }} />}
+            iconPosition="start"
           />
         )}
       </Tabs>
