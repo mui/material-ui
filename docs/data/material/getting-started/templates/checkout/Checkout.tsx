@@ -227,7 +227,11 @@ export default function Checkout() {
                 </Button>
               </Box>
             </Box>
-            <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+            <ToggleColorMode
+              mode={mode}
+              toggleColorMode={toggleColorMode}
+              showCustomTheme={showCustomTheme}
+            />
           </Box>
 
           <Box

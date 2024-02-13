@@ -9,11 +9,16 @@ import ModeNightRoundedIcon from '@mui/icons-material/ModeNightRounded';
 interface ToggleColorModeProps {
   mode: PaletteMode;
   toggleColorMode: () => void;
+  showCustomTheme: any;
 }
 
-function ToggleColorMode({ mode, toggleColorMode }: ToggleColorModeProps) {
+function ToggleColorMode({
+  mode,
+  toggleColorMode,
+  showCustomTheme,
+}: ToggleColorModeProps) {
   return (
-    <Box sx={{ maxWidth: '32px' }}>
+    <Box sx={{ display: showCustomTheme ? 0 : 'none', maxWidth: '32px' }}>
       <Button
         variant="text"
         onClick={toggleColorMode}
