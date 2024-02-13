@@ -59,12 +59,15 @@ export default function Highlighter({
             color: 'primary.500',
           }),
           ...(!selected && {
-            '&:hover, &:focus': {
+            '&:hover': {
               bgcolor: 'primary.50',
               borderColor: 'primary.100',
               '@media (hover: none)': {
                 bgcolor: 'transparent',
               },
+            },
+            '&:focus': {
+              bgcolor: 'transparent',
             },
           }),
           ...theme.applyDarkStyles({
@@ -73,12 +76,15 @@ export default function Highlighter({
               borderColor: alpha(theme.palette.primaryDark[600], 0.3),
             }),
             ...(!selected && {
-              '&:hover, &:focus': {
+              '&:hover': {
                 bgcolor: alpha(theme.palette.primary[900], 0.1),
                 borderColor: alpha(theme.palette.primary[800], 0.4),
                 '@media (hover: none)': {
                   bgcolor: 'transparent',
                 },
+              },
+              '&:focus': {
+                bgcolor: 'transparent',
               },
             }),
             ...(selected && {
