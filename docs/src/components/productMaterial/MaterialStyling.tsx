@@ -19,13 +19,10 @@ const code = `
 <Card
   variant="outlined"
   sx={{
-    p: 1,
-    boxShadow: '0 1px 3px rgba(0, 127, 255, 0.1)',
+    p: 2,
     display: 'flex',
-    flexDirection: {
-      xs: 'column', // mobile
-      sm: 'row', // tablet and up
-    },
+    flexWrap: 'wrap',
+    zIndex: 1,
   }}
 >
   <CardMedia
@@ -33,16 +30,14 @@ const code = `
     width="100"
     height="100"
     alt="123 Main St, Phoenix, AZ cover"
-    src="/static/images/cards/real-estate.png"
+    src="/images/real-estate.png"
     sx={{
-      borderRadius: 0.5,
+      borderRadius: '6px',
       width: { xs: '100%', sm: 100 },
-      mr: { sm: 1.5 },
-      mb: { xs: 1.5, sm: 0 },
     }}
   />
   <Box sx={{ alignSelf: 'center', ml: 2 }}>
-    <Typography variant="body2" color="text.secondary" fontWeight="medium">
+    <Typography variant="body2" color="text.secondary" fontWeight="regular">
       123 Main St, Phoenix, AZ
     </Typography>
     <Typography fontWeight="bold" noWrap>
@@ -55,6 +50,7 @@ const code = `
         pl: 0.5,
         pr: 1,
         typography: 'caption',
+        fontWeight: 'semiBold',
         borderRadius: 10,
         display: 'flex',
         bgcolor: 'primary.50',
@@ -74,9 +70,9 @@ const code = `
   </Box>
 </Card>`;
 
-const startLine = [34, 25, 6];
-const endLine = [48, 30, 8];
-const scrollTo = [540, 320, 0];
+const startLine = [29, 21, 17];
+const endLine = [46, 26, 17];
+const scrollTo = [540, 320, 200];
 
 export const useResizeHandle = (
   target: React.MutableRefObject<HTMLDivElement | null>,
