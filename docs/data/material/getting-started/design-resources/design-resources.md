@@ -12,7 +12,7 @@ Get them on Figma, Sketch, or Adobe XD. It includes over 1,500 unique elements w
 ## Connect Figma plug-in
 
 Connect is a Figma plug-in to help bridge the gap between designers and developers using Material UI.
-It generates a theme file with all the customizations done on Figma that you'll be able to export it and paste it into your codebase, as well as visualize it in a Storybook instance.
+It generates a theme file with all the design tokens and component customizations done on Figma that you'll be able to export and paste into your codebase, as well as visualize in a Storybook instance.
 
 It's currently in beta and available for testing.
 Get it on [the MUI Figma Community profile 👉](/)

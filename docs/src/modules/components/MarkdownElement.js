@@ -412,7 +412,9 @@ const Root = styled('div')(
       // Avoid layout jump
       display: 'inline-block',
       // Avoid very sharp edges
-      borderRadius: 2,
+      borderRadius: 12,
+      border: '1px solid',
+      borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
     },
     '& hr': {
       height: 1,
