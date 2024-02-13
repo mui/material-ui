@@ -38,7 +38,7 @@ Use the `maxWidth` prop to set the maximum size that the Container can grow: `'x
 ### Fixed width
 
 If you're working with designs for a fixed set of viewport sizes (instead of accommodating a fully fluid viewport), you can apply the `fixed` prop to disable the Container's default fluid behavior.
-In this case, the maximum width of the Container is set to equal the minimum width of the current breakpoint.
+When this prop is set to true, the maximum width of the Container is equal to the minimum width at each respective breakpoint.
 
 {{"demo": "FixedContainer.js", "iframe": true, "defaultCodeOpen": false}}
 
