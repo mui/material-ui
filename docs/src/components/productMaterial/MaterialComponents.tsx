@@ -187,7 +187,7 @@ export default function MaterialComponents() {
                     sx={{
                       mx: 'auto',
                       my: 4,
-                      maxWidth: 320,
+                      maxWidth: '90%',
                       '& .MuiTableBody-root > .MuiTableRow-root:last-of-type > .MuiTableCell-root':
                         {
                           borderBottomWidth: 0,
