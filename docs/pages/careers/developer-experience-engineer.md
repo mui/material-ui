@@ -1,4 +1,4 @@
-# Developer Experience Engineer - Core
+# Developer Experience Engineer — Core
 
 <p class="description">You will focus on providing experiences that delight developers using MUI. This role is mostly about MUI Core.</p>
 

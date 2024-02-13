@@ -50,10 +50,13 @@ describe('<Link />', () => {
     it('should fire event callbacks', () => {
       const events = ['onBlur', 'onFocus'];
 
-      const handlers = events.reduce((result, n) => {
-        result[n] = spy();
-        return result;
-      }, {} as Record<string, SinonSpy>);
+      const handlers = events.reduce(
+        (result, n) => {
+          result[n] = spy();
+          return result;
+        },
+        {} as Record<string, SinonSpy>,
+      );
 
       const { container } = render(
         <Link href="/" {...handlers}>

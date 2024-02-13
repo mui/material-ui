@@ -88,10 +88,10 @@ export type ClassKeyInferable<Theme, Props extends object> = string | Styles<The
 export type ClassKeyOfStyles<StylesOrClassKey> = StylesOrClassKey extends string
   ? StylesOrClassKey
   : StylesOrClassKey extends StyleRulesCallback<any, any, infer ClassKey>
-  ? ClassKey
-  : StylesOrClassKey extends StyleRules<any, infer ClassKey>
-  ? ClassKey
-  : never;
+    ? ClassKey
+    : StylesOrClassKey extends StyleRules<any, infer ClassKey>
+      ? ClassKey
+      : never;
 
 /**
  * infers the type of the props used in the styles

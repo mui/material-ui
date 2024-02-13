@@ -2,7 +2,7 @@ import * as React from 'react';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
+import Typography, { TypographyProps } from '@mui/material/Typography';
 import Link, { LinkProps } from 'docs/src/modules/components/Link';
 
 interface GlowingIconContainerProps {
@@ -52,6 +52,7 @@ interface InfoCardProps {
   prefetch?: LinkProps['prefetch'];
   svg?: React.ReactNode;
   title: string;
+  titleProps?: TypographyProps;
 }
 
 export default function InfoCard(props: InfoCardProps) {
@@ -64,6 +65,7 @@ export default function InfoCard(props: InfoCardProps) {
     link,
     svg,
     title,
+    titleProps,
     ...other
   } = props;
   return (
@@ -100,6 +102,7 @@ export default function InfoCard(props: InfoCardProps) {
         mt={icon ? 2 : 0}
         mb={description ? 0.5 : 0}
         className={classNameTitle}
+        {...titleProps}
       >
         {title}
       </Typography>

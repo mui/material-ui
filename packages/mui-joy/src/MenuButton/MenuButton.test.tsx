@@ -11,7 +11,7 @@ const testContext: DropdownContextValue = {
   popupId: 'menu-popup',
   registerPopup: () => {},
   registerTrigger: () => {},
-  state: { open: true },
+  state: { open: true, changeReason: null },
   triggerElement: null,
 };
 
@@ -59,7 +59,7 @@ describe('<MenuButton />', () => {
       const dispatchSpy = spy();
       const context = {
         ...testContext,
-        state: { open: false },
+        state: { open: false, changeReason: null },
         dispatch: dispatchSpy,
       };
 

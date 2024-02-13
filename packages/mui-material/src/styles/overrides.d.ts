@@ -1,4 +1,4 @@
-import { CSSObject, CSSInterpolation } from '@mui/system';
+import { CSSObject, CSSInterpolation, Interpolation } from '@mui/system';
 import { PopperClassKey } from '@mui/base/Popper';
 import { ComponentsPropsList } from './props';
 import { AccordionActionsClassKey } from '../AccordionActions';
@@ -122,14 +122,18 @@ export type OverridesStyleRules<
   Theme = unknown,
 > = Record<
   ClassKey,
-  | CSSInterpolation
-  | ((
-      // Record<string, unknown> is for other props that the slot receive internally
-      // Documenting all ownerStates could be a huge work, let's wait until we have a real needs from developers.
-      props: (ComponentName extends keyof ComponentsPropsList
-        ? { ownerState: ComponentsPropsList[ComponentName] & Record<string, unknown> }
-        : {}) & { theme: Theme } & Record<string, unknown>,
-    ) => CSSInterpolation)
+  Interpolation<
+    // Record<string, unknown> is for other props that the slot receive internally
+    // Documenting all ownerStates could be a huge work, let's wait until we have a real needs from developers.
+    (ComponentName extends keyof ComponentsPropsList
+      ? ComponentsPropsList[ComponentName] &
+          Record<string, unknown> & {
+            ownerState: ComponentsPropsList[ComponentName] & Record<string, unknown>;
+          }
+      : {}) & {
+      theme: Theme;
+    } & Record<string, unknown>
+  >
 >;
 
 export type ComponentsOverrides<Theme = unknown> = {

@@ -280,7 +280,7 @@ function AppWrapper(props) {
   let fonts = [];
   if (pathnameToLanguage(router.asPath).canonicalAs.match(/onepirate/)) {
     fonts = [
-      'https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Work+Sans:300,400&display=swap',
+      'https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&family=Work+Sans:wght@300;400&display=swap',
     ];
   }
 

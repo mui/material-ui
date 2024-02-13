@@ -53,13 +53,12 @@ export default function ProductSuite() {
           <SectionHeadline
             overline="Products"
             title={
-              <Typography variant="h2" sx={{ my: 1 }}>
+              <Typography variant="h2">
                 Every component you need is <GradientText>ready for production</GradientText>
               </Typography>
             }
             description="Build at an accelerated pace without sacrificing flexibility or control."
           />
-          <Box sx={{ mt: 4 }} />
           <ProductsSwitcher
             inView={inView}
             productIndex={productIndex}

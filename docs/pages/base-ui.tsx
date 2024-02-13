@@ -12,7 +12,7 @@ import BaseUICustomization from 'docs/src/components/productBaseUI/BaseUICustomi
 import BaseUIEnd from 'docs/src/components/productBaseUI/BaseUIEnd';
 import BaseUITestimonial from 'docs/src/components/productBaseUI/BaseUITestimonial';
 
-export default function Core() {
+export default function BaseUI() {
   return (
     <BrandingCssVarsProvider>
       <Head
