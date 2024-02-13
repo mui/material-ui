@@ -755,7 +755,7 @@ const communityData: Record<string, React.ReactNode> = {
   'charts/sparkline': yes,
   'charts/gauge': pending,
   'charts/treemap': pending,
-  'charts/heatmap': pending,
+  'charts/heatmap': no,
   'charts/radar': pending,
   'charts/funnel': no,
   'charts/sankey': no,
@@ -1534,9 +1534,9 @@ export default function PricingTable({
         {divider}
         {renderNestedRow('charts/treemap')}
         {divider}
-        {renderNestedRow('charts/heatmap')}
-        {divider}
         {renderNestedRow('charts/radar')}
+        {divider}
+        {renderNestedRow('charts/heatmap')}
         {divider}
         {renderNestedRow('charts/funnel')}
         {divider}
