@@ -1,8 +1,8 @@
 fn({
   MuiAccordionSummary: {
     styleOverrides: {
-      gutters: {
-        '& .MuiAccordionSummary-content': {
+      root: {
+        '&.MuiAccordionSummary-gutters .MuiAccordionSummary-content': {
           color: 'red',
         },
       },

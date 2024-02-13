@@ -17,9 +17,9 @@ export default function transformer(file, api, options) {
       path.replace(
         j.property(
           'init',
-          j.identifier('gutters'),
+          j.identifier('root'),
           j.objectExpression([
-            j.objectProperty(j.stringLiteral('& .MuiAccordionSummary-content'), path.node.value),
+            j.objectProperty(j.stringLiteral(`&${replacementSelector}`), path.node.value),
           ]),
         ),
       );

@@ -85,8 +85,8 @@ Bear in mind that the `.MuiAccordionSummary-gutters` class is applied to the com
  MuiAccordionSummary: {
    styleOverrides: {
 -    contentGutters: {
-+    gutters: {
-+      '& .MuiAccordionSummary-content': {
++    root: {
++      '&.MuiAccordionSummary-gutters .MuiAccordionSummary-content': {
          color: 'red',
         },
 +    },

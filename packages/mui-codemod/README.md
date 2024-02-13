@@ -100,8 +100,8 @@ JS transforms:
  MuiAccordionSummary: {
    styleOverrides: {
 -    contentGutters: {
-+    gutters: {
-+      '& .MuiAccordionSummary-content': {
++    root: {
++      '&.MuiAccordionSummary-gutters .MuiAccordionSummary-content': {
          color: 'red',
         },
 +    },
@@ -111,7 +111,7 @@ JS transforms:
 ```
 
 ```diff
- styled(Component)(() => {
+ styled(AccordionSummary)(() => {
    return {
 -    '& .MuiAccordionSummary-contentGutters': {
 +    '.MuiAccordionSummary-gutters .MuiAccordionSummary-content': {
