@@ -151,7 +151,7 @@ export interface Properties {
 
 interface PropertiesListProps {
   properties: Properties[];
-  displayOption: 'collapsed' | 'expanded';
+  displayOption: 'Collapsed' | 'Expanded';
 }
 
 export default function PropertiesList(props: PropertiesListProps) {

@@ -59,7 +59,7 @@ export type SlotsFormatedParams = {
 
 interface SlotsListProps {
   slots: SlotsFormatedParams[];
-  displayOption: 'collapsed' | 'expanded';
+  displayOption: 'Collapsed' | 'Expanded';
 }
 
 export default function SlotsList(props: SlotsListProps) {

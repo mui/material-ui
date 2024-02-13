@@ -150,7 +150,7 @@ type ExpandableApiItemProps = {
   children?: React.ReactNode;
   className?: string;
   description?: string;
-  displayOption?: 'collapsed' | 'expanded';
+  displayOption?: 'Collapsed' | 'Expanded';
   id: string;
   isExtendable?: boolean;
   note?: string;
@@ -173,10 +173,10 @@ export default function ExpandableApiItem(props: ExpandableApiItemProps) {
     ...other
   } = props;
 
-  const [isExtended, setIsExtended] = React.useState(() => displayOption === 'expanded');
+  const [isExtended, setIsExtended] = React.useState(() => displayOption === 'Expanded');
 
   React.useEffect(() => {
-    setIsExtended(displayOption === 'expanded');
+    setIsExtended(displayOption === 'Expanded');
   }, [displayOption]);
   return (
     <Root

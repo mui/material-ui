@@ -62,7 +62,7 @@ export function getHash({ componentName, className }: HashParams) {
 type ClassesListProps = {
   componentName: string;
   classes: ComponentClassDefinition[];
-  displayOption: 'collapsed' | 'expanded';
+  displayOption: 'Collapsed' | 'Expanded';
   displayClassKeys?: boolean;
 };
 

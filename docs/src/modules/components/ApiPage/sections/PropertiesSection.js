@@ -117,7 +117,7 @@ export default function PropertiesSection(props) {
 
   return (
     <React.Fragment>
-      <Box sx={{ display: 'flex', alignItems: 'baseline', mb: 1 }}>
+      <Box sx={{ display: 'flex', alignItems: 'baseline' }}>
         <Level id={titleHash} style={{ flexGrow: 1 }}>
           {t(title)}
           <a
@@ -134,7 +134,7 @@ export default function PropertiesSection(props) {
         <ToggleDisplayOption displayOption={displayOption} setDisplayOption={setDisplayOption} />
       </Box>
       {spreadHint && <p dangerouslySetInnerHTML={{ __html: spreadHint }} />}
-      {displayOption === 'table' ? (
+      {displayOption === 'Table' ? (
         <PropertiesTable properties={formatedProperties} />
       ) : (
         <PropertiesList properties={formatedProperties} displayOption={displayOption} />
