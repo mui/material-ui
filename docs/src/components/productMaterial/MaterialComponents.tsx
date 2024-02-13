@@ -151,7 +151,7 @@ export default function MaterialComponents() {
             }
             description="A meticulous implementation of Material Design; every Material UI component meets the highest standards of form and function."
           />
-          <Group desktopColumns={2} sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
+          <Group desktopColumns={2} sx={{ m: -2, p: 2 }}>
             {DEMOS.map((name) => (
               <Highlighter key={name} selected={name === demo} onClick={() => setDemo(name)}>
                 <Item icon={React.cloneElement(icons[name])} title={name} />

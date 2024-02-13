@@ -176,7 +176,7 @@ export default function MaterialStyling() {
             }
             description="CSS utilities allow you to move faster and make for a smooth developer experience when styling any component."
           />
-          <Group sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
+          <Group sx={{ m: -2, p: 2 }}>
             <Highlighter disableBorder {...getSelectedProps(0)} onClick={() => setIndex(0)}>
               <Item
                 icon={<AutoAwesomeRounded color="warning" />}

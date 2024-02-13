@@ -90,7 +90,7 @@ export default function MaterialTheming() {
             }
             description="Start quickly with Material Design or use the advanced theming feature to easily tailor the components to your needs."
           />
-          <Group sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
+          <Group sx={{ m: -2, p: 2 }}>
             <Highlighter disableBorder selected={customized} onClick={() => setCustomized(true)}>
               <Item
                 icon={<AutoAwesomeRounded color="warning" />}
