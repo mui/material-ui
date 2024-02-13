@@ -6,7 +6,13 @@
     "lib": ["ES2017", "ES2021.String", "DOM"],
     "composite": true,
     "noEmit": false,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "paths": {
+      "@mui/system": ["./packages/mui-system/src"],
+      "@mui/system/*": ["./packages/mui-system/src/*"],
+      "@mui/utils": ["./packages/mui-utils/src"],
+      "@mui/utils/*": ["./packages/mui-utils/src/*"]
+    }
   },
   "include": ["src/**/*.ts"],
   "exclude": ["./tsup.config.ts"]
