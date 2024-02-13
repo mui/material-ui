@@ -100,7 +100,6 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props,
 
   const { LANGUAGES_IGNORE_PAGES } = useDocsConfig();
 
-
   let linkAs = linkAsProp || as || (href as string);
   if (
     userLanguage !== 'en' &&
