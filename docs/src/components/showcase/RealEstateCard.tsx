@@ -17,7 +17,7 @@ export default function RealEstateCard({ sx, ...props }: CardProps) {
           display: 'flex',
           flexWrap: 'wrap',
           zIndex: 1,
-          boxShadow: (theme) => `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
+          boxShadow: `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
           ...theme.applyDarkStyles({
             bgcolor: 'primaryDark.900',
             boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.4)',

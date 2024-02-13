@@ -13,13 +13,7 @@ import PauseRounded from '@mui/icons-material/PauseRounded';
 import ShuffleRoundedIcon from '@mui/icons-material/ShuffleRounded';
 import LoopRoundedIcon from '@mui/icons-material/LoopRounded';
 
-export default function PlayerCard({
-  disableTheming,
-  extraStyles,
-}: {
-  disableTheming?: boolean;
-  extraStyles?: boolean;
-}) {
+export default function PlayerCard({ disableTheming }: { disableTheming?: boolean }) {
   const [paused, setPaused] = React.useState(true);
   return (
     <Fade in timeout={700}>

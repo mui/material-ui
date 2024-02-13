@@ -120,7 +120,7 @@ export default function MaterialTheming() {
               }}
             >
               {customized ? (
-                <PlayerCard extraStyles />
+                <PlayerCard />
               ) : (
                 <CssVarsProvider>
                   <PlayerCard disableTheming />
