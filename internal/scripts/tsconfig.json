@@ -7,6 +7,6 @@
     "esModuleInterop": true,
     "isolatedModules": true
   },
-  "include": ["./src/*.ts", "./test/*.ts"],
-  "references": [{ "path": "../docs-utils/tsconfig.build.json" }]
+  "include": ["./typescript-to-proptypes/**/*.ts"],
+  "references": [{ "path": "../../packages/docs-utils/tsconfig.build.json" }]
 }

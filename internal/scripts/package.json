@@ -1,17 +1,19 @@
 {
-  "name": "@mui-internal/typescript-to-proptypes",
-  "version": "1.0.3",
+  "name": "@mui/internal-scripts",
+  "version": "1.0.0",
   "author": "MUI Team",
-  "description": "Generate proptypes from TypeScript declarations. This is a fork of the typescript-to-proptypes package adapted for MUI needs. This is an internal package not meant for general use.",
+  "description": "Utilities supporting MUI libraries build and docs generation. This is an internal package not meant for general use.",
   "main": "build/index.js",
   "exports": {
-    ".": "./build/index.js"
+    "./typescript-to-proptypes": {
+      "default": "./build/typescript-to-proptypes/index.js",
+      "types": "./build/typescript-to-proptypes/index.d.ts"
+    }
   },
-  "types": "./build/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/mui/material-ui.git",
-    "directory": "packages/typescript-to-proptypes"
+    "directory": "internal/scripts"
   },
   "license": "MIT",
   "scripts": {
@@ -19,7 +21,7 @@
     "build": "tsc -b tsconfig.build.json",
     "release:publish": "pnpm publish --tag latest",
     "release:publish:dry-run": "pnpm publish --tag latest --registry=\"http://localhost:4873/\"",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha --config packages/typescript-to-proptypes/.mocharc.js 'packages/typescript-to-proptypes/**/*.test.ts'",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha --config internal/scripts/typescript-to-proptypes/test/.mocharc.js 'internal/scripts/typescript-to-proptypes/**/*.test.ts'",
     "typescript": "tsc -b tsconfig.json"
   },
   "dependencies": {
