@@ -7,7 +7,6 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import { useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/system';
 
 const userTestimonials = [
