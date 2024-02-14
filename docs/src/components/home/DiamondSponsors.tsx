@@ -21,6 +21,12 @@ const DIAMONDs = [
     description: 'Management platform for Google Cloud and AWS.',
     href: 'https://www.doit.com/flexsave/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
+  {
+    src: '/static/sponsors/marblism-square.svg',
+    name: 'Marblism',
+    description: 'Generate a fully functional web app using AI.',
+    href: 'https://www.marblism.com/?utm_source=twitter',
+  },
 ];
 
 export default function DiamondSponsors() {
