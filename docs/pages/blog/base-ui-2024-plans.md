@@ -59,7 +59,7 @@ This pattern has the potential to radically improve the customization experience
 We're still fleshing out the details.
 We know that a significant number of projects depend on the existing API, and we want to assure you that one of our top priorities is to provide a smooth migration experience.
 
-If you have any questions or remarks about this change, feel free to comment on the [RFC](https://github.com/mui/material-ui/discussions/41085) we recently published.
+If you have any questions or remarks about this change, chime in on [the RFC on GitHub](https://github.com/mui/material-ui/discussions/41085).
 
 ## More thorough animation support
 
