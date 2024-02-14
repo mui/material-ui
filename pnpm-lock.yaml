@@ -155,6 +155,9 @@ importers:
       babel-loader:
         specifier: ^9.1.3
         version: 9.1.3(@babel/core@7.23.9)(webpack@5.90.0)
+      babel-plugin-add-import-extension:
+        specifier: ^1.6.0
+        version: 1.6.0(@babel/core@7.23.9)
       babel-plugin-istanbul:
         specifier: ^6.1.1
         version: 6.1.1
@@ -8990,6 +8993,15 @@ packages:
       deepmerge: 2.2.1
       object.omit: 3.0.0
     dev: false
+
+  /babel-plugin-add-import-extension@1.6.0(@babel/core@7.23.9):
+    resolution: {integrity: sha512-JVSQPMzNzN/S4wPRoKQ7+u8PlkV//BPUMnfWVbr63zcE+6yHdU2Mblz10Vf7qe+6Rmu4svF5jG7JxdcPi9VvKg==}
+    peerDependencies:
+      '@babel/core': ^7.23.9
+    dependencies:
+      '@babel/core': 7.23.9
+      '@babel/helper-plugin-utils': 7.22.5
+    dev: true
 
   /babel-plugin-istanbul@6.1.1:
     resolution: {integrity: sha512-Y1IQok9821cC9onCx5otgFfRm7Lm+I+wwxOx738M/WLPZ9Q42m4IG5W0FNX8WLL2gYMZo3JkuXIH2DOpWM+qwA==}

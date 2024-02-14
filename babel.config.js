@@ -89,6 +89,7 @@ module.exports = function getBabelConfig(api) {
         mode: 'unsafe-wrap',
       },
     ],
+    ['babel-plugin-add-import-extension', { extension: useESModules ? 'mjs' : 'js' }],
   ];
 
   if (process.env.NODE_ENV === 'production') {

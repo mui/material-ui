@@ -69,6 +69,8 @@ async function run(argv) {
     }[bundle],
   );
 
+  const outExtension = bundle === 'node' ? '.js' : '.mjs';
+
   const babelArgs = [
     '--config-file',
     babelConfigPath,
@@ -77,6 +79,8 @@ async function run(argv) {
     srcDir,
     '--out-dir',
     outDir,
+    '--out-file-extension',
+    outExtension,
     '--ignore',
     // Need to put these patterns in quotes otherwise they might be evaluated by the used terminal.
     `"${ignore.join('","')}"`,

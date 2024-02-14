@@ -38,8 +38,8 @@ async function createModulePackages({ from, to }) {
       const packageJson = {
         sideEffects: false,
         module: topLevelPathImportsAreCommonJSModules
-          ? path.posix.join('../esm', directoryPackage, 'index.js')
-          : './index.js',
+          ? path.posix.join('../esm', directoryPackage, 'index.mjs')
+          : './index.mjs',
         main: topLevelPathImportsAreCommonJSModules
           ? './index.js'
           : path.posix.join('../node', directoryPackage, 'index.js'),
@@ -89,17 +89,27 @@ async function createPackageFile() {
   const { nyc, scripts, devDependencies, workspaces, ...packageDataOther } =
     JSON.parse(packageData);
 
+  const topLevelPathImportsAreCommonJSModules = fse.existsSync(
+    path.resolve(buildPath, './esm/index.mjs'),
+  );
+
   const newPackageData = {
     ...packageDataOther,
     private: false,
     ...(packageDataOther.main
       ? {
-          main: fse.existsSync(path.resolve(buildPath, './node/index.js'))
-            ? './node/index.js'
-            : './index.js',
-          module: fse.existsSync(path.resolve(buildPath, './esm/index.js'))
-            ? './esm/index.js'
-            : './index.js',
+          main: topLevelPathImportsAreCommonJSModules ? './index.js' : './node/index.js',
+          module: topLevelPathImportsAreCommonJSModules ? './esm/index.mjs' : './index.mjs',
+          exports: {
+            '.': {
+              import: topLevelPathImportsAreCommonJSModules ? './esm/index.mjs' : './index.mjs',
+              require: topLevelPathImportsAreCommonJSModules ? './index.js' : './node/index.js',
+            },
+            './*': {
+              import: topLevelPathImportsAreCommonJSModules ? './esm/*/index.mjs' : './*/index.mjs',
+              require: topLevelPathImportsAreCommonJSModules ? './*/index.js' : './node/*/index.js',
+            },
+          },
         }
       : {}),
   };
@@ -133,9 +143,9 @@ async function addLicense(packageData) {
 `;
   await Promise.all(
     [
-      './index.js',
-      './legacy/index.js',
-      './modern/index.js',
+      './index.mjs',
+      './legacy/index.mjs',
+      './modern/index.mjs',
       './node/index.js',
       './umd/material-ui.development.js',
       './umd/material-ui.production.min.js',
