@@ -180,9 +180,9 @@ export default function DiamondSponsors() {
           <Typography variant="caption" fontWeight="semiBold" textAlign="center">
             {t('becomeADiamondSponsor')}
           </Typography>
-          <Typography variant="caption" fontWeight="regular" color="text.secondary">
+          {/* <Typography variant="caption" fontWeight="regular" color="text.secondary">
             {t('diamondSponsorVacancies')}
-          </Typography>
+          </Typography> */}
         </Link>
       </Stack>
     </Stack>
