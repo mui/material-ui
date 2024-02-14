@@ -98,7 +98,7 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
 
   const handleClose = () => {
     setAnchorEl(null);
-    setOpen(false); // Close the menu
+    setOpen(false);
   };
 
   return (
@@ -138,7 +138,7 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
           <CheckIcon
             sx={{ fontSize: '0.85rem', mr: 1, opacity: displayOption === 'Table' ? 1 : 0 }}
           />
-          Table view
+          Table
         </MenuItem>
         <MenuItem
           value="Expanded"
@@ -151,7 +151,7 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
           <CheckIcon
             sx={{ fontSize: '0.85rem', mr: 1, opacity: displayOption === 'Expanded' ? 1 : 0 }}
           />
-          Expanded list view
+          Expanded list
         </MenuItem>
         <MenuItem
           value="Collapsed"
@@ -164,7 +164,7 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
           <CheckIcon
             sx={{ fontSize: '0.85rem', mr: 1, opacity: displayOption === 'Collapsed' ? 1 : 0 }}
           />
-          Collapsed list view
+          Collapsed list
         </MenuItem>
       </Menu>
     </React.Fragment>
