@@ -56,11 +56,8 @@ function AppSettingsDrawer(props) {
   };
 
   React.useEffect(() => {
-    if (mode === 'system') {
-      changeTheme({ paletteMode: preferredMode });
-    } else {
-      changeTheme({ paletteMode: mode });
-    }
+    const paletteMode = mode === 'system' ? preferredMode : mode;
+    changeTheme({ paletteMode });
   }, [changeTheme, mode, preferredMode]);
 
   const handleChangeDirection = (event, direction) => {

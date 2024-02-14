@@ -50,11 +50,8 @@ export default function ThemeModeToggle() {
   };
 
   React.useEffect(() => {
-    if (mode === 'system') {
-      changeTheme({ paletteMode: preferredMode });
-    } else {
-      changeTheme({ paletteMode: mode });
-    }
+    const paletteMode = mode === 'system' ? preferredMode : mode;
+    changeTheme({ paletteMode });
   }, [changeTheme, mode, preferredMode]);
 
   if (mode === null) {
