@@ -103,7 +103,7 @@ importers:
         version: link:packages/test-utils
       '@mui/internal-scripts':
         specifier: workspace:^
-        version: link:internal/scripts
+        version: link:packages-internal/scripts
       '@mui/joy':
         specifier: workspace:*
         version: link:packages/mui-joy/build
@@ -838,7 +838,7 @@ importers:
         version: link:../packages/test-utils
       '@mui/internal-scripts':
         specifier: workspace:^
-        version: link:../internal/scripts
+        version: link:../packages-internal/scripts
       '@types/autosuggest-highlight':
         specifier: ^3.2.3
         version: 3.2.3
@@ -903,7 +903,7 @@ importers:
         specifier: ^17.7.2
         version: 17.7.2
 
-  internal/scripts:
+  packages-internal/scripts:
     dependencies:
       '@babel/core':
         specifier: ^7.23.9

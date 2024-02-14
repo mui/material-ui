@@ -28,7 +28,7 @@ module.exports = {
       '@mui-internal/docs-utils': path.resolve(__dirname, './packages/docs-utils/src'),
       '@mui/internal-scripts/typescript-to-proptypes': path.resolve(
         __dirname,
-        './internal/scripts/typescript-to-proptypes/src',
+        './packages-internal/scripts/typescript-to-proptypes/src',
       ),
       docs: path.resolve(__dirname, './docs'),
     },

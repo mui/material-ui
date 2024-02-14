@@ -13,7 +13,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/mui/material-ui.git",
-    "directory": "internal/scripts"
+    "directory": "packages-internal/scripts"
   },
   "license": "MIT",
   "scripts": {
@@ -21,7 +21,7 @@
     "build": "tsc -b tsconfig.build.json",
     "release:publish": "pnpm publish --tag latest",
     "release:publish:dry-run": "pnpm publish --tag latest --registry=\"http://localhost:4873/\"",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha --config internal/scripts/typescript-to-proptypes/test/.mocharc.js 'internal/scripts/typescript-to-proptypes/**/*.test.ts'",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha --config packages-internal/scripts/typescript-to-proptypes/test/.mocharc.js 'packages-internal/scripts/typescript-to-proptypes/**/*.test.ts'",
     "typescript": "tsc -b tsconfig.json"
   },
   "dependencies": {
