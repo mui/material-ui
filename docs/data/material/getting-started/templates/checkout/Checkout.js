@@ -226,7 +226,11 @@ export default function Checkout() {
                 </Button>
               </Box>
             </Box>
-            <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+            <ToggleColorMode
+              mode={mode}
+              toggleColorMode={toggleColorMode}
+              showCustomTheme={showCustomTheme}
+            />
           </Box>
 
           <Box
@@ -308,6 +312,7 @@ export default function Checkout() {
                     flexGrow: 1,
                     gap: 1,
                     pb: { xs: 12, sm: 0 },
+                    mt: { xs: 2, sm: 0 },
                   }}
                 >
                   {activeStep !== 0 && (

@@ -4,6 +4,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import FormLabel from '@mui/material/FormLabel';
 import InputBase from '@mui/material/InputBase';
+import Divider from '@mui/material/Divider';
 import { styled } from '@mui/system';
 
 const FormGrid = styled(Grid)(({ theme }) => ({
@@ -39,7 +40,7 @@ export default function AddressForm() {
             sx={{ minWidth: 280 }}
           />
         </FormGrid>
-        <FormGrid item xs={12} sm={6}>
+        <FormGrid item xs={6} sm={6}>
           <FormLabel required>Country</FormLabel>
           <InputBase
             id="country"
@@ -48,10 +49,10 @@ export default function AddressForm() {
             placeholder="United States"
             autoComplete="shipping country"
             inputProps={{ required: true }}
-            sx={{ minWidth: 280 }}
+            sx={{ minWidth: { xs: '', sm: 280 } }}
           />
         </FormGrid>
-        <FormGrid item xs={12} sm={6}>
+        <FormGrid item xs={6} sm={6}>
           <FormLabel required>Zip / Postal code</FormLabel>
           <InputBase
             id="zip"
@@ -60,7 +61,7 @@ export default function AddressForm() {
             placeholder="12345"
             autoComplete="shipping postal-code"
             inputProps={{ required: true }}
-            sx={{ minWidth: 280 }}
+            sx={{ minWidth: { xs: '', sm: 280 } }}
           />
         </FormGrid>
 
@@ -88,7 +89,7 @@ export default function AddressForm() {
             sx={{ minWidth: 280 }}
           />
         </FormGrid>
-        <FormGrid item xs={12} sm={6}>
+        <FormGrid item xs={6} sm={6}>
           <FormLabel required>City</FormLabel>
           <InputBase
             id="City"
@@ -97,10 +98,10 @@ export default function AddressForm() {
             placeholder="New York"
             autoComplete="City"
             inputProps={{ required: true }}
-            sx={{ minWidth: 280 }}
+            sx={{ minWidth: { xs: '', sm: 280 } }}
           />
         </FormGrid>
-        <FormGrid item xs={12} sm={6}>
+        <FormGrid item xs={6} sm={6}>
           <FormLabel required>State</FormLabel>
           <InputBase
             id="State"
@@ -109,7 +110,7 @@ export default function AddressForm() {
             placeholder="NY"
             autoComplete="State"
             inputProps={{ required: true }}
-            sx={{ minWidth: 280 }}
+            sx={{ minWidth: { xs: '', sm: 280 } }}
           />
         </FormGrid>
         <FormGrid item xs={12}>
@@ -119,6 +120,7 @@ export default function AddressForm() {
           />
         </FormGrid>
       </Grid>
+      <Divider sx={{ display: { xs: '', sm: 'none' }, mt: 2 }} />
     </React.Fragment>
   );
 }

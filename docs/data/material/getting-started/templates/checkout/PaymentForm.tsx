@@ -6,6 +6,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import Divider from '@mui/material/Divider';
 import FormLabel from '@mui/material/FormLabel';
 import InputBase from '@mui/material/InputBase';
 import { styled } from '@mui/system';
@@ -90,7 +91,7 @@ export default function PaymentForm() {
             sx={{ minWidth: 280 }}
           />
         </FormGrid>
-        <FormGrid item xs={12} md={6}>
+        <FormGrid item xs={6} md={6}>
           <FormLabel required>Expiry date</FormLabel>
           <InputBase
             value={expiryDate}
@@ -101,10 +102,10 @@ export default function PaymentForm() {
             placeholder="02 / 24"
             autoComplete="cc-exp"
             inputProps={{ required: true }}
-            sx={{ minWidth: 280, maxHeight: '40px' }}
+            sx={{ minWidth: { xs: '', sm: 280 }, maxHeight: '40px' }}
           />
         </FormGrid>
-        <FormGrid item xs={12} md={6}>
+        <FormGrid item xs={6} md={6}>
           <FormLabel required>CVV</FormLabel>
           <InputBase
             value={cvv}
@@ -115,7 +116,7 @@ export default function PaymentForm() {
             placeholder="123"
             autoComplete="cc-csc"
             inputProps={{ required: true }}
-            sx={{ minWidth: 280 }}
+            sx={{ minWidth: { xs: '', sm: 280 } }}
           />
         </FormGrid>
         <FormGrid item xs={12}>
@@ -125,6 +126,7 @@ export default function PaymentForm() {
           />
         </FormGrid>
       </Grid>
+      <Divider sx={{ display: { xs: '', sm: 'none' }, mt: 2 }} />
     </React.Fragment>
   );
 }
