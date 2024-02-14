@@ -40,40 +40,33 @@ const code = `
   />
   <Box sx={{ alignSelf: 'center', ml: 2 }}>
     <Typography variant="body2" color="text.secondary" fontWeight="regular">
-      123 Main St, Phoenix, AZ
+      123 Main St, Phoenix, AZ, USA
     </Typography>
-    <Typography fontWeight="bold" noWrap>
+    <Typography fontWeight="bold" noWrap gutterBottom>
       $280k - $310k
     </Typography>
-    <Box
+    <Chip
+      size="small"
+      variant="outlined"
+      icon={<InfoRounded />}
+      label="Confidence score: 85%"
       sx={(theme) => ({
-        mt: 1,
-        py: 0.4,
-        pl: 0.5,
-        pr: 1,
-        borderRadius: 12,
-        display: 'flex',
-        border: '1px solid',
-        typography: 'caption',
-        fontWeight: 'semiBold',
-        bgcolor: 'primary.50',
-        borderColor: 'primary.100',
-        color: 'primary.700',
+        '.MuiChip-icon': { fontSize: 16, ml: '4px', color: 'success.500' },
+        bgcolor: 'success.50',
+        borderColor: 'success.100',
+        color: 'success.900',
         ...theme.applyDarkStyles({
           bgcolor: 'primaryDark.700',
-          color: 'primary.200',
-          borderColor: 'primary.900',
+          color: 'success.200',
+          borderColor: 'success.900',
         }),
       })}
-    >
-      <InfoRounded sx={{ fontSize: 16, mr: 0.5, mt: '1px' }} />
-      Confidence score: 85%
-    </Box>
+    />
   </Box>
 </Card>`;
 
-const startLine = [36, 21, 17];
-const endLine = [44, 26, 17];
+const startLine = [32, 21, 17];
+const endLine = [42, 26, 17];
 const scrollTo = [540, 320, 200];
 
 export const useResizeHandle = (
