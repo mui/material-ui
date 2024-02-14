@@ -91,14 +91,14 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
     setOpen(true);
   };
 
-  const handleMenuItemClick = (newDisplayOption: ApiDisplayOptions) => {
-    setDisplayOption(newDisplayOption);
-    handleClose();
-  };
-
   const handleClose = () => {
     setAnchorEl(null);
     setOpen(false);
+  };
+
+  const handleMenuItemClick = (newDisplayOption: ApiDisplayOptions) => {
+    setDisplayOption(newDisplayOption);
+    handleClose();
   };
 
   return (
