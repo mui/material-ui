@@ -1,4 +1,5 @@
 'use client';
+
 import * as React from 'react';
 
 const NOOP = () => {};
