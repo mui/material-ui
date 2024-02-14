@@ -8,7 +8,7 @@ import Tab, { tabClasses } from '@mui/material/Tab';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import Link from 'docs/src/modules/components/Link';
 import AdsClickRoundedIcon from '@mui/icons-material/AdsClickRounded';
-import FactCheckRoundedIcon from '@mui/icons-material/FactCheckRounded';
+import ApiRoundedIcon from '@mui/icons-material/ApiRounded';
 
 export const HEIGHT = 50;
 
@@ -109,7 +109,7 @@ export default function ComponentPageTabs(props) {
             href={componentsHref}
             label={t('api-docs.componentsApi')}
             value="components-api"
-            icon={<FactCheckRoundedIcon sx={{ fontSize: 16 }} />}
+            icon={<ApiRoundedIcon sx={{ fontSize: 16 }} />}
             iconPosition="start"
           />
         )}
@@ -122,7 +122,7 @@ export default function ComponentPageTabs(props) {
             href={hooksHref}
             label={t('api-docs.hooksApi')}
             value="hooks-api"
-            icon={<FactCheckRoundedIcon sx={{ fontSize: 16 }} />}
+            icon={<ApiRoundedIcon sx={{ fontSize: 16 }} />}
             iconPosition="start"
           />
         )}
