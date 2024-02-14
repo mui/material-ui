@@ -7,7 +7,7 @@ import InputBase from '@mui/material/InputBase';
 import Divider from '@mui/material/Divider';
 import { styled } from '@mui/system';
 
-const FormGrid = styled(Grid)(({ theme }) => ({
+const FormGrid = styled(Grid)(() => ({
   display: 'flex',
   flexDirection: 'column',
 }));

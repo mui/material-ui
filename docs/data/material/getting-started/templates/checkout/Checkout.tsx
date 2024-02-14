@@ -15,6 +15,7 @@ import { PaletteMode } from '@mui/material';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
+import SvgMaterialDesign from 'docs/src/icons/SvgMaterialDesign';
 
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
@@ -22,7 +23,6 @@ import Review from './Review';
 import Info from './Info';
 import ToggleColorMode from './ToggleColorMode';
 import getLPTheme from '../landing-page/getLPTheme';
-import SvgMaterialDesign from 'docs/src/icons/SvgMaterialDesign';
 
 const defaultTheme = createTheme({});
 

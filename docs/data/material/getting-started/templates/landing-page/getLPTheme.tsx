@@ -2,7 +2,6 @@ import type {} from '@mui/material/themeCssVarsAugmentation';
 import { ThemeOptions, alpha } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
 import { PaletteMode } from '@mui/material';
-import { typography } from '@mui/system';
 
 declare module '@mui/material/styles/createPalette' {
   interface ColorRange {
@@ -713,7 +712,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
         variants: [
           {
             props: { completed: true },
-            style: ({ theme }) => ({
+            style: () => ({
               width: 12,
               height: 12,
             }),

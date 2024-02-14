@@ -14,7 +14,7 @@ import { styled } from '@mui/system';
 import CreditCardRoundedIcon from '@mui/icons-material/CreditCardRounded';
 import SimCardRoundedIcon from '@mui/icons-material/SimCardRounded';
 
-const FormGrid = styled(Grid)(({ theme }) => ({
+const FormGrid = styled(Grid)(() => ({
   display: 'flex',
   flexDirection: 'column',
 }));

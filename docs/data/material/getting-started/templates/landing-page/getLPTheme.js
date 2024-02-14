@@ -693,7 +693,7 @@ export default function getLPTheme(mode) {
         variants: [
           {
             props: { completed: true },
-            style: ({ theme }) => ({
+            style: () => ({
               width: 12,
               height: 12,
             }),
