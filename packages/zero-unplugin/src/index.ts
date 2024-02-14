@@ -225,7 +225,8 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
             }),
           )}`;
           return {
-            code: `import ${JSON.stringify(data)};\n${result.code}`,
+            // CSS import should be the last so that nested components produce correct CSS order injection.
+            code: `${result.code}\nimport ${JSON.stringify(data)};`,
             map: result.sourceMap,
           };
         }
@@ -233,7 +234,7 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
         cssFileLookup.set(cssId, cssFilename);
         cssLookup.set(cssFilename, cssText);
         return {
-          code: `import ${JSON.stringify(`./${cssFilename}`)};\n${result.code}`,
+          code: `${result.code}\nimport ${JSON.stringify(`./${cssFilename}`)};`,
           map: result.sourceMap,
         };
       } catch (e) {
