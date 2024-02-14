@@ -49,7 +49,7 @@ We need talented people to keep that going!
 Our products empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
 
 But providing React components isn't enough.
-In our [last developer survey](https://mui.com/blog/2021-developer-survey-results/), we learned that the majority of our audience are full-stack developers.
+In our [last Developer Survey](https://mui.com/blog/2021-developer-survey-results/), we learned that the majority of our audience are full-stack developers.
 They are looking for ways to move faster.
 They are working on a couple of new projects every year, and where the integration between the UI and the database is key.
 

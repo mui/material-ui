@@ -183,7 +183,7 @@ const MenuItem = React.forwardRef(function MenuItem<RootComponentType extends Re
     [context.dense, dense, disableGutters],
   );
 
-  const menuItemRef = React.useRef<HTMLElement | null>(null);
+  const menuItemRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(menuItemRef, ref);
 
   const { getRootProps, disabled, focusVisible, highlighted } = useMenuItem({

@@ -1,4 +1,4 @@
-import { ComponentClassDefinition } from '@mui-internal/docs-utilities/ComponentClassDefinition';
+import { ComponentClassDefinition } from '@mui-internal/docs-utils';
 import { ComponentInfo, HookInfo } from './buildApiUtils';
 import { CreateTypeScriptProjectOptions } from './utils/createTypeScriptProject';
 import { CreateDescribeablePropSettings } from './utils/createDescribeableProp';
@@ -40,7 +40,7 @@ export interface ProjectSettings {
   /**
    * Callback function to be called when the API generation is completed
    */
-  onCompleted?: () => void;
+  onCompleted?: () => void | Promise<void>;
   /**
    * Callback to customize the manifest file before it's written to the disk
    */

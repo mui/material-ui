@@ -3,7 +3,7 @@ import type { NextConfig } from 'next';
 import { findPagesDir } from 'next/dist/lib/find-pages-dir';
 import {
   webpack as zeroWebpackPlugin,
-  PluginOptions as BaseZeroPluginConfig,
+  type PluginOptions as BaseZeroPluginConfig,
 } from '@mui/zero-unplugin';
 
 export type ZeroPluginConfig = BaseZeroPluginConfig & {

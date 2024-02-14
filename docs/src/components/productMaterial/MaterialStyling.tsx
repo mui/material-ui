@@ -171,17 +171,15 @@ export default function MaterialStyling() {
     <Section>
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box sx={{ maxWidth: 500 }}>
-            <SectionHeadline
-              overline="Styling"
-              title={
-                <Typography variant="h2">
-                  Rapidly add and tweak any styles using <GradientText>CSS utilities</GradientText>
-                </Typography>
-              }
-              description="CSS utilities allow you to move faster and make for a smooth developer experience when styling any component."
-            />
-          </Box>
+          <SectionHeadline
+            overline="Styling"
+            title={
+              <Typography variant="h2">
+                Rapidly add and tweak any styles using <GradientText>CSS utilities</GradientText>
+              </Typography>
+            }
+            description="CSS utilities allow you to move faster and make for a smooth developer experience when styling any component."
+          />
           <Group sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
             <Highlighter disableBorder {...getSelectedProps(0)} onClick={() => setIndex(0)}>
               <Item

@@ -264,6 +264,7 @@ We do not recommend using `type="number"` with a Text Field due to potential usa
 - it allows certain non-numeric characters ('e', '+', '-', '.') and silently discards others
 - the functionality of scrolling to increment/decrement the number can cause accidental and hard-to-notice changes
 - and more—see [Why the GOV.UK Design System team changed the input type for numbers](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) for a more detailed explanation of the limitations of `<input type="number">`
+
   :::
 
 If you need a text field with number validation, you can use Base UI's [Number Input](/base-ui/react-number-input/) instead.

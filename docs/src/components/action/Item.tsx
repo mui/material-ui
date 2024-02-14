@@ -13,6 +13,7 @@ export function Group({
     <Box
       {...props}
       sx={{
+        overflow: 'auto',
         maxWidth: rowLayout ? 'none' : { md: 500 },
         display: { xs: 'grid', sm: rowLayout ? 'flex' : 'grid' },
         justifyContent: { xs: 'start', sm: rowLayout ? 'center' : null },

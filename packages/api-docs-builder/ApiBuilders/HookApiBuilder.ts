@@ -30,12 +30,15 @@ interface ParsedProperty {
   typeStr: string;
 }
 
-const parseProperty = (propertySymbol: ts.Symbol, project: TypeScriptProject): ParsedProperty => ({
+const parseProperty = async (
+  propertySymbol: ts.Symbol,
+  project: TypeScriptProject,
+): Promise<ParsedProperty> => ({
   name: propertySymbol.name,
   description: getSymbolDescription(propertySymbol, project),
   tags: getSymbolJSDocTags(propertySymbol),
   required: !propertySymbol.declarations?.find(ts.isPropertySignature)?.questionToken,
-  typeStr: stringifySymbol(propertySymbol, project),
+  typeStr: await stringifySymbol(propertySymbol, project),
 });
 
 export interface ReactApi extends ReactDocgenApi {
@@ -394,7 +397,7 @@ const attachTranslations = (reactApi: ReactApi) => {
   reactApi.translations = translations;
 };
 
-const generateApiJson = (outputDirectory: string, reactApi: ReactApi) => {
+const generateApiJson = async (outputDirectory: string, reactApi: ReactApi) => {
   /**
    * Gather the metadata needed for the component's API page.
    */
@@ -430,13 +433,16 @@ const generateApiJson = (outputDirectory: string, reactApi: ReactApi) => {
       .join('\n')}</ul>`,
   };
 
-  writePrettifiedFile(
+  await writePrettifiedFile(
     path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.json`),
     JSON.stringify(pageContent),
   );
 };
 
-const extractInfoFromType = (typeName: string, project: TypeScriptProject): ParsedProperty[] => {
+const extractInfoFromType = async (
+  typeName: string,
+  project: TypeScriptProject,
+): Promise<ParsedProperty[]> => {
   // Generate the params
   let result: ParsedProperty[] = [];
 
@@ -454,9 +460,11 @@ const extractInfoFromType = (typeName: string, project: TypeScriptProject): Pars
     const propertiesOnProject = type.getProperties();
 
     // @ts-ignore
-    propertiesOnProject.forEach((propertySymbol) => {
-      properties[propertySymbol.name] = parseProperty(propertySymbol, project);
-    });
+    await Promise.all(
+      propertiesOnProject.map(async (propertySymbol) => {
+        properties[propertySymbol.name] = await parseProperty(propertySymbol, project);
+      }),
+    );
 
     result = Object.values(properties)
       .filter((property) => !property.tags.ignore)
@@ -536,8 +544,8 @@ export default async function generateHookApi(
     { filename },
   );
 
-  const parameters = extractInfoFromType(`${upperFirst(name)}Parameters`, project);
-  const returnValue = extractInfoFromType(`${upperFirst(name)}ReturnValue`, project);
+  const parameters = await extractInfoFromType(`${upperFirst(name)}Parameters`, project);
+  const returnValue = await extractInfoFromType(`${upperFirst(name)}ReturnValue`, project);
 
   // Ignore what we might have generated in `annotateHookDefinition`
   const annotatedDescriptionMatch = reactApi.description.match(/(Demos|API):\r?\n\r?\n/);
@@ -572,12 +580,12 @@ export default async function generateHookApi(
 
   if (!skipApiGeneration) {
     // Generate pages, json and translations
-    generateApiTranslations(
+    await generateApiTranslations(
       path.join(process.cwd(), 'docs/translations/api-docs'),
       reactApi,
       projectSettings.translationLanguages,
     );
-    generateApiJson(apiPagesDirectory, reactApi);
+    await generateApiJson(apiPagesDirectory, reactApi);
 
     // Add comment about demo & api links to the component hook file
     await annotateHookDefinition(reactApi);

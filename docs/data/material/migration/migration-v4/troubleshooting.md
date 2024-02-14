@@ -106,6 +106,7 @@ For more details, checkout these GitHub issues:
 
 - https://github.com/storybookjs/storybook/issues/16099
 - https://github.com/mui/material-ui/issues/24282#issuecomment-796755133
+
   :::
 
 ## Cannot read property scrollTop of null
@@ -289,4 +290,4 @@ For more details, see [this GitHub issue](https://github.com/mui/material-ui/iss
 
 ## Still having problems?
 
-If you're encountering a problem not covered here, please [create a GitHub issue](https://github.com/mui/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml) with this title format: **[Migration] Summary of your issue**.
+If you're encountering a problem not covered here, please [create a GitHub issue](https://github.com/mui/material-ui/issues/new/choose) with this title format: **[Migration] Summary of your issue**.

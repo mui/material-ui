@@ -1,9 +1,9 @@
 ---
-title: 'The 2021 MUI developer survey: here's what we discovered'
+title: 'The 2021 MUI Developer Survey: here's what we discovered'
 description: Your feedback helps us to build better products. Here's what we learned about your needs in our annual survey.
 date: 2022-03-15T00:00:00.000Z
 authors: ['danilo-leal', 'samuelsycamore', 'oliviertassinari']
-tags: ['Developer survey']
+tags: ['Developer Survey']
 card: true
 ---
 
@@ -807,8 +807,8 @@ Thanks again and until the next survey!
 Here is some additional content related to the topics covered throughout this post:
 
 - [How to migrate from v4 to v5](/material-ui/migration/migration-v4/)
-- [Style library interoperability](/material-ui/guides/interoperability/)
-- [Approaches to customizing Material UI components](/material-ui/customization/how-to-customize/)
+- [Style library interoperability](/material-ui/integrations/interoperability/)
+- [Approaches to customizing Material UI components](/material-ui/customization/how-to-customize/)
 
 Lastly, check out the last two iterations on the MUI Developer Survey:
 

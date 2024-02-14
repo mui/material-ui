@@ -4,7 +4,7 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { clamp } from '@mui/utils';
+import { clamp, unstable_useTimeout as useTimeout } from '@mui/utils';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useTheme from '../styles/useTheme';
@@ -154,13 +154,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
   const ownerState = { ...props, open, direction };
   const classes = useUtilityClasses(ownerState);
 
-  const eventTimer = React.useRef();
-
-  React.useEffect(() => {
-    return () => {
-      clearTimeout(eventTimer.current);
-    };
-  }, []);
+  const eventTimer = useTimeout();
 
   /**
    * an index in actions.current
@@ -256,9 +250,9 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
       onBlur(event);
     }
 
-    clearTimeout(eventTimer.current);
+    eventTimer.clear();
     if (event.type === 'blur') {
-      eventTimer.current = setTimeout(() => {
+      eventTimer.start(0, () => {
         setOpenState(false);
         if (onClose) {
           onClose(event, 'blur');
@@ -277,7 +271,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
       FabProps.onClick(event);
     }
 
-    clearTimeout(eventTimer.current);
+    eventTimer.clear();
 
     if (open) {
       setOpenState(false);
@@ -304,11 +298,11 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
     // When moving the focus between two items,
     // a chain if blur and focus event is triggered.
     // We only handle the last event.
-    clearTimeout(eventTimer.current);
+    eventTimer.clear();
 
     if (!open) {
       // Wait for a future focus or click event
-      eventTimer.current = setTimeout(() => {
+      eventTimer.start(0, () => {
         setOpenState(true);
         if (onOpen) {
           const eventMap = {

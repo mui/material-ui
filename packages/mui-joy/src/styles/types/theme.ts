@@ -6,6 +6,7 @@ import {
   SystemProps as SystemSystemProps,
   CSSObject,
   SxConfig,
+  ApplyStyles,
 } from '@mui/system';
 import { DefaultColorScheme, ExtendedColorScheme } from './colorScheme';
 import { ColorSystem } from './colorSystem';
@@ -31,15 +32,16 @@ type Split<T, K extends keyof T = keyof T> = K extends string | number
   ? { [k in K]: Exclude<T[K], undefined> }
   : never;
 
-type ConcatDeep<T, D extends string = '-'> = T extends Record<string | number, infer V>
-  ? keyof T extends string | number
-    ? V extends string | number
-      ? keyof T
-      : keyof V extends string | number
-      ? `${keyof T}${D}${ConcatDeep<Split<V>, D>}`
+type ConcatDeep<T, D extends string = '-'> =
+  T extends Record<string | number, infer V>
+    ? keyof T extends string | number
+      ? V extends string | number
+        ? keyof T
+        : keyof V extends string | number
+          ? `${keyof T}${D}${ConcatDeep<Split<V>, D>}`
+          : never
       : never
-    : never
-  : never;
+    : never;
 
 /**
  * Does not work for these cases:
@@ -118,7 +120,7 @@ export interface Theme extends ThemeScales, RuntimeColorSystem {
   shouldSkipGeneratingVar: (keys: string[], value: string | number) => boolean;
   unstable_sxConfig: SxConfig;
   unstable_sx: (props: SxProps) => CSSObject;
-  applyDarkStyles: (css: CSSObject) => CSSObject;
+  applyStyles: ApplyStyles<DefaultColorScheme | ExtendedColorScheme>;
 }
 
 export type SxProps = SystemSxProps<Theme>;

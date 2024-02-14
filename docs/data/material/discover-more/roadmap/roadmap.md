@@ -7,7 +7,7 @@
 Material UI is a community-driven project, meaning we usually pick the issues and suggestions that resonate the most with the community.
 Therefore, make sure to leave an upvote 👍 on [the GitHub issues](https://github.com/mui/material-ui/issues?q=is:open+is:issue+label:%22package:+material-ui%22) you are most interested in.
 
-Additionally, we conducts annual [developer surveys](/blog/?tags=Developer+survey/) which also serve as key inputs for Material UI's roadmap.
+Additionally, we conduct annual [developer surveys](/blog/?tags=Developer+survey/) which also serve as key inputs for Material UI's roadmap.
 Your participation is invaluable—keep an eye on MUI's social media to catch the next survey and help shape the future of the library!
 
 ## Keeping track of the roadmap
