@@ -144,7 +144,7 @@ You can take advantage of this lower-level component to create custom interactio
 
 One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server.
 The Button Base component provides the `component` prop to handle this use case.
-For more information, see the [Routing—Button](/material-ui/guides/routing/#button) doc.
+For more information, see the [Routing—Button](/material-ui/integrations/routing/#button) doc.
 
 #### Limitations
 
