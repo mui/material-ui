@@ -4,7 +4,7 @@ import { spy } from 'sinon';
 import { createRenderer, screen, fireEvent } from '@mui-internal/test-utils';
 import { Menu } from '../Menu';
 import { useMenuItem } from './useMenuItem';
-import { DropdownContext, DropdownContextValue } from '../useDropdown';
+import { DropdownActionTypes, DropdownContext, DropdownContextValue } from '../useDropdown';
 
 const testContext: DropdownContextValue = {
   dispatch: () => {},
@@ -94,7 +94,7 @@ describe('useMenuItem', () => {
       expect(menuItem).not.to.equal(null);
 
       fireEvent.click(menuItem);
-      expect(dispatchSpy.called).to.equal(true);
+      expect(dispatchSpy.calledWithMatch({ type: DropdownActionTypes.close })).to.equal(true);
     });
 
     it('should not close menu when menu item is clicked and disableCloseOnClick is true', () => {
@@ -130,7 +130,7 @@ describe('useMenuItem', () => {
       expect(menuItem).not.to.equal(null);
 
       fireEvent.click(menuItem);
-      expect(dispatchSpy.called).to.equal(false);
+      expect(dispatchSpy.calledWithMatch({ type: DropdownActionTypes.close })).to.equal(false);
     });
   });
 });

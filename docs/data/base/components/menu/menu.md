@@ -172,3 +172,7 @@ In addition to Menu Item components, the Menu component can also contain non-int
 The following demo shows an example of a Dropdown Menu with Items grouped under non-interactive headers, along with helper text that displays the **Current zoom level**:
 
 {{"demo": "WrappedMenuItems.js"}}
+
+### Controlling Menu Closure
+
+The `useMenuItem` hook also accepts a `disableCloseOnClick` prop. When this prop is set to `true`, clicking on the menu item does not cause the menu to close.
