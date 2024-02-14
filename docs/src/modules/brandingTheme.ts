@@ -405,7 +405,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
     applyDarkStyles(css: Parameters<ApplyDarkStyles>[0]) {
       return (this as Theme).applyStyles('dark', css);
     },
-  }) as ThemeOptions;
+  } as ThemeOptions);
 
 export function getThemedComponents(): ThemeOptions {
   return {
@@ -505,7 +505,7 @@ export function getThemedComponents(): ThemeOptions {
                 borderColor: (theme.vars || theme).palette.primaryDark[100],
                 boxShadow: `${alpha(theme.palette.grey[50], 0.5)} 0 2px 0.5px inset, ${alpha(
                   theme.palette.grey[100],
-                  0.8,
+                  0.5,
                 )} 0 -2px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
                 '&:hover': {
                   background: (theme.vars || theme).palette.primaryDark[50],
