@@ -13,10 +13,6 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 - [Avatar] Add props deprecation with a codemod (#40853) @siriwatknp
 
-### `@mui/system@5.15.10`
-
-- [Stack] Update import statement for Stack component (#41032) @sai6855
-
 ### `@mui/joy@5.0.0-beta.28`
 
 - [Button] Fix `disabled` prop priority when inside button group (#41000) @Smileek
@@ -36,6 +32,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - Fix Next.js v13.5.1 <title> SEO regression (#40302) @oliviertassinari
 - Add a 404 page (#40884) @danilo-leal
 - Fix missing GitHub label when opening new issue @oliviertassinari
+- [Stack] Update import statement for Stack component (#41032) @sai6855
 
 ### Core
 
