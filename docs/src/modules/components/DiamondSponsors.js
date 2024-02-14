@@ -120,6 +120,29 @@ export default function DiamondSponsors() {
             }
           />
         </StyledAnchor>
+        <StyledAnchor
+          data-ga-event-category="sponsor"
+          data-ga-event-action="docs-premium"
+          data-ga-event-label="marblism.com"
+          href="https://www.marblism.com/?utm_source=twitter"
+          rel="noopener sponsored"
+          target="_blank"
+        >
+          <Box
+            component="img"
+            height="25px"
+            width="116px"
+            src="/static/sponsors/marblism-rectangular.svg"
+            alt="marblism"
+            title="AI web app generation"
+            loading="lazy"
+            sx={(theme) =>
+              theme.applyDarkStyles({
+                content: `url(/static/sponsors/marblism-rectangular.svg)`,
+              })
+            }
+          />
+        </StyledAnchor>
         <Link
           href="/material-ui/discover-more/backers/#diamond-sponsors"
           sx={(theme) => ({
