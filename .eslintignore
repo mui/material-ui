@@ -23,6 +23,7 @@
 /packages/zero-runtime/processors/
 /packages/zero-runtime/exports/
 /packages/zero-runtime/theme/
+/packages/zero-runtime/tests/fixtures/
 /packages/zero-next-plugin/loader.js
 # Ignore fixtures
 /packages/typescript-to-proptypes/test/*/*
