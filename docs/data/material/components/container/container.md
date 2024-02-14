@@ -43,3 +43,11 @@ When this prop is set to true, the maximum width of the Container is equal to th
 {{"demo": "FixedContainer.js", "iframe": true, "defaultCodeOpen": false}}
 
 ## Anatomy
+
+The Container component renders as an HTML `<div>` element:
+
+```html
+<div class="MuiContainer-root">
+  <!-- Container children -->
+</div>
+```
