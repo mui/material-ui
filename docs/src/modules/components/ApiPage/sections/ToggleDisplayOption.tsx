@@ -3,8 +3,9 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import CheckIcon from '@mui/icons-material/Check';
+import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 
 type ApiDisplayOptions = 'Collapsed' | 'Expanded' | 'Table';
 
@@ -211,7 +212,8 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleMenuClick}
-        sx={{ height: 28, p: '6px' }}
+        endIcon={<ArrowDropDownRoundedIcon />}
+        sx={{ height: '1.75rem', p: '6px' }}
       >
         <Box component="span" sx={{ fontWeight: 'medium', mr: 0.5 }}>
           View:
