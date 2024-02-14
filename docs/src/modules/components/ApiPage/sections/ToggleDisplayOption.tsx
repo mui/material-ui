@@ -124,28 +124,6 @@ interface ToggleDisplayOptionProps {
 }
 
 export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
-  // const { displayOption, setDisplayOption } = props;
-  // const [anchorEl, setAnchorEl] = React.useState(null);
-
-  // const handleAlignment = (
-  //   event: React.MouseEvent<HTMLElement>,
-  //   newDisplayOption: ApiDisplayOptions | null,
-  // ) => {
-  //   if (newDisplayOption === null) {
-  //     return;
-  //   }
-  //   setDisplayOption(newDisplayOption);
-  // };
-
-  // const open = Boolean(anchorEl);
-  // const handleMenuItemClick = (newDisplayOption) => {
-  //   setDisplayOption(newDisplayOption);
-  //   handleClose();
-  // };
-  // const handleClose = () => {
-  //   setAnchorEl(null);
-  // };
-
   const { displayOption, setDisplayOption } = props;
 
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
@@ -167,48 +145,13 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
   };
 
   return (
-    // <ToggleButtonGroup
-    //   size="small"
-    //   value={displayOption}
-    //   exclusive
-    //   onChange={handleAlignment}
-    //   aria-label="API display option"
-    //   sx={{
-    //     '& .MuiSvgIcon-root': {
-    //       height: '18px',
-    //       width: '18px',
-    //     },
-    //     '&.MuiToggleButtonGroup-root .MuiToggleButton-root': {
-    //       padding: '4px 6px',
-    //       borderRadius: '6px',
-    //       '&.MuiToggleButtonGroup-grouped:not(:last-of-type)': {
-    //         borderTopRightRadius: 0,
-    //         borderBottomRightRadius: 0,
-    //       },
-    //       '&.MuiToggleButtonGroup-grouped:not(:first-of-type)': {
-    //         borderTopLeftRadius: 0,
-    //         borderBottomLeftRadius: 0,
-    //       },
-    //     },
-    //   }}
-    // >
-    //   <TooltipToggleButton value="collapsed" aria-label="colapsed list" title="Collapse list view">
-    //     <ReorderRoundedIcon size="small" />
-    //   </TooltipToggleButton>
-    //   <TooltipToggleButton value="expanded" aria-label="expanded list" title="Expand list view">
-    //     <CalendarViewDayRoundedIcon />
-    //   </TooltipToggleButton>
-    //   <TooltipToggleButton value="table" aria-label="table" title="Table view">
-    //     <TableChartRoundedIcon />
-    //   </TooltipToggleButton>
-    // </ToggleButtonGroup>
     <React.Fragment>
       <Button
         size="small"
         variant="outlined"
         color="secondary"
-        id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
+        id="view-switching-button"
+        aria-controls={open ? 'view-switching-button' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleMenuClick}
@@ -221,7 +164,7 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
         {displayOption}
       </Button>
       <Menu
-        id="basic-menu"
+        id="view-options-menu"
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
