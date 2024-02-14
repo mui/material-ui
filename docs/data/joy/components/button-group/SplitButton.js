@@ -23,6 +23,19 @@ export default function SplitButton() {
     setOpen(false);
   };
 
+  const handleOutsideClick = (event) => {
+    if (anchorRef.current && !anchorRef.current.contains(event.target)) {
+      setOpen(false);
+    }
+  };
+
+  React.useEffect(() => {
+    document.addEventListener('mousedown', handleOutsideClick);
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, []);
+
   return (
     <React.Fragment>
       <ButtonGroup
