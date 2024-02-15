@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
 import { createRenderer, describeConformance } from '@mui-internal/test-utils';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import IconButton, { iconButtonClasses as classes } from '@mui/material/IconButton';
 import Icon from '@mui/material/Icon';

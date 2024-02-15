@@ -49,7 +49,7 @@ Get started in the [Material UI docs](/material-ui/getting-started/).
 
 #### Key features
 
-- **Material Design:** Your app will look and feel excellent by default, thanks to our meticulous implementation of Material Design (currently MD2; Material You is on the way).
+- **Material Design:** Your app will look and feel excellent by default, thanks to our meticulous implementation of Material Design (currently M2; M3 is on the way).
 - **Comprehensiveness:** With over 50 foundational components and counting, you've got everything you need to ship new features fast.
 - **Maturity:** Material UI's age and maturity rival that of React itself, with its origins spanning all the way back to 2014.
 - **Community:** Over 2,500 open-source contributors have made this library what it is today.

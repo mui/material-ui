@@ -1,4 +1,4 @@
-import { deepmerge } from '@mui/utils';
+import deepmerge from '@mui/utils/deepmerge';
 import createTheme from './createTheme';
 
 export default function createMuiStrictModeTheme(options, ...args) {

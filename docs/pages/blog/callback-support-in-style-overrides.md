@@ -7,7 +7,7 @@ tags: ['MUI Core', 'News']
 card: true
 ---
 
-<span class="x x-first x-last">[</span>MUI Core v5.3.0](https://github.com/mui/material-ui/releases/tag/v5.3.0) introduces the ability to write a callback in style overrides (global theming), giving you full control of component customization at the theme level.
+<span class="x x-first x-last">[</span>Material UI v5.3.0](https://github.com/mui/material-ui/releases/tag/v5.3.0) introduces the ability to write a callback in style overrides (global theming), giving you full control of component customization at the theme level.
 
 Why is using a callback better than the existing plain object? Let me explain from the beginning<span class="x x-first x-last">…</span>
 
@@ -113,7 +113,9 @@ const Label = styled('span')({
 </Box>;
 ```
 
-> 💡 All Material UI and Joy UI components are created with the `styled` API, so they accept `sx` prop by default.
+:::info
+All Material UI and Joy UI components are created with the `styled` API, so they accept `sx` prop by default.
+:::
 
 `sx` helps developers write less code and be more productive once they are familiar with the API. With the callback support in `styleOverrides`, it is now possible to use an `sx`-like syntax in global theme overrides.
 

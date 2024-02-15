@@ -3,11 +3,11 @@ title: 'Introducing Base UI: the headless alternative to Material UI'
 description: The Base UI component library gives you complete control over the look and feel of your app.
 date: 2022-09-07T00:00:00.000Z
 authors: ['michaldudak', 'samuelsycamore']
-tags: ['News', 'MUI Core']
+tags: ['Base UI', 'Product']
 card: true
 ---
 
-<a href="https://mui.com/base-ui/"><img src="/static/blog/introducing-base-ui/hero-image.png" style="width: 692px; aspect-ratio: 132/61; margin-bottom: 24px;" alt="Demo components built with Base UI, a newly introduced library of unstyled components and hooks" /></a>
+<a href="https://mui.com/base-ui/"><img src="/static/blog/introducing-base-ui/hero-image.png" alt="Demo components built with Base UI, a newly introduced library of unstyled components and hooks" width="1200" height="500" /></a>
 
 While Material UI is excellent for building sleek user interfaces that adhere closely to Material Design, it can become unwieldy when your design system diverges significantly from the defaults.
 We get it.
@@ -52,7 +52,7 @@ Each unstyled component lets you modify or override its _slots_—smaller subcom
 For example, a `SwitchUnstyled` contains the root, thumb, input, and track slots.
 You can control props passed to each of these slots (including `className`) based on the component's state, and even replace the default slot components with your own.
 
-<img src="/static/blog/introducing-base-ui/switch-slots.png" style="width: 692px; aspect-ratio: 173/80; margin-bottom: 24px;" loading="lazy" alt="Depiction of SwitchUnstyled components' slots" />
+<img src="/static/blog/introducing-base-ui/switch-slots.png" width="1200" height="500" loading="lazy" alt="Depiction of SwitchUnstyled components' slots" />
 
 See how it works on the live demo:
 
@@ -88,7 +88,7 @@ Check out the [Base UI documentation](/base-ui/getting-started/) for details.
 
 You can track our progress in adding new components—and comment to influence our priorities—in [this dedicated GitHub issue](https://github.com/mui/material-ui/issues/27170).
 
-The @mui/base package is released as an alpha.
+The `@mui/base` package is released as an alpha.
 This means the component APIs are subject to change—especially as we receive feedback from the community about room for improvement.
 However, we believe the library is solid enough at this point to start building design systems with it.
 In fact, we're using Base UI to create [Joy UI](/blog/first-look-at-joy/)—the next product we'll be launching in our line of Core component libraries that also includes Material UI.
@@ -96,21 +96,27 @@ In the future, Base UI will also be used as the foundation for Material UI com
 
 ## Feedback needed
 
-Give Base UI a try today by installing the package via npm:
+Give Base UI a try today by running one of the following commands:
 
-```bash
+<codeblock storageKey="package-manager">
+
+```bash npm
 npm install @mui/base
 ```
 
-or yarn:
-
-```bash
+```bash yarn
 yarn add @mui/base
 ```
+
+```bash pnpm
+pnpm add @mui/base
+```
+
+</codeblock>
 
 Check out [the docs](/base-ui/getting-started/), play with the components, and be sure to let us know what you think!
 
 If you find any bugs or want to share ideas for improvements, please don't hesitate to open an issue in the [MUI Core repository on GitHub](https://github.com/mui/material-ui/issues/new/choose).
-Be sure to include "[base]" in the issue title to help us keep things organized.
+Be sure to include "[base-ui]" in the issue title to help us keep things organized.
 
-**Happy creating!**
+Happy creating!
