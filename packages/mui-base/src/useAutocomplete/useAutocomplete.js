@@ -79,6 +79,7 @@ export function useAutocomplete(props) {
   const {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     unstable_isActiveElementInListbox = defaultIsActiveElementInListbox,
+    // TODO should be using base class name by default
     // eslint-disable-next-line @typescript-eslint/naming-convention
     unstable_classNamePrefix = 'Mui',
     autoComplete = false,
