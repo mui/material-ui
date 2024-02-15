@@ -22,7 +22,7 @@ const userTestimonials = [
     name: 'Travis Howard',
     occupation: 'Lead Product Designer',
     testimonial:
-      "One of the standout features of this product is the exceptional customer support. In my experience, the team behind this product has been quick to respond and incredibly helpful. It's reassuring to know that they stand firmly behind their product, providing the kind of support that enhances the overall user experience and instills confidence in the brand.",
+      "One of the standout features of this product is the exceptional customer support. In my experience, the team behind this product has been quick to respond and incredibly helpful. It's reassuring to know that they stand firmly behind their product.",
   },
   {
     avatar: <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />,
