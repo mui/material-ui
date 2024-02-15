@@ -20,7 +20,7 @@ import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 import CheckBox from '../internal/svg-icons/CheckBox';
 import { ChipProps } from './Chip.types';
 
-// TODO: remove after migrating SvgICon to support Material You colors
+// TODO: remove after migrating SvgIcon to support Material Design 3 colors
 const MaterialV5DefaultTheme = createTheme();
 
 describe('<Chip />', () => {
