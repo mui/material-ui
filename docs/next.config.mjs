@@ -1,18 +1,24 @@
 // @ts-check
-const path = require('path');
+import * as path from 'path';
+import * as url from 'url';
+import * as fs from 'fs';
 // @ts-ignore
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const pkg = require('../package.json');
-const withDocsInfra = require('./nextConfigDocsInfra');
-const { findPages } = require('./src/modules/utils/find');
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import { createRequire } from 'module';
+import { findPages } from './src/modules/utils/find.mjs';
+
+const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
+const require = createRequire(import.meta.url);
+
+const withDocsInfra = require('./nextConfigDocsInfra.js');
 const {
   LANGUAGES,
   LANGUAGES_SSR,
   LANGUAGES_IGNORE_PAGES,
   LANGUAGES_IN_PROGRESS,
-} = require('./config');
+} = require('./config.js');
 
-const workspaceRoot = path.join(__dirname, '../');
+const workspaceRoot = path.join(currentDirectory, '../');
 
 const l10nPRInNetlify = /^l10n_/.test(process.env.HEAD || '') && process.env.NETLIFY === 'true';
 const vercelDeploy = Boolean(process.env.VERCEL);
@@ -20,7 +26,10 @@ const isDeployPreview = Boolean(process.env.PULL_REQUEST_ID);
 // For crowdin PRs we want to build all locales for testing.
 const buildOnlyEnglishLocale = isDeployPreview && !l10nPRInNetlify && !vercelDeploy;
 
-module.exports = withDocsInfra({
+const pkgContent = fs.readFileSync(path.resolve(workspaceRoot, 'package.json'), 'utf8');
+const pkg = JSON.parse(pkgContent);
+
+export default withDocsInfra({
   webpack: (config, options) => {
     const plugins = config.plugins.slice();
 
@@ -166,6 +175,7 @@ module.exports = withDocsInfra({
       ? `Basic ${Buffer.from(process.env.GITHUB_AUTH).toString('base64')}`
       : '',
   },
+  distDir: 'export',
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
   // However, we don't in order to prevent any regression in the `findPages()` method.
   // @ts-ignore
@@ -224,13 +234,20 @@ module.exports = withDocsInfra({
 
     return map;
   },
-  // rewrites has no effect when run `next export` for production
-  rewrites: async () => {
-    return [
-      { source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' },
-      // Make sure to include the trailing slash if `trailingSlash` option is set
-      { source: '/api/:rest*/', destination: '/api-docs/:rest*/' },
-      { source: `/static/x/:rest*`, destination: 'http://0.0.0.0:3001/static/x/:rest*' },
-    ];
-  },
+  // Used to signal we run yarn build
+  ...(process.env.NODE_ENV === 'production'
+    ? {
+        output: 'export',
+      }
+    : {
+        // rewrites has no effect when run `next export` for production
+        rewrites: async () => {
+          return [
+            { source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' },
+            // Make sure to include the trailing slash if `trailingSlash` option is set
+            { source: '/api/:rest*/', destination: '/api-docs/:rest*/' },
+            { source: `/static/x/:rest*`, destination: 'http://0.0.0.0:3001/static/x/:rest*' },
+          ];
+        },
+      }),
 });

@@ -94,7 +94,9 @@ all done using the flexible theming features of v5. [Head to the new website](/)
 
 <img loading="lazy" src="/static/blog/material-ui-is-now-mui/website-homepage.png" alt="Screenshot of the new website homepage" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" />
 
-> 💡 Note that these changes in the website and documentation do **not** impact the design of the components released under the `@mui/*` npm packages.
+:::info
+Note that these changes in the website and documentation do **not** impact the design of the components released under the `@mui/*` npm packages.
+:::
 
 ## The path ahead
 

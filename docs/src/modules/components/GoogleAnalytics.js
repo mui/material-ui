@@ -6,7 +6,6 @@ import { useNoSsrCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { useNoSsrCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import { getApiPageLayout } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 
 // So we can write code like:
 //
@@ -138,12 +137,6 @@ function GoogleAnalytics() {
       codeStylingVariant,
     });
   }, [codeStylingVariant]);
-
-  React.useEffect(() => {
-    window.gtag('set', 'user_properties', {
-      ...getApiPageLayout(),
-    });
-  }, []);
 
   return null;
 }

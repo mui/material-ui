@@ -46,8 +46,17 @@ describe('<Avatar />', () => {
     });
 
     it('should be able to add more props to the image', () => {
+      // TODO: remove this test in v7
       const onError = spy();
       const { container } = render(<Avatar src="/fake.png" imgProps={{ onError }} />);
+      const img = container.querySelector('img');
+      fireEvent.error(img);
+      expect(onError.callCount).to.equal(1);
+    });
+
+    it('should be able to add more props to the img slot', () => {
+      const onError = spy();
+      const { container } = render(<Avatar src="/fake.png" slotProps={{ img: { onError } }} />);
       const img = container.querySelector('img');
       fireEvent.error(img);
       expect(onError.callCount).to.equal(1);
@@ -64,8 +73,17 @@ describe('<Avatar />', () => {
     });
 
     it('should be able to add more props to the image', () => {
+      // TODO: remove this test in v7
       const onError = spy();
       const { container } = render(<Avatar src="/fake.png" imgProps={{ onError }} />);
+      const img = container.querySelector('img');
+      fireEvent.error(img);
+      expect(onError.callCount).to.equal(1);
+    });
+
+    it('should be able to add more props to the img slot', () => {
+      const onError = spy();
+      const { container } = render(<Avatar src="/fake.png" slotProps={{ img: { onError } }} />);
       const img = container.querySelector('img');
       fireEvent.error(img);
       expect(onError.callCount).to.equal(1);

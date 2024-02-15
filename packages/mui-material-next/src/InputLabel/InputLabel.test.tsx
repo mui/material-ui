@@ -18,7 +18,7 @@ describe('<InputLabel />', () => {
       ({
         addListener: () => {},
         removeListener: () => {},
-      } as unknown as MediaQueryList);
+      }) as unknown as MediaQueryList;
   });
 
   afterEach(() => {

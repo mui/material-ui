@@ -1,18 +1,25 @@
+import { transformAsync } from '@babel/core';
+import {
+  type Preprocessor,
+  type PluginOptions as LinariaPluginOptions,
+  type IFileReporterOptions,
+  TransformCacheCollection,
+  transform,
+  createFileReporter,
+} from '@wyw-in-js/transform';
+import { asyncResolveFallback, slugify } from '@wyw-in-js/shared';
 import {
   UnpluginFactoryOutput,
   WebpackPluginInstance,
   createUnplugin,
   UnpluginOptions,
 } from 'unplugin';
-import { transformAsync } from '@babel/core';
-import type { PluginOptions as LinariaPluginOptions, Preprocessor } from '@linaria/babel-preset';
-import { TransformCacheCollection, transform } from '@linaria/babel-preset';
-import { createPerfMeter, asyncResolveFallback, slugify } from '@linaria/utils';
 import {
   preprocessor as basePreprocessor,
   generateTokenCss,
   generateThemeTokens,
 } from '@mui/zero-runtime/utils';
+import type { Theme as BaseTheme } from '@mui/zero-runtime';
 
 type NextMeta = {
   type: 'next';
@@ -32,17 +39,11 @@ type WebpackMeta = {
 
 type Meta = NextMeta | ViteMeta | WebpackMeta;
 
-type BaseTheme = {
-  cssVarPrefix: string;
-  colorSchemes: Record<string, unknown>;
-  generateCssVars: (colorScheme?: string) => { css: Record<string, string> };
-};
-
 export type PluginOptions<Theme extends BaseTheme = BaseTheme> = {
-  theme: Theme;
+  theme?: Theme;
   transformLibraries?: string[];
   preprocessor?: Preprocessor;
-  debug?: boolean;
+  debug?: IFileReporterOptions | false;
   sourceMap?: boolean;
   meta?: Meta;
   asyncResolve?: (what: string) => string | null;
@@ -105,7 +106,7 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
     ...rest
   } = options;
   const cache = new TransformCacheCollection();
-  const { emitter, onDone } = createPerfMeter(debug);
+  const { emitter, onDone } = createFileReporter(debug ?? false);
   const cssLookup = meta?.type === 'next' ? globalCssLookup : new Map<string, string>();
   const cssFileLookup = meta?.type === 'next' ? globalCssFileLookup : new Map<string, string>();
   const isNext = meta?.type === 'next';
@@ -159,7 +160,6 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
             themeArgs: {
               theme,
             },
-            cssVariablesPrefix: theme.cssVarPrefix,
             overrideContext(context: Record<string, unknown>, filename: string) {
               if (overrideContext) {
                 return overrideContext(context, filename);
@@ -225,7 +225,8 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
             }),
           )}`;
           return {
-            code: `import ${JSON.stringify(data)};\n${result.code}`,
+            // CSS import should be the last so that nested components produce correct CSS order injection.
+            code: `${result.code}\nimport ${JSON.stringify(data)};`,
             map: result.sourceMap,
           };
         }
@@ -233,7 +234,7 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
         cssFileLookup.set(cssId, cssFilename);
         cssLookup.set(cssFilename, cssText);
         return {
-          code: `import ${JSON.stringify(`./${cssFilename}`)};\n${result.code}`,
+          code: `${result.code}\nimport ${JSON.stringify(`./${cssFilename}`)};`,
           map: result.sourceMap,
         };
       } catch (e) {
@@ -274,10 +275,12 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
             },
             transform(_code, id) {
               if (id.endsWith('styles.css')) {
-                return generateTokenCss(theme);
+                return theme ? generateTokenCss(theme) : _code;
               }
               if (id.includes('zero-runtime/theme')) {
-                return `export default ${JSON.stringify(generateThemeTokens(theme))};`;
+                return `export default ${
+                  theme ? JSON.stringify(generateThemeTokens(theme)) : '{}'
+                };`;
               }
               return null;
             },
@@ -296,11 +299,13 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
               return isZeroRuntimeThemeFile(id);
             },
             load(id) {
-              if (id === VIRTUAL_CSS_FILE) {
+              if (id === VIRTUAL_CSS_FILE && theme) {
                 return generateTokenCss(theme);
               }
               if (id === VIRTUAL_THEME_FILE) {
-                return `export default ${JSON.stringify(generateThemeTokens(theme))};`;
+                return `export default ${
+                  theme ? JSON.stringify(generateThemeTokens(theme)) : '{}'
+                };`;
               }
               return null;
             },
