@@ -263,6 +263,52 @@ const Heading = styled('h1')<{ isError?: boolean }>({
 });
 ```
 
+### Creating animation keyframes
+
+Use the `keyframes` API to create reusable [animation keyframes](https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes):
+
+```js
+import { keyframes } from '@mui/zero-runtime';
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+function Example1() {
+  return <div style={{ animation: `${fadeIn} 0.5s` }}>I am invisible</div>;
+}
+```
+
+The call to the `keyframes` function will be replaced with a unique string that represents the CSS animation name. It can be used with `css` or `styled` too.
+
+```js
+import { css, styled, keyframes } from '@mui/zero-runtime';
+
+const fadeIn = keyframes(...);
+
+const Example2 = styled('div')({
+  animation: `${fadeIn} 0.5s`,
+});
+
+function App() {
+  return (
+    <>
+      <Example1 />
+      <div
+        className={css`
+          animation: ${fadeIn} 0.5s;
+        `}
+      />
+    </>
+  )
+}
+```
+
 ### Theming
 
 Theming is an **optional** feature that lets you reuse the same values, such as colors, spacing, and typography, across your application. It is a plain object of any structure that you can define in your config file.
@@ -315,7 +361,8 @@ const Heading = styled('h1')(({ theme }) => ({
 Zero-runtime can generate CSS variables from the theme values when you wrap your theme with `extendTheme` utility. For example, in a `next.config.js` file:
 
 ```js
-const { withZeroPlugin, extendTheme } = require('@mui/zero-next-plugin');
+const { withZeroPlugin } = require('@mui/zero-next-plugin');
+const { extendTheme } = require('@mui/zero-runtime');
 
 module.exports = withZeroPlugin(
   {
