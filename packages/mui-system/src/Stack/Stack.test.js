@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from '@mui-internal/test-utils';
 import Stack from '@mui/system/Stack';
-import { createTheme } from '@mui/system';
+import createTheme from '@mui/system/createTheme';
 import { style } from './createStack';
 
 describe('<Stack />', () => {

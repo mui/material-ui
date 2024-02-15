@@ -2,18 +2,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import {
-  unstable_composeClasses as composeClasses,
-  useSlotProps,
-  isHostComponent,
-} from '@mui/base';
-import {
-  chainPropTypes,
-  integerPropType,
-  elementTypeAcceptingRef,
-  refType,
-  HTMLElementType,
-} from '@mui/utils';
+import { useSlotProps, isHostComponent } from '@mui/base/utils';
+import composeClasses from '@mui/utils/composeClasses';
+import HTMLElementType from '@mui/utils/HTMLElementType';
+import refType from '@mui/utils/refType';
+import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
+import integerPropType from '@mui/utils/integerPropType';
+import chainPropTypes from '@mui/utils/chainPropTypes';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import debounce from '../utils/debounce';
