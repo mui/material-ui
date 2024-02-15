@@ -18,11 +18,11 @@
   "license": "MIT",
   "scripts": {
     "prebuild": "rimraf ./build",
-    "build": "tsc -b tsconfig.build.json",
+    "build": "tsc --build tsconfig.json",
     "release:publish": "pnpm publish --tag latest",
     "release:publish:dry-run": "pnpm publish --tag latest --registry=\"http://localhost:4873/\"",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha --config packages-internal/scripts/typescript-to-proptypes/test/.mocharc.js 'packages-internal/scripts/typescript-to-proptypes/**/*.test.ts'",
-    "typescript": "tsc -b tsconfig.json"
+    "typescript": "tsc --project tsconfig.typecheck.json"
   },
   "dependencies": {
     "@babel/core": "^7.23.9",

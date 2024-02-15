@@ -1,12 +1,5 @@
 {
-  "compilerOptions": {
-    "noEmit": true,
-    "moduleResolution": "node",
-    "types": ["node", "mocha"],
-    "strict": true,
-    "esModuleInterop": true,
-    "isolatedModules": true
-  },
-  "include": ["./typescript-to-proptypes/**/*.ts"],
-  "references": [{ "path": "../../packages/docs-utils/tsconfig.build.json" }]
+  "files": [],
+  "include": [],
+  "references": [{ "path": "./typescript-to-proptypes" }]
 }
