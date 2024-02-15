@@ -155,7 +155,7 @@ npx @mui/codemod@latest deprecations/accordion-summary-classes <path>
 -    componentsProps: { closeButton: { testid: 'test-id' }}
 +    slotProps: { closeButton: { testid: 'test-id' } },
   },
-},
+ },
 ```
 
 ```bash
