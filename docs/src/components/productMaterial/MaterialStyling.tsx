@@ -251,10 +251,10 @@ export default function MaterialStyling() {
                         width: '1px',
                         bgcolor: 'grey.200',
                         position: 'absolute',
-                        left: 375,
+                        left: { xs: 335, sm: 375 },
                         height: '100%',
                         ...theme.applyDarkStyles({
-                          bgcolor: 'primaryDark.600',
+                          bgcolor: 'divider',
                         }),
                       })}
                     >
