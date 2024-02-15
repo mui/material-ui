@@ -38,8 +38,8 @@ describe('typescript-to-proptypes', () => {
 
     const buildProject = createTypeScriptProjectBuilder({
       test: {
-        rootPath: path.join(__dirname, '../..'),
-        tsConfigPath: 'tsconfig.json',
+        rootPath: path.join(__dirname, '..'),
+        tsConfigPath: 'tsconfig.test.json',
       },
     });
 
