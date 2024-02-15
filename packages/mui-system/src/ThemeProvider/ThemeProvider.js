@@ -5,7 +5,7 @@ import {
   ThemeProvider as MuiThemeProvider,
   useTheme as usePrivateTheme,
 } from '@mui/private-theming';
-import { exactProp } from '@mui/utils';
+import exactProp from '@mui/utils/exactProp';
 import { ThemeContext as StyledEngineThemeContext } from '@mui/styled-engine';
 import useThemeWithoutDefault from '../useThemeWithoutDefault';
 

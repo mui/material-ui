@@ -1,27 +1,27 @@
-# Material 3 Components
+# Material Design 3 Components
 
-<p class="description">Try out Material UI's implementation of MD3 and learn how to contribute to the project.</p>
+<p class="description">Try out Material UI's implementation of M3 and learn how to contribute to the project.</p>
 
-## Material 3
+## Material UI and M3
 
-Material 3 (MD3), also referred to as [Material You](https://m3.material.io), is the latest version of Google's design system.
-The primary Material UI package (`@mui/material`) currently implements Material 2.
-MD3 implementation is a work in progress, targeted for completion in late 2024.
-You can try out Material UI's MD3 components as they're developed using the `@mui/material-next` package.
+Material Design 3 (M3), also referred to as [Material You](https://m3.material.io), is the latest version of Google's design system.
+The primary Material UI package (`@mui/material`) currently implements Material Design 2.
+M3 implementation is a work in progress, targeted for completion in late 2024.
+You can try out Material UI's M3 components as they're developed using the `@mui/material-next` package.
 
 :::warning
-The Material 3 components are currently in alpha and subject to change.
+The M3 components are currently in alpha and subject to change.
 :::
 
 ## Supported components
 
-Visit the [All Components page](/material-ui/all-components/) to see which components support MD3—look for the green MD3 indicator.
-All components that have MD3 versions have a corresponding playground on their page.
-For example, here's the [MD3 Button playground](/material-ui/react-button/#material-3-button).
+Visit the [All Components page](/material-ui/all-components/) to see which components support M3—look for the green M3 indicator.
+All components that have M3 versions have a corresponding playground on their page.
+For example, here's the [M3 Button playground](/material-ui/react-button/#material-design-3).
 
-## Getting started with MD3 components
+## Getting started with M3 components
 
-The MD3 components are included in the `@mui/material-next` package.
+The M3 components are included in the `@mui/material-next` package.
 The following guide explains how to get started using them.
 
 ### Installation
@@ -109,7 +109,7 @@ After [installation](/material-ui/guides/material-3-components/#installation), y
 {{"demo": "MD3ButtonUsage.js"}}
 
 :::warning
-If your application uses the `ThemeProvider` from `@mui/material`, you must include `CssVarsProvider` from `@mui/material-next` in the tree above the MD3 components.
+If your application uses the `ThemeProvider` from `@mui/material`, you must include `CssVarsProvider` from `@mui/material-next` in the tree above the M3 components.
 The following example shows how to do this.
 :::
 
@@ -118,16 +118,16 @@ The following example shows how to do this.
 ### Theming
 
 Use the `extendTheme` function to modify the default theme.
-The theme structure follows [MD3 specifications](https://m3.material.io/styles/color/system/overview).
+The theme structure follows [M3 specifications](https://m3.material.io/styles/color/system/overview).
 For example, if you wanted to modify the primary color, you would provide the [color tones](https://m3.material.io/styles/color/system/how-the-system-works#e1e92a3b-8702-46b6-8132-58321aa600bd) via `ref.palette.primary`:
 
 {{"demo": "MD3Theming.js"}}
 
 :::success
-You can use Material Design's [Figma MD3 Theme Builder](https://www.figma.com/community/plugin/1034969338659738588/material-theme-builder) plugin to generate palette tones.
+You can use Material Design's [Figma Material Theme Builder](https://www.figma.com/community/plugin/1034969338659738588/material-theme-builder) plugin to generate palette tones.
 :::
 
 ## Stable release
 
-The stable release of the MD3 components is tentatively targeted for Q4 2024 in Material UI v7.
-To follow the progress or contribute to the project, check out [the Material 3 GitHub issue](https://github.com/mui/material-ui/issues/29345).
+The stable release of the M3 components is tentatively targeted for Q4 2024 in Material UI v7.
+To follow the progress or contribute to the project, check out [the M3 GitHub issue](https://github.com/mui/material-ui/issues/29345).

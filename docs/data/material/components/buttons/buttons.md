@@ -199,10 +199,10 @@ To prevent this, ensure that the contents of the Loading Button are nested insid
 
 :::
 
-### Material 3 Button
+### Material Design 3
 
 The default Material UI Button component follows the Material Design 2 specs.
-To use the [Material 3](https://m3.material.io/) version, install the experimental `@mui/material-next` package.
+To use the [M3](https://m3.material.io/) version, install the experimental `@mui/material-next` package.
 
 ```js
 import Button from '@mui/material-next/Button';
@@ -210,4 +210,4 @@ import Button from '@mui/material-next/Button';
 
 {{"demo": "ButtonMaterialYouPlayground.js", "hideToolbar": true, "bg": "playground"}}
 
-To learn more about Material UI's MD3 implementation, visit the [Material 3 Components documentation](/material-ui/guides/material-3-components/).
+To learn more about Material UI's M3 implementation, visit the [M3 Components documentation](/material-ui/guides/material-3-components/).

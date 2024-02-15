@@ -68,10 +68,11 @@ export default function MaterialEnd() {
               <GlowingIconContainer icon={<StyleRoundedIcon color="primary" />} />
               <div>
                 <Typography color="text.primary" fontWeight="semiBold" gutterBottom>
-                  Does it support Material 3?
+                  Does it support Material Design 3?
                 </Typography>
                 <Typography>
-                  The adoption of Material 3 is tentatively planned for Material UI v6. See the{' '}
+                  The adoption of Material Design 3 is tentatively planned for Material UI v7. See
+                  the{' '}
                   <Link href="https://mui.com/versions/#release-schedule">
                     the release schedule
                   </Link>{' '}
