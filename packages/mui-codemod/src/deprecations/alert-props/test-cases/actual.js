@@ -1,20 +1,18 @@
 import Alert from '@mui/material/Alert';
 
 <Alert
-  slots={{
-    closeButton: ComponentsButton
-  }}
-  slotProps={{ closeButton: componentsButtonProps }}
+  components={{ CloseButton: ComponentsButton }}
+  componentsProps={{ closeButton: componentsButtonProps }}
 />;
 <Alert
-  slots={{
-    closeIcon: SlotsIcon,
-    closeButton: ComponentsButton
-  }}
-  slotProps={{
-    closeIcon: slotsIconProps,
-    closeButton: componentsButtonProps
-  }} />;
+  slots={{ closeIcon: SlotsIcon }}
+  components={{ CloseButton: ComponentsButton }}
+  slotProps={{ closeIcon: slotsIconProps }}
+  componentsProps={{ closeButton: componentsButtonProps }}
+/>;
 <Alert
   slots={{ closeIcon: SlotsIcon, closeButton: SlotsButton }}
-  slotProps={{ closeIcon: slotsIconProps, closeButton: slotsButtonProps }} />;
+  components={{ CloseButton: ComponentsButton }}
+  slotProps={{ closeIcon: slotsIconProps, closeButton: slotsButtonProps }}
+  componentsProps={{ closeButton: componentsButtonProps }}
+/>;
