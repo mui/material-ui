@@ -1,39 +1,38 @@
-# Demo Next.js app for Zero Runtime
+# Zero Runtime - Next.js App Router example in TypeScript
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/HEAD/packages/create-next-app).
+This is a [Next.js](https://nextjs.org/) project bootstrapped using [`create-next-app`](https://github.com/vercel/next.js/tree/HEAD/packages/create-next-app) with Zero Runtime installed.
 
-## Getting Started
+## How to use
 
-First, build all the packages in the workspace atleast once. Run
+Download the example [or clone the repo](https://github.com/mui/material-ui):
+
+<!-- #default-branch-switch -->
 
 ```bash
-pnpm build
+curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/zero-nextjs
+cd zero-nextjs
 ```
 
-Then start the Next.js development server:
+Install it and run:
 
 ```bash
-pnpm run --filter=@app/next-app dev
+npm install
+npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+or:
 
-### Note
+<!-- #default-branch-switch -->
 
-If you are testing changes in zero-runtime packages itself while also running this demo app, start the watch command in a separate terminal to watch and build zero-runtime package files as they change -
+[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/zero-nextjs)
 
-```bash
-pnpm watch:zero
-```
+[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/github/mui/material-ui/tree/master/examples/zero-nextjs)
 
-You might have to restart the next.js server.
+## Learn more
 
-## Build
+To learn more about this example:
 
-To build the project, run the `build` command in this package:
-
-```bash
-pnpm run --filter=@app/next-app build
-```
+- [Zero Runtime documentation](https://github.com/mui/material-ui/blob/master/packages/zero-runtime/README.md) - learn how to use Zero Runtime.
+- [Next.js documentation](https://nextjs.org/docs) - learn about Next.js features and API.
