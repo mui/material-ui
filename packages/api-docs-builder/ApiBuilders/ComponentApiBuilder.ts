@@ -360,6 +360,7 @@ const generateApiPage = async (
   reactApi: ReactApi,
   sortingStrategies?: SortingStrategiesType,
   onlyJsonFile: boolean = false,
+  layoutConfigPath: string = '',
 ) => {
   const normalizedApiPathname = reactApi.apiPathname.replace(/\\/g, '/');
   /**
@@ -424,10 +425,15 @@ const generateApiPage = async (
   import ApiPage from 'docs/src/modules/components/ApiPage';
   import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
   import jsonPageContent from './${kebabCase(reactApi.name)}.json';
-
+${
+  layoutConfigPath === ''
+    ? ''
+    : `  import layoutConfig from '${layoutConfigPath}';
+`
+}
   export default function Page(props) {
     const { descriptions, pageContent } = props;
-    return <ApiPage descriptions={descriptions} pageContent={pageContent} />;
+    return <ApiPage ${layoutConfigPath === '' ? '' : '{...layoutConfig} '}descriptions={descriptions} pageContent={pageContent} />;
   }
 
   Page.getInitialProps = () => {
