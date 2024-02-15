@@ -8,7 +8,7 @@ import AppFooter from 'docs/src/layouts/AppFooter';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import Link from '@mui/docs/Link';
+import { Link } from '@mui/docs/Link';
 
 const StyledDiv = styled('div')({
   flex: '1 0 100%',

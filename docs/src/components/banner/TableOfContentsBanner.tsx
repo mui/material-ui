@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { alpha } from '@mui/material/styles';
-import Link from '@mui/docs/Link';
+import { Link } from '@mui/docs/Link';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 export default function TableOfContentsBanner() {

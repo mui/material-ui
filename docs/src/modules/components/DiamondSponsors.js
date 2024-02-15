@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import DiamondOutlinedIcon from '@mui/icons-material/DiamondOutlined';
 import { useTranslate } from '@mui/docs/i18n';
-import Link from '@mui/docs/Link';
+import { Link } from '@mui/docs/Link';
 
 const StyledAnchor = styled('a')(({ theme }) => ({
   boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout

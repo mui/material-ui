@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import ContentCopyRounded from '@mui/icons-material/ContentCopyRounded';
 import CheckRounded from '@mui/icons-material/CheckRounded';
-import Link from '@mui/docs/Link';
+import { Link } from '@mui/docs/Link';
 import NpmCopyButton from 'docs/src/components/action/NpmCopyButton';
 
 interface GetStartedButtonsProps extends BoxProps {

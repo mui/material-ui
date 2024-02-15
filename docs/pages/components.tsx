@@ -13,7 +13,7 @@ import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import Section from 'docs/src/layouts/Section';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import { useTranslate } from '@mui/docs/i18n';
-import Link from '@mui/docs/Link';
+import { Link } from '@mui/docs/Link';
 import type { MuiPage } from 'docs/src/MuiPage';
 import materialPages from 'docs/data/material/pages';
 

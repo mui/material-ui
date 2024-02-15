@@ -10,7 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import { alpha } from '@mui/material/styles';
-import Link from '@mui/docs/Link';
+import { Link } from '@mui/docs/Link';
 import { useTranslate } from '@mui/docs/i18n';
 
 /**

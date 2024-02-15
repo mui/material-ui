@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import Tabs, { tabsClasses } from '@mui/material/Tabs';
 import Tab, { tabClasses } from '@mui/material/Tab';
 import { useTranslate } from '@mui/docs/i18n';
-import Link from '@mui/docs/Link';
+import { Link } from '@mui/docs/Link';
 
 export const HEIGHT = 50;
 

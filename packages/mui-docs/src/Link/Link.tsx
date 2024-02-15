@@ -68,7 +68,7 @@ export type LinkProps = {
 
 // A styled version of the Next.js Pages Router Link component:
 // https://nextjs.org/docs/pages/api-reference/components/link
-const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props, ref) {
+export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props, ref) {
   const {
     activeClassName = 'active',
     as,
@@ -136,5 +136,3 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props,
     />
   );
 });
-
-export default Link;
