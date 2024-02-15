@@ -1,8 +1,5 @@
-import * as fs from 'fs';
-import * as url from 'url';
-import * as path from 'path';
-
-const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
+const fs = require('fs');
+const path = require('path');
 
 const pageRegex = /(\.js|\.tsx)$/;
 const blackList = ['/.eslintrc', '/_document', '/_app'];
@@ -23,9 +20,9 @@ const blackList = ['/.eslintrc', '/_document', '/_app'];
  * @returns {NextJSPage[]}
  */
 // eslint-disable-next-line import/prefer-default-export
-export function findPages(
+function findPages(
   options = {},
-  directory = path.resolve(currentDirectory, '../../../pages'),
+  directory = path.resolve(__dirname, '../../../pages'),
   pages = [],
 ) {
   fs.readdirSync(directory).forEach((item) => {
@@ -84,3 +81,5 @@ export function findPages(
 
   return pages;
 }
+
+module.exports.findPages = findPages;

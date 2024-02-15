@@ -1,24 +1,18 @@
 // @ts-check
-import * as path from 'path';
-import * as url from 'url';
-import * as fs from 'fs';
+const path = require('path');
+const fs = require('fs');
 // @ts-ignore
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
-import { createRequire } from 'module';
-import { findPages } from './src/modules/utils/find.mjs';
-
-const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
-const require = createRequire(import.meta.url);
-
-const withDocsInfra = require('./nextConfigDocsInfra.js');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const { findPages } = require('./src/modules/utils/find');
+const withDocsInfra = require('./nextConfigDocsInfra');
 const {
   LANGUAGES,
   LANGUAGES_SSR,
   LANGUAGES_IGNORE_PAGES,
   LANGUAGES_IN_PROGRESS,
-} = require('./config.js');
+} = require('./config');
 
-const workspaceRoot = path.join(currentDirectory, '../');
+const workspaceRoot = path.join(__dirname, '../');
 
 const l10nPRInNetlify = /^l10n_/.test(process.env.HEAD || '') && process.env.NETLIFY === 'true';
 const vercelDeploy = Boolean(process.env.VERCEL);
@@ -29,7 +23,7 @@ const buildOnlyEnglishLocale = isDeployPreview && !l10nPRInNetlify && !vercelDep
 const pkgContent = fs.readFileSync(path.resolve(workspaceRoot, 'package.json'), 'utf8');
 const pkg = JSON.parse(pkgContent);
 
-export default withDocsInfra({
+module.exports = withDocsInfra({
   webpack: (config, options) => {
     const plugins = config.plugins.slice();
 
