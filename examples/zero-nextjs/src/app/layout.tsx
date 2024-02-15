@@ -1,10 +1,9 @@
+import * as React from 'react';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import '@mui/zero-runtime/styles.css';
+import { css } from '@mui/zero-runtime';
 
 import './globals.css';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -14,7 +13,16 @@ export const metadata: Metadata = {
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{props.children}</body>
+      <body
+        className={css`
+          color: hsl(var(--palette-foreground));
+          background-color: hsl(var(--palette-background));
+          font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+        `}
+      >
+        {props.children}
+      </body>
     </html>
   );
 }
