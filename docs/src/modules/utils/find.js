@@ -19,7 +19,6 @@ const blackList = ['/.eslintrc', '/_document', '/_app'];
  * @param {NextJSPage[]} pages
  * @returns {NextJSPage[]}
  */
-// eslint-disable-next-line import/prefer-default-export
 function findPages(
   options = {},
   directory = path.resolve(__dirname, '../../../pages'),
