@@ -2,6 +2,8 @@
 
 <p class="description">A Figma plugin that lets you generate a theme from the Material UI Design kit for Figma. </p>
 
+<img src="/static/material-ui/design-resources/connect.png" style="width: 814px;" alt="A screenshot of Figma together with the MUI Connect plug-in running on the side, doing customziations to the Material UI Switch component." width="1628" height="400" />
+
 MUI Connect is a Figma plugin that lets you generate a theme from the Material UI Design kit for Figma.
 You can customize both design tokens and components, generate a theme JSON, and see your changes from an embedded Storybook instance.
 
