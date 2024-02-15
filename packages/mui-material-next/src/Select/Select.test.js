@@ -10,7 +10,7 @@ import {
   screen,
 } from '@mui-internal/test-utils';
 import { nativeSelectClasses } from '@mui/material/NativeSelect';
-// TODO v6: replace with material-next's extendTheme and provider when implementing Material You design
+// TODO v6: replace with material-next's extendTheme and provider when implementing Material Design 3
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 // TODO v6: replace with material-next Menu components when available https://github.com/mui/material-ui/pull/38934
 import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
