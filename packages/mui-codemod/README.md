@@ -97,6 +97,21 @@ npx @mui/codemod@latest deprecations/accordion-props <path>
 JS transforms:
 
 ```diff
+ import { accordionSummaryClasses } from '@mui/material/AccordionSummary';
+
+ MuiAccordionSummary: {
+   styleOverrides: {
+     root: {
+-      [`& .${accordionSummaryClasses.contentGutters}`]: {
++      [`&.${accordionSummaryClasses.gutters} .${accordionSummaryClasses.content}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+```diff
  MuiAccordionSummary: {
    styleOverrides: {
      root: {

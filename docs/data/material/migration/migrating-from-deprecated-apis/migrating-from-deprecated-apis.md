@@ -76,11 +76,13 @@ Bear in mind that the `.MuiAccordionSummary-gutters` class is applied to the com
 ```
 
 ```diff
+ import { accordionSummaryClasses } from '@mui/material/AccordionSummary';
+
  MuiAccordionSummary: {
    styleOverrides: {
      root: {
--      '& .MuiAccordionSummary-contentGutters': {
-+      '&.MuiAccordionSummary-gutters .MuiAccordionSummary-content': {
+-      [`& .${accordionSummaryClasses.contentGutters}`]: {
++      [`&.${accordionSummaryClasses.gutters} .${accordionSummaryClasses.content}`]: {
          color: 'red',
         },
      },
