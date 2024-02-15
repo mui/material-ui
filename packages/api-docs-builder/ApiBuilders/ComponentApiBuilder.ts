@@ -423,14 +423,14 @@ const generateApiPage = async (
       path.resolve(apiPagesDirectory, `${kebabCase(reactApi.name)}.js`),
       `import * as React from 'react';
   import ApiPage from 'docs/src/modules/components/ApiPage';
-  import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
+  import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';${
+    layoutConfigPath === ''
+      ? ''
+      : `
+  import layoutConfig from '${layoutConfigPath}';`
+  }
   import jsonPageContent from './${kebabCase(reactApi.name)}.json';
-${
-  layoutConfigPath === ''
-    ? ''
-    : `  import layoutConfig from '${layoutConfigPath}';
-`
-}
+
   export default function Page(props) {
     const { descriptions, pageContent } = props;
     return <ApiPage ${layoutConfigPath === '' ? '' : '{...layoutConfig} '}descriptions={descriptions} pageContent={pageContent} />;
