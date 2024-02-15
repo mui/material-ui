@@ -808,6 +808,7 @@ export default async function generateComponentApi(
       reactApi,
       projectSettings.sortingStrategies,
       generateJsonFileOnly,
+      componentInfo.layoutConfigPath,
     );
 
     if (
