@@ -7,6 +7,7 @@
 
 This repository contains a collection of codemod scripts based for use with
 [jscodeshift](https://github.com/facebook/jscodeshift) that help update the APIs.
+Some of the codemods also run [postcss](https://github.com/postcss/postcss) plugins to update CSS files.
 
 ## Setup & run
 
@@ -89,6 +90,50 @@ A combination of all deprecations.
 
 ```bash
 npx @mui/codemod@latest deprecations/accordion-props <path>
+```
+
+#### `accordion-summary-classes`
+
+JS transforms:
+
+```diff
+ import { accordionSummaryClasses } from '@mui/material/AccordionSummary';
+
+ MuiAccordionSummary: {
+   styleOverrides: {
+     root: {
+-      [`& .${accordionSummaryClasses.contentGutters}`]: {
++      [`&.${accordionSummaryClasses.gutters} .${accordionSummaryClasses.content}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+```diff
+ MuiAccordionSummary: {
+   styleOverrides: {
+     root: {
+-      '& .MuiAccordionSummary-contentGutters': {
++      '&.MuiAccordionSummary-gutters .MuiAccordionSummary-content': {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiAccordionSummary-root .MuiAccordionSummary-contentGutters
++.MuiAccordionSummary-root.MuiAccordionSummary-gutters .MuiAccordionSummary-content
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/accordion-summary-classes <path>
 ```
 
 #### `avatar-props`
