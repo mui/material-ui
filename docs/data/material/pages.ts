@@ -311,6 +311,17 @@ const pages: MuiPage[] = [
     ],
   },
   {
+    pathname: '/material-ui/design-resources',
+    title: 'Design resources',
+    children: [
+      {
+        pathname: '/material-ui/design-resources/mui-connect',
+        title: 'MUI Connect plugin',
+        newFeature: true,
+      },
+    ],
+  },
+  {
     pathname: '/material-ui/discover-more',
     children: [
       { pathname: '/material-ui/discover-more/showcase' },
