@@ -24,7 +24,7 @@ overrides:
   '@definitelytyped/utils': ^0.1.2
   '@types/node': ^18.19.15
   '@types/react': ^18.2.55
-  '@types/react-dom': 18.2.18
+  '@types/react-dom': 18.2.19
   cross-fetch: ^4.0.0
 
 importers:
@@ -391,8 +391,8 @@ importers:
         specifier: ^18.2.55
         version: 18.2.55
       '@types/react-dom':
-        specifier: 18.2.18
-        version: 18.2.18
+        specifier: 18.2.19
+        version: 18.2.19
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -446,8 +446,8 @@ importers:
         specifier: ^18.2.55
         version: 18.2.55
       '@types/react-dom':
-        specifier: 18.2.18
-        version: 18.2.18
+        specifier: 18.2.19
+        version: 18.2.19
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.0.12)
@@ -861,8 +861,8 @@ importers:
         specifier: ^18.2.55
         version: 18.2.55
       '@types/react-dom':
-        specifier: 18.2.18
-        version: 18.2.18
+        specifier: 18.2.19
+        version: 18.2.19
       '@types/react-swipeable-views':
         specifier: ^0.13.5
         version: 0.13.5
@@ -1175,8 +1175,8 @@ importers:
         specifier: ^18.2.55
         version: 18.2.55
       '@types/react-dom':
-        specifier: 18.2.18
-        version: 18.2.18
+        specifier: 18.2.19
+        version: 18.2.19
       '@types/sinon':
         specifier: ^10.0.20
         version: 10.0.20
@@ -1416,8 +1416,8 @@ importers:
         specifier: ^18.2.55
         version: 18.2.55
       '@types/react-dom':
-        specifier: 18.2.18
-        version: 18.2.18
+        specifier: 18.2.19
+        version: 18.2.19
       '@types/sinon':
         specifier: ^10.0.20
         version: 10.0.20
@@ -1490,8 +1490,8 @@ importers:
         specifier: ^18.2.55
         version: 18.2.55
       '@types/react-dom':
-        specifier: 18.2.18
-        version: 18.2.18
+        specifier: 18.2.19
+        version: 18.2.19
       '@types/sinon':
         specifier: ^10.0.20
         version: 10.0.20
@@ -1585,8 +1585,8 @@ importers:
         specifier: ^18.2.55
         version: 18.2.55
       '@types/react-dom':
-        specifier: 18.2.18
-        version: 18.2.18
+        specifier: 18.2.19
+        version: 18.2.19
       '@types/sinon':
         specifier: ^10.0.20
         version: 10.0.20
@@ -1704,8 +1704,8 @@ importers:
         specifier: ^18.2.55
         version: 18.2.55
       '@types/react-dom':
-        specifier: 18.2.18
-        version: 18.2.18
+        specifier: 18.2.19
+        version: 18.2.19
       '@types/react-is':
         specifier: ^18.2.4
         version: 18.2.4
@@ -1939,8 +1939,8 @@ importers:
         specifier: ^18.2.55
         version: 18.2.55
       '@types/react-dom':
-        specifier: 18.2.18
-        version: 18.2.18
+        specifier: 18.2.19
+        version: 18.2.19
       '@types/sinon':
         specifier: ^10.0.20
         version: 10.0.20
@@ -2079,8 +2079,8 @@ importers:
         specifier: ^18.2.55
         version: 18.2.55
       '@types/react-dom':
-        specifier: 18.2.18
-        version: 18.2.18
+        specifier: 18.2.19
+        version: 18.2.19
       '@types/react-is':
         specifier: ^18.2.4
         version: 18.2.4
@@ -2223,8 +2223,8 @@ importers:
         specifier: ^18.2.55
         version: 18.2.55
       '@types/react-dom':
-        specifier: 18.2.18
-        version: 18.2.18
+        specifier: 18.2.19
+        version: 18.2.19
       '@types/react-test-renderer':
         specifier: ^18.0.7
         version: 18.0.7
@@ -7317,7 +7317,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.9
       '@testing-library/dom': 9.3.4
-      '@types/react-dom': 18.2.18
+      '@types/react-dom': 18.2.19
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
@@ -7758,8 +7758,8 @@ packages:
     resolution: {integrity: sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==}
     dev: false
 
-  /@types/react-dom@18.2.18:
-    resolution: {integrity: sha512-TJxDm6OfAX2KJWJdMEVTwWke5Sc/E/RlnPGvGfS0W7+6ocy2xhDVQVh/KvC2Uf7kACs+gDytdusDSdWfWkaNzw==}
+  /@types/react-dom@18.2.19:
+    resolution: {integrity: sha512-aZvQL6uUbIJpjZk4U8JZGbau9KDeAwMfmhyWorxgBkqDIEf6ROjRozcmPIicqsUwPUjbkDfHKgGee1Lq65APcA==}
     dependencies:
       '@types/react': 18.2.55
 
@@ -18143,7 +18143,7 @@ packages:
     resolution: {integrity: sha512-n0ZrutD7DaX/j9VscF+uTALI3oUPa/pO4Z3soOBIjuRn/FzVu6aehhysxZCLi6y7duMf52WNZGMl7CtuK5EnRw==}
     peerDependencies:
       '@types/react': ^18.2.55
-      '@types/react-dom': 18.2.18
+      '@types/react-dom': 18.2.19
       react: ^16.8 || ^17.0 || ^18.0
       react-dom: ^16.8 || ^17.0 || ^18.0
       react-native: '>=0.59'
