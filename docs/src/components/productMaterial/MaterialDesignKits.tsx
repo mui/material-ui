@@ -62,7 +62,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
             <Highlighter disableBorder selected={!customized} onClick={() => setCustomized(false)}>
               <Item
                 icon={<ExtensionRoundedIcon color="primary" />}
-                title="Connect plug-in"
+                title="MUI Connect plugin"
                 description="Generate a theme file with customizations done on the design kits, and then export and paste it directly into your codebase."
               />
             </Highlighter>

@@ -40,8 +40,8 @@ export default function Connect() {
   return (
     <BrandingCssVarsProvider>
       <Head
-        title="MUI Connect: A Figma plug-in that exports a Material UI theme"
-        description="A Figma plug-in that exports a full-fledged Material UI theme."
+        title="MUI Connect: A Figma plugin that exports a Material UI theme"
+        description="A Figma plugin that exports a full-fledged Material UI theme."
         card="/static/social-previews/connect-preview.jpg"
       />
       <AppHeaderBanner />
