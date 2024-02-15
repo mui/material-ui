@@ -63,10 +63,7 @@ function ToggleCustomTheme({
           <AutoAwesomeRoundedIcon sx={{ fontSize: '20px', mr: 1 }} />
           Custom theme
         </ToggleButton>
-        <ToggleButton value={false}>
-          <SvgMaterialDesign sx={{ fontSize: '20px', mr: 1 }} />
-          Material Design
-        </ToggleButton>
+        <ToggleButton value={false}>Material Design 2</ToggleButton>
       </ToggleButtonGroup>
     </Box>
   );
