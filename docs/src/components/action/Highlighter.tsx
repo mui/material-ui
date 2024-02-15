@@ -45,7 +45,6 @@ export default function Highlighter({
           transitionProperty: 'all',
           transitionDuration: '100ms',
           color: 'primary.300',
-          overflow: 'auto',
           ...((!disableBorder || selected) && {
             borderColor: 'grey.100',
           }),
