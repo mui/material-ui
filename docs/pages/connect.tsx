@@ -65,7 +65,7 @@ export default function Connect() {
                   <GradientText>Bridge the gap</GradientText> between Figma and your codebase
                 </Typography>
               }
-              description="MUI Connect is a Figma plug-in that exports a full-fledged Material UI theme to get your design customization up as fast as possible."
+              description="MUI Connect is a Figma plugin that exports a full-fledged Material UI theme to get your design customization up as fast as possible."
             />
             <GetStartedButtons
               primaryLabel="Get it at the Figma Community"

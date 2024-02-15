@@ -42,7 +42,7 @@ export default function ConnectFeatures() {
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <SectionHeadline
-            overline="Available in the Beta version"
+            overline="Available in Beta"
             title={
               <Typography variant="h2">
                 The way developers and designers <GradientText>ship faster</GradientText>
@@ -69,7 +69,7 @@ export default function ConnectFeatures() {
               <Item
                 icon={<SvgStorybook />}
                 title="Preview your changes on Storybook"
-                description="All of the changes you run through the MUI Connect plug-in can also be visualized on a baked-in Storybook preview instance."
+                description="All of the changes you run through the MUI Connect plugin can also be visualized on a baked-in Storybook preview instance."
               />
             </Highlighter>
           </Group>
@@ -138,7 +138,7 @@ export default function ConnectFeatures() {
                 Stay on the loop about the MUI Connect progress!
               </Typography>
               <Typography variant="body2" color="text.secondary" mb={1}>
-                Add your email to be notified about the plug-in progress as we go.
+                Add your email to be notified about the plugin progress as we go.
               </Typography>
               <MUIConnectSignUp />
             </Frame.Info>
