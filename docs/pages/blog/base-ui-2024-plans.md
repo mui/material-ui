@@ -56,8 +56,9 @@ Additionally, since the `slots` and the corresponding `slotProps` are not relate
 To address these issues, we're considering adopting a new API that would assign a discrete subcomponent to each DOM node—the pattern favored by many other headless component libraries (think: `<Slider.Track />`, `<Slider.Thumb />`, etc.).
 This pattern has the potential to radically improve the customization experience, both for styles and structure.
 
-We're still fleshing out the details and plan to release an RFC on GitHub in the coming days.
-We'll update this blog post with the link when it's available.
+We are still fleshing out the API and implementation details.
+If you have any questions or remarks about this change, chime in on [the RFC on GitHub](https://github.com/mui/material-ui/discussions/41085).
+
 We know that a significant number of projects depend on the existing API, and we want to assure you that one of our top priorities is to provide a smooth migration experience.
 
 ## More thorough animation support
