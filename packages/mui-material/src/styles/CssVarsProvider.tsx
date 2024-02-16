@@ -1,9 +1,9 @@
-'use client';
 // do not remove the following import (https://github.com/microsoft/TypeScript/issues/29808#issuecomment-1320713018)
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // @ts-ignore
 import * as React from 'react';
-import { unstable_createCssVarsProvider as createCssVarsProvider, SxProps } from '@mui/system';
+import { SxProps } from '@mui/system';
+import createCssVarsProvider, { getInitColorSchemeScript as systemGetInitColorSchemeScript } from '@mui/system/cssVars';
 import styleFunctionSx from '@mui/system/styleFunctionSx';
 import experimental_extendTheme, {
   SupportedColorScheme,
@@ -15,15 +15,19 @@ import THEME_ID from './identifier';
 
 const defaultTheme = experimental_extendTheme();
 
-const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
+const ATTRIBUTE = 'data-mui-color-scheme';
+const MODE_KEY = 'mui-mode';
+const COLOR_SCHEME_KEY = 'mui-color-scheme';
+
+const { CssVarsProvider, useColorScheme } = createCssVarsProvider<
   SupportedColorScheme,
   typeof THEME_ID
 >({
   themeId: THEME_ID,
   theme: defaultTheme,
-  attribute: 'data-mui-color-scheme',
-  modeStorageKey: 'mui-mode',
-  colorSchemeStorageKey: 'mui-color-scheme',
+  attribute: ATTRIBUTE,
+  modeStorageKey: MODE_KEY,
+  colorSchemeStorageKey: COLOR_SCHEME_KEY,
   defaultColorScheme: {
     light: 'light',
     dark: 'dark',
@@ -45,6 +49,18 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
   },
   excludeVariablesFromRoot,
 });
+
+function getInitColorSchemeScript(...params: Parameters<typeof systemGetInitColorSchemeScript>) {
+  return systemGetInitColorSchemeScript({
+    attribute:ATTRIBUTE,
+    colorSchemeStorageKey: COLOR_SCHEME_KEY,
+    defaultMode: 'light',
+    defaultLightColorScheme: 'light',
+    defaultDarkColorScheme: 'dark',
+    modeStorageKey: MODE_KEY,
+    ...params,
+  })
+}
 
 export {
   useColorScheme,
