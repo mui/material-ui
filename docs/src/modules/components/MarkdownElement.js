@@ -395,12 +395,13 @@ const Root = styled('div')(
       height: '1em',
       color: 'inherit',
       backgroundColor: 'currentColor',
-      transition: 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)', // bounce effect
+      transform: 'translate(0, 2px)',
+      transition: 'transform 0.3s cubic-bezier(0.1, 0.8, 0.3, 1)', // bounce effect
       opacity: 0.8,
     },
     '& a[target="_blank"]:hover::after': {
       opacity: 1,
-      transform: 'translate(1px, -1px)',
+      transform: 'translate(1px, 0)',
     },
     '& a, & a code': {
       // Style taken from the Link component
