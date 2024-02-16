@@ -18,7 +18,7 @@ describe('<Backdrop />', () => {
     testVariantProps: { invisible: true },
     slots: {
       root: {
-        expectedClassName: classes.root
+        expectedClassName: classes.root,
       },
       transition: {
         testWithElement: null,
