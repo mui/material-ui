@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import { Tabs, TabsOwnProps } from '@mui/base/Tabs';
-import { TabsList } from '@mui/base/TabsList';
-import { TabPanel } from '@mui/base/TabPanel';
-import { Tab } from '@mui/base/Tab';
+import { TabsList as TabListBase } from '@mui/base/TabsList';
+import { TabPanel as TabPanelBase } from '@mui/base/TabPanel';
+import { Tab as TabBase } from '@mui/base/Tab';
 import HighlightedCode from './HighlightedCode';
 
-export const StyledTabList = styled(TabsList)(({ theme }) => ({
+export const TabList = styled(TabListBase)(({ theme }) => ({
   padding: theme.spacing(1),
   display: 'flex',
   gap: theme.spacing(0.5),
@@ -19,7 +19,7 @@ export const StyledTabList = styled(TabsList)(({ theme }) => ({
   }),
 }));
 
-export const StyledTabPanel = styled(TabPanel)<{ ownerState: { mounted: boolean } }>(
+export const TabPanel = styled(TabPanelBase)<{ ownerState: { mounted: boolean } }>(
   ({ ownerState }) => ({
     marginTop: -1,
     '& pre': {
@@ -32,7 +32,7 @@ export const StyledTabPanel = styled(TabPanel)<{ ownerState: { mounted: boolean 
   }),
 );
 
-export const StyledTab = styled(Tab)(({ theme }) => ({
+export const Tab = styled(TabBase)(({ theme }) => ({
   padding: '6px',
   border: 'none',
   background: 'transparent',
@@ -112,21 +112,21 @@ export default function HighlightedCodeWithTabs({
   const ownerState = { mounted };
   return (
     <Tabs selectionFollowsFocus value={activeTab} onChange={handleChange}>
-      <StyledTabList>
+      <TabList>
         {tabs.map(({ tab }) => (
-          <StyledTab ownerState={ownerState} key={tab} value={tab}>
+          <Tab ownerState={ownerState} key={tab} value={tab}>
             {tab}
-          </StyledTab>
+          </Tab>
         ))}
-      </StyledTabList>
+      </TabList>
       {tabs.map(({ tab, language, code }) => (
-        <StyledTabPanel ownerState={ownerState} key={tab} value={tab}>
+        <TabPanel ownerState={ownerState} key={tab} value={tab}>
           <HighlightedCode
             // @ts-ignore
             language={language || 'bash'}
             code={typeof code === 'function' ? code(tab) : code}
           />
-        </StyledTabPanel>
+        </TabPanel>
       ))}
     </Tabs>
   );
