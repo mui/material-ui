@@ -41,7 +41,7 @@ const content = [
   {
     title: 'Design resources',
     description: 'The Material UI components in your favorite design tool.',
-    link: 'https://www.figma.com/community/file/1293288155415213351/material-ui-for-figma',
+    link: 'https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x',
     icon: (
       <img
         src={`/static/branding/design-kits/figma-logo.svg`}
