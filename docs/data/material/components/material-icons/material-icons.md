@@ -40,3 +40,5 @@ See the [Installation](/material-ui/getting-started/installation/) page for addi
 
 Browse through the icons below to find the one you need.
 The search field supports synonyms—for example, try searching for "hamburger" or "logout."
+
+{{"demo": "SearchIcons.js", "hideToolbar": true, "bg": true}}
