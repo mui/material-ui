@@ -127,7 +127,7 @@ export default function MaterialUIExampleCollection() {
                 : { children: example.src })}
             />
             <div>
-              <Typography fontWeight="medium" className="algolia-lvl3">
+              <Typography fontWeight="semiBold" className="algolia-lvl3">
                 {example.name}
               </Typography>
               <Box
@@ -138,7 +138,7 @@ export default function MaterialUIExampleCollection() {
                   display: 'flex',
                   flexWrap: 'wrap',
                   alignItems: 'center',
-                  mt: 0.5,
+                  mt: 0.2,
                   gap: 0.2,
                 }}
               >

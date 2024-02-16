@@ -84,7 +84,7 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
     ...muiTheme
   } = createThemeWithoutVars({
     ...input,
-    // Material Design 3 specific tokens
+    // Material You specific tokens
     // @ts-ignore - it's fine, everything that is not supported will be spread
     useMaterialYou: true,
     ref: {
@@ -416,7 +416,7 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
       }
     });
 
-    // Material Design 3 specific channels
+    // Material You specific channels
     if (key === 'light') {
       colorSchemeSys.color.primaryChannel = colorChannel(colorSchemeRef.palette.primary['40']);
       colorSchemeSys.color.onPrimaryChannel = colorChannel(colorSchemeRef.palette.primary['100']);

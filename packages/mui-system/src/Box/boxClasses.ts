@@ -1,4 +1,4 @@
-import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
+import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
 
 export interface BoxClasses {
   /** Styles applied to the root element. */

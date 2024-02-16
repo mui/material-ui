@@ -21,7 +21,6 @@ import ClassesSection, {
   getClassesToC,
 } from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
-import { DEFAULT_API_LAYOUT_STORAGE_KEYS } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 
 export function getTranslatedHeader(t, header) {
   const translations = {
@@ -69,13 +68,7 @@ Heading.propTypes = {
 };
 
 export default function ApiPage(props) {
-  const {
-    descriptions,
-    disableAd = false,
-    pageContent,
-    defaultLayout = 'table',
-    layoutStorageKey = DEFAULT_API_LAYOUT_STORAGE_KEYS,
-  } = props;
+  const { descriptions, disableAd = false, pageContent } = props;
   const t = useTranslate();
   const userLanguage = useUserLanguage();
 
@@ -264,8 +257,6 @@ export default function ApiPage(props) {
           propertiesDescriptions={propDescriptions}
           componentName={pageContent.name}
           spreadHint={spreadHint}
-          defaultLayout={defaultLayout}
-          layoutStorageKey={layoutStorageKey.props}
         />
         {cssComponent && (
           <React.Fragment>
@@ -323,8 +314,6 @@ export default function ApiPage(props) {
             slotGuideLink &&
             t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink)
           }
-          defaultLayout={defaultLayout}
-          layoutStorageKey={layoutStorageKey.slots}
         />
         <ClassesSection
           componentClasses={componentClasses}
@@ -332,8 +321,6 @@ export default function ApiPage(props) {
           classDescriptions={classDescriptions}
           spreadHint={t('api-docs.classesDescription')}
           styleOverridesLink={styleOverridesLink}
-          defaultLayout={defaultLayout}
-          layoutStorageKey={layoutStorageKey.classes}
           displayClassKeys
         />
       </MarkdownElement>
@@ -347,14 +334,8 @@ export default function ApiPage(props) {
 }
 
 ApiPage.propTypes = {
-  defaultLayout: PropTypes.oneOf(['collapsed', 'expanded', 'table']),
   descriptions: PropTypes.object.isRequired,
   disableAd: PropTypes.bool,
-  layoutStorageKey: PropTypes.shape({
-    classes: PropTypes.string,
-    props: PropTypes.string,
-    slots: PropTypes.string,
-  }),
   pageContent: PropTypes.object.isRequired,
 };
 

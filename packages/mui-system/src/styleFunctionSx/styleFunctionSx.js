@@ -1,4 +1,4 @@
-import capitalize from '@mui/utils/capitalize';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import merge from '../merge';
 import { getPath, getStyleValue as getValue } from '../style';
 import {

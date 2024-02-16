@@ -7,21 +7,52 @@ import TableChartRoundedIcon from '@mui/icons-material/TableChartRounded';
 import ReorderRoundedIcon from '@mui/icons-material/ReorderRounded';
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 
-export type ApiDisplayOptions = 'collapsed' | 'expanded' | 'table';
+type ApiDisplayOptions = 'collapsed' | 'expanded' | 'table';
 
 const options: ApiDisplayOptions[] = ['collapsed', 'expanded', 'table'];
+const DEFAULT_LAYOUT: ApiDisplayOptions = 'expanded';
 
-export const DEFAULT_API_LAYOUT_STORAGE_KEYS = {
+export const API_LAYOUT_STORAGE_KEYS = {
+  default: 'apiPage_default',
   slots: 'apiPage_slots',
   props: 'apiPage_props',
+  css: 'apiPage_css',
   classes: 'apiPage_classes',
 } as const;
 
+// https://stackoverflow.com/a/20084661
+function isBot() {
+  return /bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent);
+}
+
+function getRandomOption() {
+  if (isBot()) {
+    // When crawlers visit the page, they should not have to expand items
+    return DEFAULT_LAYOUT;
+  }
+  // A default layout is saved in localstorage at first render to make sure all section start with the same layout.
+  const savedDefaultOption = localStorage.getItem(
+    API_LAYOUT_STORAGE_KEYS.default,
+  ) as null | ApiDisplayOptions;
+
+  if (savedDefaultOption !== null && options.includes(savedDefaultOption)) {
+    return savedDefaultOption;
+  }
+
+  const randomOption = options[Math.floor(options.length * Math.random())];
+  try {
+    localStorage.setItem(API_LAYOUT_STORAGE_KEYS.default, randomOption);
+  } catch (error) {
+    // Do nothing
+  }
+  return randomOption;
+}
+
 let neverHydrated = true;
 
-function getOption(storageKey: string, defaultValue: ApiDisplayOptions): ApiDisplayOptions {
+function getOption(storageKey: string) {
   if (neverHydrated) {
-    return defaultValue;
+    return DEFAULT_LAYOUT;
   }
   try {
     const savedOption = localStorage.getItem(storageKey);
@@ -29,32 +60,34 @@ function getOption(storageKey: string, defaultValue: ApiDisplayOptions): ApiDisp
     if (savedOption !== null && options.includes(savedOption as ApiDisplayOptions)) {
       return savedOption as ApiDisplayOptions;
     }
+
+    const randomOption = getRandomOption();
+
+    return randomOption;
   } catch (error) {
-    return defaultValue;
+    return DEFAULT_LAYOUT;
   }
-  return defaultValue;
 }
 
 export function useApiPageOption(
   storageKey: string,
-  defaultValue: ApiDisplayOptions,
 ): [ApiDisplayOptions, (newOption: ApiDisplayOptions) => void] {
-  const [option, setOption] = React.useState(getOption(storageKey, defaultValue));
+  const [option, setOption] = React.useState(getOption(storageKey));
 
   useEnhancedEffect(() => {
     neverHydrated = false;
-    const newOption = getOption(storageKey, defaultValue);
+    const newOption = getOption(storageKey);
     setOption(newOption);
-  }, [storageKey, defaultValue]);
+  }, [storageKey]);
 
   React.useEffect(() => {
-    if (option !== defaultValue) {
+    if (option !== DEFAULT_LAYOUT) {
       const id = document.location.hash.slice(1);
       const element = document.getElementById(id);
       element?.scrollIntoView();
     }
     return undefined;
-  }, [option, defaultValue]);
+  }, [option]);
 
   const updateOption = React.useCallback(
     (newOption: ApiDisplayOptions) => {
@@ -69,6 +102,20 @@ export function useApiPageOption(
   );
 
   return [option, updateOption];
+}
+
+export function getApiPageLayout() {
+  const rep: { [key: string]: string } = {};
+
+  Object.values(API_LAYOUT_STORAGE_KEYS).forEach((localStorageKey) => {
+    try {
+      const savedOption = localStorage.getItem(localStorageKey);
+      rep[localStorageKey] = savedOption || 'none';
+    } catch {
+      rep[localStorageKey] = 'none';
+    }
+  });
+  return rep;
 }
 
 // Fix Toggle buton highlight (taken from https://github.com/mui/material-ui/issues/18091)
@@ -94,14 +141,10 @@ const TooltipToggleButton = React.forwardRef<HTMLButtonElement, TooltipToggleBut
 interface ToggleDisplayOptionProps {
   displayOption: ApiDisplayOptions;
   setDisplayOption: (newValue: ApiDisplayOptions) => void;
-  /**
-   * The type of section. This value is used to send correct event to Google Analytics.
-   */
-  sectionType: 'classes' | 'props' | 'slots';
 }
 
 export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
-  const { displayOption, setDisplayOption, sectionType } = props;
+  const { displayOption, setDisplayOption } = props;
 
   const handleAlignment = (
     event: React.MouseEvent<HTMLElement>,
@@ -139,34 +182,13 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
         },
       }}
     >
-      <TooltipToggleButton
-        value="collapsed"
-        aria-label="colapsed list"
-        title="Collapse list view"
-        data-ga-event-category="layout"
-        data-ga-event-action={sectionType}
-        data-ga-event-label="collapsed"
-      >
+      <TooltipToggleButton value="collapsed" aria-label="colapsed list" title="Collapse list view">
         <ReorderRoundedIcon size="small" />
       </TooltipToggleButton>
-      <TooltipToggleButton
-        value="expanded"
-        aria-label="expanded list"
-        title="Expand list view"
-        data-ga-event-category="layout"
-        data-ga-event-action={sectionType}
-        data-ga-event-label="expanded"
-      >
+      <TooltipToggleButton value="expanded" aria-label="expanded list" title="Expand list view">
         <CalendarViewDayRoundedIcon />
       </TooltipToggleButton>
-      <TooltipToggleButton
-        value="table"
-        aria-label="table"
-        title="Table view"
-        data-ga-event-category="layout"
-        data-ga-event-action={sectionType}
-        data-ga-event-label="table"
-      >
+      <TooltipToggleButton value="table" aria-label="table" title="Table view">
         <TableChartRoundedIcon />
       </TooltipToggleButton>
     </ToggleButtonGroup>

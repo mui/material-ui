@@ -1,3 +1,3 @@
-import capitalize from '@mui/utils/capitalize';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 
 export default capitalize;

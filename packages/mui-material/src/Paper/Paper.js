@@ -2,10 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import integerPropType from '@mui/utils/integerPropType';
-import chainPropTypes from '@mui/utils/chainPropTypes';
-import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
+import { chainPropTypes, integerPropType } from '@mui/utils';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { alpha } from '@mui/system';
 import styled from '../styles/styled';
 import getOverlayAlpha from '../styles/getOverlayAlpha';
 import useThemeProps from '../styles/useThemeProps';

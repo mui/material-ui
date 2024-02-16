@@ -1,6 +1,6 @@
 'use client';
-import composeClasses from '@mui/utils/composeClasses';
-import integerPropType from '@mui/utils/integerPropType';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { integerPropType } from '@mui/utils';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';

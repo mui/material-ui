@@ -199,7 +199,7 @@ function DemoComponents() {
   );
 }
 
-// custom M3 theme
+// custom MD3 theme
 const cssVarsTheme = extendTheme({
   ref: {
     palette: customPalette,

@@ -41,21 +41,33 @@ export const getStaticProps = () => {
 function PostPreview(props: BlogPost) {
   return (
     <React.Fragment>
-      <Box sx={{ display: 'flex', gap: '6px', mb: 1.5 }}>
+      <Box sx={{ display: 'flex', gap: 1, mb: 1.5 }}>
         {props.tags.map((tag) => (
           <Chip
             key={tag}
             label={tag}
             size="small"
-            variant="outlined"
-            color="primary"
-            sx={(theme) => ({
-              fontWeight: 'medium',
-              fontSize: theme.typography.pxToRem(12),
-              ...theme.applyDarkStyles({
-                color: (theme.vars || theme).palette.grey[200],
+            sx={[
+              (theme) => ({
+                fontWeight: 500,
+                color: (theme.vars || theme).palette.primary[600],
+                background: (theme.vars || theme).palette.primary[50],
+                border: '1px solid',
+                borderColor: (theme.vars || theme).palette.primary[100],
+                '&:hover': {
+                  background: (theme.vars || theme).palette.primary[50],
+                },
               }),
-            })}
+              (theme) =>
+                theme.applyDarkStyles({
+                  color: (theme.vars || theme).palette.primary[100],
+                  background: alpha(theme.palette.primary[900], 0.4),
+                  borderColor: alpha(theme.palette.primary[800], 0.5),
+                  '&:hover': {
+                    background: alpha(theme.palette.primary[900], 0.4),
+                  },
+                }),
+            ]}
           />
         ))}
       </Box>
@@ -132,7 +144,7 @@ function PostPreview(props: BlogPost) {
       >
         <Box sx={{ position: 'relative' }}>
           {props.authors && (
-            <Typography variant="body2" fontWeight="medium">
+            <Typography variant="body2" fontWeight="500">
               {props.authors
                 .slice(0, 3)
                 .map((userId) => {
@@ -151,7 +163,7 @@ function PostPreview(props: BlogPost) {
             </Typography>
           )}
           {props.date && (
-            <Typography variant="caption" fontWeight="regular" color="text.secondary">
+            <Typography variant="caption" fontWeight="400" color="text.secondary">
               {new Date(props.date).toDateString()}
             </Typography>
           )}
@@ -307,7 +319,11 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                       display: 'flex',
                       flexDirection: 'column',
                       position: 'relative',
-                      boxShadow: '0px 4px 16px rgba(170, 180, 190, 0.2)',
+                      transition: 'all ease 120ms',
+                      '&:hover, &:focus-within': {
+                        borderColor: 'grey.300',
+                        boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
+                      },
                       '&:focus-within': {
                         '& a': {
                           outline: 0,
@@ -316,7 +332,10 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                     },
                     (theme) =>
                       theme.applyDarkStyles({
-                        boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.4)',
+                        '&:hover, &:focus-within': {
+                          borderColor: 'primary.600',
+                          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.5)',
+                        },
                       }),
                   ]}
                 >

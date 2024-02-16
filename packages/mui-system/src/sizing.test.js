@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import createTheme from '@mui/system/createTheme';
+import { createTheme } from '@mui/system';
 import sizing from './sizing';
 
 describe('sizing', () => {

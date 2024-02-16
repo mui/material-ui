@@ -453,11 +453,11 @@ export function buildTheme(): ThemeOptions {
       MuiTableHead: {
         styleOverrides: {
           root: ({ theme }) => ({
-            padding: 8,
+            padding: 10,
             backgroundColor: alpha(theme.palette.grey[50], 0.5),
             borderColor: (theme.vars || theme).palette.divider,
             ...theme.applyDarkStyles({
-              backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
+              backgroundColor: alpha(theme.palette.primaryDark[600], 0.5),
             }),
           }),
         },
@@ -465,7 +465,7 @@ export function buildTheme(): ThemeOptions {
       MuiTableCell: {
         styleOverrides: {
           root: ({ theme }) => ({
-            padding: 8,
+            padding: 10,
             borderColor: (theme.vars || theme).palette.divider,
           }),
         },

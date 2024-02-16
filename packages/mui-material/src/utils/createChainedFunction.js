@@ -1,3 +1,3 @@
-import createChainedFunction from '@mui/utils/createChainedFunction';
+import { unstable_createChainedFunction as createChainedFunction } from '@mui/utils';
 
 export default createChainedFunction;

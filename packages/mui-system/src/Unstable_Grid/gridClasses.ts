@@ -1,5 +1,7 @@
-import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
-import generateUtilityClass from '@mui/utils/generateUtilityClass';
+import {
+  unstable_generateUtilityClass as generateUtilityClass,
+  unstable_generateUtilityClasses as generateUtilityClasses,
+} from '@mui/utils';
 
 export interface GridClasses {
   /** Styles applied to the root element. */

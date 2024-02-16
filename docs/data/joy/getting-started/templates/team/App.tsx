@@ -206,7 +206,7 @@ export default function TeamExample() {
               justifyContent: 'space-between',
             }}
           >
-            <Typography level="title-lg" textColor="text.secondary" component="h1">
+            <Typography level="title-lg" textColor="text.secondary">
               People
             </Typography>
             <Button startDecorator={<PersonRoundedIcon />} size="sm">

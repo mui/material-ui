@@ -1,10 +1,8 @@
 import * as React from 'react';
-import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card, { CardProps } from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import Chip from '@mui/material/Chip';
 import InfoRounded from '@mui/icons-material/InfoRounded';
 
 export default function RealEstateCard({ sx, ...props }: CardProps) {
@@ -14,14 +12,14 @@ export default function RealEstateCard({ sx, ...props }: CardProps) {
       {...props}
       sx={[
         (theme) => ({
-          p: 2,
           display: 'flex',
           flexWrap: 'wrap',
+          p: 2,
           zIndex: 1,
-          boxShadow: `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
+          boxShadow: '0 2px 4px rgba(0, 127, 255, 0.1)',
           ...theme.applyDarkStyles({
             bgcolor: 'primaryDark.900',
-            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.4)',
+            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.8)',
           }),
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
@@ -34,35 +32,40 @@ export default function RealEstateCard({ sx, ...props }: CardProps) {
         alt="123 Main St, Phoenix, AZ cover"
         src="/static/images/cards/real-estate.png"
         sx={{
-          borderRadius: '6px',
+          borderRadius: 0.5,
           width: 'clamp(100px, (304px - 100%) * 999 , 100%)',
         }}
       />
       <Box sx={{ width: 'clamp(15px, (304px - 100%) * 999 , 100%)', height: 15 }} />
       <Box sx={{ alignSelf: 'center' }}>
-        <Typography variant="caption" color="text.secondary" fontWeight="regular">
-          123 Main St, Phoenix, AZ, USA
+        <Typography variant="caption" color="text.secondary" fontWeight="medium">
+          123 Main St, Phoenix, AZ
         </Typography>
-        <Typography fontWeight="bold" noWrap gutterBottom>
+        <Typography fontWeight="bold" noWrap>
           $280k - $310k
         </Typography>
-        <Chip
-          size="small"
-          variant="outlined"
-          icon={<InfoRounded />}
-          label="Confidence score: 85%"
+        <Box
           sx={(theme) => ({
-            '.MuiChip-icon': { fontSize: 16, ml: '4px', color: 'success.500' },
-            bgcolor: 'success.50',
-            borderColor: 'success.100',
-            color: 'success.900',
+            mt: 1,
+            py: 0.4,
+            pl: 0.5,
+            pr: 1,
+            typography: 'caption',
+            borderRadius: 10,
+            display: 'flex',
+            bgcolor: 'primary.50',
+            border: '1px solid',
+            borderColor: 'primary.100',
+            color: 'primary.700',
             ...theme.applyDarkStyles({
               bgcolor: 'primaryDark.700',
-              color: 'success.200',
-              borderColor: 'success.900',
+              color: 'primary.200',
+              borderColor: 'primary.900',
             }),
           })}
-        />
+        >
+          <InfoRounded sx={{ fontSize: 16, mr: 0.5, mt: '1px' }} /> Confidence score: 85%
+        </Box>
       </Box>
     </Card>
   );

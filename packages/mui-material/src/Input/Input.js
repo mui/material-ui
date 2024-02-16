@@ -1,9 +1,8 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import composeClasses from '@mui/utils/composeClasses';
-import deepmerge from '@mui/utils/deepmerge';
-import refType from '@mui/utils/refType';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { refType, deepmerge } from '@mui/utils';
 import InputBase from '../InputBase';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';

@@ -6,7 +6,8 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
+import Masonry from '@mui/lab/Masonry';
+import { useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/system';
 
 const userTestimonials = [
@@ -22,7 +23,7 @@ const userTestimonials = [
     name: 'Travis Howard',
     occupation: 'Lead Product Designer',
     testimonial:
-      "One of the standout features of this product is the exceptional customer support. In my experience, the team behind this product has been quick to respond and incredibly helpful. It's reassuring to know that they stand firmly behind their product.",
+      "One of the standout features of this product is the exceptional customer support. In my experience, the team behind this product has been quick to respond and incredibly helpful. It's reassuring to know that they stand firmly behind their product, providing the kind of support that enhances the overall user experience and instills confidence in the brand.",
   },
   {
     avatar: <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />,
@@ -79,6 +80,8 @@ const logoStyle = {
 
 export default function Testimonials() {
   const theme = useTheme();
+  const isSmallScreen = useMediaQuery('(max-width:600px)');
+  const columns = isSmallScreen ? 1 : 3;
   const logos = theme.palette.mode === 'light' ? darkLogos : whiteLogos;
 
   return (
@@ -109,46 +112,32 @@ export default function Testimonials() {
           and reliable support.
         </Typography>
       </Box>
-      <Grid container spacing={2}>
+      <Masonry columns={columns} spacing={2}>
         {userTestimonials.map((testimonial, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index} sx={{ display: 'flex' }}>
-            <Card
+          <Card key={index} sx={{ p: 1 }}>
+            <CardContent>
+              <Typography variant="body2" color="text.secondary">
+                {testimonial.testimonial}
+              </Typography>
+            </CardContent>
+            <Box
               sx={{
                 display: 'flex',
-                flexDirection: 'column',
+                flexDirection: 'row',
                 justifyContent: 'space-between',
-                flexGrow: 1,
-                p: 1,
+                pr: 2,
               }}
             >
-              <CardContent>
-                <Typography variant="body2" color="text.secondary">
-                  {testimonial.testimonial}
-                </Typography>
-              </CardContent>
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  pr: 2,
-                }}
-              >
-                <CardHeader
-                  avatar={testimonial.avatar}
-                  title={testimonial.name}
-                  subheader={testimonial.occupation}
-                />
-                <img
-                  src={logos[index]}
-                  alt={`Logo ${index + 1}`}
-                  style={logoStyle}
-                />
-              </Box>
-            </Card>
-          </Grid>
+              <CardHeader
+                avatar={testimonial.avatar}
+                title={testimonial.name}
+                subheader={testimonial.occupation}
+              />
+              <img src={logos[index]} alt={`Logo ${index + 1}`} style={logoStyle} />
+            </Box>
+          </Card>
         ))}
-      </Grid>
+      </Masonry>
     </Container>
   );
 }

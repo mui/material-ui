@@ -1,21 +1,16 @@
-import deepmerge from '@mui/utils/deepmerge';
-import {
-  unstable_createGetCssVar as systemCreateGetCssVar,
-  unstable_prepareCssVars as prepareCssVars,
-} from '@mui/system';
-import styleFunctionSx, {
-  unstable_defaultSxConfig as defaultSxConfig,
-} from '@mui/system/styleFunctionSx';
-
+import { deepmerge } from '@mui/utils';
 import {
   private_safeColorChannel as safeColorChannel,
   private_safeAlpha as safeAlpha,
   private_safeDarken as safeDarken,
   private_safeLighten as safeLighten,
   private_safeEmphasize as safeEmphasize,
+  unstable_createGetCssVar as systemCreateGetCssVar,
+  unstable_defaultSxConfig as defaultSxConfig,
+  unstable_styleFunctionSx as styleFunctionSx,
+  unstable_prepareCssVars as prepareCssVars,
   hslToRgb,
-} from '@mui/system/colorManipulator';
-
+} from '@mui/system';
 import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import createThemeWithoutVars from './createTheme';
 import getOverlayAlpha from './getOverlayAlpha';

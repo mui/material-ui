@@ -1,21 +1,10 @@
 import Image from 'next/image';
-import { styled, css } from '@mui/zero-runtime';
+import { styled } from '@mui/zero-runtime';
+import Badge from '@mui/material/Badge';
 import styles from './page.module.css';
 
-const visuallyHidden = css({
-  border: 0,
-  clip: 'rect(0 0 0 0)',
-  height: '1px',
-  margin: -1,
-  overflow: 'hidden',
-  padding: 0,
-  position: 'absolute',
-  whiteSpace: 'nowrap',
-  width: '1px',
-});
-
-const Main = styled.main(({ theme }) => ({
-  color: theme.vars['foreground-rgb'],
+const Main = styled.main({
+  color: 'rgb(var(--foreground-rgb))',
   background: `linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb))`,
   display: 'flex',
   flexDirection: 'column',
@@ -23,10 +12,7 @@ const Main = styled.main(({ theme }) => ({
   alignItems: 'center',
   padding: '6rem',
   minHeight: '100vh',
-  ...theme.applyStyles('dark', {
-    color: 'yellow',
-  }),
-}));
+});
 
 const Description = styled.div({
   display: 'inherit',
@@ -92,7 +78,9 @@ const Description = styled.div({
 export default function Home() {
   return (
     <Main>
-      <div className={visuallyHidden}>I am invisible</div>
+      <Badge variant="dot">
+        <div>Hey</div>
+      </Badge>
       <Description>
         <p>
           Get started by editing&nbsp;

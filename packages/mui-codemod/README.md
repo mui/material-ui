@@ -1,13 +1,12 @@
 # @mui/codemod
 
-> Codemod scripts for Material UI, Base UI, MUI System, Joy UI.
+> Codemod scripts for MUI
 
 [![npm version](https://img.shields.io/npm/v/@mui/codemod.svg?style=flat-square)](https://www.npmjs.com/package/@mui/codemod)
 [![npm downloads](https://img.shields.io/npm/dm/@mui/codemod.svg?style=flat-square)](https://www.npmjs.com/package/@mui/codemod)
 
 This repository contains a collection of codemod scripts based for use with
-[jscodeshift](https://github.com/facebook/jscodeshift) that help update the APIs.
-Some of the codemods also run [postcss](https://github.com/postcss/postcss) plugins to update CSS files.
+[jscodeshift](https://github.com/facebook/jscodeshift) that help update MUI APIs.
 
 ## Setup & run
 
@@ -90,66 +89,6 @@ A combination of all deprecations.
 
 ```bash
 npx @mui/codemod@latest deprecations/accordion-props <path>
-```
-
-#### `accordion-summary-classes`
-
-JS transforms:
-
-```diff
- import { accordionSummaryClasses } from '@mui/material/AccordionSummary';
-
- MuiAccordionSummary: {
-   styleOverrides: {
-     root: {
--      [`& .${accordionSummaryClasses.contentGutters}`]: {
-+      [`&.${accordionSummaryClasses.gutters} .${accordionSummaryClasses.content}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-```diff
- MuiAccordionSummary: {
-   styleOverrides: {
-     root: {
--      '& .MuiAccordionSummary-contentGutters': {
-+      '&.MuiAccordionSummary-gutters .MuiAccordionSummary-content': {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-CSS transforms:
-
-```diff
--.MuiAccordionSummary-root .MuiAccordionSummary-contentGutters
-+.MuiAccordionSummary-root.MuiAccordionSummary-gutters .MuiAccordionSummary-content
- />
-```
-
-```bash
-npx @mui/codemod@latest deprecations/accordion-summary-classes <path>
-```
-
-#### `avatar-props`
-
-```diff
- <Avatar
--  imgProps={{
--    onError: () => {},
--    onLoad: () => {},
-+  slotProps={{
-+    img: {
-+      onError: () => {},
-+      onLoad: () => {},
-+    }
-   }}
- />;
 ```
 
 #### `divider-props`

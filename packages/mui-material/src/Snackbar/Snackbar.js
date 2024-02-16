@@ -1,8 +1,7 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useSlotProps } from '@mui/base/utils';
-import composeClasses from '@mui/utils/composeClasses';
+import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
 import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import { useSnackbar } from '@mui/base/useSnackbar';
 import styled from '../styles/styled';

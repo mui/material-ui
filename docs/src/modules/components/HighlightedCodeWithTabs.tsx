@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import { Tabs, TabsOwnProps } from '@mui/base/Tabs';
-import { TabsList as TabsListBase } from '@mui/base/TabsList';
-import { TabPanel as TabPanelBase } from '@mui/base/TabPanel';
-import { Tab as TabBase } from '@mui/base/Tab';
+import { TabsList } from '@mui/base/TabsList';
+import { TabPanel } from '@mui/base/TabPanel';
+import { Tab } from '@mui/base/Tab';
 import HighlightedCode from './HighlightedCode';
 
-const TabList = styled(TabsListBase)(({ theme }) => ({
+const StyledTabList = styled(TabsList)(({ theme }) => ({
   padding: 6,
   display: 'flex',
   border: '1px solid',
@@ -19,7 +19,7 @@ const TabList = styled(TabsListBase)(({ theme }) => ({
   }),
 }));
 
-const TabPanel = styled(TabPanelBase)<{ ownerState: { mounted: boolean } }>(({ ownerState }) => ({
+const StyledTabPanel = styled(TabPanel)<{ ownerState: { mounted: boolean } }>(({ ownerState }) => ({
   '& pre': {
     marginTop: -1,
     borderTopLeftRadius: 0,
@@ -30,7 +30,7 @@ const TabPanel = styled(TabPanelBase)<{ ownerState: { mounted: boolean } }>(({ o
   },
 }));
 
-const Tab = styled(TabBase)<{ ownerState: { mounted: boolean } }>(({ theme, ownerState }) =>
+const StyledTab = styled(Tab)<{ ownerState: { mounted: boolean } }>(({ theme, ownerState }) =>
   theme.unstable_sx({
     p: 0.8,
     border: 'none',
@@ -48,7 +48,7 @@ const Tab = styled(TabBase)<{ ownerState: { mounted: boolean } }>(({ theme, owne
       marginLeft: 0.5,
     },
     ...(ownerState.mounted && {
-      '&.base--selected': {
+      '&.Mui-selected': {
         color: '#FFF',
         '&::after': {
           content: "''",
@@ -120,21 +120,21 @@ export default function HighlightedCodeWithTabs({
   const ownerState = { mounted };
   return (
     <Tabs selectionFollowsFocus value={activeTab} onChange={handleChange}>
-      <TabList>
+      <StyledTabList>
         {tabs.map(({ tab }) => (
-          <Tab ownerState={ownerState} key={tab} value={tab}>
+          <StyledTab ownerState={ownerState} key={tab} value={tab}>
             {tab}
-          </Tab>
+          </StyledTab>
         ))}
-      </TabList>
+      </StyledTabList>
       {tabs.map(({ tab, language, code }) => (
-        <TabPanel ownerState={ownerState} key={tab} value={tab}>
+        <StyledTabPanel ownerState={ownerState} key={tab} value={tab}>
           <HighlightedCode
             // @ts-ignore
             language={language || 'bash'}
             code={typeof code === 'function' ? code(tab) : code}
           />
-        </TabPanel>
+        </StyledTabPanel>
       ))}
     </Tabs>
   );

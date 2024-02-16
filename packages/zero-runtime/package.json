@@ -6,11 +6,9 @@
   "types": "build/index.d.ts",
   "private": true,
   "scripts": {
-    "clean": "rimraf build types processors utils",
+    "clean": "rimraf build types",
     "watch": "tsup --watch --clean false",
     "build": "tsup",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/zero-runtime/**/*.test.{js,ts,tsx}'",
-    "test:ci": "cd ../../ && cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov --report-dir=./coverage/zero mocha 'packages/zero-runtime/**/*.test.{js,ts,tsx}'",
     "typecheck": "tsc --noEmit -p ."
   },
   "dependencies": {
@@ -37,10 +35,9 @@
     "@types/babel__helper-plugin-utils": "^7.10.3",
     "@types/cssesc": "^3.0.2",
     "@types/lodash": "^4.14.202",
-    "@types/node": "^18.19.15",
+    "@types/node": "^18.19.14",
     "@types/react": "^18.2.55",
     "@types/stylis": "^4.2.5",
-    "chai": "^4.4.1",
     "react": "^18.2.0"
   },
   "peerDependencies": {
@@ -108,22 +105,6 @@
     },
     "./exports/createUseThemeProps": {
       "default": "./exports/createUseThemeProps.js"
-    }
-  },
-  "nx": {
-    "targets": {
-      "test": {
-        "cache": false,
-        "dependsOn": [
-          "build"
-        ]
-      },
-      "test:ci": {
-        "cache": false,
-        "dependsOn": [
-          "build"
-        ]
-      }
     }
   }
 }

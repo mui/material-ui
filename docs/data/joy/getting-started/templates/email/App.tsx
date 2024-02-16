@@ -107,7 +107,7 @@ export default function EmailExample() {
             }}
           >
             <Box sx={{ alignItems: 'center', gap: 1 }}>
-              <Typography level="title-lg" textColor="text.secondary" component="h1">
+              <Typography level="title-lg" textColor="text.secondary">
                 My inbox
               </Typography>
               <Typography level="title-sm" textColor="text.tertiary">

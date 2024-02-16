@@ -110,8 +110,6 @@ export function useSwitch(props: UseSwitchParameters): UseSwitchReturnValue {
     ref: handleInputRef,
     required,
     type: 'checkbox',
-    role: 'switch',
-    'aria-checked': checkedProp,
     ...otherProps,
     onChange: createHandleInputChange(otherProps),
     onFocus: createHandleFocus(otherProps),

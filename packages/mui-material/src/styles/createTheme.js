@@ -1,8 +1,9 @@
-import deepmerge from '@mui/utils/deepmerge';
-import styleFunctionSx, {
+import { deepmerge } from '@mui/utils';
+import {
+  createTheme as systemCreateTheme,
   unstable_defaultSxConfig as defaultSxConfig,
-} from '@mui/system/styleFunctionSx';
-import systemCreateTheme from '@mui/system/createTheme';
+  unstable_styleFunctionSx as styleFunctionSx,
+} from '@mui/system';
 import MuiError from '@mui-internal/babel-macros/MuiError.macro';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import createMixins from './createMixins';

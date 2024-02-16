@@ -10,11 +10,9 @@ import { getIconButtonUtilityClass } from './iconButtonClasses';
 import { IconButtonOwnerState, IconButtonTypeMap, ExtendIconButton } from './IconButtonProps';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 import ToggleButtonGroupContext from '../ToggleButtonGroup/ToggleButtonGroupContext';
-import CircularProgress from '../CircularProgress';
 
 const useUtilityClasses = (ownerState: IconButtonOwnerState) => {
-  const { color, disabled, focusVisible, focusVisibleClassName, size, variant, loading } =
-    ownerState;
+  const { color, disabled, focusVisible, focusVisibleClassName, size, variant } = ownerState;
 
   const slots = {
     root: [
@@ -24,9 +22,7 @@ const useUtilityClasses = (ownerState: IconButtonOwnerState) => {
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
-      loading && 'loading',
     ],
-    loadingIndicator: ['loadingIndicator'],
   };
 
   const composedClasses = composeClasses(slots, getIconButtonUtilityClass, {});
@@ -114,22 +110,6 @@ export const IconButtonRoot = styled(StyledIconButton, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })({});
-
-const ButtonLoading = styled('span', {
-  name: 'JoyIconButton',
-  slot: 'LoadingIndicator',
-  overridesResolver: (props, styles) => styles.loadingIndicator,
-})<{ ownerState: IconButtonOwnerState }>(({ theme, ownerState }) => ({
-  display: 'inherit',
-  position: 'absolute',
-  left: '50%',
-  transform: 'translateX(-50%)',
-  color: theme.variants[ownerState.variant!]?.[ownerState.color!]?.color,
-  ...(ownerState.disabled && {
-    color: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
-  }),
-}));
-
 /**
  *
  * Demos:
@@ -155,8 +135,6 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     color: colorProp = 'neutral',
     disabled: disabledProp,
     variant: variantProp = 'plain',
-    loading = false,
-    loadingIndicator: loadingIndicatorProp,
     size: sizeProp = 'md',
     slots = {},
     slotProps = {},
@@ -167,8 +145,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
   const variant = inProps.variant || buttonGroup.variant || variantProp;
   const size = inProps.size || buttonGroup.size || sizeProp;
   const color = inProps.color || buttonGroup.color || colorProp;
-  const disabled =
-    (inProps.loading || inProps.disabled) ?? (buttonGroup.disabled || loading || disabledProp);
+  const disabled = inProps.disabled ?? (buttonGroup.disabled || disabledProp);
 
   const buttonRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(buttonRef, ref);
@@ -178,10 +155,6 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     disabled,
     rootRef: handleRef,
   });
-
-  const loadingIndicator = loadingIndicatorProp ?? (
-    <CircularProgress color={color} thickness={{ sm: 2, md: 3, lg: 4 }[size] || 3} />
-  );
 
   React.useImperativeHandle(
     action,
@@ -200,7 +173,6 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     color,
     disabled,
     variant,
-    loading,
     size,
     focusVisible,
     instanceSize: inProps.size,
@@ -254,22 +226,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     },
   });
 
-  const [SlotLoadingIndicator, loadingIndicatorProps] = useSlot('loadingIndicator', {
-    className: classes.loadingIndicator,
-    elementType: ButtonLoading,
-    externalForwardedProps,
-    ownerState,
-  });
-
-  return (
-    <SlotRoot {...rootProps}>
-      {loading ? (
-        <SlotLoadingIndicator {...loadingIndicatorProps}>{loadingIndicator}</SlotLoadingIndicator>
-      ) : (
-        children
-      )}
-    </SlotRoot>
-  );
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as ExtendIconButton<IconButtonTypeMap>;
 
 IconButton.propTypes /* remove-proptypes */ = {
@@ -320,17 +277,6 @@ IconButton.propTypes /* remove-proptypes */ = {
    */
   focusVisibleClassName: PropTypes.string,
   /**
-   * If `true`, the loading indicator is shown and the icon button becomes disabled.
-   * @default false
-   */
-  loading: PropTypes.bool,
-  /**
-   * The node should contain an element with `role="progressbar"` with an accessible name.
-   * By default we render a `CircularProgress` that is labelled by the button itself.
-   * @default <CircularProgress />
-   */
-  loadingIndicator: PropTypes.node,
-  /**
    * @ignore
    */
   onClick: PropTypes.func,
@@ -347,7 +293,6 @@ IconButton.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    loadingIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -355,7 +300,6 @@ IconButton.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
-    loadingIndicator: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
   /**

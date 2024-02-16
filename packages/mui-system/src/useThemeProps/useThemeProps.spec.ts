@@ -1,5 +1,5 @@
 import { expectType } from '@mui/types';
-import useThemeProps from '@mui/system/useThemeProps';
+import { useThemeProps } from '@mui/system';
 
 interface SliderProps {
   track?: boolean;

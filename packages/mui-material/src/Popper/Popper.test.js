@@ -7,8 +7,7 @@ import {
   fireEvent,
   screen,
 } from '@mui-internal/test-utils';
-import { ThemeProvider } from '@mui/system';
-import createTheme from '@mui/system/createTheme';
+import { ThemeProvider, createTheme } from '@mui/system';
 import Grow from '@mui/material/Grow';
 import Popper from '@mui/material/Popper';
 

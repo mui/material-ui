@@ -7,7 +7,6 @@ import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import { DEFAULT_API_LAYOUT_STORAGE_KEYS } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 
 function getTranslatedHeader(t, header, text) {
   const translations = {
@@ -44,12 +43,7 @@ Heading.propTypes = {
 };
 
 export default function HooksApiContent(props) {
-  const {
-    descriptions,
-    pagesContents,
-    defaultLayout = 'table',
-    layoutStorageKey = DEFAULT_API_LAYOUT_STORAGE_KEYS,
-  } = props;
+  const { descriptions, pagesContents } = props;
   const userLanguage = useUserLanguage();
   const t = useTranslate();
 
@@ -82,8 +76,6 @@ export default function HooksApiContent(props) {
               level="h3"
               title="api-docs.parameters"
               titleHash={`${hookNameKebabCase}-parameters`}
-              defaultLayout={defaultLayout}
-              layoutStorageKey={layoutStorageKey}
             />
           ) : (
             <span>{t('api-docs.hooksNoParameters')}</span>
@@ -97,8 +89,6 @@ export default function HooksApiContent(props) {
             level="h3"
             title="api-docs.returnValue"
             titleHash={`${hookNameKebabCase}-return-value`}
-            defaultLayout={defaultLayout}
-            layoutStorageKey={layoutStorageKey}
           />
           <br />
         </MarkdownElement>
@@ -113,9 +103,7 @@ export default function HooksApiContent(props) {
 }
 
 HooksApiContent.propTypes = {
-  defaultLayout: PropTypes.oneOf(['collapsed', 'expanded', 'table']),
   descriptions: PropTypes.object.isRequired,
-  layoutStorageKey: PropTypes.string,
   pagesContents: PropTypes.object.isRequired,
 };
 

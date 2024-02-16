@@ -3,8 +3,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // @ts-ignore
 import * as React from 'react';
-import { unstable_createCssVarsProvider as createCssVarsProvider, SxProps } from '@mui/system';
-import styleFunctionSx from '@mui/system/styleFunctionSx';
+import {
+  unstable_createCssVarsProvider as createCssVarsProvider,
+  SxProps,
+  unstable_styleFunctionSx as styleFunctionSx,
+} from '@mui/system';
 import experimental_extendTheme, {
   SupportedColorScheme,
   CssVarsTheme,

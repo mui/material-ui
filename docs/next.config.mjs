@@ -5,18 +5,17 @@ import * as fs from 'fs';
 // @ts-ignore
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { createRequire } from 'module';
+import withDocsInfra from './nextConfigDocsInfra.js';
 import { findPages } from './src/modules/utils/find.mjs';
-
-const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
-const require = createRequire(import.meta.url);
-
-const withDocsInfra = require('./nextConfigDocsInfra.js');
-const {
+import {
   LANGUAGES,
   LANGUAGES_SSR,
   LANGUAGES_IGNORE_PAGES,
   LANGUAGES_IN_PROGRESS,
-} = require('./config.js');
+} from './config.js';
+
+const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
+const require = createRequire(import.meta.url);
 
 const workspaceRoot = path.join(currentDirectory, '../');
 
@@ -175,7 +174,6 @@ export default withDocsInfra({
       ? `Basic ${Buffer.from(process.env.GITHUB_AUTH).toString('base64')}`
       : '',
   },
-  distDir: 'export',
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
   // However, we don't in order to prevent any regression in the `findPages()` method.
   // @ts-ignore
@@ -234,20 +232,13 @@ export default withDocsInfra({
 
     return map;
   },
-  // Used to signal we run yarn build
-  ...(process.env.NODE_ENV === 'production'
-    ? {
-        output: 'export',
-      }
-    : {
-        // rewrites has no effect when run `next export` for production
-        rewrites: async () => {
-          return [
-            { source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' },
-            // Make sure to include the trailing slash if `trailingSlash` option is set
-            { source: '/api/:rest*/', destination: '/api-docs/:rest*/' },
-            { source: `/static/x/:rest*`, destination: 'http://0.0.0.0:3001/static/x/:rest*' },
-          ];
-        },
-      }),
+  // rewrites has no effect when run `next export` for production
+  rewrites: async () => {
+    return [
+      { source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' },
+      // Make sure to include the trailing slash if `trailingSlash` option is set
+      { source: '/api/:rest*/', destination: '/api-docs/:rest*/' },
+      { source: `/static/x/:rest*`, destination: 'http://0.0.0.0:3001/static/x/:rest*' },
+    ];
+  },
 });

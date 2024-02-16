@@ -4,13 +4,7 @@
     "resolveJsonModule": true,
     "target": "ES2022",
     "paths": {
-      "@babel/core": ["./node_modules/@babel/core"],
-      "@mui/system": ["./packages/mui-system/src"],
-      "@mui/system/*": ["./packages/mui-system/src/*"],
-      "@mui/utils": ["./packages/mui-utils/src"],
-      "@mui/utils/*": ["./packages/mui-utils/src/*"],
-      "@mui/zero-runtime": ["./packages/zero-runtime/src"],
-      "@mui/zero-runtime/*": ["./packages/zero-runtime/src/*"]
+      "@babel/core": ["./node_modules/@babel/core"]
     }
   },
   "include": ["src/**/*.ts"],

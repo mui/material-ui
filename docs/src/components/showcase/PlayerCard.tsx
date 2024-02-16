@@ -13,7 +13,13 @@ import PauseRounded from '@mui/icons-material/PauseRounded';
 import ShuffleRoundedIcon from '@mui/icons-material/ShuffleRounded';
 import LoopRoundedIcon from '@mui/icons-material/LoopRounded';
 
-export default function PlayerCard({ disableTheming }: { disableTheming?: boolean }) {
+export default function PlayerCard({
+  disableTheming,
+  extraStyles,
+}: {
+  disableTheming?: boolean;
+  extraStyles?: boolean;
+}) {
   const [paused, setPaused] = React.useState(true);
   return (
     <Fade in timeout={700}>
@@ -26,10 +32,13 @@ export default function PlayerCard({ disableTheming }: { disableTheming?: boolea
             display: 'flex',
             flexDirection: { xs: 'column', sm: 'row' },
             alignItems: 'center',
+            borderColor: extraStyles ? 'primary.200' : 'grey.200',
             gap: 2,
+            boxShadow: (theme) =>
+              extraStyles
+                ? '0 2px 4px rgba(0, 127, 255, 0.2)'
+                : `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
             ...(!disableTheming && {
-              borderColor: 'divider',
-              boxShadow: (theme) => `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
               [`& .${iconButtonClasses.root}`]: {
                 border: '1px solid',
                 bgcolor: 'primary.50',
@@ -52,7 +61,10 @@ export default function PlayerCard({ disableTheming }: { disableTheming?: boolea
             ((theme) =>
               theme.applyDarkStyles({
                 bgcolor: 'primaryDark.900',
-                boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.4)',
+                borderColor: extraStyles ? 'primary.800' : 'primaryDark.700',
+                boxShadow: extraStyles
+                  ? '0 2px 4px rgba(0, 127, 255, 0.2)'
+                  : '0px 4px 8px rgba(0, 0, 0, 0.4)',
                 [`& .${iconButtonClasses.root}`]: {
                   bgcolor: 'primary.900',
                   color: 'primary.200',
@@ -78,44 +90,41 @@ export default function PlayerCard({ disableTheming }: { disableTheming?: boolea
           src="/static/images/cards/contemplative-reptile.jpg"
           sx={{
             width: { xs: '100%', sm: 100 },
-            ...(!disableTheming && {
-              borderRadius: '6px',
-            }),
+            borderRadius: 0.6,
           }}
         />
-        <Stack direction="column" alignItems="center" spacing={1} useFlexGap>
-          <div>
-            <Typography color="text.primary" fontWeight="semiBold">
+        <Stack direction="column" spacing={2} alignItems="center">
+          <Stack direction="column" spacing={0.2} alignItems="center">
+            <Typography color="text.primary" fontWeight="medium" fontSize={15}>
               Contemplative Reptile
             </Typography>
             <Typography
+              component="div"
               variant="caption"
               color="text.secondary"
-              fontWeight="medium"
-              textAlign="center"
-              sx={{ width: '100%' }}
+              fontWeight="regular"
             >
               Sounds of Nature
             </Typography>
-          </div>
-          <Stack direction="row" alignItems="center" spacing={1} useFlexGap>
-            <IconButton aria-label="Shuffle" disabled size="small">
+          </Stack>
+          <Stack direction="row" alignItems="center" spacing={1.5}>
+            <IconButton aria-label="shuffle" disabled size="small" sx={{ flexGrow: 0 }}>
               <ShuffleRoundedIcon fontSize="small" />
             </IconButton>
-            <IconButton aria-label="Fast rewind" disabled size="small">
+            <IconButton aria-label="fast rewind" disabled size="small">
               <FastRewindRounded fontSize="small" />
             </IconButton>
             <IconButton
-              aria-label={paused ? 'Play music' : 'Pause music'}
-              onClick={() => setPaused((val) => !val)}
+              aria-label={paused ? 'play' : 'pause'}
               sx={{ mx: 1 }}
+              onClick={() => setPaused((val) => !val)}
             >
               {paused ? <PlayArrowRounded /> : <PauseRounded />}
             </IconButton>
-            <IconButton aria-label="Fast forward" disabled size="small">
+            <IconButton aria-label="fast forward" disabled size="small">
               <FastForwardRounded fontSize="small" />
             </IconButton>
-            <IconButton aria-label="Loop music" disabled size="small">
+            <IconButton aria-label="loop" disabled size="small">
               <LoopRoundedIcon fontSize="small" />
             </IconButton>
           </Stack>

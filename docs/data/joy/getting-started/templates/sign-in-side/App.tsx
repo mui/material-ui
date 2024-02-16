@@ -143,9 +143,7 @@ export default function JoySignInSideTemplate() {
           >
             <Stack gap={4} sx={{ mb: 2 }}>
               <Stack gap={1}>
-                <Typography component="h1" level="h3">
-                  Sign in
-                </Typography>
+                <Typography level="h3">Sign in</Typography>
                 <Typography level="body-sm">
                   New to company?{' '}
                   <Link href="#replace-with-a-link" level="title-sm">

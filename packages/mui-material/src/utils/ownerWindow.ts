@@ -1,3 +1,3 @@
-import ownerWindow from '@mui/utils/ownerWindow';
+import { unstable_ownerWindow as ownerWindow } from '@mui/utils';
 
 export default ownerWindow;

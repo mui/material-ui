@@ -109,10 +109,6 @@ function extractClassesFromInterface(
   if (classesTypeDeclaration && ts.isInterfaceDeclaration(classesTypeDeclaration)) {
     const classesProperties = classesType.getProperties();
     classesProperties.forEach((symbol) => {
-      const tags = getSymbolJSDocTags(symbol);
-      if (tags.ignore) {
-        return;
-      }
       result.push({
         key: symbol.name,
         className: projectSettings.generateClassName(muiName, symbol.name),
@@ -159,10 +155,6 @@ function extractClassesFromProps(
     removeUndefinedFromType(type)
       ?.getProperties()
       .forEach((property) => {
-        const tags = getSymbolJSDocTags(property);
-        if (tags.ignore) {
-          return;
-        }
         const description = getSymbolDescription(property, typescriptProject);
         classes[property.escapedName.toString()] = {
           description,

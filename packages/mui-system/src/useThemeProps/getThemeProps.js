@@ -1,4 +1,4 @@
-import resolveProps from '@mui/utils/resolveProps';
+import { internal_resolveProps as resolveProps } from '@mui/utils';
 
 export default function getThemeProps(params) {
   const { theme, name, props } = params;

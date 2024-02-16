@@ -949,17 +949,11 @@ export function getThemedComponents(): ThemeOptions {
                 '&:hover': {
                   backgroundColor: (theme.vars || theme).palette.primary[100],
                 },
-                '& .MuiChip-deleteIcon': {
-                  color: (theme.vars || theme).palette.primary[600],
-                },
                 ...theme.applyDarkStyles({
                   color: (theme.vars || theme).palette.primary[100],
                   backgroundColor: alpha(theme.palette.primary[800], 0.5),
                   '&:hover': {
                     backgroundColor: alpha(theme.palette.primary[900], 0.5),
-                  },
-                  '& .MuiChip-deleteIcon': {
-                    color: (theme.vars || theme).palette.primary[100],
                   },
                 }),
               }),
@@ -1234,10 +1228,9 @@ export function getThemedComponents(): ThemeOptions {
           root: ({ theme }) => [
             {
               textTransform: 'none',
-              fontWeight: theme.typography.fontWeightSemiBold,
+              fontWeight: 700,
               color: theme.palette.grey[700],
               borderColor: theme.palette.grey[200],
-              borderRadius: '8px',
               '&.Mui-selected': {
                 color: (theme.vars || theme).palette.primary[500],
                 borderColor: `${(theme.vars || theme).palette.primary[500]} !important`,
@@ -1248,14 +1241,14 @@ export function getThemedComponents(): ThemeOptions {
               },
             } as const,
             theme.applyDarkStyles({
-              color: theme.palette.grey[200],
-              borderColor: theme.palette.primaryDark[700],
+              color: theme.palette.grey[300],
+              borderColor: theme.palette.primaryDark[500],
               '&.Mui-selected': {
-                color: theme.palette.primary[100],
+                color: '#fff',
                 borderColor: `${(theme.vars || theme).palette.primary[700]} !important`,
-                backgroundColor: alpha(theme.palette.primary[900], 0.5),
+                backgroundColor: (theme.vars || theme).palette.primaryDark[700],
                 '&:hover': {
-                  backgroundColor: alpha(theme.palette.primary[900], 0.8),
+                  backgroundColor: (theme.vars || theme).palette.primaryDark[600],
                 },
               },
             }),

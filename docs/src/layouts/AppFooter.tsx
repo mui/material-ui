@@ -50,7 +50,7 @@ export default function AppFooter(props: AppFooterProps) {
         }}
       >
         <div>
-          <Link prefetch={false} href="/" aria-label="Go to homepage" sx={{ mb: 2 }}>
+          <Link href="/" aria-label="Go to homepage" sx={{ mb: 2 }}>
             <SvgMuiLogotype height={28} width={91} />
           </Link>
           <Typography variant="body2" fontWeight="bold" gutterBottom>
@@ -73,79 +73,41 @@ export default function AppFooter(props: AppFooterProps) {
             <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
               Products
             </Typography>
-            <Link prefetch={false} href={ROUTES.productMaterial}>
-              Material UI
-            </Link>
-            <Link prefetch={false} href={ROUTES.productBase}>
-              Base UI
-            </Link>
-            <Link prefetch={false} href={ROUTES.productAdvanced}>
-              MUI X
-            </Link>
-            <Link prefetch={false} href={ROUTES.productToolpad}>
-              MUI Toolpad
-            </Link>
-            <Link prefetch={false} href={ROUTES.productTemplates}>
-              Templates
-            </Link>
-            <Link prefetch={false} href={ROUTES.productDesignKits}>
-              Design kits
-            </Link>
+            <Link href={ROUTES.productMaterial}>Material UI</Link>
+            <Link href={ROUTES.productBase}>Base UI</Link>
+            <Link href={ROUTES.productAdvanced}>MUI X</Link>
+            <Link href={ROUTES.productToolpad}>MUI Toolpad</Link>
+            <Link href={ROUTES.productTemplates}>Templates</Link>
+            <Link href={ROUTES.productDesignKits}>Design kits</Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
               Resources
             </Typography>
-            <Link prefetch={false} href={ROUTES.materialIcons}>
-              Material Icons
-            </Link>
-            <Link prefetch={false} href={ROUTES.freeTemplates}>
-              Free templates
-            </Link>
-            <Link prefetch={false} href={ROUTES.components}>
-              Components
-            </Link>
-            <Link prefetch={false} href={ROUTES.customization}>
-              Customization
-            </Link>
-            <Link prefetch={false} href={ROUTES.theming}>
-              Theming
-            </Link>
+            <Link href={ROUTES.materialIcons}>Material Icons</Link>
+            <Link href={ROUTES.freeTemplates}>Free templates</Link>
+            <Link href={ROUTES.components}>Components</Link>
+            <Link href={ROUTES.customization}>Customization</Link>
+            <Link href={ROUTES.theming}>Theming</Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
               Explore
             </Typography>
-            <Link prefetch={false} href={ROUTES.documentation}>
-              Documentation
-            </Link>
-            <Link prefetch={false} href={ROUTES.store}>
-              Store
-            </Link>
-            <Link prefetch={false} href={ROUTES.blog}>
-              Blog
-            </Link>
-            <Link prefetch={false} href={ROUTES.showcase}>
-              Showcase
-            </Link>
-            <Link prefetch={false} href={ROUTES.coreRoadmap}>
-              Roadmap
-            </Link>
+            <Link href={ROUTES.documentation}>Documentation</Link>
+            <Link href={ROUTES.store}>Store</Link>
+            <Link href={ROUTES.blog}>Blog</Link>
+            <Link href={ROUTES.showcase}>Showcase</Link>
+            <Link href={ROUTES.coreRoadmap}>Roadmap</Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
               Company
             </Typography>
-            <Link prefetch={false} href={ROUTES.about}>
-              About
-            </Link>
-            <Link prefetch={false} href={ROUTES.vision}>
-              Vision
-            </Link>
+            <Link href={ROUTES.about}>About</Link>
+            <Link href={ROUTES.vision}>Vision</Link>
             <Box sx={{ display: 'flex', alignItems: 'end' }}>
-              <Link prefetch={false} href={ROUTES.careers}>
-                Careers{' '}
-              </Link>
+              <Link href={ROUTES.careers}>Careers </Link>
               <Box
                 sx={(theme) => ({
                   px: 0.5,
@@ -173,13 +135,9 @@ export default function AppFooter(props: AppFooterProps) {
                 Hiring
               </Box>
             </Box>
-            <Link prefetch={false} href={ROUTES.support}>
-              Support
-            </Link>
-            <Link prefetch={false} href={ROUTES.privacyPolicy}>
-              Privacy policy
-            </Link>
-            <Link prefetch={false} target="_blank" rel="noopener" href="mailto:contact@mui.com">
+            <Link href={ROUTES.support}>Support</Link>
+            <Link href={ROUTES.privacyPolicy}>Privacy policy</Link>
+            <Link target="_blank" rel="noopener" href="mailto:contact@mui.com">
               Contact us
             </Link>
           </Box>

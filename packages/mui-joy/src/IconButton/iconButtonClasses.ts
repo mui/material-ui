@@ -33,10 +33,6 @@ export interface IconButtonClasses {
   sizeMd: string;
   /** Class name applied to the root element if `size="lg"`. */
   sizeLg: string;
-  /** Class name applied to the root element if `loading={true}`. */
-  loading: string;
-  /** Class name applied to the loading indicator slot element. */
-  loadingIndicator: string;
 }
 
 export type IconButtonClassKey = keyof IconButtonClasses;
@@ -62,8 +58,6 @@ const iconButtonClasses: IconButtonClasses = generateUtilityClasses('MuiIconButt
   'sizeSm',
   'sizeMd',
   'sizeLg',
-  'loading',
-  'loadingIndicator',
 ]);
 
 export default iconButtonClasses;

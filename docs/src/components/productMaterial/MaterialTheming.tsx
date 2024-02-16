@@ -31,44 +31,48 @@ const code = `
     width="100"
     height="100"
     alt="Contemplative Reptile album cover"
-    src="/images/contemplative-reptile.jpg"
+    src="/static/images/cards/contemplative-reptile.jpg"
     sx={{
       width: { xs: '100%', sm: 100 },
+      borderRadius: 0.6,
     }}
   />
-  <Stack direction="column" alignItems="center" spacing={1} useFlexGap>
-    <div>
-      <Typography color="text.primary" fontWeight="semiBold">
+  <Stack direction="column" spacing={2} alignItems="center">
+    <Stack direction="column" spacing={0.2} alignItems="center">
+      <Typography color="text.primary" fontWeight="medium" fontSize={15}>
         Contemplative Reptile
       </Typography>
       <Typography
+        component="div"
         variant="caption"
         color="text.secondary"
-        fontWeight="medium"
-        textAlign="center"
-        sx={{ width: '100%' }}
+        fontWeight="regular"
       >
         Sounds of Nature
       </Typography>
-    </div>
-    <Stack direction="row" alignItems="center" spacing={1} useFlexGap>
-      <IconButton aria-label="Shuffle" disabled size="small">
+    </Stack>
+    <Stack direction="row" alignItems="center" spacing={1.5}>
+      <IconButton 
+        disabled 
+        aria-label="shuffle" 
+        size="small" 
+        sx={{ flexGrow: 0 }}>
         <ShuffleRoundedIcon fontSize="small" />
       </IconButton>
-      <IconButton aria-label="Fast rewind" disabled size="small">
+      <IconButton aria-label="fast rewind" disabled size="small">
         <FastRewindRounded fontSize="small" />
       </IconButton>
       <IconButton
-        aria-label={paused ? 'Play music' : 'Pause music'}
-        onClick={() => setPaused((val) => !val)}
+        aria-label={paused ? 'play' : 'pause'}
         sx={{ mx: 1 }}
+        onClick={() => setPaused((val) => !val)}
       >
         {paused ? <PlayArrowRounded /> : <PauseRounded />}
       </IconButton>
-      <IconButton aria-label="Fast forward" disabled size="small">
+      <IconButton aria-label="fast forward" disabled size="small">
         <FastForwardRounded fontSize="small" />
       </IconButton>
-      <IconButton aria-label="Loop music" disabled size="small">
+      <IconButton aria-label="loop" disabled size="small">
         <LoopRoundedIcon fontSize="small" />
       </IconButton>
     </Stack>
@@ -90,7 +94,7 @@ export default function MaterialTheming() {
             }
             description="Start quickly with Material Design or use the advanced theming feature to easily tailor the components to your needs."
           />
-          <Group sx={{ m: -2, p: 2 }}>
+          <Group sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
             <Highlighter disableBorder selected={customized} onClick={() => setCustomized(true)}>
               <Item
                 icon={<AutoAwesomeRounded color="warning" />}
@@ -120,7 +124,7 @@ export default function MaterialTheming() {
               }}
             >
               {customized ? (
-                <PlayerCard />
+                <PlayerCard extraStyles />
               ) : (
                 <CssVarsProvider>
                   <PlayerCard disableTheming />

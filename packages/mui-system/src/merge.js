@@ -1,4 +1,4 @@
-import deepmerge from '@mui/utils/deepmerge';
+import { deepmerge } from '@mui/utils';
 
 function merge(acc, item) {
   if (!item) {

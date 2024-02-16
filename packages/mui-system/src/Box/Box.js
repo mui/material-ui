@@ -1,6 +1,6 @@
 'use client';
 import PropTypes from 'prop-types';
-import ClassNameGenerator from '@mui/utils/ClassNameGenerator';
+import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/utils';
 import createBox from '../createBox';
 import boxClasses from './boxClasses';
 

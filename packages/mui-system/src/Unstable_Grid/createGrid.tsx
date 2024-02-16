@@ -2,9 +2,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
-import isMuiElement from '@mui/utils/isMuiElement';
-import generateUtilityClass from '@mui/utils/generateUtilityClass';
-import composeClasses from '@mui/utils/composeClasses';
+import {
+  unstable_composeClasses as composeClasses,
+  unstable_generateUtilityClass as generateUtilityClass,
+  unstable_isMuiElement as isMuiElement,
+} from '@mui/utils';
 import systemStyled from '../styled';
 import useThemePropsSystem from '../useThemeProps';
 import useTheme from '../useTheme';

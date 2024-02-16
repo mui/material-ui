@@ -67,7 +67,7 @@ export default function ResponsiveFontSizesChart() {
           {
             scaleType: 'linear',
             dataKey: 'viewport',
-            valueFormatter: (value) => value.toString(),
+            valueFormatter: (v) => v.toString(),
             tickNumber: 10,
             max: 1600,
             tickLabelStyle: { fontSize: 15 },
@@ -76,7 +76,7 @@ export default function ResponsiveFontSizesChart() {
         ]}
         yAxis={[
           {
-            valueFormatter: (value) => value.toString(),
+            valueFormatter: (v) => v.toString(),
             tickNumber: 5,
             min: 0,
             max: 100,

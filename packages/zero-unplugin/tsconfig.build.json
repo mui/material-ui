@@ -1,9 +1,6 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "composite": false,
-    "paths": {
-      "@babel/core": ["./node_modules/@babel/core"]
-    }
+    "composite": false
   }
 }

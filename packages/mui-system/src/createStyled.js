@@ -1,8 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import styledEngineStyled, { internal_processStyles as processStyles } from '@mui/styled-engine';
-import { isPlainObject } from '@mui/utils/deepmerge';
-import capitalize from '@mui/utils/capitalize';
-import getDisplayName from '@mui/utils/getDisplayName';
+import { getDisplayName, unstable_capitalize as capitalize, isPlainObject } from '@mui/utils';
 import createTheme from './createTheme';
 import styleFunctionSx from './styleFunctionSx';
 

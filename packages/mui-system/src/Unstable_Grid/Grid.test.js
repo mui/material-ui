@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { describeConformance, createRenderer, screen } from '@mui-internal/test-utils';
-import { ThemeProvider } from '@mui/system';
-import createTheme from '@mui/system/createTheme';
+import { ThemeProvider, createTheme } from '@mui/system';
 import Grid, { gridClasses as classes } from '@mui/system/Unstable_Grid';
 
 describe('System <Grid />', () => {
