@@ -26,7 +26,10 @@ import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMappin
 import BrandingProvider from 'docs/src/BrandingProvider';
 import DemoToolbarRoot from 'docs/src/modules/components/DemoToolbarRoot';
 import { blue, blueDark, grey } from 'docs/src/modules/brandingTheme';
-import { StyledTab, StyledTabList } from './HighlightedCodeWithTabs';
+import {
+  Tab as CodeTab,
+  TabList as CodeTabList,
+} from 'docs/src/modules/components/HighlightedCodeWithTabs';
 
 /**
  * Removes leading spaces (indentation) present in the `.tsx` previews
@@ -625,18 +628,18 @@ export default function Demo(props) {
           </DemoToolbarRoot>
           <Tabs defaultValue={0} value={activeTab} onChange={handleChange}>
             {demoData.relativeModules && codeOpen ? (
-              <StyledTabList sx={bordersOverride}>
+              <CodeTabList sx={bordersOverride}>
                 {tabs.map((tab, index) => (
-                  <StyledTab
+                  <CodeTab
                     sx={selectionOverride}
                     ownerState={ownerState}
                     key={tab.module}
                     value={index}
                   >
                     {tab.module}
-                  </StyledTab>
+                  </CodeTab>
                 ))}
-              </StyledTabList>
+              </CodeTabList>
             ) : null}
             <Collapse in={openDemoSource} unmountOnExit timeout={150}>
               {/* A limitation from https://github.com/nihgwu/react-runner,
