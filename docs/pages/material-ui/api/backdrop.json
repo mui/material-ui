@@ -16,7 +16,7 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ root?: object, transition?: func<br>&#124;&nbsp;object }"
+        "description": "{ root?: func<br>&#124;&nbsp;object, transition?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },

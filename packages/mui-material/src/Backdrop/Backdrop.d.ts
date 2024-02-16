@@ -29,7 +29,11 @@ export interface BackdropTransitionSlotPropsOverrides {}
 export type BackdropSlotsAndSlotProps = CreateSlotsAndSlotProps<
   BackdropSlots,
   {
-    root: React.HTMLAttributes<HTMLDivElement> & BackdropComponentsPropsOverrides;
+    root: SlotProps<
+      React.ElementType<HTMLDivElement>,
+      BackdropComponentsPropsOverrides,
+      BackdropOwnerState
+    >;
     transition: SlotProps<
       React.JSXElementConstructor<TransitionProps>,
       BackdropTransitionSlotPropsOverrides,
