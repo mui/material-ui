@@ -395,7 +395,7 @@ const Root = styled('div')(
       height: '1em',
       color: 'inherit',
       backgroundColor: 'currentColor',
-      transition: 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+      transition: 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)', // bounce effect
       opacity: 0.8,
     },
     '& a[target="_blank"]:hover::after': {
