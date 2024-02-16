@@ -90,6 +90,36 @@ Bear in mind that the `.MuiAccordionSummary-gutters` class is applied to the com
  },
 ```
 
+## Alert
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#alert-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/alert-props <path>
+```
+
+### components
+
+The Alert's `components` was deprecated in favor of `slots`:
+
+```diff
+ <Alert
+-  components={{ CloseButton: CustomButton }}
++  slots={{ closeButton: CustomButton }}
+ />
+```
+
+### componentsProps
+
+The Alert's `componentsProps` was deprecated in favor of `slotProps`:
+
+```diff
+ <Alert
+-  componentsProps={{ closeButton: { testid: 'test-id' } }}
++  slotProps={{ closeButton: { testid: 'test-id' } }}
+ />
+```
+
 ## Avatar
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#avatar-props) below to migrate the code as described in the following sections:

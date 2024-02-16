@@ -136,6 +136,32 @@ CSS transforms:
 npx @mui/codemod@latest deprecations/accordion-summary-classes <path>
 ```
 
+#### `alert-props`
+
+```diff
+ <Alert
+-  components={{ CloseButton: CustomButton }}
++  slots={{ closeButton: CustomButton }}
+-  componentsProps={{ closeButton: { testid: 'test-id' } }}
++  slotProps={{ closeButton: { testid: 'test-id' } }}
+ />
+```
+
+```diff
+ MuiAlert: {
+   defaultProps: {
+-    components: { CloseButton: CustomButton }
++    slots: { closeButton: CustomButton },
+-    componentsProps: { closeButton: { testid: 'test-id' }}
++    slotProps: { closeButton: { testid: 'test-id' } },
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/alert-props <path>
+```
+
 #### `avatar-props`
 
 ```diff
