@@ -377,7 +377,7 @@ const bordersOverride = {
 const selectionOverride = (theme) => ({
   cursor: 'pointer',
   '&.base--selected': {
-    color: (theme.vars || theme).palette.primary[500],
+    color: (theme.vars || theme).palette.primary.main,
     '&::after': {
       content: "''",
       position: 'absolute',
@@ -389,7 +389,7 @@ const selectionOverride = (theme) => ({
       bgcolor: (theme.vars || theme).palette.primary.light,
     },
     ...theme.applyDarkStyles({
-      color: (theme.vars || theme).palette.primary[200],
+      color: (theme.vars || theme).palette.primary.light,
     }),
   },
 });

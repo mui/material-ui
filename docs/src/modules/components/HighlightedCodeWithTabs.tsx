@@ -13,9 +13,9 @@ export const TabList = styled(TabListBase)(({ theme }) => ({
   borderLeft: '1px solid',
   borderRight: '1px solid',
   borderColor: (theme.vars || theme).palette.divider,
-  backgroundColor: alpha(theme.palette.grey[50], 0.2),
+  backgroundColor: alpha((theme.vars || theme).palette.grey[50], 0.2),
   ...theme.applyDarkStyles({
-    backgroundColor: alpha(theme.palette.primaryDark[800], 0.2),
+    backgroundColor: alpha((theme.vars || theme).palette.primaryDark[800], 0.2),
   }),
 }));
 
@@ -57,7 +57,7 @@ export const Tab = styled(TabBase)(({ theme }) => ({
   },
   ...theme.applyDarkStyles({
     '&:hover': {
-      backgroundColor: alpha(theme.palette.primaryDark[700], 0.6),
+      backgroundColor: alpha((theme.vars || theme).palette.primaryDark[700], 0.6),
       color: (theme.vars || theme).palette.grey[400],
     },
   }),
