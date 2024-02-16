@@ -49,8 +49,6 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
     children,
     className,
     component = 'div',
-    components = {},
-    componentsProps = {},
     invisible = false,
     open,
     slotProps = {},
@@ -68,16 +66,23 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootSlotProps = slotProps.root ?? componentsProps.root;
-
   const backwardCompatibleSlots = { transition: TransitionComponentProp, ...slots };
+
+  const externalForwardedProps = {
+    slots: backwardCompatibleSlots,
+    slotProps,
+  };
+
+  const [RootSlot, rootProps] = useSlot('root', {
+    elementType: BackdropRoot,
+    externalForwardedProps,
+    className: clsx(classes.root, className),
+    ownerState,
+  });
 
   const [TransitionSlot, transitionProps] = useSlot('transition', {
     elementType: Fade,
-    externalForwardedProps: {
-      slots: backwardCompatibleSlots,
-      slotProps,
-    },
+    externalForwardedProps,
     ownerState,
   });
 
@@ -85,17 +90,9 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
 
   return (
     <TransitionSlot in={open} timeout={transitionDuration} {...other} {...transitionProps}>
-      <BackdropRoot
-        aria-hidden
-        {...rootSlotProps}
-        as={slots.root ?? components.Root ?? component}
-        className={clsx(classes.root, className, rootSlotProps?.className)}
-        ownerState={{ ...ownerState, ...rootSlotProps?.ownerState }}
-        classes={classes}
-        ref={ref}
-      >
+      <RootSlot aria-hidden {...rootProps} classes={classes} ref={ref}>
         {children}
-      </BackdropRoot>
+      </RootSlot>
     </TransitionSlot>
   );
 });
