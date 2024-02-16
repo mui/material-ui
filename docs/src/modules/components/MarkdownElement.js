@@ -387,6 +387,21 @@ const Root = styled('div')(
         },
       },
     },
+    '& a[target="_blank"]::after': {
+      content: '""',
+      maskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' focusable='false' aria-hidden='true' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M6 6v2h8.59L5 17.59 6.41 19 16 9.41V18h2V6z'%3E%3C/path%3E%3C/svg%3E")`,
+      display: 'inline-flex',
+      width: '1em',
+      height: '1em',
+      color: 'inherit',
+      backgroundColor: 'currentColor',
+      transition: 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+      opacity: 0.8,
+    },
+    '& a[target="_blank"]:hover::after': {
+      opacity: 1,
+      transform: 'translate(1px, -1px)',
+    },
     '& a, & a code': {
       // Style taken from the Link component
       color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
