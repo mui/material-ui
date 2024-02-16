@@ -35,15 +35,15 @@ Once you've installed it, go to your copy of the Material UI design kit, click o
 
 Design tokens consist of the styles that are defined through Figma's "local variables" and "local styles" features.
 
-### Available tokens
+### Existing tokens
 
-The Material UI design kits come fully loaded with design tokens that map out to the React library's default theme.
-MUI Connect can read all of the available tokens in the theme.
+The Material UI design kit comes fully loaded with design tokens that map out to the React library's default theme.
+MUI Connect can read all of the existing tokens in the theme.
 
 <img src="/static/material-ui/design-resources/connect-variables.png" style="width: 814px;" alt="A screenshot of Figma showcasing the locals variables menu, which is where all of the design tokens are stored and where you'd go to add new ones." width="1628" height="400" />
 
-To customize one of them, open the Local variables modal or one text style or shadow in the Local styles panel, and change their values.
-After you've done that, open the plugin and click on "Generate theme".
+To customize them, open the Local variables modal or one text style or shadow in the Local styles panel, and change their values.
+Then, open the plugin and click on "Generate theme".
 You should be able to see the modified tokens on the code and the Storybook preview tab.
 
 ### Adding new tokens
