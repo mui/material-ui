@@ -132,13 +132,13 @@ export default function DiamondSponsors() {
             component="img"
             height="25px"
             width="116px"
-            src="/static/sponsors/marblism-rectangular.svg"
+            src="/static/sponsors/marblism-light.svg"
             alt="marblism"
             title="AI web app generation"
             loading="lazy"
             sx={(theme) =>
               theme.applyDarkStyles({
-                content: `url(/static/sponsors/marblism-dark.png)`,
+                content: `url(/static/sponsors/marblism-dark.svg)`,
               })
             }
           />
