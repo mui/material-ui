@@ -1,7 +1,7 @@
 import { paginationItemClasses } from '@mui/material/PaginationItem';
 
 fn({
-  PaginationItem: {
+  MuiPaginationItem: {
     styleOverrides: {
       root: {
         '& .MuiPaginationItem-textPrimary': {
@@ -13,7 +13,7 @@ fn({
 });
 
 fn({
-  PaginationItem: {
+  MuiPaginationItem: {
     styleOverrides: {
       root: {
         [`& .${paginationItemClasses.textPrimary}`]: {
