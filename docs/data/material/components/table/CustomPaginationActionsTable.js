@@ -148,11 +148,13 @@ export default function CustomPaginationActionsTable() {
               count={rows.length}
               rowsPerPage={rowsPerPage}
               page={page}
-              SelectProps={{
-                inputProps: {
-                  'aria-label': 'rows per page',
+              slotProps={{
+                select: {
+                  label: 'Rows per page',
+                  inputProps: {
+                    'aria-label': 'rows per page',
+                  },
                 },
-                native: true,
               }}
               onPageChange={handleChangePage}
               onRowsPerPageChange={handleChangeRowsPerPage}
