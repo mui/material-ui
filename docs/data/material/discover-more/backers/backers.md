@@ -7,7 +7,7 @@ Sponsorship increases the rate of bug fixes, documentation improvements, and fea
 
 ## Diamond sponsors
 
-<p style="display: flex; justify-content: start; align-items: center; flex-wrap: wrap;">
+<p style="display: flex; justify-content: start; align-items: center; flex-wrap: wrap; margin-top: 8px;">
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="octopus.com" href="https://octopus.com/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 24px;"><img height="128" width="128" src="/static/sponsors/octopus-square.svg" alt="octopus" title="Repeatable, reliable deployments" loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="doit.com" href="https://www.doit.com/flexsave/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 24px;"><img height="128" width="128" src="/static/sponsors/doit-square.svg" alt="doit" title="Management platform for Google Cloud and AWS" loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="marblism.com" href="https://www.marblism.com/?utm_source=mui" rel="noopener sponsored" target="_blank" style="margin-right: 24px;"><img height="128" width="128" src="/static/sponsors/marblism-square.svg" alt="marblism" title="AI web app generation" loading="lazy" /></a>
