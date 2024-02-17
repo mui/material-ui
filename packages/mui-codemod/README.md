@@ -196,7 +196,7 @@ npx @mui/codemod@latest deprecations/divider-props <path>
 JS transforms:
 
 ```diff
- import { paginationItemClasses } from '@mui/material/AccordionSummary';
+ import { paginationItemClasses } from '@mui/material/PaginationItem';
 
  MuiPaginationItem: {
    styleOverrides: {
@@ -211,7 +211,7 @@ JS transforms:
 ```
 
 ```diff
- import { paginationItemClasses } from '@mui/material/AccordionSummary';
+ import { paginationItemClasses } from '@mui/material/PaginationItem';
 
  MuiPaginationItem: {
    styleOverrides: {
@@ -226,7 +226,7 @@ JS transforms:
 ```
 
 ```diff
- import { paginationItemClasses } from '@mui/material/AccordionSummary';
+ import { paginationItemClasses } from '@mui/material/PaginationItem';
 
  MuiPaginationItem: {
    styleOverrides: {
@@ -241,7 +241,7 @@ JS transforms:
 ```
 
 ```diff
- import { paginationItemClasses } from '@mui/material/AccordionSummary';
+ import { paginationItemClasses } from '@mui/material/PaginationItem';
 
  MuiPaginationItem: {
    styleOverrides: {

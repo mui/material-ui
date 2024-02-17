@@ -19,7 +19,7 @@ const classes = [
 
 const plugin = () => {
   return {
-    postcssPlugin: `Replace Deperecated Pagination Item Classes with new classes`,
+    postcssPlugin: `Replace deperecated PaginationItem classes with new classes`,
     Rule(rule) {
       const { selector } = rule;
 
