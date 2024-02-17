@@ -138,7 +138,7 @@ export default function DiamondSponsors() {
             loading="lazy"
             sx={(theme) =>
               theme.applyDarkStyles({
-                content: `url(/static/sponsors/marblism-dark.svg)`,
+                content: `url(/static/sponsors/marblism-dark.png)`,
               })
             }
           />
