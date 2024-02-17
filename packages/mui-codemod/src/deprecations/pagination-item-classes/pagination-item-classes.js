@@ -1,5 +1,3 @@
-import { deprecatedClass, replacementSelector } from './postcss-plugin';
-
 /**
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
@@ -56,6 +54,9 @@ export default function transformer(file, api, options) {
       });
     });
 
+  const deprecatedClass = '.MuiPaginationItem-textPrimary';
+  const replacementSelector = '.MuiPaginationItem-text.MuiPaginationItem-primary';
+
   const selectorRegex = new RegExp(`^& ${deprecatedClass}`);
   root
     .find(
@@ -63,7 +64,7 @@ export default function transformer(file, api, options) {
       (literal) => typeof literal.value === 'string' && literal.value.match(selectorRegex),
     )
     .forEach((path) => {
-      path.replace(j.literal(path.value.value.replace(selectorRegex, `&${replacementSelector}`)));
+      path.replace(j.literal(path.value.value.replace(selectorRegex, `& ${replacementSelector}`)));
     });
 
   return root.toSource(printOptions);
