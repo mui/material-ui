@@ -20,7 +20,7 @@ describe('@mui/codemod', () => {
           const actual = jsTransform(
             { source: read('./test-cases/actual.js') },
             { jscodeshift },
-            { printOptions: { quote: 'single', trailingComma: true } },
+            { printOptions: { quote: 'double', trailingComma: true } },
           );
 
           const expected = read('./test-cases/expected.js');
