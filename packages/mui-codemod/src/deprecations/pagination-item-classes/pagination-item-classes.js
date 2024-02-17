@@ -40,12 +40,12 @@ export default function transformer(file, api, options) {
                     1,
                     j.templateElement(
                       {
-                        raw: precedingTemplateElement.value.raw.replace(' ', ''),
-                        cooked: precedingTemplateElement.value.cooked.replace(' ', ''),
+                        raw: precedingTemplateElement.value.raw,
+                        cooked: precedingTemplateElement.value.cooked,
                       },
                       false,
                     ),
-                    j.templateElement({ raw: ' .', cooked: ' .' }, false),
+                    j.templateElement({ raw: '.', cooked: '.' }, false),
                   );
                 }
               }
