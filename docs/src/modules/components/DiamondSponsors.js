@@ -107,8 +107,8 @@ export default function DiamondSponsors() {
         >
           <Box
             component="img"
-            height="28px"
-            width="68px"
+            height="29px"
+            width="70px"
             src="/static/sponsors/doit-light.svg"
             alt="doit"
             title="Management Platform for Google Cloud and AWS"
@@ -130,8 +130,8 @@ export default function DiamondSponsors() {
         >
           <Box
             component="img"
-            height="25px"
-            width="116px"
+            height="27px"
+            width="90px"
             src="/static/sponsors/marblism-light.svg"
             alt="marblism"
             title="AI web app generation"
