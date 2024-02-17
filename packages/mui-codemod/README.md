@@ -191,6 +191,152 @@ npx @mui/codemod@latest deprecations/alert-props <path>
 npx @mui/codemod@latest deprecations/divider-props <path>
 ```
 
+#### `pagination-item-classes`
+
+JS transforms:
+
+```diff
+ import { paginationItemClasses } from '@mui/material/AccordionSummary';
+
+ MuiPaginationItem: {
+   styleOverrides: {
+     root: {
+-      [`& .${paginationItemClasses.textPrimary}`]: {
++      [`& .${paginationItemClasses.text}.${paginationItemClasses.primary}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+```diff
+ import { paginationItemClasses } from '@mui/material/AccordionSummary';
+
+ MuiPaginationItem: {
+   styleOverrides: {
+     root: {
+-      [`& .${paginationItemClasses.textSecondary}`]: {
++      [`& .${paginationItemClasses.text}.${paginationItemClasses.secondary}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+```diff
+ import { paginationItemClasses } from '@mui/material/AccordionSummary';
+
+ MuiPaginationItem: {
+   styleOverrides: {
+     root: {
+-      [`& .${paginationItemClasses.outlinedPrimary}`]: {
++      [`& .${paginationItemClasses.outlined}.${paginationItemClasses.primary}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+```diff
+ import { paginationItemClasses } from '@mui/material/AccordionSummary';
+
+ MuiPaginationItem: {
+   styleOverrides: {
+     root: {
+-      [`& .${paginationItemClasses.outlinedSecondary}`]: {
++      [`& .${paginationItemClasses.outlined}.${paginationItemClasses.secondary}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+```diff
+ MuiPaginationItem: {
+   styleOverrides: {
+     root: {
+-      '& .MuiPaginationItem-textPrimary': {
++      '& .MuiPaginationItem-text.MuiPaginationItem-primary': {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+```diff
+ MuiPaginationItem: {
+   styleOverrides: {
+     root: {
+-      '& .MuiPaginationItem-textSecondary': {
++      '& .MuiPaginationItem-text.MuiPaginationItem-secondary': {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+```diff
+ MuiPaginationItem: {
+   styleOverrides: {
+     root: {
+-      '& .MuiPaginationItem-outlinedPrimary': {
++      '& .MuiPaginationItem-outlined.MuiPaginationItem-primary': {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+```diff
+ MuiPaginationItem: {
+   styleOverrides: {
+     root: {
+-      '& .MuiPaginationItem-outlinedSecondary': {
++      '& .MuiPaginationItem-outlined.MuiPaginationItem-secondary': {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiPaginationItem-textPrimary
++.MuiPaginationItem-text.MuiPaginationItem-primary
+ />
+```
+
+```diff
+-.MuiPaginationItem-textSecondary
++.MuiPaginationItem-text.MuiPaginationItem-secondary
+ />
+```
+
+```diff
+-.MuiPaginationItem-outlinedPrimary
++.MuiPaginationItem-outlined.MuiPaginationItem-primary
+ />
+```
+
+```diff
+-.MuiPaginationItem-outlinedSecondary
++.MuiPaginationItem-outlined.MuiPaginationItem-secondary
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/pagination-item-classes <path>
+```
+
 ### v5.0.0
 
 #### `base-use-named-exports`

@@ -1,27 +1,10 @@
+import { classes } from './postcss-plugin';
+
 /**
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
  */
 export default function transformer(file, api, options) {
-  const classes = [
-    {
-      deprecatedClass: '.MuiPaginationItem-textPrimary',
-      replacementSelector: '.MuiPaginationItem-text.MuiPaginationItem-primary',
-    },
-    {
-      deprecatedClass: '.MuiPaginationItem-textSecondary',
-      replacementSelector: '.MuiPaginationItem-text.MuiPaginationItem-secondary',
-    },
-    {
-      deprecatedClass: '.MuiPaginationItem-outlinedPrimary',
-      replacementSelector: '.MuiPaginationItem-outlined.MuiPaginationItem-primary',
-    },
-    {
-      deprecatedClass: '.MuiPaginationItem-outlinedSecondary',
-      replacementSelector: '.MuiPaginationItem-outlined.MuiPaginationItem-secondary',
-    },
-  ];
-
   const j = api.jscodeshift;
   const root = j(file.source);
   const printOptions = options.printOptions;

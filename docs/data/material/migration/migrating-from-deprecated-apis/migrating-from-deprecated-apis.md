@@ -164,3 +164,111 @@ The Divider's `light` prop was deprecated, Use `sx={{ opacity : "0.6" }}` (or an
 +  sx={{ opacity : "0.6" }}
  />
 ```
+
+## PaginationItem
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#pagination-item-classes) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/pagination-item-classes <path>
+```
+
+### .MuiPaginationItem-textPrimary
+
+The PaginationItem's `.MuiPaginationItem-textPrimary` class was deprecated in favor of the `.MuiPaginationItem-text` and `.MuiPaginationItem-primary` classes.
+
+```diff
+-.MuiPaginationItem-textPrimary
++.MuiPaginationItem-text.MuiPaginationItem-primary
+ />
+```
+
+```diff
+ import { paginationItemClasses } from '@mui/material/PaginationItem';
+
+ MuiPaginationItem: {
+   styleOverrides: {
+     root: {
+-      [`& .${paginationItemClasses.textPrimary}`]: {
++      [`& .${paginationItemClasses.text}.${paginationItemClasses.primary}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+### .MuiPaginationItem-outlinedPrimary
+
+The PaginationItem's `.MuiPaginationItem-outlinedPrimary` class was deprecated in favor of the `.MuiPaginationItem-outlined` and `.MuiPaginationItem-primary` classes.
+
+```diff
+-.MuiPaginationItem-outlinedPrimary
++.MuiPaginationItem-outlined.MuiPaginationItem-primary
+ />
+```
+
+```diff
+ import { paginationItemClasses } from '@mui/material/PaginationItem';
+
+ MuiPaginationItem: {
+   styleOverrides: {
+     root: {
+-      [`& .${paginationItemClasses.outlinedPrimary}`]: {
++      [`& .${paginationItemClasses.outlined}.${paginationItemClasses.primary}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+### .MuiPaginationItem-textSecondary
+
+The PaginationItem's `.MuiPaginationItem-textSecondary` class was deprecated in favor of the `.MuiPaginationItem-text` and `.MuiPaginationItem-secondary` classes.
+
+```diff
+-.MuiPaginationItem-textSecondary
++.MuiPaginationItem-text.MuiPaginationItem-secondary
+ />
+```
+
+```diff
+ import { paginationItemClasses } from '@mui/material/PaginationItem';
+
+ MuiPaginationItem: {
+   styleOverrides: {
+     root: {
+-      [`& .${paginationItemClasses.textSecondary}`]: {
++      [`& .${paginationItemClasses.text}.${paginationItemClasses.secondary}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+### .MuiPaginationItem-outlinedSecondary
+
+The PaginationItem's `.MuiPaginationItem-outlinedSecondary` class was deprecated in favor of the `.MuiPaginationItem-outlined` and `.MuiPaginationItem-secondary` classes.
+
+```diff
+-.MuiPaginationItem-outlinedSecondary
++.MuiPaginationItem-outlined.MuiPaginationItem-secondary
+ />
+```
+
+```diff
+ import { paginationItemClasses } from '@mui/material/PaginationItem';
+
+ MuiPaginationItem: {
+   styleOverrides: {
+     root: {
+-      [`& .${paginationItemClasses.outlinedSecondary}`]: {
++      [`& .${paginationItemClasses.outlined}.${paginationItemClasses.secondary}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
