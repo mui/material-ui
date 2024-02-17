@@ -24,8 +24,8 @@ const DIAMONDs = [
   {
     src: '/static/sponsors/marblism-square.svg',
     name: 'Marblism',
-    description: 'Generate a fully functional web app using AI.',
-    href: 'https://www.marblism.com/?utm_source=twitter',
+    description: 'Generate fully functional web apps using AI.',
+    href: 'https://www.marblism.com/?utm_source=mui',
   },
 ];
 
