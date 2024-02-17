@@ -35,10 +35,11 @@ export default function transformer(file, api, options) {
             specifier.type === 'ImportSpecifier' &&
             specifier.imported.name === 'paginationItemClasses'
           ) {
+            const deprecatedAtomicClass = deprecatedClass.replace('.MuiPaginationItem-', '');
             root
               .find(j.MemberExpression, {
                 object: { name: specifier.local.name },
-                property: { name: 'textPrimary' },
+                property: { name: deprecatedAtomicClass },
               })
               .forEach((memberExpression) => {
                 const parent = memberExpression.parentPath.parentPath.value;
