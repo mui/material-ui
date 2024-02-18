@@ -1305,7 +1305,7 @@ You can find more details about this breaking change in the migration guide.
 
 #### `theme-augment`
 
-Adds `DefaultTheme` module augmentation to typescript projects.
+Adds `DefaultTheme` module augmentation to TypeScript projects.
 
 ```bash
 npx @mui/codemod@latest v5.0.0/theme-augment <path>

@@ -1307,7 +1307,7 @@ Here are some highlights ✨:
 - [ci] Fix heap out of memory in azure pipelines (#19825) @eps1lon
 - [core] Migrate to import \* as React from 'react' (#19802) @TrySound
 - [test] Fix defaultProps overriding props (#19858) @eps1lon
-- [test] Test against typescript nightlies (#19857) @eps1lon
+- [test] Test against TypeScript nightlies (#19857) @eps1lon
 
 ## 4.9.4
 
@@ -2226,7 +2226,7 @@ Here are some highlights ✨:
 - [ExpansionPanelSummary] Test in StrictMode (#17873) @eps1lon
 - [FormControlLabel] Add missing CSS class keys to TS (#17963) @itayyehezkel
 - [Link] Warn when using plain function component in `component` (#17825) @Nikhil-Pavan-Sai
-- [ListSubheader] Reduce specificity of typescript type (#17715) @sakulstra
+- [ListSubheader] Reduce specificity of TypeScript type (#17715) @sakulstra
 - [Menu] Add new context menu demo (#17839) @SarthakC
 - [Modal] Fix tabIndex customization (#17939) @Cyrus-d
 - [Modal] Improve Gatsby support (#17972) @sreetej1998
@@ -2639,7 +2639,7 @@ Here are some highlights ✨:
 - [docs] Add script to merge MD icon tags with synonyms (#17312) @mbrookes
 - [docs] Batch small changes (#17268) @oliviertassinari
 - [docs] Fix more SEO issue report @oliviertassinari
-- [docs] Add typescript version of paperbase theme (#17213) @eps1lon
+- [docs] Add TypeScript version of paperbase theme (#17213) @eps1lon
 - [docs] Improve /customization/typography/ (#17307) @meebix
 - [docs] Improve grammar in snackbars (#17296) @chaseholdren
 - [docs] Notification for v4.4.0 @oliviertassinari

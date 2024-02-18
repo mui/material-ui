@@ -2692,7 +2692,7 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 - [docs] Fix link to Joy UI GitHub issues @oliviertassinari
 - [docs] Show default value for `filterOptions` prop in Autocomplete's API docs (#37230) @ZeeshanTamboli
 - [docs] Add summary and improve `test_static` CI doc in CONTRIBUTING readme file (#36711) @kriskw1999
-- [docs] Update theme customization typescript (#35551) @siriwatknp
+- [docs] Update theme customization TypeScript (#35551) @siriwatknp
 - [docs] Add Joy Frames X web blocks template (#37203) @siriwatknp
 - [docs] Change Base UI `alpha` to `beta` in README (#37228) @ZeeshanTamboli
 - [docs] Improve Base UI overview page (#37227) @mnajdova
@@ -2731,14 +2731,14 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
 - [Input][joy] Improve alignment on date fields (#37146) @wewakekumar
 - [Alery][joy] Turn JS test to TS test (#37077) @hbjORbj
-- [AspectRatio][joy] js test replaced with ts test (#37087) @PunitSoniME
-- [Badge][AvatarGroup][joy] js test replaced with ts test (#37089) @PunitSoniME
+- [AspectRatio][joy] js test replaced with TypeScript test (#37087) @PunitSoniME
+- [Badge][AvatarGroup][joy] js test replaced with TypeScript test (#37089) @PunitSoniME
 - [Box][Card][MenuList][joy] Turn JS test to TS test (#37126) @uuxxx
 - [List][Menu][joy] Turn JS test to TS test (#37123) @uuxxx
 - [test][Joy] Remove duplicate Avatar test (#37201) @zignis
-- [test][joy] js test cases converted to ts (#37117) @PunitSoniME
-- [Button][joy] Convert Button test to typescript (#37181) @akash191095
-- [CardContent][CardCover][CardOverflow][Chip][ChipDelete][joy] js text case converted to ts (#37116) @PunitSoniME
+- [test][joy] js test cases converted to TypeScript (#37117) @PunitSoniME
+- [Button][joy] Convert Button test to TypeScript (#37181) @akash191095
+- [CardContent][CardCover][CardOverflow][Chip][ChipDelete][joy] js text case converted to TypeScript (#37116) @PunitSoniME
 - [Radio][IconButton][Checkbox][Option][joy] Switch to TypeScript unit test (#37137) @DerTimonius
 
 ### `@mui/base@5.0.0-beta.0`
@@ -3436,7 +3436,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - &#8203;<!-- 15 -->[docs][joy] Build TS versions for Checkbox component demos (#36381) @sai6855
 - &#8203;<!-- 14 -->[docs][joy] Build TS versions for Select component demos (#36380) @sai6855
 - &#8203;<!-- 13 -->[docs][joy] Build TS versions for Typography component demos (#36378) @varunmulay22
-- &#8203;<!-- 12 -->[docs][joy] Add typescript demos for `Divider` (#36374) @sai6855
+- &#8203;<!-- 12 -->[docs][joy] Add TypeScript demos for `Divider` (#36374) @sai6855
 - &#8203;<!-- 11 -->[docs][joy] Build TS versions for Textarea component demos (#36371) @varunmulay22
 - &#8203;<!-- 10 -->[docs][joy] Build TS versions for Link component demos (#36366) @hbjORbj
 
@@ -4156,7 +4156,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 
 - [Alert] Update icon color in all variants (#35414) @danilo-leal
 - [Select] Fix `MenuProps.PopoverClasses` being overriden (#35394) @vitorfrs-dev
-- [SwipeableDrawer] Fixed typescript warning "prop open undefined" (#34710) @kraftware
+- [SwipeableDrawer] Fix TypeScript warning "prop open undefined" (#34710) @kraftware
 
 ### `@mui/icons-material@5.11.0`
 
@@ -5657,7 +5657,7 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 ### `@mui/base@5.0.0-alpha.88`
 
 - [base] Remove a type incompatible with TypeScript 3.5 (#33361) @michaldudak
-- [BadgeUnstyled] Export BadgeUnstyledOwnProps interface to fix typescript compiler error (#33314) @aaronlademann-wf
+- [BadgeUnstyled] Export BadgeUnstyledOwnProps interface to fix TypeScript compiler error (#33314) @aaronlademann-wf
 - [TablePaginationUnstyled] Accept callbacks in componentsProps (#33309) @michaldudak
 
 ### Docs
@@ -6827,7 +6827,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - &#8203;<!-- 18 -->[docs] Fix maxWidth of scrollable Tabs demos (#31285) @danilo-leal
 - &#8203;<!-- 17 -->[docs] Fix icon linking implementation concurrent safe (#30428) @Janpot
 - &#8203;<!-- 16 -->[docs] Follow up new doc space issues (#31251) @siriwatknp
-- &#8203;<!-- 29 -->[examples] Add `@types/node` to nextjs typescript starter (#30918) @Daggy1234
+- &#8203;<!-- 29 -->[examples] Add `@types/node` to Next.js TypeScript starter (#30918) @Daggy1234
 - &#8203;<!-- 14 -->[examples] Fix import ThemeProvider from correct package in remix-wit… (#30981) @nnecec
 - &#8203;<!-- 25 -->[blog] Simplify the labels (#30921) @oliviertassinari
 - &#8203;<!-- 08 -->[l10n] Add Croatian (hr-HR) and Serbian (sr-RS) translation (#30906) @m14d3n
@@ -7594,7 +7594,7 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 ### `@mui/system@5.2.3`
 
 - &#8203;<!-- 06 -->[system] Fix return type of `createBox` (#29989) @mnajdova
-- &#8203;<!-- 05 -->[system] Support boolean values in typescript for the `sx` prop when used as array (#29911) @tasugi
+- &#8203;<!-- 05 -->[system] Support boolean values in TypeScript for the `sx` prop when used as array (#29911) @tasugi
 
 ### `@mui/utils@5.2.3`
 
@@ -9462,7 +9462,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - &#8203;<!-- 02 -->[docs] Fix small PT typo fix: inciar -> iniciar (#26775) @brunocavalcante
 - &#8203;<!-- 03 -->[I10n] Add Chinese (Hong Kong) (zh-HK) locale (#26637) @kshuiroy
 - &#8203;<!-- 44 -->[l10n] Add sinhalese (siLK) locale (#26875) @pavinduLakshan
-- &#8203;<!-- 39 -->[examples] Rename nextjs typescript theme from tsx to ts (#26862) @Izhaki
+- &#8203;<!-- 39 -->[examples] Rename Next.js TypeScript theme from tsx to ts (#26862) @Izhaki
 
 ### Core
 
@@ -10810,7 +10810,7 @@ A big thanks to the 26 contributors who made this release possible. Here are som
 ### Docs
 
 - &#8203;<!-- 46 -->[docs] Provide an alternative to right-to-left (#25584) @dariusk
-- &#8203;<!-- 45 -->[docs] Add note for typescript on the styled() customization guide (#25576) @mnajdova
+- &#8203;<!-- 45 -->[docs] Add note for TypeScript on the styled() customization guide (#25576) @mnajdova
 - &#8203;<!-- 44 -->[docs] Replace incorrect instances of defined with define (#25572) @surajpoddar16
 - &#8203;<!-- 42 -->[docs] Fix spelling error in roadmap.md file (#25570) @Brlaney
 - &#8203;<!-- 37 -->[docs] Migrate Card demos to emotion (#25557) @vicasas
@@ -12195,7 +12195,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - [DatePicker] Add missing exports (#23621) @havgry
 - [DatePicker] Add missing TypeScript definitions (#23560) @mbrookes
 - [DatePicker] Fix false-positive when validating mask in Safari (#23602) @eps1lon
-- [DatePicker] Fix missing manifest for typescript packages (#23564) @eps1lon
+- [DatePicker] Fix missing manifest for TypeScript packages (#23564) @eps1lon
 - [TimePicker] Prevent scroll when interacting with the clock (#23563) @knightss27
 
 ### Docs
@@ -14298,28 +14298,28 @@ A big thanks to the 33 contributors who made this release possible. Here are som
   +</Accordion>
   ```
 
-- [BottomNavigation] typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+- [BottomNavigation] TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
 
   ```diff
   -<BottomNavigation onChange={(event: React.ChangeEvent<{}>) => {}} />
   +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
   ```
 
-- [Slider] typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+- [Slider] TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
 
   ```diff
   -<Slider onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
   +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
-- [Tabs] typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+- [Tabs] TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
 
   ```diff
   -<Tabs onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
   +<Tabs onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
-- [Accordion] typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+- [Accordion] TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
 
   ```diff
   -<Accordion onChange={(event: React.ChangeEvent<{}>, expanded: boolean) => {}} />
