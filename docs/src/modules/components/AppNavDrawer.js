@@ -46,6 +46,9 @@ const savedScrollTop = {};
 
 function ProductDrawerButton(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const { activePage } = React.useContext(PageContext);
+  const [previousPath, setPreviousPath] = React.useState(activePage.pathname);
+
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -53,6 +56,12 @@ function ProductDrawerButton(props) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  // Handling for the ProductSelector to close on any kind of route changes.
+  if (previousPath !== activePage.pathname) {
+    handleClose();
+    setPreviousPath(activePage.pathname);
+  }
 
   return (
     <React.Fragment>
