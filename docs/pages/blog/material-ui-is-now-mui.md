@@ -50,7 +50,7 @@ Our ultimate goal is to become the most effective and efficient tool to build UI
 ### A new name
 
 We are breaking the strong association with Material Design
-as we have seen too many people confusing Material UI with Google, or as a synonym of Material Design.
+as we have seen too many people confusing Material UI with Google or as a synonym of Material Design.
 
 We are now called **MUI**. It stands for **M**aterial to build **UI**s
 and is pronounced [/ɛm juː aɪ/](http://ipa-reader.xyz/?text=%C9%9Bmju%CB%90a%C9%AA).

@@ -4340,7 +4340,7 @@ This release fixes an important regression with TypeScript: https://github.com/m
 - [docs] Fix typo in simple breadcrumbs example (#14575) @AndrewUsher
 - [blog] Material UI Developer Survey 2019 (#14614) @oliviertassinari
 - [docs] Change Gitter to Spectrum (#14668) @mbrookes
-- [docs] Update link to http://cssinjs.org/jss-api/ (#14788) @monicatie
+- [docs] Update link to https://cssinjs.org/jss-api/ (#14788) @monicatie
 - [docs] Add Algolia metadata (#14835) @oliviertassinari
 - [docs] Improve overrides.md wording (#14403) @i0
 - [docs] Grammar fix (#14960) @nateq314
@@ -13906,7 +13906,7 @@ _Dec. 15, 2014_
 ### Breaking Changes
 
 - Removed PaperButton - Use FlatButton, RaisedButton, or FloatingActionButton
-- Removed Roboto font import (#104) - Be sure to [include the Roboto](http://www.google.com/fonts#UsePlace:use/Collection:Roboto:400,300,500) font in your project.
+- Removed Roboto font import (#104) - Be sure to [include the Roboto](https://fonts.google.com/specimen/Roboto) font in your project.
 
 ### General
 
@@ -14077,7 +14077,7 @@ _Nov. 11, 2014_
 - Changed project structure to be less confusing. Material UI components/styles live in the src directory.
   Docs site code lives in the docs directory. This still allows us to easily test components in the docs site
   as we are working on them
-- Added .editorconfig to help keep code formatting consistent among contributors. See http://editorconfig.org/
+- Added .editorconfig to help keep code formatting consistent among contributors. See https://editorconfig.org/
 - Fixed drop down display issue in safari
 - Fixed nested menu arrow icon
 - Added hover transitions to menus
