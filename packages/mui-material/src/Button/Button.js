@@ -28,8 +28,8 @@ const useUtilityClasses = (ownerState) => {
       fullWidth && 'fullWidth',
     ],
     label: ['label'],
-    startIcon: ['icon', 'startIcon', `iconSize${capitalize(size)}`],
-    endIcon: ['icon', 'endIcon', `iconSize${capitalize(size)}`],
+    startIcon: ['icon', 'startIcon', `iconSize${capitalize(size)}`, `size${capitalize(size)}`],
+    endIcon: ['icon', 'endIcon', `iconSize${capitalize(size)}`, `size${capitalize(size)}`],
   };
 
   const composedClasses = composeClasses(slots, getButtonUtilityClass, classes);
