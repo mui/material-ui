@@ -175,11 +175,11 @@ npx @mui/codemod@latest deprecations/pagination-item-classes <path>
 
 ### .MuiPaginationItem-textPrimary
 
-The PaginationItem's `.MuiPaginationItem-textPrimary` class was deprecated in favor of the `.MuiPaginationItem-text` and `.MuiPaginationItem-primary` classes.
+The PaginationItem's `.MuiPaginationItem-textPrimary` class was deprecated in favor of the `.MuiPaginationItem-text` and `.MuiPaginationItem-colorPrimary` classes.
 
 ```diff
 -.MuiPaginationItem-textPrimary
-+.MuiPaginationItem-text.MuiPaginationItem-primary
++.MuiPaginationItem-text.MuiPaginationItem-colorPrimary
  />
 ```
 
@@ -190,7 +190,7 @@ The PaginationItem's `.MuiPaginationItem-textPrimary` class was deprecated in fa
    styleOverrides: {
      root: {
 -      [`&.${paginationItemClasses.textPrimary}`]: {
-+      [`&.${paginationItemClasses.text}.${paginationItemClasses.primary}`]: {
++      [`&.${paginationItemClasses.text}.${paginationItemClasses.colorPrimary}`]: {
          color: 'red',
         },
      },
@@ -200,11 +200,11 @@ The PaginationItem's `.MuiPaginationItem-textPrimary` class was deprecated in fa
 
 ### .MuiPaginationItem-outlinedPrimary
 
-The PaginationItem's `.MuiPaginationItem-outlinedPrimary` class was deprecated in favor of the `.MuiPaginationItem-outlined` and `.MuiPaginationItem-primary` classes.
+The PaginationItem's `.MuiPaginationItem-outlinedPrimary` class was deprecated in favor of the `.MuiPaginationItem-outlined` and `.MuiPaginationItem-colorPrimary` classes.
 
 ```diff
 -.MuiPaginationItem-outlinedPrimary
-+.MuiPaginationItem-outlined.MuiPaginationItem-primary
++.MuiPaginationItem-outlined.MuiPaginationItem-colorPrimary
  />
 ```
 
@@ -215,7 +215,7 @@ The PaginationItem's `.MuiPaginationItem-outlinedPrimary` class was deprecated i
    styleOverrides: {
      root: {
 -      [`&.${paginationItemClasses.outlinedPrimary}`]: {
-+      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.primary}`]: {
++      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.colorPrimary}`]: {
          color: 'red',
         },
      },
@@ -225,11 +225,11 @@ The PaginationItem's `.MuiPaginationItem-outlinedPrimary` class was deprecated i
 
 ### .MuiPaginationItem-textSecondary
 
-The PaginationItem's `.MuiPaginationItem-textSecondary` class was deprecated in favor of the `.MuiPaginationItem-text` and `.MuiPaginationItem-secondary` classes.
+The PaginationItem's `.MuiPaginationItem-textSecondary` class was deprecated in favor of the `.MuiPaginationItem-text` and `.MuiPaginationItem-colorSecondary` classes.
 
 ```diff
 -.MuiPaginationItem-textSecondary
-+.MuiPaginationItem-text.MuiPaginationItem-secondary
++.MuiPaginationItem-text.MuiPaginationItem-colorSecondary
  />
 ```
 
@@ -240,7 +240,7 @@ The PaginationItem's `.MuiPaginationItem-textSecondary` class was deprecated in 
    styleOverrides: {
      root: {
 -      [`&.${paginationItemClasses.textSecondary}`]: {
-+      [`&.${paginationItemClasses.text}.${paginationItemClasses.secondary}`]: {
++      [`&.${paginationItemClasses.text}.${paginationItemClasses.colorSecondary}`]: {
          color: 'red',
         },
      },
@@ -250,11 +250,11 @@ The PaginationItem's `.MuiPaginationItem-textSecondary` class was deprecated in 
 
 ### .MuiPaginationItem-outlinedSecondary
 
-The PaginationItem's `.MuiPaginationItem-outlinedSecondary` class was deprecated in favor of the `.MuiPaginationItem-outlined` and `.MuiPaginationItem-secondary` classes.
+The PaginationItem's `.MuiPaginationItem-outlinedSecondary` class was deprecated in favor of the `.MuiPaginationItem-outlined` and `.MuiPaginationItem-colorSecondary` classes.
 
 ```diff
 -.MuiPaginationItem-outlinedSecondary
-+.MuiPaginationItem-outlined.MuiPaginationItem-secondary
++.MuiPaginationItem-outlined.MuiPaginationItem-colorSecondary
  />
 ```
 
@@ -265,7 +265,7 @@ The PaginationItem's `.MuiPaginationItem-outlinedSecondary` class was deprecated
    styleOverrides: {
      root: {
 -      [`&.${paginationItemClasses.outlinedSecondary}`]: {
-+      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.secondary}`]: {
++      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.colorSecondary}`]: {
          color: 'red',
         },
      },

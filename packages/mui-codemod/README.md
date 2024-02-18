@@ -202,35 +202,35 @@ JS transforms:
    styleOverrides: {
      root: {
 -      [`&.${paginationItemClasses.textPrimary}`]: {
-+      [`&.${paginationItemClasses.text}.${paginationItemClasses.primary}`]: {
++      [`&.${paginationItemClasses.text}.${paginationItemClasses.colorPrimary}`]: {
          color: 'red',
         },
 -      [`&.${paginationItemClasses.textSecondary}`]: {
-+      [`&.${paginationItemClasses.text}.${paginationItemClasses.secondary}`]: {
++      [`&.${paginationItemClasses.text}.${paginationItemClasses.colorSecondary}`]: {
          color: 'red',
         },
 -      [`&.${paginationItemClasses.outlinedPrimary}`]: {
-+      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.primary}`]: {
++      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.colorPrimary}`]: {
          color: 'red',
         },
 -      [`&.${paginationItemClasses.outlinedSecondary}`]: {
-+      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.secondary}`]: {
++      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.colorSecondary}`]: {
          color: 'red',
         },
 -      '&.MuiPaginationItem-textPrimary': {
-+      '&.MuiPaginationItem-text.MuiPaginationItem-primary': {
++      '&.MuiPaginationItem-text.MuiPaginationItem-colorPrimary': {
          color: 'red',
         },
 -      '&.MuiPaginationItem-textSecondary': {
-+      '&.MuiPaginationItem-text.MuiPaginationItem-secondary': {
++      '&.MuiPaginationItem-text.MuiPaginationItem-colorSecondary': {
          color: 'red',
         },
 -      '&.MuiPaginationItem-outlinedPrimary': {
-+      '&.MuiPaginationItem-outlined.MuiPaginationItem-primary': {
++      '&.MuiPaginationItem-outlined.MuiPaginationItem-colorPrimary': {
          color: 'red',
         },
 -      '&.MuiPaginationItem-outlinedSecondary': {
-+      '&.MuiPaginationItem-outlined.MuiPaginationItem-secondary': {
++      '&.MuiPaginationItem-outlined.MuiPaginationItem-colorSecondary': {
          color: 'red',
         },
      },
