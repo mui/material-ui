@@ -1,15 +1,15 @@
-.MuiPaginationItem-text.MuiPaginationItem-primary {
+.MuiPaginationItem-text.MuiPaginationItem-colorPrimary {
   color: red;
 }
 
-.MuiPaginationItem-text.MuiPaginationItem-secondary {
+.MuiPaginationItem-text.MuiPaginationItem-colorSecondary {
   color: blue;
 }
 
-.MuiPaginationItem-outlined.MuiPaginationItem-primary {
+.MuiPaginationItem-outlined.MuiPaginationItem-colorPrimary {
   border: 1px solid black;
 }
 
-.MuiPaginationItem-outlined.MuiPaginationItem-secondary {
+.MuiPaginationItem-outlined.MuiPaginationItem-colorSecondary {
   border: 1px solid green;
 }
