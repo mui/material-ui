@@ -136,7 +136,7 @@ Display categories with the `ListSubheader` component or the native `<optgroup>`
 {{"demo": "GroupedSelect.js"}}
 
 :::warning
-If you wish to wrap the ListSubheader in a custom component, you'll have to annotate it so Material UI can handle it properly when determining focusable elements.
+If you wish to wrap the ListSubheader in a custom component, you'll have to annotate it so Material UI can handle it properly when determining focusable elements.
 
 You have two options for solving this:
 Option 1: Define a static boolean field called `muiSkipListHighlight` on your component function, and set it to `true`:

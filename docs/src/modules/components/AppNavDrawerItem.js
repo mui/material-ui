@@ -139,7 +139,7 @@ const Item = styled(
         },
       }),
       '&.Mui-focusVisible': {
-        backgroundColor: (theme.vars || theme).palette.action.focus,
+        backgroundColor: (theme.vars || theme).palette.divider,
       },
       [theme.breakpoints.up('md')]: {
         paddingTop: 4,
@@ -273,7 +273,7 @@ export default function AppNavDrawerItem(props) {
   } = props;
   const [open, setOpen] = React.useState(initiallyExpanded);
   const handleClick = (event) => {
-    // Ignore the action if opening the link in a new tab
+    // Ignore click events meant for native link handling, e.g. open in new tab
     if (samePageLinkNavigation(event)) {
       return;
     }

@@ -1,9 +1,8 @@
-import { deepmerge } from '@mui/utils';
-import {
-  createTheme as systemCreateTheme,
+import deepmerge from '@mui/utils/deepmerge';
+import styleFunctionSx, {
   unstable_defaultSxConfig as defaultSxConfig,
-  unstable_styleFunctionSx as styleFunctionSx,
-} from '@mui/system';
+} from '@mui/system/styleFunctionSx';
+import systemCreateTheme from '@mui/system/createTheme';
 import MuiError from '@mui-internal/babel-macros/MuiError.macro';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import createMixins from './createMixins';
@@ -43,21 +42,6 @@ function createTheme(options = {}, ...args) {
     typography: createTypography(palette, typographyInput),
     transitions: createTransitions(transitionsInput),
     zIndex: { ...zIndex },
-    applyDarkStyles(css) {
-      if (this.vars) {
-        // If CssVarsProvider is used as a provider,
-        // returns ':where([data-mui-color-scheme="light|dark"]) &'
-        const selector = this.getColorSchemeSelector('dark').replace(/(\[[^\]]+\])/, ':where($1)');
-        return {
-          [selector]: css,
-        };
-      }
-      if (this.palette.mode === 'dark') {
-        return css;
-      }
-
-      return {};
-    },
   });
 
   muiTheme = deepmerge(muiTheme, other);

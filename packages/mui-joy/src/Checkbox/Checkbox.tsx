@@ -322,6 +322,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
       name,
       value,
       readOnly,
+      role: undefined,
       required: required ?? formControl?.required,
       'aria-describedby': formControl?.['aria-describedby'],
       ...(indeterminate && {

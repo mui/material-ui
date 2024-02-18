@@ -75,15 +75,15 @@ declare module '@mui/material/Chip' {
 const defaultTheme = createTheme();
 
 export const blue = {
-  50: '#F0F7FF',
-  100: '#C2E0FF',
-  200: '#99CCF3',
+  50: '#EBF5FF',
+  100: '#CCE5FF',
+  200: '#99CCFF',
   300: '#66B2FF',
   400: '#3399FF',
   main: '#007FFF',
   500: '#007FFF',
-  600: '#0072E5', // vs blueDark 900: WCAG 4.6 AAA (large), APCA 36 Not for reading text
-  700: '#0059B2',
+  600: '#0066CC',
+  700: '#004C99',
   800: '#004C99',
   900: '#003A75',
 };
@@ -403,23 +403,9 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
      *  ]
      */
     applyDarkStyles(css: Parameters<ApplyDarkStyles>[0]) {
-      if ((this as Theme).vars) {
-        // If CssVarsProvider is used as a provider,
-        // returns ':where([data-mui-color-scheme="light|dark"]) &'
-        const selector = (this as Theme)
-          .getColorSchemeSelector('dark')
-          .replace(/(\[[^\]]+\])/, ':where($1)');
-        return {
-          [selector]: css,
-        };
-      }
-      if ((this as Theme).palette.mode === 'dark') {
-        return css;
-      }
-
-      return undefined;
+      return (this as Theme).applyStyles('dark', css);
     },
-  } as ThemeOptions);
+  }) as ThemeOptions;
 
 export function getThemedComponents(): ThemeOptions {
   return {
@@ -456,6 +442,16 @@ export function getThemedComponents(): ThemeOptions {
       MuiButtonBase: {
         defaultProps: {
           disableTouchRipple: true,
+          disableRipple: true,
+        },
+        styleOverrides: {
+          root: ({ theme }) => ({
+            transition: 'all 100ms ease-in',
+            '&:focus-visible': {
+              outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
+              outlineOffset: '2px',
+            },
+          }),
         },
       },
       MuiButton: {
@@ -464,17 +460,21 @@ export function getThemedComponents(): ThemeOptions {
         },
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
+            transition: 'all 120ms ease-in',
             ...(ownerState.size === 'large' && {
               ...theme.typography.body1,
               lineHeight: 21 / 16,
-              fontWeight: theme.typography.fontWeightBold,
-              padding: theme.spacing('12px', '12px', '12px', '14px'),
-              minHeight: 0,
+              padding: theme.spacing('8px', '10px', '10px', '12px'),
+              fontWeight: theme.typography.fontWeightSemiBold,
+              borderRadius: 10,
               '& > span': { transition: '0.2s', marginLeft: 4 },
               '&:hover > span': { transform: 'translateX(2px)' },
             }),
             ...(ownerState.size === 'medium' && {
-              padding: theme.spacing('8px', '12px'),
+              fontSize: defaultTheme.typography.pxToRem(15),
+              padding: theme.spacing('8px', '10px', '8px', '12px'),
+              fontWeight: theme.typography.fontWeightSemiBold,
+              borderRadius: 8,
               '& > span': { transition: '0.2s', marginLeft: 4 },
               '&:hover > span': { transform: 'translateX(2px)' },
             }),
@@ -500,47 +500,50 @@ export function getThemedComponents(): ThemeOptions {
             }),
             ...(ownerState.variant === 'outlined' &&
               ownerState.color === 'secondary' && {
-                color: (theme.vars || theme).palette.text.secondary,
+                color: (theme.vars || theme).palette.text.primary,
                 backgroundColor: alpha(theme.palette.primaryDark[50], 0.3),
                 borderColor: (theme.vars || theme).palette.primaryDark[100],
-                boxShadow: `0px 2px 1px ${alpha(
-                  theme.palette.grey[200],
-                  0.3,
-                )}, inset 0px 2px 3px ${alpha(theme.palette.primaryDark[100], 0.2)}`,
+                boxShadow: `${alpha(theme.palette.grey[50], 0.5)} 0 2px 0.5px inset, ${alpha(
+                  theme.palette.grey[100],
+                  0.8,
+                )} 0 -2px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
                 '&:hover': {
                   background: (theme.vars || theme).palette.primaryDark[50],
                 },
                 ...theme.applyDarkStyles({
                   color: (theme.vars || theme).palette.primaryDark[100],
-                  borderColor: (theme.vars || theme).palette.primaryDark[600],
-                  backgroundColor: (theme.vars || theme).palette.primaryDark[700],
-                  boxShadow: `0px 2px 1px ${theme.palette.common.black}, inset 0px 2px 3px ${alpha(
-                    theme.palette.primaryDark[500],
-                    0.3,
-                  )}`,
+                  borderColor: alpha(theme.palette.primaryDark[600], 0.5),
+                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+                  boxShadow: `${alpha(theme.palette.primaryDark[600], 0.2)} 0 2px 0 inset, ${alpha(
+                    theme.palette.primaryDark[900],
+                    0.5,
+                  )} 0 -3px 1px inset, ${theme.palette.common.black} 0 1px 2px 0`,
                   '&:hover': {
-                    backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+                    backgroundColor: (theme.vars || theme).palette.primaryDark[700],
                   },
                 }),
               }),
             ...(ownerState.variant === 'outlined' &&
               ownerState.color === 'primary' && {
-                color: (theme.vars || theme).palette.primary[500],
+                color: (theme.vars || theme).palette.primary[600],
                 backgroundColor: alpha(theme.palette.primary[50], 0.3),
                 borderColor: (theme.vars || theme).palette.primary[100],
-                boxShadow: `0px 1px 1px ${alpha(
+                boxShadow: `${theme.palette.primary[50]} 0 2px 0.5px inset, ${alpha(
                   theme.palette.primary[100],
-                  0.5,
-                )}, inset 0px 4px 2px ${alpha(theme.palette.primary[100], 0.1)}`,
+                  0.2,
+                )} 0 -3px 0 inset, ${alpha(theme.palette.primary[100], 0.3)} 0 1px 2px 0`,
                 '&:hover': {
                   background: (theme.vars || theme).palette.primary[50],
                   borderColor: (theme.vars || theme).palette.primary[300],
                 },
                 ...theme.applyDarkStyles({
                   color: (theme.vars || theme).palette.primary[200],
-                  borderColor: (theme.vars || theme).palette.primary[900],
+                  borderColor: alpha(theme.palette.primary[900], 0.7),
                   backgroundColor: alpha(theme.palette.primary[900], 0.2),
-                  boxShadow: '0px 2px 2px #0B0D0E, inset 0px 4px 4px rgba(20, 25, 31, 0.3)',
+                  boxShadow: `${alpha(theme.palette.primary[900], 0.1)} 0 2px 1px inset, ${alpha(
+                    theme.palette.common.black,
+                    0.5,
+                  )} 0 -3px 0 inset, ${theme.palette.common.black} 0 1px 2px 0`,
                   '&:hover': {
                     backgroundColor: (theme.vars || theme).palette.primary[900],
                     borderColor: (theme.vars || theme).palette.primary[700],
@@ -550,37 +553,20 @@ export function getThemedComponents(): ThemeOptions {
             ...(ownerState.variant === 'contained' &&
               ownerState.color === 'primary' && {
                 color: '#FFF',
+                textShadow: `0 1px 1px ${alpha(theme.palette.common.black, 0.6)}`,
+                backgroundColor: (theme.vars || theme).palette.primary[500],
                 backgroundImage: `linear-gradient(180deg, ${alpha(
-                  theme.palette.primary[300],
-                  0.5,
-                )} 0%, ${alpha(theme.palette.primary[600], 0.5)} 100%)`,
-                boxShadow: `0px 1px 2px ${alpha(
-                  theme.palette.primary[900],
-                  0.1,
-                )}, inset 0px 0px 0px 1px ${
-                  theme.palette.primary[600]
-                }, inset 0px 0px 0px 2px rgba(255, 255, 255, 0.2), 0px 2px 1px ${alpha(
-                  theme.palette.primary[200],
-                  0.3,
-                )} `,
+                  theme.palette.primary[500],
+                  0.6,
+                )} 0%, ${theme.palette.primary[600]} 100%)`,
+                boxShadow: `${theme.palette.primary[400]} 0 2px 0.5px inset, ${alpha(
+                  theme.palette.primary[700],
+                  0.7,
+                )} 0 -3px 1px inset, ${alpha(theme.palette.common.black, 0.1)} 0 2px 4px 0`,
                 '&:hover': {
-                  backgroundColor: (theme.vars || theme).palette.primary[600],
+                  backgroundColor: (theme.vars || theme).palette.primary[500],
+                  backgroundImage: 'none',
                 },
-                textShadow: `0px 1px 1px ${alpha(theme.palette.grey[900], 0.3)}`,
-                ...theme.applyDarkStyles({
-                  backgroundImage: `linear-gradient(180deg, ${alpha(
-                    theme.palette.primary[400],
-                    0.2,
-                  )} 0%, ${alpha(theme.palette.primary[700], 0.8)} 100%)`,
-                  boxShadow: `0px 1px 2px ${alpha(
-                    theme.palette.primary[900],
-                    0.1,
-                  )}, inset 0px 0px 0px 1px ${
-                    theme.palette.primary[600]
-                  }, inset 0px 0px 0px 2px rgba(255, 255, 255, 0.1), 0px 2px 1px ${
-                    theme.palette.common.black
-                  } `,
-                }),
               }),
           }),
         },
@@ -850,8 +836,8 @@ export function getThemedComponents(): ThemeOptions {
           underline: 'none',
         },
         styleOverrides: {
-          root: {
-            fontWeight: 700,
+          root: ({ theme }) => ({
+            fontWeight: theme.typography.fontWeightSemiBold,
             display: 'inline-flex',
             alignItems: 'center',
             '&.MuiTypography-body1 > svg': {
@@ -860,7 +846,11 @@ export function getThemedComponents(): ThemeOptions {
             '& svg:last-child': {
               marginLeft: 2,
             },
-          },
+            '&:focus-visible': {
+              outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
+              outlineOffset: '2px',
+            },
+          }),
         },
         variants: [
           {
@@ -959,11 +949,17 @@ export function getThemedComponents(): ThemeOptions {
                 '&:hover': {
                   backgroundColor: (theme.vars || theme).palette.primary[100],
                 },
+                '& .MuiChip-deleteIcon': {
+                  color: (theme.vars || theme).palette.primary[600],
+                },
                 ...theme.applyDarkStyles({
                   color: (theme.vars || theme).palette.primary[100],
                   backgroundColor: alpha(theme.palette.primary[800], 0.5),
                   '&:hover': {
                     backgroundColor: alpha(theme.palette.primary[900], 0.5),
+                  },
+                  '& .MuiChip-deleteIcon': {
+                    color: (theme.vars || theme).palette.primary[100],
                   },
                 }),
               }),
@@ -1084,7 +1080,11 @@ export function getThemedComponents(): ThemeOptions {
                   }, 0 1px 2px ${alpha(theme.palette.grey[100], 0.6)}`,
                   '&:hover': {
                     borderColor: (theme.vars || theme).palette.primary[200],
-                    boxShadow: `0px 4px 16px ${(theme.vars || theme).palette.grey[200]}`,
+                    boxShadow: `0px 2px 8px ${(theme.vars || theme).palette.primary[100]}`,
+                  },
+                  '&:focus-visible': {
+                    outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
+                    outlineOffset: '2px',
                   },
                 },
                 ':is(a&), :is(button&)': {
@@ -1099,7 +1099,7 @@ export function getThemedComponents(): ThemeOptions {
               backgroundColor: (theme.vars || theme).palette.primaryDark[900],
               ...(ownerState.variant === 'outlined' && {
                 borderColor: (theme.vars || theme).palette.primaryDark[700],
-                backgroundColor: alpha(theme.palette.primaryDark[800], 0.8),
+                backgroundColor: alpha(theme.palette.primaryDark[800], 0.6),
                 '&[href]': {
                   textDecorationLine: 'none',
                   boxShadow: `inset 0 1px 1px ${
@@ -1107,7 +1107,7 @@ export function getThemedComponents(): ThemeOptions {
                   }, 0 1px 2px ${(theme.vars || theme).palette.common.black}`,
                   '&:hover': {
                     borderColor: alpha(theme.palette.primary[600], 0.5),
-                    boxShadow: `0px 4px 24px ${(theme.vars || theme).palette.common.black}`,
+                    boxShadow: `0px 2px 8px ${alpha(theme.palette.primary[900], 0.6)}`,
                   },
                 },
                 ':is(a&), :is(button&)': {
@@ -1234,9 +1234,10 @@ export function getThemedComponents(): ThemeOptions {
           root: ({ theme }) => [
             {
               textTransform: 'none',
-              fontWeight: 700,
+              fontWeight: theme.typography.fontWeightSemiBold,
               color: theme.palette.grey[700],
               borderColor: theme.palette.grey[200],
+              borderRadius: '8px',
               '&.Mui-selected': {
                 color: (theme.vars || theme).palette.primary[500],
                 borderColor: `${(theme.vars || theme).palette.primary[500]} !important`,
@@ -1247,14 +1248,14 @@ export function getThemedComponents(): ThemeOptions {
               },
             } as const,
             theme.applyDarkStyles({
-              color: theme.palette.grey[300],
-              borderColor: theme.palette.primaryDark[500],
+              color: theme.palette.grey[200],
+              borderColor: theme.palette.primaryDark[700],
               '&.Mui-selected': {
-                color: '#fff',
+                color: theme.palette.primary[100],
                 borderColor: `${(theme.vars || theme).palette.primary[700]} !important`,
-                backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                backgroundColor: alpha(theme.palette.primary[900], 0.5),
                 '&:hover': {
-                  backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+                  backgroundColor: alpha(theme.palette.primary[900], 0.8),
                 },
               },
             }),
@@ -1264,6 +1265,14 @@ export function getThemedComponents(): ThemeOptions {
       MuiCssBaseline: {
         defaultProps: {
           enableColorScheme: true,
+        },
+        styleOverrides: {
+          html: {
+            overflowY: 'scroll',
+            // TODO add support for it,
+            // https://github.com/mui/material-ui/issues/40748
+            // scrollbarGutter: 'stable',
+          },
         },
       },
     },

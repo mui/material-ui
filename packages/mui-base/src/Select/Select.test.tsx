@@ -10,6 +10,7 @@ import {
   screen,
   MuiRenderResult,
   RenderOptions,
+  flushMicrotasks,
 } from '@mui-internal/test-utils';
 import userEvent from '@testing-library/user-event';
 import { Select, SelectListboxSlotProps, selectClasses } from '@mui/base/Select';
@@ -20,13 +21,6 @@ import { OptionGroup } from '@mui/base/OptionGroup';
 // TODO v6: initialize @testing-library/user-event using userEvent.setup() instead of directly calling methods e.g. userEvent.click() for all related tests in this file
 // currently the setup() method uses the ClipboardEvent constructor which is incompatible with our lowest supported version of iOS Safari (12.2) https://github.com/mui/material-ui/blob/master/.browserslistrc#L44
 // userEvent.setup() requires Safari 14 or up to work
-
-async function flushMicrotasks() {
-  if (/jsdom/.test(window.navigator.userAgent)) {
-    // This is only needed for JSDOM and causes issues in real browsers
-    await act(() => async () => {});
-  }
-}
 
 describe('<Select />', () => {
   const mount = createMount();
@@ -71,19 +65,67 @@ describe('<Select />', () => {
     skip: ['componentProp', 'reactTestRenderer'],
   }));
 
+  describe('selected option rendering', () => {
+    it('renders the selected option when it is specified as an only child', async () => {
+      const markup = (
+        <Select defaultValue="1">
+          <Option value="1">One</Option>
+        </Select>
+      );
+
+      const { getByRole } = await render(markup);
+      const select = getByRole('combobox');
+
+      expect(select).to.have.text('One');
+    });
+
+    it('renders the selected option when it is specified among many children', async () => {
+      const markup = (
+        <Select defaultValue="1">
+          <Option value="1">
+            <img src="one.png" alt="One" /> One
+          </Option>
+        </Select>
+      );
+
+      const { getByRole } = await render(markup);
+      const select = getByRole('combobox');
+
+      expect(select).to.have.text('One');
+    });
+
+    it('renders the selected option when it is specified in the label prop', async () => {
+      const markup = (
+        <Select defaultValue="1">
+          <Option value="1" label="One">
+            <img src="one.png" alt="One" />
+          </Option>
+        </Select>
+      );
+
+      const { getByRole } = await render(markup);
+      const select = getByRole('combobox');
+
+      expect(select).to.have.text('One');
+    });
+  });
+
   describe('keyboard navigation', () => {
-    ['Enter', 'ArrowDown', 'ArrowUp', ' '].forEach((key) => {
-      it(`opens the dropdown when the "${key}" key is down on the button`, async () => {
-        const { getByRole } = await render(<Select />);
-        const select = getByRole('combobox');
-        act(() => {
-          select.focus();
+    [<Select />, <Select slots={{ root: 'span' }} />].forEach((selectComponent) => {
+      const triggerType = selectComponent.props.slots?.root ? 'non-native' : 'native';
+      ['Enter', 'ArrowDown', 'ArrowUp', ' '].forEach((key) => {
+        it(`opens the dropdown when the "${key}" key is pressed on a ${triggerType} button trigger`, async () => {
+          const { getByRole } = await render(selectComponent);
+          const select = getByRole('combobox');
+          act(() => {
+            select.focus();
+          });
+
+          await userEvent.keyboard(`{${key}}`);
+
+          expect(select).to.have.attribute('aria-expanded', 'true');
+          expect(getByRole('listbox')).not.to.equal(null);
         });
-
-        await userEvent.keyboard(`{${key}}`);
-
-        expect(select).to.have.attribute('aria-expanded', 'true');
-        expect(getByRole('listbox')).not.to.equal(null);
       });
     });
 

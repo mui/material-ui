@@ -6,6 +6,8 @@ tokens:
   - 'MUI \w+'
 exceptions:
   - 'MUI X'
-  - 'MUI X'
-  - 'MUI System'
   - 'MUI System'
+  - 'MUI Store'
+  - 'MUI Core'
+  - 'MUI Toolpad'
+  - 'MUI Connect'

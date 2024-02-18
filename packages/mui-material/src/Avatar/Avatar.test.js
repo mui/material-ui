@@ -46,8 +46,17 @@ describe('<Avatar />', () => {
     });
 
     it('should be able to add more props to the image', () => {
+      // TODO: remove this test in v7
       const onError = spy();
       const { container } = render(<Avatar src="/fake.png" imgProps={{ onError }} />);
+      const img = container.querySelector('img');
+      fireEvent.error(img);
+      expect(onError.callCount).to.equal(1);
+    });
+
+    it('should be able to add more props to the img slot', () => {
+      const onError = spy();
+      const { container } = render(<Avatar src="/fake.png" slotProps={{ img: { onError } }} />);
       const img = container.querySelector('img');
       fireEvent.error(img);
       expect(onError.callCount).to.equal(1);
@@ -64,8 +73,17 @@ describe('<Avatar />', () => {
     });
 
     it('should be able to add more props to the image', () => {
+      // TODO: remove this test in v7
       const onError = spy();
       const { container } = render(<Avatar src="/fake.png" imgProps={{ onError }} />);
+      const img = container.querySelector('img');
+      fireEvent.error(img);
+      expect(onError.callCount).to.equal(1);
+    });
+
+    it('should be able to add more props to the img slot', () => {
+      const onError = spy();
+      const { container } = render(<Avatar src="/fake.png" slotProps={{ img: { onError } }} />);
       const img = container.querySelector('img');
       fireEvent.error(img);
       expect(onError.callCount).to.equal(1);
@@ -211,6 +229,20 @@ describe('<Avatar />', () => {
       const avatar = container.firstChild;
 
       expect(avatar).to.have.class(classes.colorDefault);
+    });
+
+    it('should fallback if children is empty string', () => {
+      const container = render(<Avatar>{''}</Avatar>).container;
+      const avatar = container.firstChild;
+
+      expect(avatar.firstChild).to.have.attribute('data-testid', 'PersonIcon');
+    });
+
+    it('should fallback if children is false', () => {
+      const container = render(<Avatar>{false}</Avatar>).container;
+      const avatar = container.firstChild;
+
+      expect(avatar.firstChild).to.have.attribute('data-testid', 'PersonIcon');
     });
   });
 
