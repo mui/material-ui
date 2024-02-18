@@ -178,6 +178,74 @@ npx @mui/codemod@latest deprecations/alert-props <path>
  />;
 ```
 
+#### `button-classes`
+
+JS transforms:
+
+```diff
+ import { buttonClasses } from '@mui/material/Button';
+
+ MuiButton: {
+   styleOverrides: {
+     root: {
+-      [`& .${buttonClasses.textInherit}`]: {
++      [`& .${buttonClasses.text}.${buttonClasses.inherit}`]: {
+         color: 'red',
+        },
+-      [`& .${buttonClasses.textSuccess}`]: {
++      [`& .${buttonClasses.text}.${buttonClasses.success}`]: {
+         color: 'red',
+        },
+-      [`& .${buttonClasses.textWarning}`]: {
++      [`& .${buttonClasses.text}.${buttonClasses.warning}`]: {
+         color: 'red',
+        },
+-      [`& .${buttonClasses.textInfo}`]: {
++      [`& .${buttonClasses.text}.${buttonClasses.info}`]: {
+         color: 'red',
+        },
+-      [`& .${buttonClasses.textError}`]: {
++      [`& .${buttonClasses.text}.${buttonClasses.error}`]: {
+         color: 'red',
+        },
+-      [`& .${buttonClasses.textPrimary}`]: {
++      [`& .${buttonClasses.text}.${buttonClasses.primary}`]: {
+         color: 'red',
+        },
+-      [`& .${buttonClasses.textSecondary}`]: {
++      [`& .${buttonClasses.text}.${buttonClasses.secondary}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+```diff
+ MuiButton: {
+   styleOverrides: {
+     root: {
+-      '& .MuiButton-contentGutters': {
++      '&.MuiButton-gutters .MuiButton-content': {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiButton-root .MuiButton-contentGutters
++.MuiButton-root.MuiButton-gutters .MuiButton-content
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/button-classes <path>
+```
+
 #### `divider-props`
 
 ```diff
