@@ -48,6 +48,10 @@ export default function createCssVarsProvider(options) {
   }
   const ColorSchemeContext = React.createContext(undefined);
 
+  if (process.env.NODE_ENV !== 'production') {
+    ColorSchemeContext.displayName = 'ColorSchemeContext';
+  }
+
   const useColorScheme = () => {
     const value = React.useContext(ColorSchemeContext);
     if (!value) {
