@@ -18,7 +18,7 @@ export default function transformer(file, api, options) {
             specifier.type === 'ImportSpecifier' &&
             specifier.imported.name === 'paginationItemClasses'
           ) {
-            const deprecatedAtomicClass = deprecatedClass.replace('.MuiPaginationItem-', '');
+            const deprecatedAtomicClass = deprecatedClass.replace('&.MuiPaginationItem-', '');
             root
               .find(j.MemberExpression, {
                 object: { name: specifier.local.name },
@@ -33,10 +33,11 @@ export default function transformer(file, api, options) {
                   const precedingTemplateElement = parent.quasis[memberExpressionIndex];
                   const atomicClasses = replacementSelector
                     .replaceAll('MuiPaginationItem-', '')
+                    .replaceAll('&.', '')
                     .split('.')
                     .filter(Boolean);
 
-                  if (precedingTemplateElement.value.raw.endsWith(' .')) {
+                  if (precedingTemplateElement.value.raw.endsWith('&.')) {
                     parent.expressions.splice(
                       memberExpressionIndex,
                       1,
@@ -68,16 +69,15 @@ export default function transformer(file, api, options) {
         });
       });
 
-    const selectorRegex = new RegExp(`^& ${deprecatedClass}`);
+    const selectorRegex = new RegExp(`^${deprecatedClass}`);
+
     root
       .find(
         j.Literal,
         (literal) => typeof literal.value === 'string' && literal.value.match(selectorRegex),
       )
       .forEach((path) => {
-        path.replace(
-          j.literal(path.value.value.replace(selectorRegex, `& ${replacementSelector}`)),
-        );
+        path.replace(j.literal(path.value.value.replace(selectorRegex, `${replacementSelector}`)));
       });
   });
   return root.toSource(printOptions);

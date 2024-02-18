@@ -1,19 +1,19 @@
 const classes = [
   {
-    deprecatedClass: '.MuiPaginationItem-textPrimary',
-    replacementSelector: '.MuiPaginationItem-text.MuiPaginationItem-primary',
+    deprecatedClass: '&.MuiPaginationItem-textPrimary',
+    replacementSelector: '&.MuiPaginationItem-text.MuiPaginationItem-primary',
   },
   {
-    deprecatedClass: '.MuiPaginationItem-textSecondary',
-    replacementSelector: '.MuiPaginationItem-text.MuiPaginationItem-secondary',
+    deprecatedClass: '&.MuiPaginationItem-textSecondary',
+    replacementSelector: '&.MuiPaginationItem-text.MuiPaginationItem-secondary',
   },
   {
-    deprecatedClass: '.MuiPaginationItem-outlinedPrimary',
-    replacementSelector: '.MuiPaginationItem-outlined.MuiPaginationItem-primary',
+    deprecatedClass: '&.MuiPaginationItem-outlinedPrimary',
+    replacementSelector: '&.MuiPaginationItem-outlined.MuiPaginationItem-primary',
   },
   {
-    deprecatedClass: '.MuiPaginationItem-outlinedSecondary',
-    replacementSelector: '.MuiPaginationItem-outlined.MuiPaginationItem-secondary',
+    deprecatedClass: '&.MuiPaginationItem-outlinedSecondary',
+    replacementSelector: '&.MuiPaginationItem-outlined.MuiPaginationItem-secondary',
   },
 ];
 

@@ -189,8 +189,8 @@ The PaginationItem's `.MuiPaginationItem-textPrimary` class was deprecated in fa
  MuiPaginationItem: {
    styleOverrides: {
      root: {
--      [`& .${paginationItemClasses.textPrimary}`]: {
-+      [`& .${paginationItemClasses.text}.${paginationItemClasses.primary}`]: {
+-      [`&.${paginationItemClasses.textPrimary}`]: {
++      [`&.${paginationItemClasses.text}.${paginationItemClasses.primary}`]: {
          color: 'red',
         },
      },
@@ -214,8 +214,8 @@ The PaginationItem's `.MuiPaginationItem-outlinedPrimary` class was deprecated i
  MuiPaginationItem: {
    styleOverrides: {
      root: {
--      [`& .${paginationItemClasses.outlinedPrimary}`]: {
-+      [`& .${paginationItemClasses.outlined}.${paginationItemClasses.primary}`]: {
+-      [`&.${paginationItemClasses.outlinedPrimary}`]: {
++      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.primary}`]: {
          color: 'red',
         },
      },
@@ -239,8 +239,8 @@ The PaginationItem's `.MuiPaginationItem-textSecondary` class was deprecated in 
  MuiPaginationItem: {
    styleOverrides: {
      root: {
--      [`& .${paginationItemClasses.textSecondary}`]: {
-+      [`& .${paginationItemClasses.text}.${paginationItemClasses.secondary}`]: {
+-      [`&.${paginationItemClasses.textSecondary}`]: {
++      [`&.${paginationItemClasses.text}.${paginationItemClasses.secondary}`]: {
          color: 'red',
         },
      },
@@ -264,8 +264,8 @@ The PaginationItem's `.MuiPaginationItem-outlinedSecondary` class was deprecated
  MuiPaginationItem: {
    styleOverrides: {
      root: {
--      [`& .${paginationItemClasses.outlinedSecondary}`]: {
-+      [`& .${paginationItemClasses.outlined}.${paginationItemClasses.secondary}`]: {
+-      [`&.${paginationItemClasses.outlinedSecondary}`]: {
++      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.secondary}`]: {
          color: 'red',
         },
      },

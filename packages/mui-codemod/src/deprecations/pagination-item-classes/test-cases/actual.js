@@ -4,7 +4,64 @@ fn({
   MuiPaginationItem: {
     styleOverrides: {
       root: {
-        '& .MuiPaginationItem-textPrimary': {
+        '&.MuiPaginationItem-textPrimary': {
+          color: 'red',
+        },
+      },
+    },
+  },
+});
+
+
+fn({
+  MuiPaginationItem: {
+    styleOverrides: {
+      root: {
+        [`&.${paginationItemClasses.textPrimary}`]: {
+          color: 'red',
+        },
+      },
+    },
+  },
+});
+
+styled(Component)(() => {
+  return {
+    '&.MuiPaginationItem-textPrimary': {
+      color: 'red',
+    },
+  };
+});
+
+styled(Component)(() => {
+  return {
+    [`&.${paginationItemClasses.textPrimary}`]: {
+      color: 'red',
+    },
+  };
+});
+
+<PaginationItem
+  sx={{
+    '&.MuiPaginationItem-textPrimary': {
+      color: 'red',
+    },
+  }}
+/>;
+
+<PaginationItem
+  sx={{
+    [`&.${paginationItemClasses.textPrimary}`]: {
+      color: 'red',
+    },
+  }}
+/>;
+
+fn({
+  MuiPaginationItem: {
+    styleOverrides: {
+      root: {
+        '&.MuiPaginationItem-textSecondary': {
           color: 'red',
         },
       },
@@ -16,7 +73,7 @@ fn({
   MuiPaginationItem: {
     styleOverrides: {
       root: {
-        [`& .${paginationItemClasses.textPrimary}`]: {
+        [`&.${paginationItemClasses.textSecondary}`]: {
           color: 'red',
         },
       },
@@ -26,7 +83,7 @@ fn({
 
 styled(Component)(() => {
   return {
-    '& .MuiPaginationItem-textPrimary': {
+    '&.MuiPaginationItem-textSecondary': {
       color: 'red',
     },
   };
@@ -34,7 +91,7 @@ styled(Component)(() => {
 
 styled(Component)(() => {
   return {
-    [`& .${paginationItemClasses.textPrimary}`]: {
+    [`&.${paginationItemClasses.textSecondary}`]: {
       color: 'red',
     },
   };
@@ -42,7 +99,7 @@ styled(Component)(() => {
 
 <PaginationItem
   sx={{
-    '& .MuiPaginationItem-textPrimary': {
+    '&.MuiPaginationItem-textSecondary': {
       color: 'red',
     },
   }}
@@ -50,7 +107,7 @@ styled(Component)(() => {
 
 <PaginationItem
   sx={{
-    [`& .${paginationItemClasses.textPrimary}`]: {
+    [`&.${paginationItemClasses.textSecondary}`]: {
       color: 'red',
     },
   }}
@@ -60,63 +117,7 @@ fn({
   MuiPaginationItem: {
     styleOverrides: {
       root: {
-        '& .MuiPaginationItem-textSecondary': {
-          color: 'red',
-        },
-      },
-    },
-  },
-});
-
-fn({
-  MuiPaginationItem: {
-    styleOverrides: {
-      root: {
-        [`& .${paginationItemClasses.textSecondary}`]: {
-          color: 'red',
-        },
-      },
-    },
-  },
-});
-
-styled(Component)(() => {
-  return {
-    '& .MuiPaginationItem-textSecondary': {
-      color: 'red',
-    },
-  };
-});
-
-styled(Component)(() => {
-  return {
-    [`& .${paginationItemClasses.textSecondary}`]: {
-      color: 'red',
-    },
-  };
-});
-
-<PaginationItem
-  sx={{
-    '& .MuiPaginationItem-textSecondary': {
-      color: 'red',
-    },
-  }}
-/>;
-
-<PaginationItem
-  sx={{
-    [`& .${paginationItemClasses.textSecondary}`]: {
-      color: 'red',
-    },
-  }}
-/>;
-
-fn({
-  MuiPaginationItem: {
-    styleOverrides: {
-      root: {
-        '& .MuiPaginationItem-outlinedPrimary': {
+        '&.MuiPaginationItem-outlinedPrimary': {
           color: 'red',
         },
       },
@@ -128,7 +129,7 @@ fn({
   MuiPaginationItem: {
     styleOverrides: {
       root: {
-        [`& .${paginationItemClasses.outlinedPrimary}`]: {
+        [`&.${paginationItemClasses.outlinedPrimary}`]: {
           color: 'red',
         },
       },
@@ -138,7 +139,7 @@ fn({
 
 styled(Component)(() => {
   return {
-    '& .MuiPaginationItem-outlinedPrimary': {
+    '&.MuiPaginationItem-outlinedPrimary': {
       color: 'red',
     },
   };
@@ -146,7 +147,7 @@ styled(Component)(() => {
 
 styled(Component)(() => {
   return {
-    [`& .${paginationItemClasses.outlinedPrimary}`]: {
+    [`&.${paginationItemClasses.outlinedPrimary}`]: {
       color: 'red',
     },
   };
@@ -154,7 +155,7 @@ styled(Component)(() => {
 
 <PaginationItem
   sx={{
-    '& .MuiPaginationItem-outlinedPrimary': {
+    '&.MuiPaginationItem-outlinedPrimary': {
       color: 'red',
     },
   }}
@@ -162,7 +163,7 @@ styled(Component)(() => {
 
 <PaginationItem
   sx={{
-    [`& .${paginationItemClasses.outlinedPrimary}`]: {
+    [`&.${paginationItemClasses.outlinedPrimary}`]: {
       color: 'red',
     },
   }}
@@ -171,7 +172,7 @@ fn({
   MuiPaginationItem: {
     styleOverrides: {
       root: {
-        '& .MuiPaginationItem-outlinedSecondary': {
+        '&.MuiPaginationItem-outlinedSecondary': {
           color: 'red',
         },
       },
@@ -183,7 +184,7 @@ fn({
   MuiPaginationItem: {
     styleOverrides: {
       root: {
-        [`& .${paginationItemClasses.outlinedSecondary}`]: {
+        [`&.${paginationItemClasses.outlinedSecondary}`]: {
           color: 'red',
         },
       },
@@ -193,7 +194,7 @@ fn({
 
 styled(Component)(() => {
   return {
-    '& .MuiPaginationItem-outlinedSecondary': {
+    '&.MuiPaginationItem-outlinedSecondary': {
       color: 'red',
     },
   };
@@ -201,7 +202,7 @@ styled(Component)(() => {
 
 styled(Component)(() => {
   return {
-    [`& .${paginationItemClasses.outlinedSecondary}`]: {
+    [`&.${paginationItemClasses.outlinedSecondary}`]: {
       color: 'red',
     },
   };
@@ -209,7 +210,7 @@ styled(Component)(() => {
 
 <PaginationItem
   sx={{
-    '& .MuiPaginationItem-outlinedSecondary': {
+    '&.MuiPaginationItem-outlinedSecondary': {
       color: 'red',
     },
   }}
@@ -217,7 +218,7 @@ styled(Component)(() => {
 
 <PaginationItem
   sx={{
-    [`& .${paginationItemClasses.outlinedSecondary}`]: {
+    [`&.${paginationItemClasses.outlinedSecondary}`]: {
       color: 'red',
     },
   }}
