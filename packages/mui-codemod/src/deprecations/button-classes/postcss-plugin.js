@@ -83,6 +83,54 @@ const classes = [
     deprecatedClass: '.MuiButton-containedWarning',
     replacementSelector: '.MuiButton-contained.MuiButton-colorWarning',
   },
+  {
+    deprecatedClass: '.MuiButton-textSizeSmall',
+    replacementSelector: '.MuiButton-text.MuiButton-sizeSmall',
+  },
+  {
+    deprecatedClass: '.MuiButton-textSizeLarge',
+    replacementSelector: '.MuiButton-text.MuiButton-sizeLarge',
+  },
+  {
+    deprecatedClass: '.MuiButton-outlinedSizeSmall',
+    replacementSelector: '.MuiButton-outlined.MuiButton-sizeSmall',
+  },
+  {
+    deprecatedClass: '.MuiButton-outlinedSizeLarge',
+    replacementSelector: '.MuiButton-outlined.MuiButton-sizeLarge',
+  },
+  {
+    deprecatedClass: '.MuiButton-containedSizeSmall',
+    replacementSelector: '.MuiButton-contained.MuiButton-sizeSmall',
+  },
+  {
+    deprecatedClass: '.MuiButton-containedSizeLarge',
+    replacementSelector: '.MuiButton-contained.MuiButton-sizeLarge',
+  },
+  {
+    deprecatedClass: '.MuiButton-textSizeMedium',
+    replacementSelector: '.MuiButton-text.MuiButton-sizeMedium',
+  },
+  {
+    deprecatedClass: '.MuiButton-outlinedSizeMedium',
+    replacementSelector: '.MuiButton-outlined.MuiButton-sizeMedium',
+  },
+  {
+    deprecatedClass: '.MuiButton-containedSizeMedium',
+    replacementSelector: '.MuiButton-contained.MuiButton-sizeMedium',
+  },
+  {
+    deprecatedClass: '.MuiButton-iconSizeSmall',
+    replacementSelector: '.MuiButton-icon.MuiButton-sizeSmall',
+  },
+  {
+    deprecatedClass: '.MuiButton-iconSizeMedium',
+    replacementSelector: '.MuiButton-icon.MuiButton-sizeMedium',
+  },
+  {
+    deprecatedClass: '.MuiButton-iconSizeLarge',
+    replacementSelector: '.MuiButton-icon.MuiButton-sizeLarge',
+  },
 ];
 
 const plugin = () => {

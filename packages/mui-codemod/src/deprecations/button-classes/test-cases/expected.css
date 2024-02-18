@@ -82,4 +82,52 @@
   color: red;
 }
 
+.MuiButton-text.MuiButton-sizeSmall {
+  color: red;
+}
+
+.MuiButton-text.MuiButton-sizeMedium {
+  color: red;
+}
+
+.MuiButton-text.MuiButton-sizeLarge {
+  color: red;
+}
+
+.MuiButton-outlined.MuiButton-sizeSmall {
+  color: red;
+}
+
+.MuiButton-outlined.MuiButton-sizeMedium {
+  color: red;
+}
+
+.MuiButton-outlined.MuiButton-sizeLarge {
+  color: red;
+}
+
+.MuiButton-contained.MuiButton-sizeSmall {
+  color: red;
+}
+
+.MuiButton-contained.MuiButton-sizeMedium {
+  color: red;
+}
+
+.MuiButton-contained.MuiButton-sizeLarge {
+  color: red;
+}
+
+.MuiButton-icon.MuiButton-sizeSmall {
+  color: red;
+}
+
+.MuiButton-icon.MuiButton-sizeMedium {
+  color: red;
+}
+
+.MuiButton-icon.MuiButton-sizeLarge {
+  color: red;
+}
+
 
