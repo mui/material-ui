@@ -245,7 +245,7 @@ export interface InputBaseProps
 }
 
 export interface InputBaseComponentProps
-  extends React.HTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
+  extends React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
   // Accommodate arbitrary additional props coming from the `inputProps` prop
   [arbitrary: string]: any;
 }
