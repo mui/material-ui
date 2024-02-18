@@ -46,8 +46,6 @@ const savedScrollTop = {};
 
 function ProductDrawerButton(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const { activePage = {} } = React.useContext(PageContext);
-  const [previousPath, setPreviousPath] = React.useState(activePage?.pathname || '');
 
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -57,11 +55,17 @@ function ProductDrawerButton(props) {
     setAnchorEl(null);
   };
 
-  // Handling for the ProductSelector to close on any kind of route changes.
-  if (activePage?.pathname && previousPath !== activePage.pathname) {
-    handleClose();
-    setPreviousPath(activePage.pathname);
-  }
+  const handleEventDelegation = (e) => {
+    // In case of key down events, and any key apart from `enter` is clicked then don't close the menu.
+    if (e?.type === 'keydown' && e.keyCode !== 13) {
+      return;
+    }
+
+    // If the element clicked is link or just inside of a link element then close the menu.
+    if (e?.target && (e.target?.parentElement?.localName === 'a' || e.target?.localName === 'a')) {
+      handleClose();
+    }
+  };
 
   return (
     <React.Fragment>
@@ -106,6 +110,8 @@ function ProductDrawerButton(props) {
             width: { xs: 340, sm: 'auto' },
           },
         }}
+        onClick={handleEventDelegation}
+        onKeyDown={handleEventDelegation}
       >
         <MuiProductSelector />
       </Menu>
