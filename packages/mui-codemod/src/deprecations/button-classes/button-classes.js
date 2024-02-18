@@ -14,10 +14,7 @@ export default function transformer(file, api, options) {
       .filter((path) => path.node.source.value.match(/^@mui\/material\/Button$/))
       .forEach((path) => {
         path.node.specifiers.forEach((specifier) => {
-          if (
-            specifier.type === 'ImportSpecifier' &&
-            specifier.imported.name === 'buttonClasses'
-          ) {
+          if (specifier.type === 'ImportSpecifier' && specifier.imported.name === 'buttonClasses') {
             const deprecatedAtomicClass = deprecatedClass.replace('.MuiButton-', '');
             root
               .find(j.MemberExpression, {
