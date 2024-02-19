@@ -1,4 +1,6 @@
 import { expect } from 'chai';
+import { blend } from '@mui/system';
+
 import {
   recomposeColor,
   hexToRgb,
@@ -12,8 +14,7 @@ import {
   getLuminance,
   lighten,
   colorChannel,
-  blend,
-} from '@mui/system';
+} from '@mui/system/colorManipulator';
 
 describe('utils/colorManipulator', () => {
   describe('recomposeColor', () => {

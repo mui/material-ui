@@ -6,9 +6,11 @@
   "types": "build/index.d.ts",
   "private": true,
   "scripts": {
-    "clean": "rimraf build types",
+    "clean": "rimraf build types processors utils",
     "watch": "tsup --watch --clean false",
     "build": "tsup",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/zero-runtime/**/*.test.{js,ts,tsx}'",
+    "test:ci": "cd ../../ && cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov --report-dir=./coverage/zero mocha 'packages/zero-runtime/**/*.test.{js,ts,tsx}'",
     "typecheck": "tsc --noEmit -p ."
   },
   "dependencies": {
@@ -38,6 +40,7 @@
     "@types/node": "^18.19.15",
     "@types/react": "^18.2.55",
     "@types/stylis": "^4.2.5",
+    "chai": "^4.4.1",
     "react": "^18.2.0"
   },
   "peerDependencies": {
@@ -105,6 +108,22 @@
     },
     "./exports/createUseThemeProps": {
       "default": "./exports/createUseThemeProps.js"
+    }
+  },
+  "nx": {
+    "targets": {
+      "test": {
+        "cache": false,
+        "dependsOn": [
+          "build"
+        ]
+      },
+      "test:ci": {
+        "cache": false,
+        "dependsOn": [
+          "build"
+        ]
+      }
     }
   }
 }

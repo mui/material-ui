@@ -1307,7 +1307,7 @@ Here are some highlights ✨:
 - [ci] Fix heap out of memory in azure pipelines (#19825) @eps1lon
 - [core] Migrate to import \* as React from 'react' (#19802) @TrySound
 - [test] Fix defaultProps overriding props (#19858) @eps1lon
-- [test] Test against typescript nightlies (#19857) @eps1lon
+- [test] Test against TypeScript nightlies (#19857) @eps1lon
 
 ## 4.9.4
 
@@ -2226,7 +2226,7 @@ Here are some highlights ✨:
 - [ExpansionPanelSummary] Test in StrictMode (#17873) @eps1lon
 - [FormControlLabel] Add missing CSS class keys to TS (#17963) @itayyehezkel
 - [Link] Warn when using plain function component in `component` (#17825) @Nikhil-Pavan-Sai
-- [ListSubheader] Reduce specificity of typescript type (#17715) @sakulstra
+- [ListSubheader] Reduce specificity of TypeScript type (#17715) @sakulstra
 - [Menu] Add new context menu demo (#17839) @SarthakC
 - [Modal] Fix tabIndex customization (#17939) @Cyrus-d
 - [Modal] Improve Gatsby support (#17972) @sreetej1998
@@ -2639,7 +2639,7 @@ Here are some highlights ✨:
 - [docs] Add script to merge MD icon tags with synonyms (#17312) @mbrookes
 - [docs] Batch small changes (#17268) @oliviertassinari
 - [docs] Fix more SEO issue report @oliviertassinari
-- [docs] Add typescript version of paperbase theme (#17213) @eps1lon
+- [docs] Add TypeScript version of paperbase theme (#17213) @eps1lon
 - [docs] Improve /customization/typography/ (#17307) @meebix
 - [docs] Improve grammar in snackbars (#17296) @chaseholdren
 - [docs] Notification for v4.4.0 @oliviertassinari
@@ -4340,7 +4340,7 @@ This release fixes an important regression with TypeScript: https://github.com/m
 - [docs] Fix typo in simple breadcrumbs example (#14575) @AndrewUsher
 - [blog] Material UI Developer Survey 2019 (#14614) @oliviertassinari
 - [docs] Change Gitter to Spectrum (#14668) @mbrookes
-- [docs] Update link to http://cssinjs.org/jss-api/ (#14788) @monicatie
+- [docs] Update link to https://cssinjs.org/jss-api/ (#14788) @monicatie
 - [docs] Add Algolia metadata (#14835) @oliviertassinari
 - [docs] Improve overrides.md wording (#14403) @i0
 - [docs] Grammar fix (#14960) @nateq314
@@ -7324,7 +7324,7 @@ N/A
 #### Labs
 
 - [SpeedDial] Fix classes prop description (#11599) @mbrookes
-- [Slider] Misc fixes towards standard Material UI patterns (#11605) @mbrookes
+- [Slider] Misc fixes towards standard Material UI patterns (#11605) @mbrookes
 - [Slider] Fire the right event on mouseDown (#11642) @acroyear
 - [SpeedDial] Add type definitions to lab, so SpeedDial can be use with TypeScript project (#11542) @TR3MIC
 
@@ -13906,7 +13906,7 @@ _Dec. 15, 2014_
 ### Breaking Changes
 
 - Removed PaperButton - Use FlatButton, RaisedButton, or FloatingActionButton
-- Removed Roboto font import (#104) - Be sure to [include the Roboto](http://www.google.com/fonts#UsePlace:use/Collection:Roboto:400,300,500) font in your project.
+- Removed Roboto font import (#104) - Be sure to [include the Roboto](https://fonts.google.com/specimen/Roboto) font in your project.
 
 ### General
 
@@ -14077,7 +14077,7 @@ _Nov. 11, 2014_
 - Changed project structure to be less confusing. Material UI components/styles live in the src directory.
   Docs site code lives in the docs directory. This still allows us to easily test components in the docs site
   as we are working on them
-- Added .editorconfig to help keep code formatting consistent among contributors. See http://editorconfig.org/
+- Added .editorconfig to help keep code formatting consistent among contributors. See https://editorconfig.org/
 - Fixed drop down display issue in safari
 - Fixed nested menu arrow icon
 - Added hover transitions to menus
