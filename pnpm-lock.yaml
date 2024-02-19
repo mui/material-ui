@@ -2356,14 +2356,14 @@ importers:
         specifier: workspace:^
         version: link:../mui-system/build
       '@wyw-in-js/processor-utils':
-        specifier: ^0.3.0
-        version: 0.3.0
+        specifier: ^0.4.1
+        version: 0.4.1
       '@wyw-in-js/shared':
-        specifier: ^0.3.0
-        version: 0.3.0
+        specifier: ^0.4.1
+        version: 0.4.1
       '@wyw-in-js/transform':
-        specifier: ^0.3.0
-        version: 0.3.0
+        specifier: ^0.4.1
+        version: 0.4.1
       clsx:
         specifier: ^2.1.0
         version: 2.1.0
@@ -2417,17 +2417,17 @@ importers:
         specifier: ^7.23.9
         version: 7.23.9
       '@wyw-in-js/shared':
-        specifier: ^0.3.0
-        version: 0.3.0
+        specifier: ^0.4.1
+        version: 0.4.1
       '@wyw-in-js/transform':
-        specifier: ^0.3.0
-        version: 0.3.0
+        specifier: ^0.4.1
+        version: 0.4.1
       babel-plugin-transform-react-remove-prop-types:
         specifier: ^0.4.24
         version: 0.4.24
       unplugin:
-        specifier: ^1.6.0
-        version: 1.6.0
+        specifier: ^1.7.1
+        version: 1.7.1
     devDependencies:
       '@mui/zero-runtime':
         specifier: workspace:^
@@ -2448,11 +2448,11 @@ importers:
         specifier: workspace:^
         version: link:../zero-runtime
       '@wyw-in-js/shared':
-        specifier: ^0.3.0
-        version: 0.3.0
+        specifier: ^0.4.1
+        version: 0.4.1
       '@wyw-in-js/transform':
-        specifier: ^0.3.0
-        version: 0.3.0
+        specifier: ^0.4.1
+        version: 0.4.1
       babel-plugin-transform-react-remove-prop-types:
         specifier: ^0.4.24
         version: 0.4.24
@@ -8213,18 +8213,18 @@ packages:
       webpack: 5.90.1(esbuild@0.19.11)(webpack-cli@5.1.4)
       webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.1)
 
-  /@wyw-in-js/processor-utils@0.3.0:
-    resolution: {integrity: sha512-RBrWLN/voN1tW/Jv/H7HcZS+Kr5N40GMo15fRjO5nnl6a2qQpVmGYgVgP9nxG0/c1PzONW6U9VAN/j3NQrQDvQ==}
+  /@wyw-in-js/processor-utils@0.4.1:
+    resolution: {integrity: sha512-0MVgPC3Svplm2WB4G4eSLLfx8n1EaIpClMXqNcTmfyrFcpLjYYcSXDP7aVgQVvy5wQCqqq+EmPbnU6yXq8X19w==}
     engines: {node: '>=16.0.0'}
     dependencies:
       '@babel/generator': 7.23.6
-      '@wyw-in-js/shared': 0.3.0
+      '@wyw-in-js/shared': 0.4.1
     transitivePeerDependencies:
       - supports-color
     dev: false
 
-  /@wyw-in-js/shared@0.3.0:
-    resolution: {integrity: sha512-C0NwF8NeBi5n9M1b3aj+sC9T+IFAdIjVAMDB/cFwoVlVXKRcAr4TROZOyt4/xGyJJxkkO90NQERrCYKd2UBW5w==}
+  /@wyw-in-js/shared@0.4.1:
+    resolution: {integrity: sha512-luKAAP6augn+j7EE9bcVP1chs5RdtmJx1PbRIqT8j12oP2YV32fvhHFX/99XxPujYLxFIexZrhJkNKHnL5uyKA==}
     engines: {node: '>=16.0.0'}
     dependencies:
       debug: 4.3.4(supports-color@8.1.1)
@@ -8234,8 +8234,8 @@ packages:
       - supports-color
     dev: false
 
-  /@wyw-in-js/transform@0.3.0:
-    resolution: {integrity: sha512-2TXPMPexwEzHUEDgDF6qB1G9H7Vjc0jbo0FCUEzj4r0V+XKa95S82ahFgqJeDTG4ltr4ogcyZDmBd2c/jG/1Rw==}
+  /@wyw-in-js/transform@0.4.1:
+    resolution: {integrity: sha512-MhU/A58QJ7SkAjVNgvmoa5kbg7h28u4RkwGxm0/qt49sPMSlY8AsIW4wXX2k0rX5GTKHASVcNKrSywE2acjzxQ==}
     engines: {node: '>=16.0.0'}
     dependencies:
       '@babel/core': 7.23.9
@@ -8245,8 +8245,8 @@ packages:
       '@babel/template': 7.23.9
       '@babel/traverse': 7.23.9
       '@babel/types': 7.23.9
-      '@wyw-in-js/processor-utils': 0.3.0
-      '@wyw-in-js/shared': 0.3.0
+      '@wyw-in-js/processor-utils': 0.4.1
+      '@wyw-in-js/shared': 0.4.1
       babel-merge: 3.0.0(@babel/core@7.23.9)
       cosmiconfig: 8.2.0
       happy-dom: 12.10.3
@@ -20932,8 +20932,8 @@ packages:
     resolution: {integrity: sha512-pjy2bYhSsufwWlKwPc+l3cN7+wuJlK6uz0YdJEOlQDbl6jo/YlPi4mb8agUkVC8BF7V8NuzeyPNqRksA3hztKQ==}
     engines: {node: '>= 0.8'}
 
-  /unplugin@1.6.0:
-    resolution: {integrity: sha512-BfJEpWBu3aE/AyHx8VaNE/WgouoQxgH9baAiH82JjX8cqVyi3uJQstqwD5J+SZxIK326SZIhsSZlALXVBCknTQ==}
+  /unplugin@1.7.1:
+    resolution: {integrity: sha512-JqzORDAPxxs8ErLV4x+LL7bk5pk3YlcWqpSNsIkAZj972KzFZLClc/ekppahKkOczGkwIG6ElFgdOgOlK4tXZw==}
     dependencies:
       acorn: 8.11.3
       chokidar: 3.6.0

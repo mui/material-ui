@@ -3,6 +3,7 @@ import * as path from 'node:path';
 import { expect } from 'chai';
 import { asyncResolveFallback } from '@wyw-in-js/shared';
 import { TransformCacheCollection, transform, createFileReporter } from '@wyw-in-js/transform';
+import { preprocessor } from '@mui/zero-runtime/utils';
 
 const files = fs.readdirSync(path.join(__dirname, 'fixtures'));
 
@@ -37,6 +38,7 @@ describe('zero-runtime', () => {
         {
           options: {
             filename: inputFilePath,
+            preprocessor,
             pluginOptions: {
               themeArgs: {
                 theme,
