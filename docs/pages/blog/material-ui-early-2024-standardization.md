@@ -14,7 +14,7 @@ The first API being standardized is the one used for inner element overrides, an
 ## Inner element overrides
 
 Modifying the inner elements of a component to customize its behavior or look is an everyday use case.
-For example, you might want to modify the `Slider`'s thumb element to grow in size when it’s dragged:
+For example, you might want to modify the `Slider`'s thumb element to grow in size when it's dragged:
 
 <iframe src="https://codesandbox.io/embed/nw34ry?view=Editor+%2B+Preview&module=%2Fsrc%2FDemo.tsx&hidenavigation=1"
      style="width:100%; height: 200px; border:0; border-radius: 4px; overflow:hidden;"
@@ -24,7 +24,7 @@ For example, you might want to modify the `Slider`'s thumb element to grow in si
    ></iframe>
 
 You can achieve this by providing custom components through the `slots` prop.
-The demo above provides a custom thumb component that uses the `Slider`’s internal state `dragging` and `focusedThumbIndex` to change its appearance.
+The demo above provides a custom thumb component that uses the `Slider`'s internal state `dragging` and `focusedThumbIndex` to change its appearance.
 [Open the sandbox](https://codesandbox.io/p/sandbox/blog-material-ui-early-2024-deprecations-slider-slots-example-nw34ry?file=%2Fsrc%2FDemo.tsx) to see the implementation.
 
 The problem is that this slot pattern exposed through the `slots` prop needs to be standardized.
@@ -41,7 +41,7 @@ The `slots` and `slotProps` API will be standardized to solve these issues, and 
 ## Component CSS classes
 
 One way to customize the look of components is to target their CSS classes.
-For example, you might want to modify the `Chip` component’s primary color and have it be different when it’s clickable.
+For example, you might want to modify the `Chip` component's primary color and have it be different when it's clickable.
 
 <iframe src="https://codesandbox.io/embed/d7xqr6?view=Editor+%2B+Preview&module=%2Fsrc%2FDemo.tsx&hidenavigation=1"
      style="width:100%; height: 200px; border:0; border-radius: 4px; overflow:hidden;"
