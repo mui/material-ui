@@ -1,0 +1,25 @@
+name: Release
+
+on:
+  pull_request:
+    paths:
+      - 'docs/writing-rules/**'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - run: zip -r "writing-rules.zip" docs/writing-rules
+
+      - name: Upload style to release
+        uses: svenstaro/upload-release-action@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file_glob: true
+          file: writing-rules.zip
