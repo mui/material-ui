@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { ClassNames } from '@emotion/react';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 import FilledInput, { filledInputClasses as classes } from '@mui/material-next/FilledInput';
 import InputBase from '@mui/material-next/InputBase';

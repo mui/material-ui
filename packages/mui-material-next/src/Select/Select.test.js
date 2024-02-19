@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import { ErrorBoundary, act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
+import { ErrorBoundary, act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import { nativeSelectClasses } from '@mui/material/NativeSelect';
 // TODO v6: replace with material-next's extendTheme and provider when implementing Material Design 3
 import { createTheme, ThemeProvider } from '@mui/material/styles';

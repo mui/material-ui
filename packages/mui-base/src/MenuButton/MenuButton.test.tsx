@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import userEvent from '@testing-library/user-event';
-import { act, createMount, createRenderer } from '@mui-internal/test-utils';
+import { act, createMount, createRenderer } from '@mui/internal-test-utils';
 import { MenuButton, menuButtonClasses } from '@mui/base/MenuButton';
 import { DropdownContext, DropdownContextValue, DropdownActionTypes } from '@mui/base/useDropdown';
 import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';

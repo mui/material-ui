@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { act, createRenderer, fireEvent } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import Radio, { radioClasses as classes } from '@mui/joy/Radio';
 import { ThemeProvider, extendTheme } from '@mui/joy/styles';
 import FormControl from '@mui/joy/FormControl';

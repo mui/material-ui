@@ -12,7 +12,7 @@ import {
   testClassName,
   testComponentProp,
   testReactTestRenderer,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import { ClassNameConfigurator } from '@mui/base/utils';
 
 export interface UnstyledConformanceOptions

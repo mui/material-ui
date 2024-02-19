@@ -7,7 +7,7 @@ import {
   fireEvent,
   screen,
   strictModeDoubleLoggingSuppressed,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import Tab from '@mui/material-next/Tab';

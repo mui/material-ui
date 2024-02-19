@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { stub } from 'sinon';
 import { SheetsRegistry } from 'jss';
 import Input from '@mui/material/Input';
-import { createRenderer, screen } from '@mui-internal/test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { isMuiElement } from '@mui/material/utils';
 import { createTheme } from '@mui/material/styles';
 import StylesProvider from '../StylesProvider';

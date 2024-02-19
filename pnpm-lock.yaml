@@ -98,12 +98,12 @@ importers:
       '@mui-internal/docs-utils':
         specifier: workspace:^
         version: link:packages/docs-utils
-      '@mui-internal/test-utils':
-        specifier: workspace:^
-        version: link:packages/test-utils
       '@mui-internal/typescript-to-proptypes':
         specifier: workspace:^
         version: link:packages/typescript-to-proptypes
+      '@mui/internal-test-utils':
+        specifier: workspace:^
+        version: link:packages/test-utils
       '@mui/joy':
         specifier: workspace:*
         version: link:packages/mui-joy/build
@@ -833,12 +833,12 @@ importers:
       '@mui-internal/docs-utils':
         specifier: workspace:^
         version: link:../packages/docs-utils
-      '@mui-internal/test-utils':
-        specifier: workspace:^
-        version: link:../packages/test-utils
       '@mui-internal/typescript-to-proptypes':
         specifier: workspace:^
         version: link:../packages/typescript-to-proptypes
+      '@mui/internal-test-utils':
+        specifier: workspace:^
+        version: link:../packages/test-utils
       '@types/autosuggest-highlight':
         specifier: ^3.2.3
         version: 3.2.3
@@ -1153,12 +1153,12 @@ importers:
       '@mui-internal/babel-macros':
         specifier: workspace:^
         version: link:../mui-babel-macros
-      '@mui-internal/test-utils':
-        specifier: workspace:^
-        version: link:../test-utils
       '@mui/base':
         specifier: workspace:*
         version: link:build
+      '@mui/internal-test-utils':
+        specifier: workspace:^
+        version: link:../test-utils
       '@testing-library/react':
         specifier: ^14.2.1
         version: 14.2.1(react-dom@18.2.0)(react@18.2.0)
@@ -1406,7 +1406,7 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
     devDependencies:
-      '@mui-internal/test-utils':
+      '@mui/internal-test-utils':
         specifier: workspace:^
         version: link:../test-utils
       '@mui/material':
@@ -1483,7 +1483,7 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
     devDependencies:
-      '@mui-internal/test-utils':
+      '@mui/internal-test-utils':
         specifier: workspace:^
         version: link:../test-utils
       '@types/chai':
@@ -1563,7 +1563,7 @@ importers:
       '@mui-internal/babel-macros':
         specifier: workspace:^
         version: link:../mui-babel-macros
-      '@mui-internal/test-utils':
+      '@mui/internal-test-utils':
         specifier: workspace:^
         version: link:../test-utils
       '@mui/lab':
@@ -1694,7 +1694,7 @@ importers:
       '@mui-internal/babel-macros':
         specifier: workspace:^
         version: link:../mui-babel-macros
-      '@mui-internal/test-utils':
+      '@mui/internal-test-utils':
         specifier: workspace:^
         version: link:../test-utils
       '@testing-library/user-event':
@@ -1779,7 +1779,7 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
     devDependencies:
-      '@mui-internal/test-utils':
+      '@mui/internal-test-utils':
         specifier: workspace:^
         version: link:../test-utils
       '@mui/types':
@@ -1820,7 +1820,7 @@ importers:
       '@emotion/styled':
         specifier: ^11.11.0
         version: 11.11.0(@emotion/react@11.11.3)(@types/react@18.2.55)(react@18.2.0)
-      '@mui-internal/test-utils':
+      '@mui/internal-test-utils':
         specifier: workspace:^
         version: link:../test-utils
       '@mui/styled-engine':
@@ -1855,7 +1855,7 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
     devDependencies:
-      '@mui-internal/test-utils':
+      '@mui/internal-test-utils':
         specifier: workspace:^
         version: link:../test-utils
       '@mui/styled-engine-sc':
@@ -1935,7 +1935,7 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
     devDependencies:
-      '@mui-internal/test-utils':
+      '@mui/internal-test-utils':
         specifier: workspace:^
         version: link:../test-utils
       '@mui/material':
@@ -2003,7 +2003,7 @@ importers:
       '@mui-internal/babel-macros':
         specifier: workspace:^
         version: link:../mui-babel-macros
-      '@mui-internal/test-utils':
+      '@mui/internal-test-utils':
         specifier: workspace:^
         version: link:../test-utils
       '@mui/system':
@@ -2069,7 +2069,7 @@ importers:
       '@mui-internal/babel-macros':
         specifier: workspace:^
         version: link:../mui-babel-macros
-      '@mui-internal/test-utils':
+      '@mui/internal-test-utils':
         specifier: workspace:^
         version: link:../test-utils
       '@mui/types':
@@ -2475,15 +2475,15 @@ importers:
       '@emotion/react':
         specifier: ^11.11.3
         version: 11.11.3(@types/react@18.2.55)(react@18.2.0)
-      '@mui-internal/test-utils':
-        specifier: workspace:^
-        version: link:../packages/test-utils
       '@mui/base':
         specifier: workspace:*
         version: link:../packages/mui-base/build
       '@mui/icons-material':
         specifier: workspace:^
         version: link:../packages/mui-icons-material/build
+      '@mui/internal-test-utils':
+        specifier: workspace:^
+        version: link:../packages/test-utils
       '@mui/joy':
         specifier: workspace:*
         version: link:../packages/mui-joy/build

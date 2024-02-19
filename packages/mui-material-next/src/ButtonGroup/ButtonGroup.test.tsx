@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui-internal/test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import ButtonGroup, { buttonGroupClasses as classes } from '@mui/material-next/ButtonGroup';
 import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 import Button, { buttonClasses } from '@mui/material-next/Button';

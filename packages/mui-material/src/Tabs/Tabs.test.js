@@ -8,7 +8,7 @@ import {
   screen,
   strictModeDoubleLoggingSuppressed,
   waitFor,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import Tab from '@mui/material/Tab';
 import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
 import { svgIconClasses } from '@mui/material/SvgIcon';
