@@ -16,7 +16,6 @@ const StyledTab = styled(Tab)(({ theme }) => ({
   padding: theme.spacing(0.5, 1, 0.5, 0.5),
   border: '1px solid',
   borderColor: 'transparent',
-  marginBottom: theme.spacing(1.5),
   fontWeight: theme.typography.fontWeightSemiBold,
   minHeight: 30,
   minWidth: 0,
@@ -60,21 +59,14 @@ export default function ComponentPageTabs(props) {
         sx={{
           position: 'sticky',
           top: 65, // to be positioned below the app bar
-          mt: 1,
-          pt: 1.5,
-          mx: {
-            xs: -2,
-            sm: 0,
-          },
-          px: {
-            xs: 2,
-            sm: 0,
-          },
+          mt: 2,
+          mx: -1,
           backgroundColor: 'background.default',
           borderBottom: 1,
           borderColor: 'divider',
           zIndex: 1000,
           [`& .${tabsClasses.flexContainer}`]: {
+            p: 1,
             gap: 0.5,
           },
           [`& .${tabsClasses.indicator}`]: {
@@ -92,8 +84,6 @@ export default function ComponentPageTabs(props) {
       >
         <StyledTab
           component={Link}
-          shallow
-          scroll
           href={demosHref}
           label={t('api-docs.demos')}
           value=""
@@ -104,8 +94,6 @@ export default function ComponentPageTabs(props) {
           <StyledTab
             className="skip-algolia-crawler" // For more details, see https://github.com/mui/material-ui/pull/37539.
             component={Link}
-            shallow
-            scroll
             href={componentsHref}
             label={t('api-docs.componentsApi')}
             value="components-api"
@@ -117,8 +105,6 @@ export default function ComponentPageTabs(props) {
           <StyledTab
             className="skip-algolia-crawler" // For more details, see https://github.com/mui/material-ui/pull/37539.
             component={Link}
-            shallow
-            scroll
             href={hooksHref}
             label={t('api-docs.hooksApi')}
             value="hooks-api"
