@@ -71,7 +71,7 @@
     "test:regressions": "cross-env NODE_ENV=production pnpm test:regressions:build && concurrently --success first --kill-others \"pnpm test:regressions:run\" \"pnpm test:regressions:server\"",
     "test:regressions:build": "webpack --config test/regressions/webpack.config.js",
     "test:regressions:dev": "concurrently \"pnpm test:regressions:build --watch\" \"pnpm test:regressions:server\"",
-    "test:regressions:run": "mocha --config test/regressions/.mocharc.js --delay 'test/regressions/**/*.test.js'",
+    "test:regressions:run": "nx run nx_test_regressions_run",
     "test:regressions:server": "serve test/regressions -p 5001",
     "test:umd": "node packages/mui-material/test/umd/run.js",
     "test:unit": "pnpm nx run nx_test_unit",
@@ -86,7 +86,8 @@
     "nx_test_coverage_html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=html mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
     "nx_test_karma": "cross-env NODE_ENV=test karma start test/karma.conf.js",
     "nx_test_karma_profile": "cross-env NODE_ENV=test karma start test/karma.conf.profile.js",
-    "nx_test_unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' --exclude 'packages/pigment-css-react/**/*.test.{js,ts,tsx}' && pnpm test:pigment-css-react:ci"
+    "nx_test_unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' --exclude 'packages/pigment-css-react/**/*.test.{js,ts,tsx}' && pnpm test:pigment-css-react:ci",
+    "nx_test_regressions_run": "mocha --config test/regressions/.mocharc.js --delay 'test/regressions/**/*.test.js'"
   },
   "dependencies": {
     "@googleapis/sheets": "^5.0.5",
@@ -266,6 +267,11 @@
         ]
       },
       "nx_test_coverage_html": {
+        "dependsOn": [
+          "@mui/internal-test-utils:build"
+        ]
+      },
+      "nx_test_regressions_run": {
         "dependsOn": [
           "@mui/internal-test-utils:build"
         ]
