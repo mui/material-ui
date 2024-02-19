@@ -35,7 +35,7 @@ export default function Info() {
         Total
       </Typography>
       <Typography variant="h4" gutterBottom>
-        $34.06
+        $134.98
       </Typography>
       <List disablePadding>
         {products.map((product) => (
