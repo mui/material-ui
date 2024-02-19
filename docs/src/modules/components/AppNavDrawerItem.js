@@ -211,7 +211,7 @@ const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })
 
 export const sxChip = (color) => [
   (theme) => ({
-    ml: 1.5,
+    ml: 1,
     fontSize: theme.typography.pxToRem(10),
     fontWeight: 'semiBold',
     textTransform: 'uppercase',
@@ -220,18 +220,18 @@ export const sxChip = (color) => [
     border: 1,
     borderColor: (theme.vars || theme).palette[color][300],
     bgcolor: alpha(theme.palette[color][100], 0.5),
-    color: (theme.vars || theme).palette[color][700],
+    color: (theme.vars || theme).palette[color][900],
     '&:hover': {
       bgcolor: alpha(theme.palette[color][100], 0.5),
     },
     '& .MuiChip-label': {
-      px: 0.6,
+      px: '4px',
     },
   }),
   (theme) =>
     theme.applyDarkStyles({
       borderColor: alpha(theme.palette[color][800], 0.5),
-      bgcolor: alpha(theme.palette[color][800], 0.5),
+      bgcolor: alpha(theme.palette[color][900], 0.5),
       color: (theme.vars || theme).palette[color][300],
       '&:hover': {
         bgcolor: alpha(theme.palette[color][900], 0.5),
