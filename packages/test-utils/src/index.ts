@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 export * from './components';
-export { default as describeConformance } from './describeConformance';
+export { default as describeConformance, ConformanceOptions } from './describeConformance';
 export { default as describeConformanceUnstyled } from './describeConformanceUnstyled';
 export { default as createDescribe } from './createDescribe';
 export * from './createRenderer';

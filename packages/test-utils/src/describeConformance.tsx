@@ -39,13 +39,14 @@ interface SlotTestOverride {
   slotClassName?: string;
 }
 
-export interface InputConformanceOptions {
+export interface ConformanceOptions {
   muiName: string;
   classes: { root: string };
   refInstanceof: any;
   after?: () => void;
   inheritComponent?: React.ElementType;
   render: (node: React.ReactElement) => MuiRenderResult;
+  mount?: (node: React.ReactElement) => ReactWrapper;
   only?: Array<keyof typeof fullSuite>;
   skip?: Array<keyof typeof fullSuite | 'classesRoot'>;
   testComponentsRootPropWith?: string;
@@ -62,10 +63,6 @@ export interface InputConformanceOptions {
   slots?: Record<string, SlotTestingOptions>;
   ThemeProvider?: React.ElementType;
   createTheme?: (arg: any) => any;
-}
-
-export interface ConformanceOptions extends InputConformanceOptions {
-  mount: (node: React.ReactElement) => ReactWrapper;
 }
 
 /**
@@ -86,7 +83,12 @@ function testRef(
   mount: ConformanceOptions['mount'],
   onRef: (instance: unknown, wrapper: import('enzyme').ReactWrapper) => void = assertDOMNode,
 ) {
+  if (!mount) {
+    throwMissingPropError('mount');
+  }
+
   const ref = React.createRef();
+
   const wrapper = mount(<React.Fragment>{React.cloneElement(element, { ref })}</React.Fragment>);
   onRef(ref.current, wrapper);
 }
@@ -130,6 +132,10 @@ function throwMissingPropError(field: string): never {
 export function testClassName(element: React.ReactElement, getOptions: () => ConformanceOptions) {
   it('applies the className to the root component', () => {
     const { mount } = getOptions();
+    if (!mount) {
+      throwMissingPropError('mount');
+    }
+
     const className = randomStringValue();
 
     const wrapper = mount(React.cloneElement(element, { className }));
@@ -149,6 +155,9 @@ export function testComponentProp(
   describe('prop: component', () => {
     it('can render another root component with the `component` prop', () => {
       const { mount, testComponentPropWith: component = 'em' } = getOptions();
+      if (!mount) {
+        throwMissingPropError('mount');
+      }
 
       const wrapper = mount(React.cloneElement(element, { component }));
 
@@ -164,6 +173,10 @@ export function testPropsSpread(element: React.ReactElement, getOptions: () => C
   it(`spreads props to the root component`, () => {
     // type def in ConformanceOptions
     const { inheritComponent, mount } = getOptions();
+    if (!mount) {
+      throwMissingPropError('mount');
+    }
+
     if (inheritComponent === undefined) {
       throw new TypeError(
         'Unable to test props spread without `inheritComponent`. Either skip the test or pass a React element type.',
@@ -559,6 +572,9 @@ function testComponentsProp(element: React.ReactElement, getOptions: () => Confo
   describe('prop components:', () => {
     it('can render another root component with the `components` prop', () => {
       const { mount, testComponentsRootPropWith: component = 'em' } = getOptions();
+      if (!mount) {
+        throwMissingPropError('mount');
+      }
 
       const wrapper = mount(React.cloneElement(element, { components: { Root: component } }));
 
@@ -984,7 +1000,7 @@ const fullSuite = {
  */
 function describeConformance(
   minimalElement: React.ReactElement,
-  getOptions: () => InputConformanceOptions,
+  getOptions: () => ConformanceOptions,
 ) {
   let originalMatchmedia: typeof window.matchMedia;
   const storage: Record<string, string> = {};
