@@ -57,12 +57,14 @@ function ProductDrawerButton(props) {
 
   const handleEventDelegation = (e) => {
     // In case of key down events, and any key apart from `enter` is clicked then don't close the menu.
-    if (e?.type === 'keydown' && e.keyCode !== 13) {
+    if (e?.type === 'keydown' && e.key !== 'Enter') {
       return;
     }
 
+    // Assert whether an 'a' tag resides in the parent of the clicked element through which the event bubbles out.
+    const isLinkInParentTree = e?.target ? Boolean(e.target.closest('a')) : false;
     // If the element clicked is link or just inside of a link element then close the menu.
-    if (e?.target && (e.target?.parentElement?.localName === 'a' || e.target?.localName === 'a')) {
+    if (isLinkInParentTree) {
       handleClose();
     }
   };
