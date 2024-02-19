@@ -5,11 +5,9 @@ import { styled, css, keyframes } from '@mui/zero-runtime';
 const kalnia = Kalnia({ subsets: ['latin'] });
 const josefin = Josefin_Sans({ subsets: ['latin'] });
 
-const scale = keyframes`
-  to {
-    scale: var(--s2);
-  }
-`;
+const scale = keyframes({
+  to: { scale: 'var(--s2)' },
+});
 
 const Link = styled('a', { shouldForwardProp: (prop) => prop !== 'outlined' })<{
   outlined?: boolean;
@@ -79,37 +77,33 @@ export default function Home() {
       <h1
         className={`
         ${kalnia.className}
-        ${css`
-          font-size: clamp(3rem, 1.385rem + 6.8906vw, 8rem);
-          font-weight: 500;
-          line-height: 1;
-          text-align: center;
-          position: relative;
-          display: flex;
-          align-items: center;
-          color: #888;
-          margin-bottom: 1rem;
-
-          @media (prefers-color-scheme: dark) {
-            color: #fff;
-          }
-        `}`}
+        ${css(({ theme }) => ({
+          fontSize: 'clamp(3rem, 1.385rem + 6.8906vw, 8rem)',
+          fontWeight: 500,
+          lineHeight: 1,
+          textAlign: 'center',
+          position: 'relative',
+          display: 'flex',
+          alignItems: 'center',
+          color: '#888',
+          marginBottom: '1rem',
+          ...theme.applyStyles('dark', { color: '#fff' }),
+        }))}`}
       >
         Zero Runtime
         <span
-          className={css`
-            position: absolute;
-            inset: 0;
-            background: white;
-            mix-blend-mode: color-burn;
-            overflow: hidden;
-            pointer-events: none;
-
-            @media (prefers-color-scheme: dark) {
-              mix-blend-mode: darken;
-              filter: brightness(2);
-            }
-          `}
+          className={css(({ theme }) => ({
+            position: 'absolute',
+            inset: '0',
+            background: 'white',
+            mixBlendMode: 'color-burn',
+            overflow: 'hidden',
+            pointerEvents: 'none',
+            ...theme.applyStyles('dark', {
+              mixBlendMode: 'darken',
+              filter: 'brightness(2)',
+            }),
+          }))}
         >
           <Bubble
             className={css`
@@ -166,31 +160,29 @@ export default function Home() {
       <div
         className={`
           ${josefin.className}
-          ${css`
-            font-size: clamp(0.75rem, 0.5885rem + 0.6891vw, 1.25rem);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 500;
-            opacity: 0.5;
-            line-height: 2;
-            text-align: center;
-            text-wrap: balance;
-          `}
+          ${css({
+            letterSpacing: '2px',
+            fontSize: 'clamp(0.75rem, 0.5885rem + 0.6891vw, 1.25rem)',
+            textTransform: 'uppercase',
+            fontWeight: 500,
+            opacity: 0.5,
+            lineHeight: 2,
+            textAlign: 'center',
+            textWrap: 'balance',
+          })}
         `}
       >
         CSS-JS library with static extraction
       </div>
 
       <div
-        className={css`
-          display: flex;
-          flex-wrap: wrap;
-          gap: 1rem;
-          margin-top: 3rem;
-          & > * {
-            flex: auto;
-          }
-        `}
+        className={css({
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: '1rem',
+          marginTop: '3rem',
+          '& > *': { flex: 'auto' },
+        })}
       >
         <Link
           href="https://github.com/mui/material-ui/blob/master/packages/zero-runtime/README.md"

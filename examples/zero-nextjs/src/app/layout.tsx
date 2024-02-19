@@ -14,12 +14,12 @@ export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body
-        className={css`
-          color: hsl(var(--palette-foreground));
-          background-color: hsl(var(--palette-background));
-          font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
-            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-        `}
+        className={css({
+          color: 'hsl(var(--palette-foreground))',
+          backgroundColor: 'hsl(var(--palette-background))',
+          fontFamily:
+            "system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+        })}
       >
         {props.children}
       </body>
