@@ -26,6 +26,19 @@ If you need to run a specific codemod, those are also linked below.
 
 :::
 
+## Overarching deprecated APIs
+
+### Inner element overrides
+
+The `slots` and `slotProps` API will be standardized, and the analogous APIs will be deprecated and eventually removed: `components`, `componentsProps`, `<SlotName>Component`, and `<SlotName>Props`.
+This improves the developer experience through consistency, predictability, and reducing cognitive load.
+
+### Composed CSS classes
+
+The composed CSS classes will be deprecated and eventually removed in favor of atomic class alternatives.
+For example, the `.MuiAccordionSummary-contentGutters` class was deprecated in favor of the `.MuiAccordionSummary-gutters` and `.MuiAccordionSummary-content` classes.
+This improves the developer experience by reducing bloat and cognitive load.
+
 ## Accordion
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#accordion-props) below to migrate the code as described in the following sections:
