@@ -20,6 +20,7 @@ const theme = extendTheme({
       },
     },
   },
+  getSelector: (colorScheme) => (colorScheme ? `.theme-${colorScheme}` : ':root'),
 });
 
 module.exports = withZeroPlugin({}, { theme });

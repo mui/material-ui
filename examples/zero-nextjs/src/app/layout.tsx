@@ -1,5 +1,6 @@
 import * as React from 'react';
 import type { Metadata } from 'next';
+import { cookies } from 'next/headers';
 import '@mui/zero-runtime/styles.css';
 import { css } from '@mui/zero-runtime';
 
@@ -11,8 +12,9 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout(props: { children: React.ReactNode }) {
+  const mode = cookies().get('theme')?.value || 'light';
   return (
-    <html lang="en">
+    <html lang="en" className={`theme-${mode}`}>
       <body
         className={css(({ theme }) => ({
           color: 'hsl(var(--palette-foreground))',

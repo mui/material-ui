@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { cookies } from 'next/headers';
 import { Kalnia, Josefin_Sans } from 'next/font/google';
 import { styled, css, keyframes } from '@mui/zero-runtime';
+import ThemeToggle from '@/components/ThemeToggle';
 
 const kalnia = Kalnia({ subsets: ['latin'] });
 const josefin = Josefin_Sans({ subsets: ['latin'] });
@@ -200,6 +202,8 @@ export default function Home() {
           Roadmap
         </Link>
       </div>
+
+      <ThemeToggle value={cookies().get('theme')?.value || 'light'} />
     </main>
   );
 }
