@@ -1,12 +1,12 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "allowJs": true,
     "noEmit": true,
-    "noUnusedLocals": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true
+    "moduleResolution": "node",
+    "types": ["node"],
+    "strict": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "react"
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules"]
+  "include": ["./src/**/*"]
 }
