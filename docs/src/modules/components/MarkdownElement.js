@@ -403,6 +403,10 @@ const Root = styled('div')(
       opacity: 1,
       transform: 'translate(1px, 0)',
     },
+    '& a[href*="carbonads"][target="_blank"]::after': {
+      // Remove link arrow for carbon ads
+      display: 'none',
+    },
     '& a, & a code': {
       // Style taken from the Link component
       color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
