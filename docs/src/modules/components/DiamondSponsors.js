@@ -46,17 +46,7 @@ export default function DiamondSponsors() {
   const t = useTranslate();
 
   return (
-    <Stack
-      spacing={1}
-      useFlexGap
-      direction="column"
-      sx={{
-        mt: 2,
-        pt: 2,
-        borderTop: '1px solid',
-        borderColor: 'divider',
-      }}
-    >
+    <Stack direction="column" mt={2} spacing={1} useFlexGap>
       <NativeLink
         data-ga-event-category="sponsor"
         data-ga-event-action="docs-premium"
