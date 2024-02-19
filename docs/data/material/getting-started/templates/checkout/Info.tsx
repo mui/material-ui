@@ -7,24 +7,24 @@ import Divider from '@mui/material/Divider';
 
 const products = [
   {
-    name: 'Product 1',
-    desc: 'A nice thing',
-    price: '$9.99',
+    name: 'Professional plan',
+    desc: 'Monthly subscription',
+    price: '$15.00',
   },
   {
-    name: 'Product 2',
-    desc: 'Another thing',
-    price: '$3.45',
+    name: 'Dedicated support',
+    desc: 'Included in Professional plan',
+    price: 'Free',
   },
   {
-    name: 'Product 3',
-    desc: 'Something else',
-    price: '$6.51',
+    name: 'Hardware',
+    desc: 'Devices needed for development',
+    price: '$69.99',
   },
   {
-    name: 'Product 4',
-    desc: 'Best thing of all',
-    price: '$14.11',
+    name: 'Landing page template',
+    desc: 'License',
+    price: '$49.99',
   },
 ];
 
@@ -48,7 +48,7 @@ export default function Info() {
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Subtotal" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            $34.06
+            $134.98
           </Typography>
         </ListItem>
       </List>

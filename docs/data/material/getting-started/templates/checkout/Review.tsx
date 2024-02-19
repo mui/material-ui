@@ -21,16 +21,16 @@ export default function Review() {
       <List disablePadding>
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Shipping" secondary="taxes" />
-          <Typography variant="body2">$10.00</Typography>
+          <Typography variant="body2">$9.99</Typography>
         </ListItem>
         <ListItem sx={{ py: 1, px: 0 }}>
-          <ListItemText primary="Product" secondary="4 selected" />
-          <Typography variant="body2">$34.06</Typography>
+          <ListItemText primary="Products" secondary="4 selected" />
+          <Typography variant="body2">$134.98</Typography>
         </ListItem>
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            $44.06
+            $144.97
           </Typography>
         </ListItem>
       </List>

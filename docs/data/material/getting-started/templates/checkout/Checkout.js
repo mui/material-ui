@@ -98,7 +98,13 @@ export default function Checkout() {
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const LPtheme = createTheme(getLPTheme(mode));
   const [activeStep, setActiveStep] = React.useState(0);
-  const logo = LPtheme.palette.mode === 'light' ? darkLogo : whiteLogo;
+  const logo = showCustomTheme
+    ? LPtheme.palette.mode === 'light'
+      ? darkLogo
+      : whiteLogo
+    : defaultTheme.palette.mode === 'light'
+    ? darkLogo
+    : whiteLogo;
 
   const toggleColorMode = () => {
     setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
