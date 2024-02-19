@@ -1740,6 +1740,9 @@ importers:
 
   packages/mui-material-nextjs:
     dependencies:
+      '@babel/runtime':
+        specifier: ^7.23.9
+        version: 7.23.9
       '@mui/material':
         specifier: ^5.0.0
         version: link:../mui-material/build
