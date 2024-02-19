@@ -1,3 +1,7 @@
+// do not remove the following import (https://github.com/microsoft/TypeScript/issues/29808#issuecomment-1320713018)
+/* eslint-disable @typescript-eslint/no-unused-vars */
+// @ts-ignore
+import * as React from 'react';
 import { SxProps } from '@mui/system';
 import createCssVarsProvider from '@mui/system/cssVars';
 import styleFunctionSx from '@mui/system/styleFunctionSx';
