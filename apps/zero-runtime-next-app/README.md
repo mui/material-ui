@@ -2,12 +2,12 @@
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/HEAD/packages/create-next-app).
 
-## Getting Started
+## Getting started
 
 First, build all the packages in the workspace atleast once. Run
 
 ```bash
-pnpm build
+pnpm build:zero
 ```
 
 Then start the Next.js development server:
