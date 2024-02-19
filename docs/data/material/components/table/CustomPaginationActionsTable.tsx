@@ -163,7 +163,7 @@ export default function CustomPaginationActionsTable() {
                     'aria-label': 'rows per page',
                   },
                   native: true,
-                }
+                },
               }}
               onPageChange={handleChangePage}
               onRowsPerPageChange={handleChangeRowsPerPage}
