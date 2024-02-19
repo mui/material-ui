@@ -152,7 +152,7 @@ const Root = styled('div')(
         marginLeft: 4,
         height: 26,
         width: 26,
-        backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
+        backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.grey[50]})`,
         color: `var(--muidocs-palette-grey-600, ${lightTheme.palette.grey[600]})`,
         border: '1px solid',
         borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
@@ -168,6 +168,10 @@ const Root = styled('div')(
           fill: 'currentColor',
           pointerEvents: 'none',
           verticalAlign: 'middle',
+        },
+        '&:focus-visible': {
+          outline: `3px solid ${alpha(lightTheme.palette.primary[500], 0.5)}`,
+          outlineOffset: '2px',
         },
       },
       '&:hover .anchor-link': {
@@ -412,6 +416,9 @@ const Root = styled('div')(
       '&:hover': {
         textDecorationColor: 'inherit',
       },
+      '&:focus-visible': {
+        outline: `3px solid ${alpha(lightTheme.palette.primary[500], 0.5)}`,
+      },
     },
     '& a code': {
       color: darken(lightTheme.palette.primary.main, 0.04),
@@ -601,11 +608,14 @@ const Root = styled('div')(
         '&:hover .anchor-link, & .comment-link': {
           color: `var(--muidocs-palette-primary-300, ${darkTheme.palette.primaryDark[300]})`,
           borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
-          backgroundColor: alpha(darkTheme.palette.primary[900], 0.3),
+          backgroundColor: alpha(darkTheme.palette.primaryDark[700], 0.5),
           '&:hover': {
             borderColor: `var(--muidocs-palette-primary-900, ${darkTheme.palette.primary[900]})`,
             backgroundColor: alpha(darkTheme.palette.primary[900], 0.6),
             color: `var(--muidocs-palette-primary-100, ${darkTheme.palette.primary[100]})`,
+          },
+          '&:focus-visible': {
+            outline: `3px solid ${alpha(lightTheme.palette.primary[500], 0.5)}`,
           },
         },
       },
@@ -706,6 +716,9 @@ const Root = styled('div')(
       },
       '& a code': {
         color: `var(--muidocs-palette-primary-light, ${darkTheme.palette.primary.light})`,
+        '&:focus-visible': {
+          outline: `3px solid ${alpha(lightTheme.palette.primary[500], 0.5)}`,
+        },
       },
       '& kbd.key': {
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
