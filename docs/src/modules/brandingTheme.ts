@@ -405,7 +405,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
     applyDarkStyles(css: Parameters<ApplyDarkStyles>[0]) {
       return (this as Theme).applyStyles('dark', css);
     },
-  } as ThemeOptions);
+  }) as ThemeOptions;
 
 export function getThemedComponents(): ThemeOptions {
   return {
