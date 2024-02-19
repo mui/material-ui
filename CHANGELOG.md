@@ -36,7 +36,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 ### Core
 
-- [blog] Add post about upcoming plans for Base UI (#40882) @danilo-leal
+- [blog] Add post about upcoming plans for Base UI (#40882) @danilo-leal
 - [core] Simplify CodeSandbox reproduction @oliviertassinari
 - [core] Missing redirection @oliviertassinari
 - [core] Export functions from `copyFiles` script to reuse in MUI X repo (#40970) @cherniavskii
@@ -119,7 +119,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 ### Docs
 
 - &#8203;<!-- 34 -->[base-ui] Update usage.md (#40916) @adebiyial
-- &#8203;<!-- 33 -->[base-ui] Improve Base UI traffic from Material UI (#40875) @oliviertassinari
+- &#8203;<!-- 33 -->[base-ui] Improve Base UI traffic from Material UI (#40875) @oliviertassinari
 - &#8203;<!-- 32 -->[base-ui] Change Radio component terminology from Button to Group (#40888) @danilo-leal
 - &#8203;<!-- 42 -->[base-ui] Remove redundant "Styled" prefix (#40478) @oliviertassinari
 - &#8203;<!-- 48 -->[base-ui] Update listbox slot style in demo (#40952) @sai6855
@@ -156,7 +156,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - &#8203;<!-- 07 -->[website] Fix broken link @oliviertassinari
 - &#8203;<!-- 06 -->[website] Fix heading structure (#40912) @oliviertassinari
 - &#8203;<!-- 05 -->[website] Add Customer Support Agent role to careers page (#40890) @rluzists1
-- &#8203;<!-- 04 -->[website] Refine the Material UI homepage demo (#40881) @danilo-leal
+- &#8203;<!-- 04 -->[website] Refine the Material UI homepage demo (#40881) @danilo-leal
 - &#8203;<!-- 03 -->[website] Use em-dash when relevant over hyphen @oliviertassinari
 - &#8203;<!-- 03 -->[zero] Fix build for demo next.js app (#40854) @brijeshb42
 
@@ -217,7 +217,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - &#8203;<!-- 30 -->Fix build @oliviertassinari
 - &#8203;<!-- 29 -->Add support pages for each product @oliviertassinari
 - &#8203;<!-- 28 -->Add survey banner to docs and website (#40553) @joserodolfofreitas
-- &#8203;<!-- 24 -->[Menu] Fix hydration mismatch error on Base UI's Menu docs (#40758) @michaldudak
+- &#8203;<!-- 24 -->[Menu] Fix hydration mismatch error on Base UI's Menu docs (#40758) @michaldudak
 - &#8203;<!-- 25 -->[material-nextjs] Add theming and configuration content to the page (#40626) @siriwatknp
 
 ### Core
@@ -242,7 +242,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - &#8203;<!-- 23 -->[examples] Fix build on Next.js Pages Router examples (#40665) @oliviertassinari
 - &#8203;<!-- 18 -->[test] Speed up the envinfo test (#40669) @michaldudak
 - &#8203;<!-- 17 -->[typescript-to-proptypes] Allow to represent dates as `PropTypes.object` (#40774) @flaviendelangle
-- &#8203;<!-- 14 -->[website] Add new Base UI role (#40773) @colmtuite
+- &#8203;<!-- 14 -->[website] Add new Base UI role (#40773) @colmtuite
 - &#8203;<!-- 13 -->[website] Fix a couple of rough edges (#40849) @danilo-leal
 - &#8203;<!-- 12 -->[website] Small polishing after latest changes to the theme (#40846) @zanivan
 - &#8203;<!-- 11 -->[website] Polish some pages and stray components (#40797) @danilo-leal

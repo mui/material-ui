@@ -12,7 +12,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
 
 ## Introduction
 
-Joy UI provides four accordion-related components:
+Joy UI provides four accordion-related components:
 
 - [`AccordionGroup`](#basic-usage): A container that groups multiple accordions. It **does not** control the state of each accordion.
 - [`Accordion`](#basic-usage): A component that contains the expansion logic and send to AccordionSummary and AccordionDetails.
