@@ -1,4 +1,4 @@
-import { createBreakpoints, createSpacing } from '@mui/system/createTheme';
+import { createBreakpoints, createSpacing } from '@mui/system';
 
 export default function adaptV4Theme(inputTheme) {
   if (process.env.NODE_ENV !== 'production') {
