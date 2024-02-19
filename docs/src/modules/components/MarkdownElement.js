@@ -403,6 +403,10 @@ const Root = styled('div')(
       opacity: 1,
       transform: 'translate(1px, 0)',
     },
+    '& a.remove-link-arrow[target="_blank"]::after': {
+      // Allows to remove link arrows for images
+      display: 'none',
+    },
     '& a[href*="carbonads"][target="_blank"]::after': {
       // Remove link arrow for carbon ads
       display: 'none',
