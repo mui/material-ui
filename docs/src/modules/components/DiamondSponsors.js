@@ -8,7 +8,7 @@ import DiamondOutlinedIcon from '@mui/icons-material/DiamondOutlined';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import Link from 'docs/src/modules/components/Link';
 
-const StyledAnchor = styled('a')(({ theme }) => ({
+const NativeLink = styled('a')(({ theme }) => ({
   boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
   width: '100%',
   height: 45,
@@ -74,7 +74,7 @@ export default function DiamondSponsors() {
         {t('diamondSponsors')}
       </Button>
       <Stack spacing={1}>
-        <StyledAnchor
+        <NativeLink
           data-ga-event-category="sponsor"
           data-ga-event-action="docs-premium"
           data-ga-event-label="octopus.com"
@@ -96,8 +96,8 @@ export default function DiamondSponsors() {
               })
             }
           />
-        </StyledAnchor>
-        <StyledAnchor
+        </NativeLink>
+        <NativeLink
           data-ga-event-category="sponsor"
           data-ga-event-action="docs-premium"
           data-ga-event-label="doit.com"
@@ -107,8 +107,8 @@ export default function DiamondSponsors() {
         >
           <Box
             component="img"
-            height="28px"
-            width="68px"
+            height="29px"
+            width="70px"
             src="/static/sponsors/doit-light.svg"
             alt="doit"
             title="Management Platform for Google Cloud and AWS"
@@ -119,7 +119,30 @@ export default function DiamondSponsors() {
               })
             }
           />
-        </StyledAnchor>
+        </NativeLink>
+        <NativeLink
+          data-ga-event-category="sponsor"
+          data-ga-event-action="docs-premium"
+          data-ga-event-label="marblism.com"
+          href="https://www.marblism.com/?utm_source=mui"
+          rel="noopener sponsored"
+          target="_blank"
+        >
+          <Box
+            component="img"
+            height="27px"
+            width="90px"
+            src="/static/sponsors/marblism-light.svg"
+            alt="marblism"
+            title="AI web app generation"
+            loading="lazy"
+            sx={(theme) =>
+              theme.applyDarkStyles({
+                content: `url(/static/sponsors/marblism-dark.svg)`,
+              })
+            }
+          />
+        </NativeLink>
         <Link
           href="/material-ui/discover-more/backers/#diamond-sponsors"
           sx={(theme) => ({
@@ -157,9 +180,9 @@ export default function DiamondSponsors() {
           <Typography variant="caption" fontWeight="semiBold" textAlign="center">
             {t('becomeADiamondSponsor')}
           </Typography>
-          <Typography variant="caption" fontWeight="regular" color="text.secondary">
+          {/* <Typography variant="caption" fontWeight="regular" color="text.secondary">
             {t('diamondSponsorVacancies')}
-          </Typography>
+          </Typography> */}
         </Link>
       </Stack>
     </Stack>

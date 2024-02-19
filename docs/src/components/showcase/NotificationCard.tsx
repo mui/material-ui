@@ -40,7 +40,7 @@ export default function NotificationCard() {
           })}
         >
           <Avatar
-            imgProps={{ 'aria-labelledby': 'demo-notification-card-messenger-name' }}
+            slotProps={{ img: { 'aria-labelledby': 'demo-notification-card-messenger-name' } }}
             src="/static/images/avatar/3-sm.jpeg"
             sx={{ width: 40, height: 40 }}
           />
