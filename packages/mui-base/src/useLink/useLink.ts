@@ -67,17 +67,6 @@ export function useLink(parameters: UseLinkParameters = {}): UseLinkReturnValue 
       if (event.target === event.currentTarget && event.key === ' ' && !disabled) {
         setActive(true);
       }
-
-      // Keyboard accessibility for non interactive elements
-      if (
-        event.target === event.currentTarget &&
-        !isNativeLink() &&
-        event.key === 'Enter' &&
-        !disabled
-      ) {
-        otherHandlers.onClick?.(event);
-        event.preventDefault();
-      }
     };
 
   const createHandleKeyUp =
@@ -90,17 +79,6 @@ export function useLink(parameters: UseLinkParameters = {}): UseLinkReturnValue 
       }
 
       otherHandlers.onKeyUp?.(event);
-
-      // Keyboard accessibility for non interactive elements
-      if (
-        event.target === event.currentTarget &&
-        !isNativeLink() &&
-        !disabled &&
-        event.key === ' ' &&
-        !event.defaultMuiPrevented
-      ) {
-        otherHandlers.onClick?.(event);
-      }
     };
 
   const handleRef = useForkRef(updateRootElementName, externalRef, linkRef);
