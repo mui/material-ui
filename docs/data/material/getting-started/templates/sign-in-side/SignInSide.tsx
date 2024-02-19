@@ -11,8 +11,15 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { PaletteMode } from '@mui/material';
+
+import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
+
 import getSignInSideTheme from './getSignInSideTheme';
+import ToggleColorMode from './ToggleColorMode';
 
 function Copyright(props: any) {
   return (
@@ -27,8 +34,82 @@ function Copyright(props: any) {
   );
 }
 
+const defaultTheme = createTheme({});
+
+interface ToggleCustomThemeProps {
+  showCustomTheme: Boolean;
+  toggleCustomTheme: () => void;
+}
+
+function ToggleCustomTheme({
+  showCustomTheme,
+  toggleCustomTheme,
+}: ToggleCustomThemeProps) {
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: '100dvw',
+        position: 'fixed',
+        bottom: 24,
+      }}
+    >
+      <ToggleButtonGroup
+        color="primary"
+        exclusive
+        value={showCustomTheme}
+        onChange={toggleCustomTheme}
+        aria-label="Platform"
+        sx={{
+          backgroundColor: 'background.default',
+          '& .Mui-selected': {
+            pointerEvents: 'none',
+          },
+        }}
+      >
+        <ToggleButton value>
+          <AutoAwesomeRoundedIcon sx={{ fontSize: '20px', mr: 1 }} />
+          Custom theme
+        </ToggleButton>
+        <ToggleButton value={false}>Material Design 2</ToggleButton>
+      </ToggleButtonGroup>
+    </Box>
+  );
+}
+
+const whiteLogo =
+  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf7356420e154daf_SitemarkLight.svg';
+const darkLogo =
+  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73563dba154dad_SitemarkDark.svg';
+
+const logoStyle = {
+  width: '140px',
+  height: '56px',
+  opacity: 0.8,
+};
+
 export default function SignInSide() {
-  const SignInSideTheme = createTheme(getSignInSideTheme('dark'));
+  const [mode, setMode] = React.useState<PaletteMode>('dark');
+  const [showCustomTheme, setShowCustomTheme] = React.useState(true);
+  const SignInSideTheme = createTheme(getSignInSideTheme(mode));
+  const logo = showCustomTheme
+    ? SignInSideTheme.palette.mode === 'light'
+      ? darkLogo
+      : whiteLogo
+    : defaultTheme.palette.mode === 'light'
+    ? darkLogo
+    : whiteLogo;
+
+  const toggleColorMode = () => {
+    setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
+  const toggleCustomTheme = () => {
+    setShowCustomTheme((prev) => !prev);
+  };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -39,7 +120,7 @@ export default function SignInSide() {
   };
 
   return (
-    <ThemeProvider theme={SignInSideTheme}>
+    <ThemeProvider theme={showCustomTheme ? SignInSideTheme : defaultTheme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
         <CssBaseline />
         <Grid
@@ -66,6 +147,22 @@ export default function SignInSide() {
               alignItems: 'center',
             }}
           >
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                width: '100%',
+                ml: '-18px',
+                alignItems: 'center',
+              }}
+            >
+              <img src={logo} style={logoStyle} alt="logo of sitemark" />
+              <ToggleColorMode
+                mode={mode}
+                toggleColorMode={toggleColorMode}
+                showCustomTheme={showCustomTheme}
+              />
+            </Box>
             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
               <LockOutlinedIcon />
             </Avatar>
@@ -122,6 +219,10 @@ export default function SignInSide() {
           </Box>
         </Grid>
       </Grid>
+      <ToggleCustomTheme
+        showCustomTheme={showCustomTheme}
+        toggleCustomTheme={toggleCustomTheme}
+      />
     </ThemeProvider>
   );
 }
