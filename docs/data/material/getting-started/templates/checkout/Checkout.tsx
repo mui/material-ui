@@ -15,7 +15,6 @@ import { PaletteMode } from '@mui/material';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
-import SvgMaterialDesign from 'docs/src/icons/SvgMaterialDesign';
 
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';

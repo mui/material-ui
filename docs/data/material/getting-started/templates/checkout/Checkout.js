@@ -15,7 +15,6 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
-import SvgMaterialDesign from 'docs/src/icons/SvgMaterialDesign';
 
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
@@ -55,10 +54,7 @@ function ToggleCustomTheme({ showCustomTheme, toggleCustomTheme }) {
           <AutoAwesomeRoundedIcon sx={{ fontSize: '20px', mr: 1 }} />
           Custom theme
         </ToggleButton>
-        <ToggleButton value={false}>
-          <SvgMaterialDesign sx={{ fontSize: '20px', mr: 1 }} />
-          Material Design
-        </ToggleButton>
+        <ToggleButton value={false}>Material Design 2</ToggleButton>
       </ToggleButtonGroup>
     </Box>
   );
