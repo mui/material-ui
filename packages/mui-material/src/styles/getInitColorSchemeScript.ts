@@ -8,16 +8,18 @@ export const CONSTANT = {
   ATTRIBUTE,
   MODE_KEY,
   COLOR_SCHEME_KEY,
-}
+};
 
-export default function getInitColorSchemeScript(...params: Parameters<typeof systemGetInitColorSchemeScript>) {
+export default function getInitColorSchemeScript(
+  ...params: Parameters<typeof systemGetInitColorSchemeScript>
+) {
   return systemGetInitColorSchemeScript({
-    attribute:ATTRIBUTE,
+    attribute: ATTRIBUTE,
     colorSchemeStorageKey: COLOR_SCHEME_KEY,
     defaultMode: 'light',
     defaultLightColorScheme: 'light',
     defaultDarkColorScheme: 'dark',
     modeStorageKey: MODE_KEY,
     ...params,
-  })
+  });
 }

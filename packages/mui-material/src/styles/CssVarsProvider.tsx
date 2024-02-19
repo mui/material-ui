@@ -47,9 +47,4 @@ const { CssVarsProvider, useColorScheme } = createCssVarsProvider<
   excludeVariablesFromRoot,
 });
 
-
-
-export {
-  useColorScheme,
-  CssVarsProvider as Experimental_CssVarsProvider,
-};
+export { useColorScheme, CssVarsProvider as Experimental_CssVarsProvider };
