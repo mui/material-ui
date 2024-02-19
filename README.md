@@ -9,7 +9,7 @@
 
 - [Material UI](https://mui.com/material-ui/) is a comprehensive library of components that features our implementation of Google's [Material Design](https://m2.material.io/design/introduction/) system.
 
-- [Joy UI](https://mui.com/joy-ui/getting-started/) is a library of beautifully designed React UI components built to spark joy.
+- [Joy UI](https://mui.com/joy-ui/getting-started/) is a library of beautifully designed React UI components built to spark joy.
 
 - [Base UI](https://mui.com/base-ui/) is a library of unstyled React UI components and hooks. With Base UI, you gain complete control over your app's CSS and accessibility features.
 
@@ -49,11 +49,11 @@ Visit [https://mui.com/material-ui/](https://mui.com/material-ui/) to view the f
 **Note:** `@next` only points to pre-releases.
 Use `@latest` for the latest stable release.
 
-### Joy UI
+### Joy UI
 
 Visit [https://mui.com/joy-ui/getting-started/](https://mui.com/joy-ui/getting-started/) to view the full documentation.
 
-**Note**: Joy UI is still in beta.
+**Note**: Joy UI is still in beta.
 We are adding new components regularly and you're welcome to contribute!
 
 ### Base UI
