@@ -1,7 +1,7 @@
 import * as React from 'react';
 // TODO v6: replace with material-next Menu when available https://github.com/mui/material-ui/pull/38934
 import MenuItem from '@mui/material/MenuItem';
-// TODO v6: replace with material-next's extendTheme when implementing Material You design
+// TODO v6: replace with material-next's extendTheme when implementing Material Design 3
 import { createTheme } from '@mui/material/styles';
 import Select, { SelectChangeEvent } from '@mui/material-next/Select';
 

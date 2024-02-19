@@ -140,7 +140,7 @@ export default function MaterialTemplates() {
         }
         description="A carefully curated collection of gorgeous, fully functional templates, all powered by Material UI."
       />
-      <Group rowLayout desktopColumns={2} sx={{ mt: 3 }}>
+      <Group rowLayout desktopColumns={2} sx={{ p: 2 }}>
         {DEMOS.map((name) => (
           <Highlighter
             key={name}
@@ -153,6 +153,7 @@ export default function MaterialTemplates() {
             <Item
               icon={React.cloneElement(icons[name], name === demo ? { color: 'primary' } : {})}
               title={name}
+              smallerIconDistance
             />
           </Highlighter>
         ))}

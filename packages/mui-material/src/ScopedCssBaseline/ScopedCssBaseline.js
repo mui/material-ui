@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import composeClasses from '@mui/utils/composeClasses';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import { html, body } from '../CssBaseline/CssBaseline';

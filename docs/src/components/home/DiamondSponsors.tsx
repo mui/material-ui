@@ -22,9 +22,9 @@ const DIAMONDs = [
     href: 'https://www.doit.com/flexsave/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
-    src: '/static/sponsors/marblism-square.png',
+    src: '/static/sponsors/marblism-square.svg',
     name: 'Marblism',
-    description: 'Generate fully functional web apps using AI',
+    description: 'Generate fully functional web apps using AI.',
     href: 'https://www.marblism.com/?utm_source=mui',
   },
 ];

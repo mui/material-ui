@@ -7,13 +7,13 @@ Sponsorship increases the rate of bug fixes, documentation improvements, and fea
 
 ## Diamond sponsors
 
-<p style="display: flex; justify-content: start; align-items: center; flex-wrap: wrap;">
-  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="octopus.com" href="https://octopus.com/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="128" width="128" src="/static/sponsors/octopus-square.svg" alt="octopus" title="Repeatable, reliable deployments" loading="lazy" /></a>
+<p style="display: flex; justify-content: start; align-items: center; flex-wrap: wrap; margin-top: 8px;">
+  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="octopus.com" href="https://octopus.com/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 24px;"><img height="128" width="128" src="/static/sponsors/octopus-square.svg" alt="octopus" title="Repeatable, reliable deployments" loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="doit.com" href="https://www.doit.com/flexsave/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 24px;"><img height="128" width="128" src="/static/sponsors/doit-square.svg" alt="doit" title="Management platform for Google Cloud and AWS" loading="lazy" /></a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="marblism.com" href="https://www.marblism.com/?utm_source=mui" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="128" width="128" src="/static/sponsors/marblism-square.png" alt="marblism" title="AI web app generation" loading="lazy" /></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="marblism.com" href="https://www.marblism.com/?utm_source=mui" rel="noopener sponsored" target="_blank" style="margin-right: 24px;"><img height="128" width="128" src="/static/sponsors/marblism-square.svg" alt="marblism" title="AI web app generation" loading="lazy" /></a>
 </p>
 
-Diamond sponsors are those who've pledged \$1,500/month or more to MUI. [Tier benefits](#diamond).
+Diamond sponsors are those who've pledged \$1,500/month or more to the MUI organization. [Tier benefits](#diamond).
 
 ## Gold sponsors
 
@@ -30,7 +30,7 @@ via [Open Collective](https://opencollective.com/mui-org) or via [the for-profi
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="goread.io" href="https://goread.io/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px; display:flex;"><img height="110" width="96" src="https://images.opencollective.com/goread_io/eb6337d/logo/96.png" srcset="https://images.opencollective.com/goread_io/eb6337d/logo/288.png 3x" alt="goread.io" title="Goread.io: Instagram followers, likes, views, and comments." loading="lazy" /></a>
 </p>
 
-Gold sponsors are those who've pledged \$500/month or more to MUI. [Tier benefits](#gold).
+Gold sponsors are those who've pledged \$500/month or more to the MUI organization. [Tier benefits](#gold).
 
 ## Silver sponsors
 
@@ -40,7 +40,7 @@ via [Open Collective](https://opencollective.com/mui-org)
   <object type="image/svg+xml" data="https://opencollective.com/mui-org/tiers/silver-sponsor.svg?avatarHeight=70&width=600" style="border-radius: 10px;">Silver Sponsors</object>
 </p>
 
-Silvers sponsors are those who've pledged $250/month to $500/month to MUI. [Tier benefits](#silver).
+Silvers sponsors are those who've pledged $250/month to $500/month to the MUI organization. [Tier benefits](#silver).
 
 ## Bronze sponsors
 
@@ -50,7 +50,7 @@ via [Open Collective](https://opencollective.com/mui-org)
   <object type="image/svg+xml" data="https://opencollective.com/mui-org/tiers/bronze-sponsor.svg?avatarHeight=60&width=600" style="border-radius: 10px;">Bronze Sponsors</object>
 </p>
 
-Bronze sponsors are those who've pledged $100/month to $250/month to MUI. [Tier benefits](#sliver).
+Bronze sponsors are those who've pledged $100/month to $250/month to the MUI organization. [Tier benefits](#sliver).
 
 ## Backers
 
@@ -64,9 +64,10 @@ via [Open Collective](https://opencollective.com/mui-org)
 
 ### Why is Material UI a "crowd-funded open-source project"?
 
-Material UI (as well as Base UI, MUI System, and Joy UI) is open-source to give users great freedom in how they use the software, and to enable the community to have influence over how the project progresses to make it appropriate for a wide range of use-cases. To ensure that MUI's component libraries can stand the test of time for our users, they need to be well directed and financially sustainable.
+Material UI (as well as Base UI, MUI System, and Joy UI) is open-source to give users great freedom in how they use the software and to enable the community to have influence over how the project progresses to make it appropriate for a wide range of use cases.
+To ensure that these open-source libraries can stand the test of time for our users, they need to be well-directed and financially sustainable.
 
-The absolute best way to support MUI's libraries ongoing development efforts is to become a sponsor.
+The absolute best way to support the MUI organization to work on its libraries' ongoing development efforts is to become a sponsor.
 Crowd-sourced funding enables us to spend the most time directly working on improving the open-source projects, which you and the rest of the community then benefit from.
 
 ### How is sponsorship money spent?
@@ -77,18 +78,19 @@ Sponsorship money is used to fund open-source software development, testing, doc
 
 Users are not obligated to give back to Material UI, but it is in their interest to do so.
 
-By significantly reducing the amount of work needed to achieve business goals and reducing running costs, MUI's libraries result in huge time and money savings for users. We encourage organizations to contribute a portion of these savings back, enabling the project to advance more rapidly and result in even greater savings for your organization.
+By significantly reducing the amount of work needed to achieve business goals and reducing running costs, the open-source libraries result in huge time and money savings for users.
+We encourage organizations to contribute a portion of these savings back, enabling the project to advance more rapidly and result in even greater savings for your organization.
 
 ### What's the difference between Open Collective and the for-profit?
 
 Funds donated via Open Collective are managed transparently and aimed to sustain the MIT projects.
 The MUI non-profit organzation benefits from the Open Collective's fiscal sponsorship (hosted as a non-profit), in exchange for 10% of the donations.
 
-Funds transferred to the MUI for-profit support the company's mission.
+Funds transferred to the MUI for-profit organization support the company's mission.
 
 ## Services
 
-These great services sponsor MUI's core infrastructure:
+These great services sponsor our open-source projects:
 
 <span class="only-light-mode">
   <img src="/static/readme/github-lightmode.svg" alt="GitHub logo" loading="lazy" width="300" height="107" style="width:80px;">

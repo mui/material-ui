@@ -2,7 +2,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from '@mui-internal/test-utils';
-import { Box, createTheme, ThemeProvider, boxClasses as classes } from '@mui/system';
+import { Box, ThemeProvider, boxClasses as classes } from '@mui/system';
+
+import createTheme from '@mui/system/createTheme';
 
 describe('<Box />', () => {
   const { render } = createRenderer();
