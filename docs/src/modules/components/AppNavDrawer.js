@@ -6,7 +6,6 @@ import Divider from '@mui/material/Divider';
 import { styled, ThemeProvider } from '@mui/material/styles';
 import List from '@mui/material/List';
 import Drawer from '@mui/material/Drawer';
-import Popper from '@mui/material/Popper';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
