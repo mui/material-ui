@@ -4,7 +4,6 @@ import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import userEvent from '@testing-library/user-event';
 import {
-  describeConformance,
   act,
   createRenderer,
   fireEvent,
@@ -19,6 +18,7 @@ import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 import ButtonBase, { buttonBaseClasses as classes } from '@mui/material-next/ButtonBase';
 import { ButtonBaseActions } from './ButtonBase.types';
 import { TouchRippleActions } from './TouchRipple.types';
+import describeConformance from '../../test/describeConformance';
 
 // TODO v6: initialize @testing-library/user-event using userEvent.setup() instead of directly calling methods e.g. userEvent.click() for all related tests in this file
 // currently the setup() method uses the ClipboardEvent constructor which is incompatible with our lowest supported version of iOS Safari (12.2) https://github.com/mui/material-ui/blob/master/.browserslistrc#L44
