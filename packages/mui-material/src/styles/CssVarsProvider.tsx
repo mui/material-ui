@@ -1,9 +1,5 @@
-// do not remove the following import (https://github.com/microsoft/TypeScript/issues/29808#issuecomment-1320713018)
-/* eslint-disable @typescript-eslint/no-unused-vars */
-// @ts-ignore
-import * as React from 'react';
 import { SxProps } from '@mui/system';
-import createCssVarsProvider, { getInitColorSchemeScript as systemGetInitColorSchemeScript } from '@mui/system/cssVars';
+import createCssVarsProvider from '@mui/system/cssVars';
 import styleFunctionSx from '@mui/system/styleFunctionSx';
 import experimental_extendTheme, {
   SupportedColorScheme,
@@ -12,12 +8,9 @@ import experimental_extendTheme, {
 import createTypography from './createTypography';
 import excludeVariablesFromRoot from './excludeVariablesFromRoot';
 import THEME_ID from './identifier';
+import { CONSTANT } from './getInitColorSchemeScript';
 
 const defaultTheme = experimental_extendTheme();
-
-const ATTRIBUTE = 'data-mui-color-scheme';
-const MODE_KEY = 'mui-mode';
-const COLOR_SCHEME_KEY = 'mui-color-scheme';
 
 const { CssVarsProvider, useColorScheme } = createCssVarsProvider<
   SupportedColorScheme,
@@ -25,9 +18,9 @@ const { CssVarsProvider, useColorScheme } = createCssVarsProvider<
 >({
   themeId: THEME_ID,
   theme: defaultTheme,
-  attribute: ATTRIBUTE,
-  modeStorageKey: MODE_KEY,
-  colorSchemeStorageKey: COLOR_SCHEME_KEY,
+  attribute: CONSTANT.ATTRIBUTE,
+  modeStorageKey: CONSTANT.MODE_KEY,
+  colorSchemeStorageKey: CONSTANT.COLOR_SCHEME_KEY,
   defaultColorScheme: {
     light: 'light',
     dark: 'dark',
@@ -50,20 +43,9 @@ const { CssVarsProvider, useColorScheme } = createCssVarsProvider<
   excludeVariablesFromRoot,
 });
 
-function getInitColorSchemeScript(...params: Parameters<typeof systemGetInitColorSchemeScript>) {
-  return systemGetInitColorSchemeScript({
-    attribute:ATTRIBUTE,
-    colorSchemeStorageKey: COLOR_SCHEME_KEY,
-    defaultMode: 'light',
-    defaultLightColorScheme: 'light',
-    defaultDarkColorScheme: 'dark',
-    modeStorageKey: MODE_KEY,
-    ...params,
-  })
-}
+
 
 export {
   useColorScheme,
-  getInitColorSchemeScript,
   CssVarsProvider as Experimental_CssVarsProvider,
 };

@@ -98,6 +98,7 @@ export { default as withStyles } from './withStyles';
 export { default as withTheme } from './withTheme';
 
 export * from './CssVarsProvider';
+export { default as getInitColorSchemeScript } from './getInitColorSchemeScript';
 
 export { default as experimental_extendTheme } from './experimental_extendTheme';
 export type {
