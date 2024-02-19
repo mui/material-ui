@@ -30,6 +30,7 @@ module.exports = {
         __dirname,
         './packages/typescript-to-proptypes/src',
       ),
+      '@mui/internal-test-utils': path.resolve(__dirname, './packages/test-utils/src'),
       docs: path.resolve(__dirname, './docs'),
     },
     extensions: ['.js', '.ts', '.tsx', '.d.ts'],
