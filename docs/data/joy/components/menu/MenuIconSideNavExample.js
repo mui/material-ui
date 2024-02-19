@@ -29,17 +29,10 @@ const modifiers = [
   },
 ];
 
-function NavMenuButton({
-  children,
-  menu,
-  open,
-  onOpen,
-  onLeaveMenu,
-  label,
-  ...props
-}) {
+function NavMenuButton({ children, menu, open, onOpen, onClose, label, ...props }) {
   const isOnButton = React.useRef(false);
   const internalOpen = React.useRef(open);
+  const menuRef = React.useRef(null);
 
   const handleButtonKeyDown = (event) => {
     internalOpen.current = open;
@@ -48,6 +41,28 @@ function NavMenuButton({
       onOpen(event);
     }
   };
+
+  const createHandleCloseMenu = React.useCallback(
+    (event) => {
+      const isClickInsideMenu =
+        event.target instanceof Node && menuRef.current?.contains(event.target);
+      const isClickOnButton =
+        event.target instanceof Node &&
+        menuRef.current?.parentNode?.contains(event.target);
+      if (!isClickInsideMenu && !isClickOnButton && open) {
+        onClose();
+      }
+    },
+    [onClose, open],
+  );
+
+  React.useEffect(() => {
+    document.addEventListener('mousedown', createHandleCloseMenu);
+
+    return () => {
+      document.removeEventListener('mousedown', createHandleCloseMenu);
+    };
+  }, [createHandleCloseMenu]);
 
   return (
     <Dropdown
@@ -65,17 +80,9 @@ function NavMenuButton({
         onMouseDown={() => {
           internalOpen.current = open;
         }}
-        onClick={() => {
-          if (!internalOpen.current) {
-            onOpen();
-          }
-        }}
         onMouseEnter={() => {
           onOpen();
           isOnButton.current = true;
-        }}
-        onMouseLeave={() => {
-          isOnButton.current = false;
         }}
         onKeyDown={handleButtonKeyDown}
         sx={{
@@ -88,9 +95,6 @@ function NavMenuButton({
         {children}
       </MenuButton>
       {React.cloneElement(menu, {
-        onMouseLeave: () => {
-          onLeaveMenu(() => isOnButton.current);
-        },
         modifiers,
         slotProps: {
           listbox: {
@@ -114,7 +118,7 @@ NavMenuButton.propTypes = {
   children: PropTypes.node,
   label: PropTypes.string.isRequired,
   menu: PropTypes.element.isRequired,
-  onLeaveMenu: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
   onOpen: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
 };
@@ -124,19 +128,6 @@ export default function MenuIconSideNavExample() {
   const itemProps = {
     onClick: () => setMenuIndex(null),
   };
-  const createHandleLeaveMenu = (index) => (getIsOnButton) => {
-    setTimeout(() => {
-      const isOnButton = getIsOnButton();
-      if (!isOnButton) {
-        setMenuIndex((latestIndex) => {
-          if (index === latestIndex) {
-            return null;
-          }
-          return latestIndex;
-        });
-      }
-    }, 200);
-  };
   return (
     <Sheet sx={{ borderRadius: 'sm', py: 1, mr: 20 }}>
       <List>
@@ -145,7 +136,7 @@ export default function MenuIconSideNavExample() {
             label="Apps"
             open={menuIndex === 0}
             onOpen={() => setMenuIndex(0)}
-            onLeaveMenu={createHandleLeaveMenu(0)}
+            onClose={() => setMenuIndex(null)}
             menu={
               <Menu onClose={() => setMenuIndex(null)}>
                 <MenuItem {...itemProps}>Application 1</MenuItem>
@@ -162,7 +153,7 @@ export default function MenuIconSideNavExample() {
             label="Settings"
             open={menuIndex === 1}
             onOpen={() => setMenuIndex(1)}
-            onLeaveMenu={createHandleLeaveMenu(1)}
+            onClose={() => setMenuIndex(null)}
             menu={
               <Menu onClose={() => setMenuIndex(null)}>
                 <MenuItem {...itemProps}>Setting 1</MenuItem>
@@ -179,7 +170,7 @@ export default function MenuIconSideNavExample() {
             label="Personal"
             open={menuIndex === 2}
             onOpen={() => setMenuIndex(2)}
-            onLeaveMenu={createHandleLeaveMenu(2)}
+            onClose={() => setMenuIndex(null)}
             menu={
               <Menu onClose={() => setMenuIndex(null)}>
                 <MenuItem {...itemProps}>Personal 1</MenuItem>
