@@ -51,7 +51,7 @@
   "devDependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
-    "@mui-internal/test-utils": "workspace:^",
+    "@mui/internal-test-utils": "workspace:^",
     "@mui/internal-babel-macros": "workspace:^",
     "@mui/system": "workspace:*",
     "@types/chai": "^4.3.14",

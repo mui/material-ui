@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import StepButton, { stepButtonClasses as classes } from '@mui/joy/StepButton';
 import describeConformance from '../../test/describeConformance';

@@ -116,7 +116,7 @@
     "@babel/preset-typescript": "^7.24.1",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-scripts": "workspace:^",
-    "@mui-internal/test-utils": "workspace:^",
+    "@mui/internal-test-utils": "workspace:^",
     "@types/autosuggest-highlight": "^3.2.3",
     "@types/chai": "^4.3.14",
     "@types/css-mediaquery": "^0.1.4",

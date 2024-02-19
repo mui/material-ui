@@ -55,7 +55,7 @@
     "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
-    "@mui-internal/test-utils": "workspace:^",
+    "@mui/internal-test-utils": "workspace:^",
     "@mui/internal-babel-macros": "workspace:^",
     "@popperjs/core": "^2.11.8",
     "@rollup/plugin-replace": "^5.0.5",
