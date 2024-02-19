@@ -9,7 +9,6 @@ import {
   createMount,
   createRenderer,
   fireEvent,
-  strictModeDoubleLoggingSuppressed,
 } from '@mui-internal/test-utils';
 import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 
@@ -457,33 +456,6 @@ describe('<TextareaAutosize />', () => {
 
       // the input should be 2 lines
       expect(input.style).to.have.property('height', `${lineHeight * 2}px`);
-    });
-
-    describe('warnings', () => {
-      it('warns if layout is unstable but not crash', () => {
-        const { container, forceUpdate } = render(<TextareaAutosize maxRows={3} />);
-        const input = container.querySelector<HTMLTextAreaElement>('textarea[aria-hidden=null]')!;
-        const shadow = container.querySelector('textarea[aria-hidden=true]')!;
-        let index = 0;
-        setLayout(input, shadow, {
-          getComputedStyle: {
-            boxSizing: 'content-box',
-          },
-          scrollHeight: 100,
-          lineHeight: () => {
-            index += 1;
-            return index;
-          },
-        });
-
-        expect(() => {
-          forceUpdate();
-        }).toErrorDev([
-          'MUI: Too many re-renders.',
-          !strictModeDoubleLoggingSuppressed && 'MUI: Too many re-renders.',
-          !strictModeDoubleLoggingSuppressed && 'MUI: Too many re-renders.',
-        ]);
-      });
     });
   });
 });

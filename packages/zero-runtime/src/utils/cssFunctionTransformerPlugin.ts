@@ -1,9 +1,7 @@
 import { declare } from '@babel/helper-plugin-utils';
-import defaultSxConfig from '@mui/system/styleFunctionSx/defaultSxConfig';
+import { unstable_defaultSxConfig as defaultSxConfig } from '@mui/system/styleFunctionSx';
 import get from 'lodash/get';
 import type { PluginCustomOptions } from './cssFnValueToVariable';
-
-type Theme = { [key: 'unstable_sxConfig' | string]: string | number | Theme };
 
 type BabelPluginOptions = {
   styleKey: string;
@@ -24,16 +22,13 @@ type BabelPluginOptions = {
 const cssFunctionTransformerPlugin = declare<BabelPluginOptions>((api, pluginOptions) => {
   const { types: t } = api;
   const {
-    options: { cssVariablesPrefix = 'mui', themeArgs: { theme } = {} },
+    options: { themeArgs: { theme } = {} },
     styleKey,
   } = pluginOptions;
-  const typedTheme = theme as Theme & {
-    vars?: Theme;
-  };
-  const config = (typedTheme?.unstable_sxConfig ?? defaultSxConfig) as Theme;
-  const cssPropOptions = config[styleKey] as Theme;
+  const config = theme?.unstable_sxConfig ?? defaultSxConfig;
+  const cssPropOptions = config[styleKey];
   const themeKey = cssPropOptions?.themeKey;
-  const finalPrefix = cssVariablesPrefix ? `${cssVariablesPrefix}-` : '';
+  const finalPrefix = theme?.cssVarPrefix || '';
 
   return {
     name: '@mui/zero-internal/cssFunctionTransformerPlugin',
@@ -50,8 +45,8 @@ const cssFunctionTransformerPlugin = declare<BabelPluginOptions>((api, pluginOpt
         }
         const propertyThemeKey = themeKey ?? val.split('.')[0];
         const themeValue =
-          get(typedTheme, `${propertyThemeKey}.${val}`) ??
-          (typedTheme.vars ? get(typedTheme.vars, `${propertyThemeKey}.${val}`) : undefined);
+          get(theme, `${propertyThemeKey}.${val}`) ??
+          (theme?.vars ? get(theme.vars, `${propertyThemeKey}.${val}`) : undefined);
         if (!themeValue) {
           console.warn(
             `MUI: Value for key: ${val} does not exist in "theme.${propertyThemeKey}" or "theme.vars.${propertyThemeKey}"`,
