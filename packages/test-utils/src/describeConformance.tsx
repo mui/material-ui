@@ -2,16 +2,15 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { ReactWrapper } from 'enzyme';
-import {
-  ThemeProvider as MDThemeProvider,
-  createTheme as mdCreateTheme,
-} from '@mui/material/styles';
-import { unstable_capitalize as capitalize } from '@mui/utils';
 import ReactTestRenderer from 'react-test-renderer';
 import createMount from './createMount';
 import createDescribe from './createDescribe';
 import findOutermostIntrinsic from './findOutermostIntrinsic';
 import { MuiRenderResult } from './createRenderer';
+
+function capitalize(string: string): string {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 export interface SlotTestingOptions {
   /**
@@ -117,7 +116,7 @@ export function randomStringValue() {
   return `s${Math.random().toString(36).slice(2)}`;
 }
 
-function throwMissingPropError(field: string) {
+function throwMissingPropError(field: string): never {
   throw new Error(`missing "${field}" in options
 
   > describeConformance(element, () => options)
@@ -576,12 +575,7 @@ function testThemeDefaultProps(element: React.ReactElement, getOptions: () => Co
   describe('theme default components:', () => {
     it("respect theme's defaultProps", () => {
       const testProp = 'data-id';
-      const {
-        muiName,
-        render,
-        ThemeProvider = MDThemeProvider,
-        createTheme = mdCreateTheme,
-      } = getOptions();
+      const { muiName, render, ThemeProvider, createTheme } = getOptions();
 
       if (!muiName) {
         throwMissingPropError('muiName');
@@ -589,6 +583,14 @@ function testThemeDefaultProps(element: React.ReactElement, getOptions: () => Co
 
       if (!render) {
         throwMissingPropError('render');
+      }
+
+      if (!ThemeProvider) {
+        throwMissingPropError('ThemeProvider');
+      }
+
+      if (!createTheme) {
+        throwMissingPropError('createTheme');
       }
 
       const theme = createTheme({
@@ -621,13 +623,7 @@ function testThemeStyleOverrides(
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
-      const {
-        muiName,
-        testStateOverrides,
-        render,
-        ThemeProvider = MDThemeProvider,
-        createTheme = mdCreateTheme,
-      } = getOptions();
+      const { muiName, testStateOverrides, render, ThemeProvider, createTheme } = getOptions();
 
       if (!testStateOverrides) {
         return;
@@ -639,6 +635,14 @@ function testThemeStyleOverrides(
 
       if (!render) {
         throwMissingPropError('render');
+      }
+
+      if (!ThemeProvider) {
+        throwMissingPropError('ThemeProvider');
+      }
+
+      if (!createTheme) {
+        throwMissingPropError('createTheme');
       }
 
       const testStyle = {
@@ -680,9 +684,17 @@ function testThemeStyleOverrides(
         testDeepOverrides,
         testRootOverrides = { slotName: 'root' },
         render,
-        ThemeProvider = MDThemeProvider,
-        createTheme = mdCreateTheme,
+        ThemeProvider,
+        createTheme,
       } = getOptions();
+
+      if (!ThemeProvider) {
+        throwMissingPropError('ThemeProvider');
+      }
+
+      if (!createTheme) {
+        throwMissingPropError('createTheme');
+      }
 
       const testStyle = {
         mixBlendMode: 'darken',
@@ -778,14 +790,16 @@ function testThemeStyleOverrides(
         this.skip();
       }
 
-      const {
-        muiName,
-        classes,
-        testStateOverrides,
-        render,
-        ThemeProvider = MDThemeProvider,
-        createTheme = mdCreateTheme,
-      } = getOptions();
+      const { muiName, classes, testStateOverrides, render, ThemeProvider, createTheme } =
+        getOptions();
+
+      if (!ThemeProvider) {
+        throwMissingPropError('ThemeProvider');
+      }
+
+      if (!createTheme) {
+        throwMissingPropError('createTheme');
+      }
 
       const classKeys = Object.keys(classes);
 
@@ -854,13 +868,7 @@ function testThemeVariants(element: React.ReactElement, getOptions: () => Confor
         this.skip();
       }
 
-      const {
-        muiName,
-        testVariantProps,
-        render,
-        ThemeProvider = MDThemeProvider,
-        createTheme = mdCreateTheme,
-      } = getOptions();
+      const { muiName, testVariantProps, render, ThemeProvider, createTheme } = getOptions();
 
       if (!testVariantProps) {
         throw new Error('missing testVariantProps');
@@ -872,6 +880,14 @@ function testThemeVariants(element: React.ReactElement, getOptions: () => Confor
 
       if (!render) {
         throwMissingPropError('render');
+      }
+
+      if (!ThemeProvider) {
+        throwMissingPropError('ThemeProvider');
+      }
+
+      if (!createTheme) {
+        throwMissingPropError('createTheme');
       }
 
       const testStyle = {
@@ -907,13 +923,15 @@ function testThemeVariants(element: React.ReactElement, getOptions: () => Confor
         this.skip();
       }
 
-      const {
-        muiName,
-        testCustomVariant,
-        render,
-        ThemeProvider = MDThemeProvider,
-        createTheme = mdCreateTheme,
-      } = getOptions();
+      const { muiName, testCustomVariant, render, ThemeProvider, createTheme } = getOptions();
+
+      if (!ThemeProvider) {
+        throwMissingPropError('ThemeProvider');
+      }
+
+      if (!createTheme) {
+        throwMissingPropError('createTheme');
+      }
 
       if (!testCustomVariant) {
         return;
