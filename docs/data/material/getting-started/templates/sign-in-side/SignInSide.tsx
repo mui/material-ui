@@ -163,9 +163,7 @@ export default function SignInSide() {
                 showCustomTheme={showCustomTheme}
               />
             </Box>
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              <LockOutlinedIcon />
-            </Avatar>
+            <Avatar sx={{ m: 1 }} />
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
