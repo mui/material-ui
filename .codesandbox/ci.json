@@ -31,6 +31,7 @@
     "@mui/core-downloads-tracker": "packages/mui-core-downloads-tracker/build",
     "@mui/docs": "packages/mui-docs/build",
     "@mui/icons-material": "packages/mui-icons-material/build",
+    "@mui/internal-test-utils": "packages/test-utils",
     "@mui/internal-babel-macros": "packages/mui-babel-macros",
     "@mui/internal-docs-utils": "packages-internal/docs-utils",
     "@mui/internal-markdown": "packages/markdown",
@@ -44,7 +45,6 @@
     "@mui/styled-engine-sc": "packages/mui-styled-engine-sc/build",
     "@mui/styles": "packages/mui-styles/build",
     "@mui/system": "packages/mui-system/build",
-    "@mui/test-utils": "packages/test-utils",
     "@mui/types": "packages/mui-types/build",
     "@mui/utils": "packages/mui-utils/build"
   },
