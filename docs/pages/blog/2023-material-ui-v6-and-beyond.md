@@ -4,7 +4,7 @@ description: We're tightening up the Material UI release schedule and shipping 
 date: 2023-12-23T00:00:00.000Z
 authors: ['mnajdova']
 card: true
-tags: ['MUI Core', 'News']
+tags: ['Material UI', 'Product']
 ---
 
 As we approach the end of 2023, we've had our heads down working on some very exciting projects for the future of Material UI in the next year.
