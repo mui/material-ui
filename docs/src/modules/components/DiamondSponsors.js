@@ -128,10 +128,10 @@ export default function DiamondSponsors() {
           border: '1px dashed',
           transition: theme.transitions.create(['color', 'border-color', 'background-color']),
           backgroundColor: alpha(theme.palette.primary[50], 0.5),
-          borderColor: (theme.vars || theme).palette.primary[200],
+          borderColor: (theme.vars || theme).palette.grey[200],
           boxShadow: `inset 0 1px 1px ${
             (theme.vars || theme).palette.grey[50]
-          }, 0 1px 2px ${alpha(theme.palette.primary[100], 0.8)}`,
+          }, 0 1px 2px ${alpha(theme.palette.grey[100], 0.5)}`,
           '&:hover': {
             backgroundColor: alpha(theme.palette.primary[100], 0.5),
             borderColor: (theme.vars || theme).palette.primary[300],
