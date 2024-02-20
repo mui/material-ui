@@ -51,6 +51,8 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
     component = 'div',
     invisible = false,
     open,
+    components = {},
+    componentsProps = {},
     slotProps = {},
     slots = {},
     TransitionComponent: TransitionComponentProp,
@@ -66,11 +68,15 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const backwardCompatibleSlots = { transition: TransitionComponentProp, ...slots };
-
+  const backwardCompatibleSlots = {
+    transition: TransitionComponentProp,
+    root: components.Root,
+    ...slots,
+  };
+  const backwardCompatibleSlotProps = { ...componentsProps, ...slotProps };
   const externalForwardedProps = {
     slots: backwardCompatibleSlots,
-    slotProps,
+    slotProps: backwardCompatibleSlotProps,
   };
 
   const [RootSlot, rootProps] = useSlot('root', {
