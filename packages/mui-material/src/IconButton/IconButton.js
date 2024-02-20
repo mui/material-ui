@@ -144,8 +144,8 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
       focusRipple={!disableFocusRipple}
       disabled={disabled}
       ref={ref}
-      ownerState={ownerState}
       {...other}
+      ownerState={ownerState}
     >
       {children}
     </IconButtonRoot>

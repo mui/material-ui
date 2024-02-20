@@ -260,6 +260,8 @@ jobs:
       - run:
           name: Tests TypeScript definitions
           command: pnpm typescript:ci
+          environment:
+            NODE_OPTIONS: --max-old-space-size=3072
       - run:
           name: Test module augmentation
           command: |

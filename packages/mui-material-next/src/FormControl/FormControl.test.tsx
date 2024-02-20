@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { ClassNames } from '@emotion/react';
-import { describeConformance, act, createRenderer, fireEvent } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent } from '@mui-internal/test-utils';
 import FormControl, { formControlClasses as classes } from '@mui/material-next/FormControl';
 import FilledInput from '@mui/material-next/FilledInput';
 import InputBase from '@mui/material-next/InputBase';
@@ -10,6 +10,7 @@ import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 // TODO v6: replace with material-next/Select
 import Select from '@mui/material/Select';
 import useFormControl from './useFormControl';
+import describeConformance from '../../test/describeConformance';
 
 type TestFormControlledComponent = {
   onFilled: () => {};

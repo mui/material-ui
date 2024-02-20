@@ -129,5 +129,5 @@ You can use Material Design's [Figma Material Theme Builder](https://www.figma.c
 
 ## Stable release
 
-The stable release of the M3 components is tentatively targeted for Q4 2024 in Material UI v7.
+The stable release of the M3 components is tentatively targeted for Q4 2024 in Material UI v7.
 To follow the progress or contribute to the project, check out [the M3 GitHub issue](https://github.com/mui/material-ui/issues/29345).
