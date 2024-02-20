@@ -12,6 +12,10 @@ const Root = styled('div')(
     ...lightTheme.typography.body1,
     lineHeight: 1.6, // Increased compared to the 1.5 default to make the docs easier to read.
     color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
+    '&:focus-visible': {
+      outline: `3px solid ${alpha(lightTheme.palette.primary[500], 0.5)}`,
+      outlineOffset: 2,
+    },
     '& strong': {
       color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
     },
@@ -546,9 +550,8 @@ const Root = styled('div')(
         },
       },
       '&:focus-visible': {
-        outline: '2px solid',
+        outline: `3px solid ${alpha(lightTheme.palette.primary[500], 0.5)}`,
         outlineOffset: 2,
-        outlineColor: lightTheme.palette.primaryDark[500],
       },
     },
     '& .MuiCode-copyKeypress': {
@@ -716,9 +719,6 @@ const Root = styled('div')(
       },
       '& a code': {
         color: `var(--muidocs-palette-primary-light, ${darkTheme.palette.primary.light})`,
-        '&:focus-visible': {
-          outline: `3px solid ${alpha(darkTheme.palette.primary[500], 0.5)}`,
-        },
       },
       '& kbd.key': {
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
