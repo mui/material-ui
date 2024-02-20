@@ -175,7 +175,7 @@ npx @mui/codemod@latest deprecations/pagination-item-classes <path>
 
 ### Composed CSS classes
 
-The CSS classes that composed the `variant` and `color` prop values were removed. Here's how to migrate:
+The CSS classes that composed the `variant` and `color` prop values were removed.
 
 Here's how to migrate:
 
