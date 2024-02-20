@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, act, createRenderer, fireEvent } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent } from '@mui-internal/test-utils';
 import AccordionSummary, {
   accordionSummaryClasses as classes,
 } from '@mui/material/AccordionSummary';
 import Accordion from '@mui/material/Accordion';
 import ButtonBase from '@mui/material/ButtonBase';
+import describeConformance from '../../test/describeConformance';
 
 describe('<AccordionSummary />', () => {
   const { render } = createRenderer();

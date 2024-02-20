@@ -1,14 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import {
-  describeConformance,
-  ErrorBoundary,
-  act,
-  createRenderer,
-  fireEvent,
-  screen,
-} from '@mui-internal/test-utils';
+import { ErrorBoundary, act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
 import { nativeSelectClasses } from '@mui/material/NativeSelect';
 // TODO v6: replace with material-next's extendTheme and provider when implementing Material Design 3
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -24,6 +17,7 @@ import InputLabel from '@mui/material/InputLabel';
 import Divider from '@mui/material/Divider';
 import Select from '@mui/material-next/Select';
 import classes from './selectClasses';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Select />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
