@@ -181,13 +181,13 @@ export function CodeCopyProvider({ children }: CodeCopyProviderProps) {
         return;
       }
 
-      const copyBtn = rootNode.current.querySelector('.MuiCode-copy') as HTMLButtonElement | null;
+      const copyBtn = rootNode.current.querySelector('.MuiCode-copy') as HTMLButtonElement;
       const initialEventAction = copyBtn!.getAttribute('data-ga-event-action');
       // update the 'data-ga-event-action' on the button to track keyboard interaction
-      copyBtn!.dataset.gaEventAction =
+      copyBtn.dataset.gaEventAction =
         initialEventAction?.replace('click', 'keyboard') || 'copy-keyboard';
-      copyBtn!.click(); // let the GA setup in GoogleAnalytics.js do the job
-      copyBtn!.dataset.gaEventAction = initialEventAction!; // reset the 'data-ga-event-action' back to initial
+      copyBtn.click(); // let the GA setup in GoogleAnalytics.js do the job
+      copyBtn.dataset.gaEventAction = initialEventAction!; // reset the 'data-ga-event-action' back to initial
     });
   }, []);
   return (
