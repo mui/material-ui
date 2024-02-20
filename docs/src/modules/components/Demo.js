@@ -21,9 +21,9 @@ import { useCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
 import { CODE_VARIANTS, CODE_STYLING } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
 import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
-import BrandingProvider from 'docs/src/BrandingProvider';
+import { BrandingProvider } from '@mui/docs/branding';
 import DemoToolbarRoot from 'docs/src/modules/components/DemoToolbarRoot';
-import { blue, blueDark, grey } from 'docs/src/modules/brandingTheme';
+import { blue, blueDark, grey } from '@mui/docs/branding';
 
 /**
  * Removes leading spaces (indentation) present in the `.tsx` previews

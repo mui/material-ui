@@ -11,11 +11,7 @@ import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/u
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import { useUserLanguage } from '@mui/docs/i18n';
-import {
-  getDesignTokens,
-  getThemedComponents,
-  getMetaThemeColor,
-} from 'docs/src/modules/brandingTheme';
+import { getDesignTokens, getThemedComponents, getMetaThemeColor } from '@mui/docs/branding';
 
 const languageMap = {
   en: enUS,

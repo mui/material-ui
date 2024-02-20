@@ -13,7 +13,7 @@ import { useTheme, styled, createTheme, ThemeProvider } from '@mui/material/styl
 import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from '@mui/docs/i18n';
-import { getDesignTokens } from 'docs/src/modules/brandingTheme';
+import { getDesignTokens } from '@mui/docs/branding';
 import { highDensity } from 'docs/src/modules/components/ThemeContext';
 
 const iframeDefaultJoyTheme = extendTheme({

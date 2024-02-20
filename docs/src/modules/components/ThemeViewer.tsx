@@ -6,7 +6,7 @@ import ExpandIcon from '@mui/icons-material/ExpandMore';
 import CollapseIcon from '@mui/icons-material/ChevronRight';
 import { TreeView } from '@mui/x-tree-view/TreeView';
 import { TreeItem as MuiTreeItem, treeItemClasses } from '@mui/x-tree-view/TreeItem';
-import { blue, blueDark } from 'docs/src/modules/brandingTheme';
+import { blue, blueDark } from '@mui/docs/branding';
 
 function getType(value: any) {
   if (Array.isArray(value)) {

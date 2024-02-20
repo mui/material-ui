@@ -5,7 +5,7 @@ import { alpha, darken, styled } from '@mui/material/styles';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
-} from 'docs/src/modules/brandingTheme';
+} from '@mui/docs/branding';
 
 const Root = styled('div')(
   ({ theme }) => ({

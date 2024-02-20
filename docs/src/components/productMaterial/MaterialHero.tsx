@@ -59,7 +59,7 @@ import IconImage from 'docs/src/components/icon/IconImage';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import GradientText from 'docs/src/components/typography/GradientText';
-import { getDesignTokens } from 'docs/src/modules/brandingTheme';
+import { getDesignTokens } from '@mui/docs/branding';
 import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';
 

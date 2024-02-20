@@ -15,7 +15,7 @@ import {
   CssVarsProvider as MaterialYouCssVarsProvider,
   useColorScheme,
 } from '@mui/material-next/styles';
-import BrandingProvider from 'docs/src/BrandingProvider';
+import { BrandingProvider } from '@mui/docs/branding';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
 type Mode = 'light' | 'dark' | 'system';
