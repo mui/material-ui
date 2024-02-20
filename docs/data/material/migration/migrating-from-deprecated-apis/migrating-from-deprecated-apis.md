@@ -156,7 +156,7 @@ npx @mui/codemod@latest deprecations/button-classes <path>
 
 ### Composed CSS classes
 
-The CSS classes composing the `variant` and `color` prop values, as well as those composing the `variant` and `size` prop values, along with the icon size CSS classes, have been removed.
+The CSS classes composing the `variant` and `color` prop values, as well as those composing the `variant` and `size` prop values, along with the `icon` size CSS classes, have been removed.
 
 Here's how to migrate:
 
