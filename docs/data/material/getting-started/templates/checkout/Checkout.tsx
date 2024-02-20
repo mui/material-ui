@@ -10,7 +10,7 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { PaletteMode } from '@mui/material';
+import { PaletteMode, Theme } from '@mui/material';
 
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
@@ -94,18 +94,19 @@ function getStepContent(step: number) {
   }
 }
 
+function determineLogo(showCustomTheme: boolean, theme: Theme): string {
+  if (showCustomTheme) {
+    return theme.palette.mode === 'light' ? darkLogo : whiteLogo;
+  }
+  return defaultTheme.palette.mode === 'light' ? darkLogo : whiteLogo;
+}
+
 export default function Checkout() {
   const [mode, setMode] = React.useState<PaletteMode>('dark');
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const LPtheme = createTheme(getLPTheme(mode));
   const [activeStep, setActiveStep] = React.useState(0);
-  const logo = showCustomTheme
-    ? LPtheme.palette.mode === 'light'
-      ? darkLogo
-      : whiteLogo
-    : defaultTheme.palette.mode === 'light'
-    ? darkLogo
-    : whiteLogo;
+  const logo = determineLogo(showCustomTheme, LPtheme);
 
   const toggleColorMode = () => {
     setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));

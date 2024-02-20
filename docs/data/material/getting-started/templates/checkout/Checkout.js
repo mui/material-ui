@@ -93,18 +93,19 @@ function getStepContent(step) {
   }
 }
 
+function determineLogo(showCustomTheme, theme) {
+  if (showCustomTheme) {
+    return theme.palette.mode === 'light' ? darkLogo : whiteLogo;
+  }
+  return defaultTheme.palette.mode === 'light' ? darkLogo : whiteLogo;
+}
+
 export default function Checkout() {
   const [mode, setMode] = React.useState('dark');
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const LPtheme = createTheme(getLPTheme(mode));
   const [activeStep, setActiveStep] = React.useState(0);
-  const logo = showCustomTheme
-    ? LPtheme.palette.mode === 'light'
-      ? darkLogo
-      : whiteLogo
-    : defaultTheme.palette.mode === 'light'
-    ? darkLogo
-    : whiteLogo;
+  const logo = determineLogo(showCustomTheme, LPtheme);
 
   const toggleColorMode = () => {
     setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
