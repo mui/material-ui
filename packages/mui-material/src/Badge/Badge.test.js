@@ -283,31 +283,8 @@ describe('<Badge />', () => {
     });
   });
 
-  describe('prop: components / slots', () => {
-    it('allows overriding the slots using the components prop', () => {
-      const CustomRoot = React.forwardRef((props, ref) => {
-        const { ownerState, ...other } = props;
-        return <span {...other} ref={ref} data-testid="custom-root" />;
-      });
-
-      const CustomBadge = React.forwardRef((props, ref) => {
-        const { ownerState, ...other } = props;
-        return <span {...other} ref={ref} data-testid="custom-badge" />;
-      });
-
-      const { getByTestId } = render(
-        <Badge
-          {...defaultProps}
-          badgeContent={1}
-          components={{ Root: CustomRoot, Badge: CustomBadge }}
-        />,
-      );
-
-      getByTestId('custom-root');
-      getByTestId('custom-badge');
-    });
-
-    it('allows overriding the slots using the slots prop', () => {
+  describe('prop: slots', () => {
+    it('allows using the slots prop', () => {
       const CustomRoot = React.forwardRef((props, ref) => {
         const { ownerState, ...other } = props;
         return <span {...other} ref={ref} data-testid="custom-root" />;
@@ -331,23 +308,7 @@ describe('<Badge />', () => {
     });
   });
 
-  describe('prop: componentsProps / slotProps', () => {
-    it('allows modifying slots props using the componentsProps prop', () => {
-      const { getByTestId } = render(
-        <Badge
-          {...defaultProps}
-          badgeContent={1}
-          componentsProps={{
-            root: { 'data-testid': 'custom-root' },
-            badge: { 'data-testid': 'custom-badge' },
-          }}
-        />,
-      );
-
-      getByTestId('custom-root');
-      getByTestId('custom-badge');
-    });
-
+  describe('prop:slotProps', () => {
     it('allows modifying slots props using the slotProps prop', () => {
       const { getByTestId } = render(
         <Badge

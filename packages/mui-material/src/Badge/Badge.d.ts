@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion, Simplify } from '@mui/types';
-import { SlotComponentProps } from '@mui/base/utils';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { BadgeClasses } from './badgeClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface BadgePropsVariantOverrides {}
 export interface BadgePropsColorOverrides {}
@@ -27,7 +27,6 @@ export type BadgeOwnerState = Simplify<
     variant: OverridableStringUnion<'standard' | 'dot', BadgePropsVariantOverrides>;
   }
 >;
-
 export interface BadgeOrigin {
   vertical: 'top' | 'bottom';
   horizontal: 'left' | 'right';
@@ -77,19 +76,7 @@ export interface BadgeOwnProps {
    *
    * @default {}
    */
-  componentsProps?: BadgeOwnProps['slotProps'];
-  /**
-   * The components used for each slot inside.
-   *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
-   *
-   * @default {}
-   */
-  components?: {
-    Root?: React.ElementType;
-    Badge?: React.ElementType;
-  };
+
   /**
    * If `true`, the badge is invisible.
    * @default false
@@ -109,27 +96,7 @@ export interface BadgeOwnProps {
    * The props used for each slot inside the Badge.
    * @default {}
    */
-  slotProps?: {
-    root?: SlotComponentProps<'span', BadgeRootSlotPropsOverrides, BadgeOwnerState>;
-    badge?: SlotComponentProps<'span', BadgeBadgeSlotPropsOverrides, BadgeOwnerState>;
-  };
-  /**
-   * The components used for each slot inside the Badge.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots?: {
-    /**
-     * The component that renders the root.
-     * @default 'span'
-     */
-    root?: React.ElementType;
-    /**
-     * The component that renders the badge.
-     * @default 'span'
-     */
-    badge?: React.ElementType;
-  };
+
   /**
    * Controls whether the badge is hidden when `badgeContent` is zero.
    * @default false
@@ -146,11 +113,24 @@ export interface BadgeOwnProps {
   variant?: OverridableStringUnion<'standard' | 'dot', BadgePropsVariantOverrides>;
 }
 
+export interface BadgeSlots {
+  root?: React.ElementType;
+  badge?: React.ElementType;
+}
+
+export type BadgeSlotsAndBadgeProps = CreateSlotsAndSlotProps<
+  BadgeSlots,
+  {
+    root: SlotProps<React.ElementType, {}, BadgeOwnerState>;
+    badge: SlotProps<React.ElementType, {}, BadgeOwnerState>;
+  }
+>;
+
 export interface BadgeTypeMap<
   RootComponent extends React.ElementType = 'span',
   AdditionalProps = {},
 > {
-  props: AdditionalProps & BadgeOwnProps;
+  props: AdditionalProps & BadgeOwnProps & BadgeSlotsAndBadgeProps;
   defaultComponent: RootComponent;
 }
 

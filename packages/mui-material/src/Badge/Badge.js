@@ -1,14 +1,15 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+// import clsx from 'clsx';
 import usePreviousProps from '@mui/utils/usePreviousProps';
 import composeClasses from '@mui/utils/composeClasses';
 import { useBadge } from '@mui/base/useBadge';
-import { useSlotProps } from '@mui/base/utils';
+// import { useSlotProps } from '@mui/base/utils';
 import { styled, createUseThemeProps } from '../zero-styled';
 import capitalize from '../utils/capitalize';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
+import useSlot from '../utils/useSlot';
 
 const RADIUS_STANDARD = 10;
 const RADIUS_DOT = 4;
@@ -314,30 +315,27 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  // support both `slots` and `components` for backward compatibility
-  const RootSlot = slots?.root ?? components.Root ?? BadgeRoot;
-  const BadgeSlot = slots?.badge ?? components.Badge ?? BadgeBadge;
-
-  const rootSlotProps = slotProps?.root ?? componentsProps.root;
-  const badgeSlotProps = slotProps?.badge ?? componentsProps.badge;
-
-  const rootProps = useSlotProps({
-    elementType: RootSlot,
-    externalSlotProps: rootSlotProps,
-    externalForwardedProps: other,
-    additionalProps: {
-      ref,
-      as: component,
+  const externalForwardedProps = {
+    slots: {
+      root: components.root,
+      badge: components.badge,
+      ...slots,
     },
+    slotProps: {
+      ...componentsProps,
+      ...slotProps,
+    },
+  };
+  const [RootSlot, rootProps] = useSlot('root', {
+    elementType: React.ElementType,
+    externalForwardedProps,
     ownerState,
-    className: clsx(rootSlotProps?.className, classes.root, className),
   });
 
-  const badgeProps = useSlotProps({
-    elementType: BadgeSlot,
-    externalSlotProps: badgeSlotProps,
+  const [BadgeSlot, badgeProps] = useSlot('badge', {
+    elementType: React.ElementType,
+    externalForwardedProps,
     ownerState,
-    className: clsx(classes.badge, badgeSlotProps?.className),
   });
 
   return (
@@ -400,7 +398,7 @@ Badge.propTypes /* remove-proptypes */ = {
    *
    * This prop is an alias for the `slots` prop.
    * It's recommended to use the `slots` prop instead.
-   *
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    * @default {}
    */
   components: PropTypes.shape({
@@ -412,8 +410,7 @@ Badge.propTypes /* remove-proptypes */ = {
    * You can override the existing props or add new ones.
    *
    * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
-   *
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    * @default {}
    */
   componentsProps: PropTypes.shape({
