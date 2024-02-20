@@ -175,14 +175,9 @@ npx @mui/codemod@latest deprecations/pagination-item-classes <path>
 
 ### Composed CSS classes
 
-The following CSS classes were deprecated:
+The CSS classes that composed the `variant` and `color` prop values were removed. Here's how to migrate:
 
-- `.MuiPaginationItem-textPrimary` deprecated in favor of `.MuiPaginationItem-text.MuiPaginationItem-colorPrimary`
-- `.MuiPaginationItem-outlinedPrimary` deprecated in favor of `.MuiPaginationItem-outlined.MuiPaginationItem-colorPrimary`
-- `.MuiPaginationItem-textSecondary` deprecated in favor of `.MuiPaginationItem-text.MuiPaginationItem-colorSecondary`
-- `.MuiPaginationItem-outlinedSecondary` deprecated in favor of `.MuiPaginationItem-outlined.MuiPaginationItem-colorSecondary`
-
-Here's an example on how to migrate:
+Here's how to migrate:
 
 ```diff
 -.MuiPaginationItem-textPrimary
@@ -193,7 +188,6 @@ Here's an example on how to migrate:
 +.MuiPaginationItem-text.MuiPaginationItem-colorSecondary
 -.MuiPaginationItem-outlinedSecondary
 +.MuiPaginationItem-outlined.MuiPaginationItem-colorSecondary
- />
 ```
 
 ```diff
