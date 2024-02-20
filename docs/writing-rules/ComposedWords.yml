@@ -11,3 +11,5 @@ swap:
   'sub components': subcomponents
   'use-case': 'use case'
   'usecase': 'use case'
+  'client side': 'client-side'
+  'server side': 'server-side'
