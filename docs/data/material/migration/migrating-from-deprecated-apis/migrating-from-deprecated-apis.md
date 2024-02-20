@@ -173,13 +173,26 @@ Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-code
 npx @mui/codemod@latest deprecations/pagination-item-classes <path>
 ```
 
-### .MuiPaginationItem-textPrimary
+### Composed CSS classes
 
-The PaginationItem's `.MuiPaginationItem-textPrimary` class was deprecated in favor of the `.MuiPaginationItem-text` and `.MuiPaginationItem-colorPrimary` classes.
+The following CSS classes were deprecated:
+
+- `.MuiPaginationItem-textPrimary` deprecated in favor of `.MuiPaginationItem-text.MuiPaginationItem-colorPrimary`
+- `.MuiPaginationItem-outlinedPrimary` deprecated in favor of `.MuiPaginationItem-outlined.MuiPaginationItem-colorPrimary`
+- `.MuiPaginationItem-textSecondary` deprecated in favor of `.MuiPaginationItem-text.MuiPaginationItem-colorSecondary`
+- `.MuiPaginationItem-outlinedSecondary` deprecated in favor of `.MuiPaginationItem-outlined.MuiPaginationItem-colorSecondary`
+
+Here's an example on how to migrate:
 
 ```diff
 -.MuiPaginationItem-textPrimary
 +.MuiPaginationItem-text.MuiPaginationItem-colorPrimary
+-.MuiPaginationItem-outlinedPrimary
++.MuiPaginationItem-outlined.MuiPaginationItem-colorPrimary
+-.MuiPaginationItem-textSecondary
++.MuiPaginationItem-text.MuiPaginationItem-colorSecondary
+-.MuiPaginationItem-outlinedSecondary
++.MuiPaginationItem-outlined.MuiPaginationItem-colorSecondary
  />
 ```
 
@@ -193,77 +206,14 @@ The PaginationItem's `.MuiPaginationItem-textPrimary` class was deprecated in fa
 +      [`&.${paginationItemClasses.text}.${paginationItemClasses.colorPrimary}`]: {
          color: 'red',
         },
-     },
-   },
- },
-```
-
-### .MuiPaginationItem-outlinedPrimary
-
-The PaginationItem's `.MuiPaginationItem-outlinedPrimary` class was deprecated in favor of the `.MuiPaginationItem-outlined` and `.MuiPaginationItem-colorPrimary` classes.
-
-```diff
--.MuiPaginationItem-outlinedPrimary
-+.MuiPaginationItem-outlined.MuiPaginationItem-colorPrimary
- />
-```
-
-```diff
- import { paginationItemClasses } from '@mui/material/PaginationItem';
-
- MuiPaginationItem: {
-   styleOverrides: {
-     root: {
 -      [`&.${paginationItemClasses.outlinedPrimary}`]: {
 +      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.colorPrimary}`]: {
          color: 'red',
         },
-     },
-   },
- },
-```
-
-### .MuiPaginationItem-textSecondary
-
-The PaginationItem's `.MuiPaginationItem-textSecondary` class was deprecated in favor of the `.MuiPaginationItem-text` and `.MuiPaginationItem-colorSecondary` classes.
-
-```diff
--.MuiPaginationItem-textSecondary
-+.MuiPaginationItem-text.MuiPaginationItem-colorSecondary
- />
-```
-
-```diff
- import { paginationItemClasses } from '@mui/material/PaginationItem';
-
- MuiPaginationItem: {
-   styleOverrides: {
-     root: {
 -      [`&.${paginationItemClasses.textSecondary}`]: {
 +      [`&.${paginationItemClasses.text}.${paginationItemClasses.colorSecondary}`]: {
          color: 'red',
         },
-     },
-   },
- },
-```
-
-### .MuiPaginationItem-outlinedSecondary
-
-The PaginationItem's `.MuiPaginationItem-outlinedSecondary` class was deprecated in favor of the `.MuiPaginationItem-outlined` and `.MuiPaginationItem-colorSecondary` classes.
-
-```diff
--.MuiPaginationItem-outlinedSecondary
-+.MuiPaginationItem-outlined.MuiPaginationItem-colorSecondary
- />
-```
-
-```diff
- import { paginationItemClasses } from '@mui/material/PaginationItem';
-
- MuiPaginationItem: {
-   styleOverrides: {
-     root: {
 -      [`&.${paginationItemClasses.outlinedSecondary}`]: {
 +      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.colorSecondary}`]: {
          color: 'red',
