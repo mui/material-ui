@@ -2,13 +2,14 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { describeConformance, fireEvent, createRenderer } from '@mui-internal/test-utils';
+import { fireEvent, createRenderer } from '@mui-internal/test-utils';
 import TableFooter from '@mui/material/TableFooter';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import TablePagination, {
   tablePaginationClasses as classes,
 } from '@mui/material-next/TablePagination';
+import describeConformance from '../../test/describeConformance';
 
 describe('<TablePagination />', () => {
   const noop = () => {};

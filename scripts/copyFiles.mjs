@@ -1,7 +1,12 @@
 /* eslint-disable no-console */
 import path from 'path';
-import fse from 'fs-extra';
-import glob from 'fast-glob';
+import {
+  createModulePackages,
+  createPackageFile,
+  includeFileInBuild,
+  prepend,
+  typescriptCopy,
+} from './copyFilesUtils.mjs';
 
 const packagePath = process.cwd();
 const buildPath = path.join(packagePath, './build');

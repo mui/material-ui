@@ -1,12 +1,13 @@
 # @mui/codemod
 
-> Codemod scripts for MUI
+> Codemod scripts for Material UI, Base UI, MUI System, Joy UI.
 
 [![npm version](https://img.shields.io/npm/v/@mui/codemod.svg?style=flat-square)](https://www.npmjs.com/package/@mui/codemod)
 [![npm downloads](https://img.shields.io/npm/dm/@mui/codemod.svg?style=flat-square)](https://www.npmjs.com/package/@mui/codemod)
 
 This repository contains a collection of codemod scripts based for use with
-[jscodeshift](https://github.com/facebook/jscodeshift) that help update MUI APIs.
+[jscodeshift](https://github.com/facebook/jscodeshift) that help update the APIs.
+Some of the codemods also run [postcss](https://github.com/postcss/postcss) plugins to update CSS files.
 
 ## Setup & run
 
@@ -91,6 +92,92 @@ A combination of all deprecations.
 npx @mui/codemod@latest deprecations/accordion-props <path>
 ```
 
+#### `accordion-summary-classes`
+
+JS transforms:
+
+```diff
+ import { accordionSummaryClasses } from '@mui/material/AccordionSummary';
+
+ MuiAccordionSummary: {
+   styleOverrides: {
+     root: {
+-      [`& .${accordionSummaryClasses.contentGutters}`]: {
++      [`&.${accordionSummaryClasses.gutters} .${accordionSummaryClasses.content}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+```diff
+ MuiAccordionSummary: {
+   styleOverrides: {
+     root: {
+-      '& .MuiAccordionSummary-contentGutters': {
++      '&.MuiAccordionSummary-gutters .MuiAccordionSummary-content': {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiAccordionSummary-root .MuiAccordionSummary-contentGutters
++.MuiAccordionSummary-root.MuiAccordionSummary-gutters .MuiAccordionSummary-content
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/accordion-summary-classes <path>
+```
+
+#### `alert-props`
+
+```diff
+ <Alert
+-  components={{ CloseButton: CustomButton }}
++  slots={{ closeButton: CustomButton }}
+-  componentsProps={{ closeButton: { testid: 'test-id' } }}
++  slotProps={{ closeButton: { testid: 'test-id' } }}
+ />
+```
+
+```diff
+ MuiAlert: {
+   defaultProps: {
+-    components: { CloseButton: CustomButton }
++    slots: { closeButton: CustomButton },
+-    componentsProps: { closeButton: { testid: 'test-id' }}
++    slotProps: { closeButton: { testid: 'test-id' } },
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/alert-props <path>
+```
+
+#### `avatar-props`
+
+```diff
+ <Avatar
+-  imgProps={{
+-    onError: () => {},
+-    onLoad: () => {},
++  slotProps={{
++    img: {
++      onError: () => {},
++      onLoad: () => {},
++    }
+   }}
+ />;
+```
+
 #### `divider-props`
 
 ```diff
@@ -102,6 +189,71 @@ npx @mui/codemod@latest deprecations/accordion-props <path>
 
 ```bash
 npx @mui/codemod@latest deprecations/divider-props <path>
+```
+
+#### `pagination-item-classes`
+
+JS transforms:
+
+```diff
+ import { paginationItemClasses } from '@mui/material/PaginationItem';
+
+ MuiPaginationItem: {
+   styleOverrides: {
+     root: {
+-      [`&.${paginationItemClasses.textPrimary}`]: {
++      [`&.${paginationItemClasses.text}.${paginationItemClasses.colorPrimary}`]: {
+         color: 'red',
+        },
+-      [`&.${paginationItemClasses.textSecondary}`]: {
++      [`&.${paginationItemClasses.text}.${paginationItemClasses.colorSecondary}`]: {
+         color: 'red',
+        },
+-      [`&.${paginationItemClasses.outlinedPrimary}`]: {
++      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.colorPrimary}`]: {
+         color: 'red',
+        },
+-      [`&.${paginationItemClasses.outlinedSecondary}`]: {
++      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.colorSecondary}`]: {
+         color: 'red',
+        },
+-      '&.MuiPaginationItem-textPrimary': {
++      '&.MuiPaginationItem-text.MuiPaginationItem-colorPrimary': {
+         color: 'red',
+        },
+-      '&.MuiPaginationItem-textSecondary': {
++      '&.MuiPaginationItem-text.MuiPaginationItem-colorSecondary': {
+         color: 'red',
+        },
+-      '&.MuiPaginationItem-outlinedPrimary': {
++      '&.MuiPaginationItem-outlined.MuiPaginationItem-colorPrimary': {
+         color: 'red',
+        },
+-      '&.MuiPaginationItem-outlinedSecondary': {
++      '&.MuiPaginationItem-outlined.MuiPaginationItem-colorSecondary': {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiPaginationItem-textPrimary
++.MuiPaginationItem-text.MuiPaginationItem-primary
+-.MuiPaginationItem-textSecondary
++.MuiPaginationItem-text.MuiPaginationItem-secondary
+-.MuiPaginationItem-outlinedPrimary
++.MuiPaginationItem-outlined.MuiPaginationItem-primary
+-.MuiPaginationItem-outlinedSecondary
++.MuiPaginationItem-outlined.MuiPaginationItem-secondary
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/pagination-item-classes <path>
 ```
 
 ### v5.0.0
@@ -1218,7 +1370,7 @@ You can find more details about this breaking change in the migration guide.
 
 #### `theme-augment`
 
-Adds `DefaultTheme` module augmentation to typescript projects.
+Adds `DefaultTheme` module augmentation to TypeScript projects.
 
 ```bash
 npx @mui/codemod@latest v5.0.0/theme-augment <path>

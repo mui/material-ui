@@ -3,8 +3,9 @@ import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
-import { elementTypeAcceptingRef, unstable_useTimeout as useTimeout } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import useTimeout from '@mui/utils/useTimeout';
+import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
+import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { duration } from '../styles/createTransitions';
@@ -286,9 +287,11 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
             [isHorizontal ? 'minWidth' : 'minHeight']: collapsedSize,
             ...style,
           }}
-          ownerState={{ ...ownerState, state }}
           ref={handleRef}
           {...childProps}
+          // `ownerState` is set after `childProps` to override any existing `ownerState` property in `childProps`
+          // that might have been forwarded from the Transition component.
+          ownerState={{ ...ownerState, state }}
         >
           <CollapseWrapper
             ownerState={{ ...ownerState, state }}

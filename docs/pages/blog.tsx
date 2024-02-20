@@ -25,9 +25,10 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import { authors as AUTHORS } from 'docs/src/modules/components/TopLayoutBlog';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import generateRssFeed from 'docs/scripts/generateRSSFeed';
 import Section from 'docs/src/layouts/Section';
+import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import { getAllBlogPosts, BlogPost } from 'docs/lib/sourcing';
 
 export const getStaticProps = () => {
@@ -41,33 +42,25 @@ export const getStaticProps = () => {
 function PostPreview(props: BlogPost) {
   return (
     <React.Fragment>
-      <Box sx={{ display: 'flex', gap: 1, mb: 1.5 }}>
+      <Box sx={{ display: 'flex', gap: 0.5, mb: 1.5 }}>
         {props.tags.map((tag) => (
           <Chip
             key={tag}
             label={tag}
             size="small"
-            sx={[
-              (theme) => ({
-                fontWeight: 500,
-                color: (theme.vars || theme).palette.primary[600],
-                background: (theme.vars || theme).palette.primary[50],
-                border: '1px solid',
-                borderColor: (theme.vars || theme).palette.primary[100],
-                '&:hover': {
-                  background: (theme.vars || theme).palette.primary[50],
-                },
+            variant="outlined"
+            color="primary"
+            sx={(theme) => ({
+              height: 22,
+              fontWeight: 'medium',
+              fontSize: theme.typography.pxToRem(13),
+              '& .MuiChip-label': {
+                px: '6px',
+              },
+              ...theme.applyDarkStyles({
+                color: (theme.vars || theme).palette.grey[200],
               }),
-              (theme) =>
-                theme.applyDarkStyles({
-                  color: (theme.vars || theme).palette.primary[100],
-                  background: alpha(theme.palette.primary[900], 0.4),
-                  borderColor: alpha(theme.palette.primary[800], 0.5),
-                  '&:hover': {
-                    background: alpha(theme.palette.primary[900], 0.4),
-                  },
-                }),
-            ]}
+            })}
           />
         ))}
       </Box>
@@ -144,7 +137,7 @@ function PostPreview(props: BlogPost) {
       >
         <Box sx={{ position: 'relative' }}>
           {props.authors && (
-            <Typography variant="body2" fontWeight="500">
+            <Typography variant="body2" fontWeight="medium">
               {props.authors
                 .slice(0, 3)
                 .map((userId) => {
@@ -163,7 +156,7 @@ function PostPreview(props: BlogPost) {
             </Typography>
           )}
           {props.date && (
-            <Typography variant="caption" fontWeight="400" color="text.secondary">
+            <Typography variant="caption" fontWeight="regular" color="text.secondary">
               {new Date(props.date).toDateString()}
             </Typography>
           )}
@@ -266,98 +259,70 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
       />
       <AppHeader />
       <main id="main-content">
-        <Box
-          sx={(theme) => ({
-            background: `linear-gradient(180deg, #FFF 50%,
-          ${(theme.vars || theme).palette.primary[50]} 100%)
-        `,
-            ...theme.applyDarkStyles({
-              background: `linear-gradient(180deg, ${
-                (theme.vars || theme).palette.primaryDark[900]
-              } 50%,
-          ${alpha(theme.palette.primary[800], 0.2)} 100%)
-          `,
-            }),
-          })}
-        >
-          <Section bg="transparent" cozy>
-            <Typography
-              variant="body2"
-              color="primary.main"
-              fontWeight="bold"
-              textAlign="center"
-              gutterBottom
-            >
-              Blog
-            </Typography>
-            <Typography
-              component="h1"
-              variant="h2"
-              textAlign="center"
-              sx={{ mb: { xs: 5, md: 10 } }}
-            >
-              The <GradientText>latest</GradientText> about MUI
-            </Typography>
-            <Box
-              component="ul"
-              sx={{
-                display: 'grid',
-                m: 0,
-                p: 0,
-                gap: 2,
-                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              }}
-            >
-              {[firstPost, secondPost].map((post) => (
-                <Paper
-                  key={post.slug}
-                  component="li"
-                  variant="outlined"
-                  sx={[
-                    {
-                      p: 2,
-                      display: 'flex',
-                      flexDirection: 'column',
-                      position: 'relative',
-                      transition: 'all ease 120ms',
-                      '&:hover, &:focus-within': {
-                        borderColor: 'grey.300',
-                        boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
-                      },
-                      '&:focus-within': {
-                        '& a': {
-                          outline: 0,
-                        },
+        <Section cozy bg="gradient">
+          <SectionHeadline
+            alwaysCenter
+            overline="Blog"
+            title={
+              <Typography variant="h2" component="h1">
+                Stay <GradientText>in the loop</GradientText> with
+                <br /> the latest about MUI&apos;s products
+              </Typography>
+            }
+          />
+          <Box
+            component="ul"
+            sx={{
+              display: 'grid',
+              m: 0,
+              p: 0,
+              pt: 8,
+              gap: 2,
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            }}
+          >
+            {[firstPost, secondPost].map((post) => (
+              <Paper
+                key={post.slug}
+                component="li"
+                variant="outlined"
+                sx={[
+                  {
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    position: 'relative',
+                    boxShadow: '0px 4px 16px rgba(170, 180, 190, 0.2)',
+                    '&:focus-within': {
+                      '& a': {
+                        outline: 0,
                       },
                     },
-                    (theme) =>
-                      theme.applyDarkStyles({
-                        '&:hover, &:focus-within': {
-                          borderColor: 'primary.600',
-                          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.5)',
-                        },
-                      }),
-                  ]}
-                >
-                  {post.image && (
-                    <Box
-                      component="img"
-                      src={post.image}
-                      sx={{
-                        aspectRatio: '16 / 9',
-                        width: '100%',
-                        height: 'auto',
-                        objectFit: 'cover',
-                        borderRadius: '4px',
-                      }}
-                    />
-                  )}
-                  <PostPreview {...post} />
-                </Paper>
-              ))}
-            </Box>
-          </Section>
-        </Box>
+                  },
+                  (theme) =>
+                    theme.applyDarkStyles({
+                      boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.4)',
+                    }),
+                ]}
+              >
+                {post.image && (
+                  <Box
+                    component="img"
+                    src={post.image}
+                    sx={{
+                      aspectRatio: '16 / 9',
+                      width: '100%',
+                      height: 'auto',
+                      objectFit: 'cover',
+                      borderRadius: '4px',
+                    }}
+                  />
+                )}
+                <PostPreview {...post} />
+              </Paper>
+            ))}
+          </Box>
+        </Section>
         <Divider />
         <Container
           ref={postListRef}
@@ -398,11 +363,11 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                 p: 2,
                 borderRadius: 1,
                 border: '1px solid',
-                background: 'rgba(255, 255, 255, 0.2)',
-                borderColor: (theme.vars || theme).palette.grey[200],
+                borderColor: (theme.vars || theme).palette.divider,
+                boxShadow: '0px 2px 6px rgba(170, 180, 190, 0.2)',
                 ...theme.applyDarkStyles({
                   background: alpha(theme.palette.primaryDark[700], 0.2),
-                  borderColor: (theme.vars || theme).palette.primaryDark[700],
+                  boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.2)',
                 }),
               })}
             >
@@ -449,8 +414,8 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                   );
                 })}
               </Box>
-              <Divider sx={{ mt: 3, mb: 2 }} />
-              <Typography color="text.primary" fontWeight="semiBold" sx={{ mb: 1 }}>
+              <Divider sx={{ my: 2 }} />
+              <Typography color="text.primary" fontWeight="semiBold" gutterBottom>
                 Want to hear more from us?
               </Typography>
               <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
