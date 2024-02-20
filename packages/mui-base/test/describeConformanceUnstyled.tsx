@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { ClassNameConfigurator } from '@mui/base/utils';
-import { MuiRenderResult, RenderOptions, screen } from './createRenderer';
-import createDescribe from './createDescribe';
 import {
+  MuiRenderResult,
+  RenderOptions,
+  screen,
+  createDescribe,
   ConformanceOptions,
   SlotTestingOptions,
   describeRef,
@@ -11,7 +12,8 @@ import {
   testClassName,
   testComponentProp,
   testReactTestRenderer,
-} from './describeConformance';
+} from '@mui-internal/test-utils';
+import { ClassNameConfigurator } from '@mui/base/utils';
 
 export interface UnstyledConformanceOptions
   extends Omit<Partial<ConformanceOptions>, 'render' | 'skip' | 'classes'> {
@@ -391,7 +393,7 @@ const fullSuite = {
   disableClassGeneration: testDisablingClassGeneration,
 };
 
-function describeConformanceUnstyled(
+function describeConformance(
   minimalElement: React.ReactElement,
   getOptions: () => UnstyledConformanceOptions,
 ) {
@@ -410,4 +412,6 @@ function describeConformanceUnstyled(
   });
 }
 
-export default createDescribe('MUI unstyled component API', describeConformanceUnstyled);
+const describeConformanceUnstyled = createDescribe('Base UI component API', describeConformance);
+
+export { describeConformanceUnstyled };

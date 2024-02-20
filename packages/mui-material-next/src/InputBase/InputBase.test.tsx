@@ -2,13 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import {
-  describeConformance,
-  act,
-  createRenderer,
-  fireEvent,
-  screen,
-} from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
 import FormControl, { useFormControl } from '@mui/material-next/FormControl';
 // TODO v6: replace with material-next/InputAdornment
 import InputAdornment from '@mui/material/InputAdornment';
@@ -23,6 +17,7 @@ import {
   InputBaseOwnerState,
   InputBaseProps,
 } from './InputBase.types';
+import describeConformance from '../../test/describeConformance';
 
 describe('<InputBase />', () => {
   const { render } = createRenderer();

@@ -23,7 +23,7 @@
     "@mui/zero-next-plugin": "workspace:^",
     "@types/node": "^20.5.7",
     "@types/react": "^18.2.55",
-    "@types/react-dom": "^18.2.18",
+    "@types/react-dom": "^18.2.19",
     "eslint": "^8.56.0",
     "typescript": "^5.3.3"
   }

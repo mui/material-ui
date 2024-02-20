@@ -193,7 +193,11 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                 </td>
                 {hasDefaultColumn && (
                   <td className="default-column">
-                    <span className="MuiApi-table-item-default">{propDefault}</span>
+                    {propDefault ? (
+                      <span className="MuiApi-table-item-default">{propDefault}</span>
+                    ) : (
+                      '-'
+                    )}
                   </td>
                 )}
                 <td className="MuiPropTable-description-column">

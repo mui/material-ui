@@ -35,13 +35,13 @@ As a taste of the performance upgrade, here are some early Lighthouse metrics wi
 
 ### Material UI v7
 
-Material UI v7 is where you can expect to see native support for [Material 3](https://m3.material.io/), Google's latest Material Design update, as well as many other design improvements across the component suite.
+Material UI v7 is where you can expect to see native support for [Material Design 3](https://m3.material.io/), Google's latest Material Design update, as well as many other design improvements across the component suite.
 It's tentatively planned for Q4 of 2024.
 
 <img alt="Side-to-side comparison of a Card component using Material Design 2 and 3, respectively." src="/static/blog/2023-material-ui-v6-and-beyond/m2-m3.jpg" width="1200" height="600" loading="lazy" />
 
 The development for this version is already in progress, though!
-See which components already support the Material 3 specs, through the experimental `@mui/material-next` package, by visiting the newly released [All Components page](/material-ui/all-components/).
+See which components already support the M3 specs, through the experimental `@mui/material-next` package, by visiting the newly released [All Components page](/material-ui/all-components/).
 
 ```diff
 -import Button from '@mui/material/Button';

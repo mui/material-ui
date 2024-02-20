@@ -56,6 +56,70 @@ The Accordion's `TransitionProps` was deprecated in favor of `slotProps.transiti
  />
 ```
 
+## AccordionSummary
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#accordion-summary-classes) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/accordion-summary-classes <path>
+```
+
+### .MuiAccordionSummary-contentGutters
+
+The AccordionSummary's `.MuiAccordionSummary-contentGutters` class was deprecated in favor of the `.MuiAccordionSummary-gutters` and `.MuiAccordionSummary-content` classes.
+Bear in mind that the `.MuiAccordionSummary-gutters` class is applied to the component's root, whereas the `.MuiAccordionSummary-contentGutters` and `.MuiAccordionSummary-content` classes are applied to the content element.
+
+```diff
+-.MuiAccordionSummary-root .MuiAccordionSummary-contentGutters
++.MuiAccordionSummary-root.MuiAccordionSummary-gutters .MuiAccordionSummary-content
+ />
+```
+
+```diff
+ import { accordionSummaryClasses } from '@mui/material/AccordionSummary';
+
+ MuiAccordionSummary: {
+   styleOverrides: {
+     root: {
+-      [`& .${accordionSummaryClasses.contentGutters}`]: {
++      [`&.${accordionSummaryClasses.gutters} .${accordionSummaryClasses.content}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+## Alert
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#alert-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/alert-props <path>
+```
+
+### components
+
+The Alert's `components` was deprecated in favor of `slots`:
+
+```diff
+ <Alert
+-  components={{ CloseButton: CustomButton }}
++  slots={{ closeButton: CustomButton }}
+ />
+```
+
+### componentsProps
+
+The Alert's `componentsProps` was deprecated in favor of `slotProps`:
+
+```diff
+ <Alert
+-  componentsProps={{ closeButton: { testid: 'test-id' } }}
++  slotProps={{ closeButton: { testid: 'test-id' } }}
+ />
+```
+
 ## Avatar
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#avatar-props) below to migrate the code as described in the following sections:

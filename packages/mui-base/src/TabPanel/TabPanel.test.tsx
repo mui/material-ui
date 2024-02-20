@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { createMount, createRenderer, describeConformanceUnstyled } from '@mui-internal/test-utils';
+import { createMount, createRenderer } from '@mui-internal/test-utils';
 import { TabPanel, tabPanelClasses } from '@mui/base/TabPanel';
 import { TabsProvider, TabsProviderValue } from '../useTabs';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 describe('<TabPanel />', () => {
   const mount = createMount();

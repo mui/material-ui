@@ -991,7 +991,7 @@ prop `listItemClasses` is removed, use `classes` instead.
 +<MenuItem classes={{...}}>
 ```
 
-Read more about the [MenuItem CSS API](/material-ui/api/menu-item/#css).
+Read more about the [MenuItem CSS API](/material-ui/api/menu-item/#classes).
 
 ## Modal
 
