@@ -10,13 +10,13 @@
     "post-update": "echo \"codesandbox preview only, need an update\" && pnpm update --latest"
   },
   "dependencies": {
-    "@mui/zero-runtime": "workspace:^",
+    "@mui/zero-runtime": "latest",
     "react": "latest",
     "react-dom": "latest",
     "next": "latest"
   },
   "devDependencies": {
-    "@mui/zero-next-plugin": "workspace:^",
+    "@mui/zero-next-plugin": "latest",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
