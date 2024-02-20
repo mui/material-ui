@@ -56,7 +56,7 @@ const TooltipPopper = styled(Popper, {
   },
 })(({ theme, ownerState, open }) => ({
   zIndex: (theme.vars || theme).zIndex.tooltip,
-  pointerEvents: 'none', // disable jss-rtl plugin
+  pointerEvents: 'none',
   ...(!ownerState.disableInteractive && {
     pointerEvents: 'auto',
   }),

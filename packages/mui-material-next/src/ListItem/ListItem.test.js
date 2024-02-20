@@ -1,18 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import {
-  describeConformance,
-  act,
-  createRenderer,
-  fireEvent,
-  queries,
-} from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent, queries } from '@mui-internal/test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ListItemText from '@mui/material-next/ListItemText';
 import ListItemSecondaryAction from '@mui/material-next/ListItemSecondaryAction';
 import ListItem, { listItemClasses as classes } from '@mui/material-next/ListItem';
 import ListContext from '../List/ListContext';
+import describeConformance from '../../test/describeConformance';
 
 const NoContent = React.forwardRef(() => {
   return null;
