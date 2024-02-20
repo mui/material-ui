@@ -4,7 +4,6 @@ import { expect } from 'chai';
 import {
   createRenderer,
   createMount,
-  describeConformance,
   screen,
   fireEvent,
   strictModeDoubleLoggingSuppressed,
@@ -13,6 +12,7 @@ import Menu, { menuClasses as classes } from '@mui/material/Menu';
 import Popover from '@mui/material/Popover';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { MenuPaper } from './Menu';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Menu />', () => {
   const { render } = createRenderer({ clock: 'fake' });

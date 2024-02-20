@@ -58,7 +58,7 @@ import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 ```
 
-The Breadcrumbs component doesn't accept common Joy UI style props like `variant`, `color`, `startDecorator`, or `endDecorator`—but [Link](/joy-ui/react-link/) and [Typography](/joy-ui/react-typography/) do.
+The Breadcrumbs component doesn't accept common Joy UI style props like `variant`, `color`, `startDecorator`, or `endDecorator`—but [Link](/joy-ui/react-link/) and [Typography](/joy-ui/react-typography/) do.
 As such, most custom styles that affect the content should be applied directly to those components rather than Breadcrumbs.
 
 The demo below shows how to add an icon to the Link with `startDecorator` and change the color with the `color` prop:

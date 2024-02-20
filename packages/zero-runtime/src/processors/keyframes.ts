@@ -6,12 +6,13 @@ import type {
   TailProcessorParams,
   ValueCache,
 } from '@wyw-in-js/processor-utils';
+import { serializeStyles, Interpolation } from '@emotion/serialize';
 import { type Replacements, type Rules, ValueType } from '@wyw-in-js/shared';
 import type { CSSInterpolation } from '@emotion/css';
 import { validateParams } from '@wyw-in-js/processor-utils';
 import BaseProcessor from './base-processor';
 import type { IOptions } from './styled';
-import { cache, keyframes } from '../utils/emotion';
+import { cache } from '../utils/emotion';
 
 export type Primitive = string | number | boolean | null | undefined;
 
@@ -98,9 +99,11 @@ export class KeyframesProcessor extends BaseProcessor {
   }
 
   generateArtifacts(styleObjOrTaggged: CSSInterpolation | string[], ...args: Primitive[]) {
-    const keyframeName = keyframes(styleObjOrTaggged, ...args);
-    const cacheCssText = cache.inserted[keyframeName.replace('animation-', '')] as string;
-    const cssText = cacheCssText.replaceAll(keyframeName, '');
+    const { styles } = serializeStyles(
+      [styleObjOrTaggged as Interpolation<{}>, args],
+      cache.registered,
+    );
+    const cssText = `@keyframes {${styles}}`;
 
     const rules: Rules = {
       [this.asSelector]: {
