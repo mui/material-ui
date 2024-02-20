@@ -1,6 +1,7 @@
 const { withZeroPlugin } = require('@mui/zero-next-plugin');
 const { extendTheme } = require('@mui/zero-runtime');
 
+// To learn more about theming, visit https://github.com/mui/material-ui/blob/master/packages/zero-runtime/README.md#theming
 const theme = extendTheme({
   colorSchemes: {
     light: {
@@ -22,4 +23,9 @@ const theme = extendTheme({
   },
 });
 
-module.exports = withZeroPlugin({}, { theme });
+module.exports = withZeroPlugin(
+  {
+    // Your Next.js config
+  },
+  { theme },
+);
