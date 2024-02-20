@@ -266,7 +266,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
             title={
               <Typography variant="h2" component="h1">
                 Stay <GradientText>in the loop</GradientText> with
-                <br /> the latest about MUI's products
+                <br /> the latest about MUI&apos;s products
               </Typography>
             }
           />
