@@ -254,26 +254,4 @@ This removes them from the `theme` object and prevents the corresponding CSS var
 For example, all default global variant color tokens comes with styles for the `:active` pseudo class.
 Here's how you'd remove it from the solid variant.
 
-```jsx
-// ⚠️ If the value is `undefined`, it should be `undefined` for all color schemes.
-const theme = extendTheme({
-  colorSchemes: {
-    light: {
-      palette: {
-        primary: {
-          solidActiveBg: undefined,
-        },
-      },
-    },
-    dark: {
-      palette: {
-        primary: {
-          solidActiveBg: undefined,
-        },
-      },
-    },
-  },
-});
-```
-
-{{"demo": "RemoveActiveTokens.js"}}
+{{"demo": "RemoveActiveTokens.js", "defaultCodeOpen": true}}
