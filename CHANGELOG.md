@@ -1324,7 +1324,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [core] Update eslint rules (#39178) @romgrk
 - [core] Fix Greg GitHub slug @oliviertassinari
 - [core] Priority Support casing normalization @oliviertassinari
-- [website] Add Heat map in pricing page (#39269) @oliviertassinari
+- [website] Add Heatmap in pricing page (#39269) @oliviertassinari
 - [website] Update `React Engineer - xCharts` Ashby link (#39172) @DanailH
 - [website] Add Charts to the pricing table (#38680) @alexfauquette
 - [website] Polish career experience @oliviertassinari
