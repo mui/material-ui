@@ -40,7 +40,7 @@ export default function AddressForm() {
             sx={{ minWidth: 280 }}
           />
         </FormGrid>
-        <FormGrid item xs={6} sm={6}>
+        <FormGrid item xs={6}>
           <FormLabel required>Country</FormLabel>
           <InputBase
             id="country"
@@ -52,7 +52,7 @@ export default function AddressForm() {
             sx={{ minWidth: { xs: '', sm: 280 } }}
           />
         </FormGrid>
-        <FormGrid item xs={6} sm={6}>
+        <FormGrid item xs={6}>
           <FormLabel required>Zip / Postal code</FormLabel>
           <InputBase
             id="zip"
@@ -89,7 +89,7 @@ export default function AddressForm() {
             sx={{ minWidth: 280 }}
           />
         </FormGrid>
-        <FormGrid item xs={6} sm={6}>
+        <FormGrid item xs={6}>
           <FormLabel required>City</FormLabel>
           <InputBase
             id="City"
@@ -101,7 +101,7 @@ export default function AddressForm() {
             sx={{ minWidth: { xs: '', sm: 280 } }}
           />
         </FormGrid>
-        <FormGrid item xs={6} sm={6}>
+        <FormGrid item xs={6}>
           <FormLabel required>State</FormLabel>
           <InputBase
             id="State"

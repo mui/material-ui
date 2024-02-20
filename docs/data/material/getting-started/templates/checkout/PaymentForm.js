@@ -91,7 +91,7 @@ export default function PaymentForm() {
             sx={{ minWidth: 280 }}
           />
         </FormGrid>
-        <FormGrid item xs={6} md={6}>
+        <FormGrid item xs={6}>
           <FormLabel required>Expiry date</FormLabel>
           <InputBase
             value={expiryDate}
@@ -105,7 +105,7 @@ export default function PaymentForm() {
             sx={{ minWidth: { xs: '', sm: 280 }, maxHeight: '40px' }}
           />
         </FormGrid>
-        <FormGrid item xs={6} md={6}>
+        <FormGrid item xs={6}>
           <FormLabel required>CVV</FormLabel>
           <InputBase
             value={cvv}

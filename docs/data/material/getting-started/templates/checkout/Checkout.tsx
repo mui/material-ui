@@ -141,7 +141,7 @@ export default function Checkout() {
             alignItems: 'start',
             pt: 4,
             px: 10,
-            gap: 16,
+            gap: 8,
           }}
         >
           <Box
@@ -189,7 +189,7 @@ export default function Checkout() {
             alignItems: 'start',
             pt: { xs: 2, sm: 4 },
             px: { xs: 2, sm: 10 },
-            gap: { xs: 2, sm: 16 },
+            gap: { xs: 2, sm: 8 },
           }}
         >
           <Box
