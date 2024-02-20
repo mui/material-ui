@@ -274,9 +274,7 @@ export const SliderThumb = styled('span', {
   },
   variants: [
     ...Object.keys((theme.vars ?? theme).palette)
-      .filter(
-        (key) => theme.palette[key]?.main || (theme.vars && theme.vars.palette[key]?.mainChannel),
-      )
+      .filter((key) => (theme.vars ?? theme).palette[key].main)
       .map((color) => ({
         props: { color },
         style: {

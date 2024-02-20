@@ -9,14 +9,14 @@ const HalfWidth = styled.div(({ theme }) => ({
   width: '50%',
   maxHeight: 100,
   padding: 20,
-  // border: `1px solid ${theme.vars.palette.primary.main}`,
+  border: `1px solid ${theme.vars.palette.primary.main}`,
 }));
 
 export default function SliderPage() {
   const [value, setValue] = React.useState(50);
   const [isColorPrimary, setIsColorPrimary] = React.useState(true);
   const [size, setSize] = React.useState('medium');
-  const [showMarks, setShowMarks] = React.useState(true);
+  const [showMarks, setShowMarks] = React.useState(false);
   const [isTrackInverted, setIsTrackInverted] = React.useState(false);
   const [disabled, setDisabled] = React.useState(false);
   const [isHorizontal, setIsHorizontal] = React.useState(true);
