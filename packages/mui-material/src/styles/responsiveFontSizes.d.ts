@@ -9,7 +9,7 @@ export interface ResponsiveFontSizesOptions {
   variants?: Array<keyof Typography>;
 }
 
-export default function responsiveFontSizes(
-  theme: Theme,
+export default function responsiveFontSizes<T extends Pick<Theme, 'typography' | 'breakpoints'>>(
+  theme: T,
   options?: ResponsiveFontSizesOptions,
-): Theme;
+): T;
