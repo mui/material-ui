@@ -407,9 +407,11 @@ const Root = styled('div')(
       // Allows to remove link arrows for images
       display: 'none',
     },
-    '& a[href*="carbonads"][target="_blank"]::after': {
-      // Remove link arrow for carbon ads
-      display: 'none',
+    '& .ea-placement, & .carbonads, & #carbonads': {
+      // Remove link arrow for ads
+      '& a[target="_blank"]::after': {
+        display: 'none',
+      },
     },
     '& a, & a code': {
       // Style taken from the Link component
