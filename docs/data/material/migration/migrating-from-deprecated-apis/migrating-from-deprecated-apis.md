@@ -156,41 +156,9 @@ npx @mui/codemod@latest deprecations/button-classes <path>
 
 ### Composed CSS classes
 
-- `.MuiButton-textInherit` deprecated in favor of `.MuiButton-text.MuiButton-colorInherit`
-- `.MuiButton-textPrimary` deprecated in favor of `.MuiButton-text.MuiButton-colorPrimary`
-- `.MuiButton-textSecondary` deprecated in favor of `.MuiButton-text.MuiButton-colorSecondary`
-- `.MuiButton-textSuccess` deprecated in favor of `.MuiButton-text.MuiButton-colorSuccess`
-- `.MuiButton-textError` deprecated in favor of `.MuiButton-text.MuiButton-colorError`
-- `.MuiButton-textInfo` deprecated in favor of `.MuiButton-text.MuiButton-colorInfo`
-- `.MuiButton-textWarning` deprecated in favor of `.MuiButton-text.MuiButton-colorWarning`
-- `.MuiButton-outlinedInherit` deprecated in favor of `.MuiButton-outlined.MuiButton-colorInherit`
-- `.MuiButton-outlinedPrimary` deprecated in favor of `.MuiButton-outlined.MuiButton-colorPrimary`
-- `.MuiButton-outlinedSecondary` deprecated in favor of `.MuiButton-outlined.MuiButton-colorSecondary`
-- `.MuiButton-outlinedSuccess` deprecated in favor of `.MuiButton-outlined.MuiButton-colorSuccess`
-- `.MuiButton-outlinedError` deprecated in favor of `.MuiButton-outlined.MuiButton-colorError`
-- `.MuiButton-outlinedInfo` deprecated in favor of `.MuiButton-outlined.MuiButton-colorInfo`
-- `.MuiButton-outlinedWarning` deprecated in favor of `.MuiButton-outlined.MuiButton-colorWarning`
-- `.MuiButton-containedInherit` deprecated in favor of `.MuiButton-contained.MuiButton-colorInherit`
-- `.MuiButton-containedPrimary` deprecated in favor of `.MuiButton-contained.MuiButton-colorPrimary`
-- `.MuiButton-containedSecondary` deprecated in favor of `.MuiButton-contained.MuiButton-colorSecondary`
-- `.MuiButton-containedSuccess` deprecated in favor of `.MuiButton-contained.MuiButton-colorSuccess`
-- `.MuiButton-containedError` deprecated in favor of `.MuiButton-contained.MuiButton-colorError`
-- `.MuiButton-containedInfo` deprecated in favor of `.MuiButton-contained.MuiButton-colorInfo`
-- `.MuiButton-containedWarning` deprecated in favor of `.MuiButton-contained.MuiButton-colorWarning`
-- `.MuiButton-textSizeSmall` deprecated in favor of `.MuiButton-text.MuiButton-sizeSmall`
-- `.MuiButton-textSizeLarge` deprecated in favor of `.MuiButton-text.MuiButton-sizeLarge`
-- `.MuiButton-outlinedSizeSmall` deprecated in favor of `.MuiButton-outlined.MuiButton-sizeSmall`
-- `.MuiButton-outlinedSizeLarge` deprecated in favor of `.MuiButton-outlined.MuiButton-sizeLarge`
-- `.MuiButton-containedSizeSmall` deprecated in favor of `.MuiButton-contained.MuiButton-sizeSmall`
-- `.MuiButton-containedSizeLarge` deprecated in favor of `.MuiButton-contained.MuiButton-sizeLarge`
-- `.MuiButton-textSizeMedium` deprecated in favor of `.MuiButton-text.MuiButton-sizeMedium`
-- `.MuiButton-outlinedSizeMedium` deprecated in favor of `.MuiButton-outlined.MuiButton-sizeMedium`
-- `.MuiButton-containedSizeMedium` deprecated in favor of `.MuiButton-contained.MuiButton-sizeMedium`
-- `.MuiButton-iconSizeSmall` deprecated in favor of `.MuiButton-icon.MuiButton-sizeSmall`
-- `.MuiButton-iconSizeMedium` deprecated in favor of `.MuiButton-icon.MuiButton-sizeMedium`
-- `.MuiButton-iconSizeLarge` deprecated in favor of `.MuiButton-icon.MuiButton-sizeLarge`
+The CSS classes composing the `variant` and `color` prop values, as well as those composing the `variant` and `size` prop values, along with the icon size CSS classes, have been removed.
 
-Here's an example on how to migrate:
+Here's how to migrate:
 
 ```diff
 -.MuiButton-textInherit
