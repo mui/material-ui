@@ -62,7 +62,7 @@ const Item = styled(
       ...(subheader && {
         marginTop: theme.spacing(1),
         textTransform: 'uppercase',
-        letterSpacing: '.08rem',
+        letterSpacing: '.1rem',
         fontWeight: theme.typography.fontWeightBold,
         fontSize: theme.typography.pxToRem(11),
         '&::before': {
@@ -101,25 +101,13 @@ const Item = styled(
         color: (theme.vars || theme).palette.primary[600],
         backgroundColor: (theme.vars || theme).palette.primary[50],
         '&:hover': {
-          backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-            : alpha(
-                theme.palette.primary.main,
-                theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-              ),
+          backgroundColor: alpha(theme.palette.primary[100], 0.8),
+          color: (theme.vars || theme).palette.primary[700],
           '@media (hover: none)': {
             backgroundColor: theme.vars
               ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
               : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
           },
-        },
-        '&.Mui-focusVisible': {
-          backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-            : alpha(
-                theme.palette.primary.main,
-                theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-              ),
         },
         '&::before': {
           background: (theme.vars || theme).palette.primary[400],
@@ -138,19 +126,16 @@ const Item = styled(
           },
         },
       }),
-      '&.Mui-focusVisible': {
-        backgroundColor: (theme.vars || theme).palette.divider,
-      },
       [theme.breakpoints.up('md')]: {
         paddingTop: 4,
         paddingBottom: 4,
       },
       '& .ItemButtonIcon': {
-        marginRight: '5px',
+        marginRight: '6px',
         color: (theme.vars || theme).palette.primary.main,
       },
       '&:hover .ItemButtonIcon': {
-        color: (theme.vars || theme).palette.text.primary,
+        color: (theme.vars || theme).palette.primary.light,
         '@media (hover: none)': {
           color: (theme.vars || theme).palette.primary.main,
         },
@@ -164,6 +149,10 @@ const Item = styled(
       '&.app-drawer-active': {
         color: (theme.vars || theme).palette.primary[300],
         backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+        '&:hover': {
+          backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+          color: (theme.vars || theme).palette.primary[200],
+        },
         '&::before': {
           background: (theme.vars || theme).palette.primary[400],
         },
