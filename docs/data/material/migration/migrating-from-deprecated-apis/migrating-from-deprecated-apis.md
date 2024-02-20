@@ -154,749 +154,249 @@ Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-code
 npx @mui/codemod@latest deprecations/button-classes <path>
 ```
 
-### .MuiButton-textPrimary
+### Composed CSS classes
 
-The Buttons's `.MuiButton-textPrimary` class was deprecated in favor of the `.MuiButton-text` and `.MuiButton-primary` classes.
+- `.MuiButton-textInherit` deprecated in favor of `.MuiButton-text.MuiButton-colorInherit`
+- `.MuiButton-textPrimary` deprecated in favor of `.MuiButton-text.MuiButton-colorPrimary`
+- `.MuiButton-textSecondary` deprecated in favor of `.MuiButton-text.MuiButton-colorSecondary`
+- `.MuiButton-textSuccess` deprecated in favor of `.MuiButton-text.MuiButton-colorSuccess`
+- `.MuiButton-textError` deprecated in favor of `.MuiButton-text.MuiButton-colorError`
+- `.MuiButton-textInfo` deprecated in favor of `.MuiButton-text.MuiButton-colorInfo`
+- `.MuiButton-textWarning` deprecated in favor of `.MuiButton-text.MuiButton-colorWarning`
+- `.MuiButton-outlinedInherit` deprecated in favor of `.MuiButton-outlined.MuiButton-colorInherit`
+- `.MuiButton-outlinedPrimary` deprecated in favor of `.MuiButton-outlined.MuiButton-colorPrimary`
+- `.MuiButton-outlinedSecondary` deprecated in favor of `.MuiButton-outlined.MuiButton-colorSecondary`
+- `.MuiButton-outlinedSuccess` deprecated in favor of `.MuiButton-outlined.MuiButton-colorSuccess`
+- `.MuiButton-outlinedError` deprecated in favor of `.MuiButton-outlined.MuiButton-colorError`
+- `.MuiButton-outlinedInfo` deprecated in favor of `.MuiButton-outlined.MuiButton-colorInfo`
+- `.MuiButton-outlinedWarning` deprecated in favor of `.MuiButton-outlined.MuiButton-colorWarning`
+- `.MuiButton-containedInherit` deprecated in favor of `.MuiButton-contained.MuiButton-colorInherit`
+- `.MuiButton-containedPrimary` deprecated in favor of `.MuiButton-contained.MuiButton-colorPrimary`
+- `.MuiButton-containedSecondary` deprecated in favor of `.MuiButton-contained.MuiButton-colorSecondary`
+- `.MuiButton-containedSuccess` deprecated in favor of `.MuiButton-contained.MuiButton-colorSuccess`
+- `.MuiButton-containedError` deprecated in favor of `.MuiButton-contained.MuiButton-colorError`
+- `.MuiButton-containedInfo` deprecated in favor of `.MuiButton-contained.MuiButton-colorInfo`
+- `.MuiButton-containedWarning` deprecated in favor of `.MuiButton-contained.MuiButton-colorWarning`
+- `.MuiButton-textSizeSmall` deprecated in favor of `.MuiButton-text.MuiButton-sizeSmall`
+- `.MuiButton-textSizeLarge` deprecated in favor of `.MuiButton-text.MuiButton-sizeLarge`
+- `.MuiButton-outlinedSizeSmall` deprecated in favor of `.MuiButton-outlined.MuiButton-sizeSmall`
+- `.MuiButton-outlinedSizeLarge` deprecated in favor of `.MuiButton-outlined.MuiButton-sizeLarge`
+- `.MuiButton-containedSizeSmall` deprecated in favor of `.MuiButton-contained.MuiButton-sizeSmall`
+- `.MuiButton-containedSizeLarge` deprecated in favor of `.MuiButton-contained.MuiButton-sizeLarge`
+- `.MuiButton-textSizeMedium` deprecated in favor of `.MuiButton-text.MuiButton-sizeMedium`
+- `.MuiButton-outlinedSizeMedium` deprecated in favor of `.MuiButton-outlined.MuiButton-sizeMedium`
+- `.MuiButton-containedSizeMedium` deprecated in favor of `.MuiButton-contained.MuiButton-sizeMedium`
+- `.MuiButton-iconSizeSmall` deprecated in favor of `.MuiButton-icon.MuiButton-sizeSmall`
+- `.MuiButton-iconSizeMedium` deprecated in favor of `.MuiButton-icon.MuiButton-sizeMedium`
+- `.MuiButton-iconSizeLarge` deprecated in favor of `.MuiButton-icon.MuiButton-sizeLarge`
 
-```diff
--.MuiButton-textPrimary
-+.MuiButton-text.MuiButton-primary
- />
-```
-
-```diff
- import { button } from '@mui/material/Button';
-
- MuiButton: {
-   styleOverrides: {
-     root: {
--      [`& .${button.textPrimary}`]: {
-+      [`& .${button.text}.${button.primary}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-### .MuiButton-textInherit
-
-The Button's `.MuiButton-textInherit` class was deprecated in favor of the `.MuiButton-text` and `.MuiButton-inherit` classes.
+Here's an example on how to migrate:
 
 ```diff
 -.MuiButton-textInherit
-+.MuiButton-text.MuiButton-inherit
- />
-```
-
-```diff
- import { button } from '@mui/material/Button';
-
- MuiButton: {
-   styleOverrides: {
-     root: {
--      [`& .${button.textInherit}`]: {
-+      [`& .${button.text}.${button.inherit}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-### .MuiButton-textSecondary
-
-The Buttons's `.MuiButton-textSecondary` class was deprecated in favor of the `.MuiButton-text` and `.MuiButton-secondary` classes.
-
-```diff
++.MuiButton-text.MuiButton-colorInherit
+-.MuiButton-textPrimary
++.MuiButton-text.MuiButton-colorPrimary
 -.MuiButton-textSecondary
-+.MuiButton-text.MuiButton-secondary
- />
-```
-
-```diff
- import { button } from '@mui/material/Button';
-
- MuiButton: {
-   styleOverrides: {
-     root: {
--      [`& .${button.textSecondary}`]: {
-+      [`& .${button.text}.${button.secondary}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-### .MuiButton-textInfo
-
-The Button's `.MuiButton-textInfo` class was deprecated in favor of the `.MuiButton-text` and `.MuiButton-info` classes.
-
-```diff
--.MuiButton-textInfo
-+.MuiButton-text.MuiButton-info
- />
-```
-
-```diff
- import { button } from '@mui/material/Button';
-
- MuiButton: {
-   styleOverrides: {
-     root: {
--      [`& .${button.textInfo}`]: {
-+      [`& .${button.text}.${button.info}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-### .MuiButton-textWarning
-
-The Buttons's `.MuiButton-textWarning` class was deprecated in favor of the `.MuiButton-text` and `.MuiButton-warning` classes.
-
-```diff
--.MuiButton-textWarning
-+.MuiButton-text.MuiButton-warning
- />
-```
-
-```diff
- import { button } from '@mui/material/Button';
-
- MuiButton: {
-   styleOverrides: {
-     root: {
--      [`& .${button.textWarning}`]: {
-+      [`& .${button.text}.${button.warning}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-### .MuiButton-textSuccess
-
-The Button's `.MuiButton-textSuccess` class was deprecated in favor of the `.MuiButton-text` and `.MuiButton-success` classes.
-
-```diff
++.MuiButton-text.MuiButton-colorSecondary
 -.MuiButton-textSuccess
-+.MuiButton-text.MuiButton-success
- />
-```
-
-```diff
- import { button } from '@mui/material/Button';
-
- MuiButton: {
-   styleOverrides: {
-     root: {
--      [`& .${button.textSuccess}`]: {
-+      [`& .${button.text}.${button.success}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-### .MuiButton-textError
-
-The Button's `.MuiButton-textError` class was deprecated in favor of the `.MuiButton-text` and `.MuiButton-error` classes.
-
-```diff
++.MuiButton-text.MuiButton-colorSuccess
 -.MuiButton-textError
-+.MuiButton-text.MuiButton-error
- />
-```
-
-```diff
- import { button } from '@mui/material/Button';
-
- MuiButton: {
-   styleOverrides: {
-     root: {
--      [`& .${button.textError}`]: {
-+      [`& .${button.text}.${button.error}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-### .MuiButton-outlinedPrimary
-
-The Buttons's `.MuiButton-outlinedPrimary` class was deprecated in favor of the `.MuiButton-outlined` and `.MuiButton-primary` classes.
-
-```diff
--.MuiButton-outlinedPrimary
-+.MuiButton-outlined.MuiButton-primary
- />
-```
-
-```diff
- import { button } from '@mui/material/Button';
-
- MuiButton: {
-   styleOverrides: {
-     root: {
--      [`& .${button.outlinedPrimary}`]: {
-+      [`& .${button.outlined}.${button.primary}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-### .MuiButton-outlinedInherit
-
-The Button's `.MuiButton-outlinedInherit` class was deprecated in favor of the `.MuiButton-outlined` and `.MuiButton-inherit` classes.
-
-```diff
++.MuiButton-text.MuiButton-colorError
+-.MuiButton-textInfo
++.MuiButton-text.MuiButton-colorInfo
+-.MuiButton-textWarning
++.MuiButton-text.MuiButton-colorWarning
 -.MuiButton-outlinedInherit
-+.MuiButton-outlined.MuiButton-inherit
- />
-```
-
-```diff
- import { button } from '@mui/material/Button';
-
- MuiButton: {
-   styleOverrides: {
-     root: {
--      [`& .${button.outlinedInherit}`]: {
-+      [`& .${button.outlined}.${button.inherit}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-### .MuiButton-outlinedSecondary
-
-The Buttons's `.MuiButton-outlinedSecondary` class was deprecated in favor of the `.MuiButton-outlined` and `.MuiButton-secondary` classes.
-
-```diff
++.MuiButton-outlined.MuiButton-colorInherit
+-.MuiButton-outlinedPrimary
++.MuiButton-outlined.MuiButton-colorPrimary
 -.MuiButton-outlinedSecondary
-+.MuiButton-outlined.MuiButton-secondary
- />
-```
-
-```diff
- import { button } from '@mui/material/Button';
-
- MuiButton: {
-   styleOverrides: {
-     root: {
--      [`& .${button.outlinedSecondary}`]: {
-+      [`& .${button.outlined}.${button.secondary}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-### .MuiButton-outlinedInfo
-
-The Button's `.MuiButton-outlinedInfo` class was deprecated in favor of the `.MuiButton-outlined` and `.MuiButton-info` classes.
-
-```diff
--.MuiButton-outlinedInfo
-+.MuiButton-outlined.MuiButton-info
- />
-```
-
-```diff
- import { button } from '@mui/material/Button';
-
- MuiButton: {
-   styleOverrides: {
-     root: {
--      [`& .${button.outlinedInfo}`]: {
-+      [`& .${button.outlined}.${button.info}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-### .MuiButton-outlinedWarning
-
-The Buttons's `.MuiButton-outlinedWarning` class was deprecated in favor of the `.MuiButton-outlined` and `.MuiButton-warning` classes.
-
-```diff
--.MuiButton-outlinedWarning
-+.MuiButton-outlined.MuiButton-warning
- />
-```
-
-```diff
- import { button } from '@mui/material/Button';
-
- MuiButton: {
-   styleOverrides: {
-     root: {
--      [`& .${button.outlinedWarning}`]: {
-+      [`& .${button.outlined}.${button.warning}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-### .MuiButton-outlinedSuccess
-
-The Button's `.MuiButton-outlinedSuccess` class was deprecated in favor of the `.MuiButton-outlined` and `.MuiButton-success` classes.
-
-```diff
++.MuiButton-outlined.MuiButton-colorSecondary
 -.MuiButton-outlinedSuccess
-+.MuiButton-outlined.MuiButton-success
- />
-```
-
-```diff
- import { button } from '@mui/material/Button';
-
- MuiButton: {
-   styleOverrides: {
-     root: {
--      [`& .${button.outlinedSuccess}`]: {
-+      [`& .${button.outlined}.${button.success}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-### .MuiButton-outlinedError
-
-The Button's `.MuiButton-outlinedError` class was deprecated in favor of the `.MuiButton-outlined` and `.MuiButton-error` classes.
-
-```diff
++.MuiButton-outlined.MuiButton-colorSuccess
 -.MuiButton-outlinedError
-+.MuiButton-outlined.MuiButton-error
- />
-```
-
-```diff
- import { button } from '@mui/material/Button';
-
- MuiButton: {
-   styleOverrides: {
-     root: {
--      [`& .${button.outlinedError}`]: {
-+      [`& .${button.outlined}.${button.error}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-### .MuiButton-containedPrimary
-
-The Buttons's `.MuiButton-containedPrimary` class was deprecated in favor of the `.MuiButton-contained` and `.MuiButton-primary` classes.
-
-```diff
--.MuiButton-containedPrimary
-+.MuiButton-contained.MuiButton-primary
- />
-```
-
-```diff
- import { button } from '@mui/material/Button';
-
- MuiButton: {
-   styleOverrides: {
-     root: {
--      [`& .${button.containedPrimary}`]: {
-+      [`& .${button.contained}.${button.primary}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-### .MuiButton-containedInherit
-
-The Button's `.MuiButton-containedInherit` class was deprecated in favor of the `.MuiButton-contained` and `.MuiButton-inherit` classes.
-
-```diff
++.MuiButton-outlined.MuiButton-colorError
+-.MuiButton-outlinedInfo
++.MuiButton-outlined.MuiButton-colorInfo
+-.MuiButton-outlinedWarning
++.MuiButton-outlined.MuiButton-colorWarning
 -.MuiButton-containedInherit
-+.MuiButton-contained.MuiButton-inherit
- />
-```
-
-```diff
- import { button } from '@mui/material/Button';
-
- MuiButton: {
-   styleOverrides: {
-     root: {
--      [`& .${button.containedInherit}`]: {
-+      [`& .${button.contained}.${button.inherit}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-### .MuiButton-containedSecondary
-
-The Buttons's `.MuiButton-containedSecondary` class was deprecated in favor of the `.MuiButton-contained` and `.MuiButton-secondary` classes.
-
-```diff
++.MuiButton-contained.MuiButton-colorInherit
+-.MuiButton-containedPrimary
++.MuiButton-contained.MuiButton-colorPrimary
 -.MuiButton-containedSecondary
-+.MuiButton-contained.MuiButton-secondary
- />
-```
-
-```diff
- import { button } from '@mui/material/Button';
-
- MuiButton: {
-   styleOverrides: {
-     root: {
--      [`& .${button.containedSecondary}`]: {
-+      [`& .${button.contained}.${button.secondary}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-### .MuiButton-containedInfo
-
-The Button's `.MuiButton-containedInfo` class was deprecated in favor of the `.MuiButton-contained` and `.MuiButton-info` classes.
-
-```diff
--.MuiButton-containedInfo
-+.MuiButton-contained.MuiButton-info
- />
-```
-
-```diff
- import { button } from '@mui/material/Button';
-
- MuiButton: {
-   styleOverrides: {
-     root: {
--      [`& .${button.containedInfo}`]: {
-+      [`& .${button.contained}.${button.info}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-### .MuiButton-containedWarning
-
-The Buttons's `.MuiButton-containedWarning` class was deprecated in favor of the `.MuiButton-contained` and `.MuiButton-warning` classes.
-
-```diff
--.MuiButton-containedWarning
-+.MuiButton-contained.MuiButton-warning
- />
-```
-
-```diff
- import { button } from '@mui/material/Button';
-
- MuiButton: {
-   styleOverrides: {
-     root: {
--      [`& .${button.containedWarning}`]: {
-+      [`& .${button.contained}.${button.warning}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-### .MuiButton-containedSuccess
-
-The Button's `.MuiButton-containedSuccess` class was deprecated in favor of the `.MuiButton-contained` and `.MuiButton-success` classes.
-
-```diff
++.MuiButton-contained.MuiButton-colorSecondary
 -.MuiButton-containedSuccess
-+.MuiButton-contained.MuiButton-success
- />
-```
-
-```diff
- import { button } from '@mui/material/Button';
-
- MuiButton: {
-   styleOverrides: {
-     root: {
--      [`& .${button.containedSuccess}`]: {
-+      [`& .${button.contained}.${button.success}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-### .MuiButton-containedError
-
-The Button's `.MuiButton-containedError` class was deprecated in favor of the `.MuiButton-contained` and `.MuiButton-error` classes.
-
-```diff
++.MuiButton-contained.MuiButton-colorSuccess
 -.MuiButton-containedError
-+.MuiButton-contained.MuiButton-error
- />
-```
-
-```diff
- import { button } from '@mui/material/Button';
-
- MuiButton: {
-   styleOverrides: {
-     root: {
--      [`& .${button.containedError}`]: {
-+      [`& .${button.contained}.${button.error}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-### .MuiButton-textSizeSmall
-
-The Button's `.MuiButton-textSizeSmall` class was deprecated in favor of the `.MuiButton-text` and `.MuiButton-sizeSmall` classes.
-
-```diff
++.MuiButton-contained.MuiButton-colorError
+-.MuiButton-containedInfo
++.MuiButton-contained.MuiButton-colorInfo
+-.MuiButton-containedWarning
++.MuiButton-contained.MuiButton-colorWarning
 -.MuiButton-textSizeSmall
 +.MuiButton-text.MuiButton-sizeSmall
- />
-```
-
-```diff
- import { button } from '@mui/material/Button';
-
- MuiButton: {
-   styleOverrides: {
-     root: {
--      [`& .${button.textSizeSmall}`]: {
-+      [`& .${button.text}.${button.sizeSmall}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-### .MuiButton-textSizeMedium
-
-The Button's `.MuiButton-textSizeMedium` class was deprecated in favor of the `.MuiButton-text` and `.MuiButton-sizeMedium` classes.
-
-```diff
--.MuiButton-textSizeMedium
-+.MuiButton-text.MuiButton-sizeMedium
- />
-```
-
-```diff
- import { button } from '@mui/material/Button';
-
- MuiButton: {
-   styleOverrides: {
-     root: {
--      [`& .${button.textSizeMedium}`]: {
-+      [`& .${button.text}.${button.sizeMedium}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-### .MuiButton-textSizeLarge
-
-The Button's `.MuiButton-textSizeLarge` class was deprecated in favor of the `.MuiButton-text` and `.MuiButton-sizeLarge` classes.
-
-```diff
 -.MuiButton-textSizeLarge
 +.MuiButton-text.MuiButton-sizeLarge
- />
-```
-
-```diff
- import { button } from '@mui/material/Button';
-
- MuiButton: {
-   styleOverrides: {
-     root: {
--      [`& .${button.textSizeLarge}`]: {
-+      [`& .${button.text}.${button.sizeLarge}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-### .MuiButton-oulinedSizeSmall
-
-The Button's `.MuiButton-oulinedSizeSmall` class was deprecated in favor of the `.MuiButton-oulined` and `.MuiButton-sizeSmall` classes.
-
-```diff
--.MuiButton-oulinedSizeSmall
-+.MuiButton-oulined.MuiButton-sizeSmall
- />
-```
-
-```diff
- import { button } from '@mui/material/Button';
-
- MuiButton: {
-   styleOverrides: {
-     root: {
--      [`& .${button.oulinedSizeSmall}`]: {
-+      [`& .${button.oulined}.${button.sizeSmall}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-### .MuiButton-oulinedSizeMedium
-
-The Button's `.MuiButton-oulinedSizeMedium` class was deprecated in favor of the `.MuiButton-oulined` and `.MuiButton-sizeMedium` classes.
-
-```diff
--.MuiButton-oulinedSizeMedium
-+.MuiButton-oulined.MuiButton-sizeMedium
- />
-```
-
-```diff
- import { button } from '@mui/material/Button';
-
- MuiButton: {
-   styleOverrides: {
-     root: {
--      [`& .${button.oulinedSizeMedium}`]: {
-+      [`& .${button.oulined}.${button.sizeMedium}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-### .MuiButton-oulinedSizeLarge
-
-The Button's `.MuiButton-oulinedSizeLarge` class was deprecated in favor of the `.MuiButton-oulined` and `.MuiButton-sizeLarge` classes.
-
-```diff
--.MuiButton-oulinedSizeLarge
-+.MuiButton-oulined.MuiButton-sizeLarge
- />
-```
-
-```diff
- import { button } from '@mui/material/Button';
-
- MuiButton: {
-   styleOverrides: {
-     root: {
--      [`& .${button.oulinedSizeLarge}`]: {
-+      [`& .${button.oulined}.${button.sizeLarge}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-### .MuiButton-containedSizeSmall
-
-The Button's `.MuiButton-containedSizeSmall` class was deprecated in favor of the `.MuiButton-contained` and `.MuiButton-sizeSmall` classes.
-
-```diff
+-.MuiButton-outlinedSizeSmall
++.MuiButton-outlined.MuiButton-sizeSmall
+-.MuiButton-outlinedSizeLarge
++.MuiButton-outlined.MuiButton-sizeLarge
 -.MuiButton-containedSizeSmall
 +.MuiButton-contained.MuiButton-sizeSmall
- />
-```
-
-```diff
- import { button } from '@mui/material/Button';
-
- MuiButton: {
-   styleOverrides: {
-     root: {
--      [`& .${button.containedSizeSmall}`]: {
-+      [`& .${button.contained}.${button.sizeSmall}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-### .MuiButton-containedSizeMedium
-
-The Button's `.MuiButton-containedSizeMedium` class was deprecated in favor of the `.MuiButton-contained` and `.MuiButton-sizeMedium` classes.
-
-```diff
--.MuiButton-containedSizeMedium
-+.MuiButton-contained.MuiButton-sizeMedium
- />
-```
-
-```diff
- import { button } from '@mui/material/Button';
-
- MuiButton: {
-   styleOverrides: {
-     root: {
--      [`& .${button.containedSizeMedium}`]: {
-+      [`& .${button.contained}.${button.sizeMedium}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-### .MuiButton-containedSizeLarge
-
-The Button's `.MuiButton-containedSizeLarge` class was deprecated in favor of the `.MuiButton-contained` and `.MuiButton-sizeLarge` classes.
-
-```diff
 -.MuiButton-containedSizeLarge
 +.MuiButton-contained.MuiButton-sizeLarge
- />
+-.MuiButton-textSizeMedium
++.MuiButton-text.MuiButton-sizeMedium
+-.MuiButton-outlinedSizeMedium
++.MuiButton-outlined.MuiButton-sizeMedium
+-.MuiButton-containedSizeMedium
++.MuiButton-contained.MuiButton-sizeMedium
+-.MuiButton-iconSizeSmall
++.MuiButton-icon.MuiButton-sizeSmall
+-.MuiButton-iconSizeMedium
++.MuiButton-icon.MuiButton-sizeMedium
+-.MuiButton-iconSizeLarge
++.MuiButton-icon.MuiButton-sizeLarge
 ```
 
 ```diff
- import { button } from '@mui/material/Button';
+ import { buttonClasses } from '@mui/material/Button';
 
  MuiButton: {
    styleOverrides: {
      root: {
--      [`& .${button.containedSizeLarge}`]: {
-+      [`& .${button.contained}.${button.sizeLarge}`]: {
+-      [`&.${buttonClasses.textInherit}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.colorInherit}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.textPrimary}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.colorPrimary}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.textSecondary}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.colorSecondary}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.textSuccess}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.colorSuccess}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.textError}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.colorError}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.textInfo}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.colorInfo}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.textWarning}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.colorWarning}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedInherit}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.colorInherit}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedPrimary}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.colorPrimary}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedSecondary}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.colorSecondary}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedSuccess}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.colorSuccess}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedError}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.colorError}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedInfo}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.colorInfo}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedWarning}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.colorWarning}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedInherit}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.colorInherit}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedPrimary}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.colorPrimary}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedSecondary}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.colorSecondary}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedSuccess}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.colorSuccess}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedError}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.colorError}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedInfo}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.colorInfo}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedWarning}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.colorWarning}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedSizeSmall}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.sizeSmall}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedSizeMedium}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.sizeMedium}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedSizeLarge}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.sizeLarge}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.textSizeSmall}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.sizeSmall}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.textSizeMedium}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.sizeMedium}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.textSizeLarge}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.sizeLarge}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedSizeSmall}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.sizeSmall}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedSizeMedium}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.sizeMedium}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedSizeLarge}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.sizeLarge}`]: {
+         color: 'red',
+        },
+-      [`& .${buttonClasses.iconSizeSmall}`]: {
++      [`& .${buttonClasses.icon}.${buttonClasses.sizeSmall}`]: {
+         color: 'red',
+        },
+-      [`& .${buttonClasses.iconSizeMedium}`]: {
++      [`& .${buttonClasses.icon}.${buttonClasses.sizeMedium}`]: {
+         color: 'red',
+        },
+-      [`& .${buttonClasses.iconSizeLarge}`]: {
++      [`& .${buttonClasses.icon}.${buttonClasses.sizeLarge}`]: {
          color: 'red',
         },
      },
