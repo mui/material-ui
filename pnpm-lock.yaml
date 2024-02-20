@@ -1651,9 +1651,6 @@ importers:
       '@mui/internal-babel-macros':
         specifier: workspace:^
         version: link:../mui-babel-macros
-      '@mui/lab':
-        specifier: workspace:*
-        version: link:../mui-lab/build
       '@popperjs/core':
         specifier: ^2.11.8
         version: 2.11.8
