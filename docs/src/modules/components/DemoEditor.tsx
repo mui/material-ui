@@ -6,7 +6,7 @@ import { styled, useTheme } from '@mui/material/styles';
 import prism from '@mui/markdown/prism';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import CodeCopyButton from 'docs/src/modules/components/CodeCopyButton';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 import { useCodeCopy } from 'docs/src/modules/utils/CodeCopy';
 import { blueDark } from 'docs/src/modules/brandingTheme';
 
