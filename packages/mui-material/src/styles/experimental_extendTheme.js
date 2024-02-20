@@ -73,11 +73,15 @@ const silent = (fn) => {
 
 export const createGetCssVar = (cssVarPrefix = 'mui') => systemCreateGetCssVar(cssVarPrefix);
 
+const defaultGetSelector = (colorScheme) =>
+  colorScheme ? `[data-mui-color-scheme="${colorScheme}"]` : ':root';
+
 export default function extendTheme(options = {}, ...args) {
   const {
     colorSchemes: colorSchemesInput = {},
     cssVarPrefix = 'mui',
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
+    getSelector = defaultGetSelector,
     ...input
   } = options;
   const getCssVar = createGetCssVar(cssVarPrefix);
@@ -92,6 +96,7 @@ export default function extendTheme(options = {}, ...args) {
 
   let theme = {
     ...muiTheme,
+    palette: lightPalette,
     cssVarPrefix,
     getCssVar,
     colorSchemes: {
@@ -397,11 +402,12 @@ export default function extendTheme(options = {}, ...args) {
   const parserConfig = {
     prefix: cssVarPrefix,
     shouldSkipGeneratingVar,
+    getSelector,
   };
   const { vars: themeVars, generateCssVars } = prepareCssVars(theme, parserConfig);
   theme.vars = themeVars;
   theme.generateCssVars = generateCssVars;
-
+  theme.getColorSchemeSelector = (colorScheme) => `:where(${getSelector(colorScheme, {})}) &`;
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
   theme.unstable_sxConfig = {
     ...defaultSxConfig,
