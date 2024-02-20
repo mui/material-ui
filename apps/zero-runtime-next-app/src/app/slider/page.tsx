@@ -2,14 +2,14 @@
 import * as React from 'react';
 import { styled } from '@mui/zero-runtime';
 import { Button } from 'local-ui-lib';
-import Slider from '@/components/Slider/ZeroSlider';
+import Slider from '@/components/Slider/Slider';
 
 const HalfWidth = styled.div(({ theme }) => ({
   marginLeft: 20,
   width: '50%',
   maxHeight: 100,
   padding: 20,
-  border: `1px solid ${theme.vars.palette.primary.main}`,
+  // border: `1px solid ${theme.vars.palette.primary.main}`,
 }));
 
 export default function SliderPage() {

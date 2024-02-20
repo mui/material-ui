@@ -18,6 +18,7 @@ export { default as useControlled } from './useControlled';
 export { default as useEventCallback } from './useEventCallback';
 export { default as useForkRef } from './useForkRef';
 export { default as useIsFocusVisible } from './useIsFocusVisible';
+export { default as shouldSpreadAdditionalProps } from './shouldSpreadAdditionalProps';
 // TODO: remove this export once ClassNameGenerator is stable
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const unstable_ClassNameGenerator = {
