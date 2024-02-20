@@ -182,7 +182,7 @@ export function CodeCopyProvider({ children }: CodeCopyProviderProps) {
       }
 
       const copyBtn = rootNode.current.querySelector('.MuiCode-copy') as HTMLButtonElement;
-      const initialEventAction = copyBtn!.getAttribute('data-ga-event-action');
+      const initialEventAction = copyBtn.getAttribute('data-ga-event-action');
       // update the 'data-ga-event-action' on the button to track keyboard interaction
       copyBtn.dataset.gaEventAction =
         initialEventAction?.replace('click', 'keyboard') || 'copy-keyboard';
