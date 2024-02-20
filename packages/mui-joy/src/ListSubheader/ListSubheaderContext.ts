@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-const ListSubheaderDispatch = React.createContext<
+const ListSubheaderContext = React.createContext<
   undefined | React.Dispatch<React.SetStateAction<string>>
 >(undefined);
 
 if (process.env.NODE_ENV !== 'production') {
-  ListSubheaderDispatch.displayName = 'ListSubheaderDispatch';
+  ListSubheaderContext.displayName = 'ListSubheaderContext';
 }
 
-export default ListSubheaderDispatch;
+export default ListSubheaderContext;
