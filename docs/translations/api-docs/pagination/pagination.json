@@ -46,17 +46,17 @@
     "variant": { "description": "The variant to use." }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "ul": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the ul element" },
     "outlined": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code>"
     },
+    "root": { "description": "Styles applied to the root element." },
     "text": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"text\"</code>"
-    }
+    },
+    "ul": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the ul element" }
   }
 }

@@ -1,7 +1,7 @@
 const childProcess = require('child_process');
 const path = require('path');
-const fse = require('fs-extra');
 const { promisify } = require('util');
+const fse = require('fs-extra');
 
 const packageRoot = path.resolve(__dirname, '../');
 const buildDirectory = path.join(packageRoot, 'build');

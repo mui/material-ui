@@ -5,7 +5,7 @@ import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
-import TwitterIcon from '@mui/icons-material/Twitter';
+import XIcon from '@mui/icons-material/X';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import YouTubeIcon from '@mui/icons-material/YouTube';
@@ -50,7 +50,7 @@ export default function AppFooter(props: AppFooterProps) {
         }}
       >
         <div>
-          <Link href="/" aria-label="Go to homepage" sx={{ mb: 2 }}>
+          <Link prefetch={false} href="/" aria-label="Go to homepage" sx={{ mb: 2 }}>
             <SvgMuiLogotype height={28} width={91} />
           </Link>
           <Typography variant="body2" fontWeight="bold" gutterBottom>
@@ -59,7 +59,7 @@ export default function AppFooter(props: AppFooterProps) {
           <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
             Join our newsletter for regular updates. No spam ever.
           </Typography>
-          <EmailSubscribe sx={{ mb: 4 }} />
+          <EmailSubscribe />
         </div>
         <Box
           sx={{
@@ -73,41 +73,79 @@ export default function AppFooter(props: AppFooterProps) {
             <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
               Products
             </Typography>
-            <Link href={ROUTES.productMaterial}>Material UI</Link>
-            <Link href={ROUTES.productBase}>Base UI</Link>
-            <Link href={ROUTES.productAdvanced}>MUI X</Link>
-            <Link href={ROUTES.productToolpad}>MUI Toolpad</Link>
-            <Link href={ROUTES.productTemplates}>Templates</Link>
-            <Link href={ROUTES.productDesignKits}>Design kits</Link>
+            <Link prefetch={false} href={ROUTES.productMaterial}>
+              Material UI
+            </Link>
+            <Link prefetch={false} href={ROUTES.productBase}>
+              Base UI
+            </Link>
+            <Link prefetch={false} href={ROUTES.productAdvanced}>
+              MUI X
+            </Link>
+            <Link prefetch={false} href={ROUTES.productToolpad}>
+              MUI Toolpad
+            </Link>
+            <Link prefetch={false} href={ROUTES.productTemplates}>
+              Templates
+            </Link>
+            <Link prefetch={false} href={ROUTES.productDesignKits}>
+              Design kits
+            </Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
               Resources
             </Typography>
-            <Link href={ROUTES.materialIcons}>Material Icons</Link>
-            <Link href={ROUTES.freeTemplates}>Free templates</Link>
-            <Link href={ROUTES.components}>Components</Link>
-            <Link href={ROUTES.customization}>Customization</Link>
-            <Link href={ROUTES.theming}>Theming</Link>
+            <Link prefetch={false} href={ROUTES.materialIcons}>
+              Material Icons
+            </Link>
+            <Link prefetch={false} href={ROUTES.freeTemplates}>
+              Free templates
+            </Link>
+            <Link prefetch={false} href={ROUTES.components}>
+              Components
+            </Link>
+            <Link prefetch={false} href={ROUTES.customization}>
+              Customization
+            </Link>
+            <Link prefetch={false} href={ROUTES.theming}>
+              Theming
+            </Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
               Explore
             </Typography>
-            <Link href={ROUTES.documentation}>Documentation</Link>
-            <Link href={ROUTES.store}>Store</Link>
-            <Link href={ROUTES.blog}>Blog</Link>
-            <Link href={ROUTES.showcase}>Showcase</Link>
-            <Link href={ROUTES.coreRoadmap}>Roadmap</Link>
+            <Link prefetch={false} href={ROUTES.documentation}>
+              Documentation
+            </Link>
+            <Link prefetch={false} href={ROUTES.store}>
+              Store
+            </Link>
+            <Link prefetch={false} href={ROUTES.blog}>
+              Blog
+            </Link>
+            <Link prefetch={false} href={ROUTES.showcase}>
+              Showcase
+            </Link>
+            <Link prefetch={false} href={ROUTES.coreRoadmap}>
+              Roadmap
+            </Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
               Company
             </Typography>
-            <Link href={ROUTES.about}>About</Link>
-            <Link href={ROUTES.vision}>Vision</Link>
+            <Link prefetch={false} href={ROUTES.about}>
+              About
+            </Link>
+            <Link prefetch={false} href={ROUTES.vision}>
+              Vision
+            </Link>
             <Box sx={{ display: 'flex', alignItems: 'end' }}>
-              <Link href={ROUTES.careers}>Careers </Link>
+              <Link prefetch={false} href={ROUTES.careers}>
+                Careers{' '}
+              </Link>
               <Box
                 sx={(theme) => ({
                   px: 0.5,
@@ -135,9 +173,13 @@ export default function AppFooter(props: AppFooterProps) {
                 Hiring
               </Box>
             </Box>
-            <Link href={ROUTES.support}>Support</Link>
-            <Link href={ROUTES.privacyPolicy}>Privacy policy</Link>
-            <Link target="_blank" rel="noopener noreferrer" href="mailto:contact@mui.com">
+            <Link prefetch={false} href={ROUTES.support}>
+              Support
+            </Link>
+            <Link prefetch={false} href={ROUTES.privacyPolicy}>
+              Privacy policy
+            </Link>
+            <Link prefetch={false} target="_blank" rel="noopener" href="mailto:contact@mui.com">
               Contact us
             </Link>
           </Box>
@@ -157,7 +199,7 @@ export default function AppFooter(props: AppFooterProps) {
         <Stack spacing={1} direction="row" flexWrap="wrap" useFlexGap>
           <IconButton
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             href="https://github.com/mui"
             aria-label="github"
             title="GitHub"
@@ -167,7 +209,7 @@ export default function AppFooter(props: AppFooterProps) {
           </IconButton>
           <IconButton
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             href={ROUTES.rssFeed}
             aria-label="RSS Feed"
             title="RSS Feed"
@@ -177,17 +219,17 @@ export default function AppFooter(props: AppFooterProps) {
           </IconButton>
           <IconButton
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             href="https://twitter.com/MUI_hq"
             aria-label="twitter"
-            title="Twitter"
+            title="X"
             size="small"
           >
-            <TwitterIcon fontSize="small" />
+            <XIcon fontSize="small" />
           </IconButton>
           <IconButton
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             href="https://www.linkedin.com/company/mui/"
             aria-label="linkedin"
             title="LinkedIn"
@@ -197,7 +239,7 @@ export default function AppFooter(props: AppFooterProps) {
           </IconButton>
           <IconButton
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             href="https://www.youtube.com/@MUI_hq"
             aria-label="YouTube"
             title="YouTube"
@@ -207,7 +249,7 @@ export default function AppFooter(props: AppFooterProps) {
           </IconButton>
           <IconButton
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             href="https://mui.com/r/discord/"
             aria-label="Discord"
             title="Discord"
@@ -218,7 +260,7 @@ export default function AppFooter(props: AppFooterProps) {
           {stackOverflowUrl ? (
             <IconButton
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
               href={stackOverflowUrl}
               aria-label="Stack Overflow"
               title="Stack Overflow"

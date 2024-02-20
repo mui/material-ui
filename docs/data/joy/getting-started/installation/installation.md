@@ -2,6 +2,8 @@
 
 <p class="description">Install Joy UI, a library of beautifully designed React UI components.</p>
 
+## Default installation
+
 Run one of the following commands to add Joy UI to your project:
 
 <codeblock storageKey="package-manager">
@@ -19,11 +21,11 @@ pnpm add @mui/joy @emotion/react @emotion/styled
 
 </codeblock>
 
-## Peer dependencies
+### Peer dependencies
 
 <!-- #react-peer-version -->
 
-Please note that [react](https://www.npmjs.com/package/react) and [react-dom](https://www.npmjs.com/package/react-dom) are peer dependencies too:
+Please note that [react](https://www.npmjs.com/package/react) and [react-dom](https://www.npmjs.com/package/react-dom) are peer dependencies, meaning you should ensure they are installed before installing Joy UI.
 
 ```json
 "peerDependencies": {

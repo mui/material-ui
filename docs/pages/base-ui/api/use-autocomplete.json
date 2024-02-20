@@ -68,6 +68,12 @@
         "description": "(option: Value) =&gt; boolean"
       }
     },
+    "getOptionKey": {
+      "type": {
+        "name": "(option: Value | AutocompleteFreeSoloValueMapping&lt;FreeSolo&gt;) =&gt; string | number",
+        "description": "(option: Value | AutocompleteFreeSoloValueMapping&lt;FreeSolo&gt;) =&gt; string | number"
+      }
+    },
     "getOptionLabel": {
       "type": {
         "name": "(option: Value | AutocompleteFreeSoloValueMapping&lt;FreeSolo&gt;) =&gt; string",

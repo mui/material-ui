@@ -6,7 +6,6 @@ import {
   SelectRootSlotProps,
 } from '@mui/base/Select';
 import { Option as BaseOption, optionClasses } from '@mui/base/Option';
-import { Popper as BasePopper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
@@ -30,7 +29,7 @@ function Select(props: SelectProps<number, false>) {
   const slots: SelectProps<number, false>['slots'] = {
     root: StyledButton,
     listbox: Listbox,
-    popper: Popper,
+    popup: Popup,
     ...props.slots,
   };
 
@@ -83,7 +82,7 @@ const CustomButton = React.forwardRef(function CustomButton(
 
 const StyledButton = styled(CustomButton, { shouldForwardProp: () => true })(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   min-width: 320px;
@@ -120,7 +119,7 @@ const StyledButton = styled(CustomButton, { shouldForwardProp: () => true })(
 
 const Listbox = styled('ul')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   padding: 6px;
@@ -164,6 +163,10 @@ const Option = styled(BaseOption)(
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
 
+  &:focus-visible {
+    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
+  }
+
   &.${optionClasses.disabled} {
     color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
   }
@@ -175,13 +178,13 @@ const Option = styled(BaseOption)(
   `,
 );
 
-const Popper = styled(BasePopper)`
+const Popup = styled('div')`
   z-index: 1;
 `;
 
 const Paragraph = styled('p')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   margin: 10px 0;
   color: ${theme.palette.mode === 'dark' ? grey[400] : grey[700]};

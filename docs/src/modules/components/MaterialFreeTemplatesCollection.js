@@ -25,6 +25,13 @@ function layouts(t) {
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/dashboard`,
     },
     {
+      title: t('landingPageTitle'),
+      description: t('landingPageDescr'),
+      src: '/static/images/templates/landing-page.png',
+      href: '/material-ui/getting-started/templates/landing-page/',
+      source: `${sourcePrefix}/docs/data/material/getting-started/templates/landing-page`,
+    },
+    {
       title: t('signInTitle'),
       description: t('signInDescr'),
       src: '/static/images/templates/sign-in.png',
@@ -58,20 +65,6 @@ function layouts(t) {
       src: '/static/images/templates/checkout.png',
       href: '/material-ui/getting-started/templates/checkout/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/checkout`,
-    },
-    {
-      title: t('albumTitle'),
-      description: t('albumDescr'),
-      src: '/static/images/templates/album.png',
-      href: '/material-ui/getting-started/templates/album/',
-      source: `${sourcePrefix}/docs/data/material/getting-started/templates/album`,
-    },
-    {
-      title: t('pricingTitle'),
-      description: t('pricingDescr'),
-      src: '/static/images/templates/pricing.png',
-      href: '/material-ui/getting-started/templates/pricing/',
-      source: `${sourcePrefix}/docs/data/material/getting-started/templates/pricing`,
     },
     {
       title: t('stickyFooterTitle'),
@@ -115,7 +108,15 @@ export default function Templates() {
                 title={layout.title}
                 rel="nofollow"
                 target="_blank"
-                sx={{ height: 0, pt: '65%' }}
+                sx={(theme) => ({
+                  height: 0,
+                  pt: '65%',
+                  '&:focus-visible': {
+                    borderRadius: 1,
+                    outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
+                    outlineOffset: '-8px',
+                  },
+                })}
               />
               <NextLink href={layout.href} passHref legacyBehavior>
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
@@ -140,7 +141,7 @@ export default function Templates() {
                     bgcolor: alpha(theme.palette.primary[50], 0.5),
                     backdropFilter: 'blur(4px)',
                     opacity: 0,
-                    '&:hover, &:focus': {
+                    '&:hover, &:focus-visible': {
                       opacity: 1,
                     },
                     ...theme.applyDarkStyles({

@@ -145,7 +145,7 @@ function App8() {
       theme={extendTheme({
         focus: {
           bordered: {
-            '&:after': {
+            '&::after': {
               position: 'absolute',
               inset: '2px',
               outline: '1px solid',

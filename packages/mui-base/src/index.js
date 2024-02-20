@@ -1,4 +1,3 @@
-'use client';
 export * from './utils';
 export * from './Badge';
 export * from './Button';
@@ -29,6 +28,7 @@ export * from './TabsList';
 export * from './Tabs';
 export * from './Tab';
 export { TextareaAutosize } from './TextareaAutosize';
+export * from './Transitions';
 export * from './useAutocomplete';
 export * from './useBadge';
 export * from './useButton';
@@ -48,3 +48,8 @@ export * from './useTabPanel';
 export * from './useTabs';
 export * from './useTabsList';
 export * from './unstable_useModal';
+
+export {
+  generateUtilityClass as unstable_generateUtilityClass,
+  isGlobalState as unstable_isGlobalState,
+} from './generateUtilityClass';

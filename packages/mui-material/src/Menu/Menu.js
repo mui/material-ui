@@ -3,9 +3,9 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import composeClasses from '@mui/utils/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
-import { HTMLElementType } from '@mui/utils';
+import HTMLElementType from '@mui/utils/HTMLElementType';
 import MenuList from '../MenuList';
 import Popover, { PopoverPaper } from '../Popover';
 import styled, { rootShouldForwardProp } from '../styles/styled';
@@ -217,10 +217,10 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
 });
 
 Menu.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * An HTML element, or a function that returns one.
    * It's used to set the position of the menu.

@@ -7,13 +7,11 @@ import Typography from '@mui/joy/Typography';
 import Button from '@mui/joy/Button';
 import Stack from '@mui/joy/Stack';
 
-// Icons import
 import CreateRoundedIcon from '@mui/icons-material/CreateRounded';
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
 import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
 import FolderRoundedIcon from '@mui/icons-material/FolderRounded';
 
-// custom
 import Layout from './components/Layout';
 import Navigation from './components/Navigation';
 import Mails from './components/Mails';
@@ -108,13 +106,8 @@ export default function EmailExample() {
               justifyContent: 'space-between',
             }}
           >
-            <Box
-              sx={{
-                alignItems: 'center',
-                gap: 1,
-              }}
-            >
-              <Typography level="title-lg" textColor="text.secondary">
+            <Box sx={{ alignItems: 'center', gap: 1 }}>
+              <Typography level="title-lg" textColor="text.secondary" component="h1">
                 My inbox
               </Typography>
               <Typography level="title-sm" textColor="text.tertiary">

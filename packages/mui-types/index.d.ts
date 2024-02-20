@@ -67,11 +67,8 @@ type GenerateStringUnion<T> = Extract<
 >;
 
 // https://stackoverflow.com/questions/53807517/how-to-test-if-two-types-are-exactly-the-same
-export type IfEquals<T, U, Y = unknown, N = never> = (<G>() => G extends T ? 1 : 2) extends <
-  G,
->() => G extends U ? 1 : 2
-  ? Y
-  : N;
+export type IfEquals<T, U, Y = unknown, N = never> =
+  (<G>() => G extends T ? 1 : 2) extends <G>() => G extends U ? 1 : 2 ? Y : N;
 
 /**
  * Issues a type error if `Expected` is not identical to `Actual`.
@@ -144,5 +141,11 @@ export interface OverridableTypeMap {
  * Simplifies the display of a type (without modifying it).
  * Taken from https://effectivetypescript.com/2022/02/25/gentips-4-display/
  */
-// tslint:disable-next-line: ban-types
 export type Simplify<T> = T extends Function ? T : { [K in keyof T]: T[K] };
+
+/**
+ * Changes the properties K from T to required
+ */
+export type PartiallyRequired<T, K extends keyof T> = DistributiveOmit<T, K> & {
+  [P in K]-?: T[P];
+};

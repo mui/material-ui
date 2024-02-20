@@ -62,7 +62,6 @@ export default function HeroLeft03() {
           designers and developers.
         </Typography>
       </Box>
-
       <Typography
         level="body-xs"
         sx={{

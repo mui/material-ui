@@ -23,7 +23,7 @@ It relies on the third-party library ([Popper.js v2](https://popper.js.org/docs/
 The Popper.js library is no longer maintained.
 It has been replaced by a new library: [Floating UI](https://floating-ui.com/).
 
-Base UI offers the [Popup](/base-ui/react-popup/) component based on this new library.
+Base UI offers the [Popup](/base-ui/react-popup/) component based on this new library.
 It has features and an API similar to the Popper component, but is still in development and its API may change.
 
 Once the [Popup](/base-ui/react-popup/) is stable, we will deprecate and, later, remove our Popper component.

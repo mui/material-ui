@@ -27,21 +27,6 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
-    "indicator": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the indicator element"
-    },
-    "horizontal": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>orientation=\"horizontal\"</code>"
-    },
-    "vertical": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>orientation=\"vertical\"</code>"
-    },
     "active": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -56,10 +41,20 @@
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>disabled</code> is true"
+    },
+    "horizontal": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>orientation=\"horizontal\"</code>"
+    },
+    "vertical": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>orientation=\"vertical\"</code>"
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
-    "indicator": "The component that renders the indicator."
+    "indicator": "The component that renders the indicator.",
+    "root": "The component that renders the root."
   }
 }

@@ -38,7 +38,7 @@ const Root = styled('div')`
 
 const Toggle = styled('button')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   min-width: 320px;
@@ -80,7 +80,7 @@ const Toggle = styled('button')(
 
 const Listbox = styled('ul')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   min-height: calc(1.5em + 22px);
@@ -134,7 +134,11 @@ const Option = styled('li')(
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
 
-  &:before {
+  &:focus-visible {
+    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
+  }
+
+  &::before {
     content: '';
     width: 1ex;
     height: 1ex;
@@ -188,12 +192,6 @@ function CustomSelect({ options, placeholder }) {
     onOpenChange: setListboxVisible,
     open: listboxVisible,
   });
-
-  React.useEffect(() => {
-    if (listboxVisible) {
-      listboxRef.current?.focus();
-    }
-  }, [listboxVisible]);
 
   return (
     <Root>

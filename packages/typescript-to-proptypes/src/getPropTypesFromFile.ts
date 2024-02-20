@@ -3,8 +3,8 @@ import * as doctrine from 'doctrine';
 import {
   GetPropsFromComponentDeclarationOptions,
   getPropsFromComponentNode,
-} from '@mui-internal/api-docs-builder/utils/getPropsFromComponentNode';
-import { TypeScriptProject } from '@mui-internal/api-docs-builder/utils/createTypeScriptProject';
+  TypeScriptProject,
+} from '@mui-internal/docs-utils';
 import {
   createUnionType,
   createUndefinedType,
@@ -53,6 +53,48 @@ function getSymbolDocumentation({
 
   const comment = ts.displayPartsToString(symbol.getDocumentationComment(project.checker));
   return comment !== '' ? comment : undefined;
+}
+
+function getType({
+  project,
+  symbol,
+  declaration,
+  location,
+}: {
+  project: PropTypesProject;
+  symbol: ts.Symbol;
+  declaration: ts.Declaration | undefined;
+  location: ts.Node;
+}) {
+  const symbolType = declaration
+    ? // The proptypes aren't detailed enough that we need all the different combinations
+      // so we just pick the first and ignore the rest
+      project.checker.getTypeOfSymbolAtLocation(symbol, declaration)
+    : project.checker.getTypeOfSymbolAtLocation(symbol, location);
+
+  let type: ts.Type;
+  if (declaration === undefined) {
+    type = symbolType;
+  } else {
+    const declaredType = project.checker.getTypeAtLocation(declaration);
+    const baseConstraintOfType = project.checker.getBaseConstraintOfType(declaredType);
+
+    if (baseConstraintOfType === undefined || baseConstraintOfType === declaredType) {
+      type = symbolType;
+    }
+    // get `React.ElementType` from `C extends React.ElementType`
+    else if (baseConstraintOfType.aliasSymbol?.escapedName === 'ElementType') {
+      type = baseConstraintOfType;
+    } else {
+      type = symbolType;
+    }
+  }
+
+  if (!type) {
+    throw new Error('No types found');
+  }
+
+  return type;
 }
 
 function checkType({
@@ -114,7 +156,11 @@ function checkType({
         return createInstanceOfType({ jsDoc, instance: 'RegExp' });
       }
       case 'Date': {
-        return createInstanceOfType({ jsDoc, instance: 'Date' });
+        if (!project.shouldUseObjectForDate?.({ name })) {
+          return createInstanceOfType({ jsDoc, instance: 'Date' });
+        }
+
+        return createObjectType({ jsDoc });
       }
       default:
         // continue with function execution
@@ -125,6 +171,7 @@ function checkType({
   if (project.checker.isArrayType(type)) {
     // @ts-ignore
     const arrayType: ts.Type = project.checker.getElementTypeOfArrayType(type);
+
     return createArrayType({
       arrayType: checkType({ type: arrayType, location, typeStack, name, project }),
       jsDoc,
@@ -199,6 +246,38 @@ function checkType({
 
   if (type.flags & ts.TypeFlags.Null) {
     return createLiteralType({ jsDoc, value: 'null' });
+  }
+
+  if (type.flags & ts.TypeFlags.IndexedAccess) {
+    const objectType = (type as ts.IndexedAccessType).objectType;
+
+    if (objectType.flags & ts.TypeFlags.Conditional) {
+      const node = createUnionType({
+        jsDoc,
+        types: [
+          (objectType as ts.ConditionalType).resolvedTrueType,
+          (objectType as ts.ConditionalType).resolvedFalseType,
+        ]
+          .map((resolveType) => resolveType?.getProperty(name))
+          .filter((propertySymbol): propertySymbol is ts.Symbol => !!propertySymbol)
+          .map((propertySymbol) =>
+            checkType({
+              type: getType({
+                project,
+                symbol: propertySymbol,
+                declaration: propertySymbol.declarations?.[0],
+                location,
+              }),
+              location,
+              typeStack,
+              name,
+              project,
+            }),
+          ),
+      });
+
+      return node.types.length === 1 ? node.types[0] : node;
+    }
   }
 
   if (type.getCallSignatures().length) {
@@ -322,33 +401,7 @@ function checkSymbol({
     }
   }
 
-  const symbolType = declaration
-    ? // The proptypes aren't detailed enough that we need all the different combinations
-      // so we just pick the first and ignore the rest
-      project.checker.getTypeOfSymbolAtLocation(symbol, declaration)
-    : project.checker.getTypeOfSymbolAtLocation(symbol, location);
-
-  let type: ts.Type;
-  if (declaration === undefined) {
-    type = symbolType;
-  } else {
-    const declaredType = project.checker.getTypeAtLocation(declaration);
-    const baseConstraintOfType = project.checker.getBaseConstraintOfType(declaredType);
-
-    if (baseConstraintOfType === undefined || baseConstraintOfType === declaredType) {
-      type = symbolType;
-    }
-    // get `React.ElementType` from `C extends React.ElementType`
-    else if (baseConstraintOfType.aliasSymbol?.escapedName === 'ElementType') {
-      type = baseConstraintOfType;
-    } else {
-      type = symbolType;
-    }
-  }
-
-  if (!type) {
-    throw new Error('No types found');
-  }
+  const type = getType({ project, symbol, declaration, location });
 
   // Typechecker only gives the type "any" if it's present in a union
   // This means the type of "a" in {a?:any} isn't "any | undefined"
@@ -461,6 +514,7 @@ export function getPropTypesFromFile({
   project,
   shouldInclude: inShouldInclude,
   shouldResolveObject: inShouldResolveObject,
+  shouldUseObjectForDate,
   checkDeclarations,
 }: GetPropTypesFromFileOptions) {
   const sourceFile = project.program.getSourceFile(filePath);
@@ -512,6 +566,7 @@ export function getPropTypesFromFile({
     ...project,
     reactComponentName,
     shouldResolveObject,
+    shouldUseObjectForDate,
     shouldInclude,
     createPropTypeId,
   };
@@ -552,13 +607,18 @@ export interface GetPropTypesFromFileOptions
     propertyCount: number;
     depth: number;
   }) => boolean | undefined;
+  /**
+   * Called to know if a date should be represented as `PropTypes.object` or `PropTypes.instanceOf(Date)
+   * @returns true to use `PropTypes.object`, false to use `PropTypes.instanceOf(Date)`.
+   * @default false
+   */
+  shouldUseObjectForDate?: (data: { name: string }) => boolean;
 }
 
 interface PropTypesProject extends TypeScriptProject {
   reactComponentName: string | undefined;
   shouldResolveObject: NonNullable<GetPropTypesFromFileOptions['shouldResolveObject']>;
+  shouldUseObjectForDate: GetPropTypesFromFileOptions['shouldUseObjectForDate'];
   shouldInclude: NonNullable<GetPropTypesFromFileOptions['shouldInclude']>;
   createPropTypeId: (sigil: ts.Symbol | ts.Type) => number;
 }
-
-// project.checker.getTypeAtLocation(property.declarations?.[0]!)

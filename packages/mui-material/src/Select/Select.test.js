@@ -911,6 +911,24 @@ describe('<Select />', () => {
 
       expect(getByRole('combobox')).to.have.text('Ten');
     });
+
+    it('should notch the outline to accommodate the label when displayEmpty', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const { container } = render(
+        <Select value="" label="Age" displayEmpty>
+          <MenuItem value="">None</MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+        </Select>,
+      );
+
+      expect(container.querySelector('legend')).toHaveComputedStyle({
+        maxWidth: '100%',
+      });
+    });
   });
 
   describe('prop: renderValue', () => {
@@ -1558,6 +1576,42 @@ describe('<Select />', () => {
       nativeInputStyle,
     );
     expect(container.getElementsByClassName(classes.select)[0]).to.toHaveComputedStyle(selectStyle);
+  });
+
+  describe('form submission', () => {
+    it('includes Select value in formData only if the `name` attribute is provided', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // FormData is not available in JSDOM
+        this.skip();
+      }
+      const handleSubmit = (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        expect(formData.get('select-one')).to.equal('2');
+
+        const formDataAsObject = Object.fromEntries(formData);
+        expect(Object.keys(formDataAsObject).length).to.equal(1);
+      };
+
+      const { getByText } = render(
+        <form onSubmit={handleSubmit}>
+          <Select defaultValue={2} name="select-one">
+            <MenuItem value={1} />
+            <MenuItem value={2} />
+          </Select>
+          <Select defaultValue="a">
+            <MenuItem value="a" />
+            <MenuItem value="b" />
+          </Select>
+          <button type="submit">Submit</button>
+        </form>,
+      );
+
+      const button = getByText('Submit');
+      act(() => {
+        button.click();
+      });
+    });
   });
 
   describe('theme styleOverrides:', () => {

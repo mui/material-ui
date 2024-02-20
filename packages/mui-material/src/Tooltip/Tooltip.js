@@ -2,9 +2,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { elementAcceptingRef } from '@mui/utils';
-import { unstable_composeClasses as composeClasses, appendOwnerState } from '@mui/base';
-import { alpha } from '@mui/system';
+import useTimeout, { Timeout } from '@mui/utils/useTimeout';
+import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
+import { appendOwnerState } from '@mui/base/utils';
+import composeClasses from '@mui/utils/composeClasses';
+import { alpha } from '@mui/system/colorManipulator';
 import styled from '../styles/styled';
 import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';
@@ -212,12 +214,12 @@ const TooltipArrow = styled('span', {
 }));
 
 let hystersisOpen = false;
-let hystersisTimer = null;
+const hystersisTimer = new Timeout();
 let cursorPosition = { x: 0, y: 0 };
 
 export function testReset() {
   hystersisOpen = false;
-  clearTimeout(hystersisTimer);
+  hystersisTimer.clear();
 }
 
 function composeEventHandler(handler, eventHandler) {
@@ -276,10 +278,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const disableInteractive = disableInteractiveProp || followCursor;
 
-  const closeTimer = React.useRef();
-  const enterTimer = React.useRef();
-  const leaveTimer = React.useRef();
-  const touchTimer = React.useRef();
+  const closeTimer = useTimeout();
+  const enterTimer = useTimeout();
+  const leaveTimer = useTimeout();
+  const touchTimer = useTimeout();
 
   const [openState, setOpenState] = useControlled({
     controlled: openProp,
@@ -319,25 +321,18 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const id = useId(idProp);
 
   const prevUserSelect = React.useRef();
-  const stopTouchInteraction = React.useCallback(() => {
+  const stopTouchInteraction = useEventCallback(() => {
     if (prevUserSelect.current !== undefined) {
       document.body.style.WebkitUserSelect = prevUserSelect.current;
       prevUserSelect.current = undefined;
     }
-    clearTimeout(touchTimer.current);
-  }, []);
+    touchTimer.clear();
+  });
 
-  React.useEffect(() => {
-    return () => {
-      clearTimeout(closeTimer.current);
-      clearTimeout(enterTimer.current);
-      clearTimeout(leaveTimer.current);
-      stopTouchInteraction();
-    };
-  }, [stopTouchInteraction]);
+  React.useEffect(() => stopTouchInteraction, [stopTouchInteraction]);
 
   const handleOpen = (event) => {
-    clearTimeout(hystersisTimer);
+    hystersisTimer.clear();
     hystersisOpen = true;
 
     // The mouseover event will trigger for every nested element in the tooltip.
@@ -355,20 +350,18 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
      * @param {React.SyntheticEvent | Event} event
      */
     (event) => {
-      clearTimeout(hystersisTimer);
-      hystersisTimer = setTimeout(() => {
+      hystersisTimer.start(800 + leaveDelay, () => {
         hystersisOpen = false;
-      }, 800 + leaveDelay);
+      });
       setOpenState(false);
 
       if (onClose && open) {
         onClose(event);
       }
 
-      clearTimeout(closeTimer.current);
-      closeTimer.current = setTimeout(() => {
+      closeTimer.start(theme.transitions.duration.shortest, () => {
         ignoreNonTouchEvents.current = false;
-      }, theme.transitions.duration.shortest);
+      });
     },
   );
 
@@ -384,26 +377,22 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       childNode.removeAttribute('title');
     }
 
-    clearTimeout(enterTimer.current);
-    clearTimeout(leaveTimer.current);
+    enterTimer.clear();
+    leaveTimer.clear();
     if (enterDelay || (hystersisOpen && enterNextDelay)) {
-      enterTimer.current = setTimeout(
-        () => {
-          handleOpen(event);
-        },
-        hystersisOpen ? enterNextDelay : enterDelay,
-      );
+      enterTimer.start(hystersisOpen ? enterNextDelay : enterDelay, () => {
+        handleOpen(event);
+      });
     } else {
       handleOpen(event);
     }
   };
 
   const handleLeave = (event) => {
-    clearTimeout(enterTimer.current);
-    clearTimeout(leaveTimer.current);
-    leaveTimer.current = setTimeout(() => {
+    enterTimer.clear();
+    leaveTimer.start(leaveDelay, () => {
       handleClose(event);
-    }, leaveDelay);
+    });
   };
 
   const {
@@ -452,18 +441,18 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const handleTouchStart = (event) => {
     detectTouchStart(event);
-    clearTimeout(leaveTimer.current);
-    clearTimeout(closeTimer.current);
+    leaveTimer.clear();
+    closeTimer.clear();
     stopTouchInteraction();
 
     prevUserSelect.current = document.body.style.WebkitUserSelect;
     // Prevent iOS text selection on long-tap.
     document.body.style.WebkitUserSelect = 'none';
 
-    touchTimer.current = setTimeout(() => {
+    touchTimer.start(enterTouchDelay, () => {
       document.body.style.WebkitUserSelect = prevUserSelect.current;
       handleEnter(event);
-    }, enterTouchDelay);
+    });
   };
 
   const handleTouchEnd = (event) => {
@@ -472,10 +461,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
 
     stopTouchInteraction();
-    clearTimeout(leaveTimer.current);
-    leaveTimer.current = setTimeout(() => {
+    leaveTimer.start(leaveTouchDelay, () => {
       handleClose(event);
-    }, leaveTouchDelay);
+    });
   };
 
   React.useEffect(() => {
@@ -503,6 +491,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const handleRef = useForkRef(children.ref, focusVisibleRef, setChildNode, ref);
 
   // There is no point in displaying an empty tooltip.
+  // So we exclude all falsy values, except 0, which is valid.
   if (!title && title !== 0) {
     open = false;
   }
@@ -720,10 +709,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 });
 
 Tooltip.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, adds an arrow to the tooltip.
    * @default false

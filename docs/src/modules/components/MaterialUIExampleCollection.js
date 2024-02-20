@@ -87,6 +87,12 @@ const examples = [
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-gatsby',
     src: '/static/images/examples/gatsby.svg',
   },
+  {
+    name: 'React-admin',
+    label: 'View TS example',
+    link: 'https://github.com/marmelab/material-ui-react-admin',
+    src: '/static/images/examples/reactadmin.svg',
+  },
 ];
 
 export default function MaterialUIExampleCollection() {
@@ -121,7 +127,9 @@ export default function MaterialUIExampleCollection() {
                 : { children: example.src })}
             />
             <div>
-              <Typography fontWeight="semiBold">{example.name}</Typography>
+              <Typography fontWeight="medium" className="algolia-lvl3">
+                {example.name}
+              </Typography>
               <Box
                 data-ga-event-category="material-ui-example"
                 data-ga-event-label={example.name}
@@ -130,7 +138,7 @@ export default function MaterialUIExampleCollection() {
                   display: 'flex',
                   flexWrap: 'wrap',
                   alignItems: 'center',
-                  mt: 0.2,
+                  mt: 0.5,
                   gap: 0.2,
                 }}
               >

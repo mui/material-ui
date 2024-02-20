@@ -1,11 +1,11 @@
 <!-- markdownlint-disable-next-line -->
 <p align="center">
-  <a href="https://mui.com/base-ui/" rel="noopener" target="_blank"><img width="150" height="133" src="https://mui.com/static/logo.svg" alt="Base UI logo"></a>
+  <a href="https://mui.com/base-ui/" rel="noopener" target="_blank"><img width="150" height="133" src="https://mui.com/static/logo.svg" alt="Base UI logo"></a>
 </p>
 
-<h1 align="center">Base UI</h1>
+<h1 align="center">Base UI</h1>
 
-Base UI is a library of unstyled React UI components and hooks. With Base UI, you gain complete control over your app's CSS and accessibility features.
+Base UI is a library of headless ("unstyled") React components and low-level hooks. You gain complete control over your app's CSS and accessibility features.
 
 ## Installation
 
@@ -28,13 +28,13 @@ Use the "base-ui" tag on Stack Overflow to make it easier for the community to f
 
 ## Examples
 
-Our documentation features [a collection of example projects using Base UI](https://github.com/mui/material-ui/tree/master/examples).
+Our documentation features [a collection of example projects using Base UI](https://github.com/mui/material-ui/tree/master/examples).
 
 ## Contributing
 
 Read the [contributing guide](/CONTRIBUTING.md) to learn about our development process, how to propose bug fixes and improvements, and how to build and test your changes.
 
-Contributing to Base UI is about more than just issues and pull requests!
+Contributing to Base UI is about more than just issues and pull requests!
 There are many other ways to [support MUI](https://mui.com/material-ui/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project) beyond contributing to the code base.
 
 ## Changelog

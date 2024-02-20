@@ -53,26 +53,39 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
-    "checkbox": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the checkbox element"
-    },
-    "action": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the action element"
-    },
-    "input": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the input element"
-    },
-    "label": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the label element"
-    },
     "checked": {
       "description": "State class applied to {{nodeName}}.",
       "nodeName": "the input component&#39;s <code>checked</code> class"
+    },
+    "colorContext": {
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "color inversion is triggered"
+    },
+    "colorDanger": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"danger\"</code>"
+    },
+    "colorNeutral": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"neutral\"</code>"
+    },
+    "colorPrimary": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorSuccess": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"success\"</code>"
+    },
+    "colorWarning": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"warning\"</code>"
     },
     "disabled": {
       "description": "State class applied to {{nodeName}}.",
@@ -86,50 +99,20 @@
       "nodeName": "the root element",
       "conditions": "<code>indeterminate={true}</code>"
     },
-    "colorPrimary": {
+    "sizeLg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>color=\"primary\"</code>"
-    },
-    "colorDanger": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"danger\"</code>"
-    },
-    "colorNeutral": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"neutral\"</code>"
-    },
-    "colorSuccess": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"success\"</code>"
-    },
-    "colorWarning": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"warning\"</code>"
-    },
-    "colorContext": {
-      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "color inversion is triggered"
-    },
-    "sizeSm": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"sm\"</code>"
+      "conditions": "<code>size=\"lg\"</code>"
     },
     "sizeMd": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>size=\"md\"</code>"
     },
-    "sizeLg": {
+    "sizeSm": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>size=\"lg\"</code>"
+      "conditions": "<code>size=\"sm\"</code>"
     },
     "variantOutlined": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -148,10 +131,10 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
-    "checkbox": "The component that renders the checkbox.",
     "action": "The component that renders the action.",
+    "checkbox": "The component that renders the checkbox.",
     "input": "The component that renders the input.",
-    "label": "The component that renders the label."
+    "label": "The component that renders the label.",
+    "root": "The component that renders the root."
   }
 }

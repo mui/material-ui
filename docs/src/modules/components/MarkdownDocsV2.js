@@ -18,7 +18,7 @@ import { HEIGHT as AppFrameHeight } from 'docs/src/modules/components/AppFrame';
 import { HEIGHT as TabsHeight } from 'docs/src/modules/components/ComponentPageTabs';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 import { getPropsToC } from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
-import { getCssToC } from 'docs/src/modules/components/ApiPage/sections/CssSection';
+import { getClassesToC } from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 
 function JoyModeObserver({ mode }) {
   const { setMode } = useColorScheme();
@@ -147,7 +147,6 @@ export default function MarkdownDocsV2(props) {
       const { componentDescriptionToc = [] } = componentsApiDescriptions[key][userLanguage];
       const {
         name: componentName,
-        styles,
         inheritance,
         slots,
         themeDefaultProps,
@@ -159,7 +158,6 @@ export default function MarkdownDocsV2(props) {
       const componentApiToc = [
         createComponentTocEntry(componentNameKebabCase, 'import'),
         ...componentDescriptionToc,
-        styles.name && createComponentTocEntry(componentNameKebabCase, 'component-name'),
         getPropsToC({
           t,
           componentName: componentNameKebabCase,
@@ -168,16 +166,13 @@ export default function MarkdownDocsV2(props) {
           themeDefaultProps,
           hash: `${componentNameKebabCase}-props`,
         }),
-        ...getCssToC({
+        slots?.length > 0 && createComponentTocEntry(componentNameKebabCase, 'slots'),
+        ...getClassesToC({
           t,
           componentName: componentNameKebabCase,
-          componentStyles: styles,
-          hash: `${componentNameKebabCase}-css`,
+          componentClasses: classes,
+          hash: `${componentNameKebabCase}-classes`,
         }),
-
-        slots?.length > 0 && createComponentTocEntry(componentNameKebabCase, 'slots'),
-        (classes?.classes?.length || Object.keys(classes?.classes?.globalClasses || {}).length) &&
-          createComponentTocEntry(componentNameKebabCase, 'classes'),
       ].filter(Boolean);
 
       componentsApiToc.push({

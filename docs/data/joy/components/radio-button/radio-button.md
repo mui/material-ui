@@ -10,7 +10,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radio/
 
 <p class="description">Radio buttons enable the user to select one option from a set.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Introduction
 
@@ -28,6 +28,7 @@ When should you use radio buttons rather than checkboxes, switches, or selects?
 - Use a switch to provide the user with **a single binary choice**—radio buttons are preferable when you need to give the user multiple binary choices.
 - Consider using a select if it's not important for the user to be able to see all options.
 - If available options can be collapsed, consider using a Select component to conserve space.
+
   :::
 
 ## Basics

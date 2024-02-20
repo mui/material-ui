@@ -56,13 +56,13 @@ const UList = styled('ul')({
 
 const PRODUCTS = [
   {
-    name: 'MUI Core',
+    name: 'MUI Core',
     description: 'Ready-to-use foundational React components, free forever.',
     href: ROUTES.productCore,
   },
   {
-    name: 'MUI X',
-    description: 'Advanced and powerful components for complex use-cases.',
+    name: 'MUI X',
+    description: 'Advanced and powerful components for complex use cases.',
     href: ROUTES.productAdvanced,
   },
   {
@@ -76,7 +76,7 @@ const PRODUCTS = [
     href: ROUTES.productDesignKits,
   },
   {
-    name: 'MUI Toolpad',
+    name: 'MUI Toolpad',
     description: 'Low-code admin builder.',
     href: ROUTES.productToolpad,
     chip: 'Beta',
@@ -85,32 +85,32 @@ const PRODUCTS = [
 
 const DOCS = [
   {
-    name: 'Material UI',
-    description: "React components that implement Google's Material Design.",
+    name: 'Material UI',
+    description: "Component library that implements Google's Material Design.",
     href: ROUTES.materialDocs,
   },
   {
-    name: 'Joy UI',
-    description: 'React components for building your design system.',
+    name: 'Joy UI',
+    description: "Component library that implements MUI's own in-house design principles.",
     href: ROUTES.joyDocs,
   },
   {
-    name: 'Base UI',
+    name: 'Base UI',
     description: 'Unstyled React components and low-level hooks.',
     href: ROUTES.baseDocs,
   },
   {
-    name: 'MUI System',
+    name: 'MUI System',
     description: 'CSS utilities for rapidly laying out custom designs.',
     href: ROUTES.systemDocs,
   },
   {
-    name: 'MUI X',
-    description: 'Advanced and powerful components for complex use cases.',
-    href: ROUTES.advancedComponents,
+    name: 'MUI X',
+    description: 'Advanced components for complex use cases.',
+    href: ROUTES.xIntro,
   },
   {
-    name: 'MUI Toolpad',
+    name: 'MUI Toolpad',
     description: 'Low-code admin builder.',
     href: ROUTES.toolpadDocs,
     chip: 'Beta',
@@ -162,16 +162,16 @@ export default function HeaderNavDropdown() {
             top: 56,
             left: 0,
             right: 0,
-            boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
+            boxShadow: `0px 16px 20px rgba(170, 180, 190, 0.3)`,
             ...theme.applyDarkStyles({
-              boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.5)',
+              boxShadow: '0px 16px 20px rgba(0, 0, 0, 0.8)',
             }),
           })}
         >
           <Box
             sx={{
               p: 2,
-              bgcolor: 'background.paper',
+              bgcolor: 'background.default',
               maxHeight: 'calc(100vh - 56px)',
               overflow: 'auto',
             }}

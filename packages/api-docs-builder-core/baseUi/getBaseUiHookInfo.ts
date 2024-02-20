@@ -41,7 +41,7 @@ export function getBaseUiHookInfo(filename: string): HookInfo {
   const demos = findBaseHooksDemos(name, allMarkdowns);
   const apiPath = getApiPath(demos, name);
 
-  const result = {
+  return {
     filename,
     name,
     apiPathname: apiPath ?? `/base-ui/api/${kebabCase(name)}/`,
@@ -52,7 +52,6 @@ export function getBaseUiHookInfo(filename: string): HookInfo {
     },
     getDemos: () => demos,
   };
-  return result;
 }
 
 function findBaseHooksDemos(

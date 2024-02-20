@@ -17,9 +17,11 @@ export default function NotificationCard() {
           p: 2,
           gap: 2,
           maxWidth: 283,
+          boxShadow: `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
           ...theme.applyDarkStyles({
             bgcolor: 'primaryDark.900',
             borderColor: 'primaryDark.700',
+            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.4)',
           }),
         })}
       >
@@ -38,7 +40,7 @@ export default function NotificationCard() {
           })}
         >
           <Avatar
-            imgProps={{ 'aria-labelledby': 'demo-notification-card-messenger-name' }}
+            slotProps={{ img: { 'aria-labelledby': 'demo-notification-card-messenger-name' } }}
             src="/static/images/avatar/3-sm.jpeg"
             sx={{ width: 40, height: 40 }}
           />

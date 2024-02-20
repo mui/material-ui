@@ -21,7 +21,7 @@ const testContext: DropdownContextValue = {
   popupId: 'menu-popup',
   registerPopup: () => {},
   registerTrigger: () => {},
-  state: { open: true },
+  state: { open: true, changeReason: null },
   triggerElement: document.createElement('div'),
 };
 

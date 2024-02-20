@@ -1,6 +1,9 @@
 {
   "props": {
-    "value": { "type": { "name": "string" }, "required": true },
+    "value": {
+      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
+      "required": true
+    },
     "children": { "type": { "name": "node" } }
   },
   "name": "TabContext",
@@ -8,7 +11,7 @@
     "import TabContext from '@mui/lab/TabContext';",
     "import { TabContext } from '@mui/lab';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "classes": [],
   "spread": true,
   "themeDefaultProps": null,
   "muiName": "MuiTabContext",

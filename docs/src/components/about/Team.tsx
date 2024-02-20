@@ -10,7 +10,7 @@ import Paper, { PaperProps } from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
-import TwitterIcon from '@mui/icons-material/Twitter';
+import XIcon from '@mui/icons-material/X';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import Link from 'docs/src/modules/components/Link';
@@ -19,6 +19,14 @@ import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import teamMembers from 'docs/data/about/teamMembers.json';
+/**
+ * The teamMembers data can be imported from: https://tools-public.mui.com/prod/pages/nSwYn51
+
+curl 'https://tools-public.mui.com/prod/api/data/muicomabout/queryAbout' \
+  -H 'content-type: application/json' \
+  --data-raw '{}' \
+  --compressed
+*/
 
 interface Profile {
   name: string;
@@ -140,20 +148,20 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
               component="a"
               href={`https://github.com/${props.github}`}
               target="_blank"
-              rel="noreferrer noopener"
+              rel="noopener"
             >
               <GitHubIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
           )}
           {props.twitter && (
             <IconButton
-              aria-label={`${props.name} Twitter profile`}
+              aria-label={`${props.name} X profile`}
               component="a"
               href={`https://twitter.com/${props.twitter}`}
               target="_blank"
-              rel="noreferrer noopener"
+              rel="noopener"
             >
-              <TwitterIcon fontSize="small" sx={{ color: 'grey.500' }} />
+              <XIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
           )}
           {props.linkedin && (
@@ -162,7 +170,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
               component="a"
               href={`https://www.linkedin.com/${props.linkedin}`}
               target="_blank"
-              rel="noreferrer noopener"
+              rel="noopener"
             >
               <LinkedInIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
@@ -189,7 +197,7 @@ const contributors = [
   {
     name: 'Sebastian Silbermann',
     github: 'eps1lon',
-    title: 'MUI Core, everything Open Source',
+    title: 'MUI Core, everything Open Source',
     location: 'Berlin, Germany',
     locationCountry: 'de',
     src: 'https://avatars.githubusercontent.com/u/12292047',
@@ -234,7 +242,7 @@ const emeriti = [
     name: 'Hai Nguyen',
     github: 'hai-cea',
     twitter: 'haicea',
-    title: 'MUI Core, v0.x creator',
+    title: 'MUI Core, v0.x creator',
     location: 'Dallas, US',
     locationCountry: 'us',
     src: 'https://avatars.githubusercontent.com/u/2007468',
@@ -242,7 +250,7 @@ const emeriti = [
   {
     name: 'Nathan Marks',
     github: 'nathanmarks',
-    title: 'MUI Core, v1.x co-creator',
+    title: 'MUI Core, v1.x co-creator',
     location: 'Toronto, CA',
     locationCountry: 'ca',
     src: 'https://avatars.githubusercontent.com/u/4420103',
@@ -251,7 +259,7 @@ const emeriti = [
     name: 'Kevin Ross',
     github: 'rosskevin',
     twitter: 'rosskevin',
-    title: 'MUI Core, flow',
+    title: 'MUI Core, flow',
     location: 'Franklin, US',
     locationCountry: 'us',
     src: 'https://avatars.githubusercontent.com/u/136564',
@@ -260,7 +268,7 @@ const emeriti = [
     name: 'Sebastian Sebald',
     github: 'sebald',
     twitter: 'sebastiansebald',
-    title: 'MUI Core',
+    title: 'MUI Core',
     location: 'Freiburg, Germany',
     locationCountry: 'de',
     src: 'https://avatars.githubusercontent.com/u/985701',
@@ -268,7 +276,7 @@ const emeriti = [
   {
     name: 'Ken Gregory',
     github: 'kgregory',
-    title: 'MUI Core',
+    title: 'MUI Core',
     location: 'New Jersey, US',
     locationCountry: 'us',
     src: 'https://avatars.githubusercontent.com/u/3155127',
@@ -277,7 +285,7 @@ const emeriti = [
     name: 'Tom Crockett',
     github: 'pelotom',
     twitter: 'pelotom',
-    title: 'MUI Core',
+    title: 'MUI Core',
     location: 'Los Angeles, US',
     locationCountry: 'us',
     src: 'https://avatars.githubusercontent.com/u/128019',
@@ -286,7 +294,7 @@ const emeriti = [
     name: 'Maik Marschner',
     github: 'leMaik',
     twitter: 'leMaikOfficial',
-    title: 'MUI Core',
+    title: 'MUI Core',
     location: 'Hannover, Germany',
     locationCountry: 'de',
     src: 'https://avatars.githubusercontent.com/u/5544859',
@@ -295,7 +303,7 @@ const emeriti = [
     name: 'Oleg Slobodskoi',
     github: 'kof',
     twitter: 'oleg008',
-    title: 'MUI Core, JSS',
+    title: 'MUI Core, JSS',
     location: 'Berlin, Germany',
     locationCountry: 'de',
     src: 'https://avatars.githubusercontent.com/u/52824',
@@ -304,7 +312,7 @@ const emeriti = [
     name: 'Dmitriy Kovalenko',
     github: 'dmtrKovalenko',
     twitter: 'goose_plus_plus',
-    title: 'MUI X, date pickers',
+    title: 'MUI X Date Pickers',
     location: 'Kharkiv, Ukraine',
     locationCountry: 'ua',
     src: 'https://avatars.githubusercontent.com/u/16926049',
@@ -313,7 +321,7 @@ const emeriti = [
     name: 'Josh Wooding',
     github: 'joshwooding',
     twitter: 'JoshWooding_',
-    title: 'MUI Core, J.P. Morgan',
+    title: 'MUI Core, J.P. Morgan',
     location: 'London, UK',
     locationCountry: 'gb',
     src: 'https://avatars.githubusercontent.com/u/12938082',
@@ -370,7 +378,7 @@ export default function Team() {
       </Section>
       <Divider />
       {/* Community contributors */}
-      <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'primaryDark.900' }}>
+      <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'common.black' }}>
         <Container sx={{ py: { xs: 4, sm: 8 } }}>
           <Typography component="h3" variant="h4" color="primary.200" fontWeight="semiBold">
             Community contributors

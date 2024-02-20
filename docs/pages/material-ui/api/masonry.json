@@ -13,6 +13,7 @@
     "defaultColumns": { "type": { "name": "number" } },
     "defaultHeight": { "type": { "name": "number" } },
     "defaultSpacing": { "type": { "name": "number" } },
+    "sequential": { "type": { "name": "bool" }, "default": "false" },
     "spacing": {
       "type": {
         "name": "union",
@@ -30,7 +31,14 @@
   },
   "name": "Masonry",
   "imports": ["import Masonry from '@mui/lab/Masonry';", "import { Masonry } from '@mui/lab';"],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiMasonry" },
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiMasonry-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiMasonry",

@@ -10,7 +10,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 
 <p class="description">The modal component provides a solid foundation for creating dialogs, popovers, lightboxes, or whatever else.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Introduction
 
@@ -226,7 +226,7 @@ Use `sx` prop with `theme.breakpoints.only('xs')` to customize the styles of the
 
 ### Focus trap
 
-Base UI `Modal` moves the focus back to the body of the component if the focus tries to escape it.
+Base UI `Modal` moves the focus back to the body of the component if the focus tries to escape it.
 
 This is done for accessibility purposes, but it can potentially create issues for your users.
 
