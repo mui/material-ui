@@ -15,7 +15,7 @@ It's been over a year since we released the first version of Toolpad. Today, we'
 
 ## Why did we decide to build Toolpad?
 
-Toolpad was created to meet the needs of the MUI community. As a result of surveys we conducted, and market research we undertook, we decided to develop an internal tool builder because the idea resonates with MUI's mission of empowering developers to build apps faster and more efficiently.
+Toolpad was created to meet the needs of the Material UI community. As a result of surveys we conducted, and market research we undertook, we decided to develop an internal tool builder because the idea resonates with MUI's mission of empowering developers to build apps faster and more efficiently.
 
 Internal tools are software applications that are developed and used within an organization itself. They can automate tasks, manage data, and help foster collaboration. Internal tools are a valuable asset for businesses of all sizes, as they help to improve efficiency, productivity, and communication.
 
@@ -33,7 +33,7 @@ Toolpad is not ideal for building static web pages, mobile apps, or customer-fac
 
 ## Who is Toolpad for?
 
-Before the arrival of Toolpad, MUI primarily catered to the front-end needs of the development process. Our products were mostly useful for React engineers or designers, but we saw many full-stack engineers use our advanced components for data-intensive apps. These highly customizable components are well-suited for complex apps, but not all apps require the same level of customization: for example, internal tools just need basic theming.
+Before the arrival of Toolpad, the MUI organization primarily catered to the front-end needs of the development process. Our products were mostly useful for React engineers or designers, but we saw many full-stack engineers use our advanced components for data-intensive apps. These highly customizable components are well-suited for complex apps, but not all apps require the same level of customization: for example, internal tools just need basic theming.
 
 <img alt="Toolpad personas" src="/static/blog/2023-toolpad-beta-announcement/personas.png"  loading="lazy" width="2076" height="900" style="margin-bottom:24px;" />
 
@@ -73,9 +73,9 @@ Toolpad runs completely locally. You're not stuck with an online code editor or 
 <img alt="Building an application on Toolpad" src="/static/blog/2023-toolpad-beta-announcement/code.png"  loading="lazy" width="2400" height="1394" />
 </a>
 
-### 6. A catalogue of components powered by Material UI
+### 6. A catalog of components powered by Material UI
 
-Material UI provides production-ready React components; a chosen few are currently available inside Toolpad, and we're adding more all the time.
+Material UI provides production-ready React components; a chosen few are currently available inside Toolpad, and we're adding more all the time.
 
 <a href="https://mui.com/toolpad/examples/npm-stats/">
 <img alt="Building an application on Toolpad" src="/static/blog/2023-toolpad-beta-announcement/library.png"  loading="lazy" width="2400" height="1394" />
@@ -91,11 +91,11 @@ In this domain, there are two categories of products:
 
 Toolpad is solely focused on professional developers. As much as we are low-code, we are equally code-friendly. Providing the basic functionality that you expect from an open-source tool is non-negotiable for us—we will always prioritize your best interests over all else. With nearly a decade of experience building developer tools, we understand the long-term benefits of cultivating a close relationship with our community of users.
 
-Lastly, Toolpad is the only product that offers a drag-and-drop UI builder closely integrated with your favorite IDE, such as VSCode. It's the best of both the worlds!
+Lastly, Toolpad is the only product that offers a drag-and-drop UI builder closely integrated with your favorite IDE, such as VSCode. It's the best of both worlds!
 
 ## How can I use Toolpad?
 
-Toolpad is available as an NPM package. Follow the [Installation guide](https://mui.com/toolpad/getting-started/installation/) in the docs to get started. You can learn more about Toolpad by visiting the [home page](https://mui.com/toolpad/).
+Toolpad is available as an npm package. Follow the [Installation guide](https://mui.com/toolpad/getting-started/installation/) in the docs to get started. You can learn more about Toolpad by visiting the [home page](https://mui.com/toolpad/).
 
 <img alt="Toolpad documentation and instructions on how to use it" src="/static/blog/2023-toolpad-beta-announcement/docs.png"  loading="lazy" width="2400" height="1394" />
 
@@ -105,6 +105,6 @@ We plan to continue to iterate on our vision of helping you as a developer to in
 
 The best places to stay up-to-date about what we're currently working on are [GitHub issues](https://github.com/mui/mui-toolpad) and our [public roadmap](https://github.com/orgs/mui/projects/9/views/1).
 
-If you have any questions or would like to share feedback, you can directly contact the team at toolpad@mui.com or reach us on [Twitter](https://twitter.com/MUI_Toolpad). You can also engage in conversation in our [Discord](https://mui.com/r/discord/) server.
+If you have any questions or would like to share feedback, you can directly contact the team at toolpad@mui.com or reach us on [X](https://twitter.com/MUI_Toolpad). You can also engage in conversation in our [Discord](https://mui.com/r/discord/) server.
 
-If you'd like an in-depth demo and to discuss your use case, please feel free to [schedule a meeting with me on Calendly](https://calendly.com/prakhar-mui).
+If you'd like an in-depth demo to discuss your use case, please feel free to [schedule a meeting with me on Calendly](https://calendly.com/prakhar-mui).

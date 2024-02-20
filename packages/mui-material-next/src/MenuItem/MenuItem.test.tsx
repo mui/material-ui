@@ -1,17 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import {
-  act,
-  describeConformance,
-  createRenderer,
-  fireEvent,
-  screen,
-} from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
 import { MenuProvider } from '@mui/base/useMenu';
 import MenuItem, { menuItemClasses as classes } from '@mui/material-next/MenuItem';
 import Menu from '@mui/material-next/Menu';
 import ButtonBase from '@mui/material-next/ButtonBase';
+import describeConformance from '../../test/describeConformance';
 
 const dummyGetItemState = () => ({
   disabled: false,
@@ -70,7 +65,7 @@ describe('<MenuItem />', () => {
     renderWithMenu(<MenuItem />);
     const menuitem = screen.getByRole('menuitem');
 
-    expect(menuitem).to.have.property('tabIndex', -1);
+    expect(menuitem).to.have.property('tabIndex', 0);
   });
 
   it('has a ripple when clicked', () => {

@@ -10,20 +10,18 @@ import {
   fixBabelGeneratorIssues,
   fixLineEndings,
   getUnstyledFilename,
-} from '@mui-internal/docs-utilities';
+} from '@mui-internal/docs-utils';
 import {
   getPropTypesFromFile,
   injectPropTypesInFile,
   InjectPropTypesInFileOptions,
-} from 'typescript-to-proptypes';
+} from '@mui-internal/typescript-to-proptypes';
 import {
   createTypeScriptProjectBuilder,
   TypeScriptProject,
 } from '@mui-internal/api-docs-builder/utils/createTypeScriptProject';
-import {
-  CORE_TYPESCRIPT_PROJECTS,
-  CoreTypeScriptProjects,
-} from '@mui-internal/api-docs-builder/utils/coreTypeScriptProjects';
+
+import CORE_TYPESCRIPT_PROJECTS from './coreTypeScriptProjects';
 
 const useExternalPropsFromInputBase = [
   'autoComplete',
@@ -164,10 +162,6 @@ const getSortLiteralUnions: InjectPropTypesInFileOptions['getSortLiteralUnions']
   return undefined;
 };
 
-const prettierConfig = prettier.resolveConfig.sync(process.cwd(), {
-  config: path.join(__dirname, '../prettier.config.js'),
-});
-
 async function generateProptypes(
   project: TypeScriptProject,
   sourceFile: string,
@@ -239,12 +233,12 @@ async function generateProptypes(
         filename: sourceFile,
       },
       comment: [
-        '----------------------------- Warning --------------------------------',
-        '| These PropTypes are generated from the TypeScript type definitions |',
+        '┌────────────────────────────── Warning ──────────────────────────────┐',
+        '│ These PropTypes are generated from the TypeScript type definitions. │',
         isTsFile
-          ? '|     To update them edit TypeScript types and run "yarn proptypes"  |'
-          : '|     To update them edit the d.ts file and run "yarn proptypes"     |',
-        '----------------------------------------------------------------------',
+          ? '│ To update them, edit the TypeScript types and run `pnpm proptypes`. │'
+          : '│    To update them, edit the d.ts file and run `pnpm proptypes`.     │',
+        '└─────────────────────────────────────────────────────────────────────┘',
       ].join('\n'),
       ensureBabelPluginTransformReactRemovePropTypesIntegration: true,
       getSortLiteralUnions,
@@ -308,7 +302,11 @@ async function generateProptypes(
     throw new Error('Unable to produce inject propTypes into code.');
   }
 
-  const prettified = prettier.format(result, { ...prettierConfig, filepath: sourceFile });
+  const prettierConfig = await prettier.resolveConfig(process.cwd(), {
+    config: path.join(__dirname, '../prettier.config.js'),
+  });
+
+  const prettified = await prettier.format(result, { ...prettierConfig, filepath: sourceFile });
   const formatted = fixBabelGeneratorIssues(prettified);
   const correctedLineEndings = fixLineEndings(sourceContent, formatted);
 

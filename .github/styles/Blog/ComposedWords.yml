@@ -1,6 +1,6 @@
 extends: substitution
 message: To be consistent with the rest of the documentation, consider using '%s' instead of '%s'.
-level: warning
+level: error
 ignorecase: true
 # swap maps tokens in form of bad: good
 # for more information: https://vale.sh/docs/topics/styles/#substitution

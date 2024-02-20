@@ -12,7 +12,7 @@
     "import GlobalStyles from '@mui/material/GlobalStyles';",
     "import { GlobalStyles } from '@mui/material';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "classes": [],
   "spread": true,
   "themeDefaultProps": null,
   "muiName": "MuiGlobalStyles",

@@ -1,7 +1,8 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
+import { useSlotProps } from '@mui/base/utils';
+import composeClasses from '@mui/utils/composeClasses';
 import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import { useSnackbar } from '@mui/base/useSnackbar';
 import styled from '../styles/styled';
@@ -171,10 +172,10 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
 });
 
 Snackbar.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The action to display. It renders after the message, at the end of the snackbar.
    */

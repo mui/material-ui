@@ -396,7 +396,6 @@ const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple
 
   const rootRef = React.useRef<HTMLElement>(null);
   const buttonRef = React.useRef<HTMLElement>(null);
-  const listboxRef = React.useRef<HTMLElement>(null);
 
   const handleRef = useForkRef(ref, rootRef);
 
@@ -520,7 +519,6 @@ const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple
 
   const [SlotListbox, listboxProps] = useSlot('listbox', {
     additionalProps: {
-      ref: listboxRef,
       anchorEl,
       open: listboxOpen,
       placement: 'bottom' as const,
@@ -571,6 +569,15 @@ const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple
     [listboxProps.modifiers],
   );
 
+  let displayValue = placeholder;
+
+  if (
+    (Array.isArray(selectedOption) && selectedOption.length > 0) ||
+    (!Array.isArray(selectedOption) && !!selectedOption)
+  ) {
+    displayValue = renderValue(selectedOption);
+  }
+
   return (
     <React.Fragment>
       <SlotRoot {...rootProps}>
@@ -578,9 +585,7 @@ const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple
           <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
         )}
 
-        <SlotButton {...buttonProps}>
-          {selectedOption ? renderValue(selectedOption) : placeholder}
-        </SlotButton>
+        <SlotButton {...buttonProps}>{displayValue}</SlotButton>
         {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
 
         {indicator && <SlotIndicator {...indicatorProps}>{indicator}</SlotIndicator>}
@@ -631,10 +636,10 @@ interface SelectComponent {
 }
 
 Select.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A ref for imperative actions. It currently only supports `focusVisible()` action.
    */
@@ -720,7 +725,6 @@ Select.propTypes /* remove-proptypes */ = {
   multiple: PropTypes.bool,
   /**
    * Name of the element. For example used by the server to identify the fields in form submits.
-   * If the name is provided, the component will render a hidden input element that can be submitted to a server.
    */
   name: PropTypes.string,
   /**

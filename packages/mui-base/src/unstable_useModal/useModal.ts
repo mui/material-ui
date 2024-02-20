@@ -54,7 +54,7 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
 
   // @ts-ignore internal logic
   const modal = React.useRef<{ modalRef: HTMLDivElement; mount: HTMLElement }>({});
-  const mountNodeRef = React.useRef<null | HTMLElement>(null);
+  const mountNodeRef = React.useRef<HTMLElement | null>(null);
   const modalRef = React.useRef<HTMLDivElement>(null);
   const handleRef = useForkRef(modalRef, rootRef);
   const [exited, setExited] = React.useState(!open);
@@ -135,7 +135,11 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
     // clicking a checkbox to check it, hitting a button to submit a form,
     // and hitting left arrow to move the cursor in a text input etc.
     // Only special HTML elements have these default behaviors.
-    if (event.key !== 'Escape' || !isTopModal()) {
+    if (
+      event.key !== 'Escape' ||
+      event.which === 229 || // Wait until IME is settled.
+      !isTopModal()
+    ) {
       return;
     }
 

@@ -162,7 +162,7 @@ function Styles() {
     <style>
       {`
       .Autocomplete__root {
-        font-family: IBM Plex Sans, sans-serif;
+        font-family: 'IBM Plex Sans', sans-serif;
         font-weight: 400;
         border-radius: 8px;
         background: ${isDarkMode ? grey[900] : '#fff'};
@@ -244,7 +244,7 @@ function Styles() {
       }
 
       .Autocomplete__listbox {
-        font-family: IBM Plex Sans, sans-serif;
+        font-family: 'IBM Plex Sans', sans-serif;
         font-size: 0.875rem;
         box-sizing: border-box;
         padding: 6px;
@@ -283,18 +283,18 @@ function Styles() {
           color: ${isDarkMode ? cyan[100] : cyan[900]};
         }
 
-        &.Mui-focused,
-        &.Mui-focusVisible {
+        &.base--focused,
+        &.base--focusVisible {
           background-color: ${isDarkMode ? grey[800] : grey[100]};
           color: ${isDarkMode ? grey[300] : grey[900]};
         }
 
-        &.Mui-focusVisible {
+        &.base--focusVisible {
           box-shadow: 0 0 0 3px ${isDarkMode ? cyan[500] : cyan[200]};
         }
 
-        &[aria-selected=true].Mui-focused,
-        &[aria-selected=true].Mui-focusVisible {
+        &[aria-selected=true].base--focused,
+        &[aria-selected=true].base--focusVisible {
           background-color: ${isDarkMode ? cyan[900] : cyan[100]};
           color: ${isDarkMode ? cyan[100] : cyan[900]};
         }

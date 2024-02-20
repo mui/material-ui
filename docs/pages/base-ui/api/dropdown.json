@@ -9,10 +9,10 @@
     "import { Dropdown } from '@mui/base/Dropdown';",
     "import { Dropdown } from '@mui/base';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "classes": [],
   "spread": false,
   "themeDefaultProps": null,
-  "muiName": "MuiDropdown",
+  "muiName": "Dropdown",
   "filename": "/packages/mui-base/src/Dropdown/Dropdown.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/base-ui/react-menu/\">Menu</a></li></ul>",

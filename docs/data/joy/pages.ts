@@ -12,6 +12,7 @@ const pages: readonly MuiPage[] = [
       { pathname: '/joy-ui/getting-started/tutorial' },
       { pathname: '/joy-ui/getting-started/templates' },
       { pathname: '/joy-ui/getting-started/roadmap' },
+      { pathname: '/joy-ui/getting-started/support' },
       {
         pathname: '/joy-ui/main-features',
         subheader: 'main-features',
@@ -94,6 +95,7 @@ const pages: readonly MuiPage[] = [
           { pathname: '/joy-ui/react-drawer', newFeature: true },
           { pathname: '/joy-ui/react-link' },
           { pathname: '/joy-ui/react-menu' },
+          { pathname: '/joy-ui/react-stepper', newFeature: true },
           { pathname: '/joy-ui/react-tabs' },
         ],
       },
@@ -145,6 +147,10 @@ const pages: readonly MuiPage[] = [
           {
             pathname: '/joy-ui/customization/overriding-component-structure',
             title: 'Overriding the component structure',
+          },
+          {
+            pathname: '/joy-ui/customization/right-to-left',
+            title: 'Right-to-left support',
           },
         ],
       },

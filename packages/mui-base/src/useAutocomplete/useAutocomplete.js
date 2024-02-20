@@ -98,6 +98,7 @@ export function useAutocomplete(props) {
     filterSelectedOptions = false,
     freeSolo = false,
     getOptionDisabled,
+    getOptionKey,
     getOptionLabel: getOptionLabelProp = (option) => option.label ?? option,
     groupBy,
     handleHomeEndKeys = !props.freeSolo,
@@ -904,6 +905,7 @@ export function useAutocomplete(props) {
           }
           break;
         case 'Backspace':
+          // Remove the value on the left of the "cursor"
           if (multiple && !readOnly && inputValue === '' && value.length > 0) {
             const index = focusedTag === -1 ? value.length - 1 : focusedTag;
             const newValue = value.slice();
@@ -914,6 +916,7 @@ export function useAutocomplete(props) {
           }
           break;
         case 'Delete':
+          // Remove the value on the right of the "cursor"
           if (multiple && !readOnly && inputValue === '' && value.length > 0 && focusedTag !== -1) {
             const index = focusedTag;
             const newValue = value.slice();
@@ -1167,7 +1170,7 @@ export function useAutocomplete(props) {
       const disabled = getOptionDisabled ? getOptionDisabled(option) : false;
 
       return {
-        key: getOptionLabel(option),
+        key: getOptionKey?.(option) ?? getOptionLabel(option),
         tabIndex: -1,
         role: 'option',
         id: `${id}-option-${index}`,

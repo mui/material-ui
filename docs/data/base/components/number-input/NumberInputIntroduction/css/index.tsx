@@ -5,7 +5,7 @@ import {
 } from '@mui/base/Unstable_NumberInput';
 import { useTheme } from '@mui/system';
 
-export default function NumberInputBasic() {
+export default function NumberInputIntroduction() {
   return (
     <React.Fragment>
       <BaseNumberInput
@@ -62,7 +62,7 @@ function Styles() {
     <style>
       {`
       .CustomNumberInput {
-        font-family: IBM Plex Sans, sans-serif;
+        font-family: 'IBM Plex Sans', sans-serif;
         font-weight: 400;
         border-radius: 8px;
         color: ${isDarkMode ? grey[300] : grey[900]};

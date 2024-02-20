@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Unstable_NumberInput as BaseNumberInput } from '@mui/base/Unstable_NumberInput';
 import clsx from 'clsx';
 
-export default function NumberInputBasic() {
-  const [value, setValue] = React.useState();
+export default function NumberInputIntroduction() {
+  const [value, setValue] = React.useState(null);
   return (
     <NumberInput
       aria-label="Demo number input"

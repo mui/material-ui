@@ -2,25 +2,86 @@
   "props": { "children": { "type": { "name": "node" } } },
   "name": "TabList",
   "imports": ["import TabList from '@mui/lab/TabList';", "import { TabList } from '@mui/lab';"],
-  "styles": {
-    "classes": [
-      "root",
-      "vertical",
-      "flexContainer",
-      "flexContainerVertical",
-      "centered",
-      "scroller",
-      "fixed",
-      "scrollableX",
-      "scrollableY",
-      "hideScrollbar",
-      "scrollButtons",
-      "scrollButtonsHideMobile",
-      "indicator"
-    ],
-    "globalClasses": {},
-    "name": "MuiTabList"
-  },
+  "classes": [
+    {
+      "key": "centered",
+      "className": "MuiTabList-centered",
+      "description": "Styles applied to the flex container element if `centered={true}` & `!variant=\"scrollable\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "fixed",
+      "className": "MuiTabList-fixed",
+      "description": "Styles applied to the tablist element if `!variant=\"scrollable\"`\b\b\b.",
+      "isGlobal": false
+    },
+    {
+      "key": "flexContainer",
+      "className": "MuiTabList-flexContainer",
+      "description": "Styles applied to the flex container element.",
+      "isGlobal": false
+    },
+    {
+      "key": "flexContainerVertical",
+      "className": "MuiTabList-flexContainerVertical",
+      "description": "Styles applied to the flex container element if `orientation=\"vertical\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "hideScrollbar",
+      "className": "MuiTabList-hideScrollbar",
+      "description": "Styles applied to the tablist element if `variant=\"scrollable\"` and `visibleScrollbar={false}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "indicator",
+      "className": "MuiTabList-indicator",
+      "description": "Styles applied to the TabIndicator component.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiTabList-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "scrollableX",
+      "className": "MuiTabList-scrollableX",
+      "description": "Styles applied to the tablist element if `variant=\"scrollable\"` and `orientation=\"horizontal\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "scrollableY",
+      "className": "MuiTabList-scrollableY",
+      "description": "Styles applied to the tablist element if `variant=\"scrollable\"` and `orientation=\"vertical\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "scrollButtons",
+      "className": "MuiTabList-scrollButtons",
+      "description": "Styles applied to the ScrollButtonComponent component.",
+      "isGlobal": false
+    },
+    {
+      "key": "scrollButtonsHideMobile",
+      "className": "MuiTabList-scrollButtonsHideMobile",
+      "description": "Styles applied to the ScrollButtonComponent component if `allowScrollButtonsMobile={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "scroller",
+      "className": "MuiTabList-scroller",
+      "description": "Styles applied to the tablist element.",
+      "isGlobal": false
+    },
+    {
+      "key": "vertical",
+      "className": "MuiTabList-vertical",
+      "description": "Styles applied to the root element if `orientation=\"vertical\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": false,
   "muiName": "MuiTabList",

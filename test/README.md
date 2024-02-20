@@ -1,11 +1,11 @@
-# MUI Testing
+# Testing
 
 Thanks for writing tests! Here's a quick run-down on our current setup.
 
 ## Getting started
 
 1. Add a unit test to `packages/*/src/TheUnitInQuestion/TheUnitInQuestion.test.js` or an integration test `packages/*/test/`.
-2. Run `yarn t TheUnitInQuestion`.
+2. Run `pnpm t TheUnitInQuestion`.
 3. Implement the tested behavior
 4. Open a PR once the test passes or if you want somebody to review your work
 
@@ -108,14 +108,14 @@ expect(() => {
 
 ## Commands
 
-MUI uses a wide range of tests approach as each of them comes with a different
+We uses a wide range of tests approach as each of them comes with a different
 trade-off, mainly completeness vs. speed.
 
 ### React API level
 
 #### Debugging tests
 
-If you want to debug tests with the e.g. Chrome inspector (chrome://inspect) you can run `yarn t <testFilePattern> --debug`.
+If you want to debug tests with the e.g. Chrome inspector (chrome://inspect) you can run `pnpm t <testFilePattern> --debug`.
 Note that the test will not get executed until you start code execution in the inspector.
 
 We have a dedicated task to use VSCode's integrated debugger to debug the currently opened test file.
@@ -123,13 +123,13 @@ Open the test you want to run and press F5 (launch "Test Current File").
 
 #### Run the core mocha unit/integration test suite
 
-To run all of the unit and integration tests run `yarn test:unit`
+To run all of the unit and integration tests run `pnpm test:unit`
 
-If you want to `grep` for certain tests add `-g STRING_TO_GREP` though for development we recommend `yarn t <testFilePattern>`.
+If you want to `grep` for certain tests add `-g STRING_TO_GREP` though for development we recommend `pnpm t <testFilePattern>`.
 
 #### Watch the core mocha unit/integration test suite
 
-`yarn t <testFilePattern>`
+`pnpm t <testFilePattern>`
 
 First, we have the **unit test** suite.
 It uses [mocha](https://mochajs.org) and a thin wrapper around `@testing-library/react`.
@@ -141,7 +141,7 @@ Here is an [example](https://github.com/mui/material-ui/blob/814fb60bbd8e500517b
 
 #### Create HTML coverage reports
 
-`yarn test:coverage:html`
+`pnpm test:coverage:html`
 
 When running this command you should get under `coverage/index.html` a full coverage report in HTML format. This is created using [Istanbul](https://istanbul-js.org)'s HTML reporter and gives good data such as line, branch and function coverage.
 
@@ -149,16 +149,19 @@ When running this command you should get under `coverage/index.html` a full cove
 
 #### Run the mocha test suite using the karma runner
 
-`yarn test:karma`
+`pnpm test:karma`
 
 Testing the components at the React level isn't enough;
 we need to make sure they will behave as expected with a **real DOM**.
-To solve that problem we use [karma](https://github.com/karma-runner/karma),
-which is almost a drop-in replacement of [jsdom](https://github.com/tmpvar/jsdom).
+To solve that problem we use [Karma](https://github.com/karma-runner/karma),
+which is almost a drop-in replacement of [jsdom](https://github.com/jsdom/jsdom).
 Our tests run on different browsers to increase the coverage:
 
 - [Headless Chrome](https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md)
-- Chrome, Firefox, Safari, and Edge thanks to [BrowserStack](https://www.browserstack.com)
+- Headless Firefox
+- Chrome, Safari, and Edge thanks to [BrowserStack](https://www.browserstack.com)
+
+In development mode, if `pnpm test:karma` fails with this error "Cannot start ChromeHeadless. Can not find the binary", you can solve it by installing the missing headless browsers: `pnpm playwright install --with-deps`.
 
 ##### BrowserStack
 
@@ -192,13 +195,13 @@ Checkout the [end-to-end testing readme](./e2e/README.md) for more information.
 
 ##### Development
 
-When working on the visual regression tests you can run `yarn test:regressions:dev` in the background to constantly rebuild the views used for visual regression testing.
-To actually take the screenshots you can then run `yarn test:regressions:run`.
+When working on the visual regression tests you can run `pnpm test:regressions:dev` in the background to constantly rebuild the views used for visual regression testing.
+To actually take the screenshots you can then run `pnpm test:regressions:run`.
 You can pass the same arguments as you could to `mocha`.
-For example, `yarn test:regressions:run --watch --grep "docs-system-basic"` to take new screenshots of every demo in `docs/src/pages/system/basic`.
+For example, `pnpm test:regressions:run --watch --grep "docs-system-basic"` to take new screenshots of every demo in `docs/src/pages/system/basic`.
 You can view the screenshots in `test/regressions/screenshots/chrome`.
 
-Alternatively, you might want to open `http://localhost:5001` (while `yarn test:regressions:dev` is running) to view individual views separately.
+Alternatively, you might want to open `http://localhost:5001` (while `pnpm test:regressions:dev` is running) to view individual views separately.
 
 ### Caveats
 

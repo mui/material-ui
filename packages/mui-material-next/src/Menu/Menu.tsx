@@ -98,12 +98,10 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
   const theme = useTheme();
   const isRtl = theme.direction === 'rtl';
 
-  const listRef = React.useRef<HTMLElement | null>(null);
+  const listRef = React.useRef<HTMLElement>(null);
 
   // TODO v6: Handle the rest of the props from the MenuListProps prop
   const {
-    // autoFocus,
-    // autoFocusItem,
     // varaint
     className: menuListPropsClassName,
     disabledItemsFocusable,
@@ -115,7 +113,8 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
     // onItemsChange,
     disabledItemsFocusable: Boolean(disabledItemsFocusable),
     disableListWrap: Boolean(disableListWrap),
-    // autoFocus,
+    autoFocus,
+    componentName: 'Menu',
   });
 
   const ownerState = {
@@ -141,9 +140,6 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
   );
 
   const classes = useUtilityClasses(ownerState);
-
-  // Used in the legacy MenuList component
-  // const autoFocusItem = autoFocus && !disableAutoFocusItem && open;
 
   const handleEntering = (element: HTMLElement, isAppearing: boolean) => {
     // adjust styles for scrollbar
@@ -307,6 +303,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
 
   const { contextValue: dropdownContextValue } = useDropdown({
     open,
+    componentName: 'Menu',
   });
 
   return !upperDropdownContext ? (
@@ -319,10 +316,10 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
 }) as OverridableComponent<MenuTypeMap>;
 
 Menu.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A ref with imperative actions that can be performed on the menu.
    */

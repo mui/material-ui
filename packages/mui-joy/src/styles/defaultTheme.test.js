@@ -31,6 +31,7 @@ describe('defaultTheme', () => {
         'unstable_sx',
         'shouldSkipGeneratingVar',
         'generateCssVars',
+        'applyStyles',
       ]).to.includes(field);
     });
   });

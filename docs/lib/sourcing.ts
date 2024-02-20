@@ -18,7 +18,7 @@ export interface BlogPost {
   date?: string;
 }
 
-export const getBlogPost = (filePath: string): BlogPost => {
+export function getBlogPost(filePath: string): BlogPost {
   const slug = filePath.replace(/\.md$/, '');
   const content = fs.readFileSync(path.join(blogDir, filePath), 'utf-8');
 
@@ -28,11 +28,19 @@ export const getBlogPost = (filePath: string): BlogPost => {
     ...headers,
     slug,
   };
-};
+}
 
 // Avoid typos in the blog markdown pages.
 // https://www.notion.so/mui-org/Blog-247ec2bff5fa46e799ef06a693c94917
-const ALLOWED_TAGS = ['MUI Core', 'MUI X', 'News', 'Company', 'Developer survey', 'Product'];
+const ALLOWED_TAGS = [
+  'MUI Core',
+  'MUI X',
+  'News',
+  'Company',
+  'Developer Survey',
+  'Product',
+  'Base UI',
+];
 
 export const getAllBlogPosts = () => {
   const filePaths = getBlogFilePaths();

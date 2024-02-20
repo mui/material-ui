@@ -3,8 +3,8 @@ title: Blog post title
 description: Our internationally distributed startup gathered on a remote island to get to know each other better. Here's what happened!
 date: 2022-07-28T00:00:00.000Z
 authors: ['samuelsycamore']
-card: false
 tags: ['Company']
+card: false
 ---
 
 ## Description
@@ -24,6 +24,6 @@ More text below.
 <Slider sx={{ my: 1 }} />
 ```
 
-<p class="blog-description"><a href="https://codesandbox.io/s/nostalgic-williams-zmo5r?file=/src/App.js">CodeSandbox</a></p>
+<p class="blog-description"><a href="https://codesandbox.io/p/sandbox/nostalgic-williams-zmo5r?file=/src/App.js">CodeSandbox</a></p>
 
 More text below.

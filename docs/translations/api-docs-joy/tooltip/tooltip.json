@@ -73,20 +73,40 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
-    "tooltipArrow": {
+    "colorContext": {
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "color inversion is triggered"
+    },
+    "colorDanger": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>arrow={true}</code>"
+      "conditions": "<code>color=\"danger\"</code>"
     },
-    "arrow": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the arrow element"
-    },
-    "touch": {
+    "colorNeutral": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "the tooltip is opened by touch"
+      "conditions": "<code>color=\"neutral\"</code>"
+    },
+    "colorPrimary": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorSuccess": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"success\"</code>"
+    },
+    "colorWarning": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"warning\"</code>"
+    },
+    "placementBottom": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>placement</code> contains &quot;bottom&quot;"
     },
     "placementLeft": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -103,65 +123,40 @@
       "nodeName": "the root element",
       "conditions": "<code>placement</code> contains &quot;top&quot;"
     },
-    "placementBottom": {
+    "sizeLg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>placement</code> contains &quot;bottom&quot;"
-    },
-    "colorPrimary": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"primary\"</code>"
-    },
-    "colorDanger": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"danger\"</code>"
-    },
-    "colorNeutral": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"neutral\"</code>"
-    },
-    "colorSuccess": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"success\"</code>"
-    },
-    "colorWarning": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"warning\"</code>"
-    },
-    "colorContext": {
-      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "color inversion is triggered"
-    },
-    "sizeSm": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"sm\"</code>"
+      "conditions": "<code>size=\"lg\"</code>"
     },
     "sizeMd": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>size=\"md\"</code>"
     },
-    "sizeLg": {
+    "sizeSm": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>size=\"lg\"</code>"
+      "conditions": "<code>size=\"sm\"</code>"
     },
-    "variantPlain": {
+    "tooltipArrow": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"plain\"</code>"
+      "conditions": "<code>arrow={true}</code>"
+    },
+    "touch": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "the tooltip is opened by touch"
     },
     "variantOutlined": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "variantPlain": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"plain\"</code>"
     },
     "variantSoft": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -175,7 +170,7 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
-    "arrow": "The component that renders the arrow."
+    "arrow": "The component that renders the arrow.",
+    "root": "The component that renders the root."
   }
 }

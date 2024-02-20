@@ -1,17 +1,9 @@
-import { join, dirname, basename } from 'node:path';
 import { defineConfig, splitVendorChunkPlugin } from 'vite';
-import { UserConfig as VitestConfig } from 'vitest';
 import reactPlugin from '@vitejs/plugin-react';
-import { zeroVitePlugin } from '@mui/zero-vite-plugin';
-import { createTheme } from '@mui/material/styles';
+import { zeroVitePlugin as zeroPlugin } from '@mui/zero-vite-plugin';
+import { experimental_extendTheme as extendTheme } from '@mui/material/styles';
 
-declare module 'vite' {
-  interface UserConfig {
-    test: VitestConfig;
-  }
-}
-
-const theme = createTheme();
+const theme = extendTheme();
 // @TODO - Make this part of the main package
 // @ts-ignore
 theme.applyDarkStyles = function applyDarkStyles(obj) {
@@ -22,30 +14,20 @@ theme.applyDarkStyles = function applyDarkStyles(obj) {
 
 export default defineConfig({
   plugins: [
-    zeroVitePlugin({
-      cssVariablesPrefix: 'app',
+    zeroPlugin({
       theme,
-      transformLibraries: ['local-library'],
+      transformLibraries: ['local-ui-lib'],
+      displayName: true,
     }),
     reactPlugin(),
     splitVendorChunkPlugin(),
   ],
-  test: {
-    globals: true,
-    watch: false,
-    environment: 'jsdom',
-    resolveSnapshotPath(testPath, extension) {
-      return join(
-        join(dirname(testPath), '__vite_snapshots__'),
-        `${basename(testPath)}${extension}`,
-      );
-    },
-    passWithNoTests: true,
-    css: {
-      // to render the final css in the output html to test
-      // computed styles. Users will need to add this if they
-      // want to test computed styles.
-      include: [/.+/],
-    },
+  resolve: {
+    alias: [
+      {
+        find: /^@mui\/system\/(.*)/,
+        replacement: '@mui/system/esm/$1',
+      },
+    ],
   },
 });

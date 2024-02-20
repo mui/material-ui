@@ -53,6 +53,8 @@ const FilledInputRoot = styled(InputBaseRoot, {
     '--md-comp-filled-input-container-color': tokens.sys.color.surfaceContainerHighest,
     '--md-comp-filled-input-disabled-container-color': tokens.sys.color.onSurface,
     '--md-comp-filled-input-disabled-container-opacity': 0.04,
+    '--md-comp-filled-input-disabled-active-indicator-color': tokens.sys.color.onSurface,
+    '--md-comp-filled-input-disabled-active-indicator-opacity': 0.38,
     '--md-comp-filled-input-error-active-indicator-color': tokens.sys.color.error,
     '--md-comp-filled-input-error-hover-active-indicator-color': tokens.sys.color.onErrorContainer,
     '--md-comp-filled-input-focus-active-indicator-color':
@@ -77,16 +79,16 @@ const FilledInputRoot = styled(InputBaseRoot, {
     },
     [`&.${filledInputClasses.focused}`]: {
       backgroundColor: 'var(--md-comp-filled-input-container-color)',
-      '&:after': {
+      '&::after': {
         borderColor: 'var(--md-comp-filled-input-focus-active-indicator-color)',
       },
     },
     [`&.${filledInputClasses.disabled}`]: {
       backgroundColor:
-        'color-mix(in srgb, var(--md-comp-filled-input-disabled-container-color) var(--md-comp-filled-input-disabled-container-opacity), var(--md-comp-filled-input-container-color))',
+        'color-mix(in srgb, var(--md-comp-filled-input-disabled-container-color) calc(var(--md-comp-filled-input-disabled-container-opacity) * 100%), transparent)',
     },
     ...(!ownerState.disableUnderline && {
-      '&:after': {
+      '&::after': {
         borderBottom: '2px solid var(--md-comp-filled-input-active-indicator-color)',
         left: 0,
         bottom: 0,
@@ -107,11 +109,11 @@ const FilledInputRoot = styled(InputBaseRoot, {
         transform: 'scaleX(1) translateX(0)',
       },
       [`&.${filledInputClasses.error}`]: {
-        '&:before, &:after': {
+        '&::before, &::after': {
           borderBottomColor: 'var(--md-comp-filled-input-error-active-indicator-color)',
         },
       },
-      '&:before': {
+      '&::before': {
         borderBottom: '1px solid var(--md-comp-filled-input-active-indicator-color)',
         left: 0,
         bottom: 0,
@@ -128,7 +130,8 @@ const FilledInputRoot = styled(InputBaseRoot, {
         borderBottom: '1px solid var(--md-comp-filled-input-active-indicator-color)',
       },
       [`&.${filledInputClasses.disabled}:before`]: {
-        borderBottomStyle: 'dotted',
+        borderColor:
+          'color-mix(in srgb, var(--md-comp-filled-input-disabled-active-indicator-color) calc(var(--md-comp-filled-input-disabled-active-indicator-opacity) * 100%), transparent)',
       },
     }),
     ...(ownerState.startAdornment && {
@@ -160,9 +163,9 @@ const FilledInputInput = styled(InputBaseInput, {
 
   return {
     paddingTop: 25,
-    paddingRight: 12,
+    paddingRight: 16,
     paddingBottom: 8,
-    paddingLeft: 12,
+    paddingLeft: 16,
     ...(!tokens
       ? {
           [theme.getColorSchemeSelector('light')]: {
@@ -309,10 +312,10 @@ interface FilledInputComponent {
 }
 
 FilledInput.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.

@@ -9,8 +9,6 @@ import { TimelineItemProps } from '../TimelineItem';
 import { TimelineOppositeContentProps } from '../TimelineOppositeContent';
 import { TimelineProps } from '../Timeline';
 import { TimelineSeparatorProps } from '../TimelineSeparator';
-import { TreeItemProps } from '../TreeItem';
-import { TreeViewProps } from '../TreeView';
 import { MasonryProps } from '../Masonry';
 
 export interface LabComponentsPropsList {
@@ -26,8 +24,6 @@ export interface LabComponentsPropsList {
   MuiTimelineItem: TimelineItemProps;
   MuiTimelineOppositeContent: TimelineOppositeContentProps;
   MuiTimelineSeparator: TimelineSeparatorProps;
-  MuiTreeItem: TreeItemProps;
-  MuiTreeView: TreeViewProps;
 }
 
 declare module '@mui/material/styles' {

@@ -16,33 +16,26 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
-    "ol": { "description": "Class name applied to {{nodeName}}.", "nodeName": "the ol element" },
-    "li": { "description": "Class name applied to {{nodeName}}.", "nodeName": "the li element" },
-    "separator": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the separator element"
-    },
-    "sizeSm": {
+    "sizeLg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>size=\"sm\"</code>"
+      "conditions": "<code>size=\"lg\"</code>"
     },
     "sizeMd": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>size=\"md\"</code>"
     },
-    "sizeLg": {
+    "sizeSm": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>size=\"lg\"</code>"
+      "conditions": "<code>size=\"sm\"</code>"
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
-    "ol": "The component that renders the ol.",
     "li": "The component that renders the li.",
+    "ol": "The component that renders the ol.",
+    "root": "The component that renders the root.",
     "separator": "The component that renders the separator."
   }
 }

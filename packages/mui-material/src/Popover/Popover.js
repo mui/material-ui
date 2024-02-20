@@ -2,18 +2,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import {
-  unstable_composeClasses as composeClasses,
-  useSlotProps,
-  isHostComponent,
-} from '@mui/base';
-import {
-  chainPropTypes,
-  integerPropType,
-  elementTypeAcceptingRef,
-  refType,
-  HTMLElementType,
-} from '@mui/utils';
+import { useSlotProps, isHostComponent } from '@mui/base/utils';
+import composeClasses from '@mui/utils/composeClasses';
+import HTMLElementType from '@mui/utils/HTMLElementType';
+import refType from '@mui/utils/refType';
+import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
+import integerPropType from '@mui/utils/integerPropType';
+import chainPropTypes from '@mui/utils/chainPropTypes';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import debounce from '../utils/debounce';
@@ -434,10 +429,10 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
 });
 
 Popover.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A ref for imperative actions.
    * It currently only supports updatePosition() action.

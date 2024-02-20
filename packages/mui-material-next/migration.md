@@ -1,18 +1,18 @@
 # Migration
 
-This is a reference guide on how to migrate from Material UI v5 to v6.
+This is a reference guide on how to migrate from @mui/material to @mui/material-next.
 
 ## Breaking changes: components
 
-This section lists all breaking changes related to components in v6 and how to address them.
+This section lists all breaking changes related to Material Design 3 (M3) components and how to address them.
 
 ## Overarching changes
 
-These are the changes that apply to all components
+These are the changes that apply to all components.
 
 ### Remove `components` and `componentsProps` props
 
-The deprecated `components` and `componentsProps` props are removed in v6.
+The deprecated `components` and `componentsProps` props are removed in `@mui/material-next`.
 If you were using these, then you can use `slots` and `slotProps` props instead, which have the same functionality and API.
 Here's an example of the change using the Badge component:
 
@@ -30,7 +30,7 @@ Here's an example of the change using the Badge component:
 
 ### Remove composed CSS classes and `styleOverrides` keys
 
-Classes composed of two or more existing classes are removed in v6.
+Classes composed of two or more existing classes are removed in `@mui/material-next`.
 For example, the `MuiChip-filledPrimary` class is removed in favor of the `MuiChip-filled` and `MuiChip-colorPrimary` classes.
 Composed `styleOverrides` keys are also removed.
 Following the example above, the chip component's `filledPrimary` `styleOverrides` key is removed.
@@ -116,7 +116,7 @@ So the examples below are interchangeable for these components.
 
 ### Removed focusRipple
 
-The `focusRipple` prop was removed as ripples are absent in Material You's focused states.
+The `focusRipple` prop was removed as ripples are absent in Material Design 3's focused states.
 
 ### Prevent default on `key-up` and `key-down` events
 
@@ -166,7 +166,13 @@ The `FormControlState` interface was renamed to `FormControlContextValue`:
 
 ### Removed the `standard` variant
 
-The standard variant is no longer supported in Material You, use the `filled` or `outlined` variants instead.
+The standard variant is no longer supported in M3, use the `filled` or `outlined` variants instead.
+
+## FormLabel
+
+### Removed the `standard` variant
+
+The standard variant is no longer supported in M3, use the `filled` or `outlined` variants instead.
 
 ## InputBase
 
@@ -180,6 +186,12 @@ The standard variant is no longer supported in Material You, use the `filled` or
 +    slotProps={{ input: { className: 'my-input' } }}
  />
 ```
+
+## InputLabel
+
+### Removed the `standard` variant
+
+The standard variant is no longer supported in M3, use the `filled` or `outlined` variants instead.
 
 ## Chip
 
@@ -287,10 +299,10 @@ The following example replaces the `MuiChip-filledPrimary` class using `MuiChip-
 The `skipFocusWhenDisabled` prop was replaced with `focusableWhenDisabled`, which is `false` by default.
 Because of this, the default behavior changed:
 
-- In v5, disabled chips were focusable by default
-- In v6, disabled chips are not focusable by default
+- In `@mui/material`, disabled chips are focusable by default
+- In `@mui/material-next`, disabled chips are _not_ focusable by default
 
-If you were using the `skipFocusWhenDisabled` prop to make disabled chips not focusable (which is v6's default behavior), then you can remove the prop as follows:
+If you were using the `skipFocusWhenDisabled` prop to make disabled chips not focusable (which is `@mui/material-next`'s default behavior), then you can remove the prop as follows:
 
 ```diff
  <Chip
@@ -300,7 +312,7 @@ If you were using the `skipFocusWhenDisabled` prop to make disabled chips not fo
  />
 ```
 
-If you wish to maintain v5's default behavior, then you can achieve that as follows:
+If you wish to maintain @mui/material's default behavior, then you can achieve that as follows:
 
 ```diff
  <Chip
@@ -349,7 +361,7 @@ If you are using the `thumb` or `valueLabel` Slider slots, then make sure the co
  <Slider slots={{ thumb: Thumb, valueLabel: ValueLabel }}/>
 ```
 
-This is required in v6 as it's used to apply the overlap styles to these slots. For more info take a look into [Material You's Slider overlapping handles guidelines](https://m3.material.io/components/sliders/guidelines#ad5ceb95-a690-4ddd-8243-53a8e13bdab6).
+This is required in `@mui/material-next` as it's used to apply the overlap styles to these slots. For more info take a look into [M3's Slider overlapping handles guidelines](https://m3.material.io/components/sliders/guidelines#ad5ceb95-a690-4ddd-8243-53a8e13bdab6).
 
 ## Divider
 
@@ -377,4 +389,226 @@ The `MuiDivider-withChildrenVertical` class has been removed. To replace it, you
 ```diff
 - .MuiDivider-withChildrenVertical
 + .MuiDivider-withChildren.MuiDivider-vertical
+```
+
+## LinearProgress
+
+### Removed combined styleOverrides keys
+
+The following `styleOverrides` `MuiLinearProgress` keys were removed:
+
+- `dashedColorPrimary`
+- `dashedColorSecondary`
+- `barColorPrimary`
+- `barColorSecondary`
+- `bar1Indeterminate`
+- `bar1Determinate`
+- `bar1Buffer`
+- `bar2Indeterminate`
+- `bar2Buffer`
+
+The following `styleOverrides` `MuiLinearProgress` keys were added:
+
+- `bar1`
+- `bar2`
+
+You can replace them by using the variants API and CSS Selectors.
+The following example replaces the usage of `dashedPrimary` with the variants API:
+
+```diff
+ const theme = extendTheme({
+   components: {
+     MuiLinearProgress: {
+       styleOverrides: {
+-        dashedColorPrimary: {
+-          background: "fuchsia"
+-        }
++        root: {
++          "&.MuiLinearProgress-colorPrimary > .MuiLinearProgress-dashed": {
++            background: "fuchsia"
++          }
++        }
+       }
+     }
+   }
+ });
+```
+
+### Removed combined classes
+
+The following classes were removed:
+
+- `MuiLinearProgress-dashedColorPrimary`
+- `MuiLinearProgress-dashedColorSecondary`
+- `MuiLinearProgress-barColorPrimary`
+- `MuiLinearProgress-barColorSecondary`
+- `MuiLinearProgress-bar1Indeterminate`
+- `MuiLinearProgress-bar1Determinate`
+- `MuiLinearProgress-bar1Buffer`
+- `MuiLinearProgress-bar2Indeterminate`
+- `MuiLinearProgress-bar2Buffer`
+
+The following classes were added:
+
+- `MuiLinearProgress-bar1`
+- `MuiLinearProgress-bar2`
+
+You can replace them by combining classes with a CSS selector.
+The following example replaces the `MuiLinearProgress-dashedColorPrimary` class using `MuiLinearProgress-dashed` and `MuiLinearProgress-colorPrimary`:
+
+```diff
+- .MuiLinearProgress-dashedColorPrimary
++ .MuiLinearProgress-colorPrimary .MuiLinearProgress-dashed
+```
+
+## CircularProgress
+
+### Removed combined styleOverrides keys
+
+The following `styleOverrides` `MuiCircularProgress` keys were removed:
+
+- `circleDeterminate`
+- `circleIndeterminate`
+- `circleDisableShrink`
+
+The following `styleOverrides` `MuiCircularProgress` keys were added:
+
+- `disableShrink`
+
+You can replace them by using the variants API and CSS Selectors.
+The following example replaces the usage of `circleDeterminate` with the variants API:
+
+```diff
+ const theme = extendTheme({
+   components: {
+     MuiCircularProgress: {
+       styleOverrides: {
+-        circleDeterminate: {
+-          background: "fuchsia"
+-        }
++        root: {
++          "&.MuiCircularProgress-determinate .MuiCircularProgress-circle": {
++            background: "fuchsia"
++          }
++        }
+       }
+     }
+   }
+ });
+```
+
+### Removed combined classes
+
+The following classes were removed:
+
+- `MuiCircularProgress-circleDeterminate`
+- `MuiCircularProgress-circleIndeterminate`
+- `MuiCircularProgress-circleDisableShrink`
+
+The following classes were added:
+
+- `MuiCircularProgress-disableShrink`
+
+You can replace them by combining classes with a CSS selector.
+The following example replaces the `MuiCircularProgress-circleDeterminate` class using `MuiCircularProgress-circle` and `MuiCircularProgress-determinate`:
+
+```diff
+- .MuiCircularProgress-circleDeterminate
++ .MuiCircularProgress-determinate .MuiCircularProgress-circle
+```
+
+## ButtonGroup
+
+### Removed combined styleOverrides keys
+
+The following `styleOverrides` `MuiButtonGroup` keys were removed:
+
+- `contained`
+- `groupedHorizontal`
+- `groupedVertical`
+- `groupedContained`
+- `groupedText`
+- `groupedOutlined`
+- `groupedContainedHorizontal`
+- `groupedTextHorizontal`
+- `groupedOutlinedHorizontal`
+- `groupedContainedVertical`
+- `groupedTextVertical`
+- `groupedOutlinedVertical`
+- `groupedContainedPrimary`
+- `groupedTextPrimary`
+- `groupedOutlinedPrimary`
+- `groupedContainedSecondary`
+- `groupedTextSecondary`
+- `groupedOutlinedSecondary`
+
+The following `styleOverrides` `MuiButtonGroup` keys were added:
+
+- `primary`
+- `secondary`
+- `tertiary`
+- `filled`
+- `filledPartial`
+- `elevated`
+
+You can replace them by using the variants API and CSS Selectors.
+The following example replaces the usage of `groupedOutlined` with the variants API:
+
+```diff
+ const theme = extendTheme({
+   components: {
+     MuiButtonGroup: {
+       styleOverrides: {
+-        groupedOutlined: {
+-          background: "fuchsia"
+-        }
++        outlined: {
++          ".MuiButtonGroup-grouped": {
++            background: "fuchsia"
++          }
++        }
+       }
+     }
+   }
+ });
+```
+
+### Removed combined classes
+
+The following classes were removed:
+
+- `MuiButtonGroup-contained`
+- `MuiButtonGroup-groupedHorizontal`
+- `MuiButtonGroup-groupedVertical`
+- `MuiButtonGroup-groupedText`
+- `MuiButtonGroup-groupedTextHorizontal`
+- `MuiButtonGroup-groupedTextVertical`
+- `MuiButtonGroup-groupedTextPrimary`
+- `MuiButtonGroup-groupedTextSecondary`
+- `MuiButtonGroup-groupedOutlined`
+- `MuiButtonGroup-groupedOutlinedHorizontal`
+- `MuiButtonGroup-groupedOutlinedVertical`
+- `MuiButtonGroup-groupedOutlinedPrimary`
+- `MuiButtonGroup-groupedOutlinedSecondary`
+- `MuiButtonGroup-groupedContained`
+- `MuiButtonGroup-groupedContainedHorizontal`
+- `MuiButtonGroup-groupedContainedVertical`
+- `MuiButtonGroup-groupedContainedPrimary`
+- `MuiButtonGroup-groupedContainedSecondary`
+
+The following classes were added:
+
+- `MuiButtonGroup-filled`
+- `MuiButtonGroup-filledTonal`
+- `MuiButtonGroup-elevated`
+- `MuiButtonGroup-primary`
+- `MuiButtonGroup-secondary`
+- `MuiButtonGroup-tertiary`
+
+You can replace them by combining classes with a CSS selector.
+The following example replaces the `MuiButtonGroup-groupedOutlined` class using `MuiButtonGroup-grouped` and `MuiButtonGroup-outline`:
+
+```diff
+- .MuiButtonGroup-groupedOutlined
++ .MuiButtonGroup-outlined .MuiButtonGroup-grouped
 ```

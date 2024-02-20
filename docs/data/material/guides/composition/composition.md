@@ -1,10 +1,10 @@
 # Composition
 
-<p class="description">Material UI tries to make composition as easy as possible.</p>
+<p class="description">Material UI tries to make composition as easy as possible.</p>
 
 ## Wrapping components
 
-To provide maximum flexibility and performance, Material UI needs a way to know the nature of the child elements a component receives.
+To provide maximum flexibility and performance, Material UI needs a way to know the nature of the child elements a component receives.
 To solve this problem, we tag some of the components with a `muiName` static property when needed.
 
 You may, however, need to wrap a component in order to enhance it, which can conflict with the `muiName` solution.
@@ -24,11 +24,11 @@ WrappedIcon.muiName = Icon.muiName;
 
 ## Component prop
 
-Material UI allows you to change the root element that will be rendered via a prop called `component`.
+Material UI allows you to change the root element that will be rendered via a prop called `component`.
 
 ### How does it work?
 
-The custom component will be rendered by Material UI like this:
+The custom component will be rendered by Material UI like this:
 
 ```js
 return React.createElement(props.component, props);
@@ -91,12 +91,11 @@ function ListItemLink(props) {
 
   const CustomLink = React.useMemo(
     () =>
-      React.forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, 'to'>>(function Link(
-        linkProps,
-        ref,
-      ) {
-        return <Link ref={ref} to={to} {...linkProps} />;
-      }),
+      React.forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, 'to'>>(
+        function Link(linkProps, ref) {
+          return <Link ref={ref} to={to} {...linkProps} />;
+        },
+      ),
     [to],
   );
 
@@ -147,7 +146,7 @@ Now the `CustomComponent` can be used with a `component` prop which should be se
 In addition, the `CustomComponent` will have all props of a `<a>` HTML element.
 The other props of the `Typography` component will also be present in props of the `CustomComponent`.
 
-You can find a code example with the Button and react-router-dom in [these demos](/material-ui/guides/routing/#component-prop).
+You can find a code example with the Button and react-router-dom in [these demos](/material-ui/integrations/routing/#component-prop).
 
 #### Generic
 
@@ -186,14 +185,14 @@ Some of the components need access to the DOM node. This was previously possible
 by using `ReactDOM.findDOMNode`. This function is deprecated in favor of `ref` and
 ref forwarding. However, only the following component types can be given a `ref`:
 
-- Any Material UI component
+- Any Material UI component
 - class components i.e. `React.Component` or `React.PureComponent`
 - DOM (or host) components e.g. `div` or `button`
 - [React.forwardRef components](https://react.dev/reference/react/forwardRef)
 - [React.lazy components](https://react.dev/reference/react/lazy)
 - [React.memo components](https://react.dev/reference/react/memo)
 
-If you don't use one of the above types when using your components in conjunction with Material UI, you might see a warning from
+If you don't use one of the above types when using your components in conjunction with Material UI, you might see a warning from
 React in your console similar to:
 
 :::warning
@@ -225,7 +224,7 @@ Only the two most common use cases are covered. For more information see [this s
  <Tooltip title="Hello again."><SomeContent /></Tooltip>;
 ```
 
-To find out if the Material UI component you're using has this requirement, check
+To find out if the Material UI component you're using has this requirement, check
 out the props API documentation for that component. If you need to forward refs
 the description will link to this section.
 

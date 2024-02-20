@@ -22,7 +22,7 @@ export const getHtml = ({
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
     />
     <!-- Icons to support Material Design -->
     <link
@@ -49,7 +49,7 @@ export const getHtml = ({
               'outline-purple': '0 0 0 4px rgba(192, 132, 252, 0.25)',
               'outline-purple-light': '0 0 0 4px rgba(245, 208, 254, 0.25)',
               'outline-purple-xs': '0 0 0 1px rgba(192, 132, 252, 0.25)',
-              'outline-switch': '0 0 1px 8px rgba(168, 85, 247, 0.35)',
+              'outline-switch': '0 0 1px 3px rgba(168, 85, 247, 0.35)',
             },
             cursor: {
               inherit: 'inherit',

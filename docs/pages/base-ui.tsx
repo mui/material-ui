@@ -12,14 +12,13 @@ import BaseUICustomization from 'docs/src/components/productBaseUI/BaseUICustomi
 import BaseUIEnd from 'docs/src/components/productBaseUI/BaseUIEnd';
 import BaseUITestimonial from 'docs/src/components/productBaseUI/BaseUITestimonial';
 
-export default function Core() {
+export default function BaseUI() {
   return (
     <BrandingCssVarsProvider>
       <Head
-        title="Base UI: Ship accessible & sleek components"
-        description={`Base UI is a library of headless ("unstyled") React UI components and low-level hooks.
-        You can style them with any CSS solutions like PostCSS or Tailwind CSS.`}
-        card="/static/blog/introducing-base-ui/card.png"
+        title="Base UI: Unstyled React components and low-level hooks."
+        description={`Base UI is a library of headless ("unstyled") React components and low-level hooks. You gain complete control over your app's CSS and accessibility features.`}
+        card="/static/social-previews/baseui-preview.jpg"
       >
         {/* eslint-disable-next-line @next/next/no-page-custom-font */}
         <link

@@ -5,7 +5,6 @@ import {
   act,
   createRenderer,
   createMount,
-  describeConformance,
   screen,
   fireEvent,
   strictModeDoubleLoggingSuppressed,
@@ -17,6 +16,7 @@ import Menu, { menuClasses as classes, MenuProps } from '@mui/material-next/Menu
 import Popover from '@mui/material/Popover';
 import { extendTheme, CssVarsProvider } from '@mui/material-next/styles';
 import { MenuPaper } from './Menu';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Menu />', () => {
   const { render } = createRenderer({ clock: 'fake' });
@@ -198,34 +198,37 @@ describe('<Menu />', () => {
     });
   });
 
-  // TODO: v6 autoFocus should be handled
-  // it('should open during the initial mount', () => {
-  //   function MenuItem(props) {
-  //     const { autoFocus, children } = props;
-  //     return (
-  //       <div role="menuitem" tabIndex={-1} data-autofocus={autoFocus}>
-  //         {children}
-  //       </div>
-  //     );
-  //   }
-  //   render(
-  //     <Menu anchorEl={document.createElement('div')} open>
-  //       <MenuItem>one</MenuItem>
-  //     </Menu>,
-  //   );
+  it('should open during the initial mount', () => {
+    function MenuItem(props: { children?: React.ReactNode }) {
+      const { children } = props;
+      return (
+        <div role="menuitem" tabIndex={-1}>
+          {children}
+        </div>
+      );
+    }
+    render(
+      <Menu anchorEl={document.createElement('div')} open>
+        <MenuItem>one</MenuItem>
+      </Menu>,
+    );
 
-  //   expect(screen.getByRole('menuitem')).to.have.attribute('data-autofocus', 'true');
-  // });
-  //
-  // it('should not focus list if autoFocus=false', () => {
-  //   render(
-  //     <Menu anchorEl={document.createElement('div')} autoFocus={false} open>
-  //       <div tabIndex={-1} />
-  //     </Menu>,
-  //   );
+    expect(screen.getByRole('menuitem')).to.not.equal(null);
+  });
 
-  //   expect(screen.getByRole('menu')).not.toHaveFocus();
-  // });
+  it('should not focus list if autoFocus=false', () => {
+    const { setProps } = render(
+      <Menu anchorEl={document.createElement('div')} autoFocus={false} open={false}>
+        <div tabIndex={-1} />
+      </Menu>,
+    );
+
+    act(() => {
+      setProps({ open: true });
+    });
+
+    expect(screen.getByRole('menu')).not.toHaveFocus();
+  });
 
   it('should call TransitionProps.onEntering', () => {
     const onEnteringSpy = spy();
@@ -594,24 +597,23 @@ describe('<Menu />', () => {
       });
     });
 
-    // TODO v6: Opening on initial mount
-    // it('should open during the initial mount', () => {
-    //   function MenuItem(props) {
-    //     const { autoFocus, children } = props;
-    //     return (
-    //       <div role="menuitem" tabIndex={-1} data-autofocus={autoFocus}>
-    //         {children}
-    //       </div>
-    //     );
-    //   }
-    //   render(
-    //     <ContextMenu anchorEl={document.createElement('div')} open>
-    //       <MenuItem>one</MenuItem>
-    //     </ContextMenu>,
-    //   );
+    it('should open during the initial mount', () => {
+      function MenuItem(props: { children?: React.ReactNode }) {
+        const { children } = props;
+        return (
+          <div role="menuitem" tabIndex={-1}>
+            {children}
+          </div>
+        );
+      }
+      render(
+        <ContextMenu anchorEl={document.createElement('div')} open>
+          <MenuItem>one</MenuItem>
+        </ContextMenu>,
+      );
 
-    //   expect(screen.getByRole('menuitem')).to.have.attribute('data-autofocus', 'true');
-    // });
+      expect(screen.getByRole('menuitem')).to.not.equal(null);
+    });
 
     it('should not focus list if autoFocus=false', () => {
       render(

@@ -82,7 +82,7 @@ const grey = {
 
 const Listbox = styled('ul')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   padding: 6px;
@@ -94,7 +94,9 @@ const Listbox = styled('ul')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 2px 16px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  box-shadow: 0px 4px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
   z-index: 1;
   `,
 );
@@ -111,7 +113,7 @@ const MenuItem = styled(BaseMenuItem)(
     border-bottom: none;
   }
 
-  &.${menuItemClasses.focusVisible} {
+  &:focus {
     outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
@@ -120,17 +122,12 @@ const MenuItem = styled(BaseMenuItem)(
   &.${menuItemClasses.disabled} {
     color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
   }
-
-  &:hover:not(.${menuItemClasses.disabled}) {
-    background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
-    color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  }
   `,
 );
 
 const MenuButton = styled(BaseMenuButton)(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
   font-size: 0.875rem;
   line-height: 1.5;

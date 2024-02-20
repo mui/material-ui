@@ -1,22 +1,22 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { styled, alpha } from '@mui/material/styles';
-import Alert from '@mui/material/Alert';
-import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
 } from 'docs/src/modules/brandingTheme';
-import {
-  PropDescriptionParams,
-  getHash,
-} from 'docs/src/modules/components/ApiPage/list/PropertiesList';
+import { Properties, getHash } from 'docs/src/modules/components/ApiPage/list/PropertiesList';
 import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
+import ApiWarning from 'docs/src/modules/components/ApiPage/ApiWarning';
 
 const StyledTable = styled('table')(
   ({ theme }) => ({
+    // Override docs/src/modules/components/MarkdownElement styles
+    '&&': {
+      display: 'table',
+      width: '100%',
+    },
     '& .type-column': {
       minWidth: '20%',
     },
@@ -62,31 +62,8 @@ const StyledTable = styled('table')(
         marginTop: 12,
         marginBottom: 0,
       },
-      '& .prop-table-deprecated': {
-        '& code ': { all: 'unset' },
-      },
       '& .prop-table-alert': {
-        padding: '2px 12px',
         marginTop: 12,
-        color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
-        backgroundColor: alpha(lightTheme.palette.warning[50], 0.5),
-        borderColor: `var(--muidocs-palette-warning-200, ${lightTheme.palette.warning[200]})`,
-        '& .MuiAlert-icon': {
-          padding: 0,
-        },
-        '& strong': {
-          color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
-        },
-        '&>svg': {
-          fill: `var(--muidocs-palette-warning-600, ${lightTheme.palette.warning[600]})`,
-        },
-        '& a': {
-          color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
-          textDecorationColor: alpha(lightTheme.palette.warning.main, 0.4),
-          '&:hover': {
-            textDecorationColor: 'inherit',
-          },
-        },
       },
     },
     '& .prop-table-signature': {
@@ -108,7 +85,7 @@ const StyledTable = styled('table')(
       '& .MuiApi-table-item-type': {
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
         borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
-        backgroundColor: alpha(darkTheme.palette.primary[900], 0.5),
+        backgroundColor: alpha(darkTheme.palette.primary[900], 0.3),
       },
       '& .MuiApi-table-item-default': {
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
@@ -118,22 +95,6 @@ const StyledTable = styled('table')(
       '& .prop-table-signature': {
         '& .prop-table-title': {
           color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
-        },
-      },
-      '& .MuiPropTable-description-column': {
-        '& .prop-table-alert': {
-          color: `var(--muidocs-palette-warning-50, ${darkTheme.palette.warning[50]})`,
-          backgroundColor: alpha(darkTheme.palette.warning[700], 0.15),
-          borderColor: alpha(darkTheme.palette.warning[600], 0.3),
-          '& strong': {
-            color: `var(--muidocs-palette-warning-200, ${darkTheme.palette.warning[200]})`,
-          },
-          '&>svg': {
-            fill: `var(--muidocs-palette-warning-400, ${darkTheme.palette.warning[400]})`,
-          },
-          '& a': {
-            color: `var(--muidocs-palette-warning-100, ${darkTheme.palette.warning[100]})`,
-          },
         },
       },
     },
@@ -155,12 +116,8 @@ function PropDescription({ description }: { description: string }) {
   );
 }
 
-PropDescription.propTypes = {
-  description: PropTypes.string.isRequired,
-};
-
 interface PropertiesTableProps {
-  properties: PropDescriptionParams[];
+  properties: Properties[];
 }
 
 export default function PropertiesTable(props: PropertiesTableProps) {
@@ -180,9 +137,10 @@ export default function PropertiesTable(props: PropertiesTableProps) {
         <tbody>
           {properties.map((params) => {
             const {
-              targetName,
+              componentName,
               propName,
               description,
+              seeMoreDescription,
               requiresRef,
               isOptional,
               isRequired,
@@ -201,7 +159,7 @@ export default function PropertiesTable(props: PropertiesTableProps) {
             return (
               <tr
                 key={propName}
-                id={getHash({ targetName, propName, hooksParameters, hooksReturnValue })}
+                id={getHash({ componentName, propName, hooksParameters, hooksReturnValue })}
               >
                 <td className="MuiApi-table-item-title">
                   {propName}
@@ -219,31 +177,28 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                   }
                 </td>
                 <td className="default-column">
-                  <span className="MuiApi-table-item-default">{propDefault}</span>
+                  {propDefault ? (
+                    <span className="MuiApi-table-item-default">{propDefault}</span>
+                  ) : (
+                    '-'
+                  )}
                 </td>
                 <td className="MuiPropTable-description-column">
                   {description && <PropDescription description={description} />}
+                  {seeMoreDescription && (
+                    <p
+                      dangerouslySetInnerHTML={{ __html: seeMoreDescription }}
+                      className="prop-table-additional-description"
+                    />
+                  )}
                   {requiresRef && (
-                    <Alert
-                      className="prop-table-alert"
-                      severity="warning"
-                      icon={<WarningRoundedIcon fontSize="small" />}
-                      sx={{
-                        alignItems: 'center',
-                        '& .MuiAlert-icon': {
-                          height: 'fit-content',
-                          p: 0,
-                          mr: 1,
-                          mb: 0.3,
-                        },
-                      }}
-                    >
+                    <ApiWarning className="prop-table-alert">
                       <span
                         dangerouslySetInnerHTML={{
                           __html: t('api-docs.requires-ref'),
                         }}
                       />
-                    </Alert>
+                    </ApiWarning>
                   )}
                   {additionalInfo.map((key) => (
                     <p
@@ -255,12 +210,7 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                     />
                   ))}
                   {isDeprecated && (
-                    <Alert
-                      severity="warning"
-                      className="prop-table-alert prop-table-deprecated"
-                      icon={<WarningRoundedIcon fontSize="small" />}
-                      sx={{ mb: 1, py: 0, alignItems: 'center' }}
-                    >
+                    <ApiWarning className="prop-table-alert">
                       {t('api-docs.deprecated')}
                       {deprecationInfo && (
                         <React.Fragment>
@@ -272,18 +222,16 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                           />
                         </React.Fragment>
                       )}
-                    </Alert>
+                    </ApiWarning>
                   )}
                   {signature && (
                     <div className="prop-table-signature">
                       <span className="prop-table-title">{t('api-docs.signature')}:</span>
-
                       <code
                         dangerouslySetInnerHTML={{
                           __html: signature,
                         }}
                       />
-
                       {signatureArgs && (
                         <div>
                           <ul>

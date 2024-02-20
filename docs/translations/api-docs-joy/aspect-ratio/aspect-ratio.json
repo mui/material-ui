@@ -33,25 +33,25 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
-    "content": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the content element"
+    "colorContext": {
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "color inversion is triggered"
     },
-    "colorPrimary": {
+    "colorDanger": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the content element",
-      "conditions": "<code>color=\"primary\"</code>"
+      "conditions": "<code>color=\"danger\"</code>"
     },
     "colorNeutral": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the content element",
       "conditions": "<code>color=\"neutral\"</code>"
     },
-    "colorDanger": {
+    "colorPrimary": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the content element",
-      "conditions": "<code>color=\"danger\"</code>"
+      "conditions": "<code>color=\"primary\"</code>"
     },
     "colorSuccess": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -63,20 +63,15 @@
       "nodeName": "the content element",
       "conditions": "<code>color=\"warning\"</code>"
     },
-    "colorContext": {
-      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "color inversion is triggered"
+    "variantOutlined": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the content element",
+      "conditions": "<code>variant=\"outlined\"</code>"
     },
     "variantPlain": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the content element",
       "conditions": "<code>variant=\"plain\"</code>"
-    },
-    "variantOutlined": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the content element",
-      "conditions": "<code>variant=\"outlined\"</code>"
     },
     "variantSoft": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -90,7 +85,7 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
-    "content": "The component that renders the content."
+    "content": "The component that renders the content.",
+    "root": "The component that renders the root."
   }
 }

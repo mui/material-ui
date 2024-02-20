@@ -47,45 +47,106 @@
   },
   "name": "ListItem",
   "imports": ["import ListItem from '@mui/joy/ListItem';", "import { ListItem } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiListItem" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'li'",
-      "class": ".MuiListItem-root"
+      "class": "MuiListItem-root"
     },
     {
       "name": "startAction",
       "description": "The component that renders the start action.",
       "default": "'div'",
-      "class": ".MuiListItem-startAction"
+      "class": "MuiListItem-startAction"
     },
     {
       "name": "endAction",
       "description": "The component that renders the end action.",
       "default": "'div'",
-      "class": ".MuiListItem-endAction"
+      "class": "MuiListItem-endAction"
     }
   ],
-  "classes": {
-    "classes": [
-      "colorContext",
-      "colorDanger",
-      "colorNeutral",
-      "colorPrimary",
-      "colorSuccess",
-      "colorWarning",
-      "nested",
-      "nesting",
-      "sticky",
-      "variantOutlined",
-      "variantPlain",
-      "variantSoft",
-      "variantSolid"
-    ],
-    "globalClasses": {}
-  },
+  "classes": [
+    {
+      "key": "colorContext",
+      "className": "MuiListItem-colorContext",
+      "description": "Class name applied to the root element when color inversion is triggered.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorDanger",
+      "className": "MuiListItem-colorDanger",
+      "description": "Class name applied to the root element if `color=\"danger\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorNeutral",
+      "className": "MuiListItem-colorNeutral",
+      "description": "Class name applied to the root element if `color=\"neutral\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiListItem-colorPrimary",
+      "description": "Class name applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSuccess",
+      "className": "MuiListItem-colorSuccess",
+      "description": "Class name applied to the root element if `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorWarning",
+      "className": "MuiListItem-colorWarning",
+      "description": "Class name applied to the root element if `color=\"warning\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "nested",
+      "className": "MuiListItem-nested",
+      "description": "Class name applied to the root element, if nested={true}.",
+      "isGlobal": false
+    },
+    {
+      "key": "nesting",
+      "className": "MuiListItem-nesting",
+      "description": "Class name applied to the root element, if it is under a nested list item.",
+      "isGlobal": false
+    },
+    {
+      "key": "sticky",
+      "className": "MuiListItem-sticky",
+      "description": "Class name applied to the root element, if sticky={true}.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantOutlined",
+      "className": "MuiListItem-variantOutlined",
+      "description": "State class applied to the root element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantPlain",
+      "className": "MuiListItem-variantPlain",
+      "description": "State class applied to the root element if `variant=\"plain\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSoft",
+      "className": "MuiListItem-variantSoft",
+      "description": "State class applied to the root element if `variant=\"soft\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSolid",
+      "className": "MuiListItem-variantSolid",
+      "description": "State class applied to the root element if `variant=\"solid\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyListItem",
