@@ -8,7 +8,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
 var _jsxRuntime = require("react/jsx-runtime");
-var _default = exports.default = (0, _createSvgIcon.default)([/*#__PURE__*/(0, _jsxRuntime.jsx)("circle", {
+var _default = (0, _createSvgIcon.default)([/*#__PURE__*/(0, _jsxRuntime.jsx)("circle", {
   cx: "9",
   cy: "13",
   r: "1.25"
@@ -21,3 +21,4 @@ var _default = exports.default = (0, _createSvgIcon.default)([/*#__PURE__*/(0, _
 }, "2"), /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
   d: "M20.6 5.6 19.5 8l-1.1-2.4L16 4.5l2.4-1.1L19.5 1l1.1 2.4L23 4.5z"
 }, "3")], 'FaceRetouchingNatural');
+exports.default = _default;
