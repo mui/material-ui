@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { TransitionGroup } from 'react-transition-group';
 import clsx from 'clsx';
 import { keyframes } from '@mui/system';
-import { unstable_useTimeout as useTimeout } from '@mui/utils';
+import useTimeout from '@mui/utils/useTimeout';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Ripple from './Ripple';

@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
@@ -177,7 +177,11 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                   }
                 </td>
                 <td className="default-column">
-                  <span className="MuiApi-table-item-default">{propDefault}</span>
+                  {propDefault ? (
+                    <span className="MuiApi-table-item-default">{propDefault}</span>
+                  ) : (
+                    '-'
+                  )}
                 </td>
                 <td className="MuiPropTable-description-column">
                   {description && <PropDescription description={description} />}
