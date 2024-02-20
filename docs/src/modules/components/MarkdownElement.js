@@ -654,13 +654,13 @@ const Root = styled('div')(
         borderColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
         '& > code': {
           height: 'fit-content',
-          backgroundColor: `var(--muidocs-palette-primaryDark-600, ${lightTheme.palette.primaryDark[600]})`,
-          borderColor: `var(--muidocs-palette-primaryDark-500, ${lightTheme.palette.primaryDark[500]})`,
+          backgroundColor: `var(--muidocs-palette-primaryDark-600, ${darkTheme.palette.primaryDark[600]})`,
+          borderColor: `var(--muidocs-palette-primaryDark-500, ${darkTheme.palette.primaryDark[500]})`,
         },
         '&.MuiCallout-error': {
           color: `var(--muidocs-palette-error-50, ${darkTheme.palette.error[50]})`,
           backgroundColor: alpha(darkTheme.palette.error[700], 0.2),
-          borderColor: alpha(lightTheme.palette.error[600], 0.3),
+          borderColor: alpha(darkTheme.palette.error[600], 0.3),
           '& strong': {
             color: `var(--muidocs-palette-error-300, ${darkTheme.palette.error[300]})`,
           },
@@ -717,7 +717,7 @@ const Root = styled('div')(
       '& a code': {
         color: `var(--muidocs-palette-primary-light, ${darkTheme.palette.primary.light})`,
         '&:focus-visible': {
-          outline: `3px solid ${alpha(lightTheme.palette.primary[500], 0.5)}`,
+          outline: `3px solid ${alpha(darkTheme.palette.primary[500], 0.5)}`,
         },
       },
       '& kbd.key': {
