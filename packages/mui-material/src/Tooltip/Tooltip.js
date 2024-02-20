@@ -365,7 +365,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     },
   );
 
-  const handleEnter = (event) => {
+  const handleMouseOver = (event) => {
     if (ignoreNonTouchEvents.current && event.type !== 'touchstart') {
       return;
     }
@@ -388,7 +388,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
   };
 
-  const handleLeave = (event) => {
+  const handleMouseLeave = (event) => {
     enterTimer.clear();
     leaveTimer.start(leaveDelay, () => {
       handleClose(event);
@@ -408,7 +408,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     handleBlurVisible(event);
     if (isFocusVisibleRef.current === false) {
       setChildIsFocusVisible(false);
-      handleLeave(event);
+      handleMouseLeave(event);
     }
   };
 
@@ -423,7 +423,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     handleFocusVisible(event);
     if (isFocusVisibleRef.current === true) {
       setChildIsFocusVisible(true);
-      handleEnter(event);
+      handleMouseOver(event);
     }
   };
 
@@ -435,9 +435,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       childrenProps.onTouchStart(event);
     }
   };
-
-  const handleMouseOver = handleEnter;
-  const handleMouseLeave = handleLeave;
 
   const handleTouchStart = (event) => {
     detectTouchStart(event);
@@ -451,7 +448,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
     touchTimer.start(enterTouchDelay, () => {
       document.body.style.WebkitUserSelect = prevUserSelect.current;
-      handleEnter(event);
+      handleMouseOver(event);
     });
   };
 
