@@ -1252,12 +1252,15 @@ importers:
       '@mui/base':
         specifier: workspace:*
         version: link:../mui-base/build
+      '@mui/icons-material':
+        specifier: workspace:*
+        version: link:../mui-icons-material/build
       '@mui/material':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../mui-material/build
-      '@mui/utils':
+      '@mui/system':
         specifier: workspace:^
-        version: link:../mui-utils/build
+        version: link:../mui-system/build
       clsx:
         specifier: ^2.1.0
         version: 2.1.0
