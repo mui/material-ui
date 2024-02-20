@@ -158,6 +158,9 @@ importers:
       babel-loader:
         specifier: ^9.1.3
         version: 9.1.3(@babel/core@7.23.9)(webpack@5.90.1)
+      babel-plugin-add-import-extension:
+        specifier: ^1.6.0
+        version: 1.6.0(@babel/core@7.23.9)
       babel-plugin-istanbul:
         specifier: ^6.1.1
         version: 6.1.1
