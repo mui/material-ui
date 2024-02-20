@@ -496,6 +496,21 @@ function App() {
 }
 ```
 
+#### Styling based on color scheme
+
+The `extendTheme` utility attach a function called `applyStyles` to the theme object. It receives a color scheme as the first argument followed by a style object. It will return a proper CSS selector based on the theme configuration.
+
+```jsx
+const Heading = styled('h1')(({ theme }) => ({
+  color: theme.colors.primary,
+  fontSize: theme.spacing.unit * 4,
+  fontFamily: theme.typography.fontFamily,
+  ...theme.applyStyles('dark', {
+    color: theme.colors.primaryLight,
+  }),
+}));
+```
+
 #### CSS variables prefix
 
 You can add a prefix to the generated CSS variables by providing a `cssVarPrefix` option to the `extendTheme` utility:
