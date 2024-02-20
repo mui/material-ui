@@ -8,7 +8,7 @@ const options: TestOptions = {
       }
       return true;
     },
-  },
+  } as TestOptions['parser'],
   injector: {
     includeJSDoc: false,
     comment: 'Proptypes generated automatically',
