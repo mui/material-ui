@@ -89,7 +89,6 @@ module.exports = function getBabelConfig(api) {
         mode: 'unsafe-wrap',
       },
     ],
-    ['babel-plugin-add-import-extension', { extension: useESModules ? 'mjs' : 'js' }],
   ];
 
   if (process.env.NODE_ENV === 'production') {
@@ -103,6 +102,10 @@ module.exports = function getBabelConfig(api) {
         root: ['./'],
       },
     ]);
+  }
+
+  if (process.env.NODE_ENV === 'production' && api.env(['legacy', 'modern', 'stable', 'node'])) {
+    plugins.push(['babel-plugin-add-import-extension', { extension: useESModules ? 'mjs' : 'js' }]);
   }
 
   return {
