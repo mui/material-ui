@@ -8,7 +8,7 @@ export default function transformer(file, api, options) {
   const j = api.jscodeshift;
   const root = j(file.source);
   const printOptions = options.printOptions;
-  classes.forEach(({ deprecatedClass, replacementSelector }) => {
+  classes.forEach(({ deprecatedClass, replacementSelector, replacementSelectorPrefix }) => {
     root
       .find(j.ImportDeclaration)
       .filter((path) => path.node.source.value.match(/^@mui\/material\/Button$/))
@@ -30,10 +30,11 @@ export default function transformer(file, api, options) {
                   const precedingTemplateElement = parent.quasis[memberExpressionIndex];
                   const atomicClasses = replacementSelector
                     .replaceAll('MuiButton-', '')
+                    .replaceAll(replacementSelectorPrefix, '')
                     .split('.')
                     .filter(Boolean);
 
-                  if (precedingTemplateElement.value.raw.endsWith(' .')) {
+                  if (precedingTemplateElement.value.raw.endsWith(replacementSelectorPrefix)) {
                     parent.expressions.splice(
                       memberExpressionIndex,
                       1,
@@ -65,7 +66,9 @@ export default function transformer(file, api, options) {
         });
       });
 
-    const selectorRegex = new RegExp(`^& ${deprecatedClass}`);
+    const selectorRegex = new RegExp(
+      `^${replacementSelectorPrefix.replace('.', '')}${deprecatedClass}`,
+    );
     root
       .find(
         j.Literal,
@@ -73,7 +76,12 @@ export default function transformer(file, api, options) {
       )
       .forEach((path) => {
         path.replace(
-          j.literal(path.value.value.replace(selectorRegex, `& ${replacementSelector}`)),
+          j.literal(
+            path.value.value.replace(
+              selectorRegex,
+              `${replacementSelectorPrefix.replace('.', '')}${replacementSelector}`,
+            ),
+          ),
         );
       });
   });

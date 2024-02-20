@@ -4,114 +4,114 @@ fn({
   MuiButton: {
     styleOverrides: {
       root: {
-        "& .MuiButton-text.MuiButton-colorInherit": {
+        "&.MuiButton-text.MuiButton-colorInherit": {
           color: 'red',
         },
 
-        "& .MuiButton-text.MuiButton-colorPrimary": {
+        "&.MuiButton-text.MuiButton-colorPrimary": {
           color: 'red',
         },
 
-        "& .MuiButton-text.MuiButton-colorSecondary": {
+        "&.MuiButton-text.MuiButton-colorSecondary": {
           color: 'red',
         },
 
-        "& .MuiButton-text.MuiButton-colorSuccess": {
+        "&.MuiButton-text.MuiButton-colorSuccess": {
           color: 'red',
         },
 
-        "& .MuiButton-text.MuiButton-colorError": {
+        "&.MuiButton-text.MuiButton-colorError": {
           color: 'red',
         },
 
-        "& .MuiButton-text.MuiButton-colorInfo": {
+        "&.MuiButton-text.MuiButton-colorInfo": {
           color: 'red',
         },
 
-        "& .MuiButton-text.MuiButton-colorWarning": {
+        "&.MuiButton-text.MuiButton-colorWarning": {
           color: 'red',
         },
 
-        "& .MuiButton-outlined.MuiButton-colorInherit": {
+        "&.MuiButton-outlined.MuiButton-colorInherit": {
           color: 'red',
         },
 
-        "& .MuiButton-outlined.MuiButton-colorPrimary": {
+        "&.MuiButton-outlined.MuiButton-colorPrimary": {
           color: 'red',
         },
 
-        "& .MuiButton-outlined.MuiButton-colorSecondary": {
+        "&.MuiButton-outlined.MuiButton-colorSecondary": {
           color: 'red',
         },
 
-        "& .MuiButton-outlined.MuiButton-colorSuccess": {
+        "&.MuiButton-outlined.MuiButton-colorSuccess": {
           color: 'red',
         },
 
-        "& .MuiButton-outlined.MuiButton-colorError": {
+        "&.MuiButton-outlined.MuiButton-colorError": {
           color: 'red',
         },
 
-        "& .MuiButton-outlined.MuiButton-colorInfo": {
+        "&.MuiButton-outlined.MuiButton-colorInfo": {
           color: 'red',
         },
 
-        "& .MuiButton-outlined.MuiButton-colorWarning": {
+        "&.MuiButton-outlined.MuiButton-colorWarning": {
           color: 'red',
         },
 
-        "& .MuiButton-contained.MuiButton-colorInherit": {
+        "&.MuiButton-contained.MuiButton-colorInherit": {
           color: 'red',
         },
 
-        "& .MuiButton-contained.MuiButton-colorPrimary": {
+        "&.MuiButton-contained.MuiButton-colorPrimary": {
           color: 'red',
         },
 
-        "& .MuiButton-contained.MuiButton-colorSecondary": {
+        "&.MuiButton-contained.MuiButton-colorSecondary": {
           color: 'red',
         },
 
-        "& .MuiButton-contained.MuiButton-colorSuccess": {
+        "&.MuiButton-contained.MuiButton-colorSuccess": {
           color: 'red',
         },
 
-        "& .MuiButton-contained.MuiButton-colorError": {
+        "&.MuiButton-contained.MuiButton-colorError": {
           color: 'red',
         },
 
-        "& .MuiButton-contained.MuiButton-colorInfo": {
+        "&.MuiButton-contained.MuiButton-colorInfo": {
           color: 'red',
         },
 
-        "& .MuiButton-contained.MuiButton-colorWarning": {
+        "&.MuiButton-contained.MuiButton-colorWarning": {
           color: 'red',
         },
-        "& .MuiButton-text.MuiButton-sizeSmall": {
+        "&.MuiButton-text.MuiButton-sizeSmall": {
           color: 'red',
         },
-        "& .MuiButton-text.MuiButton-sizeMedium": {
+        "&.MuiButton-text.MuiButton-sizeMedium": {
           color: 'red',
         },
-        "& .MuiButton-text.MuiButton-sizeLarge": {
+        "&.MuiButton-text.MuiButton-sizeLarge": {
           color: 'red',
         },
-        "& .MuiButton-outlined.MuiButton-sizeSmall": {
+        "&.MuiButton-outlined.MuiButton-sizeSmall": {
           color: 'red',
         },
-        "& .MuiButton-outlined.MuiButton-sizeMedium": {
+        "&.MuiButton-outlined.MuiButton-sizeMedium": {
           color: 'red',
         },
-        "& .MuiButton-outlined.MuiButton-sizeLarge": {
+        "&.MuiButton-outlined.MuiButton-sizeLarge": {
           color: 'red',
         },
-        "& .MuiButton-contained.MuiButton-sizeSmall": {
+        "&.MuiButton-contained.MuiButton-sizeSmall": {
           color: 'red',
         },
-        "& .MuiButton-contained.MuiButton-sizeMedium": {
+        "&.MuiButton-contained.MuiButton-sizeMedium": {
           color: 'red',
         },
-        "& .MuiButton-contained.MuiButton-sizeLarge": {
+        "&.MuiButton-contained.MuiButton-sizeLarge": {
           color: 'red',
         },
         "& .MuiButton-icon.MuiButton-sizeSmall": {
@@ -132,114 +132,114 @@ fn({
   MuiButton: {
     styleOverrides: {
       root: {
-        [`& .${buttonClasses.text}.${buttonClasses.colorInherit}`]: {
+        [`&.${buttonClasses.text}.${buttonClasses.colorInherit}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.text}.${buttonClasses.colorPrimary}`]: {
+        [`&.${buttonClasses.text}.${buttonClasses.colorPrimary}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.text}.${buttonClasses.colorSecondary}`]: {
+        [`&.${buttonClasses.text}.${buttonClasses.colorSecondary}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.text}.${buttonClasses.colorSuccess}`]: {
+        [`&.${buttonClasses.text}.${buttonClasses.colorSuccess}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.text}.${buttonClasses.colorError}`]: {
+        [`&.${buttonClasses.text}.${buttonClasses.colorError}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.text}.${buttonClasses.colorInfo}`]: {
+        [`&.${buttonClasses.text}.${buttonClasses.colorInfo}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.text}.${buttonClasses.colorWarning}`]: {
+        [`&.${buttonClasses.text}.${buttonClasses.colorWarning}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.outlined}.${buttonClasses.colorInherit}`]: {
+        [`&.${buttonClasses.outlined}.${buttonClasses.colorInherit}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.outlined}.${buttonClasses.colorPrimary}`]: {
+        [`&.${buttonClasses.outlined}.${buttonClasses.colorPrimary}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.outlined}.${buttonClasses.colorSecondary}`]: {
+        [`&.${buttonClasses.outlined}.${buttonClasses.colorSecondary}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.outlined}.${buttonClasses.colorSuccess}`]: {
+        [`&.${buttonClasses.outlined}.${buttonClasses.colorSuccess}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.outlined}.${buttonClasses.colorError}`]: {
+        [`&.${buttonClasses.outlined}.${buttonClasses.colorError}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.outlined}.${buttonClasses.colorInfo}`]: {
+        [`&.${buttonClasses.outlined}.${buttonClasses.colorInfo}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.outlined}.${buttonClasses.colorWarning}`]: {
+        [`&.${buttonClasses.outlined}.${buttonClasses.colorWarning}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.contained}.${buttonClasses.colorInherit}`]: {
+        [`&.${buttonClasses.contained}.${buttonClasses.colorInherit}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.contained}.${buttonClasses.colorPrimary}`]: {
+        [`&.${buttonClasses.contained}.${buttonClasses.colorPrimary}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.contained}.${buttonClasses.colorSecondary}`]: {
+        [`&.${buttonClasses.contained}.${buttonClasses.colorSecondary}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.contained}.${buttonClasses.colorSuccess}`]: {
+        [`&.${buttonClasses.contained}.${buttonClasses.colorSuccess}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.contained}.${buttonClasses.colorError}`]: {
+        [`&.${buttonClasses.contained}.${buttonClasses.colorError}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.contained}.${buttonClasses.colorInfo}`]: {
+        [`&.${buttonClasses.contained}.${buttonClasses.colorInfo}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.contained}.${buttonClasses.colorWarning}`]: {
+        [`&.${buttonClasses.contained}.${buttonClasses.colorWarning}`]: {
           color: 'red',
         },
-        [`& .${buttonClasses.text}.${buttonClasses.sizeSmall}`]: {
+        [`&.${buttonClasses.text}.${buttonClasses.sizeSmall}`]: {
           color: 'red',
         },
-        [`& .${buttonClasses.text}.${buttonClasses.sizeMedium}`]: {
+        [`&.${buttonClasses.text}.${buttonClasses.sizeMedium}`]: {
           color: 'red',
         },
-        [`& .${buttonClasses.text}.${buttonClasses.sizeLarge}`]: {
+        [`&.${buttonClasses.text}.${buttonClasses.sizeLarge}`]: {
           color: 'red',
         },
-        [`& .${buttonClasses.outlined}.${buttonClasses.sizeSmall}`]: {
+        [`&.${buttonClasses.outlined}.${buttonClasses.sizeSmall}`]: {
           color: 'red',
         },
-        [`& .${buttonClasses.outlined}.${buttonClasses.sizeMedium}`]: {
+        [`&.${buttonClasses.outlined}.${buttonClasses.sizeMedium}`]: {
           color: 'red',
         },
-        [`& .${buttonClasses.outlined}.${buttonClasses.sizeLarge}`]: {
+        [`&.${buttonClasses.outlined}.${buttonClasses.sizeLarge}`]: {
           color: 'red',
         },
-        [`& .${buttonClasses.contained}.${buttonClasses.sizeSmall}`]: {
+        [`&.${buttonClasses.contained}.${buttonClasses.sizeSmall}`]: {
           color: 'red',
         },
-        [`& .${buttonClasses.contained}.${buttonClasses.sizeMedium}`]: {
+        [`&.${buttonClasses.contained}.${buttonClasses.sizeMedium}`]: {
           color: 'red',
         },
-        [`& .${buttonClasses.contained}.${buttonClasses.sizeLarge}`]: {
+        [`&.${buttonClasses.contained}.${buttonClasses.sizeLarge}`]: {
           color: 'red',
         },
         [`& .${buttonClasses.icon}.${buttonClasses.sizeSmall}`]: {
@@ -258,94 +258,94 @@ fn({
 
 styled(Component)(() => {
   return {
-    "& .MuiButton-text.MuiButton-colorInherit": {
+    "&.MuiButton-text.MuiButton-colorInherit": {
       color: 'red',
     },
-    "& .MuiButton-text.MuiButton-colorPrimary": {
+    "&.MuiButton-text.MuiButton-colorPrimary": {
       color: 'red',
     },
-    "& .MuiButton-text.MuiButton-colorSecondary": {
+    "&.MuiButton-text.MuiButton-colorSecondary": {
       color: 'red',
     },
-    "& .MuiButton-text.MuiButton-colorSuccess": {
+    "&.MuiButton-text.MuiButton-colorSuccess": {
       color: 'red',
     },
-    "& .MuiButton-text.MuiButton-colorError": {
+    "&.MuiButton-text.MuiButton-colorError": {
       color: 'red',
     },
-    "& .MuiButton-text.MuiButton-colorInfo": {
+    "&.MuiButton-text.MuiButton-colorInfo": {
       color: 'red',
     },
-    "& .MuiButton-text.MuiButton-colorWarning": {
+    "&.MuiButton-text.MuiButton-colorWarning": {
       color: 'red',
     },
-    "& .MuiButton-outlined.MuiButton-colorInherit": {
+    "&.MuiButton-outlined.MuiButton-colorInherit": {
       color: 'red',
     },
-    "& .MuiButton-outlined.MuiButton-colorPrimary": {
+    "&.MuiButton-outlined.MuiButton-colorPrimary": {
       color: 'red',
     },
-    "& .MuiButton-outlined.MuiButton-colorSecondary": {
+    "&.MuiButton-outlined.MuiButton-colorSecondary": {
       color: 'red',
     },
-    "& .MuiButton-outlined.MuiButton-colorSuccess": {
+    "&.MuiButton-outlined.MuiButton-colorSuccess": {
       color: 'red',
     },
-    "& .MuiButton-outlined.MuiButton-colorError": {
+    "&.MuiButton-outlined.MuiButton-colorError": {
       color: 'red',
     },
-    "& .MuiButton-outlined.MuiButton-colorInfo": {
+    "&.MuiButton-outlined.MuiButton-colorInfo": {
       color: 'red',
     },
-    "& .MuiButton-outlined.MuiButton-colorWarning": {
+    "&.MuiButton-outlined.MuiButton-colorWarning": {
       color: 'red',
     },
-    "& .MuiButton-contained.MuiButton-colorInherit": {
+    "&.MuiButton-contained.MuiButton-colorInherit": {
       color: 'red',
     },
-    "& .MuiButton-contained.MuiButton-colorPrimary": {
+    "&.MuiButton-contained.MuiButton-colorPrimary": {
       color: 'red',
     },
-    "& .MuiButton-contained.MuiButton-colorSecondary": {
+    "&.MuiButton-contained.MuiButton-colorSecondary": {
       color: 'red',
     },
-    "& .MuiButton-contained.MuiButton-colorSuccess": {
+    "&.MuiButton-contained.MuiButton-colorSuccess": {
       color: 'red',
     },
-    "& .MuiButton-contained.MuiButton-colorError": {
+    "&.MuiButton-contained.MuiButton-colorError": {
       color: 'red',
     },
-    "& .MuiButton-contained.MuiButton-colorInfo": {
+    "&.MuiButton-contained.MuiButton-colorInfo": {
       color: 'red',
     },
-    "& .MuiButton-contained.MuiButton-colorWarning": {
+    "&.MuiButton-contained.MuiButton-colorWarning": {
       color: 'red',
     },
-    "& .MuiButton-text.MuiButton-sizeSmall": {
+    "&.MuiButton-text.MuiButton-sizeSmall": {
       color: 'red',
     },
-    "& .MuiButton-text.MuiButton-sizeMedium": {
+    "&.MuiButton-text.MuiButton-sizeMedium": {
       color: 'red',
     },
-    "& .MuiButton-text.MuiButton-sizeLarge": {
+    "&.MuiButton-text.MuiButton-sizeLarge": {
       color: 'red',
     },
-    "& .MuiButton-outlined.MuiButton-sizeSmall": {
+    "&.MuiButton-outlined.MuiButton-sizeSmall": {
       color: 'red',
     },
-    "& .MuiButton-outlined.MuiButton-sizeMedium": {
+    "&.MuiButton-outlined.MuiButton-sizeMedium": {
       color: 'red',
     },
-    "& .MuiButton-outlined.MuiButton-sizeLarge": {
+    "&.MuiButton-outlined.MuiButton-sizeLarge": {
       color: 'red',
     },
-    "& .MuiButton-contained.MuiButton-sizeSmall": {
+    "&.MuiButton-contained.MuiButton-sizeSmall": {
       color: 'red',
     },
-    "& .MuiButton-contained.MuiButton-sizeMedium": {
+    "&.MuiButton-contained.MuiButton-sizeMedium": {
       color: 'red',
     },
-    "& .MuiButton-contained.MuiButton-sizeLarge": {
+    "&.MuiButton-contained.MuiButton-sizeLarge": {
       color: 'red',
     },
     "& .MuiButton-icon.MuiButton-sizeSmall": {
@@ -362,94 +362,94 @@ styled(Component)(() => {
 
 styled(Component)(() => {
   return {
-    [`& .${buttonClasses.text}.${buttonClasses.colorInherit}`]: {
+    [`&.${buttonClasses.text}.${buttonClasses.colorInherit}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.text}.${buttonClasses.colorPrimary}`]: {
+    [`&.${buttonClasses.text}.${buttonClasses.colorPrimary}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.text}.${buttonClasses.colorSecondary}`]: {
+    [`&.${buttonClasses.text}.${buttonClasses.colorSecondary}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.text}.${buttonClasses.colorSuccess}`]: {
+    [`&.${buttonClasses.text}.${buttonClasses.colorSuccess}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.text}.${buttonClasses.colorError}`]: {
+    [`&.${buttonClasses.text}.${buttonClasses.colorError}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.text}.${buttonClasses.colorInfo}`]: {
+    [`&.${buttonClasses.text}.${buttonClasses.colorInfo}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.text}.${buttonClasses.colorWarning}`]: {
+    [`&.${buttonClasses.text}.${buttonClasses.colorWarning}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlined}.${buttonClasses.colorInherit}`]: {
+    [`&.${buttonClasses.outlined}.${buttonClasses.colorInherit}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlined}.${buttonClasses.colorPrimary}`]: {
+    [`&.${buttonClasses.outlined}.${buttonClasses.colorPrimary}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlined}.${buttonClasses.colorSecondary}`]: {
+    [`&.${buttonClasses.outlined}.${buttonClasses.colorSecondary}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlined}.${buttonClasses.colorSuccess}`]: {
+    [`&.${buttonClasses.outlined}.${buttonClasses.colorSuccess}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlined}.${buttonClasses.colorError}`]: {
+    [`&.${buttonClasses.outlined}.${buttonClasses.colorError}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlined}.${buttonClasses.colorInfo}`]: {
+    [`&.${buttonClasses.outlined}.${buttonClasses.colorInfo}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlined}.${buttonClasses.colorWarning}`]: {
+    [`&.${buttonClasses.outlined}.${buttonClasses.colorWarning}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.contained}.${buttonClasses.colorInherit}`]: {
+    [`&.${buttonClasses.contained}.${buttonClasses.colorInherit}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.contained}.${buttonClasses.colorPrimary}`]: {
+    [`&.${buttonClasses.contained}.${buttonClasses.colorPrimary}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.contained}.${buttonClasses.colorSecondary}`]: {
+    [`&.${buttonClasses.contained}.${buttonClasses.colorSecondary}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.contained}.${buttonClasses.colorSuccess}`]: {
+    [`&.${buttonClasses.contained}.${buttonClasses.colorSuccess}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.contained}.${buttonClasses.colorError}`]: {
+    [`&.${buttonClasses.contained}.${buttonClasses.colorError}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.contained}.${buttonClasses.colorInfo}`]: {
+    [`&.${buttonClasses.contained}.${buttonClasses.colorInfo}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.contained}.${buttonClasses.colorWarning}`]: {
+    [`&.${buttonClasses.contained}.${buttonClasses.colorWarning}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.text}.${buttonClasses.sizeSmall}`]: {
+    [`&.${buttonClasses.text}.${buttonClasses.sizeSmall}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.text}.${buttonClasses.sizeMedium}`]: {
+    [`&.${buttonClasses.text}.${buttonClasses.sizeMedium}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.text}.${buttonClasses.sizeLarge}`]: {
+    [`&.${buttonClasses.text}.${buttonClasses.sizeLarge}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlined}.${buttonClasses.sizeSmall}`]: {
+    [`&.${buttonClasses.outlined}.${buttonClasses.sizeSmall}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlined}.${buttonClasses.sizeMedium}`]: {
+    [`&.${buttonClasses.outlined}.${buttonClasses.sizeMedium}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlined}.${buttonClasses.sizeLarge}`]: {
+    [`&.${buttonClasses.outlined}.${buttonClasses.sizeLarge}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.contained}.${buttonClasses.sizeSmall}`]: {
+    [`&.${buttonClasses.contained}.${buttonClasses.sizeSmall}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.contained}.${buttonClasses.sizeMedium}`]: {
+    [`&.${buttonClasses.contained}.${buttonClasses.sizeMedium}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.contained}.${buttonClasses.sizeLarge}`]: {
+    [`&.${buttonClasses.contained}.${buttonClasses.sizeLarge}`]: {
       color: 'red',
     },
     [`& .${buttonClasses.icon}.${buttonClasses.sizeSmall}`]: {
@@ -466,94 +466,94 @@ styled(Component)(() => {
 
 <Button
   sx={{
-    "& .MuiButton-text.MuiButton-colorInherit": {
+    "&.MuiButton-text.MuiButton-colorInherit": {
       color: 'red',
     },
-    "& .MuiButton-text.MuiButton-colorPrimary": {
+    "&.MuiButton-text.MuiButton-colorPrimary": {
       color: 'red',
     },
-    "& .MuiButton-text.MuiButton-colorSecondary": {
+    "&.MuiButton-text.MuiButton-colorSecondary": {
       color: 'red',
     },
-    "& .MuiButton-text.MuiButton-colorSuccess": {
+    "&.MuiButton-text.MuiButton-colorSuccess": {
       color: 'red',
     },
-    "& .MuiButton-text.MuiButton-colorError": {
+    "&.MuiButton-text.MuiButton-colorError": {
       color: 'red',
     },
-    "& .MuiButton-text.MuiButton-colorInfo": {
+    "&.MuiButton-text.MuiButton-colorInfo": {
       color: 'red',
     },
-    "& .MuiButton-text.MuiButton-colorWarning": {
+    "&.MuiButton-text.MuiButton-colorWarning": {
       color: 'red',
     },
-    "& .MuiButton-outlined.MuiButton-colorInherit": {
+    "&.MuiButton-outlined.MuiButton-colorInherit": {
       color: 'red',
     },
-    "& .MuiButton-outlined.MuiButton-colorPrimary": {
+    "&.MuiButton-outlined.MuiButton-colorPrimary": {
       color: 'red',
     },
-    "& .MuiButton-outlined.MuiButton-colorSecondary": {
+    "&.MuiButton-outlined.MuiButton-colorSecondary": {
       color: 'red',
     },
-    "& .MuiButton-outlined.MuiButton-colorSuccess": {
+    "&.MuiButton-outlined.MuiButton-colorSuccess": {
       color: 'red',
     },
-    "& .MuiButton-outlined.MuiButton-colorError": {
+    "&.MuiButton-outlined.MuiButton-colorError": {
       color: 'red',
     },
-    "& .MuiButton-outlined.MuiButton-colorInfo": {
+    "&.MuiButton-outlined.MuiButton-colorInfo": {
       color: 'red',
     },
-    "& .MuiButton-outlined.MuiButton-colorWarning": {
+    "&.MuiButton-outlined.MuiButton-colorWarning": {
       color: 'red',
     },
-    "& .MuiButton-contained.MuiButton-colorInherit": {
+    "&.MuiButton-contained.MuiButton-colorInherit": {
       color: 'red',
     },
-    "& .MuiButton-contained.MuiButton-colorPrimary": {
+    "&.MuiButton-contained.MuiButton-colorPrimary": {
       color: 'red',
     },
-    "& .MuiButton-contained.MuiButton-colorSecondary": {
+    "&.MuiButton-contained.MuiButton-colorSecondary": {
       color: 'red',
     },
-    "& .MuiButton-contained.MuiButton-colorSuccess": {
+    "&.MuiButton-contained.MuiButton-colorSuccess": {
       color: 'red',
     },
-    "& .MuiButton-contained.MuiButton-colorError": {
+    "&.MuiButton-contained.MuiButton-colorError": {
       color: 'red',
     },
-    "& .MuiButton-contained.MuiButton-colorInfo": {
+    "&.MuiButton-contained.MuiButton-colorInfo": {
       color: 'red',
     },
-    "& .MuiButton-contained.MuiButton-colorWarning": {
+    "&.MuiButton-contained.MuiButton-colorWarning": {
       color: 'red',
     },
-    "& .MuiButton-text.MuiButton-sizeSmall": {
+    "&.MuiButton-text.MuiButton-sizeSmall": {
       color: 'red',
     },
-    "& .MuiButton-text.MuiButton-sizeMedium": {
+    "&.MuiButton-text.MuiButton-sizeMedium": {
       color: 'red',
     },
-    "& .MuiButton-text.MuiButton-sizeLarge": {
+    "&.MuiButton-text.MuiButton-sizeLarge": {
       color: 'red',
     },
-    "& .MuiButton-outlined.MuiButton-sizeSmall": {
+    "&.MuiButton-outlined.MuiButton-sizeSmall": {
       color: 'red',
     },
-    "& .MuiButton-outlined.MuiButton-sizeMedium": {
+    "&.MuiButton-outlined.MuiButton-sizeMedium": {
       color: 'red',
     },
-    "& .MuiButton-outlined.MuiButton-sizeLarge": {
+    "&.MuiButton-outlined.MuiButton-sizeLarge": {
       color: 'red',
     },
-    "& .MuiButton-contained.MuiButton-sizeSmall": {
+    "&.MuiButton-contained.MuiButton-sizeSmall": {
       color: 'red',
     },
-    "& .MuiButton-contained.MuiButton-sizeMedium": {
+    "&.MuiButton-contained.MuiButton-sizeMedium": {
       color: 'red',
     },
-    "& .MuiButton-contained.MuiButton-sizeLarge": {
+    "&.MuiButton-contained.MuiButton-sizeLarge": {
       color: 'red',
     },
     "& .MuiButton-icon.MuiButton-sizeSmall": {
@@ -570,94 +570,94 @@ styled(Component)(() => {
 
 <Button
   sx={{
-    [`& .${buttonClasses.text}.${buttonClasses.colorInherit}`]: {
+    [`&.${buttonClasses.text}.${buttonClasses.colorInherit}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.text}.${buttonClasses.colorPrimary}`]: {
+    [`&.${buttonClasses.text}.${buttonClasses.colorPrimary}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.text}.${buttonClasses.colorSecondary}`]: {
+    [`&.${buttonClasses.text}.${buttonClasses.colorSecondary}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.text}.${buttonClasses.colorSuccess}`]: {
+    [`&.${buttonClasses.text}.${buttonClasses.colorSuccess}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.text}.${buttonClasses.colorError}`]: {
+    [`&.${buttonClasses.text}.${buttonClasses.colorError}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.text}.${buttonClasses.colorInfo}`]: {
+    [`&.${buttonClasses.text}.${buttonClasses.colorInfo}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.text}.${buttonClasses.colorWarning}`]: {
+    [`&.${buttonClasses.text}.${buttonClasses.colorWarning}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlined}.${buttonClasses.colorInherit}`]: {
+    [`&.${buttonClasses.outlined}.${buttonClasses.colorInherit}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlined}.${buttonClasses.colorPrimary}`]: {
+    [`&.${buttonClasses.outlined}.${buttonClasses.colorPrimary}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlined}.${buttonClasses.colorSecondary}`]: {
+    [`&.${buttonClasses.outlined}.${buttonClasses.colorSecondary}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlined}.${buttonClasses.colorSuccess}`]: {
+    [`&.${buttonClasses.outlined}.${buttonClasses.colorSuccess}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlined}.${buttonClasses.colorError}`]: {
+    [`&.${buttonClasses.outlined}.${buttonClasses.colorError}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlined}.${buttonClasses.colorInfo}`]: {
+    [`&.${buttonClasses.outlined}.${buttonClasses.colorInfo}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlined}.${buttonClasses.colorWarning}`]: {
+    [`&.${buttonClasses.outlined}.${buttonClasses.colorWarning}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.contained}.${buttonClasses.colorInherit}`]: {
+    [`&.${buttonClasses.contained}.${buttonClasses.colorInherit}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.contained}.${buttonClasses.colorPrimary}`]: {
+    [`&.${buttonClasses.contained}.${buttonClasses.colorPrimary}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.contained}.${buttonClasses.colorSecondary}`]: {
+    [`&.${buttonClasses.contained}.${buttonClasses.colorSecondary}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.contained}.${buttonClasses.colorSuccess}`]: {
+    [`&.${buttonClasses.contained}.${buttonClasses.colorSuccess}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.contained}.${buttonClasses.colorError}`]: {
+    [`&.${buttonClasses.contained}.${buttonClasses.colorError}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.contained}.${buttonClasses.colorInfo}`]: {
+    [`&.${buttonClasses.contained}.${buttonClasses.colorInfo}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.contained}.${buttonClasses.colorWarning}`]: {
+    [`&.${buttonClasses.contained}.${buttonClasses.colorWarning}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.text}.${buttonClasses.sizeSmall}`]: {
+    [`&.${buttonClasses.text}.${buttonClasses.sizeSmall}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.text}.${buttonClasses.sizeMedium}`]: {
+    [`&.${buttonClasses.text}.${buttonClasses.sizeMedium}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.text}.${buttonClasses.sizeLarge}`]: {
+    [`&.${buttonClasses.text}.${buttonClasses.sizeLarge}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlined}.${buttonClasses.sizeSmall}`]: {
+    [`&.${buttonClasses.outlined}.${buttonClasses.sizeSmall}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlined}.${buttonClasses.sizeMedium}`]: {
+    [`&.${buttonClasses.outlined}.${buttonClasses.sizeMedium}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlined}.${buttonClasses.sizeLarge}`]: {
+    [`&.${buttonClasses.outlined}.${buttonClasses.sizeLarge}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.contained}.${buttonClasses.sizeSmall}`]: {
+    [`&.${buttonClasses.contained}.${buttonClasses.sizeSmall}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.contained}.${buttonClasses.sizeMedium}`]: {
+    [`&.${buttonClasses.contained}.${buttonClasses.sizeMedium}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.contained}.${buttonClasses.sizeLarge}`]: {
+    [`&.${buttonClasses.contained}.${buttonClasses.sizeLarge}`]: {
       color: 'red',
     },
     [`& .${buttonClasses.icon}.${buttonClasses.sizeSmall}`]: {

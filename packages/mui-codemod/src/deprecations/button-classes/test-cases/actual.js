@@ -4,114 +4,114 @@ fn({
   MuiButton: {
     styleOverrides: {
       root: {
-        '& .MuiButton-textInherit': {
+        '&.MuiButton-textInherit': {
           color: 'red',
         },
 
-        '& .MuiButton-textPrimary': {
+        '&.MuiButton-textPrimary': {
           color: 'red',
         },
 
-        '& .MuiButton-textSecondary': {
+        '&.MuiButton-textSecondary': {
           color: 'red',
         },
 
-        '& .MuiButton-textSuccess': {
+        '&.MuiButton-textSuccess': {
           color: 'red',
         },
 
-        '& .MuiButton-textError': {
+        '&.MuiButton-textError': {
           color: 'red',
         },
 
-        '& .MuiButton-textInfo': {
+        '&.MuiButton-textInfo': {
           color: 'red',
         },
 
-        '& .MuiButton-textWarning': {
+        '&.MuiButton-textWarning': {
           color: 'red',
         },
 
-        '& .MuiButton-outlinedInherit': {
+        '&.MuiButton-outlinedInherit': {
           color: 'red',
         },
 
-        '& .MuiButton-outlinedPrimary': {
+        '&.MuiButton-outlinedPrimary': {
           color: 'red',
         },
 
-        '& .MuiButton-outlinedSecondary': {
+        '&.MuiButton-outlinedSecondary': {
           color: 'red',
         },
 
-        '& .MuiButton-outlinedSuccess': {
+        '&.MuiButton-outlinedSuccess': {
           color: 'red',
         },
 
-        '& .MuiButton-outlinedError': {
+        '&.MuiButton-outlinedError': {
           color: 'red',
         },
 
-        '& .MuiButton-outlinedInfo': {
+        '&.MuiButton-outlinedInfo': {
           color: 'red',
         },
 
-        '& .MuiButton-outlinedWarning': {
+        '&.MuiButton-outlinedWarning': {
           color: 'red',
         },
 
-        '& .MuiButton-containedInherit': {
+        '&.MuiButton-containedInherit': {
           color: 'red',
         },
 
-        '& .MuiButton-containedPrimary': {
+        '&.MuiButton-containedPrimary': {
           color: 'red',
         },
 
-        '& .MuiButton-containedSecondary': {
+        '&.MuiButton-containedSecondary': {
           color: 'red',
         },
 
-        '& .MuiButton-containedSuccess': {
+        '&.MuiButton-containedSuccess': {
           color: 'red',
         },
 
-        '& .MuiButton-containedError': {
+        '&.MuiButton-containedError': {
           color: 'red',
         },
 
-        '& .MuiButton-containedInfo': {
+        '&.MuiButton-containedInfo': {
           color: 'red',
         },
 
-        '& .MuiButton-containedWarning': {
+        '&.MuiButton-containedWarning': {
           color: 'red',
         },
-        '& .MuiButton-textSizeSmall': {
+        '&.MuiButton-textSizeSmall': {
           color: 'red',
         },
-        '& .MuiButton-textSizeMedium': {
+        '&.MuiButton-textSizeMedium': {
           color: 'red',
         },
-        '& .MuiButton-textSizeLarge': {
+        '&.MuiButton-textSizeLarge': {
           color: 'red',
         },
-        '& .MuiButton-outlinedSizeSmall': {
+        '&.MuiButton-outlinedSizeSmall': {
           color: 'red',
         },
-        '& .MuiButton-outlinedSizeMedium': {
+        '&.MuiButton-outlinedSizeMedium': {
           color: 'red',
         },
-        '& .MuiButton-outlinedSizeLarge': {
+        '&.MuiButton-outlinedSizeLarge': {
           color: 'red',
         },
-        '& .MuiButton-containedSizeSmall': {
+        '&.MuiButton-containedSizeSmall': {
           color: 'red',
         },
-        '& .MuiButton-containedSizeMedium': {
+        '&.MuiButton-containedSizeMedium': {
           color: 'red',
         },
-        '& .MuiButton-containedSizeLarge': {
+        '&.MuiButton-containedSizeLarge': {
           color: 'red',
         },
         '& .MuiButton-iconSizeSmall': {
@@ -132,114 +132,114 @@ fn({
   MuiButton: {
     styleOverrides: {
       root: {
-        [`& .${buttonClasses.textInherit}`]: {
+        [`&.${buttonClasses.textInherit}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.textPrimary}`]: {
+        [`&.${buttonClasses.textPrimary}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.textSecondary}`]: {
+        [`&.${buttonClasses.textSecondary}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.textSuccess}`]: {
+        [`&.${buttonClasses.textSuccess}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.textError}`]: {
+        [`&.${buttonClasses.textError}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.textInfo}`]: {
+        [`&.${buttonClasses.textInfo}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.textWarning}`]: {
+        [`&.${buttonClasses.textWarning}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.outlinedInherit}`]: {
+        [`&.${buttonClasses.outlinedInherit}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.outlinedPrimary}`]: {
+        [`&.${buttonClasses.outlinedPrimary}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.outlinedSecondary}`]: {
+        [`&.${buttonClasses.outlinedSecondary}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.outlinedSuccess}`]: {
+        [`&.${buttonClasses.outlinedSuccess}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.outlinedError}`]: {
+        [`&.${buttonClasses.outlinedError}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.outlinedInfo}`]: {
+        [`&.${buttonClasses.outlinedInfo}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.outlinedWarning}`]: {
+        [`&.${buttonClasses.outlinedWarning}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.containedInherit}`]: {
+        [`&.${buttonClasses.containedInherit}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.containedPrimary}`]: {
+        [`&.${buttonClasses.containedPrimary}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.containedSecondary}`]: {
+        [`&.${buttonClasses.containedSecondary}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.containedSuccess}`]: {
+        [`&.${buttonClasses.containedSuccess}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.containedError}`]: {
+        [`&.${buttonClasses.containedError}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.containedInfo}`]: {
+        [`&.${buttonClasses.containedInfo}`]: {
           color: 'red',
         },
 
-        [`& .${buttonClasses.containedWarning}`]: {
+        [`&.${buttonClasses.containedWarning}`]: {
           color: 'red',
         },
-        [`& .${buttonClasses.textSizeSmall}`]: {
+        [`&.${buttonClasses.textSizeSmall}`]: {
           color: 'red',
         },
-        [`& .${buttonClasses.textSizeMedium}`]: {
+        [`&.${buttonClasses.textSizeMedium}`]: {
           color: 'red',
         },
-        [`& .${buttonClasses.textSizeLarge}`]: {
+        [`&.${buttonClasses.textSizeLarge}`]: {
           color: 'red',
         },
-        [`& .${buttonClasses.outlinedSizeSmall}`]: {
+        [`&.${buttonClasses.outlinedSizeSmall}`]: {
           color: 'red',
         },
-        [`& .${buttonClasses.outlinedSizeMedium}`]: {
+        [`&.${buttonClasses.outlinedSizeMedium}`]: {
           color: 'red',
         },
-        [`& .${buttonClasses.outlinedSizeLarge}`]: {
+        [`&.${buttonClasses.outlinedSizeLarge}`]: {
           color: 'red',
         },
-        [`& .${buttonClasses.containedSizeSmall}`]: {
+        [`&.${buttonClasses.containedSizeSmall}`]: {
           color: 'red',
         },
-        [`& .${buttonClasses.containedSizeMedium}`]: {
+        [`&.${buttonClasses.containedSizeMedium}`]: {
           color: 'red',
         },
-        [`& .${buttonClasses.containedSizeLarge}`]: {
+        [`&.${buttonClasses.containedSizeLarge}`]: {
           color: 'red',
         },
         [`& .${buttonClasses.iconSizeSmall}`]: {
@@ -258,94 +258,94 @@ fn({
 
 styled(Component)(() => {
   return {
-    '& .MuiButton-textInherit': {
+    '&.MuiButton-textInherit': {
       color: 'red',
     },
-    '& .MuiButton-textPrimary': {
+    '&.MuiButton-textPrimary': {
       color: 'red',
     },
-    '& .MuiButton-textSecondary': {
+    '&.MuiButton-textSecondary': {
       color: 'red',
     },
-    '& .MuiButton-textSuccess': {
+    '&.MuiButton-textSuccess': {
       color: 'red',
     },
-    '& .MuiButton-textError': {
+    '&.MuiButton-textError': {
       color: 'red',
     },
-    '& .MuiButton-textInfo': {
+    '&.MuiButton-textInfo': {
       color: 'red',
     },
-    '& .MuiButton-textWarning': {
+    '&.MuiButton-textWarning': {
       color: 'red',
     },
-    '& .MuiButton-outlinedInherit': {
+    '&.MuiButton-outlinedInherit': {
       color: 'red',
     },
-    '& .MuiButton-outlinedPrimary': {
+    '&.MuiButton-outlinedPrimary': {
       color: 'red',
     },
-    '& .MuiButton-outlinedSecondary': {
+    '&.MuiButton-outlinedSecondary': {
       color: 'red',
     },
-    '& .MuiButton-outlinedSuccess': {
+    '&.MuiButton-outlinedSuccess': {
       color: 'red',
     },
-    '& .MuiButton-outlinedError': {
+    '&.MuiButton-outlinedError': {
       color: 'red',
     },
-    '& .MuiButton-outlinedInfo': {
+    '&.MuiButton-outlinedInfo': {
       color: 'red',
     },
-    '& .MuiButton-outlinedWarning': {
+    '&.MuiButton-outlinedWarning': {
       color: 'red',
     },
-    '& .MuiButton-containedInherit': {
+    '&.MuiButton-containedInherit': {
       color: 'red',
     },
-    '& .MuiButton-containedPrimary': {
+    '&.MuiButton-containedPrimary': {
       color: 'red',
     },
-    '& .MuiButton-containedSecondary': {
+    '&.MuiButton-containedSecondary': {
       color: 'red',
     },
-    '& .MuiButton-containedSuccess': {
+    '&.MuiButton-containedSuccess': {
       color: 'red',
     },
-    '& .MuiButton-containedError': {
+    '&.MuiButton-containedError': {
       color: 'red',
     },
-    '& .MuiButton-containedInfo': {
+    '&.MuiButton-containedInfo': {
       color: 'red',
     },
-    '& .MuiButton-containedWarning': {
+    '&.MuiButton-containedWarning': {
       color: 'red',
     },
-    '& .MuiButton-textSizeSmall': {
+    '&.MuiButton-textSizeSmall': {
       color: 'red',
     },
-    '& .MuiButton-textSizeMedium': {
+    '&.MuiButton-textSizeMedium': {
       color: 'red',
     },
-    '& .MuiButton-textSizeLarge': {
+    '&.MuiButton-textSizeLarge': {
       color: 'red',
     },
-    '& .MuiButton-outlinedSizeSmall': {
+    '&.MuiButton-outlinedSizeSmall': {
       color: 'red',
     },
-    '& .MuiButton-outlinedSizeMedium': {
+    '&.MuiButton-outlinedSizeMedium': {
       color: 'red',
     },
-    '& .MuiButton-outlinedSizeLarge': {
+    '&.MuiButton-outlinedSizeLarge': {
       color: 'red',
     },
-    '& .MuiButton-containedSizeSmall': {
+    '&.MuiButton-containedSizeSmall': {
       color: 'red',
     },
-    '& .MuiButton-containedSizeMedium': {
+    '&.MuiButton-containedSizeMedium': {
       color: 'red',
     },
-    '& .MuiButton-containedSizeLarge': {
+    '&.MuiButton-containedSizeLarge': {
       color: 'red',
     },
     '& .MuiButton-iconSizeSmall': {
@@ -362,94 +362,94 @@ styled(Component)(() => {
 
 styled(Component)(() => {
   return {
-    [`& .${buttonClasses.textInherit}`]: {
+    [`&.${buttonClasses.textInherit}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.textPrimary}`]: {
+    [`&.${buttonClasses.textPrimary}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.textSecondary}`]: {
+    [`&.${buttonClasses.textSecondary}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.textSuccess}`]: {
+    [`&.${buttonClasses.textSuccess}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.textError}`]: {
+    [`&.${buttonClasses.textError}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.textInfo}`]: {
+    [`&.${buttonClasses.textInfo}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.textWarning}`]: {
+    [`&.${buttonClasses.textWarning}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlinedInherit}`]: {
+    [`&.${buttonClasses.outlinedInherit}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlinedPrimary}`]: {
+    [`&.${buttonClasses.outlinedPrimary}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlinedSecondary}`]: {
+    [`&.${buttonClasses.outlinedSecondary}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlinedSuccess}`]: {
+    [`&.${buttonClasses.outlinedSuccess}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlinedError}`]: {
+    [`&.${buttonClasses.outlinedError}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlinedInfo}`]: {
+    [`&.${buttonClasses.outlinedInfo}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlinedWarning}`]: {
+    [`&.${buttonClasses.outlinedWarning}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.containedInherit}`]: {
+    [`&.${buttonClasses.containedInherit}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.containedPrimary}`]: {
+    [`&.${buttonClasses.containedPrimary}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.containedSecondary}`]: {
+    [`&.${buttonClasses.containedSecondary}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.containedSuccess}`]: {
+    [`&.${buttonClasses.containedSuccess}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.containedError}`]: {
+    [`&.${buttonClasses.containedError}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.containedInfo}`]: {
+    [`&.${buttonClasses.containedInfo}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.containedWarning}`]: {
+    [`&.${buttonClasses.containedWarning}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.textSizeSmall}`]: {
+    [`&.${buttonClasses.textSizeSmall}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.textSizeMedium}`]: {
+    [`&.${buttonClasses.textSizeMedium}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.textSizeLarge}`]: {
+    [`&.${buttonClasses.textSizeLarge}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlinedSizeSmall}`]: {
+    [`&.${buttonClasses.outlinedSizeSmall}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlinedSizeMedium}`]: {
+    [`&.${buttonClasses.outlinedSizeMedium}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlinedSizeLarge}`]: {
+    [`&.${buttonClasses.outlinedSizeLarge}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.containedSizeSmall}`]: {
+    [`&.${buttonClasses.containedSizeSmall}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.containedSizeMedium}`]: {
+    [`&.${buttonClasses.containedSizeMedium}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.containedSizeLarge}`]: {
+    [`&.${buttonClasses.containedSizeLarge}`]: {
       color: 'red',
     },
     [`& .${buttonClasses.iconSizeSmall}`]: {
@@ -466,94 +466,94 @@ styled(Component)(() => {
 
 <Button
   sx={{
-    '& .MuiButton-textInherit': {
+    '&.MuiButton-textInherit': {
       color: 'red',
     },
-    '& .MuiButton-textPrimary': {
+    '&.MuiButton-textPrimary': {
       color: 'red',
     },
-    '& .MuiButton-textSecondary': {
+    '&.MuiButton-textSecondary': {
       color: 'red',
     },
-    '& .MuiButton-textSuccess': {
+    '&.MuiButton-textSuccess': {
       color: 'red',
     },
-    '& .MuiButton-textError': {
+    '&.MuiButton-textError': {
       color: 'red',
     },
-    '& .MuiButton-textInfo': {
+    '&.MuiButton-textInfo': {
       color: 'red',
     },
-    '& .MuiButton-textWarning': {
+    '&.MuiButton-textWarning': {
       color: 'red',
     },
-    '& .MuiButton-outlinedInherit': {
+    '&.MuiButton-outlinedInherit': {
       color: 'red',
     },
-    '& .MuiButton-outlinedPrimary': {
+    '&.MuiButton-outlinedPrimary': {
       color: 'red',
     },
-    '& .MuiButton-outlinedSecondary': {
+    '&.MuiButton-outlinedSecondary': {
       color: 'red',
     },
-    '& .MuiButton-outlinedSuccess': {
+    '&.MuiButton-outlinedSuccess': {
       color: 'red',
     },
-    '& .MuiButton-outlinedError': {
+    '&.MuiButton-outlinedError': {
       color: 'red',
     },
-    '& .MuiButton-outlinedInfo': {
+    '&.MuiButton-outlinedInfo': {
       color: 'red',
     },
-    '& .MuiButton-outlinedWarning': {
+    '&.MuiButton-outlinedWarning': {
       color: 'red',
     },
-    '& .MuiButton-containedInherit': {
+    '&.MuiButton-containedInherit': {
       color: 'red',
     },
-    '& .MuiButton-containedPrimary': {
+    '&.MuiButton-containedPrimary': {
       color: 'red',
     },
-    '& .MuiButton-containedSecondary': {
+    '&.MuiButton-containedSecondary': {
       color: 'red',
     },
-    '& .MuiButton-containedSuccess': {
+    '&.MuiButton-containedSuccess': {
       color: 'red',
     },
-    '& .MuiButton-containedError': {
+    '&.MuiButton-containedError': {
       color: 'red',
     },
-    '& .MuiButton-containedInfo': {
+    '&.MuiButton-containedInfo': {
       color: 'red',
     },
-    '& .MuiButton-containedWarning': {
+    '&.MuiButton-containedWarning': {
       color: 'red',
     },
-    '& .MuiButton-textSizeSmall': {
+    '&.MuiButton-textSizeSmall': {
       color: 'red',
     },
-    '& .MuiButton-textSizeMedium': {
+    '&.MuiButton-textSizeMedium': {
       color: 'red',
     },
-    '& .MuiButton-textSizeLarge': {
+    '&.MuiButton-textSizeLarge': {
       color: 'red',
     },
-    '& .MuiButton-outlinedSizeSmall': {
+    '&.MuiButton-outlinedSizeSmall': {
       color: 'red',
     },
-    '& .MuiButton-outlinedSizeMedium': {
+    '&.MuiButton-outlinedSizeMedium': {
       color: 'red',
     },
-    '& .MuiButton-outlinedSizeLarge': {
+    '&.MuiButton-outlinedSizeLarge': {
       color: 'red',
     },
-    '& .MuiButton-containedSizeSmall': {
+    '&.MuiButton-containedSizeSmall': {
       color: 'red',
     },
-    '& .MuiButton-containedSizeMedium': {
+    '&.MuiButton-containedSizeMedium': {
       color: 'red',
     },
-    '& .MuiButton-containedSizeLarge': {
+    '&.MuiButton-containedSizeLarge': {
       color: 'red',
     },
     '& .MuiButton-iconSizeSmall': {
@@ -570,94 +570,94 @@ styled(Component)(() => {
 
 <Button
   sx={{
-    [`& .${buttonClasses.textInherit}`]: {
+    [`&.${buttonClasses.textInherit}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.textPrimary}`]: {
+    [`&.${buttonClasses.textPrimary}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.textSecondary}`]: {
+    [`&.${buttonClasses.textSecondary}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.textSuccess}`]: {
+    [`&.${buttonClasses.textSuccess}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.textError}`]: {
+    [`&.${buttonClasses.textError}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.textInfo}`]: {
+    [`&.${buttonClasses.textInfo}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.textWarning}`]: {
+    [`&.${buttonClasses.textWarning}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlinedInherit}`]: {
+    [`&.${buttonClasses.outlinedInherit}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlinedPrimary}`]: {
+    [`&.${buttonClasses.outlinedPrimary}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlinedSecondary}`]: {
+    [`&.${buttonClasses.outlinedSecondary}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlinedSuccess}`]: {
+    [`&.${buttonClasses.outlinedSuccess}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlinedError}`]: {
+    [`&.${buttonClasses.outlinedError}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlinedInfo}`]: {
+    [`&.${buttonClasses.outlinedInfo}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlinedWarning}`]: {
+    [`&.${buttonClasses.outlinedWarning}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.containedInherit}`]: {
+    [`&.${buttonClasses.containedInherit}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.containedPrimary}`]: {
+    [`&.${buttonClasses.containedPrimary}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.containedSecondary}`]: {
+    [`&.${buttonClasses.containedSecondary}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.containedSuccess}`]: {
+    [`&.${buttonClasses.containedSuccess}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.containedError}`]: {
+    [`&.${buttonClasses.containedError}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.containedInfo}`]: {
+    [`&.${buttonClasses.containedInfo}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.containedWarning}`]: {
+    [`&.${buttonClasses.containedWarning}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.textSizeSmall}`]: {
+    [`&.${buttonClasses.textSizeSmall}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.textSizeMedium}`]: {
+    [`&.${buttonClasses.textSizeMedium}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.textSizeLarge}`]: {
+    [`&.${buttonClasses.textSizeLarge}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlinedSizeSmall}`]: {
+    [`&.${buttonClasses.outlinedSizeSmall}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlinedSizeMedium}`]: {
+    [`&.${buttonClasses.outlinedSizeMedium}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.outlinedSizeLarge}`]: {
+    [`&.${buttonClasses.outlinedSizeLarge}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.containedSizeSmall}`]: {
+    [`&.${buttonClasses.containedSizeSmall}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.containedSizeMedium}`]: {
+    [`&.${buttonClasses.containedSizeMedium}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.containedSizeLarge}`]: {
+    [`&.${buttonClasses.containedSizeLarge}`]: {
       color: 'red',
     },
     [`& .${buttonClasses.iconSizeSmall}`]: {
