@@ -5,17 +5,18 @@ import * as fs from 'fs';
 // @ts-ignore
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { createRequire } from 'module';
-import withDocsInfra from './nextConfigDocsInfra.js';
 import { findPages } from './src/modules/utils/find.mjs';
-import {
+
+const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
+const require = createRequire(import.meta.url);
+
+const withDocsInfra = require('./nextConfigDocsInfra.js');
+const {
   LANGUAGES,
   LANGUAGES_SSR,
   LANGUAGES_IGNORE_PAGES,
   LANGUAGES_IN_PROGRESS,
-} from './config.js';
-
-const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
-const require = createRequire(import.meta.url);
+} = require('./config.js');
 
 const workspaceRoot = path.join(currentDirectory, '../');
 
@@ -29,6 +30,10 @@ const pkgContent = fs.readFileSync(path.resolve(workspaceRoot, 'package.json'), 
 const pkg = JSON.parse(pkgContent);
 
 export default withDocsInfra({
+  experimental: {
+    workerThreads: true,
+    cpus: 3,
+  },
   webpack: (config, options) => {
     const plugins = config.plugins.slice();
 

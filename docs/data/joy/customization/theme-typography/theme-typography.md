@@ -163,7 +163,7 @@ Feel free to [submit a PR](https://github.com/mui/material-ui/compare) to add yo
 
 <iframe src="https://codesandbox.io/embed/joy-ui-material-3-typography-system-lx044f?module=%2Fdemo.tsx&fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:500px; border:0; border-radius: 12px; overflow:hidden;"
-     title="Joy UI - Joy UI - Material 3 Typography System"
+     title="Joy UI - Joy UI - M3 Typography System"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
