@@ -284,7 +284,7 @@ const Root = styled('div')(
       borderRadius: `var(--muidocs-shape-borderRadius, ${
         theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
       }px)`,
-      '&>code': {
+      '& > code': {
         height: 'fit-content',
         backgroundColor: `var(--muidocs-palette-grey-100, ${lightTheme.palette.grey[100]})`,
         borderColor: `var(--muidocs-palette-grey-300, ${lightTheme.palette.grey[300]})`,
@@ -292,23 +292,22 @@ const Root = styled('div')(
       '& .MuiCallout-content': {
         minWidth: 0, // Allows content to shrink. Useful when callout contains code block
         flexGrow: 1,
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 6,
-        '&>p, ul': {
+        '& > p:last-child, & > ul:last-child': {
+          // Avoid margin on last child
           marginBottom: 0,
         },
         '& .MuiCode-root': {
-          '&>pre': {
+          '& > pre': {
             margin: 0,
             marginTop: 4,
           },
         },
-        '&>ul': {
+        '& > ul': {
+          // Because of the gap left by the icon, we visually need less padding
           paddingLeft: 22,
         },
       },
-      '&>svg': {
+      '& > svg': {
         marginTop: 2,
         width: 20,
         height: 20,
@@ -329,7 +328,7 @@ const Root = styled('div')(
         '& strong': {
           color: `var(--muidocs-palette-error-800, ${lightTheme.palette.error[800]})`,
         },
-        '&>svg': {
+        '& > svg': {
           fill: `var(--muidocs-palette-error-500, ${lightTheme.palette.error[600]})`,
         },
         '& a': {
@@ -347,7 +346,7 @@ const Root = styled('div')(
         '& strong': {
           color: `var(--muidocs-palette-primary-800, ${lightTheme.palette.primary[800]})`,
         },
-        '&>svg': {
+        '& > svg': {
           fill: `var(--muidocs-palette-grey-600, ${lightTheme.palette.grey[600]})`,
         },
       },
@@ -358,7 +357,7 @@ const Root = styled('div')(
         '& strong': {
           color: `var(--muidocs-palette-success-900, ${lightTheme.palette.success[900]})`,
         },
-        '&>svg': {
+        '& > svg': {
           fill: `var(--muidocs-palette-success-600, ${lightTheme.palette.success[600]})`,
         },
         '& a': {
@@ -376,7 +375,7 @@ const Root = styled('div')(
         '& strong': {
           color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
         },
-        '&>svg': {
+        '& > svg': {
           fill: `var(--muidocs-palette-warning-600, ${lightTheme.palette.warning[600]})`,
         },
         '& a': {
@@ -387,6 +386,26 @@ const Root = styled('div')(
           },
         },
       },
+    },
+    '& a[target="_blank"]::after': {
+      content: '""',
+      maskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' focusable='false' aria-hidden='true' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M6 6v2h8.59L5 17.59 6.41 19 16 9.41V18h2V6z'%3E%3C/path%3E%3C/svg%3E")`,
+      display: 'inline-flex',
+      width: '1em',
+      height: '1em',
+      color: 'inherit',
+      backgroundColor: 'currentColor',
+      transform: 'translate(0, 2px)',
+      transition: 'transform 0.3s cubic-bezier(0.1, 0.8, 0.3, 1)', // bounce effect
+      opacity: 0.8,
+    },
+    '& a[target="_blank"]:hover::after': {
+      opacity: 1,
+      transform: 'translate(1px, 0)',
+    },
+    '& a.remove-link-arrow[target="_blank"]::after': {
+      // Allows to remove link arrows for images
+      display: 'none',
     },
     '& a, & a code': {
       // Style taken from the Link component
@@ -627,7 +646,7 @@ const Root = styled('div')(
       },
       '& .MuiCallout-root': {
         borderColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
-        '&>code': {
+        '& > code': {
           height: 'fit-content',
           backgroundColor: `var(--muidocs-palette-primaryDark-600, ${lightTheme.palette.primaryDark[600]})`,
           borderColor: `var(--muidocs-palette-primaryDark-500, ${lightTheme.palette.primaryDark[500]})`,
@@ -639,7 +658,7 @@ const Root = styled('div')(
           '& strong': {
             color: `var(--muidocs-palette-error-300, ${darkTheme.palette.error[300]})`,
           },
-          '&>svg': {
+          '& > svg': {
             fill: `var(--muidocs-palette-error-500, ${darkTheme.palette.error[500]})`,
           },
           '& a': {
@@ -653,7 +672,7 @@ const Root = styled('div')(
           '& strong': {
             color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
           },
-          '&>svg': {
+          '& > svg': {
             fill: `var(--muidocs-palette-grey-400, ${darkTheme.palette.grey[400]})`,
           },
         },
@@ -664,7 +683,7 @@ const Root = styled('div')(
           '& strong': {
             color: `var(--muidocs-palette-success-200, ${darkTheme.palette.success[200]})`,
           },
-          '&>svg': {
+          '& > svg': {
             fill: `var(--muidocs-palette-success-500, ${darkTheme.palette.success[500]})`,
           },
           '& a': {
@@ -678,7 +697,7 @@ const Root = styled('div')(
           '& strong': {
             color: `var(--muidocs-palette-warning-200, ${darkTheme.palette.warning[200]})`,
           },
-          '&>svg': {
+          '& > svg': {
             fill: `var(--muidocs-palette-warning-400, ${darkTheme.palette.warning[400]})`,
           },
           '& a': {

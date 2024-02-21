@@ -4,7 +4,7 @@ description: We have completely revamped our Migration guide to reduce friction 
 date: 2022-06-20T00:00:00.000Z
 authors: ['samuelsycamore']
 card: true
-tags: ['MUI Core']
+tags: ['Material UI']
 ---
 
 Are you still using Material UI v4 in 2022?
@@ -28,7 +28,7 @@ Here are the top 5 reasons why you should upgrade to v5 ASAP.
 
 ### 1. React 18 support
 
-Material UI v5 is the only version that fully supports [React 18](https://legacy.reactjs.org/blog/2022/03/29/react-v18.html), so you'll need to update if you want to take advantage of the latest and greatest React features.
+Material UI v5 is the only version that fully supports [React 18](https://react.dev/blog/2022/03/29/react-v18), so you'll need to update if you want to take advantage of the latest and greatest React features.
 
 ### 2. New style engine
 

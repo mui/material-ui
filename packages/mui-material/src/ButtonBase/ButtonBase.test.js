@@ -3,7 +3,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import {
-  describeConformance,
   act,
   createRenderer,
   fireEvent,
@@ -15,6 +14,7 @@ import {
 import PropTypes from 'prop-types';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ButtonBase, { buttonBaseClasses as classes } from '@mui/material/ButtonBase';
+import describeConformance from '../../test/describeConformance';
 
 describe('<ButtonBase />', () => {
   const { render } = createRenderer();

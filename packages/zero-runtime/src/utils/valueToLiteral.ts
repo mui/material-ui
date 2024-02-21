@@ -1,7 +1,7 @@
 import { types as t } from '@babel/core';
-import type { ExpressionValue, Serializable } from '@linaria/utils';
-import { isBoxedPrimitive } from '@linaria/utils';
 import { parseExpression } from '@babel/parser';
+import { ExpressionValue, isBoxedPrimitive } from '@wyw-in-js/shared';
+import { Serializable } from '@wyw-in-js/transform';
 
 export function isSerializable(o: unknown): o is Serializable {
   if (Array.isArray(o)) {

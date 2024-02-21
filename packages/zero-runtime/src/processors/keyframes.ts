@@ -1,18 +1,18 @@
 import type { Expression } from '@babel/types';
-import { validateParams } from '@linaria/tags';
 import type {
   CallParam,
   TemplateParam,
   Params,
   TailProcessorParams,
   ValueCache,
-} from '@linaria/tags';
-import type { Replacements, Rules } from '@linaria/utils';
-import { ValueType } from '@linaria/utils';
+} from '@wyw-in-js/processor-utils';
+import { serializeStyles, Interpolation } from '@emotion/serialize';
+import { type Replacements, type Rules, ValueType } from '@wyw-in-js/shared';
 import type { CSSInterpolation } from '@emotion/css';
+import { validateParams } from '@wyw-in-js/processor-utils';
 import BaseProcessor from './base-processor';
 import type { IOptions } from './styled';
-import { cache, keyframes } from '../utils/emotion';
+import { cache } from '../utils/emotion';
 
 export type Primitive = string | number | boolean | null | undefined;
 
@@ -22,7 +22,7 @@ export class KeyframesProcessor extends BaseProcessor {
   callParam: CallParam | TemplateParam;
 
   constructor(params: Params, ...args: TailProcessorParams) {
-    super(params, ...args);
+    super([params[0]], ...args);
     if (params.length < 2) {
       throw BaseProcessor.SKIP;
     }
@@ -99,9 +99,11 @@ export class KeyframesProcessor extends BaseProcessor {
   }
 
   generateArtifacts(styleObjOrTaggged: CSSInterpolation | string[], ...args: Primitive[]) {
-    const keyframeName = keyframes(styleObjOrTaggged, ...args);
-    const cacheCssText = cache.inserted[keyframeName.replace('animation-', '')] as string;
-    const cssText = cacheCssText.replaceAll(keyframeName, '');
+    const { styles } = serializeStyles(
+      [styleObjOrTaggged as Interpolation<{}>, args],
+      cache.registered,
+    );
+    const cssText = `@keyframes {${styles}}`;
 
     const rules: Rules = {
       [this.asSelector]: {

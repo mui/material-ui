@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@mui/utils';
+import deepmerge from '@mui/utils/deepmerge';
 import SelectInput from './SelectInput';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
@@ -117,7 +117,9 @@ const Select = React.forwardRef(function Select(inProps, ref) {
           classes: inputProps ? deepmerge(restOfClasses, inputProps.classes) : restOfClasses,
           ...(input ? input.props.inputProps : {}),
         },
-        ...(multiple && native && variant === 'outlined' ? { notched: true } : {}),
+        ...(((multiple && native) || displayEmpty) && variant === 'outlined'
+          ? { notched: true }
+          : {}),
         ref: inputComponentRef,
         className: clsx(InputComponent.props.className, className, classes.root),
         // If a custom input is provided via 'input' prop, do not allow 'variant' to be propagated to it's root element. See https://github.com/mui/material-ui/issues/33894.

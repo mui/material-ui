@@ -6,7 +6,7 @@ import Paper from '@mui/material/Paper';
 import AdCarbon from 'docs/src/modules/components/AdCarbon';
 import AdInHouse from 'docs/src/modules/components/AdInHouse';
 import { AdContext, adShape } from 'docs/src/modules/components/AdManager';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 
 function PleaseDisableAdblock(props) {
   const t = useTranslate();
@@ -222,6 +222,10 @@ export default function Ad() {
         mt: AD_MARGIN_TOP,
         mb: AD_MARGIN_BOTTOM,
         minHeight: AD_HEIGHT_MOBILE,
+        '& a[target="_blank"]::after': {
+          // Remove link arrow for ads
+          display: 'none',
+        },
         [theme.breakpoints.up('sm')]: {
           minHeight: AD_HEIGHT,
         },

@@ -2,8 +2,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, visuallyHidden, clamp } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import clamp from '@mui/utils/clamp';
+import visuallyHidden from '@mui/utils/visuallyHidden';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import composeClasses from '@mui/utils/composeClasses';
 import useTheme from '../styles/useTheme';
 import {
   capitalize,

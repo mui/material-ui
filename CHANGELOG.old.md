@@ -444,7 +444,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 
 - Minify error messages in production (#21214) @eps1lon.
 
-  Using the [React error decoder](https://legacy.reactjs.org/docs/error-decoder.html/) as inspiration, the exceptions thrown by Material UI in production are now minified.
+  Using the [React error decoder](https://react.dev/errors) as inspiration, the exceptions thrown by Material UI in production are now minified.
   You will be redirected to the documentation to [decode the error](https://mui.com/production-error/?code=4&args%5B%5D=500).
 
 ### `@material-ui/core@v4.10.2`
@@ -909,7 +909,7 @@ A big thanks to the 25 contributors who made this release possible.
 - [docs] Improve a11y of the chip array example (#20294) @m4theushw
 - [docs] Refactor markdown parsing (#20549) @eps1lon
 - [docs] Remove old workarounds (#20587) @eps1lon
-- [docs] Remove unnecessary webpack loaders (#20563) @eps1lon
+- [docs] Remove unnecessary Webpack loaders (#20563) @eps1lon
 - [docs] Sync translations (#20498) @oliviertassinari
 - [docs] Use reactStrictMode over custom switch (#20522) @eps1lon
 
@@ -1307,7 +1307,7 @@ Here are some highlights ✨:
 - [ci] Fix heap out of memory in azure pipelines (#19825) @eps1lon
 - [core] Migrate to import \* as React from 'react' (#19802) @TrySound
 - [test] Fix defaultProps overriding props (#19858) @eps1lon
-- [test] Test against typescript nightlies (#19857) @eps1lon
+- [test] Test against TypeScript nightlies (#19857) @eps1lon
 
 ## 4.9.4
 
@@ -2226,7 +2226,7 @@ Here are some highlights ✨:
 - [ExpansionPanelSummary] Test in StrictMode (#17873) @eps1lon
 - [FormControlLabel] Add missing CSS class keys to TS (#17963) @itayyehezkel
 - [Link] Warn when using plain function component in `component` (#17825) @Nikhil-Pavan-Sai
-- [ListSubheader] Reduce specificity of typescript type (#17715) @sakulstra
+- [ListSubheader] Reduce specificity of TypeScript type (#17715) @sakulstra
 - [Menu] Add new context menu demo (#17839) @SarthakC
 - [Modal] Fix tabIndex customization (#17939) @Cyrus-d
 - [Modal] Improve Gatsby support (#17972) @sreetej1998
@@ -2639,7 +2639,7 @@ Here are some highlights ✨:
 - [docs] Add script to merge MD icon tags with synonyms (#17312) @mbrookes
 - [docs] Batch small changes (#17268) @oliviertassinari
 - [docs] Fix more SEO issue report @oliviertassinari
-- [docs] Add typescript version of paperbase theme (#17213) @eps1lon
+- [docs] Add TypeScript version of paperbase theme (#17213) @eps1lon
 - [docs] Improve /customization/typography/ (#17307) @meebix
 - [docs] Improve grammar in snackbars (#17296) @chaseholdren
 - [docs] Notification for v4.4.0 @oliviertassinari
@@ -4340,7 +4340,7 @@ This release fixes an important regression with TypeScript: https://github.com/m
 - [docs] Fix typo in simple breadcrumbs example (#14575) @AndrewUsher
 - [blog] Material UI Developer Survey 2019 (#14614) @oliviertassinari
 - [docs] Change Gitter to Spectrum (#14668) @mbrookes
-- [docs] Update link to http://cssinjs.org/jss-api/ (#14788) @monicatie
+- [docs] Update link to https://cssinjs.org/jss-api/ (#14788) @monicatie
 - [docs] Add Algolia metadata (#14835) @oliviertassinari
 - [docs] Improve overrides.md wording (#14403) @i0
 - [docs] Grammar fix (#14960) @nateq314
@@ -7324,7 +7324,7 @@ N/A
 #### Labs
 
 - [SpeedDial] Fix classes prop description (#11599) @mbrookes
-- [Slider] Misc fixes towards standard Material UI patterns (#11605) @mbrookes
+- [Slider] Misc fixes towards standard Material UI patterns (#11605) @mbrookes
 - [Slider] Fire the right event on mouseDown (#11642) @acroyear
 - [SpeedDial] Add type definitions to lab, so SpeedDial can be use with TypeScript project (#11542) @TR3MIC
 
@@ -7473,7 +7473,7 @@ A big thanks to the 14 contributors who made this release possible.
 - [RaisedButton] Conditionally apply overlay backgroundColor (#9811) @walwoodr
 - [Snackbar] Static properties for reason string constants (#10300) @RavenHursT
 - [TextField] Fix caret position issue (#10214) @MaratFaskhiev
-- Add sideEffects: false for webpack 4 (#11167) @matthoffner
+- Add sideEffects: false for Webpack 4 (#11167) @matthoffner
 
 ### Docs
 
@@ -11051,7 +11051,7 @@ We do, we have extended the support of React to the 16.0.0-alpha.13 release (aka
 - [docs] Fix typo in class name (#7192) @ossan-engineer
 - [docs] Add supported server section (#7231) @oliviertassinari
 - [docs] Detail the browser support (#7188) @oliviertassinari
-- [docs] Upgrade to webpack v3 (#7210) @oliviertassinari
+- [docs] Upgrade to Webpack v3 (#7210) @oliviertassinari
 - [docs] More documentation on the typography (#7248) @oliviertassinari
 
 ### Core
@@ -11630,7 +11630,7 @@ _Feb 26, 2017_
 
 ### Docs
 
-- [docs] Use webpack 2 & dll bundle (#6160) @nathanmarks
+- [docs] Use Webpack 2 & dll bundle (#6160) @nathanmarks
 - [docs] Improve the user experience on mobile (#6154) @oliviertassinari
 - [docs] Fix the Table examples on mobile (425d8ed47e0282b8c0409517c53e00ef61374b02) @oliviertassinari
 - [docs] Add an API section (#6239) @oliviertassinari
@@ -11640,7 +11640,7 @@ _Feb 26, 2017_
 
 - [core] Fix typos in styles/transitions pointed out in issue (#6175) @Shahrukh-Zindani
 - [core] Lightweight the build (#6152) @oliviertassinari
-- [core] Add exports to index.js for inclusion in webpack bundle (#6144) @fkretzer
+- [core] Add exports to index.js for inclusion in Webpack bundle (#6144) @fkretzer
 - [test] Integration of test suite to run on BrowserStack (#6236) @oliviertassinari
 - [test] Bump vrtest version for exit code fix (1831aa76fe72e9b22a0b82f2a360f860ca89fdce) @nathanmarks
 
@@ -13906,7 +13906,7 @@ _Dec. 15, 2014_
 ### Breaking Changes
 
 - Removed PaperButton - Use FlatButton, RaisedButton, or FloatingActionButton
-- Removed Roboto font import (#104) - Be sure to [include the Roboto](http://www.google.com/fonts#UsePlace:use/Collection:Roboto:400,300,500) font in your project.
+- Removed Roboto font import (#104) - Be sure to [include the Roboto](https://fonts.google.com/specimen/Roboto) font in your project.
 
 ### General
 
@@ -14077,7 +14077,7 @@ _Nov. 11, 2014_
 - Changed project structure to be less confusing. Material UI components/styles live in the src directory.
   Docs site code lives in the docs directory. This still allows us to easily test components in the docs site
   as we are working on them
-- Added .editorconfig to help keep code formatting consistent among contributors. See http://editorconfig.org/
+- Added .editorconfig to help keep code formatting consistent among contributors. See https://editorconfig.org/
 - Fixed drop down display issue in safari
 - Fixed nested menu arrow icon
 - Added hover transitions to menus

@@ -34,6 +34,7 @@ export default function MuiStatistics() {
         <Box key={item.title} sx={{ width: { xs: '50%', sm: 200 }, p: { xs: 1, sm: 0 } }}>
           <Typography
             variant="h4"
+            component="h3"
             fontWeight="semiBold"
             sx={(theme) => ({
               textAlign: { xs: 'left', sm: 'center' },

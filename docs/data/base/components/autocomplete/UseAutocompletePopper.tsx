@@ -24,13 +24,13 @@ const Autocomplete = React.forwardRef(function Autocomplete(
 
   return (
     <React.Fragment>
-      <StyledAutocompleteRoot
+      <Root
         {...getRootProps()}
         ref={rootRef}
-        className={focused ? 'focused' : ''}
+        className={focused ? 'Mui-focused' : ''}
       >
         <StyledInput {...getInputProps()} />
-      </StyledAutocompleteRoot>
+      </Root>
       {anchorEl && (
         <Popper
           open={popupOpen}
@@ -39,17 +39,17 @@ const Autocomplete = React.forwardRef(function Autocomplete(
             root: StyledPopper,
           }}
         >
-          <StyledListbox {...getListboxProps()}>
+          <Listbox {...getListboxProps()}>
             {groupedOptions.length > 0 ? (
               (groupedOptions as typeof top100Films).map((option, index) => (
-                <StyledOption {...getOptionProps({ option, index })}>
+                <Option {...getOptionProps({ option, index })}>
                   {option.label}
-                </StyledOption>
+                </Option>
               ))
             ) : (
-              <StyledNoOptions>No results</StyledNoOptions>
+              <NoOptions>No results</NoOptions>
             )}
-          </StyledListbox>
+          </Listbox>
         </Popper>
       )}
     </React.Fragment>
@@ -94,7 +94,7 @@ const grey = {
   900: '#1C2025',
 };
 
-const StyledAutocompleteRoot = styled('div')(
+const Root = styled('div')(
   ({ theme }) => `
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 400;
@@ -112,7 +112,7 @@ const StyledAutocompleteRoot = styled('div')(
   width: 320px;
   margin: 1.5rem 0;
 
-  &.focused {
+  &.Mui-focused {
     border-color: ${blue[400]};
     box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
   }
@@ -150,7 +150,7 @@ const StyledPopper = styled('div')`
   width: 320px;
 `;
 
-const StyledListbox = styled('ul')(
+const Listbox = styled('ul')(
   ({ theme }) => `
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
@@ -172,7 +172,7 @@ const StyledListbox = styled('ul')(
   `,
 );
 
-const StyledOption = styled('li')(
+const Option = styled('li')(
   ({ theme }) => `
   list-style: none;
   padding: 8px;
@@ -192,25 +192,25 @@ const StyledOption = styled('li')(
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
 
-  &.base--focused,
-  &.base--focusVisible {
+  &.Mui-focused,
+  &.Mui-focusVisible {
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
 
-  &.base--focusVisible {
+  &.Mui-focusVisible {
     box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
 
-  &[aria-selected=true].base--focused,
-  &[aria-selected=true].base--focusVisible {
+  &[aria-selected=true].Mui-focused,
+  &[aria-selected=true].Mui-focusVisible {
     background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
   `,
 );
 
-const StyledNoOptions = styled('li')`
+const NoOptions = styled('li')`
   list-style: none;
   padding: 8px;
   cursor: default;

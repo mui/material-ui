@@ -1,7 +1,11 @@
-import type { Expression, Params, TailProcessorParams, ValueCache } from '@linaria/tags';
-import { validateParams } from '@linaria/tags';
-import { ValueType } from '@linaria/utils';
-import type { ExpressionValue, Replacements, Rules } from '@linaria/utils';
+import type { Expression } from '@babel/types';
+import {
+  validateParams,
+  type Params,
+  type TailProcessorParams,
+  type ValueCache,
+} from '@wyw-in-js/processor-utils';
+import { ValueType, type ExpressionValue, type Replacements, type Rules } from '@wyw-in-js/shared';
 import type { IOptions } from './styled';
 import { processCssObject } from '../utils/processCssObject';
 import { cssFnValueToVariable } from '../utils/cssFnValueToVariable';
@@ -17,7 +21,7 @@ export class SxProcessor extends BaseProcessor {
   elementClassName = '';
 
   constructor(params: Params, ...args: TailProcessorParams) {
-    super(params, ...args);
+    super([params[0]], ...args);
     validateParams(params, ['callee', 'call'], 'Invalid usage of sx call.');
     const [, [, ...sxCallArguments]] = params;
     sxCallArguments.forEach((arg) => {

@@ -6,7 +6,7 @@ import Collapse from '@mui/material/Collapse';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import { samePageLinkNavigation } from 'docs/src/modules/components/MarkdownLinks';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import standardNavIcons from './AppNavIcons';
 
 const Item = styled(
@@ -273,7 +273,7 @@ export default function AppNavDrawerItem(props) {
   } = props;
   const [open, setOpen] = React.useState(initiallyExpanded);
   const handleClick = (event) => {
-    // Ignore the action if opening the link in a new tab
+    // Ignore click events meant for native link handling, e.g. open in new tab
     if (samePageLinkNavigation(event)) {
       return;
     }

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import MuiError from '@mui-internal/babel-macros/MuiError.macro';
-import { deepmerge } from '@mui/utils';
+import deepmerge from '@mui/utils/deepmerge';
 import { GlobalStyles } from '@mui/styled-engine';
 import { useTheme as muiUseTheme } from '@mui/private-theming';
 import ThemeProvider from '../ThemeProvider';
@@ -47,6 +47,10 @@ export default function createCssVarsProvider(options) {
     console.error(`MUI: \`${designSystemColorScheme}\` does not exist in \`theme.colorSchemes\`.`);
   }
   const ColorSchemeContext = React.createContext(undefined);
+
+  if (process.env.NODE_ENV !== 'production') {
+    ColorSchemeContext.displayName = 'ColorSchemeContext';
+  }
 
   const useColorScheme = () => {
     const value = React.useContext(ColorSchemeContext);

@@ -62,6 +62,7 @@
       "default": "function Identity(x) {\n  return x;\n}",
       "signature": { "type": "function(x: any) => any", "describedArgs": [] }
     },
+    "shiftStep": { "type": { "name": "number" }, "default": "10" },
     "size": {
       "type": {
         "name": "union",
