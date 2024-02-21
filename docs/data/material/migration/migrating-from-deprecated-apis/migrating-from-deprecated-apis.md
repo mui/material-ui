@@ -356,15 +356,15 @@ Here's how to migrate:
          color: 'red',
         },
 -      [`& .${buttonClasses.iconSizeSmall}`]: {
-+      [`&.${buttonClasses.root}.${buttonClasses.sizeSmall} > .${buttonClasses.icon}`]: {
++      [`&.${buttonClasses.sizeSmall} > .${buttonClasses.icon}`]: {
          color: 'red',
         },
 -      [`& .${buttonClasses.iconSizeMedium}`]: {
-+      [`&.${buttonClasses.root}.${buttonClasses.sizeMedium} > .${buttonClasses.icon}`]: {
++      [`&.${buttonClasses.sizeMedium} > .${buttonClasses.icon}`]: {
          color: 'red',
         },
 -      [`& .${buttonClasses.iconSizeLarge}`]: {
-+      [`&.${buttonClasses.root}.${buttonClasses.sizeLarge} > .${buttonClasses.icon}`]: {
++      [`&.${buttonClasses.sizeLarge} > .${buttonClasses.icon}`]: {
          color: 'red',
         },
      },
