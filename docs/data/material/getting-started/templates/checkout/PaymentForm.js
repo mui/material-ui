@@ -22,7 +22,7 @@ const FormGrid = styled(Grid)(() => ({
 export default function PaymentForm() {
   const [cardName, setCardName] = React.useState('');
   const [cardNumber, setCardNumber] = React.useState('');
-  const [expiryDate, setExpiryDate] = React.useState('');
+  const [expirationDate, setExpirationDate] = React.useState('');
   const [cvv, setCvv] = React.useState('');
 
   const formatCardNumber = (number) => {
@@ -56,7 +56,9 @@ export default function PaymentForm() {
             <Typography variant="h6">{formatCardNumber(cardNumber)}</Typography>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <Typography variant="subtitle2">{cardName || 'Name'}</Typography>
-              <Typography variant="subtitle2">{expiryDate || 'MM/YY'}</Typography>
+              <Typography variant="subtitle2">
+                {expirationDate || 'MM/YY'}
+              </Typography>
             </Box>
           </CardContent>
         </Card>
@@ -74,7 +76,6 @@ export default function PaymentForm() {
             placeholder="John Snow"
             autoComplete="cc-name"
             inputProps={{ required: true }}
-            sx={{ minWidth: 280 }}
           />
         </FormGrid>
         <FormGrid item xs={12} md={6}>
@@ -88,21 +89,20 @@ export default function PaymentForm() {
             placeholder="0000 0000 0000 0000"
             autoComplete="cc-number"
             inputProps={{ required: true }}
-            sx={{ minWidth: 280 }}
           />
         </FormGrid>
         <FormGrid item xs={6}>
-          <FormLabel required>Expiry date</FormLabel>
+          <FormLabel required>Expiration date</FormLabel>
           <InputBase
-            value={expiryDate}
-            onChange={(e) => setExpiryDate(e.target.value)}
+            value={expirationDate}
+            onChange={(e) => setExpirationDate(e.target.value)}
             id="card-exp"
             name="card-exp"
             type="text"
             placeholder="02 / 24"
             autoComplete="cc-exp"
             inputProps={{ required: true }}
-            sx={{ minWidth: { xs: '', sm: 280 }, maxHeight: '40px' }}
+            sx={{ maxHeight: '40px' }}
           />
         </FormGrid>
         <FormGrid item xs={6}>
@@ -116,7 +116,6 @@ export default function PaymentForm() {
             placeholder="123"
             autoComplete="cc-csc"
             inputProps={{ required: true }}
-            sx={{ minWidth: { xs: '', sm: 280 } }}
           />
         </FormGrid>
         <FormGrid item xs={12}>
