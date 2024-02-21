@@ -1,6 +1,8 @@
 'use client';
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import chainPropTypes from '@mui/utils/chainPropTypes';
 import { isHostComponent, useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
 import { useSlider, valueToPercent } from '@mui/base/useSlider';
@@ -8,10 +10,10 @@ import { alpha, lighten, darken } from '@mui/system/colorManipulator';
 import { styled } from '@mui/zero-runtime';
 // import { slotShouldForwardProp } from '@mui/material/styles/styled';
 import { useTheme, useThemeProps } from '@mui/material/styles';
-import { shouldSpreadAdditionalProps } from '@mui/material/utils';
-import { capitalize } from '@mui/material/utils';
+import { shouldSpreadAdditionalProps, capitalize } from '@mui/material/utils';
+/* eslint-disable-next-line no-restricted-imports */
 import BaseSliderValueLabel from '@mui/material/Slider/SliderValueLabel';
-import sliderClasses, { getSliderUtilityClass } from '@mui/material/Slider/sliderClasses';
+import { sliderClasses, getSliderUtilityClass } from '@mui/material/Slider';
 
 function Identity(x) {
   return x;
@@ -826,5 +828,314 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     </RootSlot>
   );
 });
+
+Slider.propTypes /* remove-proptypes */ = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * The label of the slider.
+   */
+  'aria-label': chainPropTypes(PropTypes.string, (props) => {
+    const range = Array.isArray(props.value || props.defaultValue);
+
+    if (range && props['aria-label'] != null) {
+      return new Error(
+        'MUI: You need to use the `getAriaLabel` prop instead of `aria-label` when using a range slider.',
+      );
+    }
+
+    return null;
+  }),
+  /**
+   * The id of the element containing a label for the slider.
+   */
+  'aria-labelledby': PropTypes.string,
+  /**
+   * A string value that provides a user-friendly name for the current value of the slider.
+   */
+  'aria-valuetext': chainPropTypes(PropTypes.string, (props) => {
+    const range = Array.isArray(props.value || props.defaultValue);
+
+    if (range && props['aria-valuetext'] != null) {
+      return new Error(
+        'MUI: You need to use the `getAriaValueText` prop instead of `aria-valuetext` when using a range slider.',
+      );
+    }
+
+    return null;
+  }),
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
+   * @default 'primary'
+   */
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['primary', 'secondary', 'error', 'info', 'success', 'warning']),
+    PropTypes.string,
+  ]),
+  /**
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `slots` prop.
+   * It's recommended to use the `slots` prop instead.
+   *
+   * @default {}
+   */
+  components: PropTypes.shape({
+    Input: PropTypes.elementType,
+    Mark: PropTypes.elementType,
+    MarkLabel: PropTypes.elementType,
+    Rail: PropTypes.elementType,
+    Root: PropTypes.elementType,
+    Thumb: PropTypes.elementType,
+    Track: PropTypes.elementType,
+    ValueLabel: PropTypes.elementType,
+  }),
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `slotProps` prop.
+   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   *
+   * @default {}
+   */
+  componentsProps: PropTypes.shape({
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    mark: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    markLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    rail: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    valueLabel: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({
+        children: PropTypes.element,
+        className: PropTypes.string,
+        open: PropTypes.bool,
+        style: PropTypes.object,
+        value: PropTypes.number,
+        valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
+      }),
+    ]),
+  }),
+  /**
+   * The default value. Use when the component is not controlled.
+   */
+  defaultValue: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled: PropTypes.bool,
+  /**
+   * If `true`, the active thumb doesn't swap when moving pointer over a thumb while dragging another thumb.
+   * @default false
+   */
+  disableSwap: PropTypes.bool,
+  /**
+   * Accepts a function which returns a string value that provides a user-friendly name for the thumb labels of the slider.
+   * This is important for screen reader users.
+   * @param {number} index The thumb label's index to format.
+   * @returns {string}
+   */
+  getAriaLabel: PropTypes.func,
+  /**
+   * Accepts a function which returns a string value that provides a user-friendly name for the current value of the slider.
+   * This is important for screen reader users.
+   * @param {number} value The thumb label's value to format.
+   * @param {number} index The thumb label's index to format.
+   * @returns {string}
+   */
+  getAriaValueText: PropTypes.func,
+  /**
+   * Marks indicate predetermined values to which the user can move the slider.
+   * If `true` the marks are spaced according the value of the `step` prop.
+   * If an array, it should contain objects with `value` and an optional `label` keys.
+   * @default false
+   */
+  marks: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.node,
+        value: PropTypes.number.isRequired,
+      }),
+    ),
+    PropTypes.bool,
+  ]),
+  /**
+   * The maximum allowed value of the slider.
+   * Should not be equal to min.
+   * @default 100
+   */
+  max: PropTypes.number,
+  /**
+   * The minimum allowed value of the slider.
+   * Should not be equal to max.
+   * @default 0
+   */
+  min: PropTypes.number,
+  /**
+   * Name attribute of the hidden `input` element.
+   */
+  name: PropTypes.string,
+  /**
+   * Callback function that is fired when the slider's value changed.
+   *
+   * @param {Event} event The event source of the callback.
+   * You can pull out the new value by accessing `event.target.value` (any).
+   * **Warning**: This is a generic event not a change event.
+   * @param {number | number[]} value The new value.
+   * @param {number} activeThumb Index of the currently moved thumb.
+   */
+  onChange: PropTypes.func,
+  /**
+   * Callback function that is fired when the `mouseup` is triggered.
+   *
+   * @param {React.SyntheticEvent | Event} event The event source of the callback. **Warning**: This is a generic event not a change event.
+   * @param {number | number[]} value The new value.
+   */
+  onChangeCommitted: PropTypes.func,
+  /**
+   * The component orientation.
+   * @default 'horizontal'
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
+   * A transformation function, to change the scale of the slider.
+   * @param {any} x
+   * @returns {any}
+   * @default function Identity(x) {
+   *   return x;
+   * }
+   */
+  scale: PropTypes.func,
+  /**
+   * The granularity with which the slider can step through values when using Page Up/Page Down or Shift + Arrow Up/Arrow Down.
+   * @default 10
+   */
+  shiftStep: PropTypes.number,
+  /**
+   * The size of the slider.
+   * @default 'medium'
+   */
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['small', 'medium']),
+    PropTypes.string,
+  ]),
+  /**
+   * The props used for each slot inside the Slider.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    mark: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    markLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    rail: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    valueLabel: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({
+        children: PropTypes.element,
+        className: PropTypes.string,
+        open: PropTypes.bool,
+        style: PropTypes.object,
+        value: PropTypes.number,
+        valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
+      }),
+    ]),
+  }),
+  /**
+   * The components used for each slot inside the Slider.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    mark: PropTypes.elementType,
+    markLabel: PropTypes.elementType,
+    rail: PropTypes.elementType,
+    root: PropTypes.elementType,
+    thumb: PropTypes.elementType,
+    track: PropTypes.elementType,
+    valueLabel: PropTypes.elementType,
+  }),
+  /**
+   * The granularity with which the slider can step through values. (A "discrete" slider.)
+   * The `min` prop serves as the origin for the valid values.
+   * We recommend (max - min) to be evenly divisible by the step.
+   *
+   * When step is `null`, the thumb can only be slid onto marks provided with the `marks` prop.
+   * @default 1
+   */
+  step: PropTypes.number,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
+   * Tab index attribute of the hidden `input` element.
+   */
+  tabIndex: PropTypes.number,
+  /**
+   * The track presentation:
+   *
+   * - `normal` the track will render a bar representing the slider value.
+   * - `inverted` the track will render a bar representing the remaining slider value.
+   * - `false` the track will render without a bar.
+   * @default 'normal'
+   */
+  track: PropTypes.oneOf(['inverted', 'normal', false]),
+  /**
+   * The value of the slider.
+   * For ranged sliders, provide an array with two values.
+   */
+  value: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
+  /**
+   * Controls when the value label is displayed:
+   *
+   * - `auto` the value label will display when the thumb is hovered or focused.
+   * - `on` will display persistently.
+   * - `off` will never display.
+   * @default 'off'
+   */
+  valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
+  /**
+   * The format function the value label's value.
+   *
+   * When a function is provided, it should have the following signature:
+   *
+   * - {number} value The value label's value to format
+   * - {number} index The value label's index to format
+   * @param {any} x
+   * @returns {any}
+   * @default function Identity(x) {
+   *   return x;
+   * }
+   */
+  valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+};
 
 export default Slider;
