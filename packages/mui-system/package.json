@@ -52,7 +52,7 @@
   "devDependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
-    "@mui-internal/babel-macros": "workspace:^",
+    "@mui/internal-babel-macros": "workspace:^",
     "@mui-internal/test-utils": "workspace:^",
     "@mui/system": "workspace:*",
     "@types/chai": "^4.3.11",

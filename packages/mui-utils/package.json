@@ -45,7 +45,7 @@
     "react-is": "^18.2.0"
   },
   "devDependencies": {
-    "@mui-internal/babel-macros": "workspace:^",
+    "@mui/internal-babel-macros": "workspace:^",
     "@mui-internal/test-utils": "workspace:^",
     "@mui/types": "workspace:^",
     "@types/chai": "^4.3.11",
