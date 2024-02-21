@@ -162,6 +162,6 @@ function useLocalStorageStateBrowser(
   return [storedValue, setStoredValue];
 }
 
-export default typeof window === 'undefined' || !window.localStorage
+export default typeof window === 'undefined'
   ? useLocalStorageStateServer
   : useLocalStorageStateBrowser;
