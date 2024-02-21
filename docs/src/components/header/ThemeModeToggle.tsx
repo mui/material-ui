@@ -15,19 +15,23 @@ function CssVarsModeToggle(props: { onChange: (checked: boolean) => void }) {
     setMounted(true);
   }, []);
   const calculatedMode = mode === 'system' ? systemMode : mode;
-  const title = calculatedMode === 'dark' ? 'Turn on the light' : 'Turn off the light';
+
+  if (!mounted) {
+    return <IconButton color="primary" disabled />;
+  }
+
   return (
-    <Tooltip title={mounted ? title : null}>
+    <Tooltip title={calculatedMode === 'dark' ? 'Turn on the light' : 'Turn off the light'}>
       <IconButton
         color="primary"
         disableTouchRipple
-        disabled={!calculatedMode || !mounted}
+        disabled={!calculatedMode}
         onClick={() => {
           props.onChange(calculatedMode === 'light');
           setMode(calculatedMode === 'dark' ? 'light' : 'dark');
         }}
       >
-        {!calculatedMode || !mounted
+        {!calculatedMode
           ? null
           : {
               light: <DarkModeOutlined fontSize="small" />,
