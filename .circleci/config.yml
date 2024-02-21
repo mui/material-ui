@@ -166,17 +166,17 @@ jobs:
               echo "no changes"
             fi
       - run:
-          name: typescript-to-proptypes
+          name: internal-scripts
           command: |
             # latest commit
             LATEST_COMMIT=$(git rev-parse HEAD)
 
-            # latest commit where packages/typescript-to-proptypes was changed
-            FOLDER_COMMIT=$(git log -1 --format=format:%H --full-diff packages/typescript-to-proptypes)
+            # latest commit where internal-scripts was changed
+            FOLDER_COMMIT=$(git log -1 --format=format:%H --full-diff packages-internal/scripts)
 
             if [ $FOLDER_COMMIT = $LATEST_COMMIT ]; then
               echo "changes, let's run the tests"
-              pnpm --filter typescript-to-proptypes test
+              pnpm --filter @mui/internal-scripts test
             else
               echo "no changes"
             fi

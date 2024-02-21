@@ -33,13 +33,15 @@ export function getBlogPost(filePath: string): BlogPost {
 // Avoid typos in the blog markdown pages.
 // https://www.notion.so/mui-org/Blog-247ec2bff5fa46e799ef06a693c94917
 const ALLOWED_TAGS = [
-  'MUI Core',
-  'MUI X',
-  'News',
+  'Base UI',
   'Company',
   'Developer Survey',
+  'Guide',
+  'Joy UI',
+  'MUI X',
+  'Material UI',
+  'News',
   'Product',
-  'Base UI',
 ];
 
 export const getAllBlogPosts = () => {

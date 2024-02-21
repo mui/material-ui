@@ -104,9 +104,9 @@ importers:
       '@mui-internal/test-utils':
         specifier: workspace:^
         version: link:packages/test-utils
-      '@mui-internal/typescript-to-proptypes':
+      '@mui/internal-scripts':
         specifier: workspace:^
-        version: link:packages/typescript-to-proptypes
+        version: link:packages-internal/scripts
       '@mui/joy':
         specifier: workspace:*
         version: link:packages/mui-joy/build
@@ -839,9 +839,9 @@ importers:
       '@mui-internal/test-utils':
         specifier: workspace:^
         version: link:../packages/test-utils
-      '@mui-internal/typescript-to-proptypes':
+      '@mui/internal-scripts':
         specifier: workspace:^
-        version: link:../packages/typescript-to-proptypes
+        version: link:../packages-internal/scripts
       '@types/autosuggest-highlight':
         specifier: ^3.2.3
         version: 3.2.3
@@ -905,6 +905,79 @@ importers:
       yargs:
         specifier: ^17.7.2
         version: 17.7.2
+
+  packages-internal/scripts:
+    dependencies:
+      '@babel/core':
+        specifier: ^7.23.9
+        version: 7.23.9
+      '@babel/plugin-syntax-class-properties':
+        specifier: ^7.12.13
+        version: 7.12.13(@babel/core@7.23.9)
+      '@babel/plugin-syntax-jsx':
+        specifier: ^7.23.3
+        version: 7.23.3(@babel/core@7.23.9)
+      '@babel/plugin-syntax-typescript':
+        specifier: ^7.23.3
+        version: 7.23.3(@babel/core@7.23.9)
+      '@babel/types':
+        specifier: ^7.23.9
+        version: 7.23.9
+      '@mui-internal/docs-utils':
+        specifier: workspace:*
+        version: link:../../packages/docs-utils
+      doctrine:
+        specifier: ^3.0.0
+        version: 3.0.0
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
+      typescript:
+        specifier: ^5.3.3
+        version: 5.3.3
+      uuid:
+        specifier: ^9.0.1
+        version: 9.0.1
+    devDependencies:
+      '@babel/register':
+        specifier: ^7.23.7
+        version: 7.23.7(@babel/core@7.23.9)
+      '@types/babel__core':
+        specifier: ^7.20.5
+        version: 7.20.5
+      '@types/chai':
+        specifier: ^4.3.11
+        version: 4.3.11
+      '@types/doctrine':
+        specifier: ^0.0.9
+        version: 0.0.9
+      '@types/lodash':
+        specifier: ^4.14.202
+        version: 4.14.202
+      '@types/node':
+        specifier: ^18.19.15
+        version: 18.19.15
+      '@types/prettier':
+        specifier: ^2.7.3
+        version: 2.7.3
+      '@types/react':
+        specifier: ^18.2.55
+        version: 18.2.55
+      '@types/uuid':
+        specifier: ^9.0.8
+        version: 9.0.8
+      chai:
+        specifier: ^4.4.1
+        version: 4.4.1
+      fast-glob:
+        specifier: ^3.3.2
+        version: 3.3.2
+      prettier:
+        specifier: ^3.2.5
+        version: 3.2.5
+      rimraf:
+        specifier: ^5.0.5
+        version: 5.0.5
 
   packages/api-docs-builder:
     dependencies:
@@ -2258,79 +2331,6 @@ importers:
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
-
-  packages/typescript-to-proptypes:
-    dependencies:
-      '@babel/core':
-        specifier: ^7.23.9
-        version: 7.23.9
-      '@babel/plugin-syntax-class-properties':
-        specifier: ^7.12.13
-        version: 7.12.13(@babel/core@7.23.9)
-      '@babel/plugin-syntax-jsx':
-        specifier: ^7.23.3
-        version: 7.23.3(@babel/core@7.23.9)
-      '@babel/plugin-syntax-typescript':
-        specifier: ^7.23.3
-        version: 7.23.3(@babel/core@7.23.9)
-      '@babel/types':
-        specifier: ^7.23.9
-        version: 7.23.9
-      '@mui-internal/docs-utils':
-        specifier: workspace:*
-        version: link:../docs-utils
-      doctrine:
-        specifier: ^3.0.0
-        version: 3.0.0
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
-      typescript:
-        specifier: ^5.3.3
-        version: 5.3.3
-      uuid:
-        specifier: ^9.0.1
-        version: 9.0.1
-    devDependencies:
-      '@babel/register':
-        specifier: ^7.23.7
-        version: 7.23.7(@babel/core@7.23.9)
-      '@types/babel__core':
-        specifier: ^7.20.5
-        version: 7.20.5
-      '@types/chai':
-        specifier: ^4.3.11
-        version: 4.3.11
-      '@types/doctrine':
-        specifier: ^0.0.9
-        version: 0.0.9
-      '@types/lodash':
-        specifier: ^4.14.202
-        version: 4.14.202
-      '@types/node':
-        specifier: ^18.19.15
-        version: 18.19.15
-      '@types/prettier':
-        specifier: ^2.7.3
-        version: 2.7.3
-      '@types/react':
-        specifier: ^18.2.55
-        version: 18.2.55
-      '@types/uuid':
-        specifier: ^9.0.8
-        version: 9.0.8
-      chai:
-        specifier: ^4.4.1
-        version: 4.4.1
-      fast-glob:
-        specifier: ^3.3.2
-        version: 3.3.2
-      prettier:
-        specifier: ^3.2.5
-        version: 3.2.5
-      rimraf:
-        specifier: ^5.0.5
-        version: 5.0.5
 
   packages/waterfall: {}
 

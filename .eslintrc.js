@@ -413,7 +413,7 @@ module.exports = {
       },
     },
     {
-      files: ['packages/typescript-to-proptypes/src/**/*.ts'],
+      files: ['packages-internal/scripts/typescript-to-proptypes/src/**/*.ts'],
       rules: {
         // Working with flags is common in TypeScript compiler
         'no-bitwise': 'off',
