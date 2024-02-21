@@ -216,3 +216,33 @@ Here's how to migrate:
    },
  },
 ```
+
+## Slider
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#slider-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/slider-props <path>
+```
+
+### components
+
+The Slider's `components` was deprecated in favor of `slots`:
+
+```diff
+ <Slider
+-  components={{ Track: CustomTrack }}
++  slots={{ track: CustomTrack }}
+ />
+```
+
+### componentsProps
+
+The Slider's `componentsProps` was deprecated in favor of `slotProps`:
+
+```diff
+ <Slider
+-  componentsProps={{ track: { testid: 'test-id' } }}
++  slotProps={{ track: { testid: 'test-id' } }}
+ />
+```

@@ -46,7 +46,7 @@ export interface SliderOwnProps {
   /**
    * The components used for each slot inside.
    *
-   @deprecated use the `slots` prop instead. This prop will be removed in v7.
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7.
    *
    * @default {}
    */
@@ -64,7 +64,7 @@ export interface SliderOwnProps {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-  @deprecated use the `slotProps` prop instead. This prop will be removed in v7.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7.
    *
    * @default {}
    */
