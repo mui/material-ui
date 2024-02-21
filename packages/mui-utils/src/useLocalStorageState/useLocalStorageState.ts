@@ -38,7 +38,10 @@ function emitCurrentTabStorageChange(key: string) {
   }
 }
 
-function subscribe(area: Storage, key: string, cb: () => void): () => void {
+function subscribe(area: Storage, key: string | null, cb: () => void): () => void {
+  if (!key) {
+    return () => {};
+  }
   const storageHandler = (event: StorageEvent) => {
     if (event.storageArea === area && event.key === key) {
       cb();
@@ -52,18 +55,33 @@ function subscribe(area: Storage, key: string, cb: () => void): () => void {
   };
 }
 
-function getSnapshot(area: Storage, key: string): string | null {
-  return area.getItem(key);
+function getSnapshot(area: Storage, key: string | null): string | null {
+  if (!key) {
+    return null;
+  }
+  try {
+    return area.getItem(key);
+  } catch {
+    // ignore
+    // See https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API#feature-detecting_localstorage
+    return null;
+  }
 }
 
-function setValue(area: Storage, key: string, value: string | null) {
-  if (typeof window !== 'undefined') {
+function setValue(area: Storage, key: string | null, value: string | null) {
+  if (!key) {
+    return;
+  }
+  try {
     if (value === null) {
       area.removeItem(key);
     } else {
       area.setItem(key, String(value));
     }
     emitCurrentTabStorageChange(key);
+  } catch {
+    // ignore
+    // See https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API#feature-detecting_localstorage
   }
 }
 
@@ -114,12 +132,9 @@ function useLocalStorageStateBrowser(
 ): UseStorageStateHookResult<string | null> | UseStorageStateHookResult<string> {
   const [initialValue] = React.useState(initializer);
   const area = window.localStorage;
-  const subscribeKey = React.useCallback(
-    (cb: () => void) => (key ? subscribe(area, key, cb) : NOOP),
-    [area, key],
-  );
+  const subscribeKey = React.useCallback((cb: () => void) => subscribe(area, key, cb), [area, key]);
   const getKeySnapshot = React.useCallback(
-    () => (key && getSnapshot(area, key)) ?? initialValue,
+    () => getSnapshot(area, key) ?? initialValue,
     [area, initialValue, key],
   );
   const getKeyServerSnapshot = React.useCallback(() => initialValue, [initialValue]);
@@ -132,10 +147,8 @@ function useLocalStorageStateBrowser(
 
   const setStoredValue = React.useCallback(
     (value: React.SetStateAction<string | null>) => {
-      if (key) {
-        const valueToStore = value instanceof Function ? value(storedValue) : value;
-        setValue(area, key, valueToStore);
-      }
+      const valueToStore = value instanceof Function ? value(storedValue) : value;
+      setValue(area, key, valueToStore);
     },
     [area, key, storedValue],
   );
