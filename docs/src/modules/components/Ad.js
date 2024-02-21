@@ -222,6 +222,10 @@ export default function Ad() {
         mt: AD_MARGIN_TOP,
         mb: AD_MARGIN_BOTTOM,
         minHeight: AD_HEIGHT_MOBILE,
+        '& a[target="_blank"]::after': {
+          // Remove link arrow for ads
+          display: 'none',
+        },
         [theme.breakpoints.up('sm')]: {
           minHeight: AD_HEIGHT,
         },

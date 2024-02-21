@@ -407,12 +407,6 @@ const Root = styled('div')(
       // Allows to remove link arrows for images
       display: 'none',
     },
-    '& .ea-placement, & .carbonads, & #carbonads': {
-      // Remove link arrow for ads
-      '& a[target="_blank"]::after': {
-        display: 'none',
-      },
-    },
     '& a, & a code': {
       // Style taken from the Link component
       color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
