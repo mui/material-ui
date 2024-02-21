@@ -28,7 +28,7 @@ const AccordionSummaryRoot = styled(ButtonBase, {
   name: 'MuiAccordionSummary',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(({ theme, ownerState }) => {
+})(({ theme }) => {
   const transition = {
     duration: theme.transitions.duration.shortest,
   };
@@ -47,11 +47,14 @@ const AccordionSummaryRoot = styled(ButtonBase, {
     [`&:hover:not(.${accordionSummaryClasses.disabled})`]: {
       cursor: 'pointer',
     },
-    ...(!ownerState.disableGutters && {
-      [`&.${accordionSummaryClasses.expanded}`]: {
-        minHeight: 64,
-      },
-    }),
+    variants: [{
+      props: props => !props.ownerState.disableGutters,
+      style: {
+        [`&.${accordionSummaryClasses.expanded}`]: {
+          minHeight: 64,
+        },
+      }
+    }]
   };
 });
 
@@ -59,18 +62,21 @@ const AccordionSummaryContent = styled('div', {
   name: 'MuiAccordionSummary',
   slot: 'Content',
   overridesResolver: (props, styles) => styles.content,
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   display: 'flex',
   flexGrow: 1,
   margin: '12px 0',
-  ...(!ownerState.disableGutters && {
-    transition: theme.transitions.create(['margin'], {
-      duration: theme.transitions.duration.shortest,
-    }),
-    [`&.${accordionSummaryClasses.expanded}`]: {
-      margin: '20px 0',
-    },
-  }),
+  variants: [{
+    props: props => !props.ownerState.disableGutters,
+    style: {
+      transition: theme.transitions.create(['margin'], {
+        duration: theme.transitions.duration.shortest,
+      }),
+      [`&.${accordionSummaryClasses.expanded}`]: {
+        margin: '20px 0',
+      },
+    }
+  }]
 }));
 
 const AccordionSummaryExpandIconWrapper = styled('div', {

@@ -91,28 +91,33 @@ const AccordionRoot = styled(Paper, {
       },
     };
   },
-  ({ theme, ownerState }) => ({
-    ...(!ownerState.square && {
-      borderRadius: 0,
-      '&:first-of-type': {
-        borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
-        borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
-      },
-      '&:last-of-type': {
-        borderBottomLeftRadius: (theme.vars || theme).shape.borderRadius,
-        borderBottomRightRadius: (theme.vars || theme).shape.borderRadius,
-        // Fix a rendering issue on Edge
-        '@supports (-ms-ime-align: auto)': {
-          borderBottomLeftRadius: 0,
-          borderBottomRightRadius: 0,
+  ({ theme }) => ({
+    variants: [{
+      props: props => !props.ownerState.square,
+      style: {
+        borderRadius: 0,
+        '&:first-of-type': {
+          borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
+          borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
         },
-      },
-    }),
-    ...(!ownerState.disableGutters && {
-      [`&.${accordionClasses.expanded}`]: {
-        margin: '16px 0',
-      },
-    }),
+        '&:last-of-type': {
+          borderBottomLeftRadius: (theme.vars || theme).shape.borderRadius,
+          borderBottomRightRadius: (theme.vars || theme).shape.borderRadius,
+          // Fix a rendering issue on Edge
+          '@supports (-ms-ime-align: auto)': {
+            borderBottomLeftRadius: 0,
+            borderBottomRightRadius: 0,
+          },
+        },
+      }
+    }, {
+      props: props => !props.ownerState.disableGutters,
+      style: {
+        [`&.${accordionClasses.expanded}`]: {
+          margin: '16px 0',
+        },
+      }
+    }]
   }),
 );
 

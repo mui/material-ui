@@ -25,17 +25,20 @@ const AccordionActionsRoot = styled('div', {
 
     return [styles.root, !ownerState.disableSpacing && styles.spacing];
   },
-})(({ ownerState }) => ({
+})({
   display: 'flex',
   alignItems: 'center',
   padding: 8,
   justifyContent: 'flex-end',
-  ...(!ownerState.disableSpacing && {
-    '& > :not(style) ~ :not(style)': {
-      marginLeft: 8,
-    },
-  }),
-}));
+  variants: [{
+    props: props => !props.ownerState.disableSpacing, 
+    style: {
+      '& > :not(style) ~ :not(style)': {
+        marginLeft: 8,
+      },
+    }
+  }]
+});
 
 const AccordionActions = React.forwardRef(function AccordionActions(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiAccordionActions' });
