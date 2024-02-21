@@ -48,7 +48,7 @@ const AccordionSummaryRoot = styled(ButtonBase, {
       cursor: 'pointer',
     },
     variants: [{
-      props: props => !props.ownerState.disableGutters,
+      props: props => !props.disableGutters,
       style: {
         [`&.${accordionSummaryClasses.expanded}`]: {
           minHeight: 64,
@@ -67,7 +67,7 @@ const AccordionSummaryContent = styled('div', {
   flexGrow: 1,
   margin: '12px 0',
   variants: [{
-    props: props => !props.ownerState.disableGutters,
+    props: props => !props.disableGutters,
     style: {
       transition: theme.transitions.create(['margin'], {
         duration: theme.transitions.duration.shortest,

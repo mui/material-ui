@@ -31,7 +31,7 @@ const AccordionActionsRoot = styled('div', {
   padding: 8,
   justifyContent: 'flex-end',
   variants: [{
-    props: props => !props.ownerState.disableSpacing, 
+    props: props => !props.disableSpacing, 
     style: {
       '& > :not(style) ~ :not(style)': {
         marginLeft: 8,

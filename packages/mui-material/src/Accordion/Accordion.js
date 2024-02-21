@@ -93,7 +93,7 @@ const AccordionRoot = styled(Paper, {
   },
   ({ theme }) => ({
     variants: [{
-      props: props => !props.ownerState.square,
+      props: props => !props.square,
       style: {
         borderRadius: 0,
         '&:first-of-type': {
@@ -111,7 +111,7 @@ const AccordionRoot = styled(Paper, {
         },
       }
     }, {
-      props: props => !props.ownerState.disableGutters,
+      props: props => !props.disableGutters,
       style: {
         [`&.${accordionClasses.expanded}`]: {
           margin: '16px 0',
