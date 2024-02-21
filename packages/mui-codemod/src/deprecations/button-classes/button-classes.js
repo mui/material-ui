@@ -16,7 +16,10 @@ export default function transformer(file, api, options) {
       .forEach((path) => {
         path.node.specifiers.forEach((specifier) => {
           if (specifier.type === 'ImportSpecifier' && specifier.imported.name === 'buttonClasses') {
-            const deprecatedAtomicClass = deprecatedClass.replace(`${deprecatedClass.split('-')[0]}-`, '');
+            const deprecatedAtomicClass = deprecatedClass.replace(
+              `${deprecatedClass.split('-')[0]}-`,
+              '',
+            );
             root
               .find(j.MemberExpression, {
                 object: { name: specifier.local.name },
@@ -43,30 +46,61 @@ export default function transformer(file, api, options) {
                         : `${replacementSelectorPrefix}.`,
                     )
                   ) {
-                    parent.expressions.splice(
-                      memberExpressionIndex,
-                      1,
-                      j.memberExpression(
-                        memberExpression.value.object,
-                        j.identifier(atomicClasses[0]),
-                      ),
-                      j.memberExpression(
-                        memberExpression.value.object,
-                        j.identifier(atomicClasses[1]),
-                      ),
-                    );
-                    parent.quasis.splice(
-                      memberExpressionIndex,
-                      1,
-                      j.templateElement(
-                        {
-                          raw: precedingTemplateElement.value.raw,
-                          cooked: precedingTemplateElement.value.cooked,
-                        },
-                        false,
-                      ),
-                      j.templateElement({ raw: '.', cooked: '.' }, false),
-                    );
+                    if (replacementSelector.includes(' > ')) {
+                      parent.expressions.splice(
+                        memberExpressionIndex,
+                        1,
+                        j.memberExpression(
+                          memberExpression.value.object,
+                          j.identifier(atomicClasses[0]),
+                        ),
+                        j.literal(' > '),
+                        j.memberExpression(
+                          memberExpression.value.object,
+                          j.identifier(atomicClasses[1]),
+                        ),
+                      );
+                      parent.quasis.splice(
+                        memberExpressionIndex,
+                        1,
+                        j.templateElement(
+                          {
+                            raw: precedingTemplateElement.value.raw.replace(' ',''),
+                            cooked: precedingTemplateElement.value.cooked.replace(' ','')
+                          },
+                          false,
+                        ),
+                        j.templateElement({ raw: '', cooked: '' }, false),
+                        j.templateElement({ raw: '.', cooked: '.' }, false),
+                      );
+                    } else {
+                      parent.expressions.splice(
+                        memberExpressionIndex,
+                        1,
+                        j.memberExpression(
+                          memberExpression.value.object,
+                          j.identifier(atomicClasses[0]),
+                        ),
+
+                        j.memberExpression(
+                          memberExpression.value.object,
+                          j.identifier(atomicClasses[1]),
+                        ),
+                      );
+                      parent.quasis.splice(
+                        memberExpressionIndex,
+                        1,
+                        j.templateElement(
+                          {
+                            raw: precedingTemplateElement.value.raw,
+                            cooked: precedingTemplateElement.value.cooked,
+                          },
+                          false,
+                        ),
+
+                        j.templateElement({ raw: '.', cooked: '.' }, false),
+                      );
+                    }
                   }
                 }
               });

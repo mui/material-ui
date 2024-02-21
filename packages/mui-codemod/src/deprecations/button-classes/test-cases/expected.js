@@ -114,13 +114,13 @@ fn({
         "&.MuiButton-contained.MuiButton-sizeLarge": {
           color: 'red',
         },
-        "& .MuiButton-icon.MuiButton-sizeSmall": {
+        "&.MuiButton-sizeSmall > .MuiButton-icon": {
           color: 'red',
         },
-        "& .MuiButton-icon.MuiButton-sizeMedium": {
+        "&.MuiButton-sizeMedium > .MuiButton-icon": {
           color: 'red',
         },
-        "& .MuiButton-icon.MuiButton-sizeLarge": {
+        "&.MuiButton-sizeLarge > .MuiButton-icon": {
           color: 'red',
         },
       },
@@ -242,13 +242,13 @@ fn({
         [`&.${buttonClasses.contained}.${buttonClasses.sizeLarge}`]: {
           color: 'red',
         },
-        [`& .${buttonClasses.icon}.${buttonClasses.sizeSmall}`]: {
+        [`&.${buttonClasses.sizeSmall}${" > "}.${buttonClasses.icon}`]: {
           color: 'red',
         },
-        [`& .${buttonClasses.icon}.${buttonClasses.sizeMedium}`]: {
+        [`&.${buttonClasses.sizeMedium}${" > "}.${buttonClasses.icon}`]: {
           color: 'red',
         },
-        [`& .${buttonClasses.icon}.${buttonClasses.sizeLarge}`]: {
+        [`&.${buttonClasses.sizeLarge}${" > "}.${buttonClasses.icon}`]: {
           color: 'red',
         },
       },
@@ -348,13 +348,13 @@ styled(Component)(() => {
     "&.MuiButton-contained.MuiButton-sizeLarge": {
       color: 'red',
     },
-    "& .MuiButton-icon.MuiButton-sizeSmall": {
+    "&.MuiButton-sizeSmall > .MuiButton-icon": {
       color: 'red',
     },
-    "& .MuiButton-icon.MuiButton-sizeMedium": {
+    "&.MuiButton-sizeMedium > .MuiButton-icon": {
       color: 'red',
     },
-    "& .MuiButton-icon.MuiButton-sizeLarge": {
+    "&.MuiButton-sizeLarge > .MuiButton-icon": {
       color: 'red',
     },
   };
@@ -452,13 +452,13 @@ styled(Component)(() => {
     [`&.${buttonClasses.contained}.${buttonClasses.sizeLarge}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.icon}.${buttonClasses.sizeSmall}`]: {
+    [`&.${buttonClasses.sizeSmall}${" > "}.${buttonClasses.icon}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.icon}.${buttonClasses.sizeMedium}`]: {
+    [`&.${buttonClasses.sizeMedium}${" > "}.${buttonClasses.icon}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.icon}.${buttonClasses.sizeLarge}`]: {
+    [`&.${buttonClasses.sizeLarge}${" > "}.${buttonClasses.icon}`]: {
       color: 'red',
     },
   };
@@ -556,13 +556,13 @@ styled(Component)(() => {
     "&.MuiButton-contained.MuiButton-sizeLarge": {
       color: 'red',
     },
-    "& .MuiButton-icon.MuiButton-sizeSmall": {
+    "&.MuiButton-sizeSmall > .MuiButton-icon": {
       color: 'red',
     },
-    "& .MuiButton-icon.MuiButton-sizeMedium": {
+    "&.MuiButton-sizeMedium > .MuiButton-icon": {
       color: 'red',
     },
-    "& .MuiButton-icon.MuiButton-sizeLarge": {
+    "&.MuiButton-sizeLarge > .MuiButton-icon": {
       color: 'red',
     },
   }}
@@ -660,13 +660,13 @@ styled(Component)(() => {
     [`&.${buttonClasses.contained}.${buttonClasses.sizeLarge}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.icon}.${buttonClasses.sizeSmall}`]: {
+    [`&.${buttonClasses.sizeSmall}${" > "}.${buttonClasses.icon}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.icon}.${buttonClasses.sizeMedium}`]: {
+    [`&.${buttonClasses.sizeMedium}${" > "}.${buttonClasses.icon}`]: {
       color: 'red',
     },
-    [`& .${buttonClasses.icon}.${buttonClasses.sizeLarge}`]: {
+    [`&.${buttonClasses.sizeLarge}${" > "}.${buttonClasses.icon}`]: {
       color: 'red',
     },
   }}

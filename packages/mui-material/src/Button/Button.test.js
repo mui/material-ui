@@ -55,8 +55,6 @@ describe('<Button />', () => {
     const endIcon = button.querySelector(`.${classes.endIcon}`);
     expect(startIcon).to.have.class(classes.icon);
     expect(endIcon).to.have.class(classes.icon);
-    expect(startIcon).to.have.class(classes.sizeMedium);
-    expect(endIcon).to.have.class(classes.sizeMedium);
   });
 
   it('should add the appropriate color class to root element based on color prop', () => {
