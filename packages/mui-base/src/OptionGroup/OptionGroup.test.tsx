@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { createMount, createRenderer, describeConformanceUnstyled } from '@mui-internal/test-utils';
+import { createMount, createRenderer } from '@mui-internal/test-utils';
 import { OptionGroup, optionGroupClasses } from '@mui/base/OptionGroup';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 describe('<OptionGroup />', () => {
   const mount = createMount();

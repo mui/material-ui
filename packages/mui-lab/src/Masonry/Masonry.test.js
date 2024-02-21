@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { createRenderer, describeConformance } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui-internal/test-utils';
 import { expect } from 'chai';
 import { createTheme } from '@mui/material/styles';
 import defaultTheme from '@mui/material/styles/defaultTheme';
 import Masonry, { masonryClasses as classes } from '@mui/lab/Masonry';
 import { getStyle, parseToNumber } from './Masonry';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Masonry />', () => {
   const { render } = createRenderer();

@@ -11,3 +11,4 @@ exceptions:
   - 'MUI Core'
   - 'MUI Toolpad'
   - 'MUI Connect'
+  - 'MUI organization' # valid use of a regular space
