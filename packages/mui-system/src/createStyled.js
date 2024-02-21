@@ -49,7 +49,7 @@ function defaultOverridesResolver(slot) {
 function processStyleArg(callableStyle, { ownerState, ...props }) {
   const resolvedStylesArg =
     typeof callableStyle === 'function'
-      ? callableStyle({ ownerState, ...props, ...ownerState })
+      ? callableStyle({ ownerState, ...props })
       : callableStyle;
 
   if (Array.isArray(resolvedStylesArg)) {
