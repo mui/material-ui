@@ -128,6 +128,7 @@ const SwitchSwitchBase = styled(SwitchBase, {
     [`& .${switchClasses.input}`]: {
       left: '-100%',
       width: '300%',
+      height': '100%',
     },
   }),
   ({ theme, ownerState }) => ({
