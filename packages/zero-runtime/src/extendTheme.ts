@@ -1,7 +1,10 @@
 import deepMerge from 'lodash/merge';
+import styleFunctionSx, {
+  unstable_defaultSxConfig as defaultSxConfig,
+} from '@mui/system/styleFunctionSx';
 import { prepareCssVars } from '@mui/system/cssVars';
-import type { SxConfig } from '@mui/system/styleFunctionSx';
-import type { CSSObject } from './base';
+import type { CSSObject } from '@mui/system';
+import type { SxConfig, SxProps } from '@mui/system/styleFunctionSx';
 
 export interface ThemeInput<ColorScheme extends string = string> {
   /**
@@ -71,14 +74,21 @@ export type ExtendTheme<
     vars: Options['tokens'];
     applyStyles: (
       colorScheme: Options['colorScheme'],
-      styles: CSSObject<any>,
-    ) => Record<string, CSSObject<any>>;
+      styles: CSSObject,
+    ) => Record<string, CSSObject>;
     getColorSchemeSelector: (colorScheme: Options['colorScheme']) => string;
     generateCssVars: (colorScheme?: Options['colorScheme']) => {
       css: Record<string, string | number>;
       selector: string | Record<string, any>;
     };
-    unstable_sxConfig?: SxConfig;
+    unstable_sxConfig: SxConfig;
+    unstable_sx: (
+      props: SxProps<
+        Options['tokens'] & {
+          vars: Options['tokens'];
+        }
+      >,
+    ) => CSSObject;
   };
 
 export type Theme = ExtendTheme;
@@ -165,6 +175,14 @@ export default function extendTheme<
     return {
       [this.getColorSchemeSelector(colorScheme)]: styles,
     };
+  };
+
+  finalTheme.unstable_sxConfig = defaultSxConfig;
+  finalTheme.unstable_sx = function sx(props) {
+    return styleFunctionSx({
+      sx: props,
+      theme: this,
+    });
   };
 
   return finalTheme;
