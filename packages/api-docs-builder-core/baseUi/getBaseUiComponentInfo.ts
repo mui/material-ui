@@ -70,7 +70,7 @@ export function getBaseUiComponentInfo(filename: string): ComponentInfo {
         name: inheritedComponent,
         apiPathname:
           inheritedComponent === 'Transition'
-            ? 'http://reactcommunity.org/react-transition-group/transition/#Transition-props'
+            ? 'https://reactcommunity.org/react-transition-group/transition/#Transition-props'
             : `/base-ui/api/${kebabCase(inheritedComponent)}/`,
       };
     },

@@ -184,8 +184,8 @@ export type SelectProps<
   (Variant extends 'filled'
     ? FilledSelectProps
     : Variant extends 'standard'
-    ? StandardSelectProps
-    : OutlinedSelectProps);
+      ? StandardSelectProps
+      : OutlinedSelectProps);
 
 /**
  *

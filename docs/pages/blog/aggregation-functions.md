@@ -3,7 +3,7 @@ title: Aggregate data like in Excel, but easier!
 description: Aggregation functions and summary rows are now available in the MUI X Premium Data Grid.
 date: 2022-08-01T00:00:00.000Z
 authors: ['josefreitas', 'flaviendelangle', 'cherniavskii']
-tags: ['MUI X', 'News']
+tags: ['MUI X', 'Product']
 card: true
 ---
 
