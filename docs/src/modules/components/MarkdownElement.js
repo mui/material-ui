@@ -407,8 +407,12 @@ const Root = styled('div')(
       opacity: 1,
       transform: 'translate(1px, 0)',
     },
-    '& a.remove-link-arrow[target="_blank"]::after': {
+    '& a.remove-link-arrow::after': {
       // Allows to remove link arrows for images
+      display: 'none',
+    },
+    '& .MuiAd-root a::after': {
+      // Remove link arrow for ads
       display: 'none',
     },
     '& a, & a code': {
