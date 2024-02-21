@@ -403,6 +403,10 @@ const Root = styled('div')(
       opacity: 1,
       transform: 'translate(1px, 0)',
     },
+    '& a.remove-link-arrow[target="_blank"]::after': {
+      // Allows to remove link arrows for images
+      display: 'none',
+    },
     '& a, & a code': {
       // Style taken from the Link component
       color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,

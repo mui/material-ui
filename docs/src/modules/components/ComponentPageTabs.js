@@ -5,8 +5,8 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Tabs, { tabsClasses } from '@mui/material/Tabs';
 import Tab, { tabClasses } from '@mui/material/Tab';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
-import Link from 'docs/src/modules/components/Link';
+import { useTranslate } from '@mui/docs/i18n';
+import { Link } from '@mui/docs/Link';
 
 export const HEIGHT = 50;
 

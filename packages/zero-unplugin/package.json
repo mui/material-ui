@@ -13,10 +13,10 @@
   },
   "dependencies": {
     "@babel/core": "^7.23.9",
-    "@wyw-in-js/shared": "^0.3.0",
-    "@wyw-in-js/transform": "^0.3.0",
+    "@wyw-in-js/shared": "^0.4.1",
+    "@wyw-in-js/transform": "^0.4.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "unplugin": "^1.6.0"
+    "unplugin": "^1.7.1"
   },
   "devDependencies": {
     "@mui/zero-runtime": "workspace:^",
