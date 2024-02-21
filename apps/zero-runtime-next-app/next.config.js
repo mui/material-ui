@@ -83,19 +83,37 @@ const theme = extendTheme({
   },
 });
 
-theme.palette = theme.colorSchemes.light;
-theme.getColorSchemeSelector = (key) => {
-  return `[data-mui-color-scheme="${key}"]`;
+// TODO: Fix this from the Material UI side in a separate PR
+theme.palette = theme.colorSchemes.light.palette;
+theme.getColorSchemeSelector = (colorScheme) => {
+  return `@media (prefers-color-scheme: ${colorScheme})`;
 };
-
-// { [theme.getColorSchemeSelector('dark')]: { color: 'black' } }
+const { css: rootCss } = theme.generateCssVars();
+const { css: lightCss } = theme.generateCssVars('light');
+const { css: darkCss } = theme.generateCssVars('dark');
+theme.generateCssVars = (colorScheme) => {
+  if (colorScheme === 'dark') {
+    return {
+      css: darkCss,
+      selector: {
+        '@media (prefers-color-scheme: dark)': {
+          ':root': darkCss,
+        },
+      },
+    };
+  }
+  if (colorScheme === 'light') {
+    return { css: lightCss, selector: ':root' };
+  }
+  return { css: rootCss, selector: ':root' };
+};
 
 /**
  * @type {ZeroPluginConfig}
  */
 const zeroPluginOptions = {
   theme,
-  transformLibraries: ['local-ui-lib'],
+  transformLibraries: ['local-ui-lib', '@mui/material'],
   sourceMap: true,
   displayName: true,
   transformSx: false,
@@ -109,6 +127,7 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  transpilePackages: ['@mui/material'],
 };
 
 module.exports = withZeroPlugin(nextConfig, zeroPluginOptions);
