@@ -477,5 +477,11 @@ module.exports = {
         'import/prefer-default-export': 'off',
       },
     },
+    {
+      files: ['packages/api-docs-builder-core/**/*'],
+      rules: {
+        'no-restricted-imports': 'off',
+      },
+    },
   ],
 };

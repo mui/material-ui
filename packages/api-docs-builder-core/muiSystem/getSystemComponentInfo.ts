@@ -8,8 +8,10 @@ import {
   getMuiName,
   parseFile,
   fixPathname,
-} from '@mui-internal/api-docs-builder/buildApiUtils';
-import findPagesMarkdown from '@mui-internal/api-docs-builder/utils/findPagesMarkdown';
+} from '@mui/internal-scripts/api-docs-builder/buildApiUtils';
+import findPagesMarkdown from '@mui/internal-scripts/api-docs-builder/utils/findPagesMarkdown';
+
+const WORKSPACE_ROOT = path.resolve(__dirname, '../../..');
 
 const migratedBaseComponents = [
   'Badge',
@@ -56,7 +58,7 @@ export function getSystemComponentInfo(filename: string): ComponentInfo {
       return null;
     },
     getDemos: () => {
-      const allMarkdowns = findPagesMarkdown()
+      const allMarkdowns = findPagesMarkdown(path.resolve(WORKSPACE_ROOT, 'docs/data'))
         .filter((markdown) => {
           if (migratedBaseComponents.some((component) => filename.includes(component))) {
             return markdown.filename.match(/[\\/]data[\\/]system[\\/]/);

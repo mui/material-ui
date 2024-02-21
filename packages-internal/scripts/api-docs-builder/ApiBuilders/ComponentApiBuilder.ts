@@ -757,7 +757,7 @@ export default async function generateComponentApi(
   }
 
   try {
-    const testInfo = await parseTest(reactApi.filename);
+    const testInfo = await parseTest(reactApi.filename, projectSettings.babelConfigPath);
     // no Object.assign to visually check for collisions
     reactApi.forwardsRefTo = testInfo.forwardsRefTo;
     reactApi.spread = testInfo.spread ?? spread;

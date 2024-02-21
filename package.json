@@ -105,7 +105,6 @@
     "@babel/register": "^7.23.7",
     "@mnajdova/enzyme-adapter-react-18": "^0.2.0",
     "@mui/internal-scripts": "workspace:^",
-    "@mui-internal/api-docs-builder": "workspace:^",
     "@mui-internal/api-docs-builder-core": "workspace:^",
     "@mui-internal/docs-utils": "workspace:^",
     "@mui-internal/test-utils": "workspace:^",

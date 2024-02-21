@@ -9,10 +9,7 @@ interface MarkdownPage {
 /**
  * Returns the markdowns of the documentation in a flat array.
  */
-export default function findPagesMarkdown(
-  directory: string = path.resolve(__dirname, '../../../docs/data'),
-  pagesMarkdown: MarkdownPage[] = [],
-) {
+export default function findPagesMarkdown(directory: string, pagesMarkdown: MarkdownPage[] = []) {
   const items = fs.readdirSync(directory);
 
   items.forEach((item) => {

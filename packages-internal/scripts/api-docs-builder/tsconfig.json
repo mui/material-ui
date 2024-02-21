@@ -1,0 +1,17 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "./",
+    "outDir": "../build/api-docs-builder",
+    "tsBuildInfoFile": "../build/api-docs-builder/.tsbuildinfo",
+    "allowJs": true,
+    "types": ["node", "mocha"]
+  },
+  "include": ["./**/*.ts", "./**/*.js"],
+  "exclude": ["node_modules"],
+  "references": [
+    {
+      "path": "../../../packages/docs-utils/tsconfig.build.json"
+    }
+  ]
+}

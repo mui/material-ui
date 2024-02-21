@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.0
+
+Added the API Docs Builder module.
+
 ## 1.0.1
 
 - Unpinned version of the @mui-internal/docs-utils dependency.

@@ -19,7 +19,7 @@ import {
 import {
   createTypeScriptProjectBuilder,
   TypeScriptProject,
-} from '@mui-internal/api-docs-builder/utils/createTypeScriptProject';
+} from '@mui/internal-scripts/api-docs-builder/utils/createTypeScriptProject';
 
 import CORE_TYPESCRIPT_PROJECTS from './coreTypeScriptProjects';
 

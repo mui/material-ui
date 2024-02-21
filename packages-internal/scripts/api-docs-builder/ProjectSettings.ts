@@ -91,4 +91,8 @@ export interface ProjectSettings {
    * Determines if a given slot or state is a global state
    */
   isGlobalClassName: (slotOrState: string) => boolean;
+  /**
+   * The absolute path to the babel configuration file
+   */
+  babelConfigPath: string;
 }

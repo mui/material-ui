@@ -9,9 +9,11 @@ import {
   fixPathname,
   getApiPath,
   parseFile,
-} from '@mui-internal/api-docs-builder/buildApiUtils';
-import findPagesMarkdown from '@mui-internal/api-docs-builder/utils/findPagesMarkdown';
+} from '@mui/internal-scripts/api-docs-builder/buildApiUtils';
+import findPagesMarkdown from '@mui/internal-scripts/api-docs-builder/utils/findPagesMarkdown';
 import { migratedBaseComponents } from './migratedBaseComponents';
+
+const WORKSPACE_ROOT = path.resolve(__dirname, '../../..');
 
 export function getBaseUiHookInfo(filename: string): HookInfo {
   const { name } = extractPackageFile(filename);
@@ -20,7 +22,7 @@ export function getBaseUiHookInfo(filename: string): HookInfo {
     throw new Error(`Could not find the hook name from: ${filename}`);
   }
 
-  const allMarkdowns = findPagesMarkdown()
+  const allMarkdowns = findPagesMarkdown(path.resolve(WORKSPACE_ROOT, 'docs/data'))
     .filter((markdown) => {
       if (migratedBaseComponents.some((component) => filename.includes(component))) {
         return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);

@@ -1,5 +1,5 @@
 import yargs, { ArgumentsCamelCase } from 'yargs';
-import { ProjectSettings, buildApi } from '@mui-internal/api-docs-builder';
+import { ProjectSettings, buildApi } from '@mui/internal-scripts/api-docs-builder';
 import {
   baseUiProjectSettings,
   joyUiProjectSettings,

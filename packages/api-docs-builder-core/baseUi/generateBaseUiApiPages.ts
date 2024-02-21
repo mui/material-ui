@@ -2,12 +2,14 @@ import fs from 'fs';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 import { getHeaders } from '@mui/internal-markdown';
-import findPagesMarkdown from '@mui-internal/api-docs-builder/utils/findPagesMarkdown';
-import { writePrettifiedFile } from '@mui-internal/api-docs-builder/buildApiUtils';
+import findPagesMarkdown from '@mui/internal-scripts/api-docs-builder/utils/findPagesMarkdown';
+import { writePrettifiedFile } from '@mui/internal-scripts/api-docs-builder/buildApiUtils';
+
+const WORKSPACE_ROOT = path.resolve(__dirname, '../../..');
 
 export async function generateBaseUIApiPages() {
   await Promise.all(
-    findPagesMarkdown().map(async (markdown) => {
+    findPagesMarkdown(path.resolve(WORKSPACE_ROOT, 'docs/data')).map(async (markdown) => {
       const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
       const markdownHeaders = getHeaders(markdownContent) as any;
       const pathnameTokens = markdown.pathname.split('/');

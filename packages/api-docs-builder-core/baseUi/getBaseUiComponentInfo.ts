@@ -9,13 +9,15 @@ import {
   getApiPath,
   getSystemComponents,
   parseFile,
-} from '@mui-internal/api-docs-builder/buildApiUtils';
-import findPagesMarkdown from '@mui-internal/api-docs-builder/utils/findPagesMarkdown';
+} from '@mui/internal-scripts/api-docs-builder/buildApiUtils';
+import findPagesMarkdown from '@mui/internal-scripts/api-docs-builder/utils/findPagesMarkdown';
 import { migratedBaseComponents } from './migratedBaseComponents';
+
+const WORKSPACE_ROOT = path.resolve(__dirname, '../../..');
 
 export function getBaseUiDemos(name: string, filename?: string) {
   // resolve demos, so that we can getch the API url
-  const allMarkdowns = findPagesMarkdown()
+  const allMarkdowns = findPagesMarkdown(path.resolve(WORKSPACE_ROOT, 'docs/data'))
     .filter((markdown) => {
       if (migratedBaseComponents.some((component) => (filename ?? name).includes(component))) {
         return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);

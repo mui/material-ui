@@ -10,9 +10,11 @@ import {
   getMuiName,
   getSystemComponents,
   parseFile,
-} from '@mui-internal/api-docs-builder/buildApiUtils';
-import findPagesMarkdown from '@mui-internal/api-docs-builder/utils/findPagesMarkdown';
+} from '@mui/internal-scripts/api-docs-builder/buildApiUtils';
+import findPagesMarkdown from '@mui/internal-scripts/api-docs-builder/utils/findPagesMarkdown';
 import { getBaseUiDemos } from '@mui-internal/api-docs-builder-core/baseUi/getBaseUiComponentInfo';
+
+const WORKSPACE_ROOT = path.resolve(__dirname, '../../..');
 
 export function getJoyUiComponentInfo(filename: string): ComponentInfo {
   const { name } = extractPackageFile(filename);
@@ -66,16 +68,18 @@ export function getJoyUiComponentInfo(filename: string): ComponentInfo {
       };
     },
     getDemos: () => {
-      const allMarkdowns = findPagesMarkdown().map((markdown) => {
-        const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
-        const markdownHeaders = getHeaders(markdownContent) as any;
+      const allMarkdowns = findPagesMarkdown(path.resolve(WORKSPACE_ROOT, 'docs/data')).map(
+        (markdown) => {
+          const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
+          const markdownHeaders = getHeaders(markdownContent) as any;
 
-        return {
-          ...markdown,
-          markdownContent,
-          components: markdownHeaders.components as string[],
-        };
-      });
+          return {
+            ...markdown,
+            markdownContent,
+            components: markdownHeaders.components as string[],
+          };
+        },
+      );
       return allMarkdowns
         .filter((page) => page.pathname.startsWith('/joy') && page.components.includes(name))
         .map((page) => ({
