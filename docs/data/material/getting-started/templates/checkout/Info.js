@@ -40,7 +40,11 @@ export default function Info() {
       <List disablePadding>
         {products.map((product) => (
           <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={product.name} secondary={product.desc} />
+            <ListItemText
+              sx={{ mr: 2 }}
+              primary={product.name}
+              secondary={product.desc}
+            />
             <Typography variant="body1">{product.price}</Typography>
           </ListItem>
         ))}

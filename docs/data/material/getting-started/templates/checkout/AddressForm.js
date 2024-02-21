@@ -83,17 +83,6 @@ export default function AddressForm() {
           />
         </FormGrid>
         <FormGrid item xs={6}>
-          <FormLabel required>Country</FormLabel>
-          <InputBase
-            id="country"
-            name="country"
-            type="country"
-            placeholder="United States"
-            autoComplete="shipping country"
-            inputProps={{ required: true }}
-          />
-        </FormGrid>
-        <FormGrid item xs={6}>
           <FormLabel required>Zip / Postal code</FormLabel>
           <InputBase
             id="zip"
@@ -101,6 +90,17 @@ export default function AddressForm() {
             type="zip"
             placeholder="12345"
             autoComplete="shipping postal-code"
+            inputProps={{ required: true }}
+          />
+        </FormGrid>
+        <FormGrid item xs={6}>
+          <FormLabel required>Country</FormLabel>
+          <InputBase
+            id="country"
+            name="country"
+            type="country"
+            placeholder="United States"
+            autoComplete="shipping country"
             inputProps={{ required: true }}
           />
         </FormGrid>

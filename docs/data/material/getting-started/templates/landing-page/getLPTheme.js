@@ -669,10 +669,10 @@ export default function getLPTheme(mode) {
             borderTop: 'none',
             height: '1px',
             flex: 1,
-            background: `repeating-linear-gradient(90deg, ${theme.palette.grey[400]}, ${theme.palette.grey[400]} 1px, transparent 1px, transparent 8px)`,
+            background: `repeating-linear-gradient(90deg, ${theme.palette.grey[600]}, ${theme.palette.grey[600]} 1px, transparent 1px, transparent 4px)`,
             borderRadius: '99px',
             ...(theme.palette.mode === 'dark' && {
-              background: `repeating-linear-gradient(90deg, ${theme.palette.grey[700]}, ${theme.palette.grey[700]} 1px, transparent 1px, transparent 8px)`,
+              background: `repeating-linear-gradient(90deg, ${theme.palette.grey[500]}, ${theme.palette.grey[500]} 1px, transparent 1px, transparent 4px)`,
             }),
           }),
         },
@@ -692,8 +692,8 @@ export default function getLPTheme(mode) {
           {
             props: { completed: true },
             style: () => ({
-              width: 12,
-              height: 12,
+              width: 16,
+              height: 16,
             }),
           },
         ],
