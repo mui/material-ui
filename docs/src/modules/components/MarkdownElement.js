@@ -12,7 +12,7 @@ const Root = styled('div')(
     ...lightTheme.typography.body1,
     lineHeight: 1.6, // Increased compared to the 1.5 default to make the docs easier to read.
     color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
-    '&:focus-visible': {
+    '& :focus-visible': {
       outline: `3px solid ${alpha(lightTheme.palette.primary[500], 0.5)}`,
       outlineOffset: 2,
     },
@@ -172,10 +172,6 @@ const Root = styled('div')(
           fill: 'currentColor',
           pointerEvents: 'none',
           verticalAlign: 'middle',
-        },
-        '&:focus-visible': {
-          outline: `3px solid ${alpha(lightTheme.palette.primary[500], 0.5)}`,
-          outlineOffset: '2px',
         },
       },
       '&:hover .anchor-link': {
@@ -420,9 +416,6 @@ const Root = styled('div')(
       '&:hover': {
         textDecorationColor: 'inherit',
       },
-      '&:focus-visible': {
-        outline: `3px solid ${alpha(lightTheme.palette.primary[500], 0.5)}`,
-      },
     },
     '& a code': {
       color: darken(lightTheme.palette.primary.main, 0.04),
@@ -549,10 +542,6 @@ const Root = styled('div')(
           display: 'block',
         },
       },
-      '&:focus-visible': {
-        outline: `3px solid ${alpha(lightTheme.palette.primary[500], 0.5)}`,
-        outlineOffset: 2,
-      },
     },
     '& .MuiCode-copyKeypress': {
       pointerEvents: 'none',
@@ -616,9 +605,6 @@ const Root = styled('div')(
             borderColor: `var(--muidocs-palette-primary-900, ${darkTheme.palette.primary[900]})`,
             backgroundColor: alpha(darkTheme.palette.primary[900], 0.6),
             color: `var(--muidocs-palette-primary-100, ${darkTheme.palette.primary[100]})`,
-          },
-          '&:focus-visible': {
-            outline: `3px solid ${alpha(lightTheme.palette.primary[500], 0.5)}`,
           },
         },
       },
