@@ -18,7 +18,7 @@ const prettier = require('prettier');
 const {
   getPropTypesFromFile,
   injectPropTypesInFile,
-} = require('@mui-internal/typescript-to-proptypes');
+} = require('@mui/internal-scripts/typescript-to-proptypes');
 const {
   createTypeScriptProjectBuilder,
 } = require('@mui-internal/api-docs-builder/utils/createTypeScriptProject');

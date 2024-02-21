@@ -23,7 +23,7 @@ import Notifications from 'docs/src/modules/components/Notifications';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
 import SkipLink from 'docs/src/modules/components/SkipLink';
 import PageContext from 'docs/src/modules/components/PageContext';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 import AppFrameBanner from 'docs/src/components/banner/AppFrameBanner';
 

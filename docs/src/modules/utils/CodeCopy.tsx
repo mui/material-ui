@@ -160,24 +160,28 @@ export function CodeCopyProvider({ children }: CodeCopyProviderProps) {
   const rootNode = React.useRef<HTMLDivElement | null>(null);
   React.useEffect(() => {
     document.addEventListener('keydown', (event) => {
-      if (hasNativeSelection(event.target as HTMLTextAreaElement)) {
-        // Skip if user is highlighting a text.
-        return;
-      }
-      // event.key === 'c' is not enough as alt+c can lead to ©, ç, or other characters on macOS.
-      // event.code === 'KeyC' is not enough as event.code assume a QWERTY keyboard layout which would
-      // be wrong with a Dvorak keyboard (as if pressing J).
-      const isModifierKeyPressed = event.ctrlKey || event.metaKey || event.altKey;
-      if (String.fromCharCode(event.keyCode) !== 'C' || !isModifierKeyPressed) {
-        return;
-      }
       if (!rootNode.current) {
         return;
       }
-      const copyBtn = rootNode.current.querySelector('.MuiCode-copy') as HTMLButtonElement | null;
-      if (!copyBtn) {
+
+      // Skip if user is highlighting a text.
+      if (hasNativeSelection(event.target as HTMLTextAreaElement)) {
         return;
       }
+
+      // Skip if it's not a copy keyboard event
+      if (
+        !(
+          (event.ctrlKey || event.metaKey) &&
+          event.key.toLowerCase() === 'c' &&
+          !event.shiftKey &&
+          !event.altKey
+        )
+      ) {
+        return;
+      }
+
+      const copyBtn = rootNode.current.querySelector('.MuiCode-copy') as HTMLButtonElement;
       const initialEventAction = copyBtn.getAttribute('data-ga-event-action');
       // update the 'data-ga-event-action' on the button to track keyboard interaction
       copyBtn.dataset.gaEventAction =

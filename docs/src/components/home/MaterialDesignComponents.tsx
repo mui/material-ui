@@ -33,7 +33,7 @@ import MailRounded from '@mui/icons-material/MailRounded';
 import VerifiedUserRounded from '@mui/icons-material/VerifiedUserRounded';
 import HelpCenterRounded from '@mui/icons-material/HelpCenterRounded';
 import ROUTES from 'docs/src/route';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
 
 const Grid = styled('div')(({ theme }) => [

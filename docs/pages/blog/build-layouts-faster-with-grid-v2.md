@@ -3,7 +3,7 @@ title: Build layouts faster with the new Grid component
 description: The new Grid v2 features simplified logic, support for offsetting and nested grids, and more.
 date: 2022-08-20T00:00:00.000Z
 authors: ['siriwatknp']
-tags: ['MUI Core', 'News']
+tags: ['Material UI', 'Guide']
 card: true
 ---
 

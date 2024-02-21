@@ -53,7 +53,7 @@
     "required": "Required",
     "optional": "Optional",
     "additional-info": {
-      "cssApi": "See <a href='#css'>CSS API</a> below for more details.",
+      "cssApi": "See <a href='#classes'>CSS classes API</a> below for more details.",
       "sx": "See the <a href='/system/getting-started/the-sx-prop/'>`sx` page</a> for more details.",
       "slotsApi": "See <a href='#slots'>Slots API</a> below for more details.",
       "joy-size": "To learn how to add custom sizes to the component, check out <a href='/joy-ui/customization/themed-components/#extend-sizes'>Themed components—Extend sizes</a>.",

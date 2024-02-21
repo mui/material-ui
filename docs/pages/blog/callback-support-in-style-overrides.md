@@ -3,7 +3,7 @@ title: Introducing callback support in style overrides
 description: We're excited to introduce callback support for global theme overrides in this minor version update!
 date: 2022-01-31T00:00:00.000Z
 authors: ['siriwatknp']
-tags: ['MUI Core', 'News']
+tags: ['Material UI', 'Product']
 card: true
 ---
 

@@ -3,7 +3,7 @@ title: 'MUI is now on Discord!'
 description: Come join our community to engage in lively discussions, share your projects, and interact with the MUI team.
 date: 2023-08-02T00:00:00.000Z
 authors: ['richbustos']
-tags: ['News']
+tags: ['Company']
 card: true
 ---
 

@@ -55,6 +55,7 @@ export { default as shape } from './createTheme/shape';
 export { default as useThemeProps, getThemeProps } from './useThemeProps';
 export { default as useTheme } from './useTheme';
 export { default as useThemeWithoutDefault } from './useThemeWithoutDefault';
+export { default as useMediaQuery } from './useMediaQuery';
 export * from './colorManipulator';
 export { default as ThemeProvider } from './ThemeProvider';
 export { default as unstable_createCssVarsProvider } from './cssVars/createCssVarsProvider';

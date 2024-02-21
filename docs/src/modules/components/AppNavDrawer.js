@@ -19,7 +19,7 @@ import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
 
 // TODO: Collapse should expose an API to customize the duration based on the height.

@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 import { ComponentClassDefinition } from '@mui-internal/docs-utils';
 import Box from '@mui/material/Box';
 import ToggleDisplayOption, {

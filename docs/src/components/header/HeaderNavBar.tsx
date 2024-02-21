@@ -11,7 +11,7 @@ import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import IconImage from 'docs/src/components/icon/IconImage';
 import ROUTES from 'docs/src/route';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
 
 const Navigation = styled('nav')(({ theme }) => [

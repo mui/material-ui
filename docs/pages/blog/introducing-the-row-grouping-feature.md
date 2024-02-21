@@ -3,7 +3,7 @@ title: Give your users more freedom with Data Grid row grouping
 description: The new row grouping feature gives your users more customization options for organizing their data.
 date: 2022-01-20T00:00:00.000Z
 authors: ['alexfauquette']
-tags: ['MUI X', 'News']
+tags: ['MUI X', 'Product']
 card: true
 ---
 

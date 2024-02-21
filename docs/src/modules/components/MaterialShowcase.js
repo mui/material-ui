@@ -10,8 +10,8 @@ import IconButton from '@mui/material/IconButton';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import { alpha } from '@mui/material/styles';
-import Link from 'docs/src/modules/components/Link';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { Link } from '@mui/docs/Link';
+import { useTranslate } from '@mui/docs/i18n';
 
 /**
  * The app structure:

@@ -22,14 +22,15 @@ import { CodeCopyProvider } from 'docs/src/modules/utils/CodeCopy';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { CodeVariantProvider } from 'docs/src/modules/utils/codeVariant';
 import { CodeStylingProvider } from 'docs/src/modules/utils/codeStylingSolution';
-import { UserLanguageProvider } from 'docs/src/modules/utils/i18n';
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import findActivePage from 'docs/src/modules/utils/findActivePage';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
+import { DocsProvider } from '@mui/docs/DocsProvider';
 import './global.css';
 import '../public/static/components-gallery/base-theme.css';
+import config from '../config';
 
 // Remove the license warning from demonstration purposes
 LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE);
@@ -294,7 +295,7 @@ function AppWrapper(props) {
         <meta name="mui:productId" content={productId} />
         <meta name="mui:productCategoryId" content={productCategoryId} />
       </NextHead>
-      <UserLanguageProvider defaultUserLanguage={pageProps.userLanguage}>
+      <DocsProvider config={config} defaultUserLanguage={pageProps.userLanguage}>
         <CodeCopyProvider>
           <CodeStylingProvider>
             <CodeVariantProvider>
@@ -309,7 +310,7 @@ function AppWrapper(props) {
             </CodeVariantProvider>
           </CodeStylingProvider>
         </CodeCopyProvider>
-      </UserLanguageProvider>
+      </DocsProvider>
     </React.Fragment>
   );
 }

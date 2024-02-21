@@ -951,6 +951,9 @@ export function getThemedComponents(): ThemeOptions {
                 },
                 '& .MuiChip-deleteIcon': {
                   color: (theme.vars || theme).palette.primary[600],
+                  '&:hover': {
+                    color: (theme.vars || theme).palette.primary[700],
+                  },
                 },
                 ...theme.applyDarkStyles({
                   color: (theme.vars || theme).palette.primary[100],
@@ -960,6 +963,9 @@ export function getThemedComponents(): ThemeOptions {
                   },
                   '& .MuiChip-deleteIcon': {
                     color: (theme.vars || theme).palette.primary[100],
+                    '&:hover': {
+                      color: (theme.vars || theme).palette.primary[50],
+                    },
                   },
                 }),
               }),

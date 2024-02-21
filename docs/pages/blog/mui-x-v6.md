@@ -4,7 +4,7 @@ description: Introducing the new major version of the advanced components.
 date: 2023-03-06T00:00:00.000Z
 authors: ['josefreitas']
 card: true
-tags: ['MUI X', 'News']
+tags: ['MUI X', 'Product']
 ---
 
 <img src="/static/blog/mui-x-v6/card.png" alt="" style="margin-bottom: 16px;" width="2400" height="559" />

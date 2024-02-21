@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import AddRounded from '@mui/icons-material/AddRounded';
 import Grid from '@mui/material/Grid';
 import SponsorCard from 'docs/src/components/home/SponsorCard';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';
 
 const GOLDs = [

@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import kebabCase from 'lodash/kebabCase';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,

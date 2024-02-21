@@ -164,3 +164,55 @@ The Divider's `light` prop was deprecated, Use `sx={{ opacity : "0.6" }}` (or an
 +  sx={{ opacity : "0.6" }}
  />
 ```
+
+## PaginationItem
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#pagination-item-classes) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/pagination-item-classes <path>
+```
+
+### Composed CSS classes
+
+The CSS classes that composed the `variant` and `color` prop values were removed.
+
+Here's how to migrate:
+
+```diff
+-.MuiPaginationItem-textPrimary
++.MuiPaginationItem-text.MuiPaginationItem-colorPrimary
+-.MuiPaginationItem-outlinedPrimary
++.MuiPaginationItem-outlined.MuiPaginationItem-colorPrimary
+-.MuiPaginationItem-textSecondary
++.MuiPaginationItem-text.MuiPaginationItem-colorSecondary
+-.MuiPaginationItem-outlinedSecondary
++.MuiPaginationItem-outlined.MuiPaginationItem-colorSecondary
+```
+
+```diff
+ import { paginationItemClasses } from '@mui/material/PaginationItem';
+
+ MuiPaginationItem: {
+   styleOverrides: {
+     root: {
+-      [`&.${paginationItemClasses.textPrimary}`]: {
++      [`&.${paginationItemClasses.text}.${paginationItemClasses.colorPrimary}`]: {
+         color: 'red',
+        },
+-      [`&.${paginationItemClasses.outlinedPrimary}`]: {
++      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.colorPrimary}`]: {
+         color: 'red',
+        },
+-      [`&.${paginationItemClasses.textSecondary}`]: {
++      [`&.${paginationItemClasses.text}.${paginationItemClasses.colorSecondary}`]: {
+         color: 'red',
+        },
+-      [`&.${paginationItemClasses.outlinedSecondary}`]: {
++      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.colorSecondary}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```

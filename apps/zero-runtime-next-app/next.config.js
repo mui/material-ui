@@ -1,7 +1,7 @@
 /* eslint-env node */
 // eslint-ignore-next-line import/no-unresolved
 const { withZeroPlugin } = require('@mui/zero-next-plugin');
-const { extendTheme } = require('@mui/zero-runtime');
+const { experimental_extendTheme: extendTheme } = require('@mui/material/styles');
 
 /**
  * @typedef {import('@mui/zero-next-plugin').ZeroPluginConfig} ZeroPluginConfig
@@ -82,6 +82,10 @@ const theme = extendTheme({
     },
   },
 });
+
+theme.getColorSchemeSelector = (key) => {
+  return `[data-mui-color-scheme="${key}"]`;
+};
 
 // { [theme.getColorSchemeSelector('dark')]: { color: 'black' } }
 

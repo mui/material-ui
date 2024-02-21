@@ -5,8 +5,8 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import DiamondOutlinedIcon from '@mui/icons-material/DiamondOutlined';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
-import Link from 'docs/src/modules/components/Link';
+import { useTranslate } from '@mui/docs/i18n';
+import { Link } from '@mui/docs/Link';
 
 const NativeLink = styled('a')(({ theme }) => ({
   boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
