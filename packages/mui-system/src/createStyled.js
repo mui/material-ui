@@ -48,9 +48,7 @@ function defaultOverridesResolver(slot) {
 
 function processStyleArg(callableStyle, { ownerState, ...props }) {
   const resolvedStylesArg =
-    typeof callableStyle === 'function'
-      ? callableStyle({ ownerState, ...props })
-      : callableStyle;
+    typeof callableStyle === 'function' ? callableStyle({ ownerState, ...props }) : callableStyle;
 
   if (Array.isArray(resolvedStylesArg)) {
     return resolvedStylesArg.flatMap((resolvedStyle) =>
@@ -68,7 +66,7 @@ function processStyleArg(callableStyle, { ownerState, ...props }) {
     variants.forEach((variant) => {
       let isMatch = true;
       if (typeof variant.props === 'function') {
-        isMatch = variant.props({ ownerState, ...props, ...ownerState });
+        isMatch = variant.props({ ownerState, ...props });
       } else {
         Object.keys(variant.props).forEach((key) => {
           if (ownerState?.[key] !== variant.props[key] && props[key] !== variant.props[key]) {
@@ -82,7 +80,7 @@ function processStyleArg(callableStyle, { ownerState, ...props }) {
         }
         result.push(
           typeof variant.style === 'function'
-            ? variant.style({ ownerState, ...props, ...ownerState })
+            ? variant.style({ ownerState, ...props })
             : variant.style,
         );
       }
