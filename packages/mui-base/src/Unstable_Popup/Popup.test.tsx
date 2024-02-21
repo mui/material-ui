@@ -1,16 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import {
-  act,
-  createRenderer,
-  createMount,
-  describeConformanceUnstyled,
-  screen,
-  fireEvent,
-} from '@mui-internal/test-utils';
+import { act, createRenderer, createMount, screen, fireEvent } from '@mui-internal/test-utils';
 import { Unstable_Popup as Popup, popupClasses, PopupProps } from '@mui/base/Unstable_Popup';
 import { PopupContext } from './PopupContext';
 import { useTransitionStateManager } from '../useTransition';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 const TRANSITION_DURATION = 100;
 

@@ -67,9 +67,14 @@ Animation is a key element for adding delight to any application.
 We've already kicked off work on animation support by releasing the [CSS Transition](/base-ui/react-transitions/#css-transition) and [CSS Animation](/base-ui/react-transitions/#css-animation) components, as well as the `useTransitionTrigger` and `useTransitionStateManager` hooks.
 They're currently available for use with the Popup, Menu, and Select, and the plan is to extend support to more components while also adding more features.
 
-{{"demo": "../../data/base/components/transitions/AllTransitionsDemo.js"}}
+<iframe src="https://codesandbox.io/embed/3pdm56?view=preview&module=%2Fdemo.tsx&hidenavigation=1"
+     style="width:100%; height: 300px; border:0; border-radius: 4px; overflow:hidden;"
+     title="/blog/base-ui-2024-plans/"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
 
-<p class="blog-description" style="margin: -16px 0 0 0;">The CSS Animation transition is exaggerated here for the sake of demonstration.</p>
+<p class="blog-description">The CSS Animation transition is exaggerated here for the sake of demonstration.</p>
 
 ## Getting many issues out of the way
 
@@ -90,14 +95,14 @@ Rest assured that Base UI _is_ a standalone library, and it doesn't come packag
 <img alt="Material UI vs. Base UI: independent but related products." src="/static/blog/base-ui-2024-plans/material-vs-base.png" width="1200" height="450" loading="lazy" />
 
 Base UI is no longer _merely_ "Material UI without the styles"—as we've seen with developer trends over the last few years, the potential for growth and adoption of headless components could actually dwarf Material UI in the near future.
-To acknowledge that Base UI has the potential to outgrow Material UI, we plan to move it to its own dedicated GitHub repo for more focused communication and collaboration with the community that's growing around it.
+To acknowledge that Base UI has the potential to outgrow Material UI, we plan to move it to its own dedicated GitHub repository for more focused communication and collaboration with the community that's growing around it.
 
 ## Join us on the ride
 
 If you're passionate about extending the web platform with powerful, accessible, unstyled components, [we're hiring UI Engineers](/careers/staff-ui-engineer-base-ui/) to work on the Base UI team and help us accelerate its growth.
 
 Lastly, we'd love to hear your feedback.
-The best place to share your ideas and requests is in [the GitHub repo](https://github.com/mui/material-ui/issues?q=is:open+is:issue+label:%22package:+base-ui%22).
+The best place to share your ideas and requests is in [the GitHub repository](https://github.com/mui/material-ui/issues?q=is:open+is:issue+label:%22package:+base-ui%22).
 Check out the existing issues and add your thoughts, and feel free to open your own issue if you don't see your concerns addressed elsewhere.
 
 Happy development! 👋
