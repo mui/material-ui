@@ -311,22 +311,6 @@ const pages: MuiPage[] = [
     ],
   },
   {
-    pathname: '/material-ui/design-resources',
-    title: 'Design resources',
-    children: [
-      {
-        pathname: '/material-ui/design-resources/mui-connect',
-        title: 'MUI Connect plugin',
-        newFeature: true,
-      },
-      {
-        pathname: '/material-ui/design-resources/material-ui-for-figma',
-        title: 'Material UI for Figma',
-        newFeature: true,
-      },
-    ],
-  },
-  {
     pathname: '/material-ui/discover-more',
     children: [
       { pathname: '/material-ui/discover-more/showcase' },
@@ -336,6 +320,22 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/discover-more/backers', title: 'Sponsors and Backers' },
       { pathname: '/material-ui/discover-more/vision' },
       { pathname: '/material-ui/discover-more/changelog' },
+    ],
+  },
+  {
+    pathname: '/material-ui/design-resources',
+    title: 'Design resources',
+    children: [
+      {
+        pathname: '/material-ui/design-resources/material-ui-for-figma',
+        title: 'Material UI for Figma',
+        newFeature: true,
+      },
+      {
+        pathname: '/material-ui/design-resources/mui-connect',
+        title: 'MUI Connect plugin',
+        newFeature: true,
+      },
     ],
   },
   {
