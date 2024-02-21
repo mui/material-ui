@@ -10,3 +10,7 @@ swap:
   'Sparkline Chart': Sparkline
   'Gauge Chart': Gauge
   'Treemap Chart': Treemap
+# Don't forget to run the following command to generate the package writing-rules.zip file
+# Vale uses that ZIP file and not the YAML files.
+#
+# pnpm docs:zipRules
