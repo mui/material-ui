@@ -83,8 +83,7 @@ function useLocalStorageStateServer(
   key: string | null,
   initializer: string | null | Initializer<string | null> = null,
 ): UseStorageStateHookResult<string | null> | UseStorageStateHookResult<string> {
-  const [initialValue] = React.useState(initializer);
-  return [initialValue, () => {}];
+  return React.useState(initializer);
 }
 
 /**
