@@ -309,15 +309,15 @@ JS transforms:
          color: 'red',
         },
 -      [`& .${buttonClasses.iconSizeSmall}`]: {
-+      [`& .${buttonClasses.icon}.${buttonClasses.sizeSmall}`]: {
++      [`&.${buttonClasses.root}.${buttonClasses.sizeSmall} > .${buttonClasses.icon}`]: {
          color: 'red',
         },
 -      [`& .${buttonClasses.iconSizeMedium}`]: {
-+      [`& .${buttonClasses.icon}.${buttonClasses.sizeMedium}`]: {
++      [`&.${buttonClasses.root}.${buttonClasses.sizeMedium} > .${buttonClasses.icon}`]: {
          color: 'red',
         },
 -      [`& .${buttonClasses.iconSizeLarge}`]: {
-+      [`& .${buttonClasses.icon}.${buttonClasses.sizeLarge}`]: {
++      [`&.${buttonClasses.root}.${buttonClasses.sizeLarge} > .${buttonClasses.icon}`]: {
          color: 'red',
         },
      },
@@ -388,12 +388,12 @@ CSS transforms:
 +.MuiButton-outlined.MuiButton-sizeMedium
 -.MuiButton-containedSizeMedium
 +.MuiButton-contained.MuiButton-sizeMedium
--.MuiButton-iconSizeSmall
-+.MuiButton-icon.MuiButton-sizeSmall
--.MuiButton-iconSizeMedium
-+.MuiButton-icon.MuiButton-sizeMedium
--.MuiButton-iconSizeLarge
-+.MuiButton-icon.MuiButton-sizeLarge
+-.MuiButton-root .MuiButton-iconSizeSmall
++.MuiButton-root.MuiButton-sizeSmall > .MuiButton-icon
+-.MuiButton-root .MuiButton-iconSizeMedium
++.MuiButton-root.MuiButton-sizeMedium > .MuiButton-icon
+-.MuiButton-root .MuiButton-iconSizeLarge
++.MuiButton-root.MuiButton-sizeLarge > .MuiButton-icon
  />
 ```
 
