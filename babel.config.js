@@ -104,7 +104,7 @@ module.exports = function getBabelConfig(api) {
     ]);
   }
 
-  if (process.env.NODE_ENV === 'production' && api.env(['legacy', 'modern', 'stable', 'node'])) {
+  if (process.env.MUI_ADD_IMPORT_EXTENSIONS === 'true') {
     plugins.push(['babel-plugin-add-import-extension', { extension: useESModules ? 'mjs' : 'js' }]);
   }
 

@@ -31,6 +31,7 @@ async function run(argv) {
     NODE_ENV: 'production',
     BABEL_ENV: bundle,
     MUI_BUILD_VERBOSE: verbose,
+    MUI_ADD_IMPORT_EXTENSIONS: true,
   };
   const babelConfigPath = path.resolve(getWorkspaceRoot(), 'babel.config.js');
   const srcDir = path.resolve('./src');
