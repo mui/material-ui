@@ -118,15 +118,15 @@
   color: red;
 }
 
-.MuiButton-iconSizeSmall {
+.MuiButton-root.MuiButton-iconSizeSmall {
   color: red;
 }
 
-.MuiButton-iconSizeMedium {
+.MuiButton-root.MuiButton-iconSizeMedium {
   color: red;
 }
 
-.MuiButton-iconSizeLarge {
+.MuiButton-root.MuiButton-iconSizeLarge {
   color: red;
 }
 
