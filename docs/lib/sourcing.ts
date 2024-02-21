@@ -40,7 +40,6 @@ const ALLOWED_TAGS = [
   'Joy UI',
   'MUI X',
   'Material UI',
-  'News',
   'Product',
 ];
 

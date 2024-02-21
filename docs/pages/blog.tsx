@@ -419,7 +419,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                 Want to hear more from us?
               </Typography>
               <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                Stay on the loop about everything MUI-related through our social media:
+                Get up to date with everything MUI-related through our social media:
               </Typography>
               <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, '* > svg': { mr: 1 } }}>
                 <Link href="https://github.com/mui" target="_blank" fontSize={14}>
