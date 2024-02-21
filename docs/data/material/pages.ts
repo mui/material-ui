@@ -319,6 +319,11 @@ const pages: MuiPage[] = [
         title: 'MUI Connect plugin',
         newFeature: true,
       },
+      {
+        pathname: '/material-ui/design-resources/material-ui-for-figma',
+        title: 'Material UI for Figma',
+        newFeature: true,
+      },
     ],
   },
   {
