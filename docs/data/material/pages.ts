@@ -197,7 +197,7 @@ const pages: MuiPage[] = [
     children: [
       {
         pathname: '/material-ui/guides/material-3-components',
-        title: 'Material 3 components',
+        title: 'Material Design 3 components',
         newFeature: true,
       },
       { pathname: '/material-ui/guides/minimizing-bundle-size' },
