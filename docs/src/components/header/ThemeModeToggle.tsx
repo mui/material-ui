@@ -20,7 +20,7 @@ function CssVarsModeToggle(props: { onChange: (checked: boolean) => void }) {
       <IconButton
         color="primary"
         disableTouchRipple
-        disabled={!calculatedMode}
+        disabled={!calculatedMode || !mounted}
         onClick={() => {
           props.onChange(calculatedMode === 'light');
           setMode(calculatedMode === 'dark' ? 'light' : 'dark');
