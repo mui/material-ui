@@ -4,10 +4,7 @@ import * as ts from 'typescript';
 import { expect } from 'chai';
 import glob from 'fast-glob';
 import prettier from 'prettier';
-import {
-  TypeScriptProject,
-  createTypeScriptProjectBuilder,
-} from '@mui-internal/api-docs-builder/utils/createTypeScriptProject';
+import { TypeScriptProject, createTypeScriptProjectBuilder } from '@mui-internal/docs-utils';
 import { generatePropTypes } from '../src/generatePropTypes';
 import { injectPropTypesInFile } from '../src/injectPropTypesInFile';
 import { getPropTypesFromFile } from '../src/getPropTypesFromFile';
@@ -42,7 +39,7 @@ describe('typescript-to-proptypes', () => {
     const buildProject = createTypeScriptProjectBuilder({
       test: {
         rootPath: path.join(__dirname, '..'),
-        tsConfigPath: 'tsconfig.json',
+        tsConfigPath: 'tsconfig.test.json',
       },
     });
 
@@ -72,7 +69,7 @@ describe('typescript-to-proptypes', () => {
 
       const components = getPropTypesFromFile({ filePath: inputPath, project, ...options.parser });
 
-      let inputSource = null;
+      let inputSource: string | null = null;
       if (inputPath.endsWith('.d.ts')) {
         try {
           inputSource = fs.readFileSync(inputJS, 'utf8');

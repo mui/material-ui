@@ -15,7 +15,7 @@ import SvgMuiLogotype from 'docs/src/icons/SvgMuiLogotype';
 import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 import ROUTES from 'docs/src/route';
 import DiscordIcon from 'docs/src/icons/DiscordIcon';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import SvgStackOverflow from 'docs/src/icons/SvgStackOverflow';
 
 interface AppFooterProps {

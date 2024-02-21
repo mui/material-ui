@@ -20,7 +20,7 @@
     "packages/mui-types",
     "packages/mui-utils",
     "packages/docs-utils",
-    "packages/typescript-to-proptypes"
+    "packages-internal/scripts"
   ],
   "publishDirectory": {
     "@mui/base": "packages/mui-base/build",
@@ -40,7 +40,7 @@
     "@mui/types": "packages/mui-types/build",
     "@mui/utils": "packages/mui-utils/build",
     "@mui-internal/docs-utils": "packages/docs-utils",
-    "@mui-internal/typescript-to-proptypes": "packages/typescript-to-proptypes"
+    "@mui/internal-scripts": "packages-internal/scripts"
   },
   "sandboxes": [
     "/examples/material-ui-cra-ts",
