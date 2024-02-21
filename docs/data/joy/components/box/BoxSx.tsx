@@ -1,14 +1,18 @@
 import * as React from 'react';
-import { Box, ThemeProvider } from '@mui/material';
+import { Box, ThemeProvider } from '@mui/joy';
 
 export default function BoxSx() {
   return (
     <ThemeProvider
       theme={{
-        palette: {
-          primary: {
-            main: '#007FFF',
-            dark: '#0066CC',
+        colorSchemes: {
+          light: {
+            palette: {
+              primary: {
+                400: '#38bdf8',
+                700: '#0369a1',
+              },
+            },
           },
         },
       }}
@@ -18,9 +22,9 @@ export default function BoxSx() {
           width: 100,
           height: 100,
           borderRadius: 1,
-          bgcolor: 'primary.main',
+          bgcolor: 'primary.700',
           '&:hover': {
-            bgcolor: 'primary.dark',
+            bgcolor: 'primary.400',
           },
         }}
       />
