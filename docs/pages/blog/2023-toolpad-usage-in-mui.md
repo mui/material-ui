@@ -11,7 +11,7 @@ Toolpad helps full-stack engineers build internal tools quickly.
 Internal tools encompass data-intensive CRUD interfaces, analytics dashboards, or custom apps that make teams productive.
 Toolpad offers a low-code, GUI-based, code-friendly way of building apps and comes as an npm package that can be imported in an existing codebase.
 
-We've been dogfooding Toolpad at MUI to build our internal tools, and it has proven beneficial for us to easily assemble well-organized, centrally located KPI dashboards and operations apps. 
+We've been dogfooding Toolpad at MUI to build our internal tools, and it has proven beneficial for us to easily assemble well-organized, centrally located KPI dashboards and operations apps.
 In this blog post we'll discuss four such apps, and explain how we used Toolpad to turn our ideas into reality.
 
 <a href="https://tools-public.mui.com/prod/pages/OverviewPage">
@@ -20,11 +20,11 @@ In this blog post we'll discuss four such apps, and explain how we used Toolpad 
 
 ## Problems tackled through Toolpad
 
-1. Our internal tooling is easier to use and less prone to errors now; before we built these apps, some of these necessary functions were no more than a set of instructions in a Google doc or on Notion.
-2. A user had to log into multiple services to manage their day-to-day chores. Now, one interface does it all.
-3. We utilized Pipedream, Metabase, Google Sheets, and other tools to streamline our day-to-day operations.
-   This meant we had distributed code in multiple places, accessible to only a few.
-   Now we have everything on GitHub and collaboration is much simpler.
+Our internal tooling is easier to use and less prone to errors now; before we built these apps, some of these necessary functions were no more than a set of instructions in a Google doc or on Notion.
+A user had to log into multiple services to manage their day-to-day chores. Now, one interface does it all.
+We utilized Pipedream, Metabase, Google Sheets, and other tools to streamline our day-to-day operations.
+This meant we had distributed code in multiple places, accessible to only a few.
+Now we have everything on GitHub and collaboration is much simpler.
 
 Let's delve into four scenarios that Toolpad has successfully addressed:
 
@@ -39,11 +39,13 @@ They share their issue through a Priority Support template in our repo where the
 
 [Source code](https://github.com/mui/mui-public/blob/master/tools-public/toolpad/resources/updateMuiPaidSupport.ts)
 
+Here's how we built an app for this:
+
 The [`updateMuiPaidSupport.ts`](https://github.com/mui/mui-public/blob/master/tools-public/toolpad/resources/updateMuiPaidSupport.ts) file hosts all functions that are called from Toolpad.
 It uses the [custom function](https://mui.com/toolpad/concepts/custom-functions/) feature and combines GitHub actions, Google Sheets, and Octokit to read and verify user information.
 The fetched data is then bound to the UI components.
-It took one developer a few hours to build the app.
 It uses [page parameters](https://mui.com/toolpad/concepts/page-properties/#page-parameters), [secrets handling](https://mui.com/toolpad/concepts/custom-functions/#secrets-handling), [shell removal](https://mui.com/toolpad/concepts/page-properties/#display-mode), and custom styling as additional features of Toolpad.
+This app took one developer just a few hours to build which otherwise would have taken a couple of days.
 
 ## 2. Customer support KPI tracker
 
@@ -52,10 +54,6 @@ Through the query builder UI we fetch the 100 latest support tickets from Zendes
 It uses a [custom component](https://mui.com/toolpad/concepts/custom-components/) which we call the "health badge."
 Based on the metric value, the component shows three color-coded states: Problem (red), Warning (yellow), and OK (green).
 Other KPI pages also use this health badge and pre-built Chart components to compare stats, observe trends, and spot anomalies.
-
-   <a href="https://tools-public.mui.com/prod/pages/zendeskFirstReply">
-   <img alt="Zendesk first reply" src="/static/blog/2023-toolpad-usage-in-mui/zendesk.png"  loading="lazy" width="2400" height="1394" />
-   </a>
 
 The video below demonstrates the usage of this app in dev mode:
 
@@ -68,7 +66,7 @@ We opted for Toolpad since Metabase doesn't support importing data from REST API
 This is possible in Google Sheets but it requires writing a lot of JS code, and since we wanted to embed it in a [Notion page](https://www.notion.so/mui-org/KPIs-1ce9658b85ce4628a2a2ed2ae74ff69c#3974cb6ed12b4c5a9013bac63113e3bc), Toolpad was the ideal choice.
 Toolpad handles state management and routing, and simplifies query building and data binding, removing the need to write glue code.
 
-You can explore both of the aforementioned apps in dev mode on your device by running the underlying [node app](https://github.com/mui/mui-public/tree/master/tools-public). 
+You can explore both of the aforementioned apps in dev mode on your device by running the underlying [node app](https://github.com/mui/mui-public/tree/master/tools-public).
 The next two apps discussed are internal to MUI.
 
 ## 3. Manage overdue invoices
