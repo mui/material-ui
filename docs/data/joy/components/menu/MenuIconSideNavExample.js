@@ -75,6 +75,7 @@ function NavMenuButton({ children, menu, open, onOpen, onClose, label, ...props 
     >
       <MenuButton
         {...props}
+        ref={menuRef}
         slots={{ root: IconButton }}
         slotProps={{ root: { variant: 'plain', color: 'neutral' } }}
         onMouseDown={() => {
