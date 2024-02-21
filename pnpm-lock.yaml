@@ -1232,9 +1232,6 @@ importers:
       '@mui-internal/test-utils':
         specifier: workspace:^
         version: link:../test-utils
-      '@mui/base':
-        specifier: workspace:*
-        version: link:build
       '@testing-library/react':
         specifier: ^14.2.1
         version: 14.2.1(react-dom@18.2.0)(react@18.2.0)
