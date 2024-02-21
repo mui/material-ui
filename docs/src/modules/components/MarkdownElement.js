@@ -12,6 +12,10 @@ const Root = styled('div')(
     ...lightTheme.typography.body1,
     lineHeight: 1.6, // Increased compared to the 1.5 default to make the docs easier to read.
     color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
+    '& :focus-visible': {
+      outline: `3px solid ${alpha(lightTheme.palette.primary[500], 0.5)}`,
+      outlineOffset: 2,
+    },
     '& strong': {
       color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
     },
@@ -152,7 +156,7 @@ const Root = styled('div')(
         marginLeft: 4,
         height: 26,
         width: 26,
-        backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
+        backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.grey[50]})`,
         color: `var(--muidocs-palette-grey-600, ${lightTheme.palette.grey[600]})`,
         border: '1px solid',
         borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
@@ -542,11 +546,6 @@ const Root = styled('div')(
           display: 'block',
         },
       },
-      '&:focus-visible': {
-        outline: '2px solid',
-        outlineOffset: 2,
-        outlineColor: lightTheme.palette.primaryDark[500],
-      },
     },
     '& .MuiCode-copyKeypress': {
       pointerEvents: 'none',
@@ -605,7 +604,7 @@ const Root = styled('div')(
         '&:hover .anchor-link, & .comment-link': {
           color: `var(--muidocs-palette-primary-300, ${darkTheme.palette.primaryDark[300]})`,
           borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
-          backgroundColor: alpha(darkTheme.palette.primary[900], 0.3),
+          backgroundColor: alpha(darkTheme.palette.primaryDark[700], 0.5),
           '&:hover': {
             borderColor: `var(--muidocs-palette-primary-900, ${darkTheme.palette.primary[900]})`,
             backgroundColor: alpha(darkTheme.palette.primary[900], 0.6),
@@ -648,13 +647,13 @@ const Root = styled('div')(
         borderColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
         '& > code': {
           height: 'fit-content',
-          backgroundColor: `var(--muidocs-palette-primaryDark-600, ${lightTheme.palette.primaryDark[600]})`,
-          borderColor: `var(--muidocs-palette-primaryDark-500, ${lightTheme.palette.primaryDark[500]})`,
+          backgroundColor: `var(--muidocs-palette-primaryDark-600, ${darkTheme.palette.primaryDark[600]})`,
+          borderColor: `var(--muidocs-palette-primaryDark-500, ${darkTheme.palette.primaryDark[500]})`,
         },
         '&.MuiCallout-error': {
           color: `var(--muidocs-palette-error-50, ${darkTheme.palette.error[50]})`,
           backgroundColor: alpha(darkTheme.palette.error[700], 0.2),
-          borderColor: alpha(lightTheme.palette.error[600], 0.3),
+          borderColor: alpha(darkTheme.palette.error[600], 0.3),
           '& strong': {
             color: `var(--muidocs-palette-error-300, ${darkTheme.palette.error[300]})`,
           },
