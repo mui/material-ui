@@ -3,6 +3,12 @@
   // Actual .ts source files are transpiled via babel
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "paths": {
+      "@mui/material": ["./packages/mui-material/src/"],
+      "@mui/material/*": ["./packages/mui-material/src/*"],
+      "@mui/system": ["./packages/mui-system/src/"],
+      "@mui/system/*": ["./packages/mui-system/src/*"]
+    },
     "composite": true,
     "declaration": true,
     "noEmit": false,
@@ -10,7 +16,7 @@
     "outDir": "build",
     "rootDir": "./src"
   },
-  "include": ["src/**/*.ts*"],
+  "include": ["src/**/*.ts*", "./modules.d.ts"],
   "exclude": ["src/**/*.spec.ts*", "src/**/*.test.ts*"],
   "references": [
     { "path": "../mui-material/tsconfig.build.json" },
