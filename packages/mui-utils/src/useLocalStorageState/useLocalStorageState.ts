@@ -2,8 +2,6 @@
 
 import * as React from 'react';
 
-const NOOP = () => {};
-
 // storage events only work across tabs, we'll use an event emitter to announce within the current tab
 const currentTabChangeListeners = new Map<string, Set<() => void>>();
 
