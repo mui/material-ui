@@ -16,7 +16,7 @@ export default function AddressForm() {
   return (
     <React.Fragment>
       <Grid container spacing={3}>
-        <FormGrid item xs={12} sm={6}>
+        <FormGrid item sm={12} md={6}>
           <FormLabel required>First name</FormLabel>
           <InputBase
             id="first-name"
@@ -25,10 +25,9 @@ export default function AddressForm() {
             placeholder="John"
             autoComplete="first name"
             inputProps={{ required: true }}
-            sx={{ minWidth: 280 }}
           />
         </FormGrid>
-        <FormGrid item xs={12} sm={6}>
+        <FormGrid item sm={12} md={6}>
           <FormLabel required>Last name</FormLabel>
           <InputBase
             id="last-name"
@@ -37,34 +36,8 @@ export default function AddressForm() {
             placeholder="Snow"
             autoComplete="last name"
             inputProps={{ required: true }}
-            sx={{ minWidth: 280 }}
           />
         </FormGrid>
-        <FormGrid item xs={6}>
-          <FormLabel required>Country</FormLabel>
-          <InputBase
-            id="country"
-            name="country"
-            type="country"
-            placeholder="United States"
-            autoComplete="shipping country"
-            inputProps={{ required: true }}
-            sx={{ minWidth: { xs: '', sm: 280 } }}
-          />
-        </FormGrid>
-        <FormGrid item xs={6}>
-          <FormLabel required>Zip / Postal code</FormLabel>
-          <InputBase
-            id="zip"
-            name="zip"
-            type="zip"
-            placeholder="12345"
-            autoComplete="shipping postal-code"
-            inputProps={{ required: true }}
-            sx={{ minWidth: { xs: '', sm: 280 } }}
-          />
-        </FormGrid>
-
         <FormGrid item xs={12}>
           <FormLabel required>Address line 1</FormLabel>
           <InputBase
@@ -74,7 +47,6 @@ export default function AddressForm() {
             placeholder="Street name and number"
             autoComplete="shipping address-line1"
             inputProps={{ required: true }}
-            sx={{ minWidth: 280 }}
           />
         </FormGrid>
         <FormGrid item xs={12}>
@@ -86,7 +58,6 @@ export default function AddressForm() {
             placeholder="Apartment, suite, unit, etc. (optional)"
             autoComplete="shipping address-line2"
             inputProps={{ required: true }}
-            sx={{ minWidth: 280 }}
           />
         </FormGrid>
         <FormGrid item xs={6}>
@@ -98,7 +69,6 @@ export default function AddressForm() {
             placeholder="New York"
             autoComplete="City"
             inputProps={{ required: true }}
-            sx={{ minWidth: { xs: '', sm: 280 } }}
           />
         </FormGrid>
         <FormGrid item xs={6}>
@@ -110,7 +80,28 @@ export default function AddressForm() {
             placeholder="NY"
             autoComplete="State"
             inputProps={{ required: true }}
-            sx={{ minWidth: { xs: '', sm: 280 } }}
+          />
+        </FormGrid>
+        <FormGrid item xs={6}>
+          <FormLabel required>Country</FormLabel>
+          <InputBase
+            id="country"
+            name="country"
+            type="country"
+            placeholder="United States"
+            autoComplete="shipping country"
+            inputProps={{ required: true }}
+          />
+        </FormGrid>
+        <FormGrid item xs={6}>
+          <FormLabel required>Zip / Postal code</FormLabel>
+          <InputBase
+            id="zip"
+            name="zip"
+            type="zip"
+            placeholder="12345"
+            autoComplete="shipping postal-code"
+            inputProps={{ required: true }}
           />
         </FormGrid>
         <FormGrid item xs={12}>

@@ -134,7 +134,7 @@ export default function Checkout() {
           sm={5}
           lg={4}
           sx={{
-            display: { xs: 'none', sm: 'flex' },
+            display: { xs: 'none', md: 'flex' },
             flexDirection: 'column',
             backgroundColor: 'background.default',
             borderRight: '1px solid',
@@ -178,8 +178,8 @@ export default function Checkout() {
         </Grid>
         <Grid
           item
-          xs={12}
-          sm={7}
+          sm={12}
+          md={7}
           lg={8}
           sx={{
             display: 'flex',
@@ -317,6 +317,7 @@ export default function Checkout() {
                     gap: 1,
                     pb: { xs: 12, sm: 0 },
                     mt: { xs: 2, sm: 0 },
+                    mb: '60px',
                   }}
                 >
                   {activeStep !== 0 && (

@@ -572,7 +572,6 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
           root: ({ theme }) => ({
             boxSizing: 'border-box',
             flexGrow: 1,
-            minWidth: 280,
             minHeight: 40,
             height: '100%',
             borderRadius: '10px',
@@ -591,7 +590,6 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
             ...(theme.palette.mode === 'dark' && {
               boxSizing: 'border-box',
               flexGrow: 1,
-              minWidth: 280,
               minHeight: 40,
               height: '100%',
               borderRadius: '10px',
