@@ -3,13 +3,15 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
-import ButtonBase from '../ButtonBase';
-import AccordionContext from '../Accordion/AccordionContext';
-import accordionSummaryClasses, {
+import { styled } from '@mui/zero-runtime';
+import { useThemeProps } from '@mui/material/styles';
+import ButtonBase from '@mui/material/ButtonBase';
+/* eslint-disable-next-line no-restricted-imports */
+import AccordionContext from '@mui/material/Accordion/AccordionContext';
+import {
+  accordionSummaryClasses,
   getAccordionSummaryUtilityClass,
-} from './accordionSummaryClasses';
+} from '@mui/material/AccordionSummary';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, expanded, disabled, disableGutters } = ownerState;

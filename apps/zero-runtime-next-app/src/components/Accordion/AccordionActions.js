@@ -3,9 +3,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
-import { getAccordionActionsUtilityClass } from './accordionActionsClasses';
+import { styled } from '@mui/zero-runtime';
+import { useThemeProps } from '@mui/material/styles';
+import { getAccordionActionsUtilityClass } from '@mui/material/AccordionActions';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disableSpacing } = ownerState;

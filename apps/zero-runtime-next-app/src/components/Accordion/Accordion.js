@@ -5,14 +5,16 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
-import Collapse from '../Collapse';
-import Paper from '../Paper';
-import AccordionContext from './AccordionContext';
-import useControlled from '../utils/useControlled';
-import useSlot from '../utils/useSlot';
-import accordionClasses, { getAccordionUtilityClass } from './accordionClasses';
+import { styled } from '@mui/zero-runtime';
+import { useThemeProps } from '@mui/material/styles';
+import Collapse from '@mui/material/Collapse';
+import Paper from '@mui/material/Paper';
+/* eslint-disable-next-line no-restricted-imports */
+import AccordionContext from '@mui/material/Accordion/AccordionContext';
+import { useControlled } from '@mui/material/utils';
+/* eslint-disable-next-line no-restricted-imports */
+import useSlot from '@mui/material/utils/useSlot';
+import { accordionClasses, getAccordionUtilityClass } from '@mui/material/Accordion';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, square, expanded, disabled, disableGutters } = ownerState;
