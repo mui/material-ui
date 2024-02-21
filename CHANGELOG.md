@@ -6,7 +6,7 @@
 
 _Feb 21, 2024_
 
-A big thanks to the 24 contributors who made this release possible.
+A big thanks to the 25 contributors who made this release possible.
 This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.15.11`
@@ -28,6 +28,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 ### `@mui/system@5.15.11`
 
 - Use direct import (#40851) @siriwatknp
+- Move useMediaQuery to system (#39463) @justintoman
 
 ### `@mui/codemod@5.15.11`
 
@@ -96,7 +97,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [zero] Fix wrong CSS order by moving import to last (#41002) @siriwatknp
 - [zero] Export `extendTheme` for creating a zero-runtime theme (#40897) @siriwatknp
 
-All contributors of this release in alphabetical order: @alexfauquette, @brijeshb42, @danilo-leal, @DiegoAndai, @dpertsin, @flaviendelangle, @gitstart, @gregberge, @harrydigos, @Janpot, @khgiddon, @KirankumarAmbati, @LukasTy, @michaldudak, @mnajdova, @oliviertassinari, @PaulKristoffersson, @Rishi556, @rluzists1, @sai6855, @samuelsycamore, @siriwatknp, @zanivan, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @alexfauquette, @brijeshb42, @danilo-leal, @DiegoAndai, @dpertsin, @flaviendelangle, @gitstart, @gregberge, @harrydigos, @Janpot, @justintoman, @khgiddon, @KirankumarAmbati, @LukasTy, @michaldudak, @mnajdova, @oliviertassinari, @PaulKristoffersson, @Rishi556, @rluzists1, @sai6855, @samuelsycamore, @siriwatknp, @zanivan, @ZeeshanTamboli
 
 ## v5.15.10
 
