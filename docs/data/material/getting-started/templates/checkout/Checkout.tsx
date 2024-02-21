@@ -10,7 +10,7 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { PaletteMode, Theme } from '@mui/material';
+import { PaletteMode } from '@mui/material';
 
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
@@ -70,15 +70,11 @@ function ToggleCustomTheme({
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
-const whiteLogo =
-  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf7356420e154daf_SitemarkLight.svg';
-const darkLogo =
-  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73563dba154dad_SitemarkDark.svg';
-
 const logoStyle = {
   width: '140px',
   height: '56px',
-  opacity: 0.8,
+  marginLeft: '-12px',
+  marginRight: '-12px',
 };
 
 function getStepContent(step: number) {
@@ -94,19 +90,11 @@ function getStepContent(step: number) {
   }
 }
 
-function determineLogo(showCustomTheme: boolean, theme: Theme): string {
-  if (showCustomTheme) {
-    return theme.palette.mode === 'light' ? darkLogo : whiteLogo;
-  }
-  return defaultTheme.palette.mode === 'light' ? darkLogo : whiteLogo;
-}
-
 export default function Checkout() {
-  const [mode, setMode] = React.useState<PaletteMode>('dark');
+  const [mode, setMode] = React.useState<PaletteMode>('light');
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const LPtheme = createTheme(getLPTheme(mode));
   const [activeStep, setActiveStep] = React.useState(0);
-  const logo = determineLogo(showCustomTheme, LPtheme);
 
   const toggleColorMode = () => {
     setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
@@ -147,15 +135,10 @@ export default function Checkout() {
         >
           <Box
             sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
+              height: '32px',
               width: '100%',
-              ml: '-18px',
-              alignItems: 'center',
             }}
-          >
-            <img src={logo} style={logoStyle} alt="logo of sitemark" />
-          </Box>
+          />
           <Box
             sx={{
               display: 'flex',
@@ -171,7 +154,13 @@ export default function Checkout() {
               href="/material-ui/getting-started/templates/landing-page/"
               sx={{ alignSelf: 'start', ml: '-8px' }}
             >
-              Back to Sitemark
+              <img
+                src={
+                  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
+                }
+                style={logoStyle}
+                alt="logo of sitemark"
+              />
             </Button>
             <Info />
           </Box>
@@ -196,39 +185,34 @@ export default function Checkout() {
           <Box
             sx={{
               display: 'flex',
-              justifyContent: 'flex-end',
+              justifyContent: { sm: 'space-between', md: 'flex-end' },
               width: '100%',
-              maxWidth: 600,
-              height: 56,
+              maxWidth: { xs: '100%', sm: 600 },
+              height: 40,
             }}
           >
             <Box
               sx={{
-                display: { xs: 'flex', sm: 'none' },
-                flexDirection: 'column',
-                justifyContent: 'space-between',
+                display: { sm: 'flex', md: 'none' },
+                flexDirection: 'row',
                 width: '100%',
                 alignItems: 'center',
               }}
             >
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  flexGrow: 1,
-                  width: '100%',
-                  maxWidth: 500,
-                }}
+              <Button
+                startIcon={<ArrowBackRoundedIcon />}
+                component="a"
+                href="/material-ui/getting-started/templates/landing-page/"
+                sx={{ alignSelf: 'start', ml: '-8px' }}
               >
-                <Button
-                  startIcon={<ArrowBackRoundedIcon />}
-                  component="a"
-                  href="/material-ui/getting-started/templates/landing-page/"
-                  sx={{ alignSelf: 'start', ml: '-8px' }}
-                >
-                  Back to Sitemark
-                </Button>
-              </Box>
+                <img
+                  src={
+                    'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
+                  }
+                  style={logoStyle}
+                  alt="logo of sitemark"
+                />
+              </Button>
             </Box>
             <ToggleColorMode
               mode={mode}
@@ -236,7 +220,6 @@ export default function Checkout() {
               showCustomTheme={showCustomTheme}
             />
           </Box>
-
           <Box
             sx={{
               display: 'flex',
