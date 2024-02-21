@@ -73,7 +73,7 @@ Toolpad runs completely locally. You're not stuck with an online code editor or 
 <img alt="Building an application on Toolpad" src="/static/blog/2023-toolpad-beta-announcement/code.png"  loading="lazy" width="2400" height="1394" />
 </a>
 
-### 6. A catalogue of components powered by Material UI
+### 6. A catalog of components powered by Material UI
 
 Material UI provides production-ready React components; a chosen few are currently available inside Toolpad, and we're adding more all the time.
 
@@ -91,11 +91,11 @@ In this domain, there are two categories of products:
 
 Toolpad is solely focused on professional developers. As much as we are low-code, we are equally code-friendly. Providing the basic functionality that you expect from an open-source tool is non-negotiable for us—we will always prioritize your best interests over all else. With nearly a decade of experience building developer tools, we understand the long-term benefits of cultivating a close relationship with our community of users.
 
-Lastly, Toolpad is the only product that offers a drag-and-drop UI builder closely integrated with your favorite IDE, such as VSCode. It's the best of both the worlds!
+Lastly, Toolpad is the only product that offers a drag-and-drop UI builder closely integrated with your favorite IDE, such as VSCode. It's the best of both worlds!
 
 ## How can I use Toolpad?
 
-Toolpad is available as an NPM package. Follow the [Installation guide](https://mui.com/toolpad/getting-started/installation/) in the docs to get started. You can learn more about Toolpad by visiting the [home page](https://mui.com/toolpad/).
+Toolpad is available as an npm package. Follow the [Installation guide](https://mui.com/toolpad/getting-started/installation/) in the docs to get started. You can learn more about Toolpad by visiting the [home page](https://mui.com/toolpad/).
 
 <img alt="Toolpad documentation and instructions on how to use it" src="/static/blog/2023-toolpad-beta-announcement/docs.png"  loading="lazy" width="2400" height="1394" />
 
@@ -107,4 +107,4 @@ The best places to stay up-to-date about what we're currently working on are [Gi
 
 If you have any questions or would like to share feedback, you can directly contact the team at toolpad@mui.com or reach us on [X](https://twitter.com/MUI_Toolpad). You can also engage in conversation in our [Discord](https://mui.com/r/discord/) server.
 
-If you'd like an in-depth demo and to discuss your use case, please feel free to [schedule a meeting with me on Calendly](https://calendly.com/prakhar-mui).
+If you'd like an in-depth demo to discuss your use case, please feel free to [schedule a meeting with me on Calendly](https://calendly.com/prakhar-mui).

@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui-internal/test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import ListSubheader, { listSubheaderClasses as classes } from '@mui/joy/ListSubheader';
 import ListSubheaderDispatch from './ListSubheaderContext';
+import describeConformance from '../../test/describeConformance';
 
 describe('Joy <ListSubheader />', () => {
   const { render } = createRenderer();

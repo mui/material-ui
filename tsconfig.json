@@ -54,7 +54,9 @@
       "@mui/zero-vite-plugin": ["./packages/zero-vite-plugin/src"],
       "@mui/zero-vite-plugin/*": ["./packages/zero-vite-plugin/src/*"],
       "@mui-internal/docs-utils": ["./packages/docs-utils/src"],
-      "@mui-internal/typescript-to-proptypes": ["./packages/typescript-to-proptypes/src"]
+      "@mui/internal-scripts/typescript-to-proptypes": [
+        "./packages-internal/scripts/typescript-to-proptypes/src"
+      ]
     },
     // Otherwise we get react-native typings which conflict with dom.lib.
     "types": ["node", "react"]
