@@ -30,12 +30,12 @@ If you need to run a specific codemod, those are also linked below.
 
 ### Inner element overrides
 
-The `slots` and `slotProps` API will be standardized, and the analogous APIs will be deprecated and eventually removed: `components`, `componentsProps`, `<SlotName>Component`, and `<SlotName>Props`.
+The `slots` and `slotProps` API is in process of being standardized. The analogous APIs: `components`, `componentsProps`, `<SlotName>Component`, and `<SlotName>Props` are going to be deprecated and eventually removed.
 This improves the developer experience through consistency, predictability, and reducing cognitive load.
 
 ### Composed CSS classes
 
-The composed CSS classes will be deprecated and eventually removed in favor of atomic class alternatives.
+The composed CSS classes are going to be deprecated and eventually removed in favor of atomic class alternatives.
 For example, the `.MuiAccordionSummary-contentGutters` class was deprecated in favor of the `.MuiAccordionSummary-gutters` and `.MuiAccordionSummary-content` classes.
 This improves the developer experience by reducing bloat and cognitive load.
 
