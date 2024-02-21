@@ -194,7 +194,6 @@ SwitchBase.propTypes = {
   checkedIcon: PropTypes.node.isRequired,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS classes API](#classes) below for more details.
    */
   classes: PropTypes.object,
   /**
