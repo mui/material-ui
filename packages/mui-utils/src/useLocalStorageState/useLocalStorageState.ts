@@ -76,11 +76,12 @@ function setValue(area: Storage, key: string | null, value: string | null) {
     } else {
       area.setItem(key, String(value));
     }
-    emitCurrentTabStorageChange(key);
   } catch {
     // ignore
     // See https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API#feature-detecting_localstorage
+    return;
   }
+  emitCurrentTabStorageChange(key);
 }
 
 type Initializer<T> = () => T;
