@@ -15,7 +15,7 @@ import {
   getPropTypesFromFile,
   injectPropTypesInFile,
   InjectPropTypesInFileOptions,
-} from '@mui-internal/typescript-to-proptypes';
+} from '@mui/internal-scripts/typescript-to-proptypes';
 import {
   createTypeScriptProjectBuilder,
   TypeScriptProject,

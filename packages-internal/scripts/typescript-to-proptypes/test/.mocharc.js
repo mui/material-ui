@@ -1,5 +1,5 @@
 module.exports = {
   extension: ['js', 'ts', 'tsx'],
   ignore: ['**/node_modules/**'],
-  require: [require.resolve('./test/testSetup')],
+  require: [require.resolve('./testSetup')],
 };

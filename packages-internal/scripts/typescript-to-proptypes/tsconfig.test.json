@@ -8,5 +8,5 @@
     "isolatedModules": true
   },
   "include": ["./src/*.ts", "./test/*.ts"],
-  "references": [{ "path": "../docs-utils/tsconfig.build.json" }]
+  "references": [{ "path": "../../docs-utils/tsconfig.build.json" }]
 }
