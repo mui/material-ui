@@ -30,7 +30,7 @@ export const nativeSelectSelectStyles = ({ ownerState, theme }) => ({
   '&:focus': {
     // Show that it's not an text input
     ...(theme.vars
-      ? { backgroundColor: `color-mix(${theme.vars.palette.common.onBackground} / 0.05)` }
+      ? { backgroundColor: `rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.05)` }
       : {
           backgroundColor:
             theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.05)',

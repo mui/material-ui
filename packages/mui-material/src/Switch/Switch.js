@@ -133,7 +133,7 @@ const SwitchSwitchBase = styled(SwitchBase, {
   ({ theme, ownerState }) => ({
     '&:hover': {
       backgroundColor: theme.vars
-        ? `color-mix(${theme.vars.palette.action.active} / transparent ${(theme.palette.action.hoverOpacity * 100).toFixed(0)}%)`
+        ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
         : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
@@ -145,9 +145,9 @@ const SwitchSwitchBase = styled(SwitchBase, {
         color: (theme.vars || theme).palette[ownerState.color].main,
         '&:hover': {
           backgroundColor: theme.vars
-            ? `color-mix(${theme.vars.palette[ownerState.color].main} / transparent ${
+            ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${
                 theme.vars.palette.action.hoverOpacity
-              }%)`
+              })`
             : alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
           '@media (hover: none)': {
             backgroundColor: 'transparent',

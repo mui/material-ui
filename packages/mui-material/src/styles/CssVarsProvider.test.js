@@ -66,10 +66,10 @@ describe('[Material UI] CssVarsProvider', () => {
           light: 'var(--mui-palette-primary-light)',
           dark: 'var(--mui-palette-primary-dark)',
           contrastText: 'var(--mui-palette-primary-contrastText)',
-          main: 'var(--mui-palette-primary-main)',
-          light: 'var(--mui-palette-primary-light)',
-          dark: 'var(--mui-palette-primary-dark)',
-          contrastText: 'var(--mui-palette-primary-contrastText)',
+          mainChannel: 'var(--mui-palette-primary-mainChannel)',
+          lightChannel: 'var(--mui-palette-primary-lightChannel)',
+          darkChannel: 'var(--mui-palette-primary-darkChannel)',
+          contrastTextChannel: 'var(--mui-palette-primary-contrastTextChannel)',
         }),
       );
       expect(screen.getByTestId('palette-secondary').textContent).to.equal(
@@ -78,10 +78,10 @@ describe('[Material UI] CssVarsProvider', () => {
           light: 'var(--mui-palette-secondary-light)',
           dark: 'var(--mui-palette-secondary-dark)',
           contrastText: 'var(--mui-palette-secondary-contrastText)',
-          main: 'var(--mui-palette-secondary-main)',
-          light: 'var(--mui-palette-secondary-light)',
-          dark: 'var(--mui-palette-secondary-dark)',
-          contrastText: 'var(--mui-palette-secondary-contrastText)',
+          mainChannel: 'var(--mui-palette-secondary-mainChannel)',
+          lightChannel: 'var(--mui-palette-secondary-lightChannel)',
+          darkChannel: 'var(--mui-palette-secondary-darkChannel)',
+          contrastTextChannel: 'var(--mui-palette-secondary-contrastTextChannel)',
         }),
       );
       expect(screen.getByTestId('palette-error').textContent).to.equal(
@@ -90,10 +90,10 @@ describe('[Material UI] CssVarsProvider', () => {
           light: 'var(--mui-palette-error-light)',
           dark: 'var(--mui-palette-error-dark)',
           contrastText: 'var(--mui-palette-error-contrastText)',
-          main: 'var(--mui-palette-error-main)',
-          light: 'var(--mui-palette-error-light)',
-          dark: 'var(--mui-palette-error-dark)',
-          contrastText: 'var(--mui-palette-error-contrastText)',
+          mainChannel: 'var(--mui-palette-error-mainChannel)',
+          lightChannel: 'var(--mui-palette-error-lightChannel)',
+          darkChannel: 'var(--mui-palette-error-darkChannel)',
+          contrastTextChannel: 'var(--mui-palette-error-contrastTextChannel)',
         }),
       );
       expect(screen.getByTestId('palette-warning').textContent).to.equal(
@@ -102,10 +102,10 @@ describe('[Material UI] CssVarsProvider', () => {
           light: 'var(--mui-palette-warning-light)',
           dark: 'var(--mui-palette-warning-dark)',
           contrastText: 'var(--mui-palette-warning-contrastText)',
-          main: 'var(--mui-palette-warning-main)',
-          light: 'var(--mui-palette-warning-light)',
-          dark: 'var(--mui-palette-warning-dark)',
-          contrastText: 'var(--mui-palette-warning-contrastText)',
+          mainChannel: 'var(--mui-palette-warning-mainChannel)',
+          lightChannel: 'var(--mui-palette-warning-lightChannel)',
+          darkChannel: 'var(--mui-palette-warning-darkChannel)',
+          contrastTextChannel: 'var(--mui-palette-warning-contrastTextChannel)',
         }),
       );
       expect(screen.getByTestId('palette-info').textContent).to.equal(
@@ -114,10 +114,10 @@ describe('[Material UI] CssVarsProvider', () => {
           light: 'var(--mui-palette-info-light)',
           dark: 'var(--mui-palette-info-dark)',
           contrastText: 'var(--mui-palette-info-contrastText)',
-          main: 'var(--mui-palette-info-main)',
-          light: 'var(--mui-palette-info-light)',
-          dark: 'var(--mui-palette-info-dark)',
-          contrastText: 'var(--mui-palette-info-contrastText)',
+          mainChannel: 'var(--mui-palette-info-mainChannel)',
+          lightChannel: 'var(--mui-palette-info-lightChannel)',
+          darkChannel: 'var(--mui-palette-info-darkChannel)',
+          contrastTextChannel: 'var(--mui-palette-info-contrastTextChannel)',
         }),
       );
       expect(screen.getByTestId('palette-success').textContent).to.equal(
@@ -126,10 +126,10 @@ describe('[Material UI] CssVarsProvider', () => {
           light: 'var(--mui-palette-success-light)',
           dark: 'var(--mui-palette-success-dark)',
           contrastText: 'var(--mui-palette-success-contrastText)',
-          main: 'var(--mui-palette-success-main)',
-          light: 'var(--mui-palette-success-light)',
-          dark: 'var(--mui-palette-success-dark)',
-          contrastText: 'var(--mui-palette-success-contrastText)',
+          mainChannel: 'var(--mui-palette-success-mainChannel)',
+          lightChannel: 'var(--mui-palette-success-lightChannel)',
+          darkChannel: 'var(--mui-palette-success-darkChannel)',
+          contrastTextChannel: 'var(--mui-palette-success-contrastTextChannel)',
         }),
       );
 
@@ -138,8 +138,8 @@ describe('[Material UI] CssVarsProvider', () => {
           primary: 'var(--mui-palette-text-primary)',
           secondary: 'var(--mui-palette-text-secondary)',
           disabled: 'var(--mui-palette-text-disabled)',
-          primary: 'var(--mui-palette-text-primary)',
-          secondary: 'var(--mui-palette-text-secondary)',
+          primaryChannel: 'var(--mui-palette-text-primaryChannel)',
+          secondaryChannel: 'var(--mui-palette-text-secondaryChannel)',
           icon: 'var(--mui-palette-text-icon)',
         }),
       );
@@ -150,7 +150,7 @@ describe('[Material UI] CssVarsProvider', () => {
         JSON.stringify({
           paper: 'var(--mui-palette-background-paper)',
           default: 'var(--mui-palette-background-default)',
-          default: 'var(--mui-palette-background-default)',
+          defaultChannel: 'var(--mui-palette-background-defaultChannel)',
         }),
       );
       expect(screen.getByTestId('palette-action').textContent).to.equal(
@@ -166,8 +166,8 @@ describe('[Material UI] CssVarsProvider', () => {
           focus: 'var(--mui-palette-action-focus)',
           focusOpacity: 'var(--mui-palette-action-focusOpacity)',
           activatedOpacity: 'var(--mui-palette-action-activatedOpacity)',
-          active: 'var(--mui-palette-action-active)',
-          selected: 'var(--mui-palette-action-selected)',
+          activeChannel: 'var(--mui-palette-action-activeChannel)',
+          selectedChannel: 'var(--mui-palette-action-selectedChannel)',
         }),
       );
       expect(screen.getByTestId('palette-common').textContent).to.equal(
@@ -176,8 +176,8 @@ describe('[Material UI] CssVarsProvider', () => {
           white: 'var(--mui-palette-common-white)',
           background: 'var(--mui-palette-common-background)',
           onBackground: 'var(--mui-palette-common-onBackground)',
-          background: 'var(--mui-palette-common-background)',
-          onBackground: 'var(--mui-palette-common-onBackground)',
+          backgroundChannel: 'var(--mui-palette-common-backgroundChannel)',
+          onBackgroundChannel: 'var(--mui-palette-common-onBackgroundChannel)',
         }),
       );
     });

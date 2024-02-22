@@ -77,11 +77,11 @@ const ListItemButtonRoot = styled(ButtonBase, {
   },
   [`&.${listItemButtonClasses.selected}`]: {
     backgroundColor: theme.vars
-      ? `color-mix(${theme.vars.palette.primary.main} / transparent ${(theme.palette.action.selectedOpacity * 100).toFixed(0)}%)`
+      ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
       : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
     [`&.${listItemButtonClasses.focusVisible}`]: {
       backgroundColor: theme.vars
-        ? `color-mix(${theme.vars.palette.primary.main} / transparent ${((theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity) * 100).toFixed(2)}%)`
+        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
         : alpha(
             theme.palette.primary.main,
             theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
@@ -90,7 +90,7 @@ const ListItemButtonRoot = styled(ButtonBase, {
   },
   [`&.${listItemButtonClasses.selected}:hover`]: {
     backgroundColor: theme.vars
-      ? `color-mix(${theme.vars.palette.primary.main} / transparent ${((theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity) * 100).toFixed(2)}%)`
+      ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
       : alpha(
           theme.palette.primary.main,
           theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
@@ -98,7 +98,7 @@ const ListItemButtonRoot = styled(ButtonBase, {
     // Reset on touch devices, it doesn't add specificity
     '@media (hover: none)': {
       backgroundColor: theme.vars
-        ? `color-mix(${theme.vars.palette.primary.main} / transparent ${(theme.palette.action.selectedOpacity * 100).toFixed(0)}%)`
+        ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
         : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
     },
   },

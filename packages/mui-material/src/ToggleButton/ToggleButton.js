@@ -45,15 +45,16 @@ const ToggleButtonRoot = styled(ButtonBase, {
     ownerState.color === 'standard'
       ? theme.palette.text.primary
       : theme.palette[ownerState.color].main;
+  let selectedColorChannel;
   if (theme.vars) {
     selectedColor =
       ownerState.color === 'standard'
         ? theme.vars.palette.text.primary
         : theme.vars.palette[ownerState.color].main;
-    selectedColor =
+    selectedColorChannel =
       ownerState.color === 'standard'
-        ? theme.vars.palette.text.primary
-        : theme.vars.palette[ownerState.color].main;
+        ? theme.vars.palette.text.primaryChannel
+        : theme.vars.palette[ownerState.color].mainChannel;
   }
 
   return {
@@ -73,7 +74,7 @@ const ToggleButtonRoot = styled(ButtonBase, {
       textDecoration: 'none',
       // Reset on mouse devices
       backgroundColor: theme.vars
-        ? `color-mix(${theme.vars.palette.text.primary} / transparent ${(theme.palette.action.hoverOpacity * 100).toFixed(0)}%)`
+        ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.hoverOpacity})`
         : alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -82,11 +83,11 @@ const ToggleButtonRoot = styled(ButtonBase, {
     [`&.${toggleButtonClasses.selected}`]: {
       color: selectedColor,
       backgroundColor: theme.vars
-        ? `color-mix(${selectedColor} / transparent ${(theme.palette.action.selectedOpacity * 100).toFixed(0)}%)`
+        ? `rgba(${selectedColorChannel} / ${theme.vars.palette.action.selectedOpacity})`
         : alpha(selectedColor, theme.palette.action.selectedOpacity),
       '&:hover': {
         backgroundColor: theme.vars
-          ? `color-mix(${selectedColor} / transparent ${((theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity) * 100).toFixed(2)}%)`
+          ? `rgba(${selectedColorChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
           : alpha(
               selectedColor,
               theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
@@ -94,7 +95,7 @@ const ToggleButtonRoot = styled(ButtonBase, {
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           backgroundColor: theme.vars
-            ? `color-mix(${selectedColor} / transparent ${(theme.palette.action.selectedOpacity * 100).toFixed(0)}%)`
+            ? `rgba(${selectedColorChannel} / ${theme.vars.palette.action.selectedOpacity})`
             : alpha(selectedColor, theme.palette.action.selectedOpacity),
         },
       },
