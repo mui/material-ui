@@ -276,6 +276,11 @@ export interface ColorSystem {
 
 export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'components'> {
   /**
+   * The color space to use for the generated CSS variables
+   * @default 'srgb'
+   */
+  colorSpace?: string;
+  /**
    * Prefix of the generated CSS variables
    * @default 'mui'
    */

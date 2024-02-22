@@ -13,7 +13,8 @@ export default function transformer(file, api, options) {
   root.find(j.TemplateLiteral).forEach((path) => {
     if (path.node.type === 'TemplateLiteral') {
       if (path.node.quasis?.[0]?.value?.raw.endsWith('rgba(')) {
-        path.node.quasis[0] = j.templateElement({ raw: 'color-mix(', cooked: 'color-mix(' }, false);
+        const newValue = path.node.quasis?.[0]?.value?.raw.replace('rgba(', 'color-mix(');
+        path.node.quasis[0] = j.templateElement({ raw: newValue, cooked: newValue }, false);
 
         if (path.node.expressions.length >= 2) {
           path.node.quasis[1] = j.templateElement(

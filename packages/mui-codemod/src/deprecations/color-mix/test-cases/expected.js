@@ -43,7 +43,7 @@
       ownerState.color !== 'inherit' && {
         color: (theme.vars || theme).palette[ownerState.color].main,
         border: theme.vars
-          ? `color-mix(${theme.vars.palette[ownerState.color].main} / 0.5)`
+          ? `1px solid color-mix(${theme.vars.palette[ownerState.color].main} / 0.5)`
           : `1px solid ${alpha(theme.palette[ownerState.color].main, 0.5)}`,
       }),
     '&[aria-selected="true"]': {

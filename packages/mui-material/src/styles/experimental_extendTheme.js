@@ -52,6 +52,7 @@ export const createGetCssVar = (cssVarPrefix = 'mui') => systemCreateGetCssVar(c
 
 export default function extendTheme(options = {}, ...args) {
   const {
+    colorSpace = 'srgb',
     colorSchemes: colorSchemesInput = {},
     cssVarPrefix = 'mui',
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
@@ -310,8 +311,14 @@ export default function extendTheme(options = {}, ...args) {
     shouldSkipGeneratingVar,
   };
   const { vars: themeVars, generateCssVars } = prepareCssVars(theme, parserConfig);
-  theme.vars = themeVars;
-  theme.generateCssVars = generateCssVars;
+  theme.vars = { ...themeVars, colorSpace: 'var(--color-space)' };
+  theme.generateCssVars = (colorScheme) => {
+    if (!colorScheme) {
+      const result = generateCssVars();
+      return { ...result, css: { '--color-space': colorSpace, ...result.css } };
+    }
+    return generateCssVars(colorScheme);
+  };
 
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
   theme.unstable_sxConfig = {
