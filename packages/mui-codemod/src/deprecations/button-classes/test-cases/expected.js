@@ -242,13 +242,13 @@ fn({
         [`&.${buttonClasses.contained}.${buttonClasses.sizeLarge}`]: {
           color: 'red',
         },
-        [`&.${buttonClasses.sizeSmall}${" > "}.${buttonClasses.icon}`]: {
+        [`&.${buttonClasses.sizeSmall} > .${buttonClasses.icon}`]: {
           color: 'red',
         },
-        [`&.${buttonClasses.sizeMedium}${" > "}.${buttonClasses.icon}`]: {
+        [`&.${buttonClasses.sizeMedium} > .${buttonClasses.icon}`]: {
           color: 'red',
         },
-        [`&.${buttonClasses.sizeLarge}${" > "}.${buttonClasses.icon}`]: {
+        [`&.${buttonClasses.sizeLarge} > .${buttonClasses.icon}`]: {
           color: 'red',
         },
       },
@@ -452,13 +452,13 @@ styled(Component)(() => {
     [`&.${buttonClasses.contained}.${buttonClasses.sizeLarge}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.sizeSmall}${" > "}.${buttonClasses.icon}`]: {
+    [`&.${buttonClasses.sizeSmall} > .${buttonClasses.icon}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.sizeMedium}${" > "}.${buttonClasses.icon}`]: {
+    [`&.${buttonClasses.sizeMedium} > .${buttonClasses.icon}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.sizeLarge}${" > "}.${buttonClasses.icon}`]: {
+    [`&.${buttonClasses.sizeLarge} > .${buttonClasses.icon}`]: {
       color: 'red',
     },
   };
@@ -660,13 +660,13 @@ styled(Component)(() => {
     [`&.${buttonClasses.contained}.${buttonClasses.sizeLarge}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.sizeSmall}${" > "}.${buttonClasses.icon}`]: {
+    [`&.${buttonClasses.sizeSmall} > .${buttonClasses.icon}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.sizeMedium}${" > "}.${buttonClasses.icon}`]: {
+    [`&.${buttonClasses.sizeMedium} > .${buttonClasses.icon}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.sizeLarge}${" > "}.${buttonClasses.icon}`]: {
+    [`&.${buttonClasses.sizeLarge} > .${buttonClasses.icon}`]: {
       color: 'red',
     },
   }}

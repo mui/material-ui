@@ -46,20 +46,21 @@ export default function transformer(file, api, options) {
                         : `${replacementSelectorPrefix}.`,
                     )
                   ) {
+                    parent.expressions.splice(
+                      memberExpressionIndex,
+                      1,
+                      j.memberExpression(
+                        memberExpression.value.object,
+                        j.identifier(atomicClasses[0]),
+                      ),
+
+                      j.memberExpression(
+                        memberExpression.value.object,
+                        j.identifier(atomicClasses[1]),
+                      ),
+                    );
+
                     if (replacementSelector.includes(' > ')) {
-                      parent.expressions.splice(
-                        memberExpressionIndex,
-                        1,
-                        j.memberExpression(
-                          memberExpression.value.object,
-                          j.identifier(atomicClasses[0]),
-                        ),
-                        j.literal(' > '),
-                        j.memberExpression(
-                          memberExpression.value.object,
-                          j.identifier(atomicClasses[1]),
-                        ),
-                      );
                       parent.quasis.splice(
                         memberExpressionIndex,
                         1,
@@ -70,23 +71,9 @@ export default function transformer(file, api, options) {
                           },
                           false,
                         ),
-                        j.templateElement({ raw: '', cooked: '' }, false),
-                        j.templateElement({ raw: '.', cooked: '.' }, false),
+                        j.templateElement({ raw: ' > .', cooked: ' > .' }, false),
                       );
                     } else {
-                      parent.expressions.splice(
-                        memberExpressionIndex,
-                        1,
-                        j.memberExpression(
-                          memberExpression.value.object,
-                          j.identifier(atomicClasses[0]),
-                        ),
-
-                        j.memberExpression(
-                          memberExpression.value.object,
-                          j.identifier(atomicClasses[1]),
-                        ),
-                      );
                       parent.quasis.splice(
                         memberExpressionIndex,
                         1,
