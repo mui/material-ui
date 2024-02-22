@@ -11,7 +11,6 @@ export default function Why() {
         border: '1px solid',
         borderColor: 'divider',
         bgcolor: 'background.default',
-        boxShadow: 2,
         borderRadius: 2,
       }}
     >

@@ -13,7 +13,6 @@ export default function Demo() {
         border: '1px solid',
         borderColor: 'divider',
         borderRadius: 2,
-        boxShadow: 2,
         overflow: 'clip',
       }}
     >
