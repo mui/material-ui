@@ -3,7 +3,7 @@
 ## 1.0.1
 
 - Unpinned version of the @mui-internal/docs-utils dependency.
-- Corrected the readme file.
+- Corrected the README file.
 
 ## 1.0.0
 
