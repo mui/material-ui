@@ -2,6 +2,8 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
@@ -20,6 +22,7 @@ import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
 import Info from './Info';
+import InfoMobile from './InfoMobile';
 import ToggleColorMode from './ToggleColorMode';
 import getLPTheme from '../landing-page/getLPTheme';
 
@@ -179,15 +182,16 @@ export default function Checkout() {
             alignItems: 'start',
             pt: { xs: 2, sm: 4 },
             px: { xs: 2, sm: 10 },
-            gap: { xs: 2, sm: 8 },
+            gap: { xs: 4, md: 8 },
           }}
         >
           <Box
             sx={{
               display: 'flex',
               justifyContent: { sm: 'space-between', md: 'flex-end' },
+              alignItems: 'center',
               width: '100%',
-              maxWidth: { xs: '100%', sm: 600 },
+              maxWidth: { sm: '100%', md: 600 },
               height: 40,
             }}
           >
@@ -220,19 +224,42 @@ export default function Checkout() {
               showCustomTheme={showCustomTheme}
             />
           </Box>
+          <Card
+            sx={{
+              display: { xs: 'flex', md: 'none' },
+              width: '100%',
+            }}
+          >
+            <CardContent
+              sx={{
+                display: 'flex',
+                width: '100%',
+                alignItems: 'center',
+                ':last-child': { pb: '16px' },
+              }}
+            >
+              <Box sx={{ flexGrow: 1 }}>
+                <Typography variant="subtitle2" gutterBottom>
+                  Products selected
+                </Typography>
+                <Typography variant="body1">$134.98</Typography>
+              </Box>
+              <InfoMobile />
+            </CardContent>
+          </Card>
           <Box
             sx={{
               display: 'flex',
               flexDirection: 'column',
               flexGrow: 1,
-              maxWidth: 600,
+              maxWidth: { sm: '100%', md: 600 },
               maxHeight: '720px',
             }}
           >
             <Stepper
               id="desktop-stepper"
               activeStep={activeStep}
-              sx={{ display: { xs: 'none', sm: 'flex' }, mb: 10 }}
+              sx={{ display: { xs: 'none', sm: 'flex' }, mb: { xs: 5, md: 10 } }}
             >
               {steps.map((label) => (
                 <Step

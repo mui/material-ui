@@ -16,7 +16,7 @@ export default function AddressForm() {
   return (
     <React.Fragment>
       <Grid container spacing={3}>
-        <FormGrid item sm={12} md={6}>
+        <FormGrid item xs={12} md={6}>
           <FormLabel required>First name</FormLabel>
           <InputBase
             id="first-name"
@@ -27,7 +27,7 @@ export default function AddressForm() {
             inputProps={{ required: true }}
           />
         </FormGrid>
-        <FormGrid item sm={12} md={6}>
+        <FormGrid item xs={12} md={6}>
           <FormLabel required>Last name</FormLabel>
           <InputBase
             id="last-name"
