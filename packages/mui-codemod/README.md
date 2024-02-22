@@ -226,7 +226,6 @@ CSS transforms:
 +.MuiAlert-filled.MuiAlert-colorWarning
 -.MuiAlert-filledError
 +.MuiAlert-filled.MuiAlert-colorError
- />
 ```
 
 ```bash

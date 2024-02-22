@@ -92,10 +92,11 @@ Bear in mind that the `.MuiAccordionSummary-gutters` class is applied to the com
 
 ## Alert
 
-Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#alert-props) below to migrate the code as described in the following sections:
+Use the [alert-props](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#alert-props) and [alert-classes](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#alert-classes) codemods below to migrate the code as described in the following sections:
 
 ```bash
 npx @mui/codemod@latest deprecations/alert-props <path>
+npx @mui/codemod@latest deprecations/alert-classes <path>
 ```
 
 ### components
@@ -118,6 +119,98 @@ The Alert's `componentsProps` was deprecated in favor of `slotProps`:
 -  componentsProps={{ closeButton: { testid: 'test-id' } }}
 +  slotProps={{ closeButton: { testid: 'test-id' } }}
  />
+```
+
+### Composed CSS classes
+
+The CSS classes that composed the `severity` (or `variant`) and `color` prop values were removed.
+
+Here's how to migrate:
+
+```diff
+-.MuiAlert-standardSuccess
++.MuiAlert-standard.MuiAlert-colorSuccess
+-.MuiAlert-standardInfo
++.MuiAlert-standard.MuiAlert-colorInfo
+-.MuiAlert-standardWarning
++.MuiAlert-standard.MuiAlert-colorWarning
+-.MuiAlert-standardError
++.MuiAlert-standard.MuiAlert-colorError
+-.MuiAlert-outlinedSuccess
++.MuiAlert-outlined.MuiAlert-colorSuccess
+-.MuiAlert-outlinedInfo
++.MuiAlert-outlined.MuiAlert-colorInfo
+-.MuiAlert-outlinedWarning
++.MuiAlert-outlined.MuiAlert-colorWarning
+-.MuiAlert-outlinedError
++.MuiAlert-outlined.MuiAlert-colorError
+-.MuiAlert-filledSuccess
++.MuiAlert-filled.MuiAlert-colorSuccess
+-.MuiAlert-filledInfo
++.MuiAlert-filled.MuiAlert-colorInfo
+-.MuiAlert-filledWarning
++.MuiAlert-filled.MuiAlert-colorWarning
+-.MuiAlert-filledError
++.MuiAlert-filled.MuiAlert-colorError
+```
+
+```diff
+ import { alertClasses } from '@mui/material/PaginationItem';
+
+ MuiPaginationItem: {
+   styleOverrides: {
+     root: {
+-      [`&.${alertClasses.standardSuccess}`]: {
++      [`&.${alertClasses.standard}.${alertClasses.colorSuccess}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.standardInfo}`]: {
++      [`&.${alertClasses.standard}.${alertClasses.colorInfo}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.standardWarning}`]: {
++      [`&.${alertClasses.standard}.${alertClasses.colorWarning}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.standardError}`]: {
++      [`&.${alertClasses.standard}.${alertClasses.colorError}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.outlinedSuccess}`]: {
++      [`&.${alertClasses.outlined}.${alertClasses.colorSuccess}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.outlinedInfo}`]: {
++      [`&.${alertClasses.outlined}.${alertClasses.colorInfo}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.outlinedWarning}`]: {
++      [`&.${alertClasses.outlined}.${alertClasses.colorWarning}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.outlinedError}`]: {
++      [`&.${alertClasses.outlined}.${alertClasses.colorError}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.filledSuccess}`]: {
++      [`&.${alertClasses.filled}.${alertClasses.colorSuccess}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.filledInfo}`]: {
++      [`&.${alertClasses.filled}.${alertClasses.colorInfo}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.filledWarning}`]: {
++      [`&.${alertClasses.filled}.${alertClasses.colorWarning}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.filledError}`]: {
++      [`&.${alertClasses.filled}.${alertClasses.colorError}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
 ```
 
 ## Avatar
