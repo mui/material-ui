@@ -136,6 +136,32 @@ CSS transforms:
 npx @mui/codemod@latest deprecations/accordion-summary-classes <path>
 ```
 
+#### `alert-props`
+
+```diff
+ <Alert
+-  components={{ CloseButton: CustomButton }}
++  slots={{ closeButton: CustomButton }}
+-  componentsProps={{ closeButton: { testid: 'test-id' } }}
++  slotProps={{ closeButton: { testid: 'test-id' } }}
+ />
+```
+
+```diff
+ MuiAlert: {
+   defaultProps: {
+-    components: { CloseButton: CustomButton }
++    slots: { closeButton: CustomButton },
+-    componentsProps: { closeButton: { testid: 'test-id' }}
++    slotProps: { closeButton: { testid: 'test-id' } },
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/alert-props <path>
+```
+
 #### `avatar-props`
 
 ```diff
@@ -163,6 +189,71 @@ npx @mui/codemod@latest deprecations/accordion-summary-classes <path>
 
 ```bash
 npx @mui/codemod@latest deprecations/divider-props <path>
+```
+
+#### `pagination-item-classes`
+
+JS transforms:
+
+```diff
+ import { paginationItemClasses } from '@mui/material/PaginationItem';
+
+ MuiPaginationItem: {
+   styleOverrides: {
+     root: {
+-      [`&.${paginationItemClasses.textPrimary}`]: {
++      [`&.${paginationItemClasses.text}.${paginationItemClasses.colorPrimary}`]: {
+         color: 'red',
+        },
+-      [`&.${paginationItemClasses.textSecondary}`]: {
++      [`&.${paginationItemClasses.text}.${paginationItemClasses.colorSecondary}`]: {
+         color: 'red',
+        },
+-      [`&.${paginationItemClasses.outlinedPrimary}`]: {
++      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.colorPrimary}`]: {
+         color: 'red',
+        },
+-      [`&.${paginationItemClasses.outlinedSecondary}`]: {
++      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.colorSecondary}`]: {
+         color: 'red',
+        },
+-      '&.MuiPaginationItem-textPrimary': {
++      '&.MuiPaginationItem-text.MuiPaginationItem-colorPrimary': {
+         color: 'red',
+        },
+-      '&.MuiPaginationItem-textSecondary': {
++      '&.MuiPaginationItem-text.MuiPaginationItem-colorSecondary': {
+         color: 'red',
+        },
+-      '&.MuiPaginationItem-outlinedPrimary': {
++      '&.MuiPaginationItem-outlined.MuiPaginationItem-colorPrimary': {
+         color: 'red',
+        },
+-      '&.MuiPaginationItem-outlinedSecondary': {
++      '&.MuiPaginationItem-outlined.MuiPaginationItem-colorSecondary': {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiPaginationItem-textPrimary
++.MuiPaginationItem-text.MuiPaginationItem-primary
+-.MuiPaginationItem-textSecondary
++.MuiPaginationItem-text.MuiPaginationItem-secondary
+-.MuiPaginationItem-outlinedPrimary
++.MuiPaginationItem-outlined.MuiPaginationItem-primary
+-.MuiPaginationItem-outlinedSecondary
++.MuiPaginationItem-outlined.MuiPaginationItem-secondary
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/pagination-item-classes <path>
 ```
 
 ### v5.0.0
@@ -1279,7 +1370,7 @@ You can find more details about this breaking change in the migration guide.
 
 #### `theme-augment`
 
-Adds `DefaultTheme` module augmentation to typescript projects.
+Adds `DefaultTheme` module augmentation to TypeScript projects.
 
 ```bash
 npx @mui/codemod@latest v5.0.0/theme-augment <path>

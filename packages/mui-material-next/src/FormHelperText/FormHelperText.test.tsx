@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui-internal/test-utils';
 import FormHelperText, {
   formHelperTextClasses as classes,
   FormHelperTextClasses,
 } from '@mui/material-next/FormHelperText';
 import FormControl from '@mui/material-next/FormControl';
 import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
+import describeConformance from '../../test/describeConformance';
 
 describe('<FormHelperText />', () => {
   let originalMatchmedia: typeof window.matchMedia;

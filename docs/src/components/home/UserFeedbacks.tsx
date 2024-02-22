@@ -133,7 +133,7 @@ function Feedback({
             srcSet={profile.avatarSrcSet}
             src={profile.avatarSrc}
             alt={`${profile.name}'s profile picture`}
-            imgProps={{ loading: 'lazy' }}
+            slotProps={{ img: { loading: 'lazy' } }}
             sx={{
               width: 36,
               height: 36,

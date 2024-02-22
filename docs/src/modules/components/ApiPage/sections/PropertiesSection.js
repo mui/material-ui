@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 import ToggleDisplayOption, {
   useApiPageOption,
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
@@ -103,6 +103,8 @@ export default function PropertiesSection(props) {
         requiresRef: propDescription?.requiresRef,
         isOptional,
         isRequired,
+        isProPlan: propData.isProPlan,
+        isPremiumPlan: propData.isPremiumPlan,
         isDeprecated,
         hooksParameters,
         hooksReturnValue,
