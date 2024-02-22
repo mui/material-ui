@@ -318,6 +318,7 @@
     "/base-ui/react-table-pagination/components-api/#table-pagination": "TablePagination",
     "/base-ui/react-tabs/components-api/#tabs": "Tabs",
     "/base-ui/react-tabs/components-api/#tabs-list": "TabsList",
+    "/base-ui/react-textarea-autosize/components-api/#textarea": "Textarea",
     "/base-ui/react-textarea-autosize/components-api/#textarea-autosize": "TextareaAutosize",
     "/base-ui/react-autocomplete/hooks-api/#use-autocomplete": "useAutocomplete",
     "/base-ui/react-badge/hooks-api/#use-badge": "useBadge",
