@@ -26,7 +26,7 @@ import { Tabs } from '@mui/base/Tabs';
 import { TabsList } from '@mui/base/TabsList';
 import { TabPanel } from '@mui/base/TabPanel';
 import { Tab } from '@mui/base/Tab';
-import { TextareaAutosize } from '@mui/base/TextareaAutosize';
+import { Textarea } from '@mui/base/Textarea';
 // Icons import
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
@@ -348,7 +348,7 @@ export default function ComponentsGallery() {
         </Button>
       </Stack>
       <Input placeholder="Write something here" className="GalleryInput" />
-      <TextareaAutosize
+      <Textarea
         className="GalleryTextarea"
         aria-label="empty textarea"
         placeholder="Write something here"
