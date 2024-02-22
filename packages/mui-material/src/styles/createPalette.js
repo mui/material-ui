@@ -84,9 +84,9 @@ function addLightOrDark(intent, direction, shade, tonalOffset) {
     if (intent.hasOwnProperty(shade)) {
       intent[direction] = intent[shade];
     } else if (direction === 'light') {
-      intent.light = lighten(intent.main, tonalOffsetLight);
+      intent.light = `color-mix(in var(--color-space, srgb), ${intent.main}, transparent ${Math.floor(tonalOffsetLight * 100)}%)`;
     } else if (direction === 'dark') {
-      intent.dark = darken(intent.main, tonalOffsetDark);
+      intent.dark = `color-mix(in var(--color-space, srgb), ${intent.main}, transparent ${Math.floor(tonalOffsetDark * 100)}%)`;
     }
   }
 }

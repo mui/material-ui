@@ -98,7 +98,7 @@ const ButtonRoot = styled(ButtonBase, {
       '&:hover': {
         textDecoration: 'none',
         backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.hoverOpacity})`
+          ? `color-mix(${theme.vars.palette.text.primary}, transparent calc(${theme.vars.palette.action.hoverOpacity} * 100%))`
           : alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
@@ -107,9 +107,7 @@ const ButtonRoot = styled(ButtonBase, {
         ...(ownerState.variant === 'text' &&
           ownerState.color !== 'inherit' && {
             backgroundColor: theme.vars
-              ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${
-                  theme.vars.palette.action.hoverOpacity
-                })`
+              ? `color-mix(${theme.vars.palette[ownerState.color].main} / transparent calc(${theme.vars.palette.action.hoverOpacity} * 100%))`
               : alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
             // Reset on touch devices, it doesn't add specificity
             '@media (hover: none)': {
@@ -120,9 +118,7 @@ const ButtonRoot = styled(ButtonBase, {
           ownerState.color !== 'inherit' && {
             border: `1px solid ${(theme.vars || theme).palette[ownerState.color].main}`,
             backgroundColor: theme.vars
-              ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${
-                  theme.vars.palette.action.hoverOpacity
-                })`
+              ? `color-mix(${theme.vars.palette[ownerState.color].main} / transparent calc(${theme.vars.palette.action.hoverOpacity} * 100%))`
               : alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
             // Reset on touch devices, it doesn't add specificity
             '@media (hover: none)': {
@@ -185,7 +181,7 @@ const ButtonRoot = styled(ButtonBase, {
         ownerState.color !== 'inherit' && {
           color: (theme.vars || theme).palette[ownerState.color].main,
           border: theme.vars
-            ? `1px solid rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.5)`
+            ? `1px solid color-mix(${theme.vars.palette[ownerState.color].main} / transparent 50%)`
             : `1px solid ${alpha(theme.palette[ownerState.color].main, 0.5)}`,
         }),
       ...(ownerState.variant === 'contained' && {
