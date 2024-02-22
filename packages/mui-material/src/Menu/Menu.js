@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
 import HTMLElementType from '@mui/utils/HTMLElementType';
+import { useRtl } from '@mui/system/RtlProvider';
 import MenuList from '../MenuList';
 import Popover, { PopoverPaper } from '../Popover';
 import styled, { rootShouldForwardProp } from '../styles/styled';
@@ -86,7 +87,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   } = props;
 
   const theme = useTheme();
-  const isRtl = theme.direction === 'rtl';
+  const isRtl = useRtl();
 
   const ownerState = {
     ...props,
