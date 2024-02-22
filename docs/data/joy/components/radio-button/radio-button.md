@@ -28,6 +28,7 @@ When should you use radio buttons rather than checkboxes, switches, or selects?
 - Use a switch to provide the user with **a single binary choice**—radio buttons are preferable when you need to give the user multiple binary choices.
 - Consider using a select if it's not important for the user to be able to see all options.
 - If available options can be collapsed, consider using a Select component to conserve space.
+
   :::
 
 ## Basics
@@ -190,7 +191,7 @@ Here are a few tips to make sure you have an accessible Radio button component:
 />
 ```
 
-Visit the [WAI-ARIA documentation](https://www.w3.org/WAI/ARIA/apg/patterns/radio/) for more details.
+Visit the [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/radio/) for more details.
 
 ## Anatomy
 

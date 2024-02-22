@@ -1,15 +1,16 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 function getSurveyMessage() {
   return (
     <React.Fragment>
-      🚀&nbsp;Influence the future of MUI!&nbsp;&nbsp;Please take a few minutes for the&nbsp;
+      {`🚀 Influence MUI's 2024 roadmap! Participate in the latest`}
+      &nbsp;
       <Link
-        href="https://www.surveymonkey.com/r/mui-developer-survey-2022?source=website"
+        href="https://tally.so/r/3Ex4PN?source=website"
         target="_blank"
         color="inherit"
         underline="always"
@@ -19,7 +20,7 @@ function getSurveyMessage() {
           },
         }}
       >
-        MUI Developer survey 2022 →
+        Developer Survey →
       </Link>
     </React.Fragment>
   );
@@ -48,7 +49,7 @@ function getDefaultHiringMessage() {
 }
 
 export default function AppHeaderBanner() {
-  const showSurveyMessage = false;
+  const showSurveyMessage = true;
   const bannerMessage = showSurveyMessage ? getSurveyMessage() : getDefaultHiringMessage();
 
   return FEATURE_TOGGLE.enable_website_banner ? (

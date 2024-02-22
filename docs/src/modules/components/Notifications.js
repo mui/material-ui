@@ -14,7 +14,7 @@ import MuiList from '@mui/material/List';
 import MuiListItem from '@mui/material/ListItem';
 import MuiDivider from '@mui/material/Divider';
 import { getCookie } from 'docs/src/modules/utils/helpers';
-import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
 
 async function fetchNotifications() {
   if (process.env.NODE_ENV === 'development') {
@@ -177,7 +177,7 @@ export default function Notifications() {
                   0,
                 )
               : 0
-          } ${t('toggleNotifications')}`}
+          } ${t('unreadNotifications')}`}
           data-ga-event-category="AppBar"
           data-ga-event-action="toggleNotifications"
           onClick={handleToggle}

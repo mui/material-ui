@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { describeConformance, fireEvent, createRenderer } from '@mui-internal/test-utils';
+import { fireEvent, createRenderer } from '@mui-internal/test-utils';
 import TableFooter from '@mui/material/TableFooter';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
@@ -12,10 +12,19 @@ import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import { filledInputClasses } from '@mui/material/FilledInput';
 import IconButton, { iconButtonClasses } from '@mui/material/IconButton';
 import { svgIconClasses } from '@mui/material/SvgIcon';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import KeyboardDoubleArrowLeftRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowLeftRounded';
-import KeyboardDoubleArrowRightRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowRightRounded';
+import { createSvgIcon } from '@mui/material/utils';
+import describeConformance from '../../test/describeConformance';
+
+const ArrowBackIcon = createSvgIcon(<path d="M3 3h18v18H3z" />, 'ArrowBack');
+const ArrowForwardIcon = createSvgIcon(<path d="M3 3h18v18H3z" />, 'ArrowForward');
+const KeyboardDoubleArrowLeftRoundedIcon = createSvgIcon(
+  <path d="M3 3h18v18H3z" />,
+  'KeyboardDoubleArrowLeftRounded',
+);
+const KeyboardDoubleArrowRightRoundedIcon = createSvgIcon(
+  <path d="M3 3h18v18H3z" />,
+  'KeyboardDoubleArrowRightRounded',
+);
 
 describe('<TablePagination />', () => {
   const noop = () => {};

@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, screen } from '@mui-internal/test-utils';
+import { createRenderer, screen } from '@mui-internal/test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Alert, { alertClasses as classes } from '@mui/material/Alert';
 import Paper, { paperClasses } from '@mui/material/Paper';
 import { iconButtonClasses } from '@mui/material/IconButton';
 import { svgIconClasses } from '@mui/material/SvgIcon';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Alert />', () => {
   const { render } = createRenderer();
@@ -20,13 +21,14 @@ describe('<Alert />', () => {
     testDeepOverrides: { slotName: 'message', slotClassName: classes.message },
     testLegacyComponentsProp: true,
     slots: {
-      closeButton: {},
-      closeIcon: {},
+      closeButton: {
+        expectedClassName: classes.closeButton,
+      },
+      closeIcon: {
+        expectedClassName: classes.closeIcon,
+      },
     },
-    skip: [
-      'componentsProp',
-      'slotPropsCallback', // not supported yet
-    ],
+    skip: ['componentsProp'],
   }));
 
   describe('prop: square', () => {
@@ -72,6 +74,12 @@ describe('<Alert />', () => {
           </ThemeProvider>,
         ),
       ).not.to.throw();
+    });
+
+    it('should render the action provided into the Alert', () => {
+      render(<Alert action={<button data-testid="action">Action</button>}>Hello World</Alert>);
+
+      expect(screen.getByTestId('action')).toBeVisible();
     });
   });
 
@@ -146,6 +154,48 @@ describe('<Alert />', () => {
       const closeIcon = screen.getByTestId('closeIcon');
       expect(closeIcon).to.have.class(svgIconClasses.fontSizeLarge);
       expect(closeIcon).to.have.class('my-class');
+    });
+  });
+
+  describe('prop: icon', () => {
+    it('should render the icon provided into the Alert', () => {
+      render(<Alert icon={<div data-testid="icon" />}>Hello World</Alert>);
+
+      expect(screen.getByTestId('icon')).toBeVisible();
+    });
+
+    it('should not render any icon if false is provided', () => {
+      render(
+        <Alert
+          icon={false}
+          severity="success"
+          iconMapping={{ success: <div data-testid="success-icon" /> }}
+        >
+          Hello World
+        </Alert>,
+      );
+
+      expect(screen.queryByTestId('success-icon')).to.eq(null);
+    });
+  });
+
+  describe('prop: iconMapping', () => {
+    const severities = ['success', 'info', 'warning', 'error'];
+    const iconMapping = severities.reduce((acc, severity) => {
+      acc[severity] = <div data-testid={`${severity}-icon`} />;
+      return acc;
+    }, {});
+
+    severities.forEach((severity) => {
+      it(`should render the icon provided into the Alert for severity ${severity}`, () => {
+        render(
+          <Alert severity={severity} iconMapping={iconMapping}>
+            Hello World
+          </Alert>,
+        );
+
+        expect(screen.getByTestId(`${severity}-icon`)).toBeVisible();
+      });
     });
   });
 });

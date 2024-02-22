@@ -5,7 +5,7 @@ import {
   ThemeProvider as MuiThemeProvider,
   useTheme as usePrivateTheme,
 } from '@mui/private-theming';
-import { exactProp } from '@mui/utils';
+import exactProp from '@mui/utils/exactProp';
 import { ThemeContext as StyledEngineThemeContext } from '@mui/styled-engine';
 import useThemeWithoutDefault from '../useThemeWithoutDefault';
 
@@ -72,10 +72,10 @@ function ThemeProvider(props) {
 }
 
 ThemeProvider.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Your component tree.
    */

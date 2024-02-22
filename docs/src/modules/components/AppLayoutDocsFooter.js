@@ -27,12 +27,11 @@ import RssFeedIcon from '@mui/icons-material/RssFeed';
 import ArrowOutwardRoundedIcon from '@mui/icons-material/ArrowOutwardRounded';
 import DiscordIcon from 'docs/src/icons/DiscordIcon';
 // Other imports
-import ROUTES from 'docs/src/route';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
 import EditPage from 'docs/src/modules/components/EditPage';
 import SvgMuiLogotype from 'docs/src/icons/SvgMuiLogotype';
-import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
 import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 
 const FooterLink = styled(Typography)(({ theme }) => {
@@ -478,11 +477,15 @@ export default function AppLayoutDocsFooter(props) {
                     icon={<PanToolRoundedIcon fontSize="small" />}
                     sx={{ my: 1.5 }}
                   >
-                    <Typography id="feedback-description" color="text.secondary">
+                    <Typography id="feedback-description">
                       {t('feedbackMessageToGitHub.usecases')}{' '}
                       <Link
                         href={`${process.env.SOURCE_CODE_REPO}/issues/new?template=${process.env.GITHUB_TEMPLATE_DOCS_FEEDBACK}&page-url=${window.location.href}`}
                         target="_blank"
+                        underline="always"
+                        sx={{
+                          fontWeight: 'semiBold',
+                        }}
                       >
                         {t('feedbackMessageToGitHub.callToAction.link')}
                       </Link>{' '}
@@ -542,13 +545,13 @@ export default function AppLayoutDocsFooter(props) {
           spacing={{ xs: 3, sm: 1 }}
         >
           <Stack direction="row" alignItems="center" spacing={1.2} sx={{ flexGrow: 1 }}>
-            <Link href="/" aria-label="Go to homepage" sx={{ mb: 2 }}>
+            <Link href="https://mui.com/" aria-label="Go to homepage" sx={{ mb: 2 }}>
               <SvgMuiLogotype height={24} width={72} />
             </Link>
             <Typography color="grey.500" fontSize={13} sx={{ opacity: '70%' }}>
               &bull;
             </Typography>
-            <Link href={ROUTES.blog} target="_blank" rel="noopener noreferrer">
+            <Link href="https://mui.com/blog/" target="_blank" rel="noopener noreferrer">
               <FooterLink>
                 Blog <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
               </FooterLink>
@@ -556,7 +559,7 @@ export default function AppLayoutDocsFooter(props) {
             <Typography color="grey.500" fontSize={13} sx={{ opacity: '70%' }}>
               &bull;
             </Typography>
-            <Link href={ROUTES.store} target="_blank" rel="noopener noreferrer">
+            <Link href="https://mui.com/store/" target="_blank" rel="noopener noreferrer">
               <FooterLink>
                 Store <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
               </FooterLink>
@@ -566,7 +569,7 @@ export default function AppLayoutDocsFooter(props) {
             <IconButton
               target="_blank"
               rel="noopener noreferrer"
-              href={ROUTES.rssFeed}
+              href="https://mui.com/feed/blog/rss.xml"
               aria-label="RSS Feed"
               title="RSS Feed"
               size="small"

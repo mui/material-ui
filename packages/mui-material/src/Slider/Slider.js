@@ -2,14 +2,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes } from '@mui/utils';
-import {
-  isHostComponent,
-  useSlotProps,
-  unstable_composeClasses as composeClasses,
-} from '@mui/base';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import { isHostComponent, useSlotProps } from '@mui/base/utils';
+import composeClasses from '@mui/utils/composeClasses';
 import { useSlider, valueToPercent } from '@mui/base/useSlider';
-import { alpha, lighten, darken } from '@mui/system';
+import { alpha, lighten, darken } from '@mui/system/colorManipulator';
 import useThemeProps from '../styles/useThemeProps';
 import styled, { slotShouldForwardProp } from '../styles/styled';
 import useTheme from '../styles/useTheme';
@@ -432,6 +429,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     onChange,
     onChangeCommitted,
     orientation = 'horizontal',
+    shiftStep = 10,
     size = 'medium',
     step = 1,
     scale = Identity,
@@ -458,6 +456,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     color,
     size,
     step,
+    shiftStep,
     scale,
     track,
     valueLabelDisplay,
@@ -702,10 +701,10 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
 });
 
 Slider.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The label of the slider.
    */
@@ -898,6 +897,11 @@ Slider.propTypes /* remove-proptypes */ = {
    * }
    */
   scale: PropTypes.func,
+  /**
+   * The granularity with which the slider can step through values when using Page Up/Page Down or Shift + Arrow Up/Arrow Down.
+   * @default 10
+   */
+  shiftStep: PropTypes.number,
   /**
    * The size of the slider.
    * @default 'medium'

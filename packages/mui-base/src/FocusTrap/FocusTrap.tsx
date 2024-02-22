@@ -278,7 +278,7 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
         return;
       }
 
-      let tabbable: string[] | HTMLElement[] = [];
+      let tabbable: ReadonlyArray<string> | HTMLElement[] = [];
       if (
         doc.activeElement === sentinelStart.current ||
         doc.activeElement === sentinelEnd.current
@@ -372,10 +372,10 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
 }
 
 FocusTrap.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A single child content element.
    */

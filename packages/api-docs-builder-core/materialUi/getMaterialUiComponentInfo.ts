@@ -42,7 +42,7 @@ export function getMaterialUiComponentInfo(filename: string): ComponentInfo {
         name: inheritedComponent.replace(/unstyled/i, ''),
         apiPathname:
           inheritedComponent === 'Transition'
-            ? 'http://reactcommunity.org/react-transition-group/transition/#Transition-props'
+            ? 'https://reactcommunity.org/react-transition-group/transition/#Transition-props'
             : `/${
                 inheritedComponent.match(/unstyled/i) ? 'base-ui' : 'material-ui'
               }/api/${kebabCase(inheritedComponent.replace(/unstyled/i, ''))}/`,

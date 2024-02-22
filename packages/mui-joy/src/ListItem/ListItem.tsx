@@ -17,7 +17,7 @@ import NestedListContext from '../List/NestedListContext';
 import RowListContext from '../List/RowListContext';
 import WrapListContext from '../List/WrapListContext';
 import ComponentListContext from '../List/ComponentListContext';
-import ListSubheaderDispatch from '../ListSubheader/ListSubheaderContext';
+import ListSubheaderContext from '../ListSubheader/ListSubheaderContext';
 import GroupListContext from '../List/GroupListContext';
 
 const useUtilityClasses = (ownerState: ListItemOwnerState) => {
@@ -244,7 +244,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   });
 
   return (
-    <ListSubheaderDispatch.Provider value={setSubheaderId}>
+    <ListSubheaderContext.Provider value={setSubheaderId}>
       <NestedListContext.Provider value={nested ? subheaderId || true : false}>
         <SlotRoot {...rootProps}>
           {startAction && <SlotStartAction {...startActionProps}>{startAction}</SlotStartAction>}
@@ -265,15 +265,15 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
           {endAction && <SlotEndAction {...endActionProps}>{endAction}</SlotEndAction>}
         </SlotRoot>
       </NestedListContext.Provider>
-    </ListSubheaderDispatch.Provider>
+    </ListSubheaderContext.Provider>
   );
 }) as OverridableComponent<ListItemTypeMap>;
 
 ListItem.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

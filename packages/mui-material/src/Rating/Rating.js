@@ -2,8 +2,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, visuallyHidden } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import clamp from '@mui/utils/clamp';
+import visuallyHidden from '@mui/utils/visuallyHidden';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import composeClasses from '@mui/utils/composeClasses';
 import useTheme from '../styles/useTheme';
 import {
   capitalize,
@@ -17,16 +19,6 @@ import StarBorder from '../internal/svg-icons/StarBorder';
 import useThemeProps from '../styles/useThemeProps';
 import styled, { slotShouldForwardProp } from '../styles/styled';
 import ratingClasses, { getRatingUtilityClass } from './ratingClasses';
-
-function clamp(value, min, max) {
-  if (value < min) {
-    return min;
-  }
-  if (value > max) {
-    return max;
-  }
-  return value;
-}
 
 function getDecimalPrecision(num) {
   const decimalPart = num.toString().split('.')[1];
@@ -89,6 +81,7 @@ const RatingRoot = styled('span', {
   color: '#faaf00',
   cursor: 'pointer',
   textAlign: 'left',
+  width: 'min-content',
   WebkitTapHighlightColor: 'transparent',
   [`&.${ratingClasses.disabled}`]: {
     opacity: (theme.vars || theme).palette.action.disabledOpacity,
@@ -616,10 +609,10 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 });
 
 Rating.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Override or extend the styles applied to the component.
    */

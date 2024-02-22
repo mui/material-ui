@@ -8,6 +8,7 @@
     },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "focusableWhenDisabled": { "type": { "name": "bool" }, "default": "false" },
+    "rootElementName": { "type": { "name": "string" }, "default": "'button'" },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
       "default": "{}"
@@ -25,31 +26,31 @@
       "name": "root",
       "description": "The component that renders the root.",
       "default": "props.href || props.to ? 'a' : 'button'",
-      "class": "MuiButton-root"
+      "class": "base-Button-root"
     }
   ],
   "classes": [
     {
       "key": "active",
-      "className": "Mui-active",
+      "className": "base--active",
       "description": "State class applied to the root `button` element if `active={true}`.",
       "isGlobal": true
     },
     {
       "key": "disabled",
-      "className": "Mui-disabled",
+      "className": "base--disabled",
       "description": "State class applied to the root `button` element if `disabled={true}`.",
       "isGlobal": true
     },
     {
       "key": "focusVisible",
-      "className": "Mui-focusVisible",
+      "className": "base--focusVisible",
       "description": "State class applied to the root `button` element if `focusVisible={true}`.",
       "isGlobal": true
     }
   ],
   "spread": true,
-  "muiName": "MuiButton",
+  "muiName": "Button",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-base/src/Button/Button.tsx",
   "inheritance": null,

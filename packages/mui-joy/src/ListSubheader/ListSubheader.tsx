@@ -8,7 +8,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/base/composeClas
 import { styled, useThemeProps } from '../styles';
 import { ListSubheaderOwnerState, ListSubheaderTypeMap } from './ListSubheaderProps';
 import { getListSubheaderUtilityClass } from './listSubheaderClasses';
-import ListSubheaderDispatch from './ListSubheaderContext';
+import ListSubheaderContext from './ListSubheaderContext';
 import useSlot from '../utils/useSlot';
 import { INVERTED_COLORS_ATTR } from '../colorInversion/colorInversionUtils';
 
@@ -88,7 +88,7 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
     ...other
   } = props;
   const id = useId(idOverride);
-  const setSubheaderId = React.useContext(ListSubheaderDispatch);
+  const setSubheaderId = React.useContext(ListSubheaderContext);
 
   React.useEffect(() => {
     if (setSubheaderId) {
@@ -124,10 +124,10 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
 }) as OverridableComponent<ListSubheaderTypeMap>;
 
 ListSubheader.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

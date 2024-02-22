@@ -10,6 +10,7 @@ import {
   unstable_styleFunctionSx as styleFunctionSx,
   SxConfig,
 } from '@mui/system';
+import { unstable_applyStyles as applyStyles } from '@mui/system/createTheme';
 import defaultSxConfig from './sxConfig';
 import colors from '../colors';
 import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
@@ -63,6 +64,7 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScalesOptions> {
    * // { ..., typography: { body1: { fontSize: 'var(--fontSize-md)' } }, ... }
    */
   cssVarPrefix?: string;
+  direction?: 'ltr' | 'rtl';
   focus?: Partial<Focus>;
   typography?: Partial<TypographySystemOptions>;
   variants?: Partial2Level<Variants>;
@@ -661,6 +663,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   };
 
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
+  theme.applyStyles = applyStyles;
 
   return theme;
 }

@@ -26,7 +26,7 @@ The last item of the previous demo shows how you can render a link:
 </ListItemButton>
 ```
 
-You can find a [demo with React Router following this section](/material-ui/guides/routing/#list) of the documentation.
+You can find a [demo with React Router following this section](/material-ui/integrations/routing/#list) of the documentation.
 
 ## Nested List
 
@@ -111,5 +111,3 @@ You can learn more about this in the
 [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedList.js"}}
-
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/list-item/).
