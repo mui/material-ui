@@ -13,8 +13,6 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 - [Alert] Deprecate components and componentsProps props (#40681) @DiegoAndai
 - [Autocomplete] Caret transformation issue with font size change (#41066) @dpertsin
-- [Drawer] Add simpler demo for default behavior (#40980) @zanivan
-- [PaginationItem] Add codemod for deprecated classes (#41145) @sai6855
 - [StepLabel] Add type for StepIconComponent (#41082) @harrydigos
 - [TablePagination] Fix type error in Select props (#39137) @PaulKristoffersson
 - [Transitions] External ownerState is incorrectly forwarded to inner components (#41187) @gitstart
@@ -34,6 +32,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 ### `@mui/codemod@5.15.11`
 
 - [AccordionSummary] Add contentGutters deprecation codemods (#41006) @DiegoAndai
+- [PaginationItem] Add codemod for deprecated classes (#41145) @sai6855
 
 ### `@mui/utils@5.15.11`
 
@@ -61,6 +60,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [material-ui] Standardize all references to Material Design 3 (M3) (#40903) @samuelsycamore
 - [material-ui] Add stray fixes around a few pages (#41038) @danilo-leal
 - [material-ui][joy-ui][system] Restore and revise the Box docs (#40622) @samuelsycamore
+- [material-ui] Add simpler demo for default behavior (#40980) @zanivan
 - [system] Explain why AppRouterCacheProvider (#40909) @oliviertassinari
 - Link to react-transition group with https @oliviertassinari
 - Update broken URL hashes (#41185) @LukasTy
