@@ -118,12 +118,12 @@ export interface ChipClasses {
    * @deprecated Combine the [.MuiChip-deleteIcon](/material-ui/api/chip/#chip-classes-deleteIcon) and [.MuiChip-sizeMedium](/material-ui/api/chip/#chip-classes-sizeMedium) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
    */
   deleteIconMedium: string;
-  /** Styles applied to the deleteIcon element if `color="primary"` and `variant="filled"`.
-   * @deprecated Combine the [.MuiChip-deleteIcon](/material-ui/api/chip/#chip-classes-deleteIcon) , [.MuiChip-filled](/material-ui/api/chip/#chip-classes-filled) and [.MuiChip-colorPrimary](/material-ui/api/chip/#chip-classes-colorPrimary) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+  /** Styles applied to the deleteIcon element if `color="primary"`.
+   * @deprecated Combine the [.MuiChip-deleteIcon](/material-ui/api/chip/#chip-classes-deleteIcon) and [.MuiChip-colorPrimary](/material-ui/api/chip/#chip-classes-colorPrimary) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
    */
   deleteIconColorPrimary: string;
-  /** Styles applied to the deleteIcon element if `color="secondary"` and `variant="filled"`.
-   * @deprecated Combine the [.MuiChip-deleteIcon](/material-ui/api/chip/#chip-classes-deleteIcon) , [.MuiChip-filled](/material-ui/api/chip/#chip-classes-filled) and [.MuiChip-colorSecondary](/material-ui/api/chip/#chip-classes-colorSecondary) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+  /** Styles applied to the deleteIcon element if `color="secondary"`.
+   * @deprecated Combine the [.MuiChip-deleteIcon](/material-ui/api/chip/#chip-classes-deleteIcon) and [.MuiChip-colorSecondary](/material-ui/api/chip/#chip-classes-colorSecondary) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
    */
   deleteIconColorSecondary: string;
   /** Styles applied to the deleteIcon element if `color="primary"` and `variant="outlined"`.
