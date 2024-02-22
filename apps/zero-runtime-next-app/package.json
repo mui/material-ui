@@ -9,12 +9,13 @@
     "clean": "rimraf .next"
   },
   "dependencies": {
-    "@mui/system": "file:../../packages/mui-system/build",
-    "@mui/utils": "file:../../packages/mui-utils/build",
-    "@mui/zero-runtime": "file:../../packages/zero-runtime",
-    "@mui/material": "file:../../packages/mui-material/build",
+    "@mui/zero-runtime": "workspace:^",
+    "@mui/utils": "workspace:^",
+    "@mui/base": "workspace:^",
+    "@mui/material": "workspace:^",
+    "@mui/system": "workspace:^",
     "@mui/material-nextjs": "workspace:^",
-    "@mui/icons-material": "file:../../packages/mui-icons-material/build",
+    "@mui/icons-material": "workspace:^",
     "@emotion/cache": "latest",
     "local-ui-lib": "workspace:^",
     "react": "^18.2.0",
@@ -22,7 +23,7 @@
     "next": "latest"
   },
   "devDependencies": {
-    "@mui/zero-next-plugin": "file:../../packages/zero-next-plugin",
+    "@mui/zero-next-plugin": "workspace:^",
     "@types/node": "^20.5.7",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",

@@ -127,7 +127,6 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  transpilePackages: ['@mui/material'],
 };
 
 module.exports = withZeroPlugin(nextConfig, zeroPluginOptions);

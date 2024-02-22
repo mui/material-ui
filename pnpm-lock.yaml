@@ -116,6 +116,9 @@ importers:
       '@mui/utils':
         specifier: workspace:^
         version: link:packages/mui-utils/build
+      '@mui/zero-runtime':
+        specifier: workspace:^
+        version: link:packages/zero-runtime
       '@next/eslint-plugin-next':
         specifier: ^14.1.0
         version: 14.1.0
@@ -359,24 +362,27 @@ importers:
       '@emotion/cache':
         specifier: latest
         version: 11.11.0
+      '@mui/base':
+        specifier: workspace:^
+        version: link:../../packages/mui-base/build
       '@mui/icons-material':
-        specifier: file:../../packages/mui-icons-material/build
-        version: file:packages/mui-icons-material/build(@mui/material@5.15.10)(@types/react@18.2.55)(react@18.2.0)
+        specifier: workspace:^
+        version: link:../../packages/mui-icons-material/build
       '@mui/material':
-        specifier: file:../../packages/mui-material/build
-        version: file:packages/mui-material/build(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
+        specifier: workspace:^
+        version: link:../../packages/mui-material/build
       '@mui/material-nextjs':
         specifier: workspace:^
         version: link:../../packages/mui-material-nextjs/build
       '@mui/system':
-        specifier: file:../../packages/mui-system/build
-        version: file:packages/mui-system/build(@types/react@18.2.55)(react@18.2.0)
+        specifier: workspace:^
+        version: link:../../packages/mui-system/build
       '@mui/utils':
-        specifier: file:../../packages/mui-utils/build
-        version: file:packages/mui-utils/build(@types/react@18.2.55)(react@18.2.0)
+        specifier: workspace:^
+        version: link:../../packages/mui-utils/build
       '@mui/zero-runtime':
-        specifier: file:../../packages/zero-runtime
-        version: file:packages/zero-runtime(react@18.2.0)
+        specifier: workspace:^
+        version: link:../../packages/zero-runtime
       local-ui-lib:
         specifier: workspace:^
         version: link:../local-ui-lib
@@ -391,8 +397,8 @@ importers:
         version: 18.2.0(react@18.2.0)
     devDependencies:
       '@mui/zero-next-plugin':
-        specifier: file:../../packages/zero-next-plugin
-        version: file:packages/zero-next-plugin(next@14.1.0)
+        specifier: workspace:^
+        version: link:../../packages/zero-next-plugin
       '@types/node':
         specifier: ^18.19.15
         version: 18.19.15
@@ -5713,6 +5719,7 @@ packages:
 
   /@next/env@14.1.0:
     resolution: {integrity: sha512-Py8zIo+02ht82brwwhTg36iogzFqGLPXlRGKQw5s+qP/kMNc4MAyDeEwBKDijk6zTIbegEgu8Qy7C1LboslQAw==}
+    dev: false
 
   /@next/eslint-plugin-next@14.1.0:
     resolution: {integrity: sha512-x4FavbNEeXx/baD/zC/SdrvkjSby8nBn8KcCREqk6UuwvwoAPZmaV8TFCAuo/cpovBRTIY67mHhe86MQQm/68Q==}
@@ -5734,6 +5741,7 @@ packages:
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@next/swc-darwin-x64@13.5.1:
@@ -5750,6 +5758,7 @@ packages:
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@next/swc-linux-arm64-gnu@13.5.1:
@@ -5766,6 +5775,7 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@next/swc-linux-arm64-musl@13.5.1:
@@ -5782,6 +5792,7 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@next/swc-linux-x64-gnu@13.5.1:
@@ -5798,6 +5809,7 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@next/swc-linux-x64-musl@13.5.1:
@@ -5814,6 +5826,7 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@next/swc-win32-arm64-msvc@13.5.1:
@@ -5830,6 +5843,7 @@ packages:
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@next/swc-win32-ia32-msvc@13.5.1:
@@ -5846,6 +5860,7 @@ packages:
     cpu: [ia32]
     os: [win32]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@next/swc-win32-x64-msvc@13.5.1:
@@ -5862,6 +5877,7 @@ packages:
     cpu: [x64]
     os: [win32]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@nicolo-ribaudo/chokidar-2@2.1.8-no-fsevents.3:
@@ -16411,6 +16427,7 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
+    dev: false
 
   /nice-napi@1.0.2:
     resolution: {integrity: sha512-px/KnJAJZf5RuBGcfD+Sp2pAKq0ytz8j+1NehvgIGFkvtvFrDM3T8E4x/JJODXK9WZow8RRGrbA9QQ3hs+pDhA==}
@@ -21989,148 +22006,4 @@ packages:
 
   /zwitch@1.0.5:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
-    dev: false
-
-  file:packages/mui-icons-material/build(@mui/material@5.15.10)(@types/react@18.2.55)(react@18.2.0):
-    resolution: {directory: packages/mui-icons-material/build, type: directory}
-    id: file:packages/mui-icons-material/build
-    name: '@mui/icons-material'
-    engines: {node: '>=12.0.0'}
-    peerDependencies:
-      '@mui/material': ^5.0.0
-      '@types/react': ^18.2.55
-      react: ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-    dependencies:
-      '@babel/runtime': 7.23.9
-      '@mui/material': file:packages/mui-material/build(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
-      '@types/react': 18.2.55
-      react: 18.2.0
-    dev: false
-
-  file:packages/mui-material/build(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {directory: packages/mui-material/build, type: directory}
-    id: file:packages/mui-material/build
-    name: '@mui/material'
-    engines: {node: '>=12.0.0'}
-    peerDependencies:
-      '@emotion/react': ^11.5.0
-      '@emotion/styled': ^11.3.0
-      '@types/react': ^18.2.55
-      react: ^17.0.0 || ^18.0.0
-      react-dom: ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      '@emotion/react':
-        optional: true
-      '@emotion/styled':
-        optional: true
-      '@types/react':
-        optional: true
-    dependencies:
-      '@babel/runtime': 7.23.9
-      '@mui/base': link:packages/mui-base/build
-      '@mui/core-downloads-tracker': link:packages/mui-core-downloads-tracker/build
-      '@mui/system': link:packages/mui-system/build
-      '@mui/types': link:packages/mui-types/build
-      '@mui/utils': link:packages/mui-utils/build
-      '@types/react': 18.2.55
-      '@types/react-transition-group': 4.4.10
-      clsx: 2.1.0
-      csstype: 3.1.3
-      prop-types: 15.8.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      react-is: 18.2.0
-      react-transition-group: 4.4.5(react-dom@18.2.0)(react@18.2.0)
-    dev: false
-
-  file:packages/mui-system/build(@types/react@18.2.55)(react@18.2.0):
-    resolution: {directory: packages/mui-system/build, type: directory}
-    id: file:packages/mui-system/build
-    name: '@mui/system'
-    engines: {node: '>=12.0.0'}
-    peerDependencies:
-      '@emotion/react': ^11.5.0
-      '@emotion/styled': ^11.3.0
-      '@types/react': ^18.2.55
-      react: ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      '@emotion/react':
-        optional: true
-      '@emotion/styled':
-        optional: true
-      '@types/react':
-        optional: true
-    dependencies:
-      '@babel/runtime': 7.23.9
-      '@mui/private-theming': link:packages/mui-private-theming/build
-      '@mui/styled-engine': link:packages/mui-styled-engine/build
-      '@mui/types': link:packages/mui-types/build
-      '@mui/utils': link:packages/mui-utils/build
-      '@types/react': 18.2.55
-      clsx: 2.1.0
-      csstype: 3.1.3
-      prop-types: 15.8.1
-      react: 18.2.0
-    dev: false
-
-  file:packages/mui-utils/build(@types/react@18.2.55)(react@18.2.0):
-    resolution: {directory: packages/mui-utils/build, type: directory}
-    id: file:packages/mui-utils/build
-    name: '@mui/utils'
-    engines: {node: '>=12.0.0'}
-    peerDependencies:
-      '@types/react': ^18.2.55
-      react: ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-    dependencies:
-      '@babel/runtime': 7.23.9
-      '@types/prop-types': 15.7.11
-      '@types/react': 18.2.55
-      prop-types: 15.8.1
-      react: 18.2.0
-      react-is: 18.2.0
-    dev: false
-
-  file:packages/zero-next-plugin(next@14.1.0):
-    resolution: {directory: packages/zero-next-plugin, type: directory}
-    id: file:packages/zero-next-plugin
-    name: '@mui/zero-next-plugin'
-    peerDependencies:
-      next: ^12.0.0 || ^13.0.0 || ^14.0.0
-    dependencies:
-      '@mui/zero-unplugin': link:packages/zero-unplugin
-      next: 14.1.0(@babel/core@7.23.9)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
-    dev: true
-
-  file:packages/zero-runtime(react@18.2.0):
-    resolution: {directory: packages/zero-runtime, type: directory}
-    id: file:packages/zero-runtime
-    name: '@mui/zero-runtime'
-    peerDependencies:
-      react: ^17.0.0 || ^18.0.0
-    dependencies:
-      '@babel/core': 7.23.9
-      '@babel/helper-module-imports': 7.22.15
-      '@babel/helper-plugin-utils': 7.22.5
-      '@babel/parser': 7.23.9
-      '@babel/types': 7.23.9
-      '@emotion/css': 11.11.2
-      '@emotion/serialize': 1.1.3
-      '@mui/system': link:packages/mui-system/build
-      '@wyw-in-js/processor-utils': 0.4.1
-      '@wyw-in-js/shared': 0.4.1
-      '@wyw-in-js/transform': 0.4.1
-      clsx: 2.1.0
-      cssesc: 3.0.0
-      csstype: 3.1.3
-      lodash: 4.17.21
-      react: 18.2.0
-      stylis: 4.3.1
-    transitivePeerDependencies:
-      - supports-color
     dev: false
