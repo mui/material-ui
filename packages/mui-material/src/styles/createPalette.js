@@ -199,25 +199,29 @@ export default function createPalette(palette) {
   // Bootstrap: https://github.com/twbs/bootstrap/blob/1d6e3710dd447de1a200f29e8fa521f8a0908f70/scss/_functions.scss#L59
   // and material-components-web https://github.com/material-components/material-components-web/blob/ac46b8863c4dab9fc22c4c662dc6bd1b65dd652f/packages/mdc-theme/_functions.scss#L54
   function getContrastText(background) {
-    const contrastText =
-      getContrastRatio(background, dark.text.primary) >= contrastThreshold
-        ? dark.text.primary
-        : light.text.primary;
+    try {
+      const contrastText =
+        getContrastRatio(background, dark.text.primary) >= contrastThreshold
+          ? dark.text.primary
+          : light.text.primary;
 
-    if (process.env.NODE_ENV !== 'production') {
-      const contrast = getContrastRatio(background, contrastText);
-      if (contrast < 3) {
-        console.error(
-          [
-            `MUI: The contrast ratio of ${contrast}:1 for ${contrastText} on ${background}`,
-            'falls below the WCAG recommended absolute minimum contrast ratio of 3:1.',
-            'https://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast-contrast',
-          ].join('\n'),
-        );
+      if (process.env.NODE_ENV !== 'production') {
+        const contrast = getContrastRatio(background, contrastText);
+        if (contrast < 3) {
+          console.error(
+            [
+              `MUI: The contrast ratio of ${contrast}:1 for ${contrastText} on ${background}`,
+              'falls below the WCAG recommended absolute minimum contrast ratio of 3:1.',
+              'https://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast-contrast',
+            ].join('\n'),
+          );
+        }
       }
-    }
 
-    return contrastText;
+      return contrastText;
+    } catch (e) {
+      return dark.text.primary;
+    }
   }
 
   const augmentColor = ({ color, name, mainShade = 500, lightShade = 300, darkShade = 700 }) => {
