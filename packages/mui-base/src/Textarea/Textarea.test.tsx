@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { createMount, createRenderer, fireEvent, screen, act } from '@mui-internal/test-utils';
+import { /* createMount, */ createRenderer, fireEvent, act } from '@mui-internal/test-utils';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { Textarea, textareaClasses, TextareaOwnerState } from '@mui/base/Textarea';
+import { Textarea, textareaClasses as classes } from '@mui/base/Textarea';
+import { FormControl } from '@mui/base/FormControl';
 
 describe('<Textarea />', () => {
-  const mount = createMount();
+  // const mount = createMount();
   const { render } = createRenderer();
 
   it('renders', () => {
@@ -142,6 +143,18 @@ describe('<Textarea />', () => {
       expect(textarea).to.have.property('value', '');
       fireEvent.change(textarea, { target: { value: 'do not work' } });
       expect(textarea).to.have.property('value', '');
+    });
+  });
+
+  describe('with FormControl', () => {
+    it('should have the formControl class', () => {
+      const { getByTestId } = render(
+        <FormControl defaultValue="multiline field">
+          <Textarea data-testid="textarea" />
+        </FormControl>,
+      );
+      const textarea = getByTestId('textarea');
+      expect(textarea).to.have.class(classes.formControl);
     });
   });
 });
