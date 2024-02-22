@@ -8,12 +8,9 @@ import styleFunctionSx, {
 } from '@mui/system/styleFunctionSx';
 
 import {
-  private_safeColorChannel as safeColorChannel,
   private_safeAlpha as safeAlpha,
   private_safeDarken as safeDarken,
   private_safeLighten as safeLighten,
-  private_safeEmphasize as safeEmphasize,
-  hslToRgb,
 } from '@mui/system/colorManipulator';
 
 import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
@@ -39,26 +36,6 @@ function assignNode(obj, keys) {
 function setColor(obj, key, defaultValue) {
   if (!obj[key] && defaultValue) {
     obj[key] = defaultValue;
-  }
-}
-
-function toRgb(color) {
-  if (!color || !color.startsWith('hsl')) {
-    return color;
-  }
-  return hslToRgb(color);
-}
-
-function setColorChannel(obj, key) {
-  if (!(`${key}Channel` in obj)) {
-    // custom channel token is not provided, generate one.
-    // if channel token can't be generated, show a warning.
-    obj[`${key}Channel`] = safeColorChannel(
-      toRgb(obj[key]),
-      `MUI: Can't create \`palette.${key}Channel\` because \`palette.${key}\` is not one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().` +
-        '\n' +
-        `To suppress this warning, you need to explicitly provide the \`palette.${key}Channel\` as a string (in rgb format, e.g. "12 12 12") or undefined if you want to remove the channel token.`,
-    );
   }
 }
 
@@ -214,29 +191,21 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.LinearProgress, 'infoBg', safeLighten(palette.info.main, 0.62));
       setColor(palette.LinearProgress, 'successBg', safeLighten(palette.success.main, 0.62));
       setColor(palette.LinearProgress, 'warningBg', safeLighten(palette.warning.main, 0.62));
-      setColor(
-        palette.Skeleton,
-        'bg',
-        `rgba(${setCssVarColor('palette-text-primaryChannel')} / 0.11)`,
-      );
+      setColor(palette.Skeleton, 'bg', safeAlpha(setCssVarColor('palette-text-primary'), 0.11));
       setColor(palette.Slider, 'primaryTrack', safeLighten(palette.primary.main, 0.62));
       setColor(palette.Slider, 'secondaryTrack', safeLighten(palette.secondary.main, 0.62));
       setColor(palette.Slider, 'errorTrack', safeLighten(palette.error.main, 0.62));
       setColor(palette.Slider, 'infoTrack', safeLighten(palette.info.main, 0.62));
       setColor(palette.Slider, 'successTrack', safeLighten(palette.success.main, 0.62));
       setColor(palette.Slider, 'warningTrack', safeLighten(palette.warning.main, 0.62));
-      const snackbarContentBackground = safeEmphasize(palette.background.default, 0.8);
+      const snackbarContentBackground = safeDarken(palette.background.default, 0.8);
       setColor(palette.SnackbarContent, 'bg', snackbarContentBackground);
       setColor(
         palette.SnackbarContent,
         'color',
         silent(() => lightPalette.getContrastText(snackbarContentBackground)),
       );
-      setColor(
-        palette.SpeedDialAction,
-        'fabHoverBg',
-        safeEmphasize(palette.background.paper, 0.15),
-      );
+      setColor(palette.SpeedDialAction, 'fabHoverBg', safeDarken(palette.background.paper, 0.15));
       setColor(palette.StepConnector, 'border', setCssVarColor('palette-grey-400'));
       setColor(palette.StepContent, 'border', setCssVarColor('palette-grey-400'));
       setColor(palette.Switch, 'defaultColor', setCssVarColor('palette-common-white'));
@@ -304,29 +273,21 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.LinearProgress, 'infoBg', safeDarken(palette.info.main, 0.5));
       setColor(palette.LinearProgress, 'successBg', safeDarken(palette.success.main, 0.5));
       setColor(palette.LinearProgress, 'warningBg', safeDarken(palette.warning.main, 0.5));
-      setColor(
-        palette.Skeleton,
-        'bg',
-        `rgba(${setCssVarColor('palette-text-primaryChannel')} / 0.13)`,
-      );
+      setColor(palette.Skeleton, 'bg', safeAlpha(setCssVarColor('palette-text-primary'), 0.13));
       setColor(palette.Slider, 'primaryTrack', safeDarken(palette.primary.main, 0.5));
       setColor(palette.Slider, 'secondaryTrack', safeDarken(palette.secondary.main, 0.5));
       setColor(palette.Slider, 'errorTrack', safeDarken(palette.error.main, 0.5));
       setColor(palette.Slider, 'infoTrack', safeDarken(palette.info.main, 0.5));
       setColor(palette.Slider, 'successTrack', safeDarken(palette.success.main, 0.5));
       setColor(palette.Slider, 'warningTrack', safeDarken(palette.warning.main, 0.5));
-      const snackbarContentBackground = safeEmphasize(palette.background.default, 0.98);
+      const snackbarContentBackground = safeDarken(palette.background.default, 0.98);
       setColor(palette.SnackbarContent, 'bg', snackbarContentBackground);
       setColor(
         palette.SnackbarContent,
         'color',
         silent(() => darkPalette.getContrastText(snackbarContentBackground)),
       );
-      setColor(
-        palette.SpeedDialAction,
-        'fabHoverBg',
-        safeEmphasize(palette.background.paper, 0.15),
-      );
+      setColor(palette.SpeedDialAction, 'fabHoverBg', safeLighten(palette.background.paper, 0.15));
       setColor(palette.StepConnector, 'border', setCssVarColor('palette-grey-600'));
       setColor(palette.StepContent, 'border', setCssVarColor('palette-grey-600'));
       setColor(palette.Switch, 'defaultColor', setCssVarColor('palette-grey-300'));
@@ -340,56 +301,6 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.TableCell, 'border', safeDarken(safeAlpha(palette.divider, 1), 0.68));
       setColor(palette.Tooltip, 'bg', safeAlpha(palette.grey[700], 0.92));
     }
-
-    // MUI X - DataGrid needs this token.
-    setColorChannel(palette.background, 'default');
-
-    setColorChannel(palette.common, 'background');
-    setColorChannel(palette.common, 'onBackground');
-
-    setColorChannel(palette, 'divider');
-
-    Object.keys(palette).forEach((color) => {
-      const colors = palette[color];
-
-      // The default palettes (primary, secondary, error, info, success, and warning) errors are handled by the above `createTheme(...)`.
-
-      if (colors && typeof colors === 'object') {
-        // Silent the error for custom palettes.
-        if (colors.main) {
-          setColor(palette[color], 'mainChannel', safeColorChannel(toRgb(colors.main)));
-        }
-        if (colors.light) {
-          setColor(palette[color], 'lightChannel', safeColorChannel(toRgb(colors.light)));
-        }
-        if (colors.dark) {
-          setColor(palette[color], 'darkChannel', safeColorChannel(toRgb(colors.dark)));
-        }
-        if (colors.contrastText) {
-          setColor(
-            palette[color],
-            'contrastTextChannel',
-            safeColorChannel(toRgb(colors.contrastText)),
-          );
-        }
-
-        if (color === 'text') {
-          // Text colors: text.primary, text.secondary
-          setColorChannel(palette[color], 'primary');
-          setColorChannel(palette[color], 'secondary');
-        }
-
-        if (color === 'action') {
-          // Action colors: action.active, action.selected
-          if (colors.active) {
-            setColorChannel(palette[color], 'active');
-          }
-          if (colors.selected) {
-            setColorChannel(palette[color], 'selected');
-          }
-        }
-      }
-    });
   });
 
   theme = args.reduce((acc, argument) => deepmerge(acc, argument), theme);
