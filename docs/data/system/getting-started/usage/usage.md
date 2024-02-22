@@ -202,7 +202,7 @@ const Div = styled('div')``;
 
 ### Any element with the babel plugin
 
-Visit [the to-do GitHub issue](https://github.com/mui/material-ui/issues/23220) about it.
+Visit [the open GitHub issue](https://github.com/mui/material-ui/issues/23220) regarding this topic to learn more.
 
 ## How to use MUI System
 
