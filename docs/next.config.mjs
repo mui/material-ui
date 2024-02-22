@@ -135,8 +135,27 @@ export default withDocsInfra({
                   {
                     loader: require.resolve('@mui/internal-markdown/loader'),
                     options: {
+                      workspaceRoot,
                       ignoreLanguagePages: LANGUAGES_IGNORE_PAGES,
                       languagesInProgress: LANGUAGES_IN_PROGRESS,
+                      packages: [
+                        {
+                          productId: 'material-ui',
+                          paths: [
+                            path.join(workspaceRoot, 'packages/mui-base/src'),
+                            path.join(workspaceRoot, 'packages/mui-lab/src'),
+                            path.join(workspaceRoot, 'packages/mui-material/src'),
+                          ],
+                        },
+                        {
+                          productId: 'base-ui',
+                          paths: [path.join(workspaceRoot, 'packages/mui-base/src')],
+                        },
+                        {
+                          productId: 'joy-ui',
+                          paths: [path.join(workspaceRoot, 'packages/mui-joy/src')],
+                        },
+                      ],
                       env: {
                         SOURCE_CODE_REPO: options.config.env.SOURCE_CODE_REPO,
                         LIB_VERSION: options.config.env.LIB_VERSION,

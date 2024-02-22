@@ -28,50 +28,37 @@ function moduleIDToJSIdentifier(moduleID) {
     .join('');
 }
 
-const componentPackageMapping = {
-  'material-ui': {},
-  'base-ui': {},
-  'joy-ui': {},
-};
+let componentsInPackages = null;
 
-const packages = [
-  {
-    productId: 'material-ui',
-    paths: [
-      path.join(__dirname, '../../packages/mui-base/src'),
-      path.join(__dirname, '../../packages/mui-lab/src'),
-      path.join(__dirname, '../../packages/mui-material/src'),
-    ],
-  },
-  {
-    productId: 'base-ui',
-    paths: [path.join(__dirname, '../../packages/mui-base/src')],
-  },
-  {
-    productId: 'joy-ui',
-    paths: [path.join(__dirname, '../../packages/mui-joy/src')],
-  },
-];
+function findComponents(packages) {
+  if (componentsInPackages !== null) {
+    return componentsInPackages;
+  }
 
-packages.forEach((pkg) => {
-  pkg.paths.forEach((pkgPath) => {
-    const match = pkgPath.match(/packages(?:\\|\/)([^/\\]+)(?:\\|\/)src/);
-    const packageName = match ? match[1] : null;
-    if (!packageName) {
-      throw new Error(`cannot find package name from path: ${pkgPath}`);
-    }
-    const filePaths = readdirSync(pkgPath);
-    filePaths.forEach((folder) => {
-      if (folder.match(/^[A-Z]/)) {
-        if (!componentPackageMapping[pkg.productId]) {
-          throw new Error(`componentPackageMapping must have "${pkg.productId}" as a key`);
-        }
-        // filename starts with Uppercase = component
-        componentPackageMapping[pkg.productId][folder] = packageName;
+  componentsInPackages = {};
+
+  packages.forEach((pkg) => {
+    pkg.paths.forEach((pkgPath) => {
+      const match = pkgPath.match(/packages(?:\\|\/)([^/\\]+)(?:\\|\/)src/);
+      const packageName = match ? match[1] : null;
+      if (!packageName) {
+        throw new Error(`cannot find package name from path: ${pkgPath}`);
       }
+      const filePaths = readdirSync(pkgPath);
+      filePaths.forEach((folder) => {
+        if (folder.match(/^[A-Z]/)) {
+          if (!componentsInPackages[pkg.productId]) {
+            componentsInPackages[pkg.productId] = {};
+          }
+          // filename starts with Uppercase = component
+          componentsInPackages[pkg.productId][folder] = packageName;
+        }
+      });
     });
   });
-});
+
+  return componentsInPackages;
+}
 
 /**
  * @type {import('webpack').loader.Loader}
@@ -79,6 +66,12 @@ packages.forEach((pkg) => {
 module.exports = async function demoLoader() {
   const englishFilepath = this.resourcePath;
   const options = this.getOptions();
+
+  if (!options.packages) {
+    throw new Error('The `packages` option must be configured in the markdown loader.');
+  }
+
+  const componentPackageMapping = findComponents(options.packages);
 
   const englishFilename = path.basename(englishFilepath, '.md');
 
@@ -122,9 +115,8 @@ module.exports = async function demoLoader() {
   );
 
   // Use .. as the docs runs from the /docs folder
-  const repositoryRoot = path.join(this.rootContext, '..');
   const fileRelativeContext = path
-    .relative(repositoryRoot, this.context)
+    .relative(options.workspaceRoot, this.context)
     // win32 to posix
     .replace(/\\/g, '/');
 
