@@ -103,6 +103,8 @@ export default function PropertiesSection(props) {
         requiresRef: propDescription?.requiresRef,
         isOptional,
         isRequired,
+        isProPlan: propData.isProPlan,
+        isPremiumPlan: propData.isPremiumPlan,
         isDeprecated,
         hooksParameters,
         hooksReturnValue,

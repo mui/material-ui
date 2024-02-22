@@ -125,12 +125,12 @@
     "deleteIconColorPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the deleteIcon element",
-      "conditions": "<code>color=\"primary\"</code> and <code>variant=\"filled\"</code>"
+      "conditions": "<code>color=\"primary\"</code>"
     },
     "deleteIconColorSecondary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the deleteIcon element",
-      "conditions": "<code>color=\"secondary\"</code> and <code>variant=\"filled\"</code>"
+      "conditions": "<code>color=\"secondary\"</code>"
     },
     "deleteIconFilledColorPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

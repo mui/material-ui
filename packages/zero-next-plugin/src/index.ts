@@ -3,6 +3,7 @@ import type { NextConfig } from 'next';
 import { findPagesDir } from 'next/dist/lib/find-pages-dir';
 import {
   webpack as zeroWebpackPlugin,
+  extendTheme,
   type PluginOptions as BaseZeroPluginConfig,
 } from '@mui/zero-unplugin';
 
@@ -81,3 +82,5 @@ export function withZeroPlugin(nextConfig: NextConfig, zeroConfig: ZeroPluginCon
     webpack,
   };
 }
+
+export { extendTheme };

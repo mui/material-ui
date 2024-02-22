@@ -292,6 +292,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                     display: 'flex',
                     flexDirection: 'column',
                     position: 'relative',
+                    borderColor: 'grey.200',
                     boxShadow: '0px 4px 16px rgba(170, 180, 190, 0.2)',
                     '&:focus-within': {
                       '& a': {

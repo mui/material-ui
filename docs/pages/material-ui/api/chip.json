@@ -154,13 +154,13 @@
     {
       "key": "deleteIconColorPrimary",
       "className": "MuiChip-deleteIconColorPrimary",
-      "description": "Styles applied to the deleteIcon element if `color=\"primary\"` and `variant=\"filled\"`.",
+      "description": "Styles applied to the deleteIcon element if `color=\"primary\"`.",
       "isGlobal": false
     },
     {
       "key": "deleteIconColorSecondary",
       "className": "MuiChip-deleteIconColorSecondary",
-      "description": "Styles applied to the deleteIcon element if `color=\"secondary\"` and `variant=\"filled\"`.",
+      "description": "Styles applied to the deleteIcon element if `color=\"secondary\"`.",
       "isGlobal": false
     },
     {

@@ -78,9 +78,9 @@ export interface ChipClasses {
   deleteIconSmall: string;
   /** Styles applied to the deleteIcon element if `size="medium"`. */
   deleteIconMedium: string;
-  /** Styles applied to the deleteIcon element if `color="primary"` and `variant="filled"`. */
+  /** Styles applied to the deleteIcon element if `color="primary"`. */
   deleteIconColorPrimary: string;
-  /** Styles applied to the deleteIcon element if `color="secondary"` and `variant="filled"`. */
+  /** Styles applied to the deleteIcon element if `color="secondary"`. */
   deleteIconColorSecondary: string;
   /** Styles applied to the deleteIcon element if `color="primary"` and `variant="outlined"`. */
   deleteIconOutlinedColorPrimary: string;

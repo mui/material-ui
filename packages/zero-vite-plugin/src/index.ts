@@ -4,7 +4,7 @@ import {
   generateTokenCss,
   generateThemeTokens,
 } from '@mui/zero-runtime/utils';
-import type { Theme } from '@mui/zero-runtime';
+import type { Theme } from '@mui/zero-runtime/extendTheme';
 import { transformAsync } from '@babel/core';
 import baseZeroVitePlugin, { type VitePluginOptions } from './zero-vite-plugin';
 

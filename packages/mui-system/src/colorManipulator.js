@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import clamp from '@mui/utils/clamp';
-import MuiError from '@mui-internal/babel-macros/MuiError.macro';
+import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 
 /**
  * Returns a number whose value is limited to the given range.

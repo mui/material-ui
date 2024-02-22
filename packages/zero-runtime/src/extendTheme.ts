@@ -86,7 +86,7 @@ export type Theme = ExtendTheme;
 /**
  * A utility to tell zero-runtime to generate CSS variables for the theme.
  */
-export default function extendTheme<
+export function extendTheme<
   Options extends {
     colorScheme: string;
     tokens: Record<string, any>;

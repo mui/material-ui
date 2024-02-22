@@ -68,7 +68,8 @@
     "utils",
     "package.json",
     "styles.css",
-    "theme"
+    "theme",
+    "extendTheme"
   ],
   "exports": {
     ".": {
@@ -82,6 +83,15 @@
       "import": "./theme/index.mjs",
       "require": "./theme/index.js",
       "default": "./theme/index.js"
+    },
+    "./extendTheme": {
+      "types": "./extendTheme/index.d.ts",
+      "import": {
+        "default": "./extendTheme/index.mjs",
+        "types": "./extendTheme/index.d.mts"
+      },
+      "require": "./extendTheme/index.js",
+      "default": "./extendTheme/index.js"
     },
     "./styles.css": {
       "default": "./styles.css"
