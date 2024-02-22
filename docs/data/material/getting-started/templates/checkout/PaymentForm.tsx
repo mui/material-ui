@@ -36,6 +36,10 @@ export default function PaymentForm() {
       <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
         <Box
           sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            p: 2,
             height: '220px',
             width: '330px',
             borderRadius: '20px',
@@ -47,26 +51,24 @@ export default function PaymentForm() {
             mb: 4,
           }}
         >
-          <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Typography variant="subtitle2">Credit card</Typography>
-              <CreditCardRoundedIcon />
-            </Box>
-            <SimCardRoundedIcon
-              sx={{ fontSize: '40px', transform: 'rotate(90deg)' }}
-            />
-            <Typography variant="h6" color="text.secondary">
-              {formatCardNumber(cardNumber)}
+          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Typography variant="subtitle2">Credit card</Typography>
+            <CreditCardRoundedIcon />
+          </Box>
+          <SimCardRoundedIcon
+            sx={{ fontSize: '40px', transform: 'rotate(90deg)' }}
+          />
+          <Typography variant="h6" color="text.secondary">
+            {formatCardNumber(cardNumber)}
+          </Typography>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Typography variant="subtitle2" color="text.secondary">
+              {cardName || 'Name'}
             </Typography>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Typography variant="subtitle2" color="text.secondary">
-                {cardName || 'Name'}
-              </Typography>
-              <Typography variant="subtitle2" color="text.secondary">
-                {expirationDate || 'MM/YY'}
-              </Typography>
-            </Box>
-          </CardContent>
+            <Typography variant="subtitle2" color="text.secondary">
+              {expirationDate || 'MM/YY'}
+            </Typography>
+          </Box>
         </Box>
       </Box>
 

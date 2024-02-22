@@ -24,7 +24,7 @@ import Review from './Review';
 import Info from './Info';
 import InfoMobile from './InfoMobile';
 import ToggleColorMode from './ToggleColorMode';
-import getLPTheme from '../landing-page/getLPTheme';
+import getCheckoutTheme from './getCheckoutTheme';
 
 const defaultTheme = createTheme({});
 
@@ -96,7 +96,7 @@ function getStepContent(step: number) {
 export default function Checkout() {
   const [mode, setMode] = React.useState<PaletteMode>('light');
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
-  const LPtheme = createTheme(getLPTheme(mode));
+  const checkoutTheme = createTheme(getCheckoutTheme(mode));
   const [activeStep, setActiveStep] = React.useState(0);
 
   const toggleColorMode = () => {
@@ -116,7 +116,7 @@ export default function Checkout() {
   };
 
   return (
-    <ThemeProvider theme={showCustomTheme ? LPtheme : defaultTheme}>
+    <ThemeProvider theme={showCustomTheme ? checkoutTheme : defaultTheme}>
       <CssBaseline />
       <Grid container sx={{ height: { xs: '100%', sm: '100dvh' } }}>
         <Grid

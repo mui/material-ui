@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import FormLabel from '@mui/material/FormLabel';
-import InputBase from '@mui/material/InputBase';
+import OutlinedInput from '@mui/material/OutlinedInput';
 import Divider from '@mui/material/Divider';
 import { styled } from '@mui/system';
 
@@ -18,7 +18,7 @@ export default function AddressForm() {
       <Grid container spacing={3}>
         <FormGrid item xs={12} md={6}>
           <FormLabel required>First name</FormLabel>
-          <InputBase
+          <OutlinedInput
             id="first-name"
             name="first-name"
             type="name"
@@ -29,7 +29,7 @@ export default function AddressForm() {
         </FormGrid>
         <FormGrid item xs={12} md={6}>
           <FormLabel required>Last name</FormLabel>
-          <InputBase
+          <OutlinedInput
             id="last-name"
             name="last-name"
             type="last-name"
@@ -40,7 +40,7 @@ export default function AddressForm() {
         </FormGrid>
         <FormGrid item xs={12}>
           <FormLabel required>Address line 1</FormLabel>
-          <InputBase
+          <OutlinedInput
             id="address1"
             name="address1"
             type="address1"
@@ -51,7 +51,7 @@ export default function AddressForm() {
         </FormGrid>
         <FormGrid item xs={12}>
           <FormLabel>Address line 2</FormLabel>
-          <InputBase
+          <OutlinedInput
             id="address2"
             name="address2"
             type="address2"
@@ -62,7 +62,7 @@ export default function AddressForm() {
         </FormGrid>
         <FormGrid item xs={6}>
           <FormLabel required>City</FormLabel>
-          <InputBase
+          <OutlinedInput
             id="City"
             name="City"
             type="City"
@@ -73,7 +73,7 @@ export default function AddressForm() {
         </FormGrid>
         <FormGrid item xs={6}>
           <FormLabel required>State</FormLabel>
-          <InputBase
+          <OutlinedInput
             id="State"
             name="State"
             type="State"
@@ -84,7 +84,7 @@ export default function AddressForm() {
         </FormGrid>
         <FormGrid item xs={6}>
           <FormLabel required>Zip / Postal code</FormLabel>
-          <InputBase
+          <OutlinedInput
             id="zip"
             name="zip"
             type="zip"
@@ -95,7 +95,7 @@ export default function AddressForm() {
         </FormGrid>
         <FormGrid item xs={6}>
           <FormLabel required>Country</FormLabel>
-          <InputBase
+          <OutlinedInput
             id="country"
             name="country"
             type="country"
