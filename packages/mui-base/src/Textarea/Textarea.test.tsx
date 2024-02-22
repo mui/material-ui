@@ -1,13 +1,29 @@
 import * as React from 'react';
-import { /* createMount, */ createRenderer, fireEvent, act } from '@mui-internal/test-utils';
+import { createMount, createRenderer, fireEvent, act } from '@mui-internal/test-utils';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { Textarea, textareaClasses as classes } from '@mui/base/Textarea';
 import { FormControl } from '@mui/base/FormControl';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 describe('<Textarea />', () => {
-  // const mount = createMount();
+  const mount = createMount();
   const { render } = createRenderer();
+
+  describeConformanceUnstyled(<Textarea />, () => ({
+    inheritComponent: 'div',
+    render,
+    mount,
+    refInstanceof: window.HTMLTextAreaElement,
+    testComponentPropWith: 'textarea',
+    slots: {
+      textarea: {
+        expectedClassName: classes.textarea,
+        testWithElement: 'textarea',
+      },
+    },
+    skip: ['componentProp', 'slotsProp', 'slotPropsProp', 'slotPropsCallbacks'],
+  }));
 
   it('renders', () => {
     const { getByTestId } = render(<Textarea data-testid="textarea" />);

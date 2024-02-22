@@ -10,6 +10,7 @@ import { TextareaOwnerState, TextareaProps } from './Textarea.types';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { TextareaAutosize } from '../TextareaAutosize';
+import { appendOwnerState } from '../utils/appendOwnerState';
 
 const useUtilityClasses = (ownerState: TextareaOwnerState) => {
   const { disabled, error, focused, formControlContext, readOnly } = ownerState;
@@ -59,7 +60,7 @@ const Textarea = React.forwardRef(function Textarea(
     minRows,
     maxRows,
     // slotProps = {},
-    // slots = {},
+    slots = {},
     ...other
   } = props;
 
@@ -109,6 +110,7 @@ const Textarea = React.forwardRef(function Textarea(
   const [focused, setFocused] = React.useState(false);
 
   const ownerState: TextareaOwnerState = {
+    ...props,
     focused,
     disabled,
     error,
@@ -185,8 +187,18 @@ const Textarea = React.forwardRef(function Textarea(
     }
   }
 
+  const TextareaComponent = slots?.textarea ?? TextareaAutosize;
+
+  const otherProps = appendOwnerState(
+    slots?.textarea ? TextareaComponent : 'textarea',
+    {
+      ...other,
+    },
+    ownerState,
+  );
+
   return (
-    <TextareaAutosize
+    <TextareaComponent
       ref={handleTextareaRef}
       value={value as string | number | readonly string[] | undefined}
       defaultValue={defaultValue}
@@ -199,7 +211,7 @@ const Textarea = React.forwardRef(function Textarea(
       minRows={minRows}
       maxRows={maxRows}
       className={clsx([className, classes.textarea])}
-      {...other}
+      {...otherProps}
     />
   );
 });
