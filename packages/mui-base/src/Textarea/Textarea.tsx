@@ -11,7 +11,7 @@ import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { TextareaAutosize } from '../TextareaAutosize';
 
 const useUtilityClasses = (ownerState: TextareaOwnerState) => {
-  const { disabled, error, focused, formControlContext } = ownerState;
+  const { disabled, error, focused, formControlContext, readOnly } = ownerState;
 
   const slots = {
     textarea: [
@@ -19,6 +19,7 @@ const useUtilityClasses = (ownerState: TextareaOwnerState) => {
       disabled && 'disabled',
       error && 'error',
       focused && 'focused',
+      readOnly && 'readOnly',
       Boolean(formControlContext) && 'formControl',
     ],
   };
@@ -52,7 +53,7 @@ const Textarea = React.forwardRef(function Textarea(
     // onKeyDown,
     // onKeyUp,
     // placeholder,
-    readOnly,
+    readOnly = false,
     // rows,
     minRows,
     maxRows,
@@ -111,6 +112,7 @@ const Textarea = React.forwardRef(function Textarea(
     disabled,
     error,
     required,
+    readOnly,
     formControlContext,
   };
 
@@ -187,6 +189,9 @@ const Textarea = React.forwardRef(function Textarea(
       ref={handleTextareaRef}
       value={value}
       defaultValue={defaultValue}
+      disabled={disabled}
+      readOnly={readOnly}
+      required={required}
       onChange={handleChange}
       onFocus={handleFocus}
       onBlur={handleBlur}

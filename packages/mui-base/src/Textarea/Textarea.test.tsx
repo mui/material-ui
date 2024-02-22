@@ -90,6 +90,43 @@ describe('<Textarea />', () => {
     });
   });
 
+  describe('prop: disabled', () => {
+    it('should render a disabled <textarea />', () => {
+      const { getByTestId } = render(<Textarea data-testid="textarea" disabled />);
+      const textarea = getByTestId('textarea');
+      expect(textarea).to.have.attribute('disabled');
+    });
+
+    it('should reset the focused state if the component becomes disabled', () => {
+      const handleBlur = spy();
+      const handleFocus = spy();
+
+      const { getByTestId, setProps } = render(
+        <Textarea data-testid="textarea" onBlur={handleBlur} onFocus={handleFocus} />,
+      );
+
+      act(() => {
+        getByTestId('textarea').focus();
+      });
+      expect(handleFocus.callCount).to.equal(1);
+
+      setProps({ disabled: true });
+
+      expect(handleBlur.callCount).to.equal(1);
+      // check if focus not initiated again
+      expect(handleFocus.callCount).to.equal(1);
+    });
+  });
+
+  describe('prop: readonly', () => {
+    it('should render a readonly <textarea />', () => {
+      const { getByTestId } = render(<Textarea data-testid="textarea" readOnly />);
+      const textarea = getByTestId('textarea');
+      expect(textarea).to.have.attribute('readOnly');
+      expect(textarea).to.have.property('readOnly');
+    });
+  });
+
   describe('controlled', () => {
     it('should forward the value to the textarea', () => {
       const { getByTestId } = render(<Textarea data-testid="textarea" maxRows={4} value="Hello" />);
