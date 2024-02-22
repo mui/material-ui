@@ -132,7 +132,7 @@ declare module '@mui/joy/styles' {
 Adding custom tokens increases your stylesheet's bundle size, and adds an extra set of maintenance costs to your app.
 These tradeoffs mean that adding new tokens is usually only worthwhile when you know that they'll be used by many components.
 
-As an alternative, consider using [the `sx` prop](/joy-ui/customization/approaches/#sx-prop) for one-off customizations.
+As an alternative, consider using [the `sx` prop](/joy-ui/customization/approaches/#the-sx-prop) for one-off customizations.
 :::
 
 ### Adding new palettes
