@@ -24,7 +24,7 @@ import Review from './Review';
 import Info from './Info';
 import InfoMobile from './InfoMobile';
 import ToggleColorMode from './ToggleColorMode';
-import getLPTheme from '../landing-page/getLPTheme';
+import getCheckoutTheme from './getCheckoutTheme';
 
 const defaultTheme = createTheme({});
 
@@ -95,7 +95,7 @@ function getStepContent(step) {
 export default function Checkout() {
   const [mode, setMode] = React.useState('light');
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
-  const LPtheme = createTheme(getLPTheme(mode));
+  const checkoutTheme = createTheme(getCheckoutTheme(mode));
   const [activeStep, setActiveStep] = React.useState(0);
 
   const toggleColorMode = () => {
@@ -115,7 +115,7 @@ export default function Checkout() {
   };
 
   return (
-    <ThemeProvider theme={showCustomTheme ? LPtheme : defaultTheme}>
+    <ThemeProvider theme={showCustomTheme ? checkoutTheme : defaultTheme}>
       <CssBaseline />
       <Grid container sx={{ height: { xs: '100%', sm: '100dvh' } }}>
         <Grid
@@ -127,8 +127,8 @@ export default function Checkout() {
             display: { xs: 'none', md: 'flex' },
             flexDirection: 'column',
             backgroundColor: 'background.default',
-            borderRight: '1px solid',
-            borderColor: 'divider',
+            borderRight: { sm: 'none', md: '1px solid' },
+            borderColor: { sm: 'none', md: 'divider' },
             alignItems: 'start',
             pt: 4,
             px: 10,
@@ -176,8 +176,8 @@ export default function Checkout() {
             display: 'flex',
             flexDirection: 'column',
             backgroundColor: { xs: 'transparent', sm: 'background.paper' },
-            borderRight: '1px solid',
-            borderColor: 'divider',
+            borderRight: { sm: 'none', md: '1px solid' },
+            borderColor: { sm: 'none', md: 'divider' },
             alignItems: 'start',
             pt: { xs: 2, sm: 4 },
             px: { xs: 2, sm: 10 },
@@ -251,6 +251,7 @@ export default function Checkout() {
               display: 'flex',
               flexDirection: 'column',
               flexGrow: 1,
+              width: '100%',
               maxWidth: { sm: '100%', md: 600 },
               maxHeight: '720px',
             }}
