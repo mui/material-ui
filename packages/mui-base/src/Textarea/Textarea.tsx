@@ -53,7 +53,7 @@ const Textarea = React.forwardRef(function Textarea(
     // onKeyUp,
     // placeholder,
     readOnly,
-    rows,
+    // rows,
     minRows,
     maxRows,
     // slotProps = {},
@@ -173,7 +173,7 @@ const Textarea = React.forwardRef(function Textarea(
   };
 
   if (process.env.NODE_ENV !== 'production') {
-    if (rows) {
+    if (other.rows) {
       if (minRows || maxRows) {
         console.warn(
           'MUI: You can not use the `minRows` or `maxRows` props when the input `rows` prop is set.',
