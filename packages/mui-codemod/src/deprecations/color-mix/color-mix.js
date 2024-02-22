@@ -15,19 +15,32 @@ export default function transformer(file, api, options) {
       if (path.node.quasis?.[0]?.value?.raw.endsWith('rgba(')) {
         path.node.quasis[0] = j.templateElement({ raw: 'color-mix(', cooked: 'color-mix(' }, false);
 
-        if (path.node.expressions.length === 2) {
+        if (path.node.expressions.length >= 2) {
           path.node.quasis[1] = j.templateElement(
             {
-              raw: ' / transparent calc(',
-              cooked: ' / transparent calc(',
+              raw: ' / transparent ',
+              cooked: ' / transparent ',
             },
             false,
           );
-          path.node.quasis[2] = j.templateElement({ raw: ' * 100%))', cooked: ' * 100%))' }, false);
+          path.node.quasis[path.node.quasis.length - 1] = j.templateElement(
+            { raw: '%)', cooked: '%)' },
+            false,
+          );
         }
       }
     }
   });
 
-  return root.toSource(printOptions).replace(/([a-z][a-zA-Z]+)Channel/g, '$1');
+  return root
+    .toSource(printOptions)
+    .replace(/([a-z][a-zA-Z]+)Channel/g, '$1')
+    .replace(
+      /\$\{theme\.vars\.palette\.([a-zA-Z]+)\.([a-zA-Z]+)Opacity\} \+ \$\{theme\.vars\.palette\.([a-zA-Z]+)\.([a-zA-Z]+)Opacity\}/g,
+      `\${((theme.palette.$1.$2Opacity + theme.palette.$3.$4Opacity) * 100).toFixed(2)}`,
+    )
+    .replace(
+      /\$\{theme\.vars\.palette\.([a-zA-Z]+)\.([a-zA-Z]+)Opacity\}/g,
+      `\${(theme.palette.$1.$2Opacity * 100).toFixed(0)}`,
+    );
 }
