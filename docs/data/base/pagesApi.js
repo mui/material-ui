@@ -60,6 +60,10 @@ module.exports = [
   { pathname: '/base-ui/react-tabs/components-api/#tabs', title: 'Tabs' },
   { pathname: '/base-ui/react-tabs/components-api/#tabs-list', title: 'TabsList' },
   {
+    pathname: '/base-ui/react-textarea-autosize/components-api/#textarea',
+    title: 'Textarea',
+  },
+  {
     pathname: '/base-ui/react-textarea-autosize/components-api/#textarea-autosize',
     title: 'TextareaAutosize',
   },

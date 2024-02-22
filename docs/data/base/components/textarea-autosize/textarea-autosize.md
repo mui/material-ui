@@ -1,7 +1,7 @@
 ---
 productId: base-ui
 title: Textarea Autosize React component
-components: TextareaAutosize
+components: TextareaAutosize, Textarea
 githubLabel: 'component: TextareaAutosize'
 ---
 

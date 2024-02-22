@@ -1,0 +1,38 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "maxRows": { "description": "Maximum number of rows to display." },
+    "minRows": { "description": "Minimum number of rows to display." }
+  },
+  "classDescriptions": {
+    "disabled": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the textarea element",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "error": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the textarea element",
+      "conditions": "<code>error={true}</code>"
+    },
+    "focused": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the textarea element",
+      "conditions": "the component is focused"
+    },
+    "formControl": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the textarea element",
+      "conditions": "the component is a descendant of <code>FormControl</code>"
+    },
+    "readOnly": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the textarea element",
+      "conditions": "<code>readOnly={true}</code>"
+    },
+    "textarea": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the textarea element"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "props": {
+    "maxRows": { "type": { "name": "number" } },
+    "minRows": { "type": { "name": "number" }, "default": "1" }
+  },
+  "name": "Textarea",
+  "imports": [
+    "import { Textarea } from '@mui/base/Textarea';",
+    "import { Textarea } from '@mui/base';"
+  ],
+  "classes": [
+    {
+      "key": "disabled",
+      "className": "base--disabled",
+      "description": "State class applied to the textarea element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "error",
+      "className": "base--error",
+      "description": "State class applied to the textarea element if `error={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "focused",
+      "className": "base--focused",
+      "description": "State class applied to the textarea element if the component is focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "formControl",
+      "className": "base-Textarea-formControl",
+      "description": "Class name applied to the textarea element if the component is a descendant of `FormControl`.",
+      "isGlobal": false
+    },
+    {
+      "key": "readOnly",
+      "className": "base--readOnly",
+      "description": "State class applied to the textarea element if `readOnly={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "textarea",
+      "className": "base-Textarea-textarea",
+      "description": "Class name applied to the textarea element.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": null,
+  "muiName": "Textarea",
+  "filename": "/packages/mui-base/src/Textarea/Textarea.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base-ui/react-textarea-autosize/\">Textarea Autosize</a></li>\n<li><a href=\"/joy-ui/react-textarea/\">Textarea</a></li></ul>",
+  "cssComponent": false
+}
