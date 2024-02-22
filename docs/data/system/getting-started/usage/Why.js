@@ -1,16 +1,18 @@
 import * as React from 'react';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import Box from '@mui/material/Box';
+import Box from '@mui/system/Box';
 
 export default function Why() {
   return (
     <Box
       sx={{
-        bgcolor: 'background.paper',
-        boxShadow: 1,
-        borderRadius: 1,
         p: 2,
         minWidth: 300,
+        border: '1px solid',
+        borderColor: 'divider',
+        bgcolor: 'background.default',
+        boxShadow: 2,
+        borderRadius: 2,
       }}
     >
       <Box sx={{ color: 'text.secondary' }}>Sessions</Box>
@@ -23,15 +25,16 @@ export default function Why() {
       />
       <Box
         sx={{
-          color: 'success.dark',
           display: 'inline',
-          fontWeight: 'medium',
+          fontSize: 14,
+          fontWeight: 'bold',
+          color: 'success.dark',
           mx: 0.5,
         }}
       >
-        18.77%
+        18.7%
       </Box>
-      <Box sx={{ color: 'text.secondary', display: 'inline', fontSize: 12 }}>
+      <Box sx={{ color: 'text.secondary', display: 'inline', fontSize: 14 }}>
         vs. last week
       </Box>
     </Box>
