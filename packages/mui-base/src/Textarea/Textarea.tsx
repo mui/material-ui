@@ -188,7 +188,7 @@ const Textarea = React.forwardRef(function Textarea(
   return (
     <TextareaAutosize
       ref={handleTextareaRef}
-      value={value}
+      value={value as string | number | readonly string[] | undefined}
       defaultValue={defaultValue}
       disabled={disabled}
       readOnly={readOnly}

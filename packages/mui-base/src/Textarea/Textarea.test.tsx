@@ -135,15 +135,6 @@ describe('<Textarea />', () => {
       const textarea = getByTestId('textarea');
       expect(textarea).to.have.value('Hello');
     });
-
-    it('should considered [] as controlled', () => {
-      const { getByTestId } = render(<Textarea data-testid="textarea" value={[]} />);
-      const textarea = getByTestId('textarea');
-
-      expect(textarea).to.have.property('value', '');
-      fireEvent.change(textarea, { target: { value: 'do not work' } });
-      expect(textarea).to.have.property('value', '');
-    });
   });
 
   describe('with FormControl', () => {

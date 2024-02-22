@@ -7,7 +7,7 @@ export interface TextareaProps
    * @default false
    */
   readOnly?: boolean;
-  value?: string;
+  value?: unknown;
   /**
    * Maximum number of rows to display.
    */

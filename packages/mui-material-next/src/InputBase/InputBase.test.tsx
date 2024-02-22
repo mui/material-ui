@@ -182,6 +182,7 @@ describe('<InputBase />', () => {
   });
 
   describe('controlled', () => {
+    // not applicable when multiline
     it('should considered [] as controlled', () => {
       const { getByRole } = render(<InputBase value={[]} />);
       const input = getByRole('textbox');
