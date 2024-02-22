@@ -68,5 +68,43 @@ describe('<Textarea />', () => {
       const { getByTestId } = render(<Textarea data-testid="textarea" rows={5} />);
       expect(getByTestId('textarea')).to.have.attribute('rows', '5');
     });
+
+    it('should not pass the minRows or maxRows props to the textarea in the dom', () => {
+      const { getByTestId } = render(<Textarea data-testid="textarea" minRows={5} maxRows={10} />);
+      expect(getByTestId('textarea')).not.to.have.attribute('minRows');
+      expect(getByTestId('textarea')).not.to.have.attribute('maxRows');
+    });
+
+    it('should preserve state when changing rows', () => {
+      const { getByTestId, setProps } = render(
+        <Textarea data-testid="textarea" defaultValue="Welcome" />,
+      );
+      const textarea = getByTestId('textarea');
+      act(() => {
+        textarea.focus();
+      });
+
+      setProps({ rows: 4 });
+
+      expect(textarea).toHaveFocus();
+    });
+  });
+
+  describe('controlled', () => {
+    it('should forward the value to the textarea', () => {
+      const { getByTestId } = render(<Textarea data-testid="textarea" maxRows={4} value="Hello" />);
+
+      const textarea = getByTestId('textarea');
+      expect(textarea).to.have.value('Hello');
+    });
+
+    it('should considered [] as controlled', () => {
+      const { getByTestId } = render(<Textarea data-testid="textarea" value={[]} />);
+      const textarea = getByTestId('textarea');
+
+      expect(textarea).to.have.property('value', '');
+      fireEvent.change(textarea, { target: { value: 'do not work' } });
+      expect(textarea).to.have.property('value', '');
+    });
   });
 });
