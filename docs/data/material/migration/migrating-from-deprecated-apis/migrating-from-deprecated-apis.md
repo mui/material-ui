@@ -205,22 +205,22 @@ Here's how to migrate:
 +.MuiButton-contained.MuiButton-colorWarning
 -.MuiButton-textSizeSmall
 +.MuiButton-text.MuiButton-sizeSmall
+-.MuiButton-textSizeMedium
++.MuiButton-text.MuiButton-sizeMedium
 -.MuiButton-textSizeLarge
 +.MuiButton-text.MuiButton-sizeLarge
 -.MuiButton-outlinedSizeSmall
 +.MuiButton-outlined.MuiButton-sizeSmall
+-.MuiButton-outlinedSizeMedium
++.MuiButton-outlined.MuiButton-sizeMedium
 -.MuiButton-outlinedSizeLarge
 +.MuiButton-outlined.MuiButton-sizeLarge
 -.MuiButton-containedSizeSmall
 +.MuiButton-contained.MuiButton-sizeSmall
--.MuiButton-containedSizeLarge
-+.MuiButton-contained.MuiButton-sizeLarge
--.MuiButton-textSizeMedium
-+.MuiButton-text.MuiButton-sizeMedium
--.MuiButton-outlinedSizeMedium
-+.MuiButton-outlined.MuiButton-sizeMedium
 -.MuiButton-containedSizeMedium
 +.MuiButton-contained.MuiButton-sizeMedium
+-.MuiButton-containedSizeLarge
++.MuiButton-contained.MuiButton-sizeLarge
 -.MuiButton-root .MuiButton-iconSizeSmall
 +.MuiButton-root.MuiButton-sizeSmall > .MuiButton-icon
 -.MuiButton-root .MuiButton-iconSizeMedium
