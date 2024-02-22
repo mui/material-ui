@@ -15,11 +15,15 @@
         "name": "shape",
         "description": "{ CloseButton?: elementType, CloseIcon?: elementType }"
       },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in v7. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
     },
     "componentsProps": {
       "type": { "name": "shape", "description": "{ closeButton?: object, closeIcon?: object }" },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in v7. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
     },
     "icon": { "type": { "name": "node" } },
     "iconMapping": {
@@ -44,7 +48,10 @@
       "default": "'success'"
     },
     "slotProps": {
-      "type": { "name": "shape", "description": "{ closeButton?: object, closeIcon?: object }" },
+      "type": {
+        "name": "shape",
+        "description": "{ closeButton?: func<br>&#124;&nbsp;object, closeIcon?: func<br>&#124;&nbsp;object }"
+      },
       "default": "{}"
     },
     "slots": {
@@ -71,6 +78,20 @@
   },
   "name": "Alert",
   "imports": ["import Alert from '@mui/material/Alert';", "import { Alert } from '@mui/material';"],
+  "slots": [
+    {
+      "name": "closeButton",
+      "description": "The component that renders the close button.",
+      "default": "IconButton",
+      "class": null
+    },
+    {
+      "name": "closeIcon",
+      "description": "The component that renders the close icon.",
+      "default": "svg",
+      "class": null
+    }
+  ],
   "classes": [
     {
       "key": "action",

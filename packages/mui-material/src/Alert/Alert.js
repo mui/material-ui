@@ -2,10 +2,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { darken, lighten } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import useSlot from '../utils/useSlot';
 import capitalize from '../utils/capitalize';
 import Paper from '../Paper';
 import alertClasses, { getAlertUtilityClass } from './alertClasses';
@@ -174,11 +175,29 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const AlertCloseButton = slots.closeButton ?? components.CloseButton ?? IconButton;
-  const AlertCloseIcon = slots.closeIcon ?? components.CloseIcon ?? CloseIcon;
+  const externalForwardedProps = {
+    slots: {
+      closeButton: components.CloseButton,
+      closeIcon: components.CloseIcon,
+      ...slots,
+    },
+    slotProps: {
+      ...componentsProps,
+      ...slotProps,
+    },
+  };
 
-  const closeButtonProps = slotProps.closeButton ?? componentsProps.closeButton;
-  const closeIconProps = slotProps.closeIcon ?? componentsProps.closeIcon;
+  const [CloseButtonSlot, closeButtonProps] = useSlot('closeButton', {
+    elementType: IconButton,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [CloseIconSlot, closeIconProps] = useSlot('closeIcon', {
+    elementType: CloseIcon,
+    externalForwardedProps,
+    ownerState,
+  });
 
   return (
     <AlertRoot
@@ -204,7 +223,7 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
       ) : null}
       {action == null && onClose ? (
         <AlertAction ownerState={ownerState} className={classes.action}>
-          <AlertCloseButton
+          <CloseButtonSlot
             size="small"
             aria-label={closeText}
             title={closeText}
@@ -212,8 +231,8 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
             onClick={onClose}
             {...closeButtonProps}
           >
-            <AlertCloseIcon fontSize="small" {...closeIconProps} />
-          </AlertCloseButton>
+            <CloseIconSlot fontSize="small" {...closeIconProps} />
+          </CloseButtonSlot>
         </AlertAction>
       ) : null}
     </AlertRoot>
@@ -260,8 +279,7 @@ Alert.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    *
    * @default {}
    */
@@ -273,8 +291,7 @@ Alert.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    *
    * @default {}
    */
@@ -320,22 +337,15 @@ Alert.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
+   * The props used for each slot inside.
    * @default {}
    */
   slotProps: PropTypes.shape({
-    closeButton: PropTypes.object,
-    closeIcon: PropTypes.object,
+    closeButton: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    closeIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
-   *
    * @default {}
    */
   slots: PropTypes.shape({

@@ -226,7 +226,7 @@ Use `sx` prop with `theme.breakpoints.only('xs')` to customize the styles of the
 
 ### Focus trap
 
-Base UI `Modal` moves the focus back to the body of the component if the focus tries to escape it.
+Base UI `Modal` moves the focus back to the body of the component if the focus tries to escape it.
 
 This is done for accessibility purposes, but it can potentially create issues for your users.
 
@@ -246,7 +246,7 @@ See the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/AR
   </Modal>
   ```
 
-- Follow the [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/dialog/) to help you set the initial focus on the most relevant element based on the content of the modal.
+- Follow the [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/dialog/) to help you set the initial focus on the most relevant element based on the content of the modal.
   :::warning
   A modal window can sit on top of either the parent application, or another modal window.
   _All_ windows under the topmost modal are **inert**, meaning the user cannot interact with them.

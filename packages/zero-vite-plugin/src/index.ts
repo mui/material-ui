@@ -1,23 +1,18 @@
 import type { Plugin } from 'vite';
-import { preprocessor as basePreprocessor, generateThemeTokens } from '@mui/zero-runtime/utils';
+import {
+  preprocessor as basePreprocessor,
+  generateTokenCss,
+  generateThemeTokens,
+} from '@mui/zero-runtime/utils';
+import type { Theme } from '@mui/zero-runtime/extendTheme';
 import { transformAsync } from '@babel/core';
 import baseZeroVitePlugin, { type VitePluginOptions } from './zero-vite-plugin';
-
-type BaseTheme = {
-  cssVarPrefix: string;
-  colorSchemes: Record<string, unknown>;
-  generateCssVars: (colorScheme?: string) => { css: Record<string, string> };
-};
 
 export interface ZeroVitePluginOptions extends VitePluginOptions {
   /**
    * The theme object that you want to be passed to the `styled` function
    */
-  theme: BaseTheme;
-  /**
-   * Prefix string to use in the generated css variables.
-   */
-  cssVariablesPrefix?: string;
+  theme: Theme;
   /**
    * Whether the css variables for the default theme should target the :root selector or not.
    * @default true
@@ -69,10 +64,10 @@ export function zeroVitePlugin(options: ZeroVitePluginOptions) {
       },
       load(id) {
         if (id === VIRTUAL_CSS_FILE) {
-          return generateThemeTokens(theme);
+          return generateTokenCss(theme);
         }
         if (id === VIRTUAL_THEME_FILE) {
-          return `export default ${JSON.stringify(theme)};`;
+          return `export default ${JSON.stringify(generateThemeTokens(theme))};`;
         }
         return null;
       },
@@ -108,7 +103,6 @@ export function zeroVitePlugin(options: ZeroVitePluginOptions) {
   }
 
   const zeroPlugin = baseZeroVitePlugin({
-    cssVariablesPrefix: theme.cssVarPrefix,
     themeArgs: {
       theme,
     },

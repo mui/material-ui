@@ -5,8 +5,8 @@ import throttle from 'lodash/throttle';
 import { styled, alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import NoSsr from '@mui/material/NoSsr';
-import Link from 'docs/src/modules/components/Link';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { Link } from '@mui/docs/Link';
+import { useTranslate } from '@mui/docs/i18n';
 import { samePageLinkNavigation } from 'docs/src/modules/components/MarkdownLinks';
 import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
 import featureToggle from 'docs/src/featureToggle';
@@ -15,7 +15,7 @@ import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 const Nav = styled('nav')(({ theme }) => ({
   top: 'var(--MuiDocs-header-height)',
   marginTop: 'var(--MuiDocs-header-height)',
-  paddingLeft: 2, // Fix truncated focus outline style
+  paddingLeft: 6, // Fix truncated focus outline style
   position: 'sticky',
   height: 'calc(100vh - var(--MuiDocs-header-height))',
   overflowY: 'auto',
@@ -23,6 +23,7 @@ const Nav = styled('nav')(({ theme }) => ({
   paddingBottom: theme.spacing(7),
   paddingRight: theme.spacing(4), // We can't use `padding` as stylis-plugin-rtl doesn't swap it
   display: 'none',
+  scrollbarWidth: 'thin',
   [theme.breakpoints.up('md')]: {
     display: 'block',
   },
@@ -204,7 +205,7 @@ export default function AppTableOfContents(props) {
   useThrottledOnScroll(items.length > 0 ? findActiveIndex : null, 166);
 
   const handleClick = (hash) => (event) => {
-    // Ignore click for new tab/new window behavior
+    // Ignore click events meant for native link handling, e.g. open in new tab
     if (samePageLinkNavigation(event)) {
       return;
     }

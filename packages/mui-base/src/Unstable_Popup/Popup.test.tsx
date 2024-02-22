@@ -1,16 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import {
-  act,
-  createRenderer,
-  createMount,
-  describeConformanceUnstyled,
-  screen,
-  fireEvent,
-} from '@mui-internal/test-utils';
+import { act, createRenderer, createMount, screen, fireEvent } from '@mui-internal/test-utils';
 import { Unstable_Popup as Popup, popupClasses, PopupProps } from '@mui/base/Unstable_Popup';
 import { PopupContext } from './PopupContext';
 import { useTransitionStateManager } from '../useTransition';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 const TRANSITION_DURATION = 100;
 
@@ -293,12 +287,12 @@ describe('<Popup />', () => {
     });
   });
 
-  describe('prop: withTransition', () => {
+  describe('transitions', () => {
     clock.withFakeTimers();
 
     it('should work', async () => {
       const { queryByRole, getByRole, setProps } = render(
-        <Popup {...defaultProps} withTransition>
+        <Popup {...defaultProps}>
           <FakeTransition>
             <span>Hello World</span>
           </FakeTransition>
@@ -334,7 +328,7 @@ describe('<Popup />', () => {
               <button type="button" onClick={this.handleClick}>
                 Toggle Tooltip
               </button>
-              <Popup {...defaultProps} open={this.state.open} withTransition>
+              <Popup {...defaultProps} open={this.state.open}>
                 <FakeTransition>
                   <p>Hello World</p>
                 </FakeTransition>

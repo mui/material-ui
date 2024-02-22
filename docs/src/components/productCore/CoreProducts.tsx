@@ -41,7 +41,14 @@ export default function CoreProducts() {
       <Grid container spacing={2}>
         {content.map(({ title, description, link }) => (
           <Grid key={title} item xs={12} md={6}>
-            <InfoCard link={link} title={title} description={description} />
+            <InfoCard
+              link={link}
+              title={title}
+              description={description}
+              titleProps={{
+                component: 'h2',
+              }}
+            />
           </Grid>
         ))}
       </Grid>

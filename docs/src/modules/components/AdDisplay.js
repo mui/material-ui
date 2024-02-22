@@ -4,20 +4,21 @@ import { styled } from '@mui/material/styles';
 import { adShape } from 'docs/src/modules/components/AdManager';
 import { adStylesObject } from 'docs/src/modules/components/ad.styles';
 
-const Root = styled('span', { shouldForwardProp: (prop) => prop !== 'shape' })(
-  ({ theme, shape }) => {
-    const styles = adStylesObject[`body-${shape}`](theme);
+const Root = styled('span', { shouldForwardProp: (prop) => prop !== 'shape' })(({
+  theme,
+  shape,
+}) => {
+  const styles = adStylesObject[`body-${shape}`](theme);
 
-    return {
-      ...styles.root,
-      '& img': styles.img,
-      '& a, & a:hover': styles.a,
-      '& .AdDisplay-imageWrapper': styles.imgWrapper,
-      '& .AdDisplay-description': styles.description,
-      '& .AdDisplay-poweredby': styles.poweredby,
-    };
-  },
-);
+  return {
+    ...styles.root,
+    '& img': styles.img,
+    '& a, & a:hover': styles.a,
+    '& .AdDisplay-imageWrapper': styles.imgWrapper,
+    '& .AdDisplay-description': styles.description,
+    '& .AdDisplay-poweredby': styles.poweredby,
+  };
+});
 
 export default function AdDisplay(props) {
   const { ad, className, shape = 'auto' } = props;

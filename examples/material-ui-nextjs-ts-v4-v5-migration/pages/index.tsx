@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <Container maxWidth="lg">
       <div className={classes.main}>
-        <Typography variant="h4" component="h1" gutterBottom>
+        <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
           Material UI - Next.js example in TypeScript with legacy @mui/styles
         </Typography>
         <Link href="/about" color="secondary">

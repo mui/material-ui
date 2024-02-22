@@ -60,6 +60,9 @@
     },
     "orientation": { "description": "The component orientation." },
     "scale": { "description": "A transformation function, to change the scale of the slider." },
+    "shiftStep": {
+      "description": "The granularity with which the slider can step through values when using Page Up/Page Down or Shift + Arrow Up/Arrow Down."
+    },
     "size": {
       "description": "The size of the component. It accepts theme values between &#39;sm&#39; and &#39;lg&#39;."
     },
@@ -141,13 +144,13 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
-    "track": "The component that renders the track.",
-    "rail": "The component that renders the rail.",
-    "thumb": "The component that renders the thumb.",
+    "input": "The component that renders the input.",
     "mark": "The component that renders the mark.",
     "markLabel": "The component that renders the mark label.",
-    "valueLabel": "The component that renders the value label.",
-    "input": "The component that renders the input."
+    "rail": "The component that renders the rail.",
+    "root": "The component that renders the root.",
+    "thumb": "The component that renders the thumb.",
+    "track": "The component that renders the track.",
+    "valueLabel": "The component that renders the value label."
   }
 }

@@ -12,18 +12,16 @@
     "typecheck": "tsc --noEmit -p ."
   },
   "dependencies": {
-    "@babel/core": "^7.23.7",
+    "@babel/core": "^7.23.9",
     "@babel/preset-typescript": "^7.23.3",
-    "@linaria/babel-preset": "^5.0.4",
-    "@linaria/logger": "^5.0.0",
-    "@linaria/utils": "^5.0.2",
     "@mui/zero-runtime": "workspace:^",
+    "@wyw-in-js/shared": "^0.4.1",
+    "@wyw-in-js/transform": "^0.4.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24"
   },
   "devDependencies": {
     "@types/babel__core": "^7.20.5",
-    "@types/debug": "^4.1.12",
-    "vite": "^5.0.11"
+    "vite": "^5.0.12"
   },
   "peerDependencies": {
     "vite": "^4.0.0 || ^5.0.0"

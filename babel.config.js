@@ -33,6 +33,7 @@ module.exports = function getBabelConfig(api) {
     '@mui/material-next': resolveAliasPath('./packages/mui-material-next/src'),
     '@mui/joy': resolveAliasPath('./packages/mui-joy/src'),
     '@mui/zero-runtime': resolveAliasPath('./packages/zero-runtime/src'),
+    '@mui-internal/docs-utils': resolveAliasPath('./packages/docs-utils/src'),
     docs: resolveAliasPath('./docs'),
     test: resolveAliasPath('./test'),
   };
@@ -137,7 +138,6 @@ module.exports = function getBabelConfig(api) {
               alias: {
                 ...defaultAlias,
                 modules: './modules',
-                'typescript-to-proptypes': './packages/typescript-to-proptypes/src',
               },
               root: ['./'],
             },
