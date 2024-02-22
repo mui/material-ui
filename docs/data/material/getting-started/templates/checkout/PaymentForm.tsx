@@ -14,18 +14,18 @@ export default function PaymentForm() {
   const [cvv, setCvv] = React.useState('');
   const [expirationDate, setExpirationDate] = React.useState('');
 
-  const handleCardNumberChange = (event) => {
+  const handleCardNumberChange = (event: { target: { value: string } }) => {
     const value = event.target.value.replace(/\D/g, '');
     const formattedValue = value.replace(/(\d{4})(?=\d)/g, '$1 ');
     if (value.length <= 16) setCardNumber(formattedValue);
   };
 
-  const handleCvvChange = (event) => {
+  const handleCvvChange = (event: { target: { value: string } }) => {
     const value = event.target.value.replace(/\D/g, '');
     if (value.length <= 3) setCvv(value);
   };
 
-  const handleExpirationDateChange = (event) => {
+  const handleExpirationDateChange = (event: { target: { value: string } }) => {
     const value = event.target.value.replace(/\D/g, '');
     const formattedValue = value.replace(/(\d{2})(\d{2})/, '$1/$2');
     if (value.length <= 4) setExpirationDate(formattedValue);
