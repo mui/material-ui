@@ -254,7 +254,7 @@ export function alpha(color, value) {
 }
 export function private_safeAlpha(color, value, warning) {
   try {
-    return `color-mix(in var(--color-space, srgb), ${color}, transparent ${(value * 100).toFixed(2)}%)`;
+    return `color-mix(in var(--color-space), ${color}, transparent ${(value * 100).toFixed(2)}%)`;
   } catch (error) {
     if (warning && process.env.NODE_ENV !== 'production') {
       console.warn(warning);
@@ -284,7 +284,7 @@ export function darken(color, coefficient) {
 }
 export function private_safeDarken(color, coefficient, warning) {
   try {
-    return `color-mix(in var(--color-space, srgb), ${color}, #000 ${(coefficient * 100).toFixed(2)}%)`;
+    return `color-mix(in var(--color-space), ${color}, #000 ${(coefficient * 100).toFixed(2)}%)`;
   } catch (error) {
     if (warning && process.env.NODE_ENV !== 'production') {
       console.warn(warning);
@@ -319,7 +319,7 @@ export function lighten(color, coefficient) {
 }
 export function private_safeLighten(color, coefficient, warning) {
   try {
-    return `color-mix(in var(--color-space, srgb), ${color}, #fff ${(coefficient * 100).toFixed(2)}%)`;
+    return `color-mix(in var(--color-space), ${color}, #fff ${(coefficient * 100).toFixed(2)}%)`;
   } catch (error) {
     if (warning && process.env.NODE_ENV !== 'production') {
       console.warn(warning);
