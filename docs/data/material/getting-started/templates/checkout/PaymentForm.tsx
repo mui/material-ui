@@ -4,7 +4,6 @@ import Grid from '@mui/material/Grid';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Divider from '@mui/material/Divider';
 import FormLabel from '@mui/material/FormLabel';
@@ -35,14 +34,17 @@ export default function PaymentForm() {
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-        <Card
-          variant="outlined"
+        <Box
           sx={{
-            width: { xs: '100%', sm: '70%' },
-            minHeight: '200px',
-            opacity: 0.5,
+            height: '220px',
+            width: '330px',
+            borderRadius: '20px',
+            backdropFilter: 'blur(35px)',
+            border: '2px solid ',
+            borderColor: 'divider',
+            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.05)',
+            overflow: 'hidden',
             mb: 4,
-            pointerEvents: 'none',
           }}
         >
           <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -53,15 +55,19 @@ export default function PaymentForm() {
             <SimCardRoundedIcon
               sx={{ fontSize: '40px', transform: 'rotate(90deg)' }}
             />
-            <Typography variant="h6">{formatCardNumber(cardNumber)}</Typography>
+            <Typography variant="h6" color="text.secondary">
+              {formatCardNumber(cardNumber)}
+            </Typography>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Typography variant="subtitle2">{cardName || 'Name'}</Typography>
-              <Typography variant="subtitle2">
+              <Typography variant="subtitle2" color="text.secondary">
+                {cardName || 'Name'}
+              </Typography>
+              <Typography variant="subtitle2" color="text.secondary">
                 {expirationDate || 'MM/YY'}
               </Typography>
             </Box>
           </CardContent>
-        </Card>
+        </Box>
       </Box>
 
       <Grid container spacing={3}>
