@@ -129,11 +129,11 @@ export default withDocsInfra({
             test: /\.md$/,
             oneOf: [
               {
-                resourceQuery: /@mui\/markdown/,
+                resourceQuery: /@mui\/internal-markdown/,
                 use: [
                   options.defaultLoaders.babel,
                   {
-                    loader: require.resolve('@mui/markdown/loader'),
+                    loader: require.resolve('@mui/internal-markdown/loader'),
                     options: {
                       ignoreLanguagePages: LANGUAGES_IGNORE_PAGES,
                       languagesInProgress: LANGUAGES_IN_PROGRESS,

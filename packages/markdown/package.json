@@ -1,5 +1,5 @@
 {
-  "name": "@mui/markdown",
+  "name": "@mui/internal-markdown",
   "version": "1.0.0",
   "author": "MUI Team",
   "description": "MUI markdown parser. This is an internal package not meant for general use.",
