@@ -54,44 +54,44 @@ describe('experimental_extendTheme', () => {
 
   it('should generate color channels', () => {
     const theme = extendTheme();
-    expect(theme.colorSchemes.dark.palette.background.defaultChannel).to.equal('18 18 18');
-    expect(theme.colorSchemes.light.palette.background.defaultChannel).to.equal('255 255 255');
+    expect(theme.colorSchemes.dark.palette.background.default).to.equal('18 18 18');
+    expect(theme.colorSchemes.light.palette.background.default).to.equal('255 255 255');
 
-    expect(theme.colorSchemes.dark.palette.primary.mainChannel).to.equal('144 202 249');
-    expect(theme.colorSchemes.dark.palette.primary.darkChannel).to.equal('66 165 245');
-    expect(theme.colorSchemes.dark.palette.primary.lightChannel).to.equal('227 242 253');
-    expect(theme.colorSchemes.dark.palette.primary.contrastTextChannel).to.equal('0 0 0');
+    expect(theme.colorSchemes.dark.palette.primary.main).to.equal('144 202 249');
+    expect(theme.colorSchemes.dark.palette.primary.dark).to.equal('66 165 245');
+    expect(theme.colorSchemes.dark.palette.primary.light).to.equal('227 242 253');
+    expect(theme.colorSchemes.dark.palette.primary.contrastText).to.equal('0 0 0');
 
-    expect(theme.colorSchemes.light.palette.primary.mainChannel).to.equal('25 118 210');
-    expect(theme.colorSchemes.light.palette.primary.darkChannel).to.equal('21 101 192');
-    expect(theme.colorSchemes.light.palette.primary.lightChannel).to.equal('66 165 245');
-    expect(theme.colorSchemes.light.palette.primary.contrastTextChannel).to.equal('255 255 255');
+    expect(theme.colorSchemes.light.palette.primary.main).to.equal('25 118 210');
+    expect(theme.colorSchemes.light.palette.primary.dark).to.equal('21 101 192');
+    expect(theme.colorSchemes.light.palette.primary.light).to.equal('66 165 245');
+    expect(theme.colorSchemes.light.palette.primary.contrastText).to.equal('255 255 255');
 
-    expect(theme.colorSchemes.dark.palette.secondary.mainChannel).to.equal('206 147 216');
-    expect(theme.colorSchemes.dark.palette.secondary.darkChannel).to.equal('171 71 188');
-    expect(theme.colorSchemes.dark.palette.secondary.lightChannel).to.equal('243 229 245');
-    expect(theme.colorSchemes.dark.palette.secondary.contrastTextChannel).to.equal('0 0 0');
+    expect(theme.colorSchemes.dark.palette.secondary.main).to.equal('206 147 216');
+    expect(theme.colorSchemes.dark.palette.secondary.dark).to.equal('171 71 188');
+    expect(theme.colorSchemes.dark.palette.secondary.light).to.equal('243 229 245');
+    expect(theme.colorSchemes.dark.palette.secondary.contrastText).to.equal('0 0 0');
 
-    expect(theme.colorSchemes.light.palette.secondary.mainChannel).to.equal('156 39 176');
-    expect(theme.colorSchemes.light.palette.secondary.darkChannel).to.equal('123 31 162');
-    expect(theme.colorSchemes.light.palette.secondary.lightChannel).to.equal('186 104 200');
-    expect(theme.colorSchemes.light.palette.secondary.contrastTextChannel).to.equal('255 255 255');
+    expect(theme.colorSchemes.light.palette.secondary.main).to.equal('156 39 176');
+    expect(theme.colorSchemes.light.palette.secondary.dark).to.equal('123 31 162');
+    expect(theme.colorSchemes.light.palette.secondary.light).to.equal('186 104 200');
+    expect(theme.colorSchemes.light.palette.secondary.contrastText).to.equal('255 255 255');
 
-    expect(theme.colorSchemes.dark.palette.text.primaryChannel).to.equal('255 255 255');
-    expect(theme.colorSchemes.dark.palette.text.secondaryChannel).to.equal('255 255 255');
+    expect(theme.colorSchemes.dark.palette.text.primary).to.equal('255 255 255');
+    expect(theme.colorSchemes.dark.palette.text.secondary).to.equal('255 255 255');
 
-    expect(theme.colorSchemes.light.palette.text.primaryChannel).to.equal('0 0 0');
-    expect(theme.colorSchemes.light.palette.text.secondaryChannel).to.equal('0 0 0');
+    expect(theme.colorSchemes.light.palette.text.primary).to.equal('0 0 0');
+    expect(theme.colorSchemes.light.palette.text.secondary).to.equal('0 0 0');
 
-    expect(theme.colorSchemes.dark.palette.dividerChannel).to.equal('255 255 255');
+    expect(theme.colorSchemes.dark.palette.divider).to.equal('255 255 255');
 
-    expect(theme.colorSchemes.light.palette.dividerChannel).to.equal('0 0 0');
+    expect(theme.colorSchemes.light.palette.divider).to.equal('0 0 0');
 
-    expect(theme.colorSchemes.dark.palette.action.activeChannel).to.equal('255 255 255');
-    expect(theme.colorSchemes.light.palette.action.activeChannel).to.equal('0 0 0');
+    expect(theme.colorSchemes.dark.palette.action.active).to.equal('255 255 255');
+    expect(theme.colorSchemes.light.palette.action.active).to.equal('0 0 0');
 
-    expect(theme.colorSchemes.dark.palette.action.selectedChannel).to.equal('255 255 255');
-    expect(theme.colorSchemes.light.palette.action.selectedChannel).to.equal('0 0 0');
+    expect(theme.colorSchemes.dark.palette.action.selected).to.equal('255 255 255');
+    expect(theme.colorSchemes.light.palette.action.selected).to.equal('0 0 0');
   });
 
   it('should generate common background, onBackground channels', () => {
@@ -114,14 +114,14 @@ describe('experimental_extendTheme', () => {
       },
     });
     expect(theme.colorSchemes.light.palette.common.background).to.equal('#f9f9f9');
-    expect(theme.colorSchemes.light.palette.common.backgroundChannel).to.equal('249 249 249');
+    expect(theme.colorSchemes.light.palette.common.background).to.equal('249 249 249');
     expect(theme.colorSchemes.light.palette.common.onBackground).to.equal('#000');
-    expect(theme.colorSchemes.light.palette.common.onBackgroundChannel).to.equal('0 0 0');
+    expect(theme.colorSchemes.light.palette.common.onBackground).to.equal('0 0 0');
 
     expect(theme.colorSchemes.dark.palette.common.background).to.equal('#000');
-    expect(theme.colorSchemes.dark.palette.common.backgroundChannel).to.equal('0 0 0');
+    expect(theme.colorSchemes.dark.palette.common.background).to.equal('0 0 0');
     expect(theme.colorSchemes.dark.palette.common.onBackground).to.equal('#f9f9f9');
-    expect(theme.colorSchemes.dark.palette.common.onBackgroundChannel).to.equal('249 249 249');
+    expect(theme.colorSchemes.dark.palette.common.onBackground).to.equal('249 249 249');
   });
 
   it('should generate color channels for custom colors', () => {
@@ -132,8 +132,8 @@ describe('experimental_extendTheme', () => {
         },
       },
     });
-    expect(theme.colorSchemes.light.palette.primary.mainChannel).to.equal('255 87 34');
-    expect(theme.colorSchemes.light.palette.secondary.mainChannel).to.equal('0 230 118');
+    expect(theme.colorSchemes.light.palette.primary.main).to.equal('255 87 34');
+    expect(theme.colorSchemes.light.palette.secondary.main).to.equal('0 230 118');
   });
 
   describe('transitions', () => {
@@ -424,9 +424,9 @@ describe('experimental_extendTheme', () => {
           },
         }),
       ).toWarnDev(
-        "MUI: Can't create `palette.dividerChannel` because `palette.divider` is not one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()." +
+        "MUI: Can't create `palette.divider` because `palette.divider` is not one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()." +
           '\n' +
-          'To suppress this warning, you need to explicitly provide the `palette.dividerChannel` as a string (in rgb format, e.g. "12 12 12") or undefined if you want to remove the channel token.',
+          'To suppress this warning, you need to explicitly provide the `palette.divider` as a string (in rgb format, e.g. "12 12 12") or undefined if you want to remove the channel token.',
       );
     });
 
@@ -436,7 +436,7 @@ describe('experimental_extendTheme', () => {
           colorSchemes: {
             light: {
               palette: {
-                dividerChannel: '12 12 12',
+                divider: '12 12 12',
               },
             },
           },
@@ -447,7 +447,7 @@ describe('experimental_extendTheme', () => {
           colorSchemes: {
             light: {
               palette: {
-                dividerChannel: undefined,
+                divider: undefined,
               },
             },
           },

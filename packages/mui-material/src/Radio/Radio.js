@@ -45,11 +45,11 @@ const RadioRoot = styled(SwitchBase, {
   ...(!ownerState.disableRipple && {
     '&:hover': {
       backgroundColor: theme.vars
-        ? `rgba(${
+        ? `color-mix(in var(--color-space), ${
             ownerState.color === 'default'
-              ? theme.vars.palette.action.activeChannel
-              : theme.vars.palette[ownerState.color].mainChannel
-          } / ${theme.vars.palette.action.hoverOpacity})`
+              ? theme.vars.palette.action.active
+              : theme.vars.palette[ownerState.color].main
+          }, transparent ${theme.vars.palette.action.hoverOpacity}%)`
         : alpha(
             ownerState.color === 'default'
               ? theme.palette.action.active

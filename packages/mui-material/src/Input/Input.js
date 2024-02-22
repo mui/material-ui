@@ -47,7 +47,7 @@ const InputRoot = styled(InputBaseRoot, {
   const light = theme.palette.mode === 'light';
   let bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
   if (theme.vars) {
-    bottomLineColor = `rgba(${theme.vars.palette.common.onBackgroundChannel} / ${theme.vars.opacity.inputUnderline})`;
+    bottomLineColor = `color-mix(in var(--color-space), ${theme.vars.palette.common.onBackground}, transparent ${theme.vars.opacity.inputUnderline}%)`;
   }
   return {
     position: 'relative',

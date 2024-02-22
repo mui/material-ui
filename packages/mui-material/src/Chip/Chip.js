@@ -146,14 +146,14 @@ const ChipRoot = styled('div', {
       [`& .${chipClasses.deleteIcon}`]: {
         WebkitTapHighlightColor: 'transparent',
         color: theme.vars
-          ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.26)`
+          ? `color-mix(in var(--color-space), ${theme.vars.palette.text.primary}, transparent 74%)`
           : alpha(theme.palette.text.primary, 0.26),
         fontSize: 22,
         cursor: 'pointer',
         margin: '0 5px 0 -6px',
         '&:hover': {
           color: theme.vars
-            ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.4)`
+            ? `color-mix(in var(--color-space), ${theme.vars.palette.text.primary}, transparent 60%)`
             : alpha(theme.palette.text.primary, 0.4),
         },
         ...(ownerState.size === 'small' && {
@@ -163,7 +163,7 @@ const ChipRoot = styled('div', {
         }),
         ...(ownerState.color !== 'default' && {
           color: theme.vars
-            ? `rgba(${theme.vars.palette[ownerState.color].contrastTextChannel} / 0.7)`
+            ? `color-mix(in var(--color-space), ${theme.vars.palette[ownerState.color].contrastText}, transparent 30%)`
             : alpha(theme.palette[ownerState.color].contrastText, 0.7),
           '&:hover, &:active': {
             color: (theme.vars || theme).palette[ownerState.color].contrastText,
@@ -180,7 +180,7 @@ const ChipRoot = styled('div', {
       ...(ownerState.onDelete && {
         [`&.${chipClasses.focusVisible}`]: {
           backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
+            ? `color-mix(in var(--color-space), ${theme.vars.palette.action.selected}, transparent ${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}%)`
             : alpha(
                 theme.palette.action.selected,
                 theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
@@ -202,7 +202,7 @@ const ChipRoot = styled('div', {
       cursor: 'pointer',
       '&:hover': {
         backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+          ? `color-mix(in var(--color-space), ${theme.vars.palette.action.selected}, transparent ${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}%)`
           : alpha(
               theme.palette.action.selected,
               theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
@@ -210,7 +210,7 @@ const ChipRoot = styled('div', {
       },
       [`&.${chipClasses.focusVisible}`]: {
         backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
+          ? `color-mix(in var(--color-space), ${theme.vars.palette.action.selected}, transparent ${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}%)`
           : alpha(
               theme.palette.action.selected,
               theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
@@ -265,26 +265,22 @@ const ChipRoot = styled('div', {
         color: (theme.vars || theme).palette[ownerState.color].main,
         border: `1px solid ${
           theme.vars
-            ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.7)`
+            ? `color-mix(in var(--color-space), ${theme.vars.palette[ownerState.color].main}, transparent 30%)`
             : alpha(theme.palette[ownerState.color].main, 0.7)
         }`,
         [`&.${chipClasses.clickable}:hover`]: {
           backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${
-                theme.vars.palette.action.hoverOpacity
-              })`
+            ? `color-mix(in var(--color-space), ${theme.vars.palette[ownerState.color].main}, transparent ${(100 - theme.palette.action.hoverOpacity * 100).toFixed(0)}%)`
             : alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
         },
         [`&.${chipClasses.focusVisible}`]: {
           backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${
-                theme.vars.palette.action.focusOpacity
-              })`
+            ? `color-mix(in var(--color-space), ${theme.vars.palette[ownerState.color].main}, transparent ${(100 - theme.palette.action.focusOpacity * 100).toFixed(0)}%)`
             : alpha(theme.palette[ownerState.color].main, theme.palette.action.focusOpacity),
         },
         [`& .${chipClasses.deleteIcon}`]: {
           color: theme.vars
-            ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.7)`
+            ? `color-mix(in var(--color-space), ${theme.vars.palette[ownerState.color].main}, transparent 30%)`
             : alpha(theme.palette[ownerState.color].main, 0.7),
           '&:hover, &:active': {
             color: (theme.vars || theme).palette[ownerState.color].main,

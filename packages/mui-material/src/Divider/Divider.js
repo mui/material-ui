@@ -70,7 +70,7 @@ const DividerRoot = styled('div', {
     }),
     ...(ownerState.light && {
       borderColor: theme.vars
-        ? `rgba(${theme.vars.palette.dividerChannel} / 0.08)`
+        ? `color-mix(in var(--color-space), ${theme.vars.palette.divider}, transparent 92%)`
         : alpha(theme.palette.divider, 0.08),
     }),
     ...(ownerState.variant === 'inset' && {
