@@ -11,3 +11,9 @@ swap:
   'sub components': subcomponents
   'use-case': 'use case'
   'usecase': 'use case'
+  'client side': 'client-side'
+  'server side': 'server-side'
+# Don't forget to run the following command to generate the package writing-rules.zip file
+# Vale uses that ZIP file and not the YAML files.
+#
+# pnpm docs:zipRules

@@ -4,7 +4,7 @@ import { spy } from 'sinon';
 import { createRenderer } from '@mui-internal/test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import ListSubheader, { listSubheaderClasses as classes } from '@mui/joy/ListSubheader';
-import ListSubheaderDispatch from './ListSubheaderContext';
+import ListSubheaderContext from './ListSubheaderContext';
 import describeConformance from '../../test/describeConformance';
 
 describe('Joy <ListSubheader />', () => {
@@ -50,9 +50,9 @@ describe('Joy <ListSubheader />', () => {
   it('should call dispatch context with the generated id', () => {
     const dispatch = spy();
     const { container } = render(
-      <ListSubheaderDispatch.Provider value={dispatch}>
+      <ListSubheaderContext.Provider value={dispatch}>
         <ListSubheader />
-      </ListSubheaderDispatch.Provider>,
+      </ListSubheaderContext.Provider>,
     );
 
     // @ts-ignore

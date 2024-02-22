@@ -4,7 +4,7 @@ description: New components, polished features, better performance and more.
 date: 2023-11-13T00:00:00.000Z
 authors: ['josefreitas']
 card: true
-tags: ['MUI X', 'News']
+tags: ['MUI X', 'Product']
 ---
 
 <div style="max-width: 692px; width: 100%; height: 230px; overflow: hidden; margin-bottom: 16px;">

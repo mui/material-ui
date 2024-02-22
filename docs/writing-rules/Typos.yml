@@ -9,3 +9,7 @@ swap:
   eg: e.g.
   eg.: e.g.
   'e.g ': 'e.g. '
+# Don't forget to run the following command to generate the package writing-rules.zip file
+# Vale uses that ZIP file and not the YAML files.
+#
+# pnpm docs:zipRules
