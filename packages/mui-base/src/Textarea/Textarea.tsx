@@ -269,7 +269,7 @@ Textarea.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  value: PropTypes.string,
+  value: PropTypes.any,
 } as any;
 
 export { Textarea };
