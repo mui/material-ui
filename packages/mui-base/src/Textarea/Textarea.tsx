@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import useForkRef from '@mui/utils/useForkRef';
@@ -202,5 +203,73 @@ const Textarea = React.forwardRef(function Textarea(
     />
   );
 });
+
+Textarea.propTypes /* remove-proptypes */ = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * @ignore
+   */
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.number,
+    PropTypes.string,
+  ]),
+  /**
+   * @ignore
+   */
+  disabled: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  error: PropTypes.bool,
+  /**
+   * Maximum number of rows to display.
+   */
+  maxRows: PropTypes.number,
+  /**
+   * Minimum number of rows to display.
+   * @default 1
+   */
+  minRows: PropTypes.number,
+  /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
+  /**
+   * @default false
+   */
+  readOnly: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  required: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  rows: PropTypes.number,
+  /**
+   * @ignore
+   */
+  value: PropTypes.string,
+} as any;
 
 export { Textarea };
