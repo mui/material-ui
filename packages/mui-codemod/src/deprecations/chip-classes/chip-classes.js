@@ -12,10 +12,10 @@ export default function transformer(file, api, options) {
     const replacementSelectorPrefix = '&';
     root
       .find(j.ImportDeclaration)
-      .filter((path) => path.node.source.value.match(/^@mui\/material\/Button$/))
+      .filter((path) => path.node.source.value.match(/^@mui\/material\/Chip$/))
       .forEach((path) => {
         path.node.specifiers.forEach((specifier) => {
-          if (specifier.type === 'ImportSpecifier' && specifier.imported.name === 'buttonClasses') {
+          if (specifier.type === 'ImportSpecifier' && specifier.imported.name === 'chipClasses') {
             const deprecatedAtomicClass = deprecatedClass.replace(
               `${deprecatedClass.split('-')[0]}-`,
               '',
@@ -33,7 +33,7 @@ export default function transformer(file, api, options) {
                   );
                   const precedingTemplateElement = parent.quasis[memberExpressionIndex];
                   const atomicClasses = replacementSelector
-                    .replaceAll('MuiButton-', '')
+                    .replaceAll('MuiChip-', '')
                     .replaceAll(replacementSelectorPrefix, '')
                     .replaceAll(' > ', '')
                     .split('.')

@@ -1,126 +1,73 @@
-import { buttonClasses } from '@mui/material/Button';
+import { chipClasses } from '@mui/material/Chip';
 
 fn({
-  MuiButton: {
+  MuiChip: {
     styleOverrides: {
       root: {
-        '&.MuiButton-textInherit': {
+        '&.MuiChip-clickableColorPrimary': {
           color: 'red',
         },
-
-        '&.MuiButton-textPrimary': {
+        '&.MuiChip-clickableColorSecondary': {
           color: 'red',
         },
-
-        '&.MuiButton-textSecondary': {
+        '&.MuiChip-deletableColorPrimary': {
           color: 'red',
         },
-
-        '&.MuiButton-textSuccess': {
+        '&.MuiChip-deletableColorSecondary': {
           color: 'red',
         },
-
-        '&.MuiButton-textError': {
+        '&.MuiChip-outlinedPrimary': {
           color: 'red',
         },
-
-        '&.MuiButton-textInfo': {
+        '&.MuiChip-outlinedSecondary': {
           color: 'red',
         },
-
-        '&.MuiButton-textWarning': {
+        '&.MuiChip-filledPrimary': {
           color: 'red',
         },
-
-        '&.MuiButton-outlinedInherit': {
+        '&.MuiChip-filledSecondary': {
           color: 'red',
         },
-
-        '&.MuiButton-outlinedPrimary': {
+        '& .MuiChip-avatarSmall': {
           color: 'red',
         },
-
-        '&.MuiButton-outlinedSecondary': {
+        '& .MuiChip-avatarMedium': {
           color: 'red',
         },
-
-        '&.MuiButton-outlinedSuccess': {
+        '& .MuiChip-avatarColorPrimary': {
           color: 'red',
         },
-
-        '&.MuiButton-outlinedError': {
+        '& .MuiChip-avatarColorSecondary': {
           color: 'red',
         },
-
-        '&.MuiButton-outlinedInfo': {
+        '& .MuiChip-iconSmall': {
           color: 'red',
         },
-
-        '&.MuiButton-outlinedWarning': {
+        '& .MuiChip-iconMedium': {
           color: 'red',
         },
-
-        '&.MuiButton-containedInherit': {
+        '& .MuiChip-iconColorPrimary': {
           color: 'red',
         },
-
-        '&.MuiButton-containedPrimary': {
+        '& .MuiChip-iconColorSecondary': {
           color: 'red',
         },
-
-        '&.MuiButton-containedSecondary': {
+        '& .MuiChip-labelSmall': {
           color: 'red',
         },
-
-        '&.MuiButton-containedSuccess': {
+        '& .MuiChip-labelMedium': {
           color: 'red',
         },
-
-        '&.MuiButton-containedError': {
+        '& .MuiChip-deleteIconSmall': {
           color: 'red',
         },
-
-        '&.MuiButton-containedInfo': {
+        '& .MuiChip-deleteIconMedium': {
           color: 'red',
         },
-
-        '&.MuiButton-containedWarning': {
+        '& .MuiChip-deleteIconColorPrimary': {
           color: 'red',
         },
-        '&.MuiButton-textSizeSmall': {
-          color: 'red',
-        },
-        '&.MuiButton-textSizeMedium': {
-          color: 'red',
-        },
-        '&.MuiButton-textSizeLarge': {
-          color: 'red',
-        },
-        '&.MuiButton-outlinedSizeSmall': {
-          color: 'red',
-        },
-        '&.MuiButton-outlinedSizeMedium': {
-          color: 'red',
-        },
-        '&.MuiButton-outlinedSizeLarge': {
-          color: 'red',
-        },
-        '&.MuiButton-containedSizeSmall': {
-          color: 'red',
-        },
-        '&.MuiButton-containedSizeMedium': {
-          color: 'red',
-        },
-        '&.MuiButton-containedSizeLarge': {
-          color: 'red',
-        },
-        '& .MuiButton-iconSizeSmall': {
-          color: 'red',
-        },
-        '& .MuiButton-iconSizeMedium': {
-          color: 'red',
-        },
-        '& .MuiButton-iconSizeLarge': {
+        '& .MuiChip-deleteIconColorSecondary': {
           color: 'red',
         },
       },
@@ -129,126 +76,73 @@ fn({
 });
 
 fn({
-  MuiButton: {
+  MuiChip: {
     styleOverrides: {
       root: {
-        [`&.${buttonClasses.textInherit}`]: {
+        [`&.${chipClasses.clickableColorPrimary}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.textPrimary}`]: {
+        [`&.${chipClasses.clickableColorSecondary}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.textSecondary}`]: {
+        [`&.${chipClasses.deletableColorPrimary}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.textSuccess}`]: {
+        [`&.${chipClasses.deletableColorSecondary}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.textError}`]: {
+        [`&.${chipClasses.outlinedPrimary}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.textInfo}`]: {
+        [`&.${chipClasses.outlinedSecondary}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.textWarning}`]: {
+        [`&.${chipClasses.filledPrimary}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.outlinedInherit}`]: {
+        [`&.${chipClasses.filledSecondary}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.outlinedPrimary}`]: {
+        [`& .${chipClasses.avatarSmall}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.outlinedSecondary}`]: {
+        [`& .${chipClasses.avatarMedium}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.outlinedSuccess}`]: {
+        [`& .${chipClasses.avatarColorPrimary}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.outlinedError}`]: {
+        [`& .${chipClasses.avatarColorSecondary}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.outlinedInfo}`]: {
+        [`& .${chipClasses.iconSmall}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.outlinedWarning}`]: {
+        [`& .${chipClasses.iconMedium}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.containedInherit}`]: {
+        [`& .${chipClasses.iconColorPrimary}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.containedPrimary}`]: {
+        [`& .${chipClasses.iconColorSecondary}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.containedSecondary}`]: {
+        [`& .${chipClasses.labelSmall}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.containedSuccess}`]: {
+        [`& .${chipClasses.labelMedium}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.containedError}`]: {
+        [`& .${chipClasses.deleteIconSmall}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.containedInfo}`]: {
+        [`& .${chipClasses.deleteIconMedium}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.containedWarning}`]: {
+        [`& .${chipClasses.deleteIconColorPrimary}`]: {
           color: 'red',
         },
-        [`&.${buttonClasses.textSizeSmall}`]: {
-          color: 'red',
-        },
-        [`&.${buttonClasses.textSizeMedium}`]: {
-          color: 'red',
-        },
-        [`&.${buttonClasses.textSizeLarge}`]: {
-          color: 'red',
-        },
-        [`&.${buttonClasses.outlinedSizeSmall}`]: {
-          color: 'red',
-        },
-        [`&.${buttonClasses.outlinedSizeMedium}`]: {
-          color: 'red',
-        },
-        [`&.${buttonClasses.outlinedSizeLarge}`]: {
-          color: 'red',
-        },
-        [`&.${buttonClasses.containedSizeSmall}`]: {
-          color: 'red',
-        },
-        [`&.${buttonClasses.containedSizeMedium}`]: {
-          color: 'red',
-        },
-        [`&.${buttonClasses.containedSizeLarge}`]: {
-          color: 'red',
-        },
-        [`& .${buttonClasses.iconSizeSmall}`]: {
-          color: 'red',
-        },
-        [`& .${buttonClasses.iconSizeMedium}`]: {
-          color: 'red',
-        },
-        [`& .${buttonClasses.iconSizeLarge}`]: {
+        [`& .${chipClasses.deleteIconColorSecondary}`]: {
           color: 'red',
         },
       },
@@ -258,103 +152,70 @@ fn({
 
 styled(Component)(() => {
   return {
-    '&.MuiButton-textInherit': {
+    '&.MuiChip-clickableColorPrimary': {
       color: 'red',
     },
-    '&.MuiButton-textPrimary': {
+    '&.MuiChip-clickableColorSecondary': {
       color: 'red',
     },
-    '&.MuiButton-textSecondary': {
+    '&.MuiChip-deletableColorPrimary': {
       color: 'red',
     },
-    '&.MuiButton-textSuccess': {
+    '&.MuiChip-deletableColorSecondary': {
       color: 'red',
     },
-    '&.MuiButton-textError': {
+    '&.MuiChip-outlinedPrimary': {
       color: 'red',
     },
-    '&.MuiButton-textInfo': {
+    '&.MuiChip-outlinedSecondary': {
       color: 'red',
     },
-    '&.MuiButton-textWarning': {
+    '&.MuiChip-filledPrimary': {
       color: 'red',
     },
-    '&.MuiButton-outlinedInherit': {
+    '&.MuiChip-filledSecondary': {
       color: 'red',
     },
-    '&.MuiButton-outlinedPrimary': {
+    '& .MuiChip-avatarSmall': {
       color: 'red',
     },
-    '&.MuiButton-outlinedSecondary': {
+    '& .MuiChip-avatarMedium': {
       color: 'red',
     },
-    '&.MuiButton-outlinedSuccess': {
+    '& .MuiChip-avatarColorPrimary': {
       color: 'red',
     },
-    '&.MuiButton-outlinedError': {
+    '& .MuiChip-avatarColorSecondary': {
       color: 'red',
     },
-    '&.MuiButton-outlinedInfo': {
+    '& .MuiChip-iconSmall': {
       color: 'red',
     },
-    '&.MuiButton-outlinedWarning': {
+    '& .MuiChip-iconMedium': {
       color: 'red',
     },
-    '&.MuiButton-containedInherit': {
+    '& .MuiChip-iconColorPrimary': {
       color: 'red',
     },
-    '&.MuiButton-containedPrimary': {
+    '& .MuiChip-iconColorSecondary': {
       color: 'red',
     },
-    '&.MuiButton-containedSecondary': {
+    '& .MuiChip-labelSmall': {
       color: 'red',
     },
-    '&.MuiButton-containedSuccess': {
+    '& .MuiChip-labelMedium': {
       color: 'red',
     },
-    '&.MuiButton-containedError': {
+    '& .MuiChip-deleteIconSmall': {
       color: 'red',
     },
-    '&.MuiButton-containedInfo': {
+    '& .MuiChip-deleteIconMedium': {
       color: 'red',
     },
-    '&.MuiButton-containedWarning': {
+    '& .MuiChip-deleteIconColorPrimary': {
       color: 'red',
     },
-    '&.MuiButton-textSizeSmall': {
-      color: 'red',
-    },
-    '&.MuiButton-textSizeMedium': {
-      color: 'red',
-    },
-    '&.MuiButton-textSizeLarge': {
-      color: 'red',
-    },
-    '&.MuiButton-outlinedSizeSmall': {
-      color: 'red',
-    },
-    '&.MuiButton-outlinedSizeMedium': {
-      color: 'red',
-    },
-    '&.MuiButton-outlinedSizeLarge': {
-      color: 'red',
-    },
-    '&.MuiButton-containedSizeSmall': {
-      color: 'red',
-    },
-    '&.MuiButton-containedSizeMedium': {
-      color: 'red',
-    },
-    '&.MuiButton-containedSizeLarge': {
-      color: 'red',
-    },
-    '& .MuiButton-iconSizeSmall': {
-      color: 'red',
-    },
-    '& .MuiButton-iconSizeMedium': {
-      color: 'red',
-    },
-    '& .MuiButton-iconSizeLarge': {
+    '& .MuiChip-deleteIconColorSecondary': {
       color: 'red',
     },
   };
@@ -362,103 +223,70 @@ styled(Component)(() => {
 
 styled(Component)(() => {
   return {
-    [`&.${buttonClasses.textInherit}`]: {
+    [`&.${chipClasses.clickableColorPrimary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.textPrimary}`]: {
+    [`&.${chipClasses.clickableColorSecondary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.textSecondary}`]: {
+    [`&.${chipClasses.deletableColorPrimary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.textSuccess}`]: {
+    [`&.${chipClasses.deletableColorSecondary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.textError}`]: {
+    [`&.${chipClasses.outlinedPrimary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.textInfo}`]: {
+    [`&.${chipClasses.outlinedSecondary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.textWarning}`]: {
+    [`&.${chipClasses.filledPrimary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.outlinedInherit}`]: {
+    [`&.${chipClasses.filledSecondary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.outlinedPrimary}`]: {
+    [`& .${chipClasses.avatarSmall}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.outlinedSecondary}`]: {
+    [`& .${chipClasses.avatarMedium}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.outlinedSuccess}`]: {
+    [`& .${chipClasses.avatarColorPrimary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.outlinedError}`]: {
+    [`& .${chipClasses.avatarColorSecondary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.outlinedInfo}`]: {
+    [`& .${chipClasses.iconSmall}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.outlinedWarning}`]: {
+    [`& .${chipClasses.iconMedium}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.containedInherit}`]: {
+    [`& .${chipClasses.iconColorPrimary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.containedPrimary}`]: {
+    [`& .${chipClasses.iconColorSecondary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.containedSecondary}`]: {
+    [`& .${chipClasses.labelSmall}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.containedSuccess}`]: {
+    [`& .${chipClasses.labelMedium}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.containedError}`]: {
+    [`& .${chipClasses.deleteIconSmall}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.containedInfo}`]: {
+    [`& .${chipClasses.deleteIconMedium}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.containedWarning}`]: {
+    [`& .${chipClasses.deleteIconColorPrimary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.textSizeSmall}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.textSizeMedium}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.textSizeLarge}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.outlinedSizeSmall}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.outlinedSizeMedium}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.outlinedSizeLarge}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.containedSizeSmall}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.containedSizeMedium}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.containedSizeLarge}`]: {
-      color: 'red',
-    },
-    [`& .${buttonClasses.iconSizeSmall}`]: {
-      color: 'red',
-    },
-    [`& .${buttonClasses.iconSizeMedium}`]: {
-      color: 'red',
-    },
-    [`& .${buttonClasses.iconSizeLarge}`]: {
+    [`& .${chipClasses.deleteIconColorSecondary}`]: {
       color: 'red',
     },
   };
@@ -466,103 +294,70 @@ styled(Component)(() => {
 
 <Button
   sx={{
-    '&.MuiButton-textInherit': {
+    '&.MuiChip-clickableColorPrimary': {
       color: 'red',
     },
-    '&.MuiButton-textPrimary': {
+    '&.MuiChip-clickableColorSecondary': {
       color: 'red',
     },
-    '&.MuiButton-textSecondary': {
+    '&.MuiChip-deletableColorPrimary': {
       color: 'red',
     },
-    '&.MuiButton-textSuccess': {
+    '&.MuiChip-deletableColorSecondary': {
       color: 'red',
     },
-    '&.MuiButton-textError': {
+    '&.MuiChip-outlinedPrimary': {
       color: 'red',
     },
-    '&.MuiButton-textInfo': {
+    '&.MuiChip-outlinedSecondary': {
       color: 'red',
     },
-    '&.MuiButton-textWarning': {
+    '&.MuiChip-filledPrimary': {
       color: 'red',
     },
-    '&.MuiButton-outlinedInherit': {
+    '&.MuiChip-filledSecondary': {
       color: 'red',
     },
-    '&.MuiButton-outlinedPrimary': {
+    '& .MuiChip-avatarSmall': {
       color: 'red',
     },
-    '&.MuiButton-outlinedSecondary': {
+    '& .MuiChip-avatarMedium': {
       color: 'red',
     },
-    '&.MuiButton-outlinedSuccess': {
+    '& .MuiChip-avatarColorPrimary': {
       color: 'red',
     },
-    '&.MuiButton-outlinedError': {
+    '& .MuiChip-avatarColorSecondary': {
       color: 'red',
     },
-    '&.MuiButton-outlinedInfo': {
+    '& .MuiChip-iconSmall': {
       color: 'red',
     },
-    '&.MuiButton-outlinedWarning': {
+    '& .MuiChip-iconMedium': {
       color: 'red',
     },
-    '&.MuiButton-containedInherit': {
+    '& .MuiChip-iconColorPrimary': {
       color: 'red',
     },
-    '&.MuiButton-containedPrimary': {
+    '& .MuiChip-iconColorSecondary': {
       color: 'red',
     },
-    '&.MuiButton-containedSecondary': {
+    '& .MuiChip-labelSmall': {
       color: 'red',
     },
-    '&.MuiButton-containedSuccess': {
+    '& .MuiChip-labelMedium': {
       color: 'red',
     },
-    '&.MuiButton-containedError': {
+    '& .MuiChip-deleteIconSmall': {
       color: 'red',
     },
-    '&.MuiButton-containedInfo': {
+    '& .MuiChip-deleteIconMedium': {
       color: 'red',
     },
-    '&.MuiButton-containedWarning': {
+    '& .MuiChip-deleteIconColorPrimary': {
       color: 'red',
     },
-    '&.MuiButton-textSizeSmall': {
-      color: 'red',
-    },
-    '&.MuiButton-textSizeMedium': {
-      color: 'red',
-    },
-    '&.MuiButton-textSizeLarge': {
-      color: 'red',
-    },
-    '&.MuiButton-outlinedSizeSmall': {
-      color: 'red',
-    },
-    '&.MuiButton-outlinedSizeMedium': {
-      color: 'red',
-    },
-    '&.MuiButton-outlinedSizeLarge': {
-      color: 'red',
-    },
-    '&.MuiButton-containedSizeSmall': {
-      color: 'red',
-    },
-    '&.MuiButton-containedSizeMedium': {
-      color: 'red',
-    },
-    '&.MuiButton-containedSizeLarge': {
-      color: 'red',
-    },
-    '& .MuiButton-iconSizeSmall': {
-      color: 'red',
-    },
-    '& .MuiButton-iconSizeMedium': {
-      color: 'red',
-    },
-    '& .MuiButton-iconSizeLarge': {
+    '& .MuiChip-deleteIconColorSecondary': {
       color: 'red',
     },
   }}
@@ -570,103 +365,70 @@ styled(Component)(() => {
 
 <Button
   sx={{
-    [`&.${buttonClasses.textInherit}`]: {
+    [`&.${chipClasses.clickableColorPrimary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.textPrimary}`]: {
+    [`&.${chipClasses.clickableColorSecondary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.textSecondary}`]: {
+    [`&.${chipClasses.deletableColorPrimary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.textSuccess}`]: {
+    [`&.${chipClasses.deletableColorSecondary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.textError}`]: {
+    [`&.${chipClasses.outlinedPrimary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.textInfo}`]: {
+    [`&.${chipClasses.outlinedSecondary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.textWarning}`]: {
+    [`&.${chipClasses.filledPrimary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.outlinedInherit}`]: {
+    [`&.${chipClasses.filledSecondary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.outlinedPrimary}`]: {
+    [`& .${chipClasses.avatarSmall}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.outlinedSecondary}`]: {
+    [`& .${chipClasses.avatarMedium}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.outlinedSuccess}`]: {
+    [`& .${chipClasses.avatarColorPrimary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.outlinedError}`]: {
+    [`& .${chipClasses.avatarColorSecondary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.outlinedInfo}`]: {
+    [`& .${chipClasses.iconSmall}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.outlinedWarning}`]: {
+    [`& .${chipClasses.iconMedium}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.containedInherit}`]: {
+    [`& .${chipClasses.iconColorPrimary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.containedPrimary}`]: {
+    [`& .${chipClasses.iconColorSecondary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.containedSecondary}`]: {
+    [`& .${chipClasses.labelSmall}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.containedSuccess}`]: {
+    [`& .${chipClasses.labelMedium}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.containedError}`]: {
+    [`& .${chipClasses.deleteIconSmall}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.containedInfo}`]: {
+    [`& .${chipClasses.deleteIconMedium}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.containedWarning}`]: {
+    [`& .${chipClasses.deleteIconColorPrimary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.textSizeSmall}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.textSizeMedium}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.textSizeLarge}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.outlinedSizeSmall}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.outlinedSizeMedium}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.outlinedSizeLarge}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.containedSizeSmall}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.containedSizeMedium}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.containedSizeLarge}`]: {
-      color: 'red',
-    },
-    [`& .${buttonClasses.iconSizeSmall}`]: {
-      color: 'red',
-    },
-    [`& .${buttonClasses.iconSizeMedium}`]: {
-      color: 'red',
-    },
-    [`& .${buttonClasses.iconSizeLarge}`]: {
+    [`& .${chipClasses.deleteIconColorSecondary}`]: {
       color: 'red',
     },
   }}

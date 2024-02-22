@@ -1,133 +1,87 @@
-.MuiButton-textInherit {
+.MuiChip-clickableColorPrimary {
   color: red;
 }
 
-.MuiButton-textPrimary {
+.MuiChip-clickableColorSecondary {
   color: red;
 }
 
-.MuiButton-textSecondary {
+.MuiChip-deletableColorPrimary {
   color: red;
 }
 
-.MuiButton-textSuccess {
+.MuiChip-deletableColorSecondary {
   color: red;
 }
 
-.MuiButton-textError {
+.MuiChip-outlinedPrimary {
   color: red;
 }
 
-.MuiButton-textInfo {
+.MuiChip-outlinedSecondary {
   color: red;
 }
 
-.MuiButton-textWarning {
+.MuiChip-filledPrimary {
   color: red;
 }
 
-.MuiButton-outlinedInherit {
+.MuiChip-filledSecondary {
   color: red;
 }
 
-.MuiButton-outlinedPrimary {
+.MuiChip-root.MuiChip-avatarSmall {
   color: red;
 }
 
-.MuiButton-outlinedSecondary {
+.MuiChip-root.MuiChip-avatarMedium {
   color: red;
 }
 
-.MuiButton-outlinedSuccess {
+.MuiChip-root.MuiChip-avatarColorPrimary {
   color: red;
 }
 
-.MuiButton-outlinedError {
+.MuiChip-root.MuiChip-avatarColorSecondary {
   color: red;
 }
 
-.MuiButton-outlinedInfo {
+.MuiChip-root.MuiChip-iconSmall {
   color: red;
 }
 
-.MuiButton-outlinedWarning {
+.MuiChip-root.MuiChip-iconMedium {
   color: red;
 }
 
-.MuiButton-containedInherit {
+.MuiChip-root.MuiChip-iconColorPrimary {
   color: red;
 }
 
-.MuiButton-containedPrimary {
+.MuiChip-root.MuiChip-iconColorSecondary {
   color: red;
 }
 
-.MuiButton-containedSecondary {
+.MuiChip-root.MuiChip-labelSmall {
   color: red;
 }
 
-.MuiButton-containedSuccess {
+.MuiChip-root.MuiChip-labelMedium {
   color: red;
 }
 
-.MuiButton-containedError {
+.MuiChip-root.MuiChip-deleteIconSmall {
   color: red;
 }
 
-.MuiButton-containedInfo {
+.MuiChip-root.MuiChip-deleteIconMedium {
   color: red;
 }
 
-.MuiButton-containedWarning {
+.MuiChip-root.MuiChip-deleteIconColorPrimary {
   color: red;
 }
 
-.MuiButton-textSizeSmall {
+.MuiChip-root.MuiChip-deleteIconColorSecondary {
   color: red;
 }
-
-.MuiButton-textSizeMedium {
-  color: red;
-}
-
-.MuiButton-textSizeLarge {
-  color: red;
-}
-
-.MuiButton-outlinedSizeSmall {
-  color: red;
-}
-
-.MuiButton-outlinedSizeMedium {
-  color: red;
-}
-
-.MuiButton-outlinedSizeLarge {
-  color: red;
-}
-
-.MuiButton-containedSizeSmall {
-  color: red;
-}
-
-.MuiButton-containedSizeMedium {
-  color: red;
-}
-
-.MuiButton-containedSizeLarge {
-  color: red;
-}
-
-.MuiButton-root.MuiButton-iconSizeSmall {
-  color: red;
-}
-
-.MuiButton-root.MuiButton-iconSizeMedium {
-  color: red;
-}
-
-.MuiButton-root.MuiButton-iconSizeLarge {
-  color: red;
-}
-
-

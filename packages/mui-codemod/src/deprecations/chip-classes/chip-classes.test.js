@@ -2,7 +2,7 @@ import path from 'path';
 import { expect } from 'chai';
 import postcss from 'postcss';
 import { jscodeshift } from '../../../testUtils';
-import jsTransform from './button-classes';
+import jsTransform from './chip-classes';
 import { plugin as postcssPlugin } from './postcss-plugin';
 import readFile from '../../util/readFile';
 
@@ -14,7 +14,7 @@ const postcssProcessor = postcss([postcssPlugin]);
 
 describe('@mui/codemod', () => {
   describe('deprecations', () => {
-    describe('button-classes', () => {
+    describe('chip-classes', () => {
       describe('js-transform', () => {
         it('transforms props as needed', () => {
           const actual = jsTransform(

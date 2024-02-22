@@ -1,141 +1,97 @@
 const classes = [
   {
-    deprecatedClass: '.MuiButton-textInherit',
-    replacementSelector: '.MuiButton-text.MuiButton-colorInherit',
+    deprecatedClass: '.MuiChip-clickableColorPrimary',
+    replacementSelector: '.MuiChip-clickable.MuiChip-colorPrimary',
   },
   {
-    deprecatedClass: '.MuiButton-textPrimary',
-    replacementSelector: '.MuiButton-text.MuiButton-colorPrimary',
+    deprecatedClass: '.MuiChip-clickableColorSecondary',
+    replacementSelector: '.MuiChip-clickable.MuiChip-colorSecondary',
   },
   {
-    deprecatedClass: '.MuiButton-textSecondary',
-    replacementSelector: '.MuiButton-text.MuiButton-colorSecondary',
+    deprecatedClass: '.MuiChip-deletableColorPrimary',
+    replacementSelector: '.MuiChip-deletable.MuiChip-colorPrimary',
   },
   {
-    deprecatedClass: '.MuiButton-textSuccess',
-    replacementSelector: '.MuiButton-text.MuiButton-colorSuccess',
+    deprecatedClass: '.MuiChip-deletableColorSecondary',
+    replacementSelector: '.MuiChip-deletable.MuiChip-colorSecondary',
   },
   {
-    deprecatedClass: '.MuiButton-textError',
-    replacementSelector: '.MuiButton-text.MuiButton-colorError',
+    deprecatedClass: '.MuiChip-outlinedPrimary',
+    replacementSelector: '.MuiChip-outlined.MuiChip-colorPrimary',
   },
   {
-    deprecatedClass: '.MuiButton-textInfo',
-    replacementSelector: '.MuiButton-text.MuiButton-colorInfo',
+    deprecatedClass: '.MuiChip-outlinedSecondary',
+    replacementSelector: '.MuiChip-outlined.MuiChip-colorSecondary',
   },
   {
-    deprecatedClass: '.MuiButton-textWarning',
-    replacementSelector: '.MuiButton-text.MuiButton-colorWarning',
+    deprecatedClass: '.MuiChip-filledPrimary',
+    replacementSelector: '.MuiChip-filled.MuiChip-colorPrimary',
   },
   {
-    deprecatedClass: '.MuiButton-outlinedInherit',
-    replacementSelector: '.MuiButton-outlined.MuiButton-colorInherit',
+    deprecatedClass: '.MuiChip-filledSecondary',
+    replacementSelector: '.MuiChip-filled.MuiChip-colorSecondary',
   },
   {
-    deprecatedClass: '.MuiButton-outlinedPrimary',
-    replacementSelector: '.MuiButton-outlined.MuiButton-colorPrimary',
+    deprecatedClass: ' .MuiChip-avatarSmall',
+    replacementSelector: '.MuiChip-sizeSmall > .MuiChip-avatar',
   },
   {
-    deprecatedClass: '.MuiButton-outlinedSecondary',
-    replacementSelector: '.MuiButton-outlined.MuiButton-colorSecondary',
+    deprecatedClass: ' .MuiChip-avatarMedium',
+    replacementSelector: '.MuiChip-sizeMedium > .MuiChip-avatar',
   },
   {
-    deprecatedClass: '.MuiButton-outlinedSuccess',
-    replacementSelector: '.MuiButton-outlined.MuiButton-colorSuccess',
+    deprecatedClass: ' .MuiChip-avatarColorPrimary',
+    replacementSelector: '.MuiChip-colorPrimary > .MuiChip-avatar',
   },
   {
-    deprecatedClass: '.MuiButton-outlinedError',
-    replacementSelector: '.MuiButton-outlined.MuiButton-colorError',
+    deprecatedClass: ' .MuiChip-avatarColorSecondary',
+    replacementSelector: '.MuiChip-colorSecondary > .MuiChip-avatar',
   },
   {
-    deprecatedClass: '.MuiButton-outlinedInfo',
-    replacementSelector: '.MuiButton-outlined.MuiButton-colorInfo',
+    deprecatedClass: ' .MuiChip-iconSmall',
+    replacementSelector: '.MuiChip-sizeSmall > .MuiChip-icon',
   },
   {
-    deprecatedClass: '.MuiButton-outlinedWarning',
-    replacementSelector: '.MuiButton-outlined.MuiButton-colorWarning',
+    deprecatedClass: ' .MuiChip-iconMedium',
+    replacementSelector: '.MuiChip-sizeMedium > .MuiChip-icon',
   },
   {
-    deprecatedClass: '.MuiButton-containedInherit',
-    replacementSelector: '.MuiButton-contained.MuiButton-colorInherit',
+    deprecatedClass: ' .MuiChip-iconColorPrimary',
+    replacementSelector: '.MuiChip-colorPrimary > .MuiChip-icon',
   },
   {
-    deprecatedClass: '.MuiButton-containedPrimary',
-    replacementSelector: '.MuiButton-contained.MuiButton-colorPrimary',
+    deprecatedClass: ' .MuiChip-iconColorSecondary',
+    replacementSelector: '.MuiChip-colorSecondary > .MuiChip-icon',
   },
   {
-    deprecatedClass: '.MuiButton-containedSecondary',
-    replacementSelector: '.MuiButton-contained.MuiButton-colorSecondary',
+    deprecatedClass: ' .MuiChip-labelSmall',
+    replacementSelector: '.MuiChip-sizeSmall > .MuiChip-label',
   },
   {
-    deprecatedClass: '.MuiButton-containedSuccess',
-    replacementSelector: '.MuiButton-contained.MuiButton-colorSuccess',
+    deprecatedClass: ' .MuiChip-labelMedium',
+    replacementSelector: '.MuiChip-sizeMedium > .MuiChip-label',
   },
   {
-    deprecatedClass: '.MuiButton-containedError',
-    replacementSelector: '.MuiButton-contained.MuiButton-colorError',
+    deprecatedClass: ' .MuiChip-deleteIconSmall',
+    replacementSelector: '.MuiChip-sizeSmall > .MuiChip-deleteIcon',
   },
   {
-    deprecatedClass: '.MuiButton-containedInfo',
-    replacementSelector: '.MuiButton-contained.MuiButton-colorInfo',
+    deprecatedClass: ' .MuiChip-deleteIconMedium',
+    replacementSelector: '.MuiChip-sizeMedium > .MuiChip-deleteIcon',
   },
   {
-    deprecatedClass: '.MuiButton-containedWarning',
-    replacementSelector: '.MuiButton-contained.MuiButton-colorWarning',
+    deprecatedClass: ' .MuiChip-deleteIconColorPrimary',
+    replacementSelector: '.MuiChip-colorPrimary > .MuiChip-deleteIcon',
   },
   {
-    deprecatedClass: '.MuiButton-textSizeSmall',
-    replacementSelector: '.MuiButton-text.MuiButton-sizeSmall',
-  },
-  {
-    deprecatedClass: '.MuiButton-textSizeLarge',
-    replacementSelector: '.MuiButton-text.MuiButton-sizeLarge',
-  },
-  {
-    deprecatedClass: '.MuiButton-outlinedSizeSmall',
-    replacementSelector: '.MuiButton-outlined.MuiButton-sizeSmall',
-  },
-  {
-    deprecatedClass: '.MuiButton-outlinedSizeLarge',
-    replacementSelector: '.MuiButton-outlined.MuiButton-sizeLarge',
-  },
-  {
-    deprecatedClass: '.MuiButton-containedSizeSmall',
-    replacementSelector: '.MuiButton-contained.MuiButton-sizeSmall',
-  },
-  {
-    deprecatedClass: '.MuiButton-containedSizeLarge',
-    replacementSelector: '.MuiButton-contained.MuiButton-sizeLarge',
-  },
-  {
-    deprecatedClass: '.MuiButton-textSizeMedium',
-    replacementSelector: '.MuiButton-text.MuiButton-sizeMedium',
-  },
-  {
-    deprecatedClass: '.MuiButton-outlinedSizeMedium',
-    replacementSelector: '.MuiButton-outlined.MuiButton-sizeMedium',
-  },
-  {
-    deprecatedClass: '.MuiButton-containedSizeMedium',
-    replacementSelector: '.MuiButton-contained.MuiButton-sizeMedium',
-  },
-  {
-    deprecatedClass: ' .MuiButton-iconSizeSmall',
-    replacementSelector: '.MuiButton-sizeSmall > .MuiButton-icon',
-  },
-  {
-    deprecatedClass: ' .MuiButton-iconSizeMedium',
-    replacementSelector: '.MuiButton-sizeMedium > .MuiButton-icon',
-  },
-  {
-    deprecatedClass: ' .MuiButton-iconSizeLarge',
-    replacementSelector: '.MuiButton-sizeLarge > .MuiButton-icon',
+    deprecatedClass: ' .MuiChip-deleteIconColorSecondary',
+    replacementSelector: '.MuiChip-colorSecondary > .MuiChip-deleteIcon',
   },
 ];
 
 const plugin = () => {
   return {
-    postcssPlugin: `Replace deperecated Button classes with new classes`,
+    postcssPlugin: `Replace deperecated Chip classes with new classes`,
     Rule(rule) {
       const { selector } = rule;
 

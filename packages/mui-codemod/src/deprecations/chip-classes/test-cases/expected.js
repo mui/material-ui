@@ -1,126 +1,73 @@
-import { buttonClasses } from '@mui/material/Button';
+import { chipClasses } from '@mui/material/Chip';
 
 fn({
-  MuiButton: {
+  MuiChip: {
     styleOverrides: {
       root: {
-        "&.MuiButton-text.MuiButton-colorInherit": {
+        "&.MuiChip-clickable.MuiChip-colorPrimary": {
           color: 'red',
         },
-
-        "&.MuiButton-text.MuiButton-colorPrimary": {
+        "&.MuiChip-clickable.MuiChip-colorSecondary": {
           color: 'red',
         },
-
-        "&.MuiButton-text.MuiButton-colorSecondary": {
+        "&.MuiChip-deletable.MuiChip-colorPrimary": {
           color: 'red',
         },
-
-        "&.MuiButton-text.MuiButton-colorSuccess": {
+        "&.MuiChip-deletable.MuiChip-colorSecondary": {
           color: 'red',
         },
-
-        "&.MuiButton-text.MuiButton-colorError": {
+        "&.MuiChip-outlined.MuiChip-colorPrimary": {
           color: 'red',
         },
-
-        "&.MuiButton-text.MuiButton-colorInfo": {
+        "&.MuiChip-outlined.MuiChip-colorSecondary": {
           color: 'red',
         },
-
-        "&.MuiButton-text.MuiButton-colorWarning": {
+        "&.MuiChip-filled.MuiChip-colorPrimary": {
           color: 'red',
         },
-
-        "&.MuiButton-outlined.MuiButton-colorInherit": {
+        "&.MuiChip-filled.MuiChip-colorSecondary": {
           color: 'red',
         },
-
-        "&.MuiButton-outlined.MuiButton-colorPrimary": {
+        "&.MuiChip-sizeSmall > .MuiChip-avatar": {
           color: 'red',
         },
-
-        "&.MuiButton-outlined.MuiButton-colorSecondary": {
+        "&.MuiChip-sizeMedium > .MuiChip-avatar": {
           color: 'red',
         },
-
-        "&.MuiButton-outlined.MuiButton-colorSuccess": {
+        "&.MuiChip-colorPrimary > .MuiChip-avatar": {
           color: 'red',
         },
-
-        "&.MuiButton-outlined.MuiButton-colorError": {
+        "&.MuiChip-colorSecondary > .MuiChip-avatar": {
           color: 'red',
         },
-
-        "&.MuiButton-outlined.MuiButton-colorInfo": {
+        "&.MuiChip-sizeSmall > .MuiChip-icon": {
           color: 'red',
         },
-
-        "&.MuiButton-outlined.MuiButton-colorWarning": {
+        "&.MuiChip-sizeMedium > .MuiChip-icon": {
           color: 'red',
         },
-
-        "&.MuiButton-contained.MuiButton-colorInherit": {
+        "&.MuiChip-colorPrimary > .MuiChip-icon": {
           color: 'red',
         },
-
-        "&.MuiButton-contained.MuiButton-colorPrimary": {
+        "&.MuiChip-colorSecondary > .MuiChip-icon": {
           color: 'red',
         },
-
-        "&.MuiButton-contained.MuiButton-colorSecondary": {
+        "&.MuiChip-sizeSmall > .MuiChip-label": {
           color: 'red',
         },
-
-        "&.MuiButton-contained.MuiButton-colorSuccess": {
+        "&.MuiChip-sizeMedium > .MuiChip-label": {
           color: 'red',
         },
-
-        "&.MuiButton-contained.MuiButton-colorError": {
+        "&.MuiChip-sizeSmall > .MuiChip-deleteIcon": {
           color: 'red',
         },
-
-        "&.MuiButton-contained.MuiButton-colorInfo": {
+        "&.MuiChip-sizeMedium > .MuiChip-deleteIcon": {
           color: 'red',
         },
-
-        "&.MuiButton-contained.MuiButton-colorWarning": {
+        "&.MuiChip-colorPrimary > .MuiChip-deleteIcon": {
           color: 'red',
         },
-        "&.MuiButton-text.MuiButton-sizeSmall": {
-          color: 'red',
-        },
-        "&.MuiButton-text.MuiButton-sizeMedium": {
-          color: 'red',
-        },
-        "&.MuiButton-text.MuiButton-sizeLarge": {
-          color: 'red',
-        },
-        "&.MuiButton-outlined.MuiButton-sizeSmall": {
-          color: 'red',
-        },
-        "&.MuiButton-outlined.MuiButton-sizeMedium": {
-          color: 'red',
-        },
-        "&.MuiButton-outlined.MuiButton-sizeLarge": {
-          color: 'red',
-        },
-        "&.MuiButton-contained.MuiButton-sizeSmall": {
-          color: 'red',
-        },
-        "&.MuiButton-contained.MuiButton-sizeMedium": {
-          color: 'red',
-        },
-        "&.MuiButton-contained.MuiButton-sizeLarge": {
-          color: 'red',
-        },
-        "&.MuiButton-sizeSmall > .MuiButton-icon": {
-          color: 'red',
-        },
-        "&.MuiButton-sizeMedium > .MuiButton-icon": {
-          color: 'red',
-        },
-        "&.MuiButton-sizeLarge > .MuiButton-icon": {
+        "&.MuiChip-colorSecondary > .MuiChip-deleteIcon": {
           color: 'red',
         },
       },
@@ -129,126 +76,73 @@ fn({
 });
 
 fn({
-  MuiButton: {
+  MuiChip: {
     styleOverrides: {
       root: {
-        [`&.${buttonClasses.text}.${buttonClasses.colorInherit}`]: {
+        [`&.${chipClasses.clickable}.${chipClasses.colorPrimary}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.text}.${buttonClasses.colorPrimary}`]: {
+        [`&.${chipClasses.clickable}.${chipClasses.colorSecondary}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.text}.${buttonClasses.colorSecondary}`]: {
+        [`&.${chipClasses.deletable}.${chipClasses.colorPrimary}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.text}.${buttonClasses.colorSuccess}`]: {
+        [`&.${chipClasses.deletable}.${chipClasses.colorSecondary}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.text}.${buttonClasses.colorError}`]: {
+        [`&.${chipClasses.outlined}.${chipClasses.colorPrimary}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.text}.${buttonClasses.colorInfo}`]: {
+        [`&.${chipClasses.outlined}.${chipClasses.colorSecondary}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.text}.${buttonClasses.colorWarning}`]: {
+        [`&.${chipClasses.filled}.${chipClasses.colorPrimary}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.outlined}.${buttonClasses.colorInherit}`]: {
+        [`&.${chipClasses.filled}.${chipClasses.colorSecondary}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.outlined}.${buttonClasses.colorPrimary}`]: {
+        [`&.${chipClasses.sizeSmall} > .${chipClasses.avatar}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.outlined}.${buttonClasses.colorSecondary}`]: {
+        [`&.${chipClasses.sizeMedium} > .${chipClasses.avatar}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.outlined}.${buttonClasses.colorSuccess}`]: {
+        [`&.${chipClasses.colorPrimary} > .${chipClasses.avatar}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.outlined}.${buttonClasses.colorError}`]: {
+        [`&.${chipClasses.colorSecondary} > .${chipClasses.avatar}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.outlined}.${buttonClasses.colorInfo}`]: {
+        [`&.${chipClasses.sizeSmall} > .${chipClasses.icon}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.outlined}.${buttonClasses.colorWarning}`]: {
+        [`&.${chipClasses.sizeMedium} > .${chipClasses.icon}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.contained}.${buttonClasses.colorInherit}`]: {
+        [`&.${chipClasses.colorPrimary} > .${chipClasses.icon}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.contained}.${buttonClasses.colorPrimary}`]: {
+        [`&.${chipClasses.colorSecondary} > .${chipClasses.icon}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.contained}.${buttonClasses.colorSecondary}`]: {
+        [`&.${chipClasses.sizeSmall} > .${chipClasses.label}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.contained}.${buttonClasses.colorSuccess}`]: {
+        [`&.${chipClasses.sizeMedium} > .${chipClasses.label}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.contained}.${buttonClasses.colorError}`]: {
+        [`&.${chipClasses.sizeSmall} > .${chipClasses.deleteIcon}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.contained}.${buttonClasses.colorInfo}`]: {
+        [`&.${chipClasses.sizeMedium} > .${chipClasses.deleteIcon}`]: {
           color: 'red',
         },
-
-        [`&.${buttonClasses.contained}.${buttonClasses.colorWarning}`]: {
+        [`&.${chipClasses.colorPrimary} > .${chipClasses.deleteIcon}`]: {
           color: 'red',
         },
-        [`&.${buttonClasses.text}.${buttonClasses.sizeSmall}`]: {
-          color: 'red',
-        },
-        [`&.${buttonClasses.text}.${buttonClasses.sizeMedium}`]: {
-          color: 'red',
-        },
-        [`&.${buttonClasses.text}.${buttonClasses.sizeLarge}`]: {
-          color: 'red',
-        },
-        [`&.${buttonClasses.outlined}.${buttonClasses.sizeSmall}`]: {
-          color: 'red',
-        },
-        [`&.${buttonClasses.outlined}.${buttonClasses.sizeMedium}`]: {
-          color: 'red',
-        },
-        [`&.${buttonClasses.outlined}.${buttonClasses.sizeLarge}`]: {
-          color: 'red',
-        },
-        [`&.${buttonClasses.contained}.${buttonClasses.sizeSmall}`]: {
-          color: 'red',
-        },
-        [`&.${buttonClasses.contained}.${buttonClasses.sizeMedium}`]: {
-          color: 'red',
-        },
-        [`&.${buttonClasses.contained}.${buttonClasses.sizeLarge}`]: {
-          color: 'red',
-        },
-        [`&.${buttonClasses.sizeSmall} > .${buttonClasses.icon}`]: {
-          color: 'red',
-        },
-        [`&.${buttonClasses.sizeMedium} > .${buttonClasses.icon}`]: {
-          color: 'red',
-        },
-        [`&.${buttonClasses.sizeLarge} > .${buttonClasses.icon}`]: {
+        [`&.${chipClasses.colorSecondary} > .${chipClasses.deleteIcon}`]: {
           color: 'red',
         },
       },
@@ -258,103 +152,70 @@ fn({
 
 styled(Component)(() => {
   return {
-    "&.MuiButton-text.MuiButton-colorInherit": {
+    "&.MuiChip-clickable.MuiChip-colorPrimary": {
       color: 'red',
     },
-    "&.MuiButton-text.MuiButton-colorPrimary": {
+    "&.MuiChip-clickable.MuiChip-colorSecondary": {
       color: 'red',
     },
-    "&.MuiButton-text.MuiButton-colorSecondary": {
+    "&.MuiChip-deletable.MuiChip-colorPrimary": {
       color: 'red',
     },
-    "&.MuiButton-text.MuiButton-colorSuccess": {
+    "&.MuiChip-deletable.MuiChip-colorSecondary": {
       color: 'red',
     },
-    "&.MuiButton-text.MuiButton-colorError": {
+    "&.MuiChip-outlined.MuiChip-colorPrimary": {
       color: 'red',
     },
-    "&.MuiButton-text.MuiButton-colorInfo": {
+    "&.MuiChip-outlined.MuiChip-colorSecondary": {
       color: 'red',
     },
-    "&.MuiButton-text.MuiButton-colorWarning": {
+    "&.MuiChip-filled.MuiChip-colorPrimary": {
       color: 'red',
     },
-    "&.MuiButton-outlined.MuiButton-colorInherit": {
+    "&.MuiChip-filled.MuiChip-colorSecondary": {
       color: 'red',
     },
-    "&.MuiButton-outlined.MuiButton-colorPrimary": {
+    "&.MuiChip-sizeSmall > .MuiChip-avatar": {
       color: 'red',
     },
-    "&.MuiButton-outlined.MuiButton-colorSecondary": {
+    "&.MuiChip-sizeMedium > .MuiChip-avatar": {
       color: 'red',
     },
-    "&.MuiButton-outlined.MuiButton-colorSuccess": {
+    "&.MuiChip-colorPrimary > .MuiChip-avatar": {
       color: 'red',
     },
-    "&.MuiButton-outlined.MuiButton-colorError": {
+    "&.MuiChip-colorSecondary > .MuiChip-avatar": {
       color: 'red',
     },
-    "&.MuiButton-outlined.MuiButton-colorInfo": {
+    "&.MuiChip-sizeSmall > .MuiChip-icon": {
       color: 'red',
     },
-    "&.MuiButton-outlined.MuiButton-colorWarning": {
+    "&.MuiChip-sizeMedium > .MuiChip-icon": {
       color: 'red',
     },
-    "&.MuiButton-contained.MuiButton-colorInherit": {
+    "&.MuiChip-colorPrimary > .MuiChip-icon": {
       color: 'red',
     },
-    "&.MuiButton-contained.MuiButton-colorPrimary": {
+    "&.MuiChip-colorSecondary > .MuiChip-icon": {
       color: 'red',
     },
-    "&.MuiButton-contained.MuiButton-colorSecondary": {
+    "&.MuiChip-sizeSmall > .MuiChip-label": {
       color: 'red',
     },
-    "&.MuiButton-contained.MuiButton-colorSuccess": {
+    "&.MuiChip-sizeMedium > .MuiChip-label": {
       color: 'red',
     },
-    "&.MuiButton-contained.MuiButton-colorError": {
+    "&.MuiChip-sizeSmall > .MuiChip-deleteIcon": {
       color: 'red',
     },
-    "&.MuiButton-contained.MuiButton-colorInfo": {
+    "&.MuiChip-sizeMedium > .MuiChip-deleteIcon": {
       color: 'red',
     },
-    "&.MuiButton-contained.MuiButton-colorWarning": {
+    "&.MuiChip-colorPrimary > .MuiChip-deleteIcon": {
       color: 'red',
     },
-    "&.MuiButton-text.MuiButton-sizeSmall": {
-      color: 'red',
-    },
-    "&.MuiButton-text.MuiButton-sizeMedium": {
-      color: 'red',
-    },
-    "&.MuiButton-text.MuiButton-sizeLarge": {
-      color: 'red',
-    },
-    "&.MuiButton-outlined.MuiButton-sizeSmall": {
-      color: 'red',
-    },
-    "&.MuiButton-outlined.MuiButton-sizeMedium": {
-      color: 'red',
-    },
-    "&.MuiButton-outlined.MuiButton-sizeLarge": {
-      color: 'red',
-    },
-    "&.MuiButton-contained.MuiButton-sizeSmall": {
-      color: 'red',
-    },
-    "&.MuiButton-contained.MuiButton-sizeMedium": {
-      color: 'red',
-    },
-    "&.MuiButton-contained.MuiButton-sizeLarge": {
-      color: 'red',
-    },
-    "&.MuiButton-sizeSmall > .MuiButton-icon": {
-      color: 'red',
-    },
-    "&.MuiButton-sizeMedium > .MuiButton-icon": {
-      color: 'red',
-    },
-    "&.MuiButton-sizeLarge > .MuiButton-icon": {
+    "&.MuiChip-colorSecondary > .MuiChip-deleteIcon": {
       color: 'red',
     },
   };
@@ -362,103 +223,70 @@ styled(Component)(() => {
 
 styled(Component)(() => {
   return {
-    [`&.${buttonClasses.text}.${buttonClasses.colorInherit}`]: {
+    [`&.${chipClasses.clickable}.${chipClasses.colorPrimary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.text}.${buttonClasses.colorPrimary}`]: {
+    [`&.${chipClasses.clickable}.${chipClasses.colorSecondary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.text}.${buttonClasses.colorSecondary}`]: {
+    [`&.${chipClasses.deletable}.${chipClasses.colorPrimary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.text}.${buttonClasses.colorSuccess}`]: {
+    [`&.${chipClasses.deletable}.${chipClasses.colorSecondary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.text}.${buttonClasses.colorError}`]: {
+    [`&.${chipClasses.outlined}.${chipClasses.colorPrimary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.text}.${buttonClasses.colorInfo}`]: {
+    [`&.${chipClasses.outlined}.${chipClasses.colorSecondary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.text}.${buttonClasses.colorWarning}`]: {
+    [`&.${chipClasses.filled}.${chipClasses.colorPrimary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.outlined}.${buttonClasses.colorInherit}`]: {
+    [`&.${chipClasses.filled}.${chipClasses.colorSecondary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.outlined}.${buttonClasses.colorPrimary}`]: {
+    [`&.${chipClasses.sizeSmall} > .${chipClasses.avatar}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.outlined}.${buttonClasses.colorSecondary}`]: {
+    [`&.${chipClasses.sizeMedium} > .${chipClasses.avatar}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.outlined}.${buttonClasses.colorSuccess}`]: {
+    [`&.${chipClasses.colorPrimary} > .${chipClasses.avatar}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.outlined}.${buttonClasses.colorError}`]: {
+    [`&.${chipClasses.colorSecondary} > .${chipClasses.avatar}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.outlined}.${buttonClasses.colorInfo}`]: {
+    [`&.${chipClasses.sizeSmall} > .${chipClasses.icon}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.outlined}.${buttonClasses.colorWarning}`]: {
+    [`&.${chipClasses.sizeMedium} > .${chipClasses.icon}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.contained}.${buttonClasses.colorInherit}`]: {
+    [`&.${chipClasses.colorPrimary} > .${chipClasses.icon}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.contained}.${buttonClasses.colorPrimary}`]: {
+    [`&.${chipClasses.colorSecondary} > .${chipClasses.icon}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.contained}.${buttonClasses.colorSecondary}`]: {
+    [`&.${chipClasses.sizeSmall} > .${chipClasses.label}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.contained}.${buttonClasses.colorSuccess}`]: {
+    [`&.${chipClasses.sizeMedium} > .${chipClasses.label}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.contained}.${buttonClasses.colorError}`]: {
+    [`&.${chipClasses.sizeSmall} > .${chipClasses.deleteIcon}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.contained}.${buttonClasses.colorInfo}`]: {
+    [`&.${chipClasses.sizeMedium} > .${chipClasses.deleteIcon}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.contained}.${buttonClasses.colorWarning}`]: {
+    [`&.${chipClasses.colorPrimary} > .${chipClasses.deleteIcon}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.text}.${buttonClasses.sizeSmall}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.text}.${buttonClasses.sizeMedium}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.text}.${buttonClasses.sizeLarge}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.outlined}.${buttonClasses.sizeSmall}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.outlined}.${buttonClasses.sizeMedium}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.outlined}.${buttonClasses.sizeLarge}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.contained}.${buttonClasses.sizeSmall}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.contained}.${buttonClasses.sizeMedium}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.contained}.${buttonClasses.sizeLarge}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.sizeSmall} > .${buttonClasses.icon}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.sizeMedium} > .${buttonClasses.icon}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.sizeLarge} > .${buttonClasses.icon}`]: {
+    [`&.${chipClasses.colorSecondary} > .${chipClasses.deleteIcon}`]: {
       color: 'red',
     },
   };
@@ -466,103 +294,70 @@ styled(Component)(() => {
 
 <Button
   sx={{
-    "&.MuiButton-text.MuiButton-colorInherit": {
+    "&.MuiChip-clickable.MuiChip-colorPrimary": {
       color: 'red',
     },
-    "&.MuiButton-text.MuiButton-colorPrimary": {
+    "&.MuiChip-clickable.MuiChip-colorSecondary": {
       color: 'red',
     },
-    "&.MuiButton-text.MuiButton-colorSecondary": {
+    "&.MuiChip-deletable.MuiChip-colorPrimary": {
       color: 'red',
     },
-    "&.MuiButton-text.MuiButton-colorSuccess": {
+    "&.MuiChip-deletable.MuiChip-colorSecondary": {
       color: 'red',
     },
-    "&.MuiButton-text.MuiButton-colorError": {
+    "&.MuiChip-outlined.MuiChip-colorPrimary": {
       color: 'red',
     },
-    "&.MuiButton-text.MuiButton-colorInfo": {
+    "&.MuiChip-outlined.MuiChip-colorSecondary": {
       color: 'red',
     },
-    "&.MuiButton-text.MuiButton-colorWarning": {
+    "&.MuiChip-filled.MuiChip-colorPrimary": {
       color: 'red',
     },
-    "&.MuiButton-outlined.MuiButton-colorInherit": {
+    "&.MuiChip-filled.MuiChip-colorSecondary": {
       color: 'red',
     },
-    "&.MuiButton-outlined.MuiButton-colorPrimary": {
+    "&.MuiChip-sizeSmall > .MuiChip-avatar": {
       color: 'red',
     },
-    "&.MuiButton-outlined.MuiButton-colorSecondary": {
+    "&.MuiChip-sizeMedium > .MuiChip-avatar": {
       color: 'red',
     },
-    "&.MuiButton-outlined.MuiButton-colorSuccess": {
+    "&.MuiChip-colorPrimary > .MuiChip-avatar": {
       color: 'red',
     },
-    "&.MuiButton-outlined.MuiButton-colorError": {
+    "&.MuiChip-colorSecondary > .MuiChip-avatar": {
       color: 'red',
     },
-    "&.MuiButton-outlined.MuiButton-colorInfo": {
+    "&.MuiChip-sizeSmall > .MuiChip-icon": {
       color: 'red',
     },
-    "&.MuiButton-outlined.MuiButton-colorWarning": {
+    "&.MuiChip-sizeMedium > .MuiChip-icon": {
       color: 'red',
     },
-    "&.MuiButton-contained.MuiButton-colorInherit": {
+    "&.MuiChip-colorPrimary > .MuiChip-icon": {
       color: 'red',
     },
-    "&.MuiButton-contained.MuiButton-colorPrimary": {
+    "&.MuiChip-colorSecondary > .MuiChip-icon": {
       color: 'red',
     },
-    "&.MuiButton-contained.MuiButton-colorSecondary": {
+    "&.MuiChip-sizeSmall > .MuiChip-label": {
       color: 'red',
     },
-    "&.MuiButton-contained.MuiButton-colorSuccess": {
+    "&.MuiChip-sizeMedium > .MuiChip-label": {
       color: 'red',
     },
-    "&.MuiButton-contained.MuiButton-colorError": {
+    "&.MuiChip-sizeSmall > .MuiChip-deleteIcon": {
       color: 'red',
     },
-    "&.MuiButton-contained.MuiButton-colorInfo": {
+    "&.MuiChip-sizeMedium > .MuiChip-deleteIcon": {
       color: 'red',
     },
-    "&.MuiButton-contained.MuiButton-colorWarning": {
+    "&.MuiChip-colorPrimary > .MuiChip-deleteIcon": {
       color: 'red',
     },
-    "&.MuiButton-text.MuiButton-sizeSmall": {
-      color: 'red',
-    },
-    "&.MuiButton-text.MuiButton-sizeMedium": {
-      color: 'red',
-    },
-    "&.MuiButton-text.MuiButton-sizeLarge": {
-      color: 'red',
-    },
-    "&.MuiButton-outlined.MuiButton-sizeSmall": {
-      color: 'red',
-    },
-    "&.MuiButton-outlined.MuiButton-sizeMedium": {
-      color: 'red',
-    },
-    "&.MuiButton-outlined.MuiButton-sizeLarge": {
-      color: 'red',
-    },
-    "&.MuiButton-contained.MuiButton-sizeSmall": {
-      color: 'red',
-    },
-    "&.MuiButton-contained.MuiButton-sizeMedium": {
-      color: 'red',
-    },
-    "&.MuiButton-contained.MuiButton-sizeLarge": {
-      color: 'red',
-    },
-    "&.MuiButton-sizeSmall > .MuiButton-icon": {
-      color: 'red',
-    },
-    "&.MuiButton-sizeMedium > .MuiButton-icon": {
-      color: 'red',
-    },
-    "&.MuiButton-sizeLarge > .MuiButton-icon": {
+    "&.MuiChip-colorSecondary > .MuiChip-deleteIcon": {
       color: 'red',
     },
   }}
@@ -570,103 +365,70 @@ styled(Component)(() => {
 
 <Button
   sx={{
-    [`&.${buttonClasses.text}.${buttonClasses.colorInherit}`]: {
+    [`&.${chipClasses.clickable}.${chipClasses.colorPrimary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.text}.${buttonClasses.colorPrimary}`]: {
+    [`&.${chipClasses.clickable}.${chipClasses.colorSecondary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.text}.${buttonClasses.colorSecondary}`]: {
+    [`&.${chipClasses.deletable}.${chipClasses.colorPrimary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.text}.${buttonClasses.colorSuccess}`]: {
+    [`&.${chipClasses.deletable}.${chipClasses.colorSecondary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.text}.${buttonClasses.colorError}`]: {
+    [`&.${chipClasses.outlined}.${chipClasses.colorPrimary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.text}.${buttonClasses.colorInfo}`]: {
+    [`&.${chipClasses.outlined}.${chipClasses.colorSecondary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.text}.${buttonClasses.colorWarning}`]: {
+    [`&.${chipClasses.filled}.${chipClasses.colorPrimary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.outlined}.${buttonClasses.colorInherit}`]: {
+    [`&.${chipClasses.filled}.${chipClasses.colorSecondary}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.outlined}.${buttonClasses.colorPrimary}`]: {
+    [`&.${chipClasses.sizeSmall} > .${chipClasses.avatar}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.outlined}.${buttonClasses.colorSecondary}`]: {
+    [`&.${chipClasses.sizeMedium} > .${chipClasses.avatar}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.outlined}.${buttonClasses.colorSuccess}`]: {
+    [`&.${chipClasses.colorPrimary} > .${chipClasses.avatar}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.outlined}.${buttonClasses.colorError}`]: {
+    [`&.${chipClasses.colorSecondary} > .${chipClasses.avatar}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.outlined}.${buttonClasses.colorInfo}`]: {
+    [`&.${chipClasses.sizeSmall} > .${chipClasses.icon}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.outlined}.${buttonClasses.colorWarning}`]: {
+    [`&.${chipClasses.sizeMedium} > .${chipClasses.icon}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.contained}.${buttonClasses.colorInherit}`]: {
+    [`&.${chipClasses.colorPrimary} > .${chipClasses.icon}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.contained}.${buttonClasses.colorPrimary}`]: {
+    [`&.${chipClasses.colorSecondary} > .${chipClasses.icon}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.contained}.${buttonClasses.colorSecondary}`]: {
+    [`&.${chipClasses.sizeSmall} > .${chipClasses.label}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.contained}.${buttonClasses.colorSuccess}`]: {
+    [`&.${chipClasses.sizeMedium} > .${chipClasses.label}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.contained}.${buttonClasses.colorError}`]: {
+    [`&.${chipClasses.sizeSmall} > .${chipClasses.deleteIcon}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.contained}.${buttonClasses.colorInfo}`]: {
+    [`&.${chipClasses.sizeMedium} > .${chipClasses.deleteIcon}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.contained}.${buttonClasses.colorWarning}`]: {
+    [`&.${chipClasses.colorPrimary} > .${chipClasses.deleteIcon}`]: {
       color: 'red',
     },
-    [`&.${buttonClasses.text}.${buttonClasses.sizeSmall}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.text}.${buttonClasses.sizeMedium}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.text}.${buttonClasses.sizeLarge}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.outlined}.${buttonClasses.sizeSmall}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.outlined}.${buttonClasses.sizeMedium}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.outlined}.${buttonClasses.sizeLarge}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.contained}.${buttonClasses.sizeSmall}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.contained}.${buttonClasses.sizeMedium}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.contained}.${buttonClasses.sizeLarge}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.sizeSmall} > .${buttonClasses.icon}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.sizeMedium} > .${buttonClasses.icon}`]: {
-      color: 'red',
-    },
-    [`&.${buttonClasses.sizeLarge} > .${buttonClasses.icon}`]: {
+    [`&.${chipClasses.colorSecondary} > .${chipClasses.deleteIcon}`]: {
       color: 'red',
     },
   }}
