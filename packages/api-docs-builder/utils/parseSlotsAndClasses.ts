@@ -1,11 +1,11 @@
-import * as ts from "typescript";
-import { ComponentClassDefinition } from "@mui-internal/docs-utils";
-import { renderMarkdown } from "@mui/internal-markdown";
-import { getSymbolDescription, getSymbolJSDocTags } from "../buildApiUtils";
-import { TypeScriptProject } from "./createTypeScriptProject";
-import { getPropsFromComponentNode } from "./getPropsFromComponentNode";
-import resolveExportSpecifier from "./resolveExportSpecifier";
-import { ProjectSettings } from "../ProjectSettings";
+import * as ts from 'typescript';
+import { ComponentClassDefinition } from '@mui-internal/docs-utils';
+import { renderMarkdown } from '@mui/internal-markdown';
+import { getSymbolDescription, getSymbolJSDocTags } from '../buildApiUtils';
+import { TypeScriptProject } from './createTypeScriptProject';
+import { getPropsFromComponentNode } from './getPropsFromComponentNode';
+import resolveExportSpecifier from './resolveExportSpecifier';
+import { ProjectSettings } from '../ProjectSettings';
 
 interface ClassInfo {
   description: string;
@@ -33,9 +33,7 @@ function getClassDeprecationObject(symbol: ts.Symbol): {
   if (tags.deprecated) {
     return {
       isDeprecated: true,
-      deprecationInfo:
-        renderMarkdown(tags.deprecated.text?.[0].text || "").trim() ||
-        undefined,
+      deprecationInfo: renderMarkdown(tags.deprecated.text?.[0].text || '').trim() || undefined,
     };
   }
   return {};
@@ -66,12 +64,7 @@ export default function parseSlotsAndClasses({
     componentName,
     muiName,
   );
-  const slots = extractSlots(
-    typescriptProject,
-    componentName,
-    classDefinitions,
-    slotInterfaceName,
-  );
+  const slots = extractSlots(typescriptProject, componentName, classDefinitions, slotInterfaceName);
 
   const nonSlotClassDefinitions = classDefinitions.filter(
     (classDefinition) => !Object.keys(slots).includes(classDefinition.key),
@@ -90,18 +83,8 @@ function extractClasses(
   muiName: string,
 ): ComponentClassDefinition[] {
   return (
-    extractClassesFromProps(
-      typescriptProject,
-      projectSettings,
-      componentName,
-      muiName,
-    ) ??
-    extractClassesFromInterface(
-      typescriptProject,
-      projectSettings,
-      componentName,
-      muiName,
-    )
+    extractClassesFromProps(typescriptProject, projectSettings, componentName, muiName) ??
+    extractClassesFromInterface(typescriptProject, projectSettings, componentName, muiName)
   );
 }
 
@@ -126,10 +109,7 @@ function extractClassesFromInterface(
   );
 
   const classesTypeDeclaration = classesType?.symbol?.declarations?.[0];
-  if (
-    classesTypeDeclaration &&
-    ts.isInterfaceDeclaration(classesTypeDeclaration)
-  ) {
+  if (classesTypeDeclaration && ts.isInterfaceDeclaration(classesTypeDeclaration)) {
     const classesProperties = classesType.getProperties();
     classesProperties.forEach((symbol) => {
       const tags = getSymbolJSDocTags(symbol);
@@ -159,21 +139,16 @@ function extractClassesFromProps(
     typescriptProject.exports[componentName] ??
     typescriptProject.exports[`Unstable_${componentName}`];
   if (!exportedSymbol) {
-    throw new Error(
-      `No exported component for the componentName "${componentName}"`,
-    );
+    throw new Error(`No exported component for the componentName "${componentName}"`);
   }
 
-  const localeSymbol = resolveExportSpecifier(
-    exportedSymbol,
-    typescriptProject,
-  );
+  const localeSymbol = resolveExportSpecifier(exportedSymbol, typescriptProject);
   const declaration = localeSymbol.valueDeclaration!;
 
   const classesProp = getPropsFromComponentNode({
     node: declaration,
     project: typescriptProject,
-    shouldInclude: ({ name }) => name === "classes",
+    shouldInclude: ({ name }) => name === 'classes',
     checkDeclarations: true,
   })?.props.classes;
 
@@ -183,9 +158,7 @@ function extractClassesFromProps(
 
   const classes: Record<string, ClassInfo> = {};
   classesProp.signatures.forEach((propType) => {
-    const type = typescriptProject.checker.getTypeAtLocation(
-      propType.symbol.declarations?.[0]!,
-    );
+    const type = typescriptProject.checker.getTypeAtLocation(propType.symbol.declarations?.[0]!);
     removeUndefinedFromType(type)
       ?.getProperties()
       .forEach((property) => {
@@ -204,8 +177,7 @@ function extractClassesFromProps(
   return Object.keys(classes).map((name) => ({
     key: name,
     className: projectSettings.generateClassName(muiName, name),
-    description:
-      name !== classes[name].description ? classes[name].description : "",
+    description: name !== classes[name].description ? classes[name].description : '',
     isGlobal: projectSettings.isGlobalClassName(name),
     isDeprecated: classes[name].isDeprecated,
     deprecationInfo: classes[name].deprecationInfo,
@@ -219,8 +191,7 @@ function extractSlots(
   slotsInterfaceNameParams?: string,
 ): Record<string, Slot> {
   const defaultSlotsInterfaceName = `${componentName}Slots`;
-  const slotsInterfaceName =
-    slotsInterfaceNameParams ?? defaultSlotsInterfaceName;
+  const slotsInterfaceName = slotsInterfaceNameParams ?? defaultSlotsInterfaceName;
   const exportedSymbol = project.exports[slotsInterfaceName];
   if (!exportedSymbol) {
     console.warn(`No declaration for ${slotsInterfaceName}`);
