@@ -15,6 +15,18 @@
           ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.4)`
           : alpha(theme.palette.text.primary, 0.4),
       },
+      ...(ownerState.variant === 'text' &&
+        ownerState.color !== 'inherit' && {
+          backgroundColor: theme.vars
+            ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${
+                theme.vars.palette.action.hoverOpacity
+              })`
+            : alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
+          // Reset on touch devices, it doesn't add specificity
+          '@media (hover: none)': {
+            backgroundColor: 'transparent',
+          },
+        }),
       ...(ownerState.size === 'small' && {
         fontSize: 16,
         marginRight: 4,
