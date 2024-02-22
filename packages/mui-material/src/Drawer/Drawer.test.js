@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, describeConformance, screen } from '@mui-internal/test-utils';
+import { createRenderer, screen } from '@mui-internal/test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Drawer, { drawerClasses as classes } from '@mui/material/Drawer';
 import { getAnchor, isHorizontal } from './Drawer';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Drawer />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });

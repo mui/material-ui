@@ -16,9 +16,9 @@
 /r/pseudo-classes-guide /material-ui/customization/how-to-customize/#state-classes 302
 /r/state-classes-guide /material-ui/customization/how-to-customize/#state-classes 302
 /r/input-component-ref-interface /material-ui/react-text-field/#integration-with-3rd-party-input-libraries 302
-/r/issue-template https://stackblitz.com/fork/github/stackblitz/starters/tree/main/react-ts 302
-/r/issue-template-next https://stackblitz.com/fork/github/stackblitz/starters/tree/main/react-ts 302
-/r/issue-template-latest https://stackblitz.com/fork/github/stackblitz/starters/tree/main/react-ts 302
+/r/issue-template https://stackblitz.com/github/stackblitz/starters/tree/main/react-ts 302
+/r/issue-template-next https://stackblitz.com/github/stackblitz/starters/tree/main/react-ts 302
+/r/issue-template-latest https://stackblitz.com/github/stackblitz/starters/tree/main/react-ts 302
 /r/ts-issue-template https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAKjgQwM5wEoFNkGN4BmUEIcA5FDvmQNwBQokscA3nXHAPSdwwAWWOLhKQAdllEx0ATwgBXOHNRYAJnQC+cIiXIABEHOCcQyGFijBkAGzJ06BOaPzAIouABEsICAAoAlKzsXDwAmvJQQhAqWBpAA 302
 /r/custom-component-variants /material-ui/customization/how-to-customize/#adding-new-component-variants 302
 /r/migration-v4 /material-ui/migration/migration-v4/ 302
@@ -506,6 +506,7 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /material-ui/guides/shadow-dom/ /material-ui/customization/shadow-dom/ 301
 /material-ui/guides/right-to-left/ /material-ui/customization/right-to-left/ 301
 /material-ui/guides/pickers-migration/ /material-ui/migration/pickers-migration/ 301
+/material-ui/guides/styled-components/ /material-ui/integrations/styled-components/ 301
 
 # Proxies
 

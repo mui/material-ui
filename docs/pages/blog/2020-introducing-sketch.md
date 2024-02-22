@@ -3,7 +3,7 @@ title: Introducing Material UI for Sketch
 description: Today, we're excited to announce the introduction of official Sketch symbols for Material UI.
 date: 2020-03-30T00:00:00.000Z
 authors: ['oliviertassinari']
-tags: ['News']
+tags: ['Material UI', 'Product']
 card: true
 ---
 

@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui-internal/test-utils';
 import Typography from '@mui/material/Typography';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import { stepIconClasses as iconClasses } from '@mui/material/StepIcon';
 import StepLabel, { stepLabelClasses as classes } from '@mui/material/StepLabel';
+import describeConformance from '../../test/describeConformance';
 
 describe('<StepLabel />', () => {
   const { render } = createRenderer();

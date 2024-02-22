@@ -13,6 +13,7 @@
     "defaultColumns": { "type": { "name": "number" } },
     "defaultHeight": { "type": { "name": "number" } },
     "defaultSpacing": { "type": { "name": "number" } },
+    "sequential": { "type": { "name": "bool" }, "default": "false" },
     "spacing": {
       "type": {
         "name": "union",

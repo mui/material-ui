@@ -18,7 +18,7 @@ Additionally, keep these in mind when using them together:
 - Both of them use [MUI System](/system/getting-started/) as their style engine, which uses React context for theming.
 - Theme scoping must be done on one of the libraries.
 
-## Prerequisite
+### Prerequisites
 
 - Have `@mui/material` and `@mui/joy` installed in your project.
 - The version of both libraries must be [v5.12.0](https://github.com/mui/material-ui/releases/tag/v5.12.0) or higher.
@@ -50,7 +50,7 @@ export default function App() {
 }
 ```
 
-<iframe src="https://codesandbox.io/embed/using-joy-ui-and-material-ui-together-tx58w5?module=%2Fdemo.tsx&fontsize=14&hidenavigation=1&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/using-joy-ui-and-material-ui-together-qrsz2h?module=%2Fdemo.tsx&fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:400px; border:0; border-radius: 4px; overflow:hidden;"
      title="Joy UI - Human Interface Guidelines Typography System"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

@@ -1,5 +1,169 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.15.11
+
+<!-- generated comparing v5.15.10..master -->
+
+_Feb 21, 2024_
+
+A big thanks to the 26 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.15.11`
+
+- [Alert] Deprecate components and componentsProps props (#40681) @DiegoAndai
+- [Autocomplete] Caret transformation issue with font size change (#41066) @dpertsin
+- [StepLabel] Add type for StepIconComponent (#41082) @harrydigos
+- [TablePagination] Fix type error in Select props (#39137) @PaulKristoffersson
+- [Transitions] External ownerState is incorrectly forwarded to inner components (#41187) @gitstart
+- Use direct import (#40851) @siriwatknp
+
+### `@mui/material-nextjs@5.15.11`
+
+- Fix missing babel/runtime dependency in material-ui-nextjs (#41077) @siriwatknp
+
+### `@mui/system@5.15.11`
+
+- Use direct import (#40851) @siriwatknp
+- Move useMediaQuery to system (#39463) @justintoman
+- Consolidate the variants props callback arguments (#41222) @mnajdova
+- Merge props and ownerState in the variants props callback (#41219) @mnajdova
+
+### `@mui/codemod@5.15.11`
+
+- [AccordionSummary] Add contentGutters deprecation codemods (#41006) @DiegoAndai
+- [PaginationItem] Add codemod for deprecated classes (#41145) @sai6855
+
+### `@mui/utils@5.15.11`
+
+- Port `useLocalStorageState` hook from Toolpad (#41096) @Janpot
+
+### `@mui/base@5.0.0-beta.37`
+
+- [Switch] Add missing role attribute (#40907) @KirankumarAmbati
+- [TextareaAutosize] Improve implementation (#40789) @ZeeshanTamboli
+
+### `@mui/lab@5.0.0-alpha.164`
+
+- [Masonry] Ability to sort elements from left to right (#39904) @Rishi556
+
+### Docs
+
+- [base-ui] Fix focus state demo in Base UI autocomplete (#41104) @oliviertassinari
+- [base-ui] Update the Accessibility page demos design (#40995) @danilo-leal
+- [joy-ui] Fix LinearProgressWithLabel example (#41194) @khgiddon
+- [joy-ui] Fix 404 image on the docs @oliviertassinari
+- [material-ui] Add a "start now" section on the Overview page (#41137) @danilo-leal
+- [material-ui] Inform about deprecated TablePagination SelectProps usage (#41186) @gitstart
+- [material-ui] Update the Testing page's Argos link (#41170) @gregberge
+- [material-ui] Remove Masonry component and Material Design icon from the landing page template (#41080) @zanivan
+- [material-ui] Standardize all references to Material Design 3 (M3) (#40903) @samuelsycamore
+- [material-ui] Add stray fixes around a few pages (#41038) @danilo-leal
+- [material-ui][joy-ui][system] Restore and revise the Box docs (#40622) @samuelsycamore
+- [material-ui] Add simpler demo for default behavior (#40980) @zanivan
+- [system] Explain why AppRouterCacheProvider (#40909) @oliviertassinari
+- Link to react-transition group with https @oliviertassinari
+- Update broken URL hashes (#41185) @LukasTy
+- Prefer https links @oliviertassinari
+- Fix MUI Treasury link @oliviertassinari
+- Migrate the last > quotes to ::: callouts @oliviertassinari
+
+### Core
+
+- [blog] Add new product tags and stray adjustments (#41193) @danilo-leal
+- [blog] Simplify `/base-ui-2024-plans/` page (#41171) @oliviertassinari
+- [blog] Add link to Base UI API changes RFC (#41089) @michaldudak
+- [blog] Remove the "News" tag (#41208) @danilo-leal
+- [changelog] Remove @mui/system@5.15.10 (#41093) @michaldudak
+- [code-infra] Move typescript-to-proptypes to internal-scripts package (#41079) @michaldudak
+- [code-infra] Move Link to @mui/docs (#40889) @Janpot
+- [code-infra] Use `experimental.cpus` to control amount of export workers in Next.js (#41132) @Janpot
+- [code-infra] Load commonjs files in next.config.mjs with require (#41108) @Janpot
+- [code-infra] Prepare babel macros package for publishing to npm (#41178) @michaldudak
+- [code-infra] Build internal packages before publishing (#41210) @michaldudak
+- [core] Improve the release instructions (#40973) @mnajdova
+- [core] Simplify Next.js Demo Zero Runtime guide @oliviertassinari
+- [core] Fix TypeScript spelling in changelog @oliviertassinari
+- [core] Fix small detail in the autocomplete demo @oliviertassinari
+- [core] Increase node memory limit on Netlify build (#41111) @michaldudak
+- [core][Tooltip] Remove incorrect code comment (#41179) @ZeeshanTamboli
+- [core] Fix missing context display names (#41168) @oliviertassinari
+- [core][base-ui] Remove `@mui/base` dev dependency from Base UI workspace (#41216) @ZeeshanTamboli
+- [zero][demo] Fix sample next app build (#41197) @brijeshb42
+- [docs-infra] Simplify copy logic (#41167) @oliviertassinari
+- [docs-infra] New way of providing API layout config (#41106) @alexfauquette
+- [docs-infra] Reduce scrollbar width on ROC (#41148) @oliviertassinari
+- [docs-infra] Add external link arrow (#41129) @siriwatknp
+- [docs-infra] Fix external link arrow (#41181) @alexfauquette
+- [docs-infra] Flag NPM and Github as wrong spellings @oliviertassinari
+- [docs-infra] Fix display when the default props is undefined (#41114) @oliviertassinari
+- [docs-infra] Remove random layout assignment (#40862) @alexfauquette
+- [docs-infra] Add spacing and contrast improvements (#41191) @danilo-leal
+- [docs-infra] Share vale-config (#41176) @alexfauquette
+- [test] Generalize test utils (#41175) @michaldudak
+- [typescript-to-proptypes] Support using `Omit` on types with conditional properties (#41033) @flaviendelangle
+- [website] Match chart component names @oliviertassinari
+- [website] Add Marblism diamond sponsor (#41097) @rluzists1
+- [website] Add overall improvements to the Material UI page (#41075) @danilo-leal
+- [website] Fix responsive breakpoints @oliviertassinari
+- [website] Fix overloading of footer JS files @oliviertassinari
+- [website] Improve the footer's chip contrast (#41209) @danilo-leal
+- [zero] Update to latest version of wyw-in-js (#41182) @brijeshb42
+- [zero] Setup basic testing framework (#40986) @brijeshb42
+- [zero] Fix wrong CSS order by moving import to last (#41002) @siriwatknp
+- [zero] Export `extendTheme` for creating a zero-runtime theme (#40897) @siriwatknp
+- [zero] Move extendTheme to its own subpath (#41204) @brijeshb42
+
+All contributors of this release in alphabetical order: @alexfauquette, @brijeshb42, @danilo-leal, @DiegoAndai, @dpertsin, @flaviendelangle, @gitstart, @gregberge, @harrydigos, @Janpot, @justintoman, @khgiddon, @KirankumarAmbati, @LukasTy, @michaldudak, @mnajdova, @nikosgavalas, @oliviertassinari, @PaulKristoffersson, @Rishi556, @rluzists1, @sai6855, @samuelsycamore, @siriwatknp, @zanivan, @ZeeshanTamboli
+
+## v5.15.10
+
+<!-- generated comparing v5.15.9..master -->
+
+_Feb 12, 2024_
+
+A big thanks to the 8 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.15.10`
+
+- [Avatar] Add props deprecation with a codemod (#40853) @siriwatknp
+
+### `@mui/joy@5.0.0-beta.28`
+
+- [Button] Fix `disabled` prop priority when inside button group (#41000) @Smileek
+- [IconButton] Support loading prop (#40949) @Smileek
+
+### Docs
+
+- [Button][material-ui] Fix 'File upload' demo a11y (#40943) @oliviertassinari
+- [TableRow][material-ui] Escape markup in `children` prop so docgen tools don't parse it as HTML (#40992) @millerized
+- [material-ui] Remove outdated example projects link (it uses Joy UI now) (#40913) @oliviertassinari
+- [material-ui] Fix the "Intro to the MUI ecosystem" link placement (#40988) @danilo-leal
+- Fix 301 redirection to StackBlitz @oliviertassinari
+- Fix h1 on Joy UI templates @oliviertassinari
+- Have MUI workspace own the CodeSandbox @oliviertassinari
+- Add notification for mui x v7 beta (#41001) @joserodolfofreitas
+- Fix 301 links @oliviertassinari
+- Fix Next.js v13.5.1 <title> SEO regression (#40302) @oliviertassinari
+- Add a 404 page (#40884) @danilo-leal
+- Fix missing GitHub label when opening new issue @oliviertassinari
+- [Stack] Update import statement for Stack component (#41032) @sai6855
+
+### Core
+
+- [blog] Add post about upcoming plans for Base UI (#40882) @danilo-leal
+- [core] Simplify CodeSandbox reproduction @oliviertassinari
+- [core] Missing redirection @oliviertassinari
+- [core] Export functions from `copyFiles` script to reuse in MUI X repo (#40970) @cherniavskii
+- [core] Avoid variable shorthands @oliviertassinari
+- [docs-infra] Fix search icon issue (#40957) @oliviertassinari
+- [docs-infra] Ignore classes tagged with `@ignore` (#41009) @cherniavskii
+- [docs-infra] Fix selected tab on codeblocks (#41036) @danilo-leal
+- [website] Polish Customer Support Agent role @oliviertassinari
+
+All contributors of this release in alphabetical order: @cherniavskii, @danilo-leal, @joserodolfofreitas, @millerized, @oliviertassinari, @sai6855, @siriwatknp, @Smileek
+
 ## v5.15.9<!-- generated comparing v5.15.8..master -->
 
 _Feb 8, 2024_
@@ -71,7 +235,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 ### Docs
 
 - &#8203;<!-- 34 -->[base-ui] Update usage.md (#40916) @adebiyial
-- &#8203;<!-- 33 -->[base-ui] Improve Base UI traffic from Material UI (#40875) @oliviertassinari
+- &#8203;<!-- 33 -->[base-ui] Improve Base UI traffic from Material UI (#40875) @oliviertassinari
 - &#8203;<!-- 32 -->[base-ui] Change Radio component terminology from Button to Group (#40888) @danilo-leal
 - &#8203;<!-- 42 -->[base-ui] Remove redundant "Styled" prefix (#40478) @oliviertassinari
 - &#8203;<!-- 48 -->[base-ui] Update listbox slot style in demo (#40952) @sai6855
@@ -108,7 +272,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - &#8203;<!-- 07 -->[website] Fix broken link @oliviertassinari
 - &#8203;<!-- 06 -->[website] Fix heading structure (#40912) @oliviertassinari
 - &#8203;<!-- 05 -->[website] Add Customer Support Agent role to careers page (#40890) @rluzists1
-- &#8203;<!-- 04 -->[website] Refine the Material UI homepage demo (#40881) @danilo-leal
+- &#8203;<!-- 04 -->[website] Refine the Material UI homepage demo (#40881) @danilo-leal
 - &#8203;<!-- 03 -->[website] Use em-dash when relevant over hyphen @oliviertassinari
 - &#8203;<!-- 03 -->[zero] Fix build for demo next.js app (#40854) @brijeshb42
 
@@ -169,7 +333,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - &#8203;<!-- 30 -->Fix build @oliviertassinari
 - &#8203;<!-- 29 -->Add support pages for each product @oliviertassinari
 - &#8203;<!-- 28 -->Add survey banner to docs and website (#40553) @joserodolfofreitas
-- &#8203;<!-- 24 -->[Menu] Fix hydration mismatch error on Base UI's Menu docs (#40758) @michaldudak
+- &#8203;<!-- 24 -->[Menu] Fix hydration mismatch error on Base UI's Menu docs (#40758) @michaldudak
 - &#8203;<!-- 25 -->[material-nextjs] Add theming and configuration content to the page (#40626) @siriwatknp
 
 ### Core
@@ -194,7 +358,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - &#8203;<!-- 23 -->[examples] Fix build on Next.js Pages Router examples (#40665) @oliviertassinari
 - &#8203;<!-- 18 -->[test] Speed up the envinfo test (#40669) @michaldudak
 - &#8203;<!-- 17 -->[typescript-to-proptypes] Allow to represent dates as `PropTypes.object` (#40774) @flaviendelangle
-- &#8203;<!-- 14 -->[website] Add new Base UI role (#40773) @colmtuite
+- &#8203;<!-- 14 -->[website] Add new Base UI role (#40773) @colmtuite
 - &#8203;<!-- 13 -->[website] Fix a couple of rough edges (#40849) @danilo-leal
 - &#8203;<!-- 12 -->[website] Small polishing after latest changes to the theme (#40846) @zanivan
 - &#8203;<!-- 11 -->[website] Polish some pages and stray components (#40797) @danilo-leal
@@ -1276,7 +1440,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [core] Update eslint rules (#39178) @romgrk
 - [core] Fix Greg GitHub slug @oliviertassinari
 - [core] Priority Support casing normalization @oliviertassinari
-- [website] Add Heat map in pricing page (#39269) @oliviertassinari
+- [website] Add Heatmap in pricing page (#39269) @oliviertassinari
 - [website] Update `React Engineer - xCharts` Ashby link (#39172) @DanailH
 - [website] Add Charts to the pricing table (#38680) @alexfauquette
 - [website] Polish career experience @oliviertassinari
@@ -2644,7 +2808,7 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 - [docs] Fix link to Joy UI GitHub issues @oliviertassinari
 - [docs] Show default value for `filterOptions` prop in Autocomplete's API docs (#37230) @ZeeshanTamboli
 - [docs] Add summary and improve `test_static` CI doc in CONTRIBUTING readme file (#36711) @kriskw1999
-- [docs] Update theme customization typescript (#35551) @siriwatknp
+- [docs] Update theme customization TypeScript (#35551) @siriwatknp
 - [docs] Add Joy Frames X web blocks template (#37203) @siriwatknp
 - [docs] Change Base UI `alpha` to `beta` in README (#37228) @ZeeshanTamboli
 - [docs] Improve Base UI overview page (#37227) @mnajdova
@@ -2683,14 +2847,14 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
 - [Input][joy] Improve alignment on date fields (#37146) @wewakekumar
 - [Alery][joy] Turn JS test to TS test (#37077) @hbjORbj
-- [AspectRatio][joy] js test replaced with ts test (#37087) @PunitSoniME
-- [Badge][AvatarGroup][joy] js test replaced with ts test (#37089) @PunitSoniME
+- [AspectRatio][joy] js test replaced with TypeScript test (#37087) @PunitSoniME
+- [Badge][AvatarGroup][joy] js test replaced with TypeScript test (#37089) @PunitSoniME
 - [Box][Card][MenuList][joy] Turn JS test to TS test (#37126) @uuxxx
 - [List][Menu][joy] Turn JS test to TS test (#37123) @uuxxx
 - [test][Joy] Remove duplicate Avatar test (#37201) @zignis
-- [test][joy] js test cases converted to ts (#37117) @PunitSoniME
-- [Button][joy] Convert Button test to typescript (#37181) @akash191095
-- [CardContent][CardCover][CardOverflow][Chip][ChipDelete][joy] js text case converted to ts (#37116) @PunitSoniME
+- [test][joy] js test cases converted to TypeScript (#37117) @PunitSoniME
+- [Button][joy] Convert Button test to TypeScript (#37181) @akash191095
+- [CardContent][CardCover][CardOverflow][Chip][ChipDelete][joy] js text case converted to TypeScript (#37116) @PunitSoniME
 - [Radio][IconButton][Checkbox][Option][joy] Switch to TypeScript unit test (#37137) @DerTimonius
 
 ### `@mui/base@5.0.0-beta.0`
@@ -3388,7 +3552,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - &#8203;<!-- 15 -->[docs][joy] Build TS versions for Checkbox component demos (#36381) @sai6855
 - &#8203;<!-- 14 -->[docs][joy] Build TS versions for Select component demos (#36380) @sai6855
 - &#8203;<!-- 13 -->[docs][joy] Build TS versions for Typography component demos (#36378) @varunmulay22
-- &#8203;<!-- 12 -->[docs][joy] Add typescript demos for `Divider` (#36374) @sai6855
+- &#8203;<!-- 12 -->[docs][joy] Add TypeScript demos for `Divider` (#36374) @sai6855
 - &#8203;<!-- 11 -->[docs][joy] Build TS versions for Textarea component demos (#36371) @varunmulay22
 - &#8203;<!-- 10 -->[docs][joy] Build TS versions for Link component demos (#36366) @hbjORbj
 
@@ -4108,7 +4272,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 
 - [Alert] Update icon color in all variants (#35414) @danilo-leal
 - [Select] Fix `MenuProps.PopoverClasses` being overriden (#35394) @vitorfrs-dev
-- [SwipeableDrawer] Fixed typescript warning "prop open undefined" (#34710) @kraftware
+- [SwipeableDrawer] Fix TypeScript warning "prop open undefined" (#34710) @kraftware
 
 ### `@mui/icons-material@5.11.0`
 
@@ -5609,7 +5773,7 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 ### `@mui/base@5.0.0-alpha.88`
 
 - [base] Remove a type incompatible with TypeScript 3.5 (#33361) @michaldudak
-- [BadgeUnstyled] Export BadgeUnstyledOwnProps interface to fix typescript compiler error (#33314) @aaronlademann-wf
+- [BadgeUnstyled] Export BadgeUnstyledOwnProps interface to fix TypeScript compiler error (#33314) @aaronlademann-wf
 - [TablePaginationUnstyled] Accept callbacks in componentsProps (#33309) @michaldudak
 
 ### Docs
@@ -6779,7 +6943,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - &#8203;<!-- 18 -->[docs] Fix maxWidth of scrollable Tabs demos (#31285) @danilo-leal
 - &#8203;<!-- 17 -->[docs] Fix icon linking implementation concurrent safe (#30428) @Janpot
 - &#8203;<!-- 16 -->[docs] Follow up new doc space issues (#31251) @siriwatknp
-- &#8203;<!-- 29 -->[examples] Add `@types/node` to nextjs typescript starter (#30918) @Daggy1234
+- &#8203;<!-- 29 -->[examples] Add `@types/node` to Next.js TypeScript starter (#30918) @Daggy1234
 - &#8203;<!-- 14 -->[examples] Fix import ThemeProvider from correct package in remix-wit… (#30981) @nnecec
 - &#8203;<!-- 25 -->[blog] Simplify the labels (#30921) @oliviertassinari
 - &#8203;<!-- 08 -->[l10n] Add Croatian (hr-HR) and Serbian (sr-RS) translation (#30906) @m14d3n
@@ -7546,7 +7710,7 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 ### `@mui/system@5.2.3`
 
 - &#8203;<!-- 06 -->[system] Fix return type of `createBox` (#29989) @mnajdova
-- &#8203;<!-- 05 -->[system] Support boolean values in typescript for the `sx` prop when used as array (#29911) @tasugi
+- &#8203;<!-- 05 -->[system] Support boolean values in TypeScript for the `sx` prop when used as array (#29911) @tasugi
 
 ### `@mui/utils@5.2.3`
 
@@ -9414,7 +9578,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - &#8203;<!-- 02 -->[docs] Fix small PT typo fix: inciar -> iniciar (#26775) @brunocavalcante
 - &#8203;<!-- 03 -->[I10n] Add Chinese (Hong Kong) (zh-HK) locale (#26637) @kshuiroy
 - &#8203;<!-- 44 -->[l10n] Add sinhalese (siLK) locale (#26875) @pavinduLakshan
-- &#8203;<!-- 39 -->[examples] Rename nextjs typescript theme from tsx to ts (#26862) @Izhaki
+- &#8203;<!-- 39 -->[examples] Rename Next.js TypeScript theme from tsx to ts (#26862) @Izhaki
 
 ### Core
 
@@ -10762,7 +10926,7 @@ A big thanks to the 26 contributors who made this release possible. Here are som
 ### Docs
 
 - &#8203;<!-- 46 -->[docs] Provide an alternative to right-to-left (#25584) @dariusk
-- &#8203;<!-- 45 -->[docs] Add note for typescript on the styled() customization guide (#25576) @mnajdova
+- &#8203;<!-- 45 -->[docs] Add note for TypeScript on the styled() customization guide (#25576) @mnajdova
 - &#8203;<!-- 44 -->[docs] Replace incorrect instances of defined with define (#25572) @surajpoddar16
 - &#8203;<!-- 42 -->[docs] Fix spelling error in roadmap.md file (#25570) @Brlaney
 - &#8203;<!-- 37 -->[docs] Migrate Card demos to emotion (#25557) @vicasas
@@ -12147,7 +12311,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - [DatePicker] Add missing exports (#23621) @havgry
 - [DatePicker] Add missing TypeScript definitions (#23560) @mbrookes
 - [DatePicker] Fix false-positive when validating mask in Safari (#23602) @eps1lon
-- [DatePicker] Fix missing manifest for typescript packages (#23564) @eps1lon
+- [DatePicker] Fix missing manifest for TypeScript packages (#23564) @eps1lon
 - [TimePicker] Prevent scroll when interacting with the clock (#23563) @knightss27
 
 ### Docs
@@ -14250,28 +14414,28 @@ A big thanks to the 33 contributors who made this release possible. Here are som
   +</Accordion>
   ```
 
-- [BottomNavigation] typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+- [BottomNavigation] TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
 
   ```diff
   -<BottomNavigation onChange={(event: React.ChangeEvent<{}>) => {}} />
   +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
   ```
 
-- [Slider] typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+- [Slider] TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
 
   ```diff
   -<Slider onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
   +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
-- [Tabs] typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+- [Tabs] TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
 
   ```diff
   -<Tabs onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
   +<Tabs onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
-- [Accordion] typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+- [Accordion] TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
 
   ```diff
   -<Accordion onChange={(event: React.ChangeEvent<{}>, expanded: boolean) => {}} />

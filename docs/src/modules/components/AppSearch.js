@@ -23,8 +23,8 @@ import GlobalStyles from '@mui/material/GlobalStyles';
 import { alpha, styled } from '@mui/material/styles';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { LANGUAGES_SSR } from 'docs/config';
-import Link from 'docs/src/modules/components/Link';
-import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
+import { Link } from '@mui/docs/Link';
+import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import PageContext from 'docs/src/modules/components/PageContext';
 
@@ -80,12 +80,10 @@ const SearchButton = styled('button')(({ theme }) => [
   }),
 ]);
 
-const SearchLabel = styled('span')(({ theme }) => {
-  return {
-    marginLeft: theme.spacing(1),
-    marginRight: 'auto',
-  };
-});
+const SearchLabel = styled('span')(({ theme }) => ({
+  marginLeft: theme.spacing(1),
+  marginRight: 'auto',
+}));
 
 const Shortcut = styled('div')(({ theme }) => {
   return {
@@ -108,7 +106,7 @@ function NewStartScreen() {
   const startScreenOptions = [
     {
       category: {
-        name: 'Material UI',
+        name: 'Material UI',
       },
       items: [
         {
@@ -135,7 +133,7 @@ function NewStartScreen() {
     },
     {
       category: {
-        name: 'Base UI',
+        name: 'Base UI',
       },
       items: [
         {
@@ -206,7 +204,7 @@ function NewStartScreen() {
     },
     {
       category: {
-        name: 'MUI Toolpad',
+        name: 'MUI Toolpad',
       },
       items: [
         {
@@ -228,7 +226,7 @@ function NewStartScreen() {
     },
     {
       category: {
-        name: 'MUI System',
+        name: 'MUI System',
       },
       items: [
         {
@@ -556,6 +554,15 @@ export default function AppSearch(props) {
               color: (theme.vars || theme).palette.primary[500],
               marginRight: theme.spacing(1.5),
               opacity: 0.6,
+              // Redefine SvgIcon-root style as ReactDOMServer.renderToStaticMarkup doesn't
+              // Generate the CSS.
+              // TODO v6: This hack should no longer be needed with static CSS rendering.
+              userSelect: 'none',
+              width: '1em',
+              height: '1em',
+              display: 'inline-block',
+              flexShrink: 0,
+              fill: 'currentColor',
             },
             '& .DocSearch-NewStartScreenItem': {
               display: 'flex',

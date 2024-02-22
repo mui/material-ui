@@ -3,7 +3,7 @@ title: Premium passengers, please proceed to the boarding gate 🚀
 description: Introducing the MUI X Premium plan, and a new licensing model.
 date: 2022-05-12T00:00:00.000Z
 authors: ['josefreitas', 'alexfauquette']
-tags: ['MUI X', 'News']
+tags: ['MUI X', 'Product']
 card: true
 ---
 
