@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close'; // Import the Close icon
+import CloseIcon from '@mui/icons-material/Close';
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 
 import Info from './Info';
@@ -28,7 +28,7 @@ export default function InfoMobile() {
   );
 
   return (
-    <Box>
+    <div>
       <Button
         variant="text"
         endIcon={<ExpandMoreRoundedIcon />}
@@ -39,6 +39,6 @@ export default function InfoMobile() {
       <Drawer open={open} anchor="top" onClose={toggleDrawer(false)}>
         {DrawerList}
       </Drawer>
-    </Box>
+    </div>
   );
 }
