@@ -6,7 +6,7 @@
 
 _Feb 21, 2024_
 
-A big thanks to the 25 contributors who made this release possible.
+A big thanks to the 26 contributors who made this release possible.
 This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.15.11`
@@ -16,10 +16,9 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [Drawer] Add simpler demo for default behavior (#40980) @zanivan
 - [PaginationItem] Add codemod for deprecated classes (#41145) @sai6855
 - [StepLabel] Add type for StepIconComponent (#41082) @harrydigos
-- [system] Use direct import (#40851) @siriwatknp
 - [TablePagination] Fix type error in Select props (#39137) @PaulKristoffersson
-- [Tooltip] Remove incorrect code comment (#41179) @ZeeshanTamboli
 - [Transitions] External ownerState is incorrectly forwarded to inner components (#41187) @gitstart
+- Use direct import (#40851) @siriwatknp
 
 ### `@mui/material-nextjs@5.15.11`
 
@@ -29,10 +28,16 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 - Use direct import (#40851) @siriwatknp
 - Move useMediaQuery to system (#39463) @justintoman
+- Consolidate the variants props callback arguments (#41222) @mnajdova
+- Merge props and ownerState in the variants props callback (#41219) @mnajdova
 
 ### `@mui/codemod@5.15.11`
 
 - [AccordionSummary] Add contentGutters deprecation codemods (#41006) @DiegoAndai
+
+### `@mui/utils@5.15.11`
+
+- Port `useLocalStorageState` hook from Toolpad (#41096) @Janpot
 
 ### `@mui/base@5.0.0-beta.37`
 
@@ -55,6 +60,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [material-ui] Remove Masonry component and Material Design icon from the landing page template (#41080) @zanivan
 - [material-ui] Standardize all references to Material Design 3 (M3) (#40903) @samuelsycamore
 - [material-ui] Add stray fixes around a few pages (#41038) @danilo-leal
+- [material-ui][joy-ui][system] Restore and revise the Box docs (#40622) @samuelsycamore
 - [system] Explain why AppRouterCacheProvider (#40909) @oliviertassinari
 - Link to react-transition group with https @oliviertassinari
 - Update broken URL hashes (#41185) @LukasTy
@@ -67,24 +73,33 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [blog] Add new product tags and stray adjustments (#41193) @danilo-leal
 - [blog] Simplify `/base-ui-2024-plans/` page (#41171) @oliviertassinari
 - [blog] Add link to Base UI API changes RFC (#41089) @michaldudak
+- [blog] Remove the "News" tag (#41208) @danilo-leal
 - [changelog] Remove @mui/system@5.15.10 (#41093) @michaldudak
 - [code-infra] Move typescript-to-proptypes to internal-scripts package (#41079) @michaldudak
 - [code-infra] Move Link to @mui/docs (#40889) @Janpot
 - [code-infra] Use `experimental.cpus` to control amount of export workers in Next.js (#41132) @Janpot
 - [code-infra] Load commonjs files in next.config.mjs with require (#41108) @Janpot
+- [code-infra] Prepare babel macros package for publishing to npm (#41178) @michaldudak
+- [code-infra] Build internal packages before publishing (#41210) @michaldudak
 - [core] Improve the release instructions (#40973) @mnajdova
 - [core] Simplify Next.js Demo Zero Runtime guide @oliviertassinari
 - [core] Fix TypeScript spelling in changelog @oliviertassinari
 - [core] Fix small detail in the autocomplete demo @oliviertassinari
 - [core] Increase node memory limit on Netlify build (#41111) @michaldudak
+- [core][Tooltip] Remove incorrect code comment (#41179) @ZeeshanTamboli
+- [core] Fix missing context display names (#41168) @oliviertassinari
+- [core][base-ui] Remove `@mui/base` dev dependency from Base UI workspace (#41216) @ZeeshanTamboli
 - [zero][demo] Fix sample next app build (#41197) @brijeshb42
 - [docs-infra] Simplify copy logic (#41167) @oliviertassinari
 - [docs-infra] New way of providing API layout config (#41106) @alexfauquette
 - [docs-infra] Reduce scrollbar width on ROC (#41148) @oliviertassinari
 - [docs-infra] Add external link arrow (#41129) @siriwatknp
+- [docs-infra] Fix external link arrow (#41181) @alexfauquette
 - [docs-infra] Flag NPM and Github as wrong spellings @oliviertassinari
 - [docs-infra] Fix display when the default props is undefined (#41114) @oliviertassinari
 - [docs-infra] Remove random layout assignment (#40862) @alexfauquette
+- [docs-infra] Add spacing and contrast improvements (#41191) @danilo-leal
+- [docs-infra] Share vale-config (#41176) @alexfauquette
 - [test] Generalize test utils (#41175) @michaldudak
 - [typescript-to-proptypes] Support using `Omit` on types with conditional properties (#41033) @flaviendelangle
 - [website] Match chart component names @oliviertassinari
@@ -92,12 +107,14 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [website] Add overall improvements to the Material UI page (#41075) @danilo-leal
 - [website] Fix responsive breakpoints @oliviertassinari
 - [website] Fix overloading of footer JS files @oliviertassinari
+- [website] Improve the footer's chip contrast (#41209) @danilo-leal
 - [zero] Update to latest version of wyw-in-js (#41182) @brijeshb42
 - [zero] Setup basic testing framework (#40986) @brijeshb42
 - [zero] Fix wrong CSS order by moving import to last (#41002) @siriwatknp
 - [zero] Export `extendTheme` for creating a zero-runtime theme (#40897) @siriwatknp
+- [zero] Move extendTheme to its own subpath (#41204) @brijeshb42
 
-All contributors of this release in alphabetical order: @alexfauquette, @brijeshb42, @danilo-leal, @DiegoAndai, @dpertsin, @flaviendelangle, @gitstart, @gregberge, @harrydigos, @Janpot, @justintoman, @khgiddon, @KirankumarAmbati, @LukasTy, @michaldudak, @mnajdova, @oliviertassinari, @PaulKristoffersson, @Rishi556, @rluzists1, @sai6855, @samuelsycamore, @siriwatknp, @zanivan, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @alexfauquette, @brijeshb42, @danilo-leal, @DiegoAndai, @dpertsin, @flaviendelangle, @gitstart, @gregberge, @harrydigos, @Janpot, @justintoman, @khgiddon, @KirankumarAmbati, @LukasTy, @michaldudak, @mnajdova, @nikosgavalas, @oliviertassinari, @PaulKristoffersson, @Rishi556, @rluzists1, @sai6855, @samuelsycamore, @siriwatknp, @zanivan, @ZeeshanTamboli
 
 ## v5.15.10
 
