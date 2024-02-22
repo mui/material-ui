@@ -201,8 +201,14 @@ describe('<Alert />', () => {
   });
 
   describe('classes', () => {
-    ['info', 'warning', 'error'].forEach((color) => {
-      it('should apply non-default color classes to the root', () => {
+    it('should apply default color class to the root', () => {
+      render(<Alert data-testid="alert" />);
+
+      expect(screen.getByTestId('alert')).to.have.class(classes.colorSuccess);
+    });
+
+    ['success', 'info', 'warning', 'error'].forEach((color) => {
+      it('should apply color classes to the root', () => {
         render(<Alert data-testid="alert" color={color} />);
 
         expect(screen.getByTestId('alert')).to.have.class(classes[`color${capitalize(color)}`]);

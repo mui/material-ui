@@ -112,6 +112,12 @@
       "isGlobal": false
     },
     {
+      "key": "colorSuccess",
+      "className": "MuiAlert-colorSuccess",
+      "description": "Styles applied to the root element if `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
       "key": "colorWarning",
       "className": "MuiAlert-colorWarning",
       "description": "Styles applied to the root element if `color=\"warning\"`.",

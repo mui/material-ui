@@ -20,12 +20,10 @@ import CloseIcon from '../internal/svg-icons/Close';
 const useUtilityClasses = (ownerState) => {
   const { variant, color, severity, classes } = ownerState;
 
-  const appliedColor = color || severity;
-
   const slots = {
     root: [
       'root',
-      appliedColor !== 'success' && `color${capitalize(appliedColor)}`,
+      `color${capitalize(color || severity)}`,
       `${variant}${capitalize(color || severity)}`,
       `${variant}`,
     ],
