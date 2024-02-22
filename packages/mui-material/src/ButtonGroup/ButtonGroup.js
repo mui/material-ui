@@ -116,7 +116,7 @@ const ButtonGroupRoot = styled('div', {
     ...(ownerState.variant === 'text' &&
       ownerState.orientation === 'horizontal' && {
         borderRight: theme.vars
-          ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+          ? `color-mix(${theme.vars.palette.common.onBackground} / 0.23)`
           : `1px solid ${
               theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
             }`,
@@ -127,7 +127,7 @@ const ButtonGroupRoot = styled('div', {
     ...(ownerState.variant === 'text' &&
       ownerState.orientation === 'vertical' && {
         borderBottom: theme.vars
-          ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+          ? `color-mix(${theme.vars.palette.common.onBackground} / 0.23)`
           : `1px solid ${
               theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
             }`,
@@ -138,7 +138,7 @@ const ButtonGroupRoot = styled('div', {
     ...(ownerState.variant === 'text' &&
       ownerState.color !== 'inherit' && {
         borderColor: theme.vars
-          ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.5)`
+          ? `color-mix(${theme.vars.palette[ownerState.color].main} / 0.5)`
           : alpha(theme.palette[ownerState.color].main, 0.5),
       }),
     ...(ownerState.variant === 'outlined' &&

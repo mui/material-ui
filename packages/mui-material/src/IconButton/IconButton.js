@@ -55,7 +55,7 @@ const IconButtonRoot = styled(ButtonBase, {
     ...(!ownerState.disableRipple && {
       '&:hover': {
         backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
+          ? `color-mix(${theme.vars.palette.action.active} / transparent ${(theme.palette.action.hoverOpacity * 100).toFixed(0)}%)`
           : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
@@ -83,7 +83,7 @@ const IconButtonRoot = styled(ButtonBase, {
             '&:hover': {
               ...(palette && {
                 backgroundColor: theme.vars
-                  ? `rgba(${palette.mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
+                  ? `color-mix(${palette.main} / transparent ${(theme.palette.action.hoverOpacity * 100).toFixed(0)}%)`
                   : alpha(palette.main, theme.palette.action.hoverOpacity),
               }),
               // Reset on touch devices, it doesn't add specificity
