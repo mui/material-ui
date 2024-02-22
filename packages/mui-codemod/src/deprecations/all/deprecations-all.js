@@ -3,6 +3,7 @@ import transformAvatarProps from '../avatar-props';
 import transformDividerProps from '../divider-props';
 import transformAccordionClasses from '../accordion-summary-classes';
 import transformPaginationItemClasses from '../pagination-item-classes';
+import transformAlertClasses from '../alert-classes';
 
 /**
  * @param {import('jscodeshift').FileInfo} file
@@ -14,6 +15,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformDividerProps(file, api, options);
   file.source = transformAccordionClasses(file, api, options);
   file.source = transformPaginationItemClasses(file, api, options);
+  file.source = transformAlertClasses(file, api, options);
 
   return file.source;
 }
