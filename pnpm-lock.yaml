@@ -924,7 +924,7 @@ importers:
         specifier: ^7.23.9
         version: 7.23.9
       '@mui-internal/docs-utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../../packages/docs-utils
       doctrine:
         specifier: ^3.0.0
