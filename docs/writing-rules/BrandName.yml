@@ -14,3 +14,7 @@ swap:
   MUI Core: MUI Core
   MUI Toolpad: MUI Toolpad
   MUI Connect: MUI Connect
+# Don't forget to run the following command to generate the package writing-rules.zip file
+# Vale uses that ZIP file and not the YAML files.
+#
+# pnpm docs:zipRules

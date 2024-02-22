@@ -64,18 +64,14 @@ function ProductDrawerButton(props) {
         onClick={handleClick}
         endIcon={<ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />}
         sx={(theme) => ({
-          py: 0.1,
           minWidth: 0,
+          p: '1px 8px',
           fontSize: theme.typography.pxToRem(13),
           fontWeight: theme.typography.fontWeightMedium,
           color: (theme.vars || theme).palette.primary[600],
           '& svg': {
-            ml: -0.6,
             width: 18,
             height: 18,
-          },
-          '& > span': {
-            ml: '4px',
           },
           ...theme.applyDarkStyles({
             color: (theme.vars || theme).palette.primary[300],
@@ -114,7 +110,7 @@ function ProductIdentifier(props) {
     <Box sx={{ flexGrow: 1 }}>
       <Typography
         sx={(theme) => ({
-          ml: 1.5,
+          ml: 1,
           color: (theme.vars || theme).palette.grey[600],
           fontSize: theme.typography.pxToRem(11),
           fontWeight: 700,
@@ -402,7 +398,7 @@ export default function AppNavDrawer(props) {
               aria-label={t('goToHome')}
               sx={{
                 pr: '12px',
-                mr: '4px',
+                mr: '8px',
                 borderRight: '1px solid',
                 borderColor: 'divider',
               }}

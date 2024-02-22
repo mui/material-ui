@@ -18,6 +18,7 @@ import FormatTextdirectionLToRIcon from '@mui/icons-material/FormatTextdirection
 import FormatTextdirectionRToLIcon from '@mui/icons-material/FormatTextdirectionRToL';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import { useTranslate } from '@mui/docs/i18n';
+import useLocalStorageState from '@mui/utils/useLocalStorageState';
 
 const Heading = styled(Typography)(({ theme }) => ({
   margin: '20px 0 10px',
@@ -42,20 +43,9 @@ function AppSettingsDrawer(props) {
   const t = useTranslate();
   const upperTheme = useTheme();
   const changeTheme = useChangeTheme();
-  const [mode, setMode] = React.useState(null);
+  const [mode, setMode] = useLocalStorageState('mui-mode', 'system');
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const preferredMode = prefersDarkMode ? 'dark' : 'light';
-
-  React.useEffect(() => {
-    // syncing with homepage, can be removed once all pages are migrated to CSS variables
-    let initialMode = 'system';
-    try {
-      initialMode = localStorage.getItem('mui-mode') || initialMode;
-    } catch (error) {
-      // do nothing
-    }
-    setMode(initialMode);
-  }, [preferredMode]);
 
   const handleChangeThemeMode = (event, paletteMode) => {
     if (paletteMode === null) {
@@ -63,23 +53,12 @@ function AppSettingsDrawer(props) {
     }
 
     setMode(paletteMode);
-
-    if (paletteMode === 'system') {
-      try {
-        localStorage.setItem('mui-mode', 'system'); // syncing with homepage, can be removed once all pages are migrated to CSS variables
-      } catch (error) {
-        // thrown when cookies are disabled.
-      }
-      changeTheme({ paletteMode: preferredMode });
-    } else {
-      try {
-        localStorage.setItem('mui-mode', paletteMode); // syncing with homepage, can be removed once all pages are migrated to CSS variables
-      } catch (error) {
-        // thrown when cookies are disabled.
-      }
-      changeTheme({ paletteMode });
-    }
   };
+
+  React.useEffect(() => {
+    const paletteMode = mode === 'system' ? preferredMode : mode;
+    changeTheme({ paletteMode });
+  }, [changeTheme, mode, preferredMode]);
 
   const handleChangeDirection = (event, direction) => {
     if (direction === null) {

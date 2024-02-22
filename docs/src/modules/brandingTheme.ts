@@ -902,9 +902,9 @@ export function getThemedComponents(): ThemeOptions {
                 color: (theme.vars || theme).palette.grey[900],
                 borderColor: (theme.vars || theme).palette.grey[200],
                 ...theme.applyDarkStyles({
-                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
                   color: (theme.vars || theme).palette.grey[300],
-                  borderColor: alpha(theme.palette.primaryDark[500], 0.5),
+                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
+                  borderColor: (theme.vars || theme).palette.primaryDark[600],
                 }),
               }),
             ...(variant === 'outlined' &&
@@ -921,10 +921,11 @@ export function getThemedComponents(): ThemeOptions {
               color === 'success' && {
                 borderColor: (theme.vars || theme).palette.success[100],
                 backgroundColor: (theme.vars || theme).palette.success[50],
+                color: (theme.vars || theme).palette.success[900],
                 ...theme.applyDarkStyles({
                   color: (theme.vars || theme).palette.success[300],
-                  borderColor: alpha(theme.palette.success[300], 0.3),
-                  background: alpha(theme.palette.success[800], 0.3),
+                  borderColor: alpha(theme.palette.success[300], 0.2),
+                  background: alpha(theme.palette.success[800], 0.2),
                 }),
               }),
             ...(variant === 'filled' && {

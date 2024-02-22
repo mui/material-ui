@@ -45,6 +45,6 @@ export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
  * API:
  *
  * - [Grow API](https://mui.com/material-ui/api/grow/)
- * - inherits [Transition API](http://reactcommunity.org/react-transition-group/transition/#Transition-props)
+ * - inherits [Transition API](https://reactcommunity.org/react-transition-group/transition/#Transition-props)
  */
 export default function Grow(props: GrowProps): JSX.Element;
