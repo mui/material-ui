@@ -518,4 +518,4 @@ export default async function handler(req: Request) {
 
   return R;
 }
-export const config = { path: '/' };
+export const config = { path: '/api/og-image' };
