@@ -73,10 +73,24 @@ export interface BadgeOwnProps {
    *
    * This prop is an alias for the `slotProps` prop.
    * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   *
+   * @default {}
+   *
+   */
+  componentsProps?: {};
+  /**
+   * The components used for each slot inside.
+   * This prop is an alias for the `slots` prop.
+   * It's recommended to use the `slots` prop instead.
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    *
    * @default {}
    */
-
+  components?: {
+    Root?: React.ElementType;
+    Badge?: React.ElementType;
+  };
   /**
    * If `true`, the badge is invisible.
    * @default false
