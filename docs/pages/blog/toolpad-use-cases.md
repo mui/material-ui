@@ -1,7 +1,7 @@
 ---
 title: How does MUI use Toolpad?
 description: Explore how we use Toolpad for production use cases at MUI.
-date: 2024-01-15T00:00:00.000Z
+date: 2024-02-26T00:00:00.000Z
 authors: ['prakhargupta']
 card: true
 tags: ['Product', 'News']
@@ -15,7 +15,7 @@ We've been dogfooding Toolpad at MUI to build our internal tools, and it has pro
 In this blog post we'll discuss four such apps, and explain how we used Toolpad to turn our ideas into reality.
 
 <a href="https://tools-public.mui.com/prod/pages/OverviewPage">
-<img alt="MUI public app for tracking KPIs" src="/static/blog/2023-toolpad-usage-in-mui/tools-public.png"  loading="lazy" width="2400" height="1394" />
+<img alt="MUI public app for tracking KPIs" src="/static/blog/toolpad-use-cases/tools-public.png"  loading="lazy" width="2400" height="1394" />
 </a>
 
 ## Problems tackled through Toolpad
@@ -34,10 +34,8 @@ We offer a priority support service to our MUI X premium customers: their querie
 They share their issue through a Priority Support template in our repo where they're directed to validate their license key, and once it's validated, the 24-hour countdown starts.
 
    <a href="https://tools-public.mui.com/prod/pages/validateSupport">
-    <img alt="Premium key validator support app" src="/static/blog/2023-toolpad-usage-in-mui/validate-support.png"  loading="lazy" width="2400" height="1394" />
+    <img alt="Premium key validator support app" src="/static/blog/toolpad-use-cases/validate-support.png"  loading="lazy" width="2400" height="1394" />
     </a>
-
-[Source code](https://github.com/mui/mui-public/blob/master/tools-public/toolpad/resources/updateMuiPaidSupport.ts)
 
 Here's how we built an app for this:
 
@@ -58,7 +56,7 @@ Other KPI pages also use this health badge and pre-built Chart components to com
 The video below demonstrates the usage of this app in dev mode:
 
   <video controls width="100%" height="auto" style="contain" alt="zendesk first reply in devmode">
-  <source src="/static/blog/2023-toolpad-usage-in-mui/zendesk-first-reply-dev.mp4" type="video/mp4">
+  <source src="/static/blog/toolpad-use-cases/zendesk-first-reply-dev.mp4" type="video/mp4">
   Your browser does not support the video tag.
   </video>
 
@@ -77,11 +75,11 @@ They select one, email them from Zendesk, and update the status to `CONTACTED`, 
 This is a private app for internal use that can't be shared, but the following video gives a quick demo:
 
 <video controls width="100%" height="auto" style="contain" alt="overdue invoice page">
-  <source src="/static/blog/2023-toolpad-usage-in-mui/overdue-invoice.mp4" type="video/mp4">
+  <source src="/static/blog/toolpad-use-cases/overdue-invoice.mp4" type="video/mp4">
   Your browser does not support the video tag.
   </video>
 
-Before the Toolpad app, we relied on a combination of Metabase and Google Sheets to fetch and edit records—but this was cumbersome to operate and sometimes caused data inconsistency issues.
+Before this, we relied on a combination of Metabase and Google Sheets to fetch and edit records—but this was cumbersome to operate and sometimes caused data inconsistency issues.
 Thanks to Toolpad we've managed to bring it all under one roof, dramatically improving our operations team's efficiency and productivity.
 
 ## 4. Contributor payout
@@ -92,14 +90,21 @@ We solved this problem by importing the script into Toolpad and creating a UI fo
 The video below shows how a user can select the dates, run the script, and receive text that's properly formatted to copy and paste directly into Slack communications:
 
   <video controls width="100%" height="auto" style="contain" alt="contributor payout page">
-  <source src="/static/blog/2023-toolpad-usage-in-mui/contributor-payout.mp4" type="video/mp4">
+  <source src="/static/blog/toolpad-use-cases/contributor-payout.mp4" type="video/mp4">
   Your browser does not support the video tag.
   </video>
 
-## What's next?
+With the release of [authentication](https://mui.com/toolpad/concepts/authentication/), we will now enable Google login for the above apps.
 
-Our primary focus for Toolpad is to help developers avoid the most common pains associated with building admin apps.
-We have recently revamped our UX and added the [data provider](https://mui.com/toolpad/concepts/data-providers/) feature to add server-side capabilities to the Data Grid.
-We are currently working on adding authentication and authorization in Toolpad.
-You can check out more [examples](https://mui.com/toolpad/examples/) and visit our [GitHub repo](https://github.com/mui/mui-toolpad/) to evaluate the product.
+## Conclusion
+
+As we saw, at MUI we have streamlined our internal tooling through Toolpad, as a result it helps us stay lean and move fast.
+Internal apps are so custom that it's hard to bucket them in categories though I hope that some of our use cases could resonate with you. Furthermore;
+
+- Have you come across any such ops, admin, analytics related use case in your org?
+- Do you have exisitng code that you wish you could reuse in a low-code builder instead of starting fresh?
+- Is managing frontend for internal tools a chore that you wish was solved?
+
+Toolpad handles state management, data fetching, routing, UI creation and can be imported in a codebase which can help you save a lot of time.
+I encourage you to check out more [examples](https://mui.com/toolpad/examples/) and visit our [GitHub repo](https://github.com/mui/mui-toolpad/) to evaluate the product.
 In case you need any further information, feel free to reach out to the team at toolpad@mui.com.
