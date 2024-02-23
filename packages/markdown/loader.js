@@ -67,11 +67,7 @@ module.exports = async function demoLoader() {
   const englishFilepath = this.resourcePath;
   const options = this.getOptions();
 
-  if (!options.packages) {
-    throw new Error('The `packages` option must be configured in the markdown loader.');
-  }
-
-  const componentPackageMapping = findComponents(options.packages);
+  const componentPackageMapping = findComponents(options.packages ?? []);
 
   const englishFilename = path.basename(englishFilepath, '.md');
 
