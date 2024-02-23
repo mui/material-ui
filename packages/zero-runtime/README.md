@@ -47,7 +47,7 @@ npm install @mui/zero-runtime
 npm install --save-dev @mui/zero-vite-plugin
 ```
 
-Then, in your vite config file, import the plugin and pass it to the `plugins` array as shown:
+Then, in your Vite config file, import the plugin and pass it to the `plugins` array as shown:
 
 ```js
 import { zeroVitePlugin } from '@mui/zero-vite-plugin';
