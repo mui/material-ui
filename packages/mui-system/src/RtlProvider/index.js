@@ -2,8 +2,8 @@ import * as React from 'react';
 
 const RtlContext = React.createContext();
 
-const RtlProvider = (props) => {
-  return <RtlContext.Provider value={true} {...props} />;
+const RtlProvider = ({ value, ...props }) => {
+  return <RtlContext.Provider value={value ?? true} {...props} />;
 };
 
 export const useRtl = () => {
