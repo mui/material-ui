@@ -15,7 +15,7 @@ We've been dogfooding [Toolpad](https://mui.com/toolpad/) at MUI to build our in
 In this blog post, we'll discuss four such apps, and explain how we used Toolpad to turn our ideas into reality.
 
 <a href="https://tools-public.mui.com/prod/pages/OverviewPage">
-<img alt="MUI public app for tracking KPIs" src="/static/blog/toolpad-use-cases/tools-public.png"  loading="lazy" width="2400" height="1394" />
+<img alt="MUI public app for tracking KPIs" src="/static/blog/toolpad-use-cases/tools-public.png" width="2400" height="1394" />
 </a>
 
 ## Problems tackled through Toolpad
@@ -34,7 +34,7 @@ We offer a priority support service to our MUI X premium customers: their querie
 They share their issue through a Priority Support template in our repository where they're directed to validate their license key, and once it's validated, the 24-hour countdown starts.
 
    <a href="https://tools-public.mui.com/prod/pages/validateSupport">
-    <img alt="Premium key validator support app" src="/static/blog/toolpad-use-cases/validate-support.png"  loading="lazy" width="2400" height="1394" />
+    <img alt="Premium key validator support app" src="/static/blog/toolpad-use-cases/validate-support.png" loading="lazy" width="2400" height="1394" />
     </a>
 
 Here's how we built an app for this:
