@@ -48,13 +48,6 @@ export default function Info() {
             <Typography variant="body1">{product.price}</Typography>
           </ListItem>
         ))}
-        <Divider />
-        <ListItem sx={{ py: 1, px: 0 }}>
-          <ListItemText primary="Subtotal" />
-          <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            $134.98
-          </Typography>
-        </ListItem>
       </List>
     </React.Fragment>
   );

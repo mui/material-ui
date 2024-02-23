@@ -480,7 +480,7 @@ export default function getCheckoutTheme(mode) {
             backgroundImage: 'none',
             backgroundColor: gray[100],
             ...(theme.palette.mode === 'dark' && {
-              backgroundColor: alpha(gray[900], 0.6),
+              backgroundColor: gray[800],
             }),
           }),
         },
@@ -550,6 +550,9 @@ export default function getCheckoutTheme(mode) {
       },
       MuiOutlinedInput: {
         styleOverrides: {
+          notchedOutline: {
+            border: 'none',
+          },
           root: ({ theme }) => ({
             boxSizing: 'border-box',
             flexGrow: 1,
@@ -601,9 +604,16 @@ export default function getCheckoutTheme(mode) {
           }),
         },
       },
+      MuiInputBase: {
+        styleOverrides: {
+          root: {
+            border: 'none',
+          },
+        },
+      },
       MuiTextField: {
         styleOverrides: {
-          root: ({ theme }) => ({
+          root: ({ theme, ownerState }) => ({
             '& label .Mui-focused': {
               color: 'white',
             },
@@ -618,9 +628,6 @@ export default function getCheckoutTheme(mode) {
               minHeight: 40,
               height: '100%',
               borderRadius: '10px',
-              border: '1px solid',
-              borderColor: gray[200],
-              transition: 'border-color 120ms ease-in',
               '& fieldset': {
                 border: 'none',
                 boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
@@ -635,6 +642,22 @@ export default function getCheckoutTheme(mode) {
                 outlineColor: brand[200],
               },
             },
+            ...(ownerState.variant === 'standard' && {
+              '&.MuiTextField-root': {
+                '& .MuiInput-root:hover:not(.Mui-disabled, .Mui-error):before': {
+                  borderColor: brand[200],
+                },
+              },
+              '& :before': {
+                borderBottom: '1px solid',
+                borderColor: gray[200],
+              },
+              '&:hover': {
+                '& :before': {
+                  borderColor: brand[300],
+                },
+              },
+            }),
             ...(theme.palette.mode === 'dark' && {
               '& .MuiOutlinedInput-root': {
                 boxSizing: 'border-box',
@@ -642,8 +665,6 @@ export default function getCheckoutTheme(mode) {
                 minHeight: 40,
                 height: '100%',
                 borderRadius: '10px',
-                border: '1px solid',
-                borderColor: gray[700],
                 transition: 'border-color 120ms ease-in',
                 '& fieldset': {
                   border: 'none',

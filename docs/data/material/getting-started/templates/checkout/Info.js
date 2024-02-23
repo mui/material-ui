@@ -3,7 +3,6 @@ import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import Divider from '@mui/material/Divider';
 
 const products = [
   {
@@ -48,13 +47,6 @@ export default function Info() {
             <Typography variant="body1">{product.price}</Typography>
           </ListItem>
         ))}
-        <Divider />
-        <ListItem sx={{ py: 1, px: 0 }}>
-          <ListItemText primary="Subtotal" />
-          <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            $134.98
-          </Typography>
-        </ListItem>
       </List>
     </React.Fragment>
   );
