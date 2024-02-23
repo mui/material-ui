@@ -39,6 +39,13 @@ export default function transformer(file, api, options) {
                     .split('.')
                     .filter(Boolean);
 
+                  if (atomicClasses.length === 3) {
+                    console.log('atomicClasses', atomicClasses);
+                    console.log(
+                      precedingTemplateElement.value.raw.endsWith(`${replacementSelectorPrefix}.`),
+                    );
+                  }
+
                   if (
                     precedingTemplateElement.value.raw.endsWith(
                       deprecatedClass.startsWith(' ')
@@ -46,19 +53,17 @@ export default function transformer(file, api, options) {
                         : `${replacementSelectorPrefix}.`,
                     )
                   ) {
-                    parent.expressions.splice(
+                    const atomicClassesArgs = [
                       memberExpressionIndex,
                       1,
-                      j.memberExpression(
-                        memberExpression.value.object,
-                        j.identifier(atomicClasses[0]),
+                      ...atomicClasses.map((atomicClass) =>
+                        j.memberExpression(
+                          memberExpression.value.object,
+                          j.identifier(atomicClass),
+                        ),
                       ),
-
-                      j.memberExpression(
-                        memberExpression.value.object,
-                        j.identifier(atomicClasses[1]),
-                      ),
-                    );
+                    ];
+                    parent.expressions.splice(...atomicClassesArgs);
 
                     if (replacementSelector.includes(' > ')) {
                       parent.quasis.splice(
