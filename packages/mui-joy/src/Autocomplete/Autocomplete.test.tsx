@@ -8,7 +8,7 @@ import {
   act,
   fireEvent,
   strictModeDoubleLoggingSuppressed,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import Autocomplete, {
   autocompleteClasses as classes,
   createFilterOptions,

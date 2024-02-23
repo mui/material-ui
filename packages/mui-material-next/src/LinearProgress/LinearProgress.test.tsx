@@ -5,7 +5,7 @@ import {
   screen,
   strictModeDoubleLoggingSuppressed,
   MuiRenderResult,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import LinearProgress, {
   linearProgressClasses as classes,
 } from '@mui/material-next/LinearProgress';

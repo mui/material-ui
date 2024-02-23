@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import Link, { linkClasses as classes } from '@mui/material/Link';
 import Typography, { typographyClasses } from '@mui/material/Typography';
 import describeConformance from '../../test/describeConformance';

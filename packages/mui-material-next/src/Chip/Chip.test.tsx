@@ -9,7 +9,7 @@ import {
   focusVisible,
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import { hexToRgb } from '@mui/system';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { createTheme } from '@mui/material/styles';

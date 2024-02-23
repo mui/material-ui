@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepConnector, { stepConnectorClasses as classes } from '@mui/material/StepConnector';

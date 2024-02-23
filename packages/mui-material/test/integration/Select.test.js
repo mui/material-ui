@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { act, createRenderer, fireEvent } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import Dialog from '@mui/material/Dialog';

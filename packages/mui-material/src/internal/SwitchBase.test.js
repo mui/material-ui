@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer } from '@mui-internal/test-utils';
+import { act, createRenderer } from '@mui/internal-test-utils';
 import SwitchBase from './SwitchBase';
 import FormControl, { useFormControl } from '../FormControl';
 import ButtonBase from '../ButtonBase';

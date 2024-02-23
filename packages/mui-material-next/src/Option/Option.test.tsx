@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import { MenuProvider } from '@mui/base/useMenu';
 import Option, { optionClasses as classes } from '@mui/material-next/Option';
 import Menu from '@mui/material-next/Menu';

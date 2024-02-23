@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 import { expect } from 'chai';
 import { create, SheetsRegistry } from 'jss';
-import { createMount, strictModeDoubleLoggingSuppressed } from '@mui-internal/test-utils';
+import { createMount, strictModeDoubleLoggingSuppressed } from '@mui/internal-test-utils';
 import StylesProvider, { StylesContext } from './StylesProvider';
 import makeStyles from '../makeStyles';
 import createGenerateClassName from '../createGenerateClassName';

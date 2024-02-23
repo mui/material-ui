@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import { MenuProvider, MenuProviderValue } from '@mui/base/useMenu';
 import { ThemeProvider } from '@mui/joy/styles';
 import MenuItem, { menuItemClasses as classes } from '@mui/joy/MenuItem';

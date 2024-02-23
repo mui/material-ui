@@ -1,6 +1,6 @@
 /* eslint-disable no-eval */
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import getInitColorSchemeScript, {
   DEFAULT_ATTRIBUTE,
   DEFAULT_MODE_STORAGE_KEY,

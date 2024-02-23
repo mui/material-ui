@@ -8,7 +8,7 @@ import {
   screen,
   fireEvent,
   strictModeDoubleLoggingSuppressed,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import { useDropdown, DropdownContext } from '@mui/base/useDropdown';
 import { useMenuButton } from '@mui/base/useMenuButton';
 import Button from '@mui/material/Button';

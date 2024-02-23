@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { ClassNames } from '@emotion/react';
-import { act, createRenderer, fireEvent } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import FormControl, { formControlClasses as classes } from '@mui/material-next/FormControl';
 import FilledInput from '@mui/material-next/FilledInput';
 import InputBase from '@mui/material-next/InputBase';

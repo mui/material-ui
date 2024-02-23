@@ -3,7 +3,7 @@ import Tab, { tabClasses as classes } from '@mui/material/Tab';
 import { expect } from 'chai';
 import * as React from 'react';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Tab />', () => {

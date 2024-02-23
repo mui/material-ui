@@ -7,7 +7,7 @@ import {
   fireEvent,
   screen,
   programmaticFocusTriggersFocusVisible,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';

@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { SheetsRegistry } from 'jss';
 import { act } from 'react-dom/test-utils';
-import { createMount } from '@mui-internal/test-utils';
+import { createMount } from '@mui/internal-test-utils';
 import { createTheme } from '@mui/material/styles';
 import createGenerateClassName from '../createGenerateClassName';
 import makeStyles from './makeStyles';
