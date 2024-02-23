@@ -1,33 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-
-declare global {
-  interface NodeRequire {
-    context: (path: string, useSubdirectories: boolean, regex: RegExp) => RequireContext;
-  }
-}
-
-interface RequireContext {
-  (req: string): string;
-  keys: () => string[];
-}
-
-function mapTranslations(req: RequireContext) {
-  const translations: Record<string, string> = {};
-  req.keys().forEach((filename) => {
-    const match = filename.match(/-([a-z]{2}).json$/);
-
-    if (match) {
-      translations[match[1]] = req(filename);
-    } else {
-      translations.en = req(filename);
-    }
-  });
-  return translations;
-}
-
-const req: RequireContext = require.context('docs/translations', false, /translations.*\.json$/);
-const translations = mapTranslations(req);
+import translations from '../translations';
 
 function getPath(obj: any, path: string): any {
   if (!path || typeof path !== 'string') {
