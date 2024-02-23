@@ -19,13 +19,13 @@ export interface AlertClasses {
   /** Styles applied to the root element if `color="error"`. */
   colorError: string;
   /** Styles applied to the root element if `variant="standard"` and `color="success"`.
-   * @deprecated Use the [.MuiAlert-standard](/material-ui/api/alert/#alert-classes-standard)
+   * @deprecated Combine the [.MuiAlert-standard](/material-ui/api/alert/#alert-classes-standard)
    * and [.MuiAlert-colorSuccess](/material-ui/api/alert/#alert-classes-colorSuccess) classes instead.
    * [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    */
   standardSuccess: string;
   /** Styles applied to the root element if `variant="standard"` and `color="info"`.
-   * @deprecated Use the [.MuiAlert-standard](/material-ui/api/alert/#alert-classes-standard)
+   * @deprecated Combine the [.MuiAlert-standard](/material-ui/api/alert/#alert-classes-standard)
    * and [.MuiAlert-colorInfo](/material-ui/api/alert/#alert-classes-colorInfo) classes instead.
    * [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    */
@@ -43,7 +43,7 @@ export interface AlertClasses {
    */
   standardError: string;
   /** Styles applied to the root element if `variant="outlined"` and `color="success"`.
-   * @deprecated Use the [.MuiAlert-outlined](/material-ui/api/alert/#alert-classes-outlined)
+   * @deprecated Combine the [.MuiAlert-outlined](/material-ui/api/alert/#alert-classes-outlined)
    * and [.MuiAlert-colorSuccess](/material-ui/api/alert/#alert-classes-colorSuccess) classes instead.
    * [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    */
@@ -67,7 +67,7 @@ export interface AlertClasses {
    */
   outlinedError: string;
   /** Styles applied to the root element if `variant="filled"` and `color="success"`.
-   * @deprecated Use the [.MuiAlert-filled](/material-ui/api/alert/#alert-classes-filled)
+   * @deprecated Combine the [.MuiAlert-filled](/material-ui/api/alert/#alert-classes-filled)
    * and [.MuiAlert-colorSuccess](/material-ui/api/alert/#alert-classes-colorSuccess) classes instead.
    * [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    */
