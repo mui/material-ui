@@ -47,8 +47,8 @@
     }
   ],
   "spread": true,
-  "themeDefaultProps": null,
   "muiName": "Textarea",
+  "forwardsRefTo": "HTMLTextAreaElement",
   "filename": "/packages/mui-base/src/Textarea/Textarea.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/base-ui/react-textarea-autosize/\">Textarea Autosize</a></li>\n<li><a href=\"/joy-ui/react-textarea/\">Textarea</a></li></ul>",

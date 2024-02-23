@@ -267,6 +267,10 @@ Textarea.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
+  render: PropTypes.func,
+  /**
+   * @ignore
+   */
   required: PropTypes.bool,
   /**
    * @ignore
