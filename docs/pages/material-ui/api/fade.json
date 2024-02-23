@@ -1,15 +1,15 @@
 {
   "props": {
     "children": { "type": { "name": "custom", "description": "element" }, "required": true },
-    "addEndListener": { "type": { "name": "func" } },
-    "appear": { "type": { "name": "bool" }, "default": "true" },
+    "addEndListener": { "type": { "name": "function" } },
+    "appear": { "type": { "name": "boolean" }, "default": "true" },
     "easing": {
       "type": {
         "name": "union",
         "description": "{ enter?: string, exit?: string }<br>&#124;&nbsp;string"
       }
     },
-    "in": { "type": { "name": "bool" } },
+    "in": { "type": { "name": "boolean" } },
     "timeout": {
       "type": {
         "name": "union",
