@@ -64,7 +64,7 @@ We opted for Toolpad since Metabase doesn't support importing data from REST API
 This is possible in Google Sheets but it requires writing a lot of JS code, and since we wanted to embed it in a [Notion page](https://mui-org.notion.site/KPIs-1ce9658b85ce4628a2a2ed2ae74ff69c?pvs=4#3974cb6ed12b4c5a9013bac63113e3bc), Toolpad was the ideal choice.
 Toolpad handles state management and routing, and simplifies query building and data binding, removing the need to write glue code.
 
-You can explore both of the aforementioned apps in dev mode on your device by running the underlying [node app](https://github.com/mui/mui-public/tree/HEAD/tools-public).
+You can explore both of the aforementioned apps in dev mode on your device by running the underlying [Node application](https://github.com/mui/mui-public/tree/HEAD/tools-public).
 The next two apps discussed are internal to MUI.
 
 ## 3. Manage overdue invoices
@@ -98,13 +98,13 @@ With the release of [authentication](https://mui.com/toolpad/concepts/authentica
 
 ## Conclusion
 
-As we saw, at MUI we have streamlined our internal tooling through Toolpad, as a result, it helps us stay lean and move fast.
-Internal apps are often very specific to the needs of the organization, but hopefully you've been inspired by some of our use cases here:
+As you've seen, at MUI we have streamlined our internal tooling through Toolpad, helping us stay lean and move fast.
+Internal apps are often very specific to the needs of the organization, but hopefully, you've been inspired by some of our use cases here:
 
-- Have you come across any such operation, admin, or analytics related use case in your organization?
+- Have you come across any similar needs within your org regarding operations, administration, or analytics?
 - Do you have existing code that you wish you could reuse in a low-code builder instead of starting fresh?
-- Is managing the front end of internal tools a chore that you wish was solved?
+- Do you wish you didn't have to do any maintenance on the front ends of your internal tools?
 
-Toolpad handles state management, data fetching, routing, UI creation and can be imported into a codebase which can help you save a lot of time.
+Toolpad handles state management, data fetching, routing, and UI creation, and it can be imported directly into your code base to save you time.
 I encourage you to check out more [examples](https://mui.com/toolpad/examples/) and visit our [GitHub repository](https://github.com/mui/mui-toolpad/) to evaluate the product.
 In case you need any further information, feel free to reach out to the team at toolpad@mui.com.
