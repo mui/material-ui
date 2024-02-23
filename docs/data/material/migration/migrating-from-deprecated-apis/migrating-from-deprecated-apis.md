@@ -146,6 +146,232 @@ The Avatar's `imgProps` was deprecated in favor of `slotProps.img`:
  />;
 ```
 
+## Button
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#button-classes) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/button-classes <path>
+```
+
+### Composed CSS classes
+
+The CSS classes composing the `variant` and `color` prop values, as well as those composing the `variant` and `size` prop values, along with the `icon` size CSS classes, have been removed.
+
+Here's how to migrate:
+
+```diff
+-.MuiButton-textInherit
++.MuiButton-text.MuiButton-colorInherit
+-.MuiButton-textPrimary
++.MuiButton-text.MuiButton-colorPrimary
+-.MuiButton-textSecondary
++.MuiButton-text.MuiButton-colorSecondary
+-.MuiButton-textSuccess
++.MuiButton-text.MuiButton-colorSuccess
+-.MuiButton-textError
++.MuiButton-text.MuiButton-colorError
+-.MuiButton-textInfo
++.MuiButton-text.MuiButton-colorInfo
+-.MuiButton-textWarning
++.MuiButton-text.MuiButton-colorWarning
+-.MuiButton-outlinedInherit
++.MuiButton-outlined.MuiButton-colorInherit
+-.MuiButton-outlinedPrimary
++.MuiButton-outlined.MuiButton-colorPrimary
+-.MuiButton-outlinedSecondary
++.MuiButton-outlined.MuiButton-colorSecondary
+-.MuiButton-outlinedSuccess
++.MuiButton-outlined.MuiButton-colorSuccess
+-.MuiButton-outlinedError
++.MuiButton-outlined.MuiButton-colorError
+-.MuiButton-outlinedInfo
++.MuiButton-outlined.MuiButton-colorInfo
+-.MuiButton-outlinedWarning
++.MuiButton-outlined.MuiButton-colorWarning
+-.MuiButton-containedInherit
++.MuiButton-contained.MuiButton-colorInherit
+-.MuiButton-containedPrimary
++.MuiButton-contained.MuiButton-colorPrimary
+-.MuiButton-containedSecondary
++.MuiButton-contained.MuiButton-colorSecondary
+-.MuiButton-containedSuccess
++.MuiButton-contained.MuiButton-colorSuccess
+-.MuiButton-containedError
++.MuiButton-contained.MuiButton-colorError
+-.MuiButton-containedInfo
++.MuiButton-contained.MuiButton-colorInfo
+-.MuiButton-containedWarning
++.MuiButton-contained.MuiButton-colorWarning
+-.MuiButton-textSizeSmall
++.MuiButton-text.MuiButton-sizeSmall
+-.MuiButton-textSizeMedium
++.MuiButton-text.MuiButton-sizeMedium
+-.MuiButton-textSizeLarge
++.MuiButton-text.MuiButton-sizeLarge
+-.MuiButton-outlinedSizeSmall
++.MuiButton-outlined.MuiButton-sizeSmall
+-.MuiButton-outlinedSizeMedium
++.MuiButton-outlined.MuiButton-sizeMedium
+-.MuiButton-outlinedSizeLarge
++.MuiButton-outlined.MuiButton-sizeLarge
+-.MuiButton-containedSizeSmall
++.MuiButton-contained.MuiButton-sizeSmall
+-.MuiButton-containedSizeMedium
++.MuiButton-contained.MuiButton-sizeMedium
+-.MuiButton-containedSizeLarge
++.MuiButton-contained.MuiButton-sizeLarge
+-.MuiButton-root .MuiButton-iconSizeSmall
++.MuiButton-root.MuiButton-sizeSmall > .MuiButton-icon
+-.MuiButton-root .MuiButton-iconSizeMedium
++.MuiButton-root.MuiButton-sizeMedium > .MuiButton-icon
+-.MuiButton-root .MuiButton-iconSizeLarge
++.MuiButton-root.MuiButton-sizeLarge > .MuiButton-icon
+```
+
+```diff
+ import { buttonClasses } from '@mui/material/Button';
+
+ MuiButton: {
+   styleOverrides: {
+     root: {
+-      [`&.${buttonClasses.textInherit}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.colorInherit}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.textPrimary}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.colorPrimary}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.textSecondary}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.colorSecondary}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.textSuccess}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.colorSuccess}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.textError}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.colorError}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.textInfo}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.colorInfo}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.textWarning}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.colorWarning}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedInherit}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.colorInherit}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedPrimary}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.colorPrimary}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedSecondary}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.colorSecondary}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedSuccess}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.colorSuccess}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedError}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.colorError}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedInfo}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.colorInfo}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedWarning}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.colorWarning}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedInherit}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.colorInherit}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedPrimary}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.colorPrimary}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedSecondary}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.colorSecondary}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedSuccess}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.colorSuccess}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedError}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.colorError}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedInfo}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.colorInfo}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedWarning}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.colorWarning}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedSizeSmall}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.sizeSmall}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedSizeMedium}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.sizeMedium}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedSizeLarge}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.sizeLarge}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.textSizeSmall}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.sizeSmall}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.textSizeMedium}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.sizeMedium}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.textSizeLarge}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.sizeLarge}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedSizeSmall}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.sizeSmall}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedSizeMedium}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.sizeMedium}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedSizeLarge}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.sizeLarge}`]: {
+         color: 'red',
+        },
+-      [`& .${buttonClasses.iconSizeSmall}`]: {
++      [`&.${buttonClasses.sizeSmall} > .${buttonClasses.icon}`]: {
+         color: 'red',
+        },
+-      [`& .${buttonClasses.iconSizeMedium}`]: {
++      [`&.${buttonClasses.sizeMedium} > .${buttonClasses.icon}`]: {
+         color: 'red',
+        },
+-      [`& .${buttonClasses.iconSizeLarge}`]: {
++      [`&.${buttonClasses.sizeLarge} > .${buttonClasses.icon}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
 ## Divider
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#divider-props) below to migrate the code as described in the following sections:

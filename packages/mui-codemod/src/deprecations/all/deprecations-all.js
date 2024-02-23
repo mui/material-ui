@@ -2,6 +2,7 @@ import transformAccordionProps from '../accordion-props';
 import transformAvatarProps from '../avatar-props';
 import transformDividerProps from '../divider-props';
 import transformAccordionClasses from '../accordion-summary-classes';
+import transformButtonClasses from '../button-classes';
 import transformPaginationItemClasses from '../pagination-item-classes';
 
 /**
@@ -13,6 +14,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformAvatarProps(file, api, options);
   file.source = transformDividerProps(file, api, options);
   file.source = transformAccordionClasses(file, api, options);
+  file.source = transformButtonClasses(file, api, options);
   file.source = transformPaginationItemClasses(file, api, options);
 
   return file.source;
