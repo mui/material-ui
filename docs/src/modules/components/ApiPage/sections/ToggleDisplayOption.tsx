@@ -147,7 +147,7 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
         data-ga-event-action={sectionType}
         data-ga-event-label="collapsed"
       >
-        <ReorderRoundedIcon size="small" />
+        <ReorderRoundedIcon />
       </TooltipToggleButton>
       <TooltipToggleButton
         value="expanded"
