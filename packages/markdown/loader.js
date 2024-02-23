@@ -28,14 +28,10 @@ function moduleIDToJSIdentifier(moduleID) {
     .join('');
 }
 
-let componentsInPackages = null;
+let componentPackageMapping = null;
 
 function findComponents(packages) {
-  if (componentsInPackages !== null) {
-    return componentsInPackages;
-  }
-
-  componentsInPackages = {};
+  const mapping = {};
 
   packages.forEach((pkg) => {
     pkg.paths.forEach((pkgPath) => {
@@ -47,17 +43,17 @@ function findComponents(packages) {
       const filePaths = readdirSync(pkgPath);
       filePaths.forEach((folder) => {
         if (folder.match(/^[A-Z]/)) {
-          if (!componentsInPackages[pkg.productId]) {
-            componentsInPackages[pkg.productId] = {};
+          if (!mapping[pkg.productId]) {
+            mapping[pkg.productId] = {};
           }
           // filename starts with Uppercase = component
-          componentsInPackages[pkg.productId][folder] = packageName;
+          mapping[pkg.productId][folder] = packageName;
         }
       });
     });
   });
 
-  return componentsInPackages;
+  return mapping;
 }
 
 /**
@@ -67,7 +63,9 @@ module.exports = async function demoLoader() {
   const englishFilepath = this.resourcePath;
   const options = this.getOptions();
 
-  const componentPackageMapping = findComponents(options.packages ?? []);
+  if (componentPackageMapping === null) {
+    componentPackageMapping = findComponents(options.packages ?? []);
+  }
 
   const englishFilename = path.basename(englishFilepath, '.md');
 
