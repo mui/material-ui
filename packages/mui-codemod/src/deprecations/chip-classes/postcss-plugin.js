@@ -87,6 +87,22 @@ const classes = [
     deprecatedClass: ' .MuiChip-deleteIconColorSecondary',
     replacementSelector: '.MuiChip-colorSecondary > .MuiChip-deleteIcon',
   },
+  {
+    deprecatedClass: ' .MuiChip-deleteIconOutlinedColorPrimary',
+    replacementSelector: '.MuiChip-outlined.MuiChip-colorPrimary > .MuiChip-deleteIcon',
+  },
+  {
+    deprecatedClass: ' .MuiChip-deleteIconOutlinedColorSecondary',
+    replacementSelector: '.MuiChip-outlined.MuiChip-colorSecondary > .MuiChip-deleteIcon',
+  },
+  {
+    deprecatedClass: ' .MuiChip-deleteIconFilledColorPrimary',
+    replacementSelector: '.MuiChip-filled.MuiChip-colorPrimary > .MuiChip-deleteIcon',
+  },
+  {
+    deprecatedClass: ' .MuiChip-deleteIconFilledColorSecondary',
+    replacementSelector: '.MuiChip-filled.MuiChip-colorSecondary > .MuiChip-deleteIcon',
+  },
 ];
 
 const plugin = () => {

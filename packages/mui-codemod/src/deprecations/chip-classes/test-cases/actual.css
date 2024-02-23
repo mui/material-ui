@@ -85,3 +85,19 @@
 .MuiChip-root.MuiChip-deleteIconColorSecondary {
   color: red;
 }
+
+.MuiChip-root.MuiChip-deleteIconFilledColorPrimary {
+  color: red;
+}
+
+.MuiChip-root.MuiChip-deleteIconFilledColorSecondary {
+  color: red;
+}
+
+.MuiChip-root.MuiChip-deleteIconOutlinedColorPrimary {
+  color: red;
+}
+
+.MuiChip-root.MuiChip-deleteIconOutlinedColorSecondary {
+  color: red;
+}
