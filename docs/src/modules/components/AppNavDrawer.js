@@ -55,9 +55,9 @@ function ProductDrawerButton(props) {
     setAnchorEl(null);
   };
 
-  const handleEventDelegation = (e) => {
+  const handleEventDelegation = (event) => {
     // Assert whether an 'a' tag resides in the parent of the clicked element through which the event bubbles out.
-    const isLinkInParentTree = e?.target ? Boolean(e.target.closest('a')) : false;
+    const isLinkInParentTree = Boolean(event.target.closest('a'));
     // If the element clicked is link or just inside of a link element then close the menu.
     if (isLinkInParentTree) {
       handleClose();
