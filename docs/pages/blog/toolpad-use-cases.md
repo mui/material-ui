@@ -4,14 +4,14 @@ description: Explore how we use Toolpad for production use cases at MUI.
 date: 2024-02-26T00:00:00.000Z
 authors: ['prakhargupta']
 card: true
-tags: ['Product', 'News']
+tags: ['Product', 'Toolpad']
 ---
 
 Toolpad helps full-stack engineers build internal tools quickly.
 Internal tools encompass data-intensive CRUD interfaces, analytics dashboards, or custom apps that make teams productive.
 Toolpad offers a low-code, GUI-based, code-friendly way of building apps and comes as an npm package that can be imported into an existing codebase.
 
-We've been dogfooding Toolpad at MUI to build our internal tools, and it has proven beneficial for us to easily assemble well-organized, centrally located KPI dashboards and operations apps.
+We've been dogfooding [Toolpad](https://mui.com/toolpad/) at MUI to build our internal tools, and it has proven beneficial for us to easily assemble well-organized, centrally located KPI dashboards and operations apps.
 In this blog post, we'll discuss four such apps, and explain how we used Toolpad to turn our ideas into reality.
 
 <a href="https://tools-public.mui.com/prod/pages/OverviewPage">
