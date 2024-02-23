@@ -26,7 +26,7 @@ import InfoMobile from './InfoMobile';
 import ToggleColorMode from './ToggleColorMode';
 import getCheckoutTheme from './getCheckoutTheme';
 
-const defaultTheme = createTheme({});
+// const defaultTheme = createTheme({});
 
 interface ToggleCustomThemeProps {
   showCustomTheme: Boolean;
@@ -97,6 +97,7 @@ export default function Checkout() {
   const [mode, setMode] = React.useState<PaletteMode>('light');
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const checkoutTheme = createTheme(getCheckoutTheme(mode));
+  const defaultTheme = createTheme({ palette: { mode } });
   const [activeStep, setActiveStep] = React.useState(0);
 
   const toggleColorMode = () => {
