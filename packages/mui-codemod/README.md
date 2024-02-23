@@ -256,6 +256,32 @@ CSS transforms:
 npx @mui/codemod@latest deprecations/pagination-item-classes <path>
 ```
 
+#### `slider-props`
+
+```diff
+ <Slider
+-  components={{ Track: CustomTrack }}
++  slots={{ track: CustomTrack }}
+-  componentsProps={{ track: { testid: 'test-id' } }}
++  slotProps={{ track: { testid: 'test-id' } }}
+ />
+```
+
+```diff
+ MuiSlider: {
+   defaultProps: {
+-    components: { Track: CustomTrack }
++    slots: { track: CustomTrack },
+-    componentsProps: { track: { testid: 'test-id' }}
++    slotProps: { track: { testid: 'test-id' } },
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/slider-props <path>
+```
+
 ### v5.0.0
 
 #### `base-use-named-exports`
