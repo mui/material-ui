@@ -114,16 +114,6 @@ const AppBarRoot = styled(Paper, {
         }),
       },
     },
-    {
-      props: { color: 'transparent' },
-      style: {
-        '--AppBar-background': 'transparent',
-        '--AppBar-color': 'inherit',
-        ...theme.applyStyles('dark', {
-          backgroundImage: 'none',
-        }),
-      },
-    },
     ...Object.keys((theme.vars ?? theme).palette)
       .filter(
         (key) =>
@@ -169,6 +159,18 @@ const AppBarRoot = styled(Paper, {
         ...theme.applyStyles('dark', {
           backgroundColor: theme.vars ? 'var(--AppBar-background)' : null,
           color: theme.vars ? 'var(--AppBar-color)' : null,
+        }),
+      },
+    },
+    {
+      props: { color: 'transparent' },
+      style: {
+        '--AppBar-background': 'transparent',
+        '--AppBar-color': 'inherit',
+        backgroundColor: 'var(--AppBar-background)',
+        color: 'var(--AppBar-color)',
+        ...theme.applyStyles('dark', {
+          backgroundImage: 'none',
         }),
       },
     },
