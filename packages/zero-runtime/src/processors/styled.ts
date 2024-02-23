@@ -1,22 +1,28 @@
-import { validateParams } from '@linaria/tags';
-import type {
-  Expression,
+import { parseExpression } from '@babel/parser';
+import type { ObjectExpression, SourceLocation, Identifier, Expression } from '@babel/types';
+import {
   Params,
   TailProcessorParams,
   ValueCache,
+  validateParams,
   IOptions as IBaseOptions,
-  WrappedNode,
-} from '@linaria/tags';
-import { ValueType } from '@linaria/utils';
-import type { Rules, Replacements, ExpressionValue, LazyValue, ConstValue } from '@linaria/utils';
-import { parseExpression } from '@babel/parser';
-import type { ObjectExpression, SourceLocation } from '@babel/types';
+} from '@wyw-in-js/processor-utils';
+import {
+  ValueType,
+  type ConstValue,
+  type ExpressionValue,
+  type LazyValue,
+  type Replacements,
+  type Rules,
+} from '@wyw-in-js/shared';
+import { CSSObject } from '@emotion/serialize';
 import type { PluginCustomOptions } from '../utils/cssFnValueToVariable';
 import { cssFnValueToVariable } from '../utils/cssFnValueToVariable';
 import { processCssObject } from '../utils/processCssObject';
 import { valueToLiteral } from '../utils/valueToLiteral';
 import BaseProcessor from './base-processor';
-import { Theme } from '../utils/generateCss';
+
+type Theme = { [key: 'unstable_sxConfig' | string]: string | number | Theme };
 
 type VariantData = {
   props: (componentProps: unknown) => boolean | Record<string, string | number | boolean | null>;
@@ -29,17 +35,23 @@ type VariantDataTransformed = {
   className: string;
 };
 
+export type WrappedNode =
+  | string
+  | {
+      node: Identifier;
+      nonLinaria?: true;
+      source: string;
+    };
+
 export type IOptions = IBaseOptions & PluginCustomOptions;
 type ComponentNames = keyof Exclude<Theme['components'], undefined>;
 
 type ComponentMeta = {
   name?: ComponentNames;
-  // slot?: string;
+  slot?: string;
   skipVariantsResolver?: boolean;
   skipSx?: boolean;
 };
-
-type DefaultProps = Record<string, string | number | boolean | unknown>;
 
 /**
  * Linaria tag processor responsible for converting complex `styled()()` calls
@@ -108,20 +120,16 @@ export class StyledProcessor extends BaseProcessor {
 
   collectedVariables: [string, Expression, boolean][] = [];
 
-  collectedOverrides: [string, string][] = [];
-
   collectedVariants: VariantDataTransformed[] = [];
 
   originalLocation: SourceLocation | null = null;
 
-  defaultProps: DefaultProps = {};
-
   constructor(params: Params, ...args: TailProcessorParams) {
-    super(params, ...args);
     if (params.length <= 2) {
       // no need to do any processing if it is an already transformed call or just a reference.
       throw BaseProcessor.SKIP;
     }
+    super([params[0]], ...args);
     validateParams(
       params,
       ['callee', ['call', 'member'], ['call', 'template']],
@@ -332,13 +340,11 @@ export class StyledProcessor extends BaseProcessor {
         componentMetaExpression = parsedMeta as ObjectExpression;
       }
     }
-    if (this.defaultProps && Object.keys(this.defaultProps).length > 0) {
-      argProperties.push(
-        t.objectProperty(t.identifier('defaultProps'), valueToLiteral(this.defaultProps)),
-      );
-    }
 
-    const styledImportIdentifier = t.addNamedImport(this.tagSource.imported, this.tagSource.source);
+    const styledImportIdentifier = t.addNamedImport(
+      this.tagSource.imported,
+      process.env.PACKAGE_NAME as string,
+    );
     const styledCall = t.callExpression(
       styledImportIdentifier,
       componentMetaExpression ? [componentName, componentMetaExpression] : [componentName],
@@ -384,39 +390,42 @@ export class StyledProcessor extends BaseProcessor {
     }
     const value = values.get(this.componentMetaArg.ex.name) as ComponentMeta;
     const { themeArgs: { theme } = {} } = this.options as IOptions;
-    if (!value.name || !theme) {
+    if (!value.name || !value.slot || !theme) {
       return;
     }
-    const componentData = (theme as Theme).components?.[value.name];
+    const componentData = theme.components?.[value.name];
     if (!componentData) {
       return;
     }
+
     if ('styleOverrides' in componentData) {
-      const overrides = componentData.styleOverrides;
-      if (overrides && typeof overrides !== 'string') {
-        Object.entries(overrides).forEach(([key, overrideStyle]) => {
-          if (typeof overrideStyle === 'string') {
-            const className = this.getClassName();
-            this.collectedOverrides.push([key, className]);
-            this.collectedStyles.push([className, overrideStyle, null]);
-            return;
-          }
-          const finalStyle = this.processCss(overrideStyle, null, variantsAccumulator);
-          const className = this.getClassName();
-          this.collectedOverrides.push([key, className]);
-          this.baseClasses.push(className);
-          this.collectedStyles.push([className, finalStyle, null]);
-        });
+      const overrides = componentData.styleOverrides as Record<string, CSSObject>;
+      if (!overrides) {
+        return;
       }
+      const overrideStyle = (overrides[value.slot.toLowerCase()] || overrides[value.slot]) as
+        | string
+        | CSSObject;
+      const className = this.getClassName();
+      if (typeof overrideStyle === 'string') {
+        this.collectedStyles.push([className, overrideStyle, null]);
+        return;
+      }
+      const finalStyle = this.processCss(overrideStyle, null, variantsAccumulator);
+      this.baseClasses.push(className);
+      this.collectedStyles.push([className, finalStyle, null]);
     }
+
     if (!variantsAccumulator) {
       return;
     }
-    if ('variants' in componentData && componentData.variants) {
+
+    if (
+      'variants' in componentData &&
+      componentData.variants &&
+      value.slot.toLowerCase() === 'root'
+    ) {
       variantsAccumulator.push(...(componentData.variants as unknown as VariantData[]));
-    }
-    if ('defaultProps' in componentData && componentData.defaultProps) {
-      this.defaultProps = componentData.defaultProps as DefaultProps;
     }
   }
 

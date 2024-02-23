@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import AutoAwesomeRounded from '@mui/icons-material/AutoAwesomeRounded';
@@ -32,48 +31,44 @@ const code = `
     width="100"
     height="100"
     alt="Contemplative Reptile album cover"
-    src="/static/images/cards/contemplative-reptile.jpg"
+    src="/images/contemplative-reptile.jpg"
     sx={{
       width: { xs: '100%', sm: 100 },
-      borderRadius: 0.6,
     }}
   />
-  <Stack direction="column" spacing={2} alignItems="center">
-    <Stack direction="column" spacing={0.2} alignItems="center">
-      <Typography color="text.primary" fontWeight="medium" fontSize={15}>
+  <Stack direction="column" alignItems="center" spacing={1} useFlexGap>
+    <div>
+      <Typography color="text.primary" fontWeight="semiBold">
         Contemplative Reptile
       </Typography>
       <Typography
-        component="div"
         variant="caption"
         color="text.secondary"
-        fontWeight="regular"
+        fontWeight="medium"
+        textAlign="center"
+        sx={{ width: '100%' }}
       >
         Sounds of Nature
       </Typography>
-    </Stack>
-    <Stack direction="row" alignItems="center" spacing={1.5}>
-      <IconButton 
-        disabled 
-        aria-label="shuffle" 
-        size="small" 
-        sx={{ flexGrow: 0 }}>
+    </div>
+    <Stack direction="row" alignItems="center" spacing={1} useFlexGap>
+      <IconButton aria-label="Shuffle" disabled size="small">
         <ShuffleRoundedIcon fontSize="small" />
       </IconButton>
-      <IconButton aria-label="fast rewind" disabled size="small">
+      <IconButton aria-label="Fast rewind" disabled size="small">
         <FastRewindRounded fontSize="small" />
       </IconButton>
       <IconButton
-        aria-label={paused ? 'play' : 'pause'}
-        sx={{ mx: 1 }}
+        aria-label={paused ? 'Play music' : 'Pause music'}
         onClick={() => setPaused((val) => !val)}
+        sx={{ mx: 1 }}
       >
         {paused ? <PlayArrowRounded /> : <PauseRounded />}
       </IconButton>
-      <IconButton aria-label="fast forward" disabled size="small">
+      <IconButton aria-label="Fast forward" disabled size="small">
         <FastForwardRounded fontSize="small" />
       </IconButton>
-      <IconButton aria-label="loop" disabled size="small">
+      <IconButton aria-label="Loop music" disabled size="small">
         <LoopRoundedIcon fontSize="small" />
       </IconButton>
     </Stack>
@@ -86,18 +81,16 @@ export default function MaterialTheming() {
     <Section>
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box sx={{ maxWidth: 500 }}>
-            <SectionHeadline
-              overline="Theming"
-              title={
-                <Typography variant="h2">
-                  Build <GradientText>your design system</GradientText> just as you want it to be
-                </Typography>
-              }
-              description="Start quickly with Material Design or use the advanced theming feature to easily tailor the components to your needs."
-            />
-          </Box>
-          <Group sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
+          <SectionHeadline
+            overline="Theming"
+            title={
+              <Typography variant="h2">
+                Build <GradientText>your design system</GradientText> just as you want it to be
+              </Typography>
+            }
+            description="Start quickly with Material Design or use the advanced theming feature to easily tailor the components to your needs."
+          />
+          <Group sx={{ m: -2, p: 2 }}>
             <Highlighter disableBorder selected={customized} onClick={() => setCustomized(true)}>
               <Item
                 icon={<AutoAwesomeRounded color="warning" />}
@@ -127,7 +120,7 @@ export default function MaterialTheming() {
               }}
             >
               {customized ? (
-                <PlayerCard extraStyles />
+                <PlayerCard />
               ) : (
                 <CssVarsProvider>
                   <PlayerCard disableTheming />

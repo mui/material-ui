@@ -131,7 +131,7 @@
 @media (prefers-color-scheme: dark) {
   .GalleryContainer,
   .GalleryMenu,
-  .GalleryPopper,
+  .GalleryPopup,
   .GalleryPopup,
   .GallerySelect-listbox {
     --canvas: #0f0f0f;
@@ -371,7 +371,7 @@
 
 /* Input styles */
 
-.GalleryInput .MuiInput-input {
+.GalleryInput .base-Input-input {
   box-sizing: border-box;
   width: 300px;
   font: var(--text-body);
@@ -384,18 +384,18 @@
   transition: all 120ms ease;
 }
 
-.GalleryInput .MuiInput-input:hover {
+.GalleryInput .base-Input-input:hover {
   border: var(--border-hard);
   background: var(--bg-input-hover);
 }
 
-.GalleryInput .MuiInput-input:focus {
+.GalleryInput .base-Input-input:focus {
   box-shadow: var(--shadow-interactive-focus-visible);
   border: var(--border-interactive);
   outline: 0;
 }
 
-.GalleryInput .MuiInput-input::placeholder {
+.GalleryInput .base-Input-input::placeholder {
   color: var(--font-color-placeholder);
 }
 
@@ -428,19 +428,14 @@
   border-bottom: none;
 }
 
-.GalleryMenu-item.Mui-focusVisible {
+.GalleryMenu-item:focus {
   outline: none;
   box-shadow: var(--shadow-interactive-focus-visible);
-  background-color: var(--background-surface-soft);
-  color: var(--font-color-soft);
-}
-
-.GalleryMenu-item.Mui-disabled {
-  color: var(--font-color-soft);
-}
-
-.GalleryMenu-item:hover:not(.Mui-disabled) {
   background-color: var(--bg-soft);
+  color: var(--font-color-soft);
+}
+
+.GalleryMenu-item.base--disabled {
   color: var(--font-color-soft);
 }
 
@@ -470,7 +465,7 @@
   background: var(--bg-input-hover);
 }
 
-.GalleryNumberInput.Mui-focused {
+.GalleryNumberInput.base--focused {
   box-shadow: var(--shadow-interactive-focus-visible);
   border: var(--border-interactive);
   outline: 0;
@@ -505,7 +500,7 @@
   align-items: center;
   appearance: none;
   box-sizing: border-box;
-  background: var(--background-surface-soft);
+  background: var(--bg-soft);
   border: 0;
   transition: all 120ms ease;
 }
@@ -565,16 +560,6 @@
   padding: 0.75rem;
   opacity: 1;
   margin: 0.25rem 0px;
-}
-
-.GalleryPopper {
-  color: var(--font-color-soft);
-  background: var(--bg-default);
-  border: var(--border-soft);
-  box-shadow: var(--shadow-elevation-2);
-}
-
-.GalleryPopup {
   color: var(--font-color-soft);
   background: var(--bg-default);
   border: var(--border-soft);
@@ -604,7 +589,7 @@
   background: var(--bg-input-hover);
 }
 
-.GallerySelect.Mui-focusVisible {
+.GallerySelect.base--focusVisible {
   box-shadow: var(--shadow-interactive-focus-visible);
   border: var(--border-interactive);
   outline: 0;
@@ -641,7 +626,7 @@
   box-shadow: var(--shadow-elevation-2);
 }
 
-.GallerySelect-popper {
+.GallerySelect-popup {
   z-index: 1;
 }
 
@@ -658,22 +643,22 @@
   margin-bottom: 0;
 }
 
-.GallerySelect-option.Mui-selected {
+.GallerySelect-option.base--selected {
   background-color: var(--bg-select-option);
   color: var(--font-color-hard);
 }
 
-.GallerySelect-option.MuiOption-highlighted {
+.GallerySelect-option.base-Option-highlighted {
   box-shadow: var(--shadow-interactive-focus-visible);
   background-color: var(--bg-soft);
 }
 
-.GallerySelect-option.MuiOption-highlighted.Mui-selected {
+.GallerySelect-option.base-Option-highlighted.base--selected {
   background-color: var(--bg-select-option);
   color: var(--font-color-hard);
 }
 
-.GallerySelect-option.MuiOption-highlighted.Mui-selected:hover {
+.GallerySelect-option.base-Option-highlighted.base--selected:hover {
   background-color: var(--bg-select-option);
 }
 
@@ -681,11 +666,11 @@
   box-shadow: var(--shadow-interactive-focus-visible);
 }
 
-.GallerySelect-option.Mui-disabled {
+.GallerySelect-option.base--disabled {
   color: var(--font-color-soft);
 }
 
-.GallerySelect-option:hover:not(.Mui-disabled) {
+.GallerySelect-option:hover:not(.base--disabled) {
   background-color: var(--bg-soft);
 }
 
@@ -707,7 +692,7 @@
   opacity: 1;
 }
 
-.GallerySlider.Mui-disabled {
+.GallerySlider.base--disabled {
   pointer-events: none;
   cursor: default;
   color: var(--bg-input-disabled);
@@ -752,7 +737,7 @@
   box-shadow: var(--shadow-interactive-focus-visible);
 }
 
-.GallerySlider-thumb.Mui-disabled {
+.GallerySlider-thumb.base--disabled {
   box-shadow: none;
   background-color: var(--bg-input-disabled);
 }
@@ -761,7 +746,7 @@
   box-shadow: var(--shadow-interactive-focus-visible);
 }
 
-.GallerySlider-thumb.Mui-active {
+.GallerySlider-thumb.base--active {
   box-shadow: var(--shadow-interactive-focus-visible);
   transform: scale(1.3);
 }
@@ -844,7 +829,7 @@
   cursor: pointer;
 }
 
-.GallerySwitch.Mui-disabled {
+.GallerySwitch.base--disabled {
   opacity: 0.4;
   cursor: not-allowed;
 }
@@ -880,7 +865,7 @@
   transition-duration: 200ms;
 }
 
-.GallerySwitch.Mui-focusVisible .GallerySwitch-track {
+.GallerySwitch.base--focusVisible .GallerySwitch-track {
   box-shadow: var(--shadow-interactive-focus-visible);
 }
 
@@ -888,17 +873,17 @@
   width: 20px;
 }
 
-.GallerySwitch.Mui-checked .GallerySwitch-thumb {
+.GallerySwitch.base--checked .GallerySwitch-thumb {
   left: 18px;
   border: var(--border-active-switch);
 }
 
-.GallerySwitch.Mui-checked .GallerySwitch-track {
+.GallerySwitch.base--checked .GallerySwitch-track {
   background: var(--bg-highlight);
   border: var(--border-active-switch);
 }
 
-.GallerySwitch.Mui-checked:hover .GallerySwitch-track {
+.GallerySwitch.base--checked:hover .GallerySwitch-track {
   background: hsl(var(--primary-600));
 }
 
@@ -917,7 +902,7 @@
 /* Table pagination styles */
 
 .GalleryTablePaginationDemo th {
-  background-color: var(--background-surface-default);
+  background-color: var(--bg-default);
 }
 
 .GalleryTablePaginationDemo table {
@@ -939,11 +924,11 @@
   background-color: var(--bg-default);
 }
 
-.GalleryTablePagination .MuiTablePagination-spacer {
+.GalleryTablePagination .base-TablePagination-spacer {
   display: none;
 }
 
-.GalleryTablePagination .MuiTablePagination-toolbar {
+.GalleryTablePagination .base-TablePagination-toolbar {
   font: var(--text-body);
   color: var(--font-color-soft);
   display: flex;
@@ -957,11 +942,11 @@
   }
 }
 
-.GalleryTablePagination .MuiTablePagination-selectLabel {
+.GalleryTablePagination .base-TablePagination-selectLabel {
   margin: 0;
 }
 
-.GalleryTablePagination .MuiTablePagination-select {
+.GalleryTablePagination .base-TablePagination-select {
   position: relative;
   font: var(--text-body);
   line-height: 1.5;
@@ -974,35 +959,39 @@
   appearance: none;
   background-image: url('data:image/svg+xml,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.57805 7.35112L6.62785 12.4268C7.38824 13.1911 8.61657 13.1911 9.37696 12.4268L14.4268 7.35112C15.6551 6.11649 14.7777 4 13.0425 4H2.94286C1.2076 4 0.349721 6.11649 1.57805 7.35112Z" fill="%23697686"/></svg>');
   background-repeat: no-repeat, repeat;
-  background-position: right 8px top 50%, 0 0;
-  background-size: 8px auto, 100%;
+  background-position:
+    right 8px top 50%,
+    0 0;
+  background-size:
+    8px auto,
+    100%;
 }
 
-.GalleryTablePagination .MuiTablePagination-select:hover {
+.GalleryTablePagination .base-TablePagination-select:hover {
   background-color: var(--bg-soft);
   border: var(--border-soft);
 }
 
-.GalleryTablePagination .MuiTablePagination-select:focus {
+.GalleryTablePagination .base-TablePagination-select:focus {
   box-shadow: var(--shadow-interactive-focus-visible);
   border: var(--border-interactive);
   outline: 0;
 }
 
-.GalleryTablePagination .MuiTablePagination-displayedRows {
+.GalleryTablePagination .base-TablePagination-displayedRows {
   margin: 0;
   min-width: 75px;
   text-align: right;
 }
 
-.GalleryTablePagination .MuiTablePagination-actions {
+.GalleryTablePagination .base-TablePagination-actions {
   display: flex;
   gap: 6px;
   border: transparent;
   text-align: center;
 }
 
-.GalleryTablePagination .MuiTablePagination-actions > button {
+.GalleryTablePagination .base-TablePagination-actions > button {
   display: flex;
   align-items: center;
   padding: 0;
@@ -1014,18 +1003,18 @@
   transition: all 120ms ease;
 }
 
-.GalleryTablePagination .MuiTablePagination-actions > button:hover {
+.GalleryTablePagination .base-TablePagination-actions > button:hover {
   background-color: var(--bg-soft);
   border: var(--border-hard);
 }
 
-.GalleryTablePagination .MuiTablePagination-actions > button:focus {
+.GalleryTablePagination .base-TablePagination-actions > button:focus {
   box-shadow: var(--shadow-interactive-focus-visible);
   border: var(--border-interactive);
   outline: 0;
 }
 
-.GalleryTablePagination .MuiTablePagination-actions > button:disabled {
+.GalleryTablePagination .base-TablePagination-actions > button:disabled {
   opacity: 0.3;
 }
 
@@ -1035,7 +1024,7 @@
   min-width: 300px;
   max-width: 500px;
   width: 100%;
-  background-color: var(--background-surface-soft);
+  background-color: var(--bg-default);
   border: var(--border-default);
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-interactive-switch-track);
@@ -1061,7 +1050,7 @@
 }
 
 .GalleryTab:hover {
-  background-color: var(--bg-hard);
+  background-color: var(--bg-soft);
 }
 
 .GalleryTab:focus-visible {
@@ -1069,18 +1058,18 @@
   box-shadow: var(--shadow-interactive-focus-visible);
 }
 
-.GalleryTab.Mui-selected {
+.GalleryTab.base--selected {
   background-color: var(--bg-highlight);
   color: var(--font-color-onDark);
 }
 
-.GalleryTab.Mui-disabled {
-  opacity: 0.5;
+.GalleryTab.base--disabled {
+  opacity: 0.3;
   cursor: not-allowed;
   background-color: transparent;
 }
 
-.GalleryTab.Mui-disabled:focus {
+.GalleryTab.base--disabled:focus {
   box-shadow: none;
 }
 
@@ -1090,7 +1079,7 @@
   font: var(--text-body);
   color: var(--font-color-soft);
   padding: 24px;
-  background: var(--background-surface-soft);
+  background: var(--bg-soft);
   border-radius: var(--border-radius-md);
   border: var(--border-default);
   border-style: dashed;

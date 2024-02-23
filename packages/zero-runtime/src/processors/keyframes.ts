@@ -1,26 +1,28 @@
 import type { Expression } from '@babel/types';
-import { validateParams } from '@linaria/tags';
 import type {
   CallParam,
   TemplateParam,
   Params,
   TailProcessorParams,
   ValueCache,
-} from '@linaria/tags';
-import type { Replacements, Rules } from '@linaria/utils';
-import { ValueType } from '@linaria/utils';
+} from '@wyw-in-js/processor-utils';
+import { serializeStyles, Interpolation } from '@emotion/serialize';
+import { type Replacements, type Rules, ValueType } from '@wyw-in-js/shared';
 import type { CSSInterpolation } from '@emotion/css';
+import { validateParams } from '@wyw-in-js/processor-utils';
 import BaseProcessor from './base-processor';
 import type { IOptions } from './styled';
-import { cache, keyframes } from '../utils/emotion';
+import { cache } from '../utils/emotion';
 
-type Primitive = string | number | boolean | null | undefined;
+export type Primitive = string | number | boolean | null | undefined;
+
+export type TemplateCallback = (params: Record<string, unknown> | undefined) => string | number;
 
 export class KeyframesProcessor extends BaseProcessor {
   callParam: CallParam | TemplateParam;
 
   constructor(params: Params, ...args: TailProcessorParams) {
-    super(params, ...args);
+    super([params[0]], ...args);
     if (params.length < 2) {
       throw BaseProcessor.SKIP;
     }
@@ -59,23 +61,26 @@ export class KeyframesProcessor extends BaseProcessor {
 
   private handleTemplate([, callArgs]: TemplateParam, values: ValueCache) {
     const templateStrs: string[] = [];
+    // @ts-ignore @TODO - Fix this. No idea how to initialize a Tagged String array.
+    templateStrs.raw = [];
     const templateExpressions: Primitive[] = [];
+    const { themeArgs } = this.options as IOptions;
+
     callArgs.forEach((item) => {
       if ('kind' in item) {
         switch (item.kind) {
-          case ValueType.FUNCTION:
-            throw item.buildCodeFrameError(
-              'Functions are not allowed to be interpolated in keyframes tag.',
-            );
+          case ValueType.FUNCTION: {
+            const value = values.get(item.ex.name) as TemplateCallback;
+            templateExpressions.push(value(themeArgs));
+            break;
+          }
           case ValueType.CONST:
             templateExpressions.push(item.value);
             break;
           case ValueType.LAZY: {
             const evaluatedValue = values.get(item.ex.name);
             if (typeof evaluatedValue === 'function') {
-              throw item.buildCodeFrameError(
-                'Functions are not allowed to be interpolated in keyframes tag.',
-              );
+              templateExpressions.push(evaluatedValue(themeArgs));
             } else {
               templateExpressions.push(evaluatedValue as Primitive);
             }
@@ -86,15 +91,19 @@ export class KeyframesProcessor extends BaseProcessor {
         }
       } else if (item.type === 'TemplateElement') {
         templateStrs.push(item.value.cooked as string);
+        // @ts-ignore
+        templateStrs.raw.push(item.value.raw);
       }
     });
     this.generateArtifacts(templateStrs, ...templateExpressions);
   }
 
   generateArtifacts(styleObjOrTaggged: CSSInterpolation | string[], ...args: Primitive[]) {
-    const keyframeName = keyframes(styleObjOrTaggged, ...args);
-    const cacheCssText = cache.inserted[keyframeName.replace('animation-', '')] as string;
-    const cssText = cacheCssText.replaceAll(keyframeName, '');
+    const { styles } = serializeStyles(
+      [styleObjOrTaggged as Interpolation<{}>, args],
+      cache.registered,
+    );
+    const cssText = `@keyframes {${styles}}`;
 
     const rules: Rules = {
       [this.asSelector]: {

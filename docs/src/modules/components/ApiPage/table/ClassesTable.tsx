@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import { ComponentClassDefinition } from '@mui-internal/docs-utilities';
+import { ComponentClassDefinition } from '@mui-internal/docs-utils';
 import { styled, alpha } from '@mui/material/styles';
 import {
   brandingDarkTheme as darkTheme,
@@ -8,7 +8,7 @@ import {
 } from 'docs/src/modules/brandingTheme';
 import { getHash } from 'docs/src/modules/components/ApiPage/list/ClassesList';
 import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 import ApiWarning from 'docs/src/modules/components/ApiPage/ApiWarning';
 
 const StyledTable = styled('table')(

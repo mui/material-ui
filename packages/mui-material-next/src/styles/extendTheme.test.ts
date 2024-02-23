@@ -15,14 +15,14 @@ describe('extendTheme', () => {
   it('should have the vars object', () => {
     const theme = extendTheme();
     const keys = [
-      // MD2 specific tokens
+      // M2 specific tokens
       'palette',
       'shadows',
       'zIndex',
       'opacity',
       'overlays',
       'shape',
-      // MD3 specific tokens
+      // M3 specific tokens
       'ref',
       'sys',
     ];

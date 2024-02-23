@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import AddRounded from '@mui/icons-material/AddRounded';
 import Grid from '@mui/material/Grid';
 import SponsorCard from 'docs/src/components/home/SponsorCard';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';
 
 const GOLDs = [
@@ -17,15 +17,15 @@ const GOLDs = [
     href: 'https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
   },
   {
-    src: 'https://images.opencollective.com/spotify/f37ea28/logo/40.png',
-    srcSet: 'https://images.opencollective.com/spotify/f37ea28/logo/80.png 2x',
+    src: 'https://avatars.githubusercontent.com/u/251374?s=40',
+    srcSet: 'https://avatars.githubusercontent.com/u/251374?s=120 3x',
     name: 'Spotify',
     description: 'Music service for accessing millions of songs.',
     href: 'https://open.spotify.com?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
     src: 'https://images.opencollective.com/icons8/7fa1641/logo/40.png',
-    srcSet: 'https://images.opencollective.com/icons8/7fa1641/logo/80.png 2x',
+    srcSet: 'https://images.opencollective.com/icons8/7fa1641/logo/120.png 3x',
     name: 'Icons8',
     description: 'API for icons, photos, illustrations, and music.',
     href: 'https://icons8.com?utm_source=MUI&utm_medium=referral&utm_content=homepage',
@@ -38,7 +38,7 @@ const GOLDs = [
   },
   {
     src: 'https://avatars.githubusercontent.com/u/1262264?size=40',
-    srcSet: 'https://avatars.githubusercontent.com/u/1262264?s=80 2x',
+    srcSet: 'https://avatars.githubusercontent.com/u/1262264?s=120 3x',
     name: 'Text-em-all',
     description: 'Mass text messaging and automated calling.',
     href: 'https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
@@ -51,14 +51,14 @@ const GOLDs = [
   },
   {
     src: 'https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/40.png',
-    srcSet: 'https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/80.png 2x',
+    srcSet: 'https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/120.png 3x',
     name: 'DialMyCalls',
     description: 'Send text messages, calls, and emails.',
     href: 'https://www.dialmycalls.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
     src: 'https://images.opencollective.com/goread_io/eb6337d/logo/40.png',
-    srcSet: 'https://images.opencollective.com/goread_io/eb6337d/logo/80.png 2x',
+    srcSet: 'https://images.opencollective.com/goread_io/eb6337d/logo/120.png 3x',
     name: 'Goread.io',
     description: 'Instagram followers, likes, views, and comments.',
     href: 'https://goread.io/?utm_source=MUI&utm_medium=referral&utm_content=homepage',

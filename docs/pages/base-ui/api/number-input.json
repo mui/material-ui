@@ -1,6 +1,6 @@
 {
   "props": {
-    "defaultValue": { "type": { "name": "any" } },
+    "defaultValue": { "type": { "name": "number" } },
     "disabled": { "type": { "name": "bool" } },
     "endAdornment": { "type": { "name": "node" } },
     "error": { "type": { "name": "bool" } },
@@ -42,7 +42,7 @@
     },
     "startAdornment": { "type": { "name": "node" } },
     "step": { "type": { "name": "number" } },
-    "value": { "type": { "name": "number" } }
+    "value": { "type": { "name": "number" }, "default": "null" }
   },
   "name": "NumberInput",
   "imports": [
@@ -54,73 +54,73 @@
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": "MuiNumberInput-root"
+      "class": "base-NumberInput-root"
     },
     {
       "name": "input",
       "description": "The component that renders the input.",
       "default": "'input'",
-      "class": "MuiNumberInput-input"
+      "class": "base-NumberInput-input"
     },
     {
       "name": "incrementButton",
       "description": "The component that renders the increment button.",
       "default": "'button'",
-      "class": "MuiNumberInput-incrementButton"
+      "class": "base-NumberInput-incrementButton"
     },
     {
       "name": "decrementButton",
       "description": "The component that renders the decrement button.",
       "default": "'button'",
-      "class": "MuiNumberInput-decrementButton"
+      "class": "base-NumberInput-decrementButton"
     }
   ],
   "classes": [
     {
       "key": "adornedEnd",
-      "className": "MuiNumberInput-adornedEnd",
+      "className": "base-NumberInput-adornedEnd",
       "description": "Class name applied to the root element if `endAdornment` is provided.",
       "isGlobal": false
     },
     {
       "key": "adornedStart",
-      "className": "MuiNumberInput-adornedStart",
+      "className": "base-NumberInput-adornedStart",
       "description": "Class name applied to the root element if `startAdornment` is provided.",
       "isGlobal": false
     },
     {
       "key": "disabled",
-      "className": "Mui-disabled",
+      "className": "base--disabled",
       "description": "Class name applied to the root element if `disabled={true}`.",
       "isGlobal": true
     },
     {
       "key": "error",
-      "className": "Mui-error",
+      "className": "base--error",
       "description": "State class applied to the root element if `error={true}`.",
       "isGlobal": true
     },
     {
       "key": "focused",
-      "className": "Mui-focused",
+      "className": "base--focused",
       "description": "Class name applied to the root element if the component is focused.",
       "isGlobal": true
     },
     {
       "key": "formControl",
-      "className": "MuiNumberInput-formControl",
+      "className": "base-NumberInput-formControl",
       "description": "Class name applied to the root element if the component is a descendant of `FormControl`.",
       "isGlobal": false
     },
     {
       "key": "readOnly",
-      "className": "Mui-readOnly",
+      "className": "base--readOnly",
       "description": "State class applied to the root element if `readOnly={true}`.",
       "isGlobal": true
     }
   ],
   "spread": true,
-  "muiName": "MuiNumberInput",
+  "muiName": "NumberInput",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/Unstable_NumberInput/NumberInput.tsx",
   "inheritance": null,

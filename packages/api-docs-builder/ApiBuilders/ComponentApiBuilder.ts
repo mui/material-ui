@@ -10,8 +10,8 @@ import remarkVisit from 'unist-util-visit';
 import type { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import { renderMarkdown } from '@mui/markdown';
-import { ComponentClassDefinition } from '@mui-internal/docs-utilities';
-import { ProjectSettings } from '../ProjectSettings';
+import { ComponentClassDefinition } from '@mui-internal/docs-utils';
+import { ProjectSettings, SortingStrategiesType } from '../ProjectSettings';
 import { ComponentInfo, toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
 import parseTest from '../utils/parseTest';
@@ -24,6 +24,7 @@ import generatePropDescription from '../utils/generatePropDescription';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
 import parseSlotsAndClasses, { Slot } from '../utils/parseSlotsAndClasses';
 import generateApiTranslations from '../utils/generateApiTranslation';
+import { sortAlphabetical } from '../utils/sortObjects';
 
 export type AdditionalPropsInfo = {
   cssApi?: boolean;
@@ -353,11 +354,13 @@ function extractClassCondition(description: string) {
   return { description: renderMarkdown(description) };
 }
 
-const generateApiPage = (
+const generateApiPage = async (
   apiPagesDirectory: string,
   importTranslationPagesDirectory: string,
   reactApi: ReactApi,
+  sortingStrategies?: SortingStrategiesType,
   onlyJsonFile: boolean = false,
+  layoutConfigPath: string = '',
 ) => {
   const normalizedApiPathname = reactApi.apiPathname.replace(/\\/g, '/');
   /**
@@ -399,22 +402,38 @@ const generateApiPage = (
     cssComponent: cssComponents.indexOf(reactApi.name) >= 0,
   };
 
-  writePrettifiedFile(
+  const { classesSort = sortAlphabetical('key'), slotsSort = null } = {
+    ...sortingStrategies,
+  };
+
+  if (classesSort) {
+    pageContent.classes = [...pageContent.classes].sort(classesSort);
+  }
+  if (slotsSort && pageContent.slots) {
+    pageContent.slots = [...pageContent.slots].sort(slotsSort);
+  }
+
+  await writePrettifiedFile(
     path.resolve(apiPagesDirectory, `${kebabCase(reactApi.name)}.json`),
     JSON.stringify(pageContent),
   );
 
   if (!onlyJsonFile) {
-    writePrettifiedFile(
+    await writePrettifiedFile(
       path.resolve(apiPagesDirectory, `${kebabCase(reactApi.name)}.js`),
       `import * as React from 'react';
   import ApiPage from 'docs/src/modules/components/ApiPage';
-  import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
+  import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';${
+    layoutConfigPath === ''
+      ? ''
+      : `
+  import layoutConfig from '${layoutConfigPath}';`
+  }
   import jsonPageContent from './${kebabCase(reactApi.name)}.json';
 
   export default function Page(props) {
     const { descriptions, pageContent } = props;
-    return <ApiPage descriptions={descriptions} pageContent={pageContent} />;
+    return <ApiPage ${layoutConfigPath === '' ? '' : '{...layoutConfig} '}descriptions={descriptions} pageContent={pageContent} />;
   }
 
   Page.getInitialProps = () => {
@@ -473,20 +492,26 @@ const attachTranslations = (reactApi: ReactApi, settings?: CreateDescribeablePro
    */
   if (reactApi.slots?.length > 0) {
     translations.slotDescriptions = {};
-    reactApi.slots.forEach((slot: Slot) => {
-      const { name, description } = slot;
-      translations.slotDescriptions![name] = description;
-    });
+    [...reactApi.slots]
+      .sort(sortAlphabetical('name')) // Sort to ensure consistency of object key order
+      .forEach((slot: Slot) => {
+        const { name, description } = slot;
+        translations.slotDescriptions![name] = renderMarkdown(description);
+      });
   }
 
   /**
    * CSS class descriptions and deprecations.
    */
+  [...reactApi.classes]
+    .sort(sortAlphabetical('key')) // Sort to ensure consistency of object key order
+    .forEach((classDefinition) => {
+      translations.classDescriptions[classDefinition.key] = {
+        ...extractClassCondition(classDefinition.description),
+        deprecationInfo: classDefinition.deprecationInfo,
+      };
+    });
   reactApi.classes.forEach((classDefinition, index) => {
-    translations.classDescriptions[classDefinition.key] = {
-      ...extractClassCondition(classDefinition.description),
-      deprecationInfo: classDefinition.deprecationInfo,
-    };
     delete reactApi.classes[index].deprecationInfo; // store deprecation info in translations only
   });
 
@@ -746,9 +771,11 @@ export default async function generateComponentApi(
   }
 
   const { slots, classes } = parseSlotsAndClasses({
-    project,
+    typescriptProject: project,
+    projectSettings,
     componentName: reactApi.name,
     muiName: reactApi.muiName,
+    slotInterfaceName: componentInfo.slotInterfaceName,
   });
 
   reactApi.slots = slots;
@@ -768,18 +795,20 @@ export default async function generateComponentApi(
       generateJsonFileOnly,
     } = projectSettings;
 
-    generateApiTranslations(
+    await generateApiTranslations(
       path.join(process.cwd(), translationPagesDirectory),
       reactApi,
       projectSettings.translationLanguages,
     );
 
     // Once we have the tabs API in all projects, we can make this default
-    generateApiPage(
+    await generateApiPage(
       componentInfo.apiPagesDirectory,
       importTranslationPagesDirectory ?? translationPagesDirectory,
       reactApi,
+      projectSettings.sortingStrategies,
       generateJsonFileOnly,
+      componentInfo.layoutConfigPath,
     );
 
     if (

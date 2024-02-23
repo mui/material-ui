@@ -7,7 +7,6 @@ import {
   extractPackageFile,
   fixPathname,
   getApiPath,
-  getMuiName,
   getSystemComponents,
   parseFile,
 } from '@mui-internal/api-docs-builder/buildApiUtils';
@@ -55,7 +54,7 @@ export function getBaseUiComponentInfo(filename: string): ComponentInfo {
   return {
     filename,
     name,
-    muiName: getMuiName(name),
+    muiName: name,
     apiPathname: apiPath,
     apiPagesDirectory: path.join(process.cwd(), `docs/pages/base-ui/api`),
     isSystemComponent: getSystemComponents().includes(name),
@@ -71,7 +70,7 @@ export function getBaseUiComponentInfo(filename: string): ComponentInfo {
         name: inheritedComponent,
         apiPathname:
           inheritedComponent === 'Transition'
-            ? 'http://reactcommunity.org/react-transition-group/transition/#Transition-props'
+            ? 'https://reactcommunity.org/react-transition-group/transition/#Transition-props'
             : `/base-ui/api/${kebabCase(inheritedComponent)}/`,
       };
     },

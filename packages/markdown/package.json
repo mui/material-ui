@@ -10,13 +10,13 @@
     "./prism": "./prism.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.7",
+    "@babel/runtime": "^7.23.9",
     "lodash": "^4.17.21",
     "marked": "^5.1.2",
     "prismjs": "^1.29.0"
   },
   "devDependencies": {
     "@types/chai": "^4.3.11",
-    "chai": "^4.4.0"
+    "chai": "^4.4.1"
   }
 }

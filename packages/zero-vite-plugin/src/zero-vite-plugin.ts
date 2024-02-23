@@ -10,15 +10,20 @@ import path from 'node:path';
 import type { ModuleNode, Plugin, ResolvedConfig, ViteDevServer, FilterPattern } from 'vite';
 import { optimizeDeps, createFilter } from 'vite';
 
-import { transform, slugify, TransformCacheCollection } from '@linaria/babel-preset';
-import type { PluginOptions, Preprocessor } from '@linaria/babel-preset';
-import { linariaLogger } from '@linaria/logger';
-import type { IPerfMeterOptions } from '@linaria/utils';
-import { createPerfMeter, getFileIdx, syncResolve } from '@linaria/utils';
+import { slugify, logger as wywLogger, syncResolve } from '@wyw-in-js/shared';
+import {
+  TransformCacheCollection,
+  transform,
+  Preprocessor,
+  createFileReporter,
+  getFileIdx,
+  type PluginOptions,
+  type IFileReporterOptions,
+} from '@wyw-in-js/transform';
 import { type PluginCustomOptions } from '@mui/zero-runtime/utils';
 
 export type VitePluginOptions = {
-  debug?: IPerfMeterOptions | false | null | undefined;
+  debug?: IFileReporterOptions | false | null | undefined;
   exclude?: FilterPattern;
   include?: FilterPattern;
   preprocessor?: Preprocessor;
@@ -43,6 +48,7 @@ export default function zeroVitePlugin({
   preprocessor,
   transformLibraries = [],
   overrideContext,
+  tagResolver,
   ...rest
 }: VitePluginOptions = {}): Plugin {
   const filter = createFilter(include, exclude);
@@ -51,7 +57,7 @@ export default function zeroVitePlugin({
   let config: ResolvedConfig;
   let devServer: ViteDevServer;
 
-  const { emitter, onDone } = createPerfMeter(debug ?? false);
+  const { emitter, onDone } = createFileReporter(debug ?? false);
 
   // <dependency id, targets>
   const targets: { dependencies: string[]; id: string }[] = [];
@@ -116,7 +122,7 @@ export default function zeroVitePlugin({
       let shouldReturn = url.includes('node_modules');
 
       if (shouldReturn) {
-        shouldReturn = !transformLibraries.some((libName) => url.includes(libName));
+        shouldReturn = !transformLibraries.some((libName: string) => url.includes(libName));
       }
 
       if (shouldReturn) {
@@ -129,10 +135,14 @@ export default function zeroVitePlugin({
         return null;
       }
 
-      const log = linariaLogger.extend('vite');
+      const log = wywLogger.extend('vite');
       log('Vite transform', getFileIdx(id));
 
       const asyncResolve = async (what: string, importer: string, stack: string[]) => {
+        // @TODO - Remove this when @mui/system published esm files by default at the base directory
+        if (what.startsWith('@mui/system') && !what.includes('esm')) {
+          return what.replace('@mui/system', '@mui/system/esm');
+        }
         const resolved = await this.resolve(what, importer);
         if (resolved) {
           if (resolved.external) {
@@ -194,6 +204,16 @@ export default function zeroVitePlugin({
                     context.$RefreshSig$ = outerNoop;
                   }
                   return context;
+                },
+                tagResolver(source: string, tag: string) {
+                  const tagResult = tagResolver?.(source, tag);
+                  if (tagResult) {
+                    return tagResult;
+                  }
+                  if (source.endsWith('/zero-styled') || source.endsWith('/zero-useThemeProps')) {
+                    return `${process.env.RUNTIME_PACKAGE_NAME}/exports/${tag}`;
+                  }
+                  return null;
                 },
               },
             },

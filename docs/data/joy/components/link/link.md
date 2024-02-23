@@ -14,7 +14,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/link/
 
 ## Introduction
 
-The Joy UI Link component replaces the native HTML `<a>` element and accepts the same props as the [Typography](/joy-ui/react-typography/) component, as well as MUI System props.
+The Joy UI Link component replaces the native HTML `<a>` element and accepts the same props as the [Typography](/joy-ui/react-typography/) component, as well as MUI System props.
 
 {{"demo": "LinkUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
@@ -149,7 +149,7 @@ When using `target="_blank"` with links to pages on another site, the [Google Ch
 
 ## Accessibility
 
-Here are a few tips for ensuring an accessible link component, based on [WAI-ARIA](https://www.w3.org/WAI/ARIA/apg/patterns/link/).
+Here are a few tips for ensuring an accessible link component, based on [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/link/).
 
 - **Copywriting:** Avoid generic words as calls to action, such as "click here" or "go to".
   Instead, use [descriptive text](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text) to inform the user about what they'll find when they click the link.

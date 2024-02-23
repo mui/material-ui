@@ -2,17 +2,18 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { usePreviousProps } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import usePreviousProps from '@mui/utils/usePreviousProps';
+import composeClasses from '@mui/utils/composeClasses';
 import { useBadge } from '@mui/base/useBadge';
-import { useSlotProps } from '@mui/base';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useSlotProps } from '@mui/base/utils';
+import { styled, createUseThemeProps } from '../zero-styled';
 import capitalize from '../utils/capitalize';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
 
 const RADIUS_STANDARD = 10;
 const RADIUS_DOT = 4;
+
+const useThemeProps = createUseThemeProps('MuiBadge');
 
 const useUtilityClasses = (ownerState) => {
   const { color, anchorOrigin, invisible, overlap, variant, classes = {} } = ownerState;

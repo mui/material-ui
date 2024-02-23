@@ -1,3 +1,3 @@
-import { unstable_getScrollbarSize as getScrollbarSize } from '@mui/utils';
+import getScrollbarSize from '@mui/utils/getScrollbarSize';
 
 export default getScrollbarSize;
