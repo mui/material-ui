@@ -21,7 +21,12 @@ const useUtilityClasses = (ownerState) => {
   const { variant, color, severity, classes } = ownerState;
 
   const slots = {
-    root: ['root', `${variant}${capitalize(color || severity)}`, `${variant}`],
+    root: [
+      'root',
+      `color${capitalize(color || severity)}`,
+      `${variant}${capitalize(color || severity)}`,
+      `${variant}`,
+    ],
     icon: ['icon'],
     message: ['message'],
     action: ['action'],
