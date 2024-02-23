@@ -18,7 +18,7 @@ function DebounceInput(props: InputProps & DebounceProps) {
       clearTimeout(timerRef.current);
     }
 
-    timerRef.current = window.setTimeout(() => {
+    timerRef.current = setTimeout(() => {
       handleDebounce(event.target.value);
     }, debounceTimeout);
   };
