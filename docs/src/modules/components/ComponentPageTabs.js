@@ -5,15 +5,13 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Tabs, { tabsClasses } from '@mui/material/Tabs';
 import Tab, { tabClasses } from '@mui/material/Tab';
-import AdsClickRoundedIcon from '@mui/icons-material/AdsClickRounded';
-import ApiRoundedIcon from '@mui/icons-material/ApiRounded';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { Link } from '@mui/docs/Link';
 
 export const HEIGHT = 50;
 
 const StyledTab = styled(Tab)(({ theme }) => ({
-  padding: theme.spacing(0.5, 1, 0.5, 0.5),
+  padding: theme.spacing(0.5),
   border: '1px solid',
   borderColor: 'transparent',
   fontWeight: theme.typography.fontWeightSemiBold,
@@ -82,14 +80,7 @@ export default function ComponentPageTabs(props) {
           },
         }}
       >
-        <StyledTab
-          component={Link}
-          href={demosHref}
-          label={t('api-docs.demos')}
-          value=""
-          icon={<AdsClickRoundedIcon sx={{ fontSize: 16 }} />}
-          iconPosition="start"
-        />
+        <StyledTab component={Link} href={demosHref} label={t('api-docs.demos')} value="" />
         {headers.components?.length > 0 && (
           <StyledTab
             className="skip-algolia-crawler" // For more details, see https://github.com/mui/material-ui/pull/37539.
@@ -97,8 +88,6 @@ export default function ComponentPageTabs(props) {
             href={componentsHref}
             label={t('api-docs.componentsApi')}
             value="components-api"
-            icon={<ApiRoundedIcon sx={{ fontSize: 16 }} />}
-            iconPosition="start"
           />
         )}
         {headers.hooks && headers.hooks.length > 0 && (
@@ -108,8 +97,6 @@ export default function ComponentPageTabs(props) {
             href={hooksHref}
             label={t('api-docs.hooksApi')}
             value="hooks-api"
-            icon={<ApiRoundedIcon sx={{ fontSize: 16 }} />}
-            iconPosition="start"
           />
         )}
       </Tabs>
