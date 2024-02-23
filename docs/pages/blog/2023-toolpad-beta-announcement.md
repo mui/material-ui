@@ -7,7 +7,7 @@ card: true
 tags: ['Product', 'Toolpad']
 ---
 
-It's been over a year since we released the first version of Toolpad. Today, we're excited to take the next step on that journey with the release of Toolpad Beta. If you aren't familiar with Toolpad yet, it's an admin panel builder catering to the internal tooling needs of an organization, designed for developers who want to build a functional application quickly. It harnesses the speed of a UI builder for the front-end and closely integrates into your back-end. If this excites you, then read on!
+It's been over a year since we released the first version of Toolpad. Today, we're excited to take the next step on that journey with the release of Toolpad Beta. If you aren't familiar with Toolpad yet, it's an admin panel builder catering to the internal tooling needs of an organization, designed for developers who want to build a functional application quickly. It harnesses the speed of a UI builder for the front end and closely integrates into your back end. If this excites you, then read on!
 
 <a href="https://mui.com/toolpad/examples/basic-crud-app/">
 <img alt="Introducing Toolpad" src="/static/blog/2023-toolpad-beta-announcement/intro.png" width="2400" height="1200" />
@@ -28,7 +28,7 @@ Toolpad is an open-source, low-code, drag-and-drop admin builder. The primary pu
 Toolpad is not ideal for building static web pages, mobile apps, or customer-facing custom-designed front-ends. It's for building admin applications, CRUD interfaces, custom internal tools, and analytics dashboards.
 
 <a href="https://mui.com/toolpad/examples/npm-stats/">
-<img alt="Building an application on Toolpad" src="/static/blog/2023-toolpad-beta-announcement/toolpad.png" loading="lazy" width="2400" height="1394"  />
+  <img alt="Building an application on Toolpad" src="/static/blog/2023-toolpad-beta-announcement/toolpad.png" loading="lazy" width="2400" height="1394"  />
 </a>
 
 ## Who is Toolpad for?
@@ -109,7 +109,7 @@ Your input is crucial to helping us shape the roadmap from here.
 
 The best places to stay up-to-date about what we're currently working on are [GitHub issues](https://github.com/mui/mui-toolpad) and our [public roadmap](https://github.com/orgs/mui/projects/9/views/1).
 
-If you have any questions or would like to share feedback, you can directly contact the team at toolpad@mui.com or reach us on [X](https://twitter.com/MUI_Toolpad).
+If you have any questions or would like to share feedback, you can directly contact the team at toolpad@mui.com or reach us on [X/Twitter](https://twitter.com/MUI_Toolpad).
 You can also engage in conversation on our [Discord](https://mui.com/r/discord/) server.
 
 If you'd like an in-depth demo to discuss your use case, please feel free to [schedule a meeting with me on Calendly](https://calendly.com/prakhar-mui).

@@ -33,9 +33,9 @@ Let's delve into four scenarios that Toolpad has successfully addressed:
 We offer a priority support service to our MUI X premium customers: their queries get an expedited response within 24 hours.
 They share their issue through a Priority Support template in our repository where they're directed to validate their license key, and once it's validated, the 24-hour countdown starts.
 
-   <a href="https://tools-public.mui.com/prod/pages/validateSupport">
-    <img alt="Premium key validator support app" src="/static/blog/toolpad-use-cases/validate-support.png" loading="lazy" width="2400" height="1394" />
-    </a>
+<a href="https://tools-public.mui.com/prod/pages/validateSupport">
+  <img alt="Premium key validator support app" src="/static/blog/toolpad-use-cases/validate-support.png" loading="lazy" width="2400" height="1394" />
+</a>
 
 Here's how we built an app for this:
 
