@@ -40,10 +40,10 @@ They share their issue through a Priority Support template in our repository whe
 Here's how we built an app for this:
 
 The [`updateMuiPaidSupport.ts`](https://github.com/mui/mui-public/blob/master/tools-public/toolpad/resources/updateMuiPaidSupport.ts) file hosts all functions that are called from Toolpad.
-It uses the [custom function](https://mui.com/toolpad/concepts/custom-functions/) feature and combines GitHub actions, Google Sheets, and Octokit to read and verify user information.
+It uses the [custom function](https://mui.com/toolpad/concepts/custom-functions/) feature and combines GitHub Actions, Google Sheets, and Octokit to read and verify user information.
 The fetched data is then bound to the UI components.
-It uses [page parameters](https://mui.com/toolpad/concepts/page-properties/#page-parameters), [secrets handling](https://mui.com/toolpad/concepts/custom-functions/#secrets-handling), [shell removal](https://mui.com/toolpad/concepts/page-properties/#display-mode), and custom styling as additional features of Toolpad.
-This app took one developer just a few hours to build which otherwise would have taken a couple of days.
+It uses Toolpad's [page parameters](https://mui.com/toolpad/concepts/page-properties/#page-parameters), [secrets handling](https://mui.com/toolpad/concepts/custom-functions/#secrets-handling), [shell removal](https://mui.com/toolpad/concepts/page-properties/#display-mode), and custom styling features.
+This app took one developer just a few hours to build which otherwise would have taken several days.
 
 ## 2. Customer support KPI tracker
 
@@ -99,7 +99,7 @@ With the release of [authentication](https://mui.com/toolpad/concepts/authentica
 ## Conclusion
 
 As we saw, at MUI we have streamlined our internal tooling through Toolpad, as a result, it helps us stay lean and move fast.
-Internal apps are so custom that it's hard to bucket them in categories though I hope that some of our use cases could resonate with you. Furthermore;
+Internal apps are often very specific to the needs of the organization, but hopefully you've been inspired by some of our use cases here:
 
 - Have you come across any such operation, admin, or analytics related use case in your organization?
 - Do you have existing code that you wish you could reuse in a low-code builder instead of starting fresh?
