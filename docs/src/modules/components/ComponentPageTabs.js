@@ -65,7 +65,7 @@ export default function ComponentPageTabs(props) {
           zIndex: 1000,
           [`& .${tabsClasses.flexContainer}`]: {
             p: 1,
-            gap: 0.5,
+            gap: 1,
           },
           [`& .${tabsClasses.indicator}`]: {
             transition: 'none',
