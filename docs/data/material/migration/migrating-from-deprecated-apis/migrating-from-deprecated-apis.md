@@ -372,6 +372,198 @@ Here's how to migrate:
  },
 ```
 
+## Chip
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#chip-classes) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/chip-classes <path>
+```
+
+### Composed CSS classes
+
+The CSS classes that composed the following props were deprecated:
+
+- `variant` | `clickable` | `deletable` and `color`
+- `avatar` and `color` | `size`
+- `icon` and `color` | `size`
+- `deleteIcon` and `color` | `size`
+- `label` and `size`
+
+Here's how to migrate:
+
+```diff
+-.MuiChip-clickableColorPrimary
++.MuiChip-clickable.MuiChip-colorPrimary
+-.MuiChip-clickableColorSecondary
++.MuiChip-clickable.MuiChip-colorSecondary
+-.MuiChip-deletableColorPrimary
++.MuiChip-deletable.MuiChip-colorPrimary
+-.MuiChip-deletableColorSecondary
++.MuiChip-deletable.MuiChip-colorSecondary
+-.MuiChip-outlinedPrimary
++.MuiChip-outlined.MuiChip-colorPrimary
+-.MuiChip-outlinedSecondary
++.MuiChip-outlined.MuiChip-colorSecondary
+-.MuiChip-filledPrimary
++.MuiChip-filled.MuiChip-colorPrimary
+-.MuiChip-filledSecondary
++.MuiChip-filled.MuiChip-colorSecondary
+-.MuiChip-root .MuiChip-avatarSmall
++.MuiChip-root.MuiChip-sizeSmall > .MuiChip-avatar
+-.MuiChip-root .MuiChip-avatarMedium
++.MuiChip-root.MuiChip-sizeMedium > .MuiChip-avatar
+-.MuiChip-root .MuiChip-avatarColorPrimary
++.MuiChip-root.MuiChip-colorPrimary > .MuiChip-avatar
+-.MuiChip-root .MuiChip-avatarColorSecondary
++.MuiChip-root.MuiChip-colorSecondary > .MuiChip-avatar
+-.MuiChip-root .MuiChip-iconSmall
++.MuiChip-root.MuiChip-sizeSmall > .MuiChip-icon
+-.MuiChip-root .MuiChip-iconMedium
++.MuiChip-root.MuiChip-sizeMedium > .MuiChip-icon
+-.MuiChip-root .MuiChip-iconColorPrimary
++.MuiChip-root.MuiChip-colorPrimary > .MuiChip-icon
+-.MuiChip-root .MuiChip-iconColorSecondary
++.MuiChip-root.MuiChip-colorSecondary > .MuiChip-icon
+-.MuiChip-root .MuiChip-labelSmall
++.MuiChip-root.MuiChip-sizeSmall > .MuiChip-label
+-.MuiChip-root .MuiChip-labelMedium
++.MuiChip-root.MuiChip-sizeMedium > .MuiChip-label
+-.MuiChip-root .MuiChip-deleteIconSmall
++.MuiChip-root.MuiChip-sizeSmall > .MuiChip-deleteIcon
+-.MuiChip-root .MuiChip-deleteIconMedium
++.MuiChip-root.MuiChip-sizeMedium > .MuiChip-deleteIcon
+-.MuiChip-root .MuiChip-deleteIconColorPrimary
++.MuiChip-root.MuiChip-colorPrimary > .MuiChip-deleteIcon
+-.MuiChip-root .MuiChip-deleteIconColorSecondary
++.MuiChip-root.MuiChip-colorSecondary > .MuiChip-deleteIcon
+-.MuiChip-root .MuiChip-deleteIconOutlinedColorPrimary
++.MuiChip-root.MuiChip-outlined.MuiChip-colorPrimary > .MuiChip-deleteIcon
+-.MuiChip-root .MuiChip-deleteIconOutlinedColorSecondary
++.MuiChip-root.MuiChip-outlined.MuiChip-colorSecondary > .MuiChip-deleteIcon
+-.MuiChip-root .MuiChip-deleteIconFilledColorPrimary
++.MuiChip-root.MuiChip-filled.MuiChip-colorPrimary > .MuiChip-deleteIcon
+-.MuiChip-root .MuiChip-deleteIconFilledColorSecondary
++.MuiChip-root.MuiChip-filled.MuiChip-colorSecondary > .MuiChip-deleteIcon
+```
+
+```diff
+
+ import { chipClasses } from '@mui/material/Chip';
+
+  MuiChip: {
+   styleOverrides: {
+     root: {
+-      [`&.${chipClasses.clickableColorPrimary}`]: {
++      [`&.${chipClasses.clickable}.${chipClasses.colorPrimary}`]: {
+         color: 'red',
+        },
+-      [`&.${chipClasses.clickableColorSecondary}`]: {
++      [`&.${chipClasses.clickable}.${chipClasses.colorSecondary}`]: {
+         color: 'red',
+        },
+-      [`&.${chipClasses.deletableColorPrimary}`]: {
++      [`&.${chipClasses.deletable}.${chipClasses.colorPrimary}`]: {
+         color: 'red',
+        },
+-      [`&.${chipClasses.deletableColorSecondary}`]: {
++      [`&.${chipClasses.deletable}.${chipClasses.colorSecondary}`]: {
+         color: 'red',
+        },
+-      [`&.${chipClasses.outlinedPrimary}`]: {
++      [`&.${chipClasses.outlined}.${chipClasses.colorPrimary}`]: {
+         color: 'red',
+        },
+-      [`&.${chipClasses.outlinedSecondary}`]: {
++      [`&.${chipClasses.outlined}.${chipClasses.colorSecondary}`]: {
+         color: 'red',
+        },
+-      [`&.${chipClasses.filledPrimary}`]: {
++      [`&.${chipClasses.filled}.${chipClasses.colorPrimary}`]: {
+         color: 'red',
+        },
+-      [`&.${chipClasses.filledSecondary}`]: {
++      [`&.${chipClasses.filled}.${chipClasses.colorSecondary}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.avatarSmall}`]: {
++      [`&.${chipClasses.sizeSmall} > .${chipClasses.avatar}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.avatarMedium}`]: {
++      [`&.${chipClasses.sizeMedium} > .${chipClasses.avatar}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.avatarColorPrimary}`]: {
++      [`&.${chipClasses.colorPrimary} > .${chipClasses.avatar}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.avatarColorSecondary}`]: {
++      [`&.${chipClasses.colorSecondary} > .${chipClasses.avatar}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.iconSmall}`]: {
++      [`&.${chipClasses.sizeSmall} > .${chipClasses.icon}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.iconMedium}`]: {
++      [`&.${chipClasses.sizeMedium} > .${chipClasses.icon}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.iconColorPrimary}`]: {
++      [`&.${chipClasses.colorPrimary} > .${chipClasses.icon}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.iconColorSecondary}`]: {
++      [`&.${chipClasses.colorSecondary} > .${chipClasses.icon}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.labelSmall}`]: {
++      [`&.${chipClasses.sizeSmall} > .${chipClasses.label}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.labelMedium}`]: {
++      [`&.${chipClasses.sizeMedium} > .${chipClasses.label}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.deleteIconSmall}`]: {
++      [`&.${chipClasses.sizeSmall} > .${chipClasses.deleteIcon}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.deleteIconMedium}`]: {
++      [`&.${chipClasses.sizeMedium} > .${chipClasses.deleteIcon}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.deleteIconColorPrimary}`]: {
++      [`&.${chipClasses.colorPrimary} > .${chipClasses.deleteIcon}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.deleteIconColorSecondary}`]: {
++      [`&.${chipClasses.colorSecondary} > .${chipClasses.deleteIcon}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.deleteIconOutlinedColorPrimary}`]: {
++      [`&.${chipClasses.outlined}.${chipClasses.colorPrimary} > .${chipClasses.deleteIcon}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.deleteIconOutlinedColorSecondary}`]: {
++      [`&.${chipClasses.outlined}.${chipClasses.colorSecondary} > .${chipClasses.deleteIcon}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.deleteIconFilledColorPrimary}`]: {
++      [`&.${chipClasses.filled}.${chipClasses.colorPrimary} > .${chipClasses.deleteIcon}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.deleteIconFilledColorSecondary}`]: {
++      [`&.${chipClasses.filled}.${chipClasses.colorSecondary} > .${chipClasses.deleteIcon}`]: {
+         color: 'red',
+     },
+     },
+   },
+  },
+
+```
+
 ## Divider
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#divider-props) below to migrate the code as described in the following sections:
