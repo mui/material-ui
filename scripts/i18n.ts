@@ -6,11 +6,15 @@ import materialPages from 'docs/data/material/pages';
 import systemPages from 'docs/data/system/pages';
 import basePages from 'docs/data/base/pages';
 import joyPages from 'docs/data/joy/pages';
+import { MuiPage } from 'docs/src/MuiPage';
 
 const EXCLUDES = ['/api', '/blog', '/x/react-'];
 
 async function run() {
-  const translationsFilename = path.join(__dirname, '../translations/translations.json');
+  const translationsFilename = path.join(
+    __dirname,
+    '../packages/mui-docs/src/translations/translations.json',
+  );
   const translationsFile = await fse.readFile(translationsFilename, 'utf8');
   /**
    * @type {{ pages: Record<String, string> }}
@@ -21,7 +25,7 @@ async function run() {
   /**
    * @param {readonly import('docs/src/MuiPage').MuiPage[]} pages
    */
-  const traverse = (pages) => {
+  const traverse = (pages: MuiPage[]) => {
     pages.forEach((page) => {
       if (
         (page.pathname !== '/' && page.pathname === '/api-docs') ||
