@@ -82,6 +82,9 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
     }
   }, []);
 
+  const timeoutRef = React.useRef<number>();
+  const clearTimeoutRef = () => window.clearTimeout(timeoutRef.current);
+
   const inputRef = React.useRef<HTMLInputElement>(null);
   const handleInputRef = useForkRef(inputRef, inputRefProp, handleInputRefWarning);
 
@@ -400,12 +403,42 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
     };
   };
 
-  const handleStepperButtonMouseDown = (event: React.PointerEvent) => {
-    event.preventDefault();
+  const recurse = (payload: {
+    actionType: typeof NumberInputActionTypes.increment | typeof NumberInputActionTypes.decrement;
+    event: React.PointerEvent;
+  }) => {
+    clearTimeoutRef();
 
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
+    const { actionType, event } = payload;
+
+    timeoutRef.current = window.setTimeout(() => {
+      dispatch({
+        type: actionType,
+        event,
+        applyMultiplier: !!event.shiftKey,
+      });
+      recurse({ actionType, event });
+    }, 100);
+  };
+
+  const handleStepperButtonMouseDown =
+    (direction: StepDirection) => (event: React.PointerEvent) => {
+      event.preventDefault();
+
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+
+      const actionType = {
+        up: NumberInputActionTypes.increment,
+        down: NumberInputActionTypes.decrement,
+      }[direction];
+
+      recurse({ actionType, event });
+    };
+
+  const handleStepperButtonMouseUp = () => {
+    clearTimeoutRef();
   };
 
   const stepperButtonCommonProps = {
@@ -424,7 +457,8 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
       ...stepperButtonCommonProps,
       disabled: isIncrementDisabled,
       'aria-disabled': isIncrementDisabled,
-      onMouseDown: handleStepperButtonMouseDown,
+      onMouseDown: handleStepperButtonMouseDown('up'),
+      onMouseUp: handleStepperButtonMouseUp,
       onClick: handleStep('up'),
     };
   };
@@ -440,7 +474,8 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
       ...stepperButtonCommonProps,
       disabled: isDecrementDisabled,
       'aria-disabled': isDecrementDisabled,
-      onMouseDown: handleStepperButtonMouseDown,
+      onMouseDown: handleStepperButtonMouseDown('down'),
+      onMouseUp: handleStepperButtonMouseUp,
       onClick: handleStep('down'),
     };
   };
