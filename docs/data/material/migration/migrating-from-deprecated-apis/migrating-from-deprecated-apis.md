@@ -382,6 +382,14 @@ npx @mui/codemod@latest deprecations/chip-classes <path>
 
 ### Composed CSS classes
 
+The CSS classes that composed the following props were deprecated:
+
+- `variant` | `clickable` | `deletable` and `color`
+- `avatar` and `color` | `size`
+- `icon` and `color` | `size`
+- `deleteIcon` and `color` | `size`
+- `label` and `size`
+
 Here's how to migrate:
 
 ```diff
