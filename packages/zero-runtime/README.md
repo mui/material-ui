@@ -2,6 +2,7 @@
 
 A zero-runtime CSS-in-JS library that extracts the colocated styles to their own CSS files at build-time.
 
+- [Starter template](#starter-template)
 - [Getting started](#getting-started)
   - [Next.js](#nextjs)
   - [Vite](#vite)
@@ -18,6 +19,26 @@ A zero-runtime CSS-in-JS library that extracts the colocated styles to their own
   - [Color schemes](#color-schemes)
   - [Switching color schemes](#switching-color-schemes)
   - [TypeScript](#typescript)
+- [How-to guides](#how-to-guides)
+  - [Coming from Emotion or styled-components](#coming-from-emotion-or-styled-components)
+
+## Starter template
+
+Use the following commands to create a new project with the latest version of the framework and zero-runtime (for existing projects, see [Getting started](#getting-started)):
+
+**Next.js template**:
+
+```bash
+curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/zero-nextjs
+cd zero-nextjs
+```
+
+**Vite template**:
+
+```bash
+curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/zero-vite
+cd zero-vite
+```
 
 ## Getting started
 
@@ -132,7 +153,7 @@ Use the `variants` key to define styles for a combination of the component's pro
 
 Each variant is an object with `props` and `style` keys. The styles are applied when the component's props match the `props` object.
 
-**Example 1**: A button component with `small` and `large` sizes:
+**Example 1** — A button component with `small` and `large` sizes:
 
 ```jsx
 const Button = styled('button')({
@@ -156,7 +177,7 @@ const Button = styled('button')({
 <Button size="small">Small button</Button>; // padding: 0.5rem
 ```
 
-**Example 2**: A button component with variants and colors:
+**Example 2** — A button component with variants and colors:
 
 ```jsx
 const Button = styled('button')({
@@ -177,7 +198,7 @@ const Button = styled('button')({
 </Button>;
 ```
 
-**Example 3**: Apply styles based on a condition:
+**Example 3** — Apply styles based on a condition:
 
 The value of the `props` can be a function that returns a boolean. If the function returns `true`, the styles are applied.
 
@@ -192,6 +213,37 @@ const Button = styled('button')({
       style: { backgroundColor: 'transparent' },
     },
   ],
+});
+```
+
+Note that the `props` function will not work if it is inside another closure, for example, inside an array.map:
+
+```jsx
+const Button = styled('button')({
+  border: 'none',
+  padding: '0.75rem',
+  // ...other base styles
+  variants: ['red', 'blue', 'green'].map((item) => ({
+    props: (props) => {
+      // ❌ Cannot access `item` in this closure
+      return props.color === item && !props.disabled;
+    },
+    style: { backgroundColor: 'tomato' },
+  })),
+});
+```
+
+Instead, use plain objects to define the variants:
+
+```jsx
+const Button = styled('button')({
+  border: 'none',
+  padding: '0.75rem',
+  // ...other base styles
+  variants: ['red', 'blue', 'green'].map((item) => ({
+    props: { color: item, disabled: false },
+    style: { backgroundColor: 'tomato' },
+  })),
 });
 ```
 
@@ -449,5 +501,109 @@ declare module '@mui/zero-runtime/theme' {
       tokens: ThemeTokens;
     }>;
   }
+}
+```
+
+## How-to guides
+
+### Coming from Emotion or styled-components
+
+Emotion and styled-components are runtime CSS-in-JS libraries. What you write in your styles is what you get in the final bundle which means that the styles can be as dynamic as you want with the trade-offs of bundle size and performance overhead.
+
+Zero-runtime, on the other hand, extracts CSS at build time and replaces the JS code with hashed classnames and some CSS variables. This means that it has to know all of the styles to be extracted ahead of time, so there are rules and limitations that you need to be aware of when using javascript callbacks or variables in zero-runtime APIs.
+
+Here are some common patterns and how to achieve them with zero-runtime:
+
+1. A fixed set of styles
+
+In Emotion or styled-components, you can use props to create styles conditionally:
+
+```js
+const Flex = styled('div')((props) => ({
+  display: 'flex',
+  ...(props.vertical // ❌ Zero Runtime will throw an error
+    ? {
+        flexDirection: 'column',
+        paddingBlock: '1rem',
+      }
+    : {
+        paddingInline: '1rem',
+      }),
+}));
+```
+
+But in zero-runtime, you need to define all of the styles ahead of time using the `variants` key:
+
+```js
+const Flex = styled('div')((props) => ({
+  display: 'flex',
+  variants: [
+    {
+      props: { vertical: true },
+      style: {
+        flexDirection: 'column',
+        paddingBlock: '1rem',
+      },
+    },
+    {
+      props: { vertical: false },
+      style: {
+        paddingInline: '1rem',
+      },
+    },
+  ],
+}));
+```
+
+> 💡 Keep in mind that `variants` is for fixed values of props, for example component's colors, sizes, states.
+
+2. Programatically generated styles
+
+For emotion and styled-components, the styles will be different on each render and instances because the styles are generated at runtime:
+
+```js
+function randomBetween(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+function generateBubbleVars() {
+  return `
+    --x: ${randomBetween(10, 90)}%;
+    --y: ${randomBetween(15, 85)}%;
+  `;
+}
+
+function App() {
+  return (
+    <div>
+      {[...Array(10)].map((_, index) => (
+        <div key={index} className={css`${generateBubbleVars()}`} />
+      ))}
+    </div>
+  )
+}
+```
+
+However, in zero-runtime, all of the instances will have the same styles and won't change between renders because the styles are extracted at build time.
+
+To achieve the same result, you need to move the dynamic logic to props and pass the value to CSS variables instead:
+
+```js
+function randomBetween(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+const Bubble = styled('div')({
+  '--x': props => props.x,
+  '--y': props => props.y,
+});
+
+function App() {
+  return (
+    <div>
+      {[...Array(10)].map((_, index) => (
+        <Bubble key={index} x={`${randomBetween(10, 90)}%`} y={`${randomBetween(15, 85)}%`} />
+      ))}
+    </div>
+  )
 }
 ```
