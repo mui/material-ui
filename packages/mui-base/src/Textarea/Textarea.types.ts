@@ -1,4 +1,5 @@
 import type { FormControlState } from '../FormControl';
+import { TextareaAutosizeProps } from '../TextareaAutosize';
 
 export interface TextareaProps
   extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'value'> {
@@ -16,21 +17,10 @@ export interface TextareaProps
    * Minimum number of rows to display.
    * @default 1
    */
-  minRows?: number;
-  /**
-   * The components used for each slot inside the Textarea.
-   * Either a string to use a HTML element or a component.
-   * @default '{}'
-   */
-  slots?: TextareaSlots;
-}
-
-export interface TextareaSlots {
-  /**
-   * The component that renders the textarea.
-   * @default 'textarea'
-   */
-  textarea?: React.ElementType;
+  minRows?: number /**
+   * If `true`, a `textarea` element is rendered.
+   */;
+  render?: (props: TextareaAutosizeProps, ownerState: TextareaOwnerState) => React.ReactNode;
 }
 
 export type TextareaOwnerState = {

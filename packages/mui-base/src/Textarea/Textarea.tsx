@@ -9,8 +9,7 @@ import { getTextareaUtilityClass } from './textareaClasses';
 import { TextareaOwnerState, TextareaProps } from './Textarea.types';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import { TextareaAutosize } from '../TextareaAutosize';
-import { appendOwnerState } from '../utils/appendOwnerState';
+import { TextareaAutosize, TextareaAutosizeProps } from '../TextareaAutosize';
 
 const useUtilityClasses = (ownerState: TextareaOwnerState) => {
   const { disabled, error, focused, formControlContext, readOnly } = ownerState;
@@ -28,6 +27,10 @@ const useUtilityClasses = (ownerState: TextareaOwnerState) => {
 
   return composeClasses(slots, useClassNamesOverride(getTextareaUtilityClass));
 };
+
+function defaultRender(props: TextareaAutosizeProps) {
+  return <TextareaAutosize {...props} />;
+}
 
 const Textarea = React.forwardRef(function Textarea(
   props: TextareaProps,
@@ -59,8 +62,7 @@ const Textarea = React.forwardRef(function Textarea(
     // rows,
     minRows,
     maxRows,
-    // slotProps = {},
-    slots = {},
+    render: renderProp,
     ...other
   } = props;
 
@@ -187,33 +189,25 @@ const Textarea = React.forwardRef(function Textarea(
     }
   }
 
-  const TextareaComponent = slots?.textarea ?? TextareaAutosize;
+  const mergedProps = {
+    ...other,
+    ref: handleTextareaRef,
+    value: value as string | number | readonly string[] | undefined,
+    defaultValue,
+    disabled,
+    readOnly,
+    required,
+    onChange: handleChange,
+    onFocus: handleFocus,
+    onBlur: handleBlur,
+    minRows,
+    maxRows,
+    className: clsx([className, classes.textarea]),
+  };
 
-  const otherProps = appendOwnerState(
-    slots?.textarea ? TextareaComponent : 'textarea',
-    {
-      ...other,
-    },
-    ownerState,
-  );
+  const render = renderProp ?? defaultRender;
 
-  return (
-    <TextareaComponent
-      ref={handleTextareaRef}
-      value={value as string | number | readonly string[] | undefined}
-      defaultValue={defaultValue}
-      disabled={disabled}
-      readOnly={readOnly}
-      required={required}
-      onChange={handleChange}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
-      minRows={minRows}
-      maxRows={maxRows}
-      className={clsx([className, classes.textarea])}
-      {...otherProps}
-    />
-  );
+  return render(mergedProps, ownerState);
 });
 
 Textarea.propTypes /* remove-proptypes */ = {
