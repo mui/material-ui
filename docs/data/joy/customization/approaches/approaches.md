@@ -2,11 +2,11 @@
 
 <p class="description">Learn which approach is recommended, depending on the situation, to customize Joy UI components.</p>
 
-- For customizing only a specific instance of a given component, [_use the `sx` prop_](#sx-prop).
+- For customizing only a specific instance of a given component, [_use the `sx` prop_](#the-sx-prop).
 - To ensure every instance of a given component looks the same across you app, [_use theming_](#theming).
 - To create something that Joy UI doesn't support out of the box but still has design consistency, create a [_reusable component_](#reusable-component) that uses Joy UI's theme design tokens.
 
-## `sx` prop
+## The sx prop
 
 The `sx` prop provides a superset of CSS (contains all CSS properties/selectors, in addition to custom ones) that maps values directly from the theme, depending on the CSS property used.
 
