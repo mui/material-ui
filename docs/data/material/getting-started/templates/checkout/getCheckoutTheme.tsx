@@ -699,6 +699,22 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
                   outlineColor: alpha(brand[500], 0.5),
                 },
               },
+              ...(ownerState.variant === 'standard' && {
+                '&.MuiTextField-root': {
+                  '& .MuiInput-root:hover:not(.Mui-disabled, .Mui-error):before': {
+                    borderColor: brand[200],
+                  },
+                },
+                '& :before': {
+                  borderBottom: '1px solid',
+                  borderColor: gray[700],
+                },
+                '&:hover': {
+                  '& :before': {
+                    borderColor: brand[300],
+                  },
+                },
+              }),
             }),
           }),
         },
