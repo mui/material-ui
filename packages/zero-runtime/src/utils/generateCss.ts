@@ -1,5 +1,5 @@
 import { serializeStyles } from '@emotion/serialize';
-import { Theme } from '../extendTheme';
+import { Theme } from './extendTheme';
 
 export function generateTokenCss(theme: Theme) {
   // create stylesheet as object

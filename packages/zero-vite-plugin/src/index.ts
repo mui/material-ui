@@ -3,8 +3,9 @@ import {
   preprocessor as basePreprocessor,
   generateTokenCss,
   generateThemeTokens,
+  type Theme,
+  extendTheme,
 } from '@mui/zero-runtime/utils';
-import type { Theme } from '@mui/zero-runtime/extendTheme';
 import { transformAsync } from '@babel/core';
 import baseZeroVitePlugin, { type VitePluginOptions } from './zero-vite-plugin';
 
@@ -116,3 +117,5 @@ export function zeroVitePlugin(options: ZeroVitePluginOptions) {
 
   return [injectMUITokensPlugin(), intermediateBabelPlugin(), zeroPlugin];
 }
+
+export { extendTheme };
