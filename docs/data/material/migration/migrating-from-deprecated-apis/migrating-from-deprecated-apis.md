@@ -164,3 +164,33 @@ The Divider's `light` prop was deprecated, Use `sx={{ opacity : "0.6" }}` (or an
 +  sx={{ opacity : "0.6" }}
  />
 ```
+
+## Badge
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#badge-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/badge-props <path>
+```
+
+### components
+
+The Badge's `components` was deprecated in favor of `slots`:
+
+```diff
+ <Badge
+-  components={{ Badge: CustomElements }}
++  slots={{ badge: CustomElements }}
+ />
+```
+
+### componentsProps
+
+The Badge's `componentsProps` was deprecated in favor of `slotProps`:
+
+```diff
+ <Badge
+-  componentsProps={{ badge: { testid: 'test-id' } }}
++  slotProps={{ badge: { testid: 'test-id' } }}
+ />
+```
