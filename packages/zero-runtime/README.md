@@ -269,7 +269,7 @@ Theming is an **optional** feature that lets you reuse the same values, such as 
 
 > **💡 Good to know**:
 >
-> The **theme** object is used at build time and does not exist in the final JS bundle. This means that components created using zero-runtime `styled` can be using with React Server Components by default while still getting the benefits of theming.
+> The **theme** object is used at build time and does not exist in the final JS bundle. This means that components created using zero-runtime's `styled` can be used with React Server Components by default while still getting the benefits of theming.
 
 For example, in Next.js, you can define a theme in the `next.config.js` file like this:
 
