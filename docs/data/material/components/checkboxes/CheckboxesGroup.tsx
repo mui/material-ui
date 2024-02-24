@@ -15,10 +15,10 @@ export default function CheckboxesGroup() {
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({
-      ...state,
-      [event.target.name]: event.target.checked,
-    });
+    setState((prevState) => ({
+			...prevState,
+			[event.target.name]: event.target.checked,
+		}));
   };
 
   const { gilad, jason, antoine } = state;
