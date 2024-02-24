@@ -48,6 +48,18 @@
   ],
   "classes": [
     {
+      "key": "colorPrimary",
+      "className": "MuiButtonGroup-colorPrimary",
+      "description": "Styles applied to the root element if `color=\"primary\"`",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSecondary",
+      "className": "MuiButtonGroup-colorSecondary",
+      "description": "Styles applied to the root element if `color=\"secondary\"`",
+      "isGlobal": false
+    },
+    {
       "key": "contained",
       "className": "MuiButtonGroup-contained",
       "description": "Styles applied to the root element if `variant=\"contained\"`.",
@@ -84,22 +96,11 @@
       "isGlobal": false
     },
     {
-      "key": "groupedColorPrimary",
-      "className": "MuiButtonGroup-groupedColorPrimary",
-      "description": "Styles applied to the children if `color=\"primary\"`.",
-      "isGlobal": false
-    },
-    {
-      "key": "groupedColorSecondary",
-      "className": "MuiButtonGroup-groupedColorSecondary",
-      "description": "Styles applied to the children if `color=\"secondary\"`.",
-      "isGlobal": false
-    },
-    {
       "key": "groupedContained",
       "className": "MuiButtonGroup-groupedContained",
       "description": "Styles applied to the children if `variant=\"contained\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "groupedContainedHorizontal",
@@ -133,13 +134,15 @@
       "key": "groupedHorizontal",
       "className": "MuiButtonGroup-groupedHorizontal",
       "description": "Styles applied to the children if `orientation=\"horizontal\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "groupedOutlined",
       "className": "MuiButtonGroup-groupedOutlined",
       "description": "Styles applied to the children if `variant=\"outlined\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "groupedOutlinedHorizontal",
@@ -173,7 +176,8 @@
       "key": "groupedText",
       "className": "MuiButtonGroup-groupedText",
       "description": "Styles applied to the children if `variant=\"text\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "groupedTextHorizontal",
@@ -207,6 +211,13 @@
       "key": "groupedVertical",
       "className": "MuiButtonGroup-groupedVertical",
       "description": "Styles applied to the children if `orientation=\"vertical\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "horizontal",
+      "className": "MuiButtonGroup-horizontal",
+      "description": "Styles applied to the root element if `orientation=\"horizontal\"`.",
       "isGlobal": false
     },
     {
