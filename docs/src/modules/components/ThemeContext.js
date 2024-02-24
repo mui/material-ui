@@ -5,7 +5,6 @@ import {
   createTheme as createMdTheme,
 } from '@mui/material/styles';
 import { deepmerge } from '@mui/utils';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import { enUS, zhCN, ptBR } from '@mui/material/locale';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
 import { getCookie } from 'docs/src/modules/utils/helpers';
@@ -112,64 +111,61 @@ if (process.env.NODE_ENV !== 'production') {
 export function ThemeProvider(props) {
   const { children } = props;
 
-  const [themeOptions, dispatch] = React.useReducer(
-    (state, action) => {
-      switch (action.type) {
-        case 'SET_SPACING':
-          return {
-            ...state,
-            spacing: action.payload,
-          };
-        case 'INCREASE_SPACING': {
-          return {
-            ...state,
-            spacing: state.spacing + 1,
-          };
-        }
-        case 'DECREASE_SPACING': {
-          return {
-            ...state,
-            spacing: state.spacing - 1,
-          };
-        }
-        case 'SET_DENSE':
-          return {
-            ...state,
-            dense: action.payload,
-          };
-        case 'RESET_DENSITY':
-          return {
-            ...state,
-            dense: themeInitialOptions.dense,
-            spacing: themeInitialOptions.spacing,
-          };
-        case 'RESET_COLORS':
-          return {
-            ...state,
-            paletteColors: themeInitialOptions.paletteColors,
-          };
-        case 'CHANGE':
-          // No value changed
-          if (
-            (!action.payload.paletteMode || action.payload.paletteMode === state.paletteMode) &&
-            (!action.payload.direction || action.payload.direction === state.direction) &&
-            (!action.payload.paletteColors || action.payload.paletteColors === state.paletteColors)
-          ) {
-            return state;
-          }
-
-          return {
-            ...state,
-            paletteMode: action.payload.paletteMode || state.paletteMode,
-            direction: action.payload.direction || state.direction,
-            paletteColors: action.payload.paletteColors || state.paletteColors,
-          };
-        default:
-          throw new Error(`Unrecognized type ${action.type}`);
+  const [themeOptions, dispatch] = React.useReducer((state, action) => {
+    switch (action.type) {
+      case 'SET_SPACING':
+        return {
+          ...state,
+          spacing: action.payload,
+        };
+      case 'INCREASE_SPACING': {
+        return {
+          ...state,
+          spacing: state.spacing + 1,
+        };
       }
-    },
-    themeInitialOptions,
-  );
+      case 'DECREASE_SPACING': {
+        return {
+          ...state,
+          spacing: state.spacing - 1,
+        };
+      }
+      case 'SET_DENSE':
+        return {
+          ...state,
+          dense: action.payload,
+        };
+      case 'RESET_DENSITY':
+        return {
+          ...state,
+          dense: themeInitialOptions.dense,
+          spacing: themeInitialOptions.spacing,
+        };
+      case 'RESET_COLORS':
+        return {
+          ...state,
+          paletteColors: themeInitialOptions.paletteColors,
+        };
+      case 'CHANGE':
+        // No value changed
+        if (
+          (!action.payload.paletteMode || action.payload.paletteMode === state.paletteMode) &&
+          (!action.payload.direction || action.payload.direction === state.direction) &&
+          (!action.payload.paletteColors || action.payload.paletteColors === state.paletteColors)
+        ) {
+          return state;
+        }
+
+        return {
+          ...state,
+          paletteMode: action.payload.paletteMode || state.paletteMode,
+          direction: action.payload.direction || state.direction,
+          paletteColors: action.payload.paletteColors || state.paletteColors,
+        };
+      default:
+        throw new Error(`Unrecognized type ${action.type}`);
+    }
+  }, themeInitialOptions);
 
   const userLanguage = useUserLanguage();
   const { dense, direction, paletteColors, paletteMode, spacing } = themeOptions;
