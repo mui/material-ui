@@ -52,26 +52,26 @@ export default function ThemeModeToggle() {
     return <IconButton color="primary" disableTouchRipple />;
   }
 
-  if (theme.vars) {
-    // Temporarily renders conditionally because `useColorScheme` could not be used in the pages that haven't migrated to CSS theme variables.
-    return <CssVarsModeToggle onChange={setMode} />;
+  // TODO remove this code branch, all pages should be migrated to use CssVarsProvider
+  if (!theme.vars) {
+    return (
+      <Tooltip title={calculatedMode === 'dark' ? 'Turn on the light' : 'Turn off the light'}>
+        <IconButton
+          color="primary"
+          disableTouchRipple
+          onClick={() => {
+            setMode(calculatedMode === 'dark' ? 'light' : 'dark');
+          }}
+        >
+          {calculatedMode === 'dark' ? (
+            <LightModeOutlined fontSize="small" />
+          ) : (
+            <DarkModeOutlined fontSize="small" />
+          )}
+        </IconButton>
+      </Tooltip>
+    );
   }
 
-  return (
-    <Tooltip title={calculatedMode === 'dark' ? 'Turn on the light' : 'Turn off the light'}>
-      <IconButton
-        color="primary"
-        disableTouchRipple
-        onClick={() => {
-          setMode(calculatedMode === 'dark' ? 'light' : 'dark');
-        }}
-      >
-        {calculatedMode === 'dark' ? (
-          <LightModeOutlined fontSize="small" />
-        ) : (
-          <DarkModeOutlined fontSize="small" />
-        )}
-      </IconButton>
-    </Tooltip>
-  );
+  return <CssVarsModeToggle onChange={setMode} />;
 }

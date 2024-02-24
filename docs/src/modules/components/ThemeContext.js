@@ -111,8 +111,6 @@ if (process.env.NODE_ENV !== 'production') {
 
 export function ThemeProvider(props) {
   const { children } = props;
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', { noSsr: true });
-  const systemMode = prefersDarkMode ? 'dark' : 'light';
 
   const [themeOptions, dispatch] = React.useReducer(
     (state, action) => {
@@ -177,6 +175,9 @@ export function ThemeProvider(props) {
   const { dense, direction, paletteColors, paletteMode, spacing } = themeOptions;
 
   useLazyCSS('/static/styles/prism-okaidia.css', '#prismjs');
+
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', { noSsr: true });
+  const systemMode = prefersDarkMode ? 'dark' : 'light';
 
   useEnhancedEffect(() => {
     let nextPaletteColors = JSON.parse(getCookie('paletteColors') || 'null');
