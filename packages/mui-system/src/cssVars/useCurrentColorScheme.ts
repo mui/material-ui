@@ -256,10 +256,15 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
   const handleMediaQuery = React.useCallback(
     (event?: MediaQueryListEvent) => {
       if (state.mode === 'system') {
-        setState((currentState) => ({
-          ...currentState,
-          systemMode: event?.matches ? 'dark' : 'light',
-        }));
+        setState((currentState) => {
+          const systemMode = event?.matches ? 'dark' : 'light';
+
+          // Early exit, nothing changed.
+          if (currentState.systemMode === systemMode) {
+            return currentState;
+          }
+          return { ...currentState, systemMode };
+        });
       }
     },
     [state.mode],
@@ -278,8 +283,9 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
     // Intentionally use deprecated listener methods to support iOS & old browsers
     media.addListener(handler);
     handler(media);
-
-    return () => media.removeListener(handler);
+    return () => {
+      media.removeListener(handler);
+    };
   }, []);
 
   // Handle when localStorage has changed
