@@ -16,10 +16,6 @@ function CssVarsModeToggle(props: { onChange: (checked: boolean) => void }) {
   }, []);
   const calculatedMode = mode === 'system' ? systemMode : mode;
 
-  if (!mounted) {
-    return <IconButton color="primary" disabled />;
-  }
-
   return (
     <Tooltip title={calculatedMode === 'dark' ? 'Turn on the light' : 'Turn off the light'}>
       <IconButton
@@ -31,7 +27,7 @@ function CssVarsModeToggle(props: { onChange: (checked: boolean) => void }) {
           setMode(calculatedMode === 'dark' ? 'light' : 'dark');
         }}
       >
-        {!calculatedMode
+        {!calculatedMode || !mounted
           ? null
           : {
               light: <DarkModeOutlined fontSize="small" />,
@@ -60,6 +56,7 @@ export default function ThemeModeToggle() {
     changeTheme({ paletteMode });
   }, [changeTheme, mode, preferredMode]);
 
+  // Server-side hydration
   if (mode === null) {
     return <IconButton color="primary" disableTouchRipple />;
   }

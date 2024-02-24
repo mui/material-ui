@@ -38,7 +38,7 @@ const IconToggleButton = styled(ToggleButton)({
   },
 });
 
-function AppSettingsDrawer(props) {
+export default function AppSettingsDrawer(props) {
   const { onClose, open = false, ...other } = props;
   const t = useTranslate();
   const upperTheme = useTheme();
@@ -180,5 +180,3 @@ AppSettingsDrawer.propTypes = {
   onClose: PropTypes.func.isRequired,
   open: PropTypes.bool,
 };
-
-export default AppSettingsDrawer;

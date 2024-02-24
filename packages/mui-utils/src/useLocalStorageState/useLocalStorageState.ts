@@ -35,20 +35,20 @@ function emitCurrentTabStorageChange(key: string) {
   }
 }
 
-function subscribe(area: Storage, key: string | null, cb: () => void): () => void {
+function subscribe(area: Storage, key: string | null, callbark: () => void): () => void {
   if (!key) {
     return () => {};
   }
   const storageHandler = (event: StorageEvent) => {
     if (event.storageArea === area && event.key === key) {
-      cb();
+      callbark();
     }
   };
   window.addEventListener('storage', storageHandler);
-  onCurrentTabStorageChange(key, cb);
+  onCurrentTabStorageChange(key, callbark);
   return () => {
     window.removeEventListener('storage', storageHandler);
-    offCurrentTabStorageChange(key, cb);
+    offCurrentTabStorageChange(key, callbark);
   };
 }
 
@@ -89,17 +89,16 @@ type UseStorageStateHookResult<T> = [T, React.Dispatch<React.SetStateAction<T>>]
 
 function useLocalStorageStateServer(
   key: string | null,
-  initializer: string | Initializer<string>,
+  initializer: any,
 ): UseStorageStateHookResult<string>;
 function useLocalStorageStateServer(
   key: string | null,
   initializer?: string | null | Initializer<string | null>,
 ): UseStorageStateHookResult<string | null>;
-function useLocalStorageStateServer(
-  key: string | null,
-  initializer: string | null | Initializer<string | null> = null,
-): UseStorageStateHookResult<string | null> | UseStorageStateHookResult<string> {
-  return React.useState(initializer);
+function useLocalStorageStateServer():
+  | UseStorageStateHookResult<string | null>
+  | UseStorageStateHookResult<string> {
+  return React.useState<string | null>(null);
 }
 
 /**
@@ -130,12 +129,17 @@ function useLocalStorageStateBrowser(
 ): UseStorageStateHookResult<string | null> | UseStorageStateHookResult<string> {
   const [initialValue] = React.useState(initializer);
   const area = window.localStorage;
-  const subscribeKey = React.useCallback((cb: () => void) => subscribe(area, key, cb), [area, key]);
+  const subscribeKey = React.useCallback(
+    (callbark: () => void) => subscribe(area, key, callbark),
+    [area, key],
+  );
   const getKeySnapshot = React.useCallback(
     () => getSnapshot(area, key) ?? initialValue,
     [area, initialValue, key],
   );
-  const getKeyServerSnapshot = React.useCallback(() => initialValue, [initialValue]);
+
+  // Start with null for the hydration, and then switch to the actual value.
+  const getKeyServerSnapshot = () => null;
 
   const storedValue = React.useSyncExternalStore(
     subscribeKey,
