@@ -112,7 +112,7 @@ if (process.env.NODE_ENV !== 'production') {
 export function ThemeProvider(props) {
   const { children } = props;
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', { noSsr: true });
-  const preferredMode = prefersDarkMode ? 'dark' : 'light';
+  const systemMode = prefersDarkMode ? 'dark' : 'light';
 
   const [themeOptions, dispatch] = React.useReducer(
     (state, action) => {
@@ -171,22 +171,22 @@ export function ThemeProvider(props) {
 
   useEnhancedEffect(() => {
     const nextPaletteColors = JSON.parse(getCookie('paletteColors') || 'null');
-    let nextPaletteMode = preferredMode; // syncing with homepage, can be removed once all pages are migrated to CSS variables
+    let nextPaletteMode = systemMode; // syncing with homepage, can be removed once all pages are migrated to CSS variables
     try {
-      nextPaletteMode = localStorage.getItem('mui-mode') ?? preferredMode;
+      nextPaletteMode = localStorage.getItem('mui-mode') ?? systemMode;
     } catch (error) {
       // mainly thrown when cookies are disabled.
     }
 
     if (nextPaletteMode === 'system') {
-      nextPaletteMode = preferredMode;
+      nextPaletteMode = systemMode;
     }
 
     dispatch({
       type: 'CHANGE',
       payload: { paletteColors: nextPaletteColors, paletteMode: nextPaletteMode },
     });
-  }, [preferredMode]);
+  }, [systemMode]);
 
   useEnhancedEffect(() => {
     document.body.dir = direction;

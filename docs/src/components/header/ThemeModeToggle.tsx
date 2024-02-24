@@ -39,15 +39,18 @@ export default function ThemeModeToggle() {
   const theme = useTheme();
   const changeTheme = useChangeTheme();
   const [mode, setMode] = useLocalStorageState('mui-mode', 'system');
-  console.log('mode', mode);
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', { noSsr: true });
   const systemMode = prefersDarkMode ? 'dark' : 'light';
   const calculatedMode = mode === 'system' ? systemMode : mode;
+  console.log('render', {
+    mode,
+    prefersDarkMode,
+    calculatedMode,
+  });
 
   React.useEffect(() => {
-    const paletteMode = mode === 'system' ? systemMode : mode;
-    changeTheme({ paletteMode });
-  }, [changeTheme, mode, systemMode]);
+    changeTheme({ paletteMode: calculatedMode });
+  }, [changeTheme, calculatedMode]);
 
   // Server-side hydration
   if (mode === null) {

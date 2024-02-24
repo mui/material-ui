@@ -45,8 +45,9 @@ export default function AppSettingsDrawer(props) {
   const changeTheme = useChangeTheme();
   const [mode, setMode] = useLocalStorageState('mui-mode', 'system');
   console.log('mode', mode);
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const preferredMode = prefersDarkMode ? 'dark' : 'light';
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', { noSsr: true });
+  const systemMode = prefersDarkMode ? 'dark' : 'light';
+  const calculatedMode = mode === 'system' ? systemMode : mode;
 
   const handleChangeThemeMode = (event, paletteMode) => {
     if (paletteMode === null) {
@@ -57,9 +58,8 @@ export default function AppSettingsDrawer(props) {
   };
 
   React.useEffect(() => {
-    const paletteMode = mode === 'system' ? preferredMode : mode;
-    changeTheme({ paletteMode });
-  }, [changeTheme, mode, preferredMode]);
+    changeTheme({ paletteMode: calculatedMode });
+  }, [changeTheme, calculatedMode]);
 
   const handleChangeDirection = (event, direction) => {
     if (direction === null) {
