@@ -151,6 +151,15 @@ export function ThemeProvider(props) {
             paletteColors: themeInitialOptions.paletteColors,
           };
         case 'CHANGE':
+          // No value changed
+          if (
+            (!action.payload.paletteMode || action.payload.paletteMode === state.paletteMode) &&
+            (!action.payload.direction || action.payload.direction === state.direction) &&
+            (!action.payload.paletteColors || action.payload.paletteColors === state.paletteColors)
+          ) {
+            return state;
+          }
+
           return {
             ...state,
             paletteMode: action.payload.paletteMode || state.paletteMode,
@@ -161,7 +170,7 @@ export function ThemeProvider(props) {
           throw new Error(`Unrecognized type ${action.type}`);
       }
     },
-    { ...themeInitialOptions, paletteMode: 'light' },
+    { ...themeInitialOptions },
   );
 
   const userLanguage = useUserLanguage();
@@ -170,21 +179,28 @@ export function ThemeProvider(props) {
   useLazyCSS('/static/styles/prism-okaidia.css', '#prismjs');
 
   useEnhancedEffect(() => {
-    const nextPaletteColors = JSON.parse(getCookie('paletteColors') || 'null');
+    let nextPaletteColors = JSON.parse(getCookie('paletteColors') || 'null');
+    // Set default value if no value is found in cookie
+    if (nextPaletteColors === null) {
+      nextPaletteColors = themeInitialOptions.paletteColors;
+    }
+
     let nextPaletteMode = systemMode; // syncing with homepage, can be removed once all pages are migrated to CSS variables
     try {
       nextPaletteMode = localStorage.getItem('mui-mode') ?? systemMode;
     } catch (error) {
       // mainly thrown when cookies are disabled.
     }
-
     if (nextPaletteMode === 'system') {
       nextPaletteMode = systemMode;
     }
 
     dispatch({
       type: 'CHANGE',
-      payload: { paletteColors: nextPaletteColors, paletteMode: nextPaletteMode },
+      payload: {
+        paletteColors: nextPaletteColors,
+        paletteMode: nextPaletteMode
+      },
     });
   }, [systemMode]);
 

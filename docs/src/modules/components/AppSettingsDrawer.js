@@ -58,6 +58,7 @@ export default function AppSettingsDrawer(props) {
   };
 
   React.useEffect(() => {
+    console.log('changeTheme 2');
     changeTheme({ paletteMode: calculatedMode });
   }, [changeTheme, calculatedMode]);
 
