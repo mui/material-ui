@@ -49,6 +49,10 @@ export default function ThemeModeToggle() {
   });
 
   React.useEffect(() => {
+    console.log('theme2', theme.cssVarPrefix);
+  }, [theme]);
+
+  React.useEffect(() => {
     console.log('changeTheme 1');
     changeTheme({ paletteMode: calculatedMode });
   }, [changeTheme, calculatedMode]);

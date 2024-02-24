@@ -199,7 +199,7 @@ export function ThemeProvider(props) {
       type: 'CHANGE',
       payload: {
         paletteColors: nextPaletteColors,
-        paletteMode: nextPaletteMode
+        paletteMode: nextPaletteMode,
       },
     });
   }, [systemMode]);
