@@ -24,43 +24,81 @@ export interface ButtonGroupClasses {
   vertical: string;
   /** Styles applied to the children. */
   grouped: string;
-  /** Styles applied to the children if `orientation="horizontal"`. */
+  /** Styles applied to the children if `orientation="horizontal"`.
+   * @deprecated Combine the [.MuiButtonGroup-horizontal](/material-ui/api/button-group/#button-group-classes-horizontal) and [.MuiButtonGroup-grouped](/material-ui/api/button-group/#button-group-classes-grouped) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+   */
   groupedHorizontal: string;
-  /** Styles applied to the children if `orientation="vertical"`. */
+  /** Styles applied to the children if `orientation="vertical"`.
+   * @deprecated Combine the [.MuiButtonGroup-vertical](/material-ui/api/button-group/#button-group-classes-vertical) and [.MuiButtonGroup-grouped](/material-ui/api/button-group/#button-group-classes-grouped) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+   */
   groupedVertical: string;
-  /** Styles applied to the children if `variant="text"`. */
+  /** Styles applied to the children if `variant="text"`.
+   * @deprecated Combine the [.MuiButtonGroup-text](/material-ui/api/button-group/#button-group-classes-text) and [.MuiButtonGroup-grouped](/material-ui/api/button-group/#button-group-classes-grouped) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+   */
   groupedText: string;
-  /** Styles applied to the children if `variant="text"` and `orientation="horizontal"`. */
+  /** Styles applied to the children if `variant="text"` and `orientation="horizontal"`.
+   * @deprecated Combine the [.MuiButtonGroup-text](/material-ui/api/button-group/#button-group-classes-text) , [.MuiButtonGroup-horizontal](/material-ui/api/button-group/#button-group-classes-horizontal) and [.MuiButtonGroup-grouped](/material-ui/api/button-group/#button-group-classes-grouped) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+   */
   groupedTextHorizontal: string;
-  /** Styles applied to the children if `variant="text"` and `orientation="vertical"`. */
+  /** Styles applied to the children if `variant="text"` and `orientation="vertical"`.
+   * @deprecated Combine the [.MuiButtonGroup-text](/material-ui/api/button-group/#button-group-classes-text) , [.MuiButtonGroup-vertical](/material-ui/api/button-group/#button-group-classes-vertical) and [.MuiButtonGroup-grouped](/material-ui/api/button-group/#button-group-classes-grouped) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+   */
   groupedTextVertical: string;
-  /** Styles applied to the children if `variant="text"` and `color="primary"`. */
+  /** Styles applied to the children if `variant="text"` and `color="primary"`.
+   * @deprecated Combine the [.MuiButtonGroup-text](/material-ui/api/button-group/#button-group-classes-text) , [.MuiButtonGroup-grouped](/material-ui/api/button-group/#button-group-classes-grouped) and [.MuiButtonGroup-groupedColorPrimary](/material-ui/api/button-group/#button-group-classes-groupedcolorprimary) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+   */
   groupedTextPrimary: string;
-  /** Styles applied to the children if `variant="text"` and `color="secondary"`. */
+  /** Styles applied to the children if `variant="text"` and `color="secondary"`.
+   * @deprecated Combine the [.MuiButtonGroup-text](/material-ui/api/button-group/#button-group-classes-text) , [.MuiButtonGroup-grouped](/material-ui/api/button-group/#button-group-classes-grouped) and [.MuiButtonGroup-groupedColorSecondary](/material-ui/api/button-group/#button-group-classes-groupedcolorsecondary) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+   */
   groupedTextSecondary: string;
-  /** Styles applied to the children if `variant="outlined"`. */
+  /** Styles applied to the children if `variant="outlined"`.
+   * @deprecated Combine the [.MuiButtonGroup-outlined](/material-ui/api/button-group/#button-group-classes-outlined) and [.MuiButtonGroup-grouped](/material-ui/api/button-group/#button-group-classes-grouped) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+   */
   groupedOutlined: string;
-  /** Styles applied to the children if `variant="outlined"` and `orientation="horizontal"`. */
+  /** Styles applied to the children if `variant="outlined"` and `orientation="horizontal"`.
+   * @deprecated Combine the [.MuiButtonGroup-outlined](/material-ui/api/button-group/#button-group-classes-outlined) , [.MuiButtonGroup-horizontal](/material-ui/api/button-group/#button-group-classes-horizontal) and [.MuiButtonGroup-grouped](/material-ui/api/button-group/#button-group-classes-grouped) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+   */
   groupedOutlinedHorizontal: string;
-  /** Styles applied to the children if `variant="outlined"` and `orientation="vertical"`. */
+  /** Styles applied to the children if `variant="outlined"` and `orientation="vertical"`.
+   * @deprecated Combine the [.MuiButtonGroup-outlined](/material-ui/api/button-group/#button-group-classes-outlined) , [.MuiButtonGroup-vertical](/material-ui/api/button-group/#button-group-classes-vertical) and [.MuiButtonGroup-grouped](/material-ui/api/button-group/#button-group-classes-grouped) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+   */
   groupedOutlinedVertical: string;
-  /** Styles applied to the children if `variant="outlined"` and `color="primary"`. */
+  /** Styles applied to the children if `variant="outlined"` and `color="primary"`.
+   * @deprecated Combine the [.MuiButtonGroup-outlined](/material-ui/api/button-group/#button-group-classes-outlined) , [.MuiButtonGroup-grouped](/material-ui/api/button-group/#button-group-classes-grouped) and [.MuiButtonGroup-groupedColorPrimary](/material-ui/api/button-group/#button-group-classes-groupedcolorprimary) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+   */
   groupedOutlinedPrimary: string;
-  /** Styles applied to the children if `variant="outlined"` and `color="secondary"`. */
+  /** Styles applied to the children if `variant="outlined"` and `color="secondary"`.
+   * @deprecated Combine the [.MuiButtonGroup-outlined](/material-ui/api/button-group/#button-group-classes-outlined) , [.MuiButtonGroup-grouped](/material-ui/api/button-group/#button-group-classes-grouped) and [.MuiButtonGroup-groupedColorSecondary](/material-ui/api/button-group/#button-group-classes-groupedcolorsecondary) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+   */
   groupedOutlinedSecondary: string;
-  /** Styles applied to the children if `variant="contained"`. */
+  /** Styles applied to the children if `variant="contained"`.
+   * @deprecated Combine the [.MuiButtonGroup-contained](/material-ui/api/button-group/#button-group-classes-contained) and [.MuiButtonGroup-grouped](/material-ui/api/button-group/#button-group-classes-grouped) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+   */
   groupedContained: string;
-  /** Styles applied to the children if `variant="contained"` and `orientation="horizontal"`. */
+  /** Styles applied to the children if `variant="contained"` and `orientation="horizontal"`.
+   * @deprecated Combine the [.MuiButtonGroup-contained](/material-ui/api/button-group/#button-group-classes-contained) , [.MuiButtonGroup-horizontal](/material-ui/api/button-group/#button-group-classes-horizontal) and [.MuiButtonGroup-grouped](/material-ui/api/button-group/#button-group-classes-grouped) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+   */
   groupedContainedHorizontal: string;
-  /** Styles applied to the children if `variant="contained"` and `orientation="vertical"`. */
+  /** Styles applied to the children if `variant="contained"` and `orientation="vertical"`.
+   * @deprecated Combine the [.MuiButtonGroup-contained](/material-ui/api/button-group/#button-group-classes-contained) , [.MuiButtonGroup-vertical](/material-ui/api/button-group/#button-group-classes-vertical) and [.MuiButtonGroup-grouped](/material-ui/api/button-group/#button-group-classes-grouped) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+   */
   groupedContainedVertical: string;
-  /** Styles applied to the children if `variant="contained"` and `color="primary"`. */
+  /** Styles applied to the children if `variant="contained"` and `color="primary"`.
+   * @deprecated Combine the [.MuiButtonGroup-contained](/material-ui/api/button-group/#button-group-classes-contained) , [.MuiButtonGroup-grouped](/material-ui/api/button-group/#button-group-classes-grouped) and [.MuiButtonGroup-groupedColorPrimary](/material-ui/api/button-group/#button-group-classes-groupedcolorprimary) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+   */
   groupedContainedPrimary: string;
-  /** Styles applied to the children if `variant="contained"` and `color="secondary"`. */
+  /** Styles applied to the children if `variant="contained"` and `color="secondary"`.
+   * @deprecated Combine the [.MuiButtonGroup-contained](/material-ui/api/button-group/#button-group-classes-contained) , [.MuiButtonGroup-grouped](/material-ui/api/button-group/#button-group-classes-grouped) and [.MuiButtonGroup-groupedColorSecondary](/material-ui/api/button-group/#button-group-classes-groupedcolorsecondary) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+   */
   groupedContainedSecondary: string;
-  /** Styles applied to the children if `color="primary"`. */
+  /** Styles applied to the children if `color="primary"`.
+   * @deprecated Combine the [.MuiButtonGroup-grouped](/material-ui/api/button-group/#button-group-classes-grouped) and [.MuiButtonGroup-groupedColorPrimary](/material-ui/api/button-group/#button-group-classes-groupedcolorprimary) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+   */
   groupedColorPrimary: string;
-  /** Styles applied to the children if `color="secondary"`. */
+  /** Styles applied to the children if `color="secondary"`.
+   * @deprecated Combine the [.MuiButtonGroup-grouped](/material-ui/api/button-group/#button-group-classes-grouped) and [.MuiButtonGroup-groupedColorSecondary](/material-ui/api/button-group/#button-group-classes-groupedcolorsecondary) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+   */
   groupedColorSecondary: string;
   /** Styles applied to the last button in the button group. */
   lastButton: string;
