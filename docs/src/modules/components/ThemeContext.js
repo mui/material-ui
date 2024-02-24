@@ -168,7 +168,7 @@ export function ThemeProvider(props) {
           throw new Error(`Unrecognized type ${action.type}`);
       }
     },
-    { ...themeInitialOptions },
+    themeInitialOptions,
   );
 
   const userLanguage = useUserLanguage();

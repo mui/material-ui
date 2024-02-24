@@ -160,7 +160,7 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
           // do nothing if mode does not change
           return currentState;
         }
-        const newMode = !mode ? defaultMode : mode;
+        const newMode = mode ?? defaultMode;
         try {
           localStorage.setItem(modeStorageKey, newMode);
         } catch (e) {

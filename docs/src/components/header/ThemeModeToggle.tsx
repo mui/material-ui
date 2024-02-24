@@ -44,7 +44,7 @@ export default function ThemeModeToggle() {
   const systemMode = prefersDarkMode ? 'dark' : 'light';
   const calculatedMode = mode === 'system' ? systemMode : mode;
 
-  // TODO remove, where changeTheme() is imported from should use useColorScheme().
+  // TODO remove, the module where "changeTheme() is imported from" should use useColorScheme() to set the mode directly.
   // Delegating this to the UI component is wrong.
   React.useEffect(() => {
     changeTheme({ paletteMode: calculatedMode });
