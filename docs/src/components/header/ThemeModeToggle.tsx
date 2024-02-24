@@ -42,18 +42,8 @@ export default function ThemeModeToggle() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', { noSsr: true });
   const systemMode = prefersDarkMode ? 'dark' : 'light';
   const calculatedMode = mode === 'system' ? systemMode : mode;
-  console.log('render', {
-    mode,
-    prefersDarkMode,
-    calculatedMode,
-  });
 
   React.useEffect(() => {
-    console.log('theme2', theme.cssVarPrefix);
-  }, [theme]);
-
-  React.useEffect(() => {
-    console.log('changeTheme 1');
     changeTheme({ paletteMode: calculatedMode });
   }, [changeTheme, calculatedMode]);
 

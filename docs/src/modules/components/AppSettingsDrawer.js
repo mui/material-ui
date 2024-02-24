@@ -44,7 +44,6 @@ export default function AppSettingsDrawer(props) {
   const upperTheme = useTheme();
   const changeTheme = useChangeTheme();
   const [mode, setMode] = useLocalStorageState('mui-mode', 'system');
-  console.log('mode', mode);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', { noSsr: true });
   const systemMode = prefersDarkMode ? 'dark' : 'light';
   const calculatedMode = mode === 'system' ? systemMode : mode;
@@ -58,7 +57,6 @@ export default function AppSettingsDrawer(props) {
   };
 
   React.useEffect(() => {
-    console.log('changeTheme 2');
     changeTheme({ paletteMode: calculatedMode });
   }, [changeTheme, calculatedMode]);
 
