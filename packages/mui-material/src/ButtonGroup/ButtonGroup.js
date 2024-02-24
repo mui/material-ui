@@ -57,6 +57,7 @@ const useUtilityClasses = (ownerState) => {
       orientation,
       fullWidth && 'fullWidth',
       disableElevation && 'disableElevation',
+      ['primary', 'secondary'] && `color${capitalize(color)}`,
     ],
     grouped: [
       'grouped',
@@ -65,7 +66,6 @@ const useUtilityClasses = (ownerState) => {
       `grouped${capitalize(variant)}${capitalize(orientation)}`,
       `grouped${capitalize(variant)}${capitalize(color)}`,
       disabled && 'disabled',
-      ['primary', 'secondary'] && `grouped${capitalize(color)}`,
     ],
     firstButton: ['firstButton'],
     lastButton: ['lastButton'],

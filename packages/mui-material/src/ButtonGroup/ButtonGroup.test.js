@@ -39,23 +39,24 @@ describe('<ButtonGroup />', () => {
   });
 
   it('should have groupedColorPrimary classe', () => {
-    const { getByRole } = render(
+    const { container } = render(
       <ButtonGroup>
         <Button>Hello World</Button>
       </ButtonGroup>,
     );
-    const button = getByRole('button');
-    expect(button).to.have.class(classes.groupedColorPrimary);
+    const buttonGroup = container.firstChild;
+    expect(buttonGroup).to.have.class(classes.colorPrimary);
   });
 
   it('should have groupedSecondary classe', () => {
-    const { getByRole } = render(
-      <ButtonGroup>
+    const { container } = render(
+      <ButtonGroup color="secondary">
         <Button>Hello World</Button>
       </ButtonGroup>,
     );
-    const button = getByRole('button');
-    expect(button).to.have.class(classes.groupedColorSecondary);
+
+    const buttonGroup = container.firstChild;
+    expect(buttonGroup).to.have.class(classes.colorSecondary);
   });
 
   it('should render an outlined button', () => {
