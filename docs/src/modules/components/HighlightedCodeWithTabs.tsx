@@ -78,13 +78,14 @@ type TabsConfig = {
   language: string;
   tab: string;
 };
-export default function HighlightedCodeWithTabs({
-  tabs,
-  storageKey,
-}: {
-  tabs: Array<TabsConfig>;
-  storageKey?: string;
-} & Record<string, any>) {
+
+export default function HighlightedCodeWithTabs(
+  props: {
+    tabs: Array<TabsConfig>;
+    storageKey?: string;
+  } & Record<string, any>,
+) {
+  const { tabs, storageKey } = props;
   const availableTabs = React.useMemo(() => tabs.map(({ tab }) => tab), [tabs]);
   const [activeTab, setActiveTab] = useLocalStorageState(storageKey ?? null, availableTabs[0]);
 

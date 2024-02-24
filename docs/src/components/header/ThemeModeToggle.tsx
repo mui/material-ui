@@ -46,6 +46,7 @@ export default function ThemeModeToggle() {
   const theme = useTheme();
   const changeTheme = useChangeTheme();
   const [mode, setMode] = useLocalStorageState('mui-mode', 'system');
+  console.log('mode', mode);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const preferredMode = prefersDarkMode ? 'dark' : 'light';
 
