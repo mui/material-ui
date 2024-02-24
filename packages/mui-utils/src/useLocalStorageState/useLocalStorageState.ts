@@ -1,5 +1,4 @@
 'use client';
-
 import * as React from 'react';
 
 // storage events only work across tabs, we'll use an event emitter to announce within the current tab
