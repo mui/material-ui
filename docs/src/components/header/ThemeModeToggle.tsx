@@ -36,16 +36,21 @@ function CssVarsModeToggle(props: { onChange: (newMode: string) => void }) {
 }
 
 export default function ThemeModeToggle() {
-  const theme = useTheme();
+  // TODO implement the dark mode toggle with useColorScheme().
+  // This already take cares of locale storage and media query.
   const changeTheme = useChangeTheme();
   const [mode, setMode] = useLocalStorageState('mui-mode', 'system');
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', { noSsr: true });
   const systemMode = prefersDarkMode ? 'dark' : 'light';
   const calculatedMode = mode === 'system' ? systemMode : mode;
 
+  // TODO remove, where changeTheme() is imported from should use useColorScheme().
+  // Delegating this to the UI component is wrong.
   React.useEffect(() => {
     changeTheme({ paletteMode: calculatedMode });
   }, [changeTheme, calculatedMode]);
+
+  const theme = useTheme();
 
   // Server-side hydration
   if (mode === null) {

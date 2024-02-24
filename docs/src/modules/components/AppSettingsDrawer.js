@@ -43,28 +43,31 @@ export default function AppSettingsDrawer(props) {
   const t = useTranslate();
   const upperTheme = useTheme();
   const changeTheme = useChangeTheme();
+
+  // TODO implement the dark mode toggle with useColorScheme().
+  // This already take cares of locale storage and media query.
   const [mode, setMode] = useLocalStorageState('mui-mode', 'system');
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', { noSsr: true });
   const systemMode = prefersDarkMode ? 'dark' : 'light';
   const calculatedMode = mode === 'system' ? systemMode : mode;
 
+  // TODO remove, where changeTheme() is imported from should use useColorScheme().
+  // Delegating this to the UI component is wrong.
+  React.useEffect(() => {
+    changeTheme({ paletteMode: calculatedMode });
+  }, [changeTheme, calculatedMode]);
+
   const handleChangeThemeMode = (event, paletteMode) => {
     if (paletteMode === null) {
       return;
     }
-
     setMode(paletteMode);
   };
-
-  React.useEffect(() => {
-    changeTheme({ paletteMode: calculatedMode });
-  }, [changeTheme, calculatedMode]);
 
   const handleChangeDirection = (event, direction) => {
     if (direction === null) {
       direction = upperTheme.direction;
     }
-
     changeTheme({ direction });
   };
 

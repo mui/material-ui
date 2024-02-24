@@ -176,9 +176,6 @@ export function ThemeProvider(props) {
 
   useLazyCSS('/static/styles/prism-okaidia.css', '#prismjs');
 
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', { noSsr: true });
-  const systemMode = prefersDarkMode ? 'dark' : 'light';
-
   useEnhancedEffect(() => {
     let nextPaletteColors = JSON.parse(getCookie('paletteColors') || 'null');
     // Set default value if no value is found in cookie
@@ -186,24 +183,15 @@ export function ThemeProvider(props) {
       nextPaletteColors = themeInitialOptions.paletteColors;
     }
 
-    let nextPaletteMode = systemMode; // syncing with homepage, can be removed once all pages are migrated to CSS variables
-    try {
-      nextPaletteMode = localStorage.getItem('mui-mode') ?? systemMode;
-    } catch (error) {
-      // mainly thrown when cookies are disabled.
-    }
-    if (nextPaletteMode === 'system') {
-      nextPaletteMode = systemMode;
-    }
-
     dispatch({
       type: 'CHANGE',
       payload: {
         paletteColors: nextPaletteColors,
-        paletteMode: nextPaletteMode,
+        // TODO: have the value come from useColorScheme();
+        // paletteMode: nextPaletteMode,
       },
     });
-  }, [systemMode]);
+  }, []);
 
   useEnhancedEffect(() => {
     document.body.dir = direction;
