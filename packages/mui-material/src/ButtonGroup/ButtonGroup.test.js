@@ -38,6 +38,26 @@ describe('<ButtonGroup />', () => {
     expect(buttonGroup).not.to.have.class(classes.fullWidth);
   });
 
+  it('should have groupedColorPrimary classe', () => {
+    const { getByRole } = render(
+      <ButtonGroup>
+        <Button>Hello World</Button>
+      </ButtonGroup>,
+    );
+    const button = getByRole('button');
+    expect(button).to.have.class(classes.groupedColorPrimary);
+  });
+
+  it('should have groupedSecondary classe', () => {
+    const { getByRole } = render(
+      <ButtonGroup>
+        <Button>Hello World</Button>
+      </ButtonGroup>,
+    );
+    const button = getByRole('button');
+    expect(button).to.have.class(classes.groupedColorSecondary);
+  });
+
   it('should render an outlined button', () => {
     const { getByRole } = render(
       <ButtonGroup>
