@@ -54,7 +54,7 @@ const useUtilityClasses = (ownerState) => {
     root: [
       'root',
       variant,
-      orientation === 'vertical' && 'vertical',
+      orientation,
       fullWidth && 'fullWidth',
       disableElevation && 'disableElevation',
     ],
