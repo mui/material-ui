@@ -8,12 +8,8 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import useLocalStorageState from '@mui/utils/useLocalStorageState';
 
-function CssVarsModeToggle(props: { onChange: (checked: boolean) => void }) {
-  const [mounted, setMounted] = React.useState(false);
+function CssVarsModeToggle(props: { onChange: (newMode: string) => void }) {
   const { mode, systemMode, setMode } = useColorScheme();
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
   const calculatedMode = mode === 'system' ? systemMode : mode;
 
   return (
@@ -23,11 +19,12 @@ function CssVarsModeToggle(props: { onChange: (checked: boolean) => void }) {
         disableTouchRipple
         disabled={!calculatedMode}
         onClick={() => {
-          props.onChange(calculatedMode === 'light');
-          setMode(calculatedMode === 'dark' ? 'light' : 'dark');
+          const newMode = calculatedMode === 'dark' ? 'light' : 'dark';
+          props.onChange(newMode);
+          setMode(newMode);
         }}
       >
-        {!calculatedMode || !mounted
+        {!calculatedMode
           ? null
           : {
               light: <DarkModeOutlined fontSize="small" />,
@@ -44,17 +41,13 @@ export default function ThemeModeToggle() {
   const [mode, setMode] = useLocalStorageState('mui-mode', 'system');
   console.log('mode', mode);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const preferredMode = prefersDarkMode ? 'dark' : 'light';
-
-  const handleChangeThemeMode = (checked: boolean) => {
-    const paletteMode = checked ? 'dark' : 'light';
-    setMode(paletteMode);
-  };
+  const systemMode = prefersDarkMode ? 'dark' : 'light';
+  const calculatedMode = mode === 'system' ? systemMode : mode;
 
   React.useEffect(() => {
-    const paletteMode = mode === 'system' ? preferredMode : mode;
+    const paletteMode = mode === 'system' ? systemMode : mode;
     changeTheme({ paletteMode });
-  }, [changeTheme, mode, preferredMode]);
+  }, [changeTheme, mode, systemMode]);
 
   // Server-side hydration
   if (mode === null) {
@@ -63,21 +56,23 @@ export default function ThemeModeToggle() {
 
   if (theme.vars) {
     // Temporarily renders conditionally because `useColorScheme` could not be used in the pages that haven't migrated to CSS theme variables.
-    return <CssVarsModeToggle onChange={handleChangeThemeMode} />;
+    return <CssVarsModeToggle onChange={setMode} />;
   }
 
-  const checked = mode === 'system' ? prefersDarkMode : mode === 'dark';
-
   return (
-    <Tooltip title={checked ? 'Turn on the light' : 'Turn off the light'}>
+    <Tooltip title={calculatedMode === 'dark' ? 'Turn on the light' : 'Turn off the light'}>
       <IconButton
         color="primary"
         disableTouchRipple
         onClick={() => {
-          handleChangeThemeMode(!checked);
+          setMode(calculatedMode === 'dark' ? 'light' : 'dark');
         }}
       >
-        {checked ? <LightModeOutlined fontSize="small" /> : <DarkModeOutlined fontSize="small" />}
+        {calculatedMode === 'dark' ? (
+          <LightModeOutlined fontSize="small" />
+        ) : (
+          <DarkModeOutlined fontSize="small" />
+        )}
       </IconButton>
     </Tooltip>
   );

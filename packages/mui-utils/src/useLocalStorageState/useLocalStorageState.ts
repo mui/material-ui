@@ -41,6 +41,7 @@ function subscribe(area: Storage, key: string | null, callbark: () => void): () 
   }
   const storageHandler = (event: StorageEvent) => {
     if (event.storageArea === area && event.key === key) {
+      console.log('value change');
       callbark();
     }
   };
