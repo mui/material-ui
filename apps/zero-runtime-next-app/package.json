@@ -14,10 +14,13 @@
     "@mui/base": "workspace:^",
     "@mui/material": "workspace:^",
     "@mui/system": "workspace:^",
+    "@mui/material-nextjs": "workspace:^",
+    "@mui/icons-material": "workspace:^",
+    "@emotion/cache": "latest",
     "local-ui-lib": "workspace:^",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "next": "13.5.1"
+    "next": "latest"
   },
   "devDependencies": {
     "@mui/zero-next-plugin": "workspace:^",
