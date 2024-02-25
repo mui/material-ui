@@ -31,13 +31,8 @@ const Main = styled('div')(({ theme }) => ({
     justifyContent: 'center',
     padding: '24px',
     backgroundColor: 'rgb(255, 255, 255)',
-    borderWidth: '1px 0px',
-    borderStyle: 'solid',
-    borderColor: 'rgb(229, 234, 242)',
-    borderImage: 'initial',
+    border: '1px solid rgb(229, 234, 242)',
     borderRadius: '12px',
-    borderLeftWidth: '1px',
-    borderRightWidth: '1px',
   },
 }));
 
