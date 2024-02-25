@@ -108,10 +108,7 @@ export default function transformer(file, api, options) {
 
     const selector = `${replacementSelectorPrefix}${deprecatedClass}`;
     root
-      .find(
-        j.Literal,
-        (literal) => typeof literal.value === 'string' && literal.value === selector,
-      )
+      .find(j.Literal, (literal) => typeof literal.value === 'string' && literal.value === selector)
       .forEach((path) => {
         path.replace(
           j.literal(
