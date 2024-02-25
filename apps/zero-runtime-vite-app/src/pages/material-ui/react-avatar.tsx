@@ -1,4 +1,5 @@
 import * as React from 'react';
+import MaterialUILayout from '../../Layout';
 import BackgroundLetterAvatars from '../../../../../docs/data/material/components/avatars/BackgroundLetterAvatars.tsx';
 import BadgeAvatars from '../../../../../docs/data/material/components/avatars/BadgeAvatars.tsx';
 import CustomSurplusAvatars from '../../../../../docs/data/material/components/avatars/CustomSurplusAvatars.tsx';
@@ -13,7 +14,8 @@ import VariantAvatars from '../../../../../docs/data/material/components/avatars
 
 export default function Avatars() {
   return (
-    <React.Fragment>
+    <MaterialUILayout>
+      <h1>Avatars</h1>
       <section>
         <h2> Background Letter Avatars</h2>
         <div className="demo-container">
@@ -80,6 +82,6 @@ export default function Avatars() {
           <VariantAvatars />
         </div>
       </section>
-    </React.Fragment>
+    </MaterialUILayout>
   )
 }

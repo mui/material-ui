@@ -89,13 +89,15 @@ ${nextRenders.join('\n')}
       </section>`;
   });
   const viteFileContent = `import * as React from 'react';
+import MaterialUILayout from '../../Layout';
 ${viteImports.join('\n')}
 
 export default function ${capitalize(dataFolderName)}() {
   return (
-    <React.Fragment>
+    <MaterialUILayout>
+      <h1>${capitalize(dataFolderName)}</h1>
 ${viteRenders.join('\n')}
-    </React.Fragment>
+    </MaterialUILayout>
   )
 }`;
   // Create the page in zero-runtime apps

@@ -36,7 +36,7 @@ export default defineConfig({
     reactPlugin({ include: /\.(mdx|js|jsx|ts|tsx)$/ }),
     zeroPlugin({
       theme,
-      transformLibraries: ['local-ui-lib'],
+      transformLibraries: ['local-ui-lib', '@mui/material'],
       sourceMap: true,
       displayName: true,
       transformSx: false,
