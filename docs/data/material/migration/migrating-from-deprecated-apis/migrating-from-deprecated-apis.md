@@ -478,7 +478,7 @@ npx @mui/codemod@latest deprecations/button-group-classes <path>
 The CSS classes that composed the following props were deprecated:
 
 - `orientation` | `variant` and `grouped`
-- `color` , `variant` and `grouped`
+- `color`, `variant` and `grouped`
 
 Here's how to migrate:
 
