@@ -46,6 +46,7 @@ describe('<ButtonGroup />', () => {
     );
     const buttonGroup = container.firstChild;
     expect(buttonGroup).to.have.class(classes.colorPrimary);
+    expect(buttonGroup).to.have.class(classes.horizontal);
   });
 
   it('should have groupedSecondary classe', () => {
@@ -57,17 +58,6 @@ describe('<ButtonGroup />', () => {
 
     const buttonGroup = container.firstChild;
     expect(buttonGroup).to.have.class(classes.colorSecondary);
-  });
-
-  it('should have horizontal classe', () => {
-    const { container } = render(
-      <ButtonGroup color="secondary">
-        <Button>Hello World</Button>
-      </ButtonGroup>,
-    );
-
-    const buttonGroup = container.firstChild;
-    expect(buttonGroup).to.have.class(classes.horizontal);
   });
 
   it('should render an outlined button', () => {
