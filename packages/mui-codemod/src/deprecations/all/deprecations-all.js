@@ -8,7 +8,6 @@ import transformChipClasses from '../chip-classes';
 import transformPaginationItemClasses from '../pagination-item-classes';
 import transformAlertClasses from '../alert-classes';
 
-
 /**
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
