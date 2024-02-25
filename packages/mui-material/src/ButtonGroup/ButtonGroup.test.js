@@ -38,7 +38,7 @@ describe('<ButtonGroup />', () => {
     expect(buttonGroup).not.to.have.class(classes.fullWidth);
   });
 
-  it('should have groupedColorPrimary classe', () => {
+  it('should have colorPrimary, horizontal class', () => {
     const { container } = render(
       <ButtonGroup>
         <Button>Hello World</Button>
@@ -49,7 +49,7 @@ describe('<ButtonGroup />', () => {
     expect(buttonGroup).to.have.class(classes.horizontal);
   });
 
-  it('should have groupedSecondary classe', () => {
+  it('should have colorSecondary class', () => {
     const { container } = render(
       <ButtonGroup color="secondary">
         <Button>Hello World</Button>
