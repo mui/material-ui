@@ -36,12 +36,15 @@ async function run() {
   );
   const tsFiles = filenames.filter((filename) => filename.endsWith('.tsx'));
 
+  /**
+   * Zero-Runtime Next.js App
+   */
   // Create import and render statements
-  const imports = tsFiles.map((filename) => {
+  const nextImports = tsFiles.map((filename) => {
     const componentName = filename.replace('.tsx', '');
     return `import ${componentName} from '../../../../../../docs/data/material/components/${dataFolderName}/${componentName}';`;
   });
-  const renders = tsFiles.map((filename) => {
+  const nextRenders = tsFiles.map((filename) => {
     const componentName = filename.replace('.tsx', '');
     return `      <section>
         <h2>${titleCase(componentName)}</h2>
@@ -50,14 +53,14 @@ async function run() {
         </div>
       </section>`;
   });
-  const fileContent = `'use client';
+  const nextFileContent = `'use client';
 import * as React from 'react';
-${imports.join('\n')}
+${nextImports.join('\n')}
 
 export default function ${capitalize(dataFolderName)}() {
   return (
     <React.Fragment>
-${renders.join('\n')}
+${nextRenders.join('\n')}
     </React.Fragment>
   )
 }`;
@@ -66,10 +69,41 @@ ${renders.join('\n')}
   await fse.mkdirp(`apps/zero-runtime-next-app/src/app/material-ui/${args[0]}`);
   await fse.writeFile(
     path.join(process.cwd(), `apps/zero-runtime-next-app/src/app/material-ui/${args[0]}/page.tsx`),
-    fileContent,
+    nextFileContent,
   );
 
-  // TODO: do the same for vite-app
+  /**
+   * Zero-Runtime Vite App
+   */
+  const viteImports = tsFiles.map((filename) => {
+    const componentName = filename.replace('.tsx', '');
+    return `import ${componentName} from '../../../../../docs/data/material/components/${dataFolderName}/${componentName}.tsx';`;
+  });
+  const viteRenders = tsFiles.map((filename) => {
+    const componentName = filename.replace('.tsx', '');
+    return `      <section>
+        <h2>${titleCase(componentName)}</h2>
+        <div className="demo-container">
+          <${componentName} />
+        </div>
+      </section>`;
+  });
+  const viteFileContent = `import * as React from 'react';
+${viteImports.join('\n')}
+
+export default function ${capitalize(dataFolderName)}() {
+  return (
+    <React.Fragment>
+${viteRenders.join('\n')}
+    </React.Fragment>
+  )
+}`;
+  // Create the page in zero-runtime apps
+  await fse.mkdirp(`apps/zero-runtime-vite-app/src/pages/material-ui`);
+  await fse.writeFile(
+    path.join(process.cwd(), `apps/zero-runtime-vite-app/src/pages/material-ui/${args[0]}.tsx`),
+    viteFileContent,
+  );
 }
 
 run();

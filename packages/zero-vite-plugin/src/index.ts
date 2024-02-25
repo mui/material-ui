@@ -46,6 +46,7 @@ export function zeroVitePlugin(options: ZeroVitePluginOptions) {
     babelOptions = {},
     preprocessor = basePreprocessor,
     transformLibraries = [],
+    transformSx = true,
     ...rest
   } = options ?? {};
 
@@ -114,5 +115,5 @@ export function zeroVitePlugin(options: ZeroVitePluginOptions) {
     ...rest,
   });
 
-  return [injectMUITokensPlugin(), intermediateBabelPlugin(), zeroPlugin];
+  return [injectMUITokensPlugin(), transformSx ? intermediateBabelPlugin() : null, zeroPlugin];
 }
