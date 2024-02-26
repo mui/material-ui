@@ -15,11 +15,11 @@ interface Keyframes {
   /**
    * @returns {string} The generated keyframe name to be referenced.
    */
-  (arg: KeyframesArg): string;
+  (arg: TemplateStringsArray, ...templateArgs: Primitve[]): string;
   /**
    * @returns {string} The generated keyframe name to be referenced.
    */
-  (arg: TemplateStringsArray, ...templateArgs: Primitve[]): string;
+  (arg: KeyframesArg): string;
 }
 
 declare const keyframes: Keyframes;
