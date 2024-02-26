@@ -113,7 +113,7 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleMenuClick}
         endIcon={<ArrowDropDownRoundedIcon />}
-        sx={{ height: '1.75rem', p: '6px 4px 6px 8px', textTransform: 'capitalize' }}
+        sx={{ height: '1.875rem', p: '6px 4px 6px 8px', textTransform: 'capitalize' }}
       >
         <Box component="span" sx={{ fontWeight: 'medium', mr: 0.5 }}>
           View:
