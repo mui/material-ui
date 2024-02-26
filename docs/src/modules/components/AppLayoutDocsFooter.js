@@ -27,11 +27,11 @@ import RssFeedIcon from '@mui/icons-material/RssFeed';
 import ArrowOutwardRoundedIcon from '@mui/icons-material/ArrowOutwardRounded';
 import DiscordIcon from 'docs/src/icons/DiscordIcon';
 // Other imports
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
 import EditPage from 'docs/src/modules/components/EditPage';
 import SvgMuiLogotype from 'docs/src/icons/SvgMuiLogotype';
-import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
 import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 
 const FooterLink = styled(Typography)(({ theme }) => {

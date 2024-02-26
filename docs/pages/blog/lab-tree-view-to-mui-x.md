@@ -3,7 +3,7 @@ title: The Tree View is moving to MUI X
 description: Migrate to the new package to start building with our powerful Tree View, now part of MUI X. Previously released MIT components will stay MIT.
 date: 2023-08-21T00:00:00.000Z
 authors: ['flaviendelangle']
-tags: ['MUI X', 'News']
+tags: ['MUI X', 'Product']
 card: true
 ---
 

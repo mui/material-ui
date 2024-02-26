@@ -12,7 +12,7 @@ import { useRouter } from 'next/router';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import UnfoldMoreRounded from '@mui/icons-material/UnfoldMoreRounded';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import IconImage from 'docs/src/components/icon/IconImage';
 import LicensingModelSwitch from 'docs/src/components/pricing/LicensingModelSwitch';
 import { useLicensingModel } from 'docs/src/components/pricing/LicensingModelContext';
@@ -755,7 +755,7 @@ const communityData: Record<string, React.ReactNode> = {
   'charts/sparkline': yes,
   'charts/gauge': pending,
   'charts/treemap': pending,
-  'charts/heatmap': pending,
+  'charts/heatmap': no,
   'charts/radar': pending,
   'charts/funnel': no,
   'charts/sankey': no,
@@ -1534,9 +1534,9 @@ export default function PricingTable({
         {divider}
         {renderNestedRow('charts/treemap')}
         {divider}
-        {renderNestedRow('charts/heatmap')}
-        {divider}
         {renderNestedRow('charts/radar')}
+        {divider}
+        {renderNestedRow('charts/heatmap')}
         {divider}
         {renderNestedRow('charts/funnel')}
         {divider}

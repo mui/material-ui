@@ -1,5 +1,121 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.15.11
+
+<!-- generated comparing v5.15.10..master -->
+
+_Feb 21, 2024_
+
+A big thanks to the 26 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.15.11`
+
+- [Alert] Deprecate components and componentsProps props (#40681) @DiegoAndai
+- [Autocomplete] Caret transformation issue with font size change (#41066) @dpertsin
+- [StepLabel] Add type for StepIconComponent (#41082) @harrydigos
+- [TablePagination] Fix type error in Select props (#39137) @PaulKristoffersson
+- [Transitions] External ownerState is incorrectly forwarded to inner components (#41187) @gitstart
+- Use direct import (#40851) @siriwatknp
+
+### `@mui/material-nextjs@5.15.11`
+
+- Fix missing babel/runtime dependency in material-ui-nextjs (#41077) @siriwatknp
+
+### `@mui/system@5.15.11`
+
+- Use direct import (#40851) @siriwatknp
+- Move useMediaQuery to system (#39463) @justintoman
+- Consolidate the variants props callback arguments (#41222) @mnajdova
+- Merge props and ownerState in the variants props callback (#41219) @mnajdova
+
+### `@mui/codemod@5.15.11`
+
+- [AccordionSummary] Add contentGutters deprecation codemods (#41006) @DiegoAndai
+- [PaginationItem] Add codemod for deprecated classes (#41145) @sai6855
+
+### `@mui/utils@5.15.11`
+
+- Port `useLocalStorageState` hook from Toolpad (#41096) @Janpot
+
+### `@mui/base@5.0.0-beta.37`
+
+- [Switch] Add missing role attribute (#40907) @KirankumarAmbati
+- [TextareaAutosize] Improve implementation (#40789) @ZeeshanTamboli
+
+### `@mui/lab@5.0.0-alpha.164`
+
+- [Masonry] Ability to sort elements from left to right (#39904) @Rishi556
+
+### Docs
+
+- [base-ui] Fix focus state demo in Base UI autocomplete (#41104) @oliviertassinari
+- [base-ui] Update the Accessibility page demos design (#40995) @danilo-leal
+- [joy-ui] Fix LinearProgressWithLabel example (#41194) @khgiddon
+- [joy-ui] Fix 404 image on the docs @oliviertassinari
+- [material-ui] Add a "start now" section on the Overview page (#41137) @danilo-leal
+- [material-ui] Inform about deprecated TablePagination SelectProps usage (#41186) @gitstart
+- [material-ui] Update the Testing page's Argos link (#41170) @gregberge
+- [material-ui] Remove Masonry component and Material Design icon from the landing page template (#41080) @zanivan
+- [material-ui] Standardize all references to Material Design 3 (M3) (#40903) @samuelsycamore
+- [material-ui] Add stray fixes around a few pages (#41038) @danilo-leal
+- [material-ui][joy-ui][system] Restore and revise the Box docs (#40622) @samuelsycamore
+- [material-ui] Add simpler demo for default behavior (#40980) @zanivan
+- [system] Explain why AppRouterCacheProvider (#40909) @oliviertassinari
+- Link to react-transition group with https @oliviertassinari
+- Update broken URL hashes (#41185) @LukasTy
+- Prefer https links @oliviertassinari
+- Fix MUI Treasury link @oliviertassinari
+- Migrate the last > quotes to ::: callouts @oliviertassinari
+
+### Core
+
+- [blog] Add new product tags and stray adjustments (#41193) @danilo-leal
+- [blog] Simplify `/base-ui-2024-plans/` page (#41171) @oliviertassinari
+- [blog] Add link to Base UI API changes RFC (#41089) @michaldudak
+- [blog] Remove the "News" tag (#41208) @danilo-leal
+- [changelog] Remove @mui/system@5.15.10 (#41093) @michaldudak
+- [code-infra] Move typescript-to-proptypes to internal-scripts package (#41079) @michaldudak
+- [code-infra] Move Link to @mui/docs (#40889) @Janpot
+- [code-infra] Use `experimental.cpus` to control amount of export workers in Next.js (#41132) @Janpot
+- [code-infra] Load commonjs files in next.config.mjs with require (#41108) @Janpot
+- [code-infra] Prepare babel macros package for publishing to npm (#41178) @michaldudak
+- [code-infra] Build internal packages before publishing (#41210) @michaldudak
+- [core] Improve the release instructions (#40973) @mnajdova
+- [core] Simplify Next.js Demo Zero Runtime guide @oliviertassinari
+- [core] Fix TypeScript spelling in changelog @oliviertassinari
+- [core] Fix small detail in the autocomplete demo @oliviertassinari
+- [core] Increase node memory limit on Netlify build (#41111) @michaldudak
+- [core][Tooltip] Remove incorrect code comment (#41179) @ZeeshanTamboli
+- [core] Fix missing context display names (#41168) @oliviertassinari
+- [core][base-ui] Remove `@mui/base` dev dependency from Base UI workspace (#41216) @ZeeshanTamboli
+- [zero][demo] Fix sample next app build (#41197) @brijeshb42
+- [docs-infra] Simplify copy logic (#41167) @oliviertassinari
+- [docs-infra] New way of providing API layout config (#41106) @alexfauquette
+- [docs-infra] Reduce scrollbar width on ROC (#41148) @oliviertassinari
+- [docs-infra] Add external link arrow (#41129) @siriwatknp
+- [docs-infra] Fix external link arrow (#41181) @alexfauquette
+- [docs-infra] Flag NPM and Github as wrong spellings @oliviertassinari
+- [docs-infra] Fix display when the default props is undefined (#41114) @oliviertassinari
+- [docs-infra] Remove random layout assignment (#40862) @alexfauquette
+- [docs-infra] Add spacing and contrast improvements (#41191) @danilo-leal
+- [docs-infra] Share vale-config (#41176) @alexfauquette
+- [test] Generalize test utils (#41175) @michaldudak
+- [typescript-to-proptypes] Support using `Omit` on types with conditional properties (#41033) @flaviendelangle
+- [website] Match chart component names @oliviertassinari
+- [website] Add Marblism diamond sponsor (#41097) @rluzists1
+- [website] Add overall improvements to the Material UI page (#41075) @danilo-leal
+- [website] Fix responsive breakpoints @oliviertassinari
+- [website] Fix overloading of footer JS files @oliviertassinari
+- [website] Improve the footer's chip contrast (#41209) @danilo-leal
+- [zero] Update to latest version of wyw-in-js (#41182) @brijeshb42
+- [zero] Setup basic testing framework (#40986) @brijeshb42
+- [zero] Fix wrong CSS order by moving import to last (#41002) @siriwatknp
+- [zero] Export `extendTheme` for creating a zero-runtime theme (#40897) @siriwatknp
+- [zero] Move extendTheme to its own subpath (#41204) @brijeshb42
+
+All contributors of this release in alphabetical order: @alexfauquette, @brijeshb42, @danilo-leal, @DiegoAndai, @dpertsin, @flaviendelangle, @gitstart, @gregberge, @harrydigos, @Janpot, @justintoman, @khgiddon, @KirankumarAmbati, @LukasTy, @michaldudak, @mnajdova, @nikosgavalas, @oliviertassinari, @PaulKristoffersson, @Rishi556, @rluzists1, @sai6855, @samuelsycamore, @siriwatknp, @zanivan, @ZeeshanTamboli
+
 ## v5.15.10
 
 <!-- generated comparing v5.15.9..master -->
@@ -2461,7 +2577,7 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 - &#8203;<!-- 39 -->[core] Add priority support issue template (#37671) @DanailH
 - &#8203;<!-- 03 -->[website] Update roadmap page (#37587) @cherniavskii
 - &#8203;<!-- 02 -->[website] Add CSP to limit iframes to self @oliviertassinari
-- &#8203;<!-- 01 -->[website] Link mui-x Stack Overflow in footer link (#37509) @richbustos
+- &#8203;<!-- 01 -->[website] Link mui-x Stack Overflow in footer link (#37509) @richbustos
 
 All contributors of this release in alphabetical order: @abhinavkmrru, @alexfauquette, @bencevoros, @cherniavskii, @danilo-leal, @DiegoAndai, @DIWAKARKASHYAP, @flaviendelangle, @gitstart, @hbjORbj, @ivp-dev, @Janpot, @michaldudak, @mnajdova, @oliviertassinari, @Primajin, @PunitSoniME, @richbustos, @romgrk, @sai6855, @sernstberger, @siriwatknp, @SuperKXT, @vinayr, @ZeeshanTamboli
 
@@ -7550,7 +7666,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - &#8203;<!-- 19 -->[docs] Sync translations with Crowdin (#30067) @l10nbot
 - &#8203;<!-- 18 -->[docs] Fix link on "Custom variables" section in the Theming page #30100 @danilo-leal
 - &#8203;<!-- 17 -->[docs] Fix justifyContent option in the Grid interactive demo (#30117) @danilo-leal
-- &#8203;<!-- 16 -->[docs] Add tip to help access the docs of a previous version when finding answers in Stack Overflow (#30101) @danilo-leal
+- &#8203;<!-- 16 -->[docs] Add tip to help access the docs of a previous version when finding answers in Stack Overflow (#30101) @danilo-leal
 - &#8203;<!-- 15 -->[docs] Fix import example inside Unstyled Backdrop section (#30098) @TheodosiouTh
 - &#8203;<!-- 01 -->[website] Column pinning and Tree data are out (#30136) @oliviertassinari
 - &#8203;<!-- 07 -->[survey] Remove survey promotion items (#30122) @danilo-leal
@@ -7631,7 +7747,7 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 - &#8203;<!-- 21 -->[docs] Update nextjs-typescript-example (#29974) @huydhoang
 - &#8203;<!-- 20 -->[docs] Add missing global state classes to API docs generator (#29945) @michaldudak
 - &#8203;<!-- 19 -->[docs] Fix benchmarks folder link (#29981) @fourjr
-- &#8203;<!-- 18 -->[docs] Improve wording in Stack Overflow section of support page (#29956) @ronwarner
+- &#8203;<!-- 18 -->[docs] Improve wording in Stack Overflow section of support page (#29956) @ronwarner
 - &#8203;<!-- 17 -->[docs] Remove Black Friday sale notification (#29936) @mbrookes
 - &#8203;<!-- 16 -->[examples] Fix typos in the Remix example (#30071) @MichaelDeBoey
 - &#8203;<!-- 15 -->[examples] Add Remix example (#29952) @mnajdova
@@ -7644,7 +7760,7 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 ### Core
 
 - &#8203;<!-- 31 -->[core] Batch small changes (#30042) @oliviertassinari
-- &#8203;<!-- 28 -->[core] Transition to a new Stack Overflow tag (#29967) @oliviertassinari
+- &#8203;<!-- 28 -->[core] Transition to a new Stack Overflow tag (#29967) @oliviertassinari
 
 All contributors of this release in alphabetical order: @chao813, @daniel-sachs, @danilo-leal, @Domino987, @eduardomcv, @flaviendelangle, @fourjr, @genzyy, @hbjORbj, @huydhoang, @jayeclark, @jonathanrtuck, @kkorach, @l10nbot, @mbrookes, @MichaelDeBoey, @michaldudak, @mnajdova, @oliviertassinari, @ronwarner, @Semigradsky, @siriwatknp, @tasugi, @ThewBear, @ZeeshanTamboli
 
@@ -8920,7 +9036,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 37 -->[website] Add spicefactory as gold sponsor @oliviertassinari
 - &#8203;<!-- 30 -->[website] Homepage rebranding (#27488) @siriwatknp
 - &#8203;<!-- 24 -->[website] Add Flavien to team and about pages (#27575) @flaviendelangle
-- &#8203;<!-- 17 -->[website] Add Ryan to Community contributors for Stack Overflow contributions (#27529) @ryancogswell
+- &#8203;<!-- 17 -->[website] Add Ryan to Community contributors for Stack Overflow contributions (#27529) @ryancogswell
 - &#8203;<!-- 02 -->[website] Add references section to home (#27444) @siriwatknp
 
 ### Core
@@ -11335,7 +11451,7 @@ A big thanks to the 30 contributors who made this release possible. Here are som
 #### Breaking changes
 
 - &#8203;<!-- 91 -->[types] Rename the exported `Omit` type in `@material-ui/types`. (#24795) @petyosi
-  The module is now called `DistributiveOmit`. The change removes the confusion with the built-in `Omit` helper introduced in TypeScript v3.5. The built-in `Omit`, while similar, is non-distributive. This leads to differences when applied to union types. [See this Stack Overflow answer for further details](https://stackoverflow.com/a/57103940/1009797).
+  The module is now called `DistributiveOmit`. The change removes the confusion with the built-in `Omit` helper introduced in TypeScript v3.5. The built-in `Omit`, while similar, is non-distributive. This leads to differences when applied to union types. [See this Stack Overflow answer for further details](https://stackoverflow.com/a/57103940/1009797).
 
 ```diff
 -import { Omit } from '@material-ui/types';
