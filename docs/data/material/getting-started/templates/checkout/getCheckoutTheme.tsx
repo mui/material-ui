@@ -580,6 +580,7 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
             borderRadius: '10px',
             border: '1px solid',
             borderColor: gray[200],
+            boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.1)',
             transition: 'border-color 120ms ease-in',
             backgroundColor: alpha(gray[100], 0.4),
             '&:hover': {
@@ -598,6 +599,7 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
               borderRadius: '10px',
               border: '1px solid',
               borderColor: gray[700],
+              boxShadow: '0px 2px 4px rgba(0, 0, 0, 1)',
               backgroundColor: alpha(gray[900], 0.3),
               transition: 'border-color 120ms ease-in',
               '&:hover': {
