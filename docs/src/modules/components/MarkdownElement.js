@@ -9,6 +9,10 @@ const Root = styled('div')(({ theme }) => [
     ...lightTheme.typography.body1,
     lineHeight: 1.6, // Increased compared to the 1.5 default to make the docs easier to read.
     color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
+    '& :focus-visible': {
+      outline: `3px solid ${alpha(lightTheme.palette.primary[500], 0.5)}`,
+      outlineOffset: 2,
+    },
     '& strong': {
       color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
     },
@@ -149,7 +153,7 @@ const Root = styled('div')(({ theme }) => [
         marginLeft: 4,
         height: 26,
         width: 26,
-        backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
+        backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.grey[50]})`,
         color: `var(--muidocs-palette-grey-600, ${lightTheme.palette.grey[600]})`,
         border: '1px solid',
         borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
@@ -400,6 +404,14 @@ const Root = styled('div')(({ theme }) => [
       opacity: 1,
       transform: 'translate(1px, 0)',
     },
+    '& a.remove-link-arrow::after': {
+      // Allows to remove link arrows for images
+      display: 'none',
+    },
+    '& .Ad-root a::after': {
+      // Remove link arrow for ads
+      display: 'none',
+    },
     '& a, & a code': {
       // Style taken from the Link component
       color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
@@ -535,11 +547,6 @@ const Root = styled('div')(({ theme }) => [
           display: 'block',
         },
       },
-      '&:focus-visible': {
-        outline: '2px solid',
-        outlineOffset: 2,
-        outlineColor: lightTheme.palette.primaryDark[500],
-      },
     },
     '& .MuiCode-copyKeypress': {
       pointerEvents: 'none',
@@ -640,13 +647,13 @@ const Root = styled('div')(({ theme }) => [
       borderColor: theme.palette.primaryDark[700],
       '& > code': {
         height: 'fit-content',
-        backgroundColor: `var(--muidocs-palette-primaryDark-600, ${lightTheme.palette.primaryDark[600]})`,
-        borderColor: `var(--muidocs-palette-primaryDark-500, ${lightTheme.palette.primaryDark[500]})`,
+        backgroundColor: theme.palette.primaryDark[600],
+        borderColor: theme.palette.primaryDark[500],
       },
       '&.MuiCallout-error': {
         color: theme.palette.error[50],
         backgroundColor: alpha(theme.palette.error[700], 0.2),
-        borderColor: alpha(lightTheme.palette.error[600], 0.3),
+        borderColor: alpha(theme.palette.error[600], 0.3),
         '& strong': {
           color: theme.palette.error[300],
         },
