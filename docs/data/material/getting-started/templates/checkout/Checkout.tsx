@@ -76,8 +76,8 @@ const steps = ['Shipping address', 'Payment details', 'Review your order'];
 const logoStyle = {
   width: '140px',
   height: '56px',
-  marginLeft: '-12px',
-  marginRight: '-12px',
+  marginLeft: '-4px',
+  marginRight: '-8px',
 };
 
 function getStepContent(step: number) {
@@ -158,6 +158,7 @@ export default function Checkout() {
               href="/material-ui/getting-started/templates/landing-page/"
               sx={{ alignSelf: 'start', ml: '-8px' }}
             >
+              Back to
               <img
                 src={
                   'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
@@ -208,8 +209,9 @@ export default function Checkout() {
                 startIcon={<ArrowBackRoundedIcon />}
                 component="a"
                 href="/material-ui/getting-started/templates/landing-page/"
-                sx={{ alignSelf: 'start', ml: '-8px' }}
+                sx={{ alignSelf: 'start' }}
               >
+                Back to
                 <img
                   src={
                     'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
