@@ -573,6 +573,12 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
             border: 'none',
           },
           root: ({ theme }) => ({
+            '& .MuiInputBase-input': {
+              '&::placeholder': {
+                opacity: 0.7,
+                color: gray[500],
+              },
+            },
             boxSizing: 'border-box',
             flexGrow: 1,
             maxHeight: 40,
@@ -592,6 +598,12 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
               outlineColor: brand[200],
             },
             ...(theme.palette.mode === 'dark' && {
+              '& .MuiInputBase-input': {
+                '&::placeholder': {
+                  opacity: 1,
+                  color: gray[500],
+                },
+              },
               boxSizing: 'border-box',
               flexGrow: 1,
               minHeight: 40,
@@ -640,7 +652,7 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
             },
             '& .MuiInputBase-input': {
               '&::placeholder': {
-                opacity: 0.7,
+                color: 'red',
               },
             },
             '& .MuiOutlinedInput-root': {
