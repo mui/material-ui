@@ -1,4 +1,4 @@
-# Material UI - Vite.js in TypeScript example
+# Zero-runtime CSS-in-JS - Vite with TypeScript example project
 
 ## How to use
 
@@ -26,14 +26,9 @@ or:
 
 [![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/github/mui/material-ui/tree/master/examples/zero-vite)
 
-## The idea behind the example
+## Learn more
 
-This example uses [Vite.js](https://github.com/vitejs/vite).
-It includes `@mui/material` and its peer dependencies, including [Emotion](https://emotion.sh/docs/introduction), the default style engine in Material UI v5.
+To learn more about this example:
 
-## What's next?
-
-<!-- #default-branch-switch -->
-
-You now have a working example project.
-You can head back to the documentation and continue by browsing the [templates](https://mui.com/material-ui/getting-started/templates/) section.
+- [`@mui/zero-runtime` documentation](https://github.com/mui/material-ui/blob/master/packages/zero-runtime/README.md) - learn more about MUI's zero-runtime CSS-in-JS package.
+- [Vite documentation](https://vitejs.dev/guide/) - learn about Vite features and API.
