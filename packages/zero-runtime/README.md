@@ -47,7 +47,7 @@ npm install @mui/zero-runtime
 npm install --save-dev @mui/zero-vite-plugin
 ```
 
-Then, in your vite config file file, import the plugin and wrap the exported config object:
+Then, in your Vite config file, import the plugin and pass it to the `plugins` array as shown:
 
 ```js
 import { zeroVitePlugin } from '@mui/zero-vite-plugin';
@@ -269,7 +269,7 @@ Theming is an **optional** feature that lets you reuse the same values, such as 
 
 > **💡 Good to know**:
 >
-> The **theme** object are used at build time without relying on React context like common CSS-in-JS libraries. This means that components created by zero-runtime `styled` will be React Server Component by default and still get benefits from theming.
+> The **theme** object is used at build time and does not exist in the final JS bundle. This means that components created using zero-runtime's `styled` can be used with React Server Components by default while still getting the benefits of theming.
 
 For example, in Next.js, you can define a theme in the `next.config.js` file like this:
 
@@ -395,7 +395,7 @@ However, if you want to control the color scheme based on application logic, for
   });
 ```
 
-Note that you need to add a logic to a button by yourself. Here is an example of how to do it:
+Note that you need to add the logic to a button by yourself. Here is an example of how to do it:
 
 ```jsx
 function App() {
