@@ -4,6 +4,7 @@
   "node": "18",
   "packages": [
     "packages/docs-utils",
+    "packages/markdown",
     "packages/mui-babel-macros",
     "packages/mui-base",
     "packages/mui-codemod",
@@ -33,6 +34,7 @@
     "@mui/core-downloads-tracker": "packages/mui-core-downloads-tracker/build",
     "@mui/icons-material": "packages/mui-icons-material/build",
     "@mui/internal-babel-macros": "packages/mui-babel-macros",
+    "@mui/internal-markdown": "packages/markdown",
     "@mui/internal-scripts": "packages-internal/scripts",
     "@mui/joy": "packages/mui-joy/build",
     "@mui/lab": "packages/mui-lab/build",

@@ -592,15 +592,15 @@ importers:
       '@mui/icons-material':
         specifier: workspace:^
         version: link:../packages/mui-icons-material/build
+      '@mui/internal-markdown':
+        specifier: workspace:^
+        version: link:../packages/markdown
       '@mui/joy':
         specifier: workspace:*
         version: link:../packages/mui-joy/build
       '@mui/lab':
         specifier: workspace:*
         version: link:../packages/mui-lab/build
-      '@mui/markdown':
-        specifier: workspace:^
-        version: link:../packages/markdown
       '@mui/material':
         specifier: workspace:^
         version: link:../packages/mui-material/build
@@ -993,7 +993,7 @@ importers:
       '@mui-internal/docs-utils':
         specifier: workspace:^
         version: link:../docs-utils
-      '@mui/markdown':
+      '@mui/internal-markdown':
         specifier: workspace:^
         version: link:../markdown
       ast-types:
@@ -1069,7 +1069,7 @@ importers:
       '@mui-internal/api-docs-builder':
         specifier: workspace:^
         version: link:../api-docs-builder
-      '@mui/markdown':
+      '@mui/internal-markdown':
         specifier: workspace:^
         version: link:../markdown
       docs:
