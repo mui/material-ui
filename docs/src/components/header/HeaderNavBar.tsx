@@ -302,9 +302,9 @@ export default function HeaderNavBar() {
                         id={PRODUCT_IDS[4]}
                         href={ROUTES.productToolpad}
                         icon={<IconImage name="product-toolpad" />}
-                        name="MUI Toolpad"
+                        name="Toolpad"
                         chip={<Chip label="Beta" size="small" color="primary" variant="outlined" />}
-                        description="Low-code admin builder."
+                        description="Full stack framework for building dashboards."
                       />
                     </li>
                   </ul>
