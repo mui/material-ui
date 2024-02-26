@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getCardActionsUtilityClass } from './cardActionsClasses';
@@ -30,7 +30,7 @@ const CardActionsRoot = styled('div', {
   alignItems: 'center',
   padding: 8,
   ...(!ownerState.disableSpacing && {
-    '& > :not(:first-of-type)': {
+    '& > :not(style) ~ :not(style)': {
       marginLeft: 8,
     },
   }),
@@ -59,10 +59,10 @@ const CardActions = React.forwardRef(function CardActions(inProps, ref) {
 });
 
 CardActions.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

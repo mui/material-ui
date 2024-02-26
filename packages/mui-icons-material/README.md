@@ -14,9 +14,9 @@ npm install @mui/icons-material
 
 <!-- #default-branch-switch -->
 
-These components use the Material UI's [SvgIcon](https://mui.com/material-ui/api/svg-icon) component to render the SVG path for each icon.
+These components use the Material UI's [SvgIcon](https://mui.com/material-ui/api/svg-icon) component to render the SVG path for each icon.
 
-If you are not already using Material UI in your project, you can add it with:
+If you are not already using Material UI in your project, you can add it with:
 
 ```bash
 npm install @mui/material
@@ -36,7 +36,7 @@ Therefore, we don't accept fixes, additions, or any other contributions that wou
 
 To synchronize with Material Icons, do the following:
 
-1. Inside this workspace run `yarn src:download`
-2. Inside this workspace run `yarn src:icons`
-3. Inside the root run `yarn docs:mdicons:synonyms`
+1. Inside this workspace run `pnpm src:download`
+2. Inside this workspace run `pnpm src:icons`
+3. Inside the root run `pnpm docs:mdicons:synonyms`
 4. If the number of icons changes significantly, edit the icons/icons.md and material-icons/material-icons.md under docs/data/material/components and update the numbers.

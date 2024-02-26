@@ -38,6 +38,7 @@ You can generate a mark for each step with `marks={true}`.
 ### Small steps
 
 You can change the default step increment.
+Make sure to adjust the `shiftStep` prop (the granularity with which the slider can step when using Page Up/Down or Shift + Arrow Up/Down) to a value divadable with the `step`.
 
 {{"demo": "DiscreteSliderSteps.js"}}
 
@@ -108,6 +109,12 @@ This might be less confusing to users compared to a change in direction.
 
 {{"demo": "VerticalAccessibleSlider.js"}}
 
+## Marks placement
+
+You can customize your slider by adding and repositioning marks for minimum and maximum values.
+
+{{"demo": "CustomMarks.js"}}
+
 ## Track
 
 The track shows the range available for user selection.
@@ -161,13 +168,15 @@ You can solve the issue with:
 
 ## Experimental APIs
 
-### Material You version
+### Material Design 3
 
-The default Material UI Slider component follows the Material Design 2 specs.
-To get the Material You ([Material Design 3](https://m3.material.io/)) version, use the new experimental `@mui/material-next` package:
+The default Material UI Slider component follows the Material Design 2 specs.
+To use the [M3](https://m3.material.io/) version, install the experimental `@mui/material-next` package.
 
 ```js
 import Slider from '@mui/material-next/Slider';
 ```
 
 {{"demo": "SliderMaterialYouPlayground.js", "hideToolbar": true, "bg": "playground"}}
+
+To learn more about Material UI's M3 implementation, visit the [M3 Components documentation](/material-ui/guides/material-3-components/).

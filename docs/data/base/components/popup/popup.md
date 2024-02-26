@@ -22,7 +22,7 @@ It relies on the third-party [Floating UI](https://floating-ui.com/) library for
 {{"demo": "UnstyledPopupIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
 
 :::info
-The Popup component, once stable, is intended to replace the [Popper](/base-ui/react-popper/) component, which will be phased out in a future release of Base UI.
+The Popup component, once stable, is intended to replace the [Popper](/base-ui/react-popper/) component, which will be phased out in a future release of Base UI.
 :::
 
 ## Component
@@ -61,19 +61,7 @@ Try changing this value to `top` in the interactive demo below to see how it wor
 ### Transitions
 
 You can animate the opening and closing of the Popup using CSS transitions, CSS animations, or third-party animation libraries.
-
-To enable transitions, first set the `withTransition` prop.
-This will make the Popup wait for the exit animation to finish before unmounting.
-
-Then, instead of placing the Popup contents directly as its children, wrap them in a function that receives an object with `requestOpen: boolean`, `onEnter: () => void`, and `onExited: () => void` fields.
-
-Run the open transition when `requestOpen` becomes `true` and the close transition when it changes to `false`.
-Call the `onEnter` once the entering transition is about to start.
-When the exit transition finishes, call the provided `onExited` function to let the Popup know it can be unmounted.
-
-If using CSS transitions or animations, you can use the `onTransitionEnd` or `onAnimationEnd` events, respectively, to detect when the transition is over.
-
-{{"demo": "AnimatedPopup.js"}}
+It supports the API described on the [Base UI Transitions](/base-ui/react-transitions/) page.
 
 ### Disable portal
 
@@ -89,5 +77,5 @@ When set to `"fixed"`, the fixed CSS position will be used and the Popup won't b
 ### Floating UI middleware
 
 If you need to modify the underlying [Floating UI middleware](https://floating-ui.com/docs/middleware), you can do so via the `middleware` prop.
-By default, the Popup uses the [`offset`](https://floating-ui.com/docs/offset) (with the value provided in the `offset` prop) and [`flip`](https://floating-ui.com/docs/flip) functions.
+By default, the Popup uses the [`offset`](https://floating-ui.com/docs/offset) (with the value provided in the `offset` prop), [`flip`](https://floating-ui.com/docs/flip) and [`shift`](https://floating-ui.com/docs/shift) functions.
 If you provide your own middleware array, these defaults won't be applied.

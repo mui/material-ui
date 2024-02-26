@@ -36,7 +36,7 @@ export interface BaseTextFieldProps
   /**
    * @ignore
    */
-  children?: React.ReactNode;
+  children?: FormControlProps['children'];
   /**
    * Override or extend the styles applied to the component.
    */
@@ -232,8 +232,8 @@ export type TextFieldProps<Variant extends TextFieldVariants = TextFieldVariants
   Variant extends 'filled'
     ? FilledTextFieldProps
     : Variant extends 'standard'
-    ? StandardTextFieldProps
-    : OutlinedTextFieldProps;
+      ? StandardTextFieldProps
+      : OutlinedTextFieldProps;
 
 /**
  * The `TextField` is a convenience wrapper for the most common cases (80%).

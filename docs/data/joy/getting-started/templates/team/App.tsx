@@ -206,7 +206,7 @@ export default function TeamExample() {
               justifyContent: 'space-between',
             }}
           >
-            <Typography level="title-lg" textColor="text.secondary">
+            <Typography level="title-lg" textColor="text.secondary" component="h1">
               People
             </Typography>
             <Button startDecorator={<PersonRoundedIcon />} size="sm">
@@ -422,7 +422,7 @@ export default function TeamExample() {
                     <ListItem key={companyIndex} sx={{ alignItems: 'flex-start' }}>
                       <ListItemDecorator
                         sx={{
-                          '&:before': {
+                          '&::before': {
                             content: '""',
                             position: 'absolute',
                             height: '100%',

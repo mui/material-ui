@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { CSSObject, Keyframes } from '@emotion/react';
 import { alpha } from '@mui/material/styles';
 import GlobalStyles from '@mui/material/GlobalStyles';
 
@@ -28,7 +27,7 @@ export default function XGridGlobalStyles({
                   flexShrink: 0,
                   border: '1px solid',
                   padding: theme.spacing(0, 1),
-                  borderColor: (theme.vars || theme).palette.grey[200],
+                  borderColor: (theme.vars || theme).palette.divider,
                   '& svg': {
                     fontSize: '1.125rem',
                   },
@@ -121,7 +120,7 @@ export default function XGridGlobalStyles({
             '& .MuiDataGrid-root': {
               '& .MuiDataGrid-toolbarContainer': {
                 '& > button': {
-                  borderColor: (theme.vars || theme).palette.primaryDark[600],
+                  borderColor: (theme.vars || theme).palette.divider,
                 },
               },
               '& .MuiCheckbox-root': {
@@ -131,7 +130,7 @@ export default function XGridGlobalStyles({
                 color: (theme.vars || theme).palette.primary[300],
               },
               '& .MuiDataGrid-columnHeaders': {
-                borderColor: (theme.vars || theme).palette.primaryDark[500],
+                borderColor: (theme.vars || theme).palette.divider,
               },
               '& .MuiDataGrid-columnSeparator': {
                 color: (theme.vars || theme).palette.primaryDark[400],
@@ -158,7 +157,7 @@ export default function XGridGlobalStyles({
               },
             },
           },
-        }) as CSSObject | Keyframes,
+        }),
       ]}
     />
   );

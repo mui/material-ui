@@ -108,7 +108,10 @@ export interface CSSObject
     Omit<CSSOthersObject, 'variants'> {}
 
 interface CSSObjectWithVariants<Props> extends Omit<CSSObject, 'variants'> {
-  variants: Array<{ props: Props; variants: CSSObject }>;
+  variants: Array<{
+    props: Props | ((props: Props) => boolean);
+    style: CSSObject;
+  }>;
 }
 
 export type FalseyValue = undefined | null | false;
@@ -170,31 +173,21 @@ export type AnyStyledComponent =
   | React.FunctionComponent<any>
   | React.ComponentType<any>;
 
-export type StyledComponentInnerComponent<C extends AnyStyledComponent> = C extends StyledComponent<
-  infer I,
-  any,
-  any,
-  any
->
-  ? I
-  : C extends StyledComponent<infer I, any, any>
-  ? I
-  : C;
+export type StyledComponentInnerComponent<C extends AnyStyledComponent> =
+  C extends StyledComponent<infer I, any, any, any>
+    ? I
+    : C extends StyledComponent<infer I, any, any>
+      ? I
+      : C;
 
 export type StyledComponentInnerOtherProps<C extends AnyStyledComponent> =
   C extends StyledComponent<any, any, infer O, any>
     ? O
     : C extends StyledComponent<any, any, infer O>
-    ? O
-    : never;
-export type StyledComponentInnerAttrs<C extends AnyStyledComponent> = C extends StyledComponent<
-  any,
-  any,
-  any,
-  infer A
->
-  ? A
-  : never;
+      ? O
+      : never;
+export type StyledComponentInnerAttrs<C extends AnyStyledComponent> =
+  C extends StyledComponent<any, any, any, infer A> ? A : never;
 
 export interface StyledComponentBase<
   C extends string | React.ComponentType<any>,
@@ -292,32 +285,85 @@ export interface StyledConfig<O extends object = {}> {
   // TODO: Add all types from the original StyledComponentWrapperProperties
   componentId?: string;
   displayName?: string;
+  label?: string;
+  target?: string;
   shouldForwardProp?:
     | ((prop: keyof O, defaultValidatorFn: (prop: keyof O) => boolean) => boolean)
     | undefined;
+}
+
+/** Same as StyledConfig but shouldForwardProp must be a type guard */
+export interface FilteringStyledOptions<Props, ForwardedProps extends keyof Props = keyof Props> {
+  componentId?: string;
+  displayName?: string;
+  label?: string;
+  shouldForwardProp?(propName: PropertyKey): propName is ForwardedProps;
+  target?: string;
 }
 
 // same as ThemedBaseStyledInterface in styled-components, but with added options & common props for MUI components
 export interface ThemedBaseStyledInterface<
   MUIStyledCommonProps extends object,
   MuiStyledOptions extends object,
-  T extends object,
-> extends ThemedStyledComponentFactories<T> {
-  <C extends AnyStyledComponent>(
+  Theme extends object,
+> extends ThemedStyledComponentFactories<Theme> {
+  <
+    C extends React.ComponentClass<React.ComponentProps<C>>,
+    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>,
+  >(
     component: C,
-    options?: StyledConfig<any> & MuiStyledOptions,
-  ): ThemedStyledFunction<
-    StyledComponentInnerComponent<C>,
-    T,
-    StyledComponentInnerOtherProps<C> & MUIStyledCommonProps,
-    StyledComponentInnerAttrs<C>
+    options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps> & MuiStyledOptions,
+  ): CreateStyledComponent<
+    Pick<PropsOf<C>, ForwardedProps> & MUIStyledCommonProps,
+    {},
+    {
+      ref?: React.Ref<InstanceType<C>>;
+    },
+    Theme
   >;
-  <C extends keyof JSX.IntrinsicElements | React.ComponentType<any>>(
-    // unfortunately using a conditional type to validate that it can receive a `theme?: Theme`
-    // causes tests to fail in TS 3.1
+
+  <C extends React.ComponentClass<React.ComponentProps<C>>>(
     component: C,
-    options?: StyledConfig<any> & MuiStyledOptions,
-  ): ThemedStyledFunction<C, T, MUIStyledCommonProps>;
+    options?: StyledConfig<PropsOf<C> & MUIStyledCommonProps> & MuiStyledOptions,
+  ): CreateStyledComponent<
+    PropsOf<C> & MUIStyledCommonProps,
+    {},
+    {
+      ref?: React.Ref<InstanceType<C>>;
+    },
+    Theme
+  >;
+
+  <
+    C extends React.JSXElementConstructor<React.ComponentProps<C>>,
+    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>,
+  >(
+    component: C,
+    options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps> & MuiStyledOptions,
+  ): CreateStyledComponent<Pick<PropsOf<C>, ForwardedProps> & MUIStyledCommonProps, {}, {}, Theme>;
+
+  <C extends React.JSXElementConstructor<React.ComponentProps<C>>>(
+    component: C,
+    options?: StyledConfig<PropsOf<C> & MUIStyledCommonProps> & MuiStyledOptions,
+  ): CreateStyledComponent<PropsOf<C> & MUIStyledCommonProps, {}, {}, Theme>;
+
+  <
+    Tag extends keyof JSX.IntrinsicElements,
+    ForwardedProps extends keyof JSX.IntrinsicElements[Tag] = keyof JSX.IntrinsicElements[Tag],
+  >(
+    tag: Tag,
+    options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps> & MuiStyledOptions,
+  ): CreateStyledComponent<
+    MUIStyledCommonProps,
+    Pick<JSX.IntrinsicElements[Tag], ForwardedProps>,
+    {},
+    Theme
+  >;
+
+  <Tag extends keyof JSX.IntrinsicElements>(
+    tag: Tag,
+    options?: StyledConfig<MUIStyledCommonProps> & MuiStyledOptions,
+  ): CreateStyledComponent<MUIStyledCommonProps, JSX.IntrinsicElements[Tag], {}, Theme>;
 }
 
 export type CreateMUIStyled<

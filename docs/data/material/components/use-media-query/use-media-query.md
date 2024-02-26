@@ -12,7 +12,6 @@ Some of the key features:
 
 - ⚛️ It has an idiomatic React API.
 - 🚀 It's performant, it observes the document to detect when its media queries change, instead of polling the values periodically.
-- 📦 [1 kB gzipped](/size-snapshot/).
 - 🤖 It supports server-side rendering.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
@@ -26,9 +25,9 @@ The media query string can be any valid CSS media query, e.g. [`'(prefers-color-
 
 ⚠️ You can't use `'print'` per browsers limitation, e.g. [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398).
 
-## Using Material UI's breakpoint helpers
+## Using Material UI's breakpoint helpers
 
-You can use Material UI's [breakpoint helpers](/material-ui/customization/breakpoints/) as follows:
+You can use Material UI's [breakpoint helpers](/material-ui/customization/breakpoints/) as follows:
 
 ```jsx
 import { useTheme } from '@mui/material/styles';

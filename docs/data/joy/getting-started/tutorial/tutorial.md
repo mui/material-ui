@@ -17,7 +17,7 @@ By the end, you should understand how to:
 
 Here's what the final product looks like—click on the "Show code" button underneath the demo to see the full source code:
 
-{{"demo": "LoginFinal.js"}}
+{{"demo": "LoginFinal.js", "iframe": true, "height": 500, "bg": "outlined"}}
 
 ## Prerequisites
 
@@ -80,7 +80,7 @@ Replace your basic Sheet from the previous step with the following `sx`-styled S
 
 :::success
 Try changing some of the values for the CSS properties above based on the patterns you observe.
-To go deeper, read about the `sx` prop in the [MUI System documentation](/system/getting-started/the-sx-prop/).
+To go deeper, read about the `sx` prop in the [MUI System documentation](/system/getting-started/the-sx-prop/).
 :::
 
 ## Add text with the Typography component
@@ -113,7 +113,7 @@ Replace `Welcome!` inside your Sheet component with this `<div>`:
 
 :::success
 Try changing the values for the `level` and `component` props to see how they affect the typographic values and the elements rendered.
-(Note that while `level` only accepts the 13 values listed above, you can pass any HTML tag to `component`, as well as custom React components.)
+(Note that while `level` only accepts the 11 values listed above, you can pass any HTML tag to `component`, as well as custom React components.)
 :::
 
 ## Add text field for user inputs
@@ -255,5 +255,5 @@ Learn more about [different customization approaches](/joy-ui/customization/appr
 
 To see some more sophisticated examples of Joy UI in action, check out our [collection of templates](/joy-ui/getting-started/templates/).
 
-Are you migrating from Material UI?
-Learn how to work with [Joy UI and Material UI together in one app](/joy-ui/integrations/material-ui/).
+Are you migrating from Material UI?
+Learn how to work with [Joy UI and Material UI together in one app](/joy-ui/integrations/material-ui/).

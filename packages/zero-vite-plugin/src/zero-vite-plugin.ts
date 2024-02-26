@@ -10,20 +10,35 @@ import path from 'node:path';
 import type { ModuleNode, Plugin, ResolvedConfig, ViteDevServer, FilterPattern } from 'vite';
 import { optimizeDeps, createFilter } from 'vite';
 
-import { transform, slugify, TransformCacheCollection } from '@linaria/babel-preset';
-import type { PluginOptions, Preprocessor } from '@linaria/babel-preset';
-import { createCustomDebug } from '@linaria/logger';
-import type { IPerfMeterOptions } from '@linaria/utils';
-import { createPerfMeter, getFileIdx, syncResolve } from '@linaria/utils';
+import { slugify, logger as wywLogger, syncResolve } from '@wyw-in-js/shared';
+import {
+  TransformCacheCollection,
+  transform,
+  Preprocessor,
+  createFileReporter,
+  getFileIdx,
+  type PluginOptions,
+  type IFileReporterOptions,
+} from '@wyw-in-js/transform';
+import { type PluginCustomOptions } from '@mui/zero-runtime/utils';
 
 export type VitePluginOptions = {
-  debug?: IPerfMeterOptions | false | null | undefined;
+  debug?: IFileReporterOptions | false | null | undefined;
   exclude?: FilterPattern;
   include?: FilterPattern;
   preprocessor?: Preprocessor;
   sourceMap?: boolean;
   transformLibraries?: string[];
-} & Partial<PluginOptions>;
+} & Partial<PluginOptions> &
+  PluginCustomOptions;
+
+function innerNoop() {
+  return null;
+}
+
+function outerNoop() {
+  return innerNoop;
+}
 
 export default function zeroVitePlugin({
   debug,
@@ -32,6 +47,8 @@ export default function zeroVitePlugin({
   sourceMap,
   preprocessor,
   transformLibraries = [],
+  overrideContext,
+  tagResolver,
   ...rest
 }: VitePluginOptions = {}): Plugin {
   const filter = createFilter(include, exclude);
@@ -40,7 +57,7 @@ export default function zeroVitePlugin({
   let config: ResolvedConfig;
   let devServer: ViteDevServer;
 
-  const { emitter, onDone } = createPerfMeter(debug ?? false);
+  const { emitter, onDone } = createFileReporter(debug ?? false);
 
   // <dependency id, targets>
   const targets: { dependencies: string[]; id: string }[] = [];
@@ -57,16 +74,16 @@ export default function zeroVitePlugin({
     configureServer(_server) {
       devServer = _server;
     },
-    load(url: string) {
-      const [id] = url.split('?', 1);
-      return cssLookup[id];
-    },
     resolveId(importeeUrl: string) {
       const [id] = importeeUrl.split('?', 1);
       if (cssLookup[id]) {
         return id;
       }
       return cssFileLookup[id];
+    },
+    load(url: string) {
+      const [id] = url.split('?', 1);
+      return cssLookup[id];
     },
     handleHotUpdate(ctx) {
       // it's module, so just transform it
@@ -84,8 +101,8 @@ export default function zeroVitePlugin({
       );
       const deps = affected.flatMap((target) => target.dependencies);
 
-      // eslint-disable-next-line no-restricted-syntax
-      for (const depId of deps) {
+      for (let i = 0; i < deps.length; i += 1) {
+        const depId = deps[i];
         cache.invalidateForFile(depId);
       }
 
@@ -101,10 +118,11 @@ export default function zeroVitePlugin({
       if (id in cssLookup) {
         return null;
       }
+
       let shouldReturn = url.includes('node_modules');
 
       if (shouldReturn) {
-        shouldReturn = !transformLibraries.some((libName) => url.includes(libName));
+        shouldReturn = !transformLibraries.some((libName: string) => url.includes(libName));
       }
 
       if (shouldReturn) {
@@ -117,10 +135,14 @@ export default function zeroVitePlugin({
         return null;
       }
 
-      const log = createCustomDebug('rollup', getFileIdx(id));
-      log('Vite transform', id);
+      const log = wywLogger.extend('vite');
+      log('Vite transform', getFileIdx(id));
 
       const asyncResolve = async (what: string, importer: string, stack: string[]) => {
+        // @TODO - Remove this when @mui/system published esm files by default at the base directory
+        if (what.startsWith('@mui/system') && !what.includes('esm')) {
+          return what.replace('@mui/system', '@mui/system/esm');
+        }
         const resolved = await this.resolve(what, importer);
         if (resolved) {
           if (resolved.external) {
@@ -152,71 +174,115 @@ export default function zeroVitePlugin({
         throw new Error(`Could not resolve ${what}`);
       };
 
-      const result = await transform(
-        code,
-        {
-          filename: id,
-          preprocessor,
-          pluginOptions: rest,
-        },
-        asyncResolve,
-        {},
-        cache,
-        emitter,
+      const presets = new Set(
+        Array.isArray(rest.babelOptions?.presets) ? rest.babelOptions?.presets : [],
       );
+      presets.add('@babel/preset-typescript');
 
-      let { cssText, dependencies } = result;
+      try {
+        const result = await transform(
+          {
+            options: {
+              filename: id,
+              root: process.cwd(),
+              preprocessor,
+              pluginOptions: {
+                ...rest,
+                babelOptions: {
+                  ...rest.babelOptions,
+                  plugins: [
+                    ['babel-plugin-transform-react-remove-prop-types', { mode: 'remove' }],
+                    ...(rest.babelOptions?.plugins ?? []),
+                  ],
+                  presets: Array.from(presets),
+                },
+                overrideContext(context: Record<string, unknown>, filename: string) {
+                  if (overrideContext) {
+                    return overrideContext(context, filename);
+                  }
+                  if (!context.$RefreshSig$) {
+                    context.$RefreshSig$ = outerNoop;
+                  }
+                  return context;
+                },
+                tagResolver(source: string, tag: string) {
+                  const tagResult = tagResolver?.(source, tag);
+                  if (tagResult) {
+                    return tagResult;
+                  }
+                  if (source.endsWith('/zero-styled') || source.endsWith('/zero-useThemeProps')) {
+                    return `${process.env.RUNTIME_PACKAGE_NAME}/exports/${tag}`;
+                  }
+                  return null;
+                },
+              },
+            },
+            cache,
+            eventEmitter: emitter,
+          },
+          code,
+          asyncResolve,
+        );
 
-      if (!cssText) {
-        return null;
-      }
-      dependencies ??= [];
+        let { cssText, dependencies } = result;
 
-      const slug = slugify(cssText);
-      const cssFilename = path
-        .normalize(`${id.replace(/\.[jt]sx?$/, '')}_${slug}.css`)
-        .replace(/\\/g, path.posix.sep);
-
-      const cssRelativePath = path
-        .relative(config.root, cssFilename)
-        .replace(/\\/g, path.posix.sep);
-
-      const cssId = `/${cssRelativePath}`;
-
-      if (sourceMap && result.cssSourceMapText) {
-        const map = Buffer.from(result.cssSourceMapText).toString('base64');
-        cssText += `/*# sourceMappingURL=data:application/json;base64,${map}*/`;
-      }
-
-      cssLookup[cssFilename] = cssText;
-      cssFileLookup[cssId] = cssFilename;
-
-      result.code += `\nimport ${JSON.stringify(cssFilename)};\n`;
-      if (devServer?.moduleGraph) {
-        const module = devServer.moduleGraph.getModuleById(cssId);
-
-        if (module) {
-          devServer.moduleGraph.invalidateModule(module);
-          module.lastHMRTimestamp = module.lastInvalidationTimestamp || Date.now();
+        if (!cssText) {
+          return null;
         }
-      }
 
-      for (let i = 0, end = dependencies.length; i < end; i += 1) {
-        // eslint-disable-next-line no-await-in-loop
-        const depModule = await this.resolve(dependencies[i], url, {
-          isEntry: false,
-        });
-        if (depModule) {
-          dependencies[i] = depModule.id;
+        dependencies ??= [];
+
+        const slug = slugify(cssText);
+        const cssFilename = path
+          .normalize(`${id.replace(/\.[jt]sx?$/, '')}_${slug}.css`)
+          .replace(/\\/g, path.posix.sep);
+
+        const cssRelativePath = path
+          .relative(config.root, cssFilename)
+          .replace(/\\/g, path.posix.sep);
+
+        const cssId = `/${cssRelativePath}`;
+
+        if (sourceMap && result.cssSourceMapText) {
+          const map = Buffer.from(result.cssSourceMapText).toString('base64');
+          cssText += `/*# sourceMappingURL=data:application/json;base64,${map}*/`;
         }
+
+        cssLookup[cssFilename] = cssText;
+        cssFileLookup[cssId] = cssFilename;
+
+        result.code += `\nimport ${JSON.stringify(cssFilename)};\n`;
+        if (devServer?.moduleGraph) {
+          const module = devServer.moduleGraph.getModuleById(cssId);
+
+          if (module) {
+            devServer.moduleGraph.invalidateModule(module);
+            module.lastHMRTimestamp = module.lastInvalidationTimestamp || Date.now();
+          }
+        }
+
+        for (let i = 0, end = dependencies.length; i < end; i += 1) {
+          // eslint-disable-next-line no-await-in-loop
+          const depModule = await this.resolve(dependencies[i], url, {
+            isEntry: false,
+          });
+          if (depModule) {
+            dependencies[i] = depModule.id;
+          }
+        }
+        const target = targets.find((t) => t.id === id);
+        if (!target) {
+          targets.push({ id, dependencies });
+        } else {
+          target.dependencies = dependencies;
+        }
+        return { code: result.code, map: result.sourceMap };
+      } catch (ex) {
+        const err = new Error(`MUI: Error while transforming file '${id}'`);
+        err.message = (ex as Error).message;
+        err.stack = (ex as Error).stack;
+        throw err;
       }
-      const target = targets.find((t) => t.id === id);
-      if (!target) {
-        targets.push({ id, dependencies });
-      } else {
-        target.dependencies = dependencies;
-      }
-      return { code: result.code, map: result.sourceMap };
     },
   };
 }

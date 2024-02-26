@@ -122,101 +122,93 @@ function useIsDarkMode() {
 function Styles() {
   // Replace this with your app logic for determining dark mode
   const isDarkMode = useIsDarkMode();
-  return (
-    <style>{`
-  .menu-root {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 0.875rem;
-    box-sizing: border-box;
-    padding: 5px;
-    margin: 10px 0;
-    min-width: 200px;
-    background: #fff;
-    border: 1px solid ${grey[200]};
-    border-radius: 0.75em;
-    color: ${grey[900]};
-    overflow: auto;
-    outline: 0px;
-    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.05);
-  }
 
-  .mode-dark .menu-root {
-    background: ${grey[900]};
-    border-color: ${grey[700]};
-    color: ${grey[300]};
-    box-shadow: 0px 2px 6px rgba(0,0,0, 0.50);
-  }
+  const styles = `
+    .menu-root {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 0.875rem;
+      box-sizing: border-box;
+      padding: 5px;
+      margin: 10px 0;
+      min-width: 200px;
+      background: #fff;
+      border: 1px solid ${grey[200]};
+      border-radius: 0.75em;
+      color: ${grey[900]};
+      overflow: auto;
+      outline: 0px;
+      box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.05);
+    }
 
-  .menu-item {
-    list-style: none;
-    padding: 8px;
-    border-radius: 0.45em;
-    cursor: default;
-    user-select: none;
-  }
+    .mode-dark .menu-root {
+      background: ${grey[900]};
+      border-color: ${grey[700]};
+      color: ${grey[300]};
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5);
+    }
 
-  .menu-item:last-of-type {
-    border-bottom: none;
-  }
+    .menu-item {
+      list-style: none;
+      padding: 8px;
+      border-radius: 0.45em;
+      cursor: default;
+      user-select: none;
+    }
 
-  .menu-item.focus-visible {
-    background-color: ${grey[100]};
-    color: ${grey[900]};
-    outline: 0;
-  }
+    .menu-item:last-of-type {
+      border-bottom: none;
+    }
 
-  .mode-dark .menu-item.focus-visible {
-    background-color: ${grey[800]};
-    color: ${grey[300]};
-  }
+    .menu-item:focus {
+      background-color: ${grey[100]};
+      color: ${grey[900]};
+      outline: 0;
+    }
 
-  .menu-item.disabled {
-    color: ${grey[400]};
-  }
+    .mode-dark .menu-item:focus {
+      background-color: ${grey[800]};
+      color: ${grey[300]};
+    }
+
+    .menu-item.disabled {
+      color: ${grey[400]};
+    }
 
   .mode-dark .menu-item.disabled {
     color: ${grey[700]};
   }
 
-  .menu-item:hover:not(.disabled) {
-    background-color: ${grey[100]};
-    color: ${grey[900]};
-  }
+    .button {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      padding: 8px 16px;
+      border-radius: 8px;
+      color: white;
+      transition: all 150ms ease;
+      cursor: pointer;
+      background: ${isDarkMode ? grey[900] : '#fff'};
+      border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
+      color: ${isDarkMode ? grey[200] : grey[900]};
+      box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 
-  .mode-dark .menu-item:hover:not(.disabled){
-    background-color: ${grey[800]};
-    color: ${grey[300]};
-  }
+      &:hover {
+        background: ${isDarkMode ? grey[800] : grey[50]};
+        border-color: ${isDarkMode ? grey[600] : grey[300]};
+      }
 
-  .button {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-weight: 600;
-    font-size: 0.875rem;
-    line-height: 1.5;
-    padding: 8px 16px;
-    border-radius: 8px;
-    color: white;
-    transition: all 150ms ease;
-    cursor: pointer;
-    background: ${isDarkMode ? grey[900] : '#fff'};
-    border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
-    color: ${isDarkMode ? grey[200] : grey[900]};
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      &:active {
+        background: ${isDarkMode ? grey[700] : grey[100]};
+      }
 
-    &:hover {
-      background: ${isDarkMode ? grey[800] : grey[50]};
-      border-color: ${isDarkMode ? grey[600] : grey[300]};
+      &:focus-visible {
+        box-shadow: 0 0 0 4px ${isDarkMode ? blue[300] : blue[200]};
+        outline: none;
+      }
     }
+  `;
 
-    &:active {
-      background: ${isDarkMode ? grey[700] : grey[100]};
-    }
-
-    &:focus-visible {
-      box-shadow: 0 0 0 4px ${isDarkMode ? blue[300] : blue[200]};
-      outline: none;
-    }
-  }
-  `}</style>
-  );
+  // eslint-disable-next-line react/no-danger
+  return <style dangerouslySetInnerHTML={{ __html: styles }} />;
 }

@@ -14,7 +14,7 @@ import MuiList from '@mui/material/List';
 import MuiListItem from '@mui/material/ListItem';
 import MuiDivider from '@mui/material/Divider';
 import { getCookie } from 'docs/src/modules/utils/helpers';
-import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
 
 async function fetchNotifications() {
   if (process.env.NODE_ENV === 'development') {
@@ -131,7 +131,7 @@ export default function Notifications() {
           }, */
           {
             id: 1,
-            text: 'You can <a style="color: inherit;" target="_blank" rel="noopener" href="https://twitter.com/MUI_hq">follow us on Twitter</a> or subscribe on <a style="color: inherit;" target="_blank" rel="noopener" href="/blog/">our blog</a> to receive exclusive tips and updates about MUI and the React ecosystem.',
+            text: 'You can <a style="color: inherit;" target="_blank" rel="noopener" href="https://twitter.com/MUI_hq">follow us on X</a> or subscribe on <a style="color: inherit;" target="_blank" rel="noopener" href="/blog/">our blog</a> to receive exclusive tips and updates about MUI and the React ecosystem.',
           },
           // Only 3
           ...notifications.splice(-3),
@@ -177,7 +177,7 @@ export default function Notifications() {
                   0,
                 )
               : 0
-          } ${t('toggleNotifications')}`}
+          } ${t('unreadNotifications')}`}
           data-ga-event-category="AppBar"
           data-ga-event-action="toggleNotifications"
           onClick={handleToggle}

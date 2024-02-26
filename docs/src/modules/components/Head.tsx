@@ -2,7 +2,7 @@ import * as React from 'react';
 import NextHead from 'next/head';
 import { useRouter } from 'next/router';
 import { LANGUAGES_SSR } from 'docs/config';
-import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 
 // #major-version-switch
@@ -21,7 +21,7 @@ interface HeadProps {
 export default function Head(props: HeadProps) {
   const t = useTranslate();
   const {
-    card = '/static/social-previews/default-preview.jpg',
+    card = '/static/social-previews/home-preview.jpg',
     children,
     description = t('strapline'),
     disableAlternateLocale = false,
@@ -38,7 +38,7 @@ export default function Head(props: HeadProps) {
     <NextHead>
       <title>{title}</title>
       <meta name="description" content={description} />
-      {/* Twitter */}
+      {/* X */}
       <meta name="twitter:card" content={largeCard ? 'summary_large_image' : 'summary'} />
       {/* https://twitter.com/MUI_hq */}
       <meta name="twitter:site" content="@MUI_hq" />
