@@ -3,6 +3,7 @@
 A zero-runtime CSS-in-JS library that extracts the colocated styles to their own CSS files at build-time.
 
 - [Getting started](#getting-started)
+  - [Why this project exists?](#why-this=project-exists?)
   - [Next.js](#nextjs)
   - [Vite](#vite)
 - [Basic usage](#basic-usage)
@@ -22,6 +23,12 @@ A zero-runtime CSS-in-JS library that extracts the colocated styles to their own
 ## Getting started
 
 Zero-runtime supports Next.js and Vite with future support for more bundlers. You must install the corresponding plugin, as shown below.
+
+### Why this project exists?
+
+The initial motivator to work on this zero-runtime CSS-in-JS package was to improve Material UI's performance when it comes to styling. That's been a frequent pain point we've heard about ever since we introduced Emotion in v5. But another reason a zero-runtime styling solution is excellent for the future of Material UI is compatibility with React Server Components (RSCs).
+
+All components must support this new pattern; today, most components would naturally apply. Emotion is the only blocker for those that don't (the layout components, such as Box, Typography, Stack, etc.). Additionally, restructuring the way we develop themes is also needed to comply with RSCs, given they need to be passed through a Provider component that typically uses React Context, which is not supported.
 
 ### Next.js
 
