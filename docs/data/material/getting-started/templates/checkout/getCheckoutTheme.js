@@ -300,7 +300,7 @@ export default function getCheckoutTheme(mode) {
                 background: brand[500],
                 backgroundImage: `linear-gradient(to bottom, ${brand[400]}, ${brand[600]})`,
                 boxShadow: `inset 0 1px ${alpha(brand[300], 0.4)}`,
-                outline: `1px solid ${brand[700]}`,
+                outline: `1px solid ${brand[500]}`,
                 '&:hover': {
                   background: brand[400],
                   backgroundImage: 'none',
@@ -324,6 +324,10 @@ export default function getCheckoutTheme(mode) {
               },
             }),
             ...(theme.palette.mode === 'dark' && {
+              ...(ownerState.variant === 'contained' &&
+                ownerState.color === 'primary' && {
+                  outline: `1px solid ${brand[600]}`,
+                }),
               ...(ownerState.variant === 'outlined' && {
                 backgroundColor: alpha(brand[600], 0.1),
                 borderColor: brand[700],
@@ -554,6 +558,12 @@ export default function getCheckoutTheme(mode) {
             border: 'none',
           },
           root: ({ theme }) => ({
+            '& .MuiInputBase-input': {
+              '&::placeholder': {
+                opacity: 0.7,
+                color: gray[500],
+              },
+            },
             boxSizing: 'border-box',
             flexGrow: 1,
             maxHeight: 40,
@@ -561,6 +571,7 @@ export default function getCheckoutTheme(mode) {
             borderRadius: '10px',
             border: '1px solid',
             borderColor: gray[200],
+            boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.1)',
             transition: 'border-color 120ms ease-in',
             backgroundColor: alpha(gray[100], 0.4),
             '&:hover': {
@@ -572,6 +583,12 @@ export default function getCheckoutTheme(mode) {
               outlineColor: brand[200],
             },
             ...(theme.palette.mode === 'dark' && {
+              '& .MuiInputBase-input': {
+                '&::placeholder': {
+                  opacity: 1,
+                  color: gray[500],
+                },
+              },
               boxSizing: 'border-box',
               flexGrow: 1,
               minHeight: 40,
@@ -579,6 +596,7 @@ export default function getCheckoutTheme(mode) {
               borderRadius: '10px',
               border: '1px solid',
               borderColor: gray[700],
+              boxShadow: '0px 2px 4px rgba(0, 0, 0, 1)',
               backgroundColor: alpha(gray[900], 0.3),
               transition: 'border-color 120ms ease-in',
               '&:hover': {
@@ -620,6 +638,7 @@ export default function getCheckoutTheme(mode) {
             '& .MuiInputBase-input': {
               '&::placeholder': {
                 opacity: 0.7,
+                color: gray[500],
               },
             },
             '& .MuiOutlinedInput-root': {
@@ -659,6 +678,12 @@ export default function getCheckoutTheme(mode) {
               },
             }),
             ...(theme.palette.mode === 'dark' && {
+              '& .MuiInputBase-input': {
+                '&::placeholder': {
+                  opacity: 1,
+                  color: gray[500],
+                },
+              },
               '& .MuiOutlinedInput-root': {
                 boxSizing: 'border-box',
                 minWidth: 280,
@@ -703,14 +728,10 @@ export default function getCheckoutTheme(mode) {
       MuiStepConnector: {
         styleOverrides: {
           line: ({ theme }) => ({
-            borderTop: 'none',
-            height: '1px',
+            borderTop: '1px solid',
+            borderColor: theme.palette.divider,
             flex: 1,
-            background: `repeating-linear-gradient(90deg, ${theme.palette.grey[600]}, ${theme.palette.grey[600]} 1px, transparent 1px, transparent 4px)`,
             borderRadius: '99px',
-            ...(theme.palette.mode === 'dark' && {
-              background: `repeating-linear-gradient(90deg, ${theme.palette.grey[500]}, ${theme.palette.grey[500]} 1px, transparent 1px, transparent 4px)`,
-            }),
           }),
         },
       },

@@ -16,7 +16,8 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
-import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
+import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
+import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
@@ -25,8 +26,6 @@ import Info from './Info';
 import InfoMobile from './InfoMobile';
 import ToggleColorMode from './ToggleColorMode';
 import getCheckoutTheme from './getCheckoutTheme';
-
-// const defaultTheme = createTheme({});
 
 function ToggleCustomTheme({ showCustomTheme, toggleCustomTheme }) {
   return (
@@ -75,8 +74,8 @@ const steps = ['Shipping address', 'Payment details', 'Review your order'];
 const logoStyle = {
   width: '140px',
   height: '56px',
-  marginLeft: '-12px',
-  marginRight: '-12px',
+  marginLeft: '-4px',
+  marginRight: '-8px',
 };
 
 function getStepContent(step) {
@@ -127,7 +126,7 @@ export default function Checkout() {
           sx={{
             display: { xs: 'none', md: 'flex' },
             flexDirection: 'column',
-            backgroundColor: 'background.default',
+            backgroundColor: 'background.paper',
             borderRight: { sm: 'none', md: '1px solid' },
             borderColor: { sm: 'none', md: 'divider' },
             alignItems: 'start',
@@ -157,6 +156,7 @@ export default function Checkout() {
               href="/material-ui/getting-started/templates/landing-page/"
               sx={{ alignSelf: 'start', ml: '-8px' }}
             >
+              Back to
               <img
                 src={
                   'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
@@ -176,9 +176,9 @@ export default function Checkout() {
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            backgroundColor: { xs: 'transparent', sm: 'background.paper' },
-            borderRight: { sm: 'none', md: '1px solid' },
-            borderColor: { sm: 'none', md: 'divider' },
+            maxWidth: '100%',
+            width: '100%',
+            backgroundColor: { xs: 'transparent', sm: 'background.default' },
             alignItems: 'start',
             pt: { xs: 2, sm: 4 },
             px: { xs: 2, sm: 10 },
@@ -207,8 +207,9 @@ export default function Checkout() {
                 startIcon={<ArrowBackRoundedIcon />}
                 component="a"
                 href="/material-ui/getting-started/templates/landing-page/"
-                sx={{ alignSelf: 'start', ml: '-8px' }}
+                sx={{ alignSelf: 'start' }}
               >
+                Back to
                 <img
                   src={
                     'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
@@ -304,7 +305,7 @@ export default function Checkout() {
                 <Typography variant="h5" gutterBottom>
                   Thank you for your order.
                 </Typography>
-                <Typography variant="subtitle1" gutterBottom>
+                <Typography variant="body1" color="text.secondary" gutterBottom>
                   Your order number is
                   <Typography component="span" sx={{ fontWeight: 600 }}>
                     &nbsp;#140396
@@ -312,7 +313,14 @@ export default function Checkout() {
                   . We have emailed your order confirmation, and will send you an
                   update when your order has shipped.
                 </Typography>
-                <Button variant="contained" sx={{ alignSelf: 'start', mt: 2 }}>
+                <Button
+                  variant="contained"
+                  sx={{
+                    alignSelf: 'start',
+                    width: { xs: '100%', sm: 'auto' },
+                    mt: 2,
+                  }}
+                >
                   Go to my orders
                 </Button>
               </React.Fragment>
@@ -322,6 +330,7 @@ export default function Checkout() {
                 <Box
                   sx={{
                     display: 'flex',
+                    flexDirection: { xs: 'column-reverse', sm: 'row' },
                     justifyContent: activeStep !== 0 ? 'space-between' : 'flex-end',
                     alignItems: 'end',
                     flexGrow: 1,
@@ -333,14 +342,39 @@ export default function Checkout() {
                 >
                   {activeStep !== 0 && (
                     <Button
-                      startIcon={<ArrowBackIosNewRoundedIcon />}
+                      startIcon={<ChevronLeftRoundedIcon />}
                       onClick={handleBack}
+                      variant="text"
+                      sx={{
+                        display: { xs: 'none', sm: 'flex' },
+                      }}
                     >
                       Previous
                     </Button>
                   )}
 
-                  <Button variant="contained" onClick={handleNext}>
+                  {activeStep !== 0 && (
+                    <Button
+                      startIcon={<ChevronLeftRoundedIcon />}
+                      onClick={handleBack}
+                      variant="outlined"
+                      fullWidth
+                      sx={{
+                        display: { xs: 'flex', sm: 'none' },
+                      }}
+                    >
+                      Previous
+                    </Button>
+                  )}
+
+                  <Button
+                    variant="contained"
+                    endIcon={<ChevronRightRoundedIcon />}
+                    onClick={handleNext}
+                    sx={{
+                      width: { xs: '100%', sm: 'auto' },
+                    }}
+                  >
                     {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
                   </Button>
                 </Box>

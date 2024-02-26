@@ -2,7 +2,7 @@ import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Divider from '@mui/material/Divider';
+
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
@@ -52,8 +52,8 @@ export default function PaymentForm() {
             flexDirection: 'column',
             justifyContent: 'space-between',
             p: 3,
-            height: { xs: '250px', sm: '280px' },
-            width: { xs: '375px', sm: '420px' },
+            height: { xs: '250px', sm: '350px' },
+            width: { xs: '375px', sm: '525px' },
             borderRadius: '20px',
             backdropFilter: 'blur(35px)',
             border: '2px solid ',
@@ -66,7 +66,7 @@ export default function PaymentForm() {
             <CreditCardRoundedIcon />
           </Box>
           <SimCardRoundedIcon
-            sx={{ fontSize: '40px', transform: 'rotate(90deg)' }}
+            sx={{ fontSize: { xs: '48px', sm: '56px' }, transform: 'rotate(90deg)' }}
           />
           <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 3 }}>
             <TextField
@@ -119,7 +119,6 @@ export default function PaymentForm() {
         label="Remember credit card details for next time"
         sx={{ justifyContent: 'center' }}
       />
-      <Divider sx={{ display: { xs: '', sm: 'none' }, mt: 2 }} />
     </React.Fragment>
   );
 }
