@@ -736,14 +736,10 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
       MuiStepConnector: {
         styleOverrides: {
           line: ({ theme }) => ({
-            borderTop: 'none',
-            height: '1px',
+            borderTop: '1px solid',
+            borderColor: theme.palette.divider,
             flex: 1,
-            background: `repeating-linear-gradient(90deg, ${theme.palette.grey[600]}, ${theme.palette.grey[600]} 1px, transparent 1px, transparent 4px)`,
             borderRadius: '99px',
-            ...(theme.palette.mode === 'dark' && {
-              background: `repeating-linear-gradient(90deg, ${theme.palette.grey[500]}, ${theme.palette.grey[500]} 1px, transparent 1px, transparent 4px)`,
-            }),
           }),
         },
       },
