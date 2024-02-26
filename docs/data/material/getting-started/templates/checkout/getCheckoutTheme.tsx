@@ -319,7 +319,7 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
                 background: brand[500],
                 backgroundImage: `linear-gradient(to bottom, ${brand[400]}, ${brand[600]})`,
                 boxShadow: `inset 0 1px ${alpha(brand[300], 0.4)}`,
-                outline: `1px solid ${brand[700]}`,
+                outline: `1px solid ${brand[500]}`,
                 '&:hover': {
                   background: brand[400],
                   backgroundImage: 'none',
@@ -343,6 +343,10 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
               },
             }),
             ...(theme.palette.mode === 'dark' && {
+              ...(ownerState.variant === 'contained' &&
+                ownerState.color === 'primary' && {
+                  outline: `1px solid ${brand[600]}`,
+                }),
               ...(ownerState.variant === 'outlined' && {
                 backgroundColor: alpha(brand[600], 0.1),
                 borderColor: brand[700],
