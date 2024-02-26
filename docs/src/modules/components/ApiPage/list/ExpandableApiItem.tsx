@@ -155,7 +155,7 @@ type ExpandableApiItemProps = {
   isExtendable?: boolean;
   note?: string;
   sx?: SxProps;
-  title: string;
+  title: string | React.ReactNode;
   type?: DescriptionType;
 };
 

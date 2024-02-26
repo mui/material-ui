@@ -22,7 +22,7 @@ Visit [https://mui.com/joy-ui/getting-started/](https://mui.com/joy-ui/getting-s
 ## Questions
 
 For how-to questions that don't involve making changes to the code base, please use [Stack Overflow](https://stackoverflow.com/questions/tagged/joy-ui) instead of GitHub issues.
-Use the "joy-ui" tag on Stack Overflow to make it easier for the community to find your question.
+Use the "joy-ui" tag on Stack Overflow to make it easier for the community to find your question.
 
 ## Examples
 
