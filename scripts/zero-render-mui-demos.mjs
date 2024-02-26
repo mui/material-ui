@@ -37,14 +37,14 @@ async function run() {
   const tsFiles = filenames.filter((filename) => filename.endsWith('.tsx'));
 
   const renders = tsFiles.map((filename) => {
-      const componentName = filename.replace('.tsx', '');
-      return `      <section>
+    const componentName = filename.replace('.tsx', '');
+    return `      <section>
           <h2>${titleCase(componentName)}</h2>
           <div className="demo-container">
             <${componentName} />
           </div>
         </section>`;
-    });
+  });
   /**
    * Zero-Runtime Next.js App
    */
