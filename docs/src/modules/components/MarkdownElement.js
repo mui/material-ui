@@ -2,13 +2,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { alpha, darken, styled } from '@mui/material/styles';
-import {
-  brandingDarkTheme as darkTheme,
-  brandingLightTheme as lightTheme,
-} from 'docs/src/modules/brandingTheme';
+import { brandingLightTheme as lightTheme } from 'docs/src/modules/brandingTheme';
 
-const Root = styled('div')(
-  ({ theme }) => ({
+const Root = styled('div')(({ theme }) => [
+  {
     ...lightTheme.typography.body1,
     lineHeight: 1.6, // Increased compared to the 1.5 default to make the docs easier to read.
     color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
@@ -563,159 +560,157 @@ const Root = styled('div')(
         marginBottom: theme.spacing(1),
       },
     },
-  }),
-  ({ theme }) => ({
-    [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
-      color: 'rgb(255, 255, 255)',
-      '& :not(pre) > code': {
-        // inline code block
-        color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
-        borderColor: alpha(darkTheme.palette.primaryDark[600], 0.6),
-        backgroundColor: `var(--muidocs-palette-grey-900, ${darkTheme.palette.grey[900]})`,
-      },
-      '& strong': {
-        color: `var(--muidocs-palette-grey-200, ${darkTheme.palette.grey[200]})`,
-      },
-      '& hr': {
-        backgroundColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
-      },
-      '& h1': {
-        color: `var(--muidocs-palette-grey-50, ${darkTheme.palette.grey[50]})`,
-      },
-      '& h2': {
-        color: `var(--muidocs-palette-grey-100, ${darkTheme.palette.grey[100]})`,
-      },
-      '& h3': {
-        color: `var(--muidocs-palette-grey-200, ${darkTheme.palette.grey[200]})`,
-      },
-      '& h4': {
-        color: `var(--muidocs-palette-grey-300, ${darkTheme.palette.grey[300]})`,
-      },
-      '& h5': {
-        color: `var(--muidocs-palette-grey-300, ${darkTheme.palette.grey[300]})`,
-      },
-      '& p, & ul, & ol': {
-        color: `var(--muidocs-palette-grey-400, ${darkTheme.palette.grey[400]})`,
-      },
-      '& h1, & h2, & h3, & h4': {
-        '&:hover .anchor-link, & .comment-link': {
-          color: `var(--muidocs-palette-primary-300, ${darkTheme.palette.primaryDark[300]})`,
-          borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
-          backgroundColor: alpha(darkTheme.palette.primary[900], 0.3),
-          '&:hover': {
-            borderColor: `var(--muidocs-palette-primary-900, ${darkTheme.palette.primary[900]})`,
-            backgroundColor: alpha(darkTheme.palette.primary[900], 0.6),
-            color: `var(--muidocs-palette-primary-100, ${darkTheme.palette.primary[100]})`,
-          },
+  },
+  theme.applyDarkStyles({
+    color: 'rgb(255, 255, 255)',
+    '& :not(pre) > code': {
+      // inline code block
+      color: theme.palette.text.primary,
+      borderColor: alpha(theme.palette.primaryDark[600], 0.6),
+      backgroundColor: theme.palette.grey[900],
+    },
+    '& strong': {
+      color: theme.palette.grey[200],
+    },
+    '& hr': {
+      backgroundColor: theme.palette.divider,
+    },
+    '& h1': {
+      color: theme.palette.grey[50],
+    },
+    '& h2': {
+      color: theme.palette.grey[100],
+    },
+    '& h3': {
+      color: theme.palette.grey[200],
+    },
+    '& h4': {
+      color: theme.palette.grey[300],
+    },
+    '& h5': {
+      color: theme.palette.grey[300],
+    },
+    '& p, & ul, & ol': {
+      color: theme.palette.grey[400],
+    },
+    '& h1, & h2, & h3, & h4': {
+      '&:hover .anchor-link, & .comment-link': {
+        color: theme.palette.primaryDark[300],
+        borderColor: theme.palette.divider,
+        backgroundColor: alpha(theme.palette.primary[900], 0.3),
+        '&:hover': {
+          borderColor: theme.palette.primary[900],
+          backgroundColor: alpha(theme.palette.primary[900], 0.6),
+          color: theme.palette.primary[100],
         },
-      },
-      '& h1 code, & h2 code, & h3 code': {
-        color: `var(--muidocs-palette-grey-100, ${darkTheme.palette.grey[100]})`,
-      },
-      '& table': {
-        '& .required': {
-          color: '#a5ffa5',
-        },
-        '& .optional': {
-          color: '#a5b3ff',
-        },
-        '& .prop-type, & .slot-defaultClass': {
-          color: '#ffb6ec',
-        },
-        '& .prop-default, & .slot-default': {
-          borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
-        },
-      },
-      '& td': {
-        color: `var(--muidocs-palette-text-secondary, ${darkTheme.palette.text.secondary})`,
-        borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
-      },
-      '& th': {
-        color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
-        borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
-      },
-      '& blockquote': {
-        borderColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
-        '&::before': {
-          color: `var(--muidocs-palette-primaryDark-500, ${darkTheme.palette.primaryDark[500]})`,
-        },
-      },
-      '& .MuiCallout-root': {
-        borderColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
-        '& > code': {
-          height: 'fit-content',
-          backgroundColor: `var(--muidocs-palette-primaryDark-600, ${lightTheme.palette.primaryDark[600]})`,
-          borderColor: `var(--muidocs-palette-primaryDark-500, ${lightTheme.palette.primaryDark[500]})`,
-        },
-        '&.MuiCallout-error': {
-          color: `var(--muidocs-palette-error-50, ${darkTheme.palette.error[50]})`,
-          backgroundColor: alpha(darkTheme.palette.error[700], 0.2),
-          borderColor: alpha(lightTheme.palette.error[600], 0.3),
-          '& strong': {
-            color: `var(--muidocs-palette-error-300, ${darkTheme.palette.error[300]})`,
-          },
-          '& > svg': {
-            fill: `var(--muidocs-palette-error-500, ${darkTheme.palette.error[500]})`,
-          },
-          '& a': {
-            color: `var(--muidocs-palette-error-200, ${darkTheme.palette.error[200]})`,
-          },
-        },
-        '&.MuiCallout-info': {
-          color: `var(--muidocs-palette-primary-50, ${darkTheme.palette.primary[50]})`,
-          backgroundColor: alpha(darkTheme.palette.grey[700], 0.2),
-          borderColor: `var(--muidocs-palette-grey-800, ${darkTheme.palette.grey[800]})`,
-          '& strong': {
-            color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
-          },
-          '& > svg': {
-            fill: `var(--muidocs-palette-grey-400, ${darkTheme.palette.grey[400]})`,
-          },
-        },
-        '&.MuiCallout-success': {
-          color: `var(--muidocs-palette-success-50, ${darkTheme.palette.success[50]})`,
-          backgroundColor: alpha(darkTheme.palette.success[700], 0.15),
-          borderColor: alpha(lightTheme.palette.success[600], 0.3),
-          '& strong': {
-            color: `var(--muidocs-palette-success-200, ${darkTheme.palette.success[200]})`,
-          },
-          '& > svg': {
-            fill: `var(--muidocs-palette-success-500, ${darkTheme.palette.success[500]})`,
-          },
-          '& a': {
-            color: `var(--muidocs-palette-success-100, ${darkTheme.palette.success[100]})`,
-          },
-        },
-        '&.MuiCallout-warning': {
-          color: `var(--muidocs-palette-warning-50, ${darkTheme.palette.warning[50]})`,
-          backgroundColor: alpha(darkTheme.palette.warning[700], 0.15),
-          borderColor: alpha(darkTheme.palette.warning[600], 0.3),
-          '& strong': {
-            color: `var(--muidocs-palette-warning-200, ${darkTheme.palette.warning[200]})`,
-          },
-          '& > svg': {
-            fill: `var(--muidocs-palette-warning-400, ${darkTheme.palette.warning[400]})`,
-          },
-          '& a': {
-            color: `var(--muidocs-palette-warning-100, ${darkTheme.palette.warning[100]})`,
-          },
-        },
-      },
-      '& a, & a code': {
-        color: `var(--muidocs-palette-primary-300, ${darkTheme.palette.primary[300]})`,
-      },
-      '& a code': {
-        color: `var(--muidocs-palette-primary-light, ${darkTheme.palette.primary.light})`,
-      },
-      '& kbd.key': {
-        color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
-        backgroundColor: `var(--muidocs-palette-primaryDark-800, ${darkTheme.palette.primaryDark[800]})`,
-        border: `1px solid var(--muidocs-palette-primaryDark-600, ${darkTheme.palette.primaryDark[600]})`,
-        boxShadow: `inset 0 -2px 0 var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
       },
     },
+    '& h1 code, & h2 code, & h3 code': {
+      color: theme.palette.grey[100],
+    },
+    '& table': {
+      '.required': {
+        color: '#a5ffa5',
+      },
+      '.optional': {
+        color: '#a5b3ff',
+      },
+      '.prop-type, & .slot-defaultClass': {
+        color: '#ffb6ec',
+      },
+      '.prop-default, & .slot-default': {
+        borderColor: theme.palette.divider,
+      },
+    },
+    '& td': {
+      color: theme.palette.text.secondary,
+      borderColor: theme.palette.divider,
+    },
+    '& th': {
+      color: theme.palette.text.primary,
+      borderColor: theme.palette.divider,
+    },
+    '& blockquote': {
+      borderColor: theme.palette.primaryDark[700],
+      '&::before': {
+        color: theme.palette.primaryDark[500],
+      },
+    },
+    '& .MuiCallout-root': {
+      borderColor: theme.palette.primaryDark[700],
+      '& > code': {
+        height: 'fit-content',
+        backgroundColor: `var(--muidocs-palette-primaryDark-600, ${lightTheme.palette.primaryDark[600]})`,
+        borderColor: `var(--muidocs-palette-primaryDark-500, ${lightTheme.palette.primaryDark[500]})`,
+      },
+      '&.MuiCallout-error': {
+        color: theme.palette.error[50],
+        backgroundColor: alpha(theme.palette.error[700], 0.2),
+        borderColor: alpha(lightTheme.palette.error[600], 0.3),
+        '& strong': {
+          color: theme.palette.error[300],
+        },
+        '& > svg': {
+          fill: theme.palette.error[500],
+        },
+        '& a': {
+          color: theme.palette.error[200],
+        },
+      },
+      '&.MuiCallout-info': {
+        color: theme.palette.primary[50],
+        backgroundColor: alpha(theme.palette.grey[700], 0.2),
+        borderColor: theme.palette.grey[800],
+        '& strong': {
+          color: theme.palette.primary[200],
+        },
+        '& > svg': {
+          fill: theme.palette.grey[400],
+        },
+      },
+      '&.MuiCallout-success': {
+        color: theme.palette.success[50],
+        backgroundColor: alpha(theme.palette.success[700], 0.15),
+        borderColor: alpha(lightTheme.palette.success[600], 0.3),
+        '& strong': {
+          color: theme.palette.success[200],
+        },
+        '& > svg': {
+          fill: theme.palette.success[500],
+        },
+        '& a': {
+          color: theme.palette.success[100],
+        },
+      },
+      '&.MuiCallout-warning': {
+        color: theme.palette.warning[50],
+        backgroundColor: alpha(theme.palette.warning[700], 0.15),
+        borderColor: alpha(theme.palette.warning[600], 0.3),
+        '& strong': {
+          color: theme.palette.warning[200],
+        },
+        '& > svg': {
+          fill: theme.palette.warning[400],
+        },
+        '& a': {
+          color: theme.palette.warning[100],
+        },
+      },
+    },
+    '& a, & a code': {
+      color: theme.palette.primary[300],
+    },
+    '& a code': {
+      color: theme.palette.primary.light,
+    },
+    '& kbd.key': {
+      color: theme.palette.text.primary,
+      backgroundColor: theme.palette.primaryDark[800],
+      border: `1px solid ${theme.palette.primaryDark[600]}`,
+      boxShadow: `inset 0 -2px 0 ${theme.palette.primaryDark[700]}`,
+    },
   }),
-);
+]);
 
 const MarkdownElement = React.forwardRef(function MarkdownElement(props, ref) {
   const { className, renderedMarkdown, ...other } = props;
