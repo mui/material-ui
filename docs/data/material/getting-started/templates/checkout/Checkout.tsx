@@ -16,7 +16,8 @@ import { PaletteMode } from '@mui/material';
 
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
-import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
+import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
+import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
@@ -25,8 +26,6 @@ import Info from './Info';
 import InfoMobile from './InfoMobile';
 import ToggleColorMode from './ToggleColorMode';
 import getCheckoutTheme from './getCheckoutTheme';
-
-// const defaultTheme = createTheme({});
 
 interface ToggleCustomThemeProps {
   showCustomTheme: Boolean;
@@ -336,13 +335,17 @@ export default function Checkout() {
                 >
                   {activeStep !== 0 && (
                     <Button
-                      startIcon={<ArrowBackIosNewRoundedIcon />}
+                      startIcon={<ChevronLeftRoundedIcon />}
                       onClick={handleBack}
                     >
                       Previous
                     </Button>
                   )}
-                  <Button variant="contained" onClick={handleNext}>
+                  <Button
+                    variant="contained"
+                    endIcon={<ChevronRightRoundedIcon />}
+                    onClick={handleNext}
+                  >
                     {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
                   </Button>
                 </Box>
