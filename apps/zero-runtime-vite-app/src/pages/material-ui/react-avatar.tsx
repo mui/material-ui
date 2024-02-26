@@ -83,5 +83,5 @@ export default function Avatars() {
         </div>
       </section>
     </MaterialUILayout>
-  )
+  );
 }

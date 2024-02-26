@@ -82,5 +82,5 @@ export default function Avatars() {
         </div>
       </section>
     </React.Fragment>
-  )
+  );
 }
