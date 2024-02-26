@@ -24,7 +24,4 @@ const theme = extendTheme({
 
 const nextConfig = {};
 
-module.exports = withZeroPlugin(
-  nextConfig,
-  { theme },
-);
+module.exports = withZeroPlugin(nextConfig, { theme });
