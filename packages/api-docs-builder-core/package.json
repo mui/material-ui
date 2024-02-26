@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@mui-internal/api-docs-builder": "workspace:^",
-    "@mui/markdown": "workspace:^",
+    "@mui/internal-markdown": "workspace:^",
     "docs": "workspace:^",
     "lodash": "^4.17.21"
   },

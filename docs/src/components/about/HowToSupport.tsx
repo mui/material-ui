@@ -139,7 +139,7 @@ export default function HowToSupport() {
               <li>
                 Answer questions on{' '}
                 <Link href="https://stackoverflow.com/questions/tagged/material-ui">
-                  Stack Overflow
+                  Stack&nbsp;Overflow
                 </Link>
                 .
               </li>

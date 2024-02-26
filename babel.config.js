@@ -22,7 +22,7 @@ module.exports = function getBabelConfig(api) {
       `./packages/mui-icons-material/lib${useESModules ? '/esm' : ''}`,
     ),
     '@mui/lab': resolveAliasPath('./packages/mui-lab/src'),
-    '@mui/markdown': resolveAliasPath('./packages/markdown'),
+    '@mui/internal-markdown': resolveAliasPath('./packages/markdown'),
     '@mui/styled-engine': resolveAliasPath('./packages/mui-styled-engine/src'),
     '@mui/styled-engine-sc': resolveAliasPath('./packages/mui-styled-engine-sc/src'),
     '@mui/styles': resolveAliasPath('./packages/mui-styles/src'),
