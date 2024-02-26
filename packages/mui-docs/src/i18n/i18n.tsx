@@ -5,6 +5,24 @@ import defaultTranslations from '../translations';
 
 const TranslationsContext = React.createContext(defaultTranslations);
 
+interface TranslationsProviderProps {
+  translations?: Record<string, any>;
+  children: React.ReactNode;
+}
+
+function TranslationsProvider({ translations = {}, children }: TranslationsProviderProps) {
+  const currentTranslations = React.useContext(TranslationsContext);
+  const mergedTranslations = React.useMemo(
+    () => deepmerge(currentTranslations, translations),
+    [currentTranslations, translations],
+  );
+  return (
+    <TranslationsContext.Provider value={mergedTranslations}>
+      {children}
+    </TranslationsContext.Provider>
+  );
+}
+
 function getPath(obj: any, path: string): any {
   if (!path || typeof path !== 'string') {
     return null;
@@ -41,16 +59,10 @@ export function UserLanguageProvider(props: UserLanguageProviderProps) {
     return { userLanguage, setUserLanguage };
   }, [userLanguage]);
 
-  const currentTranslations = React.useContext(TranslationsContext);
-  const mergedTranslations = React.useMemo(
-    () => deepmerge(currentTranslations, translations),
-    [currentTranslations, translations],
-  );
-
   return (
-    <TranslationsContext.Provider value={mergedTranslations}>
+    <TranslationsProvider translations={translations}>
       <UserLanguageContext.Provider value={contextValue}>{children}</UserLanguageContext.Provider>
-    </TranslationsContext.Provider>
+    </TranslationsProvider>
   );
 }
 
