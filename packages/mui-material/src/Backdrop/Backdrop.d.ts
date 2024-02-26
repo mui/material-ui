@@ -97,7 +97,7 @@ export interface BackdropOwnProps extends Partial<Omit<FadeProps, 'children'>> {
    * The component used for the transition.
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
-   * @deprecated Use `slots.transition` instead. This prop will be removed in v7.
+   * @deprecated Use `slots.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    */
   TransitionComponent?: React.JSXElementConstructor<
     TransitionProps & {

@@ -87,22 +87,5 @@ export default function transformer(file, api, options) {
     }
   });
 
-  root.find(j.ObjectProperty, { key: { name: 'transitionDuration' } }).forEach((path) => {
-    if (path.parent?.parent?.parent?.parent?.node.key?.name === 'MuiBackdrop') {
-      path.replace(
-        j.property(
-          'init',
-          j.identifier('slotProps'),
-          j.objectExpression([
-            j.objectProperty(
-              j.identifier('transition'),
-              j.objectExpression([j.objectProperty(j.identifier('timeout'), path.node.value)]),
-            ),
-          ]),
-        ),
-      );
-    }
-  });
-
   return root.toSource(printOptions);
 }
