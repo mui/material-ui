@@ -24,7 +24,7 @@ export default function AddressForm() {
             type="name"
             placeholder="John"
             autoComplete="first name"
-            inputProps={{ required: true }}
+            required
           />
         </FormGrid>
         <FormGrid item xs={12} md={6}>
@@ -35,7 +35,7 @@ export default function AddressForm() {
             type="last-name"
             placeholder="Snow"
             autoComplete="last name"
-            inputProps={{ required: true }}
+            required
           />
         </FormGrid>
         <FormGrid item xs={12}>
@@ -46,7 +46,7 @@ export default function AddressForm() {
             type="address1"
             placeholder="Street name and number"
             autoComplete="shipping address-line1"
-            inputProps={{ required: true }}
+            required
           />
         </FormGrid>
         <FormGrid item xs={12}>
@@ -57,7 +57,7 @@ export default function AddressForm() {
             type="address2"
             placeholder="Apartment, suite, unit, etc. (optional)"
             autoComplete="shipping address-line2"
-            inputProps={{ required: true }}
+            required
           />
         </FormGrid>
         <FormGrid item xs={6}>
@@ -68,7 +68,7 @@ export default function AddressForm() {
             type="City"
             placeholder="New York"
             autoComplete="City"
-            inputProps={{ required: true }}
+            required
           />
         </FormGrid>
         <FormGrid item xs={6}>
@@ -79,7 +79,7 @@ export default function AddressForm() {
             type="State"
             placeholder="NY"
             autoComplete="State"
-            inputProps={{ required: true }}
+            required
           />
         </FormGrid>
         <FormGrid item xs={6}>
@@ -90,7 +90,7 @@ export default function AddressForm() {
             type="zip"
             placeholder="12345"
             autoComplete="shipping postal-code"
-            inputProps={{ required: true }}
+            required
           />
         </FormGrid>
         <FormGrid item xs={6}>
@@ -101,7 +101,7 @@ export default function AddressForm() {
             type="country"
             placeholder="United States"
             autoComplete="shipping country"
-            inputProps={{ required: true }}
+            required
           />
         </FormGrid>
         <FormGrid item xs={12}>
