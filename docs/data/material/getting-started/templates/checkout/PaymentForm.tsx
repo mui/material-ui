@@ -52,8 +52,8 @@ export default function PaymentForm() {
             flexDirection: 'column',
             justifyContent: 'space-between',
             p: 3,
-            height: { xs: '250px', sm: '280px' },
-            width: { xs: '375px', sm: '420px' },
+            height: { xs: '250px', sm: '350px' },
+            width: { xs: '375px', sm: '525px' },
             borderRadius: '20px',
             backdropFilter: 'blur(35px)',
             border: '2px solid ',
@@ -66,7 +66,7 @@ export default function PaymentForm() {
             <CreditCardRoundedIcon />
           </Box>
           <SimCardRoundedIcon
-            sx={{ fontSize: '40px', transform: 'rotate(90deg)' }}
+            sx={{ fontSize: { xs: '48px', sm: '56px' }, transform: 'rotate(90deg)' }}
           />
           <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 3 }}>
             <TextField

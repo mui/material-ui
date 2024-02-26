@@ -656,7 +656,8 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
             },
             '& .MuiInputBase-input': {
               '&::placeholder': {
-                color: 'red',
+                opacity: 0.7,
+                color: gray[500],
               },
             },
             '& .MuiOutlinedInput-root': {
@@ -696,6 +697,12 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
               },
             }),
             ...(theme.palette.mode === 'dark' && {
+              '& .MuiInputBase-input': {
+                '&::placeholder': {
+                  opacity: 1,
+                  color: gray[500],
+                },
+              },
               '& .MuiOutlinedInput-root': {
                 boxSizing: 'border-box',
                 minWidth: 280,
