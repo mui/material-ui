@@ -306,7 +306,7 @@ export default function Checkout() {
                 <Typography variant="h5" gutterBottom>
                   Thank you for your order.
                 </Typography>
-                <Typography variant="subtitle1" gutterBottom>
+                <Typography variant="body1" color="text.secondary" gutterBottom>
                   Your order number is
                   <Typography component="span" sx={{ fontWeight: 600 }}>
                     &nbsp;#140396
