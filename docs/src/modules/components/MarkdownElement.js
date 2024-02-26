@@ -586,20 +586,8 @@ const Root = styled('div')(
       '& hr': {
         backgroundColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
       },
-      '& h1': {
+      '& h1, & h2, & h3, & h4, & h5': {
         color: `var(--muidocs-palette-grey-50, ${darkTheme.palette.grey[50]})`,
-      },
-      '& h2': {
-        color: `var(--muidocs-palette-grey-100, ${darkTheme.palette.grey[100]})`,
-      },
-      '& h3': {
-        color: `var(--muidocs-palette-grey-200, ${darkTheme.palette.grey[200]})`,
-      },
-      '& h4': {
-        color: `var(--muidocs-palette-grey-300, ${darkTheme.palette.grey[300]})`,
-      },
-      '& h5': {
-        color: `var(--muidocs-palette-grey-300, ${darkTheme.palette.grey[300]})`,
       },
       '& p, & ul, & ol': {
         color: `var(--muidocs-palette-grey-400, ${darkTheme.palette.grey[400]})`,
