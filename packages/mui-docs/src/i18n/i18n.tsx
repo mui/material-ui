@@ -1,6 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import translations from '../translations';
+import { deepmerge } from '@mui/utils';
+import defaultTranslations from '../translations';
+
+const TranslationsContext = React.createContext(defaultTranslations);
 
 function getPath(obj: any, path: string): any {
   if (!path || typeof path !== 'string') {
@@ -25,11 +28,12 @@ if (process.env.NODE_ENV !== 'production') {
 
 export interface UserLanguageProviderProps {
   children: React.ReactNode;
+  translations?: Translations;
   defaultUserLanguage: string;
 }
 
 export function UserLanguageProvider(props: UserLanguageProviderProps) {
-  const { children, defaultUserLanguage } = props;
+  const { children, translations, defaultUserLanguage } = props;
 
   const [userLanguage, setUserLanguage] = React.useState(defaultUserLanguage);
 
@@ -37,8 +41,16 @@ export function UserLanguageProvider(props: UserLanguageProviderProps) {
     return { userLanguage, setUserLanguage };
   }, [userLanguage]);
 
+  const currentTranslations = React.useContext(TranslationsContext);
+  const mergedTranslations = React.useMemo(
+    () => deepmerge(currentTranslations, translations),
+    [currentTranslations, translations],
+  );
+
   return (
-    <UserLanguageContext.Provider value={contextValue}>{children}</UserLanguageContext.Provider>
+    <TranslationsContext.Provider value={mergedTranslations}>
+      <UserLanguageContext.Provider value={contextValue}>{children}</UserLanguageContext.Provider>
+    </TranslationsContext.Provider>
   );
 }
 
@@ -63,6 +75,8 @@ export interface TranslateOptions {
 
 export function useTranslate() {
   const userLanguage = useUserLanguage();
+
+  const translations = React.useContext(TranslationsContext);
 
   return React.useMemo(
     () =>
@@ -89,6 +103,27 @@ export function useTranslate() {
 
         return translation;
       },
-    [userLanguage],
+    [userLanguage, translations],
   );
+}
+
+export type Translations = { [key in string]?: string | Translations };
+
+export interface RequireContext {
+  (req: string): string;
+  keys: () => string[];
+}
+
+export function mapTranslations(req: RequireContext): Translations {
+  const result: Translations = {};
+  req.keys().forEach((filename) => {
+    const match = filename.match(/-([a-z]{2}).json$/);
+
+    if (match) {
+      result[match[1]] = req(filename);
+    } else {
+      result.en = req(filename);
+    }
+  });
+  return result;
 }

@@ -1,6 +1,5 @@
+import type { Translations } from '../i18n';
 import en from './translations.json';
-
-export type Translations = { [index: string]: string | Translations };
 
 export default {
   en,
