@@ -20,3 +20,7 @@ export type TransitionContextValue = {
 };
 
 export const TransitionContext = React.createContext<TransitionContextValue | null>(null);
+
+if (process.env.NODE_ENV !== 'production') {
+  TransitionContext.displayName = 'TransitionContext';
+}
