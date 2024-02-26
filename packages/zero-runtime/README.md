@@ -24,7 +24,7 @@ A zero-runtime CSS-in-JS library that extracts the colocated styles to their own
 
 ## Starter template
 
-Use the following commands to create a new project with the latest version of the framework and zero-runtime (for existing projects, see [Getting started](#getting-started)):
+Use the following commands to create a new project with the latest framework version and zero-runtime (for existing projects, see [Getting started](#getting-started)):
 
 **Next.js template**:
 
@@ -216,7 +216,7 @@ const Button = styled('button')({
 });
 ```
 
-Note that the `props` function will not work if it is inside another closure, for example, inside an array.map:
+Note that the `props` function will not work if it is inside another closure, for example, inside an `array.map`:
 
 ```jsx
 const Button = styled('button')({
@@ -510,11 +510,11 @@ declare module '@mui/zero-runtime/theme' {
 
 Emotion and styled-components are runtime CSS-in-JS libraries. What you write in your styles is what you get in the final bundle which means that the styles can be as dynamic as you want with the trade-offs of bundle size and performance overhead.
 
-Zero-runtime, on the other hand, extracts CSS at build time and replaces the JS code with hashed classnames and some CSS variables. This means that it has to know all of the styles to be extracted ahead of time, so there are rules and limitations that you need to be aware of when using javascript callbacks or variables in zero-runtime APIs.
+On the other hand, zero-runtime extracts CSS at build time and replaces the JS code with hashed class names and some CSS variables. This means that it has to know all of the styles to be extracted ahead of time, so there are rules and limitations that you need to be aware of when using JavaScript callbacks or variables in zero-runtime APIs.
 
 Here are some common patterns and how to achieve them with zero-runtime:
 
-1. A fixed set of styles
+1. **Fixed set of styles**
 
 In Emotion or styled-components, you can use props to create styles conditionally:
 
@@ -555,11 +555,11 @@ const Flex = styled('div')((props) => ({
 }));
 ```
 
-> 💡 Keep in mind that `variants` is for fixed values of props, for example component's colors, sizes, states.
+> 💡 Keep in mind that the `variants` key is for fixed values of props, for example, a component's colors, sizes, and states.
 
-2. Programatically generated styles
+2. **Programatically generated styles**
 
-For emotion and styled-components, the styles will be different on each render and instances because the styles are generated at runtime:
+For Emotion and styled-components, the styles will be different on each render and instance because the styles are generated at runtime:
 
 ```js
 function randomBetween(min: number, max: number) {
@@ -583,7 +583,7 @@ function App() {
 }
 ```
 
-However, in zero-runtime, all of the instances will have the same styles and won't change between renders because the styles are extracted at build time.
+However, in zero-runtime, all instances will have the same styles and won't change between renders because the styles are extracted at build time.
 
 To achieve the same result, you need to move the dynamic logic to props and pass the value to CSS variables instead:
 
