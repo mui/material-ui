@@ -185,16 +185,6 @@ export default function XHero() {
                     '& button, & button > svg': {
                       fontSize: 16,
                     },
-                    '& .MuiDataGrid-viewport': {
-                      '& .MuiDataGrid-cell': {
-                        fontSize: '0.875rem',
-                        color: 'text.secondary',
-                      },
-                      '& .MuiInputBase-input': {
-                        fontSize: '0.875rem',
-                        px: 0.5,
-                      },
-                    },
                     '& .MuiChip-root.Rejected': {
                       color: red[800],
                       backgroundColor: red[50],
