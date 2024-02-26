@@ -128,7 +128,7 @@ export default function Checkout() {
           sx={{
             display: { xs: 'none', md: 'flex' },
             flexDirection: 'column',
-            backgroundColor: 'background.default',
+            backgroundColor: 'background.paper',
             borderRight: { sm: 'none', md: '1px solid' },
             borderColor: { sm: 'none', md: 'divider' },
             alignItems: 'start',
@@ -178,7 +178,7 @@ export default function Checkout() {
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            backgroundColor: { xs: 'transparent', sm: 'background.paper' },
+            backgroundColor: { xs: 'transparent', sm: 'background.default' },
             borderRight: { sm: 'none', md: '1px solid' },
             borderColor: { sm: 'none', md: 'divider' },
             alignItems: 'start',
