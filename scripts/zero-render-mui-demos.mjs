@@ -36,6 +36,15 @@ async function run() {
   );
   const tsFiles = filenames.filter((filename) => filename.endsWith('.tsx'));
 
+  const renders = tsFiles.map((filename) => {
+      const componentName = filename.replace('.tsx', '');
+      return `      <section>
+          <h2>${titleCase(componentName)}</h2>
+          <div className="demo-container">
+            <${componentName} />
+          </div>
+        </section>`;
+    });
   /**
    * Zero-Runtime Next.js App
    */
@@ -44,15 +53,6 @@ async function run() {
     const componentName = filename.replace('.tsx', '');
     return `import ${componentName} from '../../../../../../docs/data/material/components/${dataFolderName}/${componentName}';`;
   });
-  const nextRenders = tsFiles.map((filename) => {
-    const componentName = filename.replace('.tsx', '');
-    return `      <section>
-        <h2>${titleCase(componentName)}</h2>
-        <div className="demo-container">
-          <${componentName} />
-        </div>
-      </section>`;
-  });
   const nextFileContent = `'use client';
 import * as React from 'react';
 ${nextImports.join('\n')}
@@ -60,7 +60,7 @@ ${nextImports.join('\n')}
 export default function ${capitalize(dataFolderName)}() {
   return (
     <React.Fragment>
-${nextRenders.join('\n')}
+${renders.join('\n')}
     </React.Fragment>
   )
 }`;
@@ -79,15 +79,6 @@ ${nextRenders.join('\n')}
     const componentName = filename.replace('.tsx', '');
     return `import ${componentName} from '../../../../../docs/data/material/components/${dataFolderName}/${componentName}.tsx';`;
   });
-  const viteRenders = tsFiles.map((filename) => {
-    const componentName = filename.replace('.tsx', '');
-    return `      <section>
-        <h2>${titleCase(componentName)}</h2>
-        <div className="demo-container">
-          <${componentName} />
-        </div>
-      </section>`;
-  });
   const viteFileContent = `import * as React from 'react';
 import MaterialUILayout from '../../Layout';
 ${viteImports.join('\n')}
@@ -96,7 +87,7 @@ export default function ${capitalize(dataFolderName)}() {
   return (
     <MaterialUILayout>
       <h1>${capitalize(dataFolderName)}</h1>
-${viteRenders.join('\n')}
+${renders.join('\n')}
     </MaterialUILayout>
   )
 }`;
