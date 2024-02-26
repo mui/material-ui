@@ -62,8 +62,9 @@ export default function ${capitalize(dataFolderName)}() {
     <React.Fragment>
 ${renders.join('\n')}
     </React.Fragment>
-  )
-}`;
+  );
+}
+`;
 
   // Create the page in zero-runtime apps
   await fse.mkdirp(`apps/zero-runtime-next-app/src/app/material-ui/${args[0]}`);
@@ -89,8 +90,9 @@ export default function ${capitalize(dataFolderName)}() {
       <h1>${capitalize(dataFolderName)}</h1>
 ${renders.join('\n')}
     </MaterialUILayout>
-  )
-}`;
+  );
+}
+`;
   // Create the page in zero-runtime apps
   await fse.mkdirp(`apps/zero-runtime-vite-app/src/pages/material-ui`);
   await fse.writeFile(
