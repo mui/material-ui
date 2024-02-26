@@ -71,7 +71,6 @@ export default function Review() {
           </Grid>
         </div>
       </Stack>
-      <Divider sx={{ display: { xs: '', sm: 'none' } }} />
     </React.Fragment>
   );
 }

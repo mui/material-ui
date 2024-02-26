@@ -177,9 +177,9 @@ export default function Checkout() {
           sx={{
             display: 'flex',
             flexDirection: 'column',
+            maxWidth: '100%',
+            width: '100%',
             backgroundColor: { xs: 'transparent', sm: 'background.default' },
-            borderRight: { sm: 'none', md: '1px solid' },
-            borderColor: { sm: 'none', md: 'divider' },
             alignItems: 'start',
             pt: { xs: 2, sm: 4 },
             px: { xs: 2, sm: 10 },
@@ -314,7 +314,14 @@ export default function Checkout() {
                   . We have emailed your order confirmation, and will send you an
                   update when your order has shipped.
                 </Typography>
-                <Button variant="contained" sx={{ alignSelf: 'start', mt: 2 }}>
+                <Button
+                  variant="contained"
+                  sx={{
+                    alignSelf: 'start',
+                    width: { xs: '100%', sm: 'auto' },
+                    mt: 2,
+                  }}
+                >
                   Go to my orders
                 </Button>
               </React.Fragment>
@@ -324,6 +331,7 @@ export default function Checkout() {
                 <Box
                   sx={{
                     display: 'flex',
+                    flexDirection: { xs: 'column-reverse', sm: 'row' },
                     justifyContent: activeStep !== 0 ? 'space-between' : 'flex-end',
                     alignItems: 'end',
                     flexGrow: 1,
@@ -337,6 +345,23 @@ export default function Checkout() {
                     <Button
                       startIcon={<ChevronLeftRoundedIcon />}
                       onClick={handleBack}
+                      variant="text"
+                      sx={{
+                        display: { xs: 'none', sm: 'flex' },
+                      }}
+                    >
+                      Previous
+                    </Button>
+                  )}
+                  {activeStep !== 0 && (
+                    <Button
+                      startIcon={<ChevronLeftRoundedIcon />}
+                      onClick={handleBack}
+                      variant="outlined"
+                      fullWidth
+                      sx={{
+                        display: { xs: 'flex', sm: 'none' },
+                      }}
                     >
                       Previous
                     </Button>
@@ -345,6 +370,9 @@ export default function Checkout() {
                     variant="contained"
                     endIcon={<ChevronRightRoundedIcon />}
                     onClick={handleNext}
+                    sx={{
+                      width: { xs: '100%', sm: 'auto' },
+                    }}
                   >
                     {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
                   </Button>

@@ -119,7 +119,6 @@ export default function PaymentForm() {
         label="Remember credit card details for next time"
         sx={{ justifyContent: 'center' }}
       />
-      <Divider sx={{ display: { xs: '', sm: 'none' }, mt: 2 }} />
     </React.Fragment>
   );
 }

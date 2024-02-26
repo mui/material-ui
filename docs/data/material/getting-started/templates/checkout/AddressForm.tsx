@@ -4,7 +4,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import FormLabel from '@mui/material/FormLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import Divider from '@mui/material/Divider';
 import { styled } from '@mui/system';
 
 const FormGrid = styled(Grid)(() => ({
@@ -111,7 +110,6 @@ export default function AddressForm() {
           />
         </FormGrid>
       </Grid>
-      <Divider sx={{ display: { xs: '', sm: 'none' }, mt: 2 }} />
     </React.Fragment>
   );
 }
