@@ -90,7 +90,7 @@ export default function Home() {
           ...theme.applyStyles('dark', { color: '#fff' }),
         }))}`}
       >
-        Zero Runtime
+        Zero-runtime CSS-in-JS
         <span
           className={css(({ theme }) => ({
             position: 'absolute',
@@ -172,7 +172,7 @@ export default function Home() {
           })}
         `}
       >
-        CSS-JS library with static extraction
+        CSS-in-JS library with static extraction
       </div>
 
       <div

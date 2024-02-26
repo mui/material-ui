@@ -1,6 +1,6 @@
-# Zero Runtime - Next.js App Router example in TypeScript
+# Zero-runtime CSS-in-JS - Next.js App Router with TypeScript example project
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped using [`create-next-app`](https://github.com/vercel/next.js/tree/HEAD/packages/create-next-app) with Zero Runtime installed.
+This is a [Next.js](https://nextjs.org/) project bootstrapped using [`create-next-app`](https://github.com/vercel/next.js/tree/HEAD/packages/create-next-app), with TypeScript and MUI's zero-runtime CSS-in-JS installed.
 
 ## How to use
 
@@ -34,5 +34,5 @@ or:
 
 To learn more about this example:
 
-- [Zero Runtime documentation](https://github.com/mui/material-ui/blob/master/packages/zero-runtime/README.md) - learn how to use Zero Runtime.
+- [`@mui/zero-runtime` documentation](https://github.com/mui/material-ui/blob/master/packages/zero-runtime/README.md) - learn more about MUI's zero-runtime CSS-in-JS package.
 - [Next.js documentation](https://nextjs.org/docs) - learn about Next.js features and API.
