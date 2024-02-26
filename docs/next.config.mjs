@@ -129,7 +129,7 @@ export default withDocsInfra({
             test: /\.md$/,
             oneOf: [
               {
-                resourceQuery: /@mui\/internal-markdown/,
+                resourceQuery: /muiMarkdown/,
                 use: [
                   options.defaultLoaders.babel,
                   {

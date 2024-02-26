@@ -1,36 +1,36 @@
-import fs from 'fs';
-import path from 'path';
-import kebabCase from 'lodash/kebabCase';
-import { getHeaders } from '@mui/internal-markdown';
-import findPagesMarkdown from '@mui-internal/api-docs-builder/utils/findPagesMarkdown';
-import { writePrettifiedFile } from '@mui-internal/api-docs-builder/buildApiUtils';
+import fs from "fs";
+import path from "path";
+import kebabCase from "lodash/kebabCase";
+import { getHeaders } from "@mui/internal-markdown";
+import findPagesMarkdown from "@mui-internal/api-docs-builder/utils/findPagesMarkdown";
+import { writePrettifiedFile } from "@mui-internal/api-docs-builder/buildApiUtils";
 
 export async function generateBaseUIApiPages() {
   await Promise.all(
     findPagesMarkdown().map(async (markdown) => {
-      const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
+      const markdownContent = fs.readFileSync(markdown.filename, "utf8");
       const markdownHeaders = getHeaders(markdownContent) as any;
-      const pathnameTokens = markdown.pathname.split('/');
+      const pathnameTokens = markdown.pathname.split("/");
       const productName = pathnameTokens[1];
       const componentName = pathnameTokens[3];
 
       // TODO: fix `productName` should be called `productId` and include the full name,
       // e.g. base-ui below.
       if (
-        productName === 'base' &&
-        (markdown.filename.indexOf('\\components\\') >= 0 ||
-          markdown.filename.indexOf('/components/') >= 0)
+        productName === "base" &&
+        (markdown.filename.indexOf("\\components\\") >= 0 ||
+          markdown.filename.indexOf("/components/") >= 0)
       ) {
         const { components, hooks } = markdownHeaders;
 
-        const tokens = markdown.pathname.split('/');
+        const tokens = markdown.pathname.split("/");
         const name = tokens[tokens.length - 1];
         const importStatement = `docs/data${markdown.pathname}/${name}.md`;
         const demosSource = `
 import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
-import * as pageProps from '${importStatement}?@mui/internal-markdown';
+import * as pageProps from '${importStatement}?muiMarkdown';
 
 export default function Page(props) {
   const { userLanguage, ...other } = props;
@@ -51,17 +51,20 @@ Page.getLayout = (page) => {
           demosSource,
         );
 
-        if ((!components || components.length === 0) && (!hooks || hooks.length === 0)) {
+        if (
+          (!components || components.length === 0) &&
+          (!hooks || hooks.length === 0)
+        ) {
           // Early return if it's a markdown file without components/hooks.
           return;
         }
 
-        let apiTabImportStatements = '';
-        let staticProps = 'export const getStaticProps = () => {';
-        let componentsApiDescriptions = '';
-        let componentsPageContents = '';
-        let hooksApiDescriptions = '';
-        let hooksPageContents = '';
+        let apiTabImportStatements = "";
+        let staticProps = "export const getStaticProps = () => {";
+        let componentsApiDescriptions = "";
+        let componentsPageContents = "";
+        let hooksApiDescriptions = "";
+        let hooksPageContents = "";
 
         if (components && components.length > 0) {
           components.forEach((component: string) => {
@@ -101,13 +104,13 @@ Page.getLayout = (page) => {
       return { props: { componentsApiDescriptions: {`;
         staticProps += componentsApiDescriptions;
 
-        staticProps += '}, componentsApiPageContents: { ';
+        staticProps += "}, componentsApiPageContents: { ";
         staticProps += componentsPageContents;
 
-        staticProps += '}, hooksApiDescriptions: {';
+        staticProps += "}, hooksApiDescriptions: {";
         staticProps += hooksApiDescriptions;
 
-        staticProps += '}, hooksApiPageContents: {';
+        staticProps += "}, hooksApiPageContents: {";
         staticProps += hooksPageContents;
 
         staticProps += ` },},};};`;
@@ -116,7 +119,7 @@ Page.getLayout = (page) => {
 import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
-import * as pageProps from '${importStatement}?@mui/internal-markdown';
+import * as pageProps from '${importStatement}?muiMarkdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
 ${apiTabImportStatements}
 
