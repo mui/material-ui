@@ -77,7 +77,7 @@ const PRODUCTS = [
   },
   {
     name: 'Toolpad',
-    description: 'Full stack framework for building dashboards.',
+    description: 'Low-code admin builder.',
     href: ROUTES.productToolpad,
     chip: 'Beta',
   },
@@ -111,8 +111,8 @@ const DOCS = [
   },
   {
     name: 'Toolpad',
-    description: 'Full stack framework for building dashboards',
-    href: ROUTES.toolpadDocs,
+    description: 'Low-code admin builder',
+    href: ROUTES.toolpadStudioDocs,
     chip: 'Beta',
   },
 ];

@@ -91,19 +91,6 @@ const advancedProducts = [
   },
 ];
 
-const toolpadProducts = [
-  {
-    name: 'Studio',
-    href: ROUTES.toolpadStudioDocs,
-    id: 'toolpad-studio',
-  },
-  {
-    name: 'Core',
-    href: ROUTES.toolpadDocs,
-    id: 'toolpad',
-  },
-];
-
 export default function MuiProductSelector() {
   const pageContext = React.useContext(PageContext);
 
@@ -197,51 +184,32 @@ export default function MuiProductSelector() {
           ))}
         </Stack>
       </Box>
-      <Box
-        component="li"
-        role="none"
-        sx={{ p: 2, pr: 3, borderBottom: '1px solid', borderColor: 'divider' }}
-      >
-        <ProductSubMenu
-          role="menuitem"
-          icon={<IconImage name="product-toolpad" />}
-          name="Toolpad"
-          description="Full stack framework for building dashboards."
-          chip={<Chip size="small" label="Beta" color="primary" variant="outlined" />}
-        />
-        <Stack
-          direction={{ xs: 'column', sm: 'row' }}
-          alignItems="flex-start"
-          spacing={1}
-          sx={{
-            ml: '36px',
-            pl: 2,
-            pt: 1.5,
-            position: 'relative',
-            '& > .MuiChip-root': {
-              position: 'initial',
-              '&:hover': {
-                '& .product-description': {
-                  opacity: 1,
-                },
-              },
+      <li role="none">
+        <Link
+          href={ROUTES.toolpadStudioDocs}
+          sx={(theme) => ({
+            p: 2,
+            pr: 3,
+            width: '100%',
+            '&:hover': {
+              backgroundColor: 'grey.50',
             },
-          }}
+            ...theme.applyDarkStyles({
+              '&:hover': {
+                backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+              },
+            }),
+          })}
         >
-          {toolpadProducts.map((product) => (
-            <Chip
-              key={product.name}
-              color={pageContext.productId === product.id ? 'primary' : undefined}
-              variant={pageContext.productId === product.id ? 'filled' : 'outlined'}
-              component={Link}
-              href={product.href}
-              label={product.name}
-              clickable
-              size="small"
-            />
-          ))}
-        </Stack>
-      </Box>
+          <ProductSubMenu
+            role="menuitem"
+            icon={<IconImage name="product-toolpad" />}
+            name="MUI Toolpad"
+            description="Low-code admin builder."
+            chip={<Chip size="small" label="Beta" color="primary" variant="outlined" />}
+          />
+        </Link>
+      </li>
     </React.Fragment>
   );
 }

@@ -304,7 +304,7 @@ export default function HeaderNavBar() {
                         icon={<IconImage name="product-toolpad" />}
                         name="Toolpad"
                         chip={<Chip label="Beta" size="small" color="primary" variant="outlined" />}
-                        description="Full stack framework for building dashboards."
+                        description="Low-code admin builder."
                       />
                     </li>
                   </ul>
