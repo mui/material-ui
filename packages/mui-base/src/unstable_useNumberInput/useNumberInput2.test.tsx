@@ -28,13 +28,14 @@ describe('useNumberInput2', () => {
 
       const incrementBtn = screen.getByTestId('incrementBtn');
 
-      fireEvent.mouseDown(incrementBtn);
+      fireEvent.mouseDown(incrementBtn); // onChange x1
 
-      clock.tick(100);
-      clock.tick(100);
+      clock.tick(100); // onChange x2
+      clock.tick(100); // onChange x3
+      clock.tick(100); // onChange x4
       clock.runToLast();
 
-      expect(handleChange.callCount).to.equal(3);
+      expect(handleChange.callCount).to.equal(4);
     });
   });
 });

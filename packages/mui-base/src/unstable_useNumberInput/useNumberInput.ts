@@ -1,7 +1,11 @@
 'use client';
 import * as React from 'react';
 import MuiError from '@mui/internal-babel-macros/MuiError.macro';
-import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
+import {
+  unstable_useForkRef as useForkRef,
+  unstable_useId as useId,
+  unstable_useTimeout as useTimeout,
+} from '@mui/utils';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
 import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 import { useControllableReducer } from '../utils/useControllableReducer';
@@ -82,8 +86,7 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
     }
   }, []);
 
-  const timeoutRef = React.useRef<number>();
-  const clearTimeoutRef = () => window.clearTimeout(timeoutRef.current);
+  const holdTimer = useTimeout();
 
   const inputRef = React.useRef<HTMLInputElement>(null);
   const handleInputRef = useForkRef(inputRef, inputRefProp, handleInputRefWarning);
@@ -407,18 +410,16 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
     actionType: typeof NumberInputActionTypes.increment | typeof NumberInputActionTypes.decrement;
     event: React.PointerEvent;
   }) => {
-    clearTimeoutRef();
-
     const { actionType, event } = payload;
 
-    timeoutRef.current = window.setTimeout(() => {
+    holdTimer.start(100, () => {
       dispatch({
         type: actionType,
         event,
         applyMultiplier: !!event.shiftKey,
       });
       recurse({ actionType, event });
-    }, 100);
+    });
   };
 
   const handleStepperButtonMouseDown =
@@ -438,7 +439,7 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
     };
 
   const handleStepperButtonMouseUp = () => {
-    clearTimeoutRef();
+    holdTimer.clear();
   };
 
   const stepperButtonCommonProps = {
