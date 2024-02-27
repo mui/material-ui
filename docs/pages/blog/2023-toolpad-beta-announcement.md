@@ -4,7 +4,7 @@ description: Assemble admin panels and internal tools faster than ever before wi
 date: 2023-07-24T00:00:00.000Z
 authors: ['prakhargupta']
 card: true
-tags: ['Product', 'News']
+tags: ['Product']
 ---
 
 It's been over a year since we released the first version of Toolpad. Today, we're excited to take the next step on that journey with the release of Toolpad Beta. If you aren't familiar with Toolpad yet, it's an admin panel builder catering to the internal tooling needs of an organization, designed for developers who want to build a functional application quickly. It harnesses the speed of a UI builder for the front-end and closely integrates into your back-end. If this excites you, then read on!

@@ -3,7 +3,7 @@ title: 'Our docs just got a major upgrade—here's what that means for you'
 description: Each of MUI's products now has its own dedicated documentation, making it easier than ever to find exactly what you need.
 date: 2022-04-06T00:00:00.000Z
 authors: ['danilo-leal']
-tags: ['News', 'Product']
+tags: ['Product']
 card: true
 ---
 
