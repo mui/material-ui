@@ -128,7 +128,7 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
         sx={{ mt: 1, '.MuiMenuItem-root': { pl: 1 } }}
       >
         <MenuItem
-          value="Table"
+          value="table"
           onClick={() => handleMenuItemClick('table')}
           selected={displayOption === 'table'}
           data-ga-event-category="layout"
@@ -141,7 +141,7 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
           Table
         </MenuItem>
         <MenuItem
-          value="Expanded"
+          value="expanded"
           onClick={() => handleMenuItemClick('expanded')}
           selected={displayOption === 'expanded'}
           data-ga-event-category="layout"
@@ -154,7 +154,7 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
           Expanded list
         </MenuItem>
         <MenuItem
-          value="Collapsed"
+          value="collapsed"
           onClick={() => handleMenuItemClick('collapsed')}
           selected={displayOption === 'collapsed'}
           data-ga-event-category="layout"
