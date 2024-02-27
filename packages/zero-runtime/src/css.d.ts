@@ -10,11 +10,11 @@ interface Css {
   /**
    * @returns {string} The generated css class name to be referenced.
    */
-  (...arg: CssArg[]): string;
+  (arg: TemplateStringsArray, ...templateArgs: (Primitve | CssFn)[]): string;
   /**
    * @returns {string} The generated css class name to be referenced.
    */
-  (arg: TemplateStringsArray, ...templateArgs: (Primitve | CssFn)[]): string;
+  (...arg: CssArg[]): string;
 }
 
 declare const css: Css;
