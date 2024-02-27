@@ -26,9 +26,11 @@ Zero-runtime supports Next.js and Vite with future support for more bundlers. Yo
 
 ### Why this project exists?
 
-The initial motivator to work on this zero-runtime CSS-in-JS package was to improve Material UI's performance when it comes to styling. That's been a frequent pain point we've heard about ever since we introduced Emotion in v5. But another reason a zero-runtime styling solution is excellent for the future of Material UI is compatibility with React Server Components (RSCs).
+We first introduced an Emotion-based CSS-in-JS styling engine to Material UI back in the v4 to v5 transition. We wanted to support color transformations, theme variables, and other features that wouldn't be possible without a runtime solution. However, this has indeed impacted performance and has been a frequent feedback we've heard ever since.
 
-All components must support this new pattern; today, most components would naturally apply. Emotion is the only blocker for those that don't (the layout components, such as Box, Typography, Stack, etc.). Additionally, restructuring the way we develop themes is also needed to comply with RSCs, given they need to be passed through a Provider component that typically uses React Context, which is not supported.
+With the recent CSS progress with features such as CSS variables and color-mix, to name a few, there's no practical reason to keep a runtime solution. Additionally, React Server Components entered the mix of functionalities Material UI should support.
+
+We looked around and couldn't find anything that fit precisely, so we started a new bespoke project. {newProductName} is designed to have a smooth migration experience from styled-components and Emotion.
 
 ### Next.js
 
