@@ -150,7 +150,7 @@ export default function Features() {
             {items.map(({ icon, title, description }, index) => (
               <Card
                 key={index}
-                variant='outlined'
+                variant="outlined"
                 component={Button}
                 onClick={() => handleItemClick(index)}
                 sx={{
@@ -196,7 +196,7 @@ export default function Features() {
                   >
                     {icon}
                   </Box>
-                  <Box sx={{textTransform:'none'}}>
+                  <Box sx={{ textTransform: 'none' }}>
                     <Typography
                       color="text.primary"
                       variant="body2"
