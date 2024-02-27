@@ -4,4 +4,8 @@ const ListItemButtonOrientationContext = React.createContext<'horizontal' | 'ver
   'horizontal',
 );
 
+if (process.env.NODE_ENV !== 'production') {
+  ListItemButtonOrientationContext.displayName = 'ListItemButtonOrientationContext';
+}
+
 export default ListItemButtonOrientationContext;

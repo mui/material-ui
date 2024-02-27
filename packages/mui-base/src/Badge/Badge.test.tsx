@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { createRenderer, createMount, describeConformanceUnstyled } from '@mui-internal/test-utils';
+import { createRenderer, createMount } from '@mui-internal/test-utils';
 import { Badge, badgeClasses as classes } from '@mui/base/Badge';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 describe('<Badge />', () => {
   const { render } = createRenderer();

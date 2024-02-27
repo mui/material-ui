@@ -18,6 +18,8 @@ import {
   preprocessor as basePreprocessor,
   generateTokenCss,
   generateThemeTokens,
+  extendTheme,
+  type Theme as BaseTheme,
 } from '@mui/zero-runtime/utils';
 
 type NextMeta = {
@@ -38,14 +40,8 @@ type WebpackMeta = {
 
 type Meta = NextMeta | ViteMeta | WebpackMeta;
 
-type BaseTheme = {
-  cssVarPrefix: string;
-  colorSchemes: Record<string, unknown>;
-  generateCssVars: (colorScheme?: string) => { css: Record<string, string> };
-};
-
 export type PluginOptions<Theme extends BaseTheme = BaseTheme> = {
-  theme: Theme;
+  theme?: Theme;
   transformLibraries?: string[];
   preprocessor?: Preprocessor;
   debug?: IFileReporterOptions | false;
@@ -165,7 +161,6 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
             themeArgs: {
               theme,
             },
-            cssVariablesPrefix: theme.cssVarPrefix,
             overrideContext(context: Record<string, unknown>, filename: string) {
               if (overrideContext) {
                 return overrideContext(context, filename);
@@ -231,7 +226,8 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
             }),
           )}`;
           return {
-            code: `import ${JSON.stringify(data)};\n${result.code}`,
+            // CSS import should be the last so that nested components produce correct CSS order injection.
+            code: `${result.code}\nimport ${JSON.stringify(data)};`,
             map: result.sourceMap,
           };
         }
@@ -239,7 +235,7 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
         cssFileLookup.set(cssId, cssFilename);
         cssLookup.set(cssFilename, cssText);
         return {
-          code: `import ${JSON.stringify(`./${cssFilename}`)};\n${result.code}`,
+          code: `${result.code}\nimport ${JSON.stringify(`./${cssFilename}`)};`,
           map: result.sourceMap,
         };
       } catch (e) {
@@ -280,10 +276,12 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
             },
             transform(_code, id) {
               if (id.endsWith('styles.css')) {
-                return generateTokenCss(theme);
+                return theme ? generateTokenCss(theme) : _code;
               }
               if (id.includes('zero-runtime/theme')) {
-                return `export default ${JSON.stringify(generateThemeTokens(theme))};`;
+                return `export default ${
+                  theme ? JSON.stringify(generateThemeTokens(theme)) : '{}'
+                };`;
               }
               return null;
             },
@@ -302,11 +300,13 @@ export const plugin = createUnplugin<PluginOptions, true>((options) => {
               return isZeroRuntimeThemeFile(id);
             },
             load(id) {
-              if (id === VIRTUAL_CSS_FILE) {
+              if (id === VIRTUAL_CSS_FILE && theme) {
                 return generateTokenCss(theme);
               }
               if (id === VIRTUAL_THEME_FILE) {
-                return `export default ${JSON.stringify(generateThemeTokens(theme))};`;
+                return `export default ${
+                  theme ? JSON.stringify(generateThemeTokens(theme)) : '{}'
+                };`;
               }
               return null;
             },
@@ -342,3 +342,5 @@ export const webpack = plugin.webpack as unknown as UnpluginFactoryOutput<
   PluginOptions,
   WebpackPluginInstance
 >;
+
+export { extendTheme };
