@@ -8,6 +8,7 @@ export type {
   FormControlState,
   UseFormControlContextReturnValue,
   FormControlOwnProps,
+  FormControlOwnerState,
 } from './FormControl.types';
 
 export * from './formControlClasses';
