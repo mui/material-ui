@@ -1,5 +1,6 @@
 import * as React from 'react';
 // import { Button, ButtonProps, buttonClasses } from '@mui/base/Button';
+import { Checkbox } from '@mui/base/Checkbox';
 // import { styled, Theme } from '@mui/system';
 
 // const ButtonRoot = React.forwardRef(function ButtonRoot(
@@ -31,7 +32,7 @@ import * as React from 'react';
 // }
 
 export default function UnstyledCheckbox() {
-  return <input type="checkbox" />;
+  return <Checkbox />;
 }
 
 // const blue = {
