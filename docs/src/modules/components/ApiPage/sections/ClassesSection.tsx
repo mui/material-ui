@@ -112,7 +112,7 @@ export default function ClassesSection(props: ClassesSectionProps) {
         />
       </Box>
       {spreadHint && <p dangerouslySetInnerHTML={{ __html: spreadHint }} />}
-      {displayOption === 'Table' ? (
+      {displayOption === 'table' ? (
         <ClassesTable
           classes={classesWithTranslatedDescriptions}
           componentName={componentName}

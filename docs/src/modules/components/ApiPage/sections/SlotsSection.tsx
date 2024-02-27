@@ -74,7 +74,7 @@ export default function SlotsSection(props: SlotsSectionProps) {
         />
       </Box>
       {spreadHint && <p dangerouslySetInnerHTML={{ __html: spreadHint }} />}
-      {displayOption === 'Table' ? (
+      {displayOption === 'table' ? (
         <SlotsTable slots={formatedSlots} />
       ) : (
         <SlotsList slots={formatedSlots} displayOption={displayOption} />

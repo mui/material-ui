@@ -7,9 +7,9 @@ import CheckIcon from '@mui/icons-material/Check';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 
-export type ApiDisplayOptions = 'Collapsed' | 'Expanded' | 'Table';
+export type ApiDisplayOptions = 'collapsed' | 'expanded' | 'table';
 
-const options: ApiDisplayOptions[] = ['Collapsed', 'Expanded', 'Table'];
+const options: ApiDisplayOptions[] = ['collapsed', 'expanded', 'table'];
 
 export const DEFAULT_API_LAYOUT_STORAGE_KEYS = {
   slots: 'apiPage_slots',
@@ -129,40 +129,40 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
       >
         <MenuItem
           value="Table"
-          onClick={() => handleMenuItemClick('Table')}
-          selected={displayOption === 'Table'}
+          onClick={() => handleMenuItemClick('table')}
+          selected={displayOption === 'table'}
           data-ga-event-category="layout"
           data-ga-event-action={sectionType}
           data-ga-event-label="table"
         >
           <CheckIcon
-            sx={{ fontSize: '0.85rem', mr: 1, opacity: displayOption === 'Table' ? 1 : 0 }}
+            sx={{ fontSize: '0.85rem', mr: 1, opacity: displayOption === 'table' ? 1 : 0 }}
           />
           Table
         </MenuItem>
         <MenuItem
           value="Expanded"
-          onClick={() => handleMenuItemClick('Expanded')}
-          selected={displayOption === 'Expanded'}
+          onClick={() => handleMenuItemClick('expanded')}
+          selected={displayOption === 'expanded'}
           data-ga-event-category="layout"
           data-ga-event-action={sectionType}
           data-ga-event-label="expanded"
         >
           <CheckIcon
-            sx={{ fontSize: '0.85rem', mr: 1, opacity: displayOption === 'Expanded' ? 1 : 0 }}
+            sx={{ fontSize: '0.85rem', mr: 1, opacity: displayOption === 'expanded' ? 1 : 0 }}
           />
           Expanded list
         </MenuItem>
         <MenuItem
           value="Collapsed"
-          onClick={() => handleMenuItemClick('Collapsed')}
-          selected={displayOption === 'Collapsed'}
+          onClick={() => handleMenuItemClick('collapsed')}
+          selected={displayOption === 'collapsed'}
           data-ga-event-category="layout"
           data-ga-event-action={sectionType}
           data-ga-event-label="collapsed"
         >
           <CheckIcon
-            sx={{ fontSize: '0.85rem', mr: 1, opacity: displayOption === 'Collapsed' ? 1 : 0 }}
+            sx={{ fontSize: '0.85rem', mr: 1, opacity: displayOption === 'collapsed' ? 1 : 0 }}
           />
           Collapsed list
         </MenuItem>

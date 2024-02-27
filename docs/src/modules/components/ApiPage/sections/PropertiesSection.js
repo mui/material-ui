@@ -141,7 +141,7 @@ export default function PropertiesSection(props) {
         />
       </Box>
       {spreadHint && <p dangerouslySetInnerHTML={{ __html: spreadHint }} />}
-      {displayOption === 'Table' ? (
+      {displayOption === 'table' ? (
         <PropertiesTable properties={formatedProperties} />
       ) : (
         <PropertiesList properties={formatedProperties} displayOption={displayOption} />
