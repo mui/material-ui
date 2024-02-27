@@ -22,7 +22,7 @@ Visit [https://mui.com/material-ui/](https://mui.com/material-ui/) to view the f
 ## Questions
 
 For how-to questions that don't involve making changes to the code base, please use [Stack Overflow](https://stackoverflow.com/questions/tagged/material-ui) instead of GitHub issues.
-Use the "material-ui" tag on Stack Overflow to make it easier for the community to find your question.
+Use the "material-ui" tag on Stack Overflow to make it easier for the community to find your question.
 
 ## Examples
 

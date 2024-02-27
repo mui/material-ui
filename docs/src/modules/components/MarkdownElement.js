@@ -411,7 +411,7 @@ const Root = styled('div')(
       // Allows to remove link arrows for images
       display: 'none',
     },
-    '& .MuiAd-root a::after': {
+    '& .Ad-root a::after': {
       // Remove link arrow for ads
       display: 'none',
     },

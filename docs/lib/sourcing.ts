@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { getHeaders } from '@mui/markdown';
+import { getHeaders } from '@mui/internal-markdown';
 
 const blogDir = path.join(process.cwd(), 'pages/blog');
 

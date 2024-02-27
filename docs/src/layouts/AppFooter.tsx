@@ -252,8 +252,8 @@ export default function AppFooter(props: AppFooterProps) {
               target="_blank"
               rel="noopener"
               href={stackOverflowUrl}
-              aria-label="Stack Overflow"
-              title="Stack Overflow"
+              aria-label="Stack Overflow"
+              title="Stack Overflow"
               size="small"
             >
               <SvgStackOverflow fontSize="small" />
