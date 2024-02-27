@@ -116,9 +116,6 @@ importers:
       '@mui/utils':
         specifier: workspace:^
         version: link:packages/mui-utils/build
-      '@mui/zero-runtime':
-        specifier: workspace:^
-        version: link:packages/zero-runtime
       '@next/eslint-plugin-next':
         specifier: ^14.1.0
         version: 14.1.0
