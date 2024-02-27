@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { LANGUAGES_SSR } from 'docs/config';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import getProductInfoFromUrl from '../utils/getProductInfoFromUrl';
 
 // #major-version-switch
 const HOST = 'https://mui.com';

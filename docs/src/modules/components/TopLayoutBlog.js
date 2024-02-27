@@ -267,7 +267,7 @@ export default function TopLayoutBlog(props) {
   const card =
     headers.card === 'true'
       ? `https://mui.com/static/blog/${slug}/card.png`
-      : `https://deploy-preview-41188--material-ui-apps.netlify.app/api/og-image/?title=${headers.cardTitle || finalTitle}&authors=${headers.authors.join(',')}`;
+      : `https://deploy-preview-41188--material-ui-apps.netlify.app/og-blog/?title=${headers.cardTitle || finalTitle}&authors=${headers.authors.join(',')}`;
 
   if (process.env.NODE_ENV !== 'production') {
     if (headers.card === undefined) {

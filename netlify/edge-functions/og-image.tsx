@@ -31,7 +31,8 @@ export default async function handler(req: Request) {
   const authors = params.get('authors');
 
   let starCount = 0;
-  const R = new ImageResponse(
+
+  return new ImageResponse(
     (
       <div
         style={{
@@ -257,7 +258,5 @@ export default async function handler(req: Request) {
       ],
     },
   );
-
-  return R;
 }
-export const config = { path: '/api/og-image' };
+export const config = { path: '/og-blog' };

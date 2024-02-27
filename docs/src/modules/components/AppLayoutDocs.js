@@ -120,16 +120,19 @@ export default function AppLayoutDocs(props) {
 
   const { canonicalAs } = pathnameToLanguage(router.asPath);
   let productName = 'MUI';
+  let teamName = 'Core';
   if (canonicalAs.startsWith('/material-ui/')) {
     productName = 'Material UI';
   } else if (canonicalAs.startsWith('/base-ui/')) {
     productName = 'Base UI';
   } else if (canonicalAs.startsWith('/x/')) {
     productName = 'MUI X';
+    teamName = 'X';
   } else if (canonicalAs.startsWith('/system/')) {
     productName = 'MUI System';
   } else if (canonicalAs.startsWith('/toolpad/')) {
     productName = 'MUI Toolpad';
+    teamName = 'Toolpad';
   } else if (canonicalAs.startsWith('/joy-ui/')) {
     productName = 'Joy UI';
   }
@@ -137,6 +140,7 @@ export default function AppLayoutDocs(props) {
   const Layout = disableLayout ? React.Fragment : AppFrame;
   const layoutProps = disableLayout ? {} : { BannerComponent };
 
+  const card = `https://deploy-preview-41188--material-ui-apps.netlify.app/og-docs?product=${teamName}&folder=${productName}&page=${title}`;
   return (
     <Layout {...layoutProps}>
       <GlobalStyles
@@ -151,7 +155,7 @@ export default function AppLayoutDocs(props) {
           title={`${title} - ${productName}`}
           description={description}
           largeCard={false}
-          card="https://mui.com/static/logo.png"
+          card={card}
         />
         <Main disableToc={disableToc}>
           {/*
