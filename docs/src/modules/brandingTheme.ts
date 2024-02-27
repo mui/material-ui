@@ -788,6 +788,9 @@ export function getThemedComponents(): ThemeOptions {
                 '&:hover, &:focus': {
                   backgroundColor: (theme.vars || theme).palette.grey[50],
                 },
+                '&:focus-visible': {
+                  outline: 'none',
+                },
                 '&.Mui-selected': {
                   fontWeight: 500,
                   color: (theme.vars || theme).palette.primary[600],
