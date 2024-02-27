@@ -123,18 +123,17 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     }
   }, [autoFocus]);
 
-  const isRtl = useRtl();
-
   React.useImperativeHandle(
     actions,
     () => ({
-      adjustStyleForScrollbar: (containerElement) => {
+      adjustStyleForScrollbar: (containerElement, { direction }) => {
         // Let's ignore that piece of logic if users are already overriding the width
         // of the menu.
         const noExplicitWidth = !listRef.current.style.width;
         if (containerElement.clientHeight < listRef.current.clientHeight && noExplicitWidth) {
           const scrollbarSize = `${getScrollbarSize(ownerDocument(containerElement))}px`;
-          listRef.current.style[isRtl ? 'paddingLeft' : 'paddingRight'] = scrollbarSize;
+          listRef.current.style[direction === 'rtl' ? 'paddingLeft' : 'paddingRight'] =
+            scrollbarSize;
           listRef.current.style.width = `calc(100% + ${scrollbarSize})`;
         }
         return listRef.current;

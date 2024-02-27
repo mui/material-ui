@@ -138,8 +138,8 @@ export function isHorizontal(anchor) {
   return ['left', 'right'].indexOf(anchor) !== -1;
 }
 
-export function getAnchor(isRtl, anchor) {
-  return isRtl && isHorizontal(anchor) ? oppositeDirection[anchor] : anchor;
+export function getAnchor({ direction }, anchor) {
+  return direction === 'rtl' && isHorizontal(anchor) ? oppositeDirection[anchor] : anchor;
 }
 
 /**
@@ -182,7 +182,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     mounted.current = true;
   }, []);
 
-  const anchorInvariant = getAnchor(isRtl, anchorProp);
+  const anchorInvariant = getAnchor({ direction: isRtl ? 'rtl' : 'ltr' }, anchorProp);
   const anchor = anchorProp;
 
   const ownerState = {

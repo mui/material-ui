@@ -109,7 +109,9 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
 
   const handleEntering = (element, isAppearing) => {
     if (menuListActionsRef.current) {
-      menuListActionsRef.current.adjustStyleForScrollbar(element, theme);
+      menuListActionsRef.current.adjustStyleForScrollbar(element, {
+        direction: isRtl ? 'rtl' : 'ltr',
+      });
     }
 
     if (onEntering) {
