@@ -368,11 +368,10 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
           root: ({ theme, ownerState }) => ({
             backgroundColor: gray[50],
             borderRadius: 10,
-            outline: `1px solid ${alpha(gray[200], 0.8)}`,
+            border: `1px solid ${alpha(gray[200], 0.8)}`,
             boxShadow: 'none',
             transition: 'background-color, border, 80ms ease',
             ...(ownerState.variant === 'outlined' && {
-              boxSizing: 'border-box',
               background: `linear-gradient(to bottom, #FFF, ${gray[50]})`,
               '&:hover': {
                 borderColor: brand[300],
@@ -381,9 +380,8 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
             }),
             ...(theme.palette.mode === 'dark' && {
               backgroundColor: alpha(gray[800], 0.6),
-              outline: `1px solid ${alpha(gray[700], 0.3)}`,
+              border: `1px solid ${alpha(gray[700], 0.3)}`,
               ...(ownerState.variant === 'outlined' && {
-                boxSizing: 'border-box',
                 background: `linear-gradient(to bottom, ${gray[900]}, ${alpha(
                   gray[800],
                   0.5,
@@ -567,59 +565,6 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
           },
         },
       },
-      MuiInputBase: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            boxSizing: 'border-box',
-            flexGrow: 1,
-            minHeight: 40,
-            height: '100%',
-            borderRadius: '10px',
-            border: '1px solid',
-            borderColor: gray[200],
-            transition: 'border-color 120ms ease-in',
-            backgroundColor: alpha(gray[100], 0.4),
-            '&:hover': {
-              borderColor: brand[300],
-            },
-            '&.Mui-focused': {
-              borderColor: brand[400],
-              outline: '4px solid',
-              outlineColor: brand[200],
-            },
-            ...(theme.palette.mode === 'dark' && {
-              boxSizing: 'border-box',
-              flexGrow: 1,
-              minHeight: 40,
-              height: '100%',
-              borderRadius: '10px',
-              border: '1px solid',
-              borderColor: gray[700],
-              backgroundColor: alpha(gray[900], 0.3),
-              transition: 'border-color 120ms ease-in',
-              '&:hover': {
-                borderColor: brand[300],
-              },
-              '&.Mui-focused': {
-                borderColor: brand[400],
-                outline: '4px solid',
-                outlineColor: alpha(brand[500], 0.5),
-              },
-            }),
-          }),
-          input: {
-            paddingLeft: 10,
-          },
-        },
-      },
-      MuiFormLabel: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            typography: theme.typography.caption,
-            marginBottom: 8,
-          }),
-        },
-      },
       MuiTextField: {
         styleOverrides: {
           root: ({ theme }) => ({
@@ -627,6 +572,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
               color: 'white',
             },
             '& .MuiInputBase-input': {
+              boxSizing: 'border-box',
               '&::placeholder': {
                 opacity: 0.7,
               },
@@ -662,7 +608,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
                 height: '100%',
                 borderRadius: '10px',
                 border: '1px solid',
-                borderColor: gray[700],
+                borderColor: gray[600],
                 transition: 'border-color 120ms ease-in',
                 '& fieldset': {
                   border: 'none',
@@ -677,72 +623,6 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
                   outline: '4px solid',
                   outlineColor: alpha(brand[500], 0.5),
                 },
-              },
-            }),
-          }),
-        },
-      },
-      MuiStepConnector: {
-        styleOverrides: {
-          line: ({ theme }) => ({
-            borderTop: 'none',
-            height: '1px',
-            flex: 1,
-            background: `repeating-linear-gradient(90deg, ${theme.palette.grey[600]}, ${theme.palette.grey[600]} 1px, transparent 1px, transparent 4px)`,
-            borderRadius: '99px',
-            ...(theme.palette.mode === 'dark' && {
-              background: `repeating-linear-gradient(90deg, ${theme.palette.grey[500]}, ${theme.palette.grey[500]} 1px, transparent 1px, transparent 4px)`,
-            }),
-          }),
-        },
-      },
-      MuiStepLabel: {
-        styleOverrides: {
-          label: ({ theme }) => ({
-            '&.Mui-completed': {
-              opacity: 0.4,
-              ...(theme.palette.mode === 'dark' && { opacity: 0.3 }),
-            },
-          }),
-        },
-      },
-      MuiStepIcon: {
-        variants: [
-          {
-            props: { completed: true },
-            style: () => ({
-              width: 16,
-              height: 16,
-            }),
-          },
-        ],
-        styleOverrides: {
-          root: ({ theme }) => ({
-            color: 'transparent',
-            border: `1px solid ${gray[400]}`,
-            width: 8,
-            height: 8,
-            borderRadius: '50%',
-            '& text': {
-              display: 'none',
-            },
-            '&.Mui-active': {
-              border: 'none',
-              color: theme.palette.primary.main,
-            },
-            '&.Mui-completed': {
-              border: 'none',
-              color: theme.palette.success.main,
-            },
-            ...(theme.palette.mode === 'dark' && {
-              border: `1px solid ${gray[700]}`,
-              '&.Mui-active': {
-                border: 'none',
-                color: theme.palette.primary.light,
-              },
-              '&.Mui-completed': {
-                border: 'none',
-                color: theme.palette.success.light,
               },
             }),
           }),
