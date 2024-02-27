@@ -646,7 +646,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           },
         })}
       </AutocompleteRoot>
-      {anchorEl ? (
+      {anchorEl && !loading && groupedOptions.length > 0 ? (
         <AutocompletePopper
           as={PopperComponent}
           disablePortal={disablePortal}
