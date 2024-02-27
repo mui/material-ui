@@ -1,5 +1,47 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.15.12
+
+<!-- generated comparing v5.15.11..master -->
+
+_Feb 27, 2024_
+
+A big thanks to the 26 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.15.12`
+
+- &#8203;<!-- 21 -->[Alert] Deprecate composed classes (#40688) @DiegoAndai
+- &#8203;<!-- 06 -->Remove unused dev dependency on @mui/lab (#41198) @brijeshb42
+- &#8203;<!-- 05 -->[Slider] Deprecate components and componentProps props for v6 (#40777) @lhilgert9
+- &#8203;<!-- 19 -->[Button] Deprecate classes for v6 (#40675) @sai6855
+- &#8203;<!-- 18 -->[Chip] Deprecate composed classes (#41235) @sai6855
+- &#8203;<!-- 17 -->[Chip] Correct `deleteIconColorPrimary` and `deleteIconColorSecondary` class descriptions (#41231) @sai6855
+
+### Docs
+
+- &#8203;<!-- 07 -->[joy-ui] Add stray adjustments throughout the docs (#41211) @danilo-leal
+
+### Core
+
+- &#8203;<!-- 22 -->Revert "[utils] Port `useLocalStorageState` hook from Toolpad (#41096)" @oliviertassinari
+- &#8203;<!-- 20 -->[blog] No bundled demos in blog posts @oliviertassinari
+- &#8203;<!-- 16 -->[code-infra] Prepare the markdown package for publishing (#41240) @michaldudak
+- &#8203;<!-- 15 -->[code-infra] Unpin the version of docs-utils in scripts (#41232) @michaldudak
+- &#8203;<!-- 14 -->[core] Use runtime agnostic setTimeout type @oliviertassinari
+- &#8203;<!-- 13 -->[core] Remove window. reference for common globals @oliviertassinari
+- &#8203;<!-- 12 -->[core] Add a script to build all packages (#40631) @michaldudak
+- &#8203;<!-- 11 -->[docs-infra] Fix Stack Overflow breaking space @oliviertassinari
+- &#8203;<!-- 10 -->[docs-infra] Fix product selector popup not closing on route change (#41166) @divyammadhok
+- &#8203;<!-- 09 -->[docs-infra] Improve fix blank links ad @oliviertassinari
+- &#8203;<!-- 08 -->[docs-infra] Support interfaces for X docs (#41069) @alexfauquette
+- &#8203;<!-- 04 -->[website] Remove Heatmap chart from community plan on pricing table (#41081) @alexfauquette
+- &#8203;<!-- 03 -->[zero] Remove `object` intersection from CSS Fallback (#41271) @siriwatknp
+- &#8203;<!-- 02 -->[zero] Minor wording changes in README (#41253) @brijeshb42
+- &#8203;<!-- 01 -->[zero] Prepare zero-runtime packages for public release (#41226) @brijeshb42
+
+All contributors of this release in alphabetical order: @alexfauquette, @brijeshb42, @danilo-leal, @DiegoAndai, @divyammadhok, @lhilgert9, @michaldudak, @oliviertassinari, @sai6855, @siriwatknp
+
 ## v5.15.11
 
 <!-- generated comparing v5.15.10..master -->

@@ -1,6 +1,6 @@
 {
   "name": "@mui/utils",
-  "version": "5.15.11",
+  "version": "5.15.12",
   "private": false,
   "author": "MUI Team",
   "description": "Utility functions for React components.",
@@ -45,8 +45,8 @@
     "react-is": "^18.2.0"
   },
   "devDependencies": {
-    "@mui/internal-babel-macros": "workspace:^",
     "@mui-internal/test-utils": "workspace:^",
+    "@mui/internal-babel-macros": "workspace:^",
     "@mui/types": "workspace:^",
     "@types/chai": "^4.3.12",
     "@types/mocha": "^10.0.6",
