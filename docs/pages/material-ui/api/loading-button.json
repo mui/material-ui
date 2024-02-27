@@ -37,9 +37,45 @@
   ],
   "classes": [
     {
+      "key": "colorError",
+      "className": "MuiLoadingButton-colorError",
+      "description": "Styles applied to the root element if `color=\"error\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorInfo",
+      "className": "MuiLoadingButton-colorInfo",
+      "description": "Styles applied to the root element if `color=\"info\"`.",
+      "isGlobal": false
+    },
+    {
       "key": "colorInherit",
       "className": "MuiLoadingButton-colorInherit",
       "description": "Styles applied to the root element if `color=\"inherit\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiLoadingButton-colorPrimary",
+      "description": "Styles applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSecondary",
+      "className": "MuiLoadingButton-colorSecondary",
+      "description": "Styles applied to the root element if `color=\"secondary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSuccess",
+      "className": "MuiLoadingButton-colorSuccess",
+      "description": "Styles applied to the root element if `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorWarning",
+      "className": "MuiLoadingButton-colorWarning",
+      "description": "Styles applied to the root element if `color=\"warning\"`.",
       "isGlobal": false
     },
     {
@@ -52,61 +88,71 @@
       "key": "containedError",
       "className": "MuiLoadingButton-containedError",
       "description": "Styles applied to the root element if `variant=\"contained\"` and `color=\"error\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "containedInfo",
       "className": "MuiLoadingButton-containedInfo",
       "description": "Styles applied to the root element if `variant=\"contained\"` and `color=\"info\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "containedInherit",
       "className": "MuiLoadingButton-containedInherit",
       "description": "Styles applied to the root element if `variant=\"contained\"` and `color=\"inherit\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "containedPrimary",
       "className": "MuiLoadingButton-containedPrimary",
       "description": "Styles applied to the root element if `variant=\"contained\"` and `color=\"primary\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "containedSecondary",
       "className": "MuiLoadingButton-containedSecondary",
       "description": "Styles applied to the root element if `variant=\"contained\"` and `color=\"secondary\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "containedSizeLarge",
       "className": "MuiLoadingButton-containedSizeLarge",
       "description": "Styles applied to the root element if `size=\"large\"` and `variant=\"contained\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "containedSizeMedium",
       "className": "MuiLoadingButton-containedSizeMedium",
       "description": "Styles applied to the root element if `size=\"medium\"` and `variant=\"contained\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "containedSizeSmall",
       "className": "MuiLoadingButton-containedSizeSmall",
       "description": "Styles applied to the root element if `size=\"small\"` and `variant=\"contained\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "containedSuccess",
       "className": "MuiLoadingButton-containedSuccess",
       "description": "Styles applied to the root element if `variant=\"contained\"` and `color=\"success\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "containedWarning",
       "className": "MuiLoadingButton-containedWarning",
       "description": "Styles applied to the root element if `variant=\"contained\"` and `color=\"warning\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "disabled",
@@ -145,22 +191,31 @@
       "isGlobal": false
     },
     {
+      "key": "icon",
+      "className": "MuiLoadingButton-icon",
+      "description": "Styles applied to the icon element if supplied",
+      "isGlobal": false
+    },
+    {
       "key": "iconSizeLarge",
       "className": "MuiLoadingButton-iconSizeLarge",
       "description": "Styles applied to the icon element if supplied and `size=\"large\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "iconSizeMedium",
       "className": "MuiLoadingButton-iconSizeMedium",
       "description": "Styles applied to the icon element if supplied and `size=\"medium\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "iconSizeSmall",
       "className": "MuiLoadingButton-iconSizeSmall",
       "description": "Styles applied to the icon element if supplied and `size=\"small\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "loading",
@@ -202,61 +257,71 @@
       "key": "outlinedError",
       "className": "MuiLoadingButton-outlinedError",
       "description": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"error\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "outlinedInfo",
       "className": "MuiLoadingButton-outlinedInfo",
       "description": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"info\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "outlinedInherit",
       "className": "MuiLoadingButton-outlinedInherit",
       "description": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"inherit\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "outlinedPrimary",
       "className": "MuiLoadingButton-outlinedPrimary",
       "description": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"primary\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "outlinedSecondary",
       "className": "MuiLoadingButton-outlinedSecondary",
       "description": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"secondary\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "outlinedSizeLarge",
       "className": "MuiLoadingButton-outlinedSizeLarge",
       "description": "Styles applied to the root element if `size=\"large\"` and `variant=\"outlined\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "outlinedSizeMedium",
       "className": "MuiLoadingButton-outlinedSizeMedium",
       "description": "Styles applied to the root element if `size=\"medium\"` and `variant=\"outlined\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "outlinedSizeSmall",
       "className": "MuiLoadingButton-outlinedSizeSmall",
       "description": "Styles applied to the root element if `size=\"small\"` and `variant=\"outlined\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "outlinedSuccess",
       "className": "MuiLoadingButton-outlinedSuccess",
       "description": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"success\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "outlinedWarning",
       "className": "MuiLoadingButton-outlinedWarning",
       "description": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"warning\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "root",
@@ -304,61 +369,71 @@
       "key": "textError",
       "className": "MuiLoadingButton-textError",
       "description": "Styles applied to the root element if `variant=\"text\"` and `color=\"error\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "textInfo",
       "className": "MuiLoadingButton-textInfo",
       "description": "Styles applied to the root element if `variant=\"text\"` and `color=\"info\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "textInherit",
       "className": "MuiLoadingButton-textInherit",
       "description": "Styles applied to the root element if `variant=\"text\"` and `color=\"inherit\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "textPrimary",
       "className": "MuiLoadingButton-textPrimary",
       "description": "Styles applied to the root element if `variant=\"text\"` and `color=\"primary\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "textSecondary",
       "className": "MuiLoadingButton-textSecondary",
       "description": "Styles applied to the root element if `variant=\"text\"` and `color=\"secondary\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "textSizeLarge",
       "className": "MuiLoadingButton-textSizeLarge",
       "description": "Styles applied to the root element if `size=\"large\"` and `variant=\"text\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "textSizeMedium",
       "className": "MuiLoadingButton-textSizeMedium",
       "description": "Styles applied to the root element if `size=\"medium\"` and `variant=\"text\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "textSizeSmall",
       "className": "MuiLoadingButton-textSizeSmall",
       "description": "Styles applied to the root element if `size=\"small\"` and `variant=\"text\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "textSuccess",
       "className": "MuiLoadingButton-textSuccess",
       "description": "Styles applied to the root element if `variant=\"text\"` and `color=\"success\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "textWarning",
       "className": "MuiLoadingButton-textWarning",
       "description": "Styles applied to the root element if `variant=\"text\"` and `color=\"warning\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     }
   ],
   "spread": true,

@@ -240,7 +240,7 @@ ${headers.hooks
   if (docs.en.headers.card === 'true') {
     const slug = docs.en.location.replace(/(.*)\/(.*)\.md/, '$2');
     const exists = fs.existsSync(
-      path.resolve(__dirname, `../../docs/public/static/blog/${slug}/card.png`),
+      path.resolve(config.options.workspaceRoot, `docs/public/static/blog/${slug}/card.png`),
     );
 
     if (!exists) {

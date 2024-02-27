@@ -18,9 +18,9 @@ import {
   preprocessor as basePreprocessor,
   generateTokenCss,
   generateThemeTokens,
+  extendTheme,
+  type Theme as BaseTheme,
 } from '@mui/zero-runtime/utils';
-import type { Theme as BaseTheme } from '@mui/zero-runtime/extendTheme';
-import { extendTheme } from '@mui/zero-runtime/extendTheme';
 
 type NextMeta = {
   type: 'next';
