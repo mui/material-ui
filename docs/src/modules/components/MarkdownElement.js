@@ -467,7 +467,6 @@ const Root = styled('div')(
       width: '100%',
       padding: theme.spacing(1),
       marginBottom: theme.spacing(1.5),
-      overflow: 'clip',
       border: '1px solid',
       borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
       borderRadius: `var(--muidocs-shape-borderRadius, ${
