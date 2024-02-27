@@ -115,8 +115,7 @@ export default function Pricing() {
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
-                    color:
-                      tier.title === 'Professional' ? 'primary.contrastText' : '',
+                    color: tier.title === 'Professional' ? 'grey.100' : '',
                   }}
                 >
                   <Typography component="h3" variant="h6">
@@ -145,10 +144,7 @@ export default function Pricing() {
                   sx={{
                     display: 'flex',
                     alignItems: 'baseline',
-                    color:
-                      tier.title === 'Professional'
-                        ? 'primary.contrastText'
-                        : undefined,
+                    color: tier.title === 'Professional' ? 'grey.50' : undefined,
                   }}
                 >
                   <Typography component="h3" variant="h2">
@@ -189,9 +185,7 @@ export default function Pricing() {
                       variant="subtitle2"
                       sx={{
                         color:
-                          tier.title === 'Professional'
-                            ? 'primary.contrastText'
-                            : undefined,
+                          tier.title === 'Professional' ? 'grey.200' : undefined,
                       }}
                     >
                       {line}
