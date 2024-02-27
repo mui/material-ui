@@ -116,7 +116,7 @@ export default function Pricing() {
                     justifyContent: 'space-between',
                     alignItems: 'center',
                     color:
-                      tier.title === 'Professional' ? 'primary.contrastText' : '',
+                      tier.title === 'Professional' ? 'grey.100' : '',
                   }}
                 >
                   <Typography component="h3" variant="h6">
@@ -147,7 +147,7 @@ export default function Pricing() {
                     alignItems: 'baseline',
                     color:
                       tier.title === 'Professional'
-                        ? 'primary.contrastText'
+                        ? 'grey.50'
                         : undefined,
                   }}
                 >
@@ -190,7 +190,7 @@ export default function Pricing() {
                       sx={{
                         color:
                           tier.title === 'Professional'
-                            ? 'primary.contrastText'
+                            ? 'grey.200'
                             : undefined,
                       }}
                     >
