@@ -7,7 +7,7 @@ export class Timeout {
     return new Timeout();
   }
 
-  currentId: number = 0;
+  currentId: ReturnType<typeof setTimeout> | null = null;
 
   /**
    * Executes `fn` after `delay`, clearing any previously scheduled call.
@@ -15,15 +15,15 @@ export class Timeout {
   start(delay: number, fn: Function) {
     this.clear();
     this.currentId = setTimeout(() => {
-      this.currentId = 0;
+      this.currentId = null;
       fn();
-    }, delay) as unknown as number;
+    }, delay);
   }
 
   clear = () => {
-    if (this.currentId !== 0) {
+    if (this.currentId !== null) {
       clearTimeout(this.currentId);
-      this.currentId = 0;
+      this.currentId = null;
     }
   };
 

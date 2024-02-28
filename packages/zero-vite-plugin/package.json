@@ -4,10 +4,26 @@
   "main": "build/index.js",
   "module": "build/index.mjs",
   "types": "build/index.d.ts",
-  "private": true,
+  "author": "MUI Team",
+  "description": "Vite integration for @mui/zero-runtime CSS-in-JS library.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mui/material-ui.git",
+    "directory": "packages/zero-vite-plugin"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mui/material-ui/issues"
+  },
+  "homepage": "https://github.com/mui/material-ui/tree/master/packages/zero-runtime",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/mui-org"
+  },
   "scripts": {
     "clean": "rimraf build",
     "watch": "tsup --watch",
+    "copy-license": "node ../../scripts/zero-runtime-license.mjs",
     "build": "tsup",
     "typecheck": "tsc --noEmit -p ."
   },
@@ -32,6 +48,7 @@
   },
   "files": [
     "build",
-    "package.json"
+    "package.json",
+    "LICENSE"
   ]
 }
