@@ -5,20 +5,20 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
 } from '@mui/utils';
-import { UseSwitchParameters, UseSwitchReturnValue } from './useSwitch.types';
+import { UseCheckboxParameters, UseCheckboxReturnValue } from './useCheckbox.types';
 
 /**
- * The basic building block for creating custom switches.
+ * The basic building block for creating custom checkboxes.
  *
  * Demos:
  *
- * - [Switch](https://mui.com/base-ui/react-switch/#hook)
+ * - [Checkbox](https://mui.com/base-ui/react-checkbox/#hook)
  *
  * API:
  *
- * - [useSwitch API](https://mui.com/base-ui/react-switch/hooks-api/#use-switch)
+ * - [useCheckbox API](https://mui.com/base-ui/react-checkbox/hooks-api/#use-checkbox)
  */
-export function useSwitch(props: UseSwitchParameters): UseSwitchReturnValue {
+export function useCheckbox(props: UseCheckboxParameters): UseCheckboxReturnValue {
   const {
     checked: checkedProp,
     defaultChecked,
@@ -34,7 +34,7 @@ export function useSwitch(props: UseSwitchParameters): UseSwitchReturnValue {
   const [checked, setCheckedState] = useControlled({
     controlled: checkedProp,
     default: Boolean(defaultChecked),
-    name: 'Switch',
+    name: 'Checkbox',
     state: 'checked',
   });
 
@@ -102,7 +102,7 @@ export function useSwitch(props: UseSwitchParameters): UseSwitchReturnValue {
 
   const handleInputRef = useForkRef(focusVisibleRef, inputRef);
 
-  const getInputProps: UseSwitchReturnValue['getInputProps'] = (otherProps = {}) => ({
+  const getInputProps: UseCheckboxReturnValue['getInputProps'] = (otherProps = {}) => ({
     checked: checkedProp,
     defaultChecked,
     disabled,
@@ -110,7 +110,7 @@ export function useSwitch(props: UseSwitchParameters): UseSwitchReturnValue {
     ref: handleInputRef,
     required,
     type: 'checkbox',
-    role: 'switch',
+    // role: 'switch',
     'aria-checked': checkedProp,
     ...otherProps,
     onChange: createHandleInputChange(otherProps),
