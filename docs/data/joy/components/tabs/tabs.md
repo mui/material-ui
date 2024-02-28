@@ -15,7 +15,7 @@ unstyled: /base-ui/react-tabs/
 
 ## Introduction
 
-Joy UI provides four tabs-related components:
+Joy UI provides four tabs-related components:
 
 - `Tabs`: A context provider that synchronizes the selected `Tab` with the corresponding `TabPanel`.
 - `TabList`: A container that consists of `Tab` items.
@@ -32,7 +32,7 @@ import TabList from '@mui/joy/TabList';
 import Tab from '@mui/joy/Tab';
 ```
 
-The Joy UI set of Tabs components follows the [WAI ARIA design pattern guidelines](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/).
+The Joy UI set of Tabs components follows the [WAI ARIA design pattern guidelines](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/).
 
 Use the `value` prop on the Tab Panel and the `defaultValue` prop on the Tabs component to target the selected tab.
 
