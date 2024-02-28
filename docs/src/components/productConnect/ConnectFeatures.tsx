@@ -110,9 +110,9 @@ export default function ConnectFeatures() {
                             transform: 'translate(-40%)',
                           },
                           '&:nth-of-type(2)': {
-                            width: { xs: 240, sm: 350 },
-                            top: { xs: 130, sm: 40 },
-                            left: { xs: '55%', sm: '40%' },
+                            width: { xs: 240, sm: 560 },
+                            top: { xs: 100, sm: 40 },
+                            left: { xs: '52%', sm: '40%' },
                             transform: {
                               xs: 'scale(1.8) translate(-20%)',
                               sm: 'scale(1) translate(0%)',
@@ -122,10 +122,10 @@ export default function ConnectFeatures() {
                         '&:hover': {
                           '& img': {
                             '&:nth-of-type(2)': {
-                              top: { xs: 130, sm: 140 },
+                              top: { xs: 100, sm: 60 },
                               transform: {
                                 xs: 'scale(1.8) translate(-20%)',
-                                sm: 'scale(1.5) translate(-10%)',
+                                sm: 'scale(1.1) translate(-25%)',
                               },
                               filter: {
                                 xs: 'auto',
@@ -159,22 +159,22 @@ export default function ConnectFeatures() {
                       })}
                     >
                       <Image
-                        src={`/static/branding/design-kits/connect-plug-in-figma-light.jpg`}
+                        src={`/static/branding/design-kits/connect-page-base1-light.png`}
                         alt="Screenshot of Figma displaying the Material UI Design kit"
                         loading="lazy"
                         sx={(theme) =>
                           theme.applyDarkStyles({
-                            content: `url(/static/branding/design-kits/connect-plug-in-figma-dark.jpg)`,
+                            content: `url(/static/branding/design-kits/connect-page-base1-dark.png)`,
                           })
                         }
                       />
                       <Image
-                        src={`/static/branding/design-kits/connect-plug-in-light.jpg`}
-                        alt=""
+                        src={`/static/branding/design-kits/connect-shot1-light.png`}
+                        alt="Screenshot of the Connect plugin"
                         loading="lazy"
                         sx={(theme) =>
                           theme.applyDarkStyles({
-                            content: `url(/static/branding/design-kits/connect-plug-in-dark.jpg)`,
+                            content: `url(/static/branding/design-kits/connect-shot1-dark.png)`,
                           })
                         }
                       />
@@ -182,28 +182,178 @@ export default function ConnectFeatures() {
                   </Fade>
                 )}
                 {index === 1 && (
-                  <Image
-                    src={`/static/branding/design-kits/connect-plug-in-figma-light.jpg`}
-                    alt="Screenshot of Figma displaying the Material UI Design kit"
-                    loading="lazy"
-                    sx={(theme) =>
-                      theme.applyDarkStyles({
-                        content: `url(/static/branding/design-kits/connect-plug-in-figma-dark.jpg)`,
-                      })
-                    }
-                  />
+                  <Fade in={index === 1} timeout={500}>
+                    <Box
+                      sx={(theme) => ({
+                        width: '100%',
+                        height: '100%',
+                        '& img': {
+                          position: 'absolute',
+                          '&:nth-of-type(1)': {
+                            visibility: { xs: 'hidden', sm: 'visible' },
+                            width: { xs: 240, sm: 600 },
+                            top: 100,
+                            left: '50%',
+                            transform: 'translate(-40%)',
+                          },
+                          '&:nth-of-type(2)': {
+                            width: { xs: 240, sm: 560 },
+                            top: { xs: 100, sm: 40 },
+                            left: { xs: '52%', sm: '60%' },
+                            transform: {
+                              xs: 'scale(1.8) translate(-20%)',
+                              sm: 'none',
+                            },
+                          },
+                        },
+                        '&:hover': {
+                          '& img': {
+                            '&:nth-of-type(2)': {
+                              top: { xs: 100, sm: 60 },
+                              transform: {
+                                xs: 'scale(1.8) translate(-20%)',
+                                sm: 'scale(1.1) translate(-30%)',
+                              },
+                              filter: {
+                                xs: 'auto',
+                                sm: `drop-shadow(-16px 12px 20px ${alpha(
+                                  theme.palette.grey[600],
+                                  0.5,
+                                )})`,
+                              },
+                            },
+                          },
+                        },
+                        ...theme.applyDarkStyles({
+                          '&:hover': {
+                            '& img': {
+                              '&:nth-of-type(2)': {
+                                filter: {
+                                  xs: 'auto',
+                                  sm: `drop-shadow(-16px 12px 20px ${alpha(
+                                    theme.palette.common.black,
+                                    0.8,
+                                  )})`,
+                                },
+                              },
+                              filter: `drop-shadow(-16px 12px 20px ${alpha(
+                                theme.palette.common.black,
+                                0.2,
+                              )})`,
+                            },
+                          },
+                        }),
+                      })}
+                    >
+                      <Image
+                        src={`/static/branding/design-kits/connect-page-base2-light.png`}
+                        alt="Screenshot of Figma displaying the Material UI Design kit"
+                        loading="lazy"
+                        sx={(theme) =>
+                          theme.applyDarkStyles({
+                            content: `url(/static/branding/design-kits/connect-page-base2-dark.png)`,
+                          })
+                        }
+                      />
+                      <Image
+                        src={`/static/branding/design-kits/connect-shot2-light.png`}
+                        alt="Screenshot of the Connect plugin"
+                        loading="lazy"
+                        sx={(theme) =>
+                          theme.applyDarkStyles({
+                            content: `url(/static/branding/design-kits/connect-shot2-dark.png)`,
+                          })
+                        }
+                      />
+                    </Box>
+                  </Fade>
                 )}
                 {index === 2 && (
-                  <Image
-                    src={`/static/branding/design-kits/connect-plug-in-figma-light.jpg`}
-                    alt="Screenshot of Figma displaying the Material UI Design kit"
-                    loading="lazy"
-                    sx={(theme) =>
-                      theme.applyDarkStyles({
-                        content: `url(/static/branding/design-kits/connect-plug-in-figma-dark.jpg)`,
-                      })
-                    }
-                  />
+                  <Fade in={index === 2} timeout={500}>
+                    <Box
+                      sx={(theme) => ({
+                        width: '100%',
+                        height: '100%',
+                        '& img': {
+                          position: 'absolute',
+                          '&:nth-of-type(1)': {
+                            visibility: { xs: 'hidden', sm: 'visible' },
+                            width: { xs: 240, sm: 600 },
+                            top: 100,
+                            left: '50%',
+                            transform: 'translate(-40%)',
+                          },
+                          '&:nth-of-type(2)': {
+                            width: { xs: 240, sm: 560 },
+                            top: { xs: 100, sm: 40 },
+                            left: { xs: '52%', sm: '45%' },
+                            transform: {
+                              xs: 'scale(1.8) translate(-20%)',
+                              sm: 'none',
+                            },
+                          },
+                        },
+                        '&:hover': {
+                          '& img': {
+                            '&:nth-of-type(2)': {
+                              top: { xs: 100, sm: 60 },
+                              transform: {
+                                xs: 'scale(1.8) translate(-20%)',
+                                sm: 'scale(1.1) translate(-30%)',
+                              },
+                              filter: {
+                                xs: 'auto',
+                                sm: `drop-shadow(-16px 12px 20px ${alpha(
+                                  theme.palette.grey[600],
+                                  0.5,
+                                )})`,
+                              },
+                            },
+                          },
+                        },
+                        ...theme.applyDarkStyles({
+                          '&:hover': {
+                            '& img': {
+                              '&:nth-of-type(2)': {
+                                filter: {
+                                  xs: 'auto',
+                                  sm: `drop-shadow(-16px 12px 20px ${alpha(
+                                    theme.palette.common.black,
+                                    0.8,
+                                  )})`,
+                                },
+                              },
+                              filter: `drop-shadow(-16px 12px 20px ${alpha(
+                                theme.palette.common.black,
+                                0.2,
+                              )})`,
+                            },
+                          },
+                        }),
+                      })}
+                    >
+                      <Image
+                        src={`/static/branding/design-kits/connect-page-base2-light.png`}
+                        alt="Screenshot of Figma displaying the Material UI Design kit"
+                        loading="lazy"
+                        sx={(theme) =>
+                          theme.applyDarkStyles({
+                            content: `url(/static/branding/design-kits/connect-page-base2-dark.png)`,
+                          })
+                        }
+                      />
+                      <Image
+                        src={`/static/branding/design-kits/connect-shot3-light.png`}
+                        alt="Screenshot of the Connect plugin"
+                        loading="lazy"
+                        sx={(theme) =>
+                          theme.applyDarkStyles({
+                            content: `url(/static/branding/design-kits/connect-shot3-dark.png)`,
+                          })
+                        }
+                      />
+                    </Box>
+                  </Fade>
                 )}
               </Box>
             </Frame.Demo>
