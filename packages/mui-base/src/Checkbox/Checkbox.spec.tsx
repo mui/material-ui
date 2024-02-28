@@ -1,12 +1,6 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
-import {
-  Checkbox,
-  CheckboxRootSlotProps,
-  CheckboxThumbSlotProps,
-  CheckboxTrackSlotProps,
-  CheckboxInputSlotProps,
-} from '@mui/base/Checkbox';
+import { Checkbox, CheckboxRootSlotProps, CheckboxInputSlotProps } from '@mui/base/Checkbox';
 
 const Root = React.forwardRef(function Root(
   props: CheckboxRootSlotProps,
@@ -24,25 +18,7 @@ const Input = React.forwardRef(function Input(
   return <input data-checked={ownerState.checked} {...other} ref={ref} />;
 });
 
-const Thumb = React.forwardRef(function Thumb(
-  props: CheckboxThumbSlotProps,
-  ref: React.Ref<HTMLDivElement>,
-) {
-  const { ownerState, ...other } = props;
-  return <div data-checked={ownerState.checked} {...other} ref={ref} />;
-});
-
-const Track = React.forwardRef(function Track(
-  props: CheckboxTrackSlotProps,
-  ref: React.Ref<HTMLDivElement>,
-) {
-  const { ownerState, ...other } = props;
-  return <div data-checked={ownerState.checked} {...other} ref={ref} />;
-});
-
-const styledCheckbox = (
-  <Checkbox slots={{ root: Root, thumb: Thumb, track: Track, input: Input }} />
-);
+const styledCheckbox = <Checkbox slots={{ root: Root, input: Input }} />;
 
 const polymorphicComponentTest = () => {
   const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =

@@ -8,10 +8,6 @@ export interface CheckboxClasses {
   root: string;
   /** Class applied to the internal input element */
   input: string;
-  /** Class applied to the track element */
-  track: string;
-  /** Class applied to the thumb element */
-  thumb: string;
   /** State class applied to the root element if the checkbox is checked */
   checked: string;
   /** State class applied to the root element if the checkbox is disabled */
@@ -31,8 +27,6 @@ export function getCheckboxUtilityClass(slot: string): string {
 export const checkboxClasses: CheckboxClasses = generateUtilityClasses(COMPONENT_NAME, [
   'root',
   'input',
-  'track',
-  'thumb',
   'checked',
   'disabled',
   'focusVisible',

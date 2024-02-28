@@ -3,9 +3,7 @@ import { PolymorphicProps, SlotComponentProps } from '../utils';
 import { UseCheckboxInputSlotProps, UseCheckboxParameters } from '../useCheckbox';
 
 export interface CheckboxRootSlotPropsOverrides {}
-export interface CheckboxThumbSlotPropsOverrides {}
 export interface CheckboxInputSlotPropsOverrides {}
-export interface CheckboxTrackSlotPropsOverrides {}
 
 export interface CheckboxOwnProps extends UseCheckboxParameters {
   /**
@@ -24,9 +22,7 @@ export interface CheckboxOwnProps extends UseCheckboxParameters {
    */
   slotProps?: {
     root?: SlotComponentProps<'span', CheckboxRootSlotPropsOverrides, CheckboxOwnerState>;
-    thumb?: SlotComponentProps<'span', CheckboxThumbSlotPropsOverrides, CheckboxOwnerState>;
     input?: SlotComponentProps<'input', CheckboxInputSlotPropsOverrides, CheckboxOwnerState>;
-    track?: SlotComponentProps<'span', CheckboxTrackSlotPropsOverrides, CheckboxOwnerState>;
   };
 }
 
@@ -41,16 +37,6 @@ export interface CheckboxSlots {
    * @default 'input'
    */
   input?: React.ElementType;
-  /**
-   * The component that renders the thumb.
-   * @default 'span'
-   */
-  thumb?: React.ElementType;
-  /**
-   * The component that renders the track.
-   * @default 'span'
-   */
-  track?: React.ElementType | null;
 }
 
 export interface CheckboxTypeMap<
@@ -75,18 +61,6 @@ export type CheckboxOwnerState = Simplify<
 >;
 
 export type CheckboxRootSlotProps = {
-  ownerState: CheckboxOwnerState;
-  className?: string;
-  children?: React.ReactNode;
-};
-
-export type CheckboxThumbSlotProps = {
-  ownerState: CheckboxOwnerState;
-  className?: string;
-  children?: React.ReactNode;
-};
-
-export type CheckboxTrackSlotProps = {
   ownerState: CheckboxOwnerState;
   className?: string;
   children?: React.ReactNode;

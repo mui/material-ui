@@ -9,8 +9,6 @@ import {
   CheckboxOwnerState,
   CheckboxInputSlotProps,
   CheckboxRootSlotProps,
-  CheckboxThumbSlotProps,
-  CheckboxTrackSlotProps,
   CheckboxTypeMap,
 } from './Checkbox.types';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
@@ -28,9 +26,7 @@ const useUtilityClasses = (ownerState: CheckboxOwnerState) => {
       focusVisible && 'focusVisible',
       readOnly && 'readOnly',
     ],
-    thumb: ['thumb'],
     input: ['input'],
-    track: ['track'],
   };
 
   return composeClasses(slots, useClassNamesOverride(getCheckboxUtilityClass));
@@ -90,14 +86,6 @@ const Checkbox = React.forwardRef(function Checkbox<RootComponentType extends Re
     className: classes.root,
   });
 
-  const Thumb: React.ElementType = slots.thumb ?? 'span';
-  const thumbProps: WithOptionalOwnerState<CheckboxThumbSlotProps> = useSlotProps({
-    elementType: Thumb,
-    externalSlotProps: slotProps.thumb,
-    ownerState,
-    className: classes.thumb,
-  });
-
   const Input: React.ElementType = slots.input ?? 'input';
   const inputProps: WithOptionalOwnerState<CheckboxInputSlotProps> = useSlotProps({
     elementType: Input,
@@ -107,18 +95,8 @@ const Checkbox = React.forwardRef(function Checkbox<RootComponentType extends Re
     className: classes.input,
   });
 
-  const Track: React.ElementType = slots.track === null ? () => null : slots.track ?? 'span';
-  const trackProps: WithOptionalOwnerState<CheckboxTrackSlotProps> = useSlotProps({
-    elementType: Track,
-    externalSlotProps: slotProps.track,
-    ownerState,
-    className: classes.track,
-  });
-
   return (
     <Root {...rootProps}>
-      <Track {...trackProps} />
-      <Thumb {...thumbProps} />
       <Input {...inputProps} />
     </Root>
   );
@@ -180,8 +158,6 @@ Checkbox.propTypes /* remove-proptypes */ = {
   slotProps: PropTypes.shape({
     input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside the Checkbox.
@@ -191,8 +167,6 @@ Checkbox.propTypes /* remove-proptypes */ = {
   slots: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     input: PropTypes.elementType,
     root: PropTypes.elementType,
-    thumb: PropTypes.elementType,
-    track: PropTypes.oneOfType([PropTypes.elementType, PropTypes.oneOf([null])]),
   }),
 } as any;
 

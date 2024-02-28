@@ -18,16 +18,9 @@ describe('<Checkbox />', () => {
       root: {
         expectedClassName: checkboxClasses.root,
       },
-      thumb: {
-        expectedClassName: checkboxClasses.thumb,
-      },
       input: {
         testWithElement: 'input',
         expectedClassName: checkboxClasses.input,
-      },
-      track: {
-        expectedClassName: checkboxClasses.track,
-        isOptional: true,
       },
     },
     skip: ['componentProp'],
@@ -60,7 +53,6 @@ describe('<Checkbox />', () => {
       const slots = {
         root: CustomSlot,
         input: CustomSlot,
-        thumb: CustomSlot,
       };
 
       const { getAllByTestId } = render(<Checkbox defaultChecked disabled slots={slots} />);
