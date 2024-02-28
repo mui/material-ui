@@ -582,6 +582,106 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const popperSlotProps = slotProps.popper ?? componentsProps.popper;
   const popupIndicatorSlotProps = slotProps.popupIndicator ?? componentsProps.popupIndicator;
 
+  const renderPopper = () => {
+    let container = null;
+    if(!loading && groupedOptions.length > 0) {
+      container = <AutocompletePopper
+          as={PopperComponent}
+          disablePortal={disablePortal}
+          style={{
+            width: anchorEl ? anchorEl.clientWidth : null,
+          }}
+          ownerState={ownerState}
+          role="presentation"
+          anchorEl={anchorEl}
+          open={popupOpen}
+          {...popperSlotProps}
+          className={clsx(classes.popper, popperSlotProps?.className)}
+        >
+          <AutocompletePaper
+            ownerState={ownerState}
+            as={PaperComponent}
+            {...paperSlotProps}
+            className={clsx(classes.paper, paperSlotProps?.className)}
+          >
+            <AutocompleteListbox
+              as={ListboxComponent}
+              className={classes.listbox}
+              ownerState={ownerState}
+              {...otherListboxProps}
+              {...ListboxProps}
+              ref={combinedListboxRef}
+            >
+              {groupedOptions.map((option, index) => {
+                if (groupBy) {
+                  return renderGroup({
+                    key: option.key,
+                    group: option.group,
+                    children: option.options.map((option2, index2) =>
+                      renderListOption(option2, option.index + index2),
+                    ),
+                  });
+                }
+                return renderListOption(option, index);
+              })}
+            </AutocompleteListbox>
+          </AutocompletePaper>
+        </AutocompletePopper>
+    } else if(loading && groupedOptions.length === 0) {
+      container = <AutocompletePopper
+          as={PopperComponent}
+          disablePortal={disablePortal}
+          style={{
+            width: anchorEl ? anchorEl.clientWidth : null,
+          }}
+          ownerState={ownerState}
+          role="presentation"
+          anchorEl={anchorEl}
+          open={popupOpen}
+          {...popperSlotProps}
+          className={clsx(classes.popper, popperSlotProps?.className)}
+        >
+          <AutocompletePaper
+            ownerState={ownerState}
+            as={PaperComponent}
+            {...paperSlotProps}
+            className={clsx(classes.paper, paperSlotProps?.className)}
+          >
+            <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
+              {loadingText}
+            </AutocompleteLoading>
+          </AutocompletePaper>
+        </AutocompletePopper>
+    } else if(groupedOptions.length === 0 && !freeSolo && !loading) {
+      container = <AutocompletePopper
+          as={PopperComponent}
+          disablePortal={disablePortal}
+          style={{
+            width: anchorEl ? anchorEl.clientWidth : null,
+          }}
+          ownerState={ownerState}
+          role="presentation"
+          anchorEl={anchorEl}
+          open={popupOpen}
+          {...popperSlotProps}
+          className={clsx(classes.popper, popperSlotProps?.className)}
+        >
+          <AutocompleteNoOptions
+            className={classes.noOptions}
+            ownerState={ownerState}
+            role="presentation"
+            onMouseDown={(event) => {
+              // Prevent input blur when interacting with the "no options" content
+              event.preventDefault();
+            }}
+          >
+            {noOptionsText}
+          </AutocompleteNoOptions>
+        </AutocompletePopper>
+    }
+    return container;
+  }
+
   return (
     <React.Fragment>
       <AutocompleteRoot
@@ -646,70 +746,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           },
         })}
       </AutocompleteRoot>
-      {anchorEl && !loading && groupedOptions.length > 0 ? (
-        <AutocompletePopper
-          as={PopperComponent}
-          disablePortal={disablePortal}
-          style={{
-            width: anchorEl ? anchorEl.clientWidth : null,
-          }}
-          ownerState={ownerState}
-          role="presentation"
-          anchorEl={anchorEl}
-          open={popupOpen}
-          {...popperSlotProps}
-          className={clsx(classes.popper, popperSlotProps?.className)}
-        >
-          <AutocompletePaper
-            ownerState={ownerState}
-            as={PaperComponent}
-            {...paperSlotProps}
-            className={clsx(classes.paper, paperSlotProps?.className)}
-          >
-            {loading && groupedOptions.length === 0 ? (
-              <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
-                {loadingText}
-              </AutocompleteLoading>
-            ) : null}
-            {groupedOptions.length === 0 && !freeSolo && !loading ? (
-              <AutocompleteNoOptions
-                className={classes.noOptions}
-                ownerState={ownerState}
-                role="presentation"
-                onMouseDown={(event) => {
-                  // Prevent input blur when interacting with the "no options" content
-                  event.preventDefault();
-                }}
-              >
-                {noOptionsText}
-              </AutocompleteNoOptions>
-            ) : null}
-            {groupedOptions.length > 0 ? (
-              <AutocompleteListbox
-                as={ListboxComponent}
-                className={classes.listbox}
-                ownerState={ownerState}
-                {...otherListboxProps}
-                {...ListboxProps}
-                ref={combinedListboxRef}
-              >
-                {groupedOptions.map((option, index) => {
-                  if (groupBy) {
-                    return renderGroup({
-                      key: option.key,
-                      group: option.group,
-                      children: option.options.map((option2, index2) =>
-                        renderListOption(option2, option.index + index2),
-                      ),
-                    });
-                  }
-                  return renderListOption(option, index);
-                })}
-              </AutocompleteListbox>
-            ) : null}
-          </AutocompletePaper>
-        </AutocompletePopper>
-      ) : null}
+      {anchorEl ? renderPopper() : null}
     </React.Fragment>
   );
 });
