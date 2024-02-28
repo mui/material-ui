@@ -1,6 +1,6 @@
 import type * as CSS from 'csstype';
 
-export type CSSProperties = CSS.PropertiesFallback<number | (string & object)>;
+export type CSSProperties = CSS.PropertiesFallback<number | string>;
 
 export type CSSPropertiesMultiValue = {
   [K in keyof CSSProperties]: CSSProperties[K] | Array<Extract<CSSProperties[K], string>>;

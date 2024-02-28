@@ -4,7 +4,6 @@ import { Tabs, TabsOwnProps } from '@mui/base/Tabs';
 import { TabsList as TabsListBase } from '@mui/base/TabsList';
 import { TabPanel as TabPanelBase } from '@mui/base/TabPanel';
 import { Tab as TabBase } from '@mui/base/Tab';
-import useLocalStorageState from '@mui/utils/useLocalStorageState';
 import HighlightedCode from './HighlightedCode';
 
 const TabList = styled(TabsListBase)(({ theme }) => ({
@@ -86,16 +85,36 @@ export default function HighlightedCodeWithTabs({
   storageKey?: string;
 } & Record<string, any>) {
   const availableTabs = React.useMemo(() => tabs.map(({ tab }) => tab), [tabs]);
-  const [activeTab, setActiveTab] = useLocalStorageState(storageKey ?? null, availableTabs[0]);
+  const [activeTab, setActiveTab] = React.useState(availableTabs[0]);
 
   const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
+    try {
+      setActiveTab((prev) => {
+        if (storageKey === undefined) {
+          return prev;
+        }
+        const storedValues = localStorage.getItem(storageKey);
+
+        return storedValues && availableTabs.includes(storedValues) ? storedValues : prev;
+      });
+    } catch (error) {
+      // ignore error
+    }
     setMounted(true);
-  }, []);
+  }, [availableTabs, storageKey]);
 
   const handleChange: TabsOwnProps['onChange'] = (event, newValue) => {
     setActiveTab(newValue as string);
+    if (storageKey === undefined) {
+      return;
+    }
+    try {
+      localStorage.setItem(storageKey, newValue as string);
+    } catch (error) {
+      // ignore error
+    }
   };
 
   const ownerState = { mounted };
