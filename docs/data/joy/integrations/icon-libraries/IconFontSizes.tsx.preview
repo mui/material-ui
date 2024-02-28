@@ -1,3 +1,3 @@
 {Object.keys(theme.fontSize).map((size) => (
-  <Person key={size} fontSize={size} />
+  <Person key={size} fontSize={size as keyof FontSize} />
 ))}
