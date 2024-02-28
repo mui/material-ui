@@ -16,7 +16,7 @@ export default function InfoMobile() {
   };
 
   const DrawerList = (
-    <Box sx={{ width: 'auto', px: 2, pb: 2 }} role="presentation">
+    <Box sx={{ width: 'auto', px: 3, pb: 3, pt:8}} role="presentation">
       <IconButton
         onClick={toggleDrawer(false)}
         sx={{ position: 'absolute', right: 8, top: 8 }}

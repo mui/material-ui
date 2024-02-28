@@ -774,8 +774,8 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
           {
             props: { completed: true },
             style: () => ({
-              width: 16,
-              height: 16,
+              width: 12,
+              height: 12,
             }),
           },
         ],
@@ -783,8 +783,8 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
           root: ({ theme }) => ({
             color: 'transparent',
             border: `1px solid ${gray[400]}`,
-            width: 8,
-            height: 8,
+            width: 12,
+            height: 12,
             borderRadius: '50%',
             '& text': {
               display: 'none',

@@ -2,7 +2,6 @@ import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Divider from '@mui/material/Divider';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
@@ -55,9 +54,9 @@ export default function PaymentForm() {
             height: { xs: '250px', sm: '350px' },
             width: { xs: '375px', sm: '525px' },
             borderRadius: '20px',
-            backdropFilter: 'blur(35px)',
             border: '2px solid ',
             borderColor: 'divider',
+            backgroundColor: 'background.paper',
             boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.05)',
           }}
         >

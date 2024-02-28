@@ -3,7 +3,6 @@ import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import Divider from '@mui/material/Divider';
 
 const products = [
   {
@@ -13,7 +12,7 @@ const products = [
   },
   {
     name: 'Dedicated support',
-    desc: 'Included in Professional plan',
+    desc: 'Included in the Professional plan',
     price: 'Free',
   },
   {
@@ -31,7 +30,7 @@ const products = [
 export default function Info() {
   return (
     <React.Fragment>
-      <Typography variant="subtitle2" color="text.secondary" sx={{ mt: 10 }}>
+      <Typography variant="subtitle2" color="text.secondary">
         Total
       </Typography>
       <Typography variant="h4" gutterBottom>
