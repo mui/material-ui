@@ -2,7 +2,6 @@
 
 A zero-runtime CSS-in-JS library that extracts the colocated styles to their own CSS files at build-time.
 
-- [Starter template](#starter-template)
 - [Getting started](#getting-started)
   - [Next.js](#nextjs)
   - [Vite](#vite)
@@ -22,29 +21,22 @@ A zero-runtime CSS-in-JS library that extracts the colocated styles to their own
 - [How-to guides](#how-to-guides)
   - [Coming from Emotion or styled-components](#coming-from-emotion-or-styled-components)
 
-## Starter template
+## Getting started
 
-Use the following commands to create a new project with the latest framework version and zero-runtime (for existing projects, see [Getting started](#getting-started)):
+Zero-runtime supports Next.js and Vite with future support for more bundlers. You must install the corresponding plugin, as shown below.
 
-**Next.js template**:
+### Next.js
+
+#### Starter template
+
+Use the following commands to create a new Next.js project with Zero Runtime setup:
 
 ```bash
 curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/zero-nextjs
 cd zero-nextjs
 ```
 
-**Vite template**:
-
-```bash
-curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/zero-vite
-cd zero-vite
-```
-
-## Getting started
-
-Zero-runtime supports Next.js and Vite with future support for more bundlers. You must install the corresponding plugin, as shown below.
-
-### Next.js
+#### Manual installation
 
 ```bash
 npm install @mui/zero-runtime
@@ -62,6 +54,17 @@ module.exports = withZeroPlugin({
 ```
 
 ### Vite
+
+#### Starter template
+
+Use the following commands to create a new Vite project with Zero Runtime setup:
+
+```bash
+curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/zero-vite
+cd zero-vite
+```
+
+#### Manual installation
 
 ```bash
 npm install @mui/zero-runtime
