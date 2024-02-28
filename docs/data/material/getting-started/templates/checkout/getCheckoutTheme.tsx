@@ -202,53 +202,6 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
   return {
     ...getDesignTokens(mode),
     components: {
-      MuiAccordion: {
-        defaultProps: {
-          elevation: 0,
-          disableGutters: true,
-        },
-        styleOverrides: {
-          root: ({ theme }) => ({
-            padding: 8,
-            overflow: 'clip',
-            backgroundColor: '#fff',
-            border: '1px solid',
-            borderColor: gray[100],
-            ':before': {
-              backgroundColor: 'transparent',
-            },
-            '&:first-of-type': {
-              borderTopLeftRadius: 10,
-              borderTopRightRadius: 10,
-            },
-            '&:last-of-type': {
-              borderBottomLeftRadius: 10,
-              borderBottomRightRadius: 10,
-            },
-            ...(theme.palette.mode === 'dark' && {
-              backgroundColor: gray[900],
-              borderColor: gray[800],
-            }),
-          }),
-        },
-      },
-      MuiAccordionSummary: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            border: 'none',
-            borderRadius: 8,
-            '&:hover': { backgroundColor: gray[100] },
-            ...(theme.palette.mode === 'dark' && {
-              '&:hover': { backgroundColor: gray[800] },
-            }),
-          }),
-        },
-      },
-      MuiAccordionDetails: {
-        styleOverrides: {
-          root: { mb: 20, border: 'none' },
-        },
-      },
       MuiToggleButtonGroup: {
         styleOverrides: {
           root: ({ theme }) => ({
@@ -406,98 +359,12 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
           }),
         },
       },
-      MuiChip: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            alignSelf: 'center',
-            py: 1.5,
-            px: 0.5,
-            background: `linear-gradient(to bottom right, ${brand[50]}, ${brand[100]})`,
-            border: '1px solid',
-            borderColor: `${alpha(brand[500], 0.3)}`,
-            fontWeight: '600',
-            '&:hover': {
-              backgroundColor: brand[500],
-            },
-            '&:focus-visible': {
-              borderColor: brand[800],
-              backgroundColor: brand[200],
-            },
-            '& .MuiChip-label': {
-              color: brand[500],
-            },
-            '& .MuiChip-icon': {
-              color: brand[500],
-            },
-            ...(theme.palette.mode === 'dark' && {
-              background: `linear-gradient(to bottom right, ${brand[700]}, ${brand[900]})`,
-              borderColor: `${alpha(brand[500], 0.5)}`,
-              '&:hover': {
-                backgroundColor: brand[600],
-              },
-              '&:focus-visible': {
-                borderColor: brand[200],
-                backgroundColor: brand[600],
-              },
-              '& .MuiChip-label': {
-                color: brand[200],
-              },
-              '& .MuiChip-icon': {
-                color: brand[200],
-              },
-            }),
-          }),
-        },
-      },
       MuiDivider: {
         styleOverrides: {
           root: ({ theme }) => ({
             borderColor: `${alpha(gray[200], 0.8)}`,
             ...(theme.palette.mode === 'dark' && {
               borderColor: `${alpha(gray[700], 0.4)}`,
-            }),
-          }),
-        },
-      },
-      MuiLink: {
-        defaultProps: {
-          underline: 'none',
-        },
-        styleOverrides: {
-          root: ({ theme }) => ({
-            color: brand[600],
-            fontWeight: 500,
-            position: 'relative',
-            textDecoration: 'none',
-            '&::before': {
-              content: '""',
-              position: 'absolute',
-              width: 0,
-              height: '1px',
-              bottom: 0,
-              left: 0,
-              backgroundColor: brand[200],
-              opacity: 0.7,
-              transition: 'width 0.3s ease, opacity 0.3s ease',
-            },
-            '&:hover::before': {
-              width: '100%',
-              opacity: 1,
-            },
-            ...(theme.palette.mode === 'dark' && {
-              color: brand[200],
-            }),
-          }),
-        },
-      },
-      MuiMenuItem: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            borderRadius: '99px',
-            color: gray[500],
-            fontWeight: 500,
-            ...(theme.palette.mode === 'dark' && {
-              color: gray[300],
             }),
           }),
         },
@@ -511,69 +378,6 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
               backgroundColor: gray[800],
             }),
           }),
-        },
-      },
-      MuiSwitch: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            boxSizing: 'border-box',
-            width: 36,
-            height: 24,
-            padding: 0,
-            transition: 'background-color 100ms ease-in',
-            '&:hover': {
-              '& .MuiSwitch-track': {
-                backgroundColor: brand[600],
-              },
-            },
-            '& .MuiSwitch-switchBase': {
-              '&.Mui-checked': {
-                transform: 'translateX(13px)',
-              },
-            },
-            '& .MuiSwitch-track': {
-              borderRadius: 50,
-            },
-            '& .MuiSwitch-thumb': {
-              boxShadow: '0 0 2px 2px rgba(0, 0, 0, 0.2)',
-              backgroundColor: '#FFF',
-              width: 16,
-              height: 16,
-              margin: 2,
-            },
-            ...(theme.palette.mode === 'dark' && {
-              width: 36,
-              height: 24,
-              padding: 0,
-              transition: 'background-color 100ms ease-in',
-              '&:hover': {
-                '& .MuiSwitch-track': {
-                  backgroundColor: brand[600],
-                },
-              },
-              '& .MuiSwitch-switchBase': {
-                '&.Mui-checked': {
-                  transform: 'translateX(13px)',
-                },
-              },
-              '& .MuiSwitch-thumb': {
-                boxShadow: '0 0 2px 2px rgba(0, 0, 0, 0.2)',
-                backgroundColor: '#FFF',
-                width: 16,
-                height: 16,
-                margin: 2,
-              },
-            }),
-          }),
-          switchBase: {
-            height: 24,
-            width: 24,
-            padding: 0,
-            color: '#fff',
-            '&.Mui-checked + .MuiSwitch-track': {
-              opacity: 1,
-            },
-          },
         },
       },
       MuiOutlinedInput: {
