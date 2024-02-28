@@ -1,5 +1,5 @@
 'use client';
-export { Switch } from './Switch';
-export * from './Switch.types';
+export { Checkbox } from './Checkbox';
+export * from './Checkbox.types';
 
-export * from './switchClasses';
+export * from './checkboxClasses';

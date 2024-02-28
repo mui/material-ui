@@ -3,21 +3,21 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
-import { useSwitch } from '../useSwitch';
+import { useCheckbox } from '../useCheckbox';
 import {
-  SwitchProps,
-  SwitchOwnerState,
-  SwitchInputSlotProps,
-  SwitchRootSlotProps,
-  SwitchThumbSlotProps,
-  SwitchTrackSlotProps,
-  SwitchTypeMap,
-} from './Switch.types';
+  CheckboxProps,
+  CheckboxOwnerState,
+  CheckboxInputSlotProps,
+  CheckboxRootSlotProps,
+  CheckboxThumbSlotProps,
+  CheckboxTrackSlotProps,
+  CheckboxTypeMap,
+} from './Checkbox.types';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import { getSwitchUtilityClass } from './switchClasses';
+import { getCheckboxUtilityClass } from './checkboxClasses';
 
-const useUtilityClasses = (ownerState: SwitchOwnerState) => {
+const useUtilityClasses = (ownerState: CheckboxOwnerState) => {
   const { checked, disabled, focusVisible, readOnly } = ownerState;
 
   const slots = {
@@ -33,22 +33,22 @@ const useUtilityClasses = (ownerState: SwitchOwnerState) => {
     track: ['track'],
   };
 
-  return composeClasses(slots, useClassNamesOverride(getSwitchUtilityClass));
+  return composeClasses(slots, useClassNamesOverride(getCheckboxUtilityClass));
 };
 
 /**
- * The foundation for building custom-styled switches.
+ * The foundation for building custom-styled checkboxes.
  *
  * Demos:
  *
- * - [Switch](https://mui.com/base-ui/react-switch/)
+ * - [Checkbox](https://mui.com/base-ui/react-checkbox/)
  *
  * API:
  *
- * - [Switch API](https://mui.com/base-ui/react-switch/components-api/#switch)
+ * - [Checkbox API](https://mui.com/base-ui/react-checkbox/components-api/#checkbox)
  */
-const Switch = React.forwardRef(function Switch<RootComponentType extends React.ElementType>(
-  props: SwitchProps<RootComponentType>,
+const Checkbox = React.forwardRef(function Checkbox<RootComponentType extends React.ElementType>(
+  props: CheckboxProps<RootComponentType>,
   forwardedRef: React.ForwardedRef<Element>,
 ) {
   const {
@@ -66,9 +66,9 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
     ...other
   } = props;
 
-  const { getInputProps, checked, disabled, focusVisible, readOnly } = useSwitch(props);
+  const { getInputProps, checked, disabled, focusVisible, readOnly } = useCheckbox(props);
 
-  const ownerState: SwitchOwnerState = {
+  const ownerState: CheckboxOwnerState = {
     ...props,
     checked,
     disabled,
@@ -79,7 +79,7 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
   const classes = useUtilityClasses(ownerState);
 
   const Root: React.ElementType = slots.root ?? 'span';
-  const rootProps: WithOptionalOwnerState<SwitchRootSlotProps> = useSlotProps({
+  const rootProps: WithOptionalOwnerState<CheckboxRootSlotProps> = useSlotProps({
     elementType: Root,
     externalSlotProps: slotProps.root,
     externalForwardedProps: other,
@@ -91,7 +91,7 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
   });
 
   const Thumb: React.ElementType = slots.thumb ?? 'span';
-  const thumbProps: WithOptionalOwnerState<SwitchThumbSlotProps> = useSlotProps({
+  const thumbProps: WithOptionalOwnerState<CheckboxThumbSlotProps> = useSlotProps({
     elementType: Thumb,
     externalSlotProps: slotProps.thumb,
     ownerState,
@@ -99,7 +99,7 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
   });
 
   const Input: React.ElementType = slots.input ?? 'input';
-  const inputProps: WithOptionalOwnerState<SwitchInputSlotProps> = useSlotProps({
+  const inputProps: WithOptionalOwnerState<CheckboxInputSlotProps> = useSlotProps({
     elementType: Input,
     getSlotProps: getInputProps,
     externalSlotProps: slotProps.input,
@@ -108,7 +108,7 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
   });
 
   const Track: React.ElementType = slots.track === null ? () => null : slots.track ?? 'span';
-  const trackProps: WithOptionalOwnerState<SwitchTrackSlotProps> = useSlotProps({
+  const trackProps: WithOptionalOwnerState<CheckboxTrackSlotProps> = useSlotProps({
     elementType: Track,
     externalSlotProps: slotProps.track,
     ownerState,
@@ -122,9 +122,9 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
       <Input {...inputProps} />
     </Root>
   );
-}) as PolymorphicComponent<SwitchTypeMap>;
+}) as PolymorphicComponent<CheckboxTypeMap>;
 
-Switch.propTypes /* remove-proptypes */ = {
+Checkbox.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
@@ -174,7 +174,7 @@ Switch.propTypes /* remove-proptypes */ = {
    */
   required: PropTypes.bool,
   /**
-   * The props used for each slot inside the Switch.
+   * The props used for each slot inside the Checkbox.
    * @default {}
    */
   slotProps: PropTypes.shape({
@@ -184,7 +184,7 @@ Switch.propTypes /* remove-proptypes */ = {
     track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The components used for each slot inside the Switch.
+   * The components used for each slot inside the Checkbox.
    * Either a string to use a HTML element or a component.
    * @default {}
    */
@@ -196,4 +196,4 @@ Switch.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
-export { Switch };
+export { Checkbox };

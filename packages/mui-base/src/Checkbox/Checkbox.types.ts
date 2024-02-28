@@ -1,36 +1,36 @@
 import { Simplify } from '@mui/types';
 import { PolymorphicProps, SlotComponentProps } from '../utils';
-import { UseSwitchInputSlotProps, UseSwitchParameters } from '../useSwitch';
+import { UseCheckboxInputSlotProps, UseCheckboxParameters } from '../useCheckbox';
 
-export interface SwitchRootSlotPropsOverrides {}
-export interface SwitchThumbSlotPropsOverrides {}
-export interface SwitchInputSlotPropsOverrides {}
-export interface SwitchTrackSlotPropsOverrides {}
+export interface CheckboxRootSlotPropsOverrides {}
+export interface CheckboxThumbSlotPropsOverrides {}
+export interface CheckboxInputSlotPropsOverrides {}
+export interface CheckboxTrackSlotPropsOverrides {}
 
-export interface SwitchOwnProps extends UseSwitchParameters {
+export interface CheckboxOwnProps extends UseCheckboxParameters {
   /**
    * Class name applied to the root element.
    */
   className?: string;
   /**
-   * The components used for each slot inside the Switch.
+   * The components used for each slot inside the Checkbox.
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: SwitchSlots;
+  slots?: CheckboxSlots;
   /**
-   * The props used for each slot inside the Switch.
+   * The props used for each slot inside the Checkbox.
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<'span', SwitchRootSlotPropsOverrides, SwitchOwnerState>;
-    thumb?: SlotComponentProps<'span', SwitchThumbSlotPropsOverrides, SwitchOwnerState>;
-    input?: SlotComponentProps<'input', SwitchInputSlotPropsOverrides, SwitchOwnerState>;
-    track?: SlotComponentProps<'span', SwitchTrackSlotPropsOverrides, SwitchOwnerState>;
+    root?: SlotComponentProps<'span', CheckboxRootSlotPropsOverrides, CheckboxOwnerState>;
+    thumb?: SlotComponentProps<'span', CheckboxThumbSlotPropsOverrides, CheckboxOwnerState>;
+    input?: SlotComponentProps<'input', CheckboxInputSlotPropsOverrides, CheckboxOwnerState>;
+    track?: SlotComponentProps<'span', CheckboxTrackSlotPropsOverrides, CheckboxOwnerState>;
   };
 }
 
-export interface SwitchSlots {
+export interface CheckboxSlots {
   /**
    * The component that renders the root.
    * @default 'span'
@@ -53,20 +53,20 @@ export interface SwitchSlots {
   track?: React.ElementType | null;
 }
 
-export interface SwitchTypeMap<
+export interface CheckboxTypeMap<
   AdditionalProps = {},
   RootComponentType extends React.ElementType = 'span',
 > {
-  props: SwitchOwnProps & AdditionalProps;
+  props: CheckboxOwnProps & AdditionalProps;
   defaultComponent: RootComponentType;
 }
 
-export type SwitchProps<
-  RootComponentType extends React.ElementType = SwitchTypeMap['defaultComponent'],
-> = PolymorphicProps<SwitchTypeMap<{}, RootComponentType>, RootComponentType>;
+export type CheckboxProps<
+  RootComponentType extends React.ElementType = CheckboxTypeMap['defaultComponent'],
+> = PolymorphicProps<CheckboxTypeMap<{}, RootComponentType>, RootComponentType>;
 
-export type SwitchOwnerState = Simplify<
-  SwitchOwnProps & {
+export type CheckboxOwnerState = Simplify<
+  CheckboxOwnProps & {
     checked: boolean;
     disabled: boolean;
     focusVisible: boolean;
@@ -74,27 +74,27 @@ export type SwitchOwnerState = Simplify<
   }
 >;
 
-export type SwitchRootSlotProps = {
-  ownerState: SwitchOwnerState;
+export type CheckboxRootSlotProps = {
+  ownerState: CheckboxOwnerState;
   className?: string;
   children?: React.ReactNode;
 };
 
-export type SwitchThumbSlotProps = {
-  ownerState: SwitchOwnerState;
+export type CheckboxThumbSlotProps = {
+  ownerState: CheckboxOwnerState;
   className?: string;
   children?: React.ReactNode;
 };
 
-export type SwitchTrackSlotProps = {
-  ownerState: SwitchOwnerState;
+export type CheckboxTrackSlotProps = {
+  ownerState: CheckboxOwnerState;
   className?: string;
   children?: React.ReactNode;
 };
 
-export type SwitchInputSlotProps = Simplify<
-  UseSwitchInputSlotProps & {
-    ownerState: SwitchOwnerState;
+export type CheckboxInputSlotProps = Simplify<
+  UseCheckboxInputSlotProps & {
+    ownerState: CheckboxOwnerState;
     className?: string;
     children?: React.ReactNode;
   }

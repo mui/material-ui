@@ -1,9 +1,9 @@
 import { generateUtilityClass } from '../generateUtilityClass';
 import { generateUtilityClasses } from '../generateUtilityClasses';
 
-const COMPONENT_NAME = 'Switch';
+const COMPONENT_NAME = 'Checkbox';
 
-export interface SwitchClasses {
+export interface CheckboxClasses {
   /** Class applied to the root element. */
   root: string;
   /** Class applied to the internal input element */
@@ -12,23 +12,23 @@ export interface SwitchClasses {
   track: string;
   /** Class applied to the thumb element */
   thumb: string;
-  /** State class applied to the root element if the switch is checked */
+  /** State class applied to the root element if the checkbox is checked */
   checked: string;
-  /** State class applied to the root element if the switch is disabled */
+  /** State class applied to the root element if the checkbox is disabled */
   disabled: string;
-  /** State class applied to the root element if the switch has visible focus */
+  /** State class applied to the root element if the checkbox has visible focus */
   focusVisible: string;
-  /** Class applied to the root element if the switch is read-only */
+  /** Class applied to the root element if the checkbox is read-only */
   readOnly: string;
 }
 
-export type SwitchClassKey = keyof SwitchClasses;
+export type CheckboxClassKey = keyof CheckboxClasses;
 
-export function getSwitchUtilityClass(slot: string): string {
+export function getCheckboxUtilityClass(slot: string): string {
   return generateUtilityClass(COMPONENT_NAME, slot);
 }
 
-export const switchClasses: SwitchClasses = generateUtilityClasses(COMPONENT_NAME, [
+export const checkboxClasses: CheckboxClasses = generateUtilityClasses(COMPONENT_NAME, [
   'root',
   'input',
   'track',

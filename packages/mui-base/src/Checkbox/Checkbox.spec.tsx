@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
 import {
-  Switch,
-  SwitchRootSlotProps,
-  SwitchThumbSlotProps,
-  SwitchTrackSlotProps,
-  SwitchInputSlotProps,
-} from '@mui/base/Switch';
+  Checkbox,
+  CheckboxRootSlotProps,
+  CheckboxThumbSlotProps,
+  CheckboxTrackSlotProps,
+  CheckboxInputSlotProps,
+} from '@mui/base/Checkbox';
 
 const Root = React.forwardRef(function Root(
-  props: SwitchRootSlotProps,
+  props: CheckboxRootSlotProps,
   ref: React.Ref<HTMLDivElement>,
 ) {
   const { ownerState, ...other } = props;
@@ -17,7 +17,7 @@ const Root = React.forwardRef(function Root(
 });
 
 const Input = React.forwardRef(function Input(
-  props: SwitchInputSlotProps,
+  props: CheckboxInputSlotProps,
   ref: React.Ref<HTMLInputElement>,
 ) {
   const { ownerState, ...other } = props;
@@ -25,7 +25,7 @@ const Input = React.forwardRef(function Input(
 });
 
 const Thumb = React.forwardRef(function Thumb(
-  props: SwitchThumbSlotProps,
+  props: CheckboxThumbSlotProps,
   ref: React.Ref<HTMLDivElement>,
 ) {
   const { ownerState, ...other } = props;
@@ -33,14 +33,16 @@ const Thumb = React.forwardRef(function Thumb(
 });
 
 const Track = React.forwardRef(function Track(
-  props: SwitchTrackSlotProps,
+  props: CheckboxTrackSlotProps,
   ref: React.Ref<HTMLDivElement>,
 ) {
   const { ownerState, ...other } = props;
   return <div data-checked={ownerState.checked} {...other} ref={ref} />;
 });
 
-const styledSwitch = <Switch slots={{ root: Root, thumb: Thumb, track: Track, input: Input }} />;
+const styledCheckbox = (
+  <Checkbox slots={{ root: Root, thumb: Thumb, track: Track, input: Input }} />
+);
 
 const polymorphicComponentTest = () => {
   const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
@@ -51,16 +53,16 @@ const polymorphicComponentTest = () => {
   return (
     <div>
       {/* @ts-expect-error */}
-      <Switch invalidProp={0} />
+      <Checkbox invalidProp={0} />
 
-      <Switch<'a'>
+      <Checkbox<'a'>
         slots={{
           root: 'a',
         }}
         href="#"
       />
 
-      <Switch<typeof CustomComponent>
+      <Checkbox<typeof CustomComponent>
         slots={{
           root: CustomComponent,
         }}
@@ -68,20 +70,20 @@ const polymorphicComponentTest = () => {
         numberProp={0}
       />
       {/* @ts-expect-error */}
-      <Switch<typeof CustomComponent>
+      <Checkbox<typeof CustomComponent>
         slots={{
           root: CustomComponent,
         }}
       />
 
-      <Switch<'button'>
+      <Checkbox<'button'>
         slots={{
           root: 'button',
         }}
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
       />
 
-      <Switch<'button'>
+      <Checkbox<'button'>
         slots={{
           root: 'button',
         }}

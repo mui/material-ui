@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { createMount, createRenderer } from '@mui-internal/test-utils';
 import { expect } from 'chai';
-import { Switch, SwitchOwnerState, switchClasses } from '@mui/base/Switch';
+import { Checkbox, CheckboxOwnerState, checkboxClasses } from '@mui/base/Checkbox';
 import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
-describe('<Switch />', () => {
+describe('<Checkbox />', () => {
   const mount = createMount();
   const { render } = createRenderer();
 
-  describeConformanceUnstyled(<Switch />, () => ({
+  describeConformanceUnstyled(<Checkbox />, () => ({
     inheritComponent: 'span',
     render,
     mount,
@@ -16,17 +16,17 @@ describe('<Switch />', () => {
     testComponentPropWith: 'span',
     slots: {
       root: {
-        expectedClassName: switchClasses.root,
+        expectedClassName: checkboxClasses.root,
       },
       thumb: {
-        expectedClassName: switchClasses.thumb,
+        expectedClassName: checkboxClasses.thumb,
       },
       input: {
         testWithElement: 'input',
-        expectedClassName: switchClasses.input,
+        expectedClassName: checkboxClasses.input,
       },
       track: {
-        expectedClassName: switchClasses.track,
+        expectedClassName: checkboxClasses.track,
         isOptional: true,
       },
     },
@@ -36,7 +36,7 @@ describe('<Switch />', () => {
   describe('componentState', () => {
     it('passes the ownerState prop to all the slots', () => {
       interface CustomSlotProps {
-        ownerState: SwitchOwnerState;
+        ownerState: CheckboxOwnerState;
         children?: React.ReactNode;
       }
 
@@ -63,7 +63,7 @@ describe('<Switch />', () => {
         thumb: CustomSlot,
       };
 
-      const { getAllByTestId } = render(<Switch defaultChecked disabled slots={slots} />);
+      const { getAllByTestId } = render(<Checkbox defaultChecked disabled slots={slots} />);
       const renderedComponents = getAllByTestId('custom');
 
       expect(renderedComponents.length).to.equal(3);
