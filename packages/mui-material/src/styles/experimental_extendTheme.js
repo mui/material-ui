@@ -19,6 +19,7 @@ import {
 import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import createThemeWithoutVars from './createTheme';
 import getOverlayAlpha from './getOverlayAlpha';
+import excludeVariablesFromRoot from './excludeVariablesFromRoot';
 
 const defaultDarkOverlays = [...Array(25)].map((_, index) => {
   if (index === 0) {
@@ -73,15 +74,12 @@ const silent = (fn) => {
 
 export const createGetCssVar = (cssVarPrefix = 'mui') => systemCreateGetCssVar(cssVarPrefix);
 
-const defaultGetSelector = (colorScheme) =>
-  colorScheme ? `[data-mui-color-scheme="${colorScheme}"]` : ':root';
-
 export default function extendTheme(options = {}, ...args) {
   const {
     colorSchemes: colorSchemesInput = {},
     cssVarPrefix = 'mui',
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
-    getSelector = defaultGetSelector,
+    getSelector,
     ...input
   } = options;
   const getCssVar = createGetCssVar(cssVarPrefix);
@@ -95,6 +93,8 @@ export default function extendTheme(options = {}, ...args) {
   });
 
   let theme = {
+    attribute: 'data-mui-color-scheme',
+    colorSchemeSelector: ':root',
     ...muiTheme,
     palette: lightPalette,
     cssVarPrefix,
@@ -402,11 +402,37 @@ export default function extendTheme(options = {}, ...args) {
   const parserConfig = {
     prefix: cssVarPrefix,
     shouldSkipGeneratingVar,
-    getSelector,
+    getSelector:
+      getSelector ||
+      ((colorScheme, css) => {
+        if ((theme.defaultColorScheme || 'light') === colorScheme) {
+          if (colorScheme === 'dark') {
+            const excludedVariables = {};
+            excludeVariablesFromRoot(cssVarPrefix).forEach((cssVar) => {
+              excludedVariables[cssVar] = css[cssVar];
+              delete css[cssVar];
+            });
+            return {
+              [`[${theme.attribute}="${colorScheme}"]`]: excludedVariables,
+              [theme.colorSchemeSelector]: css,
+            };
+          }
+          return `${theme.colorSchemeSelector}, [${theme.attribute}="${colorScheme}"]`;
+        }
+        if (colorScheme) {
+          return `[${theme.attribute}="${colorScheme}"]`;
+        }
+        return theme.colorSchemeSelector;
+      }),
   };
-  const { vars: themeVars, generateCssVars } = prepareCssVars(theme, parserConfig);
+  const {
+    vars: themeVars,
+    generateCssVars,
+    generateStyleSheets,
+  } = prepareCssVars(theme, parserConfig);
   theme.vars = themeVars;
   theme.generateCssVars = generateCssVars;
+  theme.generateStyleSheets = generateStyleSheets;
   theme.getColorSchemeSelector = (colorScheme) => `:where(${getSelector(colorScheme, {})}) &`;
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
   theme.unstable_sxConfig = {

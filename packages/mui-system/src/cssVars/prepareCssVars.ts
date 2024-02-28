@@ -59,9 +59,37 @@ function prepareCssVars<
     };
   };
 
+  const generateStyleSheets = () => {
+    const stylesheets = [];
+    const rootSelector = parserConfig?.getSelector?.(undefined, rootCss) || ':root';
+    if (Object.keys(rootCss).length) {
+      stylesheets.push(
+        typeof rootSelector === 'string' ? { [rootSelector]: { ...rootCss } } : rootSelector,
+      );
+    }
+
+    const { [defaultColorScheme]: defaultScheme, ...rest } = colorSchemesMap;
+
+    if (defaultScheme) {
+      // default color scheme has to come before other color schemes
+      const selector = parserConfig?.getSelector?.(defaultColorScheme, css) || ':root';
+      if (Object.keys(defaultScheme.css).length) {
+        stylesheets.push(typeof selector === 'string' ? { [selector]: css } : selector);
+      }
+    }
+
+    Object.entries(rest).forEach(([key, { css }]) => {
+      const selector = parserConfig?.getSelector?.(key, css) || ':root';
+      if (Object.keys(css).length) {
+        stylesheets.push(typeof selector === 'string' ? { [selector]: { ...css } } : selector);
+      }
+    });
+  };
+
   return {
     vars: themeVars,
     generateCssVars,
+    generateStyleSheets,
   };
 }
 

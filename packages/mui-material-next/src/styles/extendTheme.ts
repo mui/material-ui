@@ -13,6 +13,7 @@ import {
 import {
   createTheme as createThemeWithoutVars,
   getOverlayAlpha,
+  private_excludeVariablesFromRoot as excludeVariablesFromRoot,
   SupportedColorScheme,
   ColorSystem as MD2ColorSystem,
   Overlays,
@@ -451,14 +452,38 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
   const parserConfig = {
     prefix: cssVarPrefix,
     shouldSkipGeneratingVar,
+    getSelector:
+      getSelector ||
+      ((colorScheme, css) => {
+        if ((theme.defaultColorScheme || 'light') === colorScheme) {
+          if (colorScheme === 'dark') {
+            const excludedVariables = {};
+            excludeVariablesFromRoot(cssVarPrefix).forEach((cssVar) => {
+              excludedVariables[cssVar] = css[cssVar];
+              delete css[cssVar];
+            });
+            return {
+              [`[${theme.attribute}="${colorScheme}"]`]: excludedVariables,
+              [theme.colorSchemeSelector]: css,
+            };
+          }
+          return `${theme.colorSchemeSelector}, [${theme.attribute}="${colorScheme}"]`;
+        }
+        if (colorScheme) {
+          return `[${theme.attribute}="${colorScheme}"]`;
+        }
+        return theme.colorSchemeSelector;
+      }),
   };
 
-  const { vars: themeVars, generateCssVars } = prepareCssVars<Theme, Theme['vars']>(
-    theme,
-    parserConfig,
-  );
+  const {
+    vars: themeVars,
+    generateCssVars,
+    generateStyleSheets,
+  } = prepareCssVars<Theme, Theme['vars']>(theme, parserConfig);
   theme.vars = themeVars;
   theme.generateCssVars = generateCssVars;
+  theme.generateStyleSheets = generateStyleSheets;
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
 
   theme.unstable_sxConfig = {
