@@ -45,8 +45,8 @@ importers:
         version: 9.5.0
     devDependencies:
       '@argos-ci/core':
-        specifier: ^1.5.3
-        version: 1.5.3
+        specifier: ^1.5.4
+        version: 1.5.4
       '@babel/cli':
         specifier: ^7.23.9
         version: 7.23.9(@babel/core@7.23.9)
@@ -2668,11 +2668,11 @@ packages:
       '@jridgewell/gen-mapping': 0.1.1
       '@jridgewell/trace-mapping': 0.3.20
 
-  /@argos-ci/core@1.5.3:
-    resolution: {integrity: sha512-qODX23ou3CwagOFwtYZyvXPAd2fXOu5ntnH5MbQcSzP3TdK8H2wkacNaLwvLEVpOeT3jdrfoQvROInewMfbHxQ==}
+  /@argos-ci/core@1.5.4:
+    resolution: {integrity: sha512-XgRJSJYfauCbqOGNLFFiVri70TAp0TORfKrK/6yXyt7k9NgZD6vD10hUhSMeJP7REwYrqD3wxY7l85K+wwoo3Q==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@argos-ci/util': 1.2.0
+      '@argos-ci/util': 1.2.1
       axios: 1.6.5(debug@4.3.4)
       convict: 6.2.4
       debug: 4.3.4(supports-color@8.1.1)
@@ -2683,8 +2683,8 @@ packages:
       - supports-color
     dev: true
 
-  /@argos-ci/util@1.2.0:
-    resolution: {integrity: sha512-e/sAEECDzUr02v5sXPcd1Ky3WqNOMDWkutfBC8RBizj3Z+CUp6uwV+bzyTZaE9Zms9WekqXAfKe1rZkEie+DrA==}
+  /@argos-ci/util@1.2.1:
+    resolution: {integrity: sha512-/o7t0TcSED3BsBnnPrvXdmT+reThGMoGC9Lk+TTghrEE9GFlSKhjBmfYt4fUgXj5hQIe5tcdO01BVB2TsjjYSw==}
     engines: {node: '>=16.0.0'}
     dev: true
 
