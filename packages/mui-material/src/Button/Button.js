@@ -23,13 +23,13 @@ const useUtilityClasses = (ownerState) => {
       `${variant}${capitalize(color)}`,
       `size${capitalize(size)}`,
       `${variant}Size${capitalize(size)}`,
-      color === 'inherit' && 'colorInherit',
+      `color${capitalize(color)}`,
       disableElevation && 'disableElevation',
       fullWidth && 'fullWidth',
     ],
     label: ['label'],
-    startIcon: ['startIcon', `iconSize${capitalize(size)}`],
-    endIcon: ['endIcon', `iconSize${capitalize(size)}`],
+    startIcon: ['icon', 'startIcon', `iconSize${capitalize(size)}`],
+    endIcon: ['icon', 'endIcon', `iconSize${capitalize(size)}`],
   };
 
   const composedClasses = composeClasses(slots, getButtonUtilityClass, classes);

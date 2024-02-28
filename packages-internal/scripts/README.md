@@ -1,25 +1,12 @@
-# @mui-internal/typescript-to-proptypes
+# @mui/internal-scripts
 
-An API for converting [TypeScript](https://www.npmjs.com/package/typescript) definitions to [PropTypes](https://www.npmjs.com/package/prop-types) using the TypeScript Compiler API.
-
-This package has been adapted for MUI needs.
+Code infra scripts for MUI repositories
 It is not meant for general use.
 
-## Support
+## Scripts
 
-| Component type   |                    |
-| :--------------- | :----------------- |
-| Class            | :heavy_check_mark: |
-| Function         | :heavy_check_mark: |
-| Const functions  | :heavy_check_mark: |
-| React.memo       | :heavy_check_mark: |
-| React.ForwardRef | :heavy_check_mark: |
-
-## License
-
-This project is licensed under the terms of the [MIT license](/LICENSE).
-
-## Release
-
-1. Build the project: `pnpm build`
-2. Publish the build artifacts to npm: `pnpm release:publish`
+- `build` - transpiles TS files into the build directory.
+- `release:publish` - builds the project and publishes it in the npm registry.
+- `release:publish:dry-run` - builds the project and publishes it in a local registry accessible on port 4873 (this is the default port of Verdaccio private npm server).
+- `test` - runs all the tests.
+- `typescript` - checks validity of types.

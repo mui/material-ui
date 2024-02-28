@@ -1,4 +1,4 @@
-import MuiError from '@mui-internal/babel-macros/MuiError.macro';
+import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 
 // It should to be noted that this function isn't equivalent to `text-transform: capitalize`.
 //

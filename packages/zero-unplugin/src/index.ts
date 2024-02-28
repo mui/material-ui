@@ -18,8 +18,9 @@ import {
   preprocessor as basePreprocessor,
   generateTokenCss,
   generateThemeTokens,
+  extendTheme,
+  type Theme as BaseTheme,
 } from '@mui/zero-runtime/utils';
-import type { Theme as BaseTheme } from '@mui/zero-runtime';
 
 type NextMeta = {
   type: 'next';
@@ -341,3 +342,5 @@ export const webpack = plugin.webpack as unknown as UnpluginFactoryOutput<
   PluginOptions,
   WebpackPluginInstance
 >;
+
+export { extendTheme };

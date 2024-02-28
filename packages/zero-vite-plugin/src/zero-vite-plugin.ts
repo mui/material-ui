@@ -29,6 +29,7 @@ export type VitePluginOptions = {
   preprocessor?: Preprocessor;
   sourceMap?: boolean;
   transformLibraries?: string[];
+  transformSx?: boolean;
 } & Partial<PluginOptions> &
   PluginCustomOptions;
 
