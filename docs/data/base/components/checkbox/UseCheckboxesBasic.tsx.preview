@@ -1,4 +1,4 @@
-<BasicSwitch defaultChecked />
-<BasicSwitch />
-<BasicSwitch defaultChecked disabled />
-<BasicSwitch disabled />
+<BasicCheckbox defaultChecked />
+<BasicCheckbox />
+<BasicCheckbox defaultChecked disabled />
+<BasicCheckbox disabled />

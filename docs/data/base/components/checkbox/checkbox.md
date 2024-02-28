@@ -1,15 +1,15 @@
 ---
 productId: base-ui
-title: React Switch component and hook
-components: Switch
-hooks: useSwitch
-githubLabel: 'component: switch'
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/switch/
+title: React Checkbox component and hook
+components: Checkbox
+hooks: useCheckbox
+githubLabel: 'component: checkbox'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
 ---
 
-# Switch
+# Checkbox
 
-<p class="description">Switches are UI elements that let users choose between two states—most commonly on/off.</p>
+<p class="description">Checkboxes are UI elements that let users choose between two states—most commonly on/off.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -17,25 +17,23 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/switch/
 
 ## Introduction
 
-The Switch component provides users with a switch for toggling between two mutually exclusive states.
+The Checkbox component provides users with a checkbox for toggling between two mutually exclusive states.
 
-{{"demo": "UnstyledSwitchIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledCheckboxIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Component
 
 ```jsx
-import { Switch } from '@mui/base/Switch';
+import { Checkbox } from '@mui/base/Checkbox';
 ```
 
 ### Anatomy
 
-The Switch component is composed of a root `<span>` that houses three interior slots—a track, a thumb, and an input:
+The Checkbox component is composed of a root `<span>` that houses three interior slots—a track, a thumb, and an input:
 
 ```html
-<span class="base-Switch-root">
-  <span class="base-Switch-track"></span>
-  <span class="base-Switch-thumb"></span>
-  <input type="checkbox" class="base-Switch-input" />
+<span class="base-Checkbox-root">
+  <input type="checkbox" class="base-Checkbox-input" />
 </span>
 ```
 
@@ -44,7 +42,7 @@ The Switch component is composed of a root `<span>` that houses three interior s
 Use the `slots` prop to override the root or any other interior slot:
 
 ```jsx
-<Switch slots={{ root: 'div', track: 'div' }} />
+<Checkbox slots={{ root: 'div', track: 'div' }} />
 ```
 
 :::info
@@ -56,7 +54,8 @@ Use the `slotProps` prop to pass custom props to internal slots.
 The following code snippet applies a CSS class called `my-thumb` to the thumb slot:
 
 ```jsx
-<Switch slotProps={{ thumb: { className: 'my-thumb' } }} />
+// <Checkbox slotProps={{ thumb: { className: 'my-thumb' } }} />
+<Checkbox />
 ```
 
 ### Usage with TypeScript
@@ -65,22 +64,22 @@ In TypeScript, you can specify the custom component type used in the `slots.root
 This way, you can safely provide the custom root's props directly on the component:
 
 ```tsx
-<Switch<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
+<Checkbox<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
 ```
 
 The same applies for props specific to custom primitive elements:
 
 ```tsx
-<Switch<'input'> slots={{ root: 'input' }} autoFocus={true} />
+<Checkbox<'input'> slots={{ root: 'input' }} autoFocus={true} />
 ```
 
 ## Hook
 
 ```js
-import { useSwitch } from '@mui/base/useSwitch';
+import { useCheckbox } from '@mui/base/useCheckbox';
 ```
 
-The `useSwitch` hook lets you apply the functionality of a Switch to a fully custom component.
+The `useCheckbox` hook lets you apply the functionality of a Checkbox to a fully custom component.
 It returns props to be placed on the custom component, along with fields representing the component's internal state.
 
 Hooks _do not_ support [slot props](#custom-structure), but they do support [customization props](#customization).
@@ -94,12 +93,12 @@ You may not need to use hooks unless you find that you're limited by the customi
 
 ### Basic example
 
-{{"demo": "UseSwitchesBasic.js"}}
+{{"demo": "UseCheckboxesBasic.js"}}
 
 ### Customized look and feel
 
-{{"demo": "UseSwitchesCustom.js"}}
+{{"demo": "UseCheckboxesCustom.js"}}
 
 ## Accessibility
 
-To make the Switch component accessible, you should ensure that the corresponding labels reflect the Switch's current state.
+To make the Checkbox component accessible, you should ensure that the corresponding labels reflect the Checkbox's current state.

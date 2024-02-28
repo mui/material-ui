@@ -1,33 +1,32 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { styled } from '@mui/system';
-import { useSwitch, UseSwitchParameters } from '@mui/base/useSwitch';
+import { useCheckbox, UseCheckboxParameters } from '@mui/base/useCheckbox';
 
-export default function UseSwitchesBasic() {
+export default function UseCheckboxesBasic() {
   return (
     <div>
-      <BasicSwitch defaultChecked />
-      <BasicSwitch />
-      <BasicSwitch defaultChecked disabled />
-      <BasicSwitch disabled />
+      <BasicCheckbox defaultChecked />
+      <BasicCheckbox />
+      <BasicCheckbox defaultChecked disabled />
+      <BasicCheckbox disabled />
     </div>
   );
 }
 
-function BasicSwitch(props: UseSwitchParameters) {
-  const { getInputProps, checked, disabled, focusVisible } = useSwitch(props);
+function BasicCheckbox(props: UseCheckboxParameters) {
+  const { getInputProps, checked, disabled, focusVisible } = useCheckbox(props);
 
   const stateClasses = {
-    'Switch-checked': checked,
-    'Switch-disabled': disabled,
-    'Switch-focusVisible': focusVisible,
+    'Checkbox-checked': checked,
+    'Checkbox-disabled': disabled,
+    'Checkbox-focusVisible': focusVisible,
   };
 
   return (
-    <BasicSwitchRoot className={clsx(stateClasses)}>
-      <BasicSwitchThumb className={clsx(stateClasses)} />
-      <BasicSwitchInput {...getInputProps()} aria-label="Demo switch" />
-    </BasicSwitchRoot>
+    <BasicCheckboxRoot className={clsx(stateClasses)}>
+      <BasicCheckboxInput {...getInputProps()} aria-label="Demo checkbox" />
+    </BasicCheckboxRoot>
   );
 }
 
@@ -50,7 +49,7 @@ const grey = {
   900: '#1C2025',
 };
 
-const BasicSwitchRoot = styled('span')(
+const BasicCheckboxRoot = styled('span')(
   ({ theme }) => `
   box-sizing: border-box;
   font-size: 0;
@@ -70,31 +69,31 @@ const BasicSwitchRoot = styled('span')(
   &:hover {
     background: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
   }
-    
-  &.Switch-focusVisible {
+
+  &.Checkbox-focusVisible {
     box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
   }
 
-  &.Switch-disabled {
+  &.Checkbox-disabled {
     opacity: 0.4;
     cursor: not-allowed;
   }
 
-  &.Switch-checked {
+  &.Checkbox-checked {
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
     background: ${blue[500]};
     box-shadow: inset 0px 1px 1px ${
       theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.2)' : 'rgba(0, 0, 0, 0.05)'
     };
-    &.Switch-focusVisible {
+    &.Checkbox-focusVisible {
       box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
     }
   }
-  
+
   `,
 );
 
-const BasicSwitchInput = styled('input')`
+const BasicCheckboxInput = styled('input')`
   box-sizing: border-box;
   cursor: inherit;
   position: absolute;
@@ -106,29 +105,3 @@ const BasicSwitchInput = styled('input')`
   z-index: 1;
   margin: 0;
 `;
-
-const BasicSwitchThumb = styled('span')(
-  ({ theme }) => `
-  box-sizing: border-box;
-  display: block;
-  width: 16px;
-  height: 16px;
-  top: 3px;
-  left: 2px;
-  border-radius: 16px;
-  background-color: #fff;
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
-  position: relative;
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 120ms;
-  box-shadow: 0px 1px 2px
-    ${theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.25)' : 'rgba(0, 0, 0, 0.1)'};
-
-  &.Switch-checked {
-    left: 17px;
-    background-color: #fff;
-    border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
-  }
-`,
-);

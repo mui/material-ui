@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { Switch as BaseSwitch } from '@mui/base/Switch';
+import { Checkbox as BaseCheckbox } from '@mui/base/Checkbox';
 import { useTheme } from '@mui/system';
 
 function useIsDarkMode() {
@@ -9,27 +9,27 @@ function useIsDarkMode() {
   return theme.palette.mode === 'dark';
 }
 
-export default function UnstyledSwitchIntroduction() {
-  const label = { 'aria-label': 'Demo switch' };
+export default function UnstyledCheckboxIntroduction() {
+  const label = { 'aria-label': 'Demo checkbox' };
 
   // Replace this with your app logic for determining dark modes
   const isDarkMode = useIsDarkMode();
 
   return (
     <div className={isDarkMode ? 'dark' : ''}>
-      <Switch slotProps={{ input: { ...label } }} defaultChecked />
-      <Switch slotProps={{ input: { ...label } }} />
-      <Switch slotProps={{ input: { ...label } }} defaultChecked disabled />
-      <Switch slotProps={{ input: { ...label } }} disabled />
+      <Checkbox slotProps={{ input: { ...label } }} defaultChecked />
+      <Checkbox slotProps={{ input: { ...label } }} />
+      <Checkbox slotProps={{ input: { ...label } }} defaultChecked disabled />
+      <Checkbox slotProps={{ input: { ...label } }} disabled />
     </div>
   );
 }
 
 const resolveSlotProps = (fn, args) => (typeof fn === 'function' ? fn(args) : fn);
 
-const Switch = React.forwardRef((props, ref) => {
+const Checkbox = React.forwardRef((props, ref) => {
   return (
-    <BaseSwitch
+    <BaseCheckbox
       ref={ref}
       {...props}
       slotProps={{
@@ -64,56 +64,18 @@ const Switch = React.forwardRef((props, ref) => {
             ),
           };
         },
-        track: (ownerState) => {
-          const resolvedSlotProps = resolveSlotProps(
-            props.slotProps?.track,
-            ownerState,
-          );
-
-          return {
-            ...resolvedSlotProps,
-            className: clsx(
-              `absolute block w-full h-full transition rounded-full border border-solid outline-none border-slate-300 dark:border-gray-700 group-[.base--focusVisible]:shadow-outline-switch
-              ${
-                ownerState.checked
-                  ? 'bg-purple-500'
-                  : 'bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-800'
-              } `,
-              resolvedSlotProps?.className,
-            ),
-          };
-        },
-        thumb: (ownerState) => {
-          const resolvedSlotProps = resolveSlotProps(
-            props.slotProps?.thumb,
-            ownerState,
-          );
-          return {
-            ...resolvedSlotProps,
-            className: clsx(
-              `block w-4 h-4 top-1 rounded-2xl border border-solid outline-none border-slate-300 dark:border-gray-700 transition shadow-[0_1px_2px_rgb(0_0_0_/_0.1)] dark:shadow-[0_1px_2px_rgb(0_0_0_/_0.25)] ${
-                ownerState.checked
-                  ? 'left-[18px] bg-white shadow-[0_0_0_rgb(0_0_0_/_0.3)]'
-                  : 'left-[4px] bg-white'
-              }  relative transition-all`,
-              resolvedSlotProps?.className,
-            ),
-          };
-        },
       }}
     />
   );
 });
 
-Switch.propTypes = {
+Checkbox.propTypes = {
   /**
-   * The props used for each slot inside the Switch.
+   * The props used for each slot inside the Checkbox.
    * @default {}
    */
   slotProps: PropTypes.shape({
     input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
 };

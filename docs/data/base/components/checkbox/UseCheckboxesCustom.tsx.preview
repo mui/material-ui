@@ -1,1 +1,1 @@
-<MUISwitch defaultChecked />
+<MUICheckbox defaultChecked />

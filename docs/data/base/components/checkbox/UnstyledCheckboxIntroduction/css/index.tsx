@@ -1,45 +1,37 @@
 import * as React from 'react';
-import { Switch, switchClasses } from '@mui/base/Switch';
+import { Checkbox, checkboxClasses } from '@mui/base/Checkbox';
 import { useTheme } from '@mui/system';
 
-export default function UnstyledSwitchIntroduction() {
-  const label = { 'aria-label': 'Demo switch' };
+export default function UnstyledCheckboxIntroduction() {
+  const label = { 'aria-label': 'Demo checkbox' };
 
   return (
     <div>
-      <Switch
+      <Checkbox
         slotProps={{
-          root: { className: 'CustomSwitchIntroduction' },
-          input: { ...label, className: 'CustomSwitchIntroduction-input' },
-          thumb: { className: 'CustomSwitchIntroduction-thumb' },
-          track: { className: 'CustomSwitchIntroduction-track' },
+          root: { className: 'CustomCheckboxIntroduction' },
+          input: { ...label, className: 'CustomCheckboxIntroduction-input' },
         }}
         defaultChecked
       />
-      <Switch
+      <Checkbox
         slotProps={{
-          root: { className: 'CustomSwitchIntroduction' },
-          input: { ...label, className: 'CustomSwitchIntroduction-input' },
-          thumb: { className: 'CustomSwitchIntroduction-thumb' },
-          track: { className: 'CustomSwitchIntroduction-track' },
+          root: { className: 'CustomCheckboxIntroduction' },
+          input: { ...label, className: 'CustomCheckboxIntroduction-input' },
         }}
       />
-      <Switch
+      <Checkbox
         slotProps={{
-          root: { className: 'CustomSwitchIntroduction' },
-          input: { ...label, className: 'CustomSwitchIntroduction-input' },
-          thumb: { className: 'CustomSwitchIntroduction-thumb' },
-          track: { className: 'CustomSwitchIntroduction-track' },
+          root: { className: 'CustomCheckboxIntroduction' },
+          input: { ...label, className: 'CustomCheckboxIntroduction-input' },
         }}
         defaultChecked
         disabled
       />
-      <Switch
+      <Checkbox
         slotProps={{
-          root: { className: 'CustomSwitchIntroduction' },
-          input: { ...label, className: 'CustomSwitchIntroduction-input' },
-          thumb: { className: 'CustomSwitchIntroduction-thumb' },
-          track: { className: 'CustomSwitchIntroduction-track' },
+          root: { className: 'CustomCheckboxIntroduction' },
+          input: { ...label, className: 'CustomCheckboxIntroduction-input' },
         }}
         disabled
       />
@@ -86,7 +78,7 @@ function Styles() {
   return (
     <style>
       {`
-      .CustomSwitchIntroduction {
+      .CustomCheckboxIntroduction {
         box-sizing: border-box;
         font-size: 0;
         position: relative;
@@ -97,68 +89,12 @@ function Styles() {
         cursor: pointer;
       }
 
-      .CustomSwitchIntroduction.${switchClasses.disabled} {
+      .CustomCheckboxIntroduction.${checkboxClasses.disabled} {
         opacity: 0.4;
         cursor: not-allowed;
       }
 
-      .CustomSwitchIntroduction-track {
-        box-sizing: border-box;
-        background: ${isDarkMode ? grey[900] : grey[50]};
-        border: 1px solid ${isDarkMode ? grey[800] : grey[200]};
-        border-radius: 24px;
-        display: block;
-        height: 100%;
-        width: 100%;
-        position: absolute;
-        box-shadow: inset 0px 1px 1px ${
-          isDarkMode ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.05)'
-        };
-      }
-
-      .CustomSwitchIntroduction:hover .CustomSwitchIntroduction-track {
-        background: ${isDarkMode ? grey[800] : grey[100]};
-        border-color: ${isDarkMode ? grey[600] : grey[300]};
-      }
-
-      .CustomSwitchIntroduction-thumb {
-        box-sizing: border-box;
-        border: 1px solid ${isDarkMode ? grey[800] : grey[200]};
-        display: block;
-        width: 16px;
-        height: 16px;
-        top: 4px;
-        left: 4px;
-        border-radius: 16px;
-        background-color: #FFF;
-        position: relative;
-        transition-property: all;
-        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-        transition-duration: 120ms;
-      }
-
-      .CustomSwitchIntroduction.${
-        switchClasses.focusVisible
-      } .CustomSwitchIntroduction-track {
-        box-shadow: 0 0 0 3px ${isDarkMode ? cyan[400] : cyan[200]};
-      }
-
-      .CustomSwitchIntroduction.${
-        switchClasses.checked
-      } .CustomSwitchIntroduction-thumb {
-        left: 18px;
-        background-color: #fff;
-        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
-      }
-
-      .CustomSwitchIntroduction.${
-        switchClasses.checked
-      } .CustomSwitchIntroduction-track {
-        border: none;
-        background: ${cyan[500]};
-      }
-
-      .CustomSwitchIntroduction-input {
+      .CustomCheckboxIntroduction-input {
         cursor: inherit;
         position: absolute;
         width: 100%;

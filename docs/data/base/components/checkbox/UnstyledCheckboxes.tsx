@@ -1,26 +1,26 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import { Switch, switchClasses } from '@mui/base/Switch';
+import { Checkbox, checkboxClasses } from '@mui/base/Checkbox';
 
-export default function UnstyledSwitches() {
-  const label = { slotProps: { input: { 'aria-label': 'Demo switch' } } };
+export default function UnstyledCheckboxes() {
+  const label = { slotProps: { input: { 'aria-label': 'Demo checkbox' } } };
 
   return (
     <div>
-      <Switch
+      <Checkbox
         slots={{
           root: Root,
         }}
         {...label}
         defaultChecked
       />
-      <Switch
+      <Checkbox
         slots={{
           root: Root,
         }}
         {...label}
       />
-      <Switch
+      <Checkbox
         slots={{
           root: Root,
         }}
@@ -28,7 +28,7 @@ export default function UnstyledSwitches() {
         defaultChecked
         disabled
       />
-      <Switch
+      <Checkbox
         slots={{
           root: Root,
         }}
@@ -66,62 +66,12 @@ const Root = styled('span')(
   margin: 10px;
   cursor: pointer;
 
-  &.${switchClasses.disabled} {
+  &.${checkboxClasses.disabled} {
     opacity: 0.4;
     cursor: not-allowed;
   }
 
-  & .${switchClasses.track} {
-    background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
-    border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
-    border-radius: 24px;
-    display: block;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    box-shadow: inset 0px 1px 1px ${
-      theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.05)'
-    };
-  }
-
-  &:hover .${switchClasses.track} {
-    background: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
-  }
-
-  &.${switchClasses.focusVisible} .${switchClasses.track} {
-    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? grey[700] : blue[200]};
-  }
-
-  & .${switchClasses.thumb} {
-    display: block;
-    width: 16px;
-    height: 16px;
-    top: 4px;
-    left: 4px;
-    border-radius: 16px;
-    background-color: #FFF;
-    border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    position: relative;
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 120ms;
-    box-shadow: 0px 1px 2px ${
-      theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.25)' : 'rgba(0, 0, 0, 0.1)'
-    };
-  }
-  
-  &.${switchClasses.checked} {
-    .${switchClasses.thumb} {
-      left: 17px;
-      background-color: #fff;
-    }
-
-    .${switchClasses.track} {
-      background: ${blue[500]};
-    }
-  }
-
-  & .${switchClasses.input} {
+  & .${checkboxClasses.input} {
     cursor: inherit;
     position: absolute;
     width: 100%;
