@@ -3,7 +3,7 @@
 import { danger, markdown } from 'danger';
 import { exec } from 'child_process';
 import { loadComparison } from './scripts/sizeSnapshot';
-import replaceUrl from './packages/api-docs-builder/utils/replaceUrl';
+import replaceUrl from './packages-internal/scripts/api-docs-builder/utils/replaceUrl';
 
 const circleCIBuildNumber = process.env.CIRCLE_BUILD_NUM;
 const circleCIBuildUrl = `https://app.circleci.com/pipelines/github/mui/material-ui/jobs/${circleCIBuildNumber}`;
