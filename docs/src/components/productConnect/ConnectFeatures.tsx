@@ -62,7 +62,7 @@ export default function ConnectFeatures() {
               <Item
                 icon={<FormatShapesRoundedIcon color="primary" />}
                 title="Redesign your components"
-                description="Want to make your primary button full-rounded and with lower-case text? Connect also generates code for custom component styles."
+                description="Want to make your primary button fully rounded and with lowercase text? Use Connect to customize component styles."
               />
             </Highlighter>
             <Highlighter disableBorder {...getSelectedProps(2)} onClick={() => setIndex(2)}>
