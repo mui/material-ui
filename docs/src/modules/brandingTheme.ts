@@ -472,7 +472,7 @@ export function getThemedComponents(): ThemeOptions {
             }),
             ...(ownerState.size === 'medium' && {
               fontSize: defaultTheme.typography.pxToRem(15),
-              padding: theme.spacing('8px', '10px', '8px', '12px'),
+              padding: theme.spacing('8px', '12px', '8px', '14px'),
               fontWeight: theme.typography.fontWeightSemiBold,
               borderRadius: 8,
               '& > span': { transition: '0.2s', marginLeft: 4 },
@@ -508,7 +508,7 @@ export function getThemedComponents(): ThemeOptions {
                   0.8,
                 )} 0 -2px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
                 '&:hover': {
-                  background: (theme.vars || theme).palette.primaryDark[50],
+                  backgroundColor: (theme.vars || theme).palette.primaryDark[50],
                 },
                 ...theme.applyDarkStyles({
                   color: (theme.vars || theme).palette.primaryDark[100],
@@ -533,7 +533,7 @@ export function getThemedComponents(): ThemeOptions {
                   0.2,
                 )} 0 -3px 0 inset, ${alpha(theme.palette.primary[100], 0.3)} 0 1px 2px 0`,
                 '&:hover': {
-                  background: (theme.vars || theme).palette.primary[50],
+                  backgroundColor: (theme.vars || theme).palette.primary[50],
                   borderColor: (theme.vars || theme).palette.primary[300],
                 },
                 ...theme.applyDarkStyles({
@@ -552,7 +552,7 @@ export function getThemedComponents(): ThemeOptions {
               }),
             ...(ownerState.variant === 'contained' &&
               ownerState.color === 'primary' && {
-                color: '#FFF',
+                color: '#fff',
                 textShadow: `0 1px 1px ${alpha(theme.palette.common.black, 0.6)}`,
                 backgroundColor: (theme.vars || theme).palette.primary[500],
                 backgroundImage: `linear-gradient(180deg, ${alpha(
@@ -564,8 +564,10 @@ export function getThemedComponents(): ThemeOptions {
                   0.7,
                 )} 0 -3px 1px inset, ${alpha(theme.palette.common.black, 0.1)} 0 2px 4px 0`,
                 '&:hover': {
-                  backgroundColor: (theme.vars || theme).palette.primary[500],
-                  backgroundImage: 'none',
+                  backgroundColor: (theme.vars || theme).palette.primary[700],
+                },
+                '&:active': {
+                  backgroundColor: (theme.vars || theme).palette.primaryDark[700],
                 },
               }),
           }),
