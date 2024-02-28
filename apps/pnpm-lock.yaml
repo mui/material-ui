@@ -1349,8 +1349,8 @@ importers:
   local-ui-lib:
     dependencies:
       '@mui/zero-runtime':
-        specifier: file:../../packages/zero-runtime/build
-        version: file:../packages/zero-runtime/build
+        specifier: file:../../packages/zero-runtime
+        version: file:../packages/zero-runtime(@types/react@18.2.55)(react@18.2.0)(typescript@5.3.3)
 
   zero-runtime-next-app:
     dependencies:
@@ -9125,11 +9125,6 @@ packages:
       - '@types/react'
       - supports-color
       - typescript
-
-  file:../packages/zero-runtime/build:
-    resolution: {directory: ../packages/zero-runtime/build, type: directory}
-    name: build
-    dev: false
 
   file:../packages/zero-unplugin(@mui/zero-runtime@0.0.1)(typescript@5.3.3):
     resolution: {directory: ../packages/zero-unplugin, type: directory}
