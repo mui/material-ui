@@ -40,7 +40,7 @@ export default function Connect() {
   return (
     <BrandingCssVarsProvider>
       <Head
-        title="MUI Connect: A Figma plugin that exports a Material UI theme"
+        title="Connect: A Figma plugin that exports a Material UI theme"
         description="A Figma plugin that exports a full-fledged Material UI theme."
         card="/static/social-previews/connect-preview.jpg"
       />
@@ -65,7 +65,7 @@ export default function Connect() {
                   <GradientText>Bridge the gap</GradientText> between Figma and your codebase
                 </Typography>
               }
-              description="MUI Connect is a Figma plugin that exports a full-fledged Material UI theme to get your design customization up as fast as possible."
+              description="Connect is a Figma plugin that exports a full-fledged Material UI theme to get your design customization up as fast as possible."
             />
             <GetStartedButtons
               primaryLabel="Get it at the Figma Community"

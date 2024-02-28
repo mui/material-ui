@@ -48,7 +48,7 @@ export default function ConnectFeatures() {
                 The way developers and designers <GradientText>ship faster</GradientText>
               </Typography>
             }
-            description="MUI Connect is perfect for teams of developers and designers building with the Material UI React library and design kit."
+            description="Connect is perfect for teams of developers and designers building with the Material UI React library and design kit."
           />
           <Group sx={{ m: -2, p: 2 }}>
             <Highlighter disableBorder {...getSelectedProps(0)} onClick={() => setIndex(0)}>
@@ -62,14 +62,14 @@ export default function ConnectFeatures() {
               <Item
                 icon={<FormatShapesRoundedIcon color="primary" />}
                 title="Redesign your components"
-                description="Want to make your primary button full-rounded and with lower-case text? MUI Connect also generates code for custom component styles."
+                description="Want to make your primary button full-rounded and with lower-case text? Connect also generates code for custom component styles."
               />
             </Highlighter>
             <Highlighter disableBorder {...getSelectedProps(2)} onClick={() => setIndex(2)}>
               <Item
                 icon={<SvgStorybook />}
                 title="Preview your changes on Storybook"
-                description="All of the changes you run through the MUI Connect plugin can also be visualized on a baked-in Storybook preview instance."
+                description="All of the changes you run through the Connect plugin can also be visualized on a baked-in Storybook preview instance."
               />
             </Highlighter>
           </Group>
@@ -209,7 +209,7 @@ export default function ConnectFeatures() {
             </Frame.Demo>
             <Frame.Info data-mui-color-scheme="dark">
               <Typography variant="body2" fontWeight="bold" gutterBottom>
-                Stay on the loop about the MUI Connect progress!
+                Stay on the loop about the Connect progress!
               </Typography>
               <Typography variant="body2" color="text.secondary" mb={1}>
                 Add your email to be notified about the plugin progress as we go.
