@@ -9,7 +9,7 @@ import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
 import type { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
-import { renderMarkdown } from '@mui/markdown';
+import { renderMarkdown } from '@mui/internal-markdown';
 import { ComponentClassDefinition } from '@mui-internal/docs-utils';
 import { ProjectSettings, SortingStrategiesType } from '../ProjectSettings';
 import { ComponentInfo, toGitHubPath, writePrettifiedFile } from '../buildApiUtils';

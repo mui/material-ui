@@ -13,7 +13,7 @@ function FakeTransition(props: React.PropsWithChildren<{}>) {
   const { requestedEnter, onExited } = useTransitionStateManager();
 
   React.useEffect(() => {
-    let timeoutId: NodeJS.Timeout | null = null;
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
     if (!requestedEnter) {
       timeoutId = setTimeout(() => {
         act(() => onExited());

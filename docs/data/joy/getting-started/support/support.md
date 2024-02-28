@@ -44,9 +44,9 @@ You can browse the documentation, find an example close to your use case, and th
 
 You can use a starter React template to build a reproduction case with [JavaScript](https://stackblitz.com/github/stackblitz/starters/tree/main/react) or [TypeScript](https://stackblitz.com/github/stackblitz/starters/tree/main/react-ts).
 
-## Stack Overflow
+## Stack Overflow
 
-We use Stack Overflow for how-to questions. Answers are crowdsourced from expert developers in the Joy UI community as well as Joy UI maintainers.
+We use Stack Overflow for how-to questions. Answers are crowdsourced from expert developers in the Joy UI community as well as Joy UI maintainers.
 
 You can search through existing questions and answers to see if someone has asked a similar question using the [joy-ui tags](https://stackoverflow.com/questions/tagged/joy-ui):
 
@@ -89,7 +89,7 @@ Our tools are used by thousands of developers and teams all around the world, ma
 You can join Discord to engage in lively discussions, share your projects, and interact with developers just like you from all around the world. We'd love for you to join us!
 
 :::warning
-How-to questions are not accepted on Discord, they should be asked on [Stack Overflow](#stack-overflow).
+How-to questions are not accepted on Discord, they should be asked on [Stack Overflow](#stack-overflow).
 :::
 
 ## Custom work

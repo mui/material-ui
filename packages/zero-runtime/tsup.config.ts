@@ -21,13 +21,6 @@ export default defineConfig([
   },
   {
     ...baseConfig,
-    entry: {
-      index: './src/extendTheme.ts',
-    },
-    outDir: 'extendTheme',
-  },
-  {
-    ...baseConfig,
     entry: processors.map((fn) => `./src/processors/${fn}.ts`),
     outDir: 'processors',
   },

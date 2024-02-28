@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["*.ts", "i18n.js"],
+  "include": ["*.ts"],
   "compilerOptions": {
     "allowJs": true,
     "isolatedModules": true,
