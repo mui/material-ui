@@ -11,8 +11,8 @@ export default function IconFontSizes() {
       direction="row"
       sx={{ gridColumn: '1 / -1', alignItems: 'center', justifyContent: 'center' }}
     >
-      {Object.keys(theme.fontSize).map((size) => (
-        <Person key={size} fontSize={size as keyof FontSize} />
+      {(Object.keys(theme.fontSize) as (keyof FontSize)[]).map((size) => (
+        <Person key={size} fontSize={size} />
       ))}
     </Stack>
   );
