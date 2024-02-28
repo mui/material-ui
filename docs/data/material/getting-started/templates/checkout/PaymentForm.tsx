@@ -1,12 +1,19 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import OutlinedInput from '@mui/material/OutlinedInput';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import FormLabel from '@mui/material/FormLabel';
 import Checkbox from '@mui/material/Checkbox';
+import { styled } from '@mui/system';
 
 import CreditCardRoundedIcon from '@mui/icons-material/CreditCardRounded';
 import SimCardRoundedIcon from '@mui/icons-material/SimCardRounded';
+
+const FormGrid = styled(Box)(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+}));
 
 export default function PaymentForm() {
   const [cardNumber, setCardNumber] = React.useState('');
@@ -42,7 +49,6 @@ export default function PaymentForm() {
         sx={{
           display: 'flex',
           justifyContent: 'center',
-          mb: 4,
         }}
       >
         <Box
@@ -51,8 +57,8 @@ export default function PaymentForm() {
             flexDirection: 'column',
             justifyContent: 'space-between',
             p: 3,
-            height: { xs: '250px', sm: '350px' },
-            width: { xs: '375px', sm: '525px' },
+            height: { xs: '300px', sm: '350px' },
+            width: { xs: '450px', sm: '525px' },
             borderRadius: '20px',
             border: '2px solid ',
             borderColor: 'divider',
@@ -62,54 +68,67 @@ export default function PaymentForm() {
         >
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Typography variant="subtitle2">Credit card</Typography>
-            <CreditCardRoundedIcon />
+            <CreditCardRoundedIcon sx={{ color: 'text.secondary' }} />
           </Box>
           <SimCardRoundedIcon
-            sx={{ fontSize: { xs: '48px', sm: '56px' }, transform: 'rotate(90deg)' }}
+            sx={{
+              fontSize: { xs: '48px', sm: '56px' },
+              transform: 'rotate(90deg)',
+              color: 'text.secondary',
+            }}
           />
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 3 }}>
-            <TextField
-              id="standard-basic"
-              label="Card number"
-              autoComplete="card-number"
-              placeholder="0000 0000 0000 0000"
-              variant="standard"
-              required
-              sx={{ flexGrow: 1 }}
-              value={cardNumber}
-              onChange={handleCardNumberChange}
-            />
-            <TextField
-              id="cvv"
-              label="CVV"
-              autoComplete="CVV"
-              placeholder="123"
-              variant="standard"
-              required
-              sx={{ maxWidth: '20%' }}
-              value={cvv}
-              onChange={handleCvvChange}
-            />
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              width: '100%',
+              gap: 3,
+            }}
+          >
+            <FormGrid sx={{ flexGrow: 1 }}>
+              <FormLabel required>Card number</FormLabel>
+              <OutlinedInput
+                id="standard-basic"
+                autoComplete="card-number"
+                placeholder="0000 0000 0000 0000"
+                required
+                value={cardNumber}
+                onChange={handleCardNumberChange}
+              />
+            </FormGrid>
+            <FormGrid sx={{ maxWidth: '20%' }}>
+              <FormLabel required>CVV</FormLabel>
+              <OutlinedInput
+                id="cvv"
+                autoComplete="CVV"
+                placeholder="123"
+                required
+                value={cvv}
+                onChange={handleCvvChange}
+              />
+            </FormGrid>
           </Box>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 3 }}>
-            <TextField
-              id="card-name"
-              label="Name"
-              autoComplete="card-name"
-              placeholder="John Smith"
-              variant="standard"
-              required
-            />
-            <TextField
-              id="card-expiration"
-              label="Expiration date"
-              autoComplete="card-expiration"
-              placeholder="MM/YY"
-              variant="standard"
-              required
-              value={expirationDate}
-              onChange={handleExpirationDateChange}
-            />
+            <FormGrid sx={{ flexGrow: 1 }}>
+              <FormLabel required>Name</FormLabel>
+              <OutlinedInput
+                id="card-name"
+                autoComplete="card-name"
+                placeholder="John Smith"
+                required
+              />
+            </FormGrid>
+            <FormGrid sx={{ flexGrow: 1 }}>
+              <FormLabel required>Expiration date</FormLabel>
+              <OutlinedInput
+                id="card-expiration"
+                autoComplete="card-expiration"
+                placeholder="MM/YY"
+                required
+                value={expirationDate}
+                onChange={handleExpirationDateChange}
+              />
+            </FormGrid>
           </Box>
         </Box>
       </Box>
