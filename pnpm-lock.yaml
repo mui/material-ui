@@ -356,18 +356,12 @@ importers:
 
   apps/zero-runtime-next-app:
     dependencies:
-      '@emotion/cache':
-        specifier: latest
-        version: 11.11.0
       '@mui/icons-material':
         specifier: file:../../packages/mui-icons-material/build
         version: file:packages/mui-icons-material/build(@mui/material@5.15.10)(@types/react@18.2.55)(react@18.2.0)
       '@mui/material':
         specifier: file:../../packages/mui-material/build
         version: file:packages/mui-material/build(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
-      '@mui/material-nextjs':
-        specifier: workspace:^
-        version: link:../../packages/mui-material-nextjs/build
       '@mui/system':
         specifier: file:../../packages/mui-system/build
         version: file:packages/mui-system/build(@types/react@18.2.55)(react@18.2.0)
