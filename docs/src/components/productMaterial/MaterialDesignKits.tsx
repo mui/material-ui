@@ -62,7 +62,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
             <Highlighter disableBorder selected={!customized} onClick={() => setCustomized(false)}>
               <Item
                 icon={<ExtensionRoundedIcon color="primary" />}
-                title="MUI Connect plugin"
+                title="Connect plugin"
                 description="Generate a theme file with customizations done on the design kits, and then export and paste it directly into your codebase."
               />
             </Highlighter>
@@ -182,22 +182,22 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                         transform: 'translate(-40%)',
                       },
                       '&:nth-of-type(2)': {
-                        width: { xs: 240, sm: 350 },
-                        top: { xs: 130, sm: 40 },
-                        left: { xs: '55%', sm: '40%' },
+                        width: { xs: 240, sm: 560 },
+                        top: { xs: 100, sm: 40 },
+                        left: { xs: '52%', sm: '60%' },
                         transform: {
                           xs: 'scale(1.8) translate(-20%)',
-                          sm: 'scale(1) translate(0%)',
+                          sm: 'none',
                         },
                       },
                     },
                     '&:hover': {
                       '& img': {
                         '&:nth-of-type(2)': {
-                          top: { xs: 130, sm: 140 },
+                          top: { xs: 100, sm: 60 },
                           transform: {
                             xs: 'scale(1.8) translate(-20%)',
-                            sm: 'scale(1.5) translate(-10%)',
+                            sm: 'scale(1.1) translate(-30%)',
                           },
                           filter: {
                             xs: 'auto',
@@ -231,22 +231,22 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                   })}
                 >
                   <Image
-                    src={`/static/branding/design-kits/connect-plug-in-figma-light.jpg`}
+                    src={`/static/branding/design-kits/connect-page-base2-light.png`}
                     alt="Screenshot of Figma displaying the Material UI Design kit"
                     loading="lazy"
                     sx={(theme) =>
                       theme.applyDarkStyles({
-                        content: `url(/static/branding/design-kits/connect-plug-in-figma-dark.jpg)`,
+                        content: `url(/static/branding/design-kits/connect-page-base2-dark.png)`,
                       })
                     }
                   />
                   <Image
-                    src={`/static/branding/design-kits/connect-plug-in-light.jpg`}
+                    src={`/static/branding/design-kits/connect-shot2-light.png`}
                     alt=""
                     loading="lazy"
                     sx={(theme) =>
                       theme.applyDarkStyles({
-                        content: `url(/static/branding/design-kits/connect-plug-in-dark.jpg)`,
+                        content: `url(/static/branding/design-kits/connect-shot2-dark.png)`,
                       })
                     }
                   />
