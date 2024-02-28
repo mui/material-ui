@@ -1,6 +1,4 @@
 import type { ExtendTheme } from '@mui/zero-runtime';
-import type { Theme } from '@mui/material/styles';
-import type {} from '@mui/material/themeCssVarsAugmentation';
 
 declare module '@mui/zero-runtime/theme' {
   interface ThemeTokens {
@@ -31,7 +29,6 @@ declare module '@mui/zero-runtime/theme' {
     theme: ExtendTheme<{
       colorScheme: 'light' | 'dark';
       tokens: ThemeTokens;
-    }> &
-      Theme;
+    }>;
   }
 }

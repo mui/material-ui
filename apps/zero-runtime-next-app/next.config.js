@@ -83,7 +83,6 @@ const theme = extendTheme({
   },
 });
 
-theme.palette = theme.colorSchemes.light;
 theme.getColorSchemeSelector = (key) => {
   return `[data-mui-color-scheme="${key}"]`;
 };
@@ -98,7 +97,6 @@ const zeroPluginOptions = {
   transformLibraries: ['local-ui-lib'],
   sourceMap: true,
   displayName: true,
-  transformSx: false,
 };
 
 /** @type {import('next').NextConfig} */
