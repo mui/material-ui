@@ -332,8 +332,8 @@ const pages: MuiPage[] = [
         newFeature: true,
       },
       {
-        pathname: '/material-ui/design-resources/mui-connect',
-        title: 'MUI Connect plugin',
+        pathname: '/material-ui/design-resources/connect',
+        title: 'Connect plugin',
         newFeature: true,
       },
     ],
