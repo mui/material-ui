@@ -96,12 +96,9 @@ const Checkbox = React.forwardRef(function Checkbox<RootComponentType extends Re
   });
 
   return (
-    <div>
-      rendering
-      <Root {...rootProps}>
-        <Input {...inputProps} />
-      </Root>
-    </div>
+    <Root {...rootProps}>
+      <Input {...inputProps} />
+    </Root>
   );
 }) as PolymorphicComponent<CheckboxTypeMap>;
 

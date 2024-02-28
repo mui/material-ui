@@ -96,14 +96,14 @@ function Styles() {
 
       .CustomCheckboxIntroduction-input {
         cursor: inherit;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        opacity: 0;
+        // position: absolute;
+        // width: 100%;
+        // height: 100%;
+        // top: 0;
+        // left: 0;
+        // opacity: 0;
         z-index: 1;
-        margin: 0;
+        // margin: 0;
       }
 
     `}

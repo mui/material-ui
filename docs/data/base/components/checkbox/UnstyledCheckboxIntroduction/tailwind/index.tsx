@@ -59,7 +59,8 @@ const Checkbox = React.forwardRef<HTMLSpanElement, CheckboxProps>((props, ref) =
           return {
             ...resolvedSlotProps,
             className: clsx(
-              'cursor-inherit absolute w-full h-full top-0 left-0 opacity-0 z-10 border-none',
+              // 'cursor-inherit absolute w-full h-full top-0 left-0 opacity-0 z-10 border-none',
+              'cursor-inherit z-10 ',
               resolvedSlotProps?.className,
             ),
           };
