@@ -59,35 +59,12 @@ const Checkbox = React.forwardRef<HTMLSpanElement, CheckboxProps>((props, ref) =
           return {
             ...resolvedSlotProps,
             className: clsx(
-              'w-4 h-4',
+              'w-5 h-5 accent-purple-500 rounded-lg shadow-md shadow-slate-100 dark:shadow-slate-900 focus:shadow-outline-purple dark:focus:shadow-outline-purple focus:shadow-lg border border-solid border-slate-300 hover:border-purple-500 dark:hover:border-purple-500 focus:border-purple-500 dark:focus:border-purple-500 dark:border-slate-600 bg-white dark:bg-slate-900 focus-visible:outline-0',
 
               // from input styles
-              // text-sm
-              // font-sans
-              // font-normal
               // leading-5
               // px-3
               // py-2
-              // rounded-lg
-              // shadow-md
-              // shadow-slate-100
-              // dark:shadow-slate-900
-              // focus:shadow-outline-purple
-              // dark:focus:shadow-outline-purple
-              // focus:shadow-lg
-              // border
-              // border-solid
-              // border-slate-300
-              // hover:border-purple-500
-              // dark:hover:border-purple-500
-              // focus:border-purple-500
-              // dark:focus:border-purple-500
-              // dark:border-slate-600
-              // bg-white
-              // dark:bg-slate-900
-              // text-slate-900
-              // dark:text-slate-300
-              // focus-visible:outline-0
 
               // from checkbox example styles
               // text-blue-600
