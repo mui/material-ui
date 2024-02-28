@@ -12,7 +12,7 @@ There are many ways to support us:
   Follow us on [X](https://twitter.com/MUI_hq), like and retweet the important news. Or just talk about us with your friends.
 - **Give us feedback**. Tell us what is going well or where there is improvement opportunities. Please upvote (👍) the issues that you are the most interested in seeing solved.
 - **Help new users**. You can answer questions on
-  [Stack Overflow](https://stackoverflow.com/questions/tagged/material-ui).
+  [Stack Overflow](https://stackoverflow.com/questions/tagged/material-ui).
 - **Make changes happen**.
   - Edit the documentation. At the bottom of every page, you can find an "Edit this page" button.
   - Report bugs or missing features by [creating an issue](https://github.com/mui/material-ui/issues/new).

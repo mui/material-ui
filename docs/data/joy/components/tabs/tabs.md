@@ -161,7 +161,7 @@ In this example, each Tab is painted with a color from the theme when selected.
 
 ## Accessibility
 
-To ensure proper accessibility, the [ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/#wai-aria-roles-states-and-properties-22) recommends associating a label with the Tabs component.
+To ensure proper accessibility, the [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/#wai-aria-roles-states-and-properties-22) recommends associating a label with the Tabs component.
 There are two options to accomplish this:
 
 ### Using the id attribute
