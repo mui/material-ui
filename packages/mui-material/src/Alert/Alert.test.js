@@ -7,6 +7,7 @@ import Paper, { paperClasses } from '@mui/material/Paper';
 import { iconButtonClasses } from '@mui/material/IconButton';
 import { svgIconClasses } from '@mui/material/SvgIcon';
 import describeConformance from '../../test/describeConformance';
+import capitalize from '../utils/capitalize';
 
 describe('<Alert />', () => {
   const { render } = createRenderer();
@@ -195,6 +196,22 @@ describe('<Alert />', () => {
         );
 
         expect(screen.getByTestId(`${severity}-icon`)).toBeVisible();
+      });
+    });
+  });
+
+  describe('classes', () => {
+    it('should apply default color class to the root', () => {
+      render(<Alert data-testid="alert" />);
+
+      expect(screen.getByTestId('alert')).to.have.class(classes.colorSuccess);
+    });
+
+    ['success', 'info', 'warning', 'error'].forEach((color) => {
+      it('should apply color classes to the root', () => {
+        render(<Alert data-testid="alert" color={color} />);
+
+        expect(screen.getByTestId('alert')).to.have.class(classes[`color${capitalize(color)}`]);
       });
     });
   });

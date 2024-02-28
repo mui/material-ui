@@ -222,10 +222,6 @@ export default function Ad() {
         mt: AD_MARGIN_TOP,
         mb: AD_MARGIN_BOTTOM,
         minHeight: AD_HEIGHT_MOBILE,
-        '& a[target="_blank"]::after': {
-          // Remove link arrow for ads
-          display: 'none',
-        },
         [theme.breakpoints.up('sm')]: {
           minHeight: AD_HEIGHT,
         },
@@ -242,6 +238,7 @@ export default function Ad() {
       data-ga-event-category="ad"
       data-ga-event-action="click"
       data-ga-event-label={eventLabel}
+      className="Ad-root"
     >
       <AdErrorBoundary eventLabel={eventLabel}>{children}</AdErrorBoundary>
     </Box>

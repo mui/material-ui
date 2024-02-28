@@ -1,7 +1,7 @@
 import deepMerge from 'lodash/merge';
 import { prepareCssVars } from '@mui/system/cssVars';
 import type { SxConfig } from '@mui/system/styleFunctionSx';
-import type { CSSObject } from './base';
+import type { CSSObject } from '../base';
 
 export interface ThemeInput<ColorScheme extends string = string> {
   /**
@@ -86,7 +86,7 @@ export type Theme = ExtendTheme;
 /**
  * A utility to tell zero-runtime to generate CSS variables for the theme.
  */
-export default function extendTheme<
+export function extendTheme<
   Options extends {
     colorScheme: string;
     tokens: Record<string, any>;
