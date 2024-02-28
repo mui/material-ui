@@ -18,7 +18,7 @@ import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import ROUTES from 'docs/src/route';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 
 export const authors = {
   oliviertassinari: {

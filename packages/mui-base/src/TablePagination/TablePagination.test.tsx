@@ -2,17 +2,13 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import {
-  describeConformanceUnstyled,
-  fireEvent,
-  createRenderer,
-  createMount,
-} from '@mui-internal/test-utils';
+import { fireEvent, createRenderer, createMount } from '@mui-internal/test-utils';
 import {
   TablePagination,
   tablePaginationClasses as classes,
   LabelDisplayedRowsArgs,
 } from '@mui/base/TablePagination';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 interface WithClassName {
   className: string;

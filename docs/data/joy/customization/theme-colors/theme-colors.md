@@ -132,7 +132,7 @@ declare module '@mui/joy/styles' {
 Adding custom tokens increases your stylesheet's bundle size, and adds an extra set of maintenance costs to your app.
 These tradeoffs mean that adding new tokens is usually only worthwhile when you know that they'll be used by many components.
 
-As an alternative, consider using [the `sx` prop](/joy-ui/customization/approaches/#sx-prop) for one-off customizations.
+As an alternative, consider using [the `sx` prop](/joy-ui/customization/approaches/#the-sx-prop) for one-off customizations.
 :::
 
 ### Adding new palettes
@@ -254,26 +254,4 @@ This removes them from the `theme` object and prevents the corresponding CSS var
 For example, all default global variant color tokens comes with styles for the `:active` pseudo class.
 Here's how you'd remove it from the solid variant.
 
-```jsx
-// ⚠️ If the value is `undefined`, it should be `undefined` for all color schemes.
-const theme = extendTheme({
-  colorSchemes: {
-    light: {
-      palette: {
-        primary: {
-          solidActiveBg: undefined,
-        },
-      },
-    },
-    dark: {
-      palette: {
-        primary: {
-          solidActiveBg: undefined,
-        },
-      },
-    },
-  },
-});
-```
-
-{{"demo": "RemoveActiveTokens.js"}}
+{{"demo": "RemoveActiveTokens.js", "defaultCodeOpen": true}}
