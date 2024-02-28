@@ -1,5 +1,6 @@
 import path from 'path';
 import fse from 'fs-extra';
+import { exec } from 'child_process';
 
 function capitalize(string) {
   if (typeof string !== 'string') {
@@ -99,6 +100,13 @@ ${renders.join('\n')}
     path.join(process.cwd(), `apps/zero-runtime-vite-app/src/pages/material-ui/${args[0]}.tsx`),
     viteFileContent,
   );
+
+  // run prettier on new files
+  exec('pnpm prettier', (err) => {
+    if (err) {
+      console.error(err);
+    }
+  });
 }
 
 run();
