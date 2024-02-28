@@ -1,3 +1,1 @@
-export interface ThemeArgs {
-  theme: any;
-}
+export interface ThemeArgs {}
