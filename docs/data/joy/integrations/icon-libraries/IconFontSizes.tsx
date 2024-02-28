@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useTheme } from '@mui/joy/styles';
+import { FontSize, useTheme } from '@mui/joy/styles';
 import Stack from '@mui/joy/Stack';
 import Person from '@mui/icons-material/Person';
 
@@ -12,7 +12,7 @@ export default function IconFontSizes() {
       sx={{ gridColumn: '1 / -1', alignItems: 'center', justifyContent: 'center' }}
     >
       {Object.keys(theme.fontSize).map((size) => (
-        <Person key={size} fontSize={size} />
+        <Person key={size} fontSize={size as keyof FontSize} />
       ))}
     </Stack>
   );
