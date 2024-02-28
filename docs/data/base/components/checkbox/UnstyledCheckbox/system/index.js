@@ -32,7 +32,14 @@ import { Checkbox } from '@mui/base/Checkbox';
 // }
 
 export default function UnstyledCheckbox() {
-  return <Checkbox />;
+  return (
+    <React.Fragment>
+      <Checkbox defaultChecked />
+      <Checkbox />
+      <Checkbox disabled defaultChecked />
+      <Checkbox disabled />
+    </React.Fragment>
+  );
 }
 
 // const blue = {
