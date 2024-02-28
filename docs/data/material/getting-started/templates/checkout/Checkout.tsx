@@ -299,7 +299,7 @@ export default function Checkout() {
               width: '100%',
               maxWidth: { sm: '100%', md: 600 },
               maxHeight: '720px',
-              gap: { xs: 5, md: 10 },
+              gap: { xs: 5, md: 'none' },
             }}
           >
             <Stepper
