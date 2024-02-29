@@ -53,10 +53,12 @@ export default function getProductInfoFromUrl(asPath: string): MuiProductInfo {
 
   if (firstFolder === 'toolpad') {
     productCategoryId = 'toolpad';
-    let secondFolder = asPathWithoutLang.replace(/^\/+[^/]+\/([^/]+)\/.*/, '$1');
+    const secondFolder = asPathWithoutLang.replace(/^\/+[^/]+\/([^/]+)\/.*/, '$1');
     if (secondFolder === 'studio') {
-      productId = 'toolpad-studio';
-    } else productId = 'toolpad';
+      productId = 'studio';
+    } else {
+      productId = 'core';
+    }
   }
 
   if (firstFolder === 'docs') {
