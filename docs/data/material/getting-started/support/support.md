@@ -27,17 +27,22 @@ We require bug reports to be accompanied by a **minimal reproduction**.
 It significantly increases the odds of fixing the problem.
 You have a few possible options to provide it:
 
-- You can browse the documentation, find an example close to your use case, and then open it in a live editor:
-  <a href="/material-ui/react-button/#basic-button">
-  <span class="only-light-mode">
-  <img src="/static/docs-infra/forking-an-example.png" alt="Forking an example" loading="lazy" width="1548" height="606" style="display: block; max-width: 774px;">
-  </span>
-  <span class="only-dark-mode">
-  <img src="/static/docs-infra/forking-an-example-dark.png" alt="Forking an example" loading="lazy" width="1548" height="606" style="display: block; max-width: 774px;">
-  </span>
-  </a>
+#### Use the live editors
 
-- You can use a starter React template to build a reproduction case with [JavaScript](https://stackblitz.com/github/stackblitz/starters/tree/main/react) or [TypeScript](https://stackblitz.com/github/stackblitz/starters/tree/main/react-ts).
+You can browse the documentation, find an example close to your use case, and then open it in a live editor:
+
+<a href="/material-ui/react-button/#basic-button">
+<span class="only-light-mode">
+<img src="/static/docs-infra/forking-an-example.png" alt="Forking an example" loading="lazy" width="1628" height="700" style="display: block; max-width: 774px;">
+</span>
+<span class="only-dark-mode">
+<img src="/static/docs-infra/forking-an-example-dark.png" alt="Forking an example" loading="lazy" width="1628" height="700" style="display: block; max-width: 774px;">
+</span>
+</a>
+
+#### Use starter templates
+
+You can use a starter React template to build a reproduction case with [JavaScript](https://stackblitz.com/github/stackblitz/starters/tree/main/react) or [TypeScript](https://stackblitz.com/github/stackblitz/starters/tree/main/react-ts).
 
 ## Stack Overflow
 

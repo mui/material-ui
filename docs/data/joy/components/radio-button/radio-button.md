@@ -37,7 +37,7 @@ When should you use radio buttons rather than checkboxes, switches, or selects?
 import Radio from '@mui/joy/Radio';
 ```
 
-The Joy UI Radio button behaves similar to the native HTML <input type="radio">, so it accepts props like `checked`, `value` and `onChange`.
+The Joy UI Radio button behaves similar to the native HTML <input type="radio">, so it accepts props like `checked`, `value` and `onChange`.
 
 {{"demo": "RadioButtons.js"}}
 
@@ -45,7 +45,7 @@ The Joy UI Radio button behaves similar to the native HTML <input type="radio">,
 
 ### Variants
 
-The Radio component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `outlined` (default), `soft` , `solid` , and `plain`.
+The Radio component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `outlined` (default), `soft` , `solid` , and `plain`.
 
 {{"demo": "RadioVariants.js"}}
 
