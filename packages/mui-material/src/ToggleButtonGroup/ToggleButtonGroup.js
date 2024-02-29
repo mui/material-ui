@@ -19,7 +19,7 @@ const useUtilityClasses = (ownerState) => {
   const { classes, orientation, fullWidth, disabled } = ownerState;
 
   const slots = {
-    root: ['root', 'vertical', fullWidth && 'fullWidth'],
+    root: ['root', orientation, fullWidth && 'fullWidth'],
     grouped: ['grouped', `grouped${capitalize(orientation)}`, disabled && 'disabled'],
     firstButton: ['firstButton'],
     lastButton: ['lastButton'],
