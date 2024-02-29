@@ -430,6 +430,7 @@ export interface CssVarsTheme extends ColorSystem {
     css: Record<string, string | number>;
     vars: ThemeVars;
   };
+  generateStyleSheets: () => Array<Record<string, any>>;
 
   // Default theme tokens
   spacing: Theme['spacing'];

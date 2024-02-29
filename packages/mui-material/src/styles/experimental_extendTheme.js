@@ -414,7 +414,7 @@ export default function extendTheme(options = {}, ...args) {
             });
             return {
               [`[${theme.attribute}="${colorScheme}"]`]: excludedVariables,
-              [theme.colorSchemeSelector]: css,
+              [`${theme.colorSchemeSelector}, [${theme.attribute}="${colorScheme}"]`]: css,
             };
           }
           return `${theme.colorSchemeSelector}, [${theme.attribute}="${colorScheme}"]`;
@@ -433,7 +433,8 @@ export default function extendTheme(options = {}, ...args) {
   theme.vars = themeVars;
   theme.generateCssVars = generateCssVars;
   theme.generateStyleSheets = generateStyleSheets;
-  theme.getColorSchemeSelector = (colorScheme) => `:where(${getSelector(colorScheme, {})}) &`;
+  theme.getColorSchemeSelector = (colorScheme) =>
+    `* :where([${theme.attribute}="${colorScheme}"]) &`;
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
   theme.unstable_sxConfig = {
     ...defaultSxConfig,

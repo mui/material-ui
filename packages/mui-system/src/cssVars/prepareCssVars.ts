@@ -9,14 +9,20 @@ export interface DefaultCssVarsTheme {
 function prepareCssVars<
   T extends DefaultCssVarsTheme,
   ThemeVars extends Record<string, any>,
-  Selector = any,
+  Selector = string | object,
 >(
   theme: T,
-  parserConfig?: {
+  {
+    getSelector,
+    ...parserConfig
+  }: {
     prefix?: string;
     shouldSkipGeneratingVar?: (objectPathKeys: Array<string>, value: string | number) => boolean;
-    getSelector?: (colorScheme: string | undefined, css: Record<string, any>) => Selector;
-  },
+    getSelector?: (
+      colorScheme: keyof T['colorSchemes'] | undefined,
+      css: Record<string, any>,
+    ) => Selector;
+  } = {},
 ) {
   // @ts-ignore - ignore components do not exist
   const { colorSchemes = {}, components, defaultColorScheme = 'light', ...otherTheme } = theme;
@@ -42,48 +48,49 @@ function prepareCssVars<
     colorSchemesMap[defaultColorScheme] = { css, vars };
   }
 
-  const generateCssVars = (colorScheme?: string) => {
+  const generateCssVars = (colorScheme?: keyof T['colorSchemes']) => {
     if (!colorScheme) {
       const css = { ...rootCss };
       return {
         css,
         vars: rootVars,
-        selector: parserConfig?.getSelector?.(colorScheme, css) || ':root',
+        selector: getSelector?.(colorScheme, css) || ':root',
       };
     }
-    const css = { ...colorSchemesMap[colorScheme].css };
+    const css = { ...colorSchemesMap[colorScheme as string].css };
     return {
       css,
-      vars: colorSchemesMap[colorScheme].vars,
-      selector: parserConfig?.getSelector?.(colorScheme, css) || ':root',
+      vars: colorSchemesMap[colorScheme as string].vars,
+      selector: getSelector?.(colorScheme, css) || ':root',
     };
   };
 
   const generateStyleSheets = () => {
-    const stylesheets = [];
-    const rootSelector = parserConfig?.getSelector?.(undefined, rootCss) || ':root';
-    if (Object.keys(rootCss).length) {
-      stylesheets.push(
-        typeof rootSelector === 'string' ? { [rootSelector]: { ...rootCss } } : rootSelector,
-      );
-    }
-
-    const { [defaultColorScheme]: defaultScheme, ...rest } = colorSchemesMap;
-
-    if (defaultScheme) {
-      // default color scheme has to come before other color schemes
-      const selector = parserConfig?.getSelector?.(defaultColorScheme, css) || ':root';
-      if (Object.keys(defaultScheme.css).length) {
-        stylesheets.push(typeof selector === 'string' ? { [selector]: css } : selector);
-      }
-    }
-
-    Object.entries(rest).forEach(([key, { css }]) => {
-      const selector = parserConfig?.getSelector?.(key, css) || ':root';
+    const stylesheets: Array<Record<string, any>> = [];
+    const colorScheme = theme.defaultColorScheme || 'light';
+    function insertStyleSheet(selector: string | object, css: Record<string, string | number>) {
       if (Object.keys(css).length) {
         stylesheets.push(typeof selector === 'string' ? { [selector]: { ...css } } : selector);
       }
+    }
+    insertStyleSheet(getSelector?.(undefined, rootCss) || ':root', rootCss);
+
+    const { [colorScheme]: defaultScheme, ...rest } = colorSchemesMap;
+
+    if (defaultScheme) {
+      // default color scheme has to come before other color schemes
+      const { css } = defaultScheme;
+      insertStyleSheet(
+        getSelector?.(colorScheme as keyof T['colorSchemes'], css) || `.${String(colorScheme)}`,
+        css,
+      );
+    }
+
+    Object.entries(rest).forEach(([key, { css }]) => {
+      insertStyleSheet(getSelector?.(key as keyof T['colorSchemes'], css) || `.${key}`, css);
     });
+
+    return stylesheets;
   };
 
   return {

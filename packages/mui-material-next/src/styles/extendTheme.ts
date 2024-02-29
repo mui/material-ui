@@ -59,6 +59,7 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
     colorSchemes: colorSchemesInput = {},
     cssVarPrefix = 'md',
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
+    getSelector,
     ...input
   } = options;
   const getCssVar = createGetCssVar(cssVarPrefix);
@@ -141,7 +142,13 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
   const { color: darkSysColor, elevation: darkSysElevation } = darkSys;
   const { palette: darkRefPalette } = darkRef;
 
-  let theme: Theme = {
+  let theme: Theme & {
+    defaultColorScheme: string;
+    attribute: string;
+    colorSchemeSelector: string;
+  } = {
+    attribute: 'data-mui-color-scheme',
+    colorSchemeSelector: ':root',
     ...muiTheme,
     cssVarPrefix,
     getCssVar,
@@ -457,7 +464,7 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
       ((colorScheme, css) => {
         if ((theme.defaultColorScheme || 'light') === colorScheme) {
           if (colorScheme === 'dark') {
-            const excludedVariables = {};
+            const excludedVariables: typeof css = {};
             excludeVariablesFromRoot(cssVarPrefix).forEach((cssVar) => {
               excludedVariables[cssVar] = css[cssVar];
               delete css[cssVar];
@@ -484,6 +491,7 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
   theme.vars = themeVars;
   theme.generateCssVars = generateCssVars;
   theme.generateStyleSheets = generateStyleSheets;
+  theme.getColorSchemeSelector = (colorScheme) => `:where([${theme.attribute}="${colorScheme}"]) &`;
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
 
   theme.unstable_sxConfig = {
