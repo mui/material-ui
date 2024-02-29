@@ -74,10 +74,7 @@ export type ExtendTheme<
       styles: CSSObject<any>,
     ) => Record<string, CSSObject<any>>;
     getColorSchemeSelector: (colorScheme: Options['colorScheme']) => string;
-    generateCssVars: (colorScheme?: Options['colorScheme']) => {
-      css: Record<string, string | number>;
-      selector: string | Record<string, any>;
-    };
+    generateStyleSheets: () => Array<Record<string, any>>;
     unstable_sxConfig?: SxConfig;
   };
 
@@ -140,7 +137,7 @@ export function extendTheme<
     shouldSkipGeneratingVar,
     getSelector,
   };
-  const { generateCssVars } = prepareCssVars(otherTheme, parserConfig);
+  const { generateCssVars, generateStyleSheets } = prepareCssVars(otherTheme, parserConfig);
 
   let { vars } = generateCssVars();
   Object.entries(theme.colorSchemes || {}).forEach(([key]) => {
@@ -151,7 +148,7 @@ export function extendTheme<
     ...theme,
     defaultColorScheme,
     vars,
-    generateCssVars,
+    generateStyleSheets,
   } as unknown as ExtendTheme<{ colorScheme: Options['colorScheme']; tokens: Options['tokens'] }>;
 
   finalTheme.getColorSchemeSelector = (colorScheme: string) => {

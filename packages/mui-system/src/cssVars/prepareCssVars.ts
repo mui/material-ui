@@ -48,20 +48,20 @@ function prepareCssVars<
     colorSchemesMap[defaultColorScheme] = { css, vars };
   }
 
-  const generateCssVars = (colorScheme?: keyof T['colorSchemes']) => {
+  const generateCssVars = (colorScheme?: string) => {
     if (!colorScheme) {
       const css = { ...rootCss };
       return {
         css,
         vars: rootVars,
-        selector: getSelector?.(colorScheme, css) || ':root',
+        selector: getSelector?.(colorScheme as keyof T['colorSchemes'], css) || ':root',
       };
     }
     const css = { ...colorSchemesMap[colorScheme as string].css };
     return {
       css,
       vars: colorSchemesMap[colorScheme as string].vars,
-      selector: getSelector?.(colorScheme, css) || ':root',
+      selector: getSelector?.(colorScheme as keyof T['colorSchemes'], css) || ':root',
     };
   };
 
