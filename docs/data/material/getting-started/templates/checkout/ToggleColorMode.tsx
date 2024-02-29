@@ -9,13 +9,11 @@ import ModeNightRoundedIcon from '@mui/icons-material/ModeNightRounded';
 interface ToggleColorModeProps {
   mode: PaletteMode;
   toggleColorMode: () => void;
-  showCustomTheme: any;
 }
 
 function ToggleColorMode({
   mode,
   toggleColorMode,
-  showCustomTheme,
 }: ToggleColorModeProps) {
   return (
     <Box sx={{ maxWidth: '32px' }}>

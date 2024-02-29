@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded';
 import ModeNightRoundedIcon from '@mui/icons-material/ModeNightRounded';
 
-function ToggleColorMode({ mode, toggleColorMode, showCustomTheme }) {
+function ToggleColorMode({ mode, toggleColorMode }) {
   return (
     <Box sx={{ maxWidth: '32px' }}>
       <Button
@@ -29,7 +29,6 @@ function ToggleColorMode({ mode, toggleColorMode, showCustomTheme }) {
 
 ToggleColorMode.propTypes = {
   mode: PropTypes.oneOf(['dark', 'light']).isRequired,
-  showCustomTheme: PropTypes.any.isRequired,
   toggleColorMode: PropTypes.func.isRequired,
 };
 

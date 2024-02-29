@@ -324,30 +324,28 @@ export default function Checkout() {
               ))}
             </Stepper>
             {activeStep === steps.length ? (
-              <React.Fragment>
-                <Stack spacing={2}>
-                  <Typography variant="h1" gutterBottom>
-                    📦
-                  </Typography>
-                  <Typography variant="h5" gutterBottom>
-                    Thank you for your order!
-                  </Typography>
-                  <Typography variant="body1" color="text.secondary" gutterBottom>
-                    Your order number is
-                    <strong>&nbsp;#140396</strong>. We have emailed your order
-                    confirmation and will update you once its shipped.
-                  </Typography>
-                  <Button
-                    variant="contained"
-                    sx={{
-                      alignSelf: 'start',
-                      width: { xs: '100%', sm: 'auto' },
-                    }}
-                  >
-                    Go to my orders
-                  </Button>
-                </Stack>
-              </React.Fragment>
+              <Stack spacing={2}>
+                <Typography variant="h1" gutterBottom>
+                  📦
+                </Typography>
+                <Typography variant="h5" gutterBottom>
+                  Thank you for your order!
+                </Typography>
+                <Typography variant="body1" color="text.secondary" gutterBottom>
+                  Your order number is
+                  <strong>&nbsp;#140396</strong>. We have emailed your order
+                  confirmation and will update you once its shipped.
+                </Typography>
+                <Button
+                  variant="contained"
+                  sx={{
+                    alignSelf: 'start',
+                    width: { xs: '100%', sm: 'auto' },
+                  }}
+                >
+                  Go to my orders
+                </Button>
+              </Stack>
             ) : (
               <React.Fragment>
                 {getStepContent(activeStep)}
