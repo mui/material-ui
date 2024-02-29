@@ -106,14 +106,17 @@ export default function transformer(file, api, options) {
         });
       });
 
-    const selector = `${replacementSelectorPrefix}${deprecatedClass}`;
+    const selectorRegex = new RegExp(`${replacementSelectorPrefix}${deprecatedClass}($)`);
     root
-      .find(j.Literal, (literal) => typeof literal.value === 'string' && literal.value === selector)
+      .find(
+        j.Literal,
+        (literal) => typeof literal.value === 'string' && literal.value.match(selectorRegex),
+      )
       .forEach((path) => {
         path.replace(
           j.literal(
             path.value.value.replace(
-              selector,
+              selectorRegex,
               `${replacementSelectorPrefix}${replacementSelector}`,
             ),
           ),
