@@ -15,7 +15,7 @@ function ToggleColorMode({ mode, toggleColorMode, showCustomTheme }) {
         onClick={toggleColorMode}
         size="small"
         aria-label="button to toggle theme"
-        sx={{ minWidth: '32px', height: '32px', p: '4px' }}
+        sx={{ minWidth: 32, height: 32, p: 1 }}
       >
         {mode === 'dark' ? (
           <WbSunnyRoundedIcon fontSize="small" />

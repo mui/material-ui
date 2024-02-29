@@ -6,6 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Stepper from '@mui/material/Stepper';
@@ -132,15 +133,32 @@ export default function Checkout() {
             alignItems: 'start',
             pt: 4,
             px: 10,
-            gap: 8,
+            gap: 4,
           }}
         >
           <Box
             sx={{
-              height: '32px',
-              width: '100%',
+              display: 'flex',
+              alignItems: 'end',
+              height: 150,
             }}
-          />
+          >
+            <Button
+              startIcon={<ArrowBackRoundedIcon />}
+              component="a"
+              href="/material-ui/getting-started/templates/landing-page/"
+              sx={{ ml: '-8px' }}
+            >
+              Back to
+              <img
+                src={
+                  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
+                }
+                style={logoStyle}
+                alt="Sitemark's logo"
+              />
+            </Button>
+          </Box>
           <Box
             sx={{
               display: 'flex',
@@ -150,21 +168,6 @@ export default function Checkout() {
               maxWidth: 500,
             }}
           >
-            <Button
-              startIcon={<ArrowBackRoundedIcon />}
-              component="a"
-              href="/material-ui/getting-started/templates/landing-page/"
-              sx={{ alignSelf: 'start', ml: '-8px' }}
-            >
-              Back to
-              <img
-                src={
-                  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
-                }
-                style={logoStyle}
-                alt="logo of sitemark"
-              />
-            </Button>
             <Info />
           </Box>
         </Grid>
@@ -192,15 +195,14 @@ export default function Checkout() {
               alignItems: 'center',
               width: '100%',
               maxWidth: { sm: '100%', md: 600 },
-              height: 40,
             }}
           >
             <Box
               sx={{
-                display: { sm: 'flex', md: 'none' },
+                display: { xs: 'flex', md: 'none' },
                 flexDirection: 'row',
                 width: '100%',
-                alignItems: 'center',
+                justifyContent: 'space-between',
               }}
             >
               <Button
@@ -218,12 +220,48 @@ export default function Checkout() {
                   alt="logo of sitemark"
                 />
               </Button>
+              <ToggleColorMode
+                mode={mode}
+                toggleColorMode={toggleColorMode}
+                showCustomTheme={showCustomTheme}
+              />
             </Box>
-            <ToggleColorMode
-              mode={mode}
-              toggleColorMode={toggleColorMode}
-              showCustomTheme={showCustomTheme}
-            />
+            <Box
+              sx={{
+                display: { xs: 'none', md: 'flex' },
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                alignItems: 'flex-end',
+                flexGrow: 1,
+                height: 150,
+              }}
+            >
+              <ToggleColorMode
+                mode={mode}
+                toggleColorMode={toggleColorMode}
+                showCustomTheme={showCustomTheme}
+              />
+              <Stepper
+                id="desktop-stepper"
+                activeStep={activeStep}
+                sx={{
+                  width: '100%',
+                  height: '40px',
+                }}
+              >
+                {steps.map((label) => (
+                  <Step
+                    sx={{
+                      ':first-child': { pl: 0 },
+                      ':last-child': { pr: 0 },
+                    }}
+                    key={label}
+                  >
+                    <StepLabel>{label}</StepLabel>
+                  </Step>
+                ))}
+              </Stepper>
+            </Box>
           </Box>
           <Card
             sx={{
@@ -241,9 +279,13 @@ export default function Checkout() {
             >
               <Box sx={{ flexGrow: 1 }}>
                 <Typography variant="subtitle2" gutterBottom>
-                  Products selected
+                  Selected products
                 </Typography>
-                <Typography variant="body1">$134.98</Typography>
+                <Typography variant="body1">
+                  <Typography variant="body1">
+                    {activeStep === 2 ? '144.97' : '$134.98'}
+                  </Typography>
+                </Typography>
               </Box>
               <InfoMobile />
             </CardContent>
@@ -256,30 +298,14 @@ export default function Checkout() {
               width: '100%',
               maxWidth: { sm: '100%', md: 600 },
               maxHeight: '720px',
+              gap: { xs: 5, md: 'none' },
             }}
           >
-            <Stepper
-              id="desktop-stepper"
-              activeStep={activeStep}
-              sx={{ display: { xs: 'none', sm: 'flex' }, mb: { xs: 5, md: 10 } }}
-            >
-              {steps.map((label) => (
-                <Step
-                  sx={{
-                    ':first-child': { pl: 0 },
-                    ':last-child': { pr: 0 },
-                  }}
-                  key={label}
-                >
-                  <StepLabel>{label}</StepLabel>
-                </Step>
-              ))}
-            </Stepper>
             <Stepper
               id="mobile-stepper"
               activeStep={activeStep}
               alternativeLabel
-              sx={{ display: { xs: 'flex', sm: 'none' }, mb: 4 }}
+              sx={{ display: { sm: 'flex', md: 'none' } }}
             >
               {steps.map((label) => (
                 <Step
@@ -299,30 +325,28 @@ export default function Checkout() {
             </Stepper>
             {activeStep === steps.length ? (
               <React.Fragment>
-                <Typography variant="h1" gutterBottom>
-                  📦
-                </Typography>
-                <Typography variant="h5" gutterBottom>
-                  Thank you for your order.
-                </Typography>
-                <Typography variant="body1" color="text.secondary" gutterBottom>
-                  Your order number is
-                  <Typography component="span" sx={{ fontWeight: 600 }}>
-                    &nbsp;#140396
+                <Stack spacing={2}>
+                  <Typography variant="h1" gutterBottom>
+                    📦
                   </Typography>
-                  . We have emailed your order confirmation, and will send you an
-                  update when your order has shipped.
-                </Typography>
-                <Button
-                  variant="contained"
-                  sx={{
-                    alignSelf: 'start',
-                    width: { xs: '100%', sm: 'auto' },
-                    mt: 2,
-                  }}
-                >
-                  Go to my orders
-                </Button>
+                  <Typography variant="h5" gutterBottom>
+                    Thank you for your order!
+                  </Typography>
+                  <Typography variant="body1" color="text.secondary" gutterBottom>
+                    Your order number is
+                    <strong>&nbsp;#140396</strong>. We have emailed your order
+                    confirmation and will update you once its shipped.
+                  </Typography>
+                  <Button
+                    variant="contained"
+                    sx={{
+                      alignSelf: 'start',
+                      width: { xs: '100%', sm: 'auto' },
+                    }}
+                  >
+                    Go to my orders
+                  </Button>
+                </Stack>
               </React.Fragment>
             ) : (
               <React.Fragment>

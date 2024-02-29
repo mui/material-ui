@@ -12,7 +12,7 @@ const products = [
   },
   {
     name: 'Dedicated support',
-    desc: 'Included in Professional plan',
+    desc: 'Included in the Professional plan',
     price: 'Free',
   },
   {
@@ -30,7 +30,7 @@ const products = [
 export default function Info() {
   return (
     <React.Fragment>
-      <Typography variant="subtitle2" color="text.secondary" sx={{ mt: 10 }}>
+      <Typography variant="subtitle2" color="text.secondary">
         Total
       </Typography>
       <Typography variant="h4" gutterBottom>
