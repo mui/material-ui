@@ -13,6 +13,20 @@ const theme = {
       main: 'red',
     },
   },
+  size: {
+    font: {
+      h1: '3rem',
+    },
+  },
+  components: {
+    MuiSlider: {
+      styleOverrides: {
+        rail: {
+          fontSize: '3rem',
+        },
+      },
+    },
+  },
 };
 
 describe('zero-runtime', () => {
@@ -59,8 +73,8 @@ describe('zero-runtime', () => {
         asyncResolveFallback,
       );
 
-      expect(result.code.trim()).to.equal(outputContent.trim());
       expect(result.cssText).to.equal(outputCssContent);
+      expect(result.code.trim()).to.equal(outputContent.trim());
     });
   });
 });
