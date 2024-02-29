@@ -11,10 +11,7 @@ interface ToggleColorModeProps {
   toggleColorMode: () => void;
 }
 
-function ToggleColorMode({
-  mode,
-  toggleColorMode,
-}: ToggleColorModeProps) {
+function ToggleColorMode({ mode, toggleColorMode }: ToggleColorModeProps) {
   return (
     <Box sx={{ maxWidth: '32px' }}>
       <Button
