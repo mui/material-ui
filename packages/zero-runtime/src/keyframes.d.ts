@@ -1,7 +1,7 @@
 import type { CSSProperties } from './base';
 import type { ThemeArgs } from './theme';
 
-type Primitve = string | null | undefined | boolean | number;
+export type Primitve = string | null | undefined | boolean | number;
 
 interface KeyframesObject {
   [key: string]: {
