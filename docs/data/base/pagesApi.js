@@ -2,6 +2,10 @@ module.exports = [
   { pathname: '/base-ui/react-badge/components-api/#badge', title: 'Badge' },
   { pathname: '/base-ui/react-button/components-api/#button', title: 'Button' },
   {
+    pathname: '/base-ui/react-checkbox/components-api/#checkbox',
+    title: 'Checkbox',
+  },
+  {
     pathname:
       '/base-ui/react-click-away-listener/components-api/#click-away-listener',
     title: 'ClickAwayListener',
