@@ -25,8 +25,8 @@ Dialogs are implemented using a collection of related components:
 - Dialog Title: a wrapper used for the title of a Dialog.
 - Dialog Actions: an optional container for a Dialog's Buttons.
 - Dialog Content: an optional container for displaying the Dialog's content.
-- Dialog Content Text: a wrapper used for text inside `<DialogContent>. -
-- Slide: optional [Transtion](https://mui.com/material-ui/transitions/#slide) used to slide the Dialog in from the edge of the screen.
+- Dialog Content Text: a wrapper used for text inside `<DialogContent>`. -
+- Slide: optional [Transition](https://mui.com/material-ui/transitions/#slide) used to slide the Dialog in from the edge of the screen.
 
 {{"demo": "SimpleDialogDemo.js"}}
 
