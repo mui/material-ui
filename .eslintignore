@@ -19,12 +19,12 @@
 /packages/mui-icons-material/src/*.js
 /packages/mui-icons-material/templateSvgIcon.js
 /packages/mui-utils/macros/__fixtures__/
-/packages/zero-runtime/utils/
-/packages/zero-runtime/processors/
-/packages/zero-runtime/exports/
-/packages/zero-runtime/theme/
-/packages/zero-runtime/tests/fixtures/
-/packages/zero-next-plugin/loader.js
+/packages/pigmentcss-react/utils/
+/packages/pigmentcss-react/processors/
+/packages/pigmentcss-react/exports/
+/packages/pigmentcss-react/theme/
+/packages/pigmentcss-react/tests/fixtures/
+/packages/pigmentcss-nextjs-plugin/loader.js
 # Ignore fixtures
 /packages-internal/scripts/typescript-to-proptypes/test/*/*
 /test/bundling/fixtures/**/*.fixture.js
