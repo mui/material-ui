@@ -110,6 +110,7 @@ export function useCheckbox(props: UseCheckboxParameters): UseCheckboxReturnValu
     ref: handleInputRef,
     required,
     type: 'checkbox',
+    role: 'checkbox',
     'aria-checked': checkedProp,
     ...otherProps,
     onChange: createHandleInputChange(otherProps),
