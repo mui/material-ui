@@ -138,7 +138,7 @@ const element = ref.current;
 ```
 
 If you're not sure if the Material UI component in question forwards its ref you can check the API documentation under "Props."
-You should find the message below, like in the [Button API](/material-ui/api/button/#props), [Button API](/material-ui/api/button/#props)
+You should find the message below, like in the [Button API](/material-ui/api/button/#props).
 
 > The ref is forwarded to the root element.
 
