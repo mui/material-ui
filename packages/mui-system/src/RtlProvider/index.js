@@ -8,8 +8,8 @@ function RtlProvider({ value, ...props }) {
 }
 
 RtlProvider.propTypes = {
-  value: PropTypes.bool,
   children: PropTypes.node,
+  value: PropTypes.bool,
 };
 
 export const useRtl = () => {

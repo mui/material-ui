@@ -281,7 +281,7 @@ describe('ThemeProvider', () => {
 
   it('sets the correct value for the RtlProvider based on the theme.direction', () => {
     let rtlValue = null;
-    const Test = () => {
+    function Test() {
       rtlValue = useRtl();
       return null;
     };
