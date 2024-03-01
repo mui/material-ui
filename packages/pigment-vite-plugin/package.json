@@ -9,13 +9,13 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/mui/material-ui.git",
-    "directory": "packages/pigmentcss-vite-plugin"
+    "directory": "packages/pigment-vite-plugin"
   },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://github.com/mui/material-ui/tree/master/packages/pigmentcss-react",
+  "homepage": "https://github.com/mui/material-ui/tree/master/packages/pigment-react",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mui-org"
@@ -23,7 +23,7 @@
   "scripts": {
     "clean": "rimraf build",
     "watch": "tsup --watch",
-    "copy-license": "node ../../scripts/pigmentcss-license.mjs",
+    "copy-license": "node ../../scripts/pigment-license.mjs",
     "build": "tsup",
     "typecheck": "tsc --noEmit -p ."
   },

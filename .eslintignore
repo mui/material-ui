@@ -19,12 +19,12 @@
 /packages/mui-icons-material/src/*.js
 /packages/mui-icons-material/templateSvgIcon.js
 /packages/mui-utils/macros/__fixtures__/
-/packages/pigmentcss-react/utils/
-/packages/pigmentcss-react/processors/
-/packages/pigmentcss-react/exports/
-/packages/pigmentcss-react/theme/
-/packages/pigmentcss-react/tests/fixtures/
-/packages/pigmentcss-nextjs-plugin/loader.js
+/packages/pigment-react/utils/
+/packages/pigment-react/processors/
+/packages/pigment-react/exports/
+/packages/pigment-react/theme/
+/packages/pigment-react/tests/fixtures/
+/packages/pigment-nextjs-plugin/loader.js
 # Ignore fixtures
 /packages-internal/scripts/typescript-to-proptypes/test/*/*
 /test/bundling/fixtures/**/*.fixture.js

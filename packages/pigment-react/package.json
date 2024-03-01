@@ -9,13 +9,13 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/mui/material-ui.git",
-    "directory": "packages/pigmentcss-react"
+    "directory": "packages/pigment-react"
   },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://github.com/mui/material-ui/tree/master/packages/pigmentcss-react",
+  "homepage": "https://github.com/mui/material-ui/tree/master/packages/pigment-react",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mui-org"
@@ -23,10 +23,10 @@
   "scripts": {
     "clean": "rimraf build types processors utils",
     "watch": "tsup --watch --clean false",
-    "copy-license": "node ../../scripts/pigmentcss-license.mjs",
+    "copy-license": "node ../../scripts/pigment-license.mjs",
     "build": "tsup",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/pigmentcss-react/**/*.test.{js,ts,tsx}'",
-    "test:ci": "cd ../../ && cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov --report-dir=./coverage/pigmentcss-react mocha 'packages/pigmentcss-react/**/*.test.{js,ts,tsx}'",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/pigment-react/**/*.test.{js,ts,tsx}'",
+    "test:ci": "cd ../../ && cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov --report-dir=./coverage/pigment-react mocha 'packages/pigment-react/**/*.test.{js,ts,tsx}'",
     "typecheck": "tsc --noEmit -p ."
   },
   "dependencies": {

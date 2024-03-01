@@ -269,16 +269,16 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
               return (
                 // this file should exist in the package
                 id.endsWith(`${process.env.RUNTIME_PACKAGE_NAME}/styles.css`) ||
-                id.endsWith('/pigmentcss-react/styles.css') ||
+                id.endsWith('/pigment-react/styles.css') ||
                 id.includes(`${process.env.RUNTIME_PACKAGE_NAME}/theme`) ||
-                id.includes('/pigmentcss-react/theme')
+                id.includes('/pigment-react/theme')
               );
             },
             transform(_code, id) {
               if (id.endsWith('styles.css')) {
                 return theme ? generateTokenCss(theme) : _code;
               }
-              if (id.includes('pigmentcss-react/theme')) {
+              if (id.includes('pigment-react/theme')) {
                 return `export default ${
                   theme ? JSON.stringify(generateThemeTokens(theme)) : '{}'
                 };`;

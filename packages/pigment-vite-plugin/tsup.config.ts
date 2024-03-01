@@ -1,6 +1,6 @@
 import { Options, defineConfig } from 'tsup';
 import config from '../../tsup.config';
-import zeroPkgJson from '../pigmentcss-react/package.json';
+import zeroPkgJson from '../pigment-react/package.json';
 
 const external = [`${zeroPkgJson.name}/utils`];
 

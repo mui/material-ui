@@ -1,6 +1,6 @@
 import { Options, defineConfig } from 'tsup';
 import config from '../../tsup.config';
-import runtimePackageJson from '../pigmentcss-react/package.json';
+import runtimePackageJson from '../pigment-react/package.json';
 
 const baseConfig: Options = {
   ...(config as Options),

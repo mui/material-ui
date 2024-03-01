@@ -6,4 +6,4 @@ packages:
   - '../packages/test-utils'
   - '../packages-internal/*'
   - '../packages/mui-*'
-  - '../packages/pigmentcss-*'
+  - '../packages/pigment-*'

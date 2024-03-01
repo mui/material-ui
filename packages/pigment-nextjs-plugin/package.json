@@ -1,21 +1,21 @@
 {
-  "name": "@pigmentcss/unplugin",
+  "name": "@pigmentcss/nextjs-plugin",
   "version": "0.0.1",
   "main": "build/index.js",
   "module": "build/index.mjs",
   "types": "build/index.d.ts",
   "author": "MUI Team",
-  "description": "Webpack integration for Pigment CSS.",
+  "description": "Next.js integration for Pigment CSS.",
   "repository": {
     "type": "git",
     "url": "https://github.com/mui/material-ui.git",
-    "directory": "packages/pigmentcss-unplugin"
+    "directory": "packages/pigment-nextjs-plugin"
   },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://github.com/mui/material-ui/tree/master/packages/pigmentcss-react",
+  "homepage": "https://github.com/mui/material-ui/tree/master/packages/pigment-react",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mui-org"
@@ -23,20 +23,18 @@
   "scripts": {
     "clean": "rimraf build types",
     "watch": "tsup --watch --tsconfig tsconfig.build.json",
-    "copy-license": "node ../../scripts/pigmentcss-license.mjs",
+    "copy-license": "node ../../scripts/pigment-license.mjs",
     "build": "tsup --tsconfig tsconfig.build.json",
     "typecheck": "tsc --noEmit -p ."
   },
   "dependencies": {
-    "@babel/core": "^7.23.9",
-    "@pigmentcss/react": "workspace:^",
-    "@wyw-in-js/shared": "^0.4.1",
-    "@wyw-in-js/transform": "^0.4.1",
-    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "unplugin": "^1.7.1"
+    "@pigmentcss/unplugin": "workspace:^"
   },
   "devDependencies": {
-    "@types/babel__core": "^7.20.5"
+    "next": "^13.5.1"
+  },
+  "peerDependencies": {
+    "next": "^12.0.0 || ^13.0.0 || ^14.0.0"
   },
   "sideEffects": false,
   "publishConfig": {
@@ -44,6 +42,10 @@
   },
   "files": [
     "build",
+    "loader.js",
+    "next-font.js",
+    "next-image.js",
+    "zero-virtual.css",
     "package.json",
     "LICENSE"
   ]
