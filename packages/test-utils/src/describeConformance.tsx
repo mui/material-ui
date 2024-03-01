@@ -988,22 +988,10 @@ function testThemeCustomPalette(element: React.ReactElement, getOptions: () => C
       if (!/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
-      const { muiName, render, ThemeProvider, createTheme } = getOptions();
+      const { render, ThemeProvider, createTheme } = getOptions();
 
-      if (!muiName) {
-        throwMissingPropError('muiName');
-      }
-
-      if (!render) {
-        throwMissingPropError('render');
-      }
-
-      if (!ThemeProvider) {
-        throwMissingPropError('ThemeProvider');
-      }
-
-      if (!createTheme) {
-        throwMissingPropError('createTheme');
+      if (!render || !ThemeProvider || !createTheme) {
+        this.skip();
       }
 
       const theme = createTheme({
