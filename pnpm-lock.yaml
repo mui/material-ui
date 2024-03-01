@@ -273,8 +273,8 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0(webpack@5.90.1)
       lerna:
-        specifier: ^8.0.2
-        version: 8.0.2
+        specifier: ^8.1.2
+        version: 8.1.2
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -4974,8 +4974,8 @@ packages:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.15
 
-  /@lerna/create@8.0.2:
-    resolution: {integrity: sha512-AueSlfiYXqEmy9/EIc17mjlaHFuv734dfgVBegyoefIA7hdeoExtsXnACWf8Tw5af6gwyTL3KAp6QQyc1sTuZQ==}
+  /@lerna/create@8.1.2:
+    resolution: {integrity: sha512-GzScCIkAW3tg3+Yn/MKCH9963bzG+zpjGz2NdfYDlYWI7p0f/SH46v1dqpPpYmZ2E/m3JK8HjTNNNL8eIm8/YQ==}
     engines: {node: '>=18.0.0'}
     dependencies:
       '@npmcli/run-script': 7.0.2
@@ -14753,12 +14753,12 @@ packages:
     dependencies:
       readable-stream: 2.3.7
 
-  /lerna@8.0.2:
-    resolution: {integrity: sha512-nnOIGI5V5Af9gfraNcMVoV1Fry/y7/h3nCQYk0/CMzBYDD+xbNL3DH8+c82AJkNR5ABslmpXjW4DLJ11/1b3CQ==}
+  /lerna@8.1.2:
+    resolution: {integrity: sha512-RCyBAn3XsqqvHbz3TxLfD7ylqzCi1A2UJnFEZmhURgx589vM3qYWQa/uOMeEEf565q6cAdtmulITciX1wgkAtw==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     dependencies:
-      '@lerna/create': 8.0.2
+      '@lerna/create': 8.1.2
       '@npmcli/run-script': 7.0.2
       '@nx/devkit': 17.2.8(nx@17.2.8)
       '@octokit/plugin-enterprise-rest': 6.0.1
