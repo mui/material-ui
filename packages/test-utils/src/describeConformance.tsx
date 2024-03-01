@@ -978,6 +978,47 @@ function testThemeVariants(element: React.ReactElement, getOptions: () => Confor
   });
 }
 
+/**
+ * MUI theme supports custom palettes.
+ * The components that iterate over the palette via `variants` should be able to render with or without applying the custom palette styles.
+ */
+function testThemeCustomPalette(element: React.ReactElement, getOptions: () => ConformanceOptions) {
+  describe('theme extended palette:', () => {
+    it.only('should render without errors', function test() {
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const { muiName, render, ThemeProvider, createTheme } = getOptions();
+
+      if (!muiName) {
+        throwMissingPropError('muiName');
+      }
+
+      if (!render) {
+        throwMissingPropError('render');
+      }
+
+      if (!ThemeProvider) {
+        throwMissingPropError('ThemeProvider');
+      }
+
+      if (!createTheme) {
+        throwMissingPropError('createTheme');
+      }
+
+      const theme = createTheme({
+        palette: {
+          custom: {
+            main: '#ff5252',
+          },
+        },
+      });
+
+      expect(() => render(<ThemeProvider theme={theme}>{element}</ThemeProvider>)).not.to.throw();
+    });
+  });
+}
+
 const fullSuite = {
   componentProp: testComponentProp,
   componentsProp: testComponentsProp,
@@ -992,6 +1033,7 @@ const fullSuite = {
   themeDefaultProps: testThemeDefaultProps,
   themeStyleOverrides: testThemeStyleOverrides,
   themeVariants: testThemeVariants,
+  themeCustomPalette: testThemeCustomPalette,
 };
 
 /**
