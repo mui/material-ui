@@ -85,7 +85,7 @@
     "@googleapis/sheets": "^5.0.5",
     "@slack/bolt": "^3.17.1",
     "execa": "^8.0.1",
-    "google-auth-library": "^9.5.0"
+    "google-auth-library": "^9.6.3"
   },
   "devDependencies": {
     "@argos-ci/core": "^1.5.4",

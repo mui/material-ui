@@ -41,8 +41,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1
       google-auth-library:
-        specifier: ^9.5.0
-        version: 9.5.0
+        specifier: ^9.6.3
+        version: 9.6.3
     devDependencies:
       '@argos-ci/core':
         specifier: ^1.5.4
@@ -12804,8 +12804,8 @@ packages:
       csstype: 3.1.3
     dev: false
 
-  /google-auth-library@9.5.0:
-    resolution: {integrity: sha512-OUbP509lWVlZxuMY+Cgomw49VzZFP9myIcVeYEpeBlbXJbPC4R+K4BmO9hd3ciYM5QIwm5W1PODcKjqxtkye9Q==}
+  /google-auth-library@9.6.3:
+    resolution: {integrity: sha512-4CacM29MLC2eT9Cey5GDVK4Q8t+MMp8+OEdOaqD9MG6b0dOyLORaaeJMPQ7EESVgm/+z5EKYyFLxgzBJlJgyHQ==}
     engines: {node: '>=14'}
     dependencies:
       base64-js: 1.5.1
@@ -12825,7 +12825,7 @@ packages:
     dependencies:
       extend: 3.0.2
       gaxios: 6.1.1
-      google-auth-library: 9.5.0
+      google-auth-library: 9.6.3
       qs: 6.11.0
       url-template: 2.0.8
       uuid: 9.0.1
