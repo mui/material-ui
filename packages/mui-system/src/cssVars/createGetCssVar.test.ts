@@ -4,6 +4,7 @@ import createGetCssVar from './createGetCssVar';
 describe('createGetCssVar', () => {
   describe('default without prefix', () => {
     const getThemeVar = createGetCssVar();
+
     it('should return correct CSS var with default prefix', () => {
       expect(getThemeVar('palette-primary-500')).to.equal('var(--palette-primary-500)');
     });

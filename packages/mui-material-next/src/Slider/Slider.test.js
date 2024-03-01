@@ -42,6 +42,7 @@ describe('<Slider />', () => {
       removeListener: () => {},
     });
   });
+
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
   });
@@ -729,6 +730,7 @@ describe('<Slider />', () => {
       expect(slider).to.have.attribute('aria-valuenow', String(min));
     });
   });
+
   describe('prop: max', () => {
     it('should set the max and aria-valuemax on the input', () => {
       const max = 750;

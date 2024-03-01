@@ -1323,6 +1323,7 @@ describe('Joy <Autocomplete />', () => {
       checkHighlightIs(autocompleteListbox, 'six');
       expect(autocompleteListbox.scrollTop).to.greaterThan(0);
     });
+
     it('should keep focus on selected option and not reset to top option when options updated', () => {
       const { setProps } = render(<Autocomplete open options={['one', 'two']} autoFocus />);
       const textbox = screen.getByRole('combobox');
