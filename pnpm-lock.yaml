@@ -2082,6 +2082,157 @@ importers:
         specifier: ^11.2.0
         version: 11.2.0
 
+  packages/pigment-nextjs-plugin:
+    dependencies:
+      '@pigmentcss/unplugin':
+        specifier: workspace:^
+        version: link:../pigment-unplugin
+    devDependencies:
+      next:
+        specifier: ^13.5.1
+        version: 13.5.1(@babel/core@7.23.9)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
+
+  packages/pigment-react:
+    dependencies:
+      '@babel/core':
+        specifier: ^7.23.9
+        version: 7.23.9
+      '@babel/helper-module-imports':
+        specifier: ^7.22.15
+        version: 7.22.15
+      '@babel/helper-plugin-utils':
+        specifier: ^7.22.5
+        version: 7.22.5
+      '@babel/parser':
+        specifier: ^7.23.9
+        version: 7.23.9
+      '@babel/types':
+        specifier: ^7.23.9
+        version: 7.23.9
+      '@emotion/css':
+        specifier: ^11.11.2
+        version: 11.11.2
+      '@emotion/react':
+        specifier: ^11.11.3
+        version: 11.11.3(@types/react@18.2.55)(react@18.2.0)
+      '@emotion/serialize':
+        specifier: ^1.1.3
+        version: 1.1.3
+      '@emotion/styled':
+        specifier: ^11.11.0
+        version: 11.11.0(@emotion/react@11.11.3)(@types/react@18.2.55)(react@18.2.0)
+      '@mui/system':
+        specifier: workspace:^
+        version: link:../mui-system/build
+      '@wyw-in-js/processor-utils':
+        specifier: ^0.4.1
+        version: 0.4.1
+      '@wyw-in-js/shared':
+        specifier: ^0.4.1
+        version: 0.4.1
+      '@wyw-in-js/transform':
+        specifier: ^0.4.1
+        version: 0.4.1
+      clsx:
+        specifier: ^2.1.0
+        version: 2.1.0
+      cssesc:
+        specifier: ^3.0.0
+        version: 3.0.0
+      csstype:
+        specifier: ^3.1.3
+        version: 3.1.3
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
+      stylis:
+        specifier: ^4.3.1
+        version: 4.3.1
+    devDependencies:
+      '@types/babel__core':
+        specifier: ^7.20.5
+        version: 7.20.5
+      '@types/babel__helper-module-imports':
+        specifier: ^7.18.3
+        version: 7.18.3
+      '@types/babel__helper-plugin-utils':
+        specifier: ^7.10.3
+        version: 7.10.3
+      '@types/cssesc':
+        specifier: ^3.0.2
+        version: 3.0.2
+      '@types/lodash':
+        specifier: ^4.14.202
+        version: 4.14.202
+      '@types/node':
+        specifier: ^18.19.19
+        version: 18.19.19
+      '@types/react':
+        specifier: ^18.2.55
+        version: 18.2.55
+      '@types/stylis':
+        specifier: ^4.2.5
+        version: 4.2.5
+      chai:
+        specifier: ^4.4.1
+        version: 4.4.1
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+
+  packages/pigment-unplugin:
+    dependencies:
+      '@babel/core':
+        specifier: ^7.23.9
+        version: 7.23.9
+      '@pigmentcss/react':
+        specifier: workspace:^
+        version: link:../pigment-react
+      '@wyw-in-js/shared':
+        specifier: ^0.4.1
+        version: 0.4.1
+      '@wyw-in-js/transform':
+        specifier: ^0.4.1
+        version: 0.4.1
+      babel-plugin-transform-react-remove-prop-types:
+        specifier: ^0.4.24
+        version: 0.4.24
+      unplugin:
+        specifier: ^1.7.1
+        version: 1.7.1
+    devDependencies:
+      '@types/babel__core':
+        specifier: ^7.20.5
+        version: 7.20.5
+
+  packages/pigment-vite-plugin:
+    dependencies:
+      '@babel/core':
+        specifier: ^7.23.9
+        version: 7.23.9
+      '@babel/preset-typescript':
+        specifier: ^7.23.3
+        version: 7.23.3(@babel/core@7.23.9)
+      '@pigmentcss/react':
+        specifier: workspace:^
+        version: link:../pigment-react
+      '@wyw-in-js/shared':
+        specifier: ^0.4.1
+        version: 0.4.1
+      '@wyw-in-js/transform':
+        specifier: ^0.4.1
+        version: 0.4.1
+      babel-plugin-transform-react-remove-prop-types:
+        specifier: ^0.4.24
+        version: 0.4.24
+    devDependencies:
+      '@types/babel__core':
+        specifier: ^7.20.5
+        version: 7.20.5
+      vite:
+        specifier: ^5.0.12
+        version: 5.0.12(@types/node@18.19.19)
+
   packages/react-docgen-types:
     devDependencies:
       ast-types:
@@ -2211,157 +2362,6 @@ importers:
         version: 5.3.3
 
   packages/waterfall: {}
-
-  packages/zero-next-plugin:
-    dependencies:
-      '@mui/zero-unplugin':
-        specifier: workspace:^
-        version: link:../zero-unplugin
-    devDependencies:
-      next:
-        specifier: ^13.5.1
-        version: 13.5.1(@babel/core@7.23.9)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
-
-  packages/zero-runtime:
-    dependencies:
-      '@babel/core':
-        specifier: ^7.23.9
-        version: 7.23.9
-      '@babel/helper-module-imports':
-        specifier: ^7.22.15
-        version: 7.22.15
-      '@babel/helper-plugin-utils':
-        specifier: ^7.22.5
-        version: 7.22.5
-      '@babel/parser':
-        specifier: ^7.23.9
-        version: 7.23.9
-      '@babel/types':
-        specifier: ^7.23.9
-        version: 7.23.9
-      '@emotion/css':
-        specifier: ^11.11.2
-        version: 11.11.2
-      '@emotion/react':
-        specifier: ^11.11.3
-        version: 11.11.3(@types/react@18.2.55)(react@18.2.0)
-      '@emotion/serialize':
-        specifier: ^1.1.3
-        version: 1.1.3
-      '@emotion/styled':
-        specifier: ^11.11.0
-        version: 11.11.0(@emotion/react@11.11.3)(@types/react@18.2.55)(react@18.2.0)
-      '@mui/system':
-        specifier: workspace:^
-        version: link:../mui-system/build
-      '@wyw-in-js/processor-utils':
-        specifier: ^0.4.1
-        version: 0.4.1
-      '@wyw-in-js/shared':
-        specifier: ^0.4.1
-        version: 0.4.1
-      '@wyw-in-js/transform':
-        specifier: ^0.4.1
-        version: 0.4.1
-      clsx:
-        specifier: ^2.1.0
-        version: 2.1.0
-      cssesc:
-        specifier: ^3.0.0
-        version: 3.0.0
-      csstype:
-        specifier: ^3.1.3
-        version: 3.1.3
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
-      stylis:
-        specifier: ^4.3.1
-        version: 4.3.1
-    devDependencies:
-      '@types/babel__core':
-        specifier: ^7.20.5
-        version: 7.20.5
-      '@types/babel__helper-module-imports':
-        specifier: ^7.18.3
-        version: 7.18.3
-      '@types/babel__helper-plugin-utils':
-        specifier: ^7.10.3
-        version: 7.10.3
-      '@types/cssesc':
-        specifier: ^3.0.2
-        version: 3.0.2
-      '@types/lodash':
-        specifier: ^4.14.202
-        version: 4.14.202
-      '@types/node':
-        specifier: ^18.19.19
-        version: 18.19.19
-      '@types/react':
-        specifier: ^18.2.55
-        version: 18.2.55
-      '@types/stylis':
-        specifier: ^4.2.5
-        version: 4.2.5
-      chai:
-        specifier: ^4.4.1
-        version: 4.4.1
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/zero-unplugin:
-    dependencies:
-      '@babel/core':
-        specifier: ^7.23.9
-        version: 7.23.9
-      '@mui/zero-runtime':
-        specifier: workspace:^
-        version: link:../zero-runtime
-      '@wyw-in-js/shared':
-        specifier: ^0.4.1
-        version: 0.4.1
-      '@wyw-in-js/transform':
-        specifier: ^0.4.1
-        version: 0.4.1
-      babel-plugin-transform-react-remove-prop-types:
-        specifier: ^0.4.24
-        version: 0.4.24
-      unplugin:
-        specifier: ^1.7.1
-        version: 1.7.1
-    devDependencies:
-      '@types/babel__core':
-        specifier: ^7.20.5
-        version: 7.20.5
-
-  packages/zero-vite-plugin:
-    dependencies:
-      '@babel/core':
-        specifier: ^7.23.9
-        version: 7.23.9
-      '@babel/preset-typescript':
-        specifier: ^7.23.3
-        version: 7.23.3(@babel/core@7.23.9)
-      '@mui/zero-runtime':
-        specifier: workspace:^
-        version: link:../zero-runtime
-      '@wyw-in-js/shared':
-        specifier: ^0.4.1
-        version: 0.4.1
-      '@wyw-in-js/transform':
-        specifier: ^0.4.1
-        version: 0.4.1
-      babel-plugin-transform-react-remove-prop-types:
-        specifier: ^0.4.24
-        version: 0.4.24
-    devDependencies:
-      '@types/babel__core':
-        specifier: ^7.20.5
-        version: 7.20.5
-      vite:
-        specifier: ^5.0.12
-        version: 5.0.12(@types/node@18.19.19)
 
   test:
     devDependencies:

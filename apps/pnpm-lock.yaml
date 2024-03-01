@@ -55,8 +55,8 @@ importers:
         specifier: ^4.14.202
         version: 4.14.202
       '@types/node':
-        specifier: ^18.19.15
-        version: 18.19.18
+        specifier: ^18.19.19
+        version: 18.19.20
       '@types/prettier':
         specifier: ^2.7.3
         version: 2.7.3
@@ -116,8 +116,8 @@ importers:
         specifier: ^10.0.6
         version: 10.0.6
       '@types/node':
-        specifier: ^18.19.15
-        version: 18.19.18
+        specifier: ^18.19.19
+        version: 18.19.20
       babel-plugin-tester:
         specifier: ^11.0.4
         version: 11.0.4(@babel/core@7.23.9)
@@ -262,8 +262,8 @@ importers:
         version: 15.8.1
     devDependencies:
       '@types/node':
-        specifier: ^18.19.10
-        version: 18.19.18
+        specifier: ^18.19.19
+        version: 18.19.20
       '@types/prop-types':
         specifier: ^15.7.11
         version: 15.7.11
@@ -1059,8 +1059,8 @@ importers:
         specifier: ^10.0.6
         version: 10.0.6
       '@types/node':
-        specifier: ^18.19.15
-        version: 18.19.18
+        specifier: ^18.19.19
+        version: 18.19.20
       '@types/react':
         specifier: ^18.2.55
         version: 18.2.55
@@ -1086,6 +1086,157 @@ importers:
         specifier: ^15.2.0
         version: 15.2.0
     publishDirectory: build
+
+  ../packages/pigment-nextjs-plugin:
+    dependencies:
+      '@pigmentcss/unplugin':
+        specifier: workspace:^
+        version: link:../pigment-unplugin
+    devDependencies:
+      next:
+        specifier: ^13.5.1
+        version: 13.5.1(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0)
+
+  ../packages/pigment-react:
+    dependencies:
+      '@babel/core':
+        specifier: ^7.23.9
+        version: 7.23.9
+      '@babel/helper-module-imports':
+        specifier: ^7.22.15
+        version: 7.22.15
+      '@babel/helper-plugin-utils':
+        specifier: ^7.22.5
+        version: 7.22.5
+      '@babel/parser':
+        specifier: ^7.23.9
+        version: 7.23.9
+      '@babel/types':
+        specifier: ^7.23.9
+        version: 7.23.9
+      '@emotion/css':
+        specifier: ^11.11.2
+        version: 11.11.2
+      '@emotion/react':
+        specifier: ^11.11.3
+        version: 11.11.3(@types/react@18.2.55)(react@18.2.0)
+      '@emotion/serialize':
+        specifier: ^1.1.3
+        version: 1.1.3
+      '@emotion/styled':
+        specifier: ^11.11.0
+        version: 11.11.0(@emotion/react@11.11.3)(@types/react@18.2.55)(react@18.2.0)
+      '@mui/system':
+        specifier: workspace:^
+        version: link:../mui-system/build
+      '@wyw-in-js/processor-utils':
+        specifier: ^0.4.1
+        version: 0.4.1
+      '@wyw-in-js/shared':
+        specifier: ^0.4.1
+        version: 0.4.1
+      '@wyw-in-js/transform':
+        specifier: ^0.4.1
+        version: 0.4.1(typescript@5.3.3)
+      clsx:
+        specifier: ^2.1.0
+        version: 2.1.0
+      cssesc:
+        specifier: ^3.0.0
+        version: 3.0.0
+      csstype:
+        specifier: ^3.1.3
+        version: 3.1.3
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
+      stylis:
+        specifier: ^4.3.1
+        version: 4.3.1
+    devDependencies:
+      '@types/babel__core':
+        specifier: ^7.20.5
+        version: 7.20.5
+      '@types/babel__helper-module-imports':
+        specifier: ^7.18.3
+        version: 7.18.3
+      '@types/babel__helper-plugin-utils':
+        specifier: ^7.10.3
+        version: 7.10.3
+      '@types/cssesc':
+        specifier: ^3.0.2
+        version: 3.0.2
+      '@types/lodash':
+        specifier: ^4.14.202
+        version: 4.14.202
+      '@types/node':
+        specifier: ^18.19.19
+        version: 18.19.20
+      '@types/react':
+        specifier: ^18.2.55
+        version: 18.2.55
+      '@types/stylis':
+        specifier: ^4.2.5
+        version: 4.2.5
+      chai:
+        specifier: ^4.4.1
+        version: 4.4.1
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+
+  ../packages/pigment-unplugin:
+    dependencies:
+      '@babel/core':
+        specifier: ^7.23.9
+        version: 7.23.9
+      '@pigmentcss/react':
+        specifier: workspace:^
+        version: link:../pigment-react
+      '@wyw-in-js/shared':
+        specifier: ^0.4.1
+        version: 0.4.1
+      '@wyw-in-js/transform':
+        specifier: ^0.4.1
+        version: 0.4.1(typescript@5.3.3)
+      babel-plugin-transform-react-remove-prop-types:
+        specifier: ^0.4.24
+        version: 0.4.24
+      unplugin:
+        specifier: ^1.7.1
+        version: 1.7.1
+    devDependencies:
+      '@types/babel__core':
+        specifier: ^7.20.5
+        version: 7.20.5
+
+  ../packages/pigment-vite-plugin:
+    dependencies:
+      '@babel/core':
+        specifier: ^7.23.9
+        version: 7.23.9
+      '@babel/preset-typescript':
+        specifier: ^7.23.3
+        version: 7.23.3(@babel/core@7.23.9)
+      '@pigmentcss/react':
+        specifier: workspace:^
+        version: link:../pigment-react
+      '@wyw-in-js/shared':
+        specifier: ^0.4.1
+        version: 0.4.1
+      '@wyw-in-js/transform':
+        specifier: ^0.4.1
+        version: 0.4.1(typescript@5.3.3)
+      babel-plugin-transform-react-remove-prop-types:
+        specifier: ^0.4.24
+        version: 0.4.24
+    devDependencies:
+      '@types/babel__core':
+        specifier: ^7.20.5
+        version: 7.20.5
+      vite:
+        specifier: ^5.0.12
+        version: 5.0.12
 
   ../packages/test-utils:
     dependencies:
@@ -1195,164 +1346,13 @@ importers:
 
   ../packages/waterfall: {}
 
-  ../packages/zero-next-plugin:
-    dependencies:
-      '@mui/zero-unplugin':
-        specifier: workspace:^
-        version: link:../zero-unplugin
-    devDependencies:
-      next:
-        specifier: ^13.5.1
-        version: 13.5.1(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0)
-
-  ../packages/zero-runtime:
-    dependencies:
-      '@babel/core':
-        specifier: ^7.23.9
-        version: 7.23.9
-      '@babel/helper-module-imports':
-        specifier: ^7.22.15
-        version: 7.22.15
-      '@babel/helper-plugin-utils':
-        specifier: ^7.22.5
-        version: 7.22.5
-      '@babel/parser':
-        specifier: ^7.23.9
-        version: 7.23.9
-      '@babel/types':
-        specifier: ^7.23.9
-        version: 7.23.9
-      '@emotion/css':
-        specifier: ^11.11.2
-        version: 11.11.2
-      '@emotion/react':
-        specifier: ^11.11.3
-        version: 11.11.3(@types/react@18.2.55)(react@18.2.0)
-      '@emotion/serialize':
-        specifier: ^1.1.3
-        version: 1.1.3
-      '@emotion/styled':
-        specifier: ^11.11.0
-        version: 11.11.0(@emotion/react@11.11.3)(@types/react@18.2.55)(react@18.2.0)
-      '@mui/system':
-        specifier: workspace:^
-        version: link:../mui-system/build
-      '@wyw-in-js/processor-utils':
-        specifier: ^0.4.1
-        version: 0.4.1
-      '@wyw-in-js/shared':
-        specifier: ^0.4.1
-        version: 0.4.1
-      '@wyw-in-js/transform':
-        specifier: ^0.4.1
-        version: 0.4.1(typescript@5.3.3)
-      clsx:
-        specifier: ^2.1.0
-        version: 2.1.0
-      cssesc:
-        specifier: ^3.0.0
-        version: 3.0.0
-      csstype:
-        specifier: ^3.1.3
-        version: 3.1.3
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
-      stylis:
-        specifier: ^4.3.1
-        version: 4.3.1
-    devDependencies:
-      '@types/babel__core':
-        specifier: ^7.20.5
-        version: 7.20.5
-      '@types/babel__helper-module-imports':
-        specifier: ^7.18.3
-        version: 7.18.3
-      '@types/babel__helper-plugin-utils':
-        specifier: ^7.10.3
-        version: 7.10.3
-      '@types/cssesc':
-        specifier: ^3.0.2
-        version: 3.0.2
-      '@types/lodash':
-        specifier: ^4.14.202
-        version: 4.14.202
-      '@types/node':
-        specifier: ^18.19.15
-        version: 18.19.18
-      '@types/react':
-        specifier: ^18.2.55
-        version: 18.2.55
-      '@types/stylis':
-        specifier: ^4.2.5
-        version: 4.2.5
-      chai:
-        specifier: ^4.4.1
-        version: 4.4.1
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  ../packages/zero-unplugin:
-    dependencies:
-      '@babel/core':
-        specifier: ^7.23.9
-        version: 7.23.9
-      '@mui/zero-runtime':
-        specifier: workspace:^
-        version: link:../zero-runtime
-      '@wyw-in-js/shared':
-        specifier: ^0.4.1
-        version: 0.4.1
-      '@wyw-in-js/transform':
-        specifier: ^0.4.1
-        version: 0.4.1(typescript@5.3.3)
-      babel-plugin-transform-react-remove-prop-types:
-        specifier: ^0.4.24
-        version: 0.4.24
-      unplugin:
-        specifier: ^1.7.1
-        version: 1.7.1
-    devDependencies:
-      '@types/babel__core':
-        specifier: ^7.20.5
-        version: 7.20.5
-
-  ../packages/zero-vite-plugin:
-    dependencies:
-      '@babel/core':
-        specifier: ^7.23.9
-        version: 7.23.9
-      '@babel/preset-typescript':
-        specifier: ^7.23.3
-        version: 7.23.3(@babel/core@7.23.9)
-      '@mui/zero-runtime':
-        specifier: workspace:^
-        version: link:../zero-runtime
-      '@wyw-in-js/shared':
-        specifier: ^0.4.1
-        version: 0.4.1
-      '@wyw-in-js/transform':
-        specifier: ^0.4.1
-        version: 0.4.1(typescript@5.3.3)
-      babel-plugin-transform-react-remove-prop-types:
-        specifier: ^0.4.24
-        version: 0.4.24
-    devDependencies:
-      '@types/babel__core':
-        specifier: ^7.20.5
-        version: 7.20.5
-      vite:
-        specifier: ^5.0.12
-        version: 5.0.12
-
   local-ui-lib:
     dependencies:
-      '@mui/zero-runtime':
-        specifier: file:../../packages/zero-runtime/build
-        version: file:../packages/zero-runtime/build
+      '@pigmentcss/react':
+        specifier: file:../../packages/pigment-react
+        version: file:../packages/pigment-react(@types/react@18.2.55)(react@18.2.0)(typescript@5.3.3)
 
-  zero-runtime-next-app:
+  pigment-next-app:
     dependencies:
       '@emotion/cache':
         specifier: latest
@@ -1375,9 +1375,9 @@ importers:
       '@mui/utils':
         specifier: file:../../packages/mui-utils/build
         version: file:../packages/mui-utils/build(@types/react@18.2.55)(react@18.2.0)
-      '@mui/zero-runtime':
-        specifier: file:../../packages/zero-runtime
-        version: file:../packages/zero-runtime(@types/react@18.2.55)(react@18.2.0)(typescript@5.3.3)
+      '@pigmentcss/react':
+        specifier: file:../../packages/pigment-react
+        version: file:../packages/pigment-react(@types/react@18.2.55)(react@18.2.0)(typescript@5.3.3)
       local-ui-lib:
         specifier: workspace:^
         version: link:../local-ui-lib
@@ -1391,15 +1391,15 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
     devDependencies:
-      '@mui/zero-next-plugin':
-        specifier: file:../../packages/zero-next-plugin
-        version: file:../packages/zero-next-plugin(next@14.1.0)
-      '@mui/zero-unplugin':
-        specifier: file:../../packages/zero-unplugin
-        version: file:../packages/zero-unplugin(@mui/zero-runtime@0.0.1)(typescript@5.3.3)
+      '@pigmentcss/nextjs-plugin':
+        specifier: file:../../packages/pigment-nextjs-plugin
+        version: file:../packages/pigment-nextjs-plugin(next@14.1.0)
+      '@pigmentcss/unplugin':
+        specifier: file:../../packages/pigment-unplugin
+        version: file:../packages/pigment-unplugin(typescript@5.3.3)
       '@types/node':
         specifier: ^20.5.7
-        version: 20.11.20
+        version: 20.11.22
       '@types/react':
         specifier: ^18.2.55
         version: 18.2.55
@@ -1413,7 +1413,7 @@ importers:
         specifier: ^5.3.3
         version: 5.3.3
 
-  zero-runtime-vite-app:
+  pigment-vite-app:
     dependencies:
       '@mui/base':
         specifier: file:../../packages/mui-base/build
@@ -1433,9 +1433,9 @@ importers:
       '@mui/utils':
         specifier: file:../../packages/mui-utils/build
         version: file:../packages/mui-utils/build(@types/react@18.2.55)(react@18.2.0)
-      '@mui/zero-runtime':
-        specifier: file:../../packages/zero-runtime
-        version: file:../packages/zero-runtime(@types/react@18.2.55)(react@18.2.0)(typescript@5.3.3)
+      '@pigmentcss/react':
+        specifier: file:../../packages/pigment-react
+        version: file:../packages/pigment-react(@types/react@18.2.55)(react@18.2.0)(typescript@5.3.3)
       clsx:
         specifier: ^2.1.0
         version: 2.1.0
@@ -1464,9 +1464,9 @@ importers:
       '@babel/preset-typescript':
         specifier: ^7.23.3
         version: 7.23.3(@babel/core@7.23.9)
-      '@mui/zero-vite-plugin':
-        specifier: file:../../packages/zero-vite-plugin
-        version: file:../packages/zero-vite-plugin(vite@5.0.12)
+      '@pigmentcss/vite-plugin':
+        specifier: file:../../packages/pigment-vite-plugin
+        version: file:../packages/pigment-vite-plugin(vite@5.0.12)
       '@types/react':
         specifier: ^18.2.55
         version: 18.2.55
@@ -2799,6 +2799,7 @@ packages:
       '@emotion/serialize': 1.1.3
       '@emotion/sheet': 1.2.2
       '@emotion/utils': 1.2.1
+    dev: false
 
   /@emotion/hash@0.9.1:
     resolution: {integrity: sha512-gJB6HLm5rYwSLI6PQa+X1t5CFGrv1J1TWG+sOyMCeKz2ojaj6Fnl/rZEspogG+cvqbt4AE/2eIyD2QfLKTBNlQ==}
@@ -3707,7 +3708,7 @@ packages:
   /@types/cheerio@0.22.35:
     resolution: {integrity: sha512-yD57BchKRvTV+JD53UZ6PD8KWY5g5rvvMLRnZR3EQBCZXiDT/HR+pKpMzFGlWNhFrXlo7VPZXtKvIEwZkAWOIA==}
     dependencies:
-      '@types/node': 18.19.18
+      '@types/node': 20.11.22
     dev: true
 
   /@types/cssesc@3.0.2:
@@ -3765,14 +3766,14 @@ packages:
     resolution: {integrity: sha512-nG96G3Wp6acyAgJqGasjODb+acrI7KltPiRxzHPXnP3NgI28bpQDRv53olbqGXbfcgF5aiiHmO3xpwEpS5Ld9g==}
     dev: true
 
-  /@types/node@18.19.18:
-    resolution: {integrity: sha512-80CP7B8y4PzZF0GWx15/gVWRrB5y/bIjNI84NK3cmQJu0WZwvmj2WMA5LcofQFVfLqqCSp545+U2LsrVzX36Zg==}
+  /@types/node@18.19.20:
+    resolution: {integrity: sha512-SKXZvI375jkpvAj8o+5U2518XQv76mAsixqfXiVyWyXZbVWQK25RurFovYpVIxVzul0rZoH58V/3SkEnm7s3qA==}
     dependencies:
       undici-types: 5.26.5
     dev: true
 
-  /@types/node@20.11.20:
-    resolution: {integrity: sha512-7/rR21OS+fq8IyHTgtLkDK949uzsa6n8BkziAKtPVpugIkO6D+/ooXMvzXxDnZrmtXVfjb1bKQafYpb8s89LOg==}
+  /@types/node@20.11.22:
+    resolution: {integrity: sha512-/G+IxWxma6V3E+pqK1tSl2Fo1kl41pK1yeCyDsgkF9WlVAme4j5ISYM2zR11bgLFJGLN5sVK40T4RJNuiZbEjA==}
     dependencies:
       undici-types: 5.26.5
     dev: true
@@ -3828,7 +3829,7 @@ packages:
   /@types/resolve@0.0.8:
     resolution: {integrity: sha512-auApPaJf3NPfe18hSoJkp8EbZzer2ISk7o8mCC3M9he/a04+gbMF97NkpD2S8riMGvm4BMRI59/SZQSaLTKpsQ==}
     dependencies:
-      '@types/node': 18.19.18
+      '@types/node': 20.11.22
     dev: true
 
   /@types/scheduler@0.16.8:
@@ -4520,6 +4521,7 @@ packages:
   /clsx@2.1.0:
     resolution: {integrity: sha512-m3iNNWpd9rl3jvvcBnu70ylMdrXt8Vlq4HYadnU5fwcOtvkSQWPmj7amUcDT2qYI7risszBjI5AUIUox9D16pg==}
     engines: {node: '>=6'}
+    dev: false
 
   /collection-visit@1.0.0:
     resolution: {integrity: sha512-lNkKvzEeMBBjUGHZ+q6z9pSJla0KWAQPvtzhEV9+iGyQYG+pBpl7xKDhxoNSOZH2hhv0v5k0y2yAM4o4SjoSkw==}
@@ -4718,6 +4720,7 @@ packages:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
     engines: {node: '>=4'}
     hasBin: true
+    dev: false
 
   /csso@5.0.5:
     resolution: {integrity: sha512-0LrrStPOdJj+SPCCrGhzryycLjwcgUSHBtxNA8aIDxf0GLsRh1cKYhB00Gd1lDOS4yGH69+SNn13+TWbVHETFQ==}
@@ -6216,7 +6219,7 @@ packages:
     resolution: {integrity: sha512-KWYVV1c4i+jbMpaBC+U++4Va0cp8OisU185o73T1vo99hqi7w8tSJfUXYswwqqrjzwxa6KpRK54WhPvwf5w6PQ==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 18.19.18
+      '@types/node': 20.11.22
       merge-stream: 2.0.0
       supports-color: 7.2.0
     dev: true
@@ -9084,21 +9087,21 @@ packages:
       react-is: 18.2.0
     dev: false
 
-  file:../packages/zero-next-plugin(next@14.1.0):
-    resolution: {directory: ../packages/zero-next-plugin, type: directory}
-    id: file:../packages/zero-next-plugin
-    name: '@mui/zero-next-plugin'
+  file:../packages/pigment-nextjs-plugin(next@14.1.0):
+    resolution: {directory: ../packages/pigment-nextjs-plugin, type: directory}
+    id: file:../packages/pigment-nextjs-plugin
+    name: '@pigmentcss/nextjs-plugin'
     peerDependencies:
       next: ^12.0.0 || ^13.0.0 || ^14.0.0
     dependencies:
-      '@mui/zero-unplugin': link:../packages/zero-unplugin
+      '@pigmentcss/unplugin': link:../packages/pigment-unplugin
       next: 14.1.0(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0)
     dev: true
 
-  file:../packages/zero-runtime(@types/react@18.2.55)(react@18.2.0)(typescript@5.3.3):
-    resolution: {directory: ../packages/zero-runtime, type: directory}
-    id: file:../packages/zero-runtime
-    name: '@mui/zero-runtime'
+  file:../packages/pigment-react(@types/react@18.2.55)(react@18.2.0)(typescript@5.3.3):
+    resolution: {directory: ../packages/pigment-react, type: directory}
+    id: file:../packages/pigment-react
+    name: '@pigmentcss/react'
     peerDependencies:
       react: ^17.0.0 || ^18.0.0
     dependencies:
@@ -9125,21 +9128,15 @@ packages:
       - '@types/react'
       - supports-color
       - typescript
-
-  file:../packages/zero-runtime/build:
-    resolution: {directory: ../packages/zero-runtime/build, type: directory}
-    name: build
     dev: false
 
-  file:../packages/zero-unplugin(@mui/zero-runtime@0.0.1)(typescript@5.3.3):
-    resolution: {directory: ../packages/zero-unplugin, type: directory}
-    id: file:../packages/zero-unplugin
-    name: '@mui/zero-unplugin'
-    peerDependencies:
-      '@mui/zero-runtime': workspace:^
+  file:../packages/pigment-unplugin(typescript@5.3.3):
+    resolution: {directory: ../packages/pigment-unplugin, type: directory}
+    id: file:../packages/pigment-unplugin
+    name: '@pigmentcss/unplugin'
     dependencies:
       '@babel/core': 7.23.9
-      '@mui/zero-runtime': file:../packages/zero-runtime(@types/react@18.2.55)(react@18.2.0)(typescript@5.3.3)
+      '@pigmentcss/react': link:../packages/pigment-react
       '@wyw-in-js/shared': 0.4.1
       '@wyw-in-js/transform': 0.4.1(typescript@5.3.3)
       babel-plugin-transform-react-remove-prop-types: 0.4.24
@@ -9149,16 +9146,16 @@ packages:
       - typescript
     dev: true
 
-  file:../packages/zero-vite-plugin(vite@5.0.12):
-    resolution: {directory: ../packages/zero-vite-plugin, type: directory}
-    id: file:../packages/zero-vite-plugin
-    name: '@mui/zero-vite-plugin'
+  file:../packages/pigment-vite-plugin(vite@5.0.12):
+    resolution: {directory: ../packages/pigment-vite-plugin, type: directory}
+    id: file:../packages/pigment-vite-plugin
+    name: '@pigmentcss/vite-plugin'
     peerDependencies:
       vite: ^4.0.0 || ^5.0.0
     dependencies:
       '@babel/core': 7.23.9
       '@babel/preset-typescript': 7.23.3(@babel/core@7.23.9)
-      '@mui/zero-runtime': link:../packages/zero-runtime
+      '@pigmentcss/react': link:../packages/pigment-react
       '@wyw-in-js/shared': 0.4.1
       '@wyw-in-js/transform': 0.4.1(typescript@5.3.3)
       babel-plugin-transform-react-remove-prop-types: 0.4.24

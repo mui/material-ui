@@ -10,8 +10,8 @@
     "build": "lerna run build --ignore docs",
     "build:public": "lerna run --no-private build",
     "build:ci": "lerna run build --ignore docs --concurrency 8 --skip-nx-cache",
-    "build:zero": "lerna run --scope \"@mui/zero-*\" build",
-    "clean:zero": "pnpm --filter \"@mui/zero-*\" clean",
+    "build:zero": "lerna run --scope \"@pigmentcss/*\" build",
+    "clean:zero": "pnpm --filter \"@pigmentcss/*\" clean",
     "build:codesandbox": "NODE_OPTIONS=\"--max_old_space_size=4096\" lerna run --concurrency 8 --scope \"@mui/*\" --scope \"@mui-internal/*\" --no-private build",
     "release:version": "lerna version --no-changelog --no-push --no-git-tag-version --no-private --force-publish=@mui/core-downloads-tracker",
     "release:build": "lerna run --concurrency 8 --no-private build --skip-nx-cache",
@@ -54,9 +54,9 @@
     "test": "node scripts/test.mjs",
     "tc": "node test/cli.js",
     "test:extended": "pnpm eslint && pnpm typescript && pnpm test:coverage",
-    "test:zero-runtime:ci": "pnpm nx run @mui/zero-runtime:test:ci",
-    "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=text mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' --exclude 'packages/zero-runtime/**/*.test.{js,ts,tsx}' && pnpm test:zero-runtime",
-    "test:coverage:ci": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' --exclude 'packages/zero-runtime/**/*.test.{js,ts,tsx}' && pnpm test:zero-runtime:ci",
+    "test:pigment-react:ci": "pnpm nx run @pigmentcss/react:test:ci",
+    "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=text mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' --exclude 'packages/pigment-react/**/*.test.{js,ts,tsx}' && pnpm test:pigment-react",
+    "test:coverage:ci": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' --exclude 'packages/pigment-react/**/*.test.{js,ts,tsx}' && pnpm test:pigment-react:ci",
     "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=html mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
     "test:e2e": "cross-env NODE_ENV=production pnpm test:e2e:build && concurrently --success first --kill-others \"pnpm test:e2e:run\" \"pnpm test:e2e:server\"",
     "test:e2e:build": "webpack --config test/e2e/webpack.config.js",
@@ -79,7 +79,7 @@
     "typescript:ci": "lerna run --concurrency 5 --no-bail --no-sort typescript",
     "validate-declarations": "tsx scripts/validateTypescriptDeclarations.mts",
     "generate-codeowners": "node scripts/generateCodeowners.mjs",
-    "watch:zero": "nx run-many -t watch --projects=\"@mui/zero-*\" --parallel"
+    "watch:zero": "nx run-many -t watch --projects=\"@pigmentcss/*\" --parallel"
   },
   "dependencies": {
     "@googleapis/sheets": "^5.0.5",
