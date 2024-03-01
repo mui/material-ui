@@ -3,7 +3,7 @@
 A zero-runtime CSS-in-JS library that extracts the colocated styles to their own CSS files at build-time.
 
 - [Getting started](#getting-started)
-  - [Why this project exists?](#why-this-project-exists)
+  - [Why this project exists?](#why-choose-pigment-css)
   - [Next.js](#nextjs)
   - [Vite](#vite)
 - [Basic usage](#basic-usage)
@@ -24,7 +24,7 @@ A zero-runtime CSS-in-JS library that extracts the colocated styles to their own
 
 Pigment CSS supports Next.js and Vite with support for more bundlers in future. You must install the corresponding plugin, as shown below.
 
-### Why this project exists
+### Why choose Pigment CSS
 
 Thanks to recent advancements in CSS (like CSS variables and `color-mix()`), "traditional" CSS-in-JS solutions that process styles at runtime are no longer required for unlocking features like color transformations and theme variables which are necessary for maintaining a sophisticated design system. 
 
