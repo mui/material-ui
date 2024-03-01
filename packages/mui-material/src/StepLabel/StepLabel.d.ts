@@ -69,6 +69,11 @@ export interface StepLabelProps extends StandardProps<React.HTMLAttributes<HTMLD
     label?: React.HTMLProps<HTMLSpanElement>;
   };
   /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots?: {};
+  /**
    * The component to render in place of the [`StepIcon`](/material-ui/api/step-icon/).
    */
   StepIconComponent?: React.ElementType<StepIconProps>;
