@@ -164,7 +164,7 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
     },
   };
 
-  const [StepLabelLabelSlot, stepLabelLabelProps] = useSlot('closeIcon', {
+  const [StepLabelLabelSlot, stepLabelLabelProps] = useSlot('label', {
     elementType: StepLabelLabel,
     externalForwardedProps,
     ownerState,
