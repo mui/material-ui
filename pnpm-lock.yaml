@@ -1178,7 +1178,7 @@ importers:
         specifier: ^8.4.33
         version: 8.4.35
       postcss-cli:
-        specifier: ^8.0.0
+        specifier: ^8.3.1
         version: 8.3.1(postcss@8.4.35)
       yargs:
         specifier: ^17.7.2
