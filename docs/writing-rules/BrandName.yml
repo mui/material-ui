@@ -1,4 +1,7 @@
-# Without a non-breaking space, brand names can be split in the middle, with the start and end on two different lines.
+# Without a non-breaking space, brand names can be split in the middle
+# with the start and end on two different lines.
+# For example, Apple does this meticulously with their brand name: https://www.apple.com/macbook-air/.
+# Also read https://www.chrisdpeters.com/blog/using-non-breaking-spaces-to-help-with-branding/ for why.
 extends: substitution
 message: Use a non-breaking space for brand name ('%s' instead of '%s')
 level: error
@@ -14,6 +17,7 @@ swap:
   MUI Core: MUI Core
   MUI Toolpad: MUI Toolpad
   MUI Connect: MUI Connect
+  Stack Overflow: Stack Overflow
 # Don't forget to run the following command to generate the package writing-rules.zip file
 # Vale uses that ZIP file and not the YAML files.
 #

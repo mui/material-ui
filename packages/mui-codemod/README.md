@@ -1,6 +1,6 @@
 # @mui/codemod
 
-> Codemod scripts for Material UI, Base UI, MUI System, Joy UI.
+> Codemod scripts for Material UI, Base UI, MUI System, Joy UI.
 
 [![npm version](https://img.shields.io/npm/v/@mui/codemod.svg?style=flat-square)](https://www.npmjs.com/package/@mui/codemod)
 [![npm downloads](https://img.shields.io/npm/dm/@mui/codemod.svg?style=flat-square)](https://www.npmjs.com/package/@mui/codemod)
@@ -834,7 +834,7 @@ npx @mui/codemod@latest v5.0.0/base-remove-component-prop <path>
 
 #### `rename-css-variables`
 
-Updates the names of the CSS variables of the Joy UI components to adapt to the new naming standards of the CSS variables for components.
+Updates the names of the CSS variables of the Joy UI components to adapt to the new naming standards of the CSS variables for components.
 
 ```diff
 -<List sx={{ py: 'var(--List-divider-gap)' }}>
@@ -862,7 +862,7 @@ npx @mui/codemod@latest v5.0.0/base-hook-imports <path>
 
 #### `joy-rename-classname-prefix`
 
-Renames the classname prefix from `'Joy'` to `'Mui'` for Joy UI components.
+Renames the classname prefix from `'Joy'` to `'Mui'` for Joy UI components.
 
 ```diff
  <Button
@@ -894,7 +894,7 @@ npx @mui/codemod@latest v5.0.0/joy-rename-row-prop <path>
 
 Remove `imgProps` prop by transferring its value into `slotProps.img`
 
-This change only affects Joy UI Avatar component.
+This change only affects Joy UI Avatar component.
 
 ```diff
  <Avatar
@@ -912,7 +912,7 @@ npx @mui/codemod@latest v5.0.0/joy-avatar-remove-imgProps <path>
 
 Replace `<TextField>` with composition of `Input`
 
-This change only affects Joy UI components.
+This change only affects Joy UI components.
 
 ```diff
 -import TextField from '@mui/joy/TextField';
@@ -970,7 +970,7 @@ npx @mui/codemod@latest v5.0.0/joy-text-field-to-input <path>
 
 Renames the `components` and `componentsProps` props to `slots` and `slotProps`, respectively.
 
-This change only affects Joy UI components.
+This change only affects Joy UI components.
 
 ```diff
  <Autocomplete

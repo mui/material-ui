@@ -150,6 +150,7 @@ export default function Features() {
             {items.map(({ icon, title, description }, index) => (
               <Card
                 key={index}
+                variant="outlined"
                 component={Button}
                 onClick={() => handleItemClick(index)}
                 sx={{
@@ -195,7 +196,7 @@ export default function Features() {
                   >
                     {icon}
                   </Box>
-                  <div>
+                  <Box sx={{ textTransform: 'none' }}>
                     <Typography
                       color="text.primary"
                       variant="body2"
@@ -230,7 +231,7 @@ export default function Features() {
                         sx={{ mt: '1px', ml: '2px' }}
                       />
                     </Link>
-                  </div>
+                  </Box>
                 </Box>
               </Card>
             ))}

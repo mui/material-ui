@@ -5,7 +5,7 @@ import * as t from '@babel/types';
 import type { Expression } from '@babel/types';
 import { isUnitLess } from './isUnitLess';
 import { cssFunctionTransformerPlugin } from './cssFunctionTransformerPlugin';
-import type { Theme } from '../extendTheme';
+import type { Theme } from './extendTheme';
 
 interface StyleObj {
   [key: string]: string | number | (() => void) | StyleObj;
