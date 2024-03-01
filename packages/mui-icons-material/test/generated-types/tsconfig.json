@@ -42,14 +42,12 @@
       "@mui/types": ["./mui-types"],
       "@mui/utils": ["./mui-utils/src"],
       "@mui/utils/*": ["./mui-utils/src/*"],
-      "@mui/zero-next-plugin": ["./zero-next-plugin/src"],
-      "@mui/zero-next-plugin/*": ["./zero-next-plugin/src/*"],
-      "@mui/zero-runtime": ["./zero-runtime/src"],
-      "@mui/zero-runtime/*": ["./zero-runtime/src/*"],
-      "@mui/zero-tag-processor": ["./zero-tag-processor/src"],
-      "@mui/zero-tag-processor/*": ["./zero-tag-processor/src/*"],
-      "@mui/zero-vite-plugin": ["./zero-vite-plugin/src"],
-      "@mui/zero-vite-plugin/*": ["./zero-vite-plugin/src/*"],
+      "@pigmentcss/nextjs-plugin": ["./pigment-nextjs-plugin/src"],
+      "@pigmentcss/nextjs-plugin/*": ["./pigment-nextjs-plugin/src/*"],
+      "@pigmentcss/react": ["./pigment-react/src"],
+      "@pigmentcss/react/*": ["./pigment-react/src/*"],
+      "@pigmentcss/vite-plugin": ["./pigment-vite-plugin/src"],
+      "@pigmentcss/vite-plugin/*": ["./pigment-vite-plugin/src/*"],
       "@mui/internal-scripts/typescript-to-proptypes": [
         "../packages-internal/scripts/typescript-to-proptypes/src"
       ]
