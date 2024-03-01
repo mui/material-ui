@@ -984,13 +984,9 @@ function testThemeVariants(element: React.ReactElement, getOptions: () => Confor
  */
 function testThemeCustomPalette(element: React.ReactElement, getOptions: () => ConformanceOptions) {
   describe('theme extended palette:', () => {
-    it.only('should render without errors', function test() {
-      if (!/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
+    it('should render without errors', function test() {
       const { render, ThemeProvider, createTheme } = getOptions();
-
-      if (!render || !ThemeProvider || !createTheme) {
+      if (!/jsdom/.test(window.navigator.userAgent) || !render || !ThemeProvider || !createTheme) {
         this.skip();
       }
 
