@@ -1,4 +1,4 @@
-import { keyframes, styled } from '@mui/zero-runtime';
+import { keyframes, styled } from '@pigmentcss/react';
 
 export const bounceAnim = keyframes({
   'from, 20%, 53%, 80%, to': {

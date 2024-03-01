@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { UserLanguageProvider } from '../i18n';
+import { Translations, UserLanguageProvider } from '../i18n';
 
 export interface DocsConfig {
   LANGUAGES: string[];
@@ -14,12 +14,18 @@ export interface DocsProviderProps {
   config: DocsConfig;
   defaultUserLanguage: string;
   children?: React.ReactNode;
+  translations?: Translations;
 }
 
-export function DocsProvider({ config, defaultUserLanguage, children }: DocsProviderProps) {
+export function DocsProvider({
+  config,
+  defaultUserLanguage,
+  translations,
+  children,
+}: DocsProviderProps) {
   return (
     <DocsConfigContext.Provider value={config}>
-      <UserLanguageProvider defaultUserLanguage={defaultUserLanguage}>
+      <UserLanguageProvider defaultUserLanguage={defaultUserLanguage} translations={translations}>
         {children}
       </UserLanguageProvider>
     </DocsConfigContext.Provider>
