@@ -1,13 +1,8 @@
 fn({
   MuiAlert: {
     defaultProps: {
-      slots: {
-        closeButton: ComponentsButton,
-      },
-
-      slotProps: {
-        closeButton: componentsButtonProps,
-      },
+      components: { CloseButton: ComponentsButton },
+      componentsProps: { closeButton: componentsButtonProps },
     },
   },
 });
@@ -15,15 +10,10 @@ fn({
 fn({
   MuiAlert: {
     defaultProps: {
-      slots: {
-        closeButton: ComponentsButton,
-        closeIcon: SlotsIcon,
-      },
-
-      slotProps: {
-        closeButton: componentsButtonProps,
-        closeIcon: slotsIconProps,
-      },
+      components: { CloseButton: ComponentsButton },
+      slots: { closeIcon: SlotsIcon },
+      componentsProps: { closeButton: componentsButtonProps },
+      slotProps: { closeIcon: slotsIconProps },
     },
   },
 });
@@ -31,15 +21,21 @@ fn({
 fn({
   MuiAlert: {
     defaultProps: {
-      slots: {
-        closeButton: SlotsButton,
-        closeIcon: SlotsIcon,
-      },
+      components: { CloseButton: ComponentsButton },
+      slots: { closeIcon: SlotsIcon, closeButton: SlotsButton },
+      componentsProps: { closeButton: componentsButtonProps },
+      slotProps: { closeIcon: slotsIconProps, closeButton: slotsButtonProps },
+    },
+  },
+});
 
-      slotProps: {
-        closeButton: slotsButtonProps,
-        closeIcon: slotsIconProps,
-      },
+fn({
+  MuiAlert: {
+    defaultProps: {
+      components: { CloseButton: ComponentsButton },
+      slots: { closeIcon: SlotsIcon, closeButton: SlotsButton },
+      componentsProps: { closeButton: componentsButtonProps, closeIcon: componentsIconProps },
+      slotProps: { closeIcon: slotsIconProps, closeButton: slotsButtonProps },
     },
   },
 });
