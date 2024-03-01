@@ -11,7 +11,7 @@ You can customize both design tokens and components, generate a theme JSON, and 
 The plugin is in beta and doesn't currently support customization to all Material UI components.
 :::
 
-<img src="/static/material-ui/design-resources/connect.png" style="width: 814px;" alt="A screenshot of Figma together with the Connect plug-in running on the side, doing customziations to the Material UI Switch component." width="1628" height="400" />
+<img src="/static/material-ui/design-resources/connect.png" style="width: 814px;" alt="A screenshot of Figma together with the Connect plugin running on the side, doing customziations to the Material UI Switch component." width="1628" height="400" />
 
 ## Running the plugin
 
