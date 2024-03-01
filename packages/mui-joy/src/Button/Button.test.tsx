@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui-internal/test-utils';
 import Button, { buttonClasses as classes } from '@mui/joy/Button';
 import { ThemeProvider } from '@mui/joy/styles';
+import describeConformance from '../../test/describeConformance';
 
 describe('Joy <Button />', () => {
   const { render } = createRenderer();

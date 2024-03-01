@@ -3,7 +3,6 @@ import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import userEvent from '@testing-library/user-event';
 import {
-  describeConformance,
   act,
   createRenderer,
   fireEvent,
@@ -19,6 +18,7 @@ import Chip, { chipClasses as classes } from '@mui/material-next/Chip';
 import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 import CheckBox from '../internal/svg-icons/CheckBox';
 import { ChipProps } from './Chip.types';
+import describeConformance from '../../test/describeConformance';
 
 // TODO: remove after migrating SvgIcon to support Material Design 3 colors
 const MaterialV5DefaultTheme = createTheme();

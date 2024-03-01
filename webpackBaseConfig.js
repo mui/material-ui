@@ -9,7 +9,7 @@ module.exports = {
   resolve: {
     modules: [__dirname, 'node_modules'],
     alias: {
-      '@mui/markdown': path.resolve(__dirname, './packages/markdown'),
+      '@mui/internal-markdown': path.resolve(__dirname, './packages/markdown'),
       '@mui/material': path.resolve(__dirname, './packages/mui-material/src'),
       '@mui/docs': path.resolve(__dirname, './packages/mui-docs/src'),
       '@mui/icons-material': path.resolve(__dirname, './packages/mui-icons-material/lib/esm'),
@@ -24,11 +24,11 @@ module.exports = {
       '@mui/material-next': path.resolve(__dirname, './packages/mui-material-next/src'),
       '@mui/material-nextjs': path.resolve(__dirname, './packages/mui-material-nextjs/src'),
       '@mui/joy': path.resolve(__dirname, './packages/mui-joy/src'),
-      '@mui/zero-runtime': path.resolve(__dirname, './packages/zero-runtime/src'),
+      '@pigmentcss/react': path.resolve(__dirname, './packages/pigment-react/src'),
       '@mui-internal/docs-utils': path.resolve(__dirname, './packages/docs-utils/src'),
-      '@mui-internal/typescript-to-proptypes': path.resolve(
+      '@mui/internal-scripts/typescript-to-proptypes': path.resolve(
         __dirname,
-        './packages/typescript-to-proptypes/src',
+        './packages-internal/scripts/typescript-to-proptypes/src',
       ),
       docs: path.resolve(__dirname, './docs'),
     },

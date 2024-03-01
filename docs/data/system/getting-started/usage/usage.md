@@ -183,7 +183,7 @@ The `sx` prop can be used in four different locations:
 
 ### Core components
 
-All Material UI, and Joy UI components support the `sx` prop.
+All Material UI, and Joy UI components support the `sx` prop.
 
 ### Box
 
