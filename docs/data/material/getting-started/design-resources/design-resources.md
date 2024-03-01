@@ -18,7 +18,7 @@ It generates a theme file with all the design tokens and component customization
 It's currently in beta and available for testing.
 Get it on [the MUI Figma Community profile 👉](/)
 
-<img src="/static/material-ui/design-resources/connect.png" style="width: 814px;" alt="A screenshot of Figma together with the MUI Connect plugin running on the side, doing customziations to the Material UI Switch component." width="1628" height="400" />
+<img src="/static/material-ui/design-resources/connect.png" style="width: 814px;" alt="A screenshot of Figma together with the Connect plugin running on the side, doing customziations to the Material UI Switch component." width="1628" height="400" />
 
 ## Third-party resources
 
