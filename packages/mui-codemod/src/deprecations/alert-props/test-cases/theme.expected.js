@@ -1,8 +1,13 @@
 fn({
   MuiAlert: {
     defaultProps: {
-      components: { CloseButton: ComponentsButton },
-      componentsProps: { closeButton: componentsButtonProps },
+      slots: {
+        closeButton: ComponentsButton
+      },
+
+      slotProps: {
+        closeButton: componentsButtonProps
+      }
     },
   },
 });
@@ -10,10 +15,15 @@ fn({
 fn({
   MuiAlert: {
     defaultProps: {
-      components: { CloseButton: ComponentsButton },
-      slots: { closeIcon: SlotsIcon },
-      componentsProps: { closeButton: componentsButtonProps },
-      slotProps: { closeIcon: slotsIconProps },
+      slots: {
+        closeButton: ComponentsButton,
+        closeIcon: SlotsIcon
+      },
+
+      slotProps: {
+        closeButton: componentsButtonProps,
+        closeIcon: slotsIconProps
+      }
     },
   },
 });
@@ -21,10 +31,19 @@ fn({
 fn({
   MuiAlert: {
     defaultProps: {
-      components: { CloseButton: ComponentsButton },
-      slots: { closeIcon: SlotsIcon, closeButton: SlotsButton },
-      componentsProps: { closeButton: componentsButtonProps },
-      slotProps: { closeIcon: slotsIconProps, closeButton: slotsButtonProps },
+      slots: {
+        closeButton: SlotsButton,
+        closeIcon: SlotsIcon
+      },
+
+      slotProps: {
+        closeButton: {
+          ...componentsButtonProps,
+          ...slotsButtonProps
+        },
+
+        closeIcon: slotsIconProps
+      }
     },
   },
 });
@@ -32,10 +51,22 @@ fn({
 fn({
   MuiAlert: {
     defaultProps: {
-      components: { CloseButton: ComponentsButton },
-      slots: { closeIcon: SlotsIcon, closeButton: SlotsButton },
-      componentsProps: { closeButton: componentsButtonProps, closeIcon: componentsIconProps },
-      slotProps: { closeIcon: slotsIconProps, closeButton: slotsButtonProps },
+      slots: {
+        closeButton: SlotsButton,
+        closeIcon: SlotsIcon
+      },
+
+      slotProps: {
+        closeButton: {
+          ...componentsButtonProps,
+          ...slotsButtonProps
+        },
+
+        closeIcon: {
+          ...componentsIconProps,
+          ...slotsIconProps
+        }
+      }
     },
   },
 });
