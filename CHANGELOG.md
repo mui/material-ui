@@ -1193,7 +1193,7 @@ A big thanks to the 17 contributors who made this release possible.
 
 - &#8203;<!-- 09 -->Update peer dep of @mui/material (#39398) @brijeshb42
 
-### `@mui/zero-runtime@0.0.1-alpha.0`
+### `@pigmentcss/react@0.0.1-alpha.0`
 
 - &#8203;<!-- 06 -->Implement typings for public runtime API (#39215) @brijeshb42
 
@@ -1794,7 +1794,7 @@ A big thanks to the 11 contributors who made this release possible. This release
 
 - [useButton][base-ui] Accept arbitrary props in getRootProps and forward them (#38475) @DiegoAndai
 
-### `@mui/zero-runtime@0.0.1-alpha.1`
+### `@pigmentcss/react@0.0.1-alpha.1`
 
 - [system][zero][tag] Add support for sx prop (#38535) @brijeshb42
 
@@ -1857,7 +1857,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [ButtonBase] Add ButtonBase component (#38319) @DiegoAndai
 - [Input] Add InputBase component (#38392) @mj12albert
 
-### `@mui/zero-runtime@0.0.1-alpha.0`
+### `@pigmentcss/react@0.0.1-alpha.0`
 
 - Implementation of styled tag processor for linaria (#38378) @brijeshb42
 
