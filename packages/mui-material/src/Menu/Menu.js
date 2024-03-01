@@ -10,7 +10,6 @@ import { useRtl } from '@mui/system/RtlProvider';
 import MenuList from '../MenuList';
 import Popover, { PopoverPaper } from '../Popover';
 import styled, { rootShouldForwardProp } from '../styles/styled';
-import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';
 import { getMenuUtilityClass } from './menuClasses';
 
@@ -86,7 +85,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     ...other
   } = props;
 
-  const theme = useTheme();
   const isRtl = useRtl();
 
   const ownerState = {

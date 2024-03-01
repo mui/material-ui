@@ -1,9 +1,15 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 
 const RtlContext = React.createContext();
 
-const RtlProvider = ({ value, ...props }) => {
+function RtlProvider({ value, ...props }) {
   return <RtlContext.Provider value={value ?? true} {...props} />;
+}
+
+RtlProvider.propTypes = {
+  value: PropTypes.bool,
+  children: PropTypes.node,
 };
 
 export const useRtl = () => {

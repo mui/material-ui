@@ -1,6 +1,11 @@
 import * as React from 'react';
 
-declare const RtlProvider: React.FC<{ children?: React.ReactNode; value?: boolean }>;
+interface RtlProviderProps {
+  children?: React.ReactNode;
+  value?: boolean;
+}
+
+declare const RtlProvider: React.FC<RtlProviderProps>;
 export const useRtl: () => boolean;
 
 export default RtlProvider;
