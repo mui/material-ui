@@ -26,11 +26,12 @@ Pigment CSS supports Next.js and Vite with support for more bundlers in future. 
 
 ### Why this project exists
 
-We first introduced an Emotion-based CSS-in-JS styling engine to Material UI back in the v4 to v5 transition. We wanted to support color transformations, theme variables, and other features that wouldn't be possible without a runtime solution. However, this has notably impacted performance and has been a frequent piece of feedback we've heard ever since.
+Thanks to recent advancements in CSS (like CSS variables and `color-mix()`), "traditional" CSS-in-JS solutions that process styles at runtime are no longer required for unlocking features like color transformations and theme variables which are necessary for maintaining a sophisticated design system. 
 
-As CSS keeps rapidly evolving with features such as CSS variables and color-mix—to name a few—there's no practical reason to keep a runtime solution. It's also necessary to move away from this pattern in order to support React Server Components.
+Pigment CSS addresses the needs of the modern React developer by providing a zero-runtime CSS-in-JS styling solution as a successor to tools like Emotion and styled-components. 
 
-We looked around and couldn't find anything that fit precisely, so we started a new bespoke project. Pigment CSS is built on top of [WyW-in-JS](https://wyw-in-js.dev/) and is designed to have as smooth a migration experience as possible for Material UI users to go from v5 to v6.
+Compared to its predecessors it offers improved performance and DX, and it's compatible with React Server Components.
+Pigment CSS is built on top of [WyW-in-JS](https://wyw-in-js.dev/), enabling us to provide the smoothest possible experience for Material UI users when migrating from Emotion in v5 to Pigment in v6.
 
 ### Next.js
 
