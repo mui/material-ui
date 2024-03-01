@@ -1175,7 +1175,7 @@ importers:
         specifier: ^1.0.10
         version: 1.0.10(jscodeshift@0.13.1)
       postcss:
-        specifier: ^8.4.33
+        specifier: ^8.4.35
         version: 8.4.35
       postcss-cli:
         specifier: ^8.3.1
