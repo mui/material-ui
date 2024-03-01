@@ -231,7 +231,7 @@ const SliderTrack = styled('span', {
         },
         style: {
           '--slider-track-color': lightPrimaryColor,
-          ...theme.applyDarkStyles({
+          ...theme.applyStyles('dark', {
             '--slider-track-color': darkPrimaryColor,
           }),
         },
@@ -242,7 +242,7 @@ const SliderTrack = styled('span', {
         },
         style: {
           '--slider-track-color': lightSecondaryColor,
-          ...theme.applyDarkStyles({
+          ...theme.applyStyles('dark', {
             '--slider-track-color': darkSecondaryColor,
           }),
         },

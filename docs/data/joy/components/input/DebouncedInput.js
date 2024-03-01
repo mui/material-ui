@@ -10,10 +10,7 @@ function DebounceInput(props) {
   const timerRef = React.useRef();
 
   const handleChange = (event) => {
-    if (timerRef.current) {
-      clearTimeout(timerRef.current);
-    }
-
+    clearTimeout(timerRef.current);
     timerRef.current = setTimeout(() => {
       handleDebounce(event.target.value);
     }, debounceTimeout);

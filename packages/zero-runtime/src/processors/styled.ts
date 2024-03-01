@@ -1,5 +1,11 @@
 import { parseExpression } from '@babel/parser';
-import type { ObjectExpression, SourceLocation, Identifier, Expression } from '@babel/types';
+import type {
+  ObjectExpression,
+  SourceLocation,
+  Identifier,
+  Expression,
+  TemplateElement,
+} from '@babel/types';
 import {
   Params,
   TailProcessorParams,
@@ -21,6 +27,8 @@ import { cssFnValueToVariable } from '../utils/cssFnValueToVariable';
 import { processCssObject } from '../utils/processCssObject';
 import { valueToLiteral } from '../utils/valueToLiteral';
 import BaseProcessor from './base-processor';
+import { Primitive, TemplateCallback } from './keyframes';
+import { cache, css } from '../utils/emotion';
 
 type Theme = { [key: 'unstable_sxConfig' | string]: string | number | Theme };
 
@@ -91,7 +99,7 @@ type ComponentMeta = {
  * }
  * ```
  *
- * For linaria tag processors, we need to implement 3 methods of BaseProcessor -
+ * For Wyw-in-JS tag processors, we need to implement 3 methods of BaseProcessor -
  * 1. doEvaltimeReplacement
  * 2. build
  * 3. doRuntimeReplacement
@@ -103,7 +111,7 @@ export class StyledProcessor extends BaseProcessor {
 
   componentMetaArg?: LazyValue;
 
-  styleArgs: ExpressionValue[];
+  styleArgs: ExpressionValue[] | (TemplateElement | ExpressionValue)[];
 
   finalVariants: {
     props: Record<string, string | number | boolean | null>;
@@ -124,6 +132,8 @@ export class StyledProcessor extends BaseProcessor {
 
   originalLocation: SourceLocation | null = null;
 
+  isTemplateTag: boolean;
+
   constructor(params: Params, ...args: TailProcessorParams) {
     if (params.length <= 2) {
       // no need to do any processing if it is an already transformed call or just a reference.
@@ -135,9 +145,10 @@ export class StyledProcessor extends BaseProcessor {
       ['callee', ['call', 'member'], ['call', 'template']],
       `Invalid use of ${this.tagSource.imported} tag.`,
     );
-    const [callee, memberOrCall, styleCall] = params;
+    const [callee, memberOrCall, styleCallOrTemplate] = params;
     const [callType, componentArg, componentMetaArg] = memberOrCall;
-    const [, ...styleArgs] = styleCall;
+    const [, ...styleArgs] = styleCallOrTemplate;
+    this.isTemplateTag = styleCallOrTemplate[0] === 'template';
     this.componentMetaArg =
       componentMetaArg && componentMetaArg.kind === ValueType.LAZY ? componentMetaArg : undefined;
     this.styleArgs = styleArgs as ExpressionValue[];
@@ -167,12 +178,11 @@ export class StyledProcessor extends BaseProcessor {
     if (!this.component) {
       throw new Error('Invalid usage of `styled` tag');
     }
-    styleArgs.forEach((item) => {
-      if (!Array.isArray(item)) {
-        if ('kind' in item) {
-          // push item in dependencies so that they get evaluated and we receive its value in build call.
-          this.dependencies.push(item);
-        }
+
+    styleArgs.flat().forEach((item) => {
+      if ('kind' in item) {
+        // push item in dependencies so that they get evaluated and we receive its value in build call.
+        this.dependencies.push(item);
       }
     });
     if (callee[0] === 'callee') {
@@ -192,47 +202,7 @@ export class StyledProcessor extends BaseProcessor {
     }`;
   }
 
-  /**
-   * There are 2 main phases in Linaria's processing, Evaltime and Runtime. During Evaltime, Linaria prepares minimal code that gets evaluated to get the actual values of the styled arguments. Here, we mostly want to replace the styled calls with a simple string/object of its classname. This is necessary for class composition. For ex, you could potentially do this -
-   * ```js
-   * const Component = styled(...)(...)
-   * const Component2 = styled()({
-   *   [`.${Component} &`]: {
-   *      color: 'red'
-   *   }
-   * })
-   * ```
-   * to further target `Component` rendered inside `Component2`.
-   */
-  doEvaltimeReplacement() {
-    this.replacer(this.value, false);
-  }
-
-  /**
-   * This is called by linaria after evaluating the code. Here, we
-   * get access to the actual values of the `styled` arguments
-   * which we can use to generate our styles.
-   * Order of processing styles -
-   * 1. CSS directly declared in styled call
-   * 2. CSS declared in theme object's styledOverrides
-   * 3. Variants declared in styled call
-   * 3. Variants declared in theme object
-   */
-  build(values: ValueCache): void {
-    const themeImportIdentifier = this.astService.addDefaultImport(
-      `${process.env.PACKAGE_NAME}/theme`,
-      'theme',
-    );
-    // all the variant definitions are collected here so that we can
-    // apply variant styles after base styles for more specific targetting.
-    const variantsAccumulator: VariantData[] = [];
-    this.styleArgs.forEach((styleArg) => {
-      this.processStyle(values, styleArg, variantsAccumulator, themeImportIdentifier.name);
-    });
-    this.processOverrides(values, variantsAccumulator);
-    variantsAccumulator.forEach((variant) => {
-      this.processVariant(variant);
-    });
+  private generateArtifacts() {
     const artifacts: [Rules, Replacements][] = this.collectedStyles.map(([className, cssText]) => {
       const rules: Rules = {
         [`.${className}`]: {
@@ -261,10 +231,108 @@ export class StyledProcessor extends BaseProcessor {
       return [rules, replacements];
     });
     artifacts.forEach((artifact) => {
-      // linaria accesses artifacts array to get the final
+      // Wyw-in-JS accesses artifacts array to get the final
       // css definitions which are then exposed to the bundler.
       this.artifacts.push(['css', artifact]);
     });
+  }
+
+  private buildForTemplateTag(values: ValueCache): void {
+    const templateStrs: string[] = [];
+    // @ts-ignore @TODO - Fix this. No idea how to initialize a Tagged String array.
+    templateStrs.raw = [];
+    const templateExpressions: Primitive[] = [];
+    const { themeArgs } = this.options as IOptions;
+
+    this.styleArgs.flat().forEach((item) => {
+      if ('kind' in item) {
+        switch (item.kind) {
+          case ValueType.FUNCTION: {
+            const value = values.get(item.ex.name) as TemplateCallback;
+            templateExpressions.push(value(themeArgs));
+            break;
+          }
+          case ValueType.CONST:
+            templateExpressions.push(item.value);
+            break;
+          case ValueType.LAZY: {
+            const evaluatedValue = values.get(item.ex.name);
+            if (typeof evaluatedValue === 'function') {
+              templateExpressions.push(evaluatedValue(themeArgs));
+            } else {
+              templateExpressions.push(evaluatedValue as Primitive);
+            }
+            break;
+          }
+          default:
+            break;
+        }
+      } else if (item.type === 'TemplateElement') {
+        templateStrs.push(item.value.cooked as string);
+        // @ts-ignore
+        templateStrs.raw.push(item.value.raw);
+      }
+    });
+    const cssClassName = css(templateStrs, ...templateExpressions);
+    const cssText = cache.registered[cssClassName] as string;
+
+    const baseClass = this.getClassName();
+    this.baseClasses.push(baseClass);
+    this.collectedStyles.push([baseClass, cssText, null]);
+    const variantsAccumulator: VariantData[] = [];
+    this.processOverrides(values, variantsAccumulator);
+    variantsAccumulator.forEach((variant) => {
+      this.processVariant(variant);
+    });
+    this.generateArtifacts();
+  }
+
+  /**
+   * There are 2 main phases in Wyw-in-JS's processing, Evaltime and Runtime. During Evaltime, Wyw-in-JS prepares minimal code that gets evaluated to get the actual values of the styled arguments. Here, we mostly want to replace the styled calls with a simple string/object of its classname. This is necessary for class composition. For ex, you could potentially do this -
+   * ```js
+   * const Component = styled(...)(...)
+   * const Component2 = styled()({
+   *   [`.${Component} &`]: {
+   *      color: 'red'
+   *   }
+   * })
+   * ```
+   * to further target `Component` rendered inside `Component2`.
+   */
+  doEvaltimeReplacement() {
+    this.replacer(this.value, false);
+  }
+
+  /**
+   * This is called by Wyw-in-JS after evaluating the code. Here, we
+   * get access to the actual values of the `styled` arguments
+   * which we can use to generate our styles.
+   * Order of processing styles -
+   * 1. CSS directly declared in styled call
+   * 2. CSS declared in theme object's styledOverrides
+   * 3. Variants declared in styled call
+   * 3. Variants declared in theme object
+   */
+  build(values: ValueCache): void {
+    if (this.isTemplateTag) {
+      this.buildForTemplateTag(values);
+      return;
+    }
+    const themeImportIdentifier = this.astService.addDefaultImport(
+      `${process.env.PACKAGE_NAME}/theme`,
+      'theme',
+    );
+    // all the variant definitions are collected here so that we can
+    // apply variant styles after base styles for more specific targetting.
+    const variantsAccumulator: VariantData[] = [];
+    (this.styleArgs as ExpressionValue[]).forEach((styleArg) => {
+      this.processStyle(values, styleArg, variantsAccumulator, themeImportIdentifier.name);
+    });
+    this.processOverrides(values, variantsAccumulator);
+    variantsAccumulator.forEach((variant) => {
+      this.processVariant(variant);
+    });
+    this.generateArtifacts();
   }
 
   /**
@@ -306,15 +374,15 @@ export class StyledProcessor extends BaseProcessor {
       typeof t.objectProperty | typeof t.spreadElement | typeof t.objectMethod
     >[] = [];
 
-    if (this.baseClasses.length) {
-      const classNames = Array.from(new Set([this.className, ...this.baseClasses]));
-      argProperties.push(
-        t.objectProperty(
-          t.identifier('classes'),
-          t.arrayExpression(classNames.map((cls) => t.stringLiteral(cls))),
-        ),
-      );
-    }
+    const classNames = Array.from(
+      new Set([this.className, ...(this.baseClasses.length ? this.baseClasses : [])]),
+    );
+    argProperties.push(
+      t.objectProperty(
+        t.identifier('classes'),
+        t.arrayExpression(classNames.map((cls) => t.stringLiteral(cls))),
+      ),
+    );
 
     const varProperties: ReturnType<typeof t.objectProperty>[] = this.collectedVariables.map(
       ([variableId, expression, isUnitLess]) =>
@@ -350,7 +418,6 @@ export class StyledProcessor extends BaseProcessor {
       componentMetaExpression ? [componentName, componentMetaExpression] : [componentName],
     );
     const mainCall = t.callExpression(styledCall, [t.objectExpression(argProperties)]);
-
     this.replacer(mainCall, true);
   }
 

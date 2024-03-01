@@ -2,6 +2,7 @@ import type * as React from 'react';
 import type { CSSObject } from './base';
 import type { ThemeArgs } from './theme';
 import type { SxProp } from './sx';
+import { Primitve } from './keyframes';
 
 type Falsy = false | 0 | '' | null | undefined;
 
@@ -58,6 +59,11 @@ export interface CreateStyledComponent<
   Component extends React.ElementType,
   OuterProps extends object,
 > {
+  (
+    styles: TemplateStringsArray,
+    ...args: Array<(options: ThemeArgs) => Primitve | Primitve | React.ComponentClass>
+  ): StyledComponent<OuterProps> & (Component extends string ? BaseDefaultProps : Component);
+
   /**
    * @typeparam Props: Additional props to add to the styled component
    */
