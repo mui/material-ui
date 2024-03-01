@@ -284,7 +284,7 @@ describe('ThemeProvider', () => {
     function Test() {
       rtlValue = useRtl();
       return null;
-    };
+    }
     render(
       <ThemeProvider theme={{ direction: 'rtl' }}>
         <Test />
