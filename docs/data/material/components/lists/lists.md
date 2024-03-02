@@ -25,7 +25,7 @@ Material UI Lists are implemented using a collection of related components:
 - List Item Button: an action element to be used inside a list item.
 - List Item Icon: an icon to be used inside of a list item.
 - List Item Avatar: an avatar to be used inside of a list item.
-- List Item Text - a container inside a list item, used to display text content.
+- List Item Text: a container inside a list item, used to display text content.
 - List Divider: a separator between list items.
 - List Subheader: a label for a nested list.
 
