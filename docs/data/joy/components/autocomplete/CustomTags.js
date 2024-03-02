@@ -17,7 +17,7 @@ export default function CustomTags() {
           <Chip
             variant="solid"
             color="primary"
-            endDecorator={<Close fontSize="small" />}
+            endDecorator={<Close fontSize="sm" />}
             sx={{ minWidth: 0 }}
             {...getTagProps({ index })}
           >
