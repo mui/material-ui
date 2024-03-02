@@ -145,10 +145,10 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
 }) as OverridableComponent<ChipDeleteTypeMap>;
 
 ChipDelete.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If provided, it will replace the default icon.
    */

@@ -79,7 +79,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
     },
     [`&.${filledInputClasses.focused}`]: {
       backgroundColor: 'var(--md-comp-filled-input-container-color)',
-      '&:after': {
+      '&::after': {
         borderColor: 'var(--md-comp-filled-input-focus-active-indicator-color)',
       },
     },
@@ -88,7 +88,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
         'color-mix(in srgb, var(--md-comp-filled-input-disabled-container-color) calc(var(--md-comp-filled-input-disabled-container-opacity) * 100%), transparent)',
     },
     ...(!ownerState.disableUnderline && {
-      '&:after': {
+      '&::after': {
         borderBottom: '2px solid var(--md-comp-filled-input-active-indicator-color)',
         left: 0,
         bottom: 0,
@@ -109,11 +109,11 @@ const FilledInputRoot = styled(InputBaseRoot, {
         transform: 'scaleX(1) translateX(0)',
       },
       [`&.${filledInputClasses.error}`]: {
-        '&:before, &:after': {
+        '&::before, &::after': {
           borderBottomColor: 'var(--md-comp-filled-input-error-active-indicator-color)',
         },
       },
-      '&:before': {
+      '&::before': {
         borderBottom: '1px solid var(--md-comp-filled-input-active-indicator-color)',
         left: 0,
         bottom: 0,
@@ -312,10 +312,10 @@ interface FilledInputComponent {
 }
 
 FilledInput.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.

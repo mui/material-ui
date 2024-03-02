@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import prism from '@mui/markdown/prism';
+import prism from '@mui/internal-markdown/prism';
 import { NoSsr } from '@mui/base/NoSsr';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import CodeCopyButton from 'docs/src/modules/components/CodeCopyButton';
@@ -23,6 +23,11 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
   return (
     <Component ref={ref} {...other}>
       <div className="MuiCode-root" {...handlers}>
+        {copyButtonHidden ? null : (
+          <NoSsr>
+            <CodeCopyButton code={code} {...copyButtonProps} />
+          </NoSsr>
+        )}
         <pre>
           <code
             className={`language-${language}`}
@@ -30,11 +35,6 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
             dangerouslySetInnerHTML={{ __html: renderedCode }}
           />
         </pre>
-        {copyButtonHidden ? null : (
-          <NoSsr>
-            <CodeCopyButton code={code} {...copyButtonProps} />
-          </NoSsr>
-        )}
       </div>
     </Component>
   );

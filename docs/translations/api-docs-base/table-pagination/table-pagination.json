@@ -56,13 +56,13 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
     "actions": "The component that renders the actions.",
+    "displayedRows": "The component that renders the displayed rows.",
+    "menuItem": "The component that renders the menu item.",
+    "root": "The component that renders the root.",
     "select": "The component that renders the select.",
     "selectLabel": "The component that renders the select label.",
-    "menuItem": "The component that renders the menu item.",
-    "displayedRows": "The component that renders the displayed rows.",
-    "toolbar": "The component that renders the toolbar.",
-    "spacer": "The component that renders the spacer."
+    "spacer": "The component that renders the spacer.",
+    "toolbar": "The component that renders the toolbar."
   }
 }

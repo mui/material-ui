@@ -10,7 +10,7 @@ import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetail from '@mui/material/AccordionDetails';
 import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
-import InternalLink from 'docs/src/modules/components/Link';
+import { Link as InternalLink } from '@mui/docs/Link';
 import Section from 'docs/src/layouts/Section';
 
 const faqData = [
@@ -82,10 +82,10 @@ const Accordion = styled(MuiAccordion)(({ theme }) => ({
   '&:not(:last-of-type)': {
     marginBottom: theme.spacing(2),
   },
-  '&:before': {
+  '&::before': {
     display: 'none',
   },
-  '&:after': {
+  '&::after': {
     display: 'none',
   },
 }));

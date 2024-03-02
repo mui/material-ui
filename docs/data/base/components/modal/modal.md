@@ -31,7 +31,7 @@ As such, it should be used sparingly—only when the app _requires_ user input b
 <!-- Uncomment the next line, once an unstyled dialog component is added in @mui/base -->
 <!-- If you are creating a modal dialog, the [`Dialog`](/material-ui/dialog/) component is better suited for this specific use case. -->
 
-Modal is a lower-level construct that is used in the following Material UI components:
+Modal is a lower-level construct that is used in the following Material UI components:
 
 - [Dialog](/material-ui/react-dialog/)
 - [Drawer](/material-ui/react-drawer/)
@@ -97,7 +97,7 @@ The following demo shows how to apply this prop to keep the Modal mounted:
 {{"demo": "KeepMountedModal.js", "defaultCodeOpen": false}}
 
 :::info
-You can use the `MuiModal-hidden` class to hide the modal when it is not open.
+You can use the `base-Modal-hidden` class to hide the modal when it is not open.
 :::
 
 As with any performance optimization, the `keepMounted` prop won't necessarily solve all of your problems.
@@ -176,7 +176,7 @@ See the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/AR
   </Modal>
   ```
 
-- Follow the [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/dialog/) to help you set the initial focus on the most relevant element based on the content of the Modal.
+- Follow the [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/dialog/) to help you set the initial focus on the most relevant element based on the content of the Modal.
   :::warning
   A modal window can sit on top of either the parent application or another modal window.
   _All_ windows under the topmost modal are **inert**, meaning the user cannot interact with them.

@@ -3,7 +3,7 @@
 This project is used when running the following command:
 
 ```bash
-yarn benchmark:browser
+pnpm benchmark:browser
 ```
 
 It is suppose to give developers comparable values between running different scenarios inside the browser, that can be find the `./scenarios` folder.
@@ -21,7 +21,7 @@ Grid (html):
   28.34 ±01.80ms
 Grid System:
   167 ±2%
-Grid Material UI:
+Grid Material UI:
   179 ±1%
 Table:
   128 ±3%

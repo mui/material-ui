@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 import { styled, alpha } from '@mui/material/styles';
 import {
   brandingDarkTheme as darkTheme,
@@ -11,6 +11,11 @@ import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/Styl
 
 const StyledTable = styled('table')(
   ({ theme }) => ({
+    // Override docs/src/modules/components/MarkdownElement styles
+    '&&': {
+      display: 'table',
+      width: '100%',
+    },
     '& .slot-name': {
       fontFamily: theme.typography.fontFamilyCode,
       fontWeight: theme.typography.fontWeightSemiBold,

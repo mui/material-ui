@@ -4,7 +4,7 @@
 
 ## Default system
 
-Joy UI's default theme includes a built-in typography system of 11 distinct levels—including semantic HTML headers as well as a comparable system for body text—to help you ensure consistency across your interface.
+Joy UI's default theme includes a built-in typography system of 11 distinct levels—including semantic HTML headers as well as a comparable system for body text—to help you ensure consistency across your interface.
 
 {{"demo": "TypographyThemeViewer.js", "bg": "inline"}}
 
@@ -115,7 +115,7 @@ declare module '@mui/joy/styles' {
 
 ### Changing the default font
 
-Joy UI uses the [Inter](https://rsms.me/inter/) font by default.
+Joy UI uses the [Inter](https://rsms.me/inter/) font by default.
 To change it, override the theme's `fontFamily` property:
 
 ```js
@@ -129,17 +129,17 @@ extendTheme({
 
 ## Common examples
 
-Here is a collection of well-known typography systems that you can use with Joy UI.
+Here is a collection of well-known typography systems that you can use with Joy UI.
 Feel free to [submit a PR](https://github.com/mui/material-ui/compare) to add your favorite if it's not here. ❤️
 
 ### Microsoft's Fluent
 
-- Design resource: [Figma](https://www.figma.com/community/file/836828295772957889)
+- Design resource: [Figma](https://www.figma.com/community/file/836828295772957889/microsoft-fluent-2-web)
 - Font: [Segoe UI](https://learn.microsoft.com/en-us/typography/font-list/segoe-ui)
 
 <iframe src="https://codesandbox.io/embed/joy-ui-fluent-typography-system-j86fct?module=%2Fdemo.tsx&fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:360px; border:0; border-radius: 12px; overflow:hidden;"
-     title="Joy UI - Fluent Typography System"
+     title="Joy UI - Fluent Typography System"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
@@ -151,19 +151,19 @@ Feel free to [submit a PR](https://github.com/mui/material-ui/compare) to add yo
 
 <iframe src="https://codesandbox.io/embed/joy-ui-human-interface-guidelines-typography-system-lkuz4d?module=%2Fdemo.tsx&fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:320px; border:0; border-radius: 12px; overflow:hidden;"
-     title="Joy UI - Human Interface Guidelines Typography System"
+     title="Joy UI - Human Interface Guidelines Typography System"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
 ### Google's Material Design 3
 
-- Design resource: [Figma](https://www.figma.com/community/file/1035203688168086460)
+- Design resource: [Figma](https://www.figma.com/community/file/1035203688168086460/material-3-design-kit)
 - Font: [Roboto](https://fonts.google.com/specimen/Roboto)
 
 <iframe src="https://codesandbox.io/embed/joy-ui-material-3-typography-system-lx044f?module=%2Fdemo.tsx&fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:500px; border:0; border-radius: 12px; overflow:hidden;"
-     title="Joy UI - Joy UI - Material 3 Typography System"
+     title="Joy UI - Joy UI - M3 Typography System"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>

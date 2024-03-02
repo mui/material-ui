@@ -98,7 +98,7 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
   const theme = useTheme();
   const isRtl = theme.direction === 'rtl';
 
-  const listRef = React.useRef<HTMLElement | null>(null);
+  const listRef = React.useRef<HTMLElement>(null);
 
   // TODO v6: Handle the rest of the props from the MenuListProps prop
   const {
@@ -316,10 +316,10 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
 }) as OverridableComponent<MenuTypeMap>;
 
 Menu.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A ref with imperative actions that can be performed on the menu.
    */
@@ -428,7 +428,7 @@ Menu.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    * @default {}
    */
   TransitionProps: PropTypes.object,

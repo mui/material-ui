@@ -2,8 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { keyframes, css, darken, lighten } from '@mui/system';
+import composeClasses from '@mui/utils/composeClasses';
+import { keyframes, css } from '@mui/system';
+import { darken, lighten } from '@mui/system/colorManipulator';
 import capitalize from '../utils/capitalize';
 import useTheme from '../styles/useTheme';
 import styled from '../styles/styled';
@@ -348,10 +349,10 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
 });
 
 LinearProgress.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Override or extend the styles applied to the component.
    */

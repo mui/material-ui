@@ -1,4 +1,4 @@
-import yargs from 'yargs';
+import yargs, { ArgumentsCamelCase } from 'yargs';
 import { ProjectSettings, buildApi } from '@mui-internal/api-docs-builder';
 import {
   baseUiProjectSettings,
@@ -16,7 +16,7 @@ const projectSettings: ProjectSettings[] = [
 
 type CommandOptions = { grep?: string };
 
-async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
+async function run(argv: ArgumentsCamelCase<CommandOptions>) {
   const grep = argv.grep == null ? null : new RegExp(argv.grep);
   return buildApi(projectSettings, grep);
 }

@@ -63,7 +63,7 @@ export default function BasicTimeline() {
                 my: 0,
                 [`& .${timelineItemClasses.root}`]: {
                   minHeight: 24,
-                  '&:before': {
+                  '&::before': {
                     display: 'none',
                   },
                 },

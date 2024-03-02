@@ -7,7 +7,7 @@ import IconImage from 'docs/src/components/icon/IconImage';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ROUTES from 'docs/src/route';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 
 const BaseUIThemesDemo = dynamic(() => import('./BaseUIThemesDemo'), {
   ssr: false,
