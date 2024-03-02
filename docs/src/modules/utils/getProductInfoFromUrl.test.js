@@ -93,14 +93,14 @@ describe('getProductInfoFromUrl', () => {
   it('should handle Toolpad Core', () => {
     expect(getProductInfoFromUrl('/toolpad/getting-started/')).to.deep.equal({
       productCategoryId: 'toolpad',
-      productId: 'core',
+      productId: 'toolpad-core',
     });
   });
 
   it('should handle Toolpad Studio', () => {
     expect(getProductInfoFromUrl('/toolpad/studio/getting-started/first-app/')).to.deep.equal({
       productCategoryId: 'toolpad',
-      productId: 'studio',
+      productId: 'toolpad-studio',
     });
   });
 });
