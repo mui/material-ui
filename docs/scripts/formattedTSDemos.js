@@ -18,7 +18,7 @@ const prettier = require('prettier');
 const {
   getPropTypesFromFile,
   injectPropTypesInFile,
-} = require('@mui-internal/typescript-to-proptypes');
+} = require('@mui/internal-scripts/typescript-to-proptypes');
 const {
   createTypeScriptProjectBuilder,
 } = require('@mui-internal/api-docs-builder/utils/createTypeScriptProject');
@@ -42,9 +42,7 @@ async function getFiles(root) {
 
   try {
     await Promise.all(
-      (
-        await fse.readdir(root)
-      ).map(async (name) => {
+      (await fse.readdir(root)).map(async (name) => {
         const filePath = path.join(root, name);
         const stat = await fse.stat(filePath);
 

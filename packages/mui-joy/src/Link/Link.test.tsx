@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { SinonSpy, spy } from 'sinon';
-import { act, createRenderer, fireEvent, describeConformance } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent } from '@mui-internal/test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import Link, { LinkClassKey, linkClasses as classes } from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 import { ThemeProvider, TypographySystem } from '@mui/joy/styles';
+import describeConformance from '../../test/describeConformance';
 
 function focusVisible(element: HTMLAnchorElement | null) {
   act(() => {
@@ -50,10 +51,13 @@ describe('<Link />', () => {
     it('should fire event callbacks', () => {
       const events = ['onBlur', 'onFocus'];
 
-      const handlers = events.reduce((result, n) => {
-        result[n] = spy();
-        return result;
-      }, {} as Record<string, SinonSpy>);
+      const handlers = events.reduce(
+        (result, n) => {
+          result[n] = spy();
+          return result;
+        },
+        {} as Record<string, SinonSpy>,
+      );
 
       const { container } = render(
         <Link href="/" {...handlers}>

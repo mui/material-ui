@@ -14,9 +14,7 @@ Aspect Ratio is a wrapper component for quickly resizing content to conform to y
 Media content like images can be stretched, resized, and cropped based on the CSS `object-fit` property.
 
 :::info
-A [native CSS `aspect-ratio` property](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) does exist, but we does not plan to implement it in Joy UI until browser compatibility increases to at least 94%.
-As of Q4 2022, compatibility is at 90%.
-Source: [Can I use…](https://caniuse.com/?search=aspect-ratio)
+A [native CSS `aspect-ratio` property](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) does exist, and we plan to implement it in Joy UI soon.
 :::
 
 ## Basics
@@ -35,7 +33,7 @@ The default ratio is `16/9`.
 
 ### Variants
 
-The Aspect Ratio component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft` (default), `outlined`, and `plain`.
+The Aspect Ratio component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft` (default), `outlined`, and `plain`.
 
 {{"demo": "VariantsRatio.js"}}
 
@@ -116,9 +114,7 @@ The Aspect Ratio component can be a handy tool for creating a square container f
 
 ### Mobile carousel
 
-:::warning
-In designs like this, make sure to assign a `minWidth` value to prevent the Aspect Ratio component from shrinking.
-:::
+In designs like this, ensure to assign a `minWidth` value to prevent the Aspect Ratio component from shrinking.
 
 {{"demo": "CarouselRatio.js"}}
 

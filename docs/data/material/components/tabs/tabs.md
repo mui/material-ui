@@ -35,7 +35,7 @@ import Tab from '@mui/material/Tab';
 ## Experimental API
 
 `@mui/lab` offers utility components that inject props to implement accessible tabs
-following [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/):
+following [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/):
 
 - `<TabList />` - the container that houses the tabs. Responsible for handling focus and keyboard navigation between tabs.
 - `<TabPanel />` - the card that hosts the content associated with a tab.
@@ -135,7 +135,7 @@ By default, tabs use a `button` element, but you can provide your custom tag or 
 
 One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server.
 The `Tab` component provides the `component` prop to handle this use case.
-Here is a [more detailed guide](/material-ui/guides/routing/#tabs).
+Here is a [more detailed guide](/material-ui/integrations/routing/#tabs).
 
 ## Icon tabs
 

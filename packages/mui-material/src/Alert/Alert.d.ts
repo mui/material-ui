@@ -4,12 +4,34 @@ import { SxProps } from '@mui/system';
 import { IconButtonProps, InternalStandardProps as StandardProps, SvgIconProps, Theme } from '..';
 import { PaperProps } from '../Paper';
 import { AlertClasses } from './alertClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type AlertColor = 'success' | 'info' | 'warning' | 'error';
 
 export interface AlertPropsVariantOverrides {}
 
 export interface AlertPropsColorOverrides {}
+
+export interface AlertSlots {
+  /**
+   * The component that renders the close button.
+   * @default IconButton
+   */
+  closeButton?: React.ElementType;
+  /**
+   * The component that renders the close icon.
+   * @default svg
+   */
+  closeIcon?: React.ElementType;
+}
+
+export type AlertSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  AlertSlots,
+  {
+    closeButton: SlotProps<React.ElementType<IconButtonProps>, {}, AlertOwnerState>;
+    closeIcon: SlotProps<React.ElementType<SvgIconProps>, {}, AlertOwnerState>;
+  }
+>;
 
 export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
   /**
@@ -36,8 +58,7 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
   /**
    * The components used for each slot inside.
    *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    *
    * @default {}
    */
@@ -49,8 +70,7 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    *
    * @default {}
    */
@@ -95,33 +115,12 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
    */
   variant?: OverridableStringUnion<'standard' | 'filled' | 'outlined', AlertPropsVariantOverrides>;
   /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
-   * @default {}
-   */
-  slotProps?: {
-    closeButton?: IconButtonProps;
-    closeIcon?: SvgIconProps;
-  };
-  /**
-   * The components used for each slot inside.
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
-   *
-   * @default {}
-   */
-  slots?: {
-    closeButton?: React.ElementType;
-    closeIcon?: React.ElementType;
-  };
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
 }
+
+export interface AlertOwnerState extends AlertProps {}
 
 /**
  *
@@ -134,4 +133,4 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
  * - [Alert API](https://mui.com/material-ui/api/alert/)
  * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
  */
-export default function Alert(props: AlertProps): JSX.Element;
+export default function Alert(props: AlertProps & AlertSlotsAndSlotProps): JSX.Element;

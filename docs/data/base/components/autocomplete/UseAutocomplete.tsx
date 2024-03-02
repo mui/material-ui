@@ -24,22 +24,17 @@ export default function UseAutocomplete() {
   });
 
   return (
-    <div style={{ marginBottom: 24 }}>
-      <StyledLabel {...getInputLabelProps()}>Pick a movie</StyledLabel>
-      <StyledAutocompleteRoot
-        {...getRootProps()}
-        className={focused ? 'focused' : ''}
-      >
-        <StyledInput {...getInputProps()} />
-      </StyledAutocompleteRoot>
+    <div style={{ marginBottom: 16 }}>
+      <Label {...getInputLabelProps()}>Pick a movie</Label>
+      <Root {...getRootProps()} className={focused ? 'Mui-focused' : ''}>
+        <Input {...getInputProps()} />
+      </Root>
       {groupedOptions.length > 0 && (
-        <StyledListbox {...getListboxProps()}>
+        <Listbox {...getListboxProps()}>
           {(groupedOptions as typeof top100Films).map((option, index) => (
-            <StyledOption {...getOptionProps({ option, index })}>
-              {option.label}
-            </StyledOption>
+            <Option {...getOptionProps({ option, index })}>{option.label}</Option>
           ))}
-        </StyledListbox>
+        </Listbox>
       )}
     </div>
   );
@@ -68,7 +63,7 @@ const grey = {
   900: '#1C2025',
 };
 
-const StyledLabel = styled('label')`
+const Label = styled('label')`
   display: block;
   font-family: sans-serif;
   font-size: 14px;
@@ -76,7 +71,7 @@ const StyledLabel = styled('label')`
   margin-bottom: 4px;
 `;
 
-const StyledAutocompleteRoot = styled('div')(
+const Root = styled('div')(
   ({ theme }) => `
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 400;
@@ -93,7 +88,7 @@ const StyledAutocompleteRoot = styled('div')(
   overflow: hidden;
   width: 320px;
 
-  &.focused {
+  &.Mui-focused {
     border-color: ${blue[400]};
     box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
   }
@@ -108,7 +103,7 @@ const StyledAutocompleteRoot = styled('div')(
 `,
 );
 
-const StyledInput = styled('input')(
+const Input = styled('input')(
   ({ theme }) => `
   font-size: 0.875rem;
   font-family: inherit;
@@ -124,7 +119,7 @@ const StyledInput = styled('input')(
 `,
 );
 
-const StyledListbox = styled('ul')(
+const Listbox = styled('ul')(
   ({ theme }) => `
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
@@ -147,7 +142,7 @@ const StyledListbox = styled('ul')(
   `,
 );
 
-const StyledOption = styled('li')(
+const Option = styled('li')(
   ({ theme }) => `
   list-style: none;
   padding: 8px;
@@ -167,18 +162,18 @@ const StyledOption = styled('li')(
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
 
-  &.base--focused,
-  &.base--focusVisible {
+  &.Mui-focused,
+  &.Mui-focusVisible {
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
 
-  &.base--focusVisible {
+  &.Mui-focusVisible {
     box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
 
-  &[aria-selected=true].base--focused,
-  &[aria-selected=true].base--focusVisible {
+  &[aria-selected=true].Mui-focused,
+  &[aria-selected=true].Mui-focusVisible {
     background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }

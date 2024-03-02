@@ -1,4 +1,4 @@
-# Contributing to Material UI, Base UI, MUI System, Joy UI
+# Contributing to Material UI, Base UI, MUI System, Joy UI
 
 If you're reading this, you're awesome!
 Thank you for being a part of the community and helping us make these projects great.
@@ -238,7 +238,7 @@ Clicking on **Details** will show you the differences.
 #### deploy/netlify
 
 This renders a preview of the docs with your changes if it succeeds.
-Otherwise `pnpm docs:build` or `pnpm docs:export` usually fail locally as well.
+Otherwise `pnpm docs:build` usually fails locally as well.
 
 #### codecov/project
 

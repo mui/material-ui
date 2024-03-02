@@ -13,7 +13,7 @@ authors:
     'mbrookes',
   ]
 card: true
-tags: ['News']
+tags: ['Product', 'Material UI']
 ---
 
 After over 400 days of development and over 40 canary releases, we are excited to introduce [MUI Core v5.0.0](https://github.com/mui/material-ui/releases/tag/v5.0.0)!
@@ -126,7 +126,7 @@ After [exploring](https://github.com/mui/material-ui/issues/22342) many differen
    - If you are using a different styling library, feel free to contribute a wrapper. For instance, there is [one attempt with goober](https://github.com/mui/material-ui/pull/27776), a library obsessing on bundle size (3kB gzipped).
 
    This allows developers to swap between different style engines. For example, styled-components users no longer need to bundle Emotion **and** styled-component, nor do they need to configure the server-side rendering for each.
-   How does the [swap work](https://mui.com/material-ui/guides/styled-components/)? The same way it does from React to Preact.
+   How does the [swap work](https://mui.com/material-ui/integrations/styled-components/)? The same way it does from React to Preact.
 
 3. For the last couple of months, we have been [sponsoring](https://opencollective.com/emotion) Emotion with a $100/month grant. We are now increasing this amount to $1,000/month. It's in our best interest to help ensure the library keeps pushing the envelope, leading the state of the art in a competitive space.
 
