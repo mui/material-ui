@@ -2125,8 +2125,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-system/build
       '@wyw-in-js/processor-utils':
-        specifier: ^0.4.1
-        version: 0.4.1
+        specifier: ^0.5.0
+        version: 0.5.0
       '@wyw-in-js/shared':
         specifier: ^0.4.1
         version: 0.4.1
@@ -8113,8 +8113,29 @@ packages:
       - supports-color
     dev: false
 
+  /@wyw-in-js/processor-utils@0.5.0:
+    resolution: {integrity: sha512-3sRwuDTMy2GmD+44bhCTcBasCrjBexzYRzhxkmMrX49cpVDmQOH+4O7kX5OMRbmzMXe6Z5MsnxIlDlm3bJlcww==}
+    engines: {node: '>=16.0.0'}
+    dependencies:
+      '@babel/generator': 7.23.6
+      '@wyw-in-js/shared': 0.5.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /@wyw-in-js/shared@0.4.1:
     resolution: {integrity: sha512-luKAAP6augn+j7EE9bcVP1chs5RdtmJx1PbRIqT8j12oP2YV32fvhHFX/99XxPujYLxFIexZrhJkNKHnL5uyKA==}
+    engines: {node: '>=16.0.0'}
+    dependencies:
+      debug: 4.3.4(supports-color@8.1.1)
+      find-up: 5.0.0
+      minimatch: 9.0.3
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
+  /@wyw-in-js/shared@0.5.0:
+    resolution: {integrity: sha512-W6Uic3cqRs75XZfXGOYH/0fADbl3Wz/kqnNaowgyNTdTN7/9vdlqk/D/gMT5WGolj4t418+rYe2FHHs0LdlmvA==}
     engines: {node: '>=16.0.0'}
     dependencies:
       debug: 4.3.4(supports-color@8.1.1)
