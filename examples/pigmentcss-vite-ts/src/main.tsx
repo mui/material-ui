@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
+import '@pigmentcss/react/styles.css';
 import './globals.css';
 import App from './App';
 

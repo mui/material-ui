@@ -1,7 +1,7 @@
-import type {} from '@mui/zero-runtime/theme';
-import type { ExtendTheme } from '@mui/zero-runtime';
+import type {} from '@pigmentcss/react/theme';
+import type { ExtendTheme } from '@pigmentcss/react';
 
-declare module '@mui/zero-runtime/theme' {
+declare module '@pigmentcss/react/theme' {
   export interface ThemeArgs {
     theme: ExtendTheme<{
       colorScheme: 'light' | 'dark';

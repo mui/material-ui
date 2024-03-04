@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { zeroVitePlugin } from '@mui/zero-vite-plugin';
-import { extendTheme } from '@mui/zero-runtime';
+import { pigment, extendTheme } from '@pigmentcss/vite-plugin';
 
 // To learn more about theming, visit https://github.com/mui/material-ui/blob/master/packages/zero-runtime/README.md#theming
 const theme = extendTheme({
@@ -28,7 +27,7 @@ const theme = extendTheme({
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    zeroVitePlugin({
+    pigment({
       theme,
     }),
     react(),

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, css, keyframes } from '@mui/zero-runtime';
+import { styled, css, keyframes } from '@pigmentcss/react';
 
 const scale = keyframes({
   to: { scale: 'var(--s2)' },
@@ -68,15 +68,18 @@ export default function Home() {
         justifyContent: 'center',
         height: '100lvh',
         padding: '20px',
+        color: 'hsl(var(--palette-foreground))',
+        backgroundColor: 'hsl(var(--palette-background))',
+        fontFamily:
+          "system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
       })}
     >
       <h1
         className={`
         ${css(({ theme }) => ({
           fontFamily: 'Kalnia, sans-serif',
-          fontSize: 'clamp(3rem, 1.385rem + 6.8906vw, 8rem)',
+          fontSize: 'clamp(3rem, 1.9503rem + 4.4789vw, 6.25rem)',
           fontWeight: 500,
-          lineHeight: 1,
           textAlign: 'center',
           position: 'relative',
           display: 'flex',
@@ -86,7 +89,7 @@ export default function Home() {
           ...theme.applyStyles('dark', { color: '#fff' }),
         }))}`}
       >
-        Zero Runtime
+        Pigment CSS
         <span
           className={css(({ theme }) => ({
             position: 'absolute',
