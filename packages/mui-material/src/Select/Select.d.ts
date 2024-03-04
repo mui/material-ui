@@ -156,7 +156,7 @@ export interface FilledSelectProps extends Omit<FilledInputProps, 'value' | 'onC
    * The variant to use.
    * @default 'outlined'
    */
-  variant: 'filled';
+  variant?: 'filled';
 }
 
 export interface StandardSelectProps extends Omit<InputProps, 'value' | 'onChange'> {
@@ -164,7 +164,7 @@ export interface StandardSelectProps extends Omit<InputProps, 'value' | 'onChang
    * The variant to use.
    * @default 'outlined'
    */
-  variant: 'standard';
+  variant?: 'standard';
 }
 
 export interface OutlinedSelectProps extends Omit<OutlinedInputProps, 'value' | 'onChange'> {
@@ -172,7 +172,7 @@ export interface OutlinedSelectProps extends Omit<OutlinedInputProps, 'value' | 
    * The variant to use.
    * @default 'outlined'
    */
-  variant: 'outlined';
+  variant?: 'outlined';
 }
 
 export type SelectVariants = 'outlined' | 'standard' | 'filled';
