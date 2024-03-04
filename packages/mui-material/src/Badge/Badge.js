@@ -100,7 +100,6 @@ const Badge = React.forwardRef(function Badge(inProps) {
     externalForwardedProps,
     ownerState,
   });
-
   return (
     <RootSlot {...rootProps}>
       {children}
@@ -116,7 +115,8 @@ Badge.propTypes /* remove-proptypes */ = {
   // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The anchor of the badge.
-   * @default {
+   * @default
+   * {
    *   vertical: 'top',
    *   horizontal: 'right',
    * }

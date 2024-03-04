@@ -35,7 +35,8 @@ export interface BadgeOrigin {
 export interface BadgeOwnProps {
   /**
    * The anchor of the badge.
-   * @default {
+   * @default
+   * {
    *   vertical: 'top',
    *   horizontal: 'right',
    * }
