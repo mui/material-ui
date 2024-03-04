@@ -27,14 +27,18 @@ const products = [
   },
 ];
 
-export default function Info() {
+interface InfoProps {
+  totalPrice: string;
+}
+
+export default function Info({totalPrice}: InfoProps) {
   return (
     <React.Fragment>
       <Typography variant="subtitle2" color="text.secondary">
         Total
       </Typography>
       <Typography variant="h4" gutterBottom>
-        $134.98
+      {totalPrice}
       </Typography>
       <List disablePadding>
         {products.map((product) => (
@@ -44,7 +48,7 @@ export default function Info() {
               primary={product.name}
               secondary={product.desc}
             />
-            <Typography variant="body1">{product.price}</Typography>
+            <Typography variant="body1" fontWeight="medium">{product.price}</Typography>
           </ListItem>
         ))}
       </List>

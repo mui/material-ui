@@ -169,7 +169,7 @@ export default function Checkout() {
               maxWidth: 500,
             }}
           >
-            <Info />
+            <Info totalPrice={activeStep === 2 ? '$144.97' : '$134.98'} />
           </Box>
         </Grid>
         <Grid
@@ -218,14 +218,10 @@ export default function Checkout() {
                     'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
                   }
                   style={logoStyle}
-                  alt="logo of sitemark"
+                  alt="Sitemark's logo"
                 />
               </Button>
-              <ToggleColorMode
-                mode={mode}
-                toggleColorMode={toggleColorMode}
-                showCustomTheme={showCustomTheme}
-              />
+              <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
             </Box>
             <Box
               sx={{
@@ -237,11 +233,7 @@ export default function Checkout() {
                 height: 150,
               }}
             >
-              <ToggleColorMode
-                mode={mode}
-                toggleColorMode={toggleColorMode}
-                showCustomTheme={showCustomTheme}
-              />
+              <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
               <Stepper
                 id="desktop-stepper"
                 activeStep={activeStep}
@@ -275,7 +267,7 @@ export default function Checkout() {
                 display: 'flex',
                 width: '100%',
                 alignItems: 'center',
-                ':last-child': { pb: '16px' },
+                ':last-child': { pb: 2 },
               }}
             >
               <Box sx={{ flexGrow: 1 }}>
@@ -283,12 +275,10 @@ export default function Checkout() {
                   Selected products
                 </Typography>
                 <Typography variant="body1">
-                  <Typography variant="body1">
-                    {activeStep === 2 ? '144.97' : '$134.98'}
-                  </Typography>
+                  {activeStep === 2 ? '$144.97' : '$134.98'}
                 </Typography>
               </Box>
-              <InfoMobile />
+              <InfoMobile totalPrice={activeStep === 2 ? '$144.97' : '$134.98'} />
             </CardContent>
           </Card>
           <Box
@@ -325,14 +315,10 @@ export default function Checkout() {
               ))}
             </Stepper>
             {activeStep === steps.length ? (
-              <Stack spacing={2}>
-                <Typography variant="h1" gutterBottom>
-                  📦
-                </Typography>
-                <Typography variant="h5" gutterBottom>
-                  Thank you for your order!
-                </Typography>
-                <Typography variant="body1" color="text.secondary" gutterBottom>
+              <Stack spacing={2} useFlexGap>
+                <Typography variant="h1">📦</Typography>
+                <Typography variant="h5">Thank you for your order!</Typography>
+                <Typography variant="body1" color="text.secondary">
                   Your order number is
                   <strong>&nbsp;#140396</strong>. We have emailed your order
                   confirmation and will update you once its shipped.
@@ -393,7 +379,7 @@ export default function Checkout() {
                     endIcon={<ChevronRightRoundedIcon />}
                     onClick={handleNext}
                     sx={{
-                      width: { xs: '100%', sm: 'auto' },
+                      width: { xs: '100%', sm: 'fit-content' },
                     }}
                   >
                     {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
@@ -405,8 +391,8 @@ export default function Checkout() {
         </Grid>
       </Grid>
       <ToggleCustomTheme
-        showCustomTheme={showCustomTheme}
         toggleCustomTheme={toggleCustomTheme}
+        showCustomTheme={showCustomTheme}
       />
     </ThemeProvider>
   );

@@ -72,6 +72,19 @@ export const green = {
   900: '#021D02',
 };
 
+export const orange = {
+  50: '#FFFBF0',
+  100: '#FDF1CE',
+  200: '#FCE49C',
+  300: '#F6CE55',
+  400: '#C2940A',
+  500: '#AA8109',
+  600: '#795C06',
+  700: '#634B03',
+  800: '#4F3C02',
+  900: '#3B2D02',
+};
+
 const getDesignTokens = (mode: PaletteMode) => ({
   palette: {
     mode,
@@ -202,6 +215,23 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
   return {
     ...getDesignTokens(mode),
     components: {
+      MuiAlert: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            borderRadius: 10,
+            backgroundColor: orange[100],
+            color: theme.palette.text.primary,
+            border: `1px solid ${alpha(orange[300], 0.5)}`,
+            '& .MuiAlert-icon': {
+              color: orange[500],
+            },
+            ...(theme.palette.mode === 'dark' && {
+              backgroundColor: `${alpha(orange[900], 0.5)}`,
+              border: `1px solid ${alpha(orange[800], 0.5)}`,
+            }),
+          }),
+        },
+      },
       MuiToggleButtonGroup: {
         styleOverrides: {
           root: ({ theme }) => ({
@@ -253,13 +283,9 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
       MuiButton: {
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
-            boxSizing: 'border-box',
             boxShadow: 'none',
             borderRadius: '10px',
             textTransform: 'none',
-            '&:active': {
-              transform: 'scale(0.98)',
-            },
             ...(ownerState.size === 'small' && {
               maxHeight: '32px',
             }),
@@ -269,12 +295,15 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
             ...(ownerState.variant === 'contained' &&
               ownerState.color === 'primary' && {
                 color: brand[50],
-                background: brand[500],
-                backgroundImage: `linear-gradient(to bottom, ${brand[400]}, ${brand[600]})`,
-                boxShadow: `inset 0 1px ${alpha(brand[300], 0.4)}`,
+                backgroundColor: brand[500],
+                backgroundImage: `linear-gradient(to bottom, ${brand[400]}, ${brand[500]})`,
+                boxShadow: `inset 0 1px ${alpha(
+                  brand[300],
+                  0.5,
+                )}, inset 0 -2px ${alpha(brand[700], 0.5)}`,
                 border: `1px solid ${brand[500]}`,
                 '&:hover': {
-                  background: brand[400],
+                  backgroundColor: brand[400],
                   backgroundImage: 'none',
                   boxShadow: `0 0 0 1px  ${alpha(brand[300], 0.5)}`,
                 },
@@ -299,6 +328,8 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
               ...(ownerState.variant === 'contained' &&
                 ownerState.color === 'primary' && {
                   border: `1px solid ${brand[600]}`,
+                  backgroundImage: 'none',
+                  backgroundColor: brand[500],
                   '&:hover': {
                     background: brand[600],
                     backgroundImage: 'none',
