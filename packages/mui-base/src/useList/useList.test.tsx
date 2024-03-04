@@ -6,6 +6,7 @@ import { useList } from './useList';
 
 describe('useList', () => {
   const { render } = createRenderer();
+
   describe('preventing default behavior on keyDown', () => {
     ['ArrowUp', 'ArrowDown', 'Home', 'End', 'PageUp', 'PageDown', 'Enter', ' '].forEach((key) =>
       it(`prevents default behavior when ${key} is pressed in activeDescendant focus management mode`, () => {
