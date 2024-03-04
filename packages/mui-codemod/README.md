@@ -274,6 +274,21 @@ npx @mui/codemod@latest deprecations/alert-props <path>
  />;
 ```
 
+#### `badge-props`
+
+```diff
+ <Badge
+- components={{Badge:CustomBadge}}
+- componentsProps={{ badge: { testid: 'test-id' } }}
++ slots={{badge:CustomBadge}}
++ slotsProps={{ badge:{ testid:'test-id'} }}
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/badge-props <path>
+```
+
 #### `button-classes`
 
 JS transforms:
@@ -495,21 +510,6 @@ CSS transforms:
 
 ```bash
 npx @mui/codemod@latest deprecations/button-classes <path>
-```
-
-#### `badge-props`
-
-```diff
- <Badge
-- components={{Badge:CustomBadge}}
-- componentsProps={{ badge: { testid: 'test-id' } }}
-+ slots={{badge:CustomBadge}}
-+ slotsProps={{ badge:{ testid:'test-id'} }}
- />
-```
-
-```bash
-npx @mui/codemod@latest deprecations/badge-props <path>
 ```
 
 #### `chip-classes`
@@ -1040,8 +1040,8 @@ The list includes these transformers
       - [`alert-classes`](#alert-classes)
       - [`alert-props`](#alert-props)
       - [`avatar-props`](#avatar-props)
-      - [`button-classes`](#button-classes)
       - [`badge-props`](#badge-props)
+      - [`button-classes`](#button-classes)
       - [`chip-classes`](#chip-classes)
       - [`divider-props`](#divider-props)
       - [`pagination-item-classes`](#pagination-item-classes)
