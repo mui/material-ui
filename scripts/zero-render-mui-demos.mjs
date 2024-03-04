@@ -1,5 +1,6 @@
 import path from 'path';
 import fse from 'fs-extra';
+import * as prettier from 'prettier';
 
 function capitalize(string) {
   if (typeof string !== 'string') {
@@ -22,6 +23,9 @@ async function run() {
       'Please provide a string of `react-<component>` from the `docs/pages/material-ui/*` directory.',
     );
   }
+  const prettierConfig = await prettier.resolveConfig(process.cwd(), {
+    config: path.join(process.cwd(), 'prettier.config.js'),
+  });
 
   // Find the demos of the component
   const docSource = await fse.readFile(
@@ -39,11 +43,11 @@ async function run() {
   const renders = tsFiles.map((filename) => {
     const componentName = filename.replace('.tsx', '');
     return `      <section>
-          <h2>${titleCase(componentName)}</h2>
-          <div className="demo-container">
-            <${componentName} />
-          </div>
-        </section>`;
+        <h2>${titleCase(componentName)}</h2>
+        <div className="demo-container">
+          <${componentName} />
+        </div>
+      </section>`;
   });
   /**
    * Zero-Runtime Next.js App
@@ -67,11 +71,16 @@ ${renders.join('\n')}
 `;
 
   // Create the page in zero-runtime apps
-  await fse.mkdirp(`apps/zero-runtime-next-app/src/app/material-ui/${args[0]}`);
-  await fse.writeFile(
-    path.join(process.cwd(), `apps/zero-runtime-next-app/src/app/material-ui/${args[0]}/page.tsx`),
-    nextFileContent,
+  const nextFilepath = path.join(
+    process.cwd(),
+    `apps/zero-runtime-next-app/src/app/material-ui/${args[0]}/page.tsx`,
   );
+  const prettiedNextFileContent = await prettier.format(nextFileContent, {
+    ...prettierConfig,
+    filepath: nextFilepath,
+  });
+  await fse.mkdirp(`apps/zero-runtime-next-app/src/app/material-ui/${args[0]}`);
+  await fse.writeFile(nextFilepath, prettiedNextFileContent);
 
   /**
    * Zero-Runtime Vite App
@@ -94,11 +103,16 @@ ${renders.join('\n')}
 }
 `;
   // Create the page in zero-runtime apps
-  await fse.mkdirp(`apps/zero-runtime-vite-app/src/pages/material-ui`);
-  await fse.writeFile(
-    path.join(process.cwd(), `apps/zero-runtime-vite-app/src/pages/material-ui/${args[0]}.tsx`),
-    viteFileContent,
+  const viteFilepath = path.join(
+    process.cwd(),
+    `apps/zero-runtime-vite-app/src/pages/material-ui/${args[0]}.tsx`,
   );
+  const prettiedViteFileContent = await prettier.format(viteFileContent, {
+    ...prettierConfig,
+    filepath: viteFilepath,
+  });
+  await fse.mkdirp(`apps/zero-runtime-vite-app/src/pages/material-ui`);
+  await fse.writeFile(viteFilepath, prettiedViteFileContent);
 }
 
 run();
