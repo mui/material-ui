@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Kalnia, Josefin_Sans } from 'next/font/google';
-import { styled, css, keyframes } from '@pigmentcss/react';
+import { styled, css, keyframes } from '@pigment-css/react';
 
 const kalnia = Kalnia({ subsets: ['latin'] });
 const josefin = Josefin_Sans({ subsets: ['latin'] });

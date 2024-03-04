@@ -1,5 +1,5 @@
 {
-  "name": "zero-nextjs",
+  "name": "pigment-css-nextjs-ts",
   "version": "5.0.0",
   "private": true,
   "scripts": {
@@ -10,13 +10,13 @@
     "post-update": "echo \"codesandbox preview only, need an update\" && pnpm update --latest"
   },
   "dependencies": {
-    "@pigmentcss/react": "latest",
+    "@pigment-css/react": "latest",
     "react": "latest",
     "react-dom": "latest",
     "next": "latest"
   },
   "devDependencies": {
-    "@pigmentcss/nextjs-plugin": "latest",
+    "@pigment-css/nextjs-plugin": "latest",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",

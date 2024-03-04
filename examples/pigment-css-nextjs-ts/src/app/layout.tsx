@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type { Metadata } from 'next';
-import '@pigmentcss/react/styles.css';
-import { css } from '@pigmentcss/react';
+import '@pigment-css/react/styles.css';
+import { css } from '@pigment-css/react';
 
 import './globals.css';
 
