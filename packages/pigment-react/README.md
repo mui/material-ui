@@ -30,7 +30,7 @@ Thanks to recent advancements in CSS (like CSS variables and `color-mix()`), "tr
 
 Pigment CSS addresses the needs of the modern React developer by providing a zero-runtime CSS-in-JS styling solution as a successor to tools like Emotion and styled-components.
 
-Compared to its predecessors, it offers improved DX and runtime performance (though at the cost of increased build time) while also being compatible with React Server Components.
+Compared to its predecessors, Pigment CSS offers improved DX and runtime performance (though at the cost of increased build time) while also being compatible with React Server Components.
 Pigment CSS is built on top of [WyW-in-JS](https://wyw-in-js.dev/), enabling us to provide the smoothest possible experience for Material UI users when migrating from Emotion in v5 to Pigment in v6.
 
 ### Next.js
