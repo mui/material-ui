@@ -179,8 +179,8 @@ The Badge's `components` was deprecated in favor of `slots`:
 
 ```diff
  <Badge
--  components={{ Badge: CustomElements }}
-+  slots={{ badge: CustomElements }}
+-  components={{ Badge: CustomBadge }}
++  slots={{ badge: CustomBadge }}
  />
 ```
 

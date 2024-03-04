@@ -182,9 +182,9 @@ npx @mui/codemod@latest deprecations/alert-props <path>
 
 ```diff
  <Badge
-- components={{Badge:CustomElements}}
+- components={{Badge:CustomBadge}}
 - componentsProps={{ badge: { testid: 'test-id' } }}
-+ slots={{badge:CustomElements}}
++ slots={{badge:CustomBadge}}
 + slotsProps={{ badge:{ testid:'test-id'} }}
  />
 ```
