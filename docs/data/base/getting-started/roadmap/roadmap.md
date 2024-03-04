@@ -20,12 +20,3 @@ We typically add umbrella issues to the project board after discussing them inte
 **[Visit the Base UI project board 👉](https://github.com/orgs/mui/projects/1/views/13)**
 
 <img src="/static/base-ui/roadmap/github-roadmap.png" style="width: 814px;" alt="A screenshot of the public Base UI GitHub project." width="1628" height="400" />
-
-### Milestones
-
-We also create milestones within the Base UI repository to keep track of larger cycles.
-Check it out to keep up with ongoing progress and see which issues have been picked up for the stable release.
-
-**[Visit the Base UI milestones page 👉](https://github.com/mui/material-ui/milestone/42)**
-
-<img src="/static/material-ui/roadmap/milestone.png" style="width: 814px; margin-top: 4px; margin-bottom: 8px;" alt="A screenshot from GitHub of the Base UI v6 milestone." width="1628" height="400" />
