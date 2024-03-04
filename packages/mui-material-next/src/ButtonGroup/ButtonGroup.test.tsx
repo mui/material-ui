@@ -20,6 +20,7 @@ describe('<ButtonGroup />', () => {
         removeListener: () => {},
       }) as unknown as MediaQueryList;
   });
+
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
   });

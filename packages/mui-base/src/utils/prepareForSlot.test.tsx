@@ -6,6 +6,7 @@ import { prepareForSlot } from './prepareForSlot';
 
 describe('prepareForSlot', () => {
   const { render } = createRenderer();
+
   it('should not warn about ownerState', () => {
     const ThirdPartyComponent = React.forwardRef<HTMLButtonElement>((props, ref) => {
       // @ts-ignore just double checking that it is not defined
