@@ -1,8 +1,9 @@
 import * as React from 'react';
-import Grid from '@mui/material/Grid';
-import FormControlLabel from '@mui/material/FormControlLabel';
+
 import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
+import Grid from '@mui/material/Grid';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import { styled } from '@mui/system';
 
@@ -15,7 +16,9 @@ export default function AddressForm() {
   return (
     <Grid container spacing={3}>
       <FormGrid item xs={12} md={6}>
-        <FormLabel required>First name</FormLabel>
+        <FormLabel htmlFor="first-name" required>
+          First name
+        </FormLabel>
         <OutlinedInput
           id="first-name"
           name="first-name"
@@ -26,7 +29,9 @@ export default function AddressForm() {
         />
       </FormGrid>
       <FormGrid item xs={12} md={6}>
-        <FormLabel required>Last name</FormLabel>
+        <FormLabel htmlFor="last-name" required>
+          Last name
+        </FormLabel>
         <OutlinedInput
           id="last-name"
           name="last-name"
@@ -37,7 +42,9 @@ export default function AddressForm() {
         />
       </FormGrid>
       <FormGrid item xs={12}>
-        <FormLabel required>Address line 1</FormLabel>
+        <FormLabel htmlFor="address1" required>
+          Address line 1
+        </FormLabel>
         <OutlinedInput
           id="address1"
           name="address1"
@@ -48,7 +55,7 @@ export default function AddressForm() {
         />
       </FormGrid>
       <FormGrid item xs={12}>
-        <FormLabel>Address line 2</FormLabel>
+        <FormLabel htmlFor="address2">Address line 2</FormLabel>
         <OutlinedInput
           id="address2"
           name="address2"
@@ -59,29 +66,35 @@ export default function AddressForm() {
         />
       </FormGrid>
       <FormGrid item xs={6}>
-        <FormLabel required>City</FormLabel>
+        <FormLabel htmlFor="city" required>
+          City
+        </FormLabel>
         <OutlinedInput
-          id="City"
-          name="City"
-          type="City"
+          id="city"
+          name="city"
+          type="city"
           placeholder="New York"
           autoComplete="City"
           required
         />
       </FormGrid>
       <FormGrid item xs={6}>
-        <FormLabel required>State</FormLabel>
+        <FormLabel htmlFor="state" required>
+          State
+        </FormLabel>
         <OutlinedInput
-          id="State"
-          name="State"
-          type="State"
+          id="state"
+          name="state"
+          type="state"
           placeholder="NY"
           autoComplete="State"
           required
         />
       </FormGrid>
       <FormGrid item xs={6}>
-        <FormLabel required>Zip / Postal code</FormLabel>
+        <FormLabel htmlFor="zip" required>
+          Zip / Postal code
+        </FormLabel>
         <OutlinedInput
           id="zip"
           name="zip"
@@ -92,7 +105,9 @@ export default function AddressForm() {
         />
       </FormGrid>
       <FormGrid item xs={6}>
-        <FormLabel required>Country</FormLabel>
+        <FormLabel htmlFor="country" required>
+          Country
+        </FormLabel>
         <OutlinedInput
           id="country"
           name="country"

@@ -1,11 +1,12 @@
 import * as React from 'react';
-import Typography from '@mui/material/Typography';
+
+import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import Grid from '@mui/material/Grid';
-import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 
 const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
 const payments = [

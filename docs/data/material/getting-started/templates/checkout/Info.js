@@ -1,8 +1,10 @@
 import * as React from 'react';
-import Typography from '@mui/material/Typography';
+import PropTypes from 'prop-types';
+
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
+import Typography from '@mui/material/Typography';
 
 const products = [
   {
@@ -27,14 +29,14 @@ const products = [
   },
 ];
 
-export default function Info() {
+function Info({ totalPrice }) {
   return (
     <React.Fragment>
       <Typography variant="subtitle2" color="text.secondary">
         Total
       </Typography>
       <Typography variant="h4" gutterBottom>
-        $134.98
+        {totalPrice}
       </Typography>
       <List disablePadding>
         {products.map((product) => (
@@ -44,10 +46,18 @@ export default function Info() {
               primary={product.name}
               secondary={product.desc}
             />
-            <Typography variant="body1">{product.price}</Typography>
+            <Typography variant="body1" fontWeight="medium">
+              {product.price}
+            </Typography>
           </ListItem>
         ))}
       </List>
     </React.Fragment>
   );
 }
+
+Info.propTypes = {
+  totalPrice: PropTypes.string.isRequired,
+};
+
+export default Info;

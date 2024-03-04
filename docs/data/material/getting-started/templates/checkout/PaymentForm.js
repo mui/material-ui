@@ -1,21 +1,25 @@
 import * as React from 'react';
-import Typography from '@mui/material/Typography';
+
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
-import OutlinedInput from '@mui/material/OutlinedInput';
+import Card from '@mui/material/Card';
+import CardActionArea from '@mui/material/CardActionArea';
+import CardContent from '@mui/material/CardContent';
+import Checkbox from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
+import OutlinedInput from '@mui/material/OutlinedInput';
 import RadioGroup from '@mui/material/RadioGroup';
-import Checkbox from '@mui/material/Checkbox';
-import { styled } from '@mui/system';
-import CreditCardRoundedIcon from '@mui/icons-material/CreditCardRounded';
-import AccountBalanceRoundedIcon from '@mui/icons-material/AccountBalanceRounded';
-import SimCardRoundedIcon from '@mui/icons-material/SimCardRounded';
-import { Card } from '@mui/material';
 import Stack from '@mui/material/Stack';
-import CardContent from '@mui/material/CardContent';
-import CardActionArea from '@mui/material/CardActionArea';
+import Typography from '@mui/material/Typography';
+
+import AccountBalanceRoundedIcon from '@mui/icons-material/AccountBalanceRounded';
+import CreditCardRoundedIcon from '@mui/icons-material/CreditCardRounded';
+import SimCardRoundedIcon from '@mui/icons-material/SimCardRounded';
+import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
+
+import { styled } from '@mui/system';
 
 const FormGrid = styled('div')(() => ({
   display: 'flex',
@@ -56,25 +60,22 @@ export default function PaymentForm() {
   };
 
   return (
-    <Stack spacing={3}>
+    <Stack spacing={6} useFlexGap>
       <FormControl component="fieldset" fullWidth>
         <RadioGroup
-          aria-label="paymentType"
+          aria-label="Payment options"
           name="paymentType"
           value={paymentType}
           onChange={handlePaymentTypeChange}
           sx={{
-            display: 'flex',
             flexDirection: { sm: 'column', md: 'row' },
-            justifyContent: 'center',
-            gap: { sm: '', md: 2 },
+            gap: 2,
           }}
         >
           <Card
             raised={paymentType === 'creditCard'}
             sx={{
               maxWidth: { sm: '100%', md: '50%' },
-              mb: 2,
               flexGrow: 1,
               outline: '1px solid',
               outlineColor:
@@ -84,9 +85,11 @@ export default function PaymentForm() {
             }}
           >
             <CardActionArea onClick={() => setPaymentType('creditCard')}>
-              <CardContent sx={{ display: 'flex', alignItems: 'center' }}>
-                <CreditCardRoundedIcon color="action" sx={{ marginRight: 2 }} />
-                <Typography variant="subtitle1">Card</Typography>
+              <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <CreditCardRoundedIcon color="primary" fontSize="small" />
+                <Typography variant="subtitle1" fontWeight="medium">
+                  Card
+                </Typography>
               </CardContent>
             </CardActionArea>
           </Card>
@@ -94,7 +97,6 @@ export default function PaymentForm() {
             raised={paymentType === 'bankTransfer'}
             sx={{
               maxWidth: { sm: '100%', md: '50%' },
-              mb: 2,
               flexGrow: 1,
               outline: '1px solid',
               outlineColor:
@@ -104,9 +106,11 @@ export default function PaymentForm() {
             }}
           >
             <CardActionArea onClick={() => setPaymentType('bankTransfer')}>
-              <CardContent sx={{ display: 'flex', alignItems: 'center' }}>
-                <AccountBalanceRoundedIcon color="action" sx={{ marginRight: 2 }} />
-                <Typography variant="subtitle1">US bank account</Typography>
+              <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <AccountBalanceRoundedIcon color="primary" fontSize="small" />
+                <Typography variant="subtitle1" fontWeight="medium">
+                  Bank account
+                </Typography>
               </CardContent>
             </CardActionArea>
           </Card>
@@ -116,7 +120,10 @@ export default function PaymentForm() {
         <Box
           sx={{
             display: 'flex',
+            flexDirection: 'column',
             justifyContent: 'center',
+            alignItems: 'center',
+            gap: 2,
           }}
         >
           <Box
@@ -125,10 +132,10 @@ export default function PaymentForm() {
               flexDirection: 'column',
               justifyContent: 'space-between',
               p: 3,
-              height: { xs: '300px', sm: '350px' },
-              width: { xs: '450px', sm: '525px' },
+              height: { xs: 300, sm: 350 },
+              width: { xs: 450, sm: 525 },
               borderRadius: '20px',
-              border: '2px solid ',
+              border: '1px solid ',
               borderColor: 'divider',
               backgroundColor: 'background.paper',
               boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.05)',
@@ -140,7 +147,7 @@ export default function PaymentForm() {
             </Box>
             <SimCardRoundedIcon
               sx={{
-                fontSize: { xs: '48px', sm: '56px' },
+                fontSize: { xs: 48, sm: 56 },
                 transform: 'rotate(90deg)',
                 color: 'text.secondary',
               }}
@@ -150,13 +157,15 @@ export default function PaymentForm() {
                 display: 'flex',
                 justifyContent: 'space-between',
                 width: '100%',
-                gap: 3,
+                gap: 2,
               }}
             >
               <FormGrid sx={{ flexGrow: 1 }}>
-                <FormLabel required>Card number</FormLabel>
+                <FormLabel htmlFor="card-number" required>
+                  Card number
+                </FormLabel>
                 <OutlinedInput
-                  id="standard-basic"
+                  id="card-number"
                   autoComplete="card-number"
                   placeholder="0000 0000 0000 0000"
                   required
@@ -165,7 +174,9 @@ export default function PaymentForm() {
                 />
               </FormGrid>
               <FormGrid sx={{ maxWidth: '20%' }}>
-                <FormLabel required>CVV</FormLabel>
+                <FormLabel htmlFor="cvv" required>
+                  CVV
+                </FormLabel>
                 <OutlinedInput
                   id="cvv"
                   autoComplete="CVV"
@@ -176,9 +187,11 @@ export default function PaymentForm() {
                 />
               </FormGrid>
             </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 3 }}>
+            <Box sx={{ display: 'flex', gap: 2 }}>
               <FormGrid sx={{ flexGrow: 1 }}>
-                <FormLabel required>Name</FormLabel>
+                <FormLabel htmlFor="card-name" required>
+                  Name
+                </FormLabel>
                 <OutlinedInput
                   id="card-name"
                   autoComplete="card-name"
@@ -187,7 +200,9 @@ export default function PaymentForm() {
                 />
               </FormGrid>
               <FormGrid sx={{ flexGrow: 1 }}>
-                <FormLabel required>Expiration date</FormLabel>
+                <FormLabel htmlFor="card-expiration" required>
+                  Expiration date
+                </FormLabel>
                 <OutlinedInput
                   id="card-expiration"
                   autoComplete="card-expiration"
@@ -199,15 +214,12 @@ export default function PaymentForm() {
               </FormGrid>
             </Box>
           </Box>
+          <FormControlLabel
+            control={<Checkbox name="saveCard" />}
+            label="Remember credit card details for next time"
+            sx={{ justifyContent: 'center' }}
+          />
         </Box>
-      )}
-
-      {paymentType === 'creditCard' && (
-        <FormControlLabel
-          control={<Checkbox name="saveCard" />}
-          label="Remember credit card details for next time"
-          sx={{ justifyContent: 'center' }}
-        />
       )}
 
       {paymentType === 'bankTransfer' && (
@@ -218,10 +230,13 @@ export default function PaymentForm() {
             gap: 2,
           }}
         >
-          <Alert severity="warning">
+          <Alert severity="warning" icon={<WarningRoundedIcon />}>
             Your order will be processed once we receive the funds.
           </Alert>
-          <Typography variant="subtitle1">Bank account</Typography>
+          <Typography variant="subtitle1" fontWeight="medium">
+            Bank account
+          </Typography>
+
           <Typography variant="body1" gutterBottom>
             Please transfer the payment to the bank account details shown below.
           </Typography>
@@ -229,19 +244,25 @@ export default function PaymentForm() {
             <Typography variant="body1" color="text.secondary">
               Bank:
             </Typography>
-            <Typography variant="body1">The Bank</Typography>
+            <Typography variant="body1" fontWeight="medium">
+              Mastercredit
+            </Typography>
           </Box>
           <Box sx={{ display: 'flex', gap: 1 }}>
             <Typography variant="body1" color="text.secondary">
-              Account Number:
+              Account number:
             </Typography>
-            <Typography variant="body1">123456789</Typography>
+            <Typography variant="body1" fontWeight="medium">
+              123456789
+            </Typography>
           </Box>
           <Box sx={{ display: 'flex', gap: 1 }}>
             <Typography variant="body1" color="text.secondary">
-              Routing Number:
+              Routing number:
             </Typography>
-            <Typography variant="body1">987654321</Typography>
+            <Typography variant="body1" fontWeight="medium">
+              987654321
+            </Typography>
           </Box>
         </Box>
       )}

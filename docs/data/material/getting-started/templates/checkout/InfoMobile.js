@@ -1,14 +1,17 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
+
 import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
+import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
+
 import CloseIcon from '@mui/icons-material/Close';
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 
 import Info from './Info';
 
-export default function InfoMobile() {
+function InfoMobile({ totalPrice }) {
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen) => () => {
@@ -23,7 +26,7 @@ export default function InfoMobile() {
       >
         <CloseIcon />
       </IconButton>
-      <Info />
+      <Info totalPrice={totalPrice} />
     </Box>
   );
 
@@ -42,3 +45,9 @@ export default function InfoMobile() {
     </div>
   );
 }
+
+InfoMobile.propTypes = {
+  totalPrice: PropTypes.string.isRequired,
+};
+
+export default InfoMobile;
