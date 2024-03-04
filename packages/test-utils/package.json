@@ -23,7 +23,7 @@
     "@babel/register": "^7.23.7",
     "@babel/runtime": "^7.23.9",
     "@emotion/cache": "^11.11.0",
-    "@emotion/react": "^11.11.3",
+    "@emotion/react": "^11.11.4",
     "@mnajdova/enzyme-adapter-react-18": "^0.2.0",
     "@testing-library/dom": "^9.3.4",
     "@testing-library/react": "^14.2.1",

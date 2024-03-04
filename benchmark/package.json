@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@chakra-ui/system": "^2.6.2",
-    "@emotion/react": "^11.11.3",
+    "@emotion/react": "^11.11.4",
     "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "workspace:^",
