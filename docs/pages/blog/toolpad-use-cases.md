@@ -43,7 +43,7 @@ The [`updateMuiPaidSupport.ts`](https://github.com/mui/mui-public/blob/master/to
 It uses the [custom function](https://mui.com/toolpad/concepts/custom-functions/) feature and combines GitHub Actions, Google Sheets, and Octokit to read and verify user information.
 The fetched data is then bound to the UI components.
 It uses Toolpad's [page parameters](https://mui.com/toolpad/concepts/page-properties/#page-parameters), [secrets handling](https://mui.com/toolpad/concepts/custom-functions/#secrets-handling), [shell removal](https://mui.com/toolpad/concepts/page-properties/#display-mode), and custom styling features.
-This app took one developer just a few hours to build which otherwise would have taken several days.
+This app took one developer just a few hours to build which otherwise would have taken much longer.
 
 ## 2. Customer support KPI tracker
 
@@ -93,8 +93,6 @@ The video below shows how a user can select the dates, run the script, and recei
   <source src="/static/blog/toolpad-use-cases/contributor-payout.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
-
-With the release of [authentication](https://mui.com/toolpad/concepts/authentication/), we will now enable Google login for the above apps.
 
 ## Conclusion
 
