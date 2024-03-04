@@ -3,7 +3,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import fs from 'fs/promises';
 import path from 'path';
-import { css } from '@pigmentcss/react';
+import { css } from '@pigment-css/react';
 
 export default async function MaterialUIPage() {
   const rootPaths = await fs.readdir(path.join(process.cwd(), `src/app/material-ui`));

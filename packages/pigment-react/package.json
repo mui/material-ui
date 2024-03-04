@@ -1,5 +1,5 @@
 {
-  "name": "@pigmentcss/react",
+  "name": "@pigment-css/react",
   "version": "0.0.1",
   "main": "build/index.js",
   "module": "build/index.mjs",

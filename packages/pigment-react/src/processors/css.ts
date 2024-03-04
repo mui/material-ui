@@ -21,7 +21,7 @@ import type { Primitive, TemplateCallback } from './keyframes';
  *
  * @example
  * ```ts
- * import { css } from '@pigmentcss/react';
+ * import { css } from '@pigment-css/react';
  *
  * const class1 = css(({theme}) => ({
  *  color: (theme.vars || theme).palette.primary.main,

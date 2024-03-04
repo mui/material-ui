@@ -1,4 +1,4 @@
-import { styled, keyframes, css } from '@pigmentcss/react';
+import { styled, keyframes, css } from '@pigment-css/react';
 
 const rotateKeyframe = keyframes({
   from: {

@@ -3,7 +3,7 @@ import * as path from 'node:path';
 import { expect } from 'chai';
 import { asyncResolveFallback } from '@wyw-in-js/shared';
 import { TransformCacheCollection, transform, createFileReporter } from '@wyw-in-js/transform';
-import { preprocessor } from '@pigmentcss/react/utils';
+import { preprocessor } from '@pigment-css/react/utils';
 
 const files = fs.readdirSync(path.join(__dirname, 'fixtures'));
 
