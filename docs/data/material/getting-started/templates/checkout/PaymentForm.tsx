@@ -163,9 +163,11 @@ export default function PaymentForm() {
               }}
             >
               <FormGrid sx={{ flexGrow: 1 }}>
-                <FormLabel required>Card number</FormLabel>
+                <FormLabel htmlFor="card-number" required>
+                  Card number
+                </FormLabel>
                 <OutlinedInput
-                  id="standard-basic"
+                  id="card-number"
                   autoComplete="card-number"
                   placeholder="0000 0000 0000 0000"
                   required
@@ -174,7 +176,9 @@ export default function PaymentForm() {
                 />
               </FormGrid>
               <FormGrid sx={{ maxWidth: '20%' }}>
-                <FormLabel required>CVV</FormLabel>
+                <FormLabel htmlFor="cvv" required>
+                  CVV
+                </FormLabel>
                 <OutlinedInput
                   id="cvv"
                   autoComplete="CVV"
@@ -187,7 +191,9 @@ export default function PaymentForm() {
             </Box>
             <Box sx={{ display: 'flex', gap: 2 }}>
               <FormGrid sx={{ flexGrow: 1 }}>
-                <FormLabel required>Name</FormLabel>
+                <FormLabel htmlFor="card-name" required>
+                  Name
+                </FormLabel>
                 <OutlinedInput
                   id="card-name"
                   autoComplete="card-name"
@@ -196,7 +202,9 @@ export default function PaymentForm() {
                 />
               </FormGrid>
               <FormGrid sx={{ flexGrow: 1 }}>
-                <FormLabel required>Expiration date</FormLabel>
+                <FormLabel htmlFor="card-expiration" required>
+                  Expiration date
+                </FormLabel>
                 <OutlinedInput
                   id="card-expiration"
                   autoComplete="card-expiration"
