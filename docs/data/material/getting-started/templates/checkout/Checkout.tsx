@@ -1,9 +1,10 @@
 import * as React from 'react';
+
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Step from '@mui/material/Step';
@@ -12,7 +13,8 @@ import Stepper from '@mui/material/Stepper';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { PaletteMode } from '@mui/material';
 
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
@@ -21,12 +23,12 @@ import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 
 import AddressForm from './AddressForm';
-import PaymentForm from './PaymentForm';
-import Review from './Review';
+import getCheckoutTheme from './getCheckoutTheme';
 import Info from './Info';
 import InfoMobile from './InfoMobile';
+import PaymentForm from './PaymentForm';
+import Review from './Review';
 import ToggleColorMode from './ToggleColorMode';
-import getCheckoutTheme from './getCheckoutTheme';
 
 interface ToggleCustomThemeProps {
   showCustomTheme: Boolean;
