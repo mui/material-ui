@@ -1,6 +1,6 @@
 # Pigment CSS
 
-A zero-runtime CSS-in-JS library that extracts the colocated styles to their own CSS files at build-time.
+A Pigment CSS CSS-in-JS library that extracts the colocated styles to their own CSS files at build-time.
 
 - [Getting started](#getting-started)
   - [Next.js](#nextjs)
@@ -32,8 +32,8 @@ Pigment CSS supports Next.js and Vite with support for more bundlers in future. 
 Use the following commands to create a new Next.js project with Zero Runtime setup:
 
 ```bash
-curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/zero-nextjs
-cd zero-nextjs
+curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/pigmentcss-nextjs
+cd pigmentcss-nextjs
 ```
 
 #### Manual installation
@@ -60,8 +60,8 @@ module.exports = withPigment({
 Use the following commands to create a new Vite project with Zero Runtime setup:
 
 ```bash
-curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/zero-vite
-cd zero-vite
+curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/pigmentcss-vite
+cd pigmentcss-vite
 ```
 
 #### Manual installation
@@ -513,9 +513,9 @@ declare module '@pigmentcss/react/theme' {
 
 Emotion and styled-components are runtime CSS-in-JS libraries. What you write in your styles is what you get in the final bundle which means that the styles can be as dynamic as you want with the trade-offs of bundle size and performance overhead.
 
-On the other hand, zero-runtime extracts CSS at build time and replaces the JS code with hashed class names and some CSS variables. This means that it has to know all of the styles to be extracted ahead of time, so there are rules and limitations that you need to be aware of when using JavaScript callbacks or variables in zero-runtime APIs.
+On the other hand, Pigment CSS extracts CSS at build time and replaces the JS code with hashed class names and some CSS variables. This means that it has to know all of the styles to be extracted ahead of time, so there are rules and limitations that you need to be aware of when using JavaScript callbacks or variables in Pigment CSS APIs.
 
-Here are some common patterns and how to achieve them with zero-runtime:
+Here are some common patterns and how to achieve them with Pigment CSS:
 
 1. **Fixed set of styles**
 
@@ -535,7 +535,7 @@ const Flex = styled('div')((props) => ({
 }));
 ```
 
-But in zero-runtime, you need to define all of the styles ahead of time using the `variants` key:
+But in Pigment CSS, you need to define all of the styles ahead of time using the `variants` key:
 
 ```js
 const Flex = styled('div')((props) => ({
@@ -586,7 +586,7 @@ function App() {
 }
 ```
 
-However, in zero-runtime, all instances will have the same styles and won't change between renders because the styles are extracted at build time.
+However, in Pigment CSS, all instances will have the same styles and won't change between renders because the styles are extracted at build time.
 
 To achieve the same result, you need to move the dynamic logic to props and pass the value to CSS variables instead:
 
