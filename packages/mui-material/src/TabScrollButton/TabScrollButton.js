@@ -1,8 +1,10 @@
+'use client';
 /* eslint-disable jsx-a11y/aria-role */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { useSlotProps } from '@mui/base/utils';
+import composeClasses from '@mui/utils/composeClasses';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import ButtonBase from '../ButtonBase';
@@ -47,7 +49,15 @@ const TabScrollButtonRoot = styled(ButtonBase, {
 
 const TabScrollButton = React.forwardRef(function TabScrollButton(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTabScrollButton' });
-  const { className, direction, orientation, disabled, ...other } = props;
+  const {
+    className,
+    slots = {},
+    slotProps = {},
+    direction,
+    orientation,
+    disabled,
+    ...other
+  } = props;
 
   const theme = useTheme();
   const isRtl = theme.direction === 'rtl';
@@ -55,6 +65,27 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(inProps, ref) 
   const ownerState = { isRtl, ...props };
 
   const classes = useUtilityClasses(ownerState);
+
+  const StartButtonIcon = slots.StartScrollButtonIcon ?? KeyboardArrowLeft;
+  const EndButtonIcon = slots.EndScrollButtonIcon ?? KeyboardArrowRight;
+
+  const startButtonIconProps = useSlotProps({
+    elementType: StartButtonIcon,
+    externalSlotProps: slotProps.startScrollButtonIcon,
+    additionalProps: {
+      fontSize: 'small',
+    },
+    ownerState,
+  });
+
+  const endButtonIconProps = useSlotProps({
+    elementType: EndButtonIcon,
+    externalSlotProps: slotProps.endScrollButtonIcon,
+    additionalProps: {
+      fontSize: 'small',
+    },
+    ownerState,
+  });
 
   return (
     <TabScrollButtonRoot
@@ -67,19 +98,19 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(inProps, ref) 
       {...other}
     >
       {direction === 'left' ? (
-        <KeyboardArrowLeft fontSize="small" />
+        <StartButtonIcon {...startButtonIconProps} />
       ) : (
-        <KeyboardArrowRight fontSize="small" />
+        <EndButtonIcon {...endButtonIconProps} />
       )}
     </TabScrollButtonRoot>
   );
 });
 
 TabScrollButton.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
@@ -98,12 +129,30 @@ TabScrollButton.propTypes /* remove-proptypes */ = {
   direction: PropTypes.oneOf(['left', 'right']).isRequired,
   /**
    * If `true`, the component is disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**
    * The component orientation (layout flow direction).
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']).isRequired,
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    endScrollButtonIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startScrollButtonIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    EndScrollButtonIcon: PropTypes.elementType,
+    StartScrollButtonIcon: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

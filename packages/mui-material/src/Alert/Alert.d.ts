@@ -4,12 +4,34 @@ import { SxProps } from '@mui/system';
 import { IconButtonProps, InternalStandardProps as StandardProps, SvgIconProps, Theme } from '..';
 import { PaperProps } from '../Paper';
 import { AlertClasses } from './alertClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type AlertColor = 'success' | 'info' | 'warning' | 'error';
 
 export interface AlertPropsVariantOverrides {}
 
 export interface AlertPropsColorOverrides {}
+
+export interface AlertSlots {
+  /**
+   * The component that renders the close button.
+   * @default IconButton
+   */
+  closeButton?: React.ElementType;
+  /**
+   * The component that renders the close icon.
+   * @default svg
+   */
+  closeIcon?: React.ElementType;
+}
+
+export type AlertSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  AlertSlots,
+  {
+    closeButton: SlotProps<React.ElementType<IconButtonProps>, {}, AlertOwnerState>;
+    closeIcon: SlotProps<React.ElementType<SvgIconProps>, {}, AlertOwnerState>;
+  }
+>;
 
 export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
   /**
@@ -30,12 +52,14 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
   /**
    * The color of the component. Unless provided, the value is taken from the `severity` prop.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    */
   color?: OverridableStringUnion<AlertColor, AlertPropsColorOverrides>;
   /**
-   * The components used for each slot inside the Alert.
-   * Either a string to use a HTML element or a component.
+   * The components used for each slot inside.
+   *
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   *
    * @default {}
    */
   components?: {
@@ -43,7 +67,11 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
     CloseIcon?: React.ElementType;
   };
   /**
-   * The props used for each slot inside.
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   *
    * @default {}
    */
   componentsProps?: {
@@ -54,7 +82,7 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
    * The severity of the alert. This defines the color and icon used.
    * @default 'success'
    */
-  severity?: AlertColor;
+  severity?: OverridableStringUnion<AlertColor, AlertPropsColorOverrides>;
   /**
    * Override the icon displayed before the children.
    * Unless provided, the icon is mapped to the value of the `severity` prop.
@@ -72,7 +100,9 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
    * If you wish to change this mapping, you can provide your own.
    * Alternatively, you can use the `icon` prop to override the icon displayed.
    */
-  iconMapping?: Partial<Record<AlertColor, React.ReactNode>>;
+  iconMapping?: Partial<
+    Record<OverridableStringUnion<AlertColor, AlertPropsColorOverrides>, React.ReactNode>
+  >;
   /**
    * Callback fired when the component requests to be closed.
    * When provided and no `action` prop is set, a close icon button is displayed that triggers the callback when clicked.
@@ -90,6 +120,8 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
   sx?: SxProps<Theme>;
 }
 
+export interface AlertOwnerState extends AlertProps {}
+
 /**
  *
  * Demos:
@@ -101,4 +133,4 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
  * - [Alert API](https://mui.com/material-ui/api/alert/)
  * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
  */
-export default function Alert(props: AlertProps): JSX.Element;
+export default function Alert(props: AlertProps & AlertSlotsAndSlotProps): JSX.Element;

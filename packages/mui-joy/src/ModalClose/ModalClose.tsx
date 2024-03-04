@@ -1,20 +1,21 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { useSlotProps } from '@mui/base/utils';
-import { useButton } from '@mui/base/ButtonUnstyled';
+import { useButton } from '@mui/base/useButton';
+import useSlot from '../utils/useSlot';
 import { useThemeProps, styled } from '../styles';
-import { IconButtonRoot } from '../IconButton/IconButton';
+import { StyledIconButton } from '../IconButton/IconButton';
 import { getModalCloseUtilityClass } from './modalCloseClasses';
-import { ModalCloseProps, ModalCloseTypeMap } from './ModalCloseProps';
+import { ModalCloseProps, ModalCloseOwnerState, ModalCloseTypeMap } from './ModalCloseProps';
 import CloseIcon from '../internal/svg-icons/Close';
 import CloseModalContext from '../Modal/CloseModalContext';
 import ModalDialogSizeContext from '../ModalDialog/ModalDialogSizeContext';
 import ModalDialogVariantColorContext from '../ModalDialog/ModalDialogVariantColorContext';
 
-const useUtilityClasses = (ownerState: ModalCloseProps & { focusVisible?: boolean }) => {
+const useUtilityClasses = (ownerState: ModalCloseOwnerState) => {
   const { variant, color, disabled, focusVisible, size } = ownerState;
 
   const slots = {
@@ -31,25 +32,26 @@ const useUtilityClasses = (ownerState: ModalCloseProps & { focusVisible?: boolea
   return composeClasses(slots, getModalCloseUtilityClass, {});
 };
 
-export const ModalCloseRoot = styled(IconButtonRoot, {
+export const ModalCloseRoot = styled(StyledIconButton, {
   name: 'JoyModalClose',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ModalCloseProps }>(({ ownerState, theme }) => ({
+})<{ ownerState: ModalCloseOwnerState }>(({ ownerState, theme }) => ({
   ...(ownerState.size === 'sm' && {
-    '--IconButton-size': '28px',
+    '--IconButton-size': '1.75rem',
   }),
   ...(ownerState.size === 'md' && {
-    '--IconButton-size': '36px',
+    '--IconButton-size': '2rem',
   }),
   ...(ownerState.size === 'lg' && {
-    '--IconButton-size': '40px',
+    '--IconButton-size': '2.25rem',
   }),
   position: 'absolute',
-  top: `var(--ModalClose-inset, ${theme.spacing(1)})`,
-  right: `var(--ModalClose-inset, ${theme.spacing(1)})`,
+  zIndex: 1, // stay on top of the title in case it is positioned relatively
+  top: `var(--ModalClose-inset, 0.625rem)`,
+  right: `var(--ModalClose-inset, 0.625rem)`,
   borderRadius: `var(--ModalClose-radius, ${theme.vars.radius.sm})`,
-  // for variant without a background, use `tertiary` text color to reduce the importancy of the close icon.
+  // for variant without a background, use `tertiary` text color to reduce the importance of the close icon.
   ...(!theme.variants[ownerState.variant!]?.[ownerState.color!]?.backgroundColor && {
     color: theme.vars.palette.text.secondary,
   }),
@@ -61,7 +63,17 @@ const modalDialogVariantMapping = {
   soft: 'soft',
   solid: 'solid',
 } as const;
-
+/**
+ *
+ * Demos:
+ *
+ * - [Drawer](https://mui.com/joy-ui/react-drawer/)
+ * - [Modal](https://mui.com/joy-ui/react-modal/)
+ *
+ * API:
+ *
+ * - [ModalClose API](https://mui.com/joy-ui/api/modal-close/)
+ */
 const ModalClose = React.forwardRef(function ModalClose(inProps, ref) {
   const props = useThemeProps<typeof inProps & ModalCloseProps>({
     props: inProps,
@@ -74,21 +86,23 @@ const ModalClose = React.forwardRef(function ModalClose(inProps, ref) {
     variant: variantProp = 'plain',
     size: sizeProp = 'md',
     onClick,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
   const closeModalContext = React.useContext(CloseModalContext);
   const modalDialogVariantColor = React.useContext(ModalDialogVariantColorContext);
-  const color = inProps.color ?? modalDialogVariantColor?.color ?? colorProp;
   const variant =
     inProps.variant ?? modalDialogVariantMapping[modalDialogVariantColor?.variant!] ?? variantProp;
+  const color = inProps.color ?? modalDialogVariantColor?.color ?? colorProp;
 
   const modalDialogSize = React.useContext(ModalDialogSizeContext);
   const size = inProps.size ?? modalDialogSize ?? sizeProp;
 
   const { focusVisible, getRootProps } = useButton({
     ...props,
-    ref,
+    rootRef: ref,
   });
 
   const ownerState = {
@@ -102,35 +116,36 @@ const ModalClose = React.forwardRef(function ModalClose(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     elementType: ModalCloseRoot,
     getSlotProps: getRootProps,
-    externalSlotProps: {
+    externalForwardedProps: {
       onClick: (event: React.MouseEvent<HTMLButtonElement>) => {
         closeModalContext?.(event, 'closeClick');
         onClick?.(event);
       },
       ...other,
-    },
-    additionalProps: {
-      as: component,
+      component,
+      slots,
+      slotProps,
     },
     className: classes.root,
     ownerState,
   });
 
   return (
-    <ModalCloseRoot {...rootProps}>
+    <SlotRoot {...rootProps}>
       <CloseIcon />
-    </ModalCloseRoot>
+    </SlotRoot>
   );
 }) as OverridableComponent<ModalCloseTypeMap>;
 
 ModalClose.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */
@@ -140,7 +155,7 @@ ModalClose.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -161,6 +176,20 @@ ModalClose.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -169,7 +198,7 @@ ModalClose.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

@@ -1,16 +1,16 @@
 # @mui/icons-material-builder
 
-This tool generates MUI SvgIcon components for a set of svg icons.
+This tool generates Material UI SvgIcon components for a set of svg icons.
 
 ## Running the build
 
 The build script downloads and builds the Material Design Icons.
 
-```sh
-yarn install
-yarn build
+```bash
+pnpm install
+pnpm build
 cd build
-yarn publish
+pnpm publish
 ```
 
 ## Generated folders

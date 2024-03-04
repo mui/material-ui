@@ -22,9 +22,21 @@ const drawerWidth = 240;
 function ResponsiveDrawer(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [isClosing, setIsClosing] = React.useState(false);
+
+  const handleDrawerClose = () => {
+    setIsClosing(true);
+    setMobileOpen(false);
+  };
+
+  const handleDrawerTransitionEnd = () => {
+    setIsClosing(false);
+  };
 
   const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
+    if (!isClosing) {
+      setMobileOpen(!mobileOpen);
+    }
   };
 
   const drawer = (
@@ -59,6 +71,7 @@ function ResponsiveDrawer(props) {
     </div>
   );
 
+  // Remove this const when copying and pasting into your project.
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
@@ -96,7 +109,8 @@ function ResponsiveDrawer(props) {
           container={container}
           variant="temporary"
           open={mobileOpen}
-          onClose={handleDrawerToggle}
+          onTransitionEnd={handleDrawerTransitionEnd}
+          onClose={handleDrawerClose}
           ModalProps={{
             keepMounted: true, // Better open performance on mobile.
           }}
@@ -158,7 +172,7 @@ function ResponsiveDrawer(props) {
 ResponsiveDrawer.propTypes = {
   /**
    * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
+   * Remove this when copying and pasting into your project.
    */
   window: PropTypes.func,
 };

@@ -1,11 +1,11 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Slider component
 components: Slider
 githubLabel: 'component: slider'
 materialDesign: https://m2.material.io/components/sliders
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/
-unstyled: /base/react-slider/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/
+unstyled: /base-ui/react-slider/
 ---
 
 # Slider
@@ -38,6 +38,7 @@ You can generate a mark for each step with `marks={true}`.
 ### Small steps
 
 You can change the default step increment.
+Make sure to adjust the `shiftStep` prop (the granularity with which the slider can step when using Page Up/Down or Shift + Arrow Up/Down) to a value divadable with the `step`.
 
 {{"demo": "DiscreteSliderSteps.js"}}
 
@@ -108,6 +109,12 @@ This might be less confusing to users compared to a change in direction.
 
 {{"demo": "VerticalAccessibleSlider.js"}}
 
+## Marks placement
+
+You can customize your slider by adding and repositioning marks for minimum and maximum values.
+
+{{"demo": "CustomMarks.js"}}
+
 ## Track
 
 The track shows the range available for user selection.
@@ -135,7 +142,7 @@ Increasing _x_ by one increases the represented value by factor _2_.
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/)
 
 The component handles most of the work necessary to make it accessible.
 However, you need to make sure that:
@@ -150,7 +157,7 @@ However, you need to make sure that:
 ### IE 11
 
 The slider's value label is not centered in IE 11.
-The alignement is not handled to make customizations easier with the lastest browsers.
+The alignment is not handled to make customizations easier with the latest browsers.
 You can solve the issue with:
 
 ```css
@@ -158,3 +165,18 @@ You can solve the issue with:
   left: calc(-50% - 4px);
 }
 ```
+
+## Experimental APIs
+
+### Material Design 3
+
+The default Material UI Slider component follows the Material Design 2 specs.
+To use the [M3](https://m3.material.io/) version, install the experimental `@mui/material-next` package.
+
+```js
+import Slider from '@mui/material-next/Slider';
+```
+
+{{"demo": "SliderMaterialYouPlayground.js", "hideToolbar": true, "bg": "playground"}}
+
+To learn more about Material UI's M3 implementation, visit the [M3 Components documentation](/material-ui/guides/material-3-components/).

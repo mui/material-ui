@@ -3,10 +3,11 @@ import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { act, createRenderer, fireEvent, within, describeConformance, screen } from 'test/utils';
+import { act, createRenderer, fireEvent, within, screen } from '@mui-internal/test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Fade from '@mui/material/Fade';
 import Modal, { modalClasses as classes } from '@mui/material/Modal';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Modal />', () => {
   const { clock, render } = createRenderer();
@@ -32,12 +33,18 @@ describe('<Modal />', () => {
       muiName: 'MuiModal',
       refInstanceof: window.HTMLDivElement,
       testVariantProps: { hideBackdrop: true },
+      testLegacyComponentsProp: true,
+      slots: {
+        root: { expectedClassName: classes.root },
+        backdrop: {},
+      },
       skip: [
         'rootClass', // portal, can't determine the root
         'componentsProp', // TODO isRTL is leaking, why do we even have it in the first place?
         'themeDefaultProps', // portal, can't determine the root
         'themeStyleOverrides', // portal, can't determine the root
         'reactTestRenderer', // portal https://github.com/facebook/react/issues/11565
+        'slotPropsCallback', // not supported yet
       ],
     }),
   );
@@ -65,6 +72,19 @@ describe('<Modal />', () => {
       );
 
       expect(container).to.have.text('Hello World');
+    });
+  });
+
+  describe('prop: classes', () => {
+    it('adds custom classes to the component', () => {
+      const { getByTestId } = render(
+        <Modal data-testid="Portal" open classes={{ root: 'custom-root', hidden: 'custom-hidden' }}>
+          <div />
+        </Modal>,
+      );
+      expect(getByTestId('Portal')).to.have.class(classes.root);
+      expect(getByTestId('Portal')).to.have.class('custom-root');
+      expect(getByTestId('Portal')).not.to.have.class('custom-hidden');
     });
   });
 
@@ -113,7 +133,7 @@ describe('<Modal />', () => {
       }
 
       render(
-        <Modal open BackdropComponent={TestBackdrop}>
+        <Modal open slots={{ backdrop: TestBackdrop }}>
           <div />
         </Modal>,
       );
@@ -146,7 +166,15 @@ describe('<Modal />', () => {
         return <div data-testid="backdrop" data-timeout={transitionDuration} />;
       }
       render(
-        <Modal open BackdropComponent={TestBackdrop} BackdropProps={{ transitionDuration: 200 }}>
+        <Modal
+          open
+          slots={{ backdrop: TestBackdrop }}
+          slotProps={{
+            backdrop: {
+              transitionDuration: 200,
+            },
+          }}
+        >
           <div />
         </Modal>,
       );
@@ -157,7 +185,15 @@ describe('<Modal />', () => {
     it('should attach a handler to the backdrop that fires onClose', () => {
       const onClose = spy();
       const { getByTestId } = render(
-        <Modal onClose={onClose} open BackdropProps={{ 'data-testid': 'backdrop' }}>
+        <Modal
+          onClose={onClose}
+          open
+          slotProps={{
+            backdrop: {
+              'data-testid': 'backdrop',
+            },
+          }}
+        >
           <div />
         </Modal>,
       );
@@ -201,7 +237,15 @@ describe('<Modal />', () => {
     it('should call through to the user specified onBackdropClick callback', () => {
       const onBackdropClick = spy();
       const { getByTestId } = render(
-        <Modal onBackdropClick={onBackdropClick} open BackdropProps={{ 'data-testid': 'backdrop' }}>
+        <Modal
+          onClose={(event, reason) => {
+            if (reason === 'backdropClick') {
+              onBackdropClick();
+            }
+          }}
+          open
+          slotProps={{ backdrop: { 'data-testid': 'backdrop' } }}
+        >
           <div />
         </Modal>,
       );
@@ -222,7 +266,15 @@ describe('<Modal />', () => {
       }
       const onBackdropClick = spy();
       const { getByTestId } = render(
-        <Modal onBackdropClick={onBackdropClick} open BackdropComponent={CustomBackdrop}>
+        <Modal
+          onClose={(event, reason) => {
+            if (reason === 'backdropClick') {
+              onBackdropClick();
+            }
+          }}
+          open
+          slots={{ backdrop: CustomBackdrop }}
+        >
           <div />
         </Modal>,
       );
@@ -567,16 +619,18 @@ describe('<Modal />', () => {
     clock.withFakeTimers();
 
     it('should open and close', () => {
-      const TestCase = (props) => (
-        <React.Fragment>
-          <Modal open={props.open}>
-            <div>Hello</div>
-          </Modal>
-          <Modal open={props.open}>
-            <div>World</div>
-          </Modal>
-        </React.Fragment>
-      );
+      function TestCase(props) {
+        return (
+          <React.Fragment>
+            <Modal open={props.open}>
+              <div>Hello</div>
+            </Modal>
+            <Modal open={props.open}>
+              <div>World</div>
+            </Modal>
+          </React.Fragment>
+        );
+      }
       TestCase.propTypes = {
         open: PropTypes.bool,
       };
@@ -595,18 +649,20 @@ describe('<Modal />', () => {
     });
 
     it('should open and close with Transitions', () => {
-      const TestCase = (props) => (
-        <React.Fragment>
-          <Modal open={props.open}>
-            <Fade onEntered={props.onEntered} onExited={props.onExited} in={props.open}>
-              <div>Hello</div>
-            </Fade>
-          </Modal>
-          <Modal open={props.open}>
-            <div>World</div>
-          </Modal>
-        </React.Fragment>
-      );
+      function TestCase(props) {
+        return (
+          <React.Fragment>
+            <Modal open={props.open}>
+              <Fade onEntered={props.onEntered} onExited={props.onExited} in={props.open}>
+                <div>Hello</div>
+              </Fade>
+            </Modal>
+            <Modal open={props.open}>
+              <div>World</div>
+            </Modal>
+          </React.Fragment>
+        );
+      }
 
       const handleEntered = spy();
       const handleExited = spy();
@@ -659,18 +715,20 @@ describe('<Modal />', () => {
     clock.withFakeTimers();
 
     it('when true it should close after Transition has finished', () => {
-      const TestCase = (props) => (
-        <Modal open={props.open} closeAfterTransition>
-          <Fade
-            onEntered={props.onEntered}
-            onExiting={props.onExiting}
-            onExited={props.onExited}
-            in={props.open}
-          >
-            <div>Hello</div>
-          </Fade>
-        </Modal>
-      );
+      function TestCase(props) {
+        return (
+          <Modal open={props.open} closeAfterTransition>
+            <Fade
+              onEntered={props.onEntered}
+              onExiting={props.onExiting}
+              onExited={props.onExited}
+              in={props.open}
+            >
+              <div>Hello</div>
+            </Fade>
+          </Modal>
+        );
+      }
       const handleEntered = spy();
       const handleExiting = spy();
       const handleExited = spy();
@@ -715,18 +773,20 @@ describe('<Modal />', () => {
     });
 
     it('when false it should close before Transition has finished', () => {
-      const TestCase = (props) => (
-        <Modal open={props.open} closeAfterTransition={false}>
-          <Fade
-            onEntered={props.onEntered}
-            onExiting={props.onExiting}
-            onExited={props.onExited}
-            in={props.open}
-          >
-            <div>Hello</div>
-          </Fade>
-        </Modal>
-      );
+      function TestCase(props) {
+        return (
+          <Modal open={props.open} closeAfterTransition={false}>
+            <Fade
+              onEntered={props.onEntered}
+              onExiting={props.onExiting}
+              onExited={props.onExited}
+              in={props.open}
+            >
+              <div>Hello</div>
+            </Fade>
+          </Modal>
+        );
+      }
       const handleEntered = spy();
       const handleExiting = spy();
       const handleExited = spy();
@@ -800,5 +860,26 @@ describe('<Modal />', () => {
       );
       expect(within(getByTestId('parent')).getByTestId('child')).not.to.equal(null);
     });
+  });
+
+  describe('prop: BackdropProps', () => {
+    it('should handle custom className', () => {
+      const { getByTestId } = render(
+        <Modal open BackdropProps={{ className: 'custom-backdrop', 'data-testid': 'backdrop' }}>
+          <div />
+        </Modal>,
+      );
+      expect(getByTestId('backdrop')).to.have.class('custom-backdrop');
+    });
+  });
+
+  it('should not warn when onTransitionEnter and onTransitionExited are provided', () => {
+    expect(() => {
+      render(
+        <Modal open onTransitionEnter={() => {}} onTransitionExited={() => {}}>
+          <div />
+        </Modal>,
+      );
+    }).not.toErrorDev();
   });
 });

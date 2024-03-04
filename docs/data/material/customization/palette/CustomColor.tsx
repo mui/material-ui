@@ -5,7 +5,9 @@ import Button from '@mui/material/Button';
 const theme = createTheme({
   palette: {
     neutral: {
-      main: '#64748B',
+      light: '#838fa2',
+      main: '#64748b',
+      dark: '#465161',
       contrastText: '#fff',
     },
   },
@@ -22,7 +24,7 @@ declare module '@mui/material/styles' {
   }
 }
 
-// Update the Button's color prop options
+// @babel-ignore-comment-in-output Update the Button's color prop options
 declare module '@mui/material/Button' {
   interface ButtonPropsColorOverrides {
     neutral: true;

@@ -3,7 +3,7 @@
 <p class="description">The sx prop is a shortcut for defining custom styles that has access to the theme.</p>
 
 The `sx` prop lets you work with a superset of CSS that packages all of the style functions exposed in `@mui/system`.
-You can specify any valid CSS using this prop, as well as many _theme-aware_ properties that are unique to MUI System.
+You can specify any valid CSS using this prop, as well as many _theme-aware_ properties that are unique to MUI System.
 
 ## Basic example
 
@@ -112,7 +112,7 @@ function transform(value) {
 }
 ```
 
-If the value is between [0, 1], it's converted to a percentage.
+If the value is between (0, 1], it's converted to a percentage.
 Otherwise, it is directly set on the CSS property:
 
 ```jsx
@@ -203,6 +203,43 @@ The `sx` prop can also receive a callback when you need to get theme values that
 />
 ```
 
+In TypeScript, to use custom theme properties with the `sx` prop callback, extend the `Theme` type from the `@mui/system` library using [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation):
+
+```tsx
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { orange } from '@mui/material/colors';
+
+declare module '@mui/system' {
+  interface Theme {
+    status: {
+      warning: string;
+    };
+  }
+}
+
+const theme = createTheme({
+  status: {
+    warning: orange[500],
+  },
+});
+
+export default function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <Box
+        sx={(theme) => ({
+          bgcolor: theme.status.warning,
+        })}
+      >
+        Example
+      </Box>
+    </ThemeProvider>
+  );
+}
+```
+
 ## Array values
 
 Array types are useful when you want to partially override some styles in the former index:
@@ -251,7 +288,7 @@ Each index can be an object or a callback.
 
 ## Passing the sx prop
 
-If you want to receive the `sx` prop from a custom component and pass it down to an MUI component, we recommend this approach:
+If you want to receive the `sx` prop from a custom component and pass it down to another MUI System, we recommend this approach:
 
 {{"demo": "PassingSxProp.js", "bg": true, "defaultCodeOpen": true}}
 

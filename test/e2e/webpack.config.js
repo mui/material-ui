@@ -1,5 +1,5 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpackBaseConfig = require('../../webpackBaseConfig');
 
 module.exports = {
@@ -31,6 +31,7 @@ module.exports = {
         options: {
           cacheDirectory: true,
           configFile: path.resolve(__dirname, '../../babel.config.js'),
+          envName: 'regressions',
         },
       },
       {

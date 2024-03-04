@@ -1,8 +1,9 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { alpha } from '@mui/system';
+import composeClasses from '@mui/utils/composeClasses';
+import { alpha } from '@mui/system/colorManipulator';
 import useThemeProps from '../styles/useThemeProps';
 import paginationItemClasses, { getPaginationItemUtilityClass } from './paginationItemClasses';
 import useTheme from '../styles/useTheme';
@@ -40,6 +41,7 @@ const useUtilityClasses = (ownerState) => {
       `size${capitalize(size)}`,
       variant,
       shape,
+      color !== 'standard' && `color${capitalize(color)}`,
       color !== 'standard' && `${variant}${capitalize(color)}`,
       disabled && 'disabled',
       selected && 'selected',
@@ -125,7 +127,7 @@ const PaginationItemPage = styled(ButtonBase, {
       backgroundColor: (theme.vars || theme).palette.action.selected,
       '&:hover': {
         backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.action.selected} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+          ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
           : alpha(
               theme.palette.action.selected,
               theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
@@ -137,7 +139,7 @@ const PaginationItemPage = styled(ButtonBase, {
       },
       [`&.${paginationItemClasses.focusVisible}`]: {
         backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.action.selected} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
+          ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
           : alpha(
               theme.palette.action.selected,
               theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
@@ -263,17 +265,13 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
     className,
     color = 'standard',
     component,
-    components = {
-      first: FirstPageIcon,
-      last: LastPageIcon,
-      next: NavigateNextIcon,
-      previous: NavigateBeforeIcon,
-    },
+    components = {},
     disabled = false,
     page,
     selected = false,
     shape = 'circular',
     size = 'medium',
+    slots = {},
     type = 'page',
     variant = 'text',
     ...other
@@ -296,16 +294,16 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
   const normalizedIcons =
     theme.direction === 'rtl'
       ? {
-          previous: components.next || NavigateNextIcon,
-          next: components.previous || NavigateBeforeIcon,
-          last: components.first || FirstPageIcon,
-          first: components.last || LastPageIcon,
+          previous: slots.next || components.next || NavigateNextIcon,
+          next: slots.previous || components.previous || NavigateBeforeIcon,
+          last: slots.first || components.first || FirstPageIcon,
+          first: slots.last || components.last || LastPageIcon,
         }
       : {
-          previous: components.previous || NavigateBeforeIcon,
-          next: components.next || NavigateNextIcon,
-          first: components.first || FirstPageIcon,
-          last: components.last || LastPageIcon,
+          previous: slots.previous || components.previous || NavigateBeforeIcon,
+          next: slots.next || components.next || NavigateNextIcon,
+          first: slots.first || components.first || FirstPageIcon,
+          last: slots.last || components.last || LastPageIcon,
         };
 
   const Icon = normalizedIcons[type];
@@ -336,10 +334,10 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
 });
 
 PaginationItem.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */
@@ -355,7 +353,7 @@ PaginationItem.propTypes /* remove-proptypes */ = {
   /**
    * The active color.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'standard'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -368,13 +366,12 @@ PaginationItem.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The components used for first, last, next & previous item type
-   * @default {
-   *   first: FirstPageIcon,
-   *   last: LastPageIcon,
-   *   next: NavigateNextIcon,
-   *   previous: NavigateBeforeIcon,
-   * }
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `slots` prop.
+   * It's recommended to use the `slots` prop instead.
+   *
+   * @default {}
    */
   components: PropTypes.shape({
     first: PropTypes.elementType,
@@ -409,6 +406,19 @@ PaginationItem.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['small', 'medium', 'large']),
     PropTypes.string,
   ]),
+  /**
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    first: PropTypes.elementType,
+    last: PropTypes.elementType,
+    next: PropTypes.elementType,
+    previous: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

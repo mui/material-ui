@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -5,6 +6,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { darken, lighten } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import useSlot from '../utils/useSlot';
 import capitalize from '../utils/capitalize';
 import Paper from '../Paper';
 import alertClasses, { getAlertUtilityClass } from './alertClasses';
@@ -19,7 +21,12 @@ const useUtilityClasses = (ownerState) => {
   const { variant, color, severity, classes } = ownerState;
 
   const slots = {
-    root: ['root', `${variant}${capitalize(color || severity)}`, `${variant}`],
+    root: [
+      'root',
+      `color${capitalize(color || severity)}`,
+      `${variant}${capitalize(color || severity)}`,
+      `${variant}`,
+    ],
     icon: ['icon'],
     message: ['message'],
     action: ['action'],
@@ -61,10 +68,7 @@ const AlertRoot = styled(Paper, {
         [`& .${alertClasses.icon}`]: theme.vars
           ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
           : {
-              color:
-                theme.palette.mode === 'dark'
-                  ? theme.palette[color].main
-                  : theme.palette[color].light,
+              color: theme.palette[color].main,
             },
       }),
     ...(color &&
@@ -76,10 +80,7 @@ const AlertRoot = styled(Paper, {
         [`& .${alertClasses.icon}`]: theme.vars
           ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
           : {
-              color:
-                theme.palette.mode === 'dark'
-                  ? theme.palette[color].main
-                  : theme.palette[color].light,
+              color: theme.palette[color].main,
             },
       }),
     ...(color &&
@@ -95,11 +96,7 @@ const AlertRoot = styled(Paper, {
                 theme.palette.mode === 'dark'
                   ? theme.palette[color].dark
                   : theme.palette[color].main,
-              color: theme.palette.getContrastText(
-                theme.palette.mode === 'dark'
-                  ? theme.palette[color].dark
-                  : theme.palette[color].main,
-              ),
+              color: theme.palette.getContrastText(theme.palette[color].main),
             }),
       }),
   };
@@ -161,6 +158,8 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     onClose,
     role = 'alert',
     severity = 'success',
+    slotProps = {},
+    slots = {},
     variant = 'standard',
     ...other
   } = props;
@@ -174,8 +173,29 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const AlertCloseButton = components.CloseButton ?? IconButton;
-  const AlertCloseIcon = components.CloseIcon ?? CloseIcon;
+  const externalForwardedProps = {
+    slots: {
+      closeButton: components.CloseButton,
+      closeIcon: components.CloseIcon,
+      ...slots,
+    },
+    slotProps: {
+      ...componentsProps,
+      ...slotProps,
+    },
+  };
+
+  const [CloseButtonSlot, closeButtonProps] = useSlot('closeButton', {
+    elementType: IconButton,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [CloseIconSlot, closeIconProps] = useSlot('closeIcon', {
+    elementType: CloseIcon,
+    externalForwardedProps,
+    ownerState,
+  });
 
   return (
     <AlertRoot
@@ -201,16 +221,16 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
       ) : null}
       {action == null && onClose ? (
         <AlertAction ownerState={ownerState} className={classes.action}>
-          <AlertCloseButton
+          <CloseButtonSlot
             size="small"
             aria-label={closeText}
             title={closeText}
             color="inherit"
             onClick={onClose}
-            {...componentsProps.closeButton}
+            {...closeButtonProps}
           >
-            <AlertCloseIcon fontSize="small" {...componentsProps.closeIcon} />
-          </AlertCloseButton>
+            <CloseIconSlot fontSize="small" {...closeIconProps} />
+          </CloseButtonSlot>
         </AlertAction>
       ) : null}
     </AlertRoot>
@@ -218,10 +238,10 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
 });
 
 Alert.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The action to display. It renders after the message, at the end of the alert.
    */
@@ -248,15 +268,17 @@ Alert.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component. Unless provided, the value is taken from the `severity` prop.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['error', 'info', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
-   * The components used for each slot inside the Alert.
-   * Either a string to use a HTML element or a component.
+   * The components used for each slot inside.
+   *
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   *
    * @default {}
    */
   components: PropTypes.shape({
@@ -264,7 +286,11 @@ Alert.propTypes /* remove-proptypes */ = {
     CloseIcon: PropTypes.elementType,
   }),
   /**
-   * The props used for each slot inside.
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   *
    * @default {}
    */
   componentsProps: PropTypes.shape({
@@ -304,7 +330,26 @@ Alert.propTypes /* remove-proptypes */ = {
    * The severity of the alert. This defines the color and icon used.
    * @default 'success'
    */
-  severity: PropTypes.oneOf(['error', 'info', 'success', 'warning']),
+  severity: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['error', 'info', 'success', 'warning']),
+    PropTypes.string,
+  ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    closeButton: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    closeIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    closeButton: PropTypes.elementType,
+    closeIcon: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

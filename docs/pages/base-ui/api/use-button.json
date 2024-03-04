@@ -1,0 +1,69 @@
+{
+  "parameters": {
+    "disabled": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
+    "focusableWhenDisabled": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false"
+    },
+    "href": { "type": { "name": "string", "description": "string" } },
+    "onFocusVisible": {
+      "type": { "name": "React.FocusEventHandler", "description": "React.FocusEventHandler" }
+    },
+    "rootElementName": {
+      "type": {
+        "name": "keyof HTMLElementTagNameMap",
+        "description": "keyof HTMLElementTagNameMap"
+      },
+      "default": "''"
+    },
+    "rootRef": {
+      "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
+    },
+    "tabIndex": {
+      "type": {
+        "name": "NonNullable&lt;React.HTMLAttributes&lt;any&gt;[&#39;tabIndex&#39;]&gt;",
+        "description": "NonNullable&lt;React.HTMLAttributes&lt;any&gt;[&#39;tabIndex&#39;]&gt;"
+      }
+    },
+    "to": { "type": { "name": "string", "description": "string" } },
+    "type": {
+      "type": {
+        "name": "React.ButtonHTMLAttributes&lt;HTMLButtonElement&gt;[&#39;type&#39;]",
+        "description": "React.ButtonHTMLAttributes&lt;HTMLButtonElement&gt;[&#39;type&#39;]"
+      },
+      "default": "'button'"
+    }
+  },
+  "returnValue": {
+    "active": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "focusVisible": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "getRootProps": {
+      "type": {
+        "name": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseButtonRootSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseButtonRootSlotProps&lt;ExternalProps&gt;"
+      },
+      "required": true
+    },
+    "rootRef": {
+      "type": {
+        "name": "React.RefCallback&lt;Element&gt; | null",
+        "description": "React.RefCallback&lt;Element&gt; | null"
+      },
+      "required": true
+    },
+    "setFocusVisible": {
+      "type": {
+        "name": "React.Dispatch&lt;React.SetStateAction&lt;boolean&gt;&gt;",
+        "description": "React.Dispatch&lt;React.SetStateAction&lt;boolean&gt;&gt;"
+      },
+      "required": true
+    }
+  },
+  "name": "useButton",
+  "filename": "/packages/mui-base/src/useButton/useButton.ts",
+  "imports": [
+    "import { useButton } from '@mui/base/useButton';",
+    "import { useButton } from '@mui/base';"
+  ],
+  "demos": "<ul><li><a href=\"/base-ui/react-button/#hook\">Button</a></li></ul>"
+}

@@ -1,4 +1,3 @@
-import { deepmerge } from '@mui/utils';
 import { CSSObject } from '@mui/system';
 import type {} from '@mui/material/themeCssVarsAugmentation';
 import ArrowDropDownRounded from '@mui/icons-material/ArrowDropDownRounded';
@@ -32,6 +31,15 @@ declare module '@mui/material/styles/createPalette' {
 
   interface Palette {
     primaryDark: PaletteColor;
+    gradients: {
+      lightGrayRadio: string;
+      stylizedRadio: string;
+      linearSubtle: string;
+    };
+  }
+
+  interface TypeText {
+    tertiary: string;
   }
 }
 
@@ -67,42 +75,42 @@ declare module '@mui/material/Chip' {
 const defaultTheme = createTheme();
 
 export const blue = {
-  50: '#F0F7FF',
-  100: '#C2E0FF',
-  200: '#99CCF3',
+  50: '#EBF5FF',
+  100: '#CCE5FF',
+  200: '#99CCFF',
   300: '#66B2FF',
   400: '#3399FF',
   main: '#007FFF',
   500: '#007FFF',
-  600: '#0072E5', // vs blueDark 900: WCAG 4.6 AAA (large), APCA 36 Not for reading text
-  700: '#0059B2',
+  600: '#0066CC',
+  700: '#004C99',
   800: '#004C99',
   900: '#003A75',
 };
 export const blueDark = {
-  50: '#E2EDF8',
-  100: '#CEE0F3',
-  200: '#91B9E3',
-  300: '#5090D3',
-  main: '#5090D3',
-  400: '#265D97',
-  500: '#1E4976',
-  600: '#173A5E',
-  700: '#132F4C', // contrast 13.64:1
-  800: '#001E3C',
-  900: '#0A1929',
+  50: '#EAEDF1',
+  100: '#DAE0E7',
+  200: '#ACBAC8',
+  300: '#7B91A7',
+  main: '#7B91A7',
+  400: '#4B5E71',
+  500: '#3B4A59',
+  600: '#2F3A46',
+  700: '#1F262E', // contrast 13.64:1
+  800: '#141A1F',
+  900: '#101418',
 };
 export const grey = {
   50: '#F3F6F9',
-  100: '#E7EBF0',
-  200: '#E0E3E7',
-  300: '#CDD2D7', // vs blueDark 900: WCAG 11.6 AAA, APCA 78 Best for text
-  400: '#B2BAC2', // vs blueDark 900: WCAG 9 AAA, APCA 63.3 Ok for text
-  500: '#A0AAB4', // vs blueDark 900: WCAG 7.5 AAA, APCA 54.3 Only for large text
-  600: '#6F7E8C', // vs white bg: WCAG 4.1 AA, APCA 68.7 Ok for text
-  700: '#3E5060', // vs white bg: WCAG 8.3 AAA, APCA 88.7 Best for text
-  800: '#2D3843', // vs white bg: WCAG 11.9 AAA, APCA 97.3 Best for text
-  900: '#1A2027',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD', // vs blueDark 900: WCAG 11.6 AAA, APCA 78 Best for text
+  400: '#B0B8C4', // vs blueDark 900: WCAG 9 AAA, APCA 63.3 Ok for text
+  500: '#9DA8B7', // vs blueDark 900: WCAG 7.5 AAA, APCA 54.3 Only for large text
+  600: '#6B7A90', // vs white bg: WCAG 4.1 AA, APCA 68.7 Ok for text
+  700: '#434D5B', // vs white bg: WCAG 8.3 AAA, APCA 88.7 Best for text
+  800: '#303740', // vs white bg: WCAG 11.9 AAA, APCA 97.3 Best for text
+  900: '#1C2025',
 };
 export const error = {
   50: '#FFF0F1',
@@ -159,8 +167,8 @@ const systemFont = [
 
 export const getMetaThemeColor = (mode: 'light' | 'dark') => {
   const themeColor = {
-    light: grey[50],
-    dark: blueDark[800],
+    light: blue[600],
+    dark: blueDark[900],
   };
   return themeColor[mode];
 };
@@ -174,26 +182,39 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
           main: blue[400],
         }),
       },
-      divider: mode === 'dark' ? alpha(blue[100], 0.08) : grey[100],
+      secondary: {
+        ...grey,
+        ...(mode === 'light' && {
+          main: blueDark[100],
+          contrastText: blueDark[600],
+        }),
+        ...(mode === 'dark' && {
+          main: blueDark[700],
+          contrastText: blueDark[600],
+        }),
+      },
+      divider: mode === 'dark' ? alpha(blueDark[500], 0.2) : grey[100],
       primaryDark: blueDark,
       mode,
       ...(mode === 'dark' && {
         background: {
-          default: blueDark[800],
-          paper: blueDark[900],
+          default: blueDark[900],
+          paper: alpha(blueDark[800], 0.8),
         },
       }),
       common: {
-        black: '#1D1D1D',
+        black: '#0B0D0E',
       },
       text: {
         ...(mode === 'light' && {
           primary: grey[900],
           secondary: grey[700],
+          tertiary: grey[600],
         }),
         ...(mode === 'dark' && {
           primary: '#fff',
           secondary: grey[400],
+          tertiary: grey[400],
         }),
       },
       grey: {
@@ -203,7 +224,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
           contrastText: grey[600],
         }),
         ...(mode === 'dark' && {
-          main: blueDark[700],
+          main: grey[700],
           contrastText: grey[600],
         }),
       },
@@ -218,55 +239,75 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         }),
       },
       warning,
+      gradients: {
+        lightGrayRadio:
+          'radial-gradient(50% 50% at 50% 50%, #F0F7FF 0%, rgba(240, 247, 255, 0.05) 100%)',
+        stylizedRadio:
+          mode === 'dark'
+            ? 'linear-gradient(rgba(0 0 0 / 0.1), rgba(0 0 0 / 0.1)), linear-gradient(254.86deg, rgba(0, 58, 117, 0.18) 0%, rgba(11, 13, 14, 0.3) 49.98%, rgba(0, 76, 153, 0.21) 100.95%)'
+            : 'linear-gradient(rgba(255 255 255 / 0.3), rgba(255 255 255 / 0.3)), linear-gradient(254.86deg, rgba(194, 224, 255, 0.12) 0%, rgba(194, 224, 255, 0.12) 0%, rgba(255, 255, 255, 0.3) 49.98%, rgba(240, 247, 255, 0.3) 100.95%)',
+        linearSubtle:
+          mode === 'light'
+            ? `linear-gradient(to top right, ${alpha(blue[50], 0.3)} 40%, ${alpha(
+                grey[50],
+                0.2,
+              )} 100%)`
+            : `linear-gradient(to top right, ${alpha(blue[900], 0.1)} 40%, ${alpha(
+                blueDark[800],
+                0.2,
+              )} 100%)`,
+      },
     },
     shape: {
-      borderRadius: 10,
+      borderRadius: 12,
     },
-    spacing: 10,
+    spacing: 8,
     typography: {
       fontFamily: ['"IBM Plex Sans"', ...systemFont].join(','),
+      // Match VS Code
+      // https://github.com/microsoft/vscode/blob/b38691f611d1ce3ef437c67a1b047c757b7b4e53/src/vs/editor/common/config/editorOptions.ts#L4578-L4580
+      // https://github.com/microsoft/vscode/blob/d950552131d7350a45dac8b59bf179469c36c2ac/src/vs/editor/standalone/browser/standalone-tokens.css#L10
       fontFamilyCode: [
-        'Consolas',
-        'Menlo',
-        'Monaco',
-        'Andale Mono',
-        'Ubuntu Mono',
-        'monospace',
+        'Menlo', // macOS
+        'Consolas', // Windows
+        '"Droid Sans Mono"', // Linux
+        'monospace', // fallback
       ].join(','),
-      fontFamilyTagline: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
+      fontFamilyTagline: ['"General Sans"', ...systemFont].join(','),
       fontFamilySystem: systemFont.join(','),
       fontWeightSemiBold: 600,
       fontWeightExtraBold: 800,
       h1: {
-        fontFamily: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
-        fontSize: 'clamp(2.625rem, 1.2857rem + 3.5714vw, 4rem)',
-        fontWeight: 800,
+        fontFamily: ['"General Sans"', ...systemFont].join(','),
+        fontSize: 'clamp(2.5rem, 1.125rem + 3.5vw, 3.5em)',
+        fontWeight: 600,
         lineHeight: 78 / 70,
+        letterSpacing: -0.2,
         ...(mode === 'light' && {
           color: blueDark[900],
         }),
       },
       h2: {
-        fontFamily: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
+        fontFamily: ['"General Sans"', ...systemFont].join(','),
         fontSize: 'clamp(1.5rem, 0.9643rem + 1.4286vw, 2.25rem)',
-        fontWeight: 800,
+        fontWeight: 600,
         lineHeight: 44 / 36,
+        letterSpacing: -0.2,
         color: mode === 'dark' ? grey[100] : blueDark[700],
       },
       h3: {
-        fontFamily: ['"PlusJakartaSans-Bold"', ...systemFont].join(','),
+        fontFamily: ['"General Sans"', ...systemFont].join(','),
         fontSize: defaultTheme.typography.pxToRem(36),
         lineHeight: 44 / 36,
         letterSpacing: 0.2,
       },
       h4: {
-        fontFamily: ['"PlusJakartaSans-Bold"', ...systemFont].join(','),
-        fontSize: defaultTheme.typography.pxToRem(28),
+        fontFamily: ['"General Sans"', ...systemFont].join(','),
+        fontSize: defaultTheme.typography.pxToRem(30),
         lineHeight: 42 / 28,
         letterSpacing: 0.2,
       },
       h5: {
-        fontFamily: ['"PlusJakartaSans-Bold"', ...systemFont].join(','),
         fontSize: defaultTheme.typography.pxToRem(24),
         lineHeight: 36 / 24,
         letterSpacing: 0.1,
@@ -333,7 +374,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
      * }
      *
      * -------------------------------------------------------------------------------------------------
-     * 💡 This util should be used in an array if the styles contain psuedo classes or nested selectors:
+     * 💡 This util should be used in an array if the styles contain pseudo classes or nested selectors:
      *
      * ❌ There is a chance that the upper selectors could be overridden
      * {
@@ -362,29 +403,55 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
      *  ]
      */
     applyDarkStyles(css: Parameters<ApplyDarkStyles>[0]) {
-      if ((this as Theme).vars) {
-        // CssVarsProvider is used
-        const selector = (this as Theme)
-          .getColorSchemeSelector('dark')
-          .replace(/(\[[^\]]+\])/, ':where($1)');
-        return {
-          [selector]: css,
-        };
-      }
-      if ((this as Theme).palette.mode === 'dark') {
-        return css;
-      }
-
-      return undefined;
+      return (this as Theme).applyStyles('dark', css);
     },
-  } as ThemeOptions);
+  }) as ThemeOptions;
 
 export function getThemedComponents(): ThemeOptions {
   return {
     components: {
+      MuiAlert: {
+        styleOverrides: {
+          root: {
+            padding: '12px 16px',
+          },
+          standardWarning: ({ theme }) => [
+            {
+              backgroundColor: alpha(theme.palette.warning[50], 0.5),
+              color: (theme.vars || theme).palette.grey[900],
+              border: '1px solid',
+              borderColor: alpha(theme.palette.warning[600], 0.3),
+              '& .MuiAlert-icon': {
+                color: (theme.vars || theme).palette.warning[700],
+              },
+            },
+            theme.applyDarkStyles({
+              backgroundColor: alpha(theme.palette.warning[700], 0.2),
+              color: (theme.vars || theme).palette.warning[50],
+              '& .MuiAlert-icon': {
+                color: (theme.vars || theme).palette.warning[200],
+              },
+            }),
+          ],
+          icon: {
+            paddingTop: 12,
+            paddingBottom: 0,
+          },
+        },
+      },
       MuiButtonBase: {
         defaultProps: {
           disableTouchRipple: true,
+          disableRipple: true,
+        },
+        styleOverrides: {
+          root: ({ theme }) => ({
+            transition: 'all 100ms ease-in',
+            '&:focus-visible': {
+              outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
+              outlineOffset: '2px',
+            },
+          }),
         },
       },
       MuiButton: {
@@ -393,19 +460,115 @@ export function getThemedComponents(): ThemeOptions {
         },
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
+            transition: 'all 120ms ease-in',
             ...(ownerState.size === 'large' && {
-              padding: '0.875rem 1rem',
               ...theme.typography.body1,
               lineHeight: 21 / 16,
-              fontWeight: 700,
+              padding: theme.spacing('8px', '10px', '10px', '12px'),
+              fontWeight: theme.typography.fontWeightSemiBold,
+              borderRadius: 10,
+              '& > span': { transition: '0.2s', marginLeft: 4 },
+              '&:hover > span': { transform: 'translateX(2px)' },
+            }),
+            ...(ownerState.size === 'medium' && {
+              fontSize: defaultTheme.typography.pxToRem(15),
+              padding: theme.spacing('8px', '12px', '8px', '14px'),
+              fontWeight: theme.typography.fontWeightSemiBold,
+              borderRadius: 8,
+              '& > span': { transition: '0.2s', marginLeft: 4 },
+              '&:hover > span': { transform: 'translateX(2px)' },
             }),
             ...(ownerState.size === 'small' && {
-              padding: theme.spacing(0.5, 1),
+              padding: theme.spacing('6px', 1),
+              fontFamily: theme.typography.fontFamily,
+              fontSize: defaultTheme.typography.pxToRem(13),
+              fontWeight: theme.typography.fontWeightSemiBold,
+              borderRadius: 8,
+              '& .MuiButton-startIcon': {
+                transition: '0.15s',
+                marginRight: 4,
+                marginLeft: -1,
+              },
+              '& .MuiButton-endIcon': {
+                transition: '0.15s',
+                marginLeft: 4,
+              },
+              '&:hover': {
+                '& .MuiButton-startIcon': { transform: 'translateX(-2px)' },
+                '& .MuiButton-endIcon': { transform: 'translateX(2px)' },
+              },
             }),
+            ...(ownerState.variant === 'outlined' &&
+              ownerState.color === 'secondary' && {
+                color: (theme.vars || theme).palette.text.primary,
+                backgroundColor: alpha(theme.palette.primaryDark[50], 0.3),
+                borderColor: (theme.vars || theme).palette.primaryDark[100],
+                boxShadow: `${alpha(theme.palette.grey[50], 0.5)} 0 2px 0.5px inset, ${alpha(
+                  theme.palette.grey[100],
+                  0.8,
+                )} 0 -2px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
+                '&:hover': {
+                  backgroundColor: (theme.vars || theme).palette.primaryDark[50],
+                },
+                ...theme.applyDarkStyles({
+                  color: (theme.vars || theme).palette.primaryDark[100],
+                  borderColor: alpha(theme.palette.primaryDark[600], 0.5),
+                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+                  boxShadow: `${alpha(theme.palette.primaryDark[600], 0.2)} 0 2px 0 inset, ${alpha(
+                    theme.palette.primaryDark[900],
+                    0.5,
+                  )} 0 -3px 1px inset, ${theme.palette.common.black} 0 1px 2px 0`,
+                  '&:hover': {
+                    backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                  },
+                }),
+              }),
+            ...(ownerState.variant === 'outlined' &&
+              ownerState.color === 'primary' && {
+                color: (theme.vars || theme).palette.primary[600],
+                backgroundColor: alpha(theme.palette.primary[50], 0.3),
+                borderColor: (theme.vars || theme).palette.primary[100],
+                boxShadow: `${theme.palette.primary[50]} 0 2px 0.5px inset, ${alpha(
+                  theme.palette.primary[100],
+                  0.2,
+                )} 0 -3px 0 inset, ${alpha(theme.palette.primary[100], 0.3)} 0 1px 2px 0`,
+                '&:hover': {
+                  backgroundColor: (theme.vars || theme).palette.primary[50],
+                  borderColor: (theme.vars || theme).palette.primary[300],
+                },
+                ...theme.applyDarkStyles({
+                  color: (theme.vars || theme).palette.primary[200],
+                  borderColor: alpha(theme.palette.primary[900], 0.7),
+                  backgroundColor: alpha(theme.palette.primary[900], 0.2),
+                  boxShadow: `${alpha(theme.palette.primary[900], 0.1)} 0 2px 1px inset, ${alpha(
+                    theme.palette.common.black,
+                    0.5,
+                  )} 0 -3px 0 inset, ${theme.palette.common.black} 0 1px 2px 0`,
+                  '&:hover': {
+                    backgroundColor: (theme.vars || theme).palette.primary[900],
+                    borderColor: (theme.vars || theme).palette.primary[700],
+                  },
+                }),
+              }),
             ...(ownerState.variant === 'contained' &&
               ownerState.color === 'primary' && {
-                backgroundColor: (theme.vars || theme).palette.primary[500],
                 color: '#fff',
+                textShadow: `0 1px 1px ${alpha(theme.palette.common.black, 0.6)}`,
+                backgroundColor: (theme.vars || theme).palette.primary[500],
+                backgroundImage: `linear-gradient(180deg, ${alpha(
+                  theme.palette.primary[500],
+                  0.6,
+                )} 0%, ${theme.palette.primary[600]} 100%)`,
+                boxShadow: `${theme.palette.primary[400]} 0 2px 0.5px inset, ${alpha(
+                  theme.palette.primary[700],
+                  0.7,
+                )} 0 -3px 1px inset, ${alpha(theme.palette.common.black, 0.1)} 0 2px 4px 0`,
+                '&:hover': {
+                  backgroundColor: (theme.vars || theme).palette.primary[700],
+                },
+                '&:active': {
+                  backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                },
               }),
           }),
         },
@@ -415,46 +578,109 @@ export function getThemedComponents(): ThemeOptions {
             props: { variant: 'code' },
             style: ({ theme }) => [
               {
-                border: '1px solid',
-                color: (theme.vars || theme).palette.grey[800],
-                borderColor: (theme.vars || theme).palette.grey[300],
-                backgroundColor: (theme.vars || theme).palette.grey[50],
+                cursor: 'copy',
+                padding: 0,
+                width: 'max-content',
+                backgroundColor: 'transparent',
+                color: (theme.vars || theme).palette.grey[600],
                 fontFamily: theme.typography.fontFamilyCode,
                 fontWeight: 400,
-                fontSize: defaultTheme.typography.pxToRem(13), // 14px
+                fontSize: defaultTheme.typography.pxToRem(12),
                 lineHeight: 21 / 14,
                 letterSpacing: 0,
                 WebkitFontSmoothing: 'subpixel-antialiased',
-                '&:hover, &.Mui-focusVisible': {
-                  borderColor: (theme.vars || theme).palette.primary.main,
-                  backgroundColor: (theme.vars || theme).palette.grey[50],
-                  '& .MuiButton-endIcon': {
-                    color: (theme.vars || theme).palette.primary.main,
-                  },
-                },
                 '& .MuiButton-startIcon': {
                   color: (theme.vars || theme).palette.grey[400],
                 },
                 '& .MuiButton-endIcon': {
                   display: 'inline-block',
                   position: 'absolute',
-                  right: 0,
-                  marginRight: 10,
-                  color: (theme.vars || theme).palette.grey[700],
+                  color: (theme.vars || theme).palette.primary.main,
+                  right: -22,
+                  top: -1,
+                  opacity: 0,
+                  transitionProperty: 'opacity',
+                  transitionDuration: '100ms',
+                  transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                },
+                '&:hover, &.Mui-focusVisible': {
+                  backgroundColor: 'transparent',
+                  color: (theme.vars || theme).palette.primary.main,
+                  '& .MuiButton-endIcon': {
+                    color: (theme.vars || theme).palette.primary.main,
+                    opacity: 1,
+                  },
                 },
               },
               theme.applyDarkStyles({
-                color: (theme.vars || theme).palette.grey[400],
-                borderColor: (theme.vars || theme).palette.primaryDark[400],
-                backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                '& .MuiButton-endIcon': {
+                  color: (theme.vars || theme).palette.primary[300],
+                },
                 '&:hover, &.Mui-focusVisible': {
-                  backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+                  color: (theme.vars || theme).palette.primary[300],
+                  '& .MuiButton-endIcon': {
+                    opacity: 1,
+                  },
+                },
+              }),
+            ],
+          },
+          {
+            // @ts-ignore internal repo module augmentation issue
+            props: { variant: 'codeOutlined' },
+            style: ({ theme }) => [
+              {
+                display: 'inline-block',
+                justifyContent: 'start',
+                overflowX: 'hidden',
+                whiteSpace: 'nowrap',
+                textOverflow: 'ellipsis',
+                position: 'relative',
+                border: '1px solid',
+                color: (theme.vars || theme).palette.grey[900],
+                backgroundColor: alpha(theme.palette.primary[50], 0.3),
+                borderColor: (theme.vars || theme).palette.grey[200],
+                boxShadow: `0px 2px 2px ${alpha(
+                  theme.palette.primary[100],
+                  0.2,
+                )}, inset 0px 4px 4px ${alpha(theme.palette.primary[100], 0.2)}`,
+                fontFamily: theme.typography.fontFamilyCode,
+                fontWeight: 400,
+                fontSize: defaultTheme.typography.pxToRem(12),
+                lineHeight: 21 / 14,
+                letterSpacing: 0,
+                WebkitFontSmoothing: 'subpixel-antialiased',
+                '& .MuiButton-endIcon': {
+                  display: 'inline-block',
+                  position: 'absolute',
+                  top: 12,
+                  right: 0,
+                  marginRight: 10,
+                  color: (theme.vars || theme).palette.grey[600],
+                },
+                '&:hover, &.Mui-focusVisible': {
+                  borderColor: (theme.vars || theme).palette.primary.main,
+                  backgroundColor: (theme.vars || theme).palette.primary[50],
+                  color: (theme.vars || theme).palette.primary[600],
+                  '& .MuiButton-endIcon': {
+                    color: (theme.vars || theme).palette.primary.main,
+                  },
+                },
+              } as const,
+              theme.applyDarkStyles({
+                color: (theme.vars || theme).palette.grey[500],
+                borderColor: (theme.vars || theme).palette.primaryDark[600],
+                backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                boxShadow: '0px 2px 2px #0B0D0E, inset 0px 4px 4px rgba(20, 25, 31, 0.3)',
+                '& .MuiButton-endIcon': {
+                  color: (theme.vars || theme).palette.grey[400],
+                },
+                '&:hover, &.Mui-focusVisible': {
+                  backgroundColor: (theme.vars || theme).palette.primary[900],
+                  color: (theme.vars || theme).palette.primary[100],
                   '& .MuiButton-endIcon': {
                     color: (theme.vars || theme).palette.primary[300],
                   },
-                },
-                '& .MuiButton-endIcon': {
-                  color: (theme.vars || theme).palette.grey[400],
                 },
               }),
             ],
@@ -463,16 +689,19 @@ export function getThemedComponents(): ThemeOptions {
             // @ts-ignore internal repo module augmentation issue
             props: { variant: 'link' },
             style: ({ theme }) => ({
+              marginBottom: 1,
               fontSize: theme.typography.pxToRem(14),
-              fontWeight: 700,
+              fontWeight: theme.typography.fontWeightBold,
               color: (theme.vars || theme).palette.primary[600],
+              '&:hover': {
+                backgroundColor: (theme.vars || theme).palette.primary[50],
+              },
               ...theme.applyDarkStyles({
                 color: (theme.vars || theme).palette.primary[300],
+                '&:hover': {
+                  backgroundColor: alpha(theme.palette.primary[800], 0.3),
+                },
               }),
-              mb: 1,
-              '& svg': {
-                ml: -0.5,
-              },
             }),
           },
         ],
@@ -489,6 +718,9 @@ export function getThemedComponents(): ThemeOptions {
                 borderColor: (theme.vars || theme).palette.grey[200],
                 color: (theme.vars || theme).palette.primary[500],
                 borderRadius: theme.shape.borderRadius,
+                boxShadow: `inset 0 1px 2px ${
+                  (theme.vars || theme).palette.grey[50]
+                }, 0 1px 0.5px ${alpha(theme.palette.grey[100], 0.6)}`,
                 '&:hover': {
                   borderColor: (theme.vars || theme).palette.grey[300],
                   background: (theme.vars || theme).palette.grey[50],
@@ -497,7 +729,43 @@ export function getThemedComponents(): ThemeOptions {
               theme.applyDarkStyles({
                 borderColor: (theme.vars || theme).palette.primaryDark[700],
                 color: (theme.vars || theme).palette.primary[300],
+                boxShadow: `inset 0 1px 1px ${
+                  (theme.vars || theme).palette.primaryDark[900]
+                }, 0 1px 0.5px ${(theme.vars || theme).palette.common.black}`,
                 '&:hover': {
+                  borderColor: (theme.vars || theme).palette.primaryDark[600],
+                  background: alpha(theme.palette.primaryDark[700], 0.4),
+                },
+              }),
+            ],
+          },
+          {
+            props: { color: 'info' },
+            style: ({ theme }) => [
+              {
+                height: 34,
+                width: 34,
+                border: `1px solid`,
+                borderColor: (theme.vars || theme).palette.grey[200],
+                color: (theme.vars || theme).palette.grey[600],
+                borderRadius: theme.shape.borderRadius,
+                boxShadow: `inset 0 1px 2px ${
+                  (theme.vars || theme).palette.grey[50]
+                }, 0 1px 0.5px ${alpha(theme.palette.grey[100], 0.6)}`,
+                '&:hover': {
+                  color: (theme.vars || theme).palette.primary.main,
+                  borderColor: (theme.vars || theme).palette.grey[300],
+                  background: (theme.vars || theme).palette.grey[50],
+                },
+              },
+              theme.applyDarkStyles({
+                borderColor: (theme.vars || theme).palette.primaryDark[700],
+                color: (theme.vars || theme).palette.grey[400],
+                boxShadow: `inset 0 1px 1px ${
+                  (theme.vars || theme).palette.primaryDark[900]
+                }, 0 1px 0.5px ${(theme.vars || theme).palette.common.black}`,
+                '&:hover': {
+                  color: (theme.vars || theme).palette.primary[400],
                   borderColor: (theme.vars || theme).palette.primaryDark[600],
                   background: alpha(theme.palette.primaryDark[700], 0.4),
                 },
@@ -534,11 +802,11 @@ export function getThemedComponents(): ThemeOptions {
               borderColor: (theme.vars || theme).palette.primaryDark[700],
               '& .MuiMenuItem-root': {
                 '&:hover, &:focus': {
-                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+                  backgroundColor: (theme.vars || theme).palette.primaryDark[700],
                 },
                 '&.Mui-selected': {
                   color: (theme.vars || theme).palette.primary[300],
-                  backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                  backgroundColor: alpha(theme.palette.primary[900], 0.4),
                 },
               },
             }),
@@ -560,7 +828,7 @@ export function getThemedComponents(): ThemeOptions {
           root: ({ theme }) => ({
             borderColor: (theme.vars || theme).palette.grey[100],
             ...theme.applyDarkStyles({
-              borderColor: alpha(theme.palette.primary[100], 0.08),
+              borderColor: alpha(theme.palette.primaryDark[700], 0.8),
             }),
           }),
         },
@@ -570,59 +838,100 @@ export function getThemedComponents(): ThemeOptions {
           underline: 'none',
         },
         styleOverrides: {
-          root: ({ theme }) => [
-            {
-              color: (theme.vars || theme).palette.primary[600],
-              '&:hover': {
-                color: (theme.vars || theme).palette.primary[700],
-              },
-              fontWeight: 700,
-              display: 'inline-flex',
-              alignItems: 'center',
-              '&.MuiTypography-body1 > svg': {
-                marginTop: 2,
-              },
-              '& svg:last-child': {
-                marginLeft: 2,
-              },
+          root: ({ theme }) => ({
+            fontWeight: theme.typography.fontWeightSemiBold,
+            display: 'inline-flex',
+            alignItems: 'center',
+            '&.MuiTypography-body1 > svg': {
+              marginTop: 2,
             },
-            theme.applyDarkStyles({
-              color: (theme.vars || theme).palette.primary[300],
-              '&:hover': {
-                color: (theme.vars || theme).palette.primary[200],
-              },
-            }),
-          ],
+            '& svg:last-child': {
+              marginLeft: 2,
+            },
+            '&:focus-visible': {
+              outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
+              outlineOffset: '2px',
+            },
+          }),
         },
+        variants: [
+          {
+            props: { color: 'primary' },
+            style: ({ theme }) => [
+              {
+                color: (theme.vars || theme).palette.primary[600],
+                '&:hover': {
+                  color: (theme.vars || theme).palette.primary[700],
+                },
+              },
+              theme.applyDarkStyles({
+                color: (theme.vars || theme).palette.primary[300],
+                '&:hover': {
+                  color: (theme.vars || theme).palette.primary[200],
+                },
+              }),
+            ],
+          },
+        ],
       },
       MuiChip: {
         styleOverrides: {
           root: ({ ownerState: { color, variant }, theme }) => ({
-            fontWeight: 500,
+            fontWeight: theme.typography.fontWeightSemiBold,
+            paddingBottom: 0.2,
             ...(variant === 'outlined' &&
               color === 'default' && {
-                backgroundColor: 'transparent',
+                backgroundColor: alpha(theme.palette.grey[50], 0.5),
                 color: (theme.vars || theme).palette.grey[900],
                 borderColor: (theme.vars || theme).palette.grey[200],
                 '&:hover': {
+                  backgroundColor: (theme.vars || theme).palette.grey[100],
                   color: (theme.vars || theme).palette.grey[900],
                 },
                 ...theme.applyDarkStyles({
+                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
                   color: (theme.vars || theme).palette.grey[300],
-                  borderColor: alpha(theme.palette.grey[100], 0.1),
+                  borderColor: alpha(theme.palette.primaryDark[500], 0.5),
                   '&:hover': {
                     color: (theme.vars || theme).palette.grey[300],
+                    backgroundColor: (theme.vars || theme).palette.primaryDark[700],
                   },
                 }),
               }),
             ...(variant === 'outlined' &&
-              color === 'primary' && {
-                '&:hover': {
-                  color: (theme.vars || theme).palette.primary[500],
-                },
+              color === 'info' && {
+                backgroundColor: alpha(theme.palette.grey[50], 0.5),
+                color: (theme.vars || theme).palette.grey[900],
+                borderColor: (theme.vars || theme).palette.grey[200],
+                ...theme.applyDarkStyles({
+                  color: (theme.vars || theme).palette.grey[300],
+                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
+                  borderColor: (theme.vars || theme).palette.primaryDark[600],
+                }),
               }),
-            ...(variant === 'filled' &&
-              color === 'default' && {
+            ...(variant === 'outlined' &&
+              color === 'primary' && {
+                borderColor: (theme.vars || theme).palette.primary[100],
+                backgroundColor: (theme.vars || theme).palette.primary[50],
+                ...theme.applyDarkStyles({
+                  color: (theme.vars || theme).palette.primary[300],
+                  borderColor: alpha(theme.palette.primary[500], 0.2),
+                  backgroundColor: alpha(theme.palette.primary[700], 0.2),
+                }),
+              }),
+            ...(variant === 'outlined' &&
+              color === 'success' && {
+                borderColor: (theme.vars || theme).palette.success[100],
+                backgroundColor: (theme.vars || theme).palette.success[50],
+                color: (theme.vars || theme).palette.success[900],
+                ...theme.applyDarkStyles({
+                  color: (theme.vars || theme).palette.success[300],
+                  borderColor: alpha(theme.palette.success[300], 0.2),
+                  background: alpha(theme.palette.success[800], 0.2),
+                }),
+              }),
+            ...(variant === 'filled' && {
+              ...(color === 'default' && {
                 border: '1px solid transparent',
                 color: (theme.vars || theme).palette.primary[700],
                 backgroundColor: alpha(theme.palette.primary[100], 0.5),
@@ -637,6 +946,33 @@ export function getThemedComponents(): ThemeOptions {
                   },
                 }),
               }),
+              ...(color === 'primary' && {
+                color: (theme.vars || theme).palette.primary[600],
+                backgroundColor: alpha(theme.palette.primary[100], 0.4),
+                '&:hover': {
+                  backgroundColor: (theme.vars || theme).palette.primary[100],
+                },
+                '& .MuiChip-deleteIcon': {
+                  color: (theme.vars || theme).palette.primary[600],
+                  '&:hover': {
+                    color: (theme.vars || theme).palette.primary[700],
+                  },
+                },
+                ...theme.applyDarkStyles({
+                  color: (theme.vars || theme).palette.primary[100],
+                  backgroundColor: alpha(theme.palette.primary[800], 0.5),
+                  '&:hover': {
+                    backgroundColor: alpha(theme.palette.primary[900], 0.5),
+                  },
+                  '& .MuiChip-deleteIcon': {
+                    color: (theme.vars || theme).palette.primary[100],
+                    '&:hover': {
+                      color: (theme.vars || theme).palette.primary[50],
+                    },
+                  },
+                }),
+              }),
+            }),
             // for labelling product in the search
             // @ts-ignore internal repo module augmentation issue
             ...(variant === 'light' && {
@@ -698,7 +1034,7 @@ export function getThemedComponents(): ThemeOptions {
                   backgroundColor: (theme.vars || theme).palette.primary[100],
                 },
               },
-            },
+            } as const,
             theme.applyDarkStyles({
               color: theme.palette.grey[300],
               '&:hover': {
@@ -740,12 +1076,30 @@ export function getThemedComponents(): ThemeOptions {
               '&[href]': {
                 textDecorationLine: 'none',
               },
+              transition: theme.transitions.create(['border', 'box-shadow'], {
+                duration: theme.transitions.duration.shortest,
+              }),
               ...(ownerState.variant === 'outlined' && {
                 display: 'block',
-                borderColor: (theme.vars || theme).palette.grey[200],
-                ':is(a, button)': {
+                borderColor: (theme.vars || theme).palette.grey[100],
+                '&[href]': {
+                  textDecorationLine: 'none',
+                  boxShadow: `inset 0 1px 2px ${
+                    (theme.vars || theme).palette.grey[50]
+                  }, 0 1px 2px ${alpha(theme.palette.grey[100], 0.6)}`,
                   '&:hover': {
-                    boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
+                    borderColor: (theme.vars || theme).palette.primary[200],
+                    boxShadow: `0px 2px 8px ${(theme.vars || theme).palette.primary[100]}`,
+                  },
+                  '&:focus-visible': {
+                    outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
+                    outlineOffset: '2px',
+                  },
+                },
+                ':is(a&), :is(button&)': {
+                  '&:hover': {
+                    borderColor: (theme.vars || theme).palette.primary[200],
+                    boxShadow: `0px 4px 16px ${(theme.vars || theme).palette.grey[200]}`,
                   },
                 },
               }),
@@ -753,11 +1107,21 @@ export function getThemedComponents(): ThemeOptions {
             theme.applyDarkStyles({
               backgroundColor: (theme.vars || theme).palette.primaryDark[900],
               ...(ownerState.variant === 'outlined' && {
-                borderColor: (theme.vars || theme).palette.primaryDark[500],
-                backgroundColor: (theme.vars || theme).palette.primaryDark[700],
-                ':is(a, button)': {
+                borderColor: (theme.vars || theme).palette.primaryDark[700],
+                backgroundColor: alpha(theme.palette.primaryDark[800], 0.6),
+                '&[href]': {
+                  textDecorationLine: 'none',
+                  boxShadow: `inset 0 1px 1px ${
+                    (theme.vars || theme).palette.primaryDark[900]
+                  }, 0 1px 2px ${(theme.vars || theme).palette.common.black}`,
                   '&:hover': {
-                    boxShadow: `0px 4px 20px rgba(0, 0, 0, 0.5)`,
+                    borderColor: alpha(theme.palette.primary[600], 0.5),
+                    boxShadow: `0px 2px 8px ${alpha(theme.palette.primary[900], 0.6)}`,
+                  },
+                },
+                ':is(a&), :is(button&)': {
+                  '&:hover': {
+                    boxShadow: `0px 4px 24px ${(theme.vars || theme).palette.common.black}`,
                   },
                 },
               }),
@@ -792,27 +1156,37 @@ export function getThemedComponents(): ThemeOptions {
       },
       MuiToggleButton: {
         styleOverrides: {
-          root: ({ theme }) => [
+          root: ({ theme, ownerState }) => [
             {
               textTransform: 'none',
               fontWeight: 500,
               color: theme.palette.grey[700],
               borderColor: theme.palette.grey[200],
+              ...(ownerState.size === 'small' && {
+                padding: '0.375rem 0.75rem',
+              }),
               '&.Mui-selected': {
                 color: (theme.vars || theme).palette.primary[500],
                 borderColor: `${(theme.vars || theme).palette.primary[500]} !important`,
                 backgroundColor: (theme.vars || theme).palette.primary[50],
+                '&:hover': {
+                  backgroundColor: (theme.vars || theme).palette.primary[100],
+                },
               },
-            },
+            } as const,
             theme.applyDarkStyles({
               color: theme.palette.grey[300],
-              borderColor: theme.palette.primaryDark[500],
+              borderColor: theme.palette.primaryDark[700],
+              '&:hover': {
+                backgroundColor: alpha(theme.palette.primaryDark[600], 0.2),
+              },
               '&.Mui-selected': {
-                color: '#fff',
+                color: (theme.vars || theme).palette.primary[200],
                 borderColor: `${(theme.vars || theme).palette.primary[700]} !important`,
-                backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                backgroundColor: alpha(theme.palette.primary[900], 0.4),
                 '&:hover': {
-                  backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+                  backgroundColor: alpha(theme.palette.primary[900], 0.8),
+                  borderColor: `${(theme.vars || theme).palette.primary[400]} !important`,
                 },
               },
             }),
@@ -822,7 +1196,8 @@ export function getThemedComponents(): ThemeOptions {
       MuiTooltip: {
         styleOverrides: {
           tooltip: {
-            padding: '5px 9px',
+            borderRadius: 6,
+            padding: '6px 12px',
           },
         },
       },
@@ -868,9 +1243,10 @@ export function getThemedComponents(): ThemeOptions {
           root: ({ theme }) => [
             {
               textTransform: 'none',
-              fontWeight: 700,
+              fontWeight: theme.typography.fontWeightSemiBold,
               color: theme.palette.grey[700],
               borderColor: theme.palette.grey[200],
+              borderRadius: '8px',
               '&.Mui-selected': {
                 color: (theme.vars || theme).palette.primary[500],
                 borderColor: `${(theme.vars || theme).palette.primary[500]} !important`,
@@ -879,16 +1255,16 @@ export function getThemedComponents(): ThemeOptions {
                   backgroundColor: (theme.vars || theme).palette.primary[100],
                 },
               },
-            },
+            } as const,
             theme.applyDarkStyles({
-              color: theme.palette.grey[300],
-              borderColor: theme.palette.primaryDark[500],
+              color: theme.palette.grey[200],
+              borderColor: theme.palette.primaryDark[700],
               '&.Mui-selected': {
-                color: '#fff',
+                color: theme.palette.primary[100],
                 borderColor: `${(theme.vars || theme).palette.primary[700]} !important`,
-                backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                backgroundColor: alpha(theme.palette.primary[900], 0.5),
                 '&:hover': {
-                  backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+                  backgroundColor: alpha(theme.palette.primary[900], 0.8),
                 },
               },
             }),
@@ -899,10 +1275,25 @@ export function getThemedComponents(): ThemeOptions {
         defaultProps: {
           enableColorScheme: true,
         },
+        styleOverrides: {
+          html: {
+            overflowY: 'scroll',
+            // TODO add support for it,
+            // https://github.com/mui/material-ui/issues/40748
+            // scrollbarGutter: 'stable',
+          },
+        },
       },
     },
   };
 }
 
-const darkTheme = createTheme(getDesignTokens('dark'));
-export const brandingDarkTheme = deepmerge(darkTheme, getThemedComponents());
+export const brandingDarkTheme = createTheme({
+  ...getDesignTokens('dark'),
+  ...getThemedComponents(),
+});
+
+export const brandingLightTheme = createTheme({
+  ...getDesignTokens('light'),
+  ...getThemedComponents(),
+});

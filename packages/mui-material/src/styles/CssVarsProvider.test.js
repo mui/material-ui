@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from 'test/utils';
+import { createRenderer, screen } from '@mui-internal/test-utils';
 import Box from '@mui/material/Box';
 import { Experimental_CssVarsProvider as CssVarsProvider, useTheme } from '@mui/material/styles';
 
@@ -8,6 +8,7 @@ describe('[Material UI] CssVarsProvider', () => {
   let originalMatchmedia;
   const { render } = createRenderer();
   const storage = {};
+
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
     // Create mocks of localStorage getItem and setItem functions
@@ -25,13 +26,14 @@ describe('[Material UI] CssVarsProvider', () => {
       removeListener: () => {},
     });
   });
+
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
   });
 
   describe('All CSS vars', () => {
     it('palette', () => {
-      const Vars = () => {
+      function Vars() {
         const theme = useTheme();
         return (
           <div>
@@ -52,7 +54,7 @@ describe('[Material UI] CssVarsProvider', () => {
             <div data-testid="palette-common">{JSON.stringify(theme.vars.palette.common)}</div>
           </div>
         );
-      };
+      }
 
       render(
         <CssVarsProvider>
@@ -150,6 +152,7 @@ describe('[Material UI] CssVarsProvider', () => {
         JSON.stringify({
           paper: 'var(--mui-palette-background-paper)',
           default: 'var(--mui-palette-background-default)',
+          defaultChannel: 'var(--mui-palette-background-defaultChannel)',
         }),
       );
       expect(screen.getByTestId('palette-action').textContent).to.equal(
@@ -182,14 +185,14 @@ describe('[Material UI] CssVarsProvider', () => {
     });
 
     it('opacity', () => {
-      const Vars = () => {
+      function Vars() {
         const theme = useTheme();
         return (
           <div>
             <div data-testid="opacity">{JSON.stringify(theme.vars.opacity)}</div>
           </div>
         );
-      };
+      }
 
       render(
         <CssVarsProvider>
@@ -208,14 +211,14 @@ describe('[Material UI] CssVarsProvider', () => {
     });
 
     it('shape', () => {
-      const Vars = () => {
+      function Vars() {
         const theme = useTheme();
         return (
           <div>
             <div data-testid="shape">{JSON.stringify(theme.vars.shape)}</div>
           </div>
         );
-      };
+      }
 
       render(
         <CssVarsProvider>
@@ -233,10 +236,10 @@ describe('[Material UI] CssVarsProvider', () => {
 
   describe('Typography', () => {
     it('contain expected typography', function test() {
-      const Text = () => {
+      function Text() {
         const theme = useTheme();
         return <div>{Object.keys(theme.typography).join(',')}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>
@@ -245,17 +248,17 @@ describe('[Material UI] CssVarsProvider', () => {
       );
 
       expect(container.firstChild?.textContent).to.equal(
-        'htmlFontSize,pxToRem,fontFamily,fontSize,fontWeightLight,fontWeightRegular,fontWeightMedium,fontWeightBold,h1,h2,h3,h4,h5,h6,subtitle1,subtitle2,body1,body2,button,caption,overline',
+        'htmlFontSize,pxToRem,fontFamily,fontSize,fontWeightLight,fontWeightRegular,fontWeightMedium,fontWeightBold,h1,h2,h3,h4,h5,h6,subtitle1,subtitle2,body1,body2,button,caption,overline,inherit',
       );
     });
   });
 
   describe('Spacing', () => {
     it('provides spacing utility', function test() {
-      const Text = () => {
+      function Text() {
         const theme = useTheme();
         return <div>{theme.spacing(2)}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>
@@ -269,10 +272,10 @@ describe('[Material UI] CssVarsProvider', () => {
 
   describe('Breakpoints', () => {
     it('provides breakpoint utilities', function test() {
-      const Text = () => {
+      function Text() {
         const theme = useTheme();
         return <div>{theme.breakpoints.up('sm')}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>
@@ -286,11 +289,11 @@ describe('[Material UI] CssVarsProvider', () => {
 
   describe('Skipped vars', () => {
     it('should not contain `variants` in theme.vars', () => {
-      const Consumer = () => {
+      function Consumer() {
         const theme = useTheme();
         // @ts-expect-error
         return <div>{theme.vars.variants ? 'variants' : ''}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>
@@ -302,11 +305,11 @@ describe('[Material UI] CssVarsProvider', () => {
     });
 
     it('should not contain `typography` in theme.vars', () => {
-      const Consumer = () => {
+      function Consumer() {
         const theme = useTheme();
         // @ts-expect-error
         return <div>{theme.vars.typography ? 'typography' : ''}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>
@@ -318,11 +321,11 @@ describe('[Material UI] CssVarsProvider', () => {
     });
 
     it('should not contain `focus` in theme.vars', () => {
-      const Consumer = () => {
+      function Consumer() {
         const theme = useTheme();
         // @ts-expect-error
         return <div>{theme.vars.focus ? 'focus' : ''}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>

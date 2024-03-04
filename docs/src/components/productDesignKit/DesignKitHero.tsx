@@ -7,7 +7,7 @@ import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRou
 import GradientText from 'docs/src/components/typography/GradientText';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 import IconImage from 'docs/src/components/icon/IconImage';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import {
   DesignKitImagesSet1,
   DesignKitImagesSet2,
@@ -17,34 +17,39 @@ import {
 export default function TemplateHero() {
   return (
     <HeroContainer
+      linearGradient
       left={
         <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
           <Typography
             fontWeight="bold"
             variant="body2"
-            color={(theme) => (theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600')}
-            sx={{
+            sx={(theme) => ({
+              color: 'primary.600',
               display: 'flex',
               alignItems: 'center',
               justifyContent: { xs: 'center', md: 'start' },
-              '& > *': { mr: 1, width: 28, height: 28 },
-            }}
+              '& > *': { mr: 1 },
+              ...theme.applyDarkStyles({
+                color: 'primary.400',
+              }),
+            })}
           >
-            <IconImage name="product-designkits" /> Design kits
+            <IconImage width={28} height={28} loading="eager" name="product-designkits" /> Design
+            kits
           </Typography>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
-            MUI in your favorite
+            Material UI
+            <br /> in your favorite
             <br /> <GradientText>design tool</GradientText>
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 450 }}>
-            Pick your favorite design tool to enjoy and use MUI components. Boost consistency and
-            facilitate communication when working with developers.
+            Pick your favorite design tool to enjoy and use Material UI components. Boost
+            consistency and facilitate communication when working with developers.
           </Typography>
           <Button
             component={Link}
             noLinkStyle
             href="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=design-cta#design"
-            size="large"
             variant="contained"
             endIcon={<KeyboardArrowRightRounded />}
             sx={{ width: { xs: '100%', sm: 'auto' } }}
@@ -57,20 +62,21 @@ export default function TemplateHero() {
         <Box sx={{ position: 'relative', height: '100%', perspective: '1000px' }}>
           <DesignKitTools />
           <Box
-            sx={{
+            sx={(theme) => ({
               position: 'absolute',
               top: 0,
               left: 0,
               width: '100%',
               height: '100%',
               zIndex: 1,
-              background: (theme) =>
-                `linear-gradient(90deg, ${theme.palette.primaryDark[900]} 1%, ${alpha(
-                  theme.palette.primaryDark[900],
-                  0.5,
-                )})`,
-              opacity: (theme) => (theme.palette.mode === 'dark' ? 1 : 0),
-            }}
+              background: `linear-gradient(90deg, ${
+                (theme.vars || theme).palette.primaryDark[900]
+              } 1%, ${alpha(theme.palette.primaryDark[900], 0.5)})`,
+              opacity: 0,
+              ...theme.applyDarkStyles({
+                opacity: 1,
+              }),
+            })}
           />
           <Box
             sx={{

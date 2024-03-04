@@ -5,26 +5,31 @@ import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 
 const style = {
+  p: 0,
   width: '100%',
   maxWidth: 360,
-  bgcolor: 'background.paper',
+  borderRadius: 2,
+  border: '1px solid',
+  borderColor: 'divider',
+  backgroundColor: 'background.paper',
 };
 
 export default function ListDividers() {
   return (
-    <List sx={style} component="nav" aria-label="mailbox folders">
-      <ListItem button>
+    <List sx={style} aria-label="mailbox folders">
+      <ListItem>
         <ListItemText primary="Inbox" />
       </ListItem>
-      <Divider />
-      <ListItem button divider>
+      <Divider component="li" />
+      <ListItem>
         <ListItemText primary="Drafts" />
       </ListItem>
-      <ListItem button>
+      <Divider component="li" />
+      <ListItem>
         <ListItemText primary="Trash" />
       </ListItem>
-      <Divider light />
-      <ListItem button>
+      <Divider component="li" />
+      <ListItem>
         <ListItemText primary="Spam" />
       </ListItem>
     </List>

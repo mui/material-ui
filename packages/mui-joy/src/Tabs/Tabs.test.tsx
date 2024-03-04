@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, screen } from 'test/utils';
+import { createRenderer, screen } from '@mui-internal/test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Tabs, { tabsClasses as classes } from '@mui/joy/Tabs';
 import SizeTabsContext from './SizeTabsContext';
+import describeConformance from '../../test/describeConformance';
 
 describe('Joy <Tabs />', () => {
   const { render } = createRenderer();
@@ -18,6 +19,11 @@ describe('Joy <Tabs />', () => {
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
     skip: ['componentsProp', 'classesRoot', 'reactTestRenderer'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   it('prop: variant', () => {
@@ -31,10 +37,10 @@ describe('Joy <Tabs />', () => {
   });
 
   it('prop: size, send the value through context', () => {
-    const Child = () => {
+    function Child() {
       const size = React.useContext(SizeTabsContext);
       return <div>{size}</div>;
-    };
+    }
     render(
       <Tabs size="sm">
         <Child />

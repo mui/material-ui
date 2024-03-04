@@ -1,0 +1,8 @@
+<Autocomplete
+  multiple
+  id="tags-default"
+  placeholder="Favorites"
+  options={top100Films}
+  getOptionLabel={(option) => option.title}
+  defaultValue={[top100Films[13]]}
+/>

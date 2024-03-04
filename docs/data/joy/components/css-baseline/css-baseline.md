@@ -1,11 +1,12 @@
 ---
-product: joy-ui
+productId: joy-ui
+components: CssBaseline, ScopedCssBaseline
 githubLabel: 'component: CssBaseline'
 ---
 
 # CSS Baseline
 
-<p class="description">Joy UI provides a CssBaseline component to kickstart an elegant, consistent, and simple baseline to build upon.</p>
+<p class="description">Joy UI provides a CssBaseline component to kickstart an elegant, consistent, and simple baseline to build upon.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -32,7 +33,7 @@ export default function MyApp() {
 
 ## Scoping on children
 
-However, you might be progressively migrating a website to MUI, using a global reset might not be an option.
+However, you might be progressively migrating a website to Joy UI, using a global reset might not be an option.
 It's possible to apply the baseline only to the children by using the `ScopedCssBaseline` component.
 
 ```jsx
@@ -56,7 +57,9 @@ export default function MyApp() {
 }
 ```
 
-⚠️ Make sure you import `ScopedCssBaseline` first to avoid box-sizing conflicts as in the above example.
+:::warning
+Make sure you import `ScopedCssBaseline` first to avoid box-sizing conflicts as in the above example.
+:::
 
 ## Approach
 
@@ -67,7 +70,7 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 - The margin in all browsers is removed.
 - The default Material Design background color is applied.
   It's using `theme.palette.background.body` for standard devices and a white background for print devices.
-- The CSS [`color-scheme`](https://web.dev/color-scheme/) is applied by default. You can disable it by setting `disableColorScheme` to true on the `CssBaseline` or `ScopedCssBaseline`.
+- The CSS [`color-scheme`](https://web.dev/articles/color-scheme) is applied by default. You can disable it by setting `disableColorScheme` to true on the `CssBaseline` or `ScopedCssBaseline`.
 
 ### Layout
 
@@ -76,7 +79,7 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 
 ### Color scheme
 
-The CSS [`color-scheme`](https://web.dev/color-scheme/) is applied by default to render proper built-in components on the web. You can disable it by setting `disableColorScheme` to true on the `CssBaseline` or `ScopedCssBaseline`.
+The CSS [`color-scheme`](https://web.dev/articles/color-scheme) is applied by default to render proper built-in components on the web. You can disable it by setting `disableColorScheme` to true on the `CssBaseline` or `ScopedCssBaseline`.
 
 ```jsx
 <CssVarsProvider>
@@ -95,7 +98,7 @@ The CSS [`color-scheme`](https://web.dev/color-scheme/) is applied by default to
 
 - No base font-size is declared on the `<html>`, but 16px is assumed (the browser default).
   You can learn more about the implications of changing the `<html>` default font size in [the theme documentation](/material-ui/customization/typography/#html-font-size) page.
-- Set the `theme.typography.body1` style on the `<body>` element.
+- Set the default `Typography`'s level (`body1`) style on the `<body>` element. The style comes from `theme.typography.{default typography level prop}`.
 - Set the font-weight to `bold` for the `<b>` and `<strong>` elements.
 - Custom font-smoothing is enabled for better display of the default font.
 
@@ -103,7 +106,7 @@ The CSS [`color-scheme`](https://web.dev/color-scheme/) is applied by default to
 
 ### CssBaseline
 
-To custom the styles produced by the `CssBaseline` component, append the `GlobalStyles` next to it:
+To customize the styles produced by the `CssBaseline` component, append the `GlobalStyles` next to it:
 
 ```js
 import { CssVarsProvider } from '@mui/joy/styles';

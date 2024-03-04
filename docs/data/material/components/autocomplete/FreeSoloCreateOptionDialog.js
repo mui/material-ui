@@ -19,7 +19,6 @@ export default function FreeSoloCreateOptionDialog() {
       title: '',
       year: '',
     });
-
     toggleOpen(false);
   };
 
@@ -34,7 +33,6 @@ export default function FreeSoloCreateOptionDialog() {
       title: dialogValue.title,
       year: parseInt(dialogValue.year, 10),
     });
-
     handleClose();
   };
 
@@ -77,7 +75,7 @@ export default function FreeSoloCreateOptionDialog() {
         id="free-solo-dialog-demo"
         options={top100Films}
         getOptionLabel={(option) => {
-          // e.g value selected with enter, right from the input
+          // e.g. value selected with enter, right from the input
           if (typeof option === 'string') {
             return option;
           }

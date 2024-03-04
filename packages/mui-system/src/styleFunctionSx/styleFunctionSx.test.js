@@ -1,6 +1,4 @@
 import { expect } from 'chai';
-import createMixins from '@mui/material/styles/createMixins';
-import createBreakpoints from '../createTheme/createBreakpoints';
 import styleFunctionSx from './styleFunctionSx';
 
 describe('styleFunctionSx', () => {
@@ -19,11 +17,11 @@ describe('styleFunctionSx', () => {
     breakpoints: {
       keys: ['xs', 'sm', 'md', 'lg', 'xl'],
       values: breakpointsValues,
+      unit: 'px',
       up: (key) => {
         return `@media (min-width:${breakpointsValues[key]}px)`;
       },
     },
-    unit: 'px',
     palette: {
       primary: {
         main: 'rgb(0, 0, 255)',
@@ -60,6 +58,8 @@ describe('styleFunctionSx', () => {
         sx: {
           color: 'primary.main',
           bgcolor: 'secondary.main',
+          outline: 1,
+          outlineColor: 'secondary.main',
           m: 2,
           p: 1,
           fontFamily: 'default',
@@ -74,6 +74,8 @@ describe('styleFunctionSx', () => {
       expect(result).to.deep.equal({
         color: 'rgb(0, 0, 255)',
         backgroundColor: 'rgb(0, 255, 0)',
+        outline: '1px solid',
+        outlineColor: 'rgb(0, 255, 0)',
         margin: '20px',
         padding: '10px',
         fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
@@ -239,24 +241,6 @@ describe('styleFunctionSx', () => {
         '@media (min-width:1280px)': { margin: '20px' },
       });
     });
-
-    it('writes breakpoints in correct order if default toolbar mixin is present in theme', () => {
-      const breakpoints = createBreakpoints({});
-      const result = styleFunctionSx({
-        theme: {
-          mixins: createMixins(breakpoints),
-          breakpoints,
-        },
-        sx: (themeParam) => themeParam.mixins.toolbar,
-      });
-
-      // Test the order
-      expect(Object.keys(result)).to.deep.equal([
-        '@media (min-width:0px)',
-        '@media (min-width:600px)',
-        'minHeight',
-      ]);
-    });
   });
 
   describe('theme callback', () => {
@@ -276,12 +260,12 @@ describe('styleFunctionSx', () => {
       const result = styleFunctionSx({
         theme,
         sx: {
-          ':hover': (t) => ({ background: t.palette.primary.main }),
+          '&:hover': (t) => ({ background: t.palette.primary.main }),
         },
       });
 
       // Test the order
-      expect(result).to.deep.equal({ ':hover': { background: 'rgb(0, 0, 255)' } });
+      expect(result).to.deep.equal({ '&:hover': { background: 'rgb(0, 0, 255)' } });
     });
 
     it('works on nested selectors', () => {

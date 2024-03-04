@@ -5,7 +5,7 @@ import CardCover from '@mui/joy/CardCover';
 import CardContent from '@mui/joy/CardContent';
 import Typography from '@mui/joy/Typography';
 
-export default function BasicCard() {
+export default function MediaCover() {
   return (
     <Box
       component="ul"
@@ -22,7 +22,7 @@ export default function BasicCard() {
         </CardCover>
         <CardContent>
           <Typography
-            level="h6"
+            level="body-lg"
             fontWeight="lg"
             textColor="#fff"
             mt={{ xs: 12, sm: 18 }}
@@ -47,7 +47,7 @@ export default function BasicCard() {
         </CardCover>
         <CardContent>
           <Typography
-            level="h6"
+            level="body-lg"
             fontWeight="lg"
             textColor="#fff"
             mt={{ xs: 12, sm: 18 }}

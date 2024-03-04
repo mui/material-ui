@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
+import { createRenderer } from '@mui-internal/test-utils';
 import { EventHandlers } from '@mui/base';
-import { createRenderer } from 'test/utils';
-import useSlotProps, { UseSlotPropsParameters, UseSlotPropsResult } from './useSlotProps';
+import { useSlotProps, UseSlotPropsParameters, UseSlotPropsResult } from './useSlotProps';
 
 const { render } = createRenderer();
 
@@ -107,7 +107,9 @@ describe('useSlotProps', () => {
       id: 'test',
     });
 
-    const TestComponent = (props: any) => <div {...props} />;
+    function TestComponent(props: any) {
+      return <div {...props} />;
+    }
 
     const result = callUseSlotProps({
       elementType: TestComponent,
@@ -160,14 +162,15 @@ describe('useSlotProps', () => {
     const externalClickHandler = spy();
     const externalForwardedClickHandler = spy();
 
-    const createInternalClickHandler = (otherHandlers: EventHandlers) => (e: React.MouseEvent) => {
-      expect(otherHandlers).to.deep.equal({
-        onClick: externalClickHandler,
-      });
+    const createInternalClickHandler =
+      (otherHandlers: EventHandlers) => (event: React.MouseEvent) => {
+        expect(otherHandlers).to.deep.equal({
+          onClick: externalClickHandler,
+        });
 
-      otherHandlers.onClick(e);
-      internalClickHandler(e);
-    };
+        otherHandlers.onClick(event);
+        internalClickHandler(event);
+      };
 
     // usually provided by the hook:
     const getSlotProps = (otherHandlers: EventHandlers) => ({
@@ -181,7 +184,7 @@ describe('useSlotProps', () => {
       test: true,
     };
 
-    // provided by the user by appending additonal props on the unstyled component:
+    // provided by the user by appending additional props on the Base UI component:
     const forwardedProps = {
       'data-test': 'externalForwarded',
       className: 'externalForwarded',
@@ -201,13 +204,15 @@ describe('useSlotProps', () => {
       },
     });
 
-    // set in the unstyled component:
+    // set in the Base UI component:
     const additionalProps = {
       className: 'additional',
       ref: additionalRef,
     };
 
-    const TestComponent = (props: any) => <div {...props} />;
+    function TestComponent(props: any) {
+      return <div {...props} />;
+    }
 
     const result = callUseSlotProps({
       elementType: TestComponent,
@@ -255,5 +260,42 @@ describe('useSlotProps', () => {
       test: true,
       foo: 'bar',
     });
+  });
+
+  it('should call externalSlotProps with ownerState if skipResolvingSlotProps is not provided', () => {
+    const externalSlotProps = spy();
+    const ownerState = { foo: 'bar' };
+
+    const getSlotProps = () => ({
+      skipResolvingSlotProps: true,
+    });
+
+    callUseSlotProps({
+      elementType: 'div',
+      getSlotProps,
+      externalSlotProps,
+      ownerState,
+    });
+
+    expect(externalSlotProps.callCount).to.not.equal(0);
+    expect(externalSlotProps.args[0][0]).to.deep.equal(ownerState);
+  });
+
+  it('should not call externalSlotProps if skipResolvingSlotProps is true', () => {
+    const externalSlotProps = spy();
+
+    const getSlotProps = () => ({
+      skipResolvingSlotProps: true,
+    });
+
+    callUseSlotProps({
+      elementType: 'div',
+      getSlotProps,
+      externalSlotProps,
+      skipResolvingSlotProps: true,
+      ownerState: undefined,
+    });
+
+    expect(externalSlotProps.callCount).to.equal(0);
   });
 });

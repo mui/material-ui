@@ -1,13 +1,13 @@
 const childProcess = require('child_process');
 const fs = require('fs');
-const glob = require('fast-glob');
 const path = require('path');
+const glob = require('fast-glob');
 const yargs = require('yargs');
 
 async function run(argv) {
   const workspaceRoot = path.resolve(__dirname, '../');
 
-  const gitignore = fs.readFileSync(path.join(workspaceRoot, '.gitignore'), { encoding: 'utf-8' });
+  const gitignore = fs.readFileSync(path.join(workspaceRoot, '.gitignore'), { encoding: 'utf8' });
   const ignore = gitignore
     .split(/\r?\n/)
     .filter((pattern) => {
@@ -26,6 +26,7 @@ async function run(argv) {
     .sync(globPattern, {
       cwd: workspaceRoot,
       ignore,
+      followSymbolicLinks: false,
     })
     .filter((relativeFile) => {
       return /\.test\.(js|ts|tsx)$/.test(relativeFile);
@@ -52,7 +53,7 @@ async function run(argv) {
     args.push(`--grep '${argv.testNamePattern}'`);
   }
 
-  const mochaProcess = childProcess.spawn('yarn', args, {
+  const mochaProcess = childProcess.spawn('pnpm', args, {
     env: {
       ...process.env,
       BABEL_ENV: 'test',

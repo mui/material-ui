@@ -2,35 +2,39 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Chip from '@mui/material/Chip';
 import Tooltip from '@mui/material/Tooltip';
+import ChatRounded from '@mui/icons-material/ChatRounded';
+import { styled } from '@mui/material/styles';
 import SketchIcon from 'docs/src/modules/components/SketchIcon';
 import FigmaIcon from 'docs/src/modules/components/FigmaIcon';
 import AdobeXDIcon from 'docs/src/modules/components/AdobeXDIcon';
 import BundleSizeIcon from 'docs/src/modules/components/BundleSizeIcon';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import W3CIcon from 'docs/src/modules/components/W3CIcon';
 import MaterialDesignIcon from 'docs/src/modules/components/MaterialDesignIcon';
-import { styled } from '@mui/material/styles';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 
-const Root = styled('ul')(({ theme }) => ({
+const Root = styled('ul')({
   margin: 0,
   padding: 0,
   listStyle: 'none',
   display: 'flex',
   flexWrap: 'wrap',
-  marginBottom: theme.spacing(2),
-  '& li': {
-    margin: theme.spacing(0.5),
+  gap: 8,
+  '& .MuiChip-root': {
+    height: 26,
+    padding: '0 8px',
+    gap: 6,
+    '& .MuiChip-label': { padding: 0 },
+    '& .MuiChip-iconSmall': {
+      margin: 0,
+      fontSize: 14,
+    },
   },
-  '& .MuiChip-root .MuiChip-iconSmall': {
-    marginLeft: 4,
-  },
-}));
+});
 
 const defaultPackageNames = {
   'material-ui': '@mui/material',
   'joy-ui': '@mui/joy',
-  base: '@mui/base',
+  'base-ui': '@mui/base',
   system: '@mui/system',
 };
 
@@ -42,7 +46,7 @@ export default function ComponentLinkHeader(props) {
   const t = useTranslate();
 
   const packageName =
-    headers.packageName ?? defaultPackageNames[headers.product] ?? '@mui/material';
+    headers.packageName ?? defaultPackageNames[headers.productId] ?? '@mui/material';
 
   return (
     <Root>
@@ -58,7 +62,7 @@ export default function ComponentLinkHeader(props) {
             href={`${process.env.SOURCE_CODE_REPO}/labels/${encodeURIComponent(
               headers.githubLabel,
             )}`}
-            icon={<InfoOutlinedIcon />}
+            icon={<ChatRounded color="primary" />}
             data-ga-event-category="ComponentLinkHeader"
             data-ga-event-action="click"
             data-ga-event-label={t('githubLabel')}
@@ -67,6 +71,25 @@ export default function ComponentLinkHeader(props) {
           />
         </li>
       ) : null}
+      <li>
+        <Tooltip title={t('bundleSizeTooltip')} describeChild>
+          <Chip
+            clickable
+            role={undefined}
+            component="a"
+            size="small"
+            variant="outlined"
+            rel="nofollow"
+            href={`https://bundlephobia.com/package/${packageName}@latest`}
+            icon={<BundleSizeIcon color="primary" />}
+            data-ga-event-category="ComponentLinkHeader"
+            data-ga-event-action="click"
+            data-ga-event-label={t('bundleSize')}
+            data-ga-event-split="0.1"
+            label={t('bundleSize')}
+          />
+        </Tooltip>
+      </li>
       {headers.waiAria ? (
         <li>
           <Chip
@@ -77,7 +100,7 @@ export default function ComponentLinkHeader(props) {
             variant="outlined"
             rel="nofollow"
             href={headers.waiAria}
-            icon={<W3CIcon />}
+            icon={<W3CIcon color="primary" />}
             data-ga-event-category="ComponentLinkHeader"
             data-ga-event-action="click"
             data-ga-event-label="WAI-ARIA"
@@ -86,25 +109,6 @@ export default function ComponentLinkHeader(props) {
           />
         </li>
       ) : null}
-      <li>
-        <Tooltip title={t('bundleSizeTooltip')}>
-          <Chip
-            clickable
-            role={undefined}
-            component="a"
-            size="small"
-            variant="outlined"
-            rel="nofollow"
-            href={`https://bundlephobia.com/package/${packageName}@latest`}
-            icon={<BundleSizeIcon />}
-            data-ga-event-category="ComponentLinkHeader"
-            data-ga-event-action="click"
-            data-ga-event-label={t('bundleSize')}
-            data-ga-event-split="0.1"
-            label={t('bundleSize')}
-          />
-        </Tooltip>
-      </li>
       {headers.materialDesign ? (
         <li>
           <Chip
@@ -143,40 +147,44 @@ export default function ComponentLinkHeader(props) {
               label="Figma"
             />
           </li>
-          <li>
-            <Chip
-              clickable
-              role={undefined}
-              component="a"
-              size="small"
-              variant="outlined"
-              rel="nofollow"
-              href="https://mui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
-              icon={<AdobeXDIcon />}
-              data-ga-event-category="ComponentLinkHeader"
-              data-ga-event-action="click"
-              data-ga-event-label="Adobe XD"
-              data-ga-event-split="0.1"
-              label="Adobe"
-            />
-          </li>
-          <li>
-            <Chip
-              clickable
-              role={undefined}
-              component="a"
-              size="small"
-              variant="outlined"
-              rel="nofollow"
-              href="https://mui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
-              icon={<SketchIcon />}
-              data-ga-event-category="ComponentLinkHeader"
-              data-ga-event-action="click"
-              data-ga-event-label="Sketch"
-              data-ga-event-split="0.1"
-              label="Sketch"
-            />
-          </li>
+          {packageName !== '@mui/joy' ? (
+            <li>
+              <Chip
+                clickable
+                role={undefined}
+                component="a"
+                size="small"
+                variant="outlined"
+                rel="nofollow"
+                href="https://mui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
+                icon={<AdobeXDIcon />}
+                data-ga-event-category="ComponentLinkHeader"
+                data-ga-event-action="click"
+                data-ga-event-label="Adobe XD"
+                data-ga-event-split="0.1"
+                label="Adobe"
+              />
+            </li>
+          ) : null}
+          {packageName !== '@mui/joy' ? (
+            <li>
+              <Chip
+                clickable
+                role={undefined}
+                component="a"
+                size="small"
+                variant="outlined"
+                rel="nofollow"
+                href="https://mui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
+                icon={<SketchIcon />}
+                data-ga-event-category="ComponentLinkHeader"
+                data-ga-event-action="click"
+                data-ga-event-label="Sketch"
+                data-ga-event-split="0.1"
+                label="Sketch"
+              />
+            </li>
+          ) : null}
         </React.Fragment>
       ) : null}
     </Root>

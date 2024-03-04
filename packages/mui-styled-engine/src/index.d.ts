@@ -11,6 +11,12 @@ export { default as StyledEngineProvider } from './StyledEngineProvider';
 export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
 
+export type MUIStyledComponent<
+  ComponentProps extends {},
+  SpecificComponentProps extends {} = {},
+  JSXProps extends {} = {},
+> = StyledComponent<ComponentProps, SpecificComponentProps, JSXProps>;
+
 /**
  * For internal usage in `@mui/system` package
  */
@@ -29,7 +35,7 @@ export interface SerializedStyles {
 
 export type CSSProperties = CSS.PropertiesFallback<number | string>;
 export type CSSPropertiesWithMultiValues = {
-  [K in keyof CSSProperties]: CSSProperties[K] | Array<Extract<CSSProperties[K], string>>;
+  [K in keyof CSSProperties]: CSSProperties[K] | ReadonlyArray<Extract<CSSProperties[K], string>>;
 };
 
 // TODO v6 - check if we can drop the unknown, as it breaks the autocomplete
@@ -43,13 +49,24 @@ export interface CSSOthersObject {
 }
 export type CSSPseudosForCSSObject = { [K in CSS.Pseudos]?: CSSObject };
 
-export interface ArrayCSSInterpolation extends Array<CSSInterpolation> {}
+export interface ArrayCSSInterpolation extends ReadonlyArray<CSSInterpolation> {}
 
 export interface CSSOthersObjectForCSSObject {
   [propertiesName: string]: CSSInterpolation;
 }
 
-export interface CSSObject extends CSSPropertiesWithMultiValues, CSSPseudos, CSSOthersObject {}
+// Omit variants as a key, because we have a special handling for it
+export interface CSSObject
+  extends CSSPropertiesWithMultiValues,
+    CSSPseudos,
+    Omit<CSSOthersObject, 'variants'> {}
+
+interface CSSObjectWithVariants<Props> extends Omit<CSSObject, 'variants'> {
+  variants: Array<{
+    props: Props | ((props: Props) => boolean);
+    style: CSSObject;
+  }>;
+}
 
 export interface ComponentSelector {
   __emotion_styles: any;
@@ -81,10 +98,11 @@ export interface FunctionInterpolation<Props> {
   (props: Props): Interpolation<Props>;
 }
 
-export interface ArrayInterpolation<Props> extends Array<Interpolation<Props>> {}
+export interface ArrayInterpolation<Props> extends ReadonlyArray<Interpolation<Props>> {}
 
 export type Interpolation<Props> =
   | InterpolationPrimitive
+  | CSSObjectWithVariants<Props>
   | ArrayInterpolation<Props>
   | FunctionInterpolation<Props>;
 

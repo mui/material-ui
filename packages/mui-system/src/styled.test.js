@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from 'test/utils';
-import { styled, createTheme, ThemeProvider } from '@mui/system';
+import { createRenderer, screen } from '@mui-internal/test-utils';
+import { styled, ThemeProvider } from '@mui/system';
+
+import createTheme from '@mui/system/createTheme';
 
 describe('styled', () => {
   const { render } = createRenderer();
@@ -432,6 +434,50 @@ describe('styled', () => {
       });
     });
 
+    it('should support variants with props callbacks', () => {
+      const customTheme = createTheme({
+        components: {
+          MuiTest: {
+            variants: [
+              {
+                props: ({ size }) => size === 'large',
+                style: {
+                  width: '400px',
+                  height: '400px',
+                },
+              },
+              {
+                props: ({ size }) => size === 'small',
+                style: ({ theme: t }) => ({
+                  width: t.spacing(10),
+                  height: t.spacing(10),
+                }),
+              },
+            ],
+          },
+        },
+      });
+      const { getByTestId } = render(
+        <ThemeProvider theme={customTheme}>
+          <TestObj data-testid="large" size="large">
+            Test
+          </TestObj>
+          <TestObj data-testid="small" size="small">
+            Test
+          </TestObj>
+        </ThemeProvider>,
+      );
+
+      expect(getByTestId('large')).toHaveComputedStyle({
+        width: '400px',
+        height: '400px',
+      });
+      expect(getByTestId('small')).toHaveComputedStyle({
+        width: theme.spacing(10),
+        height: theme.spacing(10),
+      });
+    });
+
     it('should resolve the sx prop of object type', () => {
       const { container } = render(
         <ThemeProvider theme={theme}>
@@ -479,6 +525,47 @@ describe('styled', () => {
       expect(container.firstChild).toHaveComputedStyle({
         fontFamily: 'Roboto',
         fontWeight: '300',
+      });
+    });
+
+    it('should resolve the theme.unstable_sx when used in an array styles', () => {
+      const TestComponent = styled('div')(
+        ({ theme: userTheme }) =>
+          userTheme.unstable_sx({
+            mt: 2,
+          }),
+        ({ theme: userTheme }) =>
+          userTheme.unstable_sx({
+            mb: 2,
+          }),
+      );
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <TestComponent>Test</TestComponent>
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        marginTop: '16px',
+        marginBottom: '16px',
+      });
+    });
+
+    it('should resolve the theme.unstable_sx when used in an pseudo object', () => {
+      const TestComponent = styled('div')(({ theme: userTheme }) => ({
+        '&.test-classname': userTheme.unstable_sx({
+          mt: 2,
+        }),
+      }));
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <TestComponent className="test-classname">Test</TestComponent>
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        marginTop: '16px',
       });
     });
 
@@ -568,8 +655,8 @@ describe('styled', () => {
       const { container } = render(<Component>Test</Component>);
 
       const classList = Array.from(container.firstChild.classList);
-      const regExp = new RegExp(`.*-MuiComponent-slot$`);
-      const regExpSC = new RegExp(`MuiComponent-slot.*`);
+      const regExp = /.*-MuiComponent-slot$/;
+      const regExpSC = /MuiComponent-slot.*/;
       let containsValidClass = false;
 
       classList.forEach((className) => {
@@ -593,8 +680,8 @@ describe('styled', () => {
       const { container } = render(<Component>Test</Component>);
 
       const classList = Array.from(container.firstChild.classList);
-      const regExp = new RegExp(`.*-MuiComponent-root$`);
-      const regExpSC = new RegExp(`MuiComponent-root.*`);
+      const regExp = /.*-MuiComponent-root$/;
+      const regExpSC = /MuiComponent-root.*/;
       let containsValidClass = false;
 
       classList.forEach((className) => {

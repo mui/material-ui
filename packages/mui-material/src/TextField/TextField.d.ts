@@ -36,7 +36,7 @@ export interface BaseTextFieldProps
   /**
    * @ignore
    */
-  children?: React.ReactNode;
+  children?: FormControlProps['children'];
   /**
    * Override or extend the styles applied to the component.
    */
@@ -44,7 +44,7 @@ export interface BaseTextFieldProps
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
   color?: OverridableStringUnion<
@@ -226,7 +226,14 @@ export interface OutlinedTextFieldProps extends BaseTextFieldProps {
   InputProps?: Partial<OutlinedInputProps>;
 }
 
-export type TextFieldProps = StandardTextFieldProps | FilledTextFieldProps | OutlinedTextFieldProps;
+export type TextFieldVariants = 'outlined' | 'standard' | 'filled';
+
+export type TextFieldProps<Variant extends TextFieldVariants = TextFieldVariants> =
+  Variant extends 'filled'
+    ? FilledTextFieldProps
+    : Variant extends 'standard'
+      ? StandardTextFieldProps
+      : OutlinedTextFieldProps;
 
 /**
  * The `TextField` is a convenience wrapper for the most common cases (80%).
@@ -270,4 +277,12 @@ export type TextFieldProps = StandardTextFieldProps | FilledTextFieldProps | Out
  * - [TextField API](https://mui.com/material-ui/api/text-field/)
  * - inherits [FormControl API](https://mui.com/material-ui/api/form-control/)
  */
-export default function TextField(props: TextFieldProps): JSX.Element;
+export default function TextField<Variant extends TextFieldVariants>(
+  props: {
+    /**
+     * The variant to use.
+     * @default 'outlined'
+     */
+    variant?: Variant;
+  } & Omit<TextFieldProps, 'variant'>,
+): JSX.Element;

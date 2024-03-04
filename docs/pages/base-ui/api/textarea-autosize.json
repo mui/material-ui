@@ -1,0 +1,22 @@
+{
+  "props": {
+    "maxRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "minRows": {
+      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
+      "default": "1"
+    }
+  },
+  "name": "TextareaAutosize",
+  "imports": [
+    "import { TextareaAutosize } from '@mui/base/TextareaAutosize';",
+    "import { TextareaAutosize } from '@mui/base';"
+  ],
+  "classes": [],
+  "spread": false,
+  "muiName": "TextareaAutosize",
+  "forwardsRefTo": "HTMLTextAreaElement",
+  "filename": "/packages/mui-base/src/TextareaAutosize/TextareaAutosize.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base-ui/react-textarea-autosize/\">Textarea Autosize</a></li>\n<li><a href=\"/material-ui/react-textarea-autosize/\">Textarea Autosize</a></li></ul>",
+  "cssComponent": false
+}

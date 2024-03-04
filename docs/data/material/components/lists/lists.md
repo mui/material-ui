@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React List component
 components: Collapse, Divider, List, ListItem, ListItemButton, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 githubLabel: 'component: list'
@@ -26,7 +26,7 @@ The last item of the previous demo shows how you can render a link:
 </ListItemButton>
 ```
 
-You can find a [demo with React Router following this section](/material-ui/guides/routing/#list) of the documentation.
+You can find a [demo with React Router following this section](/material-ui/integrations/routing/#list) of the documentation.
 
 ## Nested List
 
@@ -102,7 +102,7 @@ Virtualization helps with performance issues.
 {{"demo": "VirtualizedList.js", "bg": true}}
 
 The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged.
-If this library doesn't cover your use case, you should consider using [react-virtualized](https://github.com/bvaughn/react-virtualized), then alternatives like [react-virtuoso](https://github.com/petyosi/react-virtuoso).
+If this library doesn't cover your use case, you should consider using alternatives like [react-virtuoso](https://github.com/petyosi/react-virtuoso).
 
 ## Customization
 
@@ -111,5 +111,3 @@ You can learn more about this in the
 [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedList.js"}}
-
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/list-item/).

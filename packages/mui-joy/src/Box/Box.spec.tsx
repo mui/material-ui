@@ -5,7 +5,7 @@ function ThemeValuesCanBeSpread() {
   <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} />;
   <Box
     sx={(theme) => ({
-      ...theme.typography.body1,
+      ...theme.typography['body-md'],
       color: theme.palette.primary[500],
     })}
   />;
@@ -17,7 +17,7 @@ function ThemeValuesCanBeSpread() {
   />;
   <Box
     sx={[
-      { color: 'primary.textColor', typography: 'body2' },
+      { color: 'primary.textColor', typography: 'body-sm' },
       (theme) => theme.variants.outlined,
       (theme) => ({
         '&:hover': theme.variants.outlinedHover,

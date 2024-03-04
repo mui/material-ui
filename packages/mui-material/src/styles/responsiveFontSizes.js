@@ -1,4 +1,4 @@
-import MuiError from '@mui/utils/macros/MuiError.macro';
+import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import { isUnitless, convertLength, responsiveProperty, alignProperty, fontGrid } from './cssUtils';
 
 export default function responsiveFontSizes(themeInput, options = {}) {

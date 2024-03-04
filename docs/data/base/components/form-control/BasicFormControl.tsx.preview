@@ -1,5 +1,0 @@
-<FormControlUnstyled defaultValue="" required>
-  <Label>Name</Label>
-  <Input />
-  <HelperText />
-</FormControlUnstyled>

@@ -2,7 +2,7 @@ import * as React from 'react';
 import Router from 'next/router';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 
-export function openLinkInNewTab(event) {
+export function samePageLinkNavigation(event) {
   if (
     event.defaultPrevented ||
     event.button !== 0 || // ignore everything but left-click
@@ -16,46 +16,78 @@ export function openLinkInNewTab(event) {
   return false;
 }
 
-export function handleEvent(event, as) {
-  // Ignore click for new tab/new window behavior
-  if (openLinkInNewTab(event)) {
-    return;
+function isLink(event) {
+  let activeElement = event.target;
+  while (activeElement?.nodeType === Node.ELEMENT_NODE && activeElement.nodeName !== 'A') {
+    activeElement = activeElement.parentElement;
   }
 
-  event.preventDefault();
+  // Ignore non internal link clicks.
+  // Absolute URLs can be internal, we delegate this to Next.js's router
+  if (
+    activeElement === null ||
+    activeElement.nodeName !== 'A' ||
+    activeElement.getAttribute('target') === '_blank' ||
+    activeElement.getAttribute('data-no-markdown-link') === 'true'
+  ) {
+    return null;
+  }
 
-  const canonicalPathname = pathnameToLanguage(as).canonicalPathname;
-  Router.push(canonicalPathname, as);
+  return activeElement;
 }
 
 /**
  * @param {MouseEvent} event
  */
 function handleClick(event) {
-  let activeElement = event.target;
-  while (activeElement?.nodeType === Node.ELEMENT_NODE && activeElement.nodeName !== 'A') {
-    activeElement = activeElement.parentElement;
-  }
-
-  // Ignore non link clicks
-  if (
-    activeElement === null ||
-    activeElement.nodeName !== 'A' ||
-    activeElement.getAttribute('target') === '_blank' ||
-    activeElement.getAttribute('data-no-markdown-link') === 'true' ||
-    activeElement.getAttribute('href').indexOf('/') !== 0
-  ) {
+  // Ignore click events meant for native link handling, e.g. open in new tab
+  if (samePageLinkNavigation(event)) {
     return;
   }
 
-  handleEvent(event, activeElement.getAttribute('href'));
+  const activeElement = isLink(event);
+  if (activeElement === null) {
+    return;
+  }
+
+  event.preventDefault();
+  const as = activeElement.getAttribute('href');
+  const canonicalPathname = pathnameToLanguage(as).canonicalPathname;
+  Router.push(canonicalPathname, as);
+}
+
+/**
+ * Source copied from https://github.com/vercel/next.js/blob/ebc4eaaa2564b4283711646079d68e430496c88b/packages/next/src/client/link.tsx
+ */
+function handleMouseOver(event) {
+  const activeElement = isLink(event);
+  if (activeElement === null) {
+    return;
+  }
+
+  const as = activeElement.getAttribute('href');
+  const canonicalPathname = pathnameToLanguage(as).canonicalPathname;
+
+  const prefetchPromise = Router.prefetch(canonicalPathname, as, { priority: true });
+  // Prefetch the JSON page if asked (only in the client)
+  // We need to handle a prefetch error here since we may be
+  // loading with priority which can reject but we don't
+  // want to force navigation since this is only a prefetch
+  Promise.resolve(prefetchPromise).catch((err) => {
+    if (process.env.NODE_ENV !== 'production') {
+      // rethrow to show invalid URL errors
+      throw err;
+    }
+  });
 }
 
 export default function MarkdownLinks() {
   React.useEffect(() => {
     document.addEventListener('click', handleClick);
+    document.addEventListener('mouseover', handleMouseOver);
     return () => {
-      document.addEventListener('click', handleClick);
+      document.removeEventListener('click', handleClick);
+      document.removeEventListener('mouseover', handleMouseOver);
     };
   }, []);
 

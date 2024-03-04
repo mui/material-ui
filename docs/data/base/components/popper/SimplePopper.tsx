@@ -1,16 +1,6 @@
 import * as React from 'react';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
+import { Popper } from '@mui/base/Popper';
 import { styled, Theme } from '@mui/system';
-
-const StyledPopperDiv = styled('div')(
-  ({ theme }: { theme: Theme }) => `
-  padding: 0.5rem;
-  border: 1px solid;
-  background-color: ${theme.palette.mode === 'dark' ? '#121212' : '#fff'};
-  opacity: 1;
-  margin: 0.25rem 0px;
-`,
-);
 
 export default function SimplePopper() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -27,9 +17,19 @@ export default function SimplePopper() {
       <button aria-describedby={id} type="button" onClick={handleClick}>
         Toggle Popper
       </button>
-      <PopperUnstyled id={id} open={open} anchorEl={anchorEl}>
+      <Popper id={id} open={open} anchorEl={anchorEl}>
         <StyledPopperDiv>The content of the Popper.</StyledPopperDiv>
-      </PopperUnstyled>
+      </Popper>
     </div>
   );
 }
+
+const StyledPopperDiv = styled('div')(
+  ({ theme }: { theme: Theme }) => `
+  padding: 0.5rem;
+  border: 1px solid;
+  background-color: ${theme.palette.mode === 'dark' ? '#121212' : '#fff'};
+  opacity: 1;
+  margin: 0.25rem 0px;
+`,
+);

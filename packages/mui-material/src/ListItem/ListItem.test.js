@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { describeConformance, act, createRenderer, fireEvent, queries } from 'test/utils';
+import { act, createRenderer, fireEvent, queries } from '@mui-internal/test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
 import ListItem, { listItemClasses as classes } from '@mui/material/ListItem';
 import ListContext from '../List/ListContext';
+import describeConformance from '../../test/describeConformance';
 
 const NoContent = React.forwardRef(() => {
   return null;
@@ -22,7 +23,14 @@ describe('<ListItem />', () => {
     refInstanceof: window.HTMLLIElement,
     muiName: 'MuiListItem',
     testVariantProps: { dense: true },
-    skip: ['componentsProp'],
+    testLegacyComponentsProp: true,
+    slots: {
+      root: {},
+    },
+    skip: [
+      'componentsProp',
+      'slotPropsCallback', // not supported yet
+    ],
   }));
 
   it('should render with gutters classes', () => {
@@ -168,7 +176,7 @@ describe('<ListItem />', () => {
               classes: {},
               children: [
                 <ListItemSecondaryAction>I should have come last :(</ListItemSecondaryAction>,
-                <ListItemText>My position doesn not matter.</ListItemText>,
+                <ListItemText>My position does not matter.</ListItemText>,
               ],
             },
             'prop',

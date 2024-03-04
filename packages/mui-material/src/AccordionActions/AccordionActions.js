@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getAccordionActionsUtilityClass } from './accordionActionsClasses';
@@ -30,7 +31,7 @@ const AccordionActionsRoot = styled('div', {
   padding: 8,
   justifyContent: 'flex-end',
   ...(!ownerState.disableSpacing && {
-    '& > :not(:first-of-type)': {
+    '& > :not(style) ~ :not(style)': {
       marginLeft: 8,
     },
   }),
@@ -54,10 +55,10 @@ const AccordionActions = React.forwardRef(function AccordionActions(inProps, ref
 });
 
 AccordionActions.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

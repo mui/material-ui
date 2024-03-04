@@ -1,13 +1,13 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType, elementTypeAcceptingRef } from '@mui/utils';
-import MuiError from '@mui/utils/macros/MuiError.macro';
-import {
-  unstable_composeClasses as composeClasses,
-  isHostComponent,
-  TextareaAutosize,
-} from '@mui/base';
+import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
+import refType from '@mui/utils/refType';
+import MuiError from '@mui/internal-babel-macros/MuiError.macro';
+import { TextareaAutosize } from '@mui/base';
+import { isHostComponent } from '@mui/base/utils';
+import composeClasses from '@mui/utils/composeClasses';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext from '../FormControl/FormControlContext';
 import useFormControl from '../FormControl/useFormControl';
@@ -77,7 +77,7 @@ const useUtilityClasses = (ownerState) => {
       fullWidth && 'fullWidth',
       focused && 'focused',
       formControl && 'formControl',
-      size === 'small' && 'sizeSmall',
+      size && size !== 'medium' && `size${capitalize(size)}`,
       multiline && 'multiline',
       startAdornment && 'adornedStart',
       endAdornment && 'adornedEnd',
@@ -277,6 +277,8 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     renderSuffix,
     rows,
     size,
+    slotProps = {},
+    slots = {},
     startAdornment,
     type = 'text',
     value: valueProp,
@@ -501,11 +503,11 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const Root = components.Root || InputBaseRoot;
-  const rootProps = componentsProps.root || {};
+  const Root = slots.root || components.Root || InputBaseRoot;
+  const rootProps = slotProps.root || componentsProps.root || {};
 
-  const Input = components.Input || InputBaseComponent;
-  inputProps = { ...inputProps, ...componentsProps.input };
+  const Input = slots.input || components.Input || InputBaseComponent;
+  inputProps = { ...inputProps, ...(slotProps.input ?? componentsProps.input) };
 
   return (
     <React.Fragment>
@@ -518,7 +520,15 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
         ref={ref}
         onClick={handleClick}
         {...other}
-        className={clsx(classes.root, rootProps.className, className)}
+        className={clsx(
+          classes.root,
+          {
+            // TODO v6: remove this class as it duplicates with the global state class Mui-readOnly
+            'MuiInputBase-readOnly': readOnly,
+          },
+          rootProps.className,
+          className,
+        )}
       >
         {startAdornment}
         <FormControlContext.Provider value={null}>
@@ -547,7 +557,14 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
               ownerState: { ...ownerState, ...inputProps.ownerState },
             })}
             ref={handleInputRef}
-            className={clsx(classes.input, inputProps.className)}
+            className={clsx(
+              classes.input,
+              {
+                // TODO v6: remove this class as it duplicates with the global state class Mui-readOnly
+                'MuiInputBase-readOnly': readOnly,
+              },
+              inputProps.className,
+            )}
             onBlur={handleBlur}
             onChange={handleChange}
             onFocus={handleFocus}
@@ -566,10 +583,10 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
 });
 
 InputBase.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */
@@ -595,7 +612,7 @@ InputBase.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -603,8 +620,11 @@ InputBase.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The components used for each slot inside the InputBase.
-   * Either a string to use a HTML element or a component.
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `slots` prop.
+   * It's recommended to use the `slots` prop instead.
+   *
    * @default {}
    */
   components: PropTypes.shape({
@@ -612,7 +632,12 @@ InputBase.propTypes /* remove-proptypes */ = {
     Root: PropTypes.elementType,
   }),
   /**
-   * The props used for each slot inside the Input.
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `slotProps` prop.
+   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   *
    * @default {}
    */
   componentsProps: PropTypes.shape({
@@ -752,6 +777,29 @@ InputBase.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['medium', 'small']),
     PropTypes.string,
   ]),
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    input: PropTypes.object,
+    root: PropTypes.object,
+  }),
+  /**
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * Start `InputAdornment` for this component.
    */

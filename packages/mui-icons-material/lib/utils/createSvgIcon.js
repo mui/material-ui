@@ -1,4 +1,5 @@
 "use strict";
+'use client';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -9,5 +10,4 @@ Object.defineProperty(exports, "default", {
     return _utils.createSvgIcon;
   }
 });
-
 var _utils = require("@mui/material/utils");

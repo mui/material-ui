@@ -1,26 +1,62 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
+import { act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Select, { selectClasses as classes, SelectOption } from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListDivider from '@mui/joy/ListDivider';
+import describeConformance from '../../test/describeConformance';
 
 describe('Joy <Select />', () => {
   const { render } = createRenderer({ clock: 'fake' });
 
-  describeConformance(<Select value="" />, () => ({
+  describeConformance(<Select startDecorator="1" endDecorator="1" />, () => ({
     render,
+    inheritComponent: 'div',
     classes,
     ThemeProvider,
     refInstanceof: window.HTMLDivElement,
     muiName: 'JoySelect',
     testDeepOverrides: { slotName: 'button', slotClassName: classes.button },
     testVariantProps: { variant: 'soft' },
-    skip: ['classesRoot', 'propsSpread', 'componentProp', 'componentsProp'],
+    slots: {
+      root: { expectedClassName: classes.root },
+      button: { expectedClassName: classes.button },
+      listbox: {
+        testWithComponent: React.forwardRef<HTMLUListElement>((props, ref) => {
+          const excludePopperProps = <T extends Record<string, any>>({
+            anchorEl,
+            direction,
+            disablePortal,
+            keepMounted,
+            modifiers,
+            open,
+            placement,
+            popperOptions,
+            popperRef,
+            TransitionProps,
+            ownerState,
+            ...other
+          }: T) => other;
+          return <ul ref={ref} {...excludePopperProps(props)} data-testid="custom" />;
+        }),
+        testWithElement: null,
+        expectedClassName: classes.listbox,
+      },
+      startDecorator: { expectedClassName: classes.startDecorator },
+      endDecorator: { expectedClassName: classes.endDecorator },
+    },
+    skip: [
+      'classesRoot',
+      'propsSpread',
+      'componentProp',
+      'componentsProp',
+      // https://github.com/facebook/react/issues/11565
+      'reactTestRenderer',
+    ],
   }));
 
   it('should be able to mount the component', () => {
@@ -35,7 +71,7 @@ describe('Joy <Select />', () => {
       </Select>,
     );
 
-    expect(screen.getByRole('button')).to.have.text('Ten');
+    expect(screen.getByRole('combobox')).to.have.text('Ten');
   });
 
   specify('the trigger is in tab order', () => {
@@ -45,7 +81,7 @@ describe('Joy <Select />', () => {
       </Select>,
     );
 
-    expect(getByRole('button')).to.have.property('tabIndex', 0);
+    expect(getByRole('combobox')).to.have.property('tabIndex', 0);
   });
 
   it('should accept null child', () => {
@@ -62,7 +98,7 @@ describe('Joy <Select />', () => {
     const { getByRole } = render(
       <Select
         name="blur-testing"
-        componentsProps={{
+        slotProps={{
           button: {
             onBlur: handleBlur,
           },
@@ -72,13 +108,13 @@ describe('Joy <Select />', () => {
         <Option value="">none</Option>
       </Select>,
     );
-    const button = getByRole('button');
+    const select = getByRole('combobox');
     act(() => {
-      button.focus();
+      select.focus();
     });
 
     act(() => {
-      button.blur();
+      select.blur();
     });
 
     expect(handleBlur.callCount).to.equal(1);
@@ -103,12 +139,12 @@ describe('Joy <Select />', () => {
     expect(handleClose.callCount).to.equal(1);
   });
 
-  it('should focus list if no selection', () => {
+  it('should focus the trigger button if no selection', () => {
     const { getByRole } = render(<Select value="" autoFocus />);
 
-    fireEvent.keyDown(getByRole('button'), { key: 'ArrowDown' });
+    fireEvent.keyDown(getByRole('combobox'), { key: 'ArrowDown' });
 
-    expect(getByRole('listbox')).toHaveFocus();
+    expect(getByRole('combobox')).toHaveFocus();
   });
 
   describe('prop: onChange', () => {
@@ -121,7 +157,7 @@ describe('Joy <Select />', () => {
           <Option value="2" />
         </Select>,
       );
-      fireEvent.click(getByRole('button'));
+      fireEvent.click(getByRole('combobox'));
       act(() => {
         getAllByRole('option')[1].click();
       });
@@ -139,7 +175,7 @@ describe('Joy <Select />', () => {
           <Option value="2" />
         </Select>,
       );
-      fireEvent.click(getByRole('button'));
+      fireEvent.click(getByRole('combobox'));
       act(() => {
         getAllByRole('option')[1].click();
       });
@@ -151,7 +187,7 @@ describe('Joy <Select />', () => {
   describe('prop: defaultOpen', () => {
     it('should be open on mount', () => {
       const { getByRole } = render(<Select defaultListboxOpen value="" />);
-      expect(getByRole('button', { hidden: true })).to.have.attribute('aria-expanded', 'true');
+      expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'true');
     });
   });
 
@@ -214,7 +250,7 @@ describe('Joy <Select />', () => {
         </Select>,
       );
 
-      expect(getByRole('button')).to.have.text('Twenty');
+      expect(getByRole('combobox')).to.have.text('Twenty');
     });
   });
 
@@ -270,44 +306,32 @@ describe('Joy <Select />', () => {
       // technically matter. This is only here in case we keep the rest accessible
       const { getByRole } = render(<Select defaultListboxOpen value="" />);
 
-      expect(getByRole('button', { hidden: true })).to.have.attribute('aria-expanded', 'true');
+      expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'true');
     });
 
-    specify('ARIA 1.2: aria-expanded="false" if the listbox isnt displayed', () => {
+    specify('ARIA 1.2: aria-expanded="false" if the listbox isn\'t displayed', () => {
       const { getByRole } = render(<Select value="" />);
 
-      expect(getByRole('button')).to.have.attribute('aria-expanded', 'false');
+      expect(getByRole('combobox')).to.have.attribute('aria-expanded', 'false');
     });
 
     // TODO: need to make this work
     // aria-disabled is better then disabled. https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-disabled
     // it('sets aria-disabled="true" when component is disabled', () => {
     //   const { getByRole } = render(<Select disabled value="" />);
-    //   expect(getByRole('button')).to.have.attribute('aria-disabled', 'true');
+    //   expect(getByRole('combobox')).to.have.attribute('aria-disabled', 'true');
     // });
 
     specify('aria-disabled is not present if component is not disabled', () => {
       const { getByRole } = render(<Select disabled={false} value="" />);
 
-      expect(getByRole('button')).not.to.have.attribute('aria-disabled');
-    });
-
-    it('indicates that activating the button displays a listbox', () => {
-      const { getByRole } = render(<Select value="" />);
-
-      expect(getByRole('button')).to.have.attribute('aria-haspopup', 'listbox');
+      expect(getByRole('combobox')).not.to.have.attribute('aria-disabled');
     });
 
     it('renders an element with listbox behavior', () => {
       const { getByRole } = render(<Select defaultListboxOpen value="" />);
 
       expect(getByRole('listbox')).toBeVisible();
-    });
-
-    specify('the listbox is automatically focused on open', () => {
-      const { getByRole } = render(<Select defaultListboxOpen value="" />);
-
-      expect(getByRole('listbox')).toHaveFocus();
     });
 
     it('identifies each selectable element containing an option', () => {
@@ -337,11 +361,7 @@ describe('Joy <Select />', () => {
     describe('Grouped options', () => {
       it('first selectable option is focused to use the arrow', () => {
         const { getByRole, getAllByRole } = render(
-          <Select
-            defaultValue=""
-            defaultListboxOpen
-            componentsProps={{ listbox: { component: 'div' } }}
-          >
+          <Select autoFocus defaultValue="" slotProps={{ listbox: { component: 'div' } }}>
             <List role="group">
               <ListItem role="presentation">Category 1</ListItem>
               <Option value={1}>Option 1</Option>
@@ -355,12 +375,12 @@ describe('Joy <Select />', () => {
           </Select>,
         );
 
-        const listbox = getByRole('listbox');
-        const options = getAllByRole('option');
+        const combobox = getByRole('combobox');
+        fireEvent.keyDown(combobox, { key: 'ArrowDown' }); // open listbox
 
-        fireEvent.keyDown(listbox, { key: 'ArrowDown' });
-        fireEvent.keyDown(listbox, { key: 'ArrowDown' });
-        fireEvent.keyDown(listbox, { key: 'Enter' });
+        const options = getAllByRole('option');
+        fireEvent.keyDown(options[0], { key: 'ArrowDown' }); // move focus to Option 2
+        fireEvent.keyDown(options[1], { key: 'Enter' }); // select Option 2
 
         expect(options[1]).to.have.attribute('aria-selected', 'true');
       });
@@ -369,7 +389,7 @@ describe('Joy <Select />', () => {
     it('it will fallback to its content for the accessible name when it has no name', () => {
       const { getByRole } = render(<Select value="" />);
 
-      expect(getByRole('button')).not.to.have.attribute('aria-labelledby');
+      expect(getByRole('combobox')).not.to.have.attribute('aria-labelledby');
     });
 
     specify('the list of options is not labelled by default', () => {
@@ -386,7 +406,7 @@ describe('Joy <Select />', () => {
         </React.Fragment>,
       );
 
-      const target = getByRole('button');
+      const target = getByRole('combobox');
       expect(target).to.have.attribute('aria-describedby', 'select-helper-text');
       expect(target).toHaveAccessibleDescription('Helper text content');
     });
@@ -402,7 +422,7 @@ describe('Joy <Select />', () => {
         </Select>,
       );
 
-      expect(getByRole('button')).to.have.text('0b100');
+      expect(getByRole('combobox')).to.have.text('0b100');
     });
   });
 
@@ -410,7 +430,7 @@ describe('Joy <Select />', () => {
     it('should have no id when name is not provided', () => {
       const { getByRole } = render(<Select value="" />);
 
-      expect(getByRole('button')).not.to.have.attribute('id');
+      expect(getByRole('combobox')).not.to.have.attribute('id');
     });
   });
 
@@ -479,7 +499,7 @@ describe('Joy <Select />', () => {
 
     fireEvent.click(getByTestId('test-element'));
 
-    expect(getByRole('button')).not.toHaveFocus();
+    expect(getByRole('combobox')).not.toHaveFocus();
   });
 
   describe('form submission', () => {
@@ -591,6 +611,80 @@ describe('Joy <Select />', () => {
       });
 
       expect(isEventHandled).to.equal(true);
+    });
+  });
+
+  it('should show dropdown if the children of the select button is clicked', () => {
+    const { getByTestId, getByRole } = render(
+      <Select
+        defaultValue="1"
+        renderValue={(option) => <span data-testid="test-element">{option?.label}</span>}
+      >
+        <Option value="1">Eric</Option>
+      </Select>,
+    );
+    // Fire Click of the avatar
+    act(() => {
+      fireEvent.click(getByTestId('test-element'));
+    });
+
+    expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'true');
+
+    // click again should close
+    act(() => {
+      fireEvent.click(getByTestId('test-element'));
+    });
+    expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'false');
+  });
+
+  describe('prop: multiple', () => {
+    it('renders the selected values (multiple) using the renderValue prop', () => {
+      const { getByRole } = render(
+        <Select
+          multiple
+          defaultValue={[1, 2]}
+          renderValue={(values) => values.map((v) => `${v.label} (${v.value})`).join(', ')}
+        >
+          <Option value={1}>One</Option>
+          <Option value={2}>Two</Option>
+        </Select>,
+      );
+
+      expect(getByRole('combobox')).to.have.text('One (1), Two (2)');
+    });
+
+    it('renders the selected values (multiple) as comma-separated list of labels if renderValue is not provided', () => {
+      const { getByRole } = render(
+        <Select multiple defaultValue={[1, 2]}>
+          <Option value={1}>One</Option>
+          <Option value={2}>Two</Option>
+        </Select>,
+      );
+
+      expect(getByRole('combobox')).to.have.text('One, Two');
+    });
+
+    it('should render placeholder when options are not selected', () => {
+      const { getByRole } = render(
+        <Select multiple defaultValue={[]} placeholder="hello">
+          <Option value={1}>One</Option>
+          <Option value={2}>Two</Option>
+        </Select>,
+      );
+
+      expect(getByRole('combobox')).to.have.text('hello');
+    });
+
+    it('renders the selected values inplace of placeholder', () => {
+      const { getByRole } = render(
+        <Select multiple defaultValue={[1, 2]} placeholder="hello">
+          <Option value={1}>One</Option>
+          <Option value={2}>Two</Option>
+        </Select>,
+      );
+
+      expect(getByRole('combobox')).to.have.text('One, Two');
+      expect(getByRole('combobox')).not.to.have.text('hello');
     });
   });
 });

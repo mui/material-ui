@@ -1,4 +1,5 @@
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+'use client';
+import composeClasses from '@mui/utils/composeClasses';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
@@ -124,10 +125,10 @@ const TableSortLabel = React.forwardRef(function TableSortLabel(inProps, ref) {
 });
 
 TableSortLabel.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, the label will have the active styling (should be true for the sorted column).
    * @default false

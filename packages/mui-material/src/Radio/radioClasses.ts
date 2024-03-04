@@ -1,5 +1,5 @@
-import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
-import generateUtilityClass from '../generateUtilityClass';
+import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
 
 export interface RadioClasses {
   /** Styles applied to the root element. */
@@ -12,6 +12,8 @@ export interface RadioClasses {
   colorPrimary: string;
   /** Styles applied to the root element if `color="secondary"`. */
   colorSecondary: string;
+  /** Styles applied to the root element if `size="small"`. */
+  sizeSmall: string;
 }
 
 export type RadioClassKey = keyof RadioClasses;
@@ -26,6 +28,7 @@ const radioClasses: RadioClasses = generateUtilityClasses('MuiRadio', [
   'disabled',
   'colorPrimary',
   'colorSecondary',
+  'sizeSmall',
 ]);
 
 export default radioClasses;

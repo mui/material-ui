@@ -2,7 +2,7 @@ import * as React from 'react';
 import sortedUniqBy from 'lodash/sortedUniqBy';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import VersionsContext from 'docs/src/pages/versions/VersionsContext';
-import * as pageProps from 'docs/src/pages/versions/versions.md?@mui/markdown';
+import * as pageProps from 'docs/src/pages/versions/versions.md?muiMarkdown';
 
 export default function Page(props) {
   const { versions } = props;
@@ -22,13 +22,10 @@ function formatVersion(version) {
 }
 
 async function getBranches() {
-  // TODO: find an appropriate way to prevent "API rate limit exceeded"
-  // const githubAuthorizationToken = process.env.GITHUB_AUTH || '';
-
   const result = await fetch('https://api.github.com/repos/mui/material-ui-docs/branches', {
-    // headers: {
-    //   Authorization: `Basic ${Buffer.from(githubAuthorizationToken).toString('base64')}`,
-    // },
+    headers: {
+      Authorization: process.env.GITHUB_AUTH,
+    },
   });
   const text = await result.text();
 

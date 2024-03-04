@@ -10,16 +10,14 @@ import Button from '@mui/material/Button';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import Snackbar from '@mui/material/Snackbar';
-import { Theme } from '@mui/material/styles';
 
 export default function FabIntegrationSnackbar() {
   return (
     <React.Fragment>
       <CssBaseline />
-      {/* TODO: Fix theme type in GlobalStyles */}
       <GlobalStyles
         styles={(theme) => ({
-          body: { backgroundColor: (theme as Theme).palette.background.paper },
+          body: { backgroundColor: theme.palette.background.paper },
         })}
       />
       <div>

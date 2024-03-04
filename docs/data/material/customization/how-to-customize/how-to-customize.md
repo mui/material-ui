@@ -1,17 +1,17 @@
 ---
-product: material-ui
+productId: material-ui
 components: GlobalStyles
 ---
 
 # How to customize
 
-<p class="description">Learn how to customize Material UI components by taking advantage of different strategies for specific use cases.</p>
+<p class="description">Learn how to customize Material UI components by taking advantage of different strategies for specific use cases.</p>
 
-Material UI provides several different ways to customize a component's styles. Your specific context will determine which one is ideal. From narrowest to broadest use case, here are the options:
+Material UI provides several different ways to customize a component's styles. Your specific context will determine which one is ideal. From narrowest to broadest use case, here are the options:
 
 1. [One-off customization](#1-one-off-customization)
 1. [Reusable component](#2-reusable-component)
-1. [Global theme variation](#3-global-theme-overrides)
+1. [Global theme overrides](#3-global-theme-overrides)
 1. [Global CSS override](#4-global-css-override)
 
 ## 1. One-off customization
@@ -21,41 +21,41 @@ To change the styles of _one single instance_ of a component, you can use one of
 ### The `sx` prop
 
 The [`sx` prop](/system/getting-started/the-sx-prop/) is the best option for adding style overrides to a single instance of a component in most cases.
-It can be used with all Material UI components.
+It can be used with all Material UI components.
 
-{{"demo": "SxProp.js" }}
+{{"demo": "SxProp.js"}}
 
-#### Overriding nested component styles
+### Overriding nested component styles
 
-To customize a specific part of a component, you can use the class name provided by Material UI inside the `sx` prop. As an example, let's say you want to change the `Slider` component's thumb from a circle to a square.
+To customize a specific part of a component, you can use the class name provided by Material UI inside the `sx` prop. As an example, let's say you want to change the `Slider` component's thumb from a circle to a square.
 
 First, use your browser's dev tools to identify the class for the component slot you want to override.
 
-The styles injected into the DOM by Material UI rely on class names that all [follow a standard pattern](/system/styles/advanced/#class-names):
+The styles injected into the DOM by Material UI rely on class names that all [follow a standard pattern](/system/styles/advanced/#class-names):
 `[hash]-Mui[Component name]-[name of the slot]`.
 
 In this case, the styles are applied with `.css-ae2u5c-MuiSlider-thumb` but you only really need to target the `.MuiSlider-thumb`, where `Slider` is the component and `thumb` is the slot. Use this class name to write a CSS selector within the `sx` prop (`& .MuiSlider-thumb`), and add your overrides.
 
-<img src="/static/images/customization/dev-tools.png" alt="dev-tools" width="796" style="margin-bottom: 16px;" />
+<img src="/static/images/customization/dev-tools.png" alt="dev-tools" style="margin-bottom: 16px;" width="2400" height="800" />
 
 {{"demo": "DevTools.js"}}
 
 :::warning
-⚠️ Note that these class names can't be used as CSS selectors because they are unstable.
+These class names can't be used as CSS selectors because they are unstable.
 :::
 
 ### Overriding styles with class names
 
 If you want to override a component's styles using custom classes, you can use the `className` prop, available on each component.
-To override the styles of a specific part of the component, use the global classes provided by Material UI, as described in the previous section **"Overriding nested component styles"** under the [`sx` prop section](#the-sx-prop).
+To override the styles of a specific part of the component, use the global classes provided by Material UI, as described in the previous section **"Overriding nested component styles"** under the [`sx` prop section](#the-sx-prop).
 
-Visit the [Style library interoperability](/material-ui/guides/interoperability/) guide to find examples of this approach using different styling libraries.
+Visit the [Style library interoperability](/material-ui/integrations/interoperability/) guide to find examples of this approach using different styling libraries.
 
 ### State classes
 
 States like _hover_, _focus_, _disabled_ and _selected_, are styled with a higher CSS specificity. To customize them, you'll need to **increase specificity**.
 
-Here is an example with the _disable_ state and the `Button` component using a pseudo-class (`:disabled`):
+Here is an example with the _disabled_ state and the `Button` component using a pseudo-class (`:disabled`):
 
 ```css
 .Button {
@@ -74,7 +74,7 @@ Here is an example with the _disable_ state and the `Button` component using a p
 
 You can't always use a CSS pseudo-class, as the state doesn't exist in the web specification.
 Let's take the `MenuItem` component and its _selected_ state as an example.
-In this situation, you can use Material UI's **state classes**, which act just like CSS pseudo-classes.
+In this situation, you can use Material UI's **state classes**, which act just like CSS pseudo-classes.
 Target the `.Mui-selected` global class name to customize the special state of the `MenuItem` component:
 
 ```css
@@ -97,11 +97,11 @@ If you'd like to learn more about this topic, we recommend checking out [the MDN
 #### Why do I need to increase specificity to override one component state?
 
 CSS pseudo-classes have a high level of specificity.
-For consistency with native elements, Material UI's state classes have the same level of specificity as CSS pseudo-classes, making it possible to target an individual component's state.
+For consistency with native elements, Material UI's state classes have the same level of specificity as CSS pseudo-classes, making it possible to target an individual component's state.
 
-#### What custom state classes are available in Material UI?
+#### What custom state classes are available in Material UI?
 
-You can rely on the following [global class names](/system/styles/advanced/#class-names) generated by Material UI:
+You can rely on the following [global class names](/system/styles/advanced/#class-names) generated by Material UI:
 
 | State         | Global class name   |
 | :------------ | :------------------ |
@@ -113,11 +113,12 @@ You can rely on the following [global class names](/system/styles/advanced/#clas
 | expanded      | `.Mui-expanded`     |
 | focus visible | `.Mui-focusVisible` |
 | focused       | `.Mui-focused`      |
+| readOnly      | `.Mui-readOnly`     |
 | required      | `.Mui-required`     |
 | selected      | `.Mui-selected`     |
 
 :::error
-⚠️ Never apply styles directly to state class names. This will impact all components with unclear side-effects. Always target a state class together with a component.
+Never apply styles directly to state class names. This will impact all components with unclear side-effects. Always target a state class together with a component.
 :::
 
 ```css
@@ -146,7 +147,7 @@ You can do this with **dynamic CSS** or **CSS variables**.
 #### Dynamic CSS
 
 :::warning
-⚠️ Note that if you are using TypeScript you will need to update the prop's types of the new component.
+If you are using TypeScript, you will need to update the prop's types of the new component.
 :::
 
 {{"demo": "DynamicCSS.js", "defaultCodeOpen": false}}
@@ -176,7 +177,7 @@ const StyledSlider = styled(Slider, {
 
 ## 3. Global theme overrides
 
-Material UI provides theme tools for managing style consistency between all components across your user interface.
+Material UI provides theme tools for managing style consistency between all components across your user interface.
 Visit the [Component theming customization](/material-ui/customization/theme-components/) page for more details.
 
 ## 4. Global CSS override
@@ -194,8 +195,8 @@ The `styleOverrides` key in the `MuiCssBaseline` component slot also supports ca
 
 {{"demo": "OverrideCallbackCssBaseline.js", "iframe": true, "height": 100}}
 
-:::info
-**Note**: It is a good practice to hoist the `<GlobalStyles />` to a static constant, to avoid rerendering. This will ensure that the `<style>` tag generated would not recalculate on each render.
+:::success
+It is a good practice to hoist the `<GlobalStyles />` to a static constant, to avoid rerendering. This will ensure that the `<style>` tag generated would not recalculate on each render.
 :::
 
 ```diff

@@ -1,15 +1,18 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer } from 'test/utils';
+import { createRenderer } from '@mui-internal/test-utils';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup, { avatarGroupClasses as classes } from '@mui/material/AvatarGroup';
+import describeConformance from '../../test/describeConformance';
 
 describe('<AvatarGroup />', () => {
   const { render } = createRenderer();
 
   describeConformance(
-    <AvatarGroup>
-      <div />
+    <AvatarGroup max={2}>
+      <Avatar src="/fake.png" />
+      <Avatar src="/fake.png" />
+      <Avatar src="/fake.png" />
     </AvatarGroup>,
     () => ({
       classes,
@@ -18,7 +21,15 @@ describe('<AvatarGroup />', () => {
       muiName: 'MuiAvatarGroup',
       refInstanceof: window.HTMLDivElement,
       testVariantProps: { max: 10, spacing: 'small', variant: 'square' },
-      skip: ['componentsProp'],
+      testLegacyComponentsProp: true,
+      slots: {
+        additionalAvatar: { expectedClassName: classes.avatar },
+      },
+      skip: [
+        'componentsProp',
+        'slotsProp',
+        'slotPropsCallback', // not supported yet
+      ],
     }),
   );
 
@@ -47,6 +58,18 @@ describe('<AvatarGroup />', () => {
     expect(container.querySelectorAll('.MuiAvatar-root').length).to.equal(3);
     expect(container.querySelectorAll('img').length).to.equal(2);
     expect(container.textContent).to.equal('+2');
+  });
+
+  it('should display custom surplus element if renderSurplus prop is passed', () => {
+    const { container } = render(
+      <AvatarGroup renderSurplus={(num) => <span>%{num}</span>} max={3}>
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+      </AvatarGroup>,
+    );
+    expect(container.textContent).to.equal('%2');
   });
 
   it('should pass props from componentsProps.additionalAvatar to the slot component', () => {

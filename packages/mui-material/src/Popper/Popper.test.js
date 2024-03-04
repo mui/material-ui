@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
-import { ThemeProvider, createTheme } from '@mui/system';
+import { act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
+import { ThemeProvider } from '@mui/system';
+import createTheme from '@mui/system/createTheme';
 import Grow from '@mui/material/Grow';
 import Popper from '@mui/material/Popper';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Popper />', () => {
   let rtlTheme;
@@ -23,7 +25,12 @@ describe('<Popper />', () => {
   describeConformance(<Popper {...defaultProps} />, () => ({
     classes: {},
     inheritComponent: 'div',
+    render,
     refInstanceof: window.HTMLDivElement,
+    testLegacyComponentsProp: true,
+    slots: {
+      root: {},
+    },
     skip: [
       'componentProp',
       'componentsProp',
@@ -32,6 +39,7 @@ describe('<Popper />', () => {
       'themeVariants',
       // https://github.com/facebook/react/issues/11565
       'reactTestRenderer',
+      'slotPropsCallback', // not supported yet
     ],
   }));
 

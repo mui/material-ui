@@ -1,4 +1,5 @@
-import { unstable_useControlled as useControlled } from '@mui/utils';
+'use client';
+import useControlled from '@mui/utils/useControlled';
 
 export default function usePagination(props = {}) {
   // keep default values in sync with @default tags in Pagination.propTypes
@@ -77,8 +78,8 @@ export default function usePagination(props = {}) {
     ...(siblingsStart > boundaryCount + 2
       ? ['start-ellipsis']
       : boundaryCount + 1 < count - boundaryCount
-      ? [boundaryCount + 1]
-      : []),
+        ? [boundaryCount + 1]
+        : []),
 
     // Sibling pages
     ...range(siblingsStart, siblingsEnd),
@@ -88,8 +89,8 @@ export default function usePagination(props = {}) {
     ...(siblingsEnd < count - boundaryCount - 1
       ? ['end-ellipsis']
       : count - boundaryCount > boundaryCount
-      ? [count - boundaryCount]
-      : []),
+        ? [count - boundaryCount]
+        : []),
 
     ...endPages,
     ...(hideNextButton ? [] : ['next']),

@@ -13,8 +13,8 @@
       "deprecated": true,
       "deprecationInfo": "Use <code>slotProps.backdrop</code> instead."
     },
-    "classes": { "type": { "name": "object" } },
-    "closeAfterTransition": { "type": { "name": "bool" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "closeAfterTransition": { "type": { "name": "bool" }, "default": "false" },
     "component": { "type": { "name": "elementType" } },
     "components": {
       "type": { "name": "shape", "description": "{ Backdrop?: elementType, Root?: elementType }" },
@@ -28,20 +28,28 @@
       "default": "{}"
     },
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
-    "disableAutoFocus": { "type": { "name": "bool" } },
-    "disableEnforceFocus": { "type": { "name": "bool" } },
-    "disableEscapeKeyDown": { "type": { "name": "bool" } },
-    "disablePortal": { "type": { "name": "bool" } },
-    "disableRestoreFocus": { "type": { "name": "bool" } },
-    "disableScrollLock": { "type": { "name": "bool" } },
-    "hideBackdrop": { "type": { "name": "bool" } },
-    "keepMounted": { "type": { "name": "bool" } },
+    "disableAutoFocus": { "type": { "name": "bool" }, "default": "false" },
+    "disableEnforceFocus": { "type": { "name": "bool" }, "default": "false" },
+    "disableEscapeKeyDown": { "type": { "name": "bool" }, "default": "false" },
+    "disablePortal": { "type": { "name": "bool" }, "default": "false" },
+    "disableRestoreFocus": { "type": { "name": "bool" }, "default": "false" },
+    "disableScrollLock": { "type": { "name": "bool" }, "default": "false" },
+    "hideBackdrop": { "type": { "name": "bool" }, "default": "false" },
+    "keepMounted": { "type": { "name": "bool" }, "default": "false" },
     "onBackdropClick": {
       "type": { "name": "func" },
       "deprecated": true,
       "deprecationInfo": "Use the <code>onClose</code> prop with the <code>reason</code> argument to handle the <code>backdropClick</code> events."
     },
-    "onClose": { "type": { "name": "func" } },
+    "onClose": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: object, reason: string) => void",
+        "describedArgs": ["event", "reason"]
+      }
+    },
+    "onTransitionEnter": { "type": { "name": "func" } },
+    "onTransitionExited": { "type": { "name": "func" } },
     "slotProps": {
       "type": {
         "name": "shape",
@@ -57,12 +65,36 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     }
   },
   "name": "Modal",
-  "styles": { "classes": ["root", "hidden"], "globalClasses": {}, "name": "MuiModal" },
+  "imports": ["import Modal from '@mui/material/Modal';", "import { Modal } from '@mui/material';"],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": "MuiModal-root"
+    },
+    {
+      "name": "backdrop",
+      "description": "The component that renders the backdrop.",
+      "class": "MuiModal-backdrop"
+    }
+  ],
+  "classes": [
+    {
+      "key": "hidden",
+      "className": "MuiModal-hidden",
+      "description": "Class name applied to the root element if the `Modal` has exited.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiModal",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Modal/Modal.js",
   "inheritance": null,

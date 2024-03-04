@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui-internal/test-utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import CircularProgress, { circularProgressClasses as classes } from '@mui/joy/CircularProgress';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import describeConformance from '../../test/describeConformance';
 
 describe('<CircularProgress />', () => {
   const { render } = createRenderer();
@@ -17,6 +18,20 @@ describe('<CircularProgress />', () => {
     refInstanceof: window.HTMLSpanElement,
     testVariantProps: { determinate: true },
     testCustomVariant: true,
+    slots: {
+      root: { expectedClassName: classes.root },
+      svg: {
+        expectedClassName: classes.svg,
+        testWithComponent: ({ className }: any) => (
+          <svg className={className} data-testid="custom" />
+        ),
+        testWithElement: null,
+      },
+      track: {
+        expectedClassName: classes.track,
+      },
+      progress: { expectedClassName: classes.progress },
+    },
     skip: ['classesRoot', 'componentsProp'],
   }));
 
@@ -53,7 +68,7 @@ describe('<CircularProgress />', () => {
       expect(getByRole('progressbar')).to.have.class(classes.colorPrimary);
     });
 
-    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+    (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByRole } = render(<CircularProgress color={color} />);
 

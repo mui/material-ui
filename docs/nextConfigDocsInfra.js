@@ -1,3 +1,14 @@
+/**
+ * See the docs of the Netlify environment variables:
+ * https://docs.netlify.com/configure-builds/environment-variables/#build-metadata.
+ *
+ * A few comments:
+ * - process.env.CONTEXT === 'production' means that the branch in Netlify was configured as production.
+ *   For example, the `master` branch of the Core team is considered a `production` build on Netlify based
+ *   on https://app.netlify.com/sites/material-ui/settings/deploys#branches.
+ * - Each team has different site https://app.netlify.com/teams/mui/sites.
+ *   The following logic must be compatible with all of them.
+ */
 let DEPLOY_ENV = 'development';
 
 // Same as process.env.PULL_REQUEST_ID
@@ -9,15 +20,32 @@ if (process.env.CONTEXT === 'production' || process.env.CONTEXT === 'branch-depl
   DEPLOY_ENV = 'production';
 }
 
+// The 'master' and 'next' branches are NEVER a production environment. We use these branches for staging.
 if (
-  process.env.CONTEXT === 'branch-deploy' &&
+  (process.env.CONTEXT === 'production' || process.env.CONTEXT === 'branch-deploy') &&
   (process.env.HEAD === 'master' || process.env.HEAD === 'next')
 ) {
   DEPLOY_ENV = 'staging';
 }
+/**
+ * ====================================================================================
+ */
 
 process.env.DEPLOY_ENV = DEPLOY_ENV;
 
+/**
+ * @typedef {import('next').NextConfig} NextConfig
+ * @typedef {NextConfig['env']} NextConfigEnv
+ * @typedef {{env : {
+ *  LIB_VERSION: string;
+ *  SOURCE_CODE_REPO: string;
+ *  SOURCE_GITHUB_BRANCH: string;
+ *  GITHUB_TEMPLATE_DOCS_FEEDBACK: string;
+ * }} & NextConfig} NextConfigInput
+
+ * @param {NextConfigInput} nextConfig
+ * @returns {NextConfig}
+ */
 function withDocsInfra(nextConfig) {
   return {
     trailingSlash: true,
@@ -26,12 +54,13 @@ function withDocsInfra(nextConfig) {
     reactStrictMode: true,
     ...nextConfig,
     env: {
-      BUILD_ONLY_ENGLISH_LOCALE: true, // disable translations by default
+      BUILD_ONLY_ENGLISH_LOCALE: 'true', // disable translations by default
       // production | staging | pull-request | development
       DEPLOY_ENV,
+      FEEDBACK_URL: process.env.FEEDBACK_URL,
       ...nextConfig.env,
       // https://docs.netlify.com/configure-builds/environment-variables/#git-metadata
-      // reference ID (also known as “SHA” or “hash”) of the commit we’re building.
+      // reference ID (also known as "SHA" or "hash") of the commit we're building.
       COMMIT_REF: process.env.COMMIT_REF,
       // ID of the PR and the Deploy Preview it generated (for example, 1211)
       PULL_REQUEST_ID: process.env.REVIEW_ID,
@@ -45,6 +74,7 @@ function withDocsInfra(nextConfig) {
     },
     experimental: {
       scrollRestoration: true,
+      esmExternals: false,
       ...nextConfig.experimental,
     },
     eslint: {

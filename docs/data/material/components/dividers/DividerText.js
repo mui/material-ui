@@ -6,18 +6,15 @@ import Chip from '@mui/material/Chip';
 const Root = styled('div')(({ theme }) => ({
   width: '100%',
   ...theme.typography.body2,
-  '& > :not(style) + :not(style)': {
+  color: theme.palette.text.secondary,
+  '& > :not(style) ~ :not(style)': {
     marginTop: theme.spacing(2),
   },
 }));
 
 export default function DividerText() {
   const content = (
-    <div>
-      {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus id dignissim justo.
-   Nulla ut facilisis ligula. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-   Sed malesuada lobortis pretium.`}
-    </div>
+    <p>{`Lorem ipsum dolor sit amet, consectetur adipiscing elit.`}</p>
   );
 
   return (
@@ -30,7 +27,7 @@ export default function DividerText() {
       <Divider textAlign="right">RIGHT</Divider>
       {content}
       <Divider>
-        <Chip label="CHIP" />
+        <Chip label="Chip" size="small" />
       </Divider>
       {content}
     </Root>

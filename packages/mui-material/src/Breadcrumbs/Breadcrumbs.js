@@ -1,9 +1,11 @@
+'use client';
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { integerPropType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import integerPropType from '@mui/utils/integerPropType';
+import { useSlotProps } from '@mui/base/utils';
+import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Typography from '../Typography';
@@ -83,6 +85,8 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
     children,
     className,
     component = 'nav',
+    slots = {},
+    slotProps = {},
     expandText = 'Show path',
     itemsAfterCollapse = 1,
     itemsBeforeCollapse = 1,
@@ -105,6 +109,12 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+
+  const collapsedIconSlotProps = useSlotProps({
+    elementType: slots.CollapsedIcon,
+    externalSlotProps: slotProps.collapsedIcon,
+    ownerState,
+  });
 
   const listRef = React.useRef(null);
   const renderItemsBeforeAndAfter = (allItems) => {
@@ -137,7 +147,13 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
 
     return [
       ...allItems.slice(0, itemsBeforeCollapse),
-      <BreadcrumbCollapsed aria-label={expandText} key="ellipsis" onClick={handleClickExpand} />,
+      <BreadcrumbCollapsed
+        aria-label={expandText}
+        key="ellipsis"
+        slots={{ CollapsedIcon: slots.CollapsedIcon }}
+        slotProps={{ collapsedIcon: collapsedIconSlotProps }}
+        onClick={handleClickExpand}
+      />,
       ...allItems.slice(allItems.length - itemsAfterCollapse, allItems.length),
     ];
   };
@@ -187,10 +203,10 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
 });
 
 Breadcrumbs.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
@@ -237,6 +253,21 @@ Breadcrumbs.propTypes /* remove-proptypes */ = {
    * @default '/'
    */
   separator: PropTypes.node,
+  /**
+   * The props used for each slot inside the Breadcumb.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    collapsedIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the Breadcumb.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    CollapsedIcon: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

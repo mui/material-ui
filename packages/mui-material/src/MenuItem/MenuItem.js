@@ -1,8 +1,9 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { alpha } from '@mui/system';
+import composeClasses from '@mui/utils/composeClasses';
+import { alpha } from '@mui/system/colorManipulator';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import ListContext from '../List/ListContext';
@@ -161,10 +162,13 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   } = props;
 
   const context = React.useContext(ListContext);
-  const childContext = {
-    dense: dense || context.dense || false,
-    disableGutters,
-  };
+  const childContext = React.useMemo(
+    () => ({
+      dense: dense || context.dense || false,
+      disableGutters,
+    }),
+    [context.dense, dense, disableGutters],
+  );
 
   const menuItemRef = React.useRef(null);
   useEnhancedEffect(() => {
@@ -213,10 +217,10 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
 });
 
 MenuItem.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, the list item is focused during the first mount.
    * Focus will also be triggered if the value changes from false to true.
@@ -274,7 +278,8 @@ MenuItem.propTypes /* remove-proptypes */ = {
    */
   role: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
-   * @ignore
+   * If `true`, the component is selected.
+   * @default false
    */
   selected: PropTypes.bool,
   /**

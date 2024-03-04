@@ -12,7 +12,7 @@ function transform(value) {
 }
 ```
 
-If the value is between [0, 1], it's converted to percent.
+If the value is between (0, 1], it's converted to percent.
 Otherwise, it is directly set on the CSS property.
 
 {{"demo": "Values.js", "defaultCodeOpen": false}}

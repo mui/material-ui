@@ -9,12 +9,6 @@ export interface SnackbarMessage {
   key: number;
 }
 
-export interface State {
-  open: boolean;
-  snackPack: readonly SnackbarMessage[];
-  messageInfo?: SnackbarMessage;
-}
-
 export default function ConsecutiveSnackbars() {
   const [snackPack, setSnackPack] = React.useState<readonly SnackbarMessage[]>([]);
   const [open, setOpen] = React.useState(false);

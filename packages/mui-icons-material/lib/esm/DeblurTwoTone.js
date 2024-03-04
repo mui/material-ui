@@ -1,3 +1,5 @@
+"use client";
+
 import createSvgIcon from './utils/createSvgIcon';
 import { jsx as _jsx } from "react/jsx-runtime";
 export default createSvgIcon([/*#__PURE__*/_jsx("circle", {
@@ -49,8 +51,8 @@ export default createSvgIcon([/*#__PURE__*/_jsx("circle", {
   cy: "18",
   r: "1"
 }, "11"), /*#__PURE__*/_jsx("path", {
-  d: "M12 3v2c3.86 0 7 3.14 7 7s-3.14 7-7 7v2c4.96 0 9-4.04 9-9s-4.04-9-9-9z"
+  d: "M12 3v2c3.86 0 7 3.14 7 7s-3.14 7-7 7v2c4.96 0 9-4.04 9-9s-4.04-9-9-9"
 }, "12"), /*#__PURE__*/_jsx("path", {
-  d: "M12 5v14c3.86 0 7-3.14 7-7s-3.14-7-7-7z",
+  d: "M12 5v14c3.86 0 7-3.14 7-7s-3.14-7-7-7",
   opacity: ".3"
 }, "13")], 'DeblurTwoTone');

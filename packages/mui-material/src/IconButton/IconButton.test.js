@@ -1,10 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui-internal/test-utils';
+import capitalize from '@mui/utils/capitalize';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import IconButton, { iconButtonClasses as classes } from '@mui/material/IconButton';
 import Icon from '@mui/material/Icon';
 import ButtonBase from '@mui/material/ButtonBase';
+import describeConformance from '../../test/describeConformance';
 
 describe('<IconButton />', () => {
   const { render } = createRenderer();
@@ -34,18 +37,13 @@ describe('<IconButton />', () => {
     expect(container.querySelector('.touch-ripple')).not.to.equal(null);
   });
 
-  ['default', 'primary'].forEach((color) => {
-    it(`can disable the ripple and hover effect for color ${color}`, () => {
-      const { container, getByRole } = render(
-        <IconButton disableRipple color={color} TouchRippleProps={{ className: 'touch-ripple' }}>
-          book
-        </IconButton>,
-      );
-      expect(container.querySelector('.touch-ripple')).to.equal(null);
-      expect(getComputedStyle(getByRole('button'), ':hover').backgroundColor).to.equal(
-        getComputedStyle(getByRole('button')).backgroundColor,
-      );
-    });
+  it('can disable the ripple and hover effect', () => {
+    const { container } = render(
+      <IconButton disableRipple TouchRippleProps={{ className: 'touch-ripple' }}>
+        book
+      </IconButton>,
+    );
+    expect(container.querySelector('.touch-ripple')).to.equal(null);
   });
 
   describe('prop: size', () => {
@@ -72,11 +70,13 @@ describe('<IconButton />', () => {
 
       expect(container.firstChild).to.have.class(classes.edgeStart);
     });
+
     it('edge="end" should render the right class', () => {
       const { container } = render(<IconButton edge="end">book</IconButton>);
 
       expect(container.firstChild).to.have.class(classes.edgeEnd);
     });
+
     it('no edge should render the right class', () => {
       const { container } = render(<IconButton>book</IconButton>);
 
@@ -95,6 +95,16 @@ describe('<IconButton />', () => {
     });
   });
 
+  describe('prop: color', () => {
+    ['primary', 'secondary', 'error', 'info', 'success', 'warning'].forEach((color) => {
+      it(`should render the ${color} class`, () => {
+        const { getByRole } = render(<IconButton color={color}>Hello World</IconButton>);
+        const button = getByRole('button');
+        expect(button).to.have.class(classes[`color${capitalize(color)}`]);
+      });
+    });
+  });
+
   it('should raise a warning about onClick in children because of Firefox', () => {
     expect(() => {
       PropTypes.checkPropTypes(
@@ -104,5 +114,23 @@ describe('<IconButton />', () => {
         'MockedName',
       );
     }).toErrorDev(['MUI: You are providing an onClick event listener']);
+  });
+
+  it('should not throw error for a custom color', () => {
+    expect(() => (
+      <ThemeProvider
+        theme={createTheme({
+          components: {
+            MuiIconButton: {
+              defaultProps: {
+                color: 'custom',
+              },
+            },
+          },
+        })}
+      >
+        <IconButton />
+      </ThemeProvider>
+    )).not.to.throw();
   });
 });

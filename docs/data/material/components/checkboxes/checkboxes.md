@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Checkbox component
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 materialDesign: https://m2.material.io/components/selection-controls#checkboxes
@@ -58,7 +58,7 @@ Visually, there are **three** states a checkbox can be in: checked, unchecked, o
 {{"demo": "IndeterminateCheckbox.js"}}
 
 :::warning
-⚠️ When indeterminate is set, the value of the `checked` prop only impacts the form submitted values.
+When indeterminate is set, the value of the `checked` prop only impacts the form submitted values.
 It has no accessibility or UX implications.
 :::
 
@@ -81,7 +81,7 @@ You can learn more about this in the [overrides documentation page](/material-ui
 
 {{"demo": "CustomizedCheckbox.js"}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/checkbox/).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/checkbox-introduction--docs).
 
 ## When to use
 

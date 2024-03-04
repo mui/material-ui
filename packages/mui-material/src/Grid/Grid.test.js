@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, screen } from 'test/utils';
+import { createRenderer, screen } from '@mui-internal/test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import defaultTheme from '@mui/material/styles/defaultTheme';
 import Grid, { gridClasses as classes } from '@mui/material/Grid';
 import { generateGrid, generateRowGap, generateColumnGap, generateDirection } from './Grid';
+import describeConformance from '../../test/describeConformance';
 
 describe('Material UI <Grid />', () => {
   const { render } = createRenderer();
@@ -693,7 +694,7 @@ describe('Material UI <Grid />', () => {
     it('should not throw error for setting zero spacing in theme', () => {
       const theme = createTheme({ spacing: 0 });
 
-      const App = () => {
+      function App() {
         return (
           <ThemeProvider theme={theme}>
             <Grid container spacing={4}>
@@ -702,7 +703,7 @@ describe('Material UI <Grid />', () => {
             </Grid>
           </ThemeProvider>
         );
-      };
+      }
 
       expect(() => {
         render(<App />);

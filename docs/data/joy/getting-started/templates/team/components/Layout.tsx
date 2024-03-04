@@ -34,7 +34,7 @@ function Header(props: BoxProps) {
         {
           p: 2,
           gap: 2,
-          bgcolor: 'background.componentBg',
+          bgcolor: 'background.surface',
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-between',
@@ -61,7 +61,7 @@ function SideNav(props: BoxProps) {
       sx={[
         {
           p: 2,
-          bgcolor: 'background.componentBg',
+          bgcolor: 'background.surface',
           borderRight: '1px solid',
           borderColor: 'divider',
           display: {
@@ -82,7 +82,7 @@ function SidePane(props: BoxProps) {
       {...props}
       sx={[
         {
-          bgcolor: 'background.componentBg',
+          bgcolor: 'background.surface',
           borderRight: '1px solid',
           borderColor: 'divider',
           display: {
@@ -107,16 +107,16 @@ function Main(props: BoxProps) {
   );
 }
 
-function SideDrawer({
-  onClose,
-  ...props
-}: BoxProps & { onClose: React.MouseEventHandler<HTMLDivElement> }) {
+function SideDrawer(
+  props: BoxProps & { onClose: React.MouseEventHandler<HTMLDivElement> },
+) {
+  const { onClose, ...other } = props;
   return (
     <Box
-      {...props}
+      {...other}
       sx={[
         { position: 'fixed', zIndex: 1200, width: '100%', height: '100%' },
-        ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
+        ...(Array.isArray(other.sx) ? other.sx : [other.sx]),
       ]}
     >
       <Box
@@ -136,10 +136,10 @@ function SideDrawer({
           height: '100%',
           p: 2,
           boxShadow: 'lg',
-          bgcolor: 'background.componentBg',
+          bgcolor: 'background.surface',
         }}
       >
-        {props.children}
+        {other.children}
       </Sheet>
     </Box>
   );

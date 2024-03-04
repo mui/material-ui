@@ -5,9 +5,9 @@
 When the server receives the request, it renders the required component(s) into an HTML string, and then sends it as a response to the client.
 From that point on, the client takes over rendering duties.
 
-## MUI on the server
+## Material UI on the server
 
-MUI was designed from the ground-up with the constraint of rendering on the server, but it's up to you to make sure it's correctly integrated.
+Material UI was designed from the ground-up with the constraint of rendering on the server, but it's up to you to make sure it's correctly integrated.
 It's important to provide the page with the required CSS, otherwise the page will render with just the HTML then wait for the CSS to be injected by the client, causing it to flicker (FOUC).
 To inject the style down to the client, we need to:
 
@@ -86,9 +86,9 @@ The first thing that we need to do on every request is to create a new `emotion 
 When rendering, we will wrap `App`, the root component,
 inside a [`CacheProvider`](https://emotion.sh/docs/cache-provider) and [`ThemeProvider`](/system/styles/api/#themeprovider) to make the style configuration and the `theme` available to all components in the component tree.
 
-The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client-side. To do this, we use [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
+The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client-side. To do this, we use [ReactDOMServer.renderToString()](https://react.dev/reference/react-dom/server/renderToString).
 
-MUI is using Emotion as its default styled engine.
+Material UI uses Emotion as its default styled engine.
 We need to extract the styles from the Emotion instance.
 For this, we need to share the same cache configuration for both the client and server:
 
@@ -109,7 +109,7 @@ We will see how this is passed along in the `renderFullPage` function.
 ```jsx
 import express from 'express';
 import * as React from 'react';
-import ReactDOMServer from 'react-dom/server';
+import * as ReactDOMServer from 'react-dom/server';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import { CacheProvider } from '@emotion/react';
@@ -127,7 +127,8 @@ function handleRender(req, res) {
   const html = ReactDOMServer.renderToString(
     <CacheProvider value={cache}>
       <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline
+            to build upon. */}
         <CssBaseline />
         <App />
       </ThemeProvider>
@@ -163,10 +164,16 @@ function renderFullPage(html, css) {
     <!DOCTYPE html>
     <html>
       <head>
+        <meta charset="utf-8" />
         <title>My page</title>
         ${css}
         <meta name="viewport" content="initial-scale=1, width=device-width" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+        />
       </head>
       <body>
         <div id="root">${html}</div>
@@ -186,7 +193,7 @@ Let's take a look at the client file:
 
 ```jsx
 import * as React from 'react';
-import ReactDOM from 'react-dom';
+import * as ReactDOM from 'react-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import { CacheProvider } from '@emotion/react';
@@ -200,7 +207,8 @@ function Main() {
   return (
     <CacheProvider value={cache}>
       <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline
+            to build upon. */}
         <CssBaseline />
         <App />
       </ThemeProvider>
@@ -213,12 +221,5 @@ ReactDOM.hydrate(<Main />, document.querySelector('#root'));
 
 ## Reference implementations
 
-We host different reference implementations which you can find in the [GitHub repository](https://github.com/mui/material-ui) under the [`/examples`](https://github.com/mui/material-ui/tree/HEAD/examples) folder:
-
-- [The reference implementation of this tutorial](https://github.com/mui/material-ui/tree/HEAD/examples/ssr)
-- [Gatsby](https://github.com/mui/material-ui/tree/HEAD/examples/gatsby)
-- [Next.js](https://github.com/mui/material-ui/tree/HEAD/examples/nextjs) ([TypeScript version](https://github.com/mui/material-ui/tree/HEAD/examples/nextjs-with-typescript))
-
-## Troubleshooting
-
-Check out the FAQ answer: [My App doesn't render correctly on the server](/material-ui/getting-started/faq/#my-app-doesnt-render-correctly-on-the-server).
+Here is [the reference implementation of this tutorial](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-express-ssr).
+You can more SSR implementations in the GitHub repository under the `/examples` folder, see [the other examples](/material-ui/getting-started/example-projects/).

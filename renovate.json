@@ -19,11 +19,7 @@
     },
     {
       "groupName": "babel",
-      "matchPackagePatterns": "@babel/*"
-    },
-    {
-      "groupName": "date-io",
-      "matchPackagePatterns": "@date-io/*"
+      "matchPackagePatterns": ["^@babel/", "^@types/babel"]
     },
     {
       "groupName": "Emotion",
@@ -67,22 +63,17 @@
       "matchPackagePatterns": ["@mui/x-*"]
     },
     {
-      "groupName": "react-spring",
-      "matchPackageNames": ["react-spring"],
-      "allowedVersions": "< 9.0.0"
-    },
-    {
       "groupName": "React",
       "matchPackageNames": ["react", "react-dom", "react-is", "react-test-renderer"]
     },
     {
-      "groupName": "tslint",
-      "matchPackageNames": ["tslint"],
-      "allowedVersions": "<= 5.14.0"
-    },
-    {
       "groupName": "typescript-eslint",
       "matchPackagePatterns": "@typescript-eslint/*"
+    },
+    {
+      "groupName": "@types/node",
+      "matchPackageNames": ["@types/node"],
+      "allowedVersions": "< 19.0.0"
     },
     {
       "groupName": "bundling fixtures",
@@ -97,19 +88,32 @@
     {
       "groupName": "examples",
       "matchPaths": ["examples/**/package.json"],
-      "minor": {
-        "enabled": false
-      },
-      "patch": {
-        "enabled": false
-      }
+      "enabled": false
     },
     {
       "groupName": "Playwright",
       "matchPackageNames": ["playwright", "@playwright/test", "mcr.microsoft.com/playwright"]
+    },
+    {
+      "matchDepTypes": ["action"],
+      "pinDigests": true
+    },
+    {
+      "groupName": "GitHub Actions",
+      "matchManagers": ["github-actions"]
+    },
+    {
+      "groupName": "@definitelytyped tools",
+      "matchPackagePatterns": ["@definitelytyped/*"]
+    },
+    {
+      "groupName": "envinfo tests",
+      "matchPaths": ["packages/mui-envinfo/test/package.json"],
+      "matchPackagePatterns": ["@mui/*"],
+      "enabled": false
     }
   ],
-  "postUpdateOptions": ["yarnDedupeHighest"],
+  "postUpdateOptions": ["pnpmDedupe"],
   "prConcurrentLimit": 30,
   "prHourlyLimit": 0,
   "rangeStrategy": "bump",

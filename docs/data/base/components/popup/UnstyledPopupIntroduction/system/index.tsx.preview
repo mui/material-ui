@@ -1,0 +1,6 @@
+<Button aria-describedby={id} type="button" onClick={handleClick}>
+  Toggle Popup
+</Button>
+<BasePopup id={id} open={open} anchor={anchor}>
+  <PopupBody>The content of the Popup.</PopupBody>
+</BasePopup>

@@ -24,8 +24,8 @@ const styles = {
 interface MyButtonRawProps {
   color: 'red' | 'blue';
 }
-// These are the props available inside MyButtonRaw
-// They're different from MyButtonRawProps which are the props available for dynamic styling.
+// @babel-ignore-comment-in-output These are the props available inside MyButtonRaw
+// @babel-ignore-comment-in-output They're different from MyButtonRawProps which are the props available for dynamic styling.
 type MyButtonRawInnerProps = MyButtonRawProps & WithStyles<typeof styles>;
 
 function MyButtonRaw(

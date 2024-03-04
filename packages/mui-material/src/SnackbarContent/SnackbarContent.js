@@ -1,8 +1,9 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { emphasize } from '@mui/system';
+import composeClasses from '@mui/utils/composeClasses';
+import { emphasize } from '@mui/system/colorManipulator';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Paper from '../Paper';
@@ -96,10 +97,10 @@ const SnackbarContent = React.forwardRef(function SnackbarContent(inProps, ref) 
 });
 
 SnackbarContent.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The action to display. It renders after the message, at the end of the snackbar.
    */

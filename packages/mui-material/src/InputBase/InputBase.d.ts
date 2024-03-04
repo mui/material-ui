@@ -46,7 +46,7 @@ export interface InputBaseProps
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
   color?: OverridableStringUnion<
@@ -54,8 +54,11 @@ export interface InputBaseProps
     InputBasePropsColorOverrides
   >;
   /**
-   * The components used for each slot inside the InputBase.
-   * Either a string to use a HTML element or a component.
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `slots` prop.
+   * It's recommended to use the `slots` prop instead.
+   *
    * @default {}
    */
   components?: {
@@ -63,7 +66,12 @@ export interface InputBaseProps
     Input?: React.ElementType;
   };
   /**
-   * The props used for each slot inside the Input.
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `slotProps` prop.
+   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   *
    * @default {}
    */
   componentsProps?: {
@@ -192,6 +200,31 @@ export interface InputBaseProps
    * The size of the component.
    */
   size?: OverridableStringUnion<'small' | 'medium', InputBasePropsSizeOverrides>;
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slotProps?: {
+    root?: React.HTMLAttributes<HTMLDivElement> &
+      InputBaseComponentsPropsOverrides & { sx?: SxProps<Theme> };
+    input?: React.InputHTMLAttributes<HTMLInputElement> &
+      InputBaseComponentsPropsOverrides & { sx?: SxProps<Theme> };
+  };
+  /**
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slots?: {
+    root?: React.ElementType;
+    input?: React.ElementType;
+  };
   /**
    * Start `InputAdornment` for this component.
    */

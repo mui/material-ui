@@ -1,3 +1,4 @@
-import { unstable_useForkRef as useForkRef } from '@mui/utils';
+'use client';
+import useForkRef from '@mui/utils/useForkRef';
 
 export default useForkRef;

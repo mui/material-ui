@@ -1,0 +1,126 @@
+{
+  "parameters": {
+    "aria-labelledby": { "type": { "name": "string", "description": "string" } },
+    "defaultValue": {
+      "type": {
+        "name": "number | ReadonlyArray&lt;number&gt;",
+        "description": "number | ReadonlyArray&lt;number&gt;"
+      }
+    },
+    "disabled": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
+    "disableSwap": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
+    "isRtl": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
+    "marks": {
+      "type": {
+        "name": "boolean | ReadonlyArray&lt;Mark&gt;",
+        "description": "boolean | ReadonlyArray&lt;Mark&gt;"
+      },
+      "default": "false"
+    },
+    "max": { "type": { "name": "number", "description": "number" }, "default": "100" },
+    "min": { "type": { "name": "number", "description": "number" }, "default": "0" },
+    "name": { "type": { "name": "string", "description": "string" } },
+    "onChange": {
+      "type": {
+        "name": "(event: Event, value: number | number[], activeThumb: number) =&gt; void",
+        "description": "(event: Event, value: number | number[], activeThumb: number) =&gt; void"
+      }
+    },
+    "onChangeCommitted": {
+      "type": {
+        "name": "(event: React.SyntheticEvent | Event, value: number | number[]) =&gt; void",
+        "description": "(event: React.SyntheticEvent | Event, value: number | number[]) =&gt; void"
+      }
+    },
+    "orientation": {
+      "type": {
+        "name": "&#39;horizontal&#39; | &#39;vertical&#39;",
+        "description": "&#39;horizontal&#39; | &#39;vertical&#39;"
+      },
+      "default": "'horizontal'"
+    },
+    "rootRef": {
+      "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
+    },
+    "scale": {
+      "type": {
+        "name": "(value: number) =&gt; number",
+        "description": "(value: number) =&gt; number"
+      },
+      "default": "function Identity(x) {\nreturn x;\n}"
+    },
+    "shiftStep": { "type": { "name": "number", "description": "number" }, "default": "10" },
+    "step": { "type": { "name": "number | null", "description": "number | null" }, "default": "1" },
+    "tabIndex": { "type": { "name": "number", "description": "number" } },
+    "value": {
+      "type": {
+        "name": "number | ReadonlyArray&lt;number&gt;",
+        "description": "number | ReadonlyArray&lt;number&gt;"
+      }
+    }
+  },
+  "returnValue": {
+    "active": { "type": { "name": "number", "description": "number" }, "required": true },
+    "axis": { "type": { "name": "Axis", "description": "Axis" }, "required": true },
+    "axisProps": {
+      "type": {
+        "name": "{ [key in Axis]: AxisProps&lt;key&gt; }",
+        "description": "{ [key in Axis]: AxisProps&lt;key&gt; }"
+      },
+      "required": true
+    },
+    "dragging": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "focusedThumbIndex": {
+      "type": { "name": "number", "description": "number" },
+      "required": true
+    },
+    "getHiddenInputProps": {
+      "type": {
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderHiddenInputProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderHiddenInputProps&lt;ExternalProps&gt;"
+      },
+      "required": true
+    },
+    "getRootProps": {
+      "type": {
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderRootSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderRootSlotProps&lt;ExternalProps&gt;"
+      },
+      "required": true
+    },
+    "getThumbProps": {
+      "type": {
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderThumbSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderThumbSlotProps&lt;ExternalProps&gt;"
+      },
+      "required": true
+    },
+    "getThumbStyle": {
+      "type": {
+        "name": "(index: number) =&gt; object",
+        "description": "(index: number) =&gt; object"
+      },
+      "required": true
+    },
+    "marks": { "type": { "name": "Mark[]", "description": "Mark[]" }, "required": true },
+    "open": { "type": { "name": "number", "description": "number" }, "required": true },
+    "range": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "rootRef": {
+      "type": {
+        "name": "React.RefCallback&lt;Element&gt; | null",
+        "description": "React.RefCallback&lt;Element&gt; | null"
+      },
+      "required": true
+    },
+    "trackLeap": { "type": { "name": "number", "description": "number" }, "required": true },
+    "trackOffset": { "type": { "name": "number", "description": "number" }, "required": true },
+    "values": { "type": { "name": "number[]", "description": "number[]" }, "required": true }
+  },
+  "name": "useSlider",
+  "filename": "/packages/mui-base/src/useSlider/useSlider.ts",
+  "imports": [
+    "import { useSlider } from '@mui/base/useSlider';",
+    "import { useSlider } from '@mui/base';"
+  ],
+  "demos": "<ul><li><a href=\"/base-ui/react-slider/#hook\">Slider</a></li></ul>"
+}

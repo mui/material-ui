@@ -7,19 +7,21 @@ import {
   fireEvent,
   fireDiscreteEvent,
   screen,
-  describeConformance,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import Icon from '@mui/material/Icon';
 import SpeedDial, { speedDialClasses as classes } from '@mui/material/SpeedDial';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import { tooltipClasses } from '@mui/material/Tooltip';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import describeConformance from '../../test/describeConformance';
 
 describe('<SpeedDial />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
 
   const icon = <Icon>font_icon</Icon>;
-  const FakeAction = () => <div />;
+  function FakeAction() {
+    return <div />;
+  }
   const defaultProps = {
     open: true,
     icon,

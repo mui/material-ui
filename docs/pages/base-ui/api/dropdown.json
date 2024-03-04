@@ -1,0 +1,20 @@
+{
+  "props": {
+    "defaultOpen": { "type": { "name": "bool" } },
+    "onOpenChange": { "type": { "name": "func" } },
+    "open": { "type": { "name": "bool" } }
+  },
+  "name": "Dropdown",
+  "imports": [
+    "import { Dropdown } from '@mui/base/Dropdown';",
+    "import { Dropdown } from '@mui/base';"
+  ],
+  "classes": [],
+  "spread": false,
+  "themeDefaultProps": null,
+  "muiName": "Dropdown",
+  "filename": "/packages/mui-base/src/Dropdown/Dropdown.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base-ui/react-menu/\">Menu</a></li></ul>",
+  "cssComponent": false
+}

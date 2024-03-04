@@ -1,0 +1,17 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
+    "disablePortal": { "type": { "name": "bool" }, "default": "false" }
+  },
+  "name": "Portal",
+  "imports": ["import { Portal } from '@mui/base/Portal';", "import { Portal } from '@mui/base';"],
+  "classes": [],
+  "spread": false,
+  "themeDefaultProps": null,
+  "muiName": "Portal",
+  "filename": "/packages/mui-base/src/Portal/Portal.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base-ui/react-portal/\">Portal</a></li></ul>",
+  "cssComponent": false
+}

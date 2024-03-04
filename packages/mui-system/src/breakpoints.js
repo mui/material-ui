@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { deepmerge } from '@mui/utils';
+import deepmerge from '@mui/utils/deepmerge';
 import merge from './merge';
 
 // The breakpoint **start** at this value.
@@ -51,6 +51,8 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
 }
 
 function breakpoints(styleFunction) {
+  // false positive
+  // eslint-disable-next-line react/function-component-definition
   const newStyleFunction = (props) => {
     const theme = props.theme || {};
     const base = styleFunction(props);

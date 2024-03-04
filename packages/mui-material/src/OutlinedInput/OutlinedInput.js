@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import refType from '@mui/utils/refType';
+import composeClasses from '@mui/utils/composeClasses';
 import NotchedOutline from './NotchedOutline';
 import useFormControl from '../FormControl/useFormControl';
 import formControlState from '../FormControl/formControlState';
@@ -142,6 +143,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
     label,
     multiline = false,
     notched,
+    slots = {},
     type = 'text',
     ...other
   } = props;
@@ -152,7 +154,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['required'],
+    states: ['color', 'disabled', 'error', 'focused', 'hiddenLabel', 'size', 'required'],
   });
 
   const ownerState = {
@@ -169,9 +171,12 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
     type,
   };
 
+  const RootSlot = slots.root ?? components.Root ?? OutlinedInputRoot;
+  const InputSlot = slots.input ?? components.Input ?? OutlinedInputInput;
+
   return (
     <InputBase
-      components={{ Root: OutlinedInputRoot, Input: OutlinedInputInput, ...components }}
+      slots={{ root: RootSlot, input: InputSlot }}
       renderSuffix={(state) => (
         <NotchedOutlineRoot
           ownerState={ownerState}
@@ -180,7 +185,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
             label != null && label !== '' && fcs.required ? (
               <React.Fragment>
                 {label}
-                &nbsp;{'*'}
+                &thinsp;{'*'}
               </React.Fragment>
             ) : (
               label
@@ -208,10 +213,10 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
 });
 
 OutlinedInput.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
@@ -229,7 +234,7 @@ OutlinedInput.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -237,8 +242,11 @@ OutlinedInput.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The components used for each slot inside the InputBase.
-   * Either a string to use a HTML element or a component.
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `slots` prop.
+   * It's recommended to use the `slots` prop instead.
+   *
    * @default {}
    */
   components: PropTypes.shape({
@@ -344,6 +352,17 @@ OutlinedInput.propTypes /* remove-proptypes */ = {
    * Number of rows to display when multiline option is set to true.
    */
   rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * Start `InputAdornment` for this component.
    */

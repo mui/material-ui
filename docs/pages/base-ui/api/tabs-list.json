@@ -1,0 +1,48 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
+    }
+  },
+  "name": "TabsList",
+  "imports": [
+    "import { TabsList } from '@mui/base/TabsList';",
+    "import { TabsList } from '@mui/base';"
+  ],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": "base-TabsList-root"
+    }
+  ],
+  "classes": [
+    {
+      "key": "horizontal",
+      "className": "base-TabsList-horizontal",
+      "description": "Class name applied to the root element if `orientation='horizontal'`.",
+      "isGlobal": false
+    },
+    {
+      "key": "vertical",
+      "className": "base-TabsList-vertical",
+      "description": "Class name applied to the root element if `orientation='vertical'`.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "muiName": "TabsList",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-base/src/TabsList/TabsList.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base-ui/react-tabs/\">Tabs</a></li></ul>",
+  "cssComponent": false
+}

@@ -9,8 +9,7 @@ export default function TabsVertical() {
     <Tabs
       aria-label="Vertical tabs"
       orientation="vertical"
-      defaultValue={0}
-      sx={{ minWidth: 300 }}
+      sx={{ minWidth: 300, height: 160 }}
     >
       <TabList>
         <Tab>First tab</Tab>

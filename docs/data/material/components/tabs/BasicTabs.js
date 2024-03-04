@@ -5,7 +5,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-function TabPanel(props) {
+function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
 
   return (
@@ -25,7 +25,7 @@ function TabPanel(props) {
   );
 }
 
-TabPanel.propTypes = {
+CustomTabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.number.isRequired,
   value: PropTypes.number.isRequired,
@@ -54,15 +54,15 @@ export default function BasicTabs() {
           <Tab label="Item Three" {...a11yProps(2)} />
         </Tabs>
       </Box>
-      <TabPanel value={value} index={0}>
+      <CustomTabPanel value={value} index={0}>
         Item One
-      </TabPanel>
-      <TabPanel value={value} index={1}>
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={1}>
         Item Two
-      </TabPanel>
-      <TabPanel value={value} index={2}>
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={2}>
         Item Three
-      </TabPanel>
+      </CustomTabPanel>
     </Box>
   );
 }

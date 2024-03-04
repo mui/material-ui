@@ -1,5 +1,6 @@
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { integerPropType } from '@mui/utils';
+'use client';
+import composeClasses from '@mui/utils/composeClasses';
+import integerPropType from '@mui/utils/integerPropType';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
@@ -100,6 +101,7 @@ const ImageListItem = React.forwardRef(function ImageListItem(inProps, ref) {
         gridColumnEnd: variant !== 'masonry' ? `span ${cols}` : undefined,
         gridRowEnd: variant !== 'masonry' ? `span ${rows}` : undefined,
         marginBottom: variant === 'masonry' ? gap : undefined,
+        breakInside: variant === 'masonry' ? 'avoid' : undefined,
         ...style,
       }}
       ownerState={ownerState}
@@ -134,10 +136,10 @@ const ImageListItem = React.forwardRef(function ImageListItem(inProps, ref) {
 });
 
 ImageListItem.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component, normally an `<img>`.
    */

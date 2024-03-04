@@ -1,0 +1,10 @@
+<style>{styles}</style>
+<PopupWithTrigger>
+  <CssTransition
+    enterClassName="open"
+    exitClassName="close"
+    lastTransitionedPropertyOnExit="transform"
+  >
+    <PopupBody>This is an animated popup</PopupBody>
+  </CssTransition>
+</PopupWithTrigger>

@@ -1,13 +1,12 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, integerPropType } from '@mui/utils';
-import {
-  unstable_composeClasses as composeClasses,
-  useAutocomplete,
-  createFilterOptions,
-} from '@mui/base';
-import { alpha } from '@mui/system';
+import integerPropType from '@mui/utils/integerPropType';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import { useAutocomplete, createFilterOptions } from '@mui/base';
+import composeClasses from '@mui/utils/composeClasses';
+import { alpha } from '@mui/system/colorManipulator';
 import Popper from '../Popper';
 import ListSubheader from '../ListSubheader';
 import Paper from '../Paper';
@@ -23,11 +22,13 @@ import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 import capitalize from '../utils/capitalize';
+import useForkRef from '../utils/useForkRef';
 
 const useUtilityClasses = (ownerState) => {
   const {
     classes,
     disablePortal,
+    expanded,
     focused,
     fullWidth,
     hasClearIcon,
@@ -40,6 +41,7 @@ const useUtilityClasses = (ownerState) => {
   const slots = {
     root: [
       'root',
+      expanded && 'expanded',
       focused && 'focused',
       fullWidth && 'fullWidth',
       hasClearIcon && 'hasClearIcon',
@@ -137,7 +139,7 @@ const AutocompleteRoot = styled('div', {
       paddingRight: 52 + 4 + 9,
     },
     [`& .${autocompleteClasses.input}`]: {
-      padding: '7.5px 4px 7.5px 6px',
+      padding: '7.5px 4px 7.5px 5px',
     },
     [`& .${autocompleteClasses.endAdornment}`]: {
       right: 9,
@@ -150,7 +152,7 @@ const AutocompleteRoot = styled('div', {
     paddingBottom: 6,
     paddingLeft: 6,
     [`& .${autocompleteClasses.input}`]: {
-      padding: '2.5px 4px 2.5px 6px',
+      padding: '2.5px 4px 2.5px 8px',
     },
   },
   [`& .${filledInputClasses.root}`]: {
@@ -178,6 +180,20 @@ const AutocompleteRoot = styled('div', {
   [`& .${inputBaseClasses.hiddenLabel}`]: {
     paddingTop: 8,
   },
+  [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel}`]: {
+    paddingTop: 0,
+    paddingBottom: 0,
+    [`& .${autocompleteClasses.input}`]: {
+      paddingTop: 16,
+      paddingBottom: 17,
+    },
+  },
+  [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel}.${inputBaseClasses.sizeSmall}`]: {
+    [`& .${autocompleteClasses.input}`]: {
+      paddingTop: 8,
+      paddingBottom: 9,
+    },
+  },
   [`& .${autocompleteClasses.input}`]: {
     flexGrow: 1,
     textOverflow: 'ellipsis',
@@ -196,7 +212,8 @@ const AutocompleteEndAdornment = styled('div', {
   // We use a position absolute to support wrapping tags.
   position: 'absolute',
   right: 0,
-  top: 'calc(50% - 14px)', // Center vertically
+  top: '50%',
+  transform: 'translate(0, -50%)',
 });
 
 const AutocompleteClearIndicator = styled(IconButton, {
@@ -280,6 +297,7 @@ const AutocompleteListbox = styled('div', {
   padding: '8px 0',
   maxHeight: '40vh',
   overflow: 'auto',
+  position: 'relative',
   [`& .${autocompleteClasses.option}`]: {
     minHeight: 48,
     display: 'flex',
@@ -363,6 +381,7 @@ export { createFilterOptions };
 
 const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiAutocomplete' });
+
   /* eslint-disable @typescript-eslint/no-unused-vars */
   const {
     autoComplete = false,
@@ -391,7 +410,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     fullWidth = false,
     getLimitTagsText = (more) => `+${more}`,
     getOptionDisabled,
-    getOptionLabel = (option) => option.label ?? option,
+    getOptionKey,
+    getOptionLabel: getOptionLabelProp,
     isOptionEqualToValue,
     groupBy,
     handleHomeEndKeys = !props.freeSolo,
@@ -424,6 +444,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     renderTags,
     selectOnFocus = !props.freeSolo,
     size = 'medium',
+    slotProps = {},
     value: valueProp,
     ...other
   } = props;
@@ -440,6 +461,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     getOptionProps,
     value,
     dirty,
+    expanded,
     id,
     popupOpen,
     focused,
@@ -453,12 +475,23 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
 
+  const { onMouseDown: handleInputMouseDown } = getInputProps();
+  const { ref: externalListboxRef } = ListboxProps ?? {};
+  const { ref: listboxRef, ...otherListboxProps } = getListboxProps();
+
+  const combinedListboxRef = useForkRef(listboxRef, externalListboxRef);
+
+  const defaultGetOptionLabel = (option) => option.label ?? option;
+  const getOptionLabel = getOptionLabelProp || defaultGetOptionLabel;
+
   // If you modify this, make sure to keep the `AutocompleteOwnerState` type in sync.
   const ownerState = {
     ...props,
     disablePortal,
+    expanded,
     focused,
     fullWidth,
+    getOptionLabel,
     hasClearIcon,
     hasPopupIcon,
     inputFocused: focusedTag === -1,
@@ -519,17 +552,35 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   );
 
   const renderGroup = renderGroupProp || defaultRenderGroup;
-  const defaultRenderOption = (props2, option) => <li {...props2}>{getOptionLabel(option)}</li>;
+  const defaultRenderOption = (props2, option) => {
+    // Need to clearly apply key because of https://github.com/vercel/next.js/issues/55642
+    return (
+      <li {...props2} key={props2.key}>
+        {getOptionLabel(option)}
+      </li>
+    );
+  };
   const renderOption = renderOptionProp || defaultRenderOption;
 
   const renderListOption = (option, index) => {
     const optionProps = getOptionProps({ option, index });
 
-    return renderOption({ ...optionProps, className: classes.option }, option, {
-      selected: optionProps['aria-selected'],
-      inputValue,
-    });
+    return renderOption(
+      { ...optionProps, className: classes.option },
+      option,
+      {
+        selected: optionProps['aria-selected'],
+        index,
+        inputValue,
+      },
+      ownerState,
+    );
   };
+
+  const clearIndicatorSlotProps = slotProps.clearIndicator ?? componentsProps.clearIndicator;
+  const paperSlotProps = slotProps.paper ?? componentsProps.paper;
+  const popperSlotProps = slotProps.popper ?? componentsProps.popper;
+  const popupIndicatorSlotProps = slotProps.popupIndicator ?? componentsProps.popupIndicator;
 
   return (
     <React.Fragment>
@@ -549,6 +600,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
             ref: setAnchorEl,
             className: classes.inputRoot,
             startAdornment,
+            onClick: (event) => {
+              if (event.target === event.currentTarget) {
+                handleInputMouseDown(event);
+              }
+            },
             ...((hasClearIcon || hasPopupIcon) && {
               endAdornment: (
                 <AutocompleteEndAdornment className={classes.endAdornment} ownerState={ownerState}>
@@ -558,11 +614,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                       aria-label={clearText}
                       title={clearText}
                       ownerState={ownerState}
-                      {...componentsProps.clearIndicator}
-                      className={clsx(
-                        classes.clearIndicator,
-                        componentsProps.clearIndicator?.className,
-                      )}
+                      {...clearIndicatorSlotProps}
+                      className={clsx(classes.clearIndicator, clearIndicatorSlotProps?.className)}
                     >
                       {clearIcon}
                     </AutocompleteClearIndicator>
@@ -575,11 +628,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                       aria-label={popupOpen ? closeText : openText}
                       title={popupOpen ? closeText : openText}
                       ownerState={ownerState}
-                      {...componentsProps.popupIndicator}
-                      className={clsx(
-                        classes.popupIndicator,
-                        componentsProps.popupIndicator?.className,
-                      )}
+                      {...popupIndicatorSlotProps}
+                      className={clsx(classes.popupIndicator, popupIndicatorSlotProps?.className)}
                     >
                       {popupIcon}
                     </AutocompletePopupIndicator>
@@ -607,14 +657,14 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           role="presentation"
           anchorEl={anchorEl}
           open={popupOpen}
-          {...componentsProps.popper}
-          className={clsx(classes.popper, componentsProps.popper?.className)}
+          {...popperSlotProps}
+          className={clsx(classes.popper, popperSlotProps?.className)}
         >
           <AutocompletePaper
             ownerState={ownerState}
             as={PaperComponent}
-            {...componentsProps.paper}
-            className={clsx(classes.paper, componentsProps.paper?.className)}
+            {...paperSlotProps}
+            className={clsx(classes.paper, paperSlotProps?.className)}
           >
             {loading && groupedOptions.length === 0 ? (
               <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
@@ -639,8 +689,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                 as={ListboxComponent}
                 className={classes.listbox}
                 ownerState={ownerState}
-                {...getListboxProps()}
+                {...otherListboxProps}
                 {...ListboxProps}
+                ref={combinedListboxRef}
               >
                 {groupedOptions.map((option, index) => {
                   if (groupBy) {
@@ -664,12 +715,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 });
 
 Autocomplete.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
-   * If `true`, the portion of the selected suggestion that has not been typed by the user,
+   * If `true`, the portion of the selected suggestion that the user hasn't typed,
    * known as the completion string, appears inline after the input cursor in the textbox.
    * The inline completion string is visually highlighted and has a selected state.
    * @default false
@@ -684,6 +735,9 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * If `true`, the selected option becomes the value of the input
    * when the Autocomplete loses focus unless the user chooses
    * a different option or changes the character string in the input.
+   *
+   * When using the `freeSolo` mode, the typed value will be the input value
+   * if the Autocomplete loses focus without highlighting an option.
    * @default false
    */
   autoSelect: PropTypes.bool,
@@ -717,8 +771,8 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the input's text is cleared on blur if no value is selected.
    *
-   * Set to `true` if you want to help the user enter a new value.
-   * Set to `false` if you want to help the user resume their search.
+   * Set it to `true` if you want to help the user enter a new value.
+   * Set it to `false` if you want to help the user resume their search.
    * @default !props.freeSolo
    */
   clearOnBlur: PropTypes.bool,
@@ -799,9 +853,10 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * A function that determines the filtered options to be rendered on search.
    *
-   * @param {T[]} options The options to render.
+   * @default createFilterOptions()
+   * @param {Value[]} options The options to render.
    * @param {object} state The state of the component.
-   * @returns {T[]}
+   * @returns {Value[]}
    */
   filterOptions: PropTypes.func,
   /**
@@ -835,17 +890,25 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Used to determine the disabled state for a given option.
    *
-   * @param {T} option The option to test.
+   * @param {Value} option The option to test.
    * @returns {boolean}
    */
   getOptionDisabled: PropTypes.func,
+  /**
+   * Used to determine the key for a given option.
+   * This can be useful when the labels of options are not unique (since labels are used as keys by default).
+   *
+   * @param {Value} option The option to get the key for.
+   * @returns {string | number}
+   */
+  getOptionKey: PropTypes.func,
   /**
    * Used to determine the string value for a given option.
    * It's used to fill the input (and the list box options if `renderOption` is not provided).
    *
    * If used in free solo mode, it must accept both the type of the options and a string.
    *
-   * @param {T} option
+   * @param {Value} option
    * @returns {string}
    * @default (option) => option.label ?? option
    */
@@ -854,7 +917,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
    *
-   * @param {T} options The options to group.
+   * @param {Value} options The options to group.
    * @returns {string}
    */
   groupBy: PropTypes.func,
@@ -883,8 +946,8 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Uses strict equality by default.
    * ⚠️ Both arguments need to be handled, an option can only match with one value.
    *
-   * @param {T} option The option to test.
-   * @param {T} value The value to test against.
+   * @param {Value} option The option to test.
+   * @param {Value} value The value to test against.
    * @returns {boolean}
    */
   isOptionEqualToValue: PropTypes.func,
@@ -932,7 +995,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Callback fired when the value changes.
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
-   * @param {T|T[]} value The new value of the component.
+   * @param {Value|Value[]} value The new value of the component.
    * @param {string} reason One of "createOption", "selectOption", "removeOption", "blur" or "clear".
    * @param {string} [details]
    */
@@ -949,8 +1012,8 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Callback fired when the highlight option changes.
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
-   * @param {T} option The highlighted option.
-   * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`.
+   * @param {Value} option The highlighted option.
+   * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`, `"touch"`.
    */
   onHighlightChange: PropTypes.func,
   /**
@@ -961,6 +1024,10 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`.
    */
   onInputChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
   /**
    * Callback fired when the popup requests to be opened.
    * Use in controlled mode (see open).
@@ -1026,15 +1093,16 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Render the option, use `getOptionLabel` by default.
    *
    * @param {object} props The props to apply on the li element.
-   * @param {T} option The option to render.
-   * @param {object} state The state of the component.
+   * @param {Value} option The option to render.
+   * @param {object} state The state of each option.
+   * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
    */
   renderOption: PropTypes.func,
   /**
    * Render the selected value.
    *
-   * @param {T[]} value The `value` provided to the component.
+   * @param {Value[]} value The `value` provided to the component.
    * @param {function} getTagProps A tag props getter.
    * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
@@ -1054,6 +1122,16 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['small', 'medium']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    clearIndicator: PropTypes.object,
+    paper: PropTypes.object,
+    popper: PropTypes.object,
+    popupIndicator: PropTypes.object,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

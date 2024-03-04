@@ -2,10 +2,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, createRenderer, fireEvent } from 'test/utils';
+import { createRenderer, fireEvent } from '@mui-internal/test-utils';
 import Accordion, { accordionClasses as classes } from '@mui/material/Accordion';
 import Paper from '@mui/material/Paper';
 import AccordionSummary from '@mui/material/AccordionSummary';
+import describeConformance from '../../test/describeConformance';
 
 function NoTransition(props) {
   const { children, in: inProp } = props;
@@ -28,6 +29,11 @@ describe('<Accordion />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiAccordion',
     testVariantProps: { variant: 'rounded' },
+    slots: {
+      transition: {
+        testWithElement: null,
+      },
+    },
     skip: ['componentProp', 'componentsProp'],
   }));
 
@@ -105,15 +111,17 @@ describe('<Accordion />', () => {
   });
 
   it('should handle the TransitionComponent prop', () => {
-    const NoTransitionCollapse = (props) => {
+    function NoTransitionCollapse(props) {
       return props.in ? <div>{props.children}</div> : null;
-    };
+    }
     NoTransitionCollapse.propTypes = {
       children: PropTypes.node,
       in: PropTypes.bool,
     };
 
-    const CustomContent = () => <div>Hello</div>;
+    function CustomContent() {
+      return <div>Hello</div>;
+    }
     const { queryByText, getByText, setProps } = render(
       <Accordion expanded TransitionComponent={NoTransitionCollapse}>
         <AccordionSummary />
@@ -165,7 +173,11 @@ describe('<Accordion />', () => {
         expect(() => {
           PropTypes.checkPropTypes(
             Accordion.propTypes,
-            { classes: {}, children: <React.Fragment /> },
+            {
+              classes: {},
+              // eslint-disable-next-line react/jsx-no-useless-fragment
+              children: <React.Fragment />,
+            },
             'prop',
             'MockedName',
           );
@@ -203,5 +215,41 @@ describe('<Accordion />', () => {
     expect(() => setProps({ expanded: true })).toErrorDev(
       'MUI: A component is changing the uncontrolled expanded state of Accordion to be controlled.',
     );
+  });
+
+  describe('prop: TransitionProps', () => {
+    it('should apply properties to the Transition component', () => {
+      const { getByTestId } = render(
+        <Accordion TransitionProps={{ 'data-testid': 'transition-testid' }}>
+          {minimalChildren}
+        </Accordion>,
+      );
+
+      expect(getByTestId('transition-testid')).not.to.equal(null);
+    });
+  });
+
+  describe('details unmounting behavior', () => {
+    it('does not unmount by default', () => {
+      const { queryByTestId } = render(
+        <Accordion expanded={false}>
+          <AccordionSummary>Summary</AccordionSummary>
+          <div data-testid="details">Details</div>
+        </Accordion>,
+      );
+
+      expect(queryByTestId('details')).not.to.equal(null);
+    });
+
+    it('unmounts if opted in via slotProps.transition', () => {
+      const { queryByTestId } = render(
+        <Accordion expanded={false} slotProps={{ transition: { unmountOnExit: true } }}>
+          <AccordionSummary>Summary</AccordionSummary>
+          <div data-testid="details">Details</div>
+        </Accordion>,
+      );
+
+      expect(queryByTestId('details')).to.equal(null);
+    });
   });
 });

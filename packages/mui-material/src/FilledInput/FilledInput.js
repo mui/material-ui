@@ -1,7 +1,9 @@
+'use client';
 import * as React from 'react';
-import { refType, deepmerge } from '@mui/utils';
+import deepmerge from '@mui/utils/deepmerge';
+import refType from '@mui/utils/refType';
 import PropTypes from 'prop-types';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import composeClasses from '@mui/utils/composeClasses';
 import InputBase from '../InputBase';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -69,7 +71,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
       backgroundColor: theme.vars ? theme.vars.palette.FilledInput.disabledBg : disabledBackground,
     },
     ...(!ownerState.disableUnderline && {
-      '&:after': {
+      '&::after': {
         borderBottom: `2px solid ${
           (theme.vars || theme).palette[ownerState.color || 'primary']?.main
         }`,
@@ -91,11 +93,12 @@ const FilledInputRoot = styled(InputBaseRoot, {
         // See https://github.com/mui/material-ui/issues/31766
         transform: 'scaleX(1) translateX(0)',
       },
-      [`&.${filledInputClasses.error}:after`]: {
-        borderBottomColor: (theme.vars || theme).palette.error.main,
-        transform: 'scaleX(1)', // error is always underlined in red
+      [`&.${filledInputClasses.error}`]: {
+        '&::before, &::after': {
+          borderBottomColor: (theme.vars || theme).palette.error.main,
+        },
       },
-      '&:before': {
+      '&::before': {
         borderBottom: `1px solid ${
           theme.vars
             ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / ${theme.vars.opacity.inputUnderline})`
@@ -112,7 +115,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
         }),
         pointerEvents: 'none', // Transparent to the hover style.
       },
-      [`&:hover:not(.${filledInputClasses.disabled}):before`]: {
+      [`&:hover:not(.${filledInputClasses.disabled}, .${filledInputClasses.error}):before`]: {
         borderBottom: `1px solid ${(theme.vars || theme).palette.text.primary}`,
       },
       [`&.${filledInputClasses.disabled}:before`]: {
@@ -135,6 +138,11 @@ const FilledInputRoot = styled(InputBaseRoot, {
         paddingTop: 16,
         paddingBottom: 17,
       }),
+      ...(ownerState.hiddenLabel &&
+        ownerState.size === 'small' && {
+          paddingTop: 8,
+          paddingBottom: 9,
+        }),
     }),
   };
 });
@@ -178,12 +186,6 @@ const FilledInputInput = styled(InputBaseInput, {
     paddingTop: 16,
     paddingBottom: 17,
   }),
-  ...(ownerState.multiline && {
-    paddingTop: 0,
-    paddingBottom: 0,
-    paddingLeft: 0,
-    paddingRight: 0,
-  }),
   ...(ownerState.startAdornment && {
     paddingLeft: 0,
   }),
@@ -195,6 +197,12 @@ const FilledInputInput = styled(InputBaseInput, {
       paddingTop: 8,
       paddingBottom: 9,
     }),
+  ...(ownerState.multiline && {
+    paddingTop: 0,
+    paddingBottom: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
+  }),
 }));
 
 const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
@@ -208,6 +216,8 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
     hiddenLabel, // declare here to prevent spreading to DOM
     inputComponent = 'input',
     multiline = false,
+    slotProps,
+    slots = {},
     type = 'text',
     ...other
   } = props;
@@ -223,13 +233,17 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
   const classes = useUtilityClasses(props);
   const filledInputComponentsProps = { root: { ownerState }, input: { ownerState } };
 
-  const componentsProps = componentsPropsProp
-    ? deepmerge(componentsPropsProp, filledInputComponentsProps)
-    : filledInputComponentsProps;
+  const componentsProps =
+    slotProps ?? componentsPropsProp
+      ? deepmerge(filledInputComponentsProps, slotProps ?? componentsPropsProp)
+      : filledInputComponentsProps;
+
+  const RootSlot = slots.root ?? components.Root ?? FilledInputRoot;
+  const InputSlot = slots.input ?? components.Input ?? FilledInputInput;
 
   return (
     <InputBase
-      components={{ Root: FilledInputRoot, Input: FilledInputInput, ...components }}
+      slots={{ root: RootSlot, input: InputSlot }}
       componentsProps={componentsProps}
       fullWidth={fullWidth}
       inputComponent={inputComponent}
@@ -243,10 +257,10 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
 });
 
 FilledInput.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
@@ -264,7 +278,7 @@ FilledInput.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -272,8 +286,11 @@ FilledInput.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The components used for each slot inside the InputBase.
-   * Either a string to use a HTML element or a component.
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `slots` prop.
+   * It's recommended to use the `slots` prop instead.
+   *
    * @default {}
    */
   components: PropTypes.shape({
@@ -281,7 +298,12 @@ FilledInput.propTypes /* remove-proptypes */ = {
     Root: PropTypes.elementType,
   }),
   /**
-   * The props used for each slot inside the Input.
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `slotProps` prop.
+   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   *
    * @default {}
    */
   componentsProps: PropTypes.shape({
@@ -389,6 +411,29 @@ FilledInput.propTypes /* remove-proptypes */ = {
    * Number of rows to display when multiline option is set to true.
    */
   rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    input: PropTypes.object,
+    root: PropTypes.object,
+  }),
+  /**
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * Start `InputAdornment` for this component.
    */

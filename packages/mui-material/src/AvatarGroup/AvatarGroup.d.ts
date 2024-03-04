@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps, Theme } from '@mui/material';
 import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
+import { InternalStandardProps as StandardProps, Theme } from '@mui/material';
 import { AvatarGroupClasses } from './avatarGroupClasses';
 import Avatar from '../Avatar';
 
@@ -23,7 +23,12 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
    */
   component?: React.ElementType;
   /**
-   * The props used for each slot inside the AvatarGroup.
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `slotProps` prop.
+   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   *
    * @default {}
    */
   componentsProps?: {
@@ -35,6 +40,24 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
    * @default 5
    */
   max?: number;
+  /**
+   * custom renderer of extraAvatars
+   * @param {number} surplus number of extra avatars
+   * @returns {React.ReactNode} custom element to display
+   */
+  renderSurplus?: (surplus: number) => React.ReactNode;
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slotProps?: {
+    additionalAvatar?: React.ComponentPropsWithRef<typeof Avatar> &
+      AvatarGroupComponentsPropsOverrides;
+  };
   /**
    * Spacing between avatars.
    * @default 'medium'

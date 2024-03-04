@@ -1,8 +1,24 @@
 import { OverrideProps } from '@mui/types';
 import * as React from 'react';
 import { SxProps } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type CardCoverSlot = 'root';
+
+export interface CardCoverSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+}
+
+export type CardCoverSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  CardCoverSlots,
+  {
+    root: SlotProps<'div', {}, CardCoverOwnerState>;
+  }
+>;
 
 export interface CardCoverTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -15,7 +31,7 @@ export interface CardCoverTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
-  };
+  } & CardCoverSlotsAndSlotProps;
   defaultComponent: D;
 }
 

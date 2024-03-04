@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
-  describeConformance,
   act,
   createRenderer,
   fireEvent,
@@ -10,19 +9,30 @@ import {
   simulatePointerDevice,
   focusVisible,
   programmaticFocusTriggersFocusVisible,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import { camelCase } from 'lodash/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
 import { testReset } from './Tooltip';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Tooltip />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
+
   beforeEach(() => {
     testReset();
   });
 
+  function TestPopper(props) {
+    const { children, className, 'data-testid': testId } = props;
+    return (
+      <div className={className} data-testid={testId ?? 'custom'}>
+        {typeof children === 'function' ? children({}) : children}
+      </div>
+    );
+  }
+
   describeConformance(
-    <Tooltip title="Hello World" open>
+    <Tooltip title="Hello World" arrow open>
       <button type="submit">Hello World</button>
     </Tooltip>,
     () => ({
@@ -33,12 +43,24 @@ describe('<Tooltip />', () => {
       refInstanceof: window.HTMLButtonElement,
       testRootOverrides: { slotName: 'popper', slotClassName: classes.popper },
       testDeepOverrides: { slotName: 'tooltip', slotClassName: classes.tooltip },
+      testLegacyComponentsProp: true,
+      slots: {
+        popper: {
+          expectedClassName: classes.popper,
+          testWithComponent: TestPopper,
+          testWithElement: null,
+        },
+        transition: { testWithElement: null },
+        tooltip: { expectedClassName: classes.tooltip, testWithElement: null },
+        arrow: { expectedClassName: classes.arrow },
+      },
       skip: [
         'componentProp',
         'componentsProp',
         'themeVariants',
         // react-transition-group issue
         'reactTestRenderer',
+        'slotPropsCallback', // not supported yet
       ],
     }),
   );
@@ -354,7 +376,7 @@ describe('<Tooltip />', () => {
     expect(eventLog).to.deep.equal(['mouseleave']);
   });
 
-  it('is dismissable by pressing Escape', () => {
+  it('is dismissible by pressing Escape', () => {
     const handleClose = spy();
     const transitionTimeout = 0;
     render(
@@ -453,15 +475,17 @@ describe('<Tooltip />', () => {
 
     it('should handle autoFocus + onFocus forwarding', () => {
       const handleFocus = spy();
-      const AutoFocus = (props) => (
-        <div>
-          {props.open ? (
-            <Tooltip enterDelay={100} title="Title">
-              <input autoFocus onFocus={handleFocus} />
-            </Tooltip>
-          ) : null}
-        </div>
-      );
+      function AutoFocus(props) {
+        return (
+          <div>
+            {props.open ? (
+              <Tooltip enterDelay={100} title="Title">
+                <input autoFocus onFocus={handleFocus} />
+              </Tooltip>
+            ) : null}
+          </div>
+        );
+      }
 
       const { setProps } = render(
         <AutoFocus />,
@@ -971,6 +995,12 @@ describe('<Tooltip />', () => {
         'The `children` component of the Tooltip is not forwarding its props correctly.',
       );
     });
+
+    it('should warn when children is a string', () => {
+      expect(() => {
+        render(<Tooltip title="Hello World">Hello World</Tooltip>);
+      }).toErrorDev('Invalid prop `children` of type `string` supplied');
+    });
   });
 
   it('should use the same Popper.js instance between two renders', () => {
@@ -995,7 +1025,9 @@ describe('<Tooltip />', () => {
 
   describe('prop: PopperComponent', () => {
     it('can render a different component', () => {
-      const CustomPopper = () => <div data-testid="CustomPopper" />;
+      function CustomPopper() {
+        return <div data-testid="CustomPopper" />;
+      }
       render(
         <Tooltip title="Hello World" open PopperComponent={CustomPopper}>
           <button id="testChild" type="submit">
@@ -1058,7 +1090,9 @@ describe('<Tooltip />', () => {
 
   describe('prop: components', () => {
     it('can render a different Popper component', () => {
-      const CustomPopper = () => <div data-testid="CustomPopper" />;
+      function CustomPopper() {
+        return <div data-testid="CustomPopper" />;
+      }
       render(
         <Tooltip title="Hello World" open components={{ Popper: CustomPopper }}>
           <button id="testChild" type="submit">
@@ -1148,6 +1182,7 @@ describe('<Tooltip />', () => {
 
   describe('user-select state', () => {
     let prevWebkitUserSelect;
+
     beforeEach(() => {
       prevWebkitUserSelect = document.body.style.WebkitUserSelect;
     });

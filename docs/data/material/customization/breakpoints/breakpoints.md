@@ -3,7 +3,7 @@
 <p class="description">API that enables the use of breakpoints in a wide variety of contexts.</p>
 
 For optimal user experience, Material Design interfaces need to be able to adapt their layout at various breakpoints.
-MUI uses a **simplified** implementation of the original [specification](https://m2.material.io/design/layout/responsive-layout-grid.html#breakpoints).
+Material UI uses a **simplified** implementation of the original [specification](https://m2.material.io/design/layout/responsive-layout-grid.html#breakpoints).
 
 The breakpoints are used internally in various components to make them responsive,
 but you can also take advantage of them

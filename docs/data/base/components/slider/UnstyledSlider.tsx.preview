@@ -1,2 +1,0 @@
-<StyledSlider defaultValue={10} />
-<StyledSlider defaultValue={10} disabled />

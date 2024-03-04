@@ -1,10 +1,11 @@
+'use client';
 // @inheritedComponent IconButton
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { alpha, darken, lighten } from '@mui/system';
+import refType from '@mui/utils/refType';
+import composeClasses from '@mui/utils/composeClasses';
+import { alpha, darken, lighten } from '@mui/system/colorManipulator';
 import capitalize from '../utils/capitalize';
 import SwitchBase from '../internal/SwitchBase';
 import useThemeProps from '../styles/useThemeProps';
@@ -235,10 +236,10 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
 });
 
 Switch.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, the component is checked.
    */
@@ -258,7 +259,7 @@ Switch.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -275,6 +276,7 @@ Switch.propTypes /* remove-proptypes */ = {
   disabled: PropTypes.bool,
   /**
    * If `true`, the ripple effect is disabled.
+   * @default false
    */
   disableRipple: PropTypes.bool,
   /**
@@ -311,6 +313,7 @@ Switch.propTypes /* remove-proptypes */ = {
   onChange: PropTypes.func,
   /**
    * If `true`, the `input` element is required.
+   * @default false
    */
   required: PropTypes.bool,
   /**
