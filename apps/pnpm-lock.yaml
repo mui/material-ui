@@ -46,7 +46,7 @@ importers:
         specifier: ^7.20.5
         version: 7.20.5
       '@types/chai':
-        specifier: ^4.3.11
+        specifier: ^4.3.12
         version: 4.3.12
       '@types/doctrine':
         specifier: ^0.0.9
@@ -110,7 +110,7 @@ importers:
         specifier: ^3.1.3
         version: 3.1.3
       '@types/chai':
-        specifier: ^4.3.11
+        specifier: ^4.3.12
         version: 4.3.12
       '@types/mocha':
         specifier: ^10.0.6
@@ -162,7 +162,7 @@ importers:
         specifier: ^14.5.2
         version: 14.5.2(@testing-library/dom@9.3.4)
       '@types/chai':
-        specifier: ^4.3.11
+        specifier: ^4.3.12
         version: 4.3.12
       '@types/prop-types':
         specifier: ^15.7.11
@@ -214,17 +214,17 @@ importers:
         specifier: ^1.0.10
         version: 1.0.10(jscodeshift@0.13.1)
       postcss:
-        specifier: ^8.4.33
+        specifier: ^8.4.35
         version: 8.4.35
       postcss-cli:
-        specifier: ^8.0.0
+        specifier: ^8.3.1
         version: 8.3.1(postcss@8.4.35)
       yargs:
         specifier: ^17.7.2
         version: 17.7.2
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.11
+        specifier: ^4.3.12
         version: 4.3.12
       '@types/jscodeshift':
         specifier: 0.11.5
@@ -272,7 +272,7 @@ importers:
         version: 18.2.55
       next:
         specifier: ^13.5.1
-        version: 13.5.1(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0)
+        version: 13.5.1(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -285,7 +285,7 @@ importers:
         version: 7.11.1
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.11
+        specifier: ^4.3.12
         version: 4.3.12
       chai:
         specifier: ^4.4.1
@@ -310,7 +310,7 @@ importers:
         specifier: workspace:^
         version: link:../mui-material/build
       '@types/chai':
-        specifier: ^4.3.11
+        specifier: ^4.3.12
         version: 4.3.12
       '@types/react':
         specifier: ^18.2.55
@@ -393,7 +393,7 @@ importers:
         specifier: workspace:^
         version: link:../mui-material/build
       '@types/chai':
-        specifier: ^4.3.11
+        specifier: ^4.3.12
         version: 4.3.12
       '@types/prop-types':
         specifier: ^15.7.11
@@ -418,7 +418,7 @@ importers:
         version: 4.17.21
       next:
         specifier: ^13.4.19
-        version: 13.5.1(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0)
+        version: 13.5.1(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -467,7 +467,7 @@ importers:
         specifier: workspace:^
         version: link:../test-utils
       '@types/chai':
-        specifier: ^4.3.11
+        specifier: ^4.3.12
         version: 4.3.12
       '@types/prop-types':
         specifier: ^15.7.11
@@ -559,7 +559,7 @@ importers:
         specifier: ^14.5.2
         version: 14.5.2(@testing-library/dom@9.3.4)
       '@types/chai':
-        specifier: ^4.3.11
+        specifier: ^4.3.12
         version: 4.3.12
       '@types/prop-types':
         specifier: ^15.7.11
@@ -678,7 +678,7 @@ importers:
         specifier: ^14.5.2
         version: 14.5.2(@testing-library/dom@9.3.4)
       '@types/chai':
-        specifier: ^4.3.11
+        specifier: ^4.3.12
         version: 4.3.12
       '@types/prop-types':
         specifier: ^15.7.11
@@ -738,7 +738,7 @@ importers:
         version: 18.2.55
       next:
         specifier: 13.5.1
-        version: 13.5.1(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0)
+        version: 13.5.1(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -763,7 +763,7 @@ importers:
         specifier: workspace:^
         version: link:../mui-types/build
       '@types/chai':
-        specifier: ^4.3.11
+        specifier: ^4.3.12
         version: 4.3.12
       '@types/react':
         specifier: ^18.2.55
@@ -804,7 +804,7 @@ importers:
         specifier: workspace:*
         version: link:build
       '@types/chai':
-        specifier: ^4.3.11
+        specifier: ^4.3.12
         version: 4.3.12
       '@types/react':
         specifier: ^18.2.55
@@ -839,7 +839,7 @@ importers:
         specifier: workspace:*
         version: link:build
       '@types/chai':
-        specifier: ^4.3.11
+        specifier: ^4.3.12
         version: 4.3.12
       '@types/hoist-non-react-statics':
         specifier: ^3.3.5
@@ -919,7 +919,7 @@ importers:
         specifier: workspace:^
         version: link:../mui-material/build
       '@types/chai':
-        specifier: ^4.3.11
+        specifier: ^4.3.12
         version: 4.3.12
       '@types/react':
         specifier: ^18.2.55
@@ -987,7 +987,7 @@ importers:
         specifier: workspace:*
         version: link:build
       '@types/chai':
-        specifier: ^4.3.11
+        specifier: ^4.3.12
         version: 4.3.12
       '@types/prop-types':
         specifier: ^15.7.11
@@ -1053,7 +1053,7 @@ importers:
         specifier: workspace:^
         version: link:../mui-types/build
       '@types/chai':
-        specifier: ^4.3.11
+        specifier: ^4.3.12
         version: 4.3.12
       '@types/mocha':
         specifier: ^10.0.6
@@ -1095,7 +1095,7 @@ importers:
     devDependencies:
       next:
         specifier: ^13.5.1
-        version: 13.5.1(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0)
+        version: 13.5.1(react-dom@18.2.0)(react@18.2.0)
 
   ../packages/pigment-react:
     dependencies:
@@ -1292,7 +1292,7 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       mocha:
-        specifier: ^10.2.0
+        specifier: ^10.3.0
         version: 10.3.0
       playwright:
         specifier: ^1.41.2
@@ -1314,7 +1314,7 @@ importers:
         version: 15.2.0
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.11
+        specifier: ^4.3.12
         version: 4.3.12
       '@types/chai-dom':
         specifier: ^1.11.3
@@ -1424,9 +1424,6 @@ importers:
       '@mui/material':
         specifier: file:../../packages/mui-material/build
         version: file:../packages/mui-material/build(@emotion/react@11.11.3)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
-      '@mui/material-nextjs':
-        specifier: file:../../packages/mui-material-nextjs/build
-        version: file:../packages/mui-material-nextjs/build(@mui/material@5.15.11)(@types/react@18.2.55)(next@13.5.1)(react@18.2.0)
       '@mui/system':
         specifier: file:../../packages/mui-system/build
         version: file:../packages/mui-system/build(@emotion/react@11.11.3)(@types/react@18.2.55)(react@18.2.0)
@@ -3257,6 +3254,7 @@ packages:
 
   /@next/env@13.5.1:
     resolution: {integrity: sha512-CIMWiOTyflFn/GFx33iYXkgLSQsMQZV4jB91qaj/TfxGaGOXxn8C1j72TaUSPIyN7ziS/AYG46kGmnvuk1oOpg==}
+    dev: true
 
   /@next/env@14.1.0:
     resolution: {integrity: sha512-Py8zIo+02ht82brwwhTg36iogzFqGLPXlRGKQw5s+qP/kMNc4MAyDeEwBKDijk6zTIbegEgu8Qy7C1LboslQAw==}
@@ -3267,6 +3265,7 @@ packages:
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@next/swc-darwin-arm64@14.1.0:
@@ -3283,6 +3282,7 @@ packages:
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@next/swc-darwin-x64@14.1.0:
@@ -3299,6 +3299,7 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@next/swc-linux-arm64-gnu@14.1.0:
@@ -3315,6 +3316,7 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@next/swc-linux-arm64-musl@14.1.0:
@@ -3331,6 +3333,7 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@next/swc-linux-x64-gnu@14.1.0:
@@ -3347,6 +3350,7 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@next/swc-linux-x64-musl@14.1.0:
@@ -3363,6 +3367,7 @@ packages:
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@next/swc-win32-arm64-msvc@14.1.0:
@@ -3379,6 +3384,7 @@ packages:
     cpu: [ia32]
     os: [win32]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@next/swc-win32-ia32-msvc@14.1.0:
@@ -3395,6 +3401,7 @@ packages:
     cpu: [x64]
     os: [win32]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@next/swc-win32-x64-msvc@14.1.0:
@@ -5660,6 +5667,7 @@ packages:
 
   /glob-to-regexp@0.4.1:
     resolution: {integrity: sha512-lkX1HJXwyMcprw/5YUZc2s7DrpAiHB21/V+E1rHUrVNokkvB6bqMzT0VfV6/86ZNabt1k14YOIaT7nDvOX3Iiw==}
+    dev: true
 
   /glob@10.3.10:
     resolution: {integrity: sha512-fa46+tv1Ak0UPK1TOy/pZrIybNNt4HCv7SDzwyfiOZkvZLEbjsZkJBPtDHVshZjbecAoAGSC20MjLDG/qr679g==}
@@ -6805,7 +6813,7 @@ packages:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: false
 
-  /next@13.5.1(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0):
+  /next@13.5.1(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-GIudNR7ggGUZoIL79mSZcxbXK9f5pwAIPZxEM8+j2yLqv5RODg4TkmUlaKSYVqE1bPQueamXSqdC3j7axiTSEg==}
     engines: {node: '>=16.14.0'}
     hasBin: true
@@ -6843,6 +6851,7 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
+    dev: true
 
   /next@14.1.0(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-wlzrsbfeSU48YQBjZhDzOwhWhGsy+uQycR8bHAOt1LY1bn3zZEcDyHQOEoN3aWzQ8LHCAJ1nqrWCc9XF2+O45Q==}
@@ -7298,6 +7307,7 @@ packages:
       nanoid: 3.3.7
       picocolors: 1.0.0
       source-map-js: 1.0.2
+    dev: true
 
   /postcss@8.4.31:
     resolution: {integrity: sha512-PS08Iboia9mts/2ygV3eLpY5ghnUcfLV/EXTOW1E2qYxJKGGBUtNjN76FYHnMs36RmARn41bC0AZmn+rR0OVpQ==}
@@ -8680,6 +8690,7 @@ packages:
     dependencies:
       glob-to-regexp: 0.4.1
       graceful-fs: 4.2.11
+    dev: true
 
   /webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
@@ -8899,6 +8910,7 @@ packages:
 
   /zod@3.21.4:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
+    dev: true
 
   file:../packages/mui-base/build(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0):
     resolution: {directory: ../packages/mui-base/build, type: directory}
@@ -8969,33 +8981,6 @@ packages:
       '@mui/material': file:../packages/mui-material/build(@emotion/react@11.11.3)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
       '@types/react': 18.2.55
       next: 14.1.0(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0)
-      react: 18.2.0
-    dev: false
-
-  file:../packages/mui-material-nextjs/build(@mui/material@5.15.11)(@types/react@18.2.55)(next@13.5.1)(react@18.2.0):
-    resolution: {directory: ../packages/mui-material-nextjs/build, type: directory}
-    id: file:../packages/mui-material-nextjs/build
-    name: '@mui/material-nextjs'
-    engines: {node: '>=12.0.0'}
-    peerDependencies:
-      '@emotion/cache': ^11.11.0
-      '@emotion/server': ^11.11.0
-      '@mui/material': ^5.0.0
-      '@types/react': ^17.0.0 || ^18.0.0
-      next: ^13.0.0 || ^14.0.0
-      react: ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      '@emotion/cache':
-        optional: true
-      '@emotion/server':
-        optional: true
-      '@types/react':
-        optional: true
-    dependencies:
-      '@babel/runtime': 7.23.9
-      '@mui/material': file:../packages/mui-material/build(@emotion/react@11.11.3)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
-      '@types/react': 18.2.55
-      next: 13.5.1(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
     dev: false
 

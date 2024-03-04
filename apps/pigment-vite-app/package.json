@@ -14,7 +14,6 @@
     "@mui/base": "file:../../packages/mui-base/build",
     "@mui/material": "file:../../packages/mui-material/build",
     "@mui/system": "file:../../packages/mui-system/build",
-    "@mui/material-nextjs": "file:../../packages/mui-material-nextjs/build",
     "@mui/icons-material": "file:../../packages/mui-icons-material/build",
     "clsx": "^2.1.0",
     "local-ui-lib": "workspace:^",

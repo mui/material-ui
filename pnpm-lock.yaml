@@ -122,6 +122,9 @@ importers:
       '@octokit/rest':
         specifier: ^20.0.2
         version: 20.0.2
+      '@pigmentcss/react':
+        specifier: workspace:^
+        version: link:packages/pigment-react
       '@playwright/test':
         specifier: 1.41.2
         version: 1.41.2
