@@ -2834,7 +2834,7 @@ _May 10, 2023_
 A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
 - 🚀 Base UI is now in beta - all planned breaking changes are now complete!
-- 🗺 We have a new [project roadmap](https://github.com/orgs/mui/projects/18/views/1) on GitHub where you can learn about what's coming next.
+- 🗺 We have new [project boards](https://github.com/mui/material-ui/projects?query=is%3Aopen) on GitHub where you can learn about what's coming next.
 - 🐛 Various bug fixes, 📚 documentation and 🧪 testing improvements
 
 ### `@mui/material@5.13.0`
