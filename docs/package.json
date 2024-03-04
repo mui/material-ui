@@ -25,7 +25,7 @@
     "@babel/runtime-corejs2": "^7.23.9",
     "@docsearch/react": "^3.5.2",
     "@emotion/cache": "^11.11.0",
-    "@emotion/react": "^11.11.3",
+    "@emotion/react": "^11.11.4",
     "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",

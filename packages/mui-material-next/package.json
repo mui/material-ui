@@ -53,7 +53,7 @@
     "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
-    "@emotion/react": "^11.11.3",
+    "@emotion/react": "^11.11.4",
     "@mui/internal-babel-macros": "workspace:^",
     "@mui-internal/test-utils": "workspace:^",
     "@testing-library/user-event": "^14.5.2",
