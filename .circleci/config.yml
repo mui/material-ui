@@ -777,6 +777,7 @@ workflows:
             - checkout
   e2e-website:
     when:
+      # NOTE: This workflow runs after successful docs deploy. See /test/e2e-website/README.md#ci
       equal: [e2e-website, << pipeline.parameters.workflow >>]
     jobs:
       - checkout
