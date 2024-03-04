@@ -1,5 +1,5 @@
 {
-  "name": "zero-vite",
+  "name": "pigment-css-vite-ts",
   "private": true,
   "version": "5.0.0",
   "type": "module",
@@ -9,12 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@pigmentcss/react": "latest",
+    "@pigment-css/react": "latest",
     "react": "latest",
     "react-dom": "latest"
   },
   "devDependencies": {
-    "@pigmentcss/vite-plugin": "latest",
+    "@pigment-css/vite-plugin": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "@vitejs/plugin-react": "latest",

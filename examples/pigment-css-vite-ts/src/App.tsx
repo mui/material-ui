@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, css, keyframes } from '@pigmentcss/react';
+import { styled, css, keyframes } from '@pigment-css/react';
 
 const scale = keyframes({
   to: { scale: 'var(--s2)' },
