@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { alpha } from '@mui/system';
 import Box from '@mui/system/Box';
 
 export default function Demo() {
@@ -37,12 +36,12 @@ export default function Demo() {
           gap: 0.5,
         }}
       >
-        <Box component="span" sx={{ fontSize: 14, color: 'text.secondary' }}>
+        <Box component="span" sx={{ fontSize: '0.875rem', color: 'text.secondary' }}>
           123 Main St, Phoenix AZ
         </Box>
         <Box
           component="span"
-          sx={{ color: 'primary.main', fontSize: 24, fontWeight: 'bold' }}
+          sx={{ color: 'primary.main', fontSize: '1.5rem', fontWeight: 'bold' }}
         >
           $280,000 — $310,000
         </Box>
@@ -50,14 +49,14 @@ export default function Demo() {
           sx={{
             py: 0.5,
             px: 1,
-            backgroundColor: (theme) => alpha(theme.palette.success.main, 0.1),
+            backgroundColor: 'rgba(46, 125, 50, 0.1)',
             borderRadius: 10,
             display: 'flex',
             alignItems: 'center',
             gap: 0.5,
             border: '1px solid',
-            borderColor: (theme) => alpha(theme.palette.success.main, 0.1),
-            fontSize: 11,
+            borderColor: 'rgba(46, 125, 50, 0.1)',
+            fontSize: '0.7rem',
             fontWeight: 'bold',
             letterSpacing: '.05rem',
             textTransform: 'uppercase',

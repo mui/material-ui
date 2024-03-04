@@ -15,17 +15,19 @@ export default function Why() {
       }}
     >
       <Box sx={{ color: 'text.secondary' }}>Sessions</Box>
-      <Box sx={{ color: 'text.primary', fontSize: 34, fontWeight: 'medium' }}>
+      <Box
+        sx={{ color: 'text.primary', fontSize: '2.125rem', fontWeight: 'medium' }}
+      >
         98.3 K
       </Box>
       <Box
         component={TrendingUpIcon}
-        sx={{ color: 'success.dark', fontSize: 16, verticalAlign: 'sub' }}
+        sx={{ color: 'success.dark', fontSize: '1rem', verticalAlign: 'sub' }}
       />
       <Box
         sx={{
           display: 'inline',
-          fontSize: 14,
+          fontSize: '0.875rem',
           fontWeight: 'bold',
           color: 'success.dark',
           mx: 0.5,
@@ -33,7 +35,7 @@ export default function Why() {
       >
         18.7%
       </Box>
-      <Box sx={{ color: 'text.secondary', display: 'inline', fontSize: 14 }}>
+      <Box sx={{ color: 'text.secondary', display: 'inline', fontSize: '0.875rem' }}>
         vs. last week
       </Box>
     </Box>
