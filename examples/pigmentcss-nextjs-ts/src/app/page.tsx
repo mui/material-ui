@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Kalnia, Josefin_Sans } from 'next/font/google';
-import { styled, css, keyframes } from '@mui/zero-runtime';
+import { styled, css, keyframes } from '@pigmentcss/react';
 
 const kalnia = Kalnia({ subsets: ['latin'] });
 const josefin = Josefin_Sans({ subsets: ['latin'] });
@@ -78,9 +78,8 @@ export default function Home() {
         className={`
         ${kalnia.className}
         ${css(({ theme }) => ({
-          fontSize: 'clamp(3rem, 1.385rem + 6.8906vw, 8rem)',
+          fontSize: 'clamp(3rem, 1.9503rem + 4.4789vw, 6.25rem)',
           fontWeight: 500,
-          lineHeight: 1,
           textAlign: 'center',
           position: 'relative',
           display: 'flex',
@@ -90,7 +89,7 @@ export default function Home() {
           ...theme.applyStyles('dark', { color: '#fff' }),
         }))}`}
       >
-        Zero-runtime CSS-in-JS
+        Pigment CSS
         <span
           className={css(({ theme }) => ({
             position: 'absolute',
@@ -185,7 +184,7 @@ export default function Home() {
         })}
       >
         <Link
-          href="https://github.com/mui/material-ui/blob/master/packages/zero-runtime/README.md"
+          href="https://github.com/mui/material-ui/blob/master/packages/pigment-react/README.md"
           target="_blank"
           rel="noopener noreferrer"
         >

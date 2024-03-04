@@ -1,4 +1,4 @@
-const { withZeroPlugin, extendTheme } = require('@mui/zero-next-plugin');
+const { withPigment, extendTheme } = require('@pigmentcss/nextjs-plugin');
 
 // To learn more about theming, visit https://github.com/mui/material-ui/blob/master/packages/zero-runtime/README.md#theming
 const theme = extendTheme({
@@ -25,4 +25,4 @@ const theme = extendTheme({
 /** @type {import('next').NextConfig} */
 const nextConfig = {};
 
-module.exports = withZeroPlugin(nextConfig, { theme });
+module.exports = withPigment(nextConfig, { theme });

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type { Metadata } from 'next';
-import '@mui/zero-runtime/styles.css';
-import { css } from '@mui/zero-runtime';
+import '@pigmentcss/react/styles.css';
+import { css } from '@pigmentcss/react';
 
 import './globals.css';
 
