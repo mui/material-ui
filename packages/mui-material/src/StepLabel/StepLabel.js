@@ -191,7 +191,6 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
       <StepLabelLabelContainer className={classes.labelContainer} ownerState={ownerState}>
         {children ? (
           <StepLabelLabelSlot
-            ownerState={ownerState}
             {...stepLabelLabelProps}
             className={clsx(classes.label, stepLabelLabelProps?.className)}
           >
