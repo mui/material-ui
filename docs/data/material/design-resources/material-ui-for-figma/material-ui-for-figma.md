@@ -33,12 +33,14 @@ When opening the local variables panel for the first time, you will see this:
 To access the rest of the props, navigate to the variable collections, similar to the code's `theme` structure.
 Then, follow the steps shown in the video below:
 
+<iframe width="100%" height="490" src="https://www.youtube.com/embed/u3zR6p-OjKQ?si=DDVEsedwmJQeik3T" title="YouTube video player" frameborder="0" allow="picture-in-picture; web-share" allowfullscreen></iframe>
+
 ### How can I customize colors?
 
 The design kit uses variables, meaning colors can only be modified from the variables panel.
 To access it, ensure you do not have any layers or frames selected, allowing you to view the global right-hand panel.
 
-<!-- [MUI for Figma v5.14.0 - Material - Changing Colors 1080p.mov](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/cc45d58e-d5c4-4411-a051-e9a1001c8c72/MUI_for_Figma_v5.14.0_-_Material_-_Changing_Colors_1080p.mov) -->
+<iframe width="100%" height="490" src="https://www.youtube.com/embed/YuzkWFm0-bA?si=XvgPR0vNGtiBPqKY" title="YouTube video player" frameborder="0" allow="picture-in-picture; web-share" allowfullscreen></iframe>
 
 ### How do I customize the typography?
 
@@ -46,11 +48,11 @@ Unfortunately, variables do not yet support typography variables, but this featu
 Until then, changing global styles, such as the font family, requires some effort (approximately 5 minutes).
 We have already defined everything as a style, so your only point of command is the right-hand panel.
 
-<!-- [MUI for Figma v5.14.0 - Material - Changing Typography.mov](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0f06be08-3a7d-4089-a1d0-7916c453830c/MUI_for_Figma_v5.14.0_-_Material_-_Changing_Typography.mov) -->
+<iframe width="100%" height="490" src="https://www.youtube.com/embed/HepVDfrLmak?si=gklG_3ZZyxDWzlPM" title="YouTube video player" frameborder="0" allow="picture-in-picture; web-share" allowfullscreen></iframe>
 
 ### Switching modes (light/dark)
 
-<!-- [MUI for Figma v5.14.0 - Material - Changing Modes.mov](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2c670fba-c1f0-4636-88c3-5f0d1c33bc94/MUI_for_Figma_v5.14.0_-_Material_-_Changing_Modes.mov) -->
+<iframe width="100%" height="490" src="https://www.youtube.com/embed/ydTF1HhLnJM?si=1Fj4CFLgVavfg4Fz" title="YouTube video player" frameborder="0" allow="picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## Code sync
 
@@ -77,7 +79,7 @@ Learn more about the Material UI theme structure by visiting the [Theming](https
 
 Master components were difficult to maintain, and it required sticking to the elements available in that master instance only, so we decided to leave the master components in favor of using a plugin called [Similayer](https://www.figma.com/community/plugin/735733267883397781/Similayer).
 
-<!-- [141292007-d545374e-ec0b-4f5e-8873-1b4ce1a89556.mov](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/eadfa8fa-f1a8-49d8-8311-64ffc144e6ab/141292007-d545374e-ec0b-4f5e-8873-1b4ce1a89556.mov) -->
+<iframe width="100%" height="490" src="https://www.youtube.com/embed/eHBk0FbS0P8?si=QbOiMU2F1yvGB6s8" title="YouTube video player" frameborder="0" allow="picture-in-picture; web-share" allowfullscreen></iframe>
 
 ### Why build "Material UI for Figma" instead of using Google's Material Design Figma file?
 
@@ -101,7 +103,7 @@ You should expect to see:
 
 #### How do I add new columns in the main component?
 
-<!-- [MUIF-5.14-Add columns_voiceover2.mov](https://prod-files-secure.s3.us-west-2.amazonaws.com/e747f181-8f1e-4455-91f8-127e5f0b8f94/f8fefcc6-5303-4dbc-99a1-c2df358d6ab6/MUIF-5.14-Add_columns_voiceover2.mov) -->
+<iframe width="100%" height="490" src="https://www.youtube.com/embed/s_n3LHm1daI?si=_QbXvtYPkc8EBd5d" title="YouTube video player" frameborder="0" allow="picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## Updates
 
