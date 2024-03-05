@@ -70,16 +70,16 @@ ${renders.join('\n')}
 }
 `;
 
-  // Create the page in zero-runtime apps
+  // Create the page in pigment apps
   const nextFilepath = path.join(
     process.cwd(),
-    `apps/zero-runtime-next-app/src/app/material-ui/${args[0]}/page.tsx`,
+    `apps/pigment-next-app/src/app/material-ui/${args[0]}/page.tsx`,
   );
   const prettiedNextFileContent = await prettier.format(nextFileContent, {
     ...prettierConfig,
     filepath: nextFilepath,
   });
-  await fse.mkdirp(`apps/zero-runtime-next-app/src/app/material-ui/${args[0]}`);
+  await fse.mkdirp(`apps/pigment-next-app/src/app/material-ui/${args[0]}`);
   await fse.writeFile(nextFilepath, prettiedNextFileContent);
 
   /**
@@ -102,16 +102,16 @@ ${renders.join('\n')}
   );
 }
 `;
-  // Create the page in zero-runtime apps
+  // Create the page in pigment apps
   const viteFilepath = path.join(
     process.cwd(),
-    `apps/zero-runtime-vite-app/src/pages/material-ui/${args[0]}.tsx`,
+    `apps/pigment-vite-app/src/pages/material-ui/${args[0]}.tsx`,
   );
   const prettiedViteFileContent = await prettier.format(viteFileContent, {
     ...prettierConfig,
     filepath: viteFilepath,
   });
-  await fse.mkdirp(`apps/zero-runtime-vite-app/src/pages/material-ui`);
+  await fse.mkdirp(`apps/pigment-vite-app/src/pages/material-ui`);
   await fse.writeFile(viteFilepath, prettiedViteFileContent);
 }
 
