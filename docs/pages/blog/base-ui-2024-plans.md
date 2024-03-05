@@ -81,10 +81,6 @@ They're currently available for use with the Popup, Menu, and Select, and the pl
 The core of what Base UI strives to deliver out of the box is first-class accessibility and an intuitive API for extensive customization.
 We've earmarked several issues we want to tackle before the stable release in areas such as keyboard navigation, better ARIA support, focus styles, and more.
 
-<img alt="A screenshot of the Base UI stable release milestone on GitHub as of January 2024." src="/static/blog/base-ui-2024-plans/base-ui-milestone.png" width="1200" height="600" loading="lazy" />
-
-You can track our progress fixing any specific issues by checking out the list of [Base UI stable release milestones on GitHub](https://github.com/mui/material-ui/milestone/46).
-
 ## A more independent product
 
 So far, all Base UI-related development has happened within the [Material UI GitHub repository](https://github.com/mui/material-ui).
