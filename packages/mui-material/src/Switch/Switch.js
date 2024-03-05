@@ -150,7 +150,7 @@ const SwitchSwitchBase = styled(SwitchBase, {
     },
     variants: [
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value.main && value.mainChannel && value.light) // check all the used fields in the style below
+        .filter(([, value]) => value.main && value.light) // check all the used fields in the style below
         .map(([color]) => ({
           props: { color },
           style: {
@@ -164,15 +164,15 @@ const SwitchSwitchBase = styled(SwitchBase, {
                   backgroundColor: 'transparent',
                 },
               },
-              [`&.${switchClasses.disabled}`]: {
-                color: theme.vars
-                  ? theme.vars.palette.Switch[`${color}DisabledColor`]
-                  : `${
-                      theme.palette.mode === 'light'
-                        ? lighten(theme.palette[color].main, 0.62)
-                        : darken(theme.palette[color].main, 0.55)
-                    }`,
-              },
+            },
+            [`&.${switchClasses.disabled}`]: {
+              color: theme.vars
+                ? theme.vars.palette.Switch[`${color}DisabledColor`]
+                : `${
+                    theme.palette.mode === 'light'
+                      ? lighten(theme.palette[color].main, 0.62)
+                      : darken(theme.palette[color].main, 0.55)
+                  }`,
             },
             [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
               backgroundColor: (theme.vars || theme).palette[color].main,
@@ -237,6 +237,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
         checkedIcon={icon}
         ref={ref}
         ownerState={ownerState}
+        color={color}
         {...other}
         classes={{
           ...classes,
