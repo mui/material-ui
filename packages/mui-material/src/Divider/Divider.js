@@ -160,7 +160,7 @@ const DividerRoot = styled('div', {
     },
     {
       props: ({ ownerState }) =>
-        ownerState.textAlign === 'right' && ownerState.orientation === 'vertical',
+        ownerState.textAlign === 'right' && ownerState.orientation !== 'vertical',
       style: {
         '&::before': {
           width: '90%',
@@ -172,7 +172,7 @@ const DividerRoot = styled('div', {
     },
     {
       props: ({ ownerState }) =>
-        ownerState.textAlign === 'left' && ownerState.orientation === 'vertical',
+        ownerState.textAlign === 'left' && ownerState.orientation !== 'vertical',
       style: {
         '&::before': {
           width: '10%',
@@ -211,7 +211,6 @@ const DividerWrapper = styled('span', {
 }));
 
 const Divider = React.forwardRef(function Divider(inProps, ref) {
-
   const props = useThemeProps({ props: inProps, name: 'MuiDivider' });
   const {
     absolute = false,
