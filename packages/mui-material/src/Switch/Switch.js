@@ -164,7 +164,6 @@ const SwitchSwitchBase = styled(SwitchBase, {
                   backgroundColor: 'transparent',
                 },
               },
-
               [`&.${switchClasses.disabled}`]: {
                 color: theme.vars
                   ? theme.vars.palette.Switch[`${color}DisabledColor`]
