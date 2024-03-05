@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import { getDividerUtilityClass } from './dividerClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -168,6 +167,7 @@ const DividerWrapper = styled('span', {
 }));
 
 const Divider = React.forwardRef(function Divider(inProps, ref) {
+  const useThemeProps = createUseThemeProps('MuiDivider');
   const props = useThemeProps({ props: inProps, name: 'MuiDivider' });
   const {
     absolute = false,
@@ -219,7 +219,9 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
  * The following flag is used to ensure that this component isn't tabbable i.e.
  * does not get highlight/focus inside of MUI List.
  */
-Divider.muiSkipListHighlight = true;
+if (Divider) {
+  Divider.muiSkipListHighlight = true;
+}
 
 Divider.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
