@@ -22,11 +22,7 @@
     "packages/mui-system",
     "packages/mui-types",
     "packages/mui-utils",
-    "packages-internal/scripts",
-    "packages/pigment-react",
-    "packages/pigment-unplugin",
-    "packages/pigment-vite-plugin",
-    "packages/pigment-nextjs-plugin"
+    "packages-internal/scripts"
   ],
   "publishDirectory": {
     "@mui/base": "packages/mui-base/build",
@@ -48,11 +44,7 @@
     "@mui/system": "packages/mui-system/build",
     "@mui/types": "packages/mui-types/build",
     "@mui/utils": "packages/mui-utils/build",
-    "@mui-internal/docs-utils": "packages/docs-utils",
-    "@pigment-css/react": "packages/pigment-react",
-    "@pigment-css/unplugin": "packages/pigment-unplugin",
-    "@pigment-css/vite-plugin": "packages/pigment-vite-plugin",
-    "@pigment-css/nextjs-plugin": "packages/pigment-nextjs-plugin"
+    "@mui-internal/docs-utils": "packages/docs-utils"
   },
   "sandboxes": [
     "/examples/material-ui-cra-ts",

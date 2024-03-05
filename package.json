@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "5.15.11",
+  "version": "5.15.12",
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
