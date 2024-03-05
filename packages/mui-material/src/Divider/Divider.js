@@ -53,153 +53,135 @@ const DividerRoot = styled('div', {
         styles.textAlignLeft,
     ];
   },
-})(
-  ({ theme }) => ({
-    margin: 0, // Reset browser default style.
-    flexShrink: 0,
-    borderWidth: 0,
-    borderStyle: 'solid',
-    borderColor: (theme.vars || theme).palette.divider,
-    borderBottomWidth: 'thin',
-    variants: [
-      {
-        props: {
-          absolute: true,
+})(({ theme }) => ({
+  margin: 0, // Reset browser default style.
+  flexShrink: 0,
+  borderWidth: 0,
+  borderStyle: 'solid',
+  borderColor: (theme.vars || theme).palette.divider,
+  borderBottomWidth: 'thin',
+  variants: [
+    {
+      props: {
+        absolute: true,
+      },
+      style: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        width: '100%',
+      },
+    },
+    {
+      props: {
+        light: true,
+      },
+      style: {
+        borderColor: theme.vars
+          ? `rgba(${theme.vars.palette.dividerChannel} / 0.08)`
+          : alpha(theme.palette.divider, 0.08),
+      },
+    },
+    {
+      props: {
+        variant: 'inset',
+      },
+      style: {
+        marginLeft: 72,
+      },
+    },
+    {
+      props: ({ ownerState }) =>
+        ownerState.variant === 'middle' && ownerState.orientation === 'horizontal',
+      style: {
+        marginLeft: theme.spacing(2),
+        marginRight: theme.spacing(2),
+      },
+    },
+    {
+      props: ({ ownerState }) =>
+        ownerState.variant === 'middle' && ownerState.orientation === 'vertical',
+      style: {
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(2),
+      },
+    },
+    {
+      props: {
+        orientation: 'vertical',
+      },
+      style: {
+        height: '100%',
+        borderBottomWidth: 0,
+        borderRightWidth: 'thin',
+      },
+    },
+    {
+      props: {
+        flexItem: true,
+      },
+      style: {
+        alignSelf: 'stretch',
+        height: 'auto',
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.children,
+      style: {
+        display: 'flex',
+        whiteSpace: 'nowrap',
+        textAlign: 'center',
+        border: 0,
+        '&::before, &::after': {
+          content: '""',
+          alignSelf: 'center',
         },
-        style: {
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.children && ownerState.orientation !== 'vertical',
+      style: {
+        '&::before, &::after': {
           width: '100%',
+          borderTop: `thin solid ${(theme.vars || theme).palette.divider}`,
         },
       },
-      {
-        props: {
-          light: true,
-        },
-        style: {
-          borderColor: theme.vars
-            ? `rgba(${theme.vars.palette.dividerChannel} / 0.08)`
-            : alpha(theme.palette.divider, 0.08),
-        },
-      },
-      {
-        props: {
-          variant: 'inset',
-        },
-        style: {
-          marginLeft: 72,
-        },
-      },
-      {
-        props: ({ ownerState }) =>
-          ownerState.variant === 'middle' && ownerState.orientation === 'horizontal',
-        style: {
-          marginLeft: theme.spacing(2),
-          marginRight: theme.spacing(2),
-        },
-      },
-      {
-        props: ({ ownerState }) =>
-          ownerState.variant === 'middle' && ownerState.orientation === 'vertical',
-        style: {
-          marginTop: theme.spacing(2),
-          marginBottom: theme.spacing(2),
-        },
-      },
-      {
-        props: {
-          orientation: 'vertical',
-        },
-        style: {
+    },
+    {
+      props: ({ ownerState }) => ownerState.orientation === 'vertical' && ownerState.children,
+      style: {
+        '&::before, &::after': {
           height: '100%',
-          borderBottomWidth: 0,
-          borderRightWidth: 'thin',
+          borderLeft: `thin solid ${(theme.vars || theme).palette.divider}`,
         },
       },
-      {
-        props: {
-          flexItem: true,
+    },
+    {
+      props: ({ ownerState }) =>
+        ownerState.textAlign === 'right' && ownerState.orientation === 'vertical',
+      style: {
+        '&::before': {
+          width: '90%',
         },
-        style: {
-          alignSelf: 'stretch',
-          height: 'auto',
-        },
-      },
-    ],
-  }),
-  () => ({
-    variants: [
-      {
-        props: ({ownerState}) => ownerState.children,
-        style: {
-          display: 'flex',
-          whiteSpace: 'nowrap',
-          textAlign: 'center',
-          border: 0,
-          '&::before, &::after': {
-            content: '""',
-            alignSelf: 'center',
-          },
+        '&::after': {
+          width: '10%',
         },
       },
-    ],
-  }),
-  ({ theme }) => ({
-    variants: [
-      {
-        props: ({ ownerState }) => ownerState.children && ownerState.orientation !== 'vertical',
-        style: {
-          '&::before, &::after': {
-            width: '100%',
-            borderTop: `thin solid ${(theme.vars || theme).palette.divider}`,
-          },
+    },
+    {
+      props: ({ ownerState }) =>
+        ownerState.textAlign === 'left' && ownerState.orientation === 'vertical',
+      style: {
+        '&::before': {
+          width: '10%',
+        },
+        '&::after': {
+          width: '90%',
         },
       },
-    ],
-  }),
-  ({ theme }) => ({
-    variants: [
-      {
-        props: ({ ownerState }) => ownerState.orientation === 'vertical' && ownerState.children,
-        style: {
-          '&::before, &::after': {
-            height: '100%',
-            borderLeft: `thin solid ${(theme.vars || theme).palette.divider}`,
-          },
-        },
-      },
-    ],
-  }),
-  () => ({
-    variants: [
-      {
-        props: ({ ownerState }) =>
-          ownerState.textAlign === 'right' && ownerState.orientation === 'vertical',
-        style: {
-          '&::before': {
-            width: '90%',
-          },
-          '&::after': {
-            width: '10%',
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) =>
-          ownerState.textAlign === 'left' && ownerState.orientation === 'vertical',
-        style: {
-          '&::before': {
-            width: '10%',
-          },
-          '&::after': {
-            width: '90%',
-          },
-        },
-      },
-    ],
-  }),
-);
+    },
+  ],
+}));
 
 const DividerWrapper = styled('span', {
   name: 'MuiDivider',
