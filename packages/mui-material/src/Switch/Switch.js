@@ -50,6 +50,19 @@ const SwitchRoot = styled('span', {
     ];
   },
 })({
+  display: 'inline-flex',
+  width: 34 + 12 * 2,
+  height: 14 + 12 * 2,
+  overflow: 'hidden',
+  padding: 12,
+  boxSizing: 'border-box',
+  position: 'relative',
+  flexShrink: 0,
+  zIndex: 0, // Reset the stacking context.
+  verticalAlign: 'middle', // For correct alignment with the text.
+  '@media print': {
+    colorAdjust: 'exact',
+  },
   variants: [
     {
       props: { edge: 'start' },
@@ -78,19 +91,6 @@ const SwitchRoot = styled('span', {
       },
     },
   ],
-  display: 'inline-flex',
-  width: 34 + 12 * 2,
-  height: 14 + 12 * 2,
-  overflow: 'hidden',
-  padding: 12,
-  boxSizing: 'border-box',
-  position: 'relative',
-  flexShrink: 0,
-  zIndex: 0, // Reset the stacking context.
-  verticalAlign: 'middle', // For correct alignment with the text.
-  '@media print': {
-    colorAdjust: 'exact',
-  },
 });
 
 const SwitchSwitchBase = styled(SwitchBase, {
@@ -164,15 +164,16 @@ const SwitchSwitchBase = styled(SwitchBase, {
                   backgroundColor: 'transparent',
                 },
               },
-            },
-            [`&.${switchClasses.disabled}`]: {
-              color: theme.vars
-                ? theme.vars.palette.Switch[`${color}DisabledColor`]
-                : `${
-                    theme.palette.mode === 'light'
-                      ? lighten(theme.palette[color].main, 0.62)
-                      : darken(theme.palette[color].main, 0.55)
-                  }`,
+
+              [`&.${switchClasses.disabled}`]: {
+                color: theme.vars
+                  ? theme.vars.palette.Switch[`${color}DisabledColor`]
+                  : `${
+                      theme.palette.mode === 'light'
+                        ? lighten(theme.palette[color].main, 0.62)
+                        : darken(theme.palette[color].main, 0.55)
+                    }`,
+              },
             },
             [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
               backgroundColor: (theme.vars || theme).palette[color].main,
@@ -237,7 +238,6 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
         checkedIcon={icon}
         ref={ref}
         ownerState={ownerState}
-        color={color}
         {...other}
         classes={{
           ...classes,
