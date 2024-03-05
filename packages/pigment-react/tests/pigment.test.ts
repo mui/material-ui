@@ -48,23 +48,24 @@ describe('zero-runtime', () => {
       const outputContent = fs.readFileSync(outputFilePath, 'utf8');
       const outputCssContent = fs.readFileSync(outputCssFilePath, 'utf8');
 
+      const pluginOptions = {
+        themeArgs: {
+          theme,
+        },
+        babelOptions: {
+          configFile: false,
+          babelrc: false,
+        },
+        tagResolver(_source: string, tag: string) {
+          return require.resolve(`../exports/${tag}`);
+        },
+      };
       const result = await transform(
         {
           options: {
             filename: inputFilePath,
             preprocessor,
-            pluginOptions: {
-              themeArgs: {
-                theme,
-              },
-              babelOptions: {
-                configFile: false,
-                babelrc: false,
-              },
-              tagResolver(_source, tag) {
-                return require.resolve(`../exports/${tag}`);
-              },
-            },
+            pluginOptions,
           },
           cache,
           eventEmitter,

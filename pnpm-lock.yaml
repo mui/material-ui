@@ -2128,14 +2128,14 @@ importers:
         specifier: workspace:^
         version: link:../mui-system/build
       '@wyw-in-js/processor-utils':
-        specifier: ^0.4.1
-        version: 0.4.1
+        specifier: ^0.5.0
+        version: 0.5.0
       '@wyw-in-js/shared':
-        specifier: ^0.4.1
-        version: 0.4.1
+        specifier: ^0.5.0
+        version: 0.5.0
       '@wyw-in-js/transform':
-        specifier: ^0.4.1
-        version: 0.4.1
+        specifier: ^0.5.0
+        version: 0.5.0
       clsx:
         specifier: ^2.1.0
         version: 2.1.0
@@ -2192,11 +2192,11 @@ importers:
         specifier: workspace:^
         version: link:../pigment-react
       '@wyw-in-js/shared':
-        specifier: ^0.4.1
-        version: 0.4.1
+        specifier: ^0.5.0
+        version: 0.5.0
       '@wyw-in-js/transform':
-        specifier: ^0.4.1
-        version: 0.4.1
+        specifier: ^0.5.0
+        version: 0.5.0
       babel-plugin-transform-react-remove-prop-types:
         specifier: ^0.4.24
         version: 0.4.24
@@ -2220,11 +2220,11 @@ importers:
         specifier: workspace:^
         version: link:../pigment-react
       '@wyw-in-js/shared':
-        specifier: ^0.4.1
-        version: 0.4.1
+        specifier: ^0.5.0
+        version: 0.5.0
       '@wyw-in-js/transform':
-        specifier: ^0.4.1
-        version: 0.4.1
+        specifier: ^0.5.0
+        version: 0.5.0
       babel-plugin-transform-react-remove-prop-types:
         specifier: ^0.4.24
         version: 0.4.24
@@ -8106,18 +8106,18 @@ packages:
       webpack: 5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4)
       webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3)
 
-  /@wyw-in-js/processor-utils@0.4.1:
-    resolution: {integrity: sha512-0MVgPC3Svplm2WB4G4eSLLfx8n1EaIpClMXqNcTmfyrFcpLjYYcSXDP7aVgQVvy5wQCqqq+EmPbnU6yXq8X19w==}
+  /@wyw-in-js/processor-utils@0.5.0:
+    resolution: {integrity: sha512-3sRwuDTMy2GmD+44bhCTcBasCrjBexzYRzhxkmMrX49cpVDmQOH+4O7kX5OMRbmzMXe6Z5MsnxIlDlm3bJlcww==}
     engines: {node: '>=16.0.0'}
     dependencies:
       '@babel/generator': 7.23.6
-      '@wyw-in-js/shared': 0.4.1
+      '@wyw-in-js/shared': 0.5.0
     transitivePeerDependencies:
       - supports-color
     dev: false
 
-  /@wyw-in-js/shared@0.4.1:
-    resolution: {integrity: sha512-luKAAP6augn+j7EE9bcVP1chs5RdtmJx1PbRIqT8j12oP2YV32fvhHFX/99XxPujYLxFIexZrhJkNKHnL5uyKA==}
+  /@wyw-in-js/shared@0.5.0:
+    resolution: {integrity: sha512-W6Uic3cqRs75XZfXGOYH/0fADbl3Wz/kqnNaowgyNTdTN7/9vdlqk/D/gMT5WGolj4t418+rYe2FHHs0LdlmvA==}
     engines: {node: '>=16.0.0'}
     dependencies:
       debug: 4.3.4(supports-color@8.1.1)
@@ -8127,8 +8127,8 @@ packages:
       - supports-color
     dev: false
 
-  /@wyw-in-js/transform@0.4.1:
-    resolution: {integrity: sha512-MhU/A58QJ7SkAjVNgvmoa5kbg7h28u4RkwGxm0/qt49sPMSlY8AsIW4wXX2k0rX5GTKHASVcNKrSywE2acjzxQ==}
+  /@wyw-in-js/transform@0.5.0:
+    resolution: {integrity: sha512-tpa2/FsB30fdXB1E+9MmfxQYbRgLv/+VMKzpBKNraDH39zwnA2eGGAEho5gpqK40cEV7NH6zhVbaBcEnV0HQyw==}
     engines: {node: '>=16.0.0'}
     dependencies:
       '@babel/core': 7.23.9
@@ -8138,8 +8138,8 @@ packages:
       '@babel/template': 7.23.9
       '@babel/traverse': 7.23.9
       '@babel/types': 7.23.9
-      '@wyw-in-js/processor-utils': 0.4.1
-      '@wyw-in-js/shared': 0.4.1
+      '@wyw-in-js/processor-utils': 0.5.0
+      '@wyw-in-js/shared': 0.5.0
       babel-merge: 3.0.0(@babel/core@7.23.9)
       cosmiconfig: 8.2.0
       happy-dom: 12.10.3
