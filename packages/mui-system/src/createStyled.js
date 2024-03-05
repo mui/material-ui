@@ -3,7 +3,7 @@ import styledEngineStyled, { internal_processStyles as processStyles } from '@mu
 import { isPlainObject } from '@mui/utils/deepmerge';
 import capitalize from '@mui/utils/capitalize';
 import getDisplayName from '@mui/utils/getDisplayName';
-import createTheme from './createTheme';
+import systemDefaultTheme from './defaultTheme';
 import styleFunctionSx from './styleFunctionSx';
 
 function isEmpty(obj) {
@@ -26,7 +26,7 @@ export function shouldForwardProp(prop) {
   return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
 }
 
-export const systemDefaultTheme = createTheme();
+export { systemDefaultTheme };
 
 const lowercaseFirstLetter = (string) => {
   if (!string) {
