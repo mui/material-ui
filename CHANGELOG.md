@@ -6,76 +6,77 @@
 
 _Mar 5, 2024_
 
-A big thanks to the 18 contributors who made this release possible!
+A big thanks to the 19 contributors who made this release possible!
 This is the first alpha release of Pigment CSS, a zero-runtime CSS-in-JS library 🚀
 
 ### `@mui/material@5.15.12`
 
-- &#8203;<!-- 48 -->Support props callback type in theme variants (#40946) @ZeeshanTamboli
-- &#8203;<!-- 46 -->[Alert] Convert to support zero runtime (#41230) @siriwatknp
-- &#8203;<!-- 45 -->[Alert] Deprecate composed classes (#40688) @DiegoAndai
-- &#8203;<!-- 40 -->[Button] Deprecate classes for v6 (#40675) @sai6855
-- &#8203;<!-- 39 -->[Checkbox] `large` size added in type (#34909) @smox
-- &#8203;<!-- 38 -->[Chip] Deprecate composed classes (#41235) @sai6855
-- &#8203;<!-- 37 -->[Chip] Correct `deleteIconColorPrimary` and `deleteIconColorSecondary` class descriptions (#41231) @sai6855
-- &#8203;<!-- 13 -->Remove unused dev dependency on @mui/lab (#41198) @brijeshb42
-- &#8203;<!-- 12 -->[Slider] Deprecate components and componentProps props for v6 (#40777) @lhilgert9
+- Support props callback type in theme variants (#40946) @ZeeshanTamboli
+- [Alert] Convert to support zero runtime (#41230) @siriwatknp
+- [Alert] Deprecate composed classes (#40688) @DiegoAndai
+- [Button] Deprecate classes for v6 (#40675) @sai6855
+- [Checkbox] `large` size added in type (#34909) @smox
+- [Chip] Deprecate composed classes (#41235) @sai6855
+- [Chip] Correct `deleteIconColorPrimary` and `deleteIconColorSecondary` class descriptions (#41231) @sai6855
+- Remove unused dev dependency on @mui/lab (#41198) @brijeshb42
+- [Slider] Deprecate components and componentProps props for v6 (#40777) @lhilgert9
 
 ### `@mui/system@5.15.12`
 
-- &#8203;<!-- 09 -->Fix createSpacing return type (#41318) @matystroia
+- Fix createSpacing return type (#41318) @matystroia
 
 ### `@mui/joy@5.0.0-beta.30`
 
-- &#8203;<!-- 44 -->[Autocomplete] Fix text overflow in Chip (#40229) @PunitSoniME
+- [Autocomplete] Fix text overflow in Chip (#40229) @PunitSoniME
 
 ### `@pigmentcss/react@0.0.1`
 
-- &#8203;<!-- 11 -->Rename scope to @pigment-css (#41354) @brijeshb42
-- &#8203;<!-- 10 -->Rename zero-runtime to pigmentcss (#41317) @brijeshb42
-- &#8203;<!-- 06 -->Add support for styled tagged-template literals (#41268) @brijeshb42
-- &#8203;<!-- 05 -->Set up Material UI migration demos (#41267) @siriwatknp
-- &#8203;<!-- 04 -->Move extendTheme to already existing @mui/zero-runtime/utils (#41254) @brijeshb42
-- &#8203;<!-- 03 -->Remove `object` intersection from CSS Fallback (#41271) @siriwatknp
-- &#8203;<!-- 02 -->Minor wording changes in README (#41253) @brijeshb42
-- &#8203;<!-- 01 -->Prepare zero-runtime packages for public release (#41226) @brijeshb42
+- Rename scope to @pigment-css (#41354) @brijeshb42
+- Rename zero-runtime to pigmentcss (#41317) @brijeshb42
+- Add support for styled tagged-template literals (#41268) @brijeshb42
+- Set up Material UI migration demos (#41267) @siriwatknp
+- Move extendTheme to already existing @mui/zero-runtime/utils (#41254) @brijeshb42
+- Remove `object` intersection from CSS Fallback (#41271) @siriwatknp
+- Minor wording changes in README (#41253) @brijeshb42
+- Prepare zero-runtime packages for public release (#41226) @brijeshb42
 
 ### Docs
 
-- &#8203;<!-- 43 -->[base-ui] Update the docs post repo separation (#41328) @danilo-leal
-- &#8203;<!-- 30 -->Fix missing partner link @oliviertassinari
-- &#8203;<!-- 29 -->Update links to GitHub projects (#41297) @danilo-leal
-- &#8203;<!-- 28 -->Standardize WAI-ARIA referencest @oliviertassinari
-- &#8203;<!-- 27 -->Fix image layout shift when loading @oliviertassinari
-- &#8203;<!-- 19 -->[joy-ui] Add stray adjustments throughout the docs (#41211) @danilo-leal
-- &#8203;<!-- 18 -->[material-ui] Remove duplicated text at FAQ page (#41326) @zanivan
-- &#8203;<!-- 17 -->[material-ui] Fix color mode toggle of the landing page template (#41293) @zanivan
-- &#8203;<!-- 16 -->[system] Tweak the Usage demos (#41242) @danilo-leal
-- &#8203;<!-- 15 -->[pigment-css] Add a Why section on the README (#41284) @danilo-leal
+- [base-ui] Update the docs post repo separation (#41328) @danilo-leal
+- Fix missing partner link @oliviertassinari
+- Update links to GitHub projects (#41297) @danilo-leal
+- Standardize WAI-ARIA referencest @oliviertassinari
+- Fix image layout shift when loading @oliviertassinari
+- [joy-ui] Add stray adjustments throughout the docs (#41211) @danilo-leal
+- [material-ui] Remove duplicated text at FAQ page (#41326) @zanivan
+- [material-ui] Fix color mode toggle of the landing page template (#41293) @zanivan
+- [system] Tweak the Usage demos (#41242) @danilo-leal
+- [pigment-css] Add a Why section on the README (#41284) @danilo-leal
 
 ### Core
 
-- &#8203;<!-- 47 -->Revert "[utils] Port `useLocalStorageState` hook from Toolpad (#41096)" @oliviertassinari
-- &#8203;<!-- 42 -->[blog] Add post about how MUI uses Toolpad (#40172) @prakhargupta1
-- &#8203;<!-- 41 -->[blog] No bundled demos in blog posts @oliviertassinari
-- &#8203;<!-- 36 -->[code-infra] Embed translations in the @mui/docs package (#41246) @Janpot
-- &#8203;<!-- 35 -->[code-infra] Prepare the markdown package for publishing (#41240) @michaldudak
-- &#8203;<!-- 34 -->[code-infra] Unpin the version of docs-utils in scripts (#41232) @michaldudak
-- &#8203;<!-- 33 -->[core] Use runtime agnostic setTimeout type @oliviertassinari
-- &#8203;<!-- 32 -->[core] Remove window. reference for common globals @oliviertassinari
-- &#8203;<!-- 31 -->[core] Add a script to build all packages (#40631) @michaldudak
-- &#8203;<!-- 26 -->[docs-infra] Fix missing non breaking spaces @oliviertassinari
-- &#8203;<!-- 25 -->[docs-infra] Add design customizations to the disclosure element (#41285) @danilo-leal
-- &#8203;<!-- 24 -->[docs-infra] Adjust headings dark mode color (#41292) @danilo-leal
-- &#8203;<!-- 23 -->[docs-infra] Fix Stack Overflow breaking space @oliviertassinari
-- &#8203;<!-- 22 -->[docs-infra] Fix product selector popup not closing on route change (#41166) @divyammadhok
-- &#8203;<!-- 21 -->[docs-infra] Improve fix blank links ad @oliviertassinari
-- &#8203;<!-- 20 -->[docs-infra] Support interfaces for X docs (#41069) @alexfauquette
-- &#8203;<!-- 14 -->[infra] Adjust the links to search for issues (#41008) @michelengelen
-- &#8203;<!-- 08 -->[website] Polish Button outline primary medium (#41298) @oliviertassinari
-- &#8203;<!-- 07 -->[website] Remove Heatmap chart from community plan on pricing table (#41081) @alexfauquette
+- Revert "[utils] Port `useLocalStorageState` hook from Toolpad (#41096)" @oliviertassinari
+- [blog] Add post about how MUI uses Toolpad (#40172) @prakhargupta1
+- [blog] No bundled demos in blog posts @oliviertassinari
+- [code-infra] Embed translations in the @mui/docs package (#41246) @Janpot
+- [code-infra] Prepare the markdown package for publishing (#41240) @michaldudak
+- [code-infra] Unpin the version of docs-utils in scripts (#41232) @michaldudak
+- [core] Use runtime agnostic setTimeout type @oliviertassinari
+- [core] Remove window. reference for common globals @oliviertassinari
+- [core] Add a script to build all packages (#40631) @michaldudak
+- [docs-infra] Fix missing non breaking spaces @oliviertassinari
+- [docs-infra] Add design customizations to the disclosure element (#41285) @danilo-leal
+- [docs-infra] Adjust headings dark mode color (#41292) @danilo-leal
+- [docs-infra] Fix Stack Overflow breaking space @oliviertassinari
+- [docs-infra] Fix product selector popup not closing on route change (#41166) @divyammadhok
+- [docs-infra] Improve fix blank links ad @oliviertassinari
+- [docs-infra] Support interfaces for X docs (#41069) @alexfauquette
+- [infra] Adjust the links to search for issues (#41008) @michelengelen
+- [website] Add James to About Us (#41362) @atomiks
+- [website] Polish Button outline primary medium (#41298) @oliviertassinari
+- [website] Remove Heatmap chart from community plan on pricing table (#41081) @alexfauquette
 
-All contributors of this release in alphabetical order: @alexfauquette, @brijeshb42, @danilo-leal, @DiegoAndai, @divyammadhok, @Janpot, @lhilgert9, @matystroia, @michaldudak, @michelengelen, @oliviertassinari, @prakhargupta1, @PunitSoniME, @sai6855, @siriwatknp, @smox, @zanivan, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @alexfauquette, @atomiks, @brijeshb42, @danilo-leal, @DiegoAndai, @divyammadhok, @Janpot, @lhilgert9, @matystroia, @michaldudak, @michelengelen, @oliviertassinari, @prakhargupta1, @PunitSoniME, @sai6855, @siriwatknp, @smox, @zanivan, @ZeeshanTamboli
 
 ## v5.15.11
 
