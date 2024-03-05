@@ -171,7 +171,7 @@ export default function Checkout() {
               maxWidth: 500,
             }}
           >
-            <Info totalPrice={activeStep === 2 ? '$144.97' : '$134.98'} />
+            <Info totalPrice={activeStep >= 2 ? '$144.97' : '$134.98'} />
           </Box>
         </Grid>
         <Grid
@@ -241,7 +241,7 @@ export default function Checkout() {
                 activeStep={activeStep}
                 sx={{
                   width: '100%',
-                  height: '40px',
+                  height: 40,
                 }}
               >
                 {steps.map((label) => (
@@ -269,18 +269,19 @@ export default function Checkout() {
                 display: 'flex',
                 width: '100%',
                 alignItems: 'center',
+                justifyContent: 'space-between',
                 ':last-child': { pb: 2 },
               }}
             >
-              <Box sx={{ flexGrow: 1 }}>
+              <div>
                 <Typography variant="subtitle2" gutterBottom>
                   Selected products
                 </Typography>
                 <Typography variant="body1">
-                  {activeStep === 2 ? '$144.97' : '$134.98'}
+                  {activeStep >= 2 ? '$144.97' : '$134.98'}
                 </Typography>
-              </Box>
-              <InfoMobile totalPrice={activeStep === 2 ? '$144.97' : '$134.98'} />
+              </div>
+              <InfoMobile totalPrice={activeStep >= 2 ? '$144.97' : '$134.98'} />
             </CardContent>
           </Card>
           <Box
@@ -305,6 +306,7 @@ export default function Checkout() {
                   sx={{
                     ':first-child': { pl: 0 },
                     ':last-child': { pr: 0 },
+                    '& .MuiStepConnector-root': { top: { xs: 6, sm: 12 } },
                   }}
                   key={label}
                 >
