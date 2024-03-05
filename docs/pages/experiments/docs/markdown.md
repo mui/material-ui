@@ -41,6 +41,37 @@ https://spec.commonmark.org/0.30/#links
 
 - Link [with a title](#link 'Stay on the same page').
 
+## Disclosure element
+
+<details>
+<summary>Primary</summary>
+
+```js
+const primary = {
+  50: '#F4FAFF',
+  100: '#DDF1FF',
+  200: '#ADDBFF',
+};
+
+extendTheme({
+  colorSchemes: {
+    light: {
+      palette: {
+        primary: {
+          ...primary,
+          plainColor: `var(--joy-palette-primary-600)`,
+          plainHoverBg: `var(--joy-palette-primary-100)`,
+          plainActiveBg: `var(--joy-palette-primary-200)`,
+          plainDisabledColor: `var(--joy-palette-primary-200)`,
+        },
+      },
+    },
+  },
+});
+```
+
+</details>
+
 ## kbd tag
 
 Make sure to include the `class="key"` declaration in each individual `kbd` element.

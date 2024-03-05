@@ -8,9 +8,10 @@
     "noEmit": false,
     "emitDeclarationOnly": true,
     "outDir": "build",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "tsBuildInfoFile": "build/tsconfig.build.tsbuildinfo"
   },
-  "include": ["src/**/*.ts*"],
+  "include": ["src/**/*.ts*", "src/**/*.json"],
   "exclude": ["src/**/*.spec.ts*", "src/**/*.test.ts*"],
   "references": [{ "path": "../mui-material/tsconfig.build.json" }]
 }

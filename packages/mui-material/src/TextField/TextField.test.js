@@ -123,6 +123,7 @@ describe('<TextField />', () => {
         outlinedInputClasses.notchedOutline,
       );
     });
+
     it('should render `0` label properly', () => {
       const { container } = render(
         <TextField InputProps={{ classes: { notchedOutline: 'notch' } }} label={0} required />,
