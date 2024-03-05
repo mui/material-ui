@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, generateAtomics } from '@pigmentcss/react';
+import { styled, generateAtomics } from '@pigment-css/react';
 import type { Breakpoint } from '@mui/system';
 import { Button, bounceAnim } from 'local-ui-lib';
 import Slider from './Slider/ZeroSlider';

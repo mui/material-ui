@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import { styled } from '@pigmentcss/react';
+import { styled } from '@pigment-css/react';
 import { Button } from 'local-ui-lib';
 import Slider from '@/components/Slider/ZeroSlider';
 

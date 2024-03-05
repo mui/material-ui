@@ -9,7 +9,7 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@pigmentcss/react": "file:../../packages/pigment-react",
+    "@pigment-css/react": "file:../../packages/pigment-react",
     "@mui/utils": "file:../../packages/mui-utils/build",
     "@mui/base": "file:../../packages/mui-base/build",
     "@mui/material": "file:../../packages/mui-material/build",
@@ -26,7 +26,7 @@
     "@babel/preset-env": "^7.23.9",
     "@babel/preset-react": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
-    "@pigmentcss/vite-plugin": "file:../../packages/pigment-vite-plugin",
+    "@pigment-css/vite-plugin": "file:../../packages/pigment-vite-plugin",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
     "@vitejs/plugin-react": "^4.2.1",

@@ -1193,7 +1193,7 @@ A big thanks to the 17 contributors who made this release possible.
 
 - &#8203;<!-- 09 -->Update peer dep of @mui/material (#39398) @brijeshb42
 
-### `@pigmentcss/react@0.0.1-alpha.0`
+### `@pigment-css/react@0.0.1-alpha.0`
 
 - &#8203;<!-- 06 -->Implement typings for public runtime API (#39215) @brijeshb42
 
@@ -1794,7 +1794,7 @@ A big thanks to the 11 contributors who made this release possible. This release
 
 - [useButton][base-ui] Accept arbitrary props in getRootProps and forward them (#38475) @DiegoAndai
 
-### `@pigmentcss/react@0.0.1-alpha.1`
+### `@pigment-css/react@0.0.1-alpha.1`
 
 - [system][zero][tag] Add support for sx prop (#38535) @brijeshb42
 
@@ -1857,7 +1857,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [ButtonBase] Add ButtonBase component (#38319) @DiegoAndai
 - [Input] Add InputBase component (#38392) @mj12albert
 
-### `@pigmentcss/react@0.0.1-alpha.0`
+### `@pigment-css/react@0.0.1-alpha.0`
 
 - Implementation of styled tag processor for linaria (#38378) @brijeshb42
 
@@ -2834,7 +2834,7 @@ _May 10, 2023_
 A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
 - 🚀 Base UI is now in beta - all planned breaking changes are now complete!
-- 🗺 We have a new [project roadmap](https://github.com/orgs/mui/projects/18/views/1) on GitHub where you can learn about what's coming next.
+- 🗺 We have new [project boards](https://github.com/mui/material-ui/projects?query=is%3Aopen) on GitHub where you can learn about what's coming next.
 - 🐛 Various bug fixes, 📚 documentation and 🧪 testing improvements
 
 ### `@mui/material@5.13.0`

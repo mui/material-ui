@@ -1,6 +1,6 @@
-import type { ExtendTheme } from '@pigmentcss/react';
+import type { ExtendTheme } from '@pigment-css/react';
 
-declare module '@pigmentcss/react/theme' {
+declare module '@pigment-css/react/theme' {
   interface ThemeTokens {
     'max-width': string;
     'border-radius': string;

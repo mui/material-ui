@@ -5,7 +5,7 @@ import {
   generateThemeTokens,
   type Theme,
   extendTheme,
-} from '@pigmentcss/react/utils';
+} from '@pigment-css/react/utils';
 import { transformAsync } from '@babel/core';
 import baseWywPluginPlugin, { type VitePluginOptions } from './vite-plugin';
 

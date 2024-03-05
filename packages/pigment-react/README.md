@@ -3,6 +3,7 @@
 A Pigment CSS CSS-in-JS library that extracts the colocated styles to their own CSS files at build-time.
 
 - [Getting started](#getting-started)
+  - [Why this project exists?](#why-choose-pigment-css)
   - [Next.js](#nextjs)
   - [Vite](#vite)
 - [Basic usage](#basic-usage)
@@ -25,6 +26,15 @@ A Pigment CSS CSS-in-JS library that extracts the colocated styles to their own 
 
 Pigment CSS supports Next.js and Vite with support for more bundlers in future. You must install the corresponding plugin, as shown below.
 
+### Why choose Pigment CSS
+
+Thanks to recent advancements in CSS (like CSS variables and `color-mix()`), "traditional" CSS-in-JS solutions that process styles at runtime are no longer required for unlocking features like color transformations and theme variables which are necessary for maintaining a sophisticated design system.
+
+Pigment CSS addresses the needs of the modern React developer by providing a zero-runtime CSS-in-JS styling solution as a successor to tools like Emotion and styled-components.
+
+Compared to its predecessors, Pigment CSS offers improved DX and runtime performance (though at the cost of increased build time) while also being compatible with React Server Components.
+Pigment CSS is built on top of [WyW-in-JS](https://wyw-in-js.dev/), enabling us to provide the smoothest possible experience for Material UI users when migrating from Emotion in v5 to Pigment in v6.
+
 ### Next.js
 
 #### Starter template
@@ -39,14 +49,14 @@ cd pigmentcss-nextjs
 #### Manual installation
 
 ```bash
-npm install @pigmentcss/react
-npm install --save-dev @pigmentcss/nextjs-plugin
+npm install @pigment-css/react
+npm install --save-dev @pigment-css/nextjs-plugin
 ```
 
 Then, in your `next.config.js` file, import the plugin and wrap the exported config object:
 
 ```js
-const { withPigment } = require('@pigmentcss/nextjs-plugin');
+const { withPigment } = require('@pigment-css/nextjs-plugin');
 
 module.exports = withPigment({
   // ... Your nextjs config.
@@ -67,14 +77,14 @@ cd pigmentcss-vite
 #### Manual installation
 
 ```bash
-npm install @pigmentcss/react
-npm install --save-dev @pigmentcss/vite-plugin
+npm install @pigment-css/react
+npm install --save-dev @pigment-css/vite-plugin
 ```
 
 Then, in your Vite config file, import the plugin and pass it to the `plugins` array as shown:
 
 ```js
-import { pigment } from '@pigmentcss/vite-plugin';
+import { pigment } from '@pigment-css/vite-plugin';
 
 export default defineConfig({
   plugins: [
@@ -93,7 +103,7 @@ export default defineConfig({
 Use the `css` API to create reusable styles:
 
 ```js
-import { css } from '@pigmentcss/react';
+import { css } from '@pigment-css/react';
 
 const visuallyHidden = css({
   border: 0,
@@ -129,7 +139,7 @@ const title = css(({ theme }) => ({
 Use the `styled` API to create a component by passing styles at the end. The usage should be familiar if you've worked with Emotion or styled-components:
 
 ```js
-import { styled } from '@pigmentcss/react';
+import { styled } from '@pigment-css/react';
 
 const Heading = styled('div')({
   fontSize: '4rem',
@@ -329,7 +339,7 @@ Theming is an **optional** feature that lets you reuse the same values, such as 
 For example, in Next.js, you can define a theme in the `next.config.js` file like this:
 
 ```js
-const { withPigment } = require('@pigmentcss/nextjs-plugin');
+const { withPigment } = require('@pigment-css/nextjs-plugin');
 
 module.exports = withPigment(
   {
@@ -370,7 +380,7 @@ const Heading = styled('h1')(({ theme }) => ({
 Zero-runtime can generate CSS variables from the theme values when you wrap your theme with `extendTheme` utility. For example, in a `next.config.js` file:
 
 ```js
-const { withPigment, extendTheme } = require('@pigmentcss/nextjs-plugin');
+const { withPigment, extendTheme } = require('@pigment-css/nextjs-plugin');
 
 module.exports = withPigment(
   {
@@ -491,9 +501,9 @@ To get the type checking for the theme, you need to augment the theme type:
 
 ```ts
 // any file that is included in your tsconfig.json
-import type { ExtendTheme } from '@pigmentcss/react';
+import type { ExtendTheme } from '@pigment-css/react';
 
-declare module '@pigmentcss/react/theme' {
+declare module '@pigment-css/react/theme' {
   interface ThemeTokens {
     // the structure of your theme
   }

@@ -49,10 +49,10 @@
     "@mui/types": "packages/mui-types/build",
     "@mui/utils": "packages/mui-utils/build",
     "@mui-internal/docs-utils": "packages/docs-utils",
-    "@pigmentcss/react": "packages/pigment-react",
-    "@pigmentcss/unplugin": "packages/pigment-unplugin",
-    "@pigmentcss/vite-plugin": "packages/pigment-vite-plugin",
-    "@pigmentcss/nextjs-plugin": "packages/pigment-nextjs-plugin"
+    "@pigment-css/react": "packages/pigment-react",
+    "@pigment-css/unplugin": "packages/pigment-unplugin",
+    "@pigment-css/vite-plugin": "packages/pigment-vite-plugin",
+    "@pigment-css/nextjs-plugin": "packages/pigment-nextjs-plugin"
   },
   "sandboxes": [
     "/examples/material-ui-cra-ts",
