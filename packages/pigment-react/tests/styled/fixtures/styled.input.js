@@ -14,11 +14,11 @@ const Component = styled.div(({ theme }) => ({
   animation: `${rotateKeyframe} 2s ease-out 0s infinite`,
 }));
 
-const SliderRail = styled('span', {
+export const SliderRail = styled('span', {
   name: 'MuiSlider',
   slot: 'Rail',
 })`
-  display: none;
+  display: block;
   position: absolute;
   border-radius: inherit;
   background-color: currentColor;
