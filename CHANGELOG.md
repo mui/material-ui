@@ -29,7 +29,7 @@ This is the first alpha release of Pigment CSS, a zero-runtime CSS-in-JS library
 
 - [Autocomplete] Fix text overflow in Chip (#40229) @PunitSoniME
 
-### `@pigmentcss/react@0.0.1`
+### `@pigment-css/react@0.0.1`
 
 - Rename scope to @pigment-css (#41354) @brijeshb42
 - Rename zero-runtime to pigmentcss (#41317) @brijeshb42
