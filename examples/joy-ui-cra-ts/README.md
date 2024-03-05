@@ -1,4 +1,4 @@
-# Joy UI - Create React App example in TypeScript
+# Joy UI - Create React App example in TypeScript
 
 `@mui/joy` is still in early development and is not recommended for use in production.
 

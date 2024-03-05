@@ -4,7 +4,7 @@ description: Support for time zones, Charts in alpha, Data Grid filtering, and m
 date: 2023-08-14T00:00:00.000Z
 authors: ['richbustos', 'josefreitas']
 card: true
-tags: ['MUI X', 'News']
+tags: ['MUI X', 'Product']
 ---
 
 <a href="https://github.com/mui/mui-x/releases/tag/v6.11.0">

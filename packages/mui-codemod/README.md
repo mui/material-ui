@@ -232,6 +232,102 @@ CSS transforms:
 npx @mui/codemod@latest deprecations/alert-classes <path>
 ```
 
+#### `alert-classes`
+
+JS transforms:
+
+```diff
+ import { alertClasses } from '@mui/material/PaginationItem';
+
+ MuiPaginationItem: {
+   styleOverrides: {
+     root: {
+-      [`&.${alertClasses.standardSuccess}`]: {
++      [`&.${alertClasses.standard}.${alertClasses.colorSuccess}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.standardInfo}`]: {
++      [`&.${alertClasses.standard}.${alertClasses.colorInfo}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.standardWarning}`]: {
++      [`&.${alertClasses.standard}.${alertClasses.colorWarning}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.standardError}`]: {
++      [`&.${alertClasses.standard}.${alertClasses.colorError}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.outlinedSuccess}`]: {
++      [`&.${alertClasses.outlined}.${alertClasses.colorSuccess}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.outlinedInfo}`]: {
++      [`&.${alertClasses.outlined}.${alertClasses.colorInfo}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.outlinedWarning}`]: {
++      [`&.${alertClasses.outlined}.${alertClasses.colorWarning}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.outlinedError}`]: {
++      [`&.${alertClasses.outlined}.${alertClasses.colorError}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.filledSuccess}`]: {
++      [`&.${alertClasses.filled}.${alertClasses.colorSuccess}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.filledInfo}`]: {
++      [`&.${alertClasses.filled}.${alertClasses.colorInfo}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.filledWarning}`]: {
++      [`&.${alertClasses.filled}.${alertClasses.colorWarning}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.filledError}`]: {
++      [`&.${alertClasses.filled}.${alertClasses.colorError}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiAlert-standardSuccess
++.MuiAlert-standard.MuiAlert-colorSuccess
+-.MuiAlert-standardInfo
++.MuiAlert-standard.MuiAlert-colorInfo
+-.MuiAlert-standardWarning
++.MuiAlert-standard.MuiAlert-colorWarning
+-.MuiAlert-standardError
++.MuiAlert-standard.MuiAlert-colorError
+-.MuiAlert-outlinedSuccess
++.MuiAlert-outlined.MuiAlert-colorSuccess
+-.MuiAlert-outlinedInfo
++.MuiAlert-outlined.MuiAlert-colorInfo
+-.MuiAlert-outlinedWarning
++.MuiAlert-outlined.MuiAlert-colorWarning
+-.MuiAlert-outlinedError
++.MuiAlert-outlined.MuiAlert-colorError
+-.MuiAlert-filledSuccess
++.MuiAlert-filled.MuiAlert-colorSuccess
+-.MuiAlert-filledInfo
++.MuiAlert-filled.MuiAlert-colorInfo
+-.MuiAlert-filledWarning
++.MuiAlert-filled.MuiAlert-colorWarning
+-.MuiAlert-filledError
++.MuiAlert-filled.MuiAlert-colorError
+```
+
+```bash
+npx @mui/codemod@latest deprecations/alert-classes <path>
+```
+
 #### `alert-props`
 
 ```diff
@@ -798,6 +894,97 @@ npx @mui/codemod@latest deprecations/pagination-item-classes <path>
 npx @mui/codemod@latest deprecations/slider-props <path>
 ```
 
+#### `pagination-item-classes`
+
+JS transforms:
+
+```diff
+ import { paginationItemClasses } from '@mui/material/PaginationItem';
+
+ MuiPaginationItem: {
+   styleOverrides: {
+     root: {
+-      [`&.${paginationItemClasses.textPrimary}`]: {
++      [`&.${paginationItemClasses.text}.${paginationItemClasses.colorPrimary}`]: {
+         color: 'red',
+        },
+-      [`&.${paginationItemClasses.textSecondary}`]: {
++      [`&.${paginationItemClasses.text}.${paginationItemClasses.colorSecondary}`]: {
+         color: 'red',
+        },
+-      [`&.${paginationItemClasses.outlinedPrimary}`]: {
++      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.colorPrimary}`]: {
+         color: 'red',
+        },
+-      [`&.${paginationItemClasses.outlinedSecondary}`]: {
++      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.colorSecondary}`]: {
+         color: 'red',
+        },
+-      '&.MuiPaginationItem-textPrimary': {
++      '&.MuiPaginationItem-text.MuiPaginationItem-colorPrimary': {
+         color: 'red',
+        },
+-      '&.MuiPaginationItem-textSecondary': {
++      '&.MuiPaginationItem-text.MuiPaginationItem-colorSecondary': {
+         color: 'red',
+        },
+-      '&.MuiPaginationItem-outlinedPrimary': {
++      '&.MuiPaginationItem-outlined.MuiPaginationItem-colorPrimary': {
+         color: 'red',
+        },
+-      '&.MuiPaginationItem-outlinedSecondary': {
++      '&.MuiPaginationItem-outlined.MuiPaginationItem-colorSecondary': {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiPaginationItem-textPrimary
++.MuiPaginationItem-text.MuiPaginationItem-primary
+-.MuiPaginationItem-textSecondary
++.MuiPaginationItem-text.MuiPaginationItem-secondary
+-.MuiPaginationItem-outlinedPrimary
++.MuiPaginationItem-outlined.MuiPaginationItem-primary
+-.MuiPaginationItem-outlinedSecondary
++.MuiPaginationItem-outlined.MuiPaginationItem-secondary
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/pagination-item-classes <path>
+```
+
+#### `slider-props`
+
+```diff
+ <Slider
+-  components={{ Track: CustomTrack }}
++  slots={{ track: CustomTrack }}
+-  componentsProps={{ track: { testid: 'test-id' } }}
++  slotProps={{ track: { testid: 'test-id' } }}
+ />
+```
+
+```diff
+ MuiSlider: {
+   defaultProps: {
+-    components: { Track: CustomTrack }
++    slots: { track: CustomTrack },
+-    componentsProps: { track: { testid: 'test-id' }}
++    slotProps: { track: { testid: 'test-id' } },
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/slider-props <path>
+```
+
 ### v5.0.0
 
 #### `base-use-named-exports`
@@ -910,6 +1097,7 @@ npx @mui/codemod@latest v5.0.0/joy-rename-row-prop <path>
 Remove `imgProps` prop by transferring its value into `slotProps.img`
 
 This change only affects Joy UI Avatar component.
+This change only affects Joy UI Avatar component.
 
 ```diff
  <Avatar
@@ -927,6 +1115,7 @@ npx @mui/codemod@latest v5.0.0/joy-avatar-remove-imgProps <path>
 
 Replace `<TextField>` with composition of `Input`
 
+This change only affects Joy UI components.
 This change only affects Joy UI components.
 
 ```diff
@@ -1038,6 +1227,7 @@ The list includes these transformers
       - [`accordion-props`](#accordion-props)
       - [`accordion-summary-classes`](#accordion-summary-classes)
       - [`alert-classes`](#alert-classes)
+      - [`alert-classes`](#alert-classes-1)
       - [`alert-props`](#alert-props)
       - [`avatar-props`](#avatar-props)
       - [`badge-props`](#badge-props)
@@ -1046,6 +1236,8 @@ The list includes these transformers
       - [`divider-props`](#divider-props)
       - [`pagination-item-classes`](#pagination-item-classes)
       - [`slider-props`](#slider-props)
+      - [`pagination-item-classes`](#pagination-item-classes-1)
+      - [`slider-props`](#slider-props-1)
     - [v5.0.0](#v500)
       - [`base-use-named-exports`](#base-use-named-exports)
       - [`base-remove-unstyled-suffix`](#base-remove-unstyled-suffix)
