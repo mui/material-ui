@@ -146,25 +146,6 @@ The Avatar's `imgProps` was deprecated in favor of `slotProps.img`:
  />;
 ```
 
-## Divider
-
-Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#divider-props) below to migrate the code as described in the following sections:
-
-```bash
-npx @mui/codemod@latest deprecations/divider-props <path>
-```
-
-### light
-
-The Divider's `light` prop was deprecated, Use `sx={{ opacity : "0.6" }}` (or any opacity):
-
-```diff
- <Divider
--  light
-+  sx={{ opacity : "0.6" }}
- />
-```
-
 ## Badge
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#badge-props) below to migrate the code as described in the following sections:
@@ -192,5 +173,24 @@ The Badge's `componentsProps` was deprecated in favor of `slotProps`:
  <Badge
 -  componentsProps={{ badge: { testid: 'test-id' } }}
 +  slotProps={{ badge: { testid: 'test-id' } }}
+ />
+```
+
+## Divider
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#divider-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/divider-props <path>
+```
+
+### light
+
+The Divider's `light` prop was deprecated, Use `sx={{ opacity : "0.6" }}` (or any opacity):
+
+```diff
+ <Divider
+-  light
++  sx={{ opacity : "0.6" }}
  />
 ```
