@@ -14,7 +14,7 @@ interface InfoProps {
   totalPrice: string;
 }
 
-export default function InfoMobile({totalPrice}: InfoProps) {
+export default function InfoMobile({ totalPrice }: InfoProps) {
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen: boolean) => () => {
