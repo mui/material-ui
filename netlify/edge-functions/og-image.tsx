@@ -94,14 +94,13 @@ export default async function handler(req: Request) {
           <p
             style={{
               fontFamily: 'General Sans',
-              fontSize: '20px',
-              fontWeight: 700,
-              lineHeight: '36px',
-              letterSpacing: '0.15em',
+              fontSize: '24px',
+              fontWeight: 600,
+              lineHeight: 'normal',
               color: '#007FFF',
             }}
           >
-            BLOG
+            Blog
           </p>
         </div>
         <div
