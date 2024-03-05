@@ -55,7 +55,7 @@
     "@types/babel__helper-plugin-utils": "^7.10.3",
     "@types/cssesc": "^3.0.2",
     "@types/lodash": "^4.14.202",
-    "@types/node": "^18.19.19",
+    "@types/node": "^18.19.21",
     "@types/react": "^18.2.55",
     "@types/stylis": "^4.2.5",
     "chai": "^4.4.1",
