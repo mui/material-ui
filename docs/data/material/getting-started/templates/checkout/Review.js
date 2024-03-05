@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
 const payments = [
   { name: 'Card type:', detail: 'Visa' },
-  { name: 'Card holder:', detail: 'Mr John Smith' },
+  { name: 'Card holder:', detail: 'Mr. John Smith' },
   { name: 'Card number:', detail: 'xxxx-xxxx-xxxx-1234' },
   { name: 'Expiry date:', detail: '04/2024' },
 ];
@@ -60,8 +60,8 @@ export default function Review() {
               <React.Fragment key={payment.name}>
                 <Stack
                   direction="row"
-                  alignItems="center"
                   spacing={1}
+                  useFlexGap
                   sx={{ width: '100%', mb: 1 }}
                 >
                   <Typography variant="body1" color="text.secondary">

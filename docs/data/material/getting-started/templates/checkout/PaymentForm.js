@@ -60,7 +60,7 @@ export default function PaymentForm() {
   };
 
   return (
-    <Stack spacing={6} useFlexGap>
+    <Stack spacing={{ xs: 3, sm: 6 }} useFlexGap>
       <FormControl component="fieldset" fullWidth>
         <RadioGroup
           aria-label="Payment options"
@@ -87,9 +87,7 @@ export default function PaymentForm() {
             <CardActionArea onClick={() => setPaymentType('creditCard')}>
               <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <CreditCardRoundedIcon color="primary" fontSize="small" />
-                <Typography variant="subtitle1" fontWeight="medium">
-                  Card
-                </Typography>
+                <Typography fontWeight="medium">Card</Typography>
               </CardContent>
             </CardActionArea>
           </Card>
@@ -108,9 +106,7 @@ export default function PaymentForm() {
             <CardActionArea onClick={() => setPaymentType('bankTransfer')}>
               <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <AccountBalanceRoundedIcon color="primary" fontSize="small" />
-                <Typography variant="subtitle1" fontWeight="medium">
-                  Bank account
-                </Typography>
+                <Typography fontWeight="medium">Bank account</Typography>
               </CardContent>
             </CardActionArea>
           </Card>
@@ -121,8 +117,6 @@ export default function PaymentForm() {
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
             gap: 2,
           }}
         >
@@ -132,8 +126,8 @@ export default function PaymentForm() {
               flexDirection: 'column',
               justifyContent: 'space-between',
               p: 3,
-              height: { xs: 300, sm: 350 },
-              width: { xs: 450, sm: 525 },
+              height: { xs: 300, sm: 350, md: 375 },
+              width: '100%',
               borderRadius: '20px',
               border: '1px solid ',
               borderColor: 'divider',
@@ -217,7 +211,6 @@ export default function PaymentForm() {
           <FormControlLabel
             control={<Checkbox name="saveCard" />}
             label="Remember credit card details for next time"
-            sx={{ justifyContent: 'center' }}
           />
         </Box>
       )}
@@ -236,7 +229,6 @@ export default function PaymentForm() {
           <Typography variant="subtitle1" fontWeight="medium">
             Bank account
           </Typography>
-
           <Typography variant="body1" gutterBottom>
             Please transfer the payment to the bank account details shown below.
           </Typography>
