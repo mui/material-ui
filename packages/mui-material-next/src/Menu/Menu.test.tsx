@@ -5,7 +5,6 @@ import {
   act,
   createRenderer,
   createMount,
-  describeConformance,
   screen,
   fireEvent,
   strictModeDoubleLoggingSuppressed,
@@ -17,6 +16,7 @@ import Menu, { menuClasses as classes, MenuProps } from '@mui/material-next/Menu
 import Popover from '@mui/material/Popover';
 import { extendTheme, CssVarsProvider } from '@mui/material-next/styles';
 import { MenuPaper } from './Menu';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Menu />', () => {
   const { render } = createRenderer({ clock: 'fake' });

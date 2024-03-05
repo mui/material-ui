@@ -204,7 +204,7 @@ function getPropsFromVariableDeclaration({
       const propsType = type.aliasTypeArguments[0];
       if (propsType === undefined) {
         throw new TypeError(
-          'Unable to find symbol for `props`. This is a bug in @mui-internal/typescript-to-proptypes.',
+          'Unable to find symbol for `props`. This is a bug in typescript-to-proptypes.',
         );
       }
       return parsePropsType({

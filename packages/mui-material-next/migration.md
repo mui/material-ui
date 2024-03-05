@@ -1,18 +1,18 @@
 # Migration
 
-This is a reference guide on how to migrate from Material UI v5 to v6.
+This is a reference guide on how to migrate from @mui/material to @mui/material-next.
 
 ## Breaking changes: components
 
-This section lists all breaking changes related to components in v6 and how to address them.
+This section lists all breaking changes related to Material Design 3 (M3) components and how to address them.
 
 ## Overarching changes
 
-These are the changes that apply to all components
+These are the changes that apply to all components.
 
 ### Remove `components` and `componentsProps` props
 
-The deprecated `components` and `componentsProps` props are removed in v6.
+The deprecated `components` and `componentsProps` props are removed in `@mui/material-next`.
 If you were using these, then you can use `slots` and `slotProps` props instead, which have the same functionality and API.
 Here's an example of the change using the Badge component:
 
@@ -30,7 +30,7 @@ Here's an example of the change using the Badge component:
 
 ### Remove composed CSS classes and `styleOverrides` keys
 
-Classes composed of two or more existing classes are removed in v6.
+Classes composed of two or more existing classes are removed in `@mui/material-next`.
 For example, the `MuiChip-filledPrimary` class is removed in favor of the `MuiChip-filled` and `MuiChip-colorPrimary` classes.
 Composed `styleOverrides` keys are also removed.
 Following the example above, the chip component's `filledPrimary` `styleOverrides` key is removed.
@@ -116,7 +116,7 @@ So the examples below are interchangeable for these components.
 
 ### Removed focusRipple
 
-The `focusRipple` prop was removed as ripples are absent in Material 3's focused states.
+The `focusRipple` prop was removed as ripples are absent in Material Design 3's focused states.
 
 ### Prevent default on `key-up` and `key-down` events
 
@@ -166,13 +166,13 @@ The `FormControlState` interface was renamed to `FormControlContextValue`:
 
 ### Removed the `standard` variant
 
-The standard variant is no longer supported in Material 3, use the `filled` or `outlined` variants instead.
+The standard variant is no longer supported in M3, use the `filled` or `outlined` variants instead.
 
 ## FormLabel
 
 ### Removed the `standard` variant
 
-The standard variant is no longer supported in Material 3, use the `filled` or `outlined` variants instead.
+The standard variant is no longer supported in M3, use the `filled` or `outlined` variants instead.
 
 ## InputBase
 
@@ -191,7 +191,7 @@ The standard variant is no longer supported in Material 3, use the `filled` or `
 
 ### Removed the `standard` variant
 
-The standard variant is no longer supported in Material 3, use the `filled` or `outlined` variants instead.
+The standard variant is no longer supported in M3, use the `filled` or `outlined` variants instead.
 
 ## Chip
 
@@ -299,10 +299,10 @@ The following example replaces the `MuiChip-filledPrimary` class using `MuiChip-
 The `skipFocusWhenDisabled` prop was replaced with `focusableWhenDisabled`, which is `false` by default.
 Because of this, the default behavior changed:
 
-- In v5, disabled chips were focusable by default
-- In v6, disabled chips are not focusable by default
+- In `@mui/material`, disabled chips are focusable by default
+- In `@mui/material-next`, disabled chips are _not_ focusable by default
 
-If you were using the `skipFocusWhenDisabled` prop to make disabled chips not focusable (which is v6's default behavior), then you can remove the prop as follows:
+If you were using the `skipFocusWhenDisabled` prop to make disabled chips not focusable (which is `@mui/material-next`'s default behavior), then you can remove the prop as follows:
 
 ```diff
  <Chip
@@ -312,7 +312,7 @@ If you were using the `skipFocusWhenDisabled` prop to make disabled chips not fo
  />
 ```
 
-If you wish to maintain v5's default behavior, then you can achieve that as follows:
+If you wish to maintain @mui/material's default behavior, then you can achieve that as follows:
 
 ```diff
  <Chip
@@ -361,7 +361,7 @@ If you are using the `thumb` or `valueLabel` Slider slots, then make sure the co
  <Slider slots={{ thumb: Thumb, valueLabel: ValueLabel }}/>
 ```
 
-This is required in v6 as it's used to apply the overlap styles to these slots. For more info take a look into [Material 3's Slider overlapping handles guidelines](https://m3.material.io/components/sliders/guidelines#ad5ceb95-a690-4ddd-8243-53a8e13bdab6).
+This is required in `@mui/material-next` as it's used to apply the overlap styles to these slots. For more info take a look into [M3's Slider overlapping handles guidelines](https://m3.material.io/components/sliders/guidelines#ad5ceb95-a690-4ddd-8243-53a8e13bdab6).
 
 ## Divider
 

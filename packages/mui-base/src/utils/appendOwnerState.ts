@@ -7,14 +7,12 @@ import { isHostComponent } from './isHostComponent';
  * This resolves to the provided OwnerState for React components and `undefined` for host components.
  * Falls back to `OwnerState | undefined` when the exact type can't be determined in development time.
  */
-type OwnerStateWhenApplicable<
-  ElementType extends React.ElementType,
-  OwnerState,
-> = ElementType extends React.ComponentType<any>
-  ? OwnerState
-  : ElementType extends keyof JSX.IntrinsicElements
-  ? undefined
-  : OwnerState | undefined;
+type OwnerStateWhenApplicable<ElementType extends React.ElementType, OwnerState> =
+  ElementType extends React.ComponentType<any>
+    ? OwnerState
+    : ElementType extends keyof JSX.IntrinsicElements
+      ? undefined
+      : OwnerState | undefined;
 
 export type AppendOwnerStateReturnType<
   ElementType extends React.ElementType,

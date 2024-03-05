@@ -13,13 +13,13 @@ unstyled: /base-ui/react-menu/
 
 ## Introduction
 
-Joy UI provides five menu-related components:
+Joy UI provides five menu-related components:
 
-- `MenuButton`: A button that opens a menu. It reuses the styles from [`Button`](/joy-ui/react-button/).
-- `Menu`: A listbox popup for wrapping the menu items which reuses the styles from [`List`](/joy-ui/react-list/).
-- `MenuItem`: A menu item which reuses the styles from [`ListItemButton`](/joy-ui/react-list/).
-- `MenuList`: A standalone listbox for composition usage. It also reuses the styles from [`List`](/joy-ui/react-list/).
-- `Dropdown`: The outermost component that wires a button with a menu. It only provides a context and does not render anything.
+- Menu Button - a button that opens a menu. It reuses the styles from [`Button`](/joy-ui/react-button/).
+- Menu - a listbox popup for wrapping the menu items which reuses the styles from [`List`](/joy-ui/react-list/).
+- Menu Item - a menu item which reuses the styles from [`ListItemButton`](/joy-ui/react-list/).
+- Menu List - a standalone listbox for composition usage. It also reuses the styles from [`List`](/joy-ui/react-list/).
+- Dropdown - the outermost component that wires a button with a menu. It only provides a context and does not render anything.
 
 {{"demo": "MenuUsage.js", "hideToolbar": true, "bg": "gradient"}}
 

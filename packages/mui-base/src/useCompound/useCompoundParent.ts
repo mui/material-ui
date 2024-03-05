@@ -43,7 +43,9 @@ export const CompoundComponentContext = React.createContext<CompoundComponentCon
   any
 > | null>(null);
 
-CompoundComponentContext.displayName = 'CompoundComponentContext';
+if (process.env.NODE_ENV !== 'production') {
+  CompoundComponentContext.displayName = 'CompoundComponentContext';
+}
 
 export interface UseCompoundParentReturnValue<Key, Subitem extends { ref: React.RefObject<Node> }> {
   /**

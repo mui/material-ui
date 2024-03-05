@@ -1,4 +1,4 @@
-import { isPlainObject } from '@mui/utils';
+import { isPlainObject } from '@mui/utils/deepmerge';
 import defaultSxConfig from './defaultSxConfig';
 
 const splitProps = (props) => {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-// TODO v6: replace material Theme with material-next Theme when Material You design is implemented
+// TODO v6: replace material Theme with material-next Theme when Material Design 3 is implemented
 import { InternalStandardProps as StandardProps, Theme } from '@mui/material';
 // TODO v6: replace with material-next Input components props https://github.com/mui/material-ui/pull/39188#discussion_r1339645381
 import { InputProps } from '@mui/material/Input';

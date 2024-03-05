@@ -3,7 +3,7 @@ title: Introducing Material UI for Sketch
 description: Today, we're excited to announce the introduction of official Sketch symbols for Material UI.
 date: 2020-03-30T00:00:00.000Z
 authors: ['oliviertassinari']
-tags: ['News']
+tags: ['Material UI', 'Product']
 card: true
 ---
 
@@ -23,7 +23,7 @@ This new product brings you one step closer to this long term goal. It enables d
 ### Frequent requests
 
 Over the last few months, we have seen a growing number of designers asking for these Sketch symbols.
-For instance, there is a [Stack Overflow question](https://stackoverflow.com/questions/38834629/material-ui-sketch-files) with over 4,000 views. It has been a common request on X: [one](https://twitter.com/TimoMajerski/status/1144503789619224578), [two](https://twitter.com/jonminori/status/1141121330156310528), [three](https://twitter.com/ProfessorXavior/status/1196522875706056705), [etc](https://twitter.com/JeffreyKaine/status/1133435042259120132).
+For instance, there is a [Stack Overflow question](https://stackoverflow.com/questions/38834629/material-ui-sketch-files) with over 4,000 views. It has been a common request on X: [one](https://twitter.com/TimoMajerski/status/1144503789619224578), [two](https://twitter.com/jonminori/status/1141121330156310528), [three](https://twitter.com/ProfessorXavior/status/1196522875706056705), [etc](https://twitter.com/JeffreyKaine/status/1133435042259120132).
 
 ### No great alternatives
 

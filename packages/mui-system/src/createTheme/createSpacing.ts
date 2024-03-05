@@ -13,7 +13,7 @@ export type SpacingArgument = number | string;
 // We express the difference with variable names.
 export interface Spacing {
   (): string;
-  (value: number): string;
+  (value: SpacingArgument): string;
   (topBottom: SpacingArgument, rightLeft: SpacingArgument): string;
   (top: SpacingArgument, rightLeft: SpacingArgument, bottom: SpacingArgument): string;
   (

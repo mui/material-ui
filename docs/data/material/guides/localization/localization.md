@@ -107,4 +107,4 @@ However, Material UI aims to support the [100 most common](https://en.wikipedia
 ## RTL Support
 
 Right-to-left languages such as Arabic, Persian, or Hebrew are supported.
-Follow [this guide](/material-ui/guides/right-to-left/) to use them.
+Follow [this guide](/material-ui/customization/right-to-left/) to use them.

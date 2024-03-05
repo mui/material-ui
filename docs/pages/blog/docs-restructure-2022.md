@@ -3,7 +3,7 @@ title: 'Our docs just got a major upgrade—here's what that means for you'
 description: Each of MUI's products now has its own dedicated documentation, making it easier than ever to find exactly what you need.
 date: 2022-04-06T00:00:00.000Z
 authors: ['danilo-leal']
-tags: ['News', 'Product']
+tags: ['Product']
 card: true
 ---
 
@@ -40,7 +40,10 @@ As for the URLs, this is how they look now:
   - Data grid: [https://mui.com/x/react-data-grid/](https://mui.com/x/react-data-grid/)
   - Date and Time pickers: [https://mui.com/x/react-date-pickers/](https://mui.com/x/react-date-pickers/getting-started/)
 
-> 📖 The date and time pickers have been promoted from the lab (`@mui/lab`) to MUI X—still available under the MIT license. To learn more, check out the [blog post about the newest MUI X components](/blog/lab-date-pickers-to-mui-x/).
+:::info
+The date and time pickers have been promoted from the lab (`@mui/lab`) to MUI X—still available under the MIT license.
+To learn more, check out the [blog post about the newest MUI X components](/blog/lab-date-pickers-to-mui-x/).
+:::
 
 ### Improved search experience
 

@@ -102,7 +102,7 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
    * An alternative way to specify the options.
    * If this parameter is set, options defined as JSX children are ignored.
    */
-  options?: SelectOptionDefinition<OptionValue>[];
+  options?: ReadonlyArray<SelectOptionDefinition<OptionValue>>;
   /**
    * A function to convert the currently selected value to a string.
    * Used to set a value of a hidden input associated with the select,

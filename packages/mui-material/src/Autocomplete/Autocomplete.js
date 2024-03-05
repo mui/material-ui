@@ -2,13 +2,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, integerPropType } from '@mui/utils';
-import {
-  unstable_composeClasses as composeClasses,
-  useAutocomplete,
-  createFilterOptions,
-} from '@mui/base';
-import { alpha } from '@mui/system';
+import integerPropType from '@mui/utils/integerPropType';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import { useAutocomplete, createFilterOptions } from '@mui/base';
+import composeClasses from '@mui/utils/composeClasses';
+import { alpha } from '@mui/system/colorManipulator';
 import Popper from '../Popper';
 import ListSubheader from '../ListSubheader';
 import Paper from '../Paper';
@@ -214,7 +212,8 @@ const AutocompleteEndAdornment = styled('div', {
   // We use a position absolute to support wrapping tags.
   position: 'absolute',
   right: 0,
-  top: 'calc(50% - 14px)', // Center vertically
+  top: '50%',
+  transform: 'translate(0, -50%)',
 });
 
 const AutocompleteClearIndicator = styled(IconButton, {
@@ -554,9 +553,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   const renderGroup = renderGroupProp || defaultRenderGroup;
   const defaultRenderOption = (props2, option) => {
-    const { key, ...otherProps } = props2;
+    // Need to clearly apply key because of https://github.com/vercel/next.js/issues/55642
     return (
-      <li key={key} {...otherProps}>
+      <li {...props2} key={props2.key}>
         {getOptionLabel(option)}
       </li>
     );

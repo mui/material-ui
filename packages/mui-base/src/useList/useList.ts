@@ -137,7 +137,7 @@ function useList<
         highlightedValue: itemComparer,
         selectedValues: (valuesArray1, valuesArray2) =>
           areArraysEqual(valuesArray1, valuesArray2, itemComparer),
-      } as StateComparers<State>),
+      }) as StateComparers<State>,
     [itemComparer],
   );
 

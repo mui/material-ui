@@ -369,39 +369,41 @@ export const SliderMarkLabel = styled('span', {
   slot: 'MarkLabel',
   shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'markLabelActive',
   overridesResolver: (props, styles) => styles.markLabel,
-})<{ ownerState: SliderOwnerState; markLabelActive: boolean }>(
-  ({ theme, ownerState, markLabelActive }) => {
-    const { vars: tokens } = theme;
+})<{ ownerState: SliderOwnerState; markLabelActive: boolean }>(({
+  theme,
+  ownerState,
+  markLabelActive,
+}) => {
+  const { vars: tokens } = theme;
 
-    return {
-      fontFamily: tokens.sys.typescale.label.medium.family,
-      lineHeight: `calc(${tokens.sys.typescale.label.medium.lineHeight} / ${tokens.sys.typescale.label.medium.size})`,
-      fontWeight: tokens.sys.typescale.label.medium.weight,
-      fontSize: theme.typography.pxToRem(theme.sys.typescale.label.medium.size),
-      letterSpacing: tokens.sys.typescale.label.medium.tracking,
-      color: tokens.sys.color.onSurfaceVariant,
-      position: 'absolute',
-      whiteSpace: 'nowrap',
-      ...(ownerState.orientation === 'horizontal' && {
-        top: 36,
-        transform: 'translateX(-50%)',
-        '@media (pointer: coarse)': {
-          top: 44,
-        },
-      }),
-      ...(ownerState.orientation === 'vertical' && {
-        left: 36,
-        transform: 'translateY(50%)',
-        '@media (pointer: coarse)': {
-          left: 44,
-        },
-      }),
-      ...(markLabelActive && {
-        color: tokens.sys.color.onSurface,
-      }),
-    };
-  },
-);
+  return {
+    fontFamily: tokens.sys.typescale.label.medium.family,
+    lineHeight: `calc(${tokens.sys.typescale.label.medium.lineHeight} / ${tokens.sys.typescale.label.medium.size})`,
+    fontWeight: tokens.sys.typescale.label.medium.weight,
+    fontSize: theme.typography.pxToRem(theme.sys.typescale.label.medium.size),
+    letterSpacing: tokens.sys.typescale.label.medium.tracking,
+    color: tokens.sys.color.onSurfaceVariant,
+    position: 'absolute',
+    whiteSpace: 'nowrap',
+    ...(ownerState.orientation === 'horizontal' && {
+      top: 36,
+      transform: 'translateX(-50%)',
+      '@media (pointer: coarse)': {
+        top: 44,
+      },
+    }),
+    ...(ownerState.orientation === 'vertical' && {
+      left: 36,
+      transform: 'translateY(50%)',
+      '@media (pointer: coarse)': {
+        left: 44,
+      },
+    }),
+    ...(markLabelActive && {
+      color: tokens.sys.color.onSurface,
+    }),
+  };
+});
 
 const useUtilityClasses = (ownerState: SliderOwnerState) => {
   const { disabled, dragging, marked, orientation, track, classes, color, size } = ownerState;

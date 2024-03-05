@@ -13,25 +13,21 @@ export interface PaginationItemClasses {
   /** Styles applied to the root element if `variant="text"`. */
   text: string;
   /** Styles applied to the root element if `variant="text"` and `color="primary"`.
-   *  @deprecated Combine the [.MuiPaginationItem-text](/material-ui/api/pagination-item/#pagination-item-classes-text)
-   *  and [.MuiPaginationItem-colorPrimary](/material-ui/api/pagination-item/#pagination-item-classes-colorPrimary) classes instead.
+   *  @deprecated Combine the [.MuiPaginationItem-text](/material-ui/api/pagination-item/#pagination-item-classes-text) and [.MuiPaginationItem-colorPrimary](/material-ui/api/pagination-item/#pagination-item-classes-colorPrimary) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    */
   textPrimary: string;
   /** Styles applied to the root element if `variant="text"` and `color="secondary"`.
-   *  @deprecated Combine the [.MuiPaginationItem-text](/material-ui/api/pagination-item/#pagination-item-classes-text)
-   *  and [.MuiPaginationItem-colorSecondary](/material-ui/api/pagination-item/#pagination-item-classes-colorSecondary) classes instead.
+   *  @deprecated Combine the [.MuiPaginationItem-text](/material-ui/api/pagination-item/#pagination-item-classes-text) and [.MuiPaginationItem-colorSecondary](/material-ui/api/pagination-item/#pagination-item-classes-colorSecondary) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    */
   textSecondary: string;
   /** Styles applied to the root element if `variant="outlined"`. */
   outlined: string;
   /** Styles applied to the root element if `variant="outlined"` and `color="primary"`.
-   * @deprecated Combine the [.MuiPaginationItem-outlined](/material-ui/api/pagination-item/#pagination-item-classes-outlined)
-   * and [.MuiPaginationItem-colorPrimary](/material-ui/api/pagination-item/#pagination-item-classes-colorPrimary) classes instead.
+   * @deprecated Combine the [.MuiPaginationItem-outlined](/material-ui/api/pagination-item/#pagination-item-classes-outlined) and [.MuiPaginationItem-colorPrimary](/material-ui/api/pagination-item/#pagination-item-classes-colorPrimary) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    */
   outlinedPrimary: string;
   /** Styles applied to the root element if `variant="outlined"` and `color="secondary"`.
-   * @deprecated Combine the [.MuiPaginationItem-outlined](/material-ui/api/pagination-item/#pagination-item-classes-outlined)
-   * and [.MuiPaginationItem-colorSecondary](/material-ui/api/pagination-item/#pagination-item-classes-colorSecondary) classes instead.
+   * @deprecated Combine the [.MuiPaginationItem-outlined](/material-ui/api/pagination-item/#pagination-item-classes-outlined) and [.MuiPaginationItem-colorSecondary](/material-ui/api/pagination-item/#pagination-item-classes-colorSecondary) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    */
   outlinedSecondary: string;
   /** Styles applied to the root element if `rounded="true"`. */

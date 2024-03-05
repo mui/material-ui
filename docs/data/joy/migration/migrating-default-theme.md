@@ -1,8 +1,8 @@
 # Migrating to the new theme
 
-<p class="description">This guide walks through recent Joy UI default theme upgrades and how to update to it.</p>
+<p class="description">This guide walks through recent Joy UI default theme upgrades and how to update to it.</p>
 
-With the introduction of Joy UI's v5.0.0-beta.0, its default theme went under some significant restructuring and polish.
+With the introduction of Joy UI's v5.0.0-beta.0, its default theme went under some significant restructuring and polish.
 Several changes were made, including renaming, removing, and adding new tokens.
 This guide walks through each and every one of them and provides instructions for a smooth migration process.
 
@@ -145,7 +145,7 @@ import type { PaletteRange } from '@mui/joy/styles';
 
 declare module '@mui/joy/styles' {
   interface ColorPalettePropOverrides {
-    // apply to all Joy UI components that support `color` prop
+    // apply to all Joy UI components that support `color` prop
     info: true;
   }
 

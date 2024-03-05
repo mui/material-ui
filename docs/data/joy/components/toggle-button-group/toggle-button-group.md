@@ -22,14 +22,14 @@ It controls the selected state of its child buttons when given its own `value` p
 import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
 ```
 
-Note that Joy UI doesn't provide a Toggle Button component but rather a Toggle Button Group container component. The reason for that is that according to the [WAI ARIA pattern](https://www.w3.org/WAI/ARIA/apg/patterns/button/), it's better to use `aria-pressed` on the Button or Icon Button component instead.
+Note that Joy UI doesn't provide a Toggle Button component but rather a Toggle Button Group container component. The reason for that is that according to the [WAI ARIA pattern](https://www.w3.org/WAI/ARIA/apg/patterns/button/), it's better to use `aria-pressed` on the Button or Icon Button component instead.
 
 {{"demo": "ToggleButtons.js"}}
 
 That said, when using the Toggle Button Group component, pass a value as an array.
 When a button within the group is pressed, the Toggle Button Group component triggers the `onChange` prop of it and passes the updated array as a parameter.
 
-The Toggle Button Group component uses the same styles as the [Button Group](/joy-ui/react-button-group/) component to ensure a consistent visual connection between all of the Joy UI buttons.
+The Toggle Button Group component uses the same styles as the [Button Group](/joy-ui/react-button-group/) component to ensure a consistent visual connection between all of the Joy UI buttons.
 
 {{"demo": "ToggleGroup.js"}}
 
@@ -43,7 +43,7 @@ When the value provided to the Toggle Button Group component is not an array, it
 
 ### Variants
 
-The Toggle Button Group component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `outlined` (default), `plain`, `soft`, and `solid`.
+The Toggle Button Group component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `outlined` (default), `plain`, `soft`, and `solid`.
 
 {{"demo": "ToggleGroupVariants.js"}}
 

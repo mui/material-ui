@@ -1,14 +1,10 @@
 import * as React from 'react';
-import {
-  act,
-  createMount,
-  createRenderer,
-  describeConformanceUnstyled,
-} from '@mui-internal/test-utils';
+import { act, createMount, createRenderer } from '@mui-internal/test-utils';
 import { Tab } from '@mui/base/Tab';
 import { Tabs, TabsContext } from '@mui/base/Tabs';
 import { TabsList, tabsListClasses } from '@mui/base/TabsList';
 import { expect } from 'chai';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 describe('<TabsList />', () => {
   const { render } = createRenderer();

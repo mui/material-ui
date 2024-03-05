@@ -290,7 +290,7 @@ export const ButtonRoot = styled(ButtonBase, {
       padding: '9px 23px',
     }),
     '--Button-gap': '0.5rem',
-    // Sizes are not specified in Material You, this need to be revised
+    // Sizes are not specified in Material Design 3, this need to be revised
     ...(ownerState.size === 'small' && {
       '--Button-gap': '0.45rem',
       fontSize: theme.typography.pxToRem(theme.sys.typescale.label.large.size - 1), // the pxToRem should be moved to typescale in the future

@@ -278,7 +278,7 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
         return;
       }
 
-      let tabbable: string[] | HTMLElement[] = [];
+      let tabbable: ReadonlyArray<string> | HTMLElement[] = [];
       if (
         doc.activeElement === sentinelStart.current ||
         doc.activeElement === sentinelEnd.current

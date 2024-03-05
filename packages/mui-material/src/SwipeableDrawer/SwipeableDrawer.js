@@ -2,8 +2,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { elementTypeAcceptingRef } from '@mui/utils';
-import { useThemeProps } from '@mui/system';
+import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
+import useThemeProps from '@mui/system/useThemeProps';
 import { NoSsr } from '@mui/base';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import useForkRef from '../utils/useForkRef';

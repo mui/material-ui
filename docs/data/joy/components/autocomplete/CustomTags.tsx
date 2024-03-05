@@ -18,6 +18,7 @@ export default function CustomTags() {
             variant="solid"
             color="primary"
             endDecorator={<Close fontSize="sm" />}
+            sx={{ minWidth: 0 }}
             {...getTagProps({ index })}
           >
             {item.title}

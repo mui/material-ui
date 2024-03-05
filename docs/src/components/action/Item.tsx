@@ -72,14 +72,16 @@ export function Group({
 }
 
 export default function Item({
+  description,
   icon,
   title,
-  description,
+  smallerIconDistance = false,
   ...props
 }: {
+  description?: string;
   icon: React.ReactNode;
   title: string;
-  description?: string;
+  smallerIconDistance?: boolean;
 } & BoxProps) {
   return (
     <Box
@@ -87,12 +89,13 @@ export default function Item({
       component="span"
       sx={{
         p: 2,
+        pr: smallerIconDistance ? 3 : 2,
         display: 'flex',
         alignItems: 'center',
         ...props.sx,
       }}
     >
-      <Box component="span" sx={{ mr: 2, lineHeight: 0 }}>
+      <Box component="span" sx={{ mr: smallerIconDistance ? 1 : 2, lineHeight: 0 }}>
         {icon}
       </Box>
       <Box sx={{ flexWrap: 'wrap' }}>

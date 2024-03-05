@@ -91,12 +91,11 @@ function ListItemLink(props) {
 
   const CustomLink = React.useMemo(
     () =>
-      React.forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, 'to'>>(function Link(
-        linkProps,
-        ref,
-      ) {
-        return <Link ref={ref} to={to} {...linkProps} />;
-      }),
+      React.forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, 'to'>>(
+        function Link(linkProps, ref) {
+          return <Link ref={ref} to={to} {...linkProps} />;
+        },
+      ),
     [to],
   );
 
@@ -147,7 +146,7 @@ Now the `CustomComponent` can be used with a `component` prop which should be se
 In addition, the `CustomComponent` will have all props of a `<a>` HTML element.
 The other props of the `Typography` component will also be present in props of the `CustomComponent`.
 
-You can find a code example with the Button and react-router-dom in [these demos](/material-ui/guides/routing/#component-prop).
+You can find a code example with the Button and react-router-dom in [these demos](/material-ui/integrations/routing/#component-prop).
 
 #### Generic
 

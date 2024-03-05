@@ -1,4 +1,5 @@
-import { alpha, getPath } from '@mui/system';
+import { getPath } from '@mui/system';
+import { alpha } from '@mui/system/colorManipulator';
 import type { Theme } from '../styles';
 
 export const colorTransformations = {

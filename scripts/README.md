@@ -31,13 +31,12 @@ The following steps must be proposed as a pull request.
    2. Change the packages names casing to be lowercase if applicable, e.g. change `Material` to `material`
 3. Update the root `/package.json`'s version
 4. Run `pnpm release:version`. Keep the package versions of stable public packages the same as the root `package.json` version.
-   - [IMPORTANT] Search for the older version string in the whole project directory and bump packages and their references that are still on the old version.
 5. Open PR with changes and wait for review and green CI
 6. Merge PR once CI is green and it has been approved
 
 ### Release
 
-1. Checkout the last version of the working branch
+1. Checkout the last version of the release branch
 2. `pnpm install && pnpm release:build` (make sure you have the latest dependencies installed, and build the packages)
 3. `pnpm release:publish` (release the versions on npm, you need your 2FA device)
 4. `pnpm release:tag` (push the newly created tag)

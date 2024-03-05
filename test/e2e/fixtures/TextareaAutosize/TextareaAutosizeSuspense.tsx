@@ -8,7 +8,7 @@ function LazyRoute() {
   if (!isDone) {
     // Force React to show fallback suspense
     throw new Promise((resolve) => {
-      window.setTimeout(resolve, 1);
+      setTimeout(resolve, 1);
       setIsDone(true);
     });
   }

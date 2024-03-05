@@ -45,12 +45,12 @@ export default function ChipMaterialYouPlayground() {
           <Chip
             {...props}
             label="Clickable chip"
-            onClick={() => alert('Clicked Material 3 Chip')}
+            onClick={() => alert('Clicked M3 Chip')}
           />
           <Chip
             {...props}
             label="Deletable chip"
-            onDelete={() => alert('Deleted Material 3 Chip')}
+            onDelete={() => alert('Deleted M3 Chip')}
           />
         </Box>
       )}

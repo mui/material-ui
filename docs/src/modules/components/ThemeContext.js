@@ -10,7 +10,7 @@ import { enUS, zhCN, ptBR } from '@mui/material/locale';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
-import { useUserLanguage } from 'docs/src/modules/utils/i18n';
+import { useUserLanguage } from '@mui/docs/i18n';
 import {
   getDesignTokens,
   getThemedComponents,

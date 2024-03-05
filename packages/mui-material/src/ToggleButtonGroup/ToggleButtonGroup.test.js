@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, createRenderer, screen } from '@mui-internal/test-utils';
+import { createRenderer, screen } from '@mui-internal/test-utils';
 import ToggleButtonGroup, {
   toggleButtonGroupClasses as classes,
 } from '@mui/material/ToggleButtonGroup';
 import ToggleButton, { toggleButtonClasses } from '@mui/material/ToggleButton';
 import Tooltip from '@mui/material/Tooltip';
+import describeConformance from '../../test/describeConformance';
 
 describe('<ToggleButtonGroup />', () => {
   const { render } = createRenderer();

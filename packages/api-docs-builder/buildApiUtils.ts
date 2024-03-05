@@ -142,6 +142,10 @@ export type ComponentInfo = {
   };
   getDemos: () => Array<{ demoPageTitle: string; demoPathname: string }>;
   apiPagesDirectory: string;
+  /**
+   * The path to import specific layout config of the page if needed.
+   */
+  layoutConfigPath?: string;
   skipApiGeneration?: boolean;
   /**
    * If `true`, the component's name match one of the MUI System components.

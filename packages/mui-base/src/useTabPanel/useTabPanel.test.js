@@ -9,6 +9,7 @@ import { useTabPanel } from './useTabPanel';
 
 describe('useTabPanel', () => {
   const { render } = createRenderer();
+
   describe('getRootProps', () => {
     it('returns props for root slot', () => {
       const rootRef = React.createRef();

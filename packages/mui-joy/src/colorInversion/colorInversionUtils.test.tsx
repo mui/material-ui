@@ -7,6 +7,7 @@ import { applySoftInversion, applySolidInversion } from '@mui/joy/colorInversion
 
 describe('colorInversionUtil', () => {
   const { render } = createRenderer();
+
   it('should not throw error using sx prop', () => {
     expect(() =>
       render(<Box sx={[applySoftInversion('primary'), applySolidInversion('primary')]} />),

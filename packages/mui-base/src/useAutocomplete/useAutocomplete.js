@@ -905,6 +905,7 @@ export function useAutocomplete(props) {
           }
           break;
         case 'Backspace':
+          // Remove the value on the left of the "cursor"
           if (multiple && !readOnly && inputValue === '' && value.length > 0) {
             const index = focusedTag === -1 ? value.length - 1 : focusedTag;
             const newValue = value.slice();
@@ -915,6 +916,7 @@ export function useAutocomplete(props) {
           }
           break;
         case 'Delete':
+          // Remove the value on the right of the "cursor"
           if (multiple && !readOnly && inputValue === '' && value.length > 0 && focusedTag !== -1) {
             const index = focusedTag;
             const newValue = value.slice();

@@ -13,7 +13,7 @@ import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRou
 import XIcon from '@mui/icons-material/X';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
@@ -206,7 +206,7 @@ const contributors = [
   {
     name: 'Ryan Cogswell',
     github: 'ryancogswell',
-    title: 'Stack Overflow top contributor',
+    title: 'Stack Overflow top contributor',
     location: 'Minnesota, United States',
     locationCountry: 'us',
     src: 'https://avatars.githubusercontent.com/u/287804',

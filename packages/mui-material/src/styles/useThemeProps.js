@@ -1,5 +1,5 @@
 'use client';
-import { useThemeProps as systemUseThemeProps } from '@mui/system';
+import systemUseThemeProps from '@mui/system/useThemeProps';
 import defaultTheme from './defaultTheme';
 import THEME_ID from './identifier';
 

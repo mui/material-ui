@@ -75,21 +75,21 @@ export default function TabsUsage() {
       variant="${props.variant}"`
         : ''
     }${
-            props.color
-              ? `
+      props.color
+        ? `
       color="${props.color}"`
-              : ''
-          }${
-            props.disableIndicator
-              ? `
+        : ''
+    }${
+      props.disableIndicator
+        ? `
       disableIndicator`
-              : ''
-          }${
-            props.indicatorInset
-              ? `
+        : ''
+    }${
+      props.indicatorInset
+        ? `
       indicatorInset`
-              : ''
-          }>...</Tab>
+        : ''
+    }>...</Tab>
   </TabList>
   <TabPanel>...</TabPanel>`,
         )

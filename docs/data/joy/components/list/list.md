@@ -13,7 +13,7 @@ githubLabel: 'component: list'
 
 Lists present information in a concise, easy-to-follow format through a continuous, vertical index of text or images.
 
-Joy UI Lists are implemented using a collection of related components:
+Joy UI Lists are implemented using a collection of related components:
 
 - [List](#basics) - a wrapper for list items. Renders as a `<ul>` by default.
 - [List Item](#basics) - a common list item. Renders as an `<li>` by default.
@@ -36,7 +36,7 @@ import ListItem from '@mui/joy/ListItem';
 
 ### Variants
 
-The List component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft`, `outlined`, and `plain`.
+The List component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft`, `outlined`, and `plain`.
 
 ### Sizes
 

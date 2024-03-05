@@ -162,7 +162,7 @@ const Select = React.forwardRef(function CustomSelect(props, ref) {
           return {
             ...resolvedSlotProps,
             className: clsx(
-              `${isDarkMode ? 'dark' : ''} z-10x`,
+              `${isDarkMode ? 'dark' : ''} z-10`,
               resolvedSlotProps?.className,
             ),
           };

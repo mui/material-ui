@@ -2,10 +2,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { usePreviousProps } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import usePreviousProps from '@mui/utils/usePreviousProps';
+import composeClasses from '@mui/utils/composeClasses';
 import { useBadge } from '@mui/base/useBadge';
-import { useSlotProps } from '@mui/base';
+import { useSlotProps } from '@mui/base/utils';
 import { styled, createUseThemeProps } from '../zero-styled';
 import capitalize from '../utils/capitalize';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';

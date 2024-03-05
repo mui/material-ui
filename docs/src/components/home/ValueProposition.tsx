@@ -51,7 +51,7 @@ export default function ValueProposition() {
       />
       <Grid container spacing={3}>
         {content.map(({ icon, title, description }) => (
-          <Grid key={title} item xs={12} sm={3}>
+          <Grid key={title} item xs={12} sm={6} lg={3}>
             <InfoCard title={title} icon={icon} description={description} />
           </Grid>
         ))}

@@ -31,6 +31,7 @@ describe('getInitColorSchemeScript', () => {
     document.documentElement.removeAttribute(DEFAULT_ATTRIBUTE);
     window.matchMedia = createMatchMedia(false);
   });
+
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
   });

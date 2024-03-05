@@ -23,12 +23,14 @@ describe('useCurrentColorScheme', () => {
     },
     removeListener: () => {},
   });
+
   before(() => {
     originalAddEventListener = window.addEventListener;
     window.addEventListener = (key, handler) => {
       storageHandler[key] = handler;
     };
   });
+
   after(() => {
     window.addEventListener = originalAddEventListener;
   });
@@ -51,6 +53,7 @@ describe('useCurrentColorScheme', () => {
     storageHandler = {};
     window.matchMedia = createMatchMedia(false);
   });
+
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
   });

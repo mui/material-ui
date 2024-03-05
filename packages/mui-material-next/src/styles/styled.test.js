@@ -58,6 +58,7 @@ describe('styled', () => {
         color: 'rgb(179, 38, 30)',
       });
     });
+
     it('should apply color prop to theme.ref.palette if available', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
@@ -70,6 +71,7 @@ describe('styled', () => {
         color: 'rgb(242, 184, 181)',
       });
     });
+
     it('should apply bgcolor prop to theme.sys.color if available', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
@@ -82,6 +84,7 @@ describe('styled', () => {
         backgroundColor: 'rgb(179, 38, 30)',
       });
     });
+
     it('should apply bgcolor prop to theme.ref.palette if available', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
@@ -94,6 +97,7 @@ describe('styled', () => {
         backgroundColor: 'rgb(242, 184, 181)',
       });
     });
+
     it('should apply backgroundColor prop to theme.sys.color if available', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
@@ -106,6 +110,7 @@ describe('styled', () => {
         backgroundColor: 'rgb(179, 38, 30)',
       });
     });
+
     it('should apply backgroundColor prop to theme.ref.palette if available', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
@@ -118,6 +123,7 @@ describe('styled', () => {
         backgroundColor: 'rgb(242, 184, 181)',
       });
     });
+
     it('should apply border*Color props to theme.sys.color if available', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
@@ -143,6 +149,7 @@ describe('styled', () => {
         borderRightColor: 'rgb(179, 38, 30)',
       });
     });
+
     it('should apply border*Color props to theme.ref.palette if available', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
@@ -168,6 +175,7 @@ describe('styled', () => {
         borderRightColor: 'rgb(242, 184, 181)',
       });
     });
+
     it('should apply borderColor props to theme.sys.color if available', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
@@ -183,6 +191,7 @@ describe('styled', () => {
         borderRightColor: 'rgb(179, 38, 30)',
       });
     });
+
     it('should apply borderColor props to theme.ref.palette if available', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();

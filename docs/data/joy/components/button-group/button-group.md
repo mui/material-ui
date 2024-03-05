@@ -27,7 +27,7 @@ The Button Group component can wrap [`Button`](/joy-ui/react-button/) and [`Icon
 
 ### Variants
 
-The Button Group component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `outlined` (default), `solid`, `soft`, and `plain`.
+The Button Group component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `outlined` (default), `solid`, `soft`, and `plain`.
 
 The `variant` prop is passed to the buttons, not the Button Group itself.
 

@@ -173,31 +173,21 @@ export type AnyStyledComponent =
   | React.FunctionComponent<any>
   | React.ComponentType<any>;
 
-export type StyledComponentInnerComponent<C extends AnyStyledComponent> = C extends StyledComponent<
-  infer I,
-  any,
-  any,
-  any
->
-  ? I
-  : C extends StyledComponent<infer I, any, any>
-  ? I
-  : C;
+export type StyledComponentInnerComponent<C extends AnyStyledComponent> =
+  C extends StyledComponent<infer I, any, any, any>
+    ? I
+    : C extends StyledComponent<infer I, any, any>
+      ? I
+      : C;
 
 export type StyledComponentInnerOtherProps<C extends AnyStyledComponent> =
   C extends StyledComponent<any, any, infer O, any>
     ? O
     : C extends StyledComponent<any, any, infer O>
-    ? O
-    : never;
-export type StyledComponentInnerAttrs<C extends AnyStyledComponent> = C extends StyledComponent<
-  any,
-  any,
-  any,
-  infer A
->
-  ? A
-  : never;
+      ? O
+      : never;
+export type StyledComponentInnerAttrs<C extends AnyStyledComponent> =
+  C extends StyledComponent<any, any, any, infer A> ? A : never;
 
 export interface StyledComponentBase<
   C extends string | React.ComponentType<any>,

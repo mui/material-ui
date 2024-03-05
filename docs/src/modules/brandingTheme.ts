@@ -405,7 +405,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
     applyDarkStyles(css: Parameters<ApplyDarkStyles>[0]) {
       return (this as Theme).applyStyles('dark', css);
     },
-  } as ThemeOptions);
+  }) as ThemeOptions;
 
 export function getThemedComponents(): ThemeOptions {
   return {
@@ -472,7 +472,7 @@ export function getThemedComponents(): ThemeOptions {
             }),
             ...(ownerState.size === 'medium' && {
               fontSize: defaultTheme.typography.pxToRem(15),
-              padding: theme.spacing('8px', '10px', '8px', '12px'),
+              padding: theme.spacing('8px', '12px', '8px', '14px'),
               fontWeight: theme.typography.fontWeightSemiBold,
               borderRadius: 8,
               '& > span': { transition: '0.2s', marginLeft: 4 },
@@ -508,7 +508,7 @@ export function getThemedComponents(): ThemeOptions {
                   0.8,
                 )} 0 -2px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
                 '&:hover': {
-                  background: (theme.vars || theme).palette.primaryDark[50],
+                  backgroundColor: (theme.vars || theme).palette.primaryDark[50],
                 },
                 ...theme.applyDarkStyles({
                   color: (theme.vars || theme).palette.primaryDark[100],
@@ -533,7 +533,7 @@ export function getThemedComponents(): ThemeOptions {
                   0.2,
                 )} 0 -3px 0 inset, ${alpha(theme.palette.primary[100], 0.3)} 0 1px 2px 0`,
                 '&:hover': {
-                  background: (theme.vars || theme).palette.primary[50],
+                  backgroundColor: (theme.vars || theme).palette.primary[50],
                   borderColor: (theme.vars || theme).palette.primary[300],
                 },
                 ...theme.applyDarkStyles({
@@ -552,7 +552,7 @@ export function getThemedComponents(): ThemeOptions {
               }),
             ...(ownerState.variant === 'contained' &&
               ownerState.color === 'primary' && {
-                color: '#FFF',
+                color: '#fff',
                 textShadow: `0 1px 1px ${alpha(theme.palette.common.black, 0.6)}`,
                 backgroundColor: (theme.vars || theme).palette.primary[500],
                 backgroundImage: `linear-gradient(180deg, ${alpha(
@@ -564,8 +564,10 @@ export function getThemedComponents(): ThemeOptions {
                   0.7,
                 )} 0 -3px 1px inset, ${alpha(theme.palette.common.black, 0.1)} 0 2px 4px 0`,
                 '&:hover': {
-                  backgroundColor: (theme.vars || theme).palette.primary[500],
-                  backgroundImage: 'none',
+                  backgroundColor: (theme.vars || theme).palette.primary[700],
+                },
+                '&:active': {
+                  backgroundColor: (theme.vars || theme).palette.primaryDark[700],
                 },
               }),
           }),
@@ -902,9 +904,9 @@ export function getThemedComponents(): ThemeOptions {
                 color: (theme.vars || theme).palette.grey[900],
                 borderColor: (theme.vars || theme).palette.grey[200],
                 ...theme.applyDarkStyles({
-                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
                   color: (theme.vars || theme).palette.grey[300],
-                  borderColor: alpha(theme.palette.primaryDark[500], 0.5),
+                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
+                  borderColor: (theme.vars || theme).palette.primaryDark[600],
                 }),
               }),
             ...(variant === 'outlined' &&
@@ -921,10 +923,11 @@ export function getThemedComponents(): ThemeOptions {
               color === 'success' && {
                 borderColor: (theme.vars || theme).palette.success[100],
                 backgroundColor: (theme.vars || theme).palette.success[50],
+                color: (theme.vars || theme).palette.success[900],
                 ...theme.applyDarkStyles({
                   color: (theme.vars || theme).palette.success[300],
-                  borderColor: alpha(theme.palette.success[300], 0.3),
-                  background: alpha(theme.palette.success[800], 0.3),
+                  borderColor: alpha(theme.palette.success[300], 0.2),
+                  background: alpha(theme.palette.success[800], 0.2),
                 }),
               }),
             ...(variant === 'filled' && {
@@ -949,11 +952,23 @@ export function getThemedComponents(): ThemeOptions {
                 '&:hover': {
                   backgroundColor: (theme.vars || theme).palette.primary[100],
                 },
+                '& .MuiChip-deleteIcon': {
+                  color: (theme.vars || theme).palette.primary[600],
+                  '&:hover': {
+                    color: (theme.vars || theme).palette.primary[700],
+                  },
+                },
                 ...theme.applyDarkStyles({
                   color: (theme.vars || theme).palette.primary[100],
                   backgroundColor: alpha(theme.palette.primary[800], 0.5),
                   '&:hover': {
                     backgroundColor: alpha(theme.palette.primary[900], 0.5),
+                  },
+                  '& .MuiChip-deleteIcon': {
+                    color: (theme.vars || theme).palette.primary[100],
+                    '&:hover': {
+                      color: (theme.vars || theme).palette.primary[50],
+                    },
                   },
                 }),
               }),
@@ -1228,9 +1243,10 @@ export function getThemedComponents(): ThemeOptions {
           root: ({ theme }) => [
             {
               textTransform: 'none',
-              fontWeight: 700,
+              fontWeight: theme.typography.fontWeightSemiBold,
               color: theme.palette.grey[700],
               borderColor: theme.palette.grey[200],
+              borderRadius: '8px',
               '&.Mui-selected': {
                 color: (theme.vars || theme).palette.primary[500],
                 borderColor: `${(theme.vars || theme).palette.primary[500]} !important`,
@@ -1241,14 +1257,14 @@ export function getThemedComponents(): ThemeOptions {
               },
             } as const,
             theme.applyDarkStyles({
-              color: theme.palette.grey[300],
-              borderColor: theme.palette.primaryDark[500],
+              color: theme.palette.grey[200],
+              borderColor: theme.palette.primaryDark[700],
               '&.Mui-selected': {
-                color: '#fff',
+                color: theme.palette.primary[100],
                 borderColor: `${(theme.vars || theme).palette.primary[700]} !important`,
-                backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                backgroundColor: alpha(theme.palette.primary[900], 0.5),
                 '&:hover': {
-                  backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+                  backgroundColor: alpha(theme.palette.primary[900], 0.8),
                 },
               },
             }),

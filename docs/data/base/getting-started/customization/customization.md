@@ -15,7 +15,7 @@ How to decide which one to use, then?
 
 The first decision to make is whether to use unstyled components or hooks.
 Hooks are better suited for making component libraries that can be further customized.
-For example, our own Joy UI is implemented using hooks from Base UI.
+For example, our own Joy UI is implemented using hooks from Base UI.
 Hooks also serve as the basis for several Material UI components, and future versions of the library will use them even more extensively.
 
 If you don't need to make your component library customizable (for instance, by exposing `slotProps`), then the unstyled components may be a better option thanks to their simplicity.

@@ -12,14 +12,14 @@ Your participation is invaluable—keep an eye on MUI's social media to catch th
 
 ## Keeping track of the roadmap
 
-### Public GitHub project
+### GitHub project
 
-The Material UI public GitHub project is where you can see the ongoing priorities for the library.
+The Material UI GitHub project is where you can see the ongoing priorities for the library.
 We typically add umbrella issues to the project board after discussing them internally.
 
-**[Visit the public Material UI project board 👉](https://github.com/mui/material-ui/projects/26)**
+**[Visit the Material UI project board 👉](https://github.com/orgs/mui/projects/23/views/12)**
 
-<img src="/static/material-ui/roadmap/github-project.png" style="width: 814px; margin-top: 4px; margin-bottom: 8px;" alt="A screenshot of the public Material UI GitHub project." width="1628" height="400" />
+<img src="/static/material-ui/roadmap/github-project.png" style="width: 814px;" alt="A screenshot of the public Material UI GitHub project." width="1628" height="400" />
 
 ### Milestones
 
@@ -28,4 +28,4 @@ Check it out to keep up with ongoing progress and see which issues have been pic
 
 **[Visit the Material UI milestones page 👉](https://github.com/mui/material-ui/milestone/42)**
 
-<img src="/static/material-ui/roadmap/milestone.png" style="width: 814px; margin-top: 4px; margin-bottom: 8px;" alt="A screenshot from GitHub of the Material UI v6 milestone." width="1628" height="400" />
+<img src="/static/material-ui/roadmap/milestone.png" style="width: 814px;" alt="A screenshot from GitHub of the Material UI v6 milestone." width="1628" height="400" />

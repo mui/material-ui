@@ -28,7 +28,7 @@ It includes `@mui/material` and its peer dependencies, including [Emotion](https
 
 <!-- #default-branch-switch -->
 
-If you prefer, you can [use styled-components instead](https://mui.com/material-ui/guides/interoperability/#styled-components).
+If you prefer, you can [use styled-components instead](https://mui.com/material-ui/integrations/interoperability/#styled-components).
 
 ## What's next?
 

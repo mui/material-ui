@@ -1,7 +1,7 @@
 import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
-import * as pageProps from 'docs/data/base/components/snackbar/snackbar.md?@mui/markdown';
+import * as pageProps from 'docs/data/base/components/snackbar/snackbar.md?muiMarkdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
 import SnackbarApiJsonPageContent from '../../api/snackbar.json';
 import useSnackbarApiJsonPageContent from '../../api/use-snackbar.json';

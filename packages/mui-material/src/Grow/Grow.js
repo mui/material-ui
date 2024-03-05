@@ -1,7 +1,8 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { elementAcceptingRef, unstable_useTimeout as useTimeout } from '@mui/utils';
+import useTimeout from '@mui/utils/useTimeout';
+import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
 import { Transition } from 'react-transition-group';
 import useTheme from '../styles/useTheme';
 import { getTransitionProps, reflow } from '../transitions/utils';

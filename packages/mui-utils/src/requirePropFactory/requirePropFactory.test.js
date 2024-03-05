@@ -98,6 +98,7 @@ describe('requirePropFactory', () => {
 
         describe('propFullName given to validator', () => {
           let propFullName;
+
           before(() => {
             propFullName = 'propFullName';
             result = requirePropValidator(props, propName, undefined, undefined, propFullName);

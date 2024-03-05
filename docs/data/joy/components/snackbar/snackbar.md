@@ -40,7 +40,7 @@ In wider layouts, snackbars can be aligned to the left or centered, especially i
 
 ### Variants
 
-The Snackbar component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `plain`, `outlined` (default), `soft`, and `solid`.
+The Snackbar component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `plain`, `outlined` (default), `soft`, and `solid`.
 
 {{"demo": "SnackbarVariants.js"}}
 

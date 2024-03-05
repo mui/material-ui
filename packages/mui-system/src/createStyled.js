@@ -1,6 +1,8 @@
 /* eslint-disable no-underscore-dangle */
 import styledEngineStyled, { internal_processStyles as processStyles } from '@mui/styled-engine';
-import { getDisplayName, unstable_capitalize as capitalize, isPlainObject } from '@mui/utils';
+import { isPlainObject } from '@mui/utils/deepmerge';
+import capitalize from '@mui/utils/capitalize';
+import getDisplayName from '@mui/utils/getDisplayName';
 import createTheme from './createTheme';
 import styleFunctionSx from './styleFunctionSx';
 
@@ -64,7 +66,7 @@ function processStyleArg(callableStyle, { ownerState, ...props }) {
     variants.forEach((variant) => {
       let isMatch = true;
       if (typeof variant.props === 'function') {
-        isMatch = variant.props({ ownerState, ...props });
+        isMatch = variant.props({ ownerState, ...props, ...ownerState });
       } else {
         Object.keys(variant.props).forEach((key) => {
           if (ownerState?.[key] !== variant.props[key] && props[key] !== variant.props[key]) {
@@ -78,7 +80,7 @@ function processStyleArg(callableStyle, { ownerState, ...props }) {
         }
         result.push(
           typeof variant.style === 'function'
-            ? variant.style({ ownerState, ...props })
+            ? variant.style({ ownerState, ...props, ...ownerState })
             : variant.style,
         );
       }

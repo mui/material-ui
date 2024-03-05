@@ -1,9 +1,9 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 import ToggleDisplayOption, {
-  API_LAYOUT_STORAGE_KEYS,
+  ApiDisplayOptions,
   useApiPageOption,
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import SlotsList from 'docs/src/modules/components/ApiPage/list/SlotsList';
@@ -16,6 +16,8 @@ export type SlotsSectionProps = {
   title?: string;
   titleHash?: string;
   level?: 'h2' | 'h3' | 'h4';
+  defaultLayout: ApiDisplayOptions;
+  layoutStorageKey: string;
   spreadHint?: string;
 };
 
@@ -28,10 +30,12 @@ export default function SlotsSection(props: SlotsSectionProps) {
     titleHash = 'slots',
     level: Level = 'h2',
     spreadHint,
+    defaultLayout,
+    layoutStorageKey,
   } = props;
   const t = useTranslate();
 
-  const [displayOption, setDisplayOption] = useApiPageOption(API_LAYOUT_STORAGE_KEYS.slots);
+  const [displayOption, setDisplayOption] = useApiPageOption(layoutStorageKey, defaultLayout);
 
   if (!componentSlots || componentSlots.length === 0) {
     return null;
@@ -63,7 +67,11 @@ export default function SlotsSection(props: SlotsSectionProps) {
             </svg>
           </a>
         </Level>
-        <ToggleDisplayOption displayOption={displayOption} setDisplayOption={setDisplayOption} />
+        <ToggleDisplayOption
+          displayOption={displayOption}
+          setDisplayOption={setDisplayOption}
+          sectionType="slots"
+        />
       </Box>
       {spreadHint && <p dangerouslySetInnerHTML={{ __html: spreadHint }} />}
       {displayOption === 'table' ? (

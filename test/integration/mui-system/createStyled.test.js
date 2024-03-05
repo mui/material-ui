@@ -513,6 +513,38 @@ describe('createStyled', () => {
       expect(getByTestId('red')).toHaveComputedStyle({ backgroundColor: 'rgb(255, 0, 0)' });
     });
 
+    it('should merge props and ownerState in props callback', () => {
+      const styled = createStyled({
+        defaultTheme: {
+          colors: { blue: 'rgb(0, 0, 255)', red: 'rgb(255, 0, 0)', green: 'rgb(0, 255, 0)' },
+        },
+      });
+
+      const Test = styled('div')(({ theme, color }) => ({
+        variants: [
+          {
+            props: (props) => props.color === 'green' || props.color === 'red',
+            style: {
+              backgroundColor: theme.colors[color],
+            },
+          },
+        ],
+      }));
+
+      const { getByTestId } = render(
+        <React.Fragment>
+          <Test data-testid="red" ownerState={{ color: 'red' }}>
+            Red
+          </Test>
+          <Test data-testid="green" ownerState={{ color: 'green' }}>
+            Green
+          </Test>
+        </React.Fragment>,
+      );
+      expect(getByTestId('green')).toHaveComputedStyle({ backgroundColor: 'rgb(0, 255, 0)' });
+      expect(getByTestId('red')).toHaveComputedStyle({ backgroundColor: 'rgb(255, 0, 0)' });
+    });
+
     it('should accept variants in arrays', () => {
       const styled = createStyled({ defaultTheme: { colors: { blue: 'rgb(0, 0, 255)' } } });
 

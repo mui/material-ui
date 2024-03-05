@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
-  describeConformance,
   act,
   createRenderer,
   fireEvent,
@@ -13,6 +12,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import Tab from '@mui/material-next/Tab';
 import Tabs, { tabsClasses as classes } from '@mui/material-next/Tabs';
+import describeConformance from '../../test/describeConformance';
 
 function findScrollButton(container, direction) {
   return container.querySelector(`svg[data-testid="KeyboardArrow${capitalize(direction)}Icon"]`);

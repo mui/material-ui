@@ -1,18 +1,18 @@
 # Next.js App Router
 
-<p class="description">Learn how to use Joy UI with the Next.js App Router.</p>
+<p class="description">Learn how to use Joy UI with the Next.js App Router.</p>
 
 ## Example
 
 Starting fresh on a new App Router-based project?
 
-Jump right into the code with [this example: Joy UI - Next.js App Router with TypeScript](https://github.com/mui/material-ui/tree/master/examples/joy-ui-nextjs-ts).
+Jump right into the code with [this example: Joy UI - Next.js App Router with TypeScript](https://github.com/mui/material-ui/tree/master/examples/joy-ui-nextjs-ts).
 
 ## Next.js and React Server Components
 
 The Next.js App Router implements React Server Components, [an upcoming feature for React](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md).
 
-To support the App Router, the components and hooks from Joy UI that need access to browser APIs are exported with the `"use client"` directive.
+To support the App Router, the components and hooks from Joy UI that need access to browser APIs are exported with the `"use client"` directive.
 
 :::warning
 React Server Components should not be conflated with the concept of server-side rendering (SSR).
@@ -21,9 +21,9 @@ So-called Client Components are still server-rendered to HTML.
 For more details, see [this explanation](https://github.com/reactwg/server-components/discussions/4) of Client Components and SSR from the React Working Group.
 :::
 
-## Using Joy UI with the App Router
+## Using Joy UI with the App Router
 
-To set up Joy UI, create a custom `ThemeRegistry` component that combines the Emotion `CacheProvider`, Joy UI's `CssVarsProvider` and the `useServerInsertedHTML` hook from `next/navigation` as follows:
+To set up Joy UI, create a custom `ThemeRegistry` component that combines the Emotion `CacheProvider`, Joy UI's `CssVarsProvider` and the `useServerInsertedHTML` hook from `next/navigation` as follows:
 
 ```tsx
 // app/ThemeRegistry.tsx

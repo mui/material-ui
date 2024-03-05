@@ -1,3 +1,3 @@
-import { unstable_setRef as setRef } from '@mui/utils';
+import setRef from '@mui/utils/setRef';
 
 export default setRef;

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
-  describeConformance,
   createRenderer,
   screen,
   act,
@@ -20,6 +19,7 @@ import ChipDelete from '@mui/joy/ChipDelete';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import { ThemeProvider, styled } from '@mui/joy/styles';
+import describeConformance from '../../test/describeConformance';
 
 function checkHighlightIs(listbox: HTMLElement, expected: string | null) {
   const focused = listbox.querySelector(`.${classes.focused}`);
@@ -1323,6 +1323,7 @@ describe('Joy <Autocomplete />', () => {
       checkHighlightIs(autocompleteListbox, 'six');
       expect(autocompleteListbox.scrollTop).to.greaterThan(0);
     });
+
     it('should keep focus on selected option and not reset to top option when options updated', () => {
       const { setProps } = render(<Autocomplete open options={['one', 'two']} autoFocus />);
       const textbox = screen.getByRole('combobox');

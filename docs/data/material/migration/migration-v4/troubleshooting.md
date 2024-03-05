@@ -290,4 +290,4 @@ For more details, see [this GitHub issue](https://github.com/mui/material-ui/iss
 
 ## Still having problems?
 
-If you're encountering a problem not covered here, please [create a GitHub issue](https://github.com/mui/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml) with this title format: **[Migration] Summary of your issue**.
+If you're encountering a problem not covered here, please [create a GitHub issue](https://github.com/mui/material-ui/issues/new/choose) with this title format: **[Migration] Summary of your issue**.

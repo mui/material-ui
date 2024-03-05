@@ -959,8 +959,12 @@
   appearance: none;
   background-image: url('data:image/svg+xml,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.57805 7.35112L6.62785 12.4268C7.38824 13.1911 8.61657 13.1911 9.37696 12.4268L14.4268 7.35112C15.6551 6.11649 14.7777 4 13.0425 4H2.94286C1.2076 4 0.349721 6.11649 1.57805 7.35112Z" fill="%23697686"/></svg>');
   background-repeat: no-repeat, repeat;
-  background-position: right 8px top 50%, 0 0;
-  background-size: 8px auto, 100%;
+  background-position:
+    right 8px top 50%,
+    0 0;
+  background-size:
+    8px auto,
+    100%;
 }
 
 .GalleryTablePagination .base-TablePagination-select:hover {

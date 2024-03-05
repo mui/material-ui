@@ -40,7 +40,7 @@ export default function ButtonGroupMaterialYouPlayground() {
         },
       ]}
       renderDemo={(props) => (
-        <ButtonGroup {...props}>
+        <ButtonGroup {...props} aria-label="Basic button group">
           <Button>One</Button>
           <Button>Two</Button>
           <Button startIcon={<FavoriteBorder />}>Three</Button>
