@@ -7,6 +7,8 @@ import { alpha } from '@mui/system/colorManipulator';
 import { styled, createUseThemeProps } from '../zero-styled';
 import { getDividerUtilityClass } from './dividerClasses';
 
+const useThemeProps = createUseThemeProps('MuiDivider');
+
 const useUtilityClasses = (ownerState) => {
   const { absolute, children, classes, flexItem, light, orientation, textAlign, variant } =
     ownerState;
@@ -209,7 +211,7 @@ const DividerWrapper = styled('span', {
 }));
 
 const Divider = React.forwardRef(function Divider(inProps, ref) {
-  const useThemeProps = createUseThemeProps('MuiDivider');
+
   const props = useThemeProps({ props: inProps, name: 'MuiDivider' });
   const {
     absolute = false,
