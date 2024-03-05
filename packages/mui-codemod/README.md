@@ -232,102 +232,6 @@ CSS transforms:
 npx @mui/codemod@latest deprecations/alert-classes <path>
 ```
 
-#### `alert-classes`
-
-JS transforms:
-
-```diff
- import { alertClasses } from '@mui/material/PaginationItem';
-
- MuiPaginationItem: {
-   styleOverrides: {
-     root: {
--      [`&.${alertClasses.standardSuccess}`]: {
-+      [`&.${alertClasses.standard}.${alertClasses.colorSuccess}`]: {
-         color: 'red',
-        },
--      [`&.${alertClasses.standardInfo}`]: {
-+      [`&.${alertClasses.standard}.${alertClasses.colorInfo}`]: {
-         color: 'red',
-        },
--      [`&.${alertClasses.standardWarning}`]: {
-+      [`&.${alertClasses.standard}.${alertClasses.colorWarning}`]: {
-         color: 'red',
-        },
--      [`&.${alertClasses.standardError}`]: {
-+      [`&.${alertClasses.standard}.${alertClasses.colorError}`]: {
-         color: 'red',
-        },
--      [`&.${alertClasses.outlinedSuccess}`]: {
-+      [`&.${alertClasses.outlined}.${alertClasses.colorSuccess}`]: {
-         color: 'red',
-        },
--      [`&.${alertClasses.outlinedInfo}`]: {
-+      [`&.${alertClasses.outlined}.${alertClasses.colorInfo}`]: {
-         color: 'red',
-        },
--      [`&.${alertClasses.outlinedWarning}`]: {
-+      [`&.${alertClasses.outlined}.${alertClasses.colorWarning}`]: {
-         color: 'red',
-        },
--      [`&.${alertClasses.outlinedError}`]: {
-+      [`&.${alertClasses.outlined}.${alertClasses.colorError}`]: {
-         color: 'red',
-        },
--      [`&.${alertClasses.filledSuccess}`]: {
-+      [`&.${alertClasses.filled}.${alertClasses.colorSuccess}`]: {
-         color: 'red',
-        },
--      [`&.${alertClasses.filledInfo}`]: {
-+      [`&.${alertClasses.filled}.${alertClasses.colorInfo}`]: {
-         color: 'red',
-        },
--      [`&.${alertClasses.filledWarning}`]: {
-+      [`&.${alertClasses.filled}.${alertClasses.colorWarning}`]: {
-         color: 'red',
-        },
--      [`&.${alertClasses.filledError}`]: {
-+      [`&.${alertClasses.filled}.${alertClasses.colorError}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-CSS transforms:
-
-```diff
--.MuiAlert-standardSuccess
-+.MuiAlert-standard.MuiAlert-colorSuccess
--.MuiAlert-standardInfo
-+.MuiAlert-standard.MuiAlert-colorInfo
--.MuiAlert-standardWarning
-+.MuiAlert-standard.MuiAlert-colorWarning
--.MuiAlert-standardError
-+.MuiAlert-standard.MuiAlert-colorError
--.MuiAlert-outlinedSuccess
-+.MuiAlert-outlined.MuiAlert-colorSuccess
--.MuiAlert-outlinedInfo
-+.MuiAlert-outlined.MuiAlert-colorInfo
--.MuiAlert-outlinedWarning
-+.MuiAlert-outlined.MuiAlert-colorWarning
--.MuiAlert-outlinedError
-+.MuiAlert-outlined.MuiAlert-colorError
--.MuiAlert-filledSuccess
-+.MuiAlert-filled.MuiAlert-colorSuccess
--.MuiAlert-filledInfo
-+.MuiAlert-filled.MuiAlert-colorInfo
--.MuiAlert-filledWarning
-+.MuiAlert-filled.MuiAlert-colorWarning
--.MuiAlert-filledError
-+.MuiAlert-filled.MuiAlert-colorError
-```
-
-```bash
-npx @mui/codemod@latest deprecations/alert-classes <path>
-```
-
 #### `alert-props`
 
 ```diff
@@ -383,8 +287,6 @@ npx @mui/codemod@latest deprecations/alert-props <path>
 
 ```bash
 npx @mui/codemod@latest deprecations/badge-props <path>
-```
-
 #### `button-classes`
 
 JS transforms:
@@ -894,97 +796,6 @@ npx @mui/codemod@latest deprecations/pagination-item-classes <path>
 npx @mui/codemod@latest deprecations/slider-props <path>
 ```
 
-#### `pagination-item-classes`
-
-JS transforms:
-
-```diff
- import { paginationItemClasses } from '@mui/material/PaginationItem';
-
- MuiPaginationItem: {
-   styleOverrides: {
-     root: {
--      [`&.${paginationItemClasses.textPrimary}`]: {
-+      [`&.${paginationItemClasses.text}.${paginationItemClasses.colorPrimary}`]: {
-         color: 'red',
-        },
--      [`&.${paginationItemClasses.textSecondary}`]: {
-+      [`&.${paginationItemClasses.text}.${paginationItemClasses.colorSecondary}`]: {
-         color: 'red',
-        },
--      [`&.${paginationItemClasses.outlinedPrimary}`]: {
-+      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.colorPrimary}`]: {
-         color: 'red',
-        },
--      [`&.${paginationItemClasses.outlinedSecondary}`]: {
-+      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.colorSecondary}`]: {
-         color: 'red',
-        },
--      '&.MuiPaginationItem-textPrimary': {
-+      '&.MuiPaginationItem-text.MuiPaginationItem-colorPrimary': {
-         color: 'red',
-        },
--      '&.MuiPaginationItem-textSecondary': {
-+      '&.MuiPaginationItem-text.MuiPaginationItem-colorSecondary': {
-         color: 'red',
-        },
--      '&.MuiPaginationItem-outlinedPrimary': {
-+      '&.MuiPaginationItem-outlined.MuiPaginationItem-colorPrimary': {
-         color: 'red',
-        },
--      '&.MuiPaginationItem-outlinedSecondary': {
-+      '&.MuiPaginationItem-outlined.MuiPaginationItem-colorSecondary': {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-CSS transforms:
-
-```diff
--.MuiPaginationItem-textPrimary
-+.MuiPaginationItem-text.MuiPaginationItem-primary
--.MuiPaginationItem-textSecondary
-+.MuiPaginationItem-text.MuiPaginationItem-secondary
--.MuiPaginationItem-outlinedPrimary
-+.MuiPaginationItem-outlined.MuiPaginationItem-primary
--.MuiPaginationItem-outlinedSecondary
-+.MuiPaginationItem-outlined.MuiPaginationItem-secondary
- />
-```
-
-```bash
-npx @mui/codemod@latest deprecations/pagination-item-classes <path>
-```
-
-#### `slider-props`
-
-```diff
- <Slider
--  components={{ Track: CustomTrack }}
-+  slots={{ track: CustomTrack }}
--  componentsProps={{ track: { testid: 'test-id' } }}
-+  slotProps={{ track: { testid: 'test-id' } }}
- />
-```
-
-```diff
- MuiSlider: {
-   defaultProps: {
--    components: { Track: CustomTrack }
-+    slots: { track: CustomTrack },
--    componentsProps: { track: { testid: 'test-id' }}
-+    slotProps: { track: { testid: 'test-id' } },
-  },
- },
-```
-
-```bash
-npx @mui/codemod@latest deprecations/slider-props <path>
-```
-
 ### v5.0.0
 
 #### `base-use-named-exports`
@@ -1097,7 +908,6 @@ npx @mui/codemod@latest v5.0.0/joy-rename-row-prop <path>
 Remove `imgProps` prop by transferring its value into `slotProps.img`
 
 This change only affects Joy UI Avatar component.
-This change only affects Joy UI Avatar component.
 
 ```diff
  <Avatar
@@ -1115,7 +925,6 @@ npx @mui/codemod@latest v5.0.0/joy-avatar-remove-imgProps <path>
 
 Replace `<TextField>` with composition of `Input`
 
-This change only affects Joy UI components.
 This change only affects Joy UI components.
 
 ```diff
@@ -1217,108 +1026,55 @@ npx @mui/codemod@latest v5.0.0/preset-safe <path|folder>
 
 The list includes these transformers
 
-- [@mui/codemod](#muicodemod)
-  - [Setup \& run](#setup--run)
-    - [jscodeshift options](#jscodeshift-options)
-    - [Recast Options](#recast-options)
-  - [Included scripts](#included-scripts)
-    - [Deprecations](#deprecations)
-      - [`all`](#all)
-      - [`accordion-props`](#accordion-props)
-      - [`accordion-summary-classes`](#accordion-summary-classes)
-      - [`alert-classes`](#alert-classes)
-      - [`alert-classes`](#alert-classes-1)
-      - [`alert-props`](#alert-props)
-      - [`avatar-props`](#avatar-props)
-      - [`badge-props`](#badge-props)
-      - [`button-classes`](#button-classes)
-      - [`chip-classes`](#chip-classes)
-      - [`divider-props`](#divider-props)
-      - [`pagination-item-classes`](#pagination-item-classes)
-      - [`slider-props`](#slider-props)
-      - [`pagination-item-classes`](#pagination-item-classes-1)
-      - [`slider-props`](#slider-props-1)
-    - [v5.0.0](#v500)
-      - [`base-use-named-exports`](#base-use-named-exports)
-      - [`base-remove-unstyled-suffix`](#base-remove-unstyled-suffix)
-      - [`base-remove-component-prop`](#base-remove-component-prop)
-      - [`rename-css-variables`](#rename-css-variables)
-      - [`base-hook-imports`](#base-hook-imports)
-      - [`joy-rename-classname-prefix`](#joy-rename-classname-prefix)
-      - [`joy-rename-row-prop`](#joy-rename-row-prop)
-      - [`joy-avatar-remove-imgProps`](#joy-avatar-remove-imgprops)
-      - [`joy-text-field-to-input`](#joy-text-field-to-input)
-      - [`joy-rename-components-to-slots`](#joy-rename-components-to-slots)
-      - [`date-pickers-moved-to-x`](#date-pickers-moved-to-x)
-      - [`tree-view-moved-to-x`](#tree-view-moved-to-x)
-      - [🚀 `preset-safe`](#-preset-safe)
-      - [`adapter-v4`](#adapter-v4)
-      - [`autocomplete-rename-closeicon`](#autocomplete-rename-closeicon)
-      - [`autocomplete-rename-option`](#autocomplete-rename-option)
-      - [`avatar-circle-circular`](#avatar-circle-circular)
-      - [`badge-overlap-value`](#badge-overlap-value)
-      - [`base-rename-components-to-slots`](#base-rename-components-to-slots)
-      - [`box-borderradius-values`](#box-borderradius-values)
-      - [`box-rename-css`](#box-rename-css)
-      - [`box-rename-gap`](#box-rename-gap)
-      - [`button-color-prop`](#button-color-prop)
-      - [`chip-variant-prop`](#chip-variant-prop)
-      - [`circularprogress-variant`](#circularprogress-variant)
-      - [`collapse-rename-collapsedheight`](#collapse-rename-collapsedheight)
-      - [`component-rename-prop`](#component-rename-prop)
-      - [`core-styles-import`](#core-styles-import)
-      - [`create-theme`](#create-theme)
-      - [`dialog-props`](#dialog-props)
-      - [`dialog-title-props`](#dialog-title-props)
-      - [`emotion-prepend-cache`](#emotion-prepend-cache)
-      - [`expansion-panel-component`](#expansion-panel-component)
-      - [`fab-variant`](#fab-variant)
-      - [`fade-rename-alpha`](#fade-rename-alpha)
-      - [`grid-justify-justifycontent`](#grid-justify-justifycontent)
-      - [`grid-list-component`](#grid-list-component)
-      - [`icon-button-size`](#icon-button-size)
-      - [`jss-to-styled`](#jss-to-styled)
-      - [`jss-to-tss-react`](#jss-to-tss-react)
-      - [`link-underline-hover`](#link-underline-hover)
-      - [`material-ui-styles`](#material-ui-styles)
-      - [`material-ui-types`](#material-ui-types)
-      - [`modal-props`](#modal-props)
-      - [`moved-lab-modules`](#moved-lab-modules)
-      - [`pagination-round-circular`](#pagination-round-circular)
-      - [`optimal-imports`](#optimal-imports)
-      - [`root-ref`](#root-ref)
-      - [`skeleton-variant`](#skeleton-variant)
-      - [`styled-engine-provider`](#styled-engine-provider)
-      - [`table-props`](#table-props)
-      - [`tabs-scroll-buttons`](#tabs-scroll-buttons)
-      - [`textarea-minmax-rows`](#textarea-minmax-rows)
-      - [`theme-augment`](#theme-augment)
-      - [`theme-breakpoints`](#theme-breakpoints)
-      - [`theme-breakpoints-width`](#theme-breakpoints-width)
-      - [`theme-options`](#theme-options)
-      - [`theme-palette-mode`](#theme-palette-mode)
-      - [`theme-provider`](#theme-provider)
-      - [`theme-spacing`](#theme-spacing)
-      - [`theme-typography-round`](#theme-typography-round)
-      - [`top-level-imports`](#top-level-imports)
-      - [`transitions`](#transitions)
-      - [`use-autocomplete`](#use-autocomplete)
-      - [`use-transitionprops`](#use-transitionprops)
-      - [`variant-prop`](#variant-prop)
-      - [`with-mobile-dialog`](#with-mobile-dialog)
-      - [`with-width`](#with-width)
-      - [`mui-replace`](#mui-replace)
-    - [v4.0.0](#v400)
-      - [`theme-spacing-api`](#theme-spacing-api)
-      - [`optimal-imports`](#optimal-imports-1)
-      - [`top-level-imports`](#top-level-imports-1)
-    - [v1.0.0](#v100)
-      - [`import-path`](#import-path)
-      - [`color-imports`](#color-imports)
-      - [`svg-icon-imports`](#svg-icon-imports)
-      - [`menu-item-primary-text`](#menu-item-primary-text)
-    - [v0.15.0](#v0150)
-      - [`import-path`](#import-path-1)
+- [`adapter-v4`](#adapter-v4)
+- [`autocomplete-rename-closeicon`](#autocomplete-rename-closeicon)
+- [`autocomplete-rename-option`](#autocomplete-rename-option)
+- [`avatar-circle-circular`](#avatar-circle-circular)
+- [`badge-overlap-value`](#badge-overlap-value)
+- [`box-borderradius-values`](#box-borderradius-values)
+- [`box-rename-css`](#box-rename-css)
+- [`box-rename-gap`](#box-rename-gap)
+- [`button-color-prop`](#button-color-prop)
+- [`chip-variant-prop`](#chip-variant-prop)
+- [`circularprogress-variant`](#circularprogress-variant)
+- [`collapse-rename-collapsedheight`](#collapse-rename-collapsedheight)
+- [`core-styles-import`](#core-styles-import)
+- [`create-theme`](#create-theme)
+- [`dialog-props`](#dialog-props)
+- [`dialog-title-props`](#dialog-title-props)
+- [`emotion-prepend-cache`](#emotion-prepend-cache)
+- [`expansion-panel-component`](#expansion-panel-component)
+- [`fab-variant`](#fab-variant)
+- [`fade-rename-alpha`](#fade-rename-alpha)
+- [`grid-justify-justifycontent`](#grid-justify-justifycontent)
+- [`grid-list-component`](#grid-list-component)
+- [`icon-button-size`](#icon-button-size)
+- [`material-ui-styles`](#material-ui-styles)
+- [`material-ui-types`](#material-ui-types)
+- [`modal-props`](#modal-props)
+- [`moved-lab-modules`](#moved-lab-modules)
+- [`pagination-round-circular`](#pagination-round-circular)
+- [`optimal-imports`](#optimal-imports)
+- [`root-ref`](#root-ref)
+- [`skeleton-variant`](#skeleton-variant)
+- [`styled-engine-provider`](#styled-engine-provider)
+- [`table-props`](#table-props)
+- [`tabs-scroll-buttons`](#tabs-scroll-buttons)
+- [`textarea-minmax-rows`](#textarea-minmax-rows)
+- [`theme-augment`](#theme-augment)
+- [`theme-breakpoints`](#theme-breakpoints)
+- [`theme-breakpoints-width`](#theme-breakpoints-width)
+- [`theme-options`](#theme-options)
+- [`theme-palette-mode`](#theme-palette-mode)
+- [`theme-provider`](#theme-provider)
+- [`theme-spacing`](#theme-spacing)
+- [`theme-typography-round`](#theme-typography-round)
+- [`transitions`](#transitions)
+- [`use-autocomplete`](#use-autocomplete)
+- [`use-transitionprops`](#use-transitionprops)
+- [`with-mobile-dialog`](#with-mobile-dialog)
+- [`with-width`](#with-width)
+- [`mui-replace`](#mui-replace)
 
 #### `adapter-v4`
 
