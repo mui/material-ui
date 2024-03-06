@@ -73,8 +73,7 @@ export default function JoySignInSideTemplate() {
       />
       <Box
         sx={(theme) => ({
-          width: '100vw',
-          [theme.breakpoints.up(769)]: { width: '50vw' },
+          width: {xs: '100%', md: '50vw'},
           transition: 'width var(--Transition-duration)',
           transitionDelay: 'calc(var(--Transition-duration) + 0.1s)',
           position: 'relative',
@@ -221,8 +220,7 @@ export default function JoySignInSideTemplate() {
           right: 0,
           top: 0,
           bottom: 0,
-          left: 0,
-          [theme.breakpoints.up(769)]: { left: '50vw' },
+          left: {xs: 0, md: '50vw'},
           transition:
             'background-image var(--Transition-duration), left var(--Transition-duration) !important',
           transitionDelay: 'calc(var(--Transition-duration) + 0.1s)',
