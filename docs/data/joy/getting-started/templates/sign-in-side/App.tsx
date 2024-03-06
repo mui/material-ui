@@ -106,7 +106,6 @@ export default function JoySignInSideTemplate() {
             sx={{
               py: 3,
               display: 'flex',
-              alignItems: 'left',
               justifyContent: 'space-between',
             }}
           >
