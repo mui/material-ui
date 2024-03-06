@@ -595,6 +595,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
       className={clsx(classes.popper, popperSlotProps?.className)}
     >
       <AutocompletePaper
+        ownerState={ownerState}
         as={PaperComponent}
         {...paperSlotProps}
         className={clsx(classes.paper, paperSlotProps?.className)}
