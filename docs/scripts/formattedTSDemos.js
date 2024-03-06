@@ -84,7 +84,8 @@ async function transpileFile(tsxPath, project) {
     const source = await fse.readFile(tsxPath, 'utf8');
 
     const transformOptions = { ...babelConfig, filename: tsxPath };
-    const enableJSXPreview = !tsxPath.includes(path.join('pages', 'premium-themes', 'templates'));
+    const enableJSXPreview =
+      !tsxPath.includes(path.join('pages', 'premium-themes')) && !tsxPath.includes('templates');
     if (enableJSXPreview) {
       transformOptions.plugins = transformOptions.plugins.concat([
         [
