@@ -152,18 +152,18 @@ It works with both Emotion and styled-components.
 
 #### Cons
 
-- Runtime performance takes a hit.
+Runtime performance takes a hit.
 
-  | Benchmark case                    | Code snippet          | Time normalized |
-  | :-------------------------------- | :-------------------- | --------------: |
-  | a. Render 1,000 primitives        | `<div className="…">` |           100ms |
-  | b. Render 1,000 components        | `<Div>`               |           112ms |
-  | c. Render 1,000 styled components | `<StyledDiv>`         |           181ms |
-  | d. Render 1,000 Box               | `<Box sx={…}>`        |           296ms |
+| Benchmark case                    | Code snippet          | Time normalized |
+| :-------------------------------- | :-------------------- | --------------: |
+| a. Render 1,000 primitives        | `<div className="…">` |           100ms |
+| b. Render 1,000 components        | `<Div>`               |           112ms |
+| c. Render 1,000 styled components | `<StyledDiv>`         |           181ms |
+| d. Render 1,000 Box               | `<Box sx={…}>`        |           296ms |
 
 <!-- #default-branch-switch -->
 
-_Head to the [benchmark folder](https://github.com/mui/material-ui/tree/master/benchmark/browser) for a reproduction of these metrics._
+Visit the [benchmark folder](https://github.com/mui/material-ui/tree/master/benchmark/browser) for a reproduction of the metrics above.
 
 We believe that for most use cases it's fast enough, but there are simple workarounds when performance becomes critical.
 For instance, when rendering a list with many items, you can use a CSS child selector to have a single "style injection" point (using d. for the wrapper and a. for each item).
@@ -183,7 +183,7 @@ The `sx` prop can be used in four different locations:
 
 ### Core components
 
-All Material UI, and Joy UI components support the `sx` prop.
+All Material UI and Joy UI components support the `sx` prop.
 
 ### Box
 
@@ -202,7 +202,7 @@ const Div = styled('div')``;
 
 ### Any element with the babel plugin
 
-TODO [#23220](https://github.com/mui/material-ui/issues/23220).
+Visit [the open GitHub issue](https://github.com/mui/material-ui/issues/23220) regarding this topic to learn more.
 
 ## How to use MUI System
 
