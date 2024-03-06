@@ -42,7 +42,9 @@ export type BackdropSlotsAndSlotProps = CreateSlotsAndSlotProps<
   }
 >;
 
-export interface BackdropOwnProps extends Partial<Omit<FadeProps, 'children'>> {
+export interface BackdropOwnProps
+  extends Partial<Omit<FadeProps, 'children'>>,
+    BackdropSlotsAndSlotProps {
   /**
    * The content of the component.
    */
@@ -110,7 +112,7 @@ export interface BackdropTypeMap<
   AdditionalProps = {},
   RootComponent extends React.ElementType = 'div',
 > {
-  props: AdditionalProps & BackdropOwnProps & BackdropSlotsAndSlotProps;
+  props: AdditionalProps & BackdropOwnProps;
   defaultComponent: RootComponent;
 }
 

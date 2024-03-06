@@ -787,9 +787,7 @@ npx @mui/codemod@latest deprecations/slider-props <path>
 ```diff
  <Backdrop
 -    TransitionComponent={CustomTransition}
--    TransitionProps={{ unmountOnExit: true }}
 +    slots={{ transition: CustomTransition }}
-+    slotProps={{ transition: { unmountOnExit: true } }}
  />
 ```
 

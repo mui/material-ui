@@ -3,9 +3,7 @@ fn({
     defaultProps: {
       slots: {
         transition: CustomTransition
-      },
-
-      TransitionProps: { unmountOnExit: true }
+      }
     },
   },
 });

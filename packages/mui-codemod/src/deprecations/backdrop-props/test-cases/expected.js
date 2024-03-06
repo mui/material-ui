@@ -3,17 +3,9 @@ import { Backdrop as MyBackdrop } from '@mui/material';
 
 <Backdrop slots={{
   transition: CustomTransition
-}} slotProps={{
-  transition: {
-    timeout: 100
-  }
 }} />;
 <MyBackdrop slots={{
   transition: CustomTransition
-}} slotProps={{
-  transition: {
-    timeout: 100
-  }
 }} />;
 <Backdrop
   slots={{
@@ -22,12 +14,6 @@ import { Backdrop as MyBackdrop } from '@mui/material';
   }}
   slotProps={{
     root: { className: 'foo' },
-
-    transition: {
-      transition: {
-        timeout: 100
-      }
-    }
   }} />;
 <MyBackdrop
   slots={{
@@ -36,12 +22,6 @@ import { Backdrop as MyBackdrop } from '@mui/material';
   }}
   slotProps={{
     ...outerSlotProps,
-
-    transition: {
-      transition: {
-        timeout: 100
-      }
-    }
   }} />;
 // should skip non MUI components
-<NonMuiBackdrop TransitionComponent={CustomTransition} transitionDuration={100} />;
+<NonMuiBackdrop TransitionComponent={CustomTransition} />;

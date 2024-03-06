@@ -12,7 +12,7 @@ export default function transformer(file, api, options) {
   const printOptions = options.printOptions;
 
   findComponentJSX(j, { root, componentName: 'Backdrop' }, (elementPath) => {
-    let index = elementPath.node.openingElement.attributes.findIndex(
+    const index = elementPath.node.openingElement.attributes.findIndex(
       (attr) => attr.type === 'JSXAttribute' && attr.name.name === 'TransitionComponent',
     );
     if (index !== -1) {
@@ -35,41 +35,6 @@ export default function transformer(file, api, options) {
           expression: j.objectExpression([
             j.objectProperty(j.identifier('transition'), removed[0].value.expression),
           ]),
-        });
-      }
-    }
-
-    index = elementPath.node.openingElement.attributes.findIndex(
-      (attr) => attr.type === 'JSXAttribute' && attr.name.name === 'transitionDuration',
-    );
-
-    if (index !== -1) {
-      const removed = elementPath.node.openingElement.attributes.splice(index, 1);
-      const updated = j.objectExpression([
-        j.objectProperty(
-          j.identifier('transition'),
-          j.objectExpression([
-            j.objectProperty(j.identifier('timeout'), removed[0].value.expression),
-          ]),
-        ),
-      ]);
-
-      let hasNode = false;
-      elementPath.node.openingElement.attributes.forEach((attr) => {
-        if (attr.name?.name === 'slotProps') {
-          hasNode = true;
-          assignObject(j, {
-            target: attr,
-            key: 'transition',
-            expression: updated,
-          });
-        }
-      });
-      if (!hasNode) {
-        appendAttribute(j, {
-          target: elementPath.node,
-          attributeName: 'slotProps',
-          expression: updated,
         });
       }
     }
