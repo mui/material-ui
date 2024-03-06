@@ -161,10 +161,6 @@ export default function JoySignInSideTemplate() {
               sx={(theme) => ({
                 [theme.getColorSchemeSelector('light')]: {
                   color: { xs: '#FFF', md: 'text.tertiary' },
-                  '--Divider-lineColor': {
-                    xs: '#FFF',
-                    md: 'var(--joy-palette-divider)',
-                  },
                 },
               })}
             >
