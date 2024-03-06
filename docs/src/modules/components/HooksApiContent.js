@@ -72,7 +72,7 @@ export default function HooksApiContent(props) {
           <Heading hash={hookNameKebabCase} text={`${hookName} API`} />
           <Heading text="import" hash={`${hookNameKebabCase}-import`} level="h3" />
           <HighlightedCode code={importInstructions} language="jsx" />
-          <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
+          <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
           {Object.keys(parameters).length > 0 ? (
             <PropertiesSection
               properties={parameters}
