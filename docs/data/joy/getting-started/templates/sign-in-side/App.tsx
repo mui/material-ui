@@ -7,7 +7,7 @@ import Button from '@mui/joy/Button';
 import Checkbox from '@mui/joy/Checkbox';
 import Divider from '@mui/joy/Divider';
 import FormControl from '@mui/joy/FormControl';
-import FormLabel, { formLabelClasses } from '@mui/joy/FormLabel';
+import FormLabel from '@mui/joy/FormLabel';
 import IconButton, { IconButtonProps } from '@mui/joy/IconButton';
 import Link from '@mui/joy/Link';
 import Input from '@mui/joy/Input';
@@ -130,7 +130,7 @@ export default function JoySignInSideTemplate() {
                 flexDirection: 'column',
                 gap: 2,
               },
-              [`& .${formLabelClasses.asterisk}`]: {
+              [`& .MuiFormLabel-asterisk`]: {
                 visibility: 'hidden',
               },
             }}
