@@ -65,7 +65,7 @@ export default function JoySignInSideTemplate() {
       />
       <Box
         sx={(theme) => ({
-          width: {xs: '100%', md: '50vw'},
+          width: { xs: '100%', md: '50vw' },
           transition: 'width var(--Transition-duration)',
           transitionDelay: 'calc(var(--Transition-duration) + 0.1s)',
           position: 'relative',
@@ -84,7 +84,7 @@ export default function JoySignInSideTemplate() {
             display: 'flex',
             flexDirection: 'column',
             minHeight: '100dvh',
-            width: "100%",
+            width: '100%',
             px: 2,
           }}
         >
@@ -212,7 +212,7 @@ export default function JoySignInSideTemplate() {
           right: 0,
           top: 0,
           bottom: 0,
-          left: {xs: 0, md: '50vw'},
+          left: { xs: 0, md: '50vw' },
           transition:
             'background-image var(--Transition-duration), left var(--Transition-duration) !important',
           transitionDelay: 'calc(var(--Transition-duration) + 0.1s)',
