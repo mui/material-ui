@@ -643,6 +643,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
         ownerState={ownerState}
         role="presentation"
         onMouseDown={(event) => {
+          // Prevent input blur when interacting with the "no options" content
           event.preventDefault();
         }}
       >
