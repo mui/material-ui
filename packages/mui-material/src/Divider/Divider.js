@@ -93,16 +93,20 @@ const DividerRoot = styled('div', {
       },
     },
     {
-      props: ({ ownerState }) =>
-        ownerState.variant === 'middle' && ownerState.orientation === 'horizontal',
+      props: {
+        variant: 'middle',
+        orientation: 'horizontal',
+      },
       style: {
         marginLeft: theme.spacing(2),
         marginRight: theme.spacing(2),
       },
     },
     {
-      props: ({ ownerState }) =>
-        ownerState.variant === 'middle' && ownerState.orientation === 'vertical',
+      props: {
+        variant: 'middle',
+        orientation: 'vertical',
+      },
       style: {
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(1),
@@ -128,7 +132,7 @@ const DividerRoot = styled('div', {
       },
     },
     {
-      props: ({ ownerState }) => ownerState.children,
+      props: ({ ownerState }) => !!ownerState.children,
       style: {
         display: 'flex',
         whiteSpace: 'nowrap',
