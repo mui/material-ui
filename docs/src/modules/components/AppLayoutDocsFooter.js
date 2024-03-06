@@ -511,6 +511,7 @@ export default function AppLayoutDocsFooter(props) {
             {prevPage !== null ? (
               <Button
                 size="small"
+                variant="text"
                 component={Link}
                 noLinkStyle
                 prefetch={false}

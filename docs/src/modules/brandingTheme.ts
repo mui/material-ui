@@ -82,8 +82,8 @@ export const blue = {
   400: '#3399FF',
   main: '#007FFF',
   500: '#007FFF',
-  600: '#0066CC',
-  700: '#004C99',
+  600: '#0070E0',
+  700: '#0061C2',
   800: '#004C99',
   900: '#003A75',
 };
@@ -567,6 +567,12 @@ export function getThemedComponents(): ThemeOptions {
                   backgroundColor: (theme.vars || theme).palette.primaryDark[700],
                 },
               }),
+            ...(ownerState.variant === 'text' && {
+              color: (theme.vars || theme).palette.primary[600],
+              ...theme.applyDarkStyles({
+                color: (theme.vars || theme).palette.primaryDark[300],
+              }),
+            }),
           }),
         },
         variants: [
@@ -1166,7 +1172,7 @@ export function getThemedComponents(): ThemeOptions {
                 padding: '0.375rem 0.75rem',
               }),
               '&.Mui-selected': {
-                color: (theme.vars || theme).palette.primary[500],
+                color: (theme.vars || theme).palette.primary[700],
                 borderColor: `${(theme.vars || theme).palette.primary[500]} !important`,
                 backgroundColor: (theme.vars || theme).palette.primary[50],
                 '&:hover': {
