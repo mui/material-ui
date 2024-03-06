@@ -66,8 +66,6 @@ export default function JoySignInSideTemplate() {
       <GlobalStyles
         styles={{
           ':root': {
-            '--Collapsed-breakpoint': '769px', // form will stretch when viewport is below `769px`
-            '--Cover-width': '50vw', // must be `vw` only
             '--Form-maxWidth': '800px',
             '--Transition-duration': '0.4s', // set to `none` to disable transition
           },
@@ -75,8 +73,8 @@ export default function JoySignInSideTemplate() {
       />
       <Box
         sx={(theme) => ({
-          width:
-            'clamp(100vw - var(--Cover-width), (var(--Collapsed-breakpoint) - 100vw) * 999, 100vw)',
+          width: '100vw',
+          [theme.breakpoints.up(769)]: { width: '50vw' },
           transition: 'width var(--Transition-duration)',
           transitionDelay: 'calc(var(--Transition-duration) + 0.1s)',
           position: 'relative',
@@ -95,9 +93,7 @@ export default function JoySignInSideTemplate() {
             display: 'flex',
             flexDirection: 'column',
             minHeight: '100dvh',
-            width:
-              'clamp(var(--Form-maxWidth), (var(--Collapsed-breakpoint) - 100vw) * 999, 100%)',
-            maxWidth: '100%',
+            width: "100%",
             px: 2,
           }}
         >
@@ -229,7 +225,8 @@ export default function JoySignInSideTemplate() {
           right: 0,
           top: 0,
           bottom: 0,
-          left: 'clamp(0px, (100vw - var(--Collapsed-breakpoint)) * 999, 100vw - var(--Cover-width))',
+          left: 0,
+          [theme.breakpoints.up(769)]: { left: '50vw' },
           transition:
             'background-image var(--Transition-duration), left var(--Transition-duration) !important',
           transitionDelay: 'calc(var(--Transition-duration) + 0.1s)',
