@@ -546,7 +546,7 @@ export default function Demo(props) {
   const handleChange = (event, newValue) => {
     setActiveTab(newValue);
   };
-  const ownerState = { mounted: true };
+  const ownerState = { mounted: true, contained: true };
 
   const tabs = React.useMemo(() => {
     if (!demoData.relativeModules) {
@@ -628,7 +628,7 @@ export default function Demo(props) {
           </DemoToolbarRoot>
           <Tabs defaultValue={0} value={activeTab} onChange={handleChange}>
             {demoData.relativeModules && codeOpen ? (
-              <CodeTabList sx={bordersOverride}>
+              <CodeTabList sx={bordersOverride} ownerState={ownerState}>
                 {tabs.map((tab, index) => (
                   <CodeTab
                     sx={selectionOverride}
