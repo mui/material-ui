@@ -2,12 +2,14 @@ import path from 'path';
 import fse from 'fs-extra';
 import * as prettier from 'prettier';
 
-function camelCase(string) {
+function pascalCase(string) {
   if (typeof string !== 'string') {
-    throw new Error('`camelCase(string)` expects a string argument.');
+    throw new Error('`pascalCase(string)` expects a string argument.');
   }
 
-  return string.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+  const result = string.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+
+  return result.charAt(0).toUpperCase() + result.slice(1);
 }
 
 function titleCase(str) {
@@ -61,7 +63,7 @@ async function run() {
 import * as React from 'react';
 ${nextImports.join('\n')}
 
-export default function ${camelCase(dataFolderName)}() {
+export default function ${pascalCase(dataFolderName)}() {
   return (
     <React.Fragment>
 ${renders.join('\n')}
@@ -93,10 +95,10 @@ ${renders.join('\n')}
 import MaterialUILayout from '../../Layout';
 ${viteImports.join('\n')}
 
-export default function ${camelCase(dataFolderName)}() {
+export default function ${pascalCase(dataFolderName)}() {
   return (
     <MaterialUILayout>
-      <h1>${camelCase(dataFolderName)}</h1>
+      <h1>${pascalCase(dataFolderName)}</h1>
 ${renders.join('\n')}
     </MaterialUILayout>
   );

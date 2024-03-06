@@ -14,10 +14,10 @@ import ProminentAppBar from '../../../../../docs/data/material/components/app-ba
 import ResponsiveAppBar from '../../../../../docs/data/material/components/app-bar/ResponsiveAppBar.tsx';
 import SearchAppBar from '../../../../../docs/data/material/components/app-bar/SearchAppBar.tsx';
 
-export default function appBar() {
+export default function AppBar() {
   return (
     <MaterialUILayout>
-      <h1>appBar</h1>
+      <h1>AppBar</h1>
       <section>
         <h2> Back To Top</h2>
         <div className="demo-container">

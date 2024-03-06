@@ -14,7 +14,7 @@ import ProminentAppBar from '../../../../../../docs/data/material/components/app
 import ResponsiveAppBar from '../../../../../../docs/data/material/components/app-bar/ResponsiveAppBar';
 import SearchAppBar from '../../../../../../docs/data/material/components/app-bar/SearchAppBar';
 
-export default function appBar() {
+export default function AppBar() {
   return (
     <React.Fragment>
       <section>
