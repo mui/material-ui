@@ -505,7 +505,7 @@ export function getThemedComponents(): ThemeOptions {
                 borderColor: (theme.vars || theme).palette.primaryDark[100],
                 boxShadow: `${alpha(theme.palette.grey[50], 0.5)} 0 2px 0.5px inset, ${alpha(
                   theme.palette.grey[100],
-                  0.8,
+                  0.5,
                 )} 0 -2px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
                 '&:hover': {
                   backgroundColor: (theme.vars || theme).palette.primaryDark[50],
@@ -514,10 +514,7 @@ export function getThemedComponents(): ThemeOptions {
                   color: (theme.vars || theme).palette.primaryDark[100],
                   borderColor: alpha(theme.palette.primaryDark[600], 0.5),
                   backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
-                  boxShadow: `${alpha(theme.palette.primaryDark[600], 0.2)} 0 2px 0 inset, ${alpha(
-                    theme.palette.primaryDark[900],
-                    0.5,
-                  )} 0 -3px 1px inset, ${theme.palette.common.black} 0 1px 2px 0`,
+                  boxShadow: `${alpha(theme.palette.primaryDark[600], 0.1)} 0 2px 0 inset, ${alpha(theme.palette.primaryDark[900], 0.5)} 0 -2px 1px inset, ${theme.palette.common.black} 0 1px 2px 0`,
                   '&:hover': {
                     backgroundColor: (theme.vars || theme).palette.primaryDark[700],
                   },
@@ -789,6 +786,9 @@ export function getThemedComponents(): ThemeOptions {
                 fontWeight: 500,
                 '&:hover, &:focus': {
                   backgroundColor: (theme.vars || theme).palette.grey[50],
+                },
+                '&:focus-visible': {
+                  outline: 'none',
                 },
                 '&.Mui-selected': {
                   fontWeight: 500,
