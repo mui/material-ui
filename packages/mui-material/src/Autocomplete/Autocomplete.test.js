@@ -587,6 +587,7 @@ describe('<Autocomplete />', () => {
       expect(handleClose.callCount).to.equal(0);
       expect(textbox).to.have.attribute('aria-expanded', 'true');
     });
+
     it('should close listbox on pressing left or right keys when inputValue is empty', () => {
       const handleClose = spy();
       const options = ['one', 'two', 'three'];
@@ -2334,6 +2335,19 @@ describe('<Autocomplete />', () => {
       );
 
       expect(container.querySelector(`.${classes.endAdornment}`)).to.equal(null);
+    });
+
+    it('should not render listbox when there are no options', () => {
+      render(
+        <Autocomplete
+          open
+          freeSolo
+          options={[]}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+      const listbox = screen.queryByRole('listbox');
+      expect(listbox).to.equal(null);
     });
   });
 
