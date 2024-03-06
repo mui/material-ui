@@ -10,7 +10,7 @@ card: true
 The [story of Base UI](/blog/introducing-base-ui/) began several years ago—long before headless React component libraries skyrocketed in popularity—when we started to imagine a world in which Material UI could exist without Material Design.
 
 We're super excited to share that this dream is becoming a reality!
-This year will see a lot of investment in Base UI as we expand the team ([we're hiring!](/careers/staff-ui-engineer-base-ui/)) and focus hard on a stable release (tentatively planned for late 2024), which will come full of new components, features, and improvements.
+This year will see a lot of investment in Base UI as we expand the team ([we're hiring!](/careers/)) and focus hard on a stable release (tentatively planned for late 2024), which will come full of new components, features, and improvements.
 
 Let's walk through some of the things we're cooking up.
 
@@ -99,7 +99,7 @@ The new repository is live－[check it out on GitHub](https://github.com/mui/bas
 
 ## Join us on the ride
 
-If you're passionate about extending the web platform with powerful, accessible, unstyled components, [we're hiring UI Engineers](/careers/staff-ui-engineer-base-ui/) to work on the Base UI team and help us accelerate its growth.
+If you're passionate about extending the web platform with powerful, accessible, unstyled components, [we're hiring UI Engineers](/careers/) to work on the Base UI team and help us accelerate its growth.
 
 Lastly, we'd love to hear your feedback.
 The best place to share your ideas and requests is in [the GitHub repository](https://github.com/mui/base-ui/issues).
