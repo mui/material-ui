@@ -20,7 +20,7 @@ If the issue doesn't exist, create it, name it `[<ComponentName>][material-next]
    - In tests, using `CssVarsProvider` and `extendTheme` (both imported from `@mui/material-next/styles`) instead of `ThemeProvider` and `createTheme`, as well as providing the same `CssVarsProvier` and `extendTheme` to `describeConformance`'s `ThemeProvider` and `createTheme` options.
 5. Implement M3 design specs. Add missing tokens if necessary. Use [material-web tokens](https://github.com/material-components/material-web/tree/main/tokens) as a reference for token values
 6. Add component playground to the docs, take the [Slider playground](https://mui.com/material-ui/react-slider/#material-3-slider) as an example
-7. Refactor styles to use component CSS Variables, following [material-web tokens](https://github.com/material-components/material-web/tree/main/tokens) and Joy UI's equivalent component (if it exists) as guides.
+7. Refactor styles to use component CSS Variables, following [material-web tokens](https://github.com/material-components/material-web/tree/main/tokens) and Joy UI's equivalent component (if it exists) as guides.
 
 ## Other things to keep in mind
 
