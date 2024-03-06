@@ -1,7 +1,9 @@
 import * as querystring from 'node:querystring';
-import { App, AwsLambdaReceiver } from '@slack/bolt';
+import slackBolt from '@slack/bolt';
 import { JWT } from 'google-auth-library';
 import { sheets } from '@googleapis/sheets';
+
+const { App, AwsLambdaReceiver } = slackBolt;
 
 const X_FEEBACKS_CHANNEL_ID = 'C04U3R2V9UK';
 const JOY_FEEBACKS_CHANNEL_ID = 'C050VE13HDL';
