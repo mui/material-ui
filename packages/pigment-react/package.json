@@ -54,6 +54,7 @@
     "@types/babel__core": "^7.20.5",
     "@types/babel__helper-module-imports": "^7.18.3",
     "@types/babel__helper-plugin-utils": "^7.10.3",
+    "@types/chai": "^4.3.12",
     "@types/cssesc": "^3.0.2",
     "@types/lodash": "^4.14.202",
     "@types/node": "^18.19.21",

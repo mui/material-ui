@@ -1,0 +1,35 @@
+.ts8hlq3 {
+  opacity: 0;
+  position: absolute;
+}
+.ts8hlq3.MuiTouchRipple-rippleVisible {
+  opacity: 0.3;
+  transform: scale(1);
+  animation-duration: 550ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.ts8hlq3.MuiTouchRipple-ripplePulsate {
+  animation-duration: 200ms;
+}
+.ts8hlq3 .MuiTouchRipple-child {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+.ts8hlq3 .MuiTouchRipple-childLeaving {
+  opacity: 0;
+  animation-duration: 550ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.ts8hlq3 .MuiTouchRipple-childPulsate {
+  position: absolute;
+  left: 0px;
+  top: 0;
+  animation-duration: 2500ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-iteration-count: infinite;
+  animation-delay: 200ms;
+}
