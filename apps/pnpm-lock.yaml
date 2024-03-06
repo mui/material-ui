@@ -55,8 +55,8 @@ importers:
         specifier: ^4.14.202
         version: 4.14.202
       '@types/node':
-        specifier: ^18.19.19
-        version: 18.19.20
+        specifier: ^18.19.21
+        version: 18.19.21
       '@types/prettier':
         specifier: ^2.7.3
         version: 2.7.3
@@ -116,8 +116,8 @@ importers:
         specifier: ^10.0.6
         version: 10.0.6
       '@types/node':
-        specifier: ^18.19.19
-        version: 18.19.20
+        specifier: ^18.19.21
+        version: 18.19.21
       babel-plugin-tester:
         specifier: ^11.0.4
         version: 11.0.4(@babel/core@7.23.9)
@@ -262,8 +262,8 @@ importers:
         version: 15.8.1
     devDependencies:
       '@types/node':
-        specifier: ^18.19.19
-        version: 18.19.20
+        specifier: ^18.19.21
+        version: 18.19.21
       '@types/prop-types':
         specifier: ^15.7.11
         version: 15.7.11
@@ -1059,8 +1059,8 @@ importers:
         specifier: ^10.0.6
         version: 10.0.6
       '@types/node':
-        specifier: ^18.19.19
-        version: 18.19.20
+        specifier: ^18.19.21
+        version: 18.19.21
       '@types/react':
         specifier: ^18.2.55
         version: 18.2.55
@@ -1170,8 +1170,8 @@ importers:
         specifier: ^4.14.202
         version: 4.14.202
       '@types/node':
-        specifier: ^18.19.19
-        version: 18.19.20
+        specifier: ^18.19.21
+        version: 18.19.21
       '@types/react':
         specifier: ^18.2.55
         version: 18.2.55
@@ -3815,8 +3815,8 @@ packages:
     resolution: {integrity: sha512-nG96G3Wp6acyAgJqGasjODb+acrI7KltPiRxzHPXnP3NgI28bpQDRv53olbqGXbfcgF5aiiHmO3xpwEpS5Ld9g==}
     dev: true
 
-  /@types/node@18.19.20:
-    resolution: {integrity: sha512-SKXZvI375jkpvAj8o+5U2518XQv76mAsixqfXiVyWyXZbVWQK25RurFovYpVIxVzul0rZoH58V/3SkEnm7s3qA==}
+  /@types/node@18.19.21:
+    resolution: {integrity: sha512-2Q2NeB6BmiTFQi4DHBzncSoq/cJMLDdhPaAoJFnFCyD9a8VPZRf7a1GAwp1Edb7ROaZc5Jz/tnZyL6EsWMRaqw==}
     dependencies:
       undici-types: 5.26.5
     dev: true
