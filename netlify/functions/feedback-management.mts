@@ -46,7 +46,7 @@ const app = new App({
 });
 
 // Define slack actions to answer
-app.action('delete_action', async ({ ack, body, client, logger }) => {
+app.action<BlockAction<ButtonAction>>('delete_action', async ({ ack, body, client, logger }) => {
   try {
     await ack();
 
@@ -55,7 +55,7 @@ app.action('delete_action', async ({ ack, body, client, logger }) => {
       channel,
       message,
       actions: [{ value }],
-    } = body as BlockAction<ButtonAction>;
+    } = body;
 
     const channelId = channel?.id;
 
