@@ -156,8 +156,8 @@ const DividerRoot = styled('div', {
     {
       props: ({ ownerState }) => ownerState.orientation === 'vertical' && ownerState.children,
       style: {
+        flexDirection: 'column',
         '&::before, &::after': {
-          flexDirection: 'column',
           height: '100%',
           borderLeft: `thin solid ${(theme.vars || theme).palette.divider}`,
         },
