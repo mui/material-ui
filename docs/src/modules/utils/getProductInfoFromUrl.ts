@@ -8,6 +8,7 @@ export type MuiProductId =
   | 'system'
   | 'docs-infra'
   | 'docs'
+  | 'toolpad'
   | 'x-data-grid'
   | 'x-date-pickers'
   | 'x-charts';

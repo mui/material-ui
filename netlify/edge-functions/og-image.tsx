@@ -29,6 +29,7 @@ export default async function handler(req: Request) {
   const params = new URL(req.url).searchParams;
   const title = params.get('title');
   const authors = params.get('authors');
+  const product = params.get('product');
 
   let starCount = 0;
 
@@ -100,7 +101,7 @@ export default async function handler(req: Request) {
               color: '#007FFF',
             }}
           >
-            Blog
+            {product}
           </p>
         </div>
         <div
@@ -121,7 +122,7 @@ export default async function handler(req: Request) {
         >
           {title &&
             title.split('\\n').map((line) => (
-              <p style={{ margin: 0 }}>
+              <p style={{ margin: 0, flexWrap: 'wrap' }}>
                 {line.split('*').flatMap((text, index) => {
                   if (index > 0) {
                     starCount += 1;
@@ -257,4 +258,4 @@ export default async function handler(req: Request) {
     },
   );
 }
-export const config = { path: '/og-blog' };
+export const config = { path: '/edge-functions/og-image' };
