@@ -3,11 +3,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import capitalize from '../utils/capitalize';
 import Paper from '../Paper';
 import { getAppBarUtilityClass } from './appBarClasses';
+
+const useThemeProps = createUseThemeProps('MuiAppBar');
 
 const useUtilityClasses = (ownerState) => {
   const { color, position, classes } = ownerState;

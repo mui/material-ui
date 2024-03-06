@@ -19,13 +19,15 @@ function ElevationScroll(props) {
     target: window ? window() : undefined,
   });
 
-  return React.cloneElement(children, {
-    elevation: trigger ? 4 : 0,
-  });
+  return children
+    ? React.cloneElement(children, {
+        elevation: trigger ? 4 : 0,
+      })
+    : null;
 }
 
 ElevationScroll.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.element,
   /**
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.

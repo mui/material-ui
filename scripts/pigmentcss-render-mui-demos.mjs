@@ -2,12 +2,12 @@ import path from 'path';
 import fse from 'fs-extra';
 import * as prettier from 'prettier';
 
-function capitalize(string) {
+function camelCase(string) {
   if (typeof string !== 'string') {
-    throw new Error('`capitalize(string)` expects a string argument.');
+    throw new Error('`camelCase(string)` expects a string argument.');
   }
 
-  return string.charAt(0).toUpperCase() + string.slice(1);
+  return string.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
 }
 
 function titleCase(str) {
@@ -61,7 +61,7 @@ async function run() {
 import * as React from 'react';
 ${nextImports.join('\n')}
 
-export default function ${capitalize(dataFolderName)}() {
+export default function ${camelCase(dataFolderName)}() {
   return (
     <React.Fragment>
 ${renders.join('\n')}
@@ -93,10 +93,10 @@ ${renders.join('\n')}
 import MaterialUILayout from '../../Layout';
 ${viteImports.join('\n')}
 
-export default function ${capitalize(dataFolderName)}() {
+export default function ${camelCase(dataFolderName)}() {
   return (
     <MaterialUILayout>
-      <h1>${capitalize(dataFolderName)}</h1>
+      <h1>${camelCase(dataFolderName)}</h1>
 ${renders.join('\n')}
     </MaterialUILayout>
   );
