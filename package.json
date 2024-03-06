@@ -76,7 +76,7 @@
     "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
     "test:argos": "node ./scripts/pushArgos.mjs",
     "typescript": "lerna run --no-bail --parallel typescript",
-    "typescript:ci": "lerna run --concurrency 5 --no-bail --no-sort typescript",
+    "typescript:ci": "lerna run --concurrency 4 --no-bail --no-sort typescript",
     "validate-declarations": "tsx scripts/validateTypescriptDeclarations.mts",
     "generate-codeowners": "node scripts/generateCodeowners.mjs",
     "watch:zero": "nx run-many -t watch --projects=\"@pigmentcss/*\" --parallel"
