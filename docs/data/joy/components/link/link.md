@@ -14,7 +14,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/link/
 
 ## Introduction
 
-The Joy UI Link component replaces the native HTML `<a>` element and accepts the same props as the [Typography](/joy-ui/react-typography/) component, as well as MUI System props.
+The Joy UI Link component replaces the native HTML `<a>` element and accepts the same props as the [Typography](/joy-ui/react-typography/) component, as well as MUI System props.
 
 {{"demo": "LinkUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
@@ -24,7 +24,7 @@ The Joy UI Link component replaces the native HTML `<a>` element and accepts the
 import Link from '@mui/joy/Link';
 ```
 
-The Joy UI Link behaves similar to the native HTML `<a>`, so it renders with an underline by default and has no background color on hover.
+The Joy UI Link behaves similar to the native HTML `<a>`, so it renders with an underline by default and has no background color on hover.
 
 The demo below shows the two basic states available to the Link: default and disabled.
 Don't forget to always assign an `href` value:
@@ -35,7 +35,7 @@ Don't forget to always assign an `href` value:
 
 ### Variants
 
-The Link component supports Joy UI's four global variants: `plain` (default), `soft`, `outlined`, and `solid`.
+The Link component supports Joy UI's four global variants: `plain` (default), `soft`, `outlined`, and `solid`.
 
 :::warning
 Although the component is technically set to `plain` by default, it will actually render without any variant if you don't customize it.
