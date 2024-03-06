@@ -4,7 +4,7 @@ import { Tabs, TabsOwnProps } from '@mui/base/Tabs';
 import { TabsList as TabsListBase } from '@mui/base/TabsList';
 import { TabPanel as TabPanelBase } from '@mui/base/TabPanel';
 import { Tab as TabBase } from '@mui/base/Tab';
-import HighlightedCode from './HighlightedCode';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
 export const TabList = styled(TabsListBase)<{
   ownerState: { mounted: boolean; contained?: boolean };
