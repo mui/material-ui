@@ -21,11 +21,11 @@ import { useTranslate } from '@mui/docs/i18n';
 
 const Heading = styled(Typography)(({ theme }) => ({
   margin: '20px 0 10px',
-  color: theme.palette.grey[600],
-  fontWeight: 700,
+  fontWeight: theme.typography.fontWeightBold,
   fontSize: theme.typography.pxToRem(11),
   textTransform: 'uppercase',
-  letterSpacing: '.08rem',
+  letterSpacing: '.1rem',
+  color: (theme.vars || theme).palette.text.tertiary,
 }));
 
 const IconToggleButton = styled(ToggleButton)({

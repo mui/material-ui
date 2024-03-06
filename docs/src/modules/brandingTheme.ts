@@ -104,11 +104,11 @@ export const grey = {
   50: '#F3F6F9',
   100: '#E5EAF2',
   200: '#DAE2ED',
-  300: '#C7D0DD', // vs blueDark 900: WCAG 11.6 AAA, APCA 78 Best for text
-  400: '#B0B8C4', // vs blueDark 900: WCAG 9 AAA, APCA 63.3 Ok for text
-  500: '#9DA8B7', // vs blueDark 900: WCAG 7.5 AAA, APCA 54.3 Only for large text
-  600: '#6B7A90', // vs white bg: WCAG 4.1 AA, APCA 68.7 Ok for text
-  700: '#434D5B', // vs white bg: WCAG 8.3 AAA, APCA 88.7 Best for text
+  300: '#C5D0E0', // vs blueDark 900: WCAG 11.6 AAA, APCA 78 Best for text
+  400: '#AEBACB', // vs blueDark 900: WCAG 9 AAA, APCA 63.3 Ok for text
+  500: '#99A7BB', // vs blueDark 900: WCAG 7.5 AAA, APCA 54.3 Only for large text
+  600: '#6F7F95', // vs white bg: WCAG 4.1 AA, APCA 68.7 Ok for text
+  700: '#576375', // vs white bg: WCAG 8.3 AAA, APCA 88.7 Best for text
   800: '#303740', // vs white bg: WCAG 11.9 AAA, APCA 97.3 Best for text
   900: '#1C2025',
 };
@@ -208,13 +208,13 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       text: {
         ...(mode === 'light' && {
           primary: grey[900],
-          secondary: grey[700],
-          tertiary: grey[600],
+          secondary: grey[800],
+          tertiary: grey[700],
         }),
         ...(mode === 'dark' && {
           primary: '#fff',
           secondary: grey[400],
-          tertiary: grey[400],
+          tertiary: grey[500],
         }),
       },
       grey: {
@@ -839,9 +839,9 @@ export function getThemedComponents(): ThemeOptions {
         },
         styleOverrides: {
           root: ({ theme }) => ({
-            fontWeight: theme.typography.fontWeightSemiBold,
             display: 'inline-flex',
             alignItems: 'center',
+            fontWeight: theme.typography.fontWeightSemiBold,
             '&.MuiTypography-body1 > svg': {
               marginTop: 2,
             },
