@@ -103,12 +103,12 @@ export async function createPackageFile() {
             '.': {
               types: './index.d.ts',
               import: topLevelPathImportsAreCommonJSModules ? './esm/index.mjs' : './index.mjs',
-              require: topLevelPathImportsAreCommonJSModules ? './index.js' : './node/index.js',
+              default: topLevelPathImportsAreCommonJSModules ? './index.js' : './node/index.js',
             },
             './*': {
               types: './*/index.d.ts',
               import: topLevelPathImportsAreCommonJSModules ? './esm/*/index.mjs' : './*/index.mjs',
-              require: topLevelPathImportsAreCommonJSModules ? './*/index.js' : './node/*/index.js',
+              default: topLevelPathImportsAreCommonJSModules ? './*/index.js' : './node/*/index.js',
             },
           },
         }
