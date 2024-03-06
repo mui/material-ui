@@ -1,7 +1,7 @@
-const querystring = require('node:querystring');
-const { App, AwsLambdaReceiver } = require('@slack/bolt');
-const { JWT } = require('google-auth-library');
-const { sheets } = require('@googleapis/sheets');
+import * as querystring from 'node:querystring';
+import { App, AwsLambdaReceiver } from '@slack/bolt';
+import { JWT } from 'google-auth-library';
+import { sheets } from '@googleapis/sheets';
 
 const X_FEEBACKS_CHANNEL_ID = 'C04U3R2V9UK';
 const JOY_FEEBACKS_CHANNEL_ID = 'C050VE13HDL';
@@ -126,7 +126,7 @@ app.action('save_message', async ({ ack, body, client, logger }) => {
  * @param {object} event
  * @param {object} context
  */
-exports.handler = async (event, context, callback) => {
+export default async function handler(event, context, callback) {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 404 };
   }
@@ -227,8 +227,8 @@ from ${commmentSectionURL}
         unfurl_media: false,
       });
     } else {
-      const handler = await awsLambdaReceiver.start();
-      return handler(event, context, callback);
+      const handleEvent = await awsLambdaReceiver.start();
+      return handleEvent(event, context, callback);
     }
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -243,4 +243,4 @@ from ${commmentSectionURL}
     statusCode: 200,
     body: JSON.stringify({}),
   };
-};
+}
