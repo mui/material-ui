@@ -1,6 +1,6 @@
 # @mui/codemod
 
-> Codemod scripts for Material UI, Base UI, MUI System, Joy UI.
+> Codemod scripts for Material UI, Base UI, MUI System, Joy UI.
 
 [![npm version](https://img.shields.io/npm/v/@mui/codemod.svg?style=flat-square)](https://www.npmjs.com/package/@mui/codemod)
 [![npm downloads](https://img.shields.io/npm/dm/@mui/codemod.svg?style=flat-square)](https://www.npmjs.com/package/@mui/codemod)
@@ -136,6 +136,102 @@ CSS transforms:
 npx @mui/codemod@latest deprecations/accordion-summary-classes <path>
 ```
 
+#### `alert-classes`
+
+JS transforms:
+
+```diff
+ import { alertClasses } from '@mui/material/PaginationItem';
+
+ MuiPaginationItem: {
+   styleOverrides: {
+     root: {
+-      [`&.${alertClasses.standardSuccess}`]: {
++      [`&.${alertClasses.standard}.${alertClasses.colorSuccess}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.standardInfo}`]: {
++      [`&.${alertClasses.standard}.${alertClasses.colorInfo}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.standardWarning}`]: {
++      [`&.${alertClasses.standard}.${alertClasses.colorWarning}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.standardError}`]: {
++      [`&.${alertClasses.standard}.${alertClasses.colorError}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.outlinedSuccess}`]: {
++      [`&.${alertClasses.outlined}.${alertClasses.colorSuccess}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.outlinedInfo}`]: {
++      [`&.${alertClasses.outlined}.${alertClasses.colorInfo}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.outlinedWarning}`]: {
++      [`&.${alertClasses.outlined}.${alertClasses.colorWarning}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.outlinedError}`]: {
++      [`&.${alertClasses.outlined}.${alertClasses.colorError}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.filledSuccess}`]: {
++      [`&.${alertClasses.filled}.${alertClasses.colorSuccess}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.filledInfo}`]: {
++      [`&.${alertClasses.filled}.${alertClasses.colorInfo}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.filledWarning}`]: {
++      [`&.${alertClasses.filled}.${alertClasses.colorWarning}`]: {
+         color: 'red',
+        },
+-      [`&.${alertClasses.filledError}`]: {
++      [`&.${alertClasses.filled}.${alertClasses.colorError}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiAlert-standardSuccess
++.MuiAlert-standard.MuiAlert-colorSuccess
+-.MuiAlert-standardInfo
++.MuiAlert-standard.MuiAlert-colorInfo
+-.MuiAlert-standardWarning
++.MuiAlert-standard.MuiAlert-colorWarning
+-.MuiAlert-standardError
++.MuiAlert-standard.MuiAlert-colorError
+-.MuiAlert-outlinedSuccess
++.MuiAlert-outlined.MuiAlert-colorSuccess
+-.MuiAlert-outlinedInfo
++.MuiAlert-outlined.MuiAlert-colorInfo
+-.MuiAlert-outlinedWarning
++.MuiAlert-outlined.MuiAlert-colorWarning
+-.MuiAlert-outlinedError
++.MuiAlert-outlined.MuiAlert-colorError
+-.MuiAlert-filledSuccess
++.MuiAlert-filled.MuiAlert-colorSuccess
+-.MuiAlert-filledInfo
++.MuiAlert-filled.MuiAlert-colorInfo
+-.MuiAlert-filledWarning
++.MuiAlert-filled.MuiAlert-colorWarning
+-.MuiAlert-filledError
++.MuiAlert-filled.MuiAlert-colorError
+```
+
+```bash
+npx @mui/codemod@latest deprecations/alert-classes <path>
+```
+
 #### `alert-props`
 
 ```diff
@@ -176,6 +272,411 @@ npx @mui/codemod@latest deprecations/alert-props <path>
 +    }
    }}
  />;
+```
+
+#### `button-classes`
+
+JS transforms:
+
+```diff
+ import { buttonClasses } from '@mui/material/Button';
+
+ MuiButton: {
+   styleOverrides: {
+     root: {
+-      [`&.${buttonClasses.textInherit}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.colorInherit}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.textPrimary}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.colorPrimary}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.textSecondary}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.colorSecondary}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.textSuccess}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.colorSuccess}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.textError}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.colorError}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.textInfo}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.colorInfo}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.textWarning}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.colorWarning}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedInherit}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.colorInherit}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedPrimary}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.colorPrimary}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedSecondary}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.colorSecondary}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedSuccess}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.colorSuccess}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedError}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.colorError}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedInfo}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.colorInfo}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedWarning}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.colorWarning}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedInherit}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.colorInherit}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedPrimary}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.colorPrimary}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedSecondary}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.colorSecondary}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedSuccess}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.colorSuccess}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedError}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.colorError}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedInfo}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.colorInfo}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedWarning}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.colorWarning}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedSizeSmall}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.sizeSmall}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedSizeMedium}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.sizeMedium}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.containedSizeLarge}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.sizeLarge}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.textSizeSmall}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.sizeSmall}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.textSizeMedium}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.sizeMedium}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.textSizeLarge}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.sizeLarge}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedSizeSmall}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.sizeSmall}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedSizeMedium}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.sizeMedium}`]: {
+         color: 'red',
+        },
+-      [`&.${buttonClasses.outlinedSizeLarge}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.sizeLarge}`]: {
+         color: 'red',
+        },
+-      [`& .${buttonClasses.iconSizeSmall}`]: {
++      [`&.${buttonClasses.sizeSmall} > .${buttonClasses.icon}`]: {
+         color: 'red',
+        },
+-      [`& .${buttonClasses.iconSizeMedium}`]: {
++      [`&.${buttonClasses.sizeMedium} > .${buttonClasses.icon}`]: {
+         color: 'red',
+        },
+-      [`& .${buttonClasses.iconSizeLarge}`]: {
++      [`&.${buttonClasses.sizeLarge} > .${buttonClasses.icon}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiButton-textInherit
++.MuiButton-text.MuiButton-colorInherit
+-.MuiButton-textPrimary
++.MuiButton-text.MuiButton-colorPrimary
+-.MuiButton-textSecondary
++.MuiButton-text.MuiButton-colorSecondary
+-.MuiButton-textSuccess
++.MuiButton-text.MuiButton-colorSuccess
+-.MuiButton-textError
++.MuiButton-text.MuiButton-colorError
+-.MuiButton-textInfo
++.MuiButton-text.MuiButton-colorInfo
+-.MuiButton-textWarning
++.MuiButton-text.MuiButton-colorWarning
+-.MuiButton-outlinedInherit
++.MuiButton-outlined.MuiButton-colorInherit
+-.MuiButton-outlinedPrimary
++.MuiButton-outlined.MuiButton-colorPrimary
+-.MuiButton-outlinedSecondary
++.MuiButton-outlined.MuiButton-colorSecondary
+-.MuiButton-outlinedSuccess
++.MuiButton-outlined.MuiButton-colorSuccess
+-.MuiButton-outlinedError
++.MuiButton-outlined.MuiButton-colorError
+-.MuiButton-outlinedInfo
++.MuiButton-outlined.MuiButton-colorInfo
+-.MuiButton-outlinedWarning
++.MuiButton-outlined.MuiButton-colorWarning
+-.MuiButton-containedInherit
++.MuiButton-contained.MuiButton-colorInherit
+-.MuiButton-containedPrimary
++.MuiButton-contained.MuiButton-colorPrimary
+-.MuiButton-containedSecondary
++.MuiButton-contained.MuiButton-colorSecondary
+-.MuiButton-containedSuccess
++.MuiButton-contained.MuiButton-colorSuccess
+-.MuiButton-containedError
++.MuiButton-contained.MuiButton-colorError
+-.MuiButton-containedInfo
++.MuiButton-contained.MuiButton-colorInfo
+-.MuiButton-containedWarning
++.MuiButton-contained.MuiButton-colorWarning
+-.MuiButton-textSizeSmall
++.MuiButton-text.MuiButton-sizeSmall
+-.MuiButton-textSizeMedium
++.MuiButton-text.MuiButton-sizeMedium
+-.MuiButton-textSizeLarge
++.MuiButton-text.MuiButton-sizeLarge
+-.MuiButton-outlinedSizeSmall
++.MuiButton-outlined.MuiButton-sizeSmall
+-.MuiButton-outlinedSizeMedium
++.MuiButton-outlined.MuiButton-sizeMedium
+-.MuiButton-outlinedSizeLarge
++.MuiButton-outlined.MuiButton-sizeLarge
+-.MuiButton-containedSizeSmall
++.MuiButton-contained.MuiButton-sizeSmall
+-.MuiButton-containedSizeMedium
++.MuiButton-contained.MuiButton-sizeMedium
+-.MuiButton-containedSizeLarge
++.MuiButton-contained.MuiButton-sizeLarge
+-.MuiButton-root .MuiButton-iconSizeSmall
++.MuiButton-root.MuiButton-sizeSmall > .MuiButton-icon
+-.MuiButton-root .MuiButton-iconSizeMedium
++.MuiButton-root.MuiButton-sizeMedium > .MuiButton-icon
+-.MuiButton-root .MuiButton-iconSizeLarge
++.MuiButton-root.MuiButton-sizeLarge > .MuiButton-icon
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/button-classes <path>
+```
+
+#### `chip-classes`
+
+JS transforms:
+
+```diff
+
+ import { chipClasses } from '@mui/material/Chip';
+
+  MuiChip: {
+   styleOverrides: {
+     root: {
+-      [`&.${chipClasses.clickableColorPrimary}`]: {
++      [`&.${chipClasses.clickable}.${chipClasses.colorPrimary}`]: {
+         color: 'red',
+        },
+-      [`&.${chipClasses.clickableColorSecondary}`]: {
++      [`&.${chipClasses.clickable}.${chipClasses.colorSecondary}`]: {
+         color: 'red',
+        },
+-      [`&.${chipClasses.deletableColorPrimary}`]: {
++      [`&.${chipClasses.deletable}.${chipClasses.colorPrimary}`]: {
+         color: 'red',
+        },
+-      [`&.${chipClasses.deletableColorSecondary}`]: {
++      [`&.${chipClasses.deletable}.${chipClasses.colorSecondary}`]: {
+         color: 'red',
+        },
+-      [`&.${chipClasses.outlinedPrimary}`]: {
++      [`&.${chipClasses.outlined}.${chipClasses.colorPrimary}`]: {
+         color: 'red',
+        },
+-      [`&.${chipClasses.outlinedSecondary}`]: {
++      [`&.${chipClasses.outlined}.${chipClasses.colorSecondary}`]: {
+         color: 'red',
+        },
+-      [`&.${chipClasses.filledPrimary}`]: {
++      [`&.${chipClasses.filled}.${chipClasses.colorPrimary}`]: {
+         color: 'red',
+        },
+-      [`&.${chipClasses.filledSecondary}`]: {
++      [`&.${chipClasses.filled}.${chipClasses.colorSecondary}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.avatarSmall}`]: {
++      [`&.${chipClasses.sizeSmall} > .${chipClasses.avatar}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.avatarMedium}`]: {
++      [`&.${chipClasses.sizeMedium} > .${chipClasses.avatar}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.avatarColorPrimary}`]: {
++      [`&.${chipClasses.colorPrimary} > .${chipClasses.avatar}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.avatarColorSecondary}`]: {
++      [`&.${chipClasses.colorSecondary} > .${chipClasses.avatar}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.iconSmall}`]: {
++      [`&.${chipClasses.sizeSmall} > .${chipClasses.icon}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.iconMedium}`]: {
++      [`&.${chipClasses.sizeMedium} > .${chipClasses.icon}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.iconColorPrimary}`]: {
++      [`&.${chipClasses.colorPrimary} > .${chipClasses.icon}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.iconColorSecondary}`]: {
++      [`&.${chipClasses.colorSecondary} > .${chipClasses.icon}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.labelSmall}`]: {
++      [`&.${chipClasses.sizeSmall} > .${chipClasses.label}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.labelMedium}`]: {
++      [`&.${chipClasses.sizeMedium} > .${chipClasses.label}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.deleteIconSmall}`]: {
++      [`&.${chipClasses.sizeSmall} > .${chipClasses.deleteIcon}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.deleteIconMedium}`]: {
++      [`&.${chipClasses.sizeMedium} > .${chipClasses.deleteIcon}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.deleteIconColorPrimary}`]: {
++      [`&.${chipClasses.colorPrimary} > .${chipClasses.deleteIcon}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.deleteIconColorSecondary}`]: {
++      [`&.${chipClasses.colorSecondary} > .${chipClasses.deleteIcon}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.deleteIconOutlinedColorPrimary}`]: {
++      [`&.${chipClasses.outlined}.${chipClasses.colorPrimary} > .${chipClasses.deleteIcon}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.deleteIconOutlinedColorSecondary}`]: {
++      [`&.${chipClasses.outlined}.${chipClasses.colorSecondary} > .${chipClasses.deleteIcon}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.deleteIconFilledColorPrimary}`]: {
++      [`&.${chipClasses.filled}.${chipClasses.colorPrimary} > .${chipClasses.deleteIcon}`]: {
+         color: 'red',
+        },
+-      [`& .${chipClasses.deleteIconFilledColorSecondary}`]: {
++      [`&.${chipClasses.filled}.${chipClasses.colorSecondary} > .${chipClasses.deleteIcon}`]: {
+         color: 'red',
+     },
+     },
+   },
+  },
+
+```
+
+CSS transforms:
+
+```diff
+-.MuiChip-clickableColorPrimary
++.MuiChip-clickable.MuiChip-colorPrimary
+-.MuiChip-clickableColorSecondary
++.MuiChip-clickable.MuiChip-colorSecondary
+-.MuiChip-deletableColorPrimary
++.MuiChip-deletable.MuiChip-colorPrimary
+-.MuiChip-deletableColorSecondary
++.MuiChip-deletable.MuiChip-colorSecondary
+-.MuiChip-outlinedPrimary
++.MuiChip-outlined.MuiChip-colorPrimary
+-.MuiChip-outlinedSecondary
++.MuiChip-outlined.MuiChip-colorSecondary
+-.MuiChip-filledPrimary
++.MuiChip-filled.MuiChip-colorPrimary
+-.MuiChip-filledSecondary
++.MuiChip-filled.MuiChip-colorSecondary
+-.MuiChip-root .MuiChip-avatarSmall
++.MuiChip-root.MuiChip-sizeSmall > .MuiChip-avatar
+-.MuiChip-root .MuiChip-avatarMedium
++.MuiChip-root.MuiChip-sizeMedium > .MuiChip-avatar
+-.MuiChip-root .MuiChip-avatarColorPrimary
++.MuiChip-root.MuiChip-colorPrimary > .MuiChip-avatar
+-.MuiChip-root .MuiChip-avatarColorSecondary
++.MuiChip-root.MuiChip-colorSecondary > .MuiChip-avatar
+-.MuiChip-root .MuiChip-iconSmall
++.MuiChip-root.MuiChip-sizeSmall > .MuiChip-icon
+-.MuiChip-root .MuiChip-iconMedium
++.MuiChip-root.MuiChip-sizeMedium > .MuiChip-icon
+-.MuiChip-root .MuiChip-iconColorPrimary
++.MuiChip-root.MuiChip-colorPrimary > .MuiChip-icon
+-.MuiChip-root .MuiChip-iconColorSecondary
++.MuiChip-root.MuiChip-colorSecondary > .MuiChip-icon
+-.MuiChip-root .MuiChip-labelSmall
++.MuiChip-root.MuiChip-sizeSmall > .MuiChip-label
+-.MuiChip-root .MuiChip-labelMedium
++.MuiChip-root.MuiChip-sizeMedium > .MuiChip-label
+-.MuiChip-root .MuiChip-deleteIconSmall
++.MuiChip-root.MuiChip-sizeSmall > .MuiChip-deleteIcon
+-.MuiChip-root .MuiChip-deleteIconMedium
++.MuiChip-root.MuiChip-sizeMedium > .MuiChip-deleteIcon
+-.MuiChip-root .MuiChip-deleteIconColorPrimary
++.MuiChip-root.MuiChip-colorPrimary > .MuiChip-deleteIcon
+-.MuiChip-root .MuiChip-deleteIconColorSecondary
++.MuiChip-root.MuiChip-colorSecondary > .MuiChip-deleteIcon
+-.MuiChip-root .MuiChip-deleteIconOutlinedColorPrimary
++.MuiChip-root.MuiChip-outlined.MuiChip-colorPrimary > .MuiChip-deleteIcon
+-.MuiChip-root .MuiChip-deleteIconOutlinedColorSecondary
++.MuiChip-root.MuiChip-outlined.MuiChip-colorSecondary > .MuiChip-deleteIcon
+-.MuiChip-root .MuiChip-deleteIconFilledColorPrimary
++.MuiChip-root.MuiChip-filled.MuiChip-colorPrimary > .MuiChip-deleteIcon
+-.MuiChip-root .MuiChip-deleteIconFilledColorSecondary
++.MuiChip-root.MuiChip-filled.MuiChip-colorSecondary > .MuiChip-deleteIcon
+```
+
+```bash
+npx @mui/codemod@latest deprecations/chip-classes <path>
 ```
 
 #### `divider-props`
@@ -333,7 +834,7 @@ npx @mui/codemod@latest v5.0.0/base-remove-component-prop <path>
 
 #### `rename-css-variables`
 
-Updates the names of the CSS variables of the Joy UI components to adapt to the new naming standards of the CSS variables for components.
+Updates the names of the CSS variables of the Joy UI components to adapt to the new naming standards of the CSS variables for components.
 
 ```diff
 -<List sx={{ py: 'var(--List-divider-gap)' }}>
@@ -361,7 +862,7 @@ npx @mui/codemod@latest v5.0.0/base-hook-imports <path>
 
 #### `joy-rename-classname-prefix`
 
-Renames the classname prefix from `'Joy'` to `'Mui'` for Joy UI components.
+Renames the classname prefix from `'Joy'` to `'Mui'` for Joy UI components.
 
 ```diff
  <Button
@@ -393,7 +894,7 @@ npx @mui/codemod@latest v5.0.0/joy-rename-row-prop <path>
 
 Remove `imgProps` prop by transferring its value into `slotProps.img`
 
-This change only affects Joy UI Avatar component.
+This change only affects Joy UI Avatar component.
 
 ```diff
  <Avatar
@@ -411,7 +912,7 @@ npx @mui/codemod@latest v5.0.0/joy-avatar-remove-imgProps <path>
 
 Replace `<TextField>` with composition of `Input`
 
-This change only affects Joy UI components.
+This change only affects Joy UI components.
 
 ```diff
 -import TextField from '@mui/joy/TextField';
@@ -469,7 +970,7 @@ npx @mui/codemod@latest v5.0.0/joy-text-field-to-input <path>
 
 Renames the `components` and `componentsProps` props to `slots` and `slotProps`, respectively.
 
-This change only affects Joy UI components.
+This change only affects Joy UI components.
 
 ```diff
  <Autocomplete

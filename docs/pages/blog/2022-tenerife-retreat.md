@@ -144,7 +144,7 @@ Before the retreat, we were all invited to propose topics to cover in smaller gr
 This gave us a great opportunity for some cross-team collaboration that isn't usually part of our standard workflow.
 
 I participated in sessions on copywriting, marketing, and developer outreach that I found particularly exciting—but I'm kind of a nerd like that. 🤓
-Others discussed optimizing TypeScript performance, implementing editable demos in the docs, and supporting [Joy UI](/blog/first-look-at-joy/) with MUI X components, among other things.
+Others discussed optimizing TypeScript performance, implementing editable demos in the docs, and supporting [Joy UI](/blog/first-look-at-joy/) with MUI X components, among other things.
 
 ### Our feline colleague 🐈
 
