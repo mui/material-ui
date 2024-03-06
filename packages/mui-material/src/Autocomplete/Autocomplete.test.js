@@ -2337,17 +2337,20 @@ describe('<Autocomplete />', () => {
       expect(container.querySelector(`.${classes.endAdornment}`)).to.equal(null);
     });
 
-    it('should not render listbox when there are no options', () => {
+    it('should not render popper when there are no options', () => {
       render(
         <Autocomplete
           open
           freeSolo
           options={[]}
-          renderInput={(params) => <TextField {...params} autoFocus />}
+          renderInput={(params) => <TextField {...params} />}
+          slotProps={{
+            popper: { 'data-testid': 'popperRoot' },
+          }}
         />,
       );
-      const listbox = screen.queryByRole('listbox');
-      expect(listbox).to.equal(null);
+      const popper = screen.queryByTestId('popperRoot');
+      expect(popper).to.equal(null);
     });
   });
 
