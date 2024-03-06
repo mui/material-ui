@@ -56,7 +56,6 @@ export default async function handler(req: Request) {
             filter: 'blur(210px)',
             transform: 'skew(70deg, 20deg)',
             borderRadius: '50%',
-            // transform: 'matrix(1, 0, -0.05, 1, 0, 0)',
           }}
         />
         <div
@@ -95,14 +94,13 @@ export default async function handler(req: Request) {
           <p
             style={{
               fontFamily: 'General Sans',
-              fontSize: '20px',
-              fontWeight: 700,
-              lineHeight: '36px',
-              letterSpacing: '0.14em',
+              fontSize: '24px',
+              fontWeight: 600,
+              lineHeight: 'normal',
               color: '#007FFF',
             }}
           >
-            BLOG
+            Blog
           </p>
         </div>
         <div
@@ -165,8 +163,10 @@ export default async function handler(req: Request) {
                 return (
                   <div
                     style={{
+                      maxWidth: 1080,
                       display: 'flex',
                       flexDirection: 'row',
+                      flexWrap: 'wrap',
                       marginTop: 40,
                       marginRight: 40,
                     }}
@@ -185,7 +185,7 @@ export default async function handler(req: Request) {
                         src={`https://github.com/${githubUser}.png`}
                         width={64}
                         height={64}
-                        style={{ borderRadius: '50%', margin: 3 }}
+                        style={{ borderRadius: '50%', margin: 4 }}
                         alt=""
                       />
                     </div>
@@ -199,9 +199,8 @@ export default async function handler(req: Request) {
                       <span
                         style={{
                           fontSize: '28px',
-                          fontWeight: '700',
+                          fontWeight: '600',
                           lineHeight: '42px',
-                          letterSpacing: '0em',
                           textAlign: 'left',
                           color: '#101418',
                         }}
@@ -213,7 +212,6 @@ export default async function handler(req: Request) {
                           fontSize: '20px',
                           fontWeight: '500',
                           lineHeight: '30px',
-                          letterSpacing: '0em',
                           textAlign: 'left',
                           color: '#007FFF',
                         }}
