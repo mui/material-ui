@@ -8,7 +8,7 @@ function isAllowedExpression(
   return node.isObjectExpression() || node.isArrowFunctionExpression();
 }
 
-export function sxPropConvertor(
+export function sxPropConverter(
   node: NodePath<Expression>,
   wrapWithSxCall: (expPath: NodePath<Expression>) => void,
 ) {

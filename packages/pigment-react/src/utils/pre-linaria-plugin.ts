@@ -2,7 +2,7 @@ import { addNamed } from '@babel/helper-module-imports';
 import { declare } from '@babel/helper-plugin-utils';
 import { NodePath } from '@babel/core';
 import * as Types from '@babel/types';
-import { sxPropConvertor } from './sxPropConverter';
+import { sxPropConverter } from './sxPropConverter';
 
 function replaceNodePath(
   expressionPath: NodePath<Types.Expression>,
@@ -19,7 +19,7 @@ function replaceNodePath(
     );
   };
 
-  sxPropConvertor(expressionPath, wrapWithSxCall);
+  sxPropConverter(expressionPath, wrapWithSxCall);
 }
 
 export const babelPlugin = declare<{ propName?: string; importName?: string }>(

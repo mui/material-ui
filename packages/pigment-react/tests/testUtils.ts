@@ -1,12 +1,28 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { expect as chaiExpect } from 'chai';
+import { transformAsync } from '@babel/core';
 import { asyncResolveFallback } from '@wyw-in-js/shared';
-import { TransformCacheCollection, transform, createFileReporter } from '@wyw-in-js/transform';
+import {
+  TransformCacheCollection,
+  transform as wywTransform,
+  createFileReporter,
+} from '@wyw-in-js/transform';
 import { preprocessor } from '@pigment-css/react/utils';
 import * as prettier from 'prettier';
 
+import sxTransformPlugin from '../exports/sx-plugin';
+
 const shouldUpdateOutput = process.env.UPDATE_FIXTURES === 'true';
+
+function runSxTransform(code: string, filename: string) {
+  return transformAsync(code, {
+    babelrc: false,
+    configFile: false,
+    filename,
+    plugins: ['@babel/plugin-syntax-jsx', [sxTransformPlugin]],
+  });
+}
 
 export async function runTransformation(
   absolutePath: string,
@@ -24,6 +40,8 @@ export async function runTransformation(
     ? fs.readFileSync(outputCssFilePath, 'utf8')
     : '';
 
+  const babelResult = await runSxTransform(inputContent, inputFilePath);
+
   const pluginOptions = {
     themeArgs: {
       theme: options?.themeArgs?.theme,
@@ -31,12 +49,14 @@ export async function runTransformation(
     babelOptions: {
       configFile: false,
       babelrc: false,
+      plugins: ['@babel/plugin-syntax-jsx'],
     },
     tagResolver(_source: string, tag: string) {
       return require.resolve(`../exports/${tag}`);
     },
   };
-  const result = await transform(
+
+  const result = await wywTransform(
     {
       options: {
         filename: inputFilePath,
@@ -46,7 +66,7 @@ export async function runTransformation(
       cache,
       eventEmitter,
     },
-    inputContent,
+    babelResult?.code ?? inputContent,
     asyncResolveFallback,
   );
 
