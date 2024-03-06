@@ -33,7 +33,7 @@ export type AlertSlotsAndSlotProps = CreateSlotsAndSlotProps<
   }
 >;
 
-export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
+export interface AlertProps extends StandardProps<PaperProps, 'variant'>, AlertSlotsAndSlotProps {
   /**
    * The action to display. It renders after the message, at the end of the alert.
    */
@@ -133,4 +133,4 @@ export interface AlertOwnerState extends AlertProps {}
  * - [Alert API](https://mui.com/material-ui/api/alert/)
  * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
  */
-export default function Alert(props: AlertProps & AlertSlotsAndSlotProps): JSX.Element;
+export default function Alert(props: AlertProps): JSX.Element;
