@@ -31,28 +31,20 @@ function ColorSchemeToggle(props: IconButtonProps) {
   const { onClick, ...other } = props;
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-  if (!mounted) {
-    return <IconButton size="sm" variant="outlined" color="neutral" disabled />;
-  }
+
+  React.useEffect(() => setMounted(true), []);
+
   return (
     <IconButton
-      id="toggle-mode"
+      aria-label="toggle light/dark mode"
       size="sm"
       variant="outlined"
-      color="neutral"
-      aria-label="toggle light/dark mode"
-      {...other}
+      disabled={!mounted}
       onClick={(event) => {
-        if (mode === 'light') {
-          setMode('dark');
-        } else {
-          setMode('light');
-        }
+        setMode(mode === 'light' ? 'dark' : 'light');
         onClick?.(event);
       }}
+      {...other}
     >
       {mode === 'light' ? <DarkModeRoundedIcon /> : <LightModeRoundedIcon />}
     </IconButton>
