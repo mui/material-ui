@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import { Tabs, TabsOwnProps } from '@mui/base/Tabs';
-import { TabsList as TabListBase } from '@mui/base/TabsList';
+import { TabsList as TabsListBase } from '@mui/base/TabsList';
 import { TabPanel as TabPanelBase } from '@mui/base/TabPanel';
 import { Tab as TabBase } from '@mui/base/Tab';
 import HighlightedCode from './HighlightedCode';
 
-export const TabList = styled(TabListBase)<{
+export const TabList = styled(TabsListBase)<{
   ownerState: { mounted: boolean; contained?: boolean };
 }>(({ theme, ownerState }) => ({
   padding: ownerState?.contained ? theme.spacing(1) : 6,
