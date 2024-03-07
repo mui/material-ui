@@ -29,11 +29,11 @@ export default function FreeSoloCreateOption() {
 
         const { inputValue } = params;
 
-        // Suggest the creation of a new value if there are not matching options
-        if (inputValue && !filtered) {
+        // Suggest the creation of a new value if there are no matching options
+        if (inputValue && filtered.length === 0) {
           filtered.push({
             inputValue,
-            name: `Add "${inputValue}"`
+            title: `Add "${inputValue}"`
           });
         }
 
