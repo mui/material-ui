@@ -1337,12 +1337,11 @@ export default function PricingTable({
           }
           sx={[
             (theme) => ({
-              p: 1,
+              px: 1,
               py: 1.5,
               justifyContent: 'flex-start',
-              fontWeight: 400,
+              fontWeight: 'medium',
               borderRadius: '0px',
-              color: 'text.primary',
               position: 'absolute',
               left: 0,
               top: 0,
@@ -1489,12 +1488,11 @@ export default function PricingTable({
           }
           sx={[
             (theme) => ({
-              p: 1,
+              px: 1,
               py: 1.5,
               justifyContent: 'flex-start',
-              fontWeight: 400,
+              fontWeight: 'medium',
               borderRadius: '0px',
-              color: 'text.primary',
               position: 'absolute',
               left: 0,
               top: 0,

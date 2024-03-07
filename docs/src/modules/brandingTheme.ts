@@ -556,10 +556,7 @@ export function getThemedComponents(): ThemeOptions {
                   theme.palette.primary[500],
                   0.6,
                 )} 0%, ${theme.palette.primary[600]} 100%)`,
-                boxShadow: `${theme.palette.primary[400]} 0 2px 0.5px inset, ${alpha(
-                  theme.palette.primary[700],
-                  0.7,
-                )} 0 -3px 1px inset, ${alpha(theme.palette.common.black, 0.1)} 0 2px 4px 0`,
+                boxShadow: `${theme.palette.primary[400]} 0 2px 0.5px inset, ${theme.palette.primary[700]} 0 -3px 1px inset, ${alpha(theme.palette.common.black, 0.1)} 0 2px 4px 0`,
                 '&:hover': {
                   backgroundColor: (theme.vars || theme).palette.primary[700],
                 },
@@ -570,7 +567,7 @@ export function getThemedComponents(): ThemeOptions {
             ...(ownerState.variant === 'text' && {
               color: (theme.vars || theme).palette.primary[600],
               ...theme.applyDarkStyles({
-                color: (theme.vars || theme).palette.primaryDark[300],
+                color: (theme.vars || theme).palette.primary[300],
               }),
             }),
           }),
