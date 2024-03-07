@@ -3,8 +3,8 @@ title: Material UI early 2024 API standardization
 description: Read about the standardization of Material UI API happening in Q1 of 2024
 date: 2024-02-19T00:00:00.000Z
 authors: ['diegoandai']
-tags: ['MUI Core', 'Product']
-card: false
+tags: ['Material UI', 'Product']
+card: true
 ---
 
 The MUI Core team is working on two initiatives to standardize the Material UI API.
