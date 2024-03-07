@@ -204,7 +204,7 @@ export default function MuiProductSelector() {
           <ProductSubMenu
             role="menuitem"
             icon={<IconImage name="product-toolpad" />}
-            name="MUI Toolpad"
+            name="Toolpad"
             description="Low-code admin builder."
             chip={<Chip size="small" label="Beta" color="primary" variant="outlined" />}
           />
