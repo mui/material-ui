@@ -13,8 +13,6 @@ pnpm build:zero
 Then start the Next.js development server:
 
 ```bash
-cd apps/
-pnpm install
 pnpm run --filter=@app/next-app dev
 ```
 
