@@ -480,7 +480,6 @@ function useLatest(value) {
 
 export default function SearchIcons() {
   const [keys, setKeys] = React.useState(null);
-  const [, startTransition] = React.useTransition();
   const [theme, setTheme] = useQueryParameterState('theme', 'Filled');
   const [selectedIcon, setSelectedIcon] = useQueryParameterState('selected', '');
   const [query, setQuery] = useQueryParameterState('query', '');
@@ -574,7 +573,7 @@ export default function SearchIcons() {
           <Input
             autoFocus
             value={query}
-            onChange={(event) => startTransition(() => setQuery(event.target.value))}
+            onChange={(event) => setQuery(event.target.value)}
             placeholder="Search icons…"
             inputProps={{ 'aria-label': 'search icons' }}
           />
