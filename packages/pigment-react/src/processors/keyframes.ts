@@ -35,6 +35,7 @@ export class KeyframesProcessor extends BaseProcessor {
     const [, callParams] = params;
     if (callParams[0] === 'call') {
       this.dependencies.push(callParams[1]);
+
       const [firstArg, ...restArgs] = callParams.slice(1).flat() as (
         | ExpressionValue
         | TemplateElement
@@ -125,6 +126,9 @@ export class KeyframesProcessor extends BaseProcessor {
     this.generateArtifacts(templateStrs, ...templateExpressions);
   }
 
+  // This is a temporary support for `call` that has tagged template literal as first argument
+  // It's likely come from bundled code, e.g. `@mui/material` stable build.
+  // We can remove this once we updated the browserslist.rc in v6
   private handleTaggedTemplateCall(
     taggedTemplate: string,
     expressions: (ExpressionValue | TemplateElement)[],
