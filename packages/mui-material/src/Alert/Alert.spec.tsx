@@ -1,16 +1,12 @@
-import * as React from 'react';
-import { createTheme, SvgIcon } from '@mui/material';
-
-function MyIcon() {
-  return <SvgIcon />;
-}
+import CloseRounded from '@mui/icons-material/CloseRounded';
+import { createTheme } from '@mui/material';
 
 createTheme({
   components: {
     MuiAlert: {
       defaultProps: {
         slots: {
-          closeIcon: MyIcon,
+          closeIcon: CloseRounded,
         },
       },
     },
