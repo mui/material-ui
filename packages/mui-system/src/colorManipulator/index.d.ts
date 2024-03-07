@@ -1,2 +1,2 @@
-export { default } from './colorManipulator'
-export * from './colorManipulator'
+export { default } from './colorManipulator';
+export * from './colorManipulator';

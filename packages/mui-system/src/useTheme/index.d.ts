@@ -1,2 +1,2 @@
-export { default } from './useTheme'
-export * from './useTheme'
+export { default } from './useTheme';
+export * from './useTheme';

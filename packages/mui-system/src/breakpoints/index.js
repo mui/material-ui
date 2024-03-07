@@ -1,3 +1,3 @@
-'use client'
-export { default } from './breakpoints'
-export * from './breakpoints'
+'use client';
+export { default } from './breakpoints';
+export * from './breakpoints';

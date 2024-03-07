@@ -1,2 +1,2 @@
-export { default } from './breakpoints'
-export * from './breakpoints'
+export { default } from './breakpoints';
+export * from './breakpoints';

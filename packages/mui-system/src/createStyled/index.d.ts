@@ -1,2 +1,2 @@
-export { default } from './createStyled'
-export * from './createStyled'
+export { default } from './createStyled';
+export * from './createStyled';

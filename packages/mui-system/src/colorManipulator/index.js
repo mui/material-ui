@@ -1,3 +1,3 @@
-'use client'
-export { default } from './colorManipulator'
-export * from './colorManipulator'
+'use client';
+export { default } from './colorManipulator';
+export * from './colorManipulator';
