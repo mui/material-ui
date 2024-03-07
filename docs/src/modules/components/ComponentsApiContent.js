@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import kebabCase from 'lodash/kebabCase';
 import { useRouter } from 'next/router';
 import { exactProp } from '@mui/utils';
-import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
+import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
@@ -148,7 +148,7 @@ export default function ComponentsApiContent(props) {
           <Heading hash={componentNameKebabCase} text={`${componentName} API`} />
           <Heading text="import" hash={`${componentNameKebabCase}-import`} level="h3" />
           <HighlightedCode code={importInstructions} language="jsx" />
-          <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
+          <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
           <PropertiesSection
             properties={componentProps}
             propertiesDescriptions={propDescriptions}
