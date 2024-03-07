@@ -37,7 +37,5 @@ You might have to restart the next.js server.
 To build the project, run the `build` command in this package:
 
 ```bash
-cd apps/
-pnpm install
 pnpm run --filter=@app/next-app build
 ```
