@@ -404,14 +404,23 @@ module.exports = async function demoLoader() {
 
         await Promise.all(
           Array.from(relativeModules.get(demoName)).map(async ([relativeModuleID, variants]) => {
-            // Join the relative module path with the demo directory
-            const relativeModuleFilepath = path.join(
-              moduleFilepath,
-              '..',
-              relativeModuleID.replace(/\//g, path.sep),
+            let raw = '';
+            // read a list of files in the current directory and use the first one that matches
+            const relativeFiles = await fs.readdir(path.dirname(moduleFilepath));
+            const relativeModuleFilename = relativeFiles.find((f) =>
+              f.startsWith(path.basename(relativeModuleID)),
             );
+            try {
+              raw = await fs.readFile(
+                path.join(path.dirname(moduleFilepath), relativeModuleFilename),
+                { encoding: 'utf8' },
+              );
+            } catch {
+              throw new Error(
+                `Could not find a module for the relative import "${relativeModuleID}" in the demo "${demoName}"`,
+              );
+            }
 
-            const raw = await fs.readFile(relativeModuleFilepath, { encoding: 'utf8' });
             const moduleData = { module: relativeModuleID, raw };
             const modules = demos[demoName].relativeModules;
 

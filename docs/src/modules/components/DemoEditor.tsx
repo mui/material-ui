@@ -17,6 +17,7 @@ const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
       overflow: 'auto',
       marginTop: -1,
       backgroundColor: '#0F1924', // a special, one-off, color tailored for the code blocks using MUI's branding theme blue palette as the starting point. It has a less saturaded color but still maintaining a bit of the blue tint.
+      borderTop: 0,
       border: `1px solid ${(theme.vars || theme).palette.divider}`,
       colorScheme: 'dark',
       '&:hover': {
@@ -28,6 +29,9 @@ const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
       [theme.breakpoints.up('sm')]: {
         borderRadius: '0 0 12px 12px',
       },
+      ...theme.applyDarkStyles({
+        borderTop: 1,
+      }),
     },
     '& pre': {
       // The scroll container needs to be the parent of the editor, overriding:
