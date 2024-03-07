@@ -13,6 +13,7 @@ import { validateParams } from '@wyw-in-js/processor-utils';
 import BaseProcessor from './base-processor';
 import type { IOptions } from './styled';
 import { cache } from '../utils/emotion';
+import { isTaggedTemplateCall, resolveTaggedTemplate } from '../utils/taggedTemplateCall';
 
 export type Primitive = string | number | boolean | null | undefined;
 
@@ -66,24 +67,11 @@ export class KeyframesProcessor extends BaseProcessor {
 
     if (callType === 'template') {
       this.handleTemplate(this.callParam, values);
+    } else if (isTaggedTemplateCall(callArgs, values)) {
+      const { themeArgs } = this.options as IOptions;
+      this.generateArtifacts(`${resolveTaggedTemplate(callArgs, values, themeArgs)}`);
     } else {
-      let isTaggedTemplateCall = false;
-      const [firstArg, ...args] = callArgs.flat();
-      if ('kind' in firstArg && firstArg.kind === ValueType.LAZY) {
-        const firstValue = values.get(firstArg.ex.name) as Primitive | Primitive[];
-        if (Array.isArray(firstValue) && firstValue.every((val) => typeof val === 'string')) {
-          isTaggedTemplateCall = true;
-          this.handleTaggedTemplateCall(
-            firstArg.source.trim().match(/`([^`]+)`/)?.[1] || '',
-            args,
-            values,
-          );
-        }
-      }
-
-      if (!isTaggedTemplateCall) {
-        this.handleCall(this.callParam, values);
-      }
+      this.handleCall(this.callParam, values);
     }
   }
 
@@ -124,50 +112,6 @@ export class KeyframesProcessor extends BaseProcessor {
       }
     });
     this.generateArtifacts(templateStrs, ...templateExpressions);
-  }
-
-  // This is a temporary support for `call` that has tagged template literal as first argument
-  // It's likely come from bundled code, e.g. `@mui/material` stable build.
-  // We can remove this once we updated the browserslist.rc in v6
-  private handleTaggedTemplateCall(
-    taggedTemplate: string,
-    expressions: (ExpressionValue | TemplateElement)[],
-    values: ValueCache,
-  ) {
-    const templateExpressions: Primitive[] = [];
-    const { themeArgs } = this.options as IOptions;
-
-    expressions.forEach((item) => {
-      if ('kind' in item) {
-        switch (item.kind) {
-          case ValueType.FUNCTION: {
-            const value = values.get(item.ex.name) as TemplateCallback;
-            templateExpressions.push(value(themeArgs));
-            break;
-          }
-          case ValueType.CONST:
-            templateExpressions.push(item.value);
-            break;
-          case ValueType.LAZY: {
-            const evaluatedValue = values.get(item.ex.name);
-            if (typeof evaluatedValue === 'function') {
-              templateExpressions.push(evaluatedValue(themeArgs));
-            } else {
-              templateExpressions.push(evaluatedValue as Primitive);
-            }
-            break;
-          }
-          default:
-            break;
-        }
-      }
-    });
-
-    const newTemplate = taggedTemplate.replace(/\$\{[^}]+\}/gm, () =>
-      String(templateExpressions.shift()),
-    );
-
-    this.generateArtifacts(`${newTemplate}`);
   }
 
   generateArtifacts(styleObjOrTaggged: CSSInterpolation | string[], ...args: Primitive[]) {

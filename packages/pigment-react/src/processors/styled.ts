@@ -29,6 +29,7 @@ import { valueToLiteral } from '../utils/valueToLiteral';
 import BaseProcessor from './base-processor';
 import { Primitive, TemplateCallback } from './keyframes';
 import { cache, css } from '../utils/emotion';
+import { isTaggedTemplateCall, resolveTaggedTemplate } from '../utils/taggedTemplateCall';
 
 type Theme = { [key: 'unstable_sxConfig' | string]: string | number | Theme };
 
@@ -60,19 +61,6 @@ type ComponentMeta = {
   skipVariantsResolver?: boolean;
   skipSx?: boolean;
 };
-
-// TODO: Remove this once v6 is stable.
-// This is a temporary workaround to support built tagged template into function call, eg. Material UI TouchRipple
-function isTaggedTemplateCall(
-  styleArgs: ExpressionValue[] | [(ExpressionValue | TemplateElement)[]],
-) {
-  const [firstArg] = styleArgs.flat();
-  if (!('kind' in firstArg)) {
-    return false;
-  }
-  const { source } = firstArg;
-  return !!source.trim().match(/`([^`]+)`/)?.[1];
-}
 
 /**
  * Linaria tag processor responsible for converting complex `styled()()` calls
@@ -147,9 +135,6 @@ export class StyledProcessor extends BaseProcessor {
 
   isTemplateTag: boolean;
 
-  // @TODO - Remove this once [stable] in the browserslistrc has been updated.
-  isTagTemplateCall: boolean;
-
   constructor(params: Params, ...args: TailProcessorParams) {
     if (params.length <= 2) {
       // no need to do any processing if it is an already transformed call or just a reference.
@@ -165,7 +150,6 @@ export class StyledProcessor extends BaseProcessor {
     const [callType, componentArg, componentMetaArg] = memberOrCall;
     const [, ...styleArgs] = styleCallOrTemplate;
     this.isTemplateTag = styleCallOrTemplate[0] === 'template';
-    this.isTagTemplateCall = styleCallOrTemplate[0] === 'call' && isTaggedTemplateCall(styleArgs);
     this.componentMetaArg =
       componentMetaArg && componentMetaArg.kind === ValueType.LAZY ? componentMetaArg : undefined;
     this.styleArgs = styleArgs as ExpressionValue[];
@@ -305,47 +289,10 @@ export class StyledProcessor extends BaseProcessor {
   }
 
   private buildForTagTemplateCall(values: ValueCache): void {
-    const templateExpressions: Primitive[] = [];
     const { themeArgs } = this.options as IOptions;
-
-    const [firstArg, ...exArgs] = this.styleArgs.flat() as ExpressionValue[];
-    const taggedTemplate = firstArg.source.trim().match(/`([^`]+)`/)?.[1] || '';
-
-    exArgs.forEach((item) => {
-      switch (item.kind) {
-        case ValueType.FUNCTION: {
-          const value = values.get(item.ex.name) as TemplateCallback;
-          templateExpressions.push(value(themeArgs));
-          break;
-        }
-        case ValueType.CONST:
-          templateExpressions.push(item.value);
-          break;
-        case ValueType.LAZY: {
-          const evaluatedValue = values.get(item.ex.name);
-          if (typeof evaluatedValue === 'function') {
-            templateExpressions.push(evaluatedValue(themeArgs));
-          } else {
-            templateExpressions.push(evaluatedValue as Primitive);
-          }
-          break;
-        }
-        default:
-          break;
-      }
-    });
-
-    const newTemplate = taggedTemplate.replace(/\$\{[^}]+\}/gm, () =>
-      String(templateExpressions.shift()),
-    );
-    const templateStrs: string[] = [];
-    // @ts-ignore @TODO - Fix this. No idea how to initialize a Tagged String array.
-    templateStrs.raw = [];
-    templateStrs.push(newTemplate);
-    // @ts-ignore
-    templateStrs.raw.push(newTemplate);
-
-    const cssClassName = css(templateStrs);
+    const cssClassName = css`
+      ${resolveTaggedTemplate(this.styleArgs, values, themeArgs)}
+    `;
     const cssText = cache.registered[cssClassName] as string;
 
     const baseClass = this.getClassName();
@@ -390,7 +337,7 @@ export class StyledProcessor extends BaseProcessor {
       this.buildForTemplateTag(values);
       return;
     }
-    if (this.isTagTemplateCall) {
+    if (isTaggedTemplateCall(this.styleArgs, values)) {
       this.buildForTagTemplateCall(values);
       return;
     }
