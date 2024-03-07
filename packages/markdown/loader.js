@@ -148,7 +148,7 @@ module.exports = async function demoLoader() {
    * @param {*} demoName
    * @param {*} variant
    * @param {*} importModuleID
-   * @example detectRelativeImports('Button', 'JS', './data/Button-data.js') => relativeModules.set('Button', new Map([['./data/Button-data.js', ['JS']]]))
+   * @example detectRelativeImports('Button', 'JS', './top100Films') => relativeModules.set('Button', new Map([['./top100Films', ['JS']]]))
    */
   function detectRelativeImports(demoName, variant, importModuleID) {
     if (importModuleID.startsWith('.')) {
@@ -388,12 +388,12 @@ module.exports = async function demoLoader() {
        * while grouping by demo variant
        * From:
        * relativeModules: { 'ComboBox.js' =>
-       *    { './data/top100Films.js'  => ['JS', 'TS'] }
+       *    { './top100Films'  => ['JS', 'TS'] }
        * }
        * To:
        * demos["ComboBox.js"].relativeModules = {
-       *     JS: [{ module: './data/top100Films.js', raw: '...' }],
-       *     TS: [{ module: './data/top100Films.js', raw: '...' }]
+       *     JS: [{ module: './top100Films', raw: '...' }],
+       *     TS: [{ module: './top100Films', raw: '...' }]
        *   }
        * }
        */

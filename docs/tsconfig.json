@@ -11,9 +11,7 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "types": ["react"],
-    "incremental": true,
-    // relative module imports in demos
-    "allowImportingTsExtensions": true
+    "incremental": true
   },
   "exclude": ["node_modules"]
 }

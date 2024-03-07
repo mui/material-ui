@@ -4,7 +4,5 @@ module.exports = {
     'no-console': ['off', { allow: ['info'] }],
     // not very friendly to prop forwarding
     'react/jsx-handler-names': 'off',
-    // import relative modules
-    'import/extensions': 'off',
   },
 };

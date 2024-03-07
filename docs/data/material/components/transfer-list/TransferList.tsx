@@ -7,7 +7,14 @@ import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
-import { not, intersection } from './utils/helpers.js';
+
+function not(a: readonly number[], b: readonly number[]) {
+  return a.filter((value) => b.indexOf(value) === -1);
+}
+
+function intersection(a: readonly number[], b: readonly number[]) {
+  return a.filter((value) => b.indexOf(value) !== -1);
+}
 
 export default function TransferList() {
   const [checked, setChecked] = React.useState<readonly number[]>([]);
