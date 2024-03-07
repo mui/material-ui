@@ -3,7 +3,7 @@ import * as path from 'node:path';
 import { expect } from 'chai';
 import { asyncResolveFallback } from '@wyw-in-js/shared';
 import { TransformCacheCollection, transform, createFileReporter } from '@wyw-in-js/transform';
-import { preprocessor } from '@pigmentcss/react/utils';
+import { preprocessor } from '@pigment-css/react/utils';
 
 const files = fs.readdirSync(path.join(__dirname, 'fixtures'));
 
@@ -48,23 +48,24 @@ describe('zero-runtime', () => {
       const outputContent = fs.readFileSync(outputFilePath, 'utf8');
       const outputCssContent = fs.readFileSync(outputCssFilePath, 'utf8');
 
+      const pluginOptions = {
+        themeArgs: {
+          theme,
+        },
+        babelOptions: {
+          configFile: false,
+          babelrc: false,
+        },
+        tagResolver(_source: string, tag: string) {
+          return require.resolve(`../exports/${tag}`);
+        },
+      };
       const result = await transform(
         {
           options: {
             filename: inputFilePath,
             preprocessor,
-            pluginOptions: {
-              themeArgs: {
-                theme,
-              },
-              babelOptions: {
-                configFile: false,
-                babelrc: false,
-              },
-              tagResolver(_source, tag) {
-                return require.resolve(`../exports/${tag}`);
-              },
-            },
+            pluginOptions,
           },
           cache,
           eventEmitter,

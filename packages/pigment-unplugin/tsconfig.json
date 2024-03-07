@@ -9,8 +9,8 @@
       "@mui/system/*": ["./packages/mui-system/src/*"],
       "@mui/utils": ["./packages/mui-utils/src"],
       "@mui/utils/*": ["./packages/mui-utils/src/*"],
-      "@pigmentcss/react": ["./packages/pigment-react/src"],
-      "@pigmentcss/react/*": ["./packages/pigment-react/src/*"]
+      "@pigment-css/react": ["./packages/pigment-react/src"],
+      "@pigment-css/react/*": ["./packages/pigment-react/src/*"]
     }
   },
   "include": ["src/**/*.ts"],

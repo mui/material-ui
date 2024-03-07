@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled } from '@pigmentcss/react';
+import { styled } from '@pigment-css/react';
 
 const Main = styled('div')(({ theme }) => ({
   display: 'flex',

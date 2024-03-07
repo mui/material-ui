@@ -4,7 +4,7 @@ import { BrowserRouter as Router, useRoutes } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import routes from '~react-pages';
-import '@pigmentcss/react/styles.css';
+import '@pigment-css/react/styles.css';
 
 function App() {
   return <React.Suspense fallback={<p>Loading...</p>}>{useRoutes(routes)}</React.Suspense>;

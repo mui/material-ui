@@ -5,7 +5,7 @@ import {
   webpack as webpackPlugin,
   extendTheme,
   type PigmentOptions as BasePigmentOptions,
-} from '@pigmentcss/unplugin';
+} from '@pigment-css/unplugin';
 
 export type PigmentOptions = BasePigmentOptions & {
   asyncResolve?: (what: string) => string | null;
