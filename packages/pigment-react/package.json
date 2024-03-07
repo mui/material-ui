@@ -26,6 +26,7 @@
     "copy-license": "node ../../scripts/pigment-license.mjs",
     "build": "tsup",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/pigment-react/**/*.test.{js,ts,tsx}'",
+    "test:update": "cd ../../ && cross-env NODE_ENV=test UPDATE_FIXTURES=true mocha 'packages/pigment-react/**/*.test.{js,ts,tsx}'",
     "test:ci": "cd ../../ && cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov --report-dir=./coverage/pigment-react mocha 'packages/pigment-react/**/*.test.{js,ts,tsx}'",
     "typecheck": "tsc --noEmit -p ."
   },
@@ -53,12 +54,14 @@
     "@types/babel__core": "^7.20.5",
     "@types/babel__helper-module-imports": "^7.18.3",
     "@types/babel__helper-plugin-utils": "^7.10.3",
+    "@types/chai": "^4.3.12",
     "@types/cssesc": "^3.0.2",
     "@types/lodash": "^4.14.202",
     "@types/node": "^18.19.21",
     "@types/react": "^18.2.55",
     "@types/stylis": "^4.2.5",
     "chai": "^4.4.1",
+    "prettier": "^3.2.5",
     "react": "^18.2.0"
   },
   "peerDependencies": {

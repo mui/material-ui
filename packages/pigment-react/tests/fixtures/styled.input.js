@@ -23,7 +23,7 @@ const SliderRail = styled('span', {
   name: 'MuiSlider',
   slot: 'Rail',
 })`
-  display: block;
+  display: none;
   position: absolute;
   border-radius: inherit;
   background-color: currentColor;
