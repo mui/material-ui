@@ -1,18 +1,47 @@
-.t1qm6cyl {
+@keyframes e1qm6cyl {
+  0% {
+    transform: scale(0);
+    opacity: 0.1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+}
+@keyframes e1xj2gun {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes prznjhi {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.92);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.t7h1c7e {
   opacity: 0;
   position: absolute;
 }
-.t1qm6cyl.MuiTouchRipple-rippleVisible {
+.t7h1c7e.MuiTouchRipple-rippleVisible {
   opacity: 0.3;
   transform: scale(1);
-  animation-name: foo;
+  animation-name: e1qm6cyl;
   animation-duration: 550ms;
   animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
-.t1qm6cyl.MuiTouchRipple-ripplePulsate {
+.t7h1c7e.MuiTouchRipple-ripplePulsate {
   animation-duration: 200ms;
 }
-.t1qm6cyl .MuiTouchRipple-child {
+.t7h1c7e .MuiTouchRipple-child {
   opacity: 1;
   display: block;
   width: 100%;
@@ -20,17 +49,17 @@
   border-radius: 50%;
   background-color: currentColor;
 }
-.t1qm6cyl .MuiTouchRipple-childLeaving {
+.t7h1c7e .MuiTouchRipple-childLeaving {
   opacity: 0;
-  animation-name: bar;
+  animation-name: e1xj2gun;
   animation-duration: 550ms;
   animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
-.t1qm6cyl .MuiTouchRipple-childPulsate {
+.t7h1c7e .MuiTouchRipple-childPulsate {
   position: absolute;
   left: 0px;
   top: 0;
-  animation-name: baz;
+  animation-name: prznjhi;
   animation-duration: 2500ms;
   animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   animation-iteration-count: infinite;

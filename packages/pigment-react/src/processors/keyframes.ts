@@ -1,4 +1,4 @@
-import type { Expression } from '@babel/types';
+import type { Expression, TemplateElement } from '@babel/types';
 import type {
   CallParam,
   TemplateParam,
@@ -7,7 +7,7 @@ import type {
   ValueCache,
 } from '@wyw-in-js/processor-utils';
 import { serializeStyles, Interpolation } from '@emotion/serialize';
-import { type Replacements, type Rules, ValueType } from '@wyw-in-js/shared';
+import { type Replacements, type Rules, ValueType, type ExpressionValue } from '@wyw-in-js/shared';
 import type { CSSInterpolation } from '@emotion/css';
 import { validateParams } from '@wyw-in-js/processor-utils';
 import BaseProcessor from './base-processor';
@@ -50,12 +50,28 @@ export class KeyframesProcessor extends BaseProcessor {
       throw new Error(`MUI: "${this.tagSource.imported}" is already built`);
     }
 
-    const [callType] = this.callParam;
+    const [callType, ...callArgs] = this.callParam;
 
     if (callType === 'template') {
       this.handleTemplate(this.callParam, values);
     } else {
-      this.handleCall(this.callParam, values);
+      let isTaggedTemplateCall = false;
+      const [firstArg, ...args] = callArgs.flat();
+      if ('kind' in firstArg && firstArg.kind === ValueType.LAZY) {
+        const firstValue = values.get(firstArg.ex.name) as Primitive | Primitive[];
+        if (Array.isArray(firstValue) && firstValue.every((val) => typeof val === 'string')) {
+          isTaggedTemplateCall = true;
+          this.handleTaggedTemplateCall(
+            firstArg.source.trim().match(/`([^`]+)`/)?.[1] || '',
+            args,
+            values,
+          );
+        }
+      }
+
+      if (!isTaggedTemplateCall) {
+        this.handleCall(this.callParam, values);
+      }
     }
   }
 
@@ -96,6 +112,50 @@ export class KeyframesProcessor extends BaseProcessor {
       }
     });
     this.generateArtifacts(templateStrs, ...templateExpressions);
+  }
+
+  private handleTaggedTemplateCall(
+    taggedTemplate: string,
+    expressions: (ExpressionValue | TemplateElement)[],
+    values: ValueCache,
+  ) {
+    const templateStrs: string[] = [];
+    // @ts-ignore @TODO - Fix this. No idea how to initialize a Tagged String array.
+    templateStrs.raw = [];
+    const templateExpressions: Primitive[] = [];
+    const { themeArgs } = this.options as IOptions;
+
+    expressions.forEach((item) => {
+      if ('kind' in item) {
+        switch (item.kind) {
+          case ValueType.FUNCTION: {
+            const value = values.get(item.ex.name) as TemplateCallback;
+            templateExpressions.push(value(themeArgs));
+            break;
+          }
+          case ValueType.CONST:
+            templateExpressions.push(item.value);
+            break;
+          case ValueType.LAZY: {
+            const evaluatedValue = values.get(item.ex.name);
+            if (typeof evaluatedValue === 'function') {
+              templateExpressions.push(evaluatedValue(themeArgs));
+            } else {
+              templateExpressions.push(evaluatedValue as Primitive);
+            }
+            break;
+          }
+          default:
+            break;
+        }
+      }
+    });
+
+    const newTemplate = taggedTemplate.replace(/\$\{[^}]+\}/gm, () =>
+      String(templateExpressions.shift()),
+    );
+
+    this.generateArtifacts(`${newTemplate}`);
   }
 
   generateArtifacts(styleObjOrTaggged: CSSInterpolation | string[], ...args: Primitive[]) {
