@@ -61,10 +61,11 @@ export default function useQueryParameterState(
     [setUrlValue],
   );
 
+  const [, startTransition] = React.useTransition();
   const setUserState = React.useCallback(
     (newValue: string) => {
-      setUrlValue(newValue);
       setState(newValue);
+      startTransition(() => setUrlValue(newValue));
     },
     [setUrlValue],
   );
