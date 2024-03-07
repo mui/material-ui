@@ -23,6 +23,10 @@ const theme = {
     },
   },
   transitions: materialTheme.transitions,
+  opacity: {
+    transparent: 0.1,
+    translucent: 0.3,
+  },
   components: {
     MuiSlider: {
       styleOverrides: {

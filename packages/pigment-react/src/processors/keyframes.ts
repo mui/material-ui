@@ -35,6 +35,17 @@ export class KeyframesProcessor extends BaseProcessor {
     const [, callParams] = params;
     if (callParams[0] === 'call') {
       this.dependencies.push(callParams[1]);
+      const [firstArg, ...restArgs] = callParams.slice(1).flat() as (
+        | ExpressionValue
+        | TemplateElement
+      )[];
+      if ('kind' in firstArg && firstArg.kind === ValueType.LAZY) {
+        restArgs.forEach((arg) => {
+          if ('kind' in arg) {
+            this.dependencies.push(arg);
+          }
+        });
+      }
     } else if (callParams[0] === 'template') {
       callParams[1].forEach((element) => {
         if ('kind' in element && element.kind !== ValueType.CONST) {
@@ -119,9 +130,6 @@ export class KeyframesProcessor extends BaseProcessor {
     expressions: (ExpressionValue | TemplateElement)[],
     values: ValueCache,
   ) {
-    const templateStrs: string[] = [];
-    // @ts-ignore @TODO - Fix this. No idea how to initialize a Tagged String array.
-    templateStrs.raw = [];
     const templateExpressions: Primitive[] = [];
     const { themeArgs } = this.options as IOptions;
 

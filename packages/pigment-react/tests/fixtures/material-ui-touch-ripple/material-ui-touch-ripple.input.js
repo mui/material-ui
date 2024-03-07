@@ -8,19 +8,22 @@ let _ = (t) => t,
   _t4;
 
 const DURATION = 550;
+const OPACITY = 0.1;
 const enterKeyframe = keyframes(
   _t ||
     (_t = _`
   0% {
     transform: scale(0);
-    opacity: 0.1;
+    opacity: ${0};
   }
 
   100% {
     transform: scale(1);
-    opacity: 0.3;
+    opacity: ${0};
   }
 `),
+  OPACITY,
+  ({ theme }) => theme.opacity.translucent,
 );
 const exitKeyframe = keyframes(
   _t2 ||
