@@ -582,7 +582,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const popperSlotProps = slotProps.popper ?? componentsProps.popper;
   const popupIndicatorSlotProps = slotProps.popupIndicator ?? componentsProps.popupIndicator;
 
-  const renderAutocompleteContent = (children) => (
+  const renderAutocompletePopperChildren = (children) => (
     <AutocompletePopper
       as={PopperComponent}
       disablePortal={disablePortal}
@@ -605,9 +605,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     </AutocompletePopper>
   );
 
-  let container = null;
+  let autocompletePopper = null;
   if (!loading && groupedOptions.length > 0) {
-    container = renderAutocompleteContent(
+    autocompletePopper = renderAutocompletePopperChildren(
       <AutocompleteListbox
         as={ListboxComponent}
         className={classes.listbox}
@@ -631,13 +631,13 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
       </AutocompleteListbox>,
     );
   } else if (loading && groupedOptions.length === 0) {
-    container = renderAutocompleteContent(
+    autocompletePopper = renderAutocompletePopperChildren(
       <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
         {loadingText}
       </AutocompleteLoading>,
     );
   } else if (groupedOptions.length === 0 && !freeSolo && !loading) {
-    container = renderAutocompleteContent(
+    autocompletePopper = renderAutocompletePopperChildren(
       <AutocompleteNoOptions
         className={classes.noOptions}
         ownerState={ownerState}
@@ -716,7 +716,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           },
         })}
       </AutocompleteRoot>
-      {anchorEl ? container : null}
+      {anchorEl ? autocompletePopper : null}
     </React.Fragment>
   );
 });
