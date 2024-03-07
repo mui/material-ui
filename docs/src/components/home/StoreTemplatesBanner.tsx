@@ -100,34 +100,34 @@ const StoreTemplateImage = React.forwardRef<
       sx={(theme) => ({
         width: 200,
         height: 200 / ratio,
-        content: `url(/.netlify/images/?fit=cover&width=200&height=${200 / ratio}&url=/static/branding/store-templates/template-${
+        content: `url(/.netlify/images/?fit=cover&width=200&height=${Math.floor(200 / ratio)}&url=/static/branding/store-templates/template-${
           Object.keys(linkMapping).indexOf(brand) + 1
         }light.jpg)`,
         [theme.breakpoints.up('sm')]: {
           width: 300,
           height: 300 / ratio,
-          content: `url(/.netlify/images/?fit=cover&width=400&height=${400 / ratio}&url=/static/branding/store-templates/template-${
+          content: `url(/.netlify/images/?fit=cover&width=400&height=${Math.floor(400 / ratio)}&url=/static/branding/store-templates/template-${
             Object.keys(linkMapping).indexOf(brand) + 1
           }light.jpg)`,
         },
         [theme.breakpoints.up('md')]: {
           width: 450,
           height: 450 / ratio,
-          content: `url(/.netlify/images/?fit=cover&width=450&height=${450 / ratio}&url=/static/branding/store-templates/template-${
+          content: `url(/.netlify/images/?fit=cover&width=450&height=${Math.floor(450 / ratio)}&url=/static/branding/store-templates/template-${
             Object.keys(linkMapping).indexOf(brand) + 1
           }light.jpg)`,
         },
         ...theme.applyDarkStyles({
-          content: `url(/.netlify/images/?fit=cover&width=200&height=${200 / ratio}&url=/static/branding/store-templates/template-${
+          content: `url(/.netlify/images/?fit=cover&width=200&height=${Math.floor(200 / ratio)}&url=/static/branding/store-templates/template-${
             Object.keys(linkMapping).indexOf(brand) + 1
           }dark.jpg)`,
           [theme.breakpoints.up('sm')]: {
-            content: `url(/.netlify/images/?fit=cover&width=400&height=${400 / ratio}&url=/static/branding/store-templates/template-${
+            content: `url(/.netlify/images/?fit=cover&width=400&height=${Math.floor(400 / ratio)}&url=/static/branding/store-templates/template-${
               Object.keys(linkMapping).indexOf(brand) + 1
             }dark.jpg)`,
           },
           [theme.breakpoints.up('md')]: {
-            content: `url(/.netlify/images/?fit=cover&width=450&height=${450 / ratio}&url=/static/branding/store-templates/template-${
+            content: `url(/.netlify/images/?fit=cover&width=450&height=${Math.floor(450 / ratio)}&url=/static/branding/store-templates/template-${
               Object.keys(linkMapping).indexOf(brand) + 1
             }dark.jpg)`,
           },
