@@ -161,6 +161,9 @@ importers:
       babel-loader:
         specifier: ^9.1.3
         version: 9.1.3(@babel/core@7.23.9)(webpack@5.90.3)
+      babel-plugin-add-import-extension:
+        specifier: ^1.6.0
+        version: 1.6.0(@babel/core@7.23.9)
       babel-plugin-istanbul:
         specifier: ^6.1.1
         version: 6.1.1
@@ -7293,6 +7296,7 @@ packages:
 
   /@theme-ui/css@0.16.2(@emotion/react@11.11.4):
     resolution: {integrity: sha512-fNe+FhwKC5+7jQfxCRnm3oqYNhMFuiWiLA9OoLBEkt3b4egot29UK1+fqemwiNVjl206e2fPT5Z7uXRdb6LC2A==}
+    peerDependencies:
       '@emotion/react': ^11.11.1
     dependencies:
       '@emotion/react': 11.11.4(@types/react@18.2.55)(react@18.2.0)
@@ -12821,6 +12825,7 @@ packages:
 
   /google-auth-library@9.6.3:
     resolution: {integrity: sha512-4CacM29MLC2eT9Cey5GDVK4Q8t+MMp8+OEdOaqD9MG6b0dOyLORaaeJMPQ7EESVgm/+z5EKYyFLxgzBJlJgyHQ==}
+    engines: {node: '>=14'}
     dependencies:
       base64-js: 1.5.1
       ecdsa-sig-formatter: 1.0.11
@@ -14663,6 +14668,7 @@ packages:
 
   /karma@6.4.3:
     resolution: {integrity: sha512-LuucC/RE92tJ8mlCwqEoRWXP38UMAqpnq98vktmS9SznSoUPPUJQbc91dHcxcunROvfQjdORVA/YFviH+Xci9Q==}
+    engines: {node: '>= 10'}
     hasBin: true
     dependencies:
       '@colors/colors': 1.5.0
@@ -17331,6 +17337,7 @@ packages:
 
   /piscina@4.4.0:
     resolution: {integrity: sha512-+AQduEJefrOApE4bV7KRmp3N2JnnyErlVqq4P/jmko4FPz9Z877BCccl/iB3FdrWSUkvbGV9Kan/KllJgat3Vg==}
+    optionalDependencies:
       nice-napi: 1.0.2
     dev: true
 
