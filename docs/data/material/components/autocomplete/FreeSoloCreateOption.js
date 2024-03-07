@@ -33,7 +33,7 @@ export default function FreeSoloCreateOption() {
         if (inputValue && filtered.length === 0) {
           filtered.push({
             inputValue,
-            title: `Add "${inputValue}"`
+            title: `Add "${inputValue}"`,
           });
         }
 
