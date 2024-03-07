@@ -14,16 +14,6 @@ const transparent = 'rgba(255,255,255,0)';
 
 const Image = styled('img')(({ theme }) => ({
   display: 'block',
-  width: 200,
-  height: 200 / ratio,
-  [theme.breakpoints.up('sm')]: {
-    width: 300,
-    height: 300 / ratio,
-  },
-  [theme.breakpoints.up('md')]: {
-    width: 450,
-    height: 450 / ratio,
-  },
   border: '4px solid',
   borderColor: (theme.vars || theme).palette.grey[400],
   borderRadius: (theme.vars || theme).shape.borderRadius,
@@ -105,18 +95,44 @@ const StoreTemplateImage = React.forwardRef<
   return (
     <Image
       ref={ref}
-      src={`/static/branding/store-templates/template-${
-        Object.keys(linkMapping).indexOf(brand) + 1
-      }light.jpg`}
       alt=""
       loading="lazy"
-      sx={(theme) =>
-        theme.applyDarkStyles({
-          content: `url(/static/branding/store-templates/template-${
+      sx={(theme) => ({
+        width: 200,
+        height: 200 / ratio,
+        content: `url(/.netlify/images/?fit=cover&width=200&height=${200 / ratio}&url=/static/branding/store-templates/template-${
+          Object.keys(linkMapping).indexOf(brand) + 1
+        }light.jpg)`,
+        [theme.breakpoints.up('sm')]: {
+          width: 300,
+          height: 300 / ratio,
+          content: `url(/.netlify/images/?fit=cover&width=400&height=${400 / ratio}&url=/static/branding/store-templates/template-${
+            Object.keys(linkMapping).indexOf(brand) + 1
+          }light.jpg)`,
+        },
+        [theme.breakpoints.up('md')]: {
+          width: 450,
+          height: 450 / ratio,
+          content: `url(/.netlify/images/?fit=cover&width=450&height=${450 / ratio}&url=/static/branding/store-templates/template-${
+            Object.keys(linkMapping).indexOf(brand) + 1
+          }light.jpg)`,
+        },
+        ...theme.applyDarkStyles({
+          content: `url(/.netlify/images/?fit=cover&width=200&height=${200 / ratio}&url=/static/branding/store-templates/template-${
             Object.keys(linkMapping).indexOf(brand) + 1
           }dark.jpg)`,
-        })
-      }
+          [theme.breakpoints.up('sm')]: {
+            content: `url(/.netlify/images/?fit=cover&width=400&height=${400 / ratio}&url=/static/branding/store-templates/template-${
+              Object.keys(linkMapping).indexOf(brand) + 1
+            }dark.jpg)`,
+          },
+          [theme.breakpoints.up('md')]: {
+            content: `url(/.netlify/images/?fit=cover&width=450&height=${450 / ratio}&url=/static/branding/store-templates/template-${
+              Object.keys(linkMapping).indexOf(brand) + 1
+            }dark.jpg)`,
+          },
+        }),
+      })}
       {...props}
     />
   );
