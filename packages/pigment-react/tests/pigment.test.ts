@@ -40,11 +40,7 @@ const theme = {
 
 describe('zero-runtime', () => {
   files.forEach((file) => {
-    if (
-      typeof file === 'string' &&
-      file.endsWith('.input.js') &&
-      file.includes('material-ui-touch-ripple')
-    ) {
+    if (typeof file === 'string' && file.endsWith('.input.js')) {
       it(`test input file ${file}`, async () => {
         const prettierConfig = await prettier.resolveConfig(process.cwd(), {
           config: path.join(process.cwd(), 'prettier.config.js'),
