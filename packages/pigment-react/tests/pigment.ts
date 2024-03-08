@@ -35,8 +35,6 @@ const CUSTOM_ERROR =
   'The file contents have changed. Run "test:update" command to update the file if this is expected.';
 
 describe('zero-runtime', () => {
-  let prettierConfig: Exclude<Awaited<ReturnType<typeof prettier.resolveConfig>>, null>;
-
   files.forEach((file) => {
     it(`test input file ${file}`, async () => {
       if (file.includes('.output.')) {
@@ -85,27 +83,26 @@ describe('zero-runtime', () => {
         asyncResolveFallback,
       );
 
-      const config =
-        prettierConfig ??
-        prettier.resolveConfig(path.join(__dirname, '../../../', 'prettier.config.js'));
+      const prettierConfig = await prettier.resolveConfig(
+        path.join(__dirname, '../../../', 'prettier.config.js'),
+      );
       const formattedJs = await prettier.format(result.code, {
-        ...config,
+        ...prettierConfig,
         parser: 'babel',
       });
 
       if (!outputContent || shouldUpdateOutput) {
         fs.writeFileSync(outputFilePath, formattedJs, 'utf-8');
-        expect(true).to.equal(true);
       } else {
         expect(formattedJs, CUSTOM_ERROR).to.equal(outputContent);
       }
 
       const formattedCss = await prettier.format(result.cssText ?? '', {
+        ...prettierConfig,
         parser: 'css',
       });
       if (!outputCssContent || shouldUpdateOutput) {
         fs.writeFileSync(outputCssFilePath, formattedCss, 'utf-8');
-        expect(true).to.equal(true);
       } else {
         expect(formattedCss, CUSTOM_ERROR).to.equal(outputCssContent);
       }
