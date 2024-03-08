@@ -2161,6 +2161,9 @@ importers:
       '@types/babel__helper-plugin-utils':
         specifier: ^7.10.3
         version: 7.10.3
+      '@types/chai':
+        specifier: ^4.3.12
+        version: 4.3.12
       '@types/cssesc':
         specifier: ^3.0.2
         version: 3.0.2
@@ -2179,6 +2182,9 @@ importers:
       chai:
         specifier: ^4.4.1
         version: 4.4.1
+      prettier:
+        specifier: ^3.2.5
+        version: 3.2.5
       react:
         specifier: ^18.2.0
         version: 18.2.0
