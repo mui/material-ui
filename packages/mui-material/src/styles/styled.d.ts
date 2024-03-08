@@ -1,8 +1,7 @@
 import { CreateMUIStyled } from '@mui/system';
 import { Theme } from './createTheme';
 export { default as slotShouldForwardProp } from './slotShouldForwardProp';
-
-export function rootShouldForwardProp(prop: string): boolean;
+export { default as rootShouldForwardProp } from './rootShouldForwardProp';
 
 /**
  * Custom styled utility that has a default MUI theme.
