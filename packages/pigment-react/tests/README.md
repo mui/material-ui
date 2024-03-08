@@ -13,13 +13,13 @@
 At the root project terminal:
 
 ```bash
-pnpm --filter @pigment-css/react run test
+pnpm nx run @pigment-css/react:test
 ```
 
 To update the output fixtures:
 
 ```bash
-pnpm --filter @pigment-css/react run test:update
+pnpm nx run @pigment-css/react:test:update
 ```
 
 ## Adding new tests
