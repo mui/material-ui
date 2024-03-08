@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select, { SelectChangeEvent, SelectProps } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { createTheme } from '@mui/material/styles';
 
@@ -75,4 +75,19 @@ function genericValueTest() {
       },
     }}
   />;
+
+  // @ts-expect-error
+  <Select<number, 'filled'> />;
+  // @ts-expect-error
+  <Select<number, 'standard'> />;
+  // @ts-expect-error
+  <Select<number, 'standard'> variant="filled" />;
+  // @ts-expect-error
+  <Select<number, 'filled'> variant="standard" />;
+
+  <Select<number, 'outlined'> />;
+
+  <Select<number, 'filled'> variant="filled" />;
+  <Select<number, 'outlined'> variant="outlined" />;
+  <Select<number, 'standard'> variant="standard" />;
 }

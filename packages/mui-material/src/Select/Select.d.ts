@@ -187,6 +187,43 @@ export type SelectProps<
       ? StandardSelectProps
       : OutlinedSelectProps);
 
+interface SelectType {
+  <Value, Variant extends 'filled' | 'standard'>(
+    props: {
+      /**
+       * The variant to use.
+       * @default 'outlined'
+       */
+      variant: Variant;
+    } & Omit<SelectProps<Value, Variant>, 'variant'>,
+  ): JSX.Element & {
+    muiName: string;
+  };
+  <Value = unknown, Variant extends 'outlined' = 'outlined'>(
+    props: {
+      /**
+       * The variant to use.
+       * @default 'outlined'
+       */
+      variant?: Variant;
+    } & Omit<SelectProps<Value, Variant>, 'variant'>,
+  ): JSX.Element & {
+    muiName: string;
+  };
+}
+/**
+ *
+ * Demos:
+ *
+ * - [Select](https://mui.com/material-ui/react-select/)
+ *
+ * API:
+ *
+ * - [Select API](https://mui.com/material-ui/api/select/)
+ * - inherits [OutlinedInput API](https://mui.com/material-ui/api/outlined-input/)
+ */
+declare const Select: SelectType;
+
 /**
  *
  * Demos:
@@ -199,14 +236,4 @@ export type SelectProps<
  * - inherits [OutlinedInput API](https://mui.com/material-ui/api/outlined-input/)
  */
 
-export default function Select<Value = unknown, Variant extends SelectVariants = 'outlined'>(
-  props: {
-    /**
-     * The variant to use.
-     * @default 'outlined'
-     */
-    variant?: Variant;
-  } & Omit<SelectProps<Value, Variant>, 'variant'>,
-): JSX.Element & {
-  muiName: string;
-};
+export default Select;
