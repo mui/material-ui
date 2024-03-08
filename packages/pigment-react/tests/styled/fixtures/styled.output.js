@@ -5,7 +5,7 @@ import _theme from '@pigment-css/react/theme';
 const Component = /*#__PURE__*/ _styled('div')({
   classes: ['c1vtarpi'],
 });
-const SliderRail = /*#__PURE__*/ _styled2('span', {
+export const SliderRail = /*#__PURE__*/ _styled2('span', {
   name: 'MuiSlider',
   slot: 'Rail',
 })({
