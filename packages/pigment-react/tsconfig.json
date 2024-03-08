@@ -1,7 +1,6 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "types": ["node", "mocha"],
     "target": "ES2015",
     "allowJs": true,
     "lib": ["ES2017", "ES2021.String", "DOM"],
@@ -13,8 +12,9 @@
       "@mui/system/*": ["./packages/mui-system/src/*"],
       "@mui/utils": ["./packages/mui-utils/src"],
       "@mui/utils/*": ["./packages/mui-utils/src/*"]
-    }
+    },
+    "types": ["node", "mocha"]
   },
-  "include": ["src/**/*.ts", "tests/**/*.ts"],
+  "include": ["src/**/*.ts"],
   "exclude": ["./tsup.config.ts"]
 }
