@@ -9,6 +9,10 @@ _Mar 5, 2024_
 A big thanks to the 21 contributors who made this release possible.
 This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
 
+### `@pigment-css/react@0.0.1`, `@pigment-css/nextjs-plugin@0.0.1`, `@pigment-css/vite-plugin@0.0.1`, & `@pigment-css/unplugin@0.0.1`
+
+- This is the first public release of our new zero-runtime CSS-in-JS library, Pigment CSS.
+
 ### `@mui/material@5.15.12`
 
 - &#8203;<!-- 52 -->Support props callback type in theme variants (#40946) @ZeeshanTamboli

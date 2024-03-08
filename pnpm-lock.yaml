@@ -2182,6 +2182,9 @@ importers:
       chai:
         specifier: ^4.4.1
         version: 4.4.1
+      prettier:
+        specifier: ^3.2.5
+        version: 3.2.5
       react:
         specifier: ^18.2.0
         version: 18.2.0

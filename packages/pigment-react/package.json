@@ -1,7 +1,6 @@
 {
   "name": "@pigment-css/react",
   "version": "0.0.1",
-  "private": true,
   "main": "build/index.js",
   "module": "build/index.mjs",
   "types": "build/index.d.ts",
@@ -27,6 +26,7 @@
     "copy-license": "node ../../scripts/pigment-license.mjs",
     "build": "tsup",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/pigment-react/**/*.test.{js,ts,tsx}'",
+    "test:update": "cd ../../ && cross-env NODE_ENV=test UPDATE_FIXTURES=true mocha 'packages/pigment-react/**/*.test.{js,ts,tsx}'",
     "test:ci": "cd ../../ && cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov --report-dir=./coverage/pigment-react mocha 'packages/pigment-react/**/*.test.{js,ts,tsx}'",
     "typecheck": "tsc --noEmit -p ."
   },
@@ -61,6 +61,7 @@
     "@types/react": "^18.2.55",
     "@types/stylis": "^4.2.5",
     "chai": "^4.4.1",
+    "prettier": "^3.2.5",
     "react": "^18.2.0"
   },
   "peerDependencies": {

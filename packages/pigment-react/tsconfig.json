@@ -13,7 +13,8 @@
       "@mui/system/*": ["./packages/mui-system/src/*"],
       "@mui/utils": ["./packages/mui-utils/src"],
       "@mui/utils/*": ["./packages/mui-utils/src/*"]
-    }
+    },
+    "types": ["node", "mocha"]
   },
   "include": ["src/**/*.ts", "tests/**/*.ts"],
   "exclude": ["./tsup.config.ts"]
