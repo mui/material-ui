@@ -44,6 +44,55 @@ describe('<Button />', () => {
     expect(button).not.to.have.class(classes.containedSizeLarge);
   });
 
+  it('startIcon and endIcon should have icon class', () => {
+    const { getByRole } = render(
+      <Button startIcon={<span>start icon</span>} endIcon={<span>end icon</span>}>
+        Hello World
+      </Button>,
+    );
+    const button = getByRole('button');
+    const startIcon = button.querySelector(`.${classes.startIcon}`);
+    const endIcon = button.querySelector(`.${classes.endIcon}`);
+    expect(startIcon).to.have.class(classes.icon);
+    expect(endIcon).to.have.class(classes.icon);
+  });
+
+  it('should add the appropriate color class to root element based on color prop', () => {
+    const { getByTestId } = render(
+      <React.Fragment>
+        <Button color="inherit" data-testid="color-inherit">
+          Hello World
+        </Button>
+        <Button color="primary" data-testid="color-primary">
+          Hello World
+        </Button>
+        <Button color="secondary" data-testid="color-secondary">
+          Hello World
+        </Button>
+        <Button color="success" data-testid="color-success">
+          Hello World
+        </Button>
+        <Button color="error" data-testid="color-error">
+          Hello World
+        </Button>
+        <Button color="info" data-testid="color-info">
+          Hello World
+        </Button>
+        <Button color="warning" data-testid="color-warning">
+          Hello World
+        </Button>
+      </React.Fragment>,
+    );
+
+    expect(getByTestId('color-inherit')).to.have.class(classes.colorInherit);
+    expect(getByTestId('color-primary')).to.have.class(classes.colorPrimary);
+    expect(getByTestId('color-secondary')).to.have.class(classes.colorSecondary);
+    expect(getByTestId('color-success')).to.have.class(classes.colorSuccess);
+    expect(getByTestId('color-error')).to.have.class(classes.colorError);
+    expect(getByTestId('color-info')).to.have.class(classes.colorInfo);
+    expect(getByTestId('color-warning')).to.have.class(classes.colorWarning);
+  });
+
   it('can render a text primary button', () => {
     const { getByRole } = render(<Button color="primary">Hello World</Button>);
     const button = getByRole('button');

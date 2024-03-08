@@ -122,6 +122,9 @@ interface PropertiesTableProps {
 
 export default function PropertiesTable(props: PropertiesTableProps) {
   const { properties } = props;
+
+  const hasDefaultColumn = properties.some((item) => item.propDefault !== undefined);
+
   const t = useTranslate();
   return (
     <StyledTableContainer>
@@ -130,7 +133,7 @@ export default function PropertiesTable(props: PropertiesTableProps) {
           <tr>
             <th>Name</th>
             <th>Type</th>
-            <th>Default</th>
+            {hasDefaultColumn && <th>Default</th>}
             <th>Description</th>
           </tr>
         </thead>
@@ -144,6 +147,8 @@ export default function PropertiesTable(props: PropertiesTableProps) {
               requiresRef,
               isOptional,
               isRequired,
+              isProPlan,
+              isPremiumPlan,
               isDeprecated,
               hooksParameters,
               hooksReturnValue,
@@ -161,10 +166,20 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                 key={propName}
                 id={getHash({ componentName, propName, hooksParameters, hooksReturnValue })}
               >
-                <td className="MuiApi-table-item-title">
+                <td className="MuiApi-table-item-title algolia-lvl3">
                   {propName}
                   {isRequired ? '*' : ''}
                   {isOptional ? '?' : ''}
+                  {isProPlan && (
+                    <a href="/x/introduction/licensing/#pro-plan">
+                      <span className="plan-pro" />
+                    </a>
+                  )}
+                  {isPremiumPlan && (
+                    <a href="/x/introduction/licensing/#premium-plan">
+                      <span className="plan-premium" />
+                    </a>
+                  )}
                 </td>
                 <td className="type-column">
                   {
@@ -176,14 +191,16 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                     />
                   }
                 </td>
-                <td className="default-column">
-                  {propDefault ? (
-                    <span className="MuiApi-table-item-default">{propDefault}</span>
-                  ) : (
-                    '-'
-                  )}
-                </td>
-                <td className="MuiPropTable-description-column">
+                {hasDefaultColumn && (
+                  <td className="default-column">
+                    {propDefault ? (
+                      <span className="MuiApi-table-item-default">{propDefault}</span>
+                    ) : (
+                      '-'
+                    )}
+                  </td>
+                )}
+                <td className="MuiPropTable-description-column algolia-content">
                   {description && <PropDescription description={description} />}
                   {seeMoreDescription && (
                     <p
