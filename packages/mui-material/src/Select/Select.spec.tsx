@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Select, { SelectChangeEvent, SelectProps } from '@mui/material/Select';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { createTheme } from '@mui/material/styles';
 
