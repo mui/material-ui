@@ -65,6 +65,22 @@ declare module '@mui/material/Chip' {
   }
 }
 
+declare module '@mui/material/SvgIcon' {
+  interface SvgIconPropsColorOverrides {
+    danger: true;
+  }
+  interface SvgIconPropsSizeOverrides {
+    xs: true;
+    sm: true;
+    md: true;
+    lg: true;
+    xl: true;
+    xl2: true;
+    xl3: true;
+    xl4: true;
+  }
+}
+
 // TODO: enable this once types conflict is fixed
 // declare module '@mui/material/Button' {
 //   interface ButtonPropsVariantOverrides {
