@@ -1,4 +1,4 @@
-import { styled } from '@pigmentcss/react';
+import { styled } from '@pigment-css/react';
 
 export function Component() {
   return null;

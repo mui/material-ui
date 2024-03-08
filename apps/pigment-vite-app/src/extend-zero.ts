@@ -1,6 +1,6 @@
 import type { experimental_extendTheme } from '@mui/material/styles';
 
-declare module '@pigmentcss/react/theme' {
+declare module '@pigment-css/react/theme' {
   interface ThemeArgs {
     theme: ReturnType<typeof experimental_extendTheme> & {
       applyDarkStyles<T>(obj: T): Record<string, T>;

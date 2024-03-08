@@ -9,7 +9,7 @@
     "clean": "rimraf .next"
   },
   "dependencies": {
-    "@pigmentcss/react": "file:../../packages/pigment-react",
+    "@pigment-css/react": "file:../../packages/pigment-react",
     "@mui/utils": "file:../../packages/mui-utils/build",
     "@mui/base": "file:../../packages/mui-base/build",
     "@mui/material": "file:../../packages/mui-material/build",
@@ -23,8 +23,8 @@
     "next": "latest"
   },
   "devDependencies": {
-    "@pigmentcss/unplugin": "file:../../packages/pigment-unplugin",
-    "@pigmentcss/nextjs-plugin": "file:../../packages/pigment-nextjs-plugin",
+    "@pigment-css/unplugin": "file:../../packages/pigment-unplugin",
+    "@pigment-css/nextjs-plugin": "file:../../packages/pigment-nextjs-plugin",
     "@types/node": "^20.5.7",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
