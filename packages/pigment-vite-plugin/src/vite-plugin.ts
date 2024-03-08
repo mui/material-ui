@@ -20,7 +20,7 @@ import {
   type PluginOptions,
   type IFileReporterOptions,
 } from '@wyw-in-js/transform';
-import { type PluginCustomOptions } from '@pigmentcss/react/utils';
+import { type PluginCustomOptions } from '@pigment-css/react/utils';
 
 export type VitePluginOptions = {
   debug?: IFileReporterOptions | false | null | undefined;

@@ -20,7 +20,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-If you see and error like package `@pigmentcss/react` not found, add it as a peer-dependency in `@mui/material`'s `package.json` file and run `pnpm build` and `pnpm install` again. Make sure to not push this change to git.
+If you see and error like package `@pigment-css/react` not found, add it as a peer-dependency in `@mui/material`'s `package.json` file and run `pnpm build` and `pnpm install` again. Make sure to not push this change to git.
 
 ### Note
 

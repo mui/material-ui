@@ -20,7 +20,7 @@ import {
   generateThemeTokens,
   extendTheme,
   type Theme as BaseTheme,
-} from '@pigmentcss/react/utils';
+} from '@pigment-css/react/utils';
 
 type NextMeta = {
   type: 'next';
