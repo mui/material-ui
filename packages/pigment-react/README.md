@@ -37,17 +37,6 @@ Pigment CSS is built on top of [WyW-in-JS](https://wyw-in-js.dev/), enabling us 
 
 ### Next.js
 
-#### Starter template
-
-Use the following commands to create a new Next.js project with Pigment CSS set up:
-
-```bash
-curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/pigmentcss-nextjs
-cd pigmentcss-nextjs
-```
-
-#### Manual installation
-
 ```bash
 npm install @pigment-css/react
 npm install --save-dev @pigment-css/nextjs-plugin
@@ -64,17 +53,6 @@ module.exports = withPigment({
 ```
 
 ### Vite
-
-#### Starter template
-
-Use the following commands to create a new Vite project with Pigment CSS set up:
-
-```bash
-curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/pigmentcss-vite
-cd pigmentcss-vite
-```
-
-#### Manual installation
 
 ```bash
 npm install @pigment-css/react
@@ -523,7 +501,7 @@ declare module '@pigment-css/react/theme' {
 
 Emotion and styled-components are runtime CSS-in-JS libraries. What you write in your styles is what you get in the final bundle, which means the styles can be as dynamic as you want with bundle size and performance overhead trade-offs.
 
-On the other hand, Pigment CSS, as a zero-runtime library, extracts CSS at build time and replaces the JS code with hashed class names and some CSS variables. This means that it has to know all of the styles to be extracted ahead of time, so there are rules and limitations that you need to be aware of when using JavaScript callbacks or variables in Pigment CSS's APIs.
+On the other hand, Pigment CSS extracts CSS at build time and replaces the JS code with hashed class names and some CSS variables. This means that it has to know all of the styles to be extracted ahead of time, so there are rules and limitations that you need to be aware of when using JavaScript callbacks or variables in Pigment CSS's APIs.
 
 Here are some common patterns and how to achieve them with Pigment CSS:
 
