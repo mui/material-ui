@@ -4,8 +4,8 @@ Pigment CSS is a zero-runtime CSS-in-JS library that extracts the colocated styl
 
 - [Getting started](#getting-started)
   - [Why this project exists?](#why-choose-pigment-css)
-  - [Next.js](#nextjs)
-  - [Vite](#vite)
+  - [Next.js](#nextjs-starter-template)
+  - [Vite](#vite-starter-template)
 - [Basic usage](#basic-usage)
   - [Creating styles](#creating-styles)
   - [Creating components](#creating-components)
@@ -35,9 +35,7 @@ Pigment CSS addresses the needs of the modern React developer by providing a zer
 Compared to its predecessors, Pigment CSS offers improved DX and runtime performance (though at the cost of increased build time) while also being compatible with React Server Components.
 Pigment CSS is built on top of [WyW-in-JS](https://wyw-in-js.dev/), enabling us to provide the smoothest possible experience for Material UI users when migrating from Emotion in v5 to Pigment in v6.
 
-### Next.js
-
-#### Starter template
+### Next.js - Starter template
 
 Use the following commands to create a new Next.js project with Pigment CSS set up:
 
@@ -83,9 +81,7 @@ Finally, import the stylesheet in the root `layout.tsx` file:
  }
 ```
 
-### Vite
-
-#### Starter template
+### Vite - Starter template
 
 Use the following commands to create a new Vite project with Pigment CSS set up:
 
@@ -134,7 +130,7 @@ Finally, import the stylesheet in the root `main.tsx` file:
 
 ## Basic usage
 
-> You must configure Pigment CSS with [Next.js](#nextjs) or [Vite](#vite) first.
+**You must configure Pigment CSS with [Next.js](#nextjs) or [Vite](#vite) first.**
 
 ### Creating styles
 
@@ -371,7 +367,7 @@ const Heading = styled('h1')<{ isError?: boolean }>({
 Use the `keyframes` API to create reusable [animation keyframes](https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes):
 
 ```js
-import { keyframes } from '@mui/zero-runtime';
+import { keyframes } from '@pigment-css/react';
 
 const fadeIn = keyframes`
   from {
@@ -390,7 +386,7 @@ function Example1() {
 The call to the `keyframes` function will be replaced with a unique string that represents the CSS animation name. It can be used with `css` or `styled` too.
 
 ```js
-import { css, styled, keyframes } from '@mui/zero-runtime';
+import { css, styled, keyframes } from '@pigment-css/react';
 
 const fadeIn = keyframes(...);
 
