@@ -1,9 +1,5 @@
 import path from 'node:path';
-import { expect } from 'chai';
-import { runTransformation } from '../testUtils';
-
-const CUSTOM_ERROR =
-  'The file contents have changed. Run "test:update" command to update the file if this is expected.';
+import { runTransformation, expect } from '../testUtils';
 
 describe('Pigment CSS - keyframes', () => {
   it('basics', async () => {
@@ -11,7 +7,7 @@ describe('Pigment CSS - keyframes', () => {
       path.join(__dirname, 'fixtures/keyframes.input.js'),
     );
 
-    expect(output.js, CUSTOM_ERROR).to.equal(fixture.js);
-    expect(output.css, CUSTOM_ERROR).to.equal(fixture.css);
+    expect(output.js).to.equal(fixture.js);
+    expect(output.css).to.equal(fixture.css);
   });
 });

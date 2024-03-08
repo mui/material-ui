@@ -1,5 +1,6 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
+import { expect as chaiExpect } from 'chai';
 import { asyncResolveFallback } from '@wyw-in-js/shared';
 import { TransformCacheCollection, transform, createFileReporter } from '@wyw-in-js/transform';
 import { preprocessor } from '@pigment-css/react/utils';
@@ -81,4 +82,10 @@ export async function runTransformation(
       css: outputCssContent,
     },
   };
+}
+
+export function expect(val: any): ReturnType<typeof chaiExpect> {
+  const CUSTOM_ERROR =
+    'The file contents have changed. Run "test:update" command to update the file if this is expected.';
+  return chaiExpect(val, CUSTOM_ERROR);
 }
