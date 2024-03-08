@@ -15,6 +15,7 @@ export default function transformer(file, api, options) {
     const index = elementPath.node.openingElement.attributes.findIndex(
       (attr) => attr.type === 'JSXAttribute' && attr.name.name === 'TransitionComponent',
     );
+
     if (index !== -1) {
       const removed = elementPath.node.openingElement.attributes.splice(index, 1);
       let hasNode = false;
@@ -28,6 +29,7 @@ export default function transformer(file, api, options) {
           });
         }
       });
+
       if (!hasNode) {
         appendAttribute(j, {
           target: elementPath.node,
@@ -42,13 +44,43 @@ export default function transformer(file, api, options) {
 
   root.find(j.ObjectProperty, { key: { name: 'TransitionComponent' } }).forEach((path) => {
     if (path.parent?.parent?.parent?.parent?.node.key?.name === 'MuiBackdrop') {
-      path.replace(
-        j.property(
-          'init',
-          j.identifier('slots'),
-          j.objectExpression([j.objectProperty(j.identifier('transition'), path.node.value)]),
-        ),
+      const { properties: defaultPropsProperties } = path.parent.value;
+
+      const existingSlots = defaultPropsProperties.find((prop) => prop.key.name === 'slots');
+      const slots = existingSlots
+        ? existingSlots.value.properties.reduce((acc, prop) => {
+            return { ...acc, [prop.key.name]: prop.value };
+          }, {})
+        : {};
+
+      const transitionComponent =
+        defaultPropsProperties.find((prop) => prop.key.name === 'TransitionComponent') ?? {};
+      const transition = transitionComponent
+        ? { [transitionComponent.key.name]: transitionComponent.value }
+        : {};
+
+      const updatedSlots = j.objectExpression(
+        Object.entries({
+          ...transition,
+          ...slots,
+        }).map(([slot, value]) => {
+          return j.objectProperty(j.identifier(slot), value);
+        }),
       );
+
+      if (existingSlots) {
+        existingSlots.value = updatedSlots;
+      } else {
+        path.replace(
+          j.property(
+            'init',
+            j.identifier('slots'),
+            j.objectExpression([j.objectProperty(j.identifier('transition'), path.node.value)]),
+          ),
+        );
+      }
+
+      path.prune();
     }
   });
 

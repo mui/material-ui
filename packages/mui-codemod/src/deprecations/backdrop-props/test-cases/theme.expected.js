@@ -2,7 +2,8 @@ fn({
   MuiBackdrop: {
     defaultProps: {
       slots: {
-        transition: CustomTransition
+        TransitionComponent: CustomTransition,
+        root: 'div'
       }
     },
   },
