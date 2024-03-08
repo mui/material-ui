@@ -32,8 +32,11 @@ export async function runTransformation(
       configFile: false,
       babelrc: false,
     },
-    tagResolver(_source: string, tag: string) {
-      return require.resolve(`../exports/${tag}`);
+    tagResolver(source: string, tag: string) {
+      if (source === '@pigment-css/react') {
+        return require.resolve(`../exports/${tag}`);
+      }
+      return null;
     },
   };
   const result = await transform(

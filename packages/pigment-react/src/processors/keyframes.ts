@@ -1,4 +1,4 @@
-import type { Expression, TemplateElement } from '@babel/types';
+import type { Expression } from '@babel/types';
 import type {
   CallParam,
   TemplateParam,
@@ -7,7 +7,7 @@ import type {
   ValueCache,
 } from '@wyw-in-js/processor-utils';
 import { serializeStyles, Interpolation } from '@emotion/serialize';
-import { type Replacements, type Rules, ValueType, type ExpressionValue } from '@wyw-in-js/shared';
+import { type Replacements, type Rules, ValueType } from '@wyw-in-js/shared';
 import type { CSSInterpolation } from '@emotion/css';
 import { validateParams } from '@wyw-in-js/processor-utils';
 import BaseProcessor from './base-processor';
@@ -34,27 +34,13 @@ export class KeyframesProcessor extends BaseProcessor {
     );
 
     const [, callParams] = params;
-    if (callParams[0] === 'call') {
-      this.dependencies.push(callParams[1]);
+    const [, ...callParamsRest] = callParams;
 
-      const [firstArg, ...restArgs] = callParams.slice(1).flat() as (
-        | ExpressionValue
-        | TemplateElement
-      )[];
-      if ('kind' in firstArg && firstArg.kind === ValueType.LAZY) {
-        restArgs.forEach((arg) => {
-          if ('kind' in arg) {
-            this.dependencies.push(arg);
-          }
-        });
+    callParamsRest.flat().forEach((item) => {
+      if ('kind' in item) {
+        this.dependencies.push(item);
       }
-    } else if (callParams[0] === 'template') {
-      callParams[1].forEach((element) => {
-        if ('kind' in element && element.kind !== ValueType.CONST) {
-          this.dependencies.push(element);
-        }
-      });
-    }
+    });
     this.callParam = callParams;
   }
 
@@ -69,7 +55,7 @@ export class KeyframesProcessor extends BaseProcessor {
       this.handleTemplate(this.callParam, values);
     } else if (isTaggedTemplateCall(callArgs, values)) {
       const { themeArgs } = this.options as IOptions;
-      this.generateArtifacts(`${resolveTaggedTemplate(callArgs, values, themeArgs)}`);
+      this.generateArtifacts([resolveTaggedTemplate(callArgs, values, themeArgs)]);
     } else {
       this.handleCall(this.callParam, values);
     }
@@ -116,7 +102,9 @@ export class KeyframesProcessor extends BaseProcessor {
 
   generateArtifacts(styleObjOrTaggged: CSSInterpolation | string[], ...args: Primitive[]) {
     const { styles } = serializeStyles(
-      [styleObjOrTaggged as Interpolation<{}>, args],
+      args.length > 0
+        ? [styleObjOrTaggged as Interpolation<{}>, ...args]
+        : [styleObjOrTaggged as Interpolation<{}>],
       cache.registered,
     );
     const cssText = `@keyframes {${styles}}`;

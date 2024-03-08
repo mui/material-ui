@@ -4,5 +4,5 @@ export const TouchRippleRipple = /*#__PURE__*/ _styled('span', {
   name: 'MuiTouchRipple',
   slot: 'Ripple',
 })({
-  classes: ['t7h1c7e'],
+  classes: ['t19h7u0c'],
 });

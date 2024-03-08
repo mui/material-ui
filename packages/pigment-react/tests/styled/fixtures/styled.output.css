@@ -7,22 +7,18 @@
   }
 }
 .c1vtarpi {
-  color: red;
+  color: #ff5252;
   animation: r1419f2q 2s ease-out 0s infinite;
 }
-.s1sjy0ja {
-  display: none;
-  position: absolute;
-  border-radius: inherit;
-  background-color: currentColor;
-  opacity: 0.38;
-  font-size: 3rem;
+.c1sjy0ja {
+  color: red;
 }
-.s1sjy0ja-1 {
-  font-size: 3rem;
+.c1sjy0ja:has(.foo) {
+  color: blue;
 }
-.s6hrafw {
-  display: block;
-  opacity: 0.38;
-  font-size: 3rem;
+.c6hrafw {
+  color: red;
+}
+.c6hrafw:has(.foo) {
+  color: blue;
 }
