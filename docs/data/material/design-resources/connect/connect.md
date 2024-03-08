@@ -4,8 +4,8 @@
 
 ## Introduction
 
-Connect is a Figma plugin that lets you generate a theme from the Material UI Design kit for Figma.
-You can customize both design tokens and components, generate a theme JSON, and see your changes from an embedded Storybook instance.
+Connect is a Figma plugin that lets you generate a theme from the [Material UI Design kit for Figma](https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x).
+You can customize both design tokens and components, export a JSON file with the changes to your theme, and also see them through an embedded Storybook instance.
 
 :::warning
 The plugin is in beta and doesn't currently support customization to all Material UI components.
@@ -33,23 +33,24 @@ Once you've installed it, go to your copy of the Material UI design kit, click o
 
 ## Customizing design tokens
 
-Design tokens consist of the styles that are defined through Figma's "local variables" and "local styles" features.
+Design tokens consist of the styles that are defined through Figma's "Local variables" and "Local styles" features.
 
 ### Existing tokens
 
-The Material UI design kit comes fully loaded with design tokens that map out to the React library's default theme.
+The Material UI design kit comes fully loaded with design tokens that map out to [the React library's default theme](/material-ui/customization/default-theme/).
 Connect can read all of the existing tokens in the theme.
 
 <img src="/static/material-ui/design-resources/connect-variables.png" style="width: 814px;" alt="A screenshot of Figma showcasing the locals variables menu, which is where all of the design tokens are stored and where you'd go to add new ones." width="1628" height="400" />
 
-To customize them, open the Local variables modal or one text style or shadow in the Local styles panel, and change their values.
+To customize them, using the Local variables route as an example, open the modal by clicking on the filter icon, as shown above.
+Tweak any of the variables available there as you see fit.
 Then, open the plugin and click on "Generate theme".
-You should be able to see the modified tokens on the code and the Storybook preview tab.
+After a few seconds, you should be able to see the updated theme, with your customizations, in the code editor.
 
 ### Adding new tokens
 
-Adding new tokens to the existing category of tokens supported (such as colors, shadows, typography, etc.) is also possible.
-Ensure you add the new ones within the corresponding category and click "Generate theme" again to see them in the code and Storybook.
+Adding new tokens (such as new colors, shadows, typography, etc.) to the existing list is also possible.
+Ensure you add the new ones within the corresponding category and click "Generate theme" again to see them in the code editor tab.
 
 ## Customizing the components
 
