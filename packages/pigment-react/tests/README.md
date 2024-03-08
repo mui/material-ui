@@ -1,3 +1,5 @@
+# Pigment CSS testing
+
 ## Folder structure
 
 - `tests` is the root folder for all tests
