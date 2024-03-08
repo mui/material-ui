@@ -10,9 +10,9 @@ const Link = styled('a', { shouldForwardProp: (prop) => prop !== 'outlined' })<{
 }>(({ theme }) => ({
   fontSize: '1rem',
   background: 'rgba(0 0 0 / 0.04)',
-  padding: '0.5rem 1rem',
+  padding: '0.8rem 1rem',
   letterSpacing: '1px',
-  borderRadius: '4px',
+  borderRadius: '8px',
   textAlign: 'center',
   ...theme.applyStyles('dark', {
     background: 'rgba(255 255 255 / 0.1)',
@@ -47,6 +47,7 @@ const Bubble = styled('span')({
 function randomBetween(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
 function generateBubbleVars() {
   return `
     --x: ${randomBetween(10, 90)}%;
@@ -77,8 +78,8 @@ export default function Home() {
       <h1
         className={`
         ${css(({ theme }) => ({
-          fontFamily: 'Kalnia, sans-serif',
-          fontSize: 'clamp(3rem, 1.9503rem + 4.4789vw, 6.25rem)',
+          fontFamily: 'system-ui, sans-serif',
+          fontSize: '4rem',
           fontWeight: 500,
           textAlign: 'center',
           position: 'relative',
@@ -158,31 +159,26 @@ export default function Home() {
       </h1>
       <div
         className={css({
-          fontFamily: 'Josefin Sans, sans-serif',
+          fontFamily: 'system-ui, sans-serif',
           letterSpacing: '2px',
-          fontSize: 'clamp(0.75rem, 0.5885rem + 0.6891vw, 1.25rem)',
-          textTransform: 'uppercase',
-          fontWeight: 500,
-          opacity: 0.5,
+          opacity: 0.6,
           lineHeight: 2,
           textAlign: 'center',
           textWrap: 'balance',
         })}
       >
-        CSS-JS library with static extraction
+        CSS-in-JS library with static extraction
       </div>
-
       <div
         className={css({
           display: 'flex',
           flexWrap: 'wrap',
           gap: '1rem',
-          marginTop: '3rem',
-          '& > *': { flex: 'auto' },
+          marginTop: '2rem',
         })}
       >
         <Link
-          href="https://github.com/mui/material-ui/blob/master/packages/zero-runtime/README.md"
+          href="https://github.com/mui/material-ui/blob/master/packages/pigment-react/README.md"
           target="_blank"
           rel="noopener noreferrer"
         >
