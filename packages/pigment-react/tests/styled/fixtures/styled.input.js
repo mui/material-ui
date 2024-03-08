@@ -1,4 +1,4 @@
-import { styled, keyframes, css } from '@pigment-css/react';
+import { styled, keyframes } from '@pigment-css/react';
 
 const rotateKeyframe = keyframes({
   from: {
@@ -13,11 +13,6 @@ const Component = styled.div(({ theme }) => ({
   color: theme.palette.primary.main,
   animation: `${rotateKeyframe} 2s ease-out 0s infinite`,
 }));
-
-const cls1 = css`
-  color: ${({ theme }) => theme.palette.primary.main};
-  font-size: ${({ theme }) => theme.size.font.h1};
-`;
 
 const SliderRail = styled('span', {
   name: 'MuiSlider',
