@@ -1,6 +1,6 @@
 # Pigment CSS - Next.js App Router with TypeScript example project
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped using [`create-next-app`](https://github.com/vercel/next.js/tree/HEAD/packages/create-next-app), with TypeScript and MUI's zero-runtime CSS-in-JS installed.
+This is a [Next.js](https://nextjs.org/) project bootstrapped using [`create-next-app`](https://github.com/vercel/next.js/tree/HEAD/packages/create-next-app), with TypeScript and Pigment CSS, a zero-runtime CSS-in-JS library, installed.
 
 ## How to use
 

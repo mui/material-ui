@@ -1,9 +1,5 @@
 import * as React from 'react';
-import { Kalnia, Josefin_Sans } from 'next/font/google';
 import { styled, css, keyframes } from '@pigment-css/react';
-
-const kalnia = Kalnia({ subsets: ['latin'] });
-const josefin = Josefin_Sans({ subsets: ['latin'] });
 
 const scale = keyframes({
   to: { scale: 'var(--s2)' },
@@ -14,9 +10,9 @@ const Link = styled('a', { shouldForwardProp: (prop) => prop !== 'outlined' })<{
 }>(({ theme }) => ({
   fontSize: '1rem',
   background: 'rgba(0 0 0 / 0.04)',
-  padding: '0.5rem 1rem',
+  padding: '0.8rem 1rem',
   letterSpacing: '1px',
-  borderRadius: '4px',
+  borderRadius: '8px',
   textAlign: 'center',
   ...theme.applyStyles('dark', {
     background: 'rgba(255 255 255 / 0.1)',
@@ -76,9 +72,9 @@ export default function Home() {
     >
       <h1
         className={`
-        ${kalnia.className}
         ${css(({ theme }) => ({
-          fontSize: 'clamp(3rem, 1.9503rem + 4.4789vw, 6.25rem)',
+          fontFamily: 'system-ui, sans-serif',
+          fontSize: '4rem',
           fontWeight: 500,
           textAlign: 'center',
           position: 'relative',
@@ -158,11 +154,9 @@ export default function Home() {
       </h1>
       <div
         className={`
-          ${josefin.className}
           ${css({
+            fontFamily: 'system-ui, sans-serif',
             letterSpacing: '2px',
-            fontSize: 'clamp(0.75rem, 0.5885rem + 0.6891vw, 1.25rem)',
-            textTransform: 'uppercase',
             fontWeight: 500,
             opacity: 0.5,
             lineHeight: 2,
