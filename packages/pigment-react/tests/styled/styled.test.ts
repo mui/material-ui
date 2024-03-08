@@ -1,3 +1,4 @@
+import path from 'node:path';
 import { expect } from 'chai';
 import { runTransformation } from '../testUtils';
 
@@ -28,11 +29,14 @@ const CUSTOM_ERROR =
 
 describe('Pigment CSS - styled', () => {
   it('basics', async () => {
-    const { output, fixture } = await runTransformation('./fixtures/keyframes.input.js', {
-      themeArgs: {
-        theme,
+    const { output, fixture } = await runTransformation(
+      path.join(__dirname, 'fixtures/styled.input.js'),
+      {
+        themeArgs: {
+          theme,
+        },
       },
-    });
+    );
 
     expect(output.js, CUSTOM_ERROR).to.equal(fixture.js);
     expect(output.css, CUSTOM_ERROR).to.equal(fixture.css);

@@ -8,14 +8,14 @@ import * as prettier from 'prettier';
 const shouldUpdateOutput = process.env.UPDATE_FIXTURES === 'true';
 
 export async function runTransformation(
-  relativePath: string,
+  absolutePath: string,
   options?: { themeArgs?: { theme?: any } },
 ) {
   const cache = new TransformCacheCollection();
   const { emitter: eventEmitter } = createFileReporter(false);
-  const inputFilePath = path.join(__dirname, relativePath);
-  const outputFilePath = path.join(__dirname, relativePath.replace('.input.', '.output.'));
-  const outputCssFilePath = path.join(__dirname, relativePath.replace('.input.js', '.output.css'));
+  const inputFilePath = absolutePath;
+  const outputFilePath = absolutePath.replace('.input.', '.output.');
+  const outputCssFilePath = absolutePath.replace('.input.js', '.output.css');
 
   const inputContent = fs.readFileSync(inputFilePath, 'utf8');
   let outputContent = fs.existsSync(outputFilePath) ? fs.readFileSync(outputFilePath, 'utf8') : '';
