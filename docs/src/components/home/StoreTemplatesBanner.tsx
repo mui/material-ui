@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
+import { styled, alpha, useTheme } from '@mui/material/styles';
 import Box, { BoxProps } from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import LaunchRounded from '@mui/icons-material/LaunchRounded';
@@ -14,6 +14,16 @@ const transparent = 'rgba(255,255,255,0)';
 
 const Image = styled('img')(({ theme }) => ({
   display: 'block',
+  width: 200,
+  height: Math.round(200 / ratio),
+  [theme.breakpoints.up('sm')]: {
+    width: 300,
+    height: Math.round(300 / ratio),
+  },
+  [theme.breakpoints.up('md')]: {
+    width: 450,
+    height: Math.round(450 / ratio),
+  },
   border: '4px solid',
   borderColor: (theme.vars || theme).palette.grey[400],
   borderRadius: (theme.vars || theme).shape.borderRadius,
@@ -92,42 +102,42 @@ const StoreTemplateImage = React.forwardRef<
   HTMLImageElement,
   { brand: TemplateBrand } & Omit<JSX.IntrinsicElements['img'], 'ref'>
 >(function StoreTemplateImage({ brand, ...props }, ref) {
+  const brandTheme = useTheme();
   return (
     <Image
       ref={ref}
+      src={`/static/branding/store-templates/template-${
+        Object.keys(linkMapping).indexOf(brand) + 1
+      }light.jpg`}
+      srcSet={[200, 300, 450]
+        .map(
+          (width) =>
+            `/.netlify/images/?fit=cover&width=${width}&height=${Math.round(width / ratio)}&url=/static/branding/store-templates/template-${
+              Object.keys(linkMapping).indexOf(brand) + 1
+            }light.jpg ${width}w`,
+        )
+        .join(', ')}
+      sizes={[
+        { width: 450, breakPoint: brandTheme.breakpoints.up('md') },
+        { width: 300, breakPoint: brandTheme.breakpoints.up('sm') },
+        { width: 200, breakPoint: '' },
+      ]
+        .map(({ width, breakPoint }) => `${breakPoint.replace('@media', '')} ${width}px`)
+        .join(', ')}
       alt=""
       loading="lazy"
       sx={(theme) => ({
-        width: 200,
-        height: 200 / ratio,
-        content: `url(/.netlify/images/?fit=cover&width=200&height=${Math.floor(200 / ratio)}&url=/static/branding/store-templates/template-${
-          Object.keys(linkMapping).indexOf(brand) + 1
-        }light.jpg)`,
-        [theme.breakpoints.up('sm')]: {
-          width: 300,
-          height: 300 / ratio,
-          content: `url(/.netlify/images/?fit=cover&width=400&height=${Math.floor(400 / ratio)}&url=/static/branding/store-templates/template-${
-            Object.keys(linkMapping).indexOf(brand) + 1
-          }light.jpg)`,
-        },
-        [theme.breakpoints.up('md')]: {
-          width: 450,
-          height: 450 / ratio,
-          content: `url(/.netlify/images/?fit=cover&width=450&height=${Math.floor(450 / ratio)}&url=/static/branding/store-templates/template-${
-            Object.keys(linkMapping).indexOf(brand) + 1
-          }light.jpg)`,
-        },
         ...theme.applyDarkStyles({
-          content: `url(/.netlify/images/?fit=cover&width=200&height=${Math.floor(200 / ratio)}&url=/static/branding/store-templates/template-${
+          content: `url(/.netlify/images/?fit=cover&width=200&height=${Math.round(200 / ratio)}&url=/static/branding/store-templates/template-${
             Object.keys(linkMapping).indexOf(brand) + 1
           }dark.jpg)`,
           [theme.breakpoints.up('sm')]: {
-            content: `url(/.netlify/images/?fit=cover&width=400&height=${Math.floor(400 / ratio)}&url=/static/branding/store-templates/template-${
+            content: `url(/.netlify/images/?fit=cover&width=300&height=${Math.round(300 / ratio)}&url=/static/branding/store-templates/template-${
               Object.keys(linkMapping).indexOf(brand) + 1
             }dark.jpg)`,
           },
           [theme.breakpoints.up('md')]: {
-            content: `url(/.netlify/images/?fit=cover&width=450&height=${Math.floor(450 / ratio)}&url=/static/branding/store-templates/template-${
+            content: `url(/.netlify/images/?fit=cover&width=450&height=${Math.round(450 / ratio)}&url=/static/branding/store-templates/template-${
               Object.keys(linkMapping).indexOf(brand) + 1
             }dark.jpg)`,
           },
@@ -139,12 +149,26 @@ const StoreTemplateImage = React.forwardRef<
 });
 
 export function PrefetchStoreTemplateImages() {
+  const brandTheme = useTheme();
   function makeImg(mode: string, num: number) {
     return {
       loading: 'lazy' as const,
       width: '900',
-      height: '494',
-      src: `/static/branding/store-templates/template-${num}${mode}.jpg`,
+      height: Math.round(900 / ratio),
+      src: `/.netlify/images/?fit=cover&width=450&height=${Math.round(450 / ratio)}&url=/static/branding/store-templates/template-${num}${mode}.jpg`,
+      srcSet: [200, 300, 450]
+        .map(
+          (width) =>
+            `/.netlify/images/?fit=cover&width=${width}&height=${Math.round(width / ratio)}&url=/static/branding/store-templates/template-${num}${mode}.jpg ${width}w`,
+        )
+        .join(', '),
+      sizes: [
+        { width: 450, breakPoint: brandTheme.breakpoints.up('md') },
+        { width: 300, breakPoint: brandTheme.breakpoints.up('sm') },
+        { width: 200, breakPoint: '' },
+      ]
+        .map(({ width, breakPoint }) => `${breakPoint.replace('@media', '')} ${width}px`)
+        .join(', '),
     };
   }
   return (
@@ -162,8 +186,8 @@ export function PrefetchStoreTemplateImages() {
     >
       {[...Array(6)].map((_, index) => (
         <React.Fragment key={index}>
-          <img alt="" {...makeImg('light', index + 1)} />
-          <img alt="" {...makeImg('dark', index + 1)} />
+          <img alt="" {...makeImg(brandTheme.palette.mode, index + 1)} />
+          {/* <img alt="" {...makeImg('dark', index + 1)} /> */}
         </React.Fragment>
       ))}
     </Box>
