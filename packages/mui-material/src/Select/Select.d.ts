@@ -172,7 +172,7 @@ export interface OutlinedSelectProps extends Omit<OutlinedInputProps, 'value' | 
    * The variant to use.
    * @default 'outlined'
    */
-  variant: 'outlined';
+  variant?: 'outlined';
 }
 
 export type SelectVariants = 'outlined' | 'standard' | 'filled';

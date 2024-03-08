@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select, { SelectChangeEvent, SelectProps } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { createTheme } from '@mui/material/styles';
 
@@ -95,4 +95,49 @@ function genericValueTest() {
   <Select variant="standard" />;
   <Select variant="outlined" />;
   <Select />;
+
+  const defaultProps: SelectProps<number> = {};
+  const outlinedProps: SelectProps<number> = {
+    variant: 'outlined',
+  };
+  const filledProps: SelectProps<number> = {
+    variant: 'filled',
+  };
+  const standardProps: SelectProps<number> = {
+    variant: 'standard',
+  };
+
+  <Select {...defaultProps} />;
+  <Select {...outlinedProps} />;
+  <Select {...filledProps} />;
+  <Select {...standardProps} />;
+  <Select<number> {...outlinedProps} />;
+  <Select<number> {...defaultProps} />;
+  <Select<number, 'standard'> {...standardProps} />;
+  // @ts-expect-error variant type mismatch
+  <Select<number> {...filledProps} />;
+  // @ts-expect-error variant type mismatch
+  <Select<number, 'outlined'> {...filledProps} />;
+  // @ts-expect-error variant type mismatch
+  <Select<number, 'standard'> {...filledProps} />;
+
+  const rawDefaultProps: SelectProps = {};
+  const rawOutlinedProps: SelectProps = {
+    variant: 'outlined',
+  };
+  const rawFilledProps: SelectProps = {
+    variant: 'filled',
+  };
+
+  <Select {...rawDefaultProps} />;
+  <Select {...rawOutlinedProps} />;
+  <Select {...rawFilledProps} />;
+
+  // @ts-expect-error hiddenLabel is not present in outlined variant
+  <Select {...defaultProps} hiddenLabel />;
+  // @ts-expect-error hiddenLabel is not present in outlined variant
+  <Select {...outlinedProps} hiddenLabel />;
+  <Select {...filledProps} hiddenLabel />;
+  // @ts-expect-error hiddenLabel is not present in standard variant
+  <Select {...standardProps} hiddenLabel />;
 }
