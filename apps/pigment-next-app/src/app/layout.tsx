@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import '@pigmentcss/react/styles.css';
+import '@pigment-css/react/styles.css';
 import theme from './theme';
 
 import './globals.css';

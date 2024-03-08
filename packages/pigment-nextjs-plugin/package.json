@@ -1,5 +1,5 @@
 {
-  "name": "@pigmentcss/nextjs-plugin",
+  "name": "@pigment-css/nextjs-plugin",
   "version": "0.0.1",
   "main": "build/index.js",
   "module": "build/index.mjs",
@@ -28,7 +28,7 @@
     "typecheck": "tsc --noEmit -p ."
   },
   "dependencies": {
-    "@pigmentcss/unplugin": "workspace:^"
+    "@pigment-css/unplugin": "workspace:^"
   },
   "devDependencies": {
     "next": "^13.5.1"

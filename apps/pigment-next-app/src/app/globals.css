@@ -1,22 +1,26 @@
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
+@layer reset, mui;
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
+@layer reset {
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+  html,
+  body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    html {
+      color-scheme: dark;
+    }
   }
 }

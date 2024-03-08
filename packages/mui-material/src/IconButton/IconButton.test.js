@@ -70,11 +70,13 @@ describe('<IconButton />', () => {
 
       expect(container.firstChild).to.have.class(classes.edgeStart);
     });
+
     it('edge="end" should render the right class', () => {
       const { container } = render(<IconButton edge="end">book</IconButton>);
 
       expect(container.firstChild).to.have.class(classes.edgeEnd);
     });
+
     it('no edge should render the right class', () => {
       const { container } = render(<IconButton>book</IconButton>);
 

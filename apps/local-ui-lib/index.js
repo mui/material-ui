@@ -1,4 +1,4 @@
-import { keyframes, styled } from '@pigmentcss/react';
+import { keyframes, styled } from '@pigment-css/react';
 
 export const bounceAnim = keyframes({
   'from, 20%, 53%, 80%, to': {
