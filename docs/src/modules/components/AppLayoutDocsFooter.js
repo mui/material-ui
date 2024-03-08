@@ -41,7 +41,7 @@ const FooterLink = styled(Typography)(({ theme }) => {
     alignItems: 'center',
     gap: 4,
     fontWeight: (theme.vars || theme).typography.fontWeightSemiBold,
-    color: (theme.vars || theme).palette.primary.main,
+    color: (theme.vars || theme).palette.primary[600],
     '& > svg': { transition: '0.2s' },
     '&:hover > svg': { transform: 'translateX(2px)' },
     ...theme.applyDarkStyles({
@@ -396,7 +396,7 @@ export default function AppLayoutDocsFooter(props) {
           spacing={{ xs: 3, sm: 1 }}
         >
           <EditPage sourceLocation={location} />
-          <Stack direction="row" alignItems="center" spacing={1}>
+          <Stack direction="row" alignItems="center" spacing={1} useFlexGap>
             <Typography
               id="feedback-message"
               variant="body2"
@@ -511,6 +511,7 @@ export default function AppLayoutDocsFooter(props) {
             {prevPage !== null ? (
               <Button
                 size="small"
+                variant="text"
                 component={Link}
                 noLinkStyle
                 prefetch={false}
@@ -544,8 +545,8 @@ export default function AppLayoutDocsFooter(props) {
           alignItems="center"
           spacing={{ xs: 3, sm: 1 }}
         >
-          <Stack direction="row" alignItems="center" spacing={1.2} sx={{ flexGrow: 1 }}>
-            <Link href="https://mui.com/" aria-label="Go to homepage" sx={{ mb: 2 }}>
+          <Stack direction="row" alignItems="center" spacing={1.2} useFlexGap sx={{ flexGrow: 1 }}>
+            <Link href="https://mui.com/" aria-label="Go to homepage">
               <SvgMuiLogotype height={24} width={72} />
             </Link>
             <Typography color="grey.500" fontSize={13} sx={{ opacity: '70%' }}>
@@ -565,7 +566,7 @@ export default function AppLayoutDocsFooter(props) {
               </FooterLink>
             </Link>
           </Stack>
-          <Stack spacing={1} direction="row">
+          <Stack spacing={1} direction="row" useFlexGap>
             <IconButton
               target="_blank"
               rel="noopener noreferrer"

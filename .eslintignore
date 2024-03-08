@@ -23,7 +23,7 @@
 /packages/pigment-react/processors/
 /packages/pigment-react/exports/
 /packages/pigment-react/theme/
-/packages/pigment-react/tests/fixtures/
+/packages/pigment-react/tests/**/fixtures
 /packages/pigment-nextjs-plugin/loader.js
 # Ignore fixtures
 /packages-internal/scripts/typescript-to-proptypes/test/*/*

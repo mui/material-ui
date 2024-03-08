@@ -7,9 +7,9 @@ import { isHostComponent, useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
 import { useSlider, valueToPercent } from '@mui/base/useSlider';
 import { alpha, lighten, darken } from '@mui/system/colorManipulator';
+import { useRtl } from '@mui/system/RtlProvider';
 import useThemeProps from '../styles/useThemeProps';
 import styled, { slotShouldForwardProp } from '../styles/styled';
-import useTheme from '../styles/useTheme';
 import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import capitalize from '../utils/capitalize';
 import BaseSliderValueLabel from './SliderValueLabel';
@@ -404,8 +404,7 @@ const Forward = ({ children }) => children;
 const Slider = React.forwardRef(function Slider(inputProps, ref) {
   const props = useThemeProps({ props: inputProps, name: 'MuiSlider' });
 
-  const theme = useTheme();
-  const isRtl = theme.direction === 'rtl';
+  const isRtl = useRtl();
 
   const {
     'aria-label': ariaLabel,
