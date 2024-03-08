@@ -34,5 +34,5 @@ or:
 
 To learn more about this example:
 
-- [`@mui/zero-runtime` documentation](https://github.com/mui/material-ui/blob/master/packages/zero-runtime/README.md) - learn more about MUI's zero-runtime CSS-in-JS package.
-- [Next.js documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Pigment CSS documentation](https://github.com/mui/material-ui/blob/master/packages/pigment-react/README.md) - learn more about Pigment CSS features and APIs.
+- [Next.js documentation](https://nextjs.org/docs) - learn about Next.js features and APIs.

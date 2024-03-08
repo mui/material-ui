@@ -37,6 +37,17 @@ Pigment CSS is built on top of [WyW-in-JS](https://wyw-in-js.dev/), enabling us 
 
 ### Next.js
 
+#### Starter template
+
+Use the following commands to create a new Next.js project with Pigment CSS set up:
+
+```bash
+curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/pigment-css-nextjs-ts
+cd pigment-css-nextjs-ts
+```
+
+#### Manual installation
+
 ```bash
 npm install @pigment-css/react
 npm install --save-dev @pigment-css/nextjs-plugin
