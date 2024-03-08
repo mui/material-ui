@@ -8,6 +8,7 @@ describe('[Material UI] CssVarsProvider', () => {
   let originalMatchmedia;
   const { render } = createRenderer();
   const storage = {};
+
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
     // Create mocks of localStorage getItem and setItem functions
@@ -25,6 +26,7 @@ describe('[Material UI] CssVarsProvider', () => {
       removeListener: () => {},
     });
   });
+
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
   });
