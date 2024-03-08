@@ -85,7 +85,8 @@ async function transpileFile(tsxPath, project) {
 
     const transformOptions = { ...babelConfig, filename: tsxPath };
     const enableJSXPreview =
-      !tsxPath.includes(path.join('pages', 'premium-themes')) && !tsxPath.includes('templates');
+      !tsxPath.includes(path.join('pages', 'premium-themes')) &&
+      !tsxPath.includes(path.join('getting-started', 'templates'));
     if (enableJSXPreview) {
       transformOptions.plugins = transformOptions.plugins.concat([
         [
