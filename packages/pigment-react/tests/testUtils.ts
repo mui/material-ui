@@ -2,11 +2,21 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { expect as chaiExpect } from 'chai';
 import { asyncResolveFallback } from '@wyw-in-js/shared';
-import { TransformCacheCollection, transform, createFileReporter } from '@wyw-in-js/transform';
+import {
+  TransformCacheCollection,
+  transform,
+  createFileReporter,
+  type PluginOptions,
+} from '@wyw-in-js/transform';
 import { preprocessor } from '@pigment-css/react/utils';
 import * as prettier from 'prettier';
 
 const shouldUpdateOutput = process.env.UPDATE_FIXTURES === 'true';
+
+function resolveAliasPath(relativeToBabelConf: string) {
+  const resolvedPath = path.relative(process.cwd(), path.resolve(__dirname, relativeToBabelConf));
+  return `./${resolvedPath.replace('\\', '/')}`;
+}
 
 export async function runTransformation(
   absolutePath: string,
@@ -24,13 +34,32 @@ export async function runTransformation(
     ? fs.readFileSync(outputCssFilePath, 'utf8')
     : '';
 
-  const pluginOptions = {
+  const pluginOptions: Partial<PluginOptions> & { themeArgs: { theme?: unknown } } = {
     themeArgs: {
       theme: options?.themeArgs?.theme,
     },
     babelOptions: {
       configFile: false,
       babelrc: false,
+      presets: [
+        [
+          '@babel/preset-react',
+          {
+            runtime: 'automatic',
+          },
+        ],
+        '@babel/preset-typescript',
+      ],
+      plugins: [
+        [
+          'babel-plugin-module-resolver',
+          {
+            alias: {
+              '@mui/material': resolveAliasPath('../../mui-material/src'),
+            },
+          },
+        ],
+      ],
     },
     tagResolver(source: string, tag: string) {
       if (source === '@pigment-css/react') {
