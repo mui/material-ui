@@ -93,4 +93,6 @@ function genericValueTest() {
 
   <Select variant="filled" />;
   <Select variant="standard" />;
+  <Select variant="outlined" />;
+  <Select />;
 }
