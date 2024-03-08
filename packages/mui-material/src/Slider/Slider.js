@@ -9,7 +9,7 @@ import { useSlider, valueToPercent } from '@mui/base/useSlider';
 import { alpha, lighten, darken } from '@mui/system/colorManipulator';
 import { useRtl } from '@mui/system/RtlProvider';
 import { styled, createUseThemeProps } from '../zero-styled';
-import { slotShouldForwardProp } from '../styles/styled';
+import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import capitalize from '../utils/capitalize';
 import BaseSliderValueLabel from './SliderValueLabel';
