@@ -1,5 +1,6 @@
 import { CreateMUIStyled } from '@mui/system';
 import { Theme } from './createTheme';
+
 export { default as slotShouldForwardProp } from './slotShouldForwardProp';
 export { default as rootShouldForwardProp } from './rootShouldForwardProp';
 
