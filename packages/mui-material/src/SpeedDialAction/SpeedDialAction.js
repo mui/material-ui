@@ -91,6 +91,20 @@ const SpeedDialActionStaticTooltip = styled('span', {
       left: '100%',
       marginLeft: 8,
     }),
+    ...(ownerState.tooltipPlacement === 'top' && {
+      transformOrigin: '50% 100%',
+      bottom: '100%',
+      paddingLeft: 8,
+      paddingRight: 8,
+      marginBottom: 8,
+    }),
+    ...(ownerState.tooltipPlacement === 'bottom' && {
+      transformOrigin: '50% 0%',
+      top: '100%',
+      paddingLeft: 8,
+      paddingRight: 8,
+      marginTop: 8,
+    }),
   },
 }));
 
