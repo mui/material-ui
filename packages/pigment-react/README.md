@@ -65,7 +65,7 @@ Finally, import the stylesheet in the root `layout.tsx` file:
 
 ```diff
  import type { Metadata } from 'next';
-+import '@mui/zero-runtime/styles.css';
++import '@pigment-css/react/styles.css';
 
  export const metadata: Metadata = {
    title: 'Create Next App',
@@ -115,7 +115,7 @@ Finally, import the stylesheet in the root `main.tsx` file:
 ```diff
  import * as React from 'react';
  import { createRoot } from 'react-dom/client';
-+import '@mui/zero-runtime/styles.css';
++import '@pigment-css/react/styles.css';
  import App from './App';
 
  const rootElement = document.getElementById('root');
