@@ -331,7 +331,7 @@ All of the components that you create are also available as CSS selectors. For e
 
 ```jsx
 const Wrapper = styled.div({
-  [`& .${Heading}`]: {
+  [`& ${Heading}`]: {
     color: 'blue',
   },
 });
