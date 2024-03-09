@@ -480,7 +480,7 @@ function useLatest(value) {
 
 export default function SearchIcons() {
   const [keys, setKeys] = React.useState(null);
-  const [theme, setTheme] = useQueryParameterState('theme', 'Filled');
+  const [theme, setTheme] = useQueryParameterState('theme', 'All');
   const [selectedIcon, setSelectedIcon] = useQueryParameterState('selected', '');
   const [query, setQuery] = useQueryParameterState('query', '');
 
@@ -527,7 +527,7 @@ export default function SearchIcons() {
   const icons = React.useMemo(
     () =>
       (keys === null ? allIcons : keys.map((key) => allIconsMap[key])).filter(
-        (icon) => theme === icon.theme,
+        (icon) => theme === 'All' || theme === icon.theme,
       ),
     [theme, keys],
   );
@@ -544,7 +544,7 @@ export default function SearchIcons() {
             Filter the style
           </Typography>
           <RadioGroup>
-            {['Filled', 'Outlined', 'Rounded', 'Two tone', 'Sharp'].map(
+            {['All', 'Filled', 'Outlined', 'Rounded', 'Two tone', 'Sharp'].map(
               (currentTheme) => {
                 return (
                   <FormControlLabel
