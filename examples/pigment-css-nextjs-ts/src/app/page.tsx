@@ -71,8 +71,7 @@ export default function Home() {
       })}
     >
       <h1
-        className={`
-        ${css(({ theme }) => ({
+        className={`my-custom-class ${css(({ theme }) => ({
           fontFamily: 'system-ui, sans-serif',
           fontSize: '4rem',
           fontWeight: 500,
@@ -153,17 +152,15 @@ export default function Home() {
         </span>
       </h1>
       <div
-        className={`
-          ${css({
-            fontFamily: 'system-ui, sans-serif',
-            letterSpacing: '2px',
-            fontWeight: 500,
-            opacity: 0.5,
-            lineHeight: 2,
-            textAlign: 'center',
-            textWrap: 'balance',
-          })}
-        `}
+        className={css({
+          fontFamily: 'system-ui, sans-serif',
+          letterSpacing: '2px',
+          fontWeight: 500,
+          opacity: 0.5,
+          lineHeight: 2,
+          textAlign: 'center',
+          textWrap: 'balance',
+        })}
       >
         CSS-in-JS library with static extraction
       </div>
