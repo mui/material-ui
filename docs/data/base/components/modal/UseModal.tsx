@@ -7,6 +7,7 @@ import { FocusTrap } from '@mui/base/FocusTrap';
 import { Button } from '@mui/base/Button';
 import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
 import Fade from '@mui/material/Fade';
+import { ModalCloseReason } from '@mui/material';
 
 export default function UseModal() {
   const [open, setOpen] = React.useState(false);
@@ -50,7 +51,7 @@ interface ModalProps {
   disableScrollLock?: boolean;
   hideBackdrop?: boolean;
   keepMounted?: boolean;
-  onClose?: (event: {}, reason: 'backdropClick' | 'escapeKeyDown') => void;
+  onClose?: (event: {}, reason: ModalCloseReason) => void;
   onTransitionEnter?: () => void;
   onTransitionExited?: () => void;
   open: boolean;

@@ -1,3 +1,4 @@
+import { ModalCloseReason } from '@mui/material';
 import { PortalProps } from '../Portal';
 import { EventHandlers } from '../utils';
 
@@ -57,7 +58,7 @@ export type UseModalParameters = {
    * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
    */
   onClose?: {
-    bivarianceHack(event: {}, reason: 'backdropClick' | 'escapeKeyDown'): void;
+    bivarianceHack(event: {}, reason: ModalCloseReason): void;
   }['bivarianceHack'];
   onKeyDown?: React.KeyboardEventHandler;
   /**

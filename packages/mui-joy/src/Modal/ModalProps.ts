@@ -3,6 +3,7 @@ import { ModalOwnProps as BaseModalOwnProps } from '@mui/base/Modal';
 import { OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { ModalCloseReason } from '@mui/material';
 
 export type ModalSlot = 'root' | 'backdrop';
 
@@ -49,7 +50,7 @@ export type ModalOwnProps = Pick<
    * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`, `"closeClick"`.
    */
   onClose?: {
-    bivarianceHack(event: {}, reason: 'backdropClick' | 'escapeKeyDown' | 'closeClick'): void;
+    bivarianceHack(event: {}, reason: ModalCloseReason | 'closeClick'): void;
   }['bivarianceHack'];
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.

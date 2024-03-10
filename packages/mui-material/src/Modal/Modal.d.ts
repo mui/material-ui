@@ -14,6 +14,8 @@ export interface ModalOwnerState extends ModalProps {
   exited: boolean;
 }
 
+export type ModalCloseReason = 'backdropClick' | 'escapeKeyDown';
+
 export interface ModalSlots {
   /**
    * The component that renders the root.
@@ -164,7 +166,7 @@ export interface ModalOwnProps {
    * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
    */
   onClose?: {
-    bivarianceHack(event: {}, reason: 'backdropClick' | 'escapeKeyDown'): void;
+    bivarianceHack(event: {}, reason: ModalCloseReason): void;
   }['bivarianceHack'];
   /**
    * A function called when a transition enters.

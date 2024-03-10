@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Simplify } from '@mui/types';
+import { ModalCloseReason } from '@mui/material';
 import { PortalProps } from '../Portal';
 import { PolymorphicProps, SlotComponentProps } from '../utils';
 
@@ -91,7 +92,7 @@ export interface ModalOwnProps {
    * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
    */
   onClose?: {
-    bivarianceHack(event: {}, reason: 'backdropClick' | 'escapeKeyDown'): void;
+    bivarianceHack(event: {}, reason: ModalCloseReason): void;
   }['bivarianceHack'];
   /**
    * A function called when a transition enters.

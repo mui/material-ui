@@ -3,13 +3,15 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverrideProps } from '@mui/types';
 import { SlotComponentProps, MenuActions } from '@mui/base';
-import { InternalStandardProps as StandardProps } from '@mui/material';
+import { InternalStandardProps as StandardProps, ModalCloseReason } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import Popover, { PopoverProps } from '@mui/material/Popover';
 import { MenuListProps } from '@mui/material/MenuList';
 import { Theme } from '@mui/material/styles';
 import { TransitionProps } from '@mui/material/transitions/transition';
 import { MenuClasses } from './menuClasses';
+
+export type MenuCloseReason = ModalCloseReason | 'tabKeyDown';
 
 export interface MenuTypeMap<AdditionalProps = {}, RootComponent extends React.ElementType = 'ul'> {
   props: AdditionalProps &
@@ -59,7 +61,7 @@ export interface MenuTypeMap<AdditionalProps = {}, RootComponent extends React.E
        * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`, `"tabKeyDown"`.
        */
       onClose?: {
-        bivarianceHack(event: {}, reason: 'backdropClick' | 'escapeKeyDown' | 'tabKeyDown'): void;
+        bivarianceHack(event: {}, reason: MenuCloseReason): void;
       }['bivarianceHack'];
       /**
        * If `true`, the component is shown.
