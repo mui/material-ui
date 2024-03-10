@@ -8,7 +8,7 @@ We use GitHub issues as a bug and feature request tracker.
 
 If you think you've found a bug, or you have a new feature idea:
 
-1. Please start by [making sure it hasn't already been reported or fixed](https://github.com/mui/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed).
+1. Please start by [making sure it hasn't already been reported or fixed](https://github.com/mui/material-ui/issues?q=is%3Aopen+is%3Aclosed).
    You can search through existing issues and pull requests to see if someone has reported one similar to yours.
 2. Then, if no duplicates exist, [open an issue](https://github.com/mui/material-ui/issues/new/choose) in the Joy UI repository.
 

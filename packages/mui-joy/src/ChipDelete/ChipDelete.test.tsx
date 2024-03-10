@@ -74,6 +74,7 @@ describe('<ChipDelete />', () => {
       expect(getByRole('button')).to.have.class(classes.colorNeutral);
     });
   });
+
   describe('Chip onDelete', () => {
     it('should call onDelete function when backspace, enter or delete is pressed', () => {
       const handleDelete = spy();
