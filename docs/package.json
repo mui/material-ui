@@ -23,7 +23,7 @@
     "@babel/plugin-transform-object-assign": "^7.23.3",
     "@babel/runtime": "^7.23.9",
     "@babel/runtime-corejs2": "^7.23.9",
-    "@docsearch/react": "^3.5.2",
+    "@docsearch/react": "^3.6.0",
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.4",
     "@emotion/server": "^11.11.0",
