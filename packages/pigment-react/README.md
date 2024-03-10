@@ -24,7 +24,8 @@ Pigment CSS is a zero-runtime CSS-in-JS library that extracts the colocated sty
 
 ## Getting started
 
-Pigment CSS supports Next.js and Vite with support for more bundlers in future. You must install the corresponding plugin, as shown below.
+Pigment CSS supports Next.js and Vite with support for more bundlers in the future.
+You must install the corresponding plugin, as shown below.
 
 ### Why choose Pigment CSS
 
@@ -33,7 +34,7 @@ Thanks to recent advancements in CSS (like CSS variables and `color-mix()`), "tr
 Pigment CSS addresses the needs of the modern React developer by providing a zero-runtime CSS-in-JS styling solution as a successor to tools like Emotion and styled-components.
 
 Compared to its predecessors, Pigment CSS offers improved DX and runtime performance (though at the cost of increased build time) while also being compatible with React Server Components.
-Pigment CSS is built on top of [WyW-in-JS](https://wyw-in-js.dev/), enabling us to provide the smoothest possible experience for Material UI users when migrating from Emotion in v5 to Pigment in v6.
+Pigment CSS is built on top of [WyW-in-JS](https://wyw-in-js.dev/), enabling us to provide the smoothest possible experience for Material UI users when migrating from Emotion in v5 to Pigment CSS in v6.
 
 ### Start with Next.js
 
@@ -189,7 +190,7 @@ function App() {
 The Pigment CSS library differs from "standard" runtime CSS-in-JS libraries in a few ways:
 
 1. You never get direct access to props in your styled declarations. This is because prop values are only available at runtime, but the CSS is extracted at build time. See [Styling based on runtime values](#styling-based-on-runtime-values) for a workaround.
-2. Your styles must be declarative, and must account for all combinations of props that you want to style.
+2. Your styles must be declarative and must account for all combinations of props that you want to style.
 3. The theme lets you declare CSS tokens that become part of the CSS bundle after the build. Any other values and methods that it might have are only available during build time—not at runtime. This leads to smaller bundle sizes.
 
 #### Styling based on props
@@ -296,7 +297,7 @@ const Button = styled('button')({
 
 #### Styling based on runtime values
 
-> 💡 This approach is recommended when the value of a prop is **unknown** ahead of time or possibly unlimited values, e.g. styling based on the user's input.
+> 💡 This approach is recommended when the value of a prop is **unknown** ahead of time or possibly unlimited values, for example styling based on the user's input.
 
 Use a callback function as a value to create a dynamic style for the specific CSS property:
 
@@ -501,7 +502,7 @@ console.log(theme.vars.colors.primary); // 'var(--colors-primary)'
 
 Some tokens, especially color-related tokens, can have different values for different scenarios. For example in a daylight condition, the background color might be white, but in a dark condition, it might be black.
 
-The `extendTheme` utility lets you define theme with a special `colorSchemes` key:
+The `extendTheme` utility lets you define a theme with a special `colorSchemes` key:
 
 ```jsx
 extendTheme({
@@ -558,7 +559,8 @@ function App() {
 
 #### Styling based on color scheme
 
-The `extendTheme` utility attach a function called `applyStyles` to the theme object. It receives a color scheme as the first argument followed by a style object. It will return a proper CSS selector based on the theme configuration.
+The `extendTheme` utility attaches a function called `applyStyles` to the theme object. It receives a color scheme as the first argument followed by a style object.
+It will return a proper CSS selector based on the theme configuration.
 
 ```jsx
 const Heading = styled('h1')(({ theme }) => ({
