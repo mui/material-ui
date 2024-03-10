@@ -1,6 +1,6 @@
-# Pigment CSS
+# Pigment CSS
 
-Pigment CSS is a zero-runtime CSS-in-JS library that extracts the colocated styles to their own CSS files at build time.
+Pigment CSS is a zero-runtime CSS-in-JS library that extracts the colocated styles to their own CSS files at build time.
 
 - [Getting started](#getting-started)
   - [Why this project exists?](#why-choose-pigment-css)
@@ -24,20 +24,20 @@ Pigment CSS is a zero-runtime CSS-in-JS library that extracts the colocated styl
 
 ## Getting started
 
-Pigment CSS supports Next.js and Vite with support for more bundlers in future. You must install the corresponding plugin, as shown below.
+Pigment CSS supports Next.js and Vite with support for more bundlers in future. You must install the corresponding plugin, as shown below.
 
-### Why choose Pigment CSS
+### Why choose Pigment CSS
 
 Thanks to recent advancements in CSS (like CSS variables and `color-mix()`), "traditional" CSS-in-JS solutions that process styles at runtime are no longer required for unlocking features like color transformations and theme variables which are necessary for maintaining a sophisticated design system.
 
-Pigment CSS addresses the needs of the modern React developer by providing a zero-runtime CSS-in-JS styling solution as a successor to tools like Emotion and styled-components.
+Pigment CSS addresses the needs of the modern React developer by providing a zero-runtime CSS-in-JS styling solution as a successor to tools like Emotion and styled-components.
 
-Compared to its predecessors, Pigment CSS offers improved DX and runtime performance (though at the cost of increased build time) while also being compatible with React Server Components.
-Pigment CSS is built on top of [WyW-in-JS](https://wyw-in-js.dev/), enabling us to provide the smoothest possible experience for Material UI users when migrating from Emotion in v5 to Pigment in v6.
+Compared to its predecessors, Pigment CSS offers improved DX and runtime performance (though at the cost of increased build time) while also being compatible with React Server Components.
+Pigment CSS is built on top of [WyW-in-JS](https://wyw-in-js.dev/), enabling us to provide the smoothest possible experience for Material UI users when migrating from Emotion in v5 to Pigment in v6.
 
 ### Start with Next.js
 
-Use the following commands to create a new Next.js project with Pigment CSS set up:
+Use the following commands to create a new Next.js project with Pigment CSS set up:
 
 ```bash
 curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/pigment-css-nextjs-ts
@@ -83,7 +83,7 @@ Finally, import the stylesheet in the root `layout.tsx` file:
 
 ### Start with Vite
 
-Use the following commands to create a new Vite project with Pigment CSS set up:
+Use the following commands to create a new Vite project with Pigment CSS set up:
 
 ```bash
 curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/pigment-css-vite-ts
@@ -130,7 +130,7 @@ Finally, import the stylesheet in the root `main.tsx` file:
 
 ## Basic usage
 
-**You must configure Pigment CSS with [Next.js](#nextjs) or [Vite](#vite) first.**
+**You must configure Pigment CSS with [Next.js](#nextjs) or [Vite](#vite) first.**
 
 ### Creating styles
 
@@ -186,7 +186,7 @@ function App() {
 }
 ```
 
-The Pigment CSS library differs from "standard" runtime CSS-in-JS libraries in a few ways:
+The Pigment CSS library differs from "standard" runtime CSS-in-JS libraries in a few ways:
 
 1. You never get direct access to props in your styled declarations. This is because prop values are only available at runtime, but the CSS is extracted at build time. See [Styling based on runtime values](#styling-based-on-runtime-values) for a workaround.
 2. Your styles must be declarative, and must account for all combinations of props that you want to style.
@@ -306,7 +306,7 @@ const Heading = styled('h1')({
 });
 ```
 
-Pigment CSS will replace the callback with a CSS variable and inject the value through inline style. This makes it possible to create a static CSS file while still allowing dynamic styles.
+Pigment CSS will replace the callback with a CSS variable and inject the value through inline style. This makes it possible to create a static CSS file while still allowing dynamic styles.
 
 ```css
 .Heading_class_akjsdfb {
@@ -457,7 +457,7 @@ const Heading = styled('h1')(({ theme }) => ({
 
 #### CSS variables support
 
-Pigment CSS can generate CSS variables from the theme values when you wrap your theme with `extendTheme` utility. For example, in a `next.config.js` file:
+Pigment CSS can generate CSS variables from the theme values when you wrap your theme with `extendTheme` utility. For example, in a `next.config.js` file:
 
 ```js
 const { withPigment, extendTheme } = require('@pigment-css/nextjs-plugin');
@@ -618,9 +618,9 @@ declare module '@pigment-css/react/theme' {
 
 Emotion and styled-components are runtime CSS-in-JS libraries. What you write in your styles is what you get in the final bundle, which means the styles can be as dynamic as you want with bundle size and performance overhead trade-offs.
 
-On the other hand, Pigment CSS extracts CSS at build time and replaces the JS code with hashed class names and some CSS variables. This means that it has to know all of the styles to be extracted ahead of time, so there are rules and limitations that you need to be aware of when using JavaScript callbacks or variables in Pigment CSS's APIs.
+On the other hand, Pigment CSS extracts CSS at build time and replaces the JS code with hashed class names and some CSS variables. This means that it has to know all of the styles to be extracted ahead of time, so there are rules and limitations that you need to be aware of when using JavaScript callbacks or variables in Pigment CSS's APIs.
 
-Here are some common patterns and how to achieve them with Pigment CSS:
+Here are some common patterns and how to achieve them with Pigment CSS:
 
 1. **Fixed set of styles**
 
@@ -629,7 +629,7 @@ In Emotion or styled-components, you can use props to create styles conditionall
 ```js
 const Flex = styled('div')((props) => ({
   display: 'flex',
-  ...(props.vertical // ❌ Pigment CSS will throw an error
+  ...(props.vertical // ❌ Pigment CSS will throw an error
     ? {
         flexDirection: 'column',
         paddingBlock: '1rem',
@@ -640,7 +640,7 @@ const Flex = styled('div')((props) => ({
 }));
 ```
 
-But in Pigment CSS, you need to define all of the styles ahead of time using the `variants` key:
+But in Pigment CSS, you need to define all of the styles ahead of time using the `variants` key:
 
 ```js
 const Flex = styled('div')((props) => ({
@@ -691,7 +691,7 @@ function App() {
 }
 ```
 
-However, in Pigment CSS with the same code as above, all instances will have the same styles and won't change between renders because the styles are extracted at build time.
+However, in Pigment CSS with the same code as above, all instances will have the same styles and won't change between renders because the styles are extracted at build time.
 
 To achieve the same result, you need to move the dynamic logic to props and pass the value to CSS variables instead:
 
