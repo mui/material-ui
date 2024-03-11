@@ -28,3 +28,14 @@ fn({
     },
   },
 });
+
+fn({
+  MuiAlert: {
+    defaultProps: {
+      components: { CloseButton: ComponentsButton },
+      slots: { closeIcon: SlotsIcon, closeButton: SlotsButton },
+      componentsProps: { closeButton: componentsButtonProps, closeIcon: componentsIconProps },
+      slotProps: { closeIcon: slotsIconProps, closeButton: slotsButtonProps },
+    },
+  },
+});

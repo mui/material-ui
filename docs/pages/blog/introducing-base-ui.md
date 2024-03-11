@@ -91,7 +91,7 @@ You can track our progress in adding new components—and comment to influence o
 The `@mui/base` package is released as an alpha.
 This means the component APIs are subject to change—especially as we receive feedback from the community about room for improvement.
 However, we believe the library is solid enough at this point to start building design systems with it.
-In fact, we're using Base UI to create [Joy UI](/blog/first-look-at-joy/)—the next product we'll be launching in our line of Core component libraries that also includes Material UI.
+In fact, we're using Base UI to create [Joy UI](/blog/first-look-at-joy/)—the next product we'll be launching in our line of Core component libraries that also includes Material UI.
 In the future, Base UI will also be used as the foundation for Material UI components to provide a consistent developer experience across our entire suite of products.
 
 ## Feedback needed

@@ -13,7 +13,7 @@ unstyled: /base-ui/react-menu/
 
 ## Introduction
 
-Joy UI provides five menu-related components:
+Joy UI provides five menu-related components:
 
 - Menu Button - a button that opens a menu. It reuses the styles from [`Button`](/joy-ui/react-button/).
 - Menu - a listbox popup for wrapping the menu items which reuses the styles from [`List`](/joy-ui/react-list/).

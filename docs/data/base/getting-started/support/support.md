@@ -8,9 +8,9 @@ We use GitHub issues as a bug and feature request tracker.
 
 If you think you've found a bug, or you have a new feature idea:
 
-1. Please start by [making sure it hasn't already been reported or fixed](https://github.com/mui/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed).
+1. Please start by [making sure it hasn't already been reported or fixed](https://github.com/mui/base-ui/issues?q=is%3Aopen+is%3Aclosed).
    You can search through existing issues and pull requests to see if someone has reported one similar to yours.
-2. Then, if no duplicates exist, [open an issue](https://github.com/mui/material-ui/issues/new/choose) in the Base UI repository.
+2. Then, if no duplicates exist, [open an issue](https://github.com/mui/base-ui/issues/new/choose) in the Base UI repository.
 
 ### New issue guidelines
 
@@ -27,17 +27,22 @@ We require bug reports to be accompanied by a **minimal reproduction**.
 It significantly increases the odds of fixing the problem.
 You have a few possible options to provide it:
 
-- You can browse the documentation, find an example close to your use case, and then open it in a live editor:
-  <a href="/base-ui/react-button/#introduction">
-  <span class="only-light-mode">
-  <img src="/static/docs-infra/forking-an-example.png" alt="Forking an example" loading="lazy" width="1548" height="606" style="display: block; max-width: 774px;">
-  </span>
-  <span class="only-dark-mode">
-  <img src="/static/docs-infra/forking-an-example-dark.png" alt="Forking an example" loading="lazy" width="1548" height="606" style="display: block; max-width: 774px;">
-  </span>
-  </a>
+#### Use the live editors
 
-- You can use a starter React template to build a reproduction case with [JavaScript](https://stackblitz.com/github/stackblitz/starters/tree/main/react) or [TypeScript](https://stackblitz.com/github/stackblitz/starters/tree/main/react-ts).
+You can browse the documentation, find an example close to your use case, and then open it in a live editor:
+
+<a href="/base-ui/react-button/#introduction">
+<span class="only-light-mode">
+<img src="/static/docs-infra/forking-an-example.png" alt="Forking an example" loading="lazy" width="1628" height="700" style="display: block; max-width: 774px;">
+</span>
+<span class="only-dark-mode">
+<img src="/static/docs-infra/forking-an-example-dark.png" alt="Forking an example" loading="lazy" width="1628" height="700" style="display: block; max-width: 774px;">
+</span>
+</a>
+
+#### Use starter templates
+
+You can use a starter React template to build a reproduction case with [JavaScript](https://stackblitz.com/github/stackblitz/starters/tree/main/react) or [TypeScript](https://stackblitz.com/github/stackblitz/starters/tree/main/react-ts).
 
 ## Stack Overflow
 
@@ -73,7 +78,7 @@ This includes issues introduced by external sources, like browser upgrades or ch
 
 ### Social media
 
-The Base UI community is active on both [X/Twitter](https://twitter.com/MaterialUI) and [LinkedIn](https://www.linkedin.com/company/mui/).
+The Base UI community is active on both [X/Twitter](https://twitter.com/MUI_hq) and [LinkedIn](https://www.linkedin.com/company/mui/).
 These are great platforms to share what you're working on and connect with other developers.
 
 ### Discord
