@@ -183,8 +183,8 @@ importers:
         specifier: ^5.3.0
         version: 5.3.0
       compression-webpack-plugin:
-        specifier: ^11.0.0
-        version: 11.0.0(webpack@5.90.3)
+        specifier: ^11.1.0
+        version: 11.1.0(webpack@5.90.3)
       concurrently:
         specifier: ^8.2.2
         version: 8.2.2
@@ -9978,8 +9978,8 @@ packages:
     dependencies:
       mime-db: 1.52.0
 
-  /compression-webpack-plugin@11.0.0(webpack@5.90.3):
-    resolution: {integrity: sha512-Nz9dMiu0sag+mgJ5QTkRx0+vwrDZPU/gps7IdrkFE+oRSkgyoX4wbMol7QnXjI5/TEWx8yEwew9MiMjZgdLtjg==}
+  /compression-webpack-plugin@11.1.0(webpack@5.90.3):
+    resolution: {integrity: sha512-zDOQYp10+upzLxW+VRSjEpRRwBXJdsb5lBMlRxx1g8hckIFBpe3DTI0en2w7h+beuq89576RVzfiXrkdPGrHhA==}
     engines: {node: '>= 18.12.0'}
     peerDependencies:
       webpack: ^5.1.0
