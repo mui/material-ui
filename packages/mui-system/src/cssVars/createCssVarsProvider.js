@@ -183,12 +183,16 @@ export default function createCssVarsProvider(options) {
       return defaultColorScheme.light;
     })();
     themeProp.defaultColorScheme = resolvedDefaultColorScheme;
-
     if (colorSchemeSelector) {
       themeProp.colorSchemeSelector = colorSchemeSelector;
     }
     if (attribute) {
       themeProp.attribute = attribute;
+    }
+
+    if (!theme.getColorSchemeSelector) {
+      theme.getColorSchemeSelector = (targetColorScheme) =>
+        `*:where([${attribute}="${targetColorScheme}"]) &`;
     }
 
     // 5. Declaring effects

@@ -71,8 +71,7 @@ export default function applyStyles<K extends string>(key: K, styles: CSSObject)
   };
   if (theme.vars && typeof theme.getColorSchemeSelector === 'function') {
     // If CssVarsProvider is used as a provider,
-    // returns '* :where([data-mui-color-scheme="light|dark"]) &'
-    const selector = theme.getColorSchemeSelector(key).replace(/(\[[^\]]+\])/, '*:where($1)');
+    const selector = theme.getColorSchemeSelector(key);
     return {
       [selector]: styles,
     };

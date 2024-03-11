@@ -5,6 +5,9 @@ describe('defaultTheme', () => {
   it('the output contains required fields', () => {
     Object.keys(defaultTheme).forEach((field) => {
       expect([
+        'attribute',
+        'colorSchemeSelector',
+        'defaultColorScheme',
         'breakpoints',
         'components',
         'colorSchemes',
@@ -30,7 +33,8 @@ describe('defaultTheme', () => {
         'unstable_sxConfig',
         'unstable_sx',
         'shouldSkipGeneratingVar',
-        'generateCssVars',
+        'generateStyleSheets',
+        'generateThemeVars',
         'applyStyles',
       ]).to.includes(field);
     });
