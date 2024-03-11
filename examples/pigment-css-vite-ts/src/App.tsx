@@ -76,8 +76,7 @@ export default function Home() {
       })}
     >
       <h1
-        className={`
-        ${css(({ theme }) => ({
+        className={`my-custom-class ${css(({ theme }) => ({
           fontFamily: 'system-ui, sans-serif',
           fontSize: '4rem',
           fontWeight: 500,
