@@ -292,7 +292,7 @@ export class StyledProcessor extends BaseProcessor {
    * ```js
    * const Component = styled(...)(...)
    * const Component2 = styled()({
-   *   [`.${Component} &`]: {
+   *   [`${Component} &`]: {
    *      color: 'red'
    *   }
    * })
@@ -300,7 +300,7 @@ export class StyledProcessor extends BaseProcessor {
    * to further target `Component` rendered inside `Component2`.
    */
   doEvaltimeReplacement() {
-    this.replacer(this.value, false);
+    this.replacer(this.astService.stringLiteral(this.asSelector), false);
   }
 
   /**
