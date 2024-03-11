@@ -79,7 +79,7 @@ export default function Templates() {
   return (
     <Grid container spacing={2} sx={{ py: 2 }}>
       {layouts(t).map((layout) => (
-        <Grid item xs={12} sm={6} md={4} key={layout.title}>
+        <Grid item xs={12} sm={6} key={layout.title}>
           <Card
             variant="outlined"
             sx={{
@@ -122,9 +122,12 @@ export default function Templates() {
                   fullWidth
                   variant="outlined"
                   color="secondary"
-                  startIcon={<CodeRoundedIcon sx={{ mr: 0.5 }} />}
+                  startIcon={<Visibility sx={{ mr: 0.5 }} />}
+                  data-ga-event-category="material-ui-template"
+                  data-ga-event-label={layout.title}
+                  data-ga-event-action="preview-img"
                 >
-                  Code
+                  Live preview
                 </Button>
                 <Button
                   component="a"
@@ -133,12 +136,9 @@ export default function Templates() {
                   fullWidth
                   variant="outlined"
                   color="secondary"
-                  startIcon={<Visibility sx={{ mr: 0.5 }} />}
-                  data-ga-event-category="material-ui-template"
-                  data-ga-event-label={layout.title}
-                  data-ga-event-action="preview-img"
+                  startIcon={<CodeRoundedIcon sx={{ mr: 0.5 }} />}
                 >
-                  Preview
+                  Source code
                 </Button>
               </Box>
             </Box>
