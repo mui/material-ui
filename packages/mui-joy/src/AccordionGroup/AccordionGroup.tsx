@@ -58,7 +58,7 @@ const AccordionGroupRoot = styled(StyledList as unknown as 'div', {
     '--ListDivider-gap': '0px',
     ...transition,
     ...(!ownerState.disableDivider && {
-      [`& .${accordionClasses.root}:not([data-last-child])`]: {
+      [`& .${accordionClasses.root}:not(:last-child)`]: {
         '--Accordion-borderBottom': `1px solid ${theme.vars.palette.divider}`,
       },
     }),

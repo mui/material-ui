@@ -38,10 +38,10 @@ const AccordionRoot = styled(StyledListItem as unknown as 'div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: AccordionOwnerState }>({
   borderBottom: 'var(--Accordion-borderBottom)',
-  '&[data-first-child]': {
+  ':first-child': {
     '--ListItem-radius': 'var(--unstable_List-childRadius) var(--unstable_List-childRadius) 0 0',
   },
-  '&[data-last-child]': {
+  ':last-child': {
     '--ListItem-radius': '0 0 var(--unstable_List-childRadius) var(--unstable_List-childRadius)',
     '& [aria-expanded="true"]': {
       '--ListItem-radius': '0',
@@ -51,7 +51,7 @@ const AccordionRoot = styled(StyledListItem as unknown as 'div', {
         '0 0 var(--unstable_List-childRadius) var(--unstable_List-childRadius)',
     },
   },
-  '&:not([data-first-child]):not([data-last-child])': {
+  '&:not(:first-child):not(:last-child)': {
     '--ListItem-radius': '0',
   },
 });
