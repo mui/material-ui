@@ -1,14 +1,10 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+import OutlinedInput from '@mui/material/OutlinedInput';
 import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
+import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
@@ -20,21 +16,6 @@ import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 
 import getSignInTheme from './getSignInTheme';
 import ToggleColorMode from './ToggleColorMode';
-
-function Copyright(props: any) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
-const defaultTheme = createTheme({});
 
 interface ToggleCustomThemeProps {
   showCustomTheme: Boolean;
@@ -88,19 +69,21 @@ const logoStyle = {
   width: '140px',
   height: '56px',
   opacity: 0.8,
+  marginLeft: '-16px',
 };
 
 export default function SignIn() {
-  const [mode, setMode] = React.useState<PaletteMode>('dark');
+  const [mode, setMode] = React.useState<PaletteMode>('light');
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
+  const defaultTheme = createTheme({ palette: { mode } });
   const SignInTheme = createTheme(getSignInTheme(mode));
   const logo = showCustomTheme
     ? SignInTheme.palette.mode === 'light'
       ? darkLogo
       : whiteLogo
     : defaultTheme.palette.mode === 'light'
-    ? darkLogo
-    : whiteLogo;
+      ? darkLogo
+      : whiteLogo;
 
   const toggleColorMode = () => {
     setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
@@ -128,7 +111,12 @@ export default function SignIn() {
             marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
+            minWidth: '450px',
+            gap: 4,
+            border: '1px solid',
+            borderColor: 'divider',
+            p: 4,
+            borderRadius: '10px',
           }}
         >
           <Box
@@ -136,69 +124,85 @@ export default function SignIn() {
               display: 'flex',
               justifyContent: 'space-between',
               width: '100%',
-              ml: '-18px',
               alignItems: 'center',
             }}
           >
             <img src={logo} style={logoStyle} alt="logo of sitemark" />
-            <ToggleColorMode
-              mode={mode}
-              toggleColorMode={toggleColorMode}
-              showCustomTheme={showCustomTheme}
-            />
+            <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
           </Box>
-          <Avatar sx={{ m: 1 }} />
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h3" sx={{ width: '100%' }}>
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{ display: 'flex', width: '100%', flexDirection: 'column', gap: 2 }}
+          >
+            <OutlinedInput
               id="email"
               label="Email Address"
               name="email"
+              placeholder="email"
               autoComplete="email"
               autoFocus
-            />
-            <TextField
-              margin="normal"
               required
               fullWidth
+            />
+            <OutlinedInput
               name="password"
+              placeholder="password"
               label="Password"
               type="password"
               id="password"
               autoComplete="current-password"
+              required
+              fullWidth
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+            <Link href="#" variant="body2" sx={{ alignSelf: 'start' }}>
+              Forgot password?
+            </Link>
+            <Button type="submit" fullWidth variant="contained">
+              Sign In
+            </Button>
+            <Link href="#" variant="body2" sx={{ alignSelf: 'center' }}>
+              {"Don't have an account? Sign Up"}
+            </Link>
+          </Box>
+          <Divider>Or</Divider>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             <Button
               type="submit"
               fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              variant="outlined"
+              color="secondary"
+              startIcon={
+                <img
+                  src="https://www.vectorlogo.zone/logos/google/google-icon.svg"
+                  alt="Google"
+                  style={{ width: 16, height: 16 }}
+                />
+              }
             >
-              Sign In
+              Sign In with Google
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
+            <Button
+              type="submit"
+              fullWidth
+              variant="outlined"
+              color="secondary"
+              startIcon={
+                <img
+                  src="https://www.vectorlogo.zone/logos/facebook/facebook-tile.svg"
+                  alt="Google"
+                  style={{ width: 16, height: 16 }}
+                />
+              }
+            >
+              Sign In with Facebook
+            </Button>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
       <ToggleCustomTheme
         showCustomTheme={showCustomTheme}
