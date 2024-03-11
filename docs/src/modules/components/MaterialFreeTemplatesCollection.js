@@ -1,14 +1,11 @@
 /* eslint-disable material-ui/no-hardcoded-labels */
 import * as React from 'react';
-import NextLink from 'next/link';
-import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
 import Visibility from '@mui/icons-material/Visibility';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import { useTranslate } from '@mui/docs/i18n';
@@ -82,16 +79,15 @@ export default function Templates() {
   return (
     <Grid container spacing={2} sx={{ py: 2 }}>
       {layouts(t).map((layout) => (
-        <Grid item xs={12} sm={4} key={layout.title}>
+        <Grid item xs={12} sm={6} md={4} key={layout.title}>
           <Card
             variant="outlined"
             sx={{
               p: 2,
               height: '100%',
-              background: 'background.paper',
-              borderColor: 'divider',
               display: 'flex',
               flexDirection: 'column',
+              borderColor: 'divider',
             }}
           >
             <CardMedia
@@ -99,7 +95,6 @@ export default function Templates() {
               image={layout.src}
               title={layout.title}
               sx={{
-                width: '100%',
                 aspectRatio: '16 / 9',
                 objectPosition: 'top',
                 border: '1px solid',
@@ -113,7 +108,14 @@ export default function Templates() {
             <Typography variant="body2" color="text.secondary" mb={2}>
               {layout.description}
             </Typography>
-            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 1 }}>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: { xs: 'column', sm: 'row' },
+                gap: 1,
+                mt: 'auto',
+              }}
+            >
               <Button
                 component="a"
                 href={layout.source}
