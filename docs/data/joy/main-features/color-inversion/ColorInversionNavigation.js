@@ -35,7 +35,7 @@ export default function ColorInversionNavigation() {
         sx={{
           p: 2,
           ...(color !== 'neutral' && {
-            bgcolor: `${color}.800`,
+            bgcolor: `${color}.700`,
           }),
         }}
       >
@@ -131,7 +131,7 @@ export default function ColorInversionNavigation() {
         </Card>
       </Sheet>
       <Sheet
-        variant="soft"
+        variant="solid"
         color="neutral"
         invertedColors
         sx={(theme) => ({
@@ -139,9 +139,7 @@ export default function ColorInversionNavigation() {
           display: 'flex',
           flexDirection: 'column',
           gap: 2,
-          ...(color !== 'neutral' && {
-            bgcolor: `${color}.900`,
-          }),
+          bgcolor: `${color}.900`,
           '& button': {
             borderRadius: '50%',
             padding: 0,
