@@ -7,3 +7,16 @@ fn({
     },
   },
 });
+
+fn({
+  MuiStepLabel: {
+    defaultProps: {
+      slotProps: {
+        label: {
+          ...componentsLabelProps,
+          ...slotLabelProps
+        }
+      }
+    },
+  },
+});
