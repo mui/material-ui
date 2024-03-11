@@ -905,8 +905,8 @@ importers:
         specifier: ^5.4.3
         version: 5.4.3
       recast:
-        specifier: ^0.23.5
-        version: 0.23.5
+        specifier: ^0.23.6
+        version: 0.23.6
       remark:
         specifier: ^13.0.0
         version: 13.0.0
@@ -18566,8 +18566,8 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /recast@0.23.5:
-    resolution: {integrity: sha512-M67zIddJiwXdfPQRYKJ0qZO1SLdH1I0hYeb0wzxA+pNOvAZiQHulWzuk+fYsEWRQ8VfZrgjyucqsCOtCyM01/A==}
+  /recast@0.23.6:
+    resolution: {integrity: sha512-9FHoNjX1yjuesMwuthAmPKabxYQdOgihFYmT5ebXfYGBcnqXZf3WOVz+5foEZ8Y83P4ZY6yQD5GMmtV+pgCCAQ==}
     engines: {node: '>= 4'}
     dependencies:
       ast-types: 0.16.1
