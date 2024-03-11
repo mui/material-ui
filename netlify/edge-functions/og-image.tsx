@@ -97,7 +97,7 @@ export default async function handler(req: Request) {
               fontFamily: 'General Sans',
               fontSize: '24px',
               fontWeight: 600,
-              lineHeight: 'normal',
+              lineHeight: '40px',
               color: '#007FFF',
             }}
           >
@@ -229,6 +229,7 @@ export default async function handler(req: Request) {
     {
       width: 1280,
       height: 640,
+      // debug: true,
       fonts: [
         {
           name: 'General Sans',
