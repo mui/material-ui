@@ -1,4 +1,3 @@
-import deepMerge from 'lodash/merge';
 import { prepareCssVars } from '@mui/system/cssVars';
 import type { SxConfig } from '@mui/system/styleFunctionSx';
 import type { CSSObject } from '../base';
@@ -22,15 +21,17 @@ export interface ThemeInput<ColorScheme extends string = string> {
    * If provided, it will be used to create a selector for the color scheme.
    * This is useful if you want to use class or data-* attributes to apply the color scheme.
    *
-   * The default selector is `:root`.
+   * The callback receives the colorScheme with the possible values of:
+   * - undefined: the selector for tokens that are not color scheme dependent
+   * - string: the selector for the color scheme
    *
    * @example
    * // class selector
-   * (colorScheme) => colorScheme ? `.theme-${colorScheme}` : ":root"
+   * (colorScheme) => colorScheme !== 'light' ? `.theme-${colorScheme}` : ":root"
    *
    * @example
    * // data-* attribute selector
-   * (colorScheme) => colorScheme ? `[data-theme="${colorScheme}"`] : ":root"
+   * (colorScheme) => colorScheme !== 'light' ? `[data-theme="${colorScheme}"`] : ":root"
    */
   getSelector?: (
     colorScheme: ColorScheme | undefined,
@@ -137,17 +138,12 @@ export function extendTheme<
     shouldSkipGeneratingVar,
     getSelector,
   };
-  const { generateCssVars, generateStyleSheets } = prepareCssVars(otherTheme, parserConfig);
-
-  let { vars } = generateCssVars();
-  Object.entries(theme.colorSchemes || {}).forEach(([key]) => {
-    vars = deepMerge(vars, generateCssVars(key).vars);
-  });
+  const { generateThemeVars, generateStyleSheets } = prepareCssVars(otherTheme, parserConfig);
 
   const finalTheme = {
     ...theme,
     defaultColorScheme,
-    vars,
+    vars: generateThemeVars(),
     generateStyleSheets,
   } as unknown as ExtendTheme<{ colorScheme: Options['colorScheme']; tokens: Options['tokens'] }>;
 

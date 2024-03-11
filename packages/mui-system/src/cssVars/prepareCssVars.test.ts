@@ -22,6 +22,78 @@ describe('prepareCssVars', () => {
     expect(css2[0]).to.deep.equal({ '.dark': { '--color': 'red' } });
   });
 
+  it('produce theme vars with defaults', () => {
+    const result = prepareCssVars({
+      defaultColorScheme: 'dark',
+      colorSchemes: {
+        dark: {
+          color: 'red',
+        },
+        light: {
+          color: 'green',
+        },
+      },
+      fontSize: {
+        base: '1rem',
+      },
+    });
+    expect(result.varsWithDefaults).to.deep.equal({
+      color: 'var(--color, red)',
+      fontSize: {
+        base: 'var(--fontSize-base, 1rem)',
+      },
+    });
+  });
+
+  it('`generateThemeVars` should have the right structure', () => {
+    const result = prepareCssVars({
+      defaultColorScheme: 'dark',
+      colorSchemes: {
+        dark: {
+          color: 'red',
+        },
+        light: {
+          color: 'green',
+        },
+      },
+      fontSize: {
+        base: '1rem',
+      },
+    });
+    expect(result.generateThemeVars()).to.deep.equal({
+      color: 'var(--color)',
+      fontSize: {
+        base: 'var(--fontSize-base)',
+      },
+    });
+  });
+
+  it('`generateThemeVars` should have the provided prefix', () => {
+    const result = prepareCssVars(
+      {
+        defaultColorScheme: 'dark',
+        colorSchemes: {
+          dark: {
+            color: 'red',
+          },
+          light: {
+            color: 'green',
+          },
+        },
+        fontSize: {
+          base: '1rem',
+        },
+      },
+      { prefix: 'mui' },
+    );
+    expect(result.generateThemeVars()).to.deep.equal({
+      color: 'var(--mui-color)',
+      fontSize: {
+        base: 'var(--mui-fontSize-base)',
+      },
+    });
+  });
+
   it('`generateStyleSheets` should have the right sequence', () => {
     const result = prepareCssVars({
       defaultColorScheme: 'dark',
