@@ -13,7 +13,6 @@ import { validateParams } from '@wyw-in-js/processor-utils';
 import BaseProcessor from './base-processor';
 import type { IOptions } from './styled';
 import { cache } from '../utils/emotion';
-import { isTaggedTemplateCall, resolveTaggedTemplate } from '../utils/taggedTemplateCall';
 
 export type Primitive = string | number | boolean | null | undefined;
 
@@ -49,13 +48,10 @@ export class KeyframesProcessor extends BaseProcessor {
       throw new Error(`MUI: "${this.tagSource.imported}" is already built`);
     }
 
-    const [callType, ...callArgs] = this.callParam;
+    const [callType] = this.callParam;
 
     if (callType === 'template') {
       this.handleTemplate(this.callParam, values);
-    } else if (isTaggedTemplateCall(callArgs, values)) {
-      const { themeArgs } = this.options as IOptions;
-      this.generateArtifacts([resolveTaggedTemplate(callArgs, values, themeArgs)]);
     } else {
       this.handleCall(this.callParam, values);
     }

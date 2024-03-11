@@ -29,7 +29,6 @@ import { valueToLiteral } from '../utils/valueToLiteral';
 import BaseProcessor from './base-processor';
 import { Primitive, TemplateCallback } from './keyframes';
 import { cache, css } from '../utils/emotion';
-import { isTaggedTemplateCall, resolveTaggedTemplate } from '../utils/taggedTemplateCall';
 
 type Theme = { [key: 'unstable_sxConfig' | string]: string | number | Theme };
 
@@ -288,24 +287,6 @@ export class StyledProcessor extends BaseProcessor {
     this.generateArtifacts();
   }
 
-  private buildForTagTemplateCall(values: ValueCache): void {
-    const { themeArgs } = this.options as IOptions;
-    const cssClassName = css`
-      ${resolveTaggedTemplate(this.styleArgs, values, themeArgs)}
-    `;
-    const cssText = cache.registered[cssClassName] as string;
-
-    const baseClass = this.getClassName();
-    this.baseClasses.push(baseClass);
-    this.collectedStyles.push([baseClass, cssText, null]);
-    const variantsAccumulator: VariantData[] = [];
-    this.processOverrides(values, variantsAccumulator);
-    variantsAccumulator.forEach((variant) => {
-      this.processVariant(variant);
-    });
-    this.generateArtifacts();
-  }
-
   /**
    * There are 2 main phases in Wyw-in-JS's processing, Evaltime and Runtime. During Evaltime, Wyw-in-JS prepares minimal code that gets evaluated to get the actual values of the styled arguments. Here, we mostly want to replace the styled calls with a simple string/object of its classname. This is necessary for class composition. For ex, you could potentially do this -
    * ```js
@@ -335,10 +316,6 @@ export class StyledProcessor extends BaseProcessor {
   build(values: ValueCache): void {
     if (this.isTemplateTag) {
       this.buildForTemplateTag(values);
-      return;
-    }
-    if (isTaggedTemplateCall(this.styleArgs, values)) {
-      this.buildForTagTemplateCall(values);
       return;
     }
     const themeImportIdentifier = this.astService.addDefaultImport(
