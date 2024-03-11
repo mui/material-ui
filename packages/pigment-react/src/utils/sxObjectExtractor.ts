@@ -23,7 +23,9 @@ function validateObjectKey(
     return;
   }
   if (!parentCall) {
-    throw keyPath.buildCodeFrameError('Expressions in css object keys are not supported.');
+    throw keyPath.buildCodeFrameError(
+      `${process.env.PACKAGE_NAME}: Expressions in css object keys are not supported.`,
+    );
   }
   if (
     !identifiers.every((item) => {
@@ -41,7 +43,7 @@ function validateObjectKey(
     })
   ) {
     throw keyPath.buildCodeFrameError(
-      'Variables in css object keys should only use the passed theme(s) object or variables that are defined in the root scope.',
+      `${process.env.PACKAGE_NAME}: Variables in css object keys should only use the passed theme(s) object or variables that are defined in the root scope.`,
     );
   }
 }
@@ -59,14 +61,14 @@ function traverseObjectExpression(
       const value = property.get('value');
       if (!value.isExpression()) {
         throw value.buildCodeFrameError(
-          'This value is not supported. It can only be static values or local variables.',
+          `${process.env.PACKAGE_NAME}: This value is not supported. It can only be static values or local variables.`,
         );
       }
       if (value.isObjectExpression()) {
         traverseObjectExpression(value, parentCall);
       } else if (value.isArrowFunctionExpression()) {
         throw value.buildCodeFrameError(
-          'Arrow functions are not supported as values of sx object.',
+          `${process.env.PACKAGE_NAME}: Arrow functions are not supported as values of sx object.`,
         );
       } else if (!value.isLiteral() && !isStaticObjectOrArrayExpression(value)) {
         const identifiers = findIdentifiers([value], 'reference');
@@ -86,7 +88,7 @@ function traverseObjectExpression(
             localIdentifiers.push(id);
           } else {
             throw id.buildCodeFrameError(
-              'Consider moving this variable to the root scope if it has all static values.',
+              `${process.env.PACKAGE_NAME}: Consider moving this variable to the root scope if it has all static values.`,
             );
           }
         });
@@ -103,20 +105,23 @@ function traverseObjectExpression(
       if (
         !identifiers.every((id) => {
           const binding = property.scope.getBinding(id.node.name);
-          if (!binding || binding.scope !== rootScope) {
-            return false;
-          }
-          return true;
+          // the indentifier definition should either be in the root scope or in the same scope
+          // as the object property, ie, ({theme}) => ({...theme.applyStyles()})
+          return binding && (binding.scope === rootScope || binding.scope === property.scope);
         })
       ) {
         throw property.buildCodeFrameError(
-          'You can only use variables that are defined in the root scope of the file.',
+          `${process.env.PACKAGE_NAME}: You can only use variables in the spread that are defined in the root scope of the file.`,
         );
       }
     } else if (property.isObjectMethod()) {
-      throw property.buildCodeFrameError('sx prop object does not support ObjectMethods.');
+      throw property.buildCodeFrameError(
+        `${process.env.PACKAGE_NAME}: sx prop object does not support ObjectMethods.`,
+      );
     } else {
-      throw property.buildCodeFrameError('Unknown property in object.');
+      throw property.buildCodeFrameError(
+        `${process.env.PACKAGE_NAME}: Unknown property in object.`,
+      );
     }
   });
 }
@@ -128,7 +133,7 @@ export function sxObjectExtractor(nodePath: NodePath<ObjectExpression | ArrowFun
     const body = nodePath.get('body');
     if (!body.isObjectExpression()) {
       throw body.buildCodeFrameError(
-        "sx prop only supports arrow functions that directly return an object, e.g. () => ({color: 'red'}). You can accept theme object in the params if required.",
+        `${process.env.PACKAGE_NAME}: sx prop only supports arrow functions directly returning an object, e.g. () => ({color: 'red'}). You can accept theme object in the params if required.`,
       );
     }
     traverseObjectExpression(body, nodePath);

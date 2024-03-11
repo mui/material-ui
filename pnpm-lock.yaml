@@ -2152,6 +2152,9 @@ importers:
         specifier: ^4.3.1
         version: 4.3.1
     devDependencies:
+      '@babel/plugin-syntax-jsx':
+        specifier: ^7.23.3
+        version: 7.23.3(@babel/core@7.23.9)
       '@types/babel__core':
         specifier: ^7.20.5
         version: 7.20.5
@@ -2170,6 +2173,9 @@ importers:
       '@types/lodash':
         specifier: ^4.14.202
         version: 4.14.202
+      '@types/mocha':
+        specifier: ^10.0.6
+        version: 10.0.6
       '@types/node':
         specifier: ^18.19.21
         version: 18.19.21

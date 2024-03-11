@@ -1,21 +1,32 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { expect as chaiExpect } from 'chai';
+import { transformAsync } from '@babel/core';
 import { asyncResolveFallback } from '@wyw-in-js/shared';
 import {
   TransformCacheCollection,
-  transform,
   createFileReporter,
+  transform as wywTransform,
   type PluginOptions,
 } from '@wyw-in-js/transform';
 import { preprocessor } from '@pigment-css/react/utils';
 import * as prettier from 'prettier';
+
+import sxTransformPlugin from '../exports/sx-plugin';
 
 const shouldUpdateOutput = process.env.UPDATE_FIXTURES === 'true';
 
 function resolveAliasPath(relativeToBabelConf: string) {
   const resolvedPath = path.relative(process.cwd(), path.resolve(__dirname, relativeToBabelConf));
   return `./${resolvedPath.replace('\\', '/')}`;
+}
+function runSxTransform(code: string, filename: string) {
+  return transformAsync(code, {
+    babelrc: false,
+    configFile: false,
+    filename,
+    plugins: ['@babel/plugin-syntax-jsx', [sxTransformPlugin]],
+  });
 }
 
 export async function runTransformation(
@@ -34,6 +45,8 @@ export async function runTransformation(
     ? fs.readFileSync(outputCssFilePath, 'utf8')
     : '';
 
+  const babelResult = await runSxTransform(inputContent, inputFilePath);
+
   const pluginOptions: Partial<PluginOptions> & { themeArgs: { theme?: unknown } } = {
     themeArgs: {
       theme: options?.themeArgs?.theme,
@@ -51,6 +64,7 @@ export async function runTransformation(
         '@babel/preset-typescript',
       ],
       plugins: [
+        '@babel/plugin-syntax-jsx',
         [
           'babel-plugin-module-resolver',
           {
@@ -68,7 +82,8 @@ export async function runTransformation(
       return null;
     },
   };
-  const result = await transform(
+
+  const result = await wywTransform(
     {
       options: {
         filename: inputFilePath,
@@ -78,7 +93,7 @@ export async function runTransformation(
       cache,
       eventEmitter,
     },
-    inputContent,
+    babelResult?.code ?? inputContent,
     asyncResolveFallback,
   );
 

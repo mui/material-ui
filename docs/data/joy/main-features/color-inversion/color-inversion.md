@@ -35,7 +35,7 @@ The color inversion feature is only available for `soft` and `solid` variants be
 - It works for both light and dark mode.
 - It can be disabled at any time without impacting the structure of the components.
 - It is an opt-in feature. If you don't use it, the extra CSS variables won't be included in the production style sheet.
-- Some children can be excluded from the color inversion, see ["skip color inversion on a child"](#skip-color-inversion-on-a-child) section.
+- Some children can be excluded from the color inversion, see ["skip color inversion on a child"](#skip-inversion-on-a-child) section.
 
 ### Trade-offs
 
