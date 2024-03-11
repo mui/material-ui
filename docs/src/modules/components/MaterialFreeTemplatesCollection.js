@@ -80,12 +80,13 @@ export default function Templates() {
   const t = useTranslate();
 
   return (
-    <Grid container spacing={2} sx={{ pt: 2, pb: 4 }}>
+    <Grid container spacing={2} sx={{ py: 2 }}>
       {layouts(t).map((layout) => (
         <Grid item xs={12} sm={4} key={layout.title}>
           <Card
             variant="outlined"
             sx={{
+              p: 2,
               height: '100%',
               background: 'background.paper',
               borderColor: 'divider',
@@ -93,80 +94,26 @@ export default function Templates() {
               flexDirection: 'column',
             }}
           >
-            <Box
+            <CardMedia
+              component="img"
+              image={layout.src}
+              title={layout.title}
               sx={{
-                overflow: 'auto',
-                position: 'relative',
-                borderBottom: '1px solid',
+                width: '100%',
+                aspectRatio: '16 / 9',
+                objectPosition: 'top',
+                border: '1px solid',
                 borderColor: 'divider',
+                borderRadius: '8px',
               }}
-            >
-              <CardMedia
-                component="a"
-                href={layout.href}
-                image={layout.src}
-                title={layout.title}
-                rel="nofollow"
-                target="_blank"
-                sx={(theme) => ({
-                  height: 0,
-                  pt: '65%',
-                  '&:focus-visible': {
-                    borderRadius: 1,
-                    outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
-                    outlineOffset: '-8px',
-                  },
-                })}
-              />
-              <NextLink href={layout.href} passHref legacyBehavior>
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <Link
-                  tabIndex={-1}
-                  aria-hidden
-                  data-ga-event-category="material-ui-template"
-                  data-ga-event-label={layout.title}
-                  data-ga-event-action="preview-img"
-                  sx={(theme) => ({
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexDirection: 'column',
-                    gap: 1,
-                    transition: '0.15s',
-                    position: 'absolute',
-                    width: '100%',
-                    height: '100%',
-                    top: 0,
-                    left: 0,
-                    bgcolor: alpha(theme.palette.primary[50], 0.5),
-                    backdropFilter: 'blur(4px)',
-                    opacity: 0,
-                    '&:hover, &:focus-visible': {
-                      opacity: 1,
-                    },
-                    ...theme.applyDarkStyles({
-                      bgcolor: alpha(theme.palette.common.black, 0.8),
-                    }),
-                  })}
-                >
-                  <Visibility />
-                  <Typography
-                    fontWeight="bold"
-                    color="text.primary"
-                    sx={{ textDecorationLine: 'underline' }}
-                  >
-                    View live preview
-                  </Typography>
-                </Link>
-              </NextLink>
-            </Box>
-            <Box sx={{ p: 2, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-              <Typography component="h3" variant="subtitle1" fontWeight="bold" gutterBottom>
-                {layout.title}
-              </Typography>
-              <Typography variant="body2" color="text.secondary" mb={2}>
-                {layout.description}
-              </Typography>
+            />
+            <Typography component="h3" variant="body1" fontWeight="semiBold" mt={1}>
+              {layout.title}
+            </Typography>
+            <Typography variant="body2" color="text.secondary" mb={2}>
+              {layout.description}
+            </Typography>
+            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 1 }}>
               <Button
                 component="a"
                 href={layout.source}
@@ -175,9 +122,22 @@ export default function Templates() {
                 variant="outlined"
                 color="secondary"
                 startIcon={<CodeRoundedIcon sx={{ mr: 0.5 }} />}
-                sx={{ mt: 'auto' }}
               >
-                {t('sourceCode')}
+                Code
+              </Button>
+              <Button
+                component="a"
+                href={layout.source}
+                size="small"
+                fullWidth
+                variant="outlined"
+                color="secondary"
+                startIcon={<Visibility sx={{ mr: 0.5 }} />}
+                data-ga-event-category="material-ui-template"
+                data-ga-event-label={layout.title}
+                data-ga-event-action="preview-img"
+              >
+                Preview
               </Button>
             </Box>
           </Card>
