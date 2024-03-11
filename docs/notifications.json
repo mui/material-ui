@@ -22,6 +22,6 @@
   {
     "id": 81,
     "title": "MUI dogfooded Toolpad. See how!",
-    "text": "Learn how we used Toolpad to build some of our internal tooling at MUI. <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"toolpad-use-cases\" href=\"https://mui.com/blog/toolpad-use-cases/\">Read the blog post</a> and learn how you can use it too."
+    "text": "Learn how we used Toolpad to build some of our internal tools at MUI. <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"toolpad-use-cases\" href=\"https://mui.com/blog/toolpad-use-cases/\">Read the blog post</a> and learn how you can use it too."
   }
 ]
