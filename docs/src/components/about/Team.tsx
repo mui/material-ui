@@ -206,7 +206,7 @@ const contributors = [
   {
     name: 'Ryan Cogswell',
     github: 'ryancogswell',
-    title: 'Stack Overflow top contributor',
+    title: 'Stack Overflow top contributor',
     location: 'Minnesota, United States',
     locationCountry: 'us',
     src: 'https://avatars.githubusercontent.com/u/287804',

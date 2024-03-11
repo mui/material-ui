@@ -1323,6 +1323,7 @@ describe('Joy <Autocomplete />', () => {
       checkHighlightIs(autocompleteListbox, 'six');
       expect(autocompleteListbox.scrollTop).to.greaterThan(0);
     });
+
     it('should keep focus on selected option and not reset to top option when options updated', () => {
       const { setProps } = render(<Autocomplete open options={['one', 'two']} autoFocus />);
       const textbox = screen.getByRole('combobox');
@@ -1401,9 +1402,15 @@ describe('Joy <Autocomplete />', () => {
 
       checkHighlightIs(listbox, 'two');
 
-      // three option is added and autocomplete re-renders, restore the highlight
-      setProps({ options: [{ label: 'one' }, { label: 'two' }, { label: 'three' }] });
+      // zero and three options are added and autocomplete re-renders, restore the highlight
+      setProps({
+        options: [{ label: 'zero' }, { label: 'one' }, { label: 'two' }, { label: 'three' }],
+      });
       checkHighlightIs(listbox, 'two');
+
+      // check that the highlighted option is still in sync with the internal highlighted index
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // goes to 'three'
+      checkHighlightIs(listbox, 'three');
     });
 
     it("should reset the highlight when previously highlighted option doesn't exists in new options", () => {

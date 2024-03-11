@@ -1,10 +1,10 @@
 # Color inversion
 
-<p class="description">Joy UI components can invert their colors to match with the parent's variant.</p>
+<p class="description">Joy UI components can invert their colors to match with the parent's variant.</p>
 
 ## Motivation
 
-The Joy UI [global variants feature](/joy-ui/main-features/global-variants/) provides a consistent set of values for the `variant` prop.
+The Joy UI [global variants feature](/joy-ui/main-features/global-variants/) provides a consistent set of values for the `variant` prop.
 But these variants can sometimes cause quirks when the same styles are applied to both parent and child components.
 Check out the two demo cards below to see how things can go wrong:
 
@@ -13,7 +13,7 @@ Check out the two demo cards below to see how things can go wrong:
 - On the left, the Button variant is `solid`, while its parent Card is the default `outlined`, so the design works well.
 - On the right, the `solid` variant is applied to both the Button and the Card, disrupting the design's hierarchy and contrast.
 
-Joy UI's color inversion feature prevents this kind of situation from occurring, while still preserving the hierarchical meaning of the global variants themselves.
+Joy UI's color inversion feature prevents this kind of situation from occurring, while still preserving the hierarchical meaning of the global variants themselves.
 
 ## Overview
 
@@ -35,7 +35,7 @@ The color inversion feature is only available for `soft` and `solid` variants be
 - It works for both light and dark mode.
 - It can be disabled at any time without impacting the structure of the components.
 - It is an opt-in feature. If you don't use it, the extra CSS variables won't be included in the production style sheet.
-- Some children can be excluded from the color inversion, see ["skip color inversion on a child"](#skip-color-inversion-on-a-child) section.
+- Some children can be excluded from the color inversion, see ["skip color inversion on a child"](#skip-inversion-on-a-child) section.
 
 ### Trade-offs
 

@@ -46,12 +46,22 @@ const savedScrollTop = {};
 
 function ProductDrawerButton(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
+
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleEventDelegation = (event) => {
+    // Assert whether an 'a' tag resides in the parent of the clicked element through which the event bubbles out.
+    const isLinkInParentTree = Boolean(event.target.closest('a'));
+    // If the element clicked is link or just inside of a link element then close the menu.
+    if (isLinkInParentTree) {
+      handleClose();
+    }
   };
 
   return (
@@ -93,6 +103,7 @@ function ProductDrawerButton(props) {
             width: { xs: 340, sm: 'auto' },
           },
         }}
+        onClick={handleEventDelegation}
       >
         <MuiProductSelector />
       </Menu>
@@ -111,11 +122,11 @@ function ProductIdentifier(props) {
       <Typography
         sx={(theme) => ({
           ml: 1,
-          color: (theme.vars || theme).palette.grey[600],
           fontSize: theme.typography.pxToRem(11),
-          fontWeight: 700,
+          fontWeight: theme.typography.fontWeightBold,
           textTransform: 'uppercase',
-          letterSpacing: '.08rem',
+          letterSpacing: '.1rem',
+          color: (theme.vars || theme).palette.text.tertiary,
         })}
       >
         {metadata}
