@@ -32,7 +32,9 @@ const ScopedCssBaselineRoot = styled('div', {
   if (!ownerState.disableColorScheme && theme.colorSchemes) {
     (Object.entries(theme.colorSchemes) as Array<[DefaultColorScheme, ColorSystem]>).forEach(
       ([key, scheme]) => {
-        colorSchemeStyles[`&${theme.getColorSchemeSelector(key).replace(/\s*&/, '')}`] = {
+        colorSchemeStyles[
+          `&${theme.getColorSchemeSelector(key).replace(/\*/, '').replace(/\s*&/, '')}`
+        ] = {
           colorScheme: scheme.palette?.mode,
         };
       },
