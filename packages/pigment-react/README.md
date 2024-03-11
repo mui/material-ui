@@ -527,7 +527,7 @@ In the above example, `light` (default) and `dark` color schemes are defined. Th
 
 #### Switching color schemes
 
-By default, when `colorSchemes` is defined, Pigment uses the [`prefers-color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query to switch between color schemes based on user's system settings.
+By default, when `colorSchemes` is defined, Pigment CSS uses the [`prefers-color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query to switch between color schemes based on the user's system settings.
 
 However, if you want to control the color scheme based on application logic, for example, using a button to switch between light and dark mode, you can customize the behavior by providing a `getSelector` function:
 
