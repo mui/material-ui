@@ -27,7 +27,7 @@ export default function BaseUI() {
         />
       </Head>
       <AppHeaderBanner />
-      <AppHeader gitHubRepository="https://github.com/mui/material-ui" />
+      <AppHeader gitHubRepository="https://github.com/mui/base-ui" />
       <main id="main-content">
         <BaseUIHero />
         <BaseUISummary />

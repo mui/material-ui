@@ -546,8 +546,8 @@ export default function AppSearch(props) {
               fontSize: theme.typography.pxToRem(11),
               fontWeight: theme.typography.fontWeightBold,
               textTransform: 'uppercase',
-              letterSpacing: '.08rem',
-              color: theme.palette.grey[600],
+              letterSpacing: '.1rem',
+              color: (theme.vars || theme).palette.text.tertiary,
             },
             '& .DocSearch-NewStartScreenTitleIcon': {
               fontSize: theme.typography.pxToRem(18),
@@ -666,8 +666,8 @@ export default function AppSearch(props) {
               fontWeight: theme.typography.fontWeightBold,
               textTransform: 'uppercase',
               lineHeight: 1,
-              letterSpacing: '.08rem',
-              color: theme.palette.grey[600],
+              letterSpacing: '.1rem',
+              color: (theme.vars || theme).palette.text.tertiary,
             },
             '& .DocSearch-Hit': {
               paddingBottom: 8,

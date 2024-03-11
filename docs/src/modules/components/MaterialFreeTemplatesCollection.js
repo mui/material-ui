@@ -32,6 +32,13 @@ function layouts(t) {
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/landing-page`,
     },
     {
+      title: t('checkoutTitle'),
+      description: t('checkoutDescr'),
+      src: '/static/images/templates/checkout.png',
+      href: '/material-ui/getting-started/templates/checkout/',
+      source: `${sourcePrefix}/docs/data/material/getting-started/templates/checkout`,
+    },
+    {
       title: t('signInTitle'),
       description: t('signInDescr'),
       src: '/static/images/templates/sign-in.png',
@@ -58,13 +65,6 @@ function layouts(t) {
       src: '/static/images/templates/blog.png',
       href: '/material-ui/getting-started/templates/blog/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/blog`,
-    },
-    {
-      title: t('checkoutTitle'),
-      description: t('checkoutDescr'),
-      src: '/static/images/templates/checkout.png',
-      href: '/material-ui/getting-started/templates/checkout/',
-      source: `${sourcePrefix}/docs/data/material/getting-started/templates/checkout`,
     },
     {
       title: t('stickyFooterTitle'),

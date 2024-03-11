@@ -1,0 +1,10 @@
+<Button
+  variant="text"
+  endIcon={<ExpandMoreRoundedIcon />}
+  onClick={toggleDrawer(true)}
+>
+  View details
+</Button>
+<Drawer open={open} anchor="top" onClose={toggleDrawer(false)}>
+  {DrawerList}
+</Drawer>

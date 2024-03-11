@@ -426,7 +426,7 @@ const Root = styled('div')(
       },
     },
     '& a code': {
-      color: darken(lightTheme.palette.primary.main, 0.04),
+      color: darken(lightTheme.palette.primary.main, 0.2),
     },
     '& img, & video': {
       // Use !important so that inline style on <img> or <video> can't win.
@@ -464,14 +464,45 @@ const Root = styled('div')(
       boxShadow: `inset 0 -2px 0 var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
     },
     '& details': {
+      width: '100%',
+      padding: theme.spacing(1),
       marginBottom: theme.spacing(1.5),
-      padding: theme.spacing(0.5, 0, 0.5, 1),
+      border: '1px solid',
+      borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
+      borderRadius: `var(--muidocs-shape-borderRadius, ${
+        theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
+      }px)`,
       '& pre': {
         marginTop: theme.spacing(1),
       },
     },
     '& summary': {
       cursor: 'pointer',
+      padding: theme.spacing(1),
+      borderRadius: 6,
+      listStyleType: 'none',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      transition: theme.transitions.create(['background'], {
+        duration: theme.transitions.duration.shortest,
+      }),
+      ':after': {
+        content: '""',
+        maskImage: `url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6L8 10L12 6' stroke='black' stroke-width='1.66667' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A")`,
+        display: 'inline-flex',
+        width: '1em',
+        height: '1em',
+        color: 'inherit',
+        backgroundColor: 'currentColor',
+      },
+      '&:hover': {
+        backgroundColor: `var(--muidocs-palette-grey-100, ${lightTheme.palette.grey[50]})`,
+      },
+    },
+    '& details[open] > summary::after': {
+      content: '""',
+      maskImage: `url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 10L8 6L4 10' stroke='black' stroke-width='1.66667' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A")`,
     },
     '& .MuiCode-root': {
       direction: 'ltr /*! @noflip */',
@@ -586,20 +617,8 @@ const Root = styled('div')(
       '& hr': {
         backgroundColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
       },
-      '& h1': {
+      '& h1, & h2, & h3, & h4, & h5': {
         color: `var(--muidocs-palette-grey-50, ${darkTheme.palette.grey[50]})`,
-      },
-      '& h2': {
-        color: `var(--muidocs-palette-grey-100, ${darkTheme.palette.grey[100]})`,
-      },
-      '& h3': {
-        color: `var(--muidocs-palette-grey-200, ${darkTheme.palette.grey[200]})`,
-      },
-      '& h4': {
-        color: `var(--muidocs-palette-grey-300, ${darkTheme.palette.grey[300]})`,
-      },
-      '& h5': {
-        color: `var(--muidocs-palette-grey-300, ${darkTheme.palette.grey[300]})`,
       },
       '& p, & ul, & ol': {
         color: `var(--muidocs-palette-grey-400, ${darkTheme.palette.grey[400]})`,
@@ -719,6 +738,14 @@ const Root = styled('div')(
         backgroundColor: `var(--muidocs-palette-primaryDark-800, ${darkTheme.palette.primaryDark[800]})`,
         border: `1px solid var(--muidocs-palette-primaryDark-600, ${darkTheme.palette.primaryDark[600]})`,
         boxShadow: `inset 0 -2px 0 var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
+      },
+      '& details': {
+        borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
+      },
+      '& summary': {
+        '&:hover': {
+          backgroundColor: `var(--muidocs-palette-primaryDark-800, ${darkTheme.palette.primaryDark[800]})`,
+        },
       },
     },
   }),
