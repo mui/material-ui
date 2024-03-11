@@ -41,7 +41,7 @@ export class SxProcessor extends BaseProcessor {
       }
     }
 
-    if (!this.elementClassName) {
+    if (!this.elementClassName || this.elementClassName[0] !== '.') {
       return;
     }
 
@@ -55,7 +55,7 @@ export class SxProcessor extends BaseProcessor {
       cssText = this.processCss(styleObjOrFn, sxStyle);
     }
     const selector = this.elementClassName
-      ? `.${this.elementClassName}${this.asSelector}`
+      ? `${this.elementClassName}${this.asSelector}`
       : this.asSelector;
 
     if (!cssText) {
