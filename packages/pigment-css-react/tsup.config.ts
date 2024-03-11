@@ -13,7 +13,7 @@ const baseConfig: Options = {
 export default defineConfig([
   {
     ...baseConfig,
-    entry: ['./src/index.ts', './src/theme.ts'],
+    entry: ['./src/index.ts', './src/theme.ts', './src/Box.jsx'],
   },
   {
     ...baseConfig,
