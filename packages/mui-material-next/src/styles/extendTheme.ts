@@ -484,11 +484,11 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
       }),
   };
 
-  const { varsWithDefaults, generateThemeVars, generateStyleSheets } = prepareCssVars<
-    Theme,
-    Theme['vars']
-  >(theme, parserConfig);
-  theme.vars = varsWithDefaults;
+  const { vars, generateThemeVars, generateStyleSheets } = prepareCssVars<Theme, Theme['vars']>(
+    theme,
+    parserConfig,
+  );
+  theme.vars = vars;
   theme.generateThemeVars = generateThemeVars;
   theme.generateStyleSheets = generateStyleSheets;
   theme.getColorSchemeSelector = (colorScheme) =>

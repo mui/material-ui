@@ -37,7 +37,7 @@ describe('prepareCssVars', () => {
         base: '1rem',
       },
     });
-    expect(result.varsWithDefaults).to.deep.equal({
+    expect(result.vars).to.deep.equal({
       color: 'var(--color, red)',
       fontSize: {
         base: 'var(--fontSize-base, 1rem)',

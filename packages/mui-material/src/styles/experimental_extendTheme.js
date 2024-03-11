@@ -426,11 +426,8 @@ export default function extendTheme(options = {}, ...args) {
         return theme.colorSchemeSelector;
       }),
   };
-  const { varsWithDefaults, generateThemeVars, generateStyleSheets } = prepareCssVars(
-    theme,
-    parserConfig,
-  );
-  theme.vars = varsWithDefaults;
+  const { vars, generateThemeVars, generateStyleSheets } = prepareCssVars(theme, parserConfig);
+  theme.vars = vars;
   theme.generateThemeVars = generateThemeVars;
   theme.generateStyleSheets = generateStyleSheets;
   theme.getColorSchemeSelector = (colorScheme) =>

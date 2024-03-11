@@ -647,15 +647,12 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       }),
   };
 
-  const { varsWithDefaults, generateThemeVars, generateStyleSheets } = prepareCssVars<
-    Theme,
-    ThemeVars
-  >(
+  const { vars, generateThemeVars, generateStyleSheets } = prepareCssVars<Theme, ThemeVars>(
     // @ts-ignore property truDark is missing from colorSchemes
     { colorSchemes, ...mergedScales },
     parserConfig,
   );
-  theme.vars = varsWithDefaults;
+  theme.vars = vars;
   theme.generateThemeVars = generateThemeVars;
   theme.generateStyleSheets = generateStyleSheets;
   theme.unstable_sxConfig = {

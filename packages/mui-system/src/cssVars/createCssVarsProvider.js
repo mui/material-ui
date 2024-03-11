@@ -63,7 +63,7 @@ export default function createCssVarsProvider(options) {
     theme: themeProp = defaultTheme,
     modeStorageKey = defaultModeStorageKey,
     colorSchemeStorageKey = defaultColorSchemeStorageKey,
-    attribute,
+    attribute = defaultAttribute,
     defaultMode = designSystemMode,
     defaultColorScheme = designSystemColorScheme,
     disableTransitionOnChange = designSystemTransitionOnChange,
