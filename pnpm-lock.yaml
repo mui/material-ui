@@ -19,8 +19,8 @@ overrides:
   '@babel/preset-typescript': ^7.23.3
   '@babel/runtime': ^7.23.9
   '@babel/types': ^7.23.9
-  '@definitelytyped/header-parser': ^0.2.6
-  '@definitelytyped/typescript-versions': ^0.1.0
+  '@definitelytyped/header-parser': ^0.2.8
+  '@definitelytyped/typescript-versions': ^0.1.1
   '@definitelytyped/utils': ^0.1.5
   '@types/node': ^18.19.21
   '@types/react': ^18.2.55
