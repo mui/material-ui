@@ -31,13 +31,33 @@ function runSxTransform(code: string, filename: string) {
 
 export async function runTransformation(
   absolutePath: string,
-  options?: { themeArgs?: { theme?: any } },
+  options?: {
+    themeArgs?: { theme?: any };
+    /**
+     * If true, the transformation output will be written to that location.
+     * Otherwise, the output will be in the same fixture location.
+     */
+    outputDir?: string;
+    /**
+     * If true, there will be no JS output file.
+     */
+    disableJs?: boolean;
+    /**
+     * If true, there will be no CSS output file.
+     */
+    disableCss?: boolean;
+  },
 ) {
+  const { themeArgs, outputDir, disableJs, disableCss } = options ?? {};
   const cache = new TransformCacheCollection();
   const { emitter: eventEmitter } = createFileReporter(false);
   const inputFilePath = absolutePath;
-  const outputFilePath = absolutePath.replace('.input.', '.output.');
-  const outputCssFilePath = absolutePath.replace('.input.js', '.output.css');
+  const outputFilePath = outputDir
+    ? `${outputDir}/${path.parse(absolutePath).name}.output.js`
+    : absolutePath.replace('.input.', '.output.');
+  const outputCssFilePath = outputDir
+    ? `${outputDir}/${path.parse(absolutePath).name}.output.css`
+    : absolutePath.replace('.input.js', '.output.css');
 
   const inputContent = fs.readFileSync(inputFilePath, 'utf8');
   let outputContent = fs.existsSync(outputFilePath) ? fs.readFileSync(outputFilePath, 'utf8') : '';
@@ -49,7 +69,7 @@ export async function runTransformation(
 
   const pluginOptions: Partial<PluginOptions> & { themeArgs: { theme?: unknown } } = {
     themeArgs: {
-      theme: options?.themeArgs?.theme,
+      theme: themeArgs?.theme,
     },
     babelOptions: {
       configFile: false,
@@ -76,7 +96,7 @@ export async function runTransformation(
       ],
     },
     tagResolver(source: string, tag: string) {
-      if (source === '@pigment-css/react') {
+      if (source === '@pigment-css/react' || source.endsWith('/zero-styled')) {
         return require.resolve(`../exports/${tag}`);
       }
       return null;
@@ -109,13 +129,22 @@ export async function runTransformation(
     parser: 'css',
   });
 
+  // ensure the output directory exists
+  if (outputDir) {
+    fs.mkdirSync(outputDir, { recursive: true });
+  }
+
   if (!outputContent || shouldUpdateOutput) {
-    fs.writeFileSync(outputFilePath, formattedJs, 'utf-8');
+    if (!disableJs) {
+      fs.writeFileSync(outputFilePath, formattedJs, 'utf-8');
+    }
     outputContent = formattedJs;
   }
 
   if (!outputCssContent || shouldUpdateOutput) {
-    fs.writeFileSync(outputCssFilePath, formattedCss, 'utf-8');
+    if (!disableCss) {
+      fs.writeFileSync(outputCssFilePath, formattedCss, 'utf-8');
+    }
     outputCssContent = formattedCss;
   }
 

@@ -1,0 +1,37 @@
+.aol1o2z {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-size: 1.25rem;
+  line-height: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  user-select: none;
+}
+.aol1o2z-1 {
+  border-radius: var(--mui-shape-borderRadius, 4);
+}
+.aol1o2z-2 {
+  border-radius: 0;
+}
+.aol1o2z-3 {
+  color: var(--mui-palette-background-default, #fff);
+  background-color: var(--mui-palette-Avatar-defaultBg, var(--mui-palette-grey-400, #bdbdbd));
+}
+.a1e978i {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  object-fit: cover;
+  color: transparent;
+  text-indent: 10000px;
+}
+.ak3zfh7 {
+  width: 75%;
+  height: 75%;
+}

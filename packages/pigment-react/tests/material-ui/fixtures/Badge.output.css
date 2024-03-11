@@ -1,0 +1,131 @@
+.b1i3f5s4 {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+.b1mz16b6 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  position: absolute;
+  box-sizing: border-box;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-weight: 500;
+  font-size: 0.75rem;
+  min-width: 20px;
+  line-height: 1;
+  padding: 0 6px;
+  height: 20px;
+  border-radius: 10px;
+  z-index: 1;
+  transition: transform 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+.b1mz16b6-1 {
+  background-color: var(--mui-palette-primary-main, #1976d2);
+  color: var(--mui-palette-primary-contrastText, #fff);
+}
+.b1mz16b6-2 {
+  background-color: var(--mui-palette-secondary-main, #9c27b0);
+  color: var(--mui-palette-secondary-contrastText, #fff);
+}
+.b1mz16b6-3 {
+  background-color: var(--mui-palette-error-main, #d32f2f);
+  color: var(--mui-palette-error-contrastText, #fff);
+}
+.b1mz16b6-4 {
+  background-color: var(--mui-palette-warning-main, #ed6c02);
+  color: var(--mui-palette-warning-contrastText, #fff);
+}
+.b1mz16b6-5 {
+  background-color: var(--mui-palette-info-main, #0288d1);
+  color: var(--mui-palette-info-contrastText, #fff);
+}
+.b1mz16b6-6 {
+  background-color: var(--mui-palette-success-main, #2e7d32);
+  color: var(--mui-palette-success-contrastText, #fff);
+}
+.b1mz16b6-7 {
+  border-radius: 4px;
+  height: 8px;
+  min-width: 8px;
+  padding: 0;
+}
+.b1mz16b6-8 {
+  top: 0;
+  right: 0;
+  transform: scale(1) translate(50%, -50%);
+  transform-origin: 100% 0%;
+}
+.b1mz16b6-8.MuiBadge-invisible {
+  transform: scale(0) translate(50%, -50%);
+}
+.b1mz16b6-9 {
+  bottom: 0;
+  right: 0;
+  transform: scale(1) translate(50%, 50%);
+  transform-origin: 100% 100%;
+}
+.b1mz16b6-9.MuiBadge-invisible {
+  transform: scale(0) translate(50%, 50%);
+}
+.b1mz16b6-10 {
+  top: 0;
+  left: 0;
+  transform: scale(1) translate(-50%, -50%);
+  transform-origin: 0% 0%;
+}
+.b1mz16b6-10.MuiBadge-invisible {
+  transform: scale(0) translate(-50%, -50%);
+}
+.b1mz16b6-11 {
+  bottom: 0;
+  left: 0;
+  transform: scale(1) translate(-50%, 50%);
+  transform-origin: 0% 100%;
+}
+.b1mz16b6-11.MuiBadge-invisible {
+  transform: scale(0) translate(-50%, 50%);
+}
+.b1mz16b6-12 {
+  top: 14%;
+  right: 14%;
+  transform: scale(1) translate(50%, -50%);
+  transform-origin: 100% 0%;
+}
+.b1mz16b6-12.MuiBadge-invisible {
+  transform: scale(0) translate(50%, -50%);
+}
+.b1mz16b6-13 {
+  bottom: 14%;
+  right: 14%;
+  transform: scale(1) translate(50%, 50%);
+  transform-origin: 100% 100%;
+}
+.b1mz16b6-13.MuiBadge-invisible {
+  transform: scale(0) translate(50%, 50%);
+}
+.b1mz16b6-14 {
+  top: 14%;
+  left: 14%;
+  transform: scale(1) translate(-50%, -50%);
+  transform-origin: 0% 0%;
+}
+.b1mz16b6-14.MuiBadge-invisible {
+  transform: scale(0) translate(-50%, -50%);
+}
+.b1mz16b6-15 {
+  bottom: 14%;
+  left: 14%;
+  transform: scale(1) translate(-50%, 50%);
+  transform-origin: 0% 100%;
+}
+.b1mz16b6-15.MuiBadge-invisible {
+  transform: scale(0) translate(-50%, 50%);
+}
+.b1mz16b6-16 {
+  transition: transform 195ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
