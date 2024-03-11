@@ -90,7 +90,7 @@ export default function Home() {
           ...theme.applyStyles('dark', { color: '#fff' }),
         }))}`}
       >
-        Pigment CSS
+        Pigment&nbsp;CSS
         <span
           className={css(({ theme }) => ({
             position: 'absolute',
