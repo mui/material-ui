@@ -33,13 +33,15 @@ export class KeyframesProcessor extends BaseProcessor {
     );
 
     const [, callParams] = params;
-    const [, ...callParamsRest] = callParams;
-
-    callParamsRest.flat().forEach((item) => {
-      if ('kind' in item) {
-        this.dependencies.push(item);
-      }
-    });
+    if (callParams[0] === 'call') {
+      this.dependencies.push(callParams[1]);
+    } else if (callParams[0] === 'template') {
+      callParams[1].forEach((element) => {
+        if ('kind' in element && element.kind !== ValueType.CONST) {
+          this.dependencies.push(element);
+        }
+      });
+    }
     this.callParam = callParams;
   }
 
