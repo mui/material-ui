@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 const path = require('path');
 const fse = require('fs-extra');
-const { createRender } = require('@mui/markdown');
+const { createRender } = require('@mui/internal-markdown');
 const { marked } = require('marked');
 const { LANGUAGES_IGNORE_PAGES } = require('../config');
 
@@ -95,17 +95,17 @@ const getMdFilesImported = (jsPageFile) => {
   const fileContent = fse.readFileSync(jsPageFile, 'utf8');
   /**
    * Content files can be represented by either:
-   * - 'docsx/data/advanced-components/overview.md?@mui/markdown'; (for mui-x)
-   * - 'docs/data/advanced-components/overview.md?@mui/markdown';
-   * - './index.md?@mui/markdown';
+   * - 'docsx/data/advanced-components/overview.md?muiMarkdown'; (for mui-x)
+   * - 'docs/data/advanced-components/overview.md?muiMarkdown';
+   * - './index.md?muiMarkdown';
    */
-  const importPaths = fileContent.match(/'.*\?@mui\/markdown'/g);
+  const importPaths = fileContent.match(/'.*\?muiMarkdown'/g);
 
   if (importPaths === null) {
     return [];
   }
   return importPaths.map((importPath) => {
-    let cleanImportPath = importPath.slice(1, importPath.length - "?@mui/markdown'".length);
+    let cleanImportPath = importPath.slice(1, importPath.length - "?muiMarkdown'".length);
     if (cleanImportPath.startsWith('.')) {
       cleanImportPath = path.join(path.dirname(jsPageFile), cleanImportPath);
     } else if (cleanImportPath.startsWith('docs/')) {

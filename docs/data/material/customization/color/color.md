@@ -11,7 +11,7 @@ The Material Design [color system](https://m2.material.io/design/color/) can be 
 The Material Design team has also built an awesome palette configuration tool: [material.io/resources/color/](https://m2.material.io/inline-tools/color/).
 This can help you create a color palette for your UI, as well as measure the accessibility level of any color combination.
 
-<a href="https://m2.material.io/inline-tools/color/" target="_blank" rel="noopener nofollow">
+<a href="https://m2.material.io/inline-tools/color/" target="_blank" rel="noopener nofollow" class="remove-link-arrow">
   <img src="/static/images/color/colorTool.png" alt="Official color tool" style="width: 574px" width=1148" height="610" />
 </a>
 <br />

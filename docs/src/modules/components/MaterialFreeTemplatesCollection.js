@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Visibility from '@mui/icons-material/Visibility';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 
 const sourcePrefix = `${process.env.SOURCE_CODE_REPO}/tree/v${process.env.LIB_VERSION}`;
 
@@ -30,6 +30,13 @@ function layouts(t) {
       src: '/static/images/templates/landing-page.png',
       href: '/material-ui/getting-started/templates/landing-page/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/landing-page`,
+    },
+    {
+      title: t('checkoutTitle'),
+      description: t('checkoutDescr'),
+      src: '/static/images/templates/checkout.png',
+      href: '/material-ui/getting-started/templates/checkout/',
+      source: `${sourcePrefix}/docs/data/material/getting-started/templates/checkout`,
     },
     {
       title: t('signInTitle'),
@@ -58,13 +65,6 @@ function layouts(t) {
       src: '/static/images/templates/blog.png',
       href: '/material-ui/getting-started/templates/blog/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/blog`,
-    },
-    {
-      title: t('checkoutTitle'),
-      description: t('checkoutDescr'),
-      src: '/static/images/templates/checkout.png',
-      href: '/material-ui/getting-started/templates/checkout/',
-      source: `${sourcePrefix}/docs/data/material/getting-started/templates/checkout`,
     },
     {
       title: t('stickyFooterTitle'),
