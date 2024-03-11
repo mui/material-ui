@@ -1,7 +1,8 @@
-const querystring = require('node:querystring');
-const { App, AwsLambdaReceiver } = require('@slack/bolt');
-const { JWT } = require('google-auth-library');
-const { sheets } = require('@googleapis/sheets');
+import querystring from 'node:querystring';
+import { App, AwsLambdaReceiver, BlockAction, ButtonAction } from '@slack/bolt';
+import { JWT } from 'google-auth-library';
+import { sheets } from '@googleapis/sheets';
+import { Handler } from '@netlify/functions';
 
 const X_FEEBACKS_CHANNEL_ID = 'C04U3R2V9UK';
 const JOY_FEEBACKS_CHANNEL_ID = 'C050VE13HDL';
@@ -35,7 +36,7 @@ const spreadSheetsIds = {
 
 // Setup of the slack bot (taken from https://slack.dev/bolt-js/deployments/aws-lambda)
 const awsLambdaReceiver = new AwsLambdaReceiver({
-  signingSecret: process.env.SLACK_SIGNING_SECRET,
+  signingSecret: process.env.SLACK_SIGNING_SECRET!,
 });
 
 const app = new App({
@@ -45,27 +46,30 @@ const app = new App({
 });
 
 // Define slack actions to answer
-app.action('delete_action', async ({ ack, body, client, logger }) => {
+app.action<BlockAction<ButtonAction>>('delete_action', async ({ ack, body, client, logger }) => {
   try {
     await ack();
 
     const {
       user: { username },
-      channel: { id: channelId },
+      channel,
       message,
       actions: [{ value }],
     } = body;
+
+    const channelId = channel?.id;
 
     const { comment, currentLocationURL = '', commmentSectionURL = '' } = JSON.parse(value);
 
     const googleAuth = new JWT({
       email: 'service-account-804@docs-feedbacks.iam.gserviceaccount.com',
-      key: process.env.G_SHEET_TOKEN.replace(/\\n/g, '\n'),
+      key: process.env.G_SHEET_TOKEN!.replace(/\\n/g, '\n'),
       scopes: ['https://www.googleapis.com/auth/spreadsheets'],
     });
     const service = sheets({ version: 'v4', auth: googleAuth });
 
-    await service.spreadsheets.values.append({
+    // @ts-ignore
+    service.spreadsheets.values.append({
       spreadsheetId: spreadSheetsIds.forLater,
       range: 'Deleted messages!A:D',
       valueInputOption: 'USER_ENTERED',
@@ -73,9 +77,13 @@ app.action('delete_action', async ({ ack, body, client, logger }) => {
         values: [[username, comment, currentLocationURL, commmentSectionURL]],
       },
     });
+
+    if (!channelId) {
+      throw Error('feedback-management: Unknonw channel Id');
+    }
     await client.chat.delete({
       channel: channelId,
-      ts: message.ts,
+      ts: message!.ts,
       as_user: true,
       token: process.env.SLACK_BOT_TOKEN,
     });
@@ -89,31 +97,37 @@ app.action('save_message', async ({ ack, body, client, logger }) => {
     await ack();
     const {
       user: { username },
-      channel: { id: channelId },
+      channel,
       message,
       actions: [{ value }],
-    } = body;
+    } = body as BlockAction<ButtonAction>;
 
+    const channelId = channel?.id;
     const { comment, currentLocationURL = '', commmentSectionURL = '' } = JSON.parse(value);
 
     const googleAuth = new JWT({
       email: 'service-account-804@docs-feedbacks.iam.gserviceaccount.com',
-      key: process.env.G_SHEET_TOKEN.replace(/\\n/g, '\n'),
+      key: process.env.G_SHEET_TOKEN!.replace(/\\n/g, '\n'),
       scopes: ['https://www.googleapis.com/auth/spreadsheets'],
     });
     const service = sheets({ version: 'v4', auth: googleAuth });
 
-    await service.spreadsheets.values.append({
+    // @ts-ignore
+    service.spreadsheets.values.append({
       spreadsheetId: spreadSheetsIds.forLater,
       range: 'Sheet1!A:D',
       valueInputOption: 'USER_ENTERED',
-      resource: {
+      updates: {
         values: [[username, comment, currentLocationURL, commmentSectionURL]],
       },
     });
-    await client.chat.postMessage({
+
+    if (!channelId) {
+      throw Error('feedback-management: Unknonw channel Id');
+    }
+    client.chat.postMessage({
       channel: channelId,
-      thread_ts: message.ts,
+      thread_ts: message!.ts,
       as_user: true,
       text: `Saved in <https://docs.google.com/spreadsheets/d/${spreadSheetsIds.forLater}/>`,
     });
@@ -122,11 +136,8 @@ app.action('save_message', async ({ ack, body, client, logger }) => {
   }
 });
 
-/**
- * @param {object} event
- * @param {object} context
- */
-exports.handler = async (event, context, callback) => {
+// eslint-disable-next-line import/prefer-default-export
+export const handler: Handler = async (event, context, callback) => {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 404 };
   }
@@ -227,8 +238,9 @@ from ${commmentSectionURL}
         unfurl_media: false,
       });
     } else {
-      const handler = await awsLambdaReceiver.start();
-      return handler(event, context, callback);
+      const awsHandler = await awsLambdaReceiver.start();
+      // @ts-ignore
+      return awsHandler(event, context, callback);
     }
   } catch (error) {
     // eslint-disable-next-line no-console
