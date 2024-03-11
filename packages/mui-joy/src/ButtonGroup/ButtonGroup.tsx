@@ -84,7 +84,7 @@ export const StyledButtonGroup = styled('div')<{ ownerState: ButtonGroupOwnerSta
       borderRadius: 'var(--ButtonGroup-radius)',
       flexDirection: ownerState.orientation === 'vertical' ? 'column' : 'row',
       // first Button or IconButton
-      [`& > [data-first-child]`]: {
+      [`& > :first-child`]: {
         '--Button-radius': firstChildRadius,
         '--IconButton-radius': firstChildRadius,
         ...(ownerState.orientation === 'horizontal' && {
@@ -95,7 +95,7 @@ export const StyledButtonGroup = styled('div')<{ ownerState: ButtonGroupOwnerSta
         }),
       },
       // middle Buttons or IconButtons
-      [`& > :not([data-first-child]):not([data-last-child]):not(:only-child)`]: {
+      [`& > :not(:first-child):not(:last-child)`]: {
         '--Button-radius': 'var(--unstable_childRadius)',
         '--IconButton-radius': 'var(--unstable_childRadius)',
         borderRadius: 'var(--unstable_childRadius)',
@@ -109,7 +109,7 @@ export const StyledButtonGroup = styled('div')<{ ownerState: ButtonGroupOwnerSta
         }),
       },
       // last Button or IconButton
-      [`& > [data-last-child]`]: {
+      [`& > :last-child`]: {
         '--Button-radius': lastChildRadius,
         '--IconButton-radius': lastChildRadius,
         ...(ownerState.orientation === 'horizontal' && {
@@ -124,7 +124,7 @@ export const StyledButtonGroup = styled('div')<{ ownerState: ButtonGroupOwnerSta
         '--Button-radius': 'var(--ButtonGroup-radius)',
         '--IconButton-radius': 'var(--ButtonGroup-radius)',
       },
-      [`& > :not([data-first-child]):not(:only-child)`]: {
+      [`& > :not(:first-child):not(:only-child)`]: {
         '--Button-margin': margin,
         '--IconButton-margin': margin,
       },
