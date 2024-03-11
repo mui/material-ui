@@ -8,6 +8,8 @@
     "noEmit": false,
     "resolveJsonModule": true,
     "paths": {
+      "@mui/material": ["./packages/mui-material/src"],
+      "@mui/material/*": ["./packages/mui-material/src/*"],
       "@mui/system": ["./packages/mui-system/src"],
       "@mui/system/*": ["./packages/mui-system/src/*"],
       "@mui/utils": ["./packages/mui-utils/src"],

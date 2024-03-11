@@ -5,8 +5,9 @@ import { transformAsync } from '@babel/core';
 import { asyncResolveFallback } from '@wyw-in-js/shared';
 import {
   TransformCacheCollection,
-  transform as wywTransform,
   createFileReporter,
+  transform as wywTransform,
+  type PluginOptions,
 } from '@wyw-in-js/transform';
 import { preprocessor } from '@pigment-css/react/utils';
 import * as prettier from 'prettier';
@@ -15,6 +16,10 @@ import sxTransformPlugin from '../exports/sx-plugin';
 
 const shouldUpdateOutput = process.env.UPDATE_FIXTURES === 'true';
 
+function resolveAliasPath(relativeToBabelConf: string) {
+  const resolvedPath = path.relative(process.cwd(), path.resolve(__dirname, relativeToBabelConf));
+  return `./${resolvedPath.replace('\\', '/')}`;
+}
 function runSxTransform(code: string, filename: string) {
   return transformAsync(code, {
     babelrc: false,
@@ -42,17 +47,39 @@ export async function runTransformation(
 
   const babelResult = await runSxTransform(inputContent, inputFilePath);
 
-  const pluginOptions = {
+  const pluginOptions: Partial<PluginOptions> & { themeArgs: { theme?: unknown } } = {
     themeArgs: {
       theme: options?.themeArgs?.theme,
     },
     babelOptions: {
       configFile: false,
       babelrc: false,
-      plugins: ['@babel/plugin-syntax-jsx'],
+      presets: [
+        [
+          '@babel/preset-react',
+          {
+            runtime: 'automatic',
+          },
+        ],
+        '@babel/preset-typescript',
+      ],
+      plugins: [
+        '@babel/plugin-syntax-jsx',
+        [
+          'babel-plugin-module-resolver',
+          {
+            alias: {
+              '@mui/material': resolveAliasPath('../../mui-material/src'),
+            },
+          },
+        ],
+      ],
     },
-    tagResolver(_source: string, tag: string) {
-      return require.resolve(`../exports/${tag}`);
+    tagResolver(source: string, tag: string) {
+      if (source === '@pigment-css/react') {
+        return require.resolve(`../exports/${tag}`);
+      }
+      return null;
     },
   };
 
