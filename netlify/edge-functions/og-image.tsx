@@ -256,7 +256,15 @@ export default async function handler(req: Request) {
           style: 'normal',
         },
       ],
+      // Manage the caching
+      headers: {
+        // Cach control is already done by the package (https://github.com/ascorbic/og-edge/blob/d533ef878801d7f808eb004f254e782ec6ba1e3c/mod.ts#L233-L240)
+        'Netlify-Vary': 'query',
+      },
     },
   );
 }
-export const config = { path: '/edge-functions/og-image' };
+export const config = {
+  cache: 'manual',
+  path: '/edge-functions/og-image',
+};
