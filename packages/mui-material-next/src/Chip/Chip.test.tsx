@@ -34,6 +34,7 @@ describe('<Chip />', () => {
         removeListener: () => {},
       }) as unknown as MediaQueryList;
   });
+
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
   });
