@@ -293,10 +293,6 @@ export interface Theme extends Omit<MD2Theme, 'vars'> {
       shape: MD3Shape;
     };
   };
-  generateCssVars: (colorScheme?: SupportedColorScheme) => {
-    css: Record<string, string | number>;
-    vars: Theme['vars'];
-  };
 }
 
 export type SxProps = SystemSxProps<Theme>;

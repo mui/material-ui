@@ -81,6 +81,26 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScalesOptions> {
    *        value = 'var(--test)'
    */
   shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
+  /**
+   * If provided, it will be used to create a selector for the color scheme.
+   * This is useful if you want to use class or data-* attributes to apply the color scheme.
+   *
+   * The callback receives the colorScheme with the possible values of:
+   * - undefined: the selector for tokens that are not color scheme dependent
+   * - string: the selector for the color scheme
+   *
+   * @example
+   * // class selector
+   * (colorScheme) => colorScheme !== 'light' ? `.theme-${colorScheme}` : ":root"
+   *
+   * @example
+   * // data-* attribute selector
+   * (colorScheme) => colorScheme !== 'light' ? `[data-theme="${colorScheme}"`] : ":root"
+   */
+  getSelector?: (
+    colorScheme: SupportedColorScheme | undefined,
+    css: Record<string, any>,
+  ) => string | Record<string, any>;
 }
 
 export const createGetCssVar = (cssVarPrefix = 'joy') =>
@@ -94,6 +114,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     components: componentsInput,
     variants: variantsInput,
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
+    getSelector,
     ...scalesInput
   } = themeOptions || {};
   const getCssVar = createGetCssVar(cssVarPrefix);
@@ -522,7 +543,10 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     : defaultScales;
 
   const theme = {
+    attribute: 'data-joy-color-scheme',
+    colorSchemeSelector: ':root',
     colorSchemes,
+    defaultColorScheme: 'light',
     ...mergedScales,
     breakpoints: createBreakpoints(breakpoints ?? {}),
     components: deepmerge(
@@ -610,15 +634,30 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   const parserConfig = {
     prefix: cssVarPrefix,
     shouldSkipGeneratingVar,
+    getSelector:
+      getSelector ||
+      ((colorScheme) => {
+        if (theme.defaultColorScheme === colorScheme) {
+          return `${theme.colorSchemeSelector}, [${theme.attribute}="${colorScheme}"]`;
+        }
+        if (colorScheme) {
+          return `[${theme.attribute}="${colorScheme}"]`;
+        }
+        return theme.colorSchemeSelector;
+      }),
   };
 
-  const { vars: themeVars, generateCssVars } = prepareCssVars<Theme, ThemeVars>(
+  const { varsWithDefaults, generateThemeVars, generateStyleSheets } = prepareCssVars<
+    Theme,
+    ThemeVars
+  >(
     // @ts-ignore property truDark is missing from colorSchemes
     { colorSchemes, ...mergedScales },
     parserConfig,
   );
-  theme.vars = themeVars;
-  theme.generateCssVars = generateCssVars;
+  theme.vars = varsWithDefaults;
+  theme.generateThemeVars = generateThemeVars;
+  theme.generateStyleSheets = generateStyleSheets;
   theme.unstable_sxConfig = {
     ...defaultSxConfig,
     ...themeOptions?.unstable_sxConfig,

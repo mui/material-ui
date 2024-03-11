@@ -149,6 +149,7 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
   } = {
     attribute: 'data-mui-color-scheme',
     colorSchemeSelector: ':root',
+    defaultColorScheme: 'light',
     ...muiTheme,
     cssVarPrefix,
     getCssVar,
@@ -462,7 +463,7 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
     getSelector:
       getSelector ||
       ((colorScheme, css) => {
-        if ((theme.defaultColorScheme || 'light') === colorScheme) {
+        if (theme.defaultColorScheme === colorScheme) {
           if (colorScheme === 'dark') {
             const excludedVariables: typeof css = {};
             excludeVariablesFromRoot(cssVarPrefix).forEach((cssVar) => {
@@ -483,15 +484,15 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
       }),
   };
 
-  const {
-    vars: themeVars,
-    generateCssVars,
-    generateStyleSheets,
-  } = prepareCssVars<Theme, Theme['vars']>(theme, parserConfig);
-  theme.vars = themeVars;
-  theme.generateCssVars = generateCssVars;
+  const { varsWithDefaults, generateThemeVars, generateStyleSheets } = prepareCssVars<
+    Theme,
+    Theme['vars']
+  >(theme, parserConfig);
+  theme.vars = varsWithDefaults;
+  theme.generateThemeVars = generateThemeVars;
   theme.generateStyleSheets = generateStyleSheets;
-  theme.getColorSchemeSelector = (colorScheme) => `:where([${theme.attribute}="${colorScheme}"]) &`;
+  theme.getColorSchemeSelector = (colorScheme) =>
+    `* :where([${theme.attribute}="${colorScheme}"]) &`;
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
 
   theme.unstable_sxConfig = {

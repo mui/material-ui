@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import MuiError from '@mui/internal-babel-macros/MuiError.macro';
-import deepmerge from '@mui/utils/deepmerge';
 import { GlobalStyles } from '@mui/styled-engine';
 import { useTheme as muiUseTheme } from '@mui/private-theming';
 import ThemeProvider from '../ThemeProvider';
@@ -64,14 +63,14 @@ export default function createCssVarsProvider(options) {
     theme: themeProp = defaultTheme,
     modeStorageKey = defaultModeStorageKey,
     colorSchemeStorageKey = defaultColorSchemeStorageKey,
-    attribute = defaultAttribute,
+    attribute,
     defaultMode = designSystemMode,
     defaultColorScheme = designSystemColorScheme,
     disableTransitionOnChange = designSystemTransitionOnChange,
     storageWindow = typeof window === 'undefined' ? undefined : window,
     documentNode = typeof document === 'undefined' ? undefined : document,
     colorSchemeNode = typeof document === 'undefined' ? undefined : document.documentElement,
-    colorSchemeSelector = ':root',
+    colorSchemeSelector,
     disableNestedContext = false,
     disableStyleSheetGeneration = false,
   }) {
@@ -84,7 +83,7 @@ export default function createCssVarsProvider(options) {
     const {
       colorSchemes = {},
       components = {},
-      generateCssVars = () => ({ vars: {}, css: {} }),
+      generateThemeVars = () => ({}),
       cssVarPrefix,
       ...restThemeProp
     } = scopedTheme || themeProp;
@@ -144,7 +143,7 @@ export default function createCssVarsProvider(options) {
     })();
 
     // 2. Create CSS variables and store them in objects (to be generated in stylesheets in the final step)
-    const { vars: rootVars } = generateCssVars();
+    const themeVars = generateThemeVars();
 
     // 3. Start composing the theme object
     const theme = {
@@ -152,16 +151,12 @@ export default function createCssVarsProvider(options) {
       components,
       colorSchemes,
       cssVarPrefix,
-      vars: rootVars,
+      vars: themeVars,
       getColorSchemeSelector: (targetColorScheme) => `[${attribute}="${targetColorScheme}"] &`,
     };
 
-    // 4. Create color CSS variables and store them in objects (to be generated in stylesheets in the final step)
-    //    The default color scheme stylesheet is constructed to have the least CSS specificity.
-    //    The other color schemes uses selector, default as data attribute, to increase the CSS specificity so that they can override the default color scheme stylesheet.
+    // 4. Resolve the color scheme and merge it to the theme
     Object.entries(colorSchemes).forEach(([key, scheme]) => {
-      const { vars } = generateCssVars(key);
-      theme.vars = deepmerge(theme.vars, vars);
       if (key === calculatedColorScheme) {
         // 4.1 Merge the selected color scheme to the theme
         Object.keys(scheme).forEach((schemeKey) => {
@@ -180,7 +175,6 @@ export default function createCssVarsProvider(options) {
         }
       }
     });
-    theme.vars = deepmerge(theme.vars, rootVars);
     const resolvedDefaultColorScheme = (() => {
       if (typeof defaultColorScheme === 'string') {
         return defaultColorScheme;
@@ -192,9 +186,12 @@ export default function createCssVarsProvider(options) {
     })();
     themeProp.defaultColorScheme = resolvedDefaultColorScheme;
 
-    // TODO: move these properties to the `extendTheme` options
-    themeProp.colorSchemeSelector = colorSchemeSelector;
-    themeProp.attribute = attribute;
+    if (colorSchemeSelector) {
+      themeProp.colorSchemeSelector = colorSchemeSelector;
+    }
+    if (attribute) {
+      themeProp.attribute = attribute;
+    }
 
     // 5. Declaring effects
     // 5.1 Updates the selector value to use the current color scheme which tells CSS to use the proper stylesheet.
