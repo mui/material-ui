@@ -83,7 +83,6 @@ export default function createCssVarsProvider(options) {
     const {
       colorSchemes = {},
       components = {},
-      generateThemeVars = () => ({}),
       cssVarPrefix,
       ...restThemeProp
     } = scopedTheme || themeProp;
@@ -142,8 +141,8 @@ export default function createCssVarsProvider(options) {
       return colorScheme;
     })();
 
-    // 2. Create CSS variables and store them in objects (to be generated in stylesheets in the final step)
-    const themeVars = generateThemeVars();
+    // 2. get the `vars` object that refers to the CSS custom properties
+    const themeVars = restThemeProp.generateThemeVars?.() || restThemeProp.vars;
 
     // 3. Start composing the theme object
     const theme = {
@@ -152,7 +151,6 @@ export default function createCssVarsProvider(options) {
       colorSchemes,
       cssVarPrefix,
       vars: themeVars,
-      getColorSchemeSelector: (targetColorScheme) => `[${attribute}="${targetColorScheme}"] &`,
     };
 
     // 4. Resolve the color scheme and merge it to the theme
