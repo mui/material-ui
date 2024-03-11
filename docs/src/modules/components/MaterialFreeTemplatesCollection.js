@@ -83,7 +83,6 @@ export default function Templates() {
           <Card
             variant="outlined"
             sx={{
-              p: 2,
               height: '100%',
               display: 'flex',
               flexDirection: 'column',
@@ -97,50 +96,51 @@ export default function Templates() {
               sx={{
                 aspectRatio: '16 / 9',
                 objectPosition: 'top',
-                border: '1px solid',
+                borderBottom: '1px solid',
                 borderColor: 'divider',
-                borderRadius: '8px',
               }}
             />
-            <Typography component="h3" variant="body1" fontWeight="semiBold" mt={1}>
-              {layout.title}
-            </Typography>
-            <Typography variant="body2" color="text.secondary" mb={2}>
-              {layout.description}
-            </Typography>
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: { xs: 'column', sm: 'row' },
-                gap: 1,
-                mt: 'auto',
-              }}
-            >
-              <Button
-                component="a"
-                href={layout.source}
-                size="small"
-                fullWidth
-                variant="outlined"
-                color="secondary"
-                startIcon={<CodeRoundedIcon sx={{ mr: 0.5 }} />}
+            <Box sx={{ p: 2, pt: 1.5 }}>
+              <Typography component="h3" variant="body1" fontWeight="semiBold">
+                {layout.title}
+              </Typography>
+              <Typography variant="body2" color="text.secondary" mb={2}>
+                {layout.description}
+              </Typography>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: { xs: 'column', sm: 'row' },
+                  gap: 1,
+                  mt: 'auto',
+                }}
               >
-                Code
-              </Button>
-              <Button
-                component="a"
-                href={layout.source}
-                size="small"
-                fullWidth
-                variant="outlined"
-                color="secondary"
-                startIcon={<Visibility sx={{ mr: 0.5 }} />}
-                data-ga-event-category="material-ui-template"
-                data-ga-event-label={layout.title}
-                data-ga-event-action="preview-img"
-              >
-                Preview
-              </Button>
+                <Button
+                  component="a"
+                  href={layout.source}
+                  size="small"
+                  fullWidth
+                  variant="outlined"
+                  color="secondary"
+                  startIcon={<CodeRoundedIcon sx={{ mr: 0.5 }} />}
+                >
+                  Code
+                </Button>
+                <Button
+                  component="a"
+                  href={layout.source}
+                  size="small"
+                  fullWidth
+                  variant="outlined"
+                  color="secondary"
+                  startIcon={<Visibility sx={{ mr: 0.5 }} />}
+                  data-ga-event-category="material-ui-template"
+                  data-ga-event-label={layout.title}
+                  data-ga-event-action="preview-img"
+                >
+                  Preview
+                </Button>
+              </Box>
             </Box>
           </Card>
         </Grid>
