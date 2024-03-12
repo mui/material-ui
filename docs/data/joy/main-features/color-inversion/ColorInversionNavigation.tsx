@@ -63,7 +63,12 @@ export default function ColorInversionNavigation() {
             </Sheet>
           }
           color={color}
-          sx={{py: 1, bgcolor: "transparent", border: "1px solid", borderColor: "divider"}}
+          sx={{
+            py: 1,
+            bgcolor: 'transparent',
+            border: '1px solid',
+            borderColor: 'divider',
+          }}
         >
           <Option value="1">General team</Option>
           <Option value="2">Engineering team</Option>
@@ -138,16 +143,16 @@ export default function ColorInversionNavigation() {
           p: 2,
           display: 'flex',
           flexDirection: 'column',
-          alignItems: "center",
+          alignItems: 'center',
           gap: 2,
           bgcolor: `${color}.900`,
 
-          "& .MuiBadge-root": {"--Badge-ringColor": "unset"},
-          "& .MuiBadge-colorSuccess": {bgcolor: "success.400"},
+          '& .MuiBadge-root': { '--Badge-ringColor': 'unset' },
+          '& .MuiBadge-colorSuccess': { bgcolor: 'success.400' },
           '& button': {
             borderRadius: '50%',
             padding: 0,
-            "--IconButton-size": "3rem",
+            '--IconButton-size': '3rem',
           },
         })}
       >
@@ -184,7 +189,7 @@ export default function ColorInversionNavigation() {
             const nextColorIndex = colors.indexOf(color) + 1;
             setColor(colors[nextColorIndex] ?? colors[0]);
           }}
-          sx={{ mt: 'auto'}}
+          sx={{ mt: 'auto' }}
         >
           <ColorLensRoundedIcon />
         </IconButton>
