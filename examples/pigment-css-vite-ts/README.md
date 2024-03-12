@@ -30,5 +30,5 @@ or:
 
 To learn more about this example:
 
-- [Pigment CSS documentation](https://github.com/mui/material-ui/blob/master/packages/pigment-react/README.md) - learn more about Pigment CSS features and APIs.
+- [Pigment CSS documentation](https://github.com/mui/material-ui/blob/master/packages/pigment-css-react/README.md) - learn more about Pigment CSS features and APIs.
 - [Vite documentation](https://vitejs.dev/guide/) - learn about Vite features and APIs.
