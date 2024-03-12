@@ -426,7 +426,7 @@ const Root = styled('div')(
       },
     },
     '& a code': {
-      color: darken(lightTheme.palette.primary.main, 0.04),
+      color: darken(lightTheme.palette.primary.main, 0.2),
     },
     '& img, & video': {
       // Use !important so that inline style on <img> or <video> can't win.

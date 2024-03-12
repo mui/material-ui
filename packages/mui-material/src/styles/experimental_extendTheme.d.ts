@@ -69,6 +69,7 @@ export type Overlays = [
 
 export interface PaletteBackgroundChannel {
   defaultChannel: string;
+  paperChannel: string;
 }
 
 export interface PaletteCommonChannel {
