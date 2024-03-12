@@ -13,7 +13,9 @@
       "@mui/system": ["./packages/mui-system/src"],
       "@mui/system/*": ["./packages/mui-system/src/*"],
       "@mui/utils": ["./packages/mui-utils/src"],
-      "@mui/utils/*": ["./packages/mui-utils/src/*"]
+      "@mui/utils/*": ["./packages/mui-utils/src/*"],
+      "@pigment/react": ["./packages/pigment-react/src"],
+      "@pigment/react/*": ["./packages/pigment-react/src/*"]
     },
     "types": ["node", "mocha"]
   },
