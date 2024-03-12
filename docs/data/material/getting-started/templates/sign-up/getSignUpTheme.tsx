@@ -505,6 +505,44 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
           }),
         },
       },
+      MuiCheckbox: {
+        defaultProps: {
+          disableRipple: true,
+        },
+        styleOverrides: {
+          root: {
+            '&:hover': { bgcolor: 'transparent' },
+            '& .MuiSvgIcon-root': {
+              borderRadius: 3,
+              width: 16,
+              height: 16,
+              boxShadow:
+                'inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)',
+              backgroundColor: '#f5f8fa',
+              'input:hover ~ &': {
+                backgroundColor: '#ebf1f5',
+              },
+              'input:disabled ~ &': {
+                boxShadow: 'none',
+                background: 'rgba(206,217,224,.5)',
+              },
+            },
+            '&.Mui-checked .MuiSvgIcon-root': {
+              borderRadius: 3,
+              backgroundImage:
+                'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
+              '&:before': {
+                display: 'block',
+                width: 16,
+                height: 16,
+              },
+              'input:hover ~ &': {
+                backgroundColor: brand[700],
+              },
+            },
+          },
+        },
+      },
       MuiToggleButton: {
         styleOverrides: {
           root: ({ theme }) => ({
