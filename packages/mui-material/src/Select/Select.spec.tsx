@@ -132,7 +132,7 @@ function genericValueTest() {
     otherProp?: number;
   }
 
-  const SelectWrapper1 = <Value = unknown>(props: SelectProps<Value> & OtherProps) => {
+  const SelectWrapper1 = <Value = unknown,>(props: SelectProps<Value> & OtherProps) => {
     const { otherProp, ...materialSelectProps } = props;
 
     return (
