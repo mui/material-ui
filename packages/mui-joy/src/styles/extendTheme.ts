@@ -691,6 +691,10 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     variantsInput,
   );
 
+  Object.entries(theme.colorSchemes[theme.defaultColorScheme]).forEach(([key, value]) => {
+    // @ts-ignore
+    theme[key] = value;
+  });
   theme.palette = {
     ...theme.colorSchemes.light.palette,
     colorScheme: 'light',

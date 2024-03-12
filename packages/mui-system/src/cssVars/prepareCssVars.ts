@@ -61,7 +61,7 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
         stylesheets.push(typeof selector === 'string' ? { [selector]: { ...css } } : selector);
       }
     }
-    insertStyleSheet(getSelector?.(undefined, rootCss) || ':root', rootCss);
+    insertStyleSheet(getSelector?.(undefined, { ...rootCss }) || ':root', rootCss);
 
     const { [colorScheme]: defaultSchemeVal, ...rest } = colorSchemesMap;
 

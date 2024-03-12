@@ -95,7 +95,6 @@ export default function extendTheme(options = {}, ...args) {
   let theme = {
     defaultColorScheme: 'light',
     ...muiTheme,
-    palette: lightPalette,
     cssVarPrefix,
     getCssVar,
     colorSchemes: {
@@ -410,6 +409,9 @@ export default function extendTheme(options = {}, ...args) {
   theme.attribute = 'data-mui-color-scheme';
   theme.colorSchemeSelector = ':root';
   theme.vars = vars;
+  Object.entries(theme.colorSchemes[theme.defaultColorScheme]).forEach(([key, value]) => {
+    theme[key] = value;
+  });
   theme.generateThemeVars = generateThemeVars;
   theme.generateStyleSheets = generateStyleSheets;
   theme.getColorSchemeSelector = (colorScheme) => `[${theme.attribute}="${colorScheme}"] &`;

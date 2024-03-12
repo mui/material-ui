@@ -549,7 +549,7 @@ describe('experimental_extendTheme', () => {
     expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
       '.root',
       '[data-custom-color-scheme="dark"]',
-      '.root, [data-custom-color-scheme="dark"]',
+      '.root',
       '[data-custom-color-scheme="light"]',
     ]);
   });

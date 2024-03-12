@@ -143,7 +143,7 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
   const { palette: darkRefPalette } = darkRef;
 
   let theme: Theme & {
-    defaultColorScheme: string;
+    defaultColorScheme: SupportedColorScheme;
     attribute: string;
     colorSchemeSelector: string;
   } = {
@@ -151,8 +151,6 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
     ...muiTheme,
     cssVarPrefix,
     getCssVar,
-    sys: lightSys,
-    ref: lightRef,
     colorSchemes: {
       ...colorSchemesInput,
       light: {
@@ -468,6 +466,10 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
   theme.attribute = 'data-mui-color-scheme';
   theme.colorSchemeSelector = ':root';
   theme.vars = vars;
+  Object.entries(theme.colorSchemes[theme.defaultColorScheme]).forEach(([key, value]) => {
+    // @ts-ignore
+    theme[key] = value;
+  });
   theme.generateThemeVars = generateThemeVars;
   theme.generateStyleSheets = generateStyleSheets;
   theme.getColorSchemeSelector = (colorScheme) => `[${theme.attribute}="${colorScheme}"] &`;
