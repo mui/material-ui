@@ -141,6 +141,8 @@ export default function ColorInversionNavigation() {
           alignItems: "center",
           gap: 2,
           bgcolor: `${color}.900`,
+
+          "& .MuiBadge-root": {"--Badge-ringColor": "unset"},
           '& button': {
             borderRadius: '50%',
             padding: 0,
@@ -148,7 +150,7 @@ export default function ColorInversionNavigation() {
           },
         })}
       >
-        <Badge badgeContent="7" size="sm">
+        <Badge badgeContent="7" badgeInset="15%" size="sm">
           <IconButton size="lg">
             <Avatar src="/static/images/avatar/3.jpg" />
           </IconButton>
@@ -158,7 +160,7 @@ export default function ColorInversionNavigation() {
             vertical: 'bottom',
             horizontal: 'right',
           }}
-          badgeInset="14%"
+          badgeInset="20%"
           sx={{ [`& .${badgeClasses.badge}`]: { bgcolor: 'success.300' } }}
         >
           <IconButton size="lg">
