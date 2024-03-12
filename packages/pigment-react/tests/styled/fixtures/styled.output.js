@@ -11,6 +11,6 @@ export const SliderRail = /*#__PURE__*/ _styled2('span', {
 })({
   classes: ['s1sjy0ja'],
 });
-const Component3 = /*#__PURE__*/ _styled3('div')({
-  classes: ['c6hrafw'],
+const SliderRail2 = /*#__PURE__*/ _styled3('span')({
+  classes: ['s6hrafw'],
 });
