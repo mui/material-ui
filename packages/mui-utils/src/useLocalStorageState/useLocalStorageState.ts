@@ -83,21 +83,14 @@ function setValue(area: Storage, key: string | null, value: string | null) {
   emitCurrentTabStorageChange(key);
 }
 
-type Initializer<T> = () => T;
+type Initializer = () => string | null;
 
-type UseStorageStateHookResult<T> = [T, React.Dispatch<React.SetStateAction<T>>];
+type UseStorageStateHookResult = [
+  string | null,
+  React.Dispatch<React.SetStateAction<string | null>>,
+];
 
-function useLocalStorageStateServer(
-  key: string | null,
-  initializer: any,
-): UseStorageStateHookResult<string>;
-function useLocalStorageStateServer(
-  key: string | null,
-  initializer?: string | null | Initializer<string | null>,
-): UseStorageStateHookResult<string | null>;
-function useLocalStorageStateServer():
-  | UseStorageStateHookResult<string | null>
-  | UseStorageStateHookResult<string> {
+function useLocalStorageStateServer(): UseStorageStateHookResult {
   return React.useState<string | null>(null);
 }
 
@@ -117,16 +110,8 @@ function useLocalStorageStateServer():
  */
 function useLocalStorageStateBrowser(
   key: string | null,
-  initializer: string | Initializer<string>,
-): UseStorageStateHookResult<string>;
-function useLocalStorageStateBrowser(
-  key: string | null,
-  initializer?: string | null | Initializer<string | null>,
-): UseStorageStateHookResult<string | null>;
-function useLocalStorageStateBrowser(
-  key: string | null,
-  initializer: string | null | Initializer<string | null> = null,
-): UseStorageStateHookResult<string | null> | UseStorageStateHookResult<string> {
+  initializer: string | null | Initializer = null,
+): UseStorageStateHookResult {
   const [initialValue] = React.useState(initializer);
   const area = window.localStorage;
   const subscribeKey = React.useCallback(
