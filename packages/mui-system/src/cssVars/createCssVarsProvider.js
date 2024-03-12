@@ -70,7 +70,7 @@ export default function createCssVarsProvider(options) {
     storageWindow = typeof window === 'undefined' ? undefined : window,
     documentNode = typeof document === 'undefined' ? undefined : document,
     colorSchemeNode = typeof document === 'undefined' ? undefined : document.documentElement,
-    colorSchemeSelector,
+    colorSchemeSelector = ':root',
     disableNestedContext = false,
     disableStyleSheetGeneration = false,
   }) {
@@ -183,12 +183,8 @@ export default function createCssVarsProvider(options) {
       return defaultColorScheme.light;
     })();
     themeProp.defaultColorScheme = resolvedDefaultColorScheme;
-    if (colorSchemeSelector) {
-      themeProp.colorSchemeSelector = colorSchemeSelector;
-    }
-    if (attribute) {
-      themeProp.attribute = attribute;
-    }
+    themeProp.colorSchemeSelector = colorSchemeSelector;
+    themeProp.attribute = attribute;
 
     if (!theme.getColorSchemeSelector) {
       theme.getColorSchemeSelector = (targetColorScheme) =>
