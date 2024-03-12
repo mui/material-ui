@@ -16,6 +16,7 @@ import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Typography from '@mui/joy/Typography';
 import Select from '@mui/joy/Select';
 import Stack from '@mui/joy/Stack';
+import Tooltip from '@mui/joy/Tooltip';
 import Option from '@mui/joy/Option';
 import Sheet from '@mui/joy/Sheet';
 import PieChart from '@mui/icons-material/PieChart';
@@ -167,9 +168,11 @@ export default function ColorInversionNavigation() {
             <Avatar src="/static/images/avatar/4.jpg" />
           </IconButton>
         </Badge>
-        <IconButton aria-label="Add another chat" sx={{color: "text.tertiary"}}>
-          <AddIcon />
-        </IconButton>
+        <Tooltip title="Add another chat" variant="soft">
+          <IconButton sx={{ color: 'text.tertiary' }}>
+            <AddIcon />
+          </IconButton>
+        </Tooltip>
         <IconButton
           onClick={() => {
             const colors: ColorPaletteProp[] = [
@@ -182,7 +185,7 @@ export default function ColorInversionNavigation() {
             const nextColorIndex = colors.indexOf(color) + 1;
             setColor(colors[nextColorIndex] ?? colors[0]);
           }}
-          sx={{ mt: 'auto', color: "text.tertiary" }}
+          sx={{ mt: 'auto', color: 'text.tertiary' }}
         >
           <ColorLensRoundedIcon />
         </IconButton>
