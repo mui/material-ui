@@ -15,6 +15,7 @@ import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Typography from '@mui/joy/Typography';
 import Select from '@mui/joy/Select';
+import Stack from '@mui/joy/Stack';
 import Option from '@mui/joy/Option';
 import Sheet from '@mui/joy/Sheet';
 import PieChart from '@mui/icons-material/PieChart';
@@ -44,10 +45,10 @@ export default function ColorInversionNavigation() {
           defaultValue="1"
           size="sm"
           placeholder={
-            <div>
-              <Typography level="inherit">Saleshouse</Typography>
+            <Stack alignItems="start">
+              <Typography level="title-lg">Saleshouse</Typography>
               <Typography level="body-md">general team</Typography>
-            </div>
+            </Stack>
           }
           startDecorator={
             <Sheet
