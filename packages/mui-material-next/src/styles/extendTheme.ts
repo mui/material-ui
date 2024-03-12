@@ -13,10 +13,10 @@ import {
 import {
   createTheme as createThemeWithoutVars,
   getOverlayAlpha,
-  private_excludeVariablesFromRoot as excludeVariablesFromRoot,
   SupportedColorScheme,
   ColorSystem as MD2ColorSystem,
   Overlays,
+  private_createGetSelector as defaultGetSelector,
 } from '@mui/material/styles';
 import defaultSxConfig from './sxConfig';
 import { Theme, MD3Palettes, MD3ColorSchemeTokens, CssVarsThemeOptions } from './Theme.types';
@@ -458,28 +458,7 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
   const parserConfig = {
     prefix: cssVarPrefix,
     shouldSkipGeneratingVar,
-    getSelector:
-      getSelector ||
-      ((colorScheme, css) => {
-        if (theme.defaultColorScheme === colorScheme) {
-          if (colorScheme === 'dark') {
-            const excludedVariables: typeof css = {};
-            excludeVariablesFromRoot(cssVarPrefix).forEach((cssVar) => {
-              excludedVariables[cssVar] = css[cssVar];
-              delete css[cssVar];
-            });
-            return {
-              [`[${theme.attribute}="${colorScheme}"]`]: excludedVariables,
-              [theme.colorSchemeSelector]: css,
-            };
-          }
-          return `${theme.colorSchemeSelector}, [${theme.attribute}="${colorScheme}"]`;
-        }
-        if (colorScheme) {
-          return `[${theme.attribute}="${colorScheme}"]`;
-        }
-        return theme.colorSchemeSelector;
-      }),
+    getSelector: getSelector || defaultGetSelector(theme),
   };
 
   const { vars, generateThemeVars, generateStyleSheets } = prepareCssVars<Theme, Theme['vars']>(

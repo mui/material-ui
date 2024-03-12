@@ -7,11 +7,7 @@ export interface DefaultCssVarsTheme {
   defaultColorScheme?: string;
 }
 
-function prepareCssVars<
-  T extends DefaultCssVarsTheme,
-  ThemeVars extends Record<string, any>,
-  Selector = string | object,
->(
+function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<string, any>>(
   theme: T,
   {
     getSelector,
@@ -22,7 +18,7 @@ function prepareCssVars<
     getSelector?: (
       colorScheme: keyof T['colorSchemes'] | undefined,
       css: Record<string, any>,
-    ) => Selector;
+    ) => string | Record<string, any>;
   } = {},
 ) {
   // @ts-ignore - ignore components do not exist

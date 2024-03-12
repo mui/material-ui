@@ -19,7 +19,7 @@ import {
 import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import createThemeWithoutVars from './createTheme';
 import getOverlayAlpha from './getOverlayAlpha';
-import excludeVariablesFromRoot from './excludeVariablesFromRoot';
+import defaultGetSelector from './createGetSelector';
 
 const defaultDarkOverlays = [...Array(25)].map((_, index) => {
   if (index === 0) {
@@ -404,28 +404,7 @@ export default function extendTheme(options = {}, ...args) {
   const parserConfig = {
     prefix: cssVarPrefix,
     shouldSkipGeneratingVar,
-    getSelector:
-      getSelector ||
-      ((colorScheme, css) => {
-        if (theme.defaultColorScheme === colorScheme) {
-          if (colorScheme === 'dark') {
-            const excludedVariables = {};
-            excludeVariablesFromRoot(cssVarPrefix).forEach((cssVar) => {
-              excludedVariables[cssVar] = css[cssVar];
-              delete css[cssVar];
-            });
-            return {
-              [`[${theme.attribute}="${colorScheme}"]`]: excludedVariables,
-              [`${theme.colorSchemeSelector}, [${theme.attribute}="${colorScheme}"]`]: css,
-            };
-          }
-          return `${theme.colorSchemeSelector}, [${theme.attribute}="${colorScheme}"]`;
-        }
-        if (colorScheme) {
-          return `[${theme.attribute}="${colorScheme}"]`;
-        }
-        return theme.colorSchemeSelector;
-      }),
+    getSelector: getSelector || defaultGetSelector(theme),
   };
   const { vars, generateThemeVars, generateStyleSheets } = prepareCssVars(theme, parserConfig);
   theme.attribute = 'data-mui-color-scheme';
