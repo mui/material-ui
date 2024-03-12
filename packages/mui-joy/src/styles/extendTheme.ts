@@ -543,8 +543,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     : defaultScales;
 
   const theme = {
-    attribute: 'data-joy-color-scheme',
-    colorSchemeSelector: ':root',
     colorSchemes,
     defaultColorScheme: 'light',
     ...mergedScales,
@@ -652,6 +650,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     { colorSchemes, ...mergedScales },
     parserConfig,
   );
+  theme.attribute = 'data-joy-color-scheme';
+  theme.colorSchemeSelector = ':root';
   theme.vars = vars;
   theme.generateThemeVars = generateThemeVars;
   theme.generateStyleSheets = generateStyleSheets;

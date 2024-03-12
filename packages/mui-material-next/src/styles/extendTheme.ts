@@ -147,8 +147,6 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
     attribute: string;
     colorSchemeSelector: string;
   } = {
-    attribute: 'data-mui-color-scheme',
-    colorSchemeSelector: ':root',
     defaultColorScheme: 'light',
     ...muiTheme,
     cssVarPrefix,
@@ -488,6 +486,8 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
     theme,
     parserConfig,
   );
+  theme.attribute = 'data-mui-color-scheme';
+  theme.colorSchemeSelector = ':root';
   theme.vars = vars;
   theme.generateThemeVars = generateThemeVars;
   theme.generateStyleSheets = generateStyleSheets;

@@ -93,8 +93,6 @@ export default function extendTheme(options = {}, ...args) {
   });
 
   let theme = {
-    attribute: 'data-mui-color-scheme',
-    colorSchemeSelector: ':root',
     defaultColorScheme: 'light',
     ...muiTheme,
     palette: lightPalette,
@@ -430,6 +428,8 @@ export default function extendTheme(options = {}, ...args) {
       }),
   };
   const { vars, generateThemeVars, generateStyleSheets } = prepareCssVars(theme, parserConfig);
+  theme.attribute = 'data-mui-color-scheme';
+  theme.colorSchemeSelector = ':root';
   theme.vars = vars;
   theme.generateThemeVars = generateThemeVars;
   theme.generateStyleSheets = generateStyleSheets;
