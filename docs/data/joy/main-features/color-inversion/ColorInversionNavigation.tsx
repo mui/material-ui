@@ -149,7 +149,7 @@ export default function ColorInversionNavigation() {
         })}
       >
         <Badge badgeContent="7" size="sm">
-          <IconButton>
+          <IconButton size="lg">
             <Avatar src="/static/images/avatar/3.jpg" />
           </IconButton>
         </Badge>
@@ -161,14 +161,15 @@ export default function ColorInversionNavigation() {
           badgeInset="14%"
           sx={{ [`& .${badgeClasses.badge}`]: { bgcolor: 'success.300' } }}
         >
-          <IconButton>
+          <IconButton size="lg">
             <Avatar src="/static/images/avatar/4.jpg" />
           </IconButton>
         </Badge>
-        <IconButton variant="soft" aria-label="Add another chat">
+        <IconButton size="lg" aria-label="Add another chat">
           <AddIcon />
         </IconButton>
         <IconButton
+          size="lg"
           onClick={() => {
             const colors: ColorPaletteProp[] = [
               'primary',
@@ -180,9 +181,9 @@ export default function ColorInversionNavigation() {
             const nextColorIndex = colors.indexOf(color) + 1;
             setColor(colors[nextColorIndex] ?? colors[0]);
           }}
-          sx={{ mt: 'auto', height: '40px' }}
+          sx={{ mt: 'auto'}}
         >
-          <ColorLensRoundedIcon fontSize="small" />
+          <ColorLensRoundedIcon />
         </IconButton>
       </Sheet>
     </Box>
