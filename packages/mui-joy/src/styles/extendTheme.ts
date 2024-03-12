@@ -589,7 +589,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     cssVarPrefix,
     getCssVar,
     spacing: createSpacing(spacing),
-  } as unknown as Theme; // Need type casting due to module augmentation inside the repo
+  } as unknown as Theme & { attribute: string; colorSchemeSelector: string }; // Need type casting due to module augmentation inside the repo
 
   /**
    Color channels generation

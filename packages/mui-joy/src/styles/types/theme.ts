@@ -96,8 +96,6 @@ export type TextColor =
 export type ThemeCssVar = OverridableStringUnion<NormalizeVars<ThemeVars>, ThemeCssVarOverrides>;
 
 export interface Theme extends ThemeScales, RuntimeColorSystem {
-  attribute: string;
-  colorSchemeSelector: string;
   colorSchemes: Record<DefaultColorScheme | ExtendedColorScheme, ColorSystem>;
   defaultColorScheme: DefaultColorScheme | ExtendedColorScheme;
   focus: Focus;
