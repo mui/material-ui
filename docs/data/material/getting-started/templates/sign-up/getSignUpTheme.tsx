@@ -1,6 +1,5 @@
 import type {} from '@mui/material/themeCssVarsAugmentation';
 import { ThemeOptions, alpha } from '@mui/material/styles';
-import { red } from '@mui/material/colors';
 import { PaletteMode } from '@mui/material';
 
 declare module '@mui/material/styles/createPalette' {
@@ -70,6 +69,19 @@ export const green = {
   700: '#0A470A',
   800: '#042F04',
   900: '#021D02',
+};
+
+export const red = {
+  50: '#FFF0F0',
+  100: '#FDCECE',
+  200: '#FC9C9C',
+  300: '#F65555',
+  400: '#C20A0A',
+  500: '#910808',
+  600: '#790606',
+  700: '#630303',
+  800: '#4F0202',
+  900: '#3B0202',
 };
 
 const getDesignTokens = (mode: PaletteMode) => ({
@@ -198,89 +210,10 @@ const getDesignTokens = (mode: PaletteMode) => ({
   },
 });
 
-export default function getSignUptheme(mode: PaletteMode): ThemeOptions {
+export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
   return {
     ...getDesignTokens(mode),
     components: {
-      MuiAccordion: {
-        defaultProps: {
-          elevation: 0,
-          disableGutters: true,
-        },
-        styleOverrides: {
-          root: ({ theme }) => ({
-            padding: 8,
-            overflow: 'clip',
-            backgroundColor: '#fff',
-            border: '1px solid',
-            borderColor: gray[100],
-            ':before': {
-              backgroundColor: 'transparent',
-            },
-            '&:first-of-type': {
-              borderTopLeftRadius: 10,
-              borderTopRightRadius: 10,
-            },
-            '&:last-of-type': {
-              borderBottomLeftRadius: 10,
-              borderBottomRightRadius: 10,
-            },
-            ...(theme.palette.mode === 'dark' && {
-              backgroundColor: gray[900],
-              borderColor: gray[800],
-            }),
-          }),
-        },
-      },
-      MuiAccordionSummary: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            border: 'none',
-            borderRadius: 8,
-            '&:hover': { backgroundColor: gray[100] },
-            ...(theme.palette.mode === 'dark' && {
-              '&:hover': { backgroundColor: gray[800] },
-            }),
-          }),
-        },
-      },
-      MuiAccordionDetails: {
-        styleOverrides: {
-          root: { mb: 20, border: 'none' },
-        },
-      },
-      MuiToggleButtonGroup: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            borderRadius: '10px',
-            boxShadow: `0 4px 16px ${alpha(gray[400], 0.2)}`,
-            '& .Mui-selected': {
-              color: brand[500],
-            },
-            ...(theme.palette.mode === 'dark' && {
-              '& .Mui-selected': {
-                color: '#fff',
-              },
-              boxShadow: `0 4px 16px ${alpha(brand[700], 0.5)}`,
-            }),
-          }),
-        },
-      },
-      MuiToggleButton: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            padding: '12px 16px',
-            textTransform: 'none',
-            borderRadius: '10px',
-            fontWeight: 500,
-            ...(theme.palette.mode === 'dark' && {
-              color: gray[400],
-              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.5)',
-              '&.Mui-selected': { color: brand[300] },
-            }),
-          }),
-        },
-      },
       MuiButtonBase: {
         defaultProps: {
           disableTouchRipple: true,
@@ -300,13 +233,9 @@ export default function getSignUptheme(mode: PaletteMode): ThemeOptions {
       MuiButton: {
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
-            boxSizing: 'border-box',
             boxShadow: 'none',
             borderRadius: '10px',
             textTransform: 'none',
-            '&:active': {
-              transform: 'scale(0.98)',
-            },
             ...(ownerState.size === 'small' && {
               maxHeight: '32px',
             }),
@@ -318,8 +247,8 @@ export default function getSignUptheme(mode: PaletteMode): ThemeOptions {
                 color: brand[50],
                 background: brand[500],
                 backgroundImage: `linear-gradient(to bottom, ${brand[400]}, ${brand[600]})`,
-                boxShadow: `inset 0 1px ${alpha(brand[300], 0.4)}`,
-                outline: `1px solid ${brand[700]}`,
+                boxShadow: `inset 0 1px ${alpha(brand[300], 0.5)}`,
+                border: `1px solid ${brand[500]}`,
                 '&:hover': {
                   background: brand[400],
                   backgroundImage: 'none',
@@ -335,14 +264,35 @@ export default function getSignUptheme(mode: PaletteMode): ThemeOptions {
                 borderColor: brand[200],
               },
             }),
+            ...(ownerState.variant === 'outlined' &&
+              ownerState.color === 'secondary' && {
+                backgroundColor: alpha(gray[300], 0.1),
+                borderColor: alpha(gray[300], 0.5),
+                color: gray[500],
+                '&:hover': {
+                  backgroundColor: alpha(gray[300], 0.3),
+                  borderColor: gray[200],
+                },
+              }),
             ...(ownerState.variant === 'text' && {
-              color: brand[500],
+              color: brand[600],
               '&:hover': {
                 backgroundColor: alpha(brand[300], 0.3),
                 borderColor: brand[200],
               },
             }),
             ...(theme.palette.mode === 'dark' && {
+              ...(ownerState.variant === 'contained' &&
+                ownerState.color === 'primary' && {
+                  border: `1px solid ${brand[600]}`,
+                  backgroundImage: `linear-gradient(to bottom, ${brand[500]}, ${brand[600]})`,
+                  backgroundColor: brand[500],
+                  '&:hover': {
+                    background: brand[600],
+                    backgroundImage: 'none',
+                    boxShadow: `0 0 0 1px  ${alpha(brand[700], 0.5)}`,
+                  },
+                }),
               ...(ownerState.variant === 'outlined' && {
                 backgroundColor: alpha(brand[600], 0.1),
                 borderColor: brand[700],
@@ -352,90 +302,23 @@ export default function getSignUptheme(mode: PaletteMode): ThemeOptions {
                   borderColor: brand[700],
                 },
               }),
+              ...(ownerState.variant === 'outlined' &&
+                ownerState.color === 'secondary' && {
+                  backgroundColor: alpha(gray[600], 0.1),
+                  borderColor: alpha(gray[700], 0.5),
+                  color: gray[300],
+                  '&:hover': {
+                    backgroundColor: alpha(gray[600], 0.3),
+                    borderColor: gray[700],
+                  },
+                }),
               ...(ownerState.variant === 'text' && {
-                color: brand[300],
+                color: brand[200],
                 '&:hover': {
                   backgroundColor: alpha(brand[600], 0.3),
                   borderColor: brand[700],
                 },
               }),
-            }),
-          }),
-        },
-      },
-      MuiCard: {
-        styleOverrides: {
-          root: ({ theme, ownerState }) => ({
-            backgroundColor: gray[50],
-            borderRadius: 10,
-            outline: `1px solid ${alpha(gray[200], 0.8)}`,
-            boxShadow: 'none',
-            transition: 'background-color, border, 80ms ease',
-            ...(ownerState.variant === 'outlined' && {
-              boxSizing: 'border-box',
-              background: `linear-gradient(to bottom, #FFF, ${gray[50]})`,
-              '&:hover': {
-                borderColor: brand[300],
-                boxShadow: `0 0 24px ${brand[100]}`,
-              },
-            }),
-            ...(theme.palette.mode === 'dark' && {
-              backgroundColor: alpha(gray[800], 0.6),
-              outline: `1px solid ${alpha(gray[700], 0.3)}`,
-              ...(ownerState.variant === 'outlined' && {
-                boxSizing: 'border-box',
-                background: `linear-gradient(to bottom, ${gray[900]}, ${alpha(
-                  gray[800],
-                  0.5,
-                )})`,
-                '&:hover': {
-                  borderColor: brand[700],
-                  boxShadow: `0 0 24px ${brand[800]}`,
-                },
-              }),
-            }),
-          }),
-        },
-      },
-      MuiChip: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            alignSelf: 'center',
-            py: 1.5,
-            px: 0.5,
-            background: `linear-gradient(to bottom right, ${brand[50]}, ${brand[100]})`,
-            border: '1px solid',
-            borderColor: `${alpha(brand[500], 0.3)}`,
-            fontWeight: '600',
-            '&:hover': {
-              backgroundColor: brand[500],
-            },
-            '&:focus-visible': {
-              borderColor: brand[800],
-              backgroundColor: brand[200],
-            },
-            '& .MuiChip-label': {
-              color: brand[500],
-            },
-            '& .MuiChip-icon': {
-              color: brand[500],
-            },
-            ...(theme.palette.mode === 'dark' && {
-              background: `linear-gradient(to bottom right, ${brand[700]}, ${brand[900]})`,
-              borderColor: `${alpha(brand[500], 0.5)}`,
-              '&:hover': {
-                backgroundColor: brand[600],
-              },
-              '&:focus-visible': {
-                borderColor: brand[200],
-                backgroundColor: brand[600],
-              },
-              '& .MuiChip-label': {
-                color: brand[200],
-              },
-              '& .MuiChip-icon': {
-                color: brand[200],
-              },
             }),
           }),
         },
@@ -448,6 +331,130 @@ export default function getSignUptheme(mode: PaletteMode): ThemeOptions {
               borderColor: `${alpha(gray[700], 0.4)}`,
             }),
           }),
+        },
+      },
+      MuiPaper: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            backgroundImage: 'none',
+            backgroundColor: gray[100],
+            ...(theme.palette.mode === 'dark' && {
+              backgroundColor: gray[800],
+            }),
+          }),
+        },
+      },
+      MuiDialog: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            '& .MuiDialog-paper': {
+              borderRadius: '10px',
+              border: '1px solid',
+              borderColor: theme.palette.divider,
+            },
+          }),
+        },
+      },
+      MuiOutlinedInput: {
+        styleOverrides: {
+          notchedOutline: {
+            border: 'none',
+          },
+          input: {
+            paddingLeft: 10,
+          },
+
+          root: ({ theme, ownerState }) => ({
+            'input:-webkit-autofill': {
+              WebkitBoxShadow: `0 0 0px 1000px ${brand[100]} inset, 0 0 0 1px ${brand[200]}`,
+              maxHeight: '4px',
+              borderRadius: '8px',
+            },
+            '& .MuiInputBase-input': {
+              '&::placeholder': {
+                opacity: 0.7,
+                color: gray[500],
+              },
+            },
+            boxSizing: 'border-box',
+            flexGrow: 1,
+            maxHeight: 40,
+            height: '100%',
+            borderRadius: '10px',
+            border: '1px solid',
+            borderColor: gray[200],
+            boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.1)',
+            transition: 'border-color 120ms ease-in',
+            backgroundColor: alpha(gray[100], 0.4),
+            '&:hover': {
+              borderColor: brand[300],
+            },
+            '&.Mui-focused': {
+              borderColor: brand[400],
+              outline: '4px solid',
+              outlineColor: brand[200],
+            },
+            ...(ownerState.color === 'error' && {
+              borderColor: red[200],
+              color: red[500],
+              '& + .MuiFormHelperText-root': {
+                color: red[500],
+              },
+            }),
+            ...(theme.palette.mode === 'dark' && {
+              'input:-webkit-autofill': {
+                WebkitBoxShadow: `0 0 0px 1000px ${brand[900]} inset, 0 0 0 1px ${brand[600]}`,
+                maxHeight: '6px',
+                borderRadius: '8px',
+              },
+              '& .MuiInputBase-input': {
+                '&::placeholder': {
+                  opacity: 1,
+                  color: gray[500],
+                },
+              },
+              boxSizing: 'border-box',
+              flexGrow: 1,
+              minHeight: 40,
+              height: '100%',
+              borderRadius: '10px',
+              border: '1px solid',
+              borderColor: gray[700],
+              boxShadow: '0px 2px 2px rgb(0, 0, 0)',
+              backgroundColor: alpha(gray[800], 0.4),
+              transition: 'border-color 120ms ease-in',
+              '&:hover': {
+                borderColor: brand[300],
+              },
+              '&.Mui-focused': {
+                borderColor: brand[400],
+                outline: '4px solid',
+                outlineColor: alpha(brand[500], 0.5),
+              },
+              ...(ownerState.color === 'error' && {
+                borderColor: red[700],
+                color: red[300],
+                '& + .MuiFormHelperText-root': {
+                  color: red[300],
+                },
+              }),
+            }),
+          }),
+        },
+      },
+      MuiFormLabel: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            typography: theme.typography.caption,
+            marginBottom: 8,
+          }),
+        },
+      },
+      MuiInputBase: {
+        styleOverrides: {
+          root: {
+            border: 'none',
+          },
         },
       },
       MuiLink: {
@@ -481,271 +488,34 @@ export default function getSignUptheme(mode: PaletteMode): ThemeOptions {
           }),
         },
       },
-      MuiMenuItem: {
+      MuiToggleButtonGroup: {
         styleOverrides: {
           root: ({ theme }) => ({
-            borderRadius: '99px',
-            color: gray[500],
+            borderRadius: '10px',
+            boxShadow: `0 4px 16px ${alpha(gray[400], 0.2)}`,
+            '& .Mui-selected': {
+              color: brand[500],
+            },
+            ...(theme.palette.mode === 'dark' && {
+              '& .Mui-selected': {
+                color: '#fff',
+              },
+              boxShadow: `0 4px 16px ${alpha(brand[700], 0.5)}`,
+            }),
+          }),
+        },
+      },
+      MuiToggleButton: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            padding: '12px 16px',
+            textTransform: 'none',
+            borderRadius: '10px',
             fontWeight: 500,
             ...(theme.palette.mode === 'dark' && {
-              color: gray[300],
-            }),
-          }),
-        },
-      },
-      MuiPaper: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            backgroundImage: 'none',
-            backgroundColor: gray[100],
-            ...(theme.palette.mode === 'dark' && {
-              backgroundColor: alpha(gray[900], 0.6),
-            }),
-          }),
-        },
-      },
-      MuiSwitch: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            boxSizing: 'border-box',
-            width: 36,
-            height: 24,
-            padding: 0,
-            transition: 'background-color 100ms ease-in',
-            '&:hover': {
-              '& .MuiSwitch-track': {
-                backgroundColor: brand[600],
-              },
-            },
-            '& .MuiSwitch-switchBase': {
-              '&.Mui-checked': {
-                transform: 'translateX(13px)',
-              },
-            },
-            '& .MuiSwitch-track': {
-              borderRadius: 50,
-            },
-            '& .MuiSwitch-thumb': {
-              boxShadow: '0 0 2px 2px rgba(0, 0, 0, 0.2)',
-              backgroundColor: '#FFF',
-              width: 16,
-              height: 16,
-              margin: 2,
-            },
-            ...(theme.palette.mode === 'dark' && {
-              width: 36,
-              height: 24,
-              padding: 0,
-              transition: 'background-color 100ms ease-in',
-              '&:hover': {
-                '& .MuiSwitch-track': {
-                  backgroundColor: brand[600],
-                },
-              },
-              '& .MuiSwitch-switchBase': {
-                '&.Mui-checked': {
-                  transform: 'translateX(13px)',
-                },
-              },
-              '& .MuiSwitch-thumb': {
-                boxShadow: '0 0 2px 2px rgba(0, 0, 0, 0.2)',
-                backgroundColor: '#FFF',
-                width: 16,
-                height: 16,
-                margin: 2,
-              },
-            }),
-          }),
-          switchBase: {
-            height: 24,
-            width: 24,
-            padding: 0,
-            color: '#fff',
-            '&.Mui-checked + .MuiSwitch-track': {
-              opacity: 1,
-            },
-          },
-        },
-      },
-      MuiInputBase: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            boxSizing: 'border-box',
-            flexGrow: 1,
-            minWidth: 280,
-            minHeight: 40,
-            height: '100%',
-            borderRadius: '10px',
-            border: '1px solid',
-            borderColor: gray[200],
-            transition: 'border-color 120ms ease-in',
-            backgroundColor: alpha(gray[100], 0.4),
-            '&:hover': {
-              borderColor: brand[300],
-            },
-            '&.Mui-focused': {
-              borderColor: brand[400],
-              outline: '4px solid',
-              outlineColor: brand[200],
-            },
-            ...(theme.palette.mode === 'dark' && {
-              boxSizing: 'border-box',
-              flexGrow: 1,
-              minWidth: 280,
-              minHeight: 40,
-              height: '100%',
-              borderRadius: '10px',
-              border: '1px solid',
-              borderColor: gray[700],
-              backgroundColor: alpha(gray[900], 0.3),
-              transition: 'border-color 120ms ease-in',
-              '&:hover': {
-                borderColor: brand[300],
-              },
-              '&.Mui-focused': {
-                borderColor: brand[400],
-                outline: '4px solid',
-                outlineColor: alpha(brand[500], 0.5),
-              },
-            }),
-          }),
-          input: {
-            paddingLeft: 10,
-          },
-        },
-      },
-      MuiFormLabel: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            typography: theme.typography.caption,
-            marginBottom: 8,
-          }),
-        },
-      },
-      MuiTextField: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            '& label .Mui-focused': {
-              color: 'white',
-            },
-            '& .MuiInputBase-input': {
-              '&::placeholder': {
-                opacity: 0.7,
-              },
-            },
-            '& .MuiOutlinedInput-root': {
-              boxSizing: 'border-box',
-              minWidth: 280,
-              minHeight: 40,
-              height: '100%',
-              borderRadius: '10px',
-              border: '1px solid',
-              borderColor: gray[200],
-              transition: 'border-color 120ms ease-in',
-              '& fieldset': {
-                border: 'none',
-                boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
-                background: `${alpha('#FFF', 0.3)}`,
-              },
-              '&:hover': {
-                borderColor: brand[300],
-              },
-              '&.Mui-focused': {
-                borderColor: brand[400],
-                outline: '4px solid',
-                outlineColor: brand[200],
-              },
-            },
-            ...(theme.palette.mode === 'dark' && {
-              '& .MuiOutlinedInput-root': {
-                boxSizing: 'border-box',
-                minWidth: 280,
-                minHeight: 40,
-                height: '100%',
-                borderRadius: '10px',
-                border: '1px solid',
-                borderColor: gray[700],
-                transition: 'border-color 120ms ease-in',
-                '& fieldset': {
-                  border: 'none',
-                  boxShadow: ' 0px 2px 4px rgba(0, 0, 0, 0.4)',
-                  background: `${alpha(gray[800], 0.4)}`,
-                },
-                '&:hover': {
-                  borderColor: brand[300],
-                },
-                '&.Mui-focused': {
-                  borderColor: brand[400],
-                  outline: '4px solid',
-                  outlineColor: alpha(brand[500], 0.5),
-                },
-              },
-            }),
-          }),
-        },
-      },
-      MuiStepConnector: {
-        styleOverrides: {
-          line: ({ theme }) => ({
-            borderTop: 'none',
-            height: '1px',
-            flex: 1,
-            background: `repeating-linear-gradient(90deg, ${theme.palette.grey[400]}, ${theme.palette.grey[400]} 1px, transparent 1px, transparent 8px)`,
-            borderRadius: '99px',
-            ...(theme.palette.mode === 'dark' && {
-              background: `repeating-linear-gradient(90deg, ${theme.palette.grey[700]}, ${theme.palette.grey[700]} 1px, transparent 1px, transparent 8px)`,
-            }),
-          }),
-        },
-      },
-      MuiStepLabel: {
-        styleOverrides: {
-          label: ({ theme }) => ({
-            '&.Mui-completed': {
-              opacity: 0.4,
-              ...(theme.palette.mode === 'dark' && { opacity: 0.3 }),
-            },
-          }),
-        },
-      },
-      MuiStepIcon: {
-        variants: [
-          {
-            props: { completed: true },
-            style: () => ({
-              width: 12,
-              height: 12,
-            }),
-          },
-        ],
-        styleOverrides: {
-          root: ({ theme }) => ({
-            color: 'transparent',
-            border: `1px solid ${gray[400]}`,
-            width: 8,
-            height: 8,
-            borderRadius: '50%',
-            '& text': {
-              display: 'none',
-            },
-            '&.Mui-active': {
-              border: 'none',
-              color: theme.palette.primary.main,
-            },
-            '&.Mui-completed': {
-              border: 'none',
-              color: theme.palette.success.main,
-            },
-            ...(theme.palette.mode === 'dark' && {
-              border: `1px solid ${gray[700]}`,
-              '&.Mui-active': {
-                border: 'none',
-                color: theme.palette.primary.light,
-              },
-              '&.Mui-completed': {
-                border: 'none',
-                color: theme.palette.success.light,
-              },
+              color: gray[400],
+              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.5)',
+              '&.Mui-selected': { color: brand[300] },
             }),
           }),
         },

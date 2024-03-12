@@ -1,14 +1,14 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
+import { useState } from 'react';
+import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControllLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
@@ -20,21 +20,6 @@ import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 
 import getSignUptheme from './getSignUpTheme';
 import ToggleColorMode from './ToggleColorMode';
-
-function Copyright(props: any) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
-const defaultTheme = createTheme({});
 
 interface ToggleCustomThemeProps {
   showCustomTheme: Boolean;
@@ -61,7 +46,7 @@ function ToggleCustomTheme({
         exclusive
         value={showCustomTheme}
         onChange={toggleCustomTheme}
-        aria-label="Platform"
+        aria-placeholder="Platform"
         sx={{
           backgroundColor: 'background.default',
           '& .Mui-selected': {
@@ -88,19 +73,52 @@ const logoStyle = {
   width: '140px',
   height: '56px',
   opacity: 0.8,
+  marginLeft: '-16px',
 };
 
 export default function SignUp() {
-  const [mode, setMode] = React.useState<PaletteMode>('dark');
+  const [mode, setMode] = React.useState<PaletteMode>('light');
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
+  const defaultTheme = createTheme({ palette: { mode } });
   const SignUpTheme = createTheme(getSignUptheme(mode));
   const logo = showCustomTheme
     ? SignUpTheme.palette.mode === 'light'
       ? darkLogo
       : whiteLogo
     : defaultTheme.palette.mode === 'light'
-    ? darkLogo
-    : whiteLogo;
+      ? darkLogo
+      : whiteLogo;
+  const [emailError, setEmailError] = useState(false);
+  const [emailErrorMessage, setEmailErrorMessage] = useState('');
+  const [passwordError, setPasswordError] = useState(false);
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
+
+  const validateInputs = () => {
+    const email = document.getElementById('email') as HTMLInputElement;
+    const password = document.getElementById('password') as HTMLInputElement;
+
+    let isValid = true;
+
+    if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
+      setEmailError(true);
+      setEmailErrorMessage('Please enter a valid email address.');
+      isValid = false;
+    } else {
+      setEmailError(false);
+      setEmailErrorMessage('');
+    }
+
+    if (!password.value || password.value.length < 6) {
+      setPasswordError(true);
+      setPasswordErrorMessage('Password must be at least 6 characters long.');
+      isValid = false;
+    } else {
+      setPasswordError(false);
+      setPasswordErrorMessage('');
+    }
+
+    return isValid;
+  };
 
   const toggleColorMode = () => {
     setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
@@ -128,7 +146,12 @@ export default function SignUp() {
             marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
+            minWidth: { sm: '100%', md: '450px' },
+            gap: 4,
+            border: '1px solid',
+            borderColor: 'divider',
+            p: 4,
+            borderRadius: '10px',
           }}
         >
           <Box
@@ -136,22 +159,20 @@ export default function SignUp() {
               display: 'flex',
               justifyContent: 'space-between',
               width: '100%',
-              ml: '-18px',
               alignItems: 'center',
             }}
           >
             <img src={logo} style={logoStyle} alt="logo of sitemark" />
-            <ToggleColorMode
-              mode={mode}
-              toggleColorMode={toggleColorMode}
-              showCustomTheme={showCustomTheme}
-            />
+            <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
           </Box>
-          <Avatar sx={{ m: 1 }} />
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h3">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}
+          >
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
@@ -160,7 +181,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="firstName"
-                  label="First Name"
+                  placeholder="First Name"
                   autoFocus
                 />
               </Grid>
@@ -169,7 +190,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="lastName"
-                  label="Last Name"
+                  placeholder="Last Name"
                   name="lastName"
                   autoComplete="family-name"
                 />
@@ -179,9 +200,13 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="email"
-                  label="Email Address"
+                  placeholder="Email Address"
                   name="email"
                   autoComplete="email"
+                  variant="outlined"
+                  error={emailError}
+                  helperText={emailErrorMessage}
+                  color={passwordError ? 'error' : 'primary'}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -189,16 +214,20 @@ export default function SignUp() {
                   required
                   fullWidth
                   name="password"
-                  label="Password"
+                  placeholder="Password"
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  variant="outlined"
+                  error={passwordError}
+                  helperText={passwordErrorMessage}
+                  color={passwordError ? 'error' : 'primary'}
                 />
               </Grid>
               <Grid item xs={12}>
-                <FormControlLabel
+                <FormControllLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, promotions and updates via email."
+                  label="I want to receive updates via email."
                 />
               </Grid>
             </Grid>
@@ -206,20 +235,57 @@ export default function SignUp() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              onClick={validateInputs}
             >
               Sign Up
             </Button>
             <Grid container justifyContent="center">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link
+                  href="/material-ui/getting-started/templates/sign-in/"
+                  variant="body2"
+                >
                   Already have an account? Sign in
                 </Link>
               </Grid>
             </Grid>
           </Box>
+          <Divider>Or</Divider>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+            <Button
+              type="submit"
+              fullWidth
+              variant="outlined"
+              color="secondary"
+              onClick={() => alert('Sign up with Google')}
+              startIcon={
+                <img
+                  src="https://www.vectorlogo.zone/logos/google/google-icon.svg"
+                  alt="Google"
+                  style={{ width: 16, height: 16 }}
+                />
+              }
+            >
+              Sign up with Google
+            </Button>
+            <Button
+              type="submit"
+              fullWidth
+              variant="outlined"
+              color="secondary"
+              onClick={() => alert('Sign up with Facebook')}
+              startIcon={
+                <img
+                  src="https://www.vectorlogo.zone/logos/facebook/facebook-tile.svg"
+                  alt="Google"
+                  style={{ width: 16, height: 16 }}
+                />
+              }
+            >
+              Sign up with Facebook
+            </Button>
+          </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
       </Container>
       <ToggleCustomTheme
         showCustomTheme={showCustomTheme}
