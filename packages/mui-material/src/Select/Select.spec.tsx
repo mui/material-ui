@@ -141,3 +141,57 @@ function genericValueTest() {
   // @ts-expect-error hiddenLabel is not present in standard variant
   <Select {...standardProps} hiddenLabel />;
 }
+
+type Options<T> = { text: string; value: T } | T;
+
+type Props<T> = (
+  | {
+      value: T;
+      multiple?: false;
+      onChange: (value: T) => void;
+    }
+  | {
+      value: T[];
+      multiple: true;
+      onChange: (value: T[]) => void;
+    }
+) & {
+  options: Options<T>[];
+};
+
+// test for https://github.com/mui/material-ui/issues/41375
+const AppSelect = <T extends string>(props: Props<T>) => {
+  const getOptionText = (option: Options<T>) => {
+    if (typeof option === 'object') {
+      return option.text;
+    }
+    return option;
+  };
+
+  const getOptionValue = (option: Options<T>) => {
+    if (typeof option === 'object') {
+      return option.value;
+    }
+    return option;
+  };
+
+  return (
+    <Select
+      value={props.value}
+      multiple={props.multiple}
+      onChange={(event) => {
+        if (props.multiple) {
+          props.onChange(event.target.value as T[]);
+        } else {
+          props.onChange(event.target.value as T);
+        }
+      }}
+    >
+      {props.options.map((option, index) => (
+        <MenuItem key={index} value={getOptionValue(option)}>
+          {getOptionText(option)}
+        </MenuItem>
+      ))}
+    </Select>
+  );
+};
