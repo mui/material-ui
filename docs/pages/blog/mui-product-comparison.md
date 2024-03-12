@@ -1,6 +1,6 @@
 ---
 title: An introduction to the MUI ecosystem
-description: MUI is more than just Material UI. Consider Joy UI, Base UI, MUI X, and Toolpad for your next project.
+description: MUI is more than just Material UI. Consider Joy UI, Base UI, MUI X, and Toolpad for your next project.
 date: 2022-11-01T00:00:00.000Z
 authors: ['samuelsycamore']
 card: true
@@ -34,7 +34,7 @@ It grew out of Material UI, and that library's legacy lives on in the name of t
 
 But this repo contains much more than just Material UI these days.
 We've carefully deconstructed this library to expose its best parts as isolated open-source projects.
-More recent additions include Joy UI and Base UI, as well as our in-house styling solution, MUI System.
+More recent additions include Joy UI and Base UI, as well as our in-house styling solution, MUI System.
 
 MUI Core is open-source, and we invite you to contribute wherever you see fit!
 
@@ -60,18 +60,18 @@ Get started in the [Material UI docs](/material-ui/getting-started/).
 - Internal admin tools.
 - Dev teams that need to ship features in hours rather than weeks.
 
-### Joy UI
+### Joy UI
 
-Joy UI is an open-source React component library that implements MUI's own in-house design principles.
+Joy UI is an open-source React component library that implements MUI's own in-house design principles.
 It's intended to serve as an alternative to Material UI for designs that don't adhere to Material Design specifications.
 
-Try Joy UI if you appreciate the comprehensiveness and reliability of Material UI, but don't need all of the additional baggage that comes along with Material Design.
+Try Joy UI if you appreciate the comprehensiveness and reliability of Material UI, but don't need all of the additional baggage that comes along with Material Design.
 
-Get started in the [Joy UI docs](/joy-ui/getting-started/).
+Get started in the [Joy UI docs](/joy-ui/getting-started/).
 
 #### Key features
 
-- **Innovative design:** Free from the constraints of Material Design, Joy UI is where we can innovate and experiment with fresh new ideas in design, UX, and DX.
+- **Innovative design:** Free from the constraints of Material Design, Joy UI is where we can innovate and experiment with fresh new ideas in design, UX, and DX.
 - **Flexibility:** Customize with ease, and leverage the power of CSS variables to ensure consistency when making pixel-perfect adjustments.
 
 #### Ideal use cases
@@ -92,21 +92,21 @@ Get started in the [Base UI docs](/base-ui/getting-started/).
 
 #### Key features
 
-- **Total control over styles:** Unlike Material UI and Joy UI, Base UI doesn't ship with any default styles or styling solution.
+- **Total control over styles:** Unlike Material UI and Joy UI, Base UI doesn't ship with any default styles or styling solution.
   Write CSS however you'd prefer—vanilla, modules, styled-components—or integrate a styling library like Tailwind CSS or Emotion.
 - **Hooks for fully custom components:** When pre-built components aren't flexible enough, low-level hooks enable you to quickly add sophisticated functionality to your custom components.
 - **Accessibility:** Base UI components are built with accessibility in mind. We do our best to make all components screen reader-friendly, and offer suggestions for optimizing accessibility throughout our documentation.
-- **The core of MUI Core:** Base UI serves as the scaffold for Joy UI components, and future versions Material UI will also be built with Base UI as the foundation.
+- **The core of MUI Core:** Base UI serves as the scaffold for Joy UI components, and future versions Material UI will also be built with Base UI as the foundation.
 
 #### Ideal use cases
 
 - Implementing fully custom designs.
-- Creating custom components within a Material UI or Joy UI app.
+- Creating custom components within a Material UI or Joy UI app.
 - Adding functionality to fully custom components.
 
 ### MUI System
 
-MUI System is a set of CSS utilities to help you build custom designs more efficiently when working with MUI component libraries like Material UI, Joy UI, and Base UI.
+MUI System is a set of CSS utilities to help you build custom designs more efficiently when working with MUI component libraries like Material UI, Joy UI, and Base UI.
 
 The System gives you a set of flexible, generic wrapper components like Box and Container that can be quickly customized using the `sx` prop.
 This prop lets you define styles directly within the components themselves, rather than creating bulky and redundant `const` definitions with styled-components.
@@ -123,7 +123,7 @@ Get started in the [MUI System docs](/system/getting-started/).
 
 #### Ideal use cases
 
-- Quickly prototyping custom styles in Material UI, Joy UI, or Base UI.
+- Quickly prototyping custom styles in Material UI, Joy UI, or Base UI.
 - Creating one-off custom components.
 
 ## MUI X

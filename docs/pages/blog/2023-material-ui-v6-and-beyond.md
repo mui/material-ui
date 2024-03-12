@@ -62,8 +62,8 @@ Stay tuned for a beta version release early next year!
 ## A sharper focus
 
 To pull these releases off, the Core team's attention will be fully focused on Material UI for most of 2024.
-In the meantime we're putting Joy UI development on hold, so don't expect any new features or components.
-Nevertheless, we do have some big ideas for Joy UI!
+In the meantime we're putting Joy UI development on hold, so don't expect any new features or components.
+Nevertheless, we do have some big ideas for Joy UI!
 Expect to hear more about that towards the end of Q2 '24.
 
 ## Follow along and contribute

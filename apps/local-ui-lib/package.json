@@ -3,6 +3,6 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "@mui/zero-runtime": "workspace:^"
+    "@pigment-css/react": "file:../../packages/pigment-css-react"
   }
 }

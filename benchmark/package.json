@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@chakra-ui/system": "^2.6.2",
-    "@emotion/react": "^11.11.3",
+    "@emotion/react": "^11.11.4",
     "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "workspace:^",
@@ -21,10 +21,10 @@
     "@styled-system/css": "^5.1.5",
     "benchmark": "^2.1.4",
     "docs": "workspace:^",
-    "express": "^4.18.2",
+    "express": "^4.18.3",
     "fs-extra": "^11.2.0",
     "jss": "^10.10.0",
-    "playwright": "^1.41.2",
+    "playwright": "^1.42.1",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -35,7 +35,7 @@
     "serve-handler": "^6.1.5",
     "styled-components": "^6.1.8",
     "styled-system": "^5.1.5",
-    "theme-ui": "^0.16.1",
-    "webpack": "^5.90.1"
+    "theme-ui": "^0.16.2",
+    "webpack": "^5.90.3"
   }
 }
