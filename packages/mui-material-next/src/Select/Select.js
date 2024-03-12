@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge, unstable_useForkRef as useForkRef } from '@mui/utils';
-import NativeSelectInput from '@mui/material/NativeSelect/NativeSelectInput';
+import { NativeSelectInput } from '@mui/material/NativeSelect';
 // TODO v6: Remove Input component after implementing Material Design 3
 import Input from '@mui/material/Input';
 // TODO v6: replace with material-next FilledInput when available https://github.com/mui/material-ui/issues/39052

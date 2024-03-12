@@ -19,8 +19,8 @@ import {
   unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_useForkRef as useForkRef,
 } from '@mui/utils';
-import FormControlContext from '@mui/material-next/FormControl/FormControlContext';
-import useFormControl from '@mui/material-next/FormControl/useFormControl';
+import FormControlContext from '../FormControl/FormControlContext';
+import useFormControl from '../FormControl/useFormControl';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { isFilled } from './utils';

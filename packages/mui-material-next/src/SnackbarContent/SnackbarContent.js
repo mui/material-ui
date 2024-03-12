@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { emphasize } from '@mui/system';
-import styled from '@mui/material/styles/styled';
-import useThemeProps from '@mui/material/styles/useThemeProps';
+import { styled, useThemeProps } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import { getSnackbarContentUtilityClass } from './snackbarContentClasses';
 

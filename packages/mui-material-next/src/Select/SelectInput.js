@@ -14,12 +14,9 @@ import {
   unstable_useControlled as useControlled,
 } from '@mui/utils';
 import { shouldForwardProp } from '@mui/system';
-import {
-  nativeSelectSelectStyles,
-  nativeSelectIconStyles,
-} from '@mui/material/NativeSelect/NativeSelectInput';
+import { nativeSelectSelectStyles, nativeSelectIconStyles } from '@mui/material/NativeSelect';
 // TODO v6: replace with material-next Menu component when available https://github.com/mui/material-ui/pull/38934
-import Menu from '@mui/material/Menu/Menu';
+import Menu from '@mui/material/Menu';
 import { isFilled } from '../InputBase/utils';
 import styled from '../styles/styled';
 import selectClasses, { getSelectUtilityClasses } from './selectClasses';

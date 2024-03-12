@@ -1,5 +1,5 @@
 'use client';
-export { rootShouldForwardProp } from '@mui/material/styles/styled';
+export { rootShouldForwardProp } from './styled';
 export * from './Theme.types';
 export * from './extendTheme';
 export { default as extendTheme } from './extendTheme';

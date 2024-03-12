@@ -12,10 +12,10 @@ import Select from '@mui/material/Select';
 import TableCell from '@mui/material/TableCell';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import LastPageIcon from '@mui/material/internal/svg-icons/LastPage';
-import FirstPageIcon from '@mui/material/internal/svg-icons/FirstPage';
-import KeyboardArrowLeft from '@mui/material/internal/svg-icons/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/material/internal/svg-icons/KeyboardArrowRight';
+import LastPageIcon from '../internal/svg-icons/LastPage';
+import FirstPageIcon from '../internal/svg-icons/FirstPage';
+import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
+import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import tablePaginationClasses, { getTablePaginationUtilityClass } from './tablePaginationClasses';
 
 // This component is needed as the IconButton does not merge the ownerState

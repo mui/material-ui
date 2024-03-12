@@ -6,7 +6,7 @@ import { TransitionGroup } from 'react-transition-group';
 import clsx from 'clsx';
 import { keyframes, useThemeProps } from '@mui/system';
 import { unstable_useTimeout as useTimeout } from '@mui/utils';
-import styled from '@mui/material/styles/styled';
+import styled from '../styles/styled';
 import { TouchRippleActions, TouchRippleProps } from './TouchRipple.types';
 import Ripple from './Ripple';
 import touchRippleClasses from './touchRippleClasses';

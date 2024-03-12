@@ -13,7 +13,7 @@ import {
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useTabs, TabsProvider } from '@mui/base/useTabs';
 import { styled, useThemeProps, useTheme } from '@mui/material/styles';
-import animate from '@mui/material/internal/animate';
+import animate from '../internal/animate';
 import TabScrollButton from '../TabScrollButton';
 import ScrollbarSize from './ScrollbarSize';
 import tabsClasses, { getTabsUtilityClass } from './tabsClasses';

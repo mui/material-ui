@@ -3,7 +3,7 @@ import { SxProps } from '@mui/system';
 import { OverridableStringUnion, OverrideProps, PartiallyRequired } from '@mui/types';
 // eslint-disable-next-line no-restricted-imports
 import { InternalStandardProps as StandardProps } from '@mui/material';
-import type { SwitchBaseProps } from '@mui/material/internal/SwitchBase';
+import type { SwitchBaseProps } from '../internal/SwitchBase';
 import { Theme } from '../styles';
 import { SwitchClasses } from './switchClasses';
 

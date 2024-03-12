@@ -8,7 +8,7 @@ import Paper from '@mui/material/Paper';
 import Popover, { PopoverProps } from '@mui/material/Popover';
 import { MenuListProps } from '@mui/material/MenuList';
 import { Theme } from '@mui/material/styles';
-import { TransitionProps } from '@mui/material/transitions/transition';
+import { TransitionProps } from '@mui/material/transitions';
 import { MenuClasses } from './menuClasses';
 
 export interface MenuTypeMap<AdditionalProps = {}, RootComponent extends React.ElementType = 'ul'> {

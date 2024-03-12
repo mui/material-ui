@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { act, createRenderer, fireEvent } from '@mui-internal/test-utils';
 import Switch, { switchClasses as classes } from '@mui/material-next/Switch';
-import FormControl from '@mui/material/FormControl';
+import FormControl from '@mui/material-next/FormControl';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Switch />', () => {

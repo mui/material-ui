@@ -29,7 +29,11 @@ export function experimental_sx() {
 export { default as createTheme, createMuiTheme } from './createTheme';
 export { default as unstable_createMuiStrictModeTheme } from './createMuiStrictModeTheme';
 export { default as createStyles } from './createStyles';
-export { getUnit as unstable_getUnit, toUnitless as unstable_toUnitless } from './cssUtils';
+export {
+  getUnit as unstable_getUnit,
+  toUnitless as unstable_toUnitless,
+  convertLength as unstable_convertLength,
+} from './cssUtils';
 export { default as responsiveFontSizes } from './responsiveFontSizes';
 export { duration, easing } from './createTransitions';
 export { default as useTheme } from './useTheme';

@@ -4,11 +4,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import KeyboardArrowLeft from '@mui/material/internal/svg-icons/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/material/internal/svg-icons/KeyboardArrowRight';
 // TODO: use useButton hook here
 import ButtonBase from '@mui/material/ButtonBase';
 import { styled, useTheme, useThemeProps } from '@mui/material/styles';
+import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
+import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import tabScrollButtonClasses, { getTabScrollButtonUtilityClass } from './tabScrollButtonClasses';
 
 const useUtilityClasses = (ownerState) => {
