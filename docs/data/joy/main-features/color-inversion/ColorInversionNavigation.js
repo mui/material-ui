@@ -138,14 +138,14 @@ export default function ColorInversionNavigation() {
           p: 2,
           display: 'flex',
           flexDirection: 'column',
+          alignItems: "center",
           gap: 2,
           bgcolor: `${color}.900`,
+
           '& button': {
             borderRadius: '50%',
             padding: 0,
-            '&:hover': {
-              boxShadow: theme.shadow.md,
-            },
+            "--IconButton-size": "3rem",
           },
         })}
       >
@@ -170,8 +170,6 @@ export default function ColorInversionNavigation() {
           <AddIcon />
         </IconButton>
         <IconButton
-          variant="plain"
-          size="sm"
           onClick={() => {
             const colors = ['primary', 'neutral', 'danger', 'success', 'warning'];
 
