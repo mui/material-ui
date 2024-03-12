@@ -2,6 +2,42 @@ import { expect } from 'chai';
 import prepareCssVars from './prepareCssVars';
 
 describe('prepareCssVars', () => {
+  it('`getSelector` should always get a fresh copy of the css', () => {
+    const result = prepareCssVars(
+      {
+        colorSchemes: {
+          light: {
+            color: 'red',
+          },
+          dark: {
+            color: 'blue',
+          },
+        },
+      },
+      {
+        getSelector: (colorScheme, css) => {
+          const color = css['--color'];
+          delete css['--color'];
+          return {
+            [`.${colorScheme}`]: {
+              background: color,
+            },
+          };
+        },
+      },
+    );
+    expect(result.generateStyleSheets()).to.deep.equal([
+      { '.light': { background: 'red' } },
+      { '.dark': { background: 'blue' } },
+    ]);
+
+    // run again should have the same result
+    expect(result.generateStyleSheets()).to.deep.equal([
+      { '.light': { background: 'red' } },
+      { '.dark': { background: 'blue' } },
+    ]);
+  });
+
   it('delete css fields should not affect the next call', () => {
     const result = prepareCssVars({
       colorSchemes: {
