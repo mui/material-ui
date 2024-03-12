@@ -13,6 +13,7 @@ describe('experimental_extendTheme', () => {
   let originalMatchmedia;
   const { render } = createRenderer();
   const storage = {};
+
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
     // Create mocks of localStorage getItem and setItem functions
@@ -30,6 +31,7 @@ describe('experimental_extendTheme', () => {
       removeListener: () => {},
     });
   });
+
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
   });
@@ -56,6 +58,9 @@ describe('experimental_extendTheme', () => {
     const theme = extendTheme();
     expect(theme.colorSchemes.dark.palette.background.defaultChannel).to.equal('18 18 18');
     expect(theme.colorSchemes.light.palette.background.defaultChannel).to.equal('255 255 255');
+
+    expect(theme.colorSchemes.dark.palette.background.paperChannel).to.equal('18 18 18');
+    expect(theme.colorSchemes.light.palette.background.paperChannel).to.equal('255 255 255');
 
     expect(theme.colorSchemes.dark.palette.primary.mainChannel).to.equal('144 202 249');
     expect(theme.colorSchemes.dark.palette.primary.darkChannel).to.equal('66 165 245');

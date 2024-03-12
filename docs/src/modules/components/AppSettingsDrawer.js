@@ -21,12 +21,12 @@ import { useTranslate } from '@mui/docs/i18n';
 import useLocalStorageState from '@mui/utils/useLocalStorageState';
 
 const Heading = styled(Typography)(({ theme }) => ({
-  margin: '20px 0 10px',
-  color: theme.palette.grey[600],
-  fontWeight: 700,
+  margin: '16px 0 8px',
+  fontWeight: theme.typography.fontWeightBold,
   fontSize: theme.typography.pxToRem(11),
   textTransform: 'uppercase',
-  letterSpacing: '.08rem',
+  letterSpacing: '.1rem',
+  color: (theme.vars || theme).palette.text.tertiary,
 }));
 
 const IconToggleButton = styled(ToggleButton)({
@@ -82,7 +82,9 @@ export default function AppSettingsDrawer(props) {
       }}
       {...other}
     >
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: 2 }}>
+      <Box
+        sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: (1, 2) }}
+      >
         <Typography variant="body1" fontWeight="500">
           {t('settings.settings')}
         </Typography>
@@ -171,7 +173,7 @@ export default function AppSettingsDrawer(props) {
           variant="outlined"
           fullWidth
         >
-          {t('settings.editWebsiteColors')}
+          {t('settings.editDocsColors')}
         </Button>
       </Box>
     </Drawer>

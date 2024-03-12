@@ -34,8 +34,8 @@ const NavLabel = styled(Typography)(({ theme }) => ({
   fontSize: theme.typography.pxToRem(11),
   fontWeight: theme.typography.fontWeightBold,
   textTransform: 'uppercase',
-  letterSpacing: '.08rem',
-  color: theme.palette.grey[600],
+  letterSpacing: '.1rem',
+  color: (theme.vars || theme).palette.text.tertiary,
 }));
 
 const NavList = styled(Typography)({
