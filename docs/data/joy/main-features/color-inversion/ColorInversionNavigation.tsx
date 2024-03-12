@@ -31,7 +31,6 @@ export default function ColorInversionNavigation() {
     <Box sx={{ display: 'flex', borderRadius: 'sm', overflow: 'auto' }}>
       <Sheet
         variant="solid"
-        color="neutral"
         invertedColors
         sx={{
           p: 2,
