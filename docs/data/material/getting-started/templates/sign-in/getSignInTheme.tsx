@@ -275,7 +275,7 @@ export default function getSignInTheme(mode: PaletteMode): ThemeOptions {
                 },
               }),
             ...(ownerState.variant === 'text' && {
-              color: brand[500],
+              color: brand[600],
               '&:hover': {
                 backgroundColor: alpha(brand[300], 0.3),
                 borderColor: brand[200],
@@ -313,7 +313,7 @@ export default function getSignInTheme(mode: PaletteMode): ThemeOptions {
                   },
                 }),
               ...(ownerState.variant === 'text' && {
-                color: brand[300],
+                color: brand[200],
                 '&:hover': {
                   backgroundColor: alpha(brand[600], 0.3),
                   borderColor: brand[700],
@@ -341,6 +341,17 @@ export default function getSignInTheme(mode: PaletteMode): ThemeOptions {
             ...(theme.palette.mode === 'dark' && {
               backgroundColor: gray[800],
             }),
+          }),
+        },
+      },
+      MuiDialog: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            '& .MuiDialog-paper': {
+              borderRadius: '10px',
+              border: '1px solid',
+              borderColor: theme.palette.divider,
+            },
           }),
         },
       },

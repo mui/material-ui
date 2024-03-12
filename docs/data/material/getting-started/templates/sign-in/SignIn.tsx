@@ -226,7 +226,11 @@ export default function SignIn() {
             >
               Sign In
             </Button>
-            <Link href="#" variant="body2" sx={{ alignSelf: 'center' }}>
+            <Link
+              href="/material-ui/getting-started/templates/sign-up/"
+              variant="body2"
+              sx={{ alignSelf: 'center' }}
+            >
               {"Don't have an account? Sign Up"}
             </Link>
           </Box>

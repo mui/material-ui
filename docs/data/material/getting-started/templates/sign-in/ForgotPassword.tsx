@@ -26,7 +26,9 @@ export default function ForgotPassword({ open, handleClose }: ForgotPasswordProp
       }}
     >
       <DialogTitle>Forgot Password</DialogTitle>
-      <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+      <DialogContent
+        sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: '100%' }}
+      >
         <DialogContentText>
           To reset your password, please enter your email address here. We will send
           reset instructions.
@@ -43,9 +45,11 @@ export default function ForgotPassword({ open, handleClose }: ForgotPasswordProp
           fullWidth
         />
       </DialogContent>
-      <DialogActions>
+      <DialogActions sx={{ pb: 3, px: 3 }}>
         <Button onClick={handleClose}>Cancel</Button>
-        <Button type="submit">Send Instructions</Button>
+        <Button variant="contained" type="submit">
+          Send Instructions
+        </Button>
       </DialogActions>
     </Dialog>
   );
