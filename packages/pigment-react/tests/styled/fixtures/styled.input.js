@@ -12,7 +12,7 @@ const rotateKeyframe = keyframes({
 const Component = styled.div(({ theme }) => ({
   color: '#ff5252',
   animation: `${rotateKeyframe} 2s ease-out 0s infinite`,
-});
+}));
 
 export const SliderRail = styled('span', {
   name: 'MuiSlider',
