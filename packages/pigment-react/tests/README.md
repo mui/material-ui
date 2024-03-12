@@ -1,4 +1,4 @@
-# Pigment CSS testing
+# Pigment CSS testing
 
 ## Folder structure
 
@@ -24,11 +24,11 @@ pnpm nx run @pigment-css/react:test:update
 
 ## Adding new tests
 
-Each folder inside `tests` is a Pigment CSS feature. To add a new test, create a new folder with the feature name and add a new test file with the `.test.js` extension. Inside the test file, import the fixtures and run the tests.
+Each folder inside `tests` is a Pigment CSS feature. To add a new test, create a new folder with the feature name and add a new test file with the `.test.js` extension. Inside the test file, import the fixtures and run the tests.
 
 ## Adding new fixtures
 
-Create a new file name with `[name].input.js` and add `styled`, `css` or other Pigment CSS calls into the file.
+Create a new file name with `[name].input.js` and add `styled`, `css` or other Pigment CSS calls into the file.
 
 The first time you run the tests, the output files will be created automatically. Then check the output files to make sure they are correct.
 

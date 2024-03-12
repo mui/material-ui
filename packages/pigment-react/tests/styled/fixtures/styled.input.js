@@ -9,21 +9,26 @@ const rotateKeyframe = keyframes({
   },
 });
 
-const Component = styled.div({
+const Component = styled.div(({ theme }) => ({
   color: '#ff5252',
   animation: `${rotateKeyframe} 2s ease-out 0s infinite`,
 });
 
-const Component2 = styled.div`
-  color: red;
-  &:has(.foo) {
-    color: blue;
-  }
+export const SliderRail = styled('span', {
+  name: 'MuiSlider',
+  slot: 'Rail',
+})`
+  display: block;
+  position: absolute;
+  border-radius: inherit;
+  background-color: currentColor;
+  opacity: 0.38;
 `;
 
-const Component3 = styled('div')`
-  color: red;
-  &:has(.foo) {
-    color: blue;
+const SliderRail2 = styled.span`
+  display: block;
+  opacity: 0.38;
+  ${SliderRail} {
+    display: none;
   }
 `;
