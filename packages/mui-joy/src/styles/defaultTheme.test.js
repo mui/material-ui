@@ -20,6 +20,7 @@ describe('defaultTheme', () => {
         'palette',
         'shadowRing',
         'shadowChannel',
+        'shadowOpacity',
         'getCssVar',
         'spacing',
         'radius',

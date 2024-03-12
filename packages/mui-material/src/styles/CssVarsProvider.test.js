@@ -140,9 +140,9 @@ describe('[Material UI] CssVarsProvider', () => {
           primary: 'var(--mui-palette-text-primary)',
           secondary: 'var(--mui-palette-text-secondary)',
           disabled: 'var(--mui-palette-text-disabled)',
+          icon: 'var(--mui-palette-text-icon)',
           primaryChannel: 'var(--mui-palette-text-primaryChannel)',
           secondaryChannel: 'var(--mui-palette-text-secondaryChannel)',
-          icon: 'var(--mui-palette-text-icon)',
         }),
       );
       expect(screen.getByTestId('palette-divider').textContent).to.equal(
