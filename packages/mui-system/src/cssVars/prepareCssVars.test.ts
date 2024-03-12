@@ -13,13 +13,13 @@ describe('prepareCssVars', () => {
 
     const css1 = result.generateStyleSheets();
 
-    delete css1[0]['.dark'];
+    delete css1[0]['[data-color-scheme="dark"]'];
 
     expect(css1[0]).to.deep.equal({});
 
     const css2 = result.generateStyleSheets();
 
-    expect(css2[0]).to.deep.equal({ '.dark': { '--color': 'red' } });
+    expect(css2[0]).to.deep.equal({ '[data-color-scheme="dark"]': { '--color': 'red' } });
   });
 
   it('produce theme vars with defaults', () => {
@@ -113,8 +113,8 @@ describe('prepareCssVars', () => {
     const stylesheets = result.generateStyleSheets();
     expect(stylesheets).to.deep.equal([
       { ':root': { '--fontSize-base': '1rem' } },
-      { '.dark': { '--color': 'red' } },
-      { '.light': { '--color': 'green' } },
+      { '[data-color-scheme="dark"]': { '--color': 'red' } },
+      { '[data-color-scheme="light"]': { '--color': 'green' } },
     ]);
   });
 
