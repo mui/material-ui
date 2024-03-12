@@ -16,12 +16,14 @@
 .c1sjy0ja:has(.foo) {
   color: blue;
 }
-.c6hrafw {
-  color: red;
+.s6hrafw {
+  display: block;
+  opacity: 0.38;
 }
-.c6hrafw:has(.foo) {
-  color: blue;
+.s1nn157y {
+  display: block;
+  opacity: 0.38;
 }
-.s6hrafw .s1sjy0ja {
+.s1nn157y .s6hrafw {
   display: none;
 }
