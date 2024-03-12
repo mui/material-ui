@@ -4,6 +4,7 @@ fn({
       slots: {
         root: ComponentsRoot,
       },
+
       slotProps: {
         root: componentsRootProps,
       },
@@ -28,7 +29,7 @@ fn({
 });
 
 fn({
-  Muibadge: {
+  MuiBadge: {
     defaultProps: {
       slots: {
         root: SlotsRoot,
@@ -36,8 +37,12 @@ fn({
       },
 
       slotProps: {
-        root: slotsRootProps,
-        badge: slotsbadgeProps,
+        root: {
+          ...componentsRootProps,
+          ...slotsRootProps,
+        },
+
+        badge: slotsBadgeProps,
       },
     },
   },
