@@ -76,25 +76,18 @@ function genericValueTest() {
     }}
   />;
 
-  // @ts-expect-error
-  <Select<number, 'filled'> />;
-  // @ts-expect-error
-  <Select<number, 'standard'> />;
-  // @ts-expect-error
-  <Select<number, 'standard'> variant="filled" />;
-  // @ts-expect-error
-  <Select<number, 'filled'> variant="standard" />;
-
-  <Select<number, 'outlined'> />;
-
-  <Select<number, 'filled'> variant="filled" />;
-  <Select<number, 'outlined'> variant="outlined" />;
-  <Select<number, 'standard'> variant="standard" />;
-
   <Select variant="filled" />;
   <Select variant="standard" />;
   <Select variant="outlined" />;
   <Select />;
+
+  <Select variant="filled" hiddenLabel />;
+  // @ts-expect-error hiddenLabel is not present in standard variant
+  <Select variant="standard" hiddenLabel />;
+  // @ts-expect-error hiddenLabel is not present in outlined variant
+  <Select variant="outlined" hiddenLabel />;
+  // @ts-expect-error hiddenLabel is not present in outlined variant
+  <Select hiddenLabel />;
 
   const defaultProps: SelectProps<number> = {};
   const outlinedProps: SelectProps<number> = {
@@ -113,13 +106,7 @@ function genericValueTest() {
   <Select {...standardProps} />;
   <Select<number> {...outlinedProps} />;
   <Select<number> {...defaultProps} />;
-  <Select<number, 'standard'> {...standardProps} />;
-  // @ts-expect-error variant type mismatch
   <Select<number> {...filledProps} />;
-  // @ts-expect-error variant type mismatch
-  <Select<number, 'outlined'> {...filledProps} />;
-  // @ts-expect-error variant type mismatch
-  <Select<number, 'standard'> {...filledProps} />;
 
   const rawDefaultProps: SelectProps = {};
   const rawOutlinedProps: SelectProps = {
@@ -140,6 +127,23 @@ function genericValueTest() {
   <Select {...filledProps} hiddenLabel />;
   // @ts-expect-error hiddenLabel is not present in standard variant
   <Select {...standardProps} hiddenLabel />;
+
+  interface OtherProps {
+    otherProp?: number;
+  }
+
+  const SelectWrapper1 = <Value = unknown>(props: SelectProps<Value> & OtherProps) => {
+    const { otherProp, ...materialSelectProps } = props;
+
+    return (
+      // how to solve this:
+      <Select<Value> {...materialSelectProps} />
+    );
+  };
+
+  <SelectWrapper1 />;
+  <SelectWrapper1<number> variant="filled" hiddenLabel />;
+  <SelectWrapper1 variant="filled" hiddenLabel />;
 }
 
 type Options<T> = { text: string; value: T } | T;

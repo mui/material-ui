@@ -177,15 +177,10 @@ export interface OutlinedSelectProps extends Omit<OutlinedInputProps, 'value' | 
 
 export type SelectVariants = 'outlined' | 'standard' | 'filled';
 
-export type SelectProps<
-  Value = unknown,
-  Variant extends SelectVariants = SelectVariants,
-> = BaseSelectProps<Value> &
-  (Variant extends 'filled'
-    ? FilledSelectProps
-    : Variant extends 'standard'
-      ? StandardSelectProps
-      : OutlinedSelectProps);
+export type SelectProps<Value = unknown> =
+  | (FilledSelectProps & BaseSelectProps<Value>)
+  | (StandardSelectProps & BaseSelectProps<Value>)
+  | (OutlinedSelectProps & BaseSelectProps<Value>);
 
 /**
  *
@@ -198,14 +193,8 @@ export type SelectProps<
  * - [Select API](https://mui.com/material-ui/api/select/)
  * - inherits [OutlinedInput API](https://mui.com/material-ui/api/outlined-input/)
  */
-export default function Select<Value = unknown, Variant extends SelectVariants = 'outlined'>(
-  props: {
-    /**
-     * The variant to use.
-     * @default 'outlined'
-     */
-    variant?: Variant;
-  } & SelectProps<Value, Variant>,
+export default function Select<Value = unknown>(
+  props: SelectProps<Value>,
 ): JSX.Element & {
   muiName: string;
 };
