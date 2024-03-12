@@ -90,8 +90,10 @@ type UseStorageStateHookResult = [
   React.Dispatch<React.SetStateAction<string | null>>,
 ];
 
+const serverValue: UseStorageStateHookResult = [null, () => {}];
+
 function useLocalStorageStateServer(): UseStorageStateHookResult {
-  return React.useState<string | null>(null);
+  return serverValue;
 }
 
 /**
