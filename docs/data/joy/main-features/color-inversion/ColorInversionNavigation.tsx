@@ -43,12 +43,6 @@ export default function ColorInversionNavigation() {
           variant="soft"
           defaultValue="1"
           size="sm"
-          placeholder={
-            <Stack alignItems="start">
-              <Typography level="title-lg">Saleshouse</Typography>
-              <Typography level="body-md">general team</Typography>
-            </Stack>
-          }
           startDecorator={
             <Sheet
               variant="solid"
@@ -145,9 +139,9 @@ export default function ColorInversionNavigation() {
           flexDirection: 'column',
           alignItems: 'center',
           gap: 2,
-          bgcolor: `${color}.900`,
+          bgcolor: `${color}.800`,
 
-          '& .MuiBadge-root': { '--Badge-ringColor': 'unset' },
+          '& .MuiBadge-root': { '--Badge-ringColor': '#FFF' },
           '& .MuiBadge-colorSuccess': { bgcolor: 'success.400' },
           '& button': {
             borderRadius: '50%',
@@ -156,8 +150,8 @@ export default function ColorInversionNavigation() {
           },
         }}
       >
-        <Badge badgeContent="7" badgeInset="15%" size="sm">
-          <IconButton size="lg">
+        <Badge badgeContent="7" badgeInset="10%" size="sm">
+          <IconButton>
             <Avatar src="/static/images/avatar/3.jpg" />
           </IconButton>
         </Badge>
@@ -166,18 +160,17 @@ export default function ColorInversionNavigation() {
             vertical: 'bottom',
             horizontal: 'right',
           }}
-          badgeInset="20%"
+          badgeInset="15%"
           color="success"
         >
-          <IconButton size="lg">
+          <IconButton>
             <Avatar src="/static/images/avatar/4.jpg" />
           </IconButton>
         </Badge>
-        <IconButton size="lg" aria-label="Add another chat">
+        <IconButton aria-label="Add another chat" sx={{color: "text.tertiary"}}>
           <AddIcon />
         </IconButton>
         <IconButton
-          size="lg"
           onClick={() => {
             const colors: ColorPaletteProp[] = [
               'primary',
@@ -189,7 +182,7 @@ export default function ColorInversionNavigation() {
             const nextColorIndex = colors.indexOf(color) + 1;
             setColor(colors[nextColorIndex] ?? colors[0]);
           }}
-          sx={{ mt: 'auto' }}
+          sx={{ mt: 'auto', color: "text.tertiary" }}
         >
           <ColorLensRoundedIcon />
         </IconButton>
