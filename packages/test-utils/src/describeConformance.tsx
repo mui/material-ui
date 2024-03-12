@@ -2,16 +2,15 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { ReactWrapper } from 'enzyme';
-import {
-  ThemeProvider as MDThemeProvider,
-  createTheme as mdCreateTheme,
-} from '@mui/material/styles';
-import { unstable_capitalize as capitalize } from '@mui/utils';
 import ReactTestRenderer from 'react-test-renderer';
 import createMount from './createMount';
 import createDescribe from './createDescribe';
 import findOutermostIntrinsic from './findOutermostIntrinsic';
 import { MuiRenderResult } from './createRenderer';
+
+function capitalize(string: string): string {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 export interface SlotTestingOptions {
   /**
@@ -40,13 +39,14 @@ interface SlotTestOverride {
   slotClassName?: string;
 }
 
-export interface InputConformanceOptions {
+export interface ConformanceOptions {
   muiName: string;
   classes: { root: string };
   refInstanceof: any;
   after?: () => void;
   inheritComponent?: React.ElementType;
   render: (node: React.ReactElement) => MuiRenderResult;
+  mount?: (node: React.ReactElement) => ReactWrapper;
   only?: Array<keyof typeof fullSuite>;
   skip?: Array<keyof typeof fullSuite | 'classesRoot'>;
   testComponentsRootPropWith?: string;
@@ -63,10 +63,6 @@ export interface InputConformanceOptions {
   slots?: Record<string, SlotTestingOptions>;
   ThemeProvider?: React.ElementType;
   createTheme?: (arg: any) => any;
-}
-
-export interface ConformanceOptions extends InputConformanceOptions {
-  mount: (node: React.ReactElement) => ReactWrapper;
 }
 
 /**
@@ -87,7 +83,12 @@ function testRef(
   mount: ConformanceOptions['mount'],
   onRef: (instance: unknown, wrapper: import('enzyme').ReactWrapper) => void = assertDOMNode,
 ) {
+  if (!mount) {
+    throwMissingPropError('mount');
+  }
+
   const ref = React.createRef();
+
   const wrapper = mount(<React.Fragment>{React.cloneElement(element, { ref })}</React.Fragment>);
   onRef(ref.current, wrapper);
 }
@@ -117,7 +118,7 @@ export function randomStringValue() {
   return `s${Math.random().toString(36).slice(2)}`;
 }
 
-function throwMissingPropError(field: string) {
+function throwMissingPropError(field: string): never {
   throw new Error(`missing "${field}" in options
 
   > describeConformance(element, () => options)
@@ -131,6 +132,10 @@ function throwMissingPropError(field: string) {
 export function testClassName(element: React.ReactElement, getOptions: () => ConformanceOptions) {
   it('applies the className to the root component', () => {
     const { mount } = getOptions();
+    if (!mount) {
+      throwMissingPropError('mount');
+    }
+
     const className = randomStringValue();
 
     const wrapper = mount(React.cloneElement(element, { className }));
@@ -150,6 +155,9 @@ export function testComponentProp(
   describe('prop: component', () => {
     it('can render another root component with the `component` prop', () => {
       const { mount, testComponentPropWith: component = 'em' } = getOptions();
+      if (!mount) {
+        throwMissingPropError('mount');
+      }
 
       const wrapper = mount(React.cloneElement(element, { component }));
 
@@ -165,6 +173,10 @@ export function testPropsSpread(element: React.ReactElement, getOptions: () => C
   it(`spreads props to the root component`, () => {
     // type def in ConformanceOptions
     const { inheritComponent, mount } = getOptions();
+    if (!mount) {
+      throwMissingPropError('mount');
+    }
+
     if (inheritComponent === undefined) {
       throw new TypeError(
         'Unable to test props spread without `inheritComponent`. Either skip the test or pass a React element type.',
@@ -560,6 +572,9 @@ function testComponentsProp(element: React.ReactElement, getOptions: () => Confo
   describe('prop components:', () => {
     it('can render another root component with the `components` prop', () => {
       const { mount, testComponentsRootPropWith: component = 'em' } = getOptions();
+      if (!mount) {
+        throwMissingPropError('mount');
+      }
 
       const wrapper = mount(React.cloneElement(element, { components: { Root: component } }));
 
@@ -576,12 +591,7 @@ function testThemeDefaultProps(element: React.ReactElement, getOptions: () => Co
   describe('theme default components:', () => {
     it("respect theme's defaultProps", () => {
       const testProp = 'data-id';
-      const {
-        muiName,
-        render,
-        ThemeProvider = MDThemeProvider,
-        createTheme = mdCreateTheme,
-      } = getOptions();
+      const { muiName, render, ThemeProvider, createTheme } = getOptions();
 
       if (!muiName) {
         throwMissingPropError('muiName');
@@ -589,6 +599,14 @@ function testThemeDefaultProps(element: React.ReactElement, getOptions: () => Co
 
       if (!render) {
         throwMissingPropError('render');
+      }
+
+      if (!ThemeProvider) {
+        throwMissingPropError('ThemeProvider');
+      }
+
+      if (!createTheme) {
+        throwMissingPropError('createTheme');
       }
 
       const theme = createTheme({
@@ -621,13 +639,7 @@ function testThemeStyleOverrides(
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
-      const {
-        muiName,
-        testStateOverrides,
-        render,
-        ThemeProvider = MDThemeProvider,
-        createTheme = mdCreateTheme,
-      } = getOptions();
+      const { muiName, testStateOverrides, render, ThemeProvider, createTheme } = getOptions();
 
       if (!testStateOverrides) {
         return;
@@ -639,6 +651,14 @@ function testThemeStyleOverrides(
 
       if (!render) {
         throwMissingPropError('render');
+      }
+
+      if (!ThemeProvider) {
+        throwMissingPropError('ThemeProvider');
+      }
+
+      if (!createTheme) {
+        throwMissingPropError('createTheme');
       }
 
       const testStyle = {
@@ -680,9 +700,17 @@ function testThemeStyleOverrides(
         testDeepOverrides,
         testRootOverrides = { slotName: 'root' },
         render,
-        ThemeProvider = MDThemeProvider,
-        createTheme = mdCreateTheme,
+        ThemeProvider,
+        createTheme,
       } = getOptions();
+
+      if (!ThemeProvider) {
+        throwMissingPropError('ThemeProvider');
+      }
+
+      if (!createTheme) {
+        throwMissingPropError('createTheme');
+      }
 
       const testStyle = {
         mixBlendMode: 'darken',
@@ -778,14 +806,16 @@ function testThemeStyleOverrides(
         this.skip();
       }
 
-      const {
-        muiName,
-        classes,
-        testStateOverrides,
-        render,
-        ThemeProvider = MDThemeProvider,
-        createTheme = mdCreateTheme,
-      } = getOptions();
+      const { muiName, classes, testStateOverrides, render, ThemeProvider, createTheme } =
+        getOptions();
+
+      if (!ThemeProvider) {
+        throwMissingPropError('ThemeProvider');
+      }
+
+      if (!createTheme) {
+        throwMissingPropError('createTheme');
+      }
 
       const classKeys = Object.keys(classes);
 
@@ -854,13 +884,7 @@ function testThemeVariants(element: React.ReactElement, getOptions: () => Confor
         this.skip();
       }
 
-      const {
-        muiName,
-        testVariantProps,
-        render,
-        ThemeProvider = MDThemeProvider,
-        createTheme = mdCreateTheme,
-      } = getOptions();
+      const { muiName, testVariantProps, render, ThemeProvider, createTheme } = getOptions();
 
       if (!testVariantProps) {
         throw new Error('missing testVariantProps');
@@ -872,6 +896,14 @@ function testThemeVariants(element: React.ReactElement, getOptions: () => Confor
 
       if (!render) {
         throwMissingPropError('render');
+      }
+
+      if (!ThemeProvider) {
+        throwMissingPropError('ThemeProvider');
+      }
+
+      if (!createTheme) {
+        throwMissingPropError('createTheme');
       }
 
       const testStyle = {
@@ -907,13 +939,15 @@ function testThemeVariants(element: React.ReactElement, getOptions: () => Confor
         this.skip();
       }
 
-      const {
-        muiName,
-        testCustomVariant,
-        render,
-        ThemeProvider = MDThemeProvider,
-        createTheme = mdCreateTheme,
-      } = getOptions();
+      const { muiName, testCustomVariant, render, ThemeProvider, createTheme } = getOptions();
+
+      if (!ThemeProvider) {
+        throwMissingPropError('ThemeProvider');
+      }
+
+      if (!createTheme) {
+        throwMissingPropError('createTheme');
+      }
 
       if (!testCustomVariant) {
         return;
@@ -944,6 +978,31 @@ function testThemeVariants(element: React.ReactElement, getOptions: () => Confor
   });
 }
 
+/**
+ * MUI theme supports custom palettes.
+ * The components that iterate over the palette via `variants` should be able to render with or without applying the custom palette styles.
+ */
+function testThemeCustomPalette(element: React.ReactElement, getOptions: () => ConformanceOptions) {
+  describe('theme extended palette:', () => {
+    it('should render without errors', function test() {
+      const { render, ThemeProvider, createTheme } = getOptions();
+      if (!/jsdom/.test(window.navigator.userAgent) || !render || !ThemeProvider || !createTheme) {
+        this.skip();
+      }
+
+      const theme = createTheme({
+        palette: {
+          custom: {
+            main: '#ff5252',
+          },
+        },
+      });
+
+      expect(() => render(<ThemeProvider theme={theme}>{element}</ThemeProvider>)).not.to.throw();
+    });
+  });
+}
+
 const fullSuite = {
   componentProp: testComponentProp,
   componentsProp: testComponentsProp,
@@ -958,6 +1017,7 @@ const fullSuite = {
   themeDefaultProps: testThemeDefaultProps,
   themeStyleOverrides: testThemeStyleOverrides,
   themeVariants: testThemeVariants,
+  themeCustomPalette: testThemeCustomPalette,
 };
 
 /**
@@ -966,7 +1026,7 @@ const fullSuite = {
  */
 function describeConformance(
   minimalElement: React.ReactElement,
-  getOptions: () => InputConformanceOptions,
+  getOptions: () => ConformanceOptions,
 ) {
   let originalMatchmedia: typeof window.matchMedia;
   const storage: Record<string, string> = {};

@@ -197,6 +197,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
         ref={handleRef}
         // Apply the rows prop to get a "correct" first SSR paint
         rows={minRows as number}
+        style={style}
         {...other}
       />
       <textarea

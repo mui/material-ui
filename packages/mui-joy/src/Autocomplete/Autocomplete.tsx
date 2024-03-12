@@ -416,6 +416,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
             variant="soft"
             color="neutral"
             endDecorator={<ChipDelete {...getCustomizedTagProps({ index })} />}
+            sx={{ minWidth: 0 }}
           >
             {getOptionLabel(option)}
           </Chip>

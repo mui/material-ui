@@ -4,7 +4,7 @@ description: We're tightening up the Material UI release schedule and shipping 
 date: 2023-12-23T00:00:00.000Z
 authors: ['mnajdova']
 card: true
-tags: ['MUI Core', 'News']
+tags: ['Material UI', 'Product']
 ---
 
 As we approach the end of 2023, we've had our heads down working on some very exciting projects for the future of Material UI in the next year.
@@ -62,8 +62,8 @@ Stay tuned for a beta version release early next year!
 ## A sharper focus
 
 To pull these releases off, the Core team's attention will be fully focused on Material UI for most of 2024.
-In the meantime we're putting Joy UI development on hold, so don't expect any new features or components.
-Nevertheless, we do have some big ideas for Joy UI!
+In the meantime we're putting Joy UI development on hold, so don't expect any new features or components.
+Nevertheless, we do have some big ideas for Joy UI!
 Expect to hear more about that towards the end of Q2 '24.
 
 ## Follow along and contribute

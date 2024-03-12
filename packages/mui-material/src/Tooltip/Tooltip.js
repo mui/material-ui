@@ -7,6 +7,7 @@ import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
 import { appendOwnerState } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
+import { useRtl } from '@mui/system/RtlProvider';
 import styled from '../styles/styled';
 import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';
@@ -56,7 +57,7 @@ const TooltipPopper = styled(Popper, {
   },
 })(({ theme, ownerState, open }) => ({
   zIndex: (theme.vars || theme).zIndex.tooltip,
-  pointerEvents: 'none', // disable jss-rtl plugin
+  pointerEvents: 'none',
   ...(!ownerState.disableInteractive && {
     pointerEvents: 'auto',
   }),
@@ -270,7 +271,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const children = React.isValidElement(childrenProp) ? childrenProp : <span>{childrenProp}</span>;
 
   const theme = useTheme();
-  const isRtl = theme.direction === 'rtl';
+  const isRtl = useRtl();
 
   const [childNode, setChildNode] = React.useState();
   const [arrowRef, setArrowRef] = React.useState(null);
@@ -365,7 +366,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     },
   );
 
-  const handleEnter = (event) => {
+  const handleMouseOver = (event) => {
     if (ignoreNonTouchEvents.current && event.type !== 'touchstart') {
       return;
     }
@@ -388,7 +389,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
   };
 
-  const handleLeave = (event) => {
+  const handleMouseLeave = (event) => {
     enterTimer.clear();
     leaveTimer.start(leaveDelay, () => {
       handleClose(event);
@@ -408,7 +409,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     handleBlurVisible(event);
     if (isFocusVisibleRef.current === false) {
       setChildIsFocusVisible(false);
-      handleLeave(event);
+      handleMouseLeave(event);
     }
   };
 
@@ -423,7 +424,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     handleFocusVisible(event);
     if (isFocusVisibleRef.current === true) {
       setChildIsFocusVisible(true);
-      handleEnter(event);
+      handleMouseOver(event);
     }
   };
 
@@ -435,9 +436,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       childrenProps.onTouchStart(event);
     }
   };
-
-  const handleMouseOver = handleEnter;
-  const handleMouseLeave = handleLeave;
 
   const handleTouchStart = (event) => {
     detectTouchStart(event);
@@ -451,7 +449,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
     touchTimer.start(enterTouchDelay, () => {
       document.body.style.WebkitUserSelect = prevUserSelect.current;
-      handleEnter(event);
+      handleMouseOver(event);
     });
   };
 
@@ -914,7 +912,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
   TransitionComponent: PropTypes.elementType,
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    */
   TransitionProps: PropTypes.object,
 };

@@ -42,7 +42,7 @@ import InterestsRoundedIcon from '@mui/icons-material/InterestsRounded';
 import RadioRoundedIcon from '@mui/icons-material/RadioRounded';
 
 import ROUTES from 'docs/src/route';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import heroVariables from 'docs/src/components/productBaseUI/heroVariables';
 
 const Panel = styled('div')({
@@ -785,7 +785,7 @@ export default function BaseUIThemesDemo() {
   // Snackbar
   const [openSnackbar, setOpenSnackbar] = React.useState(false);
 
-  const handleCloseSnackbar = (_: any, reason: SnackbarCloseReason) => {
+  const handleCloseSnackbar = (_: any, reason?: SnackbarCloseReason) => {
     if (reason === 'clickaway') {
       return;
     }

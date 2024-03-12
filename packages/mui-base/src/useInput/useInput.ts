@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import MuiError from '@mui-internal/babel-macros/MuiError.macro';
+import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { FormControlState, useFormControlContext } from '../FormControl';
 import { extractEventHandlers } from '../utils/extractEventHandlers';

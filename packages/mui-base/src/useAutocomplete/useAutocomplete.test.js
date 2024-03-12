@@ -118,6 +118,7 @@ describe('useAutocomplete', () => {
       let filterOptions;
       let getOptionLabel;
       let options;
+
       beforeEach(() => {
         filterOptions = createFilterOptions({ matchFrom: 'any' });
         getOptionLabel = (option) => option.name;
