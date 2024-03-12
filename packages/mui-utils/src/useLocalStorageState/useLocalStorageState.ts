@@ -100,13 +100,7 @@ function useLocalStorageStateServer(): UseStorageStateHookResult {
  * to that value on page load instead of the specified initial value.
  *
  * Since the storage API isn't available in server-rendering environments, we
- * return initialValue during SSR and hydration.
- *
- * Things this hook does different from existing solutions:
- * - SSR-capable: it shows initial value during SSR and hydration, but immediately
- *   initializes when clientside mounted.
- * - Sync state across tabs: When another tab changes the value in the storage area, the
- *   current tab follows suit.
+ * return null during SSR and hydration.
  */
 function useLocalStorageStateBrowser(
   key: string | null,
