@@ -142,6 +142,12 @@
           "build"
         ]
       },
+      "test:update": {
+        "cache": false,
+        "dependsOn": [
+          "build"
+        ]
+      },
       "test:ci": {
         "cache": false,
         "dependsOn": [

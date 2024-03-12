@@ -100,7 +100,9 @@ export class KeyframesProcessor extends BaseProcessor {
 
   generateArtifacts(styleObjOrTaggged: CSSInterpolation | string[], ...args: Primitive[]) {
     const { styles } = serializeStyles(
-      [styleObjOrTaggged as Interpolation<{}>, args],
+      args.length > 0
+        ? [styleObjOrTaggged as Interpolation<{}>, ...args]
+        : [styleObjOrTaggged as Interpolation<{}>],
       cache.registered,
     );
     const cssText = `@keyframes {${styles}}`;
