@@ -15,6 +15,8 @@ import {
   getThemedComponents,
   getMetaThemeColor,
 } from 'docs/src/modules/brandingTheme';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import useLocalStorageState from '@mui/utils/useLocalStorageState';
 
 const languageMap = {
   en: enUS,
@@ -172,6 +174,10 @@ export function ThemeProvider(props) {
 
   useLazyCSS('/static/styles/prism-okaidia.css', '#prismjs');
 
+  // TODO replace with useColorScheme once all pages support css vars
+  const { mode, systemMode } = useColorSchemeShim();
+  const calculatedMode = mode === 'system' ? systemMode : mode;
+
   useEnhancedEffect(() => {
     let nextPaletteColors = JSON.parse(getCookie('paletteColors') || 'null');
     // Set default value if no value is found in cookie
@@ -183,11 +189,10 @@ export function ThemeProvider(props) {
       type: 'CHANGE',
       payload: {
         paletteColors: nextPaletteColors,
-        // TODO: have the value come from useColorScheme();
-        // paletteMode: nextPaletteMode,
+        paletteMode: calculatedMode,
       },
     });
-  }, []);
+  }, [calculatedMode]);
 
   useEnhancedEffect(() => {
     document.body.dir = direction;
@@ -271,4 +276,17 @@ ThemeProvider.propTypes = {
 export function useChangeTheme() {
   const dispatch = React.useContext(DispatchContext);
   return React.useCallback((options) => dispatch({ type: 'CHANGE', payload: options }), [dispatch]);
+}
+
+// TODO: remove once all pages support css vars and replace call sites with useColorScheme()
+export function useColorSchemeShim() {
+  const [mode, setMode] = useLocalStorageState('mui-mode', 'system');
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', { noSsr: true });
+  const systemMode = prefersDarkMode ? 'dark' : 'light';
+
+  return {
+    mode,
+    systemMode,
+    setMode,
+  };
 }

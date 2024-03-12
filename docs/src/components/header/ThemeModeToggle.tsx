@@ -4,9 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import DarkModeOutlined from '@mui/icons-material/DarkModeOutlined';
 import LightModeOutlined from '@mui/icons-material/LightModeOutlined';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
-import useLocalStorageState from '@mui/utils/useLocalStorageState';
+import { useColorSchemeShim } from 'docs/src/modules/components/ThemeContext';
 
 function CssVarsModeToggle(props: { onChange: (newMode: string) => void }) {
   const { mode, systemMode, setMode } = useColorScheme();
@@ -36,19 +34,9 @@ function CssVarsModeToggle(props: { onChange: (newMode: string) => void }) {
 }
 
 export default function ThemeModeToggle() {
-  // TODO implement the dark mode toggle with useColorScheme().
-  // This already take cares of locale storage and media query.
-  const changeTheme = useChangeTheme();
-  const [mode, setMode] = useLocalStorageState('mui-mode', 'system');
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', { noSsr: true });
-  const systemMode = prefersDarkMode ? 'dark' : 'light';
+  // TODO replace with useColorScheme once all pages support css vars
+  const { mode, systemMode, setMode } = useColorSchemeShim();
   const calculatedMode = mode === 'system' ? systemMode : mode;
-
-  // TODO remove, the module where "changeTheme() is imported from" should use useColorScheme() to set the mode directly.
-  // Delegating this to the UI component is wrong.
-  React.useEffect(() => {
-    changeTheme({ paletteMode: calculatedMode });
-  }, [changeTheme, calculatedMode]);
 
   const theme = useTheme();
 

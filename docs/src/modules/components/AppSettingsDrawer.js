@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled, useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -16,9 +15,8 @@ import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
 import FormatTextdirectionLToRIcon from '@mui/icons-material/FormatTextdirectionLToR';
 import FormatTextdirectionRToLIcon from '@mui/icons-material/FormatTextdirectionRToL';
-import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
+import { useColorSchemeShim, useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import { useTranslate } from '@mui/docs/i18n';
-import useLocalStorageState from '@mui/utils/useLocalStorageState';
 
 const Heading = styled(Typography)(({ theme }) => ({
   margin: '16px 0 8px',
@@ -44,18 +42,8 @@ export default function AppSettingsDrawer(props) {
   const upperTheme = useTheme();
   const changeTheme = useChangeTheme();
 
-  // TODO implement the dark mode toggle with useColorScheme().
-  // This already take cares of locale storage and media query.
-  const [mode, setMode] = useLocalStorageState('mui-mode', 'system');
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', { noSsr: true });
-  const systemMode = prefersDarkMode ? 'dark' : 'light';
-  const calculatedMode = mode === 'system' ? systemMode : mode;
-
-  // TODO remove, where changeTheme() is imported from should use useColorScheme().
-  // Delegating this to the UI component is wrong.
-  React.useEffect(() => {
-    changeTheme({ paletteMode: calculatedMode });
-  }, [changeTheme, calculatedMode]);
+  // TODO replace with useColorScheme once all pages support css vars
+  const { mode, setMode } = useColorSchemeShim();
 
   const handleChangeThemeMode = (event, paletteMode) => {
     if (paletteMode === null) {
