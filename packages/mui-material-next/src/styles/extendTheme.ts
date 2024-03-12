@@ -136,12 +136,6 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
     },
   });
 
-  const { color: lightSysColor, elevation: lightSysElevation } = lightSys;
-  const { palette: lightRefPalette } = lightRef;
-
-  const { color: darkSysColor, elevation: darkSysElevation } = darkSys;
-  const { palette: darkRefPalette } = darkRef;
-
   let theme: Theme & {
     defaultColorScheme: SupportedColorScheme;
     attribute: string;
@@ -165,8 +159,8 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
           ...colorSchemesInput.light?.opacity,
         },
         overlays: colorSchemesInput.light?.overlays || defaultLightOverlays,
-        sys: { color: lightSysColor, elevation: lightSysElevation },
-        ref: { palette: lightRefPalette },
+        sys: lightSys,
+        ref: lightRef,
       },
       dark: {
         ...colorSchemesInput.dark,
@@ -180,8 +174,8 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
           ...colorSchemesInput.dark?.opacity,
         },
         overlays: colorSchemesInput.dark?.overlays || defaultDarkOverlays,
-        sys: { color: darkSysColor, elevation: darkSysElevation },
-        ref: { palette: darkRefPalette },
+        sys: darkSys,
+        ref: darkRef,
       },
     },
   };
