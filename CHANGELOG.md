@@ -8,7 +8,7 @@ _Mar 12, 2024_
 
 A big thanks to the 15 contributors who made this release possible. Here are some highights ✨
 
-- The Checkout template has been refined (#41447) @zanivan
+- The Material UI free Checkout template got a design uplift (#41447) @zanivan
 
 ### `@mui/material@5.15.13`
 
@@ -23,7 +23,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 ### `@mui/codemod@5.15.13`
 
-- &#8203;<!-- 12 -->[mui-codemod] Fix merging of slotProps and componentProps (#41323) @sai6855
+- &#8203;<!-- 12 -->Fix merging of slotProps and componentProps (#41323) @sai6855
 
 ### `@mui/base@5.0.0-beta.39`
 
@@ -33,10 +33,10 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 ### `@pigment-css/react@0.0.2`
 
-- &#8203;<!-- 10 -->[pigment] Handle more scenarios while transforming sx prop (#41372) @brijeshb42
-- &#8203;<!-- 09 -->[pigment] Improve testing of fixtures (#41389) @brijeshb42
-- &#8203;<!-- 07 -->[pigment-css] Fix `keyframes` serialize styles error (#41395) @siriwatknp
-- &#8203;<!-- 04 -->[pigment-css] Use class selector instead of class value (#41442) @brijeshb42
+- &#8203;<!-- 10 -->Handle more scenarios while transforming sx prop (#41372) @brijeshb42
+- &#8203;<!-- 09 -->Improve testing of fixtures (#41389) @brijeshb42
+- &#8203;<!-- 07 -->Fix `keyframes` serialize styles error (#41395) @siriwatknp
+- &#8203;<!-- 04 -->Use class selector instead of class value (#41442) @brijeshb42
 
 ### Docs
 
