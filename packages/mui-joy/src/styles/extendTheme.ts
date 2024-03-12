@@ -666,7 +666,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     });
   };
   theme.getColorSchemeSelector = (colorScheme: SupportedColorScheme) =>
-    `*:where([${theme.attribute}="${colorScheme}"]) &`;
+    `[${theme.attribute}="${colorScheme}"] &`;
 
   const createVariantInput = { getCssVar, palette: theme.colorSchemes.light.palette };
   theme.variants = deepmerge(

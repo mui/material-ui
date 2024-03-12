@@ -2,6 +2,7 @@ import deepmerge from '@mui/utils/deepmerge';
 import cssVarsParser from './cssVarsParser';
 
 export interface DefaultCssVarsTheme {
+  attribute?: string;
   colorSchemes?: Record<string, any>;
   defaultColorScheme?: string;
 }
@@ -72,13 +73,18 @@ function prepareCssVars<
       // default color scheme has to come before other color schemes
       const { css } = defaultSchemeVal;
       insertStyleSheet(
-        getSelector?.(colorScheme as keyof T['colorSchemes'], css) || `.${String(colorScheme)}`,
+        getSelector?.(colorScheme as keyof T['colorSchemes'], css) ||
+          `[${theme.attribute || 'data-color-scheme'}="${colorScheme}"]`,
         css,
       );
     }
 
     Object.entries(rest).forEach(([key, { css }]) => {
-      insertStyleSheet(getSelector?.(key as keyof T['colorSchemes'], css) || `.${key}`, css);
+      insertStyleSheet(
+        getSelector?.(key as keyof T['colorSchemes'], css) ||
+          `[${theme.attribute || 'data-color-scheme'}="${key}"]`,
+        css,
+      );
     });
 
     return stylesheets;

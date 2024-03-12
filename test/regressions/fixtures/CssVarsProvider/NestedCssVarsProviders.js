@@ -45,7 +45,7 @@ export default function NestedCssVarsProviders() {
   return (
     <CssVarsProvider>
       <div
-        className="light"
+        data-color-scheme="light"
         style={{
           background: 'var(--background-default)',
           color: 'white',
@@ -67,7 +67,7 @@ export default function NestedCssVarsProviders() {
         </CssVarsProvider>
       </div>
       <div
-        className="dark"
+        data-color-scheme="dark"
         style={{
           background: 'var(--background-default)',
           color: 'white',

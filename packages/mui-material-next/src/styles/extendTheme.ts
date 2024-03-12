@@ -491,8 +491,7 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
   theme.vars = vars;
   theme.generateThemeVars = generateThemeVars;
   theme.generateStyleSheets = generateStyleSheets;
-  theme.getColorSchemeSelector = (colorScheme) =>
-    `*:where([${theme.attribute}="${colorScheme}"]) &`;
+  theme.getColorSchemeSelector = (colorScheme) => `[${theme.attribute}="${colorScheme}"] &`;
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
 
   theme.unstable_sxConfig = {
