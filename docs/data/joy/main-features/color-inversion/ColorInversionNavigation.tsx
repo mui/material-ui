@@ -41,7 +41,7 @@ export default function ColorInversionNavigation() {
         }}
       >
         <Select
-          variant="outlined"
+          variant="soft"
           defaultValue="1"
           size="sm"
           placeholder={
@@ -63,7 +63,8 @@ export default function ColorInversionNavigation() {
               <BubbleChartIcon sx={{ m: 0 }} />
             </Sheet>
           }
-          sx={{ py: 1 }}
+          color={color}
+          sx={{py: 1, bgcolor: "transparent", border: "1px solid", borderColor: "divider"}}
         >
           <Option value="1">General team</Option>
           <Option value="2">Engineering team</Option>
