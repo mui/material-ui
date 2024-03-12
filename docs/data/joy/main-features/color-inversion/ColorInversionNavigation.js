@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import Avatar from '@mui/joy/Avatar';
-import Badge, { badgeClasses } from '@mui/joy/Badge';
+import Badge from '@mui/joy/Badge';
 import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
@@ -132,7 +132,6 @@ export default function ColorInversionNavigation() {
       </Sheet>
       <Sheet
         variant="solid"
-        color="neutral"
         invertedColors
         sx={(theme) => ({
           p: 2,
@@ -143,6 +142,7 @@ export default function ColorInversionNavigation() {
           bgcolor: `${color}.900`,
 
           "& .MuiBadge-root": {"--Badge-ringColor": "unset"},
+          "& .MuiBadge-colorSuccess": { bgcolor: "success.400" },
           '& button': {
             borderRadius: '50%',
             padding: 0,
@@ -161,7 +161,7 @@ export default function ColorInversionNavigation() {
             horizontal: 'right',
           }}
           badgeInset="20%"
-          sx={{ [`& .${badgeClasses.badge}`]: { bgcolor: 'success.300' } }}
+          color="success"
         >
           <IconButton size="lg">
             <Avatar src="/static/images/avatar/4.jpg" />
