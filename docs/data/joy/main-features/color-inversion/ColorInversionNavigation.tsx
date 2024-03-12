@@ -139,7 +139,7 @@ export default function ColorInversionNavigation() {
       <Sheet
         variant="solid"
         invertedColors
-        sx={(theme) => ({
+        sx={{
           p: 2,
           display: 'flex',
           flexDirection: 'column',
@@ -154,7 +154,7 @@ export default function ColorInversionNavigation() {
             padding: 0,
             '--IconButton-size': '3rem',
           },
-        })}
+        }}
       >
         <Badge badgeContent="7" badgeInset="15%" size="sm">
           <IconButton size="lg">
