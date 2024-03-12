@@ -10,20 +10,17 @@
   color: #ff5252;
   animation: r1419f2q 2s ease-out 0s infinite;
 }
-.c1sjy0ja {
-  color: red;
-}
-.c1sjy0ja:has(.foo) {
-  color: blue;
+.s1sjy0ja {
+  display: block;
+  position: absolute;
+  border-radius: inherit;
+  background-color: currentColor;
+  opacity: 0.38;
 }
 .s6hrafw {
   display: block;
   opacity: 0.38;
 }
-.s1nn157y {
-  display: block;
-  opacity: 0.38;
-}
-.s1nn157y .s6hrafw {
+.s6hrafw .s1sjy0ja {
   display: none;
 }
