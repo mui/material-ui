@@ -89,8 +89,8 @@ export default function ColorInversionNavigation() {
             <Chip
               data-skip-inverted-colors
               size="sm"
-              color="warning"
               variant="soft"
+              color={color}
               sx={{ ml: 'auto' }}
             >
               5
