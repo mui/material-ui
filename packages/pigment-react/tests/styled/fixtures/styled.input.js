@@ -21,9 +21,18 @@ const Component2 = styled.div`
   }
 `;
 
-const Component3 = styled('div')`
-  color: red;
-  &:has(.foo) {
-    color: blue;
+const SliderRail = styled('span')`
+  display: block;
+  opacity: 0.38;
+  ${SliderRail} {
+    display: none;
+  }
+`;
+
+const SliderRail2 = styled.span`
+  display: block;
+  opacity: 0.38;
+  ${SliderRail} {
+    display: none;
   }
 `;

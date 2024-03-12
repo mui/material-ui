@@ -5,7 +5,7 @@
   "module": "build/index.mjs",
   "types": "build/index.d.ts",
   "author": "MUI Team",
-  "description": "Vite integration for Pigment CSS.",
+  "description": "Vite integration for Pigment CSS.",
   "repository": {
     "type": "git",
     "url": "https://github.com/mui/material-ui.git",

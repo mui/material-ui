@@ -24,10 +24,16 @@ const SliderRail = styled('span', {
   background-color: currentColor;
   opacity: 0.38;
   font-size: ${({ theme }) => (theme.vars ?? theme).size.font.h1};
+  ${SliderRail} {
+    display: none;
+  }
 `;
 
 const SliderRail2 = styled.span`
   display: block;
   opacity: 0.38;
   font-size: ${({ theme }) => (theme.vars ?? theme).size.font.h1};
+  ${SliderRail} {
+    display: none;
+  }
 `;
