@@ -1,6 +1,5 @@
 import type {} from '@mui/material/themeCssVarsAugmentation';
 import { ThemeOptions, alpha } from '@mui/material/styles';
-import { red } from '@mui/material/colors';
 import { PaletteMode } from '@mui/material';
 
 declare module '@mui/material/styles/createPalette' {
@@ -70,6 +69,19 @@ export const green = {
   700: '#0A470A',
   800: '#042F04',
   900: '#021D02',
+};
+
+export const red = {
+  50: '#FFF0F0',
+  100: '#FDCECE',
+  200: '#FC9C9C',
+  300: '#F65555',
+  400: '#C20A0A',
+  500: '#910808',
+  600: '#790606',
+  700: '#630303',
+  800: '#4F0202',
+  900: '#3B0202',
 };
 
 const getDesignTokens = (mode: PaletteMode) => ({
@@ -337,7 +349,10 @@ export default function getSignInTheme(mode: PaletteMode): ThemeOptions {
           notchedOutline: {
             border: 'none',
           },
-          root: ({ theme }) => ({
+          input: {
+            paddingLeft: 10,
+          },
+          root: ({ theme, ownerState }) => ({
             '& .MuiInputBase-input': {
               '&::placeholder': {
                 opacity: 0.7,
@@ -362,6 +377,13 @@ export default function getSignInTheme(mode: PaletteMode): ThemeOptions {
               outline: '4px solid',
               outlineColor: brand[200],
             },
+            ...(ownerState.color === 'error' && {
+              borderColor: red[200],
+              color: red[500],
+              '& + .MuiFormHelperText-root': {
+                color: red[500],
+              },
+            }),
             ...(theme.palette.mode === 'dark' && {
               '& .MuiInputBase-input': {
                 '&::placeholder': {
@@ -387,11 +409,15 @@ export default function getSignInTheme(mode: PaletteMode): ThemeOptions {
                 outline: '4px solid',
                 outlineColor: alpha(brand[500], 0.5),
               },
+              ...(ownerState.color === 'error' && {
+                borderColor: red[700],
+                color: red[300],
+                '& + .MuiFormHelperText-root': {
+                  color: red[300],
+                },
+              }),
             }),
           }),
-          input: {
-            paddingLeft: 10,
-          },
         },
       },
       MuiFormLabel: {
@@ -407,102 +433,6 @@ export default function getSignInTheme(mode: PaletteMode): ThemeOptions {
           root: {
             border: 'none',
           },
-        },
-      },
-      MuiTextField: {
-        styleOverrides: {
-          root: ({ theme, ownerState }) => ({
-            '& label .Mui-focused': {
-              color: 'white',
-            },
-            '& .MuiInputBase-input': {
-              '&::placeholder': {
-                opacity: 0.7,
-                color: gray[500],
-              },
-            },
-            '& .MuiOutlinedInput-root': {
-              boxSizing: 'border-box',
-              minWidth: 280,
-              minHeight: 40,
-              height: '100%',
-              borderRadius: '10px',
-              '& fieldset': {
-                border: 'none',
-                boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
-                background: `${alpha('#FFF', 0.3)}`,
-              },
-              '&:hover': {
-                borderColor: brand[300],
-              },
-              '&.Mui-focused': {
-                borderColor: brand[400],
-                outline: '4px solid',
-                outlineColor: brand[200],
-              },
-            },
-            ...(ownerState.variant === 'standard' && {
-              '&.MuiTextField-root': {
-                '& .MuiInput-root:hover:not(.Mui-disabled, .Mui-error):before': {
-                  borderColor: brand[200],
-                },
-              },
-              '& :before': {
-                borderBottom: '1px solid',
-                borderColor: gray[200],
-              },
-              '&:hover': {
-                '& :before': {
-                  borderColor: brand[300],
-                },
-              },
-            }),
-            ...(theme.palette.mode === 'dark' && {
-              '& .MuiInputBase-input': {
-                '&::placeholder': {
-                  opacity: 1,
-                  color: gray[500],
-                },
-              },
-              '& .MuiOutlinedInput-root': {
-                boxSizing: 'border-box',
-                minWidth: 280,
-                minHeight: 40,
-                height: '100%',
-                borderRadius: '10px',
-                transition: 'border-color 120ms ease-in',
-                '& fieldset': {
-                  border: 'none',
-                  boxShadow: ' 0px 2px 4px rgba(0, 0, 0, 0.4)',
-                  background: `${alpha(gray[800], 0.4)}`,
-                },
-                '&:hover': {
-                  borderColor: brand[300],
-                },
-                '&.Mui-focused': {
-                  borderColor: brand[400],
-                  outline: '4px solid',
-                  outlineColor: alpha(brand[500], 0.5),
-                },
-              },
-              ...(ownerState.variant === 'standard' && {
-                '&.MuiTextField-root': {
-                  '& .MuiInput-root:hover:not(.Mui-disabled, .Mui-error):before': {
-                    borderColor: brand[200],
-                  },
-                },
-                '& :before': {
-                  borderBottom: '1px solid',
-                  borderColor: gray[700],
-                },
-                '&:hover': {
-                  '& :before': {
-                    borderColor: brand[300],
-                  },
-                },
-              }),
-            }),
-          }),
         },
       },
       MuiLink: {

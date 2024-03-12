@@ -1,7 +1,8 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import OutlinedInput from '@mui/material/OutlinedInput';
+import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
@@ -16,6 +17,7 @@ import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 
 import getSignInTheme from './getSignInTheme';
 import ToggleColorMode from './ToggleColorMode';
+import ForgotPassword from './ForgotPassword';
 
 interface ToggleCustomThemeProps {
   showCustomTheme: Boolean;
@@ -84,6 +86,10 @@ export default function SignIn() {
     : defaultTheme.palette.mode === 'light'
       ? darkLogo
       : whiteLogo;
+  const [emailError, setEmailError] = useState(false);
+  const [emailErrorMessage, setEmailErrorMessage] = useState('');
+  const [passwordError, setPasswordError] = useState(false);
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
 
   const toggleColorMode = () => {
     setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
@@ -91,6 +97,16 @@ export default function SignIn() {
 
   const toggleCustomTheme = () => {
     setShowCustomTheme((prev) => !prev);
+  };
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -102,6 +118,33 @@ export default function SignIn() {
     });
   };
 
+  const validateInputs = () => {
+    const email = document.getElementById('email') as HTMLInputElement;
+    const password = document.getElementById('password') as HTMLInputElement;
+
+    let isValid = true;
+
+    if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
+      setEmailError(true);
+      setEmailErrorMessage('Please enter a valid email address.');
+      isValid = false;
+    } else {
+      setEmailError(false);
+      setEmailErrorMessage('');
+    }
+
+    if (!password.value || password.value.length < 6) {
+      setPasswordError(true);
+      setPasswordErrorMessage('Password must be at least 6 characters long.');
+      isValid = false;
+    } else {
+      setPasswordError(false);
+      setPasswordErrorMessage('');
+    }
+
+    return isValid;
+  };
+
   return (
     <ThemeProvider theme={showCustomTheme ? SignInTheme : defaultTheme}>
       <Container component="main" maxWidth="xs">
@@ -111,7 +154,7 @@ export default function SignIn() {
             marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
-            minWidth: '450px',
+            minWidth: { sm: '100%', md: '450px' },
             gap: 4,
             border: '1px solid',
             borderColor: 'divider',
@@ -139,30 +182,48 @@ export default function SignIn() {
             noValidate
             sx={{ display: 'flex', width: '100%', flexDirection: 'column', gap: 2 }}
           >
-            <OutlinedInput
+            <TextField
+              error={emailError}
+              helperText={emailErrorMessage}
               id="email"
-              label="Email Address"
+              type="email"
               name="email"
-              placeholder="email"
+              placeholder="Email address"
               autoComplete="email"
               autoFocus
               required
               fullWidth
+              variant="outlined"
+              color={passwordError ? 'error' : 'primary'}
             />
-            <OutlinedInput
+            <TextField
+              error={passwordError}
+              helperText={passwordErrorMessage}
               name="password"
-              placeholder="password"
-              label="Password"
+              placeholder="Password"
               type="password"
               id="password"
               autoComplete="current-password"
+              autoFocus
               required
               fullWidth
+              variant="outlined"
+              color={passwordError ? 'error' : 'primary'}
             />
-            <Link href="#" variant="body2" sx={{ alignSelf: 'start' }}>
+            <Button
+              onClick={handleClickOpen}
+              variant="text"
+              sx={{ alignSelf: 'start' }}
+            >
               Forgot password?
-            </Link>
-            <Button type="submit" fullWidth variant="contained">
+            </Button>
+            <ForgotPassword open={open} handleClose={handleClose} />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              onClick={validateInputs}
+            >
               Sign In
             </Button>
             <Link href="#" variant="body2" sx={{ alignSelf: 'center' }}>
@@ -176,6 +237,7 @@ export default function SignIn() {
               fullWidth
               variant="outlined"
               color="secondary"
+              onClick={() => alert('Sign in with Google')}
               startIcon={
                 <img
                   src="https://www.vectorlogo.zone/logos/google/google-icon.svg"
@@ -191,6 +253,7 @@ export default function SignIn() {
               fullWidth
               variant="outlined"
               color="secondary"
+              onClick={() => alert('Sign in with Facebook')}
               startIcon={
                 <img
                   src="https://www.vectorlogo.zone/logos/facebook/facebook-tile.svg"
