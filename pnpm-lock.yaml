@@ -127,7 +127,7 @@ importers:
         version: 20.0.2
       '@pigment-css/react':
         specifier: workspace:^
-        version: link:packages/pigment-react
+        version: link:packages/pigment-css-react
       '@playwright/test':
         specifier: 1.42.1
         version: 1.42.1
@@ -2088,17 +2088,17 @@ importers:
         specifier: ^11.2.0
         version: 11.2.0
 
-  packages/pigment-nextjs-plugin:
+  packages/pigment-css-nextjs-plugin:
     dependencies:
       '@pigment-css/unplugin':
         specifier: workspace:^
-        version: link:../pigment-unplugin
+        version: link:../pigment-css-unplugin
     devDependencies:
       next:
         specifier: ^13.5.1
         version: 13.5.1(@babel/core@7.23.9)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
 
-  packages/pigment-react:
+  packages/pigment-css-react:
     dependencies:
       '@babel/core':
         specifier: ^7.23.9
@@ -2198,14 +2198,14 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
 
-  packages/pigment-unplugin:
+  packages/pigment-css-unplugin:
     dependencies:
       '@babel/core':
         specifier: ^7.23.9
         version: 7.23.9
       '@pigment-css/react':
         specifier: workspace:^
-        version: link:../pigment-react
+        version: link:../pigment-css-react
       '@wyw-in-js/shared':
         specifier: ^0.5.0
         version: 0.5.0
@@ -2223,7 +2223,7 @@ importers:
         specifier: ^7.20.5
         version: 7.20.5
 
-  packages/pigment-vite-plugin:
+  packages/pigment-css-vite-plugin:
     dependencies:
       '@babel/core':
         specifier: ^7.23.9
@@ -2233,7 +2233,7 @@ importers:
         version: 7.23.3(@babel/core@7.23.9)
       '@pigment-css/react':
         specifier: workspace:^
-        version: link:../pigment-react
+        version: link:../pigment-css-react
       '@wyw-in-js/shared':
         specifier: ^0.5.0
         version: 0.5.0
