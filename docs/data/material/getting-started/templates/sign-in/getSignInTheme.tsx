@@ -352,7 +352,13 @@ export default function getSignInTheme(mode: PaletteMode): ThemeOptions {
           input: {
             paddingLeft: 10,
           },
+
           root: ({ theme, ownerState }) => ({
+            'input:-webkit-autofill': {
+              WebkitBoxShadow: `0 0 0px 1000px ${brand[100]} inset, 0 0 0 1px ${brand[200]}`,
+              maxHeight: '4px',
+              borderRadius: '8px',
+            },
             '& .MuiInputBase-input': {
               '&::placeholder': {
                 opacity: 0.7,
@@ -385,6 +391,11 @@ export default function getSignInTheme(mode: PaletteMode): ThemeOptions {
               },
             }),
             ...(theme.palette.mode === 'dark' && {
+              'input:-webkit-autofill': {
+                WebkitBoxShadow: `0 0 0px 1000px ${brand[900]} inset, 0 0 0 1px ${brand[600]}`,
+                maxHeight: '6px',
+                borderRadius: '8px',
+              },
               '& .MuiInputBase-input': {
                 '&::placeholder': {
                   opacity: 1,
