@@ -615,8 +615,9 @@ const Root = styled('div')(
         borderBottom: `1px solid var(--muidocs-palette-primaryDark-700, ${lightTheme.palette.primaryDark[700]})`,
         borderColor: `var(--muidocs-palette-primaryDark-700, ${lightTheme.palette.primaryDark[700]})`,
         backgroundColor: `var(--muidocs-palette-primaryDark-700, ${lightTheme.palette.primaryDark[900]})`,
-        fontSize: theme.typography.pxToRem(14),
-        fontWeight: lightTheme.typography.fontWeightMedium,
+        fontFamily: theme.typography.fontFamilyCode,
+        fontSize: theme.typography.pxToRem(12),
+        fontWeight: lightTheme.typography.fontWeightBold,
         color: `var(--muidocs-palette-primaryDark-700, ${lightTheme.palette.grey[200]})`,
         '::before': {
           content: `url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13.3333 3.99996H8L7.06 3.05996C6.80667 2.80663 6.46667 2.66663 6.11334 2.66663H2.66667C1.93334 2.66663 1.34 3.26663 1.34 3.99996L1.33334 12C1.33334 12.7333 1.93334 13.3333 2.66667 13.3333H13.3333C14.0667 13.3333 14.6667 12.7333 14.6667 12V5.33329C14.6667 4.59996 14.0667 3.99996 13.3333 3.99996ZM12.6667 12H3.33334C2.96667 12 2.66667 11.7 2.66667 11.3333V5.99996C2.66667 5.63329 2.96667 5.33329 3.33334 5.33329H12.6667C13.0333 5.33329 13.3333 5.63329 13.3333 5.99996V11.3333C13.3333 11.7 13.0333 12 12.6667 12Z' fill='%2399CCF3'/%3E%3C/svg%3E%0A");`,
