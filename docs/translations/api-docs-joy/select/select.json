@@ -35,7 +35,7 @@
       "description": "If <code>true</code>, selecting multiple values is allowed. This affects the type of the <code>value</code>, <code>defaultValue</code>, and <code>onChange</code> props."
     },
     "name": {
-      "description": "Name of the element. For example used by the server to identify the fields in form submits. If the name is provided, the component will render a hidden input element that can be submitted to a server."
+      "description": "Name of the element. For example used by the server to identify the fields in form submits."
     },
     "onChange": { "description": "Callback fired when an option is selected." },
     "onClose": { "description": "Triggered when focus leaves the menu and the menu should close." },
@@ -152,11 +152,11 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
     "button": "The component that renders the button.",
-    "startDecorator": "The component that renders the start decorator.",
     "endDecorator": "The component that renders the end decorator.",
     "indicator": "The component that renders the indicator.",
-    "listbox": "The component that renders the listbox."
+    "listbox": "The component that renders the listbox.",
+    "root": "The component that renders the root.",
+    "startDecorator": "The component that renders the start decorator."
   }
 }

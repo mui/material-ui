@@ -137,7 +137,7 @@ const commonjsOptions = {
   ignoreGlobal: true,
   include: /node_modules/,
   namedExports: {
-    '../../node_modules/prop-types/index.js': [
+    'node_modules/prop-types/index.js': [
       'elementType',
       'bool',
       'func',
@@ -145,8 +145,8 @@ const commonjsOptions = {
       'oneOfType',
       'element',
     ],
-    '../../node_modules/react/jsx-runtime.js': ['jsx', 'jsxs'],
-    '../../node_modules/react-is/index.js': [
+    'node_modules/react/jsx-runtime.js': ['jsx', 'jsxs'],
+    'node_modules/react-is/index.js': [
       'ForwardRef',
       'isFragment',
       'isLazy',

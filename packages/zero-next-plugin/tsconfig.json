@@ -1,9 +1,0 @@
-{
-  "extends": "../../tsconfig",
-  "include": ["src/**/*"],
-  "compilerOptions": {
-    "lib": ["ES2022", "DOM"],
-    "target": "ES2015",
-    "types": ["mocha", "node", "chai"]
-  }
-}

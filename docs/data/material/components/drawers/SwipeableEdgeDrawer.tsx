@@ -25,11 +25,11 @@ const Root = styled('div')(({ theme }) => ({
     theme.palette.mode === 'light' ? grey[100] : theme.palette.background.default,
 }));
 
-const StyledBox = styled(Box)(({ theme }) => ({
+const StyledBox = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'light' ? '#fff' : grey[800],
 }));
 
-const Puller = styled(Box)(({ theme }) => ({
+const Puller = styled('div')(({ theme }) => ({
   width: 30,
   height: 6,
   backgroundColor: theme.palette.mode === 'light' ? grey[300] : grey[900],

@@ -30,7 +30,7 @@ export interface PopupOwnProps {
     | (() => HTMLElement)
     | (() => PopupVirtualElement)
     | null;
-  children?: React.ReactNode | ((props: PopupChildrenProps) => React.ReactNode);
+  children?: React.ReactNode;
   /**
    * An HTML element or function that returns one. The container will have the portal children appended to it.
     By default, it uses the body of the top-level document object, so it's `document.body` in these cases.
@@ -43,7 +43,7 @@ export interface PopupOwnProps {
   disablePortal?: boolean;
   /**
    * If `true`, the popup will exist in the DOM even if it's closed.
-   * Its visibility will be controlled by the `display` CSS property.
+   * Its visibility will be controlled by the `visibility` CSS property.
    *
    * Otherwise, a closed popup will be removed from the DOM.
    *
@@ -103,15 +103,6 @@ export interface PopupOwnProps {
    * @see https://floating-ui.com/docs/computePosition#strategy
    */
   strategy?: PopupStrategy;
-  /**
-   * If `true`, the popup will not disappear immediately when it needs to be closed
-   * but wait until the exit transition has finished.
-   * In such a case, a function form of `children` must be used and `onExited`
-   * callback function must be called when the transition or animation finish.
-   *
-   * @default false
-   */
-  withTransition?: boolean;
 }
 
 export interface PopupSlots {
@@ -120,13 +111,6 @@ export interface PopupSlots {
    * @default 'div'
    */
   root?: React.ElementType;
-}
-
-export interface PopupChildrenProps {
-  placement: PopupPlacement;
-  requestOpen: boolean;
-  onExited: () => void;
-  onEnter: () => void;
 }
 
 export interface PopupTypeMap<
@@ -149,5 +133,12 @@ export interface PopupOwnerState extends PopupOwnProps {
   placement: PopupPlacement;
   finalPlacement: PopupPlacement;
   strategy: PopupStrategy;
-  withTransition: boolean;
 }
+
+export type PopupRootSlotProps = {
+  className?: string;
+  children?: React.ReactNode;
+  ownerState: PopupOwnerState;
+  style: React.CSSProperties;
+  role: React.AriaRole;
+};

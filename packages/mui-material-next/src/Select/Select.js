@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge, unstable_useForkRef as useForkRef } from '@mui/utils';
 import NativeSelectInput from '@mui/material/NativeSelect/NativeSelectInput';
-// TODO v6: Remove Input component after implementing Material You design
+// TODO v6: Remove Input component after implementing Material Design 3
 import Input from '@mui/material/Input';
 // TODO v6: replace with material-next FilledInput when available https://github.com/mui/material-ui/issues/39052
 import FilledInput from '@mui/material/FilledInput';
@@ -131,10 +131,10 @@ const Select = React.forwardRef(function Select(inProps, ref) {
 });
 
 Select.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, the width of the popover will automatically be set according to the items inside the
    * menu, otherwise it will be at least the width of the select input.

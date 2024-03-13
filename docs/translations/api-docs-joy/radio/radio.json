@@ -120,11 +120,11 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
-    "radio": "The component that renders the radio.",
-    "icon": "The component that renders the icon.",
     "action": "The component that renders the action.",
+    "icon": "The component that renders the icon.",
     "input": "The component that renders the input.",
-    "label": "The component that renders the label."
+    "label": "The component that renders the label.",
+    "radio": "The component that renders the radio.",
+    "root": "The component that renders the root."
   }
 }

@@ -11,7 +11,7 @@ githubLabel: 'component: card'
 
 ## Introduction
 
-The Joy UI Card component includes several complementary utility components to handle various use cases:
+The Joy UI Card component includes several complementary utility components to handle various use cases:
 
 - [Card](#basics): a surface-level container for grouping related components.
 - [Card Overflow](#expand-to-fill): a supplemental wrapper that expands a Card's contents to fill all edges.
@@ -36,7 +36,7 @@ The demo below shows a typical Card that groups together Typography, Aspect Rati
 
 ### Variants
 
-The Card component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `plain`, `outlined` (default), `soft`, and `solid`.
+The Card component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `plain`, `outlined` (default), `soft`, and `solid`.
 
 {{"demo": "CardVariants.js"}}
 
@@ -215,7 +215,8 @@ The example below shows a user card that stacks when the card's width is equal o
 {{"demo": "UserCard.js"}}
 
 :::info
-Alternatively, you can use [CSS Container Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_container_queries) to achieve the similar result. You should check the [browser support](https://caniuse.com/css-container-queries) before using CSS Container Queries.
+Alternatively, you can use [CSS Container Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries) to achieve the similar result.
+You should check the [browser support](https://caniuse.com/css-container-queries) before using CSS Container Queries.
 :::
 
 ### Instagram post

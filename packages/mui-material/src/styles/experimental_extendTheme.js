@@ -1,17 +1,19 @@
-import { deepmerge } from '@mui/utils';
+import deepmerge from '@mui/utils/deepmerge';
+import { unstable_createGetCssVar as systemCreateGetCssVar, createSpacing } from '@mui/system';
+import { prepareCssVars } from '@mui/system/cssVars';
+import styleFunctionSx, {
+  unstable_defaultSxConfig as defaultSxConfig,
+} from '@mui/system/styleFunctionSx';
+
 import {
   private_safeColorChannel as safeColorChannel,
   private_safeAlpha as safeAlpha,
   private_safeDarken as safeDarken,
   private_safeLighten as safeLighten,
   private_safeEmphasize as safeEmphasize,
-  unstable_createGetCssVar as systemCreateGetCssVar,
-  unstable_defaultSxConfig as defaultSxConfig,
-  unstable_styleFunctionSx as styleFunctionSx,
-  unstable_prepareCssVars as prepareCssVars,
-  createSpacing,
   hslToRgb,
-} from '@mui/system';
+} from '@mui/system/colorManipulator';
+
 import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import createThemeWithoutVars from './createTheme';
 import getOverlayAlpha from './getOverlayAlpha';
@@ -349,6 +351,9 @@ export default function extendTheme(options = {}, ...args) {
 
     // MUI X - DataGrid needs this token.
     setColorChannel(palette.background, 'default');
+
+    // added for consistency with the `background.default` token
+    setColorChannel(palette.background, 'paper');
 
     setColorChannel(palette.common, 'background');
     setColorChannel(palette.common, 'onBackground');

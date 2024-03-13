@@ -20,14 +20,14 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ listbox?: func<br>&#124;&nbsp;object, popper?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+        "description": "{ listbox?: func<br>&#124;&nbsp;object, popup?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ listbox?: elementType, popper?: elementType, root?: elementType }"
+        "description": "{ listbox?: elementType, popup?: elementType, root?: elementType }"
       },
       "default": "{}",
       "additionalInfo": { "slotsApi": true }
@@ -41,49 +41,49 @@
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'button'",
-      "class": "MuiSelect-root"
+      "class": "base-Select-root"
     },
     {
       "name": "listbox",
       "description": "The component that renders the listbox.",
       "default": "'ul'",
-      "class": "MuiSelect-listbox"
+      "class": "base-Select-listbox"
     },
     {
-      "name": "popper",
-      "description": "The component that renders the popper.",
-      "default": "Popper",
-      "class": "MuiSelect-popper"
+      "name": "popup",
+      "description": "The component that wraps the popup.",
+      "default": "'div'",
+      "class": "base-Select-popup"
     }
   ],
   "classes": [
     {
       "key": "active",
-      "className": "Mui-active",
+      "className": "base--active",
       "description": "State class applied to the root `button` element if `active={true}`.",
       "isGlobal": true
     },
     {
       "key": "disabled",
-      "className": "Mui-disabled",
+      "className": "base--disabled",
       "description": "State class applied to the root `button` element and the listbox 'ul' element if `disabled={true}`.",
       "isGlobal": true
     },
     {
       "key": "expanded",
-      "className": "Mui-expanded",
+      "className": "base--expanded",
       "description": "State class applied to the root `button` element if `expanded={true}`.",
       "isGlobal": true
     },
     {
       "key": "focusVisible",
-      "className": "Mui-focusVisible",
+      "className": "base--focusVisible",
       "description": "State class applied to the root `button` element if `focusVisible={true}`.",
       "isGlobal": true
     }
   ],
   "spread": true,
-  "muiName": "MuiSelect",
+  "muiName": "Select",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-base/src/Select/Select.tsx",
   "inheritance": null,
