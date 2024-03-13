@@ -148,7 +148,7 @@ export interface BaseSelectProps<Value = unknown>
    * The variant to use.
    * @default 'outlined'
    */
-  variant?: 'filled' | 'standard' | 'outlined';
+  variant?: SelectVariants;
 }
 
 export interface FilledSelectProps extends Omit<FilledInputProps, 'value' | 'onChange'> {
