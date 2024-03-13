@@ -8,6 +8,10 @@ Run one of the following commands to add Material UI to your project:
 
 <codeblock storageKey="package-manager">
 
+<div>
+title
+</div>
+
 ```bash npm
 npm install @mui/material @emotion/react @emotion/styled
 ```
