@@ -414,9 +414,8 @@ export default function extendTheme(options = {}, ...args) {
     parserConfig,
   );
   if (!input.spacing || typeof input.spacing === 'number' || typeof input.spacing === 'string') {
-    theme.spacing = createSpacing(
-      input.spacing,
-      (factor) => `calc(${factor} * ${theme.vars.spacing})`,
+    theme.spacing = createSpacing(input.spacing, (factor) =>
+      typeof factor === 'string' ? factor : `calc(${factor} * ${theme.vars.spacing})`,
     );
   }
   theme.vars = themeVars;

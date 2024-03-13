@@ -381,6 +381,11 @@ describe('experimental_extendTheme', () => {
       expect(theme.vars.spacing).to.equal('var(--mui-spacing, 0.5rem)');
       expect(theme.spacing(2)).to.equal('calc(2 * var(--mui-spacing, 0.5rem))');
     });
+
+    it('uses the provided value if it is a string', () => {
+      const theme = extendTheme({ spacing: '0.5rem' });
+      expect(theme.spacing('1rem')).to.equal('1rem');
+    });
   });
 
   it('shallow merges multiple arguments', () => {

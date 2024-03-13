@@ -46,6 +46,16 @@ describe('system spacing', () => {
         });
         expect(output1).to.deep.equal({ padding: 'calc(2 * 4px)' });
       });
+
+      it('should use the provided value directly if theme.spacing is a string', () => {
+        const output1 = spacing({
+          theme: {
+            spacing: '4px',
+          },
+          p: '1rem',
+        });
+        expect(output1).to.deep.equal({ padding: '1rem' });
+      });
     });
 
     describe('warnings', () => {
