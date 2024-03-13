@@ -12,67 +12,83 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 ### `@mui/material@5.15.13`
 
-- &#8203;<!-- 43 -->[Alert] Add `slots` and `slotProps` type to theme (#41324) @sai6855
-- &#8203;<!-- 41 -->[Autocomplete] Fix the options list being added to the DOM in `freeSolo` mode even when there are no options, causing style problems (#41300) @rakeshmusturi
-- &#8203;<!-- 15 --> Add `paperChannel` token (#41447) @siriwatknp
-- &#8203;<!-- 13 -->[Switch] Convert to support CSS extraction (#41367) @alexfauquette
+- [Alert] Add `slots` and `slotProps` type to theme (#41324) @sai6855
+- [Autocomplete] Fix the options list being added to the DOM in `freeSolo` mode even when there are no options, causing style problems (#41300) @rakeshmusturi
+- Add `paperChannel` token (#41447) @siriwatknp
+- [Switch] Convert to support CSS extraction (#41367) @alexfauquette
+- [Tooltip] Support event handlers with extra parameters (#41320) @LukasTy
 
 ### `@mui/system@5.15.13`
 
-- &#8203;<!-- 03 -->[RtlProvider] Add component & hook (#41241) @mnajdova
+- [RtlProvider] Add component & hook (#41241) @mnajdova
+
+### `@mui/utils@5.15.13`
+
+- [utils] Fix visually hidden styles' margin unit (#41477) @michaldudak
 
 ### `@mui/codemod@5.15.13`
 
-- &#8203;<!-- 12 -->Fix merging of slotProps and componentProps (#41323) @sai6855
+- Fix merging of slotProps and componentProps (#41323) @sai6855
 
 ### `@mui/base@5.0.0-beta.39`
 
-- &#8203;<!-- 42 -->[material-ui][joy-ui][Autocomplete] Keep in sync highlighted index when the option still exists (#41306) @CGNonofr
-- &#8203;<!-- 40 -->[FormControl] Export `FormControlOwnerState` type from index (#41287) @michaeldfoley
-- &#8203;<!-- 39 -->[material-ui][TextareaAutosize] Fix inline style not getting applied (#41369) @ZeeshanTamboli
+- [material-ui][joy-ui][Autocomplete] Keep in sync highlighted index when the option still exists (#41306) @CGNonofr
+- [FormControl] Export `FormControlOwnerState` type from index (#41287) @michaeldfoley
+- [material-ui][TextareaAutosize] Fix inline style not getting applied (#41369) @ZeeshanTamboli
 
 ### `@pigment-css/react@0.0.2`
 
-- &#8203;<!-- 10 -->Handle more scenarios while transforming sx prop (#41372) @brijeshb42
-- &#8203;<!-- 09 -->Improve testing of fixtures (#41389) @brijeshb42
-- &#8203;<!-- 07 -->Fix `keyframes` serialize styles error (#41395) @siriwatknp
-- &#8203;<!-- 04 -->Use class selector instead of class value (#41442) @brijeshb42
+- Handle more scenarios while transforming sx prop (#41372) @brijeshb42
+- Improve testing of fixtures (#41389) @brijeshb42
+- Fix `keyframes` serialize styles error (#41395) @siriwatknp
+- Use class selector instead of class value (#41442) @brijeshb42
+- [next] Warn about unsupported turbo mode in Next.js (#41445) @brijeshb42
 
 ### Docs
 
-- &#8203;<!-- 14 -->[material-ui] Refine checkout template (#40967) @zanivan
-- &#8203;<!-- 33 --> Finish brand name fixes #41438 @oliviertassinari
-- &#8203;<!-- 32 --> Remove noreferrer @oliviertassinari
-- &#8203;<!-- 31 --> Fix v4 docs <b> appearing in notifications (#41390) @peterwangsc
-- &#8203;<!-- 26 -->[joy-ui] Remove unnecessary styles in color inversion footer demo (#41419) @cipherlogs
-- &#8203;<!-- 25 -->[joy-ui] Update case studies chip background color (#41413) @cipherlogs
-- &#8203;<!-- 24 -->[joy-ui] Remove wrong CSS prop from the Sign-in-side template (#41383) @cipherlogs
-- &#8203;<!-- 23 -->[joy-ui] Fix broken link on the Color Inversion page (#41407) @cipherlogs
-- &#8203;<!-- 22 -->[material-ui] Adjust the Templates card design (#41450) @danilo-leal
-- &#8203;<!-- 21 -->[pigment] Add example and guide section (#41249) @siriwatknp
-- &#8203;<!-- 20 -->[pigment-css] Brand name nonbreaking space (#41438) @oliviertassinari
-- &#8203;<!-- 19 -->[pigment-css] Fix import on the README (#41411) @danilo-leal
-- &#8203;<!-- 18 -->[pigment-css] Edit starter template links on README (#41409) @danilo-leal
-- &#8203;<!-- 05 -->[pigment-css] Tweak the examples and edit READMEs (#41408) @danilo-leal
+- [material-ui] Refine checkout template (#40967) @zanivan
+- [material-ui] Add docs for complementary List components (#41329) @anle9650
+- [material-ui] Add docs for complementary Dialog components (#41313) @jwithington
+- [material-ui] Fix Templates live preview link (#41467) @danilo-leal
+- [material-ui] Polish out the templates page (#41468) @zanivan
+- [material-ui] Adjust the Templates card design (#41450) @danilo-leal
+- [joy-ui] Remove unnecessary styles in color inversion footer demo (#41419) @cipherlogs
+- [joy-ui] Update case studies chip background color (#41413) @cipherlogs
+- [joy-ui] Remove wrong CSS prop from the Sign-in-side template (#41383) @cipherlogs
+- [joy-ui] Fix broken link on the Color Inversion page (#41407) @cipherlogs
+- [pigment] Add example and guide section (#41249) @siriwatknp
+- [pigment-css] Brand name nonbreaking space (#41438) @oliviertassinari
+- [pigment-css] Fix import on the README (#41411) @danilo-leal
+- [pigment-css] Edit starter template links on README (#41409) @danilo-leal
+- [pigment-css] Tweak the examples and edit READMEs (#41408) @danilo-leal
+- [pigment-css] Adjust the bit about CSS vars on the README (#41463) @danilo-leal
+- Finish brand name fixes #41438 @oliviertassinari
+- Remove noreferrer @oliviertassinari
+- Fix v4 docs <b> appearing in notifications (#41390) @peterwangsc
+- Update GitHub project links (#41370) @danilo-leal
 
 ### Core
 
-- &#8203;<!-- 08 -->[pigment] Make all Pigment CSS packages public (#41404) @brijeshb42
-- &#8203;<!-- 11 -->[pigment] Rename directories to match package names (#41453) @brijeshb42
-- &#8203;<!-- 06 -->[pigment-css] Example fix leading spaces (#41439) @oliviertassinari
-- &#8203;<!-- 37 -->[code-infra] Add short note about e2e-website workflow schedule (#41355) @Janpot
-- &#8203;<!-- 36 -->[code-infra] Add alias for icon types (#41248) @Janpot
-- &#8203;<!-- 35 -->[code-infra] Reduce concurrency of typescript:ci further (#41392) @Janpot
-- &#8203;<!-- 34 -->[code-infra] Reduce concurrency for test_types ci job (#41385) @Janpot
-- &#8203;<!-- 30 -->[docs-infra] move feedback to ESM (#41381) @alexfauquette
-- &#8203;<!-- 29 -->[docs-infra] Improve color contrast throughout (#41387) @danilo-leal
-- &#8203;<!-- 28 -->[docs-infra] Simplify Algolia crawler config (#41312) @oliviertassinari
-- &#8203;<!-- 27 -->[docs-infra] Adjust the tabs and layout selection design (#41084) @danilo-leal
-- &#8203;<!-- 38 -->[blog] Update the Base UI post with links to dedicated repo (#41358) @danilo-leal
-- &#8203;<!-- 02 -->[website] Update the Careers page role (#41384) @danilo-leal
-- &#8203;<!-- 01 -->[website] Compress about images @oliviertassinari
-- &#8203;<!-- 17 -->[examples] Add pigment-css-vite-ts starter example (#41196) @siriwatknp
-- &#8203;<!-- 16 -->[examples] Add pigment-css-nextjs-ts starter project (#41105) @siriwatknp
+- [pigment] Make all Pigment CSS packages public (#41404) @brijeshb42
+- [pigment] Rename directories to match package names (#41453) @brijeshb42
+- [pigment-css] Example fix leading spaces (#41439) @oliviertassinari
+- [code-infra] Add short note about e2e-website workflow schedule (#41355) @Janpot
+- [code-infra] Add alias for icon types (#41248) @Janpot
+- [code-infra] Reduce concurrency of typescript:ci further (#41392) @Janpot
+- [code-infra] Reduce concurrency for test_types ci job (#41385) @Janpot
+- [code-infra] Adapt API code generator to Base UI repo needs (#41475) @michaldudak
+- [docs-infra] Don't generate preview files for the templates (#41379) @mnajdova
+- [docs-infra] Fix pigment css apps path in the render mui demos script (#41476) @mnajdova
+- [docs-infra] move feedback to ESM (#41381) @alexfauquette
+- [docs-infra] Improve color contrast throughout (#41387) @danilo-leal
+- [docs-infra] Simplify Algolia crawler config (#41312) @oliviertassinari
+- [docs-infra] Adjust the tabs and layout selection design (#41084) @danilo-leal
+- [blog] Update the Base UI post with links to dedicated repo (#41358) @danilo-leal
+- [website] Update the Careers page role (#41384) @danilo-leal
+- [website] Compress about images @oliviertassinari
+- [website] Improve color contrast on the homepage (#41465) @danilo-leal
+- [examples] Add pigment-css-vite-ts starter example (#41196) @siriwatknp
+- [examples] Add pigment-css-nextjs-ts starter project (#41105) @siriwatknp
 
 All contributors of this release in alphabetical order: @alexfauquette, @brijeshb42, @CGNonofr, @cipherlogs, @danilo-leal, @Janpot, @michaeldfoley, @mnajdova, @oliviertassinari, @peterwangsc, @rakeshmusturi, @sai6855, @siriwatknp, @zanivan, @ZeeshanTamboli
 
