@@ -23,6 +23,18 @@ const Root = styled('span', { shouldForwardProp: (prop) => prop !== 'shape' })((
 export default function AdDisplay(props) {
   const { ad, className, shape = 'auto' } = props;
 
+  React.useEffect(() => {
+    // Avoid an exceed on the Google Analytics quotas.
+    if (Math.random() < 0.9 || !ad.label) {
+      return;
+    }
+
+    window.gtag('event', 'ad', {
+      eventAction: 'display',
+      eventLabel: ad.label,
+    });
+  }, [ad.label]);
+
   /* eslint-disable material-ui/no-hardcoded-labels, react/no-danger */
   return (
     <Root shape={shape === 'inline' ? 'inline' : adShape} className={className}>
