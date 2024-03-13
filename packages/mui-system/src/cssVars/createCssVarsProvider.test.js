@@ -88,7 +88,7 @@ describe('createCssVarsProvider', () => {
       );
 
       expect(screen.getByTestId('text').textContent).to.equal(
-        '*:where([data-custom-color-scheme="light"]) &',
+        '[data-custom-color-scheme="light"]) &',
       );
     });
 
