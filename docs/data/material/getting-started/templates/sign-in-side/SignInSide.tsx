@@ -75,7 +75,7 @@ const logoStyle = {
 };
 
 export default function SignInSide() {
-  const [mode, setMode] = React.useState<PaletteMode>('dark');
+  const [mode, setMode] = React.useState<PaletteMode>('light');
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const defaultTheme = createTheme({ palette: { mode } });
   const SignInSideTheme = createTheme(getSignInSideTheme(mode));
@@ -106,105 +106,129 @@ export default function SignInSide() {
 
   return (
     <ThemeProvider theme={showCustomTheme ? SignInSideTheme : defaultTheme}>
-      <Grid container component="main" sx={{ height: '100vh' }}>
-        <CssBaseline />
-        <Grid
-          item
-          xs={false}
-          sm={4}
-          md={7}
-          sx={{
+      <CssBaseline />
+      <Box
+        sx={{
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          top: 0,
+          left: 0,
+          backgroundColor: (t) =>
+            t.palette.mode === 'light' ? 'rgba(255,255,255,0.8)' : 'rgba(0,0,0,0.8)',
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
             backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
-            backgroundRepeat: 'no-repeat',
-            backgroundColor: (t) =>
-              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
             backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
-        <Grid item xs={12} sm={8} md={5}>
-          <Box
+            filter: 'blur(80px)',
+            zIndex: -1,
+          },
+        }}
+      >
+        <Grid container component="main" sx={{ height: '100vh' }}>
+          <Grid
+            item
+            xs={false}
+            sm={4}
+            md={7}
             sx={{
-              mt: 4,
-              mx: 4,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: 8,
+              backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
+              backgroundRepeat: 'no-repeat',
+              backgroundColor: (t) =>
+                t.palette.mode === 'light'
+                  ? t.palette.grey[50]
+                  : t.palette.grey[900],
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
             }}
-          >
+          />
+          <Grid item xs={12} sm={8} md={5}>
             <Box
               sx={{
+                mt: 4,
+                mx: 4,
                 display: 'flex',
-                justifyContent: 'space-between',
-                width: '100%',
-                ml: '-18px',
+                flexDirection: 'column',
                 alignItems: 'center',
+                gap: 8,
               }}
             >
-              <img src={logo} style={logoStyle} alt="logo of sitemark" />
-              <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
-            </Box>
-            <Typography component="h1" variant="h3">
-              Sign in
-            </Typography>
-            <Box
-              component="form"
-              noValidate
-              onSubmit={handleSubmit}
-              sx={{ mt: 1, maxWidth: 400 }}
-            >
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                placeholder="Email Address"
-                name="email"
-                autoComplete="email"
-                autoFocus
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                placeholder="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
               <Box
                 sx={{
                   display: 'flex',
-                  alignItems: 'center',
                   justifyContent: 'space-between',
+                  width: '100%',
+                  ml: '-18px',
+                  alignItems: 'center',
                 }}
               >
-                <FormControlLabel
-                  control={<Checkbox value="remember" color="primary" />}
-                  label="Remember me"
+                <img src={logo} style={logoStyle} alt="logo of sitemark" />
+                <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+              </Box>
+              <Typography component="h1" variant="h3">
+                Sign in
+              </Typography>
+              <Box
+                component="form"
+                noValidate
+                onSubmit={handleSubmit}
+                sx={{ mt: 1, maxWidth: 400 }}
+              >
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  placeholder="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  autoFocus
                 />
-                <Link href="#" variant="body2">
-                  Forgot password?
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="password"
+                  placeholder="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                />
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <FormControlLabel
+                    control={<Checkbox value="remember" color="primary" />}
+                    label="Remember me"
+                  />
+                  <Link href="#" variant="body2">
+                    Forgot password?
+                  </Link>
+                </Box>
+
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Sign In
+                </Button>
+                <Link href="#" variant="body2" sx={{ alignSelf: 'center' }}>
+                  {"Don't have an account? Sign Up"}
                 </Link>
               </Box>
-
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Sign In
-              </Button>
-              <Link href="#" variant="body2" sx={{ alignSelf: 'center' }}>
-                {"Don't have an account? Sign Up"}
-              </Link>
             </Box>
-          </Box>
+          </Grid>
         </Grid>
-      </Grid>
+      </Box>
       <ToggleCustomTheme
         showCustomTheme={showCustomTheme}
         toggleCustomTheme={toggleCustomTheme}
