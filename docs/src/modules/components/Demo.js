@@ -534,7 +534,7 @@ export default function Demo(props) {
   });
 
   const [activeTab, setActiveTab] = React.useState(0);
-  const handleChange = (event, newValue) => {
+  const handleTabChange = (event, newValue) => {
     setActiveTab(newValue);
   };
   const ownerState = { mounted: true, contained: true };
@@ -617,7 +617,7 @@ export default function Demo(props) {
               </React.Suspense>
             </NoSsr>
           </DemoToolbarRoot>
-          <Tabs defaultValue={0} value={activeTab} onChange={handleChange}>
+          <Tabs defaultValue={0} value={activeTab} onChange={handleTabChange}>
             {demoData.relativeModules && codeOpen ? (
               <CodeTabList sx={bordersOverride} ownerState={ownerState}>
                 {tabs.map((tab, index) => (
