@@ -1,7 +1,4 @@
-/* eslint
-     no-restricted-syntax: 0
-     prefer-template: 0
-     no-unreachable-loop: 0
+/* eslint no-restricted-syntax: 0, prefer-template: 0, no-unreachable-loop: 0
    ---
    These rules are preventing the performance optimizations below.
  */
