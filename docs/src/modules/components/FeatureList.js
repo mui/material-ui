@@ -35,4 +35,6 @@ export default function FeatureList({ features }) {
   );
 }
 
-FeatureList.propTypes = {}; // do I need this given it's a JS file?
+FeatureList.propTypes = {
+  features: PropTypes.string,
+};
