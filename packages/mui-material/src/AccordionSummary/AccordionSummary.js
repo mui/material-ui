@@ -3,13 +3,14 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import ButtonBase from '../ButtonBase';
 import AccordionContext from '../Accordion/AccordionContext';
 import accordionSummaryClasses, {
   getAccordionSummaryUtilityClass,
 } from './accordionSummaryClasses';
+
+const useThemeProps = createUseThemeProps('MuiAccordionSummary');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, expanded, disabled, disableGutters } = ownerState;
@@ -28,7 +29,7 @@ const AccordionSummaryRoot = styled(ButtonBase, {
   name: 'MuiAccordionSummary',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(({ theme, ownerState }) => {
+})(({ theme }) => {
   const transition = {
     duration: theme.transitions.duration.shortest,
   };
@@ -47,11 +48,16 @@ const AccordionSummaryRoot = styled(ButtonBase, {
     [`&:hover:not(.${accordionSummaryClasses.disabled})`]: {
       cursor: 'pointer',
     },
-    ...(!ownerState.disableGutters && {
-      [`&.${accordionSummaryClasses.expanded}`]: {
-        minHeight: 64,
+    variants: [
+      {
+        props: (props) => !props.disableGutters,
+        style: {
+          [`&.${accordionSummaryClasses.expanded}`]: {
+            minHeight: 64,
+          },
+        },
       },
-    }),
+    ],
   };
 });
 
@@ -59,18 +65,23 @@ const AccordionSummaryContent = styled('div', {
   name: 'MuiAccordionSummary',
   slot: 'Content',
   overridesResolver: (props, styles) => styles.content,
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   display: 'flex',
   flexGrow: 1,
   margin: '12px 0',
-  ...(!ownerState.disableGutters && {
-    transition: theme.transitions.create(['margin'], {
-      duration: theme.transitions.duration.shortest,
-    }),
-    [`&.${accordionSummaryClasses.expanded}`]: {
-      margin: '20px 0',
+  variants: [
+    {
+      props: (props) => !props.disableGutters,
+      style: {
+        transition: theme.transitions.create(['margin'], {
+          duration: theme.transitions.duration.shortest,
+        }),
+        [`&.${accordionSummaryClasses.expanded}`]: {
+          margin: '20px 0',
+        },
+      },
     },
-  }),
+  ],
 }));
 
 const AccordionSummaryExpandIconWrapper = styled('div', {
