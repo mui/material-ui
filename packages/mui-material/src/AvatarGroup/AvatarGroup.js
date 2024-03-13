@@ -5,10 +5,11 @@ import { isFragment } from 'react-is';
 import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import Avatar, { avatarClasses } from '../Avatar';
 import avatarGroupClasses, { getAvatarGroupUtilityClass } from './avatarGroupClasses';
+
+const useThemeProps = createUseThemeProps('MuiAlert');
 
 const SPACINGS = {
   small: -16,
@@ -33,25 +34,38 @@ const AvatarGroupRoot = styled('div', {
     [`& .${avatarGroupClasses.avatar}`]: styles.avatar,
     ...styles.root,
   }),
-})(({ theme, ownerState }) => {
-  const marginValue =
-    ownerState.spacing && SPACINGS[ownerState.spacing] !== undefined
-      ? SPACINGS[ownerState.spacing]
-      : -ownerState.spacing;
-
-  return {
-    [`& .${avatarClasses.root}`]: {
-      border: `2px solid ${(theme.vars || theme).palette.background.default}`,
-      boxSizing: 'content-box',
-      marginLeft: marginValue ?? -8,
-      '&:last-child': {
-        marginLeft: 0,
+})(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'row-reverse',
+  [`& .${avatarClasses.root}`]: {
+    border: `2px solid ${(theme.vars || theme).palette.background.default}`,
+    boxSizing: 'content-box',
+    '&:not(:first-of-type)': {
+      marginLeft: -8,
+    },
+    '&:last-child': {
+      marginLeft: 0,
+    },
+  },
+  variants: [
+    {
+      props: { spacing: 'small' },
+      style: {
+        [`& .${avatarClasses.root}:not(:first-of-type)`]: {
+          marginLeft: `${SPACINGS.small}px`,
+        },
       },
     },
-    display: 'flex',
-    flexDirection: 'row-reverse',
-  };
-});
+    {
+      props: { spacing: 'medium' },
+      style: {
+        [`& .${avatarClasses.root}:not(:first-of-type)`]: {
+          marginLeft: SPACINGS.medium ? `${SPACINGS.medium}px` : 0,
+        },
+      },
+    },
+  ],
+}));
 
 const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
   const props = useThemeProps({
