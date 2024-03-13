@@ -267,7 +267,7 @@ describe('[Material UI] CssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(container.firstChild?.textContent).to.equal('calc(2 * var(--mui-spacing, 8px))');
+      expect(container.firstChild?.textContent).to.equal('calc(2 * var(--mui-spacing))');
     });
   });
 
