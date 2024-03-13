@@ -2,6 +2,9 @@ import type {} from '@mui/material/themeCssVarsAugmentation';
 import { ThemeOptions, alpha } from '@mui/material/styles';
 import { PaletteMode } from '@mui/material';
 
+import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
+import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
+
 declare module '@mui/material/styles/createPalette' {
   interface ColorRange {
     50: string;
@@ -413,12 +416,6 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
                   color: gray[500],
                 },
               },
-              boxSizing: 'border-box',
-              flexGrow: 1,
-              minHeight: 40,
-              height: '100%',
-              borderRadius: '10px',
-              border: '1px solid',
               borderColor: gray[700],
               boxShadow: '0px 2px 2px rgb(0, 0, 0)',
               backgroundColor: alpha(gray[800], 0.4),
@@ -455,6 +452,40 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
           root: {
             border: 'none',
           },
+        },
+      },
+      MuiCard: {
+        styleOverrides: {
+          root: ({ theme, ownerState }) => ({
+            backgroundColor: gray[50],
+            borderRadius: 10,
+            outline: `1px solid ${alpha(gray[200], 0.8)}`,
+            boxShadow: 'none',
+            transition: 'background-color, border, 80ms ease',
+            ...(ownerState.variant === 'outlined' && {
+              boxSizing: 'border-box',
+              background: `linear-gradient(to bottom, #FFF, ${gray[50]})`,
+              '&:hover': {
+                borderColor: brand[300],
+                boxShadow: `0 0 24px ${brand[100]}`,
+              },
+            }),
+            ...(theme.palette.mode === 'dark' && {
+              backgroundColor: alpha(gray[800], 0.6),
+              outline: `1px solid ${alpha(gray[700], 0.3)}`,
+              ...(ownerState.variant === 'outlined' && {
+                boxSizing: 'border-box',
+                background: `linear-gradient(to bottom, ${gray[900]}, ${alpha(
+                  gray[800],
+                  0.5,
+                )})`,
+                '&:hover': {
+                  borderColor: brand[700],
+                  boxShadow: `0 0 24px ${brand[800]}`,
+                },
+              }),
+            }),
+          }),
         },
       },
       MuiLink: {
@@ -508,41 +539,61 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
       MuiCheckbox: {
         defaultProps: {
           disableRipple: true,
+          icon: <CheckBoxOutlineBlankRoundedIcon sx={{ color: 'rgba(0,0,0,0)' }} />,
+          checkedIcon: <CheckRoundedIcon sx={{ height: 18, width: 18 }} />,
         },
         styleOverrides: {
-          root: {
-            '&:hover': { bgcolor: 'transparent' },
-            '& .MuiSvgIcon-root': {
-              borderRadius: 3,
-              width: 16,
-              height: 16,
-              boxShadow:
-                'inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)',
-              backgroundColor: '#f5f8fa',
-              'input:hover ~ &': {
-                backgroundColor: '#ebf1f5',
-              },
-              'input:disabled ~ &': {
-                boxShadow: 'none',
-                background: 'rgba(206,217,224,.5)',
+          root: ({ theme }) => ({
+            margin: 10,
+            height: 16,
+            width: 16,
+            border: '1px solid ',
+            borderColor: gray[200],
+            borderRadius: 4,
+            boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.1)',
+            transition: 'border-color 120ms ease-in',
+            backgroundColor: alpha(gray[100], 0.4),
+            '&:hover': {
+              borderColor: brand[300],
+            },
+            '&.Mui-focused': {
+              borderColor: brand[400],
+              outline: '4px solid',
+              outlineColor: brand[200],
+            },
+            '&.Mui-checked': {
+              color: brand[500],
+              backgroundColor: brand[50],
+              '&:hover': {
+                borderColor: brand[300],
+                backgroundColor: brand[100],
               },
             },
-            '&.Mui-checked .MuiSvgIcon-root': {
-              borderRadius: 3,
-              backgroundImage:
-                'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
-              '&:before': {
-                display: 'block',
-                width: 16,
-                height: 16,
+            ...(theme.palette.mode === 'dark' && {
+              borderColor: gray[700],
+              boxShadow: '0px 2px 2px rgb(0, 0, 0)',
+              backgroundColor: alpha(gray[800], 0.4),
+              '&:hover': {
+                borderColor: brand[300],
               },
-              'input:hover ~ &': {
-                backgroundColor: brand[700],
+              '&.Mui-checked': {
+                color: brand[500],
+                backgroundColor: brand[900],
+                '&:hover': {
+                  borderColor: brand[300],
+                  backgroundColor: brand[800],
+                },
               },
-            },
-          },
+              '&.Mui-focused': {
+                borderColor: brand[400],
+                outline: '4px solid',
+                outlineColor: alpha(brand[500], 0.5),
+              },
+            }),
+          }),
         },
       },
+
       MuiToggleButton: {
         styleOverrides: {
           root: ({ theme }) => ({

@@ -8,15 +8,17 @@ import FormControllLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
+import { alpha } from '@mui/material';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import Container from '@mui/material/Container';
+import Card from '@mui/material/Card';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { PaletteMode } from '@mui/material';
 
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
+import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 
 import getSignUptheme from './getSignUpTheme';
 import ToggleColorMode from './ToggleColorMode';
@@ -139,19 +141,36 @@ export default function SignUp() {
 
   return (
     <ThemeProvider theme={showCustomTheme ? SignUpTheme : defaultTheme}>
-      <Container component="main" maxWidth="xs">
+      <Box
+        sx={(theme) => ({
+          backgroundImage:
+            theme.palette.mode === 'light'
+              ? 'linear-gradient(180deg, #CEE5FD, #FFF)'
+              : `linear-gradient(#02294F, ${alpha('#090E10', 0.0)})`,
+          backgroundSize: '100% 20%',
+          backgroundRepeat: 'no-repeat',
+          pt: { xs: 2, sm: 8 },
+          px: { xs: 2, sm: 8 },
+        })}
+        component="main"
+      >
         <CssBaseline />
-        <Box
+        <Button
+          startIcon={<ArrowBackRoundedIcon />}
+          component="a"
+          href="/material-ui/getting-started/templates/landing-page/"
+        >
+          Back
+        </Button>
+        <Card
           sx={{
-            marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
-            minWidth: { sm: '100%', md: '450px' },
-            gap: 4,
-            border: '1px solid',
-            borderColor: 'divider',
+            width: { sm: '100%', md: '450px' },
+            mx: 'auto',
+            mt: { sm: 2, md: '-40px' },
             p: 4,
-            borderRadius: '10px',
+            gap: 4,
           }}
         >
           <Box
@@ -171,7 +190,7 @@ export default function SignUp() {
           <Box
             component="form"
             onSubmit={handleSubmit}
-            sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}
+            sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}
           >
             <Grid container spacing={2}>
               <Grid item xs={12}>
@@ -285,8 +304,8 @@ export default function SignUp() {
               Sign up with Facebook
             </Button>
           </Box>
-        </Box>
-      </Container>
+        </Card>
+      </Box>
       <ToggleCustomTheme
         showCustomTheme={showCustomTheme}
         toggleCustomTheme={toggleCustomTheme}
