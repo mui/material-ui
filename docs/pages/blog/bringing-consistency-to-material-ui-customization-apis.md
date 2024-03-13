@@ -1,7 +1,7 @@
 ---
 title: Bringing consistency to Material UI customization APIs
 description: We're standardizing two key areas of the Material UI customization APIs to reduce complexity and cognitive overhead. Read on to learn what's changing.
-date: 2024-03-11T00:00:00.000Z
+date: 2024-03-18T00:00:00.000Z
 authors: ['diegoandai']
 tags: ['Material UI', 'Product']
 card: true
@@ -67,4 +67,5 @@ Because of these issues, composed CSS classes will be deprecated and eventually 
 This initiative aims to improve the developer experience for the Material UI community.
 To provide the smoothest migration from these APIs, they will be deprecated first and removed at a future date, likely the end of 2024.
 With each deprecation, we'll update the [migration guide](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) and provide [codemods](https://github.com/mui/material-ui/tree/master/packages/mui-codemod#deprecations) to simplify the process.
+
 As always, we'd love to hear what you think! Please [open a GitHub issue](https://github.com/mui/material-ui/issues/new/choose) if you encounter any unexpected behavior with the standardized APIs or if you have any other suggestions you'd like us to discuss.
