@@ -6,14 +6,7 @@ import { Badge } from '@mui/material';
   slots={{ badge: SlotsBadge }}
   components={{ root: ComponentsRoot }}
   slotProps={{ badge: slotsBadgeProps }}
-  componentsProps={{ root: ComponentsRootProps }}
-/>;
-
-<Badge
-  slots={{ root: SlotsRoot, badge: SlotsBadge }}
-  components={{ root: ComponentsRoot }}
-  slotProps={{ root: slotsRootProps, badge: slotsBadgeProps }}
-  componentsProps={{ root: ComponentsRootProps }}
+  componentsProps={{ root: componentsRootProps }}
 />;
 
 <Badge
