@@ -57,7 +57,7 @@ const useUtilityClasses = (ownerState) => {
       orientation,
       fullWidth && 'fullWidth',
       disableElevation && 'disableElevation',
-      ['primary', 'secondary'] && `color${capitalize(color)}`,
+      `color${capitalize(color)}`,
     ],
     grouped: [
       'grouped',
