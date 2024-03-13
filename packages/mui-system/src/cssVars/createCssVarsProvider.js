@@ -188,7 +188,7 @@ export default function createCssVarsProvider(options) {
 
     if (!theme.getColorSchemeSelector) {
       theme.getColorSchemeSelector = (targetColorScheme) =>
-        `*:where([${attribute}="${targetColorScheme}"]) &`;
+        `[${attribute}="${targetColorScheme}"] &`;
     }
 
     // 5. Declaring effects
