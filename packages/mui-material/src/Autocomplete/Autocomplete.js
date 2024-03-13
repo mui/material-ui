@@ -221,7 +221,6 @@ const AutocompleteClearIndicator = styled(IconButton, {
   slot: 'ClearIndicator',
   overridesResolver: (props, styles) => styles.clearIndicator,
 })({
-  marginRight: -2,
   padding: 4,
   visibility: 'hidden',
 });
@@ -235,7 +234,6 @@ const AutocompletePopupIndicator = styled(IconButton, {
   }),
 })(({ ownerState }) => ({
   padding: 2,
-  marginRight: -2,
   ...(ownerState.popupOpen && {
     transform: 'rotate(180deg)',
   }),
