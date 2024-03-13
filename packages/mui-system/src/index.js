@@ -64,6 +64,8 @@ export { default as unstable_cssVarsParser } from './cssVars/cssVarsParser';
 export { default as unstable_prepareCssVars } from './cssVars/prepareCssVars';
 export { default as unstable_createCssVarsTheme } from './cssVars/createCssVarsTheme';
 export { default as responsivePropType } from './responsivePropType';
+export { default as RtlProvider } from './RtlProvider';
+export * from './RtlProvider';
 
 /** ----------------- */
 /** Layout components */

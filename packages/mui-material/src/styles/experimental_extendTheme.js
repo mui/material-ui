@@ -344,6 +344,9 @@ export default function extendTheme(options = {}, ...args) {
     // MUI X - DataGrid needs this token.
     setColorChannel(palette.background, 'default');
 
+    // added for consistency with the `background.default` token
+    setColorChannel(palette.background, 'paper');
+
     setColorChannel(palette.common, 'background');
     setColorChannel(palette.common, 'onBackground');
 
