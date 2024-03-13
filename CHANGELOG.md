@@ -4,7 +4,7 @@
 
 <!-- generated comparing v5.15.12..master -->
 
-_Mar 12, 2024_
+_Mar 13, 2024_
 
 A big thanks to the 15 contributors who made this release possible. Here are some highights ✨
 
@@ -64,7 +64,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [pigment-css] Adjust the bit about CSS vars on the README (#41463) @danilo-leal
 - Finish brand name fixes #41438 @oliviertassinari
 - Remove noreferrer @oliviertassinari
-- Fix v4 docs <b> appearing in notifications (#41390) @peterwangsc
+- Fix v4 docs `<b>` appearing in notifications (#41390) @peterwangsc
 - Update GitHub project links (#41370) @danilo-leal
 
 ### Core
