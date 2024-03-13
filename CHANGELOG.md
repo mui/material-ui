@@ -6,7 +6,7 @@
 
 _Mar 13, 2024_
 
-A big thanks to the 15 contributors who made this release possible. Here are some highights ✨
+A big thanks to the 18 contributors who made this release possible. Here are some highights ✨
 
 - The Material UI free Checkout template got a design uplift (#41447) @zanivan
 
@@ -90,7 +90,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [examples] Add pigment-css-vite-ts starter example (#41196) @siriwatknp
 - [examples] Add pigment-css-nextjs-ts starter project (#41105) @siriwatknp
 
-All contributors of this release in alphabetical order: @alexfauquette, @brijeshb42, @CGNonofr, @cipherlogs, @danilo-leal, @Janpot, @michaeldfoley, @mnajdova, @oliviertassinari, @peterwangsc, @rakeshmusturi, @sai6855, @siriwatknp, @zanivan, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @alexfauquette, @anle9650, @brijeshb42, @CGNonofr, @cipherlogs, @danilo-leal, @jwithington, @Janpot, @michaeldfoley, @michaldudak, @mnajdova, @oliviertassinari, @peterwangsc, @rakeshmusturi, @sai6855, @siriwatknp, @zanivan, @ZeeshanTamboli
 
 ## v5.15.12
 
