@@ -2,7 +2,7 @@ import { prepareCssVars } from '@mui/system/cssVars';
 import type { SxConfig } from '@mui/system/styleFunctionSx';
 import type { CSSObject } from '../base';
 
-export interface ThemeInput<ColorScheme extends string = string> {
+export interface ThemeInput<ColorScheme extends string = string> extends Record<string, any> {
   /**
    * The prefix to be used for the CSS variables.
    */
@@ -79,7 +79,7 @@ export type ExtendTheme<
     unstable_sxConfig?: SxConfig;
   };
 
-export type Theme = ExtendTheme;
+export type Theme = Record<string, any>;
 
 /**
  * A utility to tell zero-runtime to generate CSS variables for the theme.

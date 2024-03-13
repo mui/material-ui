@@ -3,7 +3,7 @@ import { Theme } from './extendTheme';
 
 export function generateTokenCss(theme: Theme) {
   // use emotion to serialize the object to css string
-  const { styles } = serializeStyles(theme.generateStyleSheets());
+  const { styles } = serializeStyles(theme.generateStyleSheets?.() || []);
   return styles;
 }
 
