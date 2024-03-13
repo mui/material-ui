@@ -57,7 +57,9 @@ export const CodeTab = styled(TabBase)<{ ownerState: { mounted: boolean; contain
       fontFamily: ownerState?.contained
         ? theme.typography.fontFamily
         : theme.typography.fontFamilyCode,
-      fontWeight: theme.typography.fontWeightMedium,
+      fontWeight: ownerState?.contained
+        ? theme.typography.fontWeightMedium
+        : theme.typography.fontWeightBold,
       lineHeight: 1.2,
       outline: 'none',
       minWidth: 52,
