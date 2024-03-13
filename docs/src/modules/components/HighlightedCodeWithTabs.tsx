@@ -6,7 +6,7 @@ import { TabPanel as TabPanelBase } from '@mui/base/TabPanel';
 import { Tab as TabBase } from '@mui/base/Tab';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
-export const TabList = styled(TabsListBase)<{
+export const CodeTabList = styled(TabsListBase)<{
   ownerState: { mounted: boolean; contained?: boolean };
 }>(({ theme, ownerState }) => ({
   padding: ownerState?.contained ? theme.spacing(1) : 6,
@@ -32,7 +32,7 @@ export const TabList = styled(TabsListBase)<{
   }),
 }));
 
-export const TabPanel = styled(TabPanelBase)<{
+export const CodeTabPanel = styled(TabPanelBase)<{
   ownerState: { mounted: boolean; contained?: boolean };
 }>(({ ownerState }) => ({
   marginTop: ownerState?.contained ? -1 : 0,
@@ -46,7 +46,7 @@ export const TabPanel = styled(TabPanelBase)<{
   },
 }));
 
-export const Tab = styled(TabBase)<{ ownerState: { mounted: boolean; contained?: boolean } }>(
+export const CodeTab = styled(TabBase)<{ ownerState: { mounted: boolean; contained?: boolean } }>(
   ({ theme, ownerState }) =>
     theme.unstable_sx({
       p: ownerState?.contained ? '6px' : 0.8,
@@ -67,25 +67,21 @@ export const Tab = styled(TabBase)<{ ownerState: { mounted: boolean; contained?:
       borderRadius: '8px',
       position: 'relative',
       transition: ownerState?.contained ? 'background, color, 100ms ease' : 'unset',
+      '&:hover': {
+        backgroundColor: (theme.vars || theme).palette.divider,
+      },
       '&:focus-visible': {
         outline: '2px solid',
         outlineOffset: '-2px',
         outlineColor: (theme.vars || theme).palette.primary.light,
       },
-      ...(ownerState?.contained && {
-        ...theme.applyDarkStyles({
-          '&:hover': {
-            backgroundColor: alpha((theme.vars || theme).palette.primaryDark[700], 0.6),
-            color: (theme.vars || theme).palette.grey[400],
-          },
-        }),
-      }),
       ...(!ownerState?.contained && {
         '&:not(:first-of-type)': {
           marginLeft: 0.5,
         },
         '&:hover': {
-          backgroundColor: alpha(theme.palette.primaryDark[500], 0.5),
+          backgroundColor: alpha((theme.vars || theme).palette.primaryDark[500], 0.5),
+          color: (theme.vars || theme).palette.grey[400],
         },
         ...(ownerState.mounted && {
           '&.base--selected': {
@@ -154,21 +150,21 @@ export default function HighlightedCodeWithTabs({
   const ownerState = { mounted };
   return (
     <Tabs selectionFollowsFocus value={activeTab} onChange={handleChange}>
-      <TabList ownerState={ownerState}>
+      <CodeTabList ownerState={ownerState}>
         {tabs.map(({ tab }) => (
-          <Tab ownerState={ownerState} key={tab} value={tab}>
+          <CodeTab ownerState={ownerState} key={tab} value={tab}>
             {tab}
-          </Tab>
+          </CodeTab>
         ))}
-      </TabList>
+      </CodeTabList>
       {tabs.map(({ tab, language, code }) => (
-        <TabPanel ownerState={ownerState} key={tab} value={tab}>
+        <CodeTabPanel ownerState={ownerState} key={tab} value={tab}>
           <HighlightedCode
             // @ts-ignore
             language={language || 'bash'}
             code={typeof code === 'function' ? code(tab) : code}
           />
-        </TabPanel>
+        </CodeTabPanel>
       ))}
     </Tabs>
   );
