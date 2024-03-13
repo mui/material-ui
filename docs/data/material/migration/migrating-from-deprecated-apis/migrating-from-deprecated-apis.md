@@ -30,7 +30,7 @@ If you need to run a specific codemod, those are also linked below.
 
 ### Inner element overrides
 
-The `slots` and `slotProps` APIs are in the process of being standardized. 
+The `slots` and `slotProps` APIs are in the process of being standardized.
 The analogous APIs—`components`, `componentsProps`, `<SlotName>Component`, and `<SlotName>Props`—are going to be deprecated and eventually removed.
 This improves the developer experience through consistency, predictability, and reduced cognitive load.
 
