@@ -15,9 +15,7 @@ const ListRoot = styled('ul')({
   gap: 6,
 });
 
-export default function FeatureList(props) {
-  const { features } = props;
-
+export default function FeatureList({ features }) {
   return (
     <ListRoot>
       {features.map((feature, item) => (
@@ -37,4 +35,4 @@ export default function FeatureList(props) {
   );
 }
 
-FeatureList.propTypes = {};
+FeatureList.propTypes = {}; // do I need this given it's a JS file?
