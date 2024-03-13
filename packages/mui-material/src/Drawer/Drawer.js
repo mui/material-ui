@@ -168,6 +168,8 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     PaperProps = {},
     SlideProps,
     // eslint-disable-next-line react/prop-types
+    slotProps,
+    // eslint-disable-next-line react/prop-types
     TransitionComponent = Slide,
     transitionDuration = defaultTransitionDuration,
     variant = 'temporary',
@@ -191,6 +193,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     elevation,
     open,
     variant,
+    slotProps,
     ...other,
   };
 
@@ -259,6 +262,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
       ownerState={ownerState}
       onClose={onClose}
       hideBackdrop={hideBackdrop}
+      slotProps={slotProps}
       ref={ref}
       {...other}
       {...ModalProps}
