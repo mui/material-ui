@@ -36,7 +36,7 @@ The Circular Progress component provides users with updates on the status of ong
 
 ### Variants
 
-The Circular Progress component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft`, `outlined`, and `plain`.
+The Circular Progress component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft`, `outlined`, and `plain`.
 
 {{"demo": "CircularProgressVariants.js"}}
 

@@ -22,7 +22,7 @@ import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
 import StylingInfo from 'docs/src/components/action/StylingInfo';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';
 
 const DEMOS = ['Editing', 'Selection', 'Sorting', 'Pagination', 'Filtering'] as const;
@@ -150,7 +150,7 @@ export default function XDataGrid() {
                 zIndex: 1,
                 height: 240,
                 borderRadius: '10px 10px 0 0',
-                borderColor: 'grey.200',
+                borderColor: 'divider',
                 '& .MuiDataGrid-root': {
                   '& .MuiAvatar-root': { width: 24, height: 24, fontSize: 14, fontWeight: 'bold' },
                   '& .MuiDataGrid-footerContainer': {
@@ -171,7 +171,7 @@ export default function XDataGrid() {
               },
               (theme) =>
                 theme.applyDarkStyles({
-                  borderColor: 'primaryDark.600',
+                  borderColor: 'divider',
                   '& .MuiDataGrid-root': {
                     '& .MuiDataGrid-footerContainer': {
                       borderColor: 'primaryDark.600',

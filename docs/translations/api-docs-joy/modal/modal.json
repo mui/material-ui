@@ -50,7 +50,7 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
-    "backdrop": "The component that renders the backdrop."
+    "backdrop": "The component that renders the backdrop.",
+    "root": "The component that renders the root."
   }
 }

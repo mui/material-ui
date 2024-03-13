@@ -2,8 +2,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { elementTypeAcceptingRef } from '@mui/utils';
-import { useThemeProps } from '@mui/system';
+import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
+import useThemeProps from '@mui/system/useThemeProps';
 import { NoSsr } from '@mui/base';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import useForkRef from '../utils/useForkRef';
@@ -630,10 +630,10 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
 });
 
 SwipeableDrawer.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If set to true, the swipe event will open the drawer even if the user begins the swipe on one of the drawer's children.
    * This can be useful in scenarios where the drawer is partially visible.

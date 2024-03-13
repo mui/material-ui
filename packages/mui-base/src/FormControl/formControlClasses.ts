@@ -1,6 +1,8 @@
 import { generateUtilityClass } from '../generateUtilityClass';
 import { generateUtilityClasses } from '../generateUtilityClasses';
 
+const COMPONENT_NAME = 'FormControl';
+
 export interface FormControlClasses {
   /** Class applied to the root element. */
   root: string;
@@ -19,10 +21,10 @@ export interface FormControlClasses {
 export type FormControlClassKey = keyof FormControlClasses;
 
 export function getFormControlUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiFormControl', slot);
+  return generateUtilityClass(COMPONENT_NAME, slot);
 }
 
-export const formControlClasses: FormControlClasses = generateUtilityClasses('MuiFormControl', [
+export const formControlClasses: FormControlClasses = generateUtilityClasses(COMPONENT_NAME, [
   'root',
   'disabled',
   'error',

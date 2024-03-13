@@ -16,24 +16,24 @@ export function generateApiLinks(
     }
 
     const { value } = build as PromiseFulfilledResult<ComponentReactApi | HookReactApi>;
-    const { name, demos } = value;
     // find a potential # in the pathname
-    const hashIdx = demos.length > 0 ? demos[0].demoPathname.indexOf('#') : -1;
+    const hashIdx = value.demos.length > 0 ? value.demos[0].demoPathname.indexOf('#') : -1;
 
     let pathname = null;
 
-    if (demos.length > 0) {
+    if (value.demos.length > 0) {
       // make sure the pathname doesn't contain #
-      pathname = hashIdx >= 0 ? demos[0].demoPathname.substr(0, hashIdx) : demos[0].demoPathname;
+      pathname =
+        hashIdx >= 0 ? value.demos[0].demoPathname.substr(0, hashIdx) : value.demos[0].demoPathname;
     }
 
     if (pathname !== null) {
       // add the new apiLink, where pathame is in format of /react-component/components-api
       apiLinks.push({
         pathname: `${pathname}${
-          name.startsWith('use') ? 'hooks-api' : 'components-api'
-        }/#${kebabCase(name)}`,
-        title: name,
+          value.name.startsWith('use') ? 'hooks-api' : 'components-api'
+        }/#${kebabCase(value.name)}`,
+        title: value.name,
       });
     }
   });

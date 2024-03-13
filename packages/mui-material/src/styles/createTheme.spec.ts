@@ -185,6 +185,44 @@ const theme = createTheme();
             },
           },
         ],
+        styleOverrides: {
+          root: {
+            variants: [
+              {
+                props: { variant: 'contained' },
+                style: {
+                  backdropFilter: 'none',
+                },
+              },
+            ],
+          },
+          endIcon: ({ theme: t }) => ({
+            backgroundColor: t.vars.palette.primary.main,
+            variants: [
+              {
+                props: ({ ownerState }) => ownerState.color === 'primary',
+              },
+            ],
+          }),
+        },
+      },
+    },
+  });
+}
+
+// props callback in variants
+{
+  createTheme({
+    components: {
+      MuiButton: {
+        variants: [
+          {
+            props: (props) => props.color !== 'secondary',
+            style: ({ theme: { palette } }) => ({
+              backgroundColor: palette.grey[500],
+            }),
+          },
+        ],
       },
     },
   });

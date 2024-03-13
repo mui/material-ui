@@ -65,6 +65,10 @@ declare global {
        */
       toBeVisible(): void;
       /**
+       * Check if an element's [`visibility`](https://developer.mozilla.org/en-US/docs/Web/CSS/visibility) is `hidden` or `collapsed`.
+       */
+      toBeHidden(): void;
+      /**
        * Checks if the element is inaccessible.
        *
        * Elements are considered inaccessible if they either:
@@ -320,6 +324,14 @@ chai.use((chaiAPI, utils) => {
     new chai.Assertion(this._obj).to.be.visible;
   });
 
+  /**
+   * Correct name for `not.to.be.visible`
+   */
+  chai.Assertion.addMethod('toBeHidden', function toBeHidden() {
+    // eslint-disable-next-line no-underscore-dangle, @typescript-eslint/no-unused-expressions
+    new chai.Assertion(this._obj).not.to.be.visible;
+  });
+
   function assertMatchingStyles(
     this: Chai.AssertionStatic,
     actualStyleDeclaration: CSSStyleDeclaration,
@@ -479,7 +491,7 @@ chai.use((chaiAPI, utils) => {
       utils.flag(
         this,
         'message',
-        "Looks like the error was not minified. This can happen if the error code hasn't been generated yet. Run `yarn extract-error-codes` and try again.",
+        "Looks like the error was not minified. This can happen if the error code hasn't been generated yet. Run `pnpm extract-error-codes` and try again.",
       );
       // TODO: Investigate if `as any` can be removed after https://github.com/DefinitelyTyped/DefinitelyTyped/issues/48634 is resolved.
       (this as any).to.throw('Minified MUI error', 'helper');

@@ -14,7 +14,7 @@ import MuiList from '@mui/material/List';
 import MuiListItem from '@mui/material/ListItem';
 import MuiDivider from '@mui/material/Divider';
 import { getCookie } from 'docs/src/modules/utils/helpers';
-import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
 
 async function fetchNotifications() {
   if (process.env.NODE_ENV === 'development') {
@@ -177,7 +177,7 @@ export default function Notifications() {
                   0,
                 )
               : 0
-          } ${t('toggleNotifications')}`}
+          } ${t('unreadNotifications')}`}
           data-ga-event-category="AppBar"
           data-ga-event-action="toggleNotifications"
           onClick={handleToggle}
@@ -231,10 +231,7 @@ export default function Notifications() {
                       <React.Fragment key={message.id}>
                         <ListItem alignItems="flex-start">
                           <Typography gutterBottom>
-                            <span
-                              // eslint-disable-next-line react/no-danger
-                              dangerouslySetInnerHTML={{ __html: message.title }}
-                            />
+                            <b>{message.title}</b>
                           </Typography>
                           <Typography gutterBottom variant="body2" color="text.secondary">
                             <span

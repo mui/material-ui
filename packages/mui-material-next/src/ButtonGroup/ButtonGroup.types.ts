@@ -24,7 +24,7 @@ export interface ButtonGroupOwnProps {
    * @default 'primary'
    */
   color?: OverridableStringUnion<
-    'inherit' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
+    'primary' | 'secondary' | 'tertiary',
     ButtonGroupPropsColorOverrides
   >;
   /**
@@ -68,7 +68,7 @@ export interface ButtonGroupOwnProps {
    * @default 'outlined'
    */
   variant?: OverridableStringUnion<
-    'text' | 'outlined' | 'contained',
+    'text' | 'outlined' | 'filled' | 'filledTonal' | 'elevated',
     ButtonGroupPropsVariantOverrides
   >;
   /**

@@ -219,7 +219,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const size = inProps.size || buttonGroup.size || sizeProp;
   const color = inProps.color || buttonGroup.color || colorProp;
   const disabled =
-    (inProps.disabled || inProps.loading) ?? (buttonGroup.disabled || disabledProp || loading);
+    (inProps.loading || inProps.disabled) ?? (buttonGroup.disabled || loading || disabledProp);
 
   const buttonRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(buttonRef, ref);
@@ -354,10 +354,10 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 }) as ExtendButton<ButtonTypeMap>;
 
 Button.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A ref for imperative actions. It currently only supports `focusVisible()` action.
    */

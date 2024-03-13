@@ -2,17 +2,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes } from '@mui/utils';
-import {
-  isHostComponent,
-  useSlotProps,
-  unstable_composeClasses as composeClasses,
-} from '@mui/base';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import { isHostComponent, useSlotProps } from '@mui/base/utils';
+import composeClasses from '@mui/utils/composeClasses';
 import { useSlider, valueToPercent } from '@mui/base/useSlider';
-import { alpha, lighten, darken } from '@mui/system';
+import { alpha, lighten, darken } from '@mui/system/colorManipulator';
+import { useRtl } from '@mui/system/RtlProvider';
 import useThemeProps from '../styles/useThemeProps';
 import styled, { slotShouldForwardProp } from '../styles/styled';
-import useTheme from '../styles/useTheme';
 import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import capitalize from '../utils/capitalize';
 import BaseSliderValueLabel from './SliderValueLabel';
@@ -407,8 +404,7 @@ const Forward = ({ children }) => children;
 const Slider = React.forwardRef(function Slider(inputProps, ref) {
   const props = useThemeProps({ props: inputProps, name: 'MuiSlider' });
 
-  const theme = useTheme();
-  const isRtl = theme.direction === 'rtl';
+  const isRtl = useRtl();
 
   const {
     'aria-label': ariaLabel,
@@ -432,6 +428,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     onChange,
     onChangeCommitted,
     orientation = 'horizontal',
+    shiftStep = 10,
     size = 'medium',
     step = 1,
     scale = Identity,
@@ -458,6 +455,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     color,
     size,
     step,
+    shiftStep,
     scale,
     track,
     valueLabelDisplay,
@@ -702,10 +700,10 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
 });
 
 Slider.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The label of the slider.
    */
@@ -763,8 +761,7 @@ Slider.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    *
    * @default {}
    */
@@ -782,8 +779,7 @@ Slider.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    *
    * @default {}
    */
@@ -898,6 +894,11 @@ Slider.propTypes /* remove-proptypes */ = {
    * }
    */
   scale: PropTypes.func,
+  /**
+   * The granularity with which the slider can step through values when using Page Up/Page Down or Shift + Arrow Up/Arrow Down.
+   * @default 10
+   */
+  shiftStep: PropTypes.number,
   /**
    * The size of the slider.
    * @default 'medium'
