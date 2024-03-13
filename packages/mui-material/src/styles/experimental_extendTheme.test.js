@@ -59,6 +59,9 @@ describe('experimental_extendTheme', () => {
     expect(theme.colorSchemes.dark.palette.background.defaultChannel).to.equal('18 18 18');
     expect(theme.colorSchemes.light.palette.background.defaultChannel).to.equal('255 255 255');
 
+    expect(theme.colorSchemes.dark.palette.background.paperChannel).to.equal('18 18 18');
+    expect(theme.colorSchemes.light.palette.background.paperChannel).to.equal('255 255 255');
+
     expect(theme.colorSchemes.dark.palette.primary.mainChannel).to.equal('144 202 249');
     expect(theme.colorSchemes.dark.palette.primary.darkChannel).to.equal('66 165 245');
     expect(theme.colorSchemes.dark.palette.primary.lightChannel).to.equal('227 242 253');
