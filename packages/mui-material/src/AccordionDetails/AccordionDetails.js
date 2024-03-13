@@ -3,9 +3,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import { getAccordionDetailsUtilityClass } from './accordionDetailsClasses';
+
+const useThemeProps = createUseThemeProps('MuiAccordionDetails');
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;

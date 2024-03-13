@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import refType from '@mui/utils/refType';
 import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
+import { useRtl } from '@mui/system/RtlProvider';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useTheme from '../styles/useTheme';
@@ -231,7 +232,7 @@ let warnedOnceTabPresent = false;
 const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTabs' });
   const theme = useTheme();
-  const isRtl = theme.direction === 'rtl';
+  const isRtl = useRtl();
   const {
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
@@ -333,7 +334,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
         clientWidth: tabsNode.clientWidth,
         scrollLeft: tabsNode.scrollLeft,
         scrollTop: tabsNode.scrollTop,
-        scrollLeftNormalized: getNormalizedScrollLeft(tabsNode, theme.direction),
+        scrollLeftNormalized: getNormalizedScrollLeft(tabsNode, isRtl ? 'rtl' : 'ltr'),
         scrollWidth: tabsNode.scrollWidth,
         top: rect.top,
         bottom: rect.bottom,

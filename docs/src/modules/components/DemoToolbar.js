@@ -89,10 +89,10 @@ const Button = styled(MDButton)(({ theme }) => ({
   flexShrink: 0,
   borderRadius: 999,
   border: '1px solid',
-  borderColor: alpha(theme.palette.primary[100], 0.6),
+  borderColor: alpha(theme.palette.grey[200], 0.8),
   fontSize: theme.typography.pxToRem(13),
   fontWeight: theme.typography.fontWeightMedium,
-  color: theme.palette.primary.main,
+  color: theme.palette.primary[600],
   '& .MuiSvgIcon-root': {
     color: theme.palette.primary.main,
   },

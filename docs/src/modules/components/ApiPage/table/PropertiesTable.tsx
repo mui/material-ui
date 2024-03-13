@@ -166,7 +166,7 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                 key={propName}
                 id={getHash({ componentName, propName, hooksParameters, hooksReturnValue })}
               >
-                <td className="MuiApi-table-item-title">
+                <td className="MuiApi-table-item-title algolia-lvl3">
                   {propName}
                   {isRequired ? '*' : ''}
                   {isOptional ? '?' : ''}
@@ -200,7 +200,7 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                     )}
                   </td>
                 )}
-                <td className="MuiPropTable-description-column">
+                <td className="MuiPropTable-description-column algolia-content">
                   {description && <PropDescription description={description} />}
                   {seeMoreDescription && (
                     <p

@@ -33,7 +33,7 @@ export default function TaskCard() {
           </Typography>
         </Box>
         <Box sx={{ my: 'auto' }}>
-          <CodeRounded color="white" />
+          <CodeRounded />
           <Typography fontSize={18} component="div" fontWeight="semiBold" sx={{ lineHeight: 1.4 }}>
             Customize every button and chip instance primary color
           </Typography>

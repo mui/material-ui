@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.json",
   "references": [
     {
-      "path": "../../packages/pigment-react"
+      "path": "../../packages/pigment-css-react"
     }
   ]
 }

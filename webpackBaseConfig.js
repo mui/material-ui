@@ -24,7 +24,7 @@ module.exports = {
       '@mui/material-next': path.resolve(__dirname, './packages/mui-material-next/src'),
       '@mui/material-nextjs': path.resolve(__dirname, './packages/mui-material-nextjs/src'),
       '@mui/joy': path.resolve(__dirname, './packages/mui-joy/src'),
-      '@pigment-css/react': path.resolve(__dirname, './packages/pigment-react/src'),
+      '@pigment-css/react': path.resolve(__dirname, './packages/pigment-css-react/src'),
       '@mui-internal/docs-utils': path.resolve(__dirname, './packages/docs-utils/src'),
       '@mui/internal-scripts/typescript-to-proptypes': path.resolve(
         __dirname,

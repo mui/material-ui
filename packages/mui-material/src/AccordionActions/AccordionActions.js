@@ -3,9 +3,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import { getAccordionActionsUtilityClass } from './accordionActionsClasses';
+
+const useThemeProps = createUseThemeProps('MuiAccordionActions');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disableSpacing } = ownerState;
@@ -25,17 +26,22 @@ const AccordionActionsRoot = styled('div', {
 
     return [styles.root, !ownerState.disableSpacing && styles.spacing];
   },
-})(({ ownerState }) => ({
+})({
   display: 'flex',
   alignItems: 'center',
   padding: 8,
   justifyContent: 'flex-end',
-  ...(!ownerState.disableSpacing && {
-    '& > :not(style) ~ :not(style)': {
-      marginLeft: 8,
+  variants: [
+    {
+      props: (props) => !props.disableSpacing,
+      style: {
+        '& > :not(style) ~ :not(style)': {
+          marginLeft: 8,
+        },
+      },
     },
-  }),
-}));
+  ],
+});
 
 const AccordionActions = React.forwardRef(function AccordionActions(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiAccordionActions' });

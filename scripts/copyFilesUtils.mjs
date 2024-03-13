@@ -6,9 +6,17 @@ import glob from 'fast-glob';
 const packagePath = process.cwd();
 const buildPath = path.join(packagePath, './build');
 
-export async function includeFileInBuild(file) {
+/**
+ * Copies a file into the build directory. By default it copies it under the same
+ * base name in the root, but you can provide a second argument to specify a
+ * different subpath.
+ * @param {string} file source file path
+ * @param {string=} target target file path
+ * @returns {Promise<void>}
+ */
+export async function includeFileInBuild(file, target = path.basename(file)) {
   const sourcePath = path.resolve(packagePath, file);
-  const targetPath = path.resolve(buildPath, path.basename(file));
+  const targetPath = path.resolve(buildPath, target);
   await fse.copy(sourcePath, targetPath);
   console.log(`Copied ${sourcePath} to ${targetPath}`);
 }

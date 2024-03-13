@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
+import { useRtl } from '@mui/system/RtlProvider';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import ButtonBase from '../ButtonBase';
-import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import tabScrollButtonClasses, { getTabScrollButtonUtilityClass } from './tabScrollButtonClasses';
@@ -59,8 +59,7 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(inProps, ref) 
     ...other
   } = props;
 
-  const theme = useTheme();
-  const isRtl = theme.direction === 'rtl';
+  const isRtl = useRtl();
 
   const ownerState = { isRtl, ...props };
 

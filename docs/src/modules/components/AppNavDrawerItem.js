@@ -24,7 +24,7 @@ const Item = styled(
       color: (theme.vars || theme).palette.text.primary,
     }),
     ...(subheader && {
-      color: (theme.vars || theme).palette.grey[600],
+      color: (theme.vars || theme).palette.text.tertiary,
     }),
   };
 

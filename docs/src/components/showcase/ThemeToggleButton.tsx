@@ -23,8 +23,8 @@ export default function ThemeToggleButton() {
               fontWeight: 600,
               color: 'grey.700',
               '&.Mui-selected': {
-                color: 'primary.600',
-                bgcolor: 'primary.100',
+                color: 'primary.700',
+                bgcolor: 'primary.50',
               },
             },
           },

@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
+import { useRtl } from '@mui/system/RtlProvider';
 import useThemeProps from '../styles/useThemeProps';
 import paginationItemClasses, { getPaginationItemUtilityClass } from './paginationItemClasses';
-import useTheme from '../styles/useTheme';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import FirstPageIcon from '../internal/svg-icons/FirstPage';
@@ -288,23 +288,22 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
     variant,
   };
 
-  const theme = useTheme();
+  const isRtl = useRtl();
   const classes = useUtilityClasses(ownerState);
 
-  const normalizedIcons =
-    theme.direction === 'rtl'
-      ? {
-          previous: slots.next || components.next || NavigateNextIcon,
-          next: slots.previous || components.previous || NavigateBeforeIcon,
-          last: slots.first || components.first || FirstPageIcon,
-          first: slots.last || components.last || LastPageIcon,
-        }
-      : {
-          previous: slots.previous || components.previous || NavigateBeforeIcon,
-          next: slots.next || components.next || NavigateNextIcon,
-          first: slots.first || components.first || FirstPageIcon,
-          last: slots.last || components.last || LastPageIcon,
-        };
+  const normalizedIcons = isRtl
+    ? {
+        previous: slots.next || components.next || NavigateNextIcon,
+        next: slots.previous || components.previous || NavigateBeforeIcon,
+        last: slots.first || components.first || FirstPageIcon,
+        first: slots.last || components.last || LastPageIcon,
+      }
+    : {
+        previous: slots.previous || components.previous || NavigateBeforeIcon,
+        next: slots.next || components.next || NavigateNextIcon,
+        first: slots.first || components.first || FirstPageIcon,
+        last: slots.last || components.last || LastPageIcon,
+      };
 
   const Icon = normalizedIcons[type];
 

@@ -61,6 +61,10 @@ export interface ProjectSettings {
    */
   skipAnnotatingComponentDefinition?: boolean | ((filename: string) => boolean);
   /**
+   * If `true`, skips extracting CSS class and slot information from the component.
+   */
+  skipSlotsAndClasses?: boolean;
+  /**
    * The path to the translation directory.
    */
   translationPagesDirectory: string;

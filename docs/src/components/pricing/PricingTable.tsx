@@ -1008,16 +1008,16 @@ function RowCategory(props: BoxProps) {
           pl: 1.5,
           display: 'block',
           textTransform: 'uppercase',
-          letterSpacing: '.08rem',
+          letterSpacing: '.1rem',
           fontWeight: theme.typography.fontWeightBold,
           fontSize: theme.typography.pxToRem(11),
-          color: 'text.secondary',
+          color: (theme.vars || theme).palette.text.tertiary,
           borderBottom: '1px solid',
-          bgcolor: 'grey.50',
-          borderColor: 'grey.200',
+          bgcolor: (theme.vars || theme).palette.grey[50],
+          borderColor: (theme.vars || theme).palette.grey[200],
           ...theme.applyDarkStyles({
-            bgcolor: 'primaryDark.900',
-            borderColor: 'primaryDark.600',
+            bgcolor: (theme.vars || theme).palette.primaryDark[900],
+            borderColor: (theme.vars || theme).palette.primaryDark[600],
           }),
         }),
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
@@ -1337,12 +1337,11 @@ export default function PricingTable({
           }
           sx={[
             (theme) => ({
-              p: 1,
+              px: 1,
               py: 1.5,
               justifyContent: 'flex-start',
-              fontWeight: 400,
+              fontWeight: 'medium',
               borderRadius: '0px',
-              color: 'text.primary',
               position: 'absolute',
               left: 0,
               top: 0,
@@ -1489,12 +1488,11 @@ export default function PricingTable({
           }
           sx={[
             (theme) => ({
-              p: 1,
+              px: 1,
               py: 1.5,
               justifyContent: 'flex-start',
-              fontWeight: 400,
+              fontWeight: 'medium',
               borderRadius: '0px',
-              color: 'text.primary',
               position: 'absolute',
               left: 0,
               top: 0,

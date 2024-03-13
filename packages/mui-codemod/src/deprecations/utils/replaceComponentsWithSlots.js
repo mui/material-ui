@@ -69,6 +69,19 @@ function replaceJsxComponentsPropsProp(j, element) {
               key: prop.key.name,
               expression: prop.value,
             });
+          } else {
+            attr.value.expression.properties = attr.value.expression.properties.filter(
+              (p) => p?.key?.name !== prop.key.name,
+            );
+
+            assignObject(j, {
+              target: attr,
+              key: prop.key.name,
+              expression: j.objectExpression([
+                j.spreadElement(prop.value),
+                j.spreadElement(slotProps[prop.key.name]),
+              ]),
+            });
           }
         });
       }
@@ -131,7 +144,15 @@ function replaceDefaultPropsComponentsPropsProp(j, defaultPropsPathCollection) {
 
       const slots = existingSlots
         ? existingSlots.value.properties.reduce((acc, prop) => {
-            return { ...acc, [prop.key.name]: prop.value };
+            return {
+              ...acc,
+              [prop.key.name]: components[prop.key.name]
+                ? j.objectExpression([
+                    j.spreadElement(components[prop.key.name]),
+                    j.spreadElement(prop.value),
+                  ])
+                : prop.value,
+            };
           }, {})
         : {};
 
