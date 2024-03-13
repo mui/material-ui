@@ -33,10 +33,9 @@ This constraint makes building rich data tables challenging.
 The [`DataGrid` component](/x/react-data-grid/) is designed for use-cases that are focused on handling large amounts of tabular data.
 While it comes with a more rigid structure, in exchange, you gain more powerful features.
 
-:::warning
-The demo below uses the v7 version of the `@mui/x-data-grid` package which is currently in beta.
-We plan to release the stable version soon.
-The documentation is available at [next.mui.com](https://next.mui.com/x/react-data-grid/).
+:::info
+The demo below uses the MUI X Data Grid v7, which is currently in beta.
+Visit [the documentation](https://next.mui.com/x/react-data-grid/) to learn more about it.
 :::
 
 {{"demo": "DataTable.js", "bg": "inline"}}
