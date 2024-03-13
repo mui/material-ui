@@ -14,6 +14,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 import * as flexsearch from 'flexsearch';
 import SearchIcon from '@mui/icons-material/Search';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -478,11 +479,14 @@ function useLatest(value) {
   return value ?? latest.current;
 }
 
+
 export default function SearchIcons() {
   const [keys, setKeys] = React.useState(null);
   const [theme, setTheme] = useQueryParameterState('theme', 'All');
   const [selectedIcon, setSelectedIcon] = useQueryParameterState('selected', '');
   const [query, setQuery] = useQueryParameterState('query', '');
+  const [isPending, startUpdateSearchTransition] = React.useTransition();
+  const [minIcons, setMinIcons] = React.useState(49);
 
   const handleOpenClick = React.useCallback(
     (event) => {
@@ -518,10 +522,10 @@ export default function SearchIcons() {
   );
 
   React.useEffect(() => {
-    updateSearchResults(query);
-    return () => {
-      updateSearchResults.clear();
-    };
+    startUpdateSearchTransition(() => updateSearchResults(query));
+    setMinIcons(49);
+
+    return () => updateSearchResults.clear();
   }, [query, updateSearchResults]);
 
   const icons = React.useMemo(
@@ -531,6 +535,8 @@ export default function SearchIcons() {
       ),
     [theme, keys],
   );
+
+  const totalNumIcons = icons.length;
 
   const dialogSelectedIcon = useLatest(
     selectedIcon ? allIconsMap[selectedIcon] : null,
@@ -574,14 +580,36 @@ export default function SearchIcons() {
             autoFocus
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search icons…"
+            placeholder={`Search over ${formatNumber(totalNumIcons)} available icons...`}
             inputProps={{ 'aria-label': 'search icons' }}
           />
         </Paper>
-        <Typography sx={{ mb: 1 }}>{`${formatNumber(
-          icons.length,
-        )} matching results`}</Typography>
-        <Icons icons={icons} handleOpenClick={handleOpenClick} />
+        {query.length > 0 && (
+          <Typography variant="subtitle1" sx={{ mb: 1 }}>
+            {isPending
+              ? `loading...`
+              : `${formatNumber(totalNumIcons)} matching results`}
+          </Typography>
+        )}
+        {!isPending && (
+          <Stack spacing={4} sx={{ height: '100%' }}>
+            <Icons
+              icons={icons.slice(0, minIcons)}
+              handleOpenClick={handleOpenClick}
+            />
+            {totalNumIcons > minIcons && (
+              <Button
+                size="small"
+                color="primary"
+                variant="outlined"
+                sx={{ mt: 'auto' }}
+                onClick={() => setMinIcons((m) => (m += 49))}
+              >
+                View more
+              </Button>
+            )}
+          </Stack>
+        )}
       </Grid>
       <DialogDetails
         open={!!selectedIcon}
