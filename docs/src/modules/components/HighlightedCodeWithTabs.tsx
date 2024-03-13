@@ -31,7 +31,7 @@ export const CodeTabList = styled(TabsListBase)<{
 
 export const CodeTabPanel = styled(TabPanelBase)<{
   ownerState: { mounted: boolean; contained?: boolean };
-}>(({ ownerState, theme }) => ({
+}>(({ ownerState }) => ({
   marginTop: ownerState?.contained ? -1 : 0,
   '& pre': {
     marginTop: ownerState?.contained ? 0 : -1,
