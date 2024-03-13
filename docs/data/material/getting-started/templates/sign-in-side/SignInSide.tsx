@@ -9,7 +9,6 @@ import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
@@ -20,21 +19,6 @@ import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 
 import getSignInSideTheme from './getSignInSideTheme';
 import ToggleColorMode from './ToggleColorMode';
-
-function Copyright(props: any) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
-const defaultTheme = createTheme({});
 
 interface ToggleCustomThemeProps {
   showCustomTheme: Boolean;
@@ -93,14 +77,15 @@ const logoStyle = {
 export default function SignInSide() {
   const [mode, setMode] = React.useState<PaletteMode>('dark');
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
+  const defaultTheme = createTheme({ palette: { mode } });
   const SignInSideTheme = createTheme(getSignInSideTheme(mode));
   const logo = showCustomTheme
     ? SignInSideTheme.palette.mode === 'light'
       ? darkLogo
       : whiteLogo
     : defaultTheme.palette.mode === 'light'
-    ? darkLogo
-    : whiteLogo;
+      ? darkLogo
+      : whiteLogo;
 
   const toggleColorMode = () => {
     setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
@@ -137,14 +122,15 @@ export default function SignInSide() {
             backgroundPosition: 'center',
           }}
         />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <Grid item xs={12} sm={8} md={5}>
           <Box
             sx={{
-              my: 8,
+              mt: 4,
               mx: 4,
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
+              gap: 8,
             }}
           >
             <Box
@@ -157,23 +143,23 @@ export default function SignInSide() {
               }}
             >
               <img src={logo} style={logoStyle} alt="logo of sitemark" />
-              <ToggleColorMode
-                mode={mode}
-                toggleColorMode={toggleColorMode}
-                showCustomTheme={showCustomTheme}
-              />
+              <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
             </Box>
-            <Avatar sx={{ m: 1 }} />
-            <Typography component="h1" variant="h5">
+            <Typography component="h1" variant="h3">
               Sign in
             </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            <Box
+              component="form"
+              noValidate
+              onSubmit={handleSubmit}
+              sx={{ mt: 1, maxWidth: 400 }}
+            >
               <TextField
                 margin="normal"
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                placeholder="Email Address"
                 name="email"
                 autoComplete="email"
                 autoFocus
@@ -183,15 +169,27 @@ export default function SignInSide() {
                 required
                 fullWidth
                 name="password"
-                label="Password"
+                placeholder="Password"
                 type="password"
                 id="password"
                 autoComplete="current-password"
               />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <FormControlLabel
+                  control={<Checkbox value="remember" color="primary" />}
+                  label="Remember me"
+                />
+                <Link href="#" variant="body2">
+                  Forgot password?
+                </Link>
+              </Box>
+
               <Button
                 type="submit"
                 fullWidth
@@ -200,19 +198,9 @@ export default function SignInSide() {
               >
                 Sign In
               </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link href="#" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
-              </Grid>
-              <Copyright sx={{ mt: 5 }} />
+              <Link href="#" variant="body2" sx={{ alignSelf: 'center' }}>
+                {"Don't have an account? Sign Up"}
+              </Link>
             </Box>
           </Box>
         </Grid>

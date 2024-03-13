@@ -540,7 +540,7 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
         defaultProps: {
           disableRipple: true,
           icon: <CheckBoxOutlineBlankRoundedIcon sx={{ color: 'rgba(0,0,0,0)' }} />,
-          checkedIcon: <CheckRoundedIcon sx={{ height: 18, width: 18 }} />,
+          checkedIcon: <CheckRoundedIcon sx={{ height: 14, width: 14 }} />,
         },
         styleOverrides: {
           root: ({ theme }) => ({
@@ -548,8 +548,8 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
             height: 16,
             width: 16,
             border: '1px solid ',
-            borderColor: gray[200],
-            borderRadius: 4,
+            borderColor: gray[300],
+            borderRadius: 5,
             boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.1)',
             transition: 'border-color 120ms ease-in',
             backgroundColor: alpha(gray[100], 0.4),
@@ -562,11 +562,11 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
               outlineColor: brand[200],
             },
             '&.Mui-checked': {
-              color: brand[500],
-              backgroundColor: brand[50],
+              color: 'white',
+              backgroundColor: brand[500],
               '&:hover': {
                 borderColor: brand[300],
-                backgroundColor: brand[100],
+                backgroundColor: brand[600],
               },
             },
             ...(theme.palette.mode === 'dark' && {
@@ -577,8 +577,8 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
                 borderColor: brand[300],
               },
               '&.Mui-checked': {
-                color: brand[500],
-                backgroundColor: brand[900],
+                color: 'white',
+                backgroundColor: brand[600],
                 '&:hover': {
                   borderColor: brand[300],
                   backgroundColor: brand[800],
@@ -593,7 +593,6 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
           }),
         },
       },
-
       MuiToggleButton: {
         styleOverrides: {
           root: ({ theme }) => ({
