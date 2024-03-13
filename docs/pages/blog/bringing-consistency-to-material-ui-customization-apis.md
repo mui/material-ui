@@ -1,13 +1,13 @@
 ---
-title: Material UI early 2024 API standardization
-description: We're standardizing two key areas of the Material UI API to reduce complexity and cognitive overhead. Read on to learn what's changing.
+title: Bringing consistency to Material UI customization APIs
+description: We're standardizing two key areas of the Material UI customization APIs to reduce complexity and cognitive overhead. Read on to learn what's changing.
 date: 2024-03-11T00:00:00.000Z
 authors: ['diegoandai']
 tags: ['Material UI', 'Product']
 card: true
 ---
 
-The MUI Core team is working on two initiatives to standardize the Material UI API: The first applies to overriding inner elements, and the second applies to component CSS classes. 
+The MUI Core team is working on two initiatives to standardize the Material UI API: The first applies to overriding inner elements, and the second applies to component CSS classes.
 In both cases, the purpose is to provide a more consistent developer experience for the community.
 
 Let's explore how these changes are taking shape:
