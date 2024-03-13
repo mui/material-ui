@@ -498,6 +498,25 @@ console.log(theme.colors.primary); // 'tomato'
 console.log(theme.vars.colors.primary); // 'var(--colors-primary)'
 ```
 
+#### Adding a prefix to CSS variables
+
+You can add a prefix to the generated CSS variables by providing a `cssVarPrefix` option to the `extendTheme` utility:
+
+```jsx
+extendTheme({
+  cssVarPrefix: 'pigment',
+});
+```
+
+The generated CSS variables will have the `pigment` prefix:
+
+```css
+:root {
+  --pigment-colors-background: #f9f9f9;
+  --pigment-colors-foreground: #121212;
+}
+```
+
 #### Color schemes
 
 Some tokens, especially color-related tokens, can have different values for different scenarios. For example in a daylight condition, the background color might be white, but in a dark condition, it might be black.
@@ -571,25 +590,6 @@ const Heading = styled('h1')(({ theme }) => ({
     color: theme.colors.primaryLight,
   }),
 }));
-```
-
-#### CSS variables prefix
-
-You can add a prefix to the generated CSS variables by providing a `cssVarPrefix` option to the `extendTheme` utility:
-
-```jsx
-extendTheme({
-  cssVarPrefix: 'pigment',
-});
-```
-
-The generated CSS variables will have the `pigment` prefix:
-
-```css
-:root {
-  --pigment-colors-background: #f9f9f9;
-  --pigment-colors-foreground: #121212;
-}
 ```
 
 #### TypeScript
