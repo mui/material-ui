@@ -44,12 +44,12 @@
       "@mui/joy": ["./packages/mui-joy/src"],
       "@mui/joy/*": ["./packages/mui-joy/src/*"],
       "@mui/icons-material/*": ["./packages/mui-icons-material/src/icon.d.ts"],
-      "@pigment-css/nextjs-plugin": ["./packages/pigment-nextjs-plugin/src"],
-      "@pigment-css/nextjs-plugin/*": ["./packages/pigment-nextjs-plugin/src/*"],
-      "@pigment-css/react": ["./packages/pigment-react/src"],
-      "@pigment-css/react/*": ["./packages/pigment-react/src/*"],
-      "@pigment-css/vite-plugin": ["./packages/pigment-vite-plugin/src"],
-      "@pigment-css/vite-plugin/*": ["./packages/pigment-vite-plugin/src/*"],
+      "@pigment-css/nextjs-plugin": ["./packages/pigment-css-nextjs-plugin/src"],
+      "@pigment-css/nextjs-plugin/*": ["./packages/pigment-css-nextjs-plugin/src/*"],
+      "@pigment-css/react": ["./packages/pigment-css-react/src"],
+      "@pigment-css/react/*": ["./packages/pigment-css-react/src/*"],
+      "@pigment-css/vite-plugin": ["./packages/pigment-css-vite-plugin/src"],
+      "@pigment-css/vite-plugin/*": ["./packages/pigment-css-vite-plugin/src/*"],
       "@mui-internal/docs-utils": ["./packages/docs-utils/src"],
       "@mui/internal-scripts/typescript-to-proptypes": [
         "./packages-internal/scripts/typescript-to-proptypes/src"
