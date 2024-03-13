@@ -84,8 +84,8 @@ const ToggleButtonGroup = styled(MDToggleButtonGroup)(({ theme }) => [
 ]);
 
 const Button = styled(MDButton)(({ theme }) => ({
-  height: 24,
-  padding: '5px 8px 6px 8px', // the one-off 5px is for visually centering the text on the button's container
+  height: 26,
+  padding: '6px 8px',
   flexShrink: 0,
   borderRadius: 999,
   border: '1px solid',
@@ -130,6 +130,7 @@ const MenuItem = styled(MDMenuItem)(({ theme }) => ({
 
 const ToggleButton = styled(MDToggleButton)(({ theme }) => [
   theme.unstable_sx({
+    height: 26,
     padding: theme.spacing(0, 1, 0.1, 1),
     fontSize: theme.typography.pxToRem(13),
     borderColor: 'grey.200',
