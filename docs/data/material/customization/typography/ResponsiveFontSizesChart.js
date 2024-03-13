@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
   createTheme,
   responsiveFontSizes,
-  convertLength,
+  unstable_convertLength as convertLength,
 } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { LineChart } from '@mui/x-charts';
