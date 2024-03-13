@@ -15,9 +15,8 @@ import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Typography from '@mui/joy/Typography';
 import Select from '@mui/joy/Select';
-import Option from '@mui/joy/Option';
-import Stack from '@mui/joy/Stack';
 import Tooltip from '@mui/joy/Tooltip';
+import Option from '@mui/joy/Option';
 import Sheet from '@mui/joy/Sheet';
 import PieChart from '@mui/icons-material/PieChart';
 import SmsIcon from '@mui/icons-material/Sms';
@@ -42,8 +41,9 @@ export default function ColorInversionNavigation() {
       >
         <Select
           variant="soft"
-          size="sm"
           defaultValue="1"
+          size="sm"
+          color={color}
           startDecorator={
             <Sheet
               variant="solid"
@@ -54,10 +54,9 @@ export default function ColorInversionNavigation() {
                 alignSelf: 'center',
               }}
             >
-              <BubbleChartIcon sx={{ m: 0 }} />
+              <BubbleChartIcon fontSize="small" sx={{ m: 0 }} />
             </Sheet>
           }
-          color={color}
           sx={{
             py: 1,
             bgcolor: 'transparent',
@@ -141,7 +140,6 @@ export default function ColorInversionNavigation() {
           alignItems: 'center',
           gap: 2,
           bgcolor: `${color}.800`,
-
           '& .MuiBadge-root': { '--Badge-ringColor': '#FFF' },
           '& .MuiBadge-colorSuccess': { bgcolor: 'success.400' },
           '& button': {
