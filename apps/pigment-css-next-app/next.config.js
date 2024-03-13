@@ -82,9 +82,9 @@ const theme = extendTheme({
     },
   },
   getSelector: function getSelector(colorScheme, css) {
-    if (colorScheme && colorScheme === 'dark') {
+    if (colorScheme) {
       return {
-        '@media (prefers-color-scheme: dark)': {
+        [`@media (prefers-color-scheme: ${colorScheme})`]: {
           ':root': css,
         },
       };
