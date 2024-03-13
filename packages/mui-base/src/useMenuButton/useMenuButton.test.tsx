@@ -16,6 +16,7 @@ const testContext: DropdownContextValue = {
 
 describe('useMenuButton', () => {
   const { render } = createRenderer();
+
   describe('getRootProps', () => {
     it('returns props for root slot', () => {
       function TestMenuButton() {

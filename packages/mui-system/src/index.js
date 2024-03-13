@@ -1,4 +1,4 @@
-import MuiError from '@mui-internal/babel-macros/MuiError.macro';
+import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 
 export { css, keyframes, StyledEngineProvider } from '@mui/styled-engine';
 export { default as GlobalStyles } from './GlobalStyles';
@@ -64,6 +64,8 @@ export { default as unstable_cssVarsParser } from './cssVars/cssVarsParser';
 export { default as unstable_prepareCssVars } from './cssVars/prepareCssVars';
 export { default as unstable_createCssVarsTheme } from './cssVars/createCssVarsTheme';
 export { default as responsivePropType } from './responsivePropType';
+export { default as RtlProvider } from './RtlProvider';
+export * from './RtlProvider';
 
 /** ----------------- */
 /** Layout components */

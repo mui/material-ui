@@ -12,6 +12,10 @@ const Root = styled('div')(
     ...lightTheme.typography.body1,
     lineHeight: 1.6, // Increased compared to the 1.5 default to make the docs easier to read.
     color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
+    '& :focus-visible': {
+      outline: `3px solid ${alpha(lightTheme.palette.primary[500], 0.5)}`,
+      outlineOffset: 2,
+    },
     '& strong': {
       color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
     },
@@ -152,7 +156,7 @@ const Root = styled('div')(
         marginLeft: 4,
         height: 26,
         width: 26,
-        backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
+        backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.grey[50]})`,
         color: `var(--muidocs-palette-grey-600, ${lightTheme.palette.grey[600]})`,
         border: '1px solid',
         borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
@@ -403,8 +407,12 @@ const Root = styled('div')(
       opacity: 1,
       transform: 'translate(1px, 0)',
     },
-    '& a.remove-link-arrow[target="_blank"]::after': {
+    '& a.remove-link-arrow::after': {
       // Allows to remove link arrows for images
+      display: 'none',
+    },
+    '& .Ad-root a::after': {
+      // Remove link arrow for ads
       display: 'none',
     },
     '& a, & a code': {
@@ -418,7 +426,7 @@ const Root = styled('div')(
       },
     },
     '& a code': {
-      color: darken(lightTheme.palette.primary.main, 0.04),
+      color: darken(lightTheme.palette.primary.main, 0.2),
     },
     '& img, & video': {
       // Use !important so that inline style on <img> or <video> can't win.
@@ -456,14 +464,45 @@ const Root = styled('div')(
       boxShadow: `inset 0 -2px 0 var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
     },
     '& details': {
+      width: '100%',
+      padding: theme.spacing(1),
       marginBottom: theme.spacing(1.5),
-      padding: theme.spacing(0.5, 0, 0.5, 1),
+      border: '1px solid',
+      borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
+      borderRadius: `var(--muidocs-shape-borderRadius, ${
+        theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
+      }px)`,
       '& pre': {
         marginTop: theme.spacing(1),
       },
     },
     '& summary': {
       cursor: 'pointer',
+      padding: theme.spacing(1),
+      borderRadius: 6,
+      listStyleType: 'none',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      transition: theme.transitions.create(['background'], {
+        duration: theme.transitions.duration.shortest,
+      }),
+      ':after': {
+        content: '""',
+        maskImage: `url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6L8 10L12 6' stroke='black' stroke-width='1.66667' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A")`,
+        display: 'inline-flex',
+        width: '1em',
+        height: '1em',
+        color: 'inherit',
+        backgroundColor: 'currentColor',
+      },
+      '&:hover': {
+        backgroundColor: `var(--muidocs-palette-grey-100, ${lightTheme.palette.grey[50]})`,
+      },
+    },
+    '& details[open] > summary::after': {
+      content: '""',
+      maskImage: `url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 10L8 6L4 10' stroke='black' stroke-width='1.66667' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A")`,
     },
     '& .MuiCode-root': {
       direction: 'ltr /*! @noflip */',
@@ -542,11 +581,6 @@ const Root = styled('div')(
           display: 'block',
         },
       },
-      '&:focus-visible': {
-        outline: '2px solid',
-        outlineOffset: 2,
-        outlineColor: lightTheme.palette.primaryDark[500],
-      },
     },
     '& .MuiCode-copyKeypress': {
       pointerEvents: 'none',
@@ -583,20 +617,8 @@ const Root = styled('div')(
       '& hr': {
         backgroundColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
       },
-      '& h1': {
+      '& h1, & h2, & h3, & h4, & h5': {
         color: `var(--muidocs-palette-grey-50, ${darkTheme.palette.grey[50]})`,
-      },
-      '& h2': {
-        color: `var(--muidocs-palette-grey-100, ${darkTheme.palette.grey[100]})`,
-      },
-      '& h3': {
-        color: `var(--muidocs-palette-grey-200, ${darkTheme.palette.grey[200]})`,
-      },
-      '& h4': {
-        color: `var(--muidocs-palette-grey-300, ${darkTheme.palette.grey[300]})`,
-      },
-      '& h5': {
-        color: `var(--muidocs-palette-grey-300, ${darkTheme.palette.grey[300]})`,
       },
       '& p, & ul, & ol': {
         color: `var(--muidocs-palette-grey-400, ${darkTheme.palette.grey[400]})`,
@@ -605,7 +627,7 @@ const Root = styled('div')(
         '&:hover .anchor-link, & .comment-link': {
           color: `var(--muidocs-palette-primary-300, ${darkTheme.palette.primaryDark[300]})`,
           borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
-          backgroundColor: alpha(darkTheme.palette.primary[900], 0.3),
+          backgroundColor: alpha(darkTheme.palette.primaryDark[700], 0.5),
           '&:hover': {
             borderColor: `var(--muidocs-palette-primary-900, ${darkTheme.palette.primary[900]})`,
             backgroundColor: alpha(darkTheme.palette.primary[900], 0.6),
@@ -648,13 +670,13 @@ const Root = styled('div')(
         borderColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
         '& > code': {
           height: 'fit-content',
-          backgroundColor: `var(--muidocs-palette-primaryDark-600, ${lightTheme.palette.primaryDark[600]})`,
-          borderColor: `var(--muidocs-palette-primaryDark-500, ${lightTheme.palette.primaryDark[500]})`,
+          backgroundColor: `var(--muidocs-palette-primaryDark-600, ${darkTheme.palette.primaryDark[600]})`,
+          borderColor: `var(--muidocs-palette-primaryDark-500, ${darkTheme.palette.primaryDark[500]})`,
         },
         '&.MuiCallout-error': {
           color: `var(--muidocs-palette-error-50, ${darkTheme.palette.error[50]})`,
           backgroundColor: alpha(darkTheme.palette.error[700], 0.2),
-          borderColor: alpha(lightTheme.palette.error[600], 0.3),
+          borderColor: alpha(darkTheme.palette.error[600], 0.3),
           '& strong': {
             color: `var(--muidocs-palette-error-300, ${darkTheme.palette.error[300]})`,
           },
@@ -716,6 +738,14 @@ const Root = styled('div')(
         backgroundColor: `var(--muidocs-palette-primaryDark-800, ${darkTheme.palette.primaryDark[800]})`,
         border: `1px solid var(--muidocs-palette-primaryDark-600, ${darkTheme.palette.primaryDark[600]})`,
         boxShadow: `inset 0 -2px 0 var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
+      },
+      '& details': {
+        borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
+      },
+      '& summary': {
+        '&:hover': {
+          backgroundColor: `var(--muidocs-palette-primaryDark-800, ${darkTheme.palette.primaryDark[800]})`,
+        },
       },
     },
   }),

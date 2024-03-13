@@ -6,7 +6,6 @@ import DarkModeOutlined from '@mui/icons-material/DarkModeOutlined';
 import LightModeOutlined from '@mui/icons-material/LightModeOutlined';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
-import useLocalStorageState from '@mui/utils/useLocalStorageState';
 
 function CssVarsModeToggle(props: { onChange: (checked: boolean) => void }) {
   const [mounted, setMounted] = React.useState(false);
@@ -40,19 +39,30 @@ function CssVarsModeToggle(props: { onChange: (checked: boolean) => void }) {
 export default function ThemeModeToggle() {
   const theme = useTheme();
   const changeTheme = useChangeTheme();
-  const [mode, setMode] = useLocalStorageState('mui-mode', 'system');
+  const [mode, setMode] = React.useState<string | null>(null);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const preferredMode = prefersDarkMode ? 'dark' : 'light';
+
+  React.useEffect(() => {
+    let initialMode = 'system';
+    try {
+      initialMode = localStorage.getItem('mui-mode') || initialMode;
+    } catch (error) {
+      // do nothing
+    }
+    setMode(initialMode);
+  }, []);
 
   const handleChangeThemeMode = (checked: boolean) => {
     const paletteMode = checked ? 'dark' : 'light';
     setMode(paletteMode);
-  };
 
-  React.useEffect(() => {
-    const paletteMode = mode === 'system' ? preferredMode : mode;
+    try {
+      localStorage.setItem('mui-mode', paletteMode); // syncing with homepage, can be removed once all pages are migrated to CSS variables
+    } catch (error) {
+      // do nothing
+    }
     changeTheme({ paletteMode });
-  }, [changeTheme, mode, preferredMode]);
+  };
 
   if (mode === null) {
     return <IconButton color="primary" disableTouchRipple />;

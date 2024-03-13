@@ -62,14 +62,14 @@ Stay tuned for a beta version release early next year!
 ## A sharper focus
 
 To pull these releases off, the Core team's attention will be fully focused on Material UI for most of 2024.
-In the meantime we're putting Joy UI development on hold, so don't expect any new features or components.
-Nevertheless, we do have some big ideas for Joy UI!
+In the meantime we're putting Joy UI development on hold, so don't expect any new features or components.
+Nevertheless, we do have some big ideas for Joy UI!
 Expect to hear more about that towards the end of Q2 '24.
 
 ## Follow along and contribute
 
 We've consolidated the v6 changes in [this GitHub issue](https://github.com/mui/material-ui/issues/30660)—please feel free to chime in and participate in the discussions!
-You can also always check the [public Material UI GitHub project](https://github.com/mui/material-ui/projects/26) to see the planned releases and their respective umbrella issues.
+You can also always check the [Material UI GitHub project](https://github.com/orgs/mui/projects/23/views/12) to see the planned releases and their respective umbrella issues.
 
 We hope you're as excited as we are about these changes!
 Have a wonderful holiday season and a Happy New Year! 🎉

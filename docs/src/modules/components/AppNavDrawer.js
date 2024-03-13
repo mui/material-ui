@@ -46,12 +46,22 @@ const savedScrollTop = {};
 
 function ProductDrawerButton(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
+
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleEventDelegation = (event) => {
+    // Assert whether an 'a' tag resides in the parent of the clicked element through which the event bubbles out.
+    const isLinkInParentTree = Boolean(event.target.closest('a'));
+    // If the element clicked is link or just inside of a link element then close the menu.
+    if (isLinkInParentTree) {
+      handleClose();
+    }
   };
 
   return (
@@ -64,18 +74,14 @@ function ProductDrawerButton(props) {
         onClick={handleClick}
         endIcon={<ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />}
         sx={(theme) => ({
-          py: 0.1,
           minWidth: 0,
+          p: '1px 8px',
           fontSize: theme.typography.pxToRem(13),
           fontWeight: theme.typography.fontWeightMedium,
           color: (theme.vars || theme).palette.primary[600],
           '& svg': {
-            ml: -0.6,
             width: 18,
             height: 18,
-          },
-          '& > span': {
-            ml: '4px',
           },
           ...theme.applyDarkStyles({
             color: (theme.vars || theme).palette.primary[300],
@@ -97,6 +103,7 @@ function ProductDrawerButton(props) {
             width: { xs: 340, sm: 'auto' },
           },
         }}
+        onClick={handleEventDelegation}
       >
         <MuiProductSelector />
       </Menu>
@@ -114,12 +121,12 @@ function ProductIdentifier(props) {
     <Box sx={{ flexGrow: 1 }}>
       <Typography
         sx={(theme) => ({
-          ml: 1.5,
-          color: (theme.vars || theme).palette.grey[600],
+          ml: 1,
           fontSize: theme.typography.pxToRem(11),
-          fontWeight: 700,
+          fontWeight: theme.typography.fontWeightBold,
           textTransform: 'uppercase',
-          letterSpacing: '.08rem',
+          letterSpacing: '.1rem',
+          color: (theme.vars || theme).palette.text.tertiary,
         })}
       >
         {metadata}
@@ -402,7 +409,7 @@ export default function AppNavDrawer(props) {
               aria-label={t('goToHome')}
               sx={{
                 pr: '12px',
-                mr: '4px',
+                mr: '8px',
                 borderRight: '1px solid',
                 borderColor: 'divider',
               }}

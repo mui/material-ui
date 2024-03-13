@@ -15,7 +15,7 @@ import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 const Nav = styled('nav')(({ theme }) => ({
   top: 'var(--MuiDocs-header-height)',
   marginTop: 'var(--MuiDocs-header-height)',
-  paddingLeft: 2, // Fix truncated focus outline style
+  paddingLeft: 6, // Fix truncated focus outline style
   position: 'sticky',
   height: 'calc(100vh - var(--MuiDocs-header-height))',
   overflowY: 'auto',
@@ -34,8 +34,8 @@ const NavLabel = styled(Typography)(({ theme }) => ({
   fontSize: theme.typography.pxToRem(11),
   fontWeight: theme.typography.fontWeightBold,
   textTransform: 'uppercase',
-  letterSpacing: '.08rem',
-  color: theme.palette.grey[600],
+  letterSpacing: '.1rem',
+  color: (theme.vars || theme).palette.text.tertiary,
 }));
 
 const NavList = styled(Typography)({

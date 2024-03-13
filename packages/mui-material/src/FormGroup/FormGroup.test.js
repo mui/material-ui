@@ -27,6 +27,7 @@ describe('<FormGroup />', () => {
 
     expect(queryByTestId('test-children')).not.to.equal(null);
   });
+
   describe('with FormControl', () => {
     describe('error', () => {
       it(`should have the error class`, () => {
