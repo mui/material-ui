@@ -4,7 +4,6 @@ import * as React from 'react';
 interface RegisterItemReturnValue<Key> {
   /**
    * The id of the item.
-   * If the `id` was `undefined`, an id from the `missingKeyGenerator` will be used.
    */
   id: Key;
   /**
@@ -44,7 +43,9 @@ export const CompoundComponentContext = React.createContext<CompoundComponentCon
   any
 > | null>(null);
 
-CompoundComponentContext.displayName = 'CompoundComponentContext';
+if (process.env.NODE_ENV !== 'production') {
+  CompoundComponentContext.displayName = 'CompoundComponentContext';
+}
 
 export interface UseCompoundParentReturnValue<Key, Subitem extends { ref: React.RefObject<Node> }> {
   /**

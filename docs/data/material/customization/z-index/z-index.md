@@ -2,7 +2,7 @@
 
 <p class="description">z-index is the CSS property that helps control layout by providing a third axis to arrange content.</p>
 
-Several Material UI components utilize `z-index`, employing a default z-index scale
+Several Material UI components utilize `z-index`, employing a default z-index scale
 that has been designed to properly layer drawers, modals, snackbars, tooltips, and more.
 
 The `z-index` values start at an arbitrary number, high and specific enough to ideally avoid conflicts:

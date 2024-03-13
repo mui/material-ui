@@ -34,12 +34,16 @@ const StyledTabs = styled(Tabs)(({ theme }) => ({
     minHeight: 0,
     color: (theme.vars || theme).palette.grey[600],
     borderRadius: 20,
+    zIndex: 2,
     '&:hover': {
       color: (theme.vars || theme).palette.grey[800],
     },
     '&.Mui-selected': {
       color: (theme.vars || theme).palette.primary[500],
       fontWeight: theme.typography.fontWeightSemiBold,
+    },
+    '&.Mui-focusVisible': {
+      outline: 'none',
     },
   },
   '& .MuiTabs-indicator': {

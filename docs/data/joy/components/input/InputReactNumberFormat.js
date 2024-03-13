@@ -5,30 +5,29 @@ import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Input from '@mui/joy/Input';
 
-const NumericFormatAdapter = React.forwardRef(function NumericFormatAdapter(
-  props,
-  ref,
-) {
-  const { onChange, ...other } = props;
+const NumericFormatAdapter = React.forwardRef(
+  function NumericFormatAdapter(props, ref) {
+    const { onChange, ...other } = props;
 
-  return (
-    <NumericFormat
-      {...other}
-      getInputRef={ref}
-      onValueChange={(values) => {
-        onChange({
-          target: {
-            name: props.name,
-            value: values.value,
-          },
-        });
-      }}
-      thousandSeparator
-      valueIsNumericString
-      prefix="$"
-    />
-  );
-});
+    return (
+      <NumericFormat
+        {...other}
+        getInputRef={ref}
+        onValueChange={(values) => {
+          onChange({
+            target: {
+              name: props.name,
+              value: values.value,
+            },
+          });
+        }}
+        thousandSeparator
+        valueIsNumericString
+        prefix="$"
+      />
+    );
+  },
+);
 
 NumericFormatAdapter.propTypes = {
   name: PropTypes.string.isRequired,

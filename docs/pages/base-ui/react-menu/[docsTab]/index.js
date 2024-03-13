@@ -1,7 +1,7 @@
 import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
-import * as pageProps from 'docs/data/base/components/menu/menu.md?@mui/markdown';
+import * as pageProps from 'docs/data/base/components/menu/menu.md?muiMarkdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
 import DropdownApiJsonPageContent from '../../api/dropdown.json';
 import MenuApiJsonPageContent from '../../api/menu.json';

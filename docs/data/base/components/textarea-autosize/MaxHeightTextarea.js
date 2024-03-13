@@ -27,6 +27,7 @@ export default function MaxHeightTextarea() {
 
   const Textarea = styled(BaseTextareaAutosize)(
     ({ theme }) => `
+    box-sizing: border-box;
     width: 320px;
     font-family: 'IBM Plex Sans', sans-serif;
     font-size: 0.875rem;

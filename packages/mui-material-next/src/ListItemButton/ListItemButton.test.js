@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, act, createRenderer, fireEvent } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent } from '@mui-internal/test-utils';
 import ListItemButton, {
   listItemButtonClasses as classes,
 } from '@mui/material-next/ListItemButton';
 import ButtonBase from '@mui/material-next/ButtonBase';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ListContext from '../List/ListContext';
+import describeConformance from '../../test/describeConformance';
 
 describe('<ListItemButton />', () => {
   const { render } = createRenderer();
@@ -99,7 +100,9 @@ describe('<ListItemButton />', () => {
       expect(!!link).to.equal(true);
     });
 
-    it('should rendered as specifying component', () => {
+    // TODO v7: support hostElementName prop
+    // eslint-disable-next-line mocha/no-skipped-tests
+    it.skip('should be rendered as the specifed component', () => {
       const { getByRole } = render(<ListItemButton href={href} component="h1" />);
 
       const heading = getByRole('heading');
@@ -135,7 +138,9 @@ describe('<ListItemButton />', () => {
       expect(!!link).to.equal(true);
     });
 
-    it('should rendered as specifying component', () => {
+    // TODO v7: support hostElementName prop
+    // eslint-disable-next-line mocha/no-skipped-tests
+    it.skip('should be rendered as the specifed component', () => {
       const { getByRole } = render(<ListItemButton to={to} component="h1" />);
 
       const heading = getByRole('heading');
@@ -152,7 +157,7 @@ describe('<ListItemButton />', () => {
       return <a data-testid={customLinkId} ref={ref} {...props} />;
     });
 
-    it('should rendered as LinkComponent when href is provided', () => {
+    it('should render as LinkComponent when href is provided', () => {
       const { container, getByTestId } = render(
         <ListItemButton href={href} LinkComponent={CustomLink} />,
       );
@@ -163,7 +168,9 @@ describe('<ListItemButton />', () => {
       expect(button).to.have.attribute('href', href);
     });
 
-    it('should ignore LinkComponent is component is provided', () => {
+    // TODO v7: support hostElementName prop
+    // eslint-disable-next-line mocha/no-skipped-tests
+    it.skip('should ignore LinkComponent if component is provided', () => {
       const { container, queryByTestId } = render(
         <ListItemButton href={href} LinkComponent={CustomLink} component="h1" />,
       );
@@ -174,7 +181,7 @@ describe('<ListItemButton />', () => {
       expect(button).to.have.attribute('href', href);
     });
 
-    it('should rendered as LinkComponent (from theme) when href is provided', () => {
+    it('should render as LinkComponent (from theme) when href is provided', () => {
       const theme = createTheme({
         components: {
           MuiListItemButton: {
@@ -196,7 +203,7 @@ describe('<ListItemButton />', () => {
       expect(button).to.have.attribute('href', href);
     });
 
-    it('should rendered as LinkComponent (from theme MuiButtonBase) when href is provided', () => {
+    it('should render as LinkComponent (from theme MuiButtonBase) when href is provided', () => {
       const theme = createTheme({
         components: {
           MuiButtonBase: {

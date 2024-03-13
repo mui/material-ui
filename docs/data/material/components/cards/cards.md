@@ -15,7 +15,7 @@ materialDesign: https://m2.material.io/components/cards
 ## Introduction
 
 Cards are surfaces that display content and actions on a single topic.
-The Material UI Card component includes several complementary utility components to handle various use cases:
+The Material UI Card component includes several complementary utility components to handle various use cases:
 
 - Card: a surface-level container for grouping related components.
 - Card Content: the wrapper for the Card content.
@@ -81,4 +81,4 @@ Here's an example of a media control card.
 
 {{"demo": "MediaControlCard.js", "bg": true}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/card/).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/card-introduction--docs).

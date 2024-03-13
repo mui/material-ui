@@ -1,4 +1,4 @@
-# Material UI - Create React App example with styled-components
+# Material UI - Create React App example with styled-components
 
 ## How to use
 
@@ -24,13 +24,13 @@ npm start
 
 Note that CodeSandbox is not supporting react-app-rewired, yet you can [still see the code](https://codesandbox.io/p/sandbox/github/mui/material-ui/tree/master/examples/material-ui-cra-styled-components).
 
-The following link leverages this demo: https://mui.com/guides/interoperability/#change-the-default-styled-engine with Parcel's alias feature within the `package.json`.
+The following link leverages this demo: https://mui.com/material-ui/integrations/interoperability/#change-the-default-styled-engine with Parcel's alias feature within the `package.json`.
 
 [![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/styled-components-interoperability-w9z9d)
 
 ## The idea behind the example
 
-This example demonstrates how to set up Material UI with [Create React App](https://github.com/facebookincubator/create-react-app), using [styled-components](https://styled-components.com/) as a style engine for your application.
+This example demonstrates how to set up Material UI with [Create React App](https://github.com/facebookincubator/create-react-app), using [styled-components](https://styled-components.com/) as a style engine for your application.
 
 ## Versions compatibility
 

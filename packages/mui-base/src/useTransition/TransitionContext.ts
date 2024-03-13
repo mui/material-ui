@@ -6,21 +6,9 @@ export type TransitionContextValue = {
    */
   requestedEnter: boolean;
   /**
-   * Callback to be called when the element has started exiting.
-   */
-  onExiting: () => void;
-  /**
    * Callback to be called when the element has completely exited.
    */
   onExited: () => void;
-  /**
-   * Callback to be called when the element has started entering.
-   */
-  onEntering: () => void;
-  /**
-   * Callback to be called when the element has completely entered.
-   */
-  onEntered: () => void;
   /**
    * Registers a child transition.
    * This is used to notify the parent `useTransitionTrigger` hook that a child transition exists
@@ -32,3 +20,7 @@ export type TransitionContextValue = {
 };
 
 export const TransitionContext = React.createContext<TransitionContextValue | null>(null);
+
+if (process.env.NODE_ENV !== 'production') {
+  TransitionContext.displayName = 'TransitionContext';
+}

@@ -2,8 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { alpha } from '@mui/system';
+import composeClasses from '@mui/utils/composeClasses';
+import { alpha } from '@mui/system/colorManipulator';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getDividerUtilityClass } from './dividerClasses';
@@ -257,6 +257,7 @@ Divider.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the divider will have a lighter color.
    * @default false
+   * @deprecated Use <Divider sx={{ opacity: 0.6 }} /> (or any opacity or color) instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
    */
   light: PropTypes.bool,
   /**

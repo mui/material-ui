@@ -12,7 +12,7 @@ body:
   - type: textarea
     attributes:
       label: What's the problem?
-      description: Write a short paragraph or bulleted list to briefly explain what you're trying to do, what outcomes you're aiming for, and any other relevant details to help us understand the motivation behind this RFC.
+      description: Write a short paragraph or bulleted list to briefly explain what you're trying to do, what outcomes you're aiming for.
   - type: textarea
     attributes:
       label: What are the requirements?
@@ -20,8 +20,7 @@ body:
   - type: textarea
     attributes:
       label: What are our options?
-      description: |
-        Have you considered alternative options for achieving your desired outcome? It's not necessary to go into too much detail here, but it can help strengthen your main proposal.
+      description: What are the alternative options to achieve the desired outcome?
   - type: textarea
     attributes:
       label: Proposed solution
@@ -35,4 +34,4 @@ body:
   - type: textarea
     attributes:
       label: Resources and benchmarks
-      description: Attach any issues, PRs, links, documents, etc… that might be relevant to the RFC
+      description: Attach any issues, PRs, links, documents, etc… that might be relevant to the RFC.

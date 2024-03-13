@@ -478,7 +478,7 @@ export function useAutocomplete(props) {
     },
   );
 
-  const checkHighlightedOptionExists = () => {
+  const getPreviousHighlightedOptionIndex = () => {
     const isSameValue = (value1, value2) => {
       const label1 = value1 ? getOptionLabel(value1) : '';
       const label2 = value2 ? getOptionLabel(value2) : '';
@@ -498,16 +498,12 @@ export function useAutocomplete(props) {
       const previousHighlightedOption = previousProps.filteredOptions[highlightedIndexRef.current];
 
       if (previousHighlightedOption) {
-        const previousHighlightedOptionExists = filteredOptions.some((option) => {
+        return findIndex(filteredOptions, (option) => {
           return getOptionLabel(option) === getOptionLabel(previousHighlightedOption);
         });
-
-        if (previousHighlightedOptionExists) {
-          return true;
-        }
       }
     }
-    return false;
+    return -1;
   };
 
   const syncHighlightedIndex = React.useCallback(() => {
@@ -516,8 +512,10 @@ export function useAutocomplete(props) {
     }
 
     // Check if the previously highlighted option still exists in the updated filtered options list and if the value and inputValue haven't changed
-    // If it exists and the value and the inputValue haven't changed, return, otherwise continue execution
-    if (checkHighlightedOptionExists()) {
+    // If it exists and the value and the inputValue haven't changed, just update its index, otherwise continue execution
+    const previousHighlightedOptionIndex = getPreviousHighlightedOptionIndex();
+    if (previousHighlightedOptionIndex !== -1) {
+      highlightedIndexRef.current = previousHighlightedOptionIndex;
       return;
     }
 
@@ -905,6 +903,7 @@ export function useAutocomplete(props) {
           }
           break;
         case 'Backspace':
+          // Remove the value on the left of the "cursor"
           if (multiple && !readOnly && inputValue === '' && value.length > 0) {
             const index = focusedTag === -1 ? value.length - 1 : focusedTag;
             const newValue = value.slice();
@@ -915,6 +914,7 @@ export function useAutocomplete(props) {
           }
           break;
         case 'Delete':
+          // Remove the value on the right of the "cursor"
           if (multiple && !readOnly && inputValue === '' && value.length > 0 && focusedTag !== -1) {
             const index = focusedTag;
             const newValue = value.slice();

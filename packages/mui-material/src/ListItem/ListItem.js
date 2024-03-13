@@ -2,9 +2,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses, isHostComponent } from '@mui/base';
-import { chainPropTypes, elementTypeAcceptingRef } from '@mui/utils';
-import { alpha } from '@mui/system';
+import { isHostComponent } from '@mui/base/utils';
+import composeClasses from '@mui/utils/composeClasses';
+import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import { alpha } from '@mui/system/colorManipulator';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import ButtonBase from '../ButtonBase';
