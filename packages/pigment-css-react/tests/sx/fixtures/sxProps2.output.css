@@ -4,7 +4,7 @@
   border-radius: inherit;
   background-color: currentColor;
   opacity: 0.38;
-  font-size: 3rem;
+  font-size: var(--size-font-h1);
 }
 .sdbmcs3-1 {
   font-size: 3rem;

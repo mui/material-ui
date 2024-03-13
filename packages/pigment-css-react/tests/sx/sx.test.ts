@@ -1,7 +1,8 @@
 import path from 'node:path';
+import { extendTheme } from '@pigment-css/react/utils';
 import { runTransformation, expect } from '../testUtils';
 
-const theme = {
+const theme = extendTheme({
   palette: {
     primary: {
       main: 'red',
@@ -21,12 +22,7 @@ const theme = {
       },
     },
   },
-  applyStyles(mode: string, style: object) {
-    return {
-      [`@media (prefers-color-scheme: ${mode})`]: style,
-    };
-  },
-};
+});
 
 describe('Pigment CSS - sx prop', () => {
   it('sx prop with logical and conditional expressions', async () => {

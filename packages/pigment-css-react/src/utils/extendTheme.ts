@@ -6,7 +6,7 @@ import { prepareCssVars } from '@mui/system/cssVars';
 import type { SxConfig, SxProps } from '@mui/system/styleFunctionSx';
 import type { CSSObjectNoCallback as CSSObject } from '../base';
 
-export interface ThemeInput<ColorScheme extends string = string> {
+export interface ThemeInput<ColorScheme extends string = string> extends Record<string, any> {
   /**
    * The prefix to be used for the CSS variables.
    */
@@ -55,7 +55,7 @@ export interface ThemeInput<ColorScheme extends string = string> {
       string,
       {
         styleOverrides?: Record<string, any>;
-        defaultProps: Record<string, any>;
+        defaultProps?: Record<string, any>;
       }
     >
   >;
@@ -81,8 +81,8 @@ export type ExtendTheme<
       css: Record<string, string | number>;
       selector: string | Record<string, any>;
     };
-    unstable_sxConfig: SxConfig;
-    unstable_sx: (
+    unstable_sxConfig?: SxConfig;
+    unstable_sx?: (
       props: SxProps<
         Options['tokens'] & {
           vars: Options['tokens'];
@@ -91,7 +91,7 @@ export type ExtendTheme<
     ) => CSSObject;
   };
 
-export type Theme = ExtendTheme;
+export type Theme = Record<string, any>;
 
 /**
  * A utility to tell zero-runtime to generate CSS variables for the theme.
