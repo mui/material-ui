@@ -26,10 +26,7 @@ import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMappin
 import BrandingProvider from 'docs/src/BrandingProvider';
 import DemoToolbarRoot from 'docs/src/modules/components/DemoToolbarRoot';
 import { blue, blueDark, grey } from 'docs/src/modules/brandingTheme';
-import {
-  Tab as CodeTab,
-  TabList as CodeTabList,
-} from 'docs/src/modules/components/HighlightedCodeWithTabs';
+import { CodeTab, CodeTabList } from 'docs/src/modules/components/HighlightedCodeWithTabs';
 
 /**
  * Removes leading spaces (indentation) present in the `.tsx` previews
