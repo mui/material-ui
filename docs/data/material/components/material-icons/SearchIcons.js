@@ -486,7 +486,7 @@ export default function SearchIcons() {
   const [selectedIcon, setSelectedIcon] = useQueryParameterState('selected', '');
   const [query, setQuery] = useQueryParameterState('query', '');
   const [isPending, startUpdateSearchTransition] = React.useTransition();
-  const [minIcons, setMinIcons] = React.useState(49);
+  const [minIcons, setMinIcons] = React.useState(99);
 
   const handleOpenClick = React.useCallback(
     (event) => {
@@ -523,7 +523,7 @@ export default function SearchIcons() {
 
   React.useEffect(() => {
     startUpdateSearchTransition(() => updateSearchResults(query));
-    setMinIcons(49);
+    setMinIcons(99);
 
     return () => updateSearchResults.clear();
   }, [query, updateSearchResults]);
@@ -603,7 +603,7 @@ export default function SearchIcons() {
                 color="primary"
                 variant="outlined"
                 sx={{ mt: 'auto' }}
-                onClick={() => setMinIcons((m) => (m += 49))}
+                onClick={() => setMinIcons((m) => (m += 99))}
               >
                 View more
               </Button>
