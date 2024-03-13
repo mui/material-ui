@@ -4,9 +4,9 @@
 
 <!-- generated comparing v5.15.12..master -->
 
-_Mar 12, 2024_
+_Mar 13, 2024_
 
-A big thanks to the 15 contributors who made this release possible. Here are some highights ✨
+A big thanks to the 18 contributors who made this release possible. Here are some highights ✨
 
 - The Material UI free Checkout template got a design uplift (#41447) @zanivan
 
@@ -64,7 +64,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [pigment-css] Adjust the bit about CSS vars on the README (#41463) @danilo-leal
 - Finish brand name fixes #41438 @oliviertassinari
 - Remove noreferrer @oliviertassinari
-- Fix v4 docs <b> appearing in notifications (#41390) @peterwangsc
+- Fix v4 docs `<b>` appearing in notifications (#41390) @peterwangsc
 - Update GitHub project links (#41370) @danilo-leal
 
 ### Core
@@ -90,7 +90,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [examples] Add pigment-css-vite-ts starter example (#41196) @siriwatknp
 - [examples] Add pigment-css-nextjs-ts starter project (#41105) @siriwatknp
 
-All contributors of this release in alphabetical order: @alexfauquette, @brijeshb42, @CGNonofr, @cipherlogs, @danilo-leal, @Janpot, @michaeldfoley, @mnajdova, @oliviertassinari, @peterwangsc, @rakeshmusturi, @sai6855, @siriwatknp, @zanivan, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @alexfauquette, @anle9650, @brijeshb42, @CGNonofr, @cipherlogs, @danilo-leal, @jwithington, @Janpot, @michaeldfoley, @michaldudak, @mnajdova, @oliviertassinari, @peterwangsc, @rakeshmusturi, @sai6855, @siriwatknp, @zanivan, @ZeeshanTamboli
 
 ## v5.15.12
 
