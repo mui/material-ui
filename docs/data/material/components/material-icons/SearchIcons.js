@@ -51,7 +51,7 @@ import synonyms from './synonyms';
 
 const FlexSearchIndex = flexsearch.default.Index;
 
-const UPDATE_SEARCH_INDEX_WAIT_MS = 220;
+const UPDATE_SEARCH_INDEX_WAIT_MS = 150;
 
 // const mui = {
 //   ExitToApp,
@@ -130,50 +130,53 @@ const StyledSvgIcon = styled(SvgIcon)(({ theme }) => ({
   },
 }));
 
-const Icons = React.memo(function Icons(props) {
-  const { icons, handleOpenClick } = props;
+const Icons = React.memo(
+  function Icons(props) {
+    const { icons, handleOpenClick } = props;
 
-  const handleIconClick = (icon) => () => {
-    if (Math.random() < 0.1) {
-      window.gtag('event', 'material-icons', {
-        eventAction: 'click',
-        eventLabel: icon.name,
-      });
-      window.gtag('event', 'material-icons-theme', {
-        eventAction: 'click',
-        eventLabel: icon.theme,
-      });
-    }
-  };
+    const handleIconClick = (icon) => () => {
+      if (Math.random() < 0.1) {
+        window.gtag('event', 'material-icons', {
+          eventAction: 'click',
+          eventLabel: icon.name,
+        });
+        window.gtag('event', 'material-icons-theme', {
+          eventAction: 'click',
+          eventLabel: icon.theme,
+        });
+      }
+    };
 
-  const handleLabelClick = (event) => {
-    selectNode(event.currentTarget);
-  };
+    const handleLabelClick = (event) => {
+      selectNode(event.currentTarget);
+    };
 
-  return (
-    <div>
-      {icons.map((icon) => {
-        /* eslint-disable jsx-a11y/click-events-have-key-events */
-        return (
-          <StyledIcon key={icon.importName} onClick={handleIconClick(icon)}>
-            <StyledSvgIcon
-              component={icon.Component}
-              fontSize="large"
-              tabIndex={-1}
-              onClick={handleOpenClick}
-              title={icon.importName}
-            />
-            <div>
-              {/*  eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
-              <div onClick={handleLabelClick}>{icon.importName}</div>
-            </div>
-            {/* eslint-enable jsx-a11y/click-events-have-key-events */}
-          </StyledIcon>
-        );
-      })}
-    </div>
-  );
-});
+    return (
+      <div>
+        {icons.map((icon) => {
+          /* eslint-disable jsx-a11y/click-events-have-key-events */
+          return (
+            <StyledIcon key={icon.importName} onClick={handleIconClick(icon)}>
+              <StyledSvgIcon
+                component={icon.Component}
+                fontSize="large"
+                tabIndex={-1}
+                onClick={handleOpenClick}
+                title={icon.importName}
+              />
+              <div>
+                {/*  eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
+                <div onClick={handleLabelClick}>{icon.importName}</div>
+              </div>
+              {/* eslint-enable jsx-a11y/click-events-have-key-events */}
+            </StyledIcon>
+          );
+        })}
+      </div>
+    );
+  },
+  (prev, next) => prev.total === next.total,
+);
 
 Icons.propTypes = {
   handleOpenClick: PropTypes.func.isRequired,
@@ -479,13 +482,12 @@ function useLatest(value) {
   return value ?? latest.current;
 }
 
-
 export default function SearchIcons() {
   const [keys, setKeys] = React.useState(null);
   const [theme, setTheme] = useQueryParameterState('theme', 'All');
   const [selectedIcon, setSelectedIcon] = useQueryParameterState('selected', '');
   const [query, setQuery] = useQueryParameterState('query', '');
-  const [isPending, startUpdateSearchTransition] = React.useTransition();
+  const [_, startUpdateSearchTransition] = React.useTransition();
   const [minIcons, setMinIcons] = React.useState(99);
 
   const handleOpenClick = React.useCallback(
@@ -523,7 +525,9 @@ export default function SearchIcons() {
 
   React.useEffect(() => {
     startUpdateSearchTransition(() => updateSearchResults(query));
-    setMinIcons(99);
+    if (query === '') {
+      setMinIcons(99);
+    }
 
     return () => updateSearchResults.clear();
   }, [query, updateSearchResults]);
@@ -584,32 +588,27 @@ export default function SearchIcons() {
             inputProps={{ 'aria-label': 'search icons' }}
           />
         </Paper>
-        {query.length > 0 && (
-          <Typography variant="subtitle1" sx={{ mb: 1 }}>
-            {isPending
-              ? `loading...`
-              : `${formatNumber(totalNumIcons)} matching results`}
-          </Typography>
-        )}
-        {!isPending && (
-          <Stack spacing={4} sx={{ height: '100%' }}>
-            <Icons
-              icons={icons.slice(0, minIcons)}
-              handleOpenClick={handleOpenClick}
-            />
-            {totalNumIcons > minIcons && (
-              <Button
-                size="small"
-                color="primary"
-                variant="outlined"
-                sx={{ mt: 'auto' }}
-                onClick={() => setMinIcons((m) => (m += 99))}
-              >
-                View more
-              </Button>
-            )}
-          </Stack>
-        )}
+        <Typography variant="subtitle1" sx={{ mb: 1 }}>
+          {`${formatNumber(totalNumIcons)} matching results`}
+        </Typography>
+        <Stack spacing={4} sx={{ height: '100%' }}>
+          <Icons
+            icons={icons.slice(0, minIcons)}
+            handleOpenClick={handleOpenClick}
+            total={totalNumIcons}
+          />
+          {totalNumIcons > minIcons && (
+            <Button
+              size="small"
+              color="primary"
+              variant="outlined"
+              sx={{ mt: 'auto' }}
+              onClick={() => setMinIcons((m) => (m += 99))}
+            >
+              View more
+            </Button>
+          )}
+        </Stack>
       </Grid>
       <DialogDetails
         open={!!selectedIcon}
