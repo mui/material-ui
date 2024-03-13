@@ -5,14 +5,15 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import Collapse from '../Collapse';
 import Paper from '../Paper';
 import AccordionContext from './AccordionContext';
 import useControlled from '../utils/useControlled';
 import useSlot from '../utils/useSlot';
 import accordionClasses, { getAccordionUtilityClass } from './accordionClasses';
+
+const useThemeProps = createUseThemeProps('MuiAccordion');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, square, expanded, disabled, disableGutters } = ownerState;
@@ -91,28 +92,36 @@ const AccordionRoot = styled(Paper, {
       },
     };
   },
-  ({ theme, ownerState }) => ({
-    ...(!ownerState.square && {
-      borderRadius: 0,
-      '&:first-of-type': {
-        borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
-        borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
-      },
-      '&:last-of-type': {
-        borderBottomLeftRadius: (theme.vars || theme).shape.borderRadius,
-        borderBottomRightRadius: (theme.vars || theme).shape.borderRadius,
-        // Fix a rendering issue on Edge
-        '@supports (-ms-ime-align: auto)': {
-          borderBottomLeftRadius: 0,
-          borderBottomRightRadius: 0,
+  ({ theme }) => ({
+    variants: [
+      {
+        props: (props) => !props.square,
+        style: {
+          borderRadius: 0,
+          '&:first-of-type': {
+            borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
+            borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
+          },
+          '&:last-of-type': {
+            borderBottomLeftRadius: (theme.vars || theme).shape.borderRadius,
+            borderBottomRightRadius: (theme.vars || theme).shape.borderRadius,
+            // Fix a rendering issue on Edge
+            '@supports (-ms-ime-align: auto)': {
+              borderBottomLeftRadius: 0,
+              borderBottomRightRadius: 0,
+            },
+          },
         },
       },
-    }),
-    ...(!ownerState.disableGutters && {
-      [`&.${accordionClasses.expanded}`]: {
-        margin: '16px 0',
+      {
+        props: (props) => !props.disableGutters,
+        style: {
+          [`&.${accordionClasses.expanded}`]: {
+            margin: '16px 0',
+          },
+        },
       },
-    }),
+    ],
   }),
 );
 

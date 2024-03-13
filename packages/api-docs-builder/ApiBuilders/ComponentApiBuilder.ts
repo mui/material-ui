@@ -734,6 +734,10 @@ export default async function generateComponentApi(
     });
   }
 
+  if (!reactApi.props) {
+    reactApi.props = {};
+  }
+
   // Ignore what we might have generated in `annotateComponentDefinition`
   const annotatedDescriptionMatch = reactApi.description.match(/(Demos|API):\r?\n\r?\n/);
   if (annotatedDescriptionMatch !== null) {
@@ -747,6 +751,8 @@ export default async function generateComponentApi(
   reactApi.muiName = componentInfo.muiName;
   reactApi.apiPathname = componentInfo.apiPathname;
   reactApi.EOL = EOL;
+  reactApi.slots = [];
+  reactApi.classes = [];
   reactApi.demos = componentInfo.getDemos();
   if (reactApi.demos.length === 0) {
     throw new Error(
@@ -770,16 +776,18 @@ export default async function generateComponentApi(
     }
   }
 
-  const { slots, classes } = parseSlotsAndClasses({
-    typescriptProject: project,
-    projectSettings,
-    componentName: reactApi.name,
-    muiName: reactApi.muiName,
-    slotInterfaceName: componentInfo.slotInterfaceName,
-  });
+  if (!projectSettings.skipSlotsAndClasses) {
+    const { slots, classes } = parseSlotsAndClasses({
+      typescriptProject: project,
+      projectSettings,
+      componentName: reactApi.name,
+      muiName: reactApi.muiName,
+      slotInterfaceName: componentInfo.slotInterfaceName,
+    });
 
-  reactApi.slots = slots;
-  reactApi.classes = classes;
+    reactApi.slots = slots;
+    reactApi.classes = classes;
+  }
 
   attachPropsTable(reactApi, projectSettings.propsSettings);
   attachTranslations(reactApi, projectSettings.propsSettings);
