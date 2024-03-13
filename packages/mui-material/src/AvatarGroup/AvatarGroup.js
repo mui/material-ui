@@ -11,11 +11,6 @@ import avatarGroupClasses, { getAvatarGroupUtilityClass } from './avatarGroupCla
 
 const useThemeProps = createUseThemeProps('MuiAlert');
 
-const SPACINGS = {
-  small: -16,
-  medium: null,
-};
-
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
 
@@ -40,27 +35,21 @@ const AvatarGroupRoot = styled('div', {
   [`& .${avatarClasses.root}`]: {
     border: `2px solid ${(theme.vars || theme).palette.background.default}`,
     boxSizing: 'content-box',
-    '&:not(:first-of-type)': {
-      marginLeft: -8,
-    },
-    '&:last-child': {
-      marginLeft: 0,
-    },
   },
   variants: [
     {
       props: { spacing: 'small' },
       style: {
-        [`& .${avatarClasses.root}:not(:first-of-type)`]: {
-          marginLeft: `${SPACINGS.small}px`,
+        [`& .${avatarClasses.root}:not(:last-of-type)`]: {
+          marginLeft: -16,
         },
       },
     },
     {
       props: { spacing: 'medium' },
       style: {
-        [`& .${avatarClasses.root}:not(:first-of-type)`]: {
-          marginLeft: SPACINGS.medium ? `${SPACINGS.medium}px` : 0,
+        [`& .${avatarClasses.root}:not(:last-of-type)`]: {
+          marginLeft: -8,
         },
       },
     },
