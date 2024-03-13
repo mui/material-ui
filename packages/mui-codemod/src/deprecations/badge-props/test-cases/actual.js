@@ -1,17 +1,31 @@
 import { Badge } from '@mui/material';
 
-<Badge components={{ root: ComponentsRoot }} componentsProps={{ root: componentsProps }} />;
+<Badge components={{ root: ComponentsRoot }} componentsProps={{ root: componentsRootProps }} />;
 
 <Badge
-  slots={{ root: SlotsRoot, badge: SlotsBadge }}
-  components={{ root: ComponentsRoot, badge: ComponentsBadge }}
-  slotProps={{ root: slotsRootProps, badge: slotsBadgeProps }}
-  componentsProps={{ root: slotsRootProps, badge: slotsBadgeProps }}
+  slots={{ badge: SlotsBadge }}
+  components={{ root: ComponentsRoot }}
+  slotProps={{ badge: slotsBadgeProps }}
+  componentsProps={{ root: ComponentsRootProps }}
 />;
 
 <Badge
   slots={{ root: SlotsRoot, badge: SlotsBadge }}
-  components={{ root: ComponentsRoot, badge: ComponentsBadge }}
-  slotsProps={{ root: slotsRootProps, badge: slotsBadgeProps }}
-  componentsProps={{ root: slotsRootProps, badge: slotsBadgeProps }}
+  components={{ root: ComponentsRoot }}
+  slotProps={{ root: slotsRootProps, badge: slotsBadgeProps }}
+  componentsProps={{ root: ComponentsRootProps }}
+/>;
+
+<Badge
+  slots={{ root: SlotsRoot, badge: SlotsBadge }}
+  components={{ root: ComponentsRoot }}
+  slotProps={{ root: slotsRootProps, badge: slotsBadgeProps }}
+  componentsProps={{ root: componentsRootProps }}
+/>;
+
+<Badge
+  slots={{ root: SlotsRoot, badge: SlotsBadge }}
+  components={{ root: ComponentsRoot }}
+  slotProps={{ root: slotsRootProps, badge: slotsBadgeProps }}
+  componentsProps={{ root: componentsRootProps, badge: componentsBadgeProps }}
 />;
