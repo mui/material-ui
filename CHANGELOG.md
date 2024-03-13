@@ -1,5 +1,97 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.15.13
+
+<!-- generated comparing v5.15.12..master -->
+
+_Mar 12, 2024_
+
+A big thanks to the 15 contributors who made this release possible. Here are some highights ✨
+
+- The Material UI free Checkout template got a design uplift (#41447) @zanivan
+
+### `@mui/material@5.15.13`
+
+- [Alert] Add `slots` and `slotProps` type to theme (#41324) @sai6855
+- [Autocomplete] Fix the options list being added to the DOM in `freeSolo` mode even when there are no options, causing style problems (#41300) @rakeshmusturi
+- Add `paperChannel` token (#41447) @siriwatknp
+- [Switch] Convert to support CSS extraction (#41367) @alexfauquette
+- [Tooltip] Support event handlers with extra parameters (#41320) @LukasTy
+
+### `@mui/system@5.15.13`
+
+- [RtlProvider] Add component & hook (#41241) @mnajdova
+
+### `@mui/utils@5.15.13`
+
+- [utils] Fix visually hidden styles' margin unit (#41477) @michaldudak
+
+### `@mui/codemod@5.15.13`
+
+- Fix merging of slotProps and componentProps (#41323) @sai6855
+
+### `@mui/base@5.0.0-beta.39`
+
+- [material-ui][joy-ui][Autocomplete] Keep in sync highlighted index when the option still exists (#41306) @CGNonofr
+- [FormControl] Export `FormControlOwnerState` type from index (#41287) @michaeldfoley
+- [material-ui][TextareaAutosize] Fix inline style not getting applied (#41369) @ZeeshanTamboli
+
+### `@pigment-css/react@0.0.2`
+
+- Handle more scenarios while transforming sx prop (#41372) @brijeshb42
+- Improve testing of fixtures (#41389) @brijeshb42
+- Fix `keyframes` serialize styles error (#41395) @siriwatknp
+- Use class selector instead of class value (#41442) @brijeshb42
+- [next] Warn about unsupported turbo mode in Next.js (#41445) @brijeshb42
+
+### Docs
+
+- [material-ui] Refine checkout template (#40967) @zanivan
+- [material-ui] Add docs for complementary List components (#41329) @anle9650
+- [material-ui] Add docs for complementary Dialog components (#41313) @jwithington
+- [material-ui] Fix Templates live preview link (#41467) @danilo-leal
+- [material-ui] Polish out the templates page (#41468) @zanivan
+- [material-ui] Adjust the Templates card design (#41450) @danilo-leal
+- [joy-ui] Remove unnecessary styles in color inversion footer demo (#41419) @cipherlogs
+- [joy-ui] Update case studies chip background color (#41413) @cipherlogs
+- [joy-ui] Remove wrong CSS prop from the Sign-in-side template (#41383) @cipherlogs
+- [joy-ui] Fix broken link on the Color Inversion page (#41407) @cipherlogs
+- [pigment] Add example and guide section (#41249) @siriwatknp
+- [pigment-css] Brand name nonbreaking space (#41438) @oliviertassinari
+- [pigment-css] Fix import on the README (#41411) @danilo-leal
+- [pigment-css] Edit starter template links on README (#41409) @danilo-leal
+- [pigment-css] Tweak the examples and edit READMEs (#41408) @danilo-leal
+- [pigment-css] Adjust the bit about CSS vars on the README (#41463) @danilo-leal
+- Finish brand name fixes #41438 @oliviertassinari
+- Remove noreferrer @oliviertassinari
+- Fix v4 docs <b> appearing in notifications (#41390) @peterwangsc
+- Update GitHub project links (#41370) @danilo-leal
+
+### Core
+
+- [pigment] Make all Pigment CSS packages public (#41404) @brijeshb42
+- [pigment] Rename directories to match package names (#41453) @brijeshb42
+- [pigment-css] Example fix leading spaces (#41439) @oliviertassinari
+- [code-infra] Add short note about e2e-website workflow schedule (#41355) @Janpot
+- [code-infra] Add alias for icon types (#41248) @Janpot
+- [code-infra] Reduce concurrency of typescript:ci further (#41392) @Janpot
+- [code-infra] Reduce concurrency for test_types ci job (#41385) @Janpot
+- [code-infra] Adapt API code generator to Base UI repo needs (#41475) @michaldudak
+- [docs-infra] Don't generate preview files for the templates (#41379) @mnajdova
+- [docs-infra] Fix pigment css apps path in the render mui demos script (#41476) @mnajdova
+- [docs-infra] move feedback to ESM (#41381) @alexfauquette
+- [docs-infra] Improve color contrast throughout (#41387) @danilo-leal
+- [docs-infra] Simplify Algolia crawler config (#41312) @oliviertassinari
+- [docs-infra] Adjust the tabs and layout selection design (#41084) @danilo-leal
+- [blog] Update the Base UI post with links to dedicated repo (#41358) @danilo-leal
+- [website] Update the Careers page role (#41384) @danilo-leal
+- [website] Compress about images @oliviertassinari
+- [website] Improve color contrast on the homepage (#41465) @danilo-leal
+- [examples] Add pigment-css-vite-ts starter example (#41196) @siriwatknp
+- [examples] Add pigment-css-nextjs-ts starter project (#41105) @siriwatknp
+
+All contributors of this release in alphabetical order: @alexfauquette, @brijeshb42, @CGNonofr, @cipherlogs, @danilo-leal, @Janpot, @michaeldfoley, @mnajdova, @oliviertassinari, @peterwangsc, @rakeshmusturi, @sai6855, @siriwatknp, @zanivan, @ZeeshanTamboli
+
 ## v5.15.12
 
 <!-- generated comparing v5.15.11..master -->
@@ -8,6 +100,10 @@ _Mar 5, 2024_
 
 A big thanks to the 21 contributors who made this release possible.
 This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@pigment-css/react@0.0.1`, `@pigment-css/nextjs-plugin@0.0.1`, `@pigment-css/vite-plugin@0.0.1`, & `@pigment-css/unplugin@0.0.1`
+
+- This is the first public release of our new zero-runtime CSS-in-JS library, Pigment CSS.
 
 ### `@mui/material@5.15.12`
 
