@@ -51,7 +51,7 @@ import synonyms from './synonyms';
 
 const FlexSearchIndex = flexsearch.default.Index;
 
-const UPDATE_SEARCH_INDEX_WAIT_MS = 220;
+const UPDATE_SEARCH_INDEX_WAIT_MS = 50;
 
 // const mui = {
 //   ExitToApp,
@@ -485,6 +485,7 @@ function useLatest(value) {
 
 export default function SearchIcons() {
   const [keys, setKeys] = React.useState(null);
+  const defferedKeys = React.useDeferredValue(keys);
   const [theme, setTheme] = useQueryParameterState('theme', 'All');
   const [selectedIcon, setSelectedIcon] = useQueryParameterState('selected', '');
   const [query, setQuery] = useQueryParameterState('query', '');
@@ -535,10 +536,11 @@ export default function SearchIcons() {
 
   const icons = React.useMemo(
     () =>
-      (keys === null ? allIcons : keys.map((key) => allIconsMap[key])).filter(
-        (icon) => theme === 'All' || theme === icon.theme,
-      ),
-    [theme, keys],
+      (defferedKeys === null
+        ? allIcons
+        : defferedKeys.map((key) => allIconsMap[key])
+      ).filter((icon) => theme === 'All' || theme === icon.theme),
+    [theme, defferedKeys],
   );
 
   const totalNumIcons = icons.length;
