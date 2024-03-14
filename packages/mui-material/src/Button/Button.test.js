@@ -641,6 +641,12 @@ describe('<Button />', () => {
     expect(button).to.have.attribute('href', 'https://google.com');
   });
 
+  it('should render a button with target attribute', () => {
+    const { container } = render(<Button target="_blank">Hello</Button>);
+    const button = container.firstChild;
+    expect(button).to.have.attribute('target', '_blank');
+  });
+
   it('should forward classes to ButtonBase', () => {
     const disabledClassName = 'testDisabledClassName';
     const { container } = render(<Button disabled classes={{ disabled: disabledClassName }} />);

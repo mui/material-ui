@@ -60,11 +60,10 @@ export interface ButtonOwnProps {
    * If defined, an `a` element will be used as the root node.
    */
   href?: string;
-   /**
+  /**
    * The target for link when the button is clicked.
-   * @default '_blank'
    */
-  target?: string,
+  target?: string;
   /**
    * The size of the component.
    * `small` is equivalent to the dense button styling.
