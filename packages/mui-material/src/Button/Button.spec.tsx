@@ -57,6 +57,7 @@ const buttonTest = () => (
     <Button color="inherit">Contrast</Button>
     <Button disabled>Disabled</Button>
     <Button href="#link-button">Link</Button>
+    <Button target="_blank">Target</Button>
     <Button size="small">Small</Button>
     <Button variant="contained">Contained</Button>
     <Button variant="outlined" aria-label="add">
