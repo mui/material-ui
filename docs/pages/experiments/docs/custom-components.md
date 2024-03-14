@@ -1,6 +1,6 @@
-# Callouts
+# Custom components
 
-<p class="description">Type of callouts.</p>
+<p class="description">They're either custom markdown components or passed through directly via "components".</p>
 
 ## Header chips
 
