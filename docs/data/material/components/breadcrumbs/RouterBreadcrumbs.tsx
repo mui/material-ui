@@ -2,7 +2,8 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import Link, { LinkProps } from '@mui/material/Link';
-import ListItem, { ListItemProps } from '@mui/material/ListItem';
+import { ListItemProps } from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import Collapse from '@mui/material/Collapse';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
@@ -41,10 +42,10 @@ function ListItemLink(props: ListItemLinkProps) {
 
   return (
     <li>
-      <ListItem button component={RouterLink as any} to={to} {...other}>
+      <ListItemButton component={RouterLink as any} to={to} {...other}>
         <ListItemText primary={primary} />
         {icon}
-      </ListItem>
+      </ListItemButton>
     </li>
   );
 }
@@ -54,11 +55,11 @@ interface LinkRouterProps extends LinkProps {
   replace?: boolean;
 }
 
-const LinkRouter = (props: LinkRouterProps) => (
-  <Link {...props} component={RouterLink as any} />
-);
+function LinkRouter(props: LinkRouterProps) {
+  return <Link {...props} component={RouterLink as any} />;
+}
 
-const Page = () => {
+function Page() {
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
 
@@ -83,7 +84,7 @@ const Page = () => {
       })}
     </Breadcrumbs>
   );
-};
+}
 
 export default function RouterBreadcrumbs() {
   const [open, setOpen] = React.useState(true);

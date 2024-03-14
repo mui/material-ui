@@ -28,7 +28,7 @@ export default function IconBreadcrumbs() {
           underline="hover"
           sx={{ display: 'flex', alignItems: 'center' }}
           color="inherit"
-          href="/getting-started/installation/"
+          href="/material-ui/getting-started/installation/"
         >
           <WhatshotIcon sx={{ mr: 0.5 }} fontSize="inherit" />
           Core

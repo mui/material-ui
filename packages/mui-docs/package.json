@@ -1,6 +1,6 @@
 {
   "name": "@mui/docs",
-  "version": "5.4.4",
+  "version": "5.15.13",
   "private": false,
   "author": "MUI Team",
   "description": "MUI Docs - Documentation building blocks.",
@@ -23,33 +23,46 @@
   },
   "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-docs",
   "scripts": {
-    "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:copy-files",
-    "build:legacy": "node ../../scripts/build legacy",
+    "build": "pnpm build:legacy && pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
+    "build:legacy": "node ../../scripts/build.mjs legacy",
     "build:modern": "echo 'Skip modern build'",
-    "build:node": "node ../../scripts/build node",
-    "build:stable": "node ../../scripts/build stable",
-    "build:copy-files": "node ../../scripts/copy-files.js",
+    "build:node": "node ../../scripts/build.mjs node",
+    "build:stable": "node ../../scripts/build.mjs stable",
+    "build:types": "node ../../scripts/buildTypes.mjs",
+    "build:copy-files": "node ../../scripts/copyFiles.mjs ./src/translations/translations.json:./translations/translations.json",
     "prebuild": "rimraf build",
-    "release": "yarn build && npm publish build",
+    "release": "pnpm build && pnpm publish",
     "test": "exit 0"
   },
+  "dependencies": {
+    "@babel/runtime": "^7.23.9",
+    "@mui/base": "workspace:*",
+    "@mui/utils": "workspace:^",
+    "clsx": "^2.1.0",
+    "nprogress": "^0.2.0",
+    "prop-types": "^15.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.22",
+    "@types/prop-types": "^15.7.11",
+    "@types/react": "^18.2.55",
+    "next": "^13.5.1",
+    "react": "^18.2.0"
+  },
   "peerDependencies": {
-    "@mui/material": "^5.0.0",
-    "@types/react": "^16.8.6 || ^17.0.0",
-    "react": "^17.0.0"
+    "@mui/material": "workspace:^",
+    "@types/react": "^17.0.0 || ^18.0.0",
+    "next": "^13.5.1",
+    "react": "^17.0.0 || ^18.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
       "optional": true
     }
   },
-  "dependencies": {
-    "@babel/runtime": "^7.17.2",
-    "@mui/utils": "^5.4.4",
-    "nprogress": "^0.2.0"
-  },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "build"
   },
   "engines": {
     "node": ">=12.0.0"

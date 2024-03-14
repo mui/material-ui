@@ -64,13 +64,13 @@ const theme = {
 - input: `string`: the prop value is passed as raw CSS value.
 
 ```jsx
-<Box sx={{ m: "2rem" }} /> // margin: 2rem;
-<Box sx={{ mx: "auto" }} /> // margin-left: auto; margin-right: auto;
+<Box sx={{ m: '2rem' }} /> // margin: 2rem;
+<Box sx={{ mx: 'auto' }} /> // margin-left: auto; margin-right: auto;
 ```
 
 ## Example
 
-{{"demo": "Demo.js", "defaultCodeOpen": false, "bg": true}}
+{{"demo": "SpacingDemo.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box sx={{ p: 1 }}>…
@@ -86,7 +86,7 @@ However, you can also use `margin-left: auto;`, `margin-right: auto;`, and a wid
 {{"demo": "HorizontalCentering.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box sx={{ mx: "auto", width: 200 }}>…
+<Box sx={{ mx: 'auto', width: 200 }}>…
 ```
 
 ## API
@@ -95,22 +95,22 @@ However, you can also use `margin-left: auto;`, `margin-right: auto;`, and a wid
 import { spacing } from '@mui/system';
 ```
 
-| Import name | Prop | CSS property                    | Theme key                                                        |
-| :---------- | :--- | :------------------------------ | :--------------------------------------------------------------- |
-| `spacing`   | `m`  | `margin`                        | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`   | `mt` | `margin-top`                    | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`   | `mr` | `margin-right`                  | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`   | `mb` | `margin-bottom`                 | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`   | `ml` | `margin-left`                   | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`   | `mx` | `margin-left`, `margin-right`   | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`   | `my` | `margin-top`, `margin-bottom`   | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`   | `p`  | `padding`                       | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`   | `pt` | `padding-top`                   | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`   | `pr` | `padding-right`                 | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`   | `pb` | `padding-bottom`                | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`   | `pl` | `padding-left`                  | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`   | `px` | `padding-left`, `padding-right` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`   | `py` | `padding-top`, `padding-bottom` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| Import name | Prop | CSS property                    | Theme key                                                                    |
+| :---------- | :--- | :------------------------------ | :--------------------------------------------------------------------------- |
+| `spacing`   | `m`  | `margin`                        | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`   | `mt` | `margin-top`                    | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`   | `mr` | `margin-right`                  | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`   | `mb` | `margin-bottom`                 | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`   | `ml` | `margin-left`                   | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`   | `mx` | `margin-left`, `margin-right`   | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`   | `my` | `margin-top`, `margin-bottom`   | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`   | `p`  | `padding`                       | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`   | `pt` | `padding-top`                   | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`   | `pr` | `padding-right`                 | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`   | `pb` | `padding-bottom`                | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`   | `pl` | `padding-left`                  | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`   | `px` | `padding-left`, `padding-right` | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`   | `py` | `padding-top`, `padding-bottom` | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
 
 _Some people find the prop shorthand confusing, you can use the full version if you prefer:_
 

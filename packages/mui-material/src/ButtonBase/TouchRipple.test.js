@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, act, createRenderer } from 'test/utils';
+import { act, createRenderer } from '@mui-internal/test-utils';
 import TouchRipple, { DELAY_RIPPLE } from './TouchRipple';
+import describeConformance from '../../test/describeConformance';
 
 const cb = () => {};
 
@@ -265,6 +266,12 @@ describe('<TouchRipple />', () => {
       // expect this to run gracefully without
       // "react state update on an unmounted component"
       clock.runAll();
+    });
+
+    it('should handle empty event.touches', () => {
+      const { instance } = renderTouchRipple();
+
+      expect(() => instance.start({ type: 'touchstart', touches: [] })).not.toErrorDev();
     });
   });
 });

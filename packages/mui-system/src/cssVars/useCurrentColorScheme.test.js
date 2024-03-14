@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, fireEvent, act, screen } from 'test/utils';
+import { createRenderer, fireEvent, act, screen } from '@mui-internal/test-utils';
 import {
   DEFAULT_MODE_STORAGE_KEY,
   DEFAULT_COLOR_SCHEME_STORAGE_KEY,
@@ -23,12 +23,14 @@ describe('useCurrentColorScheme', () => {
     },
     removeListener: () => {},
   });
+
   before(() => {
     originalAddEventListener = window.addEventListener;
     window.addEventListener = (key, handler) => {
       storageHandler[key] = handler;
     };
   });
+
   after(() => {
     window.addEventListener = originalAddEventListener;
   });
@@ -51,6 +53,7 @@ describe('useCurrentColorScheme', () => {
     storageHandler = {};
     window.matchMedia = createMatchMedia(false);
   });
+
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
   });
@@ -96,14 +99,14 @@ describe('useCurrentColorScheme', () => {
 
   describe('Client', () => {
     it('has default mode=`light`', () => {
-      const Data = () => {
+      function Data() {
         const data = useCurrentColorScheme({
           defaultLightColorScheme: 'light',
           defaultDarkColorScheme: 'dark',
           supportedColorSchemes: ['light', 'dark'],
         });
         return <div>{JSON.stringify(data)}</div>;
-      };
+      }
       const { container } = render(<Data />);
 
       expect(JSON.parse(container.firstChild.textContent)).to.deep.equal({
@@ -115,7 +118,7 @@ describe('useCurrentColorScheme', () => {
     });
 
     it('defaultMode=`dark`', () => {
-      const Data = () => {
+      function Data() {
         const data = useCurrentColorScheme({
           defaultMode: 'dark',
           defaultLightColorScheme: 'light',
@@ -123,7 +126,7 @@ describe('useCurrentColorScheme', () => {
           supportedColorSchemes: ['light', 'dark'],
         });
         return <div>{JSON.stringify(data)}</div>;
-      };
+      }
       const { container } = render(<Data />);
 
       expect(JSON.parse(container.firstChild.textContent)).to.deep.equal({
@@ -135,7 +138,7 @@ describe('useCurrentColorScheme', () => {
     });
 
     it('defaultMode=`system`', () => {
-      const Data = () => {
+      function Data() {
         const data = useCurrentColorScheme({
           defaultMode: 'system',
           defaultLightColorScheme: 'light',
@@ -143,7 +146,7 @@ describe('useCurrentColorScheme', () => {
           supportedColorSchemes: ['light', 'dark'],
         });
         return <div>{JSON.stringify(data)}</div>;
-      };
+      }
       const { container } = render(<Data />);
 
       expect(JSON.parse(container.firstChild.textContent)).to.deep.equal({
@@ -168,14 +171,14 @@ describe('useCurrentColorScheme', () => {
     });
 
     it('change to `dark` mode', () => {
-      const Data = () => {
+      function Data() {
         const { setMode, ...data } = useCurrentColorScheme({
           defaultLightColorScheme: 'light',
           defaultDarkColorScheme: 'dark',
           supportedColorSchemes: ['light', 'dark'],
         });
         return <button onClick={() => setMode('dark')}>{JSON.stringify(data)}</button>;
-      };
+      }
       const { container } = render(<Data />);
 
       fireEvent.click(container.firstChild);
@@ -190,14 +193,14 @@ describe('useCurrentColorScheme', () => {
 
     it('change to `system` mode', () => {
       window.matchMedia = createMatchMedia(true); // system matches 'prefers-color-scheme: dark'
-      const Data = () => {
+      function Data() {
         const { setMode, ...data } = useCurrentColorScheme({
           defaultLightColorScheme: 'light',
           defaultDarkColorScheme: 'dark',
           supportedColorSchemes: ['light', 'dark'],
         });
         return <button onClick={() => setMode('system')}>{JSON.stringify(data)}</button>;
-      };
+      }
       const { container } = render(<Data />);
 
       fireEvent.click(container.firstChild);
@@ -212,7 +215,7 @@ describe('useCurrentColorScheme', () => {
     });
 
     it('reset mode', () => {
-      const Data = () => {
+      function Data() {
         const { setMode, ...data } = useCurrentColorScheme({
           defaultLightColorScheme: 'light',
           defaultDarkColorScheme: 'dark',
@@ -225,7 +228,7 @@ describe('useCurrentColorScheme', () => {
             <button data-testid="reset" onClick={() => setMode(null)} />
           </div>
         );
-      };
+      }
       render(<Data />);
 
       fireEvent.click(screen.getByTestId('dark'));
@@ -241,14 +244,14 @@ describe('useCurrentColorScheme', () => {
     });
 
     it('change colorScheme when mode is `light` should change `lightColorScheme`', () => {
-      const Data = () => {
+      function Data() {
         const { setColorScheme, ...data } = useCurrentColorScheme({
           defaultLightColorScheme: 'light',
           defaultDarkColorScheme: 'dark',
           supportedColorSchemes: ['light', 'paper', 'dark'],
         });
         return <button onClick={() => setColorScheme('paper')}>{JSON.stringify(data)}</button>;
-      };
+      }
       const { container } = render(<Data />);
 
       fireEvent.click(container.firstChild);
@@ -263,7 +266,7 @@ describe('useCurrentColorScheme', () => {
 
     it('change colorScheme when mode is `system` should look at systemMode', () => {
       window.matchMedia = createMatchMedia(true); // system matches 'prefers-color-scheme: dark'
-      const Data = () => {
+      function Data() {
         const { setColorScheme, ...data } = useCurrentColorScheme({
           defaultMode: 'system',
           defaultLightColorScheme: 'light',
@@ -271,7 +274,7 @@ describe('useCurrentColorScheme', () => {
           supportedColorSchemes: ['light', 'paper', 'dark', 'dim'],
         });
         return <button onClick={() => setColorScheme('dim')}>{JSON.stringify(data)}</button>;
-      };
+      }
       const { container } = render(<Data />);
 
       fireEvent.click(container.firstChild);
@@ -286,7 +289,7 @@ describe('useCurrentColorScheme', () => {
     });
 
     it('change both light & dark color scheme at the same time', () => {
-      const Data = () => {
+      function Data() {
         const { setColorScheme, ...data } = useCurrentColorScheme({
           defaultMode: 'system',
           defaultLightColorScheme: 'light',
@@ -298,7 +301,7 @@ describe('useCurrentColorScheme', () => {
             {JSON.stringify(data)}
           </button>
         );
-      };
+      }
       const { container } = render(<Data />);
 
       fireEvent.click(container.firstChild);
@@ -324,8 +327,75 @@ describe('useCurrentColorScheme', () => {
       });
     });
 
+    it('change only the mode specified as key', () => {
+      function Data() {
+        const { setColorScheme, ...data } = useCurrentColorScheme({
+          defaultMode: 'light',
+          defaultLightColorScheme: 'light',
+          defaultDarkColorScheme: 'dark',
+          supportedColorSchemes: ['light', 'paper', 'dark', 'dim'],
+        });
+        return (
+          <div>
+            <div data-testid="data">{JSON.stringify(data)}</div>
+            <button onClick={() => setColorScheme('paper')}>first</button>
+            <button onClick={() => setColorScheme({ dark: 'dim' })}>second</button>
+          </div>
+        );
+      }
+      const { getByText, getByTestId } = render(<Data />);
+
+      fireEvent.click(getByText('first'));
+
+      expect(JSON.parse(getByTestId('data').textContent)).to.deep.equal({
+        mode: 'light',
+        lightColorScheme: 'paper',
+        darkColorScheme: 'dark',
+        colorScheme: 'paper',
+      });
+
+      fireEvent.click(getByText('second'));
+
+      expect(JSON.parse(getByTestId('data').textContent)).to.deep.equal({
+        mode: 'light',
+        lightColorScheme: 'paper',
+        darkColorScheme: 'dim',
+        colorScheme: 'paper',
+      });
+    });
+
+    it('able to setMode and setColorScheme in the same event', () => {
+      function Data() {
+        const { setColorScheme, setMode, ...data } = useCurrentColorScheme({
+          defaultLightColorScheme: 'light',
+          defaultDarkColorScheme: 'dark',
+          supportedColorSchemes: ['light', 'paper', 'dark', 'dim'],
+        });
+        return (
+          <button
+            onClick={() => {
+              setMode('dark');
+              setColorScheme({ light: 'paper', dark: 'dim' });
+            }}
+          >
+            {JSON.stringify(data)}
+          </button>
+        );
+      }
+      const { container } = render(<Data />);
+
+      fireEvent.click(container.firstChild);
+
+      expect(JSON.parse(container.firstChild.textContent)).to.deep.equal({
+        mode: 'dark',
+        lightColorScheme: 'paper',
+        darkColorScheme: 'dim',
+        colorScheme: 'dim',
+      });
+    });
+
     it('reset colorScheme', () => {
-      const Data = () => {
+      function Data() {
         const { setColorScheme, ...data } = useCurrentColorScheme({
           defaultLightColorScheme: 'light',
           defaultDarkColorScheme: 'dark',
@@ -338,7 +408,7 @@ describe('useCurrentColorScheme', () => {
             <button data-testid="reset" onClick={() => setColorScheme(null)} />
           </div>
         );
-      };
+      }
       render(<Data />);
 
       fireEvent.click(screen.getByTestId('dark'));
@@ -354,7 +424,7 @@ describe('useCurrentColorScheme', () => {
     });
 
     it('reset light & dark colorScheme', () => {
-      const Data = () => {
+      function Data() {
         const { setColorScheme, ...data } = useCurrentColorScheme({
           defaultLightColorScheme: 'light',
           defaultDarkColorScheme: 'dark',
@@ -373,7 +443,7 @@ describe('useCurrentColorScheme', () => {
             />
           </div>
         );
-      };
+      }
       render(<Data />);
 
       fireEvent.click(screen.getByTestId('dark'));
@@ -391,7 +461,7 @@ describe('useCurrentColorScheme', () => {
 
   describe('Storage', () => {
     it('save dark mode', () => {
-      const Data = () => {
+      function Data() {
         const { setMode, ...data } = useCurrentColorScheme({
           defaultLightColorScheme: 'light',
           defaultDarkColorScheme: 'dark',
@@ -406,18 +476,18 @@ describe('useCurrentColorScheme', () => {
             {JSON.stringify(data)}
           </button>
         );
-      };
+      }
       const { container } = render(<Data />);
 
       fireEvent.click(container.firstChild);
 
-      expect(global.localStorage.setItem.calledWith(DEFAULT_MODE_STORAGE_KEY, 'dark')).to.equal(
-        true,
-      );
+      expect(
+        global.localStorage.setItem.lastCall.calledWith(DEFAULT_MODE_STORAGE_KEY, 'dark'),
+      ).to.equal(true);
     });
 
     it('save system mode', () => {
-      const Data = () => {
+      function Data() {
         useCurrentColorScheme({
           defaultMode: 'system',
           defaultLightColorScheme: 'light',
@@ -425,7 +495,7 @@ describe('useCurrentColorScheme', () => {
           supportedColorSchemes: ['light', 'dark'],
         });
         return null;
-      };
+      }
       render(<Data />);
       expect(global.localStorage.setItem.calledWith(DEFAULT_MODE_STORAGE_KEY, 'system')).to.equal(
         true,
@@ -433,7 +503,7 @@ describe('useCurrentColorScheme', () => {
     });
 
     it('save lightColorScheme and darkColorScheme', () => {
-      const Data = () => {
+      function Data() {
         const { setMode, setColorScheme, ...data } = useCurrentColorScheme({
           defaultMode: 'system',
           defaultLightColorScheme: 'light',
@@ -450,7 +520,7 @@ describe('useCurrentColorScheme', () => {
             {JSON.stringify(data)}
           </button>
         );
-      };
+      }
       const { container } = render(<Data />);
 
       fireEvent.click(container.firstChild);
@@ -465,14 +535,14 @@ describe('useCurrentColorScheme', () => {
 
     it('use mode from localStorage if exists', () => {
       storage[DEFAULT_MODE_STORAGE_KEY] = 'dark';
-      const Data = () => {
+      function Data() {
         const { setMode, setColorScheme, ...data } = useCurrentColorScheme({
           defaultLightColorScheme: 'light',
           defaultDarkColorScheme: 'dark',
           supportedColorSchemes: ['light', 'dark'],
         });
         return <div>{JSON.stringify(data)}</div>;
-      };
+      }
       const { container } = render(<Data />);
 
       expect(JSON.parse(container.firstChild.textContent)).to.deep.equal({
@@ -486,14 +556,14 @@ describe('useCurrentColorScheme', () => {
     it('use mode & colorScheme from localStorage if exists', () => {
       storage[DEFAULT_MODE_STORAGE_KEY] = 'dark';
       storage[`${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-dark`] = 'dim';
-      const Data = () => {
+      function Data() {
         const { setMode, setColorScheme, ...data } = useCurrentColorScheme({
           defaultLightColorScheme: 'light',
           defaultDarkColorScheme: 'dark',
           supportedColorSchemes: ['light', 'dark', 'dim'],
         });
         return <div>{JSON.stringify(data)}</div>;
-      };
+      }
       const { container } = render(<Data />);
 
       expect(JSON.parse(container.firstChild.textContent)).to.deep.equal({
@@ -505,14 +575,14 @@ describe('useCurrentColorScheme', () => {
     });
 
     it('storage mode changes from `light` to `dark`', () => {
-      const Data = () => {
+      function Data() {
         const { ...data } = useCurrentColorScheme({
           defaultLightColorScheme: 'light',
           defaultDarkColorScheme: 'dark',
           supportedColorSchemes: ['light', 'dark'],
         });
         return <button>{JSON.stringify(data)}</button>;
-      };
+      }
       const { container } = render(<Data />);
 
       act(() => {
@@ -529,14 +599,14 @@ describe('useCurrentColorScheme', () => {
 
     it('storage mode changes from `light` to `auto`', () => {
       window.matchMedia = createMatchMedia(true); // system matches 'prefers-color-scheme: dark'
-      const Data = () => {
+      function Data() {
         const { ...data } = useCurrentColorScheme({
           defaultLightColorScheme: 'light',
           defaultDarkColorScheme: 'dark',
           supportedColorSchemes: ['light', 'dark'],
         });
         return <button>{JSON.stringify(data)}</button>;
-      };
+      }
       const { container } = render(<Data />);
 
       act(() => {
@@ -554,7 +624,7 @@ describe('useCurrentColorScheme', () => {
 
     it('storage mode is deleted', () => {
       storage[DEFAULT_MODE_STORAGE_KEY] = 'dark';
-      const Data = () => {
+      function Data() {
         const { ...data } = useCurrentColorScheme({
           defaultMode: 'system',
           defaultLightColorScheme: 'light',
@@ -562,7 +632,7 @@ describe('useCurrentColorScheme', () => {
           supportedColorSchemes: ['light', 'dark'],
         });
         return <button>{JSON.stringify(data)}</button>;
-      };
+      }
       const { container } = render(<Data />);
 
       act(() => {
@@ -579,7 +649,7 @@ describe('useCurrentColorScheme', () => {
     });
 
     it('storage lightColorScheme & darkColorScheme changes', () => {
-      const Data = () => {
+      function Data() {
         const { ...data } = useCurrentColorScheme({
           defaultMode: 'system',
           defaultLightColorScheme: 'light',
@@ -587,7 +657,7 @@ describe('useCurrentColorScheme', () => {
           supportedColorSchemes: ['light', 'dark', 'light-dim', 'dark-dim'],
         });
         return <button>{JSON.stringify(data)}</button>;
-      };
+      }
       const { container } = render(<Data />);
 
       act(() => {
@@ -623,6 +693,67 @@ describe('useCurrentColorScheme', () => {
         darkColorScheme: 'dark-dim',
         colorScheme: 'dark-dim',
       });
+    });
+
+    it('reset mode in storage', () => {
+      function Data() {
+        const { setMode } = useCurrentColorScheme({
+          defaultMode: 'system',
+          defaultLightColorScheme: 'light',
+          defaultDarkColorScheme: 'dark',
+          supportedColorSchemes: ['light', 'dark'],
+        });
+        return (
+          <div>
+            <button data-testid="dark" onClick={() => setMode('dark')} />
+            <button data-testid="reset" onClick={() => setMode(null)} />
+          </div>
+        );
+      }
+      render(<Data />);
+
+      fireEvent.click(screen.getByTestId('dark'));
+
+      fireEvent.click(screen.getByTestId('reset'));
+
+      expect(
+        global.localStorage.setItem.lastCall.calledWith(DEFAULT_MODE_STORAGE_KEY, 'system'),
+      ).to.equal(true);
+    });
+
+    it('reset color scheme in storage', () => {
+      function Data() {
+        const { setColorScheme } = useCurrentColorScheme({
+          defaultMode: 'system',
+          defaultLightColorScheme: 'light',
+          defaultDarkColorScheme: 'dark',
+          supportedColorSchemes: ['light', 'dark'],
+        });
+        return (
+          <div>
+            <button data-testid="dark" onClick={() => setColorScheme('dark')} />
+            <button data-testid="reset" onClick={() => setColorScheme(null)} />
+          </div>
+        );
+      }
+      render(<Data />);
+
+      fireEvent.click(screen.getByTestId('dark'));
+
+      global.localStorage.setItem.resetHistory();
+      expect(global.localStorage.setItem.callCount).to.equal(0); // reset the calls to neglect initial setItem in the assertion below
+
+      fireEvent.click(screen.getByTestId('reset'));
+
+      expect(
+        global.localStorage.setItem.calledWith(
+          `${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-light`,
+          'light',
+        ),
+      ).to.equal(true);
+      expect(
+        global.localStorage.setItem.calledWith(`${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-dark`, 'dark'),
+      ).to.equal(true);
     });
   });
 });

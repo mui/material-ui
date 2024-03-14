@@ -1,0 +1,157 @@
+{
+  "parameters": {
+    "areOptionsEqual": {
+      "type": {
+        "name": "(a: OptionValue, b: OptionValue) =&gt; boolean",
+        "description": "(a: OptionValue, b: OptionValue) =&gt; boolean"
+      }
+    },
+    "buttonRef": {
+      "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
+    },
+    "componentName": {
+      "type": { "name": "string", "description": "string" },
+      "default": "'useSelect'"
+    },
+    "defaultOpen": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
+    "defaultValue": {
+      "type": {
+        "name": "SelectValue&lt;OptionValue, Multiple&gt;",
+        "description": "SelectValue&lt;OptionValue, Multiple&gt;"
+      }
+    },
+    "disabled": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
+    "getOptionAsString": {
+      "type": {
+        "name": "(option: SelectOption&lt;OptionValue&gt;) =&gt; string",
+        "description": "(option: SelectOption&lt;OptionValue&gt;) =&gt; string"
+      },
+      "default": "defaultOptionStringifier"
+    },
+    "getSerializedValue": {
+      "type": {
+        "name": "(option: SelectValue&lt;SelectOption&lt;OptionValue&gt;, Multiple&gt;) =&gt; React.InputHTMLAttributes&lt;HTMLInputElement&gt;[&#39;value&#39;]",
+        "description": "(option: SelectValue&lt;SelectOption&lt;OptionValue&gt;, Multiple&gt;) =&gt; React.InputHTMLAttributes&lt;HTMLInputElement&gt;[&#39;value&#39;]"
+      }
+    },
+    "listboxId": { "type": { "name": "string", "description": "string" } },
+    "listboxRef": {
+      "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
+    },
+    "multiple": { "type": { "name": "Multiple", "description": "Multiple" }, "default": "false" },
+    "name": { "type": { "name": "string", "description": "string" } },
+    "onChange": {
+      "type": {
+        "name": "(event: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null, value: SelectValue&lt;OptionValue, Multiple&gt;) =&gt; void",
+        "description": "(event: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null, value: SelectValue&lt;OptionValue, Multiple&gt;) =&gt; void"
+      }
+    },
+    "onHighlightChange": {
+      "type": {
+        "name": "(event: React.MouseEvent&lt;Element, MouseEvent&gt; | React.KeyboardEvent&lt;Element&gt; | React.FocusEvent&lt;Element, Element&gt; | null, highlighted: OptionValue | null) =&gt; void",
+        "description": "(event: React.MouseEvent&lt;Element, MouseEvent&gt; | React.KeyboardEvent&lt;Element&gt; | React.FocusEvent&lt;Element, Element&gt; | null, highlighted: OptionValue | null) =&gt; void"
+      }
+    },
+    "onOpenChange": {
+      "type": { "name": "(open: boolean) =&gt; void", "description": "(open: boolean) =&gt; void" }
+    },
+    "open": { "type": { "name": "boolean", "description": "boolean" } },
+    "options": {
+      "type": {
+        "name": "ReadonlyArray&lt;SelectOptionDefinition&lt;OptionValue&gt;&gt;",
+        "description": "ReadonlyArray&lt;SelectOptionDefinition&lt;OptionValue&gt;&gt;"
+      }
+    },
+    "required": { "type": { "name": "boolean", "description": "boolean" } },
+    "value": {
+      "type": {
+        "name": "SelectValue&lt;OptionValue, Multiple&gt;",
+        "description": "SelectValue&lt;OptionValue, Multiple&gt;"
+      }
+    }
+  },
+  "returnValue": {
+    "buttonActive": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "buttonFocusVisible": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "required": true
+    },
+    "buttonRef": {
+      "type": {
+        "name": "React.RefCallback&lt;Element&gt; | null",
+        "description": "React.RefCallback&lt;Element&gt; | null"
+      },
+      "required": true
+    },
+    "contextValue": {
+      "type": {
+        "name": "SelectProviderValue&lt;Value&gt;",
+        "description": "SelectProviderValue&lt;Value&gt;"
+      },
+      "required": true
+    },
+    "disabled": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "dispatch": {
+      "type": {
+        "name": "(action: ListAction&lt;Value&gt; | SelectAction&lt;Value&gt;) =&gt; void",
+        "description": "(action: ListAction&lt;Value&gt; | SelectAction&lt;Value&gt;) =&gt; void"
+      },
+      "required": true
+    },
+    "getButtonProps": {
+      "type": {
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSelectButtonSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSelectButtonSlotProps&lt;ExternalProps&gt;"
+      },
+      "required": true
+    },
+    "getHiddenInputProps": {
+      "type": {
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSelectHiddenInputSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSelectHiddenInputSlotProps&lt;ExternalProps&gt;"
+      },
+      "required": true
+    },
+    "getListboxProps": {
+      "type": {
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSelectListboxSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSelectListboxSlotProps&lt;ExternalProps&gt;"
+      },
+      "required": true
+    },
+    "getOptionMetadata": {
+      "type": {
+        "name": "(optionValue: Value) =&gt; SelectOption&lt;Value&gt; | undefined",
+        "description": "(optionValue: Value) =&gt; SelectOption&lt;Value&gt; | undefined"
+      },
+      "required": true
+    },
+    "highlightedOption": {
+      "type": { "name": "Value | null", "description": "Value | null" },
+      "required": true
+    },
+    "listboxRef": {
+      "type": {
+        "name": "React.RefCallback&lt;Element&gt; | null",
+        "description": "React.RefCallback&lt;Element&gt; | null"
+      },
+      "required": true
+    },
+    "open": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "options": { "type": { "name": "Value[]", "description": "Value[]" }, "required": true },
+    "value": {
+      "type": {
+        "name": "SelectValue&lt;Value, Multiple&gt;",
+        "description": "SelectValue&lt;Value, Multiple&gt;"
+      },
+      "required": true
+    }
+  },
+  "name": "useSelect",
+  "filename": "/packages/mui-base/src/useSelect/useSelect.ts",
+  "imports": [
+    "import { useSelect } from '@mui/base/useSelect';",
+    "import { useSelect } from '@mui/base';"
+  ],
+  "demos": "<ul><li><a href=\"/base-ui/react-select/#hooks\">Select</a></li></ul>"
+}

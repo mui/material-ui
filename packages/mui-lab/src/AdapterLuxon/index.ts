@@ -1,1 +1,1 @@
-export { default } from '@date-io/luxon';
+export { default } from './AdapterLuxon';

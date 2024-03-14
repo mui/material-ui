@@ -1,5 +1,6 @@
-import Avatar from '@mui/joy/Avatar';
 import * as React from 'react';
+import { expectType } from '@mui/types';
+import Avatar, { AvatarOwnerState } from '@mui/joy/Avatar';
 
 <Avatar />;
 
@@ -7,14 +8,13 @@ import * as React from 'react';
 
 // `variant`
 <Avatar />;
-<Avatar variant="light" />;
+<Avatar variant="soft" />;
 <Avatar variant="outlined" />;
-<Avatar variant="contained" />;
+<Avatar variant="solid" />;
 
 // `color`
 <Avatar color="primary" />;
 <Avatar color="danger" />;
-<Avatar color="info" />;
 <Avatar color="success" />;
 <Avatar color="warning" />;
 <Avatar color="neutral" />;
@@ -32,3 +32,51 @@ import * as React from 'react';
 
 // @ts-expect-error there is no size `xl2`
 <Avatar size="xl2" />;
+
+<Avatar
+  slots={{
+    root: 'div',
+    img: 'div',
+    fallback: 'div',
+  }}
+/>;
+
+<Avatar
+  slotProps={{
+    root: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+    img: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+    fallback: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+  }}
+/>;
+
+<Avatar
+  slotProps={{
+    root: (ownerState) => {
+      expectType<AvatarOwnerState, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+    img: (ownerState) => {
+      expectType<AvatarOwnerState, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+    fallback: (ownerState) => {
+      expectType<AvatarOwnerState, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+  }}
+/>;

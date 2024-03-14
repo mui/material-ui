@@ -1,8 +1,9 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { integerPropType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import integerPropType from '@mui/utils/integerPropType';
+import composeClasses from '@mui/utils/composeClasses';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import { getStepperUtilityClass } from './stepperClasses';
@@ -52,6 +53,7 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
     alternativeLabel = false,
     children,
     className,
+    component = 'div',
     connector = defaultConnector,
     nonLinear = false,
     orientation = 'horizontal',
@@ -62,6 +64,7 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
     ...props,
     alternativeLabel,
     orientation,
+    component,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -82,6 +85,7 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
   return (
     <StepperContext.Provider value={contextValue}>
       <StepperRoot
+        as={component}
         ownerState={ownerState}
         className={clsx(classes.root, className)}
         ref={ref}
@@ -94,10 +98,10 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
 });
 
 Stepper.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Set the active step (zero based index).
    * Set to -1 to disable all the steps.
@@ -122,6 +126,11 @@ Stepper.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * An element to be placed between each step.
    * @default <StepConnector />

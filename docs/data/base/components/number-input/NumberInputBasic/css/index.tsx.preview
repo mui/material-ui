@@ -1,0 +1,13 @@
+<React.Fragment>
+  <BaseNumberInput
+    slotProps={{
+      root: { className: 'CustomNumberInput' },
+      input: { className: 'input' },
+      decrementButton: { className: 'btn decrement', children: '▾' },
+      incrementButton: { className: 'btn increment', children: '▴' },
+    }}
+    aria-label="Demo number input"
+    placeholder="Type a number…"
+  />
+  <Styles />
+</React.Fragment>

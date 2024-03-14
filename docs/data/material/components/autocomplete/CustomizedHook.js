@@ -1,9 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useAutocomplete } from '@mui/base/AutocompleteUnstyled';
+import { useAutocomplete } from '@mui/base/useAutocomplete';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';
+import { autocompleteClasses } from '@mui/material/Autocomplete';
 
 const Root = styled('div')(
   ({ theme }) => `
@@ -144,7 +145,7 @@ const Listbox = styled('ul')(
     }
   }
 
-  & li[data-focus='true'] {
+  & li.${autocompleteClasses.focused} {
     background-color: ${theme.palette.mode === 'dark' ? '#003b57' : '#e6f7ff'};
     cursor: pointer;
 
@@ -183,7 +184,6 @@ export default function CustomizedHook() {
           {value.map((option, index) => (
             <StyledTag label={option.title} {...getTagProps({ index })} />
           ))}
-
           <input {...getInputProps()} />
         </InputWrapper>
       </div>

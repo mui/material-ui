@@ -1,18 +1,19 @@
 ---
-title: Give your users more freedom with data grid row grouping
+title: Give your users more freedom with Data Grid row grouping
 description: The new row grouping feature gives your users more customization options for organizing their data.
 date: 2022-01-20T00:00:00.000Z
 authors: ['alexfauquette']
-tags: ['MUI X', 'News']
+tags: ['MUI X', 'Product']
+card: true
 ---
 
-After an incredible year fully focused on improving our data grid component, we are moving forward by launching the first feature of our new Premium plan: [row grouping](/components/data-grid/group-pivot/#row-grouping), released in [v5.3.0](https://github.com/mui/mui-x/releases/tag/v5.3.0).
+After an incredible year fully focused on improving our Data Grid component, we are moving forward by launching the first feature of our new Premium plan: [row grouping](/x/react-data-grid/row-grouping/), released in [v5.3.0](https://github.com/mui/mui-x/releases/tag/v5.3.0).
 
 Let's take a closer look at this feature.
 
 ## Navigate your data 🚢
 
-If you already use the Pro plan, you may be familiar with the [tree data](/components/data-grid/group-pivot/#tree-data) which allows your users to navigate in the hierarchy by opening and closing children of a row.
+If you already use the Pro plan, you may be familiar with the [tree data](/x/react-data-grid/tree-data/) which allows your users to navigate in the hierarchy by opening and closing children of a row.
 
 But not all data has a natural hierarchy, and your users might need to modify the order.
 
@@ -86,7 +87,7 @@ For example, the release date of a movie is interesting information, but groupin
 
 It is more interesting to group them by decade.
 
-For this purpose, the column definitions accept the property [`groupingValueGetter`](/components/data-grid/group-pivot/#using-groupingvaluegetter-for-complex-grouping-value).
+For this purpose, the column definitions accept the property [`groupingValueGetter`](/x/react-data-grid/row-grouping/#using-groupingvaluegetter-for-complex-grouping-value).
 
 Its signature is similar to `valueGetter` and it returns the grouping value associated with the column.
 
@@ -102,6 +103,6 @@ groupingValueGetter: ({ value }) => `${Math.floor(value.getFullYear() / 10)}0's`
 
 We hope you find this new feature useful. Please don't hesitate to open [issues](https://github.com/mui/mui-x/issues/new/choose) to share feedback, report bugs, or propose enhancements.
 
-More details about row grouping customization can be found in the [documentation](/components/data-grid/group-pivot/#disable-the-row-grouping).
+More details about row grouping customization can be found in the [documentation](/x/react-data-grid/row-grouping/#disable-the-row-grouping).
 
 For more information about our v5.3.0 release, visit the [changelog](https://github.com/mui/mui-x/releases/tag/v5.3.0).

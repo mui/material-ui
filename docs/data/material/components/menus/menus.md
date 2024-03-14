@@ -1,11 +1,11 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Menu component
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 githubLabel: 'component: menu'
-materialDesign: https://material.io/components/menus
-waiAria: https://www.w3.org/TR/wai-aria-practices/#menubutton
-unstyled: /base/react-menu/
+materialDesign: https://m2.material.io/components/menus
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
+unstyled: /base-ui/react-menu/
 ---
 
 # Menu
@@ -41,14 +41,14 @@ For the menu that has long list and long text, you can use the `dense` prop to r
 ## Selected menu
 
 If used for item selection, when opened, simple menus places the initial focus on the selected menu item.
-The currently selected menu item is set using the `selected` prop (from [ListItem](/api/list-item/)).
+The currently selected menu item is set using the `selected` prop (from [ListItem](/material-ui/api/list-item/)).
 To use a selected menu item without impacting the initial focus, set the `variant` prop to "menu".
 
 {{"demo": "SimpleListMenu.js"}}
 
 ## Positioned menu
 
-Because the `Menu` component uses the `Popover` component to position itself, you can use the same [positioning props](/components/popover/#anchor-playground) to position it.
+Because the `Menu` component uses the `Popover` component to position itself, you can use the same [positioning props](/material-ui/react-popover/#anchor-playground) to position it.
 For instance, you can display the menu on top of the anchor:
 
 {{"demo": "PositionedMenu.js"}}
@@ -72,14 +72,14 @@ The primary responsibility of the `MenuList` component is to handle the focus.
 ## Customization
 
 Here is an example of customizing the component.
-You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedMenus.js"}}
 
 The `MenuItem` is a wrapper around `ListItem` with some additional styles.
 You can use the same list composition features with the `MenuItem` component:
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/menu/).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/menu-introduction--docs).
 
 ## Max height menu
 
@@ -110,8 +110,11 @@ Here is an example of a context menu. (Right click to open.)
 
 For more advanced use cases you might be able to take advantage of:
 
-### PopupState helper
+### material-ui-popup-state
 
-There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of menu state for you in most cases.
+![stars](https://img.shields.io/github/stars/jcoreio/material-ui-popup-state?style=social&label=Star)
+![npm downloads](https://img.shields.io/npm/dm/material-ui-popup-state.svg)
+
+The package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of menu state for you in most cases.
 
 {{"demo": "MenuPopupState.js"}}

@@ -1,4 +1,6 @@
-import MuiError from '@mui/utils/macros/MuiError.macro';
+/* eslint-disable @typescript-eslint/naming-convention */
+import clamp from '@mui/utils/clamp';
+import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 
 /**
  * Returns a number whose value is limited to the given range.
@@ -7,14 +9,14 @@ import MuiError from '@mui/utils/macros/MuiError.macro';
  * @param {number} max The upper boundary of the output range
  * @returns {number} A number in the range [min, max]
  */
-function clamp(value, min = 0, max = 1) {
+function clampWrapper(value, min = 0, max = 1) {
   if (process.env.NODE_ENV !== 'production') {
     if (value < min || value > max) {
       console.error(`MUI: The value provided ${value} is out of range [${min}, ${max}].`);
     }
   }
 
-  return Math.min(Math.max(min, value), max);
+  return clamp(value, min, max);
 }
 
 /**
@@ -23,7 +25,7 @@ function clamp(value, min = 0, max = 1) {
  * @returns {string} A CSS rgb color string
  */
 export function hexToRgb(color) {
-  color = color.substr(1);
+  color = color.slice(1);
 
   const re = new RegExp(`.{1,${color.length >= 6 ? 2 : 1}}`, 'g');
   let colors = color.match(re);
@@ -50,7 +52,7 @@ function intToHex(int) {
  * Returns an object with the type and values of a color.
  *
  * Note: Does not support rgb % values.
- * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
+ * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()
  * @returns {object} - A MUI color object: {type: string, values: number[]}
  */
 export function decomposeColor(color) {
@@ -81,7 +83,7 @@ export function decomposeColor(color) {
     values = values.split(' ');
     colorSpace = values.shift();
     if (values.length === 4 && values[3].charAt(0) === '/') {
-      values[3] = values[3].substr(1);
+      values[3] = values[3].slice(1);
     }
     if (['srgb', 'display-p3', 'a98-rgb', 'prophoto-rgb', 'rec-2020'].indexOf(colorSpace) === -1) {
       throw new MuiError(
@@ -99,9 +101,33 @@ export function decomposeColor(color) {
 }
 
 /**
+ * Returns a channel created from the input color.
+ *
+ * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()
+ * @returns {string} - The channel for the color, that can be used in rgba or hsla colors
+ */
+export const colorChannel = (color) => {
+  const decomposedColor = decomposeColor(color);
+  return decomposedColor.values
+    .slice(0, 3)
+    .map((val, idx) => (decomposedColor.type.indexOf('hsl') !== -1 && idx !== 0 ? `${val}%` : val))
+    .join(' ');
+};
+export const private_safeColorChannel = (color, warning) => {
+  try {
+    return colorChannel(color);
+  } catch (error) {
+    if (warning && process.env.NODE_ENV !== 'production') {
+      console.warn(warning);
+    }
+    return color;
+  }
+};
+
+/**
  * Converts a color object with type and values to a string.
  * @param {object} color - Decomposed color
- * @param {string} color.type - One of: 'rgb', 'rgba', 'hsl', 'hsla'
+ * @param {string} color.type - One of: 'rgb', 'rgba', 'hsl', 'hsla', 'color'
  * @param {array} color.values - [n,n,n] or [n,n,n,n]
  * @returns {string} A CSS color string
  */
@@ -175,7 +201,10 @@ export function hslToRgb(color) {
 export function getLuminance(color) {
   color = decomposeColor(color);
 
-  let rgb = color.type === 'hsl' ? decomposeColor(hslToRgb(color)).values : color.values;
+  let rgb =
+    color.type === 'hsl' || color.type === 'hsla'
+      ? decomposeColor(hslToRgb(color)).values
+      : color.values;
   rgb = rgb.map((val) => {
     if (color.type !== 'color') {
       val /= 255; // normalized
@@ -210,7 +239,7 @@ export function getContrastRatio(foreground, background) {
  */
 export function alpha(color, value) {
   color = decomposeColor(color);
-  value = clamp(value);
+  value = clampWrapper(value);
 
   if (color.type === 'rgb' || color.type === 'hsl') {
     color.type += 'a';
@@ -223,6 +252,16 @@ export function alpha(color, value) {
 
   return recomposeColor(color);
 }
+export function private_safeAlpha(color, value, warning) {
+  try {
+    return alpha(color, value);
+  } catch (error) {
+    if (warning && process.env.NODE_ENV !== 'production') {
+      console.warn(warning);
+    }
+    return color;
+  }
+}
 
 /**
  * Darkens a color.
@@ -232,7 +271,7 @@ export function alpha(color, value) {
  */
 export function darken(color, coefficient) {
   color = decomposeColor(color);
-  coefficient = clamp(coefficient);
+  coefficient = clampWrapper(coefficient);
 
   if (color.type.indexOf('hsl') !== -1) {
     color.values[2] *= 1 - coefficient;
@@ -243,6 +282,16 @@ export function darken(color, coefficient) {
   }
   return recomposeColor(color);
 }
+export function private_safeDarken(color, coefficient, warning) {
+  try {
+    return darken(color, coefficient);
+  } catch (error) {
+    if (warning && process.env.NODE_ENV !== 'production') {
+      console.warn(warning);
+    }
+    return color;
+  }
+}
 
 /**
  * Lightens a color.
@@ -252,7 +301,7 @@ export function darken(color, coefficient) {
  */
 export function lighten(color, coefficient) {
   color = decomposeColor(color);
-  coefficient = clamp(coefficient);
+  coefficient = clampWrapper(coefficient);
 
   if (color.type.indexOf('hsl') !== -1) {
     color.values[2] += (100 - color.values[2]) * coefficient;
@@ -268,6 +317,16 @@ export function lighten(color, coefficient) {
 
   return recomposeColor(color);
 }
+export function private_safeLighten(color, coefficient, warning) {
+  try {
+    return lighten(color, coefficient);
+  } catch (error) {
+    if (warning && process.env.NODE_ENV !== 'production') {
+      console.warn(warning);
+    }
+    return color;
+  }
+}
 
 /**
  * Darken or lighten a color, depending on its luminance.
@@ -278,4 +337,41 @@ export function lighten(color, coefficient) {
  */
 export function emphasize(color, coefficient = 0.15) {
   return getLuminance(color) > 0.5 ? darken(color, coefficient) : lighten(color, coefficient);
+}
+export function private_safeEmphasize(color, coefficient, warning) {
+  try {
+    return private_safeEmphasize(color, coefficient);
+  } catch (error) {
+    if (warning && process.env.NODE_ENV !== 'production') {
+      console.warn(warning);
+    }
+    return color;
+  }
+}
+
+/**
+ * Blend a transparent overlay color with a background color, resulting in a single
+ * RGB color.
+ * @param {string} background - CSS color
+ * @param {string} overlay - CSS color
+ * @param {number} opacity - Opacity multiplier in the range 0 - 1
+ * @param {number} [gamma=1.0] - Gamma correction factor. For gamma-correct blending, 2.2 is usual.
+ */
+export function blend(background, overlay, opacity, gamma = 1.0) {
+  const blendChannel = (b, o) =>
+    Math.round((b ** (1 / gamma) * (1 - opacity) + o ** (1 / gamma) * opacity) ** gamma);
+
+  const backgroundColor = decomposeColor(background);
+  const overlayColor = decomposeColor(overlay);
+
+  const rgb = [
+    blendChannel(backgroundColor.values[0], overlayColor.values[0]),
+    blendChannel(backgroundColor.values[1], overlayColor.values[1]),
+    blendChannel(backgroundColor.values[2], overlayColor.values[2]),
+  ];
+
+  return recomposeColor({
+    type: 'rgb',
+    values: rgb,
+  });
 }

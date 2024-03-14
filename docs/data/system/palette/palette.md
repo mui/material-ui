@@ -40,7 +40,7 @@
 import { palette } from '@mui/system';
 ```
 
-| Import name | Prop      | CSS property      | Theme key                                                        |
-| :---------- | :-------- | :---------------- | :--------------------------------------------------------------- |
-| `color`     | `color`   | `color`           | [`palette`](/customization/default-theme/?expand-path=$.palette) |
-| `bgcolor`   | `bgcolor` | `backgroundColor` | [`palette`](/customization/default-theme/?expand-path=$.palette) |
+| Import name | Prop      | CSS property      | Theme key                                                                    |
+| :---------- | :-------- | :---------------- | :--------------------------------------------------------------------------- |
+| `color`     | `color`   | `color`           | [`palette`](/material-ui/customization/default-theme/?expand-path=$.palette) |
+| `bgcolor`   | `bgcolor` | `backgroundColor` | [`palette`](/material-ui/customization/default-theme/?expand-path=$.palette) |

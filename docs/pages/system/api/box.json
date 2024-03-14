@@ -1,0 +1,30 @@
+{
+  "props": {
+    "component": { "type": { "name": "elementType" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "Box",
+  "imports": ["import Box from '@mui/system/Box';", "import { Box } from '@mui/system';"],
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiBox-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiBox",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-system/src/Box/Box.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/joy-ui/react-box/\">Box (Joy UI)</a></li>\n<li><a href=\"/material-ui/react-box/\">Box (Material UI)</a></li>\n<li><a href=\"/system/react-box/\">Box (MUI System)</a></li></ul>",
+  "cssComponent": true
+}

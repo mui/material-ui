@@ -98,6 +98,13 @@ export interface Palette {
   augmentColor: (options: PaletteAugmentColorOptions) => PaletteColor;
 }
 
+export interface Channels {
+  mainChannel: string;
+  lightChannel: string;
+  darkChannel: string;
+  contrastTextChannel: string;
+}
+
 export type PartialTypeObject = { [P in keyof TypeObject]?: Partial<TypeObject[P]> };
 
 export interface PaletteOptions {

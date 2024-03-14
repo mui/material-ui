@@ -1,5 +1,5 @@
-const playwright = require('playwright');
 const path = require('path');
+const playwright = require('playwright');
 const webpack = require('webpack');
 
 const CI = Boolean(process.env.CI);
@@ -19,7 +19,7 @@ if (process.env.CIRCLECI) {
 
 const browserStack = {
   // |commits in PRs| >> |Merged commits|.
-  // Since we have limited ressources on BrowserStack we often time out on PRs.
+  // Since we have limited resources on BrowserStack we often time out on PRs.
   // However, BrowserStack rarely fails with a true-positive so we use it as a stop gap for release not merge.
   // But always enable it locally since people usually have to explicitly have to expose their BrowserStack access key anyway.
   enabled: !CI || !isPR || process.env.BROWSERSTACK_FORCE === 'true',
@@ -27,16 +27,17 @@ const browserStack = {
   accessKey: process.env.BROWSERSTACK_ACCESS_KEY,
   build,
   // https://github.com/browserstack/api#timeout300
-  timeout: 10 * 60, // Maximum time before a worker is terminated. Default 5 minutes.
+  timeout: 5 * 60, // Maximum time before a worker is terminated. Default 5 minutes.
 };
 
 process.env.CHROME_BIN = playwright.chromium.executablePath();
+process.env.FIREFOX_BIN = playwright.firefox.executablePath();
 
 // BrowserStack rate limit after 1600 calls every 5 minutes.
 // Per second, https://www.browserstack.com/docs/automate/api-reference/selenium/introduction#rest-api-projects
 const MAX_REQUEST_PER_SECOND_BROWSERSTACK = 1600 / (60 * 5);
 // Estimate the max number of concurrent karma builds
-// For each PR, 6 concurrent builds are used, only one is usng BrowserStack.
+// For each PR, 6 concurrent builds are used, only one is using BrowserStack.
 const AVERAGE_KARMA_BUILD = 1 / 6;
 // CircleCI accepts up to 83 concurrent builds.
 const MAX_CIRCLE_CI_CONCURRENCY = 83;
@@ -45,7 +46,7 @@ const MAX_CIRCLE_CI_CONCURRENCY = 83;
 module.exports = function setKarmaConfig(config) {
   const baseConfig = {
     basePath: '../',
-    browsers: ['chromeHeadless'],
+    browsers: ['chromeHeadless', 'FirefoxHeadless'],
     browserDisconnectTimeout: 3 * 60 * 1000, // default 2000
     browserDisconnectTolerance: 1, // default 0
     browserNoActivityTimeout: 3 * 60 * 1000, // default 30000
@@ -83,6 +84,7 @@ module.exports = function setKarmaConfig(config) {
       'karma-coverage-istanbul-reporter',
       'karma-sourcemap-loader',
       'karma-webpack',
+      'karma-firefox-launcher',
     ],
     /**
      * possible values:
@@ -124,18 +126,58 @@ module.exports = function setKarmaConfig(config) {
       module: {
         rules: [
           {
-            test: /\.(js|ts|tsx)$/,
+            test: /\.(js|mjs|ts|tsx)$/,
             loader: 'babel-loader',
             exclude: /node_modules/,
             options: {
               envName: 'stable',
             },
           },
+          // transpile 3rd party packages with dependencies in this repository
           {
-            test: /\.(js|ts|tsx)$/,
+            test: /\.(js|mjs|jsx)$/,
+            include:
+              /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator|@mui(\/|\\)x-date-pickers-pro|@mui(\/|\\)x-date-pickers|@mui(\/|\\)x-tree-view)/,
             use: {
-              loader: 'istanbul-instrumenter-loader',
-              options: { esModules: true },
+              loader: 'babel-loader',
+              options: {
+                // We have to apply `babel-plugin-module-resolve` to the files in `@mui/x-date-pickers`.
+                // Otherwise we can't import `@mui/material` from `@mui/x-date-pickers` in `pnpm test:karma`.
+                sourceType: 'unambiguous',
+                plugins: [
+                  [
+                    'babel-plugin-module-resolver',
+                    {
+                      alias: {
+                        // all packages in this monorepo
+                        '@mui/material': './packages/mui-material/src',
+                        '@mui/docs': './packages/mui-docs/src',
+                        '@mui/icons-material': './packages/mui-icons-material/lib',
+                        '@mui/lab': './packages/mui-lab/src',
+                        '@mui/styled-engine': './packages/mui-styled-engine/src',
+                        '@mui/styles': './packages/mui-styles/src',
+                        '@mui/system': './packages/mui-system/src',
+                        '@mui/private-theming': './packages/mui-private-theming/src',
+                        '@mui/utils': './packages/mui-utils/src',
+                        '@mui/base': './packages/mui-base/src',
+                        '@mui/material-next': './packages/mui-material-next/src',
+                        '@mui/material-nextjs': './packages/mui-material-nextjs/src',
+                        '@mui/joy': './packages/mui-joy/src',
+                      },
+                      transformFunctions: ['require'],
+                    },
+                  ],
+                ],
+              },
+            },
+          },
+          {
+            test: /\.(js|mjs|ts|tsx)$/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                plugins: ['babel-plugin-istanbul'],
+              },
             },
             enforce: 'post',
             exclude: /node_modules/,
@@ -143,13 +185,16 @@ module.exports = function setKarmaConfig(config) {
         ],
       },
       resolve: {
-        extensions: ['.js', '.ts', '.tsx'],
+        extensions: ['.js', '.mjs', '.ts', '.tsx'],
         fallback: {
           // needed by sourcemap
           fs: false,
           path: false,
           // needed by enzyme > cheerio
           stream: false,
+          // required by enzyme > cheerio > parse5
+          util: require.resolve('util/'),
+          vm: false,
         },
       },
       // TODO: 'browserslist:modern'
@@ -171,7 +216,7 @@ module.exports = function setKarmaConfig(config) {
     newConfig = {
       ...baseConfig,
       browserStack,
-      browsers: baseConfig.browsers.concat(['chrome', 'firefox', 'safari', 'edge']),
+      browsers: baseConfig.browsers.concat(['chrome', 'safari', 'edge']),
       plugins: baseConfig.plugins.concat(['karma-browserstack-launcher']),
       customLaunchers: {
         ...baseConfig.customLaunchers,
@@ -184,13 +229,6 @@ module.exports = function setKarmaConfig(config) {
           // However, >=88 fails on seemingly all focus-related tests.
           // TODO: Investigate why.
           browser_version: '87.0',
-        },
-        firefox: {
-          base: 'BrowserStack',
-          os: 'Windows',
-          os_version: '10',
-          browser: 'firefox',
-          browser_version: '78.0',
         },
         safari: {
           base: 'BrowserStack',

@@ -1,4 +1,6 @@
 import { expect } from 'chai';
+import { blend } from '@mui/system';
+
 import {
   recomposeColor,
   hexToRgb,
@@ -11,7 +13,8 @@ import {
   getContrastRatio,
   getLuminance,
   lighten,
-} from './colorManipulator';
+  colorChannel,
+} from '@mui/system/colorManipulator';
 
 describe('utils/colorManipulator', () => {
   describe('recomposeColor', () => {
@@ -144,8 +147,8 @@ describe('utils/colorManipulator', () => {
     });
 
     it('should throw error with inexistent color color space', () => {
-      const decimposeWithError = () => decomposeColor('color(foo 0 1 0)');
-      expect(decimposeWithError).to.throw();
+      const decomposeWithError = () => decomposeColor('color(foo 0 1 0)');
+      expect(decomposeWithError).to.throw();
     });
 
     it('idempotent', () => {
@@ -198,6 +201,14 @@ describe('utils/colorManipulator', () => {
       expect(getLuminance('rgb(255, 255, 255)')).to.equal(1);
     });
 
+    it('returns a valid luminance for hsla black', () => {
+      expect(getLuminance('hsla(0, 100%, 0%, 1)')).to.equal(0);
+    });
+
+    it('returns a valid luminance for hsla white', () => {
+      expect(getLuminance('hsla(0, 100%, 100%, 1)')).to.equal(1);
+    });
+
     it('returns a valid luminance for rgb mid-grey', () => {
       expect(getLuminance('rgba(127, 127, 127)')).to.equal(0.212);
       expect(getLuminance('rgb(127, 127, 127)')).to.equal(0.212);
@@ -209,6 +220,10 @@ describe('utils/colorManipulator', () => {
 
     it('returns a valid luminance from an hsl color', () => {
       expect(getLuminance('hsl(100, 100%, 50%)')).to.equal(0.735);
+    });
+
+    it('returns a valid luminance from an hsla color', () => {
+      expect(getLuminance('hsla(100, 100%, 50%, 1)')).to.equal(0.735);
     });
 
     it('returns an equal luminance for the same color in different formats', () => {
@@ -407,6 +422,54 @@ describe('utils/colorManipulator', () => {
 
     it("doesn't modify CSS4 color when coefficient is 0", () => {
       expect(lighten('color(display-p3 1 0 0)', 0)).to.equal('color(display-p3 1 0 0)');
+    });
+  });
+
+  describe('colorChannel', () => {
+    it('converts a short hex color to a color channel` ', () => {
+      expect(colorChannel('#9f3')).to.equal('153 255 51');
+    });
+
+    it('converts a long hex color to a colorChannel` ', () => {
+      expect(colorChannel('#a94fd3')).to.equal('169 79 211');
+    });
+
+    it('converts a long alpha hex color to a color channel` ', () => {
+      expect(colorChannel('#111111f8')).to.equal('17 17 17');
+    });
+
+    it('converts rgb to a color channel` ', () => {
+      expect(colorChannel('rgb(169, 79, 211)')).to.equal('169 79 211');
+    });
+
+    it('converts rgba to a color channel` ', () => {
+      expect(colorChannel('rgba(255, 11, 13, 0.5)')).to.equal('255 11 13');
+    });
+
+    it('converts hsl to a color channel` ', () => {
+      expect(colorChannel('hsl(170, 45%, 50%)')).to.equal('170 45% 50%');
+    });
+
+    it('converts hsla to a color channel` ', () => {
+      expect(colorChannel('hsla(235, 100%, 50%, .5)')).to.equal('235 100% 50%');
+    });
+  });
+
+  describe('blend', () => {
+    it('works', () => {
+      expect(blend('rgb(90, 90, 90)', 'rgb(10, 100, 255)', 0.5)).to.equal('rgb(50, 95, 173)');
+    });
+
+    it('works with a gamma correction factor', () => {
+      expect(blend('rgb(90, 90, 90)', 'rgb(10, 100, 255)', 0.5, 2.2)).to.equal('rgb(39, 95, 161)');
+    });
+
+    it('selects only the background color with an opacity of 0.0', () => {
+      expect(blend('rgb(90, 90, 90)', 'rgb(10, 100, 255)', 0.0)).to.equal('rgb(90, 90, 90)');
+    });
+
+    it('selects only the overlay color with an opacity of 1.0', () => {
+      expect(blend('rgb(90, 90, 90)', 'rgb(10, 100, 255)', 1.0)).to.equal('rgb(10, 100, 255)');
     });
   });
 });

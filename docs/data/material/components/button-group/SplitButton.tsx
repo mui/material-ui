@@ -45,7 +45,11 @@ export default function SplitButton() {
 
   return (
     <React.Fragment>
-      <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
+      <ButtonGroup
+        variant="contained"
+        ref={anchorRef}
+        aria-label="Button group with a nested menu"
+      >
         <Button onClick={handleClick}>{options[selectedIndex]}</Button>
         <Button
           size="small"
@@ -59,6 +63,9 @@ export default function SplitButton() {
         </Button>
       </ButtonGroup>
       <Popper
+        sx={{
+          zIndex: 1,
+        }}
         open={open}
         anchorEl={anchorRef.current}
         role={undefined}
@@ -75,7 +82,7 @@ export default function SplitButton() {
           >
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
-                <MenuList id="split-button-menu">
+                <MenuList id="split-button-menu" autoFocusItem>
                   {options.map((option, index) => (
                     <MenuItem
                       key={option}

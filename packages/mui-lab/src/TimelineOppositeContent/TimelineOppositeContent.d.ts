@@ -23,12 +23,12 @@ export interface TimelineOppositeContentProps extends StandardProps<TypographyPr
  *
  * Demos:
  *
- * - [Timeline](https://mui.com/components/timeline/)
+ * - [Timeline](https://mui.com/material-ui/react-timeline/)
  *
  * API:
  *
- * - [TimelineOppositeContent API](https://mui.com/api/timeline-opposite-content/)
- * - inherits [Typography API](https://mui.com/api/typography/)
+ * - [TimelineOppositeContent API](https://mui.com/material-ui/api/timeline-opposite-content/)
+ * - inherits [Typography API](https://mui.com/material-ui/api/typography/)
  */
 declare const TimelineOppositeContent: ((props: TimelineOppositeContentProps) => JSX.Element) & {
   muiName: string;

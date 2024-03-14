@@ -1,9 +1,12 @@
-export interface Radius {
+import { OverridableRecord } from './utils';
+
+export interface DefaultRadius {
   xs: string;
   sm: string;
   md: string;
   lg: string;
   xl: string;
 }
+export interface RadiusOverrides {}
 
-export type RadiusProp = keyof Radius;
+export interface Radius extends OverridableRecord<DefaultRadius, RadiusOverrides, string> {}

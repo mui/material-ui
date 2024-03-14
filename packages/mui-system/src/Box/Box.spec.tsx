@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Theme } from '@mui/system';
+import { Box, styled } from '@mui/system';
 
 interface TestProps {
   test?: string;
@@ -48,7 +48,7 @@ function ComponentPropTest() {
 
 function ThemeCallbackTest() {
   <Box sx={{ background: (theme) => theme.palette.primary.main }} />;
-  <Box sx={{ ':hover': (theme) => ({ background: theme.palette.primary.main }) }} />;
+  <Box sx={{ '&:hover': (theme) => ({ background: theme.palette.primary.main }) }} />;
   <Box sx={{ '& .some-class': (theme) => ({ background: theme.palette.primary.main }) }} />;
   <Box maxWidth={(theme) => theme.breakpoints.values.sm} />;
 }
@@ -56,22 +56,22 @@ function ThemeCallbackTest() {
 function CssVariablesWithNestedSelectors() {
   <Box
     sx={(theme) => ({
-      '--md-palette-primary-main': '#FF0000',
+      '--mui-palette-primary-main': '#FF0000',
     })}
   />;
   <Box
     sx={(theme) => ({
-      '--md-palette-primary-main': '#FF0000',
+      '--mui-palette-primary-main': '#FF0000',
       '&:hover': {
         backgroundColor: theme.palette.primary.main,
-        '--md-palette-primary-main': (t) => theme.palette.primary.main,
-        '--md-spacing': (t) => theme.shape.borderRadius,
+        '--mui-palette-primary-main': (t) => theme.palette.primary.main,
+        '--mui-spacing': (t) => theme.shape.borderRadius,
       },
     })}
   />;
   <Box
     sx={{
-      '--md-palette-primary-main': '#FF0000',
+      '--mui-palette-primary-main': '#FF0000',
       '&:hover': {
         backgroundColor: '#EE0000',
       },
@@ -79,10 +79,45 @@ function CssVariablesWithNestedSelectors() {
   />;
   <Box
     sx={{
-      '--md-palette-primary-main': '#FF0000',
+      '--mui-palette-primary-main': '#FF0000',
       '& .foo-bar': {
         backgroundColor: '#EE0000',
       },
     }}
   />;
+}
+
+// The fill prop conflicts with the Array's fill function.
+// This test ensures that the callback value inside the sx prop
+// can be used without conflicting with the Array's fill function
+function TestFillPropCallback() {
+  <Box
+    sx={{
+      fill: (theme) => theme.palette.primary.main,
+    }}
+  />;
+  <Box
+    sx={[
+      {
+        fill: (theme) => theme.palette.primary.main,
+      },
+    ]}
+  />;
+}
+
+// eslint-disable-next-line material-ui/no-styled-box
+const StyledBox = styled(Box)`
+  color: white;
+`;
+
+function StyledBoxWithSx() {
+  return (
+    <StyledBox component="span" sx={{ width: 300 }}>
+      Box
+    </StyledBox>
+  );
+}
+
+function LogicalPropertiesTest() {
+  <Box marginInline={1} paddingBlockEnd="10px" />;
 }

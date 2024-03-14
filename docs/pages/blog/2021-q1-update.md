@@ -3,8 +3,8 @@ title: Q1 2021 Update
 description: An update on our mission for Q1 2021.
 date: 2021-04-12T00:00:00.000Z
 authors: ['oliviertassinari']
-card: true
 tags: ['Company']
+card: true
 ---
 
 This update covers our progress over the last three months, and what we aim to achieve in the months ahead.
@@ -44,7 +44,7 @@ Here are the most significant improvements since December 2020.
 
   <img src="/static/blog/2021-q1-update/stack.png" alt="" style="width: 502px; margin-bottom: 16px;" />
 
-  You can find [more details](https://mui.com/components/stack/) in the documentation.
+  You can find [more details](https://mui.com/material-ui/react-stack/) in the documentation.
 
 - 🎨 We have improved the support for custom colors and variants.
   This is [one](https://github.com/mui/material-ui/issues/13875) of the most upvoted issues in the GitHub issue tracker.
@@ -96,7 +96,7 @@ This new feature removes the need to create a wrapper component.
 
   We are synchronizing the development of the Base package with the creation of the second theme (and not v5).
 
-- 🛠 We added a subset of the system as flattened props to the CSS utility components (Box, Typography, Stack, and Grid).
+- 🛠 We added a subset of MUI System as flattened props to the CSS utility components (Box, Typography, Stack, and Grid).
   We initially didn't plan to do so but reversed on hearing the feedback from the community.
   In addition to using the `sx` prop, you can now do, for example:
 
@@ -126,17 +126,17 @@ The date picker is at the border between the advanced components and the design 
 
 #### Data Grid
 
-- 🔄 We have started to bring support for [lazy-loading](/components/data-grid/rows/#infinite-loading).
-- ⬇️ We have introduced support for [CSV export](/components/data-grid/export/#csv-export).
+- 🔄 We have started to bring support for [lazy-loading](/x/react-data-grid/row-updates/#infinite-loading).
+- ⬇️ We have introduced support for [CSV export](/x/react-data-grid/export/#csv-export).
 
   <img src="/static/blog/2021-q1-update/csv-export.png" alt="" style="width: 523px; margin-bottom: 16px;" />
 
 - ♿️ We have fixed a couple of accessibility issues (more in progress).
-- 🌏 We have introduced support for [custom locales](/components/data-grid/localization/).
+- 🌏 We have introduced support for [custom locales](/x/react-data-grid/localization/).
 - 🚨 We have started to work on breaking changes to reach a stable state.
 - 💾 We have extended the support of @mui/material to handle v4 and v5 at the same time.
   In the future, we might desynchronize the release version of _mui/material-ui_ and _mui/mui-x_.
-  For MUI X, we will likely need to release breaking changes at a higher frequency: every six months.
+  For MUI X, we will likely need to release breaking changes at a higher frequency: every six months.
 - 🎛 We have added a column selector.
 
   <img src="/static/blog/2021-q1-update/column-selector.png" alt="" style="width: 518px; margin-bottom: 16px;" />
@@ -176,7 +176,7 @@ This Handbook is the single **source of truth**. It's meant to be updated by any
 - 📦 From 6.4M to 8.6M downloads per month on npm.<br />
   It seems that React keeps taking market share in the frontend ecosystem;
   it's growing faster than Vue or Angular.
-  Most indicators point to it: [StackOverflow questions](https://insights.stackoverflow.com/trends?tags=vue.js%2Creactjs%2Cangular), [stars](https://bestofjs.org/projects?sort=monthly), [downloads](https://npm-stat.com/charts.html?package=react-dom,@angular/core,vue), [Traffic on the documentation](https://www.similarweb.com/website/reactjs.org/?competitors=vuejs.org).
+  Most indicators point to it: [Stack Overflow questions](https://insights.stackoverflow.com/trends?tags=vue.js%2Creactjs%2Cangular), [stars](https://bestofjs.org/projects?sort=monthly), [downloads](https://npm-stat.com/charts.html?package=react-dom,@angular/core,vue), [Traffic on the documentation](https://www.similarweb.com/website/reactjs.org/?competitors=vuejs.org).
   Our strategy to focus on React only seems to be paying off.
 
 - ⭐️ From 63.8k to 67.2k stars, leave us yours [🌟](https://github.com/mui/material-ui).
@@ -205,7 +205,7 @@ We have the following objectives:
 
 - 🚀 Get v5-beta (no more breaking changes) out! The development of this new version started almost a year ago. It's time to aim for the stable release.
 - 📅 Start handling the issues with the date picker reported by developers.
-- 🗓 Execute on all the items of the [public roadmap](https://github.com/mui/material-ui/projects/25).
+- 🗓 Execute on all the items of the [public roadmap](https://github.com/orgs/mui/projects/23/views/12).
 - ❓ Please upvote [GitHub issues](https://github.com/mui/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
 ### Advanced components

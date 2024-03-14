@@ -1,14 +1,19 @@
+'use client';
 // @inheritedComponent ButtonBase
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import resolveProps from '@mui/utils/resolveProps';
+import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '../styles';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import toggleButtonClasses, { getToggleButtonUtilityClass } from './toggleButtonClasses';
+import ToggleButtonGroupContext from '../ToggleButtonGroup/ToggleButtonGroupContext';
+import ToggleButtonGroupButtonContext from '../ToggleButtonGroup/ToggleButtonGroupButtonContext';
+import isValueSelected from '../ToggleButtonGroup/isValueSelected';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, fullWidth, selected, disabled, size, color } = ownerState;
@@ -36,42 +41,62 @@ const ToggleButtonRoot = styled(ButtonBase, {
     return [styles.root, styles[`size${capitalize(ownerState.size)}`]];
   },
 })(({ theme, ownerState }) => {
-  const selectedColor =
+  let selectedColor =
     ownerState.color === 'standard'
       ? theme.palette.text.primary
       : theme.palette[ownerState.color].main;
+  let selectedColorChannel;
+  if (theme.vars) {
+    selectedColor =
+      ownerState.color === 'standard'
+        ? theme.vars.palette.text.primary
+        : theme.vars.palette[ownerState.color].main;
+    selectedColorChannel =
+      ownerState.color === 'standard'
+        ? theme.vars.palette.text.primaryChannel
+        : theme.vars.palette[ownerState.color].mainChannel;
+  }
+
   return {
     ...theme.typography.button,
-    borderRadius: theme.shape.borderRadius,
+    borderRadius: (theme.vars || theme).shape.borderRadius,
     padding: 11,
-    border: `1px solid ${theme.palette.divider}`,
-    color: theme.palette.action.active,
+    border: `1px solid ${(theme.vars || theme).palette.divider}`,
+    color: (theme.vars || theme).palette.action.active,
     ...(ownerState.fullWidth && {
       width: '100%',
     }),
     [`&.${toggleButtonClasses.disabled}`]: {
-      color: theme.palette.action.disabled,
-      border: `1px solid ${theme.palette.action.disabledBackground}`,
+      color: (theme.vars || theme).palette.action.disabled,
+      border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
     },
     '&:hover': {
       textDecoration: 'none',
       // Reset on mouse devices
-      backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
+      backgroundColor: theme.vars
+        ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.hoverOpacity})`
+        : alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
     },
     [`&.${toggleButtonClasses.selected}`]: {
       color: selectedColor,
-      backgroundColor: alpha(selectedColor, theme.palette.action.selectedOpacity),
+      backgroundColor: theme.vars
+        ? `rgba(${selectedColorChannel} / ${theme.vars.palette.action.selectedOpacity})`
+        : alpha(selectedColor, theme.palette.action.selectedOpacity),
       '&:hover': {
-        backgroundColor: alpha(
-          selectedColor,
-          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-        ),
+        backgroundColor: theme.vars
+          ? `rgba(${selectedColorChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+          : alpha(
+              selectedColor,
+              theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+            ),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
-          backgroundColor: alpha(selectedColor, theme.palette.action.selectedOpacity),
+          backgroundColor: theme.vars
+            ? `rgba(${selectedColorChannel} / ${theme.vars.palette.action.selectedOpacity})`
+            : alpha(selectedColor, theme.palette.action.selectedOpacity),
         },
       },
     },
@@ -87,7 +112,16 @@ const ToggleButtonRoot = styled(ButtonBase, {
 });
 
 const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiToggleButton' });
+  // props priority: `inProps` > `contextProps` > `themeDefaultProps`
+  const { value: contextValue, ...contextProps } = React.useContext(ToggleButtonGroupContext);
+  const toggleButtonGroupButtonContextPositionClassName = React.useContext(
+    ToggleButtonGroupButtonContext,
+  );
+  const resolvedProps = resolveProps(
+    { ...contextProps, selected: isValueSelected(inProps.value, contextValue) },
+    inProps,
+  );
+  const props = useThemeProps({ props: resolvedProps, name: 'MuiToggleButton' });
   const {
     children,
     className,
@@ -127,9 +161,11 @@ const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
     }
   };
 
+  const positionClassName = toggleButtonGroupButtonContextPositionClassName || '';
+
   return (
     <ToggleButtonRoot
-      className={clsx(classes.root, className)}
+      className={clsx(contextProps.className, classes.root, className, positionClassName)}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
       ref={ref}
@@ -146,10 +182,10 @@ const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
 });
 
 ToggleButton.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
@@ -164,6 +200,8 @@ ToggleButton.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the button when it is in an active state.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'standard'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -232,7 +270,7 @@ ToggleButton.propTypes /* remove-proptypes */ = {
    * The value to associate with the button when selected in a
    * ToggleButtonGroup.
    */
-  value: PropTypes.any.isRequired,
+  value: PropTypes /* @typescript-to-proptypes-ignore */.any.isRequired,
 };
 
 export default ToggleButton;

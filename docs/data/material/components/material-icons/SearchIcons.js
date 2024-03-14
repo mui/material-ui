@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import MuiPaper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
 import copy from 'clipboard-copy';
 import InputBase from '@mui/material/InputBase';
 import Typography from '@mui/material/Typography';
@@ -9,21 +8,21 @@ import PropTypes from 'prop-types';
 import { debounce } from '@mui/material/utils';
 import Grid from '@mui/material/Grid';
 import Dialog from '@mui/material/Dialog';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Button from '@mui/material/Button';
-import { Index as FlexSearchIndex } from 'flexsearch';
+import * as flexsearch from 'flexsearch';
 import SearchIcon from '@mui/icons-material/Search';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import SvgIcon from '@mui/material/SvgIcon';
-import Link from 'docs/src/modules/components/Link';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import * as mui from '@mui/icons-material';
+import { Link } from '@mui/docs/Link';
+import { useTranslate } from '@mui/docs/i18n';
 import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterState';
 // For Debugging
 // import Menu from '@mui/icons-material/Menu';
@@ -46,8 +45,10 @@ import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterStat
 // import DeleteForeverRounded from '@mui/icons-material/DeleteForeverRounded';
 // import DeleteForeverTwoTone from '@mui/icons-material/DeleteForeverTwoTone';
 // import DeleteForeverSharp from '@mui/icons-material/DeleteForeverSharp';
-import * as mui from '@mui/icons-material';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import synonyms from './synonyms';
+
+const FlexSearchIndex = flexsearch.default.Index;
 
 const UPDATE_SEARCH_INDEX_WAIT_MS = 220;
 
@@ -115,15 +116,16 @@ const StyledSvgIcon = styled(SvgIcon)(({ theme }) => ({
   boxSizing: 'content-box',
   cursor: 'pointer',
   color: theme.palette.text.primary,
-  borderRadius: theme.shape.borderRadius,
+  border: '1px solid transparent',
+  borderRadius: '12px',
   transition: theme.transitions.create(['background-color', 'box-shadow'], {
     duration: theme.transitions.duration.shortest,
   }),
   padding: theme.spacing(2),
   margin: theme.spacing(0.5, 0),
   '&:hover': {
-    backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[1],
+    backgroundColor: theme.palette.background.default,
+    borderColor: theme.palette.primary.light,
   },
 }));
 
@@ -132,15 +134,11 @@ const Icons = React.memo(function Icons(props) {
 
   const handleIconClick = (icon) => () => {
     if (Math.random() < 0.1) {
-      window.ga('send', {
-        hitType: 'event',
-        eventCategory: 'material-icons',
+      window.gtag('event', 'material-icons', {
         eventAction: 'click',
         eventLabel: icon.name,
       });
-      window.ga('send', {
-        hitType: 'event',
-        eventCategory: 'material-icons-theme',
+      window.gtag('event', 'material-icons-theme', {
         eventAction: 'click',
         eventLabel: icon.theme,
       });
@@ -168,7 +166,7 @@ const Icons = React.memo(function Icons(props) {
               {/*  eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
               <div onClick={handleLabelClick}>{icon.importName}</div>
             </div>
-            {/* eslint-enable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */}
+            {/* eslint-enable jsx-a11y/click-events-have-key-events */}
           </StyledIcon>
         );
       })}
@@ -213,9 +211,8 @@ const Title = styled(Typography)(({ theme }) => ({
   },
 }));
 
-const CanvasComponent = styled(Box)(({ theme }) => ({
+const CanvasComponent = styled('div')(({ theme }) => ({
   fontSize: 210,
-  marginTop: theme.spacing(2),
   color: theme.palette.text.primary,
   backgroundSize: '30px 30px',
   backgroundColor: 'transparent',
@@ -230,8 +227,8 @@ const FontSizeComponent = styled('span')(({ theme }) => ({
   margin: theme.spacing(2),
 }));
 
-const ContextComponent = styled(Box, {
-  shouldForwardProp: (prop) => prop !== 'contextColor',
+const ContextComponent = styled('div', {
+  shouldForwardProp: (prop) => prop !== 'contextColor' && prop !== 'as',
 })(({ theme, contextColor }) => ({
   margin: theme.spacing(0.5),
   padding: theme.spacing(1, 2),
@@ -275,7 +272,20 @@ const DialogDetails = React.memo(function DialogDetails(props) {
   };
 
   return (
-    <Dialog fullWidth maxWidth="sm" open={open} onClose={handleClose}>
+    <Dialog
+      fullWidth
+      maxWidth="sm"
+      open={open}
+      onClose={handleClose}
+      sx={{
+        '& .MuiDialog-paper': {
+          borderRadius: 2.5,
+          backgroundImage: 'none',
+          border: '1px solid',
+          borderColor: 'divider',
+        },
+      }}
+    >
       {selectedIcon ? (
         <React.Fragment>
           <DialogTitle>
@@ -297,6 +307,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
             TransitionProps={{ onExited: () => setCopied2(false) }}
           >
             <Markdown
+              copyButtonHidden
               onClick={handleClick(2)}
               code={`import ${selectedIcon.importName}Icon from '@mui/icons-material/${selectedIcon.importName}';`}
               language="js"
@@ -304,7 +315,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
           </Tooltip>
           <ImportLink
             color="text.secondary"
-            href="/components/icons/"
+            href="/material-ui/icons/"
             variant="caption"
           >
             {t('searchIcons.learnMore')}
@@ -313,7 +324,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
             <Grid container>
               <Grid item xs>
                 <Grid container justifyContent="center">
-                  <CanvasComponent component={selectedIcon.Component} />
+                  <CanvasComponent as={selectedIcon.Component} />
                 </Grid>
               </Grid>
               <Grid item xs>
@@ -342,38 +353,38 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                 </Grid>
                 <Grid container justifyContent="center">
                   <ContextComponent
-                    component={selectedIcon.Component}
+                    as={selectedIcon.Component}
                     contextColor="primary"
                   />
                   <ContextComponent
-                    component={selectedIcon.Component}
+                    as={selectedIcon.Component}
                     contextColor="primaryInverse"
                   />
                 </Grid>
                 <Grid container justifyContent="center">
                   <ContextComponent
-                    component={selectedIcon.Component}
+                    as={selectedIcon.Component}
                     contextColor="textPrimary"
                   />
                   <ContextComponent
-                    component={selectedIcon.Component}
+                    as={selectedIcon.Component}
                     contextColor="textPrimaryInverse"
                   />
                 </Grid>
                 <Grid container justifyContent="center">
                   <ContextComponent
-                    component={selectedIcon.Component}
+                    as={selectedIcon.Component}
                     contextColor="textSecondary"
                   />
                   <ContextComponent
-                    component={selectedIcon.Component}
+                    as={selectedIcon.Component}
                     contextColor="textSecondaryInverse"
                   />
                 </Grid>
               </Grid>
             </Grid>
           </DialogContent>
-          <DialogActions>
+          <DialogActions sx={{ borderTop: '1px solid', borderColor: 'divider' }}>
             <Button onClick={handleClose}>{t('close')}</Button>
           </DialogActions>
         </React.Fragment>
@@ -390,22 +401,29 @@ DialogDetails.propTypes = {
   selectedIcon: PropTypes.object,
 };
 
-const Form = styled('form')(({ theme }) => ({
-  margin: theme.spacing(2, 0),
-}));
+const Form = styled('form')({
+  position: 'sticky',
+  top: 80,
+});
 
 const Paper = styled(MuiPaper)(({ theme }) => ({
   position: 'sticky',
   top: 80,
-  padding: '2px 4px',
   display: 'flex',
   alignItems: 'center',
   marginBottom: theme.spacing(2),
   width: '100%',
+  borderRadius: '12px',
+  border: '1px solid',
+  borderColor: theme.palette.divider,
+  boxShadow: 'none',
 }));
 
+function formatNumber(value) {
+  return new Intl.NumberFormat('en-US').format(value);
+}
+
 const Input = styled(InputBase)({
-  marginLeft: 8,
   flex: 1,
 });
 
@@ -483,14 +501,12 @@ export default function SearchIcons() {
         if (value === '') {
           setKeys(null);
         } else {
-          searchIndex.searchAsync(value).then((results) => {
+          searchIndex.searchAsync(value, { limit: 3000 }).then((results) => {
             setKeys(results);
 
             // Keep track of the no results so we can add synonyms in the future.
             if (value.length >= 4 && results.length === 0) {
-              window.ga('send', {
-                hitType: 'event',
-                eventCategory: 'material-icons',
+              window.gtag('event', 'material-icons', {
                 eventAction: 'no-results',
                 eventLabel: value,
               });
@@ -524,6 +540,9 @@ export default function SearchIcons() {
     <Grid container sx={{ minHeight: 500 }}>
       <Grid item xs={12} sm={3}>
         <Form>
+          <Typography fontWeight={500} sx={{ mb: 1 }}>
+            Filter the style
+          </Typography>
           <RadioGroup>
             {['Filled', 'Outlined', 'Rounded', 'Two tone', 'Sharp'].map(
               (currentTheme) => {
@@ -532,6 +551,7 @@ export default function SearchIcons() {
                     key={currentTheme}
                     control={
                       <Radio
+                        size="small"
                         checked={theme === currentTheme}
                         onChange={() => setTheme(currentTheme)}
                         value={currentTheme}
@@ -558,7 +578,9 @@ export default function SearchIcons() {
             inputProps={{ 'aria-label': 'search icons' }}
           />
         </Paper>
-        <Typography sx={{ mb: 1 }}>{`${icons.length} matching results`}</Typography>
+        <Typography sx={{ mb: 1 }}>{`${formatNumber(
+          icons.length,
+        )} matching results`}</Typography>
         <Icons icons={icons} handleOpenClick={handleOpenClick} />
       </Grid>
       <DialogDetails

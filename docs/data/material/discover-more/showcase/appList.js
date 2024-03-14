@@ -27,7 +27,7 @@ const appList = [
     description:
       'QuintoAndar is a company that uses technology and ' +
       'design to simplify the rental of residential real estate.',
-    image: 'quintoandar.png',
+    image: 'quintoandar.jpg',
     link: 'https://www.quintoandar.com.br/',
     similarWebVisits: 8500,
     dateAdded: '2019-05-08',
@@ -47,7 +47,7 @@ const appList = [
     description:
       'OpenClassrooms is an online platform offering top quality, ' +
       'education-to-employment programs and career coaching services for students worldwide. ',
-    image: 'openclassrooms.jpg',
+    image: 'openclassrooms.png',
     link: 'https://openclassrooms.com/en/',
     similarWebVisits: 6000,
     dateAdded: '2018-01-34',
@@ -82,27 +82,6 @@ const appList = [
     dateAdded: '2018-01-31',
   },
   {
-    title: 'AospExtended Download center',
-    description:
-      'A download center that hosts all the official builds of AospExtended ROM, ' +
-      'for supported devices for different android versions.',
-    image: 'aexdownloadcenter.jpg',
-    link: 'https://downloads.aospextended.com/',
-    similarWebVisits: 200,
-    dateAdded: '2018-01-28',
-  },
-  {
-    title: 'Sweek',
-    description:
-      'Read thousands of free books, stories and serials on Sweek. ' +
-      'Challenge yourself in writing. Turn your stories into books via Sweek Publishing. ' +
-      'Join the global community of readers and writers!',
-    image: 'sweek.jpg',
-    link: 'https://sweek.com/',
-    similarWebVisits: 200,
-    dateAdded: '2019-01-01',
-  },
-  {
     title: 'Hijup',
     description: 'A pioneering Muslim Fashion e-commerce site.',
     image: 'hijup.jpg',
@@ -121,19 +100,11 @@ const appList = [
     dateAdded: '2019-01-01',
   },
   {
-    title: 'NEO Tracker',
-    description: 'NEO blockchain explorer and wallet.',
-    image: 'neotracker.jpg',
-    link: 'https://neotracker.io/',
-    similarWebVisits: 60,
-    dateAdded: '2019-01-01',
-  },
-  {
     title: 'EQ3',
     description:
       'Modern Furniture & Accessories, designed in Canada, for everyday living.',
     image: 'eq3.jpg',
-    link: 'https://www.eq3.com/ca/en/',
+    link: 'https://www.eq3.com/ca/en',
     similarWebVisits: 256,
     dateAdded: '2018-01-34',
   },
@@ -155,7 +126,7 @@ const appList = [
       'cost, usage and performance in one place. ' +
       '(Used for the business application, but not the marketing website.)',
     image: 'cloudhealth.jpg',
-    link: 'https://www.cloudhealthtech.com/',
+    link: 'https://cloudhealth.vmware.com/',
     similarWebVisits: 132,
     dateAdded: '2018-01-37',
   },
@@ -233,7 +204,7 @@ const appList = [
       'Comet lets you track code, experiments, and results on ML projects. ' +
       "It's fast, simple, and free for open source projects.",
     image: 'comet.jpg',
-    link: 'https://www.comet.ml/',
+    link: 'https://www.comet.com/site/',
     similarWebVisits: 180,
     dateAdded: '2019-01-01',
   },
@@ -314,22 +285,6 @@ const appList = [
     dateAdded: '2019-01-01',
   },
   {
-    title: 'Roast',
-    description:
-      'Roast.io makes web hosting HTML and JS single-page apps fast, secure, and easy.',
-    image: 'roast.jpg',
-    link: 'https://www.roast.io/',
-    dateAdded: '2019-01-01',
-  },
-  {
-    title: 'Rung - Exceptionality Management',
-    description:
-      'Rung alerts you about the exceptionalities of your personal and professional life.',
-    image: 'rung.jpg',
-    link: 'https://app.rung.com.br/',
-    dateAdded: '2018-01-12',
-  },
-  {
     title: 'MetaFact',
     description:
       "Metafact is a place to verify knowledge via the world's top experts. " +
@@ -337,21 +292,6 @@ const appList = [
     image: 'metafact.jpg',
     link: 'https://metafact.io/',
     dateAdded: '2019-01-01',
-  },
-  {
-    title: 'Manty Vision',
-    description:
-      'An Open Data tool showing financial and demographic data for all the towns in France.',
-    image: 'manty.jpg',
-    link: 'https://app.manty.eu/',
-    dateAdded: '2018-01-01',
-  },
-  {
-    title: 'Johnny Metrics',
-    description: 'Upload your trades, and analyze your crypto portfolio.',
-    link: 'https://app.johnnymetrics.com/demo',
-    image: 'johnnymetrics.jpg',
-    dateAdded: '2018-01-14',
   },
   {
     title: 'AudioNodes',
@@ -378,27 +318,6 @@ const appList = [
     source: 'https://github.com/typekev/typekev-site',
     stars: 10,
     dateAdded: '2018-01-23',
-  },
-  {
-    title: 'Flink',
-    description:
-      'We revolutionized the insurance contract and developed new products that are ' +
-      'ahead of their time: MyThings and MyDamages. With only half a page of text and simple ' +
-      'illustrations, we have developed the shortest insurance contracts worldwide. ' +
-      'And the simplest.',
-    image: 'flink.jpg',
-    link: 'https://www.goflink.ch/',
-    dateAdded: '2019-01-01',
-  },
-  {
-    title: 'DropDesk',
-    description:
-      'DropDesk creates unique workspaces & experiences by converting unused space into vibrant ' +
-      'coworking spaces. Meet, work and gain a sense of community.',
-    image: 'dropdesk.jpg',
-    link: 'https://drop-desk.com/',
-    similarWebVisits: 50,
-    dateAdded: '2019-01-01',
   },
   {
     title: 'npm registry browser',
@@ -434,18 +353,6 @@ const appList = [
     dateAdded: '2018-01-35',
   },
   {
-    title: 'MQTT Explorer',
-    description:
-      'A comprehensive MQTT Client which visualizes broker traffic in a hierarchical view. ' +
-      'The protocol is used in many IoT and home automation scenarios, ' +
-      'making integrating new services dead easy.',
-    link: 'https://mqtt-explorer.com/',
-    source: 'https://github.com/thomasnordquist/MQTT-Explorer',
-    image: 'mqtt-explorer.png',
-    stars: 1600,
-    dateAdded: '2019-03-25',
-  },
-  {
     title: 'TagSpaces',
     description:
       'TagSpaces is an offline, open source, file manager.' +
@@ -460,7 +367,7 @@ const appList = [
     title: 'HiFiveWork',
     description: 'HiFiveWork, the cool tool for leave management',
     image: 'hifivework.png',
-    link: 'https://www.hifivework.com/#/',
+    link: 'https://hifivework.com/',
     dateAdded: '2020-01-08',
   },
   {
@@ -471,27 +378,6 @@ const appList = [
     link: 'https://fanspo.com/',
     similarWebVisits: 417,
     dateAdded: '2020-01-20',
-  },
-  {
-    title: 'CinemaPlus',
-    description:
-      'Cinema Plus is an online Movie Ticket Booking web app with MERN Stack.',
-    image: 'cinemaplus.jpg',
-    link: 'https://elcinema.herokuapp.com/',
-    source: 'https://github.com/georgesimos/cinema-plus',
-    stars: 173,
-    dateAdded: '2020-01-31',
-  },
-  {
-    title: 'A Clone of Google Keep',
-    description:
-      'A twin-looking Google Keep clone with light/dark Material theme as adapted exactly in Google Keep,' +
-      ' with a GraphQL backend written in Golang',
-    image: 'googlekeepclone.jpg',
-    link: 'http://googlekeep-anselm94.herokuapp.com/',
-    source: 'https://github.com/anselm94/googlekeepclone',
-    stars: 14,
-    dateAdded: '2020-03-25',
   },
   {
     title: 'Backstage',
@@ -520,21 +406,26 @@ const appList = [
     dateAdded: '2021-05-06',
   },
   {
-    title: 'Saleor Store Dashboard',
-    description: 'Dashboard application for Saleor headless e-commerce platform',
-    image: 'saleor.jpg',
-    link: 'https://demo.saleor.io/dashboard/',
-    source: 'https://github.com/saleor/saleor-dashboard',
-    stars: 15079,
-    similarWebVisits: 62,
-    dateAdded: '2022-02-05',
+    title: 'MQTT Explorer',
+    description:
+      'A comprehensive MQTT Client which visualizes broker traffic in a hierarchical view. ' +
+      'The protocol is used in many IoT and home automation scenarios, ' +
+      'making integrating new services dead easy.',
+    link: 'https://mqtt-explorer.com/',
+    source: 'https://github.com/thomasnordquist/MQTT-Explorer',
+    image: 'mqtt-explorer.png',
+    stars: 1600,
+    dateAdded: '2019-03-25',
   },
   {
-    title: 'Work in biotech',
-    description: 'Job board for small biotech startup companies',
-    image: 'workinbiotech.png',
-    link: 'https://workinbiotech.com/',
-    dateAdded: '2022-03-13',
+    title: 'refine FineFoods demo',
+    description: 'A full-featured Admin panel app',
+    image: 'refine-finefoods.png',
+    link: 'https://example.mui.admin.refine.dev/',
+    source:
+      'https://github.com/refinedev/refine/tree/next/examples/finefoods-material-ui',
+    stars: 10646,
+    dateAdded: '2022-06-21',
   },
 ];
 

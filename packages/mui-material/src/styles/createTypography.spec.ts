@@ -1,5 +1,5 @@
-import { styled, createTheme } from '@mui/material/styles';
 import { expectType } from '@mui/types';
+import { styled, createTheme } from '@mui/material/styles';
 
 {
   // properties of the variants can be "unset"
@@ -17,6 +17,7 @@ import { expectType } from '@mui/types';
     | 'inherit'
     | 'initial'
     | 'revert'
+    | 'revert-layer'
     | 'unset'
     | 'italic'
     | 'normal'

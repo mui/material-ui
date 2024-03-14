@@ -3,18 +3,24 @@ import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 
+import MuiTextField2 from '@mui/material/TextField';
+import MuiSelect2 from '@mui/material/Select';
+import { FormControl as MuiFormControl2 } from '@mui/material';
+
+const Select2 = () => <MuiSelect2 variant="standard" />;
+
 export default function TextFieldComponent(props) {
   return (
     <div>
-      <TextField {...props} variant="standard" />
+      <TextField variant="standard" {...props} />
       <TextField variant="outlined" />
       <TextField variant="standard" />
       <TextField variant="filled" />
-      <Select {...props} variant="standard" />
+      <Select variant="standard" {...props} />
       <Select variant="outlined" />
       <Select variant="standard" />
       <Select variant="filled" />
-      <FormControl {...props} variant="standard" />
+      <FormControl variant="standard" {...props} />
       <FormControl variant="outlined" />
       <FormControl variant="standard" />
       <FormControl variant="filled" />
@@ -27,6 +33,10 @@ export default function TextFieldComponent(props) {
       <SelectedRoute />
       <FromToSelect />
       <FromToSelectDrawer />
+
+      <MuiTextField2 variant="standard" />
+      <Select2 />
+      <MuiFormControl2 variant="standard" />
     </div>
   );
 }

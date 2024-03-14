@@ -1,10 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
+import * as ReactDOMClient from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import webfontloader from 'webfontloader';
 import TestViewer from './TestViewer';
-import FEATURE_TOGGLE from '../../docs/src/featureToggle';
 
 // Get all the fixtures specifically written for preventing visual regressions.
 const importRegressionFixtures = require.context('./fixtures', true, /\.(js|ts|tsx)$/, 'lazy');
@@ -28,6 +27,18 @@ importRegressionFixtures.keys().forEach((path) => {
 }, []);
 
 const blacklist = [
+  'docs-getting-started-templates-checkout/getCheckoutTheme.png', // Theme file
+  'docs-getting-started-templates-landing-page/getLPTheme.png', // Theme file
+  'docs-joy-getting-started-templates/TemplateCollection.png', // No public components
+  'docs-joy-core-features-automatic-adjustment/ListThemes.png', // No public components
+  'docs-joy-tools/PaletteThemeViewer.png', // No need for theme tokens
+  'docs-joy-tools/ShadowThemeViewer.png', // No need for theme tokens
+  'docs-joy-customization-theme-typography/TypographyThemeViewer.png', // No need for theme tokens
+  'docs-joy-components-circular-progress/CircularProgressCountUp.png', // Flaky due to animation
+  'docs-joy-components-divider/DividerChildPosition.png', // Needs interaction
+  'docs-joy-components-linear-progress/LinearProgressCountUp.png', // Flaky due to animation
+  'docs-base-guides-working-with-tailwind-css/PlayerFinal.png', // No public components
+  'docs-base-getting-started-quickstart/BaseButtonTailwind.png', // CodeSandbox
   'docs-components-alert/TransitionAlerts.png', // Needs interaction
   'docs-components-app-bar/BackToTop.png', // Needs interaction
   'docs-components-app-bar/ElevateAppBar.png', // Needs interaction
@@ -53,17 +64,6 @@ const blacklist = [
   'docs-components-chips/ChipsPlayground.png', // Redux isolation
   'docs-components-click-away-listener', // Needs interaction
   'docs-components-container', // Can't see the impact
-  'docs-components-date-picker/CustomInput.png', // Redundant
-  'docs-components-date-picker/LocalizedDatePicker.png', // Redundant
-  'docs-components-date-picker/ResponsiveDatePickers.png', // Redundant
-  'docs-components-date-picker/ServerRequestDatePicker.png', // Redundant
-  'docs-components-date-picker/ViewsDatePicker.png', // Redundant
-  'docs-components-date-range-picker/CalendarsDateRangePicker.png', // Redundant
-  'docs-components-date-range-picker/CustomDateRangeInputs.png', // Redundant
-  'docs-components-date-range-picker/MinMaxDateRangePicker.png', // Redundant
-  'docs-components-date-range-picker/ResponsiveDateRangePicker.png', // Redundant
-  'docs-components-date-time-picker/BasicDateTimePicker.png', // Redundant
-  'docs-components-date-time-picker/ResponsiveDateTimePickers.png', // Redundant
   'docs-components-dialogs', // Needs interaction
   'docs-components-drawers/SwipeableEdgeDrawer.png', // Needs interaction
   'docs-components-drawers/SwipeableTemporaryDrawer.png', // Needs interaction
@@ -119,8 +119,6 @@ const blacklist = [
   'docs-components-tabs/AccessibleTabs1.png', // Need interaction
   'docs-components-tabs/AccessibleTabs2.png', // Need interaction
   'docs-components-textarea-autosize', // Superseded by a dedicated regression test
-  'docs-components-time-picker/LocalizedTimePicker.png', // Redundant
-  'docs-components-time-picker/ResponsiveTimePickers.png', // Redundant
   'docs-components-tooltips', // Needs interaction
   'docs-components-transitions', // Needs interaction
   'docs-components-trap-focus', // Need interaction
@@ -129,16 +127,18 @@ const blacklist = [
   'docs-components-tree-view/IconExpansionTreeView.png', // Need interaction
   'docs-components-tree-view/MultiSelectTreeView.png', // Need interaction
   'docs-components-use-media-query', // Need to dynamically resize to test
+  'docs-components-buttons/ButtonMaterialYouPlayground.png', // playground
   'docs-customization-breakpoints', // Need to dynamically resize to test
   'docs-customization-color', // Escape viewport
   'docs-customization-default-theme', // Redux isolation
   'docs-customization-density/DensityTool.png', // Redux isolation
   'docs-customization-transitions/TransitionHover.png', // Need interaction
   'docs-customization-typography/ResponsiveFontSizesChart.png',
+  'docs-customization-right-to-left/RtlDemo.png',
   'docs-discover-more-languages', // No public components
   'docs-discover-more-showcase', // No public components
   'docs-discover-more-team', // No public components
-  'docs-getting-started-templates-album/Album.png', // Flaky image loading
+  'docs-getting-started-templates-landing-page/LandingPage.png', // Flaky image loading
   'docs-getting-started-templates-blog', // Flaky random images
   'docs-getting-started-templates-checkout/AddressForm.png', // Already tested in docs-getting-started-templates-checkout/Checkout
   'docs-getting-started-templates-checkout/PaymentForm.png', // Already tested in docs-getting-started-templates-checkout/Checkout
@@ -151,22 +151,11 @@ const blacklist = [
   'docs-getting-started-templates-sign-in-side/SignInSide.png', // Flaky
   'docs-getting-started-templates', // No public components
   'docs-getting-started-usage/Usage.png', // No public components
+  'docs-getting-started-supported-components/MaterialUIComponents.png', // No public components
   'docs-landing', // Mostly images, redundant
   'docs-production-error', // No components, page for DX
-  'docs-styles-advanced', // Redudant
+  'docs-styles-advanced', // Redundant
   'docs-styles-basics/StressTest.png', // Need interaction
-  'docs-system-basics/BreakpointsAsArray.png', // Unit tests are enough
-  'docs-system-basics/BreakpointsAsObject.png', // Unit tests are enough
-  'docs-system-basics/ValueAsFunction.png', // Unit tests are enough
-  'docs-system-borders', // Unit tests are enough
-  'docs-system-display', // Unit tests are enough
-  'docs-system-flexbox', // Unit tests are enough
-  'docs-system-palette', // Unit tests are enough
-  'docs-system-positions', // Unit tests are enough
-  'docs-system-shadows', // Unit tests are enough
-  'docs-system-sizing', // Unit tests are enough
-  'docs-system-spacing', // Unit tests are enough
-  'docs-system-typography', // Unit tests are enough
   'docs-versions', // No public components
   /^docs-guides-.*/, // No public components
 ];
@@ -175,6 +164,10 @@ const unusedBlacklistPatterns = new Set(blacklist);
 
 function excludeDemoFixture(suite, name) {
   if (/^docs-premium-themes(.*)/.test(suite)) {
+    return true;
+  }
+
+  if (suite.includes('docs-joy') && name.match(/(Variables|Usage)$/)) {
     return true;
   }
 
@@ -204,10 +197,7 @@ function excludeDemoFixture(suite, name) {
 }
 
 // Also use some of the demos to avoid code duplication.
-let importDemos = require.context('docs/src/pages', true, /js$/, 'lazy');
-if (FEATURE_TOGGLE.enable_product_scope) {
-  importDemos = require.context('docs/data', true, /(?<!pagesApi)\.js$/, 'lazy');
-}
+const importDemos = require.context('docs/data', true, /(?<!pagesApi)\.js$/, 'lazy');
 const demoFixtures = [];
 importDemos.keys().forEach((path) => {
   const [name, ...suiteArray] = path.replace('./', '').replace('.js', '').split('/').reverse();
@@ -239,24 +229,38 @@ if (unusedBlacklistPatterns.size > 0) {
 const viewerRoot = document.getElementById('test-viewer');
 
 function FixtureRenderer({ component: FixtureComponent }) {
-  React.useLayoutEffect(() => {
-    const children = (
-      <TestViewer>
-        <FixtureComponent />
-      </TestViewer>
-    );
-
-    ReactDOM.render(children, viewerRoot);
-  }, [FixtureComponent]);
+  const viewerReactRoot = React.useRef(null);
 
   React.useLayoutEffect(() => {
+    const renderTimeout = setTimeout(() => {
+      const children = (
+        <TestViewer>
+          <FixtureComponent />
+        </TestViewer>
+      );
+
+      if (viewerReactRoot.current === null) {
+        viewerReactRoot.current = ReactDOMClient.createRoot(viewerRoot);
+      }
+
+      viewerReactRoot.current.render(children);
+    });
+
     return () => {
-      ReactDOM.unmountComponentAtNode(viewerRoot);
+      clearTimeout(renderTimeout);
+      setTimeout(() => {
+        viewerReactRoot.current.unmount();
+        viewerReactRoot.current = null;
+      });
     };
-  }, []);
+  }, [FixtureComponent]);
 
   return null;
 }
+
+FixtureRenderer.propTypes = {
+  component: PropTypes.elementType,
+};
 
 function App(props) {
   const { fixtures } = props;
@@ -287,7 +291,7 @@ function App(props) {
   React.useEffect(() => {
     webfontloader.load({
       google: {
-        families: ['Roboto:300,400,500,700', 'Public Sans:300,400,500,700', 'Material+Icons'],
+        families: ['Roboto:300,400,500,700', 'Inter:300,400,500,600,700,800,900', 'Material+Icons'],
       },
       custom: {
         families: ['Font Awesome 5 Free:n9'],
@@ -364,9 +368,5 @@ App.propTypes = {
 
 const container = document.getElementById('react-root');
 const children = <App fixtures={regressionFixtures.concat(demoFixtures)} />;
-if (typeof ReactDOM.unstable_createRoot === 'function') {
-  const root = ReactDOM.unstable_createRoot(container);
-  root.render(children);
-} else {
-  ReactDOM.render(children, container);
-}
+const reactRoot = ReactDOMClient.createRoot(container);
+reactRoot.render(children);

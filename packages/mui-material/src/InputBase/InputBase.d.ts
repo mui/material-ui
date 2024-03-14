@@ -15,11 +15,18 @@ export interface InputBaseProps
   extends StandardProps<
     React.HTMLAttributes<HTMLDivElement>,
     /*
-     * `onChange`, `onKeyUp`, `onKeyDown`, `onBlur`, `onFocus` are applied to the inner `InputComponent`,
+     * `onBlur`, `onChange`, `onFocus`, `onInvalid`, `onKeyDown`, `onKeyUp` are applied to the inner `InputComponent`,
      * which by default is an input or textarea. Since these handlers differ from the
      * ones inherited by `React.HTMLAttributes<HTMLDivElement>` we need to omit them.
      */
-    'children' | 'onChange' | 'onKeyUp' | 'onKeyDown' | 'onBlur' | 'onFocus' | 'defaultValue'
+    | 'children'
+    | 'defaultValue'
+    | 'onBlur'
+    | 'onChange'
+    | 'onFocus'
+    | 'onInvalid'
+    | 'onKeyDown'
+    | 'onKeyUp'
   > {
   'aria-describedby'?: string;
   /**
@@ -37,7 +44,9 @@ export interface InputBaseProps
    */
   classes?: Partial<InputBaseClasses>;
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
   color?: OverridableStringUnion<
@@ -45,8 +54,11 @@ export interface InputBaseProps
     InputBasePropsColorOverrides
   >;
   /**
-   * The components used for each slot inside the InputBase.
-   * Either a string to use a HTML element or a component.
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `slots` prop.
+   * It's recommended to use the `slots` prop instead.
+   *
    * @default {}
    */
   components?: {
@@ -54,7 +66,12 @@ export interface InputBaseProps
     Input?: React.ElementType;
   };
   /**
-   * The props used for each slot inside the Input.
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `slotProps` prop.
+   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   *
    * @default {}
    */
   componentsProps?: {
@@ -116,7 +133,7 @@ export interface InputBaseProps
    */
   margin?: 'dense' | 'none';
   /**
-   * If `true`, a [TextareaAutosize](/components/textarea-autosize/) element is rendered.
+   * If `true`, a [TextareaAutosize](/material-ui/react-textarea-autosize/) element is rendered.
    * @default false
    */
   multiline?: boolean;
@@ -140,6 +157,10 @@ export interface InputBaseProps
   onFocus?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement | HTMLInputElement>;
   onKeyUp?: React.KeyboardEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+  /**
+   * Callback fired when the `input` doesn't satisfy its constraints.
+   */
+  onInvalid?: React.FormEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   /**
    * The short hint displayed in the `input` before the user enters a value.
    */
@@ -180,6 +201,31 @@ export interface InputBaseProps
    */
   size?: OverridableStringUnion<'small' | 'medium', InputBasePropsSizeOverrides>;
   /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slotProps?: {
+    root?: React.HTMLAttributes<HTMLDivElement> &
+      InputBaseComponentsPropsOverrides & { sx?: SxProps<Theme> };
+    input?: React.InputHTMLAttributes<HTMLInputElement> &
+      InputBaseComponentsPropsOverrides & { sx?: SxProps<Theme> };
+  };
+  /**
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slots?: {
+    root?: React.ElementType;
+    input?: React.ElementType;
+  };
+  /**
    * Start `InputAdornment` for this component.
    */
   startAdornment?: React.ReactNode;
@@ -211,10 +257,10 @@ export interface InputBaseComponentProps
  *
  * Demos:
  *
- * - [Text Fields](https://mui.com/components/text-fields/)
+ * - [Text Field](https://mui.com/material-ui/react-text-field/)
  *
  * API:
  *
- * - [InputBase API](https://mui.com/api/input-base/)
+ * - [InputBase API](https://mui.com/material-ui/api/input-base/)
  */
 export default function InputBase(props: InputBaseProps): JSX.Element;

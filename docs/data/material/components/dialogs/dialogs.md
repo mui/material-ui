@@ -1,33 +1,41 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Dialog component
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 githubLabel: 'component: dialog'
-materialDesign: https://material.io/components/dialogs
-waiAria: https://www.w3.org/TR/wai-aria-practices/#dialog_modal
+materialDesign: https://m2.material.io/components/dialogs
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 ---
 
 # Dialog
 
 <p class="description">Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.</p>
 
-A Dialog is a type of [modal](/components/modal/) window that appears in front of app content to provide critical information or ask for a decision. Dialogs disable all app functionality when they appear, and remain on screen until confirmed, dismissed, or a required action has been taken.
+A Dialog is a type of [modal](/material-ui/react-modal/) window that appears in front of app content to provide critical information or ask for a decision. Dialogs disable all app functionality when they appear, and remain on screen until confirmed, dismissed, or a required action has been taken.
 
 Dialogs are purposefully interruptive, so they should be used sparingly.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic dialog
+## Introduction
 
-Simple dialogs can provide additional details or actions about a list item.
-For example, they can display avatars, icons, clarifying subtext, or orthogonal actions (such as adding an account).
+Dialogs are implemented using a collection of related components:
 
-Touch mechanics:
+- Dialog: the parent component that renders the modal.
+- Dialog Title: a wrapper used for the title of a Dialog.
+- Dialog Actions: an optional container for a Dialog's Buttons.
+- Dialog Content: an optional container for displaying the Dialog's content.
+- Dialog Content Text: a wrapper for text inside of `<DialogContent />`.
+- Slide: optional [Transition](https://mui.com/material-ui/transitions/#slide) used to slide the Dialog in from the edge of the screen.
 
-- Choosing an option immediately commits the option and closes the menu
-- Touching outside of the dialog, or pressing Back, cancels the action and closes the dialog
+{{"demo": "SimpleDialogDemo.js"}}
 
-{{"demo": "SimpleDialog.js"}}
+## Basics
+
+```jsx
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+```
 
 ## Alerts
 
@@ -65,7 +73,7 @@ For example, if your site prompts for potential subscribers to fill in their ema
 ## Customization
 
 Here is an example of customizing the component.
-You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 The dialog has a close button added to aid usability.
 
@@ -84,7 +92,7 @@ When the `fullWidth` prop is true, the dialog will adapt based on the `maxWidth`
 
 ## Responsive full-screen
 
-You may make a dialog responsively full screen using [`useMediaQuery`](/components/use-media-query/#usemediaquery).
+You may make a dialog responsively full screen using [`useMediaQuery`](/material-ui/react-use-media-query/).
 
 ```jsx
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -108,6 +116,15 @@ Touching "Cancel" in a confirmation dialog, or pressing Back, cancels the action
 
 {{"demo": "ConfirmationDialog.js"}}
 
+## Non-modal dialog
+
+Dialogs can also be non-modal, meaning they don't interrupt user interaction behind it.
+Visit [the Nielsen Norman Group article](https://www.nngroup.com/articles/modal-nonmodal-dialog/) for more in-depth guidance about modal vs. non-modal dialog usage.
+
+The demo below shows a persistent cookie banner, a common non-modal dialog use case.
+
+{{"demo": "CookiesBanner.js", "iframe": true}}
+
 ## Draggable dialog
 
 You can create a draggable dialog by using [react-draggable](https://github.com/react-grid-layout/react-draggable).
@@ -129,12 +146,23 @@ Try the demo below to see what we mean:
 
 ## Performance
 
-Follow the [Modal performance section](/components/modal/#performance).
+Follow the [Modal performance section](/material-ui/react-modal/#performance).
 
 ## Limitations
 
-Follow the [Modal limitations section](/components/modal/#limitations).
+Follow the [Modal limitations section](/material-ui/react-modal/#limitations).
+
+## Complementary projects
+
+For more advanced use cases you might be able to take advantage of:
+
+### material-ui-confirm
+
+![stars](https://img.shields.io/github/stars/jonatanklosko/material-ui-confirm?style=social&label=Star)
+![npm downloads](https://img.shields.io/npm/dm/material-ui-confirm.svg)
+
+The package [`material-ui-confirm`](https://github.com/jonatanklosko/material-ui-confirm/) provides dialogs for confirming user actions without writing boilerplate code.
 
 ## Accessibility
 
-Follow the [Modal accessibility section](/components/modal/#accessibility).
+Follow the [Modal accessibility section](/material-ui/react-modal/#accessibility).

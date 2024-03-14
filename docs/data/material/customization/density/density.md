@@ -1,12 +1,12 @@
 # Density
 
-<p class="description">How to apply density to MUI components.</p>
+<p class="description">How to apply density to Material UI components.</p>
 
 ## Applying density
 
 This section explains how to apply density.
 It doesn't cover potential use cases, or considerations for using density in your application.
-The Material Design guidelines have a [comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) covering these topics in more detail.
+The Material Design guidelines have a [comprehensive guide](https://m2.material.io/design/layout/applying-density.html) covering these topics in more detail.
 
 ## Implementing density
 
@@ -18,28 +18,28 @@ reducing the size.
 
 The following components have props applying higher density:
 
-- [Button](/api/button/)
-- [Fab](/api/fab/)
-- [FilledInput](/api/filled-input/)
-- [FormControl](/api/form-control/)
-- [FormHelperText](/api/form-helper-text/)
-- [IconButton](/api/icon-button/)
-- [InputBase](/api/input-base/)
-- [InputLabel](/api/input-label/)
-- [ListItem](/api/list-item/)
-- [OutlinedInput](/api/outlined-input/)
-- [Table](/api/table/)
-- [TextField](/api/text-field/)
-- [Toolbar](/api/toolbar/)
+- [Button](/material-ui/api/button/)
+- [Fab](/material-ui/api/fab/)
+- [FilledInput](/material-ui/api/filled-input/)
+- [FormControl](/material-ui/api/form-control/)
+- [FormHelperText](/material-ui/api/form-helper-text/)
+- [IconButton](/material-ui/api/icon-button/)
+- [InputBase](/material-ui/api/input-base/)
+- [InputLabel](/material-ui/api/input-label/)
+- [ListItem](/material-ui/api/list-item/)
+- [OutlinedInput](/material-ui/api/outlined-input/)
+- [Table](/material-ui/api/table/)
+- [TextField](/material-ui/api/text-field/)
+- [Toolbar](/material-ui/api/toolbar/)
 
 ## Explore theme density
 
 This tool allows you to apply density via spacing and component props. You can browse
-around and see how this applies to the overall feel of MUI components.
+around and see how this applies to the overall feel of Material UI components.
 
 If you enable high density a custom theme is applied to the docs. This theme is only
 for demonstration purposes. You _should not_ apply this theme to your whole application
-as this might negatively impact user experience. The [Material Design guidelines](https://material.io/design/layout/applying-density.html#typographic-density) has examples
+as this might negatively impact user experience. The [Material Design guidelines](https://m2.material.io/design/layout/applying-density.html) has examples
 for when not to apply density.
 
 The theme is configured with the following options:

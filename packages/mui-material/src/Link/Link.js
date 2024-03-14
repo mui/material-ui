@@ -1,9 +1,9 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { elementTypeAcceptingRef } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { alpha, getPath } from '@mui/system';
+import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
+import composeClasses from '@mui/utils/composeClasses';
 import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -11,18 +11,7 @@ import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useForkRef from '../utils/useForkRef';
 import Typography from '../Typography';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
-
-const colorTransformations = {
-  primary: 'primary.main',
-  textPrimary: 'text.primary',
-  secondary: 'secondary.main',
-  textSecondary: 'text.secondary',
-  error: 'error.main',
-};
-
-const transformDeprecatedColors = (color) => {
-  return colorTransformations[color] || color;
-};
+import getTextDecoration, { colorTransformations } from './getTextDecoration';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, component, focusVisible, underline } = ownerState;
@@ -52,8 +41,6 @@ const LinkRoot = styled(Typography, {
     ];
   },
 })(({ theme, ownerState }) => {
-  const color =
-    getPath(theme, `palette.${transformDeprecatedColors(ownerState.color)}`) || ownerState.color;
   return {
     ...(ownerState.underline === 'none' && {
       textDecoration: 'none',
@@ -66,7 +53,9 @@ const LinkRoot = styled(Typography, {
     }),
     ...(ownerState.underline === 'always' && {
       textDecoration: 'underline',
-      textDecorationColor: color !== 'inherit' ? alpha(color, 0.4) : undefined,
+      ...(ownerState.color !== 'inherit' && {
+        textDecorationColor: getTextDecoration({ theme, ownerState }),
+      }),
       '&:hover': {
         textDecorationColor: 'inherit',
       },
@@ -112,6 +101,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     TypographyClasses,
     underline = 'always',
     variant = 'inherit',
+    sx,
     ...other
   } = props;
 
@@ -155,25 +145,29 @@ const Link = React.forwardRef(function Link(inProps, ref) {
 
   return (
     <LinkRoot
+      color={color}
       className={clsx(classes.root, className)}
       classes={TypographyClasses}
-      color={color}
       component={component}
       onBlur={handleBlur}
       onFocus={handleFocus}
       ref={handlerRef}
       ownerState={ownerState}
       variant={variant}
+      sx={[
+        ...(!Object.keys(colorTransformations).includes(color) ? [{ color }] : []),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
       {...other}
     />
   );
 });
 
 Link.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
@@ -213,7 +207,7 @@ Link.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * `classes` prop applied to the [`Typography`](/api/typography/) element.
+   * `classes` prop applied to the [`Typography`](/material-ui/api/typography/) element.
    */
   TypographyClasses: PropTypes.object,
   /**

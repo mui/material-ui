@@ -19,13 +19,16 @@
     }
   },
   "name": "Fade",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": ["import Fade from '@mui/material/Fade';", "import { Fade } from '@mui/material';"],
+  "classes": [],
   "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiFade",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Fade/Fade.js",
   "inheritance": {
     "component": "Transition",
-    "pathname": "http://reactcommunity.org/react-transition-group/transition/#Transition-props"
+    "pathname": "https://reactcommunity.org/react-transition-group/transition/#Transition-props"
   },
   "demos": "<ul><li><a href=\"/material-ui/transitions/\">Transitions</a></li></ul>",
   "cssComponent": false

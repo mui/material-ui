@@ -13,7 +13,7 @@ export default function UnderlineLink() {
         flexWrap: 'wrap',
         justifyContent: 'center',
         typography: 'body1',
-        '& > :not(style) + :not(style)': {
+        '& > :not(style) ~ :not(style)': {
           ml: 2,
         },
       }}

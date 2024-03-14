@@ -1,4 +1,10 @@
-import { ThemeOptions as SystemThemeOptions, Theme as SystemTheme } from '@mui/system';
+import {
+  ThemeOptions as SystemThemeOptions,
+  Theme as SystemTheme,
+  SxProps,
+  CSSObject,
+  SxConfig,
+} from '@mui/system';
 import { Mixins, MixinsOptions } from './createMixins';
 import { Palette, PaletteOptions } from './createPalette';
 import { Typography, TypographyOptions } from './createTypography';
@@ -9,13 +15,14 @@ import { Components } from './components';
 
 export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'> {
   mixins?: MixinsOptions;
-  components?: Components<BaseTheme>;
+  components?: Components<Omit<Theme, 'components'>>;
   palette?: PaletteOptions;
   shadows?: Shadows;
   transitions?: TransitionsOptions;
   typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
   zIndex?: ZIndexOptions;
   unstable_strictMode?: boolean;
+  unstable_sxConfig?: SxConfig;
 }
 
 interface BaseTheme extends SystemTheme {
@@ -32,10 +39,12 @@ interface BaseTheme extends SystemTheme {
 export {};
 
 /**
- * Our [TypeScript guide on theme customization](https://mui.com/guides/typescript/#customization-of-theme) explains in detail how you would add custom properties.
+ * Our [TypeScript guide on theme customization](https://mui.com/material-ui/guides/typescript/#customization-of-theme) explains in detail how you would add custom properties.
  */
 export interface Theme extends BaseTheme {
   components?: Components<BaseTheme>;
+  unstable_sx: (props: SxProps<Theme>) => CSSObject;
+  unstable_sxConfig: SxConfig;
 }
 
 /**

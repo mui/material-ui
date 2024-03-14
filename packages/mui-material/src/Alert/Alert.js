@@ -1,10 +1,11 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { darken, lighten } from '@mui/system';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import { darken, lighten } from '@mui/system/colorManipulator';
+import { styled, createUseThemeProps } from '../zero-styled';
+import useSlot from '../utils/useSlot';
 import capitalize from '../utils/capitalize';
 import Paper from '../Paper';
 import alertClasses, { getAlertUtilityClass } from './alertClasses';
@@ -15,11 +16,18 @@ import ErrorOutlineIcon from '../internal/svg-icons/ErrorOutline';
 import InfoOutlinedIcon from '../internal/svg-icons/InfoOutlined';
 import CloseIcon from '../internal/svg-icons/Close';
 
+const useThemeProps = createUseThemeProps('MuiAlert');
+
 const useUtilityClasses = (ownerState) => {
   const { variant, color, severity, classes } = ownerState;
 
   const slots = {
-    root: ['root', `${variant}${capitalize(color || severity)}`, `${variant}`],
+    root: [
+      'root',
+      `color${capitalize(color || severity)}`,
+      `${variant}${capitalize(color || severity)}`,
+      `${variant}`,
+    ],
     icon: ['icon'],
     message: ['message'],
     action: ['action'],
@@ -40,41 +48,70 @@ const AlertRoot = styled(Paper, {
       styles[`${ownerState.variant}${capitalize(ownerState.color || ownerState.severity)}`],
     ];
   },
-})(({ theme, ownerState }) => {
+})(({ theme }) => {
   const getColor = theme.palette.mode === 'light' ? darken : lighten;
   const getBackgroundColor = theme.palette.mode === 'light' ? lighten : darken;
-  const color = ownerState.color || ownerState.severity;
-
   return {
     ...theme.typography.body2,
     backgroundColor: 'transparent',
     display: 'flex',
     padding: '6px 16px',
-    ...(color &&
-      ownerState.variant === 'standard' && {
-        color: getColor(theme.palette[color].light, 0.6),
-        backgroundColor: getBackgroundColor(theme.palette[color].light, 0.9),
-        [`& .${alertClasses.icon}`]: {
-          color:
-            theme.palette.mode === 'dark' ? theme.palette[color].main : theme.palette[color].light,
-        },
-      }),
-    ...(color &&
-      ownerState.variant === 'outlined' && {
-        color: getColor(theme.palette[color].light, 0.6),
-        border: `1px solid ${theme.palette[color].light}`,
-        [`& .${alertClasses.icon}`]: {
-          color:
-            theme.palette.mode === 'dark' ? theme.palette[color].main : theme.palette[color].light,
-        },
-      }),
-    ...(color &&
-      ownerState.variant === 'filled' && {
-        color: '#fff',
-        fontWeight: theme.typography.fontWeightMedium,
-        backgroundColor:
-          theme.palette.mode === 'dark' ? theme.palette[color].dark : theme.palette[color].main,
-      }),
+    variants: [
+      ...Object.entries(theme.palette)
+        .filter(([, value]) => value.main && value.light)
+        .map(([color]) => ({
+          props: { colorSeverity: color, variant: 'standard' },
+          style: {
+            color: theme.vars
+              ? theme.vars.palette.Alert[`${color}Color`]
+              : getColor(theme.palette[color].light, 0.6),
+            backgroundColor: theme.vars
+              ? theme.vars.palette.Alert[`${color}StandardBg`]
+              : getBackgroundColor(theme.palette[color].light, 0.9),
+            [`& .${alertClasses.icon}`]: theme.vars
+              ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
+              : {
+                  color: theme.palette[color].main,
+                },
+          },
+        })),
+      ...Object.entries(theme.palette)
+        .filter(([, value]) => value.main && value.light)
+        .map(([color]) => ({
+          props: { colorSeverity: color, variant: 'outlined' },
+          style: {
+            color: theme.vars
+              ? theme.vars.palette.Alert[`${color}Color`]
+              : getColor(theme.palette[color].light, 0.6),
+            border: `1px solid ${(theme.vars || theme).palette[color].light}`,
+            [`& .${alertClasses.icon}`]: theme.vars
+              ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
+              : {
+                  color: theme.palette[color].main,
+                },
+          },
+        })),
+      ...Object.entries(theme.palette)
+        .filter(([, value]) => value.main && value.dark)
+        .map(([color]) => ({
+          props: { colorSeverity: color, variant: 'filled' },
+          style: {
+            fontWeight: theme.typography.fontWeightMedium,
+            ...(theme.vars
+              ? {
+                  color: theme.vars.palette.Alert[`${color}FilledColor`],
+                  backgroundColor: theme.vars.palette.Alert[`${color}FilledBg`],
+                }
+              : {
+                  backgroundColor:
+                    theme.palette.mode === 'dark'
+                      ? theme.palette[color].dark
+                      : theme.palette[color].main,
+                  color: theme.palette.getContrastText(theme.palette[color].main),
+                }),
+          },
+        })),
+    ],
   };
 });
 
@@ -96,6 +133,8 @@ const AlertMessage = styled('div', {
   overridesResolver: (props, styles) => styles.message,
 })({
   padding: '8px 0',
+  minWidth: 0,
+  overflow: 'auto',
 });
 
 const AlertAction = styled('div', {
@@ -125,11 +164,15 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     className,
     closeText = 'Close',
     color,
+    components = {},
+    componentsProps = {},
     icon,
     iconMapping = defaultIconMapping,
     onClose,
     role = 'alert',
     severity = 'success',
+    slotProps = {},
+    slots = {},
     variant = 'standard',
     ...other
   } = props;
@@ -139,9 +182,34 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     color,
     severity,
     variant,
+    colorSeverity: color || severity,
   };
 
   const classes = useUtilityClasses(ownerState);
+
+  const externalForwardedProps = {
+    slots: {
+      closeButton: components.CloseButton,
+      closeIcon: components.CloseIcon,
+      ...slots,
+    },
+    slotProps: {
+      ...componentsProps,
+      ...slotProps,
+    },
+  };
+
+  const [CloseButtonSlot, closeButtonProps] = useSlot('closeButton', {
+    elementType: IconButton,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [CloseIconSlot, closeIconProps] = useSlot('closeIcon', {
+    elementType: CloseIcon,
+    externalForwardedProps,
+    ownerState,
+  });
 
   return (
     <AlertRoot
@@ -160,18 +228,23 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
       <AlertMessage ownerState={ownerState} className={classes.message}>
         {children}
       </AlertMessage>
-      {action != null ? <AlertAction className={classes.action}>{action}</AlertAction> : null}
+      {action != null ? (
+        <AlertAction ownerState={ownerState} className={classes.action}>
+          {action}
+        </AlertAction>
+      ) : null}
       {action == null && onClose ? (
         <AlertAction ownerState={ownerState} className={classes.action}>
-          <IconButton
+          <CloseButtonSlot
             size="small"
             aria-label={closeText}
             title={closeText}
             color="inherit"
             onClick={onClose}
+            {...closeButtonProps}
           >
-            <CloseIcon fontSize="small" />
-          </IconButton>
+            <CloseIconSlot fontSize="small" {...closeIconProps} />
+          </CloseButtonSlot>
         </AlertAction>
       ) : null}
     </AlertRoot>
@@ -179,10 +252,10 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
 });
 
 Alert.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The action to display. It renders after the message, at the end of the alert.
    */
@@ -202,17 +275,42 @@ Alert.propTypes /* remove-proptypes */ = {
   /**
    * Override the default label for the *close popup* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @default 'Close'
    */
   closeText: PropTypes.string,
   /**
-   * The main color for the alert. Unless provided, the value is taken from the `severity` prop.
+   * The color of the component. Unless provided, the value is taken from the `severity` prop.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['error', 'info', 'success', 'warning']),
     PropTypes.string,
   ]),
+  /**
+   * The components used for each slot inside.
+   *
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   *
+   * @default {}
+   */
+  components: PropTypes.shape({
+    CloseButton: PropTypes.elementType,
+    CloseIcon: PropTypes.elementType,
+  }),
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   *
+   * @default {}
+   */
+  componentsProps: PropTypes.shape({
+    closeButton: PropTypes.object,
+    closeIcon: PropTypes.object,
+  }),
   /**
    * Override the icon displayed before the children.
    * Unless provided, the icon is mapped to the value of the `severity` prop.
@@ -246,7 +344,26 @@ Alert.propTypes /* remove-proptypes */ = {
    * The severity of the alert. This defines the color and icon used.
    * @default 'success'
    */
-  severity: PropTypes.oneOf(['error', 'info', 'success', 'warning']),
+  severity: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['error', 'info', 'success', 'warning']),
+    PropTypes.string,
+  ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    closeButton: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    closeIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    closeButton: PropTypes.elementType,
+    closeIcon: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

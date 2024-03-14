@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import composeClasses from '@mui/utils/composeClasses';
 import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -61,19 +62,23 @@ const StepConnectorLine = styled('span', {
 
     return [styles.line, styles[`line${capitalize(ownerState.orientation)}`]];
   },
-})(({ ownerState, theme }) => ({
-  display: 'block',
-  borderColor: theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
-  ...(ownerState.orientation === 'horizontal' && {
-    borderTopStyle: 'solid',
-    borderTopWidth: 1,
-  }),
-  ...(ownerState.orientation === 'vertical' && {
-    borderLeftStyle: 'solid',
-    borderLeftWidth: 1,
-    minHeight: 24,
-  }),
-}));
+})(({ ownerState, theme }) => {
+  const borderColor =
+    theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600];
+  return {
+    display: 'block',
+    borderColor: theme.vars ? theme.vars.palette.StepConnector.border : borderColor,
+    ...(ownerState.orientation === 'horizontal' && {
+      borderTopStyle: 'solid',
+      borderTopWidth: 1,
+    }),
+    ...(ownerState.orientation === 'vertical' && {
+      borderLeftStyle: 'solid',
+      borderLeftWidth: 1,
+      minHeight: 24,
+    }),
+  };
+});
 
 const StepConnector = React.forwardRef(function StepConnector(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiStepConnector' });
@@ -98,10 +103,10 @@ const StepConnector = React.forwardRef(function StepConnector(inProps, ref) {
 });
 
 StepConnector.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Override or extend the styles applied to the component.
    */

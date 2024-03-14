@@ -3,7 +3,7 @@ import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
 import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
 import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
 import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
-import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
@@ -36,22 +36,16 @@ export default function ToggleButtonSizes() {
   };
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        // TODO Replace with Stack
-        '& > :not(style) + :not(style)': { mt: 2 },
-      }}
-    >
-      <ToggleButtonGroup size="small" {...control}>
+    <Stack spacing={2} alignItems="center">
+      <ToggleButtonGroup size="small" {...control} aria-label="Small sizes">
         {children}
       </ToggleButtonGroup>
-      <ToggleButtonGroup {...control}>{children}</ToggleButtonGroup>
-      <ToggleButtonGroup size="large" {...control}>
+      <ToggleButtonGroup {...control} aria-label="Medium sizes">
         {children}
       </ToggleButtonGroup>
-    </Box>
+      <ToggleButtonGroup size="large" {...control} aria-label="Large sizes">
+        {children}
+      </ToggleButtonGroup>
+    </Stack>
   );
 }

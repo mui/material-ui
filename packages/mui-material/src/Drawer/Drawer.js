@@ -1,8 +1,10 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { integerPropType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import integerPropType from '@mui/utils/integerPropType';
+import composeClasses from '@mui/utils/composeClasses';
+import { useRtl } from '@mui/system/RtlProvider';
 import Modal from '../Modal';
 import Slide from '../Slide';
 import Paper from '../Paper';
@@ -44,7 +46,7 @@ const DrawerRoot = styled(Modal, {
   slot: 'Root',
   overridesResolver,
 })(({ theme }) => ({
-  zIndex: theme.zIndex.drawer,
+  zIndex: (theme.vars || theme).zIndex.drawer,
 }));
 
 const DrawerDockedRoot = styled('div', {
@@ -76,7 +78,7 @@ const DrawerPaper = styled(Paper, {
   flexDirection: 'column',
   height: '100%',
   flex: '1 0 auto',
-  zIndex: theme.zIndex.drawer,
+  zIndex: (theme.vars || theme).zIndex.drawer,
   // Add iOS momentum scrolling for iOS < 13.0
   WebkitOverflowScrolling: 'touch',
   // temporary style
@@ -109,19 +111,19 @@ const DrawerPaper = styled(Paper, {
   }),
   ...(ownerState.anchor === 'left' &&
     ownerState.variant !== 'temporary' && {
-      borderRight: `1px solid ${theme.palette.divider}`,
+      borderRight: `1px solid ${(theme.vars || theme).palette.divider}`,
     }),
   ...(ownerState.anchor === 'top' &&
     ownerState.variant !== 'temporary' && {
-      borderBottom: `1px solid ${theme.palette.divider}`,
+      borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
     }),
   ...(ownerState.anchor === 'right' &&
     ownerState.variant !== 'temporary' && {
-      borderLeft: `1px solid ${theme.palette.divider}`,
+      borderLeft: `1px solid ${(theme.vars || theme).palette.divider}`,
     }),
   ...(ownerState.anchor === 'bottom' &&
     ownerState.variant !== 'temporary' && {
-      borderTop: `1px solid ${theme.palette.divider}`,
+      borderTop: `1px solid ${(theme.vars || theme).palette.divider}`,
     }),
 }));
 
@@ -136,17 +138,18 @@ export function isHorizontal(anchor) {
   return ['left', 'right'].indexOf(anchor) !== -1;
 }
 
-export function getAnchor(theme, anchor) {
-  return theme.direction === 'rtl' && isHorizontal(anchor) ? oppositeDirection[anchor] : anchor;
+export function getAnchor({ direction }, anchor) {
+  return direction === 'rtl' && isHorizontal(anchor) ? oppositeDirection[anchor] : anchor;
 }
 
 /**
- * The props of the [Modal](/api/modal/) component are available
+ * The props of the [Modal](/material-ui/api/modal/) component are available
  * when `variant="temporary"` is set.
  */
 const Drawer = React.forwardRef(function Drawer(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiDrawer' });
   const theme = useTheme();
+  const isRtl = useRtl();
   const defaultTransitionDuration = {
     enter: theme.transitions.duration.enteringScreen,
     exit: theme.transitions.duration.leavingScreen,
@@ -179,7 +182,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     mounted.current = true;
   }, []);
 
-  const anchorInvariant = getAnchor(theme, anchorProp);
+  const anchorInvariant = getAnchor({ direction: isRtl ? 'rtl' : 'ltr' }, anchorProp);
   const anchor = anchorProp;
 
   const ownerState = {
@@ -266,10 +269,10 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
 });
 
 Drawer.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Side from which the drawer will appear.
    * @default 'left'
@@ -302,14 +305,16 @@ Drawer.propTypes /* remove-proptypes */ = {
    */
   hideBackdrop: PropTypes.bool,
   /**
-   * Props applied to the [`Modal`](/api/modal/) element.
+   * Props applied to the [`Modal`](/material-ui/api/modal/) element.
    * @default {}
    */
   ModalProps: PropTypes.object,
   /**
    * Callback fired when the component requests to be closed.
+   * The `reason` parameter can optionally be used to control the response to `onClose`.
    *
    * @param {object} event The event source of the callback.
+   * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
    */
   onClose: PropTypes.func,
   /**
@@ -318,12 +323,12 @@ Drawer.propTypes /* remove-proptypes */ = {
    */
   open: PropTypes.bool,
   /**
-   * Props applied to the [`Paper`](/api/paper/) element.
+   * Props applied to the [`Paper`](/material-ui/api/paper/) element.
    * @default {}
    */
   PaperProps: PropTypes.object,
   /**
-   * Props applied to the [`Slide`](/api/slide/) element.
+   * Props applied to the [`Slide`](/material-ui/api/slide/) element.
    */
   SlideProps: PropTypes.object,
   /**

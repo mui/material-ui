@@ -2,17 +2,23 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
-  describeConformance,
   act,
   createRenderer,
   fireEvent,
   screen,
-  strictModeDoubleLoggingSupressed,
-} from 'test/utils';
+  strictModeDoubleLoggingSuppressed,
+  waitFor,
+} from '@mui-internal/test-utils';
 import Tab from '@mui/material/Tab';
 import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
+import { svgIconClasses } from '@mui/material/SvgIcon';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createSvgIcon } from '@mui/material/utils';
 import capitalize from '../utils/capitalize';
+import describeConformance from '../../test/describeConformance';
+
+const ArrowBackIcon = createSvgIcon(<path d="M3 3h18v18H3z" />, 'ArrowBack');
+const ArrowForwardIcon = createSvgIcon(<path d="M3 3h18v18H3z" />, 'ArrowForward');
 
 function findScrollButton(container, direction) {
   return container.querySelector(`svg[data-testid="KeyboardArrow${capitalize(direction)}Icon"]`);
@@ -90,10 +96,10 @@ describe('<Tabs />', () => {
         render(<Tabs value={0} centered variant="scrollable" />);
       }).toErrorDev([
         'MUI: You can not use the `centered={true}` and `variant="scrollable"`',
-        !strictModeDoubleLoggingSupressed &&
+        !strictModeDoubleLoggingSuppressed &&
           'MUI: You can not use the `centered={true}` and `variant="scrollable"`',
         'MUI: You can not use the `centered={true}` and `variant="scrollable"`',
-        !strictModeDoubleLoggingSupressed &&
+        !strictModeDoubleLoggingSuppressed &&
           'MUI: You can not use the `centered={true}` and `variant="scrollable"`',
       ]);
     });
@@ -161,6 +167,40 @@ describe('<Tabs />', () => {
 
       expect(getAllByRole('tab').map((tab) => tab.tabIndex)).to.have.ordered.members([0, -1]);
     });
+  });
+
+  it('props: slots and slotProps, should render custom start and end icons', () => {
+    const tabs = (
+      <Tabs
+        value={0}
+        variant="scrollable"
+        scrollButtons
+        textColor="secondary"
+        slots={{
+          StartScrollButtonIcon: ArrowBackIcon,
+          EndScrollButtonIcon: ArrowForwardIcon,
+        }}
+        slotProps={{
+          endScrollButtonIcon: (ownerState) => ({
+            'data-testid': 'test-label-scrollButtonEnd',
+            fontSize: ownerState.textColor === 'secondary' ? 'large' : 'small',
+          }),
+          startScrollButtonIcon: (ownerState) => ({
+            'data-testid': 'test-label-scrollButtonStart',
+            fontSize: ownerState.textColor === 'secondary' ? 'large' : 'small',
+          }),
+        }}
+      >
+        <Tab />
+        <Tab />
+      </Tabs>
+    );
+
+    const { getAllByTestId, getByTestId } = render(tabs);
+    expect(getAllByTestId('test-label-scrollButtonStart')).to.have.lengthOf(1);
+    expect(getAllByTestId('test-label-scrollButtonEnd')).to.have.lengthOf(1);
+    expect(getByTestId('test-label-scrollButtonStart')).to.have.class(svgIconClasses.fontSizeLarge);
+    expect(getByTestId('test-label-scrollButtonEnd')).to.have.class(svgIconClasses.fontSizeLarge);
   });
 
   describe('prop: value', () => {
@@ -327,7 +367,7 @@ describe('<Tabs />', () => {
         ]);
       });
 
-      describe('hidden tab', () => {
+      describe('hidden tab / tabs', () => {
         let nodeEnv;
 
         before(function test() {
@@ -338,14 +378,28 @@ describe('<Tabs />', () => {
 
           nodeEnv = process.env.NODE_ENV;
           // We can't use a regular assignment, because it causes a syntax error in Karma
-          Object.defineProperty(process.env, 'NODE_ENV', { value: 'development' });
+          Object.defineProperty(process.env, 'NODE_ENV', {
+            value: 'development',
+            configurable: true,
+            writable: true,
+            enumerable: true,
+          });
         });
 
         after(() => {
-          Object.defineProperty(process.env, 'NODE_ENV', { value: nodeEnv });
+          Object.defineProperty(process.env, 'NODE_ENV', {
+            value: nodeEnv,
+            configurable: true,
+            writable: true,
+            enumerable: true,
+          });
         });
 
-        it('should warn if a Tab has display: none', () => {
+        it('should warn if a `Tab` has display: none', function test() {
+          if (isJSDOM) {
+            this.skip();
+          }
+
           expect(() => {
             render(
               <Tabs value="hidden-tab">
@@ -359,6 +413,19 @@ describe('<Tabs />', () => {
               "Make sure the tab item is present in the document or that it's not `display: none`.",
             ].join('\n'),
           ]);
+        });
+
+        it('should not warn if the whole Tabs is hidden', function test() {
+          if (isJSDOM) {
+            this.skip();
+          }
+          expect(() => {
+            render(
+              <Tabs value="demo" style={{ display: 'none' }}>
+                <Tab value="demo" style={{ display: 'none' }} />
+              </Tabs>,
+            );
+          }).not.toErrorDev();
         });
       });
     });
@@ -429,7 +496,6 @@ describe('<Tabs />', () => {
   });
 
   describe('prop: variant="scrollable"', () => {
-    clock.withFakeTimers();
     const tabs = (
       <Tabs value={0} style={{ width: 200 }} variant="scrollable">
         <Tab style={{ width: 120, minWidth: 'auto' }} />
@@ -445,34 +511,6 @@ describe('<Tabs />', () => {
       expect(container.querySelectorAll(selector)).to.have.lengthOf(1);
     });
 
-    it('should response to scroll events', function test() {
-      if (isJSDOM) {
-        this.skip();
-      }
-      const { container, forceUpdate, getByRole } = render(tabs);
-      const tablistContainer = getByRole('tablist').parentElement;
-
-      Object.defineProperty(tablistContainer, 'clientWidth', { value: 200 - 40 * 2 });
-      tablistContainer.scrollLeft = 10;
-      Object.defineProperty(tablistContainer, 'scrollWidth', { value: 216 });
-      Object.defineProperty(tablistContainer, 'getBoundingClientRect', {
-        value: () => ({
-          left: 0,
-          right: 50,
-        }),
-      });
-      forceUpdate();
-      clock.tick(1000);
-      expect(hasLeftScrollButton(container)).to.equal(true);
-      expect(hasRightScrollButton(container)).to.equal(true);
-      tablistContainer.scrollLeft = 0;
-      fireEvent.scroll(container.querySelector(`.${classes.scroller}.${classes.scrollableX}`));
-      clock.tick(166);
-
-      expect(hasLeftScrollButton(container)).to.equal(false);
-      expect(hasRightScrollButton(container)).to.equal(true);
-    });
-
     it('should get a scrollbar size listener', () => {
       const { setProps, getByRole } = render(
         <Tabs value={0}>
@@ -486,6 +524,37 @@ describe('<Tabs />', () => {
         variant: 'scrollable',
       });
       expect(tablistContainer.style.overflow).to.equal('');
+    });
+
+    it('should handle theme styleOverrides for scrollable tabs without crashing', () => {
+      const theme = createTheme({
+        components: {
+          MuiTabs: {
+            styleOverrides: {
+              root: ({ ownerState: { orientation } }) => ({
+                ...(orientation === 'vertical'
+                  ? {
+                      background: 'magenta',
+                    }
+                  : {
+                      background: 'lime',
+                    }),
+              }),
+            },
+          },
+        },
+      });
+
+      expect(() =>
+        render(
+          <ThemeProvider theme={theme}>
+            <Tabs sx={{ width: 200 }} value={0} variant="scrollable">
+              <Tab label="First" />
+              <Tab label="Second" />
+            </Tabs>
+          </ThemeProvider>,
+        ),
+      ).not.to.throw();
     });
   });
 
@@ -505,8 +574,6 @@ describe('<Tabs />', () => {
   });
 
   describe('prop: scrollButtons', () => {
-    clock.withFakeTimers();
-
     it('should render scroll buttons', () => {
       const { container } = render(
         <Tabs value={0} variant="scrollable" scrollButtons>
@@ -544,65 +611,27 @@ describe('<Tabs />', () => {
       expect(container.querySelectorAll(`.${classes.scrollButtonsHideMobile}`)).to.have.lengthOf(0);
     });
 
-    it('should handle window resize event', function test() {
-      if (isJSDOM) {
-        this.skip();
-      }
-
-      const { container, forceUpdate, getByRole } = render(
-        <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
-          <Tab />
-          <Tab />
-          <Tab />
-        </Tabs>,
-      );
-
-      const tablistContainer = getByRole('tablist').parentElement;
-
-      Object.defineProperty(tablistContainer, 'clientWidth', { value: 200 - 40 * 2 });
-      tablistContainer.scrollLeft = 10;
-      Object.defineProperty(tablistContainer, 'scrollWidth', { value: 216 });
-      Object.defineProperty(tablistContainer, 'getBoundingClientRect', {
-        value: () => ({
-          left: 0,
-          right: 100,
-        }),
-      });
-      forceUpdate();
-      clock.tick(1000);
-      expect(hasLeftScrollButton(container)).to.equal(true);
-      expect(hasRightScrollButton(container)).to.equal(true);
-      tablistContainer.scrollLeft = 0;
-
-      act(() => {
-        window.dispatchEvent(new window.Event('resize', {}));
-      });
-      clock.tick(166);
-
-      expect(hasLeftScrollButton(container)).to.equal(false);
-      expect(hasRightScrollButton(container)).to.equal(true);
-    });
-
     describe('scroll button visibility states', () => {
-      it('should set neither left nor right scroll button state', () => {
-        const { container, forceUpdate, getByRole } = render(
+      it('should set neither left nor right scroll button state', function test() {
+        if (isJSDOM) {
+          this.skip();
+        }
+        const { container } = render(
           <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
             <Tab style={{ width: 50, minWidth: 'auto' }} />
             <Tab style={{ width: 50, minWidth: 'auto' }} />
           </Tabs>,
         );
-        const tablistContainer = getByRole('tablist').parentElement;
 
-        Object.defineProperty(tablistContainer, 'clientWidth', { value: 200 - 40 * 2 });
-        Object.defineProperty(tablistContainer, 'scrollWidth', { value: 200 - 40 * 2 });
-
-        forceUpdate();
         expect(hasLeftScrollButton(container)).to.equal(false);
         expect(hasRightScrollButton(container)).to.equal(false);
       });
 
-      it('should set only left scroll button state', () => {
-        const { container, forceUpdate, getByRole } = render(
+      it('should set only left scroll button state', async function test() {
+        if (isJSDOM) {
+          this.skip();
+        }
+        const { container, getByRole } = render(
           <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
             <Tab style={{ width: 120, minWidth: 'auto' }} />
             <Tab style={{ width: 120, minWidth: 'auto' }} />
@@ -611,17 +640,19 @@ describe('<Tabs />', () => {
         );
         const tablistContainer = getByRole('tablist').parentElement;
 
-        Object.defineProperty(tablistContainer, 'clientWidth', { value: 200 - 40 * 2 });
-        Object.defineProperty(tablistContainer, 'scrollWidth', { value: 216 });
-        tablistContainer.scrollLeft = 96;
+        tablistContainer.scrollLeft = 240;
 
-        forceUpdate();
-        expect(hasLeftScrollButton(container)).to.equal(true);
-        expect(hasRightScrollButton(container)).to.equal(false);
+        await waitFor(() => {
+          expect(hasLeftScrollButton(container)).to.equal(true);
+          expect(hasRightScrollButton(container)).to.equal(false);
+        });
       });
 
-      it('should set only right scroll button state', () => {
-        const { container, forceUpdate, getByRole } = render(
+      it('should set only right scroll button state', async function test() {
+        if (isJSDOM) {
+          this.skip();
+        }
+        const { container, getByRole } = render(
           <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
             <Tab />
             <Tab />
@@ -630,17 +661,19 @@ describe('<Tabs />', () => {
         );
         const tablistContainer = getByRole('tablist').parentElement;
 
-        Object.defineProperty(tablistContainer, 'clientWidth', { value: 200 - 40 * 2 });
-        Object.defineProperty(tablistContainer, 'scrollWidth', { value: 216 });
         tablistContainer.scrollLeft = 0;
 
-        forceUpdate();
-        expect(hasLeftScrollButton(container)).to.equal(false);
-        expect(hasRightScrollButton(container)).to.equal(true);
+        await waitFor(() => {
+          expect(hasLeftScrollButton(container)).to.equal(false);
+          expect(hasRightScrollButton(container)).to.equal(true);
+        });
       });
 
-      it('should set both left and right scroll button state', () => {
-        const { container, forceUpdate, getByRole } = render(
+      it('should set both left and right scroll button state', async function test() {
+        if (isJSDOM) {
+          this.skip();
+        }
+        const { container, getByRole } = render(
           <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
             <Tab style={{ width: 120, minWidth: 'auto' }} />
             <Tab style={{ width: 120, minWidth: 'auto' }} />
@@ -648,13 +681,12 @@ describe('<Tabs />', () => {
         );
         const tablistContainer = getByRole('tablist').parentElement;
 
-        Object.defineProperty(tablistContainer, 'clientWidth', { value: 200 - 40 * 2 });
-        Object.defineProperty(tablistContainer, 'scrollWidth', { value: 216 });
         tablistContainer.scrollLeft = 5;
 
-        forceUpdate();
-        expect(hasLeftScrollButton(container)).to.equal(true);
-        expect(hasRightScrollButton(container)).to.equal(true);
+        await waitFor(() => {
+          expect(hasLeftScrollButton(container)).to.equal(true);
+          expect(hasRightScrollButton(container)).to.equal(true);
+        });
       });
     });
   });
@@ -662,8 +694,12 @@ describe('<Tabs />', () => {
   describe('scroll button behavior', () => {
     clock.withFakeTimers();
 
-    it('should scroll visible items', () => {
-      const { container, forceUpdate, getByRole, getAllByRole } = render(
+    it('should scroll visible items', async function test() {
+      clock.restore();
+      if (isJSDOM) {
+        this.skip();
+      }
+      const { container, getByRole } = render(
         <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
           <Tab style={{ width: 100, minWidth: 'auto' }} />
           <Tab style={{ width: 50, minWidth: 'auto' }} />
@@ -671,26 +707,74 @@ describe('<Tabs />', () => {
         </Tabs>,
       );
       const tablistContainer = getByRole('tablist').parentElement;
-      const tabs = getAllByRole('tab');
-      Object.defineProperty(tablistContainer, 'clientWidth', { value: 200 - 40 * 2 });
-      Object.defineProperty(tabs[0], 'clientWidth', { value: 100 });
-      Object.defineProperty(tabs[1], 'clientWidth', { value: 50 });
-      Object.defineProperty(tabs[2], 'clientWidth', { value: 100 });
-      Object.defineProperty(tablistContainer, 'scrollWidth', { value: 100 + 50 + 100 });
+
       tablistContainer.scrollLeft = 20;
-      forceUpdate();
-      clock.tick(1000);
-      expect(hasLeftScrollButton(container)).to.equal(true);
-      expect(hasRightScrollButton(container)).to.equal(true);
+
+      await waitFor(() => {
+        expect(hasLeftScrollButton(container)).to.equal(true);
+        expect(hasRightScrollButton(container)).to.equal(true);
+      });
 
       fireEvent.click(findScrollButton(container, 'left'));
-      clock.tick(1000);
-      expect(tablistContainer.scrollLeft).not.to.be.above(0);
+      await waitFor(() => {
+        expect(tablistContainer.scrollLeft).not.to.be.above(0);
+      });
+
+      tablistContainer.scrollLeft = 0;
+      fireEvent.click(findScrollButton(container, 'right'));
+      await waitFor(() => {
+        expect(tablistContainer.scrollLeft).equal(100);
+      });
+    });
+
+    it('should horizontally scroll by width of partially visible item', () => {
+      const { container, getByRole, getAllByRole } = render(
+        <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
+          <Tab style={{ width: 220, minWidth: 'auto' }} />
+          <Tab style={{ width: 200, minWidth: 'auto' }} />
+          <Tab style={{ width: 200, minWidth: 'auto' }} />
+        </Tabs>,
+      );
+      const tablistContainer = getByRole('tablist').parentElement;
+      const tabs = getAllByRole('tab');
+      Object.defineProperty(tablistContainer, 'clientWidth', { value: 200 });
+      Object.defineProperty(tabs[0], 'clientWidth', { value: 220 });
+      Object.defineProperty(tabs[1], 'clientWidth', { value: 200 });
+      Object.defineProperty(tabs[2], 'clientWidth', { value: 200 });
+      Object.defineProperty(tablistContainer, 'scrollWidth', { value: 620 });
 
       tablistContainer.scrollLeft = 0;
       fireEvent.click(findScrollButton(container, 'right'));
       clock.tick(1000);
-      expect(tablistContainer.scrollLeft).equal(100);
+      expect(tablistContainer.scrollLeft).equal(200);
+    });
+
+    it('should vertically scroll by width of partially visible item', () => {
+      const { container, getByRole, getAllByRole } = render(
+        <Tabs
+          value={0}
+          variant="scrollable"
+          orientation="vertical"
+          scrollButtons
+          style={{ height: 100 }}
+        >
+          <Tab style={{ height: 48 }} />
+          <Tab style={{ height: 60 }} />
+          <Tab style={{ height: 60 }} />
+        </Tabs>,
+      );
+      const tablistContainer = getByRole('tablist').parentElement;
+      const tabs = getAllByRole('tab');
+      Object.defineProperty(tablistContainer, 'clientHeight', { value: 100 });
+      Object.defineProperty(tabs[0], 'clientHeight', { value: 48 });
+      Object.defineProperty(tabs[1], 'clientHeight', { value: 60 });
+      Object.defineProperty(tabs[2], 'clientHeight', { value: 60 });
+      Object.defineProperty(tablistContainer, 'scrollHeight', { value: 168 });
+
+      tablistContainer.scrollTop = 0;
+      fireEvent.click(findScrollButton(container, 'right'));
+      clock.tick(1000);
+      expect(tablistContainer.scrollTop).equal(48);
     });
   });
 
@@ -1281,6 +1365,78 @@ describe('<Tabs />', () => {
         '0',
         '-1',
       ]);
+    });
+  });
+
+  describe('dynamic tabs', () => {
+    const pause = (timeout) =>
+      new Promise((resolve) => {
+        setTimeout(() => {
+          resolve();
+        }, timeout);
+      });
+
+    // https://github.com/mui/material-ui/issues/31936
+    it('should not show scroll buttons if a tab added or removed in vertical mode', async function test() {
+      if (isJSDOM) {
+        this.skip();
+      }
+      function DynamicTabs() {
+        const [value, setValue] = React.useState(0);
+        const handleChange = (event, newValue) => {
+          setValue(newValue);
+        };
+        const [tabs, setTabs] = React.useState(['item1', 'item2']);
+        return (
+          <React.Fragment>
+            <button
+              data-testid="add"
+              onClick={() => {
+                setTabs([...tabs, `item${tabs.length + 1}`]);
+              }}
+            >
+              add
+            </button>
+            <button
+              data-testid="delete"
+              onClick={() => {
+                setTabs(tabs.slice(0, tabs.length - 1));
+                setValue(0);
+              }}
+            >
+              delete
+            </button>
+            <Tabs
+              onChange={handleChange}
+              value={value}
+              orientation="vertical"
+              variant="scrollable"
+              scrollButtons
+              style={{ width: '260px' }}
+            >
+              {tabs.map((label, index) => (
+                <Tab key={`tab${index}`} label={label} />
+              ))}
+            </Tabs>
+          </React.Fragment>
+        );
+      }
+      const { container, getByTestId, getAllByRole } = render(<DynamicTabs />);
+      const addButton = getByTestId('add');
+      const deleteButton = getByTestId('delete');
+
+      fireEvent.click(addButton);
+      expect(hasLeftScrollButton(container)).to.equal(false);
+      expect(hasRightScrollButton(container)).to.equal(false);
+
+      const tabs = getAllByRole('tab');
+      const lastTab = tabs[tabs.length - 1];
+      fireEvent.click(lastTab);
+      await pause(400);
+
+      fireEvent.click(deleteButton);
+      expect(hasLeftScrollButton(container)).to.equal(false);
+      expect(hasRightScrollButton(container)).to.equal(false);
     });
   });
 });

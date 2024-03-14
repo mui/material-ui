@@ -1,8 +1,11 @@
+'use client';
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import composeClasses from '@mui/utils/composeClasses';
+import useTimeout from '@mui/utils/useTimeout';
+import clamp from '@mui/utils/clamp';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useTheme from '../styles/useTheme';
@@ -36,16 +39,6 @@ function getOrientation(direction) {
   return undefined;
 }
 
-function clamp(value, min, max) {
-  if (value < min) {
-    return min;
-  }
-  if (value > max) {
-    return max;
-  }
-  return value;
-}
-
 const dialRadius = 32;
 const spacingActions = 16;
 
@@ -58,7 +51,7 @@ const SpeedDialRoot = styled('div', {
     return [styles.root, styles[`direction${capitalize(ownerState.direction)}`]];
   },
 })(({ theme, ownerState }) => ({
-  zIndex: theme.zIndex.speedDial,
+  zIndex: (theme.vars || theme).zIndex.speedDial,
   display: 'flex',
   alignItems: 'center',
   pointerEvents: 'none',
@@ -162,13 +155,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
   const ownerState = { ...props, open, direction };
   const classes = useUtilityClasses(ownerState);
 
-  const eventTimer = React.useRef();
-
-  React.useEffect(() => {
-    return () => {
-      clearTimeout(eventTimer.current);
-    };
-  }, []);
+  const eventTimer = useTimeout();
 
   /**
    * an index in actions.current
@@ -264,9 +251,9 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
       onBlur(event);
     }
 
-    clearTimeout(eventTimer.current);
+    eventTimer.clear();
     if (event.type === 'blur') {
-      eventTimer.current = setTimeout(() => {
+      eventTimer.start(0, () => {
         setOpenState(false);
         if (onClose) {
           onClose(event, 'blur');
@@ -285,7 +272,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
       FabProps.onClick(event);
     }
 
-    clearTimeout(eventTimer.current);
+    eventTimer.clear();
 
     if (open) {
       setOpenState(false);
@@ -312,11 +299,11 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
     // When moving the focus between two items,
     // a chain if blur and focus event is triggered.
     // We only handle the last event.
-    clearTimeout(eventTimer.current);
+    eventTimer.clear();
 
     if (!open) {
       // Wait for a future focus or click event
-      eventTimer.current = setTimeout(() => {
+      eventTimer.start(0, () => {
         setOpenState(true);
         if (onOpen) {
           const eventMap = {
@@ -419,10 +406,10 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
 });
 
 SpeedDial.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The aria-label of the button element.
    * Also used to provide the `id` for the `SpeedDial` element and its children.
@@ -446,7 +433,7 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    */
   direction: PropTypes.oneOf(['down', 'left', 'right', 'up']),
   /**
-   * Props applied to the [`Fab`](/api/fab/) element.
+   * Props applied to the [`Fab`](/material-ui/api/fab/) element.
    * @default {}
    */
   FabProps: PropTypes.object,
@@ -512,7 +499,7 @@ SpeedDial.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The component used for the transition.
-   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Zoom
    */
   TransitionComponent: PropTypes.elementType,
@@ -534,7 +521,7 @@ SpeedDial.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    */
   TransitionProps: PropTypes.object,
 };

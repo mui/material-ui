@@ -1,0 +1,4 @@
+<LinearProgress variant="solid" />
+<LinearProgress variant="soft" />
+<LinearProgress variant="outlined" />
+<LinearProgress variant="plain" />

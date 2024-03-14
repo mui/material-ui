@@ -1,0 +1,92 @@
+{
+  "props": {
+    "areOptionsEqual": { "type": { "name": "func" } },
+    "autoComplete": { "type": { "name": "string" } },
+    "autoFocus": { "type": { "name": "bool" }, "default": "false" },
+    "defaultListboxOpen": { "type": { "name": "bool" }, "default": "false" },
+    "defaultValue": { "type": { "name": "any" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "getOptionAsString": { "type": { "name": "func" }, "default": "defaultOptionStringifier" },
+    "getSerializedValue": { "type": { "name": "func" } },
+    "listboxId": { "type": { "name": "string" } },
+    "listboxOpen": { "type": { "name": "bool" }, "default": "undefined" },
+    "multiple": { "type": { "name": "bool" }, "default": "false" },
+    "name": { "type": { "name": "string" } },
+    "onChange": { "type": { "name": "func" } },
+    "onListboxOpenChange": { "type": { "name": "func" } },
+    "placeholder": { "type": { "name": "node" } },
+    "renderValue": { "type": { "name": "func" } },
+    "required": { "type": { "name": "bool" }, "default": "false" },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ listbox?: func<br>&#124;&nbsp;object, popup?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ listbox?: elementType, popup?: elementType, root?: elementType }"
+      },
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
+    },
+    "value": { "type": { "name": "any" } }
+  },
+  "name": "Select",
+  "imports": ["import { Select } from '@mui/base/Select';", "import { Select } from '@mui/base';"],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'button'",
+      "class": "base-Select-root"
+    },
+    {
+      "name": "listbox",
+      "description": "The component that renders the listbox.",
+      "default": "'ul'",
+      "class": "base-Select-listbox"
+    },
+    {
+      "name": "popup",
+      "description": "The component that wraps the popup.",
+      "default": "'div'",
+      "class": "base-Select-popup"
+    }
+  ],
+  "classes": [
+    {
+      "key": "active",
+      "className": "base--active",
+      "description": "State class applied to the root `button` element if `active={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "disabled",
+      "className": "base--disabled",
+      "description": "State class applied to the root `button` element and the listbox 'ul' element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "expanded",
+      "className": "base--expanded",
+      "description": "State class applied to the root `button` element if `expanded={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "focusVisible",
+      "className": "base--focusVisible",
+      "description": "State class applied to the root `button` element if `focusVisible={true}`.",
+      "isGlobal": true
+    }
+  ],
+  "spread": true,
+  "muiName": "Select",
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/mui-base/src/Select/Select.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base-ui/react-select/\">Select</a></li></ul>",
+  "cssComponent": false
+}

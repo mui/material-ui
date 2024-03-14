@@ -40,7 +40,7 @@ _Jul 19, 2021_
 
 ### Docs
 
-- <!-- 07 --> [blog] Danilo Leal joins Material-UI (#27231) @oliviertassinari
+- <!-- 07 --> [blog] Danilo Leal joins Material UI (#27231) @oliviertassinari
 - <!-- 04 --> [blog] Jun did join in Q1 @oliviertassinari
 - <!-- 03 --> [blog] Fix typo @oliviertassinari
 - <!-- 02 --> [blog] Q2 2021 Update (#27089) @oliviertassinari
@@ -105,8 +105,8 @@ A big thanks to the 12 contributors who made this release possible. It includes 
 
 ### Docs
 
-- [blog] Michał Dudak joins Material-UI (#26700)
-- [blog] Siriwat Kunaporn joins Material-UI (#26329) @oliviertassinari
+- [blog] Michał Dudak joins Material UI (#26700)
+- [blog] Siriwat Kunaporn joins Material UI (#26329) @oliviertassinari
 - [docs] Add gold sponsor (#26968)
 - [docs] Add v5 banner (#27070)
 - [docs] Fix 404 link (Evergreen Box) (#26430) @k-utsumi
@@ -157,7 +157,7 @@ We fixed an issue related to some packages using incompatible versions of `@mate
 - <!-- 12 --> [core] Update the codesandbox issue templates (#25501) @oliviertassinari
 - <!-- 04 --> [core] Support /r/issue-template back (#24870) @oliviertassinari
 - <!-- 15 --> [website] Q1 2021 Update (#25591) @oliviertassinari
-- <!-- 14 --> [website] Matheus Wichman joins Material-UI (#25590) @oliviertassinari
+- <!-- 14 --> [website] Matheus Wichman joins Material UI (#25590) @oliviertassinari
 - <!-- 08 --> [website] Fix 404 page @oliviertassinari
 - <!-- 06 --> [website] Update Careers page (#24948) @oliviertassinari
 
@@ -165,7 +165,7 @@ All contributors of this release in alphabetical order: @DanailH, @dtassone, @ep
 
 ## UNRELEASED - 4.12.0
 
-This release is intended to help prepare the migration to Material-UI v5 ⏫:
+This release is intended to help prepare the migration to Material UI v5 ⏫:
 
 - 📚 Start to add deprecations in anticipation of v5. We plan to add a deprecation for any breaking change in v5 that allows it. Each warning comes with a simple message that explains how to handle the deprecation. If no warnings are reported in the console, you are set for this first batch.
   Please report issues with the deprecations on [#22074](https://github.com/mui/material-ui/issues/22074) (wrong instructions, false-positives, floods in the console, etc.).
@@ -232,7 +232,7 @@ This release fixes an important issue with Chrome 88. The usage of NaN as a CSS 
 _Dec 2, 2020_
 
 This release widens the peer dependency scope of React to accept ^17.0.0.
-The change makes it easier for developers to upgrade React independently from Material-UI. The best support for React 17 will be found in Material-UI v5.
+The change makes it easier for developers to upgrade React independently from Material UI. The best support for React 17 will be found in Material UI v5.
 
 This is a reminder that all ongoing work has moved to v5. This means a feature freeze on v4. The development of v4 is limited to important bug fixes, security patches and easing the upgrade path to v5.
 
@@ -279,7 +279,7 @@ A big thanks to the 12 contributors who made this release possible.
 
 - [styles] Add support for TypeScript 4.1 (#23692) @ldrick
 - [ClickAwayListener] Fix mounting behavior in Portals in React 17 (#23367) @eps1lon
-- [TrapFocus] Prevent possible crash in React 17 (#22263) @eps1lon
+- [FocusTrap] Prevent possible crash in React 17 (#22263) @eps1lon
 - [Tabs] Fix RTL scrollbar with Chrome 85 (#22830) @ankit
 
 ### `@material-ui/styles@v4.11.1`
@@ -289,7 +289,7 @@ A big thanks to the 12 contributors who made this release possible.
 ### Docs
 
 - [blog] Allow to support card preview (#23087) @oliviertassinari
-- [blog] Danail Hadjiatanasov joins Material-UI (#23223) @oliviertassinari
+- [blog] Danail Hadjiatanasov joins Material UI (#23223) @oliviertassinari
 - [blog] New posts (#22607) @oliviertassinari
 - [blog] Q2 2020 Update (#21822) @oliviertassinari
 - [blog] Q3 2020 Update (#23055) @oliviertassinari
@@ -297,13 +297,13 @@ A big thanks to the 12 contributors who made this release possible.
 - [docs] Add Design resources in installation (#22209) @oliviertassinari
 - [docs] Add DoiT diamond sponsor (#22436) @oliviertassinari
 - [docs] Add LightyearVPN to showcase (#22568) @lightyearvpn
-- [docs] Add Material-UI Builder to in-house ads (#23342) @mbrookes
+- [docs] Add Material UI Builder to in-house ads (#23342) @mbrookes
 - [docs] Add Octopus diamond sponsor (#22178) @oliviertassinari
 - [docs] Add Spotify to users (#22776) @mbrookes
 - [docs] Add ethicalads.io (#21752) @oliviertassinari
 - [docs] Add live demo with DataGrid (#22697) @oliviertassinari
 - [docs] Add notification about survey @oliviertassinari
-- [docs] Add notification for MUI for Figma v4.12.0 (#23212) @mbrookes
+- [docs] Add notification for Material UI for Figma v4.12.0 (#23212) @mbrookes
 - [docs] Add redirection for links published on npm (#22575) @oliviertassinari
 - [docs] Allow to host code in a different repo (#23390) @oliviertassinari
 - [docs] Avoid confusion between layout grid and data grid (#22681) @oliviertassinari
@@ -332,7 +332,7 @@ A big thanks to the 12 contributors who made this release possible.
 - [docs] Sync translation (#21638, #21751, #21925, #22751, #22850, #22887, #23357) @oliviertassinari
 - [docs] Update homepage quotes (#23326) @mbrookes
 - [docs] Use codesandbox deploy for demos created from deploy previews (#22616) @eps1lon
-- [docs] configuring redirects for MUI X (#22632) @dtassone
+- [docs] configuring redirects for MUI X (#22632) @dtassone
 
 ### Core
 
@@ -444,7 +444,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 
 - Minify error messages in production (#21214) @eps1lon.
 
-  Using the [React error decoder](https://reactjs.org/docs/error-decoder.html/) as inspiration, the exceptions thrown by Material-UI in production are now minified.
+  Using the [React error decoder](https://react.dev/errors) as inspiration, the exceptions thrown by Material UI in production are now minified.
   You will be redirected to the documentation to [decode the error](https://mui.com/production-error/?code=4&args%5B%5D=500).
 
 ### `@material-ui/core@v4.10.2`
@@ -542,7 +542,7 @@ A big thanks to the 21 contributors who made this release possible.
 
 ### Core
 
-- [TrapFocus] Make an unstable version public (#21201) @dmtrKovalenko
+- [FocusTrap] Make an unstable version public (#21201) @dmtrKovalenko
 - [test] Track size of `@material-ui/utils` (#21240) @eps1lon
 - [core] Batch small changes (#21156) @oliviertassinari
 - [core] Batch small changes (#21249) @oliviertassinari
@@ -729,7 +729,7 @@ Here are some highlights ✨:
 - [Tabs] Improve customizability of the scroll buttons (#20783) @netochaves
 - [TextField] Fix caret color in autofill dark theme (#20857) @CarsonF
 - [Tooltip] Fix disableTouchListener behavior (#20807) @weslenng
-- [unstable_TrapFocus] Guard against dropped memo cache (#20848) @eps1lon
+- [FocusTrap] Guard against dropped memo cache (#20848) @eps1lon
 
 ### `@material-ui/styles@v4.9.13`
 
@@ -791,7 +791,7 @@ Here are some highlights ✨:
 - [ButtonGroup] Add disableElevation prop (#20747) @Andrew5569
 - [ClickAwayListener] Fix support of leading edge (#20647) @oliviertassinari
 - [ExpansionPanel] Increase contrast for focus state (#20720) @petermikitsh
-- [l10n] Document how far Material-UI should go (#20737) @eloyrubinos
+- [l10n] Document how far Material UI should go (#20737) @eloyrubinos
 - [l10n] Improve az-AZ locale (#20659) @rommelmamedov
 - [l10n] Improve bg-BG locale (#20668) @panayotoff
 - [l10n] Improve cs-CZ locale (#20670) @char0n
@@ -909,7 +909,7 @@ A big thanks to the 25 contributors who made this release possible.
 - [docs] Improve a11y of the chip array example (#20294) @m4theushw
 - [docs] Refactor markdown parsing (#20549) @eps1lon
 - [docs] Remove old workarounds (#20587) @eps1lon
-- [docs] Remove unnecessary webpack loaders (#20563) @eps1lon
+- [docs] Remove unnecessary Webpack loaders (#20563) @eps1lon
 - [docs] Sync translations (#20498) @oliviertassinari
 - [docs] Use reactStrictMode over custom switch (#20522) @eps1lon
 
@@ -992,7 +992,7 @@ You can expect the following:
 
 - [examples] Fix Next.js AMP support (#20463) @timneutkens
 - [examples] Fix Next.js prop-type (#20474) @Izhaki
-- [docs] Material-UI Developer Survey 2020 @oliviertassinari
+- [docs] Material UI Developer Survey 2020 @oliviertassinari
 - [docs] Add Component name section to API docs (#20434) @Josh-Weston
 - [docs] Fix various issues with heading structure (#20389) @eps1lon
 - [docs] Synchronize translations (#20405) @oliviertassinari
@@ -1034,7 +1034,7 @@ A big thanks to the 20 contributors who made this release possible.
 ### Docs
 
 - [examples] Move Copyright into its own component (#20383) @HaNdTriX
-- [blog] Introducing Material-UI for Sketch (#20295) @oliviertassinari
+- [blog] Introducing Material UI for Sketch (#20295) @oliviertassinari
 - [docs] Batch small changes (#20312) @oliviertassinari
 - [docs] Explain mini-theme example (#20339) @maksimgm
 - [docs] Fix Tidelift UTM parameters (#20348) @phated
@@ -1293,7 +1293,7 @@ Here are some highlights ✨:
 
 - [Autocomplete] Fix list of countries (#19862) @FottyM
 - [TreeView] Fix conditional nodes support (#19849) @joshwooding
-- [Treeview] Add node selection support (#18357) @joshwooding
+- [TreeView] Add node selection support (#18357) @joshwooding
 
 ### Docs
 
@@ -1307,7 +1307,7 @@ Here are some highlights ✨:
 - [ci] Fix heap out of memory in azure pipelines (#19825) @eps1lon
 - [core] Migrate to import \* as React from 'react' (#19802) @TrySound
 - [test] Fix defaultProps overriding props (#19858) @eps1lon
-- [test] Test against typescript nightlies (#19857) @eps1lon
+- [test] Test against TypeScript nightlies (#19857) @eps1lon
 
 ## 4.9.4
 
@@ -1435,7 +1435,7 @@ A big thanks to the 24 contributors who made this release possible.
 - [docs] Add post-update to examples so they run on CodeSandbox (#19605) @garethx
 - [docs] Fix typo in the Avatar docs (#19544) @UltimateForm
 - [docs] Improve entry points for issue repros (#19501) @eps1lon
-- [docs] Link a VSCode extension for working with Material-UI (#19280) @jedwards1211
+- [docs] Link a VSCode extension for working with Material UI (#19280) @jedwards1211
 - [docs] Notification blog post @oliviertassinari
 - [docs] Refactor EnchancedTable demo (#19560) @ahmad-reza619
 - [docs] The error style rule is a pseudo-class (#19555) @TommyJackson85
@@ -1457,7 +1457,7 @@ Here are some highlights ✨:
 - 🐛 Clean and synchronize the material icons with Google (#19483, #19485) @timmydoza.
 - 🐛 Fix outline input regressions (#19389, #19409, #19495) @Alexeyun1k, @kusmierz, @cadrimiranda.
 - 🐛 Fix IME support of the Autocomplete, important for Chinese, Japanese, and Korean (#19499) @teramotodaiki.
-- 📚 Improve the Style Library Interoperability docs section (#19457) @oliviertassinari.
+- 📚 Improve the Style library interoperability docs section (#19457) @oliviertassinari.
 - And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@v4.9.1`
@@ -1511,7 +1511,7 @@ Here are some highlights ✨:
 - [docs] Fix some typos and correct a grammar mistake (#19324) @konekoya
 - [docs] Fix typo (#19492) @Blechkelle
 - [docs] Fix typo in Autocomplete CSS API (#19503) @DenrizSusam
-- [docs] Improve Style Library Interoperability (#19457) @oliviertassinari
+- [docs] Improve Style library interoperability (#19457) @oliviertassinari
 - [docs] Include more info on RMUIF v2.2.0 (#19410) @phoqe
 - [docs] Increase button variant demos consistency (#19392) @theswerd
 - [docs] Refresh the home page (#19430) @mbrookes
@@ -2192,7 +2192,7 @@ We are proud of the community. Let's keep this trend going 🚀.
 
 ### Core
 
-- [test] Build all `@material-ui/*` packages for Codesandbox CI (#18100) @eps1lon
+- [test] Build all `@material-ui/*` packages for CodeSandbox CI (#18100) @eps1lon
 - [test] Fix tests failing on subsequent runs in watchmode (#18076) @eps1lon
 - [test] Fix tests polluting DOM (#18163) @eps1lon
 - [core] Batch small changes (#18041) @oliviertassinari
@@ -2226,7 +2226,7 @@ Here are some highlights ✨:
 - [ExpansionPanelSummary] Test in StrictMode (#17873) @eps1lon
 - [FormControlLabel] Add missing CSS class keys to TS (#17963) @itayyehezkel
 - [Link] Warn when using plain function component in `component` (#17825) @Nikhil-Pavan-Sai
-- [ListSubheader] Reduce specificity of typescript type (#17715) @sakulstra
+- [ListSubheader] Reduce specificity of TypeScript type (#17715) @sakulstra
 - [Menu] Add new context menu demo (#17839) @SarthakC
 - [Modal] Fix tabIndex customization (#17939) @Cyrus-d
 - [Modal] Improve Gatsby support (#17972) @sreetej1998
@@ -2328,10 +2328,10 @@ Here are some highlights ✨:
 
   This change removes the need to install the `@material-ui/styles` package directly.
   It prevents the duplication of `@material-ui/styles` in bundles and avoids confusion.
-  You can [learn more about the difference](https://mui.com/styles/basics/#material-ui-core-styles-vs-material-ui-styles) in the documentation.
+  You can [learn more about the difference](https://v4.mui.com/styles/basics/#material-ui-core-styles-vs-material-ui-styles) in the documentation.
 
 - ♿️ Improve the accessibility of the table and select components (#17696, #17773) @adeelibr, @eps1lon.
-- 📊 Launch a [developer survey](https://www.surveymonkey.com/r/5XHDL76) as a precursor to a major DatePicker enhancement effort.
+- 📊 Launch a Developer Survey as a precursor to a major DatePicker enhancement effort.
 - 💄 Add support for different [slider track mode](https://mui.com/components/slider/#track) (#17714) @slipmat.
 - And many more 🐛 bug fixes and 📚 improvements.
 
@@ -2390,7 +2390,7 @@ Here are some highlights ✨:
 - [docs] Mentioned CSS required for disabling transitions (#17802) @burtyish
 - [docs] Migrate Globals demo to TypeScript (#17785) @limatgans
 - [docs] Migrate Palette demo to TypeScript (#17683) @limatgans
-- [docs] Prepare the DatePicker developer survey notification (#17805) @oliviertassinari
+- [docs] Prepare the DatePicker Developer Survey notification (#17805) @oliviertassinari
 - [docs] Update "Who's using" (#17830) @mbrookes
 - [docs] Update notification @oliviertassinari
 - [docs] Update useMediaQuery example to avoid confusion with print (#17642) @epeicher
@@ -2639,7 +2639,7 @@ Here are some highlights ✨:
 - [docs] Add script to merge MD icon tags with synonyms (#17312) @mbrookes
 - [docs] Batch small changes (#17268) @oliviertassinari
 - [docs] Fix more SEO issue report @oliviertassinari
-- [docs] Add typescript version of paperbase theme (#17213) @eps1lon
+- [docs] Add TypeScript version of paperbase theme (#17213) @eps1lon
 - [docs] Improve /customization/typography/ (#17307) @meebix
 - [docs] Improve grammar in snackbars (#17296) @chaseholdren
 - [docs] Notification for v4.4.0 @oliviertassinari
@@ -2764,7 +2764,7 @@ Here are some highlights ✨:
 ### Docs
 
 - [docs] Add TypeScript example for switch label position (#16959) @nowNick
-- [docs] Adjust React + Material-UI + Firebase for v2.0 (#16988) @Phoqe
+- [docs] Adjust React + Material UI + Firebase for v2.0 (#16988) @Phoqe
 - [docs] Improve instructions for Babel import plugins (#16993) @lookfirst
 - [docs] Make it easier to find material icons (#16956) @oliviertassinari
 - [docs] Add synonyms for Material icons (#17021) @mbrookes
@@ -2819,7 +2819,7 @@ Here are some highlights ✨:
 ### Docs
 
 - [blog] July 2019 update (#16872) @oliviertassinari
-- [docs] Add Material-UI with React course in learning (#16869) @deekshasharma
+- [docs] Add Material UI with React course in learning (#16869) @deekshasharma
 - [docs] Add error boundary to demos (#16871) @oliviertassinari
 - [docs] Add react compatibility in supported platforms (#16863) @pranshuchittora
 - [docs] Batch small changes (#16951) @oliviertassinari
@@ -2881,7 +2881,7 @@ A big thanks to the 23 contributors who made this release possible!
 
 Here are some highlights ✨:
 
-- 🌳 Introduce a new Tree View component in the (#14827) @joshwooding.
+- 🌳 Introduce a new Tree view component in the (#14827) @joshwooding.
 
   This is a first step toward a feature rich tree view component.
   We will keep iterate on it to add customization demos, filter, drag and drop, and checkboxes.
@@ -2901,7 +2901,7 @@ Here are some highlights ✨:
   If you are not familiar with codemods, [check the library out](https://github.com/facebook/codemod). This is a tool tool to assist you with large-scale codebase refactors.
   We introduce two new codemods in this release:
 
-  - `optimal-imports`: Material-UI supports tree shaking for modules at 1 level depth maximum.
+  - `optimal-imports`: Material UI supports tree shaking for modules at 1 level depth maximum.
     You shouldn't import any module at a higher level depth.
 
   ```diff
@@ -2963,7 +2963,7 @@ Here are some highlights ✨:
 - [docs] Add CSS to api for TextField (#16659) @m2mathew
 - [docs] Apply v1 redirection first @oliviertassinari
 - [docs] Batch changes (#16621) @oliviertassinari
-- [docs] Display correct version of Material-UI (#16680) @eps1lon
+- [docs] Display correct version of Material UI (#16680) @eps1lon
 - [docs] Document the global class names (#16770) @oliviertassinari
 - [docs] Fix SEO reported by Ahrefs (#16765) @oliviertassinari
 - [docs] Fix Typo in modal.md (#16744) @jeffshek
@@ -3324,7 +3324,7 @@ Here are some highlights ✨:
 - [docs] Improve the CssBaseline description (#16148) @levigunz
 - [docs] Lowercase text to demo text-transform (#16160) @blmoore
 - [docs] Pseudo-class: the style rules that require an increase of specificity (#16120) @oliviertassinari
-- [docs] Remove `CSS to MUI webpack Loader` (#16175) @sabrinaluo
+- [docs] Remove `CSS to Material UI webpack Loader` (#16175) @sabrinaluo
 - [docs] import Omit Type from @material-ui/types (#16157) @aditya1906
 
 ### Core
@@ -3443,7 +3443,7 @@ Here are some highlights ✨:
 - [Portal] Synchronously call onRendered (#15943) @Arlevoy
 - [Radio] Fix dot misalignment in IE11 (#15952) @rupert-ong
 - [theme] Return default value for spacing when no args provided (#15891) @mbrookes
-- [TrapFocus] Fix error restoring focus when activeElement is null (#15967) @ryancogswell
+- [FocusTrap] Fix error restoring focus when activeElement is null (#15967) @ryancogswell
 - [core] Export useMediaQuery & useScrollTrigger in index.js (#15958) @adeelibr
 - [core] Migrate extend ButtonBaseProps typings (#15869) @joshwooding
 
@@ -3466,7 +3466,7 @@ Here are some highlights ✨:
 
 ### Docs
 
-- [docs] Add React + Material-UI + Firebase as an example project (#15915) @Phoqe
+- [docs] Add React + Material UI + Firebase as an example project (#15915) @Phoqe
 - [docs] Batch of fixes (#15996) @oliviertassinari
 - [docs] Fix a typo within pricing page layout example (#15978) @sdornan
 - [docs] Fix broken JSS links (#15972) @timkindberg
@@ -3518,7 +3518,7 @@ Here are some highlights ✨:
 - [Buttons] Consolidate ripple props type declarations (#15843) @lychyi
 - [IconButton] Add disable ripple props (#15864) @lychyi
 - [ListItemText] Update classes type definitions (#15822) @davjo664
-- [Tabs] Hide scrollbar on MacOS (#15762) @Umerbhat
+- [Tabs] Hide scrollbar on macOS (#15762) @Umerbhat
 - [Tooltip] Fix alignment issues (#15811) @pkmnct
 - [styles] Add MuiLink to ComponentsPropsList (#15814) @stuartgrigg
 
@@ -3583,7 +3583,7 @@ Here are some highlights ✨:
 
 _May 23, 2019_
 
-[Material-UI v4 is out 🎉](https://mui.com/blog/material-ui-v4-is-out/)
+[Material UI v4 is out 🎉](https://mui.com/blog/material-ui-v4-is-out/)
 
 Some statistics with v4 compared to the release of v1 one year ago:
 
@@ -3605,7 +3605,7 @@ Some statistics with v4 compared to the release of v1 one year ago:
 - [docs] Fix some gramma in testing doc (#15776) @DDDDDanica
 - [docs] Fix some grammar in right to left guide (#15789) @DDDDDanica
 - [docs] Fix typo (#15792) @retyui
-- [docs] Material-UI v4 is out (#15766) @oliviertassinari
+- [docs] Material UI v4 is out (#15766) @oliviertassinari
 - [docs] Reference the article with it's full name in icon doc (#15796) @DDDDDanica
 - [docs] Revert the marked change (#15797) @oliviertassinari
 
@@ -3853,7 +3853,7 @@ We will focus or effort on the stability of the library for the next two weeks.
 We don't plan more breaking changes, at the exception of changes that are required to fix bugs or that have minor impacts.
 We hope we can release v4 on May 15th, one year after v1.
 
-Please try the beta out! You can find an [upgrade guide](https://mui.com/guides/migration-v3/) to ease the transition.
+Please try the beta out! You can find an [upgrade guide](https://mui.com/material-ui/migration/migration-v3/) to ease the transition.
 You will learn more about v4 in the final release blog post and our plans for the future.
 
 ### `@material-ui/core@v4.0.0-beta.0`
@@ -3963,7 +3963,7 @@ You will learn more about v4 in the final release blog post and our plans for th
 - [core] Use terser for minification in umd bundle (#15491) @eps1lon
 - [test] Conform components forward ref to root component (#15425) @eps1lon
 - [test] Fix a flaky test (#15445) @oliviertassinari
-- [test] Keep track of the bundle size of TrapFocus (#15453) @oliviertassinari
+- [test] Keep track of the bundle size of FocusTrap (#15453) @oliviertassinari
 
 ## 4.0.0-alpha.8
 
@@ -3988,7 +3988,7 @@ Here are the last breaking changes we want to introduce:
 
 We have done a lot of changes in the alpha phase.
 The beta phase will be used to stabilize the library, we might have introduced bugs.
-We will encourage people to try the beta out. We hope the migration will be smooth [with the upgrade guide](https://mui.com/guides/migration-v3/).
+We will encourage people to try the beta out. We hope the migration will be smooth [with the upgrade guide](https://mui.com/material-ui/migration/migration-v3/).
 
 We hope 2-3 weeks of beta will be enough. We plan on releasing v4 stable in May.
 
@@ -4090,7 +4090,7 @@ We hope 2-3 weeks of beta will be enough. We plan on releasing v4 stable in May.
 - [docs] Improve table demos (#15281) @eps1lon
 - [docs] Add ClippedDrawer TypeScript demo (#15284) @cahilfoley
 - [docs] Add most Dialog TypeScript demos (#15271) @sperry94
-- [docs] Who's using Material-UI? (#15301) @mbrookes
+- [docs] Who's using Material UI? (#15301) @mbrookes
 - [examples] Fix HTML end tag (#15293) @raybooysen
 - [docs] Update version filter (#15307) @mbrookes
 - [docs] Removed styled-components in gatsby-next dependencies (#15313) @tatchi
@@ -4207,11 +4207,11 @@ Here are some highlights ✨:
 - [docs] More Table TypeScript demos (#15086) @jasondashwang
 - [docs] Add most Progress TypeScript demos (#15104) @sperry94
 - [docs] Flatten /layout/layout (#15120) @oliviertassinari
-- [docs] Migrate docs' App Bar page to hooks (#15121) @gabrielgene
+- [docs] Migrate docs' App bar page to hooks (#15121) @gabrielgene
 - [docs] Migrate docs' Tooltips page to hooks (#15137) @gabrielgene
-- [docs] Use Date type instead of any for MUI pickers demo (#15144) @gabrielgene
+- [docs] Use Date type instead of any for Material UI pickers demo (#15144) @gabrielgene
 - [docs] Add virtualized List example (#15149) @joshwooding
-- [docs] Update Style Library Interoperability + Container forwardRef (#15147) @oliviertassinari
+- [docs] Update Style library interoperability + Container forwardRef (#15147) @oliviertassinari
 - [docs] Run the TypeScript demos (#15159) @oliviertassinari
 - [docs] Add Breadcrumbs TypeScript demos (#15139) @Adherentman
 - [docs] Fix anchor link (#15174) @eps1lon
@@ -4219,7 +4219,7 @@ Here are some highlights ✨:
 - [docs] Add ExpansionPanels TypeScript Demo (#15162) @Adherentman
 - [docs] Add ref forwarding to API docs (#15135) @eps1lon
 - [docs] Add ImgMediaCard TypeScript demo (#15130) @jasondashwang
-- [docs] Link 'React Material-UI Cookbook' (#15211) @oliviertassinari
+- [docs] Link 'React Material UI Cookbook' (#15211) @oliviertassinari
 - [docs] Fix the docs in dev mode for IE11 (#15230) @oliviertassinari
 - [docs] New translations (#15235) @mbrookes
 - [examples] Update all the examples + page layout examples (#15219) @nareshbhatia
@@ -4338,9 +4338,9 @@ This release fixes an important regression with TypeScript: https://github.com/m
 
 - [docs] Fix hooks codesandbox broken (#14553) @Abbo44
 - [docs] Fix typo in simple breadcrumbs example (#14575) @AndrewUsher
-- [blog] Material-UI Developer Survey 2019 (#14614) @oliviertassinari
+- [blog] Material UI Developer Survey 2019 (#14614) @oliviertassinari
 - [docs] Change Gitter to Spectrum (#14668) @mbrookes
-- [docs] Update link to http://cssinjs.org/jss-api/ (#14788) @monicatie
+- [docs] Update link to https://cssinjs.org/jss-api/ (#14788) @monicatie
 - [docs] Add Algolia metadata (#14835) @oliviertassinari
 - [docs] Improve overrides.md wording (#14403) @i0
 - [docs] Grammar fix (#14960) @nateq314
@@ -4812,7 +4812,7 @@ The `TablePagination` component does no longer try to fix invalid (`page`, `coun
 
 - [styles] Change the withTheme API (#14565) @oliviertassinari
 
-Remove the first option argument of `withTheme()`. The first argument was a placeholder for a potential future option. We have never found a need for it. It's time to remove this argument. It matches the emotion and styled-components API.
+Remove the first option argument of `withTheme()`. The first argument was a placeholder for a potential future option. We have never found a need for it. It's time to remove this argument. It matches the Emotion and styled-components API.
 
 ```diff
 -const DeepChild = withTheme()(DeepChildRaw);
@@ -4860,7 +4860,7 @@ Remove the first option argument of `withTheme()`. The first argument was a plac
 
 _Feb 12, 2019_
 
-This is our first unstable release toward Material-UI v4.0.0. We try to release a major every 6-12 months.
+This is our first unstable release toward Material UI v4.0.0. We try to release a major every 6-12 months.
 This gives us the opportunity to remove deprecated APIs, upgrade our peer dependencies and more importantly, keep up with the direction the community is taking.
 
 - You can find the documentation following this URL: https://mui.com/.
@@ -4918,7 +4918,7 @@ console.log({ background });
 
 - [core] Change UMD output name to 'MaterialUI' (#13142) @tkrotoff
 
-  This change eases the use of Material-UI with a CDN:
+  This change eases the use of Material UI with a CDN:
 
   ```diff
   const {
@@ -5079,7 +5079,6 @@ Here are some highlights ✨:
   https://mui.com/lab/breadcrumbs
 - 📝 AppBar and Textfield demos in TypeScript (#13229) @eps1lon
 - 📝 Prepare support for 5 new documentation languages
-  https://translate.mui.com/project/material-ui-docs
 - And many more 🐛 bug fixes and 📝 documentation improvements.
 
 ### `@material-ui/core@v3.9.2`
@@ -5327,7 +5326,7 @@ Here are some highlights ✨:
 ### Docs
 
 - [docs] Fix demo iframe styling in Firefox (#14056) @joshwooding
-- [docs] CSS to MUI loader documentation updated (#14060) @Kaliyani
+- [docs] CSS to Material UI loader documentation updated (#14060) @Kaliyani
 - [docs] Fix spelling mistake in Premium themes footer (#14071) @nikhilem
 - [docs] Update showcase with 36 new sites (#14083) @mbrookes
 - [docs] Update URL for @material-ui/system (#14043) @NMinhNguyen
@@ -5335,7 +5334,7 @@ Here are some highlights ✨:
 - [docs] Update broken link to cssinjs.org in css-in-js (#14080) @valerieernst
 - [docs] Tweeper theme (#14034) @siriwatknp
 - [docs] Add Code Typing Tutor to Showcase (#14061) @kulakowka
-- [docs] Improve the system variant demo (#14091) @oliviertassinari
+- [docs] Improve MUI System variant demo (#14091) @oliviertassinari
 - [docs] Add PhotoUtils to Showcase (#14098) @Maxim-Gurin
 - [docs] Add GovX to Showcase, move Onepixel (#14094) @mbrookes
 - [docs] Simplify the color documentation page (#14103) @oliviertassinari
@@ -5426,7 +5425,7 @@ The Tabs `fullWidth` and `scrollable` properties can't be used at the same time.
 
 - [examples] Add nextjs-hooks-with-typescript (#13981) @virzak
 - [docs] Theme usage with styled-components (#13999) @oliviertassinari
-- [docs] Update the emotion documentation (#14001) @oliviertassinari
+- [docs] Update the Emotion documentation (#14001) @oliviertassinari
 - [docs] Duplicate all the demos with the React Hooks API (#13497) @adeelibr
 - [docs] Set react-jss version in nextjs example (#14015) @goofiw
 - [docs] Fix fullWidth deprecation warnings (#14010) @oliviertassinari
@@ -5504,7 +5503,7 @@ Here are some highlights ✨:
 #### Deprecations
 
 We are allowing more align variants (left, center, right, inherit, justify).
-Following our [API guideline](https://mui.com/guides/api/), we are using an enum over a boolean.
+Following our [API guideline](https://mui.com/material-ui/guides/api/), we are using an enum over a boolean.
 Keep in mind that monetary or generally number fields **should be right aligned** as that allows
 you to add them up quickly in your head without having to worry about decimals.
 
@@ -5541,7 +5540,7 @@ you to add them up quickly in your head without having to worry about decimals.
 
 - [docs] Fix search suggestions on dark mode (#13874) @rfbotto
 - [docs] Add accessibility section to selection-controls with demo (#13896) @wyseguyonline
-- [docs] Add support for multiple demo variants e.g JS or Hooks (#13873) @adeelibr
+- [docs] Add support for multiple demo variants e.g. JS or Hooks (#13873) @adeelibr
 - [docs] Remove the withRoot HOC (#13909) @oliviertassinari
 - [docs] Add material-ui-pickers in pickers page (#13697) @dmtrKovalenko
 - [docs] Continue #13806 and port back some fix from @system (#13917) @oliviertassinari
@@ -5551,7 +5550,7 @@ you to add them up quickly in your head without having to worry about decimals.
 ### Core
 
 - [core] 100% remove the prop types (#13859) @oliviertassinari
-- [core] Prefix the errors with Material-UI (#13892) @oliviertassinari
+- [core] Prefix the errors with Material UI (#13892) @oliviertassinari
 
 ## 3.6.2
 
@@ -5572,7 +5571,7 @@ Here are some highlights ✨:
 - [Tooltip] Suppress warning if button is disabled and title is empty (#13785) @rfbotto
 - [Dialog] Warn if className in PaperProps is set (#13797) @eps1lon
 - [TextField] Fix textfield label position when empty (#13791) @Studio384
-- [Popper] Save 7 KB gzipped (for people only using it) (#13804) @oliviertassinari
+- [Popper] Save 7 kB gzipped (for people only using it) (#13804) @oliviertassinari
 - [Modal] Handle modal mount interruption (#13778) @amensouissi
 - [Select] Make value prop required in TypeScript (#13810) @t49tran
 - [Popover] Fix onEntering event propagation (#13821) @ekoeditaa
@@ -5603,7 +5602,7 @@ Here are some highlights ✨:
 - [docs] Link tags HTML vs JSX (#13775) @benbowler
 - [docs] Missing text in docs (#13798) @Skn0tt
 - [docs] Add virtualized table demo (#13786) @joshwooding
-- [docs] Add OpenCollective gold sponsors manually (#13806) @mbrookes
+- [docs] Add Open Collective gold sponsors manually (#13806) @mbrookes
 - [docs] Add example of globally disabling animations (#13805) @joshwooding
 - [docs] Fix KeyboardIcon import name (#13822) @bryantabaird
 - [docs] Force common hoist-non-react-statics version (#13818) @eps1lon
@@ -5654,7 +5653,7 @@ It's a stability release after v3.6.0. It contains tons of bug fixes 🐛.
 ### Docs
 
 - [docs] Add support for changing react version in codesandbox demos (#13686) @joshwooding
-- [CHANGELOG] Add deprecation notice for Divider (#13700) @eps1lon
+- [changelog] Add deprecation notice for Divider (#13700) @eps1lon
 - [docs] Add notistack demo to the snackbar page (#13685) @iamhosseindhv
 - [docs] Remove Grid List dead code (#13731) @akhil-gautam
 - [docs] Reduce the no-results rate on Algolia (#13741) @oliviertassinari
@@ -5753,7 +5752,7 @@ import Divider from '@material-ui/core/Divider';
 - [docs] Add redirect rule for moved page layout examples (#13588) @mbrookes
 - [docs] Add the selfeducation.app showcase (#13620) @kulakowka
 - [docs] Warn about the Dynamic CSS alpha state (#13619) @WebDeg-Brian
-- [docs] Learn Material-UI (#13624) @oliviertassinari
+- [docs] Learn Material UI (#13624) @oliviertassinari
 - [docs] Add a Firebase example in the premium-theme section (#13579) @siriwatknp
 - [docs] Increase clarity around the usage of font icons (#13628) @JosephMart
 - [docs] Add swimmy.io to showcase page (#13637) @uufish
@@ -5782,16 +5781,16 @@ Here are some highlights ✨:
 
 - Introduce a new `@material-ui/styles` package 💅 (#13503).
 
-The Material-UI's styling solution has pretty much stayed the same [for the last 12 months](https://github.com/oliviertassinari/a-journey-toward-better-style).
-Some interesting CSS-in-JS libraries like styled-components, emotion or linaria have emerged.
+The Material UI's styling solution has pretty much stayed the same [for the last 12 months](https://github.com/oliviertassinari/a-journey-toward-better-style).
+Some interesting CSS-in-JS libraries like styled-components, Emotion or linaria have emerged.
 This new package is a significant step forward. Some of the key features:
 
 - Supports 4 different APIs: hooks, styled-components, higher-order components and render props.
 - Allow accessing the component's props from within the style object.
 - Replace the usage of the old React APIs with the new ones.
-- 15.0 KB gzipped.
+- 15.0 kB gzipped.
 
-Here is an example: https://codesandbox.io/s/vjzn5z4k77.
+Here is an example: https://codesandbox.io/p/sandbox/vjzn5z4k77.
 
 ```jsx
 import Button from '@material-ui/core/Button';
@@ -6145,7 +6144,7 @@ Here are some highlights ✨:
 
 - [test] Add visual regression test for SpeedDIal (#13140) @eps1lon
 - [test] Tidelift - skip checking nomnom & os-locale (#13157) @mbrookes
-- [core] Benchmark Material-UI (#13233) @oliviertassinari
+- [core] Benchmark Material UI (#13233) @oliviertassinari
 - [core] Introduce JSS caching (#13236) @oliviertassinari
 
 ## 3.2.0
@@ -6157,7 +6156,7 @@ A big thanks to the 18 contributors who made this release possible!
 Here are some highlights ✨:
 
 - 💅 Update the Typography implementation to better follow the specification (#12916) @eps1lon.
-- 📝 Enable [translating the documentation into Chinese](https://translate.mui.com) @mbrookes.
+- 📝 Enable [translating the documentation into Chinese](https://crowdin.com/project/material-ui-docs) @mbrookes.
 - 📝 Fix many SEO issues of the docs.
 - And many more bug fixes 🐛 and documentation improvements.
 
@@ -6322,8 +6321,8 @@ It contains many bug fixes 🐛 and documentation improvements 📝.
 - [docs] Update themes.md (#12942) @brucegl
 - [docs] Fix documentation error in <Input /> (#12955) @lukePeavey
 - [docs] Minor style update of the tabs demos (#12958) @dotku
-- [docs] Glamorous is deprecated for emotion (#12963) @oliviertassinari
-- [docs] Add Emotion to style interoperability guide (#12966) @lukePeavey
+- [docs] Glamorous is deprecated for Emotion (#12963) @oliviertassinari
+- [docs] Add Emotion to style library interoperability guide (#12966) @lukePeavey
 - [docs] Fix IconButton Snackbar demos (#12964) @bhalahariharan
 - [docs] Show how to combine OutlinedInput and FilledInput (#12968) @oliviertassinari
 - [docs] Fix Typo in PaymentForm.js (#12971) @n3n
@@ -6875,15 +6874,15 @@ Here are some highlights ✨:
 
 - After many iterations, we are happy to announce `@material-ui/icons` v2.0.0 💃.
   With this version, you can take advantage of all the icons recently released by Google:
-  https://material.io/tools/icons/. There are more than 5,000 icons.
+  https://m2.material.io/tools/icons/. There are more than 5,000 icons.
   (#12016, #12036, #12170, #12111, #12225)
 
-- The 1.4.0 release of Material-UI has introduced a new implementation of the Tooltip and Popper component.
+- The 1.4.0 release of Material UI has introduced a new implementation of the Tooltip and Popper component.
   This release fixes a lot of issues following the rewrite (#12168, #12161, #12194, #12223, #12218).
   Thank you for reporting all these problems 🐛. Hopefully, it's very stable now.
 
-- Creative Tim has just completed [their second Material-UI theme](https://www.creative-tim.com/product/material-kit-pro-react?partner=104080) 💅.
-  It's an important milestone for the themability of Material-UI.
+- Creative Tim has just completed [their second Material UI theme](https://www.creative-tim.com/product/material-kit-pro-react?partner=104080) 💅.
+  It's an important milestone for the themability of Material UI.
   We are going to keep working on adding more themes to the list.
 
 ### Breaking change
@@ -7325,7 +7324,7 @@ N/A
 #### Labs
 
 - [SpeedDial] Fix classes prop description (#11599) @mbrookes
-- [Slider] Misc fixes towards standard MUI patterns (#11605) @mbrookes
+- [Slider] Misc fixes towards standard Material UI patterns (#11605) @mbrookes
 - [Slider] Fire the right event on mouseDown (#11642) @acroyear
 - [SpeedDial] Add type definitions to lab, so SpeedDial can be use with TypeScript project (#11542) @TR3MIC
 
@@ -7409,8 +7408,8 @@ _May 17, 2018_
 
 Our first stable v1 release! 🎉
 
-It has taken us two years to do it, but Material-UI v1 has finally arrived!
-We are so excited about this release, as it's setting a new course for the project. Thank you to _everyone_, especially to [the team](https://mui.com/discover-more/team/), and to everyone who's contributed code, issue triage, and support. **Thank you**.
+It has taken us two years to do it, but Material UI v1 has finally arrived!
+We are so excited about this release, as it's setting a new course for the project. Thank you to _everyone_, especially to [the team](https://mui.com/material-ui/discover-more/team/), and to everyone who's contributed code, issue triage, and support. **Thank you**.
 
 Some statistics with v1 while it was in alpha and beta:
 
@@ -7474,7 +7473,7 @@ A big thanks to the 14 contributors who made this release possible.
 - [RaisedButton] Conditionally apply overlay backgroundColor (#9811) @walwoodr
 - [Snackbar] Static properties for reason string constants (#10300) @RavenHursT
 - [TextField] Fix caret position issue (#10214) @MaratFaskhiev
-- Add sideEffects: false for webpack 4 (#11167) @matthoffner
+- Add sideEffects: false for Webpack 4 (#11167) @matthoffner
 
 ### Docs
 
@@ -7553,7 +7552,7 @@ The text underline color customization change:
 
 ```diff
    underline: {
-     '&:after': {
+     '&::after': {
 -      backgroundColor: purple[500],
 +      borderBottomColor: purple[500],
      },
@@ -7656,7 +7655,7 @@ A big thanks to the 12 contributors who made this release possible.
 
 Here are some highlights ✨:
 
-- A release date. We will release Material-UI v1 May 17th.
+- A release date. We will release Material UI v1 May 17th.
 - Improve the performance of withStyles by adding memoization (#11202) @CharlesStover.
 - Standardization of the component injection pattern (#11204) @oliviertassinari
 - And many more bug fixes and documentation improvements.
@@ -8079,7 +8078,7 @@ Here are some highlights ✨:
 - [Grid] Change the default spacing value: 0 (#10768) @oliviertassinari
 
 The negative margin implementation solution currently used comes with [serious limitations](https://mui.com/components/grid/#negative-margin).
-Material-UI is the only library with a non-zero default spacing between the items.
+Material UI is the only library with a non-zero default spacing between the items.
 Having zero spacing by default will ease the usage of the component.
 
 ```diff
@@ -8307,7 +8306,7 @@ A big thanks to the 14 contributors who made this release possible.
 Here are some highlights ✨:
 
 - We have started the effort toward supporting the async API of react@16.3.0 (#10489, #10523) @oliviertassinari.
-- Document how to use Material-UI with a CDN (#10514) @zelinf.
+- Document how to use Material UI with a CDN (#10514) @zelinf.
 - And many more bug fixes and documentation improvements.
 
 ### Breaking change
@@ -8464,7 +8463,7 @@ The `inputType` property was renamed `type`.
 
 - [Checkbox, Radio, Switch] Change default color, add color prop (#10138) @mbrookes
 
-The Material Design specification says that selection controls elements should [use the application's secondary color](https://material.io/guidelines/components/selection-controls.html).
+The Material Design specification says that selection controls elements should [use the application's secondary color](https://m2.material.io/guidelines/components/selection-controls.html).
 
 ```diff
 -<Checkbox />
@@ -8932,7 +8931,7 @@ It's unclear if this change is making the implementation follow the specificatio
 ### Docs
 
 - [docs] Add a section about how to test changes locally (#9935) @nicolasiensen
-- [docs] Style Library Interoperability v2 (#9939) @oliviertassinari
+- [docs] Style library interoperability v2 (#9939) @oliviertassinari
 - [docs] Fix markdown list (#9948) @yuchi
 - [docs] Remove one DOM element in the Card actions (#9952) @maprihoda
 - [docs] Improve the documentation on the breakpoints (#9949) @oliviertassinari
@@ -9002,7 +9001,7 @@ Here are some highlights ✨:
 
 - [core] Revise the theme.palette.primary & secondary approach (#9794) @mbrookes
 
-It's an important simplification of the palette system. You can now directly use the "official" Color Tool](https://material.io/color/).
+It's an important simplification of the palette system. You can now directly use the "official" Color Tool](https://m2.material.io/color/).
 
 - Instead of using a rich color object of 14 different keys, we rely on an object of 4 different keys: `light`, `main`, `dark` and `contrastText`.
 - Providing the full-color object used to be required. Now, we will provide a nice default to the different values using the `main` value.
@@ -9145,8 +9144,8 @@ Remove the `transitionClasses` property of the Popover component. Instead, you c
 
 - [core] Update jss plugins dependencies (#9732) @cherniavskii
 
-You might be relying on the transitive dependency of Material-UI: `jss-preset-default`.
-If you do, you need to declare the dependency in your package.json. Material-UI will no longer install it for you.
+You might be relying on the transitive dependency of Material UI: `jss-preset-default`.
+If you do, you need to declare the dependency in your package.json. Material UI will no longer install it for you.
 Alternatively, you can use our preset to save bundle size.
 
 ```diff
@@ -9378,7 +9377,7 @@ Here are some highlights ✨:
   - We have reduced the size of the bundle by ~8 kB gzipped.
   - The propTypes runtime checks are back. You might experience new warnings.
 - We have introduced 4 breaking changes.
-- You can support me on [Patreon](https://www.patreon.com/oliviertassinari) and the community on [OpenCollective](https://opencollective.com/mui) (#9460).
+- You can support me on [Patreon](https://www.patreon.com/oliviertassinari) and the community on [Open Collective](https://opencollective.com/mui-org) (#9460).
   Blog posts are coming.
 - And many more bug fixes and documentation improvements.
 
@@ -9899,7 +9898,7 @@ Here are some highlights ✨:
 
 - New InputAdornment component (#8504).
 - New [Frequently asked questions](https://github.com/mui/material-ui/blob/4df547d56448cedf70977d6e2463b38eaf64d1c7/docs/src/pages/getting-started/frequently-asked-questions.md) documentation section
-- We have saved 1 KB gzip by removing our internal react-transition-group fork (#8785).
+- We have saved 1 kB gzip by removing our internal react-transition-group fork (#8785).
 - We have made one step further in order to upgrade all our development dependencies to react@16 (#8804).
 
 ### Breaking change
@@ -10235,7 +10234,7 @@ Here are some highlights ✨:
 
 - Introduction of the first codemods for the `v0.x -> v1.x` migration as well as a documentation page. @vividh (#8311, #8333, #8314)
 - The TypeScript definitions made an important step forward with more than 10 PRs merged. @pelotom @sebald @xaviergonz and more
-- Wondering how Material-UI compares to the other solutions out there?
+- Wondering how Material UI compares to the other solutions out there?
   We have created a documentation page to stress the tradeoffs taken. (#8319)
 - `material-ui@next` has just [crossed **react-toolbox**](https://npm-stat.com/charts.html?package=react-scrollbar-size&package=react-toolbox&from=2017-01-24&to=2017-09-24) in terms of downloads on npm.
 
@@ -10323,7 +10322,7 @@ When `withStyles()` is used as a decorator and `strictNullChecks` is enabled, on
 - [docs] Tooltips are supported (#8282) @skirunman
 - [docs] Autosuggest example typo fix (#8315) @the-noob
 - [docs] Changing type 'Alignement' to Alignment (#8335) @apearson
-- [CHANGELOG] Add info for withStyles BC (#8342) @sebald
+- [changelog] Add info for withStyles BC (#8342) @sebald
 
 ### Core
 
@@ -10706,7 +10705,7 @@ Push #7741 initiative forward (use `value` and `onChange` as controlling propert
 ### Docs
 
 - [docs] Use Next.js: x2 performance (#7759) @oliviertassinari
-- [docs] Add the 'data grid for Material-UI' reference (#7786) @dxbykov
+- [docs] Add the 'data grid for Material UI' reference (#7786) @dxbykov
 - [docs] Renamed the styleSheet argument in withStyles to styles (#7819) @phiilu
 - [docs] Advanced table (#7824) @oliviertassinari
 - [docs] Fix typo (#7777) @Merkyl999x
@@ -11052,7 +11051,7 @@ We do, we have extended the support of React to the 16.0.0-alpha.13 release (aka
 - [docs] Fix typo in class name (#7192) @ossan-engineer
 - [docs] Add supported server section (#7231) @oliviertassinari
 - [docs] Detail the browser support (#7188) @oliviertassinari
-- [docs] Upgrade to webpack v3 (#7210) @oliviertassinari
+- [docs] Upgrade to Webpack v3 (#7210) @oliviertassinari
 - [docs] More documentation on the typography (#7248) @oliviertassinari
 
 ### Core
@@ -11224,7 +11223,7 @@ This release introduces an important change in the API and the implementation.
 Each exposed component is wrapped with a `withStyles` Higher-order component.
 This HOC has different responsibilities, the one you're going to be interested in is
 regarding the `classes` property. Now, we consider the CSS as a public API.
-You now have two way to customize absolutely all the CSS injected by Material-UI.
+You now have two way to customize absolutely all the CSS injected by Material UI.
 Either the instance level with the `classes` property or the class level with the
 `overrides` theme property.
 
@@ -11418,7 +11417,7 @@ _Apr 6, 2017_
 
 We are continuing investing in the documentation and the test suite.
 
-Visual regression tests are now sent to [argos-ci](https://www.argos-ci.com/mui/material-ui).
+Visual regression tests are now sent to [argos-ci](https://app.argos-ci.com/mui/material-ui/builds).
 Thanks @agamrafaeli for increasing the test coverage of 1% since the last release (95.23%).
 Thanks @mbrookes for fixing the inconsistency of the API and improving the API.
 
@@ -11631,7 +11630,7 @@ _Feb 26, 2017_
 
 ### Docs
 
-- [docs] Use webpack 2 & dll bundle (#6160) @nathanmarks
+- [docs] Use Webpack 2 & dll bundle (#6160) @nathanmarks
 - [docs] Improve the user experience on mobile (#6154) @oliviertassinari
 - [docs] Fix the Table examples on mobile (425d8ed47e0282b8c0409517c53e00ef61374b02) @oliviertassinari
 - [docs] Add an API section (#6239) @oliviertassinari
@@ -11641,7 +11640,7 @@ _Feb 26, 2017_
 
 - [core] Fix typos in styles/transitions pointed out in issue (#6175) @Shahrukh-Zindani
 - [core] Lightweight the build (#6152) @oliviertassinari
-- [core] Add exports to index.js for inclusion in webpack bundle (#6144) @fkretzer
+- [core] Add exports to index.js for inclusion in Webpack bundle (#6144) @fkretzer
 - [test] Integration of test suite to run on BrowserStack (#6236) @oliviertassinari
 - [test] Bump vrtest version for exit code fix (1831aa76fe72e9b22a0b82f2a360f860ca89fdce) @nathanmarks
 
@@ -11749,7 +11748,7 @@ _Dec 25, 2016_
 We are releasing sooner than we use to for this **special day** :christmas_tree::gift:.
 17 contributors are making that last release of the year possible.
 
-2016 has been an exceptional year for Material-UI.
+2016 has been an exceptional year for Material UI.
 
 - We went from 40k to 180k [downloads](https://npm-stat.com/charts.html?package=material-ui&from=2014-12-24&to=2016-12-25) a month. :package:
 - We went from 12k to 22k [stars](http://www.timqian.com/star-history/#mui/material-ui). :star:
@@ -11757,7 +11756,7 @@ We are releasing sooner than we use to for this **special day** :christmas_tree:
 That wouldn't have been possible without this awesome community.
 **Thank you!**
 
-But this's just the beginning, some [exciting stuff](https://github.com/mui/material-ui/blob/next/ROADMAP.md) is coming in 2017 :sparkles:.
+But this's just the beginning, some [exciting stuff](https://github.com/mui/material-ui/blob/v0.16.6/ROADMAP.md) is coming in 2017 :sparkles:.
 You can preview a **very early** version of the `next` branch following [this link](https://material-ui-next.com).
 
 ### Component Fixes / Enhancements
@@ -11775,7 +11774,7 @@ You can preview a **very early** version of the `next` branch following [this li
 
 ### Docs
 
-- [AutoComplete] Add a controlled example (#5795)
+- [Autocomplete] Add a controlled example (#5795)
 - [Slider] Add onChange callback signatures to docs (#5760)
 - [TextField] Add callback signatures to docs (#5804)
 - [docs] Add link to babel-plugin-material-ui (#5754)
@@ -11795,8 +11794,8 @@ This is another release improving the stability of `v0.16.x`.
 
 ### Component Fixes / Enhancements
 
-- [AutoComplete] Add an onClose callback property (#5655)
-- [AutoComplete] Fix the controlled behavior (#5685)
+- [Autocomplete] Add an onClose callback property (#5655)
+- [Autocomplete] Fix the controlled behavior (#5685)
 - [DatePicker] Auto switch the view when a year is selected (#5700)
 - [DropDownMenu] Add an onClose callback property (#5653)
 - [DropDownMenu] Do not wrap below dropdown menu (#4755)
@@ -11818,7 +11817,7 @@ This is another release improving the stability of `v0.16.x`.
 ### Docs
 
 - [docs] Add a Q&A section around the next branch (#5718)
-- [docs] Fix typo with sentence for AutoComplete (#5596)
+- [docs] Fix typo with sentence for Autocomplete (#5596)
 - [docs] Fix origin documentation (#5676)
 - [docs] Fix Linear Progress Prop Documentation (#5680)
 - [docs] Fix a scroll issue on (iOS) (a12dca847af6833dbf671e48c736047d6909ec53)
@@ -11859,8 +11858,8 @@ This is another release improving the stability of `v0.16.x` while we are workin
 
 ### Component Fixes / Enhancements
 
-- [AutoComplete] Fire onUpdateInput when an item from the dropdown is selected (#5518)
-- [AutoComplete] Fix Popover's style overriding popoverProps (#5516)
+- [Autocomplete] Fire onUpdateInput when an item from the dropdown is selected (#5518)
+- [Autocomplete] Fix Popover's style overriding popoverProps (#5516)
 - [Card] Add closeIcon and openIcon for customizability (#5513)
 - [FloatingActionButton] Fix regression with n children (#5468)
 - [GridList] Add the support for cellHeight="auto" (#5452)
@@ -11978,7 +11977,7 @@ _Sep 24, 2016_
 ### Component Fixes / Enhancements
 
 - [AppBar] Fix onTouchTap handler (#5245)
-- [AutoComplete] Add popoverProps to pass to Popover (#5064)
+- [Autocomplete] Add popoverProps to pass to Popover (#5064)
 - [DatePicker] Improve the RTL support (#5155)
 - [DatePicker] Improve the i18n support (#5187)
 - [IconButton] Remove dead code (#5226)
@@ -12102,8 +12101,8 @@ v15.2.1 and v15.3.0 should be addressed in this version.
 
 ### Component Fixes / Enhancements
 
-- [AutoComplete] Add a textFieldStyle property (#4853)
-- [AutoComplete] Call onNewRequest once the animation is done (#4817)
+- [Autocomplete] Add a textFieldStyle property (#4853)
+- [Autocomplete] Call onNewRequest once the animation is done (#4817)
 - [Card] Fix bottom padding (#4820)
 - [Chip] Fix invalid `labelColor` being passed (#4766)
 - [DropDownMenu] Display the first item in case there's no one with the corresponding value (#4822)
@@ -12162,7 +12161,7 @@ Thanks @vizath, @hhaida, @nathanmarks and @aahan96 for their effort.
 ### Component Fixes / Enhancements
 
 - [AppBar] Improve props checking to be more resilient (#4557)
-- [AutoComplete] Use the right dataSource key (#4642)
+- [Autocomplete] Use the right dataSource key (#4642)
 - [Badge] Fixed incorrect color usage (primary/accent were swapped) (#4449)
 - [Button] Never allow a disabled button to be in a hovered state (#4626)
 - [Button] Improve the propType definition for the label (#4618)
@@ -12224,10 +12223,10 @@ _Jun 16, 2016_
 
 - [AppBar] Add `iconStyleLeft` prop (#4266)
 - [AppBar] Fix a styling regression (#4471)
-- [AutoComplete] Add text and value field keys for objects list dataSource (#4111)
-- [AutoComplete] Fix filter property leaking (#4209)
-- [AutoComplete] Fix first item selection on keyboard focus (#4193)
-- [AutoComplete] Use sublime text like search instead of Levenshtein Distance for fuzzy search (#4164)
+- [Autocomplete] Add text and value field keys for objects list dataSource (#4111)
+- [Autocomplete] Fix filter property leaking (#4209)
+- [Autocomplete] Fix first item selection on keyboard focus (#4193)
+- [Autocomplete] Use sublime text like search instead of Levenshtein Distance for fuzzy search (#4164)
 - [Avatar] Fix a layout regression (#4409)
 - [Avatar] Remove the border (#4365)
 - [Button] Save some bytes on the production build (#4346)
@@ -12322,7 +12321,7 @@ _Apr 21, 2016_
 
 ### Component Fixes / Enhancements
 
-- [AutoComplete] Change `error`, `hint`, `floatingLabel` property validators to `PropTypes.node` (#4019)
+- [Autocomplete] Change `error`, `hint`, `floatingLabel` property validators to `PropTypes.node` (#4019)
 - [Dialog] Add border to title and actions when content is scrollable (#4001)
 - [Dialog] Add support for the Alert (#4022)
 - [Dialog] Merge title style when title it a node (#4033)
@@ -12432,8 +12431,8 @@ Although we discourage you to use this library like that.
 
 ### Component Fixes / Enhancements
 
-- [AutoComplete] Add `onKeyDown` property (#3853)
-- [AutoComplete] Fix the regressions (#3858)
+- [Autocomplete] Add `onKeyDown` property (#3853)
+- [Autocomplete] Fix the regressions (#3858)
 - [Avatar] Use semi-transparent border (#3859)
 - [DatePicker] ok/cancel labels in date pickers should be of PropTypes.node (#3869)
 - [DropDownMenu] Fix support for autoWidth and custom width (#3823)
@@ -12466,18 +12465,18 @@ _Mar 18, 2016_
 
 ### Breaking Changes
 
-- [Core] if you used Material-UI from npm in CommonJS environment,
+- [Core] if you used Material UI from npm in CommonJS environment,
   you need to add `.default` to your requires (#3648):
 
 ```diff
-- const MUI = require('material-ui');
-+ const MUI = require('material-ui').default;
+- const MaterialUI = require('material-ui');
++ const MaterialUI = require('material-ui').default;
 ```
 
 If you used ES modules, you're already all good:
 
 ```js
-import MUI from 'material-ui'; // no changes here :D
+import MaterialUI from 'material-ui'; // no changes here :D
 ```
 
 - [Core] Remove uniqueId utils (#3538)
@@ -12499,7 +12498,7 @@ import MUI from 'material-ui'; // no changes here :D
 - [Docs] Add return types (#3542)
 - [Docs] Add support for multi-line function (#3570)
 - [Docs] Document callback signatures ( Thanks to @theosherry )
-  - [AutoComplete](#3550)
+  - [Autocomplete](#3550)
   - [Card](#3552)
   - [Checkbox](#3607)
   - [DatePicker](#3652)
@@ -12523,11 +12522,11 @@ import MUI from 'material-ui'; // no changes here :D
 ### Component Fixes / Enhancements
 
 - [AppBar] Fix the title height variation (#3509)
-- [AutoComplete] Add key support for `dataSource` (#3662)
-- [AutoComplete] Fix browser compatibility (#3581)
-- [AutoComplete] Fix `openOnFocus` and item click (#3669)
-- [AutoComplete] Proxy focus and blur calls (#3551)
-- [AutoComplete] Set `canAutoPosition` to `false` for `Popover` (#3620)
+- [Autocomplete] Add key support for `dataSource` (#3662)
+- [Autocomplete] Fix browser compatibility (#3581)
+- [Autocomplete] Fix `openOnFocus` and item click (#3669)
+- [Autocomplete] Proxy focus and blur calls (#3551)
+- [Autocomplete] Set `canAutoPosition` to `false` for `Popover` (#3620)
 - [CardHeader] Handle wide titles, allow them to wrap (#3503)
 - [CardHeader] Remove `title` from injected node attributes (to avoid native tooltip) (#3534)
 - [DatePicker] Add a check to fetch current system date (#3656)
@@ -12640,11 +12639,11 @@ from the code with the 0.16.0 release.
 
 ### Component Fixes / Enhancements
 
-- [AutoComplete] Added `maxSearchResults` property (#3262)
-- [AutoComplete] Apply the style property only on the root component (#3243)
-- [AutoComplete] Apply various improvement (#3214) (Thanks to @oliviertassinari)
+- [Autocomplete] Added `maxSearchResults` property (#3262)
+- [Autocomplete] Apply the style property only on the root component (#3243)
+- [Autocomplete] Apply various improvement (#3214) (Thanks to @oliviertassinari)
 - [Autocomplete] Disable browser default autocomplete popup (#3253)
-- [AutoComplete] Fix the focus / blur issue (#3356) (Thanks to @oliviertassinari)
+- [Autocomplete] Fix the focus / blur issue (#3356) (Thanks to @oliviertassinari)
 - [Card] Removed hidden overflow (#3447)
 - [Card] Support for controlled expansion (#3258) (Thanks to @cgestes)
 - [CardActions] Allow to accept false as child (#3215)
@@ -12714,7 +12713,7 @@ _Feb 02, 2016_
 - [Tabs] Removed the calc style property (#3058)
 - [Tabs] Added icon and text (#3042)
 - [Tabs] Use `FlatButtons` for tabs (#3051)
-- [AutoComplete] Fixed regression of undefined muiTheme (#3069)
+- [Autocomplete] Fixed regression of undefined muiTheme (#3069)
 - [List] Auto-expand SelectableList (#3039)
 - [DatePicker] Added `disabled` property (#3060)
 - [Buttons] Fixed the vertical alignment issue (#3100)
@@ -12747,7 +12746,7 @@ Unless you have used these implementation details in your code.
   1. [Table](#2848)
   1. [Switches](#2872)
   1. [Buttons](#2874)
-  1. [AutoComplete](#2871)
+  1. [Autocomplete](#2871)
   1. [Popover](#2870)
   1. [IconMenu](#2882)
 - Added the following eslint rules:
@@ -12802,7 +12801,7 @@ _Jan 08, 2016_
 ### Component Fixes / Enhancements
 
 - [DatePicker] Update slide direction (#2791)
-- [AutoComplete] Add 2 extra filters for text matching (#2755)
+- [Autocomplete] Add 2 extra filters for text matching (#2755)
 - [TableRow] Fix row height in IE (#2812)
 
 ## 0.14.1
@@ -12862,7 +12861,7 @@ Have a look at them as well.
 
 - [SelectField][textfield] Fixed error styling issue (#2539)
 - [TextField] Implemented optional underline (#2476)
-- [AutoComplete] Migrated to use popover (#2634)
+- [Autocomplete] Migrated to use popover (#2634)
 
 ### Deprecations
 
@@ -12940,8 +12939,8 @@ _Dec 4, 2015_
 - [DropdownMenu] add labelMember prop (#2285)
 - Add new ESLint rules (#2293, #2314, #2319, #2348, #2360, #2365, #2366)
 - Add unit tests for Dialog (#2298)
-- [AutoComplete] Support changing searchText via props (#2306)
-- [AutoComplete] dataSource prop is of type array (#2286)
+- [Autocomplete] Support changing searchText via props (#2306)
+- [Autocomplete] dataSource prop is of type array (#2286)
 - [AppBar] add titleStyle prop (#2324)
 - [TimePicker] update as per spec (#2358)
 - [Popover] add useLayerForClickAway prop (#2359)
@@ -12965,7 +12964,7 @@ _Nov 24, 2015_
 
 - Introduced SelectableEnhance HOC to wrap List with valueLink (#1976)
 - Added color prop to LinearProgress and RefreshIndicator (#2206)
-- [AutoComplete] new component! (#2187) (thanks @yongxu)
+- [Autocomplete] new component! (#2187) (thanks @yongxu)
 - [Table] added wrapperStyle prop to override table wrapper's styles (#2238)
 - Updated SVG icons (#2240)
 - [Table] added props for headerStyle, bodyStyle and footerStyle (#2246)
@@ -13050,7 +13049,7 @@ _Oct 21, 2015_
 
 ### Breaking Changes
 
-- Material-UI for React 0.14.x
+- Material UI for React 0.14.x
 
 ### Component Fixes / Enhancements
 
@@ -13073,7 +13072,7 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
 
 _Oct 19, 2015_
 
-**This version is not compatible with React 0.13.x.** If you're on React 0.13.x, use Material-UI v0.12.5 instead.
+**This version is not compatible with React 0.13.x.** If you're on React 0.13.x, use Material UI v0.12.5 instead.
 
 ### General
 
@@ -13558,12 +13557,12 @@ _May 24, 2015_
 
 ### Breaking Changes
 
-- Refactored all CSS into Javascript (#30, #316)
-  - All Material-UI components now have their styles defined inline. This solves
+- Refactored all CSS into JavaScript (#30, #316)
+  - All Material UI components now have their styles defined inline. This solves
     many problems with CSS as mentions in [@vjeux's presentation](https://speakerdeck.com/vjeux/react-css-in-js)
     such as polluting the global namespace with classes that really should be
     component specific. In addition to the benefits mentioned in the
-    presentation, inline styles allow Material-UI to become CSS preprocessor
+    presentation, inline styles allow Material UI to become CSS preprocessor
     agnostic and make Themeing much more dynamic and simple.
     [Read our CSS in JS discussion](https://github.com/mui/material-ui/issues/30)
   - Upgrade path:
@@ -13576,10 +13575,10 @@ _May 24, 2015_
       element. If a style prop does not exist for the component's nested element
       that you are trying to override, [submit an issue](https://github.com/mui/material-ui/issues/new)
       requesting to have it added.
-    - _If you are using any of Material-UI's Less files:_ These files have been
-      refactored into their [own javascript files](https://github.com/mui/material-ui/tree/css-in-js/src/styles)
+    - _If you are using any of Material UI's Less files:_ These files have been
+      refactored into their [own JavaScript files](https://github.com/mui/material-ui/tree/css-in-js/src/styles)
       and can be accessed like so `var FILENAME = require('material-ui').Styles.FILENAME;`.
-      Material-UI has moved away from being a CSS Framework to being simply a
+      Material UI has moved away from being a CSS Framework to being simply a
       set of React components.
 - Paper component no longer generates nested divs (#601)
   - This allowed us to simplify styling of paper containers. As a result, styling the inner div is no longer necessary.
@@ -13589,7 +13588,7 @@ _May 24, 2015_
 - Themes have been added (#202)
 - Requiring individual components is now supported (#363)
   - An example would be: `var SvgIcon = require('material-ui/lib/svg-icon);`
-  - The `/lib` folder in Material-UI contains the file structure needed when referencing individual components.
+  - The `/lib` folder in Material UI contains the file structure needed when referencing individual components.
 
 ### Components
 
@@ -13907,7 +13906,7 @@ _Dec. 15, 2014_
 ### Breaking Changes
 
 - Removed PaperButton - Use FlatButton, RaisedButton, or FloatingActionButton
-- Removed Roboto font import (#104) - Be sure to [include the Roboto](http://www.google.com/fonts#UsePlace:use/Collection:Roboto:400,300,500) font in your project.
+- Removed Roboto font import (#104) - Be sure to [include the Roboto](https://fonts.google.com/specimen/Roboto) font in your project.
 
 ### General
 
@@ -14075,10 +14074,10 @@ _Nov. 17, 2014_
 
 _Nov. 11, 2014_
 
-- Changed project structure to be less confusing. Material-UI components/styles live in the src directory.
+- Changed project structure to be less confusing. Material UI components/styles live in the src directory.
   Docs site code lives in the docs directory. This still allows us to easily test components in the docs site
   as we are working on them
-- Added .editorconfig to help keep code formatting consistent among contributors. See http://editorconfig.org/
+- Added .editorconfig to help keep code formatting consistent among contributors. See https://editorconfig.org/
 - Fixed drop down display issue in safari
 - Fixed nested menu arrow icon
 - Added hover transitions to menus

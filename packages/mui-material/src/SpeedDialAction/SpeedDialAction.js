@@ -1,10 +1,10 @@
+'use client';
 // @inheritedComponent Tooltip
-
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { emphasize } from '@mui/system';
+import composeClasses from '@mui/utils/composeClasses';
+import { emphasize } from '@mui/system/colorManipulator';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Fab from '../Fab';
@@ -39,10 +39,12 @@ const SpeedDialActionFab = styled(Fab, {
   },
 })(({ theme, ownerState }) => ({
   margin: 8,
-  color: theme.palette.text.secondary,
-  backgroundColor: theme.palette.background.paper,
+  color: (theme.vars || theme).palette.text.secondary,
+  backgroundColor: (theme.vars || theme).palette.background.paper,
   '&:hover': {
-    backgroundColor: emphasize(theme.palette.background.paper, 0.15),
+    backgroundColor: theme.vars
+      ? theme.vars.palette.SpeedDialAction.fabHoverBg
+      : emphasize(theme.palette.background.paper, 0.15),
   },
   transition: `${theme.transitions.create('transform', {
     duration: theme.transitions.duration.shorter,
@@ -99,10 +101,10 @@ const SpeedDialActionStaticTooltipLabel = styled('span', {
 })(({ theme }) => ({
   position: 'absolute',
   ...theme.typography.body1,
-  backgroundColor: theme.palette.background.paper,
-  borderRadius: theme.shape.borderRadius,
-  boxShadow: theme.shadows[1],
-  color: theme.palette.text.secondary,
+  backgroundColor: (theme.vars || theme).palette.background.paper,
+  borderRadius: (theme.vars || theme).shape.borderRadius,
+  boxShadow: (theme.vars || theme).shadows[1],
+  color: (theme.vars || theme).palette.text.secondary,
   padding: '4px 16px',
   wordBreak: 'keep-all',
 }));
@@ -201,10 +203,10 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
 });
 
 SpeedDialAction.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Override or extend the styles applied to the component.
    */
@@ -219,7 +221,7 @@ SpeedDialAction.propTypes /* remove-proptypes */ = {
    */
   delay: PropTypes.number,
   /**
-   * Props applied to the [`Fab`](/api/fab/) component.
+   * Props applied to the [`Fab`](/material-ui/api/fab/) component.
    * @default {}
    */
   FabProps: PropTypes.object,
@@ -245,7 +247,7 @@ SpeedDialAction.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * `classes` prop applied to the [`Tooltip`](/api/tooltip/) element.
+   * `classes` prop applied to the [`Tooltip`](/material-ui/api/tooltip/) element.
    */
   TooltipClasses: PropTypes.object,
   /**

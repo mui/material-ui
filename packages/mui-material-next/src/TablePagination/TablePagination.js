@@ -1,9 +1,10 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_useId as useId, chainPropTypes, integerPropType } from '@mui/utils';
 import { unstable_composeClasses as composeClasses, appendOwnerState } from '@mui/base';
-import TablePaginationUnstyled from '@mui/base/TablePaginationUnstyled';
+import { TablePagination as BaseTablePagination } from '@mui/base/TablePagination';
 import { styled, useThemeProps } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
@@ -170,34 +171,34 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
   const toolbarProps = appendOwnerState(TablePaginationToolbar, {}, ownerState);
 
   return (
-    <TablePaginationUnstyled
-      components={{
-        Root: TablePaginationRoot,
-        Actions: ActionsComponent,
-        Toolbar: TablePaginationToolbar,
-        Spacer: TablePaginationSpacer,
-        SelectLabel: TablePaginationSelectLabel,
-        Select: TablePaginationSelect,
-        MenuItem: MenuItemComponent,
-        DisplayedRows: TablePaginationDisplayedRows,
+    <BaseTablePagination
+      slots={{
+        root: TablePaginationRoot,
+        actions: ActionsComponent,
+        toolbar: TablePaginationToolbar,
+        spacer: TablePaginationSpacer,
+        selectLabel: TablePaginationSelectLabel,
+        select: TablePaginationSelect,
+        menuItem: MenuItemComponent,
+        displayedRows: TablePaginationDisplayedRows,
       }}
-      componentsProps={{
+      slotProps={{
         root: {
           as: component,
           ...rootProps,
         },
         actions: {
-          components: {
-            FirstButton: CustomIconButton,
-            LastButton: CustomIconButton,
-            NextButton: CustomIconButton,
-            BackButton: CustomIconButton,
-            LastPageIcon,
-            FirstPageIcon,
-            NextPageIcon: KeyboardArrowRight,
-            BackPageIcon: KeyboardArrowLeft,
+          slots: {
+            firstButton: CustomIconButton,
+            lastButton: CustomIconButton,
+            nextButton: CustomIconButton,
+            backButton: CustomIconButton,
+            lastPageIcon: LastPageIcon,
+            firstPageIcon: FirstPageIcon,
+            nextPageIcon: KeyboardArrowRight,
+            backPageIcon: KeyboardArrowLeft,
           },
-          componentsProps: {
+          slotProps: {
             backButton: backIconButtonProps,
             nextButton: nextIconButtonProps,
           },
@@ -211,7 +212,6 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
           variant: 'standard',
           input: <InputBase />,
           ...selectProps,
-          id: selectId,
           ...(SelectProps.native ? {} : { labelId }),
           'aria-labelledby': labelId,
           className: clsx(classes.select, SelectProps.className),
@@ -242,6 +242,8 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
           ...toolbarProps,
         },
       }}
+      selectId={selectId}
+      labelId={labelId}
       ref={ref}
       {...other}
       className={clsx(classes.root, className)}
@@ -250,10 +252,10 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
 });
 
 TablePagination.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The component used for displaying the actions.
    * Either a string to use a HTML element or a component.
@@ -261,7 +263,7 @@ TablePagination.propTypes /* remove-proptypes */ = {
    */
   ActionsComponent: PropTypes.elementType,
   /**
-   * Props applied to the back arrow [`IconButton`](/api/icon-button/) component.
+   * Props applied to the back arrow [`IconButton`](/material-ui/api/icon-button/) component.
    */
   backIconButtonProps: PropTypes.object,
   /**
@@ -287,7 +289,7 @@ TablePagination.propTypes /* remove-proptypes */ = {
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    * This is important for screen reader users.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @param {string} type The link or button type to format ('first' | 'last' | 'next' | 'previous').
    * @returns {string}
    * @default function defaultGetAriaLabel(type) {
@@ -299,7 +301,7 @@ TablePagination.propTypes /* remove-proptypes */ = {
    * Customize the displayed rows label. Invoked with a `{ from, to, count, page }`
    * object.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @default function defaultLabelDisplayedRows({ from, to, count }) {
    *   return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;
    * }
@@ -308,12 +310,12 @@ TablePagination.propTypes /* remove-proptypes */ = {
   /**
    * Customize the rows per page label.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @default 'Rows per page:'
    */
   labelRowsPerPage: PropTypes.node,
   /**
-   * Props applied to the next arrow [`IconButton`](/api/icon-button/) element.
+   * Props applied to the next arrow [`IconButton`](/material-ui/api/icon-button/) element.
    */
   nextIconButtonProps: PropTypes.object,
   /**
@@ -370,7 +372,7 @@ TablePagination.propTypes /* remove-proptypes */ = {
     ]).isRequired,
   ),
   /**
-   * Props applied to the rows per page [`Select`](/api/select/) element.
+   * Props applied to the rows per page [`Select`](/material-ui/api/select/) element.
    * @default {}
    */
   SelectProps: PropTypes.object,

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableComponent, OverrideProps } from '@mui/types';
-import { Theme } from '../createTheme';
+import { Theme as SystemTheme } from '../createTheme';
 import {
   SxProps,
   AllSystemCSSProperties,
@@ -9,16 +9,15 @@ import {
   AliasesCSSProperties,
 } from '../styleFunctionSx';
 
-export type PropsFor<SomeStyleFunction> = SomeStyleFunction extends StyleFunction<infer Props>
-  ? Props
-  : never;
+export type PropsFor<SomeStyleFunction> =
+  SomeStyleFunction extends StyleFunction<infer Props> ? Props : never;
 export type StyleFunction<Props> = (props: Props) => any;
 export type SimpleStyleFunction<PropKey extends keyof any> = StyleFunction<
   Partial<Record<PropKey, any>>
 > & { filterProps: string[] };
 
 // borders.js
-export const borders: SimpleStyleFunction<
+export declare const borders: SimpleStyleFunction<
   | 'border'
   | 'borderTop'
   | 'borderRight'
@@ -28,11 +27,11 @@ export const borders: SimpleStyleFunction<
   | 'borderRadius'
 >;
 
-export const display: SimpleStyleFunction<
+export declare const display: SimpleStyleFunction<
   'display' | 'displayPrint' | 'overflow' | 'textOverflow' | 'visibility' | 'whiteSpace'
 >;
 
-export const flexbox: SimpleStyleFunction<
+export declare const flexbox: SimpleStyleFunction<
   | 'flexBasis'
   | 'flexDirection'
   | 'flexWrap'
@@ -48,7 +47,7 @@ export const flexbox: SimpleStyleFunction<
   | 'justifySelf'
 >;
 
-export const grid: SimpleStyleFunction<
+export declare const grid: SimpleStyleFunction<
   | 'gap'
   | 'columnGap'
   | 'rowGap'
@@ -63,15 +62,15 @@ export const grid: SimpleStyleFunction<
   | 'gridArea'
 >;
 
-export const palette: SimpleStyleFunction<'bgcolor' | 'color'>;
+export declare const palette: SimpleStyleFunction<'bgcolor' | 'color'>;
 
-export const positions: SimpleStyleFunction<
+export declare const positions: SimpleStyleFunction<
   'zIndex' | 'position' | 'top' | 'right' | 'bottom' | 'left'
 >;
 
-export const shadows: SimpleStyleFunction<'boxShadow'>;
+export declare const shadows: SimpleStyleFunction<'boxShadow'>;
 
-export const sizing: SimpleStyleFunction<
+export declare const sizing: SimpleStyleFunction<
   | 'width'
   | 'maxWidth'
   | 'minWidth'
@@ -83,7 +82,7 @@ export const sizing: SimpleStyleFunction<
   | 'boxSizing'
 >;
 
-export const spacing: SimpleStyleFunction<
+export declare const spacing: SimpleStyleFunction<
   | 'm'
   | 'mt'
   | 'mr'
@@ -105,6 +104,12 @@ export const spacing: SimpleStyleFunction<
   | 'marginLeft'
   | 'marginX'
   | 'marginY'
+  | 'marginInline'
+  | 'marginInlineStart'
+  | 'marginInlineEnd'
+  | 'marginBlock'
+  | 'marginBlockStart'
+  | 'marginBlockEnd'
   | 'padding'
   | 'paddingTop'
   | 'paddingRight'
@@ -112,9 +117,15 @@ export const spacing: SimpleStyleFunction<
   | 'paddingLeft'
   | 'paddingX'
   | 'paddingY'
+  | 'paddingInline'
+  | 'paddingInlineStart'
+  | 'paddingInlineEnd'
+  | 'paddingBlock'
+  | 'paddingBlockStart'
+  | 'paddingBlockEnd'
 >;
 
-export const typography: SimpleStyleFunction<
+export declare const typography: SimpleStyleFunction<
   | 'typography'
   | 'fontFamily'
   | 'fontSize'
@@ -170,22 +181,48 @@ export type SystemProps<Theme extends object = {}> = {
     | ((theme: Theme) => ResponsiveStyleValue<AllSystemCSSProperties[K]>);
 };
 
-export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P &
-    SystemProps<Theme> & {
-      children?: React.ReactNode;
-      component?: React.ElementType;
-      ref?: React.Ref<unknown>;
-      sx?: SxProps<Theme>;
-    };
-  defaultComponent: D;
+export interface BoxOwnProps<Theme extends object = SystemTheme> extends SystemProps<Theme> {
+  children?: React.ReactNode;
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component?: React.ElementType;
+  ref?: React.Ref<unknown>;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
+export interface BoxTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'div',
+  Theme extends object = SystemTheme,
+> {
+  props: AdditionalProps & BoxOwnProps<Theme>;
+  defaultComponent: RootComponent;
+}
+
+/**
+ *
+ * Demos:
+ *
+ * - [Box (Joy UI)](https://mui.com/joy-ui/react-box/)
+ * - [Box (Material UI)](https://mui.com/material-ui/react-box/)
+ * - [Box (MUI System)](https://mui.com/system/react-box/)
+ *
+ * API:
+ *
+ * - [Box API](https://mui.com/system/api/box/)
+ */
 declare const Box: OverridableComponent<BoxTypeMap>;
 
 export type BoxProps<
-  D extends React.ElementType = BoxTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<BoxTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = BoxTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<BoxTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Box;

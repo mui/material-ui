@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import composeClasses from '@mui/utils/composeClasses';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
@@ -85,25 +86,25 @@ const TabRoot = styled(ButtonBase, {
       opacity: 1,
     },
     [`&.${tabClasses.disabled}`]: {
-      opacity: theme.palette.action.disabledOpacity,
+      opacity: (theme.vars || theme).palette.action.disabledOpacity,
     },
   }),
   ...(ownerState.textColor === 'primary' && {
-    color: theme.palette.text.secondary,
+    color: (theme.vars || theme).palette.text.secondary,
     [`&.${tabClasses.selected}`]: {
-      color: theme.palette.primary.main,
+      color: (theme.vars || theme).palette.primary.main,
     },
     [`&.${tabClasses.disabled}`]: {
-      color: theme.palette.text.disabled,
+      color: (theme.vars || theme).palette.text.disabled,
     },
   }),
   ...(ownerState.textColor === 'secondary' && {
-    color: theme.palette.text.secondary,
+    color: (theme.vars || theme).palette.text.secondary,
     [`&.${tabClasses.selected}`]: {
-      color: theme.palette.secondary.main,
+      color: (theme.vars || theme).palette.secondary.main,
     },
     [`&.${tabClasses.disabled}`]: {
-      color: theme.palette.text.disabled,
+      color: (theme.vars || theme).palette.text.disabled,
     },
   }),
   ...(ownerState.fullWidth && {
@@ -216,10 +217,10 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
 });
 
 Tab.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * This prop isn't supported.
    * Use the `component` prop if you need to change the children structure.

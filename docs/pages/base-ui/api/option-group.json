@@ -1,0 +1,61 @@
+{
+  "props": {
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "label": { "type": { "name": "node" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ label?: func<br>&#124;&nbsp;object, list?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ label?: elementType, list?: elementType, root?: elementType }"
+      },
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
+    }
+  },
+  "name": "OptionGroup",
+  "imports": [
+    "import { OptionGroup } from '@mui/base/OptionGroup';",
+    "import { OptionGroup } from '@mui/base';"
+  ],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'li'",
+      "class": "base-OptionGroup-root"
+    },
+    {
+      "name": "label",
+      "description": "The component that renders the label.",
+      "default": "'span'",
+      "class": "base-OptionGroup-label"
+    },
+    {
+      "name": "list",
+      "description": "The component that renders the list.",
+      "default": "'ul'",
+      "class": "base-OptionGroup-list"
+    }
+  ],
+  "classes": [
+    {
+      "key": "disabled",
+      "className": "base--disabled",
+      "description": "State class applied to the root `li` element if `disabled={true}`.",
+      "isGlobal": true
+    }
+  ],
+  "spread": true,
+  "muiName": "OptionGroup",
+  "forwardsRefTo": "HTMLLIElement",
+  "filename": "/packages/mui-base/src/OptionGroup/OptionGroup.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base-ui/react-select/\">Select</a></li></ul>",
+  "cssComponent": false
+}

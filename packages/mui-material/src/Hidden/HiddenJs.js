@@ -1,5 +1,7 @@
+'use client';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import { exactProp } from '@mui/utils';
+import exactProp from '@mui/utils/exactProp';
 import withWidth, { isWidthDown, isWidthUp } from './withWidth';
 import useTheme from '../styles/useTheme';
 
@@ -48,7 +50,7 @@ function HiddenJs(props) {
     return null;
   }
 
-  return children;
+  return <React.Fragment>{children}</React.Fragment>;
 }
 
 HiddenJs.propTypes = {
@@ -57,41 +59,24 @@ HiddenJs.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * Specify which implementation to use.  'js' is the default, 'css' works better for
-   * server-side rendering.
-   */
-  implementation: PropTypes.oneOf(['js', 'css']),
-  /**
-   * You can use this prop when choosing the `js` implementation with server-side rendering.
-   *
-   * As `window.innerWidth` is unavailable on the server,
-   * we default to rendering an empty component during the first mount.
-   * You might want to use a heuristic to approximate
-   * the screen width of the client browser screen width.
-   *
-   * For instance, you could be using the user-agent or the client-hints.
-   * https://caniuse.com/#search=client%20hint
-   */
-  initialWidth: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
-  /**
    * If `true`, screens this size and down are hidden.
    */
+  // eslint-disable-next-line react/no-unused-prop-types
   lgDown: PropTypes.bool,
   /**
    * If `true`, screens this size and up are hidden.
    */
+  // eslint-disable-next-line react/no-unused-prop-types
   lgUp: PropTypes.bool,
   /**
    * If `true`, screens this size and down are hidden.
    */
+  // eslint-disable-next-line react/no-unused-prop-types
   mdDown: PropTypes.bool,
   /**
    * If `true`, screens this size and up are hidden.
    */
+  // eslint-disable-next-line react/no-unused-prop-types
   mdUp: PropTypes.bool,
   /**
    * Hide the given breakpoint(s).
@@ -103,10 +88,12 @@ HiddenJs.propTypes = {
   /**
    * If `true`, screens this size and down are hidden.
    */
+  // eslint-disable-next-line react/no-unused-prop-types
   smDown: PropTypes.bool,
   /**
    * If `true`, screens this size and up are hidden.
    */
+  // eslint-disable-next-line react/no-unused-prop-types
   smUp: PropTypes.bool,
   /**
    * @ignore
@@ -116,18 +103,22 @@ HiddenJs.propTypes = {
   /**
    * If `true`, screens this size and down are hidden.
    */
+  // eslint-disable-next-line react/no-unused-prop-types
   xlDown: PropTypes.bool,
   /**
    * If `true`, screens this size and up are hidden.
    */
+  // eslint-disable-next-line react/no-unused-prop-types
   xlUp: PropTypes.bool,
   /**
    * If `true`, screens this size and down are hidden.
    */
+  // eslint-disable-next-line react/no-unused-prop-types
   xsDown: PropTypes.bool,
   /**
    * If `true`, screens this size and up are hidden.
    */
+  // eslint-disable-next-line react/no-unused-prop-types
   xsUp: PropTypes.bool,
 };
 

@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, act, createRenderer, fireEvent } from 'test/utils';
+import { act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
+import { ClassNames } from '@emotion/react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button, { buttonClasses as classes } from '@mui/material/Button';
 import ButtonBase, { touchRippleClasses } from '@mui/material/ButtonBase';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Button />', () => {
   const { render, renderToString } = createRenderer();
@@ -42,6 +44,55 @@ describe('<Button />', () => {
     expect(button).not.to.have.class(classes.containedSizeLarge);
   });
 
+  it('startIcon and endIcon should have icon class', () => {
+    const { getByRole } = render(
+      <Button startIcon={<span>start icon</span>} endIcon={<span>end icon</span>}>
+        Hello World
+      </Button>,
+    );
+    const button = getByRole('button');
+    const startIcon = button.querySelector(`.${classes.startIcon}`);
+    const endIcon = button.querySelector(`.${classes.endIcon}`);
+    expect(startIcon).to.have.class(classes.icon);
+    expect(endIcon).to.have.class(classes.icon);
+  });
+
+  it('should add the appropriate color class to root element based on color prop', () => {
+    const { getByTestId } = render(
+      <React.Fragment>
+        <Button color="inherit" data-testid="color-inherit">
+          Hello World
+        </Button>
+        <Button color="primary" data-testid="color-primary">
+          Hello World
+        </Button>
+        <Button color="secondary" data-testid="color-secondary">
+          Hello World
+        </Button>
+        <Button color="success" data-testid="color-success">
+          Hello World
+        </Button>
+        <Button color="error" data-testid="color-error">
+          Hello World
+        </Button>
+        <Button color="info" data-testid="color-info">
+          Hello World
+        </Button>
+        <Button color="warning" data-testid="color-warning">
+          Hello World
+        </Button>
+      </React.Fragment>,
+    );
+
+    expect(getByTestId('color-inherit')).to.have.class(classes.colorInherit);
+    expect(getByTestId('color-primary')).to.have.class(classes.colorPrimary);
+    expect(getByTestId('color-secondary')).to.have.class(classes.colorSecondary);
+    expect(getByTestId('color-success')).to.have.class(classes.colorSuccess);
+    expect(getByTestId('color-error')).to.have.class(classes.colorError);
+    expect(getByTestId('color-info')).to.have.class(classes.colorInfo);
+    expect(getByTestId('color-warning')).to.have.class(classes.colorWarning);
+  });
+
   it('can render a text primary button', () => {
     const { getByRole } = render(<Button color="primary">Hello World</Button>);
     const button = getByRole('button');
@@ -60,6 +111,66 @@ describe('<Button />', () => {
     expect(button).not.to.have.class(classes.contained);
     expect(button).not.to.have.class(classes.textPrimary);
     expect(button).to.have.class(classes.textSecondary);
+  });
+
+  it('should render a text success button', () => {
+    render(<Button color="success">Hello World</Button>);
+    const button = screen.getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).not.to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.outlined);
+    expect(button).not.to.have.class(classes.textPrimary);
+    expect(button).not.to.have.class(classes.textSecondary);
+    expect(button).not.to.have.class(classes.textError);
+    expect(button).not.to.have.class(classes.textInfo);
+    expect(button).not.to.have.class(classes.textWarning);
+    expect(button).to.have.class(classes.textSuccess);
+  });
+
+  it('should render a text error button', () => {
+    render(<Button color="error">Hello World</Button>);
+    const button = screen.getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).not.to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.outlined);
+    expect(button).not.to.have.class(classes.textPrimary);
+    expect(button).not.to.have.class(classes.textSecondary);
+    expect(button).not.to.have.class(classes.textSuccess);
+    expect(button).not.to.have.class(classes.textInfo);
+    expect(button).not.to.have.class(classes.textWarning);
+    expect(button).to.have.class(classes.textError);
+  });
+
+  it('should render a text info button', () => {
+    render(<Button color="info">Hello World</Button>);
+    const button = screen.getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).not.to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.outlined);
+    expect(button).not.to.have.class(classes.textPrimary);
+    expect(button).not.to.have.class(classes.textSecondary);
+    expect(button).not.to.have.class(classes.textSuccess);
+    expect(button).not.to.have.class(classes.textError);
+    expect(button).not.to.have.class(classes.textWarning);
+    expect(button).to.have.class(classes.textInfo);
+  });
+
+  it('should render a text warning button', () => {
+    render(<Button color="warning">Hello World</Button>);
+    const button = screen.getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).not.to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.outlined);
+    expect(button).not.to.have.class(classes.textPrimary);
+    expect(button).not.to.have.class(classes.textSecondary);
+    expect(button).not.to.have.class(classes.textSuccess);
+    expect(button).not.to.have.class(classes.textError);
+    expect(button).not.to.have.class(classes.textInfo);
+    expect(button).to.have.class(classes.textWarning);
   });
 
   it('should render an outlined button', () => {
@@ -120,6 +231,85 @@ describe('<Button />', () => {
     expect(button).not.to.have.class(classes.contained);
   });
 
+  it('should render a success outlined button', () => {
+    render(
+      <Button variant="outlined" color="success">
+        Hello World
+      </Button>,
+    );
+    const button = screen.getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.outlined);
+    expect(button).not.to.have.class(classes.text);
+    expect(button).not.to.have.class(classes.textSecondary);
+    expect(button).not.to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.outlinedInfo);
+    expect(button).not.to.have.class(classes.outlinedWarning);
+    expect(button).not.to.have.class(classes.outlinedError);
+    expect(button).to.have.class(classes.outlinedSuccess);
+  });
+
+  it('should render a error outlined button', () => {
+    render(
+      <Button variant="outlined" color="error">
+        Hello World
+      </Button>,
+    );
+    const button = screen.getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.outlined);
+    expect(button).not.to.have.class(classes.outlinedSecondary);
+    expect(button).not.to.have.class(classes.text);
+    expect(button).not.to.have.class(classes.textSecondary);
+    expect(button).not.to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.outlinedSuccess);
+    expect(button).not.to.have.class(classes.outlinedInfo);
+    expect(button).not.to.have.class(classes.outlinedWarning);
+    expect(button).to.have.class(classes.outlinedError);
+  });
+
+  it('should render a info outlined button', () => {
+    render(
+      <Button variant="outlined" color="info">
+        Hello World
+      </Button>,
+    );
+    const button = screen.getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.outlined);
+    expect(button).not.to.have.class(classes.outlinedSecondary);
+    expect(button).not.to.have.class(classes.text);
+    expect(button).not.to.have.class(classes.textSecondary);
+    expect(button).not.to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.outlinedSuccess);
+    expect(button).not.to.have.class(classes.outlinedWarning);
+    expect(button).not.to.have.class(classes.outlinedError);
+    expect(button).to.have.class(classes.outlinedInfo);
+  });
+
+  it('should render a warning outlined button', () => {
+    render(
+      <Button variant="outlined" color="warning">
+        Hello World
+      </Button>,
+    );
+    const button = screen.getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.outlined);
+    expect(button).not.to.have.class(classes.outlinedSecondary);
+    expect(button).not.to.have.class(classes.text);
+    expect(button).not.to.have.class(classes.textSecondary);
+    expect(button).not.to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.outlinedSuccess);
+    expect(button).not.to.have.class(classes.outlinedInfo);
+    expect(button).not.to.have.class(classes.outlinedError);
+    expect(button).to.have.class(classes.outlinedWarning);
+  });
+
   it('should render a contained button', () => {
     const { getByRole } = render(<Button variant="contained">Hello World</Button>);
     const button = getByRole('button');
@@ -144,6 +334,10 @@ describe('<Button />', () => {
     expect(button).to.have.class(classes.contained);
     expect(button).to.have.class(classes.containedPrimary);
     expect(button).not.to.have.class(classes.containedSecondary);
+    expect(button).not.to.have.class(classes.containedSuccess);
+    expect(button).not.to.have.class(classes.containedError);
+    expect(button).not.to.have.class(classes.containedInfo);
+    expect(button).not.to.have.class(classes.containedWarning);
   });
 
   it('should render a contained secondary button', () => {
@@ -159,6 +353,86 @@ describe('<Button />', () => {
     expect(button).to.have.class(classes.contained);
     expect(button).not.to.have.class(classes.containedPrimary);
     expect(button).to.have.class(classes.containedSecondary);
+    expect(button).not.to.have.class(classes.containedSuccess);
+    expect(button).not.to.have.class(classes.containedError);
+    expect(button).not.to.have.class(classes.containedInfo);
+    expect(button).not.to.have.class(classes.containedWarning);
+  });
+
+  it('should render a contained success button', () => {
+    render(
+      <Button variant="contained" color="success">
+        Hello World
+      </Button>,
+    );
+    const button = screen.getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).not.to.have.class(classes.text);
+    expect(button).to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.containedPrimary);
+    expect(button).not.to.have.class(classes.containedSecondary);
+    expect(button).not.to.have.class(classes.containedError);
+    expect(button).not.to.have.class(classes.containedInfo);
+    expect(button).not.to.have.class(classes.containedWarning);
+    expect(button).to.have.class(classes.containedSuccess);
+  });
+
+  it('should render a contained error button', () => {
+    render(
+      <Button variant="contained" color="error">
+        Hello World
+      </Button>,
+    );
+    const button = screen.getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).not.to.have.class(classes.text);
+    expect(button).to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.containedPrimary);
+    expect(button).not.to.have.class(classes.containedSecondary);
+    expect(button).not.to.have.class(classes.containedInfo);
+    expect(button).not.to.have.class(classes.containedSuccess);
+    expect(button).not.to.have.class(classes.containedWarning);
+    expect(button).to.have.class(classes.containedError);
+  });
+
+  it('should render a contained info button', () => {
+    render(
+      <Button variant="contained" color="info">
+        Hello World
+      </Button>,
+    );
+    const button = screen.getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).not.to.have.class(classes.text);
+    expect(button).to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.containedPrimary);
+    expect(button).not.to.have.class(classes.containedSecondary);
+    expect(button).not.to.have.class(classes.containedSuccess);
+    expect(button).not.to.have.class(classes.containedError);
+    expect(button).not.to.have.class(classes.containedWarning);
+    expect(button).to.have.class(classes.containedInfo);
+  });
+
+  it('should render a contained warning button', () => {
+    render(
+      <Button variant="contained" color="warning">
+        Hello World
+      </Button>,
+    );
+    const button = screen.getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).not.to.have.class(classes.text);
+    expect(button).to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.containedPrimary);
+    expect(button).not.to.have.class(classes.containedSecondary);
+    expect(button).not.to.have.class(classes.containedSuccess);
+    expect(button).not.to.have.class(classes.containedError);
+    expect(button).not.to.have.class(classes.containedInfo);
+    expect(button).to.have.class(classes.containedWarning);
   });
 
   it('should render a small text button', () => {
@@ -410,5 +684,65 @@ describe('<Button />', () => {
       </ThemeProvider>,
     );
     expect(container.querySelectorAll(`.${touchRippleClasses.root}`)).to.have.length(1);
+  });
+
+  describe('Emotion compatibility', () => {
+    it('classes.root should overwrite builtin styles.', () => {
+      // This is pink
+      const color = 'rgb(255, 192, 204)';
+
+      const { getByRole } = render(
+        <ClassNames>
+          {({ css }) => (
+            <Button color="primary" classes={{ root: css({ color }) }}>
+              This text should be pink
+            </Button>
+          )}
+        </ClassNames>,
+      );
+      const button = getByRole('button');
+
+      expect(getComputedStyle(button).color).to.equal(color);
+    });
+
+    it('className should overwrite classes.root and builtin styles.', () => {
+      const colorPink = 'rgb(255, 192, 204)';
+      const colorRed = 'rgb(255, 0, 0)';
+
+      const { getByRole } = render(
+        <ClassNames>
+          {({ css }) => (
+            <Button
+              color="primary"
+              className={css({ color: colorRed })}
+              classes={{ root: css({ color: colorPink }) }}
+            >
+              This text should be red
+            </Button>
+          )}
+        </ClassNames>,
+      );
+      const button = getByRole('button');
+
+      expect(getComputedStyle(button).color).to.equal(colorRed);
+    });
+
+    it('classes.* should overwrite builtin styles.', () => {
+      // This is pink
+      const color = 'rgb(255, 192, 204)';
+
+      const { getByRole } = render(
+        <ClassNames>
+          {({ css }) => (
+            <Button color="primary" classes={{ text: css({ color }) }}>
+              This text should be pink
+            </Button>
+          )}
+        </ClassNames>,
+      );
+      const button = getByRole('button');
+
+      expect(getComputedStyle(button).color).to.equal(color);
+    });
   });
 });

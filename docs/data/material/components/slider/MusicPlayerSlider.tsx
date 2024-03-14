@@ -21,7 +21,7 @@ const WallPaper = styled('div')({
   overflow: 'hidden',
   background: 'linear-gradient(rgb(255, 38, 142) 0%, rgb(255, 105, 79) 100%)',
   transition: 'all 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s',
-  '&:before': {
+  '&::before': {
     content: '""',
     width: '140%',
     height: '140%',
@@ -31,7 +31,7 @@ const WallPaper = styled('div')({
     background:
       'radial-gradient(at center center, rgb(62, 79, 249) 0%, rgba(62, 79, 249, 0) 64%)',
   },
-  '&:after': {
+  '&::after': {
     content: '""',
     width: '140%',
     height: '140%',
@@ -85,7 +85,7 @@ export default function MusicPlayerSlider() {
   function formatDuration(value: number) {
     const minute = Math.floor(value / 60);
     const secondLeft = value - minute * 60;
-    return `${minute}:${secondLeft < 9 ? `0${secondLeft}` : secondLeft}`;
+    return `${minute}:${secondLeft < 10 ? `0${secondLeft}` : secondLeft}`;
   }
   const mainIconColor = theme.palette.mode === 'dark' ? '#fff' : '#000';
   const lightIconColor =
@@ -127,7 +127,7 @@ export default function MusicPlayerSlider() {
               width: 8,
               height: 8,
               transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
-              '&:before': {
+              '&::before': {
                 boxShadow: '0 2px 12px 0 rgba(0,0,0,0.4)',
               },
               '&:hover, &.Mui-focusVisible': {
@@ -200,7 +200,7 @@ export default function MusicPlayerSlider() {
                 width: 24,
                 height: 24,
                 backgroundColor: '#fff',
-                '&:before': {
+                '&::before': {
                   boxShadow: '0 4px 8px rgba(0,0,0,0.4)',
                 },
                 '&:hover, &.Mui-focusVisible, &.Mui-active': {

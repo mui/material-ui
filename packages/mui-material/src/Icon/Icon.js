@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
@@ -51,14 +52,14 @@ const IconRoot = styled('span', {
   }[ownerState.fontSize],
   // TODO v5 deprecate, v6 remove for sx
   color: {
-    primary: theme.palette.primary.main,
-    secondary: theme.palette.secondary.main,
-    info: theme.palette.info.main,
-    success: theme.palette.success.main,
-    warning: theme.palette.warning.main,
-    action: theme.palette.action.active,
-    error: theme.palette.error.main,
-    disabled: theme.palette.action.disabled,
+    primary: (theme.vars || theme).palette.primary.main,
+    secondary: (theme.vars || theme).palette.secondary.main,
+    info: (theme.vars || theme).palette.info.main,
+    success: (theme.vars || theme).palette.success.main,
+    warning: (theme.vars || theme).palette.warning.main,
+    action: (theme.vars || theme).palette.action.active,
+    error: (theme.vars || theme).palette.error.main,
+    disabled: (theme.vars || theme).palette.action.disabled,
     inherit: undefined,
   }[ownerState.color],
 }));
@@ -104,10 +105,10 @@ const Icon = React.forwardRef(function Icon(inProps, ref) {
 });
 
 Icon.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The base class applied to the icon. Defaults to 'material-icons', but can be changed to any
    * other base class that suits the icon font you're using (e.g. material-icons-rounded, fas, etc).
@@ -127,7 +128,9 @@ Icon.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'inherit'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

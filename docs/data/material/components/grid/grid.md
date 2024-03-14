@@ -1,21 +1,23 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Grid component
 components: Grid
 githubLabel: 'component: Grid'
-materialDesign: https://material.io/design/layout/understanding-layout.html
+materialDesign: https://m2.material.io/design/layout/understanding-layout.html
 ---
 
 # Grid
 
 <p class="description">The Material Design responsive layout grid adapts to screen size and orientation, ensuring consistency across layouts.</p>
 
-The [grid](https://material.io/design/layout/responsive-layout-grid.html) creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
+The [grid](https://m2.material.io/design/layout/responsive-layout-grid.html) creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
 Material Design's responsive UI is based on a 12-column grid layout.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-> ⚠️ The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to [the `DataGrid` component](/components/data-grid/).
+:::warning
+The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to [the `DataGrid` component](/x/react-data-grid/).
+:::
 
 ## How it works
 
@@ -26,7 +28,7 @@ The grid system is implemented with the `Grid` component:
 - Item widths are set in percentages, so they're always fluid and sized relative to their parent element.
 - Items have padding to create the spacing between individual items.
 - There are five grid breakpoints: xs, sm, md, lg, and xl.
-- Integer values can be given to each breakpoint, indicating how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint constraints](/customization/breakpoints/#default-breakpoints).
+- Integer values can be given to each breakpoint, indicating how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint constraints](/material-ui/customization/breakpoints/#default-breakpoints).
 
 If you are **new to or unfamiliar with flexbox**, we encourage you to read this [CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) guide.
 
@@ -38,7 +40,8 @@ Fluid grids use columns that scale and resize content. A fluid grid's layout can
 
 Column widths are integer values between 1 and 12; they apply at any breakpoint and indicate how many columns are occupied by the component.
 
-A value given to a breakpoint applies to all the other breakpoints wider than it (unless overridden, as you can read later in this page). For example, `xs={12}` sizes a component to occupy the whole viewport width regardless of its size.
+A value passed to any given breakpoint also applies to all wider breakpoints (if they have no values explicitly defined).
+For example, `xs={12}` sizes a component to occupy the full width of its parent container, regardless of the viewport size.
 
 {{"demo": "BasicGrid.js", "bg": true}}
 
@@ -46,7 +49,7 @@ A value given to a breakpoint applies to all the other breakpoints wider than it
 
 Components may have multiple widths defined, causing the layout to change at the defined breakpoint. Width values given to larger breakpoints override those given to smaller breakpoints.
 
-For example, `xs={12} sm={6}` sizes a component to occupy half of the viewport width (6 columns) when viewport width is [600 or more pixels](/customization/breakpoints/#default-breakpoints). For smaller viewports, the component fills all 12 available columns.
+For example, `xs={12} sm={6}` sizes a component to occupy half of the viewport width (6 columns) when viewport width is [600 or more pixels](/material-ui/customization/breakpoints/#default-breakpoints). For smaller viewports, the component fills all 12 available columns.
 
 {{"demo": "FullWidthGrid.js", "bg": true}}
 
@@ -54,7 +57,7 @@ For example, `xs={12} sm={6}` sizes a component to occupy half of the viewport w
 
 To control space between children, use the `spacing` prop.
 The spacing value can be any positive number, including decimals and any string.
-The prop is converted into a CSS property using the [`theme.spacing()`](/customization/spacing/) helper.
+The prop is converted into a CSS property using the [`theme.spacing()`](/material-ui/customization/spacing/) helper.
 
 {{"demo": "SpacingGrid.js", "bg": true}}
 
@@ -68,7 +71,7 @@ It's similar to the `row-gap` and `column-gap` properties of [CSS Grid](/system/
 ## Responsive values
 
 You can switch the props' value based on the active breakpoint.
-For instance, we can implement the ["recommended"](https://material.io/design/layout/responsive-layout-grid.html) responsive layout grid of Material Design.
+For instance, we can implement the ["recommended"](https://m2.material.io/design/layout/responsive-layout-grid.html) responsive layout grid of Material Design.
 
 {{"demo": "ResponsiveGrid.js", "bg": true}}
 
@@ -79,16 +82,19 @@ Responsive values is supported by:
 - `direction`
 - `rowSpacing`
 - `spacing`
-- all the [other props](#system-props) of the system
+- all the [other props](#system-props) of MUI System
 
-> ⚠️ When using a responsive `columns` prop, each grid item needs its corresponding breakpoint.
-> For instance, this is not working. The grid item misses the value for `md`:
->
-> ```jsx
-> <Grid container columns={{ xs: 4, md: 12 }}>
->   <Grid item xs={2} />
-> </Grid>
-> ```
+:::warning
+When using a responsive `columns` prop, each grid item needs its corresponding breakpoint.
+For instance, this is not working. The grid item misses the value for `md`:
+
+```jsx
+<Grid container columns={{ xs: 4, md: 12 }}>
+  <Grid item xs={2} />
+</Grid>
+```
+
+:::
 
 ## Interactive
 
@@ -120,13 +126,15 @@ The following demo doesn't follow the Material Design guidelines, but illustrate
 
 The `container` and `item` props are two independent booleans; they can be combined to allow a Grid component to be both a flex container and child.
 
-> A flex **container** is the box generated by an element with a computed display of `flex` or `inline-flex`. In-flow children of a flex container are called flex **items** and are laid out using the flex layout model.
+:::info
+A flex **container** is the box generated by an element with a computed display of `flex` or `inline-flex`. In-flow children of a flex container are called flex **items** and are laid out using the flex layout model.
+:::
 
 https://www.w3.org/TR/css-flexbox-1/#box-model
 
 {{"demo": "NestedGrid.js", "bg": true}}
 
-⚠️ Defining an explicit width to a Grid element that is flex container, flex item, and has spacing at the same time lead to unexpected behavior, avoid doing it:
+⚠️ Defining an explicit width to a Grid element that is flex container, flex item, and has spacing at the same time leads to unexpected behavior, avoid doing it:
 
 ```jsx
 <Grid spacing={1} container item xs={12}>
@@ -149,8 +157,8 @@ The spacing between items is implemented with a negative margin. This might lead
 ### white-space: nowrap
 
 The initial setting on flex items is `min-width: auto`.
-It's causing a positioning conflict when the children is using `white-space: nowrap;`.
-You can experience the issue with:
+This causes a positioning conflict when children use `white-space: nowrap;`.
+You can reproduce the issue with:
 
 ```jsx
 <Grid item xs>
@@ -177,7 +185,7 @@ If used, these props may have undesirable effects on the height of the `Grid` it
 ## CSS Grid Layout
 
 The `Grid` component is using CSS flexbox internally.
-But as seen below, you can easily use [the system](/system/grid/) and CSS Grid to layout your pages.
+But as seen below, you can easily use [MUI System](/system/grid/) and CSS Grid to layout your pages.
 
 {{"demo": "CSSGrid.js", "bg": true}}
 

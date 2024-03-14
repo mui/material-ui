@@ -2,6 +2,8 @@ import * as React from 'react';
 
 const RowListContext = React.createContext(false);
 
-export const useRowList = () => React.useContext(RowListContext);
+if (process.env.NODE_ENV !== 'production') {
+  RowListContext.displayName = 'RowListContext';
+}
 
 export default RowListContext;

@@ -1,7 +1,7 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Pagination component
-components: Pagination, PaginationItem
+components: Pagination, PaginationItem, TablePagination
 githubLabel: 'component: pagination'
 ---
 
@@ -41,7 +41,7 @@ It's possible to customize the control icons.
 
 ## Pagination ranges
 
-You can specify how many digits to display either side of current page with the `siblingRange` prop, and adjacent to the start and end page number with the `boundaryRange` prop.
+You can specify how many digits to display either side of current page with the `siblingCount` prop, and adjacent to the start and end page number with the `boundaryCount` prop.
 
 {{"demo": "PaginationRanges.js"}}
 
@@ -61,7 +61,7 @@ related to the rendering of JSX.
 The Pagination component is built on this hook.
 
 ```jsx
-import { usePagination } from '@mui/material/Pagination';
+import usePagination from '@mui/material/usePagination';
 ```
 
 {{"demo": "UsePagination.js"}}
@@ -73,17 +73,20 @@ It's preferred in contexts where SEO is important, for instance, a blog.
 
 For the pagination of a large set of tabular data, you should use the `TablePagination` component.
 
-{{"demo": "TablePagination.js"}}
+{{"demo": "TablePaginationDemo.js"}}
 
-> ⚠️ Note that the `Pagination` page prop starts at 1 to match the requirement of including the value in the URL, while the `TablePagination` page prop starts at 0 to match the requirement of zero-based JavaScript arrays that comes with rendering a lot of tabular data.
+:::warning
+Note that the `Pagination` page prop starts at 1 to match the requirement of including the value in the URL, while the `TablePagination` page prop starts at 0 to match the requirement of zero-based JavaScript arrays that come with rendering a lot of tabular data.
+:::
 
-You can learn more about this use case in the [table section](/components/tables/#custom-pagination-options) of the documentation.
+You can learn more about this use case in the [table section](/material-ui/react-table/#custom-pagination-options) of the documentation.
 
 ## Accessibility
 
 ### ARIA
 
-The root node has a role of "navigation" and aria-label "pagination navigation" by default. The page items have an aria-label that identifies the purpose of the item ("go to first page", "go to previous page", "go to page 1" etc.). You can override these using the `getItemAriaLabel` prop.
+The root node has a role of "navigation" and aria-label "pagination navigation" by default. The page items have an aria-label that identifies the purpose of the item ("go to first page", "go to previous page", "go to page 1" etc.).
+You can override these using the `getItemAriaLabel` prop.
 
 ### Keyboard
 

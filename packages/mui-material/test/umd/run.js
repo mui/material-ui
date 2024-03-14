@@ -1,7 +1,7 @@
-const playwright = require('playwright');
-const fse = require('fs-extra');
 const http = require('http');
 const path = require('path');
+const playwright = require('playwright');
+const fse = require('fs-extra');
 const express = require('express');
 const { expect } = require('chai');
 
@@ -45,7 +45,10 @@ async function createApp() {
   const rootPath = path.join(__dirname, '../../../../');
   const umdPath = '/umd.js';
 
-  let index = await fse.readFile(path.join(rootPath, 'examples/cdn/index.html'), 'utf8');
+  let index = await fse.readFile(
+    path.join(rootPath, 'examples/material-ui-via-cdn/index.html'),
+    'utf8',
+  );
   index = index.replace(
     'https://unpkg.com/@mui/material@latest/umd/material-ui.development.js',
     umdPath,
@@ -89,14 +92,7 @@ function App() {
 async function startBrowser() {
   // eslint-disable-next-line no-console
   console.info('browser: start');
-  const browser = await playwright.chromium.launch({
-    args: [
-      '--single-process', // Solve mono-thread issue on CircleCI
-      // https://github.com/GoogleChrome/puppeteer/blob/5d6535ca0c82efe2ca50450818d5fb20aa015658/docs/troubleshooting.md#setting-up-chrome-linux-sandbox
-      '--no-sandbox', // Solve user security sandboxing issue.
-      // '--disable-web-security', // Solve weird crossorigin anonymous issue on CircleCI
-    ],
-  });
+  const browser = await playwright.chromium.launch();
   const page = await browser.newPage();
   page.on('pageerror', (err) => {
     throw err;

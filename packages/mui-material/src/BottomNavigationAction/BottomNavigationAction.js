@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import ButtonBase from '../ButtonBase';
@@ -33,19 +34,23 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
   transition: theme.transitions.create(['color', 'padding-top'], {
     duration: theme.transitions.duration.short,
   }),
-  padding: '6px 12px 8px',
+  padding: '0px 12px',
   minWidth: 80,
   maxWidth: 168,
-  color: theme.palette.text.secondary,
+  color: (theme.vars || theme).palette.text.secondary,
   flexDirection: 'column',
   flex: '1',
   ...(!ownerState.showLabel &&
     !ownerState.selected && {
-      paddingTop: 16,
+      paddingTop: 14,
+    }),
+  ...(!ownerState.showLabel &&
+    !ownerState.selected &&
+    !ownerState.label && {
+      paddingTop: 0,
     }),
   [`&.${bottomNavigationActionClasses.selected}`]: {
-    paddingTop: 6,
-    color: theme.palette.primary.main,
+    color: (theme.vars || theme).palette.primary.main,
   },
 }));
 
@@ -115,10 +120,10 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
 });
 
 BottomNavigationAction.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * This prop isn't supported.
    * Use the `component` prop if you need to change the children structure.

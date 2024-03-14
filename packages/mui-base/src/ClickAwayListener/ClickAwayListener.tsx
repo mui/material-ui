@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -11,7 +12,7 @@ import {
 // TODO: return `EventHandlerName extends `on${infer EventName}` ? Lowercase<EventName> : never` once generatePropTypes runs with TS 4.1
 function mapEventPropToEvent(
   eventProp: ClickAwayMouseEventHandler | ClickAwayTouchEventHandler,
-): 'click' | 'mousedown' | 'mouseup' | 'touchstart' | 'touchend' {
+): 'click' | 'mousedown' | 'mouseup' | 'touchstart' | 'touchend' | 'pointerdown' | 'pointerup' {
   return eventProp.substring(2).toLowerCase() as any;
 }
 
@@ -22,7 +23,12 @@ function clickedRootScrollbar(event: MouseEvent, doc: Document) {
   );
 }
 
-type ClickAwayMouseEventHandler = 'onClick' | 'onMouseDown' | 'onMouseUp';
+type ClickAwayMouseEventHandler =
+  | 'onClick'
+  | 'onMouseDown'
+  | 'onMouseUp'
+  | 'onPointerDown'
+  | 'onPointerUp';
 type ClickAwayTouchEventHandler = 'onTouchStart' | 'onTouchEnd';
 
 export interface ClickAwayListenerProps {
@@ -58,12 +64,11 @@ export interface ClickAwayListenerProps {
  *
  * Demos:
  *
- * - [Click Away Listener](https://mui.com/components/click-away-listener/)
- * - [Menus](https://mui.com/components/menus/)
+ * - [Click-Away Listener](https://mui.com/base-ui/react-click-away-listener/)
  *
  * API:
  *
- * - [ClickAwayListener API](https://mui.com/api/click-away-listener/)
+ * - [ClickAwayListener API](https://mui.com/base-ui/react-click-away-listener/components-api/#click-away-listener)
  */
 function ClickAwayListener(props: ClickAwayListenerProps): JSX.Element {
   const {
@@ -211,10 +216,10 @@ function ClickAwayListener(props: ClickAwayListenerProps): JSX.Element {
 }
 
 ClickAwayListener.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The wrapped element.
    */
@@ -229,7 +234,14 @@ ClickAwayListener.propTypes /* remove-proptypes */ = {
    * The mouse event to listen to. You can disable the listener by providing `false`.
    * @default 'onClick'
    */
-  mouseEvent: PropTypes.oneOf(['onClick', 'onMouseDown', 'onMouseUp', false]),
+  mouseEvent: PropTypes.oneOf([
+    'onClick',
+    'onMouseDown',
+    'onMouseUp',
+    'onPointerDown',
+    'onPointerUp',
+    false,
+  ]),
   /**
    * Callback fired when a "click away" event is detected.
    */
@@ -246,4 +258,4 @@ if (process.env.NODE_ENV !== 'production') {
   (ClickAwayListener as any)['propTypes' + ''] = exactProp(ClickAwayListener.propTypes);
 }
 
-export default ClickAwayListener;
+export { ClickAwayListener };

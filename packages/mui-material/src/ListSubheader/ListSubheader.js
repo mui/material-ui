@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
@@ -41,12 +42,12 @@ const ListSubheaderRoot = styled('li', {
   boxSizing: 'border-box',
   lineHeight: '48px',
   listStyle: 'none',
-  color: theme.palette.text.secondary,
+  color: (theme.vars || theme).palette.text.secondary,
   fontFamily: theme.typography.fontFamily,
   fontWeight: theme.typography.fontWeightMedium,
   fontSize: theme.typography.pxToRem(14),
   ...(ownerState.color === 'primary' && {
-    color: theme.palette.primary.main,
+    color: (theme.vars || theme).palette.primary.main,
   }),
   ...(ownerState.color === 'inherit' && {
     color: 'inherit',
@@ -62,7 +63,7 @@ const ListSubheaderRoot = styled('li', {
     position: 'sticky',
     top: 0,
     zIndex: 1,
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: (theme.vars || theme).palette.background.paper,
   }),
 }));
 
@@ -100,11 +101,13 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
   );
 });
 
+ListSubheader.muiSkipListHighlight = true;
+
 ListSubheader.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

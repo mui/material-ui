@@ -1,0 +1,209 @@
+{
+  "props": {
+    "aria-label": { "type": { "name": "custom", "description": "string" } },
+    "aria-labelledby": { "type": { "name": "string" } },
+    "aria-valuetext": { "type": { "name": "custom", "description": "string" } },
+    "defaultValue": {
+      "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
+    },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableSwap": { "type": { "name": "bool" }, "default": "false" },
+    "getAriaLabel": {
+      "type": { "name": "func" },
+      "signature": { "type": "function(index: number) => string", "describedArgs": ["index"] }
+    },
+    "getAriaValueText": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(value: number, index: number) => string",
+        "describedArgs": ["value", "index"]
+      }
+    },
+    "isRtl": { "type": { "name": "bool" }, "default": "false" },
+    "marks": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;{ label?: node, value: number }&gt;<br>&#124;&nbsp;bool"
+      },
+      "default": "false"
+    },
+    "max": { "type": { "name": "number" }, "default": "100" },
+    "min": { "type": { "name": "number" }, "default": "0" },
+    "name": { "type": { "name": "string" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: Event, value: number | Array<number>, activeThumb: number) => void",
+        "describedArgs": ["event", "value", "activeThumb"]
+      }
+    },
+    "onChangeCommitted": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent | Event, value: number | Array<number>) => void",
+        "describedArgs": ["event", "value"]
+      }
+    },
+    "orientation": {
+      "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
+      "default": "'horizontal'"
+    },
+    "scale": {
+      "type": { "name": "func" },
+      "default": "function Identity(x) {\n  return x;\n}",
+      "signature": { "type": "function(x: any) => any", "describedArgs": [] }
+    },
+    "shiftStep": { "type": { "name": "number" }, "default": "10" },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ input?: func<br>&#124;&nbsp;object, mark?: func<br>&#124;&nbsp;object, markLabel?: func<br>&#124;&nbsp;object, rail?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, thumb?: func<br>&#124;&nbsp;object, track?: func<br>&#124;&nbsp;object, valueLabel?: any<br>&#124;&nbsp;func }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ input?: elementType, mark?: elementType, markLabel?: elementType, rail?: elementType, root?: elementType, thumb?: elementType, track?: elementType, valueLabel?: elementType }"
+      },
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
+    },
+    "step": { "type": { "name": "number" }, "default": "1" },
+    "tabIndex": { "type": { "name": "number" } },
+    "track": {
+      "type": {
+        "name": "enum",
+        "description": "'inverted'<br>&#124;&nbsp;'normal'<br>&#124;&nbsp;false"
+      },
+      "default": "'normal'"
+    },
+    "value": {
+      "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
+    },
+    "valueLabelFormat": {
+      "type": { "name": "union", "description": "func<br>&#124;&nbsp;string" },
+      "default": "function Identity(x) {\n  return x;\n}"
+    }
+  },
+  "name": "Slider",
+  "imports": ["import { Slider } from '@mui/base/Slider';", "import { Slider } from '@mui/base';"],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'span'",
+      "class": "base-Slider-root"
+    },
+    {
+      "name": "track",
+      "description": "The component that renders the track.",
+      "default": "'span'",
+      "class": "base-Slider-track"
+    },
+    {
+      "name": "rail",
+      "description": "The component that renders the rail.",
+      "default": "'span'",
+      "class": "base-Slider-rail"
+    },
+    {
+      "name": "thumb",
+      "description": "The component that renders the thumb.",
+      "default": "'span'",
+      "class": "base-Slider-thumb"
+    },
+    {
+      "name": "mark",
+      "description": "The component that renders the mark.",
+      "default": "'span'",
+      "class": "base-Slider-mark"
+    },
+    {
+      "name": "markLabel",
+      "description": "The component that renders the mark label.",
+      "default": "'span'",
+      "class": "base-Slider-markLabel"
+    },
+    {
+      "name": "valueLabel",
+      "description": "The component that renders the value label.",
+      "class": null
+    },
+    {
+      "name": "input",
+      "description": "The component that renders the input.",
+      "default": "'input'",
+      "class": null
+    }
+  ],
+  "classes": [
+    {
+      "key": "active",
+      "className": "base--active",
+      "description": "State class applied to the thumb element if it's active.",
+      "isGlobal": true
+    },
+    {
+      "key": "disabled",
+      "className": "base--disabled",
+      "description": "State class applied to the root and thumb element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "dragging",
+      "className": "base-Slider-dragging",
+      "description": "State class applied to the root if a thumb is being dragged.",
+      "isGlobal": false
+    },
+    {
+      "key": "focusVisible",
+      "className": "base--focusVisible",
+      "description": "State class applied to the thumb element if keyboard focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "markActive",
+      "className": "base-Slider-markActive",
+      "description": "Class name applied to the mark element if active (depending on the value).",
+      "isGlobal": false
+    },
+    {
+      "key": "marked",
+      "className": "base-Slider-marked",
+      "description": "Class name applied to the root element if `marks` is provided with at least one label.",
+      "isGlobal": false
+    },
+    {
+      "key": "markLabelActive",
+      "className": "base-Slider-markLabelActive",
+      "description": "Class name applied to the mark label element if active (depending on the value).",
+      "isGlobal": false
+    },
+    {
+      "key": "trackFalse",
+      "className": "base-Slider-trackFalse",
+      "description": "Class name applied to the root element if `track={false}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "trackInverted",
+      "className": "base-Slider-trackInverted",
+      "description": "Class name applied to the root element if `track=\"inverted\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "vertical",
+      "className": "base-Slider-vertical",
+      "description": "Class name applied to the root element if `orientation=\"vertical\"`.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "muiName": "Slider",
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/mui-base/src/Slider/Slider.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base-ui/react-slider/\">Slider</a></li></ul>",
+  "cssComponent": false
+}

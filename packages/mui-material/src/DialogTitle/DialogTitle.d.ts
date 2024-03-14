@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { Theme } from '../styles';
+import { TypographyTypeMap } from '../Typography';
 import { DialogTitleClasses } from './dialogTitleClasses';
 
-export interface DialogTitleProps extends StandardProps<React.HTMLAttributes<HTMLHeadingElement>> {
+export interface DialogTitleOwnProps extends Omit<TypographyTypeMap['props'], 'classes'> {
   /**
    * The content of the component.
    */
@@ -18,14 +20,32 @@ export interface DialogTitleProps extends StandardProps<React.HTMLAttributes<HTM
   sx?: SxProps<Theme>;
 }
 
+export interface DialogTitleTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = TypographyTypeMap['defaultComponent'],
+> {
+  props: AdditionalProps & DialogTitleOwnProps;
+  defaultComponent: RootComponent;
+}
+
 /**
  *
  * Demos:
  *
- * - [Dialogs](https://mui.com/components/dialogs/)
+ * - [Dialog](https://mui.com/material-ui/react-dialog/)
  *
  * API:
  *
- * - [DialogTitle API](https://mui.com/api/dialog-title/)
+ * - [DialogTitle API](https://mui.com/material-ui/api/dialog-title/)
+ * - inherits [Typography API](https://mui.com/material-ui/api/typography/)
  */
-export default function DialogTitle(props: DialogTitleProps): JSX.Element;
+declare const DialogTitle: OverridableComponent<DialogTitleTypeMap>;
+
+export type DialogTitleProps<
+  RootComponent extends React.ElementType = DialogTitleTypeMap['defaultComponent'],
+  AdditionalProps = { component?: React.ElementType },
+> = OverrideProps<DialogTitleTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
+
+export default DialogTitle;

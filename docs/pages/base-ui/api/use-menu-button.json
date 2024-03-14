@@ -1,0 +1,40 @@
+{
+  "parameters": {
+    "disabled": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
+    "focusableWhenDisabled": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false"
+    },
+    "rootRef": {
+      "type": {
+        "name": "React.Ref&lt;HTMLElement&gt;",
+        "description": "React.Ref&lt;HTMLElement&gt;"
+      }
+    }
+  },
+  "returnValue": {
+    "active": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "getRootProps": {
+      "type": {
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseMenuButtonRootSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseMenuButtonRootSlotProps&lt;ExternalProps&gt;"
+      },
+      "required": true
+    },
+    "open": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "rootRef": {
+      "type": {
+        "name": "React.RefCallback&lt;Element&gt; | null",
+        "description": "React.RefCallback&lt;Element&gt; | null"
+      },
+      "required": true
+    }
+  },
+  "name": "useMenuButton",
+  "filename": "/packages/mui-base/src/useMenuButton/useMenuButton.ts",
+  "imports": [
+    "import { useMenuButton } from '@mui/base/useMenuButton';",
+    "import { useMenuButton } from '@mui/base';"
+  ],
+  "demos": "<ul><li><a href=\"/base-ui/react-menu/#hooks\">Menu</a></li></ul>"
+}

@@ -22,20 +22,26 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
    */
   classes?: Partial<TooltipClasses>;
   /**
-   * The components used for each slot inside the Tooltip.
-   * Either a string to use a HTML element or a component.
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `slots` prop.
+   * It's recommended to use the `slots` prop instead.
+   *
    * @default {}
    */
   components?: {
-    Popper?: React.ElementType;
+    Popper?: React.ElementType<PopperProps>;
     Transition?: React.ElementType;
     Tooltip?: React.ElementType;
     Arrow?: React.ElementType;
   };
   /**
-   * The props used for each slot inside the Tooltip.
-   * Note that `componentsProps.popper` prop values win over `PopperProps`
-   * and `componentsProps.transition` prop values win over `TransitionProps` if both are applied.
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `slotProps` prop.
+   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   *
    * @default {}
    */
   componentsProps?: {
@@ -151,21 +157,52 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
    */
   PopperComponent?: React.JSXElementConstructor<PopperProps>;
   /**
-   * Props applied to the [`Popper`](/api/popper/) element.
+   * Props applied to the [`Popper`](/material-ui/api/popper/) element.
    * @default {}
    */
   PopperProps?: Partial<PopperProps>;
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slotProps?: {
+    popper?: Partial<PopperProps> & TooltipComponentsPropsOverrides;
+    transition?: TransitionProps & TooltipComponentsPropsOverrides;
+    tooltip?: React.HTMLProps<HTMLDivElement> &
+      MUIStyledCommonProps<Theme> &
+      TooltipComponentsPropsOverrides;
+    arrow?: React.HTMLProps<HTMLSpanElement> &
+      MUIStyledCommonProps<Theme> &
+      TooltipComponentsPropsOverrides;
+  };
+  /**
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slots?: {
+    popper?: React.ElementType<PopperProps>;
+    transition?: React.ElementType;
+    tooltip?: React.ElementType;
+    arrow?: React.ElementType;
+  };
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
   /**
-   * Tooltip title. Zero-length titles string are never displayed.
+   * Tooltip title. Zero-length titles string, undefined, null and false are never displayed.
    */
-  title: NonNullable<React.ReactNode>;
+  title: React.ReactNode;
   /**
    * The component used for the transition.
-   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Grow
    */
   TransitionComponent?: React.JSXElementConstructor<
@@ -173,7 +210,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
   >;
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    */
   TransitionProps?: TransitionProps;
 }
@@ -182,10 +219,10 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
  *
  * Demos:
  *
- * - [Tooltips](https://mui.com/components/tooltips/)
+ * - [Tooltip](https://mui.com/material-ui/react-tooltip/)
  *
  * API:
  *
- * - [Tooltip API](https://mui.com/api/tooltip/)
+ * - [Tooltip API](https://mui.com/material-ui/api/tooltip/)
  */
 export default function Tooltip(props: TooltipProps): JSX.Element;

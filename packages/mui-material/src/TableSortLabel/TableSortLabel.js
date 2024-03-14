@@ -1,4 +1,5 @@
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+'use client';
+import composeClasses from '@mui/utils/composeClasses';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
@@ -35,19 +36,19 @@ const TableSortLabelRoot = styled(ButtonBase, {
   flexDirection: 'inherit',
   alignItems: 'center',
   '&:focus': {
-    color: theme.palette.text.secondary,
+    color: (theme.vars || theme).palette.text.secondary,
   },
   '&:hover': {
-    color: theme.palette.text.secondary,
+    color: (theme.vars || theme).palette.text.secondary,
     [`& .${tableSortLabelClasses.icon}`]: {
       opacity: 0.5,
     },
   },
   [`&.${tableSortLabelClasses.active}`]: {
-    color: theme.palette.text.primary,
+    color: (theme.vars || theme).palette.text.primary,
     [`& .${tableSortLabelClasses.icon}`]: {
       opacity: 1,
-      color: theme.palette.text.secondary,
+      color: (theme.vars || theme).palette.text.secondary,
     },
   },
 }));
@@ -124,10 +125,10 @@ const TableSortLabel = React.forwardRef(function TableSortLabel(inProps, ref) {
 });
 
 TableSortLabel.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, the label will have the active styling (should be true for the sorted column).
    * @default false

@@ -1,4 +1,5 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
 
 export interface AppBarClasses {
   /** Styles applied to the root element. */
@@ -23,6 +24,14 @@ export interface AppBarClasses {
   colorInherit: string;
   /** Styles applied to the root element if `color="transparent"`. */
   colorTransparent: string;
+  /** Styles applied to the root element if `color="error"`. */
+  colorError: string;
+  /** Styles applied to the root element if `color="info"`. */
+  colorInfo: string;
+  /** Styles applied to the root element if `color="success"`. */
+  colorSuccess: string;
+  /** Styles applied to the root element if `color="warning"`. */
+  colorWarning: string;
 }
 
 export type AppBarClassKey = keyof AppBarClasses;
@@ -43,6 +52,10 @@ const appBarClasses: AppBarClasses = generateUtilityClasses('MuiAppBar', [
   'colorSecondary',
   'colorInherit',
   'colorTransparent',
+  'colorError',
+  'colorInfo',
+  'colorSuccess',
+  'colorWarning',
 ]);
 
 export default appBarClasses;

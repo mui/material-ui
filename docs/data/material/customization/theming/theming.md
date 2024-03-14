@@ -1,6 +1,6 @@
 # Theming
 
-<p class="description">Customize MUI with your theme. You can change the colors, the typography and much more.</p>
+<p class="description">Customize Material UI with your theme. You can change the colors, the typography and much more.</p>
 
 The theme specifies the color of the components, darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc.
 
@@ -11,29 +11,29 @@ To promote greater consistency between apps, light and dark theme types are avai
 ## Theme provider
 
 If you wish to customize the theme, you need to use the `ThemeProvider` component in order to inject a theme into your application.
-However, this is optional; MUI components come with a default theme.
+However, this is optional; Material UI components come with a default theme.
 
-`ThemeProvider` relies on the [context feature of React](https://reactjs.org/docs/context.html) to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize.
+`ThemeProvider` relies on the [context feature of React](https://react.dev/learn/passing-data-deeply-with-context) to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize.
 You can learn more about this in [the API section](#themeprovider).
 
 ## Theme configuration variables
 
-Changing the theme configuration variables is the most effective way to match MUI to your needs.
+Changing the theme configuration variables is the most effective way to match Material UI to your needs.
 The following sections cover the most important theme variables:
 
-- [`.palette`](/customization/palette/)
-- [`.typography`](/customization/typography/)
-- [`.spacing`](/customization/spacing/)
-- [`.breakpoints`](/customization/breakpoints/)
-- [`.zIndex`](/customization/z-index/)
-- [`.transitions`](/customization/transitions/)
-- [`.components`](/customization/theme-components/)
+- [`.palette`](/material-ui/customization/palette/)
+- [`.typography`](/material-ui/customization/typography/)
+- [`.spacing`](/material-ui/customization/spacing/)
+- [`.breakpoints`](/material-ui/customization/breakpoints/)
+- [`.zIndex`](/material-ui/customization/z-index/)
+- [`.transitions`](/material-ui/customization/transitions/)
+- [`.components`](/material-ui/customization/theme-components/)
 
-You can check out the [default theme section](/customization/default-theme/) to view the default theme in full.
+You can check out the [default theme section](/material-ui/customization/default-theme/) to view the default theme in full.
 
 ### Custom variables
 
-When using MUI's theme with [MUI System](/system/basics/) or [any other styling solution](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere.
+When using Material UI's theme with [MUI System](/system/getting-started/) or [any other styling solution](/material-ui/integrations/interoperability/), it can be convenient to add additional variables to the theme so you can use them everywhere.
 For instance:
 
 ```jsx
@@ -44,7 +44,20 @@ const theme = createTheme({
 });
 ```
 
-If you are using TypeScript, you would also need to use [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation) for the theme to accept the above values.
+:::warning
+`vars` is a private field for [CSS theme variables](/material-ui/experimental-api/css-theme-variables/overview/). It will throw an error if you try to pass a value to it:
+
+```jsx
+createTheme({
+  vars: { ... }, // ❌ error
+})
+```
+
+:::
+
+### TypeScript
+
+You have to use [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation) to add new variables to the `Theme` and `ThemeOptions`.
 
 ```tsx
 declare module '@mui/material/styles' {
@@ -64,6 +77,8 @@ declare module '@mui/material/styles' {
 
 {{"demo": "CustomStyles.js"}}
 
+To add extra variables to the `theme.palette`, see [palette customization](/material-ui/customization/palette/).
+
 ## Theme builder
 
 <video autoPlay muted loop width="320">
@@ -72,16 +87,25 @@ declare module '@mui/material/styles' {
 
 The community has built great tools to build a theme:
 
-- [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/): A tool to help design and customize themes for the MUI component library. Includes basic site templates to show various components and how they are affected by the theme
-- [Material palette generator](https://material.io/inline-tools/color/): The Material palette generator can be used to generate a palette for any color you input.
+- [mui-theme-creator](https://zenoo.github.io/mui-theme-creator/): A tool to help design and customize themes for the Material UI component library. Includes basic site templates to show various components and how they are affected by the theme
+- [Material palette generator](https://m2.material.io/inline-tools/color/): The Material palette generator can be used to generate a palette for any color you input.
 
 ## Accessing the theme in a component
 
-You [can access](/styles/advanced/#accessing-the-theme-in-a-component) the theme variables inside your React components.
+You can access the theme variables inside your functional React components using the `useTheme` hook:
+
+```jsx
+import { useTheme } from '@mui/material/styles';
+
+function DeepChild() {
+  const theme = useTheme();
+  return <span>{`spacing ${theme.spacing}`}</span>;
+}
+```
 
 ## Nesting the theme
 
-[You can nest](/styles/advanced/#theme-nesting) multiple theme providers.
+[You can nest](/system/styles/advanced/#theme-nesting) multiple theme providers.
 
 {{"demo": "ThemeNesting.js"}}
 
@@ -101,8 +125,10 @@ Generate a theme base on the options received. Then, pass it as a prop to [`Them
 1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
 2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
 
-> Note: Only the first argument (`options`) is being processed by the `createTheme` function.
-> If you want to actually merge two themes' options and create a new one based on them, you may want to deep merge the two options and provide them as a first argument to the `createTheme` function.
+:::warning
+Only the first argument (`options`) is processed by the `createTheme` function.
+If you want to actually merge two themes' options and create a new one based on them, you may want to deep merge the two options and provide them as a first argument to the `createTheme` function.
+:::
 
 ```js
 import { deepmerge } from '@mui/utils';
@@ -162,6 +188,8 @@ theme = createTheme(theme, {
 
 Think of creating a theme as a two-step composition process: first, you define the basic design options; then, you'll use these design options to compose other options.
 
+**WARNING**: `theme.vars` is a private field used for CSS variables support. Please use another name for a custom object.
+
 ### `responsiveFontSizes(theme, options) => theme`
 
 Generate responsive typography settings based on the options received.
@@ -171,7 +199,7 @@ Generate responsive typography settings based on the options received.
 1. `theme` (_object_): The theme object to enhance.
 2. `options` (_object_ [optional]):
 
-- `breakpoints` (_array\<string\>_ [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/customization/breakpoints/) (identifiers).
+- `breakpoints` (_array\<string\>_ [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/material-ui/customization/breakpoints/) (identifiers).
 - `disableAlign` (_bool_ [optional]): Default to `false`. Whether font sizes change slightly so line
   heights are preserved and align to Material Design's 4px line height grid.
   This requires a unitless line height in the theme's styles.
@@ -196,7 +224,7 @@ theme = responsiveFontSizes(theme);
 
 **WARNING**: Do not use this method in production.
 
-Generates a theme that reduces the amount of warnings inside [`React.StrictMode`](https://reactjs.org/docs/strict-mode.html) like `Warning: findDOMNode is deprecated in StrictMode`.
+Generates a theme that reduces the amount of warnings inside [`React.StrictMode`](https://react.dev/reference/react/StrictMode) like `Warning: findDOMNode is deprecated in StrictMode`.
 
 #### Requirements
 
@@ -245,7 +273,6 @@ It should preferably be used at **the root of your component tree**.
 
 ```jsx
 import * as React from 'react';
-import ReactDOM from 'react-dom';
 import { red } from '@mui/material/colors';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
@@ -260,6 +287,4 @@ const theme = createTheme({
 function App() {
   return <ThemeProvider theme={theme}>...</ThemeProvider>;
 }
-
-ReactDOM.render(<App />, document.querySelector('#app'));
 ```

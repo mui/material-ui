@@ -3,6 +3,7 @@ import { DataGrid, GridCellParams, GridRenderEditCellParams, GridColDef } from '
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
@@ -1680,35 +1681,32 @@ const rows = [
 export default function DataTable() {
   return (
     <ShowcaseContainer
-      sx={{ mt: { md: 2 } }}
-      previewSx={{
-        py: 2,
-      }}
       preview={
         <Paper
           variant="outlined"
-          sx={{
+          sx={(theme) => ({
             overflow: 'hidden',
             width: '100%',
-            boxShadow: '0px 4px 20px rgba(61, 71, 82, 0.25)',
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : '#fff'),
-          }}
+            boxShadow: '0px 4px 16px rgba(61, 71, 82, 0.15)',
+            bgcolor: '#fff',
+            border: '1px solid',
+            borderColor: 'grey.200',
+            ...theme.applyDarkStyles({
+              bgcolor: 'primaryDark.800',
+              boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.4)',
+            }),
+          })}
         >
           <XGridGlobalStyles />
-          <Box
-            sx={{
-              textAlign: 'center',
-              py: 1,
-              position: 'relative',
-              borderBottom: '1px solid',
-              borderColor: (theme) =>
-                theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.100',
-            }}
+          <Typography
+            variant="body2"
+            color="text.primary"
+            fontWeight="semiBold"
+            sx={{ position: 'relative', textAlign: 'center', py: 1.5 }}
           >
-            <Typography color="primary.main" fontWeight={700}>
-              Trades, October 2020
-            </Typography>
-          </Box>
+            Trades, October 2020
+          </Typography>
+          <Divider />
           <Box sx={{ height: 200 }}>
             <DataGrid rows={rows} columns={columns} hideFooter density="compact" />
           </Box>
@@ -1717,23 +1715,25 @@ export default function DataTable() {
       code={
         <Box
           sx={{
-            p: 2,
             overflow: 'auto',
             flexGrow: 1,
             '&::-webkit-scrollbar': {
               display: 'none',
             },
             '& pre': {
+              bgcolor: 'transparent !important',
               '&::-webkit-scrollbar': {
                 display: 'none',
-              },
-              '& code[class*="language-"]': {
-                fontSize: 'inherit',
               },
             },
           }}
         >
-          <HighlightedCode component={MarkdownElement} code={code} language="jsx" />
+          <HighlightedCode
+            copyButtonHidden
+            component={MarkdownElement}
+            code={code}
+            language="jsx"
+          />
         </Box>
       }
     />

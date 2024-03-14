@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 
-export default function VerticalSlider() {
+export default function VerticalAccessibleSlider() {
   function preventHorizontalKeyboardNavigation(event: React.KeyboardEvent) {
     if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
       event.preventDefault();
@@ -20,6 +20,7 @@ export default function VerticalSlider() {
         orientation="vertical"
         defaultValue={30}
         aria-label="Temperature"
+        valueLabelDisplay="auto"
         onKeyDown={preventHorizontalKeyboardNavigation}
       />
     </Box>

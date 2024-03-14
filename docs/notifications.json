@@ -1,17 +1,22 @@
 [
   {
-    "id": 35,
-    "title": "Let's translate!",
-    "text": "<a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" data-ga-event-category=\"l10n\" data-ga-event-action=\"notification\" data-ga-event-label=\"zh\" href=\"https://translate.mui.com/\">帮助 MUI 将文档翻译成中文</a>. 🇨🇳",
-    "userLanguage": "zh"
+    "id": 68,
+    "title": "Check out Base UI today 💥",
+    "text": "Love Material UI, but don't need Material Design? Try Base UI, the new \"unstyled\" alternative. <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"introducing-base-ui\" href=\"/blog/introducing-base-ui/\">Read more in this announcement</a>."
   },
   {
-    "id": 53,
-    "text": "You can <a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" href=\"https://twitter.com/MUI_hq\">follow us on Twitter</a> to receive exclusive tips and updates about MUI and the React ecosystem."
+    "id": 78,
+    "title": "MUI X v6.18.x and the latest improvements before the next major",
+    "text": "New stable components, polished features, better performance and more. Check out the details in our <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x-end-v6\" href=\"https://mui.com/blog/mui-x-end-v6-features/\">recent blog post</a>."
   },
   {
-    "id": 58,
-    "title": "🚀 <b>The 2021 MUI developer survey results are out</b> — here's what we discovered",
-    "text": "Your feedback helps us to build better products. <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"2021-developer-survey-results/\" href=\"/blog/2021-developer-survey-results/\">Go to the post to</a> find out what we learned about your needs in our annual survey."
+    "id": 79,
+    "title": "A new Developer Survey is open",
+    "text": "Take a few minutes to share your feedback and expectations in the <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-survey\" href=\"https://tally.so/r/3Ex4PN?source=docs-notification\">Developer Survey</a>."
+  },
+  {
+    "id": 80,
+    "title": "MUI X v7.0.0-beta.0",
+    "text": "Featuring new components and multiple enhancements for both developers and end-users. Discover all the specifics in the <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x-v7-beta\" href=\"https://mui.com/blog/mui-x-v7-beta/\">announcement blog post</a>."
   }
 ]

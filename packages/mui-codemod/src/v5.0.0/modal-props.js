@@ -32,10 +32,10 @@ export default function transformer(file, api, options) {
     })
     .toSource(printOptions);
 
-  if (hasDisableBackdropClick || hasDisableBackdropClick) {
+  if (hasDisableBackdropClick) {
     source = source.replace(
       /(<Modal)([\s\S]*>)/gm,
-      `$1// You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#modal)${EOL}$2`,
+      `$1// You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#modal)${EOL}$2`,
     );
   }
 

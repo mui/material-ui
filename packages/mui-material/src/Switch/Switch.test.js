@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, act, createRenderer, fireEvent } from 'test/utils';
+import { act, createRenderer, fireEvent } from '@mui-internal/test-utils';
 import Switch, { switchClasses as classes } from '@mui/material/Switch';
 import FormControl from '@mui/material/FormControl';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Switch />', () => {
   const { render } = createRenderer();
@@ -42,7 +43,7 @@ describe('<Switch />', () => {
     expect(root.childNodes[1]).to.have.class(classes.track);
   });
 
-  it('renders a `role="checkbox"` with the Unechecked state by default', () => {
+  it('renders a `role="checkbox"` with the Unchecked state by default', () => {
     const { getByRole } = render(<Switch />);
 
     expect(getByRole('checkbox')).to.have.property('checked', false);
@@ -90,6 +91,10 @@ describe('<Switch />', () => {
     });
 
     expect(getByRole('checkbox')).to.have.property('checked', false);
+  });
+
+  it('should not show warnings when custom `type` is provided', () => {
+    expect(() => render(<Switch type="submit" />)).not.toErrorDev();
   });
 
   describe('with FormControl', () => {

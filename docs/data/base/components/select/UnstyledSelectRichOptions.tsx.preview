@@ -1,0 +1,15 @@
+<Select placeholder="Select country…">
+  {countries.map((country) => (
+    <Option key={country.code} value={country.code} label={country.label}>
+      <img
+        loading="lazy"
+        width={20}
+        height={14}
+        srcSet={`https://flagcdn.com/w40/${country.code.toLowerCase()}.png 2x`}
+        src={`https://flagcdn.com/w20/${country.code.toLowerCase()}.png`}
+        alt={`Flag of ${country.label}`}
+      />
+      {country.label} ({country.code}) +{country.phone}
+    </Option>
+  ))}
+</Select>

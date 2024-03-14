@@ -27,14 +27,16 @@ export interface DrawerProps extends StandardProps<ModalProps, 'open' | 'childre
    */
   elevation?: number;
   /**
-   * Props applied to the [`Modal`](/api/modal/) element.
+   * Props applied to the [`Modal`](/material-ui/api/modal/) element.
    * @default {}
    */
   ModalProps?: Partial<ModalProps>;
   /**
    * Callback fired when the component requests to be closed.
+   * The `reason` parameter can optionally be used to control the response to `onClose`.
    *
    * @param {object} event The event source of the callback.
+   * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
    */
   onClose?: ModalProps['onClose'];
   /**
@@ -43,12 +45,12 @@ export interface DrawerProps extends StandardProps<ModalProps, 'open' | 'childre
    */
   open?: boolean;
   /**
-   * Props applied to the [`Paper`](/api/paper/) element.
+   * Props applied to the [`Paper`](/material-ui/api/paper/) element.
    * @default {}
    */
-  PaperProps?: Partial<PaperProps>;
+  PaperProps?: Partial<PaperProps<React.ElementType>>;
   /**
-   * Props applied to the [`Slide`](/api/slide/) element.
+   * Props applied to the [`Slide`](/material-ui/api/slide/) element.
    */
   SlideProps?: Partial<SlideProps>;
   /**
@@ -72,15 +74,15 @@ export interface DrawerProps extends StandardProps<ModalProps, 'open' | 'childre
 }
 
 /**
- * The props of the [Modal](https://mui.com/api/modal/) component are available
+ * The props of the [Modal](https://mui.com/material-ui/api/modal/) component are available
  * when `variant="temporary"` is set.
  *
  * Demos:
  *
- * - [Drawers](https://mui.com/components/drawers/)
+ * - [Drawer](https://mui.com/material-ui/react-drawer/)
  *
  * API:
  *
- * - [Drawer API](https://mui.com/api/drawer/)
+ * - [Drawer API](https://mui.com/material-ui/api/drawer/)
  */
 export default function Drawer(props: DrawerProps): JSX.Element;

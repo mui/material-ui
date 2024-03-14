@@ -1,6 +1,6 @@
-import { deepmerge } from '@mui/utils';
-import MuiError from '@mui/utils/macros/MuiError.macro';
-import { darken, getContrastRatio, lighten } from '@mui/system';
+import deepmerge from '@mui/utils/deepmerge';
+import MuiError from '@mui/internal-babel-macros/MuiError.macro';
+import { darken, getContrastRatio, lighten } from '@mui/system/colorManipulator';
 import common from '../colors/common';
 import grey from '../colors/grey';
 import purple from '../colors/purple';
@@ -272,7 +272,7 @@ export default function createPalette(palette) {
   const paletteOutput = deepmerge(
     {
       // A collection of common colors.
-      common,
+      common: { ...common }, // prevent mutable object.
       // The palette mode, can be light or dark.
       mode,
       // The colors used to represent primary interface elements for a user.

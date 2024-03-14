@@ -20,7 +20,7 @@ You can read more about CSP on the [MDN Web Docs](https://developer.mozilla.org/
 
 ### Server-Side Rendering (SSR)
 
-To use CSP with MUI (and emotion), you need to use a nonce.
+To use CSP with Material UI (and Emotion), you need to use a nonce.
 A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request.
 
 A CSP nonce is a Base 64 encoded string. You can generate one like this:
@@ -50,9 +50,11 @@ You should pass the nonce in the `<style>` tags on the server.
 />
 ```
 
-Then, you must pass this nonce to the emotion cache so it can add it to subsequent `<style>`.
+Then, you must pass this nonce to Emotion's cache so it can add it to subsequent `<style>`.
 
-> Note, if you were using `StyledEngineProvider` with `injectFirst`, you will need to replace it with `CacheProvider` from emotion and add the `prepend: true` option.
+:::warning
+If you were using `StyledEngineProvider` with `injectFirst`, you will need to replace it with `CacheProvider` from Emotion and add the `prepend: true` option.
+:::
 
 ```js
 const cache = createCache({

@@ -1,9 +1,24 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
-import { SxProps } from '../styles/defaultTheme';
-import { ListItemContentClasses } from './listItemContentClasses';
+import { SxProps } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type ListItemContentSlot = 'root';
+
+export interface ListItemContentSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+}
+
+export type ListItemContentSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  ListItemContentSlots,
+  {
+    root: SlotProps<'div', {}, ListItemContentOwnerState>;
+  }
+>;
 
 export interface ListItemContentTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -12,14 +27,10 @@ export interface ListItemContentTypeMap<P = {}, D extends React.ElementType = 'd
      */
     children?: React.ReactNode;
     /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<ListItemContentClasses>;
-    /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
-  };
+  } & ListItemContentSlotsAndSlotProps;
   defaultComponent: D;
 }
 
@@ -29,3 +40,5 @@ export type ListItemContentProps<
     component?: React.ElementType;
   },
 > = OverrideProps<ListItemContentTypeMap<P, D>, D>;
+
+export interface ListItemContentOwnerState extends ListItemContentProps {}

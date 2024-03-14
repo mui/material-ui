@@ -1,57 +1,59 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface InputClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
-  /** Styles applied to the input element. */
+  /** Class name applied to the input element. */
   input: string;
-  /** Styles applied to the root element if the component is a descendant of `FormControl`. */
+  /** Class name applied to the root element if the component is a descendant of `FormControl`. */
   formControl: string;
-  /** Styles applied to the root element if `startAdornment` is provided. */
-  adornedStart: string;
-  /** Styles applied to the root element if `endAdornment` is provided. */
-  adornedEnd: string;
-  /** Styles applied to the root element if the component is focused. */
+  /** Class name applied to the root element if the component is focused. */
   focused: string;
-  /** Styles applied to the root element if `disabled={true}`. */
+  /** Class name applied to the root element if `disabled={true}`. */
   disabled: string;
   /** State class applied to the root element if `error={true}`. */
   error: string;
-  /** Styles applied to the root element if `color="primary"`. */
+  /** Class name applied to the root element if `color="primary"`. */
   colorPrimary: string;
-  /** Styles applied to the root element if `color="neutral"`. */
+  /** Class name applied to the root element if `color="neutral"`. */
   colorNeutral: string;
-  /** Styles applied to the root element if `color="danger"`. */
+  /** Class name applied to the root element if `color="danger"`. */
   colorDanger: string;
-  /** Styles applied to the root element if `color="info"`. */
-  colorInfo: string;
-  /** Styles applied to the root element if `color="success"`. */
+  /** Class name applied to the root element if `color="success"`. */
   colorSuccess: string;
-  /** Styles applied to the root element if `color="warning"`. */
+  /** Class name applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element if `size="sm"`. */
+  /** Class name applied to the root element when color inversion is triggered. */
+  colorContext: string;
+  /** Class name applied to the root element if `size="sm"`. */
   sizeSm: string;
-  /** Styles applied to the root element if `size="md"`. */
+  /** Class name applied to the root element if `size="md"`. */
   sizeMd: string;
-  /** Styles applied to the root element if `size="lg"`. */
+  /** Class name applied to the root element if `size="lg"`. */
   sizeLg: string;
-  /** Styles applied to the root element if `variant="text"`. */
-  variantText: string;
-  /** Styles applied to the root element if `variant="outlined"`. */
+  /** Class name applied to the root element if `variant="plain"`. */
+  variantPlain: string;
+  /** Class name applied to the root element if `variant="outlined"`. */
   variantOutlined: string;
-  /** Styles applied to the root element if `variant="light"`. */
-  variantLight: string;
-  /** Styles applied to the root element if `fullWidth={true}`. */
+  /** Class name applied to the root element if `variant="soft"`. */
+  variantSoft: string;
+  /** Class name applied to the root element if `variant="solid"`. */
+  variantSolid: string;
+  /** Class name applied to the root element if `fullWidth={true}`. */
   fullWidth: string;
+  /** Class name applied to the startDecorator element */
+  startDecorator: string;
+  /** Class name applied to the endDecorator element */
+  endDecorator: string;
 }
 
 export type InputClassKey = keyof InputClasses;
 
 export function getInputUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyInput', slot);
+  return generateUtilityClass('MuiInput', slot);
 }
 
-const inputClasses: InputClasses = generateUtilityClasses('JoyInput', [
+const inputClasses: InputClasses = generateUtilityClasses('MuiInput', [
   'root',
   'input',
   'formControl',
@@ -63,16 +65,19 @@ const inputClasses: InputClasses = generateUtilityClasses('JoyInput', [
   'colorPrimary',
   'colorNeutral',
   'colorDanger',
-  'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'sizeSm',
   'sizeMd',
   'sizeLg',
-  'variantText',
+  'variantPlain',
   'variantOutlined',
-  'variantLight',
+  'variantSoft',
+  'variantSolid',
   'fullWidth',
+  'startDecorator',
+  'endDecorator',
 ]);
 
 export default inputClasses;

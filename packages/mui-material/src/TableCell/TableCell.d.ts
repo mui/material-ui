@@ -1,7 +1,11 @@
 import * as React from 'react';
+import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { TableCellClasses } from './tableCellClasses';
+
+export interface TableCellPropsSizeOverrides {}
+export interface TableCellPropsVariantOverrides {}
 
 /**
  * `<TableCell>` will be rendered as an `<th>`or `<td>` depending
@@ -46,7 +50,7 @@ export interface TableCellProps extends StandardProps<TableCellBaseProps, 'align
    * Specify the size of the cell.
    * The prop defaults to the value (`'medium'`) inherited from the parent Table component.
    */
-  size?: 'small' | 'medium';
+  size?: OverridableStringUnion<'small' | 'medium', TableCellPropsSizeOverrides>;
   /**
    * Set aria-sort direction.
    */
@@ -59,7 +63,7 @@ export interface TableCellProps extends StandardProps<TableCellBaseProps, 'align
    * Specify the cell type.
    * The prop defaults to the value inherited from the parent TableHead, TableBody, or TableFooter components.
    */
-  variant?: 'head' | 'body' | 'footer';
+  variant?: OverridableStringUnion<'head' | 'body' | 'footer', TableCellPropsVariantOverrides>;
 }
 
 export type TableCellBaseProps = React.ThHTMLAttributes<HTMLTableCellElement> &
@@ -73,10 +77,10 @@ export type SortDirection = 'asc' | 'desc' | false;
  *
  * Demos:
  *
- * - [Tables](https://mui.com/components/tables/)
+ * - [Table](https://mui.com/material-ui/react-table/)
  *
  * API:
  *
- * - [TableCell API](https://mui.com/api/table-cell/)
+ * - [TableCell API](https://mui.com/material-ui/api/table-cell/)
  */
 export default function TableCell(props: TableCellProps): JSX.Element;

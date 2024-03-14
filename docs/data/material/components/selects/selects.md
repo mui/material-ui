@@ -1,8 +1,11 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Select component
-components: Select, NativeSelect, SelectUnstyled, MultiSelectUnstyled, OptionUnstyled, OptionGroupUnstyled
+components: Select, NativeSelect
 githubLabel: 'component: select'
+materialDesign: https://m2.material.io/components/menus#exposed-dropdown-menu
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
+unstyled: /base-ui/react-select/
 ---
 
 # Select
@@ -21,13 +24,13 @@ Menus are positioned under their emitting elements, unless they are close to the
 
 The Select component is meant to be interchangeable with a native `<select>` element.
 
-If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/components/autocomplete/).
+If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/material-ui/react-autocomplete/).
 It's meant to be an improved version of the "react-select" and "downshift" packages.
 
 ## Props
 
-The Select component is implemented as a custom `<input>` element of the [InputBase](/api/input-base/).
-It extends the [text field components](/components/text-fields/) sub-components, either the [OutlinedInput](/api/outlined-input/), [Input](/api/input/), or [FilledInput](/api/filled-input/), depending on the variant selected.
+The Select component is implemented as a custom `<input>` element of the [InputBase](/material-ui/api/input-base/).
+It extends the [text field components](/material-ui/react-text-field/) subcomponents, either the [OutlinedInput](/material-ui/api/outlined-input/), [Input](/material-ui/api/input/), or [FilledInput](/material-ui/api/filled-input/), depending on the variant selected.
 It shares the same styles and many of the same props. Refer to the respective component's API page for details.
 
 ### Filled and standard variants
@@ -38,11 +41,17 @@ It shares the same styles and many of the same props. Refer to the respective co
 
 {{"demo": "SelectLabels.js"}}
 
-> ⚠ Note that when using FormControl with the outlined variant of the Select, you need to provide a label in two places: in the InputLabel component and in the `label` prop of the Select component (see the above demo).
+:::warning
+Note that when using FormControl with the outlined variant of the Select, you need to provide a label in two places: in the InputLabel component and in the `label` prop of the Select component (see the above demo).
+:::
 
 ### Auto width
 
 {{"demo": "SelectAutoWidth.js"}}
+
+### Small Size
+
+{{"demo": "SelectSmall.js"}}
 
 ### Other props
 
@@ -53,17 +62,17 @@ It shares the same styles and many of the same props. Refer to the respective co
 As the user experience can be improved on mobile using the native select of the platform,
 we allow such pattern.
 
-{{"demo": "NativeSelect.js"}}
+{{"demo": "NativeSelectDemo.js"}}
 
 ## TextField
 
 The `TextField` wrapper component is a complete form control including a label, input and help text.
-You can find an example with the select mode [in this section](/components/text-fields/#select).
+You can find an example with the select mode [in this section](/material-ui/react-text-field/#select).
 
 ## Customization
 
 Here are some examples of customizing the component.
-You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 The first step is to style the `InputBase` component.
 Once it's styled, you can either use it directly as a text field or provide it to the select `input` prop to have a `select` field.
@@ -71,7 +80,7 @@ Notice that the `"standard"` variant is easier to customize, since it does not w
 
 {{"demo": "CustomizedSelects.js"}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/select/).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/select-introduction--docs).
 
 ## Multiple select
 
@@ -104,6 +113,14 @@ Like with the single selection, you can pull out the new value by accessing `eve
 
 You can control the open state of the select with the `open` prop. Alternatively, it is also possible to set the initial (uncontrolled) open state of the component with the `defaultOpen` prop.
 
+:::info
+
+- A component is **controlled** when it's managed by its parent using props.
+- A component is **uncontrolled** when it's managed by its own local state.
+
+Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
+:::
+
 {{"demo": "ControlledOpenSelect.js"}}
 
 ## With a dialog
@@ -117,6 +134,67 @@ While it's discouraged by the Material Design guidelines, you can use a select i
 Display categories with the `ListSubheader` component or the native `<optgroup>` element.
 
 {{"demo": "GroupedSelect.js"}}
+
+:::warning
+If you wish to wrap the ListSubheader in a custom component, you'll have to annotate it so Material UI can handle it properly when determining focusable elements.
+
+You have two options for solving this:
+Option 1: Define a static boolean field called `muiSkipListHighlight` on your component function, and set it to `true`:
+
+```tsx
+function MyListSubheader(props: ListSubheaderProps) {
+  return <ListSubheader {...props} />;
+}
+
+MyListSubheader.muiSkipListHighlight = true;
+export default MyListSubheader;
+
+// elsewhere:
+
+return (
+  <Select>
+    <MyListSubheader>Group 1</MyListSubheader>
+    <MenuItem value={1}>Option 1</MenuItem>
+    <MenuItem value={2}>Option 2</MenuItem>
+    <MyListSubheader>Group 2</MyListSubheader>
+    <MenuItem value={3}>Option 3</MenuItem>
+    <MenuItem value={4}>Option 4</MenuItem>
+    {/* ... */}
+  </Select>
+```
+
+Option 2: Place a `muiSkipListHighlight` prop on each instance of your component.
+The prop doesn't have to be forwarded to the ListSubheader, nor present in the underlying DOM element.
+It just has to be placed on a component that's used as a subheader.
+
+```tsx
+export default function MyListSubheader(
+  props: ListSubheaderProps & { muiSkipListHighlight: boolean },
+) {
+  const { muiSkipListHighlight, ...other } = props;
+  return <ListSubheader {...other} />;
+}
+
+// elsewhere:
+
+return (
+  <Select>
+    <MyListSubheader muiSkipListHighlight>Group 1</MyListSubheader>
+    <MenuItem value={1}>Option 1</MenuItem>
+    <MenuItem value={2}>Option 2</MenuItem>
+    <MyListSubheader muiSkipListHighlight>Group 2</MyListSubheader>
+    <MenuItem value={3}>Option 3</MenuItem>
+    <MenuItem value={4}>Option 4</MenuItem>
+    {/* ... */}
+  </Select>
+);
+```
+
+We recommend the first option as it doesn't require updating all the usage sites of the component.
+
+Keep in mind this is **only necessary** if you wrap the ListSubheader in a custom component.
+If you use the ListSubheader directly, **no additional code is required**.
+:::
 
 ## Accessibility
 
@@ -150,84 +228,3 @@ For a [native select](#native-select), you should mention a label by giving the 
   <option value="20">Twenty</option>
 </NativeSelect>
 ```
-
-## Unstyled
-
-The Select also comes with an unstyled version.
-It's ideal for doing heavy customizations and minimizing bundle size.
-
-### Unstyled component
-
-```jsx
-import SelectUnstyled from '@mui/base/SelectUnstyled';
-```
-
-#### Basic usage
-
-{{"demo": "UnstyledSelectSimple.js"}}
-
-The `SelectUnstyled` is a component that accepts generic props.
-Due to Typescript limitations, this may cause unexpected behavior when wrapping the component in `forwardRef` (or other higher-order components).
-In such cases, the generic argument will be defaulted to `unknown` and type suggestions will be incomplete.
-To avoid this, manually cast the resulting component to the correct type (as shown above).
-
-The rest of the demos below will not use `forwardRef` for brevity.
-
-#### Controlled select
-
-The SelectUnstyled can be used as either uncontrolled (as shown in the demo above) or controlled component.
-
-{{"demo": "UnstyledSelectControlled.js"}}
-
-#### Usage with object values
-
-The unstyled select may be used with non-string values.
-
-{{"demo": "UnstyledSelectObjectValues.js"}}
-
-#### Customizing the selected value appearance
-
-It is possible to customize the selected value display by providing a function to the `renderValue` prop.
-The element returned by this function will be rendered inside the select's button.
-
-{{"demo": "UnstyledSelectCustomRenderValue.js"}}
-
-#### Customizing the options' appearance
-
-Options don't have to be plain strings.
-You can include custom elements to be rendered inside the listbox.
-
-{{"demo": "UnstyledSelectRichOptions.js"}}
-
-#### Grouping
-
-Options can be grouped, similarly to the how the native `select` element works.
-Unlike the native `select`, however, the groups can be nested.
-
-Place the `Option` components inside `OptionGroup` to achieve this.
-
-{{"demo": "UnstyledSelectGrouping.js"}}
-
-#### Multiselect
-
-To be able to select multiple options at once, use the `MultiSelectUnstyled` component.
-
-```js
-import { MultiSelectUnstyled } from '@mui/base/SelectUnstyled';
-```
-
-{{"demo": "UnstyledSelectMultiple.js"}}
-
-### useSelect hook
-
-```js
-import { useSelect } from '@mui/base/SelectUnstyled';
-```
-
-If you need to use Select's functionality in another component, you can use the `useSelect` hook.
-It enables maximal customizability at the cost of being low-level.
-
-The following example shows a select that opens when hovered over or focused.
-It can be controlled by a mouse/touch or a keyboard.
-
-{{"demo": "UseSelect.js"}}

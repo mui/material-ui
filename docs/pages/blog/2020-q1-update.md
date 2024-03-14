@@ -4,6 +4,7 @@ description: An update on our mission for Q1 2020.
 date: 2020-04-14T00:00:00.000Z
 authors: ['oliviertassinari']
 tags: ['Company']
+card: true
 ---
 
 Welcome to the new format of our mission update. We are moving from monthly to quarterly updates.
@@ -15,30 +16,30 @@ We have done eleven so far. We have optimized for stability.
 
 Here are the most significant improvements since the beginning of the year:
 
-- 🔍 We have polished the [Autocomplete](https://mui.com/components/autocomplete/) component (Combo box). We have closed more than [270](https://github.com/mui/material-ui/labels/lab%3A%20Autocomplete) issues and pull requests so far. We will promote the component to the core in the next major (v5).
+- 🔍 We have polished the [Autocomplete](https://mui.com/material-ui/react-autocomplete/) component (Combo box). We have closed more than [270](https://github.com/mui/material-ui/labels/lab%3A%20Autocomplete) issues and pull requests so far. We will promote the component to the core in the next major (v5).
 
   ![autocomplete](/static/blog/2020-q1-update/autocomplete.gif)
 
-  <p class="blog-description">useAutocomplete <a href="https://mui.com/components/autocomplete/#useautocomplete">hook</a> example, 4.5 kB gzipped.</p>
+  <p class="blog-description">useAutocomplete <a href="https://mui.com/material-ui/react-autocomplete/#useautocomplete">hook</a> example, 4.5 kB gzipped.</p>
 
   If you wish to make your first contribution to open source, the component has a couple of ["good first issues"](https://github.com/mui/material-ui/labels/lab%3A%20Autocomplete) that can be taken.
   If you have TypeScript expertise, the component could [benefit from it](https://github.com/mui/material-ui/issues?q=is%3Aopen+label%3A%22lab%3A+Autocomplete%22+label%3Atypescript).
 
-- 📆 We have made a first [alpha release](https://next.material-ui-pickers.dev/demo/daterangepicker) of the date range picker. It's not ready to be used in production but you can start playing. We might release some of the new features of the date picker under the upcoming Enterprise offering.
+- 📆 We have made a first [alpha release](https://github.com/mui/material-ui-pickers/releases/tag/v4.0.0-alpha.4) of the date range picker. It's not ready to be used in production but you can start playing. We might release some of the new features of the date picker under the upcoming Enterprise offering.
 
   ![date picker](/static/blog/2020-q1-update/date-picker.png)
 
-- ⚠️ We have introduced a new [Alert](https://mui.com/components/alert/) component in the lab. While this component isn't mentioned in the Material Design guidelines, it's a common and well-established pattern. For instance, it can be interested when [combined](https://mui.com/components/snackbars/#notistack) with the Snackbar.
+- ⚠️ We have introduced a new [Alert](https://v4.mui.com/components/alert/) component in the lab. While this component isn't mentioned in the Material Design guidelines, it's a common and well-established pattern. For instance, it can be interested when [combined](https://v4.mui.com/components/snackbars/#notistack) with the Snackbar.
 
   <img src="/static/blog/2020-q1-update/alert.png" alt="alert" style="max-height: 369px; margin-bottom: 24px;" />
 
-- ⏭ We have introduced a new [Pagination](https://mui.com/components/pagination/) component.
+- ⏭ We have introduced a new [Pagination](https://v4.mui.com/components/pagination/) component.
 
   <img src="/static/blog/2020-q1-update/pagination.png" alt="pagination" style="max-height: 208px; margin-bottom: 8px;" />
 
-- 🦴 We have added a new "wave" animation to the [Skeleton](https://mui.com/components/skeleton/#animations) component.
+- 🦴 We have added a new "wave" animation to the [Skeleton](https://v4.mui.com/components/skeleton/#animations) component.
 
-  <video autoplay muted loop style="max-height: 95px; margin-bottom: 24px;">
+  <video style="max-height: 95px; margin-bottom: 24px;" autoplay muted loop playsinline>
     <source src="/static/blog/2020-q1-update/skeleton.webm" type="video/webm" />
   </video>
 
@@ -67,10 +68,10 @@ But this summary is just scratching the surface. We have accepted 572 commits fr
 We are thrilled to welcome two new full-time developers on MUI:
 
 - [Dmitriy Kovalenko](https://github.com/dmtrKovalenko), the author of @material-ui/pickers.
-  <img src="https://avatars0.githubusercontent.com/u/16926049" alt="dmitriy" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
+  <img src="https://avatars.githubusercontent.com/u/16926049" alt="dmitriy" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
 
 - [Damien Tassone](https://github.com/dtassone/), an experienced developer in the finance industry.
-  <img src="https://avatars0.githubusercontent.com/u/936978" alt="damien" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
+  <img src="https://avatars.githubusercontent.com/u/936978" alt="damien" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
 
 ### Growth between Q4 2019 and Q1 2020
 
@@ -84,12 +85,12 @@ We are thrilled to welcome two new full-time developers on MUI:
 
 We'll do our best, no guarantee!
 
-- 📣 We will analyze and publish the results of the "MUI Developer Survey 2020". If you haven't contributed to it yet, you can follow this link to [fill it in](https://forms.gle/TYWRdvgyZs4AhZNv8), thanks!
+- 📣 We will analyze and publish the results of the "Material UI Developer Survey 2020". If you haven't contributed to it yet, you can follow this link to [fill it in](https://forms.gle/TYWRdvgyZs4AhZNv8), thanks!
 - 🎨 We will release Figma assets for MUI.
 
   <img src="/static/blog/2020-q1-update/figma.png" alt="figma" style="max-width: 160px; margin-bottom: 24px;" />
 
-- 🇨🇳 We will translate 100% of the documentation to Chinese. We are collaborating with [Danica Shen](https://github.com/DDDDDanica), a native speaker, to complete the effort. So far, we have translated 73% of the documentation and peer-reviewed 39%. You can help us out on [Crowdin](https://translate.mui.com/).
+- 🇨🇳 We will translate 100% of the documentation to Chinese. We are collaborating with [Danica Shen](https://github.com/DDDDDanica), a native speaker, to complete the effort. So far, we have translated 73% of the documentation and peer-reviewed 39%. You can help us out on [Crowdin](https://crowdin.com/project/material-ui-docs).
 
   <img src="/static/blog/2020-q1-update/chinese.png" alt="chinese" style="max-width: 134px; margin-bottom: 24px;" />
 

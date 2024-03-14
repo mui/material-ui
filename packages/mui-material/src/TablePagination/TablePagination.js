@@ -1,8 +1,11 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, integerPropType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses, isHostComponent } from '@mui/base';
+import integerPropType from '@mui/utils/integerPropType';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import { isHostComponent } from '@mui/base/utils';
+import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import InputBase from '../InputBase';
@@ -20,7 +23,7 @@ const TablePaginationRoot = styled(TableCell, {
   overridesResolver: (props, styles) => styles.root,
 })(({ theme }) => ({
   overflow: 'auto',
-  color: theme.palette.text.primary,
+  color: (theme.vars || theme).palette.text.primary,
   fontSize: theme.typography.pxToRem(14),
   // Increase the specificity to override TableCell.
   '&:last-child': {
@@ -144,6 +147,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
     colSpan: colSpanProp,
     component = TableCell,
     count,
+    disabled = false,
     getItemAriaLabel = defaultGetAriaLabel,
     labelDisplayedRows = defaultLabelDisplayedRows,
     labelRowsPerPage = 'Rows per page:',
@@ -156,21 +160,25 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
     SelectProps = {},
     showFirstButton = false,
     showLastButton = false,
+    slotProps = {},
+    slots = {},
     ...other
   } = props;
 
   const ownerState = props;
   const classes = useUtilityClasses(ownerState);
 
-  const MenuItemComponent = SelectProps.native ? 'option' : TablePaginationMenuItem;
+  const selectProps = slotProps?.select ?? SelectProps;
+
+  const MenuItemComponent = selectProps.native ? 'option' : TablePaginationMenuItem;
 
   let colSpan;
   if (component === TableCell || component === 'td') {
     colSpan = colSpanProp || 1000; // col-span over everything
   }
 
-  const selectId = useId(SelectProps.id);
-  const labelId = useId(SelectProps.labelId);
+  const selectId = useId(selectProps.id);
+  const labelId = useId(selectProps.labelId);
 
   const getLabelDisplayedRowsTo = () => {
     if (count === -1) {
@@ -199,20 +207,21 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
         {rowsPerPageOptions.length > 1 && (
           <TablePaginationSelect
             variant="standard"
-            input={<InputBase />}
+            {...(!selectProps.variant && { input: <InputBase /> })}
             value={rowsPerPage}
             onChange={onRowsPerPageChange}
             id={selectId}
             labelId={labelId}
-            {...SelectProps}
+            {...selectProps}
             classes={{
-              ...SelectProps.classes,
+              ...selectProps.classes,
               // TODO v5 remove `classes.input`
-              root: clsx(classes.input, classes.selectRoot, (SelectProps.classes || {}).root),
-              select: clsx(classes.select, (SelectProps.classes || {}).select),
+              root: clsx(classes.input, classes.selectRoot, (selectProps.classes || {}).root),
+              select: clsx(classes.select, (selectProps.classes || {}).select),
               // TODO v5 remove `selectIcon`
-              icon: clsx(classes.selectIcon, (SelectProps.classes || {}).icon),
+              icon: clsx(classes.selectIcon, (selectProps.classes || {}).icon),
             }}
+            disabled={disabled}
           >
             {rowsPerPageOptions.map((rowsPerPageOption) => (
               <MenuItemComponent
@@ -247,7 +256,10 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
           rowsPerPage={rowsPerPage}
           showFirstButton={showFirstButton}
           showLastButton={showLastButton}
+          slotProps={slotProps.actions}
+          slots={slots.actions}
           getItemAriaLabel={getItemAriaLabel}
+          disabled={disabled}
         />
       </TablePaginationToolbar>
     </TablePaginationRoot>
@@ -255,10 +267,10 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
 });
 
 TablePagination.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The component used for displaying the actions.
    * Either a string to use a HTML element or a component.
@@ -266,7 +278,10 @@ TablePagination.propTypes /* remove-proptypes */ = {
    */
   ActionsComponent: PropTypes.elementType,
   /**
-   * Props applied to the back arrow [`IconButton`](/api/icon-button/) component.
+   * Props applied to the back arrow [`IconButton`](/material-ui/api/icon-button/) component.
+   *
+   * This prop is an alias for `slotProps.actions.previousButton` and will be overriden by it if both are used.
+   * @deprecated Use `slotProps.actions.previousButton` instead.
    */
   backIconButtonProps: PropTypes.object,
   /**
@@ -293,10 +308,15 @@ TablePagination.propTypes /* remove-proptypes */ = {
    */
   count: integerPropType.isRequired,
   /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled: PropTypes.bool,
+  /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    * This is important for screen reader users.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @param {string} type The link or button type to format ('first' | 'last' | 'next' | 'previous').
    * @returns {string}
    * @default function defaultGetAriaLabel(type) {
@@ -308,7 +328,7 @@ TablePagination.propTypes /* remove-proptypes */ = {
    * Customize the displayed rows label. Invoked with a `{ from, to, count, page }`
    * object.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @default function defaultLabelDisplayedRows({ from, to, count }) {
    *   return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;
    * }
@@ -317,12 +337,15 @@ TablePagination.propTypes /* remove-proptypes */ = {
   /**
    * Customize the rows per page label.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @default 'Rows per page:'
    */
   labelRowsPerPage: PropTypes.node,
   /**
-   * Props applied to the next arrow [`IconButton`](/api/icon-button/) element.
+   * Props applied to the next arrow [`IconButton`](/material-ui/api/icon-button/) element.
+   *
+   * This prop is an alias for `slotProps.actions.nextButton` and will be overriden by it if both are used.
+   * @deprecated Use `slotProps.actions.nextButton` instead.
    */
   nextIconButtonProps: PropTypes.object,
   /**
@@ -379,7 +402,11 @@ TablePagination.propTypes /* remove-proptypes */ = {
     ]).isRequired,
   ),
   /**
-   * Props applied to the rows per page [`Select`](/api/select/) element.
+   * Props applied to the rows per page [`Select`](/material-ui/api/select/) element.
+   *
+   * This prop is an alias for `slotProps.select` and will be overriden by it if both are used.
+   * @deprecated Use `slotProps.select` instead.
+   *
    * @default {}
    */
   SelectProps: PropTypes.object,
@@ -393,6 +420,40 @@ TablePagination.propTypes /* remove-proptypes */ = {
    * @default false
    */
   showLastButton: PropTypes.bool,
+  /**
+   * The props used for each slot inside the TablePagination.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    actions: PropTypes.shape({
+      firstButton: PropTypes.object,
+      firstButtonIcon: PropTypes.object,
+      lastButton: PropTypes.object,
+      lastButtonIcon: PropTypes.object,
+      nextButton: PropTypes.object,
+      nextButtonIcon: PropTypes.object,
+      previousButton: PropTypes.object,
+      previousButtonIcon: PropTypes.object,
+    }),
+    select: PropTypes.object,
+  }),
+  /**
+   * The components used for each slot inside the TablePagination.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    actions: PropTypes.shape({
+      firstButton: PropTypes.elementType,
+      firstButtonIcon: PropTypes.elementType,
+      lastButton: PropTypes.elementType,
+      lastButtonIcon: PropTypes.elementType,
+      nextButton: PropTypes.elementType,
+      nextButtonIcon: PropTypes.elementType,
+      previousButton: PropTypes.elementType,
+      previousButtonIcon: PropTypes.elementType,
+    }),
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

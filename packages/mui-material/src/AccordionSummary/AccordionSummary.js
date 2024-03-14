@@ -1,14 +1,16 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled, createUseThemeProps } from '../zero-styled';
 import ButtonBase from '../ButtonBase';
 import AccordionContext from '../Accordion/AccordionContext';
 import accordionSummaryClasses, {
   getAccordionSummaryUtilityClass,
 } from './accordionSummaryClasses';
+
+const useThemeProps = createUseThemeProps('MuiAccordionSummary');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, expanded, disabled, disableGutters } = ownerState;
@@ -27,7 +29,7 @@ const AccordionSummaryRoot = styled(ButtonBase, {
   name: 'MuiAccordionSummary',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(({ theme, ownerState }) => {
+})(({ theme }) => {
   const transition = {
     duration: theme.transitions.duration.shortest,
   };
@@ -38,19 +40,24 @@ const AccordionSummaryRoot = styled(ButtonBase, {
     padding: theme.spacing(0, 2),
     transition: theme.transitions.create(['min-height', 'background-color'], transition),
     [`&.${accordionSummaryClasses.focusVisible}`]: {
-      backgroundColor: theme.palette.action.focus,
+      backgroundColor: (theme.vars || theme).palette.action.focus,
     },
     [`&.${accordionSummaryClasses.disabled}`]: {
-      opacity: theme.palette.action.disabledOpacity,
+      opacity: (theme.vars || theme).palette.action.disabledOpacity,
     },
     [`&:hover:not(.${accordionSummaryClasses.disabled})`]: {
       cursor: 'pointer',
     },
-    ...(!ownerState.disableGutters && {
-      [`&.${accordionSummaryClasses.expanded}`]: {
-        minHeight: 64,
+    variants: [
+      {
+        props: (props) => !props.disableGutters,
+        style: {
+          [`&.${accordionSummaryClasses.expanded}`]: {
+            minHeight: 64,
+          },
+        },
       },
-    }),
+    ],
   };
 });
 
@@ -58,18 +65,23 @@ const AccordionSummaryContent = styled('div', {
   name: 'MuiAccordionSummary',
   slot: 'Content',
   overridesResolver: (props, styles) => styles.content,
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   display: 'flex',
   flexGrow: 1,
   margin: '12px 0',
-  ...(!ownerState.disableGutters && {
-    transition: theme.transitions.create(['margin'], {
-      duration: theme.transitions.duration.shortest,
-    }),
-    [`&.${accordionSummaryClasses.expanded}`]: {
-      margin: '20px 0',
+  variants: [
+    {
+      props: (props) => !props.disableGutters,
+      style: {
+        transition: theme.transitions.create(['margin'], {
+          duration: theme.transitions.duration.shortest,
+        }),
+        [`&.${accordionSummaryClasses.expanded}`]: {
+          margin: '20px 0',
+        },
+      },
     },
-  }),
+  ],
 }));
 
 const AccordionSummaryExpandIconWrapper = styled('div', {
@@ -78,7 +90,7 @@ const AccordionSummaryExpandIconWrapper = styled('div', {
   overridesResolver: (props, styles) => styles.expandIconWrapper,
 })(({ theme }) => ({
   display: 'flex',
-  color: theme.palette.action.active,
+  color: (theme.vars || theme).palette.action.active,
   transform: 'rotate(0deg)',
   transition: theme.transitions.create('transform', {
     duration: theme.transitions.duration.shortest,
@@ -141,10 +153,10 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
 });
 
 AccordionSummary.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

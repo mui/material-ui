@@ -13,7 +13,7 @@ export default function GutterlessList() {
           key={value}
           disableGutters
           secondaryAction={
-            <IconButton>
+            <IconButton aria-label="comment">
               <CommentIcon />
             </IconButton>
           }

@@ -1,4 +1,5 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
 
 export interface ToggleButtonClasses {
   /** Styles applied to the root element. */
@@ -19,6 +20,8 @@ export interface ToggleButtonClasses {
   sizeMedium: string;
   /** Styles applied to the root element if `size="large"`. */
   sizeLarge: string;
+  /** Styles applied to the root element if `fullWidth={true}`. */
+  fullWidth: string;
 }
 
 export type ToggleButtonClassKey = keyof ToggleButtonClasses;
@@ -37,6 +40,7 @@ const toggleButtonClasses: ToggleButtonClasses = generateUtilityClasses('MuiTogg
   'sizeSmall',
   'sizeMedium',
   'sizeLarge',
+  'fullWidth',
 ]);
 
 export default toggleButtonClasses;

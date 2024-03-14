@@ -1,14 +1,14 @@
 ---
-product: material-ui
+productId: material-ui
 title: Toggle Button React component
 components: ToggleButton, ToggleButtonGroup
 githubLabel: 'component: toggle button'
-materialDesign: https://material.io/components/buttons#toggle-button
+materialDesign: https://m2.material.io/components/buttons#toggle-button
 ---
 
-# Toggle Buttons
+# Toggle Button
 
-<p class="description">Toggle buttons can be used to group related options.</p>
+<p class="description">A Toggle Button can be used to group related options.</p>
 
 To emphasize groups of related Toggle buttons,
 a group should share a common container.
@@ -75,7 +75,7 @@ const handleDevices = (event, newDevices) => {
 ## Customization
 
 Here is an example of customizing the component.
-You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedDividers.js", "bg": true}}
 

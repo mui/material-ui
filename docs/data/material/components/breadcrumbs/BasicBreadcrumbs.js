@@ -18,7 +18,7 @@ export default function BasicBreadcrumbs() {
         <Link
           underline="hover"
           color="inherit"
-          href="/getting-started/installation/"
+          href="/material-ui/getting-started/installation/"
         >
           Core
         </Link>

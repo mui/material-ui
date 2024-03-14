@@ -1,8 +1,9 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { emphasize } from '@mui/system';
+import composeClasses from '@mui/utils/composeClasses';
+import { emphasize } from '@mui/system/colorManipulator';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Paper from '../Paper';
@@ -30,13 +31,15 @@ const SnackbarContentRoot = styled(Paper, {
 
   return {
     ...theme.typography.body2,
-    color: theme.palette.getContrastText(backgroundColor),
-    backgroundColor,
+    color: theme.vars
+      ? theme.vars.palette.SnackbarContent.color
+      : theme.palette.getContrastText(backgroundColor),
+    backgroundColor: theme.vars ? theme.vars.palette.SnackbarContent.bg : backgroundColor,
     display: 'flex',
     alignItems: 'center',
     flexWrap: 'wrap',
     padding: '6px 16px',
-    borderRadius: theme.shape.borderRadius,
+    borderRadius: (theme.vars || theme).shape.borderRadius,
     flexGrow: 1,
     [theme.breakpoints.up('sm')]: {
       flexGrow: 'initial',
@@ -94,10 +97,10 @@ const SnackbarContent = React.forwardRef(function SnackbarContent(inProps, ref) 
 });
 
 SnackbarContent.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The action to display. It renders after the message, at the end of the snackbar.
    */

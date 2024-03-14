@@ -1,15 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-
-import { withStyles } from '@mui/styles';
+import { styled } from '@mui/material/styles';
 import MuiTypography from '@mui/material/Typography';
 
-const markStyleMapping = {
+const markClassesMapping = {
   center: {
     h1: '',
-    h2: 'markedH2Center',
-    h3: 'markedH3Center',
-    h4: 'markedH4Center',
+    h2: 'OnePirateTypography-markedH2Center',
+    h3: 'OnePirateTypography-markedH3Center',
+    h4: 'OnePirateTypography-markedH4Center',
     h5: '',
     h6: '',
   },
@@ -19,7 +18,7 @@ const markStyleMapping = {
     h3: '',
     h4: '',
     h5: '',
-    h6: 'markedH6Left',
+    h6: 'OnePirateTypography-markedH6Left',
   },
   none: {
     h1: '',
@@ -31,29 +30,29 @@ const markStyleMapping = {
   },
 };
 
-const styles = (theme) => ({
-  [markStyleMapping.center.h2]: {
+const styles = ({ theme }) => ({
+  [`& .${markClassesMapping.center.h2}`]: {
     height: 4,
     width: 73,
     display: 'block',
     margin: `${theme.spacing(1)} auto 0`,
     backgroundColor: theme.palette.secondary.main,
   },
-  [markStyleMapping.center.h3]: {
+  [`& .${markClassesMapping.center.h3}`]: {
     height: 4,
     width: 55,
     display: 'block',
     margin: `${theme.spacing(1)} auto 0`,
     backgroundColor: theme.palette.secondary.main,
   },
-  [markStyleMapping.center.h4]: {
+  [`& .${markClassesMapping.center.h4}`]: {
     height: 4,
     width: 55,
     display: 'block',
     margin: `${theme.spacing(1)} auto 0`,
     backgroundColor: theme.palette.secondary.main,
   },
-  [markStyleMapping.left.h6]: {
+  [`& .${markClassesMapping.left.h6}`]: {
     height: 2,
     width: 28,
     display: 'block',
@@ -73,11 +72,11 @@ const variantMapping = {
 };
 
 function Typography(props) {
-  const { children, variant, classes, marked = 'none', ...other } = props;
+  const { children, variant, marked = 'none', ...other } = props;
 
   let markedClassName = '';
-  if (variant && variant in markStyleMapping[marked]) {
-    markedClassName = classes[markStyleMapping[marked][variant]];
+  if (variant && variant in markClassesMapping[marked]) {
+    markedClassName = markClassesMapping[marked][variant];
   }
 
   return (
@@ -93,10 +92,6 @@ Typography.propTypes = {
    * The content of the component.
    */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object.isRequired,
   marked: PropTypes.oneOf(['center', 'left', 'none']),
   /**
    * Applies the theme typography styles.
@@ -120,4 +115,4 @@ Typography.propTypes = {
   ]),
 };
 
-export default withStyles(styles)(Typography);
+export default styled(Typography)(styles);

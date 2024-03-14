@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Masonry component
 components: Masonry
 githubLabel: 'component: masonry'
@@ -24,7 +24,7 @@ A simple example of a `Masonry`. `Masonry` is a container for one or more items.
 ## Image masonry
 
 This example demonstrates the use of `Masonry` for images. `Masonry` orders its children by row.
-If you'd like to order images by column, check out [ImageList](/components/image-list/#masonry-image-list).
+If you'd like to order images by column, check out [ImageList](/material-ui/react-image-list/#masonry-image-list).
 
 {{"demo": "ImageMasonry.js", "bg": true}}
 
@@ -56,11 +56,20 @@ It is important to note that the value provided to the `spacing` prop is multipl
 
 {{"demo": "ResponsiveSpacing.js", "bg": true}}
 
+## Sequential
+
+This example demonstrates the use of the `sequential` to configure the sequential order.
+With `sequential` enabled, items are added in order from left to right rather than adding to the shortest column.
+
+{{"demo": "Sequential.js", "bg": true}}
+
 ## Server-side rendering
 
 This example demonstrates the use of the `defaultHeight`, `defaultColumns` and `defaultSpacing`, which are used to
 support server-side rendering.
 
-> **Note**: `defaultHeight` should be large enough to render all rows. Also, it is worth mentioning that items are not added to the shortest column in case of server-side rendering.
+:::info
+`defaultHeight` should be large enough to render all rows. Also, it is worth mentioning that items are not added to the shortest column in case of server-side rendering.
+:::
 
 {{"demo": "SSRMasonry.js", "bg": true}}

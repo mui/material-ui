@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@mui/utils';
+import deepmerge from '@mui/utils/deepmerge';
 import SelectInput from './SelectInput';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
@@ -16,6 +17,7 @@ import styled, { rootShouldForwardProp } from '../styles/styled';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
+
   return classes;
 };
 
@@ -65,65 +67,74 @@ const Select = React.forwardRef(function Select(inProps, ref) {
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['variant'],
+    states: ['variant', 'error'],
   });
 
   const variant = fcs.variant || variantProp;
 
+  const ownerState = { ...props, variant, classes: classesProp };
+  const classes = useUtilityClasses(ownerState);
+  const { root, ...restOfClasses } = classes;
+
   const InputComponent =
     input ||
     {
-      standard: <StyledInput />,
-      outlined: <StyledOutlinedInput label={label} />,
-      filled: <StyledFilledInput />,
+      standard: <StyledInput ownerState={ownerState} />,
+      outlined: <StyledOutlinedInput label={label} ownerState={ownerState} />,
+      filled: <StyledFilledInput ownerState={ownerState} />,
     }[variant];
-
-  const ownerState = { ...props, variant, classes: classesProp };
-  const classes = useUtilityClasses(ownerState);
 
   const inputComponentRef = useForkRef(ref, InputComponent.ref);
 
-  return React.cloneElement(InputComponent, {
-    // Most of the logic is implemented in `SelectInput`.
-    // The `Select` component is a simple API wrapper to expose something better to play with.
-    inputComponent,
-    inputProps: {
-      children,
-      IconComponent,
-      variant,
-      type: undefined, // We render a select. We can ignore the type provided by the `Input`.
-      multiple,
-      ...(native
-        ? { id }
-        : {
-            autoWidth,
-            defaultOpen,
-            displayEmpty,
-            labelId,
-            MenuProps,
-            onClose,
-            onOpen,
-            open,
-            renderValue,
-            SelectDisplayProps: { id, ...SelectDisplayProps },
-          }),
-      ...inputProps,
-      classes: inputProps ? deepmerge(classes, inputProps.classes) : classes,
-      ...(input ? input.props.inputProps : {}),
-    },
-    ...(multiple && native && variant === 'outlined' ? { notched: true } : {}),
-    ref: inputComponentRef,
-    className: clsx(InputComponent.props.className, className),
-    variant,
-    ...other,
-  });
+  return (
+    <React.Fragment>
+      {React.cloneElement(InputComponent, {
+        // Most of the logic is implemented in `SelectInput`.
+        // The `Select` component is a simple API wrapper to expose something better to play with.
+        inputComponent,
+        inputProps: {
+          children,
+          error: fcs.error,
+          IconComponent,
+          variant,
+          type: undefined, // We render a select. We can ignore the type provided by the `Input`.
+          multiple,
+          ...(native
+            ? { id }
+            : {
+                autoWidth,
+                defaultOpen,
+                displayEmpty,
+                labelId,
+                MenuProps,
+                onClose,
+                onOpen,
+                open,
+                renderValue,
+                SelectDisplayProps: { id, ...SelectDisplayProps },
+              }),
+          ...inputProps,
+          classes: inputProps ? deepmerge(restOfClasses, inputProps.classes) : restOfClasses,
+          ...(input ? input.props.inputProps : {}),
+        },
+        ...(((multiple && native) || displayEmpty) && variant === 'outlined'
+          ? { notched: true }
+          : {}),
+        ref: inputComponentRef,
+        className: clsx(InputComponent.props.className, className, classes.root),
+        // If a custom input is provided via 'input' prop, do not allow 'variant' to be propagated to it's root element. See https://github.com/mui/material-ui/issues/33894.
+        ...(!input && { variant }),
+        ...other,
+      })}
+    </React.Fragment>
+  );
 });
 
 Select.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, the width of the popover will automatically be set according to the items inside the
    * menu, otherwise it will be at least the width of the select input.
@@ -186,7 +197,7 @@ Select.propTypes /* remove-proptypes */ = {
    */
   inputProps: PropTypes.object,
   /**
-   * See [OutlinedInput#label](/api/outlined-input/#props)
+   * See [OutlinedInput#label](/material-ui/api/outlined-input/#props)
    */
   label: PropTypes.node,
   /**
@@ -195,7 +206,7 @@ Select.propTypes /* remove-proptypes */ = {
    */
   labelId: PropTypes.string,
   /**
-   * Props applied to the [`Menu`](/api/menu/) element.
+   * Props applied to the [`Menu`](/material-ui/api/menu/) element.
    */
   MenuProps: PropTypes.object,
   /**
@@ -211,22 +222,22 @@ Select.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when a menu item is selected.
    *
-   * @param {SelectChangeEvent<T>} event The event source of the callback.
+   * @param {SelectChangeEvent<Value>} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (any).
-   * **Warning**: This is a generic event not a change event unless the change event is caused by browser autofill.
+   * **Warning**: This is a generic event, not a change event, unless the change event is caused by browser autofill.
    * @param {object} [child] The react element that was selected when `native` is `false` (default).
    */
   onChange: PropTypes.func,
   /**
    * Callback fired when the component requests to be closed.
-   * Use in controlled mode (see open).
+   * Use it in either controlled (see the `open` prop), or uncontrolled mode (to detect when the Select collapses).
    *
    * @param {object} event The event source of the callback.
    */
   onClose: PropTypes.func,
   /**
    * Callback fired when the component requests to be opened.
-   * Use in controlled mode (see open).
+   * Use it in either controlled (see the `open` prop), or uncontrolled mode (to detect when the Select expands).
    *
    * @param {object} event The event source of the callback.
    */
@@ -263,7 +274,7 @@ Select.propTypes /* remove-proptypes */ = {
    * If the value is an object it must have reference equality with the option in order to be selected.
    * If the value is not an object, the string representation must match with the string representation of the option in order to be selected.
    */
-  value: PropTypes.any,
+  value: PropTypes.oneOfType([PropTypes.oneOf(['']), PropTypes.any]),
   /**
    * The variant to use.
    * @default 'outlined'

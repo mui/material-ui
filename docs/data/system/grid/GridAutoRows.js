@@ -25,6 +25,9 @@ function Item(props) {
 }
 
 Item.propTypes = {
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
   sx: PropTypes.oneOfType([
     PropTypes.arrayOf(
       PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
@@ -34,7 +37,7 @@ Item.propTypes = {
   ]),
 };
 
-export default function GridAutoColumns() {
+export default function GridAutoRows() {
   return (
     <div style={{ width: '100%', height: 220 }}>
       <Box

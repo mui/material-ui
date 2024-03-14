@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import Benchmark from 'benchmark';
 import * as React from 'react';
-import ReactDOMServer from 'react-dom/server';
+import * as ReactDOMServer from 'react-dom/server';
 import styledComponents, { ServerStyleSheet } from 'styled-components';
 import styledEmotion from '@emotion/styled';
 import { css } from '@emotion/react';
@@ -84,8 +84,14 @@ function HookButton(props) {
   return <button type="button" className={classes.root} {...props} />;
 }
 
-const NakedButton = (props) => <button type="submit" {...props} />;
-const EmotionCssButton = (props) => <button type="submit" css={emotionCss} {...props} />;
+function NakedButton(props) {
+  return <button type="submit" {...props} />;
+}
+
+function EmotionCssButton(props) {
+  // eslint-disable-next-line react/no-unknown-property
+  return <button type="submit" css={emotionCss} {...props} />;
+}
 
 suite
   .add('StyledMuiButton', () => {

@@ -17,11 +17,11 @@ describe('styleFunctionSx', () => {
     breakpoints: {
       keys: ['xs', 'sm', 'md', 'lg', 'xl'],
       values: breakpointsValues,
+      unit: 'px',
       up: (key) => {
         return `@media (min-width:${breakpointsValues[key]}px)`;
       },
     },
-    unit: 'px',
     palette: {
       primary: {
         main: 'rgb(0, 0, 255)',
@@ -58,6 +58,8 @@ describe('styleFunctionSx', () => {
         sx: {
           color: 'primary.main',
           bgcolor: 'secondary.main',
+          outline: 1,
+          outlineColor: 'secondary.main',
           m: 2,
           p: 1,
           fontFamily: 'default',
@@ -72,6 +74,8 @@ describe('styleFunctionSx', () => {
       expect(result).to.deep.equal({
         color: 'rgb(0, 0, 255)',
         backgroundColor: 'rgb(0, 255, 0)',
+        outline: '1px solid',
+        outlineColor: 'rgb(0, 255, 0)',
         margin: '20px',
         padding: '10px',
         fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
@@ -256,12 +260,12 @@ describe('styleFunctionSx', () => {
       const result = styleFunctionSx({
         theme,
         sx: {
-          ':hover': (t) => ({ background: t.palette.primary.main }),
+          '&:hover': (t) => ({ background: t.palette.primary.main }),
         },
       });
 
       // Test the order
-      expect(result).to.deep.equal({ ':hover': { background: 'rgb(0, 0, 255)' } });
+      expect(result).to.deep.equal({ '&:hover': { background: 'rgb(0, 0, 255)' } });
     });
 
     it('works on nested selectors', () => {

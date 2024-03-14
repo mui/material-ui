@@ -4,7 +4,7 @@
 
 Please choose a topic below related to your inquiry:
 
-- [Help & Support](/getting-started/support/)
+- [Help & Support](/material-ui/getting-started/support/)
 - Email enquiries: [contact@mui.com](mailto:contact@mui.com)
 - Our address:<br /><br />
   **Material-UI SAS**<br />
