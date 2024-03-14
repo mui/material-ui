@@ -464,10 +464,6 @@ Button.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The target for link when the button is clicked.
-   */
-  target: PropTypes.string,
-  /**
    * @ignore
    */
   type: PropTypes.oneOfType([PropTypes.oneOf(['button', 'reset', 'submit']), PropTypes.string]),
