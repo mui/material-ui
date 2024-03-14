@@ -9,6 +9,11 @@ import { styled, createUseThemeProps } from '../zero-styled';
 import Avatar, { avatarClasses } from '../Avatar';
 import avatarGroupClasses, { getAvatarGroupUtilityClass } from './avatarGroupClasses';
 
+const SPACINGS = {
+  small: -16,
+  medium: -8,
+};
+
 const useThemeProps = createUseThemeProps('MuiAlert');
 
 const useUtilityClasses = (ownerState) => {
@@ -40,16 +45,22 @@ const AvatarGroupRoot = styled('div', {
     {
       props: { spacing: 'small' },
       style: {
-        [`& .${avatarClasses.root}:not(:last-of-type)`]: {
-          marginLeft: -16,
+        [`& .${avatarClasses.root}:not(:last-child)`]: {
+          marginLeft: 'var(--AvatarGroup-spacing, -16px)',
+        },
+        [`& .${avatarClasses.root}:last-child`]: {
+          marginLeft: 0,
         },
       },
     },
     {
       props: { spacing: 'medium' },
       style: {
-        [`& .${avatarClasses.root}:not(:last-of-type)`]: {
-          marginLeft: -8,
+        [`& .${avatarClasses.root}:not(:last-child)`]: {
+          marginLeft: 'var(--AvatarGroup-spacing, -8px)',
+        },
+        [`& .${avatarClasses.root}:last-child`]: {
+          marginLeft: 0,
         },
       },
     },
@@ -116,6 +127,11 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
 
   const additionalAvatarSlotProps = slotProps.additionalAvatar ?? componentsProps.additionalAvatar;
 
+  const marginValue =
+    ownerState.spacing && SPACINGS[ownerState.spacing] !== undefined
+      ? SPACINGS[ownerState.spacing]
+      : -ownerState.spacing || -8;
+
   return (
     <AvatarGroupRoot
       as={component}
@@ -129,6 +145,10 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
           variant={variant}
           {...additionalAvatarSlotProps}
           className={clsx(classes.avatar, additionalAvatarSlotProps?.className)}
+          style={{
+            '--AvatarRoot-spacing': marginValue ? `${marginValue}px` : undefined,
+            ...other.style,
+          }}
         >
           {extraAvatarsElement}
         </Avatar>
