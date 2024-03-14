@@ -32,6 +32,7 @@
     "@mui/docs": "packages/mui-docs/build",
     "@mui/icons-material": "packages/mui-icons-material/build",
     "@mui/internal-babel-macros": "packages/mui-babel-macros",
+    "@mui/internal-docs-utils": "packages/docs-utils",
     "@mui/internal-markdown": "packages/markdown",
     "@mui/internal-scripts": "packages-internal/scripts",
     "@mui/joy": "packages/mui-joy/build",
@@ -45,8 +46,7 @@
     "@mui/styles": "packages/mui-styles/build",
     "@mui/system": "packages/mui-system/build",
     "@mui/types": "packages/mui-types/build",
-    "@mui/utils": "packages/mui-utils/build",
-    "@mui-internal/docs-utils": "packages/docs-utils"
+    "@mui/utils": "packages/mui-utils/build"
   },
   "sandboxes": [
     "/examples/material-ui-cra-ts",

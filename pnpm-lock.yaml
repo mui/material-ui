@@ -101,12 +101,12 @@ importers:
       '@mui-internal/api-docs-builder-core':
         specifier: workspace:^
         version: link:packages/api-docs-builder-core
-      '@mui-internal/docs-utils':
-        specifier: workspace:^
-        version: link:packages/docs-utils
       '@mui-internal/test-utils':
         specifier: workspace:^
         version: link:packages/test-utils
+      '@mui/internal-docs-utils':
+        specifier: workspace:^
+        version: link:packages/docs-utils
       '@mui/internal-scripts':
         specifier: workspace:^
         version: link:packages-internal/scripts
@@ -723,12 +723,12 @@ importers:
       '@babel/preset-typescript':
         specifier: ^7.23.3
         version: 7.23.3(@babel/core@7.23.9)
-      '@mui-internal/docs-utils':
-        specifier: workspace:^
-        version: link:../packages/docs-utils
       '@mui-internal/test-utils':
         specifier: workspace:^
         version: link:../packages/test-utils
+      '@mui/internal-docs-utils':
+        specifier: workspace:^
+        version: link:../packages/docs-utils
       '@mui/internal-scripts':
         specifier: workspace:^
         version: link:../packages-internal/scripts
@@ -813,7 +813,7 @@ importers:
       '@babel/types':
         specifier: ^7.23.9
         version: 7.23.9
-      '@mui-internal/docs-utils':
+      '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:../../packages/docs-utils
       doctrine:
@@ -880,7 +880,7 @@ importers:
       '@babel/traverse':
         specifier: ^7.23.9
         version: 7.23.9
-      '@mui-internal/docs-utils':
+      '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:../docs-utils
       '@mui/internal-markdown':
