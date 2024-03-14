@@ -504,6 +504,16 @@ export default function SearchIcons() {
     );
   }, [deferredQuery, deferredTheme]);
 
+  React.useEffect(() => {
+    // Keep track of the no results so we can add synonyms in the future.
+    if (deferredQuery.length >= 4 && icons.length === 0) {
+      window.gtag('event', 'material-icons', {
+        eventAction: 'no-results',
+        eventLabel: deferredQuery,
+      });
+    }
+  }, [deferredQuery, icons]);
+
   const dialogSelectedIcon = useLatest(
     selectedIcon ? allIconsMap[selectedIcon] : null,
   );
