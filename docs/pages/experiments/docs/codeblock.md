@@ -4,6 +4,8 @@
 
 ## Tabs
 
+### Codeblock version
+
 <codeblock storageKey="package-manager">
 
 ```bash npm
@@ -23,23 +25,7 @@ pnpm add @mui/material @emotion/react @emotion/styled
 
 </codeblock>
 
-<codeblock storageKey="license">
-
-```bash MIT
-npm install @mui/data-grid
-```
-
-```bash Pro
-npm install @mui/data-grid-pro
-```
-
-```bash Premium
-npm install @mui/data-grid-premium
-```
-
-</codeblock>
-
-## Component
+### Component version
 
 {{"component": "modules/components/HighlightedCodeWithTabs", "tabs": [{"tab":"JS", "code":"<div>Hello</div>", "language": "jsx"}, {"tab": "TS", "code": "type A = {}"}]}}
 
