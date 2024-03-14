@@ -239,6 +239,10 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    */
   spacing: PropTypes.oneOfType([PropTypes.oneOf(['medium', 'small']), PropTypes.number]),
   /**
+   * @ignore
+   */
+  style: PropTypes.object,
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
