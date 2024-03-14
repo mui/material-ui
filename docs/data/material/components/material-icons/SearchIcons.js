@@ -496,6 +496,8 @@ export default function SearchIcons() {
   const deferredQuery = React.useDeferredValue(query);
   const deferredTheme = React.useDeferredValue(theme);
 
+  const isPending = query !== deferredQuery || theme !== deferredTheme;
+
   const icons = React.useMemo(() => {
     const keys =
       deferredQuery === ''
@@ -527,20 +529,17 @@ export default function SearchIcons() {
           <Typography fontWeight={500} sx={{ mb: 1 }}>
             Filter the style
           </Typography>
-          <RadioGroup>
+          <RadioGroup
+            value={theme}
+            onChange={(event) => setTheme(event.target.value)}
+          >
             {['Filled', 'Outlined', 'Rounded', 'Two tone', 'Sharp'].map(
               (currentTheme) => {
                 return (
                   <FormControlLabel
                     key={currentTheme}
-                    control={
-                      <Radio
-                        size="small"
-                        checked={theme === currentTheme}
-                        onChange={() => setTheme(currentTheme)}
-                        value={currentTheme}
-                      />
-                    }
+                    value={currentTheme}
+                    control={<Radio size="small" />}
                     label={currentTheme}
                   />
                 );
@@ -561,11 +560,11 @@ export default function SearchIcons() {
             placeholder="Search icons…"
             inputProps={{ 'aria-label': 'search icons' }}
             endAdornment={
-              query === deferredQuery ? null : (
+              isPending ? (
                 <InputAdornment position="end">
                   <CircularProgress size={16} sx={{ mr: 2 }} />
                 </InputAdornment>
-              )
+              ) : null
             }
           />
         </Paper>
