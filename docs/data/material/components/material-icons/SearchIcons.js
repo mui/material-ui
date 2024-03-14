@@ -5,7 +5,6 @@ import copy from 'clipboard-copy';
 import InputBase from '@mui/material/InputBase';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
-import { debounce } from '@mui/material/utils';
 import Grid from '@mui/material/Grid';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -14,7 +13,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Button from '@mui/material/Button';
-import * as flexsearch from 'flexsearch';
+import flexsearch from 'flexsearch';
 import SearchIcon from '@mui/icons-material/Search';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -48,9 +47,7 @@ import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterStat
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import synonyms from './synonyms';
 
-const FlexSearchIndex = flexsearch.default.Index;
-
-const UPDATE_SEARCH_INDEX_WAIT_MS = 220;
+const FlexSearchIndex = flexsearch.Index;
 
 // const mui = {
 //   ExitToApp,
@@ -479,7 +476,6 @@ function useLatest(value) {
 }
 
 export default function SearchIcons() {
-  const [keys, setKeys] = React.useState(null);
   const [theme, setTheme] = useQueryParameterState('theme', 'Filled');
   const [selectedIcon, setSelectedIcon] = useQueryParameterState('selected', '');
   const [query, setQuery] = useQueryParameterState('query', '');
@@ -495,34 +491,15 @@ export default function SearchIcons() {
     setSelectedIcon('');
   }, [setSelectedIcon]);
 
-  const updateSearchResults = React.useMemo(
+  const deferredQuery = React.useDeferredValue(query);
+
+  const keys = React.useMemo(
     () =>
-      debounce((value) => {
-        if (value === '') {
-          setKeys(null);
-        } else {
-          searchIndex.searchAsync(value, { limit: 3000 }).then((results) => {
-            setKeys(results);
-
-            // Keep track of the no results so we can add synonyms in the future.
-            if (value.length >= 4 && results.length === 0) {
-              window.gtag('event', 'material-icons', {
-                eventAction: 'no-results',
-                eventLabel: value,
-              });
-            }
-          });
-        }
-      }, UPDATE_SEARCH_INDEX_WAIT_MS),
-    [],
+      deferredQuery === ''
+        ? null
+        : searchIndex.search(deferredQuery, { limit: 3000 }),
+    [deferredQuery],
   );
-
-  React.useEffect(() => {
-    updateSearchResults(query);
-    return () => {
-      updateSearchResults.clear();
-    };
-  }, [query, updateSearchResults]);
 
   const icons = React.useMemo(
     () =>
