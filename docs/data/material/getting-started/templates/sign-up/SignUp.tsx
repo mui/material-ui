@@ -94,10 +94,16 @@ export default function SignUp() {
   const [emailErrorMessage, setEmailErrorMessage] = useState('');
   const [passwordError, setPasswordError] = useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
+  const [nameError, setNameError] = useState(false);
+  const [nameErrorMessage, setNameErrorMessage] = useState('');
+  const [lastNameError, setLastNameError] = useState(false);
+  const [lastNameErrorMessage, setLastNameErrorMessage] = useState('');
 
   const validateInputs = () => {
     const email = document.getElementById('email') as HTMLInputElement;
     const password = document.getElementById('password') as HTMLInputElement;
+    const name = document.getElementById('name') as HTMLInputElement;
+    const lastName = document.getElementById('lastName') as HTMLInputElement;
 
     let isValid = true;
 
@@ -119,6 +125,24 @@ export default function SignUp() {
       setPasswordErrorMessage('');
     }
 
+    if (!name.value || name.value.length < 1) {
+      setNameError(true);
+      setNameErrorMessage('Name is required.');
+      isValid = false;
+    } else {
+      setNameError(false);
+      setNameErrorMessage('');
+    }
+
+    if (!lastName.value || lastName.value.length < 1) {
+      setLastNameError(true);
+      setLastNameErrorMessage('Name is required.');
+      isValid = false;
+    } else {
+      setLastNameError(false);
+      setLastNameErrorMessage('');
+    }
+
     return isValid;
   };
 
@@ -134,6 +158,8 @@ export default function SignUp() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
+      name: data.get('name'),
+      lastName: data.get('lastName'),
       email: data.get('email'),
       password: data.get('password'),
     });
@@ -190,18 +216,20 @@ export default function SignUp() {
           <Box
             component="form"
             onSubmit={handleSubmit}
-            sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}
+            sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
           >
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
-                  autoComplete="given-name"
-                  name="firstName"
+                  autoComplete="name"
+                  name="name"
                   required
                   fullWidth
-                  id="firstName"
+                  id="name"
                   placeholder="First Name"
-                  autoFocus
+                  error={nameError}
+                  helperText={nameErrorMessage}
+                  color={nameError ? 'error' : 'primary'}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -212,6 +240,9 @@ export default function SignUp() {
                   placeholder="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  error={lastNameError}
+                  helperText={lastNameErrorMessage}
+                  color={lastNameError ? 'error' : 'primary'}
                 />
               </Grid>
               <Grid item xs={12}>

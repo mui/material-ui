@@ -1,12 +1,11 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
+import { useState } from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
-import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -19,6 +18,8 @@ import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 
 import getSignInSideTheme from './getSignInSideTheme';
 import ToggleColorMode from './ToggleColorMode';
+
+import ForgotPassword from './ForgotPassword';
 
 interface ToggleCustomThemeProps {
   showCustomTheme: Boolean;
@@ -86,6 +87,11 @@ export default function SignInSide() {
     : defaultTheme.palette.mode === 'light'
       ? darkLogo
       : whiteLogo;
+  const [emailError, setEmailError] = useState(false);
+  const [emailErrorMessage, setEmailErrorMessage] = useState('');
+  const [passwordError, setPasswordError] = useState(false);
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
+  const [open, setOpen] = React.useState(false);
 
   const toggleColorMode = () => {
     setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
@@ -95,6 +101,14 @@ export default function SignInSide() {
     setShowCustomTheme((prev) => !prev);
   };
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -102,6 +116,33 @@ export default function SignInSide() {
       email: data.get('email'),
       password: data.get('password'),
     });
+  };
+
+  const validateInputs = () => {
+    const email = document.getElementById('email') as HTMLInputElement;
+    const password = document.getElementById('password') as HTMLInputElement;
+
+    let isValid = true;
+
+    if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
+      setEmailError(true);
+      setEmailErrorMessage('Please enter a valid email address.');
+      isValid = false;
+    } else {
+      setEmailError(false);
+      setEmailErrorMessage('');
+    }
+
+    if (!password.value || password.value.length < 6) {
+      setPasswordError(true);
+      setPasswordErrorMessage('Password must be at least 6 characters long.');
+      isValid = false;
+    } else {
+      setPasswordError(false);
+      setPasswordErrorMessage('');
+    }
+
+    return isValid;
   };
 
   return (
@@ -115,7 +156,9 @@ export default function SignInSide() {
           top: 0,
           left: 0,
           backgroundColor: (t) =>
-            t.palette.mode === 'light' ? 'rgba(255,255,255,0.8)' : 'rgba(0,0,0,0.8)',
+            t.palette.mode === 'light'
+              ? 'rgba(251,252,254,0.6)'
+              : 'rgba(9,14,16,0.8)',
           '&::before': {
             content: '""',
             position: 'absolute',
@@ -175,9 +218,18 @@ export default function SignInSide() {
                 component="form"
                 noValidate
                 onSubmit={handleSubmit}
-                sx={{ mt: 1, maxWidth: 400 }}
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  mt: 1,
+                  maxWidth: 400,
+                  alignItems: 'center',
+                  width: '100%',
+                }}
               >
                 <TextField
+                  error={emailError}
+                  helperText={emailErrorMessage}
                   margin="normal"
                   required
                   fullWidth
@@ -186,8 +238,11 @@ export default function SignInSide() {
                   name="email"
                   autoComplete="email"
                   autoFocus
+                  color={emailError ? 'error' : 'primary'}
                 />
                 <TextField
+                  error={passwordError}
+                  helperText={passwordErrorMessage}
                   margin="normal"
                   required
                   fullWidth
@@ -196,35 +251,38 @@ export default function SignInSide() {
                   type="password"
                   id="password"
                   autoComplete="current-password"
+                  color={passwordError ? 'error' : 'primary'}
                 />
                 <Box
                   sx={{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
+                    width: '100%',
                   }}
                 >
                   <FormControlLabel
                     control={<Checkbox value="remember" color="primary" />}
                     label="Remember me"
                   />
-                  <Link href="#" variant="body2">
+                  <Link component="button" onClick={handleClickOpen} variant="body2">
                     Forgot password?
                   </Link>
                 </Box>
-
                 <Button
                   type="submit"
                   fullWidth
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
+                  onClick={validateInputs}
                 >
                   Sign In
                 </Button>
-                <Link href="#" variant="body2" sx={{ alignSelf: 'center' }}>
-                  {"Don't have an account? Sign Up"}
+                <Link href="#" variant="body2">
+                  Don't have an account? Sign Up
                 </Link>
               </Box>
+              <ForgotPassword open={open} handleClose={handleClose} />
             </Box>
           </Grid>
         </Grid>

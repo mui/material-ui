@@ -93,6 +93,7 @@ export default function SignIn() {
   const [emailErrorMessage, setEmailErrorMessage] = useState('');
   const [passwordError, setPasswordError] = useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
+  const [open, setOpen] = React.useState(false);
 
   const toggleColorMode = () => {
     setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
@@ -101,8 +102,6 @@ export default function SignIn() {
   const toggleCustomTheme = () => {
     setShowCustomTheme((prev) => !prev);
   };
-
-  const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -200,7 +199,7 @@ export default function SignIn() {
             component="form"
             onSubmit={handleSubmit}
             noValidate
-            sx={{ display: 'flex', width: '100%', flexDirection: 'column', gap: 4 }}
+            sx={{ display: 'flex', width: '100%', flexDirection: 'column', gap: 2 }}
           >
             <Grid container spacing={2}>
               <Grid item xs={12}>
@@ -216,7 +215,7 @@ export default function SignIn() {
                   required
                   fullWidth
                   variant="outlined"
-                  color={passwordError ? 'error' : 'primary'}
+                  color={emailError ? 'error' : 'primary'}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -236,9 +235,9 @@ export default function SignIn() {
                 />
               </Grid>
               <Grid item xs={12}>
-                <Button onClick={handleClickOpen} variant="text">
-                  Forgot password
-                </Button>
+                <Link component="button" onClick={handleClickOpen} variant="body2">
+                  Forgot password?
+                </Link>
               </Grid>
             </Grid>
             <ForgotPassword open={open} handleClose={handleClose} />

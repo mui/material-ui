@@ -366,7 +366,6 @@ export default function getSignInSideTheme(mode: PaletteMode): ThemeOptions {
           input: {
             paddingLeft: 10,
           },
-
           root: ({ theme, ownerState }) => ({
             'input:-webkit-autofill': {
               WebkitBoxShadow: `0 0 0px 1000px ${brand[100]} inset, 0 0 0 1px ${brand[200]}`,
@@ -385,7 +384,7 @@ export default function getSignInSideTheme(mode: PaletteMode): ThemeOptions {
             height: '100%',
             borderRadius: '10px',
             border: '1px solid',
-            borderColor: gray[200],
+            borderColor: gray[300],
             boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.1)',
             transition: 'border-color 120ms ease-in',
             backgroundColor: alpha(gray[100], 0.4),
@@ -417,7 +416,7 @@ export default function getSignInSideTheme(mode: PaletteMode): ThemeOptions {
                 },
               },
               borderColor: gray[700],
-              boxShadow: '0px 2px 2px rgb(0, 0, 0)',
+              boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.5)',
               backgroundColor: alpha(gray[800], 0.4),
               transition: 'border-color 120ms ease-in',
               '&:hover': {
@@ -571,7 +570,7 @@ export default function getSignInSideTheme(mode: PaletteMode): ThemeOptions {
             },
             ...(theme.palette.mode === 'dark' && {
               borderColor: gray[700],
-              boxShadow: '0px 2px 2px rgb(0, 0, 0)',
+              boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.5)',
               backgroundColor: alpha(gray[800], 0.4),
               '&:hover': {
                 borderColor: brand[300],
