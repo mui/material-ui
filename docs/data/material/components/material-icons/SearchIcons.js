@@ -10,6 +10,8 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import CircularProgress from '@mui/material/CircularProgress';
+import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Button from '@mui/material/Button';
@@ -45,7 +47,6 @@ import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterStat
 // import DeleteForeverTwoTone from '@mui/icons-material/DeleteForeverTwoTone';
 // import DeleteForeverSharp from '@mui/icons-material/DeleteForeverSharp';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import { CircularProgress, InputAdornment, LinearProgress } from '@mui/material';
 import synonyms from './synonyms';
 
 const FlexSearchIndex = flexsearch.Index;
