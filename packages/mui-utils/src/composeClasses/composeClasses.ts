@@ -23,7 +23,7 @@ export default function composeClasses<ClassKey extends string>(
           if (slotPart) {
             const utilityClass = getUtilityClass(slotPart);
             if (utilityClass) {
-              result += ' ' + utilityClass;
+              result += utilityClass + ' ';
             }
           }
         }
@@ -41,10 +41,10 @@ export default function composeClasses<ClassKey extends string>(
           if (slotPart) {
             const utilityClass = getUtilityClass(slotPart);
             if (utilityClass) {
-              result += ' ' + utilityClass;
+              result += utilityClass + ' ';
             }
             if (classes[slotPart]) {
-              result += ' ' + classes[slotPart];
+              result += classes[slotPart] + ' ';
             }
           }
         }
