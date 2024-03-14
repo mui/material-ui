@@ -1,40 +1,26 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Avatar from '@mui/material/Avatar';
+import { useState } from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
-
+import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import Container from '@mui/material/Container';
+import { alpha } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
+import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 
 import getSignInTheme from './getSignInTheme';
 import ToggleColorMode from './ToggleColorMode';
-
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
-const defaultTheme = createTheme({});
+import ForgotPassword from './ForgotPassword';
 
 function ToggleCustomTheme({ showCustomTheme, toggleCustomTheme }) {
   return (
@@ -87,19 +73,26 @@ const logoStyle = {
   width: '140px',
   height: '56px',
   opacity: 0.8,
+  marginLeft: '-16px',
 };
 
 export default function SignIn() {
-  const [mode, setMode] = React.useState('dark');
+  const [mode, setMode] = React.useState('light');
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
+  const defaultTheme = createTheme({ palette: { mode } });
   const SignInTheme = createTheme(getSignInTheme(mode));
   const logo = showCustomTheme
     ? SignInTheme.palette.mode === 'light'
       ? darkLogo
       : whiteLogo
     : defaultTheme.palette.mode === 'light'
-    ? darkLogo
-    : whiteLogo;
+      ? darkLogo
+      : whiteLogo;
+  const [emailError, setEmailError] = useState(false);
+  const [emailErrorMessage, setEmailErrorMessage] = useState('');
+  const [passwordError, setPasswordError] = useState(false);
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
+  const [open, setOpen] = React.useState(false);
 
   const toggleColorMode = () => {
     setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
@@ -107,6 +100,14 @@ export default function SignIn() {
 
   const toggleCustomTheme = () => {
     setShowCustomTheme((prev) => !prev);
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   const handleSubmit = (event) => {
@@ -118,16 +119,65 @@ export default function SignIn() {
     });
   };
 
+  const validateInputs = () => {
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+
+    let isValid = true;
+
+    if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
+      setEmailError(true);
+      setEmailErrorMessage('Please enter a valid email address.');
+      isValid = false;
+    } else {
+      setEmailError(false);
+      setEmailErrorMessage('');
+    }
+
+    if (!password.value || password.value.length < 6) {
+      setPasswordError(true);
+      setPasswordErrorMessage('Password must be at least 6 characters long.');
+      isValid = false;
+    } else {
+      setPasswordError(false);
+      setPasswordErrorMessage('');
+    }
+
+    return isValid;
+  };
+
   return (
     <ThemeProvider theme={showCustomTheme ? SignInTheme : defaultTheme}>
-      <Container component="main" maxWidth="xs">
+      <Box
+        sx={(theme) => ({
+          backgroundImage:
+            theme.palette.mode === 'light'
+              ? 'linear-gradient(180deg, #CEE5FD, #FFF)'
+              : `linear-gradient(#02294F, ${alpha('#090E10', 0.0)})`,
+          backgroundSize: '100% 20%',
+          backgroundRepeat: 'no-repeat',
+          pt: { xs: 2, sm: 8 },
+          px: { xs: 2, sm: 8 },
+        })}
+        component="main"
+      >
         <CssBaseline />
-        <Box
+        <Button
+          startIcon={<ArrowBackRoundedIcon />}
+          component="a"
+          href="/material-ui/getting-started/templates/landing-page/"
+        >
+          Back
+        </Button>
+        <Card
           sx={{
-            marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
+            width: { sm: '100%', md: '450px' },
+            mx: 'auto',
+            mt: { sm: 2, md: '-40px' },
+            p: 4,
+            gap: 4,
           }}
         >
           <Box
@@ -135,70 +185,114 @@ export default function SignIn() {
               display: 'flex',
               justifyContent: 'space-between',
               width: '100%',
-              ml: '-18px',
               alignItems: 'center',
             }}
           >
             <img src={logo} style={logoStyle} alt="logo of sitemark" />
-            <ToggleColorMode
-              mode={mode}
-              toggleColorMode={toggleColorMode}
-              showCustomTheme={showCustomTheme}
-            />
+            <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
           </Box>
-          <Avatar sx={{ m: 1 }} />
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h3" sx={{ width: '100%' }}>
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{ display: 'flex', width: '100%', flexDirection: 'column', gap: 2 }}
+          >
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  error={emailError}
+                  helperText={emailErrorMessage}
+                  id="email"
+                  type="email"
+                  name="email"
+                  placeholder="Email address"
+                  autoComplete="email"
+                  autoFocus
+                  required
+                  fullWidth
+                  variant="outlined"
+                  color={emailError ? 'error' : 'primary'}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  error={passwordError}
+                  helperText={passwordErrorMessage}
+                  name="password"
+                  placeholder="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                  autoFocus
+                  required
+                  fullWidth
+                  variant="outlined"
+                  color={passwordError ? 'error' : 'primary'}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <Link component="button" onClick={handleClickOpen} variant="body2">
+                  Forgot password?
+                </Link>
+              </Grid>
+            </Grid>
+            <ForgotPassword open={open} handleClose={handleClose} />
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              onClick={validateInputs}
             >
               Sign In
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
+            <Link
+              href="/material-ui/getting-started/templates/sign-up/"
+              variant="body2"
+              sx={{ alignSelf: 'center' }}
+            >
+              {"Don't have an account? Sign Up"}
+            </Link>
           </Box>
-        </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
-      </Container>
+          <Divider>Or</Divider>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+            <Button
+              type="submit"
+              fullWidth
+              variant="outlined"
+              color="secondary"
+              onClick={() => alert('Sign in with Google')}
+              startIcon={
+                <img
+                  src="https://www.vectorlogo.zone/logos/google/google-icon.svg"
+                  alt="Google"
+                  style={{ width: 16, height: 16 }}
+                />
+              }
+            >
+              Sign In with Google
+            </Button>
+            <Button
+              type="submit"
+              fullWidth
+              variant="outlined"
+              color="secondary"
+              onClick={() => alert('Sign in with Facebook')}
+              startIcon={
+                <img
+                  src="https://www.vectorlogo.zone/logos/facebook/facebook-tile.svg"
+                  alt="Google"
+                  style={{ width: 16, height: 16 }}
+                />
+              }
+            >
+              Sign In with Facebook
+            </Button>
+          </Box>
+        </Card>
+      </Box>
       <ToggleCustomTheme
         showCustomTheme={showCustomTheme}
         toggleCustomTheme={toggleCustomTheme}
