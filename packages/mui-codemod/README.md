@@ -287,6 +287,8 @@ npx @mui/codemod@latest deprecations/alert-props <path>
 
 ```bash
 npx @mui/codemod@latest deprecations/badge-props <path>
+```
+
 #### `button-classes`
 
 JS transforms:
