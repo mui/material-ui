@@ -492,22 +492,17 @@ export default function SearchIcons() {
   }, [setSelectedIcon]);
 
   const deferredQuery = React.useDeferredValue(query);
+  const deferredTheme = React.useDeferredValue(theme);
 
-  const keys = React.useMemo(
-    () =>
+  const icons = React.useMemo(() => {
+    const keys =
       deferredQuery === ''
         ? null
-        : searchIndex.search(deferredQuery, { limit: 3000 }),
-    [deferredQuery],
-  );
-
-  const icons = React.useMemo(
-    () =>
-      (keys === null ? allIcons : keys.map((key) => allIconsMap[key])).filter(
-        (icon) => theme === icon.theme,
-      ),
-    [theme, keys],
-  );
+        : searchIndex.search(deferredQuery, { limit: 3000 });
+    return (keys === null ? allIcons : keys.map((key) => allIconsMap[key])).filter(
+      (icon) => deferredTheme === icon.theme,
+    );
+  }, [deferredQuery, deferredTheme]);
 
   const dialogSelectedIcon = useLatest(
     selectedIcon ? allIconsMap[selectedIcon] : null,

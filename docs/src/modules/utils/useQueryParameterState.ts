@@ -63,8 +63,8 @@ export default function useQueryParameterState(
 
   const setUserState = React.useCallback(
     (newValue: string) => {
-      setState(newValue);
       setUrlValue(newValue);
+      setState(newValue);
     },
     [setUrlValue],
   );
