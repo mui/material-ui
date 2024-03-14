@@ -45,10 +45,7 @@ npm install @mui/data-grid-premium
 
 ## With header path
 
-<div class="codeblock-with-header">
-  <p class="header">PlainCssSliderDeep1.js</p>
-
-```jsx
+```jsx title="PlainCssSliderDeep1.js"
 import * as React from 'react';
 import Slider from '@mui/material/Slider';
 import './PlainCssSliderDeep1.css';
@@ -62,5 +59,3 @@ export default function PlainCssSliderDeep1() {
   );
 }
 ```
-
-</div>
