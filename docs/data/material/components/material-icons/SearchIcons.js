@@ -45,6 +45,7 @@ import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterStat
 // import DeleteForeverTwoTone from '@mui/icons-material/DeleteForeverTwoTone';
 // import DeleteForeverSharp from '@mui/icons-material/DeleteForeverSharp';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { CircularProgress, InputAdornment, LinearProgress } from '@mui/material';
 import synonyms from './synonyms';
 
 const FlexSearchIndex = flexsearch.Index;
@@ -558,6 +559,13 @@ export default function SearchIcons() {
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search icons…"
             inputProps={{ 'aria-label': 'search icons' }}
+            endAdornment={
+              query === deferredQuery ? null : (
+                <InputAdornment position="end">
+                  <CircularProgress size={16} sx={{ mr: 2 }} />
+                </InputAdornment>
+              )
+            }
           />
         </Paper>
         <Typography sx={{ mb: 1 }}>{`${formatNumber(
