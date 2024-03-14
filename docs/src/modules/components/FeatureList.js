@@ -36,5 +36,5 @@ export default function FeatureList({ features }) {
 }
 
 FeatureList.propTypes = {
-  features: PropTypes.string,
+  features: PropTypes.arrayOf(PropTypes.string),
 };
