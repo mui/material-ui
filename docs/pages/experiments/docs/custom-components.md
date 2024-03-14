@@ -8,6 +8,8 @@
 
 ## Feature list
 
+Available through the custom `<featureList>` tag.
+
 <featureList>
 - Manages modal stacking when one-at-a-time just isn't enough.
 - Creates a backdrop, for disabling interaction below the modal.est
