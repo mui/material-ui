@@ -51,7 +51,7 @@ import synonyms from './synonyms';
 
 const FlexSearchIndex = flexsearch.default.Index;
 
-const UPDATE_SEARCH_INDEX_WAIT_MS = 150;
+const UPDATE_SEARCH_INDEX_WAIT_MS = 220;
 
 // const mui = {
 //   ExitToApp,
@@ -175,7 +175,8 @@ const Icons = React.memo(
       </div>
     );
   },
-  (prev, next) => prev.total === next.total,
+  (prev, next) =>
+    prev.data.total === next.data.total && prev.data.length === next.data.length,
 );
 
 Icons.propTypes = {
@@ -487,8 +488,8 @@ export default function SearchIcons() {
   const [theme, setTheme] = useQueryParameterState('theme', 'All');
   const [selectedIcon, setSelectedIcon] = useQueryParameterState('selected', '');
   const [query, setQuery] = useQueryParameterState('query', '');
-  const [_, startUpdateSearchTransition] = React.useTransition();
-  const [minIcons, setMinIcons] = React.useState(99);
+  const [isPending, startUpdateSearchTransition] = React.useTransition();
+  const [minIcons, setMinIcons] = React.useState(49);
 
   const handleOpenClick = React.useCallback(
     (event) => {
@@ -526,7 +527,7 @@ export default function SearchIcons() {
   React.useEffect(() => {
     startUpdateSearchTransition(() => updateSearchResults(query));
     if (query === '') {
-      setMinIcons(99);
+      setMinIcons(49);
     }
 
     return () => updateSearchResults.clear();
@@ -595,7 +596,7 @@ export default function SearchIcons() {
           <Icons
             icons={icons.slice(0, minIcons)}
             handleOpenClick={handleOpenClick}
-            total={totalNumIcons}
+            data={{ total: totalNumIcons, length: minIcons }}
           />
           {totalNumIcons > minIcons && (
             <Button
