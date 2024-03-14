@@ -1374,13 +1374,13 @@ importers:
         version: file:../packages/mui-base/build(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
       '@mui/icons-material':
         specifier: file:../../packages/mui-icons-material/build
-        version: file:../packages/mui-icons-material/build(@mui/material@5.15.12)(@types/react@18.2.55)(react@18.2.0)
+        version: file:../packages/mui-icons-material/build(@mui/material@5.15.13)(@types/react@18.2.55)(react@18.2.0)
       '@mui/material':
         specifier: file:../../packages/mui-material/build
         version: file:../packages/mui-material/build(@emotion/react@11.11.4)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
       '@mui/material-nextjs':
         specifier: file:../../packages/mui-material-nextjs/build
-        version: file:../packages/mui-material-nextjs/build(@emotion/cache@11.11.0)(@mui/material@5.15.12)(@types/react@18.2.55)(next@14.1.3)(react@18.2.0)
+        version: file:../packages/mui-material-nextjs/build(@emotion/cache@11.11.0)(@mui/material@5.15.13)(@types/react@18.2.55)(next@14.1.3)(react@18.2.0)
       '@mui/system':
         specifier: file:../../packages/mui-system/build
         version: file:../packages/mui-system/build(@emotion/react@11.11.4)(@types/react@18.2.55)(react@18.2.0)
@@ -1432,7 +1432,7 @@ importers:
         version: file:../packages/mui-base/build(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
       '@mui/icons-material':
         specifier: file:../../packages/mui-icons-material/build
-        version: file:../packages/mui-icons-material/build(@mui/material@5.15.12)(@types/react@18.2.55)(react@18.2.0)
+        version: file:../packages/mui-icons-material/build(@mui/material@5.15.13)(@types/react@18.2.55)(react@18.2.0)
       '@mui/material':
         specifier: file:../../packages/mui-material/build
         version: file:../packages/mui-material/build(@emotion/react@11.11.4)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
@@ -8991,7 +8991,7 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  file:../packages/mui-icons-material/build(@mui/material@5.15.12)(@types/react@18.2.55)(react@18.2.0):
+  file:../packages/mui-icons-material/build(@mui/material@5.15.13)(@types/react@18.2.55)(react@18.2.0):
     resolution: {directory: ../packages/mui-icons-material/build, type: directory}
     id: file:../packages/mui-icons-material/build
     name: '@mui/icons-material'
@@ -9010,7 +9010,7 @@ packages:
       react: 18.2.0
     dev: false
 
-  file:../packages/mui-material-nextjs/build(@emotion/cache@11.11.0)(@mui/material@5.15.12)(@types/react@18.2.55)(next@14.1.3)(react@18.2.0):
+  file:../packages/mui-material-nextjs/build(@emotion/cache@11.11.0)(@mui/material@5.15.13)(@types/react@18.2.55)(next@14.1.3)(react@18.2.0):
     resolution: {directory: ../packages/mui-material-nextjs/build, type: directory}
     id: file:../packages/mui-material-nextjs/build
     name: '@mui/material-nextjs'
