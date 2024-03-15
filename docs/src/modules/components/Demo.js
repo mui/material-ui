@@ -618,7 +618,7 @@ export default function Demo(props) {
             </NoSsr>
           </DemoToolbarRoot>
           <Tabs defaultValue={0} value={activeTab} onChange={handleTabChange}>
-            {demoData.relativeModules && !editorCode.isPreview ? (
+            {demoData.relativeModules && openDemoSource && !editorCode.isPreview ? (
               <CodeTabList sx={bordersOverride} ownerState={ownerState}>
                 {tabs.map((tab, index) => (
                   <CodeTab
