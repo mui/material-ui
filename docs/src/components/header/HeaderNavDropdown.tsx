@@ -76,7 +76,7 @@ const PRODUCTS = [
     href: ROUTES.productDesignKits,
   },
   {
-    name: 'MUI Toolpad',
+    name: 'Toolpad',
     description: 'Low-code admin builder.',
     href: ROUTES.productToolpad,
     chip: 'Beta',
@@ -110,9 +110,9 @@ const DOCS = [
     href: ROUTES.xIntro,
   },
   {
-    name: 'MUI Toolpad',
-    description: 'Low-code admin builder.',
-    href: ROUTES.toolpadDocs,
+    name: 'Toolpad',
+    description: 'Low-code admin builder',
+    href: ROUTES.toolpadStudioDocs,
     chip: 'Beta',
   },
 ];
