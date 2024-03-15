@@ -1,7 +1,7 @@
 ---
 title: Bringing consistency to Material UI customization APIs
 description: We're standardizing two key areas of the Material UI customization APIs to reduce complexity and cognitive overhead. Read on to learn what's changing.
-date: 2024-03-18T00:00:00.000Z
+date: 2024-03-18T10:00:00.000Z
 authors: ['diegoandai']
 tags: ['Material UI', 'Product']
 card: true
