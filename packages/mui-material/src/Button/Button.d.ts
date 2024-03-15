@@ -61,7 +61,8 @@ export interface ButtonOwnProps {
    */
   href?: string;
   /**
-   * The target for link when the button is clicked.
+   * The target attribute for links.
+   * Specifies where the linked document will open when clicked.
    */
   target?: string;
   /**

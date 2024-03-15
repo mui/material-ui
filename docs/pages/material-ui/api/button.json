@@ -32,6 +32,7 @@
       },
       "additionalInfo": { "sx": true }
     },
+    "target": { "type": { "name": "string" } },
     "variant": {
       "type": {
         "name": "union",

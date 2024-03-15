@@ -464,7 +464,8 @@ Button.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The target for link when the button is clicked.
+   * The target attribute for links.
+   * Specifies where the linked document will open when clicked.
    */
   target: PropTypes.string,
   /**
