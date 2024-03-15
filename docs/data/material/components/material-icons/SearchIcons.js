@@ -5,7 +5,6 @@ import copy from 'clipboard-copy';
 import InputBase from '@mui/material/InputBase';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
-import { debounce } from '@mui/material/utils';
 import Grid from '@mui/material/Grid';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -486,7 +485,7 @@ export default function SearchIcons() {
   const lazyKeys = React.useDeferredValue(keys);
   const [theme, setTheme] = useQueryParameterState('theme', 'All');
   const [selectedIcon, setSelectedIcon] = useQueryParameterState('selected', '');
-  const [query, setQuery] = useQueryParameterState('query', '');
+  const [query, setQuery] = useQueryParameterState('query', '', 0);
   const lazyQuery = React.useDeferredValue(query);
   const [minIcons, setMinIcons] = React.useState(49);
 
@@ -528,8 +527,6 @@ export default function SearchIcons() {
       ).filter((icon) => theme === 'All' || theme === icon.theme),
     [theme, lazyKeys],
   );
-
-  const totalNumIcons = icons.length;
 
   const dialogSelectedIcon = useLatest(
     selectedIcon ? allIconsMap[selectedIcon] : null,
@@ -573,20 +570,20 @@ export default function SearchIcons() {
             autoFocus
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder={`Search over ${formatNumber(totalNumIcons)} available icons...`}
+            placeholder={`Search icons...`}
             inputProps={{ 'aria-label': 'search icons' }}
           />
         </Paper>
         <Typography variant="subtitle1" sx={{ mb: 1 }}>
-          {`${formatNumber(totalNumIcons)} matching results`}
+          {`${formatNumber(icons.length)} matching results`}
         </Typography>
         <Stack spacing={4} sx={{ height: '100%' }}>
           <Icons
             icons={icons.slice(0, minIcons)}
             handleOpenClick={handleOpenClick}
-            data={{ total: totalNumIcons, length: minIcons }}
+            data={{ total: icons.length, length: minIcons }}
           />
-          {totalNumIcons > minIcons && (
+          {icons.length > minIcons && (
             <Button
               size="small"
               color="primary"
