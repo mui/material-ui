@@ -1,6 +1,6 @@
 {
-  "name": "@mui-internal/docs-utils",
-  "version": "1.0.2",
+  "name": "@mui/internal-docs-utils",
+  "version": "1.0.3",
   "author": "MUI Team",
   "description": "Utilities for MUI docs. This is an internal package not meant for general use.",
   "main": "./build/index.js",
@@ -11,7 +11,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/mui/material-ui.git",
-    "directory": "packages/docs-utils"
+    "directory": "packages-internal/docs-utils"
   },
   "scripts": {
     "prebuild": "rimraf ./build",

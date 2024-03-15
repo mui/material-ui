@@ -132,6 +132,12 @@
     },
     "./exports/createUseThemeProps": {
       "default": "./exports/createUseThemeProps.js"
+    },
+    "./Box": {
+      "types": "./build/Box.d.ts",
+      "import": "./build/Box.mjs",
+      "require": "./build/Box.js",
+      "default": "./build/Box.js"
     }
   },
   "nx": {

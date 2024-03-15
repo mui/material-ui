@@ -1,18 +1,10 @@
 import type * as React from 'react';
-import type { CSSObject } from './base';
+import type { BaseDefaultProps, CSSObject, PolymorphicComponent, Substitute } from './base';
 import type { ThemeArgs } from './theme';
 import type { SxProp } from './sx';
 import { Primitve } from './keyframes';
 
 type Falsy = false | 0 | '' | null | undefined;
-
-type BaseDefaultProps = object;
-
-export type NoInfer<T> = [T][T extends any ? 0 : never];
-type FastOmit<T extends object, U extends string | number | symbol> = {
-  [K in keyof T as K extends U ? never : K]: T[K];
-};
-export type Substitute<A extends object, B extends object> = FastOmit<A, keyof B> & B;
 
 export interface StyledVariants<Props extends BaseDefaultProps> {
   props: Partial<Props> | ((props: Props) => boolean);
@@ -31,26 +23,8 @@ export type StyledArgument<Props extends BaseDefaultProps> =
   | StyledCssArgument<Props>
   | StyledCallback<Props>;
 
-export type PolymorphicComponentProps<
-  BaseProps extends object,
-  AsTarget extends React.ElementType | undefined,
-  AsTargetProps extends object = AsTarget extends React.ElementType
-    ? React.ComponentPropsWithRef<AsTarget>
-    : BaseDefaultProps,
-> = NoInfer<Omit<Substitute<BaseProps, AsTargetProps>, 'as'>> & {
-  as?: AsTarget;
-  sx?: SxProp;
-};
-
-export interface PolymorphicComponent<BaseProps extends BaseDefaultProps>
-  extends React.ForwardRefExoticComponent<BaseProps> {
-  <AsTarget extends React.ElementType | undefined = undefined>(
-    props: PolymorphicComponentProps<BaseProps, AsTarget>,
-  ): JSX.Element;
-}
-
 export interface StyledComponent<Props extends BaseDefaultProps = BaseDefaultProps>
-  extends PolymorphicComponent<Props> {
+  extends PolymorphicComponent<SxProp, Props> {
   defaultProps?: Partial<Props> | undefined;
   toString: () => string;
 }

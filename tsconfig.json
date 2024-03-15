@@ -50,7 +50,7 @@
       "@pigment-css/react/*": ["./packages/pigment-css-react/src/*"],
       "@pigment-css/vite-plugin": ["./packages/pigment-css-vite-plugin/src"],
       "@pigment-css/vite-plugin/*": ["./packages/pigment-css-vite-plugin/src/*"],
-      "@mui-internal/docs-utils": ["./packages/docs-utils/src"],
+      "@mui/internal-docs-utils": ["./packages-internal/docs-utils/src"],
       "@mui/internal-scripts/typescript-to-proptypes": [
         "./packages-internal/scripts/typescript-to-proptypes/src"
       ]

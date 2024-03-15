@@ -4,7 +4,7 @@ import {
   GetPropsFromComponentDeclarationOptions,
   getPropsFromComponentNode,
   TypeScriptProject,
-} from '@mui-internal/docs-utils';
+} from '@mui/internal-docs-utils';
 import {
   createUnionType,
   createUndefinedType,

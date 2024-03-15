@@ -101,12 +101,12 @@ importers:
       '@mui-internal/api-docs-builder-core':
         specifier: workspace:^
         version: link:packages/api-docs-builder-core
-      '@mui-internal/docs-utils':
-        specifier: workspace:^
-        version: link:packages/docs-utils
       '@mui-internal/test-utils':
         specifier: workspace:^
         version: link:packages/test-utils
+      '@mui/internal-docs-utils':
+        specifier: workspace:^
+        version: link:packages-internal/docs-utils
       '@mui/internal-scripts':
         specifier: workspace:^
         version: link:packages-internal/scripts
@@ -723,12 +723,12 @@ importers:
       '@babel/preset-typescript':
         specifier: ^7.23.3
         version: 7.23.3(@babel/core@7.23.9)
-      '@mui-internal/docs-utils':
-        specifier: workspace:^
-        version: link:../packages/docs-utils
       '@mui-internal/test-utils':
         specifier: workspace:^
         version: link:../packages/test-utils
+      '@mui/internal-docs-utils':
+        specifier: workspace:^
+        version: link:../packages-internal/docs-utils
       '@mui/internal-scripts':
         specifier: workspace:^
         version: link:../packages-internal/scripts
@@ -796,6 +796,15 @@ importers:
         specifier: ^17.7.2
         version: 17.7.2
 
+  packages-internal/docs-utils:
+    dependencies:
+      rimraf:
+        specifier: ^5.0.5
+        version: 5.0.5
+      typescript:
+        specifier: ^5.3.3
+        version: 5.3.3
+
   packages-internal/scripts:
     dependencies:
       '@babel/core':
@@ -813,9 +822,9 @@ importers:
       '@babel/types':
         specifier: ^7.23.9
         version: 7.23.9
-      '@mui-internal/docs-utils':
+      '@mui/internal-docs-utils':
         specifier: workspace:^
-        version: link:../../packages/docs-utils
+        version: link:../docs-utils
       doctrine:
         specifier: ^3.0.0
         version: 3.0.0
@@ -880,9 +889,9 @@ importers:
       '@babel/traverse':
         specifier: ^7.23.9
         version: 7.23.9
-      '@mui-internal/docs-utils':
+      '@mui/internal-docs-utils':
         specifier: workspace:^
-        version: link:../docs-utils
+        version: link:../../packages-internal/docs-utils
       '@mui/internal-markdown':
         specifier: workspace:^
         version: link:../markdown
@@ -987,15 +996,6 @@ importers:
       sinon:
         specifier: ^15.2.0
         version: 15.2.0
-      typescript:
-        specifier: ^5.3.3
-        version: 5.3.3
-
-  packages/docs-utils:
-    dependencies:
-      rimraf:
-        specifier: ^5.0.5
-        version: 5.0.5
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
