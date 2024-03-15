@@ -146,8 +146,7 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
       return result;
     }
     if (webpackResolver) {
-      const resolved = webpackResolver(what, importer, stack);
-      return resolved;
+      return webpackResolver(what, importer, stack);
     }
     return asyncResolveFallback(what, importer, stack);
   };
