@@ -158,12 +158,6 @@ const openRolesData = [
       //     'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
       //   url: '/careers/react-engineer-x/',
       // },
-      {
-        title: 'Staff UI Engineer — Base UI',
-        description:
-          'Research, build, document, and ship high-quality, unstyled UI components with a focus on a11y.',
-        url: '/careers/staff-ui-engineer-base-ui/',
-      },
     ],
   },
   {

@@ -385,6 +385,7 @@ jobs:
           name: Test umd release
           command: pnpm test:umd
   test_e2e_website:
+    # NOTE: This workflow runs after successful docs deploy. See /test/e2e-website/README.md#ci
     <<: *defaults
     docker:
       - image: mcr.microsoft.com/playwright:v1.42.1-focal

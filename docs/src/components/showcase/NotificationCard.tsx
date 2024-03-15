@@ -71,9 +71,10 @@ export default function NotificationCard() {
             </div>
             <Chip
               label="3"
-              color="success"
               size="small"
-              sx={{ ml: 'auto', color: '#fff', fontSize: '0.75rem', height: 18 }}
+              variant="outlined"
+              color="success"
+              sx={{ ml: 'auto', fontSize: '0.75rem', height: 18 }}
             />
           </Box>
         </Box>

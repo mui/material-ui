@@ -21,10 +21,10 @@ const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
       border: `1px solid ${(theme.vars || theme).palette.divider}`,
       colorScheme: 'dark',
       '&:hover': {
-        boxShadow: `0 0 0 3px ${(theme.vars || theme).palette.primary.light}`,
+        boxShadow: `0 0 0 3px ${alpha((theme.vars || theme).palette.primary[500], 0.5)}`,
       },
       '&:focus-within': {
-        boxShadow: `0 0 0 3px ${alpha(theme.palette.primary[500], 0.8)}`,
+        boxShadow: `0 0 0 3px ${alpha((theme.vars || theme).palette.primary[500], 0.8)}`,
       },
       [theme.breakpoints.up('sm')]: {
         borderRadius: '0 0 12px 12px',

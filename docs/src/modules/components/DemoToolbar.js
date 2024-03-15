@@ -84,15 +84,15 @@ const ToggleButtonGroup = styled(MDToggleButtonGroup)(({ theme }) => [
 ]);
 
 const Button = styled(MDButton)(({ theme }) => ({
-  height: 24,
-  padding: '5px 8px 6px 8px', // the one-off 5px is for visually centering the text on the button's container
+  height: 26,
+  padding: '6px 8px',
   flexShrink: 0,
   borderRadius: 999,
   border: '1px solid',
-  borderColor: alpha(theme.palette.primary[100], 0.6),
+  borderColor: alpha(theme.palette.grey[200], 0.8),
   fontSize: theme.typography.pxToRem(13),
   fontWeight: theme.typography.fontWeightMedium,
-  color: theme.palette.primary.main,
+  color: theme.palette.primary[600],
   '& .MuiSvgIcon-root': {
     color: theme.palette.primary.main,
   },
@@ -130,6 +130,7 @@ const MenuItem = styled(MDMenuItem)(({ theme }) => ({
 
 const ToggleButton = styled(MDToggleButton)(({ theme }) => [
   theme.unstable_sx({
+    height: 26,
     padding: theme.spacing(0, 1, 0.1, 1),
     fontSize: theme.typography.pxToRem(13),
     borderColor: 'grey.200',

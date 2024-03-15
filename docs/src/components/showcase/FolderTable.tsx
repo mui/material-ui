@@ -150,10 +150,10 @@ export default function BasicTable() {
               <TableCell align="right">
                 <Typography
                   fontSize={13}
-                  fontWeight={600}
+                  fontWeight="bold"
                   sx={(theme: Theme) => ({
                     mr: 1,
-                    color: 'success.700',
+                    color: 'success.800',
                     ...theme.applyDarkStyles({
                       color: 'success.500',
                     }),

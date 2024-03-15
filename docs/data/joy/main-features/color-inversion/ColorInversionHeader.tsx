@@ -96,7 +96,7 @@ export default function ColorInversionHeader() {
                 sx={{
                   ml: 'auto',
                   bgcolor: (theme) =>
-                    `rgba(${theme.vars.palette.primary.mainChannel} / 0.1)`,
+                    `rgba(${theme.vars.palette[color].mainChannel} / 0.4)`,
                 }}
               >
                 Beta

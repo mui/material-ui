@@ -18,6 +18,7 @@ swap:
   MUI Toolpad: MUI Toolpad
   MUI Connect: MUI Connect
   Stack Overflow: Stack Overflow
+  Pigment CSS: Pigment CSS
 # Don't forget to run the following command to generate the package writing-rules.zip file
 # Vale uses that ZIP file and not the YAML files.
 #

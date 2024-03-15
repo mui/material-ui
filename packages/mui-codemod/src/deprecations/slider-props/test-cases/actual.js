@@ -16,3 +16,9 @@ import Slider from '@mui/material/Slider';
   slotProps={{ rail: slotsRailProps, track: slotsTrackProps }}
   componentsProps={{ track: componentsTrackProps }}
 />;
+<Slider
+  slots={{ rail: SlotsRail, track: SlotsTrack }}
+  components={{ Track: ComponentsTrack }}
+  slotProps={{ rail: slotsRailProps, track: slotsTrackProps }}
+  componentsProps={{ track: componentsTrackProps, rail: componentsRailProps}}
+/>;

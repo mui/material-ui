@@ -2,12 +2,12 @@ fn({
   MuiSlider: {
     defaultProps: {
       slots: {
-        track: ComponentsTrack,
+        track: ComponentsTrack
       },
 
       slotProps: {
-        track: componentsTrackProps,
-      },
+        track: componentsTrackProps
+      }
     },
   },
 });
@@ -17,13 +17,13 @@ fn({
     defaultProps: {
       slots: {
         track: ComponentsTrack,
-        rail: SlotsRail,
+        rail: SlotsRail
       },
 
       slotProps: {
         track: componentsTrackProps,
-        rail: slotsRailProps,
-      },
+        rail: slotsRailProps
+      }
     },
   },
 });
@@ -33,13 +33,40 @@ fn({
     defaultProps: {
       slots: {
         track: SlotsTrack,
-        rail: SlotsRail,
+        rail: SlotsRail
       },
 
       slotProps: {
-        track: slotsTrackProps,
-        rail: slotsRailProps,
+        track: {
+          ...componentsTrackProps,
+          ...slotsTrackProps
+        },
+
+        rail: slotsRailProps
+      }
+    },
+  },
+});
+
+fn({
+  MuiSlider: {
+    defaultProps: {
+      slots: {
+        track: SlotsTrack,
+        rail: SlotsRail
       },
+
+      slotProps: {
+        track: {
+          ...componentsTrackProps,
+          ...slotsTrackProps
+        },
+
+        rail: {
+          ...componentsRailProps,
+          ...slotsRailProps
+        }
+      }
     },
   },
 });

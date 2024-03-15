@@ -9,9 +9,9 @@ import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 export const CodeTabList = styled(TabsListBase)<{
   ownerState: { mounted: boolean; contained?: boolean };
 }>(({ theme, ownerState }) => ({
-  padding: ownerState?.contained ? theme.spacing(1) : 6,
+  padding: ownerState?.contained ? theme.spacing(1.5, 1) : theme.spacing(1),
   display: 'flex',
-  gap: ownerState?.contained ? theme.spacing(0.5) : 0,
+  gap: theme.spacing(0.5),
   borderLeft: '1px solid',
   borderRight: '1px solid',
   borderTop: ownerState?.contained ? 'none' : '1px solid',
@@ -25,14 +25,11 @@ export const CodeTabList = styled(TabsListBase)<{
     ? alpha((theme.vars || theme).palette.grey[50], 0.2)
     : (theme.vars || theme).palette.primaryDark[900],
   ...theme.applyDarkStyles({
-    backgroundColor: alpha(
-      (theme.vars || theme).palette.primaryDark[800],
-      ownerState?.contained ? 0.5 : 0.2,
-    ),
+    backgroundColor: alpha((theme.vars || theme).palette.primaryDark[800], 0.2),
   }),
 }));
 
-export const TabPanel = styled(TabPanelBase)<{
+export const CodeTabPanel = styled(TabPanelBase)<{
   ownerState: { mounted: boolean; contained?: boolean };
 }>(({ ownerState }) => ({
   marginTop: ownerState?.contained ? -1 : 0,
@@ -49,43 +46,39 @@ export const TabPanel = styled(TabPanelBase)<{
 export const CodeTab = styled(TabBase)<{ ownerState: { mounted: boolean; contained?: boolean } }>(
   ({ theme, ownerState }) =>
     theme.unstable_sx({
-      p: ownerState?.contained ? '6px' : 0.8,
-      border: 'none',
+      height: 26,
+      p: '0 8px',
+      border: ownerState?.contained ? '1px solid transparent' : 'none',
       bgcolor: 'transparent',
       color: ownerState?.contained
         ? (theme.vars || theme).palette.text.tertiary
         : (theme.vars || theme).palette.grey[500],
       fontSize: theme.typography.pxToRem(ownerState?.contained ? 13 : 12),
-      fontWeight: theme.typography.fontWeightSemiBold,
       fontFamily: ownerState?.contained
         ? theme.typography.fontFamily
         : theme.typography.fontFamilyCode,
-      letterSpacing: ownerState?.contained ? '0.2px' : 'unset',
+      fontWeight: ownerState?.contained
+        ? theme.typography.fontWeightMedium
+        : theme.typography.fontWeightBold,
+      lineHeight: 1.2,
       outline: 'none',
       minWidth: 52,
       cursor: 'pointer',
-      borderRadius: '8px',
+      borderRadius: 99,
       position: 'relative',
       transition: ownerState?.contained ? 'background, color, 100ms ease' : 'unset',
+      '&:hover': {
+        backgroundColor: (theme.vars || theme).palette.divider,
+      },
       '&:focus-visible': {
-        outline: '2px solid',
-        outlineOffset: '-2px',
+        outline: '3px solid',
+        outlineOffset: '1px',
         outlineColor: (theme.vars || theme).palette.primary.light,
       },
-      ...(ownerState?.contained && {
-        ...theme.applyDarkStyles({
-          '&:hover': {
-            backgroundColor: alpha((theme.vars || theme).palette.primaryDark[700], 0.6),
-            color: (theme.vars || theme).palette.grey[400],
-          },
-        }),
-      }),
       ...(!ownerState?.contained && {
-        '&:not(:first-of-type)': {
-          marginLeft: 0.5,
-        },
         '&:hover': {
-          backgroundColor: alpha(theme.palette.primaryDark[500], 0.5),
+          backgroundColor: alpha((theme.vars || theme).palette.primaryDark[500], 0.5),
+          color: (theme.vars || theme).palette.grey[400],
         },
         ...(ownerState.mounted && {
           '&.base--selected': {
@@ -94,7 +87,7 @@ export const CodeTab = styled(TabBase)<{ ownerState: { mounted: boolean; contain
               content: "''",
               position: 'absolute',
               left: 0,
-              bottom: '-6px',
+              bottom: '-8px',
               height: 2,
               width: '100%',
               bgcolor: (theme.vars || theme).palette.primary.light,
@@ -162,13 +155,13 @@ export default function HighlightedCodeWithTabs({
         ))}
       </CodeTabList>
       {tabs.map(({ tab, language, code }) => (
-        <TabPanel ownerState={ownerState} key={tab} value={tab}>
+        <CodeTabPanel ownerState={ownerState} key={tab} value={tab}>
           <HighlightedCode
             // @ts-ignore
             language={language || 'bash'}
             code={typeof code === 'function' ? code(tab) : code}
           />
-        </TabPanel>
+        </CodeTabPanel>
       ))}
     </Tabs>
   );

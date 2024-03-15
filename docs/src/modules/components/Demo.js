@@ -374,19 +374,13 @@ const bordersOverride = {
 const selectionOverride = (theme) => ({
   cursor: 'pointer',
   '&.base--selected': {
-    color: (theme.vars || theme).palette.primary.main,
-    '&::after': {
-      content: "''",
-      position: 'absolute',
-      left: 0,
-      bottom: '-6px',
-      height: 2,
-      width: '100%',
-      borderRadius: 4,
-      bgcolor: (theme.vars || theme).palette.primary.light,
-    },
+    color: (theme.vars || theme).palette.primary[700],
+    backgroundColor: (theme.vars || theme).palette.primary[50],
+    borderColor: (theme.vars || theme).palette.primary[200],
     ...theme.applyDarkStyles({
-      color: (theme.vars || theme).palette.primary.light,
+      color: (theme.vars || theme).palette.primary[200],
+      backgroundColor: alpha((theme.vars || theme).palette.primary[900], 0.4),
+      borderColor: (theme.vars || theme).palette.primary[800],
     }),
   },
 });

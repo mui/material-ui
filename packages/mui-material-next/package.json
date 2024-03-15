@@ -1,6 +1,6 @@
 {
   "name": "@mui/material-next",
-  "version": "6.0.0-alpha.125",
+  "version": "6.0.0-alpha.126",
   "private": false,
   "author": "MUI Team",
   "description": "v6-alpha: React components that implement Google's Material Design",
@@ -54,8 +54,8 @@
   },
   "devDependencies": {
     "@emotion/react": "^11.11.4",
-    "@mui/internal-babel-macros": "workspace:^",
     "@mui-internal/test-utils": "workspace:^",
+    "@mui/internal-babel-macros": "workspace:^",
     "@testing-library/user-event": "^14.5.2",
     "@types/chai": "^4.3.12",
     "@types/prop-types": "^15.7.11",

@@ -3,6 +3,6 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "@pigment-css/react": "file:../../packages/pigment-react"
+    "@pigment-css/react": "file:../../packages/pigment-css-react"
   }
 }

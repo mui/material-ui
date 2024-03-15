@@ -62,7 +62,7 @@ function ToggleCustomTheme({
 }
 
 export default function LandingPage() {
-  const [mode, setMode] = React.useState<PaletteMode>('dark');
+  const [mode, setMode] = React.useState<PaletteMode>('light');
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const LPtheme = createTheme(getLPTheme(mode));
   const defaultTheme = createTheme({ palette: { mode } });

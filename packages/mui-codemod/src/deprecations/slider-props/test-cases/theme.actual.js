@@ -28,3 +28,14 @@ fn({
     },
   },
 });
+
+fn({
+  MuiSlider: {
+    defaultProps: {
+      components: { Track: ComponentsTrack },
+      slots: { rail: SlotsRail, track: SlotsTrack },
+      componentsProps: { track: componentsTrackProps, rail: componentsRailProps },
+      slotProps: { rail: slotsRailProps, track: slotsTrackProps },
+    },
+  },
+});

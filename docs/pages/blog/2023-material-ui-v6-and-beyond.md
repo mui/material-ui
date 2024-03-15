@@ -69,7 +69,7 @@ Expect to hear more about that towards the end of Q2 '24.
 ## Follow along and contribute
 
 We've consolidated the v6 changes in [this GitHub issue](https://github.com/mui/material-ui/issues/30660)—please feel free to chime in and participate in the discussions!
-You can also always check the [public Material UI GitHub project](https://github.com/mui/material-ui/projects/26) to see the planned releases and their respective umbrella issues.
+You can also always check the [Material UI GitHub project](https://github.com/orgs/mui/projects/23/views/12) to see the planned releases and their respective umbrella issues.
 
 We hope you're as excited as we are about these changes!
 Have a wonderful holiday season and a Happy New Year! 🎉
