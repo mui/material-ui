@@ -40,31 +40,11 @@ const AvatarGroupRoot = styled('div', {
   [`& .${avatarClasses.root}`]: {
     border: `2px solid ${(theme.vars || theme).palette.background.default}`,
     boxSizing: 'content-box',
+    marginLeft: 'var(--AvatarGroup-spacing, -8px)',
+    '&:last-child': {
+      marginLeft: 0,
+    },
   },
-  variants: [
-    {
-      props: { spacing: 'small' },
-      style: {
-        [`& .${avatarClasses.root}:not(:last-child)`]: {
-          marginLeft: 'var(--AvatarGroup-spacing, -16px)',
-        },
-        [`& .${avatarClasses.root}:last-child`]: {
-          marginLeft: 0,
-        },
-      },
-    },
-    {
-      props: { spacing: 'medium' },
-      style: {
-        [`& .${avatarClasses.root}:not(:last-child)`]: {
-          marginLeft: 'var(--AvatarGroup-spacing, -8px)',
-        },
-        [`& .${avatarClasses.root}:last-child`]: {
-          marginLeft: 0,
-        },
-      },
-    },
-  ],
 }));
 
 const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
