@@ -65,6 +65,6 @@ Because of these issues, composed CSS classes will be deprecated and eventually 
 
 This initiative aims to improve the developer experience for the Material UI community.
 To provide the smoothest migration from the inconsistent APIs, they will be deprecated first and removed later, giving you plenty of time to adjust.
-With each deprecation, we'll update the [migration guide](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) and provide [codemods](https://github.com/mui/material-ui/tree/master/packages/mui-codemod#deprecations) to simplify the process.
+With each deprecation, we'll update the [migration guide](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) and provide [codemods](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#deprecations) to simplify the process.
 
 As always, we'd love to hear what you think! Please [open a GitHub issue](https://github.com/mui/material-ui/issues/new/choose) if you encounter any unexpected behavior with the standardized APIs or if you have any other suggestions you'd like us to discuss.
