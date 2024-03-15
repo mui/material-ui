@@ -2062,6 +2062,9 @@ importers:
       stylis:
         specifier: ^4.3.1
         version: 4.3.1
+      stylis-plugin-rtl:
+        specifier: ^2.1.1
+        version: 2.1.1(stylis@4.3.1)
     devDependencies:
       '@babel/plugin-syntax-jsx':
         specifier: ^7.23.3
@@ -20102,6 +20105,15 @@ packages:
     dependencies:
       cssjanus: 2.1.0
       stylis: 4.2.0
+
+  /stylis-plugin-rtl@2.1.1(stylis@4.3.1):
+    resolution: {integrity: sha512-q6xIkri6fBufIO/sV55md2CbgS5c6gg9EhSVATtHHCdOnbN/jcI0u3lYhNVeuI65c4lQPo67g8xmq5jrREvzlg==}
+    peerDependencies:
+      stylis: 4.x
+    dependencies:
+      cssjanus: 2.1.0
+      stylis: 4.3.1
+    dev: false
 
   /stylis@4.2.0:
     resolution: {integrity: sha512-Orov6g6BB1sDfYgzWfTHDOxamtX1bE/zo104Dh9e6fqJ3PooipYyfJ0pUmrZO2wAvO8YbEyeFrkV91XTsGMSrw==}
