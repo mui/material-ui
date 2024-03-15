@@ -10,7 +10,7 @@ import {
   fixBabelGeneratorIssues,
   fixLineEndings,
   getUnstyledFilename,
-} from '@mui-internal/docs-utils';
+} from '@mui/internal-docs-utils';
 import {
   getPropTypesFromFile,
   injectPropTypesInFile,
