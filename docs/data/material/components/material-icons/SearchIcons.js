@@ -51,8 +51,6 @@ import synonyms from './synonyms';
 
 const FlexSearchIndex = flexsearch.default.Index;
 
-const UPDATE_SEARCH_INDEX_WAIT_MS = 50;
-
 // const mui = {
 //   ExitToApp,
 //   ExitToAppOutlined,
@@ -485,11 +483,11 @@ function useLatest(value) {
 
 export default function SearchIcons() {
   const [keys, setKeys] = React.useState(null);
-  const defferedKeys = React.useDeferredValue(keys);
+  const lazyKeys = React.useDeferredValue(keys);
   const [theme, setTheme] = useQueryParameterState('theme', 'All');
   const [selectedIcon, setSelectedIcon] = useQueryParameterState('selected', '');
   const [query, setQuery] = useQueryParameterState('query', '');
-  const [isPending, startUpdateSearchTransition] = React.useTransition();
+  const lazyQuery = React.useDeferredValue(query);
   const [minIcons, setMinIcons] = React.useState(49);
 
   const handleOpenClick = React.useCallback(
@@ -503,44 +501,32 @@ export default function SearchIcons() {
     setSelectedIcon('');
   }, [setSelectedIcon]);
 
-  const updateSearchResults = React.useMemo(
-    () =>
-      debounce((value) => {
-        if (value === '') {
-          setKeys(null);
-        } else {
-          searchIndex.searchAsync(value, { limit: 3000 }).then((results) => {
-            setKeys(results);
-
-            // Keep track of the no results so we can add synonyms in the future.
-            if (value.length >= 4 && results.length === 0) {
-              window.gtag('event', 'material-icons', {
-                eventAction: 'no-results',
-                eventLabel: value,
-              });
-            }
-          });
-        }
-      }, UPDATE_SEARCH_INDEX_WAIT_MS),
-    [],
-  );
-
   React.useEffect(() => {
-    startUpdateSearchTransition(() => updateSearchResults(query));
-    if (query === '') {
+    if (lazyQuery === '') {
       setMinIcons(49);
+      setKeys(null);
+      return;
     }
 
-    return () => updateSearchResults.clear();
-  }, [query, updateSearchResults]);
+    searchIndex.searchAsync(lazyQuery, { limit: 3000 }).then((res) => {
+      setKeys(res);
+
+      if (lazyQuery.length >= 4 && res.length === 0) {
+        window.gtag('event', 'material-icons', {
+          eventAction: 'no-results',
+          eventLabel: lazyQuery,
+        });
+      }
+    });
+  }, [lazyQuery]);
 
   const icons = React.useMemo(
     () =>
-      (defferedKeys === null
+      (lazyKeys === null
         ? allIcons
-        : defferedKeys.map((key) => allIconsMap[key])
+        : lazyKeys.map((key) => allIconsMap[key])
       ).filter((icon) => theme === 'All' || theme === icon.theme),
-    [theme, defferedKeys],
+    [theme, lazyKeys],
   );
 
   const totalNumIcons = icons.length;
