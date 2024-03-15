@@ -127,20 +127,11 @@ module.exports = async function demoLoader() {
   const demoModuleIDs = new Set();
   const componentModuleIDs = new Set();
   const relativeModules = new Map();
-  const toolbarHidden = new Set();
   const demoNames = Array.from(
     new Set(
-      docs.en.rendered
-        .filter((markdownOrComponentConfig) => {
-          return typeof markdownOrComponentConfig !== 'string' && markdownOrComponentConfig.demo;
-        })
-        .map((demoConfig) => {
-          // Create a set of modules which are not demos
-          if (demoConfig.hideToolbar) {
-            toolbarHidden.add(demoConfig.demo);
-          }
-          return demoConfig.demo;
-        }),
+      docs.en.rendered.filter((markdownOrComponentConfig) => {
+        return typeof markdownOrComponentConfig !== 'string' && markdownOrComponentConfig.demo;
+      }),
     ),
   );
 
@@ -194,10 +185,7 @@ module.exports = async function demoLoader() {
       demoModuleIDs.add(moduleID);
       extractImports(demos[demoName].raw).forEach((importModuleID) => {
         // detect relative import
-        // skip for modules that are not demos
-        if (!toolbarHidden.has(moduleID.replace('./', ''))) {
-          detectRelativeImports(demoName, 'JS', importModuleID);
-        }
+        detectRelativeImports(demoName, 'JS', importModuleID);
         importedModuleIDs.add(importModuleID);
       });
 

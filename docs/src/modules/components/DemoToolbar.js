@@ -281,6 +281,18 @@ function useToolbar(controlRefs, options = {}) {
   };
 }
 
+function copyWithRelativeModules(raw, relativeModules) {
+  if (relativeModules) {
+    relativeModules.forEach(({ module, raw: content }) => {
+      // remove exports from relative module
+      content = content.replace(/export( )*(default)*( )*\w+;|export default|export/gm, '');
+      // replace import statement with relative module content
+      raw = raw.replace(new RegExp(`import (.*) from '${module}';`, 'g'), content);
+    });
+  }
+  return copy(raw);
+}
+
 export default function DemoToolbar(props) {
   const {
     codeOpen,
@@ -332,21 +344,6 @@ export default function DemoToolbar(props) {
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
   };
-
-  const copyWithRelativeModules = React.useCallback(
-    (raw) => {
-      if (demoData.relativeModules) {
-        demoData.relativeModules.forEach(({ module, raw: content }) => {
-          // remove exports from relative module
-          content = content.replace(/export( )*(default)*( )*\w+;|export default|export/gm, '');
-          // replace import statement with relative module content
-          raw = raw.replace(new RegExp(`import (.*) from '${module}';`, 'g'), content);
-        });
-      }
-      return copy(raw);
-    },
-    [demoData.relativeModules],
-  );
 
   const handleCopyClick = async () => {
     try {

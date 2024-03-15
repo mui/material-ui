@@ -6,7 +6,7 @@ import { TabPanel as TabPanelBase } from '@mui/base/TabPanel';
 import { Tab as TabBase } from '@mui/base/Tab';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
-export const TabList = styled(TabsListBase)<{
+export const CodeTabList = styled(TabsListBase)<{
   ownerState: { mounted: boolean; contained?: boolean };
 }>(({ theme, ownerState }) => ({
   padding: ownerState?.contained ? theme.spacing(1) : 6,
@@ -46,7 +46,7 @@ export const TabPanel = styled(TabPanelBase)<{
   },
 }));
 
-export const Tab = styled(TabBase)<{ ownerState: { mounted: boolean; contained?: boolean } }>(
+export const CodeTab = styled(TabBase)<{ ownerState: { mounted: boolean; contained?: boolean } }>(
   ({ theme, ownerState }) =>
     theme.unstable_sx({
       p: ownerState?.contained ? '6px' : 0.8,
@@ -154,13 +154,13 @@ export default function HighlightedCodeWithTabs({
   const ownerState = { mounted };
   return (
     <Tabs selectionFollowsFocus value={activeTab} onChange={handleChange}>
-      <TabList ownerState={ownerState}>
+      <CodeTabList ownerState={ownerState}>
         {tabs.map(({ tab }) => (
-          <Tab ownerState={ownerState} key={tab} value={tab}>
+          <CodeTab ownerState={ownerState} key={tab} value={tab}>
             {tab}
-          </Tab>
+          </CodeTab>
         ))}
-      </TabList>
+      </CodeTabList>
       {tabs.map(({ tab, language, code }) => (
         <TabPanel ownerState={ownerState} key={tab} value={tab}>
           <HighlightedCode
