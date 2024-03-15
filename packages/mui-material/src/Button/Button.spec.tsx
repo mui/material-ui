@@ -57,7 +57,6 @@ const buttonTest = () => (
     <Button color="inherit">Contrast</Button>
     <Button disabled>Disabled</Button>
     <Button href="#link-button">Link</Button>
-    <Button target="_blank">Target</Button>
     <Button size="small">Small</Button>
     <Button variant="contained">Contained</Button>
     <Button variant="outlined" aria-label="add">
@@ -78,7 +77,9 @@ const buttonTest = () => (
     <Button component={CustomLink} to="/some-route">
       Link
     </Button>
-    <Button href="/open-collective">Link</Button>
+    <Button href="/open-collective" target="_blank">
+      Link with target _blank
+    </Button>
     {/* By default the underlying component is a button element */}
     <Button
       ref={(elem) => {
