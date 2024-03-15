@@ -129,9 +129,11 @@ module.exports = async function demoLoader() {
   const relativeModules = new Map();
   const demoNames = Array.from(
     new Set(
-      docs.en.rendered.filter((markdownOrComponentConfig) => {
-        return typeof markdownOrComponentConfig !== 'string' && markdownOrComponentConfig.demo;
-      }),
+      docs.en.rendered
+        .filter((markdownOrComponentConfig) => {
+          return typeof markdownOrComponentConfig !== 'string' && markdownOrComponentConfig.demo;
+        })
+        .map((demoConfig) => demoConfig.demo),
     ),
   );
 
