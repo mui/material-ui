@@ -1,3 +1,4 @@
+import * as path from 'node:path';
 import { transformAsync } from '@babel/core';
 import {
   type Preprocessor,
@@ -21,6 +22,7 @@ import {
   extendTheme,
   type Theme as BaseTheme,
 } from '@pigment-css/react/utils';
+import type { ResolvePluginInstance } from 'webpack';
 
 type NextMeta = {
   type: 'next';
@@ -59,6 +61,8 @@ function hasCorectExtension(fileName: string) {
 
 const VIRTUAL_CSS_FILE = `\0zero-runtime-styles.css`;
 const VIRTUAL_THEME_FILE = `\0zero-runtime-theme.js`;
+
+type AsyncResolver = (what: string, importer: string, stack: string[]) => Promise<string>;
 
 function isZeroRuntimeThemeFile(fileName: string) {
   return fileName === VIRTUAL_CSS_FILE || fileName === VIRTUAL_THEME_FILE;
@@ -134,6 +138,22 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
       };
     },
   };
+
+  let webpackResolver: AsyncResolver;
+
+  const asyncResolve: AsyncResolver = async (what, importer, stack) => {
+    const result = asyncResolveOpt?.(what);
+    if (typeof result === 'string') {
+      return result;
+    }
+    // Use Webpack's resolver to resolve actual path but
+    // ignore next.js files during evaluation phase of WyW
+    if (webpackResolver && !what.startsWith('next')) {
+      return webpackResolver(what, importer, stack);
+    }
+    return asyncResolveFallback(what, importer, stack);
+  };
+
   const linariaTransformPlugin: UnpluginOptions = {
     name: 'zero-plugin-transform-linaria',
     enforce: 'post',
@@ -143,14 +163,35 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
     transformInclude(id) {
       return isZeroRuntimeProcessableFile(id, transformLibraries);
     },
-    async transform(code, id) {
-      const asyncResolve: typeof asyncResolveFallback = async (what, importer, stack) => {
-        const result = asyncResolveOpt?.(what);
-        if (typeof result === 'string') {
-          return result;
-        }
-        return asyncResolveFallback(what, importer, stack);
+    webpack(compiler) {
+      const resolverPlugin: ResolvePluginInstance = {
+        apply(resolver) {
+          webpackResolver = function webpackAsyncResolve(
+            what: string,
+            importer: string,
+            stack: string[],
+          ) {
+            const context = path.isAbsolute(importer)
+              ? path.dirname(importer)
+              : path.join(process.cwd(), path.dirname(importer));
+            return new Promise((resolve, reject) => {
+              resolver.resolve({}, context, what, { stack: new Set(stack) }, (err, result) => {
+                if (err) {
+                  reject(err);
+                } else if (result) {
+                  resolve(result);
+                } else {
+                  reject(new Error(`${process.env.PACKAGE_NAME}: Cannot resolve ${what}`));
+                }
+              });
+            });
+          };
+        },
       };
+      compiler.options.resolve.plugins = compiler.options.resolve.plugins || [];
+      compiler.options.resolve.plugins.push(resolverPlugin);
+    },
+    async transform(code, id) {
       const transformServices = {
         options: {
           filename: id,
