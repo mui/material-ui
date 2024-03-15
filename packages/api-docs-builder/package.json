@@ -11,7 +11,7 @@
     "@babel/core": "^7.23.9",
     "@babel/preset-typescript": "^7.23.3",
     "@babel/traverse": "^7.23.9",
-    "@mui-internal/docs-utils": "workspace:^",
+    "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-markdown": "workspace:^",
     "ast-types": "^0.14.2",
     "doctrine": "^3.0.0",

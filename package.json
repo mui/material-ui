@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "5.15.12",
+  "version": "5.15.13",
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -54,9 +54,9 @@
     "test": "node scripts/test.mjs",
     "tc": "node test/cli.js",
     "test:extended": "pnpm eslint && pnpm typescript && pnpm test:coverage",
-    "test:pigment-react:ci": "pnpm nx run @pigment-css/react:test:ci",
-    "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=text mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' --exclude 'packages/pigment-react/**/*.test.{js,ts,tsx}' && pnpm test:pigment-react",
-    "test:coverage:ci": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' --exclude 'packages/pigment-react/**/*.test.{js,ts,tsx}' && pnpm test:pigment-react:ci",
+    "test:pigment-css-react:ci": "pnpm nx run @pigment-css/react:test:ci",
+    "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=text mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' --exclude 'packages/pigment-css-react/**/*.test.{js,ts,tsx}' && pnpm test:pigment-css-react",
+    "test:coverage:ci": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' --exclude 'packages/pigment-css-react/**/*.test.{js,ts,tsx}' && pnpm test:pigment-css-react:ci",
     "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=html mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
     "test:e2e": "cross-env NODE_ENV=production pnpm test:e2e:build && concurrently --success first --kill-others \"pnpm test:e2e:run\" \"pnpm test:e2e:server\"",
     "test:e2e:build": "webpack --config test/e2e/webpack.config.js",
@@ -84,6 +84,7 @@
   "dependencies": {
     "@googleapis/sheets": "^5.0.5",
     "@slack/bolt": "^3.17.1",
+    "@netlify/functions": "^2.6.0",
     "execa": "^8.0.1",
     "google-auth-library": "^9.6.3"
   },
@@ -104,10 +105,10 @@
     "@babel/preset-typescript": "^7.23.3",
     "@babel/register": "^7.23.7",
     "@mnajdova/enzyme-adapter-react-18": "^0.2.0",
+    "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-scripts": "workspace:^",
     "@mui-internal/api-docs-builder": "workspace:^",
     "@mui-internal/api-docs-builder-core": "workspace:^",
-    "@mui-internal/docs-utils": "workspace:^",
     "@mui-internal/test-utils": "workspace:^",
     "@mui/joy": "workspace:*",
     "@mui/material": "workspace:^",

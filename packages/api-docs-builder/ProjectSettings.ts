@@ -1,4 +1,4 @@
-import { ComponentClassDefinition } from '@mui-internal/docs-utils';
+import { ComponentClassDefinition } from '@mui/internal-docs-utils';
 import { ComponentInfo, HookInfo } from './buildApiUtils';
 import { CreateTypeScriptProjectOptions } from './utils/createTypeScriptProject';
 import { CreateDescribeablePropSettings } from './utils/createDescribeableProp';
@@ -60,6 +60,10 @@ export interface ProjectSettings {
    * Determine is the component definition should be updated.
    */
   skipAnnotatingComponentDefinition?: boolean | ((filename: string) => boolean);
+  /**
+   * If `true`, skips extracting CSS class and slot information from the component.
+   */
+  skipSlotsAndClasses?: boolean;
   /**
    * The path to the translation directory.
    */

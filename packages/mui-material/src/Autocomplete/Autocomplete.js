@@ -18,11 +18,12 @@ import outlinedInputClasses from '../OutlinedInput/outlinedInputClasses';
 import filledInputClasses from '../FilledInput/filledInputClasses';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { styled, createUseThemeProps } from '../zero-styled';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 import capitalize from '../utils/capitalize';
 import useForkRef from '../utils/useForkRef';
+
+const useThemeProps = createUseThemeProps('MuiAutocomplete');
 
 const useUtilityClasses = (ownerState) => {
   const {
@@ -85,7 +86,7 @@ const AutocompleteRoot = styled('div', {
       hasClearIcon && styles.hasClearIcon,
     ];
   },
-})(({ ownerState }) => ({
+})({
   [`&.${autocompleteClasses.focused} .${autocompleteClasses.clearIndicator}`]: {
     visibility: 'visible',
   },
@@ -95,16 +96,9 @@ const AutocompleteRoot = styled('div', {
       visibility: 'visible',
     },
   },
-  ...(ownerState.fullWidth && {
-    width: '100%',
-  }),
   [`& .${autocompleteClasses.tag}`]: {
     margin: 3,
     maxWidth: 'calc(100% - 6px)',
-    ...(ownerState.size === 'small' && {
-      margin: 2,
-      maxWidth: 'calc(100% - 4px)',
-    }),
   },
   [`& .${autocompleteClasses.inputRoot}`]: {
     flexWrap: 'wrap',
@@ -198,11 +192,31 @@ const AutocompleteRoot = styled('div', {
     flexGrow: 1,
     textOverflow: 'ellipsis',
     opacity: 0,
-    ...(ownerState.inputFocused && {
-      opacity: 1,
-    }),
   },
-}));
+  variants: [
+    {
+      props: { fullWidth: true },
+      style: { width: '100%' },
+    },
+    {
+      props: { size: 'small' },
+      style: {
+        [`& .${autocompleteClasses.tag}`]: {
+          margin: 2,
+          maxWidth: 'calc(100% - 4px)',
+        },
+      },
+    },
+    {
+      props: { inputFocused: true },
+      style: {
+        [`& .${autocompleteClasses.input}`]: {
+          opacity: 1,
+        },
+      },
+    },
+  ],
+});
 
 const AutocompleteEndAdornment = styled('div', {
   name: 'MuiAutocomplete',
@@ -233,13 +247,18 @@ const AutocompletePopupIndicator = styled(IconButton, {
     ...styles.popupIndicator,
     ...(ownerState.popupOpen && styles.popupIndicatorOpen),
   }),
-})(({ ownerState }) => ({
+})({
   padding: 2,
   marginRight: -2,
-  ...(ownerState.popupOpen && {
-    transform: 'rotate(180deg)',
-  }),
-}));
+  variants: [
+    {
+      props: { popupOpen: true },
+      style: {
+        transform: 'rotate(180deg)',
+      },
+    },
+  ],
+});
 
 const AutocompletePopper = styled(Popper, {
   name: 'MuiAutocomplete',
@@ -253,11 +272,16 @@ const AutocompletePopper = styled(Popper, {
       ownerState.disablePortal && styles.popperDisablePortal,
     ];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   zIndex: (theme.vars || theme).zIndex.modal,
-  ...(ownerState.disablePortal && {
-    position: 'absolute',
-  }),
+  variants: [
+    {
+      props: { disablePortal: true },
+      style: {
+        position: 'absolute',
+      },
+    },
+  ],
 }));
 
 const AutocompletePaper = styled(Paper, {

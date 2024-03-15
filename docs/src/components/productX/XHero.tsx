@@ -163,15 +163,12 @@ export default function XHero() {
                   '& .MuiDataGrid-root': {
                     border: 0,
                     color: 'text.secondary',
+                    '--DataGrid-rowBorderColor': (theme) => theme.palette.grey[200],
                     '& .MuiCheckbox-root': {
                       p: 0.5,
                       '& > svg': {
                         fontSize: '1.25rem',
                       },
-                    },
-                    '& .MuiDataGrid-columnHeaders': {
-                      borderBottom: '1px solid',
-                      borderColor: 'grey.200',
                     },
                     [`& .MuiDataGrid-columnHeader:focus, & .MuiDataGrid-columnHeader:focus-within`]:
                       {
@@ -187,22 +184,6 @@ export default function XHero() {
                     },
                     '& button, & button > svg': {
                       fontSize: 16,
-                    },
-                    '& .MuiDataGrid-cell': {
-                      fontSize: '0.875rem',
-                      color: 'text.secondary',
-                      borderBottom: '1px solid',
-                      borderColor: 'grey.200',
-                    },
-                    '& .MuiDataGrid-viewport': {
-                      '& .MuiDataGrid-cell': {
-                        fontSize: '0.875rem',
-                        color: 'text.secondary',
-                      },
-                      '& .MuiInputBase-input': {
-                        fontSize: '0.875rem',
-                        px: 0.5,
-                      },
                     },
                     '& .MuiChip-root.Rejected': {
                       color: red[800],
@@ -232,12 +213,7 @@ export default function XHero() {
                 (theme) =>
                   theme.applyDarkStyles({
                     '& .MuiDataGrid-root': {
-                      '& .MuiDataGrid-columnHeaders': {
-                        borderColor: 'divider',
-                      },
-                      '& .MuiDataGrid-cell': {
-                        borderColor: alpha(theme.palette.primaryDark[600], 0.5),
-                      },
+                      '--DataGrid-rowBorderColor': alpha(theme.palette.primaryDark[600], 0.5),
                       '& .MuiChip-root.Rejected': {
                         color: red[200],
                         backgroundColor: alpha(red[900], 0.2),
