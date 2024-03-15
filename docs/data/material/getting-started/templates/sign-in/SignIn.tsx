@@ -1,26 +1,24 @@
 import * as React from 'react';
-import { useState } from 'react';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Card from '@mui/material/Card';
-import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CssBaseline from '@mui/material/CssBaseline';
+import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
+import TextField from '@mui/material/TextField';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import { alpha } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import { alpha, PaletteMode } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { PaletteMode } from '@mui/material';
 
-import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
+import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 
+import ForgotPassword from './ForgotPassword';
 import getSignInTheme from './getSignInTheme';
 import ToggleColorMode from './ToggleColorMode';
-import ForgotPassword from './ForgotPassword';
 
 interface ToggleCustomThemeProps {
   showCustomTheme: Boolean;
@@ -82,17 +80,17 @@ export default function SignIn() {
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const defaultTheme = createTheme({ palette: { mode } });
   const SignInTheme = createTheme(getSignInTheme(mode));
-  const logo = showCustomTheme
-    ? SignInTheme.palette.mode === 'light'
-      ? darkLogo
-      : whiteLogo
-    : defaultTheme.palette.mode === 'light'
-      ? darkLogo
-      : whiteLogo;
-  const [emailError, setEmailError] = useState(false);
-  const [emailErrorMessage, setEmailErrorMessage] = useState('');
-  const [passwordError, setPasswordError] = useState(false);
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
+  const getLogo = () => {
+    if (showCustomTheme) {
+      return SignInTheme.palette.mode === 'light' ? darkLogo : whiteLogo;
+    }
+    return defaultTheme.palette.mode === 'light' ? darkLogo : whiteLogo;
+  };
+  const logo = getLogo();
+  const [emailError, setEmailError] = React.useState(false);
+  const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
+  const [passwordError, setPasswordError] = React.useState(false);
+  const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const [open, setOpen] = React.useState(false);
 
   const toggleColorMode = () => {

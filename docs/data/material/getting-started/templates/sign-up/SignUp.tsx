@@ -1,26 +1,24 @@
 import * as React from 'react';
-import { useState } from 'react';
-import Divider from '@mui/material/Divider';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControllLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import { alpha } from '@mui/material';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import Checkbox from '@mui/material/Checkbox';
+import CssBaseline from '@mui/material/CssBaseline';
+import Divider from '@mui/material/Divider';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Grid from '@mui/material/Grid';
+import Link from '@mui/material/Link';
+import TextField from '@mui/material/TextField';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import Card from '@mui/material/Card';
+import Typography from '@mui/material/Typography';
+import { alpha, PaletteMode } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { PaletteMode } from '@mui/material';
 
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 
-import getSignUptheme from './getSignUpTheme';
+import getSignUpTheme from './getSignUpTheme';
 import ToggleColorMode from './ToggleColorMode';
 
 interface ToggleCustomThemeProps {
@@ -82,22 +80,22 @@ export default function SignUp() {
   const [mode, setMode] = React.useState<PaletteMode>('light');
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const defaultTheme = createTheme({ palette: { mode } });
-  const SignUpTheme = createTheme(getSignUptheme(mode));
-  const logo = showCustomTheme
-    ? SignUpTheme.palette.mode === 'light'
-      ? darkLogo
-      : whiteLogo
-    : defaultTheme.palette.mode === 'light'
-      ? darkLogo
-      : whiteLogo;
-  const [emailError, setEmailError] = useState(false);
-  const [emailErrorMessage, setEmailErrorMessage] = useState('');
-  const [passwordError, setPasswordError] = useState(false);
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
-  const [nameError, setNameError] = useState(false);
-  const [nameErrorMessage, setNameErrorMessage] = useState('');
-  const [lastNameError, setLastNameError] = useState(false);
-  const [lastNameErrorMessage, setLastNameErrorMessage] = useState('');
+  const SignUpTheme = createTheme(getSignUpTheme(mode));
+  const getLogo = () => {
+    if (showCustomTheme) {
+      return SignUpTheme.palette.mode === 'light' ? darkLogo : whiteLogo;
+    }
+    return defaultTheme.palette.mode === 'light' ? darkLogo : whiteLogo;
+  };
+  const logo = getLogo();
+  const [emailError, setEmailError] = React.useState(false);
+  const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
+  const [passwordError, setPasswordError] = React.useState(false);
+  const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
+  const [nameError, setNameError] = React.useState(false);
+  const [nameErrorMessage, setNameErrorMessage] = React.useState('');
+  const [lastNameError, setLastNameError] = React.useState(false);
+  const [lastNameErrorMessage, setLastNameErrorMessage] = React.useState('');
 
   const validateInputs = () => {
     const email = document.getElementById('email') as HTMLInputElement;
@@ -275,7 +273,7 @@ export default function SignUp() {
                 />
               </Grid>
               <Grid item xs={12}>
-                <FormControllLabel
+                <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
                   label="I want to receive updates via email."
                 />

@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 import { alpha } from '@mui/material/styles';
 
 import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';

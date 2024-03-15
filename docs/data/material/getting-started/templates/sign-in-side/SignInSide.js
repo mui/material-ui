@@ -1,25 +1,23 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
+import CssBaseline from '@mui/material/CssBaseline';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
+import TextField from '@mui/material/TextField';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 
+import ForgotPassword from './ForgotPassword';
 import getSignInSideTheme from './getSignInSideTheme';
 import ToggleColorMode from './ToggleColorMode';
-
-import ForgotPassword from './ForgotPassword';
 
 function ToggleCustomTheme({ showCustomTheme, toggleCustomTheme }) {
   return (
@@ -79,17 +77,17 @@ export default function SignInSide() {
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const defaultTheme = createTheme({ palette: { mode } });
   const SignInSideTheme = createTheme(getSignInSideTheme(mode));
-  const logo = showCustomTheme
-    ? SignInSideTheme.palette.mode === 'light'
-      ? darkLogo
-      : whiteLogo
-    : defaultTheme.palette.mode === 'light'
-      ? darkLogo
-      : whiteLogo;
-  const [emailError, setEmailError] = useState(false);
-  const [emailErrorMessage, setEmailErrorMessage] = useState('');
-  const [passwordError, setPasswordError] = useState(false);
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
+  const getLogo = () => {
+    if (showCustomTheme) {
+      return SignInSideTheme.palette.mode === 'light' ? darkLogo : whiteLogo;
+    }
+    return defaultTheme.palette.mode === 'light' ? darkLogo : whiteLogo;
+  };
+  const logo = getLogo();
+  const [emailError, setEmailError] = React.useState(false);
+  const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
+  const [passwordError, setPasswordError] = React.useState(false);
+  const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const [open, setOpen] = React.useState(false);
 
   const toggleColorMode = () => {
@@ -278,7 +276,7 @@ export default function SignInSide() {
                   Sign In
                 </Button>
                 <Link href="#" variant="body2">
-                  Don't have an account? Sign Up
+                  Don&apos;t have an account? Sign Up
                 </Link>
               </Box>
               <ForgotPassword open={open} handleClose={handleClose} />
