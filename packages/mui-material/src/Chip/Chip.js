@@ -384,7 +384,8 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
       if (onDelete && isDeleteKeyboardEvent(event)) {
         onDelete(event);
       } else if (event.key === 'Escape' && chipRef.current) {
-        chipRef.current.blur();
+        // To let Chip have the focus back
+        // chipRef.current.blur();
       }
     }
 
@@ -455,6 +456,8 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
       );
     }
   }
+
+  console.log('running locally');
 
   return (
     <ChipRoot
