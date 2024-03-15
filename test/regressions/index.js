@@ -27,9 +27,9 @@ importRegressionFixtures.keys().forEach((path) => {
 }, []);
 
 const blacklist = [
-  'docs-getting-started-templates-landing-page/getSignInSideTheme.png', // Theme file
-  'docs-getting-started-templates-landing-page/getSignInTheme.png', // Theme file
-  'docs-getting-started-templates-landing-page/getSignUpTheme.png', // Theme file
+  'docs-getting-started-templates-sign-in-side/getSignInSideTheme.png', // Theme file
+  'docs-getting-started-templates-sign-in/getSignInTheme.png', // Theme file
+  'docs-getting-started-templates-sign-up/getSignUpTheme.png', // Theme file
   'docs-getting-started-templates-checkout/getCheckoutTheme.png', // Theme file
   'docs-getting-started-templates-landing-page/getLPTheme.png', // Theme file
   'docs-joy-getting-started-templates/TemplateCollection.png', // No public components
