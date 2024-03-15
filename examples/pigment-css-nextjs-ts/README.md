@@ -34,5 +34,5 @@ or:
 
 To learn more about this example:
 
-- [Pigment CSS documentation](https://github.com/mui/material-ui/blob/master/packages/pigment-react/README.md) - learn more about Pigment CSS features and APIs.
+- [Pigment CSS documentation](https://github.com/mui/material-ui/blob/master/packages/pigment-css-react/README.md) - learn more about Pigment CSS features and APIs.
 - [Next.js documentation](https://nextjs.org/docs) - learn about Next.js features and APIs.

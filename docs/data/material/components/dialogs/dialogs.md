@@ -17,17 +17,25 @@ Dialogs are purposefully interruptive, so they should be used sparingly.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic dialog
+## Introduction
 
-Simple dialogs can provide additional details or actions about a list item.
-For example, they can display avatars, icons, clarifying subtext, or orthogonal actions (such as adding an account).
+Dialogs are implemented using a collection of related components:
 
-Touch mechanics:
-
-- Choosing an option immediately commits the option and closes the menu
-- Touching outside of the dialog, or pressing Back, cancels the action and closes the dialog
+- Dialog: the parent component that renders the modal.
+- Dialog Title: a wrapper used for the title of a Dialog.
+- Dialog Actions: an optional container for a Dialog's Buttons.
+- Dialog Content: an optional container for displaying the Dialog's content.
+- Dialog Content Text: a wrapper for text inside of `<DialogContent />`.
+- Slide: optional [Transition](https://mui.com/material-ui/transitions/#slide) used to slide the Dialog in from the edge of the screen.
 
 {{"demo": "SimpleDialogDemo.js"}}
+
+## Basics
+
+```jsx
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+```
 
 ## Alerts
 
