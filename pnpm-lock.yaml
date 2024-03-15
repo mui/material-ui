@@ -1210,7 +1210,7 @@ importers:
         specifier: ^7.23.9
         version: 7.23.9
       '@mui/base':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-base/build
       '@mui/system':
         specifier: workspace:^
