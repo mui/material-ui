@@ -188,6 +188,7 @@ function getContents(markdown) {
     .replace(headerRegExp, '') // Remove header information
     .split(/^{{("(?:demo|component)":.*)}}$/gm) // Split markdown into an array, separating demos
     .flatMap((text) => text.split(/^(<codeblock.*?<\/codeblock>)$/gmsu))
+    .flatMap((text) => text.split(/^(<featureList.*?<\/featureList>)$/gmsu))
     .filter((content) => !emptyRegExp.test(content)); // Remove empty lines
   return rep;
 }
@@ -212,23 +213,37 @@ function getDescription(markdown) {
 }
 
 function getCodeblock(content) {
-  if (content.startsWith('<codeblock')) {
-    const storageKey = content.match(/^<codeblock [^>]*storageKey=["|'](\S*)["|'].*>/m)?.[1];
-    const blocks = [...content.matchAll(/^```(\S*) (\S*)\n(.*?)\n```/gmsu)].map(
-      ([, language, tab, code]) => ({ language, tab, code }),
-    );
-
-    const blocksData = blocks.filter(
-      (block) => block.tab !== undefined && !emptyRegExp.test(block.code),
-    );
-
-    return {
-      type: 'codeblock',
-      data: blocksData,
-      storageKey,
-    };
+  if (!content.startsWith('<codeblock')) {
+    return undefined;
   }
-  return undefined;
+  const storageKey = content.match(/^<codeblock [^>]*storageKey=["|'](\S*)["|'].*>/m)?.[1];
+  const blocks = [...content.matchAll(/^```(\S*) (\S*)\n(.*?)\n```/gmsu)].map(
+    ([, language, tab, code]) => ({ language, tab, code }),
+  );
+
+  const blocksData = blocks.filter(
+    (block) => block.tab !== undefined && !emptyRegExp.test(block.code),
+  );
+
+  return {
+    type: 'codeblock',
+    data: blocksData,
+    storageKey,
+  };
+}
+
+function getFeatureList(content) {
+  if (!content.startsWith('<featureList')) {
+    return undefined;
+  }
+  const lines = content
+    .split('\n')
+    .filter((line) => line.startsWith('- '))
+    .map((line) => line.slice(2));
+
+  return ['<ul class="feature-list">', ...lines.map((line) => `<li>${line}</li>`), '</ul>'].join(
+    '',
+  );
 }
 
 /**
@@ -476,6 +491,7 @@ module.exports = {
   getContents,
   getDescription,
   getCodeblock,
+  getFeatureList,
   getHeaders,
   getTitle,
   renderMarkdown,

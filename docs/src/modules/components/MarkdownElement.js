@@ -609,6 +609,21 @@ const Root = styled('div')(
         marginBottom: theme.spacing(1),
       },
     },
+    '& .feature-list': {
+      padding: 0,
+      listStyle: 'none',
+      '& li': {
+        marginBottom: 6,
+        display: 'flex',
+        alignItems: 'center',
+        gap: 12,
+        '::before': {
+          content: `url('/static/branding/pricing/yes-light.svg')`,
+          width: '18px',
+          height: '18px',
+        },
+      },
+    },
     '& .MuiCode-title': {
       padding: theme.spacing(1.5),
       display: 'flex',
@@ -775,6 +790,13 @@ const Root = styled('div')(
       '& summary': {
         '&:hover': {
           backgroundColor: `var(--muidocs-palette-primaryDark-800, ${darkTheme.palette.primaryDark[800]})`,
+        },
+      },
+      '& .feature-list': {
+        '& li': {
+          '::before': {
+            content: `url('/static/branding/pricing/yes-dark.svg')`,
+          },
         },
       },
     },
