@@ -1,4 +1,4 @@
-const { promises: fs, readdirSync } = require('fs');
+const { promises: fs, readdirSync, statSync } = require('fs');
 const path = require('path');
 const prepareMarkdown = require('./prepareMarkdown');
 const extractImports = require('./extractImports');
@@ -139,21 +139,31 @@ module.exports = async function demoLoader() {
 
   /**
    * @param {*} demoName
+   * @param {*} moduleFilepath
    * @param {*} variant
    * @param {*} importModuleID
-   * @example detectRelativeImports('Button', 'JS', './top100Films') => relativeModules.set('Button', new Map([['./top100Films', ['JS']]]))
+   * @example detectRelativeImports('ComboBox.js', '', JS', './top100Films') => relativeModules.set('ComboBox.js', new Map([['./top100Films.js', ['JS']]]))
    */
-  function detectRelativeImports(demoName, variant, importModuleID) {
+  function detectRelativeImports(demoName, moduleFilepath, variant, importModuleID) {
     if (importModuleID.startsWith('.')) {
       const demoMap = relativeModules.get(demoName);
+      // If the demo is a JS demo, we can assume that the relative import is either
+      // a `.js` or a `.jsx` file,
+      // with `.js` taking precedence over `.jsx`
+      // likewise for TS demos, with `.ts` taking precedence over `.tsx`
+      const extensions = variant === 'JS' ? ['.js', '.jsx'] : ['.ts', '.tsx', '.js', '.jsx'];
+      const extension = extensions.find((ext) =>
+        statSync(path.join(moduleFilepath, '..', `${importModuleID}${ext}`)),
+      );
+      const relativeModuleFilename = `${importModuleID}${extension}`;
       if (!demoMap) {
-        relativeModules.set(demoName, new Map([[importModuleID, [variant]]]));
+        relativeModules.set(demoName, new Map([[relativeModuleFilename, [variant]]]));
       } else {
-        const variantArray = demoMap.get(importModuleID);
+        const variantArray = demoMap.get(relativeModuleFilename);
         if (variantArray) {
           variantArray.push(variant);
         } else {
-          demoMap.set(importModuleID, [variant]);
+          demoMap.set(relativeModuleFilename, [variant]);
         }
       }
     }
@@ -185,9 +195,10 @@ module.exports = async function demoLoader() {
         raw: await fs.readFile(moduleFilepath, { encoding: 'utf8' }),
       };
       demoModuleIDs.add(moduleID);
+
       extractImports(demos[demoName].raw).forEach((importModuleID) => {
         // detect relative import
-        detectRelativeImports(demoName, 'JS', importModuleID);
+        detectRelativeImports(demoName, moduleFilepath, 'JS', importModuleID);
         importedModuleIDs.add(importModuleID);
       });
 
@@ -361,10 +372,10 @@ module.exports = async function demoLoader() {
         demos[demoName].rawTS = rawTS;
 
         // Extract relative imports from the TypeScript version
-        //  of demos which have relative imports in the JS version
+        // of demos which have relative imports in the JS version
         if (relativeModules.has(demoName)) {
           extractImports(demos[demoName].rawTS).forEach((importModuleID) => {
-            detectRelativeImports(demoName, 'TS', importModuleID);
+            detectRelativeImports(demoName, moduleTSFilepath, 'TS', importModuleID);
             importedModuleIDs.add(importModuleID);
           });
         }
@@ -378,12 +389,12 @@ module.exports = async function demoLoader() {
        * while grouping by demo variant
        * From:
        * relativeModules: { 'ComboBox.js' =>
-       *    { './top100Films'  => ['JS', 'TS'] }
+       *    { './top100Films.js'  => ['JS', 'TS'] }
        * }
        * To:
        * demos["ComboBox.js"].relativeModules = {
-       *     JS: [{ module: './top100Films', raw: '...' }],
-       *     TS: [{ module: './top100Films', raw: '...' }]
+       *     JS: [{ module: './top100Films.js', raw: '...' }],
+       *     TS: [{ module: './top100Films.js', raw: '...' }]
        *   }
        * }
        */
@@ -395,16 +406,10 @@ module.exports = async function demoLoader() {
         await Promise.all(
           Array.from(relativeModules.get(demoName)).map(async ([relativeModuleID, variants]) => {
             let raw = '';
-            // read a list of files in the current directory and use the first one that matches
-            const relativeFiles = await fs.readdir(path.dirname(moduleFilepath));
-            const relativeModuleFilename = relativeFiles.find((f) =>
-              f.startsWith(path.basename(relativeModuleID)),
-            );
             try {
-              raw = await fs.readFile(
-                path.join(path.dirname(moduleFilepath), relativeModuleFilename),
-                { encoding: 'utf8' },
-              );
+              raw = await fs.readFile(path.join(path.dirname(moduleFilepath), relativeModuleID), {
+                encoding: 'utf8',
+              });
             } catch {
               throw new Error(
                 `Could not find a module for the relative import "${relativeModuleID}" in the demo "${demoName}"`,
