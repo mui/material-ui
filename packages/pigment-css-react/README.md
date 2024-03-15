@@ -598,7 +598,7 @@ To get the type checking for the theme, you need to augment the theme type:
 
 ```ts
 // any file that is included in your tsconfig.json
-import type { ExtendTheme } from '@pigment-css/react';
+import type { ExtendTheme } from '@pigment-css/react/theme';
 
 declare module '@pigment-css/react/theme' {
   interface ThemeTokens {
