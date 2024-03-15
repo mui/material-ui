@@ -395,6 +395,7 @@ function createRender(context) {
     renderer.code = (code, infostring, escaped) => {
       // https://github.com/markedjs/marked/blob/30e90e5175700890e6feb1836c57b9404c854466/src/Renderer.js#L15
       const lang = (infostring || '').match(/\S*/)[0];
+      const title = (infostring || '').match(/title="([^"]*)"/)?.[1];
       const out = prism(code, lang);
       if (out != null && out !== code) {
         escaped = true;
@@ -407,7 +408,7 @@ function createRender(context) {
         return `<pre><code>${escaped ? code : escape(code, true)}</code></pre>\n`;
       }
 
-      return `<div class="MuiCode-root"><pre><code class="language-${escape(lang, true)}">${
+      return `<div class="MuiCode-root">${title ? `<div class="MuiCode-title">${title}</div>` : ''}<pre><code class="language-${escape(lang, true)}">${
         escaped ? code : escape(code, true)
       }</code></pre>${[
         '<button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">',
