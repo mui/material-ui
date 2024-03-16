@@ -130,7 +130,7 @@ function DefaultTheme() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Box sx={{ display: 'flex', gap: 2, mb: 3 }}>
+      <Box sx={{ display: 'flex', gap: 2, mb: 3, alignItems: 'center' }}>
         <FormControlLabel
           label={t('expandAll')}
           sx={{
@@ -153,7 +153,10 @@ function DefaultTheme() {
             />
           }
         />
-        {isPending && <CircularProgress size={16} />}
+        <CircularProgress
+          size={16}
+          sx={{ visibility: isPending ? 'initial' : 'hidden' }}
+        />
         <Divider orientation="vertical" flexItem />
         <FormControlLabel
           label={t('useDarkTheme')}
