@@ -73,7 +73,7 @@ function DefaultTheme() {
   const [darkTheme, setDarkTheme] = React.useState(false);
 
   const deferredChecked = React.useDeferredValue(checked);
-  const isPending = deferredChecked !== checked;
+  const isExpandAllPending = deferredChecked !== checked;
 
   React.useEffect(() => {
     let expandPath;
@@ -118,7 +118,7 @@ function DefaultTheme() {
   }, [checked, allNodeIds]);
 
   let themeViewerProps;
-  if (isPending) {
+  if (isExpandAllPending) {
     if (checked) {
       themeViewerProps = { data, expandPaths: [] };
     } else {
@@ -155,7 +155,7 @@ function DefaultTheme() {
         />
         <CircularProgress
           size={16}
-          sx={{ visibility: isPending ? 'initial' : 'hidden' }}
+          sx={{ visibility: isExpandAllPending ? 'initial' : 'hidden' }}
         />
         <Divider orientation="vertical" flexItem />
         <FormControlLabel
