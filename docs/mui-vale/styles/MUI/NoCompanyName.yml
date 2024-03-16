@@ -12,8 +12,4 @@ exceptions:
   - 'MUI Toolpad'
   - 'MUI Connect'
   - 'MUI organization' # valid use of a regular space
-
-# Don't forget to run the following command to generate the package writing-rules.zip file
-# Vale uses that ZIP file and not the YAML files.
-#
-# pnpm docs:zipRules
+  - 'MUI ecosystem' # valid use of a regular space

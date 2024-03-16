@@ -62,7 +62,7 @@ commands:
       browsers:
         type: boolean
         default: false
-        description: 'Set to true if you intend to any browser (e.g. with playwright).'
+        description: 'Set to true if you intend to any browser (for example with playwright).'
 
     steps:
       - run:

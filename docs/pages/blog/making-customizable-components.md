@@ -30,7 +30,7 @@ Usually this means that the selector with more classes applied to it is more spe
 For example, if we look at the Material UI `Switch` component, we have multiple subcomponents that we could expect to modify.
 For each of them, we assign a specific CSS class:
 
-<img src="/static/blog/making-customizable-components/switchHighlighted.png" style="width: 692px; aspect-ratio: 173/80; margin-top: 16px; margin-bottom: 16px;" loading="lazy" alt="Switch component with highlighted sub components" />
+<img src="/static/blog/making-customizable-components/switchHighlighted.png" style="width: 692px; aspect-ratio: 173/80; margin-top: 16px; margin-bottom: 16px;" loading="lazy" alt="Switch component with highlighted subcomponents" />
 
 Notice that each element is styled using only one CSS class—the thumb style, for example, is applied with the `css-jsexje-MuiSwitch-thumb` class, so any CSS selector that includes more than one class will override its style.
 

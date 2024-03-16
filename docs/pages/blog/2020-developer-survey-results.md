@@ -51,6 +51,8 @@ The responses to this question are a very clear indicator to us about what we ne
 
 As the answers to these questions were pretty different, we grouped them into different categories and counted the different number of times the concern was mentioned. You can see all of them sorted in descending order:
 
+<!-- vale MUI.CorrectReferenceAllCases = NO -->
+
 <style>th { text-align: left; border-bottom: 3px solid !important; }</style>
 
 <table>
@@ -179,6 +181,8 @@ As the answers to these questions were pretty different, we grouped them into di
   <tr><th>3</th><th>grid - improve</th><tr>
 </table>
 
+<!-- vale MUI.CorrectReferenceAllCases = YES -->
+
 ### Comparison with last year
 
 There are a couple of noticeable differences compared to last year.
@@ -279,7 +283,7 @@ section.
 
 ### 19. What styling system are you using?
 
-<img src="/static/blog/2020-survey/19.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Pie chart: 53.84% Material UI styles (JSS), 20.41% Styled components, 13.01% Good plain CSS, 8.31% CSS Modules, 1.96% Emotion, 0.59% scss, 0.59% sass, 0.09% less, 1.19% Other" />
+<img src="/static/blog/2020-survey/19.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Pie chart: 53.84% Material UI styles (JSS), 20.41% Styled components, 13.01% Good plain CSS, 8.31% CSS Modules, 1.96% Emotion, 0.59% scss, 0.59% sass, 0.09% less, 1.19% Other" />
 
 The response seems to be similar to the one from the last year's survey, so we will push with better support for styled components.
 
@@ -303,8 +307,8 @@ We want to work on the problems that resonate the most with our users.
 
 1. Provide more flexibility on the components, unstyled components (pure hooks?).
 1. Make the customization easier and implement custom themes with Material UI. Maybe provide a theme builder.
-1. Provide a second theme, update the current components to better match Material Design, provide more simple components and features (e.g. dropzone, carousel) as well as provide a better DX (there are good ideas from other UI libraries to apply to Material UI v5).
-1. Improve upon the paid advanced versions of the components (e.g. complex data grid, date range picker, tree view drag & drop, virtualization, etc).
+1. Provide a second theme, update the current components to better match Material Design, provide more simple components and features (for example dropzone, carousel) as well as provide a better DX (there are good ideas from other UI libraries to apply to Material UI v5).
+1. Improve upon the paid advanced versions of the components (for example complex data grid, date range picker, tree view drag & drop, virtualization, etc).
 
 **We will update [our ROADMAP](/material-ui/discover-more/roadmap/) in the coming days**.
 We will run a similar survey next year to keep track of our progress.

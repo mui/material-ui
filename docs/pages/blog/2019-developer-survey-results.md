@@ -270,12 +270,12 @@ section.
 
 Multiple options were allowed.
 
-- Web app (e.g. create react app): 92%
+- Web app (for example create react app): 92%
 - Progressive web app (with service worker): 25%
 - Server-side rendering 14%
-- Static web site, hosted on a CDN (e.g. Gatsby): 13%
-- Desktop app (e.g. Electron): 12%
-- Native mobile app (e.g. Cordova): 6%
+- Static web site, hosted on a CDN (for example Gatsby): 13%
+- Desktop app (for example Electron): 12%
+- Native mobile app (for example Cordova): 6%
 
 ### 16. Who are you building it for?
 
@@ -300,7 +300,7 @@ Multiple options were allowed.
 - @mui/styles: 85%
 - Styled components: 30%
 - Good old CSS (+sass, less, etc): 24%
-- CSS Modules (+sass, less, etc): 16%
+- CSS Modules (+sass, less, etc): 16%
 - Emotion: 4%
 
 Traditional CSS users are still prevalent (24% + 16%).

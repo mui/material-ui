@@ -30,7 +30,7 @@ if (process.env.NODE_ENV !== 'production') {
  * @internal
  * Typography's level will be inherit within this context unless an explicit `level` prop is provided.
  *
- * This is used in components, e.g. Table, to inherit the parent's size by default.
+ * This is used in components, for example Table, to inherit the parent's size by default.
  */
 export const TypographyInheritContext = React.createContext(false);
 
