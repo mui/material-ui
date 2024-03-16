@@ -1,4 +1,4 @@
-# Material UI - CRA example with Tailwind CSS in TypeScript
+# Material UI - CRA example with Tailwind CSS in TypeScript
 
 ## How to use
 
@@ -28,7 +28,7 @@ or:
 
 <!-- #default-branch-switch -->
 
-This example demonstrates how you can use [Tailwind CSS](https://tailwindcss.com/) and [Create React App](https://github.com/facebookincubator/create-react-app) together with Material UI.
+This example demonstrates how you can use [Tailwind CSS](https://tailwindcss.com/) and [Create React App](https://github.com/facebookincubator/create-react-app) together with Material UI.
 It includes `@mui/material` and its peer dependencies, including [Emotion](https://emotion.sh/docs/introduction), the default style engine in Material UI v5.
 
 ## What's next?

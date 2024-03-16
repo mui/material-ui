@@ -108,7 +108,7 @@ Support for non-ref-forwarding class components in the `component` prop or as im
 If you were using `unstable_createStrictModeTheme` or didn't see any warnings related to `findDOMNode` in `React.StrictMode` then you don't need to take any further action.
 
 Otherwise check out the [Caveat with refs](/material-ui/guides/composition/#caveat-with-refs) section in the Composition guide to find out how to migrate.
-This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (e.g. `<MenuList><CustomMenuItem /></MenuList>`).
+This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (for example `<MenuList><CustomMenuItem /></MenuList>`).
 
 ### Fix ref type specificity
 

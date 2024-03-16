@@ -446,7 +446,7 @@ module.exports = withPigment(
 
 #### Accessing theme values
 
-A callback can be used with **styled** and **css** APIs to access the theme values:
+A callback can be used with **styled()** and **css()** APIs to access the theme values:
 
 ```js
 const Heading = styled('h1')(({ theme }) => ({

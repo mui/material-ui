@@ -19,11 +19,11 @@ Some of the key features:
 ## Basic media query
 
 You should provide a media query to the first argument of the hook.
-The media query string can be any valid CSS media query, e.g. [`'(prefers-color-scheme: dark)'`](/material-ui/customization/dark-mode/#system-preference).
+The media query string can be any valid CSS media query, for example [`'(prefers-color-scheme: dark)'`](/material-ui/customization/dark-mode/#system-preference).
 
 {{"demo": "SimpleMediaQuery.js", "defaultCodeOpen": true}}
 
-⚠️ You can't use `'print'` per browsers limitation, e.g. [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398).
+⚠️ You can't use `'print'` per browsers limitation, for example [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398).
 
 ## Using Material UI's breakpoint helpers
 
@@ -116,7 +116,7 @@ const theme = createTheme({
 ```
 
 :::info
-Note that `noSsr` has no effects when using the `createRoot()` API (the client side only API introduced in React 18).
+Note that `noSsr` has no effects when using the `createRoot()` API (the client-side only API introduced in React 18).
 :::
 
 ## Server-side rendering
