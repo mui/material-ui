@@ -176,7 +176,7 @@ export function useNodeIdsLazy(object: Record<string, any>) {
 
 const keyPrefix = '$ROOT';
 
-export default function ThemeViewer({
+function ThemeViewer({
   data,
   expandPaths = [],
   ...other
@@ -223,3 +223,8 @@ export default function ThemeViewer({
     </TreeView>
   );
 }
+
+export default React.memo(
+  ThemeViewer,
+  (prevProps, nextProps) => prevProps.expandPaths?.length === nextProps.expandPaths?.length,
+);
