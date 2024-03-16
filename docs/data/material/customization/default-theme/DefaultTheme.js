@@ -9,6 +9,7 @@ import ThemeViewer, {
   useNodeIdsLazy,
 } from 'docs/src/modules/components/ThemeViewer';
 import { blue, grey } from 'docs/src/modules/brandingTheme';
+import { CircularProgress } from '@mui/material';
 
 const StyledSwitch = styled(Switch)(({ theme }) => [
   {
@@ -71,6 +72,9 @@ function DefaultTheme() {
   const t = useTranslate();
   const [darkTheme, setDarkTheme] = React.useState(false);
 
+  const deferredChecked = React.useDeferredValue(checked);
+  const isPending = deferredChecked !== checked;
+
   React.useEffect(() => {
     let expandPath;
     decodeURI(document.location.search.slice(1))
@@ -113,6 +117,17 @@ function DefaultTheme() {
     }
   }, [checked, allNodeIds]);
 
+  let themeViewerProps;
+  if (isPending) {
+    if (checked) {
+      themeViewerProps = { data, expandPaths: [] };
+    } else {
+      themeViewerProps = { data, expandPaths: allNodeIds };
+    }
+  } else {
+    themeViewerProps = { data, expandPaths };
+  }
+
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ display: 'flex', gap: 2, mb: 3 }}>
@@ -138,6 +153,7 @@ function DefaultTheme() {
             />
           }
         />
+        {isPending && <CircularProgress size={16} />}
         <Divider orientation="vertical" flexItem />
         <FormControlLabel
           label={t('useDarkTheme')}
@@ -161,7 +177,7 @@ function DefaultTheme() {
           }
         />
       </Box>
-      <ThemeViewer data={data} expandPaths={expandPaths} />
+      <ThemeViewer {...themeViewerProps} />;
     </Box>
   );
 }
