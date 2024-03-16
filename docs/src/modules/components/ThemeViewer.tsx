@@ -224,7 +224,9 @@ function ThemeViewer({
   );
 }
 
-export default React.memo(
-  ThemeViewer,
-  (prevProps, nextProps) => prevProps.expandPaths?.length === nextProps.expandPaths?.length,
-);
+export default React.memo(ThemeViewer, (prevProps, nextProps) => {
+  return (
+    prevProps.expandPaths?.length === nextProps.expandPaths?.length &&
+    prevProps.data.palette.mode === nextProps.data.palette.mode
+  );
+});

@@ -127,7 +127,7 @@ function DefaultTheme() {
   } else {
     themeViewerProps = { data, expandPaths };
   }
-
+  console.log(themeViewerProps);
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ display: 'flex', gap: 2, mb: 3, alignItems: 'center' }}>
