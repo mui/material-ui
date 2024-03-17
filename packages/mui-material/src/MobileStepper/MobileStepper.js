@@ -7,9 +7,11 @@ import composeClasses from '@mui/utils/composeClasses';
 import Paper from '../Paper';
 import capitalize from '../utils/capitalize';
 import LinearProgress from '../LinearProgress';
-import useThemeProps from '../styles/useThemeProps';
-import styled, { slotShouldForwardProp } from '../styles/styled';
+import { styled, createUseThemeProps } from '../zero-styled';
+import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import { getMobileStepperUtilityClass } from './mobileStepperClasses';
+
+const useThemeProps = createUseThemeProps('MuiMobileStepper');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, position } = ownerState;
@@ -80,6 +82,7 @@ const MobileStepperDots = styled('div', {
     },
   ],
 }));
+
 const mobileStepperDotDefaultStyle = ({ theme }) => ({
   transition: theme.transitions.create('background-color', {
     duration: theme.transitions.duration.shortest,
@@ -112,7 +115,7 @@ const MobileStepperDot = styled('div', {
       props: { variant: 'dots', dotActive: true },
       style: {
         ...mobileStepperDotDefaultStyle({ theme }),
-          backgroundColor: (theme.vars || theme).palette.primary.main,
+        backgroundColor: (theme.vars || theme).palette.primary.main,
       },
     },
   ],
