@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, act, fireEvent } from '@mui-internal/test-utils';
+import { createRenderer, act, fireEvent } from '@mui-internal/test-utils';
 import Fab, { fabClasses as classes } from '@mui/material/Fab';
 import ButtonBase, { touchRippleClasses } from '@mui/material/ButtonBase';
 import Icon from '@mui/material/Icon';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Fab />', () => {
   const { render, renderToString } = createRenderer();

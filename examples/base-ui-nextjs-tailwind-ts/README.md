@@ -1,6 +1,6 @@
-# Base UI - Next.js App Router with Tailwind CSS example in TypeScript
+# Base UI - Next.js App Router with Tailwind CSS example in TypeScript
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped using [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with Base UI installed and Tailwind CSS for styles.
+This is a [Next.js](https://nextjs.org/) project bootstrapped using [`create-next-app`](https://github.com/vercel/next.js/tree/HEAD/packages/create-next-app) with Base UI installed and Tailwind CSS for styles.
 
 ## How to use
 
@@ -33,4 +33,4 @@ or
 To learn more about this example:
 
 - [Next.js documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Customizing Base UI](https://mui.com/base-ui/getting-started/customization/) - strategies for styling and customizing Base UI.
+- [Customizing Base UI](https://mui.com/base-ui/getting-started/customization/) - strategies for styling and customizing Base UI.

@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import composeClasses from '@mui/utils/composeClasses';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
@@ -40,7 +40,7 @@ const SvgIconRoot = styled('svg', {
   height: '1em',
   display: 'inline-block',
   // the <svg> will define the property that has `currentColor`
-  // e.g. heroicons uses fill="none" and stroke="currentColor"
+  // for example heroicons uses fill="none" and stroke="currentColor"
   fill: ownerState.hasSvgAsChild ? undefined : 'currentColor',
   flexShrink: 0,
   transition: theme.transitions?.create?.('fill', {

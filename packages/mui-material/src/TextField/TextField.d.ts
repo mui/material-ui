@@ -232,8 +232,8 @@ export type TextFieldProps<Variant extends TextFieldVariants = TextFieldVariants
   Variant extends 'filled'
     ? FilledTextFieldProps
     : Variant extends 'standard'
-    ? StandardTextFieldProps
-    : OutlinedTextFieldProps;
+      ? StandardTextFieldProps
+      : OutlinedTextFieldProps;
 
 /**
  * The `TextField` is a convenience wrapper for the most common cases (80%).

@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import { act, createRenderer, describeConformance } from '@mui-internal/test-utils';
+import { act, createRenderer } from '@mui-internal/test-utils';
 import { Transition } from 'react-transition-group';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Slide from '@mui/material/Slide';
 import { setTranslateValue } from './Slide';
 import { useForkRef } from '../utils';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Slide />', () => {
   const { clock, render } = createRenderer();

@@ -4,7 +4,7 @@
 
 ## Default color tokens
 
-Joy UI's default theme includes 5 built-in semantic color palettes, with light and dark mapping, to help you build great looking UIs quickly.
+Joy UI's default theme includes 5 built-in semantic color palettes, with light and dark mapping, to help you build great looking UIs quickly.
 
 {{"demo": "PaletteThemeViewer.js", "bg": "inline"}}
 
@@ -14,7 +14,7 @@ Some tokens reuse color values from others using the [`var(--*)`](https://develo
 
 ### Global variant tokens
 
-One of Joy UI's main features is the four [global variants](/joy-ui/main-features/global-variants/) that are available in every component. They use the built-in color palettes following the format of **variant type | state | CSS property**. For example:
+One of Joy UI's main features is the four [global variants](/joy-ui/main-features/global-variants/) that are available in every component. They use the built-in color palettes following the format of **variant type | state | CSS property**. For example:
 
 - `solidBg` refers to the solid variant's background color in its initial state.
 - `outlinedHoverBorder` refers to the outlined variant's border color in its hover state.
@@ -76,14 +76,14 @@ const theme = extendTheme({
 ### Changing the global variant tokens
 
 A good way to start changing how color looks like with the built-in variants is by using the Button component as a jumping-off point.
-For example, here's how you'd make the Joy UI Button match the colors of another system, such as [Bootstrap](https://getbootstrap.com/docs/5.2/components/buttons/#examples):
+For example, here's how you'd make the Joy UI Button match the colors of another system, such as [Bootstrap](https://getbootstrap.com/docs/5.2/components/buttons/#examples):
 
 {{"demo": "BootstrapVariantTokens.js"}}
 
-- Bootstrap's default buttons are comparable to Joy UI's `solid` variant.
-- Bootstrap's `secondary` variant uses a grey color, similar to Joy UI's `neutral`.
-- Bootstrap's `btn-light` is similar to Joy UI's button using the `soft` variant and `neutral` color palette.
-- Joy UI's defaults don't include anything similar to Bootstrap's `btn-dark`.
+- Bootstrap's default buttons are comparable to Joy UI's `solid` variant.
+- Bootstrap's `secondary` variant uses a gray color, similar to Joy UI's `neutral`.
+- Bootstrap's `btn-light` is similar to Joy UI's button using the `soft` variant and `neutral` color palette.
+- Joy UI's defaults don't include anything similar to Bootstrap's `btn-dark`.
   - We can recreate it using one of the three main customization approaches.
 
 ### Adding color tokens
@@ -132,7 +132,7 @@ declare module '@mui/joy/styles' {
 Adding custom tokens increases your stylesheet's bundle size, and adds an extra set of maintenance costs to your app.
 These tradeoffs mean that adding new tokens is usually only worthwhile when you know that they'll be used by many components.
 
-As an alternative, consider using [the `sx` prop](/joy-ui/customization/approaches/#sx-prop) for one-off customizations.
+As an alternative, consider using [the `sx` prop](/joy-ui/customization/approaches/#the-sx-prop) for one-off customizations.
 :::
 
 ### Adding new palettes
@@ -212,7 +212,7 @@ const theme = extendTheme({
 // Then, pass it to `<CssVarsProvider theme={theme}>`.
 ```
 
-Then, you will be able to use `secondary` color on Joy UI components:
+Then, you will be able to use `secondary` color on Joy UI components:
 
 ```js
 <Button color="secondary">
@@ -230,7 +230,7 @@ import type { PaletteRange } from '@mui/joy/styles';
 
 declare module '@mui/joy/styles' {
   interface ColorPalettePropOverrides {
-    // apply to all Joy UI components that support `color` prop
+    // apply to all Joy UI components that support `color` prop
     secondary: true;
   }
 
@@ -254,26 +254,4 @@ This removes them from the `theme` object and prevents the corresponding CSS var
 For example, all default global variant color tokens comes with styles for the `:active` pseudo class.
 Here's how you'd remove it from the solid variant.
 
-```jsx
-// ⚠️ If the value is `undefined`, it should be `undefined` for all color schemes.
-const theme = extendTheme({
-  colorSchemes: {
-    light: {
-      palette: {
-        primary: {
-          solidActiveBg: undefined,
-        },
-      },
-    },
-    dark: {
-      palette: {
-        primary: {
-          solidActiveBg: undefined,
-        },
-      },
-    },
-  },
-});
-```
-
-{{"demo": "RemoveActiveTokens.js"}}
+{{"demo": "RemoveActiveTokens.js", "defaultCodeOpen": true}}

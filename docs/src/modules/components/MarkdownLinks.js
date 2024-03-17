@@ -22,13 +22,13 @@ function isLink(event) {
     activeElement = activeElement.parentElement;
   }
 
-  // Ignore non internal link clicks
+  // Ignore non internal link clicks.
+  // Absolute URLs can be internal, we delegate this to Next.js's router
   if (
     activeElement === null ||
     activeElement.nodeName !== 'A' ||
     activeElement.getAttribute('target') === '_blank' ||
-    activeElement.getAttribute('data-no-markdown-link') === 'true' ||
-    activeElement.getAttribute('href').indexOf('/') !== 0
+    activeElement.getAttribute('data-no-markdown-link') === 'true'
   ) {
     return null;
   }
@@ -40,13 +40,13 @@ function isLink(event) {
  * @param {MouseEvent} event
  */
 function handleClick(event) {
-  const activeElement = isLink(event);
-  if (activeElement === null) {
+  // Ignore click events meant for native link handling, for example open in new tab
+  if (samePageLinkNavigation(event)) {
     return;
   }
 
-  // Ignore click meant for native link handling, e.g. open in new tab
-  if (samePageLinkNavigation(event)) {
+  const activeElement = isLink(event);
+  if (activeElement === null) {
     return;
   }
 

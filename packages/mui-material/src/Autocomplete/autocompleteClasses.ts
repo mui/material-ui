@@ -12,11 +12,11 @@ export interface AutocompleteClasses {
   focused: string;
   /** Styles applied to the option elements if they are keyboard focused. */
   focusVisible: string;
-  /** Styles applied to the tag elements, e.g. the chips. */
+  /** Styles applied to the tag elements, for example the chips. */
   tag: string;
-  /** Styles applied to the tag elements, e.g. the chips if `size="small"`. */
+  /** Styles applied to the tag elements, for example the chips if `size="small"`. */
   tagSizeSmall: string;
-  /** Styles applied to the tag elements, e.g. the chips if `size="medium"`. */
+  /** Styles applied to the tag elements, for example the chips if `size="medium"`. */
   tagSizeMedium: string;
   /** Styles applied when the popup icon is rendered. */
   hasPopupIcon: string;

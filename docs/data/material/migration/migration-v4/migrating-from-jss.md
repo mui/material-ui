@@ -1,8 +1,8 @@
 # Migrating from JSS (optional)
 
-<p class="description">This guide explains how to migrate from JSS to Emotion when updating from Material UI v4 to v5.</p>
+<p class="description">This guide explains how to migrate from JSS to Emotion when updating from Material UI v4 to v5.</p>
 
-## Material UI v5 migration
+## Material UI v5 migration
 
 1. [Getting started](/material-ui/migration/migration-v4/)
 2. [Breaking changes part one: style and theme](/material-ui/migration/v5-style-changes/)
@@ -14,7 +14,7 @@
 
 One of the biggest changes in v5 is the replacement of JSS for [Emotion](https://emotion.sh/docs/introduction) (or [styled-components](https://styled-components.com/) as an alternative) as a default styling solution .
 
-Note that you may continue to use JSS for adding overrides for the components (e.g. `makeStyles`, `withStyles`) even after migrating to v5.
+Note that you may continue to use JSS for adding overrides for the components (for example `makeStyles`, `withStyles`) even after migrating to v5.
 Then, if at any point you want to move over to the new styling engine, you can refactor your components progressively.
 
 :::info
@@ -191,7 +191,7 @@ This tool is _not_ maintained by MUI.
 ### 2. Use [tss-react](https://github.com/garronej/tss-react)
 
 :::error
-This API will not work if you are [using `styled-components` as the underlying styling engine in place of `@emotion`](/material-ui/guides/interoperability/#styled-components).
+This API will not work if you are [using `styled-components` as the underlying styling engine in place of `@emotion`](/material-ui/integrations/interoperability/#styled-components).
 :::
 
 The API is similar to JSS `makeStyles`, but under the hood, it uses `@emotion/react`.
@@ -436,7 +436,7 @@ The equivalent of the `$` syntax is also supported in tss's `withStyles()`.
 
 Follow the instructions in the relevant section of the [Breaking changes](/material-ui/migration/v5-style-changes/#restructure-component-definitions) doc, and [provide a `name` to `makeStyles`](https://docs.tss-react.dev/api/makestyles#naming-the-stylesheets-useful-for-debugging-and-theme-style-overrides).
 
-In Material UI v5, [style overrides also accept callbacks](https://mui.com/material-ui/customization/theme-components/).
+In Material UI v5, [style overrides also accept callbacks](https://mui.com/material-ui/customization/theme-components/).
 
 By default, TSS is only able to provide the theme.
 If you want to provide the props and the `ownerState`, [please refer to this documentation](https://docs.tss-react.dev/mui-global-styleoverrides).
@@ -445,7 +445,7 @@ If you want to provide the props and the `ownerState`, [please refer to this doc
 tss-react is _not_ maintained by MUI.
 
 If you have any question about how to setup SSR (Next.js), or if you are wondering
-how to customize the `theme` object, please refer to the tss-react documentation—particularly the [MUI integration section](https://github.com/garronej/tss-react#mui-integration).
+how to customize the `theme` object, please refer to the [tss-react documentation](https://github.com/garronej/tss-react#mui-integration).
 
 You can also [submit an issue](https://github.com/garronej/tss-react/issues/new) for any bug or feature request, and [start a discussion](https://github.com/garronej/tss-react/discussions) if you need help.
 :::

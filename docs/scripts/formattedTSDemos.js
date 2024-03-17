@@ -15,12 +15,15 @@ const path = require('path');
 const fse = require('fs-extra');
 const babel = require('@babel/core');
 const prettier = require('prettier');
-const { getPropTypesFromFile, injectPropTypesInFile } = require('typescript-to-proptypes');
+const {
+  getPropTypesFromFile,
+  injectPropTypesInFile,
+} = require('@mui/internal-scripts/typescript-to-proptypes');
 const {
   createTypeScriptProjectBuilder,
 } = require('@mui-internal/api-docs-builder/utils/createTypeScriptProject');
 const yargs = require('yargs');
-const { fixBabelGeneratorIssues, fixLineEndings } = require('@mui-internal/docs-utilities');
+const { fixBabelGeneratorIssues, fixLineEndings } = require('@mui/internal-docs-utils');
 const { default: CORE_TYPESCRIPT_PROJECTS } = require('../../scripts/coreTypeScriptProjects');
 
 const babelConfig = {
@@ -39,9 +42,7 @@ async function getFiles(root) {
 
   try {
     await Promise.all(
-      (
-        await fse.readdir(root)
-      ).map(async (name) => {
+      (await fse.readdir(root)).map(async (name) => {
         const filePath = path.join(root, name);
         const stat = await fse.stat(filePath);
 
@@ -83,7 +84,9 @@ async function transpileFile(tsxPath, project) {
     const source = await fse.readFile(tsxPath, 'utf8');
 
     const transformOptions = { ...babelConfig, filename: tsxPath };
-    const enableJSXPreview = !tsxPath.includes(path.join('pages', 'premium-themes'));
+    const enableJSXPreview =
+      !tsxPath.includes(path.join('pages', 'premium-themes')) &&
+      !tsxPath.includes(path.join('getting-started', 'templates'));
     if (enableJSXPreview) {
       transformOptions.plugins = transformOptions.plugins.concat([
         [
@@ -112,19 +115,19 @@ async function transpileFile(tsxPath, project) {
       },
     });
     const codeWithPropTypes = injectPropTypesInFile({ components: propTypesAST, target: code });
-    const prettierConfig = prettier.resolveConfig.sync(jsPath, {
+    const prettierConfig = await prettier.resolveConfig(jsPath, {
       config: path.join(workspaceRoot, 'prettier.config.js'),
     });
-    const prettierFormat = (jsSource) =>
+    const prettierFormat = async (jsSource) =>
       prettier.format(jsSource, { ...prettierConfig, filepath: jsPath });
 
     const codeWithoutTsIgnoreComments = codeWithPropTypes.replace(/^\s*\/\/ @ts-ignore.*$/gm, '');
-    const prettified = prettierFormat(codeWithoutTsIgnoreComments);
+    const prettified = await prettierFormat(codeWithoutTsIgnoreComments);
     const formatted = fixBabelGeneratorIssues(prettified);
     const correctedLineEndings = fixLineEndings(source, formatted);
 
     // removed blank lines change potential formatting
-    await fse.writeFile(jsPath, prettierFormat(correctedLineEndings));
+    await fse.writeFile(jsPath, await prettierFormat(correctedLineEndings));
     return TranspileResult.Success;
   } catch (err) {
     console.error('Something went wrong transpiling %s\n%s\n', tsxPath, err);

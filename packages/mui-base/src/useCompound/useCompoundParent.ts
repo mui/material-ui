@@ -4,7 +4,6 @@ import * as React from 'react';
 interface RegisterItemReturnValue<Key> {
   /**
    * The id of the item.
-   * If the `id` was `undefined`, an id from the `missingKeyGenerator` will be used.
    */
   id: Key;
   /**
@@ -19,7 +18,7 @@ export type CompoundComponentContextValue<Key, Subitem> = {
   /**
    * Registers an item with the parent.
    * This should be called during the effect phase of the child component.
-   * The `itemMetadata` should be a stable reference (e.g. a memoized object), to avoid unnecessary re-registrations.
+   * The `itemMetadata` should be a stable reference (for example a memoized object), to avoid unnecessary re-registrations.
    *
    * @param id Id of the item or A function that generates a unique id for the item.
    *   It is called with the set of the ids of all the items that have already been registered.
@@ -44,7 +43,9 @@ export const CompoundComponentContext = React.createContext<CompoundComponentCon
   any
 > | null>(null);
 
-CompoundComponentContext.displayName = 'CompoundComponentContext';
+if (process.env.NODE_ENV !== 'production') {
+  CompoundComponentContext.displayName = 'CompoundComponentContext';
+}
 
 export interface UseCompoundParentReturnValue<Key, Subitem extends { ref: React.RefObject<Node> }> {
   /**

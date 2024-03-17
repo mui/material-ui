@@ -1,12 +1,12 @@
 export function openSidebar() {
-  if (typeof document !== 'undefined') {
+  if (typeof window !== 'undefined') {
     document.body.style.overflow = 'hidden';
     document.documentElement.style.setProperty('--SideNavigation-slideIn', '1');
   }
 }
 
 export function closeSidebar() {
-  if (typeof document !== 'undefined') {
+  if (typeof window !== 'undefined') {
     document.documentElement.style.removeProperty('--SideNavigation-slideIn');
     document.body.style.removeProperty('overflow');
   }

@@ -11,7 +11,7 @@ import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import IconImage from 'docs/src/components/icon/IconImage';
 import ROUTES from 'docs/src/route';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
 
 const Navigation = styled('nav')(({ theme }) => [
@@ -48,10 +48,8 @@ const Navigation = styled('nav')(({ theme }) => [
           },
         },
         '&:focus-visible': {
-          outline: 0,
-          color: (theme.vars || theme).palette.grey[900],
-          backgroundColor: (theme.vars || theme).palette.grey[50],
-          borderColor: (theme.vars || theme).palette.primary[300],
+          outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
+          outlineOffset: '2px',
         },
        
         
@@ -65,10 +63,6 @@ const Navigation = styled('nav')(({ theme }) => [
           color: (theme.vars || theme).palette.primary[50],
           backgroundColor: alpha(theme.palette.primaryDark[700], 0.8),
           borderColor: (theme.vars || theme).palette.divider,
-        },
-        '&:focus-visible': {
-          color: (theme.vars || theme).palette.primary[50],
-          backgroundColor: (theme.vars || theme).palette.primaryDark[600],
         },
       },
     },
@@ -313,7 +307,7 @@ export default function HeaderNavBar() {
                         id={PRODUCT_IDS[4]}
                         href={ROUTES.productToolpad}
                         icon={<IconImage name="product-toolpad" />}
-                        name="MUI Toolpad"
+                        name="Toolpad"
                         chip={<Chip label="Beta" size="small" color="primary" variant="outlined" />}
                         description="Low-code admin builder."
                       />

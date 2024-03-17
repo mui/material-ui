@@ -106,6 +106,7 @@ describe('Multiple nested theme providers', () => {
     storage = {};
     window.matchMedia = createMatchMedia(false) as unknown as typeof window.matchMedia;
   });
+
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
   });

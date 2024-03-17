@@ -33,6 +33,11 @@ This constraint makes building rich data tables challenging.
 The [`DataGrid` component](/x/react-data-grid/) is designed for use-cases that are focused on handling large amounts of tabular data.
 While it comes with a more rigid structure, in exchange, you gain more powerful features.
 
+:::info
+The demo below uses the MUI X Data Grid v7, which is currently in beta.
+Visit [the documentation](https://next.mui.com/x/react-data-grid/) to learn more about it.
+:::
+
 {{"demo": "DataTable.js", "bg": "inline"}}
 
 ## Dense table
@@ -83,7 +88,7 @@ The `ActionsComponent` prop of the `TablePagination` component allows the implem
 
 Here is an example of a table with scrollable rows and fixed column headers.
 It leverages the `stickyHeader` prop.
-(⚠️ no IE 11 support)
+(⚠️ no IE 11 support)
 
 {{"demo": "StickyHeadTable.js", "bg": true}}
 

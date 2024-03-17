@@ -17,7 +17,7 @@ import NestedListContext from '../List/NestedListContext';
 import RowListContext from '../List/RowListContext';
 import WrapListContext from '../List/WrapListContext';
 import ComponentListContext from '../List/ComponentListContext';
-import ListSubheaderDispatch from '../ListSubheader/ListSubheaderContext';
+import ListSubheaderContext from '../ListSubheader/ListSubheaderContext';
 import GroupListContext from '../List/GroupListContext';
 
 const useUtilityClasses = (ownerState: ListItemOwnerState) => {
@@ -65,7 +65,7 @@ export const StyledListItem = styled('li')<{ ownerState: ListItemOwnerState }>(
       } as const),
     // Base styles
     {
-      // Integration with control elements, e.g. Checkbox, Radio.
+      // Integration with control elements, for example Checkbox, Radio.
       '--unstable_actionRadius': 'calc(var(--ListItem-radius) - var(--variant-borderWidth, 0px))',
       ...(ownerState.startAction && {
         '--unstable_startActionWidth': '2rem', // to add sufficient padding-left on ListItemButton
@@ -244,7 +244,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   });
 
   return (
-    <ListSubheaderDispatch.Provider value={setSubheaderId}>
+    <ListSubheaderContext.Provider value={setSubheaderId}>
       <NestedListContext.Provider value={nested ? subheaderId || true : false}>
         <SlotRoot {...rootProps}>
           {startAction && <SlotStartAction {...startActionProps}>{startAction}</SlotStartAction>}
@@ -265,7 +265,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
           {endAction && <SlotEndAction {...endActionProps}>{endAction}</SlotEndAction>}
         </SlotRoot>
       </NestedListContext.Provider>
-    </ListSubheaderDispatch.Provider>
+    </ListSubheaderContext.Provider>
   );
 }) as OverridableComponent<ListItemTypeMap>;
 

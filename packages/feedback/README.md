@@ -45,7 +45,7 @@ The project includes an IAM access policy that will grant the lambda function ac
 To set this up, first [set up the credentials](https://claudiajs.com/tutorials/installing.html#configuring-access-credentials), then:
 
 1. run `pnpm install` (from the root workspace) to install the dependencies
-1. Navigate into the directory of this README, e.g. `cd docs/packages/feedback`
+1. Navigate into the directory of this README, for example `cd docs/packages/feedback`
 1. run `pnpm setup` to create the lambda function on AWS under the default name.
    This will also ask you for table names for development and production.
    If you used the above AWS command, they will be `feedback-dev` and `feedback-dev` respectively.

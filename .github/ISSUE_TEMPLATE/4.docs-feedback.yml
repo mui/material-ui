@@ -1,19 +1,17 @@
 name: Docs feedback
-description: Improve documentation about Material UI, Joy UI, Base UI, MUI System.
+description: Improve documentation about Material UI, Base UI, MUI System, or Joy UI.
 labels: ['status: waiting for maintainer', 'support: docs-feedback']
 title: '[docs] '
 body:
   - type: markdown
     attributes:
-      value: |
-        Please provide a searchable summary of the issue in the title above ⬆️.
-
-        Thanks for contributing by creating an issue! ❤️
+      value: Thanks for contributing by creating an issue! ❤️ Please provide a searchable summary of the issue in the title above ⬆️.
   - type: input
     attributes:
       label: Search keywords
-      description: Your issue may have already been reported! List the keywords you've used to search the [existing issues](https://github.com/mui/material-ui/issues). This will also make your issue searchable for others.
-      placeholder: e.g. datagrid column resizing
+      description: |
+        Your issue may have already been reported! First search for duplicates among the [existing issues](https://github.com/mui/material-ui/issues?q=is%3Aopen+is%3Aclosed).
+        If your issue isn't a duplicate, great! Please list the keywords you used so people in the future can find this one more easily:
     validations:
       required: true
   - type: input
@@ -40,9 +38,7 @@ body:
       label: Issue description
       description: |
         Let us know what went wrong when you were using this documentation and what we could do to improve it.
-      value: |
-        I was looking for ... and it appears that ...
   - type: textarea
     attributes:
       label: Context
-      description: What are you trying to accomplish? What brought you to this page? Your context can help us to come up with solutions that benefit the community as a whole.
+      description: What are you trying to accomplish? Providing context helps us come up with a solution that is more useful in the real world.
