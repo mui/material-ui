@@ -533,7 +533,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
         "Can't cleanup before fake timers are restored.\n" +
           'Be sure to:\n' +
           '  1. Only use `clock` from `createRenderer`.\n' +
-          '  2. Call `createRenderer` in a suite and not any test hook (e.g. `beforeEach`) or test itself (e.g. `it`).',
+          '  2. Call `createRenderer` in a suite and not any test hook (for example `beforeEach`) or test itself (for example `it`).',
       );
       // Use saved stack otherwise the stack trace will not include the test location.
       error.stack = createClientRenderStack;

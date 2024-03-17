@@ -166,7 +166,7 @@ The `useMenuItemContextStabilizer` hook ensures that the context value changes o
 
 :::info
 The following features can be used with both components and hooks.
-For the sake of simplicity, demos and code snippets primarily feature components.
+For the sake of simplicity, demos, and code snippets primarily feature components.
 :::
 
 ### Wrapping Menu Items

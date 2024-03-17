@@ -122,7 +122,7 @@ export function valueToLiteral(value: unknown, expression?: ExpressionValue): t.
 
   throw (
     expression?.buildCodeFrameError(
-      `The expression evaluated to '${value}', which is probably a mistake. If you want it to be inserted into CSS, explicitly cast or transform the value to a string, e.g. - 'String(${expression.source})'.`,
+      `The expression evaluated to '${value}', which is probably a mistake. If you want it to be inserted into CSS, explicitly cast or transform the value to a string, for example - 'String(${expression.source})'.`,
     ) ?? new Error(`Could not convert value: "${value}" to literal.`)
   );
 }

@@ -167,7 +167,7 @@ chai.use((chaiAPI, utils) => {
     // `CSSStyleDeclaration` is not constructable
     // https://stackoverflow.com/a/52732909/3406963
     // this is not equivalent to the declaration from `getComputedStyle`
-    // e.g. `getComputedStyle` would return a readonly declaration
+    // for example `getComputedStyle` would return a readonly declaration
     // let's hope this doesn't get passed around until it's no longer clear where it comes from
     const declaration = document.createElement('span').style;
 

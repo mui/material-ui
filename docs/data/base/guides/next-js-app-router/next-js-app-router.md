@@ -6,7 +6,7 @@
 
 Starting fresh on a new App Router-based project?
 
-Jump right into the code with [this example: Base UI - Next.js App Router with Tailwind CSS in TypeScript](https://github.com/mui/material-ui/tree/master/examples/base-ui-nextjs-tailwind-ts).
+Jump right into the code with [this example: Base UI - Next.js App Router with Tailwind CSS in TypeScript](https://github.com/mui/material-ui/tree/master/examples/base-ui-nextjs-tailwind-ts).
 
 ## Next.js and React Server Components
 
@@ -24,11 +24,11 @@ For more details, see [this explanation](https://github.com/reactwg/server-compo
 ## Setting up Base UI with the App Router
 
 Base UI gives you the freedom to choose your own styling solution, so setting up a Next.js App Router project largely depends on what you choose.
-This guide covers Tailwind CSS, Emotion, and other CSS-in-JS solutions like styled-components.
+This guide covers Tailwind CSS, Emotion, and other CSS-in-JS solutions like styled-components.
 
-### Tailwind CSS
+### Tailwind CSS
 
-Follow the [Tailwind CSS guide on working with Next.js](https://tailwindcss.com/docs/guides/nextjs), and be sure to add the `app` directory and other directories to `tailwind.config.js`, as shown below:
+Follow the [Tailwind CSS guide on working with Next.js](https://tailwindcss.com/docs/guides/nextjs), and be sure to add the `app` directory and other directories to `tailwind.config.js`, as shown below:
 
 ```js
 /** @type {import('tailwindcss').Config} */
@@ -46,7 +46,7 @@ module.exports = {
 };
 ```
 
-Refer to this [example repo](https://github.com/mui/material-ui/tree/master/examples/base-ui-nextjs-tailwind-ts) for a full working demo of a Next.js 13 app using Base UI and Tailwind CSS.
+Refer to this [example repo](https://github.com/mui/material-ui/tree/master/examples/base-ui-nextjs-tailwind-ts) for a full working demo of a Next.js 13 app using Base UI and Tailwind CSS.
 
 ### Emotion
 
@@ -124,7 +124,7 @@ export default function RootLayout(props) {
 }
 ```
 
-If you need to further override theme styles (e.g. using CSS modules), Emotion provides the `prepend: true` option for `createCache` to reverse the injection order, so custom styles can override the theme without using `!important`.
+If you need to further override theme styles (for example using CSS Modules), Emotion provides the `prepend: true` option for `createCache` to reverse the injection order, so custom styles can override the theme without using `!important`.
 
 Currently, `prepend` does not work reliably with the App Router, but you can work around it by wrapping Emotion styles in a CSS `@layer` with a modification to the snippet above:
 

@@ -1632,13 +1632,13 @@ npx @mui/codemod@latest v5.0.0/jss-to-tss-react <path>
 The following scenarios are not currently handled by this codemod and will be marked with a
 "TODO jss-to-tss-react codemod" comment:
 
-- If the hook returned by `makeStyles` (e.g. `useStyles`) is exported and used in another file,
+- If the hook returned by `makeStyles` (for example `useStyles`) is exported and used in another file,
   the usages in other files will not be converted.
 - Arrow functions as the value for a CSS prop will not be converted. Arrow functions **are**
   supported at the rule level, though with some caveats listed below.
 - In order for arrow functions at the rule level to be converted, the parameter must use object
-  destructuring (e.g. `root: ({color, padding}) => (...)`). If the parameter is not destructured
-  (e.g. `root: (props) => (...)`), it will not be converted.
+  destructuring (for example `root: ({color, padding}) => (...)`). If the parameter is not destructured
+  (for example `root: (props) => (...)`), it will not be converted.
 - If an arrow function at the rule level contains a code block (i.e. contains an explicit `return`
   statement) rather than just an object expression, it will not be converted.
 

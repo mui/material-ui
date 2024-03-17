@@ -181,7 +181,7 @@ html {
 }
 ```
 
-_You need to apply the above CSS on the html element of this page to see the below demo rendered correctly_
+_You need to apply the above CSS on the HTML element of this page to see the below demo rendered correctly_
 
 {{"demo": "FontSizeTheme.js"}}
 
