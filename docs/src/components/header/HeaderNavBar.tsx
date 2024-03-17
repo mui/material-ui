@@ -38,9 +38,10 @@ const Navigation = styled('nav')(({ theme }) => [
         borderRadius: (theme.vars || theme).shape.borderRadius,
         border: '1px solid transparent',
         '&:hover': {
-          color: (theme.vars || theme).palette.grey[900],
+          color: theme.palette.primary.main,
           backgroundColor: (theme.vars || theme).palette.grey[50],
           borderColor: (theme.vars || theme).palette.grey[100],
+          
           '@media (hover: none)': {
             backgroundColor: 'initial',
             // Reset on touch devices, it doesn't add specificity
@@ -52,6 +53,8 @@ const Navigation = styled('nav')(({ theme }) => [
           backgroundColor: (theme.vars || theme).palette.grey[50],
           borderColor: (theme.vars || theme).palette.primary[300],
         },
+       
+        
       },
     },
   },
@@ -132,6 +135,8 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
 );
 
 export default function HeaderNavBar() {
+
+ 
   const [subMenuOpen, setSubMenuOpen] = React.useState<null | 'products' | 'docs'>(null);
   const [subMenuIndex, setSubMenuIndex] = React.useState<number | null>(null);
   const navRef = React.useRef<HTMLUListElement | null>(null);
@@ -374,13 +379,13 @@ export default function HeaderNavBar() {
           </Popper>
         </li>
         <li>
-          <Link href={ROUTES.pricing}>Pricing</Link>
+          <Link href={ROUTES.pricing} >Pricing</Link>
         </li>
         <li>
           <Link href={ROUTES.about}>About us</Link>
         </li>
         <li>
-          <Link href={ROUTES.blog}>Blog</Link>
+          <Link href={ROUTES.blog} >Blog</Link>
         </li>
       </ul>
     </Navigation>
