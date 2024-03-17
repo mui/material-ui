@@ -80,6 +80,16 @@ const MobileStepperDots = styled('div', {
     },
   ],
 }));
+const mobileStepperDotDefaultStyle = ({ theme }) => ({
+  transition: theme.transitions.create('background-color', {
+    duration: theme.transitions.duration.shortest,
+  }),
+  backgroundColor: (theme.vars || theme).palette.action.disabled,
+  borderRadius: '50%',
+  width: 8,
+  height: 8,
+  margin: '0 2px',
+});
 
 const MobileStepperDot = styled('div', {
   name: 'MuiMobileStepper',
