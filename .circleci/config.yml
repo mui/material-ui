@@ -21,7 +21,7 @@ parameters:
     type: string
     default: ''
 
-defaults: &defaults
+default-job: &default-job
   parameters:
     react-version:
       description: The version of react to be used
@@ -46,6 +46,10 @@ defaults: &defaults
   working_directory: /tmp/material-ui
   docker:
     - image: cimg/node:18.19
+
+default-context: &default-context
+  context:
+    - org-global
 
 # CircleCI has disabled the cache across forks for security reasons.
 # Following their official statement, it was a quick solution, they
@@ -113,7 +117,7 @@ commands:
 
 jobs:
   checkout:
-    <<: *defaults
+    <<: *default-job
     steps:
       - checkout
       - install_js
@@ -135,7 +139,7 @@ jobs:
                       pnpm dedupe --check
                   fi
   test_unit:
-    <<: *defaults
+    <<: *default-job
     steps:
       - checkout
       - install_js
@@ -187,7 +191,7 @@ jobs:
             chmod +x codecov
             ./codecov -t ${CODECOV_TOKEN} -Z -F "$REACT_VERSION-jsdom"
   test_lint:
-    <<: *defaults
+    <<: *default-job
     steps:
       - checkout
       - install_js
@@ -204,7 +208,7 @@ jobs:
           name: Lint Markdown
           command: pnpm markdownlint
   test_static:
-    <<: *defaults
+    <<: *default-job
     steps:
       - checkout
       - install_js
@@ -246,7 +250,7 @@ jobs:
             pnpm docs:link-check
             git add -A && git diff --exit-code --staged
   test_types:
-    <<: *defaults
+    <<: *default-job
     resource_class: 'medium+'
     steps:
       - checkout
@@ -288,7 +292,7 @@ jobs:
             - packages/mui-lab/build
             - packages/mui-utils/build
   test_types_next:
-    <<: *defaults
+    <<: *default-job
     resource_class: 'medium+'
     steps:
       - checkout
@@ -335,7 +339,7 @@ jobs:
             node scripts/testBuiltTypes.mjs
             exit 0
   test_browser:
-    <<: *defaults
+    <<: *default-job
     resource_class: 'medium+'
     docker:
       - image: mcr.microsoft.com/playwright:v1.42.1-focal
@@ -366,7 +370,7 @@ jobs:
           path: /tmp/_karma_webpack_
           destination: artifact-file
   test_e2e:
-    <<: *defaults
+    <<: *default-job
     docker:
       - image: mcr.microsoft.com/playwright:v1.42.1-focal
         environment:
@@ -386,7 +390,7 @@ jobs:
           command: pnpm test:umd
   test_e2e_website:
     # NOTE: This workflow runs after successful docs deploy. See /test/e2e-website/README.md#ci
-    <<: *defaults
+    <<: *default-job
     docker:
       - image: mcr.microsoft.com/playwright:v1.42.1-focal
         environment:
@@ -401,7 +405,7 @@ jobs:
           environment:
             PLAYWRIGHT_TEST_BASE_URL: << parameters.e2e-base-url >>
   test_profile:
-    <<: *defaults
+    <<: *default-job
     docker:
       - image: mcr.microsoft.com/playwright:v1.42.1-focal
         environment:
@@ -428,7 +432,7 @@ jobs:
           path: tmp/react-profiler-report/karma
           destination: react-profiler-report/karma
   test_regressions:
-    <<: *defaults
+    <<: *default-job
     docker:
       - image: mcr.microsoft.com/playwright:v1.42.1-focal
         environment:
@@ -444,7 +448,7 @@ jobs:
           name: Upload screenshots to Argos CI
           command: pnpm test:argos
   test_bundling_prepare:
-    <<: *defaults
+    <<: *default-job
     steps:
       - checkout
       - install_js
@@ -457,7 +461,7 @@ jobs:
             - '*/build'
 
   test_bundling_node-esm:
-    <<: *defaults
+    <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/node-esm/
     steps:
       - checkout:
@@ -481,7 +485,7 @@ jobs:
             pnpm start
             exit 0
   test_bundling_next-webpack4:
-    <<: *defaults
+    <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
     docker:
       - image: mcr.microsoft.com/playwright:v1.42.1-focal
@@ -505,7 +509,7 @@ jobs:
           name: Test fixture
           command: pnpm start
   test_bundling_next-webpack5:
-    <<: *defaults
+    <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
     docker:
       - image: mcr.microsoft.com/playwright:v1.42.1-focal
@@ -529,7 +533,7 @@ jobs:
           name: Test fixture
           command: pnpm start
   test_bundling_create-react-app:
-    <<: *defaults
+    <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     docker:
       - image: mcr.microsoft.com/playwright:v1.42.1-focal
@@ -553,7 +557,7 @@ jobs:
           name: Test fixture
           command: pnpm start
   test_bundling_snowpack:
-    <<: *defaults
+    <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
     docker:
       - image: mcr.microsoft.com/playwright:v1.42.1-focal
@@ -577,7 +581,7 @@ jobs:
           name: Test fixture
           command: pnpm start
   test_bundling_vite:
-    <<: *defaults
+    <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
     docker:
       - image: mcr.microsoft.com/playwright:v1.42.1-focal
@@ -601,7 +605,7 @@ jobs:
           name: Test fixture
           command: pnpm start
   test_bundling_esbuild:
-    <<: *defaults
+    <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
     docker:
       - image: mcr.microsoft.com/playwright:v1.42.1-focal
@@ -629,7 +633,7 @@ jobs:
             pnpm start
             exit 0
   test_bundling_gatsby:
-    <<: *defaults
+    <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
     docker:
       - image: mcr.microsoft.com/playwright:v1.42.1-focal
@@ -652,7 +656,7 @@ jobs:
           name: Test fixture
           command: pnpm start
   test_bundle_size_monitor:
-    <<: *defaults
+    <<: *default-job
     steps:
       - checkout
       - install_js
@@ -731,7 +735,7 @@ jobs:
           environment:
             DANGER_COMMAND: 'reportBundleSize'
   test_benchmark:
-    <<: *defaults
+    <<: *default-job
     docker:
       - image: mcr.microsoft.com/playwright:v1.42.1-focal
         environment:
@@ -751,37 +755,48 @@ workflows:
     when:
       equal: [pipeline, << pipeline.parameters.workflow >>]
     jobs:
-      - checkout
+      - checkout:
+          <<: *default-context
       - test_unit:
+          <<: *default-context
           requires:
             - checkout
       - test_lint:
+          <<: *default-context
           requires:
             - checkout
       - test_static:
+          <<: *default-context
           requires:
             - checkout
       - test_types:
+          <<: *default-context
           requires:
             - checkout
       - test_browser:
+          <<: *default-context
           requires:
             - checkout
       - test_regressions:
+          <<: *default-context
           requires:
             - checkout
       - test_e2e:
+          <<: *default-context
           requires:
             - checkout
       - test_bundle_size_monitor:
+          <<: *default-context
           requires:
             - checkout
   e2e-website:
     when:
       equal: [e2e-website, << pipeline.parameters.workflow >>]
     jobs:
-      - checkout
+      - checkout:
+          <<: *default-context
       - test_e2e_website:
+          <<: *default-context
           requires:
             - checkout
 
@@ -789,36 +804,46 @@ workflows:
     when:
       equal: [bundling, << pipeline.parameters.workflow >>]
     jobs:
-      - test_bundling_prepare
+      - test_bundling_prepare:
+          <<: *default-context
       - test_bundling_node-esm:
+          <<: *default-context
           requires:
             - test_bundling_prepare
       - test_bundling_next-webpack4:
+          <<: *default-context
           requires:
             - test_bundling_prepare
       - test_bundling_next-webpack5:
+          <<: *default-context
           requires:
             - test_bundling_prepare
       - test_bundling_create-react-app:
+          <<: *default-context
           requires:
             - test_bundling_prepare
       - test_bundling_snowpack:
+          <<: *default-context
           requires:
             - test_bundling_prepare
       - test_bundling_vite:
+          <<: *default-context
           requires:
             - test_bundling_prepare
       - test_bundling_esbuild:
+          <<: *default-context
           requires:
             - test_bundling_prepare
       - test_bundling_gatsby:
+          <<: *default-context
           requires:
             - test_bundling_prepare
   profile:
     when:
       equal: [profile, << pipeline.parameters.workflow >>]
     jobs:
-      - test_profile
+      - test_profile:
+          <<: *default-context
   react-17:
     triggers:
       - schedule:
@@ -829,12 +854,16 @@ workflows:
                 - master
     jobs:
       - test_unit:
+          <<: *default-context
           react-version: ^17.0.0
       - test_browser:
+          <<: *default-context
           react-version: ^17.0.0
       - test_regressions:
+          <<: *default-context
           react-version: ^17.0.0
       - test_e2e:
+          <<: *default-context
           react-version: ^17.0.0
   react-next:
     triggers:
@@ -846,12 +875,16 @@ workflows:
                 - master
     jobs:
       - test_unit:
+          <<: *default-context
           react-version: next
       - test_browser:
+          <<: *default-context
           react-version: next
       - test_regressions:
+          <<: *default-context
           react-version: next
       - test_e2e:
+          <<: *default-context
           react-version: next
   typescript-next:
     triggers:
@@ -862,9 +895,11 @@ workflows:
               only:
                 - master
     jobs:
-      - test_types_next
+      - test_types_next:
+          <<: *default-context
   benchmark:
     when:
       equal: [benchmark, << pipeline.parameters.workflow >>]
     jobs:
-      - test_benchmark
+      - test_benchmark:
+          <<: *default-context
