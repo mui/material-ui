@@ -207,6 +207,43 @@ jobs:
       - run:
           name: Lint Markdown
           command: pnpm markdownlint
+      - run:
+          # See https://circleci.com/developer/orbs/orb/circleci/vale as reference
+          name: Install Vale
+          command: |
+            #!/bin/bash
+            VALE_STR_CLI_VERSION=3.3.0
+
+            mkdir /tmp/vale-extract
+            cd /tmp/vale-extract
+            GZIPPED_OUTPUT="vale.tar.gz"
+            BINARY_URL=https://github.com/errata-ai/vale/releases/download/v${VALE_STR_CLI_VERSION}/vale_${VALE_STR_CLI_VERSION}_Linux_64-bit.tar.gz
+            curl -sSL "$BINARY_URL" -o "${GZIPPED_OUTPUT}"
+
+            if [ ! -s "${GZIPPED_OUTPUT}" ]; then
+              echo "Downloaded file is empty"
+              rm "${GZIPPED_OUTPUT}"
+              exit 1
+            fi
+
+            tar -xzf "${GZIPPED_OUTPUT}"
+            $SUDO mv vale /usr/local/bin
+            rm "${GZIPPED_OUTPUT}"
+
+            # validate installation
+            if [[ -z "$(command -v vale)" ]]; then
+              echo "vale installation failed"
+              exit 1
+            else
+              echo "vale installation successful"
+              vale --version
+              exit 0
+            fi
+      - run:
+          name: Lint writing style
+          command: |
+            vale sync
+            pnpm run valelint
   test_static:
     <<: *default-job
     steps:

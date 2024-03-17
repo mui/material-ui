@@ -59,10 +59,10 @@ you can play around with it in [CodeSandbox](https://codesandbox.io/p/sandbox/fa
 }
 ```
 
-### Let JS generate the CSS
+### Let JavaScript generate the CSS
 
 Maybe you don't want to spend your time switching between CSS and JavaScript files, or writing long, cluttered stylesheets.
-To avoid these problems you can integrate styles directly into your JS code. 🎉
+To avoid these problems you can integrate styles directly into your JavaScript code. 🎉
 
 Because the level of customization varies across projects, Material UI's components can be customized in several different ways.
 For more information on this topic, check out the [Material UI customization documentation](https://mui.com/material-ui/customization/how-to-customize/).

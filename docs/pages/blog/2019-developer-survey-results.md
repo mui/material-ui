@@ -281,7 +281,7 @@ Multiple options were allowed.
 
 <img src="/static/blog/2019-developer-survey-results/16.png" style="display: block; margin: 0 auto;" alt="Pie chart: 54,3% for my company, 24.9% for a client, 15.2% as a side project, 5.6% more than one of these." />
 
-### 17. Which JS framework are you using, if any?
+### 17. Which JavaScript framework are you using, if any?
 
 Multiple options were allowed.
 

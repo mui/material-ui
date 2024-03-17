@@ -34,7 +34,7 @@ Thanks to recent advancements in CSS (like CSS variables and `color-mix()`), "tr
 Pigment CSS addresses the needs of the modern React developer by providing a zero-runtime CSS-in-JS styling solution as a successor to tools like Emotion and styled-components.
 
 Compared to its predecessors, Pigment CSS offers improved DX and runtime performance (though at the cost of increased build time) while also being compatible with React Server Components.
-Pigment CSS is built on top of [WyW-in-JS](https://wyw-in-js.dev/), enabling us to provide the smoothest possible experience for Material UI users when migrating from Emotion in v5 to Pigment CSS in v6.
+Pigment CSS is built on top of [WyW-in-JS](https://wyw-in-js.dev/), enabling to provide the smoothest possible experience for Material UI users when migrating from Emotion in v5 to Pigment CSS in v6.
 
 ### Start with Next.js
 
@@ -157,7 +157,7 @@ function App() {
 }
 ```
 
-The call to the `css` function will be replaced with a unique string that represents the CSS class name for the generated styles.
+The call to the `css` function is replaced with a unique string that represents the CSS class name for the generated styles.
 
 Use a callback function to get access to the [theme](#theming) values:
 
@@ -264,7 +264,7 @@ const Button = styled('button')({
 });
 ```
 
-Note that the `props` function will not work if it is inside another closure, for example, inside an `array.map`:
+Note that the `props` function doesn't work if it is inside another closure, for example, inside an `array.map`:
 
 ```jsx
 const Button = styled('button')({
@@ -307,7 +307,7 @@ const Heading = styled('h1')({
 });
 ```
 
-Pigment CSS will replace the callback with a CSS variable and inject the value through inline style. This makes it possible to create a static CSS file while still allowing dynamic styles.
+Pigment CSS replaces the callback with a CSS variable and inject the value through inline style. This makes it possible to create a static CSS file while still allowing dynamic styles.
 
 ```css
 .Heading_class_akjsdfb {
@@ -384,7 +384,7 @@ function Example1() {
 }
 ```
 
-The call to the `keyframes` function will be replaced with a unique string that represents the CSS animation name. It can be used with `css` or `styled` too.
+The call to the `keyframes` function is replaced with a unique string that represents the CSS animation name. It can be used with `css` or `styled` too.
 
 ```js
 import { css, styled, keyframes } from '@pigment-css/react';
@@ -415,7 +415,7 @@ Theming is an **optional** feature that lets you reuse the same values, such as 
 
 > **💡 Good to know**:
 >
-> The **theme** object is used at build time and does not exist in the final JS bundle. This means that components created using Pigment's `styled` can be used with React Server Components by default while still getting the benefits of theming.
+> The **theme** object is used at build time and does not exist in the final JavaScript bundle. This means that components created using Pigment CSS's `styled` can be used with React Server Components by default while still getting the benefits of theming.
 
 For example, in Next.js, you can define a theme in the `next.config.js` file like this:
 
@@ -484,7 +484,7 @@ module.exports = withPigment(
 );
 ```
 
-The `extendTheme` utility will go through the theme and create a `vars` object which represents the tokens that refer to CSS variables.
+The `extendTheme` utility goes through the theme and create a `vars` object which represents the tokens that refer to CSS variables.
 
 ```jsx
 const theme = extendTheme({
@@ -508,7 +508,7 @@ extendTheme({
 });
 ```
 
-The generated CSS variables will have the `pigment` prefix:
+The generated CSS variables has the `pigment` prefix:
 
 ```css
 :root {
@@ -579,7 +579,7 @@ function App() {
 #### Styling based on color scheme
 
 The `extendTheme` utility attaches a function called `applyStyles` to the theme object. It receives a color scheme as the first argument followed by a style object.
-It will return a proper CSS selector based on the theme configuration.
+It returns a proper CSS selector based on the theme configuration.
 
 ```jsx
 const Heading = styled('h1')(({ theme }) => ({
@@ -620,7 +620,7 @@ declare module '@pigment-css/react/theme' {
 
 Emotion and styled-components are runtime CSS-in-JS libraries. What you write in your styles is what you get in the final bundle, which means the styles can be as dynamic as you want with bundle size and performance overhead trade-offs.
 
-On the other hand, Pigment CSS extracts CSS at build time and replaces the JS code with hashed class names and some CSS variables. This means that it has to know all of the styles to be extracted ahead of time, so there are rules and limitations that you need to be aware of when using JavaScript callbacks or variables in Pigment CSS's APIs.
+On the other hand, Pigment CSS extracts CSS at build time and replaces the JavaScript code with hashed class names and some CSS variables. This means that it has to know all of the styles to be extracted ahead of time, so there are rules and limitations that you need to be aware of when using JavaScript callbacks or variables in Pigment CSS's APIs.
 
 Here are some common patterns and how to achieve them with Pigment CSS:
 
@@ -669,7 +669,7 @@ const Flex = styled('div')((props) => ({
 
 2. **Programatically generated styles**
 
-For Emotion and styled-components, the styles will be different on each render and instance because the styles are generated at runtime:
+For Emotion and styled-components, the styles is different on each render and instance because the styles are generated at runtime:
 
 ```js
 function randomBetween(min: number, max: number) {
@@ -693,7 +693,7 @@ function App() {
 }
 ```
 
-However, in Pigment CSS with the same code as above, all instances will have the same styles and won't change between renders because the styles are extracted at build time.
+However, in Pigment CSS with the same code as above, all instances have the same styles and won't change between renders because the styles are extracted at build time.
 
 To achieve the same result, you need to move the dynamic logic to props and pass the value to CSS variables instead:
 
