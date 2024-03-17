@@ -84,7 +84,7 @@ You can also unsubscribe from our marketing communications at any time by follow
 
 ## Data Retention
 
-We may retain your personal information as long as you continue to use the Services, have an account with us or for as long as is necessary to fulfil the purposes outlined in the policy. You can ask to close your account by contacting us at the details below and we will delete your personal information on request.
+We may retain your personal information as long as you continue to use the Services, have an account with us or for as long as is necessary to fulfill the purposes outlined in the policy. You can ask to close your account by contacting us at the details below and we will delete your personal information on request.
 
 We may however retain personal information for an additional period as is permitted or required under applicable laws, for legal, tax or regulatory reasons, or for legitimate and lawful business purposes.
 
