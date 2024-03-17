@@ -33,38 +33,52 @@ const MobileStepperRoot = styled(Paper, {
 
     return [styles.root, styles[`position${capitalize(ownerState.position)}`]];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'space-between',
   alignItems: 'center',
   background: (theme.vars || theme).palette.background.default,
   padding: 8,
-  ...(ownerState.position === 'bottom' && {
-    position: 'fixed',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    zIndex: (theme.vars || theme).zIndex.mobileStepper,
-  }),
-  ...(ownerState.position === 'top' && {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
-    zIndex: (theme.vars || theme).zIndex.mobileStepper,
-  }),
+  variants: [
+    {
+      props: { position: 'bottom' },
+      style: {
+        borderRadius: 0,
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        zIndex: (theme.vars || theme).zIndex.mobileStepper,
+      },
+    },
+    {
+      props: { position: 'top' },
+      style: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: (theme.vars || theme).zIndex.mobileStepper,
+      },
+    },
+  ],
 }));
 
 const MobileStepperDots = styled('div', {
   name: 'MuiMobileStepper',
   slot: 'Dots',
   overridesResolver: (props, styles) => styles.dots,
-})(({ ownerState }) => ({
-  ...(ownerState.variant === 'dots' && {
-    display: 'flex',
-    flexDirection: 'row',
-  }),
+})(() => ({
+  variants: [
+    {
+      props: { variant: 'dots' },
+      style: {
+        display: 'flex',
+        flexDirection: 'row',
+      },
+    },
+  ],
 }));
 
 const MobileStepperDot = styled('div', {
@@ -76,30 +90,41 @@ const MobileStepperDot = styled('div', {
 
     return [styles.dot, dotActive && styles.dotActive];
   },
-})(({ theme, ownerState, dotActive }) => ({
-  ...(ownerState.variant === 'dots' && {
-    transition: theme.transitions.create('background-color', {
-      duration: theme.transitions.duration.shortest,
-    }),
-    backgroundColor: (theme.vars || theme).palette.action.disabled,
-    borderRadius: '50%',
-    width: 8,
-    height: 8,
-    margin: '0 2px',
-    ...(dotActive && {
-      backgroundColor: (theme.vars || theme).palette.primary.main,
-    }),
-  }),
+})(({ theme, dotActive }) => ({
+  variants: [
+    {
+      props: { variant: 'dots' },
+      style: {
+        transition: theme.transitions.create('background-color', {
+          duration: theme.transitions.duration.shortest,
+        }),
+        backgroundColor: (theme.vars || theme).palette.action.disabled,
+        borderRadius: '50%',
+        width: 8,
+        height: 8,
+        margin: '0 2px',
+        ...(dotActive && {
+          backgroundColor: (theme.vars || theme).palette.primary.main,
+        }),
+      },
+    },
+  ],
 }));
 
 const MobileStepperProgress = styled(LinearProgress, {
   name: 'MuiMobileStepper',
   slot: 'Progress',
   overridesResolver: (props, styles) => styles.progress,
-})(({ ownerState }) => ({
-  ...(ownerState.variant === 'progress' && {
-    width: '50%',
-  }),
+})(() => ({
+  variants: [
+    {
+      props: { variant: 'progress' },
+      style: {
+        flex: 1,
+        margin: '0 8.5px',
+      },
+    },
+  ],
 }));
 
 const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
