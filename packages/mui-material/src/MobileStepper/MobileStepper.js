@@ -90,22 +90,19 @@ const MobileStepperDot = styled('div', {
 
     return [styles.dot, dotActive && styles.dotActive];
   },
-})(({ theme, dotActive }) => ({
+})(({ theme }) => ({
   variants: [
     {
-      props: { variant: 'dots' },
+      props: { variant: 'dots', dotActive: false },
       style: {
-        transition: theme.transitions.create('background-color', {
-          duration: theme.transitions.duration.shortest,
-        }),
-        backgroundColor: (theme.vars || theme).palette.action.disabled,
-        borderRadius: '50%',
-        width: 8,
-        height: 8,
-        margin: '0 2px',
-        ...(dotActive && {
+        ...mobileStepperDotDefaultStyle({ theme }),
+      },
+    },
+    {
+      props: { variant: 'dots', dotActive: true },
+      style: {
+        ...mobileStepperDotDefaultStyle({ theme }),
           backgroundColor: (theme.vars || theme).palette.primary.main,
-        }),
       },
     },
   ],
