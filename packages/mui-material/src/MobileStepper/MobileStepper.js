@@ -71,7 +71,7 @@ const MobileStepperDots = styled('div', {
   name: 'MuiMobileStepper',
   slot: 'Dots',
   overridesResolver: (props, styles) => styles.dots,
-})(() => ({
+})({
   variants: [
     {
       props: { variant: 'dots' },
@@ -81,7 +81,7 @@ const MobileStepperDots = styled('div', {
       },
     },
   ],
-}));
+});
 
 const mobileStepperDotDefaultStyle = ({ theme }) => ({
   transition: theme.transitions.create('background-color', {
