@@ -253,7 +253,7 @@ Click on **Details** to find out more about them.
 ### Updating the component API documentation
 
 The component API in the component `propTypes` and under `docs/pages/api-docs` is auto-generated from the [JSDoc](https://jsdoc.app/about-getting-started.html) in the TypeScript declarations.
-Be sure to update the documentation in the corresponding `.d.ts` files (e.g. `packages/mui-material/src/Button/Button.d.ts` for `<Button>`) and then run:
+Be sure to update the documentation in the corresponding `.d.ts` files (for example `packages/mui-material/src/Button/Button.d.ts` for `<Button>`) and then run:
 
 ```bash
 $ pnpm proptypes
@@ -300,11 +300,11 @@ docs/src/pages/components/buttons/
 #### 2. Write the demo code
 
 We uses TypeScript to document our components.
-We prefer demos written in TS (using the `.tsx` file format).
+We prefer demos written in TypeScript (using the `.tsx` file format).
 
 After creating a TypeScript demo, run `pnpm docs:typescript:formatted` to automatically create the JavaScript version, which is also required.
 
-If you're not familiar with TypeScript, you can write the demo in JavaScript, and a core contributor may help you migrate it to TS.
+If you're not familiar with TypeScript, you can write the demo in JavaScript, and a core contributor may help you migrate it to TypeScript.
 
 #### 3. Edit the page's Markdown file
 

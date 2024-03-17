@@ -2,7 +2,7 @@
   "componentDescription": "",
   "propDescriptions": {
     "baseClassName": {
-      "description": "The base class applied to the icon. Defaults to &#39;material-icons&#39;, but can be changed to any other base class that suits the icon font you&#39;re using (e.g. material-icons-rounded, fas, etc)."
+      "description": "The base class applied to the icon. Defaults to &#39;material-icons&#39;, but can be changed to any other base class that suits the icon font you&#39;re using (for example material-icons-rounded, fas, etc)."
     },
     "children": { "description": "The name of the icon font ligature." },
     "classes": { "description": "Override or extend the styles applied to the component." },

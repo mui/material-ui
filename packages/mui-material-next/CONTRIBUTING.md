@@ -13,7 +13,7 @@ If the issue doesn't exist, create it, name it `[<ComponentName>][material-next]
    - Change imports from `@mui/material` to `@mui/material-next`
    - If there are utils that don't exist in `material-next`, add them by copying from `material`
    - Some utils imported from `../utils` might already exist in `@mui/utils`, if so, use the latter
-2. Migrate component to Typescript. The extension `.d.ts` should be replaced with `.types.ts` (except for `index.d.ts` which won't be necessary)
+2. Migrate component to TypeScript. The extension `.d.ts` should be replaced with `.types.ts` (except for `index.d.ts` which won't be necessary)
 3. Remove deprecated `components` (note the plural `s`, it's not the same as the `component` prop) and `componentsProps` props, replacing them with `slots` and `slotProps`
 4. Drop support for `ThemeProvider` in favor of `CssVarsProvider`. In practice, this means:
    - Consuming tokens from `theme.vars` instead of `theme`
