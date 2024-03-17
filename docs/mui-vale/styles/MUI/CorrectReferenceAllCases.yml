@@ -6,9 +6,10 @@ ignorecase: true
 # swap maps tokens in form of bad: good
 # for more information: https://vale.sh/docs/topics/styles/#substitution
 swap:
-  api: API
+  ' api': API
   typescript: TypeScript
-  ts: TypeScript
+  ' ts': TypeScript
+  ' js': JavaScript
   javascript: JavaScript
   ' css ': CSS
   ' html ': HTML

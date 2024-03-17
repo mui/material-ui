@@ -97,7 +97,7 @@ Learn more about controlled and uncontrolled components in the [React documentat
 
 :::info
 The following features can be used with both components and hooks.
-For the sake of simplicity, demos and code snippets primarily feature components.
+For the sake of simplicity, demos, and code snippets primarily feature components.
 :::
 
 ### Accessing the form control state
