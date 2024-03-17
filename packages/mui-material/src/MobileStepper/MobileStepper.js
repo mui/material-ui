@@ -115,17 +115,16 @@ const MobileStepperProgress = styled(LinearProgress, {
   name: 'MuiMobileStepper',
   slot: 'Progress',
   overridesResolver: (props, styles) => styles.progress,
-})(() => ({
+})({
   variants: [
     {
       props: { variant: 'progress' },
       style: {
-        flex: 1,
-        margin: '0 8.5px',
+        width: '50%',
       },
     },
   ],
-}));
+});
 
 const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiMobileStepper' });
