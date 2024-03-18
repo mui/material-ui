@@ -32,7 +32,7 @@ export interface UseCompoundItemReturnValue<Key> {
  *   This can be either a value, or a function that generates a value based on already registered siblings' ids.
  *   If a function, it's called with the set of the ids of all the items that have already been registered.
  *   Return `existingKeys.size` if you want to use the index of the new item as the id.
- * @param itemMetadata Arbitrary metadata to pass to the parent component. This should be a stable reference (e.g. a memoized object), to avoid unnecessary re-registrations.
+ * @param itemMetadata Arbitrary metadata to pass to the parent component. This should be a stable reference (for example a memoized object), to avoid unnecessary re-registrations.
  *
  * @ignore - internal hook.
  */

@@ -1,6 +1,6 @@
 # Engineering Manager — Toolpad
 
-<p class="description">You will grow the small engineering team currently working on MUI Toolpad.</p>
+<p class="description">You will grow the small engineering team currently working on Toolpad.</p>
 
 ## Details of the role
 
@@ -42,7 +42,7 @@ Our mission is to empower as many people as possible to build great UIs, faster.
 The faster and simpler it is, and the broader the audience that can create custom UIs, the better.
 We believe that the best way to improve on these dimensions is to eliminate [80%](https://www.youtube.com/watch?v=GnO7D5UaDig&t=2451s) of the code that has to be written.
 
-A few months back we started to work on [MUI Toolpad](https://github.com/mui/mui-toolpad), an ambitious project to deliver on this objective.
+A few months back we started to work on [Toolpad](https://github.com/mui/mui-toolpad), an ambitious project to deliver on this objective.
 We have found the beginning of a market fit in this low-code segment.
 We need help to structure & grow the engineering team.
 
@@ -68,11 +68,11 @@ Depending on the day, you'll:
 - Act as a servant leader for the engineers that report to you. You will support the career growth of individuals on your team.
 - Develop a great work environment.
 - Work directly with users and the engineering team to improve the product.
-- Improve our processes, e.g. the lifecycle of feature development from design through testing and release.
+- Improve our processes, for example the lifecycle of feature development from design through testing and release.
 
 For the right candidate:
 
-- Working with the Leadership to construct and execute a hiring plan to grow the engineering team on toolpad from one to multiple
+- Working with the Leadership to construct and execute a hiring plan to grow the engineering team on Toolpad from one to multiple
 
 ## Who we're looking for
 

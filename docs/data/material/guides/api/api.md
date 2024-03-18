@@ -48,10 +48,10 @@ to make the classes structure as simple as possible, while sufficient to impleme
 
 - The class applied to the root element is always called `root`.
 - All the default styles are grouped in a single class.
-- The classes applied to non-root elements are prefixed with the name of the element, e.g. `paperWidthXs` in the Dialog component.
-- The variants applied by a boolean prop **aren't** prefixed, e.g. the `rounded` class
+- The classes applied to non-root elements are prefixed with the name of the element, for example `paperWidthXs` in the Dialog component.
+- The variants applied by a boolean prop **aren't** prefixed, for example the `rounded` class
   applied by the `rounded` prop.
-- The variants applied by an enum prop **are** prefixed, e.g. the `colorPrimary` class
+- The variants applied by an enum prop **are** prefixed, for example the `colorPrimary` class
   applied by the `color="primary"` prop.
 - A variant has **one level of specificity**.
   The `color` and `variant` props are considered a variant.
@@ -168,8 +168,8 @@ to that component instead.
 
 ## Glossary
 
-- **host component**: a DOM node type in the context of `react-dom`, e.g. a `'div'`. See also [React Implementation Notes](https://legacy.reactjs.org/docs/implementation-notes.html#mounting-host-elements).
-- **host element**: a DOM node in the context of `react-dom`, e.g. an instance of `window.HTMLDivElement`.
-- **outermost**: The first component when reading the component tree from top to bottom i.e. breadth-first search.
+- **host component**: a DOM node type in the context of `react-dom`, for example a `'div'`. See also [React Implementation Notes](https://legacy.reactjs.org/docs/implementation-notes.html#mounting-host-elements).
+- **host element**: a DOM node in the context of `react-dom`, for example an instance of `window.HTMLDivElement`.
+- **outermost**: The first component when reading the component tree from top to bottom, that is breadth-first search.
 - **root component**: the outermost component that renders a host component.
 - **root element**: the outermost element that renders a host component.

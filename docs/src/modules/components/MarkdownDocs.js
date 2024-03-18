@@ -32,7 +32,7 @@ export default function MarkdownDocs(props) {
     disableAd = false,
     disableToc = false,
     /**
-     * Some pages, e.g. Joy theme builder, should not be a nested CssVarsProvider to control its own state.
+     * Some pages, for example Joy theme builder, should not be a nested CssVarsProvider to control its own state.
      * This config will skip the CssVarsProvider at the root of the page.
      */
     disableCssVarsProvider = false,

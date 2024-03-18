@@ -121,7 +121,7 @@ We have primarily focused on the data grid components, fixing a lot of bugs, but
 The date picker is at the border between the advanced components and the design system realms.
 
 - 📚 We have fixed the generation of the API pages.
-  We now document all the props supported by the public pickers components, e.g. [DatePicker](https://mui.com/api/date-picker/).
+  We now document all the props supported by the public pickers components, for example [DatePicker](https://mui.com/api/date-picker/).
 - ⚙️ We have mostly focused on addressing the technical debt present in the picker components (ported from `@materal-ui/pickers`).
 
 #### Data Grid

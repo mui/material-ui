@@ -10,7 +10,7 @@ import remarkVisit from 'unist-util-visit';
 import type { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import { renderMarkdown } from '@mui/internal-markdown';
-import { ComponentClassDefinition } from '@mui-internal/docs-utils';
+import { ComponentClassDefinition } from '@mui/internal-docs-utils';
 import { ProjectSettings, SortingStrategiesType } from '../ProjectSettings';
 import { ComponentInfo, toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
@@ -55,7 +55,7 @@ export interface ReactApi extends ReactDocgenApi {
   /**
    * If `true`, the component supports theme default props customization.
    * If `null`, we couldn't infer this information.
-   * If `undefined`, it's not applicable in this context, e.g. Base UI components.
+   * If `undefined`, it's not applicable in this context, for example Base UI components.
    */
   themeDefaultProps: boolean | undefined | null;
   /**

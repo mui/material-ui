@@ -27,8 +27,8 @@ const Navigation = styled('nav')(({ theme }) => [
     },
     '& li': {
       ...theme.typography.body2,
-      color: (theme.vars || theme).palette.text.primary,
-      fontWeight: theme.typography.fontWeightBold,
+      color: (theme.vars || theme).palette.text.secondary,
+      fontWeight: theme.typography.fontWeightSemiBold,
       '& > a, & > button': {
         display: 'inline-block',
         color: 'inherit',
@@ -38,7 +38,7 @@ const Navigation = styled('nav')(({ theme }) => [
         borderRadius: (theme.vars || theme).shape.borderRadius,
         border: '1px solid transparent',
         '&:hover': {
-          color: (theme.vars || theme).palette.grey[900],
+          color: (theme.vars || theme).palette.text.primary,
           backgroundColor: (theme.vars || theme).palette.grey[50],
           borderColor: (theme.vars || theme).palette.grey[100],
           '@media (hover: none)': {
@@ -302,7 +302,7 @@ export default function HeaderNavBar() {
                         id={PRODUCT_IDS[4]}
                         href={ROUTES.productToolpad}
                         icon={<IconImage name="product-toolpad" />}
-                        name="MUI Toolpad"
+                        name="Toolpad"
                         chip={<Chip label="Beta" size="small" color="primary" variant="outlined" />}
                         description="Low-code admin builder."
                       />
