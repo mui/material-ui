@@ -15,11 +15,8 @@ swap:
   MUI System: MUI System
   MUI Store: MUI Store
   MUI Core: MUI Core
-  Toolpad: Toolpad
+  MUI Toolpad: Toolpad
+  MUI Toolpad: Toolpad
   MUI Connect: MUI Connect
   Stack Overflow: Stack Overflow
   Pigment CSS: Pigment CSS
-# Don't forget to run the following command to generate the package writing-rules.zip file
-# Vale uses that ZIP file and not the YAML files.
-#
-# pnpm docs:zipRules

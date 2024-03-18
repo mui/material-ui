@@ -133,7 +133,7 @@ export function sxObjectExtractor(nodePath: NodePath<ObjectExpression | ArrowFun
     const body = nodePath.get('body');
     if (!body.isObjectExpression()) {
       throw body.buildCodeFrameError(
-        `${process.env.PACKAGE_NAME}: sx prop only supports arrow functions directly returning an object, e.g. () => ({color: 'red'}). You can accept theme object in the params if required.`,
+        `${process.env.PACKAGE_NAME}: sx prop only supports arrow functions directly returning an object, for example () => ({color: 'red'}). You can accept theme object in the params if required.`,
       );
     }
     traverseObjectExpression(body, nodePath);

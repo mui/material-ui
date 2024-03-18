@@ -16,10 +16,10 @@ import {
 } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { Portal } from '../Portal';
-import { useSlotProps, WithOptionalOwnerState } from '../utils';
+import { useSlotProps, WithOptionalOwnerState, PolymorphicComponent } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { getPopupUtilityClass } from './popupClasses';
-import { PopupOwnerState, PopupProps, PopupRootSlotProps } from './Popup.types';
+import { PopupOwnerState, PopupProps, PopupRootSlotProps, PopupTypeMap } from './Popup.types';
 import { useTransitionTrigger, TransitionContext } from '../useTransition';
 import { PopupContext, PopupContextValue } from './PopupContext';
 
@@ -154,7 +154,7 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
       </PopupContext.Provider>
     </Portal>
   );
-});
+}) as PolymorphicComponent<PopupTypeMap>;
 
 Popup.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐

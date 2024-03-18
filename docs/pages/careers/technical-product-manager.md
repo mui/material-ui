@@ -62,7 +62,7 @@ Depending on the day, you'll:
 - You will drive the revenue and community growth by owning KPIs.
 - You will grow and cultivate a deep understanding of the problems that developers have when they deal with enterprise applications. This means that you will observe and reach out to the community, run research interviews and share your insights with the team.
 - You will keep a close eye on feature requests, issues, and general improvements (mostly through GitHub issues and occasionally Zendesk), to curate opportunities based on our strategy.
-- You will build a strategy for your product area and contribute to the overall product strategy, e.g. establishing a go-to-market strategy.
+- You will build a strategy for your product area and contribute to the overall product strategy, for example establishing a go-to-market strategy.
 - You will assess the impact of initiatives through telemetry data and qualitative feedback to help us develop our understanding further, and decide on the next steps.
 
 ## Who we're looking for

@@ -9,9 +9,9 @@ There are examples for the following styling solutions:
 - [Plain CSS](#plain-css)
 - [Global CSS](#global-css)
 - [Styled Components](#styled-components)
-- [CSS Modules](#css-modules)
+- [CSS Modules](#css-modules)
 - [Emotion](#emotion)
-- [Tailwind CSS](#tailwind-css)
+- [Tailwind CSS](#tailwind-css)
 - [~~JSS~~ TSS](#jss-tss)
 
 ## Plain CSS
@@ -420,7 +420,7 @@ const StyledTooltip = styled(({ className, ...props }) => (
 
 {{"demo": "StyledComponentsPortal.js"}}
 
-## CSS Modules
+## CSS Modules
 
 ![stars](https://img.shields.io/github/stars/css-modules/css-modules.svg?style=social&label=Star)
 
@@ -506,7 +506,7 @@ export default function CssModulesPriority() {
 If you attempt to style the Slider,
 you will likely need to affect some of the Slider's child elements, for example the thumb.
 In Material UI, all child elements have an increased specificity of 2: `.parent .child {}`. When writing overrides, you need to do the same.
-It's important to keep in mind that CSS Modules adds an unique id to each class, and that id won't be present on the Material UI provided children class. To escape from that, CSS Modules provides a functionality, the `:global` selector.
+It's important to keep in mind that CSS Modules adds an unique id to each class, and that id won't be present on the Material UI provided children class. To escape from that, CSS Modules provides a functionality, the `:global` selector.
 
 The following examples override the slider's `thumb` style in addition to the custom styles on the slider itself.
 
@@ -605,18 +605,18 @@ It works exactly like styled components. You can [use the same guide](/material-
 
 It works exactly like styled components. You can [use the same guide](/material-ui/integrations/interoperability/#styled-components).
 
-## Tailwind CSS
+## Tailwind CSS
 
 ![stars](https://img.shields.io/github/stars/tailwindlabs/tailwindcss.svg?style=social&label=Star)
 ![npm](https://img.shields.io/npm/dm/tailwindcss)
 
 ### Setup
 
-If you are used to Tailwind CSS and want to use it together with the Material UI components, you can start by cloning the [Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-tailwind-ts) example project.
+If you are used to Tailwind CSS and want to use it together with the Material UI components, you can start by cloning the [Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-tailwind-ts) example project.
 If you use a different framework, or already have set up your project, follow these steps:
 
-1. Add Tailwind CSS to your project, following the instructions in https://tailwindcss.com/docs/installation.
-2. Remove [Tailwind CSS's preflight](https://tailwindcss.com/docs/preflight) style so it can use the Material UI's preflight instead ([CssBaseline](/material-ui/react-css-baseline/)).
+1. Add Tailwind CSS to your project, following the instructions in https://tailwindcss.com/docs/installation.
+2. Remove [Tailwind CSS's preflight](https://tailwindcss.com/docs/preflight) style so it can use the Material UI's preflight instead ([CssBaseline](/material-ui/react-css-baseline/)).
 
 **tailwind.config.js**
 
@@ -647,11 +647,11 @@ If you use a different framework, or already have set up your project, follow th
 ```
 
 Most of the CSS used by Material UI has as specificity of 1, hence this `important` property is unnecessary.
-However, in a few edge cases, Material UI uses nested CSS selectors that win over Tailwind CSS.
+However, in a few edge cases, Material UI uses nested CSS selectors that win over Tailwind CSS.
 Use this step to help ensure that the [deeper elements](#deeper-elements-5) can always be customized using Tailwind's utility classes.
 More details on this option can be found here https://tailwindcss.com/docs/configuration#selector-strategy
 
-4. Fix the CSS injection order. Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`, which gives Material UI precedence over Tailwind CSS. To reduce the need for the `important` property, you need to change the CSS injection order. Here's a demo of how it can be done in Material UI:
+4. Fix the CSS injection order. Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`, which gives Material UI precedence over Tailwind CSS. To reduce the need for the `important` property, you need to change the CSS injection order. Here's a demo of how it can be done in Material UI:
 
 ```jsx
 import * as React from 'react';
@@ -731,7 +731,7 @@ root.render(
 
 ### Usage
 
-Now it's all set up and you can start using Tailwind CSS on the Material UI components!
+Now it's all set up and you can start using Tailwind CSS on the Material UI components!
 
 {{"demo": "StyledComponents.js", "hideToolbar": true}}
 

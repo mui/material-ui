@@ -546,7 +546,7 @@ export function getPropTypesFromFile({
 
   const shouldInclude: PropTypesProject['shouldInclude'] = (data): boolean => {
     // ref is a reserved prop name in React
-    // e.g. https://github.com/reactjs/rfcs/pull/107
+    // for example https://github.com/reactjs/rfcs/pull/107
     // no need to add a prop-type
     if (data.name === 'ref') {
       return false;

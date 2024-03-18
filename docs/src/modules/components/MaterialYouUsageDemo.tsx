@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useTheme as md2UseTheme, alpha } from '@mui/material/styles';
+import { alpha } from '@mui/material/styles';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -13,12 +13,9 @@ import Typography from '@mui/material/Typography';
 import {
   extendTheme,
   CssVarsProvider as MaterialYouCssVarsProvider,
-  useColorScheme,
 } from '@mui/material-next/styles';
 import { BrandingProvider } from '@mui/docs/branding';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-
-type Mode = 'light' | 'dark' | 'system';
 
 const materialYouTheme = extendTheme();
 const shallowEqual = (item1: { [k: string]: any }, item2: { [k: string]: any }) => {
@@ -93,14 +90,6 @@ export const prependLinesSpace = (code: string, size: number = 2) => {
   return newCode.join('\n');
 };
 
-function ModeSwitcher({ md2Mode }: { md2Mode: Mode }) {
-  const { setMode } = useColorScheme();
-  React.useEffect(() => {
-    setMode(md2Mode);
-  }, [md2Mode, setMode]);
-  return null;
-}
-
 interface MaterialYouUsageDemoProps<ComponentProps> {
   /**
    * Name of the component to show in the code block.
@@ -116,7 +105,7 @@ interface MaterialYouUsageDemoProps<ComponentProps> {
    */
   data: Array<{
     /**
-     * Name of the prop, e.g. 'children'
+     * Name of the prop, for example 'children'
      */
     propName: Extract<keyof ComponentProps, string>;
     /**
@@ -195,7 +184,6 @@ export default function MaterialYouUsageDemo<T extends { [k: string]: any } = {}
     }
   });
 
-  const md2Theme = md2UseTheme();
   return (
     <Box
       sx={{
@@ -221,7 +209,6 @@ export default function MaterialYouUsageDemo<T extends { [k: string]: any } = {}
           }}
         >
           <MaterialYouCssVarsProvider theme={materialYouTheme}>
-            <ModeSwitcher md2Mode={md2Theme.palette.mode} />
             {renderDemo(demoProps)}
           </MaterialYouCssVarsProvider>
         </Box>
