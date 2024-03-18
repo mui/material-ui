@@ -38,7 +38,6 @@
     "@mui/lab": "workspace:*",
     "@mui/internal-markdown": "workspace:^",
     "@mui/material": "workspace:^",
-    "@mui/material-next": "workspace:*",
     "@mui/styled-engine": "workspace:^",
     "@mui/styled-engine-sc": "workspace:^",
     "@mui/styles": "workspace:^",

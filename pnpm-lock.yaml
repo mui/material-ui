@@ -494,9 +494,6 @@ importers:
       '@mui/material':
         specifier: workspace:^
         version: link:../packages/mui-material/build
-      '@mui/material-next':
-        specifier: workspace:*
-        version: link:../packages/mui-material-next/build
       '@mui/styled-engine':
         specifier: workspace:^
         version: link:../packages/mui-styled-engine/build
@@ -1621,95 +1618,6 @@ importers:
         version: 15.2.0
     publishDirectory: build
 
-  packages/mui-material-next:
-    dependencies:
-      '@babel/runtime':
-        specifier: ^7.23.9
-        version: 7.23.9
-      '@emotion/styled':
-        specifier: ^11.3.0
-        version: 11.11.0(@emotion/react@11.11.4)(@types/react@18.2.55)(react@18.2.0)
-      '@mui/base':
-        specifier: workspace:*
-        version: link:../mui-base/build
-      '@mui/material':
-        specifier: workspace:^
-        version: link:../mui-material/build
-      '@mui/system':
-        specifier: workspace:^
-        version: link:../mui-system/build
-      '@mui/types':
-        specifier: workspace:^
-        version: link:../mui-types/build
-      '@mui/utils':
-        specifier: workspace:^
-        version: link:../mui-utils/build
-      '@types/react-transition-group':
-        specifier: ^4.4.10
-        version: 4.4.10
-      clsx:
-        specifier: ^2.1.0
-        version: 2.1.0
-      prop-types:
-        specifier: ^15.8.1
-        version: 15.8.1
-      react-is:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-transition-group:
-        specifier: ^4.4.5
-        version: 4.4.5(react-dom@18.2.0)(react@18.2.0)
-    devDependencies:
-      '@emotion/react':
-        specifier: ^11.11.4
-        version: 11.11.4(@types/react@18.2.55)(react@18.2.0)
-      '@mui-internal/test-utils':
-        specifier: workspace:^
-        version: link:../test-utils
-      '@mui/internal-babel-macros':
-        specifier: workspace:^
-        version: link:../mui-babel-macros
-      '@testing-library/user-event':
-        specifier: ^14.5.2
-        version: 14.5.2(@testing-library/dom@9.3.4)
-      '@types/chai':
-        specifier: ^4.3.12
-        version: 4.3.12
-      '@types/prop-types':
-        specifier: ^15.7.11
-        version: 15.7.11
-      '@types/react':
-        specifier: ^18.2.55
-        version: 18.2.55
-      '@types/react-dom':
-        specifier: 18.2.19
-        version: 18.2.19
-      '@types/react-is':
-        specifier: ^18.2.4
-        version: 18.2.4
-      '@types/sinon':
-        specifier: ^10.0.20
-        version: 10.0.20
-      chai:
-        specifier: ^4.4.1
-        version: 4.4.1
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
-      react-router-dom:
-        specifier: ^6.21.3
-        version: 6.22.1(react-dom@18.2.0)(react@18.2.0)
-      sinon:
-        specifier: ^15.2.0
-        version: 15.2.0
-    publishDirectory: build
-
   packages/mui-material-nextjs:
     dependencies:
       '@babel/runtime':
@@ -2410,9 +2318,6 @@ importers:
       '@mui/material':
         specifier: workspace:^
         version: link:../packages/mui-material/build
-      '@mui/material-next':
-        specifier: workspace:*
-        version: link:../packages/mui-material-next/build
       '@mui/system':
         specifier: workspace:^
         version: link:../packages/mui-system/build
