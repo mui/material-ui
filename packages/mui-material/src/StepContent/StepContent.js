@@ -3,12 +3,13 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import Collapse from '../Collapse';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
 import { getStepContentUtilityClass } from './stepContentClasses';
+
+const useThemeProps = createUseThemeProps('MuiStepContent');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, last } = ownerState;
@@ -26,7 +27,7 @@ const StepContentRoot = styled('div', {
 
     return [styles.root, ownerState.last && styles.last];
   },
-})(({ ownerState, theme }) => ({
+})(({ theme }) => ({
   marginLeft: 12, // half icon
   paddingLeft: 8 + 12, // margin + half icon
   paddingRight: 8,
@@ -35,9 +36,14 @@ const StepContentRoot = styled('div', {
     : `1px solid ${
         theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600]
       }`,
-  ...(ownerState.last && {
-    borderLeft: 'none',
-  }),
+  variants: [
+    {
+      props: { last: true },
+      style: {
+        borderLeft: 'none',
+      },
+    },
+  ],
 }));
 
 const StepContentTransition = styled(Collapse, {

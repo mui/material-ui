@@ -3,14 +3,15 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import ButtonBase from '../ButtonBase';
 import StepLabel from '../StepLabel';
 import isMuiElement from '../utils/isMuiElement';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
 import stepButtonClasses, { getStepButtonUtilityClass } from './stepButtonClasses';
+
+const useThemeProps = createUseThemeProps('MuiStepButton');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, orientation } = ownerState;
@@ -35,20 +36,25 @@ const StepButtonRoot = styled(ButtonBase, {
       styles[ownerState.orientation],
     ];
   },
-})(({ ownerState }) => ({
+})({
   width: '100%',
   padding: '24px 16px',
   margin: '-24px -16px',
   boxSizing: 'content-box',
-  ...(ownerState.orientation === 'vertical' && {
-    justifyContent: 'flex-start',
-    padding: '8px',
-    margin: '-8px',
-  }),
   [`& .${stepButtonClasses.touchRipple}`]: {
     color: 'rgba(0, 0, 0, 0.3)',
   },
-}));
+  variants: [
+    {
+      props: { orientation: 'vertical' },
+      style: {
+        justifyContent: 'flex-start',
+        padding: '8px',
+        margin: '-8px',
+      },
+    },
+  ],
+});
 
 const StepButton = React.forwardRef(function StepButton(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiStepButton' });

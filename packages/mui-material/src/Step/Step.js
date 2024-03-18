@@ -6,9 +6,10 @@ import integerPropType from '@mui/utils/integerPropType';
 import composeClasses from '@mui/utils/composeClasses';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from './StepContext';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { styled, createUseThemeProps } from '../zero-styled';
 import { getStepUtilityClass } from './stepClasses';
+
+const useThemeProps = createUseThemeProps('MuiStep');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, orientation, alternativeLabel, completed } = ownerState;
@@ -33,16 +34,24 @@ const StepRoot = styled('div', {
       ownerState.completed && styles.completed,
     ];
   },
-})(({ ownerState }) => ({
-  ...(ownerState.orientation === 'horizontal' && {
-    paddingLeft: 8,
-    paddingRight: 8,
-  }),
-  ...(ownerState.alternativeLabel && {
-    flex: 1,
-    position: 'relative',
-  }),
-}));
+})({
+  variants: [
+    {
+      props: { orientation: 'horizontal' },
+      style: {
+        paddingLeft: 8,
+        paddingRight: 8,
+      },
+    },
+    {
+      props: { alternativeLabel: true },
+      style: {
+        flex: 1,
+        position: 'relative',
+      },
+    },
+  ],
+});
 
 const Step = React.forwardRef(function Step(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiStep' });
