@@ -87,7 +87,7 @@
     "@slack/bolt": "^3.17.1",
     "@netlify/functions": "^2.6.0",
     "execa": "^8.0.1",
-    "google-auth-library": "^9.6.3"
+    "google-auth-library": "^9.7.0"
   },
   "devDependencies": {
     "@argos-ci/core": "^1.5.4",
