@@ -27,8 +27,8 @@ const Navigation = styled('nav')(({ theme }) => [
     },
     '& li': {
       ...theme.typography.body2,
-      color: (theme.vars || theme).palette.text.primary,
-      fontWeight: theme.typography.fontWeightBold,
+      color: (theme.vars || theme).palette.text.secondary,
+      fontWeight: theme.typography.fontWeightSemiBold,
       '& > a, & > button': {
         display: 'inline-block',
         color: 'inherit',
@@ -38,10 +38,10 @@ const Navigation = styled('nav')(({ theme }) => [
         borderRadius: (theme.vars || theme).shape.borderRadius,
         border: '1px solid transparent',
         '&:hover': {
-          color: theme.palette.primary.main,
+          color: (theme.vars || theme).palette.text.primary,
           backgroundColor: (theme.vars || theme).palette.grey[50],
           borderColor: (theme.vars || theme).palette.grey[100],
-          
+
           '@media (hover: none)': {
             backgroundColor: 'initial',
             // Reset on touch devices, it doesn't add specificity
@@ -51,8 +51,6 @@ const Navigation = styled('nav')(({ theme }) => [
           outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
           outlineOffset: '2px',
         },
-       
-        
       },
     },
   },
@@ -129,8 +127,6 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
 );
 
 export default function HeaderNavBar() {
-
- 
   const [subMenuOpen, setSubMenuOpen] = React.useState<null | 'products' | 'docs'>(null);
   const [subMenuIndex, setSubMenuIndex] = React.useState<number | null>(null);
   const navRef = React.useRef<HTMLUListElement | null>(null);
@@ -373,13 +369,13 @@ export default function HeaderNavBar() {
           </Popper>
         </li>
         <li>
-          <Link href={ROUTES.pricing} >Pricing</Link>
+          <Link href={ROUTES.pricing}>Pricing</Link>
         </li>
         <li>
           <Link href={ROUTES.about}>About us</Link>
         </li>
         <li>
-          <Link href={ROUTES.blog} >Blog</Link>
+          <Link href={ROUTES.blog}>Blog</Link>
         </li>
       </ul>
     </Navigation>
