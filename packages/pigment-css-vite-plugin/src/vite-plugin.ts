@@ -189,7 +189,7 @@ export default function wywVitePlugin({
                 babelOptions: {
                   ...rest.babelOptions,
                   plugins: [
-                    ['babel-plugin-transform-react-remove-prop-types', { mode: 'remove' }],
+                    `${process.env.RUNTIME_PACKAGE_NAME}/exports/remove-prop-types-plugin`,
                     'babel-plugin-define-var', // A fix for undefined variables in the eval phase of wyw-in-js, more details on https://github.com/siriwatknp/babel-plugin-define-var?tab=readme-ov-file#problem
                     ...(rest.babelOptions?.plugins ?? []),
                   ],
@@ -277,7 +277,7 @@ export default function wywVitePlugin({
         }
         return { code: result.code, map: result.sourceMap };
       } catch (ex) {
-        const err = new Error(`MUI: Error while transforming file '${id}'`);
+        const err = new Error(`${process.env.PACKAGE_NAME}: Error while transforming file '${id}'`);
         err.message = (ex as Error).message;
         err.stack = (ex as Error).stack;
         throw err;

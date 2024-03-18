@@ -104,7 +104,6 @@ const pigmentOptions = {
   transformLibraries: ['local-ui-lib'],
   sourceMap: true,
   displayName: true,
-  transformSx: false,
 };
 
 /** @type {import('next').NextConfig} */

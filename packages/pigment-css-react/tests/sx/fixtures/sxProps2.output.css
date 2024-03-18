@@ -17,3 +17,30 @@
     color: white;
   }
 }
+.sdbmcs3.sliig2s {
+  border-radius: 8px;
+  margin: 5px;
+}
+.sdbmcs3.sliig2s.MuiAutocomplete-option {
+  padding: 8px;
+}
+.sdbmcs3.so956n {
+  color: red;
+  font-size: var(--so956n-0);
+}
+@media (min-width: 0px) {
+  .sdbmcs3.so956n :hover {
+    background-color: red;
+  }
+}
+@media (min-width: 600px) {
+  .sdbmcs3.so956n :hover {
+    background-color: blue;
+    color: red;
+  }
+}
+@media (min-width: 900px) {
+  .sdbmcs3.so956n :hover {
+    color: blue;
+  }
+}

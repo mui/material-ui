@@ -22,26 +22,36 @@ function validateObjectKey(
   if (!identifiers.length) {
     return;
   }
+
+  // check if all the identifiers being used for the key, if it is not a static value,
+  // (ie, [theme.apply()] or [globalVariable]) are globally defined or not.
+  // Global means in the root scope (file scope) or in the same scope as the parentCall
+  const areAllGlobalIdentifiers = identifiers.every((item) => {
+    // get the definition AST node path of the identifier
+    const binding = item.scope.getBinding(item.node.name);
+    if (!binding) {
+      return false;
+    }
+    if (
+      // if the identifier is defined in the same scope as the parentCall, ie, ({theme}) => ({color: theme.color})
+      binding.path.findParent((parent) => parent === parentCall) ||
+      // if the identifier is defined in the file scope
+      binding.path.scope === rootScope
+    ) {
+      return true;
+    }
+    return false;
+  });
+
   if (!parentCall) {
+    if (areAllGlobalIdentifiers) {
+      return;
+    }
     throw keyPath.buildCodeFrameError(
       `${process.env.PACKAGE_NAME}: Expressions in css object keys are not supported.`,
     );
   }
-  if (
-    !identifiers.every((item) => {
-      const binding = item.scope.getBinding(item.node.name);
-      if (!binding) {
-        return false;
-      }
-      if (
-        binding.path.findParent((parent) => parent === parentCall) ||
-        binding.path.scope === rootScope
-      ) {
-        return true;
-      }
-      return false;
-    })
-  ) {
+  if (!areAllGlobalIdentifiers) {
     throw keyPath.buildCodeFrameError(
       `${process.env.PACKAGE_NAME}: Variables in css object keys should only use the passed theme(s) object or variables that are defined in the root scope.`,
     );
@@ -66,13 +76,8 @@ function traverseObjectExpression(
       }
       if (value.isObjectExpression()) {
         traverseObjectExpression(value, parentCall);
-      } else if (value.isArrowFunctionExpression()) {
-        throw value.buildCodeFrameError(
-          `${process.env.PACKAGE_NAME}: Arrow functions are not supported as values of sx object.`,
-        );
       } else if (!value.isLiteral() && !isStaticObjectOrArrayExpression(value)) {
         const identifiers = findIdentifiers([value], 'reference');
-        const themeIdentifiers: NodePath<Identifier>[] = [];
         const localIdentifiers: NodePath<Identifier>[] = [];
         identifiers.forEach((id) => {
           if (!id.isIdentifier()) {
@@ -82,15 +87,10 @@ function traverseObjectExpression(
           if (!binding) {
             return;
           }
-          if (binding.path.findParent((parent) => parent === parentCall)) {
-            themeIdentifiers.push(id);
-          } else if (binding.scope !== rootScope) {
-            localIdentifiers.push(id);
-          } else {
-            throw id.buildCodeFrameError(
-              `${process.env.PACKAGE_NAME}: Consider moving this variable to the root scope if it has all static values.`,
-            );
+          if ((parentCall && binding.scope === parentCall.scope) || binding.scope === rootScope) {
+            return;
           }
+          localIdentifiers.push(id);
         });
         if (localIdentifiers.length) {
           const arrowFn = arrowFunctionExpression(
