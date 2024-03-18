@@ -292,7 +292,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
 
   let ComponentProp = component;
 
-  if (ComponentProp === 'button' && (other.href || other.to)) {
+  if (other.href || other.to) {
     ComponentProp = LinkComponent;
   }
 
