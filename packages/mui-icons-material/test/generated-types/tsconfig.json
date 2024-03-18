@@ -23,8 +23,6 @@
       "@mui/lab/*": ["./mui-lab/src/*"],
       "@mui/internal-markdown": ["./markdown"],
       "@mui/internal-markdown/*": ["./markdown/*"],
-      "@mui/material-next": ["./mui-material-next/src"],
-      "@mui/material-next/*": ["./mui-material-next/src/*"],
       "@mui/material-nextjs": ["./mui-material-nextjs/src"],
       "@mui/material-nextjs/*": ["./mui-material-nextjs/src/*"],
       "@mui/material": ["./mui-material/src"],

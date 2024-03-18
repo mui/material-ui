@@ -37,7 +37,6 @@
     "@mui/internal-scripts": "packages-internal/scripts",
     "@mui/joy": "packages/mui-joy/build",
     "@mui/lab": "packages/mui-lab/build",
-    "@mui/material-next": "packages/mui-material-next/build",
     "@mui/material-nextjs": "packages/mui-material-nextjs/build",
     "@mui/material": "packages/mui-material/build",
     "@mui/private-theming": "packages/mui-private-theming/build",
