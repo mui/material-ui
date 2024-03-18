@@ -33,14 +33,13 @@ export default function Hero() {
       >
         <Stack spacing={2} useFlexGap sx={{ width: { xs: '100%', sm: '70%' } }}>
           <Typography
-            component="h1"
             variant="h1"
             sx={{
               display: 'flex',
               flexDirection: { xs: 'column', md: 'row' },
               alignSelf: 'center',
               textAlign: 'center',
-              fontSize: 'clamp(3rem, 10vw, 4rem)',
+              fontSize: 'clamp(3.5rem, 10vw, 4rem)',
             }}
           >
             Our latest&nbsp;
@@ -57,7 +56,6 @@ export default function Hero() {
             </Typography>
           </Typography>
           <Typography
-            variant="body1"
             textAlign="center"
             color="text.secondary"
             sx={{ alignSelf: 'center', width: { sm: '100%', md: '80%' } }}
