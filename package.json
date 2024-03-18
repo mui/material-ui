@@ -120,7 +120,7 @@
     "@playwright/test": "1.42.1",
     "@types/enzyme": "^3.10.18",
     "@types/fs-extra": "^11.0.4",
-    "@types/lodash": "^4.14.202",
+    "@types/lodash": "^4.17.0",
     "@types/mocha": "^10.0.6",
     "@types/node": "^18.19.22",
     "@types/prettier": "^2.7.3",
