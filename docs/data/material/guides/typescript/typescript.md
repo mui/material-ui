@@ -43,7 +43,7 @@ The library types are strict by default and loose via opt-in.
 
 ## Customization of `Theme`
 
-Moved to [/customization/theming/#custom-variables](/material-ui/customization/theming/#custom-variables).
+Moved to [the Customizing the theme page](/material-ui/customization/theming/#custom-variables).
 
 ## Complications with the `component` prop
 
