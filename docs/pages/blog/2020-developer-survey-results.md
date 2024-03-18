@@ -277,7 +277,7 @@ section.
 <img src="/static/blog/2020-survey/17.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Pie chart: 55.17% For my company
 22.86% For a client, 16.94% Side project, 5.03% More than one of these." />
 
-### 18. Which JS framework are you using, if any?
+### 18. Which JavaScript framework are you using, if any?
 
 <img src="/static/blog/2020-survey/18.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Pie chart: 57.34% Create React App, 16.40% Custom Webpack, 12.35% Next.js, 5.40% Gatsby, 8.51% Other." />
 

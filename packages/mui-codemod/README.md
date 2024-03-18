@@ -1639,7 +1639,7 @@ The following scenarios are not currently handled by this codemod and will be ma
 - In order for arrow functions at the rule level to be converted, the parameter must use object
   destructuring (for example `root: ({color, padding}) => (...)`). If the parameter is not destructured
   (for example `root: (props) => (...)`), it will not be converted.
-- If an arrow function at the rule level contains a code block (i.e. contains an explicit `return`
+- If an arrow function at the rule level contains a code block (that is contains an explicit `return`
   statement) rather than just an object expression, it will not be converted.
 
 You can find more details about migrating from JSS to tss-react in [the migration guide](https://mui.com/material-ui/migration/migrating-from-jss/#2-use-tss-react).

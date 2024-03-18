@@ -7,7 +7,7 @@ ignorecase: true
 # for more information: https://vale.sh/docs/topics/styles/#substitution
 swap:
   ' api': API
-  typescript: TypeScript
+  'typescript ': TypeScript
   ' ts': TypeScript
   ' js': JavaScript
   javascript: JavaScript
