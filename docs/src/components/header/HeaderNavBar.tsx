@@ -41,7 +41,6 @@ const Navigation = styled('nav')(({ theme }) => [
           color: (theme.vars || theme).palette.text.primary,
           backgroundColor: (theme.vars || theme).palette.grey[50],
           borderColor: (theme.vars || theme).palette.grey[100],
-
           '@media (hover: none)': {
             backgroundColor: 'initial',
             // Reset on touch devices, it doesn't add specificity
