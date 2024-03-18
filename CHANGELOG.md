@@ -35,7 +35,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 ### Core
 
-- &#8203;<!-- 23 -->[blog] Bringing consistency to Material UI customization APIs (#41040) @DiegoAndai
+- &#8203;<!-- 23 -->[blog] Bringing consistency to Material UI customization APIs (#41040) @DiegoAndai
 - &#8203;<!-- 22 -->[code-infra] Rename @mui-internal/docs-utils to @mui/internal-docs-utils (#41498) @michaldudak
 - &#8203;<!-- 21 -->[code-infra] Copy translations.json to @mui/docs build folder (#41472) @Janpot
 - &#8203;<!-- 20 -->[core] Use Circle CI context (#41532) @oliviertassinari
@@ -47,7 +47,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - &#8203;<!-- 14 -->[docs-infra] Add a feature list "component" (#41484) @danilo-leal
 - &#8203;<!-- 13 -->[docs-infra] Add code block header classes (#41487) @danilo-leal
 - &#8203;<!-- 02 -->[website] Split Toolpad documentation (#41316) @bharatkashyap
-- &#8203;<!-- 01 -->[website] Use MUI X Data Grid v7-beta (#41276) @cherniavskii
+- &#8203;<!-- 01 -->[website] Use MUI X Data Grid v7-beta (#41276) @cherniavskii
 
 All contributors of this release in alphabetical order: @bharatkashyap, @brijeshb42, @cherniavskii, @cipherlogs, @danilo-leal, @DiegoAndai, @Janpot, @jherr, @michaldudak, @mnajdova, @oliviertassinari, @sai6855, @siriwatknp
 

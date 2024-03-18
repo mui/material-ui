@@ -371,7 +371,7 @@ const ExtraHeading = styled(Heading)({
 
 #### Media and Container queries
 
-Pigment CSS APIs have built-in support for writing media queries and container queries. Use the `@media` and `@container` keys to define styles for different screen and container sizes.
+Pigment CSS APIs have built-in support for writing media queries and container queries. Use the `@media` and `@container` keys to define styles for different screen and container sizes.
 
 ```jsx
 import { css, styled } from '@pigment-css/react';
@@ -399,7 +399,7 @@ const Heading = styled('h1')({
 
 > 💡 **Good to know**:
 >
-> Pigment CSS uses Emotion behind the scenes for turning tagged templates and objects into CSS strings.
+> Pigment CSS uses Emotion behind the scenes for turning tagged templates and objects into CSS strings.
 
 #### Typing props
 
