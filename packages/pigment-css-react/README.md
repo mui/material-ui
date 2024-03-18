@@ -299,7 +299,23 @@ const Button = styled('button')({
 
 > 💡 This approach is recommended when the value of a prop is **unknown** ahead of time or possibly unlimited values, for example styling based on the user's input.
 
-Use a callback function as a value to create a dynamic style for the specific CSS property:
+There are two ways to acheive this (both involve using a CSS variable):
+
+1. Declare a CSS variable directly in the styles and set its value using inline styles:
+
+```jsx
+const Heading = styled('h1')({
+  color: 'var(--color)',
+});
+
+function Heading() {
+  const [color, setColor] = React.useState('red');
+
+  return <Heading style={{ '--color': color }} />;
+}
+```
+
+2. Use a callback function as a value to create a dynamic style for the specific CSS property:
 
 ```jsx
 const Heading = styled('h1')({
@@ -347,11 +363,43 @@ This enables you to override the default `color` of the Heading component render
 
 You can also export any styled component you create and use it as the base for additional components:
 
-```tsx
+```jsx
 const ExtraHeading = styled(Heading)({
   // ... overridden styled
 });
 ```
+
+#### Media and Container queries
+
+Pigment CSS APIs have built-in support for writing media queries and container queries. Use the `@media` and `@container` keys to define styles for different screen and container sizes.
+
+```jsx
+import { css, styled } from '@pigment-css/react';
+
+const styles = css({
+  fontSize: '2rem',
+  '@media (min-width: 768px)': {
+    fontSize: '3rem',
+  },
+  '@container (max-width: 768px)': {
+    fontSize: '1.5rem',
+  },
+});
+
+const Heading = styled('h1')({
+  fontSize: '2rem',
+  '@media (min-width: 768px)': {
+    fontSize: '3rem',
+  },
+  '@container (max-width: 768px)': {
+    fontSize: '1.5rem',
+  },
+});
+```
+
+> 💡 **Good to know**:
+>
+> Pigment CSS uses Emotion behind the scenes for turning tagged templates and objects into CSS strings.
 
 #### Typing props
 
