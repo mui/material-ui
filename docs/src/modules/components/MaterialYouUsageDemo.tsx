@@ -147,7 +147,10 @@ interface MaterialYouUsageDemoProps<ComponentProps> {
      * If `false`, the prop does not display in the code block.
      */
     codeBlockDisplay?: boolean;
-    onChange?: (event: React.SyntheticEvent) => void;
+    onChange?: (
+      event: React.SyntheticEvent,
+      handleUpdateOptionProps?: React.Dispatch<React.SetStateAction<ComponentProps>>,
+    ) => void;
   }>;
   /**
    * A function to override the code block result.
@@ -343,7 +346,7 @@ export default function MaterialYouUsageDemo<T extends { [k: string]: any } = {}
                         ...latestProps,
                         [propName]: event.target.value,
                       }));
-                      onChange?.(event as React.SyntheticEvent);
+                      onChange?.(event as React.SyntheticEvent, setProps);
                     }}
                   >
                     {options.map((value) => (
