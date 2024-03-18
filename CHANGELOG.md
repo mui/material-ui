@@ -6,7 +6,7 @@
 
 _Mar 18, 2024_
 
-A big thanks to the 13 contributors who made this release possible.
+A big thanks to the 15 contributors who made this release possible.
 This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.15.13`
@@ -42,14 +42,19 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - &#8203;<!-- 19 -->[core] Fix CHANGELOG format and update date (#41481) @DiegoAndai
 - &#8203;<!-- 18 -->[docs] Fix useStorageState regressions (#41223) @Janpot
 - &#8203;<!-- 17 -->[docs] Fix some Vale errors (#41516) @oliviertassinari
+- &#8203;<!-- 15 -->[material-ui][docs] Fix landing page template's h1 size (#41543) @zanivan
+- &#8203;<!-- 14 -->[material-ui][docs] Apply new code header docs feature (#41508) @danilo-leal
+- &#8203;<!-- 11 -->[material-next] Drop the package (#41544) @mnajdova
 - &#8203;<!-- 16 -->[docs-infra] Fail CI on Vale error (#40944) @oliviertassinari
 - &#8203;<!-- 15 -->[docs-infra] Improve Vale config @oliviertassinari
 - &#8203;<!-- 14 -->[docs-infra] Add a feature list "component" (#41484) @danilo-leal
 - &#8203;<!-- 13 -->[docs-infra] Add code block header classes (#41487) @danilo-leal
+- &#8203;<!-- 21 -->[docs-infra] Make the Algolia search input label invisible (#41542) @danilo-leal
+- &#8203;<!-- 03 -->[website] Improve navbar's items hover state (#41535) @EyaOuenniche
 - &#8203;<!-- 02 -->[website] Split Toolpad documentation (#41316) @bharatkashyap
 - &#8203;<!-- 01 -->[website] Use MUI X Data Grid v7-beta (#41276) @cherniavskii
 
-All contributors of this release in alphabetical order: @bharatkashyap, @brijeshb42, @cherniavskii, @cipherlogs, @danilo-leal, @DiegoAndai, @Janpot, @jherr, @michaldudak, @mnajdova, @oliviertassinari, @sai6855, @siriwatknp
+All contributors of this release in alphabetical order: @bharatkashyap, @brijeshb42, @cherniavskii, @cipherlogs, @danilo-leal, @DiegoAndai, @EyaOuenniche, @Janpot, @jherr, @michaldudak, @mnajdova, @oliviertassinari, @sai6855, @siriwatknp, @zanivan
 
 ## v5.15.13
 
