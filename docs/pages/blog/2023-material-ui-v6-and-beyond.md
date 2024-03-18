@@ -40,14 +40,6 @@ It's tentatively planned for Q4 of 2024.
 
 <img alt="Side-to-side comparison of a Card component using Material Design 2 and 3, respectively." src="/static/blog/2023-material-ui-v6-and-beyond/m2-m3.jpg" width="1200" height="600" loading="lazy" />
 
-The development for this version is already in progress, though!
-See which components already support the M3 specs, through the experimental `@mui/material-next` package, by visiting the newly released [All Components page](/material-ui/all-components/).
-
-```diff
--import Button from '@mui/material/Button';
-+import Button from '@mui/material-next/Button';
-```
-
 ## From design to development
 
 In addition to the updates to the React library, we've also been working on a long-requested Figma plug-in to help bridge the gap between designers and developers using Material UI.
