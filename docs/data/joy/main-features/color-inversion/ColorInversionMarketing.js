@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import { useTheme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import IconButton from '@mui/joy/IconButton';
@@ -8,7 +8,6 @@ import Sheet from '@mui/joy/Sheet';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ColorLensRoundedIcon from '@mui/icons-material/ColorLensRounded';
 import InvertColorsIcon from '@mui/icons-material/InvertColors';
-import { useTheme } from '@mui/joy/styles';
 
 /**
  * Design credit: https://flutter.dev/
@@ -27,6 +26,14 @@ export default function ColorInversionMarketing() {
   const gradient2 = `${color1} 65%, ${color3}`;
   const textColor = { color: solid ? shade(50) : shade(700) };
 
+  const buttonStyles = {
+    borderRadius: 99,
+    '&:hover': {
+      '& .MuiButton-endDecorator': { transform: 'translate(4px, 0px)' },
+    },
+    '& span': { transition: '0.15s' },
+  };
+
   return (
     <Sheet
       variant={solid ? 'solid' : 'soft'}
@@ -37,11 +44,9 @@ export default function ColorInversionMarketing() {
         position: 'relative',
         display: 'flex',
         bgcolor: solid ? shade(800) : shade(100),
-        px: '2rem',
-        py: { xs: '4rem', md: '6rem' },
-        borderRadius: 'lg',
-        overflow: 'hidden',
-
+        p: '6rem 3rem',
+        borderRadius: 'md',
+        overflow: 'clip',
         '&::after': {
           content: `""`,
           display: 'block',
@@ -50,31 +55,29 @@ export default function ColorInversionMarketing() {
           background: `linear-gradient(to top, ${gradient1}, ${gradient2})`,
           position: 'absolute',
           transform: 'rotate(-45deg)',
-          top: { xs: '-100%', sm: '-95%', md: '-65%', lg: '-70%' },
-          right: { xs: '-30%', sm: '-15%', md: '-5%' },
+          top: { xs: '-80%', sm: '-95%', md: '-65%', lg: '-70%' },
+          right: { xs: '-70%', sm: '-15%' },
         },
       }}
     >
-      <Box sx={{ zIndex: 1 }}>
+      <div>
         <Typography level="h1" component="h2" sx={textColor}>
           Get started
         </Typography>
-        <Typography level="body-md" sx={{ mb: 2, ...textColor }}>
+        <Typography sx={{ mt: 1, mb: 2, ...textColor }}>
           Instant access to the power of the Joy UI library.
         </Typography>
         <Box
           sx={{
             display: 'flex',
-            gap: 1,
             flexWrap: 'wrap',
-            maxWidth: 'max-content',
-            '& button': { flexGrow: 1 },
+            gap: 1,
           }}
         >
           <Button
+            endDecorator={<ArrowForwardIcon fontSize="md" />}
             sx={{
-              borderRadius: 'xl',
-              minWidth: '8rem',
+              ...buttonStyles,
               '&:active': { bgcolor: solid ? shade(200) : shade(700) },
             }}
           >
@@ -85,25 +88,22 @@ export default function ColorInversionMarketing() {
             endDecorator={<ArrowForwardIcon fontSize="md" />}
             sx={{
               ...textColor,
-              '&:hover': { '--Button-gap': '0.625rem', bgcolor: 'unset' },
-              '&:active': { '--Button-gap': '0.875rem' },
-              '& span': { transition: '0.15s' },
+              ...buttonStyles,
             }}
           >
             See the docs
           </Button>
         </Box>
-      </Box>
-
+      </div>
       <Sheet
         sx={{
-          display: 'flex',
-          bgcolor: 'transparent',
-          gap: 1,
           zIndex: 1,
           position: 'absolute',
-          bottom: '1rem',
-          right: '1rem',
+          bottom: '1.5rem',
+          right: '1.5rem',
+          bgcolor: 'transparent',
+          display: 'flex',
+          gap: 2,
           '& button': { borderRadius: '50%' },
         }}
       >
@@ -114,7 +114,6 @@ export default function ColorInversionMarketing() {
           variant="soft"
           onClick={() => {
             const colors = ['primary', 'neutral', 'danger', 'success', 'warning'];
-
             const nextColorIndex = colors.indexOf(color) + 1;
             setColor(colors[nextColorIndex] ?? colors[0]);
           }}
