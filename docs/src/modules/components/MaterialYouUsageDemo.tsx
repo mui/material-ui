@@ -116,7 +116,7 @@ interface MaterialYouUsageDemoProps<ComponentProps> {
    */
   data: Array<{
     /**
-     * Name of the prop, e.g. 'children'
+     * Name of the prop, for example 'children'
      */
     propName: Extract<keyof ComponentProps, string>;
     /**

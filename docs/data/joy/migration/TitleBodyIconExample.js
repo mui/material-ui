@@ -60,7 +60,7 @@ export default function TitleBodyIconExample() {
               some information of it.
             </Typography>
             <Typography level="body-sm">
-              <i>body-sm</i>: Metadata, e.g. a date.
+              <i>body-sm</i>: Metadata, for example a date.
             </Typography>
           </div>
         </Stack>
@@ -90,7 +90,7 @@ export default function TitleBodyIconExample() {
               some information of it.
             </Typography>
             <Typography level="body-xs">
-              <i>body-xs</i>: Metadata, e.g. a date.
+              <i>body-xs</i>: Metadata, for example a date.
             </Typography>
           </div>
         </Stack>

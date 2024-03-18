@@ -111,7 +111,7 @@ Icon.propTypes /* remove-proptypes */ = {
   // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The base class applied to the icon. Defaults to 'material-icons', but can be changed to any
-   * other base class that suits the icon font you're using (e.g. material-icons-rounded, fas, etc).
+   * other base class that suits the icon font you're using (for example material-icons-rounded, fas, etc).
    * @default 'material-icons'
    */
   baseClassName: PropTypes.string,

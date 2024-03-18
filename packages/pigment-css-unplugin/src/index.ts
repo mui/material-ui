@@ -41,6 +41,7 @@ type WebpackMeta = {
 };
 
 type Meta = NextMeta | ViteMeta | WebpackMeta;
+export type AsyncResolver = (what: string, importer: string, stack: string[]) => Promise<string>;
 
 export type PigmentOptions<Theme extends BaseTheme = BaseTheme> = {
   theme?: Theme;
@@ -49,7 +50,7 @@ export type PigmentOptions<Theme extends BaseTheme = BaseTheme> = {
   debug?: IFileReporterOptions | false;
   sourceMap?: boolean;
   meta?: Meta;
-  asyncResolve?: (what: string) => string | null;
+  asyncResolve?: (...args: Parameters<AsyncResolver>) => Promise<string | null>;
   transformSx?: boolean;
 } & Partial<WywInJsPluginOptions>;
 
@@ -61,8 +62,6 @@ function hasCorectExtension(fileName: string) {
 
 const VIRTUAL_CSS_FILE = `\0zero-runtime-styles.css`;
 const VIRTUAL_THEME_FILE = `\0zero-runtime-theme.js`;
-
-type AsyncResolver = (what: string, importer: string, stack: string[]) => Promise<string>;
 
 function isZeroRuntimeThemeFile(fileName: string) {
   return fileName === VIRTUAL_CSS_FILE || fileName === VIRTUAL_THEME_FILE;
@@ -142,13 +141,11 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
   let webpackResolver: AsyncResolver;
 
   const asyncResolve: AsyncResolver = async (what, importer, stack) => {
-    const result = asyncResolveOpt?.(what);
+    const result = await asyncResolveOpt?.(what, importer, stack);
     if (typeof result === 'string') {
       return result;
     }
-    // Use Webpack's resolver to resolve actual path but
-    // ignore next.js files during evaluation phase of WyW
-    if (webpackResolver && !what.startsWith('next')) {
+    if (webpackResolver) {
       return webpackResolver(what, importer, stack);
     }
     return asyncResolveFallback(what, importer, stack);
