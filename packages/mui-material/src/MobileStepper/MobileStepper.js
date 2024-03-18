@@ -83,7 +83,7 @@ const MobileStepperDot = styled('div', {
 })(({ theme }) => ({
   variants: [
     {
-      props: { variant: 'dots', dotActive: false },
+      props: { variant: 'dots' },
       style: {
         transition: theme.transitions.create('background-color', {
           duration: theme.transitions.duration.shortest,
