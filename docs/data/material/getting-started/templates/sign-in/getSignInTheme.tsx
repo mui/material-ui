@@ -366,10 +366,6 @@ export default function getSignInTheme(mode: PaletteMode): ThemeOptions {
             ...(ownerState.variant === 'outlined' && {
               boxSizing: 'border-box',
               background: `linear-gradient(to bottom, #FFF, ${gray[50]})`,
-              '&:hover': {
-                borderColor: brand[300],
-                boxShadow: `0 0 24px ${brand[100]}`,
-              },
             }),
             ...(theme.palette.mode === 'dark' && {
               backgroundColor: alpha(gray[800], 0.6),
@@ -380,10 +376,6 @@ export default function getSignInTheme(mode: PaletteMode): ThemeOptions {
                   gray[800],
                   0.5,
                 )})`,
-                '&:hover': {
-                  borderColor: brand[700],
-                  boxShadow: `0 0 24px ${brand[800]}`,
-                },
               }),
             }),
           }),
