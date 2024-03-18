@@ -23,10 +23,17 @@ export interface MD3Tones {
 }
 
 export interface MD3NeutralTones extends MD3Tones {
+  4: string;
+  6: string;
+  12: string;
   17: string;
   22: string;
+  24: string;
+  87: string;
   92: string;
+  94: string;
   96: string;
+  98: string;
 }
 
 export interface MD3Palettes {
@@ -84,11 +91,15 @@ export interface MD3ColorSchemeTokens {
   background: string;
   onBackground: string;
 
+  surfaceDim: string;
   surface: string;
+  surfaceBright: string;
   onSurface: string;
   surfaceVariant: string;
   onSurfaceVariant: string;
+  surfaceContainerLowest: string;
   surfaceContainerLow: string;
+  surfaceContainer: string;
   surfaceContainerHigh: string;
   surfaceContainerHighest: string;
 
@@ -100,6 +111,21 @@ export interface MD3ColorSchemeTokens {
   outline: string;
   outlineVariant: string;
   shadow: string;
+
+  primaryFixed: string;
+  primaryFixedDim: string;
+  onPrimaryFixed: string;
+  onPrimaryFixedVariant: string;
+
+  secondaryFixed: string;
+  secondaryFixedDim: string;
+  onSecondaryFixed: string;
+  onSecondaryFixedVariant: string;
+
+  tertiaryFixed: string;
+  tertiaryFixedDim: string;
+  onTertiaryFixed: string;
+  onTertiaryFixedVariant: string;
 
   // channels
   primaryChannel: string;
