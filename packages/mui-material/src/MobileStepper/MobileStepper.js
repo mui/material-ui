@@ -44,21 +44,9 @@ const MobileStepperRoot = styled(Paper, {
   padding: 8,
   variants: [
     {
-      props: { position: 'bottom' },
-      style: {
-        borderRadius: 0,
-        position: 'fixed',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        zIndex: (theme.vars || theme).zIndex.mobileStepper,
-      },
-    },
-    {
-      props: { position: 'top' },
+      props: ({ position }) => position !== 'static',
       style: {
         position: 'fixed',
-        top: 0,
         left: 0,
         right: 0,
         zIndex: (theme.vars || theme).zIndex.mobileStepper,
@@ -83,17 +71,6 @@ const MobileStepperDots = styled('div', {
   ],
 });
 
-const mobileStepperDotDefaultStyle = ({ theme }) => ({
-  transition: theme.transitions.create('background-color', {
-    duration: theme.transitions.duration.shortest,
-  }),
-  backgroundColor: (theme.vars || theme).palette.action.disabled,
-  borderRadius: '50%',
-  width: 8,
-  height: 8,
-  margin: '0 2px',
-});
-
 const MobileStepperDot = styled('div', {
   name: 'MuiMobileStepper',
   slot: 'Dot',
@@ -108,13 +85,19 @@ const MobileStepperDot = styled('div', {
     {
       props: { variant: 'dots', dotActive: false },
       style: {
-        ...mobileStepperDotDefaultStyle({ theme }),
+        transition: theme.transitions.create('background-color', {
+          duration: theme.transitions.duration.shortest,
+        }),
+        backgroundColor: (theme.vars || theme).palette.action.disabled,
+        borderRadius: '50%',
+        width: 8,
+        height: 8,
+        margin: '0 2px',
       },
     },
     {
       props: { variant: 'dots', dotActive: true },
       style: {
-        ...mobileStepperDotDefaultStyle({ theme }),
         backgroundColor: (theme.vars || theme).palette.primary.main,
       },
     },
