@@ -209,7 +209,11 @@ export default function SignInSide() {
                 <img src={logo} style={logoStyle} alt="logo of sitemark" />
                 <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
               </Box>
-              <Typography component="h1" variant="h3">
+              <Typography
+                component="h1"
+                variant="h3"
+                sx={{ fontSize: 'clamp(2.625rem, 10vw, 3rem)' }}
+              >
                 Sign in
               </Typography>
               <Box
