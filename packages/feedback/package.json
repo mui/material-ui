@@ -12,7 +12,7 @@
   "scripts": {
     "claudia": "claudia --profile claudia",
     "curl": "curl -H \"Content-Type: application/json\" -X POST --data @example.json https://hgvi836wi8.execute-api.us-east-1.amazonaws.com/dev/rating",
-    "setup": "claudia create --profile claudia --version dev --region us-east-1 --api-module index --policies policies --configure-table-dev --configure-table-prod --no-optional-dependencies",
+    "setup": "claudia create --profile claudia --version dev --region us-east-1 --api-module index --policies policies --configure-table-dev --configure-table-prod --no-optional-dependencies --runtime nodejs18.x",
     "update": "claudia update --profile claudia --version dev --no-optional-dependencies",
     "deploy": "claudia update --profile claudia --version dev --no-optional-dependencies && claudia --profile claudia set-version --version prod",
     "reconfigure": "claudia update --profile claudia --configure-db"
@@ -25,6 +25,7 @@
     "claudia": "^5.14.1"
   },
   "optionalDependencies": {
-    "aws-sdk": "^2.1574.0"
+    "@aws-sdk/client-dynamodb": "^3.515.0",
+    "@aws-sdk/lib-dynamodb": "^3.515.0"
   }
 }

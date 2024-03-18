@@ -1,10 +1,14 @@
 /* eslint-disable no-console */
 const ApiBuilder = require('claudia-api-builder');
-const AWS = require('aws-sdk');
+const { DynamoDBDocument } = require('@aws-sdk/lib-dynamodb');
+const { DynamoDB } = require('@aws-sdk/client-dynamodb');
+
 const { v4: uuid } = require('uuid');
 
 const api = new ApiBuilder();
-const dynamoDb = new AWS.DynamoDB.DocumentClient();
+const dynamoDb = DynamoDBDocument.from(new DynamoDB(), {
+  marshallOptions: { removeUndefinedValues: true },
+});
 
 async function dbGet(request, id, page) {
   const stage = request.context.stage;
@@ -19,7 +23,7 @@ async function dbGet(request, id, page) {
 
   try {
     console.log('dbGet()', params);
-    const response = await dynamoDb.get(params).promise();
+    const response = await dynamoDb.get(params);
     console.log({ response });
     return response.Item;
   } catch (error) {
@@ -49,7 +53,7 @@ async function dbPut(request, id, item = {}) {
 
   try {
     console.log('dbPut()', params);
-    const response = await dynamoDb.put(params).promise();
+    const response = await dynamoDb.put(params);
     console.log({ response });
     return params.Item;
   } catch (error) {
@@ -71,7 +75,7 @@ async function dbQuery(request, id) {
 
   try {
     console.log('dbQuery()', params);
-    const response = await dynamoDb.query(params).promise();
+    const response = await dynamoDb.query(params);
     console.log({ response });
     return response.Items;
   } catch (error) {
