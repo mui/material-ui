@@ -122,7 +122,7 @@
     "@types/fs-extra": "^11.0.4",
     "@types/lodash": "^4.17.0",
     "@types/mocha": "^10.0.6",
-    "@types/node": "^18.19.22",
+    "@types/node": "^18.19.25",
     "@types/prettier": "^2.7.3",
     "@types/react": "^18.2.55",
     "@types/yargs": "^17.0.32",
@@ -212,7 +212,7 @@
     "@definitelytyped/header-parser": "^0.2.8",
     "@definitelytyped/typescript-versions": "^0.1.1",
     "@definitelytyped/utils": "^0.1.5",
-    "@types/node": "^18.19.22",
+    "@types/node": "^18.19.25",
     "@types/react": "^18.2.55",
     "@types/react-dom": "18.2.19",
     "cross-fetch": "^4.0.0"
