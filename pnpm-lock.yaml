@@ -663,8 +663,8 @@ importers:
         specifier: ^7.5.0
         version: 7.5.0(react@18.2.0)
       react-intersection-observer:
-        specifier: ^9.5.3
-        version: 9.5.3(react@18.2.0)
+        specifier: ^9.8.1
+        version: 9.8.1(react-dom@18.2.0)(react@18.2.0)
       react-is:
         specifier: ^18.2.0
         version: 18.2.0
@@ -18137,12 +18137,17 @@ packages:
       react: 18.2.0
     dev: false
 
-  /react-intersection-observer@9.5.3(react@18.2.0):
-    resolution: {integrity: sha512-NJzagSdUPS5rPhaLsHXYeJbsvdpbJwL6yCHtMk91hc0ufQ2BnXis+0QQ9NBh6n9n+Q3OyjR6OQLShYbaNBkThQ==}
+  /react-intersection-observer@9.8.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-QzOFdROX8D8MH3wE3OVKH0f3mLjKTtEN1VX/rkNuECCff+aKky0pIjulDhr3Ewqj5el/L+MhBkM3ef0Tbt+qUQ==}
     peerDependencies:
       react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
     dependencies:
       react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /react-is@16.13.1:
