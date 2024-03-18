@@ -150,19 +150,3 @@ You can solve the latter with:
   }
 }
 ```
-
-## Experimental APIs
-
-### Material Design 3
-
-The default Material UI Progress components follow the Material Design 2 specs.
-To use the [M3](https://m3.material.io/) version, install the experimental `@mui/material-next` package.
-
-```js
-import CircularProgress from '@mui/material-next/CircularProgress';
-import LinearProgress from '@mui/material-next/LinearProgress';
-```
-
-{{"demo": "ProgressMaterialYouPlayground.js", "hideToolbar": true, "bg": "playground"}}
-
-To learn more about Material UI's M3 implementation, visit the [M3 Components documentation](/material-ui/guides/material-3-components/).
