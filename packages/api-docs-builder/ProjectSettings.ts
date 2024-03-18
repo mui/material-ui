@@ -1,4 +1,4 @@
-import { ComponentClassDefinition } from '@mui-internal/docs-utils';
+import { ComponentClassDefinition } from '@mui/internal-docs-utils';
 import { ComponentInfo, HookInfo } from './buildApiUtils';
 import { CreateTypeScriptProjectOptions } from './utils/createTypeScriptProject';
 import { CreateDescribeablePropSettings } from './utils/createDescribeableProp';

@@ -77,7 +77,7 @@ For the right candidate:
 - Build example apps with MUI products and create how-to content around them
 - Research and write case studies
 - Overhaul the [Showcase](https://mui.com/material-ui/discover-more/showcase/)
-- Revamp the company blog infrastructure to empower less technical teammates to contribute (e.g. HR)
+- Revamp the company blog infrastructure to empower less technical teammates to contribute (for example HR)
 - Contribute to integrations with other popular libraries and frameworks
 - Create a learning section in the documentation for hybrid written and video tutorials
 

@@ -56,7 +56,7 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
         minWidth: 'var(--IconButton-size, 2rem)', // use min-width instead of height to make the button resilient to its content
         minHeight: 'var(--IconButton-size, 2rem)', // use min-height instead of height to make the button resilient to its content
         fontSize: theme.vars.fontSize.sm,
-        paddingInline: '2px', // add a gap, in case the content is long, e.g. multiple icons
+        paddingInline: '2px', // add a gap, in case the content is long, for example multiple icons
       }),
       ...(ownerState.size === 'md' && {
         '--Icon-fontSize': 'calc(var(--IconButton-size, 2.25rem) / 1.5)', // 1.5rem by default
@@ -80,8 +80,8 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
       paddingBlock: 0,
       fontFamily: theme.vars.fontFamily.body,
       fontWeight: theme.vars.fontWeight.md,
-      margin: `var(--IconButton-margin)`, // to be controlled by other components, e.g. Input
-      borderRadius: `var(--IconButton-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, e.g. Input
+      margin: `var(--IconButton-margin)`, // to be controlled by other components, for example Input
+      borderRadius: `var(--IconButton-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, for example Input
       border: 'none',
       boxSizing: 'border-box',
       backgroundColor: 'transparent',

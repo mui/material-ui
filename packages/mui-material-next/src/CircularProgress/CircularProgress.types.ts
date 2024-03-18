@@ -36,7 +36,7 @@ export interface CircularProgressOwnProps {
   /**
    * The size of the component.
    * If using a number, the pixel unit is assumed.
-   * If using a string, you need to provide the CSS unit, e.g. '3rem'.
+   * If using a string, you need to provide the CSS unit, for example '3rem'.
    * @default 48
    */
   size?: number | string;

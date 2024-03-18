@@ -116,7 +116,7 @@ export default function Notifications() {
     // and create some distraction.
     const timeout = setTimeout(async () => {
       const notifications = await fetchNotifications().catch(() => {
-        // Swallow the exceptions, e.g. rate limit
+        // Swallow the exceptions, for example rate limit
         return [];
       });
 

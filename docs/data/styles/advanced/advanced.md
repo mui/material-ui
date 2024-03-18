@@ -240,7 +240,7 @@ Read this section from the MDN docs for more information: [How is specificity ca
 :::
 
 By default, the style tags are injected **last** in the `<head>` element of the page.
-They gain more specificity than any other style tags on your page e.g. CSS modules, styled components.
+They gain more specificity than any other style tags on your page for example CSS Modules, styled components.
 
 ### injectFirst
 
@@ -399,7 +399,7 @@ function render() {
 }
 ```
 
-You can [follow the server side guide](/material-ui/guides/server-rendering/) for a more detailed example, or read the [`ServerStyleSheets` API documentation](/system/styles/api/#serverstylesheets).
+You can [follow the server-side guide](/material-ui/guides/server-rendering/) for a more detailed example, or read the [`ServerStyleSheets` API documentation](/system/styles/api/#serverstylesheets).
 
 ### CSS prefixing
 
