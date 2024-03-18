@@ -141,7 +141,7 @@ export default function XHero() {
               ...theme.applyDarkStyles({
                 borderColor: 'primaryDark.700',
                 backgroundColor: 'primaryDark.900',
-                boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.4)',
+                boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
               }),
             })}
           >
@@ -281,7 +281,7 @@ export default function XHero() {
                 ...theme.applyDarkStyles({
                   borderColor: 'primaryDark.700',
                   backgroundColor: 'primaryDark.900',
-                  boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.4)',
+                  boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
                 }),
               })}
             >
@@ -338,7 +338,7 @@ export default function XHero() {
                 (theme) =>
                   theme.applyDarkStyles({
                     borderColor: 'primaryDark.700',
-                    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.4)',
+                    boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
                     backgroundColor: 'primaryDark.900',
                     '& .MuiDateRangePickerDay-day.Mui-selected': {
                       color: '#FFF',

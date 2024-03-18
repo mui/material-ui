@@ -28,7 +28,7 @@ export default function PlayerCard({ disableTheming }: { disableTheming?: boolea
             alignItems: 'center',
             gap: 2,
             ...(!disableTheming && {
-              borderColor: 'divider',
+              borderColor: 'grey.200',
               boxShadow: (theme) => `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
               [`& .${iconButtonClasses.root}`]: {
                 border: '1px solid',
@@ -52,7 +52,7 @@ export default function PlayerCard({ disableTheming }: { disableTheming?: boolea
             ((theme) =>
               theme.applyDarkStyles({
                 bgcolor: 'primaryDark.900',
-                boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.4)',
+                boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
                 [`& .${iconButtonClasses.root}`]: {
                   bgcolor: 'primary.900',
                   color: 'primary.200',

@@ -17,7 +17,8 @@ const StyledTabs = styled(Tabs)(({ theme }) => ({
   borderColor: (theme.vars || theme).palette.grey[100],
   backgroundColor: (theme.vars || theme).palette.grey[50],
   '&:has(.Mui-focusVisible)': {
-    outline: `2px solid ${(theme.vars || theme).palette.primary.main}`,
+    outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
+    outlineOffset: '2px',
   },
   '& .MuiTabs-scroller, & .MuiTab-root': {
     // Override inline-style to see the box-shadow
@@ -32,14 +33,14 @@ const StyledTabs = styled(Tabs)(({ theme }) => ({
     fontWeight: theme.typography.fontWeightSemiBold,
     minWidth: 0,
     minHeight: 0,
-    color: (theme.vars || theme).palette.grey[600],
+    color: (theme.vars || theme).palette.text.tertiary,
     borderRadius: 20,
     zIndex: 2,
     '&:hover': {
-      color: (theme.vars || theme).palette.grey[800],
+      color: (theme.vars || theme).palette.text.primary,
     },
     '&.Mui-selected': {
-      color: (theme.vars || theme).palette.primary[500],
+      color: (theme.vars || theme).palette.primary[600],
       fontWeight: theme.typography.fontWeightSemiBold,
     },
     '&.Mui-focusVisible': {
@@ -58,19 +59,14 @@ const StyledTabs = styled(Tabs)(({ theme }) => ({
   ...theme.applyDarkStyles({
     borderColor: (theme.vars || theme).palette.primaryDark[700],
     backgroundColor: (theme.vars || theme).palette.primaryDark[900],
-    color: (theme.vars || theme).palette.grey[400],
     '& .MuiTabs-indicator': {
       height: '100%',
       borderRadius: 20,
       backgroundColor: alpha(theme.palette.primaryDark[600], 0.5),
-      borderColor: (theme.vars || theme).palette.primaryDark[500],
+      borderColor: (theme.vars || theme).palette.primaryDark[600],
       boxShadow: `0px 1px 4px ${(theme.vars || theme).palette.common.black}`,
     },
     '& .MuiTab-root': {
-      color: (theme.vars || theme).palette.grey[400],
-      '&:hover': {
-        color: (theme.vars || theme).palette.grey[300],
-      },
       '&.Mui-selected': {
         color: (theme.vars || theme).palette.primary[200],
       },

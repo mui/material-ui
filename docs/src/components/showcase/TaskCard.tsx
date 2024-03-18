@@ -20,10 +20,9 @@ export default function TaskCard() {
           display: 'flex',
           flexDirection: 'column',
           p: 3,
-          background: `linear-gradient(to right bottom, ${
-            (theme.vars || theme).palette.primary[500]
-          }, ${(theme.vars || theme).palette.primary[600]} 120%)`,
-          boxShadow: '0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04)',
+          background:
+            'linear-gradient(180deg, var(--muidocs-palette-primary-600) 0%, var(--muidocs-palette-primary-700) 100%)',
+          boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.04)',
         })}
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.8 }}>
