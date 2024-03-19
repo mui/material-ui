@@ -1,33 +1,27 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { deepmerge } from '@mui/utils';
+import defaultTranslations from '../translations';
 
-declare global {
-  interface NodeRequire {
-    context: (path: string, useSubdirectories: boolean, regex: RegExp) => RequireContext;
-  }
+const TranslationsContext = React.createContext(defaultTranslations);
+
+interface TranslationsProviderProps {
+  translations?: Record<string, any>;
+  children: React.ReactNode;
 }
 
-interface RequireContext {
-  (req: string): string;
-  keys: () => string[];
+function TranslationsProvider({ translations = {}, children }: TranslationsProviderProps) {
+  const currentTranslations = React.useContext(TranslationsContext);
+  const mergedTranslations = React.useMemo(
+    () => deepmerge(currentTranslations, translations),
+    [currentTranslations, translations],
+  );
+  return (
+    <TranslationsContext.Provider value={mergedTranslations}>
+      {children}
+    </TranslationsContext.Provider>
+  );
 }
-
-function mapTranslations(req: RequireContext) {
-  const translations: Record<string, string> = {};
-  req.keys().forEach((filename) => {
-    const match = filename.match(/-([a-z]{2}).json$/);
-
-    if (match) {
-      translations[match[1]] = req(filename);
-    } else {
-      translations.en = req(filename);
-    }
-  });
-  return translations;
-}
-
-const req: RequireContext = require.context('docs/translations', false, /translations.*\.json$/);
-const translations = mapTranslations(req);
 
 function getPath(obj: any, path: string): any {
   if (!path || typeof path !== 'string') {
@@ -52,11 +46,12 @@ if (process.env.NODE_ENV !== 'production') {
 
 export interface UserLanguageProviderProps {
   children: React.ReactNode;
+  translations?: Translations;
   defaultUserLanguage: string;
 }
 
 export function UserLanguageProvider(props: UserLanguageProviderProps) {
-  const { children, defaultUserLanguage } = props;
+  const { children, translations, defaultUserLanguage } = props;
 
   const [userLanguage, setUserLanguage] = React.useState(defaultUserLanguage);
 
@@ -65,7 +60,9 @@ export function UserLanguageProvider(props: UserLanguageProviderProps) {
   }, [userLanguage]);
 
   return (
-    <UserLanguageContext.Provider value={contextValue}>{children}</UserLanguageContext.Provider>
+    <TranslationsProvider translations={translations}>
+      <UserLanguageContext.Provider value={contextValue}>{children}</UserLanguageContext.Provider>
+    </TranslationsProvider>
   );
 }
 
@@ -90,6 +87,8 @@ export interface TranslateOptions {
 
 export function useTranslate() {
   const userLanguage = useUserLanguage();
+
+  const translations = React.useContext(TranslationsContext);
 
   return React.useMemo(
     () =>
@@ -116,6 +115,27 @@ export function useTranslate() {
 
         return translation;
       },
-    [userLanguage],
+    [userLanguage, translations],
   );
+}
+
+export type Translations = { [key in string]?: string | Translations };
+
+export interface RequireContext {
+  (req: string): string;
+  keys: () => string[];
+}
+
+export function mapTranslations(req: RequireContext): Translations {
+  const result: Translations = {};
+  req.keys().forEach((filename) => {
+    const match = filename.match(/-([a-z]{2}).json$/);
+
+    if (match) {
+      result[match[1]] = req(filename);
+    } else {
+      result.en = req(filename);
+    }
+  });
+  return result;
 }

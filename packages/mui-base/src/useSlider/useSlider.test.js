@@ -6,6 +6,7 @@ import { useSlider } from './useSlider';
 
 describe('useSlider', () => {
   const { render } = createRenderer();
+
   describe('getRootProps', () => {
     it('forwards external props including event handlers', () => {
       const rootRef = React.createRef();

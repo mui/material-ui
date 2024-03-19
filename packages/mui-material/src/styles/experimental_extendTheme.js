@@ -57,7 +57,7 @@ function setColorChannel(obj, key) {
       toRgb(obj[key]),
       `MUI: Can't create \`palette.${key}Channel\` because \`palette.${key}\` is not one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().` +
         '\n' +
-        `To suppress this warning, you need to explicitly provide the \`palette.${key}Channel\` as a string (in rgb format, e.g. "12 12 12") or undefined if you want to remove the channel token.`,
+        `To suppress this warning, you need to explicitly provide the \`palette.${key}Channel\` as a string (in rgb format, for example "12 12 12") or undefined if you want to remove the channel token.`,
     );
   }
 }
@@ -343,6 +343,9 @@ export default function extendTheme(options = {}, ...args) {
 
     // MUI X - DataGrid needs this token.
     setColorChannel(palette.background, 'default');
+
+    // added for consistency with the `background.default` token
+    setColorChannel(palette.background, 'paper');
 
     setColorChannel(palette.common, 'background');
     setColorChannel(palette.common, 'onBackground');

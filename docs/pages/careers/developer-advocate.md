@@ -18,7 +18,7 @@ We're a company of 31+ people as of late 2023, and we're growing.
 ## The products
 
 MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
-Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
+Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
 We also host Design Kits and pre-built Templates.
 
 Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
@@ -77,7 +77,7 @@ For the right candidate:
 - Build example apps with MUI products and create how-to content around them
 - Research and write case studies
 - Overhaul the [Showcase](https://mui.com/material-ui/discover-more/showcase/)
-- Revamp the company blog infrastructure to empower less technical teammates to contribute (e.g. HR)
+- Revamp the company blog infrastructure to empower less technical teammates to contribute (for example HR)
 - Contribute to integrations with other popular libraries and frameworks
 - Create a learning section in the documentation for hybrid written and video tutorials
 

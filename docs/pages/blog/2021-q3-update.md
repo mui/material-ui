@@ -189,7 +189,7 @@ We'll do our best, no guarantee!
 
 ### MUI Core
 
-- 🚀 We will double down on v5 before starting to solve new large problems, e.g. a revamp of the select.
+- 🚀 We will double down on v5 before starting to solve new large problems, for example a revamp of the select.
   We have made bold changes in this version since v4, but until recently, only a small percentage of the community was using v5.
   In the last few weeks, we have seen a strong influx of feedback from the community.
   We need to make the most of this feedback to solve regressions, improve the documentation for the new APIs, adjust the tradeoffs we took in the light of more information, and more.
@@ -200,7 +200,7 @@ We'll do our best, no guarantee!
   Since v5, Material UI is no longer actively supporting IE 11. Dropping this browser requirement unlocks new capabilities of the web platform.
 - 🌈 Resume work on the second design system.
   Some users (and potential users) dislike Material Design. We'll try to make the second design system one that they love! You can check our [first RFC](https://github.com/mui/material-ui/discussions/29024).
-- 🗓 Execute on all of the items in the [public roadmap](https://github.com/orgs/mui/projects/18/views/1).
+- 🗓 Execute on all of the items in the [public roadmap](https://github.com/orgs/mui/projects/23/views/12).
 - ❓ Please upvote [GitHub issues](https://github.com/mui/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
 ### MUI X

@@ -1,8 +1,8 @@
 # Overriding component structure
 
-<p class="description">Learn how to override the default DOM structure of Joy UI components.</p>
+<p class="description">Learn how to override the default DOM structure of Joy UI components.</p>
 
-Joy UI components are designed to suit the widest possible range of use cases, but you may occasionally need to change how a component's structure is rendered in the DOM.
+Joy UI components are designed to suit the widest possible range of use cases, but you may occasionally need to change how a component's structure is rendered in the DOM.
 
 To understand how to do this, it helps to have an accurate mental model of the components.
 
@@ -13,7 +13,7 @@ Slots are most commonly filled by HTML tags, but may also be filled by React com
 
 All components contain a root slot that defines their primary node in the DOM tree; more complex components also contain additional interior slots named after the elements they represent.
 
-All _non-utility_ Joy UI components accept two props for overriding their rendered HTML structure:
+All _non-utility_ Joy UI components accept two props for overriding their rendered HTML structure:
 
 - `component`—to override the root slot
 - `slots`—to replace any interior slots (when present) as well as the root
@@ -91,4 +91,4 @@ If you did the same with `slots.root`, you would need to place this attribute on
 
 Be mindful of your rendered DOM structure when overriding the slots of more complex components.
 You can easily break the rules of semantic and accessible HTML if you deviate too far from the default structure—for instance, by unintentionally nesting block-level elements inside of inline elements.
-Joy UI components automatically correct semantically incorrect HTML—see [Automatic adjustment](/joy-ui/main-features/automatic-adjustment/) for details.
+Joy UI components automatically correct semantically incorrect HTML—see [Automatic adjustment](/joy-ui/main-features/automatic-adjustment/) for details.

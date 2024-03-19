@@ -1,6 +1,6 @@
 {
   "name": "@mui/lab",
-  "version": "5.0.0-alpha.166",
+  "version": "5.0.0-alpha.169",
   "private": false,
   "author": "MUI Team",
   "description": "Laboratory for new MUI modules.",
@@ -51,7 +51,7 @@
   },
   "devDependencies": {
     "@mui-internal/test-utils": "workspace:^",
-    "@types/chai": "^4.3.11",
+    "@types/chai": "^4.3.12",
     "@types/prop-types": "^15.7.11",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",

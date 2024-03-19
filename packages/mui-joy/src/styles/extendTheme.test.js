@@ -104,6 +104,7 @@ describe('extendTheme', () => {
 
     let originalMatchmedia;
     const storage = {};
+
     beforeEach(() => {
       originalMatchmedia = window.matchMedia;
       // Create mocks of localStorage getItem and setItem functions
@@ -121,6 +122,7 @@ describe('extendTheme', () => {
         removeListener: () => {},
       });
     });
+
     afterEach(() => {
       window.matchMedia = originalMatchmedia;
     });

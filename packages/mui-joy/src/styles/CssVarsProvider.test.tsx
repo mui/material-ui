@@ -7,6 +7,7 @@ describe('[Joy] CssVarsProvider', () => {
   let originalMatchmedia: typeof window.matchMedia;
   const { render } = createRenderer();
   const storage: Record<string, string> = {};
+
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
     // Create mocks of localStorage getItem and setItem functions
@@ -25,6 +26,7 @@ describe('[Joy] CssVarsProvider', () => {
         removeListener: () => {},
       }) as unknown as MediaQueryList;
   });
+
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
   });

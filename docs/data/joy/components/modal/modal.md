@@ -14,7 +14,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 
 ## Introduction
 
-Joy UI provides three modal-related components:
+Joy UI provides three modal-related components:
 
 - [`Modal`](#basic-usage): A container that renders its `children` node in front of a backdrop component.
 - [`ModalClose`](#dialog): A button for closing the modal.
@@ -53,7 +53,7 @@ export default function MyApp() {
 ### Basic usage
 
 The Modal accepts only a single React element as a child.
-That can be either a Joy UI component, e.g. [`Sheet`](/joy-ui/react-sheet/), or any other custom element.
+That can be either a Joy UI component, for example [`Sheet`](/joy-ui/react-sheet/), or any other custom element.
 
 Use the Modal Close component to render a close button that inherits the modal's `onClose` function.
 

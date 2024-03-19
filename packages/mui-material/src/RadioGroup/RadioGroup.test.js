@@ -360,6 +360,7 @@ describe('<RadioGroup />', () => {
           </RadioGroup>
         );
       });
+
       describe('onChange', () => {
         it('should set the value state', () => {
           const radioGroupRef = React.createRef();

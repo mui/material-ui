@@ -332,19 +332,19 @@
     {
       "key": "tag",
       "className": "MuiAutocomplete-tag",
-      "description": "Styles applied to the tag elements, e.g. the chips.",
+      "description": "Styles applied to the tag elements, for example the chips.",
       "isGlobal": false
     },
     {
       "key": "tagSizeMedium",
       "className": "MuiAutocomplete-tagSizeMedium",
-      "description": "Styles applied to the tag elements, e.g. the chips if `size=\"medium\"`.",
+      "description": "Styles applied to the tag elements, for example the chips if `size=\"medium\"`.",
       "isGlobal": false
     },
     {
       "key": "tagSizeSmall",
       "className": "MuiAutocomplete-tagSizeSmall",
-      "description": "Styles applied to the tag elements, e.g. the chips if `size=\"small\"`.",
+      "description": "Styles applied to the tag elements, for example the chips if `size=\"small\"`.",
       "isGlobal": false
     }
   ],
