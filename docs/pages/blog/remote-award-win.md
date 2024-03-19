@@ -13,7 +13,7 @@ MUI has been named a **winner** in the first-ever [Remote Excellence Awards](htt
 
 ## Small & Mighty winners
 
-The awards, presented by [Remote](/www.remote.com/), recognize companies that have demonstrated exceptional commitment, innovation, and enthusiasm in navigating the challenges and opportunities presented by remote work.
+The awards, presented by [Remote](https://remote.com/), recognize companies that have demonstrated exceptional commitment, innovation, and enthusiasm in navigating the challenges and opportunities presented by remote work.
 
 The awards celebrate MUI's efforts driving success in the realm of remote work and distributed teams and provide a roadmap of effective strategies and practices for other businesses to follow.
 The winners across 10 categories were selected through a rigorous evaluation process by a panel of judges, comprising Remote's leaders and a panel of influential industry figures, considering factors such as employee engagement, impact on employee engagement and productivity, and technology adoption.
@@ -39,7 +39,7 @@ MUI is proud to also see our Director of People & Culture, [Mikaila Read](https:
 
 The report includes 150 global experts who are hand-selected for their leadership and expertise in remote working by Remote's judging panel: [Job van der Voort](https://www.linkedin.com/in/jobvo/), [Rowena Hennigan](https://www.linkedin.com/in/rowena-hennigan/), [Chris Cerra](https://www.linkedin.com/in/chriscerra/), and [Ester Martinez](https://www.linkedin.com/in/estermartinez/).
 
-Mikaila was recognised in the Remote Accelerator category which includes business, HR, and industry leaders actually making remote work happen at scale.
+Mikaila was recognized in the Remote Accelerator category which includes business, HR, and industry leaders actually making remote work happen at scale.
 
 Regarding MUI's inclusion in the awards, Mikaila shared:
 
