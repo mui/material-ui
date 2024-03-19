@@ -905,3 +905,22 @@ The Slider's `componentsProps` was deprecated in favor of `slotProps`:
 +  slotProps={{ track: { testid: 'test-id' } }}
  />
 ```
+
+## Backdrop
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#backdrop-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/backdrop-props <path>
+```
+
+### components
+
+The backdrop's `TransitionComponent` was deprecated in favor of `slots.transition`:
+
+```diff
+ <Slider
+-  TransitionComponent={CustomTransition}
++  slots={{ transition: CustomTransition }}
+ />
+```
