@@ -24,12 +24,12 @@
   "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-docs",
   "scripts": {
     "build": "pnpm build:legacy && pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
-    "build:legacy": "node ../../scripts/build.mjs legacy",
+    "build:legacy": "echo 'Skip legacy build'",
     "build:modern": "echo 'Skip modern build'",
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
     "build:types": "node ../../scripts/buildTypes.mjs",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs ./src/translations/translations.json:./translations/translations.json",
+    "build:copy-files": "node ../../scripts/copyFiles.mjs ./src/translations/translations.json:./translations/translations.json ./src/translations/translations.json:./node/translations/translations.json",
     "prebuild": "rimraf build",
     "release": "pnpm build && pnpm publish",
     "test": "exit 0"
