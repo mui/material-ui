@@ -13,6 +13,7 @@ import TextField from '@mui/material/TextField';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
 import { alpha } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -74,6 +75,7 @@ const logoStyle = {
   height: '56px',
   opacity: 0.8,
   marginLeft: '-16px',
+  marginTop: '-16px',
 };
 
 export default function SignUp() {
@@ -165,176 +167,220 @@ export default function SignUp() {
 
   return (
     <ThemeProvider theme={showCustomTheme ? SignUpTheme : defaultTheme}>
-      <Box
+      <CssBaseline />
+      <Stack
+        direction={{ xs: 'column', sm: 'row' }}
+        justifyContent="space-between"
         sx={(theme) => ({
           backgroundImage:
             theme.palette.mode === 'light'
-              ? 'linear-gradient(180deg, #CEE5FD, #FFF)'
-              : `linear-gradient(#02294F, ${alpha('#090E10', 0.0)})`,
-          backgroundSize: '100% 20%',
+              ? `linear-gradient(180deg, ${alpha('#CEE5FD', 0.7)}, #FFF)`
+              : `linear-gradient(${alpha('#02294F', 0.5)}, ${alpha('#021F3B', 0.0)})`,
           backgroundRepeat: 'no-repeat',
-          pt: { xs: 2, sm: 8 },
-          px: { xs: 2, sm: 8 },
+          px: { xs: 2, sm: 4 },
+          height: '100dvh',
+          mb: { xs: 16, sm: 0 },
         })}
         component="main"
       >
-        <CssBaseline />
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          sx={{ display: { xs: 'flex', sm: 'none' }, my: 4 }}
+        >
+          <Button
+            startIcon={<ArrowBackRoundedIcon />}
+            component="a"
+            href="/material-ui/getting-started/templates/landing-page/"
+          >
+            Back
+          </Button>
+          <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+        </Stack>
         <Button
           startIcon={<ArrowBackRoundedIcon />}
           component="a"
           href="/material-ui/getting-started/templates/landing-page/"
+          sx={{
+            alignSelf: 'flex-start',
+            mt: 4,
+            display: { xs: 'none', sm: 'flex' },
+          }}
         >
           Back
         </Button>
-        <Card
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            width: { sm: '100%', md: '450px' },
-            mx: 'auto',
-            mt: { sm: 2, md: '-40px' },
-            p: 4,
-            gap: 4,
-          }}
+        <Stack
+          justifyContent={{ xs: 'start', sm: 'center' }}
+          sx={{ height: '100%' }}
         >
-          <Box
+          <Card
+            variant="outlined"
             sx={{
               display: 'flex',
-              justifyContent: 'space-between',
-              width: '100%',
-              alignItems: 'center',
+              flexDirection: 'column',
+              width: { sm: '100%', md: '450px' },
+              mx: 'auto',
+              p: 4,
+              gap: 4,
             }}
           >
-            <img src={logo} style={logoStyle} alt="logo of sitemark" />
-            <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
-          </Box>
-          <Typography component="h1" variant="h3">
-            Sign up
-          </Typography>
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
-          >
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField
-                  autoComplete="name"
-                  name="name"
-                  required
-                  fullWidth
-                  id="name"
-                  placeholder="First Name"
-                  error={nameError}
-                  helperText={nameErrorMessage}
-                  color={nameError ? 'error' : 'primary'}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  placeholder="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
-                  error={lastNameError}
-                  helperText={lastNameErrorMessage}
-                  color={lastNameError ? 'error' : 'primary'}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  placeholder="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  variant="outlined"
-                  error={emailError}
-                  helperText={emailErrorMessage}
-                  color={passwordError ? 'error' : 'primary'}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  placeholder="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                  variant="outlined"
-                  error={passwordError}
-                  helperText={passwordErrorMessage}
-                  color={passwordError ? 'error' : 'primary'}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive updates via email."
-                />
-              </Grid>
-            </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              onClick={validateInputs}
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                width: '100%',
+                alignItems: 'center',
+              }}
+            >
+              <img
+                src={
+                  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
+                }
+                style={logoStyle}
+                alt="logo of sitemark"
+              />
+            </Box>
+            <Typography
+              component="h1"
+              variant="h4"
+              sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.5rem)' }}
             >
               Sign Up
-            </Button>
-            <Grid container justifyContent="center">
-              <Grid item>
-                <Link
-                  href="/material-ui/getting-started/templates/sign-in/"
-                  variant="body2"
-                >
-                  Already have an account? Sign in
-                </Link>
+            </Typography>
+            <Box
+              component="form"
+              onSubmit={handleSubmit}
+              sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
+            >
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <TextField
+                    autoComplete="name"
+                    name="name"
+                    required
+                    fullWidth
+                    id="name"
+                    placeholder="First Name"
+                    error={nameError}
+                    helperText={nameErrorMessage}
+                    color={nameError ? 'error' : 'primary'}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="lastName"
+                    placeholder="Last Name"
+                    name="lastName"
+                    autoComplete="family-name"
+                    error={lastNameError}
+                    helperText={lastNameErrorMessage}
+                    color={lastNameError ? 'error' : 'primary'}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="email"
+                    placeholder="Email Address"
+                    name="email"
+                    autoComplete="email"
+                    variant="outlined"
+                    error={emailError}
+                    helperText={emailErrorMessage}
+                    color={passwordError ? 'error' : 'primary'}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    name="password"
+                    placeholder="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="new-password"
+                    variant="outlined"
+                    error={passwordError}
+                    helperText={passwordErrorMessage}
+                    color={passwordError ? 'error' : 'primary'}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <FormControlLabel
+                    control={<Checkbox value="allowExtraEmails" color="primary" />}
+                    label="I want to receive updates via email."
+                  />
+                </Grid>
               </Grid>
-            </Grid>
-          </Box>
-          <Divider>Or</Divider>
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <Button
-              type="submit"
-              fullWidth
-              variant="outlined"
-              color="secondary"
-              onClick={() => alert('Sign up with Google')}
-              startIcon={
-                <img
-                  src="https://www.vectorlogo.zone/logos/google/google-icon.svg"
-                  alt="Google"
-                  style={{ width: 16, height: 16 }}
-                />
-              }
-            >
-              Sign up with Google
-            </Button>
-            <Button
-              type="submit"
-              fullWidth
-              variant="outlined"
-              color="secondary"
-              onClick={() => alert('Sign up with Facebook')}
-              startIcon={
-                <img
-                  src="https://www.vectorlogo.zone/logos/facebook/facebook-tile.svg"
-                  alt="Google"
-                  style={{ width: 16, height: 16 }}
-                />
-              }
-            >
-              Sign up with Facebook
-            </Button>
-          </Box>
-        </Card>
-      </Box>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                onClick={validateInputs}
+              >
+                Sign Up
+              </Button>
+              <Grid container justifyContent="center">
+                <Grid item>
+                  <Link
+                    href="/material-ui/getting-started/templates/sign-in/"
+                    variant="body2"
+                  >
+                    Already have an account? Sign in
+                  </Link>
+                </Grid>
+              </Grid>
+            </Box>
+            <Divider>Or</Divider>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              <Button
+                type="submit"
+                fullWidth
+                variant="outlined"
+                color="secondary"
+                onClick={() => alert('Sign up with Google')}
+                startIcon={
+                  <img
+                    src="https://www.vectorlogo.zone/logos/google/google-icon.svg"
+                    alt="Google"
+                    style={{ width: 16, height: 16 }}
+                  />
+                }
+              >
+                Sign up with Google
+              </Button>
+              <Button
+                type="submit"
+                fullWidth
+                variant="outlined"
+                color="secondary"
+                onClick={() => alert('Sign up with Facebook')}
+                startIcon={
+                  <img
+                    src="https://www.vectorlogo.zone/logos/facebook/facebook-tile.svg"
+                    alt="Google"
+                    style={{ width: 16, height: 16 }}
+                  />
+                }
+              >
+                Sign up with Facebook
+              </Button>
+            </Box>
+          </Card>
+        </Stack>
+        <ToggleColorMode
+          mode={mode}
+          toggleColorMode={toggleColorMode}
+          sx={{
+            alignSelf: 'flex-start',
+            mt: 4,
+            display: { xs: 'none', sm: 'flex' },
+          }}
+        />
+      </Stack>
       <ToggleCustomTheme
         showCustomTheme={showCustomTheme}
         toggleCustomTheme={toggleCustomTheme}

@@ -152,30 +152,19 @@ export default function SignInSide() {
           height: '100%',
           top: 0,
           left: 0,
-          backgroundColor: (t) =>
-            t.palette.mode === 'light'
-              ? 'rgba(251,252,254,0.6)'
-              : 'rgba(9,14,16,0.8)',
-          '&::before': {
-            content: '""',
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
-            backgroundSize: 'cover',
-            filter: 'blur(80px)',
-            zIndex: -1,
-          },
         }}
       >
         <Grid container component="main" sx={{ height: '100vh' }}>
           <Grid
             item
             xs={false}
-            sm={4}
-            md={7}
+            sm={6}
+            md={8}
             sx={{
-              backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
+              backgroundImage: (t) =>
+                t.palette.mode === 'light'
+                  ? 'url("/static/images/templates/templates-images/light-background.png")'
+                  : 'url("/static/images/templates/templates-images/dark-background.png")',
               backgroundRepeat: 'no-repeat',
               backgroundColor: (t) =>
                 t.palette.mode === 'light'
@@ -185,7 +174,7 @@ export default function SignInSide() {
               backgroundPosition: 'center',
             }}
           />
-          <Grid item xs={12} sm={8} md={5}>
+          <Grid item xs={12} sm={6} md={4}>
             <Box
               sx={{
                 mt: 4,
@@ -193,7 +182,7 @@ export default function SignInSide() {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                gap: 8,
+                gap: 6,
               }}
             >
               <Box
@@ -205,11 +194,21 @@ export default function SignInSide() {
                   alignItems: 'center',
                 }}
               >
-                <img src={logo} style={logoStyle} alt="logo of sitemark" />
+                <img
+                  src={
+                    'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
+                  }
+                  style={logoStyle}
+                  alt="logo of sitemark"
+                />
                 <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
               </Box>
-              <Typography component="h1" variant="h3">
-                Sign in
+              <Typography
+                component="h1"
+                variant="h4"
+                sx={{ fontSize: 'clamp(2rem, 10vw, 2.5rem)' }}
+              >
+                Sign In
               </Typography>
               <Box
                 component="form"

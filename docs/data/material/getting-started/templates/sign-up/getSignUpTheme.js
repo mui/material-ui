@@ -309,6 +309,32 @@ export default function getSignUpTheme(mode) {
           }),
         },
       },
+      MuiIconButton: {
+        styleOverrides: {
+          root: ({ theme, ownerState }) => ({
+            ...(ownerState.size === 'small' && {
+              maxHeight: '32px',
+              maxWidth: '32px',
+            }),
+            ...(ownerState.size === 'medium' && {
+              height: '40px',
+              width: '40px',
+            }),
+            color: brand[600],
+            '&:hover': {
+              backgroundColor: alpha(brand[300], 0.3),
+              borderColor: brand[200],
+            },
+            ...(theme.palette.mode === 'dark' && {
+              color: brand[200],
+              '&:hover': {
+                backgroundColor: alpha(brand[600], 0.3),
+                borderColor: brand[700],
+              },
+            }),
+          }),
+        },
+      },
       MuiDivider: {
         styleOverrides: {
           root: ({ theme }) => ({
@@ -375,9 +401,9 @@ export default function getSignUpTheme(mode) {
               borderColor: brand[300],
             },
             '&.Mui-focused': {
+              outline: `3px solid ${alpha(brand[500], 0.5)}`,
+              outlineOffset: '2px',
               borderColor: brand[400],
-              outline: '4px solid',
-              outlineColor: brand[200],
             },
             ...(ownerState.color === 'error' && {
               borderColor: red[200],
@@ -407,8 +433,8 @@ export default function getSignUpTheme(mode) {
               },
               '&.Mui-focused': {
                 borderColor: brand[400],
-                outline: '4px solid',
-                outlineColor: alpha(brand[500], 0.5),
+                outline: `3px solid ${alpha(brand[500], 0.5)}`,
+                outlineOffset: '2px',
               },
               ...(ownerState.color === 'error' && {
                 borderColor: red[700],
@@ -447,10 +473,6 @@ export default function getSignUpTheme(mode) {
             ...(ownerState.variant === 'outlined' && {
               boxSizing: 'border-box',
               background: `linear-gradient(to bottom, #FFF, ${gray[50]})`,
-              '&:hover': {
-                borderColor: brand[300],
-                boxShadow: `0 0 24px ${brand[100]}`,
-              },
             }),
             ...(theme.palette.mode === 'dark' && {
               backgroundColor: alpha(gray[800], 0.6),
@@ -461,10 +483,6 @@ export default function getSignUpTheme(mode) {
                   gray[800],
                   0.5,
                 )})`,
-                '&:hover': {
-                  borderColor: brand[700],
-                  boxShadow: `0 0 24px ${brand[800]}`,
-                },
               }),
             }),
           }),
@@ -494,6 +512,11 @@ export default function getSignUpTheme(mode) {
             '&:hover::before': {
               width: '100%',
               opacity: 1,
+            },
+            '&:focus-visible': {
+              outline: `3px solid ${alpha(brand[500], 0.5)}`,
+              outlineOffset: '4px',
+              borderRadius: '2px',
             },
             ...(theme.palette.mode === 'dark' && {
               color: brand[200],
@@ -538,10 +561,10 @@ export default function getSignUpTheme(mode) {
             '&:hover': {
               borderColor: brand[300],
             },
-            '&.Mui-focused': {
+            '&.Mui-focusVisible': {
+              outline: `3px solid ${alpha(brand[500], 0.5)}`,
+              outlineOffset: '2px',
               borderColor: brand[400],
-              outline: '4px solid',
-              outlineColor: brand[200],
             },
             '&.Mui-checked': {
               color: 'white',
@@ -566,10 +589,10 @@ export default function getSignUpTheme(mode) {
                   backgroundColor: brand[800],
                 },
               },
-              '&.Mui-focused': {
+              '&.Mui-focusVisible': {
                 borderColor: brand[400],
-                outline: '4px solid',
-                outlineColor: alpha(brand[500], 0.5),
+                outline: `3px solid ${alpha(brand[500], 0.5)}`,
+                outlineOffset: '2px',
               },
             }),
           }),
@@ -588,6 +611,11 @@ export default function getSignUpTheme(mode) {
               '&.Mui-selected': { color: brand[300] },
             }),
           }),
+        },
+      },
+      MuiStack: {
+        defaultProps: {
+          useFlexGap: true,
         },
       },
     },

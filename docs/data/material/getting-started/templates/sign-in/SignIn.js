@@ -11,6 +11,7 @@ import TextField from '@mui/material/TextField';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
 import { alpha } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
@@ -63,16 +64,11 @@ ToggleCustomTheme.propTypes = {
   toggleCustomTheme: PropTypes.func.isRequired,
 };
 
-const whiteLogo =
-  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf7356420e154daf_SitemarkLight.svg';
-const darkLogo =
-  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73563dba154dad_SitemarkDark.svg';
-
 const logoStyle = {
   width: '140px',
   height: '56px',
-  opacity: 0.8,
   marginLeft: '-16px',
+  marginTop: '-16px',
 };
 
 export default function SignIn() {
@@ -80,13 +76,6 @@ export default function SignIn() {
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const defaultTheme = createTheme({ palette: { mode } });
   const SignInTheme = createTheme(getSignInTheme(mode));
-  const getLogo = () => {
-    if (showCustomTheme) {
-      return SignInTheme.palette.mode === 'light' ? darkLogo : whiteLogo;
-    }
-    return defaultTheme.palette.mode === 'light' ? darkLogo : whiteLogo;
-  };
-  const logo = getLogo();
   const [emailError, setEmailError] = React.useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
   const [passwordError, setPasswordError] = React.useState(false);
@@ -147,151 +136,190 @@ export default function SignIn() {
 
   return (
     <ThemeProvider theme={showCustomTheme ? SignInTheme : defaultTheme}>
-      <Box
+      <CssBaseline />
+      <Stack
+        direction={{ xs: 'column', sm: 'row' }}
+        justifyContent="space-between"
         sx={(theme) => ({
           backgroundImage:
             theme.palette.mode === 'light'
-              ? 'linear-gradient(180deg, #CEE5FD, #FFF)'
-              : `linear-gradient(#02294F, ${alpha('#090E10', 0.0)})`,
-          backgroundSize: '100% 20%',
+              ? `linear-gradient(180deg, ${alpha('#CEE5FD', 0.7)}, #FFF)`
+              : `linear-gradient(${alpha('#02294F', 0.5)}, ${alpha('#021F3B', 0.0)})`,
           backgroundRepeat: 'no-repeat',
-          pt: { xs: 2, sm: 8 },
-          px: { xs: 2, sm: 8 },
+          px: { xs: 2, sm: 4 },
+          height: '100dvh',
         })}
         component="main"
       >
-        <CssBaseline />
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          sx={{ display: { xs: 'flex', sm: 'none' }, my: 4 }}
+        >
+          <Button
+            startIcon={<ArrowBackRoundedIcon />}
+            component="a"
+            href="/material-ui/getting-started/templates/landing-page/"
+          >
+            Back
+          </Button>
+          <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+        </Stack>
         <Button
           startIcon={<ArrowBackRoundedIcon />}
           component="a"
           href="/material-ui/getting-started/templates/landing-page/"
+          sx={{
+            alignSelf: 'flex-start',
+            mt: 4,
+            display: { xs: 'none', sm: 'flex' },
+          }}
         >
           Back
         </Button>
-        <Card
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            width: { sm: '100%', md: '450px' },
-            mx: 'auto',
-            mt: { sm: 2, md: '-40px' },
-            p: 4,
-            gap: 4,
-          }}
+        <Stack
+          justifyContent={{ xs: 'start', sm: 'center' }}
+          sx={{ height: '100%' }}
         >
-          <Box
+          <Card
+            variant="outlined"
             sx={{
               display: 'flex',
-              justifyContent: 'space-between',
-              width: '100%',
-              alignItems: 'center',
+              flexDirection: 'column',
+              width: { sm: '100%', md: '450px' },
+              mx: 'auto',
+              p: 4,
+              gap: 4,
             }}
           >
-            <img src={logo} style={logoStyle} alt="logo of sitemark" />
-            <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
-          </Box>
-          <Typography component="h1" variant="h3" sx={{ width: '100%' }}>
-            Sign in
-          </Typography>
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{ display: 'flex', width: '100%', flexDirection: 'column', gap: 2 }}
-          >
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField
-                  error={emailError}
-                  helperText={emailErrorMessage}
-                  id="email"
-                  type="email"
-                  name="email"
-                  placeholder="Email address"
-                  autoComplete="email"
-                  autoFocus
-                  required
-                  fullWidth
-                  variant="outlined"
-                  color={emailError ? 'error' : 'primary'}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  error={passwordError}
-                  helperText={passwordErrorMessage}
-                  name="password"
-                  placeholder="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                  autoFocus
-                  required
-                  fullWidth
-                  variant="outlined"
-                  color={passwordError ? 'error' : 'primary'}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Link component="button" onClick={handleClickOpen} variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-            </Grid>
-            <ForgotPassword open={open} handleClose={handleClose} />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              onClick={validateInputs}
+            <img
+              src={
+                'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
+              }
+              style={logoStyle}
+              alt="logo of sitemark"
+            />
+            <Typography
+              component="h1"
+              variant="h4"
+              sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.5rem)' }}
             >
               Sign In
-            </Button>
-            <Link
-              href="/material-ui/getting-started/templates/sign-up/"
-              variant="body2"
-              sx={{ alignSelf: 'center' }}
+            </Typography>
+            <Box
+              component="form"
+              onSubmit={handleSubmit}
+              noValidate
+              sx={{
+                display: 'flex',
+                width: '100%',
+                flexDirection: 'column',
+                gap: 2,
+              }}
             >
-              {"Don't have an account? Sign Up"}
-            </Link>
-          </Box>
-          <Divider>Or</Divider>
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <Button
-              type="submit"
-              fullWidth
-              variant="outlined"
-              color="secondary"
-              onClick={() => alert('Sign in with Google')}
-              startIcon={
-                <img
-                  src="https://www.vectorlogo.zone/logos/google/google-icon.svg"
-                  alt="Google"
-                  style={{ width: 16, height: 16 }}
-                />
-              }
-            >
-              Sign In with Google
-            </Button>
-            <Button
-              type="submit"
-              fullWidth
-              variant="outlined"
-              color="secondary"
-              onClick={() => alert('Sign in with Facebook')}
-              startIcon={
-                <img
-                  src="https://www.vectorlogo.zone/logos/facebook/facebook-tile.svg"
-                  alt="Google"
-                  style={{ width: 16, height: 16 }}
-                />
-              }
-            >
-              Sign In with Facebook
-            </Button>
-          </Box>
-        </Card>
-      </Box>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <TextField
+                    error={emailError}
+                    helperText={emailErrorMessage}
+                    id="email"
+                    type="email"
+                    name="email"
+                    placeholder="Email address"
+                    autoComplete="email"
+                    autoFocus
+                    required
+                    fullWidth
+                    variant="outlined"
+                    color={emailError ? 'error' : 'primary'}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    error={passwordError}
+                    helperText={passwordErrorMessage}
+                    name="password"
+                    placeholder="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                    autoFocus
+                    required
+                    fullWidth
+                    variant="outlined"
+                    color={passwordError ? 'error' : 'primary'}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Link component="button" onClick={handleClickOpen} variant="body2">
+                    Forgot password?
+                  </Link>
+                </Grid>
+              </Grid>
+              <ForgotPassword open={open} handleClose={handleClose} />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                onClick={validateInputs}
+              >
+                Sign In
+              </Button>
+              <Link
+                href="/material-ui/getting-started/templates/sign-up/"
+                variant="body2"
+                sx={{ alignSelf: 'center' }}
+              >
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Box>
+            <Divider>Or</Divider>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              <Button
+                type="submit"
+                fullWidth
+                variant="outlined"
+                color="secondary"
+                onClick={() => alert('Sign in with Google')}
+                startIcon={
+                  <img
+                    src="https://www.vectorlogo.zone/logos/google/google-icon.svg"
+                    alt="Google"
+                    style={{ width: 16, height: 16 }}
+                  />
+                }
+              >
+                Sign In with Google
+              </Button>
+              <Button
+                type="submit"
+                fullWidth
+                variant="outlined"
+                color="secondary"
+                onClick={() => alert('Sign in with Facebook')}
+                startIcon={
+                  <img
+                    src="https://www.vectorlogo.zone/logos/facebook/facebook-tile.svg"
+                    alt="Google"
+                    style={{ width: 16, height: 16 }}
+                  />
+                }
+              >
+                Sign In with Facebook
+              </Button>
+            </Box>
+          </Card>
+        </Stack>
+        <ToggleColorMode
+          mode={mode}
+          toggleColorMode={toggleColorMode}
+          sx={{
+            alignSelf: 'flex-start',
+            mt: 4,
+            display: { xs: 'none', sm: 'flex' },
+          }}
+        />
+      </Stack>
       <ToggleCustomTheme
         showCustomTheme={showCustomTheme}
         toggleCustomTheme={toggleCustomTheme}
