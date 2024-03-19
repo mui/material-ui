@@ -164,7 +164,7 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
     },
   };
 
-  const [StepLabelLabelSlot, stepLabelLabelProps] = useSlot('label', {
+  const [LabelSlot, labelProps] = useSlot('label', {
     elementType: StepLabelLabel,
     externalForwardedProps,
     ownerState,
@@ -190,12 +190,9 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
       ) : null}
       <StepLabelLabelContainer className={classes.labelContainer} ownerState={ownerState}>
         {children ? (
-          <StepLabelLabelSlot
-            {...stepLabelLabelProps}
-            className={clsx(classes.label, stepLabelLabelProps?.className)}
-          >
+          <LabelSlot {...labelProps} className={clsx(classes.label, labelProps?.className)}>
             {children}
-          </StepLabelLabelSlot>
+          </LabelSlot>
         ) : null}
         {optional}
       </StepLabelLabelContainer>
