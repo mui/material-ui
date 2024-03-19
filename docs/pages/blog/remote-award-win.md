@@ -35,11 +35,11 @@ To learn more about us, visit [our About page](/about/).
 
 MUI is proud to also see our Director of People & Culture, [Mikaila Read](https://www.linkedin.com/in/mikailaread/), included for the second year running as a Top 50 Remote Accellerator in Remote's annual influencer report.
 
-<img alt="Mikaila wears a grey shirt with blue MUI logo to represent the team." src="/static/blog/remote-award-win/mikaila-remote-accelerator.png" width="1200" height="550" loading="lazy" />
+<img alt="Mikaila wears a gray shirt with blue MUI logo to represent the team." src="/static/blog/remote-award-win/mikaila-remote-accelerator.png" width="1200" height="550" loading="lazy" />
 
 The report includes 150 global experts who are hand-selected for their leadership and expertise in remote working by Remote's judging panel: [Job van der Voort](https://www.linkedin.com/in/jobvo/), [Rowena Hennigan](https://www.linkedin.com/in/rowena-hennigan/), [Chris Cerra](https://www.linkedin.com/in/chriscerra/), and [Ester Martinez](https://www.linkedin.com/in/estermartinez/).
 
-Mikaila was recognised in the Remote Accelerator category which includes business, HR and industry leaders actually making remote work happen at scale.
+Mikaila was recognised in the Remote Accelerator category which includes business, HR, and industry leaders actually making remote work happen at scale.
 
 Regarding MUI's inclusion in the awards, Mikaila shared:
 

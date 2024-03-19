@@ -400,7 +400,7 @@ export default function Careers() {
         <Divider />
         {/* Perks & benefits */}
         <Section bg="gradient">
-          <Grid container spacing={5} alignItems="center" sx={{ position: 'relative' }}>
+          <Grid container spacing={5} alignItems="center">
             <Grid item md={6}>
               <SectionHeadline
                 overline="Working at MUI"
