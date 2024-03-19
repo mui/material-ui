@@ -164,8 +164,8 @@ export default function SignInSide() {
             sx={{
               backgroundImage: (t) =>
                 t.palette.mode === 'light'
-                  ? 'url(https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?q=80&w=3687&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)'
-                  : 'url(https://images.unsplash.com/photo-1498262257252-c282316270bc?q=80&w=3264&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)',
+                  ? 'url("/static/images/templates/templates-images/light-background.png")'
+                  : 'url("/static/images/templates/templates-images/dark-background.png")',
               backgroundRepeat: 'no-repeat',
               backgroundColor: (t) =>
                 t.palette.mode === 'light'
