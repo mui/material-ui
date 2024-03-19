@@ -55,7 +55,7 @@
     "@mui/icons-material": "^5.0.0",
     "@mui/system": "^5.0.0",
     "@types/react": "^17.0.0 || ^18.0.0",
-    "next": "^13.5.1",
+    "next": "^13.5.1 || ^14",
     "react": "^17.0.0 || ^18.0.0"
   },
   "peerDependenciesMeta": {
