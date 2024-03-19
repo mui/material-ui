@@ -1,0 +1,345 @@
+---
+title: Introducing MUI X v7.0.0
+description: Check out what's new in the new major version of the advanced components.
+date: 2024-03-25T08:00:00.000Z
+authors: ['josefreitas']
+tags: ['MUI X', 'Product', 'News']
+card: true
+---
+
+<div style="max-width: 692px; width: 100%; height: 230px; overflow: hidden; margin-bottom: 16px;">
+  <a href="https://github.com/mui/mui-x/releases/tag/v7.0.0">
+    <img src="/static/blog/mui-x-v7/intro.jpg" alt="MUI X v7 - major stable release" width="1200" height="400" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
+  </a>
+</div>
+
+After a few months in pre-release, we're thrilled to announce the first stable release of [MUI X v7](https://github.com/mui/mui-x/releases/tag/v7.0.0), packed with new components, exciting features, and improved usability and developer experience.
+
+## Table of contents
+
+- [Data Grid](#data-grid)
+  - [Column resizing on community plan](#column-resizing-on-community-plan)
+  - [Sticky headers](#sticky-headers)
+  - [Improved columns panel design](#improved-columns-panel-design)
+  - [Date Object support in filter model](#date-object-support-in-filter-model)
+  - [Smaller bundle size](#smaller-bundle-size)
+  - [New stable features](#new-stable-features)
+- [Tree View](#tree-view)
+  - [RichTreeView](#richtreeview-new-component)
+  - [New customization hook: `useTreeItem2`](#new-customization-hook-usetreeitem2)
+- [Charts](#charts)
+  - [Gauge charts](#gauge-charts)
+  - [Click event handler](#click-event-handler)
+  - [Reference Line](#reference-line)
+- [Date Pickers](#date-pickers)
+  - [Improved accessibility on Pickers Text field](#improved-accessibility-on-pickers-text-field)
+  - [Support for date-fns v3](#support-for-date-fns-v3)
+  - [Date Time Range Picker](#date-time-range-picker)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+- [What's next](#whats-next)
+- [Long-term support](#long-term-support)
+- [Migration guide](#migration-guide)
+- [How to get involved](#how-to-get-involved)
+
+## Data Grid
+
+### Column resizing on community plan
+
+As our commercial offerings expand, we're pleased to also enhance our community plan by integrating features previously exclusive to commercial users.
+
+[Column resizing](https://next.mui.com/x/react-data-grid/column-dimensions/#resizing) and [auto-sizing](https://mui.com/x/react-data-grid/column-dimensions/#autosizing), which were once Pro features, are now available to all users at no cost. 
+This transition reflects our commitment to providing an exceptional user experience across the board, and aims to make the free components stand out more in the open-source space.
+
+### Sticky headers
+
+The Data Grid now offers a more responsive experience with smoother scrolling and enhanced screen reader support, thanks to a refactor of column headers and pinning implementations.
+
+On its first announcement, we showcased some of these improvements, but during the beta phase, we have further polished the scrolling performance for an even more significantly improved user experience.
+
+<video preload="metadata" autoplay muted loop playsinline width="690" height="417" controls>
+  <source src="/static/blog/mui-x-v7/sticky-headers.mp4" type="video/mp4">
+</video>
+
+:::warning
+The scrolling experience is far better, but the solution is limited: **column headers can no longer be transparent** because content scrolls behind them.
+
+If you're using our theming system, the Data Grid will adapt to your application seamlessly.
+
+Without the theming system, you may need to manually set an appropriate background color to maintain your design.
+:::
+
+### Improved columns panel design
+
+As part of an overarching project to improve usability when managing columns in the Data Grid, we’ve redesigned the column management panel with a sleeker checkbox-based design, replacing the previous toggle switch style.
+
+Additionally, we've extracted the internal component to facilitate the introduction of the upcoming pivoting UI and other column management functionalities.
+
+<img width="310" alt="new column management panel design" src="/static/blog/mui-x-v7/column-management-panel.png">
+
+### Date Object support in filter model
+
+The `filterModel` now supports `Date` objects for `date` and `dateTime` column types, providing a more intuitive and efficient filtering experience.
+
+While string values remain compatible for these types, any updates to the `filterModel` made through the UI (such as via the filter panel) will automatically use `Date` objects, ensuring consistency and ease of data handling.
+
+### Smaller bundle size
+
+Introducing a separate entry point for locales has significantly reduced the bundle size of the barrel index when tree-shaking isn't operational (e.g. Webpack in dev mode).
+
+For example, with the `@mui/x-data-grid` npm package, this change led to a reduction of approximately 19% – shrinking the bundle size from [114.2kB](https://bundlephobia.com/package/@mui/x-data-grid@6.19.2) to [92.9kB](https://bundlephobia.com/package/@mui/x-data-grid@7.0.0).
+
+<img width="694" alt="Bundle size change" src="/static/blog/mui-x-v7/new-bundle-size.png" style="padding-left: 20px; padding-right: 5px;">
+
+### New stable features
+
+To ensure that new features can be introduced throughout the lifecycle of a major stable version without waiting for pre-releases, MUI X releases them marked as `experimentalFeatures` or with the `unstable_` prefix.
+
+:::info
+This approach serves as a failsafe in case the API needs to be changed based on user feedback.
+But it's important to note that new features are released **production-ready** regarding behavior and functionality.
+The term 'unstable' refers solely to the potential for breaking changes in minor releases rather than the quality or performance of the features themselves.
+:::
+
+We're excited to announce that the following features have been promoted to stable:
+
+- [Column groups](https://mui.com/x/react-data-grid/column-groups/)
+- [Lazy loading](https://mui.com/x/react-data-grid/row-updates/#lazy-loading) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+- [Header filters](https://mui.com/x/react-data-grid/filtering/header-filters/) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+- [Cell selection](https://mui.com/x/react-data-grid/cell-selection/) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
+- [Clipboard paste](https://mui.com/x/react-data-grid/clipboard/#clipboard-paste) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
+
+
+## Tree View
+
+Since the promotion from the lab's package to MUI X, our primary focus has been improving its developer experience.
+This includes efforts aimed to simplify the component usage, implement new customization APIs, and provide clearer documentation and illustrative examples, making them more informative and user-friendly.
+
+A significant addition is the time-saving alternative to the traditional JSX architecture, the RichTreeView.
+
+### RichTreeView
+
+We've split the Tree View into two distinct components.
+
+The first is the `SimpleTreeView`, which retains the classic and familiar JSX approach and is still the one behind the original `<TreeView />` tag.
+
+The second is the `RichTreeView`, a new variant designed to streamline the development process, and with which we aim to support several common use cases out-of-the-box.
+
+Similar to the Data Grid, it requires only a dataset and possibly a few properties to render; it does all the heavy lifting for you, handling most of the complexities internally.
+
+```jsx
+const myDataSet = [
+  {
+    id: 'node-1',
+    label: 'Node 1',
+    children: [
+      { id: 'node-1-1', label: 'Node 1.1' },
+      { id: 'node-1-2', label: 'Node 1.2' },
+    ],
+  },
+  {
+    id: 'node-2',
+    label: 'Node 2',
+  },
+];
+```
+
+```jsx
+<RichTreeView items={myDataSet} multiSelect />
+```
+
+Check out the [new component](https://mui.com/x/react-tree-view/rich-tree-view/items/)!
+
+### New customization hook: `useTreeItem2`
+
+We're introducing a new API to customize Tree items through a hook called `useTreeItem2`.
+It can be used with both `SimpleTreeView` and `RichTreeView`, and enables developers to fully leverage the TreeItem's subcomponents along with their default behaviors. 
+This approach ensures customization and flexibility are at the forefront without sacrificing the component's inherent features.
+
+When using this hook, developers can create a tailored TreeItem that aligns perfectly with their project needs while reusing key behaviors and features the component is known for.
+
+```jsx
+const CustomTreeItem = React.forwardRef(function CustomTreeItem(
+  props: TreeItem2Props,
+  ref: React.Ref<HTMLLIElement>,
+) {
+  const { id, nodeId, label, disabled, children, ...other } = props;
+
+  const {
+    getRootProps,
+    getContentProps,
+    getIconContainerProps,
+    getLabelProps,
+    getGroupTransitionProps,
+    status,
+  } = useTreeItem2({ id, nodeId, children, label, disabled, rootRef: ref });
+
+  //compose and implement your tree item as you need
+  return (
+    <TreeItem2Provider nodeId={nodeId}>
+      <TreeItem2Root {...getRootProps(other)}>
+        <CustomTreeItemContent {...getContentProps()}>
+          <TreeItem2IconContainer {...getIconContainerProps()}>
+            <TreeItem2Icon status={status} />
+          </TreeItem2IconContainer>
+          <Box sx={{ flexGrow: 1, display: 'flex', gap: 1 }}>
+              {(label as string)[0]}
+            </Avatar>
+            <TreeItem2Label {...getLabelProps()} />
+          </Box>
+        </CustomTreeItemContent>
+        {children && <TreeItem2GroupTransition {...getGroupTransitionProps()} />}
+      </TreeItem2Root>
+    </TreeItem2Provider>
+  );
+});
+```
+
+```jsx
+<RichTreeView items={myDataSet} slots={{ item: CustomTreeItem }} />
+```
+
+:::info
+To avoid further breaking changes with the subcomponents names, we're delivering this new customization API with a numerical prefix '2', for example, `TreeItem2` and `TreeItem2Content`.
+
+This update ensures that any existing customizations remain unaffected, providing you with a seamless transition to adopt the latest API at your convenience.
+:::
+
+## Charts
+
+Since launching MUI X Charts, we've been closely listening to your feedback, and our focus has been on refining these foundational elements through bug fixes, enriched documentation, and increasing support for more complex scenarios.
+
+The charts portfolio has also expanded with one of the most commonly used data visualization components for dashboards.
+
+### Gauge charts
+
+The newest gauge charts are designed to offer a visually compelling way to display data metrics within a circular gauge.
+
+These charts are particularly useful for showing progress toward a goal or displaying a value within a predefined range.
+With customizable options for pointers, sizes, and colors, they allow for a personalized visual representation that makes it easy for users to interpret data at a glance. 
+
+<img alt="Gauge charts" src="/static/blog/mui-x-v7/gauge-charts.png" width="1200" height="800" loading="lazy" />
+
+Check out the [new charts](https://next.mui.com/x/react-charts/gauge/) documentation page for detailed information.
+
+### Click event handler
+
+All available charts now have click event handlers, so users can interact with chart elements and trigger advanced actions, such as opening a custom modal with detailed information. 
+
+This feature makes charts more interactive and transforms the way users can explore the data, improving the overall user experience with details and other information accessed on demand.
+
+<img alt="Gauge charts" src="/static/blog/mui-x-v7/click-handler.png" width="450" height="416" loading="lazy" />
+
+### Reference line
+
+The `ChartsReferenceLine` component enhances data visualization, providing users with a clear reference to better understand and analyze key data points.
+
+<img alt="Charts reference line" src="/static/blog/mui-x-v7/charts-reference-line.png" width="1200" height="840" loading="lazy" />
+
+You can find more details on its [documentation](https://mui.com/x/react-charts/axis/#reference-line).
+
+## Date and Time Pickers
+
+The focus has been primarily on developing the highly anticipated DateTimeRangePicker, alongside a significant effort to enhance accessibility in the fields, ensuring that our components are as inclusive and user-friendly as possible.
+
+### Improved accessibility on Pickers Text Field
+
+You can now set the `enableAccessibleFieldDOMStructure` prop to enhance the DOM structure of fields and pickers components. 
+
+This improvement addresses accessibility limitations of the traditional `<input />` element by enabling a new DOM structure that effectively manages aria attributes within multiple input sections.
+
+This feature greatly improves the experience for screen reader users, making interactions with date fields and pickers more intuitive and accessible.
+
+```jsx
+<DateField enableAccessibleFieldDOMStructure />
+<DatePicker enableAccessibleFieldDOMStructure />
+```
+
+For more details, please check out the [documentation section](https://mui.com/x/react-date-pickers/fields/#accessible-dom-structure). 
+
+### Support for date-fns v3
+
+The Date and Time Pickers now support both versions of v2 and v3 of date-fns, and you can select your desired version from one of the two import lines:
+
+```jsx
+// date-fns v2.x
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+```
+
+```jsx
+// date-fns v3.x
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
+```
+
+### Date Time Range Picker [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+
+Support new use cases with this most anticipated component.
+The latest addition to the Date and Time Pickers suite is the `<DateTimeRangePicker />`, a component designed to enrich the user experience with the advanced date and time selection.
+This intuitive picker simplifies the process of selecting date and time ranges, making it ideal for applications that require detailed scheduling or period selection.
+
+<video preload="metadata" autoplay muted loop playsinline width="600" height="510">
+  <source src="/static/blog/mui-x-v7/date-time-range-picker.mp4" type="video/mp4">
+</video>
+
+Learn how to use and customize the [new component](https://mui.com/x/react-date-pickers/date-time-range-picker/) now!
+
+## What's next
+
+As usual, we're committed to further improving the library by introducing new features, refining existing ones, and focusing on community feedback to shape our roadmap. 
+
+Throughout this year, we'll invest in making MUI X components **design agnostic**. The components will still ship using Material UI as the default, but we're striving to ensure that they seamlessly integrate with any design system (not only Material UI).
+The outcome is advanced components with extreme flexibility and customization options, enabling more diverse application styles without compromising the high-quality use cases and workflows MUI X is known for.
+
+Additionally, the following are the deliveries we're planning for the next few months.
+
+### Data Grid
+
+- [Improved Server side integration](https://mui.com/x/react-data-grid/server-side-data/)
+- [Column management panel with support for pivoting](https://github.com/mui/mui-x/issues/5700)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+- [Pivoting](https://github.com/mui/mui-x/issues/214) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
+
+### Tree View
+
+- [Inline node name editing](https://github.com/mui/mui-x/issues/10112)
+- [Checkbox selection for Simple- and RichTreeView](https://github.com/mui/mui-x/pull/11452)
+- [Drag and drop support for RichTreeView](https://github.com/mui/mui-x/issues/9686)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+
+### Charts
+
+- Improved label flexibility and customization
+- [Zoom and navigation](https://github.com/mui/mui-x/issues/12503)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+- [Heatmap](https://github.com/mui/mui-x/issues/7926)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+
+### Date and Time Pickers
+
+- [TimeRangePicker](https://github.com/mui/mui-x/issues/4460)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+
+For a complete overview, please visit the [MUI X roadmap](https://github.com/mui/mui-x/projects/1).
+
+## Long-Term Support
+
+We roll bug fixes, performance enhancements, and other improvements into new releases, so as we introduce MUI X v7, MUI X v6 now is officially in [Long-Term Support (LTS)](https://mui.com/x/introduction/support/#long-term-support-lts). This means only critical bug fixes and security updates will be patched to MUI X v6.
+
+Support for MUI X v5 is officially **discontinued**, and we encourage users to migrate to v6 and then to v7 to benefit from enhanced features, performance improvements, and ongoing support.
+
+## Migration guide
+
+We fully understand that updating a dependency library can sometimes be daunting.
+To smooth the transition to the new version, we have documented all breaking changes in our migration guides:
+
+- [Data Grid](https://mui.com/x/migration/migration-data-grid-v6/)
+- [Date and Time Pickers](https://mui.com/x/migration/migration-pickers-v6/)
+- [Charts](https://mui.com/x/migration/migration-charts-v6/)
+- [Tree View](https://mui.com/x/migration/migration-tree-view-v6/)
+
+These component-specific guides are reference pages designed to assist you if you encounter any challenges while updating to the new major version.
+It's our way of making the upgrade process more manageable and less burdensome for you.
+However, should you need further assistance, please don't hesitate to contact us and send your feedback.
+
+## How to get involved
+
+Your feedback played a crucial role in shaping MUI X, and we always appreciate hearing from you.
+To continue enhancing our product, we invite you to share your pain points and challenges with us by:
+
+- [Giving us a user interview](https://forms.gle/vsBv6CLPz9h57xg8A).
+- Reporting bugs and suggesting features on our [GitHub repository](https://github.com/mui/mui-x/issues/new/choose).
+
+We look forward to your input!
