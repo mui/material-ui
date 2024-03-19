@@ -62,11 +62,6 @@ function ToggleCustomTheme({
   );
 }
 
-const whiteLogo =
-  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf7356420e154daf_SitemarkLight.svg';
-const darkLogo =
-  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73563dba154dad_SitemarkDark.svg';
-
 const logoStyle = {
   width: '140px',
   height: '56px',
@@ -78,13 +73,6 @@ export default function SignInSide() {
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const defaultTheme = createTheme({ palette: { mode } });
   const SignInSideTheme = createTheme(getSignInSideTheme(mode));
-  const getLogo = () => {
-    if (showCustomTheme) {
-      return SignInSideTheme.palette.mode === 'light' ? darkLogo : whiteLogo;
-    }
-    return defaultTheme.palette.mode === 'light' ? darkLogo : whiteLogo;
-  };
-  const logo = getLogo();
   const [emailError, setEmailError] = React.useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
   const [passwordError, setPasswordError] = React.useState(false);
