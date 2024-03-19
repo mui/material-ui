@@ -772,7 +772,7 @@ The Slider's `componentsProps` was deprecated in favor of `slotProps`:
  />
 ```
 
-## Step Label
+## StepLabel
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#step-label-props) below to migrate the code as described in the following sections:
 
@@ -782,7 +782,7 @@ npx @mui/codemod@latest deprecations/step-label-props <path>
 
 ### componentsProps
 
-The Slider's `componentsProps` was deprecated in favor of `slotProps`:
+The StepLabel's `componentsProps` was deprecated in favor of `slotProps`:
 
 ```diff
  <StepLabel
