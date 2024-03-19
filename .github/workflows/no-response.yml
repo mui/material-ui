@@ -8,7 +8,9 @@ on:
   issue_comment:
     types: [created]
   schedule:
-    # Schedule for 12am and 12pm UTC
+    # These runs in our repos are spread evenly throughout the day to avoid hitting rate limits.
+    # If you change this schedule, consider changing the remaining repositories as well.
+    # Runs at 12 am, 12 pm
     - cron: '0 0,12 * * *'
 
 permissions: {}
