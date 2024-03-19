@@ -18,6 +18,10 @@ includes the 2,100+ official [Material Icons](https://fonts.google.com/icons?ico
 It depends on `@mui/material`, which requires Emotion packages.
 Use one of the following commands to install it:
 
+:::info
+The `next` tag is used to download the latest <b>pre-release</b>, v6 version. Remove it to get the current stable version.
+:::
+
 <!-- #default-branch-switch -->
 
 <codeblock storageKey="package-manager">
