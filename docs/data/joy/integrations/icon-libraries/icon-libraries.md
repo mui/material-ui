@@ -39,8 +39,10 @@ You can keep track of the progress in [this issue](https://github.com/mui/materi
 
 #### npm
 
+<!-- #default-branch-switch -->
+
 ```bash
-npm install @mui/icons-material @mui/material
+npm install @mui/icons-material@next @mui/material@next
 ```
 
 :::warning

@@ -11,18 +11,20 @@ This section walks through the Material UI integration with the Next.js [App Ro
 Start by ensuring that you already have `@mui/material` and `next` installed.
 Then, run one of the following commands to install the dependencies:
 
+<!-- #default-branch-switch -->
+
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/material-nextjs @emotion/cache
+npm install @mui/material-nextjs@next @emotion/cache
 ```
 
 ```bash yarn
-yarn add @mui/material-nextjs @emotion/cache
+yarn add @mui/material-nextjs@next @emotion/cache
 ```
 
 ```bash pnpm
-pnpm add @mui/material-nextjs @emotion/cache
+pnpm add @mui/material-nextjs@next @emotion/cache
 ```
 
 </codeblock>

@@ -20,7 +20,7 @@ To install and save in your `package.json` dependencies, run:
 <!-- #default-branch-switch -->
 
 ```bash
-npm install @mui/styles
+npm install @mui/styles@next
 ```
 
 ## Getting started

@@ -6,17 +6,19 @@
 
 Run one of the following commands to add Joy UI to your project:
 
+<!-- #default-branch-switch -->
+
 <codeblock storageKey="package-manager">
 ```bash npm
-npm install @mui/joy @emotion/react @emotion/styled
+npm install @mui/joy@next @emotion/react @emotion/styled
 ```
 
 ```bash yarn
-yarn add @mui/joy @emotion/react @emotion/styled
+yarn add @mui/joy@next @emotion/react @emotion/styled
 ```
 
 ```bash pnpm
-pnpm add @mui/joy @emotion/react @emotion/styled
+pnpm add @mui/joy@next @emotion/react @emotion/styled
 ```
 
 </codeblock>
