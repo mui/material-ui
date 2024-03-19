@@ -327,6 +327,32 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
           }),
         },
       },
+      MuiIconButton: {
+        styleOverrides: {
+          root: ({ theme, ownerState }) => ({
+            ...(ownerState.size === 'small' && {
+              maxHeight: '32px',
+              maxWidth: '32px',
+            }),
+            ...(ownerState.size === 'medium' && {
+              height: '40px',
+              width: '40px',
+            }),
+            color: brand[600],
+            '&:hover': {
+              backgroundColor: alpha(brand[300], 0.3),
+              borderColor: brand[200],
+            },
+            ...(theme.palette.mode === 'dark' && {
+              color: brand[200],
+              '&:hover': {
+                backgroundColor: alpha(brand[600], 0.3),
+                borderColor: brand[700],
+              },
+            }),
+          }),
+        },
+      },
       MuiDivider: {
         styleOverrides: {
           root: ({ theme }) => ({
@@ -394,9 +420,9 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
               borderColor: brand[300],
             },
             '&.Mui-focused': {
+              outline: `3px solid ${alpha(brand[500], 0.5)}`,
+              outlineOffset: '2px',
               borderColor: brand[400],
-              outline: '4px solid',
-              outlineColor: brand[200],
             },
             ...(ownerState.color === 'error' && {
               borderColor: red[200],
@@ -426,8 +452,8 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
               },
               '&.Mui-focused': {
                 borderColor: brand[400],
-                outline: '4px solid',
-                outlineColor: alpha(brand[500], 0.5),
+                outline: `3px solid ${alpha(brand[500], 0.5)}`,
+                outlineOffset: '2px',
               },
               ...(ownerState.color === 'error' && {
                 borderColor: red[700],
@@ -506,6 +532,11 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
               width: '100%',
               opacity: 1,
             },
+            '&:focus-visible': {
+              outline: `3px solid ${alpha(brand[500], 0.5)}`,
+              outlineOffset: '4px',
+              borderRadius: '2px',
+            },
             ...(theme.palette.mode === 'dark' && {
               color: brand[200],
             }),
@@ -549,10 +580,10 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
             '&:hover': {
               borderColor: brand[300],
             },
-            '&.Mui-focused': {
+            '&.Mui-focusVisible': {
+              outline: `3px solid ${alpha(brand[500], 0.5)}`,
+              outlineOffset: '2px',
               borderColor: brand[400],
-              outline: '4px solid',
-              outlineColor: brand[200],
             },
             '&.Mui-checked': {
               color: 'white',
@@ -577,10 +608,10 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
                   backgroundColor: brand[800],
                 },
               },
-              '&.Mui-focused': {
+              '&.Mui-focusVisible': {
                 borderColor: brand[400],
-                outline: '4px solid',
-                outlineColor: alpha(brand[500], 0.5),
+                outline: `3px solid ${alpha(brand[500], 0.5)}`,
+                outlineOffset: '2px',
               },
             }),
           }),
@@ -599,6 +630,11 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
               '&.Mui-selected': { color: brand[300] },
             }),
           }),
+        },
+      },
+      MuiStack: {
+        defaultProps: {
+          useFlexGap: true,
         },
       },
     },

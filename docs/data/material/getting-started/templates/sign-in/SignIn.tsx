@@ -64,15 +64,9 @@ function ToggleCustomTheme({
   );
 }
 
-const whiteLogo =
-  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf7356420e154daf_SitemarkLight.svg';
-const darkLogo =
-  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73563dba154dad_SitemarkDark.svg';
-
 const logoStyle = {
   width: '140px',
   height: '56px',
-  opacity: 0.8,
   marginLeft: '-16px',
   marginTop: '-16px',
 };
@@ -82,13 +76,6 @@ export default function SignIn() {
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const defaultTheme = createTheme({ palette: { mode } });
   const SignInTheme = createTheme(getSignInTheme(mode));
-  const getLogo = () => {
-    if (showCustomTheme) {
-      return SignInTheme.palette.mode === 'light' ? darkLogo : whiteLogo;
-    }
-    return defaultTheme.palette.mode === 'light' ? darkLogo : whiteLogo;
-  };
-  const logo = getLogo();
   const [emailError, setEmailError] = React.useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
   const [passwordError, setPasswordError] = React.useState(false);
@@ -151,7 +138,7 @@ export default function SignIn() {
     <ThemeProvider theme={showCustomTheme ? SignInTheme : defaultTheme}>
       <CssBaseline />
       <Stack
-        direction="row"
+        direction={{ xs: 'column', sm: 'row' }}
         justifyContent="space-between"
         sx={(theme) => ({
           backgroundImage:
@@ -164,15 +151,36 @@ export default function SignIn() {
         })}
         component="main"
       >
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          sx={{ display: { xs: 'flex', sm: 'none' }, my: 4 }}
+        >
+          <Button
+            startIcon={<ArrowBackRoundedIcon />}
+            component="a"
+            href="/material-ui/getting-started/templates/landing-page/"
+          >
+            Back
+          </Button>
+          <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+        </Stack>
         <Button
           startIcon={<ArrowBackRoundedIcon />}
           component="a"
           href="/material-ui/getting-started/templates/landing-page/"
-          sx={{ alignSelf: 'flex-start', mt: 4 }}
+          sx={{
+            alignSelf: 'flex-start',
+            mt: 4,
+            display: { xs: 'none', sm: 'flex' },
+          }}
         >
           Back
         </Button>
-        <Stack justifyContent="center" sx={{ height: '100%' }}>
+        <Stack
+          justifyContent={{ xs: 'start', sm: 'center' }}
+          sx={{ height: '100%' }}
+        >
           <Card
             variant="outlined"
             sx={{
@@ -184,7 +192,13 @@ export default function SignIn() {
               gap: 4,
             }}
           >
-            <img src={logo} style={logoStyle} alt="logo of sitemark" />
+            <img
+              src={
+                'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
+              }
+              style={logoStyle}
+              alt="logo of sitemark"
+            />
             <Typography
               component="h1"
               variant="h4"
@@ -299,7 +313,11 @@ export default function SignIn() {
         <ToggleColorMode
           mode={mode}
           toggleColorMode={toggleColorMode}
-          sx={{ alignSelf: 'flex-start', mt: 4 }}
+          sx={{
+            alignSelf: 'flex-start',
+            mt: 4,
+            display: { xs: 'none', sm: 'flex' },
+          }}
         />
       </Stack>
       <ToggleCustomTheme

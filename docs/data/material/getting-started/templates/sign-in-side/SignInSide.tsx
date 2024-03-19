@@ -162,7 +162,10 @@ export default function SignInSide() {
             sm={6}
             md={8}
             sx={{
-              backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
+              backgroundImage: (t) =>
+                t.palette.mode === 'light'
+                  ? 'url(https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?q=80&w=3687&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)'
+                  : 'url(https://images.unsplash.com/photo-1498262257252-c282316270bc?q=80&w=3264&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)',
               backgroundRepeat: 'no-repeat',
               backgroundColor: (t) =>
                 t.palette.mode === 'light'
@@ -192,7 +195,13 @@ export default function SignInSide() {
                   alignItems: 'center',
                 }}
               >
-                <img src={logo} style={logoStyle} alt="logo of sitemark" />
+                <img
+                  src={
+                    'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
+                  }
+                  style={logoStyle}
+                  alt="logo of sitemark"
+                />
                 <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
               </Box>
               <Typography
