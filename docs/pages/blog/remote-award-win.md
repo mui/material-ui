@@ -1,7 +1,7 @@
 ---
 title: MUI scoops the win in renowned Remote Excellence Awards
 description: We're delighted to be honored with this global recognition for our commitment to fostering excellence in remote work.
-date: 2024-03-22T00:00:00.000Z
+date: 2024-03-21T00:00:00.000Z
 authors: ['mikailaread']
 tags: ['Company']
 card: true
