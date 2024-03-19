@@ -38,7 +38,7 @@ export default function ColorInversionMarketing() {
     <Sheet
       variant={solid ? 'solid' : 'soft'}
       color={color}
-      invertedColors={true}
+      invertedColors
       sx={{
         flexGrow: 1,
         position: 'relative',
@@ -114,6 +114,7 @@ export default function ColorInversionMarketing() {
           variant="soft"
           onClick={() => {
             const colors = ['primary', 'neutral', 'danger', 'success', 'warning'];
+
             const nextColorIndex = colors.indexOf(color) + 1;
             setColor(colors[nextColorIndex] ?? colors[0]);
           }}

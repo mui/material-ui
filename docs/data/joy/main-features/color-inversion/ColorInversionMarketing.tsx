@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ColorPaletteProp, useTheme } from '@mui/joy/styles';
+import { ColorPaletteProp, PaletteRange, useTheme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import IconButton from '@mui/joy/IconButton';
@@ -18,7 +18,7 @@ export default function ColorInversionMarketing() {
   const [solid, setSolid] = React.useState(true);
   const theme = useTheme();
 
-  const shade = (x: number): string => theme.vars.palette[color][x];
+  const shade = (x: keyof PaletteRange): string => theme.vars.palette[color][x];
   const color1 = solid ? shade(800) : shade(600);
   const color2 = solid ? shade(600) : shade(200);
   const color3 = shade(900);
@@ -38,7 +38,7 @@ export default function ColorInversionMarketing() {
     <Sheet
       variant={solid ? 'solid' : 'soft'}
       color={color}
-      invertedColors={true}
+      invertedColors
       sx={{
         flexGrow: 1,
         position: 'relative',
@@ -113,7 +113,13 @@ export default function ColorInversionMarketing() {
         <IconButton
           variant="soft"
           onClick={() => {
-            const colors = ['primary', 'neutral', 'danger', 'success', 'warning'];
+            const colors: ColorPaletteProp[] = [
+              'primary',
+              'neutral',
+              'danger',
+              'success',
+              'warning',
+            ];
             const nextColorIndex = colors.indexOf(color) + 1;
             setColor(colors[nextColorIndex] ?? colors[0]);
           }}
