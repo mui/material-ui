@@ -22,9 +22,7 @@ Nothing fancy, just plain CSS.
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/plain-css-fdue7)
 
-**PlainCssSlider.css**
-
-```css
+```css title="PlainCssSlider.css"
 .slider {
   color: #20b2aa;
 }
@@ -34,9 +32,7 @@ Nothing fancy, just plain CSS.
 }
 ```
 
-**PlainCssSlider.js**
-
-```jsx
+```jsx title="PlainCssSlider.css"
 import * as React from 'react';
 import Slider from '@mui/material/Slider';
 import './PlainCssSlider.css';
@@ -101,9 +97,7 @@ The following examples override the slider's `thumb` style in addition to the cu
 
 {{"demo": "StyledComponentsDeep.js", "hideToolbar": true}}
 
-**PlainCssSliderDeep1.css**
-
-```css
+```css title="PlainCssSliderDeep1.css"
 .slider {
   color: #20b2aa;
 }
@@ -117,9 +111,7 @@ The following examples override the slider's `thumb` style in addition to the cu
 }
 ```
 
-**PlainCssSliderDeep1.js**
-
-```jsx
+```jsx title="PlainCssSliderDeep1.js"
 import * as React from 'react';
 import Slider from '@mui/material/Slider';
 import './PlainCssSliderDeep1.css';
@@ -136,9 +128,7 @@ export default function PlainCssSliderDeep1() {
 
 The above demo relies on the [default `className` values](/system/styles/advanced/), but you can provide your own class name with the `slotProps` API.
 
-**PlainCssSliderDeep2.css**
-
-```css
+```css title="PlainCssSliderDeep2.css"
 .slider {
   color: #20b2aa;
 }
@@ -152,9 +142,7 @@ The above demo relies on the [default `className` values](/system/styles/advance
 }
 ```
 
-**PlainCssSliderDeep2.js**
-
-```jsx
+```jsx title="PlainCssSliderDeep2.js"
 import * as React from 'react';
 import Slider from '@mui/material/Slider';
 import './PlainCssSliderDeep2.css';
@@ -180,9 +168,7 @@ Explicitly providing the class names to the component is too much effort?
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/global-classnames-dho8k)
 
-**GlobalCssSlider.css**
-
-```css
+```css title="GlobalCssSlider.css"
 .MuiSlider-root {
   color: #20b2aa;
 }
@@ -192,9 +178,7 @@ Explicitly providing the class names to the component is too much effort?
 }
 ```
 
-**GlobalCssSlider.js**
-
-```jsx
+```jsx title="GlobalCssSlider.js"
 import * as React from 'react';
 import Slider from '@mui/material/Slider';
 import './GlobalCssSlider.css';
@@ -254,9 +238,7 @@ The following example overrides the slider's `thumb` style in addition to the cu
 
 {{"demo": "StyledComponentsDeep.js", "hideToolbar": true}}
 
-**GlobalCssSliderDeep.css**
-
-```css
+```css title="GlobalCssSliderDeep.css"
 .MuiSlider-root {
   color: #20b2aa;
 }
@@ -270,9 +252,7 @@ The following example overrides the slider's `thumb` style in addition to the cu
 }
 ```
 
-**GlobalCssSliderDeep.js**
-
-```jsx
+```jsx title="GlobalCssSliderDeep.js"
 import * as React from 'react';
 import Slider from '@mui/material/Slider';
 import './GlobalCssSliderDeep.css';
@@ -431,9 +411,7 @@ bundling solution people are using.
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/css-modules-nuyg8)
 
-**CssModulesSlider.module.css**
-
-```css
+```css title="CssModulesSlider.module.css"
 .slider {
   color: #20b2aa;
 }
@@ -443,9 +421,7 @@ bundling solution people are using.
 }
 ```
 
-**CssModulesSlider.js**
-
-```jsx
+```jsx title="CssModulesSlider.js"
 import * as React from 'react';
 import Slider from '@mui/material/Slider';
 // Webpack, Parcel or else will inject the CSS into the page
@@ -512,9 +488,7 @@ The following examples override the slider's `thumb` style in addition to the cu
 
 {{"demo": "StyledComponentsDeep.js", "hideToolbar": true}}
 
-**CssModulesSliderDeep1.module.css**
-
-```css
+```css title="CssModulesSliderDeep1.module.css"
 .slider {
   color: #20b2aa;
 }
@@ -528,9 +502,7 @@ The following examples override the slider's `thumb` style in addition to the cu
 }
 ```
 
-**CssModulesSliderDeep1.js**
-
-```jsx
+```jsx title="CssModulesSliderDeep1.js"
 import * as React from 'react';
 // Webpack, Parcel or else will inject the CSS into the page
 import styles from './CssModulesSliderDeep1.module.css';
@@ -548,9 +520,7 @@ export default function CssModulesSliderDeep1() {
 
 The above demo relies on the [default `className` values](/system/styles/advanced/), but you can provide your own class name with the `slotProps` API.
 
-**CssModulesSliderDeep2.module.css**
-
-```css
+```css title="CssModulesSliderDeep2.module.css"
 .slider {
   color: #20b2aa;
 }
@@ -564,9 +534,7 @@ The above demo relies on the [default `className` values](/system/styles/advance
 }
 ```
 
-**CssModulesSliderDeep2.js**
-
-```jsx
+```jsx title="CssModulesSliderDeep2.js"
 import * as React from 'react';
 // Webpack, Parcel or else will inject the CSS into the page
 import styles from './CssModulesSliderDeep2.module.css';
@@ -618,9 +586,7 @@ If you use a different framework, or already have set up your project, follow th
 1. Add Tailwind CSS to your project, following the instructions in https://tailwindcss.com/docs/installation.
 2. Remove [Tailwind CSS's preflight](https://tailwindcss.com/docs/preflight) style so it can use the Material UI's preflight instead ([CssBaseline](/material-ui/react-css-baseline/)).
 
-**tailwind.config.js**
-
-```diff
+```diff title="tailwind.config.js"
  module.exports = {
 +  corePlugins: {
 +    preflight: false,
@@ -630,9 +596,7 @@ If you use a different framework, or already have set up your project, follow th
 
 3. Add the `important` option, using the id of your app wrapper. For example, `#__next` for Next.js and `"#root"` for CRA:
 
-**tailwind.config.js**
-
-```diff
+```diff title="tailwind.config.js"
  module.exports = {
    content: [
      "./src/**/*.{js,jsx,ts,tsx}",
@@ -737,9 +701,7 @@ Now it's all set up and you can start using Tailwind CSS on the Material UI co
 
 [![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/github-ndkshy?file=pages%2Findex.tsx)
 
-**index.tsx**
-
-```jsx
+```jsx title="index.tsx"
 import * as React from 'react';
 import Slider from '@mui/material/Slider';
 
@@ -761,9 +723,7 @@ This example showcases how to override the Slider's `thumb` style.
 
 {{"demo": "StyledComponentsDeep.js", "hideToolbar": true}}
 
-**SliderThumbOverrides.tsx**
-
-```jsx
+```jsx title="SliderThumbOverrides.tsx"
 import * as React from 'react';
 import Slider from '@mui/material/Slider';
 
@@ -786,9 +746,7 @@ export default function SliderThumbOverrides() {
 If you want to style a component's pseudo-state, you can use the appropriate key in the `classes` prop.
 Here is an example of how you can style the Slider's active state:
 
-**SliderPseudoStateOverrides.tsx**
-
-```jsx
+```jsx title="SliderPseudoStateOverrides.tsx"
 import * as React from 'react';
 import Slider from '@mui/material/Slider';
 
