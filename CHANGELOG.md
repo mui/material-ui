@@ -11,7 +11,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 ### `@mui/material@5.15.13`
 
-- &#8203;<!-- 25 -->[Accordion] Convert to support CSS extraction (#41221) @mnajdova
+- [Accordion] Convert to support CSS extraction (#41221) @mnajdova
 - &#8203;<!-- 24 -->[Autocomplete] Convert to support CSS extraction (#40330) @mnajdova
 - &#8203;<!-- 06 -->[Slider] Convert to support CSS extraction (#41201) @mnajdova
 - &#8203;<!-- 07 -->[Select] Fix variant type (#41405) @sai6855
