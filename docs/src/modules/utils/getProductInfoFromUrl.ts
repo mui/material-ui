@@ -10,9 +10,11 @@ export type MuiProductId =
   | 'docs'
   | 'x-data-grid'
   | 'x-date-pickers'
-  | 'x-charts';
+  | 'x-charts'
+  | 'toolpad-studio'
+  | 'toolpad-core';
 
-type MuiProductCategoryId = 'null' | 'core' | 'x';
+type MuiProductCategoryId = 'toolpad' | 'null' | 'core' | 'x';
 
 interface MuiProductInfo {
   productId: MuiProductId;
