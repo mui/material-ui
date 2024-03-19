@@ -1,5 +1,61 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.15.14
+
+<!-- generated comparing v5.15.13..master -->
+
+_Mar 18, 2024_
+
+A big thanks to the 15 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.15.13`
+
+- [Accordion] Convert to support CSS extraction (#41221) @mnajdova
+- &#8203;<!-- 24 -->[Autocomplete] Convert to support CSS extraction (#40330) @mnajdova
+- &#8203;<!-- 06 -->[Slider] Convert to support CSS extraction (#41201) @mnajdova
+- &#8203;<!-- 07 -->[Select] Fix variant type (#41405) @sai6855
+- &#8203;<!-- 09 -->[typescript] Use interface instead of type for props (#41500) @siriwatknp
+
+### `@pigment-css/react@0.0.3`
+
+- &#8203;<!-- 03 -->Add Box component (#41451) @brijeshb42
+
+### `pigment-css/nextjs-plugin@0.0.3`
+
+- &#8203;<!-- 04 -->Fix alias resolver (#41494) @brijeshb42
+- &#8203;<!-- 05 -->Follow-up to #41494 (#41502) @brijeshb42
+
+### Docs
+
+- &#8203;<!-- 12 -->[joy-ui] Add UI improvements to the side navigation demo (#41461) @cipherlogs
+- &#8203;<!-- 11 -->[pigment-css] Add media query guide (#41473) @siriwatknp
+- &#8203;<!-- 10 -->[pigment-css] Fixing location of the ExtendTheme type in the docs (#41499) @jherr
+- &#8203;<!-- 08 -->[material-ui][Progress] Add Circular progress gradient demo from Github comment (#40559) @DiegoAndai
+
+### Core
+
+- &#8203;<!-- 23 -->[blog] Bringing consistency to Material UI customization APIs (#41040) @DiegoAndai
+- &#8203;<!-- 22 -->[code-infra] Rename @mui-internal/docs-utils to @mui/internal-docs-utils (#41498) @michaldudak
+- &#8203;<!-- 21 -->[code-infra] Copy translations.json to @mui/docs build folder (#41472) @Janpot
+- &#8203;<!-- 20 -->[core] Use Circle CI context (#41532) @oliviertassinari
+- &#8203;<!-- 19 -->[core] Fix CHANGELOG format and update date (#41481) @DiegoAndai
+- &#8203;<!-- 18 -->[docs] Fix useStorageState regressions (#41223) @Janpot
+- &#8203;<!-- 17 -->[docs] Fix some Vale errors (#41516) @oliviertassinari
+- &#8203;<!-- 15 -->[material-ui][docs] Fix landing page template's h1 size (#41543) @zanivan
+- &#8203;<!-- 14 -->[material-ui][docs] Apply new code header docs feature (#41508) @danilo-leal
+- &#8203;<!-- 11 -->[material-next] Drop the package (#41544) @mnajdova
+- &#8203;<!-- 16 -->[docs-infra] Fail CI on Vale error (#40944) @oliviertassinari
+- &#8203;<!-- 15 -->[docs-infra] Improve Vale config @oliviertassinari
+- &#8203;<!-- 14 -->[docs-infra] Add a feature list "component" (#41484) @danilo-leal
+- &#8203;<!-- 13 -->[docs-infra] Add code block header classes (#41487) @danilo-leal
+- &#8203;<!-- 21 -->[docs-infra] Make the Algolia search input label invisible (#41542) @danilo-leal
+- &#8203;<!-- 03 -->[website] Improve navbar's items hover state (#41535) @EyaOuenniche
+- &#8203;<!-- 02 -->[website] Split Toolpad documentation (#41316) @bharatkashyap
+- &#8203;<!-- 01 -->[website] Use MUI X Data Grid v7-beta (#41276) @cherniavskii
+
+All contributors of this release in alphabetical order: @bharatkashyap, @brijeshb42, @cherniavskii, @cipherlogs, @danilo-leal, @DiegoAndai, @EyaOuenniche, @Janpot, @jherr, @michaldudak, @mnajdova, @oliviertassinari, @sai6855, @siriwatknp, @zanivan
+
 ## v5.15.13
 
 <!-- generated comparing v5.15.12..master -->
