@@ -193,6 +193,7 @@ export default function wywVitePlugin({
                   ...rest.babelOptions,
                   plugins: [
                     ['babel-plugin-transform-react-remove-prop-types', { mode: 'remove' }],
+                    'babel-plugin-define-var',
                     ...(rest.babelOptions?.plugins ?? []),
                   ],
                   presets: Array.from(presets),
