@@ -8,8 +8,8 @@ on:
   issue_comment:
     types: [created]
   schedule:
-    # Schedule for five minutes after the hour, every hour
-    - cron: '5 * * * *'
+    # Schedule for 12am and 12pm UTC
+    - cron: '0 0,12 * * *'
 
 permissions: {}
 
