@@ -2,6 +2,8 @@ import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
@@ -328,6 +330,49 @@ function renderFAQItem(index: number, defaultExpanded?: boolean) {
   );
 }
 
+function RemoteAwardCard() {
+  return (
+    <Paper
+      component={Link}
+      href="/blog/remote-award-win/"
+      noLinkStyle
+      variant="outlined"
+      sx={{ p: 2 }}
+    >
+      <Box
+        sx={{
+          aspectRatio: '1/1',
+          border: '1px solid',
+          borderColor: 'divider',
+          borderRadius: '6px',
+          overflow: 'clip',
+          mb: 2,
+        }}
+      >
+        <Box
+          component="img"
+          src="/static/branding/about/remote-award.png"
+          alt="MUI's official winners badge provided by Remote."
+          height="250px"
+          width="250px"
+          sx={{ width: '100%', height: '100%' }}
+        />
+      </Box>
+      <div>
+        <Typography component="h2" variant="body2" fontWeight="semiBold">
+          Remote Excellence Awards
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+          Winners in the first-ever Remote Excellence Awards, in the Small & Mighty category! 🎉
+        </Typography>
+        <Typography variant="body2" fontWeight="bold" color="primary">
+          Learn more <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
+        </Typography>
+      </div>
+    </Paper>
+  );
+}
+
 export default function Careers() {
   return (
     <BrandingCssVarsProvider>
@@ -357,7 +402,7 @@ export default function Careers() {
         <Divider />
         {/* Perks & benefits */}
         <Section bg="gradient">
-          <Grid container spacing={5} alignItems="center">
+          <Grid container spacing={5} alignItems="center" sx={{ position: 'relative' }}>
             <Grid item md={6}>
               <SectionHeadline
                 overline="Working at MUI"
@@ -399,41 +444,39 @@ export default function Careers() {
               </Box>
             </Grid>
             <Grid item xs={12} md={6}>
-              <Stack spacing={2} useFlexGap>
-                {companyInfo.map(({ title, description, routeUrl }) => (
-                  <Paper
-                    component={Link}
-                    href={routeUrl}
-                    noLinkStyle
-                    variant="outlined"
-                    sx={{ p: 2, width: '100%' }}
-                    key={title}
-                  >
-                    <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
-                      {title}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                      {description}
-                    </Typography>
-                    <Typography
-                      sx={(theme) => ({
-                        color: 'primary.600',
-                        ...theme.applyDarkStyles({
-                          color: 'primary.400',
-                        }),
-                      })}
-                      variant="body2"
-                      fontWeight="bold"
-                    >
-                      Learn more{' '}
-                      <KeyboardArrowRightRounded
-                        fontSize="small"
-                        sx={{ verticalAlign: 'middle' }}
-                      />
-                    </Typography>
-                  </Paper>
-                ))}
-              </Stack>
+              <Grid container spacing={2}>
+                <Grid item xs={12} md={8}>
+                  <RemoteAwardCard />
+                </Grid>
+                <Grid item xs={12} md={4}>
+                  <Stack spacing={2} useFlexGap sx={{ height: '100%', width: '100%' }}>
+                    {companyInfo.map(({ title, description, routeUrl }) => (
+                      <Paper
+                        component={Link}
+                        href={routeUrl}
+                        noLinkStyle
+                        variant="outlined"
+                        sx={{ p: 2, width: '100%', flexGrow: 1 }}
+                        key={title}
+                      >
+                        <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
+                          {title}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                          {description}
+                        </Typography>
+                        <Typography variant="body2" fontWeight="bold" color="primary">
+                          Learn more{' '}
+                          <KeyboardArrowRightRounded
+                            fontSize="small"
+                            sx={{ verticalAlign: 'middle' }}
+                          />
+                        </Typography>
+                      </Paper>
+                    ))}
+                  </Stack>
+                </Grid>
+              </Grid>
             </Grid>
           </Grid>
         </Section>
