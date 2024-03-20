@@ -9,9 +9,10 @@ import useForkRef from '../utils/useForkRef';
 import unsupportedProp from '../utils/unsupportedProp';
 import capitalize from '../utils/capitalize';
 import ButtonBase from '../ButtonBase';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { styled, createUseThemeProps } from '../zero-styled';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
+
+const useThemeProps = createUseThemeProps('MuiChip');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disabled, size, color, iconColor, onDelete, clickable, variant } = ownerState;
