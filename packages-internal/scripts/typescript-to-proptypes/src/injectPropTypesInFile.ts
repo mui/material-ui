@@ -154,7 +154,7 @@ function createBabelPlugin({
     data,
   ) => {
     // key is a reserved prop name in React
-    // e.g. https://github.com/reactjs/rfcs/pull/107
+    // for example https://github.com/reactjs/rfcs/pull/107
     // no need to add a prop-type if we won't generate the docs for it.
     if (data.prop.name === 'key' && data.prop.jsDoc === '@ignore') {
       return false;
@@ -389,7 +389,7 @@ function createBabelPlugin({
           getFromProp(nodeInit.params[0]);
         } else if (babelTypes.isCallExpression(nodeInit)) {
           if ((nodeInit.callee as babel.types.Identifier)?.name?.match(/create[A-Z].*/)) {
-            // Any components that are created by a factory function, e.g. System Box | Container | Grid.
+            // Any components that are created by a factory function, for example System Box | Container | Grid.
             getFromProp(node);
           } else {
             // x = react.memo(props => <div/>) / react.forwardRef(props => <div />)

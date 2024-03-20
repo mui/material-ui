@@ -1,15 +1,9 @@
 import * as path from 'node:path';
 import type { NextConfig } from 'next';
 import { findPagesDir } from 'next/dist/lib/find-pages-dir';
-import {
-  webpack as webpackPlugin,
-  extendTheme,
-  type PigmentOptions as BasePigmentOptions,
-} from '@pigment-css/unplugin';
+import { webpack as webpackPlugin, extendTheme, type PigmentOptions } from '@pigment-css/unplugin';
 
-export type PigmentOptions = BasePigmentOptions & {
-  asyncResolve?: (what: string) => string | null;
-};
+export { type PigmentOptions };
 
 const extractionFile = path.join(
   path.dirname(require.resolve('../package.json')),
@@ -60,14 +54,23 @@ export function withPigment(nextConfig: NextConfig, pigmentConfig?: PigmentOptio
           outputCss: dev || hasAppDir || !isServer,
           placeholderCssFile: extractionFile,
         },
-        asyncResolve(what) {
+        async asyncResolve(what: string, importer: string, stack: string[]) {
+          // Need to point to the react from node_modules during eval time.
+          // Otherwise, next makes it point to its own version of react that
+          // has a lot of RSC specific logic which is not actually needed.
+          if (what.startsWith('react') || what.startsWith('next')) {
+            return require.resolve(what);
+          }
           if (what === 'next/image') {
             return require.resolve('../next-image');
           }
           if (what.startsWith('next/font')) {
             return require.resolve('../next-font');
           }
-          return asyncResolve?.(what) ?? null;
+          if (asyncResolve) {
+            return asyncResolve(what, importer, stack);
+          }
+          return null;
         },
         babelOptions: {
           ...babelOptions,

@@ -33,13 +33,13 @@ export default function Hero() {
       >
         <Stack spacing={2} useFlexGap sx={{ width: { xs: '100%', sm: '70%' } }}>
           <Typography
-            component="h1"
             variant="h1"
             sx={{
               display: 'flex',
               flexDirection: { xs: 'column', md: 'row' },
               alignSelf: 'center',
               textAlign: 'center',
+              fontSize: 'clamp(3.5rem, 10vw, 4rem)',
             }}
           >
             Our latest&nbsp;
@@ -47,6 +47,7 @@ export default function Hero() {
               component="span"
               variant="h1"
               sx={{
+                fontSize: 'clamp(3rem, 10vw, 4rem)',
                 color: (theme) =>
                   theme.palette.mode === 'light' ? 'primary.main' : 'primary.light',
               }}
@@ -54,10 +55,14 @@ export default function Hero() {
               products
             </Typography>
           </Typography>
-          <Typography variant="body1" textAlign="center" color="text.secondary">
+          <Typography
+            textAlign="center"
+            color="text.secondary"
+            sx={{ alignSelf: 'center', width: { sm: '100%', md: '80%' } }}
+          >
             Explore our cutting-edge dashboard, delivering high-quality solutions
-            tailored to your needs. <br />
-            Elevate your experience with top-tier features and services.
+            tailored to your needs. Elevate your experience with top-tier features
+            and services.
           </Typography>
           <Stack
             direction={{ xs: 'column', sm: 'row' }}

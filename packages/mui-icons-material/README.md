@@ -9,17 +9,19 @@ Install the package in your project directory with:
 <!-- #default-branch-switch -->
 
 ```bash
-npm install @mui/icons-material
+npm install @mui/icons-material@next
 ```
 
 <!-- #default-branch-switch -->
 
-These components use the Material UI's [SvgIcon](https://mui.com/material-ui/api/svg-icon) component to render the SVG path for each icon.
+These components use the Material UI's [SvgIcon](https://next.mui.com/material-ui/api/svg-icon) component to render the SVG path for each icon.
 
 If you are not already using Material UI in your project, you can add it with:
 
+<!-- #default-branch-switch -->
+
 ```bash
-npm install @mui/material
+npm install @mui/material@next
 ```
 
 ## Documentation
