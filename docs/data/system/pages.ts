@@ -47,14 +47,8 @@ const pages: readonly MuiPage[] = [
     title: 'Migration',
     children: [
       {
-        pathname: '/system/migration/v6',
-        subheader: 'Upgrade to v6',
-        children: [
-          {
-            pathname: '/system/migration/migration-v5',
-            title: 'Migrating to v6',
-          },
-        ],
+        pathname: '/system/migration/migration-v5',
+        title: 'Migrating to v6',
       },
     ],
   },
