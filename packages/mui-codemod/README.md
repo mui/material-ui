@@ -497,6 +497,132 @@ CSS transforms:
 npx @mui/codemod@next deprecations/button-classes <path>
 ```
 
+#### `button-group-classes`
+
+JS transforms:
+
+```diff
+ import { buttonGroupClasses } from '@mui/material/ButtonGroup';
+
+ MuiButtonGroup: {
+   styleOverrides: {
+     root: {
+-      [`& .${buttonGroupClasses.groupedHorizontal}`]: {
++      [`&.${buttonGroupClasses.horizontal} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedVertical}`]: {
++      [`&.${buttonGroupClasses.vertical} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedText}`]: {
++      [`&.${buttonGroupClasses.text} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedTextHorizontal}`]: {
++      [`&.${buttonGroupClasses.text}.${buttonGroupClasses.horizontal} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedTextVertical}`]: {
++      [`&.${buttonGroupClasses.text}.${buttonGroupClasses.vertical} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedTextPrimary}`]: {
++      [`&.${buttonGroupClasses.text}.${buttonGroupClasses.colorPrimary} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedTextSecondary}`]: {
++      [`&.${buttonGroupClasses.text}.${buttonGroupClasses.colorSecondary} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedOutlined}`]: {
++      [`&.${buttonGroupClasses.outlined} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedOutlinedHorizontal}`]: {
++      [`&.${buttonGroupClasses.outlined}.${buttonGroupClasses.horizontal} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedOutlinedVertical}`]: {
++      [`&.${buttonGroupClasses.outlined}.${buttonGroupClasses.vertical} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedOutlinedPrimary}`]: {
++      [`&.${buttonGroupClasses.outlined}.${buttonGroupClasses.colorPrimary} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedOutlinedSecondary}`]: {
++      [`&.${buttonGroupClasses.outlined}.${buttonGroupClasses.colorSecondary} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedContained}`]: {
++      [`&.${buttonGroupClasses.contained} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedContainedHorizontal}`]: {
++      [`&.${buttonGroupClasses.contained}.${buttonGroupClasses.horizontal} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedContainedVertical}`]: {
++      [`&.${buttonGroupClasses.contained}.${buttonGroupClasses.vertical} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedContainedPrimary}`]: {
++      [`&.${buttonGroupClasses.contained}.${buttonGroupClasses.colorPrimary} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedContainedSecondary}`]: {
++      [`&.${buttonGroupClasses.contained}.${buttonGroupClasses.colorSecondary} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiButtonGroup-root .MuiButtonGroup-groupedHorizontal
++.MuiButtonGroup-root.MuiButtonGroup-horizontal > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedVertical
++.MuiButtonGroup-root.MuiButtonGroup-vertical > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedText
++.MuiButtonGroup-root.MuiButtonGroup-text > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedTextHorizontal
++.MuiButtonGroup-root.MuiButtonGroup-text.MuiButtonGroup-horizontal > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedTextVertical
++.MuiButtonGroup-root.MuiButtonGroup-text.MuiButtonGroup-vertical > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedTextPrimary
++.MuiButtonGroup-root.MuiButtonGroup-text.MuiButtonGroup-colorPrimary > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedTextSecondary
++.MuiButtonGroup-root.MuiButtonGroup-text.MuiButtonGroup-colorSecondary > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedOutlined
++.MuiButtonGroup-root.MuiButtonGroup-outlined > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedOutlinedHorizontal
++.MuiButtonGroup-root.MuiButtonGroup-outlined.MuiButtonGroup-horizontal > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedOutlinedVertical
++.MuiButtonGroup-root.MuiButtonGroup-outlined.MuiButtonGroup-vertical > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedOutlinedPrimary
++.MuiButtonGroup-root.MuiButtonGroup-outlined.MuiButtonGroup-colorPrimary > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedOutlinedSecondary
++.MuiButtonGroup-root.MuiButtonGroup-outlined.MuiButtonGroup-colorSecondary > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedContained
++.MuiButtonGroup-root.MuiButtonGroup-contained > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedContainedHorizontal
++.MuiButtonGroup-root.MuiButtonGroup-contained.MuiButtonGroup-horizontal > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedContainedVertical
++.MuiButtonGroup-root.MuiButtonGroup-contained.MuiButtonGroup-vertical > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedContainedPrimary
++.MuiButtonGroup-root.MuiButtonGroup-contained.MuiButtonGroup-colorPrimary > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedContainedSecondary
++.MuiButtonGroup-root.MuiButtonGroup-contained.MuiButtonGroup-colorSecondary > .MuiButtonGroup-grouped
+```
+
+```bash
+npx @mui/codemod@latest deprecations/button-group-classes <path>
+```
+
 #### `chip-classes`
 
 JS transforms:
