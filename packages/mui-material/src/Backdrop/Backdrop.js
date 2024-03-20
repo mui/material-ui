@@ -3,11 +3,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import useSlot from '../utils/useSlot';
 import Fade from '../Fade';
 import { getBackdropUtilityClass } from './backdropClasses';
+
+const useThemeProps = createUseThemeProps('MuiBackdrop');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, invisible } = ownerState;
@@ -27,7 +28,7 @@ const BackdropRoot = styled('div', {
 
     return [styles.root, ownerState.invisible && styles.invisible];
   },
-})(({ ownerState }) => ({
+})({
   position: 'fixed',
   display: 'flex',
   alignItems: 'center',
@@ -38,10 +39,15 @@ const BackdropRoot = styled('div', {
   left: 0,
   backgroundColor: 'rgba(0, 0, 0, 0.5)',
   WebkitTapHighlightColor: 'transparent',
-  ...(ownerState.invisible && {
-    backgroundColor: 'transparent',
-  }),
-}));
+  variants: [
+    {
+      props: { invisible: true },
+      style: {
+        backgroundColor: 'transparent',
+      },
+    },
+  ],
+});
 
 const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiBackdrop' });
