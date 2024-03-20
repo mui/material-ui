@@ -786,19 +786,11 @@ module.exports = withPigment(nextConfig, {
     // If you want to output CSS for the direction other than
     // the `defaultDirection`. Default is `false`.
     generateForBothDir: true,
-    // Pass this to customize the dir selector. Default is
-    // [dir="rtl"] or [dir="ltr"]
-    getDirSelector(dir: string) {
-      // return your own selector that you'd like to use.
-      return `:dir(${dir})`;
-    }
-  }
-})
+  },
+});
 ```
 
 ### Vite
-
-The options are same for Vite.
 
 ```js
 import { pigment } from '@pigment-css/vite-plugin';
@@ -808,12 +800,12 @@ export default defineConfig({
     pigment({
       theme: yourTheme,
       css: {
+        // Specify your default CSS authoring direction
         defaultDirection: 'ltr',
+        // If you want to output CSS for the direction other than
+        // the `defaultDirection`. Default is `false`.
         generateForBothDir: true,
-        getDirSelector(dir: string) {
-          return `:dir(${dir})`;
-        }
-      }
+      },
     }),
     // ... Your other plugins.
   ],
@@ -848,3 +840,17 @@ The output CSS would be:
 ```
 
 Remember to also add the `dir` attribute on the `html` element or any relevant parent element as per your application logic or user preference.
+
+#### Custom dir selector
+
+The default selector in the output CSS is `[dir=rtl]` or `[dir=ltr]`. You can customize this selector by passing an optional `getDirSelector` method in the `css` property above:
+
+```js
+  // ...
+  css: {
+    getDirSelector(dir: string) {
+      // return your own selector that you'd like to use.
+      return `:dir(${dir})`;
+    }
+  }
+```

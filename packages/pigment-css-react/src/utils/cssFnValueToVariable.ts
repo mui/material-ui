@@ -26,12 +26,12 @@ export type PluginCustomOptions = {
      * it can revert the direction of the selector accordingly.
      * @default 'ltr'
      */
-    defaultDirection?: 'ltr' | 'rtl';
+    defaultDirection: 'ltr' | 'rtl';
     /**
      * Pass this as true if you want to output the CSS for both ltr and rtl.
      * The css of the non-default direction will be wrapped in a `dir` selector.
      */
-    generateForBothDir?: boolean;
+    generateForBothDir: boolean;
     /**
      * Pass this callback to customize the selector for the `dir` attribute. The default
      * is [dir=ltr] or [dir=rtl].
