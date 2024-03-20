@@ -18,7 +18,7 @@ After a few months in pre-release, we're thrilled to announce the stable release
 ## Table of contents
 
 - [Data Grid](#data-grid)
-  - [Column resizing on community plan](#column-resizing-on-community-plan)
+  - [Column resizing on the Community plan](#column-resizing-on-the-community-plan)
   - [Sticky headers and improved scrolling performance](#sticky-headers-and-improved-scrolling-performance)
   - [Improved columns panel design](#improved-columns-panel-design)
   - [Date Object support in filter model](#date-object-support-in-filter-model)
