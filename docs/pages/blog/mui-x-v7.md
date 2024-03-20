@@ -243,7 +243,7 @@ This feature makes charts more interactive and transforms the way users can expl
 
 <figure style="padding:0; margin:0; margin-bottom:20px">
   <img alt="Gauge charts" src="/static/blog/mui-x-v7/click-handler.png" width="450" height="416" loading="lazy" />
-  <figcaption style="color: #888; font-size: 0.9em; text-align: center;">A pie chart with a item click handler.</figcaption>
+  <figcaption style="color: #888; font-size: 0.9em; text-align: center;">A pie chart with an item click handler.</figcaption>
 </figure>
 
 You can find more information about specific event handlers for each type of chart by visiting their respective overview page:
