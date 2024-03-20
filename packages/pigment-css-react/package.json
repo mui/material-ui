@@ -98,8 +98,12 @@
   "exports": {
     ".": {
       "types": "./build/index.d.ts",
-      "import": "./build/index.mjs",
-      "require": "./build/index.js"
+      "import": {
+        "types": "./build/index.d.mts",
+        "default": "./build/index.mjs"
+      },
+      "require": "./build/index.js",
+      "default": "./theme/index.js"
     },
     "./package.json": "./package.json",
     "./theme": {
@@ -109,12 +113,17 @@
       "default": "./theme/index.js"
     },
     "./styles.css": {
+      "require": "./build/index.js",
       "default": "./styles.css"
     },
     "./utils": {
       "types": "./utils/index.d.ts",
-      "import": "./utils/index.mjs",
-      "require": "./utils/index.js"
+      "import": {
+        "types": "./utils/index.d.mts",
+        "default": "./utils/index.mjs"
+      },
+      "require": "./utils/index.js",
+      "default": "./utils/index.js"
     },
     "./exports/generateAtomics": {
       "default": "./exports/generateAtomics.js"
@@ -136,7 +145,10 @@
     },
     "./Box": {
       "types": "./build/Box.d.ts",
-      "import": "./build/Box.mjs",
+      "import": {
+        "types": "./build/Box.d.mts",
+        "default": "./build/Box.mjs"
+      },
       "require": "./build/Box.js",
       "default": "./build/Box.js"
     },
