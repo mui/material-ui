@@ -37,10 +37,6 @@ export default defineConfig({
   resolve: {
     alias: [
       {
-        find: /^@mui\/system\/(.*)/,
-        replacement: '@mui/system/esm/$1',
-      },
-      {
         find: /^@mui\/icons-material\/(.*)/,
         replacement: '@mui/icons-material/esm/$1',
       },
