@@ -3,6 +3,7 @@ import transformAvatarProps from '../avatar-props';
 import transformDividerProps from '../divider-props';
 import transformAccordionClasses from '../accordion-summary-classes';
 import transformButtonClasses from '../button-classes';
+import transformButtonGroupClasses from '../button-group-classes';
 import transformChipClasses from '../chip-classes';
 import transformPaginationItemClasses from '../pagination-item-classes';
 import transformAlertClasses from '../alert-classes';
@@ -17,6 +18,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformDividerProps(file, api, options);
   file.source = transformAccordionClasses(file, api, options);
   file.source = transformButtonClasses(file, api, options);
+  file.source = transformButtonGroupClasses(file, api, options);
   file.source = transformChipClasses(file, api, options);
   file.source = transformPaginationItemClasses(file, api, options);
   file.source = transformAlertClasses(file, api, options);
