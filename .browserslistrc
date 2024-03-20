@@ -32,6 +32,31 @@ safari >=15.6
 samsung 23
 samsung 22
 
+[legacy]
+ie 11
+and_chr 122
+and_chr 121
+and_ff 123
+and_ff 122
+and_qq 14.9
+and_uc 15.5
+android 122
+android 121
+chrome >=109
+edge >=120
+firefox 123
+firefox 122
+firefox 115
+ios_saf >= 15.6
+kaios 3.0-3.1
+kaios 2.5
+op_mini all
+op_mob 73 # The op_mob 80 is unknown, so downgrading to 73
+opera >=106
+safari >=15.6
+samsung 23
+samsung 22
+
 # snapshot of `npx browserslist "maintained node versions"`
 # On update check all #stable-snapshot markers
 [node]
