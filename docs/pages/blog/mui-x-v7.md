@@ -59,7 +59,7 @@ On its first announcement, we showcased some of these improvements, but during t
   <video preload="metadata" autoplay muted loop playsinline width="690" height="417" controls>
     <source src="/static/blog/mui-x-v7/sticky-headers-and-vertical-scrolling.mp4" type="video/mp4">
   </video>
-  <figcaption style="color: #888;font-style:italic; font-size: 0.9em; text-align: center;">Caption: A before and after showcase, first with horizontal and then with vertical scrolling.</figcaption>
+  <figcaption style="color: #888; font-size: 0.9em; text-align: center;">A before and after showcase, first with horizontal and then with vertical scrolling.</figcaption>
 </figure>
 
 :::warning
@@ -76,7 +76,10 @@ As part of an overarching project aimed at enhancing usability in managing colum
 
 Our goal is to further develop this panel by incorporating additional column management functions, such as column reordering and pinning. Additionally, We've extracted the internal component to facilitate the introduction of the upcoming pivoting UI.
 
-<img width="310" alt="new column management panel design" src="/static/blog/mui-x-v7/column-management-panel.png">
+<figure style="padding:0; margin:0; margin-bottom:20px">
+  <img width="310" alt="The new column management panel design" src="/static/blog/mui-x-v7/column-management-panel.png">
+  <figcaption style="color: #888; font-size: 0.9em; text-align: center;">The new column managemeent panel design</figcaption>
+</figure>
 
 ### Date Object support in filter model
 
@@ -90,7 +93,10 @@ Introducing a separate entry point for locales has significantly reduced the bun
 
 For example, with the `@mui/x-data-grid` npm package, this change led to a reduction of approximately 19% – shrinking the bundle size from [114.2kB](https://bundlephobia.com/package/@mui/x-data-grid@6.19.2) to [92.9kB](https://bundlephobia.com/package/@mui/x-data-grid@7.0.0).
 
-<img width="600" alt="Bundle size change" src="/static/blog/mui-x-v7/new-bundle-size.png" >
+<figure style="padding:0; margin:0">
+  <img width="600" alt="A chart showcasing the bundle size change" src="/static/blog/mui-x-v7/new-bundle-size.png" >
+  <figcaption style="color: #888; font-size: 0.9em; text-align: center;">A chart showcasing the Data Grid's bundle size change.</figcaption>
+</figure>
 
 ### New stable features
 
@@ -222,7 +228,10 @@ The newest gauge charts are designed to offer a visually compelling way to displ
 These charts are particularly useful for showing progress toward a goal or displaying a value within a predefined range.
 With customizable options for pointers, sizes, and colors, they allow for a personalized visual representation that makes it easy for users to interpret data at a glance.
 
-<img alt="Gauge charts" src="/static/blog/mui-x-v7/gauge-charts.png" width="1200" height="800" loading="lazy" />
+<figure style="padding:0; margin:0; margin-bottom:20px">
+  <img alt="Gauge charts" src="/static/blog/mui-x-v7/gauge-charts.png" width="1200" height="800" loading="lazy" />
+  <figcaption style="color: #888; font-size: 0.9em; text-align: center;">Three different styles of Gauge charts.</figcaption>
+</figure>
 
 Check out the [new charts](https://mui.com/x/react-charts/gauge/) documentation page for detailed information.
 
@@ -232,7 +241,10 @@ The charts now have click event handlers, so users can interact with chart eleme
 
 This feature makes charts more interactive and transforms the way users can explore the data, improving the overall user experience with details and other information accessed on demand.
 
-<img alt="Gauge charts" src="/static/blog/mui-x-v7/click-handler.png" width="450" height="416" loading="lazy" />
+<figure style="padding:0; margin:0; margin-bottom:20px">
+  <img alt="Gauge charts" src="/static/blog/mui-x-v7/click-handler.png" width="450" height="416" loading="lazy" />
+  <figcaption style="color: #888; font-size: 0.9em; text-align: center;">A pie chart with a item click handler.</figcaption>
+</figure>
 
 You can find more information about specific event handlers for each type of chart by visiting their respective overview page:
 
@@ -244,7 +256,10 @@ You can find more information about specific event handlers for each type of cha
 
 The Axis component now features a built-in Grid, offering users a structured layout for easier data analysis and visualization.
 
-<img alt="Charts axis grid" src="/static/blog/mui-x-v7/axis-grid.png" width="1550" height="654" loading="lazy" />
+<figure style="padding:0; margin:0; margin-bottom:20px">
+  <img alt="A Chart axis showcasing an horizontal grid" src="/static/blog/mui-x-v7/axis-grid.png" width="1550" height="654" loading="lazy" />
+  <figcaption style="color: #888; font-size: 0.9em; text-align: center;">A Chart axis showcasing an horizontal grid.</figcaption>
+</figure>
 
 For details on its usage and configuration, please refer to the [Grid section](https://mui.com/x/react-charts/axis/#grid) in the documentation.
 
@@ -252,7 +267,10 @@ For details on its usage and configuration, please refer to the [Grid section](h
 
 The `ChartsReferenceLine` component enhances data visualization, providing users with a clear reference to better understand and analyze key data points.
 
-<img alt="Charts reference line" src="/static/blog/mui-x-v7/charts-reference-line.png" width="1200" height="840" loading="lazy" />
+<figure style="padding:0; margin:0; margin-bottom:20px">
+  <img alt="A chart with a reference line" src="/static/blog/mui-x-v7/charts-reference-line.png" width="1200" height="840" loading="lazy" />
+  <figcaption style="color: #888; font-size: 0.9em; text-align: center;">A line chart using a reference line.</figcaption>
+</figure>
 
 You can find more details on its [documentation](https://mui.com/x/react-charts/axis/#reference-line).
 
@@ -293,9 +311,12 @@ Support new use cases with this most anticipated component.
 The latest addition to the Date and Time Pickers suite is the `<DateTimeRangePicker />`, a component designed to enrich the user experience with the advanced date and time selection.
 This intuitive picker simplifies the process of selecting date and time ranges, making it ideal for applications that require detailed scheduling or period selection.
 
-<video preload="metadata" autoplay muted loop playsinline width="600" height="510">
-  <source src="/static/blog/mui-x-v7/date-time-range-picker.mp4" type="video/mp4">
-</video>
+<figure style="padding:0; margin:0; margin-bottom:20px">
+  <video preload="metadata" autoplay muted loop playsinline width="600" height="510">
+    <source src="/static/blog/mui-x-v7/date-time-range-picker.mp4" type="video/mp4">
+  </video>
+  <figcaption style="color: #888; font-size: 0.9em; text-align: center;">A video showcasing a date and time range selection.</figcaption>
+</figure>
 
 Learn how to use and customize the [new component](https://mui.com/x/react-date-pickers/date-time-range-picker/) now!
 
@@ -310,7 +331,7 @@ Additionally, the following are the deliveries we're planning for the next few m
 
 ### Data Grid
 
-- [Improved Server side integration](https://mui.com/x/react-data-grid/server-side-data/)
+- [Improved server-side integration](https://mui.com/x/react-data-grid/server-side-data/)
 - [Column management panel with support for pivoting and other features](https://github.com/mui/mui-x/issues/5700)
 - [Pivoting](https://github.com/mui/mui-x/issues/214) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
