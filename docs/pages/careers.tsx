@@ -332,7 +332,7 @@ function RemoteAwardCard() {
   return (
     <Paper
       component={Link}
-      href="/blog/remote-award-win/"
+      href="/blog/remote-award-win-2024/"
       noLinkStyle
       variant="outlined"
       sx={{ p: 2 }}

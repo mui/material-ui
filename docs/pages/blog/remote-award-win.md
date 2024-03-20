@@ -9,7 +9,7 @@ card: true
 
 MUI has been named a **winner** in the first-ever [Remote Excellence Awards](https://remote.com/remote-excellence-awards/), in the Small & Mighty category! 🎉
 
-<img alt="MUI's official winners badge provided by Remote." src="/static/blog/remote-award-win/award-image.png" width="2400" height="1100" />
+<img alt="MUI's official winners badge provided by Remote." src="/static/blog/remote-award-win-2024/award-image.png" width="2400" height="1100" />
 
 ## Small & Mighty winners
 
