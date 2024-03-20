@@ -1,7 +1,7 @@
 ---
 title: MUI scoops the win in renowned Remote Excellence Awards
 description: We're delighted to be honored with this global recognition for our commitment to fostering excellence in remote work.
-date: 2024-03-21T00:00:00.000Z
+date: 2024-03-20T12:00:00.000Z
 authors: ['mikailaread']
 tags: ['Company']
 card: true
@@ -9,7 +9,7 @@ card: true
 
 MUI has been named a **winner** in the first-ever [Remote Excellence Awards](https://remote.com/remote-excellence-awards/), in the Small & Mighty category! 🎉
 
-<img alt="MUI's official winners badge provided by Remote." src="/static/blog/remote-award-win/award-image.png" width="1200" height="550" loading="lazy" />
+<img alt="MUI's official winners badge provided by Remote." src="/static/blog/remote-award-win/award-image.png" width="2400" height="1100" />
 
 ## Small & Mighty winners
 
@@ -35,7 +35,7 @@ To learn more about us, visit [our About page](/about/).
 
 MUI is proud to also see our Director of People & Culture, [Mikaila Read](https://www.linkedin.com/in/mikailaread/), included for the second year running as a Top 50 Remote Accellerator in Remote's annual influencer report.
 
-<img alt="Mikaila wears a gray shirt with blue MUI logo to represent the team." src="/static/blog/remote-award-win/mikaila-remote-accelerator.png" width="1200" height="550" loading="lazy" />
+<img alt="Mikaila wears a gray shirt with blue MUI logo to represent the team." src="/static/blog/remote-award-win/mikaila-remote-accelerator.png" width="2400" height="1100" loading="lazy" />
 
 The report includes 150 global experts who are hand-selected for their leadership and expertise in remote working by Remote's judging panel: [Job van der Voort](https://www.linkedin.com/in/jobvo/), [Rowena Hennigan](https://www.linkedin.com/in/rowena-hennigan/), [Chris Cerra](https://www.linkedin.com/in/chriscerra/), and [Ester Martinez](https://www.linkedin.com/in/estermartinez/).
 
@@ -48,7 +48,7 @@ Regarding MUI's inclusion in the awards, Mikaila shared:
 > I'm so proud to see ours celebrated for how — together — we've built a collaborative and inclusive remote work environment that's generating real value to a global community comprising hundreds-of-thousands of designers and developers.
 > It's a reflection of the excellence and commitment of every MUIer, and proof of the power of remote teams united by shared principles and values. Congratulations to all winners!
 
-When asked what he'd like to say to MUI employees about this win, Co-Founder and CEO Olivier Tassinari said:
+When asked what he'd like to say to MUI employees about this win, Co-founder and CEO Olivier Tassinari said:
 
 > It feels extremely validating to see MUI (and our leadership) recognized in this way! We truly care about doing remote work well, and it's part of why we've scaled so intentionally.
 > What started as an open-source community has grown and evolved into a lean, focused team that's committed to driving the best-possible experience for both developers and users.
