@@ -44,13 +44,21 @@ const MobileStepperRoot = styled(Paper, {
   padding: 8,
   variants: [
     {
-      props: ({ position }) => position !== 'static',
+      props: ({ position }) => position === 'top' || position === 'bottom',
       style: {
         position: 'fixed',
         left: 0,
         right: 0,
         zIndex: (theme.vars || theme).zIndex.mobileStepper,
       },
+    },
+    {
+      props: { position: 'top' },
+      style: { top: 0 },
+    },
+    {
+      props: { position: 'bottom' },
+      style: { bottom: 0 },
     },
   ],
 }));
