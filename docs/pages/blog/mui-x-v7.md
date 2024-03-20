@@ -1,9 +1,9 @@
 ---
 title: Introducing MUI X v7.0.0
-description: Check out what's new in the new major version of the advanced components.
+description: Check out all the newest additions to the next major of the advanced components.
 date: 2024-03-25T08:00:00.000Z
 authors: ['josefreitas']
-tags: ['MUI X', 'Product', 'News']
+tags: ['MUI X', 'Product',]
 card: true
 ---
 
@@ -13,7 +13,7 @@ card: true
   </a>
 </div>
 
-After a few months in pre-release, we're thrilled to announce the first stable release of [MUI X v7](https://github.com/mui/mui-x/releases/tag/v7.0.0), packed with new components, exciting features, improved usability and developer experience.
+After a few months in pre-release, we're thrilled to announce the stable release of [MUI X v7](https://github.com/mui/mui-x/releases/tag/v7.0.0), packed with new components, exciting features, improved usability, and developer experience.
 
 ## Table of contents
 
@@ -65,9 +65,9 @@ On its first announcement, we showcased some of these improvements, but during t
 :::warning
 The scrolling experience is far better, but the solution has a downside: **column headers can no longer be transparent** because content scrolls behind them.
 
-If you're using our theming system, the Data Grid will adapt to your application seamlessly.
+If you're using Material UI's theming system, the Data Grid will adapt to your application seamlessly.
 
-Without the theming system, you may need to manually set an appropriate background color to maintain your design.
+Without it, you may need to manually set an appropriate background color to maintain your design.
 :::
 
 ### Improved columns panel design
@@ -125,7 +125,7 @@ The first is the `SimpleTreeView`, which retains the classic and familiar JSX ap
 
 The second is the `RichTreeView`, a new component designed to streamline the development process, and with which we aim to support several common use cases out-of-the-box.
 
-Similar to the Data Grid, it requires only a dataset and possibly a few properties to render; it does all the heavy lifting for you, handling most of the complexities internally.
+Similar to the Data Grid, it only requires a dataset and possibly a few properties to render; it does all the heavy lifting for you, handling most of the complexities internally.
 
 ```jsx
 const myDataSet = [
@@ -153,10 +153,10 @@ Check out the [new component](https://mui.com/x/react-tree-view/rich-tree-view/i
 ### New customization hook: `useTreeItem2`
 
 We're introducing a new API to customize Tree items through a hook called `useTreeItem2`.
-It can be used with both `SimpleTreeView` and `RichTreeView`, and enables developers to fully leverage the TreeItem's subcomponents along with their default behaviors.
+It can be used with both `SimpleTreeView` and `RichTreeView`, and enables developers to fully leverage the Tree Item's subcomponents along with their default behaviors.
 This approach ensures customization and flexibility are at the forefront without sacrificing the component's inherent features.
 
-When using this hook, developers can create a tailored TreeItem that aligns perfectly with their project needs while reusing key behaviors and features the component is known for.
+When using this hook, developers can create a tailored Tree Item that aligns perfectly with their project needs while reusing key behaviors and features the component is known for.
 
 ```jsx
 const CustomTreeItem = React.forwardRef(function CustomTreeItem(
@@ -202,9 +202,11 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
 You can check all the details of the given example on the [RichTreeView customization page](https://mui.com/x/react-tree-view/rich-tree-view/customization/#headless-api).
 
 :::info
-To avoid further breaking changes with the subcomponents names, we're delivering this new customization API with a numerical prefix '2', for example, `TreeItem2` and `TreeItem2Content`.
+To avoid further breaking changes with the subcomponents names, we're delivering this new customization API with a numerical suffix '2', for example, `TreeItem2` and `TreeItem2Content`.
 
 This update ensures that any existing customizations remain unaffected, providing you with a seamless transition to adopt the latest API at your convenience.
+
+Our plan is to replace the move the new implementation to the `TreeItem` component on the next major release and remove all those suffixes.
 :::
 
 ## Charts
@@ -258,13 +260,13 @@ You can find more details on its [documentation](https://mui.com/x/react-charts/
 
 The focus has been primarily on developing the highly anticipated `DateTimeRangePicker`, alongside a significant effort to enhance accessibility in the fields, ensuring that our components are as inclusive and user-friendly as possible.
 
-### Improved accessibility on Pickers Text Field
+### Improved accessibility for the field components
 
 You can now set the `enableAccessibleFieldDOMStructure` prop to enhance the DOM structure of fields and pickers components.
 
 This improvement addresses accessibility limitations of the traditional `<input />` element by enabling a new DOM structure that effectively manages ARIA attributes within multiple input sections.
 
-This feature greatly improves the experience for screen reader users, making interactions with date fields and pickers more intuitive and accessible.
+This feature greatly improves the experience for screen reader users, making interactions with fields and pickers more intuitive and accessible.
 
 ```jsx
 <DateField enableAccessibleFieldDOMStructure />
@@ -317,7 +319,7 @@ Additionally, the following are the deliveries we're planning for the next few m
 ### Tree View
 
 - [Inline node name editing](https://github.com/mui/mui-x/issues/10112)
-- [Checkbox selection for Simple- and RichTreeView](https://github.com/mui/mui-x/pull/11452)
+- [Checkbox selection for `SimpleTreeView` and `RichTreeView`](https://github.com/mui/mui-x/pull/11452)
 - [Drag and drop support for RichTreeView](https://github.com/mui/mui-x/issues/9686)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 ### Charts
@@ -328,7 +330,7 @@ Additionally, the following are the deliveries we're planning for the next few m
 
 ### Date and Time Pickers
 
-- [TimeRangePicker](https://github.com/mui/mui-x/issues/4460)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+- [Time Range Picker](https://github.com/mui/mui-x/issues/4460)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 For a complete overview, please visit the [MUI X roadmap](https://github.com/mui/mui-x/projects/1).
 
@@ -336,7 +338,7 @@ For a complete overview, please visit the [MUI X roadmap](https://github.com/mui
 
 We roll bug fixes, performance enhancements, and other improvements into new releases, so as we introduce MUI X v7, MUI X v6 now is officially in [Long-Term Support (LTS)](https://mui.com/x/introduction/support/#long-term-support-lts). This means only critical bug fixes and security updates will be patched to MUI X v6.
 
-Support for MUI X v5 is officially **discontinued**, and we encourage users to migrate to v6 and then to v7 to benefit from enhanced features, performance improvements, and ongoing support.
+Support for MUI X v5 is officially **discontinued**, and we encourage you to migrate to v6 and then to v7 to benefit from enhanced features, performance improvements, and ongoing support.
 
 ## Migration guide
 
