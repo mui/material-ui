@@ -24,9 +24,9 @@ Factors considered included employee engagement, impact on employee engagement a
 
 – [Job van der Voort](https://www.linkedin.com/in/jobvo/), CEO, and Co-founder of Remote.
 
-In judging, [Hailley Griffis](https://www.linkedin.com/in/hailleygriffis/), Head of Communications & Content at Buffer remarked:
-
 > MUI is the definition of small and mighty. I am blown away by their commitment to building a company in their own way while achieving powerful results for themselves, their community, and their customers.
+
+– [Hailley Griffis](https://www.linkedin.com/in/hailleygriffis/), Head of Communications & Content at Buffer
 
 ## Reflections from MUI's leadership
 
