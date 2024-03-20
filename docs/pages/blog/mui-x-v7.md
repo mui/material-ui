@@ -30,6 +30,7 @@ After a few months in pre-release, we're thrilled to announce the first stable r
 - [Charts](#charts)
   - [Gauge charts](#gauge-charts)
   - [Click event handler](#click-event-handler)
+  - [Built-in Grid](#built-in-grid)
   - [Reference Line](#reference-line)
 - [Date Pickers](#date-pickers)
   - [Improved accessibility on Pickers Text field](#improved-accessibility-on-pickers-text-field)
@@ -46,7 +47,7 @@ After a few months in pre-release, we're thrilled to announce the first stable r
 
 As our commercial offerings expand, we're pleased to also enhance our community plan by integrating features previously exclusive to commercial users.
 
-[Column resizing](https://next.mui.com/x/react-data-grid/column-dimensions/#resizing) and [auto-sizing](https://mui.com/x/react-data-grid/column-dimensions/#autosizing), which were once Pro features, are now available to all users at no cost. 
+[Column resizing](https://next.mui.com/x/react-data-grid/column-dimensions/#resizing) and [auto-sizing](https://mui.com/x/react-data-grid/column-dimensions/#autosizing), which were once Pro features, are now available to all users at no cost.
 This transition reflects our commitment to providing an exceptional user experience across the board, and aims to make the free components stand out more in the open-source space.
 
 ### Sticky headers
@@ -69,9 +70,9 @@ Without the theming system, you may need to manually set an appropriate backgrou
 
 ### Improved columns panel design
 
-As part of an overarching project to improve usability when managing columns in the Data Grid, we’ve redesigned the column management panel with a sleeker checkbox-based design, replacing the previous toggle switch style.
+As part of an overarching project aimed at enhancing usability in managing columns within the Data Grid, we've redesigned the column visibility panel, introducing a more streamlined, checkbox-based interface to replace the previous toggle switch design.
 
-Additionally, we've extracted the internal component to facilitate the introduction of the upcoming pivoting UI and other column management functionalities.
+Our goal is to further develop this panel by incorporating additional column management functions, such as column reordering and pinning. Additionally, We've extracted the internal component to facilitate the introduction of the upcoming pivoting UI.
 
 <img width="310" alt="new column management panel design" src="/static/blog/mui-x-v7/column-management-panel.png">
 
@@ -83,7 +84,7 @@ While string values remain compatible for these types, any updates to the `filte
 
 ### Smaller bundle size
 
-Introducing a separate entry point for locales has significantly reduced the bundle size of the barrel index when tree-shaking isn't operational (e.g. Webpack in dev mode).
+Introducing a separate entry point for locales has significantly reduced the bundle size of the barrel index when tree-shaking isn't operational (e.g., Webpack in dev mode).
 
 For example, with the `@mui/x-data-grid` npm package, this change led to a reduction of approximately 19% – shrinking the bundle size from [114.2kB](https://bundlephobia.com/package/@mui/x-data-grid@6.19.2) to [92.9kB](https://bundlephobia.com/package/@mui/x-data-grid@7.0.0).
 
@@ -107,11 +108,10 @@ We're excited to announce that the following features have been promoted to stab
 - [Cell selection](https://mui.com/x/react-data-grid/cell-selection/) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 - [Clipboard paste](https://mui.com/x/react-data-grid/clipboard/#clipboard-paste) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
-
 ## Tree View
 
-Since the promotion from the lab's package to MUI X, our primary focus has been improving its developer experience.
-This includes efforts aimed to simplify the component usage, implement new customization APIs, and provide clearer documentation and illustrative examples, making them more informative and user-friendly.
+Since the promotion from the lab's package to MUI X, the primary focus has been on improving the component's developer experience.
+This includes efforts aimed to simplify its usage, implement new customization APIs, and provide clearer documentation and illustrative examples, making them more informative and user-friendly.
 
 A significant addition is the time-saving alternative to the traditional JSX architecture, the RichTreeView.
 
@@ -151,7 +151,7 @@ Check out the [new component](https://mui.com/x/react-tree-view/rich-tree-view/i
 ### New customization hook: `useTreeItem2`
 
 We're introducing a new API to customize Tree items through a hook called `useTreeItem2`.
-It can be used with both `SimpleTreeView` and `RichTreeView`, and enables developers to fully leverage the TreeItem's subcomponents along with their default behaviors. 
+It can be used with both `SimpleTreeView` and `RichTreeView`, and enables developers to fully leverage the TreeItem's subcomponents along with their default behaviors.
 This approach ensures customization and flexibility are at the forefront without sacrificing the component's inherent features.
 
 When using this hook, developers can create a tailored TreeItem that aligns perfectly with their project needs while reusing key behaviors and features the component is known for.
@@ -176,7 +176,7 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
   return (
     <TreeItem2Provider nodeId={nodeId}>
       <TreeItem2Root {...getRootProps(other)}>
-        <CustomTreeItemContent {...getContentProps()}>
+        <TreeItemContent {...getContentProps()}>
           <TreeItem2IconContainer {...getIconContainerProps()}>
             <TreeItem2Icon status={status} />
           </TreeItem2IconContainer>
@@ -185,7 +185,7 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
             </Avatar>
             <TreeItem2Label {...getLabelProps()} />
           </Box>
-        </CustomTreeItemContent>
+        </TreeItemContent>
         {children && <TreeItem2GroupTransition {...getGroupTransitionProps()} />}
       </TreeItem2Root>
     </TreeItem2Provider>
@@ -196,6 +196,8 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
 ```jsx
 <RichTreeView items={myDataSet} slots={{ item: CustomTreeItem }} />
 ```
+
+You can check all the details of the given example on the [RichTreeView customization page](https://mui.com/x/react-tree-view/rich-tree-view/customization/#headless-api).
 
 :::info
 To avoid further breaking changes with the subcomponents names, we're delivering this new customization API with a numerical prefix '2', for example, `TreeItem2` and `TreeItem2Content`.
@@ -214,19 +216,33 @@ The charts portfolio has also expanded with one of the most commonly used data v
 The newest gauge charts are designed to offer a visually compelling way to display data metrics within a circular gauge.
 
 These charts are particularly useful for showing progress toward a goal or displaying a value within a predefined range.
-With customizable options for pointers, sizes, and colors, they allow for a personalized visual representation that makes it easy for users to interpret data at a glance. 
+With customizable options for pointers, sizes, and colors, they allow for a personalized visual representation that makes it easy for users to interpret data at a glance.
 
 <img alt="Gauge charts" src="/static/blog/mui-x-v7/gauge-charts.png" width="1200" height="800" loading="lazy" />
 
-Check out the [new charts](https://next.mui.com/x/react-charts/gauge/) documentation page for detailed information.
+Check out the [new charts](https://mui.com/x/react-charts/gauge/) documentation page for detailed information.
 
 ### Click event handler
 
-All available charts now have click event handlers, so users can interact with chart elements and trigger advanced actions, such as opening a custom modal with detailed information. 
+The charts now have click event handlers, so users can interact with chart elements and trigger advanced actions, such as opening a custom modal with detailed information.
 
 This feature makes charts more interactive and transforms the way users can explore the data, improving the overall user experience with details and other information accessed on demand.
 
 <img alt="Gauge charts" src="/static/blog/mui-x-v7/click-handler.png" width="450" height="416" loading="lazy" />
+
+You can find more information about specific event handlers for each type of chart by visiting their respective overview page:
+
+- [Line charts click events](https://mui.com/x/react-charts/lines/#click-event)
+- [Bar charts click events](https://mui.com/x/react-charts/bars/#click-event)
+- [Pie charts click events](https://mui.com/x/react-charts/pie/#click-event)
+
+### Built-in Grid
+
+The Axis component now features a built-in Grid, offering users a structured layout for easier data analysis and visualization.
+
+<img alt="Charts axis grid" src="/static/blog/mui-x-v7/axis-grid.png" width="1550" height="654" loading="lazy" />
+
+For details on its usage and configuration, please refer to the [Grid section](https://mui.com/x/react-charts/axis/#grid) in the documentation.
 
 ### Reference line
 
@@ -242,7 +258,7 @@ The focus has been primarily on developing the highly anticipated DateTimeRangeP
 
 ### Improved accessibility on Pickers Text Field
 
-You can now set the `enableAccessibleFieldDOMStructure` prop to enhance the DOM structure of fields and pickers components. 
+You can now set the `enableAccessibleFieldDOMStructure` prop to enhance the DOM structure of fields and pickers components.
 
 This improvement addresses accessibility limitations of the traditional `<input />` element by enabling a new DOM structure that effectively manages aria attributes within multiple input sections.
 
@@ -253,7 +269,7 @@ This feature greatly improves the experience for screen reader users, making int
 <DatePicker enableAccessibleFieldDOMStructure />
 ```
 
-For more details, please check out the [documentation section](https://mui.com/x/react-date-pickers/fields/#accessible-dom-structure). 
+For more details, please check out the [documentation section](https://mui.com/x/react-date-pickers/fields/#accessible-dom-structure).
 
 ### Support for date-fns v3
 
@@ -283,17 +299,17 @@ Learn how to use and customize the [new component](https://mui.com/x/react-date-
 
 ## What's next
 
-As usual, we're committed to further improving the library by introducing new features, refining existing ones, and focusing on community feedback to shape our roadmap. 
+As usual, we're committed to further improving the library by introducing new features, refining existing ones, and focusing on community feedback to shape our roadmap.
 
-Throughout this year, we'll invest in making MUI X components **design agnostic**. The components will still ship using Material UI as the default, but we're striving to ensure that they seamlessly integrate with any design system (not only Material UI).
-The outcome is advanced components with extreme flexibility and customization options, enabling more diverse application styles without compromising the high-quality use cases and workflows MUI X is known for.
+Throughout this year, we'll invest in making MUI X components **design agnostic**. The components will still ship using Material UI as the default, but we're striving to ensure that they seamlessly integrate with any design system.
+The result is advanced components offering extreme flexibility and customization options, enabling a broader range of application styles without compromising the high-quality use cases and workflows that MUI X is known for.".
 
 Additionally, the following are the deliveries we're planning for the next few months.
 
 ### Data Grid
 
 - [Improved Server side integration](https://mui.com/x/react-data-grid/server-side-data/)
-- [Column management panel with support for pivoting](https://github.com/mui/mui-x/issues/5700)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+- [Column management panel with support for pivoting and other features](https://github.com/mui/mui-x/issues/5700)
 - [Pivoting](https://github.com/mui/mui-x/issues/214) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
 ### Tree View
