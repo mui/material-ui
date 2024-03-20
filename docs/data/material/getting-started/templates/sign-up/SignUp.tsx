@@ -193,6 +193,7 @@ export default function SignUp() {
             alignSelf: 'flex-start',
             mt: 4,
             display: { xs: 'none', sm: 'flex' },
+            width: 64,
           }}
         >
           Back
@@ -366,6 +367,7 @@ export default function SignUp() {
             alignSelf: 'flex-start',
             mt: 4,
             display: { xs: 'none', sm: 'flex' },
+            width: 64,
           }}
         />
       </Stack>
