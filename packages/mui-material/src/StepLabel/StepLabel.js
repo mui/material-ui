@@ -1,14 +1,15 @@
 'use client';
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import clsx from 'clsx';
+import PropTypes from 'prop-types';
+import * as React from 'react';
+import StepContext from '../Step/StepContext';
 import StepIcon from '../StepIcon';
 import StepperContext from '../Stepper/StepperContext';
-import StepContext from '../Step/StepContext';
+import { createUseThemeProps, styled } from '../zero-styled';
 import stepLabelClasses, { getStepLabelUtilityClass } from './stepLabelClasses';
+
+const useThemeProps = createUseThemeProps('MuiStepLabel');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, orientation, active, completed, error, disabled, alternativeLabel } = ownerState;
@@ -51,7 +52,7 @@ const StepLabelRoot = styled('span', {
 
     return [styles.root, styles[ownerState.orientation]];
   },
-})(({ ownerState }) => ({
+})({
   display: 'flex',
   alignItems: 'center',
   [`&.${stepLabelClasses.alternativeLabel}`]: {
@@ -60,11 +61,16 @@ const StepLabelRoot = styled('span', {
   [`&.${stepLabelClasses.disabled}`]: {
     cursor: 'default',
   },
-  ...(ownerState.orientation === 'vertical' && {
-    textAlign: 'left',
-    padding: '8px 0',
-  }),
-}));
+  variants: [
+    {
+      props: { orientation: 'vertical' },
+      style: {
+        textAlign: 'left',
+        padding: '8px 0',
+      },
+    },
+  ],
+});
 
 const StepLabelLabel = styled('span', {
   name: 'MuiStepLabel',
@@ -96,14 +102,14 @@ const StepLabelIconContainer = styled('span', {
   name: 'MuiStepLabel',
   slot: 'IconContainer',
   overridesResolver: (props, styles) => styles.iconContainer,
-})(() => ({
+})({
   flexShrink: 0, // Fix IE11 issue
   display: 'flex',
   paddingRight: 8,
   [`&.${stepLabelClasses.alternativeLabel}`]: {
     paddingRight: 0,
   },
-}));
+});
 
 const StepLabelLabelContainer = styled('span', {
   name: 'MuiStepLabel',
@@ -252,6 +258,8 @@ StepLabel.propTypes /* remove-proptypes */ = {
   ]),
 };
 
-StepLabel.muiName = 'StepLabel';
+if (StepLabel) {
+  StepLabel.muiName = 'StepLabel';
+}
 
 export default StepLabel;
