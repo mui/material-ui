@@ -55,10 +55,13 @@ export function withPigment(nextConfig: NextConfig, pigmentConfig?: PigmentOptio
           placeholderCssFile: extractionFile,
         },
         async asyncResolve(what: string, importer: string, stack: string[]) {
+          if (what.startsWith('__barrel_optimize__')) {
+            return require.resolve('../next-font');
+          }
           // Need to point to the react from node_modules during eval time.
           // Otherwise, next makes it point to its own version of react that
           // has a lot of RSC specific logic which is not actually needed.
-          if (what.startsWith('react') || what.startsWith('next')) {
+          if (what.startsWith('@babel') || what.startsWith('react') || what.startsWith('next')) {
             return require.resolve(what);
           }
           if (what === 'next/image') {

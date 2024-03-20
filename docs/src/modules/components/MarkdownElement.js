@@ -510,6 +510,7 @@ const Root = styled('div')(
       // Font size reset to fix a bug with Safari 16.0 when letterSpacing is set
       fontSize: 10,
       '&:has(.MuiCode-title)': {
+        margin: theme.spacing(2, 'auto'),
         border: `1px solid var(--muidocs-palette-primaryDark-700, ${lightTheme.palette.primaryDark[700]})`,
         borderRadius: theme.shape.borderRadius,
         overflow: 'clip',

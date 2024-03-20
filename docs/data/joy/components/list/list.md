@@ -252,7 +252,7 @@ It also supports keyboard navigation, inspired by the [Roving UX](https://github
 
 To ensure that your List is accessible, here are some factors you should consider:
 
-- Use the appropriate HTML semantic element for the list (eg. `ol` or `ul`), to ensure that assistive technologies can correctly interpret the list structure.
+- Use the appropriate HTML semantic element for the list (for example `ol` or `ul`), to ensure that assistive technologies can correctly interpret the list structure.
 - Make sure to use a meaningful name that describes the content of the list in the `aria-labelledby` prop.
 - Use `role` attributes to provide additional information about the purpose of the list and its items.
   For example, use `role="list"` for the list and `role="listitem"` for each list item.

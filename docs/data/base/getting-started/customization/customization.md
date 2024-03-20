@@ -29,9 +29,9 @@ The answer depends on the styling solution used in the project:
 
 You can either [style the components using the built-in classes](#applying-custom-css-rules) or [specify your own classes](#customizing-slot-props) and reference them in your stylesheets.
 
-#### CSS Modules
+#### CSS Modules
 
-When working with [CSS Modules](https://github.com/css-modules/css-modules), the simplest approach is to [specify custom classes using `slotProps`](#customizing-slot-props), as shown below:
+When working with [CSS Modules](https://github.com/css-modules/css-modules), the simplest approach is to [specify custom classes using `slotProps`](#customizing-slot-props), as shown below:
 
 ```tsx
 import clsx from 'clsx';
@@ -57,9 +57,9 @@ export default function Switch(props) {
 
 In this example we're using the [clsx](https://www.npmjs.com/package/clsx) utility to reduce the effort needed to apply class names conditionally.
 
-#### Tailwind CSS
+#### Tailwind CSS
 
-Use [`slotProps`](#customizing-slot-props) to apply custom styles using [Tailwind CSS](https://tailwindcss.com/), as shown below:
+Use [`slotProps`](#customizing-slot-props) to apply custom styles using [Tailwind CSS](https://tailwindcss.com/), as shown below:
 
 ```tsx
 import { Switch as BaseSwitch, SwitchOwnerState } from '@mui/base/Switch';
@@ -83,7 +83,7 @@ export default function Switch(props) {
 }
 ```
 
-See our [Working with Tailwind CSS guide](/base-ui/guides/working-with-tailwind-css/) for more information about integrating Base UI and Tailwind CSS.
+See our [Working with Tailwind CSS guide](/base-ui/guides/working-with-tailwind-css/) for more information about integrating Base UI and Tailwind CSS.
 
 #### Styled components
 
@@ -195,7 +195,7 @@ If you need complete control over a component's rendered HTML structure, you can
 Hooks give you access to the _logic_ that a component uses, but without any default structure.
 See ["Components vs. hooks" on the Base Usage page](/base-ui/getting-started/usage/#components-vs-hooks) for more details.
 
-Hooks return the current state of the component (e.g. `checked`, `disabled`, `open`, etc.) and provide functions that return props you can apply to your fully custom components.
+Hooks return the current state of the component (for example `checked`, `disabled`, `open`, etc.) and provide functions that return props you can apply to your fully custom components.
 
 In the case of [Switch](/base-ui/react-switch/), the component is accompanied by the `useSwitch` hook which gives you all of the functionality without any structure.
 

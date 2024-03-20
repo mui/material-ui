@@ -1,20 +1,20 @@
 ---
-title: Bringing consistency to Material UI customization APIs
-description: We're standardizing two key areas of the Material UI customization APIs to reduce complexity and cognitive overhead. Read on to learn what's changing.
+title: Bringing consistency to Material UI customization APIs
+description: We're standardizing two key areas of the Material UI customization APIs to reduce complexity and cognitive overhead. Read on to learn what's changing.
 date: 2024-03-18T10:00:00.000Z
 authors: ['diegoandai']
 tags: ['Material UI', 'Product']
 card: true
 ---
 
-The Material UI team is working on two initiatives to standardize the Material UI API: The first applies to overriding inner elements, and the second applies to component CSS classes.
+The Material UI team is working on two initiatives to standardize the Material UI API: The first applies to overriding inner elements, and the second applies to component CSS classes.
 In both cases, the purpose is to provide a more consistent developer experience for the community.
 
 Let's explore how these changes are taking shape:
 
 ## Inner element overrides
 
-Because Material UI components often contain multiple DOM nodes, it's common to need to modify the structure, behavior, and style of inner elements.
+Because Material UI components often contain multiple DOM nodes, it's common to need to modify the structure, behavior, and style of inner elements.
 For example, you might want to modify the Slider's thumb element to grow in size when dragged:
 
 <iframe src="https://codesandbox.io/embed/nw34ry?view=Editor+%2B+Preview&module=%2Fsrc%2FDemo.tsx&hidenavigation=1"
@@ -63,7 +63,7 @@ Because of these issues, composed CSS classes will be deprecated and eventually 
 
 ## Standardization process
 
-This initiative aims to improve the developer experience for the Material UI community.
+This initiative aims to improve the developer experience for the Material UI community.
 To provide the smoothest migration from the inconsistent APIs, they will be deprecated first and removed later, giving you plenty of time to adjust.
 With each deprecation, we'll update the [migration guide](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) and provide [codemods](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#deprecations) to simplify the process.
 

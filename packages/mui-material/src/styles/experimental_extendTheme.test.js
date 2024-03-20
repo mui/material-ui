@@ -431,7 +431,7 @@ describe('experimental_extendTheme', () => {
       ).toWarnDev(
         "MUI: Can't create `palette.dividerChannel` because `palette.divider` is not one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()." +
           '\n' +
-          'To suppress this warning, you need to explicitly provide the `palette.dividerChannel` as a string (in rgb format, e.g. "12 12 12") or undefined if you want to remove the channel token.',
+          'To suppress this warning, you need to explicitly provide the `palette.dividerChannel` as a string (in rgb format, for example "12 12 12") or undefined if you want to remove the channel token.',
       );
     });
 
@@ -531,5 +531,26 @@ describe('experimental_extendTheme', () => {
         backgroundColor: 'rgba(0, 0, 0, 0)',
       },
     });
+  });
+
+  it("should `generateStyleSheets` based on the theme's attribute and colorSchemeSelector", () => {
+    const theme = extendTheme();
+
+    expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
+      ':root',
+      ':root, [data-mui-color-scheme="light"]',
+      '[data-mui-color-scheme="dark"]',
+    ]);
+
+    theme.attribute = 'data-custom-color-scheme';
+    theme.colorSchemeSelector = '.root';
+    theme.defaultColorScheme = 'dark';
+
+    expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
+      '.root',
+      '[data-custom-color-scheme="dark"]',
+      '.root',
+      '[data-custom-color-scheme="light"]',
+    ]);
   });
 });

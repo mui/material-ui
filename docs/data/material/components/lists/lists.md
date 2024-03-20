@@ -18,7 +18,7 @@ Lists are a continuous group of text or images. They are composed of items conta
 
 Lists present information in a concise, easy-to-follow format through a continuous, vertical index of text or images.
 
-Material UI Lists are implemented using a collection of related components:
+Material UI Lists are implemented using a collection of related components:
 
 - List: a wrapper for list items. Renders as a `<ul>` by default.
 - List Item: a common list item. Renders as an `<li>` by default.

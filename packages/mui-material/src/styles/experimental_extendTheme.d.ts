@@ -290,6 +290,26 @@ export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'com
    */
   colorSchemes?: Partial<Record<SupportedColorScheme, ColorSystemOptions>>;
   /**
+   * If provided, it will be used to create a selector for the color scheme.
+   * This is useful if you want to use class or data-* attributes to apply the color scheme.
+   *
+   * The callback receives the colorScheme with the possible values of:
+   * - undefined: the selector for tokens that are not color scheme dependent
+   * - string: the selector for the color scheme
+   *
+   * @example
+   * // class selector
+   * (colorScheme) => colorScheme !== 'light' ? `.theme-${colorScheme}` : ":root"
+   *
+   * @example
+   * // data-* attribute selector
+   * (colorScheme) => colorScheme !== 'light' ? `[data-theme="${colorScheme}"`] : ":root"
+   */
+  getSelector?: (
+    colorScheme: SupportedColorScheme | undefined,
+    css: Record<string, any>,
+  ) => string | Record<string, any>;
+  /**
    * A function to determine if the key, value should be attached as CSS Variable
    * `keys` is an array that represents the object path keys.
    *  Ex, if the theme is { foo: { bar: 'var(--test)' } }
@@ -409,10 +429,8 @@ export interface CssVarsTheme extends ColorSystem {
   vars: ThemeVars;
   getCssVar: (field: ThemeCssVar, ...vars: ThemeCssVar[]) => string;
   getColorSchemeSelector: (colorScheme: SupportedColorScheme) => string;
-  generateCssVars: (colorScheme?: SupportedColorScheme) => {
-    css: Record<string, string | number>;
-    vars: ThemeVars;
-  };
+  generateThemeVars: () => ThemeVars;
+  generateStyleSheets: () => Array<Record<string, any>>;
 
   // Default theme tokens
   spacing: Theme['spacing'];
@@ -446,4 +464,4 @@ export interface CssVarsTheme extends ColorSystem {
 export default function experimental_extendTheme(
   options?: CssVarsThemeOptions,
   ...args: object[]
-): Omit<Theme, 'palette' | 'applyStyles'> & CssVarsTheme;
+): Omit<Theme, 'applyStyles'> & CssVarsTheme;

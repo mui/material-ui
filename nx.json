@@ -9,7 +9,7 @@
     "build": {
       "cache": true,
       "dependsOn": ["copy-license", "^build"],
-      "outputs": ["{projectRoot}/build"]
+      "outputs": ["{projectRoot}/build", "{projectRoot}/dist", "{projectRoot}/.next"]
     }
   }
 }
