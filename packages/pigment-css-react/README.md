@@ -14,13 +14,14 @@ Pigment CSS is a zero-runtime CSS-in-JS library that extracts the colocated sty
     - [Styled component as a CSS selector](#styled-component-as-a-css-selector)
     - [Typing props](#typing-props)
 - [Theming](#theming)
-  - [Accesing theme values](#accesing-theme-values)
+  - [Accessing theme values](#accessing-theme-values)
   - [CSS variables support](#css-variables-support)
   - [Color schemes](#color-schemes)
   - [Switching color schemes](#switching-color-schemes)
   - [TypeScript](#typescript)
 - [How-to guides](#how-to-guides)
   - [Coming from Emotion or styled-components](#coming-from-emotion-or-styled-components)
+- [RTL Support](#rtl-support)
 
 ## Getting started
 
@@ -764,4 +765,92 @@ function App() {
     </div>
   )
 }
+```
+
+## RTL Support
+
+Pigment CSS offers built-in mechanism to automatically output corresponding rtl or ltr CSS. If your app by default caters to ltr direction, you also have an option to configure the plugin to output the CSS for the other direction automatically. To configure Pigment CSS for this, update the bundler config.
+
+### Next.js
+
+```js
+const { withPigment } = require('@pigment-css/nextjs-plugin');
+
+// ...
+module.exports = withPigment(nextConfig, {
+  theme: yourCustomTheme,
+  // CSS output option
+  css: {
+    // Specify your default CSS authoring direction
+    defaultDirection: 'ltr',
+    // If you want to output CSS for the direction other than
+    // the `defaultDirection`. Default is `false`.
+    generateForBothDir: true,
+  },
+});
+```
+
+### Vite
+
+```js
+import { pigment } from '@pigment-css/vite-plugin';
+
+export default defineConfig({
+  plugins: [
+    pigment({
+      theme: yourTheme,
+      css: {
+        // Specify your default CSS authoring direction
+        defaultDirection: 'ltr',
+        // If you want to output CSS for the direction other than
+        // the `defaultDirection`. Default is `false`.
+        generateForBothDir: true,
+      },
+    }),
+    // ... Your other plugins.
+  ],
+});
+```
+
+Coming back to the app code, if one of the authored CSS is:
+
+```js
+import { css } from '@pigment-css/react';
+
+const className = css`
+  margin-left: 10px,
+  margin-right: 20px,
+  padding: '0 10px 20px 30px'
+`;
+```
+
+The output CSS would be:
+
+```css
+.cmip3v5 {
+  margin-left: 10px;
+  margin-right: 20px;
+  padding: 0 10px 20px 30px;
+}
+[dir='rtl'] .cmip3v5 {
+  margin-right: 10px;
+  margin-left: 20px;
+  padding: 0 30px 20px 10px;
+}
+```
+
+Remember to also add the `dir` attribute on the `html` element or any relevant parent element as per your application logic or user preference.
+
+#### Custom dir selector
+
+The default selector in the output CSS is `[dir=rtl]` or `[dir=ltr]`. You can customize this selector by passing an optional `getDirSelector` method in the `css` property above:
+
+```js
+  // ...
+  css: {
+    getDirSelector(dir: string) {
+      // return your own selector that you'd like to use.
+      return `:dir(${dir})`;
+    }
+  }
 ```

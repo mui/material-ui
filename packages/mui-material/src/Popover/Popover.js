@@ -9,8 +9,7 @@ import refType from '@mui/utils/refType';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import integerPropType from '@mui/utils/integerPropType';
 import chainPropTypes from '@mui/utils/chainPropTypes';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import debounce from '../utils/debounce';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
@@ -19,6 +18,8 @@ import Grow from '../Grow';
 import Modal from '../Modal';
 import PaperBase from '../Paper';
 import { getPopoverUtilityClass } from './popoverClasses';
+
+const useThemeProps = createUseThemeProps('MuiPopover');
 
 export function getOffsetTop(rect, vertical) {
   let offset = 0;

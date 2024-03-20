@@ -15,6 +15,6 @@
     },
     "types": ["node", "mocha"]
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.tsx", "src/**/*.js"],
   "exclude": ["./tsup.config.ts"]
 }
