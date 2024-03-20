@@ -457,8 +457,6 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     }
   }
 
-  console.log('running locally');
-
   return (
     <ChipRoot
       as={component}
