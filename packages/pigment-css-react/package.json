@@ -1,6 +1,6 @@
 {
   "name": "@pigment-css/react",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "main": "build/index.js",
   "module": "build/index.mjs",
   "types": "build/index.d.ts",
@@ -57,9 +57,9 @@
     "@types/babel__helper-plugin-utils": "^7.10.3",
     "@types/chai": "^4.3.12",
     "@types/cssesc": "^3.0.2",
-    "@types/lodash": "^4.14.202",
+    "@types/lodash": "^4.17.0",
     "@types/mocha": "^10.0.6",
-    "@types/node": "^18.19.22",
+    "@types/node": "^18.19.25",
     "@types/react": "^18.2.55",
     "@types/stylis": "^4.2.5",
     "chai": "^4.4.1",
@@ -132,6 +132,12 @@
     },
     "./exports/createUseThemeProps": {
       "default": "./exports/createUseThemeProps.js"
+    },
+    "./Box": {
+      "types": "./build/Box.d.ts",
+      "import": "./build/Box.mjs",
+      "require": "./build/Box.js",
+      "default": "./build/Box.js"
     }
   },
   "nx": {
