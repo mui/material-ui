@@ -55,13 +55,10 @@ export default function transformer(file, api, options) {
 
       const transitionComponent =
         defaultPropsProperties.find((prop) => prop.key.name === 'TransitionComponent') ?? {};
-      const transition = transitionComponent
-        ? { [transitionComponent.key.name]: transitionComponent.value }
-        : {};
 
       const updatedSlots = j.objectExpression(
         Object.entries({
-          ...transition,
+          transition: transitionComponent?.value,
           ...slots,
         }).map(([slot, value]) => {
           return j.objectProperty(j.identifier(slot), value);
@@ -70,6 +67,7 @@ export default function transformer(file, api, options) {
 
       if (existingSlots) {
         existingSlots.value = updatedSlots;
+        path.prune();
       } else {
         path.replace(
           j.property(
@@ -79,8 +77,6 @@ export default function transformer(file, api, options) {
           ),
         );
       }
-
-      path.prune();
     }
   });
 
