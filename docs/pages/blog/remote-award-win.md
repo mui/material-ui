@@ -31,19 +31,11 @@ In judging, Hailley Griffis, Head of Communications & Content at Buffer remarked
 To learn more about the awards, visit [the Remote Excellence Awards page](https://remote.com/remote-excellence-awards/).
 To learn more about us, visit [our About page](/about/).
 
-## Honorary mention to our People & Culture leader
+## Reflections from MUI's leadership
 
-MUI is proud to also see our Director of People & Culture, [Mikaila Read](https://www.linkedin.com/in/mikailaread/), included for the second year running as a Top 50 Remote Accellerator in Remote's annual influencer report.
+Regarding MUI's inclusion in the awards, Director of People & Culture [Mikaila Read](https://www.linkedin.com/in/mikailaread/) shared:
 
-<img alt="Mikaila wears a gray shirt with blue MUI logo to represent the team." src="/static/blog/remote-award-win/mikaila-remote-accelerator.png" width="2400" height="1100" loading="lazy" />
-
-The report includes 150 global experts who are hand-selected for their leadership and expertise in remote working by Remote's judging panel: [Job van der Voort](https://www.linkedin.com/in/jobvo/), [Rowena Hennigan](https://www.linkedin.com/in/rowena-hennigan/), [Chris Cerra](https://www.linkedin.com/in/chriscerra/), and [Ester Martinez](https://www.linkedin.com/in/estermartinez/).
-
-Mikaila was recognized in the Remote Accelerator category which includes business, HR, and industry leaders actually making remote work happen at scale.
-
-Regarding MUI's inclusion in the awards, Mikaila shared:
-
-> Being recognized as one of the best fully-remote, distributed workplaces is, above all, a testament to the incredible dedication of our team.
+> Being recognized as one of the best fully remote, distributed workplaces is, above all, a testament to the incredible dedication of our team.
 > A company's culture lives in the daily interactions and behaviors of the people who work there.
 > I'm so proud to see ours celebrated for how — together — we've built a collaborative and inclusive remote work environment that's generating real value to a global community comprising hundreds-of-thousands of designers and developers.
 > It's a reflection of the excellence and commitment of every MUIer, and proof of the power of remote teams united by shared principles and values. Congratulations to all winners!
