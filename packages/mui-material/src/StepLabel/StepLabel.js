@@ -258,6 +258,8 @@ StepLabel.propTypes /* remove-proptypes */ = {
   ]),
 };
 
-StepLabel.muiName = 'StepLabel';
+if (StepLabel) {
+  StepLabel.muiName = 'StepLabel';
+}
 
 export default StepLabel;
