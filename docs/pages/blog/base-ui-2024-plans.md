@@ -50,7 +50,7 @@ Currently, Base UI components can be customized to your heart's content using t
 ```
 
 This API, while powerful, has proven to be less than ideal in some instances.
-Most notably, it's too lengthy and complicated to write and read when used with libraries such as Tailwind CSS.
+Most notably, it's too lengthy and complicated to write and read when used with libraries such as Tailwind CSS.
 Additionally, since the `slots` and the corresponding `slotProps` are not related in terms of TypeScript types, it's possible to introduce bugs or have the compiler complain about valid code.
 
 To address these issues, we're considering adopting a new API that would assign a discrete subcomponent to each DOM node—the pattern favored by many other headless component libraries (think: `<Slider.Track />`, `<Slider.Thumb />`, etc.).

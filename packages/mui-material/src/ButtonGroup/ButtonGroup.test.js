@@ -38,6 +38,28 @@ describe('<ButtonGroup />', () => {
     expect(buttonGroup).not.to.have.class(classes.fullWidth);
   });
 
+  it('should have colorPrimary, horizontal class', () => {
+    const { container } = render(
+      <ButtonGroup>
+        <Button>Hello World</Button>
+      </ButtonGroup>,
+    );
+    const buttonGroup = container.firstChild;
+    expect(buttonGroup).to.have.class(classes.colorPrimary);
+    expect(buttonGroup).to.have.class(classes.horizontal);
+  });
+
+  it('should have colorSecondary class', () => {
+    const { container } = render(
+      <ButtonGroup color="secondary">
+        <Button>Hello World</Button>
+      </ButtonGroup>,
+    );
+
+    const buttonGroup = container.firstChild;
+    expect(buttonGroup).to.have.class(classes.colorSecondary);
+  });
+
   it('should render an outlined button', () => {
     const { getByRole } = render(
       <ButtonGroup>
