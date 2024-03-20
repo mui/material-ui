@@ -905,3 +905,22 @@ The Slider's `componentsProps` was deprecated in favor of `slotProps`:
 +  slotProps={{ track: { testid: 'test-id' } }}
  />
 ```
+
+## StepLabel
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#step-label-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/step-label-props <path>
+```
+
+### componentsProps
+
+The StepLabel's `componentsProps` was deprecated in favor of `slotProps`:
+
+```diff
+ <StepLabel
+-  componentsProps={{ label: labelProps }}
++  slotProps={{ label: labelProps }}
+ />
+```

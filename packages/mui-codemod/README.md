@@ -909,6 +909,28 @@ npx @mui/codemod@next deprecations/pagination-item-classes <path>
 npx @mui/codemod@next deprecations/slider-props <path>
 ```
 
+#### `step-label-props`
+
+```diff
+ <StepLabel
+-  componentsProps={{ label: labelProps }}
++  slotProps={{ label: labelProps }}
+ />
+```
+
+```diff
+ MuiStepLabel: {
+   defaultProps: {
+-  componentsProps={{ label: labelProps }}
++  slotProps={{ label: labelProps }}
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/step-label-props <path>
+```
+
 ### v5.0.0
 
 #### `base-use-named-exports`
