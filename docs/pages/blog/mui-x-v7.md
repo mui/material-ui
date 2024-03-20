@@ -25,7 +25,7 @@ After a few months in pre-release, we're thrilled to announce the stable release
   - [Smaller bundle size](#smaller-bundle-size)
   - [New stable features](#new-stable-features)
 - [Tree View](#tree-view)
-  - [RichTreeView](#richtreeview)
+  - [Rich Tree View](#rich-tree-view)
   - [New customization hook: `useTreeItem2`](#new-customization-hook-usetreeitem2)
 - [Charts](#charts)
   - [Gauge charts](#gauge-charts)
@@ -123,7 +123,7 @@ This includes efforts aimed to simplify its usage, implement new customization A
 
 A significant addition is the time-saving alternative to the traditional JSX architecture, the RichTreeView.
 
-### RichTreeView
+### Rich Tree View
 
 We've split the Tree View into two distinct components.
 
