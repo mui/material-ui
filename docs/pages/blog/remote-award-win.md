@@ -24,21 +24,17 @@ Said [Job van der Voort](https://www.linkedin.com/in/jobvo/), CEO, and Co-founde
 
 > Organizations like these have become the benchmark, through their commitment to excellence and their ability to thrive, paving a way forward for other organizations to confidently pursue their own remote work endeavors.
 
-In judging, Hailley Griffis, Head of Communications & Content at Buffer remarked:
+In judging, [Hailley Griffis](https://www.linkedin.com/in/hailleygriffis/), Head of Communications & Content at Buffer remarked:
 
 > MUI is the definition of small and mighty. I am blown away by their commitment to building a company in their own way while achieving powerful results for themselves, their community, and their customers.
 
-To learn more about the awards, visit [the Remote Excellence Awards page](https://remote.com/remote-excellence-awards/).
-To learn more about us, visit [our About page](/about/).
-
 ## Reflections from MUI's leadership
 
-Regarding MUI's inclusion in the awards, Director of People & Culture [Mikaila Read](https://www.linkedin.com/in/mikailaread/) shared:
+Being recognized as one of the best fully remote, distributed workplaces is, above all, a testament to the incredible dedication of our team.
+A company's culture lives in the daily interactions and behaviors of the people who work there.
+I'm so proud to see ours celebrated for how — together — we've built a collaborative and inclusive remote work environment that's generating real value to a global community comprising hundreds-of-thousands of designers and developers.
 
-> Being recognized as one of the best fully remote, distributed workplaces is, above all, a testament to the incredible dedication of our team.
-> A company's culture lives in the daily interactions and behaviors of the people who work there.
-> I'm so proud to see ours celebrated for how — together — we've built a collaborative and inclusive remote work environment that's generating real value to a global community comprising hundreds-of-thousands of designers and developers.
-> It's a reflection of the excellence and commitment of every MUIer, and proof of the power of remote teams united by shared principles and values. Congratulations to all winners!
+It's a reflection of the excellence and commitment of every MUIer, and proof of the power of remote teams united by shared principles and values. Congratulations to all winners!
 
 When asked what he'd like to say to MUI employees about this win, Co-founder and CEO Olivier Tassinari said:
 
@@ -53,4 +49,4 @@ We're looking for people who share our passion for quality, community, and freed
 
 If our purpose and ways of working resonate with you, we'd love to hear from you!
 
-Visit [our Careers page](/careers/) 👈
+👉 Visit [our Careers page](/careers/)
