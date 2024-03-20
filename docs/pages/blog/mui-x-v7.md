@@ -3,13 +3,13 @@ title: Introducing MUI X v7.0.0
 description: Check out all the newest additions to the next major of the advanced components.
 date: 2024-03-25T08:00:00.000Z
 authors: ['josefreitas']
-tags: ['MUI X', 'Product']
+tags: ['MUI X', 'Product']
 card: true
 ---
 
 <div style="max-width: 692px; width: 100%; height: 230px; overflow: hidden; margin-bottom: 16px;">
   <a href="https://github.com/mui/mui-x/releases/tag/v7.0.0">
-    <img src="/static/blog/mui-x-v7/intro.jpg" alt="MUI X v7 - major stable release" width="1200" height="400" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
+    <img src="/static/blog/mui-x-v7/intro.jpg" alt="MUI X v7 - major stable release" width="1200" height="400" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
   </a>
 </div>
 
@@ -65,7 +65,7 @@ On its first announcement, we showcased some of these improvements, but during t
 :::warning
 The scrolling experience is far better, but the solution has a downside: **column headers can no longer be transparent** because content scrolls behind them.
 
-If you're using Material UI's theming system, the Data Grid will adapt to your application seamlessly.
+If you're using Material UI's theming system, the Data Grid will adapt to your application seamlessly.
 
 Without it, you may need to manually set an appropriate background color to maintain your design.
 :::
@@ -94,7 +94,7 @@ For example, with the `@mui/x-data-grid` npm package, this change led to a reduc
 
 ### New stable features
 
-To ensure that new features can be introduced throughout the lifecycle of a major stable version without waiting for pre-releases, MUI X releases them marked as `experimentalFeatures` or with the `unstable_` prefix.
+To ensure that new features can be introduced throughout the lifecycle of a major stable version without waiting for pre-releases, MUI X releases them marked as `experimentalFeatures` or with the `unstable_` prefix.
 
 :::info
 This approach serves as a failsafe in case the API needs to be changed based on user feedback.
@@ -211,7 +211,7 @@ Our plan is to replace the move the new implementation to the `TreeItem` compone
 
 ## Charts
 
-Since launching MUI X Charts, we've been closely listening to your feedback, and our focus has been on refining these foundational elements through bug fixes, enriched documentation, and increasing support for more complex scenarios.
+Since launching MUI X Charts, we've been closely listening to your feedback, and our focus has been on refining these foundational elements through bug fixes, enriched documentation, and increasing support for more complex scenarios.
 
 The charts portfolio has also expanded with one of the most commonly used data visualization components for dashboards.
 
@@ -282,9 +282,7 @@ The Date and Time Pickers now support both versions of v2 and v3 of [`date-fns`]
 ```jsx
 // date-fns v2.x
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-```
 
-```jsx
 // date-fns v3.x
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 ```
@@ -305,8 +303,8 @@ Learn how to use and customize the [new component](https://mui.com/x/react-date-
 
 As usual, we're committed to further improving the library by introducing new features, refining existing ones, and focusing on community feedback to shape our roadmap.
 
-Throughout this year, we'll invest in making MUI X components **design agnostic**. The components will still ship using Material UI as the default, but we're striving to ensure that they seamlessly integrate with any design system.
-The result is advanced components offering extreme flexibility and customization options, enabling a broader range of application styles without compromising the high-quality use cases and workflows that MUI X is known for.".
+Throughout this year, we'll invest in making MUI X components **design agnostic**. The components will still ship using Material UI as the default, but we're striving to ensure that they seamlessly integrate with any design system.
+The result is advanced components offering extreme flexibility and customization options, enabling a broader range of application styles without compromising the high-quality use cases and workflows that MUI X is known for.".
 
 Additionally, the following are the deliveries we're planning for the next few months.
 
@@ -332,13 +330,13 @@ Additionally, the following are the deliveries we're planning for the next few m
 
 - [Time Range Picker](https://github.com/mui/mui-x/issues/4460)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
-For a complete overview, please visit the [MUI X roadmap](https://github.com/mui/mui-x/projects/1).
+For a complete overview, please visit the [MUI X roadmap](https://github.com/mui/mui-x/projects/1).
 
 ## Long-Term Support
 
-We roll bug fixes, performance enhancements, and other improvements into new releases, so as we introduce MUI X v7, MUI X v6 now is officially in [Long-Term Support (LTS)](https://mui.com/x/introduction/support/#long-term-support-lts). This means only critical bug fixes and security updates will be patched to MUI X v6.
+We roll bug fixes, performance enhancements, and other improvements into new releases, so as we introduce MUI X v7, MUI X v6 now is officially in [Long-Term Support (LTS)](https://mui.com/x/introduction/support/#long-term-support-lts). This means only critical bug fixes and security updates will be patched to MUI X v6.
 
-Support for MUI X v5 is officially **discontinued**, and we encourage you to migrate to v6 and then to v7 to benefit from enhanced features, performance improvements, and ongoing support.
+Support for MUI X v5 is officially **discontinued**, and we encourage you to migrate to v6 and then to v7 to benefit from enhanced features, performance improvements, and ongoing support.
 
 ## Migration guide
 
@@ -356,7 +354,7 @@ However, should you need further assistance, please don't hesitate to contact us
 
 ## How to get involved
 
-Your feedback played a crucial role in shaping MUI X, and we always appreciate hearing from you.
+Your feedback played a crucial role in shaping MUI X, and we always appreciate hearing from you.
 To continue enhancing our product, we invite you to share your pain points and challenges with us by:
 
 - [Giving us a user interview](https://forms.gle/vsBv6CLPz9h57xg8A).
