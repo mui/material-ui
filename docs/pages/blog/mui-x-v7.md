@@ -13,7 +13,7 @@ card: true
   </a>
 </div>
 
-After a few months in pre-release, we're thrilled to announce the stable release of [MUI X v7](https://github.com/mui/mui-x/releases/tag/v7.0.0), packed with new components, exciting features, improved usability, and developer experience.
+After a few months in pre-release, we're thrilled to announce the stable release of [MUI X v7](https://github.com/mui/mui-x/releases/tag/v7.0.0), packed with new components, exciting features, improved usability, and developer experience.
 
 ## Table of contents
 
@@ -355,9 +355,9 @@ For a complete overview, please visit the [MUI X roadmap](https://github.com/mu
 
 ## Long-Term Support
 
-We roll bug fixes, performance enhancements, and other improvements into new releases, so as we introduce MUI X v7, MUI X v6 now is officially in [Long-Term Support (LTS)](https://mui.com/x/introduction/support/#long-term-support-lts). This means only critical bug fixes and security updates will be patched to MUI X v6.
+We roll bug fixes, performance enhancements, and other improvements into new releases, so as we introduce MUI X v7, MUI X v6 now is officially in [Long-Term Support (LTS)](https://mui.com/x/introduction/support/#long-term-support-lts). This means only critical bug fixes and security updates will be patched to MUI X v6.
 
-Support for MUI X v5 is officially **discontinued**, and we encourage you to migrate to v6 and then to v7 to benefit from enhanced features, performance improvements, and ongoing support.
+Support for MUI X v5 is officially **discontinued**, and we encourage you to migrate to v6 and then to v7 to benefit from enhanced features, performance improvements, and ongoing support.
 
 ## Migration guide
 
