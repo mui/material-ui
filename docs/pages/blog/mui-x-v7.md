@@ -13,7 +13,7 @@ card: true
   </a>
 </div>
 
-After a few months in pre-release, we're thrilled to announce the first stable release of [MUI X v7](https://github.com/mui/mui-x/releases/tag/v7.0.0), packed with new components, exciting features, and improved usability and developer experience.
+After a few months in pre-release, we're thrilled to announce the first stable release of [MUI X v7](https://github.com/mui/mui-x/releases/tag/v7.0.0), packed with new components, exciting features, improved usability and developer experience.
 
 ## Table of contents
 
@@ -25,14 +25,14 @@ After a few months in pre-release, we're thrilled to announce the first stable r
   - [Smaller bundle size](#smaller-bundle-size)
   - [New stable features](#new-stable-features)
 - [Tree View](#tree-view)
-  - [RichTreeView](#richtreeview-new-component)
+  - [RichTreeView](#richtreeview)
   - [New customization hook: `useTreeItem2`](#new-customization-hook-usetreeitem2)
 - [Charts](#charts)
   - [Gauge charts](#gauge-charts)
   - [Click event handler](#click-event-handler)
   - [Built-in Grid](#built-in-grid)
   - [Reference Line](#reference-line)
-- [Date Pickers](#date-pickers)
+- [Date Pickers](#date-and-time-pickers)
   - [Improved accessibility on Pickers Text field](#improved-accessibility-on-pickers-text-field)
   - [Support for date-fns v3](#support-for-date-fns-v3)
   - [Date Time Range Picker](#date-time-range-picker)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
@@ -84,7 +84,7 @@ While string values remain compatible for these types, any updates to the `filte
 
 ### Smaller bundle size
 
-Introducing a separate entry point for locales has significantly reduced the bundle size of the barrel index when tree-shaking isn't operational (e.g., Webpack in dev mode).
+Introducing a separate entry point for locales has significantly reduced the bundle size of the barrel index when tree-shaking isn't operational (for example Webpack in dev mode).
 
 For example, with the `@mui/x-data-grid` npm package, this change led to a reduction of approximately 19% – shrinking the bundle size from [114.2kB](https://bundlephobia.com/package/@mui/x-data-grid@6.19.2) to [92.9kB](https://bundlephobia.com/package/@mui/x-data-grid@7.0.0).
 
@@ -172,7 +172,7 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
     status,
   } = useTreeItem2({ id, nodeId, children, label, disabled, rootRef: ref });
 
-  //compose and implement your tree item as you need
+  // Compose and implement your tree item as you need
   return (
     <TreeItem2Provider nodeId={nodeId}>
       <TreeItem2Root {...getRootProps(other)}>
