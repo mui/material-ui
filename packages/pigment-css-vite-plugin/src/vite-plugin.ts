@@ -193,6 +193,7 @@ export default function wywVitePlugin({
                   ...rest.babelOptions,
                   plugins: [
                     ['babel-plugin-transform-react-remove-prop-types', { mode: 'remove' }],
+                    'babel-plugin-define-var', // A fix for undefined variables in the eval phase of wyw-in-js, more details on https://github.com/siriwatknp/babel-plugin-define-var?tab=readme-ov-file#problem
                     ...(rest.babelOptions?.plugins ?? []),
                   ],
                   presets: Array.from(presets),

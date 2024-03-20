@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import integerPropType from '@mui/utils/integerPropType';
 import composeClasses from '@mui/utils/composeClasses';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { styled, createUseThemeProps } from '../zero-styled';
 import { getStepperUtilityClass } from './stepperClasses';
 import StepConnector from '../StepConnector';
 import StepperContext from './StepperContext';
+
+const useThemeProps = createUseThemeProps('MuiStepper');
 
 const useUtilityClasses = (ownerState) => {
   const { orientation, alternativeLabel, classes } = ownerState;
@@ -30,19 +31,30 @@ const StepperRoot = styled('div', {
       ownerState.alternativeLabel && styles.alternativeLabel,
     ];
   },
-})(({ ownerState }) => ({
+})({
   display: 'flex',
-  ...(ownerState.orientation === 'horizontal' && {
-    flexDirection: 'row',
-    alignItems: 'center',
-  }),
-  ...(ownerState.orientation === 'vertical' && {
-    flexDirection: 'column',
-  }),
-  ...(ownerState.alternativeLabel && {
-    alignItems: 'flex-start',
-  }),
-}));
+  variants: [
+    {
+      props: { orientation: 'horizontal' },
+      style: {
+        flexDirection: 'row',
+        alignItems: 'center',
+      },
+    },
+    {
+      props: { orientation: 'vertical' },
+      style: {
+        flexDirection: 'column',
+      },
+    },
+    {
+      props: { alternativeLabel: true },
+      style: {
+        alignItems: 'flex-start',
+      },
+    },
+  ],
+});
 
 const defaultConnector = <StepConnector />;
 
