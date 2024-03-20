@@ -19,9 +19,9 @@ Pigment CSS is a zero-runtime CSS-in-JS library that extracts the colocated sty
   - [Color schemes](#color-schemes)
   - [Switching color schemes](#switching-color-schemes)
   - [TypeScript](#typescript)
+- [Right-to-left support](#right-to-left-support)
 - [How-to guides](#how-to-guides)
   - [Coming from Emotion or styled-components](#coming-from-emotion-or-styled-components)
-- [RTL Support](#rtl-support)
 
 ## Getting started
 
@@ -663,6 +663,93 @@ declare module '@pigment-css/react/theme' {
 }
 ```
 
+## Right-to-left support
+
+Pigment CSS offers a built-in mechanism to support right-to-left (RTL) or left-to-right (LTR) CSS automatically. To turn it on, start by updating your bundler config:
+
+### Next.js
+
+```js
+const { withPigment } = require('@pigment-css/nextjs-plugin');
+
+// ...
+module.exports = withPigment(nextConfig, {
+  theme: yourCustomTheme,
+  // CSS output option
+  css: {
+    // Specify your default direction
+    defaultDirection: 'ltr',
+    // Use this prop if you want to output CSS for both directions. Default is `false`.
+    generateForBothDir: true,
+  },
+});
+```
+
+### Vite
+
+```js
+import { pigment } from '@pigment-css/vite-plugin';
+
+export default defineConfig({
+  plugins: [
+    pigment({
+      theme: yourTheme,
+      css: {
+        // Specify your default direction
+        defaultDirection: 'ltr',
+        // Use this prop if you want to output CSS for both directions. Default is `false`.
+        generateForBothDir: true,
+      },
+    }),
+    // ... Your other plugins.
+  ],
+});
+```
+
+So, with RTL turned on, if your authored CSS is:
+
+```js
+import { css } from '@pigment-css/react';
+
+const className = css`
+  margin-left: 10px,
+  margin-right: 20px,
+  padding: '0 10px 20px 30px'
+`;
+```
+
+The actual CSS output would be:
+
+```css
+.cmip3v5 {
+  margin-left: 10px;
+  margin-right: 20px;
+  padding: 0 10px 20px 30px;
+}
+
+[dir='rtl'] .cmip3v5 {
+  margin-right: 10px;
+  margin-left: 20px;
+  padding: 0 30px 20px 10px;
+}
+```
+
+Make sure to add the `dir` attribute on either the `html` element or any other equivalent parent element per your application logic or user preference.
+
+#### Custom dir selector
+
+The default selector in the output CSS is `[dir=rtl]` or `[dir=ltr]`. You can customize this selector by passing an optional `getDirSelector` method in the `css` property above:
+
+```js
+  // ...
+  css: {
+    getDirSelector(dir: string) {
+      // return your own selector that you'd like to use.
+      return `:dir(${dir})`;
+    }
+  }
+```
+
 ## How-to guides
 
 ### Coming from Emotion or styled-components
@@ -765,92 +852,4 @@ function App() {
     </div>
   )
 }
-```
-
-## RTL Support
-
-Pigment CSS offers built-in mechanism to automatically output corresponding rtl or ltr CSS. If your app by default caters to ltr direction, you also have an option to configure the plugin to output the CSS for the other direction automatically. To configure Pigment CSS for this, update the bundler config.
-
-### Next.js
-
-```js
-const { withPigment } = require('@pigment-css/nextjs-plugin');
-
-// ...
-module.exports = withPigment(nextConfig, {
-  theme: yourCustomTheme,
-  // CSS output option
-  css: {
-    // Specify your default CSS authoring direction
-    defaultDirection: 'ltr',
-    // If you want to output CSS for the direction other than
-    // the `defaultDirection`. Default is `false`.
-    generateForBothDir: true,
-  },
-});
-```
-
-### Vite
-
-```js
-import { pigment } from '@pigment-css/vite-plugin';
-
-export default defineConfig({
-  plugins: [
-    pigment({
-      theme: yourTheme,
-      css: {
-        // Specify your default CSS authoring direction
-        defaultDirection: 'ltr',
-        // If you want to output CSS for the direction other than
-        // the `defaultDirection`. Default is `false`.
-        generateForBothDir: true,
-      },
-    }),
-    // ... Your other plugins.
-  ],
-});
-```
-
-Coming back to the app code, if one of the authored CSS is:
-
-```js
-import { css } from '@pigment-css/react';
-
-const className = css`
-  margin-left: 10px,
-  margin-right: 20px,
-  padding: '0 10px 20px 30px'
-`;
-```
-
-The output CSS would be:
-
-```css
-.cmip3v5 {
-  margin-left: 10px;
-  margin-right: 20px;
-  padding: 0 10px 20px 30px;
-}
-[dir='rtl'] .cmip3v5 {
-  margin-right: 10px;
-  margin-left: 20px;
-  padding: 0 30px 20px 10px;
-}
-```
-
-Remember to also add the `dir` attribute on the `html` element or any relevant parent element as per your application logic or user preference.
-
-#### Custom dir selector
-
-The default selector in the output CSS is `[dir=rtl]` or `[dir=ltr]`. You can customize this selector by passing an optional `getDirSelector` method in the `css` property above:
-
-```js
-  // ...
-  css: {
-    getDirSelector(dir: string) {
-      // return your own selector that you'd like to use.
-      return `:dir(${dir})`;
-    }
-  }
 ```
