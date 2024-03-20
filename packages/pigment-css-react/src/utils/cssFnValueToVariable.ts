@@ -22,7 +22,7 @@ export type PluginCustomOptions = {
   css?: {
     /**
      * To denote that whatever default css is being authored pertains to this
-     * direction so that when Pigment CSS generates the CSS for the other direction,
+     * direction so that when Pigment CSS generates the CSS for the other direction,
      * it can revert the direction of the selector accordingly.
      * @default 'ltr'
      */

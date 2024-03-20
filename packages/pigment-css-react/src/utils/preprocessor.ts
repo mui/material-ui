@@ -48,11 +48,6 @@ export function preprocessor(
   if (cssText.startsWith('@keyframes')) {
     css += stylis(cssText.replace('@keyframes', `@keyframes ${selector}`));
     return css;
-
-    // if (generateForBothDir) {
-    //   const css2 = stylis(cssText.replace('@keyframes', `@keyframes ${selector}`), serializerRtl);
-    //   console.log(css2);
-    // }
   }
   css += stylis(`${selector}{${cssText}}`);
   if (generateForBothDir) {
