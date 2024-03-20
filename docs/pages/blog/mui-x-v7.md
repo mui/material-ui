@@ -43,7 +43,7 @@ After a few months in pre-release, we're thrilled to announce the stable release
 
 ## Data Grid
 
-### Column resizing on the community plan
+### Column resizing on the Community plan
 
 As MUI X commercial offerings continue to expand, we're pleased to enhance the community plan by integrating features previously exclusive to commercial users.
 
