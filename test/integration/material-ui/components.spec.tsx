@@ -334,10 +334,10 @@ function DialogTest() {
           ))}
           <ListItem
             ref={(elem) => {
-              expectType<HTMLDivElement | null, typeof elem>(elem);
+              expectType<HTMLLIElement | null, typeof elem>(elem);
             }}
             onClick={(e) => {
-              expectType<React.MouseEvent<HTMLDivElement, MouseEvent>, typeof e>(e);
+              expectType<React.MouseEvent<HTMLLIElement, MouseEvent>, typeof e>(e);
               log(e);
             }}
           >

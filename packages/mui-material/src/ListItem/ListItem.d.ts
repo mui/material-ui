@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
-import { ExtendButtonBase } from '../ButtonBase';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ListItemClasses } from './listItemClasses';
 
@@ -132,8 +131,7 @@ export interface ListItemTypeMap<AdditionalProps, RootComponent extends React.El
  *
  * - [ListItem API](https://mui.com/material-ui/api/list-item/)
  */
-declare const ListItem: ExtendButtonBase<ListItemTypeMap<{}, 'div'>> &
-  OverridableComponent<ListItemTypeMap<{}, 'li'>>;
+declare const ListItem: OverridableComponent<ListItemTypeMap<{}, 'li'>>;
 
 export type ListItemProps<
   RootComponent extends React.ElementType = 'li',

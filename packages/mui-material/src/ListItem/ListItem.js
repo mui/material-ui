@@ -11,7 +11,7 @@ import useThemeProps from '../styles/useThemeProps';
 import isMuiElement from '../utils/isMuiElement';
 import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';
-import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
+import { getListItemUtilityClass } from './listItemClasses';
 import { listItemButtonClasses } from '../ListItemButton';
 import ListItemSecondaryAction from '../ListItemSecondaryAction';
 
@@ -91,9 +91,6 @@ export const ListItemRoot = styled('div', {
       paddingRight: 48,
     },
   }),
-  [`&.${listItemClasses.focusVisible}`]: {
-    backgroundColor: (theme.vars || theme).palette.action.focus,
-  },
   ...(ownerState.alignItems === 'flex-start' && {
     alignItems: 'flex-start',
   }),
@@ -134,7 +131,6 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     disableGutters = false,
     disablePadding = false,
     divider = false,
-    focusVisibleClassName,
     secondaryAction,
     slotProps = {},
     slots = {},
@@ -347,10 +343,6 @@ ListItem.propTypes /* remove-proptypes */ = {
    * @default false
    */
   divider: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  focusVisibleClassName: PropTypes.string,
   /**
    * The element to display at the end of ListItem.
    */
