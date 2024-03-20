@@ -19,11 +19,10 @@ The awards celebrate MUI's efforts driving success in the realm of remote work a
 The winners across 10 categories were selected through a rigorous evaluation process by a panel of judges, comprising Remote's leaders and a panel of influential industry figures.
 Factors considered included employee engagement, impact on employee engagement and productivity, and technology adoption.
 
-> MUI's achievement in the Remote Excellence Awards highlights the dedication and hard work of its leaders and teams in succeeding in the new world of work
+> MUI's achievement in the Remote Excellence Awards highlights the dedication and hard work of its leaders and teams in succeeding in the new world of work.
+> Organizations like these have become the benchmark, through their commitment to excellence and their ability to thrive, paving a way forward for other organizations to confidently pursue their own remote work endeavors.
 
 – [Job van der Voort](https://www.linkedin.com/in/jobvo/), CEO, and Co-founder of Remote.
-
-> Organizations like these have become the benchmark, through their commitment to excellence and their ability to thrive, paving a way forward for other organizations to confidently pursue their own remote work endeavors.
 
 In judging, [Hailley Griffis](https://www.linkedin.com/in/hailleygriffis/), Head of Communications & Content at Buffer remarked:
 
