@@ -6,7 +6,7 @@ last 1 safari version
 node 14
 
 # Default/Fallback
-# `npx browserslist --mobile-to-desktop "> 0.2%, last 2 versions, Firefox ESR, not dead"` when the last major is released.
+# `npx browserslist --mobile-to-desktop "> 0.5%, last 2 versions, Firefox ESR, not dead"` when the last major is released.
 # On update, sync references where "#stable-snapshot" is mentioned in the codebase.
 [stable]
 and_chr 122
@@ -17,16 +17,33 @@ and_qq 14.9
 and_uc 15.5
 android 122
 android 121
-chrome >=109
-edge >=120
-firefox >=115
-ios_saf >= 15.6
+chrome 122
+chrome 121
+chrome 120
+chrome 119
+chrome 109
+edge 122
+edge 121
+firefox 123
+firefox 122
+firefox 115
+ios_saf 17.4
+ios_saf 17.3
+ios_saf 17.2
+ios_saf 17.1
+ios_saf 16.6-16.7
+ios_saf 16.1
+ios_saf 15.6-15.8
 kaios 3.0-3.1
 kaios 2.5
 op_mini all
-op_mob 80 # The op_mob 80 is unknown, so downgrading to 73
-opera >=106
-safari >=15.6
+op_mob 80
+opera 108
+opera 107
+opera 106
+safari 17.4
+safari 17.3
+safari 17.2
 samsung 23
 samsung 22
 
@@ -40,16 +57,33 @@ and_qq 14.9
 and_uc 15.5
 android 122
 android 121
-chrome >=109
-edge >=120
-firefox >=115
-ios_saf >= 15.6
+chrome 122
+chrome 121
+chrome 120
+chrome 119
+chrome 109
+edge 122
+edge 121
+firefox 123
+firefox 122
+firefox 115
+ios_saf 17.4
+ios_saf 17.3
+ios_saf 17.2
+ios_saf 17.1
+ios_saf 16.6-16.7
+ios_saf 16.1
+ios_saf 15.6-15.8
 kaios 3.0-3.1
 kaios 2.5
 op_mini all
-op_mob 80 # The op_mob 80 is unknown, so downgrading to 73
-opera >=106
-safari >=15.6
+op_mob 80
+opera 108
+opera 107
+opera 106
+safari 17.4
+safari 17.3
+safari 17.2
 samsung 23
 samsung 22
 
