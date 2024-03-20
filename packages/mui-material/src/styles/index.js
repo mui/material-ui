@@ -53,4 +53,3 @@ export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';
 export { default as private_createTypography } from './createTypography';
 export { default as private_createMixins } from './createMixins';
 export { default as private_excludeVariablesFromRoot } from './excludeVariablesFromRoot';
-export { default as private_createGetSelector } from './createGetSelector';
