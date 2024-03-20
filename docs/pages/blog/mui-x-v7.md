@@ -19,7 +19,7 @@ After a few months in pre-release, we're thrilled to announce the first stable r
 
 - [Data Grid](#data-grid)
   - [Column resizing on community plan](#column-resizing-on-community-plan)
-  - [Sticky headers](#sticky-headers)
+  - [Sticky headers and improved scrolling performance](#sticky-headers-and-improved-scrolling-performance)
   - [Improved columns panel design](#improved-columns-panel-design)
   - [Date Object support in filter model](#date-object-support-in-filter-model)
   - [Smaller bundle size](#smaller-bundle-size)
@@ -32,7 +32,7 @@ After a few months in pre-release, we're thrilled to announce the first stable r
   - [Click event handler](#click-event-handler)
   - [Built-in Grid](#built-in-grid)
   - [Reference Line](#reference-line)
-- [Date Pickers](#date-and-time-pickers)
+- [Date and Time Pickers](#date-and-time-pickers)
   - [Improved accessibility on Pickers Text field](#improved-accessibility-on-pickers-text-field)
   - [Support for date-fns v3](#support-for-date-fns-v3)
   - [Date Time Range Picker](#date-time-range-picker)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
@@ -43,22 +43,24 @@ After a few months in pre-release, we're thrilled to announce the first stable r
 
 ## Data Grid
 
-### Column resizing on community plan
+### Column resizing on the community plan
 
 As our commercial offerings expand, we're pleased to also enhance our community plan by integrating features previously exclusive to commercial users.
 
 [Column resizing](https://next.mui.com/x/react-data-grid/column-dimensions/#resizing) and [auto-sizing](https://mui.com/x/react-data-grid/column-dimensions/#autosizing), which were once Pro features, are now available to all users at no cost.
 This transition reflects our commitment to providing an exceptional user experience across the board, and aims to make the free components stand out more in the open-source space.
 
-### Sticky headers
+### Sticky headers and improved scrolling performance
 
 The Data Grid now offers a more responsive experience with smoother scrolling and enhanced screen reader support, thanks to a refactor of column headers and pinning implementations.
 
 On its first announcement, we showcased some of these improvements, but during the beta phase, we have further polished the scrolling performance for an even more significantly improved user experience.
-
-<video preload="metadata" autoplay muted loop playsinline width="690" height="417" controls>
-  <source src="/static/blog/mui-x-v7/sticky-headers.mp4" type="video/mp4">
-</video>
+<figure style="padding:0; margin:0">
+  <video preload="metadata" autoplay muted loop playsinline width="690" height="417" controls>
+    <source src="/static/blog/mui-x-v7/sticky-headers-and-vertical-scrolling.mp4" type="video/mp4">
+  </video>
+  <figcaption style="color: #888;font-style:italic; font-size: 0.9em; text-align: center;">Caption: A before and after showcase, first with horizontal and then with vertical scrolling.</figcaption>
+</figure>
 
 :::warning
 The scrolling experience is far better, but the solution has a downside: **column headers can no longer be transparent** because content scrolls behind them.
@@ -88,7 +90,7 @@ Introducing a separate entry point for locales has significantly reduced the bun
 
 For example, with the `@mui/x-data-grid` npm package, this change led to a reduction of approximately 19% – shrinking the bundle size from [114.2kB](https://bundlephobia.com/package/@mui/x-data-grid@6.19.2) to [92.9kB](https://bundlephobia.com/package/@mui/x-data-grid@7.0.0).
 
-<img width="694" alt="Bundle size change" src="/static/blog/mui-x-v7/new-bundle-size.png" style="padding-left: 20px; padding-right: 5px;">
+<img width="600" alt="Bundle size change" src="/static/blog/mui-x-v7/new-bundle-size.png" >
 
 ### New stable features
 
