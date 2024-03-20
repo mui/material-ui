@@ -141,10 +141,6 @@ export default function wywVitePlugin({
       log('Vite transform', getFileIdx(id));
 
       const asyncResolve = async (what: string, importer: string, stack: string[]) => {
-        // @TODO - Remove this when @mui/system published esm files by default at the base directory
-        if (what.startsWith('@mui/system') && !what.includes('esm')) {
-          return what.replace('@mui/system', '@mui/system/esm');
-        }
         const resolved = await this.resolve(what, importer);
         if (resolved) {
           if (resolved.external) {
