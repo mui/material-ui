@@ -50,6 +50,7 @@ export default function wywVitePlugin({
   transformLibraries = [],
   overrideContext,
   tagResolver,
+  css: cssConfig,
   ...rest
 }: VitePluginOptions = {}): Plugin {
   const filter = createFilter(include, exclude);
