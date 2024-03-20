@@ -61,7 +61,7 @@ On its first announcement, we showcased some of these improvements, but during t
 </video>
 
 :::warning
-The scrolling experience is far better, but the solution is limited: **column headers can no longer be transparent** because content scrolls behind them.
+The scrolling experience is far better, but the solution has a downside: **column headers can no longer be transparent** because content scrolls behind them.
 
 If you're using our theming system, the Data Grid will adapt to your application seamlessly.
 
@@ -110,7 +110,7 @@ We're excited to announce that the following features have been promoted to stab
 
 ## Tree View
 
-Since the promotion from the lab's package to MUI X, the primary focus has been on improving the component's developer experience.
+Since the promotion from the [lab's package](/material-ui/about-the-lab/) to MUI X, the primary focus has been on improving the component's developer experience.
 This includes efforts aimed to simplify its usage, implement new customization APIs, and provide clearer documentation and illustrative examples, making them more informative and user-friendly.
 
 A significant addition is the time-saving alternative to the traditional JSX architecture, the RichTreeView.
@@ -119,9 +119,9 @@ A significant addition is the time-saving alternative to the traditional JSX arc
 
 We've split the Tree View into two distinct components.
 
-The first is the `SimpleTreeView`, which retains the classic and familiar JSX approach and is still the one behind the original `<TreeView />` tag.
+The first is the `SimpleTreeView`, which retains the classic and familiar JSX approach and is still the one behind the original `TreeView` component.
 
-The second is the `RichTreeView`, a new variant designed to streamline the development process, and with which we aim to support several common use cases out-of-the-box.
+The second is the `RichTreeView`, a new component designed to streamline the development process, and with which we aim to support several common use cases out-of-the-box.
 
 Similar to the Data Grid, it requires only a dataset and possibly a few properties to render; it does all the heavy lifting for you, handling most of the complexities internally.
 
@@ -254,13 +254,13 @@ You can find more details on its [documentation](https://mui.com/x/react-charts/
 
 ## Date and Time Pickers
 
-The focus has been primarily on developing the highly anticipated DateTimeRangePicker, alongside a significant effort to enhance accessibility in the fields, ensuring that our components are as inclusive and user-friendly as possible.
+The focus has been primarily on developing the highly anticipated `DateTimeRangePicker`, alongside a significant effort to enhance accessibility in the fields, ensuring that our components are as inclusive and user-friendly as possible.
 
 ### Improved accessibility on Pickers Text Field
 
 You can now set the `enableAccessibleFieldDOMStructure` prop to enhance the DOM structure of fields and pickers components.
 
-This improvement addresses accessibility limitations of the traditional `<input />` element by enabling a new DOM structure that effectively manages aria attributes within multiple input sections.
+This improvement addresses accessibility limitations of the traditional `<input />` element by enabling a new DOM structure that effectively manages ARIA attributes within multiple input sections.
 
 This feature greatly improves the experience for screen reader users, making interactions with date fields and pickers more intuitive and accessible.
 
@@ -273,7 +273,7 @@ For more details, please check out the [documentation section](https://mui.com/x
 
 ### Support for date-fns v3
 
-The Date and Time Pickers now support both versions of v2 and v3 of date-fns, and you can select your desired version from one of the two import lines:
+The Date and Time Pickers now support both versions of v2 and v3 of [`date-fns`](https://www.npmjs.com/package/date-fns), and you can select your desired version from one of the two import lines:
 
 ```jsx
 // date-fns v2.x
