@@ -81,31 +81,19 @@ const theme = extendTheme({
       },
     },
   },
+  getSelector: function getSelector(colorScheme, css) {
+    if (colorScheme) {
+      return {
+        [`@media (prefers-color-scheme: ${colorScheme})`]: {
+          ':root': css,
+        },
+      };
+    }
+    return ':root';
+  },
 });
-
-// TODO: Fix this from the Material UI side in a separate PR
-theme.palette = theme.colorSchemes.light.palette;
 theme.getColorSchemeSelector = (colorScheme) => {
   return `@media (prefers-color-scheme: ${colorScheme})`;
-};
-const { css: rootCss } = theme.generateCssVars();
-const { css: lightCss } = theme.generateCssVars('light');
-const { css: darkCss } = theme.generateCssVars('dark');
-theme.generateCssVars = (colorScheme) => {
-  if (colorScheme === 'dark') {
-    return {
-      css: darkCss,
-      selector: {
-        '@media (prefers-color-scheme: dark)': {
-          ':root': darkCss,
-        },
-      },
-    };
-  }
-  if (colorScheme === 'light') {
-    return { css: lightCss, selector: ':root' };
-  }
-  return { css: rootCss, selector: ':root' };
 };
 
 /**

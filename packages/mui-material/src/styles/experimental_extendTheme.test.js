@@ -532,4 +532,25 @@ describe('experimental_extendTheme', () => {
       },
     });
   });
+
+  it("should `generateStyleSheets` based on the theme's attribute and colorSchemeSelector", () => {
+    const theme = extendTheme();
+
+    expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
+      ':root',
+      ':root, [data-mui-color-scheme="light"]',
+      '[data-mui-color-scheme="dark"]',
+    ]);
+
+    theme.attribute = 'data-custom-color-scheme';
+    theme.colorSchemeSelector = '.root';
+    theme.defaultColorScheme = 'dark';
+
+    expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
+      '.root',
+      '[data-custom-color-scheme="dark"]',
+      '.root',
+      '[data-custom-color-scheme="light"]',
+    ]);
+  });
 });
