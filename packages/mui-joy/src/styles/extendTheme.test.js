@@ -8,9 +8,12 @@ describe('extendTheme', () => {
     const result = extendTheme();
     Object.keys(result).forEach((field) => {
       expect([
+        'attribute',
         'breakpoints',
+        'colorSchemeSelector',
         'components',
         'colorSchemes',
+        'defaultColorScheme',
         'focus',
         'fontSize',
         'fontFamily',
@@ -20,6 +23,9 @@ describe('extendTheme', () => {
         'spacing',
         'radius',
         'shadow',
+        'shadowRing',
+        'shadowChannel',
+        'shadowOpacity',
         'zIndex',
         'typography',
         'variants',
@@ -30,7 +36,8 @@ describe('extendTheme', () => {
         'unstable_sxConfig',
         'unstable_sx',
         'shouldSkipGeneratingVar',
-        'generateCssVars',
+        'generateStyleSheets',
+        'generateThemeVars',
         'applyStyles',
       ]).to.includes(field);
     });

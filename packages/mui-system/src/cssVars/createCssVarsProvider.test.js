@@ -274,17 +274,17 @@ describe('createCssVarsProvider', () => {
           </CssVarsProvider>,
         );
 
-        expect(document.head.children[document.head.children.length - 1].textContent).not.to.equal(
+        expect(document.head.children[document.head.children.length - 1]?.textContent).not.to.equal(
           DISABLE_CSS_TRANSITION,
         );
         fireEvent.click(screen.getByRole('button', { name: 'change to dark' }));
-        expect(document.head.children[document.head.children.length - 1].textContent).to.equal(
+        expect(document.head.children[document.head.children.length - 1]?.textContent).to.equal(
           DISABLE_CSS_TRANSITION,
         );
         expect(screen.getByTestId('current-mode').textContent).to.equal('dark');
 
         clock.runToLast();
-        expect(document.head.children[document.head.children.length - 1].textContent).not.to.equal(
+        expect(document.head.children[document.head.children.length - 1]?.textContent).not.to.equal(
           DISABLE_CSS_TRANSITION,
         );
       });
@@ -315,17 +315,17 @@ describe('createCssVarsProvider', () => {
           </CssVarsProvider>,
         );
 
-        expect(document.head.children[document.head.children.length - 1].textContent).not.to.equal(
+        expect(document.head.children[document.head.children.length - 1]?.textContent).not.to.equal(
           DISABLE_CSS_TRANSITION,
         );
         fireEvent.click(screen.getByRole('button', { name: 'change to dark' }));
-        expect(document.head.children[document.head.children.length - 1].textContent).to.equal(
+        expect(document.head.children[document.head.children.length - 1]?.textContent).to.equal(
           DISABLE_CSS_TRANSITION,
         );
         expect(screen.getByTestId('current-color-scheme').textContent).to.equal('dark');
 
         clock.runToLast();
-        expect(document.head.children[document.head.children.length - 1].textContent).not.to.equal(
+        expect(document.head.children[document.head.children.length - 1]?.textContent).not.to.equal(
           DISABLE_CSS_TRANSITION,
         );
       });
@@ -353,11 +353,11 @@ describe('createCssVarsProvider', () => {
           </CssVarsProvider>,
         );
 
-        expect(document.head.children[document.head.children.length - 1].textContent).not.to.equal(
+        expect(document.head.children[document.head.children.length - 1]?.textContent).not.to.equal(
           DISABLE_CSS_TRANSITION,
         );
         fireEvent.click(screen.getByRole('button', { name: 'change to dark' }));
-        expect(document.head.children[document.head.children.length - 1].textContent).not.to.equal(
+        expect(document.head.children[document.head.children.length - 1]?.textContent).not.to.equal(
           DISABLE_CSS_TRANSITION,
         );
         expect(screen.getByTestId('current-mode').textContent).to.equal('dark');
@@ -386,11 +386,11 @@ describe('createCssVarsProvider', () => {
           </CssVarsProvider>,
         );
 
-        expect(document.head.children[document.head.children.length - 1].textContent).not.to.equal(
+        expect(document.head.children[document.head.children.length - 1]?.textContent).not.to.equal(
           DISABLE_CSS_TRANSITION,
         );
         fireEvent.click(screen.getByRole('button', { name: 'change to dark' }));
-        expect(document.head.children[document.head.children.length - 1].textContent).not.to.equal(
+        expect(document.head.children[document.head.children.length - 1]?.textContent).not.to.equal(
           DISABLE_CSS_TRANSITION,
         );
         expect(screen.getByTestId('current-color-scheme').textContent).to.equal('dark');

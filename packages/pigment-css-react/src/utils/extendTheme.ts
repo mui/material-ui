@@ -1,9 +1,8 @@
-import deepMerge from 'lodash/merge';
 import { prepareCssVars } from '@mui/system/cssVars';
 import type { SxConfig } from '@mui/system/styleFunctionSx';
 import type { CSSObject } from '../base';
 
-export interface ThemeInput<ColorScheme extends string = string> {
+export interface ThemeInput<ColorScheme extends string = string> extends Record<string, any> {
   /**
    * The prefix to be used for the CSS variables.
    */
@@ -22,15 +21,17 @@ export interface ThemeInput<ColorScheme extends string = string> {
    * If provided, it will be used to create a selector for the color scheme.
    * This is useful if you want to use class or data-* attributes to apply the color scheme.
    *
-   * The default selector is `:root`.
+   * The callback receives the colorScheme with the possible values of:
+   * - undefined: the selector for tokens that are not color scheme dependent
+   * - string: the selector for the color scheme
    *
    * @example
    * // class selector
-   * (colorScheme) => colorScheme ? `.theme-${colorScheme}` : ":root"
+   * (colorScheme) => colorScheme !== 'light' ? `.theme-${colorScheme}` : ":root"
    *
    * @example
    * // data-* attribute selector
-   * (colorScheme) => colorScheme ? `[data-theme="${colorScheme}"`] : ":root"
+   * (colorScheme) => colorScheme !== 'light' ? `[data-theme="${colorScheme}"`] : ":root"
    */
   getSelector?: (
     colorScheme: ColorScheme | undefined,
@@ -74,14 +75,11 @@ export type ExtendTheme<
       styles: CSSObject<any>,
     ) => Record<string, CSSObject<any>>;
     getColorSchemeSelector: (colorScheme: Options['colorScheme']) => string;
-    generateCssVars: (colorScheme?: Options['colorScheme']) => {
-      css: Record<string, string | number>;
-      selector: string | Record<string, any>;
-    };
+    generateStyleSheets: () => Array<Record<string, any>>;
     unstable_sxConfig?: SxConfig;
   };
 
-export type Theme = ExtendTheme;
+export type Theme = Record<string, any>;
 
 /**
  * A utility to tell zero-runtime to generate CSS variables for the theme.
@@ -140,18 +138,13 @@ export function extendTheme<
     shouldSkipGeneratingVar,
     getSelector,
   };
-  const { generateCssVars } = prepareCssVars(otherTheme, parserConfig);
-
-  let { vars } = generateCssVars();
-  Object.entries(theme.colorSchemes || {}).forEach(([key]) => {
-    vars = deepMerge(vars, generateCssVars(key).vars);
-  });
+  const { generateThemeVars, generateStyleSheets } = prepareCssVars(otherTheme, parserConfig);
 
   const finalTheme = {
     ...theme,
     defaultColorScheme,
-    vars,
-    generateCssVars,
+    vars: generateThemeVars(),
+    generateStyleSheets,
   } as unknown as ExtendTheme<{ colorScheme: Options['colorScheme']; tokens: Options['tokens'] }>;
 
   finalTheme.getColorSchemeSelector = (colorScheme: string) => {
