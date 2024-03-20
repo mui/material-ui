@@ -253,6 +253,24 @@ The Avatar's `imgProps` was deprecated in favor of `slotProps.img`:
  />;
 ```
 
+## Backdrop
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#backdrop-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/backdrop-props <path>
+```
+
+### TransitionComponent
+
+The Backdrop's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
+
+```diff
+ <Slider
+-  TransitionComponent={CustomTransition}
++  slots={{ transition: CustomTransition }}
+```
+
 ## Button
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#button-classes) below to migrate the code as described in the following sections:
@@ -922,24 +940,5 @@ The StepLabel's `componentsProps` was deprecated in favor of `slotProps`:
  <StepLabel
 -  componentsProps={{ label: labelProps }}
 +  slotProps={{ label: labelProps }}
-
  />
-```
-
-## Backdrop
-
-Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#backdrop-props) below to migrate the code as described in the following sections:
-
-```bash
-npx @mui/codemod@latest deprecations/backdrop-props <path>
-```
-
-### components
-
-The backdrop's `TransitionComponent` was deprecated in favor of `slots.transition`:
-
-```diff
- <Slider
--  TransitionComponent={CustomTransition}
-+  slots={{ transition: CustomTransition }}
 ```
