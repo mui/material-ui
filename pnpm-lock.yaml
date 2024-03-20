@@ -2120,6 +2120,9 @@ importers:
       '@wyw-in-js/transform':
         specifier: ^0.5.0
         version: 0.5.0
+      babel-plugin-define-var:
+        specifier: ^0.1.0
+        version: 0.1.0
       babel-plugin-transform-react-remove-prop-types:
         specifier: ^0.4.24
         version: 0.4.24
@@ -2148,6 +2151,9 @@ importers:
       '@wyw-in-js/transform':
         specifier: ^0.5.0
         version: 0.5.0
+      babel-plugin-define-var:
+        specifier: ^0.1.0
+        version: 0.1.0
       babel-plugin-transform-react-remove-prop-types:
         specifier: ^0.4.24
         version: 0.4.24
@@ -8895,6 +8901,11 @@ packages:
       '@babel/core': 7.23.9
       deepmerge: 2.2.1
       object.omit: 3.0.0
+    dev: false
+
+  /babel-plugin-define-var@0.1.0:
+    resolution: {integrity: sha512-WcK43U4uz+9G35Wvdnyri4Tcg8Ux9/hSbQC4ckpfrHFQp8Cuz1BIQK5NswuGxT3T8cc3d4e55wDeSO4dViOugg==}
+    engines: {node: '>=10'}
     dev: false
 
   /babel-plugin-istanbul@6.1.1:
