@@ -45,9 +45,9 @@ After a few months in pre-release, we're thrilled to announce the stable release
 
 ### Column resizing on the community plan
 
-As our commercial offerings expand, we're pleased to also enhance our community plan by integrating features previously exclusive to commercial users.
+As MUI X commercial offerings continue to expand, we're pleased to enhance the community plan by integrating features previously exclusive to commercial users.
 
-[Column resizing](https://next.mui.com/x/react-data-grid/column-dimensions/#resizing) and [auto-sizing](https://mui.com/x/react-data-grid/column-dimensions/#autosizing), which were once Pro features, are now available to all users at no cost.
+[Column resizing](https://mui.com/x/react-data-grid/column-dimensions/#resizing) and [auto-sizing](https://mui.com/x/react-data-grid/column-dimensions/#autosizing), which were once Pro features, are now available to all users at no cost.
 This transition reflects our commitment to providing an exceptional user experience across the board, and aims to make the free components stand out more in the open-source space.
 
 ### Sticky headers and improved scrolling performance
@@ -74,7 +74,7 @@ Without it, you may need to manually set an appropriate background color to main
 
 As part of an overarching project aimed at enhancing usability in managing columns within the Data Grid, we've redesigned the column visibility panel, introducing a more streamlined, checkbox-based interface to replace the previous toggle switch design.
 
-Our goal is to further develop this panel by incorporating additional column management functions, such as column reordering and pinning. Additionally, We've extracted the internal component to facilitate the introduction of the upcoming pivoting UI.
+The goal is to further develop this panel by incorporating additional column management functions, such as column reordering and pinning. Additionally, We've extracted the internal component to ease the introduction of the upcoming pivoting UI.
 
 <figure style="padding:0; margin:0; margin-bottom:20px">
   <img width="310" alt="The new column management panel design" src="/static/blog/mui-x-v7/column-management-panel.png">
@@ -89,9 +89,9 @@ While string values remain compatible for these types, any updates to the `filte
 
 ### Smaller bundle size
 
-Introducing a separate entry point for locales has significantly reduced the bundle size of the barrel index when tree-shaking isn't operational (for example Webpack in dev mode).
+Introducing a separate entry point for locales has significantly reduced the bundle size of the barrel index when tree-shaking isn't operational (for example, Webpack in dev mode).
 
-For example, with the `@mui/x-data-grid` npm package, this change led to a reduction of approximately 19% – shrinking the bundle size from [114.2kB](https://bundlephobia.com/package/@mui/x-data-grid@6.19.2) to [92.9kB](https://bundlephobia.com/package/@mui/x-data-grid@7.0.0).
+As a reference, with the `@mui/x-data-grid` npm package, this change led to a reduction of approximately 19% – shrinking the bundle size from [114.2kB](https://bundlephobia.com/package/@mui/x-data-grid@6.19.2) to [92.9kB](https://bundlephobia.com/package/@mui/x-data-grid@7.0.0).
 
 <figure style="padding:0; margin:0">
   <img width="600" alt="A chart showcasing the bundle size change" src="/static/blog/mui-x-v7/new-bundle-size.png" >
@@ -125,9 +125,9 @@ A significant addition is the time-saving alternative to the traditional JSX arc
 
 ### Rich Tree View
 
-We've split the Tree View into two distinct components.
+The Tree View was split into two distinct components.
 
-The first is the `SimpleTreeView`, which retains the classic and familiar JSX approach and is still the one behind the original `TreeView` component.
+The first is the `SimpleTreeView`, which retains the classic and familiar JSX approach and is still the one behind the original `<TreeView />`.
 
 The second is the `RichTreeView`, a new component designed to streamline the development process, and with which we aim to support several common use cases out-of-the-box.
 
@@ -158,11 +158,11 @@ Check out the [new component](https://mui.com/x/react-tree-view/rich-tree-view/i
 
 ### New customization hook: `useTreeItem2`
 
-We're introducing a new API to customize Tree items through a hook called `useTreeItem2`.
-It can be used with both `SimpleTreeView` and `RichTreeView`, and enables developers to fully leverage the Tree Item's subcomponents along with their default behaviors.
+The Tree View now features a new API that enables fully customization of Tree items through a hook called `useTreeItem2`.
+It can be used with both `SimpleTreeView` and `RichTreeView`, and empowers developers to fully leverage the Tree Item's subcomponents along with their default behaviors.
 This approach ensures customization and flexibility are at the forefront without sacrificing the component's inherent features.
 
-When using this hook, developers can create a tailored Tree Item that aligns perfectly with their project needs while reusing key behaviors and features the component is known for.
+When using this hook, you can create a tailored Tree Item that aligns perfectly with your project needs while reusing key behaviors and features the component is known for.
 
 ```jsx
 const CustomTreeItem = React.forwardRef(function CustomTreeItem(
@@ -208,7 +208,7 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
 You can check all the details of the given example on the [RichTreeView customization page](https://mui.com/x/react-tree-view/rich-tree-view/customization/#headless-api).
 
 :::info
-To avoid further breaking changes with the subcomponents names, we're delivering this new customization API with a numerical suffix '2', for example, `TreeItem2` and `TreeItem2Content`.
+To avoid further breaking changes with the subcomponents names, this new customization API was named with a numerical suffix '2', for example, `TreeItem2` and `TreeItem2Content`.
 
 This update ensures that any existing customizations remain unaffected, providing you with a seamless transition to adopt the latest API at your convenience.
 
@@ -258,7 +258,7 @@ The Axis component now features a built-in Grid, offering users a structured lay
 
 <figure style="padding:0; margin:0; margin-bottom:20px">
   <img alt="A Chart axis showcasing an horizontal grid" src="/static/blog/mui-x-v7/axis-grid.png" width="1550" height="654" loading="lazy" />
-  <figcaption style="color: #888; font-size: 0.9em; text-align: center;">A Chart axis showcasing an horizontal grid.</figcaption>
+  <figcaption style="color: #888; font-size: 0.9em; text-align: center;">A Chart axis with an horizontal grid.</figcaption>
 </figure>
 
 For details on its usage and configuration, please refer to the [Grid section](https://mui.com/x/react-charts/axis/#grid) in the documentation.
@@ -307,8 +307,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 
 ### Date Time Range Picker [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
-Support new use cases with this most anticipated component.
-The latest addition to the Date and Time Pickers suite is the `<DateTimeRangePicker />`, a component designed to enrich the user experience with the advanced date and time selection.
+The latest addition to the Date and Time Pickers suite is the `<DateTimeRangePicker />`, a most anticipated component designed to enrich the user experience with the advanced date and time selection.
 This intuitive picker simplifies the process of selecting date and time ranges, making it ideal for applications that require detailed scheduling or period selection.
 
 <figure style="padding:0; margin:0; margin-bottom:20px">
@@ -327,7 +326,7 @@ As usual, we're committed to further improving the library by introducing new fe
 Throughout this year, we'll invest in making MUI X components **design agnostic**. The components will still ship using Material UI as the default, but we're striving to ensure that they seamlessly integrate with any design system.
 The result is advanced components offering extreme flexibility and customization options, enabling a broader range of application styles without compromising the high-quality use cases and workflows that MUI X is known for.".
 
-Additionally, the following are the deliveries we're planning for the next few months.
+Additionally, the following are the deliveries planned for the next few months.
 
 ### Data Grid
 
@@ -361,7 +360,7 @@ Support for MUI X v5 is officially **discontinued**, and we encourage you to m
 
 ## Migration guide
 
-We fully understand that updating a dependency library can sometimes be daunting.
+Updating a dependency library can sometimes be daunting.
 To smooth the transition to the new version, we have documented all breaking changes in our migration guides:
 
 - [Data Grid](https://mui.com/x/migration/migration-data-grid-v6/)
