@@ -43,6 +43,22 @@ const pages: readonly MuiPage[] = [
     ],
   },
   {
+    pathname: '/system/migration',
+    title: 'Migration',
+    children: [
+      {
+        pathname: '/system/migration/v6',
+        subheader: 'Upgrade to v6',
+        children: [
+          {
+            pathname: '/system/migration/migration-v5',
+            title: 'Migrating to v6',
+          },
+        ],
+      },
+    ],
+  },
+  {
     title: 'APIs',
     pathname: '/system/api',
     children: pagesApi,
