@@ -349,11 +349,17 @@ function RemoteAwardCard() {
       >
         <Box
           component="img"
-          src="/static/branding/about/remote-award.png"
-          alt="MUI's official winners badge provided by Remote."
-          height="250px"
-          width="250px"
-          sx={{ width: '100%', height: '100%' }}
+          src="/static/branding/careers/remote-award-light.png"
+          alt="MUI is the winner of the Remote Excellence Awards in the Small and Mighty for SMEs category."
+          height="1200px"
+          width="1200px"
+          sx={(theme) => ({
+            width: '100%',
+            height: '100%',
+            ...theme.applyDarkStyles({
+              content: `url(/static/branding/careers/remote-award-dark.png)`,
+            }),
+          })}
         />
       </Box>
       <div>
