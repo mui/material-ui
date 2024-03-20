@@ -30,6 +30,12 @@
     "variant": { "description": "The variant to use." }
   },
   "classDescriptions": {
+    "colorPrimary": {
+      "description": "Styles applied to the root element if <code>color=&quot;primary&quot;</code>"
+    },
+    "colorSecondary": {
+      "description": "Styles applied to the root element if <code>color=&quot;secondary&quot;</code>"
+    },
     "contained": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -58,87 +64,109 @@
     "groupedContained": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the children",
-      "conditions": "<code>variant=\"contained\"</code>"
+      "conditions": "<code>variant=\"contained\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/button-group/#button-group-classes-contained\">.MuiButtonGroup-contained</a> and <a href=\"/material-ui/api/button-group/#button-group-classes-grouped\">.MuiButtonGroup-grouped</a> classes instead. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
     },
     "groupedContainedHorizontal": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the children",
-      "conditions": "<code>variant=\"contained\"</code> and <code>orientation=\"horizontal\"</code>"
+      "conditions": "<code>variant=\"contained\"</code> and <code>orientation=\"horizontal\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/button-group/#button-group-classes-contained\">.MuiButtonGroup-contained</a> , <a href=\"/material-ui/api/button-group/#button-group-classes-horizontal\">.MuiButtonGroup-horizontal</a> and <a href=\"/material-ui/api/button-group/#button-group-classes-grouped\">.MuiButtonGroup-grouped</a> classes instead. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
     },
     "groupedContainedPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the children",
-      "conditions": "<code>variant=\"contained\"</code> and <code>color=\"primary\"</code>"
+      "conditions": "<code>variant=\"contained\"</code> and <code>color=\"primary\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/button-group/#button-group-classes-contained\">.MuiButtonGroup-contained</a> , <a href=\"/material-ui/api/button-group/#button-group-classes-colorPrimary\">.MuiButtonGroup-colorPrimary</a> and <a href=\"/material-ui/api/button-group/#button-group-classes-grouped\">.MuiButtonGroup-grouped</a> classes instead. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
     },
     "groupedContainedSecondary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the children",
-      "conditions": "<code>variant=\"contained\"</code> and <code>color=\"secondary\"</code>"
+      "conditions": "<code>variant=\"contained\"</code> and <code>color=\"secondary\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/button-group/#button-group-classes-contained\">.MuiButtonGroup-contained</a> , <a href=\"/material-ui/api/button-group/#button-group-classes-colorSecondary\">.MuiButtonGroup-colorSecondary</a> and <a href=\"/material-ui/api/button-group/#button-group-classes-grouped\">.MuiButtonGroup-grouped</a> classes instead. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
     },
     "groupedContainedVertical": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the children",
-      "conditions": "<code>variant=\"contained\"</code> and <code>orientation=\"vertical\"</code>"
+      "conditions": "<code>variant=\"contained\"</code> and <code>orientation=\"vertical\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/button-group/#button-group-classes-contained\">.MuiButtonGroup-contained</a> , <a href=\"/material-ui/api/button-group/#button-group-classes-vertical\">.MuiButtonGroup-vertical</a> and <a href=\"/material-ui/api/button-group/#button-group-classes-grouped\">.MuiButtonGroup-grouped</a> classes instead. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
     },
     "groupedHorizontal": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the children",
-      "conditions": "<code>orientation=\"horizontal\"</code>"
+      "conditions": "<code>orientation=\"horizontal\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/button-group/#button-group-classes-horizontal\">.MuiButtonGroup-horizontal</a> and <a href=\"/material-ui/api/button-group/#button-group-classes-grouped\">.MuiButtonGroup-grouped</a> classes instead. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
     },
     "groupedOutlined": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the children",
-      "conditions": "<code>variant=\"outlined\"</code>"
+      "conditions": "<code>variant=\"outlined\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/button-group/#button-group-classes-outlined\">.MuiButtonGroup-outlined</a> and <a href=\"/material-ui/api/button-group/#button-group-classes-grouped\">.MuiButtonGroup-grouped</a> classes instead. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
     },
     "groupedOutlinedHorizontal": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the children",
-      "conditions": "<code>variant=\"outlined\"</code> and <code>orientation=\"horizontal\"</code>"
+      "conditions": "<code>variant=\"outlined\"</code> and <code>orientation=\"horizontal\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/button-group/#button-group-classes-outlined\">.MuiButtonGroup-outlined</a> , <a href=\"/material-ui/api/button-group/#button-group-classes-horizontal\">.MuiButtonGroup-horizontal</a> and <a href=\"/material-ui/api/button-group/#button-group-classes-grouped\">.MuiButtonGroup-grouped</a> classes instead. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
     },
     "groupedOutlinedPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the children",
-      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"primary\"</code>"
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"primary\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/button-group/#button-group-classes-outlined\">.MuiButtonGroup-outlined</a> , <a href=\"/material-ui/api/button-group/#button-group-classes-colorPrimary\">.MuiButtonGroup-colorPrimary</a> and <a href=\"/material-ui/api/button-group/#button-group-classes-grouped\">.MuiButtonGroup-grouped</a> classes instead. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
     },
     "groupedOutlinedSecondary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the children",
-      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"secondary\"</code>"
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"secondary\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/button-group/#button-group-classes-outlined\">.MuiButtonGroup-outlined</a> , <a href=\"/material-ui/api/button-group/#button-group-classes-colorSecondary\">.MuiButtonGroup-colorSecondary</a> and <a href=\"/material-ui/api/button-group/#button-group-classes-grouped\">.MuiButtonGroup-grouped</a> classes instead. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
     },
     "groupedOutlinedVertical": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the children",
-      "conditions": "<code>variant=\"outlined\"</code> and <code>orientation=\"vertical\"</code>"
+      "conditions": "<code>variant=\"outlined\"</code> and <code>orientation=\"vertical\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/button-group/#button-group-classes-outlined\">.MuiButtonGroup-outlined</a> , <a href=\"/material-ui/api/button-group/#button-group-classes-vertical\">.MuiButtonGroup-vertical</a> and <a href=\"/material-ui/api/button-group/#button-group-classes-grouped\">.MuiButtonGroup-grouped</a> classes instead. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
     },
     "groupedText": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the children",
-      "conditions": "<code>variant=\"text\"</code>"
+      "conditions": "<code>variant=\"text\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/button-group/#button-group-classes-text\">.MuiButtonGroup-text</a> and <a href=\"/material-ui/api/button-group/#button-group-classes-grouped\">.MuiButtonGroup-grouped</a> classes instead. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
     },
     "groupedTextHorizontal": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the children",
-      "conditions": "<code>variant=\"text\"</code> and <code>orientation=\"horizontal\"</code>"
+      "conditions": "<code>variant=\"text\"</code> and <code>orientation=\"horizontal\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/button-group/#button-group-classes-text\">.MuiButtonGroup-text</a> , <a href=\"/material-ui/api/button-group/#button-group-classes-horizontal\">.MuiButtonGroup-horizontal</a> and <a href=\"/material-ui/api/button-group/#button-group-classes-grouped\">.MuiButtonGroup-grouped</a> classes instead. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
     },
     "groupedTextPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the children",
-      "conditions": "<code>variant=\"text\"</code> and <code>color=\"primary\"</code>"
+      "conditions": "<code>variant=\"text\"</code> and <code>color=\"primary\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/button-group/#button-group-classes-text\">.MuiButtonGroup-text</a> , <a href=\"/material-ui/api/button-group/#button-group-classes-colorPrimary\">.MuiButtonGroup-colorPrimary</a> and <a href=\"/material-ui/api/button-group/#button-group-classes-grouped\">.MuiButtonGroup-grouped</a> classes instead. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
     },
     "groupedTextSecondary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the children",
-      "conditions": "<code>variant=\"text\"</code> and <code>color=\"secondary\"</code>"
+      "conditions": "<code>variant=\"text\"</code> and <code>color=\"secondary\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/button-group/#button-group-classes-text\">.MuiButtonGroup-text</a> , <a href=\"/material-ui/api/button-group/#button-group-classes-colorSecondary\">.MuiButtonGroup-colorSecondary</a> and <a href=\"/material-ui/api/button-group/#button-group-classes-grouped\">.MuiButtonGroup-grouped</a> classes instead. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
     },
     "groupedTextVertical": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the children",
-      "conditions": "<code>variant=\"text\"</code> and <code>orientation=\"vertical\"</code>"
+      "conditions": "<code>variant=\"text\"</code> and <code>orientation=\"vertical\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/button-group/#button-group-classes-text\">.MuiButtonGroup-text</a> , <a href=\"/material-ui/api/button-group/#button-group-classes-vertical\">.MuiButtonGroup-vertical</a> and <a href=\"/material-ui/api/button-group/#button-group-classes-grouped\">.MuiButtonGroup-grouped</a> classes instead. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
     },
     "groupedVertical": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the children",
-      "conditions": "<code>orientation=\"vertical\"</code>"
+      "conditions": "<code>orientation=\"vertical\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/button-group/#button-group-classes-vertical\">.MuiButtonGroup-vertical</a> and <a href=\"/material-ui/api/button-group/#button-group-classes-grouped\">.MuiButtonGroup-grouped</a> classes instead. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
+    },
+    "horizontal": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>orientation=\"horizontal\"</code>"
     },
     "lastButton": {
       "description": "Styles applied to {{nodeName}}.",

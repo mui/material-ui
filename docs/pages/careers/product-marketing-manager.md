@@ -64,7 +64,7 @@ Depending on the day, you'll:
 - **Personas**. Build deep knowledge and understanding of MUI's technical buyer personas and the journey of our enterprise prospects via market research, prospect/customer conversations, and internal conversations.
 - **Market research**. Use customer and competitive research to tailor effective messaging to our Enterprise audience.
 - **Content**. Plan and create impactful marketing materials mapped to buying journey. Generate high-quality content for customers including website copy/landing pages, blogs, webinar content, use cases, customer stories, showcases, and more.
-- **Paid channels**. Build and help execute marketing campaigns from the bottom up (identify goals, risks, audience, messages, and tactics), e.g. we can explore SEA & conference sponsoring.
+- **Paid channels**. Build and help execute marketing campaigns from the bottom up (identify goals, risks, audience, messages, and tactics), for example we can explore SEA & conference sponsoring.
 - **Sales**. Partner with the Sales team to create effective sales enablement materials.
 - **Events** Potentially: Lead corporate event programs that result in relationship building, lead/pipeline generation and acceleration, customer engagement, retention, and brand awareness.
 

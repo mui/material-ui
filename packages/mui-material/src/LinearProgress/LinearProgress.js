@@ -5,8 +5,8 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { keyframes, css } from '@mui/system';
 import { darken, lighten } from '@mui/system/colorManipulator';
+import { useRtl } from '@mui/system/RtlProvider';
 import capitalize from '../utils/capitalize';
-import useTheme from '../styles/useTheme';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getLinearProgressUtilityClass } from './linearProgressClasses';
@@ -283,7 +283,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
-  const theme = useTheme();
+  const isRtl = useRtl();
 
   const rootProps = {};
   const inlineStyles = { bar1: {}, bar2: {} };
@@ -294,7 +294,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
       rootProps['aria-valuemin'] = 0;
       rootProps['aria-valuemax'] = 100;
       let transform = value - 100;
-      if (theme.direction === 'rtl') {
+      if (isRtl) {
         transform = -transform;
       }
       inlineStyles.bar1.transform = `translateX(${transform}%)`;
@@ -308,7 +308,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
   if (variant === 'buffer') {
     if (valueBuffer !== undefined) {
       let transform = (valueBuffer || 0) - 100;
-      if (theme.direction === 'rtl') {
+      if (isRtl) {
         transform = -transform;
       }
       inlineStyles.bar2.transform = `translateX(${transform}%)`;

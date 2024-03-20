@@ -66,7 +66,7 @@ You will extend the [React Engineer](https://mui-org.notion.site/Software-Engine
 - **Nurture community contributions**. You will provide guidance and direction to unlock the contributions of the community. Your time will often be way better spent doing this than fixing the problems yourself.
 - **Shape the product**. You will be laser-focused on the end goal. It's not about solving technical challenges but about the problem solved for the users.
 - **Enable quality work**. You will:
-  - Embody and foster the engineering culture, e.g. rigorousness, push for small single-purpose PRs, encourage peer reviews, create strong feedback loops between decision and outcome.
+  - Embody and foster the engineering culture, for example rigorousness, push for small single-purpose PRs, encourage peer reviews, create strong feedback loops between decision and outcome.
   - Empower the team to aim for high-quality outputs. By doing such it aims for the success of delivered solutions.
   - Push for consistency, follow what's going on in the other teams.
 - **Keep technical debt in check**. You will make sure we can keep shipping features at a reasonable pace, align the team on "one way" of doing things and make sure engineers follow the conventions.

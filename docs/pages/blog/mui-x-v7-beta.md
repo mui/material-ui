@@ -74,7 +74,7 @@ While string values remain compatible for these types, any updates to the `filte
 
 ### Smaller bundle size
 
-The introduction of a separate entry point for locales has significantly reduced the bundle size of the barrel index when tree-shaking isn't operational (e.g. Webpack in dev mode).
+The introduction of a separate entry point for locales has significantly reduced the bundle size of the barrel index when tree-shaking isn't operational (for example Webpack in dev mode).
 
 For example with the `@mui/x-data-grid` npm package, this change led to a reduction of approximately 22% – shrinking the bundle size from [114.2kB](https://bundlephobia.com/package/@mui/x-data-grid@6.19.2) to [88.5kB](https://bundlephobia.com/package/@mui/x-data-grid@7.0.0-beta.0).
 
@@ -184,7 +184,7 @@ As we approach the stable release of v7, our roadmap is well-defined, focusing o
 
 ### Data Grid
 
-- [Improved Server side integration](https://next.mui.com/x/react-data-grid/server-side-data/)
+- [Improved Server-side integration](https://next.mui.com/x/react-data-grid/server-side-data/)
 - [Column management panel with support for pivoting](https://github.com/mui/mui-x/issues/5700)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 - [Pivoting](https://github.com/mui/mui-x/issues/214) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
