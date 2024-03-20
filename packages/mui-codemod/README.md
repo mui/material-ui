@@ -274,6 +274,19 @@ npx @mui/codemod@next deprecations/alert-props <path>
  />;
 ```
 
+#### `backdrop-props`
+
+```diff
+ <Backdrop
+-    TransitionComponent={CustomTransition}
++    slots={{ transition: CustomTransition }}
+ />
+```
+
+```bash
+npx @mui/codemod@next deprecations/backdrop-props <path>
+```
+
 #### `button-classes`
 
 JS transforms:
@@ -929,19 +942,6 @@ npx @mui/codemod@next deprecations/slider-props <path>
 ```bash
 npx @mui/codemod@latest deprecations/step-label-props <path>
 
-```
-
-#### `backdrop-props`
-
-```diff
- <Backdrop
--    TransitionComponent={CustomTransition}
-+    slots={{ transition: CustomTransition }}
- />
-```
-
-```bash
-npx @mui/codemod@next deprecations/backdrop-props <path>
 ```
 
 ### v5.0.0
