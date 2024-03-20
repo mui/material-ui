@@ -17,7 +17,7 @@ Alternatively, you can also target and fix it to a specific version, for example
 ## Breaking changes
 
 Since v6 is a new major release, it contains some changes that affect the public API.
-The steps you need to take to migrate from Material UI v5 to v6 are described below.
+The steps you need to take to migrate from Material UI v5 to v6 are described below.
 
 :::info
 This list is a work in progress.
