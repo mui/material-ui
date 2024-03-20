@@ -665,7 +665,7 @@ declare module '@pigment-css/react/theme' {
 
 ## Right-to-left support
 
-Pigment CSS offers a built-in mechanism to support right-to-left (RTL) or left-to-right (LTR) CSS automatically. To turn it on, start by updating your bundler config:
+Pigment CSS is designed for left-to-right (LTR) languages by default. To support right-to-left (RTL) languages, add the `dir="rtl"` attribute to your app's `<html>` element or any other equivalent top level container. Then, update your bundler config as follows:
 
 ### Next.js
 
@@ -706,7 +706,7 @@ export default defineConfig({
 });
 ```
 
-So, with RTL turned on, if your authored CSS is:
+For example, if you've specified `'rtl'` as the direction and your authored CSS looks like this:
 
 ```js
 import { css } from '@pigment-css/react';
@@ -718,7 +718,7 @@ const className = css`
 `;
 ```
 
-The actual CSS output would be:
+Then the actual CSS output would be:
 
 ```css
 .cmip3v5 {
@@ -734,20 +734,22 @@ The actual CSS output would be:
 }
 ```
 
-Make sure to add the `dir` attribute on either the `html` element or any other equivalent parent element per your application logic or user preference.
-
 #### Custom dir selector
 
-The default selector in the output CSS is `[dir=rtl]` or `[dir=ltr]`. You can customize this selector by passing an optional `getDirSelector` method in the `css` property above:
+The default selector in the output CSS is `[dir=rtl]` or `[dir=ltr]`. You can customize this selector by passing an optional `getDirSelector` method to the `css` property in your bundler config:
 
 ```js
-  // ...
-  css: {
-    getDirSelector(dir: string) {
-      // return your own selector that you'd like to use.
-      return `:dir(${dir})`;
-    }
-  }
+  plugins: [
+    pigment({
+      theme: yourTheme,
+      css: {
+        getDirSelector(dir: string) {
+          // return a custom selector that you'd like to use
+          return `:dir(${dir})`;
+        },
+      },
+    }),
+  ]
 ```
 
 ## How-to guides
