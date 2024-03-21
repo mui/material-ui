@@ -701,8 +701,8 @@ const communityData: Record<string, React.ReactNode> = {
   // -- data grid - columns --
   'data-grid/column-groups': yes,
   'data-grid/column-spanning': yes,
-  'data-grid/column-resizing': no,
-  'data-grid/column-autosizing': no,
+  'data-grid/column-resizing': yes,
+  'data-grid/column-autosizing': yes,
   'data-grid/column-reorder': no,
   'data-grid/column-pinning': no,
   // -- data grid - rows --
