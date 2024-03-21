@@ -55,6 +55,8 @@ export function withPigment(nextConfig: NextConfig, pigmentConfig?: PigmentOptio
           placeholderCssFile: extractionFile,
         },
         async asyncResolve(what: string, importer: string, stack: string[]) {
+          // Using the same stub file as "next/font". Should be updated in future to
+          // use it's own stub depdending on the actual usage.
           if (what.startsWith('__barrel_optimize__')) {
             return require.resolve('../next-font');
           }

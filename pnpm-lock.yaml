@@ -450,6 +450,9 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
+      react-error-boundary:
+        specifier: ^4.0.13
+        version: 4.0.13(react@18.2.0)
       react-router:
         specifier: ^6.22.1
         version: 6.22.1(react@18.2.0)
@@ -18359,6 +18362,15 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
+  /react-error-boundary@4.0.13(react@18.2.0):
+    resolution: {integrity: sha512-b6PwbdSv8XeOSYvjt8LpgpKrZ0yGdtZokYwkwV2wlcZbxgopHX/hgPl5VgpnoVOWd868n1hktM8Qm4b+02MiLQ==}
+    peerDependencies:
+      react: '>=16.13.1'
+    dependencies:
+      '@babel/runtime': 7.23.9
+      react: 18.2.0
+    dev: false
+
   /react-event-listener@0.6.6(react@18.2.0):
     resolution: {integrity: sha512-+hCNqfy7o9wvO6UgjqFmBzARJS7qrNoda0VqzvOuioEpoEXKutiKuv92dSz6kP7rYLmyHPyYNLesi5t/aH1gfw==}
     peerDependencies:
@@ -22221,6 +22233,7 @@ packages:
       lodash: 4.17.21
       react: 18.2.0
       stylis: 4.3.1
+      stylis-plugin-rtl: 2.1.1(stylis@4.3.1)
     transitivePeerDependencies:
       - '@types/react'
       - supports-color
