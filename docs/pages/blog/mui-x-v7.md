@@ -1,7 +1,7 @@
 ---
 title: Introducing MUI X v7.0.0
 description: Check out all the newest additions to the next major of the advanced components.
-date: 2024-03-25T08:00:00.000Z
+date: 2024-03-21T08:00:00.000Z
 authors: ['josefreitas']
 tags: ['MUI X', 'Product']
 card: true
