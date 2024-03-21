@@ -65,10 +65,10 @@ To do so, follow these steps:
    git remote add material-ui-docs https://github.com/mui/material-ui-docs.git
    ```
 
-2. Pull the latest changes from the `material-ui-docs` remote:
+2. Fetch the latest changes from the `material-ui-docs` remote:
 
    ```bash
-   git pull material-ui-docs latest
+   git fetch material-ui-docs latest
    ```
 
 3. Switch to the `latest` branch from `material-ui-docs` remote:
