@@ -14,7 +14,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radio/
 
 ## Introduction
 
-Radio buttons let users make a mutually exclusive choice (e.g., this or that).
+Radio buttons let users make a mutually exclusive choice (for example: "this" or "that").
 Only one selection is allowed from the available set of options.
 
 Radio buttons should have the most commonly used option selected by default.

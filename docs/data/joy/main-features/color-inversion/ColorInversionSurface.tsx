@@ -12,7 +12,13 @@ export default function ColorInversionSurface() {
       variant="solid"
       color="warning"
       invertedColors
-      sx={{ gap: 2, minWidth: 300, boxShadow: 'md' }}
+      sx={{
+        gap: 2,
+        minWidth: 300,
+        boxShadow: 'md',
+        border: '1px solid',
+        borderColor: 'divider',
+      }}
     >
       <CardContent orientation="horizontal">
         <div>
@@ -64,7 +70,9 @@ export default function ColorInversionSurface() {
     </Card>
   );
   return (
-    <Box sx={{ display: 'flex', gap: 2 }}>
+    <Box
+      sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2 }}
+    >
       {creditCard}
       {React.cloneElement(creditCard, { variant: 'soft' })}
     </Box>

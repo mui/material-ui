@@ -49,7 +49,7 @@ export default function SandboxDependencies(
       process.env.SOURCE_CODE_REPO !== 'https://github.com/mui/material-ui'
     ) {
       // #default-branch-switch
-      return 'latest';
+      return 'next';
     }
     const shortSha = commitRef.slice(0, 8);
     return `https://pkg.csb.dev/mui/material-ui/commit/${shortSha}/@mui/${packageName}`;
@@ -103,7 +103,6 @@ export default function SandboxDependencies(
       '@mui/private-classnames': getMuiPackageVersion('classnames'),
       '@mui/base': getMuiPackageVersion('base'),
       '@mui/utils': getMuiPackageVersion('utils'),
-      '@mui/material-next': getMuiPackageVersion('material-next'),
       '@mui/material-nextjs': getMuiPackageVersion('material-nextjs'),
       '@mui/joy': getMuiPackageVersion('joy'),
     };

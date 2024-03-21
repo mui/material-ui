@@ -30,7 +30,7 @@ but Material UI will continue to support it.
 
 ## Form props
 
-Standard form attributes are supported e.g. `required`, `disabled`, `type`, etc. as well as a `helperText` which is used to give context about a field's input, such as how the input will be used.
+Standard form attributes are supported, for example `required`, `disabled`, `type`, etc. as well as a `helperText` which is used to give context about a field's input, such as how the input will be used.
 
 {{"demo": "FormPropsTextFields.js"}}
 
@@ -286,7 +286,7 @@ This can be fixed by passing a space character to the `helperText` prop:
 You can use third-party libraries to format an input.
 You have to provide a custom implementation of the `<input>` element with the `inputComponent` property.
 
-The following demo uses the [react-imask](https://github.com/uNmAnNeR/imaskjs) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries. The same concept could be applied to [e.g. react-stripe-element](https://github.com/mui/material-ui/issues/16037).
+The following demo uses the [react-imask](https://github.com/uNmAnNeR/imaskjs) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries. The same concept could be applied to, for example [react-stripe-element](https://github.com/mui/material-ui/issues/16037).
 
 {{"demo": "FormattedInputs.js"}}
 
@@ -338,7 +338,7 @@ In order for the text field to be accessible, **the input should be linked to th
 </div>
 ```
 
-- If you are using the `TextField` component, you just have to provide a unique `id` unless you're using the `TextField` only client side.
+- If you are using the `TextField` component, you just have to provide a unique `id` unless you're using the `TextField` only client-side.
   Until the UI is hydrated `TextField` without an explicit `id` will not have associated labels.
 - If you are composing the component:
 
