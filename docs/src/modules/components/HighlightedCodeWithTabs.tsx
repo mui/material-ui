@@ -23,10 +23,10 @@ export const CodeTabList = styled(TabsListBase)<{
     ? (theme.vars || theme).palette.divider
     : (theme.vars || theme).palette.primaryDark[700],
   backgroundColor: ownerState?.contained
-    ? alpha((theme.vars || theme).palette.grey[50], 0.2)
+    ? alpha(theme.palette.grey[50], 0.2)
     : (theme.vars || theme).palette.primaryDark[900],
   ...theme.applyDarkStyles({
-    backgroundColor: alpha((theme.vars || theme).palette.primaryDark[800], 0.2),
+    backgroundColor: alpha(theme.palette.primaryDark[800], 0.2),
   }),
 }));
 
