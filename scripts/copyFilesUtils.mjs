@@ -45,8 +45,8 @@ export async function createModulePackages({ from, to }) {
       const packageJson = {
         sideEffects: false,
         module: topLevelPathImportsAreCommonJSModules
-          ? path.posix.join('../esm', directoryPackage, 'index.js')
-          : './index.js',
+          ? path.posix.join('../esm', directoryPackage, 'index.mjs')
+          : './index.mjs',
         main: topLevelPathImportsAreCommonJSModules
           ? './index.js'
           : path.posix.join('../node', directoryPackage, 'index.js'),
@@ -91,22 +91,40 @@ export async function typescriptCopy({ from, to }) {
   return Promise.all(cmds);
 }
 
-export async function createPackageFile() {
+export async function createPackageFile(addExportsField = false) {
   const packageData = await fse.readFile(path.resolve(packagePath, './package.json'), 'utf8');
   const { nyc, scripts, devDependencies, workspaces, ...packageDataOther } =
     JSON.parse(packageData);
+
+  const isTopLevelESMPackage = fse.existsSync(path.resolve(buildPath, './index.mjs'));
+
+  if (addExportsField && !isTopLevelESMPackage) {
+    throw new Error('Adding exports field only supported for top level ESM packages');
+  }
 
   const newPackageData = {
     ...packageDataOther,
     private: false,
     ...(packageDataOther.main
       ? {
-          main: fse.existsSync(path.resolve(buildPath, './node/index.js'))
-            ? './node/index.js'
-            : './index.js',
-          module: fse.existsSync(path.resolve(buildPath, './esm/index.js'))
-            ? './esm/index.js'
-            : './index.js',
+          main: isTopLevelESMPackage ? './node/index.js' : './index.js',
+          module: isTopLevelESMPackage ? './index.mjs' : './esm/index.mjs',
+          ...(addExportsField
+            ? {
+                exports: {
+                  '.': {
+                    types: './index.d.ts',
+                    import: './index.mjs',
+                    default: './node/index.js',
+                  },
+                  './*': {
+                    types: './*/index.d.ts',
+                    import: './*/index.mjs',
+                    default: './node/*/index.js',
+                  },
+                },
+              }
+            : {}),
         }
       : {}),
   };

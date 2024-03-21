@@ -40,6 +40,9 @@ importers:
       '@slack/bolt':
         specifier: ^3.17.1
         version: 3.17.1
+      babel-plugin-add-import-extension:
+        specifier: ^1.6.0
+        version: 1.6.0(@babel/core@7.23.9)
       execa:
         specifier: ^8.0.1
         version: 8.0.1
@@ -9153,6 +9156,15 @@ packages:
       '@babel/core': 7.23.9
       deepmerge: 2.2.1
       object.omit: 3.0.0
+    dev: false
+
+  /babel-plugin-add-import-extension@1.6.0(@babel/core@7.23.9):
+    resolution: {integrity: sha512-JVSQPMzNzN/S4wPRoKQ7+u8PlkV//BPUMnfWVbr63zcE+6yHdU2Mblz10Vf7qe+6Rmu4svF5jG7JxdcPi9VvKg==}
+    peerDependencies:
+      '@babel/core': ^7.23.9
+    dependencies:
+      '@babel/core': 7.23.9
+      '@babel/helper-plugin-utils': 7.22.5
     dev: false
 
   /babel-plugin-define-var@0.1.0:

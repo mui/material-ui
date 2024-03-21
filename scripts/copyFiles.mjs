@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import path from 'path';
+import yargs from 'yargs';
 import {
   createModulePackages,
   createPackageFile,
@@ -23,9 +24,9 @@ async function addLicense(packageData) {
 `;
   await Promise.all(
     [
-      './index.js',
-      './legacy/index.js',
-      './modern/index.js',
+      './index.mjs',
+      './legacy/index.mjs',
+      './modern/index.mjs',
       './node/index.js',
       './umd/material-ui.development.js',
       './umd/material-ui.production.min.js',
@@ -43,13 +44,14 @@ async function addLicense(packageData) {
   );
 }
 
-async function run() {
-  const extraFiles = process.argv.slice(2);
+async function run(argv) {
+  const { extraFiles, addExportsField } = argv;
+
   try {
     // TypeScript
     await typescriptCopy({ from: srcPath, to: buildPath });
 
-    const packageData = await createPackageFile();
+    const packageData = await createPackageFile(addExportsField);
 
     await Promise.all(
       ['./README.md', '../../CHANGELOG.md', '../../LICENSE', ...extraFiles].map(async (file) => {
@@ -67,4 +69,26 @@ async function run() {
   }
 }
 
-run();
+yargs(process.argv.slice(2))
+  .command({
+    command: '$0 [extraFiles..]',
+    description: 'copy files',
+    builder: (command) => {
+      return command
+        .positional('extraFiles', {
+          type: 'array',
+          default: [],
+        })
+        .option('addExportsField', {
+          type: 'boolean',
+          default: false,
+          describe:
+            'Set to `true` if you wish to add the exports field. Only supports top level ESM packages.',
+        });
+    },
+    handler: run,
+  })
+  .help()
+  .strict(true)
+  .version(false)
+  .parse();
