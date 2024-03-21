@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import Typography from '../Typography';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { styled, createUseThemeProps } from '../zero-styled';
 import cardHeaderClasses, { getCardHeaderUtilityClass } from './cardHeaderClasses';
+
+const useThemeProps = createUseThemeProps('MuiCardHeader');
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
