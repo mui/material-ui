@@ -154,11 +154,6 @@ module.exports = async function demoLoader() {
         '',
       )}`;
 
-      // Skip non-editable demos
-      if (nonEditableDemos.has(demoName)) {
-        return;
-      }
-
       if (multipleDemoVersionsUsed) {
         moduleID = `${moduleID}/system/index.js`;
       }
@@ -173,9 +168,12 @@ module.exports = async function demoLoader() {
         raw: await fs.readFile(moduleFilepath, { encoding: 'utf8' }),
       };
       demoModuleIDs.add(moduleID);
-      extractImports(demos[demoName].raw).forEach((importModuleID) =>
-        importedModuleIDs.add(importModuleID),
-      );
+      // Skip non-editable demos
+      if (!nonEditableDemos.has(demoName)) {
+        extractImports(demos[demoName].raw).forEach((importModuleID) =>
+          importedModuleIDs.add(importModuleID),
+        );
+      }
 
       if (multipleDemoVersionsUsed) {
         // Add Tailwind demo data
