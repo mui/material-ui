@@ -9,12 +9,12 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@pigment-css/react": "file:../../packages/pigment-css-react",
-    "@mui/utils": "file:../../packages/mui-utils/build",
-    "@mui/base": "file:../../packages/mui-base/build",
-    "@mui/material": "file:../../packages/mui-material/build",
-    "@mui/system": "file:../../packages/mui-system/build",
-    "@mui/icons-material": "file:../../packages/mui-icons-material/build",
+    "@pigment-css/react": "workspace:^",
+    "@mui/utils": "workspace:^",
+    "@mui/base": "workspace:^",
+    "@mui/material": "workspace:^",
+    "@mui/system": "workspace:^",
+    "@mui/icons-material": "workspace:^",
     "clsx": "^2.1.0",
     "local-ui-lib": "workspace:^",
     "react": "^18.2.0",
@@ -26,7 +26,7 @@
     "@babel/preset-env": "^7.23.9",
     "@babel/preset-react": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
-    "@pigment-css/vite-plugin": "file:../../packages/pigment-css-vite-plugin",
+    "@pigment-css/vite-plugin": "workspace:^",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
     "@vitejs/plugin-react": "^4.2.1",
@@ -34,5 +34,14 @@
     "postcss-combine-media-query": "^1.0.1",
     "vite": "5.0.12",
     "vite-plugin-pages": "^0.32.0"
+  },
+  "nx": {
+    "targets": {
+      "preview": {
+        "dependsOn": [
+          "^build"
+        ]
+      }
+    }
   }
 }
