@@ -130,7 +130,7 @@ Autocomplete.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * A list of options that will be shown in the autocomplete.
+   * Array of options.
    */
   options: PropTypes.arrayOf(
     PropTypes.shape({

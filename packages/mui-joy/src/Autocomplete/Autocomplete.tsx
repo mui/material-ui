@@ -1074,7 +1074,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   openText: PropTypes.string,
   /**
-   * A list of options that will be shown in the autocomplete.
+   * Array of options.
    */
   options: PropTypes.array.isRequired,
   /**
