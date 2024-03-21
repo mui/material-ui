@@ -3,9 +3,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import { getCardActionsUtilityClass } from './cardActionsClasses';
+
+const useThemeProps = createUseThemeProps('MuiCardActions');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disableSpacing } = ownerState;
@@ -25,14 +26,19 @@ const CardActionsRoot = styled('div', {
 
     return [styles.root, !ownerState.disableSpacing && styles.spacing];
   },
-})(({ ownerState }) => ({
+})({
   display: 'flex',
   alignItems: 'center',
   padding: 8,
-  ...(!ownerState.disableSpacing && {
-    gap: 8,
-  }),
-}));
+  variants: [
+    {
+      props: { disableSpacing: false },
+      style: {
+        gap: 8,
+      },
+    },
+  ],
+});
 
 const CardActions = React.forwardRef(function CardActions(inProps, ref) {
   const props = useThemeProps({

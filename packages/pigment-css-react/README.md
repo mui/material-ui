@@ -14,13 +14,14 @@ Pigment CSS is a zero-runtime CSS-in-JS library that extracts the colocated sty
     - [Styled component as a CSS selector](#styled-component-as-a-css-selector)
     - [Typing props](#typing-props)
 - [Theming](#theming)
-  - [Accesing theme values](#accesing-theme-values)
+  - [Accessing theme values](#accessing-theme-values)
   - [CSS variables support](#css-variables-support)
   - [Color schemes](#color-schemes)
   - [Switching color schemes](#switching-color-schemes)
   - [TypeScript](#typescript)
 - [How-to guides](#how-to-guides)
   - [Coming from Emotion or styled-components](#coming-from-emotion-or-styled-components)
+- [RTL Support](#rtl-support)
 
 ## Getting started
 
@@ -34,7 +35,7 @@ Thanks to recent advancements in CSS (like CSS variables and `color-mix()`), "tr
 Pigment CSS addresses the needs of the modern React developer by providing a zero-runtime CSS-in-JS styling solution as a successor to tools like Emotion and styled-components.
 
 Compared to its predecessors, Pigment CSS offers improved DX and runtime performance (though at the cost of increased build time) while also being compatible with React Server Components.
-Pigment CSS is built on top of [WyW-in-JS](https://wyw-in-js.dev/), enabling us to provide the smoothest possible experience for Material UI users when migrating from Emotion in v5 to Pigment CSS in v6.
+Pigment CSS is built on top of [WyW-in-JS](https://wyw-in-js.dev/), enabling to provide the smoothest possible experience for Material UI users when migrating from Emotion in v5 to Pigment CSS in v6.
 
 ### Start with Next.js
 
@@ -157,7 +158,7 @@ function App() {
 }
 ```
 
-The call to the `css` function will be replaced with a unique string that represents the CSS class name for the generated styles.
+The call to the `css` function is replaced with a unique string that represents the CSS class name for the generated styles.
 
 Use a callback function to get access to the [theme](#theming) values:
 
@@ -264,7 +265,7 @@ const Button = styled('button')({
 });
 ```
 
-Note that the `props` function will not work if it is inside another closure, for example, inside an `array.map`:
+Note that the `props` function doesn't work if it is inside another closure, for example, inside an `array.map`:
 
 ```jsx
 const Button = styled('button')({
@@ -299,7 +300,23 @@ const Button = styled('button')({
 
 > 💡 This approach is recommended when the value of a prop is **unknown** ahead of time or possibly unlimited values, for example styling based on the user's input.
 
-Use a callback function as a value to create a dynamic style for the specific CSS property:
+There are two ways to acheive this (both involve using a CSS variable):
+
+1. Declare a CSS variable directly in the styles and set its value using inline styles:
+
+```jsx
+const Heading = styled('h1')({
+  color: 'var(--color)',
+});
+
+function Heading() {
+  const [color, setColor] = React.useState('red');
+
+  return <Heading style={{ '--color': color }} />;
+}
+```
+
+2. Use a callback function as a value to create a dynamic style for the specific CSS property:
 
 ```jsx
 const Heading = styled('h1')({
@@ -307,7 +324,7 @@ const Heading = styled('h1')({
 });
 ```
 
-Pigment CSS will replace the callback with a CSS variable and inject the value through inline style. This makes it possible to create a static CSS file while still allowing dynamic styles.
+Pigment CSS replaces the callback with a CSS variable and inject the value through inline style. This makes it possible to create a static CSS file while still allowing dynamic styles.
 
 ```css
 .Heading_class_akjsdfb {
@@ -347,11 +364,43 @@ This enables you to override the default `color` of the Heading component render
 
 You can also export any styled component you create and use it as the base for additional components:
 
-```tsx
+```jsx
 const ExtraHeading = styled(Heading)({
   // ... overridden styled
 });
 ```
+
+#### Media and Container queries
+
+Pigment CSS APIs have built-in support for writing media queries and container queries. Use the `@media` and `@container` keys to define styles for different screen and container sizes.
+
+```jsx
+import { css, styled } from '@pigment-css/react';
+
+const styles = css({
+  fontSize: '2rem',
+  '@media (min-width: 768px)': {
+    fontSize: '3rem',
+  },
+  '@container (max-width: 768px)': {
+    fontSize: '1.5rem',
+  },
+});
+
+const Heading = styled('h1')({
+  fontSize: '2rem',
+  '@media (min-width: 768px)': {
+    fontSize: '3rem',
+  },
+  '@container (max-width: 768px)': {
+    fontSize: '1.5rem',
+  },
+});
+```
+
+> 💡 **Good to know**:
+>
+> Pigment CSS uses Emotion behind the scenes for turning tagged templates and objects into CSS strings.
 
 #### Typing props
 
@@ -384,7 +433,7 @@ function Example1() {
 }
 ```
 
-The call to the `keyframes` function will be replaced with a unique string that represents the CSS animation name. It can be used with `css` or `styled` too.
+The call to the `keyframes` function is replaced with a unique string that represents the CSS animation name. It can be used with `css` or `styled` too.
 
 ```js
 import { css, styled, keyframes } from '@pigment-css/react';
@@ -415,7 +464,7 @@ Theming is an **optional** feature that lets you reuse the same values, such as 
 
 > **💡 Good to know**:
 >
-> The **theme** object is used at build time and does not exist in the final JS bundle. This means that components created using Pigment's `styled` can be used with React Server Components by default while still getting the benefits of theming.
+> The **theme** object is used at build time and does not exist in the final JavaScript bundle. This means that components created using Pigment CSS's `styled` can be used with React Server Components by default while still getting the benefits of theming.
 
 For example, in Next.js, you can define a theme in the `next.config.js` file like this:
 
@@ -446,7 +495,7 @@ module.exports = withPigment(
 
 #### Accessing theme values
 
-A callback can be used with **styled** and **css** APIs to access the theme values:
+A callback can be used with **styled()** and **css()** APIs to access the theme values:
 
 ```js
 const Heading = styled('h1')(({ theme }) => ({
@@ -484,7 +533,7 @@ module.exports = withPigment(
 );
 ```
 
-The `extendTheme` utility will go through the theme and create a `vars` object which represents the tokens that refer to CSS variables.
+The `extendTheme` utility goes through the theme and create a `vars` object which represents the tokens that refer to CSS variables.
 
 ```jsx
 const theme = extendTheme({
@@ -508,7 +557,7 @@ extendTheme({
 });
 ```
 
-The generated CSS variables will have the `pigment` prefix:
+The generated CSS variables has the `pigment` prefix:
 
 ```css
 :root {
@@ -579,7 +628,7 @@ function App() {
 #### Styling based on color scheme
 
 The `extendTheme` utility attaches a function called `applyStyles` to the theme object. It receives a color scheme as the first argument followed by a style object.
-It will return a proper CSS selector based on the theme configuration.
+It returns a proper CSS selector based on the theme configuration.
 
 ```jsx
 const Heading = styled('h1')(({ theme }) => ({
@@ -598,7 +647,7 @@ To get the type checking for the theme, you need to augment the theme type:
 
 ```ts
 // any file that is included in your tsconfig.json
-import type { ExtendTheme } from '@pigment-css/react';
+import type { ExtendTheme } from '@pigment-css/react/theme';
 
 declare module '@pigment-css/react/theme' {
   interface ThemeTokens {
@@ -620,7 +669,7 @@ declare module '@pigment-css/react/theme' {
 
 Emotion and styled-components are runtime CSS-in-JS libraries. What you write in your styles is what you get in the final bundle, which means the styles can be as dynamic as you want with bundle size and performance overhead trade-offs.
 
-On the other hand, Pigment CSS extracts CSS at build time and replaces the JS code with hashed class names and some CSS variables. This means that it has to know all of the styles to be extracted ahead of time, so there are rules and limitations that you need to be aware of when using JavaScript callbacks or variables in Pigment CSS's APIs.
+On the other hand, Pigment CSS extracts CSS at build time and replaces the JavaScript code with hashed class names and some CSS variables. This means that it has to know all of the styles to be extracted ahead of time, so there are rules and limitations that you need to be aware of when using JavaScript callbacks or variables in Pigment CSS's APIs.
 
 Here are some common patterns and how to achieve them with Pigment CSS:
 
@@ -669,7 +718,7 @@ const Flex = styled('div')((props) => ({
 
 2. **Programatically generated styles**
 
-For Emotion and styled-components, the styles will be different on each render and instance because the styles are generated at runtime:
+For Emotion and styled-components, the styles is different on each render and instance because the styles are generated at runtime:
 
 ```js
 function randomBetween(min: number, max: number) {
@@ -693,7 +742,7 @@ function App() {
 }
 ```
 
-However, in Pigment CSS with the same code as above, all instances will have the same styles and won't change between renders because the styles are extracted at build time.
+However, in Pigment CSS with the same code as above, all instances have the same styles and won't change between renders because the styles are extracted at build time.
 
 To achieve the same result, you need to move the dynamic logic to props and pass the value to CSS variables instead:
 
@@ -716,4 +765,92 @@ function App() {
     </div>
   )
 }
+```
+
+## RTL Support
+
+Pigment CSS offers built-in mechanism to automatically output corresponding rtl or ltr CSS. If your app by default caters to ltr direction, you also have an option to configure the plugin to output the CSS for the other direction automatically. To configure Pigment CSS for this, update the bundler config.
+
+### Next.js
+
+```js
+const { withPigment } = require('@pigment-css/nextjs-plugin');
+
+// ...
+module.exports = withPigment(nextConfig, {
+  theme: yourCustomTheme,
+  // CSS output option
+  css: {
+    // Specify your default CSS authoring direction
+    defaultDirection: 'ltr',
+    // If you want to output CSS for the direction other than
+    // the `defaultDirection`. Default is `false`.
+    generateForBothDir: true,
+  },
+});
+```
+
+### Vite
+
+```js
+import { pigment } from '@pigment-css/vite-plugin';
+
+export default defineConfig({
+  plugins: [
+    pigment({
+      theme: yourTheme,
+      css: {
+        // Specify your default CSS authoring direction
+        defaultDirection: 'ltr',
+        // If you want to output CSS for the direction other than
+        // the `defaultDirection`. Default is `false`.
+        generateForBothDir: true,
+      },
+    }),
+    // ... Your other plugins.
+  ],
+});
+```
+
+Coming back to the app code, if one of the authored CSS is:
+
+```js
+import { css } from '@pigment-css/react';
+
+const className = css`
+  margin-left: 10px,
+  margin-right: 20px,
+  padding: '0 10px 20px 30px'
+`;
+```
+
+The output CSS would be:
+
+```css
+.cmip3v5 {
+  margin-left: 10px;
+  margin-right: 20px;
+  padding: 0 10px 20px 30px;
+}
+[dir='rtl'] .cmip3v5 {
+  margin-right: 10px;
+  margin-left: 20px;
+  padding: 0 30px 20px 10px;
+}
+```
+
+Remember to also add the `dir` attribute on the `html` element or any relevant parent element as per your application logic or user preference.
+
+#### Custom dir selector
+
+The default selector in the output CSS is `[dir=rtl]` or `[dir=ltr]`. You can customize this selector by passing an optional `getDirSelector` method in the `css` property above:
+
+```js
+  // ...
+  css: {
+    getDirSelector(dir: string) {
+      // return your own selector that you'd like to use.
+      return `:dir(${dir})`;
+    }
+  }
 ```

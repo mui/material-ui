@@ -94,7 +94,7 @@ export class SxProcessor extends BaseProcessor {
 
   doRuntimeReplacement() {
     const t = this.astService;
-    // do not replace if sx prop is not on zero-runtime styled component
+    // do not replace if sx prop is not a Pigment styled component
     if (!this.elementClassName) {
       return;
     }

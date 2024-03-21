@@ -190,7 +190,7 @@ declare module '@mui/joy/Button' {
 ### Extend sizes
 
 The following code snippet illustrates how to provide additional sizes to a component beyond `sm`, `md`, and `lg`.
-We recommend following the established "t-shirt size" naming convention (e.g. `xs`, `xl`, `xxl`, etc.) to maintain consistency with all the other props.
+We recommend following the established "t-shirt size" naming convention (for example `xs`, `xl`, `xxl`, etc.) to maintain consistency with all the other props.
 
 The example below extends the Button sizes to include `xs` and `xl` values:
 
