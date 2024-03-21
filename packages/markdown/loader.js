@@ -126,6 +126,7 @@ module.exports = async function demoLoader() {
   const components = {};
   const demoModuleIDs = new Set();
   const componentModuleIDs = new Set();
+  const nonEditableDemos = new Set();
   const demoNames = Array.from(
     new Set(
       docs.en.rendered
@@ -133,6 +134,9 @@ module.exports = async function demoLoader() {
           return typeof markdownOrComponentConfig !== 'string' && markdownOrComponentConfig.demo;
         })
         .map((demoConfig) => {
+          if (demoConfig.hideToolbar) {
+            nonEditableDemos.add(demoConfig.demo);
+          }
           return demoConfig.demo;
         }),
     ),
@@ -149,6 +153,11 @@ module.exports = async function demoLoader() {
         `pages/${fileRelativeContext.replace(/^docs\/src\/pages\//, '')}/`,
         '',
       )}`;
+
+      // Skip non-editable demos
+      if (nonEditableDemos.has(demoName)) {
+        return;
+      }
 
       if (multipleDemoVersionsUsed) {
         moduleID = `${moduleID}/system/index.js`;
