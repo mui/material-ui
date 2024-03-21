@@ -595,6 +595,13 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'charts/filter-interaction': <ColumnHead label="Row filtering" />,
   'charts/selection-interaction': <ColumnHead label="Range selection" />,
 
+  'tree-view/simple-tree-view': (
+    <ColumnHead label="Simple Tree View" href="/x/react-tree-view/#simple-tree-view" />
+  ),
+  'tree-view/rich-tree-view': (
+    <ColumnHead label="Rich Tree View" href="/x/react-tree-view/#rich-tree-view" />
+  ),
+
   'mui-x-production': <ColumnHead label="Perpetual use in production" />,
   'mui-x-development': <ColumnHead label="Development license" tooltip="For active development" />,
   'mui-x-development-perpetual': (
@@ -773,6 +780,9 @@ const communityData: Record<string, React.ReactNode> = {
   'charts/filter-interaction': no,
   'charts/selection-interaction': no,
 
+  'tree-view/simple-tree-view': yes,
+  'tree-view/rich-tree-view': yes,
+
   // -- general --
   'mui-x-production': yes,
   'mui-x-updates': yes,
@@ -868,6 +878,9 @@ const proData: Record<string, React.ReactNode> = {
   'charts/cell-with-charts': yes,
   'charts/filter-interaction': pending,
   'charts/selection-interaction': no,
+
+  'tree-view/simple-tree-view': yes,
+  'tree-view/rich-tree-view': yes,
 
   // -- general --
   'mui-x-production': yes,
@@ -969,6 +982,9 @@ const premiumData: Record<string, React.ReactNode> = {
   'charts/cell-with-charts': yes,
   'charts/filter-interaction': pending,
   'charts/selection-interaction': pending,
+
+  'tree-view/simple-tree-view': yes,
+  'tree-view/rich-tree-view': yes,
 
   // -- general --
   'mui-x-production': yes,
@@ -1564,6 +1580,10 @@ export default function PricingTable({
         {divider}
         {renderNestedRow('charts/selection-interaction')}
       </StyledCollapse>
+      {divider}
+      {renderRow('tree-view/simple-tree-view')}
+      {divider}
+      {renderRow('tree-view/rich-tree-view')}
       {divider}
       {renderRow('mui-x-production')}
       {divider}
