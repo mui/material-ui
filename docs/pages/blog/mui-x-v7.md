@@ -45,16 +45,16 @@ After a few months in pre-release, we're thrilled to announce the stable release
 
 ### Column resizing on the Community plan
 
-As MUI X commercial offerings continue to expand, we're pleased to enhance the community plan by integrating features previously exclusive to commercial users.
+As MUI X commercial offerings continue to expand, we're pleased to enhance the [Community plan](/pricing/) by integrating features previously exclusive to commercial users.
 
-[Column resizing](https://mui.com/x/react-data-grid/column-dimensions/#resizing) and [auto-sizing](https://mui.com/x/react-data-grid/column-dimensions/#autosizing), which were once Pro features, are now available to all users at no cost.
+[Column resizing](https://mui.com/x/react-data-grid/column-dimensions/#resizing) and [auto-sizing](https://mui.com/x/react-data-grid/column-dimensions/#autosizing), which were previously Pro features, are now available to all the users at no cost.
 This transition reflects our commitment to providing an exceptional user experience across the board, and aims to make the free components stand out more in the open-source space.
 
 ### Sticky headers and improved scrolling performance
 
-The Data Grid now offers a more responsive experience with smoother scrolling and enhanced screen reader support, thanks to a refactor of column headers and pinning implementations.
+The Data Grid now offers a more responsive experience with smoother scrolling and enhanced screen reader support, thanks to a refactor of the column headers and pinning implementations.
 
-On its first announcement, we showcased some of these improvements, but during the beta phase, we have further polished the scrolling performance for an even more significantly improved user experience.
+On its first announcement, some of these improvements were showcased, but during the beta phase, the scrolling performance was further polished for an even better user experience.
 <figure style="padding:0; margin:0">
   <video preload="metadata" autoplay muted loop playsinline width="690" height="417" controls>
     <source src="/static/blog/mui-x-v7/sticky-headers-and-vertical-scrolling.mp4" type="video/mp4">
@@ -74,7 +74,7 @@ Without it, you may need to manually set an appropriate background color to main
 
 As part of an overarching project aimed at enhancing usability in managing columns within the Data Grid, we've redesigned the column visibility panel, introducing a more streamlined, checkbox-based interface to replace the previous toggle switch design.
 
-The goal is to further develop this panel by incorporating additional column management functions, such as column reordering and pinning. Additionally, We've extracted the internal component to ease the introduction of the upcoming pivoting UI.
+The goal is to further enhance this panel by incorporating additional column management functions, such as column reordering and pinning. Additionally, the internal component has been extracted to ease the introduction of the upcoming pivoting UI.
 
 <figure style="padding:0; margin:0; margin-bottom:20px">
   <img width="310" alt="The new column management panel design" src="/static/blog/mui-x-v7/column-management-panel.png">
