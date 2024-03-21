@@ -6,8 +6,8 @@ last 1 safari version
 node 14
 
 # Default/Fallback
-# `npx browserslist --mobile-to-desktop "> 0.5%, last 2 versions, Firefox ESR, not dead"` when the last major is released.
-# On update, sync references where "#stable-snapshot" is mentioned in the codebase.
+# Explicit safari versions are here based on the agreed terms in: https://github.com/mui/material-ui/issues/40958#issuecomment-1953215043
+# `npx browserslist --mobile-to-desktop "> 0.5%, last 2 versions, Firefox ESR, not dead, safari >= 15.4, iOS >= 15.4"` when the last major is released.
 [stable]
 and_chr 122
 and_chr 121
@@ -31,9 +31,17 @@ ios_saf 17.4
 ios_saf 17.3
 ios_saf 17.2
 ios_saf 17.1
+ios_saf 17.0
 ios_saf 16.6-16.7
+ios_saf 16.5
+ios_saf 16.4
+ios_saf 16.3
+ios_saf 16.2
 ios_saf 16.1
+ios_saf 16.0
 ios_saf 15.6-15.8
+ios_saf 15.5
+ios_saf 15.4
 kaios 3.0-3.1
 kaios 2.5
 op_mini all
@@ -44,6 +52,18 @@ opera 106
 safari 17.4
 safari 17.3
 safari 17.2
+safari 17.1
+safari 17.0
+safari 16.6
+safari 16.5
+safari 16.4
+safari 16.3
+safari 16.2
+safari 16.1
+safari 16.0
+safari 15.6
+safari 15.5
+safari 15.4
 samsung 23
 samsung 22
 
@@ -71,9 +91,17 @@ ios_saf 17.4
 ios_saf 17.3
 ios_saf 17.2
 ios_saf 17.1
+ios_saf 17.0
 ios_saf 16.6-16.7
+ios_saf 16.5
+ios_saf 16.4
+ios_saf 16.3
+ios_saf 16.2
 ios_saf 16.1
+ios_saf 16.0
 ios_saf 15.6-15.8
+ios_saf 15.5
+ios_saf 15.4
 kaios 3.0-3.1
 kaios 2.5
 op_mini all
@@ -84,26 +112,38 @@ opera 106
 safari 17.4
 safari 17.3
 safari 17.2
+safari 17.1
+safari 17.0
+safari 16.6
+safari 16.5
+safari 16.4
+safari 16.3
+safari 16.2
+safari 16.1
+safari 16.0
+safari 15.6
+safari 15.5
+safari 15.4
 samsung 23
 samsung 22
 
 # snapshot of `npx browserslist "maintained node versions"`
 # On update check all #stable-snapshot markers
 [node]
-node 18.19.0
+node 12.0
 
 # same as `node`
 [coverage]
-node 18.19.0
+node 12.0
 
 # same as `node`
 [development]
-node 18.19.0
+node 12.0
 
 # same as `node`
 [test]
-node 18.19.0
+node 12.0
 
 # same as `node`
 [benchmark]
-node 18.19.0
+node 12.0
