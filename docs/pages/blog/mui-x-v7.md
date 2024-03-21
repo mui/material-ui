@@ -45,7 +45,7 @@ After a few months in pre-release, we're thrilled to announce the stable release
 
 ### Column resizing on the Community plan
 
-As MUI X commercial offerings continue to expand, we're pleased to enhance the [Community plan](/pricing/) by integrating features previously exclusive to commercial users.
+As MUI X commercial offerings continue to expand, we're pleased to enhance the [Community plan](/pricing/) by integrating features previously exclusive to commercial users.
 
 [Column resizing](https://mui.com/x/react-data-grid/column-dimensions/#resizing) and [auto-sizing](https://mui.com/x/react-data-grid/column-dimensions/#autosizing), which were previously Pro features, are now available to all the users at no cost.
 This transition reflects our commitment to providing an exceptional user experience across the board, and aims to make the free components stand out more in the open-source space.
@@ -55,6 +55,7 @@ This transition reflects our commitment to providing an exceptional user experie
 The Data Grid now offers a more responsive experience with smoother scrolling and enhanced screen reader support, thanks to a refactor of the column headers and pinning implementations.
 
 On its first announcement, some of these improvements were showcased, but during the beta phase, the scrolling performance was further polished for an even better user experience.
+
 <figure style="padding:0; margin:0">
   <video preload="metadata" autoplay muted loop playsinline width="690" height="417" controls>
     <source src="/static/blog/mui-x-v7/sticky-headers-and-vertical-scrolling.mp4" type="video/mp4">
