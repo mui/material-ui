@@ -7,7 +7,6 @@ import Checkbox from '@mui/material/Checkbox';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -157,50 +156,32 @@ export default function SignUp() {
     <ThemeProvider theme={showCustomTheme ? SignUpTheme : defaultTheme}>
       <CssBaseline />
       <Stack
-        direction={{ xs: 'column', sm: 'row' }}
+        direction="column"
         justifyContent="space-between"
         sx={(theme) => ({
           backgroundImage:
             theme.palette.mode === 'light'
-              ? `linear-gradient(180deg, ${alpha('#CEE5FD', 0.7)}, #FFF)`
-              : `linear-gradient(${alpha('#02294F', 0.5)}, ${alpha('#021F3B', 0.0)})`,
+              ? `linear-gradient(180deg, ${alpha('#CEE5FD', 0.2)}, #FFF)`
+              : `linear-gradient(${alpha('#02294F', 0.2)}, ${alpha('#021F3B', 0.0)})`,
           backgroundRepeat: 'no-repeat',
           px: { xs: 2, sm: 4 },
           height: '100dvh',
-          mb: { xs: 16, sm: 0 },
         })}
         component="main"
       >
-        <Stack
-          direction="row"
-          justifyContent="space-between"
-          sx={{ display: { xs: 'flex', sm: 'none' }, my: 4 }}
-        >
+        <Stack direction="row" justifyContent="space-between" sx={{ my: 2 }}>
           <Button
             startIcon={<ArrowBackRoundedIcon />}
             component="a"
-            href="/material-ui/getting-started/templates/landing-page/"
+            href="/material-ui/getting-started/templates/"
           >
             Back
           </Button>
           <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
         </Stack>
-        <Button
-          startIcon={<ArrowBackRoundedIcon />}
-          component="a"
-          href="/material-ui/getting-started/templates/landing-page/"
-          sx={{
-            alignSelf: 'flex-start',
-            mt: 4,
-            display: { xs: 'none', sm: 'flex' },
-            width: 64,
-          }}
-        >
-          Back
-        </Button>
         <Stack
           justifyContent={{ xs: 'start', sm: 'center' }}
-          sx={{ height: '100%' }}
+          sx={{ height: '100%', mt: { xs: 0, sm: -72 } }}
         >
           <Card
             variant="outlined"
@@ -226,7 +207,7 @@ export default function SignUp() {
                   'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
                 }
                 style={logoStyle}
-                alt="logo of sitemark"
+                alt="Sitemark's logo"
               />
             </Box>
             <Typography
@@ -241,69 +222,57 @@ export default function SignUp() {
               onSubmit={handleSubmit}
               sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
             >
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
-                  <TextField
-                    autoComplete="name"
-                    name="name"
-                    required
-                    fullWidth
-                    id="name"
-                    placeholder="First Name"
-                    error={nameError}
-                    helperText={nameErrorMessage}
-                    color={nameError ? 'error' : 'primary'}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="lastName"
-                    placeholder="Last Name"
-                    name="lastName"
-                    autoComplete="family-name"
-                    error={lastNameError}
-                    helperText={lastNameErrorMessage}
-                    color={lastNameError ? 'error' : 'primary'}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="email"
-                    placeholder="Email Address"
-                    name="email"
-                    autoComplete="email"
-                    variant="outlined"
-                    error={emailError}
-                    helperText={emailErrorMessage}
-                    color={passwordError ? 'error' : 'primary'}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    name="password"
-                    placeholder="Password"
-                    type="password"
-                    id="password"
-                    autoComplete="new-password"
-                    variant="outlined"
-                    error={passwordError}
-                    helperText={passwordErrorMessage}
-                    color={passwordError ? 'error' : 'primary'}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <FormControlLabel
-                    control={<Checkbox value="allowExtraEmails" color="primary" />}
-                    label="I want to receive updates via email."
-                  />
-                </Grid>
-              </Grid>
+              <TextField
+                autoComplete="name"
+                name="name"
+                required
+                fullWidth
+                id="name"
+                placeholder="First Name"
+                error={nameError}
+                helperText={nameErrorMessage}
+                color={nameError ? 'error' : 'primary'}
+              />
+              <TextField
+                required
+                fullWidth
+                id="lastName"
+                placeholder="Last Name"
+                name="lastName"
+                autoComplete="family-name"
+                error={lastNameError}
+                helperText={lastNameErrorMessage}
+                color={lastNameError ? 'error' : 'primary'}
+              />
+              <TextField
+                required
+                fullWidth
+                id="email"
+                placeholder="Email Address"
+                name="email"
+                autoComplete="email"
+                variant="outlined"
+                error={emailError}
+                helperText={emailErrorMessage}
+                color={passwordError ? 'error' : 'primary'}
+              />
+              <TextField
+                required
+                fullWidth
+                name="password"
+                placeholder="Password"
+                type="password"
+                id="password"
+                autoComplete="new-password"
+                variant="outlined"
+                error={passwordError}
+                helperText={passwordErrorMessage}
+                color={passwordError ? 'error' : 'primary'}
+              />
+              <FormControlLabel
+                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                label="I want to receive updates via email."
+              />
               <Button
                 type="submit"
                 fullWidth
@@ -312,18 +281,15 @@ export default function SignUp() {
               >
                 Sign Up
               </Button>
-              <Grid container justifyContent="center">
-                <Grid item>
-                  <Link
-                    href="/material-ui/getting-started/templates/sign-in/"
-                    variant="body2"
-                  >
-                    Already have an account? Sign in
-                  </Link>
-                </Grid>
-              </Grid>
+              <Link
+                href="/material-ui/getting-started/templates/sign-in/"
+                variant="body2"
+                sx={{ alignSelf: 'center' }}
+              >
+                Already have an account? Sign in
+              </Link>
             </Box>
-            <Divider>Or</Divider>
+            <Divider>or</Divider>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               <Button
                 type="submit"
@@ -360,16 +326,6 @@ export default function SignUp() {
             </Box>
           </Card>
         </Stack>
-        <ToggleColorMode
-          mode={mode}
-          toggleColorMode={toggleColorMode}
-          sx={{
-            alignSelf: 'flex-start',
-            mt: 4,
-            display: { xs: 'none', sm: 'flex' },
-            width: 64,
-          }}
-        />
       </Stack>
       <ToggleCustomTheme
         showCustomTheme={showCustomTheme}

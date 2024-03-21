@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
+import Checkbox from '@mui/material/Checkbox';
 import CssBaseline from '@mui/material/CssBaseline';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import Divider from '@mui/material/Divider';
-import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -138,48 +139,32 @@ export default function SignIn() {
     <ThemeProvider theme={showCustomTheme ? SignInTheme : defaultTheme}>
       <CssBaseline />
       <Stack
-        direction={{ xs: 'column', sm: 'row' }}
+        direction="column"
         justifyContent="space-between"
         sx={(theme) => ({
           backgroundImage:
             theme.palette.mode === 'light'
-              ? `linear-gradient(180deg, ${alpha('#CEE5FD', 0.7)}, #FFF)`
-              : `linear-gradient(${alpha('#02294F', 0.5)}, ${alpha('#021F3B', 0.0)})`,
+              ? `linear-gradient(180deg, ${alpha('#CEE5FD', 0.2)}, #FFF)`
+              : `linear-gradient(${alpha('#02294F', 0.2)}, ${alpha('#021F3B', 0.0)})`,
           backgroundRepeat: 'no-repeat',
           px: { xs: 2, sm: 4 },
           height: '100dvh',
         })}
         component="main"
       >
-        <Stack
-          direction="row"
-          justifyContent="space-between"
-          sx={{ display: { xs: 'flex', sm: 'none' }, my: 4 }}
-        >
+        <Stack direction="row" justifyContent="space-between" sx={{ my: 2 }}>
           <Button
             startIcon={<ArrowBackRoundedIcon />}
             component="a"
-            href="/material-ui/getting-started/templates/landing-page/"
+            href="/material-ui/getting-started/templates/"
           >
             Back
           </Button>
           <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
         </Stack>
-        <Button
-          startIcon={<ArrowBackRoundedIcon />}
-          component="a"
-          href="/material-ui/getting-started/templates/landing-page/"
-          sx={{
-            alignSelf: 'flex-start',
-            mt: 4,
-            display: { xs: 'none', sm: 'flex' },
-          }}
-        >
-          Back
-        </Button>
         <Stack
           justifyContent={{ xs: 'start', sm: 'center' }}
-          sx={{ height: '100%' }}
+          sx={{ height: '100%', mt: { xs: 0, sm: -72 } }}
         >
           <Card
             variant="outlined"
@@ -197,7 +182,7 @@ export default function SignIn() {
                 'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
               }
               style={logoStyle}
-              alt="logo of sitemark"
+              alt="Sitemark's logo"
             />
             <Typography
               component="h1"
@@ -217,45 +202,50 @@ export default function SignIn() {
                 gap: 2,
               }}
             >
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
-                  <TextField
-                    error={emailError}
-                    helperText={emailErrorMessage}
-                    id="email"
-                    type="email"
-                    name="email"
-                    placeholder="Email address"
-                    autoComplete="email"
-                    autoFocus
-                    required
-                    fullWidth
-                    variant="outlined"
-                    color={emailError ? 'error' : 'primary'}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    error={passwordError}
-                    helperText={passwordErrorMessage}
-                    name="password"
-                    placeholder="Password"
-                    type="password"
-                    id="password"
-                    autoComplete="current-password"
-                    autoFocus
-                    required
-                    fullWidth
-                    variant="outlined"
-                    color={passwordError ? 'error' : 'primary'}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <Link component="button" onClick={handleClickOpen} variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
-              </Grid>
+              <TextField
+                error={emailError}
+                helperText={emailErrorMessage}
+                id="email"
+                type="email"
+                name="email"
+                placeholder="Email address"
+                autoComplete="email"
+                autoFocus
+                required
+                fullWidth
+                variant="outlined"
+                color={emailError ? 'error' : 'primary'}
+              />
+              <TextField
+                error={passwordError}
+                helperText={passwordErrorMessage}
+                name="password"
+                placeholder="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                autoFocus
+                required
+                fullWidth
+                variant="outlined"
+                color={passwordError ? 'error' : 'primary'}
+              />
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  width: '100%',
+                }}
+              >
+                <FormControlLabel
+                  control={<Checkbox value="remember" color="primary" />}
+                  label="Remember me"
+                />
+                <Link component="button" onClick={handleClickOpen} variant="body2">
+                  Forgot your password?
+                </Link>
+              </Box>
               <ForgotPassword open={open} handleClose={handleClose} />
               <Button
                 type="submit"
@@ -270,10 +260,10 @@ export default function SignIn() {
                 variant="body2"
                 sx={{ alignSelf: 'center' }}
               >
-                {"Don't have an account? Sign Up"}
+                Don&apos;t have an account? Sign up
               </Link>
             </Box>
-            <Divider>Or</Divider>
+            <Divider>or</Divider>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               <Button
                 type="submit"
@@ -289,7 +279,7 @@ export default function SignIn() {
                   />
                 }
               >
-                Sign In with Google
+                Sign in with Google
               </Button>
               <Button
                 type="submit"
@@ -305,20 +295,11 @@ export default function SignIn() {
                   />
                 }
               >
-                Sign In with Facebook
+                Sign in with Facebook
               </Button>
             </Box>
           </Card>
         </Stack>
-        <ToggleColorMode
-          mode={mode}
-          toggleColorMode={toggleColorMode}
-          sx={{
-            alignSelf: 'flex-start',
-            mt: 4,
-            display: { xs: 'none', sm: 'flex' },
-          }}
-        />
       </Stack>
       <ToggleCustomTheme
         showCustomTheme={showCustomTheme}
