@@ -197,7 +197,7 @@ const pages: MuiPage[] = [
     children: [
       {
         pathname: '/material-ui/guides/material-3-components',
-        title: 'Material 3 components',
+        title: 'Material Design 3 components',
         newFeature: true,
       },
       { pathname: '/material-ui/guides/minimizing-bundle-size' },
@@ -273,6 +273,16 @@ const pages: MuiPage[] = [
       {
         pathname: '/material-ui/migration/pickers-migration',
         title: 'Migration from @material-ui/pickers',
+      },
+      {
+        pathname: '/material-ui/migration/v6',
+        subheader: 'Upgrade to v6',
+        children: [
+          {
+            pathname: '/material-ui/migration/migration-v5',
+            title: 'Migrating to v6',
+          },
+        ],
       },
       {
         pathname: '/material-ui/migration/v5',

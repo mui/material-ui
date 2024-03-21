@@ -5,17 +5,18 @@ import * as fs from 'fs';
 // @ts-ignore
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { createRequire } from 'module';
-import withDocsInfra from './nextConfigDocsInfra.js';
 import { findPages } from './src/modules/utils/find.mjs';
-import {
+
+const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
+const require = createRequire(import.meta.url);
+
+const withDocsInfra = require('./nextConfigDocsInfra.js');
+const {
   LANGUAGES,
   LANGUAGES_SSR,
   LANGUAGES_IGNORE_PAGES,
   LANGUAGES_IN_PROGRESS,
-} from './config.js';
-
-const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
-const require = createRequire(import.meta.url);
+} = require('./config.js');
 
 const workspaceRoot = path.join(currentDirectory, '../');
 
@@ -29,6 +30,10 @@ const pkgContent = fs.readFileSync(path.resolve(workspaceRoot, 'package.json'), 
 const pkg = JSON.parse(pkgContent);
 
 export default withDocsInfra({
+  experimental: {
+    workerThreads: true,
+    cpus: 3,
+  },
   webpack: (config, options) => {
     const plugins = config.plugins.slice();
 
@@ -107,7 +112,6 @@ export default withDocsInfra({
           '@mui/private-theming': path.resolve(workspaceRoot, 'packages/mui-private-theming/src'),
           '@mui/utils': path.resolve(workspaceRoot, 'packages/mui-utils/src'),
           '@mui/base': path.resolve(workspaceRoot, 'packages/mui-base/src'),
-          '@mui/material-next': path.resolve(workspaceRoot, 'packages/mui-material-next/src'),
           '@mui/material-nextjs': path.resolve(workspaceRoot, 'packages/mui-material-nextjs/src'),
           '@mui/joy': path.resolve(workspaceRoot, 'packages/mui-joy/src'),
         },
@@ -124,14 +128,33 @@ export default withDocsInfra({
             test: /\.md$/,
             oneOf: [
               {
-                resourceQuery: /@mui\/markdown/,
+                resourceQuery: /muiMarkdown/,
                 use: [
                   options.defaultLoaders.babel,
                   {
-                    loader: require.resolve('@mui/markdown/loader'),
+                    loader: require.resolve('@mui/internal-markdown/loader'),
                     options: {
+                      workspaceRoot,
                       ignoreLanguagePages: LANGUAGES_IGNORE_PAGES,
                       languagesInProgress: LANGUAGES_IN_PROGRESS,
+                      packages: [
+                        {
+                          productId: 'material-ui',
+                          paths: [
+                            path.join(workspaceRoot, 'packages/mui-base/src'),
+                            path.join(workspaceRoot, 'packages/mui-lab/src'),
+                            path.join(workspaceRoot, 'packages/mui-material/src'),
+                          ],
+                        },
+                        {
+                          productId: 'base-ui',
+                          paths: [path.join(workspaceRoot, 'packages/mui-base/src')],
+                        },
+                        {
+                          productId: 'joy-ui',
+                          paths: [path.join(workspaceRoot, 'packages/mui-joy/src')],
+                        },
+                      ],
                       env: {
                         SOURCE_CODE_REPO: options.config.env.SOURCE_CODE_REPO,
                         LIB_VERSION: options.config.env.LIB_VERSION,
@@ -166,7 +189,7 @@ export default withDocsInfra({
     // docs-infra
     LIB_VERSION: pkg.version,
     SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
-    SOURCE_GITHUB_BRANCH: 'master', // #default-branch-switch
+    SOURCE_GITHUB_BRANCH: 'next', // #default-branch-switch
     GITHUB_TEMPLATE_DOCS_FEEDBACK: '4.docs-feedback.yml',
     BUILD_ONLY_ENGLISH_LOCALE: String(buildOnlyEnglishLocale),
     // MUI Core related

@@ -1,6 +1,6 @@
 import * as ts from 'typescript';
-import { ComponentClassDefinition } from '@mui-internal/docs-utils';
-import { renderMarkdown } from '@mui/markdown';
+import { ComponentClassDefinition } from '@mui/internal-docs-utils';
+import { renderMarkdown } from '@mui/internal-markdown';
 import { getSymbolDescription, getSymbolJSDocTags } from '../buildApiUtils';
 import { TypeScriptProject } from './createTypeScriptProject';
 import { getPropsFromComponentNode } from './getPropsFromComponentNode';
@@ -53,7 +53,10 @@ export default function parseSlotsAndClasses({
   componentName,
   muiName,
   slotInterfaceName,
-}: ParseSlotsAndClassesParameters): { slots: Slot[]; classes: ComponentClassDefinition[] } {
+}: ParseSlotsAndClassesParameters): {
+  slots: Slot[];
+  classes: ComponentClassDefinition[];
+} {
   // Obtain an array of classes for the given component
   const classDefinitions = extractClasses(
     typescriptProject,

@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ROUTES from 'docs/src/route';
 import Section from 'docs/src/layouts/Section';

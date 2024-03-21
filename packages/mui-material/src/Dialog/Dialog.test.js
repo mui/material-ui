@@ -1,16 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import {
-  describeConformance,
-  act,
-  createRenderer,
-  fireEvent,
-  screen,
-} from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
 import Modal from '@mui/material/Modal';
 import Dialog, { dialogClasses as classes } from '@mui/material/Dialog';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import describeConformance from '../../test/describeConformance';
 
 /**
  * more comprehensive simulation of a user click (mousedown + click)

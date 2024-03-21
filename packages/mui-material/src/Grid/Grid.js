@@ -13,11 +13,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
-  unstable_extendSxProp as extendSxProp,
   handleBreakpoints,
   unstable_resolveBreakpointValues as resolveBreakpointValues,
 } from '@mui/system';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { extendSxProp } from '@mui/system/styleFunctionSx';
+import composeClasses from '@mui/utils/composeClasses';
 import requirePropFactory from '../utils/requirePropFactory';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';

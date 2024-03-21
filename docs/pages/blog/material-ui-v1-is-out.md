@@ -3,7 +3,7 @@ title: Material UI v1 is out 🎉
 description: It has taken us two years to do it, but Material UI v1 has finally arrived!
 date: 2018-05-18T00:00:00.000Z
 authors: ['oliviertassinari', 'mbrookes']
-tags: ['Company']
+tags: ['Material UI', 'Product']
 card: true
 ---
 

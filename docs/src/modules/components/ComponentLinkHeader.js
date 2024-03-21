@@ -10,7 +10,7 @@ import AdobeXDIcon from 'docs/src/modules/components/AdobeXDIcon';
 import BundleSizeIcon from 'docs/src/modules/components/BundleSizeIcon';
 import W3CIcon from 'docs/src/modules/components/W3CIcon';
 import MaterialDesignIcon from 'docs/src/modules/components/MaterialDesignIcon';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 
 const Root = styled('ul')({
   margin: 0,

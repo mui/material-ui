@@ -23,8 +23,8 @@ import GlobalStyles from '@mui/material/GlobalStyles';
 import { alpha, styled } from '@mui/material/styles';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { LANGUAGES_SSR } from 'docs/config';
-import Link from 'docs/src/modules/components/Link';
-import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
+import { Link } from '@mui/docs/Link';
+import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import PageContext from 'docs/src/modules/components/PageContext';
 
@@ -273,6 +273,8 @@ const productNameProductId = {
   x: 'MUI X',
   system: 'MUI System',
   toolpad: 'Toolpad',
+  'toolpad-studio': 'Toolpad Studio',
+  'toolpad-core': 'Toolpad Core',
 };
 
 export function convertProductIdToName(productInfo) {
@@ -546,8 +548,8 @@ export default function AppSearch(props) {
               fontSize: theme.typography.pxToRem(11),
               fontWeight: theme.typography.fontWeightBold,
               textTransform: 'uppercase',
-              letterSpacing: '.08rem',
-              color: theme.palette.grey[600],
+              letterSpacing: '.1rem',
+              color: (theme.vars || theme).palette.text.tertiary,
             },
             '& .DocSearch-NewStartScreenTitleIcon': {
               fontSize: theme.typography.pxToRem(18),
@@ -616,6 +618,10 @@ export default function AppSearch(props) {
                 width: '18px',
                 height: '18px',
               },
+              '& .DocSearch-VisuallyHiddenForAccessibility': {
+                width: 0,
+                visibility: 'hidden',
+              },
             },
             '& .DocSearch-Cancel': {
               display: 'block',
@@ -666,8 +672,8 @@ export default function AppSearch(props) {
               fontWeight: theme.typography.fontWeightBold,
               textTransform: 'uppercase',
               lineHeight: 1,
-              letterSpacing: '.08rem',
-              color: theme.palette.grey[600],
+              letterSpacing: '.1rem',
+              color: (theme.vars || theme).palette.text.tertiary,
             },
             '& .DocSearch-Hit': {
               paddingBottom: 8,

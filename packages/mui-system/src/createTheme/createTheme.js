@@ -1,4 +1,4 @@
-import { deepmerge } from '@mui/utils';
+import deepmerge from '@mui/utils/deepmerge';
 import createBreakpoints from './createBreakpoints';
 import shape from './shape';
 import createSpacing from './createSpacing';

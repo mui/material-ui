@@ -1,4 +1,4 @@
-import { deepmerge } from '@mui/utils';
+import deepmerge from '@mui/utils/deepmerge';
 
 function round(value) {
   return Math.round(value * 1e5) / 1e5;

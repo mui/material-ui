@@ -4,7 +4,7 @@ description: Support for time zones, Charts in alpha, Data Grid filtering, and m
 date: 2023-08-14T00:00:00.000Z
 authors: ['richbustos', 'josefreitas']
 card: true
-tags: ['MUI X', 'News']
+tags: ['MUI X', 'Product']
 ---
 
 <a href="https://github.com/mui/mui-x/releases/tag/v6.11.0">
@@ -112,7 +112,7 @@ Check out the video below, highlighting some of our Charts:
 
 As we progress toward the stable version, we're committed to enhancing the overall experience for developers and users, so your feedback is fundamental!
 
-We will also steadily expand our portfolio with new chart types such as [Heat map](https://mui.com/x/react-charts/heat-map/), [Funnel](https://mui.com/x/react-charts/funnel/), [Gantt](https://mui.com/x/react-charts/gantt/), and more.
+We will also steadily expand our portfolio with new chart types such as [Heatmap](https://mui.com/x/react-charts/heat-map/), [Funnel](https://mui.com/x/react-charts/funnel/), [Gantt](https://mui.com/x/react-charts/gantt/), and more.
 If there's a specific chart visualization you'd like us to prioritize, we encourage you to upvote the respective [issue on GitHub](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+label%3A%22component%3A+charts%22+label%3A%22waiting+for+%F0%9F%91%8D%22).
 Your input can directly influence our development schedule, so don't hesitate to let us know what matters most to you!
 
@@ -131,7 +131,7 @@ Think of a file system navigator displaying folders and files or a navigation li
 
 Keep on the look out on our next blog for the Tree View migration.
 
-We decided to migrate this component to MUI X as there are still many features that would be great to build (e.g. checkbox, drag & drop, virtualization) and it's usually not a significant component of a design system.
+We decided to migrate this component to MUI X as there are still many features that would be great to build (for example checkbox, drag & drop, virtualization) and it's usually not a significant component of a design system.
 Head to [MUI Core vs. MUI X](https://mui-org.notion.site/X-FAQ-c33e9a7eabba4da1ad7f8c04f99044cc) if you would like to learn more about this decision.
 
 ## Feedback

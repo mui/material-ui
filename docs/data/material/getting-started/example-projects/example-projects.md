@@ -4,7 +4,7 @@
 
 ## Official examples
 
-The following starter projects are all available in the [`/examples`](https://github.com/mui/material-ui/tree/master/examples) folder of the Material UI repository.
+The following starter projects are all available in the [`/examples`](https://github.com/mui/material-ui/tree/master/examples) folder of the Material UI GitHub repository.
 These examples feature Material UI paired with other popular React libraries and frameworks, so you can skip the initial setup steps and jump straight into building.
 
 Not sure which to pick?
@@ -48,7 +48,7 @@ They're great resources for learning more about real-world usage of Material UI
 
 ### Paid
 
-- [ScaffoldHub](https://v2.scaffoldhub.io/scaffolds/react-material-ui):
+- [ScaffoldHub](https://v2.scaffoldhub.io/scaffolds/react-material-ui?partner=1):
 
   - Tool for building web applications.
   - Choose your framework and library (React with Material UI).

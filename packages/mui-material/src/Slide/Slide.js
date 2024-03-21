@@ -2,7 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
-import { elementAcceptingRef, HTMLElementType, chainPropTypes } from '@mui/utils';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import HTMLElementType from '@mui/utils/HTMLElementType';
+import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
 import debounce from '../utils/debounce';
 import useForkRef from '../utils/useForkRef';
 import useTheme from '../styles/useTheme';

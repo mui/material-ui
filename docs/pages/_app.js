@@ -22,14 +22,16 @@ import { CodeCopyProvider } from 'docs/src/modules/utils/CodeCopy';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { CodeVariantProvider } from 'docs/src/modules/utils/codeVariant';
 import { CodeStylingProvider } from 'docs/src/modules/utils/codeStylingSolution';
-import { UserLanguageProvider } from 'docs/src/modules/utils/i18n';
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import findActivePage from 'docs/src/modules/utils/findActivePage';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
+import { DocsProvider } from '@mui/docs/DocsProvider';
+import { mapTranslations } from '@mui/docs/i18n';
 import './global.css';
 import '../public/static/components-gallery/base-theme.css';
+import config from '../config';
 
 // Remove the license warning from demonstration purposes
 LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE);
@@ -165,6 +167,7 @@ function AppWrapper(props) {
         name: 'Material UI',
         versions: [
           { text: `v${materialPkgJson.version}`, current: true },
+          { text: `v5`, href: `https://mui.com${languagePrefix}/material-ui/getting-started/` },
           {
             text: 'v4',
             href: `https://v4.mui.com${languagePrefix}/getting-started/installation/`,
@@ -191,6 +194,7 @@ function AppWrapper(props) {
         name: 'MUI System',
         versions: [
           { text: `v${systemPkgJson.version}`, current: true },
+          { text: 'v5', href: `https://mui.com${languagePrefix}/system/getting-started/` },
           { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
           {
             text: 'View all versions',
@@ -294,7 +298,11 @@ function AppWrapper(props) {
         <meta name="mui:productId" content={productId} />
         <meta name="mui:productCategoryId" content={productCategoryId} />
       </NextHead>
-      <UserLanguageProvider defaultUserLanguage={pageProps.userLanguage}>
+      <DocsProvider
+        config={config}
+        defaultUserLanguage={pageProps.userLanguage}
+        translations={pageProps.translations}
+      >
         <CodeCopyProvider>
           <CodeStylingProvider>
             <CodeVariantProvider>
@@ -309,7 +317,7 @@ function AppWrapper(props) {
             </CodeVariantProvider>
           </CodeStylingProvider>
         </CodeCopyProvider>
-      </UserLanguageProvider>
+      </DocsProvider>
     </React.Fragment>
   );
 }
@@ -339,6 +347,9 @@ MyApp.propTypes = {
 MyApp.getInitialProps = async ({ ctx, Component }) => {
   let pageProps = {};
 
+  const req = require.context('docs/translations', false, /translations.*\.json$/);
+  const translations = mapTranslations(req);
+
   if (Component.getInitialProps) {
     pageProps = await Component.getInitialProps(ctx);
   }
@@ -346,6 +357,7 @@ MyApp.getInitialProps = async ({ ctx, Component }) => {
   return {
     pageProps: {
       userLanguage: ctx.query.userLanguage || 'en',
+      translations,
       ...pageProps,
     },
   };

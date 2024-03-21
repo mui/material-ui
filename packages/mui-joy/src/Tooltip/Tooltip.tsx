@@ -179,14 +179,14 @@ function composeMouseEventHandler(
 }
 
 function composeFocusEventHandler(
-  handler: (event: React.FocusEvent<HTMLElement>) => void,
-  eventHandler: (event: React.FocusEvent<HTMLElement>) => void,
+  handler: (event: React.FocusEvent<HTMLElement>, ...params: any[]) => void,
+  eventHandler: (event: React.FocusEvent<HTMLElement>, ...params: any[]) => void,
 ) {
-  return (event: React.FocusEvent<HTMLElement>) => {
+  return (event: React.FocusEvent<HTMLElement>, ...params: any[]) => {
     if (eventHandler) {
-      eventHandler(event);
+      eventHandler(event, ...params);
     }
-    handler(event);
+    handler(event, ...params);
   };
 }
 /**
@@ -302,7 +302,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     });
   });
 
-  const handleEnter = (event: React.MouseEvent<HTMLElement>) => {
+  const handleMouseOver = (event: React.MouseEvent<HTMLElement>) => {
     if (ignoreNonTouchEvents.current && event.type !== 'touchstart') {
       return;
     }
@@ -325,7 +325,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
   };
 
-  const handleLeave = (event: React.MouseEvent<HTMLElement>) => {
+  const handleMouseLeave = (event: React.MouseEvent<HTMLElement>) => {
     enterTimer.clear();
     leaveTimer.start(leaveDelay, () => {
       handleClose(event);
@@ -345,7 +345,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     handleBlurVisible(event as React.FocusEvent<HTMLElement>);
     if (isFocusVisibleRef.current === false) {
       setChildIsFocusVisible(false);
-      handleLeave(event as React.MouseEvent<HTMLElement>);
+      handleMouseLeave(event as React.MouseEvent<HTMLElement>);
     }
   };
 
@@ -360,7 +360,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     handleFocusVisible(event as React.FocusEvent<HTMLElement>);
     if (isFocusVisibleRef.current === true) {
       setChildIsFocusVisible(true);
-      handleEnter(event as React.MouseEvent<HTMLElement>);
+      handleMouseOver(event as React.MouseEvent<HTMLElement>);
     }
   };
 
@@ -372,9 +372,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       childrenProps.onTouchStart(event);
     }
   };
-
-  const handleMouseOver = handleEnter;
-  const handleMouseLeave = handleLeave;
 
   const handleTouchStart = (event: React.TouchEvent<HTMLElement>) => {
     detectTouchStart(event);
@@ -391,7 +388,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     touchTimer.start(enterTouchDelay, () => {
       (document.body.style as unknown as { WebkitUserSelect?: string }).WebkitUserSelect =
         prevUserSelect.current;
-      handleEnter(event as unknown as React.MouseEvent<HTMLElement>);
+      handleMouseOver(event as unknown as React.MouseEvent<HTMLElement>);
     });
   };
 

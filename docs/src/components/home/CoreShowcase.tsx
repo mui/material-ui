@@ -190,7 +190,7 @@ export default function CoreShowcase() {
                 code={componentCode}
                 language="jsx"
               />
-              <StylingInfo appeared={customized} sx={{ mb: 0, mx: -2 }} />
+              <StylingInfo appeared={customized} sx={{ mx: -2 }} />
             </Box>
           </Box>
         </div>

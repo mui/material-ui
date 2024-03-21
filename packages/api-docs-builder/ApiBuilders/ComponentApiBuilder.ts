@@ -9,8 +9,8 @@ import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
 import type { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
-import { renderMarkdown } from '@mui/markdown';
-import { ComponentClassDefinition } from '@mui-internal/docs-utils';
+import { renderMarkdown } from '@mui/internal-markdown';
+import { ComponentClassDefinition } from '@mui/internal-docs-utils';
 import { ProjectSettings, SortingStrategiesType } from '../ProjectSettings';
 import { ComponentInfo, toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
@@ -55,7 +55,7 @@ export interface ReactApi extends ReactDocgenApi {
   /**
    * If `true`, the component supports theme default props customization.
    * If `null`, we couldn't infer this information.
-   * If `undefined`, it's not applicable in this context, e.g. Base UI components.
+   * If `undefined`, it's not applicable in this context, for example Base UI components.
    */
   themeDefaultProps: boolean | undefined | null;
   /**
@@ -360,6 +360,7 @@ const generateApiPage = async (
   reactApi: ReactApi,
   sortingStrategies?: SortingStrategiesType,
   onlyJsonFile: boolean = false,
+  layoutConfigPath: string = '',
 ) => {
   const normalizedApiPathname = reactApi.apiPathname.replace(/\\/g, '/');
   /**
@@ -422,12 +423,17 @@ const generateApiPage = async (
       path.resolve(apiPagesDirectory, `${kebabCase(reactApi.name)}.js`),
       `import * as React from 'react';
   import ApiPage from 'docs/src/modules/components/ApiPage';
-  import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
+  import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';${
+    layoutConfigPath === ''
+      ? ''
+      : `
+  import layoutConfig from '${layoutConfigPath}';`
+  }
   import jsonPageContent from './${kebabCase(reactApi.name)}.json';
 
   export default function Page(props) {
     const { descriptions, pageContent } = props;
-    return <ApiPage descriptions={descriptions} pageContent={pageContent} />;
+    return <ApiPage ${layoutConfigPath === '' ? '' : '{...layoutConfig} '}descriptions={descriptions} pageContent={pageContent} />;
   }
 
   Page.getInitialProps = () => {
@@ -728,6 +734,10 @@ export default async function generateComponentApi(
     });
   }
 
+  if (!reactApi.props) {
+    reactApi.props = {};
+  }
+
   // Ignore what we might have generated in `annotateComponentDefinition`
   const annotatedDescriptionMatch = reactApi.description.match(/(Demos|API):\r?\n\r?\n/);
   if (annotatedDescriptionMatch !== null) {
@@ -741,6 +751,8 @@ export default async function generateComponentApi(
   reactApi.muiName = componentInfo.muiName;
   reactApi.apiPathname = componentInfo.apiPathname;
   reactApi.EOL = EOL;
+  reactApi.slots = [];
+  reactApi.classes = [];
   reactApi.demos = componentInfo.getDemos();
   if (reactApi.demos.length === 0) {
     throw new Error(
@@ -764,16 +776,18 @@ export default async function generateComponentApi(
     }
   }
 
-  const { slots, classes } = parseSlotsAndClasses({
-    typescriptProject: project,
-    projectSettings,
-    componentName: reactApi.name,
-    muiName: reactApi.muiName,
-    slotInterfaceName: componentInfo.slotInterfaceName,
-  });
+  if (!projectSettings.skipSlotsAndClasses) {
+    const { slots, classes } = parseSlotsAndClasses({
+      typescriptProject: project,
+      projectSettings,
+      componentName: reactApi.name,
+      muiName: reactApi.muiName,
+      slotInterfaceName: componentInfo.slotInterfaceName,
+    });
 
-  reactApi.slots = slots;
-  reactApi.classes = classes;
+    reactApi.slots = slots;
+    reactApi.classes = classes;
+  }
 
   attachPropsTable(reactApi, projectSettings.propsSettings);
   attachTranslations(reactApi, projectSettings.propsSettings);
@@ -802,6 +816,7 @@ export default async function generateComponentApi(
       reactApi,
       projectSettings.sortingStrategies,
       generateJsonFileOnly,
+      componentInfo.layoutConfigPath,
     );
 
     if (

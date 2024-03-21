@@ -1,20 +1,14 @@
 import { expect } from 'chai';
 import * as React from 'react';
 import { spy, stub } from 'sinon';
-import {
-  act,
-  createRenderer,
-  createMount,
-  describeConformanceUnstyled,
-  fireEvent,
-  screen,
-} from '@mui-internal/test-utils';
+import { act, createRenderer, createMount, fireEvent, screen } from '@mui-internal/test-utils';
 import {
   Slider,
   sliderClasses as classes,
   SliderRootSlotProps,
   SliderValueLabelSlotProps,
 } from '@mui/base/Slider';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 type Touches = Array<Pick<Touch, 'identifier' | 'clientX' | 'clientY'>>;
 

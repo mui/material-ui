@@ -86,7 +86,7 @@ export type AccordionTypeMap<
       >;
       /**
        * Props applied to the transition element.
-       * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+       * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
        * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
        */
       TransitionProps?: TransitionProps;

@@ -6,12 +6,12 @@ import { MenuProps } from '../Menu';
 import { SelectChangeEvent, SelectInputProps } from './SelectInput';
 import { SelectClasses } from './selectClasses';
 import { OutlinedInputProps } from '../OutlinedInput';
+import { FilledInputProps } from '../FilledInput';
 
 export { SelectChangeEvent };
 
-export interface SelectProps<Value = unknown>
-  extends StandardProps<InputProps, 'value' | 'onChange'>,
-    Omit<OutlinedInputProps, 'value' | 'onChange'> {
+export interface BaseSelectProps<Value = unknown>
+  extends StandardProps<InputProps, 'value' | 'onChange'> {
   /**
    * If `true`, the width of the popover will automatically be set according to the items inside the
    * menu, otherwise it will be at least the width of the select input.
@@ -148,8 +148,39 @@ export interface SelectProps<Value = unknown>
    * The variant to use.
    * @default 'outlined'
    */
-  variant?: 'standard' | 'outlined' | 'filled';
+  variant?: SelectVariants;
 }
+
+export interface FilledSelectProps extends Omit<FilledInputProps, 'value' | 'onChange'> {
+  /**
+   * The variant to use.
+   * @default 'outlined'
+   */
+  variant: 'filled';
+}
+
+export interface StandardSelectProps extends Omit<InputProps, 'value' | 'onChange'> {
+  /**
+   * The variant to use.
+   * @default 'outlined'
+   */
+  variant: 'standard';
+}
+
+export interface OutlinedSelectProps extends Omit<OutlinedInputProps, 'value' | 'onChange'> {
+  /**
+   * The variant to use.
+   * @default 'outlined'
+   */
+  variant?: 'outlined';
+}
+
+export type SelectVariants = 'outlined' | 'standard' | 'filled';
+
+export type SelectProps<Value = unknown> =
+  | (FilledSelectProps & BaseSelectProps<Value>)
+  | (StandardSelectProps & BaseSelectProps<Value>)
+  | (OutlinedSelectProps & BaseSelectProps<Value>);
 
 /**
  *
@@ -162,8 +193,8 @@ export interface SelectProps<Value = unknown>
  * - [Select API](https://mui.com/material-ui/api/select/)
  * - inherits [OutlinedInput API](https://mui.com/material-ui/api/outlined-input/)
  */
-declare const Select: (<Value>(props: SelectProps<Value>) => JSX.Element) & {
+export default function Select<Value = unknown>(
+  props: SelectProps<Value>,
+): JSX.Element & {
   muiName: string;
 };
-
-export default Select;

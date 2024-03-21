@@ -184,7 +184,7 @@ export default function GitHubLabel() {
               onChange={(event, newValue, reason) => {
                 if (
                   event.type === 'keydown' &&
-                  event.key === 'Backspace' &&
+                  (event.key === 'Backspace' || event.key === 'Delete') &&
                   reason === 'removeOption'
                 ) {
                   return;

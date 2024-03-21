@@ -9,7 +9,7 @@ import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
 import LocalAtmRoundedIcon from '@mui/icons-material/LocalAtmRounded';
 import GradientText from 'docs/src/components/typography/GradientText';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import { GlowingIconContainer } from 'docs/src/components/action/InfoCard';
@@ -139,7 +139,7 @@ export default function HowToSupport() {
               <li>
                 Answer questions on{' '}
                 <Link href="https://stackoverflow.com/questions/tagged/material-ui">
-                  Stack Overflow
+                  Stack&nbsp;Overflow
                 </Link>
                 .
               </li>

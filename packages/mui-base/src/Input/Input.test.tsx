@@ -1,16 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-  createMount,
-  createRenderer,
-  describeConformanceUnstyled,
-  fireEvent,
-  screen,
-  act,
-} from '@mui-internal/test-utils';
+import { createMount, createRenderer, fireEvent, screen, act } from '@mui-internal/test-utils';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { Input, inputClasses, InputOwnerState } from '@mui/base/Input';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 describe('<Input />', () => {
   const mount = createMount();

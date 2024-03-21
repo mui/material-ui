@@ -12,7 +12,7 @@ import { useRouter } from 'next/router';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import UnfoldMoreRounded from '@mui/icons-material/UnfoldMoreRounded';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import IconImage from 'docs/src/components/icon/IconImage';
 import LicensingModelSwitch from 'docs/src/components/pricing/LicensingModelSwitch';
 import { useLicensingModel } from 'docs/src/components/pricing/LicensingModelContext';
@@ -574,8 +574,8 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'charts/pie': <ColumnHead label="Pie chart" href="/x/react-charts/pie/" />,
   'charts/sparkline': <ColumnHead label="Sparkline" href="/x/react-charts/sparkline/" />,
   'charts/gauge': <ColumnHead label="Gauge" href="/x/react-charts/gauge/" />,
-  'charts/treemap': <ColumnHead label="Tree map" href="/x/react-charts/tree-map/" />,
-  'charts/heatmap': <ColumnHead label="Heat map" href="/x/react-charts/heat-map/" />,
+  'charts/treemap': <ColumnHead label="Treemap" href="/x/react-charts/tree-map/" />,
+  'charts/heatmap': <ColumnHead label="Heatmap" href="/x/react-charts/heat-map/" />,
   'charts/radar': <ColumnHead label="Radar" href="/x/react-charts/radar/" />,
   'charts/funnel': <ColumnHead label="Funnel" href="/x/react-charts/funnel/" />,
   'charts/sankey': <ColumnHead label="Sankey" href="/x/react-charts/sankey/" />,
@@ -607,7 +607,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
       {...{
         label: 'Technical support for MUI Core',
         tooltip:
-          'Support for MUI Core (e.g. Material UI) is provided by the community. MUI Core maintainers focus on solving root issues to support the community at large.',
+          'Support for MUI Core (for example Material UI) is provided by the community. MUI Core maintainers focus on solving root issues to support the community at large.',
       }}
     />
   ),
@@ -755,7 +755,7 @@ const communityData: Record<string, React.ReactNode> = {
   'charts/sparkline': yes,
   'charts/gauge': pending,
   'charts/treemap': pending,
-  'charts/heatmap': pending,
+  'charts/heatmap': no,
   'charts/radar': pending,
   'charts/funnel': no,
   'charts/sankey': no,
@@ -1008,16 +1008,16 @@ function RowCategory(props: BoxProps) {
           pl: 1.5,
           display: 'block',
           textTransform: 'uppercase',
-          letterSpacing: '.08rem',
+          letterSpacing: '.1rem',
           fontWeight: theme.typography.fontWeightBold,
           fontSize: theme.typography.pxToRem(11),
-          color: 'text.secondary',
+          color: (theme.vars || theme).palette.text.tertiary,
           borderBottom: '1px solid',
-          bgcolor: 'grey.50',
-          borderColor: 'grey.200',
+          bgcolor: (theme.vars || theme).palette.grey[50],
+          borderColor: (theme.vars || theme).palette.grey[200],
           ...theme.applyDarkStyles({
-            bgcolor: 'primaryDark.900',
-            borderColor: 'primaryDark.600',
+            bgcolor: (theme.vars || theme).palette.primaryDark[900],
+            borderColor: (theme.vars || theme).palette.primaryDark[600],
           }),
         }),
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
@@ -1337,12 +1337,11 @@ export default function PricingTable({
           }
           sx={[
             (theme) => ({
-              p: 1,
-              py: 1.5,
+              px: 1,
               justifyContent: 'flex-start',
-              fontWeight: 400,
+              fontSize: '0.875rem',
+              fontWeight: 'medium',
               borderRadius: '0px',
-              color: 'text.primary',
               position: 'absolute',
               left: 0,
               top: 0,
@@ -1489,12 +1488,11 @@ export default function PricingTable({
           }
           sx={[
             (theme) => ({
-              p: 1,
-              py: 1.5,
+              px: 1,
               justifyContent: 'flex-start',
-              fontWeight: 400,
+              fontSize: '0.875rem',
+              fontWeight: 'medium',
               borderRadius: '0px',
-              color: 'text.primary',
               position: 'absolute',
               left: 0,
               top: 0,
@@ -1534,9 +1532,9 @@ export default function PricingTable({
         {divider}
         {renderNestedRow('charts/treemap')}
         {divider}
-        {renderNestedRow('charts/heatmap')}
-        {divider}
         {renderNestedRow('charts/radar')}
+        {divider}
+        {renderNestedRow('charts/heatmap')}
         {divider}
         {renderNestedRow('charts/funnel')}
         {divider}

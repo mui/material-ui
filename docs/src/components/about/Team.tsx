@@ -13,7 +13,7 @@ import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRou
 import XIcon from '@mui/icons-material/X';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
@@ -123,7 +123,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
                 borderRadius: 40,
                 border: '2px solid',
                 borderColor: 'primary.50',
-                boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.15)',
+                boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.1)',
                 transform: 'translateX(50%)',
                 overflow: 'hidden',
                 ...theme.applyDarkStyles({
@@ -185,7 +185,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
       </Typography>
       {props.about && <Divider sx={{ my: 1.5 }} />}
       {props.about && (
-        <Typography variant="body2" color="grey.600">
+        <Typography variant="body2" color="text.tertiary">
           {props.about}
         </Typography>
       )}
@@ -206,7 +206,7 @@ const contributors = [
   {
     name: 'Ryan Cogswell',
     github: 'ryancogswell',
-    title: 'Stack Overflow top contributor',
+    title: 'Stack Overflow top contributor',
     location: 'Minnesota, United States',
     locationCountry: 'us',
     src: 'https://avatars.githubusercontent.com/u/287804',

@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui-internal/test-utils';
 import PaginationItem, { paginationItemClasses as classes } from '@mui/material/PaginationItem';
+import describeConformance from '../../test/describeConformance';
 
 describe('<PaginationItem />', () => {
   const { render } = createRenderer();

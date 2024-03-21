@@ -12,6 +12,10 @@ import useSlot from '../utils/useSlot';
 
 export const AvatarGroupContext = React.createContext<AvatarGroupOwnerState | undefined>(undefined);
 
+if (process.env.NODE_ENV !== 'production') {
+  AvatarGroupContext.displayName = 'AvatarGroupContext';
+}
+
 const useUtilityClasses = () => {
   const slots = {
     root: ['root'],

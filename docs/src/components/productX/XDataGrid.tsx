@@ -22,7 +22,7 @@ import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
 import StylingInfo from 'docs/src/components/action/StylingInfo';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';
 
 const DEMOS = ['Editing', 'Selection', 'Sorting', 'Pagination', 'Filtering'] as const;

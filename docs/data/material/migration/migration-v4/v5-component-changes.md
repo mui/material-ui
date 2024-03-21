@@ -991,7 +991,7 @@ prop `listItemClasses` is removed, use `classes` instead.
 +<MenuItem classes={{...}}>
 ```
 
-Read more about the [MenuItem CSS API](/material-ui/api/menu-item/#css).
+Read more about the [MenuItem CSS API](/material-ui/api/menu-item/#classes).
 
 ## Modal
 
@@ -2008,7 +2008,7 @@ This change removes the confusion with the built-in `Omit` helper introduced in 
 
 The built-in `Omit`, while similar, is non-distributive.
 This leads to differences when applied to union types.
-[See this Stack Overflow answer for further details](https://stackoverflow.com/questions/57103834/typescript-omit-a-property-from-all-interfaces-in-a-union-but-keep-the-union-s/57103940#57103940).
+[See this Stack Overflow answer for further details](https://stackoverflow.com/questions/57103834/typescript-omit-a-property-from-all-interfaces-in-a-union-but-keep-the-union-s/57103940#57103940).
 
 ```diff
 -import { Omit } from '@mui/types';

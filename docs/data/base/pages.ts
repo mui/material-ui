@@ -11,6 +11,7 @@ const pages: readonly MuiPage[] = [
       { pathname: '/base-ui/getting-started/usage', title: 'Usage' },
       { pathname: '/base-ui/getting-started/customization', title: 'Customization' },
       { pathname: '/base-ui/getting-started/accessibility', title: 'Accessibility' },
+      { pathname: '/base-ui/getting-started/roadmap', title: 'Roadmap' },
       { pathname: '/base-ui/getting-started/support' },
     ],
   },

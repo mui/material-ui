@@ -2,13 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import userEvent from '@testing-library/user-event';
-import {
-  act,
-  createMount,
-  createRenderer,
-  describeConformanceUnstyled,
-  fireEvent,
-} from '@mui-internal/test-utils';
+import { act, createMount, createRenderer, fireEvent } from '@mui-internal/test-utils';
 import {
   Unstable_NumberInput as NumberInput,
   numberInputClasses,
@@ -16,6 +10,7 @@ import {
   NumberInputIncrementButtonSlotProps,
   NumberInputDecrementButtonSlotProps,
 } from '@mui/base/Unstable_NumberInput';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 // TODO v6: initialize @testing-library/user-event using userEvent.setup() instead of directly calling methods e.g. userEvent.click() for all related tests in this file
 // currently the setup() method uses the ClipboardEvent constructor which is incompatible with our lowest supported version of iOS Safari (12.2) https://github.com/mui/material-ui/blob/master/.browserslistrc#L44

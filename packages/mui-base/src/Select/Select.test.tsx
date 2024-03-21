@@ -4,7 +4,6 @@ import { spy } from 'sinon';
 import {
   createMount,
   createRenderer,
-  describeConformanceUnstyled,
   fireEvent,
   act,
   screen,
@@ -17,6 +16,7 @@ import { Select, SelectListboxSlotProps, selectClasses } from '@mui/base/Select'
 import { SelectOption } from '@mui/base/useOption';
 import { Option, OptionProps, OptionRootSlotProps, optionClasses } from '@mui/base/Option';
 import { OptionGroup } from '@mui/base/OptionGroup';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 // TODO v6: initialize @testing-library/user-event using userEvent.setup() instead of directly calling methods e.g. userEvent.click() for all related tests in this file
 // currently the setup() method uses the ClipboardEvent constructor which is incompatible with our lowest supported version of iOS Safari (12.2) https://github.com/mui/material-ui/blob/master/.browserslistrc#L44

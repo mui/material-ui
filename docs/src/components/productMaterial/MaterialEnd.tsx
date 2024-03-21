@@ -11,7 +11,7 @@ import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';
 
 export default function MaterialEnd() {
@@ -68,10 +68,11 @@ export default function MaterialEnd() {
               <GlowingIconContainer icon={<StyleRoundedIcon color="primary" />} />
               <div>
                 <Typography color="text.primary" fontWeight="semiBold" gutterBottom>
-                  Does it support Material 3?
+                  Does it support Material Design 3?
                 </Typography>
                 <Typography>
-                  The adoption of Material 3 is tentatively planned for Material UI v6. See the{' '}
+                  The adoption of Material Design 3 is tentatively planned for Material UI v7. See
+                  the{' '}
                   <Link href="https://mui.com/versions/#release-schedule">
                     the release schedule
                   </Link>{' '}

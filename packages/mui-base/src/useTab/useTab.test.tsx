@@ -8,6 +8,7 @@ import { useTab } from './useTab';
 
 describe('useTab', () => {
   const { render } = createRenderer();
+
   describe('getRootProps', () => {
     it('returns props for root slot', () => {
       function TestTab() {

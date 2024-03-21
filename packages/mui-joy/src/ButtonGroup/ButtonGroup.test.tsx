@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui-internal/test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import ButtonGroup, {
@@ -9,6 +9,7 @@ import ButtonGroup, {
 } from '@mui/joy/ButtonGroup';
 import Button, { buttonClasses, ButtonClassKey } from '@mui/joy/Button';
 import IconButton, { iconButtonClasses, IconButtonClassKey } from '@mui/joy/IconButton';
+import describeConformance from '../../test/describeConformance';
 
 describe('<ButtonGroup />', () => {
   const { render } = createRenderer();

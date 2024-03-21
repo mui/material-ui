@@ -210,6 +210,24 @@ const theme = createTheme();
   });
 }
 
+// props callback in variants
+{
+  createTheme({
+    components: {
+      MuiButton: {
+        variants: [
+          {
+            props: (props) => props.color !== 'secondary',
+            style: ({ theme: { palette } }) => ({
+              backgroundColor: palette.grey[500],
+            }),
+          },
+        ],
+      },
+    },
+  });
+}
+
 {
   createTheme({
     shape: {

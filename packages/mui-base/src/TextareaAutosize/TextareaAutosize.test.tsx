@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import sinon, { spy, stub } from 'sinon';
 import {
-  describeConformanceUnstyled,
   act,
   screen,
   waitFor,
@@ -11,6 +10,7 @@ import {
   fireEvent,
 } from '@mui-internal/test-utils';
 import { TextareaAutosize } from '@mui/base/TextareaAutosize';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 function getStyleValue(value: string) {
   return parseInt(value, 10) || 0;
@@ -456,6 +456,19 @@ describe('<TextareaAutosize />', () => {
 
       // the input should be 2 lines
       expect(input.style).to.have.property('height', `${lineHeight * 2}px`);
+    });
+  });
+
+  it('should apply the inline styles using the "style" prop', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const { container } = render(<TextareaAutosize style={{ backgroundColor: 'yellow' }} />);
+    const input = container.querySelector<HTMLTextAreaElement>('textarea')!;
+
+    expect(input).toHaveComputedStyle({
+      backgroundColor: 'rgb(255, 255, 0)',
     });
   });
 });

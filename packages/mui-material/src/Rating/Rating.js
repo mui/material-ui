@@ -2,9 +2,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, visuallyHidden, clamp } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import useTheme from '../styles/useTheme';
+import clamp from '@mui/utils/clamp';
+import visuallyHidden from '@mui/utils/visuallyHidden';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import composeClasses from '@mui/utils/composeClasses';
+import { useRtl } from '@mui/system/RtlProvider';
 import {
   capitalize,
   useForkRef,
@@ -327,7 +329,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
   });
 
   const valueRounded = roundValueToPrecision(valueDerived, precision);
-  const theme = useTheme();
+  const isRtl = useRtl();
   const [{ hover, focus }, setState] = React.useState({
     hover: -1,
     focus: -1,
@@ -362,7 +364,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
     let percent;
 
-    if (theme.direction === 'rtl') {
+    if (isRtl) {
       percent = (right - event.clientX) / containerWidth;
     } else {
       percent = (event.clientX - left) / containerWidth;

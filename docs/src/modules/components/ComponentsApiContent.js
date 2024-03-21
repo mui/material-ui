@@ -4,12 +4,13 @@ import PropTypes from 'prop-types';
 import kebabCase from 'lodash/kebabCase';
 import { useRouter } from 'next/router';
 import { exactProp } from '@mui/utils';
-import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
+import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
+import { DEFAULT_API_LAYOUT_STORAGE_KEYS } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 
 function getTranslatedHeader(t, header, text) {
   const translations = {
@@ -49,7 +50,12 @@ Heading.propTypes = {
 };
 
 export default function ComponentsApiContent(props) {
-  const { descriptions, pageContents } = props;
+  const {
+    descriptions,
+    pageContents,
+    defaultLayout = 'table',
+    layoutStorageKey = DEFAULT_API_LAYOUT_STORAGE_KEYS,
+  } = props;
   const t = useTranslate();
   const userLanguage = useUserLanguage();
   const router = useRouter();
@@ -142,7 +148,7 @@ export default function ComponentsApiContent(props) {
           <Heading hash={componentNameKebabCase} text={`${componentName} API`} />
           <Heading text="import" hash={`${componentNameKebabCase}-import`} level="h3" />
           <HighlightedCode code={importInstructions} language="jsx" />
-          <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
+          <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
           <PropertiesSection
             properties={componentProps}
             propertiesDescriptions={propDescriptions}
@@ -150,6 +156,8 @@ export default function ComponentsApiContent(props) {
             spreadHint={spreadHint}
             level="h3"
             titleHash={`${componentNameKebabCase}-props`}
+            defaultLayout={defaultLayout}
+            layoutStorageKey={layoutStorageKey.props}
           />
           <br />
           {cssComponent && (
@@ -216,6 +224,8 @@ export default function ComponentsApiContent(props) {
               slotGuideLink &&
               t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink)
             }
+            defaultLayout={defaultLayout}
+            layoutStorageKey={layoutStorageKey.slots}
           />
           <ClassesSection
             componentClasses={componentClasses}
@@ -224,6 +234,8 @@ export default function ComponentsApiContent(props) {
             spreadHint={t('api-docs.classesDescription')}
             titleHash={`${componentNameKebabCase}-classes`}
             level="h3"
+            defaultLayout={defaultLayout}
+            layoutStorageKey={layoutStorageKey.classes}
           />
         </MarkdownElement>
         <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">
@@ -237,7 +249,13 @@ export default function ComponentsApiContent(props) {
 }
 
 ComponentsApiContent.propTypes = {
+  defaultLayout: PropTypes.oneOf(['collapsed', 'expanded', 'table']),
   descriptions: PropTypes.object.isRequired,
+  layoutStorageKey: PropTypes.shape({
+    classes: PropTypes.string,
+    props: PropTypes.string,
+    slots: PropTypes.string,
+  }),
   pageContents: PropTypes.object.isRequired,
 };
 
