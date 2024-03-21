@@ -158,8 +158,6 @@ const blacklist = [
   'docs-styles-basics/StressTest.png', // Need interaction
   'docs-versions', // No public components
   /^docs-guides-.*/, // No public components
-  'docs-components-autocomplete-data', // No components, contains only data for the demo
-  'docs-components-transfer-list-utils', // Commont utilities for demos
 ];
 
 const unusedBlacklistPatterns = new Set(blacklist);
