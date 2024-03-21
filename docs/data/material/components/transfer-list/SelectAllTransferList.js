@@ -21,7 +21,6 @@ function intersection(a, b) {
 function union(a, b) {
   return [...a, ...not(b, a)];
 }
-
 export default function SelectAllTransferList() {
   const [checked, setChecked] = React.useState([]);
   const [left, setLeft] = React.useState([0, 1, 2, 3]);

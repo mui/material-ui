@@ -152,13 +152,17 @@ module.exports = async function demoLoader() {
       // Check for an extension (ending with a "." followed by 2-4 letters)
       if (!/\.\w{2,4}$/.test(importModuleID)) {
         // If the demo is a JS demo, we can assume that the relative import is either
-        // a `.js` or a `.jsx` file,
-        // with `.js` taking precedence over `.jsx`
+        // a `.js` or a `.jsx` file, with `.js` taking precedence over `.jsx`
         // likewise for TS demos, with `.ts` taking precedence over `.tsx`
         const extensions = variant === 'JS' ? ['.js', '.jsx'] : ['.ts', '.tsx', '.js', '.jsx'];
-        const extension = extensions.find((ext) =>
-          statSync(path.join(moduleFilepath, '..', `${importModuleID}${ext}`)),
-        );
+        const extension = extensions.find((ext) => {
+          try {
+            return statSync(path.join(moduleFilepath, '..', `${importModuleID}${ext}`));
+          } catch (error) {
+            // If the file does not exist, we return false and continue to the next extension
+            return false;
+          }
+        });
         relativeModuleFilename = `${importModuleID}${extension}`;
       }
       if (!demoMap) {
