@@ -116,7 +116,7 @@ const rule = {
                   ? parent.init.expression.callee
                   : parent.init.callee;
               if (callee.name.includes(parent.id.name)) {
-                // For component factory, e.g. const Container = createContainer({ ... })
+                // For component factory, for example const Container = createContainer({ ... })
                 componentName = parent.id.name;
               }
             }

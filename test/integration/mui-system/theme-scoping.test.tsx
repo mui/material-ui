@@ -5,7 +5,6 @@ import { createRenderer } from '@mui-internal/test-utils';
 import { ThemeContext } from '@mui/styled-engine';
 import * as material from '@mui/material';
 import * as joy from '@mui/joy';
-import * as md3 from '@mui/material-next';
 
 // simulate 3rd-party library like Theme-UI, Chakra-UI, or Mantine
 interface LibTheme {
@@ -62,21 +61,6 @@ const materialTheme = material.createTheme({
 const CustomMaterial = material.styled('div')(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
 }));
-
-const md3Theme = md3.extendTheme({
-  components: {
-    MuiButton: {
-      defaultProps: {
-        variant: 'outlined',
-      },
-      styleOverrides: {
-        root: ({ theme }) => ({
-          color: theme.vars.palette.error.dark,
-        }),
-      },
-    },
-  },
-});
 
 describe('Multiple nested theme providers', () => {
   const { render } = createRenderer();
@@ -138,33 +122,6 @@ describe('Multiple nested theme providers', () => {
     expect(getByText('Joy')).toHaveComputedStyle({ mixBlendMode: 'darken' });
     expect(getByText('Material')).to.have.class(material.buttonClasses.outlinedPrimary);
     expect(getByText('Material')).toHaveComputedStyle({ mixBlendMode: 'darken' });
-  });
-
-  it('MD3 + Joy UI', () => {
-    const { getByText } = render(
-      <md3.CssVarsProvider theme={md3Theme}>
-        <joy.CssVarsProvider theme={{ [joy.THEME_ID]: joyTheme }}>
-          <joy.Button
-            sx={(theme) => ({
-              // test `sx`
-              bgcolor: theme.vars.palette.neutral[100],
-            })}
-          >
-            Joy
-          </joy.Button>
-          <md3.Button
-            sx={(theme) => ({
-              bgcolor: theme.palette.secondary.light,
-            })}
-          >
-            MD3
-          </md3.Button>
-        </joy.CssVarsProvider>
-      </md3.CssVarsProvider>,
-    );
-    // these test if `useThemeProps` works with theme scoping
-    expect(getByText('Joy')).to.have.class(joy.buttonClasses.variantOutlined);
-    expect(getByText('MD3')).to.have.class(material.buttonClasses.outlined);
   });
 
   it('Material UI works with 3rd-party lib', () => {

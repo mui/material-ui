@@ -72,7 +72,7 @@ export const FormControlRoot = styled('div', {
     '--FormHelperText-color': theme.variants.plainDisabled?.[ownerState.color || 'neutral']?.color,
   },
   display: 'flex',
-  position: 'relative', // for keeping the control action area, e.g. Switch
+  position: 'relative', // for keeping the control action area, for example Switch
   flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
   ...(ownerState.orientation === 'horizontal' && {
     [`& > label ~ .${switchClasses.root}`]: {

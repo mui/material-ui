@@ -10,7 +10,7 @@ const currentDirectory = fileURLToPath(new URL('.', import.meta.url));
 
 // Icons we don't publish.
 // This is just a list of new icons.
-// In the future we might change what icons we want to exclude (e.g. by popularity)
+// In the future we might change what icons we want to exclude (for example by popularity)
 const ignoredIconNames = new Set([
   // TODO v6: Whatsapp duplicates with WhatsApp
   // We don't need it https://fonts.google.com/icons?icon.set=Material+Icons&icon.query=whatsapp

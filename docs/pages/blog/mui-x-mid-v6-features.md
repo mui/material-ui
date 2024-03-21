@@ -131,7 +131,7 @@ Think of a file system navigator displaying folders and files or a navigation li
 
 Keep on the look out on our next blog for the Tree View migration.
 
-We decided to migrate this component to MUI X as there are still many features that would be great to build (e.g. checkbox, drag & drop, virtualization) and it's usually not a significant component of a design system.
+We decided to migrate this component to MUI X as there are still many features that would be great to build (for example checkbox, drag & drop, virtualization) and it's usually not a significant component of a design system.
 Head to [MUI Core vs. MUI X](https://mui-org.notion.site/X-FAQ-c33e9a7eabba4da1ad7f8c04f99044cc) if you would like to learn more about this decision.
 
 ## Feedback

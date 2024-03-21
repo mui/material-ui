@@ -115,7 +115,7 @@ Do not add the `ref` parameter to the button element manually, as the correct re
 
 :::info
 The following features can be used with both components and hooks.
-For the sake of simplicity, demos and code snippets primarily feature components.
+For the sake of simplicity, demos, and code snippets primarily feature components.
 :::
 
 ### Custom elements

@@ -88,7 +88,7 @@ class AdErrorBoundary extends React.Component {
   componentDidCatch() {
     // send explicit `'null'`
     const eventLabel = String(this.props.eventLabel);
-    // TODO: Use proper error monitoring service (e.g. Sentry) instead
+    // TODO: Use proper error monitoring service (for example Sentry) instead
 
     window.gtag('event', 'ad', {
       eventAction: 'crash',

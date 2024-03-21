@@ -66,7 +66,7 @@ Depending on the day, you'll:
 - You will collaborate with Developer Advocates, Designers, Product Managers, Engineering Managers, Marketing, and other stakeholders to identify opportunities for improvement.
 - Inform the technical approach and architecture of MUI as it relates to developer experiences.
 - Help contribute to the MUI community by providing code review, mentorship, and support to MUI employees, community members, and partners.
-- Advocate and support improvements to MUI to improve development and integration of tools and plugins, e.g. Storybook, Tailwind CSS.
+- Advocate and support improvements to MUI to improve development and integration of tools and plugins, for example Storybook, Tailwind CSS.
 - Work on issues and improvements critical to the success of MUI users and the broader community.
 - Foster a culture of learning through iterative improvements and strong collaboration with UX research.
 

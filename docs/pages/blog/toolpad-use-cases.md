@@ -30,7 +30,7 @@ Let's delve into four scenarios that Toolpad has successfully addressed:
 
 ## 1. Support key validator
 
-We offer a priority support service to our MUI X premium customers: their queries get an expedited response within 24 hours.
+We offer a priority support service to our MUI X Premium customers: their queries get an expedited response within 24 hours.
 They share their issue through a Priority Support template in our repository where they're directed to validate their license key, and once it's validated, the 24-hour countdown starts.
 
 <a href="https://tools-public.mui.com/prod/pages/validateSupport">
@@ -61,7 +61,7 @@ Your browser does not support the video tag.
 </video>
 
 We opted for Toolpad since Metabase doesn't support importing data from REST APIs.
-This is possible in Google Sheets but it requires writing a lot of JS code, and since we wanted to embed it in a [Notion page](https://mui-org.notion.site/KPIs-1ce9658b85ce4628a2a2ed2ae74ff69c?pvs=4#3974cb6ed12b4c5a9013bac63113e3bc), Toolpad was the ideal choice.
+This is possible in Google Sheets but it requires writing a lot of JavaScript code, and since we wanted to embed it in a [Notion page](https://mui-org.notion.site/KPIs-1ce9658b85ce4628a2a2ed2ae74ff69c?pvs=4#3974cb6ed12b4c5a9013bac63113e3bc), Toolpad was the ideal choice.
 Toolpad handles state management and routing, and simplifies query building and data binding, removing the need to write glue code.
 
 You can explore both of the aforementioned apps in dev mode on your device by running the underlying [Node application](https://github.com/mui/mui-public/tree/HEAD/tools-public).
@@ -84,7 +84,7 @@ Thanks to Toolpad we've managed to bring it all under one roof, dramatically imp
 
 ## 4. Contributor payout
 
-We have a script to fetch monthly payout data for contributors to the MUI Store.
+We have a script to fetch monthly payout data for contributors to the MUI Store.
 Our operations team is responsible for paying contributors, but the script proved too technically challenging for them to run without help from our engineers.
 We solved this problem by importing the script into Toolpad and creating a UI for it.
 The video below shows how a user can select the dates, run the script, and receive text that's properly formatted to copy and paste directly into Slack communications:

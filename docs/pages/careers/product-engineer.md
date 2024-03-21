@@ -61,7 +61,7 @@ Depending on the day, you'll:
 - Define the product direction
 - Review new items submitted by the contributors to be hosted on the marketplace
 - Fix root problems raised by store customers on the support channels
-- Take care of operational needs, e.g. automate payouts, create sales reports
+- Take care of operational needs, for example automate payouts, create sales reports
 
 ### Here are a few initiatives you might work on
 

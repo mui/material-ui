@@ -20,7 +20,7 @@ const inputComponents = [
     link: '/material-ui/react-button/',
     md1: false,
     md2: true,
-    md3: true,
+    md3: false,
     noGuidelines: false,
   },
   {
@@ -90,7 +90,7 @@ const inputComponents = [
     link: '/material-ui/react-slider/',
     md1: false,
     md2: true,
-    md3: true,
+    md3: false,
     noGuidelines: false,
   },
   {

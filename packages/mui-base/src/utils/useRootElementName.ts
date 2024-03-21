@@ -3,7 +3,7 @@ import * as React from 'react';
 
 type UseRootElementNameParameters = {
   /**
-   * The HTML element expected to be rendered, e.g. 'div', 'button' etc
+   * The HTML element expected to be rendered, for example 'div', 'button' etc
    * @default ''
    */
   rootElementName?: keyof HTMLElementTagNameMap;
@@ -17,7 +17,7 @@ type UseRootElementNameParameters = {
 /**
  * @ignore - do not document.
  *
- * Use this function determine the host element correctly on the server (in a SSR context, e.g. Next.js)
+ * Use this function determine the host element correctly on the server (in a SSR context, for example Next.js)
  */
 export function useRootElementName(
   parameters: UseRootElementNameParameters,
@@ -36,7 +36,7 @@ export function useRootElementName(
           `useRootElementName: the \`rootElementName\` prop of ${
             componentName ? `the ${componentName} component` : 'a component'
           } expected the '${rootElementNameProp}' element, but a '${rootElementName.toLowerCase()}' was rendered instead`,
-          'This may cause hydration issues in an SSR context, e.g. in a Next.js app',
+          'This may cause hydration issues in an SSR context, for example in a Next.js app',
         );
       }
     }, [rootElementNameProp, rootElementName, componentName]);

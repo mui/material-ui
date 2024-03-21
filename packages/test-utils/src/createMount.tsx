@@ -109,7 +109,7 @@ export default function createMount(options: CreateMountOptions = {}) {
     });
 
     // some tests require that no other components are in the tree
-    // e.g. when doing .instance(), .state() etc.
+    // for example when doing .instance(), .state() etc.
     const wrapper = mount(
       strict == null ? node : <Mode __element={node} __strict={Boolean(strict)} />,
       {

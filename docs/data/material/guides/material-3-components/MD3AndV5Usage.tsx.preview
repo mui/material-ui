@@ -1,8 +1,0 @@
-<ThemeProvider theme={md2Theme}>
-  <Stack spacing={2} direction="row">
-    <MD2Button variant="contained">MD2 Button</MD2Button>
-    <CssVarsProvider theme={md3Theme}>
-      <MD3Button variant="filled">MD3 Button</MD3Button>
-    </CssVarsProvider>
-  </Stack>
-</ThemeProvider>

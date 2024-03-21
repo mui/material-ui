@@ -87,7 +87,7 @@ export interface ThemeVars extends ThemeScales, ColorSystemVars {}
 export interface ThemeCssVarOverrides {}
 
 /**
- * For providing `sx` autocomplete, e.g. `color`, `bgcolor`, `borderColor`.
+ * For providing `sx` autocomplete, for example `color`, `bgcolor`, `borderColor`.
  */
 export type TextColor =
   | NormalizeVars<Omit<ColorSystem['palette'], 'mode'>, '.'>

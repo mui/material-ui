@@ -239,7 +239,7 @@ describe('<Menu /> integration', () => {
     });
 
     // falling back to the menu immediately so that we don't have to come up
-    // with custom fallbacks (e.g. what happens if the first item is also selected)
+    // with custom fallbacks (for example what happens if the first item is also selected)
     // it's debatable whether disabled items should still be focusable
     specify(
       '[variant=selectedMenu] focuses the first non-disabled item if the selected menuitem is disabled',

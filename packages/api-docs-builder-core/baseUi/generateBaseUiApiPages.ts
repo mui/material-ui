@@ -15,7 +15,7 @@ export async function generateBaseUIApiPages() {
       const componentName = pathnameTokens[3];
 
       // TODO: fix `productName` should be called `productId` and include the full name,
-      // e.g. base-ui below.
+      // for example base-ui below.
       if (
         productName === 'base' &&
         (markdown.filename.indexOf('\\components\\') >= 0 ||

@@ -55,18 +55,6 @@ async function getWebpackEntries() {
     },
   );
 
-  const materialNextPackagePath = path.join(workspaceRoot, 'packages/mui-material-next/build');
-  const materialNextComponents = (
-    await glob(path.join(materialNextPackagePath, '([A-Z])*/index.js'))
-  ).map((componentPath) => {
-    const componentName = path.basename(path.dirname(componentPath));
-
-    return {
-      id: `@mui/material-next/${componentName}`,
-      path: path.relative(workspaceRoot, path.dirname(componentPath)),
-    };
-  });
-
   const joyPackagePath = path.join(workspaceRoot, 'packages/mui-joy/build');
   const joyComponents = (await glob(path.join(joyPackagePath, '([A-Z])*/index.js'))).map(
     (componentPath) => {
@@ -153,11 +141,6 @@ async function getWebpackEntries() {
       path: path.join(path.relative(workspaceRoot, materialPackagePath), 'legacy/index.js'),
     },
     {
-      id: '@mui/material-next',
-      path: path.join(path.relative(workspaceRoot, materialNextPackagePath), 'index.js'),
-    },
-    ...materialNextComponents,
-    {
       id: '@mui/joy',
       path: path.join(path.relative(workspaceRoot, joyPackagePath), 'index.js'),
     },
@@ -218,7 +201,6 @@ function createWebpackConfig(entry, environment) {
         '@mui/private-theming': path.join(workspaceRoot, 'packages/mui-private-theming/build'),
         '@mui/utils': path.join(workspaceRoot, 'packages/mui-utils/build'),
         '@mui/base': path.join(workspaceRoot, 'packages/mui-base/build'),
-        '@mui/material-next': path.join(workspaceRoot, 'packages/mui-material-next/build'),
         '@mui/material-nextjs': path.join(workspaceRoot, 'packages/mui-material-nextjs/build'),
         '@mui/joy': path.join(workspaceRoot, 'packages/mui-joy/build'),
       },

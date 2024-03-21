@@ -11,7 +11,7 @@ export interface OverridableComponent<TypeMap extends OverridableTypeMap> {
   // If you make any changes to this interface, please make sure to update the
   // `OverridableComponent` type in `mui-types/index.d.ts` as well.
   // Also, there are types in Base UI that have a similar shape to this interface
-  // (e.g. SelectType, OptionType, etc.).
+  // (for example SelectType, OptionType, etc.).
   <RootComponent extends React.ElementType>(
     props: {
       /**

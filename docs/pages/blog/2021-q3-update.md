@@ -189,7 +189,7 @@ We'll do our best, no guarantee!
 
 ### MUI Core
 
-- 🚀 We will double down on v5 before starting to solve new large problems, e.g. a revamp of the select.
+- 🚀 We will double down on v5 before starting to solve new large problems, for example a revamp of the select.
   We have made bold changes in this version since v4, but until recently, only a small percentage of the community was using v5.
   In the last few weeks, we have seen a strong influx of feedback from the community.
   We need to make the most of this feedback to solve regressions, improve the documentation for the new APIs, adjust the tradeoffs we took in the light of more information, and more.

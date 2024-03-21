@@ -23,10 +23,6 @@ const PROJECTS: Project[] = [
     rootPath: path.join(process.cwd(), 'packages/mui-material'),
   },
   {
-    name: 'material-next',
-    rootPath: path.join(process.cwd(), 'packages/mui-material-next'),
-  },
-  {
     name: 'joy',
     rootPath: path.join(process.cwd(), 'packages/mui-joy'),
   },

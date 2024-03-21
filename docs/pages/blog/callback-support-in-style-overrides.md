@@ -68,7 +68,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 The callback is type-safe.
 
-- `ownerState`: `ComponentProps` interface, e.g. `ButtonProps`, `ChipProps`, etc.
+- `ownerState`: `ComponentProps` interface, for example `ButtonProps`, `ChipProps`, etc.
 - `theme`: `Theme` interface from `@mui/material/styles`.
 
 ```tsx

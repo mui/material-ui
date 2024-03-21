@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import * as React from 'react';
 import { styled, Theme, useThemeProps } from '../styles';
 
-export type PopperProps = Omit<BasePopperProps, 'direction'> & {
+export interface PopperProps extends Omit<BasePopperProps, 'direction'> {
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -31,7 +31,7 @@ export type PopperProps = Omit<BasePopperProps, 'direction'> & {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
-};
+}
 
 const PopperRoot = styled(BasePopper, {
   name: 'MuiPopper',

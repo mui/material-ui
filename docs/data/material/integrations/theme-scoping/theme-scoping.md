@@ -36,7 +36,7 @@ The Material UI theme will be separated from the other library, so when you use
 
 ### Using with Theme UI
 
-Render Material UI's theme provider below Theme UI's provider and assign the Material theme to the `THEME_ID` property:
+Render Material UI's theme provider below Theme UI's provider and assign the `materialTheme` to the `THEME_ID` property:
 
 ```js
 import { ThemeUIProvider } from 'theme-ui';
@@ -70,7 +70,7 @@ function App() {
 
 ### Using with Chakra UI
 
-Render Material UI's theme provider below Chakra UI's provider and assign the material theme to the `THEME_ID` property:
+Render Material UI's theme provider below Chakra UI's provider and assign the `materialTheme` to the `THEME_ID` property:
 
 ```js
 import { ChakraProvider, extendTheme as chakraExtendTheme } from '@chakra-ui/react';

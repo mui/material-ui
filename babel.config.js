@@ -30,7 +30,6 @@ module.exports = function getBabelConfig(api) {
     '@mui/private-theming': resolveAliasPath('./packages/mui-private-theming/src'),
     '@mui/base': resolveAliasPath('./packages/mui-base/src'),
     '@mui/utils': resolveAliasPath('./packages/mui-utils/src'),
-    '@mui/material-next': resolveAliasPath('./packages/mui-material-next/src'),
     '@mui/joy': resolveAliasPath('./packages/mui-joy/src'),
     '@pigment-css/react': resolveAliasPath('./packages/pigment-css-react/src'),
     '@mui/internal-docs-utils': resolveAliasPath('./packages-internal/docs-utils/src'),

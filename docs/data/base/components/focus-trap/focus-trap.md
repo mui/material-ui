@@ -78,7 +78,7 @@ The following demo uses the [Portal](/base-ui/react-portal/) component to render
 
 ### Using a toggle inside the trap
 
-The most common use-case for the Focus Trap component is to maintain focus within a [Modal](/base-ui/react-modal/) component that is entirely separate from the element that opens the modal.
+The most common use case for the Focus Trap component is to maintain focus within a [Modal](/base-ui/react-modal/) component that is entirely separate from the element that opens the modal.
 But you can also create a toggle button for the `open` prop of the Focus Trap component that is stored inside of the component itself, as shown in the following demo:
 
 {{"demo": "ContainedToggleTrappedFocus.js"}}

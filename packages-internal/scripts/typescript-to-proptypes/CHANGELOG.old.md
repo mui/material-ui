@@ -123,7 +123,7 @@ All notable changes to this project will be documented in this file. See [standa
 - **parser:** handle optional any ([30f56ec](https://github.com/merceyz/typescript-to-proptypes/commit/30f56ec))
 - **parser:** handle optional React.ElementType ([c7a87fd](https://github.com/merceyz/typescript-to-proptypes/commit/c7a87fd))
 - **parser:** treat ComponentType as elementType ([53f1e21](https://github.com/merceyz/typescript-to-proptypes/commit/53f1e21))
-- export typescript as ts ([ba90e22](https://github.com/merceyz/typescript-to-proptypes/commit/ba90e22))
+- export TypeScript as ts ([ba90e22](https://github.com/merceyz/typescript-to-proptypes/commit/ba90e22))
 
 ### Features
 

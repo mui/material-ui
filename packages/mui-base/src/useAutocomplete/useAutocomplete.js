@@ -598,7 +598,7 @@ export function useAutocomplete(props) {
             [
               `A textarea element was provided to ${componentName} where input was expected.`,
               `This is not a supported scenario but it may work under certain conditions.`,
-              `A textarea keyboard navigation may conflict with Autocomplete controls (e.g. enter and arrow keys).`,
+              `A textarea keyboard navigation may conflict with Autocomplete controls (for example enter and arrow keys).`,
               `Make sure to test keyboard navigation and add custom event handlers if necessary.`,
             ].join('\n'),
           );

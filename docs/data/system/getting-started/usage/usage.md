@@ -299,7 +299,7 @@ Here's what that looks like:
 {{"demo": "BreakpointsAsArray.js"}}
 
 :::success
-This option should only be considered when the theme has a limited number of breakpoints, e.g. 3.
+This option should only be considered when the theme has a limited number of breakpoints, for example 3.
 
 We recommend using the object API instead if you need to define more than a few breakpoints.
 :::
