@@ -33,7 +33,7 @@ After a few months in pre-release, we're thrilled to announce the stable release
   - [Built-in Grid](#built-in-grid)
   - [Reference Line](#reference-line)
 - [Date and Time Pickers](#date-and-time-pickers)
-  - [Improved accessibility on Pickers Text field](#improved-accessibility-on-pickers-text-field)
+  - [Improved accessibility for the field components](#improved-accessibility-for-the-field-components)
   - [Support for date-fns v3](#support-for-date-fns-v3)
   - [Date Time Range Picker](#date-time-range-picker)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 - [What's next](#whats-next)
