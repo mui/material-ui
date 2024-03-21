@@ -138,48 +138,32 @@ export default function SignIn() {
     <ThemeProvider theme={showCustomTheme ? SignInTheme : defaultTheme}>
       <CssBaseline />
       <Stack
-        direction={{ xs: 'column', sm: 'row' }}
+        direction="column"
         justifyContent="space-between"
         sx={(theme) => ({
           backgroundImage:
             theme.palette.mode === 'light'
-              ? `linear-gradient(180deg, ${alpha('#CEE5FD', 0.7)}, #FFF)`
-              : `linear-gradient(${alpha('#02294F', 0.5)}, ${alpha('#021F3B', 0.0)})`,
+              ? `linear-gradient(180deg, ${alpha('#CEE5FD', 0.2)}, #FFF)`
+              : `linear-gradient(${alpha('#02294F', 0.2)}, ${alpha('#021F3B', 0.0)})`,
           backgroundRepeat: 'no-repeat',
           px: { xs: 2, sm: 4 },
           height: '100dvh',
         })}
         component="main"
       >
-        <Stack
-          direction="row"
-          justifyContent="space-between"
-          sx={{ display: { xs: 'flex', sm: 'none' }, my: 4 }}
-        >
+        <Stack direction="row" justifyContent="space-between" sx={{ my: 2 }}>
           <Button
             startIcon={<ArrowBackRoundedIcon />}
             component="a"
-            href="/material-ui/getting-started/templates/landing-page/"
+            href="/material-ui/getting-started/templates/"
           >
             Back
           </Button>
           <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
         </Stack>
-        <Button
-          startIcon={<ArrowBackRoundedIcon />}
-          component="a"
-          href="/material-ui/getting-started/templates/landing-page/"
-          sx={{
-            alignSelf: 'flex-start',
-            mt: 4,
-            display: { xs: 'none', sm: 'flex' },
-          }}
-        >
-          Back
-        </Button>
         <Stack
           justifyContent={{ xs: 'start', sm: 'center' }}
-          sx={{ height: '100%' }}
+          sx={{ height: '100%', mt: { xs: 0, sm: -72 } }}
         >
           <Card
             variant="outlined"
@@ -310,15 +294,6 @@ export default function SignIn() {
             </Box>
           </Card>
         </Stack>
-        <ToggleColorMode
-          mode={mode}
-          toggleColorMode={toggleColorMode}
-          sx={{
-            alignSelf: 'flex-start',
-            mt: 4,
-            display: { xs: 'none', sm: 'flex' },
-          }}
-        />
       </Stack>
       <ToggleCustomTheme
         showCustomTheme={showCustomTheme}
