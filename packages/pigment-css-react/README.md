@@ -677,8 +677,11 @@ module.exports = withPigment(nextConfig, {
   theme: yourCustomTheme,
   // CSS output option
   css: {
-    // Specify your default direction
-    defaultDirection: 'rtl',
+    // Specify your default CSS authoring direction
+    defaultDirection: 'ltr',
+    // To output CSS for the opposite direction to `defaultDirection`
+    // Default is `false`.
+    generateForBothDir: true,
   },
 });
 ```
@@ -693,27 +696,19 @@ export default defineConfig({
     pigment({
       theme: yourTheme,
       css: {
-        // Specify your default direction
-        defaultDirection: 'rtl',
+        // Specify your default CSS authoring direction
+        defaultDirection: 'ltr',
+        // To output CSS for the opposite direction to `defaultDirection`
+        // Default is `false`.
+        generateForBothDir: true,
       },
     }),
-    // ... other plugins
+    // ... other plugins.
   ],
 });
 ```
 
-### Generate CSS for both directions
-
-Turn the `generateForBothDir` prop to true to generate CSS for both directions. This enables you to add a direction toggle on your app that would change it instantly given the CSS is already available.
-
-```js
-  css: {
-    // Specify your default direction
-    defaultDirection: 'ltr',
-    // Default is `false`
-    generateForBothDir: true,
-  },
-```
+### Generated CSS
 
 For example, if you've specified `defaultDirection: 'ltr'` and `dir="rtl"`, and your authored CSS looks like this:
 
