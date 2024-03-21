@@ -44,8 +44,14 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getChipUtilityClass, classes);
 };
 
-const isIconColorEqualToColor = ({ icon, color }) =>
-  icon && React.isValidElement(icon) && icon.props?.color === color;
+const parseIconColor = (icon, color) =>
+  React.isValidElement(icon) ? icon.props.color || color : color;
+
+const isIconColorEqualToColor = ({ icon, color }) => {
+  const iconColor = parseIconColor(icon, color);
+
+  return iconColor === color;
+};
 
 const isClickable = ({ clickable, onClick }) =>
   clickable !== false && !!onClick ? true : clickable;
@@ -458,7 +464,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     disabled,
     size,
     color,
-    iconColor: React.isValidElement(iconProp) ? iconProp.props.color || color : color,
+    iconColor: parseIconColor(iconProp, color),
     onDelete: !!onDelete,
     clickable,
     variant,
