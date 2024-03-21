@@ -665,7 +665,7 @@ declare module '@pigment-css/react/theme' {
 
 ## Right-to-left support
 
-To support right-to-left (RTL) languages, add the `dir="rtl"` attribute to your app's `<html>` element or any other equivalent top level container. Then, update your bundler config as follows:
+To support right-to-left (RTL) languages, add the `dir="rtl"` attribute to your app's `<html>` element or any other equivalent top level container. Then, update your bundler config as follows to generate styles for both directions:
 
 ### Next.js
 
@@ -679,8 +679,8 @@ module.exports = withPigment(nextConfig, {
   css: {
     // Specify your default CSS authoring direction
     defaultDirection: 'ltr',
-    // To output CSS for the opposite direction to `defaultDirection`
-    // Default is `false`.
+    // Generate CSS for the opposite of the `defaultDirection`
+    // This is set to `false` by default
     generateForBothDir: true,
   },
 });
@@ -698,8 +698,8 @@ export default defineConfig({
       css: {
         // Specify your default CSS authoring direction
         defaultDirection: 'ltr',
-        // To output CSS for the opposite direction to `defaultDirection`
-        // Default is `false`.
+        // Generate CSS for the opposite of the `defaultDirection`
+        // This is set to `false` by default
         generateForBothDir: true,
       },
     }),
