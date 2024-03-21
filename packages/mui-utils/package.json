@@ -75,6 +75,6 @@
     "directory": "build"
   },
   "engines": {
-    "node": ">=18.19.0"
+    "node": ">=12.0.0"
   }
 }
