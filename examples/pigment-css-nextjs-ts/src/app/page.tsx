@@ -71,8 +71,7 @@ export default function Home() {
       })}
     >
       <h1
-        className={`
-        ${css(({ theme }) => ({
+        className={`my-custom-class ${css(({ theme }) => ({
           fontFamily: 'system-ui, sans-serif',
           fontSize: '4rem',
           fontWeight: 500,
@@ -85,7 +84,7 @@ export default function Home() {
           ...theme.applyStyles('dark', { color: '#fff' }),
         }))}`}
       >
-        Pigment CSS
+        Pigment&nbsp;CSS
         <span
           className={css(({ theme }) => ({
             position: 'absolute',
@@ -153,17 +152,15 @@ export default function Home() {
         </span>
       </h1>
       <div
-        className={`
-          ${css({
-            fontFamily: 'system-ui, sans-serif',
-            letterSpacing: '2px',
-            fontWeight: 500,
-            opacity: 0.5,
-            lineHeight: 2,
-            textAlign: 'center',
-            textWrap: 'balance',
-          })}
-        `}
+        className={css({
+          fontFamily: 'system-ui, sans-serif',
+          letterSpacing: '2px',
+          fontWeight: 500,
+          opacity: 0.5,
+          lineHeight: 2,
+          textAlign: 'center',
+          textWrap: 'balance',
+        })}
       >
         CSS-in-JS library with static extraction
       </div>
@@ -178,7 +175,7 @@ export default function Home() {
         })}
       >
         <Link
-          href="https://github.com/mui/material-ui/blob/master/packages/pigment-react/README.md"
+          href="https://github.com/mui/material-ui/blob/master/packages/pigment-css-react/README.md"
           target="_blank"
           rel="noopener noreferrer"
         >
