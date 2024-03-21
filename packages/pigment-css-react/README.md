@@ -743,17 +743,12 @@ Then the actual CSS output would be:
 The default selector in the output CSS is `[dir=rtl]` or `[dir=ltr]`. You can customize it by passing an optional `getDirSelector` method to the `css` property in your bundler config:
 
 ```js
-  plugins: [
-    pigment({
-      theme: yourTheme,
-      css: {
-        getDirSelector(dir: string) {
-          // return a custom selector you'd like to use
-          return `:dir(${dir})`;
-        },
+    css: {
+      getDirSelector(dir: string) {
+        // return a custom selector you'd like to use
+        return `:dir(${dir})`;
       },
-    }),
-  ]
+    },
 ```
 
 ## How-to guides
