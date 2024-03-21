@@ -114,6 +114,10 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  devIndicators: {
+    buildActivity: true,
+    buildActivityPosition: 'bottom-right',
+  },
 };
 
 module.exports = withPigment(nextConfig, pigmentOptions);

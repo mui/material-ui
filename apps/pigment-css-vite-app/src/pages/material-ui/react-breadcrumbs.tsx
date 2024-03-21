@@ -1,7 +1,4 @@
-import * as React from 'react';
-import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
-import { css } from '@pigment-css/react';
-import Alert from '@mui/material/Alert';
+import { ErrorBoundary } from 'react-error-boundary';
 
 import MaterialUILayout from '../../Layout';
 import ActiveLastBreadcrumb from '../../../../../docs/data/material/components/breadcrumbs/ActiveLastBreadcrumb.tsx';
@@ -11,24 +8,7 @@ import CustomSeparator from '../../../../../docs/data/material/components/breadc
 import CustomizedBreadcrumbs from '../../../../../docs/data/material/components/breadcrumbs/CustomizedBreadcrumbs.tsx';
 import IconBreadcrumbs from '../../../../../docs/data/material/components/breadcrumbs/IconBreadcrumbs.tsx';
 import RouterBreadcrumbs from '../../../../../docs/data/material/components/breadcrumbs/RouterBreadcrumbs.tsx';
-
-function ErrorBoundaryFallback({ error }: FallbackProps) {
-  const err = error as Error;
-  return (
-    <Alert severity="error" variant="outlined">
-      Error while rendering.
-      <pre
-        className={css({
-          border: '1px dotted #ccc',
-          padding: 4,
-          whiteSpace: 'pre-wrap',
-        })}
-      >
-        {err.message}
-      </pre>
-    </Alert>
-  );
-}
+import { ErrorBoundaryFallback } from '../../components/ErrorBoundaryFallback.tsx';
 
 export default function Breadcrumbs() {
   return (
