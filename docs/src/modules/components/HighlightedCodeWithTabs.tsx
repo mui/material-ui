@@ -78,7 +78,7 @@ export const CodeTab = styled(TabBase)<{ ownerState: { mounted: boolean; contain
       },
       ...(!ownerState?.contained && {
         '&:hover': {
-          backgroundColor: alpha((theme.vars || theme).palette.primaryDark[500], 0.5),
+          backgroundColor: alpha(theme.palette.primaryDark[500], 0.5),
           color: (theme.vars || theme).palette.grey[400],
         },
         ...(ownerState.mounted && {
