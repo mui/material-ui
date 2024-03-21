@@ -272,7 +272,7 @@ export default function getSignInSideTheme(mode: PaletteMode): ThemeOptions {
               ownerState.color === 'secondary' && {
                 backgroundColor: alpha(gray[300], 0.1),
                 borderColor: alpha(gray[300], 0.5),
-                color: gray[500],
+                color: gray[700],
                 '&:hover': {
                   backgroundColor: alpha(gray[300], 0.3),
                   borderColor: gray[200],
@@ -331,8 +331,8 @@ export default function getSignInSideTheme(mode: PaletteMode): ThemeOptions {
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
             ...(ownerState.size === 'small' && {
-              maxHeight: '32px',
-              maxWidth: '32px',
+              height: '32px',
+              width: '32px',
             }),
             ...(ownerState.size === 'medium' && {
               height: '40px',
@@ -407,8 +407,7 @@ export default function getSignInSideTheme(mode: PaletteMode): ThemeOptions {
             },
             boxSizing: 'border-box',
             flexGrow: 1,
-            maxHeight: 40,
-            height: '100%',
+            height: '40px',
             borderRadius: '10px',
             border: '1px solid',
             borderColor: gray[300],
@@ -487,8 +486,8 @@ export default function getSignInSideTheme(mode: PaletteMode): ThemeOptions {
             borderRadius: 10,
             outline: `1px solid ${alpha(gray[200], 0.8)}`,
             boxShadow: 'none',
-            transition: 'background-color, border, 80ms ease',
             ...(ownerState.variant === 'outlined' && {
+              border: 0,
               boxSizing: 'border-box',
               background: `linear-gradient(to bottom, #FFF, ${gray[50]})`,
               '&:hover': {

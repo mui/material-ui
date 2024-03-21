@@ -2,9 +2,10 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
+import Checkbox from '@mui/material/Checkbox';
 import CssBaseline from '@mui/material/CssBaseline';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import Divider from '@mui/material/Divider';
-import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -181,7 +182,7 @@ export default function SignIn() {
                 'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
               }
               style={logoStyle}
-              alt="logo of sitemark"
+              alt="Sitemark's logo"
             />
             <Typography
               component="h1"
@@ -201,45 +202,50 @@ export default function SignIn() {
                 gap: 2,
               }}
             >
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
-                  <TextField
-                    error={emailError}
-                    helperText={emailErrorMessage}
-                    id="email"
-                    type="email"
-                    name="email"
-                    placeholder="Email address"
-                    autoComplete="email"
-                    autoFocus
-                    required
-                    fullWidth
-                    variant="outlined"
-                    color={emailError ? 'error' : 'primary'}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    error={passwordError}
-                    helperText={passwordErrorMessage}
-                    name="password"
-                    placeholder="Password"
-                    type="password"
-                    id="password"
-                    autoComplete="current-password"
-                    autoFocus
-                    required
-                    fullWidth
-                    variant="outlined"
-                    color={passwordError ? 'error' : 'primary'}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <Link component="button" onClick={handleClickOpen} variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
-              </Grid>
+              <TextField
+                error={emailError}
+                helperText={emailErrorMessage}
+                id="email"
+                type="email"
+                name="email"
+                placeholder="Email address"
+                autoComplete="email"
+                autoFocus
+                required
+                fullWidth
+                variant="outlined"
+                color={emailError ? 'error' : 'primary'}
+              />
+              <TextField
+                error={passwordError}
+                helperText={passwordErrorMessage}
+                name="password"
+                placeholder="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                autoFocus
+                required
+                fullWidth
+                variant="outlined"
+                color={passwordError ? 'error' : 'primary'}
+              />
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  width: '100%',
+                }}
+              >
+                <FormControlLabel
+                  control={<Checkbox value="remember" color="primary" />}
+                  label="Remember me"
+                />
+                <Link component="button" onClick={handleClickOpen} variant="body2">
+                  Forgot your password?
+                </Link>
+              </Box>
               <ForgotPassword open={open} handleClose={handleClose} />
               <Button
                 type="submit"
@@ -254,10 +260,10 @@ export default function SignIn() {
                 variant="body2"
                 sx={{ alignSelf: 'center' }}
               >
-                {"Don't have an account? Sign Up"}
+                Don&apos;t have an account? Sign up
               </Link>
             </Box>
-            <Divider>Or</Divider>
+            <Divider>or</Divider>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               <Button
                 type="submit"
@@ -273,7 +279,7 @@ export default function SignIn() {
                   />
                 }
               >
-                Sign In with Google
+                Sign in with Google
               </Button>
               <Button
                 type="submit"
@@ -289,7 +295,7 @@ export default function SignIn() {
                   />
                 }
               >
-                Sign In with Facebook
+                Sign in with Facebook
               </Button>
             </Box>
           </Card>

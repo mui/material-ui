@@ -188,7 +188,7 @@ export default function SignInSide() {
                     'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
                   }
                   style={logoStyle}
-                  alt="logo of sitemark"
+                  alt="Sitemark's logo"
                 />
                 <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
               </Box>
@@ -251,7 +251,7 @@ export default function SignInSide() {
                     label="Remember me"
                   />
                   <Link component="button" onClick={handleClickOpen} variant="body2">
-                    Forgot password?
+                    Forgot your password?
                   </Link>
                 </Box>
                 <Button

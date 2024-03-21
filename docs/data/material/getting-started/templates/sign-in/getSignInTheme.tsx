@@ -2,6 +2,9 @@ import type {} from '@mui/material/themeCssVarsAugmentation';
 import { ThemeOptions, alpha } from '@mui/material/styles';
 import { PaletteMode } from '@mui/material';
 
+import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
+import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
+
 declare module '@mui/material/styles/createPalette' {
   interface ColorRange {
     50: string;
@@ -268,7 +271,7 @@ export default function getSignInTheme(mode: PaletteMode): ThemeOptions {
               ownerState.color === 'secondary' && {
                 backgroundColor: alpha(gray[300], 0.1),
                 borderColor: alpha(gray[300], 0.5),
-                color: gray[500],
+                color: gray[700],
                 '&:hover': {
                   backgroundColor: alpha(gray[300], 0.3),
                   borderColor: gray[200],
@@ -327,8 +330,8 @@ export default function getSignInTheme(mode: PaletteMode): ThemeOptions {
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
             ...(ownerState.size === 'small' && {
-              maxHeight: '32px',
-              maxWidth: '32px',
+              height: '32px',
+              width: '32px',
             }),
             ...(ownerState.size === 'medium' && {
               height: '40px',
@@ -388,8 +391,8 @@ export default function getSignInTheme(mode: PaletteMode): ThemeOptions {
             borderRadius: 10,
             outline: `1px solid ${alpha(gray[200], 0.8)}`,
             boxShadow: 'none',
-            transition: 'background-color, border, 80ms ease',
             ...(ownerState.variant === 'outlined' && {
+              border: 0,
               boxSizing: 'border-box',
               background: `linear-gradient(to bottom, #FFF, ${gray[50]})`,
             }),
@@ -429,8 +432,7 @@ export default function getSignInTheme(mode: PaletteMode): ThemeOptions {
             },
             boxSizing: 'border-box',
             flexGrow: 1,
-            maxHeight: 40,
-            height: '100%',
+            height: '40px',
             borderRadius: '10px',
             border: '1px solid',
             borderColor: gray[200],
@@ -557,6 +559,63 @@ export default function getSignInTheme(mode: PaletteMode): ThemeOptions {
                 color: '#fff',
               },
               boxShadow: `0 4px 16px ${alpha(brand[700], 0.5)}`,
+            }),
+          }),
+        },
+      },
+      MuiCheckbox: {
+        defaultProps: {
+          disableRipple: true,
+          icon: <CheckBoxOutlineBlankRoundedIcon sx={{ color: 'rgba(0,0,0,0)' }} />,
+          checkedIcon: <CheckRoundedIcon sx={{ height: 14, width: 14 }} />,
+        },
+        styleOverrides: {
+          root: ({ theme }) => ({
+            margin: 10,
+            height: 16,
+            width: 16,
+            border: '1px solid ',
+            borderColor: gray[300],
+            borderRadius: 5,
+            boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.1)',
+            transition: 'border-color 120ms ease-in',
+            backgroundColor: alpha(gray[100], 0.4),
+            '&:hover': {
+              borderColor: brand[300],
+            },
+            '&.Mui-focusVisible': {
+              outline: `3px solid ${alpha(brand[500], 0.5)}`,
+              outlineOffset: '2px',
+              borderColor: brand[400],
+            },
+            '&.Mui-checked': {
+              color: 'white',
+              backgroundColor: brand[500],
+              '&:hover': {
+                borderColor: brand[300],
+                backgroundColor: brand[600],
+              },
+            },
+            ...(theme.palette.mode === 'dark' && {
+              borderColor: gray[700],
+              boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.5)',
+              backgroundColor: alpha(gray[800], 0.4),
+              '&:hover': {
+                borderColor: brand[300],
+              },
+              '&.Mui-checked': {
+                color: 'white',
+                backgroundColor: brand[600],
+                '&:hover': {
+                  borderColor: brand[300],
+                  backgroundColor: brand[800],
+                },
+              },
+              '&.Mui-focusVisible': {
+                borderColor: brand[400],
+                outline: `3px solid ${alpha(brand[500], 0.5)}`,
+                outlineOffset: '2px',
+              },
             }),
           }),
         },
