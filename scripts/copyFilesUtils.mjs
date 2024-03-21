@@ -91,14 +91,14 @@ export async function typescriptCopy({ from, to }) {
   return Promise.all(cmds);
 }
 
-export async function createPackageFile(addExportsField = false) {
+export async function createPackageFile(skipExportsField = false) {
   const packageData = await fse.readFile(path.resolve(packagePath, './package.json'), 'utf8');
   const { nyc, scripts, devDependencies, workspaces, ...packageDataOther } =
     JSON.parse(packageData);
 
   const isTopLevelESMPackage = fse.existsSync(path.resolve(buildPath, './index.mjs'));
 
-  if (addExportsField && !isTopLevelESMPackage) {
+  if (!skipExportsField && !isTopLevelESMPackage) {
     throw new Error('Adding exports field only supported for top level ESM packages');
   }
 
@@ -109,8 +109,9 @@ export async function createPackageFile(addExportsField = false) {
       ? {
           main: isTopLevelESMPackage ? './node/index.js' : './index.js',
           module: isTopLevelESMPackage ? './index.mjs' : './esm/index.mjs',
-          ...(addExportsField
-            ? {
+          ...(skipExportsField
+            ? {}
+            : {
                 exports: {
                   '.': {
                     types: './index.d.ts',
@@ -123,8 +124,7 @@ export async function createPackageFile(addExportsField = false) {
                     default: './node/*/index.js',
                   },
                 },
-              }
-            : {}),
+              }),
         }
       : {}),
   };

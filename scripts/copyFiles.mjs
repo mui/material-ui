@@ -45,13 +45,13 @@ async function addLicense(packageData) {
 }
 
 async function run(argv) {
-  const { extraFiles, addExportsField } = argv;
+  const { extraFiles, skipExportsField } = argv;
 
   try {
     // TypeScript
     await typescriptCopy({ from: srcPath, to: buildPath });
 
-    const packageData = await createPackageFile(addExportsField);
+    const packageData = await createPackageFile(skipExportsField);
 
     await Promise.all(
       ['./README.md', '../../CHANGELOG.md', '../../LICENSE', ...extraFiles].map(async (file) => {
@@ -79,11 +79,11 @@ yargs(process.argv.slice(2))
           type: 'array',
           default: [],
         })
-        .option('addExportsField', {
+        .option('skipExportsField', {
           type: 'boolean',
           default: false,
           describe:
-            'Set to `true` if you wish to add the exports field. Only supports top level ESM packages.',
+            'Set to `true` if you wish to skip adding the exports field. Adding the exports field is only supported for top level ESM packages.',
         });
     },
     handler: run,

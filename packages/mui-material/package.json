@@ -33,7 +33,7 @@
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
     "build:umd": "cross-env BABEL_ENV=rollup rollup -c scripts/rollup.config.mjs",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs --addExportsField",
+    "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "build:types": "node ../../scripts/buildTypes.mjs",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "release": "pnpm build && pnpm publish",

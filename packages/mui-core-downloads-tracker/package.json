@@ -21,7 +21,7 @@
   },
   "scripts": {
     "build": "mkdir build && pnpm build:copy-files",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs",
+    "build:copy-files": "node ../../scripts/copyFiles.mjs --skipExportsField",
     "prebuild": "rimraf build",
     "release": "pnpm build && pnpm publish"
   },
