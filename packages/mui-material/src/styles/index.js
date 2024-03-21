@@ -48,7 +48,11 @@ export { default as makeStyles } from './makeStyles';
 export { default as withStyles } from './withStyles';
 export { default as withTheme } from './withTheme';
 
-export * from './CssVarsProvider';
+export {
+  useColorScheme,
+  getInitColorSchemeScript,
+  Experimental_CssVarsProvider,
+} from './CssVarsProvider';
 export { default as experimental_extendTheme } from './experimental_extendTheme';
 export { default as getOverlayAlpha } from './getOverlayAlpha';
 export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';
