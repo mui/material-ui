@@ -146,16 +146,21 @@ module.exports = async function demoLoader() {
    */
   function detectRelativeImports(demoName, moduleFilepath, variant, importModuleID) {
     if (importModuleID.startsWith('.')) {
+      let relativeModuleFilename = importModuleID;
       const demoMap = relativeModules.get(demoName);
-      // If the demo is a JS demo, we can assume that the relative import is either
-      // a `.js` or a `.jsx` file,
-      // with `.js` taking precedence over `.jsx`
-      // likewise for TS demos, with `.ts` taking precedence over `.tsx`
-      const extensions = variant === 'JS' ? ['.js', '.jsx'] : ['.ts', '.tsx', '.js', '.jsx'];
-      const extension = extensions.find((ext) =>
-        statSync(path.join(moduleFilepath, '..', `${importModuleID}${ext}`)),
-      );
-      const relativeModuleFilename = `${importModuleID}${extension}`;
+      // If the moduleID does not end with an extension, we resolve it
+      // Check for an extension (ending with a "." followed by 2-4 letters)
+      if (!/\.\w{2,4}$/.test(importModuleID)) {
+        // If the demo is a JS demo, we can assume that the relative import is either
+        // a `.js` or a `.jsx` file,
+        // with `.js` taking precedence over `.jsx`
+        // likewise for TS demos, with `.ts` taking precedence over `.tsx`
+        const extensions = variant === 'JS' ? ['.js', '.jsx'] : ['.ts', '.tsx', '.js', '.jsx'];
+        const extension = extensions.find((ext) =>
+          statSync(path.join(moduleFilepath, '..', `${importModuleID}${ext}`)),
+        );
+        relativeModuleFilename = `${importModuleID}${extension}`;
+      }
       if (!demoMap) {
         relativeModules.set(demoName, new Map([[relativeModuleFilename, [variant]]]));
       } else {
