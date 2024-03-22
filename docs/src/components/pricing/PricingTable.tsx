@@ -564,8 +564,15 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'data-grid/localization': (
     <ColumnHead label="Localization" href="/x/react-data-grid/localization/" />
   ),
-  'date-picker/simple': <ColumnHead label="Date Picker" />,
-  'date-picker/range': <ColumnHead label="Date Range Picker" />,
+  'date-picker/simple': (
+    <ColumnHead label="Date and Time Pickers" href="/x/react-date-pickers/date-picker/" />
+  ),
+  'date-picker/range': (
+    <ColumnHead
+      label="Date and Time Range Pickers"
+      href="/x/react-date-pickers/date-range-picker/"
+    />
+  ),
 
   // -- charts - components --
   'charts/line': <ColumnHead label="Line chart" href="/x/react-charts/lines/" />,
