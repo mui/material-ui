@@ -47,7 +47,7 @@ After a few months in pre-release, we're thrilled to announce the stable release
 
 As MUI X commercial offerings continue to expand, we're pleased to enhance the [Community plan](/pricing/) by integrating features previously exclusive to commercial users.
 
-[Column resizing](https://mui.com/x/react-data-grid/column-dimensions/#resizing) and [auto-sizing](https://mui.com/x/react-data-grid/column-dimensions/#autosizing), which were previously Pro features, are now available to all the users at no cost.
+[Column resizing](/x/react-data-grid/column-dimensions/#resizing) and [auto-sizing](/x/react-data-grid/column-dimensions/#autosizing), which were previously Pro features, are now available to all the users at no cost.
 This transition reflects our commitment to providing an exceptional user experience across the board, and aims to make the free components stand out more in the open-source space.
 
 ### Sticky headers and improved scrolling performance
@@ -111,11 +111,11 @@ The term 'unstable' refers solely to the potential for breaking changes in minor
 
 We're excited to announce that the following features have been promoted to stable:
 
-- [Column groups](https://mui.com/x/react-data-grid/column-groups/)
-- [Lazy loading](https://mui.com/x/react-data-grid/row-updates/#lazy-loading) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
-- [Header filters](https://mui.com/x/react-data-grid/filtering/header-filters/) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
-- [Cell selection](https://mui.com/x/react-data-grid/cell-selection/) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
-- [Clipboard paste](https://mui.com/x/react-data-grid/clipboard/#clipboard-paste) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
+- [Column groups](/x/react-data-grid/column-groups/)
+- [Lazy loading](/x/react-data-grid/row-updates/#lazy-loading) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+- [Header filters](/x/react-data-grid/filtering/header-filters/) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+- [Cell selection](/x/react-data-grid/cell-selection/) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
+- [Clipboard paste](/x/react-data-grid/clipboard/#clipboard-paste) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
 ## Tree View
 
@@ -155,7 +155,7 @@ const myDataSet = [
 <RichTreeView items={myDataSet} multiSelect />
 ```
 
-Check out the [new component](https://mui.com/x/react-tree-view/rich-tree-view/items/)!
+Check out the [new component](/x/react-tree-view/rich-tree-view/items/)!
 
 ### New customization hook: `useTreeItem2`
 
@@ -206,7 +206,7 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
 <RichTreeView items={myDataSet} slots={{ item: CustomTreeItem }} />
 ```
 
-You can check all the details of the given example on the [Rich Tree View customization page](https://mui.com/x/react-tree-view/rich-tree-view/customization/#headless-api).
+You can check all the details of the given example on the [Rich Tree View customization page](/x/react-tree-view/rich-tree-view/customization/#headless-api).
 
 :::info
 To avoid further breaking changes with the subcomponents names, this new customization API was named with a numerical suffix '2', for example, `TreeItem2` and `TreeItem2Content`.
@@ -234,7 +234,7 @@ With customizable options for pointers, sizes, and colors, they allow for a pers
   <figcaption style="color: #888; font-size: 0.9em; text-align: center;">Three different styles of Gauge charts.</figcaption>
 </figure>
 
-Check out the [new charts](https://mui.com/x/react-charts/gauge/) documentation page for detailed information.
+Check out the [new charts](/x/react-charts/gauge/) documentation page for detailed information.
 
 ### Click event handler
 
@@ -249,9 +249,9 @@ This feature makes charts more interactive and transforms the way users can expl
 
 You can find more information about specific event handlers for each type of chart by visiting their respective overview page:
 
-- [Line charts click events](https://mui.com/x/react-charts/lines/#click-event)
-- [Bar charts click events](https://mui.com/x/react-charts/bars/#click-event)
-- [Pie charts click events](https://mui.com/x/react-charts/pie/#click-event)
+- [Line charts click events](/x/react-charts/lines/#click-event)
+- [Bar charts click events](/x/react-charts/bars/#click-event)
+- [Pie charts click events](/x/react-charts/pie/#click-event)
 
 ### Built-in Grid
 
@@ -262,7 +262,7 @@ The Axis component now features a built-in Grid, offering users a structured lay
   <figcaption style="color: #888; font-size: 0.9em; text-align: center;">A Chart axis with an horizontal grid.</figcaption>
 </figure>
 
-For details on its usage and configuration, please refer to the [Grid section](https://mui.com/x/react-charts/axis/#grid) in the documentation.
+For details on its usage and configuration, please refer to the [Grid section](/x/react-charts/axis/#grid) in the documentation.
 
 ### Reference line
 
@@ -273,7 +273,7 @@ The `ChartsReferenceLine` component enhances data visualization, providing users
   <figcaption style="color: #888; font-size: 0.9em; text-align: center;">A line chart using a reference line.</figcaption>
 </figure>
 
-You can find more details on its [documentation](https://mui.com/x/react-charts/axis/#reference-line).
+You can find more details on its [documentation](/x/react-charts/axis/#reference-line).
 
 ## Date and Time Pickers
 
@@ -292,7 +292,7 @@ This feature greatly improves the experience for screen reader users, making int
 <DatePicker enableAccessibleFieldDOMStructure />
 ```
 
-For more details, please check out the [documentation section](https://mui.com/x/react-date-pickers/fields/#accessible-dom-structure).
+For more details, please check out the [documentation section](/x/react-date-pickers/fields/#accessible-dom-structure).
 
 ### Support for date-fns v3
 
@@ -318,7 +318,7 @@ This intuitive picker simplifies the process of selecting date and time ranges, 
   <figcaption style="color: #888; font-size: 0.9em; text-align: center;">A video showcasing a date and time range selection.</figcaption>
 </figure>
 
-Learn how to use and customize the [new component](https://mui.com/x/react-date-pickers/date-time-range-picker/) now!
+Learn how to use and customize the [new component](/x/react-date-pickers/date-time-range-picker/) now!
 
 ## What's next
 
@@ -331,7 +331,7 @@ Additionally, the following are the deliveries planned for the next few months.
 
 ### Data Grid
 
-- [Improved server-side integration](https://mui.com/x/react-data-grid/server-side-data/)
+- [Improved server-side integration](/x/react-data-grid/server-side-data/)
 - [Column management panel with support for pivoting and other features](https://github.com/mui/mui-x/issues/5700)
 - [Pivoting](https://github.com/mui/mui-x/issues/214) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
@@ -355,7 +355,7 @@ For a complete overview, please visit the [MUI X roadmap](https://github.com/mu
 
 ## Long-Term Support
 
-We roll bug fixes, performance enhancements, and other improvements into new releases, so as we introduce MUI X v7, MUI X v6 now is officially in [Long-Term Support (LTS)](https://mui.com/x/introduction/support/#long-term-support-lts). This means only critical bug fixes and security updates will be patched to MUI X v6.
+We roll bug fixes, performance enhancements, and other improvements into new releases, so as we introduce MUI X v7, MUI X v6 now is officially in [Long-Term Support (LTS)](/x/introduction/support/#long-term-support-lts). This means only critical bug fixes and security updates will be patched to MUI X v6.
 
 Support for MUI X v5 is officially **discontinued**, and we encourage you to migrate to v6 and then to v7 to benefit from enhanced features, performance improvements, and ongoing support.
 
@@ -364,10 +364,10 @@ Support for MUI X v5 is officially **discontinued**, and we encourage you to m
 Updating a dependency library can sometimes be daunting.
 To smooth the transition to the new version, we have documented all breaking changes in our migration guides:
 
-- [Data Grid](https://mui.com/x/migration/migration-data-grid-v6/)
-- [Date and Time Pickers](https://mui.com/x/migration/migration-pickers-v6/)
-- [Charts](https://mui.com/x/migration/migration-charts-v6/)
-- [Tree View](https://mui.com/x/migration/migration-tree-view-v6/)
+- [Data Grid](/x/migration/migration-data-grid-v6/)
+- [Date and Time Pickers](/x/migration/migration-pickers-v6/)
+- [Charts](/x/migration/migration-charts-v6/)
+- [Tree View](/x/migration/migration-tree-view-v6/)
 
 These component-specific guides are reference pages designed to assist you if you encounter any challenges while updating to the new major version.
 It's our way of making the upgrade process more manageable and less burdensome for you.
