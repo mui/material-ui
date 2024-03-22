@@ -128,9 +128,9 @@ A significant addition is the time-saving alternative to the traditional JSX arc
 
 The Tree View was split into two distinct components.
 
-The first is the **Simple Tree View**, which retains the classic and familiar JSX approach and is still the one behind the original Tree View.
+The first is the [Simple Tree View](/x/react-tree-view/#simple-tree-view), which retains the classic and familiar JSX approach and is still the one behind the original Tree View.
 
-The second is the **Rich Tree View**, a new component designed to streamline the development process, and with which we aim to support several common use cases out-of-the-box.
+The second is the [Rich Tree View](/x/react-tree-view/#rich-tree-view), a new component designed to streamline the development process, and with which we aim to support several common use cases out-of-the-box.
 
 Similar to the Data Grid, it only requires a dataset and possibly a few properties to render; it does all the heavy lifting for you, handling most of the complexities internally.
 
@@ -327,7 +327,7 @@ As usual, we're committed to further improving the library by introducing new fe
 Throughout this year, we'll invest in making MUI X components **design agnostic**. The components will still ship using Material UI as the default, but we're striving to ensure that they seamlessly integrate with any design system.
 The result is advanced components offering extreme flexibility and customization options, enabling a broader range of application styles without compromising the high-quality use cases and workflows that MUI X is known for.
 
-We're also excited to announce that we're transitioning MUI X components from using Emotion to using [Pigment CSS](https://github.com/mui/material-ui/blob/master/packages/pigment-css-react/README.md), MUI's new CSS zero runtime package. This move is aimed at better supporting React Server Components, boosting performance and guaranteeing compatibility with the next major version of Material UI.
+We're also excited to announce that we're transitioning MUI X components from using Emotion to using [Pigment CSS](https://github.com/mui/material-ui/blob/master/packages/pigment-css-react/README.md), MUI's new zero-runtime CSS-in-JS library. This move is aimed at better supporting React Server Components, boosting performance and guaranteeing compatibility with the next major version of Material UI.
 
 Additionally, the following are the deliveries planned for the next few months.
 
