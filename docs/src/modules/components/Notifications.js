@@ -116,7 +116,7 @@ export default function Notifications() {
     // and create some distraction.
     const timeout = setTimeout(async () => {
       const notifications = await fetchNotifications().catch(() => {
-        // Swallow the exceptions, e.g. rate limit
+        // Swallow the exceptions, for example rate limit
         return [];
       });
 
@@ -231,10 +231,7 @@ export default function Notifications() {
                       <React.Fragment key={message.id}>
                         <ListItem alignItems="flex-start">
                           <Typography gutterBottom>
-                            <span
-                              // eslint-disable-next-line react/no-danger
-                              dangerouslySetInnerHTML={{ __html: message.title }}
-                            />
+                            <b>{message.title}</b>
                           </Typography>
                           <Typography gutterBottom variant="body2" color="text.secondary">
                             <span

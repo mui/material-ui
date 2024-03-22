@@ -1836,9 +1836,15 @@ describe('<Autocomplete />', () => {
 
       checkHighlightIs(listbox, 'two');
 
-      // three option is added and autocomplete re-renders, restore the highlight
-      setProps({ options: [{ label: 'one' }, { label: 'two' }, { label: 'three' }] });
+      // zero and three options are added and autocomplete re-renders, restore the highlight
+      setProps({
+        options: [{ label: 'zero' }, { label: 'one' }, { label: 'two' }, { label: 'three' }],
+      });
       checkHighlightIs(listbox, 'two');
+
+      // check that the highlighted option is still in sync with the internal highlighted index
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // goes to 'three'
+      checkHighlightIs(listbox, 'three');
     });
 
     it('should reset the highlight when the input changed', () => {
@@ -2335,6 +2341,22 @@ describe('<Autocomplete />', () => {
       );
 
       expect(container.querySelector(`.${classes.endAdornment}`)).to.equal(null);
+    });
+
+    it('should not render popper when there are no options', () => {
+      render(
+        <Autocomplete
+          open
+          freeSolo
+          options={[]}
+          renderInput={(params) => <TextField {...params} />}
+          slotProps={{
+            popper: { 'data-testid': 'popperRoot' },
+          }}
+        />,
+      );
+      const popper = screen.queryByTestId('popperRoot');
+      expect(popper).to.equal(null);
     });
   });
 

@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import { ComponentClassDefinition } from '@mui-internal/docs-utils';
+import { ComponentClassDefinition } from '@mui/internal-docs-utils';
 import { styled, alpha } from '@mui/material/styles';
 import {
   brandingDarkTheme as darkTheme,
@@ -81,13 +81,13 @@ export default function ClassesTable(props: ClassesTableProps) {
 
             return (
               <tr key={className} id={getHash({ componentName, className: key })}>
-                <td>
+                <td className="algolia-lvl3">
                   <span className="class-name">.{className}</span>
                 </td>
                 {displayClassKeys && (
                   <td>{!isGlobal && <span className="class-key">{key}</span>}</td>
                 )}
-                <td>
+                <td className="algolia-content">
                   <span
                     dangerouslySetInnerHTML={{
                       __html: description || '',

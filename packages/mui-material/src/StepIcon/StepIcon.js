@@ -3,12 +3,13 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import CheckCircle from '../internal/svg-icons/CheckCircle';
 import Warning from '../internal/svg-icons/Warning';
 import SvgIcon from '../SvgIcon';
 import stepIconClasses, { getStepIconUtilityClass } from './stepIconClasses';
+
+const useThemeProps = createUseThemeProps('MuiStepIcon');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, active, completed, error } = ownerState;

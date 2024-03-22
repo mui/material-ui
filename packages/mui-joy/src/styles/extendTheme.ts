@@ -81,6 +81,26 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScalesOptions> {
    *        value = 'var(--test)'
    */
   shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
+  /**
+   * If provided, it will be used to create a selector for the color scheme.
+   * This is useful if you want to use class or data-* attributes to apply the color scheme.
+   *
+   * The callback receives the colorScheme with the possible values of:
+   * - undefined: the selector for tokens that are not color scheme dependent
+   * - string: the selector for the color scheme
+   *
+   * @example
+   * // class selector
+   * (colorScheme) => colorScheme !== 'light' ? `.theme-${colorScheme}` : ":root"
+   *
+   * @example
+   * // data-* attribute selector
+   * (colorScheme) => colorScheme !== 'light' ? `[data-theme="${colorScheme}"`] : ":root"
+   */
+  getSelector?: (
+    colorScheme: SupportedColorScheme | undefined,
+    css: Record<string, any>,
+  ) => string | Record<string, any>;
 }
 
 export const createGetCssVar = (cssVarPrefix = 'joy') =>
@@ -94,6 +114,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     components: componentsInput,
     variants: variantsInput,
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
+    getSelector,
     ...scalesInput
   } = themeOptions || {};
   const getCssVar = createGetCssVar(cssVarPrefix);
@@ -523,6 +544,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
   const theme = {
     colorSchemes,
+    defaultColorScheme: 'light',
     ...mergedScales,
     breakpoints: createBreakpoints(breakpoints ?? {}),
     components: deepmerge(
@@ -565,7 +587,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     cssVarPrefix,
     getCssVar,
     spacing: createSpacing(spacing),
-  } as unknown as Theme; // Need type casting due to module augmentation inside the repo
+  } as unknown as Theme & { attribute: string; colorSchemeSelector: string }; // Need type casting due to module augmentation inside the repo
 
   /**
    Color channels generation
@@ -610,15 +632,29 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   const parserConfig = {
     prefix: cssVarPrefix,
     shouldSkipGeneratingVar,
+    getSelector:
+      getSelector ||
+      ((colorScheme) => {
+        if (theme.defaultColorScheme === colorScheme) {
+          return `${theme.colorSchemeSelector}, [${theme.attribute}="${colorScheme}"]`;
+        }
+        if (colorScheme) {
+          return `[${theme.attribute}="${colorScheme}"]`;
+        }
+        return theme.colorSchemeSelector;
+      }),
   };
 
-  const { vars: themeVars, generateCssVars } = prepareCssVars<Theme, ThemeVars>(
+  const { vars, generateThemeVars, generateStyleSheets } = prepareCssVars<Theme, ThemeVars>(
     // @ts-ignore property truDark is missing from colorSchemes
     { colorSchemes, ...mergedScales },
     parserConfig,
   );
-  theme.vars = themeVars;
-  theme.generateCssVars = generateCssVars;
+  theme.attribute = 'data-joy-color-scheme';
+  theme.colorSchemeSelector = ':root';
+  theme.vars = vars;
+  theme.generateThemeVars = generateThemeVars;
+  theme.generateStyleSheets = generateStyleSheets;
   theme.unstable_sxConfig = {
     ...defaultSxConfig,
     ...themeOptions?.unstable_sxConfig,
@@ -630,9 +666,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     });
   };
   theme.getColorSchemeSelector = (colorScheme: SupportedColorScheme) =>
-    colorScheme === 'light'
-      ? '&'
-      : `&[data-joy-color-scheme="${colorScheme}"], [data-joy-color-scheme="${colorScheme}"] &`;
+    `[${theme.attribute}="${colorScheme}"] &`;
 
   const createVariantInput = { getCssVar, palette: theme.colorSchemes.light.palette };
   theme.variants = deepmerge(
@@ -657,6 +691,10 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     variantsInput,
   );
 
+  Object.entries(theme.colorSchemes[theme.defaultColorScheme]).forEach(([key, value]) => {
+    // @ts-ignore
+    theme[key] = value;
+  });
   theme.palette = {
     ...theme.colorSchemes.light.palette,
     colorScheme: 'light',
