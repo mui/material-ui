@@ -213,7 +213,7 @@ To avoid further breaking changes with the subcomponents names, this new customi
 
 This update ensures that any existing customizations remain unaffected, providing you with a seamless transition to adopt the latest API at your convenience.
 
-Our plan is to replace the move the new implementation to the Tree Item component on the next major release and remove all those suffixes.
+Our plan is to move the new implementation to the Tree Item component on the next major release and remove all those suffixes.
 :::
 
 ## Charts
@@ -325,7 +325,7 @@ Learn how to use and customize the [new component](/x/react-date-pickers/date-ti
 As usual, we're committed to further improving the library by introducing new features, refining existing ones, and focusing on community feedback to shape our roadmap.
 
 Throughout this year, we'll invest in making MUI X components **design agnostic**. The components will still ship using Material UI as the default, but we're striving to ensure that they seamlessly integrate with any design system.
-The result is advanced components offering extreme flexibility and customization options, enabling a broader range of application styles without compromising the high-quality use cases and workflows that MUI X is known for.".
+The result is advanced components offering extreme flexibility and customization options, enabling a broader range of application styles without compromising the high-quality use cases and workflows that MUI X is known for.
 
 We're also excited to announce that we're transitioning MUI X components from using Emotion to using [Pigment CSS](https://github.com/mui/material-ui/blob/master/packages/pigment-css-react/README.md), MUI's new CSS zero runtime package. This move is aimed at better supporting React Server Components, boosting performance and guaranteeing compatibility with the next major version of Material UI.
 
