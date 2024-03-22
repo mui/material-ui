@@ -97,6 +97,7 @@ export type ThemeCssVar = OverridableStringUnion<NormalizeVars<ThemeVars>, Theme
 
 export interface Theme extends ThemeScales, RuntimeColorSystem {
   colorSchemes: Record<DefaultColorScheme | ExtendedColorScheme, ColorSystem>;
+  defaultColorScheme: DefaultColorScheme | ExtendedColorScheme;
   focus: Focus;
   typography: TypographySystem;
   variants: Variants;
@@ -106,10 +107,8 @@ export interface Theme extends ThemeScales, RuntimeColorSystem {
   vars: ThemeVars;
   getCssVar: (field: ThemeCssVar, ...vars: ThemeCssVar[]) => string;
   getColorSchemeSelector: (colorScheme: DefaultColorScheme | ExtendedColorScheme) => string;
-  generateCssVars: (colorScheme?: DefaultColorScheme | ExtendedColorScheme) => {
-    css: Record<string, string | number>;
-    vars: ThemeVars;
-  };
+  generateThemeVars: () => ThemeVars;
+  generateStyleSheets: () => Record<string, any>[];
   /**
    * A function to determine if the key, value should be attached as CSS Variable
    * `keys` is an array that represents the object path keys.

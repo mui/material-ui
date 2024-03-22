@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { styled, createUseThemeProps } from '../zero-styled';
 import { getCardMediaUtilityClass } from './cardMediaClasses';
+
+const useThemeProps = createUseThemeProps('MuiCardMedia');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, isMediaComponent, isImageComponent } = ownerState;
@@ -27,19 +28,27 @@ const CardMediaRoot = styled('div', {
 
     return [styles.root, isMediaComponent && styles.media, isImageComponent && styles.img];
   },
-})(({ ownerState }) => ({
+})({
   display: 'block',
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'center',
-  ...(ownerState.isMediaComponent && {
-    width: '100%',
-  }),
-  ...(ownerState.isImageComponent && {
-    // ⚠️ object-fit is not supported by IE11.
-    objectFit: 'cover',
-  }),
-}));
+  variants: [
+    {
+      props: { isMediaComponent: true },
+      style: {
+        width: '100%',
+      },
+    },
+    {
+      props: { isImageComponent: true },
+      style: {
+        // ⚠️ object-fit is not supported by IE11.
+        objectFit: 'cover',
+      },
+    },
+  ],
+});
 
 const MEDIA_COMPONENTS = ['video', 'audio', 'picture', 'iframe', 'img'];
 const IMAGE_COMPONENTS = ['picture', 'img'];
