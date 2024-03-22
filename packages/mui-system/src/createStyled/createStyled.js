@@ -26,7 +26,7 @@ export function shouldForwardProp(prop) {
   return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
 }
 
-export { systemDefaultTheme };
+export const systemDefaultTheme = createTheme();
 
 const lowercaseFirstLetter = (string) => {
   if (!string) {
