@@ -86,8 +86,12 @@ const ButtonRoot = styled(ButtonBase, {
           color: `var(--variant-containedColor)`,
           backgroundColor: `var(--variant-containedBg)`,
           boxShadow: (theme.vars || theme).shadows[2],
-          '@media (hover: hover)': {
+          '&:hover': {
             boxShadow: (theme.vars || theme).shadows[4],
+            // Reset on touch devices, it doesn't add specificity
+            '@media (hover: none)': {
+              boxShadow: (theme.vars || theme).shadows[2],
+            },
           },
           '&:active': {
             boxShadow: (theme.vars || theme).shadows[8],
@@ -100,6 +104,27 @@ const ButtonRoot = styled(ButtonBase, {
             boxShadow: (theme.vars || theme).shadows[0],
             backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
           },
+        },
+      },
+      {
+        props: { variant: 'outlined' },
+        style: {
+          padding: '5px 15px',
+          border: '1px solid currentColor',
+          borderColor: `var(--variant-outlinedBorder, currentColor)`,
+          backgroundColor: `var(--variant-outlinedBg)`,
+          color: `var(--variant-outlinedColor)`,
+          [`&.${buttonClasses.disabled}`]: {
+            border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
+          },
+        },
+      },
+      {
+        props: { variant: 'text' },
+        style: {
+          padding: '6px 8px',
+          color: `var(--variant-textColor)`,
+          backgroundColor: `var(--variant-textBg)`,
         },
       },
       ...['primary', 'secondary', 'error', 'info', 'success', 'warning'].map((item) => ({
@@ -151,27 +176,6 @@ const ButtonRoot = styled(ButtonBase, {
                 : alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
             },
           },
-        },
-      },
-      {
-        props: { variant: 'outlined' },
-        style: {
-          padding: '5px 15px',
-          border: '1px solid currentColor',
-          borderColor: `var(--variant-outlinedBorder, currentColor)`,
-          backgroundColor: `var(--variant-outlinedBg)`,
-          color: `var(--variant-outlinedColor)`,
-          [`&.${buttonClasses.disabled}`]: {
-            border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
-          },
-        },
-      },
-      {
-        props: { variant: 'text' },
-        style: {
-          padding: '6px 8px',
-          color: `var(--variant-textColor)`,
-          backgroundColor: `var(--variant-textBg)`,
         },
       },
       {
