@@ -10,7 +10,7 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 export default function ColorInversionMotivation() {
   const demo = (
-    <Card sx={{ gap: 2, maxWidth: 300 }}>
+    <Card sx={{ gap: 2, maxWidth: { xs: '100%', sm: 300 } }}>
       <Chip
         size="sm"
         variant="soft"
@@ -41,11 +41,10 @@ export default function ColorInversionMotivation() {
         display: 'flex',
         flexWrap: 'wrap',
         gap: 6,
-        pt: 3,
       }}
     >
       {/* Left: The global variants are applied to children only */}
-      <Box sx={{ maxWidth: 300 }}>
+      <Box sx={{ maxWidth: { xs: '100%', sm: 300 } }}>
         {demo}
         <Typography level="body-sm" mt={2} textAlign="center">
           <b>One layer</b>
@@ -55,7 +54,7 @@ export default function ColorInversionMotivation() {
       </Box>
 
       {/* Right: The global variants are applied to both parent and children */}
-      <Box sx={{ maxWidth: 300 }}>
+      <Box sx={{ maxWidth: { xs: '100%', sm: 300 } }}>
         {React.cloneElement(demo, {
           variant: 'solid',
           color: 'primary',

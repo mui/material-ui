@@ -7,6 +7,7 @@ const {
   getContents,
   getDescription,
   getCodeblock,
+  getFeatureList,
   getHeaders,
   getTitle,
 } = require('./parseMarkdown');
@@ -155,11 +156,16 @@ ${headers.hooks
             return null;
           }
         }
-
         const codeblock = getCodeblock(content);
 
         if (codeblock) {
           return codeblock;
+        }
+
+        const featureList = getFeatureList(content);
+
+        if (featureList) {
+          return featureList;
         }
 
         return render(content);

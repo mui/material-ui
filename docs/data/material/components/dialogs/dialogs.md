@@ -44,7 +44,7 @@ Alerts are urgent interruptions, requiring acknowledgement, that inform the user
 Most alerts don't need titles.
 They summarize a decision in a sentence or two by either:
 
-- Asking a question (e.g. "Delete this conversation?")
+- Asking a question (for example "Delete this conversation?")
 - Making a statement related to the action buttons
 
 Use title bar alerts only for high-risk situations, such as the potential loss of connectivity.
