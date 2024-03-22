@@ -2266,9 +2266,6 @@ importers:
       babel-plugin-define-var:
         specifier: ^0.1.0
         version: 0.1.0
-      babel-plugin-transform-react-remove-prop-types:
-        specifier: ^0.4.24
-        version: 0.4.24
       unplugin:
         specifier: ^1.7.1
         version: 1.7.1
@@ -2297,9 +2294,6 @@ importers:
       babel-plugin-define-var:
         specifier: ^0.1.0
         version: 0.1.0
-      babel-plugin-transform-react-remove-prop-types:
-        specifier: ^0.4.24
-        version: 0.4.24
     devDependencies:
       '@types/babel__core':
         specifier: ^7.20.5
