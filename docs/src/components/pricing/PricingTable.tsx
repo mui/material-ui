@@ -564,8 +564,15 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'data-grid/localization': (
     <ColumnHead label="Localization" href="/x/react-data-grid/localization/" />
   ),
-  'date-picker/simple': <ColumnHead label="Date Picker" />,
-  'date-picker/range': <ColumnHead label="Date Range Picker" />,
+  'date-picker/simple': (
+    <ColumnHead label="Date and Time Pickers" href="/x/react-date-pickers/date-picker/" />
+  ),
+  'date-picker/range': (
+    <ColumnHead
+      label="Date and Time Range Pickers"
+      href="/x/react-date-pickers/date-range-picker/"
+    />
+  ),
 
   // -- charts - components --
   'charts/line': <ColumnHead label="Line chart" href="/x/react-charts/lines/" />,
@@ -594,6 +601,13 @@ const rowHeaders: Record<string, React.ReactNode> = {
   ),
   'charts/filter-interaction': <ColumnHead label="Row filtering" />,
   'charts/selection-interaction': <ColumnHead label="Range selection" />,
+
+  'tree-view/simple-tree-view': (
+    <ColumnHead label="Simple Tree View" href="/x/react-tree-view/#simple-tree-view" />
+  ),
+  'tree-view/rich-tree-view': (
+    <ColumnHead label="Rich Tree View" href="/x/react-tree-view/#rich-tree-view" />
+  ),
 
   'mui-x-production': <ColumnHead label="Perpetual use in production" />,
   'mui-x-development': <ColumnHead label="Development license" tooltip="For active development" />,
@@ -701,8 +715,8 @@ const communityData: Record<string, React.ReactNode> = {
   // -- data grid - columns --
   'data-grid/column-groups': yes,
   'data-grid/column-spanning': yes,
-  'data-grid/column-resizing': no,
-  'data-grid/column-autosizing': no,
+  'data-grid/column-resizing': yes,
+  'data-grid/column-autosizing': yes,
   'data-grid/column-reorder': no,
   'data-grid/column-pinning': no,
   // -- data grid - rows --
@@ -753,7 +767,7 @@ const communityData: Record<string, React.ReactNode> = {
   'charts/scatter': yes,
   'charts/pie': yes,
   'charts/sparkline': yes,
-  'charts/gauge': pending,
+  'charts/gauge': yes,
   'charts/treemap': pending,
   'charts/heatmap': no,
   'charts/radar': pending,
@@ -772,6 +786,9 @@ const communityData: Record<string, React.ReactNode> = {
   'charts/cell-with-charts': yes,
   'charts/filter-interaction': no,
   'charts/selection-interaction': no,
+
+  'tree-view/simple-tree-view': yes,
+  'tree-view/rich-tree-view': yes,
 
   // -- general --
   'mui-x-production': yes,
@@ -849,7 +866,7 @@ const proData: Record<string, React.ReactNode> = {
   'charts/scatter': yes,
   'charts/pie': yes,
   'charts/sparkline': yes,
-  'charts/gauge': pending,
+  'charts/gauge': yes,
   'charts/treemap': pending,
   'charts/heatmap': pending,
   'charts/radar': pending,
@@ -868,6 +885,9 @@ const proData: Record<string, React.ReactNode> = {
   'charts/cell-with-charts': yes,
   'charts/filter-interaction': pending,
   'charts/selection-interaction': no,
+
+  'tree-view/simple-tree-view': yes,
+  'tree-view/rich-tree-view': yes,
 
   // -- general --
   'mui-x-production': yes,
@@ -950,7 +970,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'charts/scatter': yes,
   'charts/pie': yes,
   'charts/sparkline': yes,
-  'charts/gauge': pending,
+  'charts/gauge': yes,
   'charts/treemap': pending,
   'charts/heatmap': pending,
   'charts/radar': pending,
@@ -969,6 +989,9 @@ const premiumData: Record<string, React.ReactNode> = {
   'charts/cell-with-charts': yes,
   'charts/filter-interaction': pending,
   'charts/selection-interaction': pending,
+
+  'tree-view/simple-tree-view': yes,
+  'tree-view/rich-tree-view': yes,
 
   // -- general --
   'mui-x-production': yes,
@@ -1564,6 +1587,10 @@ export default function PricingTable({
         {divider}
         {renderNestedRow('charts/selection-interaction')}
       </StyledCollapse>
+      {divider}
+      {renderRow('tree-view/simple-tree-view')}
+      {divider}
+      {renderRow('tree-view/rich-tree-view')}
       {divider}
       {renderRow('mui-x-production')}
       {divider}
