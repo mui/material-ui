@@ -8,6 +8,8 @@ node 14
 # Default/Fallback
 # `npx browserslist --mobile-to-desktop "> 0.5%, last 2 versions, Firefox ESR, not dead"` when the last major is released.
 # On update, sync references where "#stable-snapshot" is mentioned in the codebase.
+# Note: after you update the version, you might need to run `npx update-browserslist-db@latest` to update caniuse-lite to gather latest browser versions.
+#       otherwise, running `pnpm build` might fail due to unknown browser versions.
 [stable]
 and_chr 122
 and_chr 121
