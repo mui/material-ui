@@ -91,40 +91,27 @@ export async function typescriptCopy({ from, to }) {
   return Promise.all(cmds);
 }
 
+/**
+ * Creates a package.json in the build directory.
+ * @param {boolean} skipExportsField Whether to skip the exports field in the package.json. Only top level ESM packages are supported.
+ * @returns {Promise<object>}
+ */
 export async function createPackageFile(skipExportsField = false) {
   const packageData = await fse.readFile(path.resolve(packagePath, './package.json'), 'utf8');
   const { nyc, scripts, devDependencies, workspaces, ...packageDataOther } =
     JSON.parse(packageData);
-
-  const isTopLevelESMPackage = fse.existsSync(path.resolve(buildPath, './index.mjs'));
-
-  if (!skipExportsField && !isTopLevelESMPackage) {
-    throw new Error('Adding exports field only supported for top level ESM packages');
-  }
 
   const newPackageData = {
     ...packageDataOther,
     private: false,
     ...(packageDataOther.main
       ? {
-          main: isTopLevelESMPackage ? './node/index.js' : './index.js',
-          module: isTopLevelESMPackage ? './index.mjs' : './esm/index.mjs',
-          ...(skipExportsField
-            ? {}
-            : {
-                exports: {
-                  '.': {
-                    types: './index.d.ts',
-                    import: './index.mjs',
-                    default: './node/index.js',
-                  },
-                  './*': {
-                    types: './*/index.d.ts',
-                    import: './*/index.mjs',
-                    default: './node/*/index.js',
-                  },
-                },
-              }),
+          main: fse.existsSync(path.resolve(buildPath, './node/index.js'))
+            ? './node/index.js'
+            : './index.js',
+          module: fse.existsSync(path.resolve(buildPath, './esm/index.mjs'))
+            ? './esm/index.mjs'
+            : './index.mjs',
         }
       : {}),
   };
@@ -132,6 +119,38 @@ export async function createPackageFile(skipExportsField = false) {
   const typeDefinitionsFilePath = path.resolve(buildPath, './index.d.ts');
   if (await fse.pathExists(typeDefinitionsFilePath)) {
     newPackageData.types = './index.d.ts';
+  }
+
+  if (!skipExportsField) {
+    newPackageData.exports = {};
+
+    const hasIndexMjs = fse.existsSync(path.resolve(buildPath, './index.mjs'));
+    if (hasIndexMjs) {
+      // Asumes the types file and node build are set up correctly
+      newPackageData.exports['.'] = {
+        types: './index.d.ts',
+        import: './index.mjs',
+        default: './node/index.js',
+      };
+    }
+
+    const hasNestedIndexFiles = glob.sync('*/index.mjs', { cwd: buildPath }).length > 0;
+    if (hasNestedIndexFiles) {
+      // Asumes the types files and node build are set up correctly
+      newPackageData.exports['./*'] = {
+        types: './*/index.d.ts',
+        import: './*/index.mjs',
+        default: './node/*/index.js',
+      };
+    }
+
+    if (!hasIndexMjs && !hasNestedIndexFiles) {
+      // Ensure that the packages we expect to have an exports field are set up correctly
+      // It avoids, for example, a top level non index file breaking the configuration
+      throw new Error(
+        'Attempted to add exports field but no index.mjs files found. Adding the exports field is only supported for top level ESM packages, please check your build setup. If you want to skip adding the exports field, pass `--skipExportsField` to the script.',
+      );
+    }
   }
 
   const targetPath = path.resolve(buildPath, './package.json');
