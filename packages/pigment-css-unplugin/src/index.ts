@@ -151,8 +151,8 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
     return asyncResolveFallback(what, importer, stack);
   };
 
-  const linariaTransformPlugin: UnpluginOptions = {
-    name: 'zero-plugin-transform-linaria',
+  const wywInJSTransformPlugin: UnpluginOptions = {
+    name: 'zero-plugin-transform-wyw-in-js',
     enforce: 'post',
     buildEnd() {
       onDone(process.cwd());
@@ -356,7 +356,7 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
   if (transformSx) {
     plugins.push(babelTransformPlugin);
   }
-  plugins.push(linariaTransformPlugin);
+  plugins.push(wywInJSTransformPlugin);
 
   // This is already handled separately for Next.js using `placeholderCssFile`
   if (!isNext) {
