@@ -10,7 +10,7 @@ This API is at an unstable stage and is subject to change in the future.
 
 ## Setup
 
-By default, Material UI generates a global class name for each component slot. For example, `<Button>Text</Button>` generates html as:
+By default, Material UI generates a global class name for each component slot. For example, `<Button>Text</Button>` generates HTML as:
 
 ```html
 <button

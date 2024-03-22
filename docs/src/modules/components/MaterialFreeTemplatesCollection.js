@@ -117,7 +117,7 @@ export default function Templates() {
               >
                 <Button
                   component="a"
-                  href={layout.source}
+                  href={layout.href}
                   size="small"
                   fullWidth
                   variant="outlined"

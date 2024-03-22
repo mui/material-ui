@@ -271,7 +271,7 @@ export default function MarkdownDocsV2(props) {
           {commonElements}
           {activeTab === '' &&
             localizedDoc.rendered
-              // for the "hook only" edge case, e.g. Base UI autocomplete
+              // for the "hook only" edge case, for example Base UI autocomplete
               .slice(
                 i,
                 localizedDoc.rendered.length - (localizedDoc.headers.components.length > 0 ? 1 : 0),

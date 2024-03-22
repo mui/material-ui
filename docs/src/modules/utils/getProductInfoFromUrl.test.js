@@ -90,10 +90,17 @@ describe('getProductInfoFromUrl', () => {
     });
   });
 
-  it('should handle MUI Toolpad', () => {
-    expect(getProductInfoFromUrl('/toolpad/getting-started/first-app/')).to.deep.equal({
-      productCategoryId: 'null',
-      productId: 'toolpad',
+  it('should handle Toolpad Core', () => {
+    expect(getProductInfoFromUrl('/toolpad/getting-started/')).to.deep.equal({
+      productCategoryId: 'toolpad',
+      productId: 'toolpad-core',
+    });
+  });
+
+  it('should handle Toolpad Studio', () => {
+    expect(getProductInfoFromUrl('/toolpad/studio/getting-started/first-app/')).to.deep.equal({
+      productCategoryId: 'toolpad',
+      productId: 'toolpad-studio',
     });
   });
 });
