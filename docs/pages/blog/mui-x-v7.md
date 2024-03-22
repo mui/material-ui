@@ -122,15 +122,15 @@ We're excited to announce that the following features have been promoted to stab
 Since the promotion from the [lab's package](/material-ui/about-the-lab/) to MUI X, the primary focus has been on improving the component's developer experience.
 This includes efforts aimed to simplify its usage, implement new customization APIs, and provide clearer documentation and illustrative examples, making them more informative and user-friendly.
 
-A significant addition is the time-saving alternative to the traditional JSX architecture, the RichTreeView.
+A significant addition is the time-saving alternative to the traditional JSX architecture, the Rich Tree View.
 
 ### Rich Tree View
 
 The Tree View was split into two distinct components.
 
-The first is the `SimpleTreeView`, which retains the classic and familiar JSX approach and is still the one behind the original `<TreeView />`.
+The first is the **Simple Tree View**, which retains the classic and familiar JSX approach and is still the one behind the original Tree View.
 
-The second is the `RichTreeView`, a new component designed to streamline the development process, and with which we aim to support several common use cases out-of-the-box.
+The second is the **Rich Tree View**, a new component designed to streamline the development process, and with which we aim to support several common use cases out-of-the-box.
 
 Similar to the Data Grid, it only requires a dataset and possibly a few properties to render; it does all the heavy lifting for you, handling most of the complexities internally.
 
@@ -160,7 +160,7 @@ Check out the [new component](https://mui.com/x/react-tree-view/rich-tree-view/i
 ### New customization hook: `useTreeItem2`
 
 The Tree View now features a new API that enables fully customization of Tree items through a hook called `useTreeItem2`.
-It can be used with both `SimpleTreeView` and `RichTreeView`, and empowers developers to fully leverage the Tree Item's subcomponents along with their default behaviors.
+It can be used with both Simple Tree View and Rich Tree View, and empowers developers to fully leverage the Tree Item's subcomponents along with their default behaviors.
 This approach ensures customization and flexibility are at the forefront without sacrificing the component's inherent features.
 
 When using this hook, you can create a tailored Tree Item that aligns perfectly with your project needs while reusing key behaviors and features the component is known for.
@@ -206,14 +206,14 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
 <RichTreeView items={myDataSet} slots={{ item: CustomTreeItem }} />
 ```
 
-You can check all the details of the given example on the [RichTreeView customization page](https://mui.com/x/react-tree-view/rich-tree-view/customization/#headless-api).
+You can check all the details of the given example on the [Rich Tree View customization page](https://mui.com/x/react-tree-view/rich-tree-view/customization/#headless-api).
 
 :::info
 To avoid further breaking changes with the subcomponents names, this new customization API was named with a numerical suffix '2', for example, `TreeItem2` and `TreeItem2Content`.
 
 This update ensures that any existing customizations remain unaffected, providing you with a seamless transition to adopt the latest API at your convenience.
 
-Our plan is to replace the move the new implementation to the `TreeItem` component on the next major release and remove all those suffixes.
+Our plan is to replace the move the new implementation to the Tree Item component on the next major release and remove all those suffixes.
 :::
 
 ## Charts
@@ -277,7 +277,7 @@ You can find more details on its [documentation](https://mui.com/x/react-charts/
 
 ## Date and Time Pickers
 
-The focus has been primarily on developing the highly anticipated `DateTimeRangePicker`, alongside a significant effort to enhance accessibility in the fields, ensuring that our components are as inclusive and user-friendly as possible.
+The focus has been primarily on developing the highly anticipated Date Time Range Picker, alongside a significant effort to enhance accessibility in the fields, ensuring that our components are as inclusive and user-friendly as possible.
 
 ### Improved accessibility for the field components
 
@@ -296,7 +296,7 @@ For more details, please check out the [documentation section](https://mui.com/x
 
 ### Support for date-fns v3
 
-The Date and Time Pickers now support both versions of v2 and v3 of [`date-fns`](https://www.npmjs.com/package/date-fns), and you can select your desired version from one of the two import lines:
+The Date and Time Pickers now support both versions of v2 and v3 of [date-fns](https://www.npmjs.com/package/date-fns), and you can select your desired version from one of the two import lines:
 
 ```jsx
 // date-fns v2.x
@@ -338,8 +338,8 @@ Additionally, the following are the deliveries planned for the next few months.
 ### Tree View
 
 - [Inline node name editing](https://github.com/mui/mui-x/issues/10112)
-- [Checkbox selection for `SimpleTreeView` and `RichTreeView`](https://github.com/mui/mui-x/pull/11452)
-- [Drag and drop support for RichTreeView](https://github.com/mui/mui-x/issues/9686)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+- [Checkbox selection for Simple Tree View and Rich Tree View](https://github.com/mui/mui-x/pull/11452)
+- [Drag and drop support for Rich Tree View](https://github.com/mui/mui-x/issues/9686)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 ### Charts
 
