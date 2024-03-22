@@ -430,8 +430,11 @@ export default function extendTheme(options = {}, ...args) {
   });
   theme.generateThemeVars = generateThemeVars;
   theme.generateStyleSheets = generateStyleSheets;
+  theme.generateSpacing = function generateSpacing() {
+    return createSpacing(input.spacing, createUnarySpacing(this));
+  };
   theme.getColorSchemeSelector = (colorScheme) => `[${theme.attribute}="${colorScheme}"] &`;
-  theme.spacing = createSpacing(input.spacing, createUnarySpacing(theme));
+  theme.spacing = theme.generateSpacing();
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
   theme.unstable_sxConfig = {
     ...defaultSxConfig,

@@ -671,7 +671,10 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   theme.vars = vars;
   theme.generateThemeVars = generateThemeVars;
   theme.generateStyleSheets = generateStyleSheets;
-  theme.spacing = createSpacing(spacing, createUnarySpacing(theme));
+  theme.generateSpacing = function generateSpacing() {
+    return createSpacing(spacing, createUnarySpacing(this));
+  };
+  theme.spacing = theme.generateSpacing();
   theme.unstable_sxConfig = {
     ...defaultSxConfig,
     ...themeOptions?.unstable_sxConfig,
