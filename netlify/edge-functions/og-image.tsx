@@ -204,7 +204,7 @@ export default async function handler(req: Request) {
     {
       width: 1280,
       height: 640,
-      debug: true,
+      // debug: true,
       fonts: [
         {
           name: 'General Sans',
