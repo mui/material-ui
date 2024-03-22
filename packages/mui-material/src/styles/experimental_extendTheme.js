@@ -1,5 +1,6 @@
 import deepmerge from '@mui/utils/deepmerge';
 import { unstable_createGetCssVar as systemCreateGetCssVar, createSpacing } from '@mui/system';
+import { createUnarySpacing } from '@mui/system/spacing';
 import { prepareCssVars } from '@mui/system/cssVars';
 import styleFunctionSx, {
   unstable_defaultSxConfig as defaultSxConfig,
@@ -72,7 +73,7 @@ function getSpacingVal(spacingInput) {
     return getSpacingVal(spacingInput(1));
   }
   if (Array.isArray(spacingInput)) {
-    return getSpacingVal(spacingInput[0]);
+    return spacingInput;
   }
   return '8px';
 }
@@ -138,6 +139,7 @@ export default function extendTheme(options = {}, ...args) {
         overlays: colorSchemesInput.dark?.overlays || defaultDarkOverlays,
       },
     },
+    spacing: getSpacingVal(input.spacing),
   };
 
   Object.keys(theme.colorSchemes).forEach((key) => {
@@ -419,12 +421,7 @@ export default function extendTheme(options = {}, ...args) {
     shouldSkipGeneratingVar,
     getSelector: getSelector || defaultGetSelector(theme),
   };
-  const internalTheme = theme;
-  internalTheme.spacing = getSpacingVal(input.spacing);
-  const { vars, generateThemeVars, generateStyleSheets } = prepareCssVars(
-    internalTheme,
-    parserConfig,
-  );
+  const { vars, generateThemeVars, generateStyleSheets } = prepareCssVars(theme, parserConfig);
   theme.attribute = 'data-mui-color-scheme';
   theme.colorSchemeSelector = ':root';
   theme.vars = vars;
@@ -434,6 +431,7 @@ export default function extendTheme(options = {}, ...args) {
   theme.generateThemeVars = generateThemeVars;
   theme.generateStyleSheets = generateStyleSheets;
   theme.getColorSchemeSelector = (colorScheme) => `[${theme.attribute}="${colorScheme}"] &`;
+  theme.spacing = createSpacing(input.spacing, createUnarySpacing(theme));
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
   theme.unstable_sxConfig = {
     ...defaultSxConfig,

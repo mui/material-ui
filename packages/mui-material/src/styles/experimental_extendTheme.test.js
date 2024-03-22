@@ -386,6 +386,26 @@ describe('experimental_extendTheme', () => {
       const theme = extendTheme({ spacing: '0.5rem' });
       expect(theme.spacing('1rem')).to.equal('1rem');
     });
+
+    it('can be customized as an array', () => {
+      const theme = extendTheme({ spacing: [0, 1, 2, 4, 8, 16, 32] });
+      expect(theme.vars.spacing).to.deep.equal([
+        'var(--mui-spacing-0, 0px)',
+        'var(--mui-spacing-1, 1px)',
+        'var(--mui-spacing-2, 2px)',
+        'var(--mui-spacing-3, 4px)',
+        'var(--mui-spacing-4, 8px)',
+        'var(--mui-spacing-5, 16px)',
+        'var(--mui-spacing-6, 32px)',
+      ]);
+      expect(theme.spacing(2)).to.equal('var(--mui-spacing-2, 2px)');
+    });
+
+    it('can be customized as a function', () => {
+      const theme = extendTheme({ spacing: (factor) => `${0.25 * factor}rem` });
+      expect(theme.vars.spacing).to.deep.equal('var(--mui-spacing, 0.25rem)');
+      expect(theme.spacing(2)).to.equal('calc(2 * var(--mui-spacing, 0.25rem))');
+    });
   });
 
   it('shallow merges multiple arguments', () => {
