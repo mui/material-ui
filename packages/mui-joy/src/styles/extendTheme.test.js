@@ -38,6 +38,7 @@ describe('extendTheme', () => {
         'shouldSkipGeneratingVar',
         'generateStyleSheets',
         'generateThemeVars',
+        'generateSpacing',
         'applyStyles',
       ]).to.includes(field);
     });
