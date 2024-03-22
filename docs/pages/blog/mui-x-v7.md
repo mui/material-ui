@@ -327,7 +327,7 @@ As usual, we're committed to further improving the library by introducing new fe
 Throughout this year, we'll invest in making MUI X components **design agnostic**. The components will still ship using Material UI as the default, but we're striving to ensure that they seamlessly integrate with any design system.
 The result is advanced components offering extreme flexibility and customization options, enabling a broader range of application styles without compromising the high-quality use cases and workflows that MUI X is known for.".
 
-We're also excited to announce that we're transitioning MUI X components from using Emotion to using [Pigment CSS](https://github.com/mui/material-ui/blob/master/packages/pigment-css-react/README.md), MUI's new CSS zero runtime package. This move is aimed at better supporting React Server Components, boosting performance and guaranteeing compatibility with the next major version of Material UI.
+We're also excited to announce that we're transitioning MUI X components from using Emotion to using [Pigment CSS](https://github.com/mui/material-ui/blob/master/packages/pigment-css-react/README.md), MUI's new CSS zero runtime package. This move is aimed at better supporting React Server Components, boosting performance and guaranteeing compatibility with the next major version of Material UI.
 
 Additionally, the following are the deliveries planned for the next few months.
 
