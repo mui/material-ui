@@ -68,6 +68,12 @@ function getSpacingVal(spacingInput) {
   if (typeof spacingInput === 'string') {
     return spacingInput;
   }
+  if (typeof spacingInput === 'function') {
+    return getSpacingVal(spacingInput(1));
+  }
+  if (Array.isArray(spacingInput)) {
+    return getSpacingVal(spacingInput[0]);
+  }
   return '8px';
 }
 
@@ -413,7 +419,12 @@ export default function extendTheme(options = {}, ...args) {
     shouldSkipGeneratingVar,
     getSelector: getSelector || defaultGetSelector(theme),
   };
-  const { vars, generateThemeVars, generateStyleSheets } = prepareCssVars(theme, parserConfig);
+  const internalTheme = theme;
+  internalTheme.spacing = getSpacingVal(input.spacing);
+  const { vars, generateThemeVars, generateStyleSheets } = prepareCssVars(
+    internalTheme,
+    parserConfig,
+  );
   theme.attribute = 'data-mui-color-scheme';
   theme.colorSchemeSelector = ':root';
   theme.vars = vars;
