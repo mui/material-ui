@@ -4,8 +4,28 @@ import { InternalStandardProps as StandardProps } from '..';
 import { StepIconProps } from '../StepIcon';
 import { Theme } from '../styles';
 import { StepLabelClasses } from './stepLabelClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
-export interface StepLabelProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
+export interface StepLabelSlots {
+  /**
+   * The component that renders the label.
+   * @default span
+   */
+  label?: React.ElementType;
+}
+
+export type StepLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  StepLabelSlots,
+  {
+    label: SlotProps<React.ElementType<React.HTMLProps<HTMLSpanElement>>, {}, StepLabelOwnerState>;
+  }
+>;
+
+export interface StepLabelOwnerState extends StepLabelProps {}
+
+export interface StepLabelProps
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>>,
+    StepLabelSlotsAndSlotProps {
   /**
    * In most cases will simply be a string containing a title for the label.
    */
@@ -17,6 +37,7 @@ export interface StepLabelProps extends StandardProps<React.HTMLAttributes<HTMLD
   /**
    * The props used for each slot inside.
    * @default {}
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    */
   componentsProps?: {
     /**
@@ -38,17 +59,6 @@ export interface StepLabelProps extends StandardProps<React.HTMLAttributes<HTMLD
    * The optional node to display.
    */
   optional?: React.ReactNode;
-  /**
-   * The props used for each slot inside.
-   * @default {}
-   */
-  slotProps?: {
-    /**
-     * Props applied to the label element.
-     * @default {}
-     */
-    label?: React.HTMLProps<HTMLSpanElement>;
-  };
   /**
    * The component to render in place of the [`StepIcon`](/material-ui/api/step-icon/).
    */
@@ -75,6 +85,8 @@ export type StepLabelClasskey = keyof NonNullable<StepLabelProps['classes']>;
  *
  * - [StepLabel API](https://mui.com/material-ui/api/step-label/)
  */
-declare const StepLabel: ((props: StepLabelProps) => JSX.Element) & { muiName: string };
+declare const StepLabel: ((props: StepLabelProps) => JSX.Element) & {
+  muiName: string;
+};
 
 export default StepLabel;

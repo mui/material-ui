@@ -274,6 +274,19 @@ npx @mui/codemod@next deprecations/alert-props <path>
  />;
 ```
 
+#### `backdrop-props`
+
+```diff
+ <Backdrop
+-    TransitionComponent={CustomTransition}
++    slots={{ transition: CustomTransition }}
+ />
+```
+
+```bash
+npx @mui/codemod@next deprecations/backdrop-props <path>
+```
+
 #### `button-classes`
 
 JS transforms:
@@ -876,7 +889,6 @@ CSS transforms:
 +.MuiPaginationItem-outlined.MuiPaginationItem-primary
 -.MuiPaginationItem-outlinedSecondary
 +.MuiPaginationItem-outlined.MuiPaginationItem-secondary
- />
 ```
 
 ```bash
@@ -907,6 +919,29 @@ npx @mui/codemod@next deprecations/pagination-item-classes <path>
 
 ```bash
 npx @mui/codemod@next deprecations/slider-props <path>
+```
+
+#### `step-label-props`
+
+```diff
+ <StepLabel
+-  componentsProps={{ label: labelProps }}
++  slotProps={{ label: labelProps }}
+ />
+```
+
+```diff
+ MuiStepLabel: {
+   defaultProps: {
+-  componentsProps={{ label: labelProps }}
++  slotProps={{ label: labelProps }}
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/step-label-props <path>
+
 ```
 
 ### v5.0.0
