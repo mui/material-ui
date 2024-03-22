@@ -9,7 +9,7 @@ export default async function MaterialUIPage() {
   const rootPaths = await fs.readdir(path.join(process.cwd(), `src/app/material-ui`));
   return (
     <div>
-      <h1>Material UI Components</h1>
+      <h1>Material UI x Pigment CSS</h1>
       <nav>
         <ul
           className={css({
