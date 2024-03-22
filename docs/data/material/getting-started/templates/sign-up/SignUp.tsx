@@ -6,6 +6,7 @@ import Checkbox from '@mui/material/Checkbox';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import InputLabel from '@mui/material/InputLabel';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -14,6 +15,7 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import { alpha, PaletteMode } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { visuallyHidden } from '@mui/utils';
 
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
@@ -222,6 +224,9 @@ export default function SignUp() {
               onSubmit={handleSubmit}
               sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
             >
+              <InputLabel htmlFor="name" sx={visuallyHidden}>
+                Name
+              </InputLabel>
               <TextField
                 autoComplete="name"
                 name="name"
@@ -233,17 +238,23 @@ export default function SignUp() {
                 helperText={nameErrorMessage}
                 color={nameError ? 'error' : 'primary'}
               />
+              <InputLabel htmlFor="lastName" sx={visuallyHidden}>
+                Last name
+              </InputLabel>
               <TextField
                 required
                 fullWidth
                 id="lastName"
                 placeholder="Last Name"
                 name="lastName"
-                autoComplete="family-name"
+                autoComplete="last-name"
                 error={lastNameError}
                 helperText={lastNameErrorMessage}
                 color={lastNameError ? 'error' : 'primary'}
               />
+              <InputLabel htmlFor="email" sx={visuallyHidden}>
+                Email
+              </InputLabel>
               <TextField
                 required
                 fullWidth
@@ -256,6 +267,9 @@ export default function SignUp() {
                 helperText={emailErrorMessage}
                 color={passwordError ? 'error' : 'primary'}
               />
+              <InputLabel htmlFor="password" sx={visuallyHidden}>
+                Password
+              </InputLabel>
               <TextField
                 required
                 fullWidth

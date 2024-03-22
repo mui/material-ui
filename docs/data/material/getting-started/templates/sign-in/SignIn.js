@@ -7,6 +7,7 @@ import Checkbox from '@mui/material/Checkbox';
 import CssBaseline from '@mui/material/CssBaseline';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Divider from '@mui/material/Divider';
+import InputLabel from '@mui/material/InputLabel';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -15,6 +16,7 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import { alpha } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { visuallyHidden } from '@mui/utils';
 
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
@@ -202,6 +204,9 @@ export default function SignIn() {
                 gap: 2,
               }}
             >
+              <InputLabel htmlFor="email" sx={visuallyHidden}>
+                Email
+              </InputLabel>
               <TextField
                 error={emailError}
                 helperText={emailErrorMessage}
@@ -215,7 +220,11 @@ export default function SignIn() {
                 fullWidth
                 variant="outlined"
                 color={emailError ? 'error' : 'primary'}
+                sx={{ ariaLabel: 'email' }}
               />
+              <InputLabel htmlFor="password" sx={visuallyHidden}>
+                Password
+              </InputLabel>
               <TextField
                 error={passwordError}
                 helperText={passwordErrorMessage}

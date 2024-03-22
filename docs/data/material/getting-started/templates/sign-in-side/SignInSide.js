@@ -6,12 +6,15 @@ import Checkbox from '@mui/material/Checkbox';
 import CssBaseline from '@mui/material/CssBaseline';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
+import InputLabel from '@mui/material/InputLabel';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+import { visuallyHidden } from '@mui/utils';
 
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 
@@ -211,6 +214,9 @@ export default function SignInSide() {
                   width: '100%',
                 }}
               >
+                <InputLabel htmlFor="email" sx={visuallyHidden}>
+                  Email
+                </InputLabel>
                 <TextField
                   error={emailError}
                   helperText={emailErrorMessage}
@@ -224,6 +230,9 @@ export default function SignInSide() {
                   autoFocus
                   color={emailError ? 'error' : 'primary'}
                 />
+                <InputLabel htmlFor="password" sx={visuallyHidden}>
+                  Password
+                </InputLabel>
                 <TextField
                   error={passwordError}
                   helperText={passwordErrorMessage}
