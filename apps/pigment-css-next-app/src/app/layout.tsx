@@ -25,7 +25,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
           color: ${({ theme }) => theme.vars.palette.text.primary};
         `}`}
       >
-        <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+        <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
             {props.children}
