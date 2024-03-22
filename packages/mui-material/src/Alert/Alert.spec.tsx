@@ -1,4 +1,4 @@
-import { CloseRounded } from '@mui/icons-material';
+import CloseRounded from '@mui/icons-material/CloseRounded';
 import { createTheme } from '@mui/material';
 
 createTheme({

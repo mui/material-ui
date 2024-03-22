@@ -785,7 +785,7 @@ export default function BaseUIThemesDemo() {
   // Snackbar
   const [openSnackbar, setOpenSnackbar] = React.useState(false);
 
-  const handleCloseSnackbar = (_: any, reason: SnackbarCloseReason) => {
+  const handleCloseSnackbar = (_: any, reason?: SnackbarCloseReason) => {
     if (reason === 'clickaway') {
       return;
     }

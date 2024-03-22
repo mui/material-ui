@@ -83,7 +83,7 @@ function createReactApp(demoData: DemoData) {
     devDependencies,
     /**
      * @param {string} initialFile
-     * @description should start with `/`, e.g. `/Demo.tsx`. If the extension is not provided,
+     * @description should start with `/`, for example `/Demo.tsx`. If the extension is not provided,
      * it will be appended based on the code variant.
      */
     openSandbox: (initialFile: string = `/src/Demo.${ext}`) =>

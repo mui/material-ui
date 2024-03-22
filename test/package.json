@@ -15,7 +15,6 @@
     "@mui/joy": "workspace:*",
     "@mui/lab": "workspace:*",
     "@mui/material": "workspace:^",
-    "@mui/material-next": "workspace:*",
     "@mui/system": "workspace:^",
     "@mui/utils": "workspace:^",
     "@playwright/test": "1.42.1",

@@ -10,7 +10,7 @@ card: true
 The [story of Base UI](/blog/introducing-base-ui/) began several years ago—long before headless React component libraries skyrocketed in popularity—when we started to imagine a world in which Material UI could exist without Material Design.
 
 We're super excited to share that this dream is becoming a reality!
-This year will see a lot of investment in Base UI as we expand the team ([we're hiring!](/careers/staff-ui-engineer-base-ui/)) and focus hard on a stable release (tentatively planned for late 2024), which will come full of new components, features, and improvements.
+This year will see a lot of investment in Base UI as we expand the team and focus hard on a stable release (tentatively planned for late 2024), which will come full of new components, features, and improvements.
 
 Let's walk through some of the things we're cooking up.
 
@@ -50,7 +50,7 @@ Currently, Base UI components can be customized to your heart's content using t
 ```
 
 This API, while powerful, has proven to be less than ideal in some instances.
-Most notably, it's too lengthy and complicated to write and read when used with libraries such as Tailwind CSS.
+Most notably, it's too lengthy and complicated to write and read when used with libraries such as Tailwind CSS.
 Additionally, since the `slots` and the corresponding `slotProps` are not related in terms of TypeScript types, it's possible to introduce bugs or have the compiler complain about valid code.
 
 To address these issues, we're considering adopting a new API that would assign a discrete subcomponent to each DOM node—the pattern favored by many other headless component libraries (think: `<Slider.Track />`, `<Slider.Thumb />`, etc.).
@@ -97,11 +97,9 @@ To acknowledge that Base UI has the potential to outgrow Material UI, we plan 
 The new repository is live－[check it out on GitHub](https://github.com/mui/base-ui)!
 :::
 
-## Join us on the ride
+## Help us on the ride
 
-If you're passionate about extending the web platform with powerful, accessible, unstyled components, [we're hiring UI Engineers](/careers/staff-ui-engineer-base-ui/) to work on the Base UI team and help us accelerate its growth.
-
-Lastly, we'd love to hear your feedback.
+We'd love to hear your feedback.
 The best place to share your ideas and requests is in [the GitHub repository](https://github.com/mui/base-ui/issues).
 Check out the existing issues and add your thoughts, and feel free to open your own issue if you don't see your concerns addressed elsewhere.
 
