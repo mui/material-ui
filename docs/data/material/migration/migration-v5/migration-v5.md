@@ -23,3 +23,6 @@ The steps you need to take to migrate from Material UI v5 to v6 are described 
 This list is a work in progress.
 Expect updates as new breaking changes are introduced.
 :::
+
+### Removal of deprecated ListItem props
+`ListItem` props `autoFocus`, `button`, `disabled`, and `selected` have been removed as they are deprecated. `ListItemButton` is used as an alternative to `button`.
