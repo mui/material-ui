@@ -218,7 +218,7 @@ Our plan is to replace the move the new implementation to the Tree Item componen
 
 ## Charts
 
-Since launching MUI X Charts, we've been closely listening to your feedback, and our focus has been on refining these foundational elements through bug fixes, enriched documentation, and increasing support for more complex scenarios.
+Since [launching MUI X Charts](/blog/mui-x-mid-v6-features/#charts-alpha-version), we've been closely listening to your feedback, and our focus has been on refining these foundational elements through bug fixes, enriched documentation, and increasing support for more complex scenarios.
 
 The charts portfolio has also expanded with one of the most commonly used data visualization components for dashboards.
 
