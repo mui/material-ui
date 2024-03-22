@@ -12,7 +12,7 @@ cardTitle: blog with\n*custom* card
 
 ### Image
 
-<img alt="Satellite image of Tenerife" src="/static/blog/2022-tenerife-retreat/tenerife.jpeg" width="2560" height="1920" loading="lazy" />
+<img alt="Satellite image of Tenerife" src="/static/blog/2022-tenerife-retreat/tenerife.jpeg" width="2560" height="1920" />
 
 <p class="blog-description">An image description <a href="https://en.wikipedia.org/wiki/Tenerife">with a link</a>.</p>
 
