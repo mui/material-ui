@@ -44,18 +44,6 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getChipUtilityClass, classes);
 };
 
-const parseIconColor = (icon, color) =>
-  React.isValidElement(icon) ? icon.props.color || color : color;
-
-const isIconColorEqualToColor = ({ icon, color }) => {
-  const iconColor = parseIconColor(icon, color);
-
-  return iconColor === color;
-};
-
-const isClickable = ({ clickable, onClick }) =>
-  clickable !== false && !!onClick ? true : clickable;
-
 const ChipRoot = styled('div', {
   name: 'MuiChip',
   slot: 'Root',
@@ -192,14 +180,11 @@ const ChipRoot = styled('div', {
                     color: (theme.vars || theme).palette[color].contrastText,
                   },
                 },
-                [`&.${chipClasses.focusVisible}.${chipClasses.deletable}`]: {
-                  background: (theme.vars || theme).palette[color].dark,
-                },
               },
             };
           }),
         {
-          props: isIconColorEqualToColor,
+          props: (props) => props.iconColor === props.color,
           style: {
             [`& .${chipClasses.icon}`]: {
               color: theme.vars ? theme.vars.palette.Chip.defaultIconColor : textColor,
@@ -207,7 +192,7 @@ const ChipRoot = styled('div', {
           },
         },
         {
-          props: (props) => isIconColorEqualToColor(props) && props.color !== 'default',
+          props: (props) => props.iconColor === props.color && props.color !== 'default',
           style: {
             [`& .${chipClasses.icon}`]: {
               color: 'inherit',
@@ -215,7 +200,7 @@ const ChipRoot = styled('div', {
           },
         },
         {
-          props: (props) => !!props.onDelete,
+          props: { onDelete: true },
           style: {
             [`&.${chipClasses.focusVisible}`]: {
               backgroundColor: theme.vars
@@ -227,13 +212,25 @@ const ChipRoot = styled('div', {
             },
           },
         },
+        ...Object.entries(theme.palette)
+          .filter(([, value]) => value.dark)
+          .map(([color]) => {
+            return {
+              props: { color, onDelete: true },
+              style: {
+                [`&.${chipClasses.focusVisible}`]: {
+                  background: (theme.vars || theme).palette[color].dark,
+                },
+              },
+            };
+          }),
       ],
     };
   },
   ({ theme }) => ({
     variants: [
       {
-        props: isClickable,
+        props: { clickable: true },
         style: {
           userSelect: 'none',
           WebkitTapHighlightColor: 'transparent',
@@ -262,12 +259,10 @@ const ChipRoot = styled('div', {
       ...Object.entries(theme.palette)
         .filter(([, value]) => value.dark)
         .map(([color]) => ({
-          props: { color },
+          props: { color, clickable: true },
           style: {
-            [`&.${chipClasses.clickable}`]: {
-              [`&:hover, &.${chipClasses.focusVisible}`]: {
-                backgroundColor: (theme.vars || theme).palette[color].dark,
-              },
+            [`&:hover, &.${chipClasses.focusVisible}`]: {
+              backgroundColor: (theme.vars || theme).palette[color].dark,
             },
           },
         })),
@@ -464,7 +459,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     disabled,
     size,
     color,
-    iconColor: parseIconColor(iconProp, color),
+    iconColor: React.isValidElement(iconProp) ? iconProp.props.color || color : color,
     onDelete: !!onDelete,
     clickable,
     variant,
