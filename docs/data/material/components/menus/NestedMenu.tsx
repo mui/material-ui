@@ -12,6 +12,34 @@ import {
   Typography,
 } from '@mui/material';
 
+function pointInTriangle(
+  x: number,
+  y: number,
+  x1: number,
+  y1: number,
+  x2: number,
+  y2: number,
+  x3: number,
+  y3: number,
+) {
+  function sign(
+    px: number,
+    py: number,
+    qx: number,
+    qy: number,
+    rx: number,
+    ry: number,
+  ) {
+    return (px - rx) * (qy - ry) - (qx - rx) * (py - ry);
+  }
+
+  const b1 = sign(x, y, x1, y1, x2, y2) <= 0;
+  const b2 = sign(x, y, x2, y2, x3, y3) <= 0;
+  const b3 = sign(x, y, x3, y3, x1, y1) <= 0;
+
+  return b1 === b2 && b2 === b3;
+}
+
 type SubMenuProps = {
   MENU_LEVELS: number;
   options: Array<{
@@ -30,8 +58,15 @@ function SubMenu({ options, MENU_LEVELS }: SubMenuProps) {
     options: new Array(MENU_LEVELS).fill(null),
   });
 
-
   const mouseEntered = React.useRef<Record<string, boolean>>({});
+
+  const virtualTriangleCoordinates = React.useRef<{
+    mouseLeftCordinates: Array<number>;
+    subMenuCorrdinates: Array<number>;
+  }>({
+    mouseLeftCordinates: [],
+    subMenuCorrdinates: [],
+  });
 
   const handleOpen = (
     event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>,
@@ -49,6 +84,7 @@ function SubMenu({ options, MENU_LEVELS }: SubMenuProps) {
       ),
     }));
   };
+
   const handleClose = (level: number) => {
     setAnchors((prevAnchors) => ({
       elements: prevAnchors.elements.map((element, index) =>
@@ -113,7 +149,7 @@ function SubMenu({ options, MENU_LEVELS }: SubMenuProps) {
                   >
                     <MenuList
                       autoFocusItem={Boolean(anchorElement)}
-                      id="nested-menu"
+                      id={`nested-menu-${index}`}
                       aria-labelledby="nested-button"
                     >
                       {(anchors.options[index] ?? []).map((option, optIndex) => (
@@ -133,35 +169,91 @@ function SubMenu({ options, MENU_LEVELS }: SubMenuProps) {
                             }
                           }}
                           onMouseMove={(event) => {
-                            if (!mouseEntered.current[getId(option, optIndex)]) {
-                              mouseEntered.current[getId(option, optIndex)] = true;
-                              if (!option.nestedOptions) {
-                                handleClose(option.menuLevel + 1);
-                              } else if (
-                                option.nestedOptions &&
-                                anchors.options[option.menuLevel + 1] &&
-                                !option.nestedOptions.every(
-                                  (val, i) =>
-                                    val.value ===
-                                    anchors.options[option.menuLevel + 1]?.[i].value,
+                            let computeSubMenuOpenLogic = true;
+                            const submenu = document.querySelector(
+                              `#nested-menu-${option.menuLevel + 1}`,
+                            );
+
+                            if (
+                              virtualTriangleCoordinates.current.mouseLeftCordinates
+                                .length > 0 &&
+                              submenu
+                            ) {
+                              const { x, y, height } =
+                                submenu.getBoundingClientRect();
+
+                              const [x1, y1] = [
+                                {
+                                  x,
+                                  y,
+                                },
+                                {
+                                  x,
+                                  y: y + height,
+                                },
+                              ];
+
+                              if (
+                                pointInTriangle(
+                                  event.clientX,
+                                  -event.clientY,
+                                  x1.x,
+
+                                  -x1.y,
+
+                                  y1.x,
+                                  -y1.y,
+
+                                  virtualTriangleCoordinates.current
+                                    .mouseLeftCordinates[0],
+                                  -virtualTriangleCoordinates.current
+                                    .mouseLeftCordinates[1],
                                 )
                               ) {
-                                handleClose(option.menuLevel + 1);
-                                handleOpen(
-                                  event,
-                                  option.menuLevel + 1,
-                                  option.nestedOptions,
-                                );
+                                computeSubMenuOpenLogic = false;
                               } else {
-                                handleOpen(
-                                  event,
-                                  option.menuLevel + 1,
-                                  option.nestedOptions,
-                                );
+                                computeSubMenuOpenLogic = true;
+                              }
+                            }
+
+                            if (computeSubMenuOpenLogic) {
+                              if (!mouseEntered.current[getId(option, optIndex)]) {
+                                mouseEntered.current[getId(option, optIndex)] = true;
+                                // if mouse moved from option which has submenu to current option which doesn't have submenu, then all submenu should be closed
+
+                                if (!option.nestedOptions) {
+                                  handleClose(option.menuLevel + 1);
+                                } else if (
+                                  // if mouse moved from option which has submenu to current option which have submenu, then open current option submenu and close previous option submenu
+                                  option.nestedOptions &&
+                                  anchors.options[option.menuLevel + 1] &&
+                                  !option.nestedOptions.every(
+                                    (val, i) =>
+                                      val.value ===
+                                      anchors.options[option.menuLevel + 1]?.[i]
+                                        .value,
+                                  )
+                                ) {
+                                  handleClose(option.menuLevel + 1);
+                                  handleOpen(
+                                    event,
+                                    option.menuLevel + 1,
+                                    option.nestedOptions,
+                                  );
+                                } else {
+                                  handleOpen(
+                                    event,
+                                    option.menuLevel + 1,
+                                    option.nestedOptions,
+                                  );
+                                }
                               }
                             }
                           }}
-                          onMouseLeave={() => {
+                          onMouseLeave={(event) => {
+                            virtualTriangleCoordinates.current.mouseLeftCordinates =
+                              [event.clientX, event.clientY];
+
                             mouseEntered.current[getId(option, optIndex)] = false;
                           }}
                           onKeyDown={(event) => {
