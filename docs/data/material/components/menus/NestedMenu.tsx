@@ -30,7 +30,7 @@ function SubMenu({ options, MENU_LEVELS }: SubMenuProps) {
     options: new Array(MENU_LEVELS).fill(null),
   });
 
-  const duration = React.useRef<Record<string, number>>({});
+
   const mouseEntered = React.useRef<Record<string, boolean>>({});
 
   const handleOpen = (
@@ -133,50 +133,36 @@ function SubMenu({ options, MENU_LEVELS }: SubMenuProps) {
                             }
                           }}
                           onMouseMove={(event) => {
-                            if (
-                              duration.current[getId(option, optIndex)] &&
-                              !mouseEntered.current[getId(option, optIndex)]
-                            ) {
-                              if (
-                                Date.now() -
-                                  duration.current[getId(option, optIndex)] >
-                                20
+                            if (!mouseEntered.current[getId(option, optIndex)]) {
+                              mouseEntered.current[getId(option, optIndex)] = true;
+                              if (!option.nestedOptions) {
+                                handleClose(option.menuLevel + 1);
+                              } else if (
+                                option.nestedOptions &&
+                                anchors.options[option.menuLevel + 1] &&
+                                !option.nestedOptions.every(
+                                  (val, i) =>
+                                    val.value ===
+                                    anchors.options[option.menuLevel + 1]?.[i].value,
+                                )
                               ) {
-                                mouseEntered.current[getId(option, optIndex)] = true;
-                                if (!option.nestedOptions) {
-                                  handleClose(option.menuLevel + 1);
-                                } else if (
-                                  option.nestedOptions &&
-                                  anchors.options[option.menuLevel + 1] &&
-                                  !option.nestedOptions.every(
-                                    (val, i) =>
-                                      val.value ===
-                                      anchors.options[option.menuLevel + 1]?.[i]
-                                        .value,
-                                  )
-                                ) {
-                                  handleClose(option.menuLevel + 1);
-                                  handleOpen(
-                                    event,
-                                    option.menuLevel + 1,
-                                    option.nestedOptions,
-                                  );
-                                } else {
-                                  handleOpen(
-                                    event,
-                                    option.menuLevel + 1,
-                                    option.nestedOptions,
-                                  );
-                                }
+                                handleClose(option.menuLevel + 1);
+                                handleOpen(
+                                  event,
+                                  option.menuLevel + 1,
+                                  option.nestedOptions,
+                                );
+                              } else {
+                                handleOpen(
+                                  event,
+                                  option.menuLevel + 1,
+                                  option.nestedOptions,
+                                );
                               }
                             }
                           }}
                           onMouseLeave={() => {
-                            duration.current[getId(option, optIndex)] = 0;
                             mouseEntered.current[getId(option, optIndex)] = false;
-                          }}
-                          onMouseEnter={() => {
-                            duration.current[getId(option, optIndex)] = Date.now();
                           }}
                           onKeyDown={(event) => {
                             if (option.nestedOptions) {

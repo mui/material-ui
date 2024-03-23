@@ -285,6 +285,7 @@ describe('e2e', () => {
       await screen.getByText('Lemonade');
     });
   });
+
   describe('<TextareaAutosize />', () => {
     // https://github.com/mui/material-ui/issues/32640
     it('should handle suspense without error', async () => {
