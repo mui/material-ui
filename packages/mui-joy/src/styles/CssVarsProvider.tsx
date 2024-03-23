@@ -1,14 +1,15 @@
 'use client';
-import { deepmerge } from '@mui/utils';
+// do not remove the following import (https://github.com/microsoft/TypeScript/issues/29808#issuecomment-1320713018)
+/* eslint-disable @typescript-eslint/no-unused-vars */
+// @ts-ignore
+import * as React from 'react';
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
 import defaultTheme from './defaultTheme';
-import { CssVarsThemeOptions } from './extendTheme';
-import { createSoftInversion, createSolidInversion } from './variantUtils';
-import type { Theme, DefaultColorScheme, ExtendedColorScheme } from './types';
+import type { SupportedColorScheme } from './types';
 import THEME_ID from './identifier';
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
-  DefaultColorScheme | ExtendedColorScheme,
+  SupportedColorScheme,
   typeof THEME_ID
 >({
   themeId: THEME_ID,
@@ -19,20 +20,6 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
   defaultColorScheme: {
     light: 'light',
     dark: 'dark',
-  },
-  resolveTheme: (mergedTheme: Theme) => {
-    const colorInversionInput = mergedTheme.colorInversion as CssVarsThemeOptions['colorInversion'];
-    mergedTheme.colorInversion = deepmerge(
-      {
-        soft: createSoftInversion(mergedTheme),
-        solid: createSolidInversion(mergedTheme),
-      },
-      typeof colorInversionInput === 'function'
-        ? colorInversionInput(mergedTheme)
-        : colorInversionInput,
-      { clone: false },
-    );
-    return mergedTheme;
   },
 });
 

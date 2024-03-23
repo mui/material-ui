@@ -3,7 +3,6 @@ import * as React from 'react';
 import { ClassValue } from 'clsx';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { appendOwnerState, resolveComponentProps, mergeSlotProps } from '@mui/base/utils';
-import { useColorInversion } from '../styles/ColorInversion';
 import { ApplyColorInversion } from '../styles/types';
 
 export type WithCommonProps<T> = T & {
@@ -134,19 +133,8 @@ export default function useSlot<
 
   const ref = useForkRef(internalRef, resolvedComponentsProps?.ref, parameters.ref);
 
-  // @ts-ignore internal logic
-  const { disableColorInversion = false, ...slotOwnerState } = getSlotOwnerState
-    ? getSlotOwnerState(mergedProps as any)
-    : {};
+  const slotOwnerState = getSlotOwnerState ? getSlotOwnerState(mergedProps as any) : {};
   const finalOwnerState = { ...ownerState, ...slotOwnerState } as any;
-
-  const { getColor } = useColorInversion(finalOwnerState.variant);
-  if (name === 'root') {
-    // for the root slot, color inversion is calculated before the `useSlot` and pass through `ownerState`.
-    finalOwnerState.color = (mergedProps as any).color ?? (ownerState as any).color;
-  } else if (!disableColorInversion) {
-    finalOwnerState.color = getColor((mergedProps as any).color, finalOwnerState.color);
-  }
 
   const LeafComponent = (name === 'root' ? slotComponent || rootComponent : slotComponent) as
     | React.ElementType

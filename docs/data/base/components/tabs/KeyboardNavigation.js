@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
 import { buttonClasses } from '@mui/base/Button';
-import Tabs from '@mui/base/Tabs';
-import Tab, { tabClasses } from '@mui/base/Tab';
-import TabsList from '@mui/base/TabsList';
+import { Tabs } from '@mui/base/Tabs';
+import { Tab as BaseTab, tabClasses } from '@mui/base/Tab';
+import { TabsList as BaseTabsList } from '@mui/base/TabsList';
 
 export default function KeyboardNavigation() {
   return (
@@ -14,20 +14,20 @@ export default function KeyboardNavigation() {
         aria-label="Tabs where selection follows focus"
         selectionFollowsFocus
       >
-        <StyledTabsList>
-          <StyledTab value={1}>One</StyledTab>
-          <StyledTab value={2}>Two</StyledTab>
-          <StyledTab value={3}>Three</StyledTab>
-        </StyledTabsList>
+        <TabsList>
+          <Tab value={1}>One</Tab>
+          <Tab value={2}>Two</Tab>
+          <Tab value={3}>Three</Tab>
+        </TabsList>
       </Tabs>
 
       <p>Selection independent of focus (default behavior):</p>
       <Tabs defaultValue={1} aria-label="Tabs where selection does not follow focus">
-        <StyledTabsList>
-          <StyledTab value={1}>One</StyledTab>
-          <StyledTab value={2}>Two</StyledTab>
-          <StyledTab value={3}>Three</StyledTab>
-        </StyledTabsList>
+        <TabsList>
+          <Tab value={1}>One</Tab>
+          <Tab value={2}>Two</Tab>
+          <Tab value={3}>Three</Tab>
+        </TabsList>
       </Tabs>
     </div>
   );
@@ -47,19 +47,19 @@ const blue = {
 };
 
 const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
-const StyledTab = styled(Tab)`
+const Tab = styled(BaseTab)`
   font-family: 'IBM Plex Sans', sans-serif;
   color: white;
   cursor: pointer;
@@ -94,7 +94,7 @@ const StyledTab = styled(Tab)`
   }
 `;
 
-const StyledTabsList = styled(TabsList)(
+const TabsList = styled(BaseTabsList)(
   ({ theme }) => `
   min-width: 400px;
   background-color: ${blue[500]};

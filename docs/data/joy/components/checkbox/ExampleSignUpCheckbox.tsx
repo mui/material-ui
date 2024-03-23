@@ -17,7 +17,7 @@ export default function ExampleSignUpCheckbox() {
         }
       />
       <FormHelperText>
-        <Typography level="body2">
+        <Typography level="body-sm">
           Read our <Link href="#link">terms and conditions</Link>.
         </Typography>
       </FormHelperText>

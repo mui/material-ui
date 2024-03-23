@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import ClickAwayListener from '../ClickAwayListener';
+import { ClickAwayListener } from '../ClickAwayListener';
 import {
   SnackbarOwnerState,
   SnackbarProps,
@@ -9,9 +9,9 @@ import {
   SnackbarTypeMap,
   SnackbarClickAwayListenerSlotProps,
 } from './Snackbar.types';
-import composeClasses from '../composeClasses';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getSnackbarUtilityClass } from './snackbarClasses';
-import useSnackbar from '../useSnackbar';
+import { useSnackbar } from '../useSnackbar';
 import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
@@ -27,6 +27,7 @@ const useUtilityClasses = () => {
  * Demos:
  *
  * - [Snackbar](https://mui.com/base-ui/react-snackbar/)
+ * - [Snackbar](https://mui.com/joy-ui/react-snackbar/)
  * - [Snackbar](https://mui.com/material-ui/react-snackbar/)
  *
  * API:
@@ -108,10 +109,10 @@ const Snackbar = React.forwardRef(function Snackbar<RootComponentType extends Re
 }) as PolymorphicComponent<SnackbarTypeMap>;
 
 Snackbar.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The number of milliseconds to wait before automatically calling the
    * `onClose` function. `onClose` should then set the state of the `open`
@@ -190,4 +191,4 @@ Snackbar.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
-export default Snackbar;
+export { Snackbar };

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ColorPaletteProp } from '@mui/joy/styles';
 import Autocomplete from '@mui/joy/Autocomplete';
+import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Card from '@mui/joy/Card';
 import IconButton from '@mui/joy/IconButton';
@@ -10,6 +11,7 @@ import ListDivider from '@mui/joy/ListDivider';
 import Tooltip from '@mui/joy/Tooltip';
 import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import PaletteIcon from '@mui/icons-material/Palette';
 
 // disable flip for this demo
 // https://popper.js.org/docs/v2/modifiers/flip/
@@ -26,82 +28,83 @@ export default function ColorInversionPopup() {
   const [color, setColor] = React.useState<ColorPaletteProp>('danger');
   const [menuButton, setMenuButton] = React.useState<HTMLElement | null>(null);
   return (
-    <Card
-      orientation="horizontal"
-      variant="solid"
-      color={color}
-      invertedColors
-      sx={{
-        gap: 10,
-        minHeight: 240,
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-        flexGrow: 1,
-        zIndex: 0,
-      }}
-    >
-      <Autocomplete
-        placeholder="Combo box"
-        options={films}
-        sx={{ width: 240 }}
-        open
-        slotProps={{
-          listbox: { disablePortal: true, modifiers, sx: { maxHeight: 160 } },
-        }}
-      />
+    <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 2 }}>
       <Button
-        variant="soft"
-        endDecorator={<KeyboardArrowDownIcon />}
-        onClick={(event) => setMenuButton(event.currentTarget)}
-      >
-        Actions
-      </Button>
-      <Menu
-        disablePortal
-        modifiers={modifiers}
-        anchorEl={menuButton}
-        open={!!menuButton}
-        onClose={() => setMenuButton(null)}
-      >
-        <MenuItem>New tab</MenuItem>
-        <MenuItem>New window</MenuItem>
-        <ListDivider />
-        <MenuItem>Delete</MenuItem>
-      </Menu>
-      <Tooltip
-        title="Bookmark"
-        disablePortal
-        modifiers={modifiers}
-        open
-        variant="solid"
-      >
-        <IconButton>
-          <BookmarkOutlinedIcon />
-        </IconButton>
-      </Tooltip>
-      <IconButton
-        sx={{
-          position: 'absolute',
-          bottom: '1.5rem',
-          right: '1.5rem',
-          borderRadius: '50%',
-        }}
+        variant="outlined"
+        startDecorator={<PaletteIcon />}
         onClick={() => {
           const colors: ColorPaletteProp[] = [
             'primary',
             'neutral',
             'danger',
-            'info',
             'success',
             'warning',
           ];
-          const nextColor = colors.indexOf(color);
-          setColor(colors[nextColor + 1] ?? colors[0]);
+          const nextColorIndex = colors.indexOf(color) + 1;
+          setColor(colors[nextColorIndex] ?? colors[0]);
         }}
       >
-        🎨
-      </IconButton>
-    </Card>
+        Change the color
+      </Button>
+      <Card
+        orientation="horizontal"
+        variant="solid"
+        color={color}
+        invertedColors
+        sx={{
+          minHeight: 240,
+          zIndex: 0,
+          p: 4,
+          width: '100%',
+          flexDirection: { xs: 'column', sm: 'row' },
+          alignItems: 'flex-start',
+          justifyContent: 'center',
+          flexGrow: 1,
+          gap: 6,
+          borderRadius: 'sm',
+        }}
+      >
+        <Autocomplete
+          open
+          placeholder="Combobox"
+          options={films}
+          sx={{ width: { xs: '100%', sm: 240 } }}
+          slotProps={{
+            listbox: { disablePortal: true, modifiers, sx: { maxHeight: 140 } },
+          }}
+        />
+        <Button
+          variant="soft"
+          endDecorator={<KeyboardArrowDownIcon />}
+          onClick={(event) => setMenuButton(event.currentTarget)}
+        >
+          Actions
+        </Button>
+        <Menu
+          disablePortal
+          modifiers={modifiers}
+          anchorEl={menuButton}
+          open={!!menuButton}
+          onClose={() => setMenuButton(null)}
+        >
+          <MenuItem>New tab</MenuItem>
+          <MenuItem>New window</MenuItem>
+          <ListDivider />
+          <MenuItem>Delete</MenuItem>
+        </Menu>
+        <Tooltip
+          open
+          variant="solid"
+          title="Bookmark"
+          disablePortal
+          modifiers={modifiers}
+        >
+          <IconButton>
+            <BookmarkOutlinedIcon />
+          </IconButton>
+        </Tooltip>
+      </Card>
+    </Box>
   );
 }
 

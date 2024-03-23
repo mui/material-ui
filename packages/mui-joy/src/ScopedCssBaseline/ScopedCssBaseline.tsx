@@ -47,11 +47,11 @@ const ScopedCssBaselineRoot = styled('div', {
     // Fix font resize problem in iOS
     WebkitTextSizeAdjust: '100%',
     color: theme.vars.palette.text.primary,
-    ...(theme.typography.body1 as any),
+    ...theme.typography['body-md'],
     backgroundColor: theme.vars.palette.background.body,
     '@media print': {
       // Save printer ink.
-      backgroundColor: theme.vars.palette.common.white,
+      backgroundColor: '#fff',
     },
     '& *, & *::before, & *::after': {
       boxSizing: 'inherit',
@@ -107,10 +107,10 @@ const ScopedCssBaseline = React.forwardRef(function ScopedCssBaseline(inProps, r
 }) as OverridableComponent<ScopedCssBaselineTypeMap>;
 
 ScopedCssBaseline.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * You can wrap a node.
    */

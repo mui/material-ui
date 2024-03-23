@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Simplify } from '@mui/types';
-import Popper, { PopperProps } from '../Popper';
 import { PolymorphicProps, SlotComponentProps } from '../utils';
 import { UseMenuListboxSlotProps } from '../useMenu';
 import { ListAction } from '../useList';
+import { PopupProps } from '../Unstable_Popup';
 
 export interface MenuRootSlotPropsOverrides {}
 export interface MenuListboxSlotPropsOverrides {}
@@ -25,34 +25,21 @@ export interface MenuOwnProps {
    */
   actions?: React.Ref<MenuActions>;
   /**
-   * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
-   * or a function that returns either.
-   * It's used to set the position of the popper.
+   * The element based on which the menu is positioned.
    */
-  anchorEl?: PopperProps['anchorEl'];
+  anchor?: PopupProps['anchor'];
   children?: React.ReactNode;
   className?: string;
-  defaultOpen?: boolean;
-  listboxId?: string;
   /**
    * Function called when the items displayed in the menu change.
    */
   onItemsChange?: (items: string[]) => void;
   /**
-   * Triggered when focus leaves the menu and the menu should close.
-   */
-  onOpenChange?: (open: boolean) => void;
-  /**
-   * Controls whether the menu is displayed.
-   * @default false
-   */
-  open?: boolean;
-  /**
    * The props used for each slot inside the Menu.
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<typeof Popper, MenuRootSlotPropsOverrides, MenuOwnerState>;
+    root?: SlotComponentProps<'div', MenuRootSlotPropsOverrides & PopupProps, MenuOwnerState>;
     listbox?: SlotComponentProps<'ul', MenuListboxSlotPropsOverrides, MenuOwnerState>;
   };
   /**
@@ -65,8 +52,8 @@ export interface MenuOwnProps {
 
 export interface MenuSlots {
   /**
-   * The component that renders the root.
-   * @default Popper
+   * The component that renders the popup element.
+   * @default 'div'
    */
   root?: React.ElementType;
   /**
@@ -78,7 +65,7 @@ export interface MenuSlots {
 
 export interface MenuTypeMap<
   AdditionalProps = {},
-  RootComponentType extends React.ElementType = 'ul',
+  RootComponentType extends React.ElementType = 'div',
 > {
   props: MenuOwnProps & AdditionalProps;
   defaultComponent: RootComponentType;
@@ -95,16 +82,14 @@ export type MenuOwnerState = Simplify<
 >;
 
 export type MenuRootSlotProps = {
-  anchorEl: PopperProps['anchorEl'];
   children?: React.ReactNode;
   className?: string;
-  keepMounted: PopperProps['keepMounted'];
-  open: boolean;
   ownerState: MenuOwnerState;
   ref: React.Ref<any>;
 };
 
 export type MenuListboxSlotProps = UseMenuListboxSlotProps & {
-  className: string | undefined;
+  children?: React.ReactNode;
+  className?: string;
   ownerState: MenuOwnerState;
 };

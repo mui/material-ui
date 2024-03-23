@@ -12,7 +12,6 @@ export default function RadioColors() {
         <Radio value="primary" label="Primary" color="primary" />
         <Radio value="neutral" label="Neutral" color="neutral" />
         <Radio value="danger" label="Danger" color="danger" />
-        <Radio value="info" label="Info" color="info" />
         <Radio value="success" label="Success" color="success" />
         <Radio value="warning" label="Warning" color="warning" />
       </RadioGroup>

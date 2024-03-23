@@ -1,109 +1,128 @@
 import * as React from 'react';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
+
 import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormLabel from '@mui/material/FormLabel';
+import Grid from '@mui/material/Grid';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import { styled } from '@mui/system';
+
+const FormGrid = styled(Grid)(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+}));
 
 export default function AddressForm() {
   return (
-    <React.Fragment>
-      <Typography variant="h6" gutterBottom>
-        Shipping address
-      </Typography>
-      <Grid container spacing={3}>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="firstName"
-            name="firstName"
-            label="First name"
-            fullWidth
-            autoComplete="given-name"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="lastName"
-            name="lastName"
-            label="Last name"
-            fullWidth
-            autoComplete="family-name"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            required
-            id="address1"
-            name="address1"
-            label="Address line 1"
-            fullWidth
-            autoComplete="shipping address-line1"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            id="address2"
-            name="address2"
-            label="Address line 2"
-            fullWidth
-            autoComplete="shipping address-line2"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="city"
-            name="city"
-            label="City"
-            fullWidth
-            autoComplete="shipping address-level2"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            id="state"
-            name="state"
-            label="State/Province/Region"
-            fullWidth
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="zip"
-            name="zip"
-            label="Zip / Postal code"
-            fullWidth
-            autoComplete="shipping postal-code"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="country"
-            name="country"
-            label="Country"
-            fullWidth
-            autoComplete="shipping country"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
-            label="Use this address for payment details"
-          />
-        </Grid>
-      </Grid>
-    </React.Fragment>
+    <Grid container spacing={3}>
+      <FormGrid item xs={12} md={6}>
+        <FormLabel htmlFor="first-name" required>
+          First name
+        </FormLabel>
+        <OutlinedInput
+          id="first-name"
+          name="first-name"
+          type="name"
+          placeholder="John"
+          autoComplete="first name"
+          required
+        />
+      </FormGrid>
+      <FormGrid item xs={12} md={6}>
+        <FormLabel htmlFor="last-name" required>
+          Last name
+        </FormLabel>
+        <OutlinedInput
+          id="last-name"
+          name="last-name"
+          type="last-name"
+          placeholder="Snow"
+          autoComplete="last name"
+          required
+        />
+      </FormGrid>
+      <FormGrid item xs={12}>
+        <FormLabel htmlFor="address1" required>
+          Address line 1
+        </FormLabel>
+        <OutlinedInput
+          id="address1"
+          name="address1"
+          type="address1"
+          placeholder="Street name and number"
+          autoComplete="shipping address-line1"
+          required
+        />
+      </FormGrid>
+      <FormGrid item xs={12}>
+        <FormLabel htmlFor="address2">Address line 2</FormLabel>
+        <OutlinedInput
+          id="address2"
+          name="address2"
+          type="address2"
+          placeholder="Apartment, suite, unit, etc. (optional)"
+          autoComplete="shipping address-line2"
+          required
+        />
+      </FormGrid>
+      <FormGrid item xs={6}>
+        <FormLabel htmlFor="city" required>
+          City
+        </FormLabel>
+        <OutlinedInput
+          id="city"
+          name="city"
+          type="city"
+          placeholder="New York"
+          autoComplete="City"
+          required
+        />
+      </FormGrid>
+      <FormGrid item xs={6}>
+        <FormLabel htmlFor="state" required>
+          State
+        </FormLabel>
+        <OutlinedInput
+          id="state"
+          name="state"
+          type="state"
+          placeholder="NY"
+          autoComplete="State"
+          required
+        />
+      </FormGrid>
+      <FormGrid item xs={6}>
+        <FormLabel htmlFor="zip" required>
+          Zip / Postal code
+        </FormLabel>
+        <OutlinedInput
+          id="zip"
+          name="zip"
+          type="zip"
+          placeholder="12345"
+          autoComplete="shipping postal-code"
+          required
+        />
+      </FormGrid>
+      <FormGrid item xs={6}>
+        <FormLabel htmlFor="country" required>
+          Country
+        </FormLabel>
+        <OutlinedInput
+          id="country"
+          name="country"
+          type="country"
+          placeholder="United States"
+          autoComplete="shipping country"
+          required
+        />
+      </FormGrid>
+      <FormGrid item xs={12}>
+        <FormControlLabel
+          control={<Checkbox name="saveAddress" value="yes" />}
+          label="Use this address for payment details"
+        />
+      </FormGrid>
+    </Grid>
   );
 }

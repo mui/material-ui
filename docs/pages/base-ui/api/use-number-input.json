@@ -1,0 +1,131 @@
+{
+  "parameters": {
+    "componentName": {
+      "type": { "name": "string", "description": "string" },
+      "default": "'useNumberInput'"
+    },
+    "defaultValue": { "type": { "name": "number | null", "description": "number | null" } },
+    "disabled": { "type": { "name": "boolean", "description": "boolean" } },
+    "error": { "type": { "name": "boolean", "description": "boolean" } },
+    "inputId": { "type": { "name": "string", "description": "string" } },
+    "inputRef": {
+      "type": {
+        "name": "React.Ref&lt;HTMLInputElement&gt;",
+        "description": "React.Ref&lt;HTMLInputElement&gt;"
+      }
+    },
+    "max": { "type": { "name": "number", "description": "number" } },
+    "min": { "type": { "name": "number", "description": "number" } },
+    "onBlur": {
+      "type": {
+        "name": "(event?: React.FocusEvent&lt;HTMLInputElement&gt;) =&gt; void",
+        "description": "(event?: React.FocusEvent&lt;HTMLInputElement&gt;) =&gt; void"
+      }
+    },
+    "onChange": {
+      "type": {
+        "name": "(event: React.FocusEvent&lt;HTMLInputElement&gt; | React.PointerEvent | React.KeyboardEvent, value: number | null) =&gt; void",
+        "description": "(event: React.FocusEvent&lt;HTMLInputElement&gt; | React.PointerEvent | React.KeyboardEvent, value: number | null) =&gt; void"
+      }
+    },
+    "onClick": {
+      "type": { "name": "React.MouseEventHandler", "description": "React.MouseEventHandler" }
+    },
+    "onFocus": {
+      "type": { "name": "React.FocusEventHandler", "description": "React.FocusEventHandler" }
+    },
+    "onInputChange": {
+      "type": {
+        "name": "React.ChangeEventHandler&lt;HTMLInputElement&gt;",
+        "description": "React.ChangeEventHandler&lt;HTMLInputElement&gt;"
+      }
+    },
+    "readOnly": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
+    "required": { "type": { "name": "boolean", "description": "boolean" } },
+    "shiftMultiplier": { "type": { "name": "number", "description": "number" } },
+    "step": { "type": { "name": "number", "description": "number" } },
+    "value": {
+      "type": { "name": "number | null", "description": "number | null" },
+      "default": "null"
+    }
+  },
+  "returnValue": {
+    "disabled": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    },
+    "error": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    },
+    "focused": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    },
+    "formControlContext": {
+      "type": {
+        "name": "FormControlState | undefined",
+        "description": "FormControlState | undefined"
+      },
+      "required": true
+    },
+    "getDecrementButtonProps": {
+      "type": {
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseNumberInputDecrementButtonSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseNumberInputDecrementButtonSlotProps&lt;ExternalProps&gt;"
+      },
+      "required": true
+    },
+    "getIncrementButtonProps": {
+      "type": {
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseNumberInputIncrementButtonSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseNumberInputIncrementButtonSlotProps&lt;ExternalProps&gt;"
+      },
+      "required": true
+    },
+    "getInputProps": {
+      "type": {
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseNumberInputInputSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseNumberInputInputSlotProps&lt;ExternalProps&gt;"
+      },
+      "required": true
+    },
+    "getRootProps": {
+      "type": {
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseNumberInputRootSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseNumberInputRootSlotProps&lt;ExternalProps&gt;"
+      },
+      "required": true
+    },
+    "inputValue": { "type": { "name": "string", "description": "string" }, "required": true },
+    "isDecrementDisabled": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    },
+    "isIncrementDisabled": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    },
+    "required": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    },
+    "value": {
+      "type": { "name": "number | null", "description": "number | null" },
+      "required": true
+    }
+  },
+  "name": "useNumberInput",
+  "filename": "/packages/mui-base/src/unstable_useNumberInput/useNumberInput.ts",
+  "imports": [
+    "import { unstable_useNumberInput as useNumberInput } from '@mui/base/unstable_useNumberInput';",
+    "import { unstable_useNumberInput as useNumberInput } from '@mui/base';"
+  ],
+  "demos": "<ul><li><a href=\"/base-ui/react-number-input/#hook\">Number Input</a></li></ul>"
+}

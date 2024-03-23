@@ -5,10 +5,11 @@
     "fallback": { "type": { "name": "node" }, "default": "null" }
   },
   "name": "NoSsr",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": ["import { NoSsr } from '@mui/base/NoSsr';", "import { NoSsr } from '@mui/base';"],
+  "classes": [],
   "spread": false,
   "themeDefaultProps": null,
-  "muiName": "MuiNoSsr",
+  "muiName": "NoSsr",
   "filename": "/packages/mui-base/src/NoSsr/NoSsr.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/base-ui/react-no-ssr/\">No SSR</a></li></ul>",

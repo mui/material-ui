@@ -1,3 +1,3 @@
 'use client';
-export { default } from './useSwitch';
+export { useSwitch } from './useSwitch';
 export * from './useSwitch.types';

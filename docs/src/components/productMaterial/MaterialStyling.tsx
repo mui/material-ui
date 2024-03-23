@@ -2,29 +2,29 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import DevicesOtherRoundedIcon from '@mui/icons-material/DevicesOtherRounded';
+import ContrastRoundedIcon from '@mui/icons-material/ContrastRounded';
+import SwitchAccessShortcutRoundedIcon from '@mui/icons-material/SwitchAccessShortcutRounded';
+import DragHandleRounded from '@mui/icons-material/DragHandleRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
-import AutoAwesomeRounded from '@mui/icons-material/AutoAwesomeRounded';
 import Frame from 'docs/src/components/action/Frame';
 import RealEstateCard from 'docs/src/components/showcase/RealEstateCard';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
-import DragHandleRounded from '@mui/icons-material/DragHandleRounded';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 
 const code = `
 <Card
   variant="outlined"
   sx={{
+    p: 2,
     display: 'flex',
-    p: 1,
-    flexDirection: {
-      xs: 'column', // mobile
-      sm: 'row', // tablet and up
-    },
+    flexWrap: 'wrap',
+    zIndex: 1,
   }}
 >
   <CardMedia
@@ -32,47 +32,44 @@ const code = `
     width="100"
     height="100"
     alt="123 Main St, Phoenix, AZ cover"
-    src="/static/images/cards/real-estate.png"
+    src="/images/real-estate.png"
     sx={{
-      borderRadius: 0.5,
+      borderRadius: '6px',
       width: { xs: '100%', sm: 100 },
-      mr: { sm: 1.5 },
-      mb: { xs: 1.5, sm: 0 },
     }}
   />
   <Box sx={{ alignSelf: 'center', ml: 2 }}>
-    <Typography variant="body2" color="text.secondary">
-      123 Main St, Phoenix, AZ
+    <Typography variant="body2" color="text.secondary" fontWeight="regular">
+      123 Main St, Phoenix, AZ, USA
     </Typography>
-    <Typography component="div" fontWeight="bold">
+    <Typography fontWeight="bold" noWrap gutterBottom>
       $280k - $310k
     </Typography>
-    <Box
-      sx={{
-        ml: -1,
-        mt: 0.75,
-        px: 1,
-        py: 0.5,
-        borderRadius: 1,
-        display: 'flex',
-        typography: 'caption',
-        bgcolor: (theme) =>
-          theme.palette.mode === 'dark' ? 'primary.900' : 'primary.50',
-        color: (theme) =>
-          theme.palette.mode === 'dark' ? '#fff' : 'primary.700',
-      }}
-    >
-      <InfoRounded sx={{ fontSize: 16, mr: 0.5, mt: '1px' }} />
-      Confidence score of 85%
-    </Box>
+    <Chip
+      size="small"
+      variant="outlined"
+      icon={<InfoRounded />}
+      label="Confidence score: 85%"
+      sx={(theme) => ({
+        '.MuiChip-icon': { fontSize: 16, ml: '4px', color: 'success.500' },
+        bgcolor: 'success.50',
+        borderColor: 'success.100',
+        color: 'success.900',
+        ...theme.applyDarkStyles({
+          bgcolor: 'primaryDark.700',
+          color: 'success.200',
+          borderColor: 'success.900',
+        }),
+      })}
+    />
   </Box>
 </Card>`;
 
-const startLine = [32, 25, 5];
-const endLine = [44, 30, 8];
-const scrollTo = [540, 320, 0];
+const startLine = [32, 21, 17];
+const endLine = [42, 26, 17];
+const scrollTo = [540, 320, 200];
 
-const useResizeHandle = (
+export const useResizeHandle = (
   target: React.MutableRefObject<HTMLDivElement | null>,
   options?: { minWidth?: string; maxWidth?: string },
 ) => {
@@ -162,38 +159,36 @@ export default function MaterialStyling() {
   }, [index]);
 
   return (
-    <Section bg="gradient">
+    <Section>
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box maxWidth={500}>
-            <SectionHeadline
-              overline="Styling"
-              title={
-                <Typography variant="h2">
-                  Rapidly add and tweak any styles using <GradientText>CSS utilities</GradientText>
-                </Typography>
-              }
-              description="CSS utilities allow you to move faster and make for a smooth developer experience when styling any component."
-            />
-          </Box>
-          <Group sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
+          <SectionHeadline
+            overline="Styling"
+            title={
+              <Typography variant="h2">
+                Rapidly add and tweak any styles using <GradientText>CSS utilities</GradientText>
+              </Typography>
+            }
+            description="CSS utilities allow you to move faster and make for a smooth developer experience when styling any component."
+          />
+          <Group sx={{ m: -2, p: 2 }}>
             <Highlighter disableBorder {...getSelectedProps(0)} onClick={() => setIndex(0)}>
               <Item
-                icon={<AutoAwesomeRounded color="warning" />}
+                icon={<ContrastRoundedIcon color="primary" />}
                 title="Leverage the tokens from your theme"
                 description="Easily use the design tokens defined in your theme for any CSS property out there."
               />
             </Highlighter>
             <Highlighter disableBorder {...getSelectedProps(1)} onClick={() => setIndex(1)}>
               <Item
-                icon={<AutoAwesomeRounded color="warning" />}
+                icon={<SwitchAccessShortcutRoundedIcon color="primary" />}
                 title="No context switching"
                 description="The styling and component usage are both in the same place, right where you need them."
               />
             </Highlighter>
             <Highlighter disableBorder {...getSelectedProps(2)} onClick={() => setIndex(2)}>
               <Item
-                icon={<AutoAwesomeRounded color="warning" />}
+                icon={<DevicesOtherRoundedIcon color="primary" />}
                 title="Responsive styles right inside system prop"
                 description="An elegant API for writing CSS media queries that match your theme breakpoints."
               />
@@ -204,26 +199,22 @@ export default function MaterialStyling() {
           <Frame sx={{ height: '100%' }}>
             <Frame.Demo
               sx={{
-                bgcolor: 'background.paper',
                 overflow: 'auto',
               }}
             >
               <Box
                 ref={objectRef}
                 style={{ touchAction: dragging ? 'none' : 'auto' }}
-                sx={(theme) => ({
+                sx={{
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
                   position: 'relative',
-                  p: 2,
-                  pr: 3,
+                  p: { xs: 2, sm: 5 },
+                  pr: { xs: 2, sm: 3 },
                   minHeight: index === 2 ? 280 : 'initial',
-                  bgcolor: 'grey.100',
-                  ...theme.applyDarkStyles({
-                    bgcolor: 'primaryDark.700',
-                  }),
-                })}
+                  backgroundColor: 'transparent',
+                }}
               >
                 {index === 2 && (
                   <React.Fragment>
@@ -237,7 +228,7 @@ export default function MaterialStyling() {
                           right: 0,
                           top: 0,
                           height: '100%',
-                          color: 'grey.600',
+                          color: 'grey.500',
                           '&:hover': {
                             color: 'grey.700',
                           },
@@ -258,12 +249,12 @@ export default function MaterialStyling() {
                       sx={(theme) => ({
                         pointerEvents: 'none',
                         width: '1px',
-                        bgcolor: 'grey.400',
+                        bgcolor: 'grey.200',
                         position: 'absolute',
-                        left: 345,
+                        left: { xs: 335, sm: 375 },
                         height: '100%',
                         ...theme.applyDarkStyles({
-                          bgcolor: 'primaryDark.500',
+                          bgcolor: 'divider',
                         }),
                       })}
                     >
@@ -272,13 +263,17 @@ export default function MaterialStyling() {
                           position: 'absolute',
                           bottom: 5,
                           typography: 'caption',
+                          fontFamily: 'code',
                           left: -30,
                           color: 'text.secondary',
-                          borderRadius: '2px',
-                          bgcolor: 'grey.300',
+                          borderRadius: '4px',
+                          bgcolor: 'grey.50',
+                          border: '1px solid',
+                          borderColor: 'grey.200',
                           px: 0.5,
                           ...theme.applyDarkStyles({
-                            bgcolor: 'grey.800',
+                            bgcolor: 'primaryDark.700',
+                            borderColor: 'primaryDark.600',
                           }),
                         })}
                       >
@@ -289,13 +284,17 @@ export default function MaterialStyling() {
                           position: 'absolute',
                           bottom: 5,
                           typography: 'caption',
+                          fontFamily: 'code',
                           left: 7,
                           color: 'text.secondary',
-                          borderRadius: '2px',
-                          bgcolor: 'grey.300',
+                          borderRadius: '4px',
+                          bgcolor: 'grey.50',
+                          border: '1px solid',
+                          borderColor: 'grey.200',
                           px: 0.5,
                           ...theme.applyDarkStyles({
-                            bgcolor: 'grey.800',
+                            bgcolor: 'primaryDark.700',
+                            borderColor: 'primaryDark.600',
                           }),
                         })}
                       >

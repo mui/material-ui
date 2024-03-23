@@ -2,8 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_extendSxProp as extendSxProp } from '@mui/system';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { extendSxProp } from '@mui/system/styleFunctionSx';
+import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
@@ -43,7 +43,11 @@ export const TypographyRoot = styled('span', {
   },
 })(({ theme, ownerState }) => ({
   margin: 0,
-  ...(ownerState.variant && theme.typography[ownerState.variant]),
+  ...(ownerState.variant === 'inherit' && {
+    // Some elements, like <button> on Chrome have default font that doesn't inherit, reset this.
+    font: 'inherit',
+  }),
+  ...(ownerState.variant !== 'inherit' && theme.typography[ownerState.variant]),
   ...(ownerState.align !== 'inherit' && {
     textAlign: ownerState.align,
   }),
@@ -136,10 +140,10 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
 });
 
 Typography.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Set the text-align on the component.
    * @default 'inherit'

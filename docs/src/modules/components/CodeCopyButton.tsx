@@ -1,7 +1,7 @@
 import * as React from 'react';
-import useClipboardCopy from 'docs/src/modules/utils/useClipboardCopy';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import LibraryAddCheckRoundedIcon from '@mui/icons-material/LibraryAddCheckRounded';
+import useClipboardCopy from 'docs/src/modules/utils/useClipboardCopy';
 
 interface CodeCopyButtonProps {
   code: string;
@@ -15,25 +15,27 @@ export default function CodeCopyButton(props: CodeCopyButtonProps) {
   const key = macOS ? '⌘' : 'Ctrl + ';
 
   return (
-    <button
-      {...other}
-      aria-label="Copy the code"
-      type="button"
-      className="MuiCode-copy"
-      onClick={async (event) => {
-        event.stopPropagation();
-        await copy(code);
-      }}
-    >
-      {/* material-ui/no-hardcoded-labels */}
-      {isCopied ? (
-        <LibraryAddCheckRoundedIcon sx={{ fontSize: 18 }} />
-      ) : (
-        <ContentCopyRoundedIcon sx={{ fontSize: 18 }} />
-      )}
-      <span className="MuiCode-copyKeypress">
-        <span>(or</span> {key}C<span>)</span>
-      </span>
-    </button>
+    <div className="MuiCode-copy-container">
+      <button
+        {...other}
+        aria-label="Copy the code"
+        type="button"
+        className="MuiCode-copy"
+        onClick={async () => {
+          // event.stopPropagation();
+          await copy(code);
+        }}
+      >
+        {/* material-ui/no-hardcoded-labels */}
+        {isCopied ? (
+          <LibraryAddCheckRoundedIcon sx={{ fontSize: 18 }} />
+        ) : (
+          <ContentCopyRoundedIcon sx={{ fontSize: 18 }} />
+        )}
+        <span className="MuiCode-copyKeypress">
+          <span>(or</span> {key}C<span>)</span>
+        </span>
+      </button>
+    </div>
   );
 }

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Typography, { TypographyOwnerState } from '@mui/joy/Typography';
 import { expectType } from '@mui/types';
+import Typography, { TypographyOwnerState } from '@mui/joy/Typography';
 
 <Typography component="a" href="/">
   Text
@@ -21,7 +21,6 @@ function Link(props: JSX.IntrinsicElements['a']) {
 <Typography color="primary" />;
 <Typography color="neutral" />;
 <Typography color="danger" />;
-<Typography color="info" />;
 <Typography color="success" />;
 <Typography color="warning" />;
 

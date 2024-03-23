@@ -24,6 +24,7 @@ export default function Elevation() {
             <Box
               sx={{
                 p: 2,
+                borderRadius: 2,
                 bgcolor: 'background.default',
                 display: 'grid',
                 gridTemplateColumns: { md: '1fr 1fr' },

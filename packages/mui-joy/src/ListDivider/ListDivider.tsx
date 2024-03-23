@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import composeClasses from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { DividerRoot } from '../Divider/Divider';
 import { ListDividerOwnerState, ListDividerTypeMap } from './ListDividerProps';
@@ -136,10 +136,10 @@ const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
 }) as OverridableComponent<ListDividerTypeMap>;
 
 ListDivider.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

@@ -1,5 +1,7 @@
-import generateUtilityClass from '../generateUtilityClass';
-import generateUtilityClasses from '../generateUtilityClasses';
+import { generateUtilityClass } from '../generateUtilityClass';
+import { generateUtilityClasses } from '../generateUtilityClasses';
+
+const COMPONENT_NAME = 'Snackbar';
 
 export interface SnackbarClasses {
   /** Class name applied to the root element. */
@@ -7,9 +9,7 @@ export interface SnackbarClasses {
 }
 
 export function getSnackbarUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiSnackbar', slot);
+  return generateUtilityClass(COMPONENT_NAME, slot);
 }
 
-const snackbarClasses: SnackbarClasses = generateUtilityClasses('MuiSnackbar', ['root']);
-
-export default snackbarClasses;
+export const snackbarClasses: SnackbarClasses = generateUtilityClasses(COMPONENT_NAME, ['root']);

@@ -17,8 +17,6 @@ export interface BadgeClasses {
   colorPrimary: string;
   /** Class name applied to the badge `span` element if `color="danger"`. */
   colorDanger: string;
-  /** Class name applied to the badge `span` element if `color="info"`. */
-  colorInfo: string;
   /** Class name applied to the badge `span` element if `color="neutral"`. */
   colorNeutral: string;
   /** Class name applied to the badge `span` element if `color="success"`. */
@@ -64,7 +62,6 @@ const badgeClasses: BadgeClasses = generateUtilityClasses('MuiBadge', [
   'anchorOriginBottomLeft',
   'colorPrimary',
   'colorDanger',
-  'colorInfo',
   'colorNeutral',
   'colorSuccess',
   'colorWarning',

@@ -76,6 +76,7 @@ interface DefaultPaletteText {
   primary: string;
   secondary: string;
   tertiary: string;
+  icon: string;
 }
 export interface PaletteTextOverrides {}
 export interface PaletteText
@@ -97,7 +98,7 @@ export interface PaletteBackground
 
 export interface ColorPalettePropOverrides {}
 
-export type DefaultColorPalette = 'primary' | 'neutral' | 'danger' | 'info' | 'success' | 'warning';
+export type DefaultColorPalette = 'primary' | 'neutral' | 'danger' | 'success' | 'warning';
 
 export type ColorPaletteProp = OverridableStringUnion<
   DefaultColorPalette,
@@ -127,10 +128,6 @@ export interface PaletteDangerOverrides {}
 export interface PaletteDanger
   extends OverridableRecord<PaletteRange, PaletteDangerOverrides, string> {}
 
-export interface PaletteInfoOverrides {}
-export interface PaletteInfo
-  extends OverridableRecord<PaletteRange, PaletteInfoOverrides, string> {}
-
 export interface PaletteSuccessOverrides {}
 export interface PaletteSuccess
   extends OverridableRecord<PaletteRange, PaletteSuccessOverrides, string> {}
@@ -146,7 +143,6 @@ export interface Palette
       primary: PalettePrimary;
       neutral: PaletteNeutral;
       danger: PaletteDanger;
-      info: PaletteInfo;
       success: PaletteSuccess;
       warning: PaletteWarning;
       common: PaletteCommon;
@@ -166,7 +162,6 @@ export type PaletteOptions = MergeDefault<
     primary: DefaultPaletteRange & PaletteVariant;
     neutral: DefaultPaletteRange & PaletteVariant;
     danger: DefaultPaletteRange & PaletteVariant;
-    info: DefaultPaletteRange & PaletteVariant;
     success: DefaultPaletteRange & PaletteVariant;
     warning: DefaultPaletteRange & PaletteVariant;
     background: DefaultPaletteBackground;
@@ -181,8 +176,4 @@ export interface ColorSystem {
   shadowChannel: string;
 }
 
-export type ApplyColorInversion<T extends { color?: ColorPaletteProp | 'inherit' }> = Simplify<
-  Omit<T, 'color'> & {
-    color: T['color'] | 'context';
-  }
->;
+export type ApplyColorInversion<T extends { color?: ColorPaletteProp | 'inherit' }> = Simplify<T>;

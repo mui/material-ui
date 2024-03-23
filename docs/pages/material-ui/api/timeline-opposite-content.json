@@ -1,26 +1,52 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     }
   },
   "name": "TimelineOppositeContent",
-  "styles": {
-    "classes": [
-      "root",
-      "positionRight",
-      "positionLeft",
-      "positionAlternate",
-      "positionAlternateReverse"
-    ],
-    "globalClasses": {},
-    "name": "MuiTimelineOppositeContent"
-  },
+  "imports": [
+    "import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';",
+    "import { TimelineOppositeContent } from '@mui/lab';"
+  ],
+  "classes": [
+    {
+      "key": "positionAlternate",
+      "className": "MuiTimelineOppositeContent-positionAlternate",
+      "description": "Styles applied to the root element if `position=\"alternate\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "positionAlternateReverse",
+      "className": "MuiTimelineOppositeContent-positionAlternateReverse",
+      "description": "Styles applied to the root element if `position=\"alternate-reverse\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "positionLeft",
+      "className": "MuiTimelineOppositeContent-positionLeft",
+      "description": "Styles applied to the root element if `position=\"left\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "positionRight",
+      "className": "MuiTimelineOppositeContent-positionRight",
+      "description": "Styles applied to the root element if `position=\"right\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiTimelineOppositeContent-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiTimelineOppositeContent",

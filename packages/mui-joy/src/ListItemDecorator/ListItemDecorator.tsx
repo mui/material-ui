@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
-import composeClasses from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { ListItemDecoratorOwnerState, ListItemDecoratorTypeMap } from './ListItemDecoratorProps';
 import { getListItemDecoratorUtilityClass } from './listItemDecoratorClasses';
@@ -25,15 +25,18 @@ const ListItemDecoratorRoot = styled('span', {
 })<{ ownerState: ListItemDecoratorOwnerState }>(({ ownerState }) => ({
   boxSizing: 'border-box',
   display: 'inline-flex',
-  color: `var(--ListItemDecorator-color)`,
+  alignItems: `var(--unstable_ListItemDecorator-alignItems, ${
+    ownerState.parentOrientation === 'horizontal' ? 'center' : 'initial'
+  })`,
   ...(ownerState.parentOrientation === 'horizontal'
     ? {
         minInlineSize: 'var(--ListItemDecorator-size)',
-        alignItems: 'center',
+        marginInlineEnd: 'calc(-1 * var(--ListItem-gap))',
       }
     : {
         minBlockSize: 'var(--ListItemDecorator-size)',
         justifyContent: 'center',
+        marginBlockEnd: 'calc(-1 * var(--ListItem-gap))',
       }),
 }));
 /**
@@ -74,10 +77,10 @@ const ListItemDecorator = React.forwardRef(function ListItemDecorator(inProps, r
 }) as OverridableComponent<ListItemDecoratorTypeMap>;
 
 ListItemDecorator.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

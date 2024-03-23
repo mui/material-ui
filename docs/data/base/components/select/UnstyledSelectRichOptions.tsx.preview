@@ -1,14 +1,15 @@
-<CustomSelect>
-  {countries.map((c) => (
-    <StyledOption key={c.code} value={c.code} label={c.label}>
+<Select placeholder="Select country…">
+  {countries.map((country) => (
+    <Option key={country.code} value={country.code} label={country.label}>
       <img
         loading="lazy"
-        width="20"
-        src={`https://flagcdn.com/w20/${c.code.toLowerCase()}.png`}
-        srcSet={`https://flagcdn.com/w40/${c.code.toLowerCase()}.png 2x`}
-        alt={`Flag of ${c.label}`}
+        width={20}
+        height={14}
+        srcSet={`https://flagcdn.com/w40/${country.code.toLowerCase()}.png 2x`}
+        src={`https://flagcdn.com/w20/${country.code.toLowerCase()}.png`}
+        alt={`Flag of ${country.label}`}
       />
-      {c.label} ({c.code}) +{c.phone}
-    </StyledOption>
+      {country.label} ({country.code}) +{country.phone}
+    </Option>
   ))}
-</CustomSelect>
+</Select>

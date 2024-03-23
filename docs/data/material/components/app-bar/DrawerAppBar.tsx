@@ -83,7 +83,7 @@ export default function DrawerAppBar(props: Props) {
           </Box>
         </Toolbar>
       </AppBar>
-      <Box component="nav">
+      <nav>
         <Drawer
           container={container}
           variant="temporary"
@@ -99,7 +99,7 @@ export default function DrawerAppBar(props: Props) {
         >
           {drawer}
         </Drawer>
-      </Box>
+      </nav>
       <Box component="main" sx={{ p: 3 }}>
         <Toolbar />
         <Typography>

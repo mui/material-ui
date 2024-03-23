@@ -12,7 +12,7 @@ export default function ControllableStates() {
 
   return (
     <div>
-      <Typography level="body2" sx={{ mb: 1 }}>
+      <Typography level="body-sm" sx={{ mb: 1 }}>
         <code>value: </code>
         <Typography variant="soft" sx={{ py: 0.4 }}>
           <code>
@@ -20,7 +20,7 @@ export default function ControllableStates() {
           </code>
         </Typography>
       </Typography>
-      <Typography level="body2">
+      <Typography level="body-sm">
         <code>inputValue: </code>
         <Typography variant="soft" sx={{ py: 0.4 }}>
           <code>

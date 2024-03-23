@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
-import isHostComponent from '../utils/isHostComponent';
+import { isHostComponent } from '../utils/isHostComponent';
 import { getInputUtilityClass } from './inputClasses';
 import {
   InputInputSlotProps,
@@ -11,9 +11,9 @@ import {
   InputRootSlotProps,
   InputTypeMap,
 } from './Input.types';
-import useInput from '../useInput';
+import { useInput } from '../useInput';
 import { EventHandlers, useSlotProps, WithOptionalOwnerState } from '../utils';
-import composeClasses from '../composeClasses';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 const useUtilityClasses = (ownerState: InputOwnerState) => {
@@ -189,10 +189,10 @@ const Input = React.forwardRef(function Input<RootComponentType extends React.El
 }) as PolymorphicComponent<InputTypeMap>;
 
 Input.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */
@@ -233,7 +233,7 @@ Input.propTypes /* remove-proptypes */ = {
    */
   endAdornment: PropTypes.node,
   /**
-   * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input and the `Mui-error` class on the root element.
+   * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input and the `baseui--error` class on the root element.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   error: PropTypes.bool,
@@ -365,4 +365,4 @@ Input.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 } as any;
 
-export default Input;
+export { Input };

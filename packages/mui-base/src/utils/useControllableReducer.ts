@@ -138,7 +138,7 @@ function useStateChangeDetection<State extends {}>(
  *
  * @ignore - internal hook.
  */
-export default function useControllableReducer<
+export function useControllableReducer<
   State extends {},
   Action extends ControllableReducerAction,
   ActionContext = undefined,
@@ -154,7 +154,39 @@ export default function useControllableReducer<
     stateComparers = EMPTY_OBJECT,
     onStateChange = NOOP,
     actionContext,
+    componentName = '',
   } = parameters;
+
+  const controlledPropsRef = React.useRef(controlledProps);
+
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      Object.keys(controlledProps).forEach((key) => {
+        if (
+          (controlledPropsRef.current as Record<string, unknown>)[key] !== undefined &&
+          (controlledProps as Record<string, unknown>)[key] === undefined
+        ) {
+          console.error(
+            `useControllableReducer: ${
+              componentName ? `The ${componentName} component` : 'A component'
+            } is changing a controlled prop to be uncontrolled: ${key}`,
+          );
+        }
+
+        if (
+          (controlledPropsRef.current as Record<string, unknown>)[key] === undefined &&
+          (controlledProps as Record<string, unknown>)[key] !== undefined
+        ) {
+          console.error(
+            `useControllableReducer: ${
+              componentName ? `The ${componentName} component` : 'A component'
+            } is changing an uncontrolled prop to be controlled: ${key}`,
+          );
+        }
+      });
+    }, [controlledProps, componentName]);
+  }
 
   // The reducer that is passed to React.useReducer is wrapped with a function that augments the state with controlled values.
   const reducerWithControlledState = React.useCallback(

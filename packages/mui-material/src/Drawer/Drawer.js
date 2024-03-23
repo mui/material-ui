@@ -2,8 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { integerPropType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import integerPropType from '@mui/utils/integerPropType';
+import composeClasses from '@mui/utils/composeClasses';
+import { useRtl } from '@mui/system/RtlProvider';
 import Modal from '../Modal';
 import Slide from '../Slide';
 import Paper from '../Paper';
@@ -137,8 +138,8 @@ export function isHorizontal(anchor) {
   return ['left', 'right'].indexOf(anchor) !== -1;
 }
 
-export function getAnchor(theme, anchor) {
-  return theme.direction === 'rtl' && isHorizontal(anchor) ? oppositeDirection[anchor] : anchor;
+export function getAnchor({ direction }, anchor) {
+  return direction === 'rtl' && isHorizontal(anchor) ? oppositeDirection[anchor] : anchor;
 }
 
 /**
@@ -148,6 +149,7 @@ export function getAnchor(theme, anchor) {
 const Drawer = React.forwardRef(function Drawer(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiDrawer' });
   const theme = useTheme();
+  const isRtl = useRtl();
   const defaultTransitionDuration = {
     enter: theme.transitions.duration.enteringScreen,
     exit: theme.transitions.duration.leavingScreen,
@@ -180,7 +182,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     mounted.current = true;
   }, []);
 
-  const anchorInvariant = getAnchor(theme, anchorProp);
+  const anchorInvariant = getAnchor({ direction: isRtl ? 'rtl' : 'ltr' }, anchorProp);
   const anchor = anchorProp;
 
   const ownerState = {
@@ -267,10 +269,10 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
 });
 
 Drawer.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Side from which the drawer will appear.
    * @default 'left'
@@ -309,8 +311,10 @@ Drawer.propTypes /* remove-proptypes */ = {
   ModalProps: PropTypes.object,
   /**
    * Callback fired when the component requests to be closed.
+   * The `reason` parameter can optionally be used to control the response to `onClose`.
    *
    * @param {object} event The event source of the callback.
+   * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
    */
   onClose: PropTypes.func,
   /**

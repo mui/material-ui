@@ -5,6 +5,7 @@ import createGrid from './createGrid';
  *
  * Demos:
  *
+ * - [Grid (Joy UI)](https://mui.com/joy-ui/react-grid/)
  * - [Grid (Material UI)](https://mui.com/material-ui/react-grid/)
  *
  * API:
@@ -14,10 +15,10 @@ import createGrid from './createGrid';
 const Grid = createGrid();
 
 Grid.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
@@ -138,6 +139,29 @@ Grid.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  /**
+   * @internal
+   * The level of the grid starts from `0`
+   * and increases when the grid nests inside another grid regardless of container or item.
+   *
+   * ```js
+   * <Grid> // level 0
+   *   <Grid> // level 1
+   *     <Grid> // level 2
+   *   <Grid> // level 1
+   * ```
+   *
+   * Only consecutive grid is considered nesting.
+   * A grid container will start at `0` if there are non-Grid element above it.
+   *
+   * ```js
+   * <Grid> // level 0
+   *   <div>
+   *     <Grid> // level 0
+   *       <Grid> // level 1
+   * ```
+   */
+  unstable_level: PropTypes.number,
   /**
    * Defines the `flex-wrap` style property.
    * It's applied for all screen sizes.

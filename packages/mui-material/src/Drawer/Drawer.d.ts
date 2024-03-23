@@ -33,8 +33,10 @@ export interface DrawerProps extends StandardProps<ModalProps, 'open' | 'childre
   ModalProps?: Partial<ModalProps>;
   /**
    * Callback fired when the component requests to be closed.
+   * The `reason` parameter can optionally be used to control the response to `onClose`.
    *
    * @param {object} event The event source of the callback.
+   * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
    */
   onClose?: ModalProps['onClose'];
   /**
@@ -46,7 +48,7 @@ export interface DrawerProps extends StandardProps<ModalProps, 'open' | 'childre
    * Props applied to the [`Paper`](/material-ui/api/paper/) element.
    * @default {}
    */
-  PaperProps?: Partial<PaperProps>;
+  PaperProps?: Partial<PaperProps<React.ElementType>>;
   /**
    * Props applied to the [`Slide`](/material-ui/api/slide/) element.
    */

@@ -1,5 +1,5 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const webpackBaseConfig = require('../../webpackBaseConfig');
 
@@ -11,6 +11,7 @@ module.exports = {
     // Helps debugging and build perf.
     // Bundle size is irrelevant for local serving
     minimize: false,
+    concatenateModules: false,
   },
   output: {
     path: path.resolve(__dirname, './build'),
@@ -32,11 +33,13 @@ module.exports = {
     rules: [
       {
         test: /\.(js|ts|tsx)$/,
-        exclude: /node_modules/,
+        // prism.js blocks @mui/internal-markdown/prism from being interpreted as ESM in this build.
+        exclude: /node_modules|prism\.js/,
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
           configFile: path.resolve(__dirname, '../../babel.config.js'),
+          envName: 'regressions',
         },
       },
       {
@@ -51,11 +54,6 @@ module.exports = {
   },
   resolve: {
     ...webpackBaseConfig.resolve,
-    alias: {
-      ...webpackBaseConfig.resolve.alias,
-      '@material-ui/core': path.resolve(__dirname, '../../packages/mui-material/src'),
-      '@material-ui/styles': path.resolve(__dirname, '../../packages/mui-styles/src'),
-    },
     fallback: {
       // Exclude polyfill and treat 'fs' as an empty module since it is not required. next -> gzip-size relies on it.
       fs: false,

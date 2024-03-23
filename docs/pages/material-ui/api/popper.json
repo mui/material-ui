@@ -53,12 +53,17 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "transition": { "type": { "name": "bool" }, "default": "false" }
   },
   "name": "Popper",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": [
+    "import Popper from '@mui/material/Popper';",
+    "import { Popper } from '@mui/material';"
+  ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": false,
   "muiName": "MuiPopper",

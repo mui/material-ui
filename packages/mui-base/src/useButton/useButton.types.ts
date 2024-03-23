@@ -1,23 +1,5 @@
 import * as React from 'react';
-import { EventHandlers } from '../utils/types';
-import { MuiCancellableEventHandler } from '../utils/muiCancellableEvent';
-
-export interface UseButtonRootSlotOwnProps {
-  'aria-disabled'?: React.AriaAttributes['aria-disabled'];
-  disabled?: boolean;
-  tabIndex?: number;
-  type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
-  role?: React.AriaRole;
-  onBlur: React.FocusEventHandler;
-  onFocus: React.FocusEventHandler;
-  onKeyDown: MuiCancellableEventHandler<React.KeyboardEvent>;
-  onKeyUp: MuiCancellableEventHandler<React.KeyboardEvent>;
-  onMouseDown: React.MouseEventHandler;
-  onMouseLeave: React.MouseEventHandler;
-  ref: React.RefCallback<Element> | null;
-}
-
-export type UseButtonRootSlotProps<TOther = {}> = TOther & UseButtonRootSlotOwnProps;
+import { MuiCancellableEventHandler } from '../utils/MuiCancellableEvent';
 
 export interface UseButtonParameters {
   /**
@@ -40,17 +22,39 @@ export interface UseButtonParameters {
    * @default 'button'
    */
   type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
+  /**
+   * The HTML element, e.g.'button', 'a' etc
+   * @default ''
+   */
+  rootElementName?: keyof HTMLElementTagNameMap;
 }
+
+export interface UseButtonRootSlotOwnProps {
+  'aria-disabled'?: React.AriaAttributes['aria-disabled'];
+  disabled?: boolean;
+  tabIndex?: number;
+  type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
+  role?: React.AriaRole;
+  onBlur: React.FocusEventHandler;
+  onFocus: React.FocusEventHandler;
+  onKeyDown: MuiCancellableEventHandler<React.KeyboardEvent>;
+  onKeyUp: MuiCancellableEventHandler<React.KeyboardEvent>;
+  onMouseDown: React.MouseEventHandler;
+  onMouseLeave: React.MouseEventHandler;
+  ref: React.RefCallback<Element> | null;
+}
+
+export type UseButtonRootSlotProps<ExternalProps = {}> = ExternalProps & UseButtonRootSlotOwnProps;
 
 export interface UseButtonReturnValue {
   /**
    * Resolver for the root slot's props.
-   * @param otherHandlers event handlers for the root slot
+   * @param externalProps additional props for the root slot
    * @returns props that should be spread on the root slot
    */
-  getRootProps: <TOther extends EventHandlers = {}>(
-    otherHandlers?: TOther,
-  ) => UseButtonRootSlotProps<TOther>;
+  getRootProps: <ExternalProps extends Record<string, any> = {}>(
+    externalProps?: ExternalProps,
+  ) => UseButtonRootSlotProps<ExternalProps>;
   /**
    * If `true`, the component is being focused using keyboard.
    */

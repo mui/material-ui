@@ -1,5 +1,7 @@
-import generateUtilityClass from '../generateUtilityClass';
-import generateUtilityClasses from '../generateUtilityClasses';
+import { generateUtilityClass } from '../generateUtilityClass';
+import { generateUtilityClasses } from '../generateUtilityClasses';
+
+const COMPONENT_NAME = 'Switch';
 
 export interface SwitchClasses {
   /** Class applied to the root element. */
@@ -23,10 +25,10 @@ export interface SwitchClasses {
 export type SwitchClassKey = keyof SwitchClasses;
 
 export function getSwitchUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiSwitch', slot);
+  return generateUtilityClass(COMPONENT_NAME, slot);
 }
 
-const switchClasses: SwitchClasses = generateUtilityClasses('MuiSwitch', [
+export const switchClasses: SwitchClasses = generateUtilityClasses(COMPONENT_NAME, [
   'root',
   'input',
   'track',
@@ -36,5 +38,3 @@ const switchClasses: SwitchClasses = generateUtilityClasses('MuiSwitch', [
   'focusVisible',
   'readOnly',
 ]);
-
-export default switchClasses;

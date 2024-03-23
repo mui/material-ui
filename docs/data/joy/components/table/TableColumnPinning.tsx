@@ -25,7 +25,7 @@ const rows = [
 export default function TableColumnPinning() {
   return (
     <Box sx={{ width: '100%' }}>
-      <Typography level="body2" textAlign="center" sx={{ pb: 2 }}>
+      <Typography level="body-sm" textAlign="center" sx={{ pb: 2 }}>
         ← Scroll direction →
       </Typography>
       <Sheet

@@ -2,8 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
-import composeClasses from '../composeClasses';
-import useSwitch from '../useSwitch';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
+import { useSwitch } from '../useSwitch';
 import {
   SwitchProps,
   SwitchOwnerState,
@@ -66,18 +66,7 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
     ...other
   } = props;
 
-  const useSwitchProps = {
-    checked: checkedProp,
-    defaultChecked,
-    disabled: disabledProp,
-    onBlur,
-    onChange,
-    onFocus,
-    onFocusVisible,
-    readOnly: readOnlyProp,
-  };
-
-  const { getInputProps, checked, disabled, focusVisible, readOnly } = useSwitch(useSwitchProps);
+  const { getInputProps, checked, disabled, focusVisible, readOnly } = useSwitch(props);
 
   const ownerState: SwitchOwnerState = {
     ...props,
@@ -136,14 +125,18 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
 }) as PolymorphicComponent<SwitchTypeMap>;
 
 Switch.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, the component is checked.
    */
   checked: PropTypes.bool,
+  /**
+   * Class name applied to the root element.
+   */
+  className: PropTypes.string,
   /**
    * The default checked state. Use when the component is not controlled.
    */
@@ -203,4 +196,4 @@ Switch.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
-export default Switch;
+export { Switch };

@@ -2,10 +2,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled, createUseThemeProps } from '../zero-styled';
 import { getCardContentUtilityClass } from './cardContentClasses';
+
+const useThemeProps = createUseThemeProps('MuiCardContent');
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -21,13 +22,11 @@ const CardContentRoot = styled('div', {
   name: 'MuiCardContent',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(() => {
-  return {
-    padding: 16,
-    '&:last-child': {
-      paddingBottom: 24,
-    },
-  };
+})({
+  padding: 16,
+  '&:last-child': {
+    paddingBottom: 24,
+  },
 });
 
 const CardContent = React.forwardRef(function CardContent(inProps, ref) {
@@ -54,10 +53,10 @@ const CardContent = React.forwardRef(function CardContent(inProps, ref) {
 });
 
 CardContent.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

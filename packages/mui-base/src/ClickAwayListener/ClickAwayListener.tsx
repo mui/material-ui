@@ -216,10 +216,10 @@ function ClickAwayListener(props: ClickAwayListenerProps): JSX.Element {
 }
 
 ClickAwayListener.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The wrapped element.
    */
@@ -258,4 +258,4 @@ if (process.env.NODE_ENV !== 'production') {
   (ClickAwayListener as any)['propTypes' + ''] = exactProp(ClickAwayListener.propTypes);
 }
 
-export default ClickAwayListener;
+export { ClickAwayListener };

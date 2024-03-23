@@ -1,5 +1,7 @@
-import generateUtilityClass from '../generateUtilityClass';
-import generateUtilityClasses from '../generateUtilityClasses';
+import { generateUtilityClass } from '../generateUtilityClass';
+import { generateUtilityClasses } from '../generateUtilityClasses';
+
+const COMPONENT_NAME = 'TablePagination';
 
 export interface TablePaginationClasses {
   /** Class name applied to the root element. */
@@ -29,11 +31,11 @@ export interface TablePaginationClasses {
 export type TablePaginationClassKey = keyof TablePaginationClasses;
 
 export function getTablePaginationUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiTablePagination', slot);
+  return generateUtilityClass(COMPONENT_NAME, slot);
 }
 
-const tablePaginationClasses: TablePaginationClasses = generateUtilityClasses(
-  'MuiTablePagination',
+export const tablePaginationClasses: TablePaginationClasses = generateUtilityClasses(
+  COMPONENT_NAME,
   [
     'root',
     'toolbar',
@@ -48,5 +50,3 @@ const tablePaginationClasses: TablePaginationClasses = generateUtilityClasses(
     'actions',
   ],
 );
-
-export default tablePaginationClasses;

@@ -1,0 +1,1196 @@
+{
+  "props": {
+    "columns": {
+      "type": { "name": "arrayOf", "description": "Array&lt;object&gt;" },
+      "required": true
+    },
+    "rows": {
+      "type": { "name": "arrayOf", "description": "Array&lt;object&gt;" },
+      "required": true
+    },
+    "aggregationFunctions": {
+      "type": { "name": "object" },
+      "default": "GRID_AGGREGATION_FUNCTIONS"
+    },
+    "aggregationModel": { "type": { "name": "object" } },
+    "aggregationRowsScope": {
+      "type": { "name": "enum", "description": "'all'<br>&#124;&nbsp;'filtered'" },
+      "default": "\"filtered\""
+    },
+    "apiRef": { "type": { "name": "shape", "description": "{ current: object }" } },
+    "aria-label": { "type": { "name": "string" } },
+    "aria-labelledby": { "type": { "name": "string" } },
+    "autoHeight": { "type": { "name": "bool" } },
+    "autoPageSize": { "type": { "name": "bool" } },
+    "cellModesModel": { "type": { "name": "object" } },
+    "checkboxSelection": { "type": { "name": "bool" } },
+    "checkboxSelectionVisibleOnly": {
+      "type": { "name": "custom", "description": "bool" },
+      "default": "false"
+    },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "clipboardCopyCellDelimiter": { "type": { "name": "string" }, "default": "'\\t'" },
+    "columnBuffer": { "type": { "name": "number" }, "default": "3" },
+    "columnHeaderHeight": { "type": { "name": "number" }, "default": "56" },
+    "columnThreshold": { "type": { "name": "number" }, "default": "3" },
+    "columnVisibilityModel": { "type": { "name": "object" } },
+    "components": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use the <code>slots</code> prop instead."
+    },
+    "componentsProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use the <code>slotProps</code> prop instead."
+    },
+    "defaultGroupingExpansionDepth": { "type": { "name": "number" }, "default": "0" },
+    "density": {
+      "type": {
+        "name": "enum",
+        "description": "'comfortable'<br>&#124;&nbsp;'compact'<br>&#124;&nbsp;'standard'"
+      },
+      "default": "\"standard\""
+    },
+    "detailPanelExpandedRowIds": {
+      "type": { "name": "arrayOf", "description": "Array&lt;number<br>&#124;&nbsp;string&gt;" }
+    },
+    "disableAggregation": { "type": { "name": "bool" } },
+    "disableChildrenFiltering": { "type": { "name": "bool" } },
+    "disableChildrenSorting": { "type": { "name": "bool" } },
+    "disableClipboardPaste": { "type": { "name": "bool" } },
+    "disableColumnFilter": { "type": { "name": "bool" } },
+    "disableColumnMenu": { "type": { "name": "bool" } },
+    "disableColumnPinning": { "type": { "name": "bool" } },
+    "disableColumnReorder": { "type": { "name": "bool" } },
+    "disableColumnResize": { "type": { "name": "bool" } },
+    "disableColumnSelector": { "type": { "name": "bool" } },
+    "disableDensitySelector": { "type": { "name": "bool" } },
+    "disableMultipleColumnsFiltering": { "type": { "name": "bool" } },
+    "disableMultipleColumnsSorting": { "type": { "name": "bool" } },
+    "disableMultipleRowSelection": { "type": { "name": "bool" } },
+    "disableRowGrouping": { "type": { "name": "bool" } },
+    "disableRowSelectionOnClick": { "type": { "name": "bool" } },
+    "disableVirtualization": { "type": { "name": "bool" } },
+    "editMode": {
+      "type": { "name": "enum", "description": "'cell'<br>&#124;&nbsp;'row'" },
+      "default": "\"cell\""
+    },
+    "experimentalFeatures": {
+      "type": {
+        "name": "shape",
+        "description": "{ ariaV7?: bool, clipboardPaste?: bool, columnGrouping?: bool, lazyLoading?: bool, warnIfFocusStateIsNotSynced?: bool }"
+      }
+    },
+    "filterDebounceMs": { "type": { "name": "number" }, "default": "150" },
+    "filterMode": {
+      "type": { "name": "custom", "description": "'client'<br>&#124;&nbsp;'server'" },
+      "default": "\"client\""
+    },
+    "filterModel": {
+      "type": {
+        "name": "shape",
+        "description": "{ items: Array&lt;{ field: string, id?: number<br>&#124;&nbsp;string, operator: string, value?: any }&gt;, logicOperator?: 'and'<br>&#124;&nbsp;'or', quickFilterExcludeHiddenColumns?: bool, quickFilterLogicOperator?: 'and'<br>&#124;&nbsp;'or', quickFilterValues?: array }"
+      }
+    },
+    "getAggregationPosition": {
+      "type": { "name": "func" },
+      "default": "`(groupNode) => groupNode == null ? 'footer' : 'inline'`",
+      "signature": {
+        "type": "function(groupNode: GridGroupNode) => GridAggregationPosition | null",
+        "describedArgs": ["groupNode"],
+        "returned": "GridAggregationPosition | null"
+      }
+    },
+    "getCellClassName": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridCellParams) => string",
+        "describedArgs": ["params"],
+        "returned": "string"
+      }
+    },
+    "getDetailPanelContent": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridRowParams) => React.JSX.Element",
+        "describedArgs": ["params"],
+        "returned": "React.JSX.Element"
+      }
+    },
+    "getDetailPanelHeight": {
+      "type": { "name": "func" },
+      "default": "\"() => 500\"",
+      "signature": {
+        "type": "function(params: GridRowParams) => number | string",
+        "describedArgs": ["params"],
+        "returned": "number | string"
+      }
+    },
+    "getEstimatedRowHeight": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridRowHeightParams) => number | null",
+        "describedArgs": ["params"],
+        "returned": "number | null"
+      }
+    },
+    "getRowClassName": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridRowClassNameParams) => string",
+        "describedArgs": ["params"],
+        "returned": "string"
+      }
+    },
+    "getRowHeight": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridRowHeightParams) => GridRowHeightReturnValue",
+        "describedArgs": ["params"],
+        "returned": "GridRowHeightReturnValue"
+      }
+    },
+    "getRowId": { "type": { "name": "func" } },
+    "getRowSpacing": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridRowSpacingParams) => GridRowSpacing",
+        "describedArgs": ["params"],
+        "returned": "GridRowSpacing"
+      }
+    },
+    "getTreeDataPath": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(row: R) => Array<string>",
+        "describedArgs": ["row"],
+        "returned": "Array<string>"
+      }
+    },
+    "groupingColDef": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
+    "hideFooter": { "type": { "name": "bool" } },
+    "hideFooterPagination": { "type": { "name": "bool" } },
+    "hideFooterRowCount": {
+      "type": { "name": "custom", "description": "bool" },
+      "default": "false"
+    },
+    "hideFooterSelectedRowCount": { "type": { "name": "bool" } },
+    "initialState": { "type": { "name": "object" } },
+    "isCellEditable": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridCellParams) => boolean",
+        "describedArgs": ["params"],
+        "returned": "boolean"
+      }
+    },
+    "isGroupExpandedByDefault": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(node: GridGroupNode) => boolean",
+        "describedArgs": ["node"],
+        "returned": "boolean"
+      }
+    },
+    "isRowSelectable": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridRowParams) => boolean",
+        "describedArgs": ["params"],
+        "returned": "boolean"
+      }
+    },
+    "keepColumnPositionIfDraggedOutside": { "type": { "name": "bool" } },
+    "keepNonExistentRowsSelected": { "type": { "name": "bool" } },
+    "loading": { "type": { "name": "bool" } },
+    "localeText": { "type": { "name": "object" } },
+    "logger": {
+      "type": {
+        "name": "shape",
+        "description": "{ debug: func, error: func, info: func, warn: func }"
+      },
+      "default": "console"
+    },
+    "logLevel": {
+      "type": {
+        "name": "enum",
+        "description": "'debug'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'warn'<br>&#124;&nbsp;false"
+      },
+      "default": "\"error\" (\"warn\" in dev mode)"
+    },
+    "nonce": { "type": { "name": "string" } },
+    "onAggregationModelChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(model: GridAggregationModel, details: GridCallbackDetails) => void",
+        "describedArgs": ["model", "details"]
+      }
+    },
+    "onCellClick": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridCellParams, event: MuiEvent<React.MouseEvent>, details: GridCallbackDetails) => void",
+        "describedArgs": ["params", "event", "details"]
+      }
+    },
+    "onCellDoubleClick": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridCellParams, event: MuiEvent<React.MouseEvent>, details: GridCallbackDetails) => void",
+        "describedArgs": ["params", "event", "details"]
+      }
+    },
+    "onCellEditStart": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridCellParams, event: MuiEvent<React.KeyboardEvent | React.MouseEvent>) => void",
+        "describedArgs": ["params", "event"]
+      }
+    },
+    "onCellEditStop": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridCellParams, event: MuiEvent<MuiBaseEvent>) => void",
+        "describedArgs": ["params", "event"]
+      }
+    },
+    "onCellKeyDown": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridCellParams, event: MuiEvent<React.KeyboardEvent>, details: GridCallbackDetails) => void",
+        "describedArgs": ["params", "event", "details"]
+      }
+    },
+    "onCellModesModelChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(cellModesModel: GridCellModesModel, details: GridCallbackDetails) => void",
+        "describedArgs": ["cellModesModel", "details"]
+      }
+    },
+    "onClipboardCopy": {
+      "type": { "name": "func" },
+      "signature": { "type": "function(data: string) => void", "describedArgs": ["data"] }
+    },
+    "onClipboardPasteEnd": { "type": { "name": "func" } },
+    "onClipboardPasteStart": { "type": { "name": "func" } },
+    "onColumnHeaderClick": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridColumnHeaderParams, event: MuiEvent<React.MouseEvent>, details: GridCallbackDetails) => void",
+        "describedArgs": ["params", "event", "details"]
+      }
+    },
+    "onColumnHeaderDoubleClick": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridColumnHeaderParams, event: MuiEvent<React.MouseEvent>, details: GridCallbackDetails) => void",
+        "describedArgs": ["params", "event", "details"]
+      }
+    },
+    "onColumnHeaderEnter": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridColumnHeaderParams, event: MuiEvent<React.MouseEvent>, details: GridCallbackDetails) => void",
+        "describedArgs": ["params", "event", "details"]
+      }
+    },
+    "onColumnHeaderLeave": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridColumnHeaderParams, event: MuiEvent<React.MouseEvent>, details: GridCallbackDetails) => void",
+        "describedArgs": ["params", "event", "details"]
+      }
+    },
+    "onColumnHeaderOut": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridColumnHeaderParams, event: MuiEvent<React.MouseEvent>, details: GridCallbackDetails) => void",
+        "describedArgs": ["params", "event", "details"]
+      }
+    },
+    "onColumnHeaderOver": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridColumnHeaderParams, event: MuiEvent<React.MouseEvent>, details: GridCallbackDetails) => void",
+        "describedArgs": ["params", "event", "details"]
+      }
+    },
+    "onColumnOrderChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridColumnOrderChangeParams, event: MuiEvent<{}>, details: GridCallbackDetails) => void",
+        "describedArgs": ["params", "event", "details"]
+      }
+    },
+    "onColumnResize": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridColumnResizeParams, event: MuiEvent<React.MouseEvent>, details: GridCallbackDetails) => void",
+        "describedArgs": ["params", "event", "details"]
+      }
+    },
+    "onColumnVisibilityModelChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(model: GridColumnVisibilityModel, details: GridCallbackDetails) => void",
+        "describedArgs": ["model", "details"]
+      }
+    },
+    "onColumnWidthChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridColumnResizeParams, event: MuiEvent<React.MouseEvent>, details: GridCallbackDetails) => void",
+        "describedArgs": ["params", "event", "details"]
+      }
+    },
+    "onDetailPanelExpandedRowIdsChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(ids: Array<GridRowId>, details: GridCallbackDetails) => void",
+        "describedArgs": ["ids", "details"]
+      }
+    },
+    "onExcelExportStateChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(inProgress: string) => void",
+        "describedArgs": ["inProgress"]
+      }
+    },
+    "onFetchRows": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridFetchRowsParams, event: MuiEvent<{}>, details: GridCallbackDetails) => void",
+        "describedArgs": ["params", "event", "details"]
+      }
+    },
+    "onFilterModelChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(model: GridFilterModel, details: GridCallbackDetails) => void",
+        "describedArgs": ["model", "details"]
+      }
+    },
+    "onMenuClose": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridMenuParams, event: MuiEvent<{}>, details: GridCallbackDetails) => void",
+        "describedArgs": ["params", "event", "details"]
+      }
+    },
+    "onMenuOpen": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridMenuParams, event: MuiEvent<{}>, details: GridCallbackDetails) => void",
+        "describedArgs": ["params", "event", "details"]
+      }
+    },
+    "onPaginationModelChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(model: GridPaginationModel, details: GridCallbackDetails) => void",
+        "describedArgs": ["model", "details"]
+      }
+    },
+    "onPinnedColumnsChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(pinnedColumns: GridPinnedColumns, details: GridCallbackDetails) => void",
+        "describedArgs": ["pinnedColumns", "details"]
+      }
+    },
+    "onPreferencePanelClose": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridPreferencePanelParams, event: MuiEvent<{}>, details: GridCallbackDetails) => void",
+        "describedArgs": ["params", "event", "details"]
+      }
+    },
+    "onPreferencePanelOpen": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridPreferencePanelParams, event: MuiEvent<{}>, details: GridCallbackDetails) => void",
+        "describedArgs": ["params", "event", "details"]
+      }
+    },
+    "onProcessRowUpdateError": {
+      "type": { "name": "func" },
+      "signature": { "type": "function(error: any) => void", "describedArgs": ["error"] }
+    },
+    "onResize": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(containerSize: ElementSize, event: MuiEvent<{}>, details: GridCallbackDetails) => void",
+        "describedArgs": ["containerSize", "event", "details"]
+      }
+    },
+    "onRowClick": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridRowParams, event: MuiEvent<React.MouseEvent>, details: GridCallbackDetails) => void",
+        "describedArgs": ["params", "event", "details"]
+      }
+    },
+    "onRowDoubleClick": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridRowParams, event: MuiEvent<React.MouseEvent>, details: GridCallbackDetails) => void",
+        "describedArgs": ["params", "event", "details"]
+      }
+    },
+    "onRowEditCommit": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(id: GridRowId, event: MuiEvent<MuiBaseEvent>) => void",
+        "describedArgs": ["id", "event"]
+      }
+    },
+    "onRowEditStart": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridRowParams, event: MuiEvent<React.KeyboardEvent | React.MouseEvent>) => void",
+        "describedArgs": ["params", "event"]
+      }
+    },
+    "onRowEditStop": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridRowParams, event: MuiEvent<MuiBaseEvent>) => void",
+        "describedArgs": ["params", "event"]
+      }
+    },
+    "onRowGroupingModelChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(model: GridRowGroupingModel, details: GridCallbackDetails) => void",
+        "describedArgs": ["model", "details"]
+      }
+    },
+    "onRowModesModelChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(rowModesModel: GridRowModesModel, details: GridCallbackDetails) => void",
+        "describedArgs": ["rowModesModel", "details"]
+      }
+    },
+    "onRowOrderChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridRowOrderChangeParams, event: MuiEvent<{}>, details: GridCallbackDetails) => void",
+        "describedArgs": ["params", "event", "details"]
+      }
+    },
+    "onRowSelectionModelChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(rowSelectionModel: GridRowSelectionModel, details: GridCallbackDetails) => void",
+        "describedArgs": ["rowSelectionModel", "details"]
+      }
+    },
+    "onRowsScrollEnd": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: GridRowScrollEndParams, event: MuiEvent<{}>, details: GridCallbackDetails) => void",
+        "describedArgs": ["params", "event", "details"]
+      }
+    },
+    "onSortModelChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(model: GridSortModel, details: GridCallbackDetails) => void",
+        "describedArgs": ["model", "details"]
+      }
+    },
+    "pageSizeOptions": {
+      "type": {
+        "name": "arrayOf",
+        "description": "Array&lt;number<br>&#124;&nbsp;{ label: string, value: number }&gt;"
+      },
+      "default": "[25, 50, 100]"
+    },
+    "pagination": { "type": { "name": "bool" } },
+    "paginationMode": {
+      "type": { "name": "enum", "description": "'client'<br>&#124;&nbsp;'server'" },
+      "default": "\"client\""
+    },
+    "paginationModel": {
+      "type": { "name": "shape", "description": "{ page: number, pageSize: number }" }
+    },
+    "pinnedColumns": {
+      "type": {
+        "name": "shape",
+        "description": "{ left?: Array&lt;string&gt;, right?: Array&lt;string&gt; }"
+      }
+    },
+    "pinnedRows": {
+      "type": {
+        "name": "shape",
+        "description": "{ bottom?: Array&lt;object&gt;, top?: Array&lt;object&gt; }"
+      }
+    },
+    "processRowUpdate": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(newRow: R, oldRow: R) => Promise<R> | R",
+        "describedArgs": ["newRow", "oldRow"],
+        "returned": "Promise<R> | R"
+      }
+    },
+    "rowBuffer": { "type": { "name": "number" }, "default": "3" },
+    "rowCount": { "type": { "name": "number" } },
+    "rowGroupingColumnMode": {
+      "type": { "name": "enum", "description": "'multiple'<br>&#124;&nbsp;'single'" },
+      "default": "'single'"
+    },
+    "rowGroupingModel": { "type": { "name": "arrayOf", "description": "Array&lt;string&gt;" } },
+    "rowHeight": { "type": { "name": "number" }, "default": "52" },
+    "rowModesModel": { "type": { "name": "object" } },
+    "rowReordering": { "type": { "name": "bool" } },
+    "rowSelection": { "type": { "name": "bool" }, "default": "true" },
+    "rowSelectionModel": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;string"
+      }
+    },
+    "rowsLoadingMode": {
+      "type": { "name": "enum", "description": "'client'<br>&#124;&nbsp;'server'" }
+    },
+    "rowSpacingType": {
+      "type": { "name": "enum", "description": "'border'<br>&#124;&nbsp;'margin'" },
+      "default": "\"margin\""
+    },
+    "rowThreshold": { "type": { "name": "number" }, "default": "3" },
+    "scrollbarSize": { "type": { "name": "number" } },
+    "scrollEndThreshold": { "type": { "name": "number" }, "default": "80" },
+    "showCellVerticalBorder": { "type": { "name": "bool" } },
+    "showColumnVerticalBorder": { "type": { "name": "bool" } },
+    "slotProps": { "type": { "name": "object" } },
+    "slots": { "type": { "name": "object" } },
+    "sortingMode": {
+      "type": { "name": "enum", "description": "'client'<br>&#124;&nbsp;'server'" },
+      "default": "\"client\""
+    },
+    "sortingOrder": {
+      "type": { "name": "arrayOf", "description": "Array&lt;'asc'<br>&#124;&nbsp;'desc'&gt;" },
+      "default": "['asc', 'desc', null]"
+    },
+    "sortModel": {
+      "type": {
+        "name": "arrayOf",
+        "description": "Array&lt;{ field: string, sort?: 'asc'<br>&#124;&nbsp;'desc' }&gt;"
+      }
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "throttleRowsMs": { "type": { "name": "number" }, "default": "0" },
+    "treeData": { "type": { "name": "bool" } },
+    "unstable_cellSelection": { "type": { "name": "bool" } },
+    "unstable_cellSelectionModel": { "type": { "name": "object" } },
+    "unstable_headerFilters": { "type": { "name": "bool" } },
+    "unstable_ignoreValueFormatterDuringExport": {
+      "type": {
+        "name": "union",
+        "description": "{ clipboardExport?: bool, csvExport?: bool }<br>&#124;&nbsp;bool"
+      },
+      "default": ": false"
+    },
+    "unstable_onCellSelectionModelChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(cellSelectionModel: GridCellSelectionModel, details: GridCallbackDetails) => void",
+        "describedArgs": ["cellSelectionModel", "details"]
+      }
+    },
+    "unstable_splitClipboardPastedText": {
+      "type": { "name": "func" },
+      "signature": { "type": "function(text: string) => void", "describedArgs": ["text"] }
+    }
+  },
+  "slots": [
+    {
+      "class": null,
+      "name": "baseButton",
+      "description": "The custom Button component used in the grid.",
+      "default": "Button"
+    },
+    {
+      "class": null,
+      "name": "baseCheckbox",
+      "description": "The custom Checkbox component used in the grid for both header and cells.",
+      "default": "Checkbox"
+    },
+    {
+      "class": null,
+      "name": "baseChip",
+      "description": "The custom Chip component used in the grid.",
+      "default": "Chip"
+    },
+    {
+      "class": null,
+      "name": "baseFormControl",
+      "description": "The custom FormControl component used in the grid.",
+      "default": "FormControl"
+    },
+    {
+      "class": null,
+      "name": "baseIconButton",
+      "description": "The custom IconButton component used in the grid.",
+      "default": "IconButton"
+    },
+    {
+      "class": null,
+      "name": "baseInputAdornment",
+      "description": "The custom InputAdornment component used in the grid.",
+      "default": "InputAdornment"
+    },
+    {
+      "class": null,
+      "name": "baseInputLabel",
+      "description": "The custom InputLabel component used in the grid.",
+      "default": "InputLabel"
+    },
+    {
+      "class": null,
+      "name": "basePopper",
+      "description": "The custom Popper component used in the grid.",
+      "default": "Popper"
+    },
+    {
+      "class": null,
+      "name": "baseSelect",
+      "description": "The custom Select component used in the grid.",
+      "default": "Select"
+    },
+    {
+      "class": null,
+      "name": "baseSelectOption",
+      "description": "The custom SelectOption component used in the grid.",
+      "default": "MenuItem"
+    },
+    {
+      "class": null,
+      "name": "baseSwitch",
+      "description": "The custom Switch component used in the grid.",
+      "default": "Switch"
+    },
+    {
+      "class": null,
+      "name": "baseTextField",
+      "description": "The custom TextField component used in the grid.",
+      "default": "TextField"
+    },
+    {
+      "class": null,
+      "name": "baseTooltip",
+      "description": "The custom Tooltip component used in the grid.",
+      "default": "Tooltip"
+    },
+    {
+      "class": null,
+      "name": "booleanCellFalseIcon",
+      "description": "Icon displayed on the boolean cell to represent the false value.",
+      "default": "GridCloseIcon"
+    },
+    {
+      "class": null,
+      "name": "booleanCellTrueIcon",
+      "description": "Icon displayed on the boolean cell to represent the true value.",
+      "default": "GridCheckIcon"
+    },
+    {
+      "class": null,
+      "name": "cell",
+      "description": "Component rendered for each cell.",
+      "default": "GridCell"
+    },
+    {
+      "class": null,
+      "name": "columnFilteredIcon",
+      "description": "Icon displayed on the column header menu to show that a filter has been applied to the column.",
+      "default": "GridFilterAltIcon"
+    },
+    {
+      "class": null,
+      "name": "columnHeaderFilterIconButton",
+      "description": "Filter icon component rendered in each column header.",
+      "default": "GridColumnHeaderFilterIconButton"
+    },
+    {
+      "class": null,
+      "name": "columnHeaders",
+      "description": "Component responsible for rendering the column headers.",
+      "default": "DataGridColumnHeaders"
+    },
+    {
+      "class": null,
+      "name": "columnMenu",
+      "description": "Column menu component rendered by clicking on the 3 dots &quot;kebab&quot; icon in column headers.",
+      "default": "GridColumnMenu"
+    },
+    {
+      "class": null,
+      "name": "columnMenuAggregationIcon",
+      "description": "Icon displayed in column menu for aggregation",
+      "default": "GridFunctionsIcon"
+    },
+    {
+      "class": null,
+      "name": "columnMenuClearIcon",
+      "description": "Icon displayed in column menu for clearing values",
+      "default": "GridClearIcon"
+    },
+    {
+      "class": null,
+      "name": "columnMenuFilterIcon",
+      "description": "Icon displayed in column menu for filter",
+      "default": "GridFilterAltIcon"
+    },
+    {
+      "class": null,
+      "name": "columnMenuGroupIcon",
+      "description": "Icon displayed in column menu for grouping",
+      "default": "GridGroupWorkIcon"
+    },
+    {
+      "class": null,
+      "name": "columnMenuHideIcon",
+      "description": "Icon displayed in column menu for hiding column",
+      "default": "GridVisibilityOffIcon"
+    },
+    {
+      "class": null,
+      "name": "columnMenuIcon",
+      "description": "Icon displayed on the side of the column header title to display the filter input component.",
+      "default": "GridTripleDotsVerticalIcon"
+    },
+    {
+      "class": null,
+      "name": "columnMenuManageColumnsIcon",
+      "description": "Icon displayed in column menu for showing all columns",
+      "default": "GridViewColumnIcon"
+    },
+    {
+      "class": null,
+      "name": "columnMenuPinLeftIcon",
+      "description": "Icon displayed in column menu for left pinning",
+      "default": "GridPushPinLeftIcon"
+    },
+    {
+      "class": null,
+      "name": "columnMenuPinRightIcon",
+      "description": "Icon displayed in column menu for right pinning",
+      "default": "GridPushPinRightIcon"
+    },
+    {
+      "class": null,
+      "name": "columnMenuSortAscendingIcon",
+      "description": "Icon displayed in column menu for ascending sort",
+      "default": "GridArrowUpwardIcon"
+    },
+    {
+      "class": null,
+      "name": "columnMenuSortDescendingIcon",
+      "description": "Icon displayed in column menu for descending sort",
+      "default": "GridArrowDownwardIcon"
+    },
+    {
+      "class": null,
+      "name": "columnMenuUngroupIcon",
+      "description": "Icon displayed in column menu for ungrouping",
+      "default": "GridWorkspacesIcon"
+    },
+    {
+      "class": null,
+      "name": "columnReorderIcon",
+      "description": "Icon displayed on the column reorder button.",
+      "default": "GridDragIcon"
+    },
+    {
+      "class": null,
+      "name": "columnResizeIcon",
+      "description": "Icon displayed in between two column headers that allows to resize the column header.",
+      "default": "GridSeparatorIcon"
+    },
+    {
+      "class": null,
+      "name": "columnSelectorIcon",
+      "description": "Icon displayed on the column menu selector tab.",
+      "default": "GridColumnIcon"
+    },
+    {
+      "class": null,
+      "name": "columnSortedAscendingIcon",
+      "description": "Icon displayed on the side of the column header title when sorted in ascending order.",
+      "default": "GridArrowUpwardIcon"
+    },
+    {
+      "class": null,
+      "name": "columnSortedDescendingIcon",
+      "description": "Icon displayed on the side of the column header title when sorted in descending order.",
+      "default": "GridArrowDownwardIcon"
+    },
+    {
+      "class": null,
+      "name": "columnUnsortedIcon",
+      "description": "Icon displayed on the side of the column header title when unsorted.",
+      "default": "GridColumnUnsortedIcon"
+    },
+    {
+      "class": null,
+      "name": "columnsPanel",
+      "description": "GridColumns panel component rendered when clicking the columns button.",
+      "default": "GridColumnsPanel"
+    },
+    {
+      "class": null,
+      "name": "densityComfortableIcon",
+      "description": "Icon displayed on the &quot;comfortable&quot; density option in the toolbar.",
+      "default": "GridViewStreamIcon"
+    },
+    {
+      "class": null,
+      "name": "densityCompactIcon",
+      "description": "Icon displayed on the compact density option in the toolbar.",
+      "default": "GridViewHeadlineIcon"
+    },
+    {
+      "class": null,
+      "name": "densityStandardIcon",
+      "description": "Icon displayed on the standard density option in the toolbar.",
+      "default": "GridTableRowsIcon"
+    },
+    {
+      "class": null,
+      "name": "detailPanelCollapseIcon",
+      "description": "Icon displayed on the detail panel toggle column when expanded.",
+      "default": "GridRemoveIcon"
+    },
+    {
+      "class": null,
+      "name": "detailPanelExpandIcon",
+      "description": "Icon displayed on the detail panel toggle column when collapsed.",
+      "default": "GridAddIcon"
+    },
+    {
+      "class": null,
+      "name": "exportIcon",
+      "description": "Icon displayed on the open export button present in the toolbar by default.",
+      "default": "GridSaveAltIcon"
+    },
+    {
+      "class": null,
+      "name": "filterPanel",
+      "description": "Filter panel component rendered when clicking the filter button.",
+      "default": "GridFilterPanel"
+    },
+    {
+      "class": null,
+      "name": "filterPanelAddIcon",
+      "description": "Icon displayed for deleting the filter from filter panel.",
+      "default": "GridAddIcon"
+    },
+    {
+      "class": null,
+      "name": "filterPanelDeleteIcon",
+      "description": "Icon displayed for deleting the filter from filter panel.",
+      "default": "GridDeleteIcon"
+    },
+    {
+      "class": null,
+      "name": "filterPanelRemoveAllIcon",
+      "description": "Icon displayed for deleting all the active filters from filter panel.",
+      "default": "GridDeleteForeverIcon"
+    },
+    {
+      "class": null,
+      "name": "footer",
+      "description": "Footer component rendered at the bottom of the grid viewport.",
+      "default": "GridFooter"
+    },
+    {
+      "class": null,
+      "name": "footerRowCount",
+      "description": "Row count component rendered in the footer",
+      "default": "GridRowCount"
+    },
+    {
+      "class": null,
+      "name": "groupingCriteriaCollapseIcon",
+      "description": "Icon displayed on the grouping column when the children are expanded",
+      "default": "GridExpandMoreIcon"
+    },
+    {
+      "class": null,
+      "name": "groupingCriteriaExpandIcon",
+      "description": "Icon displayed on the grouping column when the children are collapsed",
+      "default": "GridKeyboardArrowRight"
+    },
+    {
+      "class": null,
+      "name": "headerFilterCell",
+      "description": "Component responsible for showing menu adornment in Header filter row",
+      "default": "GridHeaderFilterCell"
+    },
+    {
+      "class": null,
+      "name": "headerFilterMenu",
+      "description": "Component responsible for showing menu in Header filter row",
+      "default": "GridHeaderFilterMenu"
+    },
+    {
+      "class": null,
+      "name": "loadIcon",
+      "description": "Icon displayed on the input while processing.",
+      "default": "GridLoadIcon"
+    },
+    {
+      "class": null,
+      "name": "loadingOverlay",
+      "description": "Loading overlay component rendered when the grid is in a loading state.",
+      "default": "GridLoadingOverlay"
+    },
+    {
+      "class": null,
+      "name": "moreActionsIcon",
+      "description": "Icon displayed on the <code>actions</code> column type to open the menu.",
+      "default": "GridMoreVertIcon"
+    },
+    {
+      "class": null,
+      "name": "noResultsOverlay",
+      "description": "No results overlay component rendered when the grid has no results after filtering.",
+      "default": "GridNoResultsOverlay"
+    },
+    {
+      "class": null,
+      "name": "noRowsOverlay",
+      "description": "No rows overlay component rendered when the grid has no rows.",
+      "default": "GridNoRowsOverlay"
+    },
+    {
+      "class": null,
+      "name": "openFilterButtonIcon",
+      "description": "Icon displayed on the open filter button present in the toolbar by default.",
+      "default": "GridFilterListIcon"
+    },
+    {
+      "class": null,
+      "name": "pagination",
+      "description": "Pagination component rendered in the grid footer by default.",
+      "default": "Pagination"
+    },
+    {
+      "class": null,
+      "name": "panel",
+      "description": "Panel component wrapping the filters and columns panels.",
+      "default": "GridPanel"
+    },
+    {
+      "class": null,
+      "name": "preferencesPanel",
+      "description": "PreferencesPanel component rendered inside the Header component.",
+      "default": "GridPreferencesPanel"
+    },
+    {
+      "class": null,
+      "name": "quickFilterClearIcon",
+      "description": "Icon displayed on the quick filter reset input.",
+      "default": "GridCloseIcon"
+    },
+    {
+      "class": null,
+      "name": "quickFilterIcon",
+      "description": "Icon displayed on the quick filter input.",
+      "default": "GridSearchIcon"
+    },
+    {
+      "class": null,
+      "name": "row",
+      "description": "Component rendered for each row.",
+      "default": "GridRow"
+    },
+    {
+      "class": null,
+      "name": "rowReorderIcon",
+      "description": "Icon displayed on the <code>reorder</code> column type to reorder a row.",
+      "default": "GridDragIcon"
+    },
+    {
+      "class": null,
+      "name": "skeletonCell",
+      "description": "Component rendered for each skeleton cell.",
+      "default": "GridSkeletonCell"
+    },
+    {
+      "class": null,
+      "name": "toolbar",
+      "description": "Toolbar component rendered inside the Header component.",
+      "default": "null"
+    },
+    {
+      "class": null,
+      "name": "treeDataCollapseIcon",
+      "description": "Icon displayed on the tree data toggling column when the children are expanded",
+      "default": "GridExpandMoreIcon"
+    },
+    {
+      "class": null,
+      "name": "treeDataExpandIcon",
+      "description": "Icon displayed on the tree data toggling column when the children are collapsed",
+      "default": "GridKeyboardArrowRight"
+    }
+  ],
+  "name": "DataGridPremium",
+  "imports": [
+    "import { DataGridPremium } from '@mui/x-data-grid-premium/DataGridPremium';",
+    "import { DataGridPremium } from '@mui/x-data-grid-premium';"
+  ],
+  "styles": {
+    "classes": [
+      "actionsCell",
+      "aggregationColumnHeader",
+      "aggregationColumnHeader--alignLeft",
+      "aggregationColumnHeader--alignCenter",
+      "aggregationColumnHeader--alignRight",
+      "aggregationColumnHeaderLabel",
+      "autoHeight",
+      "booleanCell",
+      "cell--editable",
+      "cell--editing",
+      "cell--textCenter",
+      "cell--textLeft",
+      "cell--textRight",
+      "cell--withRenderer",
+      "cell--rangeTop",
+      "cell--rangeBottom",
+      "cell--rangeLeft",
+      "cell--rangeRight",
+      "cell",
+      "cellContent",
+      "cellCheckbox",
+      "cellSkeleton",
+      "checkboxInput",
+      "columnHeader--alignCenter",
+      "columnHeader--alignLeft",
+      "columnHeader--alignRight",
+      "columnHeader--dragging",
+      "columnHeader--moving",
+      "columnHeader--numeric",
+      "columnHeader--sortable",
+      "columnHeader--sorted",
+      "columnHeader--filtered",
+      "columnHeader",
+      "columnGroupHeader",
+      "columnHeaderCheckbox",
+      "columnHeaderDraggableContainer",
+      "rowReorderCellPlaceholder",
+      "columnHeaderDropZone",
+      "columnHeaderTitle",
+      "columnHeaderTitleContainer",
+      "columnHeaderTitleContainerContent",
+      "columnHeader--filledGroup",
+      "columnHeader--emptyGroup",
+      "columnHeader--showColumnBorder",
+      "columnHeaders",
+      "columnHeadersInner",
+      "columnHeadersInner--scrollable",
+      "columnSeparator--resizable",
+      "columnSeparator--resizing",
+      "columnSeparator--sideLeft",
+      "columnSeparator--sideRight",
+      "columnSeparator",
+      "columnsPanel",
+      "columnsPanelRow",
+      "detailPanel",
+      "detailPanels",
+      "detailPanelToggleCell",
+      "detailPanelToggleCell--expanded",
+      "footerCell",
+      "panel",
+      "panelHeader",
+      "panelWrapper",
+      "panelContent",
+      "panelFooter",
+      "paper",
+      "editBooleanCell",
+      "filterForm",
+      "filterFormDeleteIcon",
+      "filterFormLogicOperatorInput",
+      "filterFormColumnInput",
+      "filterFormOperatorInput",
+      "filterFormValueInput",
+      "editInputCell",
+      "filterIcon",
+      "footerContainer",
+      "iconButtonContainer",
+      "iconSeparator",
+      "headerFilterRow",
+      "main",
+      "menu",
+      "menuIcon",
+      "menuIconButton",
+      "menuOpen",
+      "menuList",
+      "overlayWrapper",
+      "overlayWrapperInner",
+      "overlay",
+      "virtualScroller",
+      "virtualScrollerContent",
+      "virtualScrollerContent--overflowed",
+      "virtualScrollerRenderZone",
+      "pinnedColumns",
+      "pinnedColumns--left",
+      "pinnedColumns--right",
+      "pinnedColumnHeaders",
+      "pinnedColumnHeaders--left",
+      "pinnedColumnHeaders--right",
+      "root",
+      "root--densityStandard",
+      "root--densityComfortable",
+      "root--densityCompact",
+      "root--disableUserSelection",
+      "row--editable",
+      "row--editing",
+      "row--dragging",
+      "row--lastVisible",
+      "row--dynamicHeight",
+      "row--detailPanelExpanded",
+      "row",
+      "rowCount",
+      "rowReorderCellContainer",
+      "rowReorderCell",
+      "rowReorderCell--draggable",
+      "scrollArea",
+      "scrollArea--left",
+      "scrollArea--right",
+      "selectedRowCount",
+      "sortIcon",
+      "toolbarContainer",
+      "toolbarFilterList",
+      "withBorderColor",
+      "cell--withRightBorder",
+      "columnHeader--withRightBorder",
+      "treeDataGroupingCell",
+      "treeDataGroupingCellToggle",
+      "groupingCriteriaCell",
+      "groupingCriteriaCellToggle",
+      "pinnedRows",
+      "pinnedRows--top",
+      "pinnedRows--bottom",
+      "pinnedRowsRenderZone"
+    ],
+    "globalClasses": {},
+    "name": "MuiDataGrid"
+  },
+  "forwardsRefTo": "GridRoot",
+  "filename": "/packages/grid/x-data-grid-premium/src/DataGridPremium/DataGridPremium.tsx",
+  "demos": "<ul><li><a href=\"/x/react-data-grid/#commercial-version\">DataGridPremium</a></li></ul>"
+}

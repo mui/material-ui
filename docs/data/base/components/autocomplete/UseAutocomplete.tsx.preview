@@ -1,13 +1,11 @@
-<Label {...getInputLabelProps()}>Label</Label>
-<StyledAutocompleteRoot {...getRootProps()}>
-  <StyledInput {...getInputProps()} />
-</StyledAutocompleteRoot>
+<Label {...getInputLabelProps()}>Pick a movie</Label>
+<Root {...getRootProps()} className={focused ? 'Mui-focused' : ''}>
+  <Input {...getInputProps()} />
+</Root>
 {groupedOptions.length > 0 && (
-  <StyledListbox {...getListboxProps()}>
+  <Listbox {...getListboxProps()}>
     {(groupedOptions as typeof top100Films).map((option, index) => (
-      <StyledOption {...getOptionProps({ option, index })}>
-        {option.label}
-      </StyledOption>
+      <Option {...getOptionProps({ option, index })}>{option.label}</Option>
     ))}
-  </StyledListbox>
+  </Listbox>
 )}

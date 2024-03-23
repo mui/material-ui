@@ -9,13 +9,14 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
   unstable_useId as useId,
+  unstable_useTimeout as useTimeout,
+  unstable_Timeout as Timeout,
 } from '@mui/utils';
 import { Popper, unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useSlot from '../utils/useSlot';
-import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
 import { getTooltipUtilityClass } from './tooltipClasses';
 import { TooltipProps, TooltipOwnerState, TooltipTypeMap } from './TooltipProps';
 
@@ -46,34 +47,29 @@ const TooltipRoot = styled('div', {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
     ...(ownerState.size === 'sm' && {
-      '--Icon-fontSize': '1rem',
+      '--Icon-fontSize': theme.vars.fontSize.md,
       '--Tooltip-arrowSize': '8px',
-      padding: theme.spacing(0.5, 0.625),
-      fontSize: theme.vars.fontSize.xs,
+      padding: theme.spacing(0.25, 0.625),
     }),
     ...(ownerState.size === 'md' && {
-      '--Icon-fontSize': '1.125rem',
+      '--Icon-fontSize': theme.vars.fontSize.lg,
       '--Tooltip-arrowSize': '10px',
-      padding: theme.spacing(0.625, 0.75),
-      fontSize: theme.vars.fontSize.sm,
+      padding: theme.spacing(0.5, 0.75),
     }),
     ...(ownerState.size === 'lg' && {
-      '--Icon-fontSize': '1.25rem',
+      '--Icon-fontSize': theme.vars.fontSize.xl,
       '--Tooltip-arrowSize': '12px',
       padding: theme.spacing(0.75, 1),
-      fontSize: theme.vars.fontSize.md,
     }),
     zIndex: theme.vars.zIndex.tooltip,
-    borderRadius: theme.vars.radius.xs,
+    borderRadius: theme.vars.radius.sm,
     boxShadow: theme.shadow.sm,
-    fontFamily: theme.vars.fontFamily.body,
-    fontWeight: theme.vars.fontWeight.md,
-    lineHeight: theme.vars.lineHeight.sm,
     wordWrap: 'break-word',
     position: 'relative',
     ...(ownerState.disableInteractive && {
       pointerEvents: 'none',
     }),
+    ...theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`],
     ...variantStyle,
     ...(!variantStyle.backgroundColor && {
       backgroundColor: theme.vars.palette.background.surface,
@@ -127,7 +123,7 @@ const TooltipArrow = styled('span', {
     height: 'var(--Tooltip-arrowSize)',
     boxSizing: 'border-box',
     // use pseudo element because Popper controls the `transform` property of the arrow.
-    '&:before': {
+    '&::before': {
       content: '""',
       display: 'block',
       position: 'absolute',
@@ -162,14 +158,12 @@ const TooltipArrow = styled('span', {
 });
 
 let hystersisOpen = false;
-let hystersisTimer: ReturnType<typeof setTimeout> | null = null;
+const hystersisTimer = new Timeout();
 let cursorPosition = { x: 0, y: 0 };
 
 export function testReset() {
   hystersisOpen = false;
-  if (hystersisTimer) {
-    clearTimeout(hystersisTimer);
-  }
+  hystersisTimer.clear();
 }
 
 function composeMouseEventHandler(
@@ -185,14 +179,14 @@ function composeMouseEventHandler(
 }
 
 function composeFocusEventHandler(
-  handler: (event: React.FocusEvent<HTMLElement>) => void,
-  eventHandler: (event: React.FocusEvent<HTMLElement>) => void,
+  handler: (event: React.FocusEvent<HTMLElement>, ...params: any[]) => void,
+  eventHandler: (event: React.FocusEvent<HTMLElement>, ...params: any[]) => void,
 ) {
-  return (event: React.FocusEvent<HTMLElement>) => {
+  return (event: React.FocusEvent<HTMLElement>, ...params: any[]) => {
     if (eventHandler) {
-      eventHandler(event);
+      eventHandler(event, ...params);
     }
-    handler(event);
+    handler(event, ...params);
   };
 }
 /**
@@ -237,15 +231,13 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     modifiers: modifiersProp,
     placement = 'bottom',
     title,
-    color: colorProp = 'neutral',
+    color = 'neutral',
     variant = 'solid',
     size = 'md',
     slots = {},
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = disablePortal ? getColor(inProps.color, colorProp) : colorProp;
 
   const [childNode, setChildNode] = React.useState<Element>();
   const [arrowRef, setArrowRef] = React.useState<HTMLSpanElement | null>(null);
@@ -253,14 +245,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const disableInteractive = disableInteractiveProp || followCursor;
 
-  const closeTimer: React.MutableRefObject<ReturnType<typeof setTimeout> | undefined> =
-    React.useRef();
-  const enterTimer: React.MutableRefObject<ReturnType<typeof setTimeout> | undefined> =
-    React.useRef();
-  const leaveTimer: React.MutableRefObject<ReturnType<typeof setTimeout> | undefined> =
-    React.useRef();
-  const touchTimer: React.MutableRefObject<ReturnType<typeof setTimeout> | undefined> =
-    React.useRef();
+  const closeTimer = useTimeout();
+  const enterTimer = useTimeout();
+  const leaveTimer = useTimeout();
+  const touchTimer = useTimeout();
 
   const [openState, setOpenState] = useControlled({
     controlled: openProp,
@@ -274,28 +262,19 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const id = useId(idProp);
 
   const prevUserSelect: React.MutableRefObject<string | undefined> = React.useRef();
-  const stopTouchInteraction = React.useCallback(() => {
+  const stopTouchInteraction = useEventCallback(() => {
     if (prevUserSelect.current !== undefined) {
       (document.body.style as unknown as { WebkitUserSelect?: string }).WebkitUserSelect =
         prevUserSelect.current;
       prevUserSelect.current = undefined;
     }
-    clearTimeout(touchTimer.current);
-  }, []);
+    touchTimer.clear();
+  });
 
-  React.useEffect(() => {
-    return () => {
-      clearTimeout(closeTimer.current);
-      clearTimeout(enterTimer.current);
-      clearTimeout(leaveTimer.current);
-      stopTouchInteraction();
-    };
-  }, [stopTouchInteraction]);
+  React.useEffect(() => stopTouchInteraction, [stopTouchInteraction]);
 
   const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
-    if (hystersisTimer) {
-      clearTimeout(hystersisTimer);
-    }
+    hystersisTimer.clear();
     hystersisOpen = true;
 
     // The mouseover event will trigger for every nested element in the tooltip.
@@ -309,25 +288,21 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   };
 
   const handleClose = useEventCallback((event: React.SyntheticEvent | Event) => {
-    if (hystersisTimer) {
-      clearTimeout(hystersisTimer);
-    }
-    hystersisTimer = setTimeout(() => {
+    hystersisTimer.start(800 + leaveDelay, () => {
       hystersisOpen = false;
-    }, 800 + leaveDelay);
+    });
     setOpenState(false);
 
     if (onClose && open) {
       onClose(event);
     }
 
-    clearTimeout(closeTimer.current);
-    closeTimer.current = setTimeout(() => {
+    closeTimer.start(150, () => {
       ignoreNonTouchEvents.current = false;
-    }, 150);
+    });
   });
 
-  const handleEnter = (event: React.MouseEvent<HTMLElement>) => {
+  const handleMouseOver = (event: React.MouseEvent<HTMLElement>) => {
     if (ignoreNonTouchEvents.current && event.type !== 'touchstart') {
       return;
     }
@@ -339,26 +314,22 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       (childNode as HTMLElement).removeAttribute('title');
     }
 
-    clearTimeout(enterTimer.current);
-    clearTimeout(leaveTimer.current);
+    enterTimer.clear();
+    leaveTimer.clear();
     if (enterDelay || (hystersisOpen && enterNextDelay)) {
-      enterTimer.current = setTimeout(
-        () => {
-          handleOpen(event);
-        },
-        hystersisOpen ? enterNextDelay : enterDelay,
-      );
+      enterTimer.start(hystersisOpen ? enterNextDelay : enterDelay, () => {
+        handleOpen(event);
+      });
     } else {
       handleOpen(event);
     }
   };
 
-  const handleLeave = (event: React.MouseEvent<HTMLElement>) => {
-    clearTimeout(enterTimer.current);
-    clearTimeout(leaveTimer.current);
-    leaveTimer.current = setTimeout(() => {
+  const handleMouseLeave = (event: React.MouseEvent<HTMLElement>) => {
+    enterTimer.clear();
+    leaveTimer.start(leaveDelay, () => {
       handleClose(event);
-    }, leaveDelay);
+    });
   };
 
   const {
@@ -374,7 +345,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     handleBlurVisible(event as React.FocusEvent<HTMLElement>);
     if (isFocusVisibleRef.current === false) {
       setChildIsFocusVisible(false);
-      handleLeave(event as React.MouseEvent<HTMLElement>);
+      handleMouseLeave(event as React.MouseEvent<HTMLElement>);
     }
   };
 
@@ -389,7 +360,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     handleFocusVisible(event as React.FocusEvent<HTMLElement>);
     if (isFocusVisibleRef.current === true) {
       setChildIsFocusVisible(true);
-      handleEnter(event as React.MouseEvent<HTMLElement>);
+      handleMouseOver(event as React.MouseEvent<HTMLElement>);
     }
   };
 
@@ -402,13 +373,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
   };
 
-  const handleMouseOver = handleEnter;
-  const handleMouseLeave = handleLeave;
-
   const handleTouchStart = (event: React.TouchEvent<HTMLElement>) => {
     detectTouchStart(event);
-    clearTimeout(leaveTimer.current);
-    clearTimeout(closeTimer.current);
+    leaveTimer.clear();
+    closeTimer.clear();
     stopTouchInteraction();
 
     prevUserSelect.current = (
@@ -417,11 +385,11 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     // Prevent iOS text selection on long-tap.
     (document.body.style as unknown as { WebkitUserSelect?: string }).WebkitUserSelect = 'none';
 
-    touchTimer.current = setTimeout(() => {
+    touchTimer.start(enterTouchDelay, () => {
       (document.body.style as unknown as { WebkitUserSelect?: string }).WebkitUserSelect =
         prevUserSelect.current;
-      handleEnter(event as unknown as React.MouseEvent<HTMLElement>);
-    }, enterTouchDelay);
+      handleMouseOver(event as unknown as React.MouseEvent<HTMLElement>);
+    });
   };
 
   const handleTouchEnd = (event: React.TouchEvent<HTMLElement>) => {
@@ -430,10 +398,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
 
     stopTouchInteraction();
-    clearTimeout(leaveTimer.current);
-    leaveTimer.current = setTimeout(() => {
+    leaveTimer.start(leaveTouchDelay, () => {
       handleClose(event);
-    }, leaveTouchDelay);
+    });
   };
 
   React.useEffect(() => {
@@ -599,7 +566,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
                 bottom: cursorPosition.y,
                 width: 0,
                 height: 0,
-              } as DOMRect),
+              }) as DOMRect,
           }
         : childNode,
       open: childNode ? open : false,
@@ -624,39 +591,30 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     ownerState,
   });
 
-  const result = (
-    <SlotRoot
-      {...rootProps}
-      {...(!props.slots?.root && {
-        as: Popper,
-        slots: {
-          root: component || 'div',
-        },
-      })}
-    >
-      {title}
-      {arrow ? <SlotArrow {...arrowProps} /> : null}
-    </SlotRoot>
-  );
-
   return (
     <React.Fragment>
       {React.isValidElement(children) && React.cloneElement(children, childrenProps)}
-      {disablePortal ? (
-        result
-      ) : (
-        // For portal popup, the children should not inherit color inversion from the upper parent.
-        <ColorInversion.Provider value={undefined}>{result}</ColorInversion.Provider>
-      )}
+      <SlotRoot
+        {...rootProps}
+        {...(!props.slots?.root && {
+          as: Popper,
+          slots: {
+            root: component || 'div',
+          },
+        })}
+      >
+        {title}
+        {arrow ? <SlotArrow {...arrowProps} /> : null}
+      </SlotRoot>
     </React.Fragment>
   );
 }) as OverridableComponent<TooltipTypeMap>;
 
 Tooltip.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, adds an arrow to the tooltip.
    * @default false
@@ -674,7 +632,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

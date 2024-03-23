@@ -16,7 +16,7 @@ export default function AlertUsage() {
         {
           propName: 'color',
           knob: 'color',
-          defaultValue: 'primary',
+          defaultValue: 'neutral',
         },
         {
           propName: 'size',

@@ -1,30 +1,30 @@
 # Automatic adjustment
 
-<p class="description">Joy UI components adapt to one another to ensure consistency across your app without the need to micromanage your CSS.</p>
+<p class="description">Joy UI components adapt to one another to ensure consistency across your app without the need to micromanage your CSS.</p>
 
-Joy UI components automatically adjust their styles and DOM structure relative to one another to ensure consistent sizing, spacing, and semantically appropriate HTML throughout your app.
+Joy UI components automatically adjust their styles and DOM structure relative to one another to ensure consistent sizing, spacing, and semantically appropriate HTML throughout your app.
 
 This makes it much faster and more efficient for you to apply pixel-perfect adjustments to your UI without having to worry to about minor inconsistencies between components.
 
 ## Style adjustments
 
-Joy UI components adapt their styles relative to the context in which they're rendered.
+Joy UI components adapt their styles relative to the context in which they're rendered.
 You can see a few examples of this below.
 
 ### Input
 
-When using icons or buttons within an Input component, Joy UI automatically adjusts their size:
+When using icons or buttons within an Input component, Joy UI automatically adjusts their size:
 
 {{"demo": "InputIntegration.js"}}
 
-If you customize their respective CSS variables, Joy UI ensures that their spacing and radii follow those of the Input:
+If you customize their respective CSS variables, Joy UI ensures that their spacing and radii follow those of the Input:
 
 {{"demo": "InputVariables.js"}}
 
 ### List
 
 Nested lists are a common source of frustration when it comes to styling.
-Joy UI's meaningful variables are intended to simplify this process.
+Joy UI's meaningful variables are intended to simplify this process.
 
 Play around with different presets in the demo below to see which CSS variables are customized:
 
@@ -32,7 +32,7 @@ Play around with different presets in the demo below to see which CSS variables 
 
 ## Structure adjustments
 
-Joy UI components adjust their DOM structure based on their context to ensure that the appropriate HTML tags are used.
+Joy UI components adjust their DOM structure based on their context to ensure that the appropriate HTML tags are used.
 Check out a few examples below:
 
 ### Typography

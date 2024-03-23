@@ -1,39 +1,37 @@
 import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface TabClasses {
-  /** Classname applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
-  /** Classname applied to the root element if `disabled={true}`. */
+  /** Class name applied to the root element if `disabled={true}`. */
   disabled: string;
-  /** Classname applied to the root element when its focus is visible. */
+  /** Class name applied to the root element when its focus is visible. */
   focusVisible: string;
-  /** Classname applied to the root element when it is selected. */
+  /** Class name applied to the root element when it is selected. */
   selected: string;
-  /** Classname applied to the root element if `orientation="horizontal"`. */
+  /** Class name applied to the root element if `orientation="horizontal"`. */
   horizontal: string;
-  /** Classname applied to the root element if `orientation="vertical"`. */
+  /** Class name applied to the root element if `orientation="vertical"`. */
   vertical: string;
-  /** Classname applied to the root element if `color="primary"`. */
+  /** Class name applied to the root element if `color="primary"`. */
   colorPrimary: string;
-  /** Classname applied to the root element if `color="neutral"`. */
+  /** Class name applied to the root element if `color="neutral"`. */
   colorNeutral: string;
-  /** Classname applied to the root element if `color="danger"`. */
+  /** Class name applied to the root element if `color="danger"`. */
   colorDanger: string;
-  /** Classname applied to the root element if `color="info"`. */
-  colorInfo: string;
-  /** Classname applied to the root element if `color="success"`. */
+  /** Class name applied to the root element if `color="success"`. */
   colorSuccess: string;
-  /** Classname applied to the root element if `color="warning"`. */
+  /** Class name applied to the root element if `color="warning"`. */
   colorWarning: string;
   /** Class name applied to the root element when color inversion is triggered. */
   colorContext: string;
-  /** Classname applied to the root element if `variant="plain"`. */
+  /** Class name applied to the root element if `variant="plain"`. */
   variantPlain: string;
-  /** Classname applied to the root element if `variant="outlined"`. */
+  /** Class name applied to the root element if `variant="outlined"`. */
   variantOutlined: string;
-  /** Classname applied to the root element if `variant="soft"`. */
+  /** Class name applied to the root element if `variant="soft"`. */
   variantSoft: string;
-  /** Classname applied to the root element if `variant="solid"`. */
+  /** Class name applied to the root element if `variant="solid"`. */
   variantSolid: string;
 }
 
@@ -53,7 +51,6 @@ const tabListClasses: TabClasses = generateUtilityClasses('MuiTab', [
   'colorPrimary',
   'colorNeutral',
   'colorDanger',
-  'colorInfo',
   'colorSuccess',
   'colorWarning',
   'colorContext',

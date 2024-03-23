@@ -3,8 +3,10 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
+import refType from '@mui/utils/refType';
+import { useSlotProps } from '@mui/base/utils';
+import composeClasses from '@mui/utils/composeClasses';
+import { useRtl } from '@mui/system/RtlProvider';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useTheme from '../styles/useTheme';
@@ -213,10 +215,7 @@ const TabsIndicator = styled('span', {
   }),
 }));
 
-const TabsScrollbarSize = styled(ScrollbarSize, {
-  name: 'MuiTabs',
-  slot: 'ScrollbarSize',
-})({
+const TabsScrollbarSize = styled(ScrollbarSize)({
   overflowX: 'auto',
   overflowY: 'hidden',
   // Hide dimensionless scrollbar on macOS
@@ -233,7 +232,7 @@ let warnedOnceTabPresent = false;
 const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTabs' });
   const theme = useTheme();
-  const isRtl = theme.direction === 'rtl';
+  const isRtl = useRtl();
   const {
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
@@ -312,10 +311,9 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   const [mounted, setMounted] = React.useState(false);
   const [indicatorStyle, setIndicatorStyle] = React.useState(defaultIndicatorStyle);
-  const [displayScroll, setDisplayScroll] = React.useState({
-    start: false,
-    end: false,
-  });
+  const [displayStartScroll, setDisplayStartScroll] = React.useState(false);
+  const [displayEndScroll, setDisplayEndScroll] = React.useState(false);
+  const [updateScrollObserver, setUpdateScrollObserver] = React.useState(false);
 
   const [scrollerStyle, setScrollerStyle] = React.useState({
     overflow: 'hidden',
@@ -336,7 +334,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
         clientWidth: tabsNode.clientWidth,
         scrollLeft: tabsNode.scrollLeft,
         scrollTop: tabsNode.scrollTop,
-        scrollLeftNormalized: getNormalizedScrollLeft(tabsNode, theme.direction),
+        scrollLeftNormalized: getNormalizedScrollLeft(tabsNode, isRtl ? 'rtl' : 'ltr'),
         scrollWidth: tabsNode.scrollWidth,
         top: rect.top,
         bottom: rect.bottom,
@@ -508,7 +506,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       />
     ) : null;
 
-    const scrollButtonsActive = displayScroll.start || displayScroll.end;
+    const scrollButtonsActive = displayStartScroll || displayEndScroll;
     const showScrollButtons =
       scrollable && ((scrollButtons === 'auto' && scrollButtonsActive) || scrollButtons === true);
 
@@ -519,7 +517,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
         orientation={orientation}
         direction={isRtl ? 'right' : 'left'}
         onClick={handleStartScrollClick}
-        disabled={!displayScroll.start}
+        disabled={!displayStartScroll}
         {...TabScrollButtonProps}
         className={clsx(classes.scrollButtons, TabScrollButtonProps.className)}
       />
@@ -534,7 +532,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
         orientation={orientation}
         direction={isRtl ? 'left' : 'right'}
         onClick={handleEndScrollClick}
-        disabled={!displayScroll.end}
+        disabled={!displayEndScroll}
         {...TabScrollButtonProps}
         className={clsx(classes.scrollButtons, TabScrollButtonProps.className)}
       />
@@ -563,23 +561,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   const updateScrollButtonState = useEventCallback(() => {
     if (scrollable && scrollButtons !== false) {
-      const { scrollTop, scrollHeight, clientHeight, scrollWidth, clientWidth } = tabsRef.current;
-      let showStartScroll;
-      let showEndScroll;
-
-      if (vertical) {
-        showStartScroll = scrollTop > 1;
-        showEndScroll = scrollTop < scrollHeight - clientHeight - 1;
-      } else {
-        const scrollLeft = getNormalizedScrollLeft(tabsRef.current, theme.direction);
-        // use 1 for the potential rounding error with browser zooms.
-        showStartScroll = isRtl ? scrollLeft < scrollWidth - clientWidth - 1 : scrollLeft > 1;
-        showEndScroll = !isRtl ? scrollLeft < scrollWidth - clientWidth - 1 : scrollLeft > 1;
-      }
-
-      if (showStartScroll !== displayScroll.start || showEndScroll !== displayScroll.end) {
-        setDisplayScroll({ start: showStartScroll, end: showEndScroll });
-      }
+      setUpdateScrollObserver(!updateScrollObserver);
     }
   });
 
@@ -593,13 +575,31 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       // replaced by Suspense with a fallback, once React is updated to version 18
       if (tabsRef.current) {
         updateIndicatorState();
-        updateScrollButtonState();
       }
     });
+
+    let resizeObserver;
+
+    /**
+     * @type {MutationCallback}
+     */
+    const handleMutation = (records) => {
+      records.forEach((record) => {
+        record.removedNodes.forEach((item) => {
+          resizeObserver?.unobserve(item);
+        });
+        record.addedNodes.forEach((item) => {
+          resizeObserver?.observe(item);
+        });
+      });
+      handleResize();
+      updateScrollButtonState();
+    };
+
     const win = ownerWindow(tabsRef.current);
     win.addEventListener('resize', handleResize);
 
-    let resizeObserver;
+    let mutationObserver;
 
     if (typeof ResizeObserver !== 'undefined') {
       resizeObserver = new ResizeObserver(handleResize);
@@ -608,28 +608,62 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       });
     }
 
+    if (typeof MutationObserver !== 'undefined') {
+      mutationObserver = new MutationObserver(handleMutation);
+      mutationObserver.observe(tabListRef.current, {
+        childList: true,
+      });
+    }
+
     return () => {
       handleResize.clear();
       win.removeEventListener('resize', handleResize);
-      if (resizeObserver) {
-        resizeObserver.disconnect();
-      }
+      mutationObserver?.disconnect();
+      resizeObserver?.disconnect();
     };
   }, [updateIndicatorState, updateScrollButtonState]);
 
-  const handleTabsScroll = React.useMemo(
-    () =>
-      debounce(() => {
-        updateScrollButtonState();
-      }),
-    [updateScrollButtonState],
-  );
-
+  /**
+   * Toggle visibility of start and end scroll buttons
+   * Using IntersectionObserver on first and last Tabs.
+   */
   React.useEffect(() => {
-    return () => {
-      handleTabsScroll.clear();
-    };
-  }, [handleTabsScroll]);
+    const tabListChildren = Array.from(tabListRef.current.children);
+    const length = tabListChildren.length;
+
+    if (
+      typeof IntersectionObserver !== 'undefined' &&
+      length > 0 &&
+      scrollable &&
+      scrollButtons !== false
+    ) {
+      const firstTab = tabListChildren[0];
+      const lastTab = tabListChildren[length - 1];
+      const observerOptions = {
+        root: tabsRef.current,
+        threshold: 0.99,
+      };
+
+      const handleScrollButtonStart = (entries) => {
+        setDisplayStartScroll(!entries[0].isIntersecting);
+      };
+      const firstObserver = new IntersectionObserver(handleScrollButtonStart, observerOptions);
+      firstObserver.observe(firstTab);
+
+      const handleScrollButtonEnd = (entries) => {
+        setDisplayEndScroll(!entries[0].isIntersecting);
+      };
+      const lastObserver = new IntersectionObserver(handleScrollButtonEnd, observerOptions);
+      lastObserver.observe(lastTab);
+
+      return () => {
+        firstObserver.disconnect();
+        lastObserver.disconnect();
+      };
+    }
+
+    return undefined;
+  }, [scrollable, scrollButtons, updateScrollObserver, childrenProp?.length]);
 
   React.useEffect(() => {
     setMounted(true);
@@ -637,7 +671,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   React.useEffect(() => {
     updateIndicatorState();
-    updateScrollButtonState();
   });
 
   React.useEffect(() => {
@@ -763,7 +796,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
             : -scrollerStyle.scrollbarWidth,
         }}
         ref={tabsRef}
-        onScroll={handleTabsScroll}
       >
         {/* The tablist isn't interactive but the tabs are */}
         <FlexContainer
@@ -786,10 +818,10 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 });
 
 Tabs.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Callback fired when the component mounts.
    * This is useful when you want to trigger an action programmatically.
@@ -928,7 +960,7 @@ Tabs.propTypes /* remove-proptypes */ = {
    *
    *  - `scrollable` will invoke scrolling properties and allow for horizontally
    *  scrolling (or swiping) of the tab bar.
-   *  -`fullWidth` will make the tabs grow to use all the available space,
+   *  - `fullWidth` will make the tabs grow to use all the available space,
    *  which should be used for small views, like on mobile.
    *  - `standard` will render the default state.
    * @default 'standard'

@@ -1,9 +1,10 @@
-import ButtonBase from '@mui/material/ButtonBase';
-import Tab, { tabClasses as classes } from '@mui/material/Tab';
 import { expect } from 'chai';
 import * as React from 'react';
 import { spy } from 'sinon';
-import { act, createRenderer, describeConformance, fireEvent } from 'test/utils';
+import { act, createRenderer, fireEvent } from '@mui-internal/test-utils';
+import Tab, { tabClasses as classes } from '@mui/material/Tab';
+import ButtonBase from '@mui/material/ButtonBase';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Tab />', () => {
   const { render } = createRenderer();

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 import Checkbox from '@mui/joy/Checkbox';
+import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
 export default function CheckboxUsage() {
   return (

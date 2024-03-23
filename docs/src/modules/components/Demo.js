@@ -19,7 +19,7 @@ import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { useCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { useCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
 import { CODE_VARIANTS, CODE_STYLING } from 'docs/src/modules/constants';
-import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
 import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import DemoToolbarRoot from 'docs/src/modules/components/DemoToolbarRoot';
@@ -57,15 +57,15 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
 
   return React.useMemo(() => {
     let productId;
-    let name = 'Material UI';
+    let name = 'Material UI';
     if (canonicalAs.startsWith('/joy-ui/')) {
       productId = 'joy-ui';
-      name = 'Joy UI';
+      name = 'Joy UI';
     } else if (canonicalAs.startsWith('/base-ui/')) {
       productId = 'base-ui';
-      name = 'Base UI';
+      name = 'Base UI';
     } else if (canonicalAs.startsWith('/x/')) {
-      name = 'MUI X';
+      name = 'MUI X';
     }
 
     let codeOptions = {};
@@ -195,15 +195,14 @@ const Root = styled('div')(({ theme }) => ({
 }));
 
 const DemoRootMaterial = styled('div', {
-  shouldForwardProp: (prop) => prop !== 'hiddenToolbar' && prop !== 'bg',
-})(({ theme, hiddenToolbar, bg }) => ({
+  shouldForwardProp: (prop) => prop !== 'hideToolbar' && prop !== 'bg',
+})(({ theme, hideToolbar, bg }) => ({
   position: 'relative',
-  outline: 0,
   margin: 'auto',
   display: 'flex',
   justifyContent: 'center',
   [theme.breakpoints.up('sm')]: {
-    borderRadius: hiddenToolbar ? 12 : '12px 12px 0 0',
+    borderRadius: hideToolbar ? 12 : '12px 12px 0 0',
     ...(bg === 'outlined' && {
       borderLeftWidth: 1,
       borderRightWidth: 1,
@@ -220,71 +219,54 @@ const DemoRootMaterial = styled('div', {
     border: `1px solid ${(theme.vars || theme).palette.divider}`,
     borderLeftWidth: 0,
     borderRightWidth: 0,
+    ...theme.applyDarkStyles({
+      backgroundColor: alpha(theme.palette.primaryDark[700], 0.1),
+    }),
+  }),
+  /* Similar to the outlined one but without padding. Ideal for playground demos. */
+  ...(bg === 'playground' && {
+    backgroundColor: (theme.vars || theme).palette.background.paper,
+    border: `1px solid ${(theme.vars || theme).palette.divider}`,
+    overflow: 'auto',
   }),
   /* Prepare the background to display an inner elevation. */
   ...(bg === true && {
     padding: theme.spacing(3),
-    backgroundColor: (theme.vars || theme).palette.grey[50],
+    backgroundColor: alpha(theme.palette.grey[50], 0.6),
     border: `1px solid ${(theme.vars || theme).palette.divider}`,
     ...theme.applyDarkStyles({
-      backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
+      backgroundColor: alpha(theme.palette.primaryDark[700], 0.15),
     }),
   }),
   /* Mostly meant for introduction demos. */
   ...(bg === 'gradient' && {
+    overflow: 'auto',
     padding: theme.spacing(20, 8),
     border: `1px solid`,
     borderColor: (theme.vars || theme).palette.divider,
-    overflow: 'hidden',
-    backgroundColor: alpha(theme.palette.primary[50], 0.5),
     backgroundClip: 'padding-box',
-    backgroundImage: `radial-gradient(at 51% 52%, ${alpha(
-      theme.palette.primary[50],
-      0.5,
-    )} 0px, transparent 50%),
-        radial-gradient(at 80% 0%, #FFFFFF 0px, transparent 20%),
-        radial-gradient(at 0% 95%, ${alpha(theme.palette.primary[100], 0.3)}, transparent 40%),
-        radial-gradient(at 0% 20%, ${
-          (theme.vars || theme).palette.primary[50]
-        } 0px, transparent 50%),
-        radial-gradient(at 93% 85%, ${alpha(
-          theme.palette.primary[100],
-          0.2,
-        )} 0px, transparent 50%);`,
+    backgroundColor: alpha(theme.palette.primary[50], 0.5),
+    backgroundImage: `radial-gradient(140% 108% at 50% 8%, transparent 40%, ${
+      theme.palette.primary[50]
+    } 70%, ${alpha(theme.palette.primary[100], 0.2)} 100%)`,
     ...theme.applyDarkStyles({
-      borderColor: alpha(theme.palette.primaryDark[500], 0.7),
-      backgroundColor: (theme.vars || theme).palette.primaryDark[800],
-      backgroundImage: `radial-gradient(at 51% 52%, ${alpha(
-        theme.palette.primaryDark[700],
-        0.5,
-      )} 0px, transparent 50%),
-    radial-gradient(at 80% 0%, ${
-      (theme.vars || theme).palette.primaryDark[700]
-    } 0px, transparent 50%),
-    radial-gradient(at 0% 95%, ${
-      (theme.vars || theme).palette.primaryDark[700]
-    } 0px, transparent 50%),
-    radial-gradient(at 0% 5%, ${
-      (theme.vars || theme).palette.primaryDark[700]
-    } 0px, transparent 35%),
-    radial-gradient(at 93% 85%, ${alpha(
-      theme.palette.primaryDark[500],
-      0.8,
-    )} 0px, transparent 50%);`,
+      borderColor: (theme.vars || theme).palette.divider,
+      backgroundColor: '#00111A',
+      backgroundImage:
+        'radial-gradient(140% 120% at 50% 8%, transparent 40%, #051729 70%, #041425 100%)',
     }),
   }),
 }));
 
 const DemoRootJoy = joyStyled('div', {
-  shouldForwardProp: (prop) => prop !== 'hiddenToolbar' && prop !== 'bg',
-})(({ theme, hiddenToolbar, bg }) => ({
+  shouldForwardProp: (prop) => prop !== 'hideToolbar' && prop !== 'bg',
+})(({ theme, hideToolbar, bg }) => ({
   position: 'relative',
-  outline: 0,
   margin: 'auto',
   display: 'flex',
   justifyContent: 'center',
   [theme.breakpoints.up('sm')]: {
-    borderRadius: hiddenToolbar ? 12 : '12px 12px 0 0',
+    borderRadius: hideToolbar ? 12 : '12px 12px 0 0',
     ...(bg === 'outlined' && {
       borderLeftWidth: 1,
       borderRightWidth: 1,
@@ -301,10 +283,10 @@ const DemoRootJoy = joyStyled('div', {
     borderColor: grey[100],
     borderLeftWidth: 0,
     borderRightWidth: 0,
-    backgroundColor: alpha(grey[50], 0.2),
+    backgroundColor: 'transparent',
     ...theme.applyDarkStyles({
-      borderColor: alpha(grey[700], 0.3),
-      backgroundColor: alpha(blueDark[800], 0.2),
+      borderColor: alpha(blueDark[500], 0.3),
+      backgroundColor: alpha(theme.palette.neutral[900], 0.8),
     }),
   }),
   /* Prepare the background to display an inner elevation. */
@@ -322,25 +304,23 @@ const DemoRootJoy = joyStyled('div', {
     overflow: 'auto',
     backgroundColor: alpha(blue[50], 0.5),
     border: `1px solid`,
-    borderColor: `rgba(${theme.vars.palette.neutral.mainChannel} / 0.1)`,
+    borderColor: grey[100],
     backgroundImage: `radial-gradient(at 51% 52%, ${alpha(blue[50], 0.5)} 0px, transparent 50%),
       radial-gradient(at 80% 0%, #FFFFFF 0px, transparent 20%),
       radial-gradient(at 0% 95%, ${alpha(blue[100], 0.3)}, transparent 40%),
       radial-gradient(at 0% 20%, ${blue[50]} 0px, transparent 50%),
-      radial-gradient(at 93% 85%, ${alpha(blue[100], 0.2)} 0px, transparent 50%),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23003A75' fill-opacity='0.03'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");`,
+      radial-gradient(at 93% 85%, ${alpha(blue[100], 0.2)} 0px, transparent 50%);`,
     ...theme.applyDarkStyles({
-      backgroundColor: blueDark[800],
-      borderColor: `rgba(${theme.vars.palette.neutral.mainChannel} / 0.1)`,
+      backgroundColor: alpha(blue[900], 0.1),
+      borderColor: alpha(blueDark[700], 1),
       backgroundImage: `radial-gradient(at 51% 52%, ${alpha(
         blueDark[700],
         0.5,
       )} 0px, transparent 50%),
-        radial-gradient(at 80% 0%, ${blueDark[700]} 0px, transparent 50%),
-        radial-gradient(at 0% 95%, ${blueDark[700]} 0px, transparent 50%),
-        radial-gradient(at 0% 5%, ${blueDark[700]} 0px, transparent 25%),
-        radial-gradient(at 93% 85%, ${alpha(blueDark[500], 0.8)} 0px, transparent 50%),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23003A75' fill-opacity='0.15'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");`,
+    radial-gradient(at 80% 0%, ${alpha(blue[900], 0.3)} 0px, transparent 50%),
+    radial-gradient(at 0% 95%,  ${alpha(blue[900], 0.5)} 0px, transparent 50%),
+    radial-gradient(at 0% 5%, ${alpha(blue[900], 0.5)} 0px, transparent 35%),
+    radial-gradient(at 93% 85%, ${alpha(blue[900], 0.3)} 0px, transparent 50%);`,
     }),
   }),
 }));
@@ -375,8 +355,24 @@ export default function Demo(props) {
     if (demoOptions.hideToolbar === false) {
       throw new Error(
         [
-          '"hiddenToolbar": false is already the default.',
+          '"hideToolbar": false is already the default.',
           `Please remove the property in {{"demo": "${demoOptions.demo}", …}}.`,
+        ].join('\n'),
+      );
+    }
+    if (demoOptions.hideToolbar === true && demoOptions.defaultCodeOpen === true) {
+      throw new Error(
+        [
+          '"hideToolbar": true, "defaultCodeOpen": true combination is invalid.',
+          `Please remove one of the properties in {{"demo": "${demoOptions.demo}", …}}.`,
+        ].join('\n'),
+      );
+    }
+    if (demoOptions.hideToolbar === true && demoOptions.disableAd === true) {
+      throw new Error(
+        [
+          '"hideToolbar": true, "disableAd": true combination is invalid.',
+          `Please remove one of the properties in {{"demo": "${demoOptions.demo}", …}}.`,
         ].join('\n'),
       );
     }
@@ -390,7 +386,7 @@ export default function Demo(props) {
       [
         `The following demos use TS directly: ${demoOptions.demo}.`,
         '',
-        'Please run "yarn docs:typescript:formatted" to generate a JS version and reference it:',
+        'Please run "pnpm docs:typescript:formatted" to generate a JS version and reference it:',
         `{{"demo": "${demoOptions.demo.replace(/\.(.*)$/, '.js')}", …}}.`,
         '',
         "Otherwise, if it's not a code demo hide the toolbar:",
@@ -407,11 +403,6 @@ export default function Demo(props) {
 
   const hasNonSystemDemos = demo.rawTailwind || demo.rawTailwindTS || demo.rawCSS || demo.rawCSSTs;
 
-  const [demoHovered, setDemoHovered] = React.useState(false);
-  const handleDemoHover = (event) => {
-    setDemoHovered(event.type === 'mouseenter');
-  };
-
   const demoName = getDemoName(demoData.githubLocation);
   const demoSandboxedStyle = React.useMemo(
     () => ({
@@ -423,10 +414,10 @@ export default function Demo(props) {
 
   if (demoOptions.bg == null) {
     demoOptions.bg = 'outlined';
-  }
 
-  if (demoOptions.iframe) {
-    demoOptions.bg = true;
+    if (demoOptions.iframe) {
+      demoOptions.bg = true;
+    }
   }
 
   const [codeOpen, setCodeOpen] = React.useState(demoOptions.defaultCodeOpen || false);
@@ -474,14 +465,17 @@ export default function Demo(props) {
     initialEditorCode,
   });
 
-  const resetDemo = () => {
-    setEditorCode({
-      value: initialEditorCode,
-      isPreview,
-      initialEditorCode,
-    });
-    setDemoKey();
-  };
+  const resetDemo = React.useMemo(
+    () => () => {
+      setEditorCode({
+        value: initialEditorCode,
+        isPreview,
+        initialEditorCode,
+      });
+      setDemoKey();
+    },
+    [setEditorCode, setDemoKey, initialEditorCode, isPreview],
+  );
 
   React.useEffect(() => {
     setEditorCode({
@@ -505,13 +499,7 @@ export default function Demo(props) {
   return (
     <Root>
       <AnchorLink id={demoName} />
-      <DemoRoot
-        hiddenToolbar={demoOptions.hideToolbar}
-        bg={demoOptions.bg}
-        id={demoId}
-        onMouseEnter={handleDemoHover}
-        onMouseLeave={handleDemoHover}
-      >
+      <DemoRoot hideToolbar={demoOptions.hideToolbar} bg={demoOptions.bg} id={demoId}>
         <Wrapper {...(demoData.productId === 'joy-ui' && { mode })}>
           <InitialFocus
             aria-label={t('initialFocusLabel')}
@@ -523,25 +511,26 @@ export default function Demo(props) {
           key={demoKey}
           style={demoSandboxedStyle}
           iframe={demoOptions.iframe}
+          productId={demoData.productId}
           name={demoName}
           onResetDemoClick={resetDemo}
         >
           {demoElement}
         </DemoSandbox>
       </DemoRoot>
-      {Object.keys(stylingSolutionMapping).map((key) => (
-        <React.Fragment key={key}>
-          <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.js`} />
-          <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.tsx`} />
-        </React.Fragment>
-      ))}
-      <AnchorLink id={`${demoName}.js`} />
-      <AnchorLink id={`${demoName}.tsx`} />
-      {/* TODO: BrandingProvider shouldn't be needed, it should already be at the top of the docs page */}
-      <BrandingProvider {...(demoData.productId === 'joy-ui' ? { mode } : {})}>
-        {demoOptions.hideToolbar ? null : (
+      {/* TODO: Wrapper shouldn't be needed, it should already be at the top of the docs page */}
+      {demoOptions.hideToolbar ? null : (
+        <Wrapper {...(demoData.productId === 'joy-ui' ? { mode } : {})}>
+          {Object.keys(stylingSolutionMapping).map((key) => (
+            <React.Fragment key={key}>
+              <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.js`} />
+              <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.tsx`} />
+            </React.Fragment>
+          ))}
+          <AnchorLink id={`${demoName}.js`} />
+          <AnchorLink id={`${demoName}.tsx`} />
           <DemoToolbarRoot demoOptions={demoOptions} openDemoSource={openDemoSource}>
-            <NoSsr defer fallback={<DemoToolbarFallback />}>
+            <NoSsr fallback={<DemoToolbarFallback />}>
               <React.Suspense fallback={<DemoToolbarFallback />}>
                 <DemoToolbar
                   codeOpen={codeOpen}
@@ -549,7 +538,6 @@ export default function Demo(props) {
                   hasNonSystemDemos={hasNonSystemDemos}
                   demo={demo}
                   demoData={demoData}
-                  demoHovered={demoHovered}
                   demoId={demoId}
                   demoName={demoName}
                   demoOptions={demoOptions}
@@ -566,49 +554,49 @@ export default function Demo(props) {
               </React.Suspense>
             </NoSsr>
           </DemoToolbarRoot>
-        )}
-        <Collapse in={openDemoSource} unmountOnExit timeout={150}>
-          {/* A limitation from https://github.com/nihgwu/react-runner,
-            we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
-          {demoOptions.disableLiveEdit ? (
-            <DemoCodeViewer
-              code={editorCode.value}
-              id={demoSourceId}
-              language={demoData.sourceLanguage}
-              copyButtonProps={{
-                'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                'data-ga-event-label': demo.gaLabel,
-                'data-ga-event-action': 'copy-click',
-              }}
-            />
-          ) : (
-            <DemoEditor
-              // Mount a new text editor when the preview mode change to reset the undo/redo history.
-              key={editorCode.isPreview}
-              value={editorCode.value}
-              onChange={(value) => {
-                setEditorCode({
-                  ...editorCode,
-                  value,
-                });
-              }}
-              onFocus={() => {
-                setLiveDemoActive(true);
-              }}
-              id={demoSourceId}
-              language={demoData.sourceLanguage}
-              copyButtonProps={{
-                'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                'data-ga-event-label': demo.gaLabel,
-                'data-ga-event-action': 'copy-click',
-              }}
-            >
-              <DemoEditorError>{debouncedError}</DemoEditorError>
-            </DemoEditor>
-          )}
-        </Collapse>
-        {adVisibility ? <AdCarbonInline /> : null}
-      </BrandingProvider>
+          <Collapse in={openDemoSource} unmountOnExit timeout={150}>
+            {/* A limitation from https://github.com/nihgwu/react-runner,
+                we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
+            {demoOptions.disableLiveEdit ? (
+              <DemoCodeViewer
+                code={editorCode.value}
+                id={demoSourceId}
+                language={demoData.sourceLanguage}
+                copyButtonProps={{
+                  'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+                  'data-ga-event-label': demo.gaLabel,
+                  'data-ga-event-action': 'copy-click',
+                }}
+              />
+            ) : (
+              <DemoEditor
+                // Mount a new text editor when the preview mode change to reset the undo/redo history.
+                key={editorCode.isPreview}
+                value={editorCode.value}
+                onChange={(value) => {
+                  setEditorCode({
+                    ...editorCode,
+                    value,
+                  });
+                }}
+                onFocus={() => {
+                  setLiveDemoActive(true);
+                }}
+                id={demoSourceId}
+                language={demoData.sourceLanguage}
+                copyButtonProps={{
+                  'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+                  'data-ga-event-label': demo.gaLabel,
+                  'data-ga-event-action': 'copy-click',
+                }}
+              >
+                <DemoEditorError>{debouncedError}</DemoEditorError>
+              </DemoEditor>
+            )}
+          </Collapse>
+          {adVisibility ? <AdCarbonInline /> : null}
+        </Wrapper>
+      )}
     </Root>
   );
 }

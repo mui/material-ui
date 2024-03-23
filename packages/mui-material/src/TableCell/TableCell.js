@@ -2,8 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { darken, alpha, lighten } from '@mui/system';
+import composeClasses from '@mui/utils/composeClasses';
+import { darken, alpha, lighten } from '@mui/system/colorManipulator';
 import capitalize from '../utils/capitalize';
 import TableContext from '../Table/TableContext';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
@@ -183,10 +183,10 @@ const TableCell = React.forwardRef(function TableCell(inProps, ref) {
 });
 
 TableCell.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Set the text-align on the table cell content.
    *

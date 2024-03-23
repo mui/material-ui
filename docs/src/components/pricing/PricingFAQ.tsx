@@ -1,8 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
@@ -11,6 +10,7 @@ import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetail from '@mui/material/AccordionDetails';
 import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
+import Section from 'docs/src/layouts/Section';
 
 const faqData = [
   {
@@ -200,17 +200,24 @@ const Accordion = styled(MuiAccordion)(({ theme }) => ({
     borderRadius: theme.shape.borderRadius,
   },
   '&:hover': {
-    boxShadow: '1px 1px 20px 0 rgb(90 105 120 / 20%)',
+    borderColor: theme.palette.primary[300],
+    boxShadow: `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
   },
   '&:not(:last-of-type)': {
     marginBottom: theme.spacing(2),
   },
-  '&:before': {
+  '&::before': {
     display: 'none',
   },
-  '&:after': {
+  '&::after': {
     display: 'none',
   },
+  ...theme.applyDarkStyles({
+    '&:hover': {
+      borderColor: alpha(theme.palette.primary[600], 0.6),
+      boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.8)',
+    },
+  }),
 }));
 
 const AccordionSummary = styled(MuiAccordionSummary)(({ theme }) => ({
@@ -260,7 +267,7 @@ export default function PricingFAQ() {
     );
   }
   return (
-    <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
+    <Section cozy>
       <Typography id="faq" variant="h2" sx={{ mb: { xs: 2, sm: 4 } }}>
         Frequently asked questions
       </Typography>
@@ -287,7 +294,7 @@ export default function PricingFAQ() {
               borderColor: 'grey.300',
               bgcolor: 'white',
               ...theme.applyDarkStyles({
-                borderColor: 'primaryDark.400',
+                borderColor: 'divider',
                 bgcolor: 'primaryDark.800',
               }),
             })}
@@ -310,6 +317,6 @@ export default function PricingFAQ() {
           </Paper>
         </Grid>
       </Grid>
-    </Container>
+    </Section>
   );
 }

@@ -7,6 +7,7 @@ const ruleTester = new eslint.RuleTester({
     ecmaFeatures: { jsx: true },
   },
 });
+
 ruleTester.run('no-hardcoded-labels', rule, {
   valid: [
     '<button>{42}</button>',

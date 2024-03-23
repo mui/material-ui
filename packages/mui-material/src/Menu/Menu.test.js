@@ -4,15 +4,15 @@ import { expect } from 'chai';
 import {
   createRenderer,
   createMount,
-  describeConformance,
   screen,
   fireEvent,
   strictModeDoubleLoggingSuppressed,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import Menu, { menuClasses as classes } from '@mui/material/Menu';
 import Popover from '@mui/material/Popover';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { MenuPaper } from './Menu';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Menu />', () => {
   const { render } = createRenderer({ clock: 'fake' });
@@ -24,6 +24,14 @@ describe('<Menu />', () => {
     render,
     muiName: 'MuiMenu',
     refInstanceof: window.HTMLDivElement,
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+      paper: {
+        expectedClassName: classes.paper,
+      },
+    },
     testDeepOverrides: { slotName: 'list', slotClassName: classes.list },
     testRootOverrides: { slotName: 'root', slotClassName: classes.root },
     testVariantProps: { variant: 'menu' },
@@ -377,6 +385,18 @@ describe('<Menu />', () => {
     it('should use MenuPaper component', () => {
       const wrapper = mount(
         <Menu anchorEl={document.createElement('div')} open>
+          <div />
+        </Menu>,
+      );
+
+      expect(wrapper.find(MenuPaper)).to.have.length(1);
+    });
+  });
+
+  describe('slots', () => {
+    it('should merge slots with existing values', () => {
+      const wrapper = mount(
+        <Menu slots={{ root: 'span' }} anchorEl={document.createElement('div')} open>
           <div />
         </Menu>,
       );

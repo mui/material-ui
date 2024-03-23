@@ -16,8 +16,8 @@ import { Theme as MaterialTheme } from '../styles';
 declare const Box: OverridableComponent<BoxTypeMap<{}, 'div', MaterialTheme>>;
 
 export type BoxProps<
-  D extends React.ElementType = BoxTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<BoxTypeMap<P, D, MaterialTheme>, D>;
+  RootComponent extends React.ElementType = BoxTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<BoxTypeMap<AdditionalProps, RootComponent, MaterialTheme>, RootComponent>;
 
 export default Box;

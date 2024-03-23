@@ -1,9 +1,9 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useControlled as useControlled } from '@mui/utils';
+import useControlled from '@mui/utils/useControlled';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
-import FormControlContext from './FormControlContext';
+import { FormControlContext } from './FormControlContext';
 import { getFormControlUtilityClass } from './formControlClasses';
 import {
   FormControlProps,
@@ -14,7 +14,7 @@ import {
   FormControlRootSlotProps,
 } from './FormControl.types';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
-import composeClasses from '../composeClasses';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 function hasValue(value: unknown) {
@@ -166,10 +166,10 @@ const FormControl = React.forwardRef(function FormControl<
 }) as PolymorphicComponent<FormControlTypeMap>;
 
 FormControl.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
@@ -177,6 +177,10 @@ FormControl.propTypes /* remove-proptypes */ = {
     PropTypes.node,
     PropTypes.func,
   ]),
+  /**
+   * Class name applied to the root element.
+   */
+  className: PropTypes.string,
   /**
    * @ignore
    */
@@ -221,4 +225,4 @@ FormControl.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 } as any;
 
-export default FormControl;
+export { FormControl };

@@ -1,8 +1,8 @@
-import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
-import generateUtilityClass from '../generateUtilityClass';
+import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
 
 export interface CheckboxClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
   /** State class applied to the root element if `checked={true}`. */
   checked: string;
@@ -10,10 +10,14 @@ export interface CheckboxClasses {
   disabled: string;
   /** State class applied to the root element if `indeterminate={true}`. */
   indeterminate: string;
-  /** Styles applied to the root element if `color="primary"`. */
+  /** State class applied to the root element if `color="primary"`. */
   colorPrimary: string;
-  /** Styles applied to the root element if `color="secondary"`. */
+  /** State class applied to the root element if `color="secondary"`. */
   colorSecondary: string;
+  /** State class applied to the root element if `size="small"`. */
+  sizeSmall: string;
+  /** State class applied to the root element if `size="medium"`. */
+  sizeMedium: string;
 }
 
 export type CheckboxClassKey = keyof CheckboxClasses;
@@ -29,6 +33,8 @@ const checkboxClasses: CheckboxClasses = generateUtilityClasses('MuiCheckbox', [
   'indeterminate',
   'colorPrimary',
   'colorSecondary',
+  'sizeSmall',
+  'sizeMedium',
 ]);
 
 export default checkboxClasses;

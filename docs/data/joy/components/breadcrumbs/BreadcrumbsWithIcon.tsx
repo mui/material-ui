@@ -7,33 +7,17 @@ import Typography from '@mui/joy/Typography';
 export default function BreadcrumbsWithIcon() {
   return (
     <Breadcrumbs separator="›" aria-label="breadcrumbs">
-      <Link
-        // `preventDefault` is for demo purposes
-        // and is generally not needed in your app
-        onClick={(event) => event.preventDefault()}
-        underline="hover"
-        color="primary"
-        fontSize="inherit"
-        href="/"
-      >
-        <PublicIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+      <Link color="primary" href="/">
+        <PublicIcon sx={{ mr: 0.5 }} />
         United States
       </Link>
-      {['Springfield', 'Simpson'].map((item: string) => (
-        <Link
-          // `preventDefault` is for demo purposes
-          // and is generally not needed in your app
-          onClick={(event) => event.preventDefault()}
-          key={item}
-          underline="hover"
-          color="success"
-          fontSize="inherit"
-          href="/"
-        >
+      {['Springfield', 'Simpson'].map((item) => (
+        <Link key={item} color="success" href="#usage-with-link-and-typography">
           {item}
         </Link>
       ))}
-      <Typography fontSize="inherit">Homer</Typography>
+
+      <Typography>Homer</Typography>
     </Breadcrumbs>
   );
 }

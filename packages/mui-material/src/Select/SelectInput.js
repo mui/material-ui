@@ -3,9 +3,10 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import MuiError from '@mui/utils/macros/MuiError.macro';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { refType } from '@mui/utils';
+import MuiError from '@mui/internal-babel-macros/MuiError.macro';
+import composeClasses from '@mui/utils/composeClasses';
+import useId from '@mui/utils/useId';
+import refType from '@mui/utils/refType';
 import ownerDocument from '../utils/ownerDocument';
 import capitalize from '../utils/capitalize';
 import Menu from '../Menu/Menu';
@@ -482,12 +483,20 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const paperProps = {
+    ...MenuProps.PaperProps,
+    ...MenuProps.slotProps?.paper,
+  };
+
+  const listboxId = useId();
+
   return (
     <React.Fragment>
       <SelectSelect
         ref={handleDisplayRef}
         tabIndex={tabIndex}
-        role="button"
+        role="combobox"
+        aria-controls={listboxId}
         aria-disabled={disabled ? 'true' : undefined}
         aria-expanded={open ? 'true' : 'false'}
         aria-haspopup="listbox"
@@ -544,14 +553,19 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         MenuListProps={{
           'aria-labelledby': labelId,
           role: 'listbox',
+          'aria-multiselectable': multiple ? 'true' : undefined,
           disableListWrap: true,
+          id: listboxId,
           ...MenuProps.MenuListProps,
         }}
-        PaperProps={{
-          ...MenuProps.PaperProps,
-          style: {
-            minWidth: menuMinWidth,
-            ...(MenuProps.PaperProps != null ? MenuProps.PaperProps.style : null),
+        slotProps={{
+          ...MenuProps.slotProps,
+          paper: {
+            ...paperProps,
+            style: {
+              minWidth: menuMinWidth,
+              ...(paperProps != null ? paperProps.style : null),
+            },
           },
         }}
       >
@@ -586,7 +600,6 @@ SelectInput.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
   /**

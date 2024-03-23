@@ -1,10 +1,10 @@
 import * as React from 'react';
+import { expectType } from '@mui/types';
 import {
   TablePaginationActions,
   TablePaginationActionsButtonSlotProps,
   TablePaginationActionsRootSlotProps,
 } from '@mui/base/TablePagination';
-import { expectType } from '@mui/types';
 
 function Root(props: TablePaginationActionsRootSlotProps) {
   const { ownerState, ...other } = props;

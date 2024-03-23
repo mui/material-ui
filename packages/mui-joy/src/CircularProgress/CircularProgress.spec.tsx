@@ -1,6 +1,6 @@
 import * as React from 'react';
-import CircularProgress, { CircularProgressOwnerState } from '@mui/joy/CircularProgress';
 import { expectType } from '@mui/types';
+import CircularProgress, { CircularProgressOwnerState } from '@mui/joy/CircularProgress';
 
 <CircularProgress />;
 
@@ -15,7 +15,6 @@ import { expectType } from '@mui/types';
 // `color`
 <CircularProgress color="primary" />;
 <CircularProgress color="danger" />;
-<CircularProgress color="info" />;
 <CircularProgress color="success" />;
 <CircularProgress color="warning" />;
 <CircularProgress color="neutral" />;

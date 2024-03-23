@@ -1,12 +1,16 @@
 'use client';
 import * as React from 'react';
-import { unstable_useEventCallback as useEventCallback } from '@mui/utils';
+import {
+  unstable_useEventCallback as useEventCallback,
+  unstable_useTimeout as useTimeout,
+} from '@mui/utils';
 import {
   UseSnackbarParameters,
   SnackbarCloseReason,
   UseSnackbarReturnValue,
 } from './useSnackbar.types';
-import extractEventHandlers from '../utils/extractEventHandlers';
+import { extractEventHandlers } from '../utils/extractEventHandlers';
+import { EventHandlers } from '../utils/types';
 
 /**
  * The basic building block for creating custom snackbar.
@@ -19,7 +23,7 @@ import extractEventHandlers from '../utils/extractEventHandlers';
  *
  * - [useSnackbar API](https://mui.com/base-ui/react-snackbar/hooks-api/#use-snackbar)
  */
-export default function useSnackbar(parameters: UseSnackbarParameters): UseSnackbarReturnValue {
+export function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbarReturnValue {
   const {
     autoHideDuration = null,
     disableWindowBlurListener = false,
@@ -28,7 +32,7 @@ export default function useSnackbar(parameters: UseSnackbarParameters): UseSnack
     resumeHideDuration,
   } = parameters;
 
-  const timerAutoHide = React.useRef<ReturnType<typeof setTimeout>>();
+  const timerAutoHide = useTimeout();
 
   React.useEffect(() => {
     if (!open) {
@@ -64,10 +68,9 @@ export default function useSnackbar(parameters: UseSnackbarParameters): UseSnack
       return;
     }
 
-    clearTimeout(timerAutoHide.current);
-    timerAutoHide.current = setTimeout(() => {
+    timerAutoHide.start(autoHideDurationParam, () => {
       handleClose(null, 'timeout');
-    }, autoHideDurationParam);
+    });
   });
 
   React.useEffect(() => {
@@ -75,10 +78,8 @@ export default function useSnackbar(parameters: UseSnackbarParameters): UseSnack
       setAutoHideTimer(autoHideDuration);
     }
 
-    return () => {
-      clearTimeout(timerAutoHide.current);
-    };
-  }, [open, autoHideDuration, setAutoHideTimer]);
+    return timerAutoHide.clear;
+  }, [open, autoHideDuration, setAutoHideTimer, timerAutoHide]);
 
   const handleClickAway = (event: React.SyntheticEvent<any> | Event) => {
     onClose?.(event, 'clickaway');
@@ -86,9 +87,7 @@ export default function useSnackbar(parameters: UseSnackbarParameters): UseSnack
 
   // Pause the timer when the user is interacting with the Snackbar
   // or when the user hide the window.
-  const handlePause = () => {
-    clearTimeout(timerAutoHide.current);
-  };
+  const handlePause = timerAutoHide.clear;
 
   // Restart the timer when the user is no longer interacting with the Snackbar
   // or when the window is shown back.
@@ -99,32 +98,28 @@ export default function useSnackbar(parameters: UseSnackbarParameters): UseSnack
   }, [autoHideDuration, resumeHideDuration, setAutoHideTimer]);
 
   const createHandleBlur =
-    (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
-    (event: React.FocusEvent<HTMLDivElement, Element>) => {
+    (otherHandlers: EventHandlers) => (event: React.FocusEvent<HTMLDivElement, Element>) => {
       const onBlurCallback = otherHandlers.onBlur;
       onBlurCallback?.(event);
       handleResume();
     };
 
   const createHandleFocus =
-    (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
-    (event: React.FocusEvent<HTMLDivElement, Element>) => {
+    (otherHandlers: EventHandlers) => (event: React.FocusEvent<HTMLDivElement, Element>) => {
       const onFocusCallback = otherHandlers.onFocus;
       onFocusCallback?.(event);
       handlePause();
     };
 
   const createMouseEnter =
-    (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
-    (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    (otherHandlers: EventHandlers) => (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
       const onMouseEnterCallback = otherHandlers.onMouseEnter;
       onMouseEnterCallback?.(event);
       handlePause();
     };
 
   const createMouseLeave =
-    (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
-    (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    (otherHandlers: EventHandlers) => (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
       const onMouseLeaveCallback = otherHandlers.onMouseLeave;
       onMouseLeaveCallback?.(event);
       handleResume();
@@ -143,23 +138,21 @@ export default function useSnackbar(parameters: UseSnackbarParameters): UseSnack
     }
 
     return undefined;
-  }, [disableWindowBlurListener, handleResume, open]);
+  }, [disableWindowBlurListener, open, handleResume, handlePause]);
 
-  const getRootProps: UseSnackbarReturnValue['getRootProps'] = <
-    TOther extends Parameters<UseSnackbarReturnValue['getRootProps']>[0],
-  >(
-    otherHandlers: TOther = {} as TOther,
+  const getRootProps = <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps: ExternalProps = {} as ExternalProps,
   ) => {
-    const propsEventHandlers = extractEventHandlers(parameters) as Partial<UseSnackbarParameters>;
     const externalEventHandlers = {
-      ...propsEventHandlers,
-      ...otherHandlers,
+      ...extractEventHandlers(parameters),
+      ...extractEventHandlers(externalProps),
     };
 
     return {
       // ClickAwayListener adds an `onClick` prop which results in the alert not being announced.
       // See https://github.com/mui/material-ui/issues/29080
       role: 'presentation',
+      ...externalProps,
       ...externalEventHandlers,
       onBlur: createHandleBlur(externalEventHandlers),
       onFocus: createHandleFocus(externalEventHandlers),

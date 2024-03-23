@@ -3,11 +3,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import composeClasses from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { FormHelperTextProps, FormHelperTextTypeMap } from './FormHelperTextProps';
 import { getFormHelperTextUtilityClass } from './formHelperTextClasses';
 import FormControlContext from '../FormControl/FormControlContext';
+import formControlClasses from '../FormControl/formControlClasses';
 import formLabelClasses from '../FormLabel/formLabelClasses';
 import useSlot from '../utils/useSlot';
 
@@ -24,15 +25,20 @@ const FormHelperTextRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: FormHelperTextProps }>(({ theme }) => ({
+  '--Icon-fontSize': 'calc(var(--FormHelperText-lineHeight) * 1em)',
   display: 'flex',
   alignItems: 'center',
+  gap: '2px',
   fontFamily: theme.vars.fontFamily.body,
   fontSize: `var(--FormHelperText-fontSize, ${theme.vars.fontSize.sm})`,
-  lineHeight: theme.vars.lineHeight.sm,
-  color: `var(--FormHelperText-color, ${theme.vars.palette.text.secondary})`,
+  lineHeight: `var(--FormHelperText-lineHeight, ${theme.vars.lineHeight.sm})`,
+  color: `var(--FormHelperText-color, ${theme.vars.palette.text.tertiary})`,
   margin: 'var(--FormHelperText-margin, 0px)',
   [`.${formLabelClasses.root} + &`]: {
     '--FormHelperText-margin': '0px', // remove the margin if the helper text is next to the form label.
+  },
+  [`.${formControlClasses.error} &`]: {
+    '--Icon-color': 'currentColor',
   },
 }));
 /**
@@ -52,7 +58,7 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
   });
 
   const { children, component, slots = {}, slotProps = {}, ...other } = props;
-  const rootRef = React.useRef<HTMLElement | null>(null);
+  const rootRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(rootRef, ref);
   const formControl = React.useContext(FormControlContext);
   const setHelperText = formControl?.setHelperText;
@@ -83,10 +89,10 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
 }) as OverridableComponent<FormHelperTextTypeMap>;
 
 FormHelperText.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

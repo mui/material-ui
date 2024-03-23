@@ -1,42 +1,67 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": "The content of the component.",
-    "color": "The color of the link. To learn how to add your own colors, check out <a href=\"/joy-ui/customization/themed-components/#extend-colors\">Themed components—Extend colors</a>.",
-    "component": "The component used for the root node. Either a string to use a HTML element or a component.",
-    "disabled": "If <code>true</code>, the component is disabled.",
-    "endDecorator": "Element placed after the children.",
-    "level": "Applies the theme typography styles.",
-    "overlay": "If <code>true</code>, the ::after pseudo element is added to cover the area of interaction. The parent of the overlay Link should have <code>relative</code> CSS position.",
-    "slotProps": "The props used for each slot inside.",
-    "slots": "The components used for each slot inside. See <a href=\"#slots\">Slots API</a> below for more details.",
-    "startDecorator": "Element placed before the children.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "textColor": "The system color.",
-    "underline": "Controls when the link should have an underline.",
-    "variant": "Applies the theme link styles. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
+    "children": { "description": "The content of the component." },
+    "color": { "description": "The color of the link." },
+    "component": {
+      "description": "The component used for the root node. Either a string to use a HTML element or a component."
+    },
+    "disabled": { "description": "If <code>true</code>, the component is disabled." },
+    "endDecorator": { "description": "Element placed after the children." },
+    "level": { "description": "Applies the theme typography styles." },
+    "overlay": {
+      "description": "If <code>true</code>, the ::after pseudo element is added to cover the area of interaction. The parent of the overlay Link should have <code>relative</code> CSS position."
+    },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
+    "startDecorator": { "description": "Element placed before the children." },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
+    },
+    "textColor": { "description": "The system color." },
+    "underline": { "description": "Controls when the link should have an underline." },
+    "variant": { "description": "Applies the theme link styles." }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
-    "colorPrimary": {
+    "body-lg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>color=\"primary\"</code>"
+      "conditions": "<code>level=\"body-lg\"</code>"
     },
-    "colorNeutral": {
+    "body-md": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>color=\"neutral\"</code>"
+      "conditions": "<code>level=\"body-md\"</code>"
+    },
+    "body-sm": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>level=\"body-sm\"</code>"
+    },
+    "body-xs": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>level=\"body-xs\"</code>"
+    },
+    "colorContext": {
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "color inversion is triggered"
     },
     "colorDanger": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>color=\"danger\"</code>"
     },
-    "colorInfo": {
+    "colorNeutral": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>color=\"info\"</code>"
+      "conditions": "<code>color=\"neutral\"</code>"
+    },
+    "colorPrimary": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"primary\"</code>"
     },
     "colorSuccess": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -48,11 +73,6 @@
       "nodeName": "the root element",
       "conditions": "<code>color=\"warning\"</code>"
     },
-    "colorContext": {
-      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "color inversion is triggered"
-    },
     "disabled": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -62,41 +82,6 @@
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "the link is keyboard focused"
-    },
-    "variantPlain": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"plain\"</code>"
-    },
-    "variantOutlined": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code>"
-    },
-    "variantSoft": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"soft\"</code>"
-    },
-    "variantSolid": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"solid\"</code>"
-    },
-    "underlineNone": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>underline=\"none\"</code>"
-    },
-    "underlineHover": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>underline=\"hover\"</code>"
-    },
-    "underlineAlways": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>underline=\"always\"</code>"
     },
     "h1": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -118,37 +103,60 @@
       "nodeName": "the root element",
       "conditions": "<code>level=\"h4\"</code>"
     },
-    "h5": {
+    "title-lg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>level=\"h5\"</code>"
+      "conditions": "<code>level=\"title-lg\"</code>"
     },
-    "h6": {
+    "title-md": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>level=\"h6\"</code>"
+      "conditions": "<code>level=\"title-md\"</code>"
     },
-    "body1": {
+    "title-sm": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>level=\"body1\"</code>"
+      "conditions": "<code>level=\"title-sm\"</code>"
     },
-    "body2": {
+    "underlineAlways": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>level=\"body2\"</code>"
+      "conditions": "<code>underline=\"always\"</code>"
     },
-    "body3": {
+    "underlineHover": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>level=\"body3\"</code>"
+      "conditions": "<code>underline=\"hover\"</code>"
     },
-    "startDecorator": { "description": "Class name applied to the startDecorator element" },
-    "endDecorator": { "description": "Class name applied to the endDecorator element" }
+    "underlineNone": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>underline=\"none\"</code>"
+    },
+    "variantOutlined": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "variantPlain": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"plain\"</code>"
+    },
+    "variantSoft": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"soft\"</code>"
+    },
+    "variantSolid": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"solid\"</code>"
+    }
   },
   "slotDescriptions": {
+    "endDecorator": "The component that renders the end decorator.",
     "root": "The component that renders the root.",
-    "startDecorator": "The component that renders the start decorator.",
-    "endDecorator": "The component that renders the end decorator."
+    "startDecorator": "The component that renders the start decorator."
   }
 }

@@ -2,8 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import refType from '@mui/utils/refType';
+import composeClasses from '@mui/utils/composeClasses';
 import { useFormControl } from '../FormControl';
 import Stack from '../Stack';
 import Typography from '../Typography';
@@ -166,7 +166,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     >
       {React.cloneElement(control, controlProps)}
       {required ? (
-        <Stack direction="row" alignItems="center">
+        <Stack display="block">
           {label}
           <AsteriskComponent ownerState={ownerState} aria-hidden className={classes.asterisk}>
             &thinsp;{'*'}
@@ -180,10 +180,10 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
 });
 
 FormControlLabel.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, the component appears selected.
    */

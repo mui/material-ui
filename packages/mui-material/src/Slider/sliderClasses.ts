@@ -1,5 +1,5 @@
-import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
-import generateUtilityClass from '../generateUtilityClass';
+import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
 
 export interface SliderClasses {
   /** Styles applied to the root element. */
@@ -8,6 +8,14 @@ export interface SliderClasses {
   colorPrimary: string;
   /** Styles applied to the root element if `color="secondary"`. */
   colorSecondary: string;
+  /** Styles applied to the root element if `color="error"`. */
+  colorError: string;
+  /** Styles applied to the root element if `color="info"`. */
+  colorInfo: string;
+  /** Styles applied to the root element if `color="success"`. */
+  colorSuccess: string;
+  /** Styles applied to the root element if `color="warning"`. */
+  colorWarning: string;
   /** Styles applied to the root element if `marks` is provided with at least one label. */
   marked: string;
   /** Styles applied to the root element if `orientation="vertical"`. */
@@ -44,6 +52,14 @@ export interface SliderClasses {
   thumbColorPrimary: string;
   /** Styles applied to the thumb element if `color="secondary"`. */
   thumbColorSecondary: string;
+  /** Styles applied to the thumb element if `color="error"`. */
+  thumbColorError: string;
+  /** Styles applied to the thumb element if `color="info"`. */
+  thumbColorInfo: string;
+  /** Styles applied to the thumb element if `color="success"`. */
+  thumbColorSuccess: string;
+  /** Styles applied to the thumb element if `color="warning"`. */
+  thumbColorWarning: string;
   /** Styles applied to the thumb element if `size="small"`. */
   thumbSizeSmall: string;
   /** Styles applied to the thumb label element. */
@@ -67,6 +83,10 @@ const sliderClasses: SliderClasses = generateUtilityClasses('MuiSlider', [
   'active',
   'colorPrimary',
   'colorSecondary',
+  'colorError',
+  'colorInfo',
+  'colorSuccess',
+  'colorWarning',
   'disabled',
   'dragging',
   'focusVisible',
@@ -80,6 +100,10 @@ const sliderClasses: SliderClasses = generateUtilityClasses('MuiSlider', [
   'thumb',
   'thumbColorPrimary',
   'thumbColorSecondary',
+  'thumbColorError',
+  'thumbColorSuccess',
+  'thumbColorInfo',
+  'thumbColorWarning',
   'track',
   'trackInverted',
   'trackFalse',

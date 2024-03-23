@@ -29,7 +29,7 @@ export default function TableTextEllipsis() {
                 <Typography noWrap fontWeight="lg">
                   Morty D Ardiousdellois Addami
                 </Typography>
-                <Typography noWrap level="body2">
+                <Typography noWrap level="body-sm">
                   Writer, Youtuber
                 </Typography>
               </Box>

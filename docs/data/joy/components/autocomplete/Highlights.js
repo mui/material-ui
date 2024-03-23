@@ -30,7 +30,7 @@ export default function Highlights() {
                         key={index}
                         {...(part.highlight && {
                           variant: 'soft',
-                          color: 'info',
+                          color: 'primary',
                           fontWeight: 'lg',
                           px: '2px',
                         })}

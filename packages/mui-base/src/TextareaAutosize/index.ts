@@ -1,3 +1,3 @@
 'use client';
-export { default } from './TextareaAutosize';
+export { TextareaAutosize } from './TextareaAutosize';
 export * from './TextareaAutosize.types';

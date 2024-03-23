@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps, Theme } from '@mui/material';
 import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
+import { InternalStandardProps as StandardProps, Theme } from '@mui/material';
 import { AvatarGroupClasses } from './avatarGroupClasses';
 import Avatar from '../Avatar';
 
@@ -40,6 +40,12 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
    * @default 5
    */
   max?: number;
+  /**
+   * custom renderer of extraAvatars
+   * @param {number} surplus number of extra avatars
+   * @returns {React.ReactNode} custom element to display
+   */
+  renderSurplus?: (surplus: number) => React.ReactNode;
   /**
    * The extra props for the slot components.
    * You can override the existing props or add new ones.

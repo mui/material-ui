@@ -1,3 +1,3 @@
 'use client';
-export { default } from './Portal';
+export { Portal } from './Portal';
 export * from './Portal.types';

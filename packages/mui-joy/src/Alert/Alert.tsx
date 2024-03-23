@@ -5,12 +5,13 @@ import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
+import { applySolidInversion, applySoftInversion } from '../colorInversion';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { ColorInversionProvider, useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import { getAlertUtilityClass } from './alertClasses';
 import { AlertProps, AlertOwnerState, AlertTypeMap } from './AlertProps';
+import { resolveSxValue } from '../styles/styleUtils';
 
 const useUtilityClasses = (ownerState: AlertOwnerState) => {
   const { variant, color, size } = ownerState;
@@ -33,79 +34,82 @@ const AlertRoot = styled('div', {
   name: 'JoyAlert',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AlertOwnerState }>(({ theme, ownerState }) => [
-  {
-    '--Alert-radius': theme.vars.radius.sm,
-    '--Alert-decoratorChildRadius':
-      'max((var(--Alert-radius) - var(--variant-borderWidth, 0px)) - var(--Alert-padding), min(var(--Alert-padding) + var(--variant-borderWidth, 0px), var(--Alert-radius) / 2))',
-    '--Button-minHeight': 'var(--Alert-decoratorChildHeight)',
-    '--IconButton-size': 'var(--Alert-decoratorChildHeight)',
-    '--Button-radius': 'var(--Alert-decoratorChildRadius)',
-    '--IconButton-radius': 'var(--Alert-decoratorChildRadius)',
-    ...(ownerState.size === 'sm' && {
-      '--Alert-padding': '0.5rem',
-      '--Alert-gap': '0.375rem',
-      '--Alert-decoratorChildHeight': '1.5rem',
-      '--Icon-fontSize': '1.125rem',
-      fontSize: theme.vars.fontSize.sm,
-    }),
-    ...(ownerState.size === 'md' && {
-      '--Alert-padding': '0.75rem',
-      '--Alert-gap': '0.5rem',
-      '--Alert-decoratorChildHeight': '2rem',
-      '--Icon-fontSize': '1.25rem',
-      fontSize: theme.vars.fontSize.sm,
+})<{ ownerState: AlertOwnerState }>(({ theme, ownerState }) => {
+  const { p, padding, borderRadius } = resolveSxValue({ theme, ownerState }, [
+    'p',
+    'padding',
+    'borderRadius',
+  ]);
+  return [
+    {
+      '--Alert-radius': theme.vars.radius.sm,
+      '--Alert-decoratorChildRadius':
+        'max((var(--Alert-radius) - var(--variant-borderWidth, 0px)) - var(--Alert-padding), min(var(--Alert-padding) + var(--variant-borderWidth, 0px), var(--Alert-radius) / 2))',
+      '--Button-minHeight': 'var(--Alert-decoratorChildHeight)',
+      '--IconButton-size': 'var(--Alert-decoratorChildHeight)',
+      '--Button-radius': 'var(--Alert-decoratorChildRadius)',
+      '--IconButton-radius': 'var(--Alert-decoratorChildRadius)',
+      '--Icon-color': 'currentColor',
+      ...(ownerState.size === 'sm' && {
+        '--Alert-padding': '0.5rem',
+        '--Alert-decoratorChildHeight': '1.5rem',
+        '--Icon-fontSize': theme.vars.fontSize.xl,
+        gap: '0.5rem',
+      }),
+      ...(ownerState.size === 'md' && {
+        '--Alert-padding': '0.75rem',
+        '--Alert-decoratorChildHeight': '2rem',
+        '--Icon-fontSize': theme.vars.fontSize.xl,
+        gap: '0.625rem',
+      }),
+      ...(ownerState.size === 'lg' && {
+        '--Alert-padding': '1rem',
+        '--Alert-decoratorChildHeight': '2.375rem',
+        '--Icon-fontSize': theme.vars.fontSize.xl2,
+        gap: '0.875rem',
+      }),
+      backgroundColor: theme.vars.palette.background.surface,
+      display: 'flex',
+      position: 'relative',
+      alignItems: 'center',
+      padding: `var(--Alert-padding)`,
+      borderRadius: 'var(--Alert-radius)',
+      ...theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`],
       fontWeight: theme.vars.fontWeight.md,
-    }),
-    ...(ownerState.size === 'lg' && {
-      '--Alert-padding': '1rem',
-      '--Alert-gap': '0.75rem',
-      '--Alert-decoratorChildHeight': '2.375rem',
-      '--Icon-fontSize': '1.5rem',
-      fontSize: theme.vars.fontSize.md,
-      fontWeight: theme.vars.fontWeight.md,
-    }),
-    fontFamily: theme.vars.fontFamily.body,
-    lineHeight: theme.vars.lineHeight.md,
-    backgroundColor: 'transparent',
-    display: 'flex',
-    position: 'relative',
-    alignItems: 'center',
-    padding: `var(--Alert-padding)`,
-    borderRadius: 'var(--Alert-radius)',
-    ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-  },
-  ownerState.color !== 'context' &&
-    ownerState.invertedColors &&
-    theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
-]);
+      ...(ownerState.variant === 'solid' &&
+        ownerState.color &&
+        ownerState.invertedColors &&
+        applySolidInversion(ownerState.color)(theme)),
+      ...(ownerState.variant === 'soft' &&
+        ownerState.color &&
+        ownerState.invertedColors &&
+        applySoftInversion(ownerState.color)(theme)),
+      ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+    } as const,
+    p !== undefined && { '--Alert-padding': p },
+    padding !== undefined && { '--Alert-padding': padding },
+    borderRadius !== undefined && { '--Alert-radius': borderRadius },
+  ];
+});
 
 const AlertStartDecorator = styled('span', {
   name: 'JoyAlert',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: AlertOwnerState }>(({ theme, ownerState }) => ({
+})<{ ownerState: AlertOwnerState }>({
   display: 'inherit',
   flex: 'none',
-  marginInlineEnd: 'var(--Alert-gap)',
-  ...(ownerState.color !== 'context' && {
-    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
-  }),
-}));
+});
 
 const AlertEndDecorator = styled('span', {
   name: 'JoyAlert',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: AlertOwnerState }>(({ theme, ownerState }) => ({
+})<{ ownerState: AlertOwnerState }>({
   display: 'inherit',
   flex: 'none',
-  marginInlineStart: 'var(--Alert-gap)',
   marginLeft: 'auto',
-  ...(ownerState.color !== 'context' && {
-    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
-  }),
-}));
+});
 /**
  *
  * Demos:
@@ -125,7 +129,7 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   const {
     children,
     className,
-    color: colorProp = 'primary',
+    color = 'neutral',
     invertedColors = false,
     role = 'alert',
     variant = 'soft',
@@ -137,12 +141,11 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
     color,
+    invertedColors,
     variant,
     size,
   };
@@ -175,33 +178,23 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     ownerState,
   });
 
-  const result = (
-    <React.Fragment>
+  return (
+    <SlotRoot {...rootProps}>
       {startDecorator && (
         <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
       )}
 
       {children}
       {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
-    </React.Fragment>
-  );
-
-  return (
-    <SlotRoot {...rootProps}>
-      {invertedColors ? (
-        <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>
-      ) : (
-        result
-      )}
     </SlotRoot>
   );
 }) as OverridableComponent<AlertTypeMap>;
 
 Alert.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */
@@ -212,10 +205,10 @@ Alert.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'primary'
+   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

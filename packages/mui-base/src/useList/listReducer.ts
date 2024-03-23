@@ -200,7 +200,15 @@ export function toggleSelection<ItemValue>(
   return [...selectedValues, item];
 }
 
-function handleItemSelection<ItemValue, State extends ListState<ItemValue>>(
+/**
+ * Handles item selection in a list.
+ *
+ * @param item - The item to be selected.
+ * @param state - The current state of the list.
+ * @param context - The context of the list action.
+ * @returns The new state of the list after the item has been selected, or the original state if the item is disabled.
+ */
+export function handleItemSelection<ItemValue, State extends ListState<ItemValue>>(
   item: ItemValue,
   state: State,
   context: ListActionContext<ItemValue>,
@@ -423,7 +431,28 @@ function handleResetHighlight<ItemValue, State extends ListState<ItemValue>>(
   };
 }
 
-export default function listReducer<ItemValue, State extends ListState<ItemValue>>(
+function handleHighlightLast<ItemValue, State extends ListState<ItemValue>>(
+  state: State,
+  context: ListActionContext<ItemValue>,
+) {
+  return {
+    ...state,
+    highlightedValue: moveHighlight(null, 'end', context),
+  };
+}
+
+function handleClearSelection<ItemValue, State extends ListState<ItemValue>>(
+  state: State,
+  context: ListActionContext<ItemValue>,
+) {
+  return {
+    ...state,
+    selectedValues: [],
+    highlightedValue: moveHighlight(null, 'reset', context),
+  };
+}
+
+export function listReducer<ItemValue, State extends ListState<ItemValue>>(
   state: State,
   action: ListReducerAction<ItemValue> & { context: ListActionContext<ItemValue> },
 ): State {
@@ -442,6 +471,10 @@ export default function listReducer<ItemValue, State extends ListState<ItemValue
       return handleItemsChange(action.items, action.previousItems, state, context);
     case ListActionTypes.resetHighlight:
       return handleResetHighlight(state, context);
+    case ListActionTypes.highlightLast:
+      return handleHighlightLast(state, context);
+    case ListActionTypes.clearSelection:
+      return handleClearSelection(state, context);
     default:
       return state;
   }

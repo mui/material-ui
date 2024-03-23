@@ -58,7 +58,7 @@ export default function HeroLeft08() {
           },
         })}
       >
-        <Box>
+        <div>
           <Typography
             fontSize="xl4"
             fontWeight="lg"
@@ -69,19 +69,18 @@ export default function HeroLeft08() {
           <Typography textColor="text.secondary">
             Rated by <b>5k</b> people on trustpilot.com
           </Typography>
-        </Box>
-        <Box>
+        </div>
+        <div>
           <Typography fontSize="xl4" fontWeight="lg">
             9.5k+
           </Typography>
           <Typography textColor="text.secondary">
             Active users from the top world companies.
           </Typography>
-        </Box>
+        </div>
       </Box>
-
       <Typography
-        level="body3"
+        level="body-xs"
         sx={{
           position: 'absolute',
           top: '2rem',

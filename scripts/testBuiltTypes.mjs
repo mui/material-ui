@@ -10,6 +10,7 @@ async function main() {
     absolute: true,
     cwd: workspaceRoot,
     ignore: ['node_modules'],
+    followSymbolicLinks: false,
   });
 
   await Promise.all(

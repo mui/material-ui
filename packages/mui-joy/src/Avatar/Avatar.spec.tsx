@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Avatar, { AvatarOwnerState } from '@mui/joy/Avatar';
 import { expectType } from '@mui/types';
+import Avatar, { AvatarOwnerState } from '@mui/joy/Avatar';
 
 <Avatar />;
 
@@ -15,7 +15,6 @@ import { expectType } from '@mui/types';
 // `color`
 <Avatar color="primary" />;
 <Avatar color="danger" />;
-<Avatar color="info" />;
 <Avatar color="success" />;
 <Avatar color="warning" />;
 <Avatar color="neutral" />;

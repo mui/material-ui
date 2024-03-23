@@ -91,9 +91,10 @@ export interface PopoverProps
   elevation?: number;
   /**
    * Specifies how close to the edge of the window the popover can appear.
+   * If null, the popover will not be constrained by the window.
    * @default 16
    */
-  marginThreshold?: number;
+  marginThreshold?: number | null;
   onClose?: ModalProps['onClose'];
   /**
    * If `true`, the component is shown.
@@ -107,7 +108,7 @@ export interface PopoverProps
    *
    * @default {}
    */
-  PaperProps?: Partial<PaperProps>;
+  PaperProps?: Partial<PaperProps<React.ElementType>>;
   /**
    * The components used for each slot inside.
    *
@@ -159,7 +160,7 @@ export interface PopoverProps
   transitionDuration?: TransitionProps['timeout'] | 'auto';
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    * @default {}
    */
   TransitionProps?: TransitionProps;

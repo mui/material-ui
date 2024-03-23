@@ -1,6 +1,6 @@
+import * as path from 'path';
 import * as babel from '@babel/core';
 import { readFile } from 'fs-extra';
-import * as path from 'path';
 import glob from 'fast-glob';
 
 const workspaceRoot = path.join(__dirname, '../../../');
@@ -73,7 +73,7 @@ function getRefInstance(valueNode: babel.Node): string | undefined {
 
   if (!babel.types.isMemberExpression(valueNode)) {
     throw new Error(
-      'Expected a member expression (e.g. window.HTMLDivElement) or a global identifier (e.g. Object) in refInstanceof. ' +
+      'Expected a member expression (for example window.HTMLDivElement) or a global identifier (for example Object) in refInstanceof. ' +
         'If the ref will not be resolved use `refInstanceof: undefined`.',
     );
   }

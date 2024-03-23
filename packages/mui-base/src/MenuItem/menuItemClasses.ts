@@ -1,5 +1,7 @@
-import generateUtilityClass from '../generateUtilityClass';
-import generateUtilityClasses from '../generateUtilityClasses';
+import { generateUtilityClass } from '../generateUtilityClass';
+import { generateUtilityClasses } from '../generateUtilityClasses';
+
+const COMPONENT_NAME = 'MenuItem';
 
 export interface MenuItemClasses {
   /** Class name applied to the root element. */
@@ -13,13 +15,11 @@ export interface MenuItemClasses {
 export type MenuItemClassKey = keyof MenuItemClasses;
 
 export function getMenuItemUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiMenuItem', slot);
+  return generateUtilityClass(COMPONENT_NAME, slot);
 }
 
-const menuItemClasses: MenuItemClasses = generateUtilityClasses('MuiMenuItem', [
+export const menuItemClasses: MenuItemClasses = generateUtilityClasses(COMPONENT_NAME, [
   'root',
   'disabled',
   'focusVisible',
 ]);
-
-export default menuItemClasses;

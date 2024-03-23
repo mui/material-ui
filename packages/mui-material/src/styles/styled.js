@@ -1,11 +1,11 @@
 'use client';
-import { createStyled, shouldForwardProp } from '@mui/system';
+import createStyled from '@mui/system/createStyled';
 import defaultTheme from './defaultTheme';
 import THEME_ID from './identifier';
+import rootShouldForwardProp from './rootShouldForwardProp';
 
-export const rootShouldForwardProp = (prop) => shouldForwardProp(prop) && prop !== 'classes';
-
-export const slotShouldForwardProp = shouldForwardProp;
+export { default as slotShouldForwardProp } from './slotShouldForwardProp';
+export { default as rootShouldForwardProp } from './rootShouldForwardProp';
 
 const styled = createStyled({
   themeId: THEME_ID,

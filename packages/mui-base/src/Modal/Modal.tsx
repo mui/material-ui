@@ -1,23 +1,16 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-  elementAcceptingRef,
-  HTMLElementType,
-  unstable_ownerDocument as ownerDocument,
-  unstable_useForkRef as useForkRef,
-  unstable_createChainedFunction as createChainedFunction,
-  unstable_useEventCallback as useEventCallback,
-} from '@mui/utils';
-import { PolymorphicComponent } from '../utils/PolymorphicComponent';
-import { ModalOwnerState, ModalOwnProps, ModalProps, ModalTypeMap } from './Modal.types';
-import composeClasses from '../composeClasses';
-import Portal from '../Portal';
-import ModalManager, { ariaHidden } from './ModalManager';
-import FocusTrap from '../FocusTrap';
-import { getModalUtilityClass } from './modalClasses';
-import { useSlotProps } from '../utils';
+import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
+import { EventHandlers, useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
+import { PolymorphicComponent } from '../utils/PolymorphicComponent';
+import { ModalOwnerState, ModalProps, ModalTypeMap } from './Modal.types';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
+import { Portal } from '../Portal';
+import { unstable_useModal as useModal } from '../unstable_useModal';
+import { FocusTrap } from '../FocusTrap';
+import { getModalUtilityClass } from './modalClasses';
 
 const useUtilityClasses = (ownerState: ModalOwnerState) => {
   const { open, exited } = ownerState;
@@ -29,18 +22,6 @@ const useUtilityClasses = (ownerState: ModalOwnerState) => {
 
   return composeClasses(slots, useClassNamesOverride(getModalUtilityClass));
 };
-
-function getContainer(container: ModalOwnProps['container']) {
-  return typeof container === 'function' ? container() : container;
-}
-
-function getHasTransition(children: ModalOwnProps['children']) {
-  return children ? children.props.hasOwnProperty('in') : false;
-}
-
-// A modal manager used to track and manage the state of open Modals.
-// Modals don't open on the server so this won't conflict with concurrent requests.
-const defaultManager = new ModalManager();
 
 /**
  * Modal is a lower-level construct that is leveraged by the following components:
@@ -65,7 +46,7 @@ const defaultManager = new ModalManager();
  */
 const Modal = React.forwardRef(function Modal<RootComponentType extends React.ElementType>(
   props: ModalProps<RootComponentType>,
-  forwardedRef: React.ForwardedRef<Element>,
+  forwardedRef: React.ForwardedRef<HTMLElement>,
 ) {
   const {
     children,
@@ -79,8 +60,6 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
     disableScrollLock = false,
     hideBackdrop = false,
     keepMounted = false,
-    // private
-    manager: managerProp = defaultManager,
     onBackdropClick,
     onClose,
     onKeyDown,
@@ -91,83 +70,8 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
     slots = {},
     ...other
   } = props;
-  // TODO: `modal`` must change its type in this file to match the type of methods
-  // provided by `ModalManager`
-  const manager = managerProp as any;
-  const [exited, setExited] = React.useState(!open);
-  const modal = React.useRef<{
-    modalRef?: typeof modalRef.current;
-    mountNode?: typeof mountNodeRef.current;
-  }>({});
-  const mountNodeRef = React.useRef<Node | null>(null);
-  const modalRef = React.useRef<Element>(null);
-  const handleRef = useForkRef(modalRef, forwardedRef);
-  const hasTransition = getHasTransition(children);
 
-  const ariaHiddenProp = props['aria-hidden'] ?? true;
-
-  const getDoc = () => ownerDocument(mountNodeRef.current);
-  const getModal = () => {
-    modal.current.modalRef = modalRef.current;
-    modal.current.mountNode = mountNodeRef.current;
-    return modal.current;
-  };
-
-  const handleMounted = () => {
-    manager.mount(getModal(), { disableScrollLock });
-
-    // Fix a bug on Chrome where the scroll isn't initially 0.
-    if (modalRef.current) {
-      modalRef.current.scrollTop = 0;
-    }
-  };
-
-  const handleOpen = useEventCallback(() => {
-    const resolvedContainer = getContainer(container) || getDoc().body;
-
-    manager.add(getModal(), resolvedContainer);
-
-    // The element was already mounted.
-    if (modalRef.current) {
-      handleMounted();
-    }
-  });
-
-  const isTopModal = React.useCallback(() => manager.isTopModal(getModal()), [manager]);
-
-  const handlePortalRef = useEventCallback((node: Node) => {
-    mountNodeRef.current = node;
-
-    if (!node || !modalRef.current) {
-      return;
-    }
-
-    if (open && isTopModal()) {
-      handleMounted();
-    } else {
-      ariaHidden(modalRef.current, ariaHiddenProp);
-    }
-  });
-
-  const handleClose = React.useCallback(() => {
-    manager.remove(getModal(), ariaHiddenProp);
-  }, [manager, ariaHiddenProp]);
-
-  React.useEffect(() => {
-    return () => {
-      handleClose();
-    };
-  }, [handleClose]);
-
-  React.useEffect(() => {
-    if (open) {
-      handleOpen();
-    } else if (!hasTransition || !closeAfterTransition) {
-      handleClose();
-    }
-  }, [open, handleClose, hasTransition, closeAfterTransition, handleOpen]);
-
-  const ownerState: ModalOwnerState = {
+  const propsWithDefaults: Omit<ModalOwnerState, 'exited' | 'hasTransition'> = {
     ...props,
     closeAfterTransition,
     disableAutoFocus,
@@ -176,71 +80,30 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
     disablePortal,
     disableRestoreFocus,
     disableScrollLock,
-    exited,
     hideBackdrop,
     keepMounted,
   };
 
+  const {
+    getRootProps,
+    getBackdropProps,
+    getTransitionProps,
+    portalRef,
+    isTopModal,
+    exited,
+    hasTransition,
+  } = useModal({
+    ...propsWithDefaults,
+    rootRef: forwardedRef,
+  });
+
+  const ownerState = {
+    ...propsWithDefaults,
+    exited,
+    hasTransition,
+  };
+
   const classes = useUtilityClasses(ownerState);
-
-  const handleEnter = () => {
-    setExited(false);
-
-    if (onTransitionEnter) {
-      onTransitionEnter();
-    }
-  };
-
-  const handleExited = () => {
-    setExited(true);
-
-    if (onTransitionExited) {
-      onTransitionExited();
-    }
-
-    if (closeAfterTransition) {
-      handleClose();
-    }
-  };
-
-  const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (event.target !== event.currentTarget) {
-      return;
-    }
-
-    if (onBackdropClick) {
-      onBackdropClick(event);
-    }
-
-    if (onClose) {
-      onClose(event, 'backdropClick');
-    }
-  };
-
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (onKeyDown) {
-      onKeyDown(event);
-    }
-
-    // The handler doesn't take event.defaultPrevented into account:
-    //
-    // event.preventDefault() is meant to stop default behaviors like
-    // clicking a checkbox to check it, hitting a button to submit a form,
-    // and hitting left arrow to move the cursor in a text input etc.
-    // Only special HTML elements have these default behaviors.
-    if (event.key !== 'Escape' || !isTopModal()) {
-      return;
-    }
-
-    if (!disableEscapeKeyDown) {
-      // Swallow the event, in case someone is listening for the escape key on the body.
-      event.stopPropagation();
-
-      if (onClose) {
-        onClose(event, 'escapeKeyDown');
-      }
-    }
-  };
 
   const childProps: {
     onEnter?: () => void;
@@ -253,8 +116,9 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
 
   // It's a Transition like component
   if (hasTransition) {
-    childProps.onEnter = createChainedFunction(handleEnter, children.props.onEnter);
-    childProps.onExited = createChainedFunction(handleExited, children.props.onExited);
+    const { onEnter, onExited } = getTransitionProps();
+    childProps.onEnter = onEnter;
+    childProps.onExited = onExited;
   }
 
   const Root = slots.root ?? 'div';
@@ -262,11 +126,7 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
     elementType: Root,
     externalSlotProps: slotProps.root,
     externalForwardedProps: other,
-    additionalProps: {
-      ref: handleRef,
-      role: 'presentation',
-      onKeyDown: handleKeyDown,
-    },
+    getSlotProps: getRootProps,
     className: classes.root,
     ownerState,
   });
@@ -275,10 +135,18 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
   const backdropProps = useSlotProps({
     elementType: BackdropComponent,
     externalSlotProps: slotProps.backdrop,
-    additionalProps: {
-      'aria-hidden': true,
-      onClick: handleBackdropClick,
-      open,
+    getSlotProps: (otherHandlers: EventHandlers) => {
+      return getBackdropProps({
+        ...otherHandlers,
+        onClick: (e: React.MouseEvent) => {
+          if (onBackdropClick) {
+            onBackdropClick(e);
+          }
+          if (otherHandlers?.onClick) {
+            otherHandlers.onClick(e);
+          }
+        },
+      });
     },
     className: classes.backdrop,
     ownerState,
@@ -289,12 +157,7 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
   }
 
   return (
-    <Portal
-      // @ts-expect-error TODO: include ref to Base UI Portal props
-      ref={handlePortalRef}
-      container={container}
-      disablePortal={disablePortal}
-    >
+    <Portal ref={portalRef} container={container} disablePortal={disablePortal}>
       {/*
        * Marking an element with the role presentation indicates to assistive technology
        * that this element should be ignored; it exists to support the web application and
@@ -318,10 +181,10 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
 }) as PolymorphicComponent<ModalTypeMap>;
 
 Modal.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A single child content element.
    */
@@ -334,6 +197,9 @@ Modal.propTypes /* remove-proptypes */ = {
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
+   *
+   * You can also provide a callback, which is called in a React layout effect.
+   * This lets you set the container from a ref, and also makes server-side rendering possible.
    *
    * By default, it uses the body of the top-level document object,
    * so it's simply `document.body` most of the time.
@@ -437,4 +303,4 @@ Modal.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
-export default Modal;
+export { Modal };

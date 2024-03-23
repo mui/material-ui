@@ -2,10 +2,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import composeClasses from '../composeClasses';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getTabUtilityClass } from './tabClasses';
 import { TabProps, TabTypeMap, TabRootSlotProps, TabOwnerState } from './Tab.types';
-import useTab from '../useTab';
+import { useTab } from '../useTab';
 import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
@@ -35,13 +35,13 @@ const Tab = React.forwardRef(function Tab<RootComponentType extends React.Elemen
   const {
     action,
     children,
-    value: valueProp,
     disabled = false,
     onChange,
     onClick,
     onFocus,
     slotProps = {},
     slots = {},
+    value,
     ...other
   } = props;
 
@@ -51,6 +51,7 @@ const Tab = React.forwardRef(function Tab<RootComponentType extends React.Elemen
   const { active, highlighted, selected, getRootProps } = useTab({
     ...props,
     rootRef: handleRef,
+    value,
   });
 
   const ownerState: TabOwnerState = {
@@ -80,10 +81,10 @@ const Tab = React.forwardRef(function Tab<RootComponentType extends React.Elemen
 }) as PolymorphicComponent<TabTypeMap>;
 
 Tab.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A ref for imperative actions. It currently only supports `focusVisible()` action.
    */
@@ -129,4 +130,4 @@ Tab.propTypes /* remove-proptypes */ = {
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 } as any;
 
-export default Tab;
+export { Tab };

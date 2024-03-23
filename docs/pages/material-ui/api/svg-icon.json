@@ -1,7 +1,7 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
@@ -24,28 +24,79 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "titleAccess": { "type": { "name": "string" } },
     "viewBox": { "type": { "name": "string" }, "default": "'0 0 24 24'" }
   },
   "name": "SvgIcon",
-  "styles": {
-    "classes": [
-      "root",
-      "colorPrimary",
-      "colorSecondary",
-      "colorAction",
-      "colorError",
-      "colorDisabled",
-      "fontSizeInherit",
-      "fontSizeSmall",
-      "fontSizeMedium",
-      "fontSizeLarge"
-    ],
-    "globalClasses": {},
-    "name": "MuiSvgIcon"
-  },
+  "imports": [
+    "import SvgIcon from '@mui/material/SvgIcon';",
+    "import { SvgIcon } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "colorAction",
+      "className": "MuiSvgIcon-colorAction",
+      "description": "Styles applied to the root element if `color=\"action\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorDisabled",
+      "className": "MuiSvgIcon-colorDisabled",
+      "description": "Styles applied to the root element if `color=\"disabled\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorError",
+      "className": "MuiSvgIcon-colorError",
+      "description": "Styles applied to the root element if `color=\"error\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiSvgIcon-colorPrimary",
+      "description": "Styles applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSecondary",
+      "className": "MuiSvgIcon-colorSecondary",
+      "description": "Styles applied to the root element if `color=\"secondary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "fontSizeInherit",
+      "className": "MuiSvgIcon-fontSizeInherit",
+      "description": "Styles applied to the root element if `fontSize=\"inherit\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "fontSizeLarge",
+      "className": "MuiSvgIcon-fontSizeLarge",
+      "description": "Styles applied to the root element if `fontSize=\"large\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "fontSizeMedium",
+      "className": "MuiSvgIcon-fontSizeMedium",
+      "description": "Styles applied to the root element if `fontSize=\"medium\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "fontSizeSmall",
+      "className": "MuiSvgIcon-fontSizeSmall",
+      "description": "Styles applied to the root element if `fontSize=\"small\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiSvgIcon-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiSvgIcon",

@@ -1,5 +1,5 @@
-# Base UI components
+# Base UI components
 
-<p class="description">Every Base UI component available so far.</p>
+<p class="description">Every Base UI component available so far, sorted alphabetically.</p>
 
-{{"component": "docs/src/modules/components/BaseUIComponents.js"}}
+{{"component": "modules/components/BaseUIComponents.js"}}

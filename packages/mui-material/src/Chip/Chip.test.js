@@ -2,14 +2,13 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import {
-  describeConformance,
   act,
   createRenderer,
   fireEvent,
   focusVisible,
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import Avatar from '@mui/material/Avatar';
 import Chip, { chipClasses as classes } from '@mui/material/Chip';
 import {
@@ -20,6 +19,7 @@ import {
 } from '@mui/material/styles';
 import CheckBox from '../internal/svg-icons/CheckBox';
 import defaultTheme from '../styles/defaultTheme';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Chip />', () => {
   const { render } = createRenderer();

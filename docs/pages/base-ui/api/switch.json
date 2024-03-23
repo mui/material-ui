@@ -1,9 +1,16 @@
 {
   "props": {
     "checked": { "type": { "name": "bool" } },
+    "className": { "type": { "name": "string" } },
     "defaultChecked": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
-    "onChange": { "type": { "name": "func" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.ChangeEvent<HTMLInputElement>) => void",
+        "describedArgs": ["event"]
+      }
+    },
     "readOnly": { "type": { "name": "bool" } },
     "required": { "type": { "name": "bool" } },
     "slotProps": {
@@ -18,47 +25,66 @@
         "name": "shape",
         "description": "{ input?: elementType, root?: elementType, thumb?: elementType, track?: elementType<br>&#124;&nbsp;null }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
     }
   },
   "name": "Switch",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": ["import { Switch } from '@mui/base/Switch';", "import { Switch } from '@mui/base';"],
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'span'",
-      "class": ".MuiSwitch-root"
+      "class": "base-Switch-root"
     },
     {
       "name": "input",
       "description": "The component that renders the input.",
       "default": "'input'",
-      "class": ".MuiSwitch-input"
+      "class": "base-Switch-input"
     },
     {
       "name": "thumb",
       "description": "The component that renders the thumb.",
       "default": "'span'",
-      "class": ".MuiSwitch-thumb"
+      "class": "base-Switch-thumb"
     },
     {
       "name": "track",
       "description": "The component that renders the track.",
       "default": "'span'",
-      "class": ".MuiSwitch-track"
+      "class": "base-Switch-track"
     }
   ],
-  "classes": {
-    "classes": ["checked", "disabled", "focusVisible", "readOnly"],
-    "globalClasses": {
-      "checked": "Mui-checked",
-      "disabled": "Mui-disabled",
-      "focusVisible": "Mui-focusVisible"
+  "classes": [
+    {
+      "key": "checked",
+      "className": "base--checked",
+      "description": "State class applied to the root element if the switch is checked",
+      "isGlobal": true
+    },
+    {
+      "key": "disabled",
+      "className": "base--disabled",
+      "description": "State class applied to the root element if the switch is disabled",
+      "isGlobal": true
+    },
+    {
+      "key": "focusVisible",
+      "className": "base--focusVisible",
+      "description": "State class applied to the root element if the switch has visible focus",
+      "isGlobal": true
+    },
+    {
+      "key": "readOnly",
+      "className": "base--readOnly",
+      "description": "Class applied to the root element if the switch is read-only",
+      "isGlobal": true
     }
-  },
+  ],
   "spread": true,
-  "muiName": "MuiSwitch",
+  "muiName": "Switch",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-base/src/Switch/Switch.tsx",
   "inheritance": null,

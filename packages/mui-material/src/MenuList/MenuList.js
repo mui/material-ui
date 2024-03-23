@@ -125,13 +125,13 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
   React.useImperativeHandle(
     actions,
     () => ({
-      adjustStyleForScrollbar: (containerElement, theme) => {
+      adjustStyleForScrollbar: (containerElement, { direction }) => {
         // Let's ignore that piece of logic if users are already overriding the width
         // of the menu.
         const noExplicitWidth = !listRef.current.style.width;
         if (containerElement.clientHeight < listRef.current.clientHeight && noExplicitWidth) {
           const scrollbarSize = `${getScrollbarSize(ownerDocument(containerElement))}px`;
-          listRef.current.style[theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight'] =
+          listRef.current.style[direction === 'rtl' ? 'paddingLeft' : 'paddingRight'] =
             scrollbarSize;
           listRef.current.style.width = `calc(100% + ${scrollbarSize})`;
         }
@@ -259,6 +259,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       if (autoFocusItem) {
         newChildProps.autoFocus = true;
       }
+
       if (child.props.tabIndex === undefined && variant === 'selectedMenu') {
         newChildProps.tabIndex = 0;
       }
@@ -284,10 +285,10 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
 });
 
 MenuList.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, will focus the `[role="menu"]` container and move into tab order.
    * @default false

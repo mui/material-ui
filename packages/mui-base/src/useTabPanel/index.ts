@@ -1,3 +1,3 @@
 'use client';
-export { default } from './useTabPanel';
+export { useTabPanel } from './useTabPanel';
 export * from './useTabPanel.types';

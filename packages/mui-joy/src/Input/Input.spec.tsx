@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Input, { InputOwnerState } from '@mui/joy/Input';
 import { expectType } from '@mui/types';
+import Input, { InputOwnerState } from '@mui/joy/Input';
 
 <Input component="div" />;
 

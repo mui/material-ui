@@ -2,9 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
-import composeClasses from '../composeClasses';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getTabPanelUtilityClass } from './tabPanelClasses';
-import useTabPanel from '../useTabPanel/useTabPanel';
+import { useTabPanel } from '../useTabPanel/useTabPanel';
 import {
   TabPanelOwnerState,
   TabPanelProps,
@@ -65,14 +65,18 @@ const TabPanel = React.forwardRef(function TabPanel<RootComponentType extends Re
 }) as PolymorphicComponent<TabPanelTypeMap>;
 
 TabPanel.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
   children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * The props used for each slot inside the TabPanel.
    * @default {}
@@ -96,4 +100,4 @@ TabPanel.propTypes /* remove-proptypes */ = {
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 } as any;
 
-export default TabPanel;
+export { TabPanel };

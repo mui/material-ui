@@ -1,3 +1,4 @@
 'use client';
-export { default } from './useMenuItem';
+export { useMenuItem } from './useMenuItem';
 export * from './useMenuItem.types';
+export * from './useMenuItemContextStabilizer';

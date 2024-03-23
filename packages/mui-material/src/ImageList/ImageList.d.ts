@@ -7,45 +7,50 @@ import { ImageListClasses } from './imageListClasses';
 
 export interface ImageListPropsVariantOverrides {}
 
-export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
-  props: P & {
-    /**
-     * The content of the component, normally `ImageListItem`s.
-     */
-    children: NonNullable<React.ReactNode>;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<ImageListClasses>;
-    /**
-     * Number of columns.
-     * @default 2
-     */
-    cols?: number;
-    /**
-     * The gap between items in px.
-     * @default 4
-     */
-    gap?: number;
-    /**
-     * The height of one row in px.
-     * @default 'auto'
-     */
-    rowHeight?: number | 'auto';
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
-    /**
-     * The variant to use.
-     * @default 'standard'
-     */
-    variant?: OverridableStringUnion<
-      'masonry' | 'quilted' | 'standard' | 'woven',
-      ImageListPropsVariantOverrides
-    >;
-  };
-  defaultComponent: D;
+export interface ImageListOwnProps {
+  /**
+   * The content of the component, normally `ImageListItem`s.
+   */
+  children: NonNullable<React.ReactNode>;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<ImageListClasses>;
+  /**
+   * Number of columns.
+   * @default 2
+   */
+  cols?: number;
+  /**
+   * The gap between items in px.
+   * @default 4
+   */
+  gap?: number;
+  /**
+   * The height of one row in px.
+   * @default 'auto'
+   */
+  rowHeight?: number | 'auto';
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+  /**
+   * The variant to use.
+   * @default 'standard'
+   */
+  variant?: OverridableStringUnion<
+    'masonry' | 'quilted' | 'standard' | 'woven',
+    ImageListPropsVariantOverrides
+  >;
+}
+
+export interface ImageListTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'ul',
+> {
+  props: AdditionalProps & ImageListOwnProps;
+  defaultComponent: RootComponent;
 }
 /**
  *
@@ -60,8 +65,10 @@ export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
 declare const ImageList: OverridableComponent<ImageListTypeMap>;
 
 export type ImageListProps<
-  D extends React.ElementType = ImageListTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<ImageListTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = ImageListTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<ImageListTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default ImageList;
