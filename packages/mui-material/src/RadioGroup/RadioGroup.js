@@ -86,7 +86,6 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
         role="radiogroup"
         ref={handleRef}
         className={clsx(classes.root, className)}
-        skipClassName
         {...other}
       >
         {children}
