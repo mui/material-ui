@@ -63,6 +63,10 @@ function SubMenu({ options, MENU_LEVELS }) {
   };
 
   const buttonRef = React.useRef(null);
+  const mouseEnteredTime = React.useRef(0);
+  const timer = React.useRef(null);
+
+  const left = React.useRef(false);
 
   const getId = (option, index) => {
     return `${index}-${option.menuLevel}`;
@@ -134,11 +138,48 @@ function SubMenu({ options, MENU_LEVELS }) {
                               handleClose(0);
                             }
                           }}
+                          onMouseEnter={() => {
+                            mouseEnteredTime.current = Date.now();
+                          }}
                           onMouseMove={(event) => {
-                            let computeSubMenuOpenLogic = true;
+                            let shouldComputeSubMenuOpenLogic = true;
                             const submenu = document.querySelector(
                               `#nested-menu-${option.menuLevel + 1}`,
                             );
+
+                            function computeSubMenuLogic() {
+                              if (!mouseEntered.current[getId(option, optIndex)]) {
+                                mouseEntered.current[getId(option, optIndex)] = true;
+                                // if mouse moved from option which has submenu to current option which doesn't have submenu, then all submenu should be closed
+
+                                if (!option.nestedOptions) {
+                                  handleClose(option.menuLevel + 1);
+                                } else if (
+                                  // if mouse moved from option which has submenu to current option which have submenu, then open current option submenu and close previous option submenu
+                                  option.nestedOptions &&
+                                  anchors.options[option.menuLevel + 1] &&
+                                  !option.nestedOptions.every(
+                                    (val, i) =>
+                                      val.value ===
+                                      anchors.options[option.menuLevel + 1]?.[i]
+                                        .value,
+                                  )
+                                ) {
+                                  handleClose(option.menuLevel + 1);
+                                  handleOpen(
+                                    event,
+                                    option.menuLevel + 1,
+                                    option.nestedOptions,
+                                  );
+                                } else {
+                                  handleOpen(
+                                    event,
+                                    option.menuLevel + 1,
+                                    option.nestedOptions,
+                                  );
+                                }
+                              }
+                            }
 
                             if (
                               virtualTriangleCoordinates.current.mouseLeftCordinates
@@ -173,50 +214,37 @@ function SubMenu({ options, MENU_LEVELS }) {
                                     .mouseLeftCordinates[1],
                                 )
                               ) {
-                                computeSubMenuOpenLogic = false;
-                              } else {
-                                computeSubMenuOpenLogic = true;
-                              }
-                            }
+                                shouldComputeSubMenuOpenLogic = false;
 
-                            if (computeSubMenuOpenLogic) {
-                              if (!mouseEntered.current[getId(option, optIndex)]) {
-                                mouseEntered.current[getId(option, optIndex)] = true;
-                                // if mouse moved from option which has submenu to current option which doesn't have submenu, then all submenu should be closed
-
-                                if (!option.nestedOptions) {
-                                  handleClose(option.menuLevel + 1);
-                                } else if (
-                                  // if mouse moved from option which has submenu to current option which have submenu, then open current option submenu and close previous option submenu
-                                  option.nestedOptions &&
-                                  anchors.options[option.menuLevel + 1] &&
-                                  !option.nestedOptions.every(
-                                    (val, i) =>
-                                      val.value ===
-                                      anchors.options[option.menuLevel + 1]?.[i]
-                                        .value,
-                                  )
-                                ) {
-                                  handleClose(option.menuLevel + 1);
-                                  handleOpen(
-                                    event,
-                                    option.menuLevel + 1,
-                                    option.nestedOptions,
-                                  );
-                                } else {
-                                  handleOpen(
-                                    event,
-                                    option.menuLevel + 1,
-                                    option.nestedOptions,
-                                  );
+                                if (left.current) {
+                                  if (timer.current) {
+                                    clearTimeout(timer.current);
+                                  }
+                                  timer.current = setTimeout(() => {
+                                    computeSubMenuLogic();
+                                  }, 1000);
                                 }
+                              } else {
+                                shouldComputeSubMenuOpenLogic = true;
                               }
                             }
+
+                            if (shouldComputeSubMenuOpenLogic) {
+                              if (timer.current) {
+                                clearTimeout(timer.current);
+                              }
+                              computeSubMenuLogic();
+                            }
+                            left.current = false;
                           }}
                           onMouseLeave={(event) => {
                             virtualTriangleCoordinates.current.mouseLeftCordinates =
                               [event.clientX, event.clientY];
 
+                            left.current = true;
+                            if (timer.current) {
+                              clearInterval(timer.current);
+                            }
                             mouseEntered.current[getId(option, optIndex)] = false;
                           }}
                           onKeyDown={(event) => {
