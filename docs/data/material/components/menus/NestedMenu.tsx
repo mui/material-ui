@@ -46,9 +46,10 @@ type Option = {
 type SubMenuProps = {
   menuLevels: number;
   options: Array<Option>;
+  onOptionClick: (option: Option) => void;
 };
 
-function SubMenu({ options, menuLevels }: SubMenuProps) {
+function SubMenu({ options, menuLevels, onOptionClick }: SubMenuProps) {
   const [anchors, setAnchors] = React.useState<{
     elements: Array<null | HTMLElement>;
     options: Array<null | typeof options>;
@@ -63,7 +64,7 @@ function SubMenu({ options, menuLevels }: SubMenuProps) {
 
   const buttonRef = React.useRef(null);
 
-  const timer = React.useRef<NodeJS.Timeout | null>(null);
+  const mouseIdleTimer = React.useRef<NodeJS.Timeout | null>(null);
 
   const handleOpen = (
     event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>,
@@ -111,8 +112,8 @@ function SubMenu({ options, menuLevels }: SubMenuProps) {
   const handleClickOption = (option: Option) => {
     if (!option.nestedOptions) {
       handleClose(0);
-      console.log(`You clicked on ${option.value}`);
     }
+    onOptionClick(option);
   };
 
   const handleMouseMove = (
@@ -172,10 +173,10 @@ function SubMenu({ options, menuLevels }: SubMenuProps) {
 
       if (pointInTriangle(currentMouseCoordinates, virtualTriangleCordinates)) {
         shouldComputeSubMenuOpenLogic = false;
-        if (timer.current) {
-          clearTimeout(timer.current);
+        if (mouseIdleTimer.current) {
+          clearTimeout(mouseIdleTimer.current);
         }
-        timer.current = setTimeout(() => {
+        mouseIdleTimer.current = setTimeout(() => {
           computeSubMenuLogic();
         }, 50);
       } else {
@@ -184,8 +185,8 @@ function SubMenu({ options, menuLevels }: SubMenuProps) {
     }
 
     if (shouldComputeSubMenuOpenLogic) {
-      if (timer.current) {
-        clearTimeout(timer.current);
+      if (mouseIdleTimer.current) {
+        clearTimeout(mouseIdleTimer.current);
       }
       computeSubMenuLogic();
     }
@@ -198,8 +199,8 @@ function SubMenu({ options, menuLevels }: SubMenuProps) {
   ) => {
     mouseLeftCordinates.current = [event.clientX, -event.clientY];
 
-    if (timer.current) {
-      clearInterval(timer.current);
+    if (mouseIdleTimer.current) {
+      clearInterval(mouseIdleTimer.current);
     }
     mouseEntered.current[getId(option, optIndex)] = false;
   };
@@ -309,6 +310,10 @@ function SubMenu({ options, menuLevels }: SubMenuProps) {
 }
 
 export default function NestedMenu() {
+  const handleClickOption = (option: Option) => {
+    console.log(`You clicked on ${option.value}`);
+  };
+
   const options = [
     {
       value: 'Food',
@@ -375,5 +380,7 @@ export default function NestedMenu() {
     },
   ];
 
-  return <SubMenu options={options} menuLevels={3} />;
+  return (
+    <SubMenu options={options} menuLevels={3} onOptionClick={handleClickOption} />
+  );
 }
