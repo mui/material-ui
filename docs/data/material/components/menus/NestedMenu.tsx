@@ -73,7 +73,7 @@ function SubMenu({ options, MENU_LEVELS }: SubMenuProps) {
     level = 0,
     nestedOptions = options,
   ) => {
-    const target = event.currentTarget;
+    const target = event.target as HTMLElement;
 
     setAnchors((prevAnchors) => ({
       elements: prevAnchors.elements.map((element, index) =>
@@ -181,12 +181,20 @@ function SubMenu({ options, MENU_LEVELS }: SubMenuProps) {
                               `#nested-menu-${option.menuLevel + 1}`,
                             );
 
-                            function computeSubMenuLogic() {
+                            function computeSubMenuLogic(check?: string) {
+                              if (check) {
+                                console.log('check', 186);
+                              }
                               if (!mouseEntered.current[getId(option, optIndex)]) {
+                                if (check) {
+                                  console.log('check', 190);
+                                }
                                 mouseEntered.current[getId(option, optIndex)] = true;
                                 // if mouse moved from option which has submenu to current option which doesn't have submenu, then all submenu should be closed
-
                                 if (!option.nestedOptions) {
+                                  if (check) {
+                                    console.log('check', 196);
+                                  }
                                   handleClose(option.menuLevel + 1);
                                 } else if (
                                   // if mouse moved from option which has submenu to current option which have submenu, then open current option submenu and close previous option submenu
@@ -199,6 +207,14 @@ function SubMenu({ options, MENU_LEVELS }: SubMenuProps) {
                                         .value,
                                   )
                                 ) {
+                                  if (check) {
+                                    console.log(
+                                      'check',
+                                      event,
+                                      option.menuLevel + 1,
+                                      option.nestedOptions,
+                                    );
+                                  }
                                   handleClose(option.menuLevel + 1);
                                   handleOpen(
                                     event,
@@ -206,6 +222,9 @@ function SubMenu({ options, MENU_LEVELS }: SubMenuProps) {
                                     option.nestedOptions,
                                   );
                                 } else {
+                                  if (check) {
+                                    console.log('check', 221);
+                                  }
                                   handleOpen(
                                     event,
                                     option.menuLevel + 1,
@@ -253,14 +272,13 @@ function SubMenu({ options, MENU_LEVELS }: SubMenuProps) {
                               ) {
                                 shouldComputeSubMenuOpenLogic = false;
 
-                                if (left.current) {
-                                  if (timer.current) {
-                                    clearTimeout(timer.current);
-                                  }
-                                  timer.current = setTimeout(() => {
-                                    computeSubMenuLogic();
-                                  }, 1000);
+                                if (timer.current) {
+                                  clearTimeout(timer.current);
                                 }
+                                timer.current = setTimeout(() => {
+                                  // alert(event.currentTarget);
+                                  computeSubMenuLogic('po');
+                                }, 25);
                               } else {
                                 shouldComputeSubMenuOpenLogic = true;
                               }
@@ -272,13 +290,11 @@ function SubMenu({ options, MENU_LEVELS }: SubMenuProps) {
                               }
                               computeSubMenuLogic();
                             }
-                            left.current = false;
                           }}
                           onMouseLeave={(event) => {
                             virtualTriangleCoordinates.current.mouseLeftCordinates =
                               [event.clientX, event.clientY];
 
-                            left.current = true;
                             if (timer.current) {
                               clearInterval(timer.current);
                             }
