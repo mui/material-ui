@@ -12,26 +12,23 @@ import {
   Typography,
 } from '@mui/material';
 
-function pointInTriangle(
-  x: number,
-  y: number,
-  x1: number,
-  y1: number,
-  x2: number,
-  y2: number,
-  x3: number,
-  y3: number,
+function sign(
+  px: number,
+  py: number,
+  qx: number,
+  qy: number,
+  rx: number,
+  ry: number,
 ) {
-  function sign(
-    px: number,
-    py: number,
-    qx: number,
-    qy: number,
-    rx: number,
-    ry: number,
-  ) {
-    return (px - rx) * (qy - ry) - (qx - rx) * (py - ry);
-  }
+  return (px - rx) * (qy - ry) - (qx - rx) * (py - ry);
+}
+
+function pointInTriangle(
+  currentMouseCoordinates: Array<number>,
+  triangleCoordinates: Array<number>,
+) {
+  const [x1, y1, x2, y2, x3, y3] = triangleCoordinates;
+  const [x, y] = currentMouseCoordinates;
 
   const b1 = sign(x, y, x1, y1, x2, y2) <= 0;
   const b2 = sign(x, y, x2, y2, x3, y3) <= 0;
@@ -175,17 +172,15 @@ function SubMenu({ options, menuLevels }: SubMenuProps) {
 
       if (
         pointInTriangle(
-          event.clientX,
-          -event.clientY,
-          x1.x,
-
-          -x1.y,
-
-          y1.x,
-          -y1.y,
-
-          virtualTriangleCoordinates.current.mouseLeftCordinates[0],
-          -virtualTriangleCoordinates.current.mouseLeftCordinates[1],
+          [event.clientX, -event.clientY],
+          [
+            x1.x,
+            -x1.y,
+            y1.x,
+            -y1.y,
+            virtualTriangleCoordinates.current.mouseLeftCordinates[0],
+            -virtualTriangleCoordinates.current.mouseLeftCordinates[1],
+          ],
         )
       ) {
         shouldComputeSubMenuOpenLogic = false;
