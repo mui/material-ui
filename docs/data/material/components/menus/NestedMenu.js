@@ -253,7 +253,7 @@ function SubMenu({ options, menuLevels, onOptionClick }) {
                           >
                             <Typography>{option.value}</Typography>
                             {option.nestedOptions ? (
-                              <Icon>chevron_right</Icon>
+                              <Icon fontSize="small">chevron_right</Icon>
                             ) : null}
                           </Box>
                         </MenuItem>
