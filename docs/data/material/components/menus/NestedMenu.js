@@ -6,12 +6,12 @@ import {
   Box,
   ClickAwayListener,
   Grow,
-  Icon,
   MenuList,
   Paper,
   Popper,
   Typography,
 } from '@mui/material';
+import ChevronRight from '@mui/icons-material/ChevronRight';
 
 function sign(px, py, qx, qy, rx, ry) {
   return (px - rx) * (qy - ry) - (qx - rx) * (py - ry);
@@ -253,7 +253,7 @@ function SubMenu({ options, menuLevels, onOptionClick }) {
                           >
                             <Typography>{option.value}</Typography>
                             {option.nestedOptions ? (
-                              <Icon fontSize="small">chevron_right</Icon>
+                              <ChevronRight fontSize="small" />
                             ) : null}
                           </Box>
                         </MenuItem>
