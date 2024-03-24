@@ -59,13 +59,7 @@ function SubMenu({ options, menuLevels }: SubMenuProps) {
 
   const mouseEntered = React.useRef<Record<string, boolean>>({});
 
-  const virtualTriangleCoordinates = React.useRef<{
-    mouseLeftCordinates: Array<number>;
-    subMenuCorrdinates: Array<number>;
-  }>({
-    mouseLeftCordinates: [],
-    subMenuCorrdinates: [],
-  });
+  const mouseLeftCordinates = React.useRef<Array<number>>([]);
 
   const buttonRef = React.useRef(null);
 
@@ -117,7 +111,6 @@ function SubMenu({ options, menuLevels }: SubMenuProps) {
   const handleClickOption = (option: Option) => {
     if (!option.nestedOptions) {
       handleClose(0);
-    } else {
       console.log(`You clicked on ${option.value}`);
     }
   };
@@ -153,44 +146,38 @@ function SubMenu({ options, menuLevels }: SubMenuProps) {
       }
     }
 
-    if (
-      virtualTriangleCoordinates.current.mouseLeftCordinates.length > 0 &&
-      submenu
-    ) {
+    if (mouseLeftCordinates.current.length > 0 && submenu) {
       const { x, y, height } = submenu.getBoundingClientRect();
 
       const [x1, y1] = [
         {
           x,
-          y,
+          y: -y,
         },
         {
           x,
-          y: y + height,
+          y: -(y + height),
         },
       ];
 
-      if (
-        pointInTriangle(
-          [event.clientX, -event.clientY],
-          [
-            x1.x,
-            -x1.y,
-            y1.x,
-            -y1.y,
-            virtualTriangleCoordinates.current.mouseLeftCordinates[0],
-            -virtualTriangleCoordinates.current.mouseLeftCordinates[1],
-          ],
-        )
-      ) {
-        shouldComputeSubMenuOpenLogic = false;
+      const currentMouseCoordinates = [event.clientX, -event.clientY];
+      const virtualTriangleCordinates = [
+        x1.x,
+        x1.y,
+        y1.x,
+        y1.y,
+        mouseLeftCordinates.current[0],
+        mouseLeftCordinates.current[1],
+      ];
 
+      if (pointInTriangle(currentMouseCoordinates, virtualTriangleCordinates)) {
+        shouldComputeSubMenuOpenLogic = false;
         if (timer.current) {
           clearTimeout(timer.current);
         }
         timer.current = setTimeout(() => {
           computeSubMenuLogic();
-        }, 25);
+        }, 50);
       } else {
         shouldComputeSubMenuOpenLogic = true;
       }
@@ -209,10 +196,7 @@ function SubMenu({ options, menuLevels }: SubMenuProps) {
     option: Option,
     optIndex: number,
   ) => {
-    virtualTriangleCoordinates.current.mouseLeftCordinates = [
-      event.clientX,
-      event.clientY,
-    ];
+    mouseLeftCordinates.current = [event.clientX, -event.clientY];
 
     if (timer.current) {
       clearInterval(timer.current);
