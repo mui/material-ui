@@ -76,159 +76,153 @@ const ChipRoot = styled('div', {
       styles[`${variant}${capitalize(color)}`],
     ];
   },
-})(
-  ({ theme }) => {
-    const textColor =
-      theme.palette.mode === 'light' ? theme.palette.grey[700] : theme.palette.grey[300];
-    return {
-      maxWidth: '100%',
-      fontFamily: theme.typography.fontFamily,
-      fontSize: theme.typography.pxToRem(13),
-      display: 'inline-flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: 32,
-      color: (theme.vars || theme).palette.text.primary,
-      backgroundColor: (theme.vars || theme).palette.action.selected,
-      borderRadius: 32 / 2,
-      whiteSpace: 'nowrap',
-      transition: theme.transitions.create(['background-color', 'box-shadow']),
-      // reset cursor explicitly in case ButtonBase is used
-      cursor: 'unset',
-      // We disable the focus ring for mouse, touch and keyboard users.
-      outline: 0,
-      textDecoration: 'none',
-      border: 0, // Remove `button` border
-      padding: 0, // Remove `button` padding
-      verticalAlign: 'middle',
-      boxSizing: 'border-box',
-      [`&.${chipClasses.disabled}`]: {
-        opacity: (theme.vars || theme).palette.action.disabledOpacity,
-        pointerEvents: 'none',
-      },
-      [`& .${chipClasses.avatar}`]: {
-        marginLeft: 5,
-        marginRight: -6,
-        width: 24,
-        height: 24,
-        color: theme.vars ? theme.vars.palette.Chip.defaultAvatarColor : textColor,
-        fontSize: theme.typography.pxToRem(12),
-      },
-      [`& .${chipClasses.avatarColorPrimary}`]: {
-        color: (theme.vars || theme).palette.primary.contrastText,
-        backgroundColor: (theme.vars || theme).palette.primary.dark,
-      },
-      [`& .${chipClasses.avatarColorSecondary}`]: {
-        color: (theme.vars || theme).palette.secondary.contrastText,
-        backgroundColor: (theme.vars || theme).palette.secondary.dark,
-      },
-      [`& .${chipClasses.avatarSmall}`]: {
-        marginLeft: 4,
-        marginRight: -4,
-        width: 18,
-        height: 18,
-        fontSize: theme.typography.pxToRem(10),
-      },
-      [`& .${chipClasses.icon}`]: {
-        marginLeft: 5,
-        marginRight: -6,
-      },
-      [`& .${chipClasses.deleteIcon}`]: {
-        WebkitTapHighlightColor: 'transparent',
+})(({ theme }) => {
+  const textColor =
+    theme.palette.mode === 'light' ? theme.palette.grey[700] : theme.palette.grey[300];
+  return {
+    maxWidth: '100%',
+    fontFamily: theme.typography.fontFamily,
+    fontSize: theme.typography.pxToRem(13),
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 32,
+    color: (theme.vars || theme).palette.text.primary,
+    backgroundColor: (theme.vars || theme).palette.action.selected,
+    borderRadius: 32 / 2,
+    whiteSpace: 'nowrap',
+    transition: theme.transitions.create(['background-color', 'box-shadow']),
+    // reset cursor explicitly in case ButtonBase is used
+    cursor: 'unset',
+    // We disable the focus ring for mouse, touch and keyboard users.
+    outline: 0,
+    textDecoration: 'none',
+    border: 0, // Remove `button` border
+    padding: 0, // Remove `button` padding
+    verticalAlign: 'middle',
+    boxSizing: 'border-box',
+    [`&.${chipClasses.disabled}`]: {
+      opacity: (theme.vars || theme).palette.action.disabledOpacity,
+      pointerEvents: 'none',
+    },
+    [`& .${chipClasses.avatar}`]: {
+      marginLeft: 5,
+      marginRight: -6,
+      width: 24,
+      height: 24,
+      color: theme.vars ? theme.vars.palette.Chip.defaultAvatarColor : textColor,
+      fontSize: theme.typography.pxToRem(12),
+    },
+    [`& .${chipClasses.avatarColorPrimary}`]: {
+      color: (theme.vars || theme).palette.primary.contrastText,
+      backgroundColor: (theme.vars || theme).palette.primary.dark,
+    },
+    [`& .${chipClasses.avatarColorSecondary}`]: {
+      color: (theme.vars || theme).palette.secondary.contrastText,
+      backgroundColor: (theme.vars || theme).palette.secondary.dark,
+    },
+    [`& .${chipClasses.avatarSmall}`]: {
+      marginLeft: 4,
+      marginRight: -4,
+      width: 18,
+      height: 18,
+      fontSize: theme.typography.pxToRem(10),
+    },
+    [`& .${chipClasses.icon}`]: {
+      marginLeft: 5,
+      marginRight: -6,
+    },
+    [`& .${chipClasses.deleteIcon}`]: {
+      WebkitTapHighlightColor: 'transparent',
+      color: theme.vars
+        ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.26)`
+        : alpha(theme.palette.text.primary, 0.26),
+      fontSize: 22,
+      cursor: 'pointer',
+      margin: '0 5px 0 -6px',
+      '&:hover': {
         color: theme.vars
-          ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.26)`
-          : alpha(theme.palette.text.primary, 0.26),
-        fontSize: 22,
-        cursor: 'pointer',
-        margin: '0 5px 0 -6px',
-        '&:hover': {
-          color: theme.vars
-            ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.4)`
-            : alpha(theme.palette.text.primary, 0.4),
+          ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.4)`
+          : alpha(theme.palette.text.primary, 0.4),
+      },
+    },
+    variants: [
+      {
+        props: { size: 'small' },
+        style: {
+          height: 24,
+          [`& .${chipClasses.icon}`]: {
+            fontSize: 18,
+            marginLeft: 4,
+            marginRight: -4,
+          },
+          [`& .${chipClasses.deleteIcon}`]: {
+            fontSize: 16,
+            marginRight: 4,
+            marginLeft: -4,
+          },
         },
       },
-      variants: [
-        {
-          props: { size: 'small' },
-          style: {
-            height: 24,
-            [`& .${chipClasses.icon}`]: {
-              fontSize: 18,
-              marginLeft: 4,
-              marginRight: -4,
-            },
-            [`& .${chipClasses.deleteIcon}`]: {
-              fontSize: 16,
-              marginRight: 4,
-              marginLeft: -4,
-            },
-          },
-        },
-        ...Object.entries(theme.palette)
-          .filter(([, value]) => value.main && value.contrastText)
-          .map(([color]) => {
-            return {
-              props: { color },
-              style: {
-                backgroundColor: (theme.vars || theme).palette[color].main,
-                color: (theme.vars || theme).palette[color].contrastText,
-                [`& .${chipClasses.deleteIcon}`]: {
-                  color: theme.vars
-                    ? `rgba(${theme.vars.palette[color].contrastTextChannel} / 0.7)`
-                    : alpha(theme.palette[color].contrastText, 0.7),
-                  '&:hover, &:active': {
-                    color: (theme.vars || theme).palette[color].contrastText,
-                  },
+      ...Object.entries(theme.palette)
+        .filter(([, value]) => value.main && value.contrastText)
+        .map(([color]) => {
+          return {
+            props: { color },
+            style: {
+              backgroundColor: (theme.vars || theme).palette[color].main,
+              color: (theme.vars || theme).palette[color].contrastText,
+              [`& .${chipClasses.deleteIcon}`]: {
+                color: theme.vars
+                  ? `rgba(${theme.vars.palette[color].contrastTextChannel} / 0.7)`
+                  : alpha(theme.palette[color].contrastText, 0.7),
+                '&:hover, &:active': {
+                  color: (theme.vars || theme).palette[color].contrastText,
                 },
               },
-            };
-          }),
-        {
-          props: (props) => props.iconColor === props.color,
-          style: {
-            [`& .${chipClasses.icon}`]: {
-              color: theme.vars ? theme.vars.palette.Chip.defaultIconColor : textColor,
             },
+          };
+        }),
+      {
+        props: (props) => props.iconColor === props.color,
+        style: {
+          [`& .${chipClasses.icon}`]: {
+            color: theme.vars ? theme.vars.palette.Chip.defaultIconColor : textColor,
           },
         },
-        {
-          props: (props) => props.iconColor === props.color && props.color !== 'default',
-          style: {
-            [`& .${chipClasses.icon}`]: {
-              color: 'inherit',
-            },
+      },
+      {
+        props: (props) => props.iconColor === props.color && props.color !== 'default',
+        style: {
+          [`& .${chipClasses.icon}`]: {
+            color: 'inherit',
           },
         },
-        {
-          props: { onDelete: true },
-          style: {
-            [`&.${chipClasses.focusVisible}`]: {
-              backgroundColor: theme.vars
-                ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-                : alpha(
-                    theme.palette.action.selected,
-                    theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-                  ),
-            },
+      },
+      {
+        props: { onDelete: true },
+        style: {
+          [`&.${chipClasses.focusVisible}`]: {
+            backgroundColor: theme.vars
+              ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
+              : alpha(
+                  theme.palette.action.selected,
+                  theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+                ),
           },
         },
-        ...Object.entries(theme.palette)
-          .filter(([, value]) => value.dark)
-          .map(([color]) => {
-            return {
-              props: { color, onDelete: true },
-              style: {
-                [`&.${chipClasses.focusVisible}`]: {
-                  background: (theme.vars || theme).palette[color].dark,
-                },
+      },
+      ...Object.entries(theme.palette)
+        .filter(([, value]) => value.dark)
+        .map(([color]) => {
+          return {
+            props: { color, onDelete: true },
+            style: {
+              [`&.${chipClasses.focusVisible}`]: {
+                background: (theme.vars || theme).palette[color].dark,
               },
-            };
-          }),
-      ],
-    };
-  },
-  ({ theme }) => ({
-    variants: [
+            },
+          };
+        }),
       {
         props: { clickable: true },
         style: {
@@ -266,10 +260,6 @@ const ChipRoot = styled('div', {
             },
           },
         })),
-    ],
-  }),
-  ({ theme }) => ({
-    variants: [
       {
         props: { variant: 'outlined' },
         style: {
@@ -337,8 +327,8 @@ const ChipRoot = styled('div', {
           },
         })),
     ],
-  }),
-);
+  };
+});
 
 const ChipLabel = styled('span', {
   name: 'MuiChip',
