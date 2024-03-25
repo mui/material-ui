@@ -151,28 +151,28 @@ export default function SignInSide() {
             xs={false}
             sm={6}
             md={8}
-            sx={{
-              backgroundImage: (t) =>
-                t.palette.mode === 'light'
+            sx={(theme) => ({
+              backgroundImage:
+                theme.palette.mode === 'light'
                   ? 'url("/static/images/templates/templates-images/light-background.png")'
                   : 'url("/static/images/templates/templates-images/dark-background.png")',
               backgroundRepeat: 'no-repeat',
-              backgroundColor: (t) =>
-                t.palette.mode === 'light'
-                  ? t.palette.grey[50]
-                  : t.palette.grey[900],
+              backgroundColor:
+                theme.palette.mode === 'light'
+                  ? theme.palette.grey[50]
+                  : theme.palette.grey[900],
               backgroundSize: 'cover',
               backgroundPosition: 'center',
-            }}
+            })}
           />
           <Grid item xs={12} sm={6} md={4}>
             <Box
               sx={{
-                mt: 4,
-                mx: 4,
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
+                mt: 4,
+                mx: 4,
                 gap: 6,
               }}
             >
@@ -180,9 +180,9 @@ export default function SignInSide() {
                 sx={{
                   display: 'flex',
                   justifyContent: 'space-between',
+                  alignItems: 'center',
                   width: '100%',
                   ml: '-18px',
-                  alignItems: 'center',
                 }}
               >
                 <img
@@ -199,7 +199,7 @@ export default function SignInSide() {
                 variant="h4"
                 sx={{ fontSize: 'clamp(2rem, 10vw, 2.5rem)' }}
               >
-                Sign In
+                Sign in
               </Typography>
               <Box
                 component="form"
@@ -208,10 +208,10 @@ export default function SignInSide() {
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
-                  mt: 1,
-                  maxWidth: 400,
                   alignItems: 'center',
                   width: '100%',
+                  maxWidth: 400,
+                  mt: 1,
                 }}
               >
                 <InputLabel htmlFor="email" sx={visuallyHidden}>
@@ -269,10 +269,10 @@ export default function SignInSide() {
                   sx={{ mt: 3, mb: 2 }}
                   onClick={validateInputs}
                 >
-                  Sign In
+                  Sign in
                 </Button>
                 <Link href="#" variant="body2">
-                  Don&apos;t have an account? Sign Up
+                  Don&apos;t have an account? Sign up
                 </Link>
               </Box>
               <ForgotPassword open={open} handleClose={handleClose} />
