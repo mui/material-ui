@@ -8,10 +8,10 @@ import { getTabPanelUtilityClass } from './tabPanelClasses';
 import { getPanelId, getTabId, useTabContext } from '../TabContext';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes } = ownerState;
+  const { classes, hidden } = ownerState;
 
   const slots = {
-    root: ['root'],
+    root: ['root', hidden && 'hidden'],
   };
 
   return composeClasses(slots, getTabPanelUtilityClass, classes);
