@@ -239,6 +239,7 @@ function SubMenu({ options, menuLevels, onOptionClick }) {
                               display: 'flex',
                               justifyContent: 'space-between',
                               width: '100%',
+                              alignItems: 'center',
                             }}
                           >
                             <Typography>{option.value}</Typography>
