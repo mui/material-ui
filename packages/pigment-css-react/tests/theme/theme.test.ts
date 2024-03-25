@@ -18,6 +18,12 @@ describe('Pigment CSS - theme', () => {
                 foreground: '#6F7F95',
               },
             },
+            radius: {
+              xs: '0.25rem',
+            },
+            shadow: {
+              sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+            },
             typography: {
               h3: {
                 fontSize: '2rem',
