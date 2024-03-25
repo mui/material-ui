@@ -581,7 +581,7 @@ export default function SearchIcons() {
         <Typography sx={{ mb: 1 }}>{`${formatNumber(
           icons.length,
         )} matching results`}</Typography>
-        <Icons icons={icons} handleOpenClick={handleOpenClick} />
+        <Icons icons={[icons[0]]} handleOpenClick={handleOpenClick} />
       </Grid>
       <DialogDetails
         open={!!selectedIcon}
