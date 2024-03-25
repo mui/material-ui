@@ -377,7 +377,7 @@ export default function getSignUpTheme(mode) {
           },
           root: ({ theme, ownerState }) => ({
             'input:-webkit-autofill': {
-              WebkitBoxShadow: `0 0 0px 1000px ${brand[100]} inset, 0 0 0 1px ${brand[200]}`,
+              WebkitBoxShadow: `0 0 0 1000px ${brand[100]} inset, 0 0 0 1px ${brand[200]}`,
               maxHeight: '4px',
               borderRadius: '8px',
             },
@@ -393,7 +393,7 @@ export default function getSignUpTheme(mode) {
             borderRadius: '10px',
             border: '1px solid',
             borderColor: gray[200],
-            boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.1)',
+            boxShadow: '0 1px 1px rgba(0, 0, 0, 0.1)',
             transition: 'border-color 120ms ease-in',
             backgroundColor: alpha(gray[100], 0.4),
             '&:hover': {
@@ -413,7 +413,7 @@ export default function getSignUpTheme(mode) {
             }),
             ...(theme.palette.mode === 'dark' && {
               'input:-webkit-autofill': {
-                WebkitBoxShadow: `0 0 0px 1000px ${brand[900]} inset, 0 0 0 1px ${brand[600]}`,
+                WebkitBoxShadow: `0 0 0 1000px ${brand[900]} inset, 0 0 0 1px ${brand[600]}`,
                 maxHeight: '6px',
                 borderRadius: '8px',
               },
@@ -424,7 +424,7 @@ export default function getSignUpTheme(mode) {
                 },
               },
               borderColor: gray[700],
-              boxShadow: '0px 2px 2px rgb(0, 0, 0)',
+              boxShadow: '0 2px 2px rgb(0, 0, 0)',
               backgroundColor: alpha(gray[800], 0.4),
               transition: 'border-color 120ms ease-in',
               '&:hover': {
@@ -554,7 +554,7 @@ export default function getSignUpTheme(mode) {
             border: '1px solid ',
             borderColor: gray[300],
             borderRadius: 5,
-            boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.1)',
+            boxShadow: '0 1px 1px rgba(0, 0, 0, 0.1)',
             transition: 'border-color 120ms ease-in',
             backgroundColor: alpha(gray[100], 0.4),
             '&:hover': {
@@ -575,7 +575,7 @@ export default function getSignUpTheme(mode) {
             },
             ...(theme.palette.mode === 'dark' && {
               borderColor: gray[700],
-              boxShadow: '0px 2px 2px rgb(0, 0, 0)',
+              boxShadow: '0 2px 2px rgb(0, 0, 0)',
               backgroundColor: alpha(gray[800], 0.4),
               '&:hover': {
                 borderColor: brand[300],

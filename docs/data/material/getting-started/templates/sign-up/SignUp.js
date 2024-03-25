@@ -200,8 +200,8 @@ export default function SignUp() {
               sx={{
                 display: 'flex',
                 justifyContent: 'space-between',
-                width: '100%',
                 alignItems: 'center',
+                width: '100%',
               }}
             >
               <img
@@ -217,7 +217,7 @@ export default function SignUp() {
               variant="h4"
               sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.5rem)' }}
             >
-              Sign Up
+              Sign up
             </Typography>
             <Box
               component="form"
@@ -293,7 +293,7 @@ export default function SignUp() {
                 variant="contained"
                 onClick={validateInputs}
               >
-                Sign Up
+                Sign up
               </Button>
               <Link
                 href="/material-ui/getting-started/templates/sign-in/"
