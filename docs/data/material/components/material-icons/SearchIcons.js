@@ -19,6 +19,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
+import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
 import SvgIcon from '@mui/material/SvgIcon';
 import * as mui from '@mui/icons-material';
 import { Link } from '@mui/docs/Link';
@@ -537,7 +539,7 @@ export default function SearchIcons() {
     );
 
     observer.observe(targetRef.current);
-  }, []);
+  }, [iconsDisplayCount]);
 
   const icons = React.useMemo(
     () =>
@@ -568,7 +570,10 @@ export default function SearchIcons() {
                       <Radio
                         size="small"
                         checked={theme === currentTheme}
-                        onChange={() => setTheme(currentTheme)}
+                        onChange={() => {
+                          setTheme(currentTheme);
+                          setIconsDisplayCount(100);
+                        }}
                         value={currentTheme}
                       />
                     }
@@ -597,7 +602,16 @@ export default function SearchIcons() {
           icons.length,
         )} matching results`}</Typography>
         <Icons icons={icons} handleOpenClick={handleOpenClick} />
-        <div ref={targetRef} />
+        <Box
+          sx={{
+            width: '100%',
+            display: 'grid',
+            placeItems: 'center',
+            mt: 4,
+          }}
+        >
+          <CircularProgress size={24} ref={targetRef} />
+        </Box>
       </Grid>
       <DialogDetails
         open={!!selectedIcon}
