@@ -483,6 +483,8 @@ export default function SearchIcons() {
   const [theme, setTheme] = useQueryParameterState('theme', 'Filled');
   const [selectedIcon, setSelectedIcon] = useQueryParameterState('selected', '');
   const [query, setQuery] = useQueryParameterState('query', '');
+  const targetRef = React.useRef(null);
+  const [iconsDisplayCount, setIconsDisplayCount] = React.useState(100);
 
   const handleOpenClick = React.useCallback(
     (event) => {
@@ -524,12 +526,25 @@ export default function SearchIcons() {
     };
   }, [query, updateSearchResults]);
 
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIconsDisplayCount((prevCount) => prevCount + 100);
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    observer.observe(targetRef.current);
+  }, []);
+
   const icons = React.useMemo(
     () =>
       (keys === null ? allIcons : keys.map((key) => allIconsMap[key])).filter(
-        (icon) => theme === icon.theme,
+        (icon, index) => theme === icon.theme && index < iconsDisplayCount,
       ),
-    [theme, keys],
+    [theme, keys, iconsDisplayCount],
   );
 
   const dialogSelectedIcon = useLatest(
@@ -581,7 +596,8 @@ export default function SearchIcons() {
         <Typography sx={{ mb: 1 }}>{`${formatNumber(
           icons.length,
         )} matching results`}</Typography>
-        <Icons icons={[icons[0]]} handleOpenClick={handleOpenClick} />
+        <Icons icons={icons} handleOpenClick={handleOpenClick} />
+        <div ref={targetRef} />
       </Grid>
       <DialogDetails
         open={!!selectedIcon}
