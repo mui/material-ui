@@ -26,7 +26,7 @@ export default defineConfig({
     reactPlugin({ include: /\.(mdx|js|jsx|ts|tsx)$/ }),
     pigment({
       theme,
-      transformLibraries: ['local-ui-lib', '@mui/material'],
+      transformLibraries: ['local-ui-lib'],
       sourceMap: true,
       displayName: true,
       transformSx: false,
