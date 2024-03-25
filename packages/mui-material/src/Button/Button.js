@@ -127,30 +127,32 @@ const ButtonRoot = styled(ButtonBase, {
           backgroundColor: `var(--variant-textBg)`,
         },
       },
-      ...['primary', 'secondary', 'error', 'info', 'success', 'warning'].map((item) => ({
-        props: { color: item },
-        style: {
-          '--variant-textColor': (theme.vars || theme).palette[item].main,
-          '--variant-outlinedColor': (theme.vars || theme).palette[item].main,
-          '--variant-outlinedBorder': theme.vars
-            ? `rgba(${theme.vars.palette[item].mainChannel} / 0.5)`
-            : alpha(theme.palette[item].main, 0.5),
-          '--variant-containedColor': (theme.vars || theme).palette[item].contrastText,
-          '--variant-containedBg': (theme.vars || theme).palette[item].main,
-          '@media (hover: hover)': {
-            '&:hover': {
-              '--variant-containedBg': (theme.vars || theme).palette[item].dark,
-              '--variant-textBg': theme.vars
-                ? `rgba(${theme.vars.palette[item].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                : alpha(theme.palette[item].main, theme.palette.action.hoverOpacity),
-              '--variant-outlinedBorder': (theme.vars || theme).palette[item].main,
-              '--variant-outlinedBg': theme.vars
-                ? `rgba(${theme.vars.palette[item].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                : alpha(theme.palette[item].main, theme.palette.action.hoverOpacity),
+      ...Object.entries(theme.palette)
+        .filter(([, palette]) => palette.main && palette.dark && palette.contrastText)
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            '--variant-textColor': (theme.vars || theme).palette[color].main,
+            '--variant-outlinedColor': (theme.vars || theme).palette[color].main,
+            '--variant-outlinedBorder': theme.vars
+              ? `rgba(${theme.vars.palette[color].mainChannel} / 0.5)`
+              : alpha(theme.palette[color].main, 0.5),
+            '--variant-containedColor': (theme.vars || theme).palette[color].contrastText,
+            '--variant-containedBg': (theme.vars || theme).palette[color].main,
+            '@media (hover: hover)': {
+              '&:hover': {
+                '--variant-containedBg': (theme.vars || theme).palette[color].dark,
+                '--variant-textBg': theme.vars
+                  ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
+                  : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
+                '--variant-outlinedBorder': (theme.vars || theme).palette[color].main,
+                '--variant-outlinedBg': theme.vars
+                  ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
+                  : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
+              },
             },
           },
-        },
-      })),
+        })),
       {
         props: {
           color: 'inherit',
