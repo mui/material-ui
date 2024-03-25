@@ -4,8 +4,30 @@ import deepmerge from './deepmerge';
 
 describe('deepmerge', () => {
   // https://snyk.io/blog/after-three-years-of-silence-a-new-jquery-prototype-pollution-vulnerability-emerges-once-again/
-  it('should not be subject to prototype pollution', () => {
+  it('should not be subject to prototype pollution via __proto__', () => {
     deepmerge({}, JSON.parse('{ "myProperty": "a", "__proto__" : { "isAdmin" : true } }'), {
+      clone: false,
+    });
+
+    expect({}).not.to.have.property('isAdmin');
+  });
+
+  // https://cwe.mitre.org/data/definitions/915.html
+  it('should not be subject to prototype pollution via constructor', () => {
+    deepmerge(
+      {},
+      JSON.parse('{ "myProperty": "a", "constructor" : { "prototype": { "isAdmin" : true } } }'),
+      {
+        clone: true,
+      },
+    );
+
+    expect({}).not.to.have.property('isAdmin');
+  });
+
+  // https://cwe.mitre.org/data/definitions/915.html
+  it('should not be subject to prototype pollution via prototype', () => {
+    deepmerge({}, JSON.parse('{ "myProperty": "a", "prototype": { "isAdmin" : true } }'), {
       clone: false,
     });
 
