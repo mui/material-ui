@@ -63,5 +63,6 @@ Feel free to submit a pull request!
 
 ## Admin frameworks
 
+- [Hatchify](https://github.com/bitovi/hatchify.git): An open source set of low-code libraries for React, Node, and Sequelize designed to simplify and expedite the development process for both frontend and backend applications.
 - [React Admin](https://github.com/marmelab/react-admin): A frontend Framework for building data-driven applications running in the browser on top of REST/GraphQL APIs.
 - [refine](https://github.com/refinedev/refine): An open source, headless React-based framework for the rapid development of web applications.
