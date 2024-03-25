@@ -854,3 +854,216 @@ function App() {
   )
 }
 ```
+
+## Building a UI library
+
+The key of a UI library is to provide a set of reusable components that can be used and themed across **different projects**.
+
+This guide will show you how to build a statistics component as part of a UI library using Pigment CSS. There are 3 steps to follow:
+
+1. Create the component slots.
+2. Compose slots to create the component.
+3. Style the slot with `ownerState`.
+
+### 1. Create the component slots
+
+Slots let the consumers customize each individual element of the component by targeting its respective name in the [theme's styleOverrides](#themeable-statistics-component).
+
+This statistics component is composed of three slots:
+
+- `root`: the container of the component
+- `value`: the number of the statistics
+- `unit`: the unit or description of the statistics
+
+> 💡 Though you can give these slots any names you prefer, we recommend using `root` for the outermost container element for consistency with the rest of the library.
+
+Use the `styled` API with `name` and `slot` parameters to create the slots, as shown below:
+
+```js
+import * as React from 'react';
+import { styled } from '@pigment-css/react';
+
+const StatRoot = styled('div', {
+  name: 'MuiStat', // The component name
+  slot: 'root', // The slot name
+})(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1rem',
+  padding: '0.75rem 1rem',
+  backgroundColor: theme.colors.primary.background,
+  borderRadius: theme.radius.xs,
+  boxShadow: theme.shadow.sm,
+  letterSpacing: '-0.025em',
+  fontWeight: 600,
+}));
+
+const StatValue = styled('div', {
+  name: 'MuiStat',
+  slot: 'value',
+})(({ theme }) => ({
+  ...theme.typography.h3,
+}));
+
+const StatUnit = styled('div', {
+  name: 'MuiStat',
+  slot: 'unit',
+})(({ theme }) => ({
+  ...theme.typography.body2,
+  color: theme.colors.neutral.foreground,
+}));
+```
+
+### 2. Create the component
+
+Assemble the component using the slots created in the previous step:
+
+```js
+// /path/to/Stat.js
+import * as React from 'react';
+
+const StatRoot = styled('div', {
+  name: 'MuiStat',
+  slot: 'root',
+})(…);
+
+const StatValue = styled('div', {
+  name: 'MuiStat',
+  slot: 'value',
+})(…);
+
+const StatUnit = styled('div', {
+  name: 'MuiStat',
+  slot: 'unit',
+})(…);
+
+const Stat = React.forwardRef(function Stat(props, ref) {
+  const { value, unit, ...other } = props;
+
+  return (
+    <StatRoot ref={ref} {...other}>
+      <StatValue>{value}</StatValue>
+      <StatUnit>{unit}</StatUnit>
+    </StatRoot>
+  );
+});
+
+export default Stat;
+```
+
+### 3. Style the slot with ownerState
+
+When you need to style the slot-based props or internal state, wrap them in the `ownerState` object and pass it to each slot as a prop.
+The `ownerState` is a special name that will not spread to the DOM via the `styled` API.
+
+Add a `variant` prop to the `Stat` component and use it to style the `root` slot, as shown below:
+
+```diff
+  const Stat = React.forwardRef(function Stat(props, ref) {
++   const { value, unit, variant, ...other } = props;
++
++   const ownerState = { ...props, variant };
+
+    return (
+-      <StatRoot ref={ref} {...other}>
+-        <StatValue>{value}</StatValue>
+-        <StatUnit>{unit}</StatUnit>
+-      </StatRoot>
++      <StatRoot ref={ref} ownerState={ownerState} {...other}>
++        <StatValue ownerState={ownerState}>{value}</StatValue>
++        <StatUnit ownerState={ownerState}>{unit}</StatUnit>
++      </StatRoot>
+    );
+  });
+```
+
+Then you can read `ownerState` in the slot to style it based on the `variant` prop.
+
+```diff
+  const StatRoot = styled('div', {
+    name: 'MuiStat',
+    slot: 'root',
+-  })(({ theme }) => ({
++  })(({ theme, ownerState }) => ({
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1rem',
+    padding: '0.75rem 1rem',
+    backgroundColor: theme.colors.primary.background,
+    borderRadius: theme.radius.xs,
+    boxShadow: theme.shadow.sm,
+    letterSpacing: '-0.025em',
+    fontWeight: 600,
++   variants: [
++     {
++       props: { variant: 'outlined' },
++       style: {
++         border: `2px solid #e9e9e9`,
++       },
++     },
++   ],
+  }));
+```
+
+That's it! You've successfully created a statistics component with Pigment CSS. The next step is to upload your component to a package registry to let other people use it.
+
+### Consumer usage
+
+The developers who want to use your component need to install your package and Pigment packages based on their [framework](#start-with-nextjs).
+
+```bash
+npm install your-package-name @pigment-css/react
+npm install -D @pigment-css/nextjs-plugin
+```
+
+Then, they need to set up Pigment CSS in their project and import the stylesheet in the root layout file:
+
+```js
+// framework config file, for example next.config.js
+const { withPigment } = require('@pigment-css/nextjs-plugin');
+
+const theme = {
+  colors: {
+    primary: {
+      background: '#EBF5FF',
+      foreground: '#003A75',
+    },
+    neutral: {
+      background: '#F3F6F9',
+      foreground: '#6F7F95',
+    },
+  },
+  typography: {
+    h3: {
+      fontSize: '2rem',
+    },
+    body2: {
+      fontSize: '1rem',
+    },
+  },
+};
+
+module.exports = withPigment(
+  {
+    // ... Your nextjs config.
+  },
+  { theme, transformLibraries: ['your-package-name'] },
+);
+```
+
+```js
+// index.tsx
+import '@pigment-css/react/styles.css';
+
+...
+```
+
+That's it. Now they can use your component in their project:
+
+```jsx
+import Stat from 'your-package-name/Stat';
+
+function App() {
+  return <Stat value={42} unit="km/h" variant="outlined" />;
+}
+```
