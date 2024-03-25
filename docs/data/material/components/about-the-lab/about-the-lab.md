@@ -19,18 +19,24 @@ For a component to be ready to move to the core, the following criteria are cons
 
 To install and save in your `package.json` dependencies, run one of the following commands:
 
+:::info
+The `next` tag is used to download the latest <b>pre-release</b>, v6 version. Remove it to get the current stable version.
+:::
+
+<!-- #default-branch-switch -->
+
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/lab @mui/material
+npm install @mui/lab@next @mui/material@next
 ```
 
 ```bash yarn
-yarn add @mui/lab @mui/material
+yarn add @mui/lab@next @mui/material@next
 ```
 
 ```bash pnpm
-pnpm add @mui/lab @mui/material
+pnpm add @mui/lab@next @mui/material@next
 ```
 
 </codeblock>

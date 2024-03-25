@@ -48,7 +48,8 @@
     "cssesc": "^3.0.0",
     "csstype": "^3.1.3",
     "lodash": "^4.17.21",
-    "stylis": "^4.3.1"
+    "stylis": "^4.3.1",
+    "stylis-plugin-rtl": "^2.1.1"
   },
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.23.3",
@@ -97,8 +98,12 @@
   "exports": {
     ".": {
       "types": "./build/index.d.ts",
-      "import": "./build/index.mjs",
-      "require": "./build/index.js"
+      "import": {
+        "types": "./build/index.d.mts",
+        "default": "./build/index.mjs"
+      },
+      "require": "./build/index.js",
+      "default": "./theme/index.js"
     },
     "./package.json": "./package.json",
     "./theme": {
@@ -108,12 +113,17 @@
       "default": "./theme/index.js"
     },
     "./styles.css": {
+      "require": "./build/index.js",
       "default": "./styles.css"
     },
     "./utils": {
       "types": "./utils/index.d.ts",
-      "import": "./utils/index.mjs",
-      "require": "./utils/index.js"
+      "import": {
+        "types": "./utils/index.d.mts",
+        "default": "./utils/index.mjs"
+      },
+      "require": "./utils/index.js",
+      "default": "./utils/index.js"
     },
     "./exports/generateAtomics": {
       "default": "./exports/generateAtomics.js"
@@ -135,9 +145,21 @@
     },
     "./Box": {
       "types": "./build/Box.d.ts",
-      "import": "./build/Box.mjs",
+      "import": {
+        "types": "./build/Box.d.mts",
+        "default": "./build/Box.mjs"
+      },
       "require": "./build/Box.js",
       "default": "./build/Box.js"
+    },
+    "./RtlProvider": {
+      "types": "./build/RtlProvider.d.ts",
+      "import": {
+        "types": "./build/RtlProvider.d.mts",
+        "default": "./build/RtlProvider.mjs"
+      },
+      "require": "./build/RtlProvider.js",
+      "default": "./build/RtlProvider.js"
     }
   },
   "nx": {
