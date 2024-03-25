@@ -7,7 +7,6 @@ interface IconProps {
 }
 
 export function SitemarkIcon({ sx }: IconProps) {
-  /* this logo is from LogoToUse.com */
   return (
     <SvgIcon sx={sx}>
       <svg
@@ -74,9 +73,9 @@ export function SitemarkIcon({ sx }: IconProps) {
   );
 }
 
-export function FacebookIcon({ sx }: IconProps) {
+export function FacebookIcon() {
   return (
-    <SvgIcon sx={sx}>
+    <SvgIcon>
       <svg
         width="16"
         height="16"
@@ -84,18 +83,29 @@ export function FacebookIcon({ sx }: IconProps) {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g clipPath="url(#clip0_726_31)">
+        <g clipPath="url(#clip0_748_60)">
           <path
-            d="M13.6 0H2.4C1.07452 0 0 1.07452 0 2.4V13.6C0 14.9255 1.07452 16 2.4 16H13.6C14.9255 16 16 14.9255 16 13.6V2.4C16 1.07452 14.9255 0 13.6 0Z"
-            fill="#3B5998"
+            d="M6.68 15.92C2.88 15.24 0 11.96 0 8C0 3.6 3.6 0 8 0C12.4 0 16 3.6 16 8C16 11.96 13.12 15.24 9.32 15.92L8.88 15.56H7.12L6.68 15.92Z"
+            fill="url(#paint0_linear_748_60)"
           />
           <path
-            d="M8.96875 14.25V4.90625C8.96875 4.25 9.15625 3.8125 10.0625 3.8125H11.25V1.84375C11.0312 1.8125 10.3438 1.75 9.53125 1.75C7.84375 1.75 6.6875 2.78125 6.6875 4.6875V14.25M11.1562 6.3125H4.75V8.5625H10.875"
+            d="M11.12 10.2391L11.48 7.99914H9.36V6.43914C9.36 5.79914 9.6 5.31914 10.56 5.31914H11.6V3.27914C11.04 3.19914 10.4 3.11914 9.84 3.11914C8 3.11914 6.72 4.23914 6.72 6.23914V7.99914H4.72V10.2391H6.72V15.8791C7.16 15.9591 7.6 15.9991 8.04 15.9991C8.48 15.9991 8.92 15.9591 9.36 15.8791V10.2391H11.12Z"
             fill="white"
           />
         </g>
         <defs>
-          <clipPath id="clip0_726_31">
+          <linearGradient
+            id="paint0_linear_748_60"
+            x1="8.0004"
+            y1="15.4436"
+            x2="8.0004"
+            y2="-0.00294711"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stopColor="#0062E0" />
+            <stop offset="1" stopColor="#19AFFF" />
+          </linearGradient>
+          <clipPath id="clip0_748_60">
             <rect width="16" height="16" fill="white" />
           </clipPath>
         </defs>
@@ -104,9 +114,9 @@ export function FacebookIcon({ sx }: IconProps) {
   );
 }
 
-export function GoogleIcon({ sx }: IconProps) {
+export function GoogleIcon() {
   return (
-    <SvgIcon sx={sx}>
+    <SvgIcon>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"

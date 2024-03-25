@@ -144,14 +144,18 @@ export default function SignIn() {
               : `linear-gradient(${alpha('#02294F', 0.2)}, ${alpha('#021F3B', 0.0)})`,
           backgroundRepeat: 'no-repeat',
           height: { xs: 'auto', sm: '100dvh' },
-          pb: { xs: 8, sm: 0 },
+          pb: { xs: 12, sm: 0 },
         })}
         component="main"
       >
         <Stack
           direction="row"
           justifyContent="space-between"
-          sx={{ position: 'fixed', width: '100%', p: { xs: 2, sm: 4 } }}
+          sx={{
+            position: { xs: 'static', sm: 'fixed' },
+            width: '100%',
+            p: { xs: 2, sm: 4 },
+          }}
         >
           <Button
             startIcon={<ArrowBackRoundedIcon />}
@@ -164,13 +168,14 @@ export default function SignIn() {
         </Stack>
         <Stack
           justifyContent="center"
-          sx={{ height: '100dvh', mx: { xs: 2, sm: 'auto' } }}
+          sx={{ height: { xs: '100%', sm: '100dvh' }, p: 2 }}
         >
           <Card
             variant="outlined"
             sx={(theme) => ({
               display: 'flex',
               flexDirection: 'column',
+              alignSelf: 'center',
               width: { xs: '100%', sm: '450px' },
               p: { xs: 2, sm: 4 },
               gap: 4,

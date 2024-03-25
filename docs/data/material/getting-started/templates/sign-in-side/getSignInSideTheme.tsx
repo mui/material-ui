@@ -490,24 +490,13 @@ export default function getSignInSideTheme(mode: PaletteMode): ThemeOptions {
               border: 0,
               boxSizing: 'border-box',
               background: `linear-gradient(to bottom, #FFF, ${gray[50]})`,
-              '&:hover': {
-                borderColor: brand[300],
-                boxShadow: `0 0 24px ${brand[100]}`,
-              },
             }),
             ...(theme.palette.mode === 'dark' && {
               backgroundColor: alpha(gray[800], 0.6),
               outline: `1px solid ${alpha(gray[700], 0.3)}`,
               ...(ownerState.variant === 'outlined' && {
                 boxSizing: 'border-box',
-                background: `linear-gradient(to bottom, ${gray[900]}, ${alpha(
-                  gray[800],
-                  0.5,
-                )})`,
-                '&:hover': {
-                  borderColor: brand[700],
-                  boxShadow: `0 0 24px ${brand[800]}`,
-                },
+                background: `linear-gradient(to bottom, ${gray[900]}, ${gray[800]})`,
               }),
             }),
           }),
