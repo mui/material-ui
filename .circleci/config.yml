@@ -131,6 +131,7 @@ jobs:
                 command: git add -A && git diff --exit-code --staged
             - run:
                 name: Check for duplicated packages
+                # default-branch-switch
                 command: |
                   if [[ $(git diff --name-status next | grep pnpm.lock) == "" ]];
                   then
