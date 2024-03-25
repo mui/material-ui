@@ -302,22 +302,22 @@ export default function SignIn() {
                       <g transform="matrix(.727273 0 0 .727273 -.954545 -1.45455)">
                         <path
                           d="M0 37V11l17 13z"
-                          clip-path="url(#B)"
+                          clipPath="url(#B)"
                           fill="#fbbc05"
                         />
                         <path
                           d="M0 11l17 13 7-6.1L48 14V0H0z"
-                          clip-path="url(#B)"
+                          clipPath="url(#B)"
                           fill="#ea4335"
                         />
                         <path
                           d="M0 37l30-23 7.9 1L48 0v48H0z"
-                          clip-path="url(#B)"
+                          clipPath="url(#B)"
                           fill="#34a853"
                         />
                         <path
                           d="M48 48L17 24l-4-3 35-10z"
-                          clip-path="url(#B)"
+                          clipPath="url(#B)"
                           fill="#4285f4"
                         />
                       </g>
@@ -342,7 +342,7 @@ export default function SignIn() {
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <g clip-path="url(#clip0_726_31)">
+                      <g clipPath="url(#clip0_726_31)">
                         <path
                           d="M13.6 0H2.4C1.07452 0 0 1.07452 0 2.4V13.6C0 14.9255 1.07452 16 2.4 16H13.6C14.9255 16 16 14.9255 16 13.6V2.4C16 1.07452 14.9255 0 13.6 0Z"
                           fill="#3B5998"

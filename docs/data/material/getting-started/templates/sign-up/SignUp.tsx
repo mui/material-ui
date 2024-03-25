@@ -13,6 +13,7 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
+import SvgIcon from '@mui/material/SvgIcon';
 import { alpha, PaletteMode } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { visuallyHidden } from '@mui/utils';
@@ -312,11 +313,47 @@ export default function SignUp() {
                 color="secondary"
                 onClick={() => alert('Sign up with Google')}
                 startIcon={
-                  <img
-                    src="https://www.vectorlogo.zone/logos/google/google-icon.svg"
-                    alt="Google"
-                    style={{ width: 16, height: 16 }}
-                  />
+                  <SvgIcon>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlnsXlink="http://www.w3.org/1999/xlink"
+                      viewBox="0 0 32 32"
+                      width="64"
+                      height="64"
+                    >
+                      <defs>
+                        <path
+                          id="A"
+                          d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"
+                        />
+                      </defs>
+                      <clipPath id="B">
+                        <use xlinkHref="#A" />
+                      </clipPath>
+                      <g transform="matrix(.727273 0 0 .727273 -.954545 -1.45455)">
+                        <path
+                          d="M0 37V11l17 13z"
+                          clipPath="url(#B)"
+                          fill="#fbbc05"
+                        />
+                        <path
+                          d="M0 11l17 13 7-6.1L48 14V0H0z"
+                          clipPath="url(#B)"
+                          fill="#ea4335"
+                        />
+                        <path
+                          d="M0 37l30-23 7.9 1L48 0v48H0z"
+                          clipPath="url(#B)"
+                          fill="#34a853"
+                        />
+                        <path
+                          d="M48 48L17 24l-4-3 35-10z"
+                          clipPath="url(#B)"
+                          fill="#4285f4"
+                        />
+                      </g>
+                    </svg>
+                  </SvgIcon>
                 }
               >
                 Sign up with Google
@@ -328,11 +365,31 @@ export default function SignUp() {
                 color="secondary"
                 onClick={() => alert('Sign up with Facebook')}
                 startIcon={
-                  <img
-                    src="https://www.vectorlogo.zone/logos/facebook/facebook-tile.svg"
-                    alt="Google"
-                    style={{ width: 16, height: 16 }}
-                  />
+                  <SvgIcon>
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g clipPath="url(#clip0_726_31)">
+                        <path
+                          d="M13.6 0H2.4C1.07452 0 0 1.07452 0 2.4V13.6C0 14.9255 1.07452 16 2.4 16H13.6C14.9255 16 16 14.9255 16 13.6V2.4C16 1.07452 14.9255 0 13.6 0Z"
+                          fill="#3B5998"
+                        />
+                        <path
+                          d="M8.96875 14.25V4.90625C8.96875 4.25 9.15625 3.8125 10.0625 3.8125H11.25V1.84375C11.0312 1.8125 10.3438 1.75 9.53125 1.75C7.84375 1.75 6.6875 2.78125 6.6875 4.6875V14.25M11.1562 6.3125H4.75V8.5625H10.875"
+                          fill="white"
+                        />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_726_31">
+                          <rect width="16" height="16" fill="white" />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </SvgIcon>
                 }
               >
                 Sign up with Facebook
