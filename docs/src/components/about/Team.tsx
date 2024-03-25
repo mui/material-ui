@@ -123,7 +123,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
                 borderRadius: 40,
                 border: '2px solid',
                 borderColor: 'primary.50',
-                boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.15)',
+                boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.1)',
                 transform: 'translateX(50%)',
                 overflow: 'hidden',
                 ...theme.applyDarkStyles({
@@ -185,7 +185,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
       </Typography>
       {props.about && <Divider sx={{ my: 1.5 }} />}
       {props.about && (
-        <Typography variant="body2" color="grey.600">
+        <Typography variant="body2" color="text.tertiary">
           {props.about}
         </Typography>
       )}

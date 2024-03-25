@@ -6,8 +6,8 @@
   "main": "build/index.js",
   "exports": {
     "./typescript-to-proptypes": {
-      "default": "./build/typescript-to-proptypes/index.js",
-      "types": "./build/typescript-to-proptypes/index.d.ts"
+      "types": "./build/typescript-to-proptypes/index.d.ts",
+      "default": "./build/typescript-to-proptypes/index.js"
     }
   },
   "repository": {

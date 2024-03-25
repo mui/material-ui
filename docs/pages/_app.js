@@ -167,6 +167,7 @@ function AppWrapper(props) {
         name: 'Material UI',
         versions: [
           { text: `v${materialPkgJson.version}`, current: true },
+          { text: `v5`, href: `https://mui.com${languagePrefix}/material-ui/getting-started/` },
           {
             text: 'v4',
             href: `https://v4.mui.com${languagePrefix}/getting-started/installation/`,
@@ -193,6 +194,7 @@ function AppWrapper(props) {
         name: 'MUI System',
         versions: [
           { text: `v${systemPkgJson.version}`, current: true },
+          { text: 'v5', href: `https://mui.com${languagePrefix}/system/getting-started/` },
           { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
           {
             text: 'View all versions',
