@@ -167,13 +167,11 @@ const ButtonRoot = styled(ButtonBase, {
             ? // this is safe because grey does not change between default light/dark mode
               theme.vars.palette.text.primary
             : theme.palette.getContrastText?.(inheritContainedBackgroundColor),
-          // eslint-disable-next-line no-nested-ternary
           '--variant-containedBg': theme.vars
             ? theme.vars.palette.Button.inheritContainedBg
             : inheritContainedBackgroundColor,
           '@media (hover: hover)': {
             '&:hover': {
-              // eslint-disable-next-line no-nested-ternary
               '--variant-containedBg': theme.vars
                 ? theme.vars.palette.Button.inheritContainedHoverBg
                 : inheritContainedHoverBackgroundColor,
