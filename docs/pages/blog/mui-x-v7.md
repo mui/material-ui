@@ -72,7 +72,7 @@ Without it, you may need to manually set an appropriate background color to main
 :::
 
 :::success
-Our teammate Romain has shared comprehensive insights into the optimization techniques in his blog post [Optimizing JavaScript](https://romgrk.com/posts/optimizing-javascript/).
+Our teammate [Romain](https://github.com/romgrk) details various performance optimization techniques in his blog post [Optimizing JavaScript](https://romgrk.com/posts/optimizing-javascript/).
 :::
 
 ### Improved columns panel design
