@@ -13,18 +13,22 @@ import {
 } from '@mui/material';
 import ChevronRight from '@mui/icons-material/ChevronRight';
 
+// This function checks whether a point (x, y) is on the left or right side of a line formed by two points (px, py) and (qx, qy).
+// If the result is negative, the point is on the right side of the line. If positive, it's on the left side.
+// It helps us determine if a point is on the same side as a vertex of the triangle when compared to its edges.
 function sign(px, py, qx, qy, rx, ry) {
   return (px - rx) * (qy - ry) - (qx - rx) * (py - ry);
 }
 
+// This function checks if a point (x, y) is inside a triangle formed by three points (x1, y1), (x2, y2), and (x3, y3).
 function pointInTriangle(currentMouseCoordinates, triangleCoordinates) {
-  const [x1, y1, x2, y2, x3, y3] = triangleCoordinates;
+  const [[x1, y1], [x2, y2], [x3, y3]] = triangleCoordinates;
   const [x, y] = currentMouseCoordinates;
 
   const b1 = sign(x, y, x1, y1, x2, y2) <= 0;
   const b2 = sign(x, y, x2, y2, x3, y3) <= 0;
   const b3 = sign(x, y, x3, y3, x1, y1) <= 0;
-
+  // If all signs are the same (either all negative or all positive), the point is inside the triangle.
   return b1 === b2 && b2 === b3;
 }
 
@@ -35,11 +39,8 @@ function SubMenu({ options, menuLevels, onOptionClick }) {
   });
 
   const mouseEntered = React.useRef({});
-
   const mouseLeftCordinates = React.useRef([]);
-
   const buttonRef = React.useRef(null);
-
   const mouseIdleTimer = React.useRef(null);
 
   const handleOpen = (event, level = 0, nestedOptions = options) => {
@@ -95,11 +96,11 @@ function SubMenu({ options, menuLevels, onOptionClick }) {
     function computeSubMenuLogic() {
       if (!mouseEntered.current[getId(option, optIndex)]) {
         mouseEntered.current[getId(option, optIndex)] = true;
-        // if mouse moved from option which has submenu to current option which doesn't have submenu, then all submenu should be closed
+        // Close all prior submenus if the mouse transitions from an option with a submenu to an option without a submenu.
         if (!option.nestedOptions) {
           handleClose(option.menuLevel + 1);
         } else if (
-          // if mouse moved from option which has submenu to current option which have submenu, then open current option submenu and close previous option submenu
+          // If the mouse moves from an option with a submenu to another option with a submenu, open the submenu of the current option and close the submenu of the previous option.
           option.nestedOptions &&
           anchors.options[option.menuLevel + 1] &&
           !option.nestedOptions.every(
@@ -118,25 +119,12 @@ function SubMenu({ options, menuLevels, onOptionClick }) {
     if (mouseLeftCordinates.current.length > 0 && submenu) {
       const { x, y, height } = submenu.getBoundingClientRect();
 
-      const [x1, y1] = [
-        {
-          x,
-          y: -y,
-        },
-        {
-          x,
-          y: -(y + height),
-        },
-      ];
-
+      // Form a virtual triangle using the left mouse coordinates and the top-left and bottom-left coordinates of the submenu. If the current mouse coordinates fall within this triangle, skip the submenu logic computation.
       const currentMouseCoordinates = [event.clientX, -event.clientY];
       const virtualTriangleCordinates = [
-        x1.x,
-        x1.y,
-        y1.x,
-        y1.y,
-        mouseLeftCordinates.current[0],
-        mouseLeftCordinates.current[1],
+        [x, -y],
+        [x, -(y + height)],
+        [mouseLeftCordinates.current[0], mouseLeftCordinates.current[1]],
       ];
 
       if (pointInTriangle(currentMouseCoordinates, virtualTriangleCordinates)) {
@@ -144,6 +132,8 @@ function SubMenu({ options, menuLevels, onOptionClick }) {
         if (mouseIdleTimer.current) {
           clearTimeout(mouseIdleTimer.current);
         }
+
+        // if mouse is inside triangle and yet hasn't moved, we need to compute submenu logic after a delay
         mouseIdleTimer.current = setTimeout(() => {
           computeSubMenuLogic();
         }, 50);
