@@ -1,0 +1,48 @@
+{
+  "name": "@app/vite-app",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "preview": "vite preview",
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@pigment-css/react": "workspace:^",
+    "@mui/utils": "workspace:^",
+    "@mui/base": "workspace:^",
+    "@mui/material": "workspace:^",
+    "@mui/system": "workspace:^",
+    "@mui/icons-material": "workspace:^",
+    "clsx": "^2.1.0",
+    "local-ui-lib": "workspace:^",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-error-boundary": "^4.0.13",
+    "react-router": "^6.22.1",
+    "react-router-dom": "^6.22.1"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.23.9",
+    "@babel/preset-react": "^7.23.3",
+    "@babel/preset-typescript": "^7.23.3",
+    "@pigment-css/vite-plugin": "workspace:^",
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "@vitejs/plugin-react": "^4.2.1",
+    "postcss": "^8.4.35",
+    "postcss-combine-media-query": "^1.0.1",
+    "vite": "5.0.12",
+    "vite-plugin-pages": "^0.32.0"
+  },
+  "nx": {
+    "targets": {
+      "preview": {
+        "dependsOn": [
+          "^build"
+        ]
+      }
+    }
+  }
+}

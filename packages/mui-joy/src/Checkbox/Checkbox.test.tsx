@@ -142,6 +142,7 @@ describe('<Checkbox />', () => {
       const { getByTestId } = render(<Checkbox indeterminate checked />);
       expect(getByTestId('HorizontalRuleIcon')).not.to.equal(null);
     });
+
     it('should render checked icon', () => {
       const { getByTestId } = render(<Checkbox checked />);
       expect(getByTestId('CheckIcon')).not.to.equal(null);
@@ -151,6 +152,7 @@ describe('<Checkbox />', () => {
       const { getByTestId } = render(<Checkbox uncheckedIcon={<CloseIcon />} />);
       expect(getByTestId('CloseIcon')).not.to.equal(null);
     });
+
     it('should not render icon', () => {
       const { queryByTestId } = render(
         <Checkbox disableIcon checked indeterminate uncheckedIcon={<CloseIcon />} />,

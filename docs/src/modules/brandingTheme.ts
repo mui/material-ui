@@ -65,6 +65,22 @@ declare module '@mui/material/Chip' {
   }
 }
 
+declare module '@mui/material/SvgIcon' {
+  interface SvgIconPropsColorOverrides {
+    danger: true;
+  }
+  interface SvgIconPropsSizeOverrides {
+    xs: true;
+    sm: true;
+    md: true;
+    lg: true;
+    xl: true;
+    xl2: true;
+    xl3: true;
+    xl4: true;
+  }
+}
+
 // TODO: enable this once types conflict is fixed
 // declare module '@mui/material/Button' {
 //   interface ButtonPropsVariantOverrides {
@@ -80,10 +96,10 @@ export const blue = {
   200: '#99CCFF',
   300: '#66B2FF',
   400: '#3399FF',
-  main: '#007FFF',
-  500: '#007FFF',
-  600: '#0066CC',
-  700: '#004C99',
+  main: '#0073E6',
+  500: '#0073E6',
+  600: '#006BD6',
+  700: '#0061C2',
   800: '#004C99',
   900: '#003A75',
 };
@@ -104,11 +120,11 @@ export const grey = {
   50: '#F3F6F9',
   100: '#E5EAF2',
   200: '#DAE2ED',
-  300: '#C7D0DD', // vs blueDark 900: WCAG 11.6 AAA, APCA 78 Best for text
-  400: '#B0B8C4', // vs blueDark 900: WCAG 9 AAA, APCA 63.3 Ok for text
-  500: '#9DA8B7', // vs blueDark 900: WCAG 7.5 AAA, APCA 54.3 Only for large text
-  600: '#6B7A90', // vs white bg: WCAG 4.1 AA, APCA 68.7 Ok for text
-  700: '#434D5B', // vs white bg: WCAG 8.3 AAA, APCA 88.7 Best for text
+  300: '#C5D0E0', // vs blueDark 900: WCAG 11.6 AAA, APCA 78 Best for text
+  400: '#AEBACB', // vs blueDark 900: WCAG 9 AAA, APCA 63.3 Ok for text
+  500: '#99A7BB', // vs blueDark 900: WCAG 7.5 AAA, APCA 54.3 Only for large text
+  600: '#6F7F95', // vs white bg: WCAG 4.1 AA, APCA 68.7 Ok for text
+  700: '#576375', // vs white bg: WCAG 8.3 AAA, APCA 88.7 Best for text
   800: '#303740', // vs white bg: WCAG 11.9 AAA, APCA 97.3 Best for text
   900: '#1C2025',
 };
@@ -208,13 +224,13 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       text: {
         ...(mode === 'light' && {
           primary: grey[900],
-          secondary: grey[700],
-          tertiary: grey[600],
+          secondary: grey[800],
+          tertiary: grey[700],
         }),
         ...(mode === 'dark' && {
           primary: '#fff',
           secondary: grey[400],
-          tertiary: grey[400],
+          tertiary: grey[500],
         }),
       },
       grey: {
@@ -505,7 +521,7 @@ export function getThemedComponents(): ThemeOptions {
                 borderColor: (theme.vars || theme).palette.primaryDark[100],
                 boxShadow: `${alpha(theme.palette.grey[50], 0.5)} 0 2px 0.5px inset, ${alpha(
                   theme.palette.grey[100],
-                  0.8,
+                  0.5,
                 )} 0 -2px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
                 '&:hover': {
                   backgroundColor: (theme.vars || theme).palette.primaryDark[50],
@@ -514,10 +530,7 @@ export function getThemedComponents(): ThemeOptions {
                   color: (theme.vars || theme).palette.primaryDark[100],
                   borderColor: alpha(theme.palette.primaryDark[600], 0.5),
                   backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
-                  boxShadow: `${alpha(theme.palette.primaryDark[600], 0.2)} 0 2px 0 inset, ${alpha(
-                    theme.palette.primaryDark[900],
-                    0.5,
-                  )} 0 -3px 1px inset, ${theme.palette.common.black} 0 1px 2px 0`,
+                  boxShadow: `${alpha(theme.palette.primaryDark[600], 0.1)} 0 2px 0 inset, ${alpha(theme.palette.primaryDark[900], 0.5)} 0 -2px 1px inset, ${theme.palette.common.black} 0 1px 2px 0`,
                   '&:hover': {
                     backgroundColor: (theme.vars || theme).palette.primaryDark[700],
                   },
@@ -559,10 +572,7 @@ export function getThemedComponents(): ThemeOptions {
                   theme.palette.primary[500],
                   0.6,
                 )} 0%, ${theme.palette.primary[600]} 100%)`,
-                boxShadow: `${theme.palette.primary[400]} 0 2px 0.5px inset, ${alpha(
-                  theme.palette.primary[700],
-                  0.7,
-                )} 0 -3px 1px inset, ${alpha(theme.palette.common.black, 0.1)} 0 2px 4px 0`,
+                boxShadow: `${theme.palette.primary[400]} 0 2px 0.5px inset, ${theme.palette.primary[700]} 0 -3px 1px inset, ${alpha(theme.palette.common.black, 0.1)} 0 2px 4px 0`,
                 '&:hover': {
                   backgroundColor: (theme.vars || theme).palette.primary[700],
                 },
@@ -570,6 +580,12 @@ export function getThemedComponents(): ThemeOptions {
                   backgroundColor: (theme.vars || theme).palette.primaryDark[700],
                 },
               }),
+            ...(ownerState.variant === 'text' && {
+              color: (theme.vars || theme).palette.primary[600],
+              ...theme.applyDarkStyles({
+                color: (theme.vars || theme).palette.primary[300],
+              }),
+            }),
           }),
         },
         variants: [
@@ -790,6 +806,9 @@ export function getThemedComponents(): ThemeOptions {
                 '&:hover, &:focus': {
                   backgroundColor: (theme.vars || theme).palette.grey[50],
                 },
+                '&:focus-visible': {
+                  outline: 'none',
+                },
                 '&.Mui-selected': {
                   fontWeight: 500,
                   color: (theme.vars || theme).palette.primary[600],
@@ -839,9 +858,9 @@ export function getThemedComponents(): ThemeOptions {
         },
         styleOverrides: {
           root: ({ theme }) => ({
-            fontWeight: theme.typography.fontWeightSemiBold,
             display: 'inline-flex',
             alignItems: 'center',
+            fontWeight: theme.typography.fontWeightSemiBold,
             '&.MuiTypography-body1 > svg': {
               marginTop: 2,
             },
@@ -1159,14 +1178,14 @@ export function getThemedComponents(): ThemeOptions {
           root: ({ theme, ownerState }) => [
             {
               textTransform: 'none',
-              fontWeight: 500,
-              color: theme.palette.grey[700],
+              fontWeight: 'medium',
+              color: theme.palette.text.secondary,
               borderColor: theme.palette.grey[200],
               ...(ownerState.size === 'small' && {
                 padding: '0.375rem 0.75rem',
               }),
               '&.Mui-selected': {
-                color: (theme.vars || theme).palette.primary[500],
+                color: (theme.vars || theme).palette.primary[700],
                 borderColor: `${(theme.vars || theme).palette.primary[500]} !important`,
                 backgroundColor: (theme.vars || theme).palette.primary[50],
                 '&:hover': {
@@ -1175,7 +1194,6 @@ export function getThemedComponents(): ThemeOptions {
               },
             } as const,
             theme.applyDarkStyles({
-              color: theme.palette.grey[300],
               borderColor: theme.palette.primaryDark[700],
               '&:hover': {
                 backgroundColor: alpha(theme.palette.primaryDark[600], 0.2),

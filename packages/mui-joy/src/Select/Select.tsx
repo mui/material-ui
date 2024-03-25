@@ -246,7 +246,7 @@ const SelectListbox = styled(StyledList, {
     outline: 0,
     boxShadow: theme.shadow.md,
     borderRadius: `var(--List-radius, ${theme.vars.radius.sm})`,
-    // `unstable_popup-zIndex` is a private variable that lets other component, e.g. Modal, to override the z-index so that the listbox can be displayed above the Modal.
+    // `unstable_popup-zIndex` is a private variable that lets other component, for example Modal, to override the z-index so that the listbox can be displayed above the Modal.
     zIndex: `var(--unstable_popup-zIndex, ${theme.vars.zIndex.popup})`,
     ...(!variantStyle?.backgroundColor && {
       backgroundColor: theme.vars.palette.background.popup,

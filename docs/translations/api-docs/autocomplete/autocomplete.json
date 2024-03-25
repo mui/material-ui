@@ -104,7 +104,7 @@
     "ListboxComponent": { "description": "The component used to render the listbox." },
     "ListboxProps": { "description": "Props applied to the Listbox element." },
     "loading": {
-      "description": "If <code>true</code>, the component is in a loading state. This shows the <code>loadingText</code> in place of suggestions (only if there are no suggestions to show, e.g. <code>options</code> are empty)."
+      "description": "If <code>true</code>, the component is in a loading state. This shows the <code>loadingText</code> in place of suggestions (only if there are no suggestions to show, for example <code>options</code> are empty)."
     },
     "loadingText": {
       "description": "Text to display when in a loading state.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>."
@@ -287,17 +287,17 @@
     "tag": {
       "description": "Styles applied to {{nodeName}}, {{conditions}}.",
       "nodeName": "the tag elements",
-      "conditions": "e.g. the chips"
+      "conditions": "for example the chips"
     },
     "tagSizeMedium": {
       "description": "Styles applied to {{nodeName}}, {{conditions}}.",
       "nodeName": "the tag elements",
-      "conditions": "e.g. the chips if <code>size=\"medium\"</code>"
+      "conditions": "for example the chips if <code>size=\"medium\"</code>"
     },
     "tagSizeSmall": {
       "description": "Styles applied to {{nodeName}}, {{conditions}}.",
       "nodeName": "the tag elements",
-      "conditions": "e.g. the chips if <code>size=\"small\"</code>"
+      "conditions": "for example the chips if <code>size=\"small\"</code>"
     }
   }
 }

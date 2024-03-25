@@ -5,24 +5,27 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Tabs, { tabsClasses } from '@mui/material/Tabs';
 import Tab, { tabClasses } from '@mui/material/Tab';
-import { useTranslate } from '@mui/docs/i18n';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { Link } from '@mui/docs/Link';
 
 export const HEIGHT = 50;
 
 const StyledTab = styled(Tab)(({ theme }) => ({
-  padding: theme.spacing(1),
-  marginBottom: theme.spacing(1),
-  marginRight: theme.spacing(1),
-  fontWeight: 600,
-  minHeight: 32,
+  padding: theme.spacing(0.5),
+  border: '1px solid',
+  borderColor: 'transparent',
+  fontWeight: theme.typography.fontWeightSemiBold,
+  minHeight: 30,
   minWidth: 0,
-  borderRadius: '12px',
+  borderRadius: '8px',
   '&:hover': {
     background: (theme.vars || theme).palette.grey[50],
+    borderColor: (theme.vars || theme).palette.divider,
+    color: (theme.vars || theme).palette.text.primary,
   },
   ...theme.applyDarkStyles({
     '&:hover': {
+      borderColor: (theme.vars || theme).palette.divider,
       background: (theme.vars || theme).palette.primaryDark[700],
     },
     '&.Mui-selected': {
@@ -54,21 +57,16 @@ export default function ComponentPageTabs(props) {
         sx={{
           position: 'sticky',
           top: 65, // to be positioned below the app bar
-          mt: 1,
-          pt: 1,
-          mx: {
-            xs: -2,
-            sm: 0,
-          },
-          px: {
-            xs: 2,
-            sm: 0,
-          },
-          backgroundColor: (theme) =>
-            theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : 'rgba(255,255,255)',
+          mt: 2,
+          mx: -1,
+          backgroundColor: 'background.default',
           borderBottom: 1,
           borderColor: 'divider',
           zIndex: 1000,
+          [`& .${tabsClasses.flexContainer}`]: {
+            p: 1,
+            gap: 1,
+          },
           [`& .${tabsClasses.indicator}`]: {
             transition: 'none',
           },
@@ -82,20 +80,11 @@ export default function ComponentPageTabs(props) {
           },
         }}
       >
-        <StyledTab
-          component={Link}
-          shallow
-          scroll
-          href={demosHref}
-          label={t('api-docs.demos')}
-          value=""
-        />
+        <StyledTab component={Link} href={demosHref} label={t('api-docs.demos')} value="" />
         {headers.components?.length > 0 && (
           <StyledTab
             className="skip-algolia-crawler" // For more details, see https://github.com/mui/material-ui/pull/37539.
             component={Link}
-            shallow
-            scroll
             href={componentsHref}
             label={t('api-docs.componentsApi')}
             value="components-api"
@@ -105,8 +94,6 @@ export default function ComponentPageTabs(props) {
           <StyledTab
             className="skip-algolia-crawler" // For more details, see https://github.com/mui/material-ui/pull/37539.
             component={Link}
-            shallow
-            scroll
             href={hooksHref}
             label={t('api-docs.hooksApi')}
             value="hooks-api"
