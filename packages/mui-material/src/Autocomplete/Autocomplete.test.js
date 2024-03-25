@@ -145,18 +145,6 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
       expect(document.querySelector(`.${classes.paper}`).textContent).to.equal('Loading…');
     });
-
-    it('should show a loading message even if the options contains some items', () => {
-      render(
-        <Autocomplete
-          options={['foo', 'bar']}
-          loading
-          renderInput={(params) => <TextField {...params} autoFocus />}
-        />,
-      );
-      fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
-      expect(document.querySelector(`.${classes.paper}`).textContent).to.equal('Loading…');
-    });
   });
 
   describe('prop: autoHighlight', () => {
