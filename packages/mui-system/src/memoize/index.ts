@@ -1,2 +1,2 @@
-'use client'
-export { default } from './memoize'
+'use client';
+export { default } from './memoize';
