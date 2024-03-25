@@ -23,9 +23,7 @@ import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import ForgotPassword from './ForgotPassword';
 import getSignInTheme from './getSignInTheme';
 import ToggleColorMode from './ToggleColorMode';
-import GoogleIcon from './GoogleIcon';
-import FacebookIcon from './FacebookIcon';
-import SitemarkIcon from './SitemarkIcon';
+import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
 
 interface ToggleCustomThemeProps {
   showCustomTheme: Boolean;

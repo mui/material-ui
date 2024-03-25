@@ -22,9 +22,7 @@ import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 
 import getSignUpTheme from './getSignUpTheme';
 import ToggleColorMode from './ToggleColorMode';
-import GoogleIcon from './GoogleIcon';
-import FacebookIcon from './FacebookIcon';
-import SitemarkIcon from './SitemarkIcon';
+import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
 
 interface ToggleCustomThemeProps {
   showCustomTheme: Boolean;
