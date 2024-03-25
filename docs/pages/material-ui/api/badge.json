@@ -22,7 +22,7 @@
       "type": { "name": "shape", "description": "{ Badge?: elementType, Root?: elementType }" },
       "default": "{}",
       "deprecated": true,
-      "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in v7. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
+      "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in v7. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
     },
     "componentsProps": {
       "type": {
@@ -68,6 +68,20 @@
   },
   "name": "Badge",
   "imports": ["import Badge from '@mui/material/Badge';", "import { Badge } from '@mui/material';"],
+  "slots": [
+    {
+      "name": "badge",
+      "description": "",
+      "default": "",
+      "class": null
+    },
+    {
+      "name": "root",
+      "description": "",
+      "default": "",
+      "class": null
+    }
+  ],
   "classes": [
     {
       "key": "anchorOriginBottomLeft",
