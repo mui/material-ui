@@ -1178,8 +1178,8 @@ export function getThemedComponents(): ThemeOptions {
           root: ({ theme, ownerState }) => [
             {
               textTransform: 'none',
-              fontWeight: 500,
-              color: theme.palette.grey[700],
+              fontWeight: 'medium',
+              color: theme.palette.text.secondary,
               borderColor: theme.palette.grey[200],
               ...(ownerState.size === 'small' && {
                 padding: '0.375rem 0.75rem',
@@ -1194,7 +1194,6 @@ export function getThemedComponents(): ThemeOptions {
               },
             } as const,
             theme.applyDarkStyles({
-              color: theme.palette.grey[300],
               borderColor: theme.palette.primaryDark[700],
               '&:hover': {
                 backgroundColor: alpha(theme.palette.primaryDark[600], 0.2),
