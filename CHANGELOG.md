@@ -1,5 +1,80 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.0.0-alpha.0
+
+<!-- generated comparing v5.15.14..next -->
+
+_Mar 25, 2024_
+
+A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+
+- 🔥 Converted 10+ Material UI components to support static CSS extraction
+- ⬅️ Added RTL support in Pigment CSS (#41570) @brijeshb42
+
+### `@mui/material@6.0.0-alpha.0`
+
+- &#8203;<!-- 47 -->[BottomNavigation] Convert to support CSS extraction (#41612) @aacevski
+- &#8203;<!-- 45 -->[AvatarGroup] Convert to support CSS extraction (#41485) @zanivan
+- &#8203;<!-- 44 -->[Backdrop] Convert to support CSS extraction (#41581) @aacevski
+- &#8203;<!-- 38 -->[Breadcrumbs] Convert to support CSS extraction (#41496) @aacevski
+- &#8203;<!-- 36 -->[Card] Convert to support CSS extraction (#41580) @aacevski
+- &#8203;<!-- 25 -->[Divider] Convert to support CSS extraction (#41366) @sai6855
+- &#8203;<!-- 14 -->[FormControl] Convert to support CSS extraction (#41613) @aacevski
+- &#8203;<!-- 13 -->[FormGroup] Convert to support CSS extraction (#41614) @aacevski
+- &#8203;<!-- 12 -->[MobileStepper] Convert to support CSS extraction (#41533) @aacevski
+- &#8203;<!-- 11 -->[Modal] Support CSS extraction (#41483) @sai6855
+- &#8203;<!-- 10 -->[Popover] Convert to support CSS extraction (#41564) @aacevski
+- &#8203;<!-- 08 -->[Stepper] Convert to support CSS extraction (#41546) @aacevski
+- &#8203;<!-- 46 -->[Autocomplete] Display options provided to the `options` prop even if loading is true (#41634) @nekoya
+- &#8203;<!-- 43 -->[Backdrop] Deprecate TransitionComponent (#40677) @harry-whorlow
+- &#8203;<!-- 37 -->[ButtonGroup] Deprecate composed classes (#41259) @sai6855
+- &#8203;<!-- 09 -->[StepLabel] Deprecate `componentProps` prop (#41321) @sai6855
+
+### `@pigment-css/react@0.0.4`
+
+- &#8203;<!-- 07 -->Fix evaluation of undefined variables (#41569) @siriwatknp
+- &#8203;<!-- 06 -->Fix react-modal demos location (#41560) @sai6855
+- &#8203;<!-- 05 -->[react] RTL Support (#41570) @brijeshb42
+
+### `@mui/system@6.0.0-alpha.0`
+
+- &#8203;<!-- 28 -->[core] Standardize index pattern (#41574) @DiegoAndai
+- &#8203;<!-- 04 -->Fix typo to avoid infinite recursion in function call (#41616) @michael-land
+- &#8203;<!-- 03 -->Move stylesheet generator to `extendTheme` (#41446) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 21 -->[joy-ui] Refresh the marketing example on the Color Inversion page (#41497) @cipherlogs
+- &#8203;<!-- 18 -->[material-ui] Add v5 to v6 migration guide (#41561) @DiegoAndai
+- &#8203;<!-- 15 -->[system] Add v5 to v6 migration guide (#41575) @DiegoAndai
+- &#8203;<!-- 17 -->[material-ui][Slider] Remove `valueLabelFormat` from restricted values demo so that the tooltip thumb label displays the same as the value text (#41567) @StylesTrip
+- &#8203;<!-- 16 -->[pigment-css] Update the RTL section on the readme (#41576) @danilo-leal
+
+### Core
+
+- &#8203;<!-- 42 -->[blog] Update the callout (#41645) @cherniavskii
+- &#8203;<!-- 41 -->[blog] Link to Romain's blog post in MUI X v7 announcement post (#41640) @cherniavskii
+- &#8203;<!-- 40 -->[blog] Blog post with MUI X v7.0.0 annoucement (#41563) @joserodolfofreitas
+- &#8203;<!-- 39 -->[blog] Add post about remote (#41565) @danilo-leal
+- &#8203;<!-- 35 -->[core] Restore the pnpm-lock.yaml (#41643) @mnajdova
+- &#8203;<!-- 34 -->[core] Fix failing CI steps (#41636) @mnajdova
+- &#8203;<!-- 33 -->[core] Update browser support versions (#41568) @siriwatknp
+- &#8203;<!-- 32 -->[core] Add instructions to deploying docs guide (#41582) @DiegoAndai
+- &#8203;<!-- 31 -->[core] Add comment explaining the frequency of no-response action runs (#41555) @michaldudak
+- &#8203;<!-- 30 -->[core] Init the next branch (#41552) @mnajdova
+- &#8203;<!-- 29 -->[core] Lower the frequency of no-response action runs (#41553) @michaldudak
+- &#8203;<!-- 27 -->[pigment-css][demo] Add index page for material-ui (#41577) @brijeshb42
+- &#8203;<!-- 26 -->[pigment-css][demo] Remove app specific pnpm workspace (#41393) @brijeshb42
+- &#8203;<!-- 24 -->[docs] Add notification for MUI X v7 blog post (#41587) @cherniavskii
+- &#8203;<!-- 23 -->[docs] MUI X v7 blog post annoucement followup (#41601) @joserodolfofreitas
+- &#8203;<!-- 22 -->[docs] Update the installation guides to use the next tag (#41558) @mnajdova
+- &#8203;<!-- 20 -->[docs][material-ui] Fix typo in CSS theme variables customization (#41632) @ZeeshanTamboli
+- &#8203;<!-- 19 -->[material-ui][docs] Remove deleted page from the sidenav (#41594) @danilo-leal
+- &#8203;<!-- 02 -->[website] Update pricing table (#41595) @cherniavskii
+- &#8203;<!-- 01 -->[website] Add stray design adjustments throughout the site (#41547) @danilo-leal
+
+All contributors of this release in alphabetical order: @aacevski, @brijeshb42, @cherniavskii, @cipherlogs, @danilo-leal, @DiegoAndai, @harry-whorlow, @joserodolfofreitas, @michael-land, @michaldudak, @mnajdova, @nekoya, @sai6855, @siriwatknp, @StylesTrip, @zanivan, @ZeeshanTamboli
+
 ## v5.15.14
 
 <!-- generated comparing v5.15.13..master -->
@@ -9,7 +84,7 @@ _Mar 18, 2024_
 A big thanks to the 15 contributors who made this release possible.
 This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
 
-### `@mui/material@5.15.13`
+### `@mui/material@5.15.14`
 
 - [Accordion] Convert to support CSS extraction (#41221) @mnajdova
 - &#8203;<!-- 24 -->[Autocomplete] Convert to support CSS extraction (#40330) @mnajdova
