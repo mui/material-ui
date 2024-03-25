@@ -3,6 +3,7 @@
   "propDescriptions": {
     "children": { "description": "The content of the component." },
     "classes": { "description": "Override or extend the styles applied to the component." },
+    "keepMounted": { "description": "Always keep the children in the DOM." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },

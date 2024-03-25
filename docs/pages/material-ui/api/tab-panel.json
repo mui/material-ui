@@ -3,6 +3,7 @@
     "value": { "type": { "name": "string" }, "required": true },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "keepMounted": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",
