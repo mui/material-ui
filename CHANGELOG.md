@@ -8,7 +8,7 @@ _Mar 25, 2024_
 
 A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
 
-- 🔥 Converted 10+ Material UI components to support static CSS extraction
+- 🔥 Converted 10+ Material UI components to support static CSS extraction
 - ⬅️ Added RTL support in Pigment CSS (#41570) @brijeshb42
 
 ### `@mui/material@6.0.0-alpha.0`
@@ -53,8 +53,8 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 ### Core
 
 - &#8203;<!-- 42 -->[blog] Update the callout (#41645) @cherniavskii
-- &#8203;<!-- 41 -->[blog] Link to Romain's blog post in MUI X v7 announcement post (#41640) @cherniavskii
-- &#8203;<!-- 40 -->[blog] Blog post with MUI X v7.0.0 annoucement (#41563) @joserodolfofreitas
+- &#8203;<!-- 41 -->[blog] Link to Romain's blog post in MUI X v7 announcement post (#41640) @cherniavskii
+- &#8203;<!-- 40 -->[blog] Blog post with MUI X v7.0.0 annoucement (#41563) @joserodolfofreitas
 - &#8203;<!-- 39 -->[blog] Add post about remote (#41565) @danilo-leal
 - &#8203;<!-- 35 -->[core] Restore the pnpm-lock.yaml (#41643) @mnajdova
 - &#8203;<!-- 34 -->[core] Fix failing CI steps (#41636) @mnajdova
@@ -65,8 +65,8 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - &#8203;<!-- 29 -->[core] Lower the frequency of no-response action runs (#41553) @michaldudak
 - &#8203;<!-- 27 -->[pigment-css][demo] Add index page for material-ui (#41577) @brijeshb42
 - &#8203;<!-- 26 -->[pigment-css][demo] Remove app specific pnpm workspace (#41393) @brijeshb42
-- &#8203;<!-- 24 -->[docs] Add notification for MUI X v7 blog post (#41587) @cherniavskii
-- &#8203;<!-- 23 -->[docs] MUI X v7 blog post annoucement followup (#41601) @joserodolfofreitas
+- &#8203;<!-- 24 -->[docs] Add notification for MUI X v7 blog post (#41587) @cherniavskii
+- &#8203;<!-- 23 -->[docs] MUI X v7 blog post annoucement followup (#41601) @joserodolfofreitas
 - &#8203;<!-- 22 -->[docs] Update the installation guides to use the next tag (#41558) @mnajdova
 - &#8203;<!-- 20 -->[docs][material-ui] Fix typo in CSS theme variables customization (#41632) @ZeeshanTamboli
 - &#8203;<!-- 19 -->[material-ui][docs] Remove deleted page from the sidenav (#41594) @danilo-leal
