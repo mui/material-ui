@@ -654,7 +654,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
         })}
       </AutocompleteListbox>,
     );
-  } else if (loading && groupedOptions.length === 0) {
+  } else if (loading) {
     autocompletePopper = renderAutocompletePopperChildren(
       <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
         {loadingText}
