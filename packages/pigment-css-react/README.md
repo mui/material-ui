@@ -859,7 +859,7 @@ function App() {
 
 The key of a UI library is to provide a set of reusable components that can be used and themed across **different projects**.
 
-This guide will show you how to build a statistics component as part of a UI library using Pigment CSS. There are 3 steps to follow:
+This guide will show you how to build a statistics component as part of a UI library using Pigment CSS. There are 3 steps to follow:
 
 1. Create the component slots.
 2. Compose slots to create the component.
@@ -1005,7 +1005,7 @@ Then you can read `ownerState` in the slot to style it based on the `variant` pr
   }));
 ```
 
-That's it! You've successfully created a statistics component with Pigment CSS. The next step is to upload your component to a package registry to let other people use it.
+That's it! You've successfully created a statistics component with Pigment CSS. The next step is to upload your component to a package registry to let other people use it.
 
 ### Consumer usage
 
@@ -1016,7 +1016,7 @@ npm install your-package-name @pigment-css/react
 npm install -D @pigment-css/nextjs-plugin
 ```
 
-Then, they need to set up Pigment CSS in their project and import the stylesheet in the root layout file:
+Then, they need to set up Pigment CSS in their project and import the stylesheet in the root layout file:
 
 ```js
 // framework config file, for example next.config.js
