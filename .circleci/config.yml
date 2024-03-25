@@ -132,8 +132,10 @@ jobs:
             - run:
                 name: Check for duplicated packages
                 # default-branch-switch
+                environment:
+                  BASE_BRANCH: next
                 command: |
-                  if [[ $(git diff --name-status next | grep pnpm.lock) == "" ]];
+                  if [[ $(git diff --name-status ${BASE_BRANCH} | grep pnpm.lock) == "" ]];
                   then
                       echo "No changes to dependencies detected. Skipping..."
                   else
