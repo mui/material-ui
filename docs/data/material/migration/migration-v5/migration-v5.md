@@ -26,4 +26,13 @@ Expect updates as new breaking changes are introduced.
 
 ### Removal of deprecated ListItem props
 
-`ListItem` props `autoFocus`, `button`, `disabled`, and `selected` have been removed as they are deprecated. `ListItemButton` is used as an alternative to `button`.
+## ListItem
+
+### Removed deprecated props
+
+`ListItem`'s props `autoFocus`, `button`, `disabled`, and `selected`, deprecated in v5, have been removed. To replace the `button` prop, use `ListItemButton` instead. The other removed props are available in the `ListItemButton` component as well.
+
+```diff
+-<ListItem button />
++<ListItemButton />
+```
