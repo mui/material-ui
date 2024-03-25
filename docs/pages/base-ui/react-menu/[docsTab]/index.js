@@ -1,7 +1,7 @@
 import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
-import * as pageProps from 'docs/data/base/components/menu/menu.md?@mui/markdown';
+import * as pageProps from 'docs/data/base/components/menu/menu.md?muiMarkdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
 import DropdownApiJsonPageContent from '../../api/dropdown.json';
 import MenuApiJsonPageContent from '../../api/menu.json';
@@ -11,6 +11,7 @@ import useDropdownApiJsonPageContent from '../../api/use-dropdown.json';
 import useMenuApiJsonPageContent from '../../api/use-menu.json';
 import useMenuButtonApiJsonPageContent from '../../api/use-menu-button.json';
 import useMenuItemApiJsonPageContent from '../../api/use-menu-item.json';
+import useMenuItemContextStabilizerApiJsonPageContent from '../../api/use-menu-item-context-stabilizer.json';
 
 export default function Page(props) {
   const { userLanguage, ...other } = props;
@@ -81,6 +82,15 @@ export const getStaticProps = () => {
   );
   const useMenuItemApiDescriptions = mapApiPageTranslations(useMenuItemApiReq);
 
+  const useMenuItemContextStabilizerApiReq = require.context(
+    'docs/translations/api-docs/use-menu-item-context-stabilizer',
+    false,
+    /use-menu-item-context-stabilizer.*.json$/,
+  );
+  const useMenuItemContextStabilizerApiDescriptions = mapApiPageTranslations(
+    useMenuItemContextStabilizerApiReq,
+  );
+
   return {
     props: {
       componentsApiDescriptions: {
@@ -100,12 +110,14 @@ export const getStaticProps = () => {
         useMenu: useMenuApiDescriptions,
         useMenuButton: useMenuButtonApiDescriptions,
         useMenuItem: useMenuItemApiDescriptions,
+        useMenuItemContextStabilizer: useMenuItemContextStabilizerApiDescriptions,
       },
       hooksApiPageContents: {
         useDropdown: useDropdownApiJsonPageContent,
         useMenu: useMenuApiJsonPageContent,
         useMenuButton: useMenuButtonApiJsonPageContent,
         useMenuItem: useMenuItemApiJsonPageContent,
+        useMenuItemContextStabilizer: useMenuItemContextStabilizerApiJsonPageContent,
       },
     },
   };

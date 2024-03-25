@@ -15,11 +15,32 @@
     "import MenuList from '@mui/material/MenuList';",
     "import { MenuList } from '@mui/material';"
   ],
-  "styles": {
-    "classes": ["root", "padding", "dense", "subheader"],
-    "globalClasses": {},
-    "name": "MuiMenuList"
-  },
+  "classes": [
+    {
+      "key": "dense",
+      "className": "MuiMenuList-dense",
+      "description": "Styles applied to the root element if dense.",
+      "isGlobal": false
+    },
+    {
+      "key": "padding",
+      "className": "MuiMenuList-padding",
+      "description": "Styles applied to the root element unless `disablePadding={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiMenuList-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "subheader",
+      "className": "MuiMenuList-subheader",
+      "description": "Styles applied to the root element if a `subheader` is provided.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": false,
   "muiName": "MuiMenuList",

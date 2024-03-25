@@ -1,18 +1,25 @@
-import { deepmerge } from '@mui/utils';
+import deepmerge from '@mui/utils/deepmerge';
+import {
+  unstable_createGetCssVar as systemCreateGetCssVar,
+  unstable_prepareCssVars as prepareCssVars,
+} from '@mui/system';
+import styleFunctionSx, {
+  unstable_defaultSxConfig as defaultSxConfig,
+} from '@mui/system/styleFunctionSx';
+
 import {
   private_safeColorChannel as safeColorChannel,
   private_safeAlpha as safeAlpha,
   private_safeDarken as safeDarken,
   private_safeLighten as safeLighten,
   private_safeEmphasize as safeEmphasize,
-  unstable_createGetCssVar as systemCreateGetCssVar,
-  unstable_defaultSxConfig as defaultSxConfig,
-  unstable_styleFunctionSx as styleFunctionSx,
-  unstable_prepareCssVars as prepareCssVars,
-} from '@mui/system';
+  hslToRgb,
+} from '@mui/system/colorManipulator';
+
 import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import createThemeWithoutVars from './createTheme';
 import getOverlayAlpha from './getOverlayAlpha';
+import defaultGetSelector from './createGetSelector';
 
 const defaultDarkOverlays = [...Array(25)].map((_, index) => {
   if (index === 0) {
@@ -36,15 +43,22 @@ function setColor(obj, key, defaultValue) {
   }
 }
 
+function toRgb(color) {
+  if (!color || !color.startsWith('hsl')) {
+    return color;
+  }
+  return hslToRgb(color);
+}
+
 function setColorChannel(obj, key) {
   if (!(`${key}Channel` in obj)) {
     // custom channel token is not provided, generate one.
     // if channel token can't be generated, show a warning.
     obj[`${key}Channel`] = safeColorChannel(
-      obj[key],
+      toRgb(obj[key]),
       `MUI: Can't create \`palette.${key}Channel\` because \`palette.${key}\` is not one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().` +
         '\n' +
-        `To suppress this warning, you need to explicitly provide the \`palette.${key}Channel\` as a string (in rgb format, e.g. "12 12 12") or undefined if you want to remove the channel token.`,
+        `To suppress this warning, you need to explicitly provide the \`palette.${key}Channel\` as a string (in rgb format, for example "12 12 12") or undefined if you want to remove the channel token.`,
     );
   }
 }
@@ -65,6 +79,7 @@ export default function extendTheme(options = {}, ...args) {
     colorSchemes: colorSchemesInput = {},
     cssVarPrefix = 'mui',
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
+    getSelector,
     ...input
   } = options;
   const getCssVar = createGetCssVar(cssVarPrefix);
@@ -78,6 +93,7 @@ export default function extendTheme(options = {}, ...args) {
   });
 
   let theme = {
+    defaultColorScheme: 'light',
     ...muiTheme,
     cssVarPrefix,
     getCssVar,
@@ -331,6 +347,9 @@ export default function extendTheme(options = {}, ...args) {
     // MUI X - DataGrid needs this token.
     setColorChannel(palette.background, 'default');
 
+    // added for consistency with the `background.default` token
+    setColorChannel(palette.background, 'paper');
+
     setColorChannel(palette.common, 'background');
     setColorChannel(palette.common, 'onBackground');
 
@@ -344,16 +363,20 @@ export default function extendTheme(options = {}, ...args) {
       if (colors && typeof colors === 'object') {
         // Silent the error for custom palettes.
         if (colors.main) {
-          setColor(palette[color], 'mainChannel', safeColorChannel(colors.main));
+          setColor(palette[color], 'mainChannel', safeColorChannel(toRgb(colors.main)));
         }
         if (colors.light) {
-          setColor(palette[color], 'lightChannel', safeColorChannel(colors.light));
+          setColor(palette[color], 'lightChannel', safeColorChannel(toRgb(colors.light)));
         }
         if (colors.dark) {
-          setColor(palette[color], 'darkChannel', safeColorChannel(colors.dark));
+          setColor(palette[color], 'darkChannel', safeColorChannel(toRgb(colors.dark)));
         }
         if (colors.contrastText) {
-          setColor(palette[color], 'contrastTextChannel', safeColorChannel(colors.contrastText));
+          setColor(
+            palette[color],
+            'contrastTextChannel',
+            safeColorChannel(toRgb(colors.contrastText)),
+          );
         }
 
         if (color === 'text') {
@@ -380,11 +403,18 @@ export default function extendTheme(options = {}, ...args) {
   const parserConfig = {
     prefix: cssVarPrefix,
     shouldSkipGeneratingVar,
+    getSelector: getSelector || defaultGetSelector(theme),
   };
-  const { vars: themeVars, generateCssVars } = prepareCssVars(theme, parserConfig);
-  theme.vars = themeVars;
-  theme.generateCssVars = generateCssVars;
-
+  const { vars, generateThemeVars, generateStyleSheets } = prepareCssVars(theme, parserConfig);
+  theme.attribute = 'data-mui-color-scheme';
+  theme.colorSchemeSelector = ':root';
+  theme.vars = vars;
+  Object.entries(theme.colorSchemes[theme.defaultColorScheme]).forEach(([key, value]) => {
+    theme[key] = value;
+  });
+  theme.generateThemeVars = generateThemeVars;
+  theme.generateStyleSheets = generateStyleSheets;
+  theme.getColorSchemeSelector = (colorScheme) => `[${theme.attribute}="${colorScheme}"] &`;
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
   theme.unstable_sxConfig = {
     ...defaultSxConfig,

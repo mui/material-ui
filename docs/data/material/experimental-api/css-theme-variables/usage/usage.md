@@ -4,10 +4,10 @@
 
 ## Getting started
 
-The CSS variables API relies on a new experimental provider for the theme called `Experimental_CssVarsProvider` to inject styles into Material UI components.
+The CSS variables API relies on a new experimental provider for the theme called `Experimental_CssVarsProvider` to inject styles into Material UI components.
 In addition to providing the theme in the inner React context, this new provider also generates CSS variables out of all tokens in the theme that are not functions, and makes them available in the context as well.
 
-Once the `App` renders on the screen, you will see the CSS theme variables in the html `:root` stylesheet.
+Once the `App` renders on the screen, you will see the CSS theme variables in the HTML `:root` stylesheet.
 The variables are flattened and prefixed with `--mui` by default:
 
 ```css
@@ -40,7 +40,7 @@ import {
 } from '@mui/material/styles';
 
 // ModeSwitcher is an example interface for toggling between modes.
-// Material UI does not provide the toggle interface—you have to build it yourself.
+// Material UI does not provide the toggle interface—you have to build it yourself.
 const ModeSwitcher = () => {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
@@ -101,7 +101,7 @@ The structure of this object is nearly identical to the theme structure, the onl
   Make sure that the components accessing `theme.vars.*` are rendered under the new provider, otherwise you will get a `TypeError`.
   :::
 
-- **Native CSS**: if you can't access the theme object, e.g. in a pure CSS file, you can use [`var()`](https://developer.mozilla.org/en-US/docs/Web/CSS/var) directly:
+- **Native CSS**: if you can't access the theme object, for example in a pure CSS file, you can use [`var()`](https://developer.mozilla.org/en-US/docs/Web/CSS/var) directly:
 
   ```css
   /* external-scope.css */

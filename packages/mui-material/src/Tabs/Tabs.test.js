@@ -2,21 +2,23 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
-  describeConformance,
   act,
   createRenderer,
   fireEvent,
   screen,
   strictModeDoubleLoggingSuppressed,
   waitFor,
-} from 'test/utils';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+} from '@mui-internal/test-utils';
 import Tab from '@mui/material/Tab';
 import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
 import { svgIconClasses } from '@mui/material/SvgIcon';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createSvgIcon } from '@mui/material/utils';
 import capitalize from '../utils/capitalize';
+import describeConformance from '../../test/describeConformance';
+
+const ArrowBackIcon = createSvgIcon(<path d="M3 3h18v18H3z" />, 'ArrowBack');
+const ArrowForwardIcon = createSvgIcon(<path d="M3 3h18v18H3z" />, 'ArrowForward');
 
 function findScrollButton(container, direction) {
   return container.querySelector(`svg[data-testid="KeyboardArrow${capitalize(direction)}Icon"]`);

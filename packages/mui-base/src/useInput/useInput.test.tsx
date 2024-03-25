@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { act, createRenderer } from 'test/utils';
+import { act, createRenderer } from '@mui-internal/test-utils';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { useInput } from './useInput';
@@ -7,6 +7,7 @@ import { UseInputParameters } from './useInput.types';
 
 describe('useInput', () => {
   const { render } = createRenderer();
+
   describe('params: inputRef', () => {
     it('should be able to attach input ref passed through params', () => {
       const inputRef = React.createRef<HTMLInputElement>();
@@ -24,6 +25,18 @@ describe('useInput', () => {
   });
 
   describe('prop: disabled', () => {
+    it('should render a disabled <input />', () => {
+      function Input(props: { disabled: boolean }) {
+        const { getInputProps } = useInput({
+          disabled: props.disabled,
+        });
+        return <input {...getInputProps()} />;
+      }
+      const { getByRole } = render(<Input disabled />);
+      const input = getByRole('textbox');
+      expect(input).to.have.attribute('disabled');
+    });
+
     it('should reset the focused state if getting disabled', () => {
       const handleBlur = spy();
       const handleFocus = spy();

@@ -1,16 +1,16 @@
-# MUI docs
+# Docs
 
-This is the documentation website of MUI.
+This is the website of the company (MUI), the documentation of Material UI, Base UI, MUI System, and Joy UI.
 
 To start the docs site in development mode, from the project root, run:
 
 ```bash
-yarn && yarn docs:dev
+pnpm start
 ```
 
-If you do not have yarn installed, select your OS and follow the instructions on the [Yarn website](https://yarnpkg.com/lang/en/docs/install/#mac-stable).
+If you do not have pnpm installed, select your OS and follow the instructions on the [pnpm website](https://pnpm.io/installation).
 
-_DO NOT USE NPM, use Yarn to install the dependencies._
+Package managers other than pnpm (like npm or Yarn) are not supported and will not work.
 
 ## How can I add a new demo to the documentation?
 

@@ -17,16 +17,16 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "img": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>component=\"picture or img\"</code>"
+    },
     "media": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>component=\"video, audio, picture, iframe, or img\"</code>"
     },
-    "img": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>component=\"picture or img\"</code>"
-    }
+    "root": { "description": "Styles applied to the root element." }
   }
 }

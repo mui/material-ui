@@ -57,7 +57,7 @@ export default function AccountMenu() {
               ml: -0.5,
               mr: 1,
             },
-            '&:before': {
+            '&::before': {
               content: '""',
               display: 'block',
               position: 'absolute',

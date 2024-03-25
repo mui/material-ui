@@ -2,13 +2,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { integerPropType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import integerPropType from '@mui/utils/integerPropType';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled, createUseThemeProps } from '../zero-styled';
 import { getStepperUtilityClass } from './stepperClasses';
 import StepConnector from '../StepConnector';
 import StepperContext from './StepperContext';
+
+const useThemeProps = createUseThemeProps('MuiStepper');
 
 const useUtilityClasses = (ownerState) => {
   const { orientation, alternativeLabel, classes } = ownerState;
@@ -30,19 +31,30 @@ const StepperRoot = styled('div', {
       ownerState.alternativeLabel && styles.alternativeLabel,
     ];
   },
-})(({ ownerState }) => ({
+})({
   display: 'flex',
-  ...(ownerState.orientation === 'horizontal' && {
-    flexDirection: 'row',
-    alignItems: 'center',
-  }),
-  ...(ownerState.orientation === 'vertical' && {
-    flexDirection: 'column',
-  }),
-  ...(ownerState.alternativeLabel && {
-    alignItems: 'flex-start',
-  }),
-}));
+  variants: [
+    {
+      props: { orientation: 'horizontal' },
+      style: {
+        flexDirection: 'row',
+        alignItems: 'center',
+      },
+    },
+    {
+      props: { orientation: 'vertical' },
+      style: {
+        flexDirection: 'column',
+      },
+    },
+    {
+      props: { alternativeLabel: true },
+      style: {
+        alignItems: 'flex-start',
+      },
+    },
+  ],
+});
 
 const defaultConnector = <StepConnector />;
 
@@ -98,10 +110,10 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
 });
 
 Stepper.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Set the active step (zero based index).
    * Set to -1 to disable all the steps.

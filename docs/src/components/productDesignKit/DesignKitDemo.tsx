@@ -16,7 +16,7 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 
 const DEMOS = ['Components', 'Branding', 'Iconography'];
 
@@ -42,18 +42,16 @@ export default function TemplateDemo() {
     <Section bg="gradient" cozy>
       <Grid container spacing={2} alignItems="center">
         <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box sx={{ maxWidth: 500 }}>
-            <SectionHeadline
-              overline="Design kits"
-              title={
-                <Typography variant="h2">
-                  Upgrade your <GradientText>design workflow</GradientText>
-                </Typography>
-              }
-              description="The Design kits contain many of the Material UI components with states, variations, colors, typography, and icons. We frequently update it to sync with the most up-to-date release."
-            />
-          </Box>
-          <Group desktopColumns={2} sx={{ mt: 4 }}>
+          <SectionHeadline
+            overline="Design kits"
+            title={
+              <Typography variant="h2">
+                Upgrade your <GradientText>design workflow</GradientText>
+              </Typography>
+            }
+            description="The Design kits contain many of the Material UI components with states, variations, colors, typography, and icons. We frequently update it to sync with the most up-to-date release."
+          />
+          <Group desktopColumns={2} sx={{ m: -2, p: 2 }}>
             {DEMOS.map((name) => (
               <Highlighter key={name} selected={name === demo} onClick={() => setDemo(name)}>
                 <Item
@@ -198,18 +196,43 @@ export default function TemplateDemo() {
                 />
               </Fade>
             </Frame.Demo>
-            <Frame.Info sx={{ display: 'flex', alignItems: 'center', minWidth: 0 }}>
-              <Box sx={{ minWidth: 0 }}>
-                <Typography variant="body2" fontWeight={500} noWrap sx={{ mb: 0.5 }}>
-                  e.g. Material UI for Figma
+            <Frame.Info
+              data-mui-color-scheme="dark"
+              sx={{
+                display: 'flex',
+                alignItems: { xs: 'start', sm: 'center' },
+                flexDirection: { xs: 'column', sm: 'row' },
+                minWidth: 0,
+                gap: { xs: 3, sm: 0 },
+              }}
+            >
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: { xs: 'column', sm: 'row' },
+                  alignItems: { xs: 'start', sm: 'center' },
+                  gap: 1,
+                }}
+              >
+                <Typography variant="body2" fontWeight="semiBold">
+                  Available for:
                 </Typography>
+                <Box sx={{ display: 'flex', gap: 1, '& >img': { width: 26, height: 26 } }}>
+                  <img src="/static/branding/design-kits/figma-logo.svg" alt="" loading="lazy" />
+                  <img src="/static/branding/design-kits/sketch-logo.svg" alt="" loading="lazy" />
+                  <img src="/static/branding/design-kits/adobexd-logo.svg" alt="" loading="lazy" />
+                </Box>
               </Box>
               <Button
                 component={Link}
-                noLinkStyle
+                variant="outlined"
                 href="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=design-cta2#design"
                 endIcon={<LaunchRounded sx={{ '&&': { fontSize: 16 } }} />}
-                sx={{ ml: 'auto', color: 'primary.300' }}
+                sx={{
+                  ml: { xs: 0, sm: 'auto' },
+                  color: 'primary.300',
+                  width: { xs: '100%', sm: 'fit-content' },
+                }}
               >
                 Buy now
               </Button>

@@ -1,5 +1,9 @@
 {
   "parameters": {
+    "componentName": {
+      "type": { "name": "string", "description": "string" },
+      "default": "'useDropdown'"
+    },
     "defaultOpen": { "type": { "name": "boolean", "description": "boolean" } },
     "onOpenChange": {
       "type": {

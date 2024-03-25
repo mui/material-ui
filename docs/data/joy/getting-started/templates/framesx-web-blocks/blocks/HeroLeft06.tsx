@@ -46,7 +46,6 @@ export default function HeroLeft06() {
       >
         <b>John Seed</b>, Apple Inc.
       </Typography>
-
       <Typography
         level="body-xs"
         sx={{

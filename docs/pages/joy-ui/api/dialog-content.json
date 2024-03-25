@@ -28,21 +28,21 @@
     "import DialogContent from '@mui/joy/DialogContent';",
     "import { DialogContent } from '@mui/joy';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiDialogContent" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiDialogContent-root"
+      "class": "MuiDialogContent-root"
     }
   ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyDialogContent",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/DialogContent/DialogContent.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/joy-ui/react-modal/\">Modal</a></li></ul>",
+  "demos": "<ul><li><a href=\"/joy-ui/react-drawer/\">Drawer</a></li>\n<li><a href=\"/joy-ui/react-modal/\">Modal</a></li></ul>",
   "cssComponent": false
 }

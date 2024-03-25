@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, describeConformance, fireEvent } from 'test/utils';
+import { createRenderer, fireEvent } from '@mui-internal/test-utils';
 import FormControl from '@mui/material/FormControl';
 import { inputBaseClasses } from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import TextField, { textFieldClasses as classes } from '@mui/material/TextField';
+import describeConformance from '../../test/describeConformance';
 
 describe('<TextField />', () => {
   const { render } = createRenderer();
@@ -122,6 +123,7 @@ describe('<TextField />', () => {
         outlinedInputClasses.notchedOutline,
       );
     });
+
     it('should render `0` label properly', () => {
       const { container } = render(
         <TextField InputProps={{ classes: { notchedOutline: 'notch' } }} label={0} required />,
@@ -202,7 +204,7 @@ describe('<TextField />', () => {
         </TextField>,
       );
 
-      expect(getByRole('button')).toHaveAccessibleName('Release: Stable');
+      expect(getByRole('combobox')).toHaveAccessibleName('Release:');
     });
 
     it('creates an input[hidden] that has no accessible properties', () => {
@@ -224,7 +226,7 @@ describe('<TextField />', () => {
         </TextField>,
       );
 
-      expect(getByRole('button')).toHaveAccessibleDescription('Foo bar');
+      expect(getByRole('combobox')).toHaveAccessibleDescription('Foo bar');
     });
   });
 

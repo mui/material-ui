@@ -20,6 +20,7 @@ import {
 import useSlot from '../utils/useSlot';
 import { StyledButtonGroup } from '../ButtonGroup/ButtonGroup';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
+import ToggleButtonGroupContext from './ToggleButtonGroupContext';
 
 interface InternalChangeEventHandler<Value> {
   (event: React.MouseEvent, value: Value | Array<Value> | null): void;
@@ -135,43 +136,50 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup<
     [value, onChange],
   );
 
+  const toggleButtonGroupContext = React.useMemo(
+    () => ({
+      onClick: (
+        event: React.MouseEvent<HTMLButtonElement>,
+        childValue: React.ButtonHTMLAttributes<HTMLButtonElement>['value'],
+      ) => {
+        if (!event.defaultPrevented) {
+          handleChange(event, childValue);
+        }
+      },
+      value,
+    }),
+    [handleChange, value],
+  );
+
   return (
     <SlotRoot {...rootProps}>
-      <ButtonGroupContext.Provider value={buttonGroupContext}>
-        {React.Children.map(children, (child, index) => {
-          if (!React.isValidElement(child)) {
-            return child;
-          }
-          const extraProps: Record<string, any> = {};
-          if (isMuiElement(child, ['Divider'])) {
-            extraProps.inset = 'inset' in child.props ? child.props.inset : 'context';
+      <ToggleButtonGroupContext.Provider value={toggleButtonGroupContext}>
+        <ButtonGroupContext.Provider value={buttonGroupContext}>
+          {React.Children.map(children, (child, index) => {
+            if (!React.isValidElement(child)) {
+              return child;
+            }
+            const extraProps: Record<string, any> = {};
+            if (isMuiElement(child, ['Divider'])) {
+              extraProps.inset = 'inset' in child.props ? child.props.inset : 'context';
 
-            const dividerOrientation = orientation === 'vertical' ? 'horizontal' : 'vertical';
-            extraProps.orientation =
-              'orientation' in child.props ? child.props.orientation : dividerOrientation;
-            extraProps.role = 'presentation';
-            extraProps.component = 'span';
-          }
-          if (child.type === 'button' || isMuiElement(child, ['Button', 'IconButton'])) {
-            extraProps.onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-              child.props.onClick?.(event);
-              if (!event.defaultPrevented) {
-                handleChange(event, child.props.value);
-              }
-            };
-            extraProps['aria-pressed'] = Array.isArray(value)
-              ? value.indexOf(child.props.value) !== -1
-              : value === child.props.value;
-          }
-          if (index === 0) {
-            extraProps['data-first-child'] = '';
-          }
-          if (index === React.Children.count(children) - 1) {
-            extraProps['data-last-child'] = '';
-          }
-          return React.cloneElement(child, extraProps);
-        })}
-      </ButtonGroupContext.Provider>
+              const dividerOrientation = orientation === 'vertical' ? 'horizontal' : 'vertical';
+              extraProps.orientation =
+                'orientation' in child.props ? child.props.orientation : dividerOrientation;
+              extraProps.role = 'presentation';
+              extraProps.component = 'span';
+            }
+
+            if (index === 0) {
+              extraProps['data-first-child'] = '';
+            }
+            if (index === React.Children.count(children) - 1) {
+              extraProps['data-last-child'] = '';
+            }
+            return React.cloneElement(child, extraProps);
+          })}
+        </ButtonGroupContext.Provider>
+      </ToggleButtonGroupContext.Provider>
     </SlotRoot>
   );
 }) as ToggleButtonGroupComponent;
@@ -193,10 +201,10 @@ interface ToggleButtonGroupComponent {
 }
 
 ToggleButtonGroup.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The flex value of the button.
    * @example buttonFlex={1} will set flex: '1 1 auto' on each button (stretch the button to equally fill the available space).

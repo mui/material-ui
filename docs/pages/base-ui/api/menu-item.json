@@ -1,5 +1,7 @@
 {
   "props": {
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableFocusOnHover": { "type": { "name": "bool" }, "default": "false" },
     "label": { "type": { "name": "string" } },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
@@ -16,21 +18,30 @@
     "import { MenuItem } from '@mui/base/MenuItem';",
     "import { MenuItem } from '@mui/base';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'li'",
-      "class": ".MuiMenuItem-root"
+      "class": "base-MenuItem-root"
     }
   ],
-  "classes": {
-    "classes": ["disabled", "focusVisible"],
-    "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" }
-  },
+  "classes": [
+    {
+      "key": "disabled",
+      "className": "base--disabled",
+      "description": "State class applied to the root `button` element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "focusVisible",
+      "className": "base--focusVisible",
+      "description": "State class applied to the root `button` element if `focusVisible={true}`.",
+      "isGlobal": true
+    }
+  ],
   "spread": true,
-  "muiName": "MuiMenuItem",
+  "muiName": "MenuItem",
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-base/src/MenuItem/MenuItem.tsx",
   "inheritance": null,

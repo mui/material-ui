@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { create } from 'jss';
 import { prefixer } from 'stylis';
 import rtlPlugin from 'stylis-plugin-rtl';
-import rtlPluginSc from 'stylis-plugin-rtl-sc';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { StyleSheetManager } from 'styled-components';
@@ -13,7 +12,7 @@ import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 import { useTheme, styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 import { getDesignTokens } from 'docs/src/modules/brandingTheme';
 import { highDensity } from 'docs/src/modules/components/ThemeContext';
 
@@ -66,7 +65,7 @@ function FramedDemo(props) {
     <StylesProvider jss={jss} sheetsManager={sheetsManager}>
       <StyleSheetManager
         target={document.head}
-        stylisPlugins={theme.direction === 'rtl' ? [rtlPluginSc] : []}
+        stylisPlugins={theme.direction === 'rtl' ? [rtlPlugin] : []}
       >
         <CacheProvider value={cache}>
           <Wrapper {...wrapperProps}>

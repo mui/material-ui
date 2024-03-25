@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, match } from 'sinon';
-import { act, createMount, createRenderer, describeConformance, screen } from 'test/utils';
+import { act, createMount, createRenderer, screen } from '@mui-internal/test-utils';
 import PropTypes from 'prop-types';
 import Grow from '@mui/material/Grow';
 import Modal from '@mui/material/Modal';
@@ -11,6 +11,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { getOffsetLeft, getOffsetTop } from './Popover';
 import useForkRef from '../utils/useForkRef';
 import styled from '../styles/styled';
+import describeConformance from '../../test/describeConformance';
 
 const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
   const handleMocks = React.useCallback((paperInstance) => {

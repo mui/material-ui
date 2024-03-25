@@ -14,7 +14,7 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Frame from 'docs/src/components/action/Frame';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import More from 'docs/src/components/action/More';
 import { DEMOS, icons, TEMPLATES } from 'docs/src/components/productMaterial/MaterialTemplates';
 
@@ -60,19 +60,17 @@ export default function TemplateDemo() {
     <Section bg="gradient">
       <Grid container spacing={2} alignItems="center">
         <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box sx={{ maxWidth: 500 }}>
-            <SectionHeadline
-              overline="Templates"
-              title={
-                <Typography variant="h2">
-                  The right template for your <GradientText>specific use case</GradientText>
-                </Typography>
-              }
-              description="A collection of 4.5 average rating templates, for multiple use cases, all powered by Material UI components and carefully curated by MUI's team.
+          <SectionHeadline
+            overline="Templates"
+            title={
+              <Typography variant="h2">
+                The right template for your <GradientText>specific use case</GradientText>
+              </Typography>
+            }
+            description="A collection of 4.5 average rating templates, for multiple use cases, all powered by Material UI components and carefully curated by MUI's team.
               "
-            />
-          </Box>
-          <Group desktopColumns={2} sx={{ mt: 4 }}>
+          />
+          <Group desktopColumns={2} sx={{ m: -2, p: 2 }}>
             {DEMOS.map((name) => (
               <Highlighter
                 key={name}

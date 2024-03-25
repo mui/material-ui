@@ -62,58 +62,184 @@
   },
   "name": "Link",
   "imports": ["import Link from '@mui/joy/Link';", "import { Link } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiLink" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'a'",
-      "class": ".MuiLink-root"
+      "class": "MuiLink-root"
     },
     {
       "name": "startDecorator",
       "description": "The component that renders the start decorator.",
       "default": "'span'",
-      "class": ".MuiLink-startDecorator"
+      "class": "MuiLink-startDecorator"
     },
     {
       "name": "endDecorator",
       "description": "The component that renders the end decorator.",
       "default": "'span'",
-      "class": ".MuiLink-endDecorator"
+      "class": "MuiLink-endDecorator"
     }
   ],
-  "classes": {
-    "classes": [
-      "body-lg",
-      "body-md",
-      "body-sm",
-      "body-xs",
-      "colorContext",
-      "colorDanger",
-      "colorNeutral",
-      "colorPrimary",
-      "colorSuccess",
-      "colorWarning",
-      "disabled",
-      "focusVisible",
-      "h1",
-      "h2",
-      "h3",
-      "h4",
-      "title-lg",
-      "title-md",
-      "title-sm",
-      "underlineAlways",
-      "underlineHover",
-      "underlineNone",
-      "variantOutlined",
-      "variantPlain",
-      "variantSoft",
-      "variantSolid"
-    ],
-    "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" }
-  },
+  "classes": [
+    {
+      "key": "body-lg",
+      "className": "MuiLink-body-lg",
+      "description": "Class name applied to the root element if `level=\"body-lg\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "body-md",
+      "className": "MuiLink-body-md",
+      "description": "Class name applied to the root element if `level=\"body-md\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "body-sm",
+      "className": "MuiLink-body-sm",
+      "description": "Class name applied to the root element if `level=\"body-sm\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "body-xs",
+      "className": "MuiLink-body-xs",
+      "description": "Class name applied to the root element if `level=\"body-xs\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorContext",
+      "className": "MuiLink-colorContext",
+      "description": "Class name applied to the root element when color inversion is triggered.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorDanger",
+      "className": "MuiLink-colorDanger",
+      "description": "Class name applied to the root element if `color=\"danger\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorNeutral",
+      "className": "MuiLink-colorNeutral",
+      "description": "Class name applied to the root element if `color=\"neutral\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiLink-colorPrimary",
+      "description": "Class name applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSuccess",
+      "className": "MuiLink-colorSuccess",
+      "description": "Class name applied to the root element if `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorWarning",
+      "className": "MuiLink-colorWarning",
+      "description": "Class name applied to the root element if `color=\"warning\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "focusVisible",
+      "className": "Mui-focusVisible",
+      "description": "State class applied to the root element if the link is keyboard focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "h1",
+      "className": "MuiLink-h1",
+      "description": "Class name applied to the root element if `level=\"h1\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "h2",
+      "className": "MuiLink-h2",
+      "description": "Class name applied to the root element if `level=\"h2\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "h3",
+      "className": "MuiLink-h3",
+      "description": "Class name applied to the root element if `level=\"h3\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "h4",
+      "className": "MuiLink-h4",
+      "description": "Class name applied to the root element if `level=\"h4\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "title-lg",
+      "className": "MuiLink-title-lg",
+      "description": "Class name applied to the root element if `level=\"title-lg\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "title-md",
+      "className": "MuiLink-title-md",
+      "description": "Class name applied to the root element if `level=\"title-md\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "title-sm",
+      "className": "MuiLink-title-sm",
+      "description": "Class name applied to the root element if `level=\"title-sm\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "underlineAlways",
+      "className": "MuiLink-underlineAlways",
+      "description": "Class name applied to the root element if `underline=\"always\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "underlineHover",
+      "className": "MuiLink-underlineHover",
+      "description": "Class name applied to the root element if `underline=\"hover\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "underlineNone",
+      "className": "MuiLink-underlineNone",
+      "description": "Class name applied to the root element if `underline=\"none\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantOutlined",
+      "className": "MuiLink-variantOutlined",
+      "description": "Class name applied to the root element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantPlain",
+      "className": "MuiLink-variantPlain",
+      "description": "Class name applied to the root element if `variant=\"plain\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSoft",
+      "className": "MuiLink-variantSoft",
+      "description": "Class name applied to the root element if `variant=\"soft\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSolid",
+      "className": "MuiLink-variantSolid",
+      "description": "Class name applied to the root element if `variant=\"solid\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyLink",

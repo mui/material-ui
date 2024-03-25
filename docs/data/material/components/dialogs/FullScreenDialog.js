@@ -2,7 +2,7 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import ListItemText from '@mui/material/ListItemText';
-import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import AppBar from '@mui/material/AppBar';
@@ -28,7 +28,7 @@ export default function FullScreenDialog() {
   };
 
   return (
-    <div>
+    <React.Fragment>
       <Button variant="outlined" onClick={handleClickOpen}>
         Open full-screen dialog
       </Button>
@@ -57,18 +57,18 @@ export default function FullScreenDialog() {
           </Toolbar>
         </AppBar>
         <List>
-          <ListItem button>
+          <ListItemButton>
             <ListItemText primary="Phone ringtone" secondary="Titania" />
-          </ListItem>
+          </ListItemButton>
           <Divider />
-          <ListItem button>
+          <ListItemButton>
             <ListItemText
               primary="Default notification ringtone"
               secondary="Tethys"
             />
-          </ListItem>
+          </ListItemButton>
         </List>
       </Dialog>
-    </div>
+    </React.Fragment>
   );
 }

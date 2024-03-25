@@ -64,6 +64,13 @@
       "type": { "name": "func" },
       "signature": { "type": "function(option: Value) => boolean", "describedArgs": ["option"] }
     },
+    "getOptionKey": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(option: Value) => string | number",
+        "describedArgs": ["option"]
+      }
+    },
     "getOptionLabel": {
       "type": { "name": "func" },
       "default": "(option) => option.label ?? option",
@@ -183,42 +190,164 @@
     "import Autocomplete from '@mui/material/Autocomplete';",
     "import { Autocomplete } from '@mui/material';"
   ],
-  "styles": {
-    "classes": [
-      "root",
-      "fullWidth",
-      "expanded",
-      "focused",
-      "focusVisible",
-      "tag",
-      "tagSizeSmall",
-      "tagSizeMedium",
-      "hasPopupIcon",
-      "hasClearIcon",
-      "inputRoot",
-      "input",
-      "inputFocused",
-      "endAdornment",
-      "clearIndicator",
-      "popupIndicator",
-      "popupIndicatorOpen",
-      "popper",
-      "popperDisablePortal",
-      "paper",
-      "listbox",
-      "loading",
-      "noOptions",
-      "option",
-      "groupLabel",
-      "groupUl"
-    ],
-    "globalClasses": {
-      "expanded": "Mui-expanded",
-      "focused": "Mui-focused",
-      "focusVisible": "Mui-focusVisible"
+  "classes": [
+    {
+      "key": "clearIndicator",
+      "className": "MuiAutocomplete-clearIndicator",
+      "description": "Styles applied to the clear indicator.",
+      "isGlobal": false
     },
-    "name": "MuiAutocomplete"
-  },
+    {
+      "key": "endAdornment",
+      "className": "MuiAutocomplete-endAdornment",
+      "description": "Styles applied to the endAdornment element.",
+      "isGlobal": false
+    },
+    {
+      "key": "expanded",
+      "className": "Mui-expanded",
+      "description": "State class applied to the root element if the listbox is displayed.",
+      "isGlobal": true
+    },
+    {
+      "key": "focused",
+      "className": "Mui-focused",
+      "description": "State class applied to the root element if focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "focusVisible",
+      "className": "Mui-focusVisible",
+      "description": "Styles applied to the option elements if they are keyboard focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "fullWidth",
+      "className": "MuiAutocomplete-fullWidth",
+      "description": "Styles applied to the root element if `fullWidth={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "groupLabel",
+      "className": "MuiAutocomplete-groupLabel",
+      "description": "Styles applied to the group's label elements.",
+      "isGlobal": false
+    },
+    {
+      "key": "groupUl",
+      "className": "MuiAutocomplete-groupUl",
+      "description": "Styles applied to the group's ul elements.",
+      "isGlobal": false
+    },
+    {
+      "key": "hasClearIcon",
+      "className": "MuiAutocomplete-hasClearIcon",
+      "description": "Styles applied when the clear icon is rendered.",
+      "isGlobal": false
+    },
+    {
+      "key": "hasPopupIcon",
+      "className": "MuiAutocomplete-hasPopupIcon",
+      "description": "Styles applied when the popup icon is rendered.",
+      "isGlobal": false
+    },
+    {
+      "key": "input",
+      "className": "MuiAutocomplete-input",
+      "description": "Styles applied to the input element.",
+      "isGlobal": false
+    },
+    {
+      "key": "inputFocused",
+      "className": "MuiAutocomplete-inputFocused",
+      "description": "Styles applied to the input element if the input is focused.",
+      "isGlobal": false
+    },
+    {
+      "key": "inputRoot",
+      "className": "MuiAutocomplete-inputRoot",
+      "description": "Styles applied to the Input element.",
+      "isGlobal": false
+    },
+    {
+      "key": "listbox",
+      "className": "MuiAutocomplete-listbox",
+      "description": "Styles applied to the listbox component.",
+      "isGlobal": false
+    },
+    {
+      "key": "loading",
+      "className": "MuiAutocomplete-loading",
+      "description": "Styles applied to the loading wrapper.",
+      "isGlobal": false
+    },
+    {
+      "key": "noOptions",
+      "className": "MuiAutocomplete-noOptions",
+      "description": "Styles applied to the no option wrapper.",
+      "isGlobal": false
+    },
+    {
+      "key": "option",
+      "className": "MuiAutocomplete-option",
+      "description": "Styles applied to the option elements.",
+      "isGlobal": false
+    },
+    {
+      "key": "paper",
+      "className": "MuiAutocomplete-paper",
+      "description": "Styles applied to the Paper component.",
+      "isGlobal": false
+    },
+    {
+      "key": "popper",
+      "className": "MuiAutocomplete-popper",
+      "description": "Styles applied to the popper element.",
+      "isGlobal": false
+    },
+    {
+      "key": "popperDisablePortal",
+      "className": "MuiAutocomplete-popperDisablePortal",
+      "description": "Styles applied to the popper element if `disablePortal={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "popupIndicator",
+      "className": "MuiAutocomplete-popupIndicator",
+      "description": "Styles applied to the popup indicator.",
+      "isGlobal": false
+    },
+    {
+      "key": "popupIndicatorOpen",
+      "className": "MuiAutocomplete-popupIndicatorOpen",
+      "description": "Styles applied to the popup indicator if the popup is open.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiAutocomplete-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "tag",
+      "className": "MuiAutocomplete-tag",
+      "description": "Styles applied to the tag elements, for example the chips.",
+      "isGlobal": false
+    },
+    {
+      "key": "tagSizeMedium",
+      "className": "MuiAutocomplete-tagSizeMedium",
+      "description": "Styles applied to the tag elements, for example the chips if `size=\"medium\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "tagSizeSmall",
+      "className": "MuiAutocomplete-tagSizeSmall",
+      "description": "Styles applied to the tag elements, for example the chips if `size=\"small\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiAutocomplete",

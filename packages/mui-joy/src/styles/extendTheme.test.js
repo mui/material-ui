@@ -1,16 +1,19 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from 'test/utils';
-import { extendTheme, useTheme, CssVarsProvider } from '@mui/joy/styles';
+import { createRenderer } from '@mui-internal/test-utils';
+import { extendTheme, useTheme, CssVarsProvider, styled } from '@mui/joy/styles';
 
 describe('extendTheme', () => {
   it('the output contains required fields', () => {
     const result = extendTheme();
     Object.keys(result).forEach((field) => {
       expect([
+        'attribute',
         'breakpoints',
+        'colorSchemeSelector',
         'components',
         'colorSchemes',
+        'defaultColorScheme',
         'focus',
         'fontSize',
         'fontFamily',
@@ -20,19 +23,22 @@ describe('extendTheme', () => {
         'spacing',
         'radius',
         'shadow',
+        'shadowRing',
+        'shadowChannel',
+        'shadowOpacity',
         'zIndex',
         'typography',
-        'colorInversionConfig',
         'variants',
         'cssVarPrefix',
         'palette',
         'vars',
         'getColorSchemeSelector',
-        'colorInversion',
         'unstable_sxConfig',
         'unstable_sx',
         'shouldSkipGeneratingVar',
-        'generateCssVars',
+        'generateStyleSheets',
+        'generateThemeVars',
+        'applyStyles',
       ]).to.includes(field);
     });
   });
@@ -105,6 +111,7 @@ describe('extendTheme', () => {
 
     let originalMatchmedia;
     const storage = {};
+
     beforeEach(() => {
       originalMatchmedia = window.matchMedia;
       // Create mocks of localStorage getItem and setItem functions
@@ -122,6 +129,7 @@ describe('extendTheme', () => {
         removeListener: () => {},
       });
     });
+
     afterEach(() => {
       window.matchMedia = originalMatchmedia;
     });
@@ -176,6 +184,29 @@ describe('extendTheme', () => {
       expect(styles).to.deep.equal({
         // No default value as the CssVarsProvider is used
         borderRadius: 'var(--joy-radius-md)',
+      });
+    });
+
+    it('applyStyles', () => {
+      const attribute = 'data-custom-color-scheme';
+      let darkStyles = {};
+      const Test = styled('div')(({ theme }) => {
+        darkStyles = theme.applyStyles('dark', {
+          backgroundColor: 'rgba(0, 0, 0, 0)',
+        });
+        return null;
+      });
+
+      render(
+        <CssVarsProvider attribute={attribute}>
+          <Test />
+        </CssVarsProvider>,
+      );
+
+      expect(darkStyles).to.deep.equal({
+        [`*:where([${attribute}="dark"]) &`]: {
+          backgroundColor: 'rgba(0, 0, 0, 0)',
+        },
       });
     });
   });

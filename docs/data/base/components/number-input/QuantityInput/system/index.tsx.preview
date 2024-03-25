@@ -1,1 +1,0 @@
-<CustomNumberInput aria-label="Quantity Input" min={1} max={99} />

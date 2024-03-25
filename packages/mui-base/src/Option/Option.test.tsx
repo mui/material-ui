@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
+import { createMount, createRenderer } from '@mui-internal/test-utils';
 import { Option, optionClasses } from '@mui/base/Option';
 import { SelectProvider } from '../useSelect/SelectProvider';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 const dummyGetItemState = () => ({
-  disabled: false,
   highlighted: false,
   selected: false,
   index: 0,
@@ -24,9 +24,7 @@ describe('<Option />', () => {
             dispatch: () => {},
             getItemIndex: () => 0,
             getItemState: dummyGetItemState,
-            registerHighlightChangeHandler: () => () => {},
             registerItem: () => ({ id: 0, deregister: () => {} }),
-            registerSelectionChangeHandler: () => () => {},
             totalSubitemCount: 0,
           }}
         >
@@ -41,9 +39,7 @@ describe('<Option />', () => {
             dispatch: () => {},
             getItemIndex: () => 0,
             getItemState: dummyGetItemState,
-            registerHighlightChangeHandler: () => () => {},
             registerItem: () => ({ id: 0, deregister: () => {} }),
-            registerSelectionChangeHandler: () => () => {},
             totalSubitemCount: 0,
           }}
         >
@@ -54,7 +50,6 @@ describe('<Option />', () => {
     },
     refInstanceof: window.HTMLLIElement,
     testComponentPropWith: 'span',
-    muiName: 'MuiOption',
     slots: {
       root: {
         expectedClassName: optionClasses.root,

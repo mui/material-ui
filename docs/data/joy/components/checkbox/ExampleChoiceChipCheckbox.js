@@ -21,6 +21,7 @@ export default function ExampleChoiceChipCheckbox() {
             '--List-gap': '8px',
             '--ListItem-radius': '20px',
             '--ListItem-minHeight': '32px',
+            '--ListItem-gap': '4px',
           }}
         >
           {['Elevator', 'Washer/Dryer', 'Fireplace', 'Dogs ok', 'Cats ok'].map(
@@ -30,7 +31,7 @@ export default function ExampleChoiceChipCheckbox() {
                   <Done
                     fontSize="md"
                     color="primary"
-                    sx={{ ml: -0.5, mr: 0.5, zIndex: 2, pointerEvents: 'none' }}
+                    sx={{ ml: -0.5, zIndex: 2, pointerEvents: 'none' }}
                   />
                 )}
 

@@ -141,27 +141,20 @@
     "github": "apedroferreira"
   },
   {
-    "name": "Gerda Mostonaite",
-    "title": "Senior Designer - X",
-    "location": "New York, USA",
-    "locationCountry": "us",
-    "about": "🎨 Art & design, traveling, and asking questions",
-    "github": "gerdadesign"
-  },
-  {
     "name": "Greg Abaoag",
     "title": "Executive Assistant",
     "location": "Philippines",
     "locationCountry": "ph",
     "about": "Loves DIY, singing and learning",
-    "github": "gzrae"
+    "github": "zannager"
   },
   {
     "name": "Tina Deinekhovska",
     "title": "Business Administrator",
     "location": "London, UK",
     "locationCountry": "gb",
-    "about": "Empathic art-lover, incurable optimist keen on biking, gardening"
+    "about": "Empathic art-lover, incurable optimist keen on biking, gardening",
+    "github": "TinaDein"
   },
   {
     "name": "Lukas Tyla",
@@ -194,7 +187,8 @@
     "title": "Senior People & Culture Partner",
     "location": "Newcastle Upon Tyne, UK",
     "locationCountry": "gb",
-    "about": "🧗‍♂️ Amateur indoor climber & ex-philosophy geek"
+    "about": "🧗‍♂️ Amateur indoor climber & ex-philosophy geek",
+    "github": "mikailaread"
   },
   {
     "name": "Romain Grégoire",
@@ -203,15 +197,6 @@
     "locationCountry": "ca",
     "about": "Open-source tinkerer",
     "github": "romgrk"
-  },
-  {
-    "name": "Rich Bustos",
-    "title": "Developer Advocate",
-    "location": "Daly City, CA, USA",
-    "locationCountry": "us",
-    "about": "I enjoy collecting sports cards and practicing jiu-jitsu",
-    "github": "richbustos",
-    "twitter": "bustos_rich"
   },
   {
     "name": "Victor Zanivan",
@@ -271,5 +256,22 @@
     "about": "Geeking out on Badminton 🏸, everything Japan 🇯🇵 and Pizza 🍕",
     "twitter": "jsNerdic",
     "github": "michelengelen"
+  },
+  {
+    "name": "Vadym Raksha",
+    "title": "Product Engineer - Store",
+    "location": "Prague, Czech Republic",
+    "locationCountry": "cz",
+    "about": "Product experience geek \uD83D\uDECB, Mediterranean vibes \uD83C\uDF4A",
+    "twitter": "vadym_raksha",
+    "github": "hasdfa"
+  },
+  {
+    "name": "James Nelson",
+    "title": "Software Engineer - Base UI",
+    "location": "Gold Coast, Australia",
+    "locationCountry": "au",
+    "about": "Enjoy creating open source libraries and reading about AI 🤖",
+    "github": "atomiks"
   }
 ]

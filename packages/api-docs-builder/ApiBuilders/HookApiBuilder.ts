@@ -1,4 +1,4 @@
-import { mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import * as ts from 'typescript';
 import * as astTypes from 'ast-types';
@@ -8,18 +8,19 @@ import traverse from '@babel/traverse';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import kebabCase from 'lodash/kebabCase';
 import upperFirst from 'lodash/upperFirst';
-import { renderMarkdown } from '@mui/markdown';
-import { LANGUAGES } from 'docs/config';
-import { toGitHubPath, computeApiDescription } from './ComponentApiBuilder';
+import { renderMarkdown } from '@mui/internal-markdown';
+import { ProjectSettings } from '../ProjectSettings';
+import { computeApiDescription } from './ComponentApiBuilder';
 import {
   getSymbolDescription,
   getSymbolJSDocTags,
   HookInfo,
   stringifySymbol,
+  toGitHubPath,
   writePrettifiedFile,
 } from '../buildApiUtils';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
-import muiDefaultParamsHandler from '../utils/defaultParamsHandler';
+import generateApiTranslations from '../utils/generateApiTranslation';
 
 interface ParsedProperty {
   name: string;
@@ -29,12 +30,15 @@ interface ParsedProperty {
   typeStr: string;
 }
 
-const parseProperty = (propertySymbol: ts.Symbol, project: TypeScriptProject): ParsedProperty => ({
+const parseProperty = async (
+  propertySymbol: ts.Symbol,
+  project: TypeScriptProject,
+): Promise<ParsedProperty> => ({
   name: propertySymbol.name,
   description: getSymbolDescription(propertySymbol, project),
   tags: getSymbolJSDocTags(propertySymbol),
   required: !propertySymbol.declarations?.find(ts.isPropertySignature)?.questionToken,
-  typeStr: stringifySymbol(propertySymbol, project),
+  typeStr: await stringifySymbol(propertySymbol, project),
 });
 
 export interface ReactApi extends ReactDocgenApi {
@@ -87,6 +91,10 @@ export interface ReactApi extends ReactDocgenApi {
       };
     };
   };
+  /**
+   * The folder used to store the API translation.
+   */
+  apiDocsTranslationFolder?: string;
 }
 
 /**
@@ -389,7 +397,7 @@ const attachTranslations = (reactApi: ReactApi) => {
   reactApi.translations = translations;
 };
 
-const generateApiJson = (outputDirectory: string, reactApi: ReactApi) => {
+const generateApiJson = async (outputDirectory: string, reactApi: ReactApi) => {
   /**
    * Gather the metadata needed for the component's API page.
    */
@@ -425,50 +433,16 @@ const generateApiJson = (outputDirectory: string, reactApi: ReactApi) => {
       .join('\n')}</ul>`,
   };
 
-  writePrettifiedFile(
+  await writePrettifiedFile(
     path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.json`),
     JSON.stringify(pageContent),
   );
 };
 
-const generateApiTranslations = (outputDirectory: string, reactApi: ReactApi) => {
-  const hookName = reactApi.name;
-  const apiDocsTranslationPath = path.resolve(outputDirectory, kebabCase(hookName));
-  function resolveApiDocsTranslationsComponentLanguagePath(
-    language: (typeof LANGUAGES)[0],
-  ): string {
-    const languageSuffix = language === 'en' ? '' : `-${language}`;
-
-    return path.join(apiDocsTranslationPath, `${kebabCase(hookName)}${languageSuffix}.json`);
-  }
-
-  mkdirSync(apiDocsTranslationPath, {
-    mode: 0o777,
-    recursive: true,
-  });
-
-  writePrettifiedFile(
-    resolveApiDocsTranslationsComponentLanguagePath('en'),
-    JSON.stringify(reactApi.translations),
-  );
-
-  LANGUAGES.forEach((language) => {
-    if (language !== 'en') {
-      try {
-        writePrettifiedFile(
-          resolveApiDocsTranslationsComponentLanguagePath(language),
-          JSON.stringify(reactApi.translations),
-          undefined,
-          { flag: 'wx' },
-        );
-      } catch (error) {
-        // File exists
-      }
-    }
-  });
-};
-
-const extractInfoFromType = (typeName: string, project: TypeScriptProject): ParsedProperty[] => {
+const extractInfoFromType = async (
+  typeName: string,
+  project: TypeScriptProject,
+): Promise<ParsedProperty[]> => {
   // Generate the params
   let result: ParsedProperty[] = [];
 
@@ -486,9 +460,11 @@ const extractInfoFromType = (typeName: string, project: TypeScriptProject): Pars
     const propertiesOnProject = type.getProperties();
 
     // @ts-ignore
-    propertiesOnProject.forEach((propertySymbol) => {
-      properties[propertySymbol.name] = parseProperty(propertySymbol, project);
-    });
+    await Promise.all(
+      propertiesOnProject.map(async (propertySymbol) => {
+        properties[propertySymbol.name] = await parseProperty(propertySymbol, project);
+      }),
+    );
 
     result = Object.values(properties)
       .filter((property) => !property.tags.ignore)
@@ -536,7 +512,11 @@ const getHookImports = (name: string, filename: string) => {
   return [subpathImport, rootImport];
 };
 
-export default async function generateHookApi(hooksInfo: HookInfo, project: TypeScriptProject) {
+export default async function generateHookApi(
+  hooksInfo: HookInfo,
+  project: TypeScriptProject,
+  projectSettings: ProjectSettings,
+) {
   const { filename, name, apiPathname, apiPagesDirectory, getDemos, readFile, skipApiGeneration } =
     hooksInfo;
 
@@ -560,12 +540,12 @@ export default async function generateHookApi(hooksInfo: HookInfo, project: Type
       });
       return node;
     },
-    defaultHandlers.concat(muiDefaultParamsHandler),
+    defaultHandlers,
     { filename },
   );
 
-  const parameters = extractInfoFromType(`${upperFirst(name)}Parameters`, project);
-  const returnValue = extractInfoFromType(`${upperFirst(name)}ReturnValue`, project);
+  const parameters = await extractInfoFromType(`${upperFirst(name)}Parameters`, project);
+  const returnValue = await extractInfoFromType(`${upperFirst(name)}ReturnValue`, project);
 
   // Ignore what we might have generated in `annotateHookDefinition`
   const annotatedDescriptionMatch = reactApi.description.match(/(Demos|API):\r?\n\r?\n/);
@@ -600,8 +580,12 @@ export default async function generateHookApi(hooksInfo: HookInfo, project: Type
 
   if (!skipApiGeneration) {
     // Generate pages, json and translations
-    generateApiTranslations(path.join(process.cwd(), 'docs/translations/api-docs'), reactApi);
-    generateApiJson(apiPagesDirectory, reactApi);
+    await generateApiTranslations(
+      path.join(process.cwd(), 'docs/translations/api-docs'),
+      reactApi,
+      projectSettings.translationLanguages,
+    );
+    await generateApiJson(apiPagesDirectory, reactApi);
 
     // Add comment about demo & api links to the component hook file
     await annotateHookDefinition(reactApi);

@@ -4,16 +4,16 @@ export interface SelectOption<Value> {
   value: Value;
   label: React.ReactNode;
   disabled?: boolean;
-  ref: React.RefObject<Element>;
+  ref: React.RefObject<HTMLElement>;
   id?: string;
 }
 
 export interface UseOptionParameters<Value> {
   disabled: boolean;
-  label: string | React.ReactNode;
-  value: Value;
-  rootRef?: React.Ref<Element>;
   id?: string;
+  label: string | React.ReactNode;
+  rootRef?: React.Ref<Element>;
+  value: Value;
 }
 
 export interface UseOptionReturnValue {

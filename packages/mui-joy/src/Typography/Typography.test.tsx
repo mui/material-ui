@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
+import { createRenderer } from '@mui-internal/test-utils';
 import Typography, { typographyClasses as classes, TypographyProps } from '@mui/joy/Typography';
 import { ThemeProvider } from '@mui/joy/styles';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Typography />', () => {
   const { render } = createRenderer();
@@ -23,8 +24,6 @@ describe('<Typography />', () => {
     },
     skip: ['componentsProp', 'classesRoot'],
   }));
-
-  describeJoyColorInversion(<Typography variant="soft" />, { muiName: 'JoyTypography', classes });
 
   it('should render the text', () => {
     const { container } = render(<Typography>Hello</Typography>);

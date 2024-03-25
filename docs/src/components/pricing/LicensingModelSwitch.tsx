@@ -1,7 +1,7 @@
 import * as React from 'react';
+import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
-import { styled } from '@mui/material/styles';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { useLicensingModel } from 'docs/src/components/pricing/LicensingModelContext';
@@ -14,10 +14,11 @@ const StyledTabs = styled(Tabs)(({ theme }) => ({
   overflow: 'visible',
   borderRadius: 20,
   border: '1px solid',
-  borderColor: (theme.vars || theme).palette.grey[200],
+  borderColor: (theme.vars || theme).palette.grey[100],
   backgroundColor: (theme.vars || theme).palette.grey[50],
   '&:has(.Mui-focusVisible)': {
-    outline: `2px solid ${(theme.vars || theme).palette.primary.main}`,
+    outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
+    outlineOffset: '2px',
   },
   '& .MuiTabs-scroller, & .MuiTab-root': {
     // Override inline-style to see the box-shadow
@@ -27,44 +28,47 @@ const StyledTabs = styled(Tabs)(({ theme }) => ({
     zIndex: 1,
   },
   '& .MuiTab-root': {
-    padding: '2px 10px',
-    fontSize: theme.typography.pxToRem(14),
-    fontWeight: 500,
+    padding: '4px 8px',
+    fontSize: theme.typography.pxToRem(13),
+    fontWeight: theme.typography.fontWeightSemiBold,
     minWidth: 0,
     minHeight: 0,
-    color: (theme.vars || theme).palette.grey[700],
+    color: (theme.vars || theme).palette.text.tertiary,
     borderRadius: 20,
+    zIndex: 2,
     '&:hover': {
-      color: (theme.vars || theme).palette.grey[800],
+      color: (theme.vars || theme).palette.text.primary,
     },
     '&.Mui-selected': {
-      color: (theme.vars || theme).palette.grey[900],
-      fontWeight: 600,
+      color: (theme.vars || theme).palette.primary[600],
+      fontWeight: theme.typography.fontWeightSemiBold,
+    },
+    '&.Mui-focusVisible': {
+      outline: 'none',
     },
   },
   '& .MuiTabs-indicator': {
-    backgroundColor: '#fff',
+    backgroundColor: '#FFF',
+    border: '1px solid',
+    borderColor: (theme.vars || theme).palette.grey[200],
     height: '100%',
     borderRadius: 20,
     zIndex: 0,
-    boxShadow: '0px 4px 20px rgba(45, 56, 67, 0.1)',
+    boxShadow: `0px 1px 2px ${(theme.vars || theme).palette.grey[200]}`,
   },
   ...theme.applyDarkStyles({
-    borderColor: (theme.vars || theme).palette.grey[800],
-    backgroundColor: (theme.vars || theme).palette.grey[900],
-    color: (theme.vars || theme).palette.grey[400],
+    borderColor: (theme.vars || theme).palette.primaryDark[700],
+    backgroundColor: (theme.vars || theme).palette.primaryDark[900],
     '& .MuiTabs-indicator': {
-      backgroundColor: (theme.vars || theme).palette.grey[700],
       height: '100%',
       borderRadius: 20,
+      backgroundColor: alpha(theme.palette.primaryDark[600], 0.5),
+      borderColor: (theme.vars || theme).palette.primaryDark[600],
+      boxShadow: `0px 1px 4px ${(theme.vars || theme).palette.common.black}`,
     },
     '& .MuiTab-root': {
-      color: (theme.vars || theme).palette.grey[400],
-      '&:hover': {
-        color: (theme.vars || theme).palette.grey[300],
-      },
       '&.Mui-selected': {
-        color: '#fff',
+        color: (theme.vars || theme).palette.primary[200],
       },
     },
   }),

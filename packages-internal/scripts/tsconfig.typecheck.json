@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "../..",
+    "types": ["node", "mocha"],
+    "noEmit": true
+  },
+  "include": ["./**/*.ts"],
+  "exclude": ["./build", "./node_modules"],
+  "references": [{ "path": "../../packages-internal/docs-utils/tsconfig.build.json" }]
+}

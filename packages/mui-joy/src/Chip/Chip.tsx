@@ -9,7 +9,6 @@ import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { VariantColorProvider } from '../styles/variantColorInheritance';
-import { useColorInversion } from '../styles/ColorInversion';
 import { resolveSxValue } from '../styles/styleUtils';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 import { ChipProps, ChipOwnerState, ChipTypeMap } from './ChipProps';
@@ -169,7 +168,11 @@ const ChipAction = styled('button', {
     backgroundColor: theme.vars.palette.background.surface,
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
   },
-  { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+  {
+    '&:hover': {
+      '@media (hover: hover)': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+    },
+  },
   { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
   {
     [`&.${chipClasses.disabled}`]:
@@ -187,7 +190,7 @@ const ChipStartDecorator = styled('span', {
     '0 calc(-1 * var(--Chip-paddingInline) / 3) 0 calc(var(--Chip-decoratorChildOffset) * -1)',
   '--Icon-margin': '0 0 0 calc(var(--Chip-paddingInline) / -4)',
   display: 'inherit',
-  // set zIndex to 1 with order to stay on top of other controls, e.g. Checkbox, Radio
+  // set zIndex to 1 with order to stay on top of other controls, for example Checkbox, Radio
   order: 0,
   zIndex: 1,
   pointerEvents: 'none',
@@ -202,7 +205,7 @@ const ChipEndDecorator = styled('span', {
     '0 calc(var(--Chip-decoratorChildOffset) * -1) 0 calc(-1 * var(--Chip-paddingInline) / 3)',
   '--Icon-margin': '0 calc(var(--Chip-paddingInline) / -4) 0 0',
   display: 'inherit',
-  // set zIndex to 1 with order to stay on top of other controls, e.g. Checkbox, Radio
+  // set zIndex to 1 with order to stay on top of other controls, for example Checkbox, Radio
   order: 2,
   zIndex: 1,
   pointerEvents: 'none',
@@ -224,7 +227,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const {
     children,
     className,
-    color: colorProp = 'neutral',
+    color = 'neutral',
     onClick,
     disabled = false,
     size = 'md',
@@ -236,8 +239,6 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const clickable = !!onClick || !!slotProps.action;
   const ownerState: ChipOwnerState = {
@@ -313,11 +314,11 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
 
   return (
     <ChipContext.Provider value={chipContextValue}>
-      <VariantColorProvider variant={variant} color={colorProp}>
+      <VariantColorProvider variant={variant} color={color}>
         <SlotRoot {...rootProps}>
           {clickable && <SlotAction {...actionProps} />}
 
-          {/* label is always the first element for integrating with other controls, e.g. Checkbox, Radio. Use CSS order to rearrange position */}
+          {/* label is always the first element for integrating with other controls, for example Checkbox, Radio. Use CSS order to rearrange position */}
           <SlotLabel {...labelProps} id={id}>
             {children}
           </SlotLabel>
@@ -335,10 +336,10 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
 }) as OverridableComponent<ChipTypeMap>;
 
 Chip.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

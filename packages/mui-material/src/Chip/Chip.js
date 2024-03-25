@@ -2,8 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { alpha } from '@mui/system';
+import composeClasses from '@mui/utils/composeClasses';
+import { alpha } from '@mui/system/colorManipulator';
 import CancelIcon from '../internal/svg-icons/Cancel';
 import useForkRef from '../utils/useForkRef';
 import unsupportedProp from '../utils/unsupportedProp';
@@ -309,10 +309,19 @@ const ChipLabel = styled('span', {
   paddingLeft: 12,
   paddingRight: 12,
   whiteSpace: 'nowrap',
+  ...(ownerState.variant === 'outlined' && {
+    paddingLeft: 11,
+    paddingRight: 11,
+  }),
   ...(ownerState.size === 'small' && {
     paddingLeft: 8,
     paddingRight: 8,
   }),
+  ...(ownerState.size === 'small' &&
+    ownerState.variant === 'outlined' && {
+      paddingLeft: 7,
+      paddingRight: 7,
+    }),
 }));
 
 function isDeleteKeyboardEvent(keyboardEvent) {
@@ -471,10 +480,10 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
 });
 
 Chip.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The Avatar element to display.
    */
@@ -504,7 +513,7 @@ Chip.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'default'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

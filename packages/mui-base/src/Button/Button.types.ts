@@ -30,6 +30,11 @@ export interface ButtonOwnProps extends Omit<UseButtonParameters, 'rootRef'> {
    * @default {}
    */
   slots?: ButtonSlots;
+  /**
+   * The HTML element that is ultimately rendered, for example 'button' or 'a'
+   * @default 'button'
+   */
+  rootElementName?: keyof HTMLElementTagNameMap;
 }
 
 export interface ButtonSlots {

@@ -278,12 +278,12 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
         return;
       }
 
-      let tabbable: string[] | HTMLElement[] = [];
+      let tabbable: ReadonlyArray<string> | HTMLElement[] = [];
       if (
         doc.activeElement === sentinelStart.current ||
         doc.activeElement === sentinelEnd.current
       ) {
-        tabbable = getTabbable(rootRef.current as HTMLElement);
+        tabbable = getTabbable(rootRef.current!);
       }
 
       // one of the sentinel nodes was focused, so move the focus
@@ -313,7 +313,7 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
     doc.addEventListener('keydown', loopFocus, true);
 
     // With Edge, Safari and Firefox, no focus related events are fired when the focused area stops being a focused area.
-    // e.g. https://bugzilla.mozilla.org/show_bug.cgi?id=559561.
+    // for example https://bugzilla.mozilla.org/show_bug.cgi?id=559561.
     // Instead, we can look if the active element was restored on the BODY element.
     //
     // The whatwg spec defines how the browser should behave but does not explicitly mention any events:
@@ -372,10 +372,10 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
 }
 
 FocusTrap.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A single child content element.
    */

@@ -162,7 +162,12 @@ export default function ExampleIOSList() {
                   </Sheet>
                 </ListItemDecorator>
                 <ListItemContent>Wi-Fi</ListItemContent>
-                <Typography textColor="text.tertiary">Mars</Typography>
+                <Typography
+                  textColor="text.tertiary"
+                  sx={{ mr: 'calc(-1 * var(--ListItem-gap))' }}
+                >
+                  Mars
+                </Typography>
                 <KeyboardArrowRight fontSize="xl3" />
               </ListItemButton>
             </ListItem>
@@ -175,7 +180,12 @@ export default function ExampleIOSList() {
                   </Sheet>
                 </ListItemDecorator>
                 <ListItemContent>Bluetooth</ListItemContent>
-                <Typography textColor="text.tertiary">On</Typography>
+                <Typography
+                  textColor="text.tertiary"
+                  sx={{ mr: 'calc(-1 * var(--ListItem-gap))' }}
+                >
+                  On
+                </Typography>
                 <KeyboardArrowRight fontSize="xl3" />
               </ListItemButton>
             </ListItem>

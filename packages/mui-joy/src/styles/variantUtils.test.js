@@ -302,7 +302,8 @@ describe('variant utils', () => {
         },
       });
       expect(result.primary).to.deep.include({
-        borderColor: 'var(--joy-palette-primary-outlinedActiveBorder, #aaa)',
+        borderColor:
+          'var(--variant-outlinedActiveBorder, var(--joy-palette-primary-outlinedActiveBorder, #aaa))',
       });
     });
 
@@ -319,13 +320,13 @@ describe('variant utils', () => {
       };
       const softResult = createVariant('soft', theme);
       expect(softResult.customColor).to.deep.include({
-        color: 'var(--joy-palette-customColor-softColor, #aaa)',
-        backgroundColor: 'var(--joy-palette-customColor-softBg, #bbb)',
+        color: 'var(--variant-softColor, var(--joy-palette-customColor-softColor, #aaa))',
+        backgroundColor: 'var(--variant-softBg, var(--joy-palette-customColor-softBg, #bbb))',
       });
 
       const softHoverResult = createVariant('softHover', theme);
       expect(softHoverResult.customColor).to.deep.include({
-        color: 'var(--joy-palette-customColor-softHoverColor, #ccc)',
+        color: 'var(--variant-softHoverColor, var(--joy-palette-customColor-softHoverColor, #ccc))',
       });
     });
 

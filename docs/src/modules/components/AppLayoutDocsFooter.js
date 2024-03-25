@@ -1,56 +1,52 @@
 /* eslint-disable no-restricted-globals */
+/* eslint-disable material-ui/no-hardcoded-labels */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled, useTheme } from '@mui/material/styles';
+// Components
 import DialogActions from '@mui/material/DialogActions';
 import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 import Divider from '@mui/material/Divider';
-import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
+import Stack from '@mui/material/Stack';
+import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
+// Icons
 import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
 import ThumbDownAltRoundedIcon from '@mui/icons-material/ThumbDownAltRounded';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import PanToolRoundedIcon from '@mui/icons-material/PanToolRounded';
-import Snackbar from '@mui/material/Snackbar';
-import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
+import XIcon from '@mui/icons-material/X';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import RssFeedIcon from '@mui/icons-material/RssFeed';
+import ArrowOutwardRoundedIcon from '@mui/icons-material/ArrowOutwardRounded';
+import DiscordIcon from 'docs/src/icons/DiscordIcon';
+// Other imports
+import { Link } from '@mui/docs/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
-import Link from 'docs/src/modules/components/Link';
-import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import EditPage from 'docs/src/modules/components/EditPage';
+import SvgMuiLogotype from 'docs/src/icons/SvgMuiLogotype';
+import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
+import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 
-const PaginationDiv = styled('div')(({ theme }) => {
+const FooterLink = styled(Typography)(({ theme }) => {
   return {
-    margin: theme.spacing(3, 0, 4),
+    ...theme.typography.body2,
     display: 'flex',
-    justifyContent: 'space-between',
-    [theme.breakpoints.down('sm')]: {
-      flexWrap: 'wrap',
-    },
-  };
-});
-
-const PageLinkButton = styled(Button)(({ theme }) => ({
-  fontWeight: theme.typography.fontWeightMedium,
-  ...theme.applyDarkStyles({
-    color: (theme.vars || theme).palette.primary[300],
-  }),
-}));
-
-const FeedbackGrid = styled(Grid)(({ theme }) => {
-  return {
-    width: 'auto',
-    color: theme.palette.text.secondary,
-    [theme.breakpoints.down('sm')]: {
-      order: 3,
-      marginTop: 40,
-      width: '100%',
-    },
+    alignItems: 'center',
+    gap: 4,
+    fontWeight: (theme.vars || theme).typography.fontWeightSemiBold,
+    color: (theme.vars || theme).palette.primary[600],
+    '& > svg': { transition: '0.2s' },
+    '&:hover > svg': { transform: 'translateX(2px)' },
+    ...theme.applyDarkStyles({
+      color: (theme.vars || theme).palette.primary[300],
+    }),
   };
 });
 
@@ -109,6 +105,7 @@ async function postFeedbackOnSlack(data) {
     currentLocationURL: window.location.href,
     commmentSectionURL: `${window.location.origin}${window.location.pathname}#${commentedSection.hash}`,
     commmentSectionTitle: commentedSection.text,
+    githubRepo: process.env.SOURCE_CODE_REPO,
   };
   if (!comment || comment.length < 10) {
     return 'ignored';
@@ -221,8 +218,13 @@ async function submitFeedback(page, rating, comment, language, commentedSection)
 function getCurrentRating(pathname) {
   let userFeedback;
   if (typeof window !== 'undefined') {
-    userFeedback = getCookie('feedback');
-    userFeedback = userFeedback && JSON.parse(userFeedback);
+    try {
+      userFeedback = getCookie('feedback');
+      userFeedback = userFeedback && JSON.parse(userFeedback);
+    } catch {
+      // For unknown reason the `userFeedback` can be uncomplet, leading the JSON.parse to crash the entire docs
+      return undefined;
+    }
   }
   return userFeedback && userFeedback[pathname] && userFeedback[pathname].rating;
 }
@@ -246,10 +248,13 @@ function usePageNeighbours() {
 }
 
 const EMPTY_SECTION = { hash: '', text: '' };
+
+// The design feedback alert was removed in https://github.com/mui/material-ui/pull/39691
+// This dead code is here to simplify the creation of special feedback channel
 const SPEACIAL_FEEDBACK_HASH = [{ hash: 'new-docs-api-feedback', text: 'New API content design' }];
 
 export default function AppLayoutDocsFooter(props) {
-  const { tableOfContents = [] } = props;
+  const { tableOfContents = [], location } = props;
 
   const theme = useTheme();
   const t = useTranslate();
@@ -383,158 +388,228 @@ export default function AppLayoutDocsFooter(props) {
 
   return (
     <React.Fragment>
-      <Box component="footer" sx={{ mt: 12 }}>
-        {hidePagePagination ? null : (
-          <React.Fragment>
-            <Divider />
-            <PaginationDiv>
-              {prevPage !== null ? (
-                <PageLinkButton
-                  component={Link}
-                  noLinkStyle
-                  prefetch={false}
-                  href={prevPage.pathname}
-                  {...prevPage.linkProps}
-                  size="medium"
-                  startIcon={<ChevronLeftIcon />}
-                >
-                  {pageToTitleI18n(prevPage, t)}
-                </PageLinkButton>
-              ) : (
-                <div />
-              )}
-              <FeedbackGrid
-                container
-                role="group"
-                justifyContent="center"
-                alignItems="center"
-                aria-labelledby="feedback-message"
-              >
-                <Typography
-                  align="center"
-                  component="div"
-                  id="feedback-message"
-                  variant="body2"
-                  sx={{ mx: 1 }}
-                >
-                  {t('feedbackMessage')}
-                </Typography>
-                <div>
-                  <Tooltip title={t('feedbackYes')}>
-                    <IconButton
-                      onClick={handleClickThumb(1)}
-                      aria-pressed={rating === 1}
-                      sx={{ borderRadius: 1 }}
-                    >
-                      <ThumbUpAltRoundedIcon
-                        fontSize="small"
-                        color={rating === 1 ? 'primary' : undefined}
-                      />
-                    </IconButton>
-                  </Tooltip>
-                  <Tooltip title={t('feedbackNo')}>
-                    <IconButton
-                      onClick={handleClickThumb(0)}
-                      aria-pressed={rating === 0}
-                      sx={{ borderRadius: 1 }}
-                    >
-                      <ThumbDownAltRoundedIcon
-                        fontSize="small"
-                        color={rating === 0 ? 'error' : undefined}
-                      />
-                    </IconButton>
-                  </Tooltip>
-                </div>
-              </FeedbackGrid>
-              {nextPage !== null ? (
-                <PageLinkButton
-                  component={Link}
-                  noLinkStyle
-                  prefetch={false}
-                  href={nextPage.pathname}
-                  {...nextPage.linkProps}
-                  size="medium"
-                  endIcon={<ChevronRightIcon />}
-                >
-                  {pageToTitleI18n(nextPage, t)}
-                </PageLinkButton>
-              ) : null}
-            </PaginationDiv>
-          </React.Fragment>
-        )}
-        <Collapse
-          in={commentOpen}
-          unmountOnExit
-          onEntered={handleEntered}
-          timeout={{ enter: 0, exit: theme.transitions.duration.standard }}
+      <Stack component="footer" direction="column" spacing={2.5} sx={{ my: 6 }}>
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          alignItems="center"
+          justifyContent="space-between"
+          spacing={{ xs: 3, sm: 1 }}
         >
-          {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
-          <form
-            aria-labelledby="feedback-message"
-            onReset={handleCancelComment}
-            onSubmit={handleSubmitComment}
-            onKeyDown={handleKeyDownForm}
+          <EditPage sourceLocation={location} />
+          <Stack direction="row" alignItems="center" spacing={1} useFlexGap>
+            <Typography
+              id="feedback-message"
+              variant="body2"
+              fontWeight="medium"
+              color="text.secondary"
+            >
+              {t('feedbackMessage')}
+            </Typography>
+            <Tooltip title={t('feedbackYes')}>
+              <IconButton color="info" onClick={handleClickThumb(1)} aria-pressed={rating === 1}>
+                <ThumbUpAltRoundedIcon
+                  color={rating === 1 ? 'primary' : undefined}
+                  sx={{ fontSize: 15 }}
+                />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title={t('feedbackNo')}>
+              <IconButton color="info" onClick={handleClickThumb(0)} aria-pressed={rating === 0}>
+                <ThumbDownAltRoundedIcon
+                  color={rating === 0 ? 'error' : undefined}
+                  sx={{ fontSize: 15 }}
+                />
+              </IconButton>
+            </Tooltip>
+          </Stack>
+        </Stack>
+        {/* Wrapper div to fix Collapse close animation */}
+        <div>
+          <Collapse
+            in={commentOpen}
+            unmountOnExit
+            onEntered={handleEntered}
+            timeout={{ enter: 0, exit: theme.transitions.duration.standard }}
           >
-            <Box sx={{ mb: 4 }}>
-              {commentedSection.text ? (
-                <Typography
-                  id="feedback-description"
-                  color="text.secondary"
-                  dangerouslySetInnerHTML={{
-                    __html: t('feedbackSectionSpecific').replace(
-                      '{{sectionName}}',
-                      `"${commentedSection.text}"`,
-                    ),
+            {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
+            <form
+              aria-labelledby="feedback-message"
+              onReset={handleCancelComment}
+              onSubmit={handleSubmitComment}
+              onKeyDown={handleKeyDownForm}
+            >
+              <div>
+                {commentedSection.text ? (
+                  <Typography
+                    variant="body2"
+                    id="feedback-description"
+                    color="text.secondary"
+                    dangerouslySetInnerHTML={{
+                      __html: t('feedbackSectionSpecific').replace(
+                        '{{sectionName}}',
+                        `"${commentedSection.text}"`,
+                      ),
+                    }}
+                  />
+                ) : (
+                  <Typography variant="body2" id="feedback-description" color="text.secondary">
+                    {rating === 1 ? t('feedbackMessageUp') : t('feedbackMessageDown')}
+                  </Typography>
+                )}
+                <TextField
+                  multiline
+                  margin="dense"
+                  name="comment"
+                  fullWidth
+                  rows={4}
+                  value={comment}
+                  onChange={handleChangeTextfield}
+                  inputProps={{
+                    'aria-label': t('feedbackCommentLabel'),
+                    'aria-describedby': 'feedback-description',
+                    ref: inputRef,
                   }}
                 />
-              ) : (
-                <Typography id="feedback-description" color="text.secondary">
-                  {rating === 1 ? t('feedbackMessageUp') : t('feedbackMessageDown')}
-                </Typography>
-              )}
-              <TextField
-                multiline
-                margin="dense"
-                name="comment"
-                fullWidth
-                rows={4}
-                value={comment}
-                onChange={handleChangeTextfield}
-                inputProps={{
-                  'aria-label': t('feedbackCommentLabel'),
-                  'aria-describedby': 'feedback-description',
-                  ref: inputRef,
-                }}
-              />
-              {rating !== 1 && (
-                <Alert
-                  severity="warning"
-                  color="warning"
-                  icon={<PanToolRoundedIcon fontSize="small" />}
-                  sx={{ my: 1.5 }}
-                >
-                  <Typography id="feedback-description" color="text.secondary">
-                    {t('feedbackMessageToGitHub.usecases')}{' '}
-                    <Link
-                      href={`${process.env.SOURCE_CODE_REPO}/issues/new?template=${process.env.GITHUB_TEMPLATE_DOCS_FEEDBACK}&page-url=${window.location.href}`}
-                      target="_blank"
-                    >
-                      {t('feedbackMessageToGitHub.callToAction.link')}
-                    </Link>{' '}
-                    {t('feedbackMessageToGitHub.reasonWhy')}
-                  </Typography>
-                </Alert>
-              )}
-              <DialogActions>
-                <Button type="reset">{t('cancel')}</Button>
-                <Button type="submit" variant="contained">
-                  {t('submit')}
-                </Button>
-              </DialogActions>
-            </Box>
-          </form>
-        </Collapse>
-      </Box>
+                {rating !== 1 && typeof window !== 'undefined' && (
+                  <Alert
+                    severity="warning"
+                    color="warning"
+                    icon={<PanToolRoundedIcon fontSize="small" />}
+                    sx={{ my: 1.5 }}
+                  >
+                    <Typography id="feedback-description">
+                      {t('feedbackMessageToGitHub.usecases')}{' '}
+                      <Link
+                        href={`${process.env.SOURCE_CODE_REPO}/issues/new?template=${process.env.GITHUB_TEMPLATE_DOCS_FEEDBACK}&page-url=${window.location.href}`}
+                        target="_blank"
+                        underline="always"
+                        sx={{
+                          fontWeight: 'semiBold',
+                        }}
+                      >
+                        {t('feedbackMessageToGitHub.callToAction.link')}
+                      </Link>{' '}
+                      {t('feedbackMessageToGitHub.reasonWhy')}
+                    </Typography>
+                  </Alert>
+                )}
+                <DialogActions>
+                  <Button type="reset" size="small">
+                    {t('cancel')}
+                  </Button>
+                  <Button type="submit" variant="contained" size="small">
+                    {t('submit')}
+                  </Button>
+                </DialogActions>
+              </div>
+            </form>
+          </Collapse>
+        </div>
+        <Divider />
+        {hidePagePagination ? null : (
+          <Stack direction="row" justifyContent="space-between" sx={{ my: 2 }}>
+            {prevPage !== null ? (
+              <Button
+                size="small"
+                variant="text"
+                component={Link}
+                noLinkStyle
+                prefetch={false}
+                href={prevPage.pathname}
+                {...prevPage.linkProps}
+                startIcon={<ChevronLeftIcon />}
+              >
+                {pageToTitleI18n(prevPage, t)}
+              </Button>
+            ) : (
+              <div />
+            )}
+            {nextPage !== null ? (
+              <Button
+                size="small"
+                component={Link}
+                noLinkStyle
+                prefetch={false}
+                href={nextPage.pathname}
+                {...nextPage.linkProps}
+                endIcon={<ChevronRightIcon />}
+              >
+                {pageToTitleI18n(nextPage, t)}
+              </Button>
+            ) : null}
+          </Stack>
+        )}
+        <Divider />
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          alignItems="center"
+          spacing={{ xs: 3, sm: 1 }}
+        >
+          <Stack direction="row" alignItems="center" spacing={1.2} useFlexGap sx={{ flexGrow: 1 }}>
+            <Link href="https://mui.com/" aria-label="Go to homepage">
+              <SvgMuiLogotype height={24} width={72} />
+            </Link>
+            <Typography color="grey.500" fontSize={13} sx={{ opacity: '70%' }}>
+              &bull;
+            </Typography>
+            <Link href="https://mui.com/blog/" target="_blank" rel="noopener">
+              <FooterLink>
+                Blog <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
+              </FooterLink>
+            </Link>
+            <Typography color="grey.500" fontSize={13} sx={{ opacity: '70%' }}>
+              &bull;
+            </Typography>
+            <Link href="https://mui.com/store/" target="_blank" rel="noopener">
+              <FooterLink>
+                Store <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
+              </FooterLink>
+            </Link>
+          </Stack>
+          <Stack spacing={1} direction="row" useFlexGap>
+            <IconButton
+              target="_blank"
+              rel="noopener"
+              href="https://mui.com/feed/blog/rss.xml"
+              aria-label="RSS Feed"
+              title="RSS Feed"
+              size="small"
+            >
+              <RssFeedIcon fontSize="small" sx={{ color: 'grey.500' }} />
+            </IconButton>
+            <IconButton
+              target="_blank"
+              rel="noopener"
+              href="https://twitter.com/MUI_hq"
+              aria-label="twitter"
+              title="X"
+              size="small"
+            >
+              <XIcon fontSize="small" sx={{ color: 'grey.500' }} />
+            </IconButton>
+            <IconButton
+              target="_blank"
+              rel="noopener"
+              href="https://www.youtube.com/@MUI_hq"
+              aria-label="YouTube"
+              title="YouTube"
+              size="small"
+            >
+              <YouTubeIcon fontSize="small" sx={{ color: 'grey.500' }} />
+            </IconButton>
+            <IconButton
+              target="_blank"
+              rel="noopener"
+              href="https://mui.com/r/discord/"
+              aria-label="Discord"
+              title="Discord"
+              size="small"
+            >
+              <DiscordIcon fontSize="small" sx={{ color: 'grey.500' }} />
+            </IconButton>
+          </Stack>
+        </Stack>
+      </Stack>
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={3000}
@@ -546,5 +621,6 @@ export default function AppLayoutDocsFooter(props) {
 }
 
 AppLayoutDocsFooter.propTypes = {
+  location: PropTypes.string.isRequired,
   tableOfContents: PropTypes.array,
 };

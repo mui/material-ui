@@ -10,6 +10,7 @@ import {
   unstable_styleFunctionSx as styleFunctionSx,
   SxConfig,
 } from '@mui/system';
+import { unstable_applyStyles as applyStyles } from '@mui/system/createTheme';
 import defaultSxConfig from './sxConfig';
 import colors from '../colors';
 import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
@@ -17,11 +18,11 @@ import { DefaultColorScheme, ExtendedColorScheme, SupportedColorScheme } from '.
 import { ColorSystem, ColorPaletteProp, Palette, PaletteOptions } from './types/colorSystem';
 import { Focus } from './types/focus';
 import { TypographySystemOptions, FontSize } from './types/typography';
-import { Variants, ColorInversion, ColorInversionConfig } from './types/variants';
+import { Variants } from './types/variants';
 import { Theme, ThemeCssVar, ThemeScalesOptions, SxProps, ThemeVars } from './types';
 import { Components } from './components';
 import { generateUtilityClass } from '../className';
-import { createSoftInversion, createSolidInversion, createVariant } from './variantUtils';
+import { createVariant } from './variantUtils';
 import { MergeDefault } from './types/utils';
 
 type Partial2Level<T> = {
@@ -63,13 +64,10 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScalesOptions> {
    * // { ..., typography: { body1: { fontSize: 'var(--fontSize-md)' } }, ... }
    */
   cssVarPrefix?: string;
+  direction?: 'ltr' | 'rtl';
   focus?: Partial<Focus>;
   typography?: Partial<TypographySystemOptions>;
   variants?: Partial2Level<Variants>;
-  colorInversion?:
-    | Partial2Level<ColorInversion>
-    | ((theme: Theme) => Partial2Level<ColorInversion>);
-  colorInversionConfig?: ColorInversionConfig;
   breakpoints?: BreakpointsOptions;
   spacing?: SpacingOptions;
   components?: Components<Theme>;
@@ -83,6 +81,26 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScalesOptions> {
    *        value = 'var(--test)'
    */
   shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
+  /**
+   * If provided, it will be used to create a selector for the color scheme.
+   * This is useful if you want to use class or data-* attributes to apply the color scheme.
+   *
+   * The callback receives the colorScheme with the possible values of:
+   * - undefined: the selector for tokens that are not color scheme dependent
+   * - string: the selector for the color scheme
+   *
+   * @example
+   * // class selector
+   * (colorScheme) => colorScheme !== 'light' ? `.theme-${colorScheme}` : ":root"
+   *
+   * @example
+   * // data-* attribute selector
+   * (colorScheme) => colorScheme !== 'light' ? `[data-theme="${colorScheme}"`] : ":root"
+   */
+  getSelector?: (
+    colorScheme: SupportedColorScheme | undefined,
+    css: Record<string, any>,
+  ) => string | Record<string, any>;
 }
 
 export const createGetCssVar = (cssVarPrefix = 'joy') =>
@@ -95,8 +113,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     spacing,
     components: componentsInput,
     variants: variantsInput,
-    colorInversion: colorInversionInput,
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
+    getSelector,
     ...scalesInput
   } = themeOptions || {};
   const getCssVar = createGetCssVar(cssVarPrefix);
@@ -424,6 +442,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       table: 10,
       popup: 1000,
       modal: 1300,
+      snackbar: 1400,
       tooltip: 1500,
     },
 
@@ -525,6 +544,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
   const theme = {
     colorSchemes,
+    defaultColorScheme: 'light',
     ...mergedScales,
     breakpoints: createBreakpoints(breakpoints ?? {}),
     components: deepmerge(
@@ -549,13 +569,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
                   color: `var(--Icon-color, ${theme.vars.palette.text.icon})`,
                   ...(ownerState.color &&
                     ownerState.color !== 'inherit' &&
-                    ownerState.color !== 'context' &&
                     themeProp.vars.palette[ownerState.color!] && {
                       color: `rgba(${themeProp.vars.palette[ownerState.color]?.mainChannel} / 1)`,
                     }),
-                  ...(ownerState.color === 'context' && {
-                    color: themeProp.vars.palette.text.secondary,
-                  }),
                 }),
                 ...(instanceFontSize &&
                   instanceFontSize !== 'inherit' && {
@@ -571,11 +587,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     cssVarPrefix,
     getCssVar,
     spacing: createSpacing(spacing),
-    colorInversionConfig: {
-      soft: ['plain', 'outlined', 'soft', 'solid'],
-      solid: ['plain', 'outlined', 'soft', 'solid'],
-    },
-  } as unknown as Theme; // Need type casting due to module augmentation inside the repo
+  } as unknown as Theme & { attribute: string; colorSchemeSelector: string }; // Need type casting due to module augmentation inside the repo
 
   /**
    Color channels generation
@@ -620,15 +632,29 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   const parserConfig = {
     prefix: cssVarPrefix,
     shouldSkipGeneratingVar,
+    getSelector:
+      getSelector ||
+      ((colorScheme) => {
+        if (theme.defaultColorScheme === colorScheme) {
+          return `${theme.colorSchemeSelector}, [${theme.attribute}="${colorScheme}"]`;
+        }
+        if (colorScheme) {
+          return `[${theme.attribute}="${colorScheme}"]`;
+        }
+        return theme.colorSchemeSelector;
+      }),
   };
 
-  const { vars: themeVars, generateCssVars } = prepareCssVars<Theme, ThemeVars>(
+  const { vars, generateThemeVars, generateStyleSheets } = prepareCssVars<Theme, ThemeVars>(
     // @ts-ignore property truDark is missing from colorSchemes
     { colorSchemes, ...mergedScales },
     parserConfig,
   );
-  theme.vars = themeVars;
-  theme.generateCssVars = generateCssVars;
+  theme.attribute = 'data-joy-color-scheme';
+  theme.colorSchemeSelector = ':root';
+  theme.vars = vars;
+  theme.generateThemeVars = generateThemeVars;
+  theme.generateStyleSheets = generateStyleSheets;
   theme.unstable_sxConfig = {
     ...defaultSxConfig,
     ...themeOptions?.unstable_sxConfig,
@@ -640,9 +666,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     });
   };
   theme.getColorSchemeSelector = (colorScheme: SupportedColorScheme) =>
-    colorScheme === 'light'
-      ? '&'
-      : `&[data-joy-color-scheme="${colorScheme}"], [data-joy-color-scheme="${colorScheme}"] &`;
+    `[${theme.attribute}="${colorScheme}"] &`;
 
   const createVariantInput = { getCssVar, palette: theme.colorSchemes.light.palette };
   theme.variants = deepmerge(
@@ -667,25 +691,17 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     variantsInput,
   );
 
+  Object.entries(theme.colorSchemes[theme.defaultColorScheme]).forEach(([key, value]) => {
+    // @ts-ignore
+    theme[key] = value;
+  });
   theme.palette = {
     ...theme.colorSchemes.light.palette,
     colorScheme: 'light',
   };
 
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
-
-  // @ts-ignore if the colorInversion is provided as callbacks, it needs to be resolved in the CssVarsProvider
-  theme.colorInversion =
-    typeof colorInversionInput === 'function'
-      ? colorInversionInput
-      : deepmerge(
-          {
-            soft: createSoftInversion(theme, true),
-            solid: createSolidInversion(theme, true),
-          },
-          colorInversionInput || {},
-          { clone: false },
-        );
+  theme.applyStyles = applyStyles;
 
   return theme;
 }

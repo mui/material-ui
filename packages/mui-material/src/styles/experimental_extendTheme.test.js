@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from 'test/utils';
+import { createRenderer } from '@mui-internal/test-utils';
 import Button from '@mui/material/Button';
 import {
   Experimental_CssVarsProvider as CssVarsProvider,
   experimental_extendTheme as extendTheme,
+  styled,
 } from '@mui/material/styles';
 import { deepOrange, green } from '@mui/material/colors';
 
@@ -12,6 +13,7 @@ describe('experimental_extendTheme', () => {
   let originalMatchmedia;
   const { render } = createRenderer();
   const storage = {};
+
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
     // Create mocks of localStorage getItem and setItem functions
@@ -29,6 +31,7 @@ describe('experimental_extendTheme', () => {
       removeListener: () => {},
     });
   });
+
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
   });
@@ -55,6 +58,9 @@ describe('experimental_extendTheme', () => {
     const theme = extendTheme();
     expect(theme.colorSchemes.dark.palette.background.defaultChannel).to.equal('18 18 18');
     expect(theme.colorSchemes.light.palette.background.defaultChannel).to.equal('255 255 255');
+
+    expect(theme.colorSchemes.dark.palette.background.paperChannel).to.equal('18 18 18');
+    expect(theme.colorSchemes.light.palette.background.paperChannel).to.equal('255 255 255');
 
     expect(theme.colorSchemes.dark.palette.primary.mainChannel).to.equal('144 202 249');
     expect(theme.colorSchemes.dark.palette.primary.darkChannel).to.equal('66 165 245');
@@ -425,7 +431,7 @@ describe('experimental_extendTheme', () => {
       ).toWarnDev(
         "MUI: Can't create `palette.dividerChannel` because `palette.divider` is not one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()." +
           '\n' +
-          'To suppress this warning, you need to explicitly provide the `palette.dividerChannel` as a string (in rgb format, e.g. "12 12 12") or undefined if you want to remove the channel token.',
+          'To suppress this warning, you need to explicitly provide the `palette.dividerChannel` as a string (in rgb format, for example "12 12 12") or undefined if you want to remove the channel token.',
       );
     });
 
@@ -502,5 +508,49 @@ describe('experimental_extendTheme', () => {
     Object.keys(keys).forEach((key) => {
       expect(theme[key]).to.deep.equal(theme.vars[key]);
     });
+  });
+
+  it('should use the right selector with applyStyles', function test() {
+    const attribute = 'data-custom-color-scheme';
+    let darkStyles = {};
+    const Test = styled('div')(({ theme }) => {
+      darkStyles = theme.applyStyles('dark', {
+        backgroundColor: 'rgba(0, 0, 0, 0)',
+      });
+      return null;
+    });
+
+    render(
+      <CssVarsProvider attribute={attribute}>
+        <Test />
+      </CssVarsProvider>,
+    );
+
+    expect(darkStyles).to.deep.equal({
+      [`*:where([${attribute}="dark"]) &`]: {
+        backgroundColor: 'rgba(0, 0, 0, 0)',
+      },
+    });
+  });
+
+  it("should `generateStyleSheets` based on the theme's attribute and colorSchemeSelector", () => {
+    const theme = extendTheme();
+
+    expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
+      ':root',
+      ':root, [data-mui-color-scheme="light"]',
+      '[data-mui-color-scheme="dark"]',
+    ]);
+
+    theme.attribute = 'data-custom-color-scheme';
+    theme.colorSchemeSelector = '.root';
+    theme.defaultColorScheme = 'dark';
+
+    expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
+      '.root',
+      '[data-custom-color-scheme="dark"]',
+      '.root',
+      '[data-custom-color-scheme="light"]',
+    ]);
   });
 });

@@ -1,6 +1,6 @@
 # Dark mode
 
-<p class="description">Material UI comes with two palette modes: light (the default) and dark.</p>
+<p class="description">Material UI comes with two palette modes: light (the default) and dark.</p>
 
 ## Dark mode by default
 
@@ -16,7 +16,7 @@ const darkTheme = createTheme({
   },
 });
 
-function App() {
+export default function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
@@ -24,8 +24,6 @@ function App() {
     </ThemeProvider>
   );
 }
-
-export default App;
 ```
 
 Adding `mode: 'dark'` to the `createTheme` helper modifies several palette values, as shown in the following demo:

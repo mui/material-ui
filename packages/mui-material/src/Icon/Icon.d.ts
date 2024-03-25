@@ -12,7 +12,7 @@ export interface IconPropsColorOverrides {}
 export interface IconOwnProps {
   /**
    * The base class applied to the icon. Defaults to 'material-icons', but can be changed to any
-   * other base class that suits the icon font you're using (e.g. material-icons-rounded, fas, etc).
+   * other base class that suits the icon font you're using (for example material-icons-rounded, fas, etc).
    * @default 'material-icons'
    */
   baseClassName?: string;
@@ -27,7 +27,7 @@ export interface IconOwnProps {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'inherit'
    */
   color?: OverridableStringUnion<

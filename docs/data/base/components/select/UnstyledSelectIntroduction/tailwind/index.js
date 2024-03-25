@@ -1,10 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Select } from '@mui/base/Select';
+import { Select as BaseSelect } from '@mui/base/Select';
 import { Option as BaseOption } from '@mui/base/Option';
 import { useTheme } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 import clsx from 'clsx';
+import { PopupContext } from '@mui/base/Unstable_Popup';
+import { CssTransition } from '@mui/base/Transitions';
 
 function useIsDarkMode() {
   const theme = useTheme();
@@ -17,11 +19,11 @@ export default function UnstyledSelectIntroduction() {
 
   return (
     <div className={isDarkMode ? 'dark' : ''}>
-      <CustomSelect defaultValue={10}>
+      <Select defaultValue={10}>
         <Option value={10}>Documentation</Option>
         <Option value={20}>Components</Option>
         <Option value={30}>Features</Option>
-      </CustomSelect>
+      </Select>
     </div>
   );
 }
@@ -40,6 +42,8 @@ const getOptionColorClasses = ({ selected, highlighted, disabled }) => {
     }
     classes +=
       ' hover:dark:bg-slate-800 hover:bg-slate-100 hover:dark:text-slate-300 hover:text-slate-900';
+    classes +=
+      ' focus-visible:outline focus-visible:outline-2 focus-visible:outline-purple-400 focus-visible:dark:outline-purple-300';
   }
   return classes;
 };
@@ -75,18 +79,46 @@ Button.propTypes = {
   ownerState: PropTypes.object.isRequired,
 };
 
+const AnimatedListbox = React.forwardRef(function AnimatedListbox(props, ref) {
+  const { ownerState, ...other } = props;
+  const popupContext = React.useContext(PopupContext);
+
+  if (popupContext == null) {
+    throw new Error(
+      'The `AnimatedListbox` component cannot be rendered outside a `Popup` component',
+    );
+  }
+
+  const verticalPlacement = popupContext.placement.split('-')[0];
+
+  return (
+    <CssTransition
+      className={`placement-${verticalPlacement}`}
+      enterClassName="open"
+      exitClassName="closed"
+    >
+      <ul {...other} ref={ref} />
+    </CssTransition>
+  );
+});
+
+AnimatedListbox.propTypes = {
+  ownerState: PropTypes.object.isRequired,
+};
+
 const resolveSlotProps = (fn, args) => (typeof fn === 'function' ? fn(args) : fn);
 
-const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
+const Select = React.forwardRef(function CustomSelect(props, ref) {
   // Replace this with your app logic for determining dark modes
   const isDarkMode = useIsDarkMode();
 
   return (
-    <Select
+    <BaseSelect
       ref={ref}
       {...props}
       slots={{
         root: Button,
+        listbox: AnimatedListbox,
         ...props.slots,
       }}
       className={clsx('CustomSelect', props.className)}
@@ -100,9 +132,9 @@ const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
           return {
             ...resolvedSlotProps,
             className: clsx(
-              `relative text-sm font-sans box-border w-80 px-3 py-2 rounded-lg text-left bg-white dark:bg-slate-800 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-300 transition-all hover:bg-slate-50 dark:hover:bg-slate-700 outline-0 shadow-md shadow-slate-100 dark:shadow-slate-900 ${
+              `relative text-sm font-sans box-border w-80 px-3 py-2 rounded-lg text-left bg-white dark:bg-neutral-900 border border-solid border-slate-200 dark:border-neutral-700 text-slate-900 dark:text-neutral-300 transition-all hover:bg-slate-50 dark:hover:bg-neutral-800 outline-0 shadow-md shadow-slate-100 dark:shadow-slate-900 ${
                 ownerState.focusVisible
-                  ? 'border-purple-400 shadow-outline-purple'
+                  ? 'focus-visible:ring-4 ring-purple-500/30 focus-visible:border-purple-500 focus-visible:dark:border-purple-500'
                   : ''
               } [&>svg]:text-base	[&>svg]:absolute [&>svg]:h-full [&>svg]:top-0 [&>svg]:right-2.5`,
               resolvedSlotProps?.className,
@@ -117,14 +149,14 @@ const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
           return {
             ...resolvedSlotProps,
             className: clsx(
-              `text-sm font-sans p-1.5 my-3 w-80 rounded-xl overflow-auto outline-0 bg-white dark:bg-slate-900 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-300 shadow shadow-slate-200 dark:shadow-slate-900`,
+              `text-sm font-sans p-1.5 my-3 w-80 rounded-xl overflow-auto outline-0 bg-white dark:bg-slate-900 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-300 shadow shadow-slate-200 dark:shadow-slate-900 [.open_&]:opacity-100 [.open_&]:scale-100 transition-[opacity,transform] [.closed_&]:opacity-0 [.closed_&]:scale-90 [.placement-top_&]:origin-bottom [.placement-bottom_&]:origin-top`,
               resolvedSlotProps?.className,
             ),
           };
         },
-        popper: (ownerState) => {
+        popup: (ownerState) => {
           const resolvedSlotProps = resolveSlotProps(
-            props.slotProps?.popper,
+            props.slotProps?.popup,
             ownerState,
           );
           return {
@@ -140,7 +172,7 @@ const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
   );
 });
 
-CustomSelect.propTypes = {
+Select.propTypes = {
   className: PropTypes.string,
   /**
    * The props used for each slot inside the Input.
@@ -148,7 +180,7 @@ CustomSelect.propTypes = {
    */
   slotProps: PropTypes.shape({
     listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    popup: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -158,7 +190,7 @@ CustomSelect.propTypes = {
    */
   slots: PropTypes.shape({
     listbox: PropTypes.elementType,
-    popper: PropTypes.func,
+    popup: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
 };

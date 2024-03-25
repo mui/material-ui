@@ -1,18 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import {
-  act,
-  describeConformance,
-  createRenderer,
-  fireEvent,
-  screen,
-  describeJoyColorInversion,
-} from 'test/utils';
+import { act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
 import { MenuProvider, MenuProviderValue } from '@mui/base/useMenu';
 import { ThemeProvider } from '@mui/joy/styles';
 import MenuItem, { menuItemClasses as classes } from '@mui/joy/MenuItem';
 import ListItemButton from '@mui/joy/ListItemButton';
+import describeConformance from '../../test/describeConformance';
 
 const testContext: MenuProviderValue = {
   registerItem: () => ({ id: '0', deregister: () => {} }),
@@ -20,14 +14,10 @@ const testContext: MenuProviderValue = {
   totalSubitemCount: 1,
   dispatch: () => {},
   getItemState: () => ({
-    disabled: false,
     highlighted: false,
     selected: false,
     focusable: false,
-    index: 0,
   }),
-  registerHighlightChangeHandler: () => () => {},
-  registerSelectionChangeHandler: () => () => {},
 };
 
 function Wrapper({ children }: { children: React.ReactNode }) {
@@ -63,12 +53,6 @@ describe('Joy <MenuItem />', () => {
       },
     },
   }));
-
-  describeJoyColorInversion(<MenuItem />, {
-    muiName: 'JoyMenuItem',
-    classes,
-    wrapper: (node) => <MenuProvider value={testContext}>{node}</MenuProvider>,
-  });
 
   it('should render with the variant class', () => {
     const { getByRole } = render(<MenuItem variant="outlined" />);

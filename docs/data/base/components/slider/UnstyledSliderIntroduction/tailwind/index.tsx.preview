@@ -1,2 +1,2 @@
-<CustomSlider defaultValue={50} />
-<CustomSlider defaultValue={10} disabled />
+<Slider defaultValue={50} />
+<Slider defaultValue={30} disabled />

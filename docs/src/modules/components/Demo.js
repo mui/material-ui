@@ -19,7 +19,7 @@ import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { useCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { useCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
 import { CODE_VARIANTS, CODE_STYLING } from 'docs/src/modules/constants';
-import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
 import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import DemoToolbarRoot from 'docs/src/modules/components/DemoToolbarRoot';
@@ -57,15 +57,15 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
 
   return React.useMemo(() => {
     let productId;
-    let name = 'Material UI';
+    let name = 'Material UI';
     if (canonicalAs.startsWith('/joy-ui/')) {
       productId = 'joy-ui';
-      name = 'Joy UI';
+      name = 'Joy UI';
     } else if (canonicalAs.startsWith('/base-ui/')) {
       productId = 'base-ui';
-      name = 'Base UI';
+      name = 'Base UI';
     } else if (canonicalAs.startsWith('/x/')) {
-      name = 'MUI X';
+      name = 'MUI X';
     }
 
     let codeOptions = {};
@@ -198,7 +198,6 @@ const DemoRootMaterial = styled('div', {
   shouldForwardProp: (prop) => prop !== 'hideToolbar' && prop !== 'bg',
 })(({ theme, hideToolbar, bg }) => ({
   position: 'relative',
-  outline: 0,
   margin: 'auto',
   display: 'flex',
   justifyContent: 'center',
@@ -220,6 +219,9 @@ const DemoRootMaterial = styled('div', {
     border: `1px solid ${(theme.vars || theme).palette.divider}`,
     borderLeftWidth: 0,
     borderRightWidth: 0,
+    ...theme.applyDarkStyles({
+      backgroundColor: alpha(theme.palette.primaryDark[700], 0.1),
+    }),
   }),
   /* Similar to the outlined one but without padding. Ideal for playground demos. */
   ...(bg === 'playground' && {
@@ -230,44 +232,28 @@ const DemoRootMaterial = styled('div', {
   /* Prepare the background to display an inner elevation. */
   ...(bg === true && {
     padding: theme.spacing(3),
-    backgroundColor: (theme.vars || theme).palette.grey[50],
+    backgroundColor: alpha(theme.palette.grey[50], 0.6),
     border: `1px solid ${(theme.vars || theme).palette.divider}`,
     ...theme.applyDarkStyles({
-      backgroundColor: alpha(theme.palette.primaryDark[700], 0.3),
+      backgroundColor: alpha(theme.palette.primaryDark[700], 0.15),
     }),
   }),
   /* Mostly meant for introduction demos. */
   ...(bg === 'gradient' && {
+    overflow: 'auto',
     padding: theme.spacing(20, 8),
     border: `1px solid`,
     borderColor: (theme.vars || theme).palette.divider,
-    overflow: 'hidden',
-    backgroundColor: alpha(theme.palette.primary[50], 0.5),
     backgroundClip: 'padding-box',
-    backgroundImage: `radial-gradient(at 51% 52%, ${alpha(
-      theme.palette.primary[50],
-      0.5,
-    )} 0px, transparent 50%),
-        radial-gradient(at 80% 0%, #FFFFFF 0px, transparent 20%),
-        radial-gradient(at 0% 95%, ${alpha(theme.palette.primary[100], 0.3)}, transparent 40%),
-        radial-gradient(at 0% 20%, ${
-          (theme.vars || theme).palette.primary[50]
-        } 0px, transparent 50%),
-        radial-gradient(at 93% 85%, ${alpha(
-          theme.palette.primary[100],
-          0.2,
-        )} 0px, transparent 50%);`,
+    backgroundColor: alpha(theme.palette.primary[50], 0.5),
+    backgroundImage: `radial-gradient(140% 108% at 50% 8%, transparent 40%, ${
+      theme.palette.primary[50]
+    } 70%, ${alpha(theme.palette.primary[100], 0.2)} 100%)`,
     ...theme.applyDarkStyles({
-      borderColor: alpha(theme.palette.primaryDark[500], 0.7),
-      backgroundColor: alpha(theme.palette.primary[900], 0.1),
-      backgroundImage: `radial-gradient(at 51% 52%, ${alpha(
-        theme.palette.primaryDark[700],
-        0.5,
-      )} 0px, transparent 50%),
-    radial-gradient(at 80% 0%, ${alpha(theme.palette.primary[900], 0.3)} 0px, transparent 50%),
-    radial-gradient(at 0% 95%,  ${alpha(theme.palette.primary[900], 0.5)} 0px, transparent 50%),
-    radial-gradient(at 0% 5%, ${alpha(theme.palette.primary[900], 0.5)} 0px, transparent 35%),
-    radial-gradient(at 93% 85%, ${alpha(theme.palette.primary[900], 0.3)} 0px, transparent 50%);`,
+      borderColor: (theme.vars || theme).palette.divider,
+      backgroundColor: '#00111A',
+      backgroundImage:
+        'radial-gradient(140% 120% at 50% 8%, transparent 40%, #051729 70%, #041425 100%)',
     }),
   }),
 }));
@@ -276,7 +262,6 @@ const DemoRootJoy = joyStyled('div', {
   shouldForwardProp: (prop) => prop !== 'hideToolbar' && prop !== 'bg',
 })(({ theme, hideToolbar, bg }) => ({
   position: 'relative',
-  outline: 0,
   margin: 'auto',
   display: 'flex',
   justifyContent: 'center',
@@ -298,10 +283,10 @@ const DemoRootJoy = joyStyled('div', {
     borderColor: grey[100],
     borderLeftWidth: 0,
     borderRightWidth: 0,
-    backgroundColor: '#fff',
+    backgroundColor: 'transparent',
     ...theme.applyDarkStyles({
-      borderColor: alpha(grey[700], 0.3),
-      backgroundColor: alpha(blueDark[800], 0.2),
+      borderColor: alpha(blueDark[500], 0.3),
+      backgroundColor: alpha(theme.palette.neutral[900], 0.8),
     }),
   }),
   /* Prepare the background to display an inner elevation. */
@@ -327,7 +312,7 @@ const DemoRootJoy = joyStyled('div', {
       radial-gradient(at 93% 85%, ${alpha(blue[100], 0.2)} 0px, transparent 50%);`,
     ...theme.applyDarkStyles({
       backgroundColor: alpha(blue[900], 0.1),
-      borderColor: alpha(grey[700], 0.3),
+      borderColor: alpha(blueDark[700], 1),
       backgroundImage: `radial-gradient(at 51% 52%, ${alpha(
         blueDark[700],
         0.5,
@@ -401,7 +386,7 @@ export default function Demo(props) {
       [
         `The following demos use TS directly: ${demoOptions.demo}.`,
         '',
-        'Please run "yarn docs:typescript:formatted" to generate a JS version and reference it:',
+        'Please run "pnpm docs:typescript:formatted" to generate a JS version and reference it:',
         `{{"demo": "${demoOptions.demo.replace(/\.(.*)$/, '.js')}", …}}.`,
         '',
         "Otherwise, if it's not a code demo hide the toolbar:",
@@ -429,10 +414,10 @@ export default function Demo(props) {
 
   if (demoOptions.bg == null) {
     demoOptions.bg = 'outlined';
-  }
 
-  if (demoOptions.iframe) {
-    demoOptions.bg = true;
+    if (demoOptions.iframe) {
+      demoOptions.bg = true;
+    }
   }
 
   const [codeOpen, setCodeOpen] = React.useState(demoOptions.defaultCodeOpen || false);

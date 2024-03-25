@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
+import { createRenderer } from '@mui-internal/test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Card, { cardClasses as classes, CardClassKey } from '@mui/joy/Card';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Card />', () => {
   const { render } = createRenderer();
@@ -25,8 +26,6 @@ describe('<Card />', () => {
       },
     },
   }));
-
-  describeJoyColorInversion(<Card />, { muiName: 'JoyCard', classes });
 
   describe('prop: variant', () => {
     it('outlined by default', () => {

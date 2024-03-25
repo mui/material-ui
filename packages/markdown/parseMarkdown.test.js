@@ -6,6 +6,7 @@ import {
   getHeaders,
   getCodeblock,
   renderMarkdown,
+  createRender,
 } from './parseMarkdown';
 
 describe('parseMarkdown', () => {
@@ -274,6 +275,52 @@ authors:
       ).to.equal(
         'Allows to control whether the dropdown is open. This is a controlled counterpart of <code>defaultOpen</code>.',
       );
+    });
+  });
+
+  describe('createRender', () => {
+    it('should collect headers correctly', () => {
+      const context = { toc: [], headingHashes: {} };
+      const render = createRender(context);
+
+      expect(
+        render(
+          [
+            '# Accordion',
+            '## Basic features 🧪',
+            '## Using `slots` and `slotProps`',
+            '### Specific example',
+          ].join('\n'),
+        ),
+      ).to.equal(
+        [
+          `<h1>Accordion</h1>`,
+          `<h2 id="basic-features">Basic features 🧪<a aria-labelledby="basic-features" class="anchor-link" href="#basic-features" tabindex="-1"><svg><use xlink:href="#anchor-link-icon" /></svg></a><button title="Post a comment" class="comment-link" data-feedback-hash="basic-features"><svg><use xlink:href="#comment-link-icon" /></svg></button></h2>`,
+          `<h2 id="using-slots-and-slotprops">Using <code>slots</code> and <code>slotProps</code><a aria-labelledby="using-slots-and-slotprops" class="anchor-link" href="#using-slots-and-slotprops" tabindex="-1"><svg><use xlink:href="#anchor-link-icon" /></svg></a><button title="Post a comment" class="comment-link" data-feedback-hash="using-slots-and-slotprops"><svg><use xlink:href="#comment-link-icon" /></svg></button></h2>`,
+          `<h3 id="specific-example">Specific example<a aria-labelledby="specific-example" class="anchor-link" href="#specific-example" tabindex="-1"><svg><use xlink:href="#anchor-link-icon" /></svg></a><button title="Post a comment" class="comment-link" data-feedback-hash="specific-example"><svg><use xlink:href="#comment-link-icon" /></svg></button></h3>`,
+        ].join(''),
+      );
+
+      expect(context.toc).to.deep.equal([
+        {
+          children: [],
+          hash: 'basic-features',
+          level: 2,
+          text: 'Basic features 🧪',
+        },
+        {
+          children: [
+            {
+              hash: 'specific-example',
+              level: 3,
+              text: 'Specific example',
+            },
+          ],
+          hash: 'using-slots-and-slotprops',
+          level: 2,
+          text: 'Using slots and slotProps',
+        },
+      ]);
     });
   });
 });

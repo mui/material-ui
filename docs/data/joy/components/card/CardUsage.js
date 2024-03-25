@@ -63,13 +63,15 @@ export default function CardUsage() {
               Yosemite - Your Next Adventure
             </Typography>
             <Typography>
-              Yosemite National Park is in California’s Sierra Nevada mountains.
+              {"Yosemite National Park is in California's Sierra Nevada mountains."}
             </Typography>
             <CardActions>
-              <Button variant="outlined" size="sm">
+              <Button fullWidth variant="outlined" size="sm">
                 Add to list
               </Button>
-              <Button size="sm">Explore</Button>
+              <Button fullWidth size="sm">
+                Explore
+              </Button>
             </CardActions>
           </CardContent>
         </Card>

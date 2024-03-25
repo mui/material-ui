@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
 import AccessibilityNewRounded from '@mui/icons-material/AccessibilityNewRounded';
 import PhishingRoundedIcon from '@mui/icons-material/PhishingRounded';
+import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import InfoCard from 'docs/src/components/action/InfoCard';
@@ -29,25 +29,25 @@ const content = [
     title: 'Accessibility',
     description:
       'We take accessibility seriously. The Base UI docs are loaded with guidelines and best practices.',
-    link: '/base-ui/getting-started/quickstart/#components-and-hooks',
+    link: '/base-ui/getting-started/accessibility/',
   },
 ];
 
 export default function BaseUISummary() {
   return (
-    <Container sx={{ py: { xs: 6, sm: 10, md: 20 } }}>
+    <Section cozy>
       <SectionHeadline
         alwaysCenter
         overline="Why Base UI"
         title={
-          <Typography variant="h2" sx={{ mt: 1, maxWidth: 600, mx: 'auto' }}>
+          <Typography variant="h2" sx={{ mt: 1 }}>
             Essential building blocks
             <br /> for <GradientText>sleek and accessible</GradientText> UIs
           </Typography>
         }
         description="Base UI abstracts away the more frustrating aspects of UI development—like accessibility, cross-browser compatibility, and event handling—so you can skip ahead to design implementation."
       />
-      <Box sx={{ mt: 8 }}>
+      <Box sx={{ mt: 6 }}>
         <Grid container spacing={3}>
           {content.map(({ icon, title, description, link }) => (
             <Grid key={title} item xs={12} md={4}>
@@ -56,7 +56,7 @@ export default function BaseUISummary() {
           ))}
         </Grid>
       </Box>
-      <Typography fontWeight={500} textAlign="center" mt={8} mb={2} fontSize="0.875rem">
+      <Typography fontWeight="medium" textAlign="center" mt={6} mb={2} fontSize="0.875rem">
         Alternative to libraries such as:
       </Typography>
       <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center' }}>
@@ -93,6 +93,6 @@ export default function BaseUISummary() {
           height={37}
         />
       </Box>
-    </Container>
+    </Section>
   );
 }

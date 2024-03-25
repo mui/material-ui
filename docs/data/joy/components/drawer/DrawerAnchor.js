@@ -51,13 +51,13 @@ export default function DrawerAnchor() {
   return (
     <React.Fragment>
       <ButtonGroup variant="outlined">
-        {['left', 'right', 'top', 'bottom'].map((anchor) => (
+        {['top', 'right', 'bottom', 'left'].map((anchor) => (
           <Button key={anchor} onClick={toggleDrawer(anchor, true)}>
             {anchor}
           </Button>
         ))}
       </ButtonGroup>
-      {['left', 'right', 'top', 'bottom'].map((anchor) => (
+      {['top', 'right', 'bottom', 'left'].map((anchor) => (
         <Drawer
           key={anchor}
           anchor={anchor}

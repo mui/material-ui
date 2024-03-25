@@ -17,24 +17,57 @@
     "import AccordionSummary from '@mui/material/AccordionSummary';",
     "import { AccordionSummary } from '@mui/material';"
   ],
-  "styles": {
-    "classes": [
-      "root",
-      "expanded",
-      "focusVisible",
-      "disabled",
-      "gutters",
-      "contentGutters",
-      "content",
-      "expandIconWrapper"
-    ],
-    "globalClasses": {
-      "expanded": "Mui-expanded",
-      "focusVisible": "Mui-focusVisible",
-      "disabled": "Mui-disabled"
+  "classes": [
+    {
+      "key": "content",
+      "className": "MuiAccordionSummary-content",
+      "description": "Styles applied to the children wrapper element.",
+      "isGlobal": false
     },
-    "name": "MuiAccordionSummary"
-  },
+    {
+      "key": "contentGutters",
+      "className": "MuiAccordionSummary-contentGutters",
+      "description": "Styles applied to the children wrapper element unless `disableGutters={true}`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "expanded",
+      "className": "Mui-expanded",
+      "description": "State class applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "expandIconWrapper",
+      "className": "MuiAccordionSummary-expandIconWrapper",
+      "description": "Styles applied to the `expandIcon`'s wrapper element.",
+      "isGlobal": false
+    },
+    {
+      "key": "focusVisible",
+      "className": "Mui-focusVisible",
+      "description": "State class applied to the ButtonBase root element if the button is keyboard focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "gutters",
+      "className": "MuiAccordionSummary-gutters",
+      "description": "Styles applied to the root element unless `disableGutters={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiAccordionSummary-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiAccordionSummary",

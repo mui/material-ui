@@ -5,17 +5,17 @@ import Stack from '@mui/material/Stack';
 export default function FilledAlerts() {
   return (
     <Stack sx={{ width: '100%' }} spacing={2}>
-      <Alert variant="filled" severity="error">
-        This is an error alert — check it out!
-      </Alert>
-      <Alert variant="filled" severity="warning">
-        This is a warning alert — check it out!
+      <Alert variant="filled" severity="success">
+        This is a filled success Alert.
       </Alert>
       <Alert variant="filled" severity="info">
-        This is an info alert — check it out!
+        This is a filled info Alert.
       </Alert>
-      <Alert variant="filled" severity="success">
-        This is a success alert — check it out!
+      <Alert variant="filled" severity="warning">
+        This is a filled warning Alert.
+      </Alert>
+      <Alert variant="filled" severity="error">
+        This is a filled error Alert.
       </Alert>
     </Stack>
   );

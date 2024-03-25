@@ -12,7 +12,8 @@ type ToggleGroupProps = {
   options: Option[];
 };
 
-export default function ToggleGroup({ options }: ToggleGroupProps) {
+export default function ToggleGroup(props: ToggleGroupProps) {
+  const { options } = props;
   const [selectedOption, setSelectedOption] = React.useState(options[0].value);
 
   return (

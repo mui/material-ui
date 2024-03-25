@@ -4,6 +4,7 @@ import TabList from '@mui/joy/TabList';
 import Tab from '@mui/joy/Tab';
 import TabPanel from '@mui/joy/TabPanel';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
+import Apps from '@mui/icons-material/Apps';
 
 export default function TabsUsage() {
   const [index, setIndex] = React.useState(0);
@@ -74,21 +75,21 @@ export default function TabsUsage() {
       variant="${props.variant}"`
         : ''
     }${
-            props.color
-              ? `
+      props.color
+        ? `
       color="${props.color}"`
-              : ''
-          }${
-            props.disableIndicator
-              ? `
+        : ''
+    }${
+      props.disableIndicator
+        ? `
       disableIndicator`
-              : ''
-          }${
-            props.indicatorInset
-              ? `
+        : ''
+    }${
+      props.indicatorInset
+        ? `
       indicatorInset`
-              : ''
-          }>...</Tab>
+        : ''
+    }>...</Tab>
   </TabList>
   <TabPanel>...</TabPanel>`,
         )
@@ -108,6 +109,7 @@ export default function TabsUsage() {
               disableIndicator={disableIndicator}
               {...(index === 0 && { color, variant })}
             >
+              <Apps />
               Tab A
             </Tab>
             <Tab

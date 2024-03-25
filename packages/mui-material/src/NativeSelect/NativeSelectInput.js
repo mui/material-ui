@@ -2,8 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import refType from '@mui/utils/refType';
+import composeClasses from '@mui/utils/composeClasses';
 import capitalize from '../utils/capitalize';
 import nativeSelectClasses, { getNativeSelectUtilityClasses } from './nativeSelectClasses';
 import styled, { rootShouldForwardProp } from '../styles/styled';
@@ -168,7 +168,6 @@ NativeSelectInput.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
   /**

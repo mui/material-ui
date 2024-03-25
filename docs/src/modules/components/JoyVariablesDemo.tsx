@@ -219,7 +219,6 @@ export default function JoyVariablesDemo(props: {
                             tabIndex={-1}
                             variant="plain"
                             color="neutral"
-                            size="sm"
                             disabled={!sx[item.var] && sx[item.var] !== item.defaultValue}
                             onClick={() =>
                               setSx((prevSx) => {

@@ -32,15 +32,15 @@
     "import CardActions from '@mui/joy/CardActions';",
     "import { CardActions } from '@mui/joy';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiCardActions" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiCardActions-root"
+      "class": "MuiCardActions-root"
     }
   ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyCardActions",

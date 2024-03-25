@@ -11,7 +11,7 @@ function Placeholder() {
   return (
     <Box
       sx={(theme) => ({
-        height: { xs: 1484, sm: 825, md: 605 },
+        height: { xs: 1484, sm: 825, md: 601 },
         borderRadius: 1,
         bgcolor: 'grey.100',
         ...theme.applyDarkStyles({
@@ -26,18 +26,19 @@ const MaterialDesignComponents = dynamic(() => import('./MaterialDesignComponent
   loading: Placeholder,
 });
 
-function DesignSystemComponents() {
+export default function DesignSystemComponents() {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0,
     rootMargin: '500px',
   });
   return (
-    <Section ref={ref}>
+    <Section ref={ref} cozy>
       <SectionHeadline
+        alwaysCenter
         overline="Production-ready components"
         title={
-          <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 }, maxWidth: 500 }}>
+          <Typography variant="h2">
             Beautiful and powerful,
             <br /> <GradientText>right out of the box</GradientText>
           </Typography>
@@ -47,5 +48,3 @@ function DesignSystemComponents() {
     </Section>
   );
 }
-
-export default DesignSystemComponents;

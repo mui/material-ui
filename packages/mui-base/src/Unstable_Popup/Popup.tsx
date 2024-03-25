@@ -1,7 +1,14 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { autoUpdate, flip, offset, useFloating, VirtualElement } from '@floating-ui/react-dom';
+import {
+  autoUpdate,
+  flip,
+  offset,
+  shift,
+  useFloating,
+  VirtualElement,
+} from '@floating-ui/react-dom';
 import {
   HTMLElementType,
   unstable_useEnhancedEffect as useEnhancedEffect,
@@ -9,10 +16,12 @@ import {
 } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { Portal } from '../Portal';
-import { useSlotProps } from '../utils';
+import { useSlotProps, WithOptionalOwnerState, PolymorphicComponent } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { getPopupUtilityClass } from './popupClasses';
-import { PopupChildrenProps, PopupOwnerState, PopupProps } from './Popup.types';
+import { PopupOwnerState, PopupProps, PopupRootSlotProps, PopupTypeMap } from './Popup.types';
+import { useTransitionTrigger, TransitionContext } from '../useTransition';
+import { PopupContext, PopupContextValue } from './PopupContext';
 
 function useUtilityClasses(ownerState: PopupOwnerState) {
   const { open } = ownerState;
@@ -35,6 +44,7 @@ function resolveAnchor(
 ): HTMLElement | VirtualElement | null | undefined {
   return typeof anchor === 'function' ? anchor() : anchor;
 }
+
 /**
  *
  * Demos:
@@ -62,7 +72,6 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
     slotProps = {},
     slots = {},
     strategy = 'absolute',
-    withTransition = false,
     ...other
   } = props;
 
@@ -77,22 +86,13 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
       reference: resolveAnchor(anchorProp),
     },
     open,
-    middleware: middleware ?? [offset(offsetProp ?? 0), flip()],
+    middleware: middleware ?? [offset(offsetProp ?? 0), flip(), shift()],
     placement,
     strategy,
     whileElementsMounted: !keepMounted ? autoUpdate : undefined,
   });
 
   const handleRef = useForkRef(refs.setFloating, forwardedRef);
-  const [exited, setExited] = React.useState(true);
-
-  const handleEntering = () => {
-    setExited(false);
-  };
-
-  const handleExited = () => {
-    setExited(true);
-  };
 
   useEnhancedEffect(() => {
     if (keepMounted && open && elements.reference && elements.floating) {
@@ -112,15 +112,15 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
     placement,
     finalPlacement,
     strategy,
-    withTransition,
   };
 
-  const display = !open && keepMounted && (!withTransition || exited) ? 'none' : undefined;
+  const { contextValue, hasExited: hasTransitionExited } = useTransitionTrigger(open);
 
+  const visibility = keepMounted && hasTransitionExited ? 'hidden' : undefined;
   const classes = useUtilityClasses(ownerState);
 
   const Root = slots?.root ?? 'div';
-  const rootProps = useSlotProps({
+  const rootProps: WithOptionalOwnerState<PopupRootSlotProps> = useSlotProps({
     elementType: Root,
     externalSlotProps: slotProps.root,
     externalForwardedProps: other,
@@ -129,35 +129,38 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
     additionalProps: {
       ref: handleRef,
       role: 'tooltip',
-      style: { ...floatingStyles, display },
+      style: { ...floatingStyles, visibility },
     },
   });
 
-  const shouldRender = open || keepMounted || (withTransition && !exited);
+  const popupContextValue: PopupContextValue = React.useMemo(
+    () => ({
+      placement: finalPlacement,
+    }),
+    [finalPlacement],
+  );
 
+  const shouldRender = keepMounted || !hasTransitionExited;
   if (!shouldRender) {
     return null;
   }
 
-  const childProps: PopupChildrenProps = {
-    placement: finalPlacement,
-    requestOpen: open,
-    onExited: handleExited,
-    onEnter: handleEntering,
-  };
-
   return (
     <Portal disablePortal={disablePortal} container={container}>
-      <Root {...rootProps}>{typeof children === 'function' ? children(childProps) : children}</Root>
+      <PopupContext.Provider value={popupContextValue}>
+        <TransitionContext.Provider value={contextValue}>
+          <Root {...rootProps}>{children}</Root>
+        </TransitionContext.Provider>
+      </PopupContext.Provider>
     </Portal>
   );
-});
+}) as PolymorphicComponent<PopupTypeMap>;
 
 Popup.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * An HTML element, [virtual element](https://floating-ui.com/docs/virtual-elements),
    * or a function that returns either.
@@ -190,7 +193,7 @@ Popup.propTypes /* remove-proptypes */ = {
   disablePortal: PropTypes.bool,
   /**
    * If `true`, the popup will exist in the DOM even if it's closed.
-   * Its visibility will be controlled by the `display` CSS property.
+   * Its visibility will be controlled by the `visibility` CSS property.
    *
    * Otherwise, a closed popup will be removed from the DOM.
    *
@@ -280,15 +283,6 @@ Popup.propTypes /* remove-proptypes */ = {
    * @see https://floating-ui.com/docs/computePosition#strategy
    */
   strategy: PropTypes.oneOf(['absolute', 'fixed']),
-  /**
-   * If `true`, the popup will not disappear immediately when it needs to be closed
-   * but wait until the exit transition has finished.
-   * In such a case, a function form of `children` must be used and `onExited`
-   * callback function must be called when the transition or animation finish.
-   *
-   * @default false
-   */
-  withTransition: PropTypes.bool,
 } as any;
 
 export { Popup };

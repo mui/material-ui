@@ -5,6 +5,8 @@ import Stack from '@mui/material/Stack';
 import Tooltip from '@mui/material/Tooltip';
 
 export default function DifferentChildren() {
+  const falsyCondition = 1 === 2;
+
   return (
     <Stack spacing={2}>
       {/* It has one button with href which is rendered as anchor tag */}
@@ -34,6 +36,13 @@ export default function DifferentChildren() {
       {/* Single button */}
       <ButtonGroup>
         <Button>Single Button</Button>
+      </ButtonGroup>
+
+      {/* Conditional elements */}
+      <ButtonGroup>
+        <Button>One</Button>
+        <Button>Two</Button>
+        {falsyCondition ? <Button>Three</Button> : undefined}
       </ButtonGroup>
     </Stack>
   );

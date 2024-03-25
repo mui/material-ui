@@ -32,26 +32,25 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
+    "colorDanger": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"danger\"</code>"
+    },
     "colorInherit": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>color=\"inherit\"</code>"
-    },
-    "colorPrimary": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"primary\"</code>"
     },
     "colorNeutral": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>color=\"neutral\"</code>"
     },
-    "colorDanger": {
+    "colorPrimary": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>color=\"danger\"</code>"
+      "conditions": "<code>color=\"primary\"</code>"
     },
     "colorSuccess": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -68,25 +67,20 @@
       "nodeName": "the root element",
       "conditions": "<code>fontSize=\"inherit\"</code>"
     },
-    "fontSizeXs": {
+    "fontSizeLg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>fontSize=\"xs\"</code>"
-    },
-    "fontSizeSm": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>fontSize=\"sm\"</code>"
+      "conditions": "<code>fontSize=\"lg\"</code>"
     },
     "fontSizeMd": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>fontSize=\"md\"</code>"
     },
-    "fontSizeLg": {
+    "fontSizeSm": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>fontSize=\"lg\"</code>"
+      "conditions": "<code>fontSize=\"sm\"</code>"
     },
     "fontSizeXl": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -108,20 +102,25 @@
       "nodeName": "the root element",
       "conditions": "<code>fontSize=\"xl4\"</code>"
     },
-    "sizeSm": {
+    "fontSizeXs": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>size=\"sm\"</code>"
+      "conditions": "<code>fontSize=\"xs\"</code>"
+    },
+    "sizeLg": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"lg\"</code>"
     },
     "sizeMd": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>size=\"md\"</code>"
     },
-    "sizeLg": {
+    "sizeSm": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>size=\"lg\"</code>"
+      "conditions": "<code>size=\"sm\"</code>"
     }
   },
   "slotDescriptions": { "root": "The component that renders the root." }

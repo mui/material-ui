@@ -55,19 +55,18 @@
   },
   "name": "Chip",
   "imports": ["import Chip from '@mui/joy/Chip';", "import { Chip } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiChip" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiChip-root"
+      "class": "MuiChip-root"
     },
     {
       "name": "label",
       "description": "The component that renders the label.",
       "default": "'span'",
-      "class": ".MuiChip-label"
+      "class": "MuiChip-label"
     },
     {
       "name": "action",
@@ -79,38 +78,125 @@
       "name": "startDecorator",
       "description": "The component that renders the start decorator.",
       "default": "'span'",
-      "class": ".MuiChip-startDecorator"
+      "class": "MuiChip-startDecorator"
     },
     {
       "name": "endDecorator",
       "description": "The component that renders the end decorator.",
       "default": "'span'",
-      "class": ".MuiChip-endDecorator"
+      "class": "MuiChip-endDecorator"
     }
   ],
-  "classes": {
-    "classes": [
-      "colorContext",
-      "colorDanger",
-      "colorNeutral",
-      "colorPrimary",
-      "colorSuccess",
-      "colorWarning",
-      "disabled",
-      "focusVisible",
-      "labelLg",
-      "labelMd",
-      "labelSm",
-      "sizeLg",
-      "sizeMd",
-      "sizeSm",
-      "variantOutlined",
-      "variantPlain",
-      "variantSoft",
-      "variantSolid"
-    ],
-    "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" }
-  },
+  "classes": [
+    {
+      "key": "colorContext",
+      "className": "MuiChip-colorContext",
+      "description": "Class name applied to the root element when color inversion is triggered.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorDanger",
+      "className": "MuiChip-colorDanger",
+      "description": "Class name applied to the root element if `color=\"danger\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorNeutral",
+      "className": "MuiChip-colorNeutral",
+      "description": "Class name applied to the root element if `color=\"neutral\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiChip-colorPrimary",
+      "description": "Class name applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSuccess",
+      "className": "MuiChip-colorSuccess",
+      "description": "Class name applied to the root element if `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorWarning",
+      "className": "MuiChip-colorWarning",
+      "description": "Class name applied to the root element if `color=\"warning\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "focusVisible",
+      "className": "Mui-focusVisible",
+      "description": "State class applied to the root element if keyboard focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "labelLg",
+      "className": "MuiChip-labelLg",
+      "description": "Class name applied to the label `span` element if `size=\"lg\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "labelMd",
+      "className": "MuiChip-labelMd",
+      "description": "Class name applied to the label `span` element if `size=\"md\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "labelSm",
+      "className": "MuiChip-labelSm",
+      "description": "Class name applied to the label `span` element if `size=\"sm\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeLg",
+      "className": "MuiChip-sizeLg",
+      "description": "Class name applied to the root element if `size=\"lg\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeMd",
+      "className": "MuiChip-sizeMd",
+      "description": "Class name applied to the root element if `size=\"md\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSm",
+      "className": "MuiChip-sizeSm",
+      "description": "Class name applied to the root element if `size=\"sm\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantOutlined",
+      "className": "MuiChip-variantOutlined",
+      "description": "Class name applied to the root element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantPlain",
+      "className": "MuiChip-variantPlain",
+      "description": "Class name applied to the root element if `variant=\"plain\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSoft",
+      "className": "MuiChip-variantSoft",
+      "description": "Class name applied to the root element if `variant=\"soft\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSolid",
+      "className": "MuiChip-variantSolid",
+      "description": "Class name applied to the root element if `variant=\"solid\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyChip",

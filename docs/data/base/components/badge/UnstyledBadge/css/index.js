@@ -33,9 +33,16 @@ const cyan = {
 };
 
 const grey = {
-  300: '#afb8c1',
-  400: '#bdbdbd',
-  900: '#24292f',
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
 function useIsDarkMode() {
@@ -56,7 +63,7 @@ function Styles() {
         font-size: 14px;
         font-variant: tabular-nums;
         list-style: none;
-        font-family: IBM Plex Sans, sans-serif;
+        font-family: 'IBM Plex Sans', sans-serif;
         position: relative;
         display: inline-block;
         line-height: 1;

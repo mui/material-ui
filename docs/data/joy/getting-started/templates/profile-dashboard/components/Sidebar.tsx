@@ -19,7 +19,7 @@ import Stack from '@mui/joy/Stack';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
-import CollectionsBookmarkRoundedIcon from '@mui/icons-material/CollectionsBookmarkRounded';
+import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
 import AssignmentRoundedIcon from '@mui/icons-material/AssignmentRounded';
 import QuestionAnswerRoundedIcon from '@mui/icons-material/QuestionAnswerRounded';
 import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
@@ -27,7 +27,7 @@ import SupportRoundedIcon from '@mui/icons-material/SupportRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
-import BadgeRoundedIcon from '@mui/icons-material/BadgeRounded';
+import BrightnessAutoRoundedIcon from '@mui/icons-material/BrightnessAutoRounded';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 import ColorSchemeToggle from './ColorSchemeToggle';
@@ -70,10 +70,7 @@ export default function Sidebar() {
     <Sheet
       className="Sidebar"
       sx={{
-        position: {
-          xs: 'fixed',
-          md: 'sticky',
-        },
+        position: { xs: 'fixed', md: 'sticky' },
         transform: {
           xs: 'translateX(calc(100% * (var(--SideNavigation-slideIn, 0) - 1)))',
           md: 'none',
@@ -83,8 +80,7 @@ export default function Sidebar() {
         height: '100dvh',
         width: 'var(--Sidebar-width)',
         top: 0,
-        p: 1.5,
-        py: 3,
+        p: 2,
         flexShrink: 0,
         display: 'flex',
         flexDirection: 'column',
@@ -124,9 +120,9 @@ export default function Sidebar() {
       />
       <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
         <IconButton variant="soft" color="primary" size="sm">
-          <BadgeRoundedIcon />
+          <BrightnessAutoRoundedIcon />
         </IconButton>
-        <Typography level="title-lg">Profiles</Typography>
+        <Typography level="title-lg">Acme Co.</Typography>
         <ColorSchemeToggle sx={{ ml: 'auto' }} />
       </Box>
       <Input size="sm" startDecorator={<SearchRoundedIcon />} placeholder="Search" />
@@ -169,14 +165,17 @@ export default function Sidebar() {
           </ListItem>
 
           <ListItem>
-            <ListItemButton>
-              <CollectionsBookmarkRoundedIcon />
+            <ListItemButton
+              role="menuitem"
+              component="a"
+              href="/joy-ui/getting-started/templates/order-dashboard/"
+            >
+              <ShoppingCartRoundedIcon />
               <ListItemContent>
-                <Typography level="title-sm">Projects</Typography>
+                <Typography level="title-sm">Orders</Typography>
               </ListItemContent>
             </ListItemButton>
           </ListItem>
-
           <ListItem nested>
             <Toggler
               renderToggle={({ open, setOpen }) => (
@@ -207,7 +206,6 @@ export default function Sidebar() {
               </List>
             </Toggler>
           </ListItem>
-
           <ListItem>
             <ListItemButton
               role="menuitem"
@@ -223,7 +221,6 @@ export default function Sidebar() {
               </Chip>
             </ListItemButton>
           </ListItem>
-
           <ListItem nested>
             <Toggler
               defaultExpanded
@@ -253,7 +250,6 @@ export default function Sidebar() {
             </Toggler>
           </ListItem>
         </List>
-
         <List
           size="sm"
           sx={{

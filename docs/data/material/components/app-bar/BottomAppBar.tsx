@@ -9,7 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
 import Fab from '@mui/material/Fab';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
@@ -98,12 +98,12 @@ export default function BottomAppBar() {
                   Yesterday
                 </ListSubheader>
               )}
-              <ListItem button>
+              <ListItemButton>
                 <ListItemAvatar>
                   <Avatar alt="Profile Picture" src={person} />
                 </ListItemAvatar>
                 <ListItemText primary={primary} secondary={secondary} />
-              </ListItem>
+              </ListItemButton>
             </React.Fragment>
           ))}
         </List>

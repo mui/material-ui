@@ -37,13 +37,13 @@ const content = [
   },
 ];
 
-function ValueProposition() {
+export default function ValueProposition() {
   return (
     <Section>
       <SectionHeadline
         overline="Why build with MUI?"
         title={
-          <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 }, maxWidth: 500 }}>
+          <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 } }}>
             A <GradientText>delightful experience</GradientText> <br />
             for you and your users
           </Typography>
@@ -51,7 +51,7 @@ function ValueProposition() {
       />
       <Grid container spacing={3}>
         {content.map(({ icon, title, description }) => (
-          <Grid key={title} item xs={12} sm={3}>
+          <Grid key={title} item xs={12} sm={6} lg={3}>
             <InfoCard title={title} icon={icon} description={description} />
           </Grid>
         ))}
@@ -59,5 +59,3 @@ function ValueProposition() {
     </Section>
   );
 }
-
-export default ValueProposition;

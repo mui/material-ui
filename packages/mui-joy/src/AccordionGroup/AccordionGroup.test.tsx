@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
+import { createRenderer } from '@mui-internal/test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import AccordionGroup, { accordionGroupClasses as classes } from '@mui/joy/AccordionGroup';
+import describeConformance from '../../test/describeConformance';
 
 describe('<AccordionGroup />', () => {
   const { render } = createRenderer();
@@ -73,8 +74,6 @@ describe('<AccordionGroup />', () => {
         expect(getByTestId('root')).to.have.class(colorConfig.class);
       });
     });
-
-    describeJoyColorInversion(<AccordionGroup />, { muiName: 'JoyAccordionGroup', classes });
   });
 
   it('should not warn when using custom color, variant, size', () => {

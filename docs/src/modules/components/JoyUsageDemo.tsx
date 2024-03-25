@@ -7,6 +7,7 @@ import Divider from '@mui/joy/Divider';
 import Chip from '@mui/joy/Chip';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel, { formLabelClasses } from '@mui/joy/FormLabel';
+import FormHelperText from '@mui/joy/FormHelperText';
 import IconButton from '@mui/joy/IconButton';
 import Input, { inputClasses } from '@mui/joy/Input';
 import ListItemDecorator, { listItemDecoratorClasses } from '@mui/joy/ListItemDecorator';
@@ -108,7 +109,7 @@ interface JoyUsageDemoProps<ComponentProps> {
    */
   data: Array<{
     /**
-     * Name of the prop, e.g. 'children'
+     * Name of the prop, for example 'children'
      */
     propName: Extract<keyof ComponentProps, string>;
     /**
@@ -155,6 +156,10 @@ interface JoyUsageDemoProps<ComponentProps> {
      * If not provided, the `propName` is displayed as Pascal case.
      */
     formLabel?: string;
+    /**
+     * The helper text to be displayed for the knob.
+     */
+    helperText?: string;
   }>;
   /**
    * A function to override the code block result.
@@ -296,7 +301,15 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
           }}
         >
           {data.map(
-            ({ propName, formLabel = propName, knob, options = [], defaultValue, labels }) => {
+            ({
+              propName,
+              formLabel = propName,
+              knob,
+              options = [],
+              defaultValue,
+              labels,
+              helperText,
+            }) => {
               const resolvedValue = props[propName] ?? defaultValue;
               if (!knob) {
                 return null;
@@ -306,10 +319,9 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                   <FormControl
                     key={propName}
                     size="sm"
-                    orientation="horizontal"
-                    sx={{ justifyContent: 'space-between' }}
+                    sx={{ display: 'grid', gridTemplateColumns: '1fr auto', alignItems: 'center' }}
                   >
-                    <FormLabel sx={{ textTransform: 'capitalize' }}>{formLabel}</FormLabel>
+                    <FormLabel sx={{ textTransform: 'capitalize', mb: 0 }}>{formLabel}</FormLabel>
                     <Switch
                       checked={Boolean(resolvedValue)}
                       onChange={(event) =>
@@ -328,6 +340,11 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                         },
                       }}
                     />
+                    {helperText && (
+                      <FormHelperText sx={{ gridColumn: 'span 2', m: 0 }}>
+                        {helperText}
+                      </FormHelperText>
+                    )}
                   </FormControl>
                 );
               }
@@ -379,6 +396,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                         );
                       })}
                     </RadioGroup>
+                    {helperText && <FormHelperText>{helperText}</FormHelperText>}
                   </FormControl>
                 );
               }
@@ -432,6 +450,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                         );
                       })}
                     </RadioGroup>
+                    {helperText && <FormHelperText>{helperText}</FormHelperText>}
                   </FormControl>
                 );
               }
@@ -513,6 +532,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                         },
                       )}
                     </RadioGroup>
+                    {helperText && <FormHelperText>{helperText}</FormHelperText>}
                   </FormControl>
                 );
               }
@@ -557,6 +577,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                         </Option>
                       ))}
                     </Select>
+                    {helperText && <FormHelperText>{helperText}</FormHelperText>}
                   </FormControl>
                 );
               }
@@ -580,6 +601,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                         },
                       }}
                     />
+                    {helperText && <FormHelperText>{helperText}</FormHelperText>}
                   </FormControl>
                 );
               }
@@ -610,6 +632,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                         },
                       }}
                     />
+                    {helperText && <FormHelperText>{helperText}</FormHelperText>}
                   </FormControl>
                 );
               }
@@ -710,6 +733,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                         ))}
                       </Box>
                     </RadioGroup>
+                    {helperText && <FormHelperText>{helperText}</FormHelperText>}
                   </FormControl>
                 );
               }

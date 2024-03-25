@@ -33,7 +33,7 @@ describe('CodeSandbox', () => {
             'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.js',
           dependencies: {
             react: 'latest',
-            '@mui/material': 'latest',
+            '@mui/material': 'next',
             'react-dom': 'latest',
             '@emotion/react': 'latest',
             '@emotion/styled': 'latest',
@@ -41,12 +41,19 @@ describe('CodeSandbox', () => {
           devDependencies: {
             'react-scripts': 'latest',
           },
+          scripts: {
+            start: 'react-scripts start',
+            build: 'react-scripts build',
+            test: 'react-scripts test',
+            eject: 'react-scripts eject',
+          },
         },
       },
       'public/index.html': {
         content: `<!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="utf-8" />
     <title>BasicButtons Material Demo</title>
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <!-- Fonts to support Material Design -->
@@ -54,7 +61,7 @@ describe('CodeSandbox', () => {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
     />
     <!-- Icons to support Material Design -->
     <link
@@ -67,7 +74,7 @@ describe('CodeSandbox', () => {
   </body>
 </html>`,
       },
-      'Demo.js': {
+      'src/Demo.js': {
         content: `import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -83,7 +90,7 @@ export default function BasicButtons() {
 }
 `,
       },
-      'index.js': {
+      'src/index.js': {
         content: `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider } from '@mui/material/styles';
@@ -116,7 +123,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
             'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.tsx',
           dependencies: {
             react: 'latest',
-            '@mui/material': 'latest',
+            '@mui/material': 'next',
             'react-dom': 'latest',
             '@emotion/react': 'latest',
             '@emotion/styled': 'latest',
@@ -129,7 +136,10 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
           },
           main: 'index.tsx',
           scripts: {
+            build: 'react-scripts build',
+            eject: 'react-scripts eject',
             start: 'react-scripts start',
+            test: 'react-scripts test',
           },
         },
       },
@@ -137,6 +147,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
         content: `<!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="utf-8" />
     <title>BasicButtons Material Demo</title>
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <!-- Fonts to support Material Design -->
@@ -144,7 +155,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
     />
     <!-- Icons to support Material Design -->
     <link
@@ -157,7 +168,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
   </body>
 </html>`,
       },
-      'Demo.tsx': {
+      'src/Demo.tsx': {
         content: `import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -173,7 +184,7 @@ export default function BasicButtons() {
 }
 `,
       },
-      'index.tsx': {
+      'src/index.tsx': {
         content: `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider } from '@mui/material/styles';
@@ -219,7 +230,7 @@ ReactDOM.createRoot(document.querySelector("#root")!).render(
     expect(result.dependencies).to.deep.equal({
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@mui/material': 'latest',
+      '@mui/material': 'next',
       '@types/react': 'latest',
       '@types/react-dom': 'latest',
       react: 'latest',

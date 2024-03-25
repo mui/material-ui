@@ -2,9 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { internal_resolveProps as resolveProps } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { alpha } from '@mui/system';
+import resolveProps from '@mui/utils/resolveProps';
+import composeClasses from '@mui/utils/composeClasses';
+import { alpha } from '@mui/system/colorManipulator';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import ButtonBase from '../ButtonBase';
@@ -23,13 +23,13 @@ const useUtilityClasses = (ownerState) => {
       `${variant}${capitalize(color)}`,
       `size${capitalize(size)}`,
       `${variant}Size${capitalize(size)}`,
-      color === 'inherit' && 'colorInherit',
+      `color${capitalize(color)}`,
       disableElevation && 'disableElevation',
       fullWidth && 'fullWidth',
     ],
     label: ['label'],
-    startIcon: ['startIcon', `iconSize${capitalize(size)}`],
-    endIcon: ['endIcon', `iconSize${capitalize(size)}`],
+    startIcon: ['icon', 'startIcon', `iconSize${capitalize(size)}`],
+    endIcon: ['icon', 'endIcon', `iconSize${capitalize(size)}`],
   };
 
   const composedClasses = composeClasses(slots, getButtonUtilityClass, classes);
@@ -370,10 +370,10 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 });
 
 Button.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
@@ -389,7 +389,7 @@ Button.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

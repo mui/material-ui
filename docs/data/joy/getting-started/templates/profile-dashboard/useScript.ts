@@ -18,7 +18,7 @@ function getScriptNode(src: string) {
   };
 }
 
-function useScript(src: string): UseScriptStatus {
+export default function useScript(src: string): UseScriptStatus {
   const [status, setStatus] = React.useState<UseScriptStatus>(() => {
     if (typeof window === 'undefined') {
       // SSR Handling - always return 'loading'
@@ -97,5 +97,3 @@ function useScript(src: string): UseScriptStatus {
 
   return status;
 }
-
-export default useScript;

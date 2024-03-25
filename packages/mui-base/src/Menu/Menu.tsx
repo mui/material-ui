@@ -1,14 +1,14 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { refType } from '@mui/utils';
+import { HTMLElementType, refType } from '@mui/utils';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import { MenuOwnerState, MenuProps, MenuRootSlotProps, MenuTypeMap } from './Menu.types';
 import { getMenuUtilityClass } from './menuClasses';
 import { useMenu } from '../useMenu';
 import { MenuProvider } from '../useMenu/MenuProvider';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
-import { Popper } from '../Popper';
+import { Unstable_Popup as Popup } from '../Unstable_Popup';
 import { useSlotProps } from '../utils/useSlotProps';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { WithOptionalOwnerState } from '../utils';
@@ -38,11 +38,22 @@ const Menu = React.forwardRef(function Menu<RootComponentType extends React.Elem
   props: MenuProps<RootComponentType>,
   forwardedRef: React.ForwardedRef<Element>,
 ) {
-  const { actions, children, onItemsChange, slotProps = {}, slots = {}, ...other } = props;
+  const {
+    actions,
+    anchor: anchorProp,
+    children,
+    onItemsChange,
+    slotProps = {},
+    slots = {},
+    ...other
+  } = props;
 
   const { contextValue, getListboxProps, dispatch, open, triggerElement } = useMenu({
     onItemsChange,
+    componentName: 'Menu',
   });
+
+  const anchor = anchorProp ?? triggerElement;
 
   React.useImperativeHandle(
     actions,
@@ -79,7 +90,7 @@ const Menu = React.forwardRef(function Menu<RootComponentType extends React.Elem
     ownerState,
   });
 
-  if (open === true && triggerElement == null) {
+  if (open === true && anchor == null) {
     return (
       <Root {...rootProps}>
         <Listbox {...listboxProps}>
@@ -90,23 +101,31 @@ const Menu = React.forwardRef(function Menu<RootComponentType extends React.Elem
   }
 
   return (
-    <Popper {...rootProps} open={open} anchorEl={triggerElement} slots={{ root: Root }}>
+    <Popup keepMounted {...rootProps} open={open} anchor={anchor} slots={{ root: Root }}>
       <Listbox {...listboxProps}>
         <MenuProvider value={contextValue}>{children}</MenuProvider>
       </Listbox>
-    </Popper>
+    </Popup>
   );
 }) as PolymorphicComponent<MenuTypeMap>;
 
 Menu.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A ref with imperative actions that can be performed on the menu.
    */
   actions: refType,
+  /**
+   * The element based on which the menu is positioned.
+   */
+  anchor: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    HTMLElementType,
+    PropTypes.object,
+    PropTypes.func,
+  ]),
   /**
    * @ignore
    */

@@ -11,6 +11,8 @@ const pages: readonly MuiPage[] = [
       { pathname: '/joy-ui/getting-started/usage' },
       { pathname: '/joy-ui/getting-started/tutorial' },
       { pathname: '/joy-ui/getting-started/templates' },
+      { pathname: '/joy-ui/getting-started/roadmap' },
+      { pathname: '/joy-ui/getting-started/support' },
       {
         pathname: '/joy-ui/main-features',
         subheader: 'main-features',
@@ -45,7 +47,6 @@ const pages: readonly MuiPage[] = [
           {
             pathname: '/joy-ui/react-toggle-button-group',
             title: 'Toggle Button Group',
-            newFeature: true,
           },
         ],
       },
@@ -72,15 +73,15 @@ const pages: readonly MuiPage[] = [
           { pathname: '/joy-ui/react-circular-progress', title: 'Circular Progress' },
           { pathname: '/joy-ui/react-linear-progress', title: 'Linear Progress' },
           { pathname: '/joy-ui/react-modal' },
-          { pathname: '/joy-ui/react-skeleton', newFeature: true },
-          { pathname: '/joy-ui/react-snackbar', planned: true },
+          { pathname: '/joy-ui/react-skeleton' },
+          { pathname: '/joy-ui/react-snackbar' },
         ],
       },
       {
         pathname: '/joy-ui/components/surfaces',
         subheader: 'surfaces',
         children: [
-          { pathname: '/joy-ui/react-accordion', newFeature: true },
+          { pathname: '/joy-ui/react-accordion' },
           { pathname: '/joy-ui/react-card' },
           { pathname: '/joy-ui/react-sheet' },
         ],
@@ -90,16 +91,21 @@ const pages: readonly MuiPage[] = [
         subheader: 'navigation',
         children: [
           { pathname: '/joy-ui/react-breadcrumbs' },
-          { pathname: '/joy-ui/react-drawer', newFeature: true },
+          { pathname: '/joy-ui/react-drawer' },
           { pathname: '/joy-ui/react-link' },
           { pathname: '/joy-ui/react-menu' },
+          { pathname: '/joy-ui/react-stepper' },
           { pathname: '/joy-ui/react-tabs' },
         ],
       },
       {
         pathname: '/joy-ui/components/layout',
         subheader: 'layout',
-        children: [{ pathname: '/joy-ui/react-grid' }, { pathname: '/joy-ui/react-stack' }],
+        children: [
+          { pathname: '/joy-ui/react-box' },
+          { pathname: '/joy-ui/react-grid' },
+          { pathname: '/joy-ui/react-stack' },
+        ],
       },
       {
         pathname: '/joy-ui/components/utils',
@@ -140,6 +146,10 @@ const pages: readonly MuiPage[] = [
           {
             pathname: '/joy-ui/customization/overriding-component-structure',
             title: 'Overriding the component structure',
+          },
+          {
+            pathname: '/joy-ui/customization/right-to-left',
+            title: 'Right-to-left support',
           },
         ],
       },

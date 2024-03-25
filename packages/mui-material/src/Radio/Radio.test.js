@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer } from 'test/utils';
+import { createRenderer } from '@mui-internal/test-utils';
 import Radio, { radioClasses as classes } from '@mui/material/Radio';
 import FormControl from '@mui/material/FormControl';
 import ButtonBase from '@mui/material/ButtonBase';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Radio />', () => {
   const { render } = createRenderer();
@@ -91,6 +93,38 @@ describe('<Radio />', () => {
         );
 
         expect(getByRole('radio')).not.to.have.attribute('disabled');
+      });
+    });
+  });
+
+  describe('theme: customization', () => {
+    it('should be customizable in the theme using the size prop.', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const theme = createTheme({
+        components: {
+          MuiRadio: {
+            styleOverrides: {
+              sizeSmall: {
+                marginLeft: -40,
+                paddingRight: 2,
+              },
+            },
+          },
+        },
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Radio size="small" />
+        </ThemeProvider>,
+      );
+
+      expect(container.querySelector(`.${classes.sizeSmall}`)).toHaveComputedStyle({
+        marginLeft: '-40px',
+        paddingRight: '2px',
       });
     });
   });

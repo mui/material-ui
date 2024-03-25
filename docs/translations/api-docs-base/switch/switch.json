@@ -23,10 +23,6 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class applied to the root element." },
-    "input": { "description": "Class applied to the internal input element" },
-    "track": { "description": "Class applied to the track element" },
-    "thumb": { "description": "Class applied to the thumb element" },
     "checked": {
       "description": "State class applied to the root element if the switch is checked"
     },
@@ -39,8 +35,8 @@
     "readOnly": { "description": "Class applied to the root element if the switch is read-only" }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
     "input": "The component that renders the input.",
+    "root": "The component that renders the root.",
     "thumb": "The component that renders the thumb.",
     "track": "The component that renders the track."
   }
