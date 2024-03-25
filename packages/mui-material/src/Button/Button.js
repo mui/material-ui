@@ -260,6 +260,10 @@ const ButtonRoot = styled(ButtonBase, {
           },
         },
       },
+      {
+        props: { fullWidth: true },
+        style: { width: '100%' },
+      },
     ],
   };
 });
