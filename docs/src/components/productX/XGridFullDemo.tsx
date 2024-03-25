@@ -269,8 +269,8 @@ export default function XGridFullDemo() {
           <DataGridPro
             {...data}
             density="compact"
-            slots={{
-              toolbar: GridToolbar,
+            components={{
+              Toolbar: GridToolbar,
             }}
             loading={loading}
             checkboxSelection

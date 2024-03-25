@@ -19,9 +19,8 @@ If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack`
 import { Button, TextField } from '@mui/material';
 ```
 
-:::warning
-The following instructions are only needed if you want to optimize your development startup times or if you are using an older bundler that doesn't support tree-shaking.
-:::
+⚠️ The following instructions are only needed if you want to optimize your development startup times or if you are using an older bundler
+that doesn't support tree-shaking.
 
 ## Development environment
 

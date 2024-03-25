@@ -179,14 +179,14 @@ function composeMouseEventHandler(
 }
 
 function composeFocusEventHandler(
-  handler: (event: React.FocusEvent<HTMLElement>, ...params: any[]) => void,
-  eventHandler: (event: React.FocusEvent<HTMLElement>, ...params: any[]) => void,
+  handler: (event: React.FocusEvent<HTMLElement>) => void,
+  eventHandler: (event: React.FocusEvent<HTMLElement>) => void,
 ) {
-  return (event: React.FocusEvent<HTMLElement>, ...params: any[]) => {
+  return (event: React.FocusEvent<HTMLElement>) => {
     if (eventHandler) {
-      eventHandler(event, ...params);
+      eventHandler(event);
     }
-    handler(event, ...params);
+    handler(event);
   };
 }
 /**

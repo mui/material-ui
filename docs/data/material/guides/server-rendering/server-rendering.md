@@ -26,7 +26,9 @@ In the following recipe, we are going to look at how to set up server-side rende
 
 Create a theme that will be shared between the client and the server:
 
-```js title="theme.js"
+`theme.js`
+
+```js
 import { createTheme } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
 
@@ -54,7 +56,9 @@ The following is the outline for what the server-side is going to look like.
 We are going to set up an [Express middleware](https://expressjs.com/en/guide/using-middleware.html) using [app.use](https://expressjs.com/en/api.html) to handle all requests that come into the server.
 If you're unfamiliar with Express or middleware, know that the `handleRender` function will be called every time the server receives a request.
 
-```js title="server.js"
+`server.js`
+
+```js
 import express from 'express';
 
 // We are going to fill these out in the sections to follow.
@@ -88,7 +92,9 @@ Material UI uses Emotion as its default styled engine.
 We need to extract the styles from the Emotion instance.
 For this, we need to share the same cache configuration for both the client and server:
 
-```js title="createEmotionCache.js"
+`createEmotionCache.js`
+
+```js
 import createCache from '@emotion/cache';
 
 export default function createEmotionCache() {
@@ -96,7 +102,7 @@ export default function createEmotionCache() {
 }
 ```
 
-With this we are creating a new Emotion cache instance and using this to extract the critical styles for the HTML as well.
+With this we are creating a new Emotion cache instance and using this to extract the critical styles for the html as well.
 
 We will see how this is passed along in the `renderFullPage` function.
 
@@ -183,7 +189,9 @@ The client-side is straightforward.
 All we need to do is use the same cache configuration as the server-side.
 Let's take a look at the client file:
 
-```jsx title="client.js"
+`client.js`
+
+```jsx
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import CssBaseline from '@mui/material/CssBaseline';

@@ -41,5 +41,12 @@ baseUnitContext.keys().forEach(baseUnitContext);
 const utilsContext = require.context('../packages/mui-utils/src/', true, /\.test\.(js|ts|tsx)$/);
 utilsContext.keys().forEach(utilsContext);
 
+const materialNextContext = require.context(
+  '../packages/mui-material-next/src/',
+  true,
+  /\.test\.(js|ts|tsx)$/,
+);
+materialNextContext.keys().forEach(materialNextContext);
+
 const joyContext = require.context('../packages/mui-joy/src', true, /\.test\.(js|ts|tsx)$/);
 joyContext.keys().forEach(joyContext);

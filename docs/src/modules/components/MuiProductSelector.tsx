@@ -186,7 +186,7 @@ export default function MuiProductSelector() {
       </Box>
       <li role="none">
         <Link
-          href={ROUTES.toolpadStudioDocs}
+          href={ROUTES.toolpadDocs}
           sx={(theme) => ({
             p: 2,
             pr: 3,
@@ -204,7 +204,7 @@ export default function MuiProductSelector() {
           <ProductSubMenu
             role="menuitem"
             icon={<IconImage name="product-toolpad" />}
-            name="Toolpad"
+            name="MUI Toolpad"
             description="Low-code admin builder."
             chip={<Chip size="small" label="Beta" color="primary" variant="outlined" />}
           />

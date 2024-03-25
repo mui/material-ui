@@ -5,6 +5,7 @@ import {
   createTheme as createMdTheme,
 } from '@mui/material/styles';
 import { deepmerge } from '@mui/utils';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { enUS, zhCN, ptBR } from '@mui/material/locale';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
 import { getCookie } from 'docs/src/modules/utils/helpers';
@@ -15,8 +16,6 @@ import {
   getThemedComponents,
   getMetaThemeColor,
 } from 'docs/src/modules/brandingTheme';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import useLocalStorageState from '@mui/utils/useLocalStorageState';
 
 const languageMap = {
   en: enUS,
@@ -112,87 +111,82 @@ if (process.env.NODE_ENV !== 'production') {
 
 export function ThemeProvider(props) {
   const { children } = props;
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', { noSsr: true });
+  const preferredMode = prefersDarkMode ? 'dark' : 'light';
 
-  const [themeOptions, dispatch] = React.useReducer((state, action) => {
-    switch (action.type) {
-      case 'SET_SPACING':
-        return {
-          ...state,
-          spacing: action.payload,
-        };
-      case 'INCREASE_SPACING': {
-        return {
-          ...state,
-          spacing: state.spacing + 1,
-        };
-      }
-      case 'DECREASE_SPACING': {
-        return {
-          ...state,
-          spacing: state.spacing - 1,
-        };
-      }
-      case 'SET_DENSE':
-        return {
-          ...state,
-          dense: action.payload,
-        };
-      case 'RESET_DENSITY':
-        return {
-          ...state,
-          dense: themeInitialOptions.dense,
-          spacing: themeInitialOptions.spacing,
-        };
-      case 'RESET_COLORS':
-        return {
-          ...state,
-          paletteColors: themeInitialOptions.paletteColors,
-        };
-      case 'CHANGE':
-        // No value changed
-        if (
-          (!action.payload.paletteMode || action.payload.paletteMode === state.paletteMode) &&
-          (!action.payload.direction || action.payload.direction === state.direction) &&
-          (!action.payload.paletteColors || action.payload.paletteColors === state.paletteColors)
-        ) {
-          return state;
+  const [themeOptions, dispatch] = React.useReducer(
+    (state, action) => {
+      switch (action.type) {
+        case 'SET_SPACING':
+          return {
+            ...state,
+            spacing: action.payload,
+          };
+        case 'INCREASE_SPACING': {
+          return {
+            ...state,
+            spacing: state.spacing + 1,
+          };
         }
-
-        return {
-          ...state,
-          paletteMode: action.payload.paletteMode || state.paletteMode,
-          direction: action.payload.direction || state.direction,
-          paletteColors: action.payload.paletteColors || state.paletteColors,
-        };
-      default:
-        throw new Error(`Unrecognized type ${action.type}`);
-    }
-  }, themeInitialOptions);
+        case 'DECREASE_SPACING': {
+          return {
+            ...state,
+            spacing: state.spacing - 1,
+          };
+        }
+        case 'SET_DENSE':
+          return {
+            ...state,
+            dense: action.payload,
+          };
+        case 'RESET_DENSITY':
+          return {
+            ...state,
+            dense: themeInitialOptions.dense,
+            spacing: themeInitialOptions.spacing,
+          };
+        case 'RESET_COLORS':
+          return {
+            ...state,
+            paletteColors: themeInitialOptions.paletteColors,
+          };
+        case 'CHANGE':
+          return {
+            ...state,
+            paletteMode: action.payload.paletteMode || state.paletteMode,
+            direction: action.payload.direction || state.direction,
+            paletteColors: action.payload.paletteColors || state.paletteColors,
+          };
+        default:
+          throw new Error(`Unrecognized type ${action.type}`);
+      }
+    },
+    { ...themeInitialOptions, paletteMode: 'light' },
+  );
 
   const userLanguage = useUserLanguage();
   const { dense, direction, paletteColors, paletteMode, spacing } = themeOptions;
 
   useLazyCSS('/static/styles/prism-okaidia.css', '#prismjs');
 
-  // TODO replace with useColorScheme once all pages support css vars
-  const { mode, systemMode } = useColorSchemeShim();
-  const calculatedMode = mode === 'system' ? systemMode : mode;
-
   useEnhancedEffect(() => {
-    let nextPaletteColors = JSON.parse(getCookie('paletteColors') || 'null');
-    // Set default value if no value is found in cookie
-    if (nextPaletteColors === null) {
-      nextPaletteColors = themeInitialOptions.paletteColors;
+    const nextPaletteColors = JSON.parse(getCookie('paletteColors') || 'null');
+    let nextPaletteMode = preferredMode; // syncing with homepage, can be removed once all pages are migrated to CSS variables
+    try {
+      nextPaletteMode = localStorage.getItem('mui-mode') ?? preferredMode;
+    } catch (error) {
+      // mainly thrown when cookies are disabled.
+    }
+
+    if (nextPaletteMode === 'system') {
+      nextPaletteMode = preferredMode;
     }
 
     dispatch({
       type: 'CHANGE',
-      payload: {
-        paletteColors: nextPaletteColors,
-        paletteMode: calculatedMode,
-      },
+      payload: { paletteColors: nextPaletteColors, paletteMode: nextPaletteMode },
     });
-  }, [calculatedMode]);
+  }, [preferredMode]);
 
   useEnhancedEffect(() => {
     document.body.dir = direction;
@@ -276,17 +270,4 @@ ThemeProvider.propTypes = {
 export function useChangeTheme() {
   const dispatch = React.useContext(DispatchContext);
   return React.useCallback((options) => dispatch({ type: 'CHANGE', payload: options }), [dispatch]);
-}
-
-// TODO: remove once all pages support css vars and replace call sites with useColorScheme()
-export function useColorSchemeShim() {
-  const [mode, setMode] = useLocalStorageState('mui-mode', 'system');
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', { noSsr: true });
-  const systemMode = prefersDarkMode ? 'dark' : 'light';
-
-  return {
-    mode,
-    systemMode,
-    setMode,
-  };
 }

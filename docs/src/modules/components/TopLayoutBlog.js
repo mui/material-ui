@@ -111,11 +111,6 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/805073',
     github: 'colmtuite',
   },
-  diegoandai: {
-    name: 'Diego Andai',
-    avatar: 'https://avatars.githubusercontent.com/u/16889233',
-    github: 'DiegoAndai',
-  },
 };
 
 const classes = {

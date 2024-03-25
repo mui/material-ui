@@ -224,11 +224,11 @@ export function testReset() {
 }
 
 function composeEventHandler(handler, eventHandler) {
-  return (event, ...params) => {
+  return (event) => {
     if (eventHandler) {
-      eventHandler(event, ...params);
+      eventHandler(event);
     }
-    handler(event, ...params);
+    handler(event);
   };
 }
 

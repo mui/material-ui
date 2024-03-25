@@ -30,9 +30,11 @@ To use styled-components, you need to configure your bundler to replace it with 
 
 If you're using yarn, you can configure it using a package resolution:
 
+**package.json**
+
 <!-- #default-branch-switch -->
 
-```diff title="package.json"
+```diff
  {
    "dependencies": {
 -    "@mui/styled-engine": "latest"
@@ -49,7 +51,9 @@ If you're using yarn, you can configure it using a package resolution:
 Because package resolutions aren't available with npm, you must update your bundler's config to add this alias.
 The example below shows how to do this with Webpack:
 
-```diff title="webpack.config.js"
+**webpack.config.js**
+
+```diff
  module.exports = {
    //...
 +  resolve: {
@@ -62,7 +66,9 @@ The example below shows how to do this with Webpack:
 
 For TypeScript, you must also update the `tsconfig.json` as shown here:
 
-```diff title="tsconfig.json"
+**tsconfig.json**
+
+```diff
  {
    "compilerOptions": {
 +    "paths": {
@@ -74,7 +80,9 @@ For TypeScript, you must also update the `tsconfig.json` as shown here:
 
 ### Next.js
 
-```diff title="next.config.js"
+**next.config.js**
+
+```diff
 +const withTM = require('next-transpile-modules')([
 +  '@mui/material',
 +  '@mui/system',
@@ -93,7 +101,9 @@ For TypeScript, you must also update the `tsconfig.json` as shown here:
 ```
 
 :::info
-**Versions compatibility**: To ensure compatibility, it's essential to align the major version of `@mui/styled-engine-sc` with that of the `styled-components` package you're using. For instance, if you opt for `styled-components` version 5, it's necessary to use `@mui/styled-engine-sc` version 5. Similarly, if your preference is `styled-components` version 6, you'll need to upgrade `@mui/styled-engine-sc` to its version 6, which is currently in an alpha state.
+**Versions compatibility**
+
+To ensure compatibility, it's essential to align the major version of `@mui/styled-engine-sc` with that of the `styled-components` package you're using. For instance, if you opt for `styled-components` version 5, it's necessary to use `@mui/styled-engine-sc` version 5. Similarly, if your preference is `styled-components` version 6, you'll need to upgrade `@mui/styled-engine-sc` to its version 6, which is currently in an alpha state.
 :::
 
 ## Ready-to-use examples

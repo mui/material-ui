@@ -18,7 +18,6 @@ export default function XGridGlobalStyles({
               border: 'none',
               fontSize: '0.75rem',
               borderRadius: '0px',
-              '--DataGrid-rowBorderColor': (theme.vars || theme).palette.grey[200],
               // toolbar
               // style GridToolbar
               '& .MuiDataGrid-toolbarContainer': {
@@ -52,6 +51,9 @@ export default function XGridGlobalStyles({
               '& .MuiDataGrid-menuIcon svg': {
                 fontSize: '1rem',
               },
+              '& .MuiDataGrid-columnHeaders': {
+                borderColor: (theme.vars || theme).palette.grey[200],
+              },
               '& .MuiDataGrid-columnSeparator': {
                 color: (theme.vars || theme).palette.grey[200],
                 '&:hover': {
@@ -63,6 +65,10 @@ export default function XGridGlobalStyles({
               // table body elements
               '& .MuiDataGrid-virtualScroller': {
                 backgroundColor: (theme.vars || theme).palette.grey[50],
+              },
+              '& .MuiDataGrid-cell': {
+                borderBottom: '1px solid',
+                borderColor: (theme.vars || theme).palette.grey[200],
               },
               '& .MuiDataGrid-editInputCell': {
                 fontSize: '0.75rem',
@@ -112,7 +118,6 @@ export default function XGridGlobalStyles({
         theme.applyDarkStyles({
           [selector]: {
             '& .MuiDataGrid-root': {
-              '--DataGrid-rowBorderColor': alpha(theme.palette.primaryDark[500], 0.5),
               '& .MuiDataGrid-toolbarContainer': {
                 '& > button': {
                   borderColor: (theme.vars || theme).palette.divider,
@@ -124,6 +129,9 @@ export default function XGridGlobalStyles({
               '& .MuiIconButton-root:not(.Mui-disabled)': {
                 color: (theme.vars || theme).palette.primary[300],
               },
+              '& .MuiDataGrid-columnHeaders': {
+                borderColor: (theme.vars || theme).palette.divider,
+              },
               '& .MuiDataGrid-columnSeparator': {
                 color: (theme.vars || theme).palette.primaryDark[400],
                 '&:hover': {
@@ -134,6 +142,9 @@ export default function XGridGlobalStyles({
               // table body elements
               '& .MuiDataGrid-virtualScroller': {
                 backgroundColor: (theme.vars || theme).palette.primaryDark[900],
+              },
+              '& .MuiDataGrid-cell': {
+                borderColor: alpha(theme.palette.primaryDark[500], 0.5),
               },
               '& .MuiTablePagination-root': {
                 '& .MuiIconButton-root': {

@@ -109,7 +109,7 @@ interface JoyUsageDemoProps<ComponentProps> {
    */
   data: Array<{
     /**
-     * Name of the prop, for example 'children'
+     * Name of the prop, e.g. 'children'
      */
     propName: Extract<keyof ComponentProps, string>;
     /**

@@ -67,7 +67,7 @@ export default function usePagination(props = {}) {
   );
 
   // Basic list of items to render
-  // for example itemList = ['first', 'previous', 1, 'ellipsis', 4, 5, 6, 'ellipsis', 10, 'next', 'last']
+  // e.g. itemList = ['first', 'previous', 1, 'ellipsis', 4, 5, 6, 'ellipsis', 10, 'next', 'last']
   const itemList = [
     ...(showFirstButton ? ['first'] : []),
     ...(hidePrevButton ? [] : ['previous']),

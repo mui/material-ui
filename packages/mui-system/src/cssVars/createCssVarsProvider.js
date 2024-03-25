@@ -60,23 +60,22 @@ export default function createCssVarsProvider(options) {
     return value;
   };
 
-  function CssVarsProvider(props) {
-    const {
-      children,
-      theme: themeProp = defaultTheme,
-      modeStorageKey = defaultModeStorageKey,
-      colorSchemeStorageKey = defaultColorSchemeStorageKey,
-      attribute = defaultAttribute,
-      defaultMode = designSystemMode,
-      defaultColorScheme = designSystemColorScheme,
-      disableTransitionOnChange = designSystemTransitionOnChange,
-      storageWindow = typeof window === 'undefined' ? undefined : window,
-      documentNode = typeof document === 'undefined' ? undefined : document,
-      colorSchemeNode = typeof document === 'undefined' ? undefined : document.documentElement,
-      colorSchemeSelector = ':root',
-      disableNestedContext = false,
-      disableStyleSheetGeneration = false,
-    } = props;
+  function CssVarsProvider({
+    children,
+    theme: themeProp = defaultTheme,
+    modeStorageKey = defaultModeStorageKey,
+    colorSchemeStorageKey = defaultColorSchemeStorageKey,
+    attribute = defaultAttribute,
+    defaultMode = designSystemMode,
+    defaultColorScheme = designSystemColorScheme,
+    disableTransitionOnChange = designSystemTransitionOnChange,
+    storageWindow = typeof window === 'undefined' ? undefined : window,
+    documentNode = typeof document === 'undefined' ? undefined : document,
+    colorSchemeNode = typeof document === 'undefined' ? undefined : document.documentElement,
+    colorSchemeSelector = ':root',
+    disableNestedContext = false,
+    disableStyleSheetGeneration = false,
+  }) {
     const hasMounted = React.useRef(false);
     const upperTheme = muiUseTheme();
     const ctx = React.useContext(ColorSchemeContext);
@@ -249,14 +248,14 @@ export default function createCssVarsProvider(options) {
 
     const contextValue = React.useMemo(
       () => ({
-        allColorSchemes,
-        colorScheme,
-        darkColorScheme,
-        lightColorScheme,
         mode,
-        setColorScheme,
-        setMode,
         systemMode,
+        setMode,
+        lightColorScheme,
+        darkColorScheme,
+        colorScheme,
+        setColorScheme,
+        allColorSchemes,
       }),
       [
         allColorSchemes,

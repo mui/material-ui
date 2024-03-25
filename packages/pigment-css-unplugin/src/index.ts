@@ -1,4 +1,3 @@
-import * as path from 'node:path';
 import { transformAsync } from '@babel/core';
 import {
   type Preprocessor,
@@ -22,7 +21,6 @@ import {
   extendTheme,
   type Theme as BaseTheme,
 } from '@pigment-css/react/utils';
-import type { ResolvePluginInstance } from 'webpack';
 
 type NextMeta = {
   type: 'next';
@@ -41,7 +39,6 @@ type WebpackMeta = {
 };
 
 type Meta = NextMeta | ViteMeta | WebpackMeta;
-export type AsyncResolver = (what: string, importer: string, stack: string[]) => Promise<string>;
 
 export type PigmentOptions<Theme extends BaseTheme = BaseTheme> = {
   theme?: Theme;
@@ -50,7 +47,7 @@ export type PigmentOptions<Theme extends BaseTheme = BaseTheme> = {
   debug?: IFileReporterOptions | false;
   sourceMap?: boolean;
   meta?: Meta;
-  asyncResolve?: (...args: Parameters<AsyncResolver>) => Promise<string | null>;
+  asyncResolve?: (what: string) => string | null;
   transformSx?: boolean;
 } & Partial<WywInJsPluginOptions>;
 
@@ -137,20 +134,6 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
       };
     },
   };
-
-  let webpackResolver: AsyncResolver;
-
-  const asyncResolve: AsyncResolver = async (what, importer, stack) => {
-    const result = await asyncResolveOpt?.(what, importer, stack);
-    if (typeof result === 'string') {
-      return result;
-    }
-    if (webpackResolver) {
-      return webpackResolver(what, importer, stack);
-    }
-    return asyncResolveFallback(what, importer, stack);
-  };
-
   const linariaTransformPlugin: UnpluginOptions = {
     name: 'zero-plugin-transform-linaria',
     enforce: 'post',
@@ -160,35 +143,14 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
     transformInclude(id) {
       return isZeroRuntimeProcessableFile(id, transformLibraries);
     },
-    webpack(compiler) {
-      const resolverPlugin: ResolvePluginInstance = {
-        apply(resolver) {
-          webpackResolver = function webpackAsyncResolve(
-            what: string,
-            importer: string,
-            stack: string[],
-          ) {
-            const context = path.isAbsolute(importer)
-              ? path.dirname(importer)
-              : path.join(process.cwd(), path.dirname(importer));
-            return new Promise((resolve, reject) => {
-              resolver.resolve({}, context, what, { stack: new Set(stack) }, (err, result) => {
-                if (err) {
-                  reject(err);
-                } else if (result) {
-                  resolve(result);
-                } else {
-                  reject(new Error(`${process.env.PACKAGE_NAME}: Cannot resolve ${what}`));
-                }
-              });
-            });
-          };
-        },
-      };
-      compiler.options.resolve.plugins = compiler.options.resolve.plugins || [];
-      compiler.options.resolve.plugins.push(resolverPlugin);
-    },
     async transform(code, id) {
+      const asyncResolve: typeof asyncResolveFallback = async (what, importer, stack) => {
+        const result = asyncResolveOpt?.(what);
+        if (typeof result === 'string') {
+          return result;
+        }
+        return asyncResolveFallback(what, importer, stack);
+      };
       const transformServices = {
         options: {
           filename: id,

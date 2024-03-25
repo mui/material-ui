@@ -39,6 +39,7 @@ interface AppHeaderProps {
 
 export default function AppHeader(props: AppHeaderProps) {
   const { gitHubRepository = 'https://github.com/mui' } = props;
+
   const t = useTranslate();
 
   return (

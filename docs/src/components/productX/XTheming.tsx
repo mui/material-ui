@@ -40,7 +40,7 @@ export default function XTheming() {
     const columns: Array<GridColDef> = [
       {
         field: 'desk',
-        headerName: 'Desk',
+        headerName: 'desk',
         width: customized ? 72 : 100,
         sortable: false,
         editable: true,
@@ -65,7 +65,6 @@ export default function XTheming() {
         sortable: false,
         editable: true,
         ...(customized && {
-          display: 'flex',
           renderCell: (params: GridCellParams) => {
             return <ProgressBar value={Number(params.value)!} />;
           },
@@ -82,7 +81,6 @@ export default function XTheming() {
         sortable: false,
         editable: true,
         ...(customized && {
-          display: 'flex',
           renderCell: (params: GridCellParams) => {
             return <Status status={(params.value || '').toString()} />;
           },

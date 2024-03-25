@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled, useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -15,7 +16,7 @@ import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
 import FormatTextdirectionLToRIcon from '@mui/icons-material/FormatTextdirectionLToR';
 import FormatTextdirectionRToLIcon from '@mui/icons-material/FormatTextdirectionRToL';
-import { useColorSchemeShim, useChangeTheme } from 'docs/src/modules/components/ThemeContext';
+import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import { useTranslate } from '@mui/docs/i18n';
 
 const Heading = styled(Typography)(({ theme }) => ({
@@ -36,26 +37,55 @@ const IconToggleButton = styled(ToggleButton)({
   },
 });
 
-export default function AppSettingsDrawer(props) {
+function AppSettingsDrawer(props) {
   const { onClose, open = false, ...other } = props;
   const t = useTranslate();
   const upperTheme = useTheme();
   const changeTheme = useChangeTheme();
+  const [mode, setMode] = React.useState(null);
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const preferredMode = prefersDarkMode ? 'dark' : 'light';
 
-  // TODO replace with useColorScheme once all pages support css vars
-  const { mode, setMode } = useColorSchemeShim();
+  React.useEffect(() => {
+    // syncing with homepage, can be removed once all pages are migrated to CSS variables
+    let initialMode = 'system';
+    try {
+      initialMode = localStorage.getItem('mui-mode') || initialMode;
+    } catch (error) {
+      // do nothing
+    }
+    setMode(initialMode);
+  }, [preferredMode]);
 
   const handleChangeThemeMode = (event, paletteMode) => {
     if (paletteMode === null) {
       return;
     }
+
     setMode(paletteMode);
+
+    if (paletteMode === 'system') {
+      try {
+        localStorage.setItem('mui-mode', 'system'); // syncing with homepage, can be removed once all pages are migrated to CSS variables
+      } catch (error) {
+        // thrown when cookies are disabled.
+      }
+      changeTheme({ paletteMode: preferredMode });
+    } else {
+      try {
+        localStorage.setItem('mui-mode', paletteMode); // syncing with homepage, can be removed once all pages are migrated to CSS variables
+      } catch (error) {
+        // thrown when cookies are disabled.
+      }
+      changeTheme({ paletteMode });
+    }
   };
 
   const handleChangeDirection = (event, direction) => {
     if (direction === null) {
       direction = upperTheme.direction;
     }
+
     changeTheme({ direction });
   };
 
@@ -172,3 +202,5 @@ AppSettingsDrawer.propTypes = {
   onClose: PropTypes.func.isRequired,
   open: PropTypes.bool,
 };
+
+export default AppSettingsDrawer;

@@ -80,7 +80,7 @@ export default function FreeSoloCreateOptionDialog() {
           }}
           options={top100Films}
           getOptionLabel={(option) => {
-            // for example value selected with enter, right from the input
+            // e.g. value selected with enter, right from the input
             if (typeof option === 'string') {
               return option;
             }

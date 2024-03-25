@@ -52,10 +52,9 @@ async function run() {
     const packageData = await createPackageFile();
 
     await Promise.all(
-      ['./README.md', '../../CHANGELOG.md', '../../LICENSE', ...extraFiles].map(async (file) => {
-        const [sourcePath, targetPath] = file.split(':');
-        await includeFileInBuild(sourcePath, targetPath);
-      }),
+      ['./README.md', '../../CHANGELOG.md', '../../LICENSE', ...extraFiles].map((file) =>
+        includeFileInBuild(file),
+      ),
     );
 
     await addLicense(packageData);

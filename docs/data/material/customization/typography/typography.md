@@ -31,10 +31,9 @@ const theme = createTheme({
 
 To self-host fonts, download the font files in `ttf`, `woff`, and/or `woff2` formats and import them into your code.
 
-:::warning
-This requires that you have a plugin or loader in your build process that can handle loading `ttf`, `woff`, and
-`woff2` files. Fonts will _not_ be embedded within your bundle. They will be loaded from your webserver instead of a CDN.
-:::
+⚠️ This requires that you have a plugin or loader in your build process that can handle loading `ttf`, `woff`, and
+`woff2` files. Fonts will _not_ be embedded within your bundle. They will be loaded from your webserver instead of a
+CDN.
 
 ```js
 import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
@@ -182,7 +181,7 @@ html {
 }
 ```
 
-You need to apply the above CSS on the HTML element of this page to see the below demo rendered correctly.
+_You need to apply the above CSS on the html element of this page to see the below demo rendered correctly_
 
 {{"demo": "FontSizeTheme.js"}}
 

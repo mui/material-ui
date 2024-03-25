@@ -43,7 +43,7 @@ export default function ThemeDatePicker() {
                   paddingLeft: '18px',
                 },
                 '& .MuiTypography-caption': {
-                  color: 'text.tertiary',
+                  color: 'grey.500',
                   height: 24,
                 },
                 '[role="presentation"]': {

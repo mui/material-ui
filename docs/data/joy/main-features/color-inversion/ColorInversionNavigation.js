@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import Avatar from '@mui/joy/Avatar';
-import Badge from '@mui/joy/Badge';
+import Badge, { badgeClasses } from '@mui/joy/Badge';
 import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
@@ -15,7 +15,6 @@ import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Typography from '@mui/joy/Typography';
 import Select from '@mui/joy/Select';
-import Tooltip from '@mui/joy/Tooltip';
 import Option from '@mui/joy/Option';
 import Sheet from '@mui/joy/Sheet';
 import PieChart from '@mui/icons-material/PieChart';
@@ -31,19 +30,25 @@ export default function ColorInversionNavigation() {
     <Box sx={{ display: 'flex', borderRadius: 'sm', overflow: 'auto' }}>
       <Sheet
         variant="solid"
+        color="neutral"
         invertedColors
         sx={{
           p: 2,
           ...(color !== 'neutral' && {
-            bgcolor: `${color}.700`,
+            bgcolor: `${color}.800`,
           }),
         }}
       >
         <Select
-          variant="soft"
+          variant="outlined"
           defaultValue="1"
           size="sm"
-          color={color}
+          placeholder={
+            <div>
+              <Typography level="inherit">Saleshouse</Typography>
+              <Typography level="body-md">general team</Typography>
+            </div>
+          }
           startDecorator={
             <Sheet
               variant="solid"
@@ -54,15 +59,10 @@ export default function ColorInversionNavigation() {
                 alignSelf: 'center',
               }}
             >
-              <BubbleChartIcon fontSize="small" sx={{ m: 0 }} />
+              <BubbleChartIcon sx={{ m: 0 }} />
             </Sheet>
           }
-          sx={{
-            py: 1,
-            bgcolor: 'transparent',
-            border: '1px solid',
-            borderColor: 'divider',
-          }}
+          sx={{ py: 1 }}
         >
           <Option value="1">General team</Option>
           <Option value="2">Engineering team</Option>
@@ -89,8 +89,8 @@ export default function ColorInversionNavigation() {
             <Chip
               data-skip-inverted-colors
               size="sm"
+              color="warning"
               variant="soft"
-              color={color}
               sx={{ ml: 'auto' }}
             >
               5
@@ -131,25 +131,27 @@ export default function ColorInversionNavigation() {
         </Card>
       </Sheet>
       <Sheet
-        variant="solid"
+        variant="soft"
+        color="neutral"
         invertedColors
-        sx={{
+        sx={(theme) => ({
           p: 2,
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
           gap: 2,
-          bgcolor: `${color}.800`,
-          '& .MuiBadge-root': { '--Badge-ringColor': '#FFF' },
-          '& .MuiBadge-colorSuccess': { bgcolor: 'success.400' },
+          ...(color !== 'neutral' && {
+            bgcolor: `${color}.900`,
+          }),
           '& button': {
             borderRadius: '50%',
             padding: 0,
-            '--IconButton-size': '3rem',
+            '&:hover': {
+              boxShadow: theme.shadow.md,
+            },
           },
-        }}
+        })}
       >
-        <Badge badgeContent="7" badgeInset="10%" size="sm">
+        <Badge badgeContent="7" size="sm">
           <IconButton>
             <Avatar src="/static/images/avatar/3.jpg" />
           </IconButton>
@@ -159,28 +161,28 @@ export default function ColorInversionNavigation() {
             vertical: 'bottom',
             horizontal: 'right',
           }}
-          badgeInset="15%"
-          color="success"
+          badgeInset="14%"
+          sx={{ [`& .${badgeClasses.badge}`]: { bgcolor: 'success.300' } }}
         >
           <IconButton>
             <Avatar src="/static/images/avatar/4.jpg" />
           </IconButton>
         </Badge>
-        <Tooltip title="Add another chat" variant="soft">
-          <IconButton sx={{ color: 'text.tertiary' }}>
-            <AddIcon />
-          </IconButton>
-        </Tooltip>
+        <IconButton variant="soft" aria-label="Add another chat">
+          <AddIcon />
+        </IconButton>
         <IconButton
+          variant="plain"
+          size="sm"
           onClick={() => {
             const colors = ['primary', 'neutral', 'danger', 'success', 'warning'];
 
             const nextColorIndex = colors.indexOf(color) + 1;
             setColor(colors[nextColorIndex] ?? colors[0]);
           }}
-          sx={{ mt: 'auto', color: 'text.tertiary' }}
+          sx={{ mt: 'auto', height: '40px' }}
         >
-          <ColorLensRoundedIcon />
+          <ColorLensRoundedIcon fontSize="small" />
         </IconButton>
       </Sheet>
     </Box>

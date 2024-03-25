@@ -98,17 +98,20 @@ function PostPreview(props: BlogPost) {
               '& .MuiAvatar-circular': {
                 width: 28,
                 height: 28,
-                border: `1px solid ${(theme.vars || theme).palette.divider}`,
-                outline: '3px solid',
-                outlineColor: '#FFF',
+                border: 3,
+                borderColor: '#FFF',
                 backgroundColor: (theme.vars || theme).palette.grey[100],
+                color: (theme.vars || theme).palette.grey[800],
+                fontSize: theme.typography.pxToRem(13),
+                fontWeight: 500,
               },
             }),
             (theme) =>
               theme.applyDarkStyles({
                 '& .MuiAvatar-circular': {
-                  outlineColor: (theme.vars || theme).palette.primaryDark[900],
+                  borderColor: (theme.vars || theme).palette.primaryDark[800],
                   backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                  color: (theme.vars || theme).palette.primaryDark[100],
                 },
               }),
           ]}
@@ -164,7 +167,17 @@ function PostPreview(props: BlogPost) {
           href={`/blog/${props.slug}`}
           id={`describe-${props.slug}`}
           endIcon={<KeyboardArrowRightRoundedIcon />}
-          sx={{ mt: { xs: 0.5, md: 0 }, p: { xs: 0, sm: '6px 8px' } }}
+          sx={(theme) => ({
+            mt: { xs: 1, md: 0 },
+            mb: { xs: -1, md: 0 },
+            color: (theme.vars || theme).palette.primary[600],
+            '& .MuiButton-endIcon': {
+              ml: 0,
+            },
+            ...theme.applyDarkStyles({
+              color: (theme.vars || theme).palette.primary[300],
+            }),
+          })}
         >
           Read more
         </Button>
@@ -280,7 +293,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                     flexDirection: 'column',
                     position: 'relative',
                     borderColor: 'grey.200',
-                    boxShadow: '0px 4px 12px rgba(170, 180, 190, 0.2)',
+                    boxShadow: '0px 4px 16px rgba(170, 180, 190, 0.2)',
                     '&:focus-within': {
                       '& a': {
                         outline: 0,
@@ -289,7 +302,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                   },
                   (theme) =>
                     theme.applyDarkStyles({
-                      boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.4)',
+                      boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.4)',
                     }),
                 ]}
               >

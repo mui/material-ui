@@ -160,7 +160,7 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
           // do nothing if mode does not change
           return currentState;
         }
-        const newMode = mode ?? defaultMode;
+        const newMode = !mode ? defaultMode : mode;
         try {
           localStorage.setItem(modeStorageKey, newMode);
         } catch (e) {
@@ -254,17 +254,12 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
   );
 
   const handleMediaQuery = React.useCallback(
-    (event?: MediaQueryListEvent) => {
+    (e?: MediaQueryListEvent) => {
       if (state.mode === 'system') {
-        setState((currentState) => {
-          const systemMode = event?.matches ? 'dark' : 'light';
-
-          // Early exit, nothing changed.
-          if (currentState.systemMode === systemMode) {
-            return currentState;
-          }
-          return { ...currentState, systemMode };
-        });
+        setState((currentState) => ({
+          ...currentState,
+          systemMode: e?.matches ? 'dark' : 'light',
+        }));
       }
     },
     [state.mode],
@@ -283,41 +278,35 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
     // Intentionally use deprecated listener methods to support iOS & old browsers
     media.addListener(handler);
     handler(media);
-    return () => {
-      media.removeListener(handler);
-    };
+
+    return () => media.removeListener(handler);
   }, []);
 
   // Handle when localStorage has changed
   React.useEffect(() => {
+    const handleStorage = (event: StorageEvent) => {
+      const value = event.newValue;
+      if (
+        typeof event.key === 'string' &&
+        event.key.startsWith(colorSchemeStorageKey) &&
+        (!value || joinedColorSchemes.match(value))
+      ) {
+        // If the key is deleted, value will be null then reset color scheme to the default one.
+        if (event.key.endsWith('light')) {
+          setColorScheme({ light: value as SupportedColorScheme | null });
+        }
+        if (event.key.endsWith('dark')) {
+          setColorScheme({ dark: value as SupportedColorScheme | null });
+        }
+      }
+      if (event.key === modeStorageKey && (!value || ['light', 'dark', 'system'].includes(value))) {
+        setMode((value as Mode) || defaultMode);
+      }
+    };
     if (storageWindow) {
-      const handleStorage = (event: StorageEvent) => {
-        const value = event.newValue;
-        if (
-          typeof event.key === 'string' &&
-          event.key.startsWith(colorSchemeStorageKey) &&
-          (!value || joinedColorSchemes.match(value))
-        ) {
-          // If the key is deleted, value will be null then reset color scheme to the default one.
-          if (event.key.endsWith('light')) {
-            setColorScheme({ light: value as SupportedColorScheme | null });
-          }
-          if (event.key.endsWith('dark')) {
-            setColorScheme({ dark: value as SupportedColorScheme | null });
-          }
-        }
-        if (
-          event.key === modeStorageKey &&
-          (!value || ['light', 'dark', 'system'].includes(value))
-        ) {
-          setMode((value as Mode) || defaultMode);
-        }
-      };
       // For syncing color-scheme changes between iframes
       storageWindow.addEventListener('storage', handleStorage);
-      return () => {
-        storageWindow.removeEventListener('storage', handleStorage);
-      };
+      return () => storageWindow.removeEventListener('storage', handleStorage);
     }
     return undefined;
   }, [

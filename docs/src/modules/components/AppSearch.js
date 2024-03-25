@@ -273,8 +273,6 @@ const productNameProductId = {
   x: 'MUI X',
   system: 'MUI System',
   toolpad: 'Toolpad',
-  'toolpad-studio': 'Toolpad Studio',
-  'toolpad-core': 'Toolpad Core',
 };
 
 export function convertProductIdToName(productInfo) {
@@ -617,10 +615,6 @@ export default function AppSearch(props) {
               '& .DocSearch-Search-Icon': {
                 width: '18px',
                 height: '18px',
-              },
-              '& .DocSearch-VisuallyHiddenForAccessibility': {
-                width: 0,
-                visibility: 'hidden',
               },
             },
             '& .DocSearch-Cancel': {

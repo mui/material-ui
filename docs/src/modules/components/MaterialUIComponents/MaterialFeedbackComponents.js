@@ -40,7 +40,7 @@ const feedbackComponents = [
     link: '/material-ui/react-progress/',
     md1: false,
     md2: true,
-    md3: false,
+    md3: true,
     noGuidelines: false,
   },
   {

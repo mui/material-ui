@@ -166,10 +166,6 @@ function AppWrapper(props) {
         metadata: 'MUI Core',
         name: 'Material UI',
         versions: [
-          {
-            text: 'v6 (next)',
-            href: `https://next.mui.com${languagePrefix}/material-ui/getting-started/`,
-          },
           { text: `v${materialPkgJson.version}`, current: true },
           {
             text: 'v4',
@@ -196,10 +192,6 @@ function AppWrapper(props) {
         metadata: 'MUI Core',
         name: 'MUI System',
         versions: [
-          {
-            text: 'v6 (next)',
-            href: `https://next.mui.com${languagePrefix}/system/getting-started/`,
-          },
           { text: `v${systemPkgJson.version}`, current: true },
           { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
           {
