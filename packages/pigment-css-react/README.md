@@ -208,8 +208,12 @@ Each variant is an object with `props` and `style` keys. The styles are applied 
 
 **Example 1** — A button component with `small` and `large` sizes:
 
-```jsx
-const Button = styled('button')({
+```tsx
+interface ButtonProps {
+  size?: 'small' | 'large';
+}
+
+const Button = styled('button')<ButtonProps>({
   border: 'none',
   padding: '0.75rem',
   // ...other styles
