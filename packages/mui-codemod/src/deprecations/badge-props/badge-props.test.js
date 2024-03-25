@@ -12,18 +12,14 @@ describe('@mui/codemod', () => {
   describe('deprecations', () => {
     describe('badge-props', () => {
       it('transforms props as needed', () => {
-        const actual = transform(
-          { source: read('./test-cases/actual.js') },
-          { jscodeshift },
-          { printOptions: { trailingComma: true } },
-        );
+        const actual = transform({ source: read('./test-cases/actual.js') }, { jscodeshift }, {});
 
         const expected = read('./test-cases/expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
 
       it('should be idempotent', () => {
-        const actual = transform({ source: read('./test-cases/actual.js') }, { jscodeshift }, {});
+        const actual = transform({ source: read('./test-cases/expected.js') }, { jscodeshift }, {});
 
         const excepted = read('./test-cases/expected.js');
         expect(actual).to.equal(excepted, 'The transformed version should be correct');

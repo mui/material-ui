@@ -1,70 +1,70 @@
 fn({
-  MuiSlider: {
+  MuiBadge: {
     defaultProps: {
       slots: {
-        track: ComponentsTrack
+        root: ComponentsRoot
       },
 
       slotProps: {
-        track: componentsTrackProps
+        root: componentsRootProps
       }
     },
   },
 });
 
 fn({
-  MuiSlider: {
+  MuiBadge: {
     defaultProps: {
       slots: {
-        track: ComponentsTrack,
-        rail: SlotsRail
+        root: ComponentsRoot,
+        badge: SlotsBadge
       },
 
       slotProps: {
-        track: componentsTrackProps,
-        rail: slotsRailProps
+        root: componentsRootProps,
+        badge: slotsBadgeProps
       }
     },
   },
 });
 
 fn({
-  MuiSlider: {
+  MuiBadge: {
     defaultProps: {
       slots: {
-        track: SlotsTrack,
-        rail: SlotsRail
+        root: SlotsRoot,
+        badge: SlotsBadge
       },
 
       slotProps: {
-        track: {
-          ...componentsTrackProps,
-          ...slotsTrackProps
+        root: {
+          ...componentsRootProps,
+          ...slotsRootProps
         },
 
-        rail: slotsRailProps
+        badge: slotsBadgeProps
       }
     },
   },
 });
 
 fn({
-  MuiSlider: {
+  MuiBadge: {
     defaultProps: {
       slots: {
-        track: SlotsTrack,
-        rail: SlotsRail
+        root: SlotsRoot,
+        badge: SlotsBadge
       },
 
       slotProps: {
-        track: {
-          ...componentsTrackProps,
-          ...slotsTrackProps
+        root: {
+          ...componentsRootProps,
+          ...slotsRootProps
         },
 
-        rail: {
-          ...componentsRailProps,
-          ...slotsRailProps
+        badge: {
+          ...componentsBadgeProps,
+          ...slotsBadgeProps
         }
       }
     },

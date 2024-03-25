@@ -28,3 +28,14 @@ fn({
     },
   },
 });
+
+fn({
+  MuiBadge: {
+    defaultProps: {
+      components: { root: ComponentsRoot },
+      slots: { badge: SlotsBadge, root: SlotsRoot },
+      componentsProps: { root: componentsRootProps, badge: componentsBadgeProps },
+      slotProps: { badge: slotsBadgeProps, root: slotsRootProps },
+    },
+  },
+});
