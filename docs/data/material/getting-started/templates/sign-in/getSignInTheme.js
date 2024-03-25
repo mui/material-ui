@@ -403,7 +403,7 @@ export default function getSignInTheme(mode) {
           },
           root: ({ theme, ownerState }) => ({
             'input:-webkit-autofill': {
-              WebkitBoxShadow: `0 0 0 1000px ${brand[100]} inset, 0 0 0 1px ${brand[200]}`,
+              WebkitBoxShadow: `0 0 0  1000px ${brand[100]} inset, 0 0 0 1px ${brand[200]}`,
               maxHeight: '4px',
               borderRadius: '8px',
             },
@@ -418,7 +418,7 @@ export default function getSignInTheme(mode) {
             height: '40px',
             borderRadius: '10px',
             border: '1px solid',
-            borderColor: gray[200],
+            borderColor: gray[300],
             boxShadow: '0  1px 1px rgba(0, 0, 0, 0.1)',
             transition: 'border-color 120ms ease-in',
             backgroundColor: alpha(gray[100], 0.4),
@@ -439,7 +439,7 @@ export default function getSignInTheme(mode) {
             }),
             ...(theme.palette.mode === 'dark' && {
               'input:-webkit-autofill': {
-                WebkitBoxShadow: `0 0 0 1000px ${brand[900]} inset, 0 0 0 1px ${brand[600]}`,
+                WebkitBoxShadow: `0 0 0  1000px ${brand[900]} inset, 0 0 0 1px ${brand[600]}`,
                 maxHeight: '6px',
                 borderRadius: '8px',
               },
@@ -449,14 +449,8 @@ export default function getSignInTheme(mode) {
                   color: gray[500],
                 },
               },
-              boxSizing: 'border-box',
-              flexGrow: 1,
-              minHeight: 40,
-              height: '100%',
-              borderRadius: '10px',
-              border: '1px solid',
               borderColor: gray[700],
-              boxShadow: '0  2px 2px rgb(0, 0, 0)',
+              boxShadow: '0  2px 2px rgba(0, 0, 0, 0.5)',
               backgroundColor: alpha(gray[800], 0.4),
               transition: 'border-color 120ms ease-in',
               '&:hover': {

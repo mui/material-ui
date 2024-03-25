@@ -20,6 +20,7 @@ import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import ForgotPassword from './ForgotPassword';
 import getSignInSideTheme from './getSignInSideTheme';
 import ToggleColorMode from './ToggleColorMode';
+import SitemarkIcon from './SitemarkIcon';
 
 interface ToggleCustomThemeProps {
   showCustomTheme: Boolean;
@@ -63,12 +64,6 @@ function ToggleCustomTheme({
     </Box>
   );
 }
-
-const logoStyle = {
-  width: '140px',
-  height: '56px',
-  opacity: 0.8,
-};
 
 export default function SignInSide() {
   const [mode, setMode] = React.useState<PaletteMode>('light');
@@ -171,8 +166,8 @@ export default function SignInSide() {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                mt: 4,
-                mx: 4,
+                p: 4,
+                pb: 0,
                 gap: 6,
               }}
             >
@@ -182,22 +177,15 @@ export default function SignInSide() {
                   justifyContent: 'space-between',
                   alignItems: 'center',
                   width: '100%',
-                  ml: '-18px',
                 }}
               >
-                <img
-                  src={
-                    'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
-                  }
-                  style={logoStyle}
-                  alt="Sitemark's logo"
-                />
+                <SitemarkIcon sx={{ width: 100 }} />
                 <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
               </Box>
               <Typography
                 component="h1"
                 variant="h4"
-                sx={{ fontSize: 'clamp(2rem, 10vw, 2.5rem)' }}
+                sx={{ fontSize: 'clamp(2rem, 10vw, 2.15rem)' }}
               >
                 Sign in
               </Typography>
@@ -249,9 +237,11 @@ export default function SignInSide() {
                 <Box
                   sx={{
                     display: 'flex',
-                    alignItems: 'center',
+                    flexDirection: { xs: 'column', sm: 'row' },
+                    alignItems: { xs: 'start', sm: 'center' },
                     justifyContent: 'space-between',
                     width: '100%',
+                    gap: 1,
                   }}
                 >
                   <FormControlLabel
