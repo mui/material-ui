@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { styled } from '@pigment-css/react';
 
 const StatRoot = styled('div', {
@@ -38,7 +39,7 @@ const StatUnit = styled('div', {
   color: theme.colors.neutral.foreground,
 }));
 
-const Stat = function Stat(props, ref) {
+const Stat = React.forwardRef(function Stat(props, ref) {
   const { value, unit, ...other } = props;
 
   return (
@@ -47,6 +48,6 @@ const Stat = function Stat(props, ref) {
       <StatUnit>{unit}</StatUnit>
     </StatRoot>
   );
-};
+});
 
 export default Stat;

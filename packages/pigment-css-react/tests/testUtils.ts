@@ -52,7 +52,10 @@ export async function runTransformation(
       plugins: ['@babel/plugin-syntax-jsx'],
     },
     tagResolver(_source: string, tag: string) {
-      return require.resolve(`../exports/${tag}`);
+      if (_source.startsWith('@pigment-css/react')) {
+        return require.resolve(`../exports/${tag}`);
+      }
+      return null;
     },
   };
 

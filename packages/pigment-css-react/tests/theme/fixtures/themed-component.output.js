@@ -4,6 +4,7 @@ import { styled as _styled2 } from '@pigment-css/react';
 import _theme2 from '@pigment-css/react/theme';
 import { styled as _styled } from '@pigment-css/react';
 import _theme from '@pigment-css/react/theme';
+import * as React from 'react';
 const StatRoot = /*#__PURE__*/ _styled('div', {
   name: 'MuiStat',
   // The component name
@@ -37,7 +38,7 @@ const StatUnit = /*#__PURE__*/ _styled3('div', {
 })({
   classes: ['s1xscf0o', 's1xscf0o-1'],
 });
-const Stat = function Stat(props, ref) {
+const Stat = React.forwardRef(function Stat(props, ref) {
   const { value, unit, ...other } = props;
   return (
     <StatRoot ref={ref} {...other}>
@@ -45,5 +46,5 @@ const Stat = function Stat(props, ref) {
       <StatUnit>{unit}</StatUnit>
     </StatRoot>
   );
-};
+});
 export default Stat;
