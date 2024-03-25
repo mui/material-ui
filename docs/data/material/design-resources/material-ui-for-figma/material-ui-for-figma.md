@@ -1,14 +1,14 @@
-# Material UI for Figma
+# Material UI for Figma
 
-<p class="description">Enhance the designer-developer working with Material UI collaboration.</p>
+<p class="description">Enhance the designer-developer working with Material UI collaboration.</p>
 
 ## Getting started
 
-Material UI for Figma consists of a representation of the React component in Figma so that designers and developers can communicate and iterate more efficiently as they work with a set of seamlessly integrated tools.
+Material UI for Figma consists of a representation of the React component in Figma so that designers and developers can communicate and iterate more efficiently as they work with a set of seamlessly integrated tools.
 
 ### Community vs. full version
 
-The Material UI design kits is available in [community (free)](https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x) and [full (paid)](https://mui.com/store/items/figma-react/) versions.
+The Material UI design kits is available in [community (free)](https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x) and [full (paid)](https://mui.com/store/items/figma-react/) versions.
 Here's what you can expect from each one of them:
 
 |                                   | Community | Full version |
@@ -59,11 +59,11 @@ We have already defined everything as a style, so your only point of command is 
 ### Do the kits output React code?
 
 You can export the design tokens and component customizations to code if paired with [the Connect Figma plugin](/material-ui/design-resources/connect/).
-Material UI for Figma has been built to be as close to the React components as possible, making it for a fluid integration with code.
+Material UI for Figma has been built to be as close to the React components as possible, making it for a fluid integration with code.
 
 ### How do I migrate from Design to React?
 
-The Material UI for Figma design kit components are as close as possible to the React components.
+The Material UI for Figma design kit components are as close as possible to the React components.
 In practice, you will find the same names, design tokens, default values, and anything contributing to reducing the gap between the two realms.
 That said, we recommend using the design tokens as much as possible to perform component customizations, as it's easier to share the values between Figma and React.
 
@@ -71,7 +71,7 @@ That said, we recommend using the design tokens as much as possible to perform c
 A "design token" is simply a variable that can be shared with the React implementation—for example, the font size pixels of the `body2` variant.
 :::
 
-Learn more about the Material UI theme structure by visiting the [Theming](https://mui.com/material-ui/customization/theming/) and [Default theme viewer](https://mui.com/material-ui/customization/theming/) pages.
+Learn more about the Material UI theme structure by visiting the [Theming](https://mui.com/material-ui/customization/theming/) and [Default theme viewer](https://mui.com/material-ui/customization/theming/) pages.
 
 ## FAQ
 
@@ -81,12 +81,12 @@ Master components were difficult to maintain, and it required sticking to the el
 
 <iframe width="100%" height="490" src="https://www.youtube.com/embed/eHBk0FbS0P8?si=QbOiMU2F1yvGB6s8" title="YouTube video player" frameborder="0" allow="picture-in-picture; web-share" allowfullscreen></iframe>
 
-### Why build "Material UI for Figma" instead of using Google's Material Design Figma file?
+### Why build "Material UI for Figma" instead of using Google's Material Design Figma file?
 
-Material UI is an _independent_ React implementation of Material Design.
+Material UI is an _independent_ React implementation of Material Design.
 It fills the gaps that Google's design have with the MUI's expertise around web development best practices.
 
-Anyone generally interested in Material Design can benefit from the Material UI for Figma library, but it is particularly great for designers who work with developers using the actual Material UI React library.
+Anyone generally interested in Material Design can benefit from the Material UI for Figma library, but it is particularly great for designers who work with developers using the actual Material UI React library.
 The way the components have been structured in Figma (also considering properties and variables) is meant to closely mirror what you'd experience in the code.
 
 You should expect to see:
