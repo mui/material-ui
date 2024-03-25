@@ -285,17 +285,6 @@ npx @mui/codemod@latest deprecations/alert-props <path>
  />
 ```
 
-```diff
- MuiBadge: {
-   defaultProps: {
--    components: { root: CustomRoot }
-+    slots: { root: CustomRoot },
--    componentsProps: { root: { testid: 'test-id' }}
-+    slotProps: { root: { testid: 'test-id' } },
-  },
- },
-```
-
 ```bash
 npx @mui/codemod@latest deprecations/badge-props <path>
 ```
@@ -788,9 +777,9 @@ npx @mui/codemod@latest deprecations/pagination-item-classes <path>
 ```diff
  <Slider
 -  components={{ Track: CustomTrack }}
-+  slots={{ root: CustomTrack }}
--  componentsProps={{ root: { testid: 'test-id' } }}
-+  slotProps={{ root: { testid: 'test-id' } }}
++  slots={{ track: CustomTrack }}
+-  componentsProps={{ track: { testid: 'test-id' } }}
++  slotProps={{ track: { testid: 'test-id' } }}
  />
 ```
 
@@ -798,9 +787,9 @@ npx @mui/codemod@latest deprecations/pagination-item-classes <path>
  MuiSlider: {
    defaultProps: {
 -    components: { Track: CustomTrack }
-+    slots: { root: CustomTrack },
--    componentsProps: { root: { testid: 'test-id' }}
-+    slotProps: { root: { testid: 'test-id' } },
++    slots: { track: CustomTrack },
+-    componentsProps: { track: { testid: 'test-id' }}
++    slotProps: { track: { testid: 'test-id' } },
   },
  },
 ```
@@ -864,7 +853,7 @@ Updates the names of the CSS variables of the Joy UI components to adapt to the
 
 ```diff
 -<List sx={{ py: 'var(--List-divider-gap)' }}>
--<Switch sx={{ '--Switch-root-width': '40px' }}>
+-<Switch sx={{ '--Switch-track-width': '40px' }}>
 +<List sx={{ py: 'var(--ListDivider-gap)' }}>
 +<Switch sx={{ '--Switch-trackWidth': '40px' }}>
 ```
