@@ -21,8 +21,8 @@ export default function RootLayout(props: { children: React.ReactNode }) {
     <html lang="en">
       <body
         className={`${inter.className} ${css`
-          background-color: ${({ theme }) => theme.vars.palette.background.default};
-          color: ${({ theme }) => theme.vars.palette.text.primary};
+          background-color: ${({ theme: t }) => t.vars.palette.background.default};
+          color: ${({ theme: t }) => t.vars.palette.text.primary};
         `}`}
       >
         <AppRouterCacheProvider>
