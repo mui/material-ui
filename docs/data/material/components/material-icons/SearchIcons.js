@@ -539,6 +539,12 @@ export default function SearchIcons() {
     [theme, keys],
   );
 
+  const iconsCountWithOutFilter = allIcons.filter(
+    (icon) => theme === icon.theme,
+  ).length;
+
+  console.log(keys, iconsCountWithOutFilter);
+
   React.useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
@@ -625,7 +631,7 @@ export default function SearchIcons() {
           visbleIcons.length,
         )} matching results`}</Typography>
         <Icons icons={visbleIcons} handleOpenClick={handleOpenClick} />
-        {visbleIcons.length <= icons.length && (
+        {visbleIcons.length < icons.length && (
           <Box
             sx={{
               width: '100%',
