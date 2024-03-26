@@ -84,7 +84,7 @@ export default function SignInSide() {
               ? 'radial-gradient(ellipse at 70% 51%, #f0f7ff, #fff)'
               : 'radial-gradient(ellipse at 70% 51%, #02294f, #03172c, #01060b)',
           backgroundSize: 'cover',
-          height: { xs: 'auto', sm: '100dvh' },
+          height: { xs: 'auto', md: '100dvh' },
           pb: { xs: 12, sm: 0 },
         })}
         component="main"
@@ -93,7 +93,7 @@ export default function SignInSide() {
           direction="row"
           justifyContent="space-between"
           sx={{
-            position: { xs: 'static', sm: 'fixed' },
+            position: { sm: 'static', md: 'fixed' },
             width: '100%',
             p: { xs: 2, sm: 4 },
           }}
@@ -108,10 +108,10 @@ export default function SignInSide() {
           <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
         </Stack>
         <Stack
-          direction={{ xs: 'column-reverse', sm: 'row' }}
+          direction={{ xs: 'column-reverse', md: 'row' }}
           justifyContent="center"
-          gap={12}
-          sx={{ height: { xs: '100%', sm: '100dvh' }, p: 2 }}
+          gap={{ xs: 6, sm: 12 }}
+          sx={{ height: { xs: '100%', md: '100dvh' }, p: 2 }}
         >
           <Content />
           <SignInCard />

@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 import { visuallyHidden } from '@mui/utils';
 
 import ForgotPassword from './ForgotPassword';
-import { GoogleIcon, FacebookIcon } from './CustomIcons';
+import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
 
 export default function SignInCard() {
   const [emailError, setEmailError] = React.useState(false);
@@ -74,13 +74,20 @@ export default function SignInCard() {
         alignSelf: 'center',
         width: { xs: '100%', sm: '450px' },
         p: { xs: 2, sm: 4 },
-        gap: 4,
+        gap: 2,
         boxShadow:
           theme.palette.mode === 'light'
             ? 'rgba(0, 0, 0, 0.05) 0px 5px 15px 0px, rgba(25, 28, 33, 0.05) 0px 15px 35px -5px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px'
             : 'rgba(0, 0, 0, 0.5) 0px 5px 15px 0px, rgba(25, 28, 33, 0.08) 0px 15px 35px -5px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px',
       })}
     >
+      <SitemarkIcon
+        sx={{
+          fontSize: 115,
+          height: 'fit-content',
+          display: { xs: 'flex', md: 'none' },
+        }}
+      />
       <Typography
         component="h1"
         variant="h4"

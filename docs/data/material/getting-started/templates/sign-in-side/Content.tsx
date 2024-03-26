@@ -11,25 +11,25 @@ import { SitemarkIcon } from './CustomIcons';
 
 const items = [
   {
-    icon: <SettingsSuggestRoundedIcon />,
+    icon: <SettingsSuggestRoundedIcon sx={{ color: 'text.secondary' }} />,
     title: 'Adaptable performance',
     description:
       'Our product effortlessly adjusts to your needs, boosting efficiency and simplifying your tasks.',
   },
   {
-    icon: <ConstructionRoundedIcon />,
+    icon: <ConstructionRoundedIcon sx={{ color: 'text.secondary' }} />,
     title: 'Built to last',
     description:
       'Experience unmatched durability that goes above and beyond with lasting investment.',
   },
   {
-    icon: <ThumbUpAltRoundedIcon />,
+    icon: <ThumbUpAltRoundedIcon sx={{ color: 'text.secondary' }} />,
     title: 'Great user experience',
     description:
       'Integrate our product into your routine with an intuitive and easy-to-use interface.',
   },
   {
-    icon: <AutoFixHighRoundedIcon />,
+    icon: <AutoFixHighRoundedIcon sx={{ color: 'text.secondary' }} />,
     title: 'Innovative functionality',
     description:
       'Stay ahead with features that set new standards, addressing your evolving needs better than the rest.',
@@ -41,14 +41,20 @@ export default function Content() {
     <Stack
       flexDirection="column"
       alignSelf="center"
-      spacing={4}
+      gap={4}
       sx={{
-        width: { xs: '100%', sm: '450px' },
+        maxWidth: 450,
       }}
     >
-      <SitemarkIcon sx={{ fontSize: 150, maxHeight: 56 }} />
+      <SitemarkIcon
+        sx={{
+          fontSize: 150,
+          height: 'fit-content',
+          display: { xs: 'none', md: 'flex' },
+        }}
+      />
       {items.map((item) => (
-        <Stack direction="row" spacing={2}>
+        <Stack direction="row" gap={2}>
           {item.icon}
           <div>
             <Typography fontWeight="medium" gutterBottom>
