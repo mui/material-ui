@@ -1764,8 +1764,8 @@ importers:
         specifier: ^7.23.9
         version: 7.24.1
       '@mui/material':
-        specifier: ^5.0.0
-        version: 5.15.4(@emotion/react@11.11.4)(@emotion/styled@11.11.0)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
+        specifier: workspace:*
+        version: link:../mui-material/build
     devDependencies:
       '@emotion/cache':
         specifier: ^11.11.0
