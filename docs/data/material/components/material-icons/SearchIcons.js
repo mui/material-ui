@@ -486,7 +486,7 @@ export default function SearchIcons() {
   const [selectedIcon, setSelectedIcon] = useQueryParameterState('selected', '');
   const [query, setQuery] = useQueryParameterState('query', '');
   const targetRef = React.useRef(null);
-  const [iconsDisplayCount, setIconsDisplayCount] = React.useState(100);
+  const [visibleIconsCount, setVisibleIconsCount] = React.useState(100);
 
   const handleOpenClick = React.useCallback(
     (event) => {
@@ -529,24 +529,35 @@ export default function SearchIcons() {
   }, [query, updateSearchResults]);
 
   React.useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setIconsDisplayCount((prevCount) => prevCount + 100);
-        }
-      },
-      { threshold: 0.1 },
-    );
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        setVisibleIconsCount((prevCount) => prevCount + 100);
+      }
+    });
 
-    observer.observe(targetRef.current);
-  }, [iconsDisplayCount]);
+    const currentTargetRef = targetRef.current;
+    if (currentTargetRef) {
+      observer.observe(currentTargetRef);
+    }
+
+    return () => {
+      if (currentTargetRef) {
+        observer.unobserve(currentTargetRef);
+      }
+    };
+  }, [visibleIconsCount]);
 
   const icons = React.useMemo(
     () =>
       (keys === null ? allIcons : keys.map((key) => allIconsMap[key])).filter(
-        (icon, index) => theme === icon.theme && index < iconsDisplayCount,
+        (icon) => theme === icon.theme,
       ),
-    [theme, keys, iconsDisplayCount],
+    [theme, keys],
+  );
+
+  const visbleIcons = React.useMemo(
+    () => icons.filter((_, index) => index < visibleIconsCount),
+    [icons, visibleIconsCount],
   );
 
   const dialogSelectedIcon = useLatest(
@@ -572,7 +583,7 @@ export default function SearchIcons() {
                         checked={theme === currentTheme}
                         onChange={() => {
                           setTheme(currentTheme);
-                          setIconsDisplayCount(100);
+                          setVisibleIconsCount(100);
                         }}
                         value={currentTheme}
                       />
@@ -599,19 +610,22 @@ export default function SearchIcons() {
           />
         </Paper>
         <Typography sx={{ mb: 1 }}>{`${formatNumber(
-          icons.length,
+          visbleIcons.length,
         )} matching results`}</Typography>
-        <Icons icons={icons} handleOpenClick={handleOpenClick} />
-        <Box
-          sx={{
-            width: '100%',
-            display: 'grid',
-            placeItems: 'center',
-            mt: 4,
-          }}
-        >
-          <CircularProgress size={24} ref={targetRef} />
-        </Box>
+        <Icons icons={visbleIcons} handleOpenClick={handleOpenClick} />
+        {visbleIcons.length < icons.length && (
+          <Box
+            sx={{
+              width: '100%',
+              display: 'grid',
+              placeItems: 'center',
+              mt: 4,
+            }}
+            ref={targetRef}
+          >
+            <CircularProgress size={24} />
+          </Box>
+        )}
       </Grid>
       <DialogDetails
         open={!!selectedIcon}
