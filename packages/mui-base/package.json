@@ -55,7 +55,7 @@
     "@mui/types": "workspace:^",
     "@testing-library/react": "^14.2.1",
     "@testing-library/user-event": "^14.5.2",
-    "@types/chai": "^4.3.12",
+    "@types/chai": "^4.3.14",
     "@types/prop-types": "^15.7.11",
     "@types/react": "18.2.55",
     "@types/react-dom": "18.2.19",

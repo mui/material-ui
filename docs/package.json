@@ -119,7 +119,7 @@
     "@mui/internal-scripts": "workspace:^",
     "@mui-internal/test-utils": "workspace:^",
     "@types/autosuggest-highlight": "^3.2.3",
-    "@types/chai": "^4.3.12",
+    "@types/chai": "^4.3.14",
     "@types/css-mediaquery": "^0.1.4",
     "@types/json2mq": "^0.2.2",
     "@types/node": "^18.19.25",
