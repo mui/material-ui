@@ -82,8 +82,8 @@ export default function SignInSide() {
         sx={(theme) => ({
           backgroundImage:
             theme.palette.mode === 'light'
-              ? 'url("/static/images/templates/templates-images/light-background.png")'
-              : 'url("/static/images/templates/templates-images/dark-background.png")',
+              ? 'radial-gradient(ellipse at 70% 51%, #f0f7ff, #fff)'
+              : 'radial-gradient(ellipse at 70% 51%, #02294f, #03172c, #01060b)',
           backgroundSize: 'cover',
           height: { xs: 'auto', sm: '100dvh' },
           pb: { xs: 12, sm: 0 },
@@ -103,15 +103,10 @@ export default function SignInSide() {
             startIcon={<ArrowBackRoundedIcon />}
             component="a"
             href="/material-ui/getting-started/templates/"
-            sx={{ color: 'primary.light' }}
           >
             Back
           </Button>
-          <ToggleColorMode
-            mode={mode}
-            toggleColorMode={toggleColorMode}
-            sx={{ color: 'primary.light' }}
-          />
+          <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
         </Stack>
         <Stack
           direction={{ xs: 'column-reverse', sm: 'row' }}

@@ -46,15 +46,15 @@ export default function Content() {
         width: { xs: '100%', sm: '450px' },
       }}
     >
-      <SitemarkIcon sx={{ fontSize: 200, maxHeight: 80 }} />
+      <SitemarkIcon sx={{ fontSize: 150, maxHeight: 56 }} />
       {items.map((item) => (
-        <Stack direction="row" spacing={2} sx={{ color: 'white' }}>
+        <Stack direction="row" spacing={2}>
           {item.icon}
           <div>
-            <Typography fontWeight="medium" gutterBottom color="inherit">
+            <Typography fontWeight="medium" gutterBottom>
               {item.title}
             </Typography>
-            <Typography variant="body2" color="inherit">
+            <Typography variant="body2" color="text.secondary">
               {item.description}
             </Typography>
           </div>
