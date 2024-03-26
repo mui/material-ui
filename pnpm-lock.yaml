@@ -1576,9 +1576,6 @@ importers:
       '@mui/base':
         specifier: workspace:*
         version: link:../mui-base/build
-      '@mui/material':
-        specifier: '>=5.15.0'
-        version: link:../mui-material/build
       '@mui/system':
         specifier: workspace:^
         version: link:../mui-system/build
@@ -1598,6 +1595,9 @@ importers:
       '@mui-internal/test-utils':
         specifier: workspace:^
         version: link:../test-utils
+      '@mui/material':
+        specifier: workspace:*
+        version: link:../mui-material/build
       '@types/chai':
         specifier: ^4.3.12
         version: 4.3.12
@@ -1765,7 +1765,7 @@ importers:
         version: 7.24.1
       '@mui/material':
         specifier: ^5.0.0
-        version: link:../mui-material/build
+        version: 5.15.4(@emotion/react@11.11.4)(@emotion/styled@11.11.0)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
       '@emotion/cache':
         specifier: ^11.11.0
