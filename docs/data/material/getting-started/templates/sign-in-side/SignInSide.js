@@ -82,7 +82,7 @@ export default function SignInSide() {
           backgroundImage:
             theme.palette.mode === 'light'
               ? 'radial-gradient(ellipse at 70% 51%, #f0f7ff, #fff)'
-              : 'radial-gradient(ellipse at 70% 51%, #02294f, #03172c, #01060b)',
+              : 'radial-gradient(at 70% 51%, rgba(2,41,79,0.5), rgb(1, 6, 11))',
           backgroundSize: 'cover',
           height: { xs: 'auto', md: '100dvh' },
           pb: { xs: 12, sm: 0 },

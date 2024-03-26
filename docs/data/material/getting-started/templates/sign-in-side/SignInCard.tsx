@@ -4,12 +4,12 @@ import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import Checkbox from '@mui/material/Checkbox';
 import Divider from '@mui/material/Divider';
+import FormLabel from '@mui/material/FormLabel';
+import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import InputLabel from '@mui/material/InputLabel';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { visuallyHidden } from '@mui/utils';
 
 import ForgotPassword from './ForgotPassword';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
@@ -67,7 +67,6 @@ export default function SignInCard() {
 
   return (
     <Card
-      variant="outlined"
       sx={(theme) => ({
         display: 'flex',
         flexDirection: 'column',
@@ -106,41 +105,41 @@ export default function SignInCard() {
           gap: 2,
         }}
       >
-        <InputLabel htmlFor="email" sx={visuallyHidden}>
-          Email
-        </InputLabel>
-        <TextField
-          error={emailError}
-          helperText={emailErrorMessage}
-          id="email"
-          type="email"
-          name="email"
-          placeholder="Email address"
-          autoComplete="email"
-          autoFocus
-          required
-          fullWidth
-          variant="outlined"
-          color={emailError ? 'error' : 'primary'}
-          sx={{ ariaLabel: 'email' }}
-        />
-        <InputLabel htmlFor="password" sx={visuallyHidden}>
-          Password
-        </InputLabel>
-        <TextField
-          error={passwordError}
-          helperText={passwordErrorMessage}
-          name="password"
-          placeholder="Password"
-          type="password"
-          id="password"
-          autoComplete="current-password"
-          autoFocus
-          required
-          fullWidth
-          variant="outlined"
-          color={passwordError ? 'error' : 'primary'}
-        />
+        <FormControl>
+          <FormLabel htmlFor="email">Email</FormLabel>
+          <TextField
+            error={emailError}
+            helperText={emailErrorMessage}
+            id="email"
+            type="email"
+            name="email"
+            placeholder="your@email.com"
+            autoComplete="email"
+            autoFocus
+            required
+            fullWidth
+            variant="outlined"
+            color={emailError ? 'error' : 'primary'}
+            sx={{ ariaLabel: 'email' }}
+          />
+        </FormControl>
+        <FormControl>
+          <FormLabel htmlFor="password">Password</FormLabel>
+          <TextField
+            error={passwordError}
+            helperText={passwordErrorMessage}
+            name="password"
+            placeholder="••••••"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            autoFocus
+            required
+            fullWidth
+            variant="outlined"
+            color={passwordError ? 'error' : 'primary'}
+          />
+        </FormControl>
         <Box
           sx={{
             display: 'flex',

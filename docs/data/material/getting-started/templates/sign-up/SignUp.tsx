@@ -6,7 +6,8 @@ import Checkbox from '@mui/material/Checkbox';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import InputLabel from '@mui/material/InputLabel';
+import FormLabel from '@mui/material/FormLabel';
+import FormControl from '@mui/material/FormControl';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -15,7 +16,6 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import { alpha, PaletteMode } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { visuallyHidden } from '@mui/utils';
 
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
@@ -187,7 +187,6 @@ export default function SignUp() {
           sx={{ height: { xs: '100%', sm: '100dvh' }, p: 2 }}
         >
           <Card
-            variant="outlined"
             sx={(theme) => ({
               display: 'flex',
               flexDirection: 'column',
@@ -214,65 +213,65 @@ export default function SignUp() {
               onSubmit={handleSubmit}
               sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
             >
-              <InputLabel htmlFor="name" sx={visuallyHidden}>
-                Name
-              </InputLabel>
-              <TextField
-                autoComplete="name"
-                name="name"
-                required
-                fullWidth
-                id="name"
-                placeholder="First Name"
-                error={nameError}
-                helperText={nameErrorMessage}
-                color={nameError ? 'error' : 'primary'}
-              />
-              <InputLabel htmlFor="lastName" sx={visuallyHidden}>
-                Last name
-              </InputLabel>
-              <TextField
-                required
-                fullWidth
-                id="lastName"
-                placeholder="Last Name"
-                name="lastName"
-                autoComplete="last-name"
-                error={lastNameError}
-                helperText={lastNameErrorMessage}
-                color={lastNameError ? 'error' : 'primary'}
-              />
-              <InputLabel htmlFor="email" sx={visuallyHidden}>
-                Email
-              </InputLabel>
-              <TextField
-                required
-                fullWidth
-                id="email"
-                placeholder="Email Address"
-                name="email"
-                autoComplete="email"
-                variant="outlined"
-                error={emailError}
-                helperText={emailErrorMessage}
-                color={passwordError ? 'error' : 'primary'}
-              />
-              <InputLabel htmlFor="password" sx={visuallyHidden}>
-                Password
-              </InputLabel>
-              <TextField
-                required
-                fullWidth
-                name="password"
-                placeholder="Password"
-                type="password"
-                id="password"
-                autoComplete="new-password"
-                variant="outlined"
-                error={passwordError}
-                helperText={passwordErrorMessage}
-                color={passwordError ? 'error' : 'primary'}
-              />
+              <FormControl>
+                <FormLabel htmlFor="name">Name</FormLabel>
+                <TextField
+                  autoComplete="name"
+                  name="name"
+                  required
+                  fullWidth
+                  id="name"
+                  placeholder="John"
+                  error={nameError}
+                  helperText={nameErrorMessage}
+                  color={nameError ? 'error' : 'primary'}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel htmlFor="lastName">Last name</FormLabel>
+                <TextField
+                  required
+                  fullWidth
+                  id="lastName"
+                  placeholder="Snow"
+                  name="lastName"
+                  autoComplete="last-name"
+                  error={lastNameError}
+                  helperText={lastNameErrorMessage}
+                  color={lastNameError ? 'error' : 'primary'}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel htmlFor="email">Email</FormLabel>
+                <TextField
+                  required
+                  fullWidth
+                  id="email"
+                  placeholder="your@email.com"
+                  name="email"
+                  autoComplete="email"
+                  variant="outlined"
+                  error={emailError}
+                  helperText={emailErrorMessage}
+                  color={passwordError ? 'error' : 'primary'}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel htmlFor="password">Password</FormLabel>
+                <TextField
+                  required
+                  fullWidth
+                  name="password"
+                  placeholder="••••••"
+                  type="password"
+                  id="password"
+                  autoComplete="new-password"
+                  variant="outlined"
+                  error={passwordError}
+                  helperText={passwordErrorMessage}
+                  color={passwordError ? 'error' : 'primary'}
+                />
+              </FormControl>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
                 label="I want to receive updates via email."
@@ -293,7 +292,9 @@ export default function SignUp() {
                 Already have an account? Sign in
               </Link>
             </Box>
-            <Divider>or</Divider>
+            <Divider>
+              <Typography color="text.secondary">or</Typography>
+            </Divider>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               <Button
                 type="submit"

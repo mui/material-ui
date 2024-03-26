@@ -393,9 +393,10 @@ export default function getSignInSideTheme(mode: PaletteMode): ThemeOptions {
           input: {
             paddingLeft: 10,
           },
+
           root: ({ theme, ownerState }) => ({
             'input:-webkit-autofill': {
-              WebkitBoxShadow: `0 0 0  1000px ${brand[100]} inset, 0 0 0 1px ${brand[200]}`,
+              WebkitBoxShadow: `0 0 0 1000px ${brand[100]} inset, 0 0 0 1px ${brand[200]}`,
               maxHeight: '4px',
               borderRadius: '8px',
             },
@@ -410,8 +411,8 @@ export default function getSignInSideTheme(mode: PaletteMode): ThemeOptions {
             height: '40px',
             borderRadius: '10px',
             border: '1px solid',
-            borderColor: gray[300],
-            boxShadow: '0  1px 1px rgba(0, 0, 0, 0.1)',
+            borderColor: alpha(gray[300], 0.8),
+            boxShadow: '0 0 0 1.5px rgba(0, 0, 0, 0.04) inset',
             transition: 'border-color 120ms ease-in',
             backgroundColor: alpha(gray[100], 0.4),
             '&:hover': {
@@ -431,7 +432,7 @@ export default function getSignInSideTheme(mode: PaletteMode): ThemeOptions {
             }),
             ...(theme.palette.mode === 'dark' && {
               'input:-webkit-autofill': {
-                WebkitBoxShadow: `0 0 0  1000px ${brand[900]} inset, 0 0 0 1px ${brand[600]}`,
+                WebkitBoxShadow: `0 0 0 1000px ${brand[900]} inset, 0 0 0 1px ${brand[600]}`,
                 maxHeight: '6px',
                 borderRadius: '8px',
               },
@@ -441,9 +442,9 @@ export default function getSignInSideTheme(mode: PaletteMode): ThemeOptions {
                   color: gray[500],
                 },
               },
-              borderColor: gray[700],
-              boxShadow: '0  2px 2px rgba(0, 0, 0, 0.5)',
-              backgroundColor: alpha(gray[800], 0.4),
+              borderColor: alpha(gray[700], 0.5),
+              boxShadow: '0 0 0 1.5px rgb(0, 0, 0) inset',
+              backgroundColor: alpha(gray[900], 0.8),
               transition: 'border-color 120ms ease-in',
               '&:hover': {
                 borderColor: brand[300],
@@ -493,10 +494,13 @@ export default function getSignInSideTheme(mode: PaletteMode): ThemeOptions {
             }),
             ...(theme.palette.mode === 'dark' && {
               backgroundColor: alpha(gray[800], 0.6),
-              outline: `1px solid ${alpha(gray[700], 0.3)}`,
+              outline: `1px solid ${alpha(gray[700], 0.5)}`,
               ...(ownerState.variant === 'outlined' && {
                 boxSizing: 'border-box',
-                background: `linear-gradient(to bottom, ${gray[900]}, ${gray[800]})`,
+                background: `linear-gradient(to bottom, ${gray[900]}, ${alpha(
+                  gray[800],
+                  0.5,
+                )})`,
               }),
             }),
           }),
@@ -566,10 +570,10 @@ export default function getSignInSideTheme(mode: PaletteMode): ThemeOptions {
             margin: 10,
             height: 16,
             width: 16,
-            border: '1px solid ',
-            borderColor: gray[300],
             borderRadius: 5,
-            boxShadow: '0  1px 1px rgba(0, 0, 0, 0.1)',
+            border: '1px solid ',
+            borderColor: alpha(gray[300], 0.8),
+            boxShadow: '0 0 0 1.5px rgba(0, 0, 0, 0.04) inset',
             transition: 'border-color 120ms ease-in',
             backgroundColor: alpha(gray[100], 0.4),
             '&:hover': {
@@ -589,15 +593,16 @@ export default function getSignInSideTheme(mode: PaletteMode): ThemeOptions {
               },
             },
             ...(theme.palette.mode === 'dark' && {
-              borderColor: gray[700],
-              boxShadow: '0  2px 2px rgba(0, 0, 0, 0.5)',
-              backgroundColor: alpha(gray[800], 0.4),
+              borderColor: alpha(gray[700], 0.5),
+              boxShadow: '0 0 0 1.5px rgb(0, 0, 0) inset',
+              backgroundColor: alpha(gray[900], 0.8),
               '&:hover': {
                 borderColor: brand[300],
               },
               '&.Mui-checked': {
                 color: 'white',
                 backgroundColor: brand[600],
+                boxShadow: '0 0 0 1px rgba(0, 0, 0, 0.2) inset',
                 '&:hover': {
                   borderColor: brand[300],
                   backgroundColor: brand[800],
