@@ -31,7 +31,7 @@
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
     "@vitejs/plugin-react": "^4.2.1",
-    "postcss": "^8.4.35",
+    "postcss": "^8.4.38",
     "postcss-combine-media-query": "^1.0.1",
     "vite": "5.0.12",
     "vite-plugin-pages": "^0.32.0"

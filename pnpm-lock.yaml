@@ -482,7 +482,7 @@ importers:
         specifier: ^4.2.1
         version: 4.2.1(vite@5.0.12)
       postcss:
-        specifier: ^8.4.35
+        specifier: ^8.4.38
         version: 8.4.38
       postcss-combine-media-query:
         specifier: ^1.0.1
@@ -776,7 +776,7 @@ importers:
         specifier: ^0.2.0
         version: 0.2.0
       postcss:
-        specifier: ^8.4.35
+        specifier: ^8.4.38
         version: 8.4.38
       postcss-import:
         specifier: ^15.1.0
@@ -1318,7 +1318,7 @@ importers:
         specifier: ^1.0.10
         version: 1.0.10(jscodeshift@0.13.1)
       postcss:
-        specifier: ^8.4.35
+        specifier: ^8.4.38
         version: 8.4.38
       postcss-cli:
         specifier: ^8.3.1
