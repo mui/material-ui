@@ -73,7 +73,7 @@ export interface BadgeOwnProps {
    * You can override the existing props or add new ones.
    *
    * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
-   * 
+   *
    * @default {}
    */
   componentsProps?: BadgeOwnProps['slotProps'];
@@ -81,7 +81,7 @@ export interface BadgeOwnProps {
    * The components used for each slot inside.
    *
    * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
-   * 
+   *
    * @default {}
    */
   components?: {
