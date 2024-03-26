@@ -1,3 +1,3 @@
-'use client'
-export { default } from './getThemeValue'
-export * from './getThemeValue'
+'use client';
+export { default } from './getThemeValue';
+export * from './getThemeValue';
