@@ -1,1 +1,1 @@
-export { default } from './deprecations-all';
+export { default } from './v6-all';
