@@ -46,7 +46,7 @@
     "@types/chai-dom": "^1.11.3",
     "@types/enzyme": "^3.10.18",
     "@types/format-util": "^1.0.4",
-    "@types/prop-types": "^15.7.11",
+    "@types/prop-types": "^15.7.12",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
     "@types/react-test-renderer": "^18.0.7",

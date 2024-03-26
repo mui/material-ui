@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@types/node": "^18.19.25",
-    "@types/prop-types": "^15.7.11",
+    "@types/prop-types": "^15.7.12",
     "@types/react": "^18.2.55",
     "next": "^13.5.1",
     "react": "^18.2.0"
