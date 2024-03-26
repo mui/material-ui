@@ -106,38 +106,33 @@ const ButtonGroupRoot = styled('div', {
       props: { orientation: 'vertical' },
       style: {
         flexDirection: 'column',
+        [`& .${buttonGroupClasses.lastButton},& .${buttonGroupClasses.middleButton}`]: {
+          borderTopRightRadius: 0,
+          borderTopLeftRadius: 0,
+        },
+        [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
+          borderBottomRightRadius: 0,
+          borderBottomLeftRadius: 0,
+        },
       },
     },
-  ],
-  [`& .${buttonGroupClasses.grouped}`]: {
-    minWidth: 40,
-    props: { variant: 'contained' },
-    style: {
-      boxShadow: 'none',
-      '&:hover': {
-        boxShadow: 'none',
-      },
-    },
-  },
-  [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
-    variants: [
-      {
-        props: { orientation: 'horizontal' },
-        style: {
+    {
+      props: { orientation: 'horizontal' },
+      style: {
+        [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
           borderTopRightRadius: 0,
           borderBottomRightRadius: 0,
         },
-      },
-      {
-        props: { orientation: 'vertical' },
-        style: {
-          borderTopRightRadius: 0,
-          borderBottomRightRadius: 0,
+        [`& .${buttonGroupClasses.lastButton},& .${buttonGroupClasses.middleButton}`]: {
+          borderTopLeftRadius: 0,
+          borderBottomLeftRadius: 0,
         },
       },
-      {
-        props: { variant: 'text', orientation: 'horizontal' },
-        style: {
+    },
+    {
+      props: { variant: 'text', orientation: 'horizontal' },
+      style: {
+        [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
           borderRight: theme.vars
             ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
             : `1px solid ${
@@ -148,9 +143,11 @@ const ButtonGroupRoot = styled('div', {
           },
         },
       },
-      {
-        props: { variant: 'text', orientation: 'vertical' },
-        style: {
+    },
+    {
+      props: { variant: 'text', orientation: 'vertical' },
+      style: {
+        [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
           borderBottom: theme.vars
             ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
             : `1px solid ${
@@ -161,106 +158,91 @@ const ButtonGroupRoot = styled('div', {
           },
         },
       },
-      {
-        props: { variant: 'text', orientation: 'vertical' },
-        style: {
-          borderBottom: theme.vars
-            ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
-            : `1px solid ${
-                theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-              }`,
-          [`&.${buttonGroupClasses.disabled}`]: {
-            borderBottom: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
-          },
-        },
-      },
-      ...Object.entries(theme.palette)
-        .filter(([, value]) => value.main && value.dark)
-        .flatMap(([color]) => [
-          {
-            props: { variant: 'text', color: color },
-            style: {
+    },
+    ...Object.entries(theme.palette)
+      .filter(([, value]) => value.main && value.dark)
+      .flatMap(([color]) => [
+        {
+          props: { variant: 'text', color: color },
+          style: {
+            [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
               borderColor: theme.vars
                 ? `rgba(${theme.vars.palette[color].mainChannel} / 0.5)`
                 : alpha(theme.palette[color].main, 0.5),
             },
           },
-        ]),
-      {
-        props: { variant: 'outlined', orientation: 'horizontal' },
-        style: {
+        },
+      ]),
+    {
+      props: { variant: 'outlined', orientation: 'horizontal' },
+      style: {
+        [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
           borderRightColor: 'transparent',
           '&:hover': {
             borderRightColor: 'currentColor',
           },
+          [`& .${buttonGroupClasses.lastButton},& .${buttonGroupClasses.middleButton}`]: {
+            marginLeft: -1,
+          },
         },
       },
-      {
-        props: { variant: 'outlined', orientation: 'vertical' },
-        style: {
+    },
+    {
+      props: { variant: 'outlined', orientation: 'vertical' },
+      style: {
+        [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
           borderBottomColor: 'transparent',
           '&:hover': {
             borderBottomColor: 'currentColor',
           },
+          [`& .${buttonGroupClasses.lastButton},& .${buttonGroupClasses.middleButton}`]: {
+            marginTop: -1,
+          },
         },
       },
-      {
-        props: { variant: 'contained', orientation: 'horizontal' },
-        style: {
+    },
+    {
+      props: { variant: 'contained', orientation: 'horizontal' },
+      style: {
+        [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
           borderRight: `1px solid ${(theme.vars || theme).palette.grey[400]}`,
           [`&.${buttonGroupClasses.disabled}`]: {
             borderRight: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
           },
         },
       },
-      {
-        props: { variant: 'contained', orientation: 'vertical' },
-        style: {
+    },
+    {
+      props: { variant: 'contained', orientation: 'vertical' },
+      style: {
+        [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
           borderBottom: `1px solid ${(theme.vars || theme).palette.grey[400]}`,
           [`&.${buttonGroupClasses.disabled}`]: {
             borderBottom: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
           },
         },
       },
-      ...Object.entries(theme.palette)
-        .filter(([, value]) => value.dark)
-        .map(([color]) => ({
-          props: { variant: 'contained', color },
-          style: {
+    },
+    ...Object.entries(theme.palette)
+      .filter(([, value]) => value.dark)
+      .map(([color]) => ({
+        props: { variant: 'contained', color },
+        style: {
+          [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
             borderColor: theme.vars ? theme.vars.palette[color].dark : theme.palette[color].dark,
           },
-        })),
-    ],
-  },
-  [`& .${buttonGroupClasses.lastButton},& .${buttonGroupClasses.middleButton}`]: {
-    variants: [
-      {
-        props: { orientation: 'horizontal' },
-        style: {
-          borderTopLeftRadius: 0,
-          borderBottomLeftRadius: 0,
         },
+      })),
+  ],
+  [`& .${buttonGroupClasses.grouped}`]: {
+    minWidth: 40,
+    props: { variant: 'contained' },
+    style: {
+      boxShadow: 'none',
+      '&:hover': {
+        boxShadow: 'none',
       },
-      {
-        props: { orientation: 'vertical' },
-        style: {
-          borderTopRightRadius: 0,
-          borderTopLeftRadius: 0,
-        },
-      },
-      {
-        props: { variant: 'outlined', orientation: 'horizontal' },
-        style: {
-          marginLeft: -1,
-        },
-      },
-      {
-        props: { variant: 'outlined', orientation: 'vertical' },
-        style: {
-          marginTop: -1,
-        },
-      },
-    ],
+    },
   },
 }));
 
