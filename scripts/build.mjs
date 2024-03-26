@@ -8,8 +8,6 @@ import { getWorkspaceRoot } from './utils.mjs';
 const exec = promisify(childProcess.exec);
 
 const validBundles = [
-  // legacy build using ES6 modules
-  'legacy',
   // modern build with a rolling target using ES6 modules
   'modern',
   // build for node using commonJS modules
@@ -65,7 +63,6 @@ async function run(argv) {
       node: topLevelPathImportsCanBePackages ? './node' : './',
       modern: './modern',
       stable: topLevelPathImportsCanBePackages ? './' : './esm',
-      legacy: './legacy',
     }[bundle],
   );
 

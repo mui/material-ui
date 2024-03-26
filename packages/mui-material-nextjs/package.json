@@ -24,8 +24,7 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "pnpm build:legacy && pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
-    "build:legacy": "node ../../scripts/build.mjs legacy",
+    "build": "pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
     "build:modern": "node ../../scripts/build.mjs modern",
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",

@@ -9,9 +9,9 @@ You don't need to provide any JavaScript polyfill as it manages unsupported brow
 
 <!-- #stable-snapshot -->
 
-| Edge   | Firefox | Chrome | Safari (macOS) | Safari (iOS) | IE                   |
-| :----- | :------ | :----- | :------------- | :----------- | :------------------- |
-| >= 121 | >= 115  | >= 109 | >= 15.4        | >= 15.4      | 11 (partial support) |
+| Edge   | Firefox | Chrome | Safari (macOS) | Safari (iOS) | IE            |
+| :----- | :------ | :----- | :------------- | :----------- | :------------ |
+| >= 121 | >= 115  | >= 109 | >= 15.4        | >= 15.4      | not supported |
 
 <!-- #default-branch-switch -->
 
@@ -23,17 +23,8 @@ You can expect Material UI's components to render without major issues.
 
 ### IE 11
 
-Material UI provides **partial** supports for IE 11. Be aware of the following:
-
-- Some of the components have no support. For instance, the new components, the data grid, the date picker.
-- Some of the components have degraded support. For instance, the outlined input border radius is missing, the combobox doesn't remove diacritics, the circular progress animation is wobbling.
-- The documentation itself might crash.
-- You need to install the [legacy bundle](/material-ui/guides/minimizing-bundle-size/#legacy-bundle).
-- You might need to install polyfills. For instance for the [popper.js transitive dependency](https://popper.js.org/docs/v2/browser-support/#ie11).
-
-Overall, the library doesn't prioritize the support of IE 11 if it harms the most common use cases. For instance, we will close new issues opened about IE 11 and might not merge pull requests that improve IE 11 support.
-
-v6 will completely remove the support of IE 11.
+Material UI v6 has completely removed support for IE 11.
+We will close new issues opened about IE 11 and will not merge pull requests that improve IE 11 support.
 
 ## Server
 
