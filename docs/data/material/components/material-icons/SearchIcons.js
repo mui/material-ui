@@ -480,13 +480,16 @@ function useLatest(value) {
   return value ?? latest.current;
 }
 
+const initialIconsDisplayed = 100;
+
 export default function SearchIcons() {
   const [keys, setKeys] = React.useState(null);
   const [theme, setTheme] = useQueryParameterState('theme', 'Filled');
   const [selectedIcon, setSelectedIcon] = useQueryParameterState('selected', '');
   const [query, setQuery] = useQueryParameterState('query', '');
   const targetRef = React.useRef(null);
-  const [visibleIconsCount, setVisibleIconsCount] = React.useState(100);
+  const [visibleIconsCount, setVisibleIconsCount] =
+    React.useState(initialIconsDisplayed);
 
   const handleOpenClick = React.useCallback(
     (event) => {
@@ -541,7 +544,8 @@ export default function SearchIcons() {
       if (entries[0].isIntersecting) {
         if (icons.length >= 100) {
           setVisibleIconsCount(
-            (prevCount) => prevCount + Math.min(100, icons.length - prevCount),
+            (prevCount) =>
+              prevCount + Math.min(initialIconsDisplayed, icons.length - prevCount),
           );
         } else {
           setVisibleIconsCount(icons.length);
