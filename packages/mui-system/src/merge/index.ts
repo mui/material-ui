@@ -1,2 +1,2 @@
-'use client'
-export { default } from './merge'
+'use client';
+export { default } from './merge';
