@@ -22,7 +22,7 @@ const Image = styled('img')(({ theme }) => ({
   height: 'auto',
   borderRadius: 0,
   border: 'none',
-  filter: `drop-shadow(-2px 4px 6px ${alpha(theme.palette.primary[200], 0.5)})`,
+  filter: `drop-shadow(-2px 4px 12px ${alpha(theme.palette.primary[200], 0.3)})`,
   overflow: 'clip',
   backgroundClip: 'padding-box',
   [theme.breakpoints.up('sm')]: {
@@ -32,7 +32,7 @@ const Image = styled('img')(({ theme }) => ({
   },
   ...theme.applyDarkStyles({
     borderColor: theme.palette.primaryDark[600],
-    filter: `drop-shadow(-2px 6px 24px ${alpha(theme.palette.primary[900], 0.8)})`,
+    filter: `drop-shadow(-2px 4px 12px ${alpha(theme.palette.primary[900], 0.8)})`,
   }),
 }));
 
@@ -68,8 +68,10 @@ export default function Connect() {
               description="Connect is a Figma plugin that exports a full-fledged Material UI theme to get your design customization up as fast as possible."
             />
             <GetStartedButtons
-              primaryLabel="Get it at the Figma Community"
+              primaryLabel="Use Connect now"
               primaryUrl="/connect/"
+              secondaryLabel="View docs"
+              secondaryUrl="/connect/" // I'll swap it later to /material-ui/design-resources/connect/ once that's merged
             />
           </Box>
         </Section>

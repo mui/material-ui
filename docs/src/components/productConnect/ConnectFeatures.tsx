@@ -55,21 +55,21 @@ export default function ConnectFeatures() {
               <Item
                 icon={<ImagesearchRollerRoundedIcon color="success" />}
                 title="Customize your design tokens"
-                description="Visually tweak your colors, typography styles, shadows, spacing values, and border-radius through Figma's variables panel. Then, generate the theme with these changes!"
+                description="Change your colors, typography styles, shadows, spacing values, and border-radius through Figma's variables panel. Then, quickly generate a theme with these changes."
               />
             </Highlighter>
             <Highlighter disableBorder {...getSelectedProps(1)} onClick={() => setIndex(1)}>
               <Item
                 icon={<FormatShapesRoundedIcon color="primary" />}
                 title="Redesign your components"
-                description="Want to make your primary button fully rounded and with lowercase text? Use Connect to customize component styles."
+                description="Want to make your primary button fully rounded and with lowercase text? Use Connect to output code for custom component styles."
               />
             </Highlighter>
             <Highlighter disableBorder {...getSelectedProps(2)} onClick={() => setIndex(2)}>
               <Item
                 icon={<SvgStorybook />}
                 title="Preview your changes on Storybook"
-                description="All of the changes you run through the Connect plugin can also be visualized on a baked-in Storybook preview instance."
+                description="All of the changes you run through the Connect plugin can also be visualized on a built-in Storybook preview instance."
               />
             </Highlighter>
           </Group>
@@ -125,7 +125,7 @@ export default function ConnectFeatures() {
                               top: { xs: 100, sm: 60 },
                               transform: {
                                 xs: 'scale(1.8) translate(-20%)',
-                                sm: 'scale(1.1) translate(-25%)',
+                                sm: 'scale(1.1) translate(-15%)',
                               },
                               filter: {
                                 xs: 'auto',
@@ -299,7 +299,7 @@ export default function ConnectFeatures() {
                               top: { xs: 100, sm: 60 },
                               transform: {
                                 xs: 'scale(1.8) translate(-20%)',
-                                sm: 'scale(1.1) translate(-30%)',
+                                sm: 'scale(1.1) translate(-25%)',
                               },
                               filter: {
                                 xs: 'auto',
