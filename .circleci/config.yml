@@ -135,7 +135,8 @@ jobs:
                 environment:
                   BASE_BRANCH: next
                 command: |
-                  if [[ $(git diff --name-status ${BASE_BRANCH} | grep pnpm.lock) == "" ]];
+                  # #default-branch-switch
+                  if [[ $(git diff --name-status next | grep -E 'pnpm-workspace\.yaml|pnpm-lock.yaml|package\.json') == "" ]];
                   then
                       echo "No changes to dependencies detected. Skipping..."
                   else
