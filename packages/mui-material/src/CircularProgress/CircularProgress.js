@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import { keyframes, css } from '@mui/system';
+import { keyframes, css, createUseThemeProps, styled } from '../zero-styled';
 import capitalize from '../utils/capitalize';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
 import { getCircularProgressUtilityClass } from './circularProgressClasses';
+
+const useThemeProps = createUseThemeProps('MuiCircularProgress');
 
 const SIZE = 44;
 
