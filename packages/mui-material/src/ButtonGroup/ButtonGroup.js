@@ -111,17 +111,13 @@ const ButtonGroupRoot = styled('div', {
   ],
   [`& .${buttonGroupClasses.grouped}`]: {
     minWidth: 40,
-    variants: [
-      {
-        props: { variant: 'contained' },
-        style: {
-          boxShadow: 'none',
-          '&:hover': {
-            boxShadow: 'none',
-          },
-        },
+    props: { variant: 'contained' },
+    style: {
+      boxShadow: 'none',
+      '&:hover': {
+        boxShadow: 'none',
       },
-    ],
+    },
   },
   [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
     variants: [
@@ -178,14 +174,18 @@ const ButtonGroupRoot = styled('div', {
           },
         },
       },
-      {
-        props: (props) => props.variant === 'text' && props.color !== 'inherit',
-        style: {
-          borderColor: theme.vars
-            ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.5)`
-            : alpha(theme.palette[ownerState.color].main, 0.5),
-        },
-      },
+      ...Object.entries(theme.palette)
+        .filter(([, value]) => value.main && value.dark)
+        .flatMap(([color]) => [
+          {
+            props: { variant: 'text', color: color },
+            style: {
+              borderColor: theme.vars
+                ? `rgba(${theme.vars.palette[color].mainChannel} / 0.5)`
+                : alpha(theme.palette[color].main, 0.5),
+            },
+          },
+        ]),
       {
         props: { variant: 'outlined', orientation: 'horizontal' },
         style: {
@@ -222,12 +222,14 @@ const ButtonGroupRoot = styled('div', {
           },
         },
       },
-      {
-        props: (props) => props.variant === 'contained' && props.color !== 'inherit',
-        style: {
-          borderColor: (theme.vars || theme).palette[ownerState.color].dark,
-        },
-      },
+      ...Object.entries(theme.palette)
+        .filter(([, value]) => value.dark)
+        .map(([color]) => ({
+          props: { variant: 'contained', color },
+          style: {
+            borderColor: theme.vars ? theme.vars.palette[color].dark : theme.palette[color].dark,
+          },
+        })),
     ],
   },
   [`& .${buttonGroupClasses.lastButton},& .${buttonGroupClasses.middleButton}`]: {
