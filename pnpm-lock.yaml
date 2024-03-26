@@ -1764,7 +1764,7 @@ importers:
         specifier: ^7.23.9
         version: 7.24.1
       '@mui/material':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-material/build
     devDependencies:
       '@emotion/cache':
