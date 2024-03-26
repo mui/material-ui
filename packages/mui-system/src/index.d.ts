@@ -120,3 +120,7 @@ export * from './Unstable_Grid';
 
 export { default as Stack } from './Stack';
 export * from './Stack';
+
+/** ----------------- */
+/** Unstable APIs */
+export { default as unstable_cssContainerQueries } from './cssContainerQueries';
