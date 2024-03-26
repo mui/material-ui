@@ -23,17 +23,11 @@ export function GlowingIconContainer({ icon }: GlowingIconContainerProps) {
         border: '1px solid',
         borderColor: 'primary.200',
         bgcolor: 'primary.50',
-        boxShadow: `0px 1px 6px 0px ${alpha(
-          theme.palette.primary[500],
-          0.4,
-        )}, 0px 2px 30px 0px rgba(234, 237, 241, 0.3) inset`,
+        boxShadow: `0px 1px 6px 0px ${alpha(theme.palette.primary[500], 0.2)}, 0px 2px 12px 0px rgba(234, 237, 241, 0.3) inset`,
         ...theme.applyDarkStyles({
-          borderColor: alpha(theme.palette.primary[400], 0.6),
-          bgcolor: 'primary.900',
-          boxShadow: `0 2px 6px 0 ${alpha(
-            theme.palette.primary[600],
-            0.4,
-          )}, 0px 2px 30px 0px rgba(0, 0, 0, 0.25) inset`,
+          borderColor: alpha(theme.palette.primary[400], 0.25),
+          bgcolor: alpha(theme.palette.primary[900], 0.25),
+          boxShadow: `0 2px 6px 0 ${alpha(theme.palette.primary[600], 0.3)}, 0px 2px 12px 0px rgba(0, 0, 0, 0.25) inset`,
         }),
       })}
     >
