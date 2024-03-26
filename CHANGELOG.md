@@ -6,7 +6,7 @@
 
 _Mar 26, 2024_
 
-A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
 - 🔥 Converted 10+ Material UI components to support static CSS extraction
 - ⬅️ Added RTL support in Pigment CSS (#41570) @brijeshb42
@@ -29,6 +29,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [Backdrop] Deprecate TransitionComponent (#40677) @harry-whorlow
 - [ButtonGroup] Deprecate composed classes (#41259) @sai6855
 - [StepLabel] Deprecate `componentProps` prop (#41321) @sai6855
+- [Chip] Convert to support CSS extraction (#41592) @DiegoAndai
 
 ### `@pigment-css/react@0.0.4`
 
@@ -63,6 +64,9 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [core] Add comment explaining the frequency of no-response action runs (#41555) @michaldudak
 - [core] Init the next branch (#41552) @mnajdova
 - [core] Lower the frequency of no-response action runs (#41553) @michaldudak
+- [core] Update peerDependencies ranges to include v6 packages (#41662) @michaldudak
+- [core] Run pnpm dedupe (#41658) @michaldudak
+- [core] Fix dedupe check (#41657) @Janpot
 - [pigment-css][demo] Add index page for material-ui (#41577) @brijeshb42
 - [pigment-css][demo] Remove app specific pnpm workspace (#41393) @brijeshb42
 - [docs] Add notification for MUI X v7 blog post (#41587) @cherniavskii
@@ -73,7 +77,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [website] Update pricing table (#41595) @cherniavskii
 - [website] Add stray design adjustments throughout the site (#41547) @danilo-leal
 
-All contributors of this release in alphabetical order: @aacevski, @brijeshb42, @cherniavskii, @cipherlogs, @danilo-leal, @DiegoAndai, @harry-whorlow, @joserodolfofreitas, @michael-land, @michaldudak, @mnajdova, @nekoya, @sai6855, @siriwatknp, @StylesTrip, @zanivan, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @aacevski, @brijeshb42, @cherniavskii, @cipherlogs, @danilo-leal, @DiegoAndai, @harry-whorlow, @Janpot, @joserodolfofreitas, @michael-land, @michaldudak, @mnajdova, @nekoya, @sai6855, @siriwatknp, @StylesTrip, @zanivan, @ZeeshanTamboli
 
 ## v5.15.14
 
