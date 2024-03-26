@@ -287,6 +287,32 @@ npx @mui/codemod@next deprecations/alert-props <path>
 npx @mui/codemod@next deprecations/backdrop-props <path>
 ```
 
+#### `badge-props`
+
+```diff
+ <Badge
+-  components={{ root: CustomRoot }}
++  slots={{ root: CustomRoot }}
+-  componentsProps={{ root: { testid: 'test-id' } }}
++  slotProps={{ root: { testid: 'test-id' } }}
+ />
+```
+
+```diff
+ MuiBadge: {
+   defaultProps: {
+-    components: {root:CustomRoot }
++    slots: { root: CustomRoot },
+-    componentsProps: { root: { testid: 'test-id' }}
++    slotProps: { root: { testid: 'test-id' } },
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/slider-props <path>
+```
+
 #### `button-classes`
 
 JS transforms:

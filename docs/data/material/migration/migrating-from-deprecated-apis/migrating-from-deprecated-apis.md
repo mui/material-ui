@@ -271,6 +271,36 @@ The Backdrop's `TransitionComponent` prop was deprecated in favor of `slots.tran
 +  slots={{ transition: CustomTransition }}
 ```
 
+## Badge
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#badge-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/badge-props <path>
+```
+
+### components
+
+The Badge's `components` was deprecated in favor of `slots`:
+
+```diff
+ <Slider
+-  components={{ root: CustomRoot }}
++  slots={{ root: CustomRoot }}
+ />
+```
+
+### componentsProps
+
+The Badge's `componentsProps` was deprecated in favor of `slotProps`:
+
+```diff
+ <Badge
+-  componentsProps={{ root: { testid: 'test-id' } }}
++  slotProps={{ root: { testid: 'test-id' } }}
+ />
+```
+
 ## Button
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#button-classes) below to migrate the code as described in the following sections:
