@@ -358,7 +358,7 @@ Input.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  autoComplete: PropTypes /* @typescript-to-proptypes-ignore */.string,
+  autoComplete: PropTypes.string,
   /**
    * @ignore
    */
