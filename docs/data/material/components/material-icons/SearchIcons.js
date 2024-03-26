@@ -528,10 +528,24 @@ export default function SearchIcons() {
     };
   }, [query, updateSearchResults]);
 
+  const icons = React.useMemo(
+    () =>
+      (keys === null ? allIcons : keys.map((key) => allIconsMap[key])).filter(
+        (icon) => theme === icon.theme,
+      ),
+    [theme, keys],
+  );
+
   React.useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
-        setVisibleIconsCount((prevCount) => prevCount + 100);
+        if (icons.length >= 100) {
+          setVisibleIconsCount(
+            (prevCount) => prevCount + Math.min(100, icons.length - prevCount),
+          );
+        } else {
+          setVisibleIconsCount(icons.length);
+        }
       }
     });
 
@@ -545,15 +559,7 @@ export default function SearchIcons() {
         observer.unobserve(currentTargetRef);
       }
     };
-  }, [visibleIconsCount]);
-
-  const icons = React.useMemo(
-    () =>
-      (keys === null ? allIcons : keys.map((key) => allIconsMap[key])).filter(
-        (icon) => theme === icon.theme,
-      ),
-    [theme, keys],
-  );
+  }, [visibleIconsCount, icons.length]);
 
   const visbleIcons = React.useMemo(
     () => icons.filter((_, index) => index < visibleIconsCount),
@@ -563,6 +569,8 @@ export default function SearchIcons() {
   const dialogSelectedIcon = useLatest(
     selectedIcon ? allIconsMap[selectedIcon] : null,
   );
+
+  console.log(visibleIconsCount, visbleIcons.length, icons.length);
 
   return (
     <Grid container sx={{ minHeight: 500 }}>
@@ -613,7 +621,7 @@ export default function SearchIcons() {
           visbleIcons.length,
         )} matching results`}</Typography>
         <Icons icons={visbleIcons} handleOpenClick={handleOpenClick} />
-        {visbleIcons.length < icons.length && (
+        {visbleIcons.length <= icons.length && (
           <Box
             sx={{
               width: '100%',
