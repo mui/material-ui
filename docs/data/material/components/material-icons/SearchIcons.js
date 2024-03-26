@@ -539,12 +539,6 @@ export default function SearchIcons() {
     [theme, keys],
   );
 
-  const iconsCountWithOutFilter = allIcons.filter(
-    (icon) => theme === icon.theme,
-  ).length;
-
-  console.log(keys, iconsCountWithOutFilter);
-
   React.useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
@@ -579,8 +573,6 @@ export default function SearchIcons() {
   const dialogSelectedIcon = useLatest(
     selectedIcon ? allIconsMap[selectedIcon] : null,
   );
-
-  console.log(visibleIconsCount, visbleIcons.length, icons.length);
 
   return (
     <Grid container sx={{ minHeight: 500 }}>
