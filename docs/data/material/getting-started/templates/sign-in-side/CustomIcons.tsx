@@ -100,8 +100,8 @@ export function FacebookIcon() {
             y2="15.9991"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#1AAFFF" />
-            <stop offset="1" stop-color="#0163E0" />
+            <stop stopColor="#1AAFFF" />
+            <stop offset="1" stopColor="#0163E0" />
           </linearGradient>
         </defs>
       </svg>
