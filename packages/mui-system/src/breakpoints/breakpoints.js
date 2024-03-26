@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import deepmerge from '@mui/utils/deepmerge';
 import merge from '../merge';
+import { getContainerQuery } from '../cssContainerQueries';
 
 // The breakpoint **start** at this value.
 // For instance with the first breakpoint xs: [xs, sm[.
@@ -16,7 +17,15 @@ const defaultBreakpoints = {
   // Sorted ASC by size. That's important.
   // It can't be configured as it's used statically for propTypes.
   keys: ['xs', 'sm', 'md', 'lg', 'xl'],
-  up: (key) => `@media (min-width:${values[key]}px)`,
+  up: (key) => {
+    let result = typeof key === 'number' ? key : values[key];
+    if (typeof result === 'number') {
+      result = `${result}px`;
+    } else {
+      result = key;
+    }
+    return `@media (min-width:${result})`;
+  },
 };
 
 export function handleBreakpoints(props, propValue, styleFromPropValue) {
@@ -33,8 +42,14 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
   if (typeof propValue === 'object') {
     const themeBreakpoints = theme.breakpoints || defaultBreakpoints;
     return Object.keys(propValue).reduce((acc, breakpoint) => {
+      if (breakpoint.startsWith('cq')) {
+        const containerKey = getContainerQuery({ breakpoints: themeBreakpoints }, breakpoint);
+        if (containerKey) {
+          acc[containerKey] = styleFromPropValue(propValue[breakpoint], breakpoint);
+        }
+      }
       // key is breakpoint
-      if (Object.keys(themeBreakpoints.values || values).indexOf(breakpoint) !== -1) {
+      else if (Object.keys(themeBreakpoints.values || values).indexOf(breakpoint) !== -1) {
         const mediaKey = themeBreakpoints.up(breakpoint);
         acc[mediaKey] = styleFromPropValue(propValue[breakpoint], breakpoint);
       } else {

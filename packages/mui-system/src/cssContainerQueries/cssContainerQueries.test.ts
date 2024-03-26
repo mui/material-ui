@@ -1,7 +1,10 @@
 import { expect } from 'chai';
 
 import createTheme from '@mui/system/createTheme';
-import cssContainerQueries from '@mui/system/cssContainerQueries';
+import cssContainerQueries, {
+  sortContainerQueries,
+  getContainerQuery,
+} from '@mui/system/cssContainerQueries';
 
 describe('cssContainerQueries', () => {
   it('should have `up`, `down`, `between`, `only`, and `not` functions', () => {
@@ -33,6 +36,56 @@ describe('cssContainerQueries', () => {
     expect(theme.cq('sidebar').not('xl')).to.equal('@container sidebar (max-width:1535.95px)');
     expect(theme.cq('sidebar').not('sm')).to.equal(
       '@container sidebar (width<600px) and (width>899.95px)',
+    );
+  });
+
+  it('should sort container queries', () => {
+    const theme = cssContainerQueries(createTheme());
+
+    const css = {
+      '@container (min-width:960px)': {},
+      '@container (min-width:1280px)': {},
+      '@container (min-width:0px)': {},
+      '@container (min-width:600px)': {},
+    };
+
+    const sorted = sortContainerQueries(theme, css);
+
+    expect(Object.keys(sorted)).to.deep.equal([
+      '@container (min-width:0px)',
+      '@container (min-width:600px)',
+      '@container (min-width:960px)',
+      '@container (min-width:1280px)',
+    ]);
+  });
+
+  it('should sort container queries with other unit', () => {
+    const theme = cssContainerQueries(createTheme());
+
+    const css = {
+      '@container (min-width:30.5rem)': {},
+      '@container (min-width:20rem)': {},
+      '@container (min-width:50.5rem)': {},
+      '@container (min-width:40rem)': {},
+    };
+
+    const sorted = sortContainerQueries(theme, css);
+
+    expect(Object.keys(sorted)).to.deep.equal([
+      '@container (min-width:20rem)',
+      '@container (min-width:30.5rem)',
+      '@container (min-width:40rem)',
+      '@container (min-width:50.5rem)',
+    ]);
+  });
+
+  it('should throw an error if shorthand is invalid', () => {
+    expect(() => {
+      const theme = cssContainerQueries(createTheme());
+      getContainerQuery(theme, 'cq0');
+    }).to.throw(
+      'MUI: The provided shorthand (cq0) is invalid. The format should be `cq@<breakpoint | number>` or `cq@<breakpoint | number>/<container>`.\n' +
+        'For example, `cq@sm` or `cq@600` or `cq@40rem/sidebar`.',
     );
   });
 });
