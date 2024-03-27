@@ -10,6 +10,12 @@ import CloudRoundedIcon from '@mui/icons-material/CloudRounded';
 
 const examples = [
   {
+    name: 'Next.js 14',
+    label: 'View TS example',
+    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-app-router-tailwind-ts',
+    src: '/static/images/examples/next.svg',
+  },
+  {
     name: 'Next.js App Router',
     label: 'View JS example',
     tsLabel: 'View TS example',
