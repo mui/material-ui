@@ -260,8 +260,8 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
           'radial-gradient(50% 50% at 50% 50%, #F0F7FF 0%, rgba(240, 247, 255, 0.05) 100%)',
         stylizedRadio:
           mode === 'dark'
-            ? 'linear-gradient(rgba(0 0 0 / 0.1), rgba(0 0 0 / 0.1)), linear-gradient(254.86deg, rgba(0, 58, 117, 0.18) 0%, rgba(11, 13, 14, 0.3) 49.98%, rgba(0, 76, 153, 0.21) 100.95%)'
-            : 'linear-gradient(rgba(255 255 255 / 0.3), rgba(255 255 255 / 0.3)), linear-gradient(254.86deg, rgba(194, 224, 255, 0.12) 0%, rgba(194, 224, 255, 0.12) 0%, rgba(255, 255, 255, 0.3) 49.98%, rgba(240, 247, 255, 0.3) 100.95%)',
+            ? `radial-gradient(100% 100% at 50% 0, transparent 0, ${alpha(blue[900], 0.3)} 300%)`
+            : `radial-gradient(100% 100% at 50% 0, transparent 0, ${alpha(blue[100], 0.6)} 300%)`,
         linearSubtle:
           mode === 'light'
             ? `linear-gradient(to top right, ${alpha(blue[50], 0.3)} 40%, ${alpha(
