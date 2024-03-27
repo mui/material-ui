@@ -1,2 +1,2 @@
-'use client'
-export { default } from './useThemeWithoutDefault'
+'use client';
+export { default } from './useThemeWithoutDefault';

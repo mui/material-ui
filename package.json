@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "5.15.14",
+  "version": "6.0.0-alpha.0",
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -74,7 +74,7 @@
     "test:regressions:run": "mocha --config test/regressions/.mocharc.js --delay 'test/regressions/**/*.test.js'",
     "test:regressions:server": "serve test/regressions -p 5001",
     "test:umd": "node packages/mui-material/test/umd/run.js",
-    "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
+    "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' --exclude 'packages/pigment-css-react/**/*.test.{js,ts,tsx}' && pnpm test:pigment-css-react:ci",
     "test:argos": "node ./scripts/pushArgos.mjs",
     "typescript": "lerna run --no-bail --parallel typescript",
     "typescript:ci": "lerna run --concurrency 3 --no-bail --no-sort typescript",
@@ -213,7 +213,7 @@
     "@definitelytyped/typescript-versions": "^0.1.1",
     "@definitelytyped/utils": "^0.1.5",
     "@types/node": "^18.19.25",
-    "@types/react": "^18.2.55",
+    "@types/react": "18.2.55",
     "@types/react-dom": "18.2.19",
     "cross-fetch": "^4.0.0"
   },
