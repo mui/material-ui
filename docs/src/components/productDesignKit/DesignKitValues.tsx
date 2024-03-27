@@ -30,7 +30,7 @@ const content = [
   },
 ];
 
-function DesignKitValues() {
+export default function DesignKitValues() {
   return (
     <Section>
       <SectionHeadline
@@ -52,5 +52,3 @@ function DesignKitValues() {
     </Section>
   );
 }
-
-export default DesignKitValues;
