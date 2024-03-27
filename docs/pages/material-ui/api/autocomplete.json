@@ -74,7 +74,7 @@
     "getOptionLabel": {
       "type": { "name": "func" },
       "default": "(option) => option.label ?? option",
-      "signature": { "type": "function(option: Value) => string", "describedArgs": [] }
+      "signature": { "type": "function(option: Value | string) => string", "describedArgs": [] }
     },
     "groupBy": {
       "type": { "name": "func" },
@@ -87,7 +87,7 @@
     "isOptionEqualToValue": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(option: Value, value: Value) => boolean",
+        "type": "function(option: Value, value: Value | string) => boolean",
         "describedArgs": ["option", "value"]
       }
     },

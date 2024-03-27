@@ -935,7 +935,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    *
    * If used in free solo mode, it must accept both the type of the options and a string.
    *
-   * @param {Value} option
+   * @param {Value|string} option
    * @returns {string}
    * @default (option) => option.label ?? option
    */
@@ -974,7 +974,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * ⚠️ Both arguments need to be handled, an option can only match with one value.
    *
    * @param {Value} option The option to test.
-   * @param {Value} value The value to test against.
+   * @param {Value|string} value The value to test against.
    * @returns {boolean}
    */
   isOptionEqualToValue: PropTypes.func,

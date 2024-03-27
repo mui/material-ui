@@ -27,6 +27,10 @@ export function createFilterOptions<Value>(
 
 export type AutocompleteFreeSoloValueMapping<FreeSolo> = FreeSolo extends true ? string : never;
 
+export type AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo> = FreeSolo extends true
+  ? Value | string
+  : Value;
+
 export type AutocompleteValue<Value, Multiple, DisableClearable, FreeSolo> = Multiple extends true
   ? Array<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
   : DisableClearable extends true
@@ -169,11 +173,11 @@ export interface UseAutocompleteProps<
    *
    * If used in free solo mode, it must accept both the type of the options and a string.
    *
-   * @param {Value} option
+   * @param {Value|string} option
    * @returns {string}
    * @default (option) => option.label ?? option
    */
-  getOptionLabel?: (option: Value | AutocompleteFreeSoloValueMapping<FreeSolo>) => string;
+  getOptionLabel?: (option: AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo>) => string;
   /**
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
@@ -209,10 +213,13 @@ export interface UseAutocompleteProps<
    * ⚠️ Both arguments need to be handled, an option can only match with one value.
    *
    * @param {Value} option The option to test.
-   * @param {Value} value The value to test against.
+   * @param {Value|string} value The value to test against.
    * @returns {boolean}
    */
-  isOptionEqualToValue?: (option: Value, value: Value) => boolean;
+  isOptionEqualToValue?: (
+    option: Value,
+    value: AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo>,
+  ) => boolean;
   /**
    * If `true`, `value` must be an array and the menu will support multiple selections.
    * @default false
