@@ -425,5 +425,6 @@ describe('<RadioGroup />', () => {
     const radiogroup = screen.getByRole('radiogroup');
     expect(radiogroup).to.have.class(classes.root);
     expect(radiogroup).to.have.class(classes.row);
+    expect(radiogroup).not.to.have.class(classes.error);
   });
 });
