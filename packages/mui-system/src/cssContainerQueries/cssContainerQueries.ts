@@ -7,6 +7,9 @@ interface CssContainerQueries {
   cq: ((name: string) => Pick<Breakpoints, Fn>) & Pick<Breakpoints, Fn>;
 }
 
+/**
+ * A wrapper of the `breakpoints`'s utilities to create container queries.
+ */
 function createBreakpointToCQ<T extends { breakpoints: Partial<Breakpoints> }>(themeInput: T) {
   return function toContainerQuery(key: Fn, name?: string) {
     return (...args: Array<Breakpoint | number>) => {
@@ -16,6 +19,7 @@ function createBreakpointToCQ<T extends { breakpoints: Partial<Breakpoints> }>(t
         name ? `@container ${name}` : '@container',
       );
       if (key === 'not' && result.includes('not all and')) {
+        // `@container` does not work with `not all and`, so need to invert the logic
         return result
           .replace('not all and ', '')
           .replace('min-width:', 'width<')
@@ -26,6 +30,12 @@ function createBreakpointToCQ<T extends { breakpoints: Partial<Breakpoints> }>(t
   };
 }
 
+/**
+ * For using in `sx` prop to sort the breakpoint from low to high.
+ * Note: this function does not work and will not support multiple units.
+ *       e.g. input: { '@container (min-width:300px)': '1rem', '@container (min-width:40rem)': '2rem' }
+ *            output: { '@container (min-width:40rem)': '2rem', '@container (min-width:300px)': '1rem' } // since 40 < 300 eventhough 40rem > 300px
+ */
 export function sortContainerQueries(
   theme: Partial<CssContainerQueries>,
   css: Record<string, any>,
