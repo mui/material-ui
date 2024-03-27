@@ -464,6 +464,11 @@ Button.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
+   * The target attribute for links.
+   * Specifies where the linked document will open when clicked.
+   */
+  target: PropTypes.string,
+  /**
    * @ignore
    */
   type: PropTypes.oneOfType([PropTypes.oneOf(['button', 'reset', 'submit']), PropTypes.string]),

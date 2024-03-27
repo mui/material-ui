@@ -77,7 +77,9 @@ const buttonTest = () => (
     <Button component={CustomLink} to="/some-route">
       Link
     </Button>
-    <Button href="/open-collective">Link</Button>
+    <Button href="/open-collective" target="_blank">
+      Link with target _blank
+    </Button>
     {/* By default the underlying component is a button element */}
     <Button
       ref={(elem) => {

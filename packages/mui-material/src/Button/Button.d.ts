@@ -61,6 +61,11 @@ export interface ButtonOwnProps {
    */
   href?: string;
   /**
+   * The target attribute for links.
+   * Specifies where the linked document will open when clicked.
+   */
+  target?: string;
+  /**
    * The size of the component.
    * `small` is equivalent to the dense button styling.
    * @default 'medium'
