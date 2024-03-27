@@ -49,8 +49,8 @@ cd pigment-css-nextjs-ts
 #### Manual installation
 
 ```bash
-npm install @pigment-css/react
-npm install --save-dev @pigment-css/nextjs-plugin
+npm install @pigment-css/react@next
+npm install --save-dev @pigment-css/nextjs-plugin@next
 ```
 
 Then, in your `next.config.js` file, import the plugin and wrap the exported config object:
@@ -95,8 +95,8 @@ cd pigment-css-vite-ts
 #### Manual installation
 
 ```bash
-npm install @pigment-css/react
-npm install --save-dev @pigment-css/vite-plugin
+npm install @pigment-css/react@next
+npm install --save-dev @pigment-css/vite-plugin@next
 ```
 
 Then, in your Vite config file, import the plugin and pass it to the `plugins` array as shown:
