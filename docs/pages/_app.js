@@ -12,10 +12,11 @@ import systemPkgJson from 'packages/mui-system/package.json';
 import basePkgJson from 'packages/mui-base/package.json';
 import generalDocsPages from 'docs/data/docs/pages';
 import basePages from 'docs/data/base/pages';
-import docsInfraPages from 'docs/data/docs-infra/pages';
 import materialPages from 'docs/data/material/pages';
 import joyPages from 'docs/data/joy/pages';
 import systemPages from 'docs/data/system/pages';
+import docsInfraPages from 'docs/data/docs-infra/pages';
+import companyDocs from 'docs/data/company/pages';
 import PageContext from 'docs/src/modules/components/PageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 import { CodeCopyProvider } from 'docs/src/modules/utils/CodeCopy';
@@ -245,6 +246,19 @@ function AppWrapper(props) {
       };
     }
 
+    if (productId === 'company') {
+      return {
+        metadata: '',
+        name: 'Company docs',
+        versions: [
+          {
+            text: 'v0.0.0',
+            href: `https://mui.com${languagePrefix}/versions/`,
+          },
+        ],
+      };
+    }
+
     if (productId === 'docs') {
       return {
         metadata: '',
@@ -273,6 +287,8 @@ function AppWrapper(props) {
       pages = systemPages;
     } else if (productId === 'docs-infra') {
       pages = docsInfraPages;
+    } else if (productId === 'company') {
+      pages = companyDocs;
     }
 
     const { activePage, activePageParents } = findActivePage(pages, router.pathname);

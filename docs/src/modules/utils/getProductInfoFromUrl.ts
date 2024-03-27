@@ -2,15 +2,16 @@ import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 
 export type MuiProductId =
   | 'null'
-  | 'base-ui'
   | 'material-ui'
+  | 'base-ui'
   | 'joy-ui'
   | 'system'
-  | 'docs-infra'
-  | 'docs'
   | 'x-data-grid'
   | 'x-date-pickers'
-  | 'x-charts';
+  | 'x-charts'
+  | 'docs-infra'
+  | 'docs'
+  | 'company';
 
 type MuiProductCategoryId = 'null' | 'core' | 'x';
 
@@ -72,6 +73,10 @@ export default function getProductInfoFromUrl(asPath: string): MuiProductInfo {
 
   if (asPathWithoutLang.startsWith('/experiments/docs/')) {
     productId = 'docs-infra';
+  }
+
+  if (asPathWithoutLang.startsWith('/company/docs/')) {
+    productId = 'company';
   }
 
   return {
