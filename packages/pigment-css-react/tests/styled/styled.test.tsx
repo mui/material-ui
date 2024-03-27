@@ -1,4 +1,8 @@
 import path from 'node:path';
+import * as React from 'react';
+import * as chai from 'chai';
+import { createRenderer, screen } from '@mui-internal/test-utils';
+import styled from '../../src/styled';
 import { runTransformation, expect } from '../testUtils';
 
 const theme = {
@@ -66,5 +70,25 @@ describe('Pigment CSS - styled', () => {
 
     expect(output.js).to.equal(fixture.js);
     expect(output.css).to.equal(fixture.css);
+  });
+
+  describe('props forwarding', () => {
+    const { render } = createRenderer();
+
+    it('composes shouldForwardProp on composed styled components', () => {
+      const StyledDiv = styled('div', {
+        shouldForwardProp: (prop) => prop !== 'foo',
+      })<{ foo?: any }>();
+
+      const ComposedDiv = styled(StyledDiv, {
+        shouldForwardProp: (prop) => prop !== 'bar',
+      })<{ bar?: any }>();
+
+      // eslint-disable-next-line react/react-in-jsx-scope
+      const { container } = render(<ComposedDiv foo bar xyz />);
+
+      expect(container.firstChild).to.not.have.attribute('foo');
+      expect(container.firstChild).to.not.have.attribute('bar');
+    });
   });
 });
