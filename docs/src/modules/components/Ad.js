@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import AdCarbon from 'docs/src/modules/components/AdCarbon';
 import AdInHouse from 'docs/src/modules/components/AdInHouse';
+import { GA_ADS_DISPLAY_RATIO } from 'docs/src/modules/constants';
 import { AdContext, adShape } from 'docs/src/modules/components/AdManager';
 import { useTranslate } from '@mui/docs/i18n';
 
@@ -197,7 +198,7 @@ export default function Ad() {
 
   React.useEffect(() => {
     // Avoid an exceed on the Google Analytics quotas.
-    if (Math.random() < 0.9 || !eventLabel) {
+    if (Math.random() > GA_ADS_DISPLAY_RATIO || !eventLabel) {
       return undefined;
     }
 
