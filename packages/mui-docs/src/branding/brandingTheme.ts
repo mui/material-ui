@@ -264,14 +264,8 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
             : 'linear-gradient(rgba(255 255 255 / 0.3), rgba(255 255 255 / 0.3)), linear-gradient(254.86deg, rgba(194, 224, 255, 0.12) 0%, rgba(194, 224, 255, 0.12) 0%, rgba(255, 255, 255, 0.3) 49.98%, rgba(240, 247, 255, 0.3) 100.95%)',
         linearSubtle:
           mode === 'light'
-            ? `linear-gradient(to top right, ${alpha(blue[50], 0.3)} 40%, ${alpha(
-                grey[50],
-                0.2,
-              )} 100%)`
-            : `linear-gradient(to top right, ${alpha(blue[900], 0.1)} 40%, ${alpha(
-                blueDark[800],
-                0.2,
-              )} 100%)`,
+            ? `linear-gradient(to bottom right, ${alpha(blue[50], 0.3)} 25%, ${alpha(grey[50], 0.2)} 100%)`
+            : `linear-gradient(to bottom right, ${alpha(blue[900], 0.1)} 25%, ${alpha(blueDark[800], 0.2)} 100%)`,
       },
     },
     shape: {
