@@ -10,7 +10,7 @@ import ExpandableApiItem, {
 import {
   brandingLightTheme as lightTheme,
   brandingDarkTheme as darkTheme,
-} from 'docs/src/modules/brandingTheme';
+} from '@mui/docs/branding';
 import ApiWarning from 'docs/src/modules/components/ApiPage/ApiWarning';
 
 const StyledApiItem = styled(ExpandableApiItem)(
