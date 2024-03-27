@@ -5,7 +5,7 @@ import WebRoundedIcon from '@mui/icons-material/WebRounded';
 import DrawRoundedIcon from '@mui/icons-material/DrawRounded';
 import PlayCircleFilledWhiteRoundedIcon from '@mui/icons-material/PlayCircleFilledWhiteRounded';
 import DesignServicesRoundedIcon from '@mui/icons-material/DesignServicesRounded';
-import InfoCard from 'docs/src/components/action/InfoCard';
+import { InfoCard } from '@mui/docs/InfoCard';
 
 const content = [
   {

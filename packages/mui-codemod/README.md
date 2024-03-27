@@ -62,6 +62,7 @@ npx @mui/codemod@next <transform> <path> --jscodeshift="--printOptions='{\"quote
 ## Included scripts
 
 - [Deprecation](#deprecations)
+- [v6](#v600)
 - [v5](#v500)
 - [v4](#v400)
 - [v1](#v100)
@@ -285,6 +286,32 @@ npx @mui/codemod@next deprecations/alert-props <path>
 
 ```bash
 npx @mui/codemod@next deprecations/backdrop-props <path>
+```
+
+#### `badge-props`
+
+```diff
+ <Badge
+-  components={{ Root: CustomRoot }}
++  slots={{ root: CustomRoot }}
+-  componentsProps={{ root: { testid: 'test-id' } }}
++  slotProps={{ root: { testid: 'test-id' } }}
+ />
+```
+
+```diff
+ MuiBadge: {
+   defaultProps: {
+-    components: { Root: CustomRoot }
++    slots: { root: CustomRoot },
+-    componentsProps: { root: { testid: 'test-id' }}
++    slotProps: { root: { testid: 'test-id' } },
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/badge-props <path>
 ```
 
 #### `button-classes`
@@ -943,6 +970,8 @@ npx @mui/codemod@next deprecations/slider-props <path>
 npx @mui/codemod@latest deprecations/step-label-props <path>
 
 ```
+
+### v6.0.0
 
 ### v5.0.0
 

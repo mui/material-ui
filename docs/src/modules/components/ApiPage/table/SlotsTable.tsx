@@ -5,7 +5,7 @@ import { styled, alpha } from '@mui/material/styles';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
-} from 'docs/src/modules/brandingTheme';
+} from '@mui/docs/branding';
 import { SlotsFormatedParams, getHash } from 'docs/src/modules/components/ApiPage/list/SlotsList';
 import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
 
