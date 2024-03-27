@@ -14,16 +14,6 @@ import Section from 'docs/src/layouts/Section';
 
 const faqData = [
   {
-    summary: 'How long until the Connect plug-in is out?',
-    detail: (
-      <React.Fragment>
-        We&apos;re still polishing it for a &quot;stable&quot; release. Add your email in the input
-        available in the section above to be notified of any updates as we get further into
-        development.
-      </React.Fragment>
-    ),
-  },
-  {
     summary: 'What long-term support do you offer?',
     detail: (
       <React.Fragment>

@@ -3,10 +3,10 @@ import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Chip from '@mui/material/Chip';
+import Typography from '@mui/material/Typography';
 import Head from 'docs/src/modules/components/Head';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeader from 'docs/src/layouts/AppHeader';
-import Typography from '@mui/material/Typography';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 import Section from 'docs/src/layouts/Section';
@@ -86,6 +86,7 @@ export default function Connect() {
           }}
         >
           <Image src="/static/branding/design-kits/connect-plug-in-figma-light.jpg" />
+          {/* we'll likely replace this image with a video before merging */}
         </Box>
         <ConnectFeatures />
         <Divider />
