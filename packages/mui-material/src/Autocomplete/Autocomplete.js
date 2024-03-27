@@ -630,7 +630,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   );
 
   let autocompletePopper = null;
-  if (!loading && groupedOptions.length > 0) {
+  if (groupedOptions.length > 0) {
     autocompletePopper = renderAutocompletePopperChildren(
       <AutocompleteListbox
         as={ListboxComponent}

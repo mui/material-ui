@@ -145,6 +145,23 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
       expect(document.querySelector(`.${classes.paper}`).textContent).to.equal('Loading…');
     });
+
+    it('should show supplied options to the "options" prop even when loading', () => {
+      render(
+        <Autocomplete
+          options={['one', 'two']}
+          loading
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
+      expect(document.querySelector(`.${classes.paper}`).textContent).not.to.equal('Loading…');
+
+      const listbox = screen.getByRole('listbox');
+      const htmlOptions = listbox.querySelectorAll('li');
+      expect(htmlOptions[0].innerHTML).to.equal('one');
+    });
   });
 
   describe('prop: autoHighlight', () => {
