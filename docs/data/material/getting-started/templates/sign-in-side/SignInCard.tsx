@@ -124,7 +124,22 @@ export default function SignInCard() {
           />
         </FormControl>
         <FormControl>
-          <FormLabel htmlFor="password">Password</FormLabel>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+            }}
+          >
+            <FormLabel htmlFor="password">Password</FormLabel>
+            <Link
+              component="button"
+              onClick={handleClickOpen}
+              variant="body2"
+              sx={{ alignSelf: 'baseline' }}
+            >
+              Forgot your password?
+            </Link>
+          </Box>
           <TextField
             error={passwordError}
             helperText={passwordErrorMessage}
@@ -140,23 +155,10 @@ export default function SignInCard() {
             color={passwordError ? 'error' : 'primary'}
           />
         </FormControl>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: { xs: 'column', sm: 'row' },
-            alignItems: { xs: 'start', sm: 'center' },
-            justifyContent: 'space-between',
-            gap: 1,
-          }}
-        >
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Link component="button" onClick={handleClickOpen} variant="body2">
-            Forgot your password?
-          </Link>
-        </Box>
+        <FormControlLabel
+          control={<Checkbox value="remember" color="primary" />}
+          label="Remember me"
+        />
         <ForgotPassword open={open} handleClose={handleClose} />
         <Button type="submit" fullWidth variant="contained" onClick={validateInputs}>
           Sign in
