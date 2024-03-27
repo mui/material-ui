@@ -25,8 +25,6 @@ export interface RadioGroupProps extends Omit<FormGroupProps, 'onChange'> {
   value?: any;
 }
 
-export type RadioGroupClassKey = keyof NonNullable<RadioGroupProps['classes']>;
-
 /**
  *
  * Demos:
