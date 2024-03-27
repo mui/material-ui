@@ -93,30 +93,35 @@ export const paddingKeys = [
 const spacingKeys = [...marginKeys, ...paddingKeys];
 
 export function createUnaryUnit(theme, themeKey, defaultValue, propName) {
-  const themeSpacing = getPath(theme, themeKey, false) ?? defaultValue;
+  const themeSpacing = getPath(theme, themeKey, true) ?? defaultValue;
 
-  if (typeof themeSpacing === 'number') {
-    return (abs) => {
-      if (typeof abs === 'string') {
-        return abs;
+  if (typeof themeSpacing === 'number' || typeof themeSpacing === 'string') {
+    return (val) => {
+      if (typeof val === 'string') {
+        return val;
       }
 
       if (process.env.NODE_ENV !== 'production') {
-        if (typeof abs !== 'number') {
+        if (typeof val !== 'number') {
           console.error(
-            `MUI: Expected ${propName} argument to be a number or a string, got ${abs}.`,
+            `MUI: Expected ${propName} argument to be a number or a string, got ${val}.`,
           );
         }
       }
-      return themeSpacing * abs;
+
+      if (typeof themeSpacing === 'string') {
+        return `calc(${val} * ${themeSpacing})`;
+      }
+      return themeSpacing * val;
     };
   }
 
   if (Array.isArray(themeSpacing)) {
-    return (abs) => {
-      if (typeof abs === 'string') {
-        return abs;
+    return (val) => {
+      if (typeof val === 'string') {
+        return val;
       }
+      const abs = Math.abs(val);
 
       if (process.env.NODE_ENV !== 'production') {
         if (!Number.isInteger(abs)) {
@@ -137,7 +142,17 @@ export function createUnaryUnit(theme, themeKey, defaultValue, propName) {
         }
       }
 
-      return themeSpacing[abs];
+      const transformed = themeSpacing[abs];
+
+      if (val >= 0) {
+        return transformed;
+      }
+
+      if (typeof transformed === 'number') {
+        return -transformed;
+      }
+
+      return `-${transformed}`;
     };
   }
 
@@ -166,18 +181,7 @@ export function getValue(transformer, propValue) {
     return propValue;
   }
 
-  const abs = Math.abs(propValue);
-  const transformed = transformer(abs);
-
-  if (propValue >= 0) {
-    return transformed;
-  }
-
-  if (typeof transformed === 'number') {
-    return -transformed;
-  }
-
-  return `-${transformed}`;
+  return transformer(propValue);
 }
 
 export function getStyleFromPropValue(cssProperties, transformer) {
