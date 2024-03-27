@@ -42,6 +42,33 @@ const useUtilityClasses = (ownerState) => {
   };
 };
 
+const commonIconStyles = [
+  {
+    props: { size: 'small' },
+    style: {
+      '& > *:nth-of-type(1)': {
+        fontSize: 18,
+      },
+    },
+  },
+  {
+    props: { size: 'medium' },
+    style: {
+      '& > *:nth-of-type(1)': {
+        fontSize: 20,
+      },
+    },
+  },
+  {
+    props: { size: 'large' },
+    style: {
+      '& > *:nth-of-type(1)': {
+        fontSize: 22,
+      },
+    },
+  },
+];
+
 const ButtonRoot = styled(ButtonBase, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiButton',
@@ -287,36 +314,12 @@ const ButtonStartIcon = styled('span', {
   marginLeft: -4,
   variants: [
     {
-      props({ ownerState }) {
-        return ownerState.size === 'small';
-      },
+      props: { size: 'small' },
       style: {
         marginLeft: -2,
-        '& > *:nth-of-type(1)': {
-          fontSize: 18,
-        },
       },
     },
-    {
-      props({ ownerState }) {
-        return ownerState.size === 'medium';
-      },
-      style: {
-        '& > *:nth-of-type(1)': {
-          fontSize: 20,
-        },
-      },
-    },
-    {
-      props({ ownerState }) {
-        return ownerState.size === 'large';
-      },
-      style: {
-        '& > *:nth-of-type(1)': {
-          fontSize: 22,
-        },
-      },
-    },
+    ...commonIconStyles,
   ],
 }));
 
@@ -334,36 +337,12 @@ const ButtonEndIcon = styled('span', {
   marginLeft: 8,
   variants: [
     {
-      props({ ownerState }) {
-        return ownerState.size === 'small';
-      },
+      props: { size: 'small' },
       style: {
         marginRight: -2,
-        '& > *:nth-of-type(1)': {
-          fontSize: 18,
-        },
       },
     },
-    {
-      props({ ownerState }) {
-        return ownerState.size === 'medium';
-      },
-      style: {
-        '& > *:nth-of-type(1)': {
-          fontSize: 20,
-        },
-      },
-    },
-    {
-      props({ ownerState }) {
-        return ownerState.size === 'large';
-      },
-      style: {
-        '& > *:nth-of-type(1)': {
-          fontSize: 22,
-        },
-      },
-    },
+    ...commonIconStyles,
   ],
 }));
 
