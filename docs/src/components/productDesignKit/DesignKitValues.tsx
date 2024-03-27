@@ -6,7 +6,7 @@ import LibraryBooks from '@mui/icons-material/LibraryBooks';
 import CodeRounded from '@mui/icons-material/CodeRounded';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Section from 'docs/src/layouts/Section';
-import InfoCard from 'docs/src/components/action/InfoCard';
+import { InfoCard } from '@mui/docs/InfoCard';
 
 const content = [
   {
