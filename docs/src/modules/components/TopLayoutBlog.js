@@ -272,7 +272,12 @@ export default function TopLayoutBlog(props) {
   const card =
     headers.card === 'true'
       ? `https://mui.com/static/blog/${slug}/card.png`
-      : 'https://mui.com/static/logo.png';
+      : `/edge-functions/og-image/?title=${headers.cardTitle || finalTitle}&authors=${headers.authors
+          .map((author) => {
+            const { github, name } = authors[author];
+            return `${name} @${github}`;
+          })
+          .join(',')}&product=Blog`;
 
   if (process.env.NODE_ENV !== 'production') {
     if (headers.card === undefined) {
