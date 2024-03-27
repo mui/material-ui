@@ -880,38 +880,39 @@ This statistics component is composed of three slots:
 Use the `styled` API with `name` and `slot` parameters to create the slots, as shown below:
 
 ```js
+// /path/to/Stat.js
 import * as React from 'react';
 import { styled } from '@pigment-css/react';
 
 const StatRoot = styled('div', {
-  name: 'MuiStat', // The component name
+  name: 'PigmentStat', // The component name
   slot: 'root', // The slot name
-})(({ theme }) => ({
+})({
   display: 'flex',
   flexDirection: 'column',
   gap: '1rem',
   padding: '0.75rem 1rem',
-  backgroundColor: theme.colors.primary.background,
-  borderRadius: theme.radius.xs,
-  boxShadow: theme.shadow.sm,
+  backgroundColor: '#f9f9f9',
+  borderRadius: '8px',
+  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
   letterSpacing: '-0.025em',
   fontWeight: 600,
-}));
+});
 
 const StatValue = styled('div', {
-  name: 'MuiStat',
+  name: 'PigmentStat',
   slot: 'value',
-})(({ theme }) => ({
-  ...theme.typography.h3,
-}));
+})({
+  font: '1.2rem "Fira Sans", sans-serif',
+});
 
 const StatUnit = styled('div', {
-  name: 'MuiStat',
+  name: 'PigmentStat',
   slot: 'unit',
-})(({ theme }) => ({
-  ...theme.typography.body2,
-  color: theme.colors.neutral.foreground,
-}));
+})({
+  font: '0.875rem "Fira Sans", sans-serif',
+  color: '#121212',
+});
 ```
 
 ### 2. Create the component
@@ -922,20 +923,7 @@ Assemble the component using the slots created in the previous step:
 // /path/to/Stat.js
 import * as React from 'react';
 
-const StatRoot = styled('div', {
-  name: 'MuiStat',
-  slot: 'root',
-})(…);
-
-const StatValue = styled('div', {
-  name: 'MuiStat',
-  slot: 'value',
-})(…);
-
-const StatUnit = styled('div', {
-  name: 'MuiStat',
-  slot: 'unit',
-})(…);
+// ...slot styled-components
 
 const Stat = React.forwardRef(function Stat(props, ref) {
   const { value, unit, ...other } = props;
@@ -981,17 +969,16 @@ Then you can read `ownerState` in the slot to style it based on the `variant` pr
 
 ```diff
   const StatRoot = styled('div', {
-    name: 'MuiStat',
+    name: 'PigmentStat',
     slot: 'root',
--  })(({ theme }) => ({
-+  })(({ theme, ownerState }) => ({
+  })({
     display: 'flex',
     flexDirection: 'column',
     gap: '1rem',
     padding: '0.75rem 1rem',
-    backgroundColor: theme.colors.primary.background,
-    borderRadius: theme.radius.xs,
-    boxShadow: theme.shadow.sm,
+    backgroundColor: '#f9f9f9',
+    borderRadius: '8px',
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
     letterSpacing: '-0.025em',
     fontWeight: 600,
 +   variants: [
@@ -1002,7 +989,7 @@ Then you can read `ownerState` in the slot to style it based on the `variant` pr
 +       },
 +     },
 +   ],
-  }));
+  });
 ```
 
 That's it! You've successfully created a statistics component with Pigment CSS. The next step is to upload your component to a package registry to let other people use it.
@@ -1016,46 +1003,25 @@ npm install your-package-name @pigment-css/react
 npm install -D @pigment-css/nextjs-plugin
 ```
 
-Then, they need to set up Pigment CSS in their project and import the stylesheet in the root layout file:
+Then, they need to set up Pigment CSS in their project:
 
 ```js
 // framework config file, for example next.config.js
 const { withPigment } = require('@pigment-css/nextjs-plugin');
 
-const theme = {
-  colors: {
-    primary: {
-      background: '#EBF5FF',
-      foreground: '#003A75',
-    },
-    neutral: {
-      background: '#F3F6F9',
-      foreground: '#6F7F95',
-    },
-  },
-  typography: {
-    h3: {
-      fontSize: '2rem',
-    },
-    body2: {
-      fontSize: '1rem',
-    },
-  },
-};
-
 module.exports = withPigment(
   {
     // ... Your nextjs config.
   },
-  { theme, transformLibraries: ['your-package-name'] },
+  { transformLibraries: ['your-package-name'] },
 );
 ```
+
+Import the stylesheet in the root layout file:
 
 ```js
 // index.tsx
 import '@pigment-css/react/styles.css';
-
-...
 ```
 
 That's it. Now they can use your component in their project:
@@ -1066,4 +1032,72 @@ import Stat from 'your-package-name/Stat';
 function App() {
   return <Stat value={42} unit="km/h" variant="outlined" />;
 }
+```
+
+### Consumer theming
+
+By defining the component's name and slots in [step 2](#2-create-the-component), the consumers can customize the component's styles using the theme's `styleOverrides` key:
+
+```js
+module.exports = withPigment(
+  { ...nextConfig },
+  {
+    theme: {
+      styleOverrides: {
+        PigmentStat: {
+          root: {
+            backgroundColor: 'tomato',
+          },
+          value: {
+            color: 'white',
+          },
+          unit: {
+            color: 'white',
+          },
+        },
+      },
+    },
+  },
+);
+```
+
+When the consumer renders the `Stat` component, the default background of the root slot will be `tomato`.
+
+The consumer can also access the theme values and apply the styles based on the component's prop using the `variants` key:
+
+```js
+module.exports = withPigment(
+  { ...nextConfig },
+  {
+    theme: {
+      // user defined colors
+      colors: {
+        primary: 'tomato',
+        primaryLight: 'lightcoral',
+      },
+      styleOverrides: {
+        PigmentStat: {
+          root: ({ theme }) => ({
+            backgroundColor: 'tomato',
+            variants: [
+              {
+                props: { variant: 'outlined' },
+                style: {
+                  border: `2px solid ${theme.colors.primary}`,
+                  backgroundColor: theme.colors.primaryLight,
+                },
+              },
+            ],
+          }),
+          value: {
+            color: 'white',
+          },
+          unit: {
+            color: 'white',
+          },
+        },
+      },
+    },
+  },
+);
 ```
