@@ -6,7 +6,9 @@ import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 
 // #major-version-switch
-const HOST = 'https://mui.com';
+const HOST = process.env.PULL_REQUEST_ID
+  ? `https://deploy-preview-${process.env.PULL_REQUEST_ID}--${process.env.NETLIFY_SITE_NAME}.netlify.app`
+  : 'https://mui.com';
 
 interface HeadProps {
   card?: string;

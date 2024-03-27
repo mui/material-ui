@@ -137,6 +137,7 @@ export default function AppLayoutDocs(props) {
   const Layout = disableLayout ? React.Fragment : AppFrame;
   const layoutProps = disableLayout ? {} : { BannerComponent };
 
+  const card = `/.netlify/images/?url=/edge-functions/og-image?product=${productName}&title=${title}`;
   return (
     <Layout {...layoutProps}>
       <GlobalStyles
@@ -151,7 +152,7 @@ export default function AppLayoutDocs(props) {
           title={`${title} - ${productName}`}
           description={description}
           largeCard={false}
-          card="https://mui.com/static/logo.png"
+          card={card}
         />
         <Main disableToc={disableToc}>
           {/*

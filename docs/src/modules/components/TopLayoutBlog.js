@@ -272,7 +272,7 @@ export default function TopLayoutBlog(props) {
   const card =
     headers.card === 'true'
       ? `https://mui.com/static/blog/${slug}/card.png`
-      : 'https://mui.com/static/logo.png';
+      : `/.netlify/images/?url=/edge-functions/og-image/?title=${headers.cardTitle || finalTitle}&authors=${headers.authors.join(',')}&product=BLOG`;
 
   if (process.env.NODE_ENV !== 'production') {
     if (headers.card === undefined) {
