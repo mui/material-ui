@@ -1186,7 +1186,7 @@ export function getThemedComponents(): ThemeOptions {
               }),
               '&.Mui-selected': {
                 color: (theme.vars || theme).palette.primary[700],
-                borderColor: `${(theme.vars || theme).palette.primary[500]} !important`,
+                borderColor: `${(theme.vars || theme).palette.primary[200]} !important`,
                 backgroundColor: (theme.vars || theme).palette.primary[50],
                 '&:hover': {
                   backgroundColor: (theme.vars || theme).palette.primary[100],
@@ -1200,7 +1200,7 @@ export function getThemedComponents(): ThemeOptions {
               },
               '&.Mui-selected': {
                 color: (theme.vars || theme).palette.primary[200],
-                borderColor: `${(theme.vars || theme).palette.primary[700]} !important`,
+                borderColor: `${(theme.vars || theme).palette.primary[800]} !important`,
                 backgroundColor: alpha(theme.palette.primary[900], 0.4),
                 '&:hover': {
                   backgroundColor: alpha(theme.palette.primary[900], 0.8),
