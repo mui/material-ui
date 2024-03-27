@@ -24,16 +24,39 @@ This list is a work in progress.
 Expect updates as new breaking changes are introduced.
 :::
 
-### Root code is now ESM
+### Added exports field to package.json
 
-The ESM code, previously under the `esm/` build, has been moved to the root of the package.
-The CommonJS code, previously on the root, has been moved to the `node/` build.
+The `exports` field has been added to the `@mui/system/package.json` file to improve the ESM and CJS builds split:
 
-:::info
-This is an intermediate step to prepare for adding the `exports` field to the `package.json` file.
-If you have trouble using this new structure, please wait for the future update which adds the `exports` field.
-You can follow progress on https://github.com/mui/material-ui/issues/30671.
-:::
+```json title="@mui/system/package.json"
+// ...
+"exports": {
+    ".": {
+        "types": "./index.d.ts",
+        "import": "./index.mjs",
+        "default": "./node/index.js"
+    },
+    "./*": {
+        "types": "./*/index.d.ts",
+        "import": "./*/index.mjs",
+        "default": "./node/*/index.js"
+    }
+}
+// ...
+```
+
+This limits the exported modules to the root import and one level deep imports.
+If you were importing from deeper levels, you will need to update your imports:
+
+```diff
+- import styled from '@mui/system/esm/styled';
++ import styled from '@mui/system/styled';
+```
+
+If you were importing from `/esm` as a workaround, this is no longer necessary as the `exports` field maps ESM to the correct files.
+You might have to update your bundler configuration to support the new structure.
+
+Read more about the `exports` field in the [Node.js documentation](https://nodejs.org/api/packages.html#exports).
 
 ### GridProps type
 
