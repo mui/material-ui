@@ -104,7 +104,6 @@ const pigmentOptions = {
   transformLibraries: ['local-ui-lib'],
   sourceMap: true,
   displayName: true,
-  transformSx: false,
 };
 
 /** @type {import('next').NextConfig} */
@@ -114,6 +113,10 @@ const nextConfig = {
   },
   typescript: {
     ignoreBuildErrors: true,
+  },
+  devIndicators: {
+    buildActivity: true,
+    buildActivityPosition: 'bottom-right',
   },
 };
 

@@ -1,6 +1,6 @@
+/* eslint-disable react/prop-types */
 import * as React from 'react';
 
-// eslint-disable-next-line react/prop-types
 export const Box = React.forwardRef(
   (
     {
@@ -46,6 +46,7 @@ export const Box = React.forwardRef(
       ...varStyles,
     };
 
+    // eslint-disable-next-line react/jsx-filename-extension
     return <Component ref={ref} className={classes} style={styles} {...rest} />;
   },
 );
