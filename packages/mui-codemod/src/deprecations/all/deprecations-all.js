@@ -6,6 +6,7 @@ import transformButtonClasses from '../button-classes';
 import transformChipClasses from '../chip-classes';
 import transformPaginationItemClasses from '../pagination-item-classes';
 import transformAlertClasses from '../alert-classes';
+import transformToggleButtonGroupClasses from '../toggle-button-group-classes';
 
 /**
  * @param {import('jscodeshift').FileInfo} file
@@ -20,6 +21,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformChipClasses(file, api, options);
   file.source = transformPaginationItemClasses(file, api, options);
   file.source = transformAlertClasses(file, api, options);
+  file.source = transformToggleButtonGroupClasses(file, api, options);
 
   return file.source;
 }
