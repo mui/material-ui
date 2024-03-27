@@ -89,6 +89,26 @@ const Root = styled('div')(
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
       margin: '40px 0 4px',
     },
+    '& .h2-heading': {
+      color: 'inherit',
+      textDecoration: 'none',
+      position: 'relative',
+      display: 'flex',
+      alignItems: 'center',
+    },
+
+    '& .h2-heading svg': {
+      display: 'none',
+      height: '0.6rem',
+      width: '2rem',
+    },
+
+    '& .h2-heading:hover svg': {
+      display: 'inline-block',
+    },
+    [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) & .h2-heading svg`]: {
+      fill: 'white',
+    },
     '& h3': {
       ...lightTheme.typography.h6,
       fontFamily: `"General Sans", ${lightTheme.typography.fontFamilySystem}`,
