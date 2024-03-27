@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import Palette from '@mui/icons-material/Palette';
 import LibraryBooks from '@mui/icons-material/LibraryBooks';
 import CodeRounded from '@mui/icons-material/CodeRounded';
@@ -41,7 +41,7 @@ function DesignKitValues() {
       </Typography>
       <Grid container spacing={3}>
         {content.map(({ icon, title, description }) => (
-          <Grid key={title} item xs={12} sm={6} md={4}>
+          <Grid key={title} xs={12} sm={6} md={4}>
             <InfoCard title={title} icon={icon} description={description} />
           </Grid>
         ))}
