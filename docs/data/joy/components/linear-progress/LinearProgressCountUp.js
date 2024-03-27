@@ -1,5 +1,5 @@
 import * as React from 'react';
-import LinearProgress from '@mui/joy/LinearProgress';
+import LinearProgress, { linearProgressCssVars } from '@mui/joy/LinearProgress';
 import Typography from '@mui/joy/Typography';
 import { useCountUp } from 'use-count-up';
 
@@ -25,8 +25,8 @@ export default function LinearProgressCountUp() {
       thickness={24}
       value={Number(value)}
       sx={{
-        '--LinearProgress-radius': '20px',
-        '--LinearProgress-thickness': '24px',
+        [linearProgressCssVars.radius]: '20px',
+        [linearProgressCssVars.thickness]: '24px',
       }}
     >
       <Typography

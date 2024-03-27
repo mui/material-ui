@@ -16,33 +16,34 @@ import {
 } from './LinearProgressProps';
 import useSlot from '../utils/useSlot';
 import { resolveSxValue } from '../styles/styleUtils';
+import linearProgressCssVars from './LinearProgressCssVars';
 
 // TODO: replace `left` with `inset-inline-start` in the future to work with writing-mode. https://caniuse.com/?search=inset-inline-start
 //       replace `width` with `inline-size`, not sure why inline-size does not work with animation in Safari.
-const progressKeyframe = keyframes`
-  0% {
-    left: var(--_LinearProgress-progressInset);
-    width: var(--LinearProgress-progressMinWidth);
-  }
+const progressKeyframe = keyframes({
+  '0%': {
+    left: 'var(--_LinearProgress-progressInset)',
+    width: linearProgressCssVars.progressMinWidth,
+  },
 
-  25% {
-    width: var(--LinearProgress-progressMaxWidth);
-  }
+  '25%': {
+    width: linearProgressCssVars.progressMaxWidth,
+  },
 
-  50% {
-    left: var(--_LinearProgress-progressLeft);
-    width: var(--LinearProgress-progressMinWidth);
-  }
+  '50%': {
+    left: 'var(--_LinearProgress-progressLeft)',
+    width: linearProgressCssVars.progressMinWidth,
+  },
 
-  75% {
-    width: var(--LinearProgress-progressMaxWidth);
-  }
+  '75%': {
+    width: linearProgressCssVars.progressMaxWidth,
+  },
 
-  100% {
-    left: var(--_LinearProgress-progressInset);
-    width: var(--LinearProgress-progressMinWidth);
-  }
-`;
+  '100%': {
+    left: 'var(--_LinearProgress-progressInset)',
+    width: linearProgressCssVars.progressMinWidth,
+  },
+});
 
 const useUtilityClasses = (ownerState: LinearProgressOwnerState) => {
   const { determinate, color, variant, size } = ownerState;
@@ -67,33 +68,30 @@ const LinearProgressRoot = styled('div', {
 })<{ ownerState: LinearProgressOwnerState }>(
   ({ ownerState, theme }) => ({
     // public variables
-    '--LinearProgress-radius': 'var(--LinearProgress-thickness)',
-    '--LinearProgress-progressThickness': 'var(--LinearProgress-thickness)',
-    '--LinearProgress-progressRadius':
-      'max(var(--LinearProgress-radius) - var(--_LinearProgress-padding), min(var(--_LinearProgress-padding) / 2, var(--LinearProgress-radius) / 2))',
+    [linearProgressCssVars.radius]: `var(${linearProgressCssVars.thickness})`,
+    [linearProgressCssVars.progressThickness]: `var(${linearProgressCssVars.thickness})`,
+    [linearProgressCssVars.progressRadius]: `max(var(${linearProgressCssVars.radius}) - var(--_LinearProgress-padding), min(var(--_LinearProgress-padding) / 2, var(${linearProgressCssVars.radius}) / 2))`,
     ...(ownerState.size === 'sm' && {
-      '--LinearProgress-thickness': '4px',
+      [linearProgressCssVars.thickness]: '4px',
     }),
     ...(ownerState.size === 'md' && {
-      '--LinearProgress-thickness': '6px',
+      [linearProgressCssVars.thickness]: '6px',
     }),
     ...(ownerState.size === 'lg' && {
-      '--LinearProgress-thickness': '8px',
+      [linearProgressCssVars.thickness]: '8px',
     }),
     ...(ownerState.thickness && {
-      '--LinearProgress-thickness': `${ownerState.thickness}px`,
+      [linearProgressCssVars.thickness]: `${ownerState.thickness}px`,
     }),
     ...(!ownerState.determinate && {
-      '--LinearProgress-progressMinWidth': 'calc(var(--LinearProgress-percent) * 1% / 2)',
-      '--LinearProgress-progressMaxWidth': 'calc(var(--LinearProgress-percent) * 1%)',
-      '--_LinearProgress-progressLeft':
-        'calc(100% - var(--LinearProgress-progressMinWidth) - var(--_LinearProgress-progressInset))',
-      '--_LinearProgress-progressInset':
-        'calc(var(--LinearProgress-thickness) / 2 - var(--LinearProgress-progressThickness) / 2)',
+      [linearProgressCssVars.progressMinWidth]: `calc(var(${linearProgressCssVars.percent}) * 1% / 2)`,
+      [linearProgressCssVars.progressMaxWidth]: `calc(var(${linearProgressCssVars.percent}) * 1%)`,
+      '--_LinearProgress-progressLeft': `calc(100% - var(${linearProgressCssVars.progressMinWidth}) - var(--_LinearProgress-progressInset))`,
+      '--_LinearProgress-progressInset': `calc(var(${linearProgressCssVars.thickness}) / 2 - var(${linearProgressCssVars.progressThickness}) / 2)`,
     }),
-    minBlockSize: 'var(--LinearProgress-thickness)',
+    minBlockSize: `var(${linearProgressCssVars.thickness})`,
     boxSizing: 'border-box',
-    borderRadius: 'var(--LinearProgress-radius)',
+    borderRadius: `var(${linearProgressCssVars.radius})`,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -101,14 +99,13 @@ const LinearProgressRoot = styled('div', {
     padding: 'var(--_LinearProgress-padding)',
     position: 'relative',
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-    '--_LinearProgress-padding':
-      'max((var(--LinearProgress-thickness) - 2 * var(--variant-borderWidth, 0px) - var(--LinearProgress-progressThickness)) / 2, 0px)',
+    '--_LinearProgress-padding': `max((var(${linearProgressCssVars.thickness}) - 2 * var(--variant-borderWidth, 0px) - var(${linearProgressCssVars.progressThickness})) / 2, 0px)`,
     '&::before': {
       content: '""',
       display: 'block',
       boxSizing: 'inherit',
-      blockSize: 'var(--LinearProgress-progressThickness)',
-      borderRadius: 'var(--LinearProgress-progressRadius)',
+      blockSize: `var(${linearProgressCssVars.progressThickness})`,
+      borderRadius: `var(${linearProgressCssVars.progressRadius})`,
       backgroundColor: 'currentColor',
       color: 'inherit',
       position: 'absolute', // required to make `left` animation works.
@@ -127,14 +124,16 @@ const LinearProgressRoot = styled('div', {
       ? {
           '&::before': {
             left: 'var(--_LinearProgress-padding)',
-            inlineSize:
-              'calc(var(--LinearProgress-percent) * 1% - 2 * var(--_LinearProgress-padding))',
+            inlineSize: `calc(var(${linearProgressCssVars.percent}) * 1% - 2 * var(--_LinearProgress-padding))`,
           },
         }
       : css`
           &::before {
             animation: ${progressKeyframe}
-              var(--LinearProgress-circulation, 2.5s ease-in-out 0s infinite normal none running);
+              var(
+                ${linearProgressCssVars.circulation},
+                2.5s ease-in-out 0s infinite normal none running
+              );
           }
         `,
   ({ ownerState, theme }) => {
@@ -143,8 +142,8 @@ const LinearProgressRoot = styled('div', {
       'height',
     ]);
     return {
-      ...(borderRadius !== undefined && { '--LinearProgress-radius': borderRadius }),
-      ...(height !== undefined && { '--LinearProgress-thickness': height }),
+      ...(borderRadius !== undefined && { [linearProgressCssVars.radius]: borderRadius }),
+      ...(height !== undefined && { [linearProgressCssVars.thickness]: height }),
     };
   },
 );
@@ -214,7 +213,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
         // Setting this CSS variable via inline-style
         // prevents the generation of new CSS every time
         // `value` prop updates
-        ...({ '--LinearProgress-percent': value } as React.CSSProperties),
+        ...({ [linearProgressCssVars.percent]: value } as React.CSSProperties),
         ...style,
       },
       ...(typeof value === 'number' &&
