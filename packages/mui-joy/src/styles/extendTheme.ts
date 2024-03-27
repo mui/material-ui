@@ -11,6 +11,7 @@ import {
   SxConfig,
 } from '@mui/system';
 import { unstable_applyStyles as applyStyles } from '@mui/system/createTheme';
+import { createUnarySpacing } from '@mui/system/spacing';
 import defaultSxConfig from './sxConfig';
 import colors from '../colors';
 import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
@@ -42,6 +43,22 @@ type Partial3Level<T> = {
       : T[K][J];
   };
 };
+
+function getSpacingVal(spacingInput: SpacingOptions | string | undefined) {
+  if (typeof spacingInput === 'number') {
+    return `${spacingInput}px`;
+  }
+  if (typeof spacingInput === 'string') {
+    return spacingInput;
+  }
+  if (typeof spacingInput === 'function') {
+    return getSpacingVal(spacingInput(1));
+  }
+  if (Array.isArray(spacingInput)) {
+    return spacingInput;
+  }
+  return '8px';
+}
 
 export type ColorSystemOptions = Partial3Level<
   MergeDefault<ColorSystem, { palette: PaletteOptions }>
@@ -586,7 +603,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     ),
     cssVarPrefix,
     getCssVar,
-    spacing: createSpacing(spacing),
+    spacing: getSpacingVal(spacing),
   } as unknown as Theme & { attribute: string; colorSchemeSelector: string }; // Need type casting due to module augmentation inside the repo
 
   /**
@@ -646,8 +663,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   };
 
   const { vars, generateThemeVars, generateStyleSheets } = prepareCssVars<Theme, ThemeVars>(
-    // @ts-ignore property truDark is missing from colorSchemes
-    { colorSchemes, ...mergedScales },
+    theme,
     parserConfig,
   );
   theme.attribute = 'data-joy-color-scheme';
@@ -655,6 +671,10 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   theme.vars = vars;
   theme.generateThemeVars = generateThemeVars;
   theme.generateStyleSheets = generateStyleSheets;
+  theme.generateSpacing = function generateSpacing() {
+    return createSpacing(spacing, createUnarySpacing(this));
+  };
+  theme.spacing = theme.generateSpacing();
   theme.unstable_sxConfig = {
     ...defaultSxConfig,
     ...themeOptions?.unstable_sxConfig,

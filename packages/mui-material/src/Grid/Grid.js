@@ -27,6 +27,9 @@ import gridClasses, { getGridUtilityClass } from './gridClasses';
 
 function getOffset(val) {
   const parse = parseFloat(val);
+  if (Number.isNaN(parse)) {
+    return val;
+  }
   return `${parse}${String(val).replace(String(parse), '') || 'px'}`;
 }
 
