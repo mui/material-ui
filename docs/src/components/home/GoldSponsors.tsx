@@ -107,9 +107,10 @@ export default function GoldSponsors() {
             variant="outlined"
             sx={{
               p: 2,
+              height: '100%',
               display: 'flex',
               alignItems: 'center',
-              height: '100%',
+              gap: 2,
               borderStyle: 'dashed',
             }}
           >
@@ -120,14 +121,6 @@ export default function GoldSponsors() {
               target="_blank"
               rel="noopener"
               color="primary"
-              sx={(theme) => ({
-                mr: 2,
-                border: '1px solid',
-                borderColor: 'grey.300',
-                ...theme.applyDarkStyles({
-                  borderColor: 'primaryDark.600',
-                }),
-              })}
             >
               <AddRounded />
             </IconButton>
