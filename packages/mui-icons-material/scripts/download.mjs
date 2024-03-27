@@ -72,20 +72,28 @@ function downloadIcon(icon) {
   return Promise.all(
     Object.keys(themeMap).map(async (theme) => {
       const formattedTheme = themeMap[theme].split('_').join('');
-      const response = await fetch(
+      let response = await fetch(
         `https://fonts.gstatic.com/s/i/materialicons${formattedTheme}/${icon.name}/v${icon.version}/24px.svg`,
       );
       if (response.status !== 200) {
-        throw new Error(`status ${response.status}`);
+        if (['outlined', 'round', 'sharp'].includes(formattedTheme)) {
+          response = await fetch(
+            `https://fonts.gstatic.com/s/i/short-term/release/materialsymbols${formattedTheme === 'round' ? 'rounded' : formattedTheme}/${icon.name}/default/24px.svg`,
+          );
+        }
       }
-      const SVG = await response.text();
-      await fse.writeFile(
-        path.join(
-          currentDirectory,
-          `../material-icons/${icon.name}${themeFileMap[theme]}_24px.svg`,
-        ),
-        SVG,
-      );
+      if (response.status !== 200) {
+        console.log(`${icon.name}${formattedTheme}: status ${response.status}`);
+      } else {
+        const SVG = await response.text();
+        await fse.writeFile(
+          path.join(
+            currentDirectory,
+            `../material-icons/${icon.name}${themeFileMap[theme]}_24px.svg`,
+          ),
+          SVG,
+        );
+      }
     }),
   );
 }
@@ -97,7 +105,7 @@ async function run() {
       .describe('start-after', 'Resume at the following index').argv;
     console.log('run', argv);
     await fse.emptyDir(path.join(currentDirectory, '../material-icons'));
-    const response = await fetch('https://fonts.google.com/metadata/icons');
+    const response = await fetch('https://fonts.google.com/metadata/icons?incomplete=true');
     const text = await response.text();
     const data = JSON.parse(text.replace(")]}'", ''));
     let icons = data.icons;
