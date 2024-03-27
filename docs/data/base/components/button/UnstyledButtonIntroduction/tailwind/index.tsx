@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Button as BaseButton, ButtonProps } from '@mui/base/Button';
-import Stack from '@mui/material/Stack';
 import clsx from 'clsx';
 import { useTheme } from '@mui/system';
 
@@ -15,10 +14,15 @@ export default function UnstyledButtonsIntroduction() {
 
   return (
     <div className={`${isDarkMode ? 'dark' : undefined}`}>
-      <Stack spacing={2} direction="row">
+      <div
+        style={{
+          display: 'flex',
+          gap: 16,
+        }}
+      >
         <CustomButton>Button</CustomButton>
         <CustomButton disabled>Disabled</CustomButton>
-      </Stack>
+      </div>
     </div>
   );
 }
@@ -30,7 +34,7 @@ const CustomButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <BaseButton
         ref={ref}
         className={clsx(
-          'cursor-pointer transition text-sm font-sans font-semibold leading-normal bg-violet-500 text-white rounded-lg px-4 py-2 border border-solid border-violet-500 shadow-[0_2px_1px_rgb(45_45_60_/_0.2),_inset_0_1.5px_1px_#a78bfa,_inset_0_-2px_1px_#7c3aed] dark:shadow-[0_2px_1px_rgb(0_0_0/_0.5),_inset_0_1.5px_1px_#a78bfa,_inset_0_-2px_1px_#7c3aed] hover:bg-violet-600 active:bg-violet-700 active:shadow-none active:scale-[0.99] focus-visible:shadow-[0_0_0_4px_#ddd6fe] dark:focus-visible:shadow-[0_0_0_4px_#a78bfa] focus-visible:outline-none ui-disabled:text-slate-700 ui-disabled:dark:text-slate-200 ui-disabled:bg-slate-200 ui-disabled:dark:bg-slate-700 ui-disabled:cursor-default ui-disabled:shadow-none ui-disabled:dark:shadow-none ui-disabled:hover:bg-slate-200 ui-disabled:hover:dark:bg-slate-700 ui-disabled:border-none',
+          'transition text-sm font-sans font-semibold leading-none h-10 shrink-0 select-none align-middle inline-flex items-center justify-center bg-clip-padding box-border bg-violet-500 text-white rounded-lg px-4 border border-solid border-violet-500 shadow-[0_1px_2px_rgb(60_86_118_/_0.2),0_2px_4px_rgb(60_86_118_/_0.2),_inset_0_1.5px_1px_#a78bfa,_inset_0_-2px_1px_#7c3aed] dark:shadow-[0_1px_2px_rgb(0_0_0/_0.15),0_2px_4px_rgb(0_0_0/_0.15),_inset_0_1.5px_1px_#a78bfa,_inset_0_-2px_1px_#7c3aed] hover:bg-violet-600 active:bg-violet-700 active:shadow-none focus-visible:shadow-[0_0_0_4px_#ddd6fe] dark:focus-visible:shadow-[0_0_0_4px_#a78bfa] focus-visible:outline-none ui-disabled:text-slate-700 ui-disabled:dark:text-slate-200 ui-disabled:bg-slate-200 ui-disabled:dark:bg-slate-700 ui-disabled:cursor-default ui-disabled:shadow-none ui-disabled:dark:shadow-none ui-disabled:hover:bg-slate-200 ui-disabled:hover:dark:bg-slate-700 ui-disabled:border-none',
           className,
         )}
         {...other}
