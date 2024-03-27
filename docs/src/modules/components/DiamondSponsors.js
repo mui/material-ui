@@ -122,19 +122,18 @@ export default function DiamondSponsors() {
           borderRadius: 1,
           border: '1px dashed',
           transition: theme.transitions.create(['color', 'border-color', 'background-color']),
-          backgroundColor: alpha(theme.palette.primary[50], 0.5),
-          borderColor: (theme.vars || theme).palette.divider,
-          boxShadow: `${alpha(theme.palette.primary[50], 0.8)} 0 2px 0 inset, ${alpha(theme.palette.primary[100], 0.4)} 0 -1px 0 inset, ${alpha(theme.palette.primary[100], 0.5)} 0 1px 2px 0`,
+          backgroundColor: alpha(theme.palette.grey[50], 0.5),
+          borderColor: (theme.vars || theme).palette.grey[300],
           '&:hover': {
             backgroundColor: alpha(theme.palette.primary[100], 0.5),
             borderColor: (theme.vars || theme).palette.primary[300],
           },
           ...theme.applyDarkStyles({
-            backgroundColor: alpha(theme.palette.primary[800], 0.1),
-            boxShadow: `${alpha(theme.palette.primary[900], 0.1)} 0 2px 0 inset, ${alpha(theme.palette.common.black, 0.5)} 0 -2px 0 inset, ${theme.palette.common.black} 0 1px 2px 0`,
+            backgroundColor: alpha(theme.palette.primaryDark[700], 0.2),
+            borderColor: (theme.vars || theme).palette.primaryDark[700],
             '&:hover': {
               backgroundColor: alpha(theme.palette.primary[700], 0.2),
-              borderColor: (theme.vars || theme).palette.primary[400],
+              borderColor: (theme.vars || theme).palette.primary[800],
             },
           }),
         })}
