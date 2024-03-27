@@ -28,6 +28,7 @@ export * from './TabsList';
 export * from './Tabs';
 export * from './Tab';
 export { TextareaAutosize } from './TextareaAutosize';
+export * from './Textbox';
 export * from './Transitions';
 export * from './useAutocomplete';
 export * from './useBadge';
@@ -47,6 +48,7 @@ export * from './useTab';
 export * from './useTabPanel';
 export * from './useTabs';
 export * from './useTabsList';
+export * from './useTextbox';
 export * from './unstable_useModal';
 
 export {

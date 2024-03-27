@@ -23,7 +23,6 @@ module.exports = [
     pathname: '/base-ui/react-form-control/components-api/#form-control',
     title: 'FormControl',
   },
-  { pathname: '/base-ui/react-input/components-api/#input', title: 'Input' },
   { pathname: '/base-ui/react-menu/components-api/#menu', title: 'Menu' },
   {
     pathname: '/base-ui/react-menu/components-api/#menu-button',
@@ -63,6 +62,7 @@ module.exports = [
     pathname: '/base-ui/react-textarea-autosize/components-api/#textarea-autosize',
     title: 'TextareaAutosize',
   },
+  { pathname: '/base-ui/react-input/components-api/#textbox', title: 'Textbox' },
   {
     pathname: '/base-ui/react-autocomplete/hooks-api/#use-autocomplete',
     title: 'useAutocomplete',
@@ -74,7 +74,6 @@ module.exports = [
     pathname: '/base-ui/react-form-control/hooks-api/#use-form-control-context',
     title: 'useFormControlContext',
   },
-  { pathname: '/base-ui/react-input/hooks-api/#use-input', title: 'useInput' },
   { pathname: '/base-ui/react-menu/hooks-api/#use-menu', title: 'useMenu' },
   {
     pathname: '/base-ui/react-menu/hooks-api/#use-menu-button',
@@ -106,6 +105,7 @@ module.exports = [
   { pathname: '/base-ui/react-tabs/hooks-api/#use-tab-panel', title: 'useTabPanel' },
   { pathname: '/base-ui/react-tabs/hooks-api/#use-tabs', title: 'useTabs' },
   { pathname: '/base-ui/react-tabs/hooks-api/#use-tabs-list', title: 'useTabsList' },
+  { pathname: '/base-ui/react-input/hooks-api/#use-textbox', title: 'useTextbox' },
   {
     pathname: '/base-ui/react-transitions/hooks-api/#use-transition-state-manager',
     title: 'useTransitionStateManager',

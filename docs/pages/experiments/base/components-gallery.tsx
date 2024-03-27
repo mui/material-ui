@@ -5,7 +5,7 @@ import styled from '@mui/system/styled';
 import { Transition } from 'react-transition-group';
 import { Badge } from '@mui/base/Badge';
 import { Button } from '@mui/base/Button';
-import { Input } from '@mui/base/Input';
+import { Textbox } from '@mui/base/Textbox';
 import { Menu } from '@mui/base/Menu';
 import { MenuItem } from '@mui/base/MenuItem';
 import { MenuButton } from '@mui/base/MenuButton';
@@ -347,7 +347,9 @@ export default function ComponentsGallery() {
           Disabled button
         </Button>
       </Stack>
-      <Input placeholder="Write something here" className="GalleryInput" />
+      <Textbox className="GalleryTextbox">
+        <Textbox.Input placeholder="Write something here" />
+      </Textbox>
       <TextareaAutosize
         className="GalleryTextarea"
         aria-label="empty textarea"

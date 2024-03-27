@@ -1,0 +1,67 @@
+{
+  "parameters": {
+    "focused": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "setFocused": {
+      "type": {
+        "name": "React.Dispatch&lt;React.SetStateAction&lt;boolean&gt;&gt;",
+        "description": "React.Dispatch&lt;React.SetStateAction&lt;boolean&gt;&gt;"
+      },
+      "required": true
+    },
+    "defaultValue": { "type": { "name": "unknown", "description": "unknown" } },
+    "disabled": { "type": { "name": "boolean", "description": "boolean" } },
+    "error": { "type": { "name": "boolean", "description": "boolean" } },
+    "inputRef": {
+      "type": {
+        "name": "React.Ref&lt;HTMLInputElement&gt;",
+        "description": "React.Ref&lt;HTMLInputElement&gt;"
+      }
+    },
+    "onBlur": {
+      "type": {
+        "name": "React.FocusEventHandler&lt;HTMLInputElement | HTMLTextAreaElement&gt;",
+        "description": "React.FocusEventHandler&lt;HTMLInputElement | HTMLTextAreaElement&gt;"
+      }
+    },
+    "onChange": {
+      "type": {
+        "name": "React.ChangeEventHandler&lt;HTMLInputElement | HTMLTextAreaElement&gt;",
+        "description": "React.ChangeEventHandler&lt;HTMLInputElement | HTMLTextAreaElement&gt;"
+      }
+    },
+    "onClick": {
+      "type": { "name": "React.MouseEventHandler", "description": "React.MouseEventHandler" }
+    },
+    "onFocus": {
+      "type": {
+        "name": "React.FocusEventHandler&lt;HTMLInputElement | HTMLTextAreaElement&gt;",
+        "description": "React.FocusEventHandler&lt;HTMLInputElement | HTMLTextAreaElement&gt;"
+      }
+    },
+    "required": { "type": { "name": "boolean", "description": "boolean" } },
+    "value": { "type": { "name": "unknown", "description": "unknown" } }
+  },
+  "returnValue": {
+    "getProps": {
+      "type": {
+        "name": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseTextboxInputSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseTextboxInputSlotProps&lt;ExternalProps&gt;"
+      },
+      "required": true
+    },
+    "ref": {
+      "type": {
+        "name": "React.RefCallback&lt;HTMLInputElement&gt; | null",
+        "description": "React.RefCallback&lt;HTMLInputElement&gt; | null"
+      },
+      "required": true
+    }
+  },
+  "name": "useTextboxInput",
+  "filename": "/packages/mui-base/src/useTextbox/useTextboxInput.ts",
+  "imports": [
+    "import { useTextboxInput } from '@mui/base/useTextbox';",
+    "import { useTextboxInput } from '@mui/base';"
+  ],
+  "demos": "<ul></ul>"
+}
