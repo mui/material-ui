@@ -128,7 +128,7 @@ describe('createPalette()', () => {
       expect(color).to.deep.include({
         light: 'rgb(101, 115, 195)',
         main: '#3f51b5',
-        dark: 'rgb(44, 56, 126)',
+        dark: 'rgb(44, 57, 127)',
         contrastText: '#fff',
       });
     });
