@@ -13,6 +13,8 @@ githubLabel: 'component: TablePagination'
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
+- 📦 [3.5 kB gzipped](https://bundlephobia.com/package/@mui/base).
+
 ## Introduction
 
 The Table Pagination component lets you add pagination controls to a table.

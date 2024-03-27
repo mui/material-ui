@@ -15,6 +15,8 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
+- 📦 [14.3 kB gzipped](https://bundlephobia.com/package/@mui/base).
+
 ## Introduction
 
 The Base UI Dropdown Menu is implemented using a collection of related components:

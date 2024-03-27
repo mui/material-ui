@@ -14,6 +14,8 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
+- 📦 [9.0 kB gzipped](https://bundlephobia.com/package/@mui/base).
+
 ## Introduction
 
 The Popup is a utility component for creating various kinds of popups.

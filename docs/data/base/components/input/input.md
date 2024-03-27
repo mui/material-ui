@@ -14,6 +14,8 @@ githubLabel: 'component: input'
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
+- 📦 [3.3 kB gzipped](https://bundlephobia.com/package/@mui/base).
+
 ## Introduction
 
 An input is a UI element that accepts text data from the user.

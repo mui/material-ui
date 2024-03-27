@@ -13,6 +13,8 @@ githubLabel: 'component: FocusTrap'
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
+- 📦 [1.6 kB gzipped](https://bundlephobia.com/package/@mui/base).
+
 ## Introduction
 
 Focus Trap is a utility component that's useful when implementing an overlay such as a [modal dialog](/base-ui/react-modal/), which should block all interactions outside of it while open.
