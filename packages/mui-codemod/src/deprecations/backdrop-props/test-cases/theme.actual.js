@@ -16,3 +16,15 @@ fn({
     },
   },
 });
+
+fn({
+  MuiBackdrop: {
+    defaultProps: {
+      TransitionComponent: ComponentTransition,
+      slots: {
+        root: 'div',
+        transition: SlotTransition
+      },
+    },
+  },
+});
