@@ -1,5 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
+import isPropValid from '@emotion/is-prop-valid';
 
 function getVariantClasses(componentProps, variants) {
   const { ownerState = {} } = componentProps;
@@ -15,13 +16,8 @@ function getVariantClasses(componentProps, variants) {
   return variantClasses;
 }
 
-/**
- * @param {string} propKey
- * @returns {boolean}
- */
-function defaultShouldForwardProp(propKey) {
-  return propKey !== 'sx' && propKey !== 'as' && propKey !== 'ownerState';
-}
+const slotShouldForwardProp = (key) => key !== 'sx' && key !== 'as' && key !== 'ownerState';
+const rootShouldForwardProp = (key) => slotShouldForwardProp(key) && key !== 'classes';
 
 /**
  * @typedef {typeof defaultShouldForwardProp} ShouldForwardProp
@@ -40,10 +36,26 @@ function defaultShouldForwardProp(propKey) {
  * @param {Object} componentMeta.defaultProps Default props object copied over and inlined from theme object
  */
 export default function styled(tag, componentMeta = {}) {
-  const { name, slot, shouldForwardProp = defaultShouldForwardProp } = componentMeta;
+  const { name, slot, shouldForwardProp } = componentMeta;
+
+  let finalShouldForwardProp = shouldForwardProp;
+  if (!shouldForwardProp) {
+    if (
+      typeof tag === 'string' &&
+      // 96 is one less than the char code
+      // for "a" so this is checking that
+      // it's a lowercase character
+      tag.charCodeAt(0) > 96
+    ) {
+      finalShouldForwardProp = isPropValid;
+    } else if (slot === 'Root' || slot === 'root') {
+      finalShouldForwardProp = rootShouldForwardProp;
+    } else {
+      finalShouldForwardProp = slotShouldForwardProp;
+    }
+  }
+  const shouldUseAs = !finalShouldForwardProp('as');
   /**
-   * @TODO - Filter props and only pass necessary props to children
-   *
    * This is the runtime `styled` function that finally renders the component
    * after transpilation through WyW-in-JS. It makes sure to add the base classes,
    * variant classes if they satisfy the prop value and also adds dynamic css
@@ -74,14 +86,9 @@ export default function styled(tag, componentMeta = {}) {
       componentName = displayName;
     }
 
-    const StyledComponent = React.forwardRef(function StyledComponent(
-      // eslint-disable-next-line react/prop-types
-      { as, className, sx, style, ...props },
-      ref,
-    ) {
-      // eslint-disable-next-line react/prop-types
-      const { ownerState, ...restProps } = props;
-      const Component = as ?? tag;
+    const StyledComponent = React.forwardRef(function StyledComponent(inProps, ref) {
+      const { as, className, sx, style, ownerState, ...props } = inProps;
+      const Component = (shouldUseAs && as) || tag;
       const varStyles = Object.entries(cssVars).reduce(
         (acc, [cssVariable, [variableFunction, isUnitLess]]) => {
           const value = variableFunction(props);
@@ -112,26 +119,31 @@ export default function styled(tag, componentMeta = {}) {
         });
       }
 
-      const finalClassName = clsx(classes, sxClass, className, getVariantClasses(props, variants));
-      const toPassProps = Object.keys(restProps)
-        .filter((item) => {
-          const res = shouldForwardProp(item);
-          if (res) {
-            return defaultShouldForwardProp(item);
-          }
-          return false;
-        })
-        .reduce((acc, key) => {
-          acc[key] = restProps[key];
-          return acc;
-        }, {});
+      const finalClassName = clsx(
+        classes,
+        sxClass,
+        className,
+        getVariantClasses(inProps, variants),
+      );
+
+      const newProps = {};
+      // eslint-disable-next-line no-restricted-syntax
+      for (const key in props) {
+        if (shouldUseAs && key === 'as') {
+          continue;
+        }
+
+        if (finalShouldForwardProp(key)) {
+          newProps[key] = props[key];
+        }
+      }
 
       // eslint-disable-next-line no-underscore-dangle
       if (!Component.__isStyled || typeof Component === 'string') {
         return (
           // eslint-disable-next-line react/jsx-filename-extension
           <Component
-            {...toPassProps}
+            {...newProps}
             ref={ref}
             className={finalClassName}
             style={{
@@ -144,7 +156,7 @@ export default function styled(tag, componentMeta = {}) {
 
       return (
         <Component
-          {...toPassProps}
+          {...newProps}
           ownerState={ownerState}
           ref={ref}
           className={finalClassName}

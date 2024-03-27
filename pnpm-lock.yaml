@@ -2163,6 +2163,9 @@ importers:
       '@emotion/css':
         specifier: ^11.11.2
         version: 11.11.2
+      '@emotion/is-prop-valid':
+        specifier: ^1.2.2
+        version: 1.2.2
       '@emotion/react':
         specifier: ^11.11.4
         version: 11.11.4(@types/react@18.2.55)(react@18.2.0)
@@ -4425,6 +4428,12 @@ packages:
     resolution: {integrity: sha512-61Mf7Ufx4aDxx1xlDeOm8aFFigGHE4z+0sKCa+IHCeZKiyP9RLD0Mmx7m8b9/Cf37f7NAvQOOJAbQQGVr5uERw==}
     dependencies:
       '@emotion/memoize': 0.8.1
+
+  /@emotion/is-prop-valid@1.2.2:
+    resolution: {integrity: sha512-uNsoYd37AFmaCdXlg6EYD1KaPOaRWRByMCYzbKUX4+hhMfrxdVSelShywL4JVaAeM/eHUOSprYBQls+/neX3pw==}
+    dependencies:
+      '@emotion/memoize': 0.8.1
+    dev: false
 
   /@emotion/memoize@0.7.1:
     resolution: {integrity: sha512-Qv4LTqO11jepd5Qmlp3M1YEjBumoTHcHFdgPTQ+sFlIL5myi/7xu/POwP7IRu6odBdmLXdtIs1D6TuW6kbwbbg==}
@@ -22447,6 +22456,7 @@ packages:
       '@babel/parser': 7.24.1
       '@babel/types': 7.24.0
       '@emotion/css': 11.11.2
+      '@emotion/is-prop-valid': 1.2.2
       '@emotion/react': 11.11.4(@types/react@18.2.55)(react@18.2.0)
       '@emotion/serialize': 1.1.3
       '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@18.2.55)(react@18.2.0)

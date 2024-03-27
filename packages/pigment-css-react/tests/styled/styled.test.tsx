@@ -72,7 +72,7 @@ describe('Pigment CSS - styled', () => {
     expect(output.css).to.equal(fixture.css);
   });
 
-  describe('props forwarding', () => {
+  describe('props filtering', () => {
     const { render } = createRenderer();
 
     it('composes shouldForwardProp on composed styled components', () => {
@@ -84,11 +84,70 @@ describe('Pigment CSS - styled', () => {
         shouldForwardProp: (prop) => prop !== 'bar',
       })<{ bar?: any }>();
 
-      // eslint-disable-next-line react/react-in-jsx-scope
-      const { container } = render(<ComposedDiv foo bar xyz />);
+      const { container } = render(<ComposedDiv foo bar xyz="true" />);
 
-      expect(container.firstChild).to.not.have.attribute('foo');
-      expect(container.firstChild).to.not.have.attribute('bar');
+      chai.expect(container.firstChild).to.not.have.attribute('foo');
+      chai.expect(container.firstChild).to.not.have.attribute('bar');
+    });
+
+    it('custom shouldForwardProp works', () => {
+      function Svg(props: JSX.IntrinsicElements['svg']) {
+        return (
+          <svg {...props}>
+            <rect x="10" y="10" height="100" width="100" style={{ stroke: '#ff0000' }} />
+          </svg>
+        );
+      }
+
+      const StyledSvg = styled(Svg, {
+        shouldForwardProp: (prop) => ['className', 'width', 'height'].indexOf(prop) !== -1,
+      })`
+        &,
+        & * {
+          fill: ${({ color }) => color};
+        }
+      `;
+
+      const { container } = render(<StyledSvg color="#0000ff" width="100px" height="100px" />);
+      chai.expect(container.firstChild).to.not.have.attribute('color');
+      chai.expect(container.firstChild).to.have.attribute('width', '100px');
+      chai.expect(container.firstChild).to.have.attribute('height', '100px');
+    });
+
+    it('default prop filtering for native html tag', () => {
+      const Link = styled('a')`
+        color: green;
+      `;
+      const rest = { m: [3], pt: [4] };
+
+      const { container } = render(
+        <Link
+          a="true"
+          b="true"
+          wow="true"
+          prop="true"
+          filtering="true"
+          is="true"
+          cool="true"
+          aria-label="some label"
+          data-wow="value"
+          href="link"
+          {...rest}
+        >
+          hello world
+        </Link>,
+      );
+      chai.expect(container.firstChild).to.have.attribute('href', 'link');
+      chai.expect(container.firstChild).to.have.attribute('aria-label', 'some label');
+      chai.expect(container.firstChild).to.have.attribute('data-wow', 'value');
+      chai.expect(container.firstChild).to.have.attribute('is', 'true');
+
+      chai.expect(container.firstChild).not.to.have.attribute('a');
+      chai.expect(container.firstChild).not.to.have.attribute('b');
+      chai.expect(container.firstChild).not.to.have.attribute('wow');
+      chai.expect(container.firstChild).not.to.have.attribute('prop');
+      chai.expect(container.firstChild).not.to.have.attribute('filtering');
+      chai.expect(container.firstChild).not.to.have.attribute('cool');
     });
   });
 });
