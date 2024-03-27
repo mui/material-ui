@@ -63,32 +63,37 @@ export function sortContainerQueries(
   );
 }
 
+export function isCqShorthand(breakpointKeys: string[], value: string) {
+  return (
+    value.startsWith('@') &&
+    (breakpointKeys.some((key) => value.startsWith(`@${key}`)) || !!value.match(/^@\d/))
+  );
+}
+
 export function getContainerQuery(
   theme: Partial<CssContainerQueries> & { breakpoints: Pick<Breakpoints, 'up'> },
   shorthand: string,
 ) {
-  if (shorthand.startsWith('cq')) {
-    const matches = shorthand.match(/@([^/\n]+)\/?(.+)?/);
-    if (!matches) {
-      if (process.env.NODE_ENV !== 'production') {
-        throw new MuiError(
-          'MUI: The provided shorthand %s is invalid. The format should be `cq@<breakpoint | number>` or `cq@<breakpoint | number>/<container>`.\n' +
-            'For example, `cq@sm` or `cq@600` or `cq@40rem/sidebar`.',
-          `(${shorthand})`,
-        );
-      }
-      return null;
+  const matches = shorthand.match(/^@([^/]+)\/?(.+)?$/);
+  if (!matches) {
+    if (process.env.NODE_ENV !== 'production') {
+      throw new MuiError(
+        'MUI: The provided shorthand %s is invalid. The format should be `@<breakpoint | number>` or `@<breakpoint | number>/<container>`.\n' +
+          'For example, `@sm` or `@600` or `@40rem/sidebar`.',
+        `(${shorthand})`,
+      );
     }
-    const [, containerQuery, containerName] = matches;
-    const value = (Number.isNaN(+containerQuery) ? containerQuery : +containerQuery) as
-      | Breakpoint
-      | number;
-    if (theme.cq) {
-      return containerName ? theme.cq(containerName).up(value) : theme.cq.up(value);
-    }
-    if (theme.breakpoints) {
-      return createBreakpointToCQ(theme)('up', containerName)(value);
-    }
+    return null;
+  }
+  const [, containerQuery, containerName] = matches;
+  const value = (Number.isNaN(+containerQuery) ? containerQuery : +containerQuery) as
+    | Breakpoint
+    | number;
+  if (theme.cq) {
+    return containerName ? theme.cq(containerName).up(value) : theme.cq.up(value);
+  }
+  if (theme.breakpoints) {
+    return createBreakpointToCQ(theme)('up', containerName)(value);
   }
   return null;
 }

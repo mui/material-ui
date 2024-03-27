@@ -41,9 +41,9 @@ describe('grid', () => {
   it('should support container queries', () => {
     const output1 = grid({
       gap: {
-        'cq@sm': 1,
-        'cq@900/sidebar': 2,
-        'cq@80rem/sidebar': 3,
+        '@sm': 1,
+        '@900/sidebar': 2,
+        '@80rem/sidebar': 3,
       },
     });
     expect(output1).to.deep.equal({

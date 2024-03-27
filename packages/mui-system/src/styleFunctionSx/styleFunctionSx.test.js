@@ -258,11 +258,11 @@ describe('styleFunctionSx', () => {
         theme,
         sx: {
           border: {
-            'cq@xs': 1,
-            'cq@sm': 2,
-            'cq@md': 3,
-            'cq@lg': 4,
-            'cq@xl': 5,
+            '@xs': 1,
+            '@sm': 2,
+            '@md': 3,
+            '@lg': 4,
+            '@xl': 5,
           },
         },
       });
@@ -275,14 +275,14 @@ describe('styleFunctionSx', () => {
         theme,
         sx: {
           m: {
-            'cq@xs': 1,
-            'cq@sm': 2,
-            'cq@md': 3,
+            '@xs': 1,
+            '@sm': 2,
+            '@md': 3,
           },
           p: {
-            'cq@xs': 5,
-            'cq@sm': 6,
-            'cq@md': 7,
+            '@xs': 5,
+            '@sm': 6,
+            '@md': 7,
           },
         },
       });
@@ -297,7 +297,7 @@ describe('styleFunctionSx', () => {
     it('writes queries in correct order', () => {
       const result = styleFunctionSx({
         theme,
-        sx: { m: { 'cq@md': 1, 'cq@lg': 2 }, p: { 'cq@xs': 0, 'cq@sm': 1, 'cq@md': 2 } },
+        sx: { m: { '@md': 1, '@lg': 2 }, p: { '@xs': 0, '@sm': 1, '@md': 2 } },
       });
 
       // Test the order

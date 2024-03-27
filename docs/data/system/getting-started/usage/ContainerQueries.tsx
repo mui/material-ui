@@ -15,7 +15,7 @@ export default function ContainerQueries() {
       <Box
         sx={{
           display: 'flex',
-          flexDirection: { xs: 'column', 'cq@350': 'row' },
+          flexDirection: { xs: 'column', '@350': 'row' },
           bgcolor: 'background.default',
           border: '1px solid',
           borderColor: 'divider',
@@ -30,14 +30,14 @@ export default function ContainerQueries() {
             aspectRatio: '16 / 9',
             objectFit: 'cover',
             width: '100%',
-            maxWidth: { 'cq@350': '36%', 'cq@500': 240 },
+            maxWidth: { '@350': '36%', '@500': 240 },
           }}
           alt="The house from the offer."
           src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
         />
         <Box
           sx={{
-            p: { xs: 2, 'cq@500': 3 },
+            p: { xs: 2, '@500': 3 },
             display: 'flex',
             flexDirection: 'column',
             gap: 1,

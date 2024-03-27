@@ -2,11 +2,27 @@ import { expect } from 'chai';
 
 import createTheme from '@mui/system/createTheme';
 import cssContainerQueries, {
+  isCqShorthand,
   sortContainerQueries,
   getContainerQuery,
 } from '@mui/system/cssContainerQueries';
 
 describe('cssContainerQueries', () => {
+  it('should return false if the shorthand is not a container query', () => {
+    expect(isCqShorthand(['xs', 'sm', 'md'], '@container (min-width:600px)')).to.equal(false);
+    expect(isCqShorthand(['xs', 'sm', 'md'], '@media (min-width:600px)')).to.equal(false);
+    expect(isCqShorthand(['xs', 'sm', 'md'], '@page')).to.equal(false);
+    expect(isCqShorthand(['xs', 'sm', 'md'], '@support (display: flex)')).to.equal(false);
+  });
+
+  it('should return true if the shorthand is a container query', () => {
+    expect(isCqShorthand(['xs', 'sm', 'md'], '@xs')).to.equal(true);
+    expect(isCqShorthand(['xs', 'sm', 'md'], '@xs/sidebar')).to.equal(true);
+    expect(isCqShorthand(['xs', 'sm', 'md'], '@md')).to.equal(true);
+    expect(isCqShorthand(['xs', 'sm', 'md'], '@200')).to.equal(true);
+    expect(isCqShorthand(['xs', 'sm', 'md'], '@15.5rem')).to.equal(true);
+  });
+
   it('should have `up`, `down`, `between`, `only`, and `not` functions', () => {
     const theme = cssContainerQueries(createTheme());
 
@@ -84,8 +100,8 @@ describe('cssContainerQueries', () => {
       const theme = cssContainerQueries(createTheme());
       getContainerQuery(theme, 'cq0');
     }).to.throw(
-      'MUI: The provided shorthand (cq0) is invalid. The format should be `cq@<breakpoint | number>` or `cq@<breakpoint | number>/<container>`.\n' +
-        'For example, `cq@sm` or `cq@600` or `cq@40rem/sidebar`.',
+      'MUI: The provided shorthand (cq0) is invalid. The format should be `@<breakpoint | number>` or `@<breakpoint | number>/<container>`.\n' +
+        'For example, `@sm` or `@600` or `@40rem/sidebar`.',
     );
   });
 });

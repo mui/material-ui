@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import deepmerge from '@mui/utils/deepmerge';
 import merge from '../merge';
-import { getContainerQuery } from '../cssContainerQueries';
+import { isCqShorthand, getContainerQuery } from '../cssContainerQueries';
 
 // The breakpoint **start** at this value.
 // For instance with the first breakpoint xs: [xs, sm[.
@@ -42,7 +42,7 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
   if (typeof propValue === 'object') {
     const themeBreakpoints = theme.breakpoints || defaultBreakpoints;
     return Object.keys(propValue).reduce((acc, breakpoint) => {
-      if (breakpoint.startsWith('cq')) {
+      if (isCqShorthand(themeBreakpoints.keys, breakpoint)) {
         const containerKey = getContainerQuery({ breakpoints: themeBreakpoints }, breakpoint);
         if (containerKey) {
           acc[containerKey] = styleFromPropValue(propValue[breakpoint], breakpoint);

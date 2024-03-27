@@ -1,2 +1,2 @@
 export { default } from './cssContainerQueries';
-export { getContainerQuery, sortContainerQueries } from './cssContainerQueries';
+export { isCqShorthand, getContainerQuery, sortContainerQueries } from './cssContainerQueries';
