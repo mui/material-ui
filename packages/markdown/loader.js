@@ -126,6 +126,7 @@ module.exports = async function demoLoader() {
   const components = {};
   const demoModuleIDs = new Set();
   const componentModuleIDs = new Set();
+  const nonEditableDemos = new Set();
   const demoNames = Array.from(
     new Set(
       docs.en.rendered
@@ -133,6 +134,9 @@ module.exports = async function demoLoader() {
           return typeof markdownOrComponentConfig !== 'string' && markdownOrComponentConfig.demo;
         })
         .map((demoConfig) => {
+          if (demoConfig.hideToolbar) {
+            nonEditableDemos.add(demoConfig.demo);
+          }
           return demoConfig.demo;
         }),
     ),
@@ -164,9 +168,12 @@ module.exports = async function demoLoader() {
         raw: await fs.readFile(moduleFilepath, { encoding: 'utf8' }),
       };
       demoModuleIDs.add(moduleID);
-      extractImports(demos[demoName].raw).forEach((importModuleID) =>
-        importedModuleIDs.add(importModuleID),
-      );
+      // Skip non-editable demos
+      if (!nonEditableDemos.has(demoName)) {
+        extractImports(demos[demoName].raw).forEach((importModuleID) =>
+          importedModuleIDs.add(importModuleID),
+        );
+      }
 
       if (multipleDemoVersionsUsed) {
         // Add Tailwind demo data
