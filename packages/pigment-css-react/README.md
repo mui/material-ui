@@ -22,6 +22,7 @@ Pigment CSS is a zero-runtime CSS-in-JS library that extracts the colocated sty
 - [Right-to-left support](#right-to-left-support)
 - [How-to guides](#how-to-guides)
   - [Coming from Emotion or styled-components](#coming-from-emotion-or-styled-components)
+- [How Pigment CSS works](#how-pigmentcss-works)
 
 ## Getting started
 
@@ -1109,3 +1110,7 @@ module.exports = withPigment(
   },
 );
 ```
+
+## How Pigment CSS works
+
+See [How Pigment CSS works](HOW_PIGMENT_CSS_WORKS.md) for details on the build process.
