@@ -485,39 +485,6 @@ export default function Careers() {
                   </Paper>
                 ))}
               </Stack>
-              {/* <Grid container spacing={2}>
-                <Grid xs={12} md={8}>
-                  <RemoteAwardCard />
-                </Grid>
-                <Grid xs={12} md={4}>
-                  <Stack spacing={2} useFlexGap sx={{ height: '100%', width: '100%' }}>
-                    {companyInfo.map(({ title, description, routeUrl }) => (
-                      <Paper
-                        component={Link}
-                        href={routeUrl}
-                        noLinkStyle
-                        variant="outlined"
-                        sx={{ p: 2, width: '100%', flexGrow: 1 }}
-                        key={title}
-                      >
-                        <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
-                          {title}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                          {description}
-                        </Typography>
-                        <Typography variant="body2" fontWeight="bold" color="primary">
-                          Learn more{' '}
-                          <KeyboardArrowRightRounded
-                            fontSize="small"
-                            sx={{ verticalAlign: 'middle' }}
-                          />
-                        </Typography>
-                      </Paper>
-                    ))}
-                  </Stack>
-                </Grid>
-              </Grid> */}
             </Grid>
           </Grid>
         </Section>
