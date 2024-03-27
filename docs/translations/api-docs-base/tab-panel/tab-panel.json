@@ -2,7 +2,6 @@
   "componentDescription": "",
   "propDescriptions": {
     "children": { "description": "The content of the component." },
-    "keepMounted": { "description": "Always keep the children in the DOM." },
     "slotProps": { "description": "The props used for each slot inside the TabPanel." },
     "slots": {
       "description": "The components used for each slot inside the TabPanel. Either a string to use a HTML element or a component."

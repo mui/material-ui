@@ -30,11 +30,6 @@ export interface TabPanelOwnProps {
   slotProps?: {
     root?: SlotComponentProps<'div', TabPanelRootSlotPropsOverrides, TabPanelOwnerState>;
   };
-  /**
-   * Always keep the children in the DOM.
-   * @default false
-   */
-  keepMounted?: boolean;
 }
 
 export interface TabPanelSlots {

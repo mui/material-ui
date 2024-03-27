@@ -36,7 +36,7 @@ const TabPanel = React.forwardRef(function TabPanel<RootComponentType extends Re
   props: TabPanelProps<RootComponentType>,
   forwardedRef: React.ForwardedRef<Element>,
 ) {
-  const { children, value, slotProps = {}, slots = {}, keepMounted = false, ...other } = props;
+  const { children, value, slotProps = {}, slots = {}, ...other } = props;
 
   const { hidden, getRootProps } = useTabPanel(props);
 
@@ -61,7 +61,7 @@ const TabPanel = React.forwardRef(function TabPanel<RootComponentType extends Re
     className: classes.root,
   });
 
-  return <TabPanelRoot {...tabPanelRootProps}>{(keepMounted || !hidden) && children}</TabPanelRoot>;
+  return <TabPanelRoot {...tabPanelRootProps}>{!hidden && children}</TabPanelRoot>;
 }) as PolymorphicComponent<TabPanelTypeMap>;
 
 TabPanel.propTypes /* remove-proptypes */ = {
@@ -77,11 +77,6 @@ TabPanel.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * Always keep the children in the DOM.
-   * @default false
-   */
-  keepMounted: PropTypes.bool,
   /**
    * The props used for each slot inside the TabPanel.
    * @default {}
