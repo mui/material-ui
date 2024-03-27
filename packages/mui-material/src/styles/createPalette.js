@@ -19,6 +19,8 @@ export const light = {
     secondary: 'rgba(0, 0, 0, 0.6)',
     // Disabled text have even lower visual prominence.
     disabled: 'rgba(0, 0, 0, 0.38)',
+    // Link (<a>) elements.
+    link: blue[700],
   },
   // The color used to divide different elements.
   divider: 'rgba(0, 0, 0, 0.12)',
@@ -55,6 +57,7 @@ export const dark = {
     secondary: 'rgba(255, 255, 255, 0.7)',
     disabled: 'rgba(255, 255, 255, 0.5)',
     icon: 'rgba(255, 255, 255, 0.5)',
+    link: blue[300],
   },
   divider: 'rgba(255, 255, 255, 0.12)',
   background: {
