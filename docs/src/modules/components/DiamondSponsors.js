@@ -120,7 +120,7 @@ export default function DiamondSponsors() {
           alignItems: 'center',
           justifyContent: 'center',
           borderRadius: 1,
-          border: '1px solid',
+          border: '1px dashed',
           transition: theme.transitions.create(['color', 'border-color', 'background-color']),
           backgroundColor: alpha(theme.palette.primary[50], 0.5),
           borderColor: (theme.vars || theme).palette.divider,
@@ -131,7 +131,7 @@ export default function DiamondSponsors() {
           },
           ...theme.applyDarkStyles({
             backgroundColor: alpha(theme.palette.primary[800], 0.1),
-            boxShadow: `${alpha(theme.palette.primary[900], 0.15)} 0 2px 0 inset, ${alpha(theme.palette.common.black, 0.5)} 0 -2px 0 inset, ${theme.palette.common.black} 0 1px 2px 0`,
+            boxShadow: `${alpha(theme.palette.primary[900], 0.1)} 0 2px 0 inset, ${alpha(theme.palette.common.black, 0.5)} 0 -2px 0 inset, ${theme.palette.common.black} 0 1px 2px 0`,
             '&:hover': {
               backgroundColor: alpha(theme.palette.primary[700], 0.2),
               borderColor: (theme.vars || theme).palette.primary[400],
