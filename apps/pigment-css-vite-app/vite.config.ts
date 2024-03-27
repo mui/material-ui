@@ -23,13 +23,25 @@ theme.getColorSchemeSelector = (colorScheme) => {
 
 export default defineConfig({
   plugins: [
-    reactPlugin({ include: /\.(mdx|js|jsx|ts|tsx)$/ }),
+    reactPlugin({
+      include: /\.(mdx|js|jsx|ts|tsx)$/,
+      babel: {
+        presets: [
+          [
+            '@babel/preset-react',
+            {
+              runtime: 'automatic',
+            },
+          ],
+          '@babel/preset-typescript',
+        ],
+      },
+    }),
     pigment({
       theme,
       transformLibraries: ['local-ui-lib', '@mui/material'],
       sourceMap: true,
       displayName: true,
-      transformSx: false,
     }),
     Pages(),
     splitVendorChunkPlugin(),

@@ -62,7 +62,7 @@ type ComponentMeta = {
 };
 
 /**
- * Linaria tag processor responsible for converting complex `styled()()` calls
+ * WyW-in-JS tag processor responsible for converting complex `styled()()` calls
  * at build-time to simple `styled` calls supported by runtime.
  *
  * Ex -

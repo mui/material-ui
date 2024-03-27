@@ -27,7 +27,7 @@ export const babelPlugin = declare<{ propName?: string; importName?: string }>(
     api.assertVersion(7);
     const { types: t } = api;
     return {
-      name: '@pigmentcss/zero-babel-plugin',
+      name: '@pigmentcss/sx-plugin',
       visitor: {
         JSXAttribute(path) {
           const namePath = path.get('name');
