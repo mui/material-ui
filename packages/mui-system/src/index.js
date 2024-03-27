@@ -5,6 +5,7 @@ export { default as GlobalStyles } from './GlobalStyles';
 export { default as borders } from './borders';
 export * from './borders';
 export { default as breakpoints } from './breakpoints';
+export { default as cssContainerQueries } from './cssContainerQueries';
 export {
   handleBreakpoints,
   mergeBreakpointsInOrder,
@@ -78,7 +79,3 @@ export * from './Unstable_Grid';
 
 export { default as Stack } from './Stack/Stack';
 export * from './Stack';
-
-/** ----------------- */
-/** Unstable APIs */
-export { default as unstable_cssContainerQueries } from './cssContainerQueries';
