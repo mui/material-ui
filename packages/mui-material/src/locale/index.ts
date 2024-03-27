@@ -4188,3 +4188,84 @@ export const zhTW: Localization = {
     },
   },
 };
+
+export const srLatn: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'Prikaži putanju',
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'Idi na prvu stranicu';
+          }
+          if (type === 'last') {
+            return 'Idi na poslednju stranicu';
+          }
+          if (type === 'next') {
+            return 'Idi na sledeću stranicu';
+          }
+          return 'Idi na prethodnu stranicu';
+        },
+        labelRowsPerPage: 'Redova po stranici:',
+        labelDisplayedRows: ({ from, to, count }) => {
+          if (count === -1) {
+            return `${from}–${to} od više od ${to}`;
+          }
+          return `${from}–${to} od ${count}`;
+        },
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => {
+          if (value === 1) {
+            return `${value} zvezdica`;
+          }
+          return `${value} zvezdice`;
+        },
+        emptyLabelText: 'Prazan',
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: 'Jasno',
+        closeText: 'Blizu',
+        loadingText: 'Učitavanje…',
+        noOptionsText: 'Nema opcija',
+        openText: 'Otvori',
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: 'Blizu',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'Navigacija po stranicama',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            if (selected) {
+              return `stranica ${page}`;
+            }
+            return `Idi na stranicu ${page}`;
+          }
+          if (type === 'first') {
+            return 'Idi na prvu stranicu';
+          }
+          if (type === 'last') {
+            return 'Idi na poslednju stranicu';
+          }
+          if (type === 'next') {
+            return 'Idi na sledeću stranicu';
+          }
+          return 'Idi na prethodnu stranicu';
+        },
+      },
+    },
+  },
+};
