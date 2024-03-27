@@ -1,0 +1,7 @@
+<Button variant="contained">Default</Button>
+<Button variant="outlined" disableFocusRipple>
+  Disable focus ripple
+</Button>
+<Button variant="outlined" disableRipple>
+  Disable ripple
+</Button>

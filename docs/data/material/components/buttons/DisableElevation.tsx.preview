@@ -1,3 +1,4 @@
+<Button variant="contained">Default</Button>
 <Button variant="contained" disableElevation>
-  Disable elevation
+  Elevation disabled
 </Button>
