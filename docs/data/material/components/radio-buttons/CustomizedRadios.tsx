@@ -23,10 +23,10 @@ const BpIcon = styled('span')(({ theme }) => ({
     outline: '2px auto rgba(19,124,189,.6)',
     outlineOffset: 2,
   },
-  'input:hover ~ &': {
+  '.MuiRadio-root:hover &': {
     backgroundColor: theme.palette.mode === 'dark' ? '#30404d' : '#ebf1f5',
   },
-  'input:disabled ~ &': {
+  '.MuiRadio-root.Mui-disabled &': {
     boxShadow: 'none',
     background:
       theme.palette.mode === 'dark' ? 'rgba(57,75,89,.5)' : 'rgba(206,217,224,.5)',
@@ -43,7 +43,7 @@ const BpCheckedIcon = styled(BpIcon)({
     backgroundImage: 'radial-gradient(#fff,#fff 28%,transparent 32%)',
     content: '""',
   },
-  'input:hover ~ &': {
+  '.MuiRadio-root:hover &': {
     backgroundColor: '#106ba3',
   },
 });
