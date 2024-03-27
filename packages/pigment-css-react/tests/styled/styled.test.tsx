@@ -149,5 +149,40 @@ describe('Pigment CSS - styled', () => {
       chai.expect(container.firstChild).not.to.have.attribute('filtering');
       chai.expect(container.firstChild).not.to.have.attribute('cool');
     });
+
+    it('no prop filtering on non string tags', () => {
+      // eslint-disable-next-line jsx-a11y/anchor-has-content
+      const Link = styled((props) => <a {...props} />)`
+        color: green;
+      `;
+
+      const { container } = render(
+        <Link
+          a="true"
+          b="true"
+          wow="true"
+          prop="true"
+          filtering="true"
+          is="true"
+          cool="true"
+          aria-label="some label"
+          data-wow="value"
+          href="link"
+        >
+          hello world
+        </Link>,
+      );
+
+      chai.expect(container.firstChild).to.have.attribute('href', 'link');
+      chai.expect(container.firstChild).to.have.attribute('aria-label', 'some label');
+      chai.expect(container.firstChild).to.have.attribute('data-wow', 'value');
+      chai.expect(container.firstChild).to.have.attribute('is', 'true');
+      chai.expect(container.firstChild).to.have.attribute('a', 'true');
+      chai.expect(container.firstChild).to.have.attribute('b', 'true');
+      chai.expect(container.firstChild).to.have.attribute('wow', 'true');
+      chai.expect(container.firstChild).to.have.attribute('prop', 'true');
+      chai.expect(container.firstChild).to.have.attribute('filtering', 'true');
+      chai.expect(container.firstChild).to.have.attribute('cool', 'true');
+    });
   });
 });
