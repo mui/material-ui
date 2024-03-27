@@ -85,6 +85,7 @@ export const FormControlRoot = styled('div', {
  * Demos:
  *
  * - [Input](https://mui.com/joy-ui/react-input/)
+ * - [Number Input](https://mui.com/joy-ui/react-number-input/)
  *
  * API:
  *

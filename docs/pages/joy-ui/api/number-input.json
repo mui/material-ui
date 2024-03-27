@@ -1,0 +1,114 @@
+{
+  "props": {
+    "className": { "type": { "name": "string" } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'danger'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+      },
+      "additionalInfo": { "joy-color": true }
+    },
+    "decrementButton": { "type": { "name": "node" } },
+    "endDecorator": { "type": { "name": "node" } },
+    "error": { "type": { "name": "bool" } },
+    "fullWidth": { "type": { "name": "bool" } },
+    "incrementButton": { "type": { "name": "node" } },
+    "size": {
+      "type": {
+        "name": "union",
+        "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
+      },
+      "additionalInfo": { "joy-size": true }
+    },
+    "startDecorator": { "type": { "name": "node" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "variant": {
+      "type": {
+        "name": "union",
+        "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'<br>&#124;&nbsp;string"
+      },
+      "additionalInfo": { "joy-variant": true }
+    }
+  },
+  "name": "NumberInput",
+  "imports": [
+    "import NumberInput from '@mui/joy/NumberInput';",
+    "import { NumberInput } from '@mui/joy';"
+  ],
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiNumberInput" },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiNumberInput-root"
+    },
+    {
+      "name": "input",
+      "description": "The component that renders the input.",
+      "default": "'input'",
+      "class": ".MuiNumberInput-input"
+    },
+    {
+      "name": "startDecorator",
+      "description": "The component that renders the start decorator.",
+      "default": "'div'",
+      "class": ".MuiNumberInput-startDecorator"
+    },
+    {
+      "name": "endDecorator",
+      "description": "The component that renders the end decorator.",
+      "default": "'div'",
+      "class": ".MuiNumberInput-endDecorator"
+    },
+    {
+      "name": "incrementButton",
+      "description": "The component that renders the increment button.",
+      "default": "'button'",
+      "class": ".MuiNumberInput-incrementButton"
+    },
+    {
+      "name": "decrementButton",
+      "description": "The component that renders the decrement button.",
+      "default": "'button'",
+      "class": ".MuiNumberInput-decrementButton"
+    }
+  ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "error",
+      "focused",
+      "formControl",
+      "fullWidth",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": { "focused": "Mui-focused", "disabled": "Mui-disabled", "error": "Mui-error" }
+  },
+  "spread": false,
+  "themeDefaultProps": true,
+  "muiName": "JoyNumberInput",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-joy/src/NumberInput/NumberInput.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/joy-ui/react-number-input/\">Number Input</a></li></ul>",
+  "cssComponent": false
+}

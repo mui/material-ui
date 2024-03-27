@@ -573,4 +573,8 @@ export interface Components<Theme = unknown> {
     defaultProps?: Partial<ModalOverflowProps>;
     styleOverrides?: StyleOverrides<ModalOverflowSlot, ModalOverflowOwnerState, Theme>;
   };
+  JoyNumberInput?: {
+    defaultProps?: Partial<ModalOverflowProps>;
+    styleOverrides?: StyleOverrides<ModalOverflowSlot, ModalOverflowOwnerState, Theme>;
+  };
 }

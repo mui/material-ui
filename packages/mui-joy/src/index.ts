@@ -172,6 +172,9 @@ export * from './ModalDialog';
 export { default as ModalOverflow } from './ModalOverflow';
 export * from './ModalOverflow';
 
+export { default as NumberInput } from './NumberInput';
+export * from './NumberInput';
+
 export { default as Option } from './Option';
 export * from './Option';
 
