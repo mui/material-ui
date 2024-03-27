@@ -20,11 +20,11 @@ export default function ThemeToggleButton() {
             bgcolor: '#fff',
             '& .MuiToggleButton-root': {
               textTransform: 'none',
-              fontWeight: 600,
-              color: 'grey.700',
+              fontWeight: 'medium',
+              color: 'text.secondary',
               '&.Mui-selected': {
-                color: 'primary.600',
-                bgcolor: 'primary.100',
+                color: 'primary.700',
+                bgcolor: 'primary.50',
               },
             },
           },
@@ -32,7 +32,6 @@ export default function ThemeToggleButton() {
             theme.applyDarkStyles({
               bgcolor: 'primaryDark.900',
               '& .MuiToggleButton-root': {
-                color: 'grey.400',
                 '&.Mui-selected': {
                   color: 'primary.100',
                   bgcolor: 'primary.900',

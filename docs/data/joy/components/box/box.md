@@ -5,7 +5,7 @@ components: Box
 githubLabel: 'component: Box'
 ---
 
-<!-- This page's content is duplicated (with some product-specific details) across the Material UI, Joy UI, and MUI System docs. Any changes should be applied to all three pages at the same time. -->
+<!-- This page's content is duplicated (with some product-specific details) across the Material UI, Joy UI, and MUI System docs. Any changes should be applied to all three pages at the same time. -->
 
 # Box
 
@@ -16,12 +16,12 @@ githubLabel: 'component: Box'
 ## Introduction
 
 The Box component is a generic container for grouping other components.
-It's a fundamental building block when working with Joy UI—you can think of it as a `<div>` with extra built-in features, like access to your app's theme and the [`sx` prop](/system/getting-started/the-sx-prop/).
+It's a fundamental building block when working with Joy UI—you can think of it as a `<div>` with extra built-in features, like access to your app's theme and the [`sx` prop](/system/getting-started/the-sx-prop/).
 
 ### Usage
 
-The Box component differs from other containers available in Joy UI in that its usage is intended to be multipurpose and open-ended, just like a `<div>`.
-Components like [Stack](/joy-ui/react-stack/) and [Sheet](/joy-ui/react-sheet/), by contrast, feature usage-specific props that make them ideal for certain use cases: Stack for one-dimensional layouts, and Sheet for surfaces that need access to Joy UI's global variants.
+The Box component differs from other containers available in Joy UI in that its usage is intended to be multipurpose and open-ended, just like a `<div>`.
+Components like [Stack](/joy-ui/react-stack/) and [Sheet](/joy-ui/react-sheet/), by contrast, feature usage-specific props that make them ideal for certain use cases: Stack for one-dimensional layouts, and Sheet for surfaces that need access to Joy UI's global variants.
 
 ## Basics
 

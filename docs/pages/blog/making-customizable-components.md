@@ -30,7 +30,7 @@ Usually this means that the selector with more classes applied to it is more spe
 For example, if we look at the Material UI `Switch` component, we have multiple subcomponents that we could expect to modify.
 For each of them, we assign a specific CSS class:
 
-<img src="/static/blog/making-customizable-components/switchHighlighted.png" style="width: 692px; aspect-ratio: 173/80; margin-top: 16px; margin-bottom: 16px;" loading="lazy" alt="Switch component with highlighted sub components" />
+<img src="/static/blog/making-customizable-components/switchHighlighted.png" style="width: 692px; aspect-ratio: 173/80; margin-top: 16px; margin-bottom: 16px;" loading="lazy" alt="Switch component with highlighted subcomponents" />
 
 Notice that each element is styled using only one CSS class—the thumb style, for example, is applied with the `css-jsexje-MuiSwitch-thumb` class, so any CSS selector that includes more than one class will override its style.
 
@@ -59,10 +59,10 @@ you can play around with it in [CodeSandbox](https://codesandbox.io/p/sandbox/fa
 }
 ```
 
-### Let JS generate the CSS
+### Let JavaScript generate the CSS
 
 Maybe you don't want to spend your time switching between CSS and JavaScript files, or writing long, cluttered stylesheets.
-To avoid these problems you can integrate styles directly into your JS code. 🎉
+To avoid these problems you can integrate styles directly into your JavaScript code. 🎉
 
 Because the level of customization varies across projects, Material UI's components can be customized in several different ways.
 For more information on this topic, check out the [Material UI customization documentation](https://mui.com/material-ui/customization/how-to-customize/).
@@ -305,7 +305,7 @@ In our last two annual [Developer Surveys](/blog/2021-developer-survey-results/)
 
 Thanks to the slot strategy and the introduction of supplementary tools like [MUI System's `sx` prop](https://mui.com/system/getting-started/the-sx-prop/), it has never been easier to customize Material UI's components to suit your specific needs.
 
-[Material UI](https://mui.com/material-ui/getting-started/) and [Joy UI](https://mui.com/joy-ui/getting-started/) are designed to be both beautiful and flexible right out of the box, while [Base UI](https://mui.com/base-ui/getting-started/) gives you the most freedom to implement your own custom styling solution.
+[Material UI](https://mui.com/material-ui/getting-started/) and [Joy UI](https://mui.com/joy-ui/getting-started/) are designed to be both beautiful and flexible right out of the box, while [Base UI](https://mui.com/base-ui/getting-started/) gives you the most freedom to implement your own custom styling solution.
 [MUI X](https://mui.com/x/introduction/) is comprised of fully featured complex components like the `DataGrid` which—as we've seen—can still be customized in many ways with minimal friction.
 
 Get started building with the MUI X Data Grid by [installing the MIT-licensed Community package](https://mui.com/x/react-data-grid/getting-started/#installation) today.

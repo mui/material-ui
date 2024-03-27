@@ -24,10 +24,12 @@ describe('<Popper />', () => {
 
   let originalScrollX;
   let originalScrollY;
+
   beforeEach(() => {
     originalScrollX = window.screenX;
     originalScrollY = window.scrollY;
   });
+
   afterEach(() => {
     window.scrollTo(originalScrollX, originalScrollY);
   });

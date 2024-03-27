@@ -2,10 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { darken, lighten } from '@mui/system';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import { darken, lighten } from '@mui/system/colorManipulator';
+import { styled, createUseThemeProps } from '../zero-styled';
 import useSlot from '../utils/useSlot';
 import capitalize from '../utils/capitalize';
 import Paper from '../Paper';
@@ -16,6 +15,8 @@ import ReportProblemOutlinedIcon from '../internal/svg-icons/ReportProblemOutlin
 import ErrorOutlineIcon from '../internal/svg-icons/ErrorOutline';
 import InfoOutlinedIcon from '../internal/svg-icons/InfoOutlined';
 import CloseIcon from '../internal/svg-icons/Close';
+
+const useThemeProps = createUseThemeProps('MuiAlert');
 
 const useUtilityClasses = (ownerState) => {
   const { variant, color, severity, classes } = ownerState;
@@ -47,58 +48,70 @@ const AlertRoot = styled(Paper, {
       styles[`${ownerState.variant}${capitalize(ownerState.color || ownerState.severity)}`],
     ];
   },
-})(({ theme, ownerState }) => {
+})(({ theme }) => {
   const getColor = theme.palette.mode === 'light' ? darken : lighten;
   const getBackgroundColor = theme.palette.mode === 'light' ? lighten : darken;
-  const color = ownerState.color || ownerState.severity;
-
   return {
     ...theme.typography.body2,
     backgroundColor: 'transparent',
     display: 'flex',
     padding: '6px 16px',
-    ...(color &&
-      ownerState.variant === 'standard' && {
-        color: theme.vars
-          ? theme.vars.palette.Alert[`${color}Color`]
-          : getColor(theme.palette[color].light, 0.6),
-        backgroundColor: theme.vars
-          ? theme.vars.palette.Alert[`${color}StandardBg`]
-          : getBackgroundColor(theme.palette[color].light, 0.9),
-        [`& .${alertClasses.icon}`]: theme.vars
-          ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
-          : {
-              color: theme.palette[color].main,
-            },
-      }),
-    ...(color &&
-      ownerState.variant === 'outlined' && {
-        color: theme.vars
-          ? theme.vars.palette.Alert[`${color}Color`]
-          : getColor(theme.palette[color].light, 0.6),
-        border: `1px solid ${(theme.vars || theme).palette[color].light}`,
-        [`& .${alertClasses.icon}`]: theme.vars
-          ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
-          : {
-              color: theme.palette[color].main,
-            },
-      }),
-    ...(color &&
-      ownerState.variant === 'filled' && {
-        fontWeight: theme.typography.fontWeightMedium,
-        ...(theme.vars
-          ? {
-              color: theme.vars.palette.Alert[`${color}FilledColor`],
-              backgroundColor: theme.vars.palette.Alert[`${color}FilledBg`],
-            }
-          : {
-              backgroundColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette[color].dark
-                  : theme.palette[color].main,
-              color: theme.palette.getContrastText(theme.palette[color].main),
-            }),
-      }),
+    variants: [
+      ...Object.entries(theme.palette)
+        .filter(([, value]) => value.main && value.light)
+        .map(([color]) => ({
+          props: { colorSeverity: color, variant: 'standard' },
+          style: {
+            color: theme.vars
+              ? theme.vars.palette.Alert[`${color}Color`]
+              : getColor(theme.palette[color].light, 0.6),
+            backgroundColor: theme.vars
+              ? theme.vars.palette.Alert[`${color}StandardBg`]
+              : getBackgroundColor(theme.palette[color].light, 0.9),
+            [`& .${alertClasses.icon}`]: theme.vars
+              ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
+              : {
+                  color: theme.palette[color].main,
+                },
+          },
+        })),
+      ...Object.entries(theme.palette)
+        .filter(([, value]) => value.main && value.light)
+        .map(([color]) => ({
+          props: { colorSeverity: color, variant: 'outlined' },
+          style: {
+            color: theme.vars
+              ? theme.vars.palette.Alert[`${color}Color`]
+              : getColor(theme.palette[color].light, 0.6),
+            border: `1px solid ${(theme.vars || theme).palette[color].light}`,
+            [`& .${alertClasses.icon}`]: theme.vars
+              ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
+              : {
+                  color: theme.palette[color].main,
+                },
+          },
+        })),
+      ...Object.entries(theme.palette)
+        .filter(([, value]) => value.main && value.dark)
+        .map(([color]) => ({
+          props: { colorSeverity: color, variant: 'filled' },
+          style: {
+            fontWeight: theme.typography.fontWeightMedium,
+            ...(theme.vars
+              ? {
+                  color: theme.vars.palette.Alert[`${color}FilledColor`],
+                  backgroundColor: theme.vars.palette.Alert[`${color}FilledBg`],
+                }
+              : {
+                  backgroundColor:
+                    theme.palette.mode === 'dark'
+                      ? theme.palette[color].dark
+                      : theme.palette[color].main,
+                  color: theme.palette.getContrastText(theme.palette[color].main),
+                }),
+          },
+        })),
+    ],
   };
 });
 
@@ -169,6 +182,7 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     color,
     severity,
     variant,
+    colorSeverity: color || severity,
   };
 
   const classes = useUtilityClasses(ownerState);

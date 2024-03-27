@@ -10,7 +10,6 @@ import experimental_extendTheme, {
   CssVarsTheme,
 } from './experimental_extendTheme';
 import createTypography from './createTypography';
-import excludeVariablesFromRoot from './excludeVariablesFromRoot';
 import THEME_ID from './identifier';
 
 const defaultTheme = experimental_extendTheme();
@@ -35,15 +34,11 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
     };
 
     newTheme.unstable_sx = function sx(props: SxProps<CssVarsTheme>) {
-      return styleFunctionSx({
-        sx: props,
-        theme: this,
-      });
+      return styleFunctionSx({ sx: props, theme: this });
     };
 
     return newTheme;
   },
-  excludeVariablesFromRoot,
 });
 
 export {

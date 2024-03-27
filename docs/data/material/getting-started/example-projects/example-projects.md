@@ -48,7 +48,7 @@ They're great resources for learning more about real-world usage of Material UI
 
 ### Paid
 
-- [ScaffoldHub](https://v2.scaffoldhub.io/scaffolds/react-material-ui):
+- [ScaffoldHub](https://v2.scaffoldhub.io/scaffolds/react-material-ui?partner=1):
 
   - Tool for building web applications.
   - Choose your framework and library (React with Material UI).

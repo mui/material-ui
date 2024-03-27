@@ -5,15 +5,16 @@ import { isFragment } from 'react-is';
 import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import Avatar, { avatarClasses } from '../Avatar';
 import avatarGroupClasses, { getAvatarGroupUtilityClass } from './avatarGroupClasses';
 
 const SPACINGS = {
   small: -16,
-  medium: null,
+  medium: -8,
 };
+
+const useThemeProps = createUseThemeProps('MuiAlert');
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -33,25 +34,18 @@ const AvatarGroupRoot = styled('div', {
     [`& .${avatarGroupClasses.avatar}`]: styles.avatar,
     ...styles.root,
   }),
-})(({ theme, ownerState }) => {
-  const marginValue =
-    ownerState.spacing && SPACINGS[ownerState.spacing] !== undefined
-      ? SPACINGS[ownerState.spacing]
-      : -ownerState.spacing;
-
-  return {
-    [`& .${avatarClasses.root}`]: {
-      border: `2px solid ${(theme.vars || theme).palette.background.default}`,
-      boxSizing: 'content-box',
-      marginLeft: marginValue ?? -8,
-      '&:last-child': {
-        marginLeft: 0,
-      },
+})(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'row-reverse',
+  [`& .${avatarClasses.root}`]: {
+    border: `2px solid ${(theme.vars || theme).palette.background.default}`,
+    boxSizing: 'content-box',
+    marginLeft: 'var(--AvatarGroup-spacing, -8px)',
+    '&:last-child': {
+      marginLeft: 0,
     },
-    display: 'flex',
-    flexDirection: 'row-reverse',
-  };
-});
+  },
+}));
 
 const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
   const props = useThemeProps({
@@ -113,6 +107,11 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
 
   const additionalAvatarSlotProps = slotProps.additionalAvatar ?? componentsProps.additionalAvatar;
 
+  const marginValue =
+    ownerState.spacing && SPACINGS[ownerState.spacing] !== undefined
+      ? SPACINGS[ownerState.spacing]
+      : -ownerState.spacing || -8;
+
   return (
     <AvatarGroupRoot
       as={component}
@@ -126,6 +125,10 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
           variant={variant}
           {...additionalAvatarSlotProps}
           className={clsx(classes.avatar, additionalAvatarSlotProps?.className)}
+          style={{
+            '--AvatarRoot-spacing': marginValue ? `${marginValue}px` : undefined,
+            ...other.style,
+          }}
         >
           {extraAvatarsElement}
         </Avatar>
@@ -215,6 +218,10 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    * @default 'medium'
    */
   spacing: PropTypes.oneOfType([PropTypes.oneOf(['medium', 'small']), PropTypes.number]),
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

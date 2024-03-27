@@ -39,7 +39,7 @@ Other properties can be copied and pasted.
 -   },
 -   ...
 - },
-- // ...other properties, e.g. breakpoints, spacing, shape, typography, components
+- // ...other properties, for example breakpoints, spacing, shape, typography, components
 -});
 
 -const darkTheme = createTheme({

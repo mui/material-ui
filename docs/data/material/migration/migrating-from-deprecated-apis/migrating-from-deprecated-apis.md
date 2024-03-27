@@ -26,6 +26,20 @@ If you need to run a specific codemod, those are also linked below.
 
 :::
 
+## Package-wide deprecated APIs
+
+### Inner element overrides
+
+The `slots` and `slotProps` APIs are in the process of being standardized.
+The analogous APIs—`components`, `componentsProps`, `<SlotName>Component`, and `<SlotName>Props`—are going to be deprecated and eventually removed.
+This improves the developer experience through consistency, predictability, and reduced cognitive load.
+
+### Composed CSS classes
+
+The composed CSS classes are going to be deprecated and eventually removed in favor of atomic class alternatives.
+For example, the `.MuiAccordionSummary-contentGutters` class was deprecated in favor of the `.MuiAccordionSummary-gutters` and `.MuiAccordionSummary-content` classes.
+This improves the developer experience by reducing bloat and cognitive load.
+
 ## Accordion
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#accordion-props) below to migrate the code as described in the following sections:
@@ -237,6 +251,54 @@ The Avatar's `imgProps` was deprecated in favor of `slotProps.img`:
 +    }
    }}
  />;
+```
+
+## Backdrop
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#backdrop-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/backdrop-props <path>
+```
+
+### TransitionComponent
+
+The Backdrop's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
+
+```diff
+ <Slider
+-  TransitionComponent={CustomTransition}
++  slots={{ transition: CustomTransition }}
+```
+
+## Badge
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#badge-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/badge-props <path>
+```
+
+### components
+
+The Badge's `components` was deprecated in favor of `slots`:
+
+```diff
+ <Badge
+-  components={{ root: CustomRoot }}
++  slots={{ root: CustomRoot }}
+ />
+```
+
+### componentsProps
+
+The Badge's `componentsProps` was deprecated in favor of `slotProps`:
+
+```diff
+ <Badge
+-  componentsProps={{ root: { testid: 'test-id' } }}
++  slotProps={{ root: { testid: 'test-id' } }}
+ />
 ```
 
 ## Button
@@ -463,6 +525,140 @@ Here's how to migrate:
      },
    },
  },
+```
+
+## ButtonGroup
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#button-group-classes) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/button-group-classes <path>
+```
+
+### Composed CSS classes
+
+The CSS classes that composed the following props were deprecated:
+
+- `orientation` | `variant` and `grouped`
+- `color`, `variant` and `grouped`
+
+Here's how to migrate:
+
+```diff
+-.MuiButtonGroup-root .MuiButtonGroup-groupedHorizontal
++.MuiButtonGroup-root.MuiButtonGroup-horizontal > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedVertical
++.MuiButtonGroup-root.MuiButtonGroup-vertical > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedText
++.MuiButtonGroup-root.MuiButtonGroup-text > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedTextHorizontal
++.MuiButtonGroup-root.MuiButtonGroup-text.MuiButtonGroup-horizontal > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedTextVertical
++.MuiButtonGroup-root.MuiButtonGroup-text.MuiButtonGroup-vertical > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedTextPrimary
++.MuiButtonGroup-root.MuiButtonGroup-text.MuiButtonGroup-colorPrimary > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedTextSecondary
++.MuiButtonGroup-root.MuiButtonGroup-text.MuiButtonGroup-colorSecondary > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedOutlined
++.MuiButtonGroup-root.MuiButtonGroup-outlined > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedOutlinedHorizontal
++.MuiButtonGroup-root.MuiButtonGroup-outlined.MuiButtonGroup-horizontal > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedOutlinedVertical
++.MuiButtonGroup-root.MuiButtonGroup-outlined.MuiButtonGroup-vertical > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedOutlinedPrimary
++.MuiButtonGroup-root.MuiButtonGroup-outlined.MuiButtonGroup-colorPrimary > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedOutlinedSecondary
++.MuiButtonGroup-root.MuiButtonGroup-outlined.MuiButtonGroup-colorSecondary > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedContained
++.MuiButtonGroup-root.MuiButtonGroup-contained > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedContainedHorizontal
++.MuiButtonGroup-root.MuiButtonGroup-contained.MuiButtonGroup-horizontal > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedContainedVertical
++.MuiButtonGroup-root.MuiButtonGroup-contained.MuiButtonGroup-vertical > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedContainedPrimary
++.MuiButtonGroup-root.MuiButtonGroup-contained.MuiButtonGroup-colorPrimary > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedContainedSecondary
++.MuiButtonGroup-root.MuiButtonGroup-contained.MuiButtonGroup-colorSecondary > .MuiButtonGroup-grouped
+```
+
+```diff
+
+ import { buttonGroupClasses } from '@mui/material/ButtonGroup';
+
+  MuiButtonGroup: {
+   styleOverrides: {
+     root: {
+-      [`& .${buttonGroupClasses.groupedHorizontal}`]: {
++      [`&.${buttonGroupClasses.horizontal} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedVertical}`]: {
++      [`&.${buttonGroupClasses.vertical} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedText}`]: {
++      [`&.${buttonGroupClasses.text} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedTextHorizontal}`]: {
++      [`&.${buttonGroupClasses.text}.${buttonGroupClasses.horizontal} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedTextVertical}`]: {
++      [`&.${buttonGroupClasses.text}.${buttonGroupClasses.vertical} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedTextPrimary}`]: {
++      [`&.${buttonGroupClasses.text}.${buttonGroupClasses.colorPrimary} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedTextSecondary}`]: {
++      [`&.${buttonGroupClasses.text}.${buttonGroupClasses.colorSecondary} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedOutlined}`]: {
++      [`&.${buttonGroupClasses.outlined} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedOutlinedHorizontal}`]: {
++      [`&.${buttonGroupClasses.outlined}.${buttonGroupClasses.horizontal} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedOutlinedVertical}`]: {
++      [`&.${buttonGroupClasses.outlined}.${buttonGroupClasses.vertical} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedOutlinedPrimary}`]: {
++      [`&.${buttonGroupClasses.outlined}.${buttonGroupClasses.colorPrimary} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedOutlinedSecondary}`]: {
++      [`&.${buttonGroupClasses.outlined}.${buttonGroupClasses.colorSecondary} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedContained}`]: {
++      [`&.${buttonGroupClasses.contained} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedContainedHorizontal}`]: {
++      [`&.${buttonGroupClasses.contained}.${buttonGroupClasses.horizontal} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedContainedVertical}`]: {
++      [`&.${buttonGroupClasses.contained}.${buttonGroupClasses.vertical} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedContainedPrimary}`]: {
++      [`&.${buttonGroupClasses.contained}.${buttonGroupClasses.colorPrimary} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${buttonGroupClasses.groupedContainedSecondary}`]: {
++      [`&.${buttonGroupClasses.contained}.${buttonGroupClasses.colorSecondary} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+   },
+  },
+
 ```
 
 ## Chip
@@ -755,5 +951,24 @@ The Slider's `componentsProps` was deprecated in favor of `slotProps`:
  <Slider
 -  componentsProps={{ track: { testid: 'test-id' } }}
 +  slotProps={{ track: { testid: 'test-id' } }}
+ />
+```
+
+## StepLabel
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#step-label-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/step-label-props <path>
+```
+
+### componentsProps
+
+The StepLabel's `componentsProps` was deprecated in favor of `slotProps`:
+
+```diff
+ <StepLabel
+-  componentsProps={{ label: labelProps }}
++  slotProps={{ label: labelProps }}
  />
 ```
