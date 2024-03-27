@@ -1,4 +1,6 @@
 /* eslint-disable no-underscore-dangle */
+import * as React from 'react';
+import clsx from 'clsx';
 import styledEngineStyled, { internal_processStyles as processStyles } from '@mui/styled-engine';
 import { isPlainObject } from '@mui/utils/deepmerge';
 import capitalize from '@mui/utils/capitalize';
@@ -23,7 +25,7 @@ function isStringTag(tag) {
 
 // Update /system/styled/#api in case if this changes
 export function shouldForwardProp(prop) {
-  return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
+  return prop !== 'ownerState' && prop !== 'theme' && prop !== 'as';
 }
 
 export const systemDefaultTheme = createTheme();
@@ -115,6 +117,7 @@ export default function createStyled(input = {}) {
       // TODO v6: remove `lowercaseFirstLetter()` in the next major release
       // For more details: https://github.com/mui/material-ui/pull/37908
       overridesResolver = defaultOverridesResolver(lowercaseFirstLetter(componentSlot)),
+      shouldForwardProp: shouldForwardPropInput,
       ...options
     } = inputOptions;
 
@@ -152,10 +155,48 @@ export default function createStyled(input = {}) {
       shouldForwardPropOption = undefined;
     }
 
-    const defaultStyledResolver = styledEngineStyled(tag, {
-      shouldForwardProp: shouldForwardPropOption,
+    if (shouldForwardPropInput) {
+      shouldForwardPropOption = shouldForwardPropInput;
+    }
+
+    // Always propagated the sx prop, the augmented component will make sure to intercept if needed
+    const shouldForwardPropEmotionOption = (prop) =>
+      prop === 'sx' ||
+      shouldForwardPropOption === undefined ||
+      (typeof shouldForwardPropOption === 'function' && shouldForwardPropOption(prop));
+
+    // This is needed in order to intercept the transformed sx values potentially done by the zero-runtime library
+    const AugmentedTag = React.forwardRef(function Component(props, ref) {
+      const { sx, ...other } = props;
+      const sxClass = typeof sx === 'string' ? sx : sx?.className;
+      const sxVars = sx && typeof sx !== 'string' ? sx.vars : undefined;
+      const sxVarsStyles = {};
+
+      if (sxVars) {
+        Object.entries(sxVars).forEach(([cssVariable, [value, isUnitLess]]) => {
+          if (typeof value === 'string' || isUnitLess) {
+            sxVarsStyles[`--${cssVariable}`] = value;
+          } else {
+            sxVarsStyles[`--${cssVariable}`] = `${value}px`;
+          }
+        });
+      }
+
+      const propsToFrward =
+        shouldForwardPropOption === undefined || !shouldForwardPropOption('sx') ? other : props;
+
+      return React.createElement(tag, {
+        ...propsToFrward,
+        className: clsx(props.className, sxClass),
+        style: { ...sxVarsStyles, ...props.style },
+        ref,
+      });
+    });
+
+    const defaultStyledResolver = styledEngineStyled(AugmentedTag, {
       label,
       ...options,
+      shouldForwardProp: shouldForwardPropEmotionOption,
     });
 
     const transformStyleArg = (stylesArg) => {
