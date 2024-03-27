@@ -181,9 +181,9 @@ const ButtonGroupRoot = styled('div', {
           '&:hover': {
             borderRightColor: 'currentColor',
           },
-          [`& .${buttonGroupClasses.lastButton},& .${buttonGroupClasses.middleButton}`]: {
-            marginLeft: -1,
-          },
+        },
+        [`& .${buttonGroupClasses.lastButton},& .${buttonGroupClasses.middleButton}`]: {
+          marginLeft: -1,
         },
       },
     },
@@ -195,9 +195,9 @@ const ButtonGroupRoot = styled('div', {
           '&:hover': {
             borderBottomColor: 'currentColor',
           },
-          [`& .${buttonGroupClasses.lastButton},& .${buttonGroupClasses.middleButton}`]: {
-            marginTop: -1,
-          },
+        },
+        [`& .${buttonGroupClasses.lastButton},& .${buttonGroupClasses.middleButton}`]: {
+          marginTop: -1,
         },
       },
     },
@@ -236,9 +236,9 @@ const ButtonGroupRoot = styled('div', {
   ],
   [`& .${buttonGroupClasses.grouped}`]: {
     minWidth: 40,
+    boxShadow: 'none',
     props: { variant: 'contained' },
     style: {
-      boxShadow: 'none',
       '&:hover': {
         boxShadow: 'none',
       },
