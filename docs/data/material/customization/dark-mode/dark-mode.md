@@ -146,3 +146,76 @@ function App() {
   );
 }
 ```
+
+## Styling in dark mode
+
+The `theme.applyStyles()` function, introduced in `@mui/material` [v5.15.7](https://github.com/mui/material-ui/releases/tag/v5.15.7), lets you apply styles for a specific mode.
+
+We recommend using this function in favor of the `theme.palette.mode` check, as it's more readable and lets you smoothly adopt new features in the future.
+
+### Usage
+
+With the `**styled**` function:
+
+```jsx
+import { styled } from '@mui/material/styles';
+
+const MyComponent = styled('div')(
+  ({ theme }) => ({
+    color: '#fff',
+    backgroundColor: theme.palette.primary.main,
+    '&:hover': {
+      boxShadow: theme.shadows[3],
+      backgroundColor: theme.palette.primary.dark,
+    },
+  }),
+  ({ theme }) =>
+    theme.applyStyles('dark', {
+      backgroundColor: theme.palette.secondary.main,
+    }),
+);
+```
+
+With the `**sx**` prop:
+
+```jsx
+import Button from '@mui/material/Button';
+
+<Button
+  sx={[
+    (theme) => ({
+      color: '#fff',
+      backgroundColor: theme.palette.primary.main,
+      '&:hover': {
+        boxShadow: theme.shadows[3],
+        backgroundColor: theme.palette.primary.dark,
+      },
+    }),
+    (theme) =>
+      theme.applyStyles('dark', {
+        backgroundColor: theme.palette.secondary.main,
+      }),
+  ]}
+>
+  Submit
+</Button>;
+```
+
+### Codemod
+
+We provide a codemod to migrate your codebase from using `theme.palette.mode` to use `theme.applyStyles()`.
+
+```sh
+npx @mui/codemod@latest deprecations/mode-to-apply-styles path/to/your/files
+```
+
+### API
+
+`theme.applyStyles(mode, styles) => CSSObject`
+
+Apply styles for a specific mode.
+
+#### Arguments
+
+- `mode` (`'light' | 'dark'`) - The mode for which the styles should be applied.
+- `styles` (`CSSObject`) - An object which contains the styles to be applied for the specified mode.
