@@ -3,10 +3,13 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
+import InputLabel from '@mui/material/InputLabel';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+
+import { visuallyHidden } from '@mui/utils';
 
 import FacebookIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -72,8 +75,11 @@ export default function Footer() {
               Subscribe to our newsletter for weekly updates and promotions.
             </Typography>
             <Stack direction="row" spacing={1} useFlexGap>
+              <InputLabel htmlFor="email-newsletter" sx={visuallyHidden}>
+                Email
+              </InputLabel>
               <TextField
-                id="outlined-basic"
+                id="email-newsletter"
                 hiddenLabel
                 size="small"
                 variant="outlined"
