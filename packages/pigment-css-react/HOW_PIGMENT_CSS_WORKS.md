@@ -12,7 +12,7 @@ Pigment CSS is a zero-runtime CSS-in-JS library. This means it does not have ac
 
 Pigment CSS uses the [WyW-in-JS](https://wyw-in-js.dev/) library that also powers [Linaria](https://linaria.dev/). It has a concept of `processors` which enables custom logic around what to do when users use an import from the library.
 
-As an example, let's look at the `css` that is import and used in the codebase:
+As an example, let's look at the `css` function that is imported and used in the codebase:
 
 ```js
 // app.js
