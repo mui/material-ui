@@ -43,27 +43,27 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
       <Grid container spacing={2} alignItems="center">
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <SectionHeadline
-            overline="Design tools"
+            overline="Design resources"
             title={
               <Typography variant="h2">
                 Enhance your <GradientText>design workflow</GradientText>
               </Typography>
             }
-            description="Reach out for the Design kits and the MUI Connect plug-in to bridge the gap between development and design when using Material UI."
+            description="Reach out for the Figma Design Kit and the Connect plugin to bridge the gap between development and design when using Material UI."
           />
           <Group sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
             <Highlighter disableBorder selected={customized} onClick={() => setCustomized(true)}>
               <Item
                 icon={<DrawRoundedIcon color="primary" />}
-                title="Design kits"
-                description="The Design kits contain many of the Material UI components with states, variations, colors, typography, and icons. We frequently update it to sync with the most up-to-date release."
+                title="Figma Design Kit"
+                description="Design with many of the Material UI components with states, variations, colors, typography, and icons. We frequently update it to sync with the most up-to-date release."
               />
             </Highlighter>
             <Highlighter disableBorder selected={!customized} onClick={() => setCustomized(false)}>
               <Item
                 icon={<ExtensionRoundedIcon color="primary" />}
                 title="Connect plugin"
-                description="Generate a theme file with customizations done on the design kits, and then export and paste it directly into your codebase."
+                description="Generate a theme file with theme and components customizations done directly on Figma, and then export and paste it directly into your codebase."
               />
             </Highlighter>
           </Group>
