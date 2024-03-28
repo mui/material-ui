@@ -26,7 +26,7 @@
     "@pigment-css/nextjs-plugin": "workspace:^",
     "@types/node": "^20.5.7",
     "@types/react": "^18.2.55",
-    "@types/react-dom": "^18.2.19",
+    "@types/react-dom": "^18.2.23",
     "eslint": "^8.57.0",
     "typescript": "^5.4.3"
   },
