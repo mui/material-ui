@@ -29,6 +29,12 @@ import { Accordion as MyAccordion } from '@mui/material';
     ...outerSlotProps,
     transition: { unmountOnExit: true }
   }} />;
+<Accordion slots={{ transition: SlotTransition }} />;
+<Accordion
+  slotProps={{ transition: {
+    ...{ unmountOnExit: true },
+    ...{ id: 'test' }
+  } }} />;
 // should skip non MUI components
 <NonMuiAccordion
   TransitionComponent={CustomTransition}
