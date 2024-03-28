@@ -466,7 +466,16 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
           notchedOutline: {
             border: 'none',
           },
-          root: ({ theme }) => ({
+          input: {
+            paddingLeft: 10,
+          },
+
+          root: ({ theme, ownerState }) => ({
+            'input:-webkit-autofill': {
+              WebkitBoxShadow: `0 0 0 1000px ${brand[100]} inset, 0 0 0 1px ${brand[200]}`,
+              maxHeight: '4px',
+              borderRadius: '8px',
+            },
             '& .MuiInputBase-input': {
               '&::placeholder': {
                 opacity: 0.7,
@@ -475,52 +484,61 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
             },
             boxSizing: 'border-box',
             flexGrow: 1,
-            maxHeight: 40,
-            height: '100%',
+            height: '40px',
             borderRadius: '10px',
             border: '1px solid',
-            borderColor: gray[200],
-            boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.1)',
+            borderColor: alpha(gray[300], 0.8),
+            boxShadow: '0 0 0 1.5px rgba(0, 0, 0, 0.04) inset',
             transition: 'border-color 120ms ease-in',
             backgroundColor: alpha(gray[100], 0.4),
             '&:hover': {
               borderColor: brand[300],
             },
             '&.Mui-focused': {
+              outline: `3px solid ${alpha(brand[500], 0.5)}`,
+              outlineOffset: '2px',
               borderColor: brand[400],
-              outline: '4px solid',
-              outlineColor: brand[200],
             },
+            ...(ownerState.color === 'error' && {
+              borderColor: red[200],
+              color: red[500],
+              '& + .MuiFormHelperText-root': {
+                color: red[500],
+              },
+            }),
             ...(theme.palette.mode === 'dark' && {
+              'input:-webkit-autofill': {
+                WebkitBoxShadow: `0 0 0 1000px ${brand[900]} inset, 0 0 0 1px ${brand[600]}`,
+                maxHeight: '6px',
+                borderRadius: '8px',
+              },
               '& .MuiInputBase-input': {
                 '&::placeholder': {
                   opacity: 1,
                   color: gray[500],
                 },
               },
-              boxSizing: 'border-box',
-              flexGrow: 1,
-              minHeight: 40,
-              height: '100%',
-              borderRadius: '10px',
-              border: '1px solid',
-              borderColor: gray[700],
-              boxShadow: '0px 2px 2px rgb(0, 0, 0)',
-              backgroundColor: alpha(gray[800], 0.4),
+              borderColor: alpha(gray[700], 0.5),
+              boxShadow: '0 0 0 1.5px rgb(0, 0, 0) inset',
+              backgroundColor: alpha(gray[900], 0.8),
               transition: 'border-color 120ms ease-in',
               '&:hover': {
                 borderColor: brand[300],
               },
               '&.Mui-focused': {
                 borderColor: brand[400],
-                outline: '4px solid',
-                outlineColor: alpha(brand[500], 0.5),
+                outline: `3px solid ${alpha(brand[500], 0.5)}`,
+                outlineOffset: '2px',
               },
+              ...(ownerState.color === 'error' && {
+                borderColor: red[700],
+                color: red[300],
+                '& + .MuiFormHelperText-root': {
+                  color: red[300],
+                },
+              }),
             }),
           }),
-          input: {
-            paddingLeft: 10,
-          },
         },
       },
       MuiFormLabel: {

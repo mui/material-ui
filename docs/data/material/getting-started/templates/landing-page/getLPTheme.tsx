@@ -625,67 +625,99 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
           },
         },
       },
-      MuiTextField: {
+      MuiOutlinedInput: {
         styleOverrides: {
-          root: ({ theme }) => ({
-            '& label .Mui-focused': {
-              color: 'white',
+          notchedOutline: {
+            border: 'none',
+          },
+          input: {
+            paddingLeft: 10,
+          },
+
+          root: ({ theme, ownerState }) => ({
+            'input:-webkit-autofill': {
+              WebkitBoxShadow: `0 0 0 1000px ${brand[100]} inset, 0 0 0 1px ${brand[200]}`,
+              maxHeight: '4px',
+              borderRadius: '8px',
             },
             '& .MuiInputBase-input': {
-              boxSizing: 'border-box',
               '&::placeholder': {
                 opacity: 0.7,
+                color: gray[500],
               },
             },
-            '& .MuiOutlinedInput-root': {
-              boxSizing: 'border-box',
-              minWidth: 280,
-              minHeight: 40,
-              height: '100%',
-              borderRadius: '10px',
-              border: '1px solid',
-              borderColor: gray[200],
-              transition: 'border-color 120ms ease-in',
-              '& fieldset': {
-                border: 'none',
-                boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
-                background: `${alpha('#FFF', 0.3)}`,
+            boxSizing: 'border-box',
+            flexGrow: 1,
+            height: '40px',
+            borderRadius: '10px',
+            border: '1px solid',
+            borderColor: alpha(gray[300], 0.8),
+            boxShadow: '0 0 0 1.5px rgba(0, 0, 0, 0.04) inset',
+            transition: 'border-color 120ms ease-in',
+            backgroundColor: alpha(gray[100], 0.4),
+            '&:hover': {
+              borderColor: brand[300],
+            },
+            '&.Mui-focused': {
+              outline: `3px solid ${alpha(brand[500], 0.5)}`,
+              outlineOffset: '2px',
+              borderColor: brand[400],
+            },
+            ...(ownerState.color === 'error' && {
+              borderColor: red[200],
+              color: red[500],
+              '& + .MuiFormHelperText-root': {
+                color: red[500],
               },
+            }),
+            ...(theme.palette.mode === 'dark' && {
+              'input:-webkit-autofill': {
+                WebkitBoxShadow: `0 0 0 1000px ${brand[900]} inset, 0 0 0 1px ${brand[600]}`,
+                maxHeight: '6px',
+                borderRadius: '8px',
+              },
+              '& .MuiInputBase-input': {
+                '&::placeholder': {
+                  opacity: 1,
+                  color: gray[500],
+                },
+              },
+              borderColor: alpha(gray[700], 0.5),
+              boxShadow: '0 0 0 1.5px rgb(0, 0, 0) inset',
+              backgroundColor: alpha(gray[900], 0.8),
+              transition: 'border-color 120ms ease-in',
               '&:hover': {
                 borderColor: brand[300],
               },
               '&.Mui-focused': {
                 borderColor: brand[400],
-                outline: '4px solid',
-                outlineColor: brand[200],
+                outline: `3px solid ${alpha(brand[500], 0.5)}`,
+                outlineOffset: '2px',
               },
-            },
-            ...(theme.palette.mode === 'dark' && {
-              '& .MuiOutlinedInput-root': {
-                boxSizing: 'border-box',
-                minWidth: 280,
-                minHeight: 40,
-                height: '100%',
-                borderRadius: '10px',
-                border: '1px solid',
-                borderColor: gray[600],
-                transition: 'border-color 120ms ease-in',
-                '& fieldset': {
-                  border: 'none',
-                  boxShadow: ' 0px 2px 4px rgba(0, 0, 0, 0.4)',
-                  background: `${alpha(gray[800], 0.4)}`,
+              ...(ownerState.color === 'error' && {
+                borderColor: red[700],
+                color: red[300],
+                '& + .MuiFormHelperText-root': {
+                  color: red[300],
                 },
-                '&:hover': {
-                  borderColor: brand[300],
-                },
-                '&.Mui-focused': {
-                  borderColor: brand[400],
-                  outline: '4px solid',
-                  outlineColor: alpha(brand[500], 0.5),
-                },
-              },
+              }),
             }),
           }),
+        },
+      },
+      MuiFormLabel: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            typography: theme.typography.caption,
+            marginBottom: 8,
+          }),
+        },
+      },
+      MuiInputBase: {
+        styleOverrides: {
+          root: {
+            border: 'none',
+          },
         },
       },
     },
