@@ -35,9 +35,7 @@ const AccordionActionsRoot = styled('div', {
     {
       props: (props) => !props.disableSpacing,
       style: {
-        '& > :not(style) ~ :not(style)': {
-          marginLeft: 8,
-        },
+        gap: 8,
       },
     },
   ],
