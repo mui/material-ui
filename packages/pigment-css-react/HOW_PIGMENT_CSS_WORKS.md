@@ -27,7 +27,7 @@ const testClass = css(({ theme }) => ({
 }));
 ```
 
-This uses the `css` function to generate and assign a string className to `testClass` variable. The minimal bundler configuration for this to work with the `theme` might look like:
+This uses the `css` function to generate and assign a string className to the `testClass` variable. The minimal bundler configuration for this to work with the `theme` might look like:
 
 ```js
 // config.js
