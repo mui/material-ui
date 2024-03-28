@@ -86,13 +86,13 @@ export default function AppFooter(props: AppFooterProps) {
               Toolpad
             </Link>
             <Link prefetch={false} href={ROUTES.productConnect}>
-              MUI Connect
+              Connect
             </Link>
             <Link prefetch={false} href={ROUTES.productTemplates}>
               Templates
             </Link>
             <Link prefetch={false} href={ROUTES.productDesignKits}>
-              Design kits
+              Design Kits
             </Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
