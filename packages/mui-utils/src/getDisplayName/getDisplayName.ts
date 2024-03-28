@@ -1,20 +1,11 @@
 import * as React from 'react';
 import { ForwardRef, Memo } from 'react-is';
 
-// Simplified polyfill for IE11 support
-// https://github.com/JamesMGreene/Function.name/blob/58b314d4a983110c3682f1228f845d39ccca1817/Function.name.js#L3
-const fnNameMatchRegex = /^\s*function(?:\s|\s*\/\*.*\*\/\s*)+([^(\s/]*)\s*/;
-export function getFunctionName(fn: Function): string {
-  const match = `${fn}`.match(fnNameMatchRegex);
-  const name = match && match[1];
-  return name || '';
-}
-
 function getFunctionComponentName(
   Component: React.FunctionComponent | React.ComponentClass,
   fallback = '',
 ) {
-  return Component.displayName || Component.name || getFunctionName(Component) || fallback;
+  return Component.displayName || Component.name || fallback;
 }
 
 function getWrappedName(outerType: any, innerType: any, wrapperName: string) {

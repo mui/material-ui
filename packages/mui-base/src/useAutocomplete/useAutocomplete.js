@@ -10,11 +10,8 @@ import {
 } from '@mui/utils';
 
 // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
-// Give up on IE11 support for this feature
 function stripDiacritics(string) {
-  return typeof string.normalize !== 'undefined'
-    ? string.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-    : string;
+  return string.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
 
 export function createFilterOptions(config = {}) {
@@ -54,17 +51,6 @@ export function createFilterOptions(config = {}) {
 
     return typeof limit === 'number' ? filteredOptions.slice(0, limit) : filteredOptions;
   };
-}
-
-// To replace with .findIndex() once we stop IE11 support.
-function findIndex(array, comp) {
-  for (let i = 0; i < array.length; i += 1) {
-    if (comp(array[i])) {
-      return i;
-    }
-  }
-
-  return -1;
 }
 
 const defaultFilterOptions = createFilterOptions();
@@ -498,7 +484,7 @@ export function useAutocomplete(props) {
       const previousHighlightedOption = previousProps.filteredOptions[highlightedIndexRef.current];
 
       if (previousHighlightedOption) {
-        return findIndex(filteredOptions, (option) => {
+        return filteredOptions.findIndex((option) => {
           return getOptionLabel(option) === getOptionLabel(previousHighlightedOption);
         });
       }
@@ -539,12 +525,12 @@ export function useAutocomplete(props) {
       if (
         multiple &&
         currentOption &&
-        findIndex(value, (val) => isOptionEqualToValue(currentOption, val)) !== -1
+        value.findIndex((val) => isOptionEqualToValue(currentOption, val)) !== -1
       ) {
         return;
       }
 
-      const itemIndex = findIndex(filteredOptions, (optionItem) =>
+      const itemIndex = filteredOptions.findIndex((optionItem) =>
         isOptionEqualToValue(optionItem, valueItem),
       );
       if (itemIndex === -1) {
@@ -685,7 +671,7 @@ export function useAutocomplete(props) {
         }
       }
 
-      const itemIndex = findIndex(newValue, (valueItem) => isOptionEqualToValue(option, valueItem));
+      const itemIndex = newValue.findIndex((valueItem) => isOptionEqualToValue(option, valueItem));
 
       if (itemIndex === -1) {
         newValue.push(option);
