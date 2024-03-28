@@ -67,4 +67,18 @@ describe('Pigment CSS - styled', () => {
     expect(output.js).to.equal(fixture.js);
     expect(output.css).to.equal(fixture.css);
   });
+
+  it('should work with variants', async () => {
+    const { output, fixture } = await runTransformation(
+      path.join(__dirname, 'fixtures/styled-variants.input.js'),
+      {
+        themeArgs: {
+          theme,
+        },
+      },
+    );
+
+    expect(output.js).to.equal(fixture.js);
+    expect(output.css).to.equal(fixture.css);
+  });
 });

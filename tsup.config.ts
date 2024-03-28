@@ -30,4 +30,7 @@ export default defineConfig({
   env: {
     PACKAGE_NAME: pkgJson.name,
   },
+  loader: {
+    '.js': 'jsx',
+  },
 });
