@@ -666,10 +666,10 @@ importers:
         version: 7.0.0(@emotion/react@11.11.4)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-date-pickers':
         specifier: 6.19.8
-        version: 6.19.8(@emotion/react@11.11.4)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.55)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0)
+        version: 6.19.8(@emotion/react@11.11.4)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.55)(date-fns-jalali@2.21.3-1)(date-fns@3.6.0)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-date-pickers-pro':
         specifier: 6.19.8
-        version: 6.19.8(@emotion/react@11.11.4)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.55)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0)
+        version: 6.19.8(@emotion/react@11.11.4)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.55)(date-fns-jalali@2.21.3-1)(date-fns@3.6.0)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-license-pro':
         specifier: 6.10.2
         version: 6.10.2(@types/react@18.2.55)(react@18.2.0)
@@ -719,8 +719,8 @@ importers:
         specifier: ^0.1.2
         version: 0.1.2
       date-fns:
-        specifier: ^2.30.0
-        version: 2.30.0
+        specifier: ^3.6.0
+        version: 3.6.0
       date-fns-jalali:
         specifier: ^2.21.3-1
         version: 2.21.3-1
@@ -5733,7 +5733,7 @@ packages:
       - '@types/react'
     dev: false
 
-  /@mui/x-date-pickers-pro@6.19.8(@emotion/react@11.11.4)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.55)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0):
+  /@mui/x-date-pickers-pro@6.19.8(@emotion/react@11.11.4)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.55)(date-fns-jalali@2.21.3-1)(date-fns@3.6.0)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-0E4He1uxcJLYovKG0BByvQq2lTqL0MkpPoIdZwKA7PSP4iexSEn46zGsufgbGrcHEi7ievSUxXbjazpcDQPTiQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -5777,10 +5777,10 @@ packages:
       '@mui/material': link:packages/mui-material/build
       '@mui/system': link:packages/mui-system/build
       '@mui/utils': 5.15.14(@types/react@18.2.55)(react@18.2.0)
-      '@mui/x-date-pickers': 6.19.8(@emotion/react@11.11.4)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.55)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0)
+      '@mui/x-date-pickers': 6.19.8(@emotion/react@11.11.4)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.55)(date-fns-jalali@2.21.3-1)(date-fns@3.6.0)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-license-pro': 6.10.2(@types/react@18.2.55)(react@18.2.0)
       clsx: 2.1.0
-      date-fns: 2.30.0
+      date-fns: 3.6.0
       date-fns-jalali: 2.21.3-1
       prop-types: 15.8.1
       react: 18.2.0
@@ -5790,7 +5790,7 @@ packages:
       - '@types/react'
     dev: false
 
-  /@mui/x-date-pickers@6.19.8(@emotion/react@11.11.4)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.55)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0):
+  /@mui/x-date-pickers@6.19.8(@emotion/react@11.11.4)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.55)(date-fns-jalali@2.21.3-1)(date-fns@3.6.0)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-6wgc2DoRTR9/mKesku4CVCKr9yYkY3FI2Oy/wshLTs2rFkw2Z10uxXFHBR9ugEtNPNCQv0qqwldElenYI97wsA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -5836,7 +5836,7 @@ packages:
       '@mui/utils': 5.15.14(@types/react@18.2.55)(react@18.2.0)
       '@types/react-transition-group': 4.4.10
       clsx: 2.1.0
-      date-fns: 2.30.0
+      date-fns: 3.6.0
       date-fns-jalali: 2.21.3-1
       prop-types: 15.8.1
       react: 18.2.0
@@ -11049,6 +11049,11 @@ packages:
     engines: {node: '>=0.11'}
     dependencies:
       '@babel/runtime': 7.24.1
+    dev: true
+
+  /date-fns@3.6.0:
+    resolution: {integrity: sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==}
+    dev: false
 
   /date-format@4.0.13:
     resolution: {integrity: sha512-bnYCwf8Emc3pTD8pXnre+wfnjGtfi5ncMDKy7+cWZXbmRAsdWkOQHrfC1yz/KiwP5thDp2kCHWYWKBX4HP1hoQ==}
