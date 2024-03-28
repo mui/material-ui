@@ -1,6 +1,6 @@
-# Demo Next.js app for Zero Runtime
+# Pigment CSS with Next.js - Demo app
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/HEAD/packages/create-next-app).
+This is a Pigment CSS and [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/HEAD/packages/create-next-app).
 
 ## Getting started
 
@@ -16,21 +16,21 @@ Then start the Next.js development server:
 pnpm run --filter=@app/next-app dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to see the app running live.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-If you see and error like package `@pigment-css/react` not found, add it as a peer-dependency in `@mui/material`'s `package.json` file and run `pnpm build` and `pnpm install` again. Make sure to not push this change to git.
+If you see and error like "package `@pigment-css/react` not found", add it as a peer-dependency in `@mui/material`'s `package.json` file and run `pnpm build` and `pnpm install` again. Make sure to not push this change to git.
 
 ### Note
 
-If you are testing changes in pigmentcss packages itself while also running this demo app, start the watch command in a separate terminal to watch and build pigmentcss package files as they change -
+If you are testing changes in Pigment CSS-related packages while also running this demo app, start the watch command in a separate terminal to watch and build Pigment CSS package files as they change, like so:
 
 ```bash
 pnpm watch:zero
 ```
 
-You might have to restart the next.js server.
+You might have to restart the Next.js server.
 
 ## Build
 
