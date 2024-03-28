@@ -137,6 +137,9 @@
     "./exports/sx-plugin": {
       "default": "./exports/sx-plugin.js"
     },
+    "./exports/remove-prop-types-plugin": {
+      "default": "./exports/remove-prop-types-plugin.js"
+    },
     "./exports/sx": {
       "default": "./exports/sx.js"
     },

@@ -29,7 +29,7 @@ function defaultShouldForwardProp(propKey) {
 
 /**
  * This is the runtime `styled` function that finally renders the component
- * after transpilation through linaria. It makes sure to add the base classes,
+ * after transpilation through WyW-in-JS. It makes sure to add the base classes,
  * variant classes if they satisfy the prop value and also adds dynamic css
  * variables at runtime, if any.
  * @param {string | Function} tag
@@ -45,12 +45,12 @@ export default function styled(tag, componentMeta = {}) {
    * @TODO - Filter props and only pass necessary props to children
    *
    * This is the runtime `styled` function that finally renders the component
-   * after transpilation through linaria. It makes sure to add the base classes,
+   * after transpilation through WyW-in-JS. It makes sure to add the base classes,
    * variant classes if they satisfy the prop value and also adds dynamic css
    * variables at runtime, if any.
    * @param {string | Function} tag
    * @param {Object} options
-   * @param {string} options.displayName Set by linaria. Mostly is same as the variable name. For this code, ```const Comp = styled(...)(...)```, `displayName` will be `Comp`.
+   * @param {string} options.displayName Set by WyW-in-JS. Mostly is same as the variable name. For this code, ```const Comp = styled(...)(...)```, `displayName` will be `Comp`.
    * @param {string[]} options.classes List of class names that reference the inline css object styles.
    * @param {Object} options.vars Dynamically generated css variables inlined directly on the element for runtime styling.
    * @param {Object[]} options.variants

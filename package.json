@@ -74,7 +74,7 @@
     "test:regressions:run": "mocha --config test/regressions/.mocharc.js --delay 'test/regressions/**/*.test.js'",
     "test:regressions:server": "serve test/regressions -p 5001",
     "test:umd": "node packages/mui-material/test/umd/run.js",
-    "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
+    "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' --exclude 'packages/pigment-css-react/**/*.test.{js,ts,tsx}' && pnpm test:pigment-css-react:ci",
     "test:argos": "node ./scripts/pushArgos.mjs",
     "typescript": "lerna run --no-bail --parallel typescript",
     "typescript:ci": "lerna run --concurrency 3 --no-bail --no-sort typescript",
@@ -115,7 +115,7 @@
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
     "@pigment-css/react": "workspace:^",
-    "@next/eslint-plugin-next": "^14.1.3",
+    "@next/eslint-plugin-next": "^14.1.4",
     "@octokit/rest": "^20.0.2",
     "@playwright/test": "1.42.1",
     "@types/enzyme": "^3.10.18",
@@ -193,7 +193,7 @@
     "webpack-cli": "^5.1.4",
     "yargs": "^17.7.2"
   },
-  "packageManager": "pnpm@8.15.4",
+  "packageManager": "pnpm@8.15.5",
   "resolutions": {
     "@babel/core": "^7.23.9",
     "@babel/code-frame": "^7.23.5",

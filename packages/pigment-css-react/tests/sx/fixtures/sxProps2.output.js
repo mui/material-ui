@@ -5,6 +5,21 @@ const SliderRail = /*#__PURE__*/ _styled('span', {
 })({
   classes: ['sdbmcs3', 'sdbmcs3-1'],
 });
-function App2(props) {
+function App(props) {
   return <SliderRail sx={'si7ulc4'} />;
+}
+function App2() {
+  return <SliderRail sx={'sliig2s'} component="li" {...props} />;
+}
+function App3(props) {
+  return (
+    <SliderRail
+      sx={{
+        className: 'so956n',
+        vars: {
+          'so956n-0': [props.isRed ? 'h1-fontSize' : 'h2-fontSize', false],
+        },
+      }}
+    />
+  );
 }

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import MaterialUILayout from '../../Layout';
 import BackgroundLetterAvatars from '../../../../../docs/data/material/components/avatars/BackgroundLetterAvatars.tsx';
 import BadgeAvatars from '../../../../../docs/data/material/components/avatars/BadgeAvatars.tsx';

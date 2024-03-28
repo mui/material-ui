@@ -35,7 +35,7 @@
     "@babel/traverse": "^7.23.9",
     "jscodeshift": "^0.13.1",
     "jscodeshift-add-imports": "^1.0.10",
-    "postcss": "^8.4.35",
+    "postcss": "^8.4.38",
     "postcss-cli": "^8.3.1",
     "yargs": "^17.7.2"
   },

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
 import FormGroup from '@mui/material/FormGroup';
 import Radio from '@mui/material/Radio';
-import RadioGroup, { useRadioGroup } from '@mui/material/RadioGroup';
+import RadioGroup, { useRadioGroup, radioGroupClasses as classes } from '@mui/material/RadioGroup';
 import describeConformance from '../../test/describeConformance';
 
 describe('<RadioGroup />', () => {
@@ -412,5 +412,19 @@ describe('<RadioGroup />', () => {
         'MUI: A component is changing the uncontrolled value state of RadioGroup to be controlled.',
       );
     });
+  });
+
+  it('should apply the classnames', () => {
+    render(
+      <RadioGroup name="group" row>
+        <Radio value={1} />
+        <Radio value={2} />
+      </RadioGroup>,
+    );
+
+    const radiogroup = screen.getByRole('radiogroup');
+    expect(radiogroup).to.have.class(classes.root);
+    expect(radiogroup).to.have.class(classes.row);
+    expect(radiogroup).not.to.have.class(classes.error);
   });
 });
