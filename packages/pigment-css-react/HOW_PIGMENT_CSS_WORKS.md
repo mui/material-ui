@@ -1,6 +1,6 @@
 # How Pigment CSS works
 
-As already [stated](README.md), Pigment CSS is a zero-runtime CSS-in-JS library. This means it does not have access to the browser runtime of the end-user to generate and insert the authored CSS at runtime. So it has to do all its processing during the build time to pregenerate the CSS which are then made part of the output bundle. This is the reason it cannot be consumed on its own. You also have to install the specific Pigment CSS plugin and configure your bundler with it (currently, it supports Next.js and Vite with plans for more bundlers in future).
+Pigment CSS is a zero-runtime CSS-in-JS library. This means it does not have access to the browser runtime of the end-user to generate and insert the authored CSS at runtime. Instead, it has to do all its processing during the build time to pre-generate the CSS which is then made part of the output bundle. This is the reason it cannot be consumed on its own. You also have to install the specific Pigment CSS plugin and configure your bundler with it (currently, it supports Next.js and Vite with plans for adding more bundlers in the future).
 
 - [Processor](#processor)
   - [1. Detection and evaluation](#1-detection-and-evaluation)
