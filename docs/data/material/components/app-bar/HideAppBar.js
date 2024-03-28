@@ -20,13 +20,13 @@ function HideOnScroll(props) {
 
   return (
     <Slide appear={false} direction="down" in={!trigger}>
-      {children}
+      {children ?? <div />}
     </Slide>
   );
 }
 
 HideOnScroll.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.element,
   /**
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
