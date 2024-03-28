@@ -39,7 +39,7 @@ export default defineConfig({
     }),
     pigment({
       theme,
-      transformLibraries: ['local-ui-lib'],
+      transformLibraries: ['local-ui-lib', '@mui/material'],
       sourceMap: true,
       displayName: true,
     }),
