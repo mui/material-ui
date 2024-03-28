@@ -16,6 +16,16 @@ function getVariantClasses(componentProps, variants) {
   return variantClasses;
 }
 
+function isHtmlTag(tag) {
+  return (
+    typeof tag === 'string' &&
+    // 96 is one less than the char code
+    // for "a" so this is checking that
+    // it's a lowercase character
+    tag.charCodeAt(0) > 96
+  );
+}
+
 const slotShouldForwardProp = (key) => key !== 'sx' && key !== 'as' && key !== 'ownerState';
 const rootShouldForwardProp = (key) => slotShouldForwardProp(key) && key !== 'classes';
 
@@ -40,13 +50,7 @@ export default function styled(tag, componentMeta = {}) {
 
   let finalShouldForwardProp = shouldForwardProp;
   if (!shouldForwardProp) {
-    if (
-      typeof tag === 'string' &&
-      // 96 is one less than the char code
-      // for "a" so this is checking that
-      // it's a lowercase character
-      tag.charCodeAt(0) > 96
-    ) {
+    if (isHtmlTag(tag)) {
       finalShouldForwardProp = isPropValid;
     } else if (slot === 'Root' || slot === 'root') {
       finalShouldForwardProp = rootShouldForwardProp;
@@ -138,26 +142,11 @@ export default function styled(tag, componentMeta = {}) {
         }
       }
 
-      // eslint-disable-next-line no-underscore-dangle
-      if (!Component.__isStyled || typeof Component === 'string') {
-        return (
-          // eslint-disable-next-line react/jsx-filename-extension
-          <Component
-            {...newProps}
-            ref={ref}
-            className={finalClassName}
-            style={{
-              ...varStyles,
-              ...style,
-            }}
-          />
-        );
-      }
-
       return (
         <Component
           {...newProps}
-          ownerState={ownerState}
+          // eslint-disable-next-line no-underscore-dangle
+          {...(Component.__isStyled && { ownerState })}
           ref={ref}
           className={finalClassName}
           style={{
