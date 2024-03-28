@@ -351,7 +351,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                   variant="subtitle2"
                   sx={{ mb: 2 }}
                 >
-                  Filter by tag
+                  Filter posts by tag
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
                   {Object.keys(tagInfo).map((tag) => {
