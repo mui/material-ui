@@ -1,7 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import isPropValid from '@emotion/is-prop-valid';
-import capitalize from '@mui/utils/capitalize';
 
 function getVariantClasses(componentProps, variants) {
   const { ownerState = {} } = componentProps;
@@ -25,6 +24,10 @@ function isHtmlTag(tag) {
     // it's a lowercase character
     tag.charCodeAt(0) > 96
   );
+}
+
+function capitalize(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 const slotShouldForwardProp = (key) => key !== 'sx' && key !== 'as' && key !== 'ownerState';
