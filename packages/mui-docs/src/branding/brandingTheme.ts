@@ -32,7 +32,6 @@ declare module '@mui/material/styles/createPalette' {
   interface Palette {
     primaryDark: PaletteColor;
     gradients: {
-      lightGrayRadio: string;
       stylizedRadio: string;
       linearSubtle: string;
     };
@@ -256,8 +255,6 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       },
       warning,
       gradients: {
-        lightGrayRadio:
-          'radial-gradient(50% 50% at 50% 50%, #F0F7FF 0%, rgba(240, 247, 255, 0.05) 100%)',
         stylizedRadio:
           mode === 'dark'
             ? `radial-gradient(100% 100% at 50% 0, transparent 0, ${alpha(blue[900], 0.3)} 300%)`
