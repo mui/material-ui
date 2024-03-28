@@ -97,9 +97,7 @@ export default function styled(tag, componentMeta = {}) {
         },
         {},
       );
-      // eslint-disable-next-line react/prop-types
       const sxClass = typeof sx === 'string' ? sx : sx?.className;
-      // eslint-disable-next-line react/prop-types
       const sxVars = sx && typeof sx !== 'string' ? sx.vars : undefined;
 
       if (sxVars) {
