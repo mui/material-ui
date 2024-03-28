@@ -854,3 +854,250 @@ function App() {
   )
 }
 ```
+
+## Building a UI library
+
+The key of a UI library is to provide a set of reusable components that can be used and themed across **different projects**.
+
+This guide will show you how to build a statistics component as part of a UI library using Pigment CSS. There are 3 steps to follow:
+
+1. Create the component slots.
+2. Compose slots to create the component.
+3. Style the slot with `ownerState`.
+
+### 1. Create the component slots
+
+Slots let the consumers customize each individual element of the component by targeting its respective name in the [theme's styleOverrides](#themeable-statistics-component).
+
+This statistics component is composed of three slots:
+
+- `root`: the container of the component
+- `value`: the number of the statistics
+- `unit`: the unit or description of the statistics
+
+> 💡 Though you can give these slots any names you prefer, we recommend using `root` for the outermost container element for consistency with the rest of the library.
+
+Use the `styled` API with `name` and `slot` parameters to create the slots, as shown below:
+
+```js
+// /path/to/Stat.js
+import * as React from 'react';
+import { styled } from '@pigment-css/react';
+
+const StatRoot = styled('div', {
+  name: 'PigmentStat', // The component name
+  slot: 'root', // The slot name
+})({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1rem',
+  padding: '0.75rem 1rem',
+  backgroundColor: '#f9f9f9',
+  borderRadius: '8px',
+  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+  letterSpacing: '-0.025em',
+  fontWeight: 600,
+});
+
+const StatValue = styled('div', {
+  name: 'PigmentStat',
+  slot: 'value',
+})({
+  font: '1.2rem "Fira Sans", sans-serif',
+});
+
+const StatUnit = styled('div', {
+  name: 'PigmentStat',
+  slot: 'unit',
+})({
+  font: '0.875rem "Fira Sans", sans-serif',
+  color: '#121212',
+});
+```
+
+### 2. Create the component
+
+Assemble the component using the slots created in the previous step:
+
+```js
+// /path/to/Stat.js
+import * as React from 'react';
+
+// ...slot styled-components
+
+const Stat = React.forwardRef(function Stat(props, ref) {
+  const { value, unit, ...other } = props;
+
+  return (
+    <StatRoot ref={ref} {...other}>
+      <StatValue>{value}</StatValue>
+      <StatUnit>{unit}</StatUnit>
+    </StatRoot>
+  );
+});
+
+export default Stat;
+```
+
+### 3. Style the slot with ownerState
+
+When you need to style the slot-based props or internal state, wrap them in the `ownerState` object and pass it to each slot as a prop.
+The `ownerState` is a special name that will not spread to the DOM via the `styled` API.
+
+Add a `variant` prop to the `Stat` component and use it to style the `root` slot, as shown below:
+
+```diff
+  const Stat = React.forwardRef(function Stat(props, ref) {
++   const { value, unit, variant, ...other } = props;
++
++   const ownerState = { ...props, variant };
+
+    return (
+-      <StatRoot ref={ref} {...other}>
+-        <StatValue>{value}</StatValue>
+-        <StatUnit>{unit}</StatUnit>
+-      </StatRoot>
++      <StatRoot ref={ref} ownerState={ownerState} {...other}>
++        <StatValue ownerState={ownerState}>{value}</StatValue>
++        <StatUnit ownerState={ownerState}>{unit}</StatUnit>
++      </StatRoot>
+    );
+  });
+```
+
+Then you can read `ownerState` in the slot to style it based on the `variant` prop.
+
+```diff
+  const StatRoot = styled('div', {
+    name: 'PigmentStat',
+    slot: 'root',
+  })({
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1rem',
+    padding: '0.75rem 1rem',
+    backgroundColor: '#f9f9f9',
+    borderRadius: '8px',
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+    letterSpacing: '-0.025em',
+    fontWeight: 600,
++   variants: [
++     {
++       props: { variant: 'outlined' },
++       style: {
++         border: `2px solid #e9e9e9`,
++       },
++     },
++   ],
+  });
+```
+
+That's it! You've successfully created a statistics component with Pigment CSS. The next step is to upload your component to a package registry to let other people use it.
+
+### Consumer usage
+
+The developers who want to use your component need to install your package and Pigment packages based on their [framework](#start-with-nextjs).
+
+```bash
+npm install your-package-name @pigment-css/react
+npm install -D @pigment-css/nextjs-plugin
+```
+
+Then, they need to set up Pigment CSS in their project:
+
+```js
+// framework config file, for example next.config.js
+const { withPigment } = require('@pigment-css/nextjs-plugin');
+
+module.exports = withPigment(
+  {
+    // ... Your nextjs config.
+  },
+  { transformLibraries: ['your-package-name'] },
+);
+```
+
+Import the stylesheet in the root layout file:
+
+```js
+// index.tsx
+import '@pigment-css/react/styles.css';
+```
+
+That's it. Now they can use your component in their project:
+
+```jsx
+import Stat from 'your-package-name/Stat';
+
+function App() {
+  return <Stat value={42} unit="km/h" variant="outlined" />;
+}
+```
+
+### Consumer theming
+
+By defining the component's name and slots in [step 2](#2-create-the-component), the consumers can customize the component's styles using the theme's `styleOverrides` key:
+
+```js
+module.exports = withPigment(
+  { ...nextConfig },
+  {
+    theme: {
+      styleOverrides: {
+        PigmentStat: {
+          root: {
+            backgroundColor: 'tomato',
+          },
+          value: {
+            color: 'white',
+          },
+          unit: {
+            color: 'white',
+          },
+        },
+      },
+    },
+  },
+);
+```
+
+When the consumer renders the `Stat` component, the default background of the root slot will be `tomato`.
+
+The consumer can also access the theme values and apply the styles based on the component's prop using the `variants` key:
+
+```js
+module.exports = withPigment(
+  { ...nextConfig },
+  {
+    theme: {
+      // user defined colors
+      colors: {
+        primary: 'tomato',
+        primaryLight: 'lightcoral',
+      },
+      styleOverrides: {
+        PigmentStat: {
+          root: ({ theme }) => ({
+            backgroundColor: 'tomato',
+            variants: [
+              {
+                props: { variant: 'outlined' },
+                style: {
+                  border: `2px solid ${theme.colors.primary}`,
+                  backgroundColor: theme.colors.primaryLight,
+                },
+              },
+            ],
+          }),
+          value: {
+            color: 'white',
+          },
+          unit: {
+            color: 'white',
+          },
+        },
+      },
+    },
+  },
+);
+```
