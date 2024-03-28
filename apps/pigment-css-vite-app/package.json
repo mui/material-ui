@@ -20,7 +20,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-error-boundary": "^4.0.13",
-    "react-router": "^6.22.1",
+    "react-router": "^6.22.3",
     "react-router-dom": "^6.22.1"
   },
   "devDependencies": {
