@@ -55,7 +55,7 @@
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
     "@types/sinon": "^10.0.20",
-    "chai": "^4.4.1",
+    "chai": "^5.1.0",
     "fast-glob": "^3.3.2",
     "lodash": "^4.17.21",
     "next": "^13.4.19",

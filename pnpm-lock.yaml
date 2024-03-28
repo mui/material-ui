@@ -906,8 +906,8 @@ importers:
         specifier: ^4.2.0
         version: 4.2.5
       chai:
-        specifier: ^4.4.1
-        version: 4.4.1
+        specifier: ^5.1.0
+        version: 5.1.0
       cross-fetch:
         specifier: ^4.0.0
         version: 4.0.0
@@ -1000,8 +1000,8 @@ importers:
         specifier: ^9.0.8
         version: 9.0.8
       chai:
-        specifier: ^4.4.1
-        version: 4.4.1
+        specifier: ^5.1.0
+        version: 5.1.0
       fast-glob:
         specifier: ^3.3.2
         version: 3.3.2
@@ -1091,8 +1091,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.4.1
-        version: 4.4.1
+        specifier: ^5.1.0
+        version: 5.1.0
       sinon:
         specifier: ^15.2.0
         version: 15.2.0
@@ -1125,8 +1125,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.4.1
-        version: 4.4.1
+        specifier: ^5.1.0
+        version: 5.1.0
       sinon:
         specifier: ^15.2.0
         version: 15.2.0
@@ -1186,8 +1186,8 @@ importers:
         specifier: ^4.3.12
         version: 4.3.12
       chai:
-        specifier: ^4.4.1
-        version: 4.4.1
+        specifier: ^5.1.0
+        version: 5.1.0
 
   packages/mui-babel-macros:
     dependencies:
@@ -1223,8 +1223,8 @@ importers:
         specifier: ^11.0.4
         version: 11.0.4(@babel/core@7.24.3)
       chai:
-        specifier: ^4.4.1
-        version: 4.4.1
+        specifier: ^5.1.0
+        version: 5.1.0
 
   packages/mui-base:
     dependencies:
@@ -1278,8 +1278,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.4.1
-        version: 4.4.1
+        specifier: ^5.1.0
+        version: 5.1.0
       fast-glob:
         specifier: ^3.3.2
         version: 3.3.2
@@ -1331,8 +1331,8 @@ importers:
         specifier: 0.11.5
         version: 0.11.5
       chai:
-        specifier: ^4.4.1
-        version: 4.4.1
+        specifier: ^5.1.0
+        version: 5.1.0
     publishDirectory: build
 
   packages/mui-core-downloads-tracker:
@@ -1392,8 +1392,8 @@ importers:
         specifier: ^4.3.12
         version: 4.3.12
       chai:
-        specifier: ^4.4.1
-        version: 4.4.1
+        specifier: ^5.1.0
+        version: 5.1.0
       fs-extra:
         specifier: ^11.2.0
         version: 11.2.0
@@ -1448,8 +1448,8 @@ importers:
         specifier: 18.2.55
         version: 18.2.55
       chai:
-        specifier: ^4.4.1
-        version: 4.4.1
+        specifier: ^5.1.0
+        version: 5.1.0
       chalk:
         specifier: ^5.3.0
         version: 5.3.0
@@ -1540,8 +1540,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.4.1
-        version: 4.4.1
+        specifier: ^5.1.0
+        version: 5.1.0
       fast-glob:
         specifier: ^3.3.2
         version: 3.3.2
@@ -1614,8 +1614,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.4.1
-        version: 4.4.1
+        specifier: ^5.1.0
+        version: 5.1.0
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1706,8 +1706,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.4.1
-        version: 4.4.1
+        specifier: ^5.1.0
+        version: 5.1.0
       css-mediaquery:
         specifier: ^0.1.2
         version: 0.1.2
@@ -1812,8 +1812,8 @@ importers:
         specifier: 18.2.55
         version: 18.2.55
       chai:
-        specifier: ^4.4.1
-        version: 4.4.1
+        specifier: ^5.1.0
+        version: 5.1.0
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1853,8 +1853,8 @@ importers:
         specifier: 18.2.55
         version: 18.2.55
       chai:
-        specifier: ^4.4.1
-        version: 4.4.1
+        specifier: ^5.1.0
+        version: 5.1.0
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1891,8 +1891,8 @@ importers:
         specifier: 18.2.55
         version: 18.2.55
       chai:
-        specifier: ^4.4.1
-        version: 4.4.1
+        specifier: ^5.1.0
+        version: 5.1.0
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1974,8 +1974,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.4.1
-        version: 4.4.1
+        specifier: ^5.1.0
+        version: 5.1.0
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2042,8 +2042,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.4.1
-        version: 4.4.1
+        specifier: ^5.1.0
+        version: 5.1.0
       fast-glob:
         specifier: ^3.3.2
         version: 3.3.2
@@ -2117,8 +2117,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.4.1
-        version: 4.4.1
+        specifier: ^5.1.0
+        version: 5.1.0
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2243,8 +2243,8 @@ importers:
         specifier: ^4.2.5
         version: 4.2.5
       chai:
-        specifier: ^4.4.1
-        version: 4.4.1
+        specifier: ^5.1.0
+        version: 5.1.0
       prettier:
         specifier: ^3.2.5
         version: 3.2.5
@@ -2357,11 +2357,11 @@ importers:
         specifier: ^14.2.2
         version: 14.2.2(react-dom@18.2.0)(react@18.2.0)
       chai:
-        specifier: ^4.4.1
-        version: 4.4.1
+        specifier: ^5.1.0
+        version: 5.1.0
       chai-dom:
         specifier: ^1.12.0
-        version: 1.12.0(chai@4.4.1)
+        version: 1.12.0(chai@5.1.0)
       dom-accessibility-api:
         specifier: ^0.6.3
         version: 0.6.3
@@ -2489,8 +2489,8 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       chai:
-        specifier: ^4.4.1
-        version: 4.4.1
+        specifier: ^5.1.0
+        version: 5.1.0
       docs:
         specifier: workspace:^
         version: link:../docs
@@ -9177,8 +9177,9 @@ packages:
     resolution: {integrity: sha512-BSHWgDSAiKs50o2Re8ppvp3seVHXSRM44cdSsT9FfNEUUZLOGWVCsiWaRPWM1Znn+mqZ1OfVZ3z3DWEzSp7hRA==}
     dev: false
 
-  /assertion-error@1.1.0:
-    resolution: {integrity: sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw==}
+  /assertion-error@2.0.1:
+    resolution: {integrity: sha512-Izi8RQcffqCeNVgFigKli1ssklIbpHnCYc6AknXGYoB6grJqyeby7jv12JUQgmTAnIDnbck1uxksT4dzN3PWBA==}
+    engines: {node: '>=12'}
 
   /assign-symbols@1.0.0:
     resolution: {integrity: sha512-Q+JC7Whu8HhmTdBph/Tq59IoRtoy6KAm5zzPv00WdujX82lbAL8K7WVjne7vdCsAmbF4AYaDOPyO3k0kl8qIrw==}
@@ -9939,26 +9940,24 @@ packages:
   /caniuse-lite@1.0.30001599:
     resolution: {integrity: sha512-LRAQHZ4yT1+f9LemSMeqdMpMxZcc4RMWdj4tiFe3G8tNkWK+E58g+/tzotb5cU6TbcVJLr4fySiAW7XmxQvZQA==}
 
-  /chai-dom@1.12.0(chai@4.4.1):
+  /chai-dom@1.12.0(chai@5.1.0):
     resolution: {integrity: sha512-pLP8h6IBR8z1AdeQ+EMcJ7dXPdsax/1Q7gdGZjsnAmSBl3/gItQUYSCo32br1qOy4SlcBjvqId7ilAf3uJ2K1w==}
     engines: {node: '>= 0.12.0'}
     peerDependencies:
       chai: '>= 3'
     dependencies:
-      chai: 4.4.1
+      chai: 5.1.0
     dev: false
 
-  /chai@4.4.1:
-    resolution: {integrity: sha512-13sOfMv2+DWduEU+/xbun3LScLoqN17nBeTLUsmDfKdoiC1fr0n9PU4guu4AhRcOVFk/sW8LyZWHuhWtQZiF+g==}
-    engines: {node: '>=4'}
+  /chai@5.1.0:
+    resolution: {integrity: sha512-kDZ7MZyM6Q1DhR9jy7dalKohXQ2yrlXkk59CR52aRKxJrobmlBNqnFQxX9xOX8w+4mz8SYlKJa/7D7ddltFXCw==}
+    engines: {node: '>=12'}
     dependencies:
-      assertion-error: 1.1.0
-      check-error: 1.0.3
-      deep-eql: 4.1.3
-      get-func-name: 2.0.2
-      loupe: 2.3.7
-      pathval: 1.1.1
-      type-detect: 4.0.8
+      assertion-error: 2.0.1
+      check-error: 2.0.0
+      deep-eql: 5.0.1
+      loupe: 3.1.0
+      pathval: 2.0.0
 
   /chainsaw@0.1.0:
     resolution: {integrity: sha512-75kWfWt6MEKNC8xYXIdRpDehRYY/tNSgwKaJq+dbbDcxORuVrrQ+SEHoWsniVn9XPYfP4gmdWIeDk/4YNp1rNQ==}
@@ -10026,10 +10025,9 @@ packages:
     resolution: {integrity: sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==}
     dev: true
 
-  /check-error@1.0.3:
-    resolution: {integrity: sha512-iKEoDYaRmd1mxM90a2OEfWhjsjPpYPuQ+lMYsoxB126+t8fw7ySEO48nmDg5COTjxDI65/Y2OWpeEHk3ZOe8zg==}
-    dependencies:
-      get-func-name: 2.0.2
+  /check-error@2.0.0:
+    resolution: {integrity: sha512-tjLAOBHKVxtPoHe/SA7kNOMvhCRdCJ3vETdeY0RuAc9popf+hyaSV6ZEg9hr4cpWF7jmo/JSWEnLDrnijS9Tog==}
+    engines: {node: '>= 16'}
 
   /cheerio-select@2.1.0:
     resolution: {integrity: sha512-9v9kG0LvzrlcungtnJtpGNxY+fzECQKhK4EGJX2vByejiMX84MFNQw4UxPJl3bFbTMw+Dfs37XaIkCwTZfLh4g==}
@@ -11139,11 +11137,9 @@ packages:
     resolution: {integrity: sha512-Q6fKUPqnAHAyhiUgFU7BUzLiv0kd8saH9al7tnu5Q/okj6dnupxyTgFIBjVzJATdfIAm9NAsvXNzjaKa+bxVyA==}
     dev: true
 
-  /deep-eql@4.1.3:
-    resolution: {integrity: sha512-WaEtAOpRA1MQ0eohqZjpGD8zdI0Ovsm8mmFhaDN8dvDZzyoUMcYDnf5Y6iu7HTXxf8JDS23qWa4a+hKCDyOPzw==}
+  /deep-eql@5.0.1:
+    resolution: {integrity: sha512-nwQCf6ne2gez3o1MxWifqkciwt0zhl0LO1/UwVu4uMBuPmflWM4oQ70XMqHqnBJA+nhzncaqL9HVL6KkHJ28lw==}
     engines: {node: '>=6'}
-    dependencies:
-      type-detect: 4.0.8
 
   /deep-equal@2.2.3:
     resolution: {integrity: sha512-ZIwpnevOurS8bpT4192sqAowWM76JDKSHYzMLty3BZGSswgq6pBaH3DhCSW5xVAZICZyKdOBPjwww5wfgT/6PA==}
@@ -15681,8 +15677,8 @@ packages:
     dependencies:
       js-tokens: 4.0.0
 
-  /loupe@2.3.7:
-    resolution: {integrity: sha512-zSMINGVYkdpYSOBmLi0D1Uo7JU9nVdQKrHxC8eYlV+9YKK9WePqAlL7lSlorG/U2Fw1w0hTBmaa/jrQ3UbPHtA==}
+  /loupe@3.1.0:
+    resolution: {integrity: sha512-qKl+FrLXUhFuHUoDJG7f8P8gEMHq9NFS0c6ghXG1J0rldmZFQZoNVv/vyirE9qwCIhWZDsvEFd1sbFu3GvRQFg==}
     dependencies:
       get-func-name: 2.0.2
 
@@ -17850,8 +17846,9 @@ packages:
     resolution: {integrity: sha512-whLdWMYL2TwI08hn8/ZqAbrVemu0LNaNNJZX73O6qaIdCTfXutsLhMkjdENX0qhsQ9uIimo4/aQOmXkoon2nDQ==}
     dev: true
 
-  /pathval@1.1.1:
-    resolution: {integrity: sha512-Dp6zGqpTdETdR63lehJYPeIOqpiNBNtc7BpWSLrOje7UaIsE5aY92r/AunQA7rsXvet3lrJ3JnZX29UPTKXyKQ==}
+  /pathval@2.0.0:
+    resolution: {integrity: sha512-vE7JKRyES09KiunauX7nd2Q9/L7lhok4smP9RZTDeD4MVs72Dp2qNFVz39Nz5a0FVEW0BJR6C0DYrq6unoziZA==}
+    engines: {node: '>= 14.16'}
 
   /pause-stream@0.0.11:
     resolution: {integrity: sha512-e3FBlXLmN/D1S+zHzanP4E/4Z60oFAa3O051qt1pxa7DEJWKAyil6upYVXCWadEnuoqa4Pkc9oUx9zsxYeRv8A==}

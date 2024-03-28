@@ -131,7 +131,7 @@
     "@types/react-transition-group": "^4.4.10",
     "@types/react-window": "^1.8.8",
     "@types/stylis": "^4.2.0",
-    "chai": "^4.4.1",
+    "chai": "^5.1.0",
     "cross-fetch": "^4.0.0",
     "gm": "^1.25.0",
     "marked": "^5.1.2",

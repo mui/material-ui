@@ -46,7 +46,7 @@
     "@types/prettier": "^2.7.3",
     "@types/react": "^18.2.55",
     "@types/uuid": "^9.0.8",
-    "chai": "^4.4.1",
+    "chai": "^5.1.0",
     "fast-glob": "^3.3.2",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5"
