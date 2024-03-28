@@ -30,7 +30,7 @@
   "devDependencies": {
     "@mui/internal-babel-macros": "workspace:*",
     "@types/babel-plugin-macros": "^3.1.3",
-    "@types/chai": "^4.3.12",
+    "@types/chai": "^4.3.14",
     "@types/mocha": "^10.0.6",
     "@types/node": "^18.19.25",
     "babel-plugin-tester": "^11.0.4",
