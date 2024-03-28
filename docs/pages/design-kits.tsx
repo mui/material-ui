@@ -5,9 +5,8 @@ import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import DesignKitHero from 'docs/src/components/productDesignKit/DesignKitHero';
 import DesignKitValues from 'docs/src/components/productDesignKit/DesignKitValues';
-import DesignKitDemo from 'docs/src/components/productDesignKit/DesignKitDemo';
+import MaterialDesignKits from 'docs/src/components/productMaterial/MaterialDesignKits';
 import DesignKitFAQ from 'docs/src/components/productDesignKit/DesignKitFAQ';
-import Testimonials from 'docs/src/components/home/Testimonials';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import References, { DESIGNKITS_CUSTOMERS } from 'docs/src/components/home/References';
@@ -29,11 +28,9 @@ export default function DesignKits() {
         <Divider />
         <DesignKitValues />
         <Divider />
-        <DesignKitDemo />
+        <MaterialDesignKits gradient />
         <Divider />
         <DesignKitFAQ />
-        <Divider />
-        <Testimonials />
         <Divider />
         <HeroEnd />
       </main>

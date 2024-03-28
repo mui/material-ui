@@ -85,6 +85,9 @@ export default function AppFooter(props: AppFooterProps) {
             <Link prefetch={false} href={ROUTES.productToolpad}>
               Toolpad
             </Link>
+            <Link prefetch={false} href={ROUTES.productConnect}>
+              MUI Connect
+            </Link>
             <Link prefetch={false} href={ROUTES.productTemplates}>
               Templates
             </Link>
