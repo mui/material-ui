@@ -541,9 +541,11 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
       MuiMenuItem: {
         styleOverrides: {
           root: ({ theme }) => ({
-            borderRadius: '99px',
+            borderRadius: 10,
             color: gray[500],
             fontWeight: 500,
+            paddingRight: 8,
+            paddingLeft: 8,
             ...(theme.palette.mode === 'dark' && {
               color: gray[300],
             }),
