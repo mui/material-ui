@@ -22,6 +22,11 @@ export interface TabPanelProps extends StandardProps<React.HTMLAttributes<HTMLDi
    * no `value` was passed to `Tab`.
    */
   value: string;
+  /**
+   * Always keep the children in the DOM.
+   * @default false
+   */
+  keepMounted?: boolean;
 }
 
 /**
