@@ -1,17 +1,20 @@
 import { alpha } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
 
+import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
+import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
+
 export const brand = {
   50: '#F0F7FF',
-  100: '#CEE5FD',
-  200: '#9CCCFC',
-  300: '#55A6F6',
-  400: '#0A66C2',
-  500: '#0959AA',
-  600: '#064079',
-  700: '#033363',
-  800: '#02294F',
-  900: '#021F3B',
+  100: '#CCE5FF',
+  200: '#99CCFF',
+  300: '#4CA6FF',
+  400: '#027AF2',
+  500: '#026BD4',
+  600: '#025AB1',
+  700: '#004080',
+  800: '#002951',
+  900: '#001F3D',
 };
 
 export const secondary = {
@@ -275,18 +278,19 @@ export default function getCheckoutTheme(mode) {
             }),
             ...(ownerState.variant === 'contained' &&
               ownerState.color === 'primary' && {
-                color: brand[50],
-                backgroundColor: brand[500],
-                backgroundImage: `linear-gradient(to bottom, ${brand[400]}, ${brand[500]})`,
-                boxShadow: `inset 0 1px ${alpha(
-                  brand[300],
-                  0.5,
-                )}, inset 0 -2px ${alpha(brand[700], 0.5)}`,
-                border: `1px solid ${brand[500]}`,
+                color: 'white',
+                textShadow: '0 0 2px rgba(0, 0, 0, 0.8)',
+                background: brand[500],
+                backgroundImage: `linear-gradient(to bottom, ${brand[300]}, ${brand[400]})`,
+                boxShadow: `inset 0 1px ${alpha(brand[200], 0.5)}, inset 0 -1px ${alpha(brand[500], 0.5)}`,
+                border: `1px solid ${brand[400]}`,
                 '&:hover': {
-                  backgroundColor: brand[400],
+                  background: brand[400],
                   backgroundImage: 'none',
                   boxShadow: `0 0 0 1px  ${alpha(brand[300], 0.5)}`,
+                },
+                '&:active': {
+                  background: brand[600],
                 },
               }),
             ...(ownerState.variant === 'outlined' && {
@@ -298,8 +302,18 @@ export default function getCheckoutTheme(mode) {
                 borderColor: brand[200],
               },
             }),
+            ...(ownerState.variant === 'outlined' &&
+              ownerState.color === 'secondary' && {
+                backgroundColor: alpha(gray[300], 0.1),
+                borderColor: alpha(gray[300], 0.5),
+                color: gray[700],
+                '&:hover': {
+                  backgroundColor: alpha(gray[300], 0.3),
+                  borderColor: gray[200],
+                },
+              }),
             ...(ownerState.variant === 'text' && {
-              color: brand[500],
+              color: brand[600],
               '&:hover': {
                 backgroundColor: alpha(brand[300], 0.3),
                 borderColor: brand[200],
@@ -309,12 +323,15 @@ export default function getCheckoutTheme(mode) {
               ...(ownerState.variant === 'contained' &&
                 ownerState.color === 'primary' && {
                   border: `1px solid ${brand[600]}`,
-                  backgroundImage: 'none',
-                  backgroundColor: brand[500],
+                  backgroundImage: `linear-gradient(to bottom, ${brand[400]}, ${brand[600]})`,
+                  boxShadow: `inset 0 1px ${alpha(brand[300], 0.5)}, inset 0 -1px ${alpha(brand[700], 0.5)}`,
                   '&:hover': {
                     background: brand[600],
                     backgroundImage: 'none',
                     boxShadow: `0 0 0 1px  ${alpha(brand[700], 0.5)}`,
+                  },
+                  '&:active': {
+                    background: brand[700],
                   },
                 }),
               ...(ownerState.variant === 'outlined' && {
@@ -326,13 +343,49 @@ export default function getCheckoutTheme(mode) {
                   borderColor: brand[700],
                 },
               }),
+              ...(ownerState.variant === 'outlined' &&
+                ownerState.color === 'secondary' && {
+                  backgroundColor: alpha(gray[600], 0.1),
+                  borderColor: alpha(gray[700], 0.5),
+                  color: gray[300],
+                  '&:hover': {
+                    backgroundColor: alpha(gray[600], 0.3),
+                    borderColor: gray[700],
+                  },
+                }),
               ...(ownerState.variant === 'text' && {
-                color: brand[300],
+                color: brand[200],
                 '&:hover': {
                   backgroundColor: alpha(brand[600], 0.3),
                   borderColor: brand[700],
                 },
               }),
+            }),
+          }),
+        },
+      },
+      MuiIconButton: {
+        styleOverrides: {
+          root: ({ theme, ownerState }) => ({
+            ...(ownerState.size === 'small' && {
+              height: '32px',
+              width: '32px',
+            }),
+            ...(ownerState.size === 'medium' && {
+              height: '40px',
+              width: '40px',
+            }),
+            color: brand[600],
+            '&:hover': {
+              backgroundColor: alpha(brand[300], 0.3),
+              borderColor: brand[200],
+            },
+            ...(theme.palette.mode === 'dark' && {
+              color: brand[200],
+              '&:hover': {
+                backgroundColor: alpha(brand[600], 0.3),
+                borderColor: brand[700],
+              },
             }),
           }),
         },
@@ -344,28 +397,20 @@ export default function getCheckoutTheme(mode) {
             borderRadius: 10,
             outline: `1px solid ${alpha(gray[200], 0.8)}`,
             boxShadow: 'none',
-            transition: 'background-color, border, 80ms ease',
             ...(ownerState.variant === 'outlined' && {
+              border: 0,
               boxSizing: 'border-box',
               background: `linear-gradient(to bottom, #FFF, ${gray[50]})`,
-              '&:hover': {
-                borderColor: brand[300],
-                boxShadow: `0 0 24px ${brand[100]}`,
-              },
             }),
             ...(theme.palette.mode === 'dark' && {
               backgroundColor: alpha(gray[800], 0.6),
-              outline: `1px solid ${alpha(gray[700], 0.3)}`,
+              outline: `1px solid ${alpha(gray[700], 0.5)}`,
               ...(ownerState.variant === 'outlined' && {
                 boxSizing: 'border-box',
                 background: `linear-gradient(to bottom, ${gray[900]}, ${alpha(
                   gray[800],
                   0.5,
                 )})`,
-                '&:hover': {
-                  borderColor: brand[700],
-                  boxShadow: `0 0 24px ${brand[800]}`,
-                },
               }),
             }),
           }),
@@ -397,7 +442,15 @@ export default function getCheckoutTheme(mode) {
           notchedOutline: {
             border: 'none',
           },
-          root: ({ theme }) => ({
+          input: {
+            paddingLeft: 10,
+          },
+          root: ({ theme, ownerState }) => ({
+            'input:-webkit-autofill': {
+              WebkitBoxShadow: `0 0 0 1000px ${brand[100]} inset, 0 0 0 1px ${brand[200]}`,
+              maxHeight: '4px',
+              borderRadius: '8px',
+            },
             '& .MuiInputBase-input': {
               '&::placeholder': {
                 opacity: 0.7,
@@ -406,52 +459,61 @@ export default function getCheckoutTheme(mode) {
             },
             boxSizing: 'border-box',
             flexGrow: 1,
-            maxHeight: 40,
-            height: '100%',
+            height: '40px',
             borderRadius: '10px',
             border: '1px solid',
-            borderColor: gray[200],
-            boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.1)',
+            borderColor: alpha(gray[300], 0.8),
+            boxShadow: '0 0 0 1.5px rgba(0, 0, 0, 0.04) inset',
             transition: 'border-color 120ms ease-in',
             backgroundColor: alpha(gray[100], 0.4),
             '&:hover': {
               borderColor: brand[300],
             },
             '&.Mui-focused': {
+              outline: `3px solid ${alpha(brand[500], 0.5)}`,
+              outlineOffset: '2px',
               borderColor: brand[400],
-              outline: '4px solid',
-              outlineColor: brand[200],
             },
+            ...(ownerState.color === 'error' && {
+              borderColor: red[200],
+              color: red[500],
+              '& + .MuiFormHelperText-root': {
+                color: red[500],
+              },
+            }),
             ...(theme.palette.mode === 'dark' && {
+              'input:-webkit-autofill': {
+                WebkitBoxShadow: `0 0 0 1000px ${brand[900]} inset, 0 0 0 1px ${brand[600]}`,
+                maxHeight: '6px',
+                borderRadius: '8px',
+              },
               '& .MuiInputBase-input': {
                 '&::placeholder': {
                   opacity: 1,
                   color: gray[500],
                 },
               },
-              boxSizing: 'border-box',
-              flexGrow: 1,
-              minHeight: 40,
-              height: '100%',
-              borderRadius: '10px',
-              border: '1px solid',
-              borderColor: gray[700],
-              boxShadow: '0px 2px 2px rgb(0, 0, 0)',
-              backgroundColor: alpha(gray[800], 0.4),
+              borderColor: alpha(gray[700], 0.5),
+              boxShadow: '0 0 0 1.5px rgb(0, 0, 0) inset',
+              backgroundColor: alpha(gray[900], 0.8),
               transition: 'border-color 120ms ease-in',
               '&:hover': {
                 borderColor: brand[300],
               },
               '&.Mui-focused': {
                 borderColor: brand[400],
-                outline: '4px solid',
-                outlineColor: alpha(brand[500], 0.5),
+                outline: `3px solid ${alpha(brand[500], 0.5)}`,
+                outlineOffset: '2px',
               },
+              ...(ownerState.color === 'error' && {
+                borderColor: red[700],
+                color: red[300],
+                '& + .MuiFormHelperText-root': {
+                  color: red[300],
+                },
+              }),
             }),
           }),
-          input: {
-            paddingLeft: 10,
-          },
         },
       },
       MuiFormLabel: {
@@ -622,6 +684,64 @@ export default function getCheckoutTheme(mode) {
               '&.Mui-completed': {
                 border: 'none',
                 color: theme.palette.success.light,
+              },
+            }),
+          }),
+        },
+      },
+      MuiCheckbox: {
+        defaultProps: {
+          disableRipple: true,
+          icon: <CheckBoxOutlineBlankRoundedIcon sx={{ color: 'rgba(0,0,0,0)' }} />,
+          checkedIcon: <CheckRoundedIcon sx={{ height: 14, width: 14 }} />,
+        },
+        styleOverrides: {
+          root: ({ theme }) => ({
+            margin: 10,
+            height: 16,
+            width: 16,
+            borderRadius: 5,
+            border: '1px solid ',
+            borderColor: alpha(gray[300], 0.8),
+            boxShadow: '0 0 0 1.5px rgba(0, 0, 0, 0.04) inset',
+            transition: 'border-color 120ms ease-in',
+            backgroundColor: alpha(gray[100], 0.4),
+            '&:hover': {
+              borderColor: brand[300],
+            },
+            '&.Mui-focusVisible': {
+              outline: `3px solid ${alpha(brand[500], 0.5)}`,
+              outlineOffset: '2px',
+              borderColor: brand[400],
+            },
+            '&.Mui-checked': {
+              color: 'white',
+              backgroundColor: brand[500],
+              '&:hover': {
+                borderColor: brand[300],
+                backgroundColor: brand[600],
+              },
+            },
+            ...(theme.palette.mode === 'dark' && {
+              borderColor: alpha(gray[700], 0.5),
+              boxShadow: '0 0 0 1.5px rgb(0, 0, 0) inset',
+              backgroundColor: alpha(gray[900], 0.8),
+              '&:hover': {
+                borderColor: brand[300],
+              },
+              '&.Mui-checked': {
+                color: 'white',
+                backgroundColor: brand[600],
+                boxShadow: '0 0 0 1px rgba(0, 0, 0, 0.2) inset',
+                '&:hover': {
+                  borderColor: brand[300],
+                  backgroundColor: brand[800],
+                },
+              },
+              '&.Mui-focusVisible': {
+                borderColor: brand[400],
+                outline: `3px solid ${alpha(brand[500], 0.5)}`,
+                outlineOffset: '2px',
               },
             }),
           }),
