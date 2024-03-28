@@ -952,6 +952,9 @@ export function getThemedComponents(): ThemeOptions {
                     color: (theme.vars || theme).palette.primary[700],
                   },
                 },
+                '&.Mui-focusVisible': {
+                  backgroundColor: (theme.vars || theme).palette.primary[200],
+                },
                 ...theme.applyDarkStyles({
                   color: (theme.vars || theme).palette.primary[100],
                   backgroundColor: alpha(theme.palette.primary[800], 0.5),
