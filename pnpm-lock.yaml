@@ -882,8 +882,8 @@ importers:
         specifier: ^18.19.25
         version: 18.19.26
       '@types/prop-types':
-        specifier: ^15.7.11
-        version: 15.7.11
+        specifier: ^15.7.12
+        version: 15.7.12
       '@types/react':
         specifier: 18.2.55
         version: 18.2.55
@@ -1266,8 +1266,8 @@ importers:
         specifier: ^4.3.12
         version: 4.3.12
       '@types/prop-types':
-        specifier: ^15.7.11
-        version: 15.7.11
+        specifier: ^15.7.12
+        version: 15.7.12
       '@types/react':
         specifier: 18.2.55
         version: 18.2.55
@@ -1369,8 +1369,8 @@ importers:
         specifier: ^18.19.25
         version: 18.19.26
       '@types/prop-types':
-        specifier: ^15.7.11
-        version: 15.7.11
+        specifier: ^15.7.12
+        version: 15.7.12
       '@types/react':
         specifier: 18.2.55
         version: 18.2.55
@@ -1528,8 +1528,8 @@ importers:
         specifier: ^4.3.12
         version: 4.3.12
       '@types/prop-types':
-        specifier: ^15.7.11
-        version: 15.7.11
+        specifier: ^15.7.12
+        version: 15.7.12
       '@types/react':
         specifier: 18.2.55
         version: 18.2.55
@@ -1602,8 +1602,8 @@ importers:
         specifier: ^4.3.12
         version: 4.3.12
       '@types/prop-types':
-        specifier: ^15.7.11
-        version: 15.7.11
+        specifier: ^15.7.12
+        version: 15.7.12
       '@types/react':
         specifier: 18.2.55
         version: 18.2.55
@@ -1694,8 +1694,8 @@ importers:
         specifier: ^4.3.12
         version: 4.3.12
       '@types/prop-types':
-        specifier: ^15.7.11
-        version: 15.7.11
+        specifier: ^15.7.12
+        version: 15.7.12
       '@types/react':
         specifier: 18.2.55
         version: 18.2.55
@@ -2033,8 +2033,8 @@ importers:
         specifier: ^4.3.12
         version: 4.3.12
       '@types/prop-types':
-        specifier: ^15.7.11
-        version: 15.7.11
+        specifier: ^15.7.12
+        version: 15.7.12
       '@types/react':
         specifier: 18.2.55
         version: 18.2.55
@@ -2077,8 +2077,8 @@ importers:
         specifier: ^7.23.9
         version: 7.24.1
       '@types/prop-types':
-        specifier: ^15.7.11
-        version: 15.7.11
+        specifier: ^15.7.12
+        version: 15.7.12
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
@@ -2412,8 +2412,8 @@ importers:
         specifier: ^1.0.4
         version: 1.0.4
       '@types/prop-types':
-        specifier: ^15.7.11
-        version: 15.7.11
+        specifier: ^15.7.12
+        version: 15.7.12
       '@types/react':
         specifier: 18.2.55
         version: 18.2.55
@@ -5582,7 +5582,7 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.24.1
-      '@types/prop-types': 15.7.11
+      '@types/prop-types': 15.7.12
       '@types/react': 18.2.55
       prop-types: 15.8.1
       react: 18.2.0
@@ -8082,8 +8082,8 @@ packages:
     resolution: {integrity: sha512-b/IFHHTkYkTqu41IH9UtpICwqrpKj2oNlb4KHPzFQDMiz+h1BgAeATeO0/XTph4+UkH9W2U0E4B4j64KWOovag==}
     dev: false
 
-  /@types/prop-types@15.7.11:
-    resolution: {integrity: sha512-ga8y9v9uyeiLdpKddhxYQkxNDrfvuPrlFb0N1qnZZByvcElJaXthF1UhvCh9TLWJBEHeNtdnbysW7Y6Uq8CVng==}
+  /@types/prop-types@15.7.12:
+    resolution: {integrity: sha512-5zvhXYtRNRluoE/jAp4GVsSduVUzNWKkOZrCDBWYtE7biZywwdC2AcEzg+cSMLFRfVgeAFqpfNabiPjxFddV1Q==}
 
   /@types/qs@6.9.7:
     resolution: {integrity: sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==}
@@ -8150,7 +8150,7 @@ packages:
   /@types/react@18.2.55:
     resolution: {integrity: sha512-Y2Tz5P4yz23brwm2d7jNon39qoAtMMmalOQv6+fEFt1mT+FcM3D841wDpoUvFXhaYenuROCy3FZYqdTjM7qVyA==}
     dependencies:
-      '@types/prop-types': 15.7.11
+      '@types/prop-types': 15.7.12
       '@types/scheduler': 0.16.8
       csstype: 3.1.3
 
