@@ -23,8 +23,8 @@
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-babel-macros/**/*.test.{js,ts,tsx}'"
   },
   "dependencies": {
-    "@babel/helper-module-imports": "^7.22.15",
-    "@babel/runtime": "^7.23.9",
+    "@babel/helper-module-imports": "^7.24.3",
+    "@babel/runtime": "^7.24.1",
     "babel-plugin-macros": "^3.1.0"
   },
   "devDependencies": {

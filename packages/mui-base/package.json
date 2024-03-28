@@ -41,7 +41,7 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.9",
+    "@babel/runtime": "^7.24.1",
     "@floating-ui/react-dom": "^2.0.8",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:^",

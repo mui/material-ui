@@ -28,8 +28,8 @@
     "typecheck": "tsc --noEmit -p ."
   },
   "dependencies": {
-    "@babel/core": "^7.23.9",
-    "@babel/preset-typescript": "^7.23.3",
+    "@babel/core": "^7.24.3",
+    "@babel/preset-typescript": "^7.24.1",
     "@pigment-css/react": "workspace:^",
     "@wyw-in-js/shared": "^0.5.0",
     "@wyw-in-js/transform": "^0.5.0",

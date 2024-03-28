@@ -38,7 +38,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.9",
+    "@babel/runtime": "^7.24.1",
     "@emotion/hash": "^0.9.1",
     "@mui/private-theming": "workspace:^",
     "@mui/types": "workspace:^",

@@ -35,7 +35,7 @@
     "test": "exit 0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.9",
+    "@babel/runtime": "^7.24.1",
     "clsx": "^2.1.0",
     "nprogress": "^0.2.0",
     "prop-types": "^15.8.1"

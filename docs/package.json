@@ -19,10 +19,10 @@
     "link-check": "node ./scripts/reportBrokenLinks.js"
   },
   "dependencies": {
-    "@babel/core": "^7.23.9",
-    "@babel/plugin-transform-object-assign": "^7.23.3",
-    "@babel/runtime": "^7.23.9",
-    "@babel/runtime-corejs2": "^7.23.9",
+    "@babel/core": "^7.24.3",
+    "@babel/plugin-transform-object-assign": "^7.24.1",
+    "@babel/runtime": "^7.24.1",
+    "@babel/runtime-corejs2": "^7.24.1",
     "@docsearch/react": "^3.6.0",
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.4",
@@ -113,8 +113,8 @@
     "webpack-bundle-analyzer": "^4.10.1"
   },
   "devDependencies": {
-    "@babel/plugin-transform-react-constant-elements": "^7.23.3",
-    "@babel/preset-typescript": "^7.23.3",
+    "@babel/plugin-transform-react-constant-elements": "^7.24.1",
+    "@babel/preset-typescript": "^7.24.1",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-scripts": "workspace:^",
     "@mui-internal/test-utils": "workspace:^",

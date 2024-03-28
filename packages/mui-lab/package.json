@@ -41,7 +41,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.9",
+    "@babel/runtime": "^7.24.1",
     "@mui/base": "workspace:*",
     "@mui/system": "workspace:^",
     "@mui/types": "workspace:^",

@@ -20,7 +20,7 @@
     "release:publish:dry-run": "pnpm publish --tag latest --registry=\"http://localhost:4873/\""
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.9",
+    "@babel/runtime": "^7.24.1",
     "lodash": "^4.17.21",
     "marked": "^5.1.2",
     "prismjs": "^1.29.0"
