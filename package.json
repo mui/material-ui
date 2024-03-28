@@ -142,7 +142,7 @@
     "cross-env": "^7.0.3",
     "danger": "^11.3.1",
     "enzyme": "^3.11.0",
-    "eslint": "^8.56.0",
+    "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.1.0",
