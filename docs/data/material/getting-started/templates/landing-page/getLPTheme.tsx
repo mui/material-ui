@@ -300,13 +300,9 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
       MuiButton: {
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
-            boxSizing: 'border-box',
             boxShadow: 'none',
             borderRadius: '10px',
             textTransform: 'none',
-            '&:active': {
-              transform: 'scale(0.98)',
-            },
             ...(ownerState.size === 'small' && {
               maxHeight: '32px',
             }),
@@ -315,15 +311,19 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
             }),
             ...(ownerState.variant === 'contained' &&
               ownerState.color === 'primary' && {
-                color: brand[50],
+                color: 'white',
+                textShadow: '0 0 2px rgba(0, 0, 0, 0.8)',
                 background: brand[500],
-                backgroundImage: `linear-gradient(to bottom, ${brand[400]}, ${brand[600]})`,
-                boxShadow: `inset 0 1px ${alpha(brand[300], 0.4)}`,
-                outline: `1px solid ${brand[700]}`,
+                backgroundImage: `linear-gradient(to bottom, ${brand[300]}, ${brand[400]})`,
+                boxShadow: `inset 0 1px ${alpha(brand[200], 0.5)}, inset 0 -1px ${alpha(brand[500], 0.5)}`,
+                border: `1px solid ${brand[400]}`,
                 '&:hover': {
                   background: brand[400],
                   backgroundImage: 'none',
                   boxShadow: `0 0 0 1px  ${alpha(brand[300], 0.5)}`,
+                },
+                '&:active': {
+                  background: brand[600],
                 },
               }),
             ...(ownerState.variant === 'outlined' && {
@@ -335,14 +335,38 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
                 borderColor: brand[200],
               },
             }),
+            ...(ownerState.variant === 'outlined' &&
+              ownerState.color === 'secondary' && {
+                backgroundColor: alpha(gray[300], 0.1),
+                borderColor: alpha(gray[300], 0.5),
+                color: gray[700],
+                '&:hover': {
+                  backgroundColor: alpha(gray[300], 0.3),
+                  borderColor: gray[200],
+                },
+              }),
             ...(ownerState.variant === 'text' && {
-              color: brand[500],
+              color: brand[600],
               '&:hover': {
                 backgroundColor: alpha(brand[300], 0.3),
                 borderColor: brand[200],
               },
             }),
             ...(theme.palette.mode === 'dark' && {
+              ...(ownerState.variant === 'contained' &&
+                ownerState.color === 'primary' && {
+                  border: `1px solid ${brand[600]}`,
+                  backgroundImage: `linear-gradient(to bottom, ${brand[400]}, ${brand[600]})`,
+                  boxShadow: `inset 0 1px ${alpha(brand[300], 0.5)}, inset 0 -1px ${alpha(brand[700], 0.5)}`,
+                  '&:hover': {
+                    background: brand[600],
+                    backgroundImage: 'none',
+                    boxShadow: `0 0 0 1px  ${alpha(brand[700], 0.5)}`,
+                  },
+                  '&:active': {
+                    background: brand[700],
+                  },
+                }),
               ...(ownerState.variant === 'outlined' && {
                 backgroundColor: alpha(brand[600], 0.1),
                 borderColor: brand[700],
@@ -352,13 +376,49 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
                   borderColor: brand[700],
                 },
               }),
+              ...(ownerState.variant === 'outlined' &&
+                ownerState.color === 'secondary' && {
+                  backgroundColor: alpha(gray[600], 0.1),
+                  borderColor: alpha(gray[700], 0.5),
+                  color: gray[300],
+                  '&:hover': {
+                    backgroundColor: alpha(gray[600], 0.3),
+                    borderColor: gray[700],
+                  },
+                }),
               ...(ownerState.variant === 'text' && {
-                color: brand[300],
+                color: brand[200],
                 '&:hover': {
                   backgroundColor: alpha(brand[600], 0.3),
                   borderColor: brand[700],
                 },
               }),
+            }),
+          }),
+        },
+      },
+      MuiIconButton: {
+        styleOverrides: {
+          root: ({ theme, ownerState }) => ({
+            ...(ownerState.size === 'small' && {
+              height: '32px',
+              width: '32px',
+            }),
+            ...(ownerState.size === 'medium' && {
+              height: '40px',
+              width: '40px',
+            }),
+            color: brand[600],
+            '&:hover': {
+              backgroundColor: alpha(brand[300], 0.3),
+              borderColor: brand[200],
+            },
+            ...(theme.palette.mode === 'dark' && {
+              color: brand[200],
+              '&:hover': {
+                backgroundColor: alpha(brand[600], 0.3),
+                borderColor: brand[700],
+              },
             }),
           }),
         },

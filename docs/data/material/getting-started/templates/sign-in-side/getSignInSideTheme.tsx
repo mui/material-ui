@@ -248,15 +248,19 @@ export default function getSignInSideTheme(mode: PaletteMode): ThemeOptions {
             }),
             ...(ownerState.variant === 'contained' &&
               ownerState.color === 'primary' && {
-                color: brand[50],
+                color: 'white',
+                textShadow: '0 0 2px rgba(0, 0, 0, 0.8)',
                 background: brand[500],
-                backgroundImage: `linear-gradient(to bottom, ${brand[400]}, ${brand[600]})`,
-                boxShadow: `inset 0 1px ${alpha(brand[300], 0.5)}`,
-                border: `1px solid ${brand[500]}`,
+                backgroundImage: `linear-gradient(to bottom, ${brand[300]}, ${brand[400]})`,
+                boxShadow: `inset 0 1px ${alpha(brand[200], 0.5)}, inset 0 -1px ${alpha(brand[500], 0.5)}`,
+                border: `1px solid ${brand[400]}`,
                 '&:hover': {
                   background: brand[400],
                   backgroundImage: 'none',
                   boxShadow: `0 0 0 1px  ${alpha(brand[300], 0.5)}`,
+                },
+                '&:active': {
+                  background: brand[600],
                 },
               }),
             ...(ownerState.variant === 'outlined' && {
@@ -289,12 +293,15 @@ export default function getSignInSideTheme(mode: PaletteMode): ThemeOptions {
               ...(ownerState.variant === 'contained' &&
                 ownerState.color === 'primary' && {
                   border: `1px solid ${brand[600]}`,
-                  backgroundImage: `linear-gradient(to bottom, ${brand[500]}, ${brand[600]})`,
-                  backgroundColor: brand[500],
+                  backgroundImage: `linear-gradient(to bottom, ${brand[400]}, ${brand[600]})`,
+                  boxShadow: `inset 0 1px ${alpha(brand[300], 0.5)}, inset 0 -1px ${alpha(brand[700], 0.5)}`,
                   '&:hover': {
                     background: brand[600],
                     backgroundImage: 'none',
                     boxShadow: `0 0 0 1px  ${alpha(brand[700], 0.5)}`,
+                  },
+                  '&:active': {
+                    background: brand[700],
                   },
                 }),
               ...(ownerState.variant === 'outlined' && {
