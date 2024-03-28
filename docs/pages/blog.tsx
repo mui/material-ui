@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
-import { alpha } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import Box from '@mui/material/Box';
@@ -64,19 +63,12 @@ function PostPreview(props: BlogPost) {
           />
         ))}
       </Box>
-      <Typography
-        component="h2"
-        fontWeight="bold"
-        variant="subtitle1"
-        sx={{
-          mb: 0.5,
-        }}
-      >
+      <Typography component="h2" fontWeight="bold" variant="subtitle1" gutterBottom>
         <Link
           aria-describedby={`describe-${props.slug}`}
           href={`/blog/${props.slug}/`}
+          color="text.primary"
           sx={{
-            color: 'text.primary',
             '&:hover': {
               textDecoration: 'underline',
             },
@@ -153,7 +145,7 @@ function PostPreview(props: BlogPost) {
             </Typography>
           )}
           {props.date && (
-            <Typography variant="caption" fontWeight="regular" color="text.secondary">
+            <Typography variant="caption" fontWeight="regular" color="text.tertiary">
               {new Date(props.date).toDateString()}
             </Typography>
           )}
@@ -164,6 +156,7 @@ function PostPreview(props: BlogPost) {
           href={`/blog/${props.slug}`}
           id={`describe-${props.slug}`}
           endIcon={<KeyboardArrowRightRoundedIcon />}
+          size="small"
           sx={{ mt: { xs: 0.5, md: 0 }, p: { xs: 0, sm: '6px 8px' } }}
         >
           Read more
@@ -173,7 +166,7 @@ function PostPreview(props: BlogPost) {
   );
 }
 
-const PAGE_SIZE = 5;
+const PAGE_SIZE = 7;
 
 export default function Blog(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter();
@@ -236,6 +229,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
       { shallow: true },
     );
   };
+
   return (
     <BrandingCssVarsProvider>
       <Head
@@ -257,13 +251,15 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
               </Typography>
             }
           />
+        </Section>
+        <Divider />
+        <Container sx={{ mt: { xs: 2, sm: -6 } }}>
           <Box
             component="ul"
             sx={{
               display: 'grid',
               m: 0,
               p: 0,
-              pt: 8,
               gap: 2,
               gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
             }}
@@ -273,25 +269,18 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                 key={post.slug}
                 component="li"
                 variant="outlined"
-                sx={[
-                  {
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    position: 'relative',
-                    borderColor: 'grey.200',
-                    boxShadow: '0px 4px 12px rgba(170, 180, 190, 0.2)',
-                    '&:focus-within': {
-                      '& a': {
-                        outline: 0,
-                      },
-                    },
-                  },
-                  (theme) =>
-                    theme.applyDarkStyles({
-                      boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.4)',
-                    }),
-                ]}
+                sx={(theme) => ({
+                  p: 2,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  backgroundImage: (theme.vars || theme).palette.gradients.radioSubtle,
+                  boxShadow: '0 4px 12px rgba(170, 180, 190, 0.2)',
+                  ...theme.applyDarkStyles({
+                    background: (theme.vars || theme).palette.primaryDark[900],
+                    backgroundImage: (theme.vars || theme).palette.gradients.radioSubtle,
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)',
+                  }),
+                })}
               >
                 {post.image && (
                   <Box
@@ -310,8 +299,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
               </Paper>
             ))}
           </Box>
-        </Section>
-        <Divider />
+        </Container>
         <Container
           ref={postListRef}
           sx={{
@@ -325,7 +313,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
           <Typography
             component="h2"
             variant="h6"
-            fontWeight="700"
+            fontWeight="semiBold"
             sx={{ mb: { xs: 1, sm: 2 }, mt: 8 }} // margin-top makes the title appear when scroll into view
           >
             Posts{' '}
@@ -342,94 +330,105 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
           </Typography>
           <Box sx={{ gridRow: 'span 2' }}>
             <Box
-              sx={(theme) => ({
+              sx={{
                 position: 'sticky',
-                top: 100,
-                alignSelf: 'start',
-                mb: 2,
-                mt: { xs: 3, sm: 2, md: 9 }, // margin-top makes the title appear when scroll into view
-                p: 2,
-                borderRadius: 1,
-                border: '1px solid',
-                borderColor: (theme.vars || theme).palette.divider,
-                boxShadow: '0px 2px 6px rgba(170, 180, 190, 0.2)',
-                ...theme.applyDarkStyles({
-                  background: alpha(theme.palette.primaryDark[700], 0.2),
-                  boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.2)',
-                }),
-              })}
+                top: 90,
+                mt: { xs: 0, md: 9 },
+                mb: { xs: 2, md: 0 },
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 2,
+                '& .MuiPaper-root': {
+                  p: 2,
+                  bgcolor: 'transparent',
+                  borderColor: 'divider',
+                },
+              }}
             >
-              <Typography color="text.primary" fontWeight="semiBold" sx={{ mb: 2 }}>
-                Filter by tag
-              </Typography>
-              <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                {Object.keys(tagInfo).map((tag) => {
-                  const selected = !!selectedTags[tag];
-                  return (
-                    <Chip
-                      key={tag}
-                      variant={selected ? 'filled' : 'outlined'}
-                      color={selected ? 'primary' : undefined}
-                      {...(selected
-                        ? {
-                            label: tag,
-                            onDelete: () => {
-                              postListRef.current?.scrollIntoView();
-                              removeTag(tag);
-                            },
-                          }
-                        : {
-                            label: tag,
-                            onClick: () => {
-                              postListRef.current?.scrollIntoView();
-                              router.push(
-                                {
-                                  query: {
-                                    ...router.query,
-                                    tags: tag,
+              <Paper variant="outlined">
+                <Typography
+                  color="text.primary"
+                  fontWeight="semiBold"
+                  variant="subtitle2"
+                  sx={{ mb: 2 }}
+                >
+                  Filter posts by tag
+                </Typography>
+                <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+                  {Object.keys(tagInfo).map((tag) => {
+                    const selected = !!selectedTags[tag];
+                    return (
+                      <Chip
+                        key={tag}
+                        variant={selected ? 'filled' : 'outlined'}
+                        color={selected ? 'primary' : undefined}
+                        {...(selected
+                          ? {
+                              label: tag,
+                              onDelete: () => {
+                                postListRef.current?.scrollIntoView();
+                                removeTag(tag);
+                              },
+                            }
+                          : {
+                              label: tag,
+                              onClick: () => {
+                                postListRef.current?.scrollIntoView();
+                                router.push(
+                                  {
+                                    query: {
+                                      ...router.query,
+                                      tags: tag,
+                                    },
                                   },
-                                },
-                                undefined,
-                                { shallow: true },
-                              );
-                            },
-                          })}
-                      size="small"
-                      sx={{
-                        py: 1.2,
-                      }}
-                    />
-                  );
-                })}
-              </Box>
-              <Divider sx={{ my: 2 }} />
-              <Typography color="text.primary" fontWeight="semiBold" gutterBottom>
-                Want to hear more from us?
-              </Typography>
-              <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                Get up to date with everything MUI-related through our social media:
-              </Typography>
-              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, '* > svg': { mr: 1 } }}>
-                <Link href="https://github.com/mui" target="_blank" fontSize={14}>
-                  <GitHubIcon fontSize="small" />
-                  GitHub
-                </Link>
-                <Link href="https://twitter.com/MUI_hq" target="_blank" fontSize={14}>
-                  <XIcon fontSize="small" />X
-                </Link>
-                <Link href="https://mui.com/r/discord/" target="_blank" fontSize={14}>
-                  <DiscordIcon fontSize="small" />
-                  Discord
-                </Link>
-                <Link href="https://www.linkedin.com/company/mui/" target="_blank" fontSize={14}>
-                  <LinkedInIcon fontSize="small" />
-                  LinkedIn
-                </Link>
-                <Link href="https://www.youtube.com/@MUI_hq" target="_blank" fontSize={14}>
-                  <YouTubeIcon fontSize="small" />
-                  Youtube
-                </Link>
-              </Box>
+                                  undefined,
+                                  { shallow: true },
+                                );
+                              },
+                            })}
+                        size="small"
+                        sx={{
+                          py: 1.2,
+                        }}
+                      />
+                    );
+                  })}
+                </Box>
+              </Paper>
+              <Paper variant="outlined">
+                <Typography
+                  color="text.primary"
+                  fontWeight="semiBold"
+                  variant="subtitle2"
+                  gutterBottom
+                >
+                  Want to hear more from us?
+                </Typography>
+                <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                  Get up to date with everything MUI-related through our social media:
+                </Typography>
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, '* > svg': { mr: 1 } }}>
+                  <Link href="https://github.com/mui" target="_blank" fontSize={14}>
+                    <GitHubIcon fontSize="small" />
+                    GitHub
+                  </Link>
+                  <Link href="https://twitter.com/MUI_hq" target="_blank" fontSize={14}>
+                    <XIcon fontSize="small" />X
+                  </Link>
+                  <Link href="https://mui.com/r/discord/" target="_blank" fontSize={14}>
+                    <DiscordIcon fontSize="small" />
+                    Discord
+                  </Link>
+                  <Link href="https://www.linkedin.com/company/mui/" target="_blank" fontSize={14}>
+                    <LinkedInIcon fontSize="small" />
+                    LinkedIn
+                  </Link>
+                  <Link href="https://www.youtube.com/@MUI_hq" target="_blank" fontSize={14}>
+                    <YouTubeIcon fontSize="small" />
+                    Youtube
+                  </Link>
+                </Box>
+              </Paper>
             </Box>
           </Box>
           <div>
