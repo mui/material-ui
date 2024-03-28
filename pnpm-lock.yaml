@@ -371,6 +371,9 @@ importers:
       '@mui/icons-material':
         specifier: workspace:^
         version: link:../../packages/mui-icons-material/build
+      '@mui/lab':
+        specifier: workspace:^
+        version: link:../../packages/mui-lab/build
       '@mui/material':
         specifier: workspace:^
         version: link:../../packages/mui-material/build
@@ -426,6 +429,9 @@ importers:
       '@mui/icons-material':
         specifier: workspace:^
         version: link:../../packages/mui-icons-material/build
+      '@mui/lab':
+        specifier: workspace:^
+        version: link:../../packages/mui-lab/build
       '@mui/material':
         specifier: workspace:^
         version: link:../../packages/mui-material/build

@@ -34,6 +34,12 @@ const Main = styled('div')(({ theme }) => ({
     border: '1px solid rgb(229, 234, 242)',
     borderRadius: '12px',
   },
+  ...theme.applyStyles('dark', {
+    '& .demo-container': {
+      backgroundColor: 'rgba(31, 38, 46, 0.1)',
+      border: '1px solid rgba(59, 74, 89, 0.2)',
+    },
+  }),
 }));
 
 export default function MaterialUILayout({ children }: { children: React.ReactNode }) {

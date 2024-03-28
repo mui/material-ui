@@ -12,6 +12,7 @@
     "@pigment-css/react": "workspace:^",
     "@mui/utils": "workspace:^",
     "@mui/base": "workspace:^",
+    "@mui/lab": "workspace:^",
     "@mui/material": "workspace:^",
     "@mui/system": "workspace:^",
     "@mui/icons-material": "workspace:^",
