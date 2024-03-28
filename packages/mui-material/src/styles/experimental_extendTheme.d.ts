@@ -334,6 +334,7 @@ export interface ThemeVars {
   overlays: Overlays;
   shadows: Shadows;
   shape: Theme['shape'];
+  spacing: string;
   zIndex: ZIndex;
 }
 
@@ -431,6 +432,7 @@ export interface CssVarsTheme extends ColorSystem {
   getColorSchemeSelector: (colorScheme: SupportedColorScheme) => string;
   generateThemeVars: () => ThemeVars;
   generateStyleSheets: () => Array<Record<string, any>>;
+  generateSpacing: () => Theme['spacing'];
 
   // Default theme tokens
   spacing: Theme['spacing'];

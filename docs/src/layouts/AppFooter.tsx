@@ -53,7 +53,7 @@ export default function AppFooter(props: AppFooterProps) {
           <Link prefetch={false} href="/" aria-label="Go to homepage" sx={{ mb: 2 }}>
             <SvgMuiLogotype height={28} width={91} />
           </Link>
-          <Typography variant="body2" fontWeight="bold" gutterBottom>
+          <Typography variant="body2" fontWeight="semiBold" gutterBottom>
             Keep up to date
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
@@ -70,7 +70,7 @@ export default function AppFooter(props: AppFooterProps) {
           }}
         >
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
+            <Typography fontWeight="semiBold" variant="body2" sx={{ mb: 0.5 }}>
               Products
             </Typography>
             <Link prefetch={false} href={ROUTES.productMaterial}>
@@ -93,7 +93,7 @@ export default function AppFooter(props: AppFooterProps) {
             </Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
+            <Typography fontWeight="semiBold" variant="body2" sx={{ mb: 0.5 }}>
               Resources
             </Typography>
             <Link prefetch={false} href={ROUTES.materialIcons}>
@@ -113,7 +113,7 @@ export default function AppFooter(props: AppFooterProps) {
             </Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
+            <Typography fontWeight="semiBold" variant="body2" sx={{ mb: 0.5 }}>
               Explore
             </Typography>
             <Link prefetch={false} href={ROUTES.documentation}>
@@ -133,7 +133,7 @@ export default function AppFooter(props: AppFooterProps) {
             </Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
+            <Typography fontWeight="semiBold" variant="body2" sx={{ mb: 0.5 }}>
               Company
             </Typography>
             <Link prefetch={false} href={ROUTES.about}>
