@@ -277,6 +277,30 @@ export const SliderThumb = styled('span', {
     },
   },
   variants: [
+    {
+      props: { size: 'small' },
+      style: {
+        width: 12,
+        height: 12,
+        '&::before': {
+          boxShadow: 'none',
+        },
+      },
+    },
+    {
+      props: { orientation: 'horizontal' },
+      style: {
+        top: '50%',
+        transform: 'translate(-50%, -50%)',
+      },
+    },
+    {
+      props: { orientation: 'vertical' },
+      style: {
+        left: '50%',
+        transform: 'translate(-50%, 50%)',
+      },
+    },
     ...Object.keys((theme.vars ?? theme).palette)
       .filter((key) => (theme.vars ?? theme).palette[key].main)
       .map((color) => ({
@@ -305,30 +329,6 @@ export const SliderThumb = styled('span', {
           },
         },
       })),
-    {
-      props: { size: 'small' },
-      style: {
-        width: 12,
-        height: 12,
-        '&::before': {
-          boxShadow: 'none',
-        },
-      },
-    },
-    {
-      props: { orientation: 'horizontal' },
-      style: {
-        top: '50%',
-        transform: 'translate(-50%, -50%)',
-      },
-    },
-    {
-      props: { orientation: 'vertical' },
-      style: {
-        left: '50%',
-        transform: 'translate(-50%, 50%)',
-      },
-    },
   ],
 }));
 
