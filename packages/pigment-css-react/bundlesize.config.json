@@ -1,0 +1,20 @@
+{
+  "files": [
+    {
+      "path": "./.bundlesize/index.mjs",
+      "maxSize": "4.90 kB"
+    },
+    {
+      "path": "./.bundlesize/Box.mjs",
+      "maxSize": "900 B"
+    },
+    {
+      "path": "./.bundlesize/Rtlprovider.mjs",
+      "maxSize": "500 B"
+    },
+    {
+      "path": "./.bundlesize/chunk-*.mjs",
+      "maxSize": "700 B"
+    }
+  ]
+}

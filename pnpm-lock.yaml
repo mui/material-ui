@@ -25,6 +25,7 @@ overrides:
   '@types/node': ^18.19.25
   '@types/react': 18.2.55
   '@types/react-dom': 18.2.19
+  brotli-size: 4.0.0
   cross-fetch: ^4.0.0
 
 importers:
@@ -182,6 +183,9 @@ importers:
       babel-plugin-transform-react-remove-prop-types:
         specifier: ^0.4.24
         version: 0.4.24
+      bundlesize:
+        specifier: 0.18.2
+        version: 0.18.2
       chalk:
         specifier: ^5.3.0
         version: 5.3.0
@@ -9316,6 +9320,16 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
+  /axios@1.6.0:
+    resolution: {integrity: sha512-EZ1DYihju9pwVB+jg67ogm+Tmqc6JmhamRN6I4Zt8DfZu5lbcQGw3ozH9lFejSJgs/ibaef3A9PMXPLeefFGJg==}
+    dependencies:
+      follow-redirects: 1.15.4(debug@4.3.4)
+      form-data: 4.0.0
+      proxy-from-env: 1.1.0
+    transitivePeerDependencies:
+      - debug
+    dev: true
+
   /axios@1.6.5(debug@4.3.4):
     resolution: {integrity: sha512-Ii012v05KEVuUoFWmMW/UQv9aRIc3ZwkWDcM+h5Il8izZCtRVpDUfwpoFf7eOtajT3QiGR4yDUx7lPqHJULgbg==}
     dependencies:
@@ -9626,6 +9640,13 @@ packages:
     dependencies:
       fill-range: 7.0.1
 
+  /brotli-size@4.0.0:
+    resolution: {integrity: sha512-uA9fOtlTRC0iqKfzff1W34DXUA3GyVqbUaeo3Rw3d4gd1eavKVCETXrn3NzO74W+UVkG3UHu8WxUi+XvKI/huA==}
+    engines: {node: '>= 10.16.0'}
+    dependencies:
+      duplexer: 0.1.1
+    dev: true
+
   /browser-stdout@1.3.1:
     resolution: {integrity: sha512-qhAVI1+Av2X7qelOfAIYwXONood6XlZE/fXaBSmW/T5SzLAmCgzi+eiWE7fUvbHaeNBQH13UftjpXxsfLkMpgw==}
 
@@ -9741,6 +9762,24 @@ packages:
     dependencies:
       esbuild: 0.19.11
       load-tsconfig: 0.2.5
+    dev: true
+
+  /bundlesize@0.18.2:
+    resolution: {integrity: sha512-wthRURckcAbe0Qcr7xMH8evVE/kjID8gqY0M17XJI/FVgCljLx6Ag4lIDbV76KVb2Ey5iCA4n5Fur61TEhF1JQ==}
+    hasBin: true
+    dependencies:
+      axios: 1.6.5(debug@4.3.4)
+      brotli-size: 4.0.0
+      bytes: 3.1.2
+      ci-env: 1.17.0
+      commander: 2.20.3
+      cosmiconfig: 5.2.1
+      github-build: 1.2.4
+      glob: 7.2.3
+      gzip-size: 4.1.0
+      prettycli: 1.4.3
+    transitivePeerDependencies:
+      - debug
     dev: true
 
   /busboy@1.6.0:
@@ -9880,19 +9919,16 @@ packages:
     engines: {node: '>=4'}
     dependencies:
       callsites: 2.0.0
-    dev: false
 
   /caller-path@2.0.0:
     resolution: {integrity: sha512-MCL3sf6nCSXOwCTzvPKhN18TU7AHTvdtam8DAogxcrJ8Rjfbbg7Lgng64H9Iy+vUV6VGFClN/TyxBkAebLRR4A==}
     engines: {node: '>=4'}
     dependencies:
       caller-callsite: 2.0.0
-    dev: false
 
   /callsites@2.0.0:
     resolution: {integrity: sha512-ksWePWBloaWPxJYQ8TL0JHvtci6G5QTKwQ95RcWAa/lzoAKuAOflGdAK92hpHXjkwb8zLxoLNUoNYZgVsaJzvQ==}
     engines: {node: '>=4'}
-    dev: false
 
   /callsites@3.1.0:
     resolution: {integrity: sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==}
@@ -9980,6 +10016,15 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       chalk: 4.1.2
+    dev: true
+
+  /chalk@2.1.0:
+    resolution: {integrity: sha512-LUHGS/dge4ujbXMJrnihYMcL4AoOweGnw9Tp3kQuqy1Kx5c1qKjqvMJZ6nVJPMWJtKCTN72ZogH3oeSO9g9rXQ==}
+    engines: {node: '>=4'}
+    dependencies:
+      ansi-styles: 3.2.1
+      escape-string-regexp: 1.0.5
+      supports-color: 4.5.0
     dev: true
 
   /chalk@2.4.2:
@@ -10129,6 +10174,10 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: false
+
+  /ci-env@1.17.0:
+    resolution: {integrity: sha512-NtTjhgSEqv4Aj90TUYHQLxHdnCPXnjdtuGG1X8lTfp/JqeXTdw0FTWl/vUAPuvbWZTF8QVpv6ASe/XacE+7R2A==}
+    dev: true
 
   /ci-info@2.0.0:
     resolution: {integrity: sha512-5tK7EtrZ0N+OLFMthtqOj4fI2Jeb88C4CAZPu25LDVUgXJ0A3Js4PMGqrn0JU1W0Mh1/Z8wZzYPxqUrXeBboCQ==}
@@ -10680,7 +10729,6 @@ packages:
       is-directory: 0.3.1
       js-yaml: 3.14.1
       parse-json: 4.0.0
-    dev: false
 
   /cosmiconfig@7.0.1:
     resolution: {integrity: sha512-a1YWNUV2HwGimB7dU2s1wUMurNKjpx60HxBB6xUM8Re+2s1g1IIfJvFR0/iCF+XHdE0GMTKTuLR32UQff4TEyQ==}
@@ -11469,6 +11517,10 @@ packages:
     resolution: {integrity: sha512-asLFVfWWtJ90ZyOUHMqk7/S2w2guQKxUI2itj3d92ADHhxUSbCMGi1f1cBcJ7xM1To+pE/Khbwo1yuNbMEPKeA==}
     dependencies:
       readable-stream: 2.3.7
+
+  /duplexer@0.1.1:
+    resolution: {integrity: sha512-sxNZ+ljy+RA1maXoUReeqBBpBC6RLKmg5ewzV+x+mSETmWNoKdZN6vcQjpFROemza23hGFskJtFNoUWUaQ+R4Q==}
+    dev: true
 
   /duplexer@0.1.2:
     resolution: {integrity: sha512-jtD6YG370ZCIi/9GTaJKQxWTZD045+4R4hTk/x1UyoqadyJ9x9CgSi1RlVDQF8U2sxLLSnFkCaMihqljHIWgMg==}
@@ -13159,6 +13211,14 @@ packages:
       ini: 1.3.8
     dev: true
 
+  /github-build@1.2.4:
+    resolution: {integrity: sha512-1kdMmIrvYH18ITHGMVa5BXOxj/+i/VZzPR4PGMBpLW9h15woU+gpM/mlqOk+jmuD4mmib8Dgb6Xcbyy0v+RqqA==}
+    dependencies:
+      axios: 1.6.0
+    transitivePeerDependencies:
+      - debug
+    dev: true
+
   /github-from-package@0.0.0:
     resolution: {integrity: sha512-SyHy3T1v2NUXn29OsWdxmK6RwHD+vkj3v8en8AOBZ1wBQ/hCAQ5bAQTD02kW4W9tUp/3Qh6J8r9EvntiyCmOOw==}
     dev: true
@@ -13413,6 +13473,14 @@ packages:
       peek-stream: 1.1.3
       pumpify: 1.5.1
       through2: 2.0.5
+    dev: true
+
+  /gzip-size@4.1.0:
+    resolution: {integrity: sha512-1g6EPVvIHuPmpAdBBpsIVYLgjzGV/QqcFRJXpMyrqEWG10JhOaTjQeCcjMDyX0Iqfm/Q5M9twR/mbDk5f5MqkA==}
+    engines: {node: '>=4'}
+    dependencies:
+      duplexer: 0.1.2
+      pify: 3.0.0
     dev: true
 
   /gzip-size@6.0.0:
@@ -13866,7 +13934,6 @@ packages:
     dependencies:
       caller-path: 2.0.0
       resolve-from: 3.0.0
-    dev: false
 
   /import-fresh@3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
@@ -14134,7 +14201,6 @@ packages:
   /is-directory@0.3.1:
     resolution: {integrity: sha512-yVChGzahRFvbkscn2MlwGismPO12i9+znNruC5gVEntG3qu0xQMzsGg/JFbrsqDOHtHFPci+V5aP5T9I+yeKqw==}
     engines: {node: '>=0.10.0'}
-    dev: false
 
   /is-docker@2.2.1:
     resolution: {integrity: sha512-F+i2BKsFrH66iaUFc0woD8sLy8getkwTwtOBjvs56Cx4CgJDeKQeqfz8wAYiSb8JOprWhHH5p77PbmYCvvUuXQ==}
@@ -18256,6 +18322,12 @@ packages:
       tslib: 2.6.2
     dev: true
 
+  /prettycli@1.4.3:
+    resolution: {integrity: sha512-KLiwAXXfSWXZqGmZlnKPuGMTFp+0QbcySplL1ft9gfteT/BNsG64Xo8u2Qr9r+qnsIZWBQ66Zs8tg+8s2fmzvw==}
+    dependencies:
+      chalk: 2.1.0
+    dev: true
+
   /prettyjson@1.2.5:
     resolution: {integrity: sha512-rksPWtoZb2ZpT5OVgtmy0KHVM+Dca3iVwWY9ifwhcexfjebtgjg3wmrUt9PvJ59XIYBcknQeYHD8IAnVlh9lAw==}
     hasBin: true
@@ -19410,7 +19482,6 @@ packages:
   /resolve-from@3.0.0:
     resolution: {integrity: sha512-GnlH6vxLymXJNMBo7XP1fJIzBFbdYt49CuTwmB/6N53t+kMPRMFKz783LlQ4tv28XoQfMWinAJX6WCGf2IlaIw==}
     engines: {node: '>=4'}
-    dev: false
 
   /resolve-from@4.0.0:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==}
@@ -20737,6 +20808,13 @@ packages:
   /sudo-prompt@9.2.1:
     resolution: {integrity: sha512-Mu7R0g4ig9TUuGSxJavny5Rv0egCEtpZRNMrZaYS1vxkiIxGiGUwoezU3LazIQ+KE04hTrTfNPgxU5gzi7F5Pw==}
     dev: false
+
+  /supports-color@4.5.0:
+    resolution: {integrity: sha512-ycQR/UbvI9xIlEdQT1TQqwoXtEldExbCEAJgRo5YXlmSKjv6ThHnP9/vwGa1gr19Gfw+LkFd7KqYMhzrRC5JYw==}
+    engines: {node: '>=4'}
+    dependencies:
+      has-flag: 2.0.0
+    dev: true
 
   /supports-color@5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}

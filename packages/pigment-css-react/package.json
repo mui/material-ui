@@ -25,10 +25,12 @@
     "watch": "tsup --watch --clean false",
     "copy-license": "node ../../scripts/pigment-license.mjs",
     "build": "tsup",
+    "build:bundlesize": "cross-env BUNDLE_SIZE_CHECK=1 tsup",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/pigment-css-react/**/*.test.{js,ts,tsx}'",
     "test:update": "cd ../../ && cross-env NODE_ENV=test UPDATE_FIXTURES=true mocha 'packages/pigment-css-react/**/*.test.{js,ts,tsx}'",
     "test:ci": "cd ../../ && cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov --report-dir=./coverage/pigment-css-react mocha 'packages/pigment-css-react/**/*.test.{js,ts,tsx}'",
-    "typecheck": "tsc --noEmit -p ."
+    "typecheck": "tsc --noEmit -p .",
+    "bundlesize:ci": "bundlesize"
   },
   "dependencies": {
     "@babel/core": "^7.23.9",
@@ -192,6 +194,21 @@
           "{projectRoot}/build",
           "{projectRoot}/processors",
           "{projectRoot}/utils"
+        ]
+      },
+      "build:bundlesize": {
+        "inputs": [
+          {
+            "env": "BUNDLE_SIZE_CHECK"
+          }
+        ],
+        "outputs": [
+          "{projectRoot}/.bundlesize"
+        ]
+      },
+      "bundlesize:ci": {
+        "dependsOn": [
+          "build:bundlesize"
         ]
       }
     }
