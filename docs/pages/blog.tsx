@@ -333,7 +333,8 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
               sx={{
                 position: 'sticky',
                 top: 90,
-                mt: { xs: 3, sm: 2, md: 9 },
+                mt: { xs: 0, md: 9 },
+                mb: { xs: 2, md: 0 },
                 display: 'flex',
                 flexDirection: 'column',
                 gap: 2,
