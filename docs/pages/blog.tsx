@@ -273,11 +273,11 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                   p: 2,
                   display: 'flex',
                   flexDirection: 'column',
-                  backgroundImage: (theme.vars || theme).palette.gradients.stylizedRadio,
+                  backgroundImage: (theme.vars || theme).palette.gradients.radioSubtle,
                   boxShadow: '0 4px 12px rgba(170, 180, 190, 0.2)',
                   ...theme.applyDarkStyles({
                     background: (theme.vars || theme).palette.primaryDark[900],
-                    backgroundImage: (theme.vars || theme).palette.gradients.stylizedRadio,
+                    backgroundImage: (theme.vars || theme).palette.gradients.radioSubtle,
                     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)',
                   }),
                 })}
