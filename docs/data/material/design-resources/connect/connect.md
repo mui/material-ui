@@ -8,7 +8,7 @@ Connect is a Figma plugin that lets you generate a theme from the [Material UI 
 You can customize design tokens and components, export a JSON file with the changes to your theme, and visualize your customizations through an embedded Storybook instance.
 
 :::warning
-This plugin is currently in beta and some Material UI components cannot be customized yet.
+This plugin is currently **in beta** and some Material UI components cannot be customized yet.
 
 Connect only supports the Material UI Design Kit; others, such as the Joy UI Design Kit, are not yet supported.
 :::
