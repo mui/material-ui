@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import List from '@mui/material/List';
 import Box from '@mui/material/Box';
-import ListItem from '@mui/material/ListItem';
 import Paper from '@mui/material/Paper';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
@@ -18,6 +17,7 @@ import {
   useLocation,
 } from 'react-router-dom';
 import { StaticRouter } from 'react-router-dom/server';
+import { ListItemButton } from '@mui/material';
 
 function Router(props) {
   const { children } = props;
@@ -45,10 +45,10 @@ function ListItemLink(props) {
 
   return (
     <li>
-      <ListItem button component={Link} to={to}>
+      <ListItemButton component={Link} to={to}>
         {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
         <ListItemText primary={primary} />
-      </ListItem>
+      </ListItemButton>
     </li>
   );
 }

@@ -6,15 +6,12 @@ import { isHostComponent } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import chainPropTypes from '@mui/utils/chainPropTypes';
-import { alpha } from '@mui/system/colorManipulator';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import ButtonBase from '../ButtonBase';
 import isMuiElement from '../utils/isMuiElement';
-import useEnhancedEffect from '../utils/useEnhancedEffect';
 import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';
-import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
+import { getListItemUtilityClass } from './listItemClasses';
 import { listItemButtonClasses } from '../ListItemButton';
 import ListItemSecondaryAction from '../ListItemSecondaryAction';
 
@@ -28,7 +25,6 @@ export const overridesResolver = (props, styles) => {
     ownerState.divider && styles.divider,
     !ownerState.disableGutters && styles.gutters,
     !ownerState.disablePadding && styles.padding,
-    ownerState.button && styles.button,
     ownerState.hasSecondaryAction && styles.secondaryAction,
   ];
 };
@@ -36,15 +32,12 @@ export const overridesResolver = (props, styles) => {
 const useUtilityClasses = (ownerState) => {
   const {
     alignItems,
-    button,
     classes,
     dense,
-    disabled,
     disableGutters,
     disablePadding,
     divider,
     hasSecondaryAction,
-    selected,
   } = ownerState;
 
   const slots = {
@@ -54,11 +47,8 @@ const useUtilityClasses = (ownerState) => {
       !disableGutters && 'gutters',
       !disablePadding && 'padding',
       divider && 'divider',
-      disabled && 'disabled',
-      button && 'button',
       alignItems === 'flex-start' && 'alignItemsFlexStart',
       hasSecondaryAction && 'secondaryAction',
-      selected && 'selected',
     ],
     container: ['container'],
   };
@@ -101,58 +91,12 @@ export const ListItemRoot = styled('div', {
       paddingRight: 48,
     },
   }),
-  [`&.${listItemClasses.focusVisible}`]: {
-    backgroundColor: (theme.vars || theme).palette.action.focus,
-  },
-  [`&.${listItemClasses.selected}`]: {
-    backgroundColor: theme.vars
-      ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-      : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-    [`&.${listItemClasses.focusVisible}`]: {
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-        : alpha(
-            theme.palette.primary.main,
-            theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-          ),
-    },
-  },
-  [`&.${listItemClasses.disabled}`]: {
-    opacity: (theme.vars || theme).palette.action.disabledOpacity,
-  },
   ...(ownerState.alignItems === 'flex-start' && {
     alignItems: 'flex-start',
   }),
   ...(ownerState.divider && {
     borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
     backgroundClip: 'padding-box',
-  }),
-  ...(ownerState.button && {
-    transition: theme.transitions.create('background-color', {
-      duration: theme.transitions.duration.shortest,
-    }),
-    '&:hover': {
-      textDecoration: 'none',
-      backgroundColor: (theme.vars || theme).palette.action.hover,
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
-      },
-    },
-    [`&.${listItemClasses.selected}:hover`]: {
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-        : alpha(
-            theme.palette.primary.main,
-            theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-          ),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-          : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-      },
-    },
   }),
   ...(ownerState.hasSecondaryAction && {
     // Add some space to avoid collision as `ListItemSecondaryAction`
@@ -176,8 +120,6 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiListItem' });
   const {
     alignItems = 'center',
-    autoFocus = false,
-    button = false,
     children: childrenProp,
     className,
     component: componentProp,
@@ -186,13 +128,10 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     ContainerComponent = 'li',
     ContainerProps: { className: ContainerClassName, ...ContainerProps } = {},
     dense = false,
-    disabled = false,
     disableGutters = false,
     disablePadding = false,
     divider = false,
-    focusVisibleClassName,
     secondaryAction,
-    selected = false,
     slotProps = {},
     slots = {},
     ...other
@@ -209,17 +148,6 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   );
 
   const listItemRef = React.useRef(null);
-  useEnhancedEffect(() => {
-    if (autoFocus) {
-      if (listItemRef.current) {
-        listItemRef.current.focus();
-      } else if (process.env.NODE_ENV !== 'production') {
-        console.error(
-          'MUI: Unable to set focus to a ListItem whose component has not been rendered.',
-        );
-      }
-    }
-  }, [autoFocus]);
 
   const children = React.Children.toArray(childrenProp);
 
@@ -230,15 +158,11 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   const ownerState = {
     ...props,
     alignItems,
-    autoFocus,
-    button,
     dense: childContext.dense,
-    disabled,
     disableGutters,
     disablePadding,
     divider,
     hasSecondaryAction,
-    selected,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -250,21 +174,10 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
 
   const componentProps = {
     className: clsx(classes.root, rootProps.className, className),
-    disabled,
     ...other,
   };
 
   let Component = componentProp || 'li';
-
-  if (button) {
-    componentProps.component = componentProp || 'div';
-    componentProps.focusVisibleClassName = clsx(
-      listItemClasses.focusVisible,
-      focusVisibleClassName,
-    );
-
-    Component = ButtonBase;
-  }
 
   // v4 implementation, deprecated in v5, will be removed in v6
   if (hasSecondaryAction) {
@@ -333,20 +246,6 @@ ListItem.propTypes /* remove-proptypes */ = {
    * @default 'center'
    */
   alignItems: PropTypes.oneOf(['center', 'flex-start']),
-  /**
-   * If `true`, the list item is focused during the first mount.
-   * Focus will also be triggered if the value changes from false to true.
-   * @default false
-   * @deprecated checkout [ListItemButton](/material-ui/api/list-item-button/) instead
-   */
-  autoFocus: PropTypes.bool,
-  /**
-   * If `true`, the list item is a button (using `ButtonBase`). Props intended
-   * for `ButtonBase` can then be applied to `ListItem`.
-   * @default false
-   * @deprecated checkout [ListItemButton](/material-ui/api/list-item-button/) instead
-   */
-  button: PropTypes.bool,
   /**
    * The content of the component if a `ListItemSecondaryAction` is used it must
    * be the last child.
@@ -430,12 +329,6 @@ ListItem.propTypes /* remove-proptypes */ = {
    */
   dense: PropTypes.bool,
   /**
-   * If `true`, the component is disabled.
-   * @default false
-   * @deprecated checkout [ListItemButton](/material-ui/api/list-item-button/) instead
-   */
-  disabled: PropTypes.bool,
-  /**
    * If `true`, the left and right padding is removed.
    * @default false
    */
@@ -451,19 +344,9 @@ ListItem.propTypes /* remove-proptypes */ = {
    */
   divider: PropTypes.bool,
   /**
-   * @ignore
-   */
-  focusVisibleClassName: PropTypes.string,
-  /**
    * The element to display at the end of ListItem.
    */
   secondaryAction: PropTypes.node,
-  /**
-   * Use to apply selected styling.
-   * @default false
-   * @deprecated checkout [ListItemButton](/material-ui/api/list-item-button/) instead
-   */
-  selected: PropTypes.bool,
   /**
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
