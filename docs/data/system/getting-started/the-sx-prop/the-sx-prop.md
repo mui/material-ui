@@ -179,7 +179,7 @@ Read more on the [Typography page](/system/typography/).
 
 ## Responsive values
 
-All properties associated with the `sx` prop also support responsive values for specific breakpoints.
+All properties associated with the `sx` prop also support responsive values for specific breakpoints and container queries.
 
 Read more on the [Usage page—Responsive values](/system/getting-started/usage/#responsive-values).
 
