@@ -39,7 +39,9 @@ Pigment CSS is built on top of [WyW-in-JS](https://wyw-in-js.dev/), enabling to
 
 ### Start with Next.js
 
-Use the following commands to create a new Next.js project with Pigment CSS set up:
+#### Quickstart
+
+Use the following commands to quickly create a new Next.js project with Pigment CSS set up:
 
 ```bash
 curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/pigment-css-nextjs-ts
@@ -85,7 +87,9 @@ Finally, import the stylesheet in the root `layout.tsx` file:
 
 ### Start with Vite
 
-Use the following commands to create a new Vite project with Pigment CSS set up:
+#### Quickstart
+
+Use the following commands to quickly create a new Vite project with Pigment CSS set up:
 
 ```bash
 curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/pigment-css-vite-ts
@@ -188,7 +192,7 @@ function App() {
 }
 ```
 
-The Pigment CSS library differs from "standard" runtime CSS-in-JS libraries in a few ways:
+Pigment CSS differs from "standard" runtime CSS-in-JS libraries in a few ways:
 
 1. You never get direct access to props in your styled declarations. This is because prop values are only available at runtime, but the CSS is extracted at build time. See [Styling based on runtime values](#styling-based-on-runtime-values) for a workaround.
 2. Your styles must be declarative and must account for all combinations of props that you want to style.
@@ -204,11 +208,15 @@ Each variant is an object with `props` and `style` keys. The styles are applied 
 
 **Example 1** — A button component with `small` and `large` sizes:
 
-```jsx
-const Button = styled('button')({
+```tsx
+interface ButtonProps {
+  size?: 'small' | 'large';
+}
+
+const Button = styled('button')<ButtonProps>({
   border: 'none',
   padding: '0.75rem',
-  // ...other base styles
+  // ...other styles
   variants: [
     {
       props: { size: 'large' },
