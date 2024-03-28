@@ -117,48 +117,89 @@ describe('props filtering', () => {
     expect(container.firstChild).to.have.attribute('cool', 'true');
   });
 
-  it('[HTML tag] does not forward `ownerState` by default', () => {
-    const StyledDiv = styled('div')();
+  describe('ownerState prop', () => {
+    it('[HTML tag] does not forward `ownerState` by default', () => {
+      const StyledDiv = styled('div')();
 
-    const { container } = render(<StyledDiv ownerState={{ color: 'red' }} />);
-    expect(container.firstChild).not.to.have.attribute('ownerState');
-  });
-
-  it('does not forward `ownerState` to other React component', () => {
-    function InnerComponent(props) {
-      const { ownerState } = props;
-      return <div {...props} data-ownerstate={!!ownerState} />;
-    }
-    const StyledDiv = styled(InnerComponent)();
-
-    const { container } = render(<StyledDiv ownerState={{ color: 'red' }} />);
-    expect(container.firstChild).not.to.have.attribute('ownerState');
-    expect(container.firstChild).to.have.attribute('data-ownerstate', 'false');
-  });
-
-  it('forward `ownerState` to inherited styled component', () => {
-    const StyledDiv = styled('div')({
-      classes: ['div1'],
-      variants: [
-        {
-          props: ({ ownerState }) => ownerState.color === 'secondary',
-          className: 'div1-secondary',
-        },
-      ],
+      const { container } = render(<StyledDiv ownerState={{ color: 'red' }} />);
+      expect(container.firstChild).not.to.have.attribute('ownerState');
     });
 
-    const StyledDiv2 = styled(StyledDiv)({
-      classes: ['div2'],
-      variants: [
-        {
-          props: ({ ownerState }) => ownerState.color === 'secondary',
-          className: 'div2-secondary',
-        },
-      ],
+    it('does not forward `ownerState` to other React component', () => {
+      function InnerComponent(props) {
+        const { ownerState } = props;
+        return <div {...props} data-ownerstate={!!ownerState} />;
+      }
+      const StyledDiv = styled(InnerComponent)();
+
+      const { container } = render(<StyledDiv ownerState={{ color: 'red' }} />);
+      expect(container.firstChild).not.to.have.attribute('ownerState');
+      expect(container.firstChild).to.have.attribute('data-ownerstate', 'false');
     });
 
-    const { container } = render(<StyledDiv2 ownerState={{ color: 'secondary' }} />);
-    expect(container.firstChild).to.have.class('div1-secondary');
-    expect(container.firstChild).to.have.class('div2-secondary');
+    it('forward `ownerState` to inherited styled component', () => {
+      const StyledDiv = styled('div')({
+        classes: ['div1'],
+        variants: [
+          {
+            props: ({ ownerState }) => ownerState.color === 'secondary',
+            className: 'div1-secondary',
+          },
+        ],
+      });
+
+      const StyledDiv2 = styled(StyledDiv)({
+        classes: ['div2'],
+        variants: [
+          {
+            props: ({ ownerState }) => ownerState.color === 'secondary',
+            className: 'div2-secondary',
+          },
+        ],
+      });
+
+      const { container } = render(<StyledDiv2 ownerState={{ color: 'secondary' }} />);
+      expect(container.firstChild).to.have.class('div1-secondary');
+      expect(container.firstChild).to.have.class('div2-secondary');
+    });
+  });
+
+  describe('classes prop', () => {
+    it('does not forward `classes` by default', () => {
+      const StyledDiv = styled('div')();
+
+      const { container } = render(<StyledDiv classes={{ root: 'root-123' }} />);
+      expect(container.firstChild).not.to.have.attribute('classes');
+    });
+
+    it('does not forward `classes` for the root slot to other React component', () => {
+      function InnerComponent(props) {
+        const { classes = {} } = props;
+        return <div {...props} className={classes.root} />;
+      }
+      const StyledDiv = styled(InnerComponent, {
+        name: 'Div',
+        slot: 'root',
+      })();
+
+      const { container } = render(<StyledDiv classes={{ root: 'root-123' }} />);
+      expect(container.firstChild).not.to.have.attribute('classes');
+      expect(container.firstChild).not.to.have.class('root-123');
+    });
+
+    it('forward `classes` for the root slot by a custom shouldForwardProp', () => {
+      function ButtonBase(props) {
+        const { classes = {} } = props;
+        return <div {...props} className={classes.root} />;
+      }
+      const ButtonRoot = styled(ButtonBase, {
+        name: 'Div',
+        slot: 'root',
+        shouldForwardProp: (prop) => prop === 'classes',
+      })();
+
+      const { container } = render(<ButtonRoot classes={{ root: 'root-123' }} />);
+      expect(container.firstChild).to.have.class('root-123');
+    });
   });
 });

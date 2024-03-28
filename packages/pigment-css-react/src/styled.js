@@ -1,6 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import isPropValid from '@emotion/is-prop-valid';
+import capitalize from '@mui/utils/capitalize';
 
 function getVariantClasses(componentProps, variants) {
   const { ownerState = {} } = componentProps;
@@ -78,17 +79,6 @@ export default function styled(tag, componentMeta = {}) {
    */
   function scopedStyledWithOptions(options = {}) {
     const { displayName, classes = [], vars: cssVars = {}, variants = [] } = options;
-    let componentName = 'Component';
-
-    if (name) {
-      if (slot) {
-        componentName = `${name}${slot}`;
-      } else {
-        componentName = name;
-      }
-    } else if (displayName) {
-      componentName = displayName;
-    }
 
     const StyledComponent = React.forwardRef(function StyledComponent(inProps, ref) {
       const { as, className, sx, style, ownerState, ...props } = inProps;
@@ -145,8 +135,9 @@ export default function styled(tag, componentMeta = {}) {
       return (
         <Component
           {...newProps}
+          // pass down `ownerState` to nested styled components
           // eslint-disable-next-line no-underscore-dangle
-          {...(Component.__isStyled && { ownerState })}
+          {...(Component.__styled_by_pigment_css && { ownerState })}
           ref={ref}
           className={finalClassName}
           style={{
@@ -157,9 +148,13 @@ export default function styled(tag, componentMeta = {}) {
       );
     });
 
+    let componentName = displayName;
+    if (!componentName && name) {
+      componentName = `${name}${slot ? capitalize(slot) : ''}`;
+    }
     StyledComponent.displayName = `Styled(${componentName})`;
     // eslint-disable-next-line no-underscore-dangle
-    StyledComponent.__isStyled = true;
+    StyledComponent.__styled_by_pigment_css = true;
 
     return StyledComponent;
   }
