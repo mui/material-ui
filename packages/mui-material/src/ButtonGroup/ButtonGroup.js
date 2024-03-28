@@ -160,10 +160,10 @@ const ButtonGroupRoot = styled('div', {
       },
     },
     ...Object.entries(theme.palette)
-      .filter(([, value]) => value.main && value.dark)
+      .filter(([, value]) => value.main)
       .flatMap(([color]) => [
         {
-          props: { variant: 'text', color: color },
+          props: { variant: 'text', color },
           style: {
             [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
               borderColor: theme.vars
@@ -229,7 +229,7 @@ const ButtonGroupRoot = styled('div', {
         props: { variant: 'contained', color },
         style: {
           [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
-            borderColor: theme.vars ? theme.vars.palette[color].dark : theme.palette[color].dark,
+            borderColor: (theme.vars || theme).palette[color].dark,
           },
         },
       })),
