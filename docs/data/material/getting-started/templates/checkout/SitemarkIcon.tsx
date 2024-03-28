@@ -2,13 +2,11 @@ import * as React from 'react';
 import { SxProps, Theme } from '@mui/system';
 import SvgIcon from '@mui/material/SvgIcon';
 
-interface SitemarkIconProps {
+interface IconProps {
   sx?: SxProps<Theme>;
 }
 
-/* this logo is from LogoToUse.com */
-
-export default function SitemarkIcon({ sx }: SitemarkIconProps) {
+export default function SitemarkIcon({ sx }: IconProps) {
   return (
     <SvgIcon sx={sx}>
       <svg

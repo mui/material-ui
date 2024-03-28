@@ -1,11 +1,12 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-
+import { SxProps, Theme } from '@mui/system';
 import SvgIcon from '@mui/material/SvgIcon';
 
-/* this logo is from LogoToUse.com */
+interface IconProps {
+  sx?: SxProps<Theme>;
+}
 
-function SitemarkIcon({ sx }) {
+export default function SitemarkIcon({ sx }: IconProps) {
   return (
     <SvgIcon sx={sx}>
       <svg
@@ -71,15 +72,3 @@ function SitemarkIcon({ sx }) {
     </SvgIcon>
   );
 }
-
-SitemarkIcon.propTypes = {
-  sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
-    ),
-    PropTypes.func,
-    PropTypes.object,
-  ]),
-};
-
-export default SitemarkIcon;
