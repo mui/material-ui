@@ -150,7 +150,6 @@ export default function Features() {
             {items.map(({ icon, title, description }, index) => (
               <Card
                 key={index}
-                variant="outlined"
                 component={Button}
                 onClick={() => handleItemClick(index)}
                 sx={{
@@ -160,6 +159,14 @@ export default function Features() {
                   background: 'none',
                   backgroundColor:
                     selectedItemIndex === index ? 'action.selected' : undefined,
+                  '&:hover': {
+                    outlineColor: (theme) => {
+                      return theme.palette.mode === 'light'
+                        ? 'primary.light'
+                        : 'primary.main';
+                    },
+                    boxShadow: `0 0 24px ${'primary.light'}`,
+                  },
                   borderColor: (theme) => {
                     if (theme.palette.mode === 'light') {
                       return selectedItemIndex === index
@@ -186,7 +193,7 @@ export default function Features() {
                         if (theme.palette.mode === 'light') {
                           return selectedItemIndex === index
                             ? 'primary.main'
-                            : 'grey.300';
+                            : 'grey.400';
                         }
                         return selectedItemIndex === index
                           ? 'primary.main'
