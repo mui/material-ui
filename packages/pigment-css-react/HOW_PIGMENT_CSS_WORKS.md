@@ -86,7 +86,7 @@ const testClass = 'c1aiqtje';
 
 ### 3. Extraction
 
-At the same time, it generates the CSS string for the above styles at build time. This generation happens through the internal use of `@mui/system` and `emotion` packages. In the [Debugging and evaluation](#1-detection-and-evaluation) step, Pigment gets access to the callback function defined as the first argument of `css` function. Since its a function, it is called by Pigment which also passes an object containing the `theme` as the first argument. This `theme` is the same object that was defined as part of the bundler config and passed to Pigment. The returned object then goes through the same transforms it'd go through when using Material UI components directly with `emotion`. That's why, you can also write shorthand properties like:
+At the same time, it generates the CSS string for the above styles at build time. This generation happens through the internal use of `@mui/system` and `emotion` packages. In the [Detection and evaluation](#1-detection-and-evaluation) step, Pigment gets access to the callback function defined as the first argument of `css` function. Since it is a function, it is called by Pigment CSS which also passes an object containing the `theme` as the first argument. This `theme` is the same object that was defined as part of the bundler config and passed to Pigment CSS. The returned object then goes through the same transforms it would go through when using Material UI components directly with `emotion`. That's why, you can also write shorthand properties, for example:
 
 ```js
 import { css } from '@pigment-css/react';
