@@ -45,8 +45,8 @@ export async function createModulePackages({ from, to }) {
       const packageJson = {
         sideEffects: false,
         module: topLevelPathImportsAreCommonJSModules
-          ? path.posix.join('../esm', directoryPackage, 'index.js')
-          : './index.js',
+          ? path.posix.join('../esm', directoryPackage, 'index.mjs')
+          : './index.mjs',
         main: topLevelPathImportsAreCommonJSModules
           ? './index.js'
           : path.posix.join('../node', directoryPackage, 'index.js'),
@@ -91,7 +91,12 @@ export async function typescriptCopy({ from, to }) {
   return Promise.all(cmds);
 }
 
-export async function createPackageFile() {
+/**
+ * Creates a package.json in the build directory.
+ * @param {boolean} skipExportsField Whether to skip the exports field in the package.json. Only top level ESM packages are supported.
+ * @returns {Promise<object>}
+ */
+export async function createPackageFile(skipExportsField = false) {
   const packageData = await fse.readFile(path.resolve(packagePath, './package.json'), 'utf8');
   const { nyc, scripts, devDependencies, workspaces, ...packageDataOther } =
     JSON.parse(packageData);
@@ -104,9 +109,9 @@ export async function createPackageFile() {
           main: fse.existsSync(path.resolve(buildPath, './node/index.js'))
             ? './node/index.js'
             : './index.js',
-          module: fse.existsSync(path.resolve(buildPath, './esm/index.js'))
-            ? './esm/index.js'
-            : './index.js',
+          module: fse.existsSync(path.resolve(buildPath, './esm/index.mjs'))
+            ? './esm/index.mjs'
+            : './index.mjs',
         }
       : {}),
   };
@@ -114,6 +119,35 @@ export async function createPackageFile() {
   const typeDefinitionsFilePath = path.resolve(buildPath, './index.d.ts');
   if (await fse.pathExists(typeDefinitionsFilePath)) {
     newPackageData.types = './index.d.ts';
+  }
+
+  if (!skipExportsField) {
+    const addedExports = {};
+
+    const hasIndexMjs = fse.existsSync(path.resolve(buildPath, './index.mjs'));
+    if (hasIndexMjs) {
+      // Asumes the types file and node build are set up correctly
+      addedExports['.'] = {
+        types: './index.d.ts',
+        import: './index.mjs',
+        default: './node/index.js',
+      };
+    }
+
+    const hasNestedIndexFiles = glob.sync('*/index.mjs', { cwd: buildPath }).length > 0;
+    if (hasNestedIndexFiles) {
+      // Asumes the types files and node build are set up correctly
+      addedExports['./*'] = {
+        types: './*/index.d.ts',
+        import: './*/index.mjs',
+        default: './node/*/index.js',
+      };
+    }
+
+    newPackageData.exports = {
+      ...packageDataOther.exports,
+      ...addedExports,
+    };
   }
 
   const targetPath = path.resolve(buildPath, './package.json');

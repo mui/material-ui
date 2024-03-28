@@ -49,5 +49,10 @@
     "@types/react": {
       "optional": true
     }
+  },
+  "exports": {
+    ".": {
+      "types": "./index.d.ts"
+    }
   }
 }
