@@ -32,7 +32,7 @@
     "@types/babel-plugin-macros": "^3.1.3",
     "@types/chai": "^4.3.12",
     "@types/mocha": "^10.0.6",
-    "@types/node": "^18.19.25",
+    "@types/node": "^18.19.26",
     "babel-plugin-tester": "^11.0.4",
     "chai": "^4.4.1"
   },
