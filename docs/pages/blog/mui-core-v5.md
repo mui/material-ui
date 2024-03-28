@@ -106,7 +106,7 @@ const StyledDiv = styled.div`
 <p class="blog-description"><a href="https://codesandbox.io/p/sandbox/elastic-yonath-uedfv?file=/src/App.js">CodeSandbox</a></p>
 
 You can find it in [styled-components](https://styled-components.com/), [emotion](https://emotion.sh/docs/styled), [goober](https://goober.js.org/), [stitches](https://stitches.dev/docs/api#styled), or [linaria](https://linaria.dev/).
-While Material UI is compatible with any styling solution (as long as the styles have more specificity, for example, Tailwind CSS), many developers still felt the need to learn something new: the [`makeStyles`](https://mui.com/system/styles/basics/#hook-api) API.
+While Material UI is compatible with any styling solution (as long as the styles have more specificity, for example, Tailwind CSS), many developers still felt the need to learn something new: the [`makeStyles`](https://mui.com/system/styles/basics/#hook-api) API.
 
 2. Our React integration with JSS (`@mui/styles`) is **too slow** to unlock the next layer of customization DX we aim for.
    The static CSS generation using v4 was fast enough, even [faster](https://codesandbox.io/p/sandbox/nb05w?file=/src/App.js) than emotion,
@@ -651,7 +651,7 @@ This breaking change is an opportunity to drop the support of legacy upstream de
 - We have updated the minimum supported React version from 16.8 to **17.0**.
   The breaking changes released between the two versions are [very limited](https://legacy.reactjs.org/blog/2020/10/20/react-v17.html).
 - We have updated the supported browsers.
-  - IE: **partial**. We have kept the logic added in the past to support IE 11,
+  - Internet Explorer: **partial**. We have kept the logic added in the past to support IE 11,
     however, we have stopped actively working on it. We can't guarantee that it works correctly. It's discontinued.
   - Edge: from 14 to **91**. The minimum version based on Chromium.
   - Firefox: from 52 to **78**.
@@ -758,7 +758,7 @@ Once we would have grown the team and made enough progress, we will expand to a 
 
 We plan to run extended research and surveys.
 We have already identified that accessibility is something leading companies care about.
-We are planning to cover more user interaction states for prototyping, e.g. focus-visible.
+We are planning to cover more user interaction states for prototyping, for example focus-visible.
 
 ## Thank you
 

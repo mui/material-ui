@@ -25,7 +25,7 @@ Here are a few guidelines that will help you along the way.
 
 ## Code of conduct
 
-We has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as our code of conduct, and we expect project participants to adhere to it.
+We have adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as our code of conduct, and we expect project participants to adhere to it.
 Please read [the full text](https://github.com/mui/.github/blob/master/CODE_OF_CONDUCT.md) to understand what actions will and will not be tolerated.
 
 ## A large spectrum of contributions
@@ -72,11 +72,11 @@ git remote add upstream https://github.com/mui/material-ui.git
 
 <!-- #default-branch-switch -->
 
-3. Synchronize your local `master` branch with the upstream one:
+3. Synchronize your local `next` branch with the upstream one:
 
 ```bash
-git checkout master
-git pull upstream master
+git checkout next
+git pull upstream next
 ```
 
 4. Install the dependencies with pnpm (yarn or npm aren't supported):
@@ -146,7 +146,7 @@ Make sure the following is true:
 
 <!-- #default-branch-switch -->
 
-- The branch is targeted at `master` for ongoing development. All tests are passing. Code that lands in `master` must be compatible with the latest stable release. It may contain additional features but no breaking changes. We should be able to release a new minor version from the tip of `master` at any time.
+- The branch is targeted at `next` for ongoing development. All tests are passing. Code that lands in `next` must be compatible with the latest alpha/beta release. It may contain additional features but no breaking changes. We should be able to release a new minor version from the tip of `next` at any time.
 - If a feature is being added:
   - If the result was already achievable with the core library, you've explained why this feature needs to be added to the core.
   - If this is a common use case, you've added an example to the documentation.
@@ -253,7 +253,7 @@ Click on **Details** to find out more about them.
 ### Updating the component API documentation
 
 The component API in the component `propTypes` and under `docs/pages/api-docs` is auto-generated from the [JSDoc](https://jsdoc.app/about-getting-started.html) in the TypeScript declarations.
-Be sure to update the documentation in the corresponding `.d.ts` files (e.g. `packages/mui-material/src/Button/Button.d.ts` for `<Button>`) and then run:
+Be sure to update the documentation in the corresponding `.d.ts` files (for example `packages/mui-material/src/Button/Button.d.ts` for `<Button>`) and then run:
 
 ```bash
 $ pnpm proptypes
@@ -300,11 +300,11 @@ docs/src/pages/components/buttons/
 #### 2. Write the demo code
 
 We uses TypeScript to document our components.
-We prefer demos written in TS (using the `.tsx` file format).
+We prefer demos written in TypeScript (using the `.tsx` file format).
 
 After creating a TypeScript demo, run `pnpm docs:typescript:formatted` to automatically create the JavaScript version, which is also required.
 
-If you're not familiar with TypeScript, you can write the demo in JavaScript, and a core contributor may help you migrate it to TS.
+If you're not familiar with TypeScript, you can write the demo in JavaScript, and a core contributor may help you migrate it to TypeScript.
 
 #### 3. Edit the page's Markdown file
 

@@ -28,7 +28,7 @@ The following steps must be proposed as a pull request.
 
 2. Clean the generated changelog:
    1. Match the format of https://github.com/mui/material-ui/releases.
-   2. Change the packages names casing to be lowercase if applicable, e.g. change `Material` to `material`
+   2. Change the packages names casing to be lowercase if applicable
 3. Update the root `/package.json`'s version
 4. Run `pnpm release:version`. Keep the package versions of stable public packages the same as the root `package.json` version.
 5. Open PR with changes and wait for review and green CI
@@ -54,7 +54,7 @@ Follow the instructions in https://mui-org.notion.site/Releases-7490ef9581b4447e
 
 Sometimes it is necessary to deploy the selected commit(s) without
 deploying all the changes that have been merged into the main branch
-since the previous release (e.g. publishing a blog post or releasing
+since the previous release (for example publishing a blog post or releasing
 urgent docs updates).
 
 To do so, follow these steps:
@@ -65,13 +65,19 @@ To do so, follow these steps:
    git remote add material-ui-docs https://github.com/mui/material-ui-docs.git
    ```
 
-2. Switch to the `latest` branch from `material-ui-docs` remote:
+2. Fetch the latest changes from the `material-ui-docs` remote:
+
+   ```bash
+   git fetch material-ui-docs latest
+   ```
+
+3. Switch to the `latest` branch from `material-ui-docs` remote:
 
    ```bash
    git switch --detach material-ui-docs/latest
    ```
 
-3. Cherry-pick the commit(s) that you want to include in the new deployment:
+4. Cherry-pick the commit(s) that you want to include in the new deployment:
 
    ```bash
    git cherry-pick <commit>
@@ -81,13 +87,17 @@ To do so, follow these steps:
 
    In case of conflicts you will need to resolve them and commit the changes manually.
 
-4. Push the changes to the `material-ui-docs` remote:
+   If this command fails with the message 'bad revision', it means that the commit doesn't exist on your local repository.
+   The commit might have been created on a remote branch, probably when merging into `master` or `next`.
+   In this case, you'll have to fetch the latest changes of the corresponding remote branch and then try again.
+
+5. Push the changes to the `material-ui-docs` remote:
 
    ```bash
    git push material-ui-docs HEAD:latest
    ```
 
-5. Switch from detached `HEAD` back to your last checked out branch:
+6. Switch from detached `HEAD` back to your last checked out branch:
 
    ```bash
    git checkout -

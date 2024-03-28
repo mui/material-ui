@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
@@ -70,7 +70,7 @@ export default function OurValues() {
       </Button>
       <Grid container spacing={3} sx={{ mt: { xs: 1, sm: 2 } }}>
         {values.map(({ title, description, darkIcon, lightIcon, height, width }) => (
-          <Grid key={title} item xs={12} md={3}>
+          <Grid key={title} xs={12} md={3}>
             <Paper
               variant="outlined"
               sx={(theme) => ({
@@ -90,14 +90,14 @@ export default function OurValues() {
             >
               <Box sx={{ height: 94 }}>
                 <Box
+                  width={width}
+                  height={height}
                   sx={(theme) => ({
                     background: `${lightIcon}`,
                     ...theme.applyDarkStyles({
                       background: `${darkIcon}`,
                     }),
                   })}
-                  width={width}
-                  height={height}
                 />
               </Box>
               <Box sx={{ flexGrow: 1 }}>

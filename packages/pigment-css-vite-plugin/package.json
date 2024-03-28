@@ -1,6 +1,6 @@
 {
   "name": "@pigment-css/vite-plugin",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "main": "build/index.js",
   "module": "build/index.mjs",
   "types": "build/index.d.ts",
@@ -33,7 +33,7 @@
     "@pigment-css/react": "workspace:^",
     "@wyw-in-js/shared": "^0.5.0",
     "@wyw-in-js/transform": "^0.5.0",
-    "babel-plugin-transform-react-remove-prop-types": "^0.4.24"
+    "babel-plugin-define-var": "^0.1.0"
   },
   "devDependencies": {
     "@types/babel__core": "^7.20.5",

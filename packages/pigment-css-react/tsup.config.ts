@@ -10,19 +10,25 @@ const baseConfig: Options = {
   external,
 };
 
+const BASE_FILES = ['index.ts', 'theme.ts', 'Box.jsx', 'RtlProvider.tsx'];
+
 export default defineConfig([
   {
     ...baseConfig,
-    entry: ['./src/index.ts', './src/theme.ts'],
+    entry: BASE_FILES.map((file) => `./src/${file}`),
   },
   {
     ...baseConfig,
-    entry: processors.map((fn) => `./src/processors/${fn}.ts`),
+    entry: processors.map((file) => `./src/processors/${file}.ts`),
     outDir: 'processors',
   },
   {
     ...baseConfig,
-    entry: ['./src/utils/index.ts', './src/utils/pre-linaria-plugin.ts'],
+    entry: [
+      './src/utils/index.ts',
+      './src/utils/pre-linaria-plugin.ts',
+      './src/utils/remove-prop-types-plugin.ts',
+    ],
     outDir: 'utils',
   },
 ]);

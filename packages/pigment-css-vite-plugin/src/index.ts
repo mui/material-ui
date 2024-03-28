@@ -45,9 +45,10 @@ export function pigment(options: PigmentOptions) {
   const {
     theme,
     babelOptions = {},
-    preprocessor = basePreprocessor,
+    preprocessor,
     transformLibraries = [],
     transformSx = true,
+    css,
     ...rest
   } = options ?? {};
 
@@ -104,11 +105,15 @@ export function pigment(options: PigmentOptions) {
     };
   }
 
+  const withRtl = (selector: string, cssText: string) => {
+    return basePreprocessor(selector, cssText, css);
+  };
+
   const zeroPlugin = baseWywPluginPlugin({
     themeArgs: {
       theme,
     },
-    preprocessor,
+    preprocessor: preprocessor ?? withRtl,
     babelOptions: {
       ...babelOptions,
       plugins: ['@babel/plugin-syntax-typescript', ...(babelOptions.plugins ?? [])],

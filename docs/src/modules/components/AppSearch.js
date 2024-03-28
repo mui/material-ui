@@ -54,7 +54,7 @@ const SearchButton = styled('button')(({ theme }) => [
     cursor: 'pointer',
     transitionProperty: 'all',
     transitionDuration: '150ms',
-    boxShadow: `inset 0 -1px 1px ${(theme.vars || theme).palette.grey[100]}, 0 1px 0.5px ${alpha(
+    boxShadow: `inset 0 -1px 0 ${(theme.vars || theme).palette.grey[100]}, 0 1px 0.5px ${alpha(
       theme.palette.grey[100],
       0.6,
     )}`,
@@ -273,6 +273,8 @@ const productNameProductId = {
   x: 'MUI X',
   system: 'MUI System',
   toolpad: 'Toolpad',
+  'toolpad-studio': 'Toolpad Studio',
+  'toolpad-core': 'Toolpad Core',
 };
 
 export function convertProductIdToName(productInfo) {
@@ -615,6 +617,10 @@ export default function AppSearch(props) {
               '& .DocSearch-Search-Icon': {
                 width: '18px',
                 height: '18px',
+              },
+              '& .DocSearch-VisuallyHiddenForAccessibility': {
+                width: 0,
+                visibility: 'hidden',
               },
             },
             '& .DocSearch-Cancel': {

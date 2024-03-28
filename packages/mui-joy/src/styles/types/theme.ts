@@ -87,7 +87,7 @@ export interface ThemeVars extends ThemeScales, ColorSystemVars {}
 export interface ThemeCssVarOverrides {}
 
 /**
- * For providing `sx` autocomplete, e.g. `color`, `bgcolor`, `borderColor`.
+ * For providing `sx` autocomplete, for example `color`, `bgcolor`, `borderColor`.
  */
 export type TextColor =
   | NormalizeVars<Omit<ColorSystem['palette'], 'mode'>, '.'>
@@ -97,6 +97,7 @@ export type ThemeCssVar = OverridableStringUnion<NormalizeVars<ThemeVars>, Theme
 
 export interface Theme extends ThemeScales, RuntimeColorSystem {
   colorSchemes: Record<DefaultColorScheme | ExtendedColorScheme, ColorSystem>;
+  defaultColorScheme: DefaultColorScheme | ExtendedColorScheme;
   focus: Focus;
   typography: TypographySystem;
   variants: Variants;
@@ -106,10 +107,9 @@ export interface Theme extends ThemeScales, RuntimeColorSystem {
   vars: ThemeVars;
   getCssVar: (field: ThemeCssVar, ...vars: ThemeCssVar[]) => string;
   getColorSchemeSelector: (colorScheme: DefaultColorScheme | ExtendedColorScheme) => string;
-  generateCssVars: (colorScheme?: DefaultColorScheme | ExtendedColorScheme) => {
-    css: Record<string, string | number>;
-    vars: ThemeVars;
-  };
+  generateThemeVars: () => ThemeVars;
+  generateStyleSheets: () => Record<string, any>[];
+  generateSpacing: () => Spacing;
   /**
    * A function to determine if the key, value should be attached as CSS Variable
    * `keys` is an array that represents the object path keys.

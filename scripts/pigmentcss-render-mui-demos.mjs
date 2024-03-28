@@ -16,7 +16,6 @@ function titleCase(str) {
   const result = str.replace(/([A-Z])/g, ' $1');
   return result.charAt(0).toUpperCase() + result.slice(1);
 }
-
 const args = process.argv.slice(2);
 
 async function run() {
@@ -59,11 +58,14 @@ async function run() {
     const componentName = filename.replace('.tsx', '');
     return `import ${componentName} from '../../../../../../docs/data/material/components/${dataFolderName}/${componentName}';`;
   });
+
+  const functionName = pascalCase(dataFolderName);
+
   const nextFileContent = `'use client';
 import * as React from 'react';
 ${nextImports.join('\n')}
 
-export default function ${pascalCase(dataFolderName)}() {
+export default function ${functionName}() {
   return (
     <React.Fragment>
 ${renders.join('\n')}
@@ -95,10 +97,10 @@ ${renders.join('\n')}
 import MaterialUILayout from '../../Layout';
 ${viteImports.join('\n')}
 
-export default function ${pascalCase(dataFolderName)}() {
+export default function ${functionName}() {
   return (
     <MaterialUILayout>
-      <h1>${pascalCase(dataFolderName)}</h1>
+      <h1>${functionName}</h1>
 ${renders.join('\n')}
     </MaterialUILayout>
   );

@@ -10,7 +10,7 @@ import {
   fixBabelGeneratorIssues,
   fixLineEndings,
   getUnstyledFilename,
-} from '@mui-internal/docs-utils';
+} from '@mui/internal-docs-utils';
 import {
   getPropTypesFromFile,
   injectPropTypesInFile,
@@ -188,7 +188,7 @@ async function generateProptypes(
     return;
   }
 
-  // exclude internal slot components, e.g. ButtonRoot
+  // exclude internal slot components, for example ButtonRoot
   const cleanComponents = components.filter((component) => {
     if (component.propsFilename?.endsWith('.tsx')) {
       // only check for .tsx
@@ -334,7 +334,6 @@ async function run(argv: HandlerArgv) {
       path.resolve(__dirname, '../packages/mui-base/src'),
       path.resolve(__dirname, '../packages/mui-material/src'),
       path.resolve(__dirname, '../packages/mui-lab/src'),
-      path.resolve(__dirname, '../packages/mui-material-next/src'),
       path.resolve(__dirname, '../packages/mui-joy/src'),
     ].map((folderPath) =>
       glob('+([A-Z])*/+([A-Z])*.*@(d.ts|ts|tsx)', {
