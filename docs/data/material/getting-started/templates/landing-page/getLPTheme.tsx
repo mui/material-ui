@@ -527,6 +527,11 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
               width: '100%',
               opacity: 1,
             },
+            '&:focus-visible': {
+              outline: `3px solid ${alpha(brand[500], 0.5)}`,
+              outlineOffset: '4px',
+              borderRadius: '2px',
+            },
             ...(theme.palette.mode === 'dark' && {
               color: brand[200],
             }),
