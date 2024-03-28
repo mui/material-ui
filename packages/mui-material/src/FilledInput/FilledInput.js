@@ -5,8 +5,8 @@ import refType from '@mui/utils/refType';
 import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
 import InputBase from '../InputBase';
-import styled, { rootShouldForwardProp } from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { rootShouldForwardProp } from '../styles/styled';
+import { styled, createUseThemeProps } from '../zero-styled';
 import filledInputClasses, { getFilledInputUtilityClass } from './filledInputClasses';
 import {
   rootOverridesResolver as inputBaseRootOverridesResolver,
@@ -42,7 +42,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
       !ownerState.disableUnderline && styles.underline,
     ];
   },
-})(({ theme, ownerState }) => {
+})(({ theme }) => {
   const light = theme.palette.mode === 'light';
   const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
   const backgroundColor = light ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.09)';
@@ -70,80 +70,106 @@ const FilledInputRoot = styled(InputBaseRoot, {
     [`&.${filledInputClasses.disabled}`]: {
       backgroundColor: theme.vars ? theme.vars.palette.FilledInput.disabledBg : disabledBackground,
     },
-    ...(!ownerState.disableUnderline && {
-      '&::after': {
-        borderBottom: `2px solid ${
-          (theme.vars || theme).palette[ownerState.color || 'primary']?.main
-        }`,
-        left: 0,
-        bottom: 0,
-        // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
-        content: '""',
-        position: 'absolute',
-        right: 0,
-        transform: 'scaleX(0)',
-        transition: theme.transitions.create('transform', {
-          duration: theme.transitions.duration.shorter,
-          easing: theme.transitions.easing.easeOut,
-        }),
-        pointerEvents: 'none', // Transparent to the hover style.
-      },
-      [`&.${filledInputClasses.focused}:after`]: {
-        // translateX(0) is a workaround for Safari transform scale bug
-        // See https://github.com/mui/material-ui/issues/31766
-        transform: 'scaleX(1) translateX(0)',
-      },
-      [`&.${filledInputClasses.error}`]: {
-        '&::before, &::after': {
-          borderBottomColor: (theme.vars || theme).palette.error.main,
+    variants: [
+      {
+        props: { startAdornment: true },
+        style: {
+          paddingLeft: 12,
         },
       },
-      '&::before': {
-        borderBottom: `1px solid ${
-          theme.vars
-            ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / ${theme.vars.opacity.inputUnderline})`
-            : bottomLineColor
-        }`,
-        left: 0,
-        bottom: 0,
-        // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
-        content: '"\\00a0"',
-        position: 'absolute',
-        right: 0,
-        transition: theme.transitions.create('border-bottom-color', {
-          duration: theme.transitions.duration.shorter,
-        }),
-        pointerEvents: 'none', // Transparent to the hover style.
+      {
+        props: { endAdornment: true },
+        style: {
+          paddingRight: 12,
+        },
       },
-      [`&:hover:not(.${filledInputClasses.disabled}, .${filledInputClasses.error}):before`]: {
-        borderBottom: `1px solid ${(theme.vars || theme).palette.text.primary}`,
+      {
+        props: { multiline: true },
+        style: {
+          padding: '25px 12px 8px',
+        },
       },
-      [`&.${filledInputClasses.disabled}:before`]: {
-        borderBottomStyle: 'dotted',
+      {
+        props: { multiline: true, size: 'small' },
+        style: {
+          paddingTop: 21,
+          paddingBottom: 4,
+        },
       },
-    }),
-    ...(ownerState.startAdornment && {
-      paddingLeft: 12,
-    }),
-    ...(ownerState.endAdornment && {
-      paddingRight: 12,
-    }),
-    ...(ownerState.multiline && {
-      padding: '25px 12px 8px',
-      ...(ownerState.size === 'small' && {
-        paddingTop: 21,
-        paddingBottom: 4,
-      }),
-      ...(ownerState.hiddenLabel && {
-        paddingTop: 16,
-        paddingBottom: 17,
-      }),
-      ...(ownerState.hiddenLabel &&
-        ownerState.size === 'small' && {
+      {
+        props: { multiline: true, hiddenLabel: true },
+        style: {
+          paddingTop: 16,
+          paddingBottom: 17,
+        },
+      },
+      {
+        props: { multiline: true, hiddenLabel: true, size: 'small' },
+        style: {
           paddingTop: 8,
           paddingBottom: 9,
-        }),
-    }),
+        },
+      },
+    ],
+
+    ...Object.entries(theme.palette)
+      .filter(([, value]) => value.main && value.light) // check all the used fields in the style below
+      .map(([color]) => ({
+        props: {
+          disableUnderline: true,
+          color,
+        },
+        style: {
+          '&::after': {
+            borderBottom: `2px solid ${(theme.vars || theme).palette[color]?.main}`,
+            left: 0,
+            bottom: 0,
+            // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
+            content: '""',
+            position: 'absolute',
+            right: 0,
+            transform: 'scaleX(0)',
+            transition: theme.transitions.create('transform', {
+              duration: theme.transitions.duration.shorter,
+              easing: theme.transitions.easing.easeOut,
+            }),
+            pointerEvents: 'none', // Transparent to the hover style.
+          },
+          [`&.${filledInputClasses.focused}:after`]: {
+            // translateX(0) is a workaround for Safari transform scale bug
+            // See https://github.com/mui/material-ui/issues/31766
+            transform: 'scaleX(1) translateX(0)',
+          },
+          [`&.${filledInputClasses.error}`]: {
+            '&::before, &::after': {
+              borderBottomColor: (theme.vars || theme).palette.error.main,
+            },
+          },
+          '&::before': {
+            borderBottom: `1px solid ${
+              theme.vars
+                ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / ${theme.vars.opacity.inputUnderline})`
+                : bottomLineColor
+            }`,
+            left: 0,
+            bottom: 0,
+            // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
+            content: '"\\00a0"',
+            position: 'absolute',
+            right: 0,
+            transition: theme.transitions.create('border-bottom-color', {
+              duration: theme.transitions.duration.shorter,
+            }),
+            pointerEvents: 'none', // Transparent to the hover style.
+          },
+          [`&:hover:not(.${filledInputClasses.disabled}, .${filledInputClasses.error}):before`]: {
+            borderBottom: `1px solid ${(theme.vars || theme).palette.text.primary}`,
+          },
+          [`&.${filledInputClasses.disabled}:before`]: {
+            borderBottomStyle: 'dotted',
+          },
+        },
+      })),
   };
 });
 
@@ -151,7 +177,7 @@ const FilledInputInput = styled(InputBaseInput, {
   name: 'MuiFilledInput',
   slot: 'Input',
   overridesResolver: inputBaseInputOverridesResolver,
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   paddingTop: 25,
   paddingRight: 12,
   paddingBottom: 8,
@@ -178,34 +204,61 @@ const FilledInputInput = styled(InputBaseInput, {
       },
     },
   }),
-  ...(ownerState.size === 'small' && {
-    paddingTop: 21,
-    paddingBottom: 4,
-  }),
-  ...(ownerState.hiddenLabel && {
-    paddingTop: 16,
-    paddingBottom: 17,
-  }),
-  ...(ownerState.startAdornment && {
-    paddingLeft: 0,
-  }),
-  ...(ownerState.endAdornment && {
-    paddingRight: 0,
-  }),
-  ...(ownerState.hiddenLabel &&
-    ownerState.size === 'small' && {
-      paddingTop: 8,
-      paddingBottom: 9,
-    }),
-  ...(ownerState.multiline && {
-    paddingTop: 0,
-    paddingBottom: 0,
-    paddingLeft: 0,
-    paddingRight: 0,
-  }),
+  variants: [
+    {
+      props: { size: 'small' },
+      style: {
+        paddingTop: 21,
+        paddingBottom: 4,
+      },
+    },
+    {
+      props: { hiddenLabel: true },
+      style: {
+        paddingTop: 16,
+        paddingBottom: 17,
+      },
+    },
+    {
+      props: { hiddenLabel: true, size: 'small' },
+      style: {
+        paddingTop: 8,
+        paddingBottom: 9,
+      },
+    },
+    {
+      props: { startAdornment: true },
+      style: {
+        paddingLeft: 0,
+      },
+    },
+    {
+      props: { startAdornment: true },
+      style: {
+        paddingLeft: 0,
+      },
+    },
+    {
+      props: { endAdornment: true },
+      style: {
+        paddingRight: 0,
+      },
+    },
+    {
+      props: { multiline: true },
+      style: {
+        paddingTop: 0,
+        paddingBottom: 0,
+        paddingLeft: 0,
+        paddingRight: 0,
+      },
+    },
+  ],
 }));
 
 const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
+  const useThemeProps = createUseThemeProps('MuiFilledInput');
+
   const props = useThemeProps({ props: inProps, name: 'MuiFilledInput' });
 
   const {
@@ -228,6 +281,7 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
     inputComponent,
     multiline,
     type,
+    color: props.color || 'primary',
   };
 
   const classes = useUtilityClasses(props);
@@ -457,6 +511,8 @@ FilledInput.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 };
 
-FilledInput.muiName = 'Input';
+if (FilledInput) {
+  FilledInput.muiName = 'Input';
+}
 
 export default FilledInput;
