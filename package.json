@@ -151,7 +151,7 @@
     "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-filenames": "^1.3.2",
     "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-material-ui": "workspace:^",
     "eslint-plugin-mocha": "^10.4.1",
     "eslint-plugin-react": "^7.34.1",
