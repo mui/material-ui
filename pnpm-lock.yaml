@@ -339,7 +339,7 @@ importers:
         specifier: ^4.7.1
         version: 4.7.1
       typescript:
-        specifier: ^5.3.3
+        specifier: ^5.4.3
         version: 5.4.3
       webpack:
         specifier: ^5.90.3
@@ -415,7 +415,7 @@ importers:
         specifier: ^8.56.0
         version: 8.56.0
       typescript:
-        specifier: ^5.3.3
+        specifier: ^5.4.3
         version: 5.4.3
 
   apps/pigment-css-vite-app:
@@ -936,7 +936,7 @@ importers:
         specifier: ^5.0.5
         version: 5.0.5
       typescript:
-        specifier: ^5.3.3
+        specifier: ^5.4.3
         version: 5.4.3
 
   packages-internal/scripts:
@@ -966,7 +966,7 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       typescript:
-        specifier: ^5.3.3
+        specifier: ^5.4.3
         version: 5.4.3
       uuid:
         specifier: ^9.0.1
@@ -1057,7 +1057,7 @@ importers:
         specifier: ^13.0.0
         version: 13.0.0
       typescript:
-        specifier: ^5.3.3
+        specifier: ^5.4.3
         version: 5.4.3
       unist-util-visit:
         specifier: ^2.0.3
@@ -1131,7 +1131,7 @@ importers:
         specifier: ^15.2.0
         version: 15.2.0
       typescript:
-        specifier: ^5.3.3
+        specifier: ^5.4.3
         version: 5.4.3
 
   packages/eslint-plugin-material-ui:
@@ -2427,7 +2427,7 @@ importers:
         specifier: ^10.0.20
         version: 10.0.20
       typescript:
-        specifier: ^5.3.3
+        specifier: ^5.4.3
         version: 5.4.3
 
   packages/waterfall: {}
