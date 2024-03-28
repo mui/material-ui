@@ -41,9 +41,9 @@ function isZeroRuntimeProcessableFile(fileName: string, transformLibraries: stri
   );
 }
 
-export function pigment(options: PigmentOptions) {
+export function pigment(options?: PigmentOptions) {
   const {
-    theme,
+    theme = {},
     babelOptions = {},
     preprocessor,
     transformLibraries = [],
