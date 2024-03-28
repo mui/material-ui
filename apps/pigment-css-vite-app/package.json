@@ -27,7 +27,7 @@
     "@babel/preset-react": "^7.24.1",
     "@babel/preset-typescript": "^7.24.1",
     "@pigment-css/vite-plugin": "workspace:^",
-    "@types/react": "^18.2.55",
+    "@types/react": "^18.2.73",
     "@types/react-dom": "^18.2.19",
     "@vitejs/plugin-react": "^4.2.1",
     "postcss": "^8.4.38",
