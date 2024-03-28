@@ -3,6 +3,9 @@ import { ThemeOptions, alpha } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
 import { PaletteMode } from '@mui/material';
 
+import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
+import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
+
 declare module '@mui/material/styles/createPalette' {
   interface ColorRange {
     50: string;
@@ -413,28 +416,20 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
             borderRadius: 10,
             outline: `1px solid ${alpha(gray[200], 0.8)}`,
             boxShadow: 'none',
-            transition: 'background-color, border, 80ms ease',
             ...(ownerState.variant === 'outlined' && {
+              border: 0,
               boxSizing: 'border-box',
               background: `linear-gradient(to bottom, #FFF, ${gray[50]})`,
-              '&:hover': {
-                borderColor: brand[300],
-                boxShadow: `0 0 24px ${brand[100]}`,
-              },
             }),
             ...(theme.palette.mode === 'dark' && {
               backgroundColor: alpha(gray[800], 0.6),
-              outline: `1px solid ${alpha(gray[700], 0.3)}`,
+              outline: `1px solid ${alpha(gray[700], 0.5)}`,
               ...(ownerState.variant === 'outlined' && {
                 boxSizing: 'border-box',
                 background: `linear-gradient(to bottom, ${gray[900]}, ${alpha(
                   gray[800],
                   0.5,
                 )})`,
-                '&:hover': {
-                  borderColor: brand[700],
-                  boxShadow: `0 0 24px ${brand[800]}`,
-                },
               }),
             }),
           }),
@@ -709,6 +704,64 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
               '&.Mui-completed': {
                 border: 'none',
                 color: theme.palette.success.light,
+              },
+            }),
+          }),
+        },
+      },
+      MuiCheckbox: {
+        defaultProps: {
+          disableRipple: true,
+          icon: <CheckBoxOutlineBlankRoundedIcon sx={{ color: 'rgba(0,0,0,0)' }} />,
+          checkedIcon: <CheckRoundedIcon sx={{ height: 14, width: 14 }} />,
+        },
+        styleOverrides: {
+          root: ({ theme }) => ({
+            margin: 10,
+            height: 16,
+            width: 16,
+            borderRadius: 5,
+            border: '1px solid ',
+            borderColor: alpha(gray[300], 0.8),
+            boxShadow: '0 0 0 1.5px rgba(0, 0, 0, 0.04) inset',
+            transition: 'border-color 120ms ease-in',
+            backgroundColor: alpha(gray[100], 0.4),
+            '&:hover': {
+              borderColor: brand[300],
+            },
+            '&.Mui-focusVisible': {
+              outline: `3px solid ${alpha(brand[500], 0.5)}`,
+              outlineOffset: '2px',
+              borderColor: brand[400],
+            },
+            '&.Mui-checked': {
+              color: 'white',
+              backgroundColor: brand[500],
+              '&:hover': {
+                borderColor: brand[300],
+                backgroundColor: brand[600],
+              },
+            },
+            ...(theme.palette.mode === 'dark' && {
+              borderColor: alpha(gray[700], 0.5),
+              boxShadow: '0 0 0 1.5px rgb(0, 0, 0) inset',
+              backgroundColor: alpha(gray[900], 0.8),
+              '&:hover': {
+                borderColor: brand[300],
+              },
+              '&.Mui-checked': {
+                color: 'white',
+                backgroundColor: brand[600],
+                boxShadow: '0 0 0 1px rgba(0, 0, 0, 0.2) inset',
+                '&:hover': {
+                  borderColor: brand[300],
+                  backgroundColor: brand[800],
+                },
+              },
+              '&.Mui-focusVisible': {
+                borderColor: brand[400],
+                outline: `3px solid ${alpha(brand[500], 0.5)}`,
+                outlineOffset: '2px',
               },
             }),
           }),
