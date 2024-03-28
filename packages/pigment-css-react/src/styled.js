@@ -30,7 +30,7 @@ const slotShouldForwardProp = (key) => key !== 'sx' && key !== 'as' && key !== '
 const rootShouldForwardProp = (key) => slotShouldForwardProp(key) && key !== 'classes';
 
 /**
- * @typedef {typeof defaultShouldForwardProp} ShouldForwardProp
+ * @typedef {(propKey: string) => boolean} ShouldForwardProp
  */
 
 /**
