@@ -3,10 +3,13 @@ import { alpha } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
+import InputLabel from '@mui/material/InputLabel';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+
+import { visuallyHidden } from '@mui/utils';
 
 export default function Hero() {
   return (
@@ -71,8 +74,11 @@ export default function Hero() {
             useFlexGap
             sx={{ pt: 2, width: { xs: '100%', sm: 'auto' } }}
           >
+            <InputLabel htmlFor="email-hero" sx={visuallyHidden}>
+              Email
+            </InputLabel>
             <TextField
-              id="outlined-basic"
+              id="email-hero"
               hiddenLabel
               size="small"
               variant="outlined"

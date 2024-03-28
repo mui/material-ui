@@ -7,15 +7,15 @@ import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 
 export const brand = {
   50: '#F0F7FF',
-  100: '#CEE5FD',
-  200: '#9CCCFC',
-  300: '#55A6F6',
-  400: '#0A66C2',
-  500: '#0959AA',
-  600: '#064079',
-  700: '#033363',
-  800: '#02294F',
-  900: '#021F3B',
+  100: '#CCE5FF',
+  200: '#99CCFF',
+  300: '#4CA6FF',
+  400: '#027AF2',
+  500: '#026BD4',
+  600: '#025AB1',
+  700: '#004080',
+  800: '#002951',
+  900: '#001F3D',
 };
 
 export const secondary = {
@@ -230,15 +230,19 @@ export default function getSignInTheme(mode) {
             }),
             ...(ownerState.variant === 'contained' &&
               ownerState.color === 'primary' && {
-                color: brand[50],
+                color: 'white',
+                textShadow: '0 0 2px rgba(0, 0, 0, 0.8)',
                 background: brand[500],
-                backgroundImage: `linear-gradient(to bottom, ${brand[400]}, ${brand[600]})`,
-                boxShadow: `inset 0 1px ${alpha(brand[300], 0.5)}`,
-                border: `1px solid ${brand[500]}`,
+                backgroundImage: `linear-gradient(to bottom, ${brand[300]}, ${brand[400]})`,
+                boxShadow: `inset 0 1px ${alpha(brand[200], 0.5)}, inset 0 -1px ${alpha(brand[500], 0.5)}`,
+                border: `1px solid ${brand[400]}`,
                 '&:hover': {
                   background: brand[400],
                   backgroundImage: 'none',
                   boxShadow: `0 0 0 1px  ${alpha(brand[300], 0.5)}`,
+                },
+                '&:active': {
+                  background: brand[600],
                 },
               }),
             ...(ownerState.variant === 'outlined' && {
@@ -271,12 +275,15 @@ export default function getSignInTheme(mode) {
               ...(ownerState.variant === 'contained' &&
                 ownerState.color === 'primary' && {
                   border: `1px solid ${brand[600]}`,
-                  backgroundImage: `linear-gradient(to bottom, ${brand[500]}, ${brand[600]})`,
-                  backgroundColor: brand[500],
+                  backgroundImage: `linear-gradient(to bottom, ${brand[400]}, ${brand[600]})`,
+                  boxShadow: `inset 0 1px ${alpha(brand[300], 0.5)}, inset 0 -1px ${alpha(brand[700], 0.5)}`,
                   '&:hover': {
                     background: brand[600],
                     backgroundImage: 'none',
                     boxShadow: `0 0 0 1px  ${alpha(brand[700], 0.5)}`,
+                  },
+                  '&:active': {
+                    background: brand[700],
                   },
                 }),
               ...(ownerState.variant === 'outlined' && {

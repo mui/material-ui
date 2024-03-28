@@ -98,6 +98,7 @@ export default function Highlights() {
                 sx={{
                   p: 3,
                   height: '100%',
+                  outline: 'none',
                   border: '1px solid',
                   borderColor: 'grey.800',
                   background: 'transparent',
