@@ -26,10 +26,6 @@ function isHtmlTag(tag) {
   );
 }
 
-function capitalize(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
 const slotShouldForwardProp = (key) => key !== 'sx' && key !== 'as' && key !== 'ownerState';
 const rootShouldForwardProp = (key) => slotShouldForwardProp(key) && key !== 'classes';
 
@@ -153,7 +149,7 @@ export default function styled(tag, componentMeta = {}) {
 
     let componentName = displayName;
     if (!componentName && name) {
-      componentName = `${name}${slot ? capitalize(slot) : ''}`;
+      componentName = `${name}${slot ? `-${slot}` : ''}`;
     }
     StyledComponent.displayName = `Styled(${componentName})`;
     // eslint-disable-next-line no-underscore-dangle
