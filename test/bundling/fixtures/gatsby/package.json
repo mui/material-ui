@@ -16,13 +16,13 @@
     "@mui/styles": "5.10.3",
     "@mui/system": "5.10.5",
     "@mui/utils": "5.10.3",
-    "gatsby": "4.25.7",
+    "gatsby": "5.13.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-is": "18.2.0"
   },
   "devDependencies": {
-    "concurrently": "7.4.0",
+    "concurrently": "8.2.2",
     "playwright": "1.42.1"
   }
 }

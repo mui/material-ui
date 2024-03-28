@@ -23,7 +23,7 @@
     "react-is": "18.2.0"
   },
   "devDependencies": {
-    "concurrently": "7.4.0",
+    "concurrently": "8.2.2",
     "cross-env": "7.0.3",
     "playwright": "1.42.1",
     "serve": "14.0.1"

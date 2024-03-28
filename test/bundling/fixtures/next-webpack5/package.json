@@ -22,7 +22,7 @@
     "react-is": "18.2.0"
   },
   "devDependencies": {
-    "concurrently": "7.4.0",
+    "concurrently": "8.2.2",
     "playwright": "1.42.1"
   }
 }
