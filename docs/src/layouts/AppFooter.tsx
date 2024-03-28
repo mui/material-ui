@@ -53,7 +53,7 @@ export default function AppFooter(props: AppFooterProps) {
           <Link prefetch={false} href="/" aria-label="Go to homepage" sx={{ mb: 2 }}>
             <SvgMuiLogotype height={28} width={91} />
           </Link>
-          <Typography variant="body2" fontWeight="bold" gutterBottom>
+          <Typography variant="body2" fontWeight="semiBold" gutterBottom>
             Keep up to date
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>

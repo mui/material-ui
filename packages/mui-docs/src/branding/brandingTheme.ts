@@ -264,14 +264,8 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
             : 'linear-gradient(rgba(255 255 255 / 0.3), rgba(255 255 255 / 0.3)), linear-gradient(254.86deg, rgba(194, 224, 255, 0.12) 0%, rgba(194, 224, 255, 0.12) 0%, rgba(255, 255, 255, 0.3) 49.98%, rgba(240, 247, 255, 0.3) 100.95%)',
         linearSubtle:
           mode === 'light'
-            ? `linear-gradient(to top right, ${alpha(blue[50], 0.3)} 40%, ${alpha(
-                grey[50],
-                0.2,
-              )} 100%)`
-            : `linear-gradient(to top right, ${alpha(blue[900], 0.1)} 40%, ${alpha(
-                blueDark[800],
-                0.2,
-              )} 100%)`,
+            ? `linear-gradient(to bottom right, ${alpha(blue[50], 0.3)} 25%, ${alpha(grey[50], 0.2)} 100%)`
+            : `linear-gradient(to bottom right, ${alpha(blue[900], 0.1)} 25%, ${alpha(blueDark[800], 0.2)} 100%)`,
       },
     },
     shape: {
@@ -517,46 +511,38 @@ export function getThemedComponents(): ThemeOptions {
             ...(ownerState.variant === 'outlined' &&
               ownerState.color === 'secondary' && {
                 color: (theme.vars || theme).palette.text.primary,
-                backgroundColor: alpha(theme.palette.primaryDark[50], 0.3),
+                backgroundColor: alpha(theme.palette.primaryDark[50], 0.1),
                 borderColor: (theme.vars || theme).palette.primaryDark[100],
-                boxShadow: `${alpha(theme.palette.grey[50], 0.5)} 0 2px 0.5px inset, ${alpha(
-                  theme.palette.grey[100],
-                  0.5,
-                )} 0 -2px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
+                boxShadow: `${alpha(theme.palette.grey[50], 0.5)} 0 2px 0 inset, ${alpha(theme.palette.grey[100], 0.5)} 0 -2px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
                 '&:hover': {
-                  backgroundColor: (theme.vars || theme).palette.primaryDark[50],
+                  backgroundColor: (theme.vars || theme).palette.grey[50],
                 },
                 ...theme.applyDarkStyles({
                   color: (theme.vars || theme).palette.primaryDark[100],
                   borderColor: alpha(theme.palette.primaryDark[600], 0.5),
-                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
-                  boxShadow: `${alpha(theme.palette.primaryDark[600], 0.1)} 0 2px 0 inset, ${alpha(theme.palette.primaryDark[900], 0.5)} 0 -2px 1px inset, ${theme.palette.common.black} 0 1px 2px 0`,
+                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.2),
+                  boxShadow: `${alpha(theme.palette.primaryDark[600], 0.2)} 0 2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
                   '&:hover': {
                     backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                    borderColor: (theme.vars || theme).palette.primaryDark[600],
                   },
                 }),
               }),
             ...(ownerState.variant === 'outlined' &&
               ownerState.color === 'primary' && {
                 color: (theme.vars || theme).palette.primary[600],
-                backgroundColor: alpha(theme.palette.primary[50], 0.3),
+                backgroundColor: alpha(theme.palette.primary[50], 0.2),
                 borderColor: (theme.vars || theme).palette.primary[100],
-                boxShadow: `${theme.palette.primary[50]} 0 2px 0.5px inset, ${alpha(
-                  theme.palette.primary[100],
-                  0.2,
-                )} 0 -3px 0 inset, ${alpha(theme.palette.primary[100], 0.3)} 0 1px 2px 0`,
+                boxShadow: `${alpha(theme.palette.primary[50], 0.8)} 0 2px 0 inset, ${alpha(theme.palette.primary[100], 0.4)} 0 -2px 0 inset, ${alpha(theme.palette.primary[100], 0.5)} 0 1px 2px 0`,
                 '&:hover': {
                   backgroundColor: (theme.vars || theme).palette.primary[50],
-                  borderColor: (theme.vars || theme).palette.primary[300],
+                  borderColor: (theme.vars || theme).palette.primary[200],
                 },
                 ...theme.applyDarkStyles({
                   color: (theme.vars || theme).palette.primary[200],
                   borderColor: alpha(theme.palette.primary[900], 0.7),
                   backgroundColor: alpha(theme.palette.primary[900], 0.2),
-                  boxShadow: `${alpha(theme.palette.primary[900], 0.1)} 0 2px 1px inset, ${alpha(
-                    theme.palette.common.black,
-                    0.5,
-                  )} 0 -3px 0 inset, ${theme.palette.common.black} 0 1px 2px 0`,
+                  boxShadow: `${alpha(theme.palette.primary[900], 0.2)} 0 2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
                   '&:hover': {
                     backgroundColor: (theme.vars || theme).palette.primary[900],
                     borderColor: (theme.vars || theme).palette.primary[700],
@@ -568,11 +554,8 @@ export function getThemedComponents(): ThemeOptions {
                 color: '#fff',
                 textShadow: `0 1px 1px ${alpha(theme.palette.common.black, 0.6)}`,
                 backgroundColor: (theme.vars || theme).palette.primary[500],
-                backgroundImage: `linear-gradient(180deg, ${alpha(
-                  theme.palette.primary[500],
-                  0.6,
-                )} 0%, ${theme.palette.primary[600]} 100%)`,
-                boxShadow: `${theme.palette.primary[400]} 0 2px 0.5px inset, ${theme.palette.primary[700]} 0 -3px 1px inset, ${alpha(theme.palette.common.black, 0.1)} 0 2px 4px 0`,
+                backgroundImage: `linear-gradient(180deg, ${alpha(theme.palette.primary[500], 0.6)} 0%, ${theme.palette.primary[600]} 100%)`,
+                boxShadow: `${theme.palette.primary[400]} 0 2px 0 inset, ${theme.palette.primary[700]} 0 -2px 0 inset, ${alpha(theme.palette.common.black, 0.1)} 0 2px 4px 0`,
                 '&:hover': {
                   backgroundColor: (theme.vars || theme).palette.primary[700],
                 },
@@ -731,25 +714,23 @@ export function getThemedComponents(): ThemeOptions {
                 height: 34,
                 width: 34,
                 border: `1px solid`,
-                borderColor: (theme.vars || theme).palette.grey[200],
-                color: (theme.vars || theme).palette.primary[500],
                 borderRadius: theme.shape.borderRadius,
-                boxShadow: `inset 0 1px 2px ${
-                  (theme.vars || theme).palette.grey[50]
-                }, 0 1px 0.5px ${alpha(theme.palette.grey[100], 0.6)}`,
+                color: (theme.vars || theme).palette.primary.main,
+                backgroundColor: alpha(theme.palette.primaryDark[50], 0.1),
+                borderColor: (theme.vars || theme).palette.primaryDark[100],
+                boxShadow: `${alpha(theme.palette.grey[50], 0.4)} 0 1px 0 inset, ${alpha(theme.palette.grey[100], 0.5)} 0 -1.5px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
                 '&:hover': {
                   borderColor: (theme.vars || theme).palette.grey[300],
                   background: (theme.vars || theme).palette.grey[50],
                 },
               },
               theme.applyDarkStyles({
-                borderColor: (theme.vars || theme).palette.primaryDark[700],
                 color: (theme.vars || theme).palette.primary[300],
-                boxShadow: `inset 0 1px 1px ${
-                  (theme.vars || theme).palette.primaryDark[900]
-                }, 0 1px 0.5px ${(theme.vars || theme).palette.common.black}`,
+                borderColor: alpha(theme.palette.primaryDark[600], 0.5),
+                backgroundColor: alpha(theme.palette.primaryDark[700], 0.2),
+                boxShadow: `${alpha(theme.palette.primaryDark[600], 0.2)} 0 1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
                 '&:hover': {
-                  borderColor: (theme.vars || theme).palette.primaryDark[600],
+                  borderColor: (theme.vars || theme).palette.primaryDark[500],
                   background: alpha(theme.palette.primaryDark[700], 0.4),
                 },
               }),
@@ -761,13 +742,12 @@ export function getThemedComponents(): ThemeOptions {
               {
                 height: 34,
                 width: 34,
-                border: `1px solid`,
-                borderColor: (theme.vars || theme).palette.grey[200],
-                color: (theme.vars || theme).palette.grey[600],
+                color: (theme.vars || theme).palette.text.tertiary,
                 borderRadius: theme.shape.borderRadius,
-                boxShadow: `inset 0 1px 2px ${
-                  (theme.vars || theme).palette.grey[50]
-                }, 0 1px 0.5px ${alpha(theme.palette.grey[100], 0.6)}`,
+                border: `1px solid`,
+                backgroundColor: alpha(theme.palette.primaryDark[50], 0.1),
+                borderColor: (theme.vars || theme).palette.primaryDark[100],
+                boxShadow: `${alpha(theme.palette.grey[50], 0.4)} 0 1px 0 inset, ${alpha(theme.palette.grey[100], 0.5)} 0 -1.5px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
                 '&:hover': {
                   color: (theme.vars || theme).palette.primary.main,
                   borderColor: (theme.vars || theme).palette.grey[300],
@@ -775,14 +755,12 @@ export function getThemedComponents(): ThemeOptions {
                 },
               },
               theme.applyDarkStyles({
-                borderColor: (theme.vars || theme).palette.primaryDark[700],
-                color: (theme.vars || theme).palette.grey[400],
-                boxShadow: `inset 0 1px 1px ${
-                  (theme.vars || theme).palette.primaryDark[900]
-                }, 0 1px 0.5px ${(theme.vars || theme).palette.common.black}`,
+                borderColor: alpha(theme.palette.primaryDark[600], 0.5),
+                backgroundColor: alpha(theme.palette.primaryDark[700], 0.2),
+                boxShadow: `${alpha(theme.palette.primaryDark[600], 0.2)} 0 1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
                 '&:hover': {
                   color: (theme.vars || theme).palette.primary[400],
-                  borderColor: (theme.vars || theme).palette.primaryDark[600],
+                  borderColor: (theme.vars || theme).palette.primaryDark[500],
                   background: alpha(theme.palette.primaryDark[700], 0.4),
                 },
               }),
@@ -1103,9 +1081,7 @@ export function getThemedComponents(): ThemeOptions {
                 borderColor: (theme.vars || theme).palette.grey[100],
                 '&[href]': {
                   textDecorationLine: 'none',
-                  boxShadow: `inset 0 1px 2px ${
-                    (theme.vars || theme).palette.grey[50]
-                  }, 0 1px 2px ${alpha(theme.palette.grey[100], 0.6)}`,
+                  boxShadow: `${alpha(theme.palette.grey[50], 0.5)} 0 1px 0 inset, ${alpha(theme.palette.grey[100], 0.3)} 0 -2px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
                   '&:hover': {
                     borderColor: (theme.vars || theme).palette.primary[200],
                     boxShadow: `0px 2px 8px ${(theme.vars || theme).palette.primary[100]}`,
@@ -1130,9 +1106,7 @@ export function getThemedComponents(): ThemeOptions {
                 backgroundColor: alpha(theme.palette.primaryDark[800], 0.6),
                 '&[href]': {
                   textDecorationLine: 'none',
-                  boxShadow: `inset 0 1px 1px ${
-                    (theme.vars || theme).palette.primaryDark[900]
-                  }, 0 1px 2px ${(theme.vars || theme).palette.common.black}`,
+                  boxShadow: `${alpha(theme.palette.primaryDark[600], 0.2)} 0 1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
                   '&:hover': {
                     borderColor: alpha(theme.palette.primary[600], 0.5),
                     boxShadow: `0px 2px 8px ${alpha(theme.palette.primary[900], 0.6)}`,
@@ -1178,7 +1152,7 @@ export function getThemedComponents(): ThemeOptions {
           root: ({ theme, ownerState }) => [
             {
               textTransform: 'none',
-              fontWeight: 'medium',
+              fontWeight: theme.typography.fontWeightMedium,
               color: theme.palette.text.secondary,
               borderColor: theme.palette.grey[200],
               ...(ownerState.size === 'small' && {
